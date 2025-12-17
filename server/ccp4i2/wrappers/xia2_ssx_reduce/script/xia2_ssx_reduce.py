@@ -1,23 +1,17 @@
-#
-#  Copyright (C) 2024 STFC Rutherford Appleton Laboratory, UK.
-#
-#  Author: Martin Maly, David Waterman
-#
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4ErrorHandling import *
-import os, glob, shutil
-
-from lxml import etree
-from ccp4i2.core import CCP4Container
-from ccp4i2.core import CCP4XtalData
-import platform
-import json
-from math import sqrt
-from dxtbx.model.experiment_list import ExperimentList
-import gemmi
 import glob
-from pathlib import Path
+import json
+import os
+import platform
 import shutil
+from math import sqrt
+from pathlib import Path
+
+import gemmi
+from dxtbx.model.experiment_list import ExperimentList
+from lxml import etree
+
+from ccp4i2.core import CCP4Container, CCP4XtalData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class Cxia2_ssx_reduce(CPluginScript):

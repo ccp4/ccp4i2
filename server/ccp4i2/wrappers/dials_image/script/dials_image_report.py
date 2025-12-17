@@ -1,5 +1,6 @@
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
+
 
 class dials_image_report(Report):
 

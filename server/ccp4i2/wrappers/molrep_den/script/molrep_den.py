@@ -1,7 +1,7 @@
 import os
 import re
 
-from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 

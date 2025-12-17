@@ -1,9 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
-import math
+from ccp4i2.report import Report
+
 
 class acedrgNew_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'Acedrg'
     RUNNING = True
     
@@ -35,4 +33,3 @@ class acedrgNew_report(Report):
                     dataNodes = self.xmlnode.findall('.//Acedrg/Geometry/'+categoryName+'/'+child.tag)
                     data = [dataNode.text for dataNode in dataNodes]
                     table.addData(title=columnNameMap[child.tag],data=data)
-

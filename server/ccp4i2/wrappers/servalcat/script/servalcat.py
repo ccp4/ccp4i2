@@ -6,7 +6,6 @@ from xml.etree import ElementTree as ET
 
 from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
-from ccp4i2.core.CCP4ErrorHandling import *
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 from .json2xml import json2xml

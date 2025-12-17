@@ -2,7 +2,6 @@ from ccp4i2.report.CCP4ReportParser import Report
 import sys
 
 class phaser_EP_LLG_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'phaser_EP_LLG'
     RUNNING = True
     

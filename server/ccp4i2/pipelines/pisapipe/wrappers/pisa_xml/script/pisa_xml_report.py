@@ -1,9 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
-import math
+from ccp4i2.report import Report
+
 
 class pisa_xml_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'pisa_xml'
     RUNNING = True
 
@@ -26,9 +24,6 @@ class pisa_xml_report(Report):
             for tag,title,expr in [('id','Id',"'{:4.0f}'.format(float(x))"),
                                    ('formula','Formula',None),
                                    ('composition','Composition',None),
-#                              ('size','Size',"'{:4.0f}'.format(float(x))"),
-#                              ('mmsize','mmsize',"'{:4.0f}'.format(float(x))"),
-#                             ('freesize','freesize',"'{:4.0f}'.format(float(x))"),
                               ('diss_energy','Diss E.',"'{:10.1f}'.format(float(x))"),
                               ('diss_energy_0','Diss E.(0)',"'{:10.1f}'.format(float(x))"),
                               ('asa','ASA',"'{:10.1f}'.format(float(x))"),

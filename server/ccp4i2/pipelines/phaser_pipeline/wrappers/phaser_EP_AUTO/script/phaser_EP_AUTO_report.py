@@ -1,8 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
+from ccp4i2.report import Report
+
 
 class phaser_EP_AUTO_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'phaser_EP_AUTO'
     RUNNING = True
     

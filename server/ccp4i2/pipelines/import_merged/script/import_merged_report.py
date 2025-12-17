@@ -1,8 +1,8 @@
 import os
 import sys
 
-from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import colourText, html_linebreak
+from ccp4i2.report import Report
 from ccp4i2.wrappers.aimless.script import aimless_report
 from ccp4i2.wrappers.ctruncate.script import ctruncate_report
 from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
@@ -958,14 +958,3 @@ class import_merged_report(Report):
     table_info.append(dsetinfo)
 
     return table_info
-
-
-############################################################################
-if __name__ == "__main__":
-
-  report = import_merged_report(xmlFile = sys.argv[1],jobStatus="Finished" )
-  tree= report.as_etree()
-  #print etree.tostring(tree,pretty_print=True)
-  report.as_html_file(fileName='./test-import.html')
-  if len(report.errorReport())>0: print('ERRORS:',r.errorReport())
-

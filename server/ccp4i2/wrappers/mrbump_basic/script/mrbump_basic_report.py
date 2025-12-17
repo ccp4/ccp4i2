@@ -1,17 +1,16 @@
-from ccp4i2.report.CCP4ReportParser import *
+import os
+
+from ccp4i2.report import Report
+
 
 class mrbump_basic_report(Report):
-  # Specify which gui task and/or pluginscript this applies to
   TASKNAME = 'mrbump_basic'
   RUNNING = True
   CSS_VERSION = '0.1.0'
 
   def __init__(self,xmlnode=None,jobInfo={},**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,cssVersion=self.CSS_VERSION,**kw)
-  
-    from ccp4i2.core import CCP4Utils
-    import os
-    
+
     results = self.addResults()
     results.append( 'MrBUMP is a pipeline to trial many search models in molecular replacement. \
                      It will find and prepare possible search models based on a sequence alignment \
@@ -21,32 +20,7 @@ class mrbump_basic_report(Report):
                      model building to assess the likely success or otherwise of the molecular \
                      replacement search.' )
 
-    #tableFoldsearch = results.addFold(label='sequence-based search results', initiallyOpen=True)
-    #tableFoldsearch.append('These are the results of the sequence based search (using Phmmer). Below is the alignment of the best matches to the target sequences.<br/>')
-
     jobDirectory = jobInfo['fileroot']
-    
-    #if not os.path.isfile(os.path.join(jobDirectory, "search_mrbump_1", "logs", "alignment_report.log")):
-    #    results.append("Warning: Cannot find alignment report file!")
-    #else: 
-    #    alog=open(os.path.join(jobDirectory, "search_mrbump_1", "logs", "alignment_report.log"), "r")
-    #    lines="".join(alog.readlines())
-    #    alog.close()
-    #    tableFoldsearch.append("<pre>%s</pre>" % lines)
-
-    #stuff=tableFoldsearch.addTable(select=".//MRBUMP/target_details/Sequence_align_list")
-    #for title, select in [ ["Chain ID", "alignment/chainID"],
-    #                       ["Alignment", "alignment/sequence"] ] :
-    #    stuff.addData(title=title, select=select)
-#
-#    tableFoldx = results.addFold(label='detailed results for MR model search and preparation', initiallyOpen=True)
-#    tableFoldx.append('Target Sequence:')
-#    tableFoldx.append('Scores:')
-#    tableFoldx.append('List of search results:')
-#    tableFoldx.append('List of prepared models:')
-#    tablex =  tableFoldx.addTable(select=".//MRBUMP/model_name/mrprogram")
-#    for title, select in [ ["Model Name", "SearchModel_name"] ] :
-#        tablex.addData(title=title, select=select)
 
     tableFoldsearch = results.addFold(label='search model preparation', initiallyOpen=True)
     tableFoldsearch.append('These are the search models that have been found and prepared for use in Molecular Replacement.<br/>')
@@ -75,17 +49,6 @@ class mrbump_basic_report(Report):
 
         tableFoldmr.append("<pre>%s</pre>" % lines)
 
-#    table1 =  tableFoldmr.addTable(select=".//MRBUMP/model_name/mrprogram")
-#
-#    for title, select in [ ["Model Name", "SearchModel_name"],
-#                           ["Phaser LLG", "PHASER_LLG"],
-#                           ["Phaser TFZ", "PHASER_TFZ"],
-#                           ["Final R<sub>fact</sub>", "final_Rfact"],
-#                           ["Final R<sub>free</sub>", "final_Rfree"],
-#                           ["SHELXE CC", "SHELXE_CC"] ] :
-#
-#        table1.addData(title=title, select=select)
-
     if os.path.isfile(os.path.join(jobDirectory, "search_mrbump_1", "logs", "programs.json")):
         tableFoldreferences = results.addFold(label='references', initiallyOpen=True)
         tableFoldreferences.append('The following programs were used in this run:') 
@@ -102,9 +65,3 @@ class mrbump_basic_report(Report):
             #tableFoldreferences.append(rprog.paper)
 
     self.addTaskReferences()
-
-if __name__ == "__main__":
-  import sys
-  mrbump_basic_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
-
-

@@ -1,7 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
+
 
 class pisa_analyse_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'pisa_analyse'
     USEPROGRAMXML = False
 

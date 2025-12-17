@@ -1,4 +1,4 @@
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 
 SHELMR_DYN = True
 

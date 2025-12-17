@@ -1,11 +1,10 @@
 import sys
+import xml.etree.ElementTree as etree
 
-from ccp4i2.report.CCP4ReportParser import *
 from ccp4i2.wrappers.pointless.script.pointless_report import pointless_report
 
 
 class pointless_reindexToMatch_report(pointless_report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'pointless_reindexToMatch'
     RUNNING = False
     

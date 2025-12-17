@@ -1,5 +1,5 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
+from ccp4i2.report import Report
+
 
 class coordinate_selector_report(Report):
     TASKNAME = 'coordinate_selector'

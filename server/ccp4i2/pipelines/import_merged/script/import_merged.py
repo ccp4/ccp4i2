@@ -5,13 +5,10 @@ from lxml import etree
 
 from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
-from ccp4i2.core.CCP4ErrorHandling import *
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from ccp4i2.pipelines.import_merged.script.importutils import *
-from ccp4i2.pipelines.import_merged.script.mmcifconvert import *
-from ccp4i2.pipelines.import_merged.script.mmcifutils import *
-from ccp4i2.pipelines.import_merged.script.mtzimport import *
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
+from ccp4i2.pipelines.import_merged.script.mmcifconvert import ConvertCIF
+from ccp4i2.pipelines.import_merged.script.mtzimport import ImportMTZ
 
 
 class import_merged(CPluginScript):

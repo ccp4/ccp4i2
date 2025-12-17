@@ -1,8 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
-
+from ccp4i2.report import Report
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
 
 class pyphaser_mr_report(Report):
-  # Specify which gui task and/or pluginscript this applies to
   TASKNAME = 'pyphaser_mr'
   # Flag that a 'Running' mode is supported
   RUNNING = True

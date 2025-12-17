@@ -1,10 +1,12 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
+import copy
+import string
 import xml.etree.ElementTree as etree
+
+from ccp4i2.report import Report
+
 
 class pimpleGraph():
     def __init__(self,title=None, separator =' ', xmlnode=None):
-        import copy
         if xmlnode is not None:
             self.xmlnode = copy.deepcopy(xmlnode)
             if title is not None: self.xmlnode.set('title',title)
@@ -29,7 +31,6 @@ class pimpleGraph():
         return
     
     def dataAsText(self):
-        import string
         textLines = [string.join(dataRow,' ') for dataRow in self.data]
         text = string.join(textLines,'\n')
         return text
@@ -46,8 +47,7 @@ class pimpleGraph():
     
     def appendPimpleGraph(self, otherPimpleGraph = None):
         if otherPimpleGraph is None: return
-        import string
-        import copy
+
         self.headers += otherPimpleGraph.headers
         self.headersNode.text = string.join(self.headers,self.separator)
         originalNRows = self.nRows()
@@ -83,7 +83,6 @@ class pimpleGraph():
         return [dataRow[iColumn] for dataRow in self.data]
 
 class phaser_mr_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'phaser_mr'
     RUNNING = True
     
@@ -241,4 +240,3 @@ class phaser_mr_report(Report):
         summaryNodes = self.xmlnode.findall('.//CCP4Summary')
         for summaryNode in summaryNodes:
             summaryDiv.addPre(text = summaryNode.text)
-

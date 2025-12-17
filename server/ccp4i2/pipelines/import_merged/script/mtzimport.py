@@ -1,12 +1,9 @@
-import sys
-import math
-import numpy
 import gemmi
-
+import numpy
 from lxml import etree
 
-from ccp4i2.pipelines.import_merged.script.importutils import *
-#from importutils import *
+from ccp4i2.pipelines.import_merged.script.importutils import ReflectionDataTypes, addXMLelement
+
 
 class ImportMTZ():
     # Import MTZ into I2 objects
@@ -46,11 +43,9 @@ class ImportMTZ():
         print ('col1', col1, type(obsColLabels[0]), obsColLabels[0])
         datasetID = col1.dataset_id
 
-        chosenDatasetIndex = -1
         chosenDataset = None
         for i in range(len(mtz.datasets)):
             if mtz.datasets[i].id == datasetID:
-                chosenDatasetIndex = i
                 chosenDataset = mtz.datasets[i]
                 break
             

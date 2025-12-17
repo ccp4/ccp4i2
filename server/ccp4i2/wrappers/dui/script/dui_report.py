@@ -1,10 +1,9 @@
-import os
-import glob
-import re
-import mmap
 import json
+import os
+import re
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
+
 
 class dui_report(Report):
 
@@ -58,4 +57,3 @@ class dui_report(Report):
         with open(jsonin, 'r') as fin:
             jfin = json.load(fin)
             self.DUI_Outputlist = jfin
-

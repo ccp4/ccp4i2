@@ -1,17 +1,10 @@
-from ccp4i2.report.CCP4ReportParser import *
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core.CCP4ClipperUtils import is_aminoacid
-import os
 import xml.etree.ElementTree as etree
 
-"""
-    edstats report generator
-    Jon Agirre (YSBL, The University of York) 2014-2018
+from ccp4i2.core.CCP4ClipperUtils import is_aminoacid
+from ccp4i2.report import Report
 
-"""
 
 class edstats_report(Report):
-  # Specify which gui task and/or pluginscript this applies to
   TASKNAME = 'edstats'
   CSS_VERSION = '0.1.0'
 

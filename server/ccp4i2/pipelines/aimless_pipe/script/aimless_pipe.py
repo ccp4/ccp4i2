@@ -1,13 +1,15 @@
-import sys
 import os
-from ccp4i2.baselayer import QtCore
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from lxml import etree as lxml_etree
-from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from ccp4i2.pipelines.aimless_pipe.script.aimless_cifstats import *
+import sys
 
+from lxml import etree as lxml_etree
+
+from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4Data import CString
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.pipelines.aimless_pipe.script.aimless_cifstats import CifStatsExtractFromXML
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
+
 
 class aimless_pipe(CPluginScript):
 
@@ -329,6 +331,7 @@ class aimless_pipe(CPluginScript):
       self.ndatasets_failed = 0
 
       import shutil
+
       # Copy any unmerged files to main directory
       nunmerged = len(self.aimless.container.outputData.MTZUNMERGEDOUT)
       #print "Nunmerged",nunmerged
@@ -453,7 +456,8 @@ class aimless_pipe(CPluginScript):
 
     #  # # # # # # # # # # # # # # # # # # # # # # # # # # # # # 
     def process_finish(self,status):
-      import os,shutil
+      import os
+      import shutil
 
       print("process_finish", status)
       xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
@@ -995,8 +999,8 @@ class aimless_pipe(CPluginScript):
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
     import os
-    from ccp4i2.core import CCP4Modules
-    from ccp4i2.core import CCP4XtalData
+
+    from ccp4i2.core import CCP4Modules, CCP4XtalData
 
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)
     exportFile = os.path.join(jobDir,'exportMtz.mtz')

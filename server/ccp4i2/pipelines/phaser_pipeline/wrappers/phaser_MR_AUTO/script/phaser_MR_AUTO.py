@@ -412,33 +412,3 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
                 self.logFile.write(str(jobInfo["jobtitle"])+"\n")
 
         self.logFile.close()
-
-def xmlFromMRSolution(mrSolutions, root):
-    for solution in mrSolutions:
-        solNode = etree.SubElement(root, 'Solution')
-        for attr in ['ANNOTATION', 'EQUIV', 'HALL', 'KEEP', 'LLG','NUM', 'ORIG_LLG', 'ORIG_NUM', 'ORIG_R', 'PAK', 'R', 'RLIST', 'TF', 'TFZ', 'TFZeq', 'TMPLT']:
-            node = textedSubNode(solNode, attr, getattr(solution,attr))
-        for attr in ['CELL', 'DRMS', 'NEWVRMS','VRMS']:
-            wrappedObject = getattr(solution,attr)
-            node = etree.SubElement(solNode,attr)
-            for key in list(wrappedObject.keys()):
-                pairNode = etree.SubElement(node,'Pair')
-                keyNode = textedSubNode(pairNode, 'Key', key)
-                valueNode = textedSubNode(pairNode,'Value', wrappedObject.get(key))
-        for component in getattr(solution,'KNOWN'):
-            componentNode = etree.SubElement(solNode,'Component')
-            node = textedSubNode(componentNode,'BFAC',component.getBfac())
-            node = textedSubNode(componentNode,'EULER',component.getEuler())
-            node = textedSubNode(componentNode,'FIXB',component.getFixB())
-            node = textedSubNode(componentNode,'FIXR',component.getFixR())
-            node = textedSubNode(componentNode,'FIXT',component.getFixT())
-            node = textedSubNode(componentNode,'FRAC',component.getFrac())
-            node = textedSubNode(componentNode,'FRACT',component.getFracT())
-            node = textedSubNode(componentNode,'INFRAC',component.getInFrac())
-            node = textedSubNode(componentNode,'MODLID',component.MODLID)
-            node = textedSubNode(componentNode,'MULT',component.getMult())
-            #node = textedSubNode(componentNode,'ORTH',component.getOrth())
-            node = textedSubNode(componentNode,'R',component.getR())
-            node = textedSubNode(componentNode,'RTNCS',component.getRtncs())
-            node = textedSubNode(componentNode,'TTNCS',component.getTtncs())
-            node = textedSubNode(componentNode,'HASRTNCS',component.hasRtncs())

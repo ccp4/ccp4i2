@@ -2,12 +2,11 @@ import functools
 import logging
 import os
 import sys
-
 import xml.etree.ElementTree as etree
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
-from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2.core.CCP4Modules import PREFERENCES
 
 # Import Django dbapi adapter constants for file type lookups

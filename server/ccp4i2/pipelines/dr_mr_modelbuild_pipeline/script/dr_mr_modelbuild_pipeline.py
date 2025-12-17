@@ -15,7 +15,7 @@ from lxml import etree
 
 from ccp4i2.baselayer.QtCore import Slot
 from ccp4i2.core import CCP4Utils
-from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 

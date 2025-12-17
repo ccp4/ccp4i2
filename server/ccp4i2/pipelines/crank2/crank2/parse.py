@@ -1,12 +1,14 @@
-import os,sys,io
-import common,manager,process
-import pkgutil,csv
-try:
-  import argparse
-  no_argparse=False
-except:
-  import optparse
-  no_argparse=True
+import argparse
+import csv
+import io
+import os
+import sys
+
+import common
+import manager
+
+no_argparse=False
+
 
 program="crank2"
 

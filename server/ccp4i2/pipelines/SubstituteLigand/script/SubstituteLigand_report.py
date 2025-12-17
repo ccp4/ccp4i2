@@ -1,12 +1,7 @@
+from ccp4i2.report import Report
 
-from ccp4i2.report.CCP4ReportParser import *
-import sys
-#from lxml import etree
-import xml.etree.ElementTree as etree
-import math
 
 class SubstituteLigand_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'SubstituteLigand'
     RUNNING = True
 
@@ -37,7 +32,9 @@ class SubstituteLigand_report(Report):
     
         pmaNodes = self.xmlnode.findall('.//PhaserMrResults')
         if len(pmaNodes) > 0:
-            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import phaser_MR_AUTO_report
+            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import (
+                phaser_MR_AUTO_report,
+            )
             pmaNode = pmaNodes[0]
             phaser_MRAReport = phaser_MR_AUTO_report(xmlnode=pmaNode, jobStatus='nooutput')
             if len(self.xmlnode.findall('.//PhaserMrSolutions/Solutions')) > 0:

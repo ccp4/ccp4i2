@@ -1,5 +1,13 @@
-from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
+import glob
+import os
+from time import gmtime, strftime
+
+from lxml import etree
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.pimple.logtable import CCP4LogToEtree
+from ccp4i2.smartie import smartie
 
 
 class phaser_mr(CPluginScript):
@@ -55,7 +63,6 @@ class phaser_mr(CPluginScript):
                                                                    inputData.ASU_COMPONENTS[i].seqFile,
                                                                    str(inputData.ASU_COMPONENTS[i].numberOfCopies)))
       # search models
-      import os
       for i in range(len(inputData.ENSEMBLES)):
          print('['+inputData.ENSEMBLES[i].pdbItemList[0].structure.__str__()+']', len(inputData.ENSEMBLES[i].pdbItemList[0].structure.__str__()))
          if len(inputData.ENSEMBLES[i].pdbItemList)>0 and len(inputData.ENSEMBLES[i].pdbItemList[0].structure.__str__())>0:
@@ -76,7 +83,6 @@ class phaser_mr(CPluginScript):
              self.appendCommandScript(cmd_line)
 
       # fixed models
-      import os
       if inputData.FIXED_STRUCTURE.isSet():
           #len(inputData.FIXED_STRUCTURE) > 0 and len(inputData.FIXED_STRUCTURE[0].pdbItemList) > 0 and str(inputData.FIXED_STRUCTURE[0].pdbItemList[0].structure) != '':
           for i in range(len(inputData.FIXED_STRUCTURE)):
@@ -144,7 +150,6 @@ class phaser_mr(CPluginScript):
          self.appendCommandScript("PEAKS ROT CUTOFF %f" % self.container.controlParameters.PEAKS_ROT_CUTOFF)
 
       # Set root to correct working directory
-      import os
       if self.container.controlParameters.ROOT.isSet():
         self.appendCommandScript('ROOT "%s"'%(os.path.join(self.getWorkDirectory(),str(self.container.controlParameters.ROOT))))
       else:
@@ -153,9 +158,6 @@ class phaser_mr(CPluginScript):
       return 0
 
     def processInputFiles(self):
-      import functools
-
-      from ccp4i2.core import CCP4XtalData
       self.xmlText = None
       self.oldLogLength = 0
       self.watchFile(self.makeFileName('LOG'), self.handleLogChanged)
@@ -169,8 +171,7 @@ class phaser_mr(CPluginScript):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import os
-        import shutil
+
         if self.container.controlParameters.NUM_SOL_OUT.isSet():
             num_sol = self.container.controlParameters.NUM_SOL_OUT.isSet()
         else:
@@ -187,9 +188,8 @@ class phaser_mr(CPluginScript):
             if os.path.exists(hklout):
                 self.container.outputData.HKLOUT.append(hklout)
 
-    f.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT'],outputBaseName=['MAPOUT','DIFMAPOUT'],infileList=self.container.outputData.HKLOUT)
         # Need to set the expected content flag  for phases data
-        from ccp4i2.core import CCP4XtalData
+        
         self.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT','PHASEOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT','PHIC,FOM'],outputBaseName=['MAPOUT','DIFMAPOUT','PHASEOUT'],outputContentFlags=[0,0,CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM],infileList=self.container.outputData.HKLOUT)
     
         for indx in range(len(self.container.outputData.MAPOUT)):
@@ -198,20 +198,16 @@ class phaser_mr(CPluginScript):
             self.container.outputData.DIFMAPOUT[indx].annotation.set('Difference map for solution '+str(indx+1))
             self.container.outputData.DIFMAPOUT[indx].subType.set(2)
             self.container.outputData.PHASEOUT[indx].annotation.set('Phases for solution '+str(indx+1))
-
-        from lxml import etree
         
         phaserMRElement = self.generateProgramXML()
         newXml = etree.tostring(phaserMRElement,pretty_print=True)
-        import os
-        import sys
+
         with open( self.makeFileName( 'PROGRAMXML' )+'.tmp','w') as aFile:
             CCP4Utils.writeXML(aFile,newXml)
             aFile.flush()
         self.renameFile(self.makeFileName( 'PROGRAMXML' )+'.tmp',self.makeFileName( 'PROGRAMXML' ))
 
         # Add .txt extension to some files to enable display from the 'Project directory' window
-        import glob
         textFileList = glob.glob(os.path.join(self.getWorkDirectory(),'*.sum'))
         textFileList.extend(glob.glob(os.path.join(self.getWorkDirectory(),'*.sol')))
         for textFile in textFileList:
@@ -221,11 +217,8 @@ class phaser_mr(CPluginScript):
         return CPluginScript.SUCCEEDED
             
     def handleLogChanged(self, logFilename):
-        import os
-        import sys
         if (os.stat(logFilename).st_size - self.oldLogLength) > 1000:
             self.oldLogLength = os.stat(logFilename).st_size
-            from lxml import etree
             phaserMRElement = self.generateProgramXML()
             newXml = etree.tostring(phaserMRElement,pretty_print=True)
             if self.xmlText is None or len(newXml)>len(self.xmlText):
@@ -236,11 +229,9 @@ class phaser_mr(CPluginScript):
                 self.xmlText = newXml
 
     def generateProgramXML(self):
-        from lxml import etree
         phaserMRElement = etree.Element("PhaserMrResult")
         total_ncomp = 0
-        
-        from time import gmtime, strftime
+
         formattedTime = strftime("%a, %d %b %Y %H:%M:%S +0000", gmtime())
         try:
             self.analyseProblem(phaserMRElement, total_ncomp)
@@ -259,8 +250,6 @@ class phaser_mr(CPluginScript):
         return phaserMRElement
 
     def analyseProblem(self,phaserMRElement,total_ncomp):
-        from lxml import etree
-
         #print '\n\n** in analyseProblem'
         #Analyse the problem as given
         total_ncomp = 0
@@ -273,10 +262,6 @@ class phaser_mr(CPluginScript):
         compTypesElement.text =str(len(self.container.inputData.ASU_COMPONENTS))
     
     def analyseSolfile(self, phaserMRElement, total_ncomp):
-        import os
-
-        from lxml import etree
-
         #print '\n\n** in analyseSolFile'
         phaser_solfile = os.path.join(self.getWorkDirectory(), "PHASER.sol")
         if os.path.exists(phaser_solfile):
@@ -350,16 +335,7 @@ class phaser_mr(CPluginScript):
 
 
     def appendSmartieStuff(self, programEtree):
-        from lxml import etree
-
-        from ccp4i2.smartie import smartie
         logfile = smartie.parselog(self.makeFileName( 'LOG' ))
-        
-        import string
-        import sys
-
-        from ccp4i2.pimple.logtable import CCP4LogToEtree
-
         #Collect a list of graphs of different types
         rotationTables = []
         translationTables = []
@@ -412,7 +388,6 @@ class phaser_mr(CPluginScript):
         summaryCount = logfile.nsummaries()
         searchComponentSummaries = []
         #print '\n\n contains %d summaries'%summaryCount
-        import re
         for iSummary in range(summaryCount):
             summary = logfile.summary(iSummary)
             summaryTextLines = []

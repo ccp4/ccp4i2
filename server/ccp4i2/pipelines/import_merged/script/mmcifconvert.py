@@ -1,13 +1,12 @@
-import sys
 import math
-
-from lxml import etree
+import sys
 
 import gemmi
-from ccp4i2.pipelines.import_merged.script.mmcifutils import *
-from ccp4i2.pipelines.import_merged.script.importutils import *
-#from mmcifutils import *
-#from importutils import *
+import numpy
+from lxml import etree
+
+from ccp4i2.pipelines.import_merged.script.importutils import ReflectionDataTypes, addXMLelement
+from ccp4i2.pipelines.import_merged.script.mmcifutils import CifBlockInfo, printBlockInfo
 
 
 class GetColumn():

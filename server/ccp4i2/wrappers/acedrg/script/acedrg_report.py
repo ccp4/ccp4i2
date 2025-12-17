@@ -1,9 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
-import math
+from ccp4i2.report import Report
+
 
 class acedrg_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'Acedrg'
     RUNNING = True
     
@@ -47,7 +45,3 @@ class acedrg_report(Report):
         p.append('plottype','xy')
         p.append('xintegral','true')
         l = p.append('plotline',xcol=1,ycol=2)
-
-
-
-

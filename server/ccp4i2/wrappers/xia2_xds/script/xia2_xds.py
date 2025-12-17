@@ -5,14 +5,11 @@
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
 #
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4ErrorHandling import *
-import os, glob, shutil
-from ccp4i2.core import CCP4Utils
-from lxml import etree
-from ccp4i2.core import CCP4Container
-import platform
+import os
 
+from lxml import etree
+
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.wrappers.xia2_dials.script import xia2_dials
 
 

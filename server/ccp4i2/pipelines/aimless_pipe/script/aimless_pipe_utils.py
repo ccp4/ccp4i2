@@ -1,6 +1,8 @@
 
 import os
-from ccp4i2.report.CCP4ReportParser import *
+
+from ccp4i2.report.CCP4ReportParser import GenericElement
+
 
 # - - - - - - - - - - - - - - - - -
 def displayFile(fileroot, parent, filenames, text, projectid=None, jobNumber=None):

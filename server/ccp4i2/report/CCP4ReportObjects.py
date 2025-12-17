@@ -1,7 +1,6 @@
 import types
 
 from ccp4i2.core import CCP4Data
-from ccp4i2.core.CCP4ErrorHandling import *
 
 
 class CReportAnnotation(CCP4Data.CData):

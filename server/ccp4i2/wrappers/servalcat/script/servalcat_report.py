@@ -1,9 +1,10 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
-from xml.etree import ElementTree as ET
-from numpy import sign
-import re
 import json
+import os
+import sys
+
+from numpy import sign
+
+from ccp4i2.report import Report
 
 
 def isnumber(n):
@@ -18,7 +19,6 @@ def isnumber(n):
 
 
 class servalcat_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'servalcat'
     TASKTITLE = 'Servalcat - Macromolecular refinement'
     RUNNING = True

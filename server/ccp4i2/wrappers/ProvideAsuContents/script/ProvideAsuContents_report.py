@@ -3,7 +3,7 @@ import sys
 import xml.etree.ElementTree as etree
 
 from ccp4i2.core import CCP4ModelData, CCP4Modules
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 
 
 class ProvideAsuContents_report(Report):
@@ -36,11 +36,6 @@ class ProvideAsuContents_report(Report):
         text += '</p>'
         #print 'ProvideAsuContents report', text
         div.append(text)
-        '''
-        div.addText(text=str(seqObj.nCopies)+' copies of '+str(seqObj.name))
-        div.addText(text='Description: '+str(seqObj.description))
-        if seqObj.source.isSet(): div.addText(text='Loaded from file: '+str(seqObj.source))
-        '''
         div.addPre(text=seqObj.formattedSequence())
 
 #Oh dear, I want USEPROGRAMXML = True, but that breaks reports for old jobs, so I have to reimplement getOutputXml here so that

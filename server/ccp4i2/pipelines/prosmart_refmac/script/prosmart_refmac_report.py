@@ -1,14 +1,14 @@
 import sys
+import traceback
 import xml.etree.ElementTree as etree
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report, PARSER
 from ccp4i2.wrappers.modelASUCheck.script import modelASUCheck_report
 from ccp4i2.wrappers.refmac_i2.script import refmac_report
 from ccp4i2.wrappers.validate_protein.script import validate_protein_report
 
 
 class prosmart_refmac_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'prosmart_refmac'
     RUNNING = True
     SEPARATEDATA=True
@@ -483,20 +483,3 @@ class prosmart_refmac_report(Report):
             refmacReport = refmac_report.refmac_report(xmlnode=refmacReportNode, jobStatus='nooutput')
         if refmacReport is not None:
             refmacReport.addSummary(parent = parent)
-
-def test(xmlFile=None,jobId=None,reportFile=None):
-    import os
-    import sys
-    try:
-        text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text, PARSER() )
-    except:
-        print('FAILED loading XML file:', kw['xmlFile'])
-    if reportFile is None and xmlFile is not None:
-        reportFile = os.path.join(os.path.split(xmlFile)[0],'report.html')
-    r = prosmart_refmac_report(xmlFile=xmlFile,jobId=jobId, xmlnode=xmlnode)
-    r.as_html_file(reportFile)
-
-if __name__ == "__main__":
-    import sys
-    prosmart_refmac_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

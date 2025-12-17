@@ -1,4 +1,8 @@
-from ccp4i2.core.CCP4ErrorHandling import *
+import glob
+import os
+import shutil
+
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -18,9 +22,6 @@ class prosmart(CPluginScript):
    
 
     def processInputFiles(self):
-        import os
-        import shutil
-
         # Use temp input filename from which prosmart takes output restraints filename
         self.tempFile = os.path.splitext(str(self.container.outputData.RESTRAINTS))[0]+'_TARGET.pdb'
         print('prosmart tempFile',self.tempFile)
@@ -47,18 +48,6 @@ class prosmart(CPluginScript):
         
         if self.container.inputData.EXT_FILE.isSet():
             self.appendCommandLine(['-f',self.container.inputData.EXT_FILE])
-        #if self.container.inputData.INPUTDIR.isSet():
-        #self.appendCommandLine(['-input_dir',self.container.inputData.INPUTDIR])
-        # (Don't yet know how to specify this sort of input - may or may not be specified multiple times)
-        #if self.container.controlParameters.CHAIN1.isSet():
-        #self.appendCommandLine(['-c1',self.container.controlParameters.CHAIN1])
-        #if self.container.controlParameters.CHAIN2.isSet():
-        #self.appendCommandLine(['-c2',self.container.controlParameters.CHAIN2])
-        # (Don't yet know how to specify this sort of input - expects >1 value)
-        #if self.container.controlParameters.INPUT_RANGE.isSet():
-        #self.appendCommandLine(['-align',self.container.controlParameters.INPUT_RANGE])
-        #if self.container.controlParameters.INPUT_RANGE_RM.isSet():
-        #self.appendCommandLine(['-align_rm',self.container.controlParameters.INPUT_RANGE_RM])
     
         if self.container.inputData.CHAINLIST_1.isSet():
            c1 = ['-c1']
@@ -85,10 +74,6 @@ class prosmart(CPluginScript):
                 self.appendCommandLine(['-a1'])
             elif self.container.controlParameters.ALIGN_MODE == '2':
                 self.appendCommandLine(['-a2'])
-        #if self.container.controlParameters.SEQ_IDENTICAL.isSet():
-        #   self.appendCommandLine(['-id'])
-        #if self.container.controlParameters.ALL_ON_ALL.isSet():
-        #    self.appendCommandLine(['-allonall'])
 
 
         ### Fragment Options
@@ -98,15 +83,6 @@ class prosmart(CPluginScript):
             self.appendCommandLine(['-helix'])
         elif self.container.controlParameters.LIB_MODE == 'STRAND':
             self.appendCommandLine(['-strand'])
-        # (other options - most probably don't need to be used in this gui - probably never used by end users)
-        #if self.container.controlParameters.LIB_CONFIG.isSet():
-        #    self.appendCommandLine(['-library_config',self.container.controlParameters.LIB_CONFIG])
-        #if self.container.controlParameters.LIB_LOCATION.isSet():
-        #    self.appendCommandLine(['-library',self.container.controlParameters.LIB_LOCATION])
-        #if self.container.controlParameters.LIB_SCORE.isSet():
-        #    self.appendCommandLine(['-lib_score',self.container.controlParameters.LIB_SCORE])
-        #if self.container.controlParameters.LIB_FRAGLEN.isSet():
-        #    self.appendCommandLine(['-lib_fraglen',self.container.controlParameters.LIB_FRAGLEN])
                
         ### Alignment Options
         if self.container.controlParameters.FRAGLEN.isSet():
@@ -152,25 +128,6 @@ class prosmart(CPluginScript):
             self.appendCommandLine(['-output_dm'])
     
         ### Output Options
-        """
-        if not self.container.controlParameters.OUTPUT_PDB_FILES:
-            self.appendCommandLine(['-quick'])
-        else:
-            self.appendCommandLine(['-out_pdb'])
-            if self.container.controlParameters.OUTPUT_WHOLE_PDB:
-                self.appendCommandLine(['-out_pdb_full'])
-            if self.container.controlParameters.OUTPUT_COLOUR_SCRIPTS:
-                self.appendCommandLine(['-out_colour'])
-                if self.container.controlParameters.COLOUR_SCORE.isSet():
-                    self.appendCommandLine(['-colour_score',self.container.controlParameters.COLOUR_SCORE])
-                if self.container.controlParameters.SIDE_COLOUR_SCORE.isSet():
-                    self.appendCommandLine(['-side_score',self.container.controlParameters.SIDE_COLOUR_SCORE])
-        """
-        # (Don't yet know how to specify this sort of input - expects >1 value)
-        #if self.container.controlParameters.COLOUR_SIMILAR.isSet():
-        #    self.appendCommandLine(['-col1',self.container.controlParameters.COLOUR_SIMILAR])
-        #if self.container.controlParameters.COLOUR_DISSIMILAR.isSet():
-        #    self.appendCommandLine(['-col2',self.container.controlParameters.COLOUR_DISSIMILAR])
         if not self.container.controlParameters.DISPLAY_AS_DEGREES:
             self.appendCommandLine(['-cosine'])
         
@@ -237,12 +194,6 @@ class prosmart(CPluginScript):
                 self.appendCommandLine(['-type','1'])
             else:
                 self.appendCommandLine(['-type','2'])
-        # (Don't yet know how to specify this sort of input - expects >1 values
-        #if self.container.controlParameters.RESTRAIN_RANGE.isSet():
-        #    self.appendCommandLine(['-restrain',self.container.controlParameters.RESTRAIN_RANGE])
-        #if self.container.controlParameters.RESTRAIN_RM.isSet():
-        #    self.appendCommandLine(['-restrain_rm',self.container.controlParameters.RESTRAIN_RANGE])
-        # (other options - less important - may be unnecessary this gui)
         if self.container.controlParameters.OUTPUT_PDB_CHAIN_RESTRAINTS:
             self.appendCommandLine(['-output_pdb_chain_restraints'])
 
@@ -271,11 +222,6 @@ class prosmart(CPluginScript):
             self.appendCommandLine(['-min_sep',self.container.controlParameters.H_MIN_SEP])
         if self.container.controlParameters.H_MAX_SEP.isSet():
             self.appendCommandLine(['-max_sep',self.container.controlParameters.H_MAX_SEP])
-        # (Don't yet know how to specify this sort of input - expects >1 values
-        #if self.container.controlParameters.H_ALLOW_SEP.isSet():
-        #    self.appendCommandLine(['-allow_sep',self.container.controlParameters.H_ALLOW_SEP])
-        #if self.container.controlParameters.H_RM_SEP.isSet():
-        #    self.appendCommandLine(['-rm_sep',self.container.controlParameters.H_RM_SEP])
         if self.container.controlParameters.H_BOND_OPT.isSet():
             if self.container.controlParameters.H_BOND_OPT == 'TYPE1':
                 self.appendCommandLine(['-bond_opt','1'])
@@ -287,8 +233,6 @@ class prosmart(CPluginScript):
             self.appendCommandLine(['-bond_override',self.container.controlParameters.H_BOND_OVERRIDE])
 
         ### Advanced Options
-        #if self.container.controlParameters.THREADS.isSet():
-        #    self.appendCommandLine(['-threads',self.container.controlParameters.THREADS])
         if self.container.controlParameters.MERGE_CHAINS:
             self.appendCommandLine(['-merge'])
         if self.container.controlParameters.IS_NMR_MD_ENSEMBLE:
@@ -305,10 +249,6 @@ class prosmart(CPluginScript):
               self.appendCommandLine(keys)
 
     def processOutputFiles(self):
-        import glob
-        import os
-        import shutil
-
         try:
           #Remove potentially confusing tempFile
           os.remove(self.tempFile)
@@ -324,16 +264,7 @@ class prosmart(CPluginScript):
             shutil.copyfile(resFileList[0],self.container.outputData.RESTRAINTS.__str__())
 
         self.container.outputData.RESTRAINTS.annotation = 'Restraints for ' + str(self.container.inputData.TARGET_MODEL.annotation)
-        
-        #htmlFilePath = os.path.join(self.workDirectory.__str__(),'ProSMART_Results.html')
-        '''xmlPath = self.makeFileName('PROGRAMXML')
-        from lxml import etree
-        xmlRoot = etree.Element('PROSMART')
-        xmlString = etree.tostring(xmlRoot,pretty_print=True)
-        xmlFile=open( xmlPath,'w')
-        xmlFile.write( xmlString )
-        xmlFile.close()'''
-                
+
         # sanity check that prosmart has produced something
         ok = False
         logText = self.logFileText()

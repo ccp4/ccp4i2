@@ -7,7 +7,6 @@ from ccp4i2.wrappers.modelcraft.script.modelcraft_report import modelcraft_repor
 
 
 class phaser_EP_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'phaser_EP'
     RUNNING = True
 

@@ -1,11 +1,10 @@
 import xml.etree.ElementTree as etree
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 from ccp4i2.wrappers.import_mosflm.script import import_mosflm_report
 
 
 class mosflm_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'mosflm'
     RUNNING = True
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

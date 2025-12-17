@@ -1,8 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 
 
 class phaser_MR_AUTO_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'phaser_MR_AUTO'
     RUNNING = True
     SEPARATEDATA=True
@@ -34,18 +33,6 @@ class phaser_MR_AUTO_report(Report):
             compareSolutionsFold = parent.addFold(label='Comparison of solutions', brief='All solns', initiallyOpen=True)
             self.addResults(parent=compareSolutionsFold)
         analysisFold = parent.addFold(label='Analysis of composition and data', brief='Comp/data', initiallyOpen=False)
-        '''
-        cellContentAnalysisTableNode = self.xmlnode.findall('.//CCP4ApplicationOutput/CCP4Table[@title="Cell Content Analysis"]')[0].text
-        dataStatisticsNode = self.xmlnode.findall('.//CCP4ApplicationOutput/CCP4Table[@title="Intensity distribution for Data"]')[0].text
-        if cellContentAnalysisTableNode is not None or dataStatisticsNode is not None:
-        
-            if cellContentAnalysisTableNode is not None:
-                cellContentAnalysisTableGraph = analysisFold.addFlotGraph( xmlnode=cellContentAnalysisTableNode, title=cellContentAnalysisTableNode.get("title") , style = "width:300px; height:200px;", outputXml=True, internalId='CellContentAnalysis')
-                cellContentAnalysisTableData = cellContentAnalysisTableGraph.addPimpleData(xmlnode=cellContentAnalysisTableNode)
-            if dataStatisticsNode is not None:
-                dataStatisticsNodeGraph = analysisFold.addFlotGraph( xmlnode=dataStatisticsNode, title=dataStatisticsNode.get("title") , style = "width:300px; height:200px;", outputXml=True, internalId='DataAnalysis')
-                dataStatisticsNodeData = dataStatisticsNodeGraph.addPimpleData(xmlnode=dataStatisticsNode)
-        '''
     
         comFileFold = parent.addFold(label='COM file for this run', brief='COM file', initiallyOpen=False)
         

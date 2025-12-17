@@ -1,8 +1,7 @@
-import sys
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
+
 
 class coot_stepped_refine_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'coot_stepped_refine'
     RUNNING = True
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

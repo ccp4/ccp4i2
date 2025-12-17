@@ -6,7 +6,6 @@ from xml.etree import ElementTree as ET
 from lxml import etree
 
 from ccp4i2.core import CCP4Modules, CCP4Utils
-from ccp4i2.core.CCP4ErrorHandling import *
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 

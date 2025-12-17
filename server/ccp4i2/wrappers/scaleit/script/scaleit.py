@@ -1,12 +1,13 @@
 import os
+
 from lxml import etree
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4ErrorHandling import *
 from ccp4i2.core import CCP4XtalData
-
-from ccp4i2.wrappers.scaleit.script.scaleit_logscraper import *
+from ccp4i2.core.CCP4ErrorHandling import CErrorReport
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.wrappers.scaleit.script.scaleit_logscraper import addElement, scaleitLogScraper
 from ccp4i2.wrappers.scaleit.script.scaleit_utils import DatalistCheck
+
 
 class scaleit(CPluginScript):
 

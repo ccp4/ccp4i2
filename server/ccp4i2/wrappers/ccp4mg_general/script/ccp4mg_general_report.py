@@ -1,11 +1,11 @@
+import os
 import xml.etree.ElementTree as etree
 
 from ccp4i2.core import CCP4Utils
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 
 
 class ccp4mg_general_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'ccp4mg_general'
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

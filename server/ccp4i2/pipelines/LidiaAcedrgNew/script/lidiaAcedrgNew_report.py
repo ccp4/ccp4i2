@@ -1,14 +1,12 @@
 import sys
 
-#from lxml import etree
 import xml.etree.ElementTree as etree
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 from ccp4i2.wrappers.acedrgNew.script.acedrgNew_report import acedrgNew_report
 
 
 class lidiaAcedrgNew_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'LidiaAcedrgNew'
     RUNNING = True
 

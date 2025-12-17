@@ -1,7 +1,6 @@
 import os
 import sys
 import traceback
-from io import *
 
 import clipper
 

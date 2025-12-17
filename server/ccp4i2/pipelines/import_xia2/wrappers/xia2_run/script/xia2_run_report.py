@@ -1,11 +1,9 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
+from ccp4i2.report import Report
 
-#Use the RUN_TITLES from the script rather than the run code name
 from . import xia2_run
 
+
 class xia2_run_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'xia2_run'
     RUNNING = True
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

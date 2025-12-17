@@ -1,7 +1,10 @@
-from ccp4i2.report.CCP4ReportParser import *
+import sys
+
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
+from ccp4i2.report.CCP4ReportParser import Report
+
 
 class bucref_report(Report):
-  # Specify which gui task and/or pluginscript this applies to
   TASKNAME = 'buccaneer_build_refine_mr'
   # Flag that a 'Running' mode is supported
   RUNNING = True
@@ -257,7 +260,8 @@ class bucref_report(Report):
       fold.addPre(text = alignChainNode.findall('Alignment')[0].text)
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-  import sys,os
+  import os
+  import sys
   if reportFile is None:
     if xmlFile is not None:
       reportFile = os.path.join(os.path.split(xmlFile)[0],'report.html')

@@ -1,10 +1,10 @@
 import sys
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
+from ccp4i2.report import Report
 
 
 class freerflag_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'freerflag'
     
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

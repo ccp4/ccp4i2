@@ -1,11 +1,10 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
-#from lxml import etree
 import xml.etree.ElementTree as etree
-import math
+
+from ccp4i2.report import Report
 from ccp4i2.wrappers.acedrg.script.acedrg_report import acedrg_report
+
+
 class lidiaAcedrg_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'LidiaAcedrg'
     RUNNING = True
 
@@ -37,10 +36,6 @@ class lidiaAcedrg_report(Report):
             #Append the pretty printed svg for each SVGNode
             structureDiv = structureGallery.addDiv(label='Interpreted by Acedrg/Rdkit', title='Interpreted by Acedrg/Rdkit', style='width:355px;height:355px;border:0px solid white;')
             structureDiv.append(etree.tostring(svgNode[0]))
-        '''for node in self.xmlnode.findall('.//Acedrg/Warning'):
-            parent.addText(text=node.text)
-            parent.append('<br/>')
-        '''
         parent.addDiv(style='clear:both;')
         self.addPictures(parent)
         acedrgNodes = self.xmlnode.findall('.//Acedrg')

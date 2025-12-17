@@ -5,7 +5,6 @@ from ccp4i2.report.CCP4ReportParser import Report
 
 
 class MakeProjectsAndDoLigandPipeline_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'
     RUNNING = True
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

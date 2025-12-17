@@ -3,7 +3,6 @@ from ccp4i2.wrappers.validate_protein.script import validate_protein_report
 
 
 class lorestr_i2_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'lorestr_i2'
     RUNNING = True
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

@@ -1,15 +1,15 @@
 import sys
 
-from .aimless_pipe_utils import *
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 from ccp4i2.wrappers.aimless.script import aimless_report
 from ccp4i2.wrappers.ctruncate.script import ctruncate_report
 from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
 from ccp4i2.wrappers.pointless.script import pointless_report
 
+from .aimless_pipe_utils import colourText, displayFileList
+
 
 class aimless_pipe_report(Report):
-  # Specify which gui task and/or pluginscript this applies to
   TASKNAME = 'aimless_pipe'
   RUNNING = True
   def __init__(self,xmlnode=None,jobInfo={},**kw):
@@ -1038,13 +1038,3 @@ class datasetIndex:
   def phaserIndex(self, aimlessidx):
     # Returns index for Phaser_analysis given the Aimless index
     return self.phaseridx[aimlessidx]
-
-
-############################################################################
-if __name__ == "__main__":
-  report = aimless_pipe_report(xmlFile = sys.argv[1],jobStatus="Finished" )
-  tree= report.as_etree()
-  #print(etree.tostring(tree,pretty_print=True))
-  report.as_html_file(fileName='./test-pipeline.html')
-  if len(report.errorReport())>0: print('ERRORS:',r.errorReport())
-  

@@ -1,8 +1,9 @@
 import os
+import xml.etree.ElementTree as etree
 from io import StringIO
 
 from ccp4i2.report import CCP4RvapiParser
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report.CCP4ReportParser import Container, Report
 
 dummy_report =  '<html>\n<head>\n<title>Running Crank2</title>\n</head>\n'
 dummy_report += '<body>\n<h3>CRANK2 job running - no report available yet</h3>\n</body>\n</html>\n'

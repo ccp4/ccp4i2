@@ -1,8 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 
 
 class parrot_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'parrot'
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

@@ -1,15 +1,18 @@
-from __future__ import with_statement
-import os,sys,copy,re
+import copy
+import os
+import re
+import subprocess
+import sys
+import threading
+import time
 from collections.abc import Iterable
-from xml.etree import ElementTree as ET
-import subprocess,threading,time
 from distutils import spawn
-import common,data,inout
-if sys.version_info[0]==2:
-  from Queue import Queue  
-else:
-  from queue import Queue
+from queue import Queue
+from xml.etree import ElementTree as ET
 
+import common
+import data
+import inout
 
 
 class program(object):

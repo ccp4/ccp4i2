@@ -1,11 +1,10 @@
 import sys
 import xml.etree.ElementTree as etree
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report, PARSER
 
 
 class refmac_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'refmac'
     TASKTITLE = 'REFMAC5 - Macromolecular refinement'
     RUNNING = True
@@ -708,21 +707,3 @@ class refmac_report(Report):
         table1.addData(title='Value',data=statisticValues)
         
         return table1
-
-def test(xmlFile=None,jobId=None,reportFile=None):
-    import os
-    import sys
-    print(xmlFile)
-    try:
-        text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text, PARSER() )
-    except:
-        print('FAILED loading XML file:', kw['xmlFile'])
-    if reportFile is None and xmlFile is not None:
-        reportFile = os.path.join(os.path.split(xmlFile)[0],'report.html')
-    r = refmac_report(xmlFile=xmlFile,jobId=jobId, xmlnode=xmlnode)
-    r.as_html_file(reportFile)
-
-if __name__ == "__main__":
-    import sys
-    refmac_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

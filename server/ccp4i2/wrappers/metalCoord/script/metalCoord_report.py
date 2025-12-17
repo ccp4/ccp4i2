@@ -1,7 +1,8 @@
-from ccp4i2.report.CCP4ReportParser import *
-from ccp4i2.core import CCP4Modules
 import os
 from xml.etree import ElementTree as ET
+
+from ccp4i2.core import CCP4Modules
+from ccp4i2.report import Report
 
 
 class metalCoord_report(Report):

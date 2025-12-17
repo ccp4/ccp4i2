@@ -1,7 +1,7 @@
 import sys
 import xml.etree.ElementTree as etree
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
 from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
@@ -223,21 +223,3 @@ class molrep_pipe_report(refmac_report):
                       try: data.append(cycleNode.findall('rmsBonds')[0].text)
                       except: data.append('-')
               progressTable.addData(title="RMS Deviation", subtitle="Bond", data=data)
-
-def test(xmlFile=None,jobId=None,reportFile=None):
-    import os
-    import sys
-    try:
-        text = open( xmlFile ).read()
-        xmlnode = etree.fromstring( text )
-    except:
-        print('FAILED loading XML file:', kw['xmlFile'])
-    if reportFile is None and xmlFile is not None:
-        reportFile = os.path.join(os.path.split(xmlFile)[0],'report.html')
-    r = molrep_pipe_report(xmlFile=xmlFile,jobId=jobId, xmlnode=xmlnode)
-    r.as_html_file(reportFile)
-
-if __name__ == "__main__":
-  import sys
-  test(xmlFile=sys.argv[1], jobId=sys.argv[2], reportFile=sys.argv[3])
-

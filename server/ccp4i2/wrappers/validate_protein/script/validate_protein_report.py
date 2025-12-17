@@ -1,6 +1,7 @@
-import shutil
+import sys
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
+from ccp4i2.report.CCP4ReportParser import htmlBase
 
 
 class validate_protein_report(Report):

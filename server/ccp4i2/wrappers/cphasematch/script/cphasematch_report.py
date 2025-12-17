@@ -1,8 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
+from ccp4i2.report import Report
+
 
 class cphasematch_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'cphasematch'
     
     def __init__(self,xmlnode=None,jobInfo={},**kw):
@@ -27,10 +26,3 @@ class cphasematch_report(Report):
         for thisgraph in graphlist:
             graph = graphgroup.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
             graph = graph.addPimpleData(xmlnode=thisgraph)
-
-
-
-if __name__ == "__main__":
-    import sys
-    cphasematch_report(xmlFile=sys.argv[1],jobId=sys.argv[2])
-

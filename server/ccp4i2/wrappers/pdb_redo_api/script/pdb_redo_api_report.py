@@ -1,10 +1,11 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
+import os
 import shutil
+
 from ccp4i2.core import CCP4Modules
+from ccp4i2.report import Report
+
 
 class pdb_redo_api_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'pdb_redo_api'
     RUNNING = True
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):

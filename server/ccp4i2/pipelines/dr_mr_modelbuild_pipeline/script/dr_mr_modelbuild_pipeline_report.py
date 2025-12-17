@@ -1,11 +1,11 @@
 import copy
 import json
+import os
 import sys
 
 from ccp4i2.pipelines.aimless_pipe.script import aimless_pipe_report
-from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
 from ccp4i2.pipelines.buccaneer_build_refine_mr.script import buccaneer_build_refine_mr_report
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
 from ccp4i2.wrappers.aimless.script import aimless_report
 from ccp4i2.wrappers.ctruncate.script import ctruncate_report
 from ccp4i2.wrappers.modelcraft.script import modelcraft_report

@@ -8,7 +8,6 @@ from ccp4i2.wrappers.refmac_i2.script import refmac_report
 
 
 class adding_stats_to_mmcif_i2_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'adding_stats_to_mmcif_i2'
     RUNNING = True
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

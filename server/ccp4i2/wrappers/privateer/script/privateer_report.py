@@ -1,14 +1,15 @@
 
-from ccp4i2.report.CCP4ReportParser import *
-from ccp4i2.core import CCP4Utils
-import numpy
 import os
 import shutil
-
 import xml.etree.ElementTree as etree
 
+import numpy
+
+from ccp4i2.core import CCP4Utils
+from ccp4i2.report import Report
+
+
 class privateer_report(Report):
-  # Specify which gui task and/or pluginscript this applies to
   TASKNAME = 'privateer'
   CSS_VERSION = '0.2.0'
 

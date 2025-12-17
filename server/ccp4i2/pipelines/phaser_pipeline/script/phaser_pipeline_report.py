@@ -1,11 +1,10 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
-from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.report import Report
 from ccp4i2.wrappers.csymmatch.script.csymmatch_report import csymmatch_report
+from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
 from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
+
 class phaser_pipeline_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'phaser_pipeline'
     RUNNING = True
     SEPARATEDATA=True
@@ -20,13 +19,21 @@ class phaser_pipeline_report(Report):
             # old versions of task
             self.MODE_TY = None 
         if self.MODE_TY == "MR_FRF":
-            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report import phaser_MR_FRF_report
+            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report import (
+                phaser_MR_FRF_report,
+            )
         elif self.MODE_TY == "MR_FTF":
-            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report import phaser_MR_FTF_report
+            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report import (
+                phaser_MR_FTF_report,
+            )
         elif self.MODE_TY == "MR_PAK":
-            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report import phaser_MR_PAK_report
+            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report import (
+                phaser_MR_PAK_report,
+            )
         else:
-            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import phaser_MR_AUTO_report
+            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO_report import (
+                phaser_MR_AUTO_report,
+            )
 
         if jobStatus == None or jobStatus.lower() =='nooutput': return
         self.addDiv(style='clear:both;')

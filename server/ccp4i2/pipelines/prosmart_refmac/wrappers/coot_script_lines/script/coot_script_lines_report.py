@@ -1,8 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
-import sys
+from ccp4i2.report import Report
+
 
 class coot_script_lines_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'coot_script_lines'
     RUNNING = False
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):

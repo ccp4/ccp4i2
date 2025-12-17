@@ -1,13 +1,9 @@
-#  phaser_analysis_report.py
-
 import sys
 
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
+from ccp4i2.wrappers.phaser_analysis.script.phaser_analysis_utils import Tabledata
 
-from ccp4i2.wrappers.phaser_analysis.script.phaser_analysis_utils import *
 
-
-######################################################################
 class phaser_analysis_report(Report):
   TASKNAME='phaser_analysis'
 
@@ -388,12 +384,3 @@ def html_linebreak(line, mutate=True):
     linenew += line + '<br/>'
 
   return linenew
-
-############################################################################
-if __name__ == "__main__":
-
-  # from pipeline file
-  report = phaser_analysis_report(xmlFile = sys.argv[1] )
-  tree= report.as_etree()
-  report.as_html_file(fileName='./test-phaser_analysis.html')
-  if len(report.errorReport())>0: print('ERRORS:',r)

@@ -1,13 +1,13 @@
+import argparse
+import os
+import shutil
+import sqlite3
 import sys
 import tempfile
-import shutil
-import os
-import sqlite3
-import argparse
 
 from lxml import etree
 
-import .reconstructDBFromXML
+from . import reconstructDBFromXML
 
 if __name__ == "__main__":
 

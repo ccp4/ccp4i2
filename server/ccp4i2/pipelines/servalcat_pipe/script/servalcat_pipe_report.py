@@ -1,17 +1,15 @@
-import sys
+import json
 import os
+import sys
+import traceback
 from xml.etree import ElementTree as ET
-from ccp4i2.report.CCP4ReportParser import *
-from ccp4i2.report import CCP4ReportGenerator
 
+from ccp4i2.report import CCP4ReportGenerator, Report
 from ccp4i2.wrappers.servalcat.script import servalcat_report
 from ccp4i2.wrappers.validate_protein.script import validate_protein_report
-import base64
-import json
 
 
 class servalcat_pipe_report(Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'servalcat_pipe'
     TASKTITLE = 'Servalcat - Macromolecular refinement'
     RUNNING = True

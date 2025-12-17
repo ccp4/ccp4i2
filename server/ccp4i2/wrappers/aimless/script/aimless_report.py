@@ -1,7 +1,14 @@
 import sys
 
-from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import (
+    SDcorrectionData,
+    colourText,
+    displayFile,
+    html_linebreak,
+    median,
+    selectGraphs,
+)
+from ccp4i2.report import Report
 
 
 class EstimatesofResolution:
@@ -2072,15 +2079,3 @@ class aimless_report(Report):
       for sdc in self.sdcorrparams:
         label, data = sdc.as_list()
         table.addData(title=label, data=data)
-      
-  # - - - - - - - - - - - - - - - - -
-  # - - - - - - - - - - - - - - - - -
-        
-############################################################################
-if __name__ == "__main__":
-
-  #execfile(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'))
-  report = aimless_report(xmlFile = sys.argv[1] )
-  tree= report.as_etree()
-  report.as_html_file(fileName='./test-aimless.html')
-  if len(report.errorReport())>0: print('ERRORS:',r)

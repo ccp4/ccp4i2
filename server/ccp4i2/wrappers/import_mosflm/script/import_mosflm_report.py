@@ -1,5 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
 import xml.etree.ElementTree as etree
+
+from ccp4i2.report import Graph, Report
+
 
 class import_mosflm_report(Report):
 

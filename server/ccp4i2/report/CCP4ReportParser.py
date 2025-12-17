@@ -42,17 +42,17 @@ Modern Usage:
         self.append(grid)
 """
 
-from io import StringIO
+import logging
 import os
 import sys
-import logging
 import xml.etree.ElementTree as etree
+from io import StringIO
 
 from lxml import html as lxml_html
 
-from ccp4i2.core.CCP4ErrorHandling import *
-from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
 from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_OK, SEVERITY_WARNING, CErrorReport, CException
+from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
 
 # Import error handling (lazy to avoid circular imports)
 _diagnostics_module = None
@@ -1418,6 +1418,7 @@ class DrillDown(ReportClass):
 
     def getSubJobs(self, jobDir):
         import glob
+
         from ccp4i2.core import CCP4File
         if jobDir is None:
             return []
@@ -2439,6 +2440,7 @@ class Graph(ReportClass):
                 try:
                     text = CCP4Utils.readFile(kw['plotFile'])
                     import re
+
                     # text = re.sub('<xrt:','<'+XRTNS,text)
                     # text = re.sub('</xrt:','</'+XRTNS,text)
                     text = re.sub('<xrt:', '<', text)
@@ -2450,6 +2452,7 @@ class Graph(ReportClass):
             if kw.get('plot', None) is not None:
                 print(kw['plot'])
                 import re
+
                 # text = re.sub('<xrt:','<'+XRTNS,kw['plot'])
                 # text = re.sub('</xrt:','</'+XRTNS,text)
                 if sys.version_info > (3, 0) and hasattr(kw['plot'], "decode"):
@@ -2517,6 +2520,7 @@ class Graph(ReportClass):
 
         if self.pimpleData is not None:
             import copy
+
             # print
             # 'Graph.data_as_etree',self.pimpleData,len(self.pimpleData),self.pimpleData.get('title')
             for item in self.pimpleData:
@@ -2746,9 +2750,11 @@ class Plot(GenericElement):
         GenericElement.__init__(self, tag='plot', text=text, **kw)
 
     def validate(self):
-        from ccp4i2.core import CCP4Utils
         import os
+
         from lxml import etree as lxml_etree
+
+        from ccp4i2.core import CCP4Utils
         try:
             schemafile = os.path.join(
                 CCP4Utils.getCCP4I2Dir(),
@@ -2793,8 +2799,8 @@ class IODataList(ReportClass):
 
     def as_etree0(self, role=None):
 
-        import json
         import collections
+        import json
 
         root = etree.Element('div')
         root.set('class', 'datalist')
@@ -3060,6 +3066,7 @@ class Title(ReportClass):
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
         super().__init__()
         import time
+
         # print 'Title.__init__ jobInfo',jobInfo
         self.title0 = 'Job ' + \
             str(jobInfo['jobnumber']) + ': ' + jobInfo['tasktitle']
@@ -3201,8 +3208,9 @@ class Help:
         else:
             self.ref = kw.get('ref', None)
         if self.ref is not None and self.ref[0] == '$':
-            import sys
             import re
+            import sys
+
             from ccp4i2.core import CCP4Utils
             if sys.platform == "win32":
                 # This had better be sane.
@@ -3354,8 +3362,9 @@ class Picture:
             except BaseException:
                 raise CException(self.__class__, 103, kw['scene'])
         elif kw.get('sceneFile', None) is not None:
-            from ccp4i2.core import CCP4Utils
             import os
+
+            from ccp4i2.core import CCP4Utils
             fileName = kw.get('sceneFile')
             if fileName[0:8] == '$CCP4I2/':
                 fileName = os.path.join(CCP4Utils.getCCP4I2Dir(), fileName[8:])
@@ -3380,8 +3389,9 @@ class Picture:
 
         # print etree.tostring(bodyEle,pretty_print=True)
 
-        from ccp4i2.core import CCP4File
         import os
+
+        from ccp4i2.core import CCP4File
 
         # If an external scene file was provided, use it directly without copying
         if external_scene_file is not None:
@@ -3512,6 +3522,7 @@ class ReferenceGroup(Container):
             return
         self.taskName = taskName
         import re
+
         from ccp4i2.core import CCP4Utils
         try:
             text = CCP4Utils.readFile(fileName=fileName)

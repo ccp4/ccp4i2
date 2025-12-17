@@ -1,7 +1,7 @@
-from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.report import Report
+
 
 class molrep_mr_report(Report):
-  # Specify which gui task and/or pluginscript this applies to
   TASKNAME = 'molrep_mr'
   def __init__(self,xmlnode=None,jobInfo={},**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
@@ -48,7 +48,3 @@ class molrep_mr_report(Report):
         table.addData(title=title,select=select)
 
     self.addTaskReferences()
-    
-if __name__ == "__main__":
-  import sys
-  molrep_mr_report(xmlFile=sys.argv[1],jobId=sys.argv[2])

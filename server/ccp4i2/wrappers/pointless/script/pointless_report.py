@@ -8,9 +8,14 @@
 
 import sys
 
-from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from ccp4i2.report.CCP4ReportParser import *
-
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import (
+    colourText,
+    displayFile,
+    formatRange,
+    html_linebreak,
+)
+from ccp4i2.report import Report
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
 
 class pointless_report(Report):
   TASKNAME='pointless'

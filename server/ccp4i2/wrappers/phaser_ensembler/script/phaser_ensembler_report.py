@@ -1,7 +1,6 @@
 from ccp4i2.report import CCP4ReportParser
 
 class phaser_ensembler_report(CCP4ReportParser.Report):
-    # Specify which gui task and/or pluginscript this applies to
     TASKNAME = 'phaser_ensembler'
     RUNNING = False
 

@@ -1,7 +1,6 @@
 import os
 import re
 import shutil
-from io import *
 
 from lxml import etree
 
