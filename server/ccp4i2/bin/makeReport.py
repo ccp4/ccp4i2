@@ -20,9 +20,6 @@ if __name__ == '__main__':
 
     top_path = getCCP4I2Dir()
     print('Running CCP4i2 makeReport from: '+top_path)
-    exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
-    setupEnvironment()
-    setupPythonpath(top=top_path,mode='qtcore')
     from ccp4i2.report import CCP4ReportGenerator, CCP4ReportParser
 
     argList = sys.argv[1:]
@@ -50,7 +47,6 @@ if __name__ == '__main__':
             ii = ii + 1
     #print argList,outputFile,jobId,ifPrint
     if jobId is not None:
-        exec(compile(open(os.path.join(top_path,'utils','startup.py')).read(), os.path.join(top_path,'utils','startup.py'), 'exec'))
         pm = startProjectsManager()
 
         rg = CCP4ReportGenerator.CReportGenerator(jobId)
