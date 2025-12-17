@@ -1,9 +1,8 @@
-from __future__ import print_function
-
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4Utils
 import pathlib
+
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class csymmatch(CPluginScript):
 

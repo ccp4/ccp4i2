@@ -1,22 +1,7 @@
-from __future__ import print_function
-#=======================================================================================
-#
-#    shelxeMR.py : phaserSingleMR(CPluginScript)
-#    
-#    Author  : Kyle Stevenson,STFC
-#    Created : 10th July 2018, KJS
-#
-#    Complementary Gui Class for running phaser in Single Atom mode.
-#    Handles the command and script processing.
-#
-#=======================================================================================
-
 import os
-import sys
-from lxml import etree
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4ErrorHandling
 
 
 class phaser_singleMR(CPluginScript):
@@ -156,6 +141,7 @@ class phaser_singleMR(CPluginScript):
         # Load ccp4 smartie and qtr code
         from ccp4i2.smartie import smartie
         from ccp4i2.smartie.qtrgeneric import CLReader, LogConverter
+
         # Use ccp4 automated output. Note this is replacing I2's internal xml file handling.
         infi = CLReader({'REP_XML': 'program.xml', 'REP_XRT': 'program.xrt', 'LOGFILE': logfile})
         smin = smartie.parselog(logfile)

@@ -1,30 +1,11 @@
-"""
-    SIMBAD.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from lxml import etree
 import os
-import shutil
 import platform
+import shutil
 
-# CCP4 imports
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from simbad.util import SIMBAD_DIRNAME
 from simbad.util.simbad_results import SimbadResults
+
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class SIMBAD(CPluginScript):
@@ -59,8 +40,7 @@ class SIMBAD(CPluginScript):
         #                       the input data objects
         #                       3) A CCP4 Error object
         """
-        from ccp4i2.core import CCP4XtalData
-        from ccp4i2.core import CCP4ErrorHandling
+        from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
         self.hklin, error = self.makeHklin([['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:

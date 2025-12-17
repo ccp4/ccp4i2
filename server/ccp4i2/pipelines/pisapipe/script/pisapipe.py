@@ -1,9 +1,7 @@
-from __future__ import print_function
-
 from ccp4i2.baselayer import QtCore
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
-  
+
 class pisapipe(CPluginScript):
 
     TASKMODULE = 'test'                              # Where this plugin will appear on the gui
@@ -39,8 +37,9 @@ class pisapipe(CPluginScript):
         status = statusDict['finishStatus']
         print('pisa_xmlFinished', status)
         if status == CPluginScript.FAILED: self.reportStatus(status)
-        from ccp4i2.core import CCP4Utils
         from lxml import etree
+
+        from ccp4i2.core import CCP4Utils
         self.xmlroot = etree.Element('pisapipe')
         xmlOfTask = CCP4Utils.openFileToEtree(self.xmlTask.makeFileName('PROGRAMXML'))
         self.xmlroot.append(xmlOfTask)

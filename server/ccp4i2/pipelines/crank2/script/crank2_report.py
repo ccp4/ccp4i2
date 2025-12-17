@@ -1,13 +1,8 @@
-from __future__ import print_function
-from ccp4i2.report.CCP4ReportParser import *
+import os
+from io import StringIO
+
 from ccp4i2.report import CCP4RvapiParser
-import os,shutil
-
-if sys.version_info >= (3,0):
-    from io import StringIO
-else:
-    from StringIO import StringIO
-
+from ccp4i2.report.CCP4ReportParser import *
 
 dummy_report =  '<html>\n<head>\n<title>Running Crank2</title>\n</head>\n'
 dummy_report += '<body>\n<h3>CRANK2 job running - no report available yet</h3>\n</body>\n</html>\n'
@@ -63,6 +58,7 @@ class crank2_report(CCP4RvapiParser.RvapiReport):
       crank2_report.WATCHED_FILE = self.WATCHED_FILE = 'program.xml'
       Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
       import functools
+
       #if os.path.isfile(os.path.join(rundir, "index.html")):
       i=0
       while os.path.isdir(os.path.join(rundir, 'job_'+str(i+1))):  i+=1

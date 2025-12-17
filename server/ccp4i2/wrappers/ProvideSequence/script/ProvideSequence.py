@@ -1,17 +1,12 @@
-from __future__ import print_function
-
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os
 import sys
+from io import StringIO
 
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-from ccp4i2.core import CCP4ModelData
-from ccp4i2.core import CCP4Utils
 from lxml import etree
+
+from ccp4i2.core import CCP4ModelData, CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class ProvideSequence(CPluginScript):
 
@@ -29,6 +24,7 @@ class ProvideSequence(CPluginScript):
     
     def startProcess(self, command, **kw):
         import tempfile
+
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
         
         root = etree.Element('ProvideSequence')

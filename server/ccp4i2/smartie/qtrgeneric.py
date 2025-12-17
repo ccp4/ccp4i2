@@ -1,12 +1,11 @@
-from __future__ import print_function
-
-
-import os, sys, time
-from ccp4i2.smartie import smartie as SM
+import glob
+import os
+import shutil
+import sys
 from xml.etree import ElementTree as ET
-import shutil,glob
 
-# ------------------------------------------------------------------------------
+from ccp4i2.smartie import smartie as SM
+
 
 class LogConverter:
 

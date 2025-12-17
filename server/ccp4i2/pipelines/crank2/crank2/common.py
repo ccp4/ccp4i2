@@ -1,6 +1,10 @@
-from __future__ import print_function
-import os,sys,copy,ctypes,shutil
+import copy
+import ctypes
+import os
+import shutil
+import sys
 from xml.etree import ElementTree as ET
+
 try:
   import ast
   no_ast=False

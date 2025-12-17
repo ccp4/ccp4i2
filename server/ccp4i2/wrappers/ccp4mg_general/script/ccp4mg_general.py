@@ -1,11 +1,12 @@
-from __future__ import print_function
+import os
+import re
+import sys
 
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
-import os,re,time,sys
 from lxml import etree
+
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class ccp4mg_general(CPluginScript):
     
@@ -306,7 +307,9 @@ class ccp4mg_general(CPluginScript):
         try:
             # First up import PDB files that have been output
             
-            import os, glob, shutil
+            import glob
+            import os
+            import shutil
 
             globPath = os.path.normpath(os.path.join(self.dropDir,'output*.pdb'))
             outList = glob.glob(globPath)

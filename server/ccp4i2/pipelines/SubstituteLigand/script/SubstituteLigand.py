@@ -1,11 +1,12 @@
-from __future__ import print_function
-
-from ccp4i2.baselayer import QtCore
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4Utils
-from lxml import etree
 import os
 import shutil
+
+from lxml import etree
+
+from ccp4i2.baselayer import QtCore
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class SubstituteLigand(CPluginScript):
     TASKNAME = 'SubstituteLigand'            # Task name - should be same as class name

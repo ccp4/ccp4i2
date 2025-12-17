@@ -1,8 +1,7 @@
-from __future__ import print_function
-from ccp4i2.report.CCP4ReportParser import *
-import sys
 import os
-from lxml import etree
+
+from ccp4i2.report.CCP4ReportParser import *
+
 
 class AUSPEX_report(Report):
 

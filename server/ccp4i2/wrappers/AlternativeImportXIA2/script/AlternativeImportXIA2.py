@@ -1,12 +1,10 @@
-from __future__ import print_function
-
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-import os, sys
-from lxml import etree
-from ccp4i2.core import CCP4Utils
-import shutil
 import glob
+import os
+import shutil
+
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class AlternativeImportXIA2(CPluginScript):
 
@@ -134,8 +132,9 @@ class AlternativeImportXIA2(CPluginScript):
             toPath = os.path.join(self.workDirectory, runName, fileRoot)
             shutil.copyfile(fromPath, toPath)
             
-            from ccp4i2.smartie import smartie
             from lxml import etree
+
+            from ccp4i2.smartie import smartie
             pointlessEtree = etree.Element(programName.upper())
             
             logfile = smartie.parselog(toPath)
@@ -166,8 +165,11 @@ class AlternativeImportXIA2(CPluginScript):
     
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    import os,glob
+    import glob
+    import os
+
     from ccp4i2.core import CCP4Modules
+
     #print 'AlternativeImportXIA2.exportJobFile',mode
     if mode == 'complete_mtz':
       if fileInfo.get('fullPath',None) is not None:

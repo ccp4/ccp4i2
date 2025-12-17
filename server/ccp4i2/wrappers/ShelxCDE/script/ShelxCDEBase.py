@@ -1,11 +1,10 @@
-from __future__ import print_function
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
-import os,re,time,sys
-from ccp4i2.core import CCP4XtalData
+import os
+
 from lxml import etree
-import math
-from ccp4i2.core import CCP4Modules,CCP4Utils
+
+from ccp4i2.core import CCP4Modules, CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class ShelxCDEBase(CPluginScript):
     
@@ -697,7 +696,9 @@ OUTPUT pdb
 
     def txtOutputFiles(self):
         # Add '.txt' extension to files so will display correctly in i2 and desktop tools
-        import glob,shutil
+        import glob
+        import shutil
+
         # also : pha phs hat from shelxe
         for ext in [ '*.lst', '*.res', '*.ins', '*.frac' ]:
           fileList = glob.glob(os.path.join(self.getWorkDirectory(),ext))

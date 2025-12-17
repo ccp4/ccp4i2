@@ -3,15 +3,12 @@ Split MTZ file into multiple mini-MTZ files based on column groups.
 
 Uses gemmi directly via CCP4Utils.split_mtz_file for clean, CData-agnostic splitting.
 """
-from __future__ import print_function
-
 import os
 from pathlib import Path
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4XtalData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.CCP4Utils import split_mtz_file
-
 
 # Map columnGroupType to output file class
 COLUMN_GROUP_TYPE_MAP = {

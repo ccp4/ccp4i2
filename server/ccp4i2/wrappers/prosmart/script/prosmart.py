@@ -1,13 +1,6 @@
-from __future__ import print_function
-
-"""
-    prosmart.py: CCP4 GUI Project
-    Copyright (C) 2013
-"""
-
-import os
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class prosmart(CPluginScript):
     
@@ -27,6 +20,7 @@ class prosmart(CPluginScript):
     def processInputFiles(self):
         import os
         import shutil
+
         # Use temp input filename from which prosmart takes output restraints filename
         self.tempFile = os.path.splitext(str(self.container.outputData.RESTRAINTS))[0]+'_TARGET.pdb'
         print('prosmart tempFile',self.tempFile)
@@ -311,7 +305,9 @@ class prosmart(CPluginScript):
               self.appendCommandLine(keys)
 
     def processOutputFiles(self):
-        import os,glob,shutil
+        import glob
+        import os
+        import shutil
 
         try:
           #Remove potentially confusing tempFile

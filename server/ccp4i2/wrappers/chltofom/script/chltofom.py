@@ -1,10 +1,6 @@
-from __future__ import print_function
+from ccp4i2.core import CCP4PluginScript, CCP4XtalData
 
 
-from ccp4i2.core import CCP4PluginScript
-from ccp4i2.core import CCP4XtalData
-
-  
 class chltofom(CCP4PluginScript.CPluginScript):
 
 

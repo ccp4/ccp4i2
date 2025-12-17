@@ -1,13 +1,7 @@
-from __future__ import print_function
+from io import StringIO
 
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4Utils
-import os
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ProvideAlignment(CPluginScript):
@@ -31,8 +25,9 @@ class ProvideAlignment(CPluginScript):
     
     def startProcess(self, command, **kw):
         import os
-        from lxml import etree        
+
         from Bio import AlignIO, SeqIO
+        from lxml import etree
 
         status = CPluginScript.SUCCEEDED
         mode = str(self.container.controlParameters.PASTEORREAD)
@@ -167,7 +162,8 @@ def importAlignment(filePath):
                else:
                    from Bio.Seq import IUPACData as IUPAC
             else:
-               from Bio.Seq import IUPACData as IUPAC, _verify_alphabet
+               from Bio.Seq import IUPACData as IUPAC
+               from Bio.Seq import _verify_alphabet
             for seqFormat in ['fasta','pir','seqxml','embl','ncbi']:
                 outputString.write("Trying Sequence format: "+seqFormat)
                 try:

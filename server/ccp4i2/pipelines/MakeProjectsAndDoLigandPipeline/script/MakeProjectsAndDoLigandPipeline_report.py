@@ -1,26 +1,8 @@
-"""
-    MakeProjectsAndDoLigandPipeline_report.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from ccp4i2.report.CCP4ReportParser import Report
-import sys
-#from lxml import etree
 import xml.etree.ElementTree as etree
+
 from ccp4i2.core import CCP4Utils
+from ccp4i2.report.CCP4ReportParser import Report
+
 
 class MakeProjectsAndDoLigandPipeline_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -38,11 +20,11 @@ class MakeProjectsAndDoLigandPipeline_report(Report):
             textDiv.addText(text=self.xmlnode.findall(".//Message/text()")[-1],style="font-size:150%;")
         clearingDiv = self.addDiv(style="clear:both;")
         if len(self.xmlnode.findall(".//ProjectName")) > 0:
-            from rdkit import Chem
-            from rdkit.Chem.Draw import MolDraw2DSVG
-            from rdkit.Chem import AllChem
-            from rdkit.Chem import Draw
             import os
+
+            from rdkit import Chem
+            from rdkit.Chem import AllChem, Draw
+            from rdkit.Chem.Draw import MolDraw2DSVG
             newFold = parent.addFold(label="Result summaries", initiallyOpen=True)
             
             #Create a list of svg file names

@@ -1,10 +1,8 @@
-from __future__ import print_function
+import argparse
+import shutil
+import sqlite3
 import sys
 import tempfile
-import shutil
-import os
-import sqlite3
-import argparse
 
 from lxml import etree
 

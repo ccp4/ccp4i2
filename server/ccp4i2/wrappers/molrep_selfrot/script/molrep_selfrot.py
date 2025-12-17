@@ -1,10 +1,10 @@
-from __future__ import print_function
-
-from ccp4i2.wrappers.molrep_mr.script import molrep_mr
 from lxml import etree
-from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.wrappers.molrep_mr.script import molrep_mr
+
 
 class molrep_selfrot(molrep_mr.molrep_mr):
     TASKNAME='molrep_selfrot'

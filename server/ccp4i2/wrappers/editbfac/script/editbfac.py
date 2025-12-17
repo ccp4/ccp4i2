@@ -1,17 +1,15 @@
-from __future__ import print_function
-
 import os
 import sys
-import networkx
-from lxml import etree
 
 import gemmi
 import iotbx.phil
 from iotbx.data_manager import DataManager
+from lxml import etree
 from mmtbx import process_predicted_model
 from mmtbx.domains_from_pae import parse_pae_file
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class editbfac(CPluginScript):
 

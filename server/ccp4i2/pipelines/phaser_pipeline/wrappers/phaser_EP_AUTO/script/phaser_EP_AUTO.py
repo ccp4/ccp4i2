@@ -1,12 +1,11 @@
-from __future__ import print_function
+import os
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-import sys, os
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Modules
-from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
 from lxml import etree
-from ccp4i2.core import CCP4Utils
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+
 
 class EPAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -184,8 +183,9 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         return newNode
 
     def flushXML(self, xml):
-        from lxml import etree
         import os
+
+        from lxml import etree
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
             CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))
@@ -193,7 +193,8 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
 
     def processOutputFiles(self):
-        import os,shutil
+        import os
+        import shutil
         resultObject = self.resultObject
 
         from ccp4i2.core import CCP4XtalData

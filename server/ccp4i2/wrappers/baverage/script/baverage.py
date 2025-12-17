@@ -1,6 +1,3 @@
-from __future__ import print_function
-
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
   
 class baverage(CPluginScript):

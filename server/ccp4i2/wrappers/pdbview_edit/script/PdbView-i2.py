@@ -1,11 +1,8 @@
 # Not an i2 script. Do not edit.
 
-from __future__ import print_function
-
 import sys
 import os
 import glob
-import tempfile
 import functools
 
 from PySide2 import QtCore, QtGui, QtWidgets

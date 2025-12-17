@@ -1,16 +1,8 @@
-from __future__ import print_function
+import shutil
 
-"""
-     uniqueify.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
-     This is modelled on the old unix script
-"""
-import os,shutil
 from ccp4i2.baselayer import QtCore
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class uniqueify(CPluginScript):
 

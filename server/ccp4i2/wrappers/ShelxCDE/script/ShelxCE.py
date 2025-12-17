@@ -1,8 +1,10 @@
-from __future__ import print_function
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import os
+
+from lxml import etree
+
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.wrappers.ShelxCDE.script import ShelxCDEBase
+
 
 class ShelxCE(ShelxCDEBase.ShelxCDEBase):
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui

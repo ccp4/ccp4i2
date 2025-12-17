@@ -1,11 +1,5 @@
-from __future__ import print_function
-
-"""
-     cad_copy_column.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-"""
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class cad_copy_column(CPluginScript):
 

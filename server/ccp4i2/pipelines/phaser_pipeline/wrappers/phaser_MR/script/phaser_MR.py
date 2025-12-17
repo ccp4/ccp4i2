@@ -1,11 +1,12 @@
-from __future__ import print_function
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os
 import re
-from ccp4i2.core import CCP4Data
 
 from lxml import etree
+
+from ccp4i2.core import CCP4Data
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+
 class CallbackObject(object):
     def __init__(self, xmlroot=None, xmlResponders = []):
         super(CallbackObject,self).__init__()

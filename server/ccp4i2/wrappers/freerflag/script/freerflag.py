@@ -1,17 +1,10 @@
-from __future__ import print_function
-
-"""
-     freerflag.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-"""
-
 import os
+
 import gemmi
 from lxml import etree
 
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
 
 
 class freerflag(CPluginScript):

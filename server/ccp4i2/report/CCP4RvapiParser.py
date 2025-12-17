@@ -1,8 +1,3 @@
-from __future__ import print_function
-
-import sys
-
-
 '''
 Version history:
 5 Mar 2018, AL:
@@ -15,11 +10,14 @@ Version history:
 - currently used by crank2, morda and arpwarp
   (no changes to crank2 code were required)
 '''
+import os
+import re
+import sys
 
-import os, re
-#from lxml import etree as ET
 import xml.etree.ElementTree as ET
-from ccp4i2.report.CCP4ReportParser import Report,CCP4NS,PARSER
+
+from ccp4i2.report.CCP4ReportParser import CCP4NS, Report
+
 
 class RvapiReport(Report):
   MAINTAINER    = 'andrey.lebedev@stfc.ac.uk'

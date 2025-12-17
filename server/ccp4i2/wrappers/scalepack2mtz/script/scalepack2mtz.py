@@ -1,9 +1,5 @@
-from __future__ import print_function
-
-
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.wrappers.x2mtz.script import x2mtz
+
 
 class scalepack2mtz(x2mtz.x2mtz):
 

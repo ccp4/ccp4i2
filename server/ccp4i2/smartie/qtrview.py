@@ -1,9 +1,9 @@
-from __future__ import print_function
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
 
-
-import os, sys, tempfile, shutil, subprocess
-
-# ------------------------------------------------------------------------------
 
 class DefMap(dict):
 

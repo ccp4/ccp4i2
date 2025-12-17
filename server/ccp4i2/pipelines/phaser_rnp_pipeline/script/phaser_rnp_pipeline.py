@@ -1,12 +1,9 @@
-from __future__ import print_function
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-import sys, os
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Modules
-from ccp4i2.pipelines.phaser_pipeline.script import phaser_pipeline
 from lxml import etree
-from ccp4i2.core import CCP4Utils
-  
+
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.pipelines.phaser_pipeline.script import phaser_pipeline
+
+
 class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
 
     TASKNAME = 'phaser_rnp_pipeline'                                  # Task name - should be same as class name
@@ -51,7 +48,7 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
         return CPluginScript.SUCCEEDED
 
     def createEnsembleElements(self):
-        from ccp4i2.core.CCP4ModelData import CPdbDataFile, CAtomSelection, CPdbEnsembleItem
+        from ccp4i2.core.CCP4ModelData import CAtomSelection, CPdbDataFile, CPdbEnsembleItem
         elements = self.container.inputData.ENSEMBLES
         #Before removing all elements from this list, I have to set its listMinLength to 0
         self.container.inputData.ENSEMBLES.setQualifiers({'listMinLength':0})

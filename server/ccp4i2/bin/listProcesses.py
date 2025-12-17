@@ -1,7 +1,7 @@
-from __future__ import print_function
+import os
+import sys
+import time
 
-
-import os,sys,time
 
 def getCCP4I2Dir(up=1):
     target = os.path.join(os.path.realpath(sys.argv[0]),"..")

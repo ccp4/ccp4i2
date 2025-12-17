@@ -1,16 +1,14 @@
-from __future__ import print_function
-import os
-import shutil
 import json
 import multiprocessing
+import os
+import shutil
+
 from lxml import etree
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4File
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4Modules import PROCESSMANAGER
-from ccp4i2.core import CCP4ErrorHandling
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
 from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class slicendice(CPluginScript):
 

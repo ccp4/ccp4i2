@@ -1,28 +1,9 @@
-
-"""
-     molrep_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
 import os
 import re
-import shutil
-from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class molrep_den(CPluginScript):
 
@@ -44,6 +25,7 @@ class molrep_den(CPluginScript):
       # Ensure the obs data is in form of F_SIGF
       if self.container.guiParameters.PERFORM != 'den':
         from ccp4i2.core import CCP4XtalData
+
         # Using CObsDataFile.convert() did not work for input of anomalous Is (as from aimless)
         self.F_SIGF_hklin,errReport = self.makeHklin([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
         #self.F_SIGF_hklin,errReport = self.container.inputData.F_SIGF.convert(targetContent=CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN)

@@ -1,10 +1,3 @@
-from __future__ import print_function
-
-"""
-     aimless_pipe.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
-"""
-
 import sys
 import os
 from ccp4i2.baselayer import QtCore

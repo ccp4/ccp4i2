@@ -1,8 +1,7 @@
-from __future__ import print_function
-
 from lxml import etree
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class coot_stepped_refine(CPluginScript):
     
@@ -102,8 +101,9 @@ class coot_stepped_refine(CPluginScript):
  
     
     def processOutputFiles(self):
-       from ccp4i2.core.CCP4PluginScript import CPluginScript
        import os
+
+       from ccp4i2.core.CCP4PluginScript import CPluginScript
        status = CPluginScript.FAILED
        if os.path.exists(self.container.outputData.XYZOUT.__str__()): status = CPluginScript.SUCCEEDED
        self.container.outputData.XYZOUT.subType = 1

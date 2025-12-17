@@ -1,16 +1,6 @@
-from __future__ import print_function
-"""
-     phaser_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
-     This wrapper uses command line version of Phaser.
-     Note also python bindings, and XML output of Phaser.
-"""
-
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
+
 
 class phaser_mr(CPluginScript):
 
@@ -163,8 +153,9 @@ class phaser_mr(CPluginScript):
       return 0
 
     def processInputFiles(self):
-      from ccp4i2.core import CCP4XtalData
       import functools
+
+      from ccp4i2.core import CCP4XtalData
       self.xmlText = None
       self.oldLogLength = 0
       self.watchFile(self.makeFileName('LOG'), self.handleLogChanged)
@@ -178,7 +169,8 @@ class phaser_mr(CPluginScript):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import os,shutil
+        import os
+        import shutil
         if self.container.controlParameters.NUM_SOL_OUT.isSet():
             num_sol = self.container.controlParameters.NUM_SOL_OUT.isSet()
         else:
@@ -195,7 +187,7 @@ class phaser_mr(CPluginScript):
             if os.path.exists(hklout):
                 self.container.outputData.HKLOUT.append(hklout)
 
-    #self.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT'],outputBaseName=['MAPOUT','DIFMAPOUT'],infileList=self.container.outputData.HKLOUT)
+    f.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT'],outputBaseName=['MAPOUT','DIFMAPOUT'],infileList=self.container.outputData.HKLOUT)
         # Need to set the expected content flag  for phases data
         from ccp4i2.core import CCP4XtalData
         self.splitHkloutList(miniMtzsOut=['MAPOUT','DIFMAPOUT','PHASEOUT'],programColumnNames=['FWT,PHWT','DELFWT,PHDELWT','PHIC,FOM'],outputBaseName=['MAPOUT','DIFMAPOUT','PHASEOUT'],outputContentFlags=[0,0,CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM],infileList=self.container.outputData.HKLOUT)
@@ -211,7 +203,8 @@ class phaser_mr(CPluginScript):
         
         phaserMRElement = self.generateProgramXML()
         newXml = etree.tostring(phaserMRElement,pretty_print=True)
-        import sys,os
+        import os
+        import sys
         with open( self.makeFileName( 'PROGRAMXML' )+'.tmp','w') as aFile:
             CCP4Utils.writeXML(aFile,newXml)
             aFile.flush()
@@ -228,7 +221,8 @@ class phaser_mr(CPluginScript):
         return CPluginScript.SUCCEEDED
             
     def handleLogChanged(self, logFilename):
-        import os, sys
+        import os
+        import sys
         if (os.stat(logFilename).st_size - self.oldLogLength) > 1000:
             self.oldLogLength = os.stat(logFilename).st_size
             from lxml import etree
@@ -266,6 +260,7 @@ class phaser_mr(CPluginScript):
 
     def analyseProblem(self,phaserMRElement,total_ncomp):
         from lxml import etree
+
         #print '\n\n** in analyseProblem'
         #Analyse the problem as given
         total_ncomp = 0
@@ -278,8 +273,10 @@ class phaser_mr(CPluginScript):
         compTypesElement.text =str(len(self.container.inputData.ASU_COMPONENTS))
     
     def analyseSolfile(self, phaserMRElement, total_ncomp):
-        from lxml import etree
         import os
+
+        from lxml import etree
+
         #print '\n\n** in analyseSolFile'
         phaser_solfile = os.path.join(self.getWorkDirectory(), "PHASER.sol")
         if os.path.exists(phaser_solfile):
@@ -354,12 +351,15 @@ class phaser_mr(CPluginScript):
 
     def appendSmartieStuff(self, programEtree):
         from lxml import etree
+
         from ccp4i2.smartie import smartie
         logfile = smartie.parselog(self.makeFileName( 'LOG' ))
         
-        from ccp4i2.pimple.logtable import CCP4LogToEtree
         import string
         import sys
+
+        from ccp4i2.pimple.logtable import CCP4LogToEtree
+
         #Collect a list of graphs of different types
         rotationTables = []
         translationTables = []

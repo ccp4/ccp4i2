@@ -1,8 +1,4 @@
-from __future__ import print_function
-
 from ccp4i2.report.CCP4ReportParser import *
-import sys
-import math
 import xml.etree.ElementTree as etree
 
 class import_mosflm_report(Report):

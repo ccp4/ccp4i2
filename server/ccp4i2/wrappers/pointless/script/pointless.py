@@ -1,11 +1,5 @@
-from __future__ import print_function
-
-"""
-     pointless.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
-"""
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class pointless(CPluginScript):
 

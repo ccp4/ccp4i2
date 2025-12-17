@@ -1,24 +1,13 @@
-from __future__ import print_function
+import os
+import sys
 
-import os,sys
-try:
-  from ccp4i2.report.CCP4ReportParser import *
-except:
-  exec(compile(open(os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc')).read(), os.path.join(os.environ['CCP4I2_TOP'],'bin/ccp4i2.pythonrc'), 'exec'))
-  from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
+from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.wrappers.aimless.script import aimless_report
+from ccp4i2.wrappers.ctruncate.script import ctruncate_report
+from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
+from ccp4i2.wrappers.pointless.script import pointless_report
 
-try:
-  import pointless_report
-  import aimless_report
-  import ctruncate_report
-  from aimless_pipe_utils import *
-  import phaser_analysis_report
-except:
-  from ccp4i2.wrappers.pointless.script import pointless_report
-  from ccp4i2.wrappers.aimless.script import aimless_report
-  from ccp4i2.wrappers.ctruncate.script import ctruncate_report
-  from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
-  from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
 
 class import_merged_report(Report):
   TASKNAME = 'import_merged'

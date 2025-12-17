@@ -1,10 +1,8 @@
-from __future__ import print_function
-
 from lxml import etree
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class coot_script_lines(CPluginScript):
     
@@ -96,7 +94,9 @@ class coot_script_lines(CPluginScript):
 
         iPDBOut = 0
         try:
-            import os, glob, shutil
+            import glob
+            import os
+            import shutil
             outList = glob.glob(os.path.join(self.dropDir,'*.pdb'))
             xyzoutList = self.container.outputData.XYZOUT
             print(outList)

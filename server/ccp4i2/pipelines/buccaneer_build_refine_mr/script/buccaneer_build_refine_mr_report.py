@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 from ccp4i2.report.CCP4ReportParser import *
 
 class bucref_report(Report):

@@ -1,12 +1,7 @@
-from __future__ import print_function
-
-"""
-     ctruncate.py: CCP4 GUI Project
-     Copyright (C) 2012 STFC
-"""
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+
 class ctruncate(CPluginScript):
 
     TASKMODULE = 'expt_data_utility'      # Where this plugin will appear on the gui
@@ -96,7 +91,9 @@ class ctruncate(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-      import os,shutil
+      import os
+      import shutil
+
       #print 'ctruncate.processOutputFiles',self.container.controlParameters.OUTPUTMINIMTZ,self.container.controlParameters.OUTPUTMINIMTZCONTENTFLAG
       #print 'ctruncate.processOutputFiles HKLOUT',self.container.outputData.HKLOUT.__str__(),os.path.exists(self.container.outputData.HKLOUT.__str__())
               

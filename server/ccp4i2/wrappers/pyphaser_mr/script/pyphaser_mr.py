@@ -1,18 +1,6 @@
-from __future__ import print_function
-"""
-     pyphaser_mr.py: CCP4 GUI Project
-     Copyright (C) 2011 STFC
-     Author: Martyn Winn
-
-     This wrapper uses python bindings to Phaser.
-     Need to set PYTHONPATH, LD_LIBRARY_PATH and LIBTBX_BUILD
-     correctly, e.g. as in the phaser.python dispatcher
-"""
-
-import sys
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Modules
+
 
 class pyphaser_mr(CPluginScript):
 

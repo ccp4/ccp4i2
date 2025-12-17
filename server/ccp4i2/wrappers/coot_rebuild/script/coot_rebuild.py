@@ -1,10 +1,9 @@
-from __future__ import print_function
+import os
+import sys
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
-from ccp4i2.baselayer import QtCore
-import os,re,time,sys
 
 class coot_rebuild(CPluginScript):
 #class coot_rebuild(CInternalPlugin):
@@ -228,7 +227,9 @@ file_to_preferences('template_key_bindings.py')
         try:
             # First up import PDB files that have been output
 
-            import os, glob, shutil
+            import glob
+            import os
+            import shutil
             outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
             outList += glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.cif')))
 

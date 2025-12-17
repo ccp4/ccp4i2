@@ -1,13 +1,7 @@
-from __future__ import print_function
+import os
+import sys
+import urllib.request
 
-
-import sys, os
-if sys.version_info >= (3,0):
-    import urllib.request, urllib.error, urllib.parse
-else:
-    import urllib
-    import urllib2
-import traceback
 
 class ccp4i2CootInterface():
     FileTypes = [('chemical/x-pdb',None,'Import coordinates from project'),
@@ -227,7 +221,8 @@ class ccp4i2CootInterface():
         return fileInfo
 
     def saveToDatabase(self, molNo):
-        import os,glob
+        import glob
+        import os
         outList = glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.pdb')))
         outList += glob.glob(os.path.normpath(os.path.join(self.dropDir,'output*.cif')))
         #print 'saveToDatabase outList:'
@@ -253,6 +248,7 @@ class ccp4i2CootInterface():
         menu = coot_menubar_menu("CCP4i2 extensions")
         self.addSeparator(menu)
         import gtk
+
         #Create submenu for the "interesting bts"
         menuitem = gtk.MenuItem(title)
         menu.append(menuitem)

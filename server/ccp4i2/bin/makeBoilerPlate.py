@@ -1,6 +1,6 @@
-from __future__ import print_function
+import os
+import sys
 
-import sys, os
 
 def checkForPythonNameClash(nameRoot):
     from ccp4i2.core import CCP4Modules
@@ -37,6 +37,7 @@ if __name__ == "__main__":
     setupEnvironment(path=CCP4I2_TOP)
     setupPythonpath(top=CCP4I2_TOP,mode='qtgui')
     import argparse
+
     from ccp4i2.core import CCP4TaskManager
     destinations = CCP4TaskManager.MODULE_ORDER
     parser = argparse.ArgumentParser(description='Initiate CCP4i2 plugin from boiler plate')
@@ -59,8 +60,8 @@ if __name__ == "__main__":
     longTitle = " ".join(parameterNamespace.longTitle)
     description = " ".join(parameterNamespace.description)
     
-    from datetime import datetime
     import time
+    from datetime import datetime
     timestampString=datetime.fromtimestamp(time.time()).isoformat()
     
     if parameterNamespace.user is not None: user = parameterNamespace.user

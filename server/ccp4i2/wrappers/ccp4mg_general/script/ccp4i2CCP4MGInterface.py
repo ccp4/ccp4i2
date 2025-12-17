@@ -1,15 +1,14 @@
 # Not an i2 script. Do not edit.
 
-from __future__ import print_function
-
-import sys
+import functools
+import glob
 import os
 import shutil
-import glob
-import functools
+import sys
 from inspect import getsourcefile
 
 from PySide2 import QtCore
+
 
 def InstallSaveToi2MenuItem(workDirectory):
   import displayTableObjects
@@ -26,8 +25,8 @@ def InstallSaveToi2MenuItem(workDirectory):
            child.setText("Load sequence/alignment from file")
 
   def setDelegateACVs(self):
-      from PySide2 import QtGui, QtWidgets
       import point_funcs
+      from PySide2 import QtGui, QtWidgets
       atomColourVectors = []
       for sd in self.sequence_displays:
             acv = []
@@ -96,8 +95,8 @@ def InstallSaveToi2MenuItem(workDirectory):
     return colourByAtomTable
 
   def alignmentToSequenceDisplay(self,new_sequences,checkStates={},align=True):
-                  import sequence_util
                   import global_definitions
+                  import sequence_util
                   mappings = []
                   mappedNew = {}
                   acv = None
@@ -272,8 +271,8 @@ def InstallSaveToi2MenuItem(workDirectory):
 
 SequenceViewer_initialized = 0
 def SetupSequenceLoadingFromI2():
-  from MGMainWindow import MGMainWindowCore
   import global_definitions
+  from MGMainWindow import MGMainWindowCore
 
   SEQUENCE_SUFFIXES = [".pir",".fasta",".pfam",".gde",".rsf",".gcg",".cd",".amps",".gb",".msf",".clw",".afa",".seq"]
   

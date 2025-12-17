@@ -1,10 +1,10 @@
-from __future__ import print_function
 import sys
+import xml.etree.ElementTree as etree
+
 from ccp4i2.report.CCP4ReportParser import *
 from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
-#from lxml import etree
-import xml.etree.ElementTree as etree
 from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
+
 
 class molrep_pipe_report(refmac_report):
   jobStatus = None
@@ -225,7 +225,8 @@ class molrep_pipe_report(refmac_report):
               progressTable.addData(title="RMS Deviation", subtitle="Bond", data=data)
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-    import sys,os
+    import os
+    import sys
     try:
         text = open( xmlFile ).read()
         xmlnode = etree.fromstring( text )

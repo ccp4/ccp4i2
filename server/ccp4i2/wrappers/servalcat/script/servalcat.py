@@ -1,33 +1,15 @@
-"""
-    servalcat.py: CCP4 GUI Project
-    Copyright (C) 2024 MRC-LBM, University of Southampton
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,S
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
+import json
+import os
+import pathlib
+import shutil
+from xml.etree import ElementTree as ET
 
 from ccp4i2.baselayer import QtCore
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
 from ccp4i2.core.CCP4ErrorHandling import *
-from ccp4i2.core import CCP4Modules, CCP4XtalData, CCP4Utils
-from xml.etree import ElementTree as ET
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 from .json2xml import json2xml
-import pathlib
-import os
-import json
-import shutil
 
 
 class servalcat(CPluginScript):
@@ -178,6 +160,7 @@ class servalcat(CPluginScript):
             return CPluginScript.FAILED
 
         import os
+
         from ccp4i2.core import CCP4XtalData
 
         outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'refined.mmcif'))

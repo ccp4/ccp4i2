@@ -1,8 +1,7 @@
-from __future__ import print_function
-
-import pathlib
 import os
+import pathlib
 import textwrap
+
 import lxml
 
 from ccp4i2.core import CCP4File

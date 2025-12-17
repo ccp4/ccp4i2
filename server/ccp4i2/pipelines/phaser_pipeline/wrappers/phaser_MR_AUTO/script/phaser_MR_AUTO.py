@@ -1,14 +1,13 @@
-from __future__ import print_function
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 import os
-import sys
 import pickle
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Modules
-from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+import sys
+
 from lxml import etree
-from ccp4i2.core import CCP4Utils
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script import phaser_MR
+
 
 class MRAUTOCallbackObject(phaser_MR.CallbackObject):
     def __init__(self, xmlroot=None, xmlResponders = [],workDirectory=None):
@@ -190,6 +189,7 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
     def processInputFiles(self):
         from ccp4i2.core import CCP4XtalData
+
         # Changed Mtz merging to included phases. Due to issues with makeHkln() (column names), I used cad to manually merge files.
         cnMtz = ['F_SIGF']
         if self.container.inputData.F_OR_I.isSet() and self.container.inputData.F_OR_I.__str__() == 'I':
@@ -218,8 +218,9 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import phaser
         import sys
+
+        import phaser
         resultObject = self.resultObject
         num_sol = len(resultObject.getPdbFiles())
         for i in range(1,num_sol+1):
@@ -372,8 +373,9 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         return newNode
 
     def flushXML(self, xml):
-        from lxml import etree
         import sys
+
+        from lxml import etree
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         finalFilename = self.makeFileName('PROGRAMXML')
         with open(tmpFilename,'w') as tmpFile:

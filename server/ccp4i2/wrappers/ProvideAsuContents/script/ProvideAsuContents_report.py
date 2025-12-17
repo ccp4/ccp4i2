@@ -1,10 +1,10 @@
-from __future__ import print_function
-
-from ccp4i2.report.CCP4ReportParser import *
-from ccp4i2.core import CCP4ModelData, CCP4Modules
-from ccp4i2.report import CCP4ReportParser
-import sys,os
+import os
+import sys
 import xml.etree.ElementTree as etree
+
+from ccp4i2.core import CCP4ModelData, CCP4Modules
+from ccp4i2.report.CCP4ReportParser import *
+
 
 class ProvideAsuContents_report(Report):
     TASKNAME = 'ProvideAsuContents'

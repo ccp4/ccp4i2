@@ -1,12 +1,7 @@
-from __future__ import print_function
-
-"""
-    aimless.py: CCP4 GUI Project
-    Copyright (C) 2012 STFC
-    """
-
 import os
+
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class aimless(CPluginScript):
     

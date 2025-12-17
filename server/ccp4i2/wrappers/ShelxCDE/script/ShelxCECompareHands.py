@@ -1,11 +1,12 @@
-from __future__ import print_function
-from ccp4i2.baselayer import QtCore
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from lxml import etree
-import os
-from ccp4i2.wrappers.ShelxCDE.script import ShelxCE
 import functools
+
+from lxml import etree
+
+from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.wrappers.ShelxCDE.script import ShelxCE
+
 
 class ShelxCECompareHands(ShelxCE.ShelxCE):
     TASKNAME = 'ShelxCECompareHands'                     # Task name - should be same as class name
@@ -106,8 +107,8 @@ class ShelxCECompareHands(ShelxCE.ShelxCE):
                 print('Failed to copyXML across')
 
     def flushXML(self):
-        import tempfile
         import sys
+        import tempfile
         try:
             from lxml import etree
             xmlPath = self.makeFileName('PROGRAMXML')

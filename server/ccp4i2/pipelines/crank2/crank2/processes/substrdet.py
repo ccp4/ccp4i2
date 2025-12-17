@@ -1,10 +1,15 @@
 #!/usr/bin/python
-from __future__ import print_function
-import os,sys,shutil
-import heapq,time,re,math
-from process import process,crvapi
+import heapq
+import math
+import os
+import shutil
+import sys
+
+import common
+import data
+from process import crvapi, process
 from program import program
-import common,data
+
 par=common.parameter
 
 class substrdet(process):

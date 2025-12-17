@@ -1,11 +1,9 @@
-from __future__ import print_function
-"""
-     xia2_integration.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-"""
+import glob
+import os
+import shutil
 
-import os,shutil,glob
 from ccp4i2.core import CCP4PluginScript
+
 
 class xia2_integration(CCP4PluginScript.CPluginScript):
 
@@ -39,5 +37,3 @@ class xia2_integration(CCP4PluginScript.CPluginScript):
       if len(logfileList)>0:
         shutil.copyfile(logfileList[0],os.path.join(self.workDirectory,'log.txt'))
       self.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
-    
-

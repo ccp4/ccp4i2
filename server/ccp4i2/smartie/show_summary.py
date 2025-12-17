@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 #     baubles.py: a smarter CCP4 logfile browser
 #     Copyright (C) 2006-2007 Peter Briggs, Wanjuan Yang, CCLRC 
 #

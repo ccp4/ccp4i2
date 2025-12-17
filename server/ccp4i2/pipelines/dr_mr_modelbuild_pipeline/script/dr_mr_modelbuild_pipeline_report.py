@@ -1,20 +1,19 @@
-from __future__ import print_function
-import sys
 import copy
 import json
-from ccp4i2.report.CCP4ReportParser import *
-from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
-#from lxml import etree
-import xml.etree.ElementTree as etree
-from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
-from ccp4i2.wrappers.pointless.script import pointless_report
-from ccp4i2.wrappers.aimless.script import aimless_report
-from ccp4i2.wrappers.ctruncate.script import ctruncate_report
-from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
+import sys
+
+from ccp4i2.pipelines.aimless_pipe.script import aimless_pipe_report
 from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
 from ccp4i2.pipelines.buccaneer_build_refine_mr.script import buccaneer_build_refine_mr_report
-from ccp4i2.pipelines.aimless_pipe.script import aimless_pipe_report
+from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.wrappers.aimless.script import aimless_report
+from ccp4i2.wrappers.ctruncate.script import ctruncate_report
 from ccp4i2.wrappers.modelcraft.script import modelcraft_report
+from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
+from ccp4i2.wrappers.pointless.script import pointless_report
+from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
+
 
 class MyRefmacReport(refmac_report):
     def addSummary(self, xmlnode=None, parent=None, withTables=True):

@@ -1,14 +1,11 @@
-from __future__ import print_function
-
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
-import os,glob,re,time,sys
-from ccp4i2.core import CCP4XtalData
-from lxml import etree
-import math
-from ccp4i2.core import CCP4Modules,CCP4Utils
+import os
 import platform
+
+from lxml import etree
+
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class acedrg(CPluginScript):
     TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
@@ -160,6 +157,7 @@ class acedrg(CPluginScript):
                 return CPluginScript.FAILED
             
         from rdkit import Chem
+
         # Generate RDKit mol from the Dict: this one won't necessarily (or even probably) have proper carry over
         # of chirality information
         mol = molFromDict(cifFilePath)
@@ -270,8 +268,8 @@ class acedrg(CPluginScript):
 
 def svgFromMol(mol):
     try:
-        from rdkit.Chem.Draw import spingCanvas
         import rdkit.Chem.Draw.MolDrawing
+        from rdkit.Chem.Draw import spingCanvas
         from rdkit.Chem.Draw.MolDrawing import DrawingOptions
         
         myCanvas = spingCanvas.Canvas(size=(350,350),name='MyCanvas',imageType='svg')
@@ -306,8 +304,8 @@ def svgFromPDB(pdbFilePath):
     
 def svgFromRdkitMol(mol):
     
-    from rdkit.Chem.Draw import spingCanvas
     import rdkit.Chem.Draw.MolDrawing
+    from rdkit.Chem.Draw import spingCanvas
     from rdkit.Chem.Draw.MolDrawing import DrawingOptions
     
     myCanvas = spingCanvas.Canvas(size=(300,300),name='MyCanvas',imageType='svg')
@@ -324,8 +322,8 @@ def svgFromRdkitMol(mol):
 
 
 def molFromDict(cifFilePath):
-    from rdkit import Chem
     from Bio.PDB.MMCIF2Dict import MMCIF2Dict
+    from rdkit import Chem
     mmcif_dict = MMCIF2Dict ( cifFilePath)
 
     from ccp4i2.core import CCP4ModelData

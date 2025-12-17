@@ -1,25 +1,13 @@
-from __future__ import print_function
-
-#=======================================================================================
-#
-#    acorn.py : acorn(CPluginScript)
-#    
-#    Author  : Kyle Stevenson,STFC
-#    Created : 29th May 2017, KJS
-#
-#    Complementary Gui Class for ab initio solution of .
-#    Handles the command and script processing.
-#
-#=======================================================================================
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
-from ccp4i2.core import CCP4Modules
-import time
+import os
+import sys
+import traceback
 from io import *
-import os, sys, string, traceback
+
 import clipper
+
+from ccp4i2.core import CCP4XtalData
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class acorn(CPluginScript):
     

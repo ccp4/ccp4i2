@@ -1,8 +1,8 @@
-from __future__ import print_function
-
-from ccp4i2.report.CCP4ReportParser import *
 import sys
 import xml.etree.ElementTree as etree
+
+from ccp4i2.report.CCP4ReportParser import *
+
 
 class refmac_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -710,7 +710,8 @@ class refmac_report(Report):
         return table1
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-    import sys,os
+    import os
+    import sys
     print(xmlFile)
     try:
         text = open( xmlFile ).read()

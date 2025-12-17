@@ -1,7 +1,6 @@
-from __future__ import print_function
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4Modules import PROCESSMANAGER
 from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class mrbump_basic(CPluginScript):
 
@@ -62,11 +61,11 @@ class mrbump_basic(CPluginScript):
       gui = self.container.guiParameters
       out = self.container.outputData
 
-      from ccp4i2.core import CCP4Utils
-      import os
-
       # Set the max number of processors
       import multiprocessing
+      import os
+
+      from ccp4i2.core import CCP4Utils
       MAXPROC=multiprocessing.cpu_count()  
 
       keyin = "MAPROGRAM clustalw2\n" 
@@ -261,7 +260,8 @@ class mrbump_basic(CPluginScript):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import os,shutil
+        import os
+        import shutil
 
         xyzout = os.path.join(self.getWorkDirectory(), "output_mrbump_1.pdb")
         if os.path.exists(xyzout):
@@ -273,10 +273,10 @@ class mrbump_basic(CPluginScript):
         if os.path.exists(hklout):
             self.container.outputData.HKLOUT=hklout
 
-        from ccp4i2.core import CCP4XtalData
-        from ccp4i2.core import CCP4File
         import os
-        
+
+        from ccp4i2.core import CCP4File, CCP4XtalData
+
         # Need to set the expected content flag  for phases data
         self.container.outputData.XYZOUT.annotation = 'Model from MrBump refinement'
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from MrBump refinement'

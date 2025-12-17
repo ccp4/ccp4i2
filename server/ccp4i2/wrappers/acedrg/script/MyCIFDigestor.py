@@ -1,6 +1,6 @@
-from __future__ import print_function
+import os
+import sys
 
-import sys, os
 
 class MyCIFException(BaseException):
     pass
@@ -13,6 +13,8 @@ class MyCIFLoopLine(object):
     pass
 
 from collections.abc import Sequence
+
+
 class MyCIFLoop(Sequence):
     TAG = '_loop'
     def __init__(self, text):

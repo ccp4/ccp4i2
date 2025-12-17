@@ -1,39 +1,17 @@
-from __future__ import print_function
-
-"""
-     privateer.py: CCP4 GUI Project
-     Copyright (C) 2014-2019 University of York
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the
-     license to address the requirements of UK law.
-
-     You should have received a copy of the modified GNU Lesser General
-     Public License along with this library.  If not, copies may be
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
-
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4Modules import PROCESSMANAGER
 from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class privateer(CPluginScript):
 
     TASKMODULE          = 'validation' # Where this plugin will appear on the gui
-    # TASKCOMMAND         = '/home/harold/Dev/privateer_master/build/executable/./privateer'  # The command to execute, should be reachable
     TASKCOMMAND         = 'privateer'  # The command to execute, should be reachable
     WHATNEXT = [ 'coot_rebuild', 'prosmart_refmac' ]
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
       from ccp4i2.core import CCP4XtalData
+
       #print 'taskMakeHklin F_SIGF',self.container.inputData.F_SIGF,type(self.container.inputData.F_SIGF),self.container.inputData.F_SIGF.contentFlag
       self.hklin,error = self.makeHklin ( [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN ] ] )
       if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING: return CPluginScript.FAILED
@@ -82,6 +60,7 @@ class privateer(CPluginScript):
 
     def makeCommandAndScript(self):
       import os
+
       from ccp4i2.core import CCP4XtalData
 
       self.appendCommandLine(['-stdin'])

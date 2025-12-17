@@ -1,11 +1,9 @@
-from __future__ import print_function
-"""
-     xia2_run.py: CCP4 GUI Project
-     Copyright (C) 2013 STFC
-"""
+import glob
+import os
+import shutil
 
-import os,shutil,glob
 from lxml import etree
+
 from ccp4i2.core import CCP4PluginScript
 
 RUN_TITLES = {
@@ -17,7 +15,7 @@ RUN_TITLES = {
     '3daii' : 'XDS-Aimless integration with image indexing and processing'
     }
 
-                                      
+
 class xia2_run(CCP4PluginScript.CPluginScript):
 
     TASKMODULE = None      # Where this plugin will appear on the gui
@@ -214,6 +212,7 @@ class xia2_run(CCP4PluginScript.CPluginScript):
          
     def makeXml(self,runMode):
       from lxml import etree
+
       from ccp4i2.core import CCP4Utils
       self.xmlroot = etree.Element('XIA2Import')
       runXML = etree.SubElement(self.xmlroot,'XIA2Run',name=str(runMode))
@@ -236,8 +235,8 @@ class xia2_run(CCP4PluginScript.CPluginScript):
       if len(logFiles)==0: return None        
       root = etree.Element(programName.upper())
       
-      from ccp4i2.smartie import smartie
       from ccp4i2.pimple.logtable import CCP4LogToEtree
+      from ccp4i2.smartie import smartie
       logfile = smartie.parselog(logFiles[0])
       for smartieTable in logfile.tables():
         if smartieTable.ngraphs() > 0:

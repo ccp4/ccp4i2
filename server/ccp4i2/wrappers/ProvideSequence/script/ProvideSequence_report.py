@@ -1,8 +1,7 @@
-from __future__ import print_function
+import xml.etree.ElementTree as etree
 
 from ccp4i2.report.CCP4ReportParser import *
-import sys
-import xml.etree.ElementTree as etree
+
 
 class ProvideSequence_report(Report):
     # Specify which gui task and/or pluginscript this applies to

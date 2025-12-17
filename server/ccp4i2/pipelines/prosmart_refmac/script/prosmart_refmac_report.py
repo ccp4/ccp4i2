@@ -1,13 +1,11 @@
-from __future__ import print_function
-
 import sys
-#from lxml import etree
 import xml.etree.ElementTree as etree
-from ccp4i2.report.CCP4ReportParser import *
 
+from ccp4i2.report.CCP4ReportParser import *
+from ccp4i2.wrappers.modelASUCheck.script import modelASUCheck_report
 from ccp4i2.wrappers.refmac_i2.script import refmac_report
 from ccp4i2.wrappers.validate_protein.script import validate_protein_report
-from ccp4i2.wrappers.modelASUCheck.script import modelASUCheck_report
+
 
 class prosmart_refmac_report(Report):
     # Specify which gui task and/or pluginscript this applies to
@@ -487,7 +485,8 @@ class prosmart_refmac_report(Report):
             refmacReport.addSummary(parent = parent)
 
 def test(xmlFile=None,jobId=None,reportFile=None):
-    import sys,os
+    import os
+    import sys
     try:
         text = open( xmlFile ).read()
         xmlnode = etree.fromstring( text, PARSER() )

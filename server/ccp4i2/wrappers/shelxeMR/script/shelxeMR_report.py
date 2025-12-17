@@ -1,16 +1,4 @@
-#=======================================================================================
-#
-#    shelxeMR_report.py : shelxeMR_report(Report)
-#    
-#    Author  : Kyle Stevenson,STFC
-#    Created : 14th April 2016, KJS
-#
-#    Class to create reports for MR solutions using Shelxe
-#
-#=======================================================================================
-
 from ccp4i2.report.CCP4ReportParser import *
-import sys
 
 SHELMR_DYN = True
 
@@ -70,23 +58,3 @@ class shelxeMR_report(Report):
         l = p.append('plotline',xcol=1,ycol=3)
         l.append('label','By residue')
         l.append('colour','red')
-        
-"""
-     CTaskShelxeMR.py: CCP4 GUI Project
-     Copyright (C) 2015 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""
-    

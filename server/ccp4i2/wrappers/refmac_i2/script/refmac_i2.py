@@ -1,30 +1,12 @@
-from __future__ import print_function
-
-"""
-    refmac.py: CCP4 GUI Project
-    Copyright (C) 2010 University of York
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,S
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-from ccp4i2.baselayer import QtCore
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core.CCP4ErrorHandling import *
-from ccp4i2.core import CCP4Modules
-from lxml import etree
 import pathlib
+
+from lxml import etree
+
+from ccp4i2.baselayer import QtCore
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class refmac_i2(CPluginScript):
     
@@ -206,6 +188,7 @@ class refmac_i2(CPluginScript):
                 if 'Your coordinate file has a ligand which has either minimum or no description in the library' in logFileText and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT.isSet() and self.container.controlParameters.MAKE_NEW_LIGAND_EXIT:
                     self.appendErrorReport(201,'You did not supply a full ligand geometry file: either make and supply one (Make Ligand task), or set the appropriate flag in the advanced options')
                     import re
+
                     #Example line: * Plotfile: /tmp/martin/refmac5_temp1.64630_new_TM7.ps
                     plotFiles = re.findall(r'^.*\* Plotfile:.*$',logFileText,re.MULTILINE)
                     print(plotFiles)
@@ -221,10 +204,10 @@ class refmac_i2(CPluginScript):
                 self.appendErrorReport(201,'Exit code: '+str(exitCode))
             return CPluginScript.FAILED
 
-        from ccp4i2.core import CCP4XtalData
-        from ccp4i2.core import CCP4File
         import os
-        
+
+        from ccp4i2.core import CCP4File, CCP4XtalData
+
         # Need to set the expected content flag  for phases data
 
         outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'XYZOUT.mmcif'))
@@ -260,8 +243,9 @@ class refmac_i2(CPluginScript):
             outputFiles += ['ANOMFPHIOUT']
             outputColumns += ['FAN,PHAN']
         
-        from ccp4i2.core import CCP4XtalData
         import os
+
+        from ccp4i2.core import CCP4XtalData
         hkloutFile=CCP4XtalData.CMtzDataFile(os.path.join(self.getWorkDirectory(), "hklout.mtz"))
         hkloutFile.loadFile()
         columnLabelsInFile = [column.columnLabel.__str__() for column in hkloutFile.fileContent.listOfColumns]
@@ -368,6 +352,7 @@ class refmac_i2(CPluginScript):
 
     def makeCommandAndScript(self):
         import os
+
         from ccp4i2.core import CCP4Utils
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
         # make refmac command script

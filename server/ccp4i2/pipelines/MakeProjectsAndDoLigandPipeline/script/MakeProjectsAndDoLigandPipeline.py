@@ -1,27 +1,6 @@
-"""
-    MakeProjectsAndDoLigandPipeline.py: CCP4 GUI Project
-    
-    This library is free software: you can redistribute it and/or
-    modify it under the terms of the GNU Lesser General Public License
-    version 3, modified in accordance with the provisions of the
-    license to address the requirements of UK law.
-    
-    You should have received a copy of the modified GNU Lesser General
-    Public License along with this library.  If not, copies may be
-    downloaded from http://www.ccp4.ac.uk/ccp4license.php
-    
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Lesser General Public License for more details.
-    """
-
-from __future__ import print_function
-
-import os
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
+
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
@@ -64,13 +43,14 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     #The startProcess method is where you build in the pipeline logic
     def startProcess(self, command, **kws):
-        from ccp4i2.core.CCP4Modules import PROJECTSMANAGER, JOBCONTROLLER
-        from dbapi import CCP4DbApi
-        import sys, os
-        import functools
+        import os
+        import sys
         from datetime import datetime
+
         from lxml import etree
+
         from ccp4i2.baselayer import QtCore
+        from ccp4i2.core.CCP4Modules import JOBCONTROLLER, PROJECTSMANAGER
         pm = PROJECTSMANAGER()
         
         for iLigand, projectName in enumerate(self.container.inputData.PROJECTNAME_LIST):

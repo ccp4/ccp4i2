@@ -1,12 +1,12 @@
-from __future__ import print_function
+import os
+import pickle
+import sys
+
+from lxml import etree
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-import sys, os
-import pickle
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Modules
 from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phaser_MR_AUTO
-from lxml import etree
+
 
 class phaser_MR_PAK(phaser_MR_AUTO.phaser_MR_AUTO):
 

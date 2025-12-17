@@ -1,24 +1,18 @@
-from __future__ import print_function
-from ccp4i2.report.CCP4ReportParser import Report
-
-
-# ==============================================================================================
-
-import os
-import sys
 import functools
 import logging
+import os
+import sys
 
-# from lxml import etree
 import xml.etree.ElementTree as etree
 
-from ccp4i2.core.CCP4ErrorHandling import *
-from ccp4i2.core.CCP4Modules import PREFERENCES
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
+from ccp4i2.core.CCP4ErrorHandling import *
+from ccp4i2.core.CCP4Modules import PREFERENCES
 
 # Import Django dbapi adapter constants for file type lookups
 from ccp4i2.db.ccp4i2_static_data import FILETYPES_CLASS, FINISHED_JOB_STATUS
+from ccp4i2.report.CCP4ReportParser import Report
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -105,7 +99,8 @@ class CReportGenerator(HierarchicalObject):
             self.jobInfo = None
 
     def getReportClass(self, doReload=False):
-        from ccp4i2.core import CCP4TaskManager, CCP4Modules
+        from ccp4i2.core import CCP4Modules, CCP4TaskManager
+
         # print 'getReportClass',self.jobId
         taskName = CCP4Modules.PROJECTSMANAGER().db().getJobInfo(
             jobId=self.jobId, mode='taskname')
@@ -116,7 +111,7 @@ class CReportGenerator(HierarchicalObject):
         return taskName, cls, xrtFile
 
     def getCustomFailedReport(self):
-        from ccp4i2.core import CCP4Modules, CCP4File, CCP4PluginScript
+        from ccp4i2.core import CCP4File, CCP4Modules, CCP4PluginScript
         reportName = CCP4Modules.PROJECTSMANAGER().makeFileName(
             jobId=self.jobId, mode='DIAGNOSTIC')
         # print 'getCustomFailedReport',reportName
@@ -146,9 +141,10 @@ class CReportGenerator(HierarchicalObject):
         return 'http://127.0.0.1:' + str(port) + '/report_files'
 
     def getOutputXml(self):
+        import os
+
         from ccp4i2.core import CCP4Modules
         from ccp4i2.report import CCP4ReportParser
-        import os
         outputXml = None
         outputXmlFile = CCP4Modules.PROJECTSMANAGER().makeFileName(
             jobId=self.jobId, mode='PROGRAMXML')
@@ -203,9 +199,9 @@ class CReportGenerator(HierarchicalObject):
         # report page is created and needs to be uploaded, or "NEWDATA" if an
         # existing report.html needs only to be updated with new data for
         # graphs, tables etc.
-        from ccp4i2.core import CCP4Modules
         import os
-        from ccp4i2.core import CCP4ErrorHandling
+
+        from ccp4i2.core import CCP4ErrorHandling, CCP4Modules
         from ccp4i2.report import CCP4ReportParser
 
         newPageOrNewData = "NEWPAGE"
@@ -359,8 +355,9 @@ class CReportGenerator(HierarchicalObject):
 
     def makeFailedReportFile(self, redo=False):
         import glob
-        from ccp4i2.report import CCP4ReportParser
+
         from ccp4i2.core import CCP4Modules
+        from ccp4i2.report import CCP4ReportParser
         if self.jobStatus != 'Failed':
             self.reportFile = CCP4Modules.PROJECTSMANAGER().makeFileName(
                 jobId=self.jobId, mode='DIAGNOSTIC_REPORT')
@@ -596,9 +593,10 @@ class CReportGenerator(HierarchicalObject):
 
     def runMg(self, pictureQueue=[], callBack=None):
         # print 'CReportGenerator.runMg pictureQueue',pictureQueue
-        from ccp4i2.core import CCP4Modules
         import os
         import re
+
+        from ccp4i2.core import CCP4Modules
         mgExe = CCP4Modules.LAUNCHER().getExecutable('CCP4MG')
         if mgExe is None:
             print('ERROR no CCP4mg executable found')
@@ -661,7 +659,7 @@ def getReportJobInfo(jobId=None, projectName=None, jobNumber=None):
         dict: Job information dictionary with keys like 'taskname', 'status',
               'inputfiles', 'outputfiles', 'filenames', etc.
     """
-    from ccp4i2.core import CCP4Modules, CCP4TaskManager, CCP4Data
+    from ccp4i2.core import CCP4Data, CCP4Modules, CCP4TaskManager
 
     # File role constants (matching legacy CCP4DbApi constants)
     FILE_ROLE_OUT = 0

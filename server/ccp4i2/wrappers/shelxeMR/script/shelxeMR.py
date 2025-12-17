@@ -1,26 +1,13 @@
-#=======================================================================================
-#
-#    shelxeMR.py : shelxeMR(CPluginScript)
-#    
-#    Author  : Kyle Stevenson,STFC
-#    Created : 14th April 2016, KJS
-#
-#    Complementary Gui Class for refinement of MR solutions using Shelxe.
-#    Handles the command and script processing.
-#
-#=======================================================================================
-
-from io import *
 import os
 import re
-import sys
 import shutil
+from io import *
+
 from lxml import etree
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4Modules
+
 
 class shelxeMR(CPluginScript):
 
@@ -96,6 +83,7 @@ class shelxeMR(CPluginScript):
 
     def parseLogfile(self):
         from mrbump.parsers.parse_shelxe import ShelxeLogParser
+
         # Parse the shelxe logfile
         rootNode = etree.Element("shelxeMR")
         sxlog = ShelxeLogParser(self.makeFileName('LOG'))
@@ -142,6 +130,7 @@ class shelxeMR(CPluginScript):
     # Generate .hkl file from .mtz reflection file.
     def genHKL(self):
         from mrbump.file_info import MTZ_parse
+
         # Define the binary file (with path), as well as the mtz2various logfile
         binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2various' ))
         # input & output file (same name as model+.hkl). Also logfile name.
@@ -243,22 +232,3 @@ class shelxeMR(CPluginScript):
         stat3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3)
         exCd3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3, 'exitCode')
         return CPluginScript.SUCCEEDED
-        
-"""
-     shelxeMR.py: CCP4 GUI Project
-     Copyright (C) 2015 STFC
-
-     This library is free software: you can redistribute it and/or
-     modify it under the terms of the GNU Lesser General Public License
-     version 3, modified in accordance with the provisions of the 
-     license to address the requirements of UK law.
- 
-     You should have received a copy of the modified GNU Lesser General 
-     Public License along with this library.  If not, copies may be 
-     downloaded from http://www.ccp4.ac.uk/ccp4license.php
- 
-     This program is distributed in the hope that it will be useful,
-     but WITHOUT ANY WARRANTY; without even the implied warranty of
-     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-     GNU Lesser General Public License for more details.
-"""

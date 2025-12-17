@@ -1,13 +1,11 @@
-from __future__ import print_function
-
-
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from lxml import etree
-import threading
+import os
 import socketserver
-import os, sys
-from ccp4i2.baselayer import QtCore
+
+from lxml import etree
+
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class MosflmRequestHandler(socketserver.StreamRequestHandler):
     commandLines = []
@@ -82,6 +80,7 @@ class mosflm(CPluginScript):
     
     def makeCommandAndScript(self):
         import os
+
         #self.simpleServer = MyServer()
         #self.simpleServer.start()
         import socket
