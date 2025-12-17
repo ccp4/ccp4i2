@@ -101,6 +101,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'aimless':
         from ccp4i2.wrappers.aimless.script.aimless import aimless
         return aimless
+    if plugin_name == 'aimless_pipe':
+        from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe import aimless_pipe
+        return aimless_pipe
     if plugin_name == 'arcimboldo':
         from ccp4i2.wrappers.arcimboldo.script.arcimboldo import arcimboldo
         return arcimboldo
@@ -266,6 +269,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'imosflm':
         from ccp4i2.wrappers.imosflm.script.imosflm import imosflm
         return imosflm
+    if plugin_name == 'import_merged':
+        from ccp4i2.pipelines.import_merged.script.import_merged import import_merged
+        return import_merged
     if plugin_name == 'import_mosflm':
         from ccp4i2.wrappers.import_mosflm.script.import_mosflm import import_mosflm
         return import_mosflm
@@ -545,6 +551,7 @@ PLUGIN_NAMES: set[str] = {
     'add_fractional_coords',
     'adding_stats_to_mmcif_i2',
     'aimless',
+    'aimless_pipe',
     'arcimboldo',
     'baverage',
     'buccaneer_build_refine_mr',
@@ -600,6 +607,7 @@ PLUGIN_NAMES: set[str] = {
     'hklin2cif',
     'i2Dimple',
     'imosflm',
+    'import_merged',
     'import_mosflm',
     'import_serial',
     'import_serial_pipe',

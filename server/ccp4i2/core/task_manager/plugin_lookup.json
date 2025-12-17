@@ -4956,6 +4956,43 @@
       }
     }
   },
+  "import_merged": {
+    "module": "pipelines.import_merged.script.import_merged",
+    "class": "import_merged",
+    "COMTEMPLATE": null,
+    "TASKMODULE": null,
+    "TASKTITLE": null,
+    "TASKNAME": "import_merged",
+    "TASKVERSION": null,
+    "WHATNEXT": [],
+    "ASYNCHRONOUS": false,
+    "PURGESEARCHLIST": [
+      [
+        "HKLIN*.mtz",
+        1
+      ],
+      [
+        "aimless_pipe%*/HKLOUT*.mtz",
+        1
+      ],
+      [
+        "hklout.mtz",
+        5
+      ],
+      [
+        "HKLOUT.mtz",
+        5
+      ]
+    ],
+    "ERROR_CODES": {
+      "301": {
+        "description": "No output file found after conversion program"
+      },
+      "302": {
+        "description": "Output from conversion does not contain recognised reflection or FreeR set data"
+      }
+    }
+  },
   "nautilus_build_refine": {
     "module": "pipelines.nautilus_build_refine.script.nautilus_build_refine",
     "class": "nautilus_build_refine",
@@ -6136,6 +6173,44 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
+      }
+    }
+  },
+  "aimless_pipe": {
+    "module": "pipelines.aimless_pipe.script.aimless_pipe",
+    "class": "aimless_pipe",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "data_reduction",
+    "TASKTITLE": "Scale and merge data",
+    "TASKNAME": "aimless_pipe",
+    "TASKVERSION": 0.0,
+    "ASYNCHRONOUS": false,
+    "PERFORMANCECLASS": "CDataReductionPerformance",
+    "PURGESEARCHLIST": [
+      [
+        "ctruncate%*/hklout.mtz",
+        0
+      ],
+      [
+        "aimless%*/*.xmgr",
+        1
+      ]
+    ],
+    "ERROR_CODES": {
+      "201": {
+        "description": "Pointless failed"
+      },
+      "202": {
+        "description": "Aimless failed"
+      },
+      "203": {
+        "description": "Ctruncate failed"
+      },
+      "204": {
+        "description": "FreeR  failed"
+      },
+      "205": {
+        "description": "Data useless"
       }
     }
   },

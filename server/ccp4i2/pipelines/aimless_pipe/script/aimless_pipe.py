@@ -11,7 +11,7 @@ from ccp4i2.baselayer import QtCore
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from lxml import etree as lxml_etree
 from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
-from  pipelines.aimless_pipe.script.aimless_cifstats import *
+from ccp4i2.pipelines.aimless_pipe.script.aimless_cifstats import *
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4Data import CString

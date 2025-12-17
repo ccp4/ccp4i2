@@ -28,10 +28,10 @@ from ccp4i2.core.CCP4ErrorHandling import *
 from lxml import etree
 from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import *
 
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.mmcifconvert import *
-from  pipelines.import_merged.script.importutils import *
-from  pipelines.import_merged.script.mtzimport import *
+from ccp4i2.pipelines.import_merged.script.mmcifutils import *
+from ccp4i2.pipelines.import_merged.script.mmcifconvert import *
+from ccp4i2.pipelines.import_merged.script.importutils import *
+from ccp4i2.pipelines.import_merged.script.mtzimport import *
 
 class import_merged(CPluginScript):
 

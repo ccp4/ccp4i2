@@ -4,8 +4,8 @@ import math
 from lxml import etree
 
 import gemmi
-from  pipelines.import_merged.script.mmcifutils import *
-from  pipelines.import_merged.script.importutils import *
+from ccp4i2.pipelines.import_merged.script.mmcifutils import *
+from ccp4i2.pipelines.import_merged.script.importutils import *
 #from mmcifutils import *
 #from importutils import *
 
