@@ -455,7 +455,11 @@ class crank2(CPluginScript):
         self.rvapi_converter=True
       elif os.path.isfile(i2natfile):
         os.remove(i2natfile)
-      import ccp4i2crank,common,traceback
+      # Add crank2 module directory to path - crank2 uses legacy unrooted imports throughout
+      crank2_module_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), 'crank2')
+      if crank2_module_dir not in sys.path:
+        sys.path.insert(0, crank2_module_dir)
+      import ccp4i2crank, common, traceback
       try:
         crank2 = ccp4i2crank.CallCrankFromCCP4i2(self, inpfile=inpfile, defaults=defaults, rvapi_style=rvapi_style)
         if not defaults and self.has_cont_attr(ctrl,"CLEANUP") and bool(ctrl.CLEANUP):
