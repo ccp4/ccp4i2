@@ -18,448 +18,448 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     providing clear traceability and IDE support.
     """
     if task_name == 'AUSPEX':
-        from wrappers.AUSPEX.script.AUSPEX_report import AUSPEX_report
+        from ccp4i2.wrappers.AUSPEX.script.AUSPEX_report import AUSPEX_report
         return AUSPEX_report
     if task_name == 'Acedrg':
-        from pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import acedrgNew_report
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import acedrgNew_report
         return acedrgNew_report
     if task_name == 'AcedrgLink':
-        from wrappers.AcedrgLink.script.AcedrgLink_report import AcedrgLink_report
+        from ccp4i2.wrappers.AcedrgLink.script.AcedrgLink_report import AcedrgLink_report
         return AcedrgLink_report
     if task_name == 'AlternativeImportXIA2':
-        from wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report import AlternativeImportXIA2_report
+        from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report import AlternativeImportXIA2_report
         return AlternativeImportXIA2_report
     if task_name == 'LidiaAcedrg':
-        from pipelines.LidiaAcedrg.script.lidiaAcedrg_report import lidiaAcedrg_report
+        from ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg_report import lidiaAcedrg_report
         return lidiaAcedrg_report
     if task_name == 'LidiaAcedrgNew':
-        from pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import lidiaAcedrgNew_report
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import lidiaAcedrgNew_report
         return lidiaAcedrgNew_report
     if task_name == 'MakeLink':
-        from pipelines.MakeLink.script.MakeLink_report import MakeLink_report
+        from ccp4i2.pipelines.MakeLink.script.MakeLink_report import MakeLink_report
         return MakeLink_report
     if task_name == 'MakeMonster':
-        from wrappers.MakeMonster.script.MakeMonster_report import MakeMonster_report
+        from ccp4i2.wrappers.MakeMonster.script.MakeMonster_report import MakeMonster_report
         return MakeMonster_report
     if task_name == 'MakeProjectsAndDoLigandPipeline':
-        from pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline_report import MakeProjectsAndDoLigandPipeline_report
+        from ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline_report import MakeProjectsAndDoLigandPipeline_report
         return MakeProjectsAndDoLigandPipeline_report
     if task_name == 'PrepareDeposit':
-        from pipelines.PrepareDeposit.script.PrepareDeposit_report import PrepareDeposit_report
+        from ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report import PrepareDeposit_report
         return PrepareDeposit_report
     if task_name == 'ProvideAlignment':
-        from wrappers.ProvideAlignment.script.ProvideAlignment_report import ProvideAlignment_report
+        from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment_report import ProvideAlignment_report
         return ProvideAlignment_report
     if task_name == 'ProvideAsuContents':
-        from wrappers.ProvideAsuContents.script.ProvideAsuContents_report import ProvideAsuContents_report
+        from ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report import ProvideAsuContents_report
         return ProvideAsuContents_report
     if task_name == 'ProvideSequence':
-        from wrappers.ProvideSequence.script.ProvideSequence_report import ProvideSequence_report
+        from ccp4i2.wrappers.ProvideSequence.script.ProvideSequence_report import ProvideSequence_report
         return ProvideSequence_report
     if task_name == 'ProvideTLS':
-        from wrappers.ProvideTLS.script.ProvideTLS_report import ProvideTLS_report
+        from ccp4i2.wrappers.ProvideTLS.script.ProvideTLS_report import ProvideTLS_report
         return ProvideTLS_report
     if task_name == 'RvapiReport':
-        from wrappers.morda_i2.script.morda_i2_report import RvapiReport
+        from ccp4i2.wrappers.morda_i2.script.morda_i2_report import RvapiReport
         return RvapiReport
     if task_name == 'ShelxCD':
-        from wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
+        from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
         return ShelxCD_report
     if task_name == 'ShelxCDEBaseReport':
-        from wrappers.ShelxCDE.script.ShelxCD_report import ShelxCDEBaseReport
+        from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCDEBaseReport
         return ShelxCDEBaseReport
     if task_name == 'ShelxCE':
-        from wrappers.ShelxCDE.script.ShelxCE_report import ShelxCE_report
+        from ccp4i2.wrappers.ShelxCDE.script.ShelxCE_report import ShelxCE_report
         return ShelxCE_report
     if task_name == 'ShelxCECompareHands':
-        from wrappers.ShelxCDE.script.ShelxCECompareHands_report import ShelxCECompareHands_report
+        from ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands_report import ShelxCECompareHands_report
         return ShelxCECompareHands_report
     if task_name == 'SubstituteLigand':
-        from pipelines.SubstituteLigand.script.SubstituteLigand_report import SubstituteLigand_report
+        from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report import SubstituteLigand_report
         return SubstituteLigand_report
     if task_name == 'SubtractNative':
-        from wrappers.SubtractNative.script.SubtractNative_report import SubtractNative_report
+        from ccp4i2.wrappers.SubtractNative.script.SubtractNative_report import SubtractNative_report
         return SubtractNative_report
     if task_name == 'TestObsConversions':
-        from wrappers.TestObsConversions.script.TestObsConversions_report import TestObsConversions_report
+        from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions_report import TestObsConversions_report
         return TestObsConversions_report
     if task_name == 'ZZPipelineNameZZ':
-        from pipelines.boilerplate.script.boilerplate_report import ZZPipelineNameZZ_report
+        from ccp4i2.pipelines.boilerplate.script.boilerplate_report import ZZPipelineNameZZ_report
         return ZZPipelineNameZZ_report
     if task_name == 'ZZPluginNameZZ':
-        from wrappers.boilerplate.script.boilerplate_report import ZZPluginNameZZ_report
+        from ccp4i2.wrappers.boilerplate.script.boilerplate_report import ZZPluginNameZZ_report
         return ZZPluginNameZZ_report
     if task_name == 'acorn':
-        from wrappers.acorn.script.acorn_report import acorn_report
+        from ccp4i2.wrappers.acorn.script.acorn_report import acorn_report
         return acorn_report
     if task_name == 'add_fractional_coords':
-        from wrappers.add_fractional_coords.script.add_fractional_coords_report import add_fractional_coords_report
+        from ccp4i2.wrappers.add_fractional_coords.script.add_fractional_coords_report import add_fractional_coords_report
         return add_fractional_coords_report
     if task_name == 'adding_stats_to_mmcif_i2':
-        from wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import adding_stats_to_mmcif_i2_report
+        from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import adding_stats_to_mmcif_i2_report
         return adding_stats_to_mmcif_i2_report
     if task_name == 'aimless':
-        from wrappers.aimless.script.aimless_report import aimless_report
+        from ccp4i2.wrappers.aimless.script.aimless_report import aimless_report
         return aimless_report
     if task_name == 'aimless_pipe':
-        from pipelines.aimless_pipe.script.aimless_pipe_report import aimless_pipe_report
+        from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report import aimless_pipe_report
         return aimless_pipe_report
     if task_name == 'arcimboldo':
-        from wrappers.arcimboldo.script.arcimboldo_report import arcimboldo_report
+        from ccp4i2.wrappers.arcimboldo.script.arcimboldo_report import arcimboldo_report
         return arcimboldo_report
     if task_name == 'arp_warp_classic':
-        from wrappers.arp_warp_classic.script.arp_warp_classic_report import arp_warp_classic_report
+        from ccp4i2.wrappers.arp_warp_classic.script.arp_warp_classic_report import arp_warp_classic_report
         return arp_warp_classic_report
     if task_name == 'buccaneer_build_refine_mr':
-        from pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
+        from ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
         return bucref_report
     if task_name == 'buccaneer_mr':
-        from wrappers.buccaneer_mr.script.buccaneer_mr_report import buccaneer_mr_report
+        from ccp4i2.wrappers.buccaneer_mr.script.buccaneer_mr_report import buccaneer_mr_report
         return buccaneer_mr_report
     if task_name == 'buster':
-        from wrappers.buster.script.buster_report import buster_report
+        from ccp4i2.wrappers.buster.script.buster_report import buster_report
         return buster_report
     if task_name == 'ccp4mg_edit_model':
-        from wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model_report import ccp4mg_edit_model_report
+        from ccp4i2.wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model_report import ccp4mg_edit_model_report
         return ccp4mg_edit_model_report
     if task_name == 'ccp4mg_edit_nomrbump':
-        from wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump_report import ccp4mg_edit_no_mrbump_report
+        from ccp4i2.wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump_report import ccp4mg_edit_no_mrbump_report
         return ccp4mg_edit_no_mrbump_report
     if task_name == 'ccp4mg_general':
-        from wrappers.ccp4mg_general.script.ccp4mg_general_report import ccp4mg_general_report
+        from ccp4i2.wrappers.ccp4mg_general.script.ccp4mg_general_report import ccp4mg_general_report
         return ccp4mg_general_report
     if task_name == 'chainsaw':
-        from wrappers.chainsaw.script.chainsaw_report import chainsaw_report
+        from ccp4i2.wrappers.chainsaw.script.chainsaw_report import chainsaw_report
         return chainsaw_report
     if task_name == 'chltofom':
-        from wrappers.chltofom.script.chltofom_report import chltofom_report
+        from ccp4i2.wrappers.chltofom.script.chltofom_report import chltofom_report
         return chltofom_report
     if task_name == 'cif2mtz':
-        from wrappers.cif2mtz.script.cif2mtz_report import cif2mtz_report
+        from ccp4i2.wrappers.cif2mtz.script.cif2mtz_report import cif2mtz_report
         return cif2mtz_report
     if task_name == 'clustalw':
-        from wrappers.clustalw.script.clustalw_report import clustalw_report
+        from ccp4i2.wrappers.clustalw.script.clustalw_report import clustalw_report
         return clustalw_report
     if task_name == 'cmapcoeff':
-        from wrappers.cmapcoeff.script.cmapcoeff_report import cmapcoeff_report
+        from ccp4i2.wrappers.cmapcoeff.script.cmapcoeff_report import cmapcoeff_report
         return cmapcoeff_report
     if task_name == 'comit':
-        from wrappers.comit.script.comit_report import comit_report
+        from ccp4i2.wrappers.comit.script.comit_report import comit_report
         return comit_report
     if task_name == 'coordinate_selector':
-        from wrappers.coordinate_selector.script.coordinate_selector_report import coordinate_selector_report
+        from ccp4i2.wrappers.coordinate_selector.script.coordinate_selector_report import coordinate_selector_report
         return coordinate_selector_report
     if task_name == 'coot1':
-        from wrappers.coot1.script.coot1_report import coot1_report
+        from ccp4i2.wrappers.coot1.script.coot1_report import coot1_report
         return coot1_report
     if task_name == 'coot_find_waters':
-        from pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_report import coot_find_waters_report
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_report import coot_find_waters_report
         return coot_find_waters_report
     if task_name == 'coot_fit_residues':
-        from pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report import coot_fit_residues_report
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report import coot_fit_residues_report
         return coot_fit_residues_report
     if task_name == 'coot_rebuild':
-        from wrappers.coot_rebuild.script.coot_rebuild_report import coot_rebuild_report
+        from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild_report import coot_rebuild_report
         return coot_rebuild_report
     if task_name == 'coot_rsr_morph':
-        from wrappers.coot_rsr_morph.script.coot_rsr_morph_report import coot_rsr_morph_report
+        from ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph_report import coot_rsr_morph_report
         return coot_rsr_morph_report
     if task_name == 'coot_script_lines':
-        from pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report import coot_script_lines_report
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report import coot_script_lines_report
         return coot_script_lines_report
     if task_name == 'coot_stepped_refine':
-        from pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_report import coot_stepped_refine_report
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_report import coot_stepped_refine_report
         return coot_stepped_refine_report
     if task_name == 'cpatterson':
-        from wrappers.cpatterson.script.cpatterson_report import cpatterson_report
+        from ccp4i2.wrappers.cpatterson.script.cpatterson_report import cpatterson_report
         return cpatterson_report
     if task_name == 'cphasematch':
-        from wrappers.cphasematch.script.cphasematch_report import cphasematch_report
+        from ccp4i2.wrappers.cphasematch.script.cphasematch_report import cphasematch_report
         return cphasematch_report
     if task_name == 'crank2':
-        from pipelines.crank2.script.crank2_report import crank2_report
+        from ccp4i2.pipelines.crank2.script.crank2_report import crank2_report
         return crank2_report
     if task_name == 'crank2_comb_phdmmb':
-        from pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb_report import crank2_comb_phdmmb_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb_report import crank2_comb_phdmmb_report
         return crank2_comb_phdmmb_report
     if task_name == 'crank2_dmfull':
-        from pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull_report import crank2_dmfull_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull_report import crank2_dmfull_report
         return crank2_dmfull_report
     if task_name == 'crank2_faest':
-        from pipelines.crank2.wrappers.crank2_faest.script.crank2_faest_report import crank2_faest_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_faest.script.crank2_faest_report import crank2_faest_report
         return crank2_faest_report
     if task_name == 'crank2_handdet':
-        from pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet_report import crank2_handdet_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet_report import crank2_handdet_report
         return crank2_handdet_report
     if task_name == 'crank2_mbref':
-        from pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref_report import crank2_mbref_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref_report import crank2_mbref_report
         return crank2_mbref_report
     if task_name == 'crank2_phas':
-        from pipelines.crank2.wrappers.crank2_phas.script.crank2_phas_report import crank2_phas_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_phas.script.crank2_phas_report import crank2_phas_report
         return crank2_phas_report
     if task_name == 'crank2_phdmmb':
-        from pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb_report import crank2_phdmmb_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb_report import crank2_phdmmb_report
         return crank2_phdmmb_report
     if task_name == 'crank2_ref':
-        from pipelines.crank2.wrappers.crank2_ref.script.crank2_ref_report import crank2_ref_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_ref.script.crank2_ref_report import crank2_ref_report
         return crank2_ref_report
     if task_name == 'crank2_refatompick':
-        from pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick_report import crank2_refatompick_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick_report import crank2_refatompick_report
         return crank2_refatompick_report
     if task_name == 'crank2_substrdet':
-        from pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet_report import crank2_substrdet_report
+        from ccp4i2.pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet_report import crank2_substrdet_report
         return crank2_substrdet_report
     if task_name == 'csymmatch':
-        from pipelines.phaser_pipeline.script.phaser_pipeline_report import csymmatch_report
+        from ccp4i2.pipelines.phaser_pipeline.script.phaser_pipeline_report import csymmatch_report
         return csymmatch_report
     if task_name == 'ctruncate':
-        from wrappers.ctruncate.script.ctruncate_report import ctruncate_report
+        from ccp4i2.wrappers.ctruncate.script.ctruncate_report import ctruncate_report
         return ctruncate_report
     if task_name == 'density_calculator':
-        from wrappers.density_calculator.script.density_calculator_report import density_calculator_report
+        from ccp4i2.wrappers.density_calculator.script.density_calculator_report import density_calculator_report
         return density_calculator_report
     if task_name == 'dials_image':
-        from wrappers.dials_image.script.dials_image_report import dials_image_report
+        from ccp4i2.wrappers.dials_image.script.dials_image_report import dials_image_report
         return dials_image_report
     if task_name == 'dials_rlattice':
-        from wrappers.dials_rlattice.script.dials_rlattice_report import dials_rlattice_report
+        from ccp4i2.wrappers.dials_rlattice.script.dials_rlattice_report import dials_rlattice_report
         return dials_rlattice_report
     if task_name == 'dr_mr_modelbuild_pipeline':
-        from pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report import dr_mr_modelbuild_pipeline_report
+        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report import dr_mr_modelbuild_pipeline_report
         return dr_mr_modelbuild_pipeline_report
     if task_name == 'dui':
-        from wrappers.dui.script.dui_report import dui_report
+        from ccp4i2.wrappers.dui.script.dui_report import dui_report
         return dui_report
     if task_name == 'editbfac':
-        from wrappers.editbfac.script.editbfac_report import editbfac_report
+        from ccp4i2.wrappers.editbfac.script.editbfac_report import editbfac_report
         return editbfac_report
+    if task_name == 'edstats':
+        from ccp4i2.wrappers.edstats.script.edstats_report import edstats_report
+        return edstats_report
     if task_name == 'fft':
-        from wrappers.fft.script.fft_report import fft_report
+        from ccp4i2.wrappers.fft.script.fft_report import fft_report
         return fft_report
     if task_name == 'findmyseq':
-        from wrappers.findmyseq.script.findmyseq_report import findmyseq_report
+        from ccp4i2.wrappers.findmyseq.script.findmyseq_report import findmyseq_report
         return findmyseq_report
     if task_name == 'freerflag':
-        from wrappers.freerflag.script.freerflag_report import freerflag_report
+        from ccp4i2.wrappers.freerflag.script.freerflag_report import freerflag_report
         return freerflag_report
     if task_name == 'gesamt':
-        from wrappers.gesamt.script.gesamt_report import gesamt_report
+        from ccp4i2.wrappers.gesamt.script.gesamt_report import gesamt_report
         return gesamt_report
     if task_name == 'i2Dimple':
-        from wrappers.i2Dimple.script.i2Dimple_report import i2Dimple_report
+        from ccp4i2.wrappers.i2Dimple.script.i2Dimple_report import i2Dimple_report
         return i2Dimple_report
     if task_name == 'imosflm':
-        from wrappers.imosflm.script.imosflm_report import imosflm_report
+        from ccp4i2.wrappers.imosflm.script.imosflm_report import imosflm_report
         return imosflm_report
     if task_name == 'import_files':
-        from wrappers2.import_files.script.import_files_report import import_files_report
+        from ccp4i2.wrappers2.import_files.script.import_files_report import import_files_report
         return import_files_report
     if task_name == 'import_merged':
-        from pipelines.import_merged.script.import_merged_report import import_merged_report
+        from ccp4i2.pipelines.import_merged.script.import_merged_report import import_merged_report
         return import_merged_report
     if task_name == 'import_mosflm':
-        from wrappers.import_mosflm.script.import_mosflm_report import import_mosflm_report
+        from ccp4i2.wrappers.import_mosflm.script.import_mosflm_report import import_mosflm_report
         return import_mosflm_report
     if task_name == 'import_serial':
-        from wrappers.import_serial.script.import_serial_report import import_serial_report
+        from ccp4i2.wrappers.import_serial.script.import_serial_report import import_serial_report
         return import_serial_report
     if task_name == 'import_serial_pipe':
-        from pipelines.import_serial_pipe.script.import_serial_pipe_report import import_serial_pipe_report
+        from ccp4i2.pipelines.import_serial_pipe.script.import_serial_pipe_report import import_serial_pipe_report
         return import_serial_pipe_report
     if task_name == 'import_xia2':
-        from pipelines.import_xia2.script.import_xia2_report import import_xia2_report
+        from ccp4i2.pipelines.import_xia2.script.import_xia2_report import import_xia2_report
         return import_xia2_report
     if task_name == 'lorestr_i2':
-        from wrappers.lorestr_i2.script.lorestr_i2_report import lorestr_i2_report
+        from ccp4i2.wrappers.lorestr_i2.script.lorestr_i2_report import lorestr_i2_report
         return lorestr_i2_report
     if task_name == 'mergeMtz':
-        from wrappers.mergeMtz.script.mergeMtz_report import mergeMtz_report
+        from ccp4i2.wrappers.mergeMtz.script.mergeMtz_report import mergeMtz_report
         return mergeMtz_report
     if task_name == 'metalCoord':
-        from wrappers.metalCoord.script.metalCoord_report import metalCoord_report
+        from ccp4i2.wrappers.metalCoord.script.metalCoord_report import metalCoord_report
         return metalCoord_report
     if task_name == 'modelASUCheck':
-        from wrappers.modelASUCheck.script.modelASUCheck_report import modelASUCheck_report
+        from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck_report import modelASUCheck_report
         return modelASUCheck_report
     if task_name == 'modelcraft':
-        from pipelines.phaser_ep.script.phaser_EP_report import modelcraft_report
+        from ccp4i2.pipelines.phaser_ep.script.phaser_EP_report import modelcraft_report
         return modelcraft_report
     if task_name == 'molrep_den':
-        from wrappers.molrep_den.script.molrep_den_report import molrep_den_report
+        from ccp4i2.wrappers.molrep_den.script.molrep_den_report import molrep_den_report
         return molrep_den_report
     if task_name == 'molrep_mr':
-        from wrappers.molrep_mr.script.molrep_mr_report import molrep_mr_report
+        from ccp4i2.wrappers.molrep_mr.script.molrep_mr_report import molrep_mr_report
         return molrep_mr_report
     if task_name == 'molrep_pipe':
-        from pipelines.molrep_pipe.script.molrep_pipe_report import molrep_pipe_report
+        from ccp4i2.pipelines.molrep_pipe.script.molrep_pipe_report import molrep_pipe_report
         return molrep_pipe_report
     if task_name == 'molrep_selfrot':
-        from wrappers.molrep_selfrot.script.molrep_selfrot_report import molrep_selfrot_report
+        from ccp4i2.wrappers.molrep_selfrot.script.molrep_selfrot_report import molrep_selfrot_report
         return molrep_selfrot_report
     if task_name == 'morda_i2':
-        from wrappers.morda_i2.script.morda_i2_report import morda_i2_report
+        from ccp4i2.wrappers.morda_i2.script.morda_i2_report import morda_i2_report
         return morda_i2_report
     if task_name == 'mosflm':
-        from wrappers.mosflm.script.mosflm_report import mosflm_report
+        from ccp4i2.wrappers.mosflm.script.mosflm_report import mosflm_report
         return mosflm_report
     if task_name == 'mrbump_basic':
-        from wrappers.mrbump_basic.script.mrbump_basic_report import mrbump_basic_report
+        from ccp4i2.wrappers.mrbump_basic.script.mrbump_basic_report import mrbump_basic_report
         return mrbump_basic_report
     if task_name == 'mrparse':
-        from wrappers.mrparse.script.mrparse_report import mrparse_report
+        from ccp4i2.wrappers.mrparse.script.mrparse_report import mrparse_report
         return mrparse_report
     if task_name == 'mrparse_simple':
-        from pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_report import mrparse_simple_report
+        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_report import mrparse_simple_report
         return mrparse_simple_report
     if task_name == 'nautilus_build_refine':
-        from pipelines.nautilus_build_refine.script.nautilus_build_refine_report import nautilus_build_refine_report
+        from ccp4i2.pipelines.nautilus_build_refine.script.nautilus_build_refine_report import nautilus_build_refine_report
         return nautilus_build_refine_report
     if task_name == 'pairef':
-        from wrappers.pairef.script.pairef_report import pairef_report
+        from ccp4i2.wrappers.pairef.script.pairef_report import pairef_report
         return pairef_report
     if task_name == 'parrot':
-        from wrappers.parrot.script.parrot_report import parrot_report
+        from ccp4i2.wrappers.parrot.script.parrot_report import parrot_report
         return parrot_report
     if task_name == 'pdb_redo_api':
-        from wrappers.pdb_redo_api.script.pdb_redo_api_report import pdb_redo_api_report
+        from ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api_report import pdb_redo_api_report
         return pdb_redo_api_report
     if task_name == 'pdbset_ui':
-        from wrappers.pdbset_ui.script.pdbset_ui_report import pdbset_ui_report
+        from ccp4i2.wrappers.pdbset_ui.script.pdbset_ui_report import pdbset_ui_report
         return pdbset_ui_report
     if task_name == 'pdbview_edit':
-        from wrappers.pdbview_edit.script.pdbview_edit_report import pdbview_edit_report
+        from ccp4i2.wrappers.pdbview_edit.script.pdbview_edit_report import pdbview_edit_report
         return pdbview_edit_report
     if task_name == 'phaser_EP':
-        from pipelines.phaser_ep.script.phaser_EP_report import phaser_EP_report
+        from ccp4i2.pipelines.phaser_ep.script.phaser_EP_report import phaser_EP_report
         return phaser_EP_report
     if task_name == 'phaser_EP_AUTO':
-        from pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
         return phaser_EP_AUTO_report
     if task_name == 'phaser_EP_LLG':
-        from pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG_report import phaser_EP_LLG_report
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG_report import phaser_EP_LLG_report
         return phaser_EP_LLG_report
     if task_name == 'phaser_MR_AUTO':
-        from pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import phaser_MR_AUTO_report
+        from ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import phaser_MR_AUTO_report
         return phaser_MR_AUTO_report
     if task_name == 'phaser_MR_FRF':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report import phaser_MR_FRF_report
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report import phaser_MR_FRF_report
         return phaser_MR_FRF_report
     if task_name == 'phaser_MR_FTF':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report import phaser_MR_FTF_report
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report import phaser_MR_FTF_report
         return phaser_MR_FTF_report
     if task_name == 'phaser_MR_PAK':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report import phaser_MR_PAK_report
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report import phaser_MR_PAK_report
         return phaser_MR_PAK_report
     if task_name == 'phaser_MR_RNP':
-        from pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP_report import phaser_MR_RNP_report
+        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP_report import phaser_MR_RNP_report
         return phaser_MR_RNP_report
     if task_name == 'phaser_analysis':
-        from wrappers.phaser_analysis.script.phaser_analysis_report import phaser_analysis_report
+        from ccp4i2.wrappers.phaser_analysis.script.phaser_analysis_report import phaser_analysis_report
         return phaser_analysis_report
     if task_name == 'phaser_ensembler':
-        from wrappers.phaser_ensembler.script.phaser_ensembler_report import phaser_ensembler_report
+        from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler_report import phaser_ensembler_report
         return phaser_ensembler_report
     if task_name == 'phaser_mr':
-        from wrappers.phaser_mr.script.phaser_mr_report import phaser_mr_report
+        from ccp4i2.wrappers.phaser_mr.script.phaser_mr_report import phaser_mr_report
         return phaser_mr_report
     if task_name == 'phaser_phil':
-        from wrappers.phaser_phil.script.phaser_phil_report import phaser_phil_report
+        from ccp4i2.wrappers.phaser_phil.script.phaser_phil_report import phaser_phil_report
         return phaser_phil_report
     if task_name == 'phaser_pipeline':
-        from pipelines.phaser_simple.script.phaser_simple_report import phaser_pipeline_report
+        from ccp4i2.pipelines.phaser_simple.script.phaser_simple_report import phaser_pipeline_report
         return phaser_pipeline_report
     if task_name == 'phaser_rnp_pipeline':
-        from pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import phaser_rnp_pipeline_report
+        from ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import phaser_rnp_pipeline_report
         return phaser_rnp_pipeline_report
     if task_name == 'phaser_simple':
-        from pipelines.phaser_simple.script.phaser_simple_report import phaser_simple_report
+        from ccp4i2.pipelines.phaser_simple.script.phaser_simple_report import phaser_simple_report
         return phaser_simple_report
     if task_name == 'phaser_singleMR':
-        from wrappers.phaser_singleMR.script.phaser_singleMR_report import phaser_singleMR_report
+        from ccp4i2.wrappers.phaser_singleMR.script.phaser_singleMR_report import phaser_singleMR_report
         return phaser_singleMR_report
     if task_name == 'pisa_analyse':
-        from pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse_report import pisa_analyse_report
+        from ccp4i2.pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse_report import pisa_analyse_report
         return pisa_analyse_report
     if task_name == 'pisa_xml':
-        from pipelines.pisapipe.script.pisapipe_report import pisa_xml_report
+        from ccp4i2.pipelines.pisapipe.script.pisapipe_report import pisa_xml_report
         return pisa_xml_report
     if task_name == 'pisapipe':
-        from pipelines.pisapipe.script.pisapipe_report import pisapipe_report
+        from ccp4i2.pipelines.pisapipe.script.pisapipe_report import pisapipe_report
         return pisapipe_report
     if task_name == 'pointless':
-        from pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import pointless_report
+        from ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import pointless_report
         return pointless_report
     if task_name == 'pointless_reindexToMatch':
-        from wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch_report import pointless_reindexToMatch_report
+        from ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch_report import pointless_reindexToMatch_report
         return pointless_reindexToMatch_report
     if task_name == 'privateer':
-        from wrappers.privateer.script.privateer_report import privateer_report
+        from ccp4i2.wrappers.privateer.script.privateer_report import privateer_report
         return privateer_report
     if task_name == 'prosmart':
-        from wrappers.prosmart.script.prosmart_report import prosmart_report
+        from ccp4i2.wrappers.prosmart.script.prosmart_report import prosmart_report
         return prosmart_report
     if task_name == 'prosmart_refmac':
-        from pipelines.prosmart_refmac.script.prosmart_refmac_report import prosmart_refmac_report
+        from ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac_report import prosmart_refmac_report
         return prosmart_refmac_report
     if task_name == 'pyphaser_mr':
-        from wrappers.pyphaser_mr.script.pyphaser_mr_report import pyphaser_mr_report
+        from ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr_report import pyphaser_mr_report
         return pyphaser_mr_report
     if task_name == 'qtpisa':
-        from wrappers.qtpisa.script.qtpisa_report import qtpisa_report
+        from ccp4i2.wrappers.qtpisa.script.qtpisa_report import qtpisa_report
         return qtpisa_report
     if task_name == 'refmac':
-        from pipelines.PrepareDeposit.script.PrepareDeposit_report import refmac_report
+        from ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report import refmac_report
         return refmac_report
     if task_name == 'reindex_processed_data':
-        from pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_report import reindex_processed_data_report
+        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_report import reindex_processed_data_report
         return reindex_processed_data_report
     if task_name == 'scaleit':
-        from wrappers.scaleit.script.scaleit_report import scaleit_report
+        from ccp4i2.wrappers.scaleit.script.scaleit_report import scaleit_report
         return scaleit_report
     if task_name == 'sculptor':
-        from wrappers.sculptor.script.sculptor_report import sculptor_report
+        from ccp4i2.wrappers.sculptor.script.sculptor_report import sculptor_report
         return sculptor_report
     if task_name == 'servalcat':
-        from wrappers.servalcat.script.servalcat_report import servalcat_report
+        from ccp4i2.wrappers.servalcat.script.servalcat_report import servalcat_report
         return servalcat_report
     if task_name == 'servalcat_pipe':
-        from pipelines.servalcat_pipe.script.servalcat_pipe_report import servalcat_pipe_report
+        from ccp4i2.pipelines.servalcat_pipe.script.servalcat_pipe_report import servalcat_pipe_report
         return servalcat_pipe_report
     if task_name == 'sheetbend':
-        from pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report import sheetbend_report
+        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report import sheetbend_report
         return sheetbend_report
     if task_name == 'shelx':
-        from pipelines.shelx.script.shelx_report import shelx_report
+        from ccp4i2.pipelines.shelx.script.shelx_report import shelx_report
         return shelx_report
     if task_name == 'shelxeMR':
-        from wrappers.shelxeMR.script.shelxeMR_report import shelxeMR_report
+        from ccp4i2.wrappers.shelxeMR.script.shelxeMR_report import shelxeMR_report
         return shelxeMR_report
     if task_name == 'slicendice':
-        from wrappers.slicendice.script.slicendice_report import slicendice_report
+        from ccp4i2.wrappers.slicendice.script.slicendice_report import slicendice_report
         return slicendice_report
     if task_name == 'splitMtz':
-        from wrappers.splitMtz.script.splitMtz_report import splitMtz_report
+        from ccp4i2.wrappers.splitMtz.script.splitMtz_report import splitMtz_report
         return splitMtz_report
     if task_name == 'validate_protein':
-        from wrappers.validate_protein.script.validate_protein_report import validate_protein_report
+        from ccp4i2.wrappers.validate_protein.script.validate_protein_report import validate_protein_report
         return validate_protein_report
     if task_name == 'xia2_dials':
-        from wrappers.xia2_dials.script.xia2_dials_report import xia2_dials_report
+        from ccp4i2.wrappers.xia2_dials.script.xia2_dials_report import xia2_dials_report
         return xia2_dials_report
     if task_name == 'xia2_multiplex':
-        from wrappers.xia2_multiplex.script.xia2_multiplex_report import xia2_multiplex_report
+        from ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex_report import xia2_multiplex_report
         return xia2_multiplex_report
-    if task_name == 'xia2_run':
-        from pipelines.import_xia2.wrappers.xia2_run.script.xia2_run_report import xia2_run_report
-        return xia2_run_report
     if task_name == 'xia2_ssx_reduce':
-        from wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_report import xia2_ssx_reduce_report
+        from ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_report import xia2_ssx_reduce_report
         return xia2_ssx_reduce_report
     if task_name == 'xia2_xds':
-        from wrappers.xia2_xds.script.xia2_xds_report import xia2_xds_report
+        from ccp4i2.wrappers.xia2_xds.script.xia2_xds_report import xia2_xds_report
         return xia2_xds_report
     if task_name == 'zanuda':
-        from wrappers.zanuda.script.zanuda_report import zanuda_report
+        from ccp4i2.wrappers.zanuda.script.zanuda_report import zanuda_report
         return zanuda_report
     return None
 
@@ -538,6 +538,7 @@ REPORT_NAMES: set[str] = {
     'dr_mr_modelbuild_pipeline',
     'dui',
     'editbfac',
+    'edstats',
     'fft',
     'findmyseq',
     'freerflag',
@@ -610,7 +611,6 @@ REPORT_NAMES: set[str] = {
     'validate_protein',
     'xia2_dials',
     'xia2_multiplex',
-    'xia2_run',
     'xia2_ssx_reduce',
     'xia2_xds',
     'zanuda',

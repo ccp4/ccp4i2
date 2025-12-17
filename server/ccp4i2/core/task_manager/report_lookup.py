@@ -231,6 +231,9 @@ def generate_report_registry(lookup: Dict[str, Any], output_path: str):
     for task_name, report_data in sorted(lookup.items()):
         module_name = report_data['module']
         class_name = report_data['class']
+        # Ensure module path is rooted at ccp4i2 package
+        if not module_name.startswith('ccp4i2.'):
+            module_name = f'ccp4i2.{module_name}'
         lines.extend([
             f'    if task_name == {repr(task_name)}:',
             f'        from {module_name} import {class_name}',
