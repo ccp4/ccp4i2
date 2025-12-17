@@ -129,7 +129,7 @@ class CDataFile(CData):
                 try:
                     # Import the content class
                     content_class = None
-                    for module_name in ['core.CCP4XtalData', 'core.CCP4ModelData', 'core.CCP4CootData']:
+                    for module_name in ['ccp4i2.core.CCP4XtalData', 'ccp4i2.core.CCP4ModelData', 'ccp4i2.core.CCP4CootData']:
                         try:
                             module = __import__(module_name, fromlist=[content_class_name])
                             content_class = getattr(module, content_class_name, None)
