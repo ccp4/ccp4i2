@@ -575,20 +575,20 @@ def digest_cdatafile_file_object(file_object: CDataFile):
     if not file_object.isSet():
         return {"status": "Failed", "reason": "File object is not set", "digest": {}}
     try:
-        result = identify_data_type(str(file_object.fullPath))
-        if result["data_type_name"] in ["mtz", "sfcif"]:
+        data_type_name = identify_data_type(str(file_object.fullPath))
+        if data_type_name in ["mtz", "sfcif"]:
             specific_object = CCP4XtalData.CGenericReflDataFile()
             specific_object.setFullPath(str(file_object.fullPath))
             return digest_cgenericrefldatafile_file_object(specific_object)
-        elif result["data_type_name"] == "model":
+        elif data_type_name == "model":
             specific_object = CCP4ModelData.CPdbDataFile()
             specific_object.setFullPath(str(file_object.fullPath))
             return digest_cpdbdata_file_object(specific_object)
-        elif result["data_type_name"] == "map":
+        elif data_type_name == "map":
             specific_object = CCP4XtalData.CMapDataFile()
             specific_object.setFullPath(str(file_object.fullPath))
             return digest_other_file_object(specific_object)
-        elif result["data_type_name"] == "sequence":
+        elif data_type_name == "sequence":
             specific_object = CCP4ModelData.CSeqDataFile()
             specific_object.setFullPath(str(file_object.fullPath))
             return digest_cseqdata_file_object(specific_object)
