@@ -18,7 +18,6 @@ class acorn(CPluginScript):
     COMTEMPLATE = None                          # The program com file template
     COMTEMPLATEFILE = None                      # Name of file containing com file template
     PERFORMANCECLASS = 'CExpPhasPerformance'    # KJS Need to change this
-    # ASYNCHRONOUS = False
     ERROR_CODES = {  200 : { 'description' : 'Unexpected reflections in input file, list in stdout.txt'} }
     MAINTAINER = "Kyle.Stevenson@stfc.ac.uk"
     
@@ -124,26 +123,7 @@ class acorn(CPluginScript):
                 print("\n \n")
                 return CPluginScript.FAILED
 
-        print("Finishing processINPUT (KJS)")
-
     def processOutputFiles(self):
-        print("Process OUPUT (KJS)")
-        #if (self.container.controlParameters.ACOMPS_PEAKSEARCH): #  forgot Eleanor told me this isn't used these days (.. leave out)
-        #    print "You should not be seeing this (KJS - Acorn)" # leave commented out section in for now.
-        #    pido1 = CCP4Modules.PROCESSMANAGER().startProcess( binfft, arglisto1, logFile=logfile1 )
-        #    stat1 = CCP4Modules.PROCESSMANAGER().getJobData( pid1 )
-        #    ex1    = CCP4Modules.PROCESSMANAGER().getJobData( pid1,'exitCode' )
-        
-        #    pido2 = CCP4Modules.PROCESSMANAGER().startProcess( binmapmask, arglisto2, logFile=logfile2 )
-        #   stat2 = CCP4Modules.PROCESSMANAGER().getJobData( pid2 )
-        #   ex2   = CCP4Modules.PROCESSMANAGER().getJobData( pid2,'exitCode' )
-        
-        #   inTxt3  = "threshold rms %s"%(str(self.container.inputData.ACOMPS_MAXPEAKS)) 
-        #   inTxt3 += "numpeaks %s"%(str(self.container.inputData.ACOMP_RMSMULT))
-        #   pido3 = CCP4Modules.PROCESSMANAGER().startProcess( binpeakmax, arglisto3, inputText = inTxt3, logFile=logfile3 )
-        #   stat3 = CCP4Modules.PROCESSMANAGER().getJobData( pid3 )
-        #   ex3   = CCP4Modules.PROCESSMANAGER().getJobData( pid3,'exitCode' )
-        
         # Parse the output text file to create an xml file which can then be parsed by the report to make html .......
         from lxml import etree
         rootNode = etree.Element("acorn")
