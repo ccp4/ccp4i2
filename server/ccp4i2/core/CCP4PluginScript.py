@@ -675,6 +675,8 @@ class CPluginScript(CData):
             if error:
                 self.errorReport.extend(error)
                 if error.maxSeverity() >= 4:  # ERROR level
+                    # Emit finished signal so pipelines are notified of failure
+                    self.reportStatus(self.FAILED)
                     return self.FAILED
         except Exception as e:
             # Catch Python exceptions in validity() and add to error report
@@ -748,10 +750,14 @@ class CPluginScript(CData):
             if isinstance(result, int):
                 # Legacy API: returns SUCCEEDED (0) or FAILED (1)
                 if result != self.SUCCEEDED:
+                    # Emit finished signal so pipelines are notified of failure
+                    self.reportStatus(result)
                     return result
             elif result:
                 # Modern API: returns CErrorReport (truthy if has errors)
                 self.errorReport.extend(result)
+                # Emit finished signal so pipelines are notified of failure
+                self.reportStatus(self.FAILED)
                 return self.FAILED
         except Exception as e:
             # Catch Python exceptions in processInputFiles() and add to error report
@@ -772,6 +778,8 @@ class CPluginScript(CData):
             error = self.makeCommandAndScript()
             if error:
                 self.errorReport.extend(error)
+                # Emit finished signal so pipelines are notified of failure
+                self.reportStatus(self.FAILED)
                 return self.FAILED
         except Exception as e:
             # Catch Python exceptions in makeCommandAndScript() and add to error report
@@ -821,10 +829,14 @@ class CPluginScript(CData):
             if isinstance(result, int):
                 # Legacy API: returns SUCCEEDED (0) or FAILED (1)
                 if result != self.SUCCEEDED:
+                    # Emit finished signal so pipelines are notified of failure
+                    self.reportStatus(result)
                     return result
             elif result:
                 # Modern API: returns CErrorReport (truthy if has errors)
                 self.errorReport.extend(result)
+                # Emit finished signal so pipelines are notified of failure
+                self.reportStatus(self.FAILED)
                 return self.FAILED
         except Exception as e:
             # Catch Python exceptions in startProcess() and add to error report

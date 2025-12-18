@@ -89,7 +89,10 @@ class prosmart_refmac(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
             return CPluginScript.FAILED
 
-        return CPluginScript.SUCCEEDED
+        # Return the actual status set by signal handlers (finishUp or failure handlers)
+        # When doAsync=False, the signal handlers run synchronously during executeFirstRefmac()
+        # and set self._status via reportStatus()
+        return getattr(self, '_status', CPluginScript.SUCCEEDED)
 
     def executeProsmartProtein(self):
        if self.container.prosmartProtein.TOGGLE:
