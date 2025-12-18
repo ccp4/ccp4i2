@@ -3,7 +3,6 @@ import sys
 
 from lxml import etree as lxml_etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4Data import CString
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -90,16 +89,14 @@ class aimless_pipe(CPluginScript):
       elif self.container.controlParameters.REFERENCE_DATASET.__str__() == 'HKL':
           self.pointless.container.controlParameters.REFERENCE_DATASET.set('HKL_MERGED')
 
-      self.connectSignal(self.pointless,'finished',self.process_cycle_aimless)
-      self.pointless.process()
+      self.process_cycle_aimless(self.pointless.process())
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    @QtCore.Slot(dict)
     def process_cycle_aimless(self,status):
     # Check Pointless ran OK, if so pick up its XML
     # Loop process_aimless once or twice, depending on AUTOCUTOFF
-        print("process_cycle_aimless = ", status.get('finishStatus'))
-        if status.get('finishStatus') == CPluginScript.FAILED:
+        print("process_cycle_aimless = ", status)
+        if status == CPluginScript.FAILED:
             print("failed in Pointless", status)
             self.fatalError = [201, 'Pointless failed', status]
             print("failed")
@@ -222,8 +219,7 @@ class aimless_pipe(CPluginScript):
                       ['RESOLUTION_RANGE'])  #  Input range if set
 
             print("**starting aimless")
-            self.aimless.finished.connect(self.process_post_aimless)
-            self.aimless.process()
+            self.process_post_aimless(self.aimless.process())
         except Exception as e:
             # failed in Aimless
             print("Aimless error")
@@ -233,11 +229,10 @@ class aimless_pipe(CPluginScript):
             return
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    @QtCore.Slot(dict)
     def process_post_aimless(self,status):
         print("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"); sys.stdout.flush()
         print('process_post_aimless', status)
-        if status.get('finishStatus') == CPluginScript.FAILED:
+        if status == CPluginScript.FAILED:
             print("**aimless failed")
             self.fatalError = [202, 'Aimless failed', status]
             self.process_finish(CPluginScript.FAILED)
@@ -405,12 +400,10 @@ class aimless_pipe(CPluginScript):
 
         self.ctruncate.container.outputData.OBSOUT.setFullPath(filePath)
 
-        self.connectSignal(self.ctruncate,'finished',self.process_post_ctruncate)
-        self.ctruncate.process()
+        self.process_post_ctruncate(self.ctruncate.process())
         print("DONE Running ctruncate on file %s ###" % infile)
       
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-    @QtCore.Slot(dict)
     def process_post_ctruncate(self,status):
       # after each ctruncate run
 
@@ -424,7 +417,7 @@ class aimless_pipe(CPluginScript):
       imeanoutList[-1].annotation = msg
 
       self.ndatasets_processed += 1
-      if status.get('finishStatus') == CPluginScript.FAILED:
+      if status == CPluginScript.FAILED:
          self.ndatasets_failed += 1
         
       print("Datasets processed so far: ",self.ndatasets_processed)
