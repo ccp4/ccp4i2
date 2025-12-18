@@ -11,12 +11,12 @@ class sftools(program):
   always_rundir=True
   # in case of cell parameters, the first regexp is for global cell, the second for particular crystal cell
   stat={}
-  stat['a'] = common.stats(regexp=[r" a\s+=\s+(\S+)", r" ({0})\s+{0}\s+{0}\s+{0}\s+{0}\s+{0}\s+".format('\d+\.\d+')+r"{0}"])
-  stat['b'] = common.stats(regexp=[r" b\s+=\s+(\S+)", r" {0}\s+({0})\s+{0}\s+{0}\s+{0}\s+{0}\s+".format('\d+\.\d+')+r"{0}"])
-  stat['c'] = common.stats(regexp=[r" c\s+=\s+(\S+)", r" {0}\s+{0}\s+({0})\s+{0}\s+{0}\s+{0}\s+".format('\d+\.\d+')+r"{0}"])
-  stat['alpha'] = common.stats(regexp=[r" alpha\s+=\s+(\S+)", r" {0}\s+{0}\s+{0}\s+({0})\s+{0}\s+{0}\s+".format('\d+\.\d+')+r"{0}"])
-  stat['beta'] = common.stats(regexp= [r" beta\s+=\s+(\S+)",  r" {0}\s+{0}\s+{0}\s+{0}\s+({0})\s+{0}\s+".format('\d+\.\d+')+r"{0}"])
-  stat['gamma'] = common.stats(regexp=[r" gamma\s+=\s+(\S+)", r" {0}\s+{0}\s+{0}\s+{0}\s+{0}\s+({0})\s+".format('\d+\.\d+')+r"{0}"])
+  stat['a'] = common.stats(regexp=[r" a\s+=\s+(\S+)", r" ({0})\s+{0}\s+{0}\s+{0}\s+{0}\s+{0}\s+".format(r'\d+\.\d+')+r"{0}"])
+  stat['b'] = common.stats(regexp=[r" b\s+=\s+(\S+)", r" {0}\s+({0})\s+{0}\s+{0}\s+{0}\s+{0}\s+".format(r'\d+\.\d+')+r"{0}"])
+  stat['c'] = common.stats(regexp=[r" c\s+=\s+(\S+)", r" {0}\s+{0}\s+({0})\s+{0}\s+{0}\s+{0}\s+".format(r'\d+\.\d+')+r"{0}"])
+  stat['alpha'] = common.stats(regexp=[r" alpha\s+=\s+(\S+)", r" {0}\s+{0}\s+{0}\s+({0})\s+{0}\s+{0}\s+".format(r'\d+\.\d+')+r"{0}"])
+  stat['beta'] = common.stats(regexp= [r" beta\s+=\s+(\S+)",  r" {0}\s+{0}\s+{0}\s+{0}\s+({0})\s+{0}\s+".format(r'\d+\.\d+')+r"{0}"])
+  stat['gamma'] = common.stats(regexp=[r" gamma\s+=\s+(\S+)", r" {0}\s+{0}\s+{0}\s+{0}\s+{0}\s+({0})\s+".format(r'\d+\.\d+')+r"{0}"])
   stat['spacegroup'] = common.stats(regexp=r"Space group name\s+:\s+(.+)")
   stat['spacegroup_num'] = common.stats(regexp=r"Space group number\s+:\s+(\S+)")
   stat['xname'] = common.stats(regexp=r"\s+\d+\s+\S\s+{0}\s*\ncrystal name:\s+(\S+)\s*\ndataset name:\s+\S+",convert=False)

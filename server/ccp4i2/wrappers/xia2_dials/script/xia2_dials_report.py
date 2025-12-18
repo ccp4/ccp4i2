@@ -79,7 +79,7 @@ class xia2_dials_report(Report):
     @staticmethod
     def _clean_scalr_statistics_ids(dataset_id):
         dataset_id = str(dataset_id).split(",")
-        dataset_id = [re.sub('[\[\]"]', "", e) for e in dataset_id]
+        dataset_id = [re.sub(r'[\[\]"]', "", e) for e in dataset_id]
         return "/".join(dataset_id)
 
     def xia2Summaries(self, parent=None):

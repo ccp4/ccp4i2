@@ -49,7 +49,7 @@ class CallbackObject(object):
             tableelement = CCP4LogToEtree(arg2)
             self.xmlroot.append(tableelement)
         except:
-            print('\n\n\ failed reading MGQTMatPlotLib')
+            print('\n\n failed reading MGQTMatPlotLib')
         self.notifyResponders()
     def call_back(self, arg1, arg2):
         #print '\n**call_back called: *Arg1:', arg1, '*Arg2:', arg2

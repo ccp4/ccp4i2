@@ -143,7 +143,7 @@ class tableone_report(Report):
         txtio.write("\\begin{tabular}{ll}\n")
         txtio.write("Meaurement & Value \\ \\hline\n")
         for tcont in ccatlist:
-            rttl = re.sub(r"%","\%", tcont[0])
+            rttl = re.sub(r"%",r"\%", tcont[0])
             txtio.write("%s & %s \\\\\n"%(rttl, tcont[1]))
         txtio.write("\\hline\n")
         txtio.write("\\end{tabular}\n")
