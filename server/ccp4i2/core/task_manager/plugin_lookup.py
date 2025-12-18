@@ -71,23 +71,24 @@ def discover_python_files(root_dir: str):
             ):
                 continue
             fpath = os.path.join(dirpath, fname)
-            rel_path = os.path.relpath(fpath, root_dir)
-            # Module name is relative to ccp4i2 root (no "ccp4i2." prefix)
-            # since plugins use imports like "from ccp4i2.core.CCP4PluginScript import"
-            module_name = rel_path[:-3].replace(os.sep, ".")
+            # Compute path relative to CCP4I2_ROOT (not root_dir) for proper module naming
+            # e.g., "ccp4i2.wrappers.phaser_analysis.script.phaser_analysis"
+            rel_path = os.path.relpath(fpath, CCP4I2_ROOT)
+            module_name = "ccp4i2." + rel_path[:-3].replace(os.sep, ".")
             yield dirpath, fname, fpath, module_name
 
 
 def import_module_from_file(module_name: str, fpath: str):
-    """Import a module from a file path, returning the module object or None."""
+    """Import a module by name, returning the module object or None.
+
+    Since ccp4i2 is installed as an editable package, we can use standard
+    importlib.import_module which properly handles relative imports.
+    """
     try:
-        spec = importlib.util.spec_from_file_location(module_name, fpath)
-        if spec and spec.loader:
-            mod = importlib.util.module_from_spec(spec)
-            spec.loader.exec_module(mod)
-            return mod
-        else:
-            logger.warning(f"Could not create import spec for {fpath}")
+        # Use standard import_module - this properly handles relative imports
+        # because ccp4i2 is installed as an editable package
+        mod = importlib.import_module(module_name)
+        return mod
     except SystemExit as e:
         # Some ccp4i2 modules call sys.exit() when dependencies are missing
         logger.warning(f"Module {fpath} called sys.exit({e.code})")
@@ -324,13 +325,8 @@ if __name__ == "__main__":
             if os.path.exists(dir_path):
                 print(f"Scanning {plugin_dir}...")
                 plugins = build_lookup_from_dir(dir_path)
-
-                # Fix module paths to be relative to CCP4I2_ROOT, not the plugin dir
-                for task_name, plugin_data in plugins.items():
-                    if 'module' in plugin_data:
-                        # Prepend the plugin directory name
-                        plugin_data['module'] = f"{plugin_dir}.{plugin_data['module']}"
-
+                # Module paths are already computed relative to CCP4I2_ROOT
+                # so they include the plugin_dir (e.g., "ccp4i2.wrappers.phaser_mr...")
                 result.update(plugins)
                 print(f"  Found {len(plugins)} plugins in {plugin_dir}")
 

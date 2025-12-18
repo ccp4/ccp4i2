@@ -1,7 +1,8 @@
 {
   "import_serial": {
-    "module": "wrappers.import_serial.script.import_serial",
+    "module": "ccp4i2.wrappers.import_serial.script.import_serial",
     "class": "import_serial",
+    "module_file": "../../wrappers/import_serial/script/import_serial.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_entry",
@@ -61,8 +62,9 @@
     }
   },
   "chainsaw": {
-    "module": "wrappers.chainsaw.script.chainsaw",
+    "module": "ccp4i2.wrappers.chainsaw.script.chainsaw",
     "class": "chainsaw",
+    "module_file": "../../wrappers/chainsaw/script/chainsaw.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "molecular replacement",
     "TASKTITLE": "edit search model",
@@ -122,8 +124,9 @@
     }
   },
   "mtzheader": {
-    "module": "wrappers.mtzheader.script.mtzheader",
+    "module": "ccp4i2.wrappers.mtzheader.script.mtzheader",
     "class": "mtzheader",
+    "module_file": "../../wrappers/mtzheader/script/mtzheader.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Read MTZ header",
@@ -182,8 +185,9 @@
     }
   },
   "xia2_multiplex": {
-    "module": "wrappers.xia2_multiplex.script.xia2_multiplex",
+    "module": "ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex",
     "class": "Cxia2_multiplex",
+    "module_file": "../../wrappers/xia2_multiplex/script/xia2_multiplex.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "data_reduction",
     "TASKTITLE": "Data set combination with xia2.multiplex",
@@ -208,8 +212,9 @@
     }
   },
   "adding_stats_to_mmcif_i2": {
-    "module": "wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2",
+    "module": "ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2",
     "class": "adding_stats_to_mmcif_i2",
+    "module_file": "../../wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -243,8 +248,9 @@
     }
   },
   "cif2mtz": {
-    "module": "wrappers.cif2mtz.script.cif2mtz",
+    "module": "ccp4i2.wrappers.cif2mtz.script.cif2mtz",
     "class": "cif2mtz",
+    "module_file": "../../wrappers/cif2mtz/script/cif2mtz.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Import mmCIF reflection file",
@@ -261,8 +267,9 @@
     }
   },
   "AUSPEX": {
-    "module": "wrappers.AUSPEX.script.auspex_wrapper",
+    "module": "ccp4i2.wrappers.AUSPEX.script.auspex_wrapper",
     "class": "AUSPEX",
+    "module_file": "../../wrappers/AUSPEX/script/auspex_wrapper.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_reduction",
@@ -323,8 +330,9 @@
     }
   },
   "phaser_phil": {
-    "module": "wrappers.phaser_phil.script.phaser_phil",
+    "module": "ccp4i2.wrappers.phaser_phil.script.phaser_phil",
     "class": "phaser_phil",
+    "module_file": "../../wrappers/phaser_phil/script/phaser_phil.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -351,8 +359,9 @@
     }
   },
   "unique": {
-    "module": "wrappers.unique.script.unique",
+    "module": "ccp4i2.wrappers.unique.script.unique",
     "class": "unique",
+    "module_file": "../../wrappers/unique/script/unique.py",
     "COMTEMPLATE": "1 SYMM $SPACEGROUPCELL.spaceGroup.quote\n1 CELL $SPACEGROUPCELL.cell.a $SPACEGROUPCELL.cell.b $SPACEGROUPCELL.cell.c $SPACEGROUPCELL.cell.alpha $SPACEGROUPCELL.cell.beta $SPACEGROUPCELL.cell.gamma  \n1 RESO $RESOLUTION\n$TITLE TITLE $TITLE\n1 END",
     "TASKMODULE": null,
     "TASKTITLE": "Create dummy dataset",
@@ -411,8 +420,9 @@
     }
   },
   "comit": {
-    "module": "wrappers.comit.script.comit",
+    "module": "ccp4i2.wrappers.comit.script.comit",
     "class": "comit",
+    "module_file": "../../wrappers/comit/script/comit.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -481,8 +491,9 @@
     }
   },
   "arcimboldo": {
-    "module": "wrappers.arcimboldo.script.arcimboldo",
+    "module": "ccp4i2.wrappers.arcimboldo.script.arcimboldo",
     "class": "arcimboldo",
+    "module_file": "../../wrappers/arcimboldo/script/arcimboldo.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Arcimboldo",
@@ -550,8 +561,9 @@
     }
   },
   "xia2_dials": {
-    "module": "wrappers.xia2_dials.script.xia2_dials",
+    "module": "ccp4i2.wrappers.xia2_dials.script.xia2_dials",
     "class": "Cxia2_dials",
+    "module_file": "../../wrappers/xia2_dials/script/xia2_dials.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "data_processing",
     "TASKTITLE": "Data processing with xia2/dials",
@@ -588,8 +600,9 @@
     }
   },
   "pointless": {
-    "module": "wrappers.pointless.script.pointless",
+    "module": "ccp4i2.wrappers.pointless.script.pointless",
     "class": "pointless",
+    "module_file": "../../wrappers/pointless/script/pointless.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Analyse unmerged dataset (POINTLESS)",
@@ -648,8 +661,9 @@
     }
   },
   "editbfac": {
-    "module": "wrappers.editbfac.script.editbfac",
+    "module": "ccp4i2.wrappers.editbfac.script.editbfac",
     "class": "editbfac",
+    "module_file": "../../wrappers/editbfac/script/editbfac.py",
     "COMTEMPLATE": null,
     "TASKMODULE": [
       "alpha_fold",
@@ -712,8 +726,9 @@
     }
   },
   "x2mtz": {
-    "module": "wrappers.x2mtz.script.x2mtz",
+    "module": "ccp4i2.wrappers.x2mtz.script.x2mtz",
     "class": "x2mtz",
+    "module_file": "../../wrappers/x2mtz/script/x2mtz.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": null,
@@ -730,8 +745,9 @@
     }
   },
   "TestObsConversions": {
-    "module": "wrappers.TestObsConversions.script.TestObsConversions",
+    "module": "ccp4i2.wrappers.TestObsConversions.script.TestObsConversions",
     "class": "TestObsConversions",
+    "module_file": "../../wrappers/TestObsConversions/script/TestObsConversions.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "TestObsConversions",
@@ -747,8 +763,9 @@
     }
   },
   "pdbview_edit": {
-    "module": "wrappers.pdbview_edit.script.pdbview_edit",
+    "module": "ccp4i2.wrappers.pdbview_edit.script.pdbview_edit",
     "class": "pdbview_edit",
+    "module_file": "../../wrappers/pdbview_edit/script/pdbview_edit.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_data_utility",
     "TASKTITLE": "Edit PDB/CIF files by hand with the PdbView program",
@@ -769,8 +786,9 @@
     }
   },
   "ProvideSequence": {
-    "module": "wrappers.ProvideSequence.script.ProvideSequence",
+    "module": "ccp4i2.wrappers.ProvideSequence.script.ProvideSequence",
     "class": "ProvideSequence",
+    "module_file": "../../wrappers/ProvideSequence/script/ProvideSequence.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -830,9 +848,31 @@
       }
     }
   },
+  "SIMBAD": {
+    "module": "ccp4i2.wrappers.SIMBAD.script.SIMBAD",
+    "class": "SIMBAD",
+    "module_file": "../../wrappers/SIMBAD/script/SIMBAD.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": null,
+    "TASKTITLE": null,
+    "TASKNAME": "SIMBAD",
+    "TASKVERSION": 0.1,
+    "WHATNEXT": [
+      "prosmart_refmac",
+      "modelcraft",
+      "coot_rebuild"
+    ],
+    "ASYNCHRONOUS": false,
+    "ERROR_CODES": {
+      "1": {
+        "description": "Something not very good has happened."
+      }
+    }
+  },
   "phaser_mr": {
-    "module": "wrappers.phaser_mr.script.phaser_mr",
+    "module": "ccp4i2.wrappers.phaser_mr.script.phaser_mr",
     "class": "phaser_mr",
+    "module_file": "../../wrappers/phaser_mr/script/phaser_mr.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "MR using Phaser",
@@ -861,8 +901,9 @@
     }
   },
   "edstats": {
-    "module": "wrappers.edstats.script.edstats",
+    "module": "ccp4i2.wrappers.edstats.script.edstats",
     "class": "edstats",
+    "module_file": "../../wrappers/edstats/script/edstats.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "validation",
     "TASKTITLE": "Measure agreement between model and density",
@@ -930,8 +971,9 @@
     }
   },
   "phaser_ensembler": {
-    "module": "wrappers.phaser_ensembler.script.phaser_ensembler",
+    "module": "ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler",
     "class": "phaser_ensembler",
+    "module_file": "../../wrappers/phaser_ensembler/script/phaser_ensembler.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -993,9 +1035,49 @@
       }
     }
   },
+  "coot1": {
+    "module": "ccp4i2.wrappers.coot1.script.coot1",
+    "class": "coot1",
+    "module_file": "../../wrappers/coot1/script/coot1.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "model_building",
+    "TASKTITLE": "Coot 1",
+    "TASKNAME": "coot1",
+    "TASKVERSION": 0.1,
+    "WHATNEXT": [
+      "prosmart_refmac",
+      "coot_rebuild",
+      "modelcraft"
+    ],
+    "ASYNCHRONOUS": true,
+    "TIMEOUT_PERIOD": 9999999.9,
+    "ERROR_CODES": {}
+  },
+  "AMPLE": {
+    "module": "ccp4i2.wrappers.AMPLE.script.AMPLE",
+    "class": "AMPLE",
+    "module_file": "../../wrappers/AMPLE/script/AMPLE.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": null,
+    "TASKTITLE": null,
+    "TASKNAME": "AMPLE",
+    "TASKVERSION": 0.1,
+    "WHATNEXT": [
+      "prosmart_refmac",
+      "modelcraft",
+      "coot_rebuild"
+    ],
+    "ASYNCHRONOUS": false,
+    "ERROR_CODES": {
+      "1": {
+        "description": "Something not very good has happened."
+      }
+    }
+  },
   "import_mosflm": {
-    "module": "wrappers.import_mosflm.script.import_mosflm",
+    "module": "ccp4i2.wrappers.import_mosflm.script.import_mosflm",
     "class": "import_mosflm",
+    "module_file": "../../wrappers/import_mosflm/script/import_mosflm.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -1055,8 +1137,9 @@
     }
   },
   "Platonyzer": {
-    "module": "wrappers.Platonyzer.script.Platonyzer",
+    "module": "ccp4i2.wrappers.Platonyzer.script.Platonyzer",
     "class": "Platonyzer",
+    "module_file": "../../wrappers/Platonyzer/script/Platonyzer.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -1083,8 +1166,9 @@
     }
   },
   "AlternativeImportXIA2": {
-    "module": "wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2",
+    "module": "ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2",
     "class": "AlternativeImportXIA2",
+    "module_file": "../../wrappers/AlternativeImportXIA2/script/AlternativeImportXIA2.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -1144,8 +1228,9 @@
     }
   },
   "prosmart": {
-    "module": "wrappers.prosmart.script.prosmart",
+    "module": "ccp4i2.wrappers.prosmart.script.prosmart",
     "class": "prosmart",
+    "module_file": "../../wrappers/prosmart/script/prosmart.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": null,
@@ -1169,8 +1254,9 @@
     }
   },
   "cphasematch": {
-    "module": "wrappers.cphasematch.script.cphasematch",
+    "module": "ccp4i2.wrappers.cphasematch.script.cphasematch",
     "class": "cphasematch",
+    "module_file": "../../wrappers/cphasematch/script/cphasematch.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "expt_data_utility",
     "TASKTITLE": "Match and analyse phases to reference set",
@@ -1229,8 +1315,9 @@
     }
   },
   "mergeMtz": {
-    "module": "wrappers.mergeMtz.script.mergeMtz",
+    "module": "ccp4i2.wrappers.mergeMtz.script.mergeMtz",
     "class": "mergeMtz",
+    "module_file": "../../wrappers/mergeMtz/script/mergeMtz.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Merge experimental data objects to MTZ",
@@ -1290,8 +1377,9 @@
     }
   },
   "buccaneer_mr": {
-    "module": "wrappers.buccaneer_mr.script.buccaneer_mr",
+    "module": "ccp4i2.wrappers.buccaneer_mr.script.buccaneer_mr",
     "class": "buccaneer_mr",
+    "module_file": "../../wrappers/buccaneer_mr/script/buccaneer_mr.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Buccaneer_mr",
@@ -1350,8 +1438,9 @@
     }
   },
   "acorn": {
-    "module": "wrappers.acorn.script.acorn",
+    "module": "ccp4i2.wrappers.acorn.script.acorn",
     "class": "acorn",
+    "module_file": "../../wrappers/acorn/script/acorn.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "density_modification",
@@ -1367,8 +1456,9 @@
     }
   },
   "freerflag": {
-    "module": "wrappers.freerflag.script.freerflag",
+    "module": "ccp4i2.wrappers.freerflag.script.freerflag",
     "class": "freerflag",
+    "module_file": "../../wrappers/freerflag/script/freerflag.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Add a freeR flag",
@@ -1426,9 +1516,36 @@
       }
     }
   },
+  "acedrgNew": {
+    "module": "ccp4i2.wrappers.acedrgNew.script.acedrgNew",
+    "class": "acedrgNew",
+    "module_file": "../../wrappers/acedrgNew/script/acedrgNew.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "wrappers",
+    "TASKTITLE": "acedrgNew",
+    "TASKNAME": "acedrgNew",
+    "TASKVERSION": 0.0,
+    "ASYNCHRONOUS": false,
+    "TIMEOUT_PERIOD": 9999999.9,
+    "ERROR_CODES": {
+      "200": {
+        "description": "Failed to add item to mol list"
+      },
+      "201": {
+        "description": "Failed to setFullPath"
+      },
+      "202": {
+        "description": "Failed to dump XMML"
+      },
+      "203": {
+        "description": "Failed to make RDKit Mol from DICT"
+      }
+    }
+  },
   "modelASUCheck": {
-    "module": "wrappers.modelASUCheck.script.modelASUCheck",
+    "module": "ccp4i2.wrappers.modelASUCheck.script.modelASUCheck",
     "class": "modelASUCheck",
+    "module_file": "../../wrappers/modelASUCheck/script/modelASUCheck.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -1446,8 +1563,9 @@
     }
   },
   "validate_protein": {
-    "module": "wrappers.validate_protein.script.validate_protein",
+    "module": "ccp4i2.wrappers.validate_protein.script.validate_protein",
     "class": "validate_protein",
+    "module_file": "../../wrappers/validate_protein/script/validate_protein.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -1509,8 +1627,9 @@
     }
   },
   "csymmatch": {
-    "module": "wrappers.csymmatch.script.csymmatch",
+    "module": "ccp4i2.wrappers.csymmatch.script.csymmatch",
     "class": "csymmatch",
+    "module_file": "../../wrappers/csymmatch/script/csymmatch.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "molecular_replacement",
     "TASKTITLE": "Csymmatch - move model to a reference by using symmetry",
@@ -1569,8 +1688,9 @@
     }
   },
   "scalepack2mtz": {
-    "module": "wrappers.scalepack2mtz.script.scalepack2mtz",
+    "module": "ccp4i2.wrappers.scalepack2mtz.script.scalepack2mtz",
     "class": "scalepack2mtz",
+    "module_file": "../../wrappers/scalepack2mtz/script/scalepack2mtz.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Convert scalepack merged reflection file to MTZ",
@@ -1587,8 +1707,9 @@
     }
   },
   "mrbump_basic": {
-    "module": "wrappers.mrbump_basic.script.mrbump_basic",
+    "module": "ccp4i2.wrappers.mrbump_basic.script.mrbump_basic",
     "class": "mrbump_basic",
+    "module_file": "../../wrappers/mrbump_basic/script/mrbump_basic.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "MrBUMP Basic",
@@ -1647,8 +1768,9 @@
     }
   },
   "nautilus": {
-    "module": "wrappers.nautilus.script.nautilus",
+    "module": "ccp4i2.wrappers.nautilus.script.nautilus",
     "class": "nautilus",
+    "module_file": "../../wrappers/nautilus/script/nautilus.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "developer_tools",
     "TASKTITLE": null,
@@ -1672,8 +1794,9 @@
     }
   },
   "pairef": {
-    "module": "wrappers.pairef.script.pairef",
+    "module": "ccp4i2.wrappers.pairef.script.pairef",
     "class": "pairef",
+    "module_file": "../../wrappers/pairef/script/pairef.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "refinement",
@@ -1690,8 +1813,9 @@
     }
   },
   "ProvideAlignment": {
-    "module": "wrappers.ProvideAlignment.script.ProvideAlignment",
+    "module": "ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment",
     "class": "ProvideAlignment",
+    "module_file": "../../wrappers/ProvideAlignment/script/ProvideAlignment.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -1713,8 +1837,9 @@
     }
   },
   "dials_rlattice": {
-    "module": "wrappers.dials_rlattice.script.dials_rlattice",
+    "module": "ccp4i2.wrappers.dials_rlattice.script.dials_rlattice",
     "class": "dials_rlattice",
+    "module_file": "../../wrappers/dials_rlattice/script/dials_rlattice.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_processing",
@@ -1775,8 +1900,9 @@
     }
   },
   "xia2_xds": {
-    "module": "wrappers.xia2_xds.script.xia2_xds",
+    "module": "ccp4i2.wrappers.xia2_xds.script.xia2_xds",
     "class": "Cxia2_xds",
+    "module_file": "../../wrappers/xia2_xds/script/xia2_xds.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "data_processing",
     "TASKTITLE": "Data processing with xia2/xds",
@@ -1813,8 +1939,9 @@
     }
   },
   "zanuda": {
-    "module": "wrappers.zanuda.script.zanuda",
+    "module": "ccp4i2.wrappers.zanuda.script.zanuda",
     "class": "zanuda",
+    "module_file": "../../wrappers/zanuda/script/zanuda.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "refinement",
     "TASKTITLE": "Zanuda",
@@ -1842,8 +1969,9 @@
     }
   },
   "lorestr_i2": {
-    "module": "wrappers.lorestr_i2.script.lorestr_i2",
+    "module": "ccp4i2.wrappers.lorestr_i2.script.lorestr_i2",
     "class": "lorestr_i2",
+    "module_file": "../../wrappers/lorestr_i2/script/lorestr_i2.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -1871,8 +1999,9 @@
     }
   },
   "cpatterson": {
-    "module": "wrappers.cpatterson.script.cpatterson",
+    "module": "ccp4i2.wrappers.cpatterson.script.cpatterson",
     "class": "cpatterson",
+    "module_file": "../../wrappers/cpatterson/script/cpatterson.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Prepare map coefficients",
@@ -1931,8 +2060,9 @@
     }
   },
   "i2Dimple": {
-    "module": "wrappers.i2Dimple.script.i2Dimple",
+    "module": "ccp4i2.wrappers.i2Dimple.script.i2Dimple",
     "class": "i2Dimple",
+    "module_file": "../../wrappers/i2Dimple/script/i2Dimple.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -1960,8 +2090,9 @@
     }
   },
   "add_fractional_coords": {
-    "module": "wrappers.add_fractional_coords.script.add_fractional_coords",
+    "module": "ccp4i2.wrappers.add_fractional_coords.script.add_fractional_coords",
     "class": "add_fractional_coords",
+    "module_file": "../../wrappers/add_fractional_coords/script/add_fractional_coords.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_data_utility",
     "TASKTITLE": "Add Fractional Coordinates",
@@ -1988,8 +2119,9 @@
     }
   },
   "cad_copy_column": {
-    "module": "wrappers.cad_copy_column.script.cad_copy_column",
+    "module": "ccp4i2.wrappers.cad_copy_column.script.cad_copy_column",
     "class": "cad_copy_column",
+    "module_file": "../../wrappers/cad_copy_column/script/cad_copy_column.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -2049,8 +2181,9 @@
     }
   },
   "gesamt": {
-    "module": "wrappers.gesamt.script.gesamt",
+    "module": "ccp4i2.wrappers.gesamt.script.gesamt",
     "class": "gesamt",
+    "module_file": "../../wrappers/gesamt/script/gesamt.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_data_utility",
     "TASKTITLE": "Gesamt - structural alignment",
@@ -2110,8 +2243,9 @@
     }
   },
   "clustalw": {
-    "module": "wrappers.clustalw.script.clustalw",
+    "module": "ccp4i2.wrappers.clustalw.script.clustalw",
     "class": "clustalw",
+    "module_file": "../../wrappers/clustalw/script/clustalw.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "clustalw",
@@ -2129,8 +2263,9 @@
     }
   },
   "pointless_reindexToMatch": {
-    "module": "wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch",
+    "module": "ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch",
     "class": "pointless_reindexToMatch",
+    "module_file": "../../wrappers/pointless_reindexToMatch/script/pointless_reindexToMatch.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -2150,8 +2285,9 @@
     }
   },
   "buster": {
-    "module": "wrappers.buster.script.buster",
+    "module": "ccp4i2.wrappers.buster.script.buster",
     "class": "buster",
+    "module_file": "../../wrappers/buster/script/buster.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "refinement",
@@ -2173,8 +2309,9 @@
     }
   },
   "ProvideAsuContents": {
-    "module": "wrappers.ProvideAsuContents.script.ProvideAsuContents",
+    "module": "ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents",
     "class": "ProvideAsuContents",
+    "module_file": "../../wrappers/ProvideAsuContents/script/ProvideAsuContents.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -2233,9 +2370,72 @@
       }
     }
   },
+  "phaser_analysis": {
+    "module": "ccp4i2.wrappers.phaser_analysis.script.phaser_analysis",
+    "class": "phaser_analysis",
+    "module_file": "../../wrappers/phaser_analysis/script/phaser_analysis.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "test",
+    "TASKTITLE": "phaser_analysis",
+    "TASKNAME": "phaser_analysis",
+    "TASKVERSION": 0.0,
+    "ASYNCHRONOUS": false,
+    "RUNEXTERNALPROCESS": false,
+    "ERROR_CODES": {
+      "200": {
+        "description": "Error merging MTZ files"
+      },
+      "201": {
+        "description": "Invalid miniMtzsIn specification"
+      },
+      "202": {
+        "description": "File object has no CONTENT_SIGNATURE_LIST"
+      },
+      "203": {
+        "description": "File object has no path set"
+      },
+      "204": {
+        "description": "MTZ file not found"
+      },
+      "205": {
+        "description": "File object not found in inputData or outputData"
+      },
+      "206": {
+        "description": "Invalid contentFlag for file type"
+      },
+      "207": {
+        "description": "Invalid item format in miniMtzsIn"
+      },
+      "208": {
+        "description": "Conversion method not found on file object"
+      },
+      "209": {
+        "description": "Conversion to requested format not yet implemented"
+      },
+      "210": {
+        "description": "Error during MTZ file conversion"
+      },
+      "300": {
+        "description": "Input MTZ file not found for split operation"
+      },
+      "301": {
+        "description": "miniMtzsOut and programColumnNames length mismatch"
+      },
+      "302": {
+        "description": "Output object not found in container.outputData"
+      },
+      "303": {
+        "description": "Output object has no path set"
+      },
+      "304": {
+        "description": "Error splitting MTZ file"
+      }
+    }
+  },
   "Lidia": {
-    "module": "wrappers.Lidia.script.Lidia",
+    "module": "ccp4i2.wrappers.Lidia.script.Lidia",
     "class": "lidia",
+    "module_file": "../../wrappers/Lidia/script/Lidia.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Lidia",
@@ -2254,8 +2454,9 @@
     }
   },
   "sheetbend": {
-    "module": "wrappers.sheetbend.script.sheetbend",
+    "module": "ccp4i2.wrappers.sheetbend.script.sheetbend",
     "class": "sheetbend",
+    "module_file": "../../wrappers/sheetbend/script/sheetbend.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -2282,8 +2483,9 @@
     }
   },
   "scaleit": {
-    "module": "wrappers.scaleit.script.scaleit",
+    "module": "ccp4i2.wrappers.scaleit.script.scaleit",
     "class": "scaleit",
+    "module_file": "../../wrappers/scaleit/script/scaleit.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Compare two or more datafiles",
@@ -2300,8 +2502,9 @@
     }
   },
   "ccp4mg_edit_model": {
-    "module": "wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model",
+    "module": "ccp4i2.wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model",
     "class": "ccp4mg_edit_model",
+    "module_file": "../../wrappers/ccp4mg_edit_model/script/ccp4mg_edit_model.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Interactive model preparation - CCP4mg and MrBUMP",
@@ -2322,8 +2525,9 @@
     }
   },
   "qtpisa": {
-    "module": "wrappers.qtpisa.script.qtpisa",
+    "module": "ccp4i2.wrappers.qtpisa.script.qtpisa",
     "class": "qtpisa",
+    "module_file": "../../wrappers/qtpisa/script/qtpisa.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "validation",
     "TASKTITLE": "Analyze bilogical units with qtpisa",
@@ -2344,8 +2548,9 @@
     }
   },
   "cmapcoeff": {
-    "module": "wrappers.cmapcoeff.script.cmapcoeff",
+    "module": "ccp4i2.wrappers.cmapcoeff.script.cmapcoeff",
     "class": "cmapcoeff",
+    "module_file": "../../wrappers/cmapcoeff/script/cmapcoeff.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Prepare map coefficients",
@@ -2407,8 +2612,9 @@
     }
   },
   "phaser_singleMR": {
-    "module": "wrappers.phaser_singleMR.script.phaser_singleMR",
+    "module": "ccp4i2.wrappers.phaser_singleMR.script.phaser_singleMR",
     "class": "phaser_singleMR",
+    "module_file": "../../wrappers/phaser_singleMR/script/phaser_singleMR.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "molecular_replacement",
@@ -2468,9 +2674,37 @@
       }
     }
   },
+  "servalcat": {
+    "module": "ccp4i2.wrappers.servalcat.script.servalcat",
+    "class": "servalcat",
+    "module_file": "../../wrappers/servalcat/script/servalcat.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "wrappers",
+    "TASKTITLE": "Refinement (servalcat)",
+    "TASKNAME": "servalcat",
+    "TASKVERSION": 0.0,
+    "ASYNCHRONOUS": false,
+    "PERFORMANCECLASS": "CServalcatPerformance",
+    "ERROR_CODES": {
+      "201": {
+        "description": "Refmac returned with non zero status"
+      },
+      "202": {
+        "description": "New library created but strictly required"
+      },
+      "203": {
+        "description": "New library created",
+        "severity": 2
+      },
+      "204": {
+        "description": "Program completed without generating XMLOUT."
+      }
+    }
+  },
   "aimless": {
-    "module": "wrappers.aimless.script.aimless",
+    "module": "ccp4i2.wrappers.aimless.script.aimless",
     "class": "aimless",
+    "module_file": "../../wrappers/aimless/script/aimless.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Scale and merge dataset (AIMLESS)",
@@ -2484,8 +2718,9 @@
     }
   },
   "molrep_mr": {
-    "module": "wrappers.molrep_mr.script.molrep_mr",
+    "module": "ccp4i2.wrappers.molrep_mr.script.molrep_mr",
     "class": "molrep_mr",
+    "module_file": "../../wrappers/molrep_mr/script/molrep_mr.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Molecular replacement using Molrep",
@@ -2557,8 +2792,9 @@
     }
   },
   "findmyseq": {
-    "module": "wrappers.findmyseq.script.findmyseq",
+    "module": "ccp4i2.wrappers.findmyseq.script.findmyseq",
     "class": "findmyseq",
+    "module_file": "../../wrappers/findmyseq/script/findmyseq.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "bioinformatics",
@@ -2578,8 +2814,9 @@
     }
   },
   "molrep_den": {
-    "module": "wrappers.molrep_den.script.molrep_den",
+    "module": "ccp4i2.wrappers.molrep_den.script.molrep_den",
     "class": "molrep_den",
+    "module_file": "../../wrappers/molrep_den/script/molrep_den.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Molecular replacement with electron density - MOLREP",
@@ -2611,8 +2848,9 @@
     }
   },
   "baverage": {
-    "module": "wrappers.baverage.script.baverage",
+    "module": "ccp4i2.wrappers.baverage.script.baverage",
     "class": "baverage",
+    "module_file": "../../wrappers/baverage/script/baverage.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "wrappers",
@@ -2672,8 +2910,9 @@
     }
   },
   "sculptor": {
-    "module": "wrappers.sculptor.script.sculptor",
+    "module": "ccp4i2.wrappers.sculptor.script.sculptor",
     "class": "sculptor",
+    "module_file": "../../wrappers/sculptor/script/sculptor.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "bioinformatics",
     "TASKTITLE": "Truncate search model - SCULPTOR",
@@ -2691,8 +2930,9 @@
     }
   },
   "slicendice": {
-    "module": "wrappers.slicendice.script.slicendice",
+    "module": "ccp4i2.wrappers.slicendice.script.slicendice",
     "class": "slicendice",
+    "module_file": "../../wrappers/slicendice/script/slicendice.py",
     "COMTEMPLATE": null,
     "TASKMODULE": [
       "alpha_fold"
@@ -2712,8 +2952,9 @@
     }
   },
   "pdbset_ui": {
-    "module": "wrappers.pdbset_ui.script.pdbset_ui",
+    "module": "ccp4i2.wrappers.pdbset_ui.script.pdbset_ui",
     "class": "pdbset_ui",
+    "module_file": "../../wrappers/pdbset_ui/script/pdbset_ui.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_data_utility",
     "TASKTITLE": "Scripted structure edits - Pdbset",
@@ -2772,8 +3013,9 @@
     }
   },
   "coot_rebuild": {
-    "module": "wrappers.coot_rebuild.script.coot_rebuild",
+    "module": "ccp4i2.wrappers.coot_rebuild.script.coot_rebuild",
     "class": "coot_rebuild",
+    "module_file": "../../wrappers/coot_rebuild/script/coot_rebuild.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_building",
     "TASKTITLE": "Rebuild model with coot",
@@ -2794,8 +3036,9 @@
     }
   },
   "ZZPluginNameZZ": {
-    "module": "wrappers.boilerplate.script.boilerplate",
+    "module": "ccp4i2.wrappers.boilerplate.script.boilerplate",
     "class": "ZZPluginNameZZ",
+    "module_file": "../../wrappers/boilerplate/script/boilerplate.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -2822,8 +3065,9 @@
     }
   },
   "parrot": {
-    "module": "wrappers.parrot.script.parrot",
+    "module": "ccp4i2.wrappers.parrot.script.parrot",
     "class": "parrot",
+    "module_file": "../../wrappers/parrot/script/parrot.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "density_modification",
@@ -2884,8 +3128,9 @@
     }
   },
   "coot_rsr_morph": {
-    "module": "wrappers.coot_rsr_morph.script.coot_rsr_morph",
+    "module": "ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph",
     "class": "coot_rsr_morph",
+    "module_file": "../../wrappers/coot_rsr_morph/script/coot_rsr_morph.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "refinement",
     "TASKTITLE": "Real space refinement morphing with coot",
@@ -2948,8 +3193,9 @@
     }
   },
   "ctruncate": {
-    "module": "wrappers.ctruncate.script.ctruncate",
+    "module": "ccp4i2.wrappers.ctruncate.script.ctruncate",
     "class": "ctruncate",
+    "module_file": "../../wrappers/ctruncate/script/ctruncate.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "expt_data_utility",
     "TASKTITLE": "Intensities to amplitudes",
@@ -2964,8 +3210,9 @@
     }
   },
   "shelxeMR": {
-    "module": "wrappers.shelxeMR.script.shelxeMR",
+    "module": "ccp4i2.wrappers.shelxeMR.script.shelxeMR",
     "class": "shelxeMR",
+    "module_file": "../../wrappers/shelxeMR/script/shelxeMR.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "model_building",
@@ -3026,8 +3273,9 @@
     }
   },
   "pyphaser_mr": {
-    "module": "wrappers.pyphaser_mr.script.pyphaser_mr",
+    "module": "ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr",
     "class": "pyphaser_mr",
+    "module_file": "../../wrappers/pyphaser_mr/script/pyphaser_mr.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "MR using Phaser (pythonic)",
@@ -3086,8 +3334,9 @@
     }
   },
   "refmac": {
-    "module": "wrappers.refmac_i2.script.refmac_i2",
+    "module": "ccp4i2.wrappers.refmac_i2.script.refmac_i2",
     "class": "refmac_i2",
+    "module_file": "../../wrappers/refmac_i2/script/refmac_i2.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Refinement (Refmac5)",
@@ -3115,9 +3364,73 @@
       }
     }
   },
+  "pdb_redo_api": {
+    "module": "ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api",
+    "class": "pdb_redo_api",
+    "module_file": "../../wrappers/pdb_redo_api/script/pdb_redo_api.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "refinement",
+    "TASKTITLE": "PDB-REDO Web services",
+    "TASKNAME": "pdb_redo_api",
+    "TASKVERSION": 0.0,
+    "ASYNCHRONOUS": false,
+    "PERFORMANCECLASS": "CRefinementPerformance",
+    "RUNEXTERNALPROCESS": false,
+    "ERROR_CODES": {
+      "200": {
+        "description": "Error merging MTZ files"
+      },
+      "201": {
+        "description": "Invalid miniMtzsIn specification"
+      },
+      "202": {
+        "description": "File object has no CONTENT_SIGNATURE_LIST"
+      },
+      "203": {
+        "description": "File object has no path set"
+      },
+      "204": {
+        "description": "MTZ file not found"
+      },
+      "205": {
+        "description": "File object not found in inputData or outputData"
+      },
+      "206": {
+        "description": "Invalid contentFlag for file type"
+      },
+      "207": {
+        "description": "Invalid item format in miniMtzsIn"
+      },
+      "208": {
+        "description": "Conversion method not found on file object"
+      },
+      "209": {
+        "description": "Conversion to requested format not yet implemented"
+      },
+      "210": {
+        "description": "Error during MTZ file conversion"
+      },
+      "300": {
+        "description": "Input MTZ file not found for split operation"
+      },
+      "301": {
+        "description": "miniMtzsOut and programColumnNames length mismatch"
+      },
+      "302": {
+        "description": "Output object not found in container.outputData"
+      },
+      "303": {
+        "description": "Output object has no path set"
+      },
+      "304": {
+        "description": "Error splitting MTZ file"
+      }
+    }
+  },
   "dials_image": {
-    "module": "wrappers.dials_image.script.dials_image",
+    "module": "ccp4i2.wrappers.dials_image.script.dials_image",
     "class": "dials_image",
+    "module_file": "../../wrappers/dials_image/script/dials_image.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_processing",
@@ -3178,8 +3491,9 @@
     }
   },
   "morda_i2": {
-    "module": "wrappers.morda_i2.script.morda_i2",
+    "module": "ccp4i2.wrappers.morda_i2.script.morda_i2",
     "class": "morda_i2",
+    "module_file": "../../wrappers/morda_i2/script/morda_i2.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -3239,8 +3553,9 @@
     }
   },
   "splitMtz": {
-    "module": "wrappers.splitMtz.script.splitMtz",
+    "module": "ccp4i2.wrappers.splitMtz.script.splitMtz",
     "class": "splitMtz",
+    "module_file": "../../wrappers/splitMtz/script/splitMtz.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Import and Split MTZ to experimental data objects",
@@ -3267,8 +3582,9 @@
     }
   },
   "mrparse": {
-    "module": "wrappers.mrparse.script.mrparse_wrapper",
+    "module": "ccp4i2.wrappers.mrparse.script.mrparse_wrapper",
     "class": "mrparse",
+    "module_file": "../../wrappers/mrparse/script/mrparse_wrapper.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "bioinformatics",
@@ -3334,8 +3650,9 @@
     }
   },
   "ShelxCD": {
-    "module": "wrappers.ShelxCDE.script.ShelxCD",
+    "module": "ccp4i2.wrappers.ShelxCDE.script.ShelxCD",
     "class": "ShelxCD",
+    "module_file": "../../wrappers/ShelxCDE/script/ShelxCD.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": null,
@@ -3387,8 +3704,9 @@
     }
   },
   "ShelxCE": {
-    "module": "wrappers.ShelxCDE.script.ShelxCE",
+    "module": "ccp4i2.wrappers.ShelxCDE.script.ShelxCE",
     "class": "ShelxCE",
+    "module_file": "../../wrappers/ShelxCDE/script/ShelxCE.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "ShelxE",
@@ -3412,8 +3730,9 @@
     }
   },
   "ShelxCECompareHands": {
-    "module": "wrappers.ShelxCDE.script.ShelxCECompareHands",
+    "module": "ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands",
     "class": "ShelxCECompareHands",
+    "module_file": "../../wrappers/ShelxCDE/script/ShelxCECompareHands.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "ShelxE",
@@ -3443,8 +3762,9 @@
     }
   },
   "density_calculator": {
-    "module": "wrappers.density_calculator.script.density_calculator",
+    "module": "ccp4i2.wrappers.density_calculator.script.density_calculator",
     "class": "density_calculator",
+    "module_file": "../../wrappers/density_calculator/script/density_calculator.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "expt_data_utility",
     "TASKTITLE": "Density Calculator",
@@ -3507,8 +3827,9 @@
     }
   },
   "imosflm": {
-    "module": "wrappers.imosflm.script.imosflm",
+    "module": "ccp4i2.wrappers.imosflm.script.imosflm",
     "class": "imosflm",
+    "module_file": "../../wrappers/imosflm/script/imosflm.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "data_processing",
     "TASKTITLE": "Integrate images - iMosflm",
@@ -3529,8 +3850,9 @@
     }
   },
   "fft": {
-    "module": "wrappers.fft.script.fft",
+    "module": "ccp4i2.wrappers.fft.script.fft",
     "class": "fft",
+    "module_file": "../../wrappers/fft/script/fft.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Export map",
@@ -3589,8 +3911,9 @@
     }
   },
   "convert2mtz": {
-    "module": "wrappers.convert2mtz.script.convert2mtz",
+    "module": "ccp4i2.wrappers.convert2mtz.script.convert2mtz",
     "class": "convert2mtz",
+    "module_file": "../../wrappers/convert2mtz/script/convert2mtz.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Convert merged reflection file to MTZ",
@@ -3607,8 +3930,9 @@
     }
   },
   "pdbset": {
-    "module": "wrappers.pdbset.script.pdbset",
+    "module": "ccp4i2.wrappers.pdbset.script.pdbset",
     "class": "pdbset",
+    "module_file": "../../wrappers/pdbset/script/pdbset.py",
     "COMTEMPLATE": "1 CELL $CELL.a $CELL.b $CELL.c $CELL.alpha $CELL.beta $CELL.gamma\n1 END",
     "TASKMODULE": "demo",
     "TASKTITLE": "PDBSet",
@@ -3667,8 +3991,9 @@
     }
   },
   "mosflm": {
-    "module": "wrappers.mosflm.script.mosflm",
+    "module": "ccp4i2.wrappers.mosflm.script.mosflm",
     "class": "mosflm",
+    "module_file": "../../wrappers/mosflm/script/mosflm.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -3728,8 +4053,9 @@
     }
   },
   "libcheck": {
-    "module": "wrappers.libcheck.script.libcheck",
+    "module": "ccp4i2.wrappers.libcheck.script.libcheck",
     "class": "libcheck",
+    "module_file": "../../wrappers/libcheck/script/libcheck.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "test",
@@ -3789,8 +4115,9 @@
     }
   },
   "SubtractNative": {
-    "module": "wrappers.SubtractNative.script.SubtractNative",
+    "module": "ccp4i2.wrappers.SubtractNative.script.SubtractNative",
     "class": "SubtractNative",
+    "module_file": "../../wrappers/SubtractNative/script/SubtractNative.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -3818,8 +4145,9 @@
     }
   },
   "molrep_selfrot": {
-    "module": "wrappers.molrep_selfrot.script.molrep_selfrot",
+    "module": "ccp4i2.wrappers.molrep_selfrot.script.molrep_selfrot",
     "class": "molrep_selfrot",
+    "module_file": "../../wrappers/molrep_selfrot/script/molrep_selfrot.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Molecular replacement using Molrep",
@@ -3878,8 +4206,9 @@
     }
   },
   "ccp4mg_edit_nomrbump": {
-    "module": "wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump",
+    "module": "ccp4i2.wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump",
     "class": "ccp4mg_edit_nomrbump",
+    "module_file": "../../wrappers/ccp4mg_edit_nomrbump/script/ccp4mg_edit_nomrbump.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "bioinformatics",
     "TASKTITLE": "Interactive selection of MR model components - CCP4mg",
@@ -3899,9 +4228,30 @@
       }
     }
   },
+  "metalCoord": {
+    "module": "ccp4i2.wrappers.metalCoord.script.metalCoord",
+    "class": "metalCoord",
+    "module_file": "../../wrappers/metalCoord/script/metalCoord.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "wrappers",
+    "TASKTITLE": null,
+    "TASKNAME": "metalCoord",
+    "TASKVERSION": 0.2,
+    "ASYNCHRONOUS": false,
+    "ERROR_CODES": {
+      "201": {
+        "description": "No output JSON file from metalCoord"
+      },
+      "202": {
+        "description": "Log file does not report successful job completion",
+        "severity": 2
+      }
+    }
+  },
   "chltofom": {
-    "module": "wrappers.chltofom.script.chltofom",
+    "module": "ccp4i2.wrappers.chltofom.script.chltofom",
     "class": "chltofom",
+    "module_file": "../../wrappers/chltofom/script/chltofom.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -3970,8 +4320,9 @@
     }
   },
   "MakeMonster": {
-    "module": "wrappers.MakeMonster.script.MakeMonster",
+    "module": "ccp4i2.wrappers.MakeMonster.script.MakeMonster",
     "class": "MakeMonster",
+    "module_file": "../../wrappers/MakeMonster/script/MakeMonster.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -4032,8 +4383,9 @@
     }
   },
   "mtzutils": {
-    "module": "wrappers.mtzutils.script.mtzutils",
+    "module": "ccp4i2.wrappers.mtzutils.script.mtzutils",
     "class": "mtzutils",
+    "module_file": "../../wrappers/mtzutils/script/mtzutils.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -4093,8 +4445,9 @@
     }
   },
   "coordinate_selector": {
-    "module": "wrappers.coordinate_selector.script.coordinate_selector",
+    "module": "ccp4i2.wrappers.coordinate_selector.script.coordinate_selector",
     "class": "coordinate_selector",
+    "module_file": "../../wrappers/coordinate_selector/script/coordinate_selector.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_data_utility",
     "TASKTITLE": "Select subset from coordinates",
@@ -4113,8 +4466,9 @@
     }
   },
   "modelcraft": {
-    "module": "wrappers.modelcraft.script.modelcraft",
+    "module": "ccp4i2.wrappers.modelcraft.script.modelcraft",
     "class": "modelcraft",
+    "module_file": "../../wrappers/modelcraft/script/modelcraft.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_building",
     "TASKTITLE": "AutoBuild with ModelCraft, Buccaneer and Nautilus",
@@ -4145,8 +4499,9 @@
     }
   },
   "acedrg": {
-    "module": "wrappers.acedrg.script.acedrg",
+    "module": "ccp4i2.wrappers.acedrg.script.acedrg",
     "class": "acedrg",
+    "module_file": "../../wrappers/acedrg/script/acedrg.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "acedrg",
@@ -4170,8 +4525,9 @@
     }
   },
   "dui": {
-    "module": "wrappers.dui.script.dui",
+    "module": "ccp4i2.wrappers.dui.script.dui",
     "class": "dui",
+    "module_file": "../../wrappers/dui/script/dui.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "data_processing",
     "TASKTITLE": "Integrate images - DIALS",
@@ -4231,8 +4587,9 @@
     }
   },
   "ProvideTLS": {
-    "module": "wrappers.ProvideTLS.script.ProvideTLS",
+    "module": "ccp4i2.wrappers.ProvideTLS.script.ProvideTLS",
     "class": "ProvideTLS",
+    "module_file": "../../wrappers/ProvideTLS/script/ProvideTLS.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -4292,8 +4649,9 @@
     }
   },
   "AcedrgLink": {
-    "module": "wrappers.AcedrgLink.script.AcedrgLink",
+    "module": "ccp4i2.wrappers.AcedrgLink.script.AcedrgLink",
     "class": "AcedrgLink",
+    "module_file": "../../wrappers/AcedrgLink/script/AcedrgLink.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -4320,8 +4678,9 @@
     }
   },
   "mtzdump": {
-    "module": "wrappers.mtzdump.script.mtzdump",
+    "module": "ccp4i2.wrappers.mtzdump.script.mtzdump",
     "class": "mtzdump",
+    "module_file": "../../wrappers/mtzdump/script/mtzdump.py",
     "COMTEMPLATE": "$HEADER HEADER\n1 NREF -1\n1 END\n",
     "TASKMODULE": "test",
     "TASKTITLE": "MTZDump",
@@ -4335,8 +4694,9 @@
     }
   },
   "ccp4mg_general": {
-    "module": "wrappers.ccp4mg_general.script.ccp4mg_general",
+    "module": "ccp4i2.wrappers.ccp4mg_general.script.ccp4mg_general",
     "class": "ccp4mg_general",
+    "module_file": "../../wrappers/ccp4mg_general/script/ccp4mg_general.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_building",
     "TASKTITLE": "Molecular graphics visualization and figure creation - CCP4MG",
@@ -4357,8 +4717,9 @@
     }
   },
   "xia2_ssx_reduce": {
-    "module": "wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce",
+    "module": "ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce",
     "class": "Cxia2_ssx_reduce",
+    "module_file": "../../wrappers/xia2_ssx_reduce/script/xia2_ssx_reduce.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "data_reduction",
     "TASKTITLE": "Reduction of serial datasets using xia2.ssx_reduce",
@@ -4385,8 +4746,9 @@
     }
   },
   "demo_copycell": {
-    "module": "wrappers2.demo_copycell.script.demo_copycell",
+    "module": "ccp4i2.wrappers2.demo_copycell.script.demo_copycell",
     "class": "demo_copycell",
+    "module_file": "../../wrappers2/demo_copycell/script/demo_copycell.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Demo copy cell",
@@ -4445,8 +4807,9 @@
     }
   },
   "demo_multi_mtzdump": {
-    "module": "wrappers2.demo_multi_mtzdump.script.demo_multi_mtzdump",
+    "module": "ccp4i2.wrappers2.demo_multi_mtzdump.script.demo_multi_mtzdump",
     "class": "demo_multi_mtzdump",
+    "module_file": "../../wrappers2/demo_multi_mtzdump/script/demo_multi_mtzdump.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "demo",
     "TASKTITLE": "Demo multi MTZ dump",
@@ -4506,8 +4869,9 @@
     }
   },
   "molrep_pipe": {
-    "module": "pipelines.molrep_pipe.script.molrep_pipe",
+    "module": "ccp4i2.pipelines.molrep_pipe.script.molrep_pipe",
     "class": "molrep_pipe",
+    "module_file": "../../pipelines/molrep_pipe/script/molrep_pipe.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -4546,8 +4910,9 @@
     }
   },
   "coot_find_waters": {
-    "module": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters",
+    "module": "ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters",
     "class": "coot_find_waters",
+    "module_file": "../../pipelines/prosmart_refmac/wrappers/coot_find_waters/script/coot_find_waters.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_building",
     "TASKTITLE": "Find waters with coot",
@@ -4610,8 +4975,9 @@
     }
   },
   "coot_script_lines": {
-    "module": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines",
+    "module": "ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines",
     "class": "coot_script_lines",
+    "module_file": "../../pipelines/prosmart_refmac/wrappers/coot_script_lines/script/coot_script_lines.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "model_building",
     "TASKTITLE": "Execute arbitrary script code within Coot",
@@ -4674,8 +5040,9 @@
     }
   },
   "reindex_minimtz": {
-    "module": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz",
+    "module": "ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz",
     "class": "reindex_minimtz",
+    "module_file": "../../pipelines/prosmart_refmac/wrappers/reindex_minimtz/script/reindex_minimtz.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "reindex_minimtz",
@@ -4735,8 +5102,9 @@
     }
   },
   "coot_fit_residues": {
-    "module": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues",
+    "module": "ccp4i2.pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues",
     "class": "coot_fit_residues",
+    "module_file": "../../pipelines/prosmart_refmac/wrappers/coot_fit_residues/script/coot_fit_residues.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Coot fit residues",
@@ -4799,8 +5167,9 @@
     }
   },
   "coot_stepped_refine": {
-    "module": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine",
+    "module": "ccp4i2.pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine",
     "class": "coot_stepped_refine",
+    "module_file": "../../pipelines/prosmart_refmac/wrappers/coot_stepped_refine/script/coot_stepped_refine.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Coot stepped refinement",
@@ -4863,8 +5232,9 @@
     }
   },
   "reindex_processed_data": {
-    "module": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data",
+    "module": "ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data",
     "class": "reindex_processed_data",
+    "module_file": "../../pipelines/prosmart_refmac/wrappers/reindex_processed_data/script/reindex_processed_data.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "expt_data_util",
     "TASKTITLE": "reindex_processed_data",
@@ -4879,8 +5249,9 @@
     }
   },
   "prosmart_refmac": {
-    "module": "pipelines.prosmart_refmac.script.prosmart_refmac",
+    "module": "ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac",
     "class": "prosmart_refmac",
+    "module_file": "../../pipelines/prosmart_refmac/script/prosmart_refmac.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "refinement",
     "TASKTITLE": "Refine with Refmac & optional restraints from Prosmart & Platonyzer",
@@ -4957,8 +5328,9 @@
     }
   },
   "import_merged": {
-    "module": "pipelines.import_merged.script.import_merged",
+    "module": "ccp4i2.pipelines.import_merged.script.import_merged",
     "class": "import_merged",
+    "module_file": "../../pipelines/import_merged/script/import_merged.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -4994,8 +5366,9 @@
     }
   },
   "nautilus_build_refine": {
-    "module": "pipelines.nautilus_build_refine.script.nautilus_build_refine",
+    "module": "ccp4i2.pipelines.nautilus_build_refine.script.nautilus_build_refine",
     "class": "nautilus_build_refine",
+    "module_file": "../../pipelines/nautilus_build_refine/script/nautilus_build_refine.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "deprecated",
     "TASKTITLE": "Autobuild RNA/DNA (Nautilus pipeline)",
@@ -5016,8 +5389,9 @@
     }
   },
   "LidiaAcedrg": {
-    "module": "pipelines.LidiaAcedrg.script.lidiaAcedrg",
+    "module": "ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg",
     "class": "lidiaAcedrg",
+    "module_file": "../../pipelines/LidiaAcedrg/script/lidiaAcedrg.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -5036,8 +5410,9 @@
     }
   },
   "SubstituteLigand": {
-    "module": "pipelines.SubstituteLigand.script.SubstituteLigand",
+    "module": "ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand",
     "class": "SubstituteLigand",
+    "module_file": "../../pipelines/SubstituteLigand/script/SubstituteLigand.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -5076,8 +5451,9 @@
     }
   },
   "xia2_integration": {
-    "module": "pipelines.import_xia2.wrappers.xia2_integration.script.xia2_integration",
+    "module": "ccp4i2.pipelines.import_xia2.wrappers.xia2_integration.script.xia2_integration",
     "class": "xia2_integration",
+    "module_file": "../../pipelines/import_xia2/wrappers/xia2_integration/script/xia2_integration.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Integration in XIA2",
@@ -5091,8 +5467,9 @@
     }
   },
   "xia2_aimless": {
-    "module": "pipelines.import_xia2.wrappers.xia2_aimless.script.xia2_aimless",
+    "module": "ccp4i2.pipelines.import_xia2.wrappers.xia2_aimless.script.xia2_aimless",
     "class": "xia2_aimless",
+    "module_file": "../../pipelines/import_xia2/wrappers/xia2_aimless/script/xia2_aimless.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Aimless in XIA2",
@@ -5115,8 +5492,9 @@
     }
   },
   "xia2_run": {
-    "module": "pipelines.import_xia2.wrappers.xia2_run.script.xia2_run",
+    "module": "ccp4i2.pipelines.import_xia2.wrappers.xia2_run.script.xia2_run",
     "class": "xia2_run",
+    "module_file": "../../pipelines/import_xia2/wrappers/xia2_run/script/xia2_run.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Import data processing results from XIA2",
@@ -5151,8 +5529,9 @@
     }
   },
   "xia2_ctruncate": {
-    "module": "pipelines.import_xia2.wrappers.xia2_ctruncate.script.xia2_ctruncate",
+    "module": "ccp4i2.pipelines.import_xia2.wrappers.xia2_ctruncate.script.xia2_ctruncate",
     "class": "xia2_ctruncate",
+    "module_file": "../../pipelines/import_xia2/wrappers/xia2_ctruncate/script/xia2_ctruncate.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "CTruncate in XIA2",
@@ -5175,8 +5554,9 @@
     }
   },
   "xia2_pointless": {
-    "module": "pipelines.import_xia2.wrappers.xia2_pointless.script.xia2_pointless",
+    "module": "ccp4i2.pipelines.import_xia2.wrappers.xia2_pointless.script.xia2_pointless",
     "class": "xia2_pointless",
+    "module_file": "../../pipelines/import_xia2/wrappers/xia2_pointless/script/xia2_pointless.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Pointless in XIA2",
@@ -5199,8 +5579,9 @@
     }
   },
   "import_xia2": {
-    "module": "pipelines.import_xia2.script.import_xia2",
+    "module": "ccp4i2.pipelines.import_xia2.script.import_xia2",
     "class": "import_xia2",
+    "module_file": "../../pipelines/import_xia2/script/import_xia2.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Import XIA2 results",
@@ -5225,8 +5606,9 @@
     }
   },
   "MakeProjectsAndDoLigandPipeline": {
-    "module": "pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline",
+    "module": "ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline",
     "class": "MakeProjectsAndDoLigandPipeline",
+    "module_file": "../../pipelines/MakeProjectsAndDoLigandPipeline/script/MakeProjectsAndDoLigandPipeline.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -5296,8 +5678,9 @@
     }
   },
   "tableone": {
-    "module": "pipelines.tableone.script.tableone",
+    "module": "ccp4i2.pipelines.tableone.script.tableone",
     "class": "tableone",
+    "module_file": "../../pipelines/tableone/script/tableone.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "test",
@@ -5358,8 +5741,9 @@
     }
   },
   "phaser_MR_FRF": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF",
     "class": "phaser_MR_FRF",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_FRF/script/phaser_MR_FRF.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5378,8 +5762,9 @@
     }
   },
   "phaser_EP_LLG": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG",
     "class": "phaser_EP_LLG",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_EP_LLG/script/phaser_EP_LLG.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5405,8 +5790,9 @@
     }
   },
   "phaser_MR": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_MR.script.phaser_MR",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script.phaser_MR",
     "class": "phaser_MR",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR/script/phaser_MR.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5442,8 +5828,9 @@
     }
   },
   "phaser_MR_PAK": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK",
     "class": "phaser_MR_PAK",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5462,8 +5849,9 @@
     }
   },
   "phaser_MR_RNP": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP",
     "class": "phaser_MR_RNP",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_RNP/script/phaser_MR_RNP.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5484,8 +5872,9 @@
     }
   },
   "phaser_MR_FTF": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF",
     "class": "phaser_MR_FTF",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_FTF/script/phaser_MR_FTF.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5504,8 +5893,9 @@
     }
   },
   "phaser_EP_AUTO": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO",
     "class": "phaser_EP_AUTO",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_EP_AUTO/script/phaser_EP_AUTO.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5524,8 +5914,9 @@
     }
   },
   "phaser_MR_AUTO": {
-    "module": "pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO",
+    "module": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_AUTO",
     "class": "phaser_MR_AUTO",
+    "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_AUTO/script/phaser_MR_AUTO.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5549,8 +5940,9 @@
     }
   },
   "phaser_pipeline": {
-    "module": "pipelines.phaser_pipeline.script.phaser_pipeline",
+    "module": "ccp4i2.pipelines.phaser_pipeline.script.phaser_pipeline",
     "class": "phaser_pipeline",
+    "module_file": "../../pipelines/phaser_pipeline/script/phaser_pipeline.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5604,8 +5996,9 @@
     }
   },
   "phaser_EP": {
-    "module": "pipelines.phaser_ep.script.phaser_EP",
+    "module": "ccp4i2.pipelines.phaser_ep.script.phaser_EP",
     "class": "phaser_EP",
+    "module_file": "../../pipelines/phaser_ep/script/phaser_EP.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5647,8 +6040,9 @@
     }
   },
   "shelx": {
-    "module": "pipelines.shelx.script.shelx_script",
+    "module": "ccp4i2.pipelines.shelx.script.shelx_script",
     "class": "shelx",
+    "module_file": "../../pipelines/shelx/script/shelx_script.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "SHELX",
@@ -5662,9 +6056,104 @@
       }
     }
   },
+  "servalcat_pipe": {
+    "module": "ccp4i2.pipelines.servalcat_pipe.script.servalcat_pipe",
+    "class": "servalcat_pipe",
+    "module_file": "../../pipelines/servalcat_pipe/script/servalcat_pipe.py",
+    "COMTEMPLATE": null,
+    "TASKMODULE": "refinement",
+    "TASKTITLE": "Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)",
+    "TASKNAME": "servalcat_pipe",
+    "TASKVERSION": 0.1,
+    "WHATNEXT": [
+      "servalcat_pipe",
+      "coot_rebuild",
+      "modelcraft"
+    ],
+    "ASYNCHRONOUS": true,
+    "TIMEOUT_PERIOD": 240,
+    "MAXNJOBS": 4,
+    "PERFORMANCECLASS": "CServalcatPerformance",
+    "SUBTASKS": [
+      "servalcat",
+      "prosmart",
+      "metalCoord"
+    ],
+    "RUNEXTERNALPROCESS": false,
+    "PURGESEARCHLIST": [
+      [
+        "refmac%*/hklout.mtz",
+        0,
+        "hklout"
+      ],
+      [
+        "refmac%*/hklout.mtz",
+        7,
+        "hklout"
+      ],
+      [
+        "*%*/ANOMFPHIOUT.mtz",
+        1,
+        "ANOMFPHIOUT"
+      ],
+      [
+        "*%*/DIFANOMFPHIOUT.mtz",
+        1,
+        "DIFANOMFPHIOUT"
+      ]
+    ],
+    "ERROR_CODES": {
+      "101": {
+        "description": "Error copying data file from final job to pipeline directory"
+      },
+      "102": {
+        "description": "ProSMART protein restraints failed"
+      },
+      "103": {
+        "description": "ProSMART nucleic acid restraints failed"
+      },
+      "104": {
+        "description": "MetalCoord restraints failed"
+      },
+      "105": {
+        "description": "Servalcat refinement failed"
+      },
+      "106": {
+        "description": "Servalcat output file not created"
+      },
+      "107": {
+        "description": "Coot find waters failed"
+      },
+      "108": {
+        "description": "Post-coot servalcat failed"
+      },
+      "109": {
+        "description": "Weight optimization failed"
+      },
+      "110": {
+        "description": "Validation failed"
+      },
+      "111": {
+        "description": "Failed to create servalcat wrapper"
+      },
+      "112": {
+        "description": "Failed to load container data"
+      },
+      "113": {
+        "description": "Failed to set up MetalCoord plugin"
+      },
+      "114": {
+        "description": "Failed to convert MetalCoord JSON to restraints"
+      },
+      "115": {
+        "description": "Failed to copy ProSMART restraints to servalcat"
+      }
+    }
+  },
   "crank2_refatompick": {
-    "module": "pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick",
     "class": "crank2_refatompick",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_refatompick/script/crank2_refatompick.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5679,8 +6168,9 @@
     }
   },
   "crank2_handdet": {
-    "module": "pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet",
     "class": "crank2_handdet",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_handdet/script/crank2_handdet.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5695,8 +6185,9 @@
     }
   },
   "crank2_mbref": {
-    "module": "pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref",
     "class": "crank2_mbref",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_mbref/script/crank2_mbref.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5711,8 +6202,9 @@
     }
   },
   "crank2_phdmmb": {
-    "module": "pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb",
     "class": "crank2_phdmmb",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_phdmmb/script/crank2_phdmmb.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5727,8 +6219,9 @@
     }
   },
   "crank2_dmfull": {
-    "module": "pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull",
     "class": "crank2_dmfull",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_dmfull/script/crank2_dmfull.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5743,8 +6236,9 @@
     }
   },
   "crank2_createfree": {
-    "module": "pipelines.crank2.wrappers.crank2_createfree.script.crank2_createfree",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_createfree.script.crank2_createfree",
     "class": "crank2_createfree",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_createfree/script/crank2_createfree.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": null,
@@ -5803,8 +6297,9 @@
     }
   },
   "crank2_comb_phdmmb": {
-    "module": "pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb",
     "class": "crank2_comb_phdmmb",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_comb_phdmmb/script/crank2_comb_phdmmb.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5819,8 +6314,9 @@
     }
   },
   "crank2_ref": {
-    "module": "pipelines.crank2.wrappers.crank2_ref.script.crank2_ref",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_ref.script.crank2_ref",
     "class": "crank2_ref",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_ref/script/crank2_ref.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5835,8 +6331,9 @@
     }
   },
   "crank2_phas": {
-    "module": "pipelines.crank2.wrappers.crank2_phas.script.crank2_phas",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_phas.script.crank2_phas",
     "class": "crank2_phas",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_phas/script/crank2_phas.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5851,8 +6348,9 @@
     }
   },
   "crank2_faest": {
-    "module": "pipelines.crank2.wrappers.crank2_faest.script.crank2_faest",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_faest.script.crank2_faest",
     "class": "crank2_faest",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_faest/script/crank2_faest.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5867,8 +6365,9 @@
     }
   },
   "crank2_substrdet": {
-    "module": "pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet",
+    "module": "ccp4i2.pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet",
     "class": "crank2_substrdet",
+    "module_file": "../../pipelines/crank2/wrappers/crank2_substrdet/script/crank2_substrdet.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Crank2",
@@ -5883,8 +6382,9 @@
     }
   },
   "crank2": {
-    "module": "pipelines.crank2.script.crank2_script",
+    "module": "ccp4i2.pipelines.crank2.script.crank2_script",
     "class": "crank2",
+    "module_file": "../../pipelines/crank2/script/crank2_script.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Crank2",
@@ -5899,8 +6399,9 @@
     }
   },
   "phaser_rnp_pipeline": {
-    "module": "pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline",
+    "module": "ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline",
     "class": "phaser_rnp_pipeline",
+    "module_file": "../../pipelines/phaser_rnp_pipeline/script/phaser_rnp_pipeline.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5933,8 +6434,9 @@
     }
   },
   "pisa_analyse": {
-    "module": "pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse",
+    "module": "ccp4i2.pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse",
     "class": "pisa_analyse",
+    "module_file": "../../pipelines/pisapipe/wrappers/pisa_analyse/script/pisa_analyse.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -5994,8 +6496,9 @@
     }
   },
   "pisa_list": {
-    "module": "pipelines.pisapipe.wrappers.pisa_list.script.pisa_list",
+    "module": "ccp4i2.pipelines.pisapipe.wrappers.pisa_list.script.pisa_list",
     "class": "pisa_list",
+    "module_file": "../../pipelines/pisapipe/wrappers/pisa_list/script/pisa_list.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -6055,8 +6558,9 @@
     }
   },
   "pisa_xml": {
-    "module": "pipelines.pisapipe.wrappers.pisa_xml.script.pisa_xml",
+    "module": "ccp4i2.pipelines.pisapipe.wrappers.pisa_xml.script.pisa_xml",
     "class": "pisa_xml",
+    "module_file": "../../pipelines/pisapipe/wrappers/pisa_xml/script/pisa_xml.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
@@ -6116,8 +6620,9 @@
     }
   },
   "pisapipe": {
-    "module": "pipelines.pisapipe.script.pisapipe",
+    "module": "ccp4i2.pipelines.pisapipe.script.pisapipe",
     "class": "pisapipe",
+    "module_file": "../../pipelines/pisapipe/script/pisapipe.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "test",
@@ -6177,8 +6682,9 @@
     }
   },
   "aimless_pipe": {
-    "module": "pipelines.aimless_pipe.script.aimless_pipe",
+    "module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe",
     "class": "aimless_pipe",
+    "module_file": "../../pipelines/aimless_pipe/script/aimless_pipe.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "data_reduction",
     "TASKTITLE": "Scale and merge data",
@@ -6215,8 +6721,9 @@
     }
   },
   "LidiaAcedrgNew": {
-    "module": "pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew",
+    "module": "ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew",
     "class": "lidiaAcedrgNew",
+    "module_file": "../../pipelines/LidiaAcedrgNew/script/lidiaAcedrgNew.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -6234,38 +6741,10 @@
       }
     }
   },
-  "ZZPipelineNameZZ": {
-    "module": "pipelines.boilerplate.script.boilerplate",
-    "class": "ZZPipelineNameZZ",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "ZZPipelineNameZZ",
-    "TASKVERSION": 0.1,
-    "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
-    "PURGESEARCHLIST": [
-      [
-        "hklin.mtz",
-        0
-      ],
-      [
-        "log_mtzjoin.txt",
-        0
-      ]
-    ],
-    "ERROR_CODES": {
-      "201": {
-        "description": "Failed to analyse output files"
-      },
-      "202": {
-        "description": "Failed applying selection ot PDB file"
-      }
-    }
-  },
   "buccaneer_build_refine_mr": {
-    "module": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr",
+    "module": "ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr",
     "class": "buccaneer_build_refine_mr",
+    "module_file": "../../pipelines/buccaneer_build_refine_mr/script/buccaneer_build_refine_mr.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "deprecated",
     "TASKTITLE": "Autobuild protein (Buccaneer pipeline)",
@@ -6383,8 +6862,9 @@
     }
   },
   "mrbump_model_prep": {
-    "module": "pipelines.dr_mr_modelbuild_pipeline.wrappers.mrbump_model_prep.script.mrbump_model_prep",
+    "module": "ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrbump_model_prep.script.mrbump_model_prep",
     "class": "mrbump_model_prep",
+    "module_file": "../../pipelines/dr_mr_modelbuild_pipeline/wrappers/mrbump_model_prep/script/mrbump_model_prep.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": "MrBUMP model preparation",
@@ -6399,8 +6879,9 @@
     }
   },
   "mrparse_simple": {
-    "module": "pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_wrapper",
+    "module": "ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_wrapper",
     "class": "mrparse_simple",
+    "module_file": "../../pipelines/dr_mr_modelbuild_pipeline/wrappers/mrparse_simple/script/mrparse_simple_wrapper.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "developer_tools",
@@ -6466,8 +6947,9 @@
     }
   },
   "dr_mr_modelbuild_pipeline": {
-    "module": "pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline",
+    "module": "ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline",
     "class": "dr_mr_modelbuild_pipeline",
+    "module_file": "../../pipelines/dr_mr_modelbuild_pipeline/script/dr_mr_modelbuild_pipeline.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -6503,8 +6985,9 @@
     }
   },
   "uniqueify": {
-    "module": "pipelines.uniqueify.script.uniqueify",
+    "module": "ccp4i2.pipelines.uniqueify.script.uniqueify",
     "class": "uniqueify",
+    "module_file": "../../pipelines/uniqueify/script/uniqueify.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Standardise reflection data file",
@@ -6563,8 +7046,9 @@
     }
   },
   "pdb_extract_wrapper": {
-    "module": "pipelines.PrepareDeposit.wrappers.pdb_extract_wrapper.script.pdb_extract_wrapper",
+    "module": "ccp4i2.pipelines.PrepareDeposit.wrappers.pdb_extract_wrapper.script.pdb_extract_wrapper",
     "class": "pdb_extract_wrapper",
+    "module_file": "../../pipelines/PrepareDeposit/wrappers/pdb_extract_wrapper/script/pdb_extract_wrapper.py",
     "COMTEMPLATE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "pdb_extract_wrapper",
@@ -6583,8 +7067,9 @@
     }
   },
   "hklin2cif": {
-    "module": "pipelines.PrepareDeposit.wrappers.hklin2cif.script.hklin2cif",
+    "module": "ccp4i2.pipelines.PrepareDeposit.wrappers.hklin2cif.script.hklin2cif",
     "class": "hklin2cif",
+    "module_file": "../../pipelines/PrepareDeposit/wrappers/hklin2cif/script/hklin2cif.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -6602,8 +7087,9 @@
     }
   },
   "PrepareDeposit": {
-    "module": "pipelines.PrepareDeposit.script.PrepareDeposit",
+    "module": "ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit",
     "class": "PrepareDeposit",
+    "module_file": "../../pipelines/PrepareDeposit/script/PrepareDeposit.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -6625,8 +7111,9 @@
     }
   },
   "import_serial_pipe": {
-    "module": "pipelines.import_serial_pipe.script.import_serial_pipe",
+    "module": "ccp4i2.pipelines.import_serial_pipe.script.import_serial_pipe",
     "class": "import_serial_pipe",
+    "module_file": "../../pipelines/import_serial_pipe/script/import_serial_pipe.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_entry",
@@ -6686,8 +7173,9 @@
     }
   },
   "MakeLink": {
-    "module": "pipelines.MakeLink.script.MakeLink",
+    "module": "ccp4i2.pipelines.MakeLink.script.MakeLink",
     "class": "MakeLink",
+    "module_file": "../../pipelines/MakeLink/script/MakeLink.py",
     "COMTEMPLATE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
@@ -6718,8 +7206,9 @@
     }
   },
   "phaser_simple": {
-    "module": "pipelines.phaser_simple.script.phaser_simple",
+    "module": "ccp4i2.pipelines.phaser_simple.script.phaser_simple",
     "class": "phaser_simple",
+    "module_file": "../../pipelines/phaser_simple/script/phaser_simple.py",
     "COMTEMPLATE": null,
     "COMTEMPLATEFILE": null,
     "TASKMODULE": null,

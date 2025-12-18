@@ -17,6 +17,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     This function uses explicit import statements for each plugin,
     providing clear traceability and IDE support.
     """
+    if plugin_name == 'AMPLE':
+        from ccp4i2.wrappers.AMPLE.script.AMPLE import AMPLE
+        return AMPLE
     if plugin_name == 'AUSPEX':
         from ccp4i2.wrappers.AUSPEX.script.auspex_wrapper import AUSPEX
         return AUSPEX
@@ -62,6 +65,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'ProvideTLS':
         from ccp4i2.wrappers.ProvideTLS.script.ProvideTLS import ProvideTLS
         return ProvideTLS
+    if plugin_name == 'SIMBAD':
+        from ccp4i2.wrappers.SIMBAD.script.SIMBAD import SIMBAD
+        return SIMBAD
     if plugin_name == 'ShelxCD':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCD import ShelxCD
         return ShelxCD
@@ -80,15 +86,15 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'TestObsConversions':
         from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions import TestObsConversions
         return TestObsConversions
-    if plugin_name == 'ZZPipelineNameZZ':
-        from ccp4i2.pipelines.boilerplate.script.boilerplate import ZZPipelineNameZZ
-        return ZZPipelineNameZZ
     if plugin_name == 'ZZPluginNameZZ':
         from ccp4i2.wrappers.boilerplate.script.boilerplate import ZZPluginNameZZ
         return ZZPluginNameZZ
     if plugin_name == 'acedrg':
         from ccp4i2.wrappers.acedrg.script.acedrg import acedrg
         return acedrg
+    if plugin_name == 'acedrgNew':
+        from ccp4i2.wrappers.acedrgNew.script.acedrgNew import acedrgNew
+        return acedrgNew
     if plugin_name == 'acorn':
         from ccp4i2.wrappers.acorn.script.acorn import acorn
         return acorn
@@ -155,6 +161,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'coordinate_selector':
         from ccp4i2.wrappers.coordinate_selector.script.coordinate_selector import coordinate_selector
         return coordinate_selector
+    if plugin_name == 'coot1':
+        from ccp4i2.wrappers.coot1.script.coot1 import coot1
+        return coot1
     if plugin_name == 'coot_find_waters':
         from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
         return coot_find_waters
@@ -293,6 +302,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'mergeMtz':
         from ccp4i2.wrappers.mergeMtz.script.mergeMtz import mergeMtz
         return mergeMtz
+    if plugin_name == 'metalCoord':
+        from ccp4i2.wrappers.metalCoord.script.metalCoord import metalCoord
+        return metalCoord
     if plugin_name == 'modelASUCheck':
         from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import modelASUCheck
         return modelASUCheck
@@ -353,6 +365,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'pdb_extract_wrapper':
         from ccp4i2.pipelines.PrepareDeposit.wrappers.pdb_extract_wrapper.script.pdb_extract_wrapper import pdb_extract_wrapper
         return pdb_extract_wrapper
+    if plugin_name == 'pdb_redo_api':
+        from ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api import pdb_redo_api
+        return pdb_redo_api
     if plugin_name == 'pdbset':
         from ccp4i2.wrappers.pdbset.script.pdbset import pdbset
         return pdbset
@@ -389,6 +404,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'phaser_MR_RNP':
         from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP import phaser_MR_RNP
         return phaser_MR_RNP
+    if plugin_name == 'phaser_analysis':
+        from ccp4i2.wrappers.phaser_analysis.script.phaser_analysis import phaser_analysis
+        return phaser_analysis
     if plugin_name == 'phaser_ensembler':
         from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler import phaser_ensembler
         return phaser_ensembler
@@ -458,6 +476,12 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'sculptor':
         from ccp4i2.wrappers.sculptor.script.sculptor import sculptor
         return sculptor
+    if plugin_name == 'servalcat':
+        from ccp4i2.wrappers.servalcat.script.servalcat import servalcat
+        return servalcat
+    if plugin_name == 'servalcat_pipe':
+        from ccp4i2.pipelines.servalcat_pipe.script.servalcat_pipe import servalcat_pipe
+        return servalcat_pipe
     if plugin_name == 'sheetbend':
         from ccp4i2.wrappers.sheetbend.script.sheetbend import sheetbend
         return sheetbend
@@ -523,6 +547,7 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
 
 # Plugin names for fast lookup without loading metadata
 PLUGIN_NAMES: set[str] = {
+    'AMPLE',
     'AUSPEX',
     'AcedrgLink',
     'AlternativeImportXIA2',
@@ -538,15 +563,16 @@ PLUGIN_NAMES: set[str] = {
     'ProvideAsuContents',
     'ProvideSequence',
     'ProvideTLS',
+    'SIMBAD',
     'ShelxCD',
     'ShelxCE',
     'ShelxCECompareHands',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
-    'ZZPipelineNameZZ',
     'ZZPluginNameZZ',
     'acedrg',
+    'acedrgNew',
     'acorn',
     'add_fractional_coords',
     'adding_stats_to_mmcif_i2',
@@ -569,6 +595,7 @@ PLUGIN_NAMES: set[str] = {
     'comit',
     'convert2mtz',
     'coordinate_selector',
+    'coot1',
     'coot_find_waters',
     'coot_fit_residues',
     'coot_rebuild',
@@ -615,6 +642,7 @@ PLUGIN_NAMES: set[str] = {
     'libcheck',
     'lorestr_i2',
     'mergeMtz',
+    'metalCoord',
     'modelASUCheck',
     'modelcraft',
     'molrep_den',
@@ -635,6 +663,7 @@ PLUGIN_NAMES: set[str] = {
     'pairef',
     'parrot',
     'pdb_extract_wrapper',
+    'pdb_redo_api',
     'pdbset',
     'pdbset_ui',
     'pdbview_edit',
@@ -647,6 +676,7 @@ PLUGIN_NAMES: set[str] = {
     'phaser_MR_FTF',
     'phaser_MR_PAK',
     'phaser_MR_RNP',
+    'phaser_analysis',
     'phaser_ensembler',
     'phaser_mr',
     'phaser_phil',
@@ -670,6 +700,8 @@ PLUGIN_NAMES: set[str] = {
     'scaleit',
     'scalepack2mtz',
     'sculptor',
+    'servalcat',
+    'servalcat_pipe',
     'sheetbend',
     'shelx',
     'shelxeMR',
