@@ -84,7 +84,7 @@ Molecular replacement fits a known model with a related sequence into the new st
 The task will run MR, followed by 5 cycles of refinement with REFMAC. For Gamma, the task should produce a solution with an R factor of ~51%. 
 </p> 
 <li><b>Refinement REFMAC Task.</b> After successful MR, it is useful to run several more cycles of refinement before embarking on Autobuilding. (The MOLREP pipeline has already included 5 cycles of REFMAC). Input the MR model and run 25 cycles. For a correct MR solution, the R factor should drop significantly - in this case it reduces to about 37% - a very good starting point for correcting and rebuilding the model. 
-<li><b>Autobuild Protein - Buccaneer Task.</b> This can be run as a follow-on Task from the bottom of the REFMAC report, or from the Task Menu. Input the native data from, the REFMAC refined model and the AU contents.  
+<li><b>Autobuild Protein - ModelCraft Task.</b> This can be run as a follow-on Task from the bottom of the REFMAC report, or from the Task Menu. Input the native data from, the REFMAC refined model and the AU contents.  
 <li><b>Conclusion.</b> You should now have a rather complete model which you can 
  inspect and correct with COOT then refine a little more with REFMAC
 </ol>
@@ -107,8 +107,8 @@ As well as loading the AU contents you need to set the number of Copies to the e
         <img height="250" alt="Phaser 3" src="Complete_Phaser3.png"/>
  
 <li><b>Refinement REFMAC Task.</b> Input the model from Phaser and run 25 cycles. For a correct MR solution, the R factor should drop significantly - in this case it reduces to about 37% - a very good starting point for correcting and rebuilding the model.
-<li><b>Autobuild Protein - Buccaneer Task.</b> This can be run as a follow-on Task from the bottom of the REFMAC report, or from the Task Menu. Input the native data from, the REFMAC refined model and the AU contents.  
-<li><b>Conclusion.</b> Buccaneer should output a rather complete model which you can refine a little more with REFMAC or just inspect and correct with COOT.
+<li><b>Autobuild Protein - ModelCraft Task.</b> This can be run as a follow-on Task from the bottom of the REFMAC report, or from the Task Menu. Input the native data from, the REFMAC refined model and the AU contents.  
+<li><b>Conclusion.</b> ModelCraft should output a rather complete model which you can refine a little more with REFMAC or just inspect and correct with COOT.
 <li><b>Match model to reference data Task.</b> For simplicity in later analysis, make sure solutions from REFMAC and Phaser are on the same origin, and use the same symmetry operator. (This task is under both Molecular Replacement or Coordinate Utilities) 
 </ol>
 

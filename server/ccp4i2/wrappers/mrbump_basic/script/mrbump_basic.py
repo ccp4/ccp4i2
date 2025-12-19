@@ -144,26 +144,6 @@ class mrbump_basic(CPluginScript):
               elif str(self.container.modelParameters.AFDBLEVEL) == '0':
                  keyin += "AFLEVEL 0\n" 
 
-      #if self.container.modelParameters.REDUNDANCYLEVEL:
-      #    if str(self.container.modelParameters.REDUNDANCYLEVEL) == '120':
-      #       keyin += "RLEVEL AF50100\n" 
-      #    elif str(self.container.modelParameters.REDUNDANCYLEVEL) == '110':
-      #       keyin += "RLEVEL ALL\n" 
-      #    elif str(self.container.modelParameters.REDUNDANCYLEVEL) == '100':
-      #       keyin += "RLEVEL 100\n" 
-      #    elif str(self.container.modelParameters.REDUNDANCYLEVEL) == '95':
-      #       keyin += "RLEVEL 95\n" 
-      #    elif str(self.container.modelParameters.REDUNDANCYLEVEL) == '90':
-      #       keyin += "RLEVEL 90\n" 
-      #    elif str(self.container.modelParameters.REDUNDANCYLEVEL) == '70':
-      #       keyin += "RLEVEL 70\n" 
-      #    elif str(self.container.modelParameters.REDUNDANCYLEVEL) == '50':
-      #       keyin += "RLEVEL 50\n" 
-      #else:
-      #   keyin += "RLEVEL 100\n" 
-
-
-
       if self.container.modelParameters.PDBLOCAL.isSet():
           keyin += "PDBLOCAL %s\n" % str(self.container.modelParameters.PDBLOCAL)
       if self.container.modelParameters.HHPREDIN.isSet():
@@ -178,12 +158,6 @@ class mrbump_basic(CPluginScript):
               keyin += "DOHHPRED True\n" 
       else:
           keyin += "DOHHPRED False\n" 
-
-      #if self.container.modelParameters.XYZIN_LIST.isSet():
-      #    if len(self.container.modelParameters.XYZIN_LIST)>0:
-      #        for XYZIN in self.container.modelParameters.XYZIN_LIST:
-      #            #keyin += "LOCALFILE %s CHAIN A\n" % str(XYZIN)
-      #            keyin += "LOCALFILE %s\n" % str(XYZIN)
 
       if len(self.container.inputData.SELECTEDCHAINS)>0:
           includeLine = "INCLUDE"
@@ -222,40 +196,11 @@ class mrbump_basic(CPluginScript):
       inp.ASUIN.writeFasta(fileName=seqFile)
       self.appendCommandLine( [ 'SEQIN', seqFile ] )
       self.appendCommandLine( [ 'KEYIN', str( keyfile ) ] )
-      #self.appendCommandLine( [ 'HKLOUT', str( out.HKLOUT.fullPath ) ] )
-      #self.appendCommandLine( [ 'XYZOUT', str( out.XYZOUT.fullPath ) ] )
-
-      #self.appendCommandLine(['XYZOUT',self.container.outputData.XYZOUT.fullPath])
-      #self.appendCommandLine(['HKLOUT',self.container.outputData.HKLOUT.fullPath])
 
       self.appendCommandLine( [ 'XMLOUT', str( self.makeFileName( 'PROGRAMXML' ) ) ] )
-
-#      self.appendCommandScript( "JOBID test_mrbump" )
-#      self.appendCommandScript( "LABIN F=F SIGF=SIGF FreeR_flag=FREER" )
-#      self.appendCommandScript( "MAPROGRAM clustalw2" )
-#      self.appendCommandScript( "DOFASTA False" )
-#      self.appendCommandScript( "DOPHMMER True" )
-#      self.appendCommandScript( "DOHHPRED False" )
-#      self.appendCommandScript( "MDLU False" )
-#      self.appendCommandScript( "MDLD False" )
-#      self.appendCommandScript( "MDLC True" )
-#      self.appendCommandScript( "MDLM False" )
-#      self.appendCommandScript( "MDLP False" )
-#      self.appendCommandScript( "MDLS False" )
-#      self.appendCommandScript( "MRNUM 1" )
-#      self.appendCommandScript( "END" )
       self.appendCommandScript( "" )
 
       return CPluginScript.SUCCEEDED
-
-#    """
-#    def postProcess( self, processId=-1, data={} ) :
-#      import os
-#      out = self.container.outputData
-#      xmlout = str( self.makeFileName( 'PROGRAMXML' ) )
-#      self.reportStatus(0)
-#    """
-#
 
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
@@ -266,8 +211,6 @@ class mrbump_basic(CPluginScript):
         xyzout = os.path.join(self.getWorkDirectory(), "output_mrbump_1.pdb")
         if os.path.exists(xyzout):
             self.container.outputData.XYZOUT=xyzout
-            #self.container.outputData.XYZOUT[-1].annotation = 'Positioned and refined coordinates for solution '+str(i)
-            #self.container.outputData.XYZOUT[-1].subType = 1
         
         hklout = os.path.join(self.getWorkDirectory(), "output_mrbump_1.mtz")
         if os.path.exists(hklout):
@@ -281,28 +224,14 @@ class mrbump_basic(CPluginScript):
         self.container.outputData.XYZOUT.annotation = 'Model from MrBump refinement'
         self.container.outputData.FPHIOUT.annotation = 'Weighted map from MrBump refinement'
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map from MrBump refinement'
-        #self.container.outputData.ABCDOUT.annotation = 'Calculated phases from refinement'
-        #self.container.outputData.ABCDOUT.contentFlag = CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL
-        #self.container.outputData.TLSOUT.annotation = 'TLS parameters from refinement'
-        #self.container.outputData.LIBOUT.annotation = 'Generated dictionary from refinement'
 
         # Split out data objects that have been generated. Do this after applying the annotation, and flagging
         # above, since splitHklout needs to know the ABCDOUT contentFlag
         
         outputFiles = ['FPHIOUT','DIFFPHIOUT']
         outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
-        #if self.container.controlParameters.PHOUT:
-        #    outputFiles+=['ABCDOUT']
-        #    outputColumns+=['HLACOMB,HLBCOMB,HLCCOMB,HLDCOMB']
         error = self.splitHklout(outputFiles,outputColumns,infile=hklout)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
-
-        #for indx in range(len(self.container.outputData.MAPOUT)):
-        #    self.container.outputData.MAPOUT[indx].annotation = 'Map for solution '+str(indx+1)
-        #    self.container.outputData.MAPOUT[indx].subType = 1
-        #    self.container.outputData.DIFMAPOUT[indx].annotation = 'Difference map for solution '+str(indx+1)
-        #    self.container.outputData.DIFMAPOUT[indx].subType = 2
-        #    self.container.outputData.PHASEOUT[indx].annotation = 'Phases for solution '+str(indx+1)
 
         return CPluginScript.SUCCEEDED

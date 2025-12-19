@@ -201,7 +201,7 @@ A subset of CCP4i2 tasks \(*e.g.* list\) allow for the task to run on a specifie
 Asymmetric unit content files
 =============================
 
-Several CCP4i2 tasks \(*e.g.* phaser\, buccaneer, parrot) use a special file (file.asucontent.xml) to specify the expected contents of the asymmetric unit. These files can be created by a dedicated task using i2run...
+Several CCP4i2 tasks \(*e.g.* phaser\, modelcraft, parrot) use a special file (file.asucontent.xml) to specify the expected contents of the asymmetric unit. These files can be created by a dedicated task using i2run...
 
 .. code::
 

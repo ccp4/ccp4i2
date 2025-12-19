@@ -66,7 +66,6 @@ import GeneratedMetalCoordInterface from "./generated/metalCoord";
 import GeneratedModelASUCheckInterface from "./generated/modelASUCheck";
 import GeneratedMordaI2Interface from "./generated/morda_i2";
 import GeneratedMosflmInterface from "./generated/mosflm";
-import GeneratedNautilusBuildRefineInterface from "./generated/nautilus_build_refine";
 import GeneratedPdbRedoApiInterface from "./generated/pdb_redo_api";
 import GeneratedPdbviewEditInterface from "./generated/pdbview_edit";
 import GeneratedPhaserEnsemblerInterface from "./generated/phaser_ensembler";
@@ -222,8 +221,6 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <GeneratedMordaI2Interface job={job} />;
       case "mosflm":
         return <GeneratedMosflmInterface job={job} />;
-      case "nautilus_build_refine":
-        return <GeneratedNautilusBuildRefineInterface job={job} />;
       case "pdb_redo_api":
         return <GeneratedPdbRedoApiInterface job={job} />;
       case "pdbview_edit":

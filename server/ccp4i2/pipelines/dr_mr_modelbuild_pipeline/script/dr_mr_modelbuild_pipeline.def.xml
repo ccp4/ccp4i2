@@ -211,13 +211,13 @@
           </qualifiers>
         </subItem>
       </content>
-        <content id="BUCC_NCYC">
+        <content id="MODELCRAFT_NCYC">
             <className>CInt</className>
             <qualifiers>
                 <default>25</default>
                 <enumerators>0,5,15,20,25,50</enumerators>
                 <onlyEnumerators>True</onlyEnumerators>
-                <guiLabel>Buccaneer pipeline iterations</guiLabel>
+                <guiLabel>ModelCraft pipeline iterations</guiLabel>
             </qualifiers>
         </content>
         <content id="RUNACORN">
@@ -375,16 +375,6 @@
         </content>
     </container>
     <container id="controlParameters">
-            <content id="BUCCANEER_OR_MODELCRAFT">
-                <className>CString</className>
-                <qualifiers>
-                    <onlyEnumerators>True</onlyEnumerators>
-                    <enumerators>BUCCANEER,MODELCRAFT</enumerators>
-                    <menuText>Bucaneer,Modelcraft</menuText>
-                    <default>MODELCRAFT</default>
-                    <toolTip>Model building pipleline to use: Buccaneer or Modelcraft</toolTip>
-                </qualifiers>
-            </content>
             <content id="MERGED_OR_UNMERGED">
                 <className>CString</className>
                 <qualifiers>

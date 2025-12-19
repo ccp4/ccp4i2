@@ -110,12 +110,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'arp_warp_classic':
         from ccp4i2.wrappers.arp_warp_classic.script.arp_warp_classic_report import arp_warp_classic_report
         return arp_warp_classic_report
-    if task_name == 'buccaneer_build_refine_mr':
-        from ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
-        return bucref_report
-    if task_name == 'buccaneer_mr':
-        from ccp4i2.wrappers.buccaneer_mr.script.buccaneer_mr_report import buccaneer_mr_report
-        return buccaneer_mr_report
     if task_name == 'buster':
         from ccp4i2.wrappers.buster.script.buster_report import buster_report
         return buster_report
@@ -314,9 +308,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'mrparse_simple':
         from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_report import mrparse_simple_report
         return mrparse_simple_report
-    if task_name == 'nautilus_build_refine':
-        from ccp4i2.pipelines.nautilus_build_refine.script.nautilus_build_refine_report import nautilus_build_refine_report
-        return nautilus_build_refine_report
     if task_name == 'pairef':
         from ccp4i2.wrappers.pairef.script.pairef_report import pairef_report
         return pairef_report
@@ -497,8 +488,6 @@ REPORT_NAMES: set[str] = {
     'aimless_pipe',
     'arcimboldo',
     'arp_warp_classic',
-    'buccaneer_build_refine_mr',
-    'buccaneer_mr',
     'buster',
     'ccp4mg_edit_model',
     'ccp4mg_edit_nomrbump',
@@ -565,7 +554,6 @@ REPORT_NAMES: set[str] = {
     'mrbump_basic',
     'mrparse',
     'mrparse_simple',
-    'nautilus_build_refine',
     'pairef',
     'parrot',
     'pdb_redo_api',

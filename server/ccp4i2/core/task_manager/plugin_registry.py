@@ -116,12 +116,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'baverage':
         from ccp4i2.wrappers.baverage.script.baverage import baverage
         return baverage
-    if plugin_name == 'buccaneer_build_refine_mr':
-        from ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr import buccaneer_build_refine_mr
-        return buccaneer_build_refine_mr
-    if plugin_name == 'buccaneer_mr':
-        from ccp4i2.wrappers.buccaneer_mr.script.buccaneer_mr import buccaneer_mr
-        return buccaneer_mr
     if plugin_name == 'buster':
         from ccp4i2.wrappers.buster.script.buster import buster
         return buster
@@ -350,12 +344,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'mtzutils':
         from ccp4i2.wrappers.mtzutils.script.mtzutils import mtzutils
         return mtzutils
-    if plugin_name == 'nautilus':
-        from ccp4i2.wrappers.nautilus.script.nautilus import nautilus
-        return nautilus
-    if plugin_name == 'nautilus_build_refine':
-        from ccp4i2.pipelines.nautilus_build_refine.script.nautilus_build_refine import nautilus_build_refine
-        return nautilus_build_refine
     if plugin_name == 'pairef':
         from ccp4i2.wrappers.pairef.script.pairef import pairef
         return pairef
@@ -580,8 +568,6 @@ PLUGIN_NAMES: set[str] = {
     'aimless_pipe',
     'arcimboldo',
     'baverage',
-    'buccaneer_build_refine_mr',
-    'buccaneer_mr',
     'buster',
     'cad_copy_column',
     'ccp4mg_edit_model',
@@ -658,8 +644,6 @@ PLUGIN_NAMES: set[str] = {
     'mtzdump',
     'mtzheader',
     'mtzutils',
-    'nautilus',
-    'nautilus_build_refine',
     'pairef',
     'parrot',
     'pdb_extract_wrapper',

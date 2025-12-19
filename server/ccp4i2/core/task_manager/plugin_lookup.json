@@ -1376,67 +1376,6 @@
       }
     }
   },
-  "buccaneer_mr": {
-    "module": "ccp4i2.wrappers.buccaneer_mr.script.buccaneer_mr",
-    "class": "buccaneer_mr",
-    "module_file": "../../wrappers/buccaneer_mr/script/buccaneer_mr.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "wrappers",
-    "TASKTITLE": "Buccaneer_mr",
-    "TASKNAME": "buccaneer_mr",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": false,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
   "acorn": {
     "module": "ccp4i2.wrappers.acorn.script.acorn",
     "class": "acorn",
@@ -1764,32 +1703,6 @@
       },
       "304": {
         "description": "Error splitting MTZ file"
-      }
-    }
-  },
-  "nautilus": {
-    "module": "ccp4i2.wrappers.nautilus.script.nautilus",
-    "class": "nautilus",
-    "module_file": "../../wrappers/nautilus/script/nautilus.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "developer_tools",
-    "TASKTITLE": null,
-    "TASKNAME": "nautilus",
-    "TASKVERSION": 0.1,
-    "ASYNCHRONOUS": false,
-    "PURGESEARCHLIST": [
-      [
-        "hklin.mtz",
-        0
-      ],
-      [
-        "log_mtzjoin.txt",
-        0
-      ]
-    ],
-    "ERROR_CODES": {
-      "201": {
-        "description": "Failed to analyse output files"
       }
     }
   },
@@ -5365,29 +5278,6 @@
       }
     }
   },
-  "nautilus_build_refine": {
-    "module": "ccp4i2.pipelines.nautilus_build_refine.script.nautilus_build_refine",
-    "class": "nautilus_build_refine",
-    "module_file": "../../pipelines/nautilus_build_refine/script/nautilus_build_refine.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "deprecated",
-    "TASKTITLE": "Autobuild RNA/DNA (Nautilus pipeline)",
-    "TASKNAME": "nautilus_build_refine",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "coot_rebuild",
-      "prosmart_refmac",
-      "nautilus_build_refine"
-    ],
-    "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
-    "PURGESEARCHLIST": [],
-    "ERROR_CODES": {
-      "201": {
-        "description": "Failed to analyse output files"
-      }
-    }
-  },
   "LidiaAcedrg": {
     "module": "ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg",
     "class": "lidiaAcedrg",
@@ -6738,126 +6628,6 @@
       "201": {
         "description": "Expected output file not made",
         "severity": 2
-      }
-    }
-  },
-  "buccaneer_build_refine_mr": {
-    "module": "ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr",
-    "class": "buccaneer_build_refine_mr",
-    "module_file": "../../pipelines/buccaneer_build_refine_mr/script/buccaneer_build_refine_mr.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "deprecated",
-    "TASKTITLE": "Autobuild protein (Buccaneer pipeline)",
-    "TASKNAME": "buccaneer_build_refine_mr",
-    "TASKVERSION": 202003271051,
-    "WHATNEXT": [
-      "coot_rebuild",
-      "prosmart_refmac",
-      "buccaneer_build_refine_mr"
-    ],
-    "ASYNCHRONOUS": false,
-    "PERFORMANCECLASS": "CModelBuildPerformance",
-    "RUNEXTERNALPROCESS": false,
-    "PURGESEARCHLIST": [
-      [
-        "buccaneer_mr%*/XYZOUT.*",
-        5,
-        "XYZOUT"
-      ],
-      [
-        "refmac%*/ABCDOUT.mtz",
-        5,
-        "ABCDOUT"
-      ],
-      [
-        "refmac%*/FPHIOUT.mtz",
-        5,
-        "FPHIOUT"
-      ],
-      [
-        "refmac%*/DIFFPHIOUT.mtz",
-        5,
-        "DIFFPHIOUT"
-      ],
-      [
-        "refmac%*/XYZOUT.pdb",
-        5,
-        "XYZOUT"
-      ],
-      [
-        "refmac%*/COOTSCRIPTOUT.scm",
-        5,
-        "COOTSCRIPTOUT"
-      ],
-      [
-        "prosmart_refmac%*/ABCDOUT.mtz",
-        5,
-        "ABCDOUT"
-      ],
-      [
-        "prosmart_refmac%*/FPHIOUT.mtz",
-        5,
-        "FPHIOUT"
-      ],
-      [
-        "prosmart_refmac%*/DIFFPHIOUT.mtz",
-        5,
-        "DIFFPHIOUT"
-      ],
-      [
-        "prosmart_refmac%*/XYZOUT.pdb",
-        5,
-        "XYZOUT"
-      ],
-      [
-        "prosmart_refmac%*/COOTSCRIPTOUT.scm",
-        5,
-        "COOTSCRIPTOUT"
-      ],
-      [
-        "prosmart_refmac%*/refmac%*/ABCDOUT.mtz",
-        5,
-        "ABCDOUT"
-      ],
-      [
-        "prosmart_refmac%*/refmac%*/FPHIOUT.mtz",
-        5,
-        "FPHIOUT"
-      ],
-      [
-        "prosmart_refmac%*/refmac%*/DIFFPHIOUT.mtz",
-        5,
-        "DIFFPHIOUT"
-      ],
-      [
-        "prosmart_refmac%*/refmac%*/XYZOUT.pdb",
-        5,
-        "XYZOUT"
-      ],
-      [
-        "prosmart_refmac%*/refmac%*/COOTSCRIPTOUT.scm",
-        5,
-        "COOTSCRIPTOUT"
-      ]
-    ],
-    "ERROR_CODES": {
-      "200": {
-        "description": "Buccaneer task failed"
-      },
-      "201": {
-        "description": "Buccaneer task failed to produce a required output file"
-      },
-      "202": {
-        "description": "Refmac task failed"
-      },
-      "203": {
-        "description": "Refmac task failed to produce a required output file"
-      },
-      "204": {
-        "description": "Coot realspace operation task failed"
-      },
-      "205": {
-        "description": "Coot realspace operation task failed to produce a required output file"
       }
     }
   },

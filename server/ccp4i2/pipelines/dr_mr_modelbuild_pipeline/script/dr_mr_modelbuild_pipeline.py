@@ -262,6 +262,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             print("Now I have to work out what is best")
 
             try:
+                # TODO: Will break without the old Buccaneer pipeline
                 print("Get rfactors")
                 rfactors = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
                 print("Get rfrees")
@@ -291,19 +292,19 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                     print("Annotate FREEROUT")
                     self.container.outputData.FREEROUT.annotation.set("FreeR in spacegroup "+best_sg+" BEST")
 
-                    buccaneer = self.buccaneer
+                    modelcraft = self.modelcraft
                     print("Set KV RFactor")
                     self.container.outputData.PERFORMANCE.RFactor.set(r0)
                     print("Set KV RFree")
                     self.container.outputData.PERFORMANCE.RFree.set(rf0)
 
-                    shutil.copyfile(str(buccaneer.container.outputData.XYZOUT), str(self.container.outputData.XYZOUT))
-                    shutil.copyfile(str(buccaneer.container.outputData.DIFFPHIOUT), str(self.container.outputData.DIFFPHIOUT))
-                    shutil.copyfile(str(buccaneer.container.outputData.FPHIOUT), str(self.container.outputData.FPHIOUT))
+                    shutil.copyfile(str(modelcraft.container.outputData.XYZOUT), str(self.container.outputData.XYZOUT))
+                    shutil.copyfile(str(modelcraft.container.outputData.DIFFPHIOUT), str(self.container.outputData.DIFFPHIOUT))
+                    shutil.copyfile(str(modelcraft.container.outputData.FPHIOUT), str(self.container.outputData.FPHIOUT))
 
-                    self.container.outputData.XYZOUT.annotation.set('Atomic model after buccaneer autobuild in ' + best_sg)
-                    self.container.outputData.FPHIOUT.annotation.set("Weighted map from buccaneer autobuild in " + best_sg)
-                    self.container.outputData.DIFFPHIOUT.annotation.set("Weighted difference map from buccaneer autobuild in " + best_sg)
+                    self.container.outputData.XYZOUT.annotation.set('Atomic model after modelcraft autobuild in ' + best_sg)
+                    self.container.outputData.FPHIOUT.annotation.set("Weighted map from modelcraft autobuild in " + best_sg)
+                    self.container.outputData.DIFFPHIOUT.annotation.set("Weighted difference map from modelcraft autobuild in " + best_sg)
                 else:
 
                     print("Copy FREER_OTHERSG")
@@ -324,24 +325,24 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                     print("Annotate FREEROUT_OTHERSG")
                     self.container.outputData.FREEROUT_OTHERSG.annotation.set("FreeR in spacegroup "+best_sg)
 
-                    buccaneer = self.buccaneer2
+                    modelcraft = self.modelcraft2
                     print("Set KV RFactor")
                     self.container.outputData.PERFORMANCE.RFactor.set(r1)
                     print("Set KV RFree")
                     self.container.outputData.PERFORMANCE.RFree.set(rf1)
 
-                    shutil.copyfile(str(buccaneer.container.outputData.XYZOUT), str(self.container.outputData.XYZOUT))
-                    shutil.copyfile(str(buccaneer.container.outputData.DIFFPHIOUT), str(self.container.outputData.DIFFPHIOUT))
-                    shutil.copyfile(str(buccaneer.container.outputData.FPHIOUT), str(self.container.outputData.FPHIOUT))
+                    shutil.copyfile(str(modelcraft.container.outputData.XYZOUT), str(self.container.outputData.XYZOUT))
+                    shutil.copyfile(str(modelcraft.container.outputData.DIFFPHIOUT), str(self.container.outputData.DIFFPHIOUT))
+                    shutil.copyfile(str(modelcraft.container.outputData.FPHIOUT), str(self.container.outputData.FPHIOUT))
 
-                    self.container.outputData.XYZOUT.annotation.set('Atomic model after buccaneer autobuild in '+self.otherSG)
-                    self.container.outputData.FPHIOUT.annotation.set("Weighted map from buccaneer autobuild in "+self.otherSG)
-                    self.container.outputData.DIFFPHIOUT.annotation.set("Weighted difference map from buccaneer autobuild in "+self.otherSG)
+                    self.container.outputData.XYZOUT.annotation.set('Atomic model after modelcraft autobuild in '+self.otherSG)
+                    self.container.outputData.FPHIOUT.annotation.set("Weighted map from modelcraft autobuild in "+self.otherSG)
+                    self.container.outputData.DIFFPHIOUT.annotation.set("Weighted difference map from modelcraft autobuild in "+self.otherSG)
 
                 if self.container.controlParameters.LIGANDAS.__str__() != 'NONE':
                     print("Add ligand in enantiomorphic case")
-                    self.coordinatesForCoot = buccaneer.container.outputData.XYZOUT
-                    self.mapToUse = buccaneer.container.outputData.FPHIOUT
+                    self.coordinatesForCoot = modelcraft.container.outputData.XYZOUT
+                    self.mapToUse = modelcraft.container.outputData.FPHIOUT
                     return self.cootAddLigand()
                 else:
                     print("Report status")
@@ -366,39 +367,32 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             rvfin = self.fin_molrep(rv,self.molrep_job)
             rfactors = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_factor')
             rfrees = self.xmlroot.xpath('/CCP4i2DRMRMBPipe/BuccaneerBuildRefineResult/FinalStatistics/r_free')
-            USE_BUCCANEER = self.container.controlParameters.BUCCANEER_OR_MODELCRAFT.__str__() == 'BUCCANEER'
-            if USE_BUCCANEER:
-                r0 = rfactors[0].text
-                rf0 = rfrees[0].text
-                self.container.outputData.PERFORMANCE.RFactor.set(r0)
-                self.container.outputData.PERFORMANCE.RFree.set(rf0)
-            else:
-                try:
-                    print("##################################################")
-                    print("##################################################")
-                    print("##################################################")
-                    print("FRACTORS FROM MODELCRAFT")
-                    print("Try to read json...")
-                    directory = os.path.join(self.buccaneer.getWorkDirectory(), "modelcraft")
-                    modelcraft_json = os.path.join(directory, "modelcraft.json")
-                    print("...",modelcraft_json)
-                    with open(modelcraft_json) as stream:
-                        result = json.load(stream)
-                    print("read ...")
-                    print(result)
-                    self.container.outputData.PERFORMANCE.RFactor.set(result["final"]["r_work"])
-                    self.container.outputData.PERFORMANCE.RFree.set(result["final"]["r_free"])
-                    print("##################################################")
-                    print("##################################################")
-                    print("##################################################")
-                except:
-                    print("PARSING JSON FAILS!"); sys.stdout.flush()
+            try:
+                print("##################################################")
+                print("##################################################")
+                print("##################################################")
+                print("FRACTORS FROM MODELCRAFT")
+                print("Try to read json...")
+                directory = os.path.join(self.modelcraft.getWorkDirectory(), "modelcraft")
+                modelcraft_json = os.path.join(directory, "modelcraft.json")
+                print("...",modelcraft_json)
+                with open(modelcraft_json) as stream:
+                    result = json.load(stream)
+                print("read ...")
+                print(result)
+                self.container.outputData.PERFORMANCE.RFactor.set(result["final"]["r_work"])
+                self.container.outputData.PERFORMANCE.RFree.set(result["final"]["r_free"])
+                print("##################################################")
+                print("##################################################")
+                print("##################################################")
+            except:
+                print("PARSING JSON FAILS!"); sys.stdout.flush()
 
 #Do ligand fit now .... (TODO - add this to anantiomorphic version above)
             if self.container.controlParameters.LIGANDAS.__str__() != 'NONE':
-                buccaneer = self.buccaneer
-                self.coordinatesForCoot = buccaneer.container.outputData.XYZOUT
-                self.mapToUse = buccaneer.container.outputData.FPHIOUT
+                modelcraft = self.modelcraft
+                self.coordinatesForCoot = modelcraft.container.outputData.XYZOUT
+                self.mapToUse = modelcraft.container.outputData.FPHIOUT
                 return self.cootAddLigand()
             else:
                 self.reportStatus(rvfin)
@@ -520,7 +514,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                 rv = self.acorn.process()
                 return self.fin_acorn(rv,self.acorn)
         else:
-            return self.run_buccaneer()
+            return self.run_modelcraft()
       except:
         self.reportStatus(CPluginScript.FAILED)
 
@@ -535,93 +529,57 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
       self.xmlroot.append(tree)
       self.flushXML()
 
-      return self.run_buccaneer()
+      return self.run_modelcraft()
 
-    def run_buccaneer(self):
-
-      USE_BUCCANEER = self.container.controlParameters.BUCCANEER_OR_MODELCRAFT.__str__() == 'BUCCANEER'
-
-      if(USE_BUCCANEER):
-          buccPlugName = 'buccaneer_build_refine_mr'
-      else:
-          buccPlugName = 'modelcraft'
+    def run_modelcraft(self):
       try:
         if self.useOtherSG:
-            self.buccaneer2 = self.makePluginObject(buccPlugName)
-            self.buccaneer2.container.inputData.ASUIN.set(self.container.inputData.ASUIN)
-            if(USE_BUCCANEER):
-                self.buccaneer2.container.inputData.BUCCANEER_MR_MODE_XYZIN.set(self.refmac2.container.outputData.XYZOUT)
-            else:
-                self.buccaneer2.container.inputData.XYZIN.set(self.refmac2.container.outputData.XYZOUT)
-            self.buccaneer2.container.inputData.F_SIGF.set(self.reindexJob.container.outputData.F_SIGF_OUT)
-            self.buccaneer2.container.inputData.FREERFLAG.set(self.reindexJob.container.outputData.FREERFLAG_OUT)
-            buccaneer = self.buccaneer2
+            self.modelcraft2 = self.makePluginObject('modelcraft')
+            self.modelcraft2.container.inputData.ASUIN.set(self.container.inputData.ASUIN)
+            self.modelcraft2.container.inputData.XYZIN.set(self.refmac2.container.outputData.XYZOUT)
+            self.modelcraft2.container.inputData.F_SIGF.set(self.reindexJob.container.outputData.F_SIGF_OUT)
+            self.modelcraft2.container.inputData.FREERFLAG.set(self.reindexJob.container.outputData.FREERFLAG_OUT)
+            modelcraft = self.modelcraft2
             if self.container.inputData.RUNACORN:
-                if USE_BUCCANEER:
-                    buccaneer.container.inputData.ABCD.set(self.acorn2.container.outputData.PHSOUT)
-                else:
-                    buccaneer.container.inputData.PHASES.set(self.acorn2.container.outputData.PHSOUT)
+                modelcraft.container.inputData.PHASES.set(self.acorn2.container.outputData.PHSOUT)
         else:
-            self.buccaneer = self.makePluginObject(buccPlugName)
-            self.buccaneer.container.inputData.ASUIN.set(self.container.inputData.ASUIN)
-            if(USE_BUCCANEER):
-                self.buccaneer.container.inputData.BUCCANEER_MR_MODE_XYZIN.set(self.refmac.container.outputData.XYZOUT)
-            else:
-                self.buccaneer.container.inputData.XYZIN.set(self.refmac.container.outputData.XYZOUT)
+            self.modelcraft = self.makePluginObject('modelcraft')
+            self.modelcraft.container.inputData.ASUIN.set(self.container.inputData.ASUIN)
+            self.modelcraft.container.inputData.XYZIN.set(self.refmac.container.outputData.XYZOUT)
             if self.container.controlParameters.MERGED_OR_UNMERGED.__str__() == 'UNMERGED':
-                self.buccaneer.container.inputData.F_SIGF.set(self.aimlessPlugin.container.outputData.HKLOUT[0])
-                self.buccaneer.container.inputData.FREERFLAG.set(self.aimlessPlugin.container.outputData.FREEROUT)
+                self.modelcraft.container.inputData.F_SIGF.set(self.aimlessPlugin.container.outputData.HKLOUT[0])
+                self.modelcraft.container.inputData.FREERFLAG.set(self.aimlessPlugin.container.outputData.FREEROUT)
             elif self.container.controlParameters.MERGED_OR_UNMERGED.__str__() == 'MERGED_F':
-                self.buccaneer.container.inputData.F_SIGF.set(self.aimlessPlugin.container.outputData.OBSOUT)
-                self.buccaneer.container.inputData.FREERFLAG.set(self.aimlessPlugin.freerflag.container.outputData.FREEROUT)
+                self.modelcraft.container.inputData.F_SIGF.set(self.aimlessPlugin.container.outputData.OBSOUT)
+                self.modelcraft.container.inputData.FREERFLAG.set(self.aimlessPlugin.freerflag.container.outputData.FREEROUT)
             else:
-                self.buccaneer.container.inputData.F_SIGF.set(self.container.inputData.F_SIGF_IN)
-                self.buccaneer.container.inputData.FREERFLAG.set(self.container.inputData.FREER_IN)
-            buccaneer = self.buccaneer
+                self.modelcraft.container.inputData.F_SIGF.set(self.container.inputData.F_SIGF_IN)
+                self.modelcraft.container.inputData.FREERFLAG.set(self.container.inputData.FREER_IN)
+            modelcraft = self.modelcraft
             if self.container.inputData.RUNACORN:
-                if USE_BUCCANEER:
-                    buccaneer.container.inputData.ABCD.set(self.acorn.container.outputData.PHSOUT)
-                else:
-                    buccaneer.container.inputData.PHASES.set(self.acorn.container.outputData.PHSOUT)
+                modelcraft.container.inputData.PHASES.set(self.acorn.container.outputData.PHSOUT)
 
-        if(USE_BUCCANEER):
-            buccaneer.container.controlParameters.USE_SHIFTFIELD.set(self.container.inputData.RUNSHEETBEND) 
-            buccaneer.container.controlParameters.FULL_PRUNE.set(True)
-            buccaneer.container.controlParameters.CHAIN_PRUNE.set(False)
-            buccaneer.container.controlParameters.ITERATIONS.set(self.container.inputData.BUCC_NCYC)
-            buccaneer.container.controlParameters.REFMAC_CYCLES.set(10)
-            buccaneer.container.controlParameters.BUCCANEER_CYCLES.set(3)
-            buccaneer.container.controlParameters.BUCCANEER_CYCLES_NEXT.set(2)
-        else:
-            buccaneer.container.controlParameters.SHEETBEND.set(self.container.inputData.RUNSHEETBEND) 
-            buccaneer.container.controlParameters.CYCLES.set(self.container.inputData.BUCC_NCYC)
+        modelcraft.container.controlParameters.SHEETBEND.set(self.container.inputData.RUNSHEETBEND) 
+        modelcraft.container.controlParameters.CYCLES.set(self.container.inputData.MODELCRAFT_NCYC)
 
         self.oldTree = copy.deepcopy(self.xmlroot)
-        rv = self.processBuccaneer(buccaneer)
-        print("rv from buccaneer",rv)
+        rv = self.processModelCraft(modelcraft)
+        print("rv from modelcraft",rv)
 
         self.xmlroot = copy.deepcopy(self.oldTree)
-        USE_BUCCANEER = self.container.controlParameters.BUCCANEER_OR_MODELCRAFT.__str__() == 'BUCCANEER'
-        if USE_BUCCANEER:
-            tree = CCP4Utils.openFileToEtree(buccaneer.makeFileName('PROGRAMXML'))
-            self.xmlroot.append(tree)
-        else:
-            print("Do something else!"); sys.stdout.flush()
-            tree = etree.Element("ModelCraft")
-            directory = os.path.join(buccaneer.getWorkDirectory(), "modelcraft")
-            tree.text = directory
-            self.xmlroot.append(tree)
-            print("Done something else!"); sys.stdout.flush()
+        print("Do something else!"); sys.stdout.flush()
+        tree = etree.Element("ModelCraft")
+        directory = os.path.join(modelcraft.getWorkDirectory(), "modelcraft")
+        tree.text = directory
+        self.xmlroot.append(tree)
+        print("Done something else!"); sys.stdout.flush()
         self.flushXML()
 
-        if USE_BUCCANEER:
-            model_build_text = "buccaneer autobuild"
-        else:
-            model_build_text = "ModelCraft"
+        model_build_text = "ModelCraft"
 
-        shutil.copyfile(str(buccaneer.container.outputData.XYZOUT), str(self.container.outputData.XYZOUT))
-        shutil.copyfile(str(buccaneer.container.outputData.DIFFPHIOUT), str(self.container.outputData.DIFFPHIOUT))
-        shutil.copyfile(str(buccaneer.container.outputData.FPHIOUT), str(self.container.outputData.FPHIOUT))
+        shutil.copyfile(str(modelcraft.container.outputData.XYZOUT), str(self.container.outputData.XYZOUT))
+        shutil.copyfile(str(modelcraft.container.outputData.DIFFPHIOUT), str(self.container.outputData.DIFFPHIOUT))
+        shutil.copyfile(str(modelcraft.container.outputData.FPHIOUT), str(self.container.outputData.FPHIOUT))
         self.container.outputData.XYZOUT.annotation.set('Atomic model after '+model_build_text)
         self.container.outputData.FPHIOUT.annotation.set('Weighted map from '+model_build_text)
         self.container.outputData.DIFFPHIOUT.annotation.set('Weighted difference map from '+model_build_text)
@@ -650,7 +608,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         print("\n\n1","beyond")
 
         self.harvestFile(self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
-        self.container.outputData.XYZOUT.annotation.set('Atomic model after buccaneer and coot add ligand')
+        self.container.outputData.XYZOUT.annotation.set('Atomic model after modelcraft and coot add ligand')
         self.reportStatus(status)
 
     def cootAddLigand(self):
@@ -686,8 +644,8 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         self.connectSignal(self.cootPlugin,'finished',self.cootPlugin_finished)
         self.cootPlugin.process()
 
-    def processBuccaneer(self, plugin, **kw):
-        #I am reimplementing this because I want to be able to reproduce the top part of buccaneer pipeline so that I can get its XML.
+    def processModelCraft(self, plugin, **kw):
+        #I am reimplementing this because I want to be able to reproduce the top part of ModelCraft pipeline so that I can get its XML.
         ''' Check input data is set, create program command script (by calling makeCommandAndScript
         which should be implemented in sub-class and call startProcess '''
         #print 'CPluginScript.process',plugin.objectName()
@@ -721,15 +679,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
             if status == CPluginScript.FAILED:
                 return plugin.reportStatus(CPluginScript.FAILED)
 
-        USE_BUCCANEER = self.container.controlParameters.BUCCANEER_OR_MODELCRAFT.__str__() == 'BUCCANEER'
-        if USE_BUCCANEER:
-            try:
-                rv = plugin.makeCommandAndScript()
-                #print 'CPluginScript.process commandLine',plugin.command,plugin.commandLine,plugin.commandScript
-            except Exception as e:
-                plugin.appendErrorReport(44, exc_info=sys.exc_info())
-                return plugin.reportStatus(CPluginScript.FAILED)
-
         if plugin.editComFile:
             plugin.displayEditor()
             return
@@ -737,7 +686,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         try:
             #MN...apply has been deprecated in favour of the syntax below since python 2.3
             #rv = apply(plugin.startProcess, [plugin.command] , kw )
-            rv = self.startBuccaneerProcess(plugin)
+            rv = self.startModelCraftProcess(plugin)
         except:
             plugin.appendErrorReport(48, exc_info=sys.exc_info())
             return plugin.reportStatus(CPluginScript.FAILED)
@@ -749,26 +698,24 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         else:
             return CPluginScript.SUCCEEDED
 
-    def startBuccaneerProcess(self, plugin):
+    def startModelCraftProcess(self, plugin):
         print("##################################################")
-        print("startBuccaneerProcess",plugin)
+        print("startModelCraftProcess",plugin)
         print("##################################################")
-        USE_BUCCANEER = self.container.controlParameters.BUCCANEER_OR_MODELCRAFT.__str__() == 'BUCCANEER'
 
-        if not USE_BUCCANEER:
-            self.oldTree = copy.deepcopy(self.xmlroot)
-            self.xmlroot = copy.deepcopy(self.oldTree)
-            tree = etree.Element("ModelCraft")
-            directory = os.path.join(plugin.getWorkDirectory(), "modelcraft")
-            tree.text = directory
-            self.xmlroot.append(tree)
-            self.flushXML()
-            rv = plugin.process()
-            if rv == CPluginScript.FAILED:
-                return plugin.reportStatus(rv)
-            else:
-                plugin.reportStatus(CPluginScript.SUCCEEDED)
-                return CPluginScript.SUCCEEDED
+        self.oldTree = copy.deepcopy(self.xmlroot)
+        self.xmlroot = copy.deepcopy(self.oldTree)
+        tree = etree.Element("ModelCraft")
+        directory = os.path.join(plugin.getWorkDirectory(), "modelcraft")
+        tree.text = directory
+        self.xmlroot.append(tree)
+        self.flushXML()
+        rv = plugin.process()
+        if rv == CPluginScript.FAILED:
+            return plugin.reportStatus(rv)
+        else:
+            plugin.reportStatus(CPluginScript.SUCCEEDED)
+            return CPluginScript.SUCCEEDED
 
         plugin.initialiseProperties()
         plugin.initialiseXML()

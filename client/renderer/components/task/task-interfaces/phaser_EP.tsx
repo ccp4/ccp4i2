@@ -12,7 +12,7 @@ import { useJob } from "../../../utils";
  * Provides functionality for:
  * - Heavy atom location using various methods (search, manual input, partial model)
  * - Phase calculation and density modification
- * - Integration with Parrot and Buccaneer for automated building
+ * - Integration with Parrot and ModelCraft for automated building
  * - Automatic wavelength detection from reflection files
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
@@ -39,7 +39,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     () => ({
       partialModeOrMap: useTaskItem("PARTIALMODELORMAP").value,
       compBy: useTaskItem("COMP_BY").value,
-      runBuccaneer: useTaskItem("RUNBUCCANEER").value,
+      runModelCraft: useTaskItem("RUNMODELCRAFT").value,
     }),
     [useTaskItem]
   );
@@ -52,7 +52,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       isSearch: () => taskValues.partialModeOrMap === "SEARCH",
       isAsuFile: () => taskValues.compBy === "ASU",
       isMolecularWeight: () => taskValues.compBy === "MW",
-      hasBuccaneer: () => taskValues.runBuccaneer,
+      hasModelCraft: () => taskValues.runModelCraft,
     }),
     [taskValues]
   );
@@ -102,11 +102,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       ],
       extraSteps: [
         { key: "RUNPARROT", label: "Run Parrot" },
-        { key: "RUNBUCCANEER", label: "Run Buccaneer" },
+        { key: "RUNMODELCRAFT", label: "Run ModelCraft" },
         {
-          key: "BUCCANEER_ITERATIONS",
-          label: "Buccaneer cycles",
-          visible: visibility.hasBuccaneer,
+          key: "MODELCRAFT_ITERATIONS",
+          label: "ModelCraft cycles",
+          visible: visibility.hasModelCraft,
         },
       ],
       basicControls: [

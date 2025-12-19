@@ -1479,27 +1479,6 @@ def foldTitleLine(label, initiallyOpen, brief=None):
 
 
 def foldLinkLine(label, href, id):
-    '''
-    root = etree.Element('root')
-    anchor = etree.Element('a')
-    anchor.set('name',label)
-    root.append(anchor)
-    span = etree.Element('span')
-    span.set('class','folder_link')
-    a =  etree.Element('a')
-    a.set('href',href)
-    a.set('id',id)
-    a.text = 'Show '+label
-    span.append(a)
-    root.append(span)
-    return root
-    '''
-
-    '''
-  Aiming for..
-  <span class="folder" onclick="togglesubjob(this)">Show 1: Model building - Buccaneer</span>
-  <div id="jobId613" class="subjob"></div>
-  '''
     root = etree.Element('root')
     span = etree.Element('span')
     span.set('class', 'folder')

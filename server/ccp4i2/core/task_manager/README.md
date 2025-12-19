@@ -83,7 +83,7 @@ def_xml_path = task_mgr.locate_def_xml('refmac')
 - **Data Processing**: ctruncate, aimless, pointless, dials_*, xia2_*
 - **Phasing**: phaser_*, shelx_*, crank2_*
 - **Refinement**: refmac, buster, prosmart
-- **Model Building**: buccaneer, parrot, coot_*
+- **Model Building**: modelcraft, parrot, coot_*
 - **Analysis**: molprobity, edstats, moorhen_*
 - **Utilities**: pdbset, rwcontents, superpose
 

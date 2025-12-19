@@ -78,37 +78,6 @@ class phaser_EP_report(Report):
             parrot_inverted_report.defaultReport(parent=parrot_inverted_hand)
             parrot_inverted_hand.addDiv(style="clear:both;")
 
-        buccxml = self.xmlnode.findall('.//BuccaneerBuildRefineResult')
-
-        buccsg1 = None
-        buccsg2 = None
-
-        if len(buccxml)>1:
-            buccsg1 = etree.fromstring(etree.tostring(buccxml[0]))
-            buccsg2 = etree.fromstring(etree.tostring(buccxml[1]))
-        elif len(buccxml)>0:
-            buccsg1 = buccxml[0]
-
-        if buccsg1 is not None:
-            buccDiv1 = self.addDiv( xmlnode=buccsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-            from ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
-            buccaneer_original_report = bucref_report(xmlnode=buccsg1, jobStatus='nooutput')
-            buccaneer_original_hand = buccDiv1.addFold(label='ModelBuilding: Original hand', initiallyOpen=False)
-            buccaneer_original_report.finishedText(parent=buccaneer_original_hand)
-            buccaneer_original_report.table1(parent=buccaneer_original_hand)
-            buccaneer_original_report.completenessGraph(buccaneer_original_hand, 450, 300)
-            buccaneer_original_hand.addDiv(style="clear:both;")
-
-        if buccsg2 is not None:
-            buccDiv2 = self.addDiv( xmlnode=buccsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-            from ccp4i2.pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report import bucref_report
-            buccaneer_inverted_report = bucref_report(xmlnode=buccsg2, jobStatus='nooutput')
-            buccaneer_inverted_hand = buccDiv2.addFold(label='ModelBuilding: Inverted hand', initiallyOpen=False)
-            buccaneer_inverted_report.finishedText(parent=buccaneer_inverted_hand)
-            buccaneer_inverted_report.table1(parent=buccaneer_inverted_hand)
-            buccaneer_inverted_report.completenessGraph(buccaneer_inverted_hand, 450, 300)
-            buccaneer_inverted_hand.addDiv(style="clear:both;")
-
         for hand in ["original", "inverted"]:
             if (node := self.xmlnode.find(f".//{hand}/ModelCraft")) is not None:
                 div = self.addDiv(style="width: 100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")

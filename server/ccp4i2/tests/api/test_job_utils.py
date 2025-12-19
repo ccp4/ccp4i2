@@ -55,13 +55,6 @@ class CCP4i2TestCase(TestCase):
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"
             / "ProjectZips"
-            / "bucc_test_0.ccp4_project.zip",
-            relocate_path=(settings.CCP4I2_PROJECTS_DIR),
-        )
-        import_ccp4_project_zip(
-            Path(__file__).parent.parent.parent.parent.parent.parent
-            / "test101"
-            / "ProjectZips"
             / "parrot_test_0.ccp4_project.zip",
             relocate_path=(settings.CCP4I2_PROJECTS_DIR),
         )

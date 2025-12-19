@@ -78,7 +78,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2TaskElement itemName="AUTOCUTOFF" {...props} qualifiers={{ guiLabel: "Run Aimless twice, first to find resolution limit" }} />
           <CCP4i2TaskElement itemName="RUNACORN" {...props} qualifiers={{ guiLabel: "Run phase refinement with acorn before model building" }} />
           <CCP4i2TaskElement itemName="REFMAC_NCYC" {...props} qualifiers={{ guiLabel: "cycles of restrained refinement after MR" }} />
-          <CCP4i2TaskElement itemName="BUCC_NCYC" {...props} qualifiers={{ guiLabel: "model building pipeline iterations" }} />
+          <CCP4i2TaskElement itemName="MODELCRAFT_NCYC" {...props} qualifiers={{ guiLabel: "model building pipeline iterations" }} />
           <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
             Ligand geometry
           </Typography>

@@ -63,7 +63,7 @@ class phaser_EP(CPluginScript):
                     self.copyPluginOutput(self.parrotPluginInvertedHand.container.outputData.ABCDOUT, pipelineOutputs.ABCDOUT, annotation='Phases from density modification - reversed hand')
                     self.copyPluginOutput(self.parrotPluginInvertedHand.container.outputData.FPHIOUT, pipelineOutputs.FPHIOUT, annotation='Map coefficients from density modification - reversed hand')
 
-        if self.container.controlParameters.RUNBUCCANEER:
+        if self.container.controlParameters.RUNMODELCRAFT:
             if self.container.keywords.HAND in ['both', 'off']:
                 modelCraftOriginal = self.makeModelCraftPlugin(hand='original')
                 if modelCraftOriginal.process() == CPluginScript.SUCCEEDED:
@@ -171,7 +171,7 @@ class phaser_EP(CPluginScript):
                 plugin.container.inputData.PHASES.set(self.parrotPluginInvertedHand.container.outputData.ABCDOUT)
             plugin.container.controlParameters.BASIC.set(True)
             plugin.container.controlParameters.USE_MODEL_PHASES.set(False)
-            plugin.container.controlParameters.CYCLES.set(self.container.controlParameters.BUCCANEER_ITERATIONS)
+            plugin.container.controlParameters.CYCLES.set(self.container.controlParameters.MODELCRAFT_ITERATIONS)
             plugin.container.controlParameters.STOP_CYCLES.set(2)
             return plugin
         except Exception as e:

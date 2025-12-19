@@ -4,7 +4,6 @@ import os
 import sys
 
 from ccp4i2.pipelines.aimless_pipe.script import aimless_pipe_report
-from ccp4i2.pipelines.buccaneer_build_refine_mr.script import buccaneer_build_refine_mr_report
 from ccp4i2.report import Report
 from ccp4i2.wrappers.aimless.script import aimless_report
 from ccp4i2.wrappers.ctruncate.script import ctruncate_report
@@ -71,13 +70,11 @@ class dr_mr_modelbuild_pipeline_report(Report):
     sheetbenddone = len(xmlnode.findall('.//SheetbendResult'))>0
     refmacdone = len(xmlnode.findall('.//REFMAC'))>0
     acorndone = len(xmlnode.findall('.//acorn'))>0
-    buccdone = len(xmlnode.findall('.//BuccaneerBuildRefineResult'))>0
     modelcraftdone = len(xmlnode.findall('.//ModelCraft'))>0
 
     molrepdoneNodes = xmlnode.findall('.//MolrepResult')
     sheetbendNodes = xmlnode.findall('.//SheetbendResult')
     refxml = xmlnode.findall(".//REFMAC")
-    buccxml = xmlnode.findall(".//BuccaneerBuildRefineResult")
     mcxml = xmlnode.findall(".//ModelCraft")
     acornNodes = xmlnode.findall(".//acorn")
     mrbumpNodes = xmlnode.findall(".//mrbump_model_prep")
@@ -145,20 +142,6 @@ class dr_mr_modelbuild_pipeline_report(Report):
     elif len(refxml)>0:
         refsg1 = refxml[0]
 
-    if len(buccxml)>1:
-        treeSG1 = copy.deepcopy(xmlnode)
-        treeSG1.findall(".//BuccaneerBuildRefineResult")[0].attrib["myid"] = "sg1"
-        treeSG1.findall(".//BuccaneerBuildRefineResult")[1].attrib["myid"] = "sg2"
-        self.remove_siblings_of("myid","sg1",treeSG1)
-        buccsg1 = treeSG1.findall(".//BuccaneerBuildRefineResult")[0]
-        treeSG2 = copy.deepcopy(xmlnode)
-        treeSG2.findall(".//BuccaneerBuildRefineResult")[0].attrib["myid"] = "sg1"
-        treeSG2.findall(".//BuccaneerBuildRefineResult")[1].attrib["myid"] = "sg2"
-        self.remove_siblings_of("myid","sg2",treeSG2)
-        buccsg2 = treeSG2.findall(".//BuccaneerBuildRefineResult")[0]
-    elif len(buccxml)>0:
-        buccsg1 = buccxml[0]
-
     summaryDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
 
     originalText = ""
@@ -172,6 +155,7 @@ class dr_mr_modelbuild_pipeline_report(Report):
         else:
             summaryDiv.addText(text='Because of this the pipeline has been run for both enantiomers: '+best_sg+" and "+self.otherSG)
             summaryDiv.addDiv(style="width:100%;border-width: 0px; clear:both; margin:0px; padding:0px;")
+            # TODO: This will break without the old Buccaneer pipeline
             rfactors = xmlnode.findall('.//BuccaneerBuildRefineResult/FinalStatistics/r_factor')
             r0 = rfactors[0].text
             r1 = rfactors[1].text
@@ -324,7 +308,7 @@ class dr_mr_modelbuild_pipeline_report(Report):
 
     if refmacdone:
       summaryDivRef = self.addDiv(xmlnode=refsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-      if not acorndone and not buccdone and not modelcraftdone:
+      if not acorndone and not modelcraftdone:
           summaryfold = summaryDivRef.addFold(label='Refinement'+originalText, brief='Refinement', initiallyOpen=True)
       else:
           summaryfold = summaryDivRef.addFold(label='Refinement'+originalText, brief='Refinement', initiallyOpen=False)
@@ -343,7 +327,7 @@ class dr_mr_modelbuild_pipeline_report(Report):
 
     if acorndone:
         summaryDivAcorn = self.addDiv( xmlnode=acornsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-        if not buccdone and not modelcraftdone:
+        if not modelcraftdone:
             summaryfold = summaryDivAcorn.addFold(label='Phase refinement'+originalText, brief='Phase refinement', initiallyOpen=True)
         else:
             summaryfold = summaryDivAcorn.addFold(label='Phase refinement'+originalText, brief='Phase refinement', initiallyOpen=False)
@@ -385,31 +369,6 @@ class dr_mr_modelbuild_pipeline_report(Report):
             self.mcreport.add_graph(parent=summaryfold)
         clearingDiv = summaryfold.addDiv(style="clear:both;")
 
-    if buccdone:
-        summaryDivBucc = self.addDiv(xmlnode=buccsg1,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-        summaryfold = summaryDivBucc.addFold(label='Buccaneer autobuild'+originalText, brief='Buccaneer', initiallyOpen=len(buccxml)<2)
-        summaryfold.append("<p>Results for Automated Model Building with Buccaneer</p>")
-        self.buccreport = buccaneer_build_refine_mr_report.bucref_report(xmlnode=buccsg1, jobStatus='nooutput')
-        if jobStatus in ['Running','Running remotely']:
-          self.buccreport.runningText(summaryfold)
-          self.buccreport.summaryTable(summaryfold)
-          self.buccreport.completenessGraph(summaryfold, 400, 265)
-          clearingDiv = summaryfold.addDiv(style="clear:both;")
-        else:
-          results = self.buccreport.addResults()
-          self.buccreport.finishedText(summaryfold)
-          print("Call table1(1)")
-          self.buccreport.table1(summaryfold)
-          self.buccreport.completenessGraph(summaryfold, 450, 300)
-          clearingDiv = summaryfold.addDiv(style="clear:both;")
-          self.buccreport.details(summaryfold)
-          clearingDiv = summaryfold.addDiv(style="clear:both;")
-          self.buccreport.alignment()
-          clearingDiv = summaryfold.addDiv(style="clear:both;")
-#FIXME - XML PICTURE
-          #self.buccreport.picture(summaryfold)
-          clearingDiv = summaryfold.addDiv(style="clear:both;")
-
     if len(molrepdoneNodes)>1:
             summaryDivMolrep = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
             if len(sheetbendNodes)<2:
@@ -448,20 +407,14 @@ class dr_mr_modelbuild_pipeline_report(Report):
 
     if len(refxml)>1:
           summaryDivRef2 = self.addDiv(xmlnode=refsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-          if len(acornNodes)<2 and len(buccxml)<2:
-              summaryfold = summaryDivRef2.addFold(label='Refinement'+otherText, brief='Refinement', initiallyOpen=True)
-          else:
-              summaryfold = summaryDivRef2.addFold(label='Refinement'+otherText, brief='Refinement', initiallyOpen=False)
+          summaryfold = summaryDivRef2.addFold(label='Refinement'+otherText, brief='Refinement', initiallyOpen=False)
           self.ref_report2 = MyRefmacReport(xmlnode=refsg2, jobStatus=self.jobStatus)
           self.ref_report2.addSummary(xmlnode=refsg2,parent=summaryfold)
           clearingDiv = summaryfold.addDiv(style="clear:both;")
 
     if len(acornNodes)>1:
             summaryDivAcorn2 = self.addDiv( xmlnode=acornsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-            if len(buccxml)<2:
-                summaryfold = summaryDivAcorn2.addFold(label='Phase refinement'+otherText, brief='Phase refinement', initiallyOpen=True)
-            else:
-                summaryfold = summaryDivAcorn2.addFold(label='Phase refinement'+otherText, brief='Phase refinement', initiallyOpen=False)
+            summaryfold = summaryDivAcorn2.addFold(label='Phase refinement'+otherText, brief='Phase refinement', initiallyOpen=True)
             summaryfold.append("<p>Results for Acorn Run</p>")
             graph_height = 300
             graph_width = 500
@@ -481,26 +434,3 @@ class dr_mr_modelbuild_pipeline_report(Report):
             l.append('label','Correlation Coefficient')
             l.append('colour','teal')
             summaryDivAcorn.addDiv(style="width:100%;border-width: 0px; border-color: black; clear:both; margin:0px; padding:0px;")
-
-    if len(buccxml)>1:
-            summaryDivBucc2 = self.addDiv(xmlnode=buccsg2,style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
-            summaryfold2 = summaryDivBucc2.addFold(label='Buccaneer autobuild'+otherText, brief='Buccaneer', initiallyOpen=jobStatus in ['Running','Running remotely'])
-            summaryfold2.append("<p>Results for Automated Model Building with Buccaneer</p>")
-            self.buccreport2 = buccaneer_build_refine_mr_report.bucref_report(xmlnode=buccsg2, jobStatus='nooutput')
-            if jobStatus in ['Running','Running remotely']:
-              self.buccreport2.runningText(summaryfold2)
-              self.buccreport2.summaryTable(summaryfold2)
-              self.buccreport2.completenessGraph(summaryfold2, 400, 265)
-              clearingDiv = summaryfold2.addDiv(style="clear:both;")
-            else:
-              results = self.buccreport2.addResults()
-              self.buccreport2.finishedText(summaryfold2)
-              print("Call table1(2)")
-              self.buccreport2.table1(summaryfold2)
-              self.buccreport2.completenessGraph(summaryfold2, 450, 300)
-              clearingDiv = summaryfold2.addDiv(style="clear:both;")
-              self.buccreport2.details(summaryfold2)
-              clearingDiv = summaryfold2.addDiv(style="clear:both;")
-              self.buccreport2.alignment()
-              clearingDiv = summaryfold2.addDiv(style="clear:both;")
-              clearingDiv = summaryfold2.addDiv(style="clear:both;")

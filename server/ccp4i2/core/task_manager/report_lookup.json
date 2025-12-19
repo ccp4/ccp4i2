@@ -1025,47 +1025,6 @@
       }
     }
   },
-  "buccaneer_mr": {
-    "module": "wrappers.buccaneer_mr.script.buccaneer_mr_report",
-    "class": "buccaneer_mr_report",
-    "TASKNAME": "buccaneer_mr",
-    "TASKVERSION": "0.0.0",
-    "RUNNING": false,
-    "WATCHED_FILE": null,
-    "FAILED": false,
-    "USEPROGRAMXML": true,
-    "SEPARATEDATA": false,
-    "ERROR_CODES": {
-      "0": {
-        "severity": 0,
-        "description": "OK"
-      },
-      "101": {
-        "description": "Import xrt file does not exist"
-      },
-      "102": {
-        "description": "Failed to read import xrt file"
-      },
-      "103": {
-        "description": "Failed to find insert xrt element in program file"
-      },
-      "104": {
-        "description": "Failed to find insert element in imported xrt file"
-      },
-      "105": {
-        "description": "Failed loading job info for jobId"
-      },
-      "106": {
-        "description": "Failed loading XML file"
-      },
-      "107": {
-        "description": "Failed creating csv file"
-      },
-      "108": {
-        "description": "Failed creating xml data file"
-      }
-    }
-  },
   "acorn": {
     "module": "wrappers.acorn.script.acorn_report",
     "class": "acorn_report",
@@ -4397,47 +4356,6 @@
       }
     }
   },
-  "nautilus_build_refine": {
-    "module": "pipelines.nautilus_build_refine.script.nautilus_build_refine_report",
-    "class": "nautilus_build_refine_report",
-    "TASKNAME": "nautilus_build_refine",
-    "TASKVERSION": "0.0.0",
-    "RUNNING": true,
-    "WATCHED_FILE": null,
-    "FAILED": false,
-    "USEPROGRAMXML": true,
-    "SEPARATEDATA": false,
-    "ERROR_CODES": {
-      "0": {
-        "severity": 0,
-        "description": "OK"
-      },
-      "101": {
-        "description": "Import xrt file does not exist"
-      },
-      "102": {
-        "description": "Failed to read import xrt file"
-      },
-      "103": {
-        "description": "Failed to find insert xrt element in program file"
-      },
-      "104": {
-        "description": "Failed to find insert element in imported xrt file"
-      },
-      "105": {
-        "description": "Failed loading job info for jobId"
-      },
-      "106": {
-        "description": "Failed loading XML file"
-      },
-      "107": {
-        "description": "Failed creating csv file"
-      },
-      "108": {
-        "description": "Failed creating xml data file"
-      }
-    }
-  },
   "LidiaAcedrg": {
     "module": "pipelines.LidiaAcedrg.script.lidiaAcedrg_report",
     "class": "lidiaAcedrg_report",
@@ -5760,47 +5678,6 @@
     "TASKNAME": "ZZPipelineNameZZ",
     "TASKVERSION": "0.0.0",
     "RUNNING": false,
-    "WATCHED_FILE": null,
-    "FAILED": false,
-    "USEPROGRAMXML": true,
-    "SEPARATEDATA": false,
-    "ERROR_CODES": {
-      "0": {
-        "severity": 0,
-        "description": "OK"
-      },
-      "101": {
-        "description": "Import xrt file does not exist"
-      },
-      "102": {
-        "description": "Failed to read import xrt file"
-      },
-      "103": {
-        "description": "Failed to find insert xrt element in program file"
-      },
-      "104": {
-        "description": "Failed to find insert element in imported xrt file"
-      },
-      "105": {
-        "description": "Failed loading job info for jobId"
-      },
-      "106": {
-        "description": "Failed loading XML file"
-      },
-      "107": {
-        "description": "Failed creating csv file"
-      },
-      "108": {
-        "description": "Failed creating xml data file"
-      }
-    }
-  },
-  "buccaneer_build_refine_mr": {
-    "module": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr_report",
-    "class": "bucref_report",
-    "TASKNAME": "buccaneer_build_refine_mr",
-    "TASKVERSION": "0.0.0",
-    "RUNNING": true,
     "WATCHED_FILE": null,
     "FAILED": false,
     "USEPROGRAMXML": true,
