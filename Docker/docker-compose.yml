@@ -4,6 +4,7 @@
 # - Django REST API server
 # - Next.js web client
 # - PostgreSQL database (optional, defaults to SQLite)
+# - Shell container for CCP4 setup/maintenance
 #
 # Prerequisites:
 #   - CCP4 installed locally (path configured in .env)
@@ -21,6 +22,13 @@
 #
 #   # Rebuild after code changes
 #   docker compose -f Docker/docker-compose.yml up --build
+#
+#   # Start shell container for CCP4 setup (interactive)
+#   docker compose -f Docker/docker-compose.yml run --rm shell
+#
+#   # Or start shell in background and attach later
+#   docker compose -f Docker/docker-compose.yml up -d shell
+#   docker compose -f Docker/docker-compose.yml exec shell bash
 
 version: '3.8'
 
@@ -77,6 +85,32 @@ services:
       retries: 3
       start_period: 30s
     restart: unless-stopped
+
+  # Shell container for CCP4 setup and maintenance
+  # Provides an interactive environment matching the server container
+  # with read-write access to the CCP4 data volume
+  shell:
+    build:
+      context: ..
+      dockerfile: Docker/server/Dockerfile
+    profiles:
+      - shell  # Only starts with: docker compose --profile shell up
+    stdin_open: true  # Keep stdin open for interactive use
+    tty: true         # Allocate a pseudo-TTY
+    environment:
+      - CCP4_DATA_PATH=/mnt/ccp4data
+      - CCP4I2_PROJECTS_DIR=/mnt/ccp4data/ccp4i2-projects
+      - DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+    volumes:
+      # Mount CCP4 data directory (READ-WRITE for setup/building)
+      - ${CCP4_DATA_PATH:-./data/ccp4data}:/mnt/ccp4data
+      # Mount projects directory
+      - ${PROJECTS_PATH:-./data/projects}:/mnt/ccp4data/ccp4i2-projects
+      # Mount server code (useful for testing)
+      - ../server:/usr/src/app:ro
+    entrypoint: ["/bin/bash"]
+    command: ["-c", "echo 'CCP4i2 Shell Container Ready. CCP4 data at /mnt/ccp4data'; exec bash"]
 
   # PostgreSQL Database (optional - for production-like setup)
   db:
