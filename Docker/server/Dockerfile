@@ -36,18 +36,18 @@ WORKDIR /usr/src/app
 COPY server/ .
 
 # Install Python dependencies
-# Core Django dependencies
+# Core Django dependencies (quoted to prevent shell interpretation of < >)
 RUN pip install --no-cache-dir \
-    django>=4.2,<5.0 \
-    djangorestframework>=3.14 \
-    django-cors-headers>=4.0 \
-    django-filter>=23.0 \
-    whitenoise>=6.0 \
-    uvicorn>=0.20.0 \
-    gunicorn>=21.0 \
-    psycopg2-binary>=2.9 \
-    dj-database-url>=2.0 \
-    python-dotenv>=1.0
+    "django>=4.2,<5.0" \
+    "djangorestframework>=3.14" \
+    "django-cors-headers>=4.0" \
+    "django-filter>=23.0" \
+    "whitenoise>=6.0" \
+    "uvicorn>=0.20.0" \
+    "gunicorn>=21.0" \
+    "psycopg2-binary>=2.9" \
+    "dj-database-url>=2.0" \
+    "python-dotenv>=1.0"
 
 # Install from pyproject.toml if additional deps needed
 RUN pip install --no-cache-dir -e . 2>/dev/null || true
