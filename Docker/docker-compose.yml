@@ -1,0 +1,106 @@
+# CCP4i2 Docker Compose - Local Development
+#
+# This compose file sets up the full CCP4i2 stack for local development:
+# - Django REST API server
+# - Next.js web client
+# - PostgreSQL database (optional, defaults to SQLite)
+#
+# Prerequisites:
+#   - CCP4 installed locally (path configured in .env)
+#   - Docker and Docker Compose installed
+#
+# Usage:
+#   # Copy example env file and configure
+#   cp Docker/.env.example Docker/.env
+#
+#   # Start all services
+#   docker compose -f Docker/docker-compose.yml up
+#
+#   # Start only server (for Electron client development)
+#   docker compose -f Docker/docker-compose.yml up server
+#
+#   # Rebuild after code changes
+#   docker compose -f Docker/docker-compose.yml up --build
+
+version: '3.8'
+
+services:
+  # Django REST API Server
+  server:
+    build:
+      context: ..
+      dockerfile: Docker/server/Dockerfile
+    ports:
+      - "${SERVER_PORT:-8000}:8000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - DEBUG=${DEBUG:-true}
+      - DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
+      - CCP4_DATA_PATH=/mnt/ccp4data
+      - CCP4I2_PROJECTS_DIR=/mnt/ccp4data/ccp4i2-projects
+      - DATABASE_URL=${DATABASE_URL:-sqlite:////mnt/ccp4data/ccp4i2-projects/ccp4i2.sqlite}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      - USE_GUNICORN=${USE_GUNICORN:-false}
+    volumes:
+      # Mount CCP4 installation (read-only)
+      - ${CCP4_PATH:-/opt/ccp4}:/mnt/ccp4data/ccp4-9:ro
+      # Mount projects directory (read-write)
+      - ${PROJECTS_PATH:-./data/projects}:/mnt/ccp4data/ccp4i2-projects
+      # Mount server code for hot-reload in development
+      - ../server:/usr/src/app:ro
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+  # Next.js Web Client
+  client:
+    build:
+      context: ..
+      dockerfile: Docker/client/Dockerfile
+    ports:
+      - "${CLIENT_PORT:-3000}:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=${API_URL:-http://localhost:8000}
+      - NODE_ENV=${NODE_ENV:-development}
+    depends_on:
+      server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # PostgreSQL Database (optional - for production-like setup)
+  db:
+    image: postgres:15-alpine
+    profiles:
+      - postgres  # Only starts with: docker compose --profile postgres up
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER:-ccp4i2}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-ccp4i2}
+      - POSTGRES_DB=${DB_NAME:-ccp4i2}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ccp4i2}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: ccp4i2-network
