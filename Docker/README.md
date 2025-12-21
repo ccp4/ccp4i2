@@ -106,10 +106,57 @@ ccp4-python -c "import gemmi; print('CCP4 OK')"
 
 ## Azure Files for CCP4 Data
 
-Mount an Azure Files share to your local machine, then use the shell container
-to set up CCP4. The same share can then be mounted by Azure Container Apps.
+Two approaches for setting up CCP4 on Azure Files:
 
-### 1. Mount Azure Files Locally (macOS)
+1. **AzCopy (Recommended)**: Untar locally, then use azcopy to upload - much faster
+2. **SMB Mount**: Mount the share and work directly - slower but interactive
+
+### Option A: Upload with AzCopy (Recommended)
+
+This is much faster than working over an SMB mount.
+
+#### 1. Configure Azure settings in .env
+
+```bash
+# In Docker/.env, add your Azure configuration:
+AZURE_STORAGE_ACCOUNT=yourstorageaccount
+AZURE_RESOURCE_GROUP=yourresourcegroup
+AZURE_FILE_SHARE=ccp4data
+```
+
+#### 2. Untar CCP4 locally
+
+```bash
+# Extract CCP4 to a local directory
+cd /tmp
+tar xzf ~/Downloads/ccp4-9.0-linux64.tar.gz
+# This creates /tmp/ccp4-9/
+```
+
+#### 3. Upload to Azure Files
+
+```bash
+# From the Docker directory
+cd Docker/azure
+
+# Upload the entire CCP4 directory
+./azcopy-files.sh /tmp/ccp4-9 ccp4-9
+
+# Or use sync mode (faster for subsequent updates)
+./azcopy-files.sh --sync /tmp/ccp4-9 ccp4-9
+```
+
+The script will:
+- Read Azure config from `.env`
+- Log you into Azure if needed
+- Generate a time-limited SAS token
+- Upload files using azcopy (parallel, resumable)
+
+### Option B: Mount Azure Files Locally
+
+For interactive work or small changes, you can mount the share directly.
+
+#### Mount on macOS
 
 ```bash
 # Get storage account key
@@ -125,25 +172,7 @@ mkdir -p /Volumes/ccp4data
 mount_smbfs "//YOUR_STORAGE_ACCOUNT:${STORAGE_KEY}@YOUR_STORAGE_ACCOUNT.file.core.windows.net/ccp4data" /Volumes/ccp4data
 ```
 
-### 2. Configure .env
-
-```bash
-# In Docker/.env
-CCP4_DATA_PATH=/Volumes/ccp4data
-CCP4_PATH=/Volumes/ccp4data/ccp4-9
-```
-
-### 3. Use Shell Container to Set Up CCP4
-
-```bash
-# Start shell with Azure Files mounted
-docker compose -f Docker/docker-compose.yml --profile shell run --rm shell
-
-# Inside container, CCP4 data is at /mnt/ccp4data
-# Install/configure CCP4 here - it persists to Azure Files
-```
-
-### 4. Azure Files Mount (Linux)
+#### Mount on Linux
 
 ```bash
 # Install cifs-utils
@@ -162,6 +191,24 @@ sudo chmod 600 /etc/smbcredentials/ccp4data.cred
 # Mount
 sudo mount -t cifs //YOUR_STORAGE_ACCOUNT.file.core.windows.net/ccp4data /mnt/azure/ccp4data \
   -o credentials=/etc/smbcredentials/ccp4data.cred,serverino,nosharesock,actimeo=30
+```
+
+#### Configure .env for mounted share
+
+```bash
+# In Docker/.env
+CCP4_DATA_PATH=/Volumes/ccp4data  # or /mnt/azure/ccp4data on Linux
+CCP4_PATH=/Volumes/ccp4data/ccp4-9
+```
+
+#### Use Shell Container
+
+```bash
+# Start shell with Azure Files mounted
+docker compose -f Docker/docker-compose.yml --profile shell run --rm shell
+
+# Inside container, CCP4 data is at /mnt/ccp4data
+# Any changes persist to Azure Files
 ```
 
 ## Build Images Individually
