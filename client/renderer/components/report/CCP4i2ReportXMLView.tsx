@@ -18,7 +18,7 @@ export const CCP4i2ReportXMLView = () => {
   const api = useApi();
 
   // Get jobs from job_tree (always current status)
-  const { jobs } = useProject(projectId || 0);
+  const { jobs } = useProject(projectId);
   const jobFromTree = useMemo(() => {
     return jobs?.find((j) => j.id === jobId);
   }, [jobs, jobId]);
