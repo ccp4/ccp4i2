@@ -8,7 +8,7 @@ import { useJob, useProject } from "../../../../utils";
 const JobByIdPage = () => {
   const { id } = useParams();
   const { job } = useJob(parseInt(id as string));
-  const { files } = useProject(job?.project || -1);
+  const { files } = useProject(job?.project);
 
   // Use ref to store the fileIds once determined for a valid job
   const stableFileIds = useRef<number[]>([]);

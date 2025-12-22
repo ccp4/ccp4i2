@@ -67,7 +67,7 @@ function endpointToUrl(ef: EndpointFetch): string {
 }
 
 function isValidEndpoint(ef: EndpointFetch | null | undefined): ef is EndpointFetch {
-  return !!(ef?.id && ef?.type);
+  return !!(ef?.type && ef.id !== null && ef.id !== undefined && ef.id >= 0);
 }
 
 function isValidStringEndpoint(endpoint: string | null | undefined): endpoint is string {
