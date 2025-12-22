@@ -599,8 +599,9 @@ export const usePrevious = <T>(value: T): T | undefined => {
 
 /**
  * Custom hook to fetch and manage project-related data.
+ * Accepts undefined/null to skip fetching until projectId is available.
  */
-export const useProject = (projectId: number): ProjectData => {
+export const useProject = (projectId: number | null | undefined): ProjectData => {
   const api = useApi();
 
   const { data: project, mutate: mutateProject } = api.get_endpoint<Project>({

@@ -12,7 +12,7 @@ export const CCP4i2WhatNext = () => {
   const api = useApi();
   const { jobId } = useCCP4i2Window();
   const { job } = useJob(jobId);
-  const { mutateJobs } = useProject(job?.project || -1);
+  const { mutateJobs } = useProject(job?.project);
   const { customColors } = useTheme();
   const router = useRouter();
   const { setMessage } = usePopcorn();
