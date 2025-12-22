@@ -172,7 +172,7 @@ class servalcat(CPluginScript):
         self.container.outputData.FPHIOUT.annotation.set('Density map (Fourier coeff.)')
         self.container.outputData.FPHIOUT.subType = 1
         self.container.outputData.DIFFPHIOUT.annotation.set('Difference density map (Fourier coeff.)')
-        self.container.outputData.FPHIOUT.subType = 2
+        self.container.outputData.DIFFPHIOUT.subType = 2
         outputFiles = ['FPHIOUT', 'DIFFPHIOUT']
         outputColumns = ['FWT,PHWT', 'DELFWT,PHDELWT']
 
