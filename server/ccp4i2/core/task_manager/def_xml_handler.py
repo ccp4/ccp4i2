@@ -405,8 +405,23 @@ class DefXmlParser:
                     continue
 
                 if isinstance(value, dict):
-                    # Complex default - store in metadata
+                    # Complex default - store in metadata AND apply to object attributes
+                    # This handles cases like CPdbDataFile with:
+                    #   <default><subType>1</subType><contentFlag>2</contentFlag></default>
+                    # These attributes need to be set on the object for fileExtensions() to work
                     metadata.default = value
+                    for attr_name, attr_value in value.items():
+                        if hasattr(obj, attr_name):
+                            try:
+                                attr = getattr(obj, attr_name)
+                                if hasattr(attr, 'set'):
+                                    attr.set(attr_value)
+                                elif hasattr(attr, 'value'):
+                                    attr.value = attr_value
+                                else:
+                                    setattr(obj, attr_name, attr_value)
+                            except Exception as e:
+                                print(f"Error setting default {attr_name}={attr_value}: {e}")
                 else:
                     # Simple default - set the value and metadata
                     metadata.default = value
