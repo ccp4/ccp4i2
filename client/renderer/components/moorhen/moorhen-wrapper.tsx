@@ -155,7 +155,8 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
       const url = `/api/proxy/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
-      const isDiffMap = fileInfo.sub_type !== 1 || false;
+      // subType: 1=normal, 2=difference, 3=anomalous difference
+      const isDiffMap = fileInfo.sub_type === 2;
       await fetchMap(url, molName, isDiffMap);
     } else if (fileInfo.type === "application/refmac-dictionary") {
       const url = `/api/proxy/files/${fileId}/download/`;
