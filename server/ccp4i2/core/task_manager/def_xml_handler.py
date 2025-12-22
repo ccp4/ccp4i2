@@ -406,7 +406,7 @@ class DefXmlParser:
 
                 if isinstance(value, dict):
                     # Complex default - store in metadata AND apply to object attributes
-                    # This handles cases like CPdbDataFile with:
+                    # This handles cases like CPdbDataFile/CMapCoeffsDataFile with:
                     #   <default><subType>1</subType><contentFlag>2</contentFlag></default>
                     # These attributes need to be set on the object for fileExtensions() to work
                     metadata.default = value

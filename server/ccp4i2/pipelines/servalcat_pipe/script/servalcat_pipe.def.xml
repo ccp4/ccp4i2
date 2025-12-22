@@ -569,30 +569,35 @@
             <content id="VALIDATE_IRIS">
                <className>CBoolean</className>
                <qualifiers>
+                  <guiLabel>Run Iris validation</guiLabel>
                   <default>True</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_BAVERAGE">
                <className>CBoolean</className>
                <qualifiers>
+                  <guiLabel>Summarise B-factor data</guiLabel>
                   <default>False</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_RAMACHANDRAN">
                <className>CBoolean</className>
                <qualifiers>
+                  <guiLabel>Generate Ramachandran plots</guiLabel>
                   <default>True</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_MOLPROBITY">
                <className>CBoolean</className>
                <qualifiers>
+                  <guiLabel>Run MolProbity validation</guiLabel>
                   <default>True</default>
                </qualifiers>
             </content>
             <content id="RUN_ADP_ANALYSIS">
                <className>CBoolean</className>
                <qualifiers>
+                  <guiLabel>Run ADP analysis</guiLabel>
                   <default>True</default>
                </qualifiers>
             </content>

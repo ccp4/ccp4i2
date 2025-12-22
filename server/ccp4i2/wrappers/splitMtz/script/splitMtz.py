@@ -185,6 +185,37 @@ class splitMtz(CPluginScript):
             # For Obs and Phs, use contentFlag directly
             return TYPE_DESCRIPTORS.get((group_type, content_flag), group_type), None
 
+    def _get_canonical_column_mapping(self, group_type, content_flag, column_labels):
+        """
+        Get column mapping to canonical names for mini-MTZ files.
+
+        Phase files (Phs) must have canonical column names for downstream
+        processing by tools like chltofom and phase converters.
+
+        Returns:
+            dict: Mapping from original column names to canonical names
+        """
+        if group_type == 'Phs':
+            # Phase data must have canonical column names
+            if content_flag == 1:  # HL format
+                canonical = ['HLA', 'HLB', 'HLC', 'HLD']
+            elif content_flag == 2:  # PHIFOM format
+                canonical = ['PHI', 'FOM']
+            else:
+                # Unknown content flag - keep original names
+                return {col: col for col in column_labels}
+
+            # Map input columns to canonical names in order
+            if len(column_labels) == len(canonical):
+                return {orig: canon for orig, canon in zip(column_labels, canonical)}
+            else:
+                # Column count mismatch - keep original names
+                print(f'Warning: Expected {len(canonical)} columns for Phs contentFlag={content_flag}, got {len(column_labels)}')
+                return {col: col for col in column_labels}
+
+        # For other types, keep original names
+        return {col: col for col in column_labels}
+
     def _split_column_group(self, input_mtz, input_basename, group, column_labels, group_type, output_cls, out):
         """Split a single column group and create output file."""
         # Build output filename from dataset and column names
@@ -195,15 +226,15 @@ class splitMtz(CPluginScript):
         output_filename = output_filename.replace('(', '').replace(')', '')
         output_path = os.path.join(self.workDirectory, output_filename)
 
-        # Create column mapping (keep same names)
-        column_mapping = {col: col for col in column_labels}
-
-        # Get content flag
+        # Get content flag first (needed for column mapping)
         content_flag = group.contentFlag
         if hasattr(content_flag, 'value'):
             content_flag = content_flag.value
         if hasattr(content_flag, '__int__'):
             content_flag = int(content_flag)
+
+        # Get column mapping (may rename to canonical names for Phs type)
+        column_mapping = self._get_canonical_column_mapping(group_type, content_flag, column_labels)
 
         # Get type descriptor and inferred subtype (for MapCoeffs)
         type_descriptor, inferred_subtype = self._get_type_descriptor(
