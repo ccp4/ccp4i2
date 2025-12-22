@@ -906,7 +906,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
     endpoint: "def_xml",
   });
 
-  const { mutateJobs } = useProject(job?.project || 0);
+  const { mutateJobs } = useProject(job?.project);
   const { setIntent, setIntentForPath, clearIntentForPath } = useParameterChangeIntent();
 
   // Memoized functions

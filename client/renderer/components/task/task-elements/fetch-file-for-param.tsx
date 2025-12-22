@@ -41,7 +41,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
 
   const { jobId, cootModule } = useCCP4i2Window();
   const { job, uploadFileParam } = useJob(jobId);
-  const { mutateJobs, mutateFiles } = useProject(job?.project || 0);
+  const { mutateJobs, mutateFiles } = useProject(job?.project);
 
   const [mode, setMode] = useState<string | null>(null);
 

@@ -76,7 +76,7 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
   const { customColors } = useTheme();
   const { mode } = useTheme();
   const { processedErrors } = useRunCheck();
-  const { validation } = useJob(job?.id ?? 0);
+  const { validation } = useJob(job?.id);
   const { devMode } = useCCP4i2Window();
   const api = useApi();
 
