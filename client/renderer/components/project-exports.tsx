@@ -83,7 +83,7 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
   const api = useApi();
   const { projectId } = useCCP4i2Window();
 
-  const { project } = useProject(projectId || 0);
+  const { project } = useProject(projectId);
 
   // Use centralized API hook for directory fetching
   const { data: directory, mutate: mutateDirectory } = api.projectDirectory(

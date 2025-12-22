@@ -24,7 +24,7 @@ interface CCP4i2ReportFileProps extends CCP4i2ReportElementProps {
 export const CCP4i2ReportFile: React.FC<CCP4i2ReportFileProps> = (props) => {
   const api = useApi();
   const { projectId } = useCCP4i2Window();
-  const { files, mutateFiles } = useProject(projectId || 0);
+  const { files, mutateFiles } = useProject(projectId);
   const file = useMemo(
     () => (files ?? []).find((f) => f.uuid === props.uuid),
     [files, props.uuid]

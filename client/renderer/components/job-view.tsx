@@ -31,7 +31,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   const api = useApi();
 
   // Get project and jobs list first (from job_tree - always up to date)
-  const { project, jobs, mutateJobs } = useProject(projectId || 0);
+  const { project, jobs, mutateJobs } = useProject(projectId);
 
   // Find job status from jobs array (consistent with jobs list icons)
   const jobFromTree = useMemo(() => {

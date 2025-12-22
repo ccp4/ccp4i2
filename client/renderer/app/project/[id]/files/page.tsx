@@ -17,7 +17,7 @@ export default function FilesPage({
   const api = useApi();
   const { id } = use(params);
   const { data: project } = api.get<Project>(`projects/${id}`);
-  const { files, mutateFiles } = useProject(parseInt(id || "0"));
+  const { files, mutateFiles } = useProject(id ? parseInt(id) : undefined);
   const { setMessage } = usePopcorn();
 
   async function importFiles(event: ChangeEvent<HTMLInputElement>) {
