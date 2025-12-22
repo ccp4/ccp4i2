@@ -594,6 +594,20 @@ class ParamsXmlHandler:
                 # Otherwise, it's a simple text value
                 if child.text is not None:
                     value = child.text.strip()
+
+                    # Skip importing contentFlag=0 from params.xml when DEF has set a non-zero value
+                    # This prevents old params.xml files (with contentFlag=0) from overwriting
+                    # the correct DEF default (e.g., contentFlag=2 for mmCIF files like CIFFILE)
+                    # Legacy params.xml files always had contentFlag=0 because the DEF default
+                    # wasn't being applied properly before the fix.
+                    if attr_name == 'contentFlag' and value == '0':
+                        existing_attr = getattr(param, attr_name, None)
+                        if existing_attr is not None:
+                            current_value = getattr(existing_attr, 'value', existing_attr)
+                            if current_value and current_value != 0:
+                                # Don't overwrite non-zero DEF default with zero from old params.xml
+                                continue
+
                     # Set attribute if it exists
                     if hasattr(param, attr_name):
                         # Convert to appropriate type if needed
