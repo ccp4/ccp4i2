@@ -102,26 +102,75 @@ case "$1" in
         docker compose -f "$COMPOSE_FILE" ps
         ;;
     mount)
-        # Mount Azure Files share on macOS using Finder
+        # Mount Azure Files share on macOS
         if [ -z "$AZURE_STORAGE_ACCOUNT" ]; then
             echo "Error: AZURE_STORAGE_ACCOUNT not set in .env"
             echo "Add: AZURE_STORAGE_ACCOUNT=your_storage_account_name"
             exit 1
         fi
+
+        # Check if already mounted
+        if mount | grep -q "$AZURE_MOUNT_POINT"; then
+            echo "Azure Files share already mounted at $AZURE_MOUNT_POINT"
+            exit 0
+        fi
+
         echo "Mounting Azure Files share..."
         echo "Storage Account: $AZURE_STORAGE_ACCOUNT"
         echo "Share: $AZURE_SHARE_NAME"
         echo "Mount Point: $AZURE_MOUNT_POINT"
         echo ""
-        echo "Opening Finder to mount SMB share..."
-        echo "You will be prompted for credentials:"
-        echo "  Username: $AZURE_STORAGE_ACCOUNT"
-        echo "  Password: Your storage account key"
-        echo ""
-        open "smb://${AZURE_STORAGE_ACCOUNT}.file.core.windows.net/${AZURE_SHARE_NAME}"
-        echo ""
-        echo "After mounting, the share will be available at: $AZURE_MOUNT_POINT"
-        echo "Update CCP4_DATA_PATH in .env to: $AZURE_MOUNT_POINT"
+
+        # Check for Azure CLI
+        if ! command -v az &> /dev/null; then
+            echo "Error: Azure CLI (az) not found"
+            echo "Install with: brew install azure-cli"
+            echo "Then login with: az login"
+            exit 1
+        fi
+
+        # Retrieve storage account key from Azure
+        echo "Retrieving storage account key from Azure..."
+        STORAGE_KEY=$(az storage account keys list \
+            --account-name "$AZURE_STORAGE_ACCOUNT" \
+            --query '[0].value' \
+            --output tsv 2>/dev/null)
+
+        if [ -z "$STORAGE_KEY" ]; then
+            echo "Error: Failed to retrieve storage account key"
+            echo "Make sure you're logged in: az login"
+            echo "And have access to storage account: $AZURE_STORAGE_ACCOUNT"
+            exit 1
+        fi
+
+        echo "Retrieved storage key successfully"
+
+        # Create mount point if it doesn't exist
+        if [ ! -d "$AZURE_MOUNT_POINT" ]; then
+            echo "Creating mount point: $AZURE_MOUNT_POINT"
+            mkdir -p "$AZURE_MOUNT_POINT"
+        fi
+
+        # Mount using mount_smbfs on macOS
+        echo "Mounting SMB share..."
+        # URL-encode the storage key (replace special chars)
+        ENCODED_KEY=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$STORAGE_KEY', safe=''))")
+
+        # Mount with current user permissions so Docker can access it
+        # -f 755 sets directory permissions, -d 755 sets file permissions
+        mount_smbfs -f 0755 -d 0755 "//${AZURE_STORAGE_ACCOUNT}:${ENCODED_KEY}@${AZURE_STORAGE_ACCOUNT}.file.core.windows.net/${AZURE_SHARE_NAME}" "$AZURE_MOUNT_POINT"
+
+        if [ $? -eq 0 ]; then
+            echo ""
+            echo "Successfully mounted Azure Files share at: $AZURE_MOUNT_POINT"
+            echo "CCP4_DATA_PATH in .env is set to: $CCP4_DATA_PATH"
+        else
+            echo ""
+            echo "Mount failed. You can try mounting manually via Finder:"
+            open "smb://${AZURE_STORAGE_ACCOUNT}.file.core.windows.net/${AZURE_SHARE_NAME}"
+            echo "Username: $AZURE_STORAGE_ACCOUNT"
+            echo "Password: (use storage account key)"
+        fi
         ;;
     unmount)
         if [ -d "$AZURE_MOUNT_POINT" ]; then

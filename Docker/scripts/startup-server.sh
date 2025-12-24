@@ -45,19 +45,46 @@ else
 fi
 
 # Setup CCP4 environment if available
-CCP4_SETUP_SCRIPT="$CCP4_DATA_PATH/ccp4-9/bin/ccp4.setup-sh"
-if [ -f "$CCP4_SETUP_SCRIPT" ]; then
-    echo "Sourcing CCP4 environment from $CCP4_SETUP_SCRIPT"
-    . "$CCP4_SETUP_SCRIPT"
-    export CCP4_PYTHON="$CCP4_DATA_PATH/ccp4-9/bin/ccp4-python"
+# Use CCP4_VERSION env var if set, otherwise auto-detect
+CCP4_VERSION=${CCP4_VERSION:-""}
+CCP4_DIR=""
+
+if [ -n "$CCP4_VERSION" ]; then
+    # Explicit version specified
+    CCP4_DIR="$CCP4_DATA_PATH/$CCP4_VERSION"
+    if [ ! -d "$CCP4_DIR" ]; then
+        echo "WARNING: Specified CCP4_VERSION=$CCP4_VERSION not found at $CCP4_DIR"
+        CCP4_DIR=""
+    fi
+else
+    # Auto-detect CCP4 installation
+    for dir in "$CCP4_DATA_PATH"/ccp4-*; do
+        if [ -d "$dir" ] && [ -f "$dir/bin/ccp4.setup-sh" ]; then
+            CCP4_DIR="$dir"
+            break
+        fi
+    done
+fi
+
+if [ -n "$CCP4_DIR" ] && [ -f "$CCP4_DIR/bin/ccp4.setup-sh" ]; then
+    echo "Sourcing CCP4 environment from $CCP4_DIR/bin/ccp4.setup-sh"
+    # Source without set -e to handle missing optional components (like arp_warp)
+    set +e
+    . "$CCP4_DIR/bin/ccp4.setup-sh"
+    set -e
+    export CCP4_PYTHON="$CCP4_DIR/bin/ccp4-python"
 
     # Ensure app paths are at front of PYTHONPATH
     export PYTHONPATH="/usr/src/app:$PYTHONPATH"
-    echo "CCP4 environment configured"
+    echo "CCP4 environment configured (CCP4=$CCP4_DIR)"
 else
-    echo "WARNING: CCP4 not found at $CCP4_SETUP_SCRIPT"
+    echo "WARNING: CCP4 not found in $CCP4_DATA_PATH"
     echo "Job execution will not work without CCP4"
 fi
+
+# Determine which Python to use - prefer ccp4-python if available
+DJANGO_PYTHON="${CCP4_PYTHON:-python}"
+echo "Using $DJANGO_PYTHON for Django server"
 
 # Ensure projects directory exists
 mkdir -p "$CCP4I2_PROJECTS_DIR"
@@ -67,11 +94,11 @@ cd /usr/src/app
 
 # Run migrations
 echo "Running Django migrations..."
-python manage.py migrate --run-syncdb
+$DJANGO_PYTHON manage.py migrate --run-syncdb
 
 # Collect static files (for admin interface)
 echo "Collecting static files..."
-python manage.py collectstatic --noinput 2>/dev/null || true
+$DJANGO_PYTHON manage.py collectstatic --noinput 2>/dev/null || true
 
 # Print configuration summary
 echo ""
@@ -80,7 +107,7 @@ echo "CCP4_DATA_PATH: $CCP4_DATA_PATH"
 echo "CCP4I2_PROJECTS_DIR: $CCP4I2_PROJECTS_DIR"
 echo "DJANGO_SETTINGS_MODULE: $DJANGO_SETTINGS_MODULE"
 echo "PORT: $PORT"
-echo "CCP4 Available: $([ -f "$CCP4_SETUP_SCRIPT" ] && echo 'Yes' || echo 'No')"
+echo "CCP4 Available: $([ -n "$CCP4_DIR" ] && echo "Yes ($CCP4_DIR)" || echo 'No')"
 echo "============================="
 echo ""
 
@@ -89,7 +116,7 @@ echo "Starting Django server on port $PORT..."
 
 if [ "${USE_GUNICORN:-true}" = "true" ]; then
     # Production: gunicorn with uvicorn workers
-    exec python -m gunicorn asgi:application \
+    exec $DJANGO_PYTHON -m gunicorn asgi:application \
         -b 0.0.0.0:$PORT \
         --worker-class uvicorn.workers.UvicornWorker \
         --workers ${WORKERS:-2} \
@@ -100,7 +127,7 @@ if [ "${USE_GUNICORN:-true}" = "true" ]; then
         --error-logfile -
 else
     # Development: uvicorn directly with reload
-    exec python -m uvicorn asgi:application \
+    exec $DJANGO_PYTHON -m uvicorn asgi:application \
         --host 0.0.0.0 \
         --port $PORT \
         --reload

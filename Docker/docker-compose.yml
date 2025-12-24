@@ -43,16 +43,17 @@ services:
       - DEBUG=${DEBUG:-true}
       - DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
       - CCP4_DATA_PATH=/mnt/ccp4data
-      - CCP4I2_PROJECTS_DIR=/mnt/ccp4data/ccp4i2-projects
-      - DATABASE_URL=${DATABASE_URL:-sqlite:////mnt/ccp4data/ccp4i2-projects/ccp4i2.sqlite}
+      - CCP4_VERSION=${CCP4_VERSION:-ccp4-9}
+      - CCP4I2_PROJECTS_DIR=/mnt/projects
+      - DATABASE_URL=${DATABASE_URL:-sqlite:////mnt/projects/ccp4i2.sqlite}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
       - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
       - USE_GUNICORN=${USE_GUNICORN:-false}
     volumes:
       # Mount CCP4 installation (read-only)
-      - ${CCP4_PATH:-/opt/ccp4}:/mnt/ccp4data/ccp4-9:ro
-      # Mount projects directory (read-write)
-      - ${PROJECTS_PATH:-./data/projects}:/mnt/ccp4data/ccp4i2-projects
+      - ${CCP4_PATH:-/opt/ccp4}:/mnt/ccp4data/${CCP4_VERSION:-ccp4-9}:ro
+      # Mount projects directory (read-write, separate from ccp4data)
+      - ${PROJECTS_PATH:-./data/projects}:/mnt/projects
       # Mount server code for hot-reload in development
       - ../server:/usr/src/app:ro
     healthcheck:
@@ -97,18 +98,18 @@ services:
     tty: true         # Allocate a pseudo-TTY
     environment:
       - CCP4_DATA_PATH=/mnt/ccp4data
-      - CCP4I2_PROJECTS_DIR=/mnt/ccp4data/ccp4i2-projects
+      - CCP4I2_PROJECTS_DIR=/mnt/projects
       - DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
       - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
     volumes:
       # Mount CCP4 data directory (READ-WRITE for setup/building)
       - ${CCP4_DATA_PATH:-./data/ccp4data}:/mnt/ccp4data
-      # Mount projects directory
-      - ${PROJECTS_PATH:-./data/projects}:/mnt/ccp4data/ccp4i2-projects
+      # Mount projects directory (separate from ccp4data to avoid permission issues)
+      - ${PROJECTS_PATH:-./data/projects}:/mnt/projects
       # Mount server code (useful for testing)
       - ../server:/usr/src/app:ro
     entrypoint: ["/bin/bash"]
-    command: ["-c", "echo 'CCP4i2 Shell Container Ready. CCP4 data at /mnt/ccp4data'; exec bash"]
+    command: ["-c", "echo 'CCP4i2 Shell Container Ready. CCP4 data at /mnt/ccp4data, projects at /mnt/projects'; exec bash"]
 
   # PostgreSQL Database (optional - for production-like setup)
   db:

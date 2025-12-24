@@ -33,6 +33,9 @@ param dbPassword string
 @secure()
 param secretKey string
 
+@description('CCP4 version directory name (e.g., ccp4-9, ccp4-20251105)')
+param ccp4Version string = 'ccp4-9'
+
 // Log Analytics Workspace
 resource logAnalytics 'Microsoft.OperationalInsights/workspaces@2022-10-01' = {
   name: '${baseName}-logs'
@@ -237,6 +240,10 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'CCP4_DATA_PATH'
               value: '/mnt/ccp4data'
+            }
+            {
+              name: 'CCP4_VERSION'
+              value: ccp4Version
             }
             {
               name: 'CCP4I2_PROJECTS_DIR'
