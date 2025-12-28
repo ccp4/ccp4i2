@@ -1,5 +1,4 @@
 import gemmi
-from Bio import SeqIO
 from pathlib import Path
 
 
@@ -41,7 +40,9 @@ def detect_file_type(file_path):
         pass
 
     # Try detecting a sequence file (FASTA, PIR, etc.) using BioPython
+    # Import lazily to avoid numpy dependency at module load time
     try:
+        from Bio import SeqIO
         with path.open("r") as handle:
             for record in SeqIO.parse(handle, "fasta"):
                 return "FASTA file"
@@ -49,6 +50,7 @@ def detect_file_type(file_path):
         pass
 
     try:
+        from Bio import SeqIO
         with path.open("r") as handle:
             for record in SeqIO.parse(handle, "pir"):
                 return "PIR file"

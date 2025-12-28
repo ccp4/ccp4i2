@@ -15,7 +15,8 @@ from ccp4i2.core.CCP4ModelData import CPdbDataFile, CDictDataFile, CAsuDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
 # stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
 from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
-from ccp4i2.pipelines.import_merged.script import mmcifutils
+# mmcifutils imported lazily in digest_cgenericrefldatafile_file_object to avoid
+# numpy dependency at module load time (numpy in py-packages may be incompatible)
 from ..containers.find_objects import find_objects
 from ..containers.get_container import get_job_container
 from ..containers.json_encoder import CCP4i2JsonEncoder
@@ -504,6 +505,8 @@ def digest_cgenericrefldatafile_file_object(file_object: CGenericReflDataFile):
         content_dict["freerWarnings"] = []
 
         if file_object.getFormat() == "mmcif":
+            # Lazy import to avoid loading numpy at Django startup
+            from ccp4i2.pipelines.import_merged.script import mmcifutils
             mmcif = gemmi.cif.read_file(file_object.fullPath.__str__())
             rblocks = gemmi.as_refln_blocks(mmcif)
             rblock_infos = []

@@ -74,8 +74,13 @@ if [ -n "$CCP4_DIR" ] && [ -f "$CCP4_DIR/bin/ccp4.setup-sh" ]; then
     set -e
     export CCP4_PYTHON="$CCP4_DIR/bin/ccp4-python"
 
-    # Ensure app paths are at front of PYTHONPATH
-    export PYTHONPATH="/usr/src/app:$PYTHONPATH"
+    # Get the container's site-packages directory (where psycopg2-binary is installed)
+    CONTAINER_SITE_PACKAGES=$(python3 -c "import site; print(site.getsitepackages()[0])")
+
+    # Ensure container site-packages and app paths are at front of PYTHONPATH
+    # This ensures container-installed packages (like psycopg2-binary) take precedence
+    # over CCP4's py-packages which may have incompatible binary modules
+    export PYTHONPATH="/usr/src/app:${CONTAINER_SITE_PACKAGES}:$PYTHONPATH"
     echo "CCP4 environment configured (CCP4=$CCP4_DIR)"
 else
     echo "WARNING: CCP4 not found in $CCP4_DATA_PATH"

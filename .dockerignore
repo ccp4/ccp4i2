@@ -1,0 +1,48 @@
+# Exclude client folder (3.3GB) - not needed for server build
+client/
+
+# Exclude Node.js artifacts (can be anywhere)
+**/node_modules/
+**/.next/
+
+# Exclude demo data
+server/ccp4i2/demo_data/
+
+# Exclude git history
+.git/
+.gitignore
+
+# Exclude documentation and non-essential directories
+docs/
+tests/
+*.md
+
+# Exclude IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Exclude Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+*.egg
+
+# Exclude Docker azure deployment scripts (not needed in image)
+Docker/azure/
+
+# Exclude local environment files
+.env
+.env.*
+*.local
+
+# Exclude macOS files
+.DS_Store
