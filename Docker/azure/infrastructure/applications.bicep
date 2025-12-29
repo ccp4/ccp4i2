@@ -57,6 +57,14 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
   name: keyVaultName
 }
 
+// Reference existing Container Apps Environment to get its default domain
+resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' existing = {
+  name: last(split(containerAppsEnvironmentId, '/'))
+}
+
+// Internal URL for server (accessible only within the Container Apps environment)
+var serverInternalFqdn = '${serverAppName}.internal.${containerAppsEnvironment.properties.defaultDomain}'
+
 // Server Container App
 resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
   name: serverAppName
@@ -72,7 +80,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
     configuration: {
       activeRevisionsMode: 'Single'
       ingress: {
-        external: true // Changed to allow browser access
+        external: false // Internal only - accessible via web proxy, not directly from internet
         targetPort: 8000
         allowInsecure: true // Allow HTTP for internal VNet communication
         traffic: [
@@ -559,11 +567,11 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
           env: [
             {
               name: 'NEXT_PUBLIC_API_BASE_URL'
-              value: 'http://${serverAppName}'
+              value: 'http://${serverInternalFqdn}'
             }
             {
               name: 'API_BASE_URL'
-              value: 'http://${serverAppName}'
+              value: 'http://${serverInternalFqdn}'
             }
             {
               name: 'NEXT_PUBLIC_AAD_CLIENT_ID'
@@ -664,6 +672,6 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
 // }
 
 // Outputs
-output serverUrl string = 'https://${serverApp.properties.configuration.ingress.fqdn}'
+output serverInternalUrl string = 'http://${serverAppName}' // Internal only - no public URL
 output webUrl string = 'https://${webApp.properties.configuration.ingress.fqdn}'
 output workerAppName string = workerApp.name
