@@ -8,6 +8,8 @@
  * - Automatic /api/proxy/ prefix for relative API endpoints
  */
 
+import { getAccessToken } from "./utils/auth-token";
+
 /**
  * Configuration for API requests
  */
@@ -77,6 +79,15 @@ async function coreFetch(
   const headers: Record<string, string> = {
     ...finalConfig.headers,
   };
+
+  // Inject authentication token if available
+  const token = await getAccessToken();
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+    console.warn("[FETCH] Token injected (length:", token.length, ") for:", normalizedUrl.substring(0, 60));
+  } else {
+    console.warn("[FETCH] No token available for:", normalizedUrl.substring(0, 60));
+  }
 
   // Convert options.headers to Record<string, string> format
   if (options.headers) {
