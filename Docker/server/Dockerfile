@@ -49,6 +49,9 @@ RUN pip install --no-cache-dir \
     "dj-database-url>=2.0" \
     "python-dotenv>=1.0"
 
+# Install Azure integration dependencies
+RUN pip install --no-cache-dir -r requirements-azure.txt
+
 # Install from pyproject.toml if additional deps needed
 RUN pip install --no-cache-dir -e . 2>/dev/null || true
 

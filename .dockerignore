@@ -1,7 +1,6 @@
-# Exclude client folder (3.3GB) - not needed for server build
-client/
-
 # Exclude Node.js artifacts (can be anywhere)
+# Note: client/ is NOT excluded because web builds need it
+# The node_modules and .next exclusions handle most of the size reduction
 **/node_modules/
 **/.next/
 

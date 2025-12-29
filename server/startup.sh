@@ -144,8 +144,8 @@ while [ $WAIT_COUNT -lt $MAX_WAIT ]; do
     export CCP4_PYTHON="$CCP4_DATA_PATH/$CCP4_VERSION/bin/ccp4-python"
     echo "CCP4 environment configured successfully (version: $CCP4_VERSION)"
 
-    # After sourcing CCP4 setup, restore py-packages and app paths at the front
-    export PYTHONPATH="/mnt/ccp4data/py-packages:/usr/src/app:$PYTHONPATH"
+    # After sourcing CCP4 setup, restore version-specific py-packages and app path at the front
+    export PYTHONPATH="/mnt/ccp4data/py-packages-${CCP4_VERSION}:/usr/src/app:$PYTHONPATH"
     echo "PYTHONPATH manually corrected: $PYTHONPATH"
     break
   else
