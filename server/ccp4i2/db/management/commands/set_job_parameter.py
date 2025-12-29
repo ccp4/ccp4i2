@@ -4,6 +4,10 @@ Django management command to set job parameters.
 Usage:
     python manage.py set_job_parameter --jobuuid <uuid> --path "inputData.XYZIN" --value "/path/to/file.pdb"
     python manage.py set_job_parameter --jobid <id> --path "container.parameter" --value "some_value"
+
+    # FileUse syntax - reference files from previous jobs:
+    python manage.py set_job_parameter -pn myproject -jn 5 --path "inputData.XYZIN" --value "[-1].XYZOUT[0]"
+    python manage.py set_job_parameter -pn myproject -jn 5 --path "inputData.HKLIN" --value "refmac[-1].HKLOUT"
 """
 
 import uuid
@@ -11,6 +15,9 @@ import json
 from django.core.management.base import BaseCommand, CommandError
 from ccp4i2.db.models import Job, Project
 from ccp4i2.lib.utils.parameters.set_param import set_parameter
+from ccp4i2.lib.utils.files.resolve_fileuse import (
+    resolve_fileuse, is_fileuse_pattern, parse_fileuse_value
+)
 
 
 class Command(BaseCommand):
@@ -59,6 +66,35 @@ class Command(BaseCommand):
         path = options["path"]
         value_str = options["value"]
         value_type = options["type"]
+
+        # Check if value is a fileUse reference (explicit or auto-detected)
+        is_fileuse = value_str.startswith("fileUse=") or is_fileuse_pattern(value_str)
+
+        if is_fileuse:
+            # Resolve fileUse reference to actual file metadata
+            fileuse_str = parse_fileuse_value(value_str)
+            if not json_output:
+                self.stdout.write(f"Resolving fileUse reference: {fileuse_str}")
+
+            result = resolve_fileuse(the_job.project, fileuse_str)
+            if not result.success:
+                if json_output:
+                    self.stdout.write(json.dumps({
+                        "status": "Failed",
+                        "reason": f"Failed to resolve fileUse: {result.error}"
+                    }))
+                else:
+                    raise CommandError(f"Failed to resolve fileUse: {result.error}")
+                return
+
+            file_data = result.data
+            if not json_output:
+                self.stdout.write(
+                    f"  Resolved to: {file_data.get('baseName')} ({file_data.get('fullPath')})"
+                )
+
+            # Convert to fullPath= format for set_parameter
+            value_str = f"fullPath={file_data.get('fullPath')}"
 
         try:
             if value_type == "int":

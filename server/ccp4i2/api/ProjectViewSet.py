@@ -20,6 +20,7 @@ from ..lib.async_create_job import create_job_async
 from ..lib.utils.navigation.list_project import list_project
 from ..lib.utils.navigation.task_tree import get_task_tree
 from ..lib.utils.files.preview import preview_file
+from ..lib.utils.files.resolve_fileuse import resolve_fileuse, is_fileuse_pattern
 
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.viewsets import ModelViewSet
@@ -866,3 +867,80 @@ class ProjectViewSet(ModelViewSet):
                 {"error": str(e)},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR,
             )
+
+    @action(
+        detail=True,
+        methods=["get", "post"],
+        permission_classes=[],
+        serializer_class=serializers.ProjectSerializer,
+    )
+    def resolve_fileuse(self, request, pk=None):
+        """
+        Resolve a fileUse reference to file metadata.
+
+        FileUse syntax allows referencing files from previous jobs:
+            [-1].XYZOUT[0]              - First XYZOUT from most recent job
+            prosmart_refmac[-1].XYZOUT  - XYZOUT from most recent prosmart_refmac job
+            refmac[-2].HKLOUT[0]        - HKLOUT from second-to-last refmac job
+
+        The jobIndex can be negative (counting from end) or positive (from start).
+
+        GET: Query parameter 'fileuse' contains the reference string
+        POST: JSON body with 'fileuse' key
+
+        Args:
+            request (Request): HTTP request object
+            pk (int): Primary key of the project
+
+        Returns:
+            JsonResponse: File metadata on success:
+                {
+                    "status": "Success",
+                    "data": {
+                        "project": "uuid-without-hyphens",
+                        "baseName": "filename.pdb",
+                        "dbFileId": "file-uuid-without-hyphens",
+                        "relPath": "CCP4_JOBS/job_001",
+                        "fullPath": "/full/path/to/file.pdb"
+                    }
+                }
+
+        Example:
+            GET /api/projects/123/resolve_fileuse/?fileuse=[-1].XYZOUT[0]
+            POST /api/projects/123/resolve_fileuse/
+                {"fileuse": "prosmart_refmac[-1].XYZOUT"}
+        """
+        try:
+            project = models.Project.objects.get(pk=pk)
+
+            # Get fileuse string from request
+            if request.method == "GET":
+                fileuse = request.GET.get("fileuse")
+            else:
+                body = json.loads(request.body.decode("utf-8"))
+                fileuse = body.get("fileuse")
+
+            if not fileuse:
+                return api_error(
+                    "Missing required parameter: 'fileuse'. "
+                    "Example: [-1].XYZOUT[0] or task_name[-1].PARAM",
+                    status=400
+                )
+
+            # Resolve the fileuse reference
+            result = resolve_fileuse(project, fileuse)
+
+            if result.success:
+                return api_success(result.data)
+            else:
+                return api_error(result.error, status=400)
+
+        except models.Project.DoesNotExist:
+            return api_error("Project not found", status=404)
+        except json.JSONDecodeError as e:
+            return api_error(f"Invalid JSON in request body: {e}", status=400)
+        except Exception as e:
+            logger.exception(
+                "Failed to resolve fileuse for project %s", pk, exc_info=e
+            )
+            return api_error(str(e), status=500)

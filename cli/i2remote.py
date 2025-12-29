@@ -14,6 +14,11 @@ This enables:
 - Scripted job submission and monitoring
 
 Usage:
+    i2remote login                        Authenticate with Azure AD (opens browser)
+    i2remote login --device-code          Authenticate using device code (for headless)
+    i2remote logout                       Clear saved credentials
+    i2remote whoami                       Show current authentication status
+
     i2remote projects [list]              List all projects
     i2remote projects create <name>       Create a new project
     i2remote projects show <project>      Show project details
@@ -28,6 +33,9 @@ Usage:
     i2remote jobs status <project> <job>  Show job status
     i2remote jobs wait <project> <job>    Wait for job completion
     i2remote jobs validate <project> <job> Validate output files (uses gemmi)
+    i2remote jobs set-param <project> <job> <param> <value>  Set job parameter
+    i2remote jobs get-param <project> <job> <param>  Get job parameter value
+    i2remote jobs upload-param <project> <job> <param> <file> [col]  Upload file param
 
     i2remote files <project> <job> [list] List files in a job
     i2remote files cat <project> <job> <name>  Display file contents
@@ -44,13 +52,30 @@ Usage:
 Environment Variables:
     CCP4I2_API_URL      Base URL for the CCP4i2 API (required)
     CCP4I2_API_TOKEN    Authentication token (if required)
+    AZURE_CLIENT_ID     Azure AD client ID (for login command)
+    AZURE_TENANT_ID     Azure AD tenant ID (for login command)
 
 Configuration File:
     ~/.ccp4i2remote.json - Persistent configuration
 
+Authentication Methods:
+    1. Browser login (recommended for interactive use):
+       i2remote login
+
+    2. Device code flow (for SSH/headless environments):
+       i2remote login --device-code
+
+    3. Azure CLI (requires az cli installed):
+       export CCP4I2_API_TOKEN=$(az account get-access-token \\
+         --resource <client-id> --query accessToken -o tsv)
+
+    4. Manual token:
+       i2remote config set api_token <your-token>
+
 Examples:
-    # Set remote server
-    export CCP4I2_API_URL=https://myserver.azurecontainerapps.io/api/proxy
+    # Authenticate and set server URL
+    i2remote config set api_url https://myserver.azurecontainerapps.io/api/proxy
+    i2remote login
 
     # List projects
     i2remote projects
@@ -62,6 +87,14 @@ Examples:
     # Wait for completion and check results
     i2remote jobs wait myproject 1
     i2remote jobs kpi myproject 1
+
+    # Set job parameters with file paths
+    i2remote jobs set-param myproject 5 XYZIN fullPath=/path/to/file.pdb
+
+    # Set job parameters using fileUse references (files from previous jobs)
+    i2remote jobs set-param myproject 5 XYZIN '[-1].XYZOUT[0]'        # Last job's XYZOUT
+    i2remote jobs set-param myproject 5 HKLIN 'refmac[-1].HKLOUT'     # Last refmac's HKLOUT
+    i2remote jobs set-param myproject 5 XYZIN 'fileUse=[-2].XYZOUT'   # Explicit fileUse=
 """
 
 import argparse
@@ -89,6 +122,10 @@ CONFIG_FILE = Path.home() / ".ccp4i2remote.json"
 DEFAULT_CONFIG = {
     "api_url": None,
     "api_token": None,
+    "refresh_token": None,
+    "token_expires_at": None,
+    "azure_client_id": None,
+    "azure_tenant_id": None,
     "timeout": 30,
     "verify_ssl": True,
 }
@@ -112,6 +149,10 @@ def load_config() -> dict:
         config["api_url"] = os.environ["CCP4I2_API_URL"]
     if os.environ.get("CCP4I2_API_TOKEN"):
         config["api_token"] = os.environ["CCP4I2_API_TOKEN"]
+    if os.environ.get("AZURE_CLIENT_ID"):
+        config["azure_client_id"] = os.environ["AZURE_CLIENT_ID"]
+    if os.environ.get("AZURE_TENANT_ID"):
+        config["azure_tenant_id"] = os.environ["AZURE_TENANT_ID"]
 
     return config
 
@@ -128,6 +169,217 @@ def save_config(config: dict):
 
 
 CONFIG = load_config()
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Azure AD Authentication
+# ─────────────────────────────────────────────────────────────────────────────
+
+def get_azure_config() -> tuple:
+    """Get Azure AD client and tenant IDs from config or prompt."""
+    client_id = CONFIG.get("azure_client_id")
+    tenant_id = CONFIG.get("azure_tenant_id")
+
+    if not client_id:
+        print("Azure Client ID not configured.")
+        print("Set via: i2remote config set azure_client_id <your-client-id>")
+        print("Or env:  export AZURE_CLIENT_ID=<your-client-id>")
+        sys.exit(1)
+
+    if not tenant_id:
+        print("Azure Tenant ID not configured.")
+        print("Set via: i2remote config set azure_tenant_id <your-tenant-id>")
+        print("Or env:  export AZURE_TENANT_ID=<your-tenant-id>")
+        sys.exit(1)
+
+    return client_id, tenant_id
+
+
+def check_msal_available() -> bool:
+    """Check if MSAL library is available."""
+    try:
+        import msal
+        return True
+    except ImportError:
+        return False
+
+
+def login_interactive(client_id: str, tenant_id: str) -> dict:
+    """
+    Perform interactive browser-based login.
+    Opens a browser window for the user to authenticate.
+    """
+    try:
+        import msal
+    except ImportError:
+        print("Error: MSAL library required for login.", file=sys.stderr)
+        print("Install with: pip install msal", file=sys.stderr)
+        sys.exit(1)
+
+    authority = f"https://login.microsoftonline.com/{tenant_id}"
+    # Use .default scope - works without explicit scope configuration in Azure AD
+    # This requests all statically configured permissions for the app
+    scopes = [f"{client_id}/.default"]
+
+    app = msal.PublicClientApplication(
+        client_id,
+        authority=authority,
+    )
+
+    print("Opening browser for authentication...")
+    print("If browser doesn't open, use: i2remote login --device-code")
+
+    try:
+        # Try interactive login with browser using localhost redirect
+        # MSAL will start a local server to receive the auth code
+        result = app.acquire_token_interactive(
+            scopes=scopes,
+            prompt="select_account",
+        )
+    except Exception as e:
+        print(f"Browser login failed: {e}", file=sys.stderr)
+        print("Try using: i2remote login --device-code", file=sys.stderr)
+        sys.exit(1)
+
+    if "error" in result:
+        print(f"Authentication failed: {result.get('error_description', result.get('error'))}", file=sys.stderr)
+        sys.exit(1)
+
+    return result
+
+
+def login_device_code(client_id: str, tenant_id: str) -> dict:
+    """
+    Perform device code flow login.
+    User visits a URL and enters a code to authenticate.
+    Works in headless/SSH environments.
+    """
+    try:
+        import msal
+    except ImportError:
+        print("Error: MSAL library required for login.", file=sys.stderr)
+        print("Install with: pip install msal", file=sys.stderr)
+        sys.exit(1)
+
+    authority = f"https://login.microsoftonline.com/{tenant_id}"
+    # Use .default scope - works without explicit scope configuration in Azure AD
+    scopes = [f"{client_id}/.default"]
+
+    app = msal.PublicClientApplication(
+        client_id,
+        authority=authority,
+    )
+
+    # Initiate device code flow
+    flow = app.initiate_device_flow(scopes=scopes)
+
+    if "error" in flow:
+        print(f"Error initiating device code flow: {flow.get('error_description', flow.get('error'))}", file=sys.stderr)
+        sys.exit(1)
+
+    # Display the message to user
+    print()
+    print("=" * 60)
+    print(flow["message"])
+    print("=" * 60)
+    print()
+
+    # Wait for user to complete authentication
+    result = app.acquire_token_by_device_flow(flow)
+
+    if "error" in result:
+        print(f"Authentication failed: {result.get('error_description', result.get('error'))}", file=sys.stderr)
+        sys.exit(1)
+
+    return result
+
+
+def refresh_token_if_needed() -> Optional[str]:
+    """
+    Check if token is expired and refresh if possible.
+    Returns the current valid token or None if refresh failed.
+    """
+    token = CONFIG.get("api_token")
+    refresh_token = CONFIG.get("refresh_token")
+    expires_at = CONFIG.get("token_expires_at")
+
+    if not token:
+        return None
+
+    # Check if token is expired (with 5 minute buffer)
+    if expires_at:
+        import datetime
+        try:
+            expires = datetime.datetime.fromisoformat(expires_at)
+            now = datetime.datetime.now(datetime.timezone.utc)
+            if now < expires - datetime.timedelta(minutes=5):
+                return token  # Token still valid
+        except (ValueError, TypeError):
+            pass  # Can't parse, try to use token anyway
+
+    # Token expired or unknown, try to refresh
+    if refresh_token and CONFIG.get("azure_client_id") and CONFIG.get("azure_tenant_id"):
+        try:
+            import msal
+            client_id = CONFIG["azure_client_id"]
+            tenant_id = CONFIG["azure_tenant_id"]
+            authority = f"https://login.microsoftonline.com/{tenant_id}"
+            scopes = [f"{client_id}/.default"]
+
+            app = msal.PublicClientApplication(client_id, authority=authority)
+
+            # Try to get cached accounts and acquire token silently
+            accounts = app.get_accounts()
+            if accounts:
+                result = app.acquire_token_silent(scopes, account=accounts[0])
+                if result and "access_token" in result:
+                    save_token_to_config(result)
+                    return result["access_token"]
+        except Exception:
+            pass  # Refresh failed, return existing token
+
+    return token
+
+
+def save_token_to_config(result: dict):
+    """Save authentication result to config file."""
+    import datetime
+
+    CONFIG["api_token"] = result.get("access_token")
+
+    if "refresh_token" in result:
+        CONFIG["refresh_token"] = result["refresh_token"]
+
+    # Calculate expiration time
+    if "expires_in" in result:
+        expires_at = datetime.datetime.now(datetime.timezone.utc) + \
+                     datetime.timedelta(seconds=result["expires_in"])
+        CONFIG["token_expires_at"] = expires_at.isoformat()
+
+    save_config(CONFIG)
+
+
+def decode_token_claims(token: str) -> Optional[dict]:
+    """Decode JWT token claims without verification (for display only)."""
+    try:
+        import base64
+        import json
+
+        # JWT is header.payload.signature
+        parts = token.split(".")
+        if len(parts) != 3:
+            return None
+
+        # Decode payload (add padding if needed)
+        payload = parts[1]
+        padding = 4 - len(payload) % 4
+        if padding != 4:
+            payload += "=" * padding
+
+        decoded = base64.urlsafe_b64decode(payload)
+        return json.loads(decoded)
+    except Exception:
+        return None
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -319,6 +571,56 @@ class CCP4i2Client:
         """Get a job parameter value."""
         return self.get(f"/jobs/{job_id}/get_parameter", object_path=param_path)
 
+    def resolve_fileuse(self, project_id: str, fileuse: str) -> dict:
+        """
+        Resolve a fileUse reference to file metadata.
+
+        Args:
+            project_id: Project ID
+            fileuse: FileUse string (e.g., "[-1].XYZOUT[0]")
+
+        Returns:
+            Dict with file metadata (project, baseName, dbFileId, relPath, fullPath)
+        """
+        return self.get(f"/projects/{project_id}/resolve_fileuse", fileuse=fileuse)
+
+    def upload_file_param(self, job_id: str, object_path: str, file_path: str,
+                          column_selector: str = None) -> dict:
+        """
+        Upload a file and set it as a job parameter.
+
+        Args:
+            job_id: Job ID
+            object_path: Parameter path (e.g., "inputData.XYZIN")
+            file_path: Local path to the file to upload
+            column_selector: Optional MTZ column selector for reflection files
+
+        Returns:
+            Dict with upload result and file metadata
+        """
+        from pathlib import Path
+        file_path = Path(file_path)
+        if not file_path.exists():
+            raise ValueError(f"File not found: {file_path}")
+
+        url = f"{self.base_url}/jobs/{job_id}/upload_file_param/"
+        headers = self._get_headers()
+        # Remove Content-Type from headers - requests will set it for multipart
+        headers.pop("Content-Type", None)
+
+        data = {"objectPath": object_path}
+        if column_selector:
+            data["column_selector"] = column_selector
+
+        with open(file_path, "rb") as f:
+            files = {"file": (file_path.name, f)}
+            response = requests.post(url, headers=headers, data=data, files=files)
+
+        if response.status_code >= 400:
+            raise APIError(f"Upload failed: {response.status_code} - {response.text}")
+
+        return response.json()
+
     # ─────────────────────────────────────────────────────────────────────────
     # Files
     # ─────────────────────────────────────────────────────────────────────────
@@ -338,6 +640,84 @@ class CCP4i2Client:
     def get_file_digest(self, file_id: str) -> dict:
         """Get file digest/summary."""
         return self.get(f"/files/{file_id}/digest")
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FileUse Pattern Detection
+# ─────────────────────────────────────────────────────────────────────────────
+
+import re
+
+# Regex patterns for fileUse syntax detection
+FILEUSE_PATTERNS = [
+    # task_name[jobIndex].jobParamName[paramIndex]
+    re.compile(r"^(?:\w+)?\[-?\d+\]\.\w+(?:\[\d+\])?$"),
+]
+
+
+def is_fileuse_pattern(value: str) -> bool:
+    """
+    Check if a string matches the fileUse pattern.
+
+    FileUse patterns look like:
+        [-1].XYZOUT[0]
+        prosmart_refmac[-1].XYZOUT
+        refmac[-2].HKLOUT[0]
+
+    Args:
+        value: String to check
+
+    Returns:
+        True if the string matches a fileUse pattern
+    """
+    if not value or not isinstance(value, str):
+        return False
+
+    # Quick pre-check: must contain [ and ] and .
+    if '[' not in value or ']' not in value or '.' not in value:
+        return False
+
+    # Strip fileUse= prefix if present
+    if value.startswith("fileUse="):
+        value = value[8:]
+
+    # Strip quotes
+    if value.startswith('"') and value.endswith('"'):
+        value = value[1:-1]
+    if value.startswith("'") and value.endswith("'"):
+        value = value[1:-1]
+
+    # Try the pattern
+    for pattern in FILEUSE_PATTERNS:
+        if pattern.match(value):
+            return True
+
+    return False
+
+
+def parse_fileuse_value(value: str) -> str:
+    """
+    Extract the fileUse string from a value.
+
+    Handles both explicit (fileUse=...) and implicit patterns.
+
+    Args:
+        value: Raw value string
+
+    Returns:
+        Clean fileUse string
+    """
+    # Strip fileUse= prefix if present
+    if value.startswith("fileUse="):
+        value = value[8:]
+
+    # Strip quotes
+    if value.startswith('"') and value.endswith('"'):
+        value = value[1:-1]
+    if value.startswith("'") and value.endswith("'"):
+        value = value[1:-1]
+
+    return value
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -568,12 +948,85 @@ def resolve_job(client: CCP4i2Client, project_id: str, job_identifier: str) -> s
 # Command Handlers
 # ─────────────────────────────────────────────────────────────────────────────
 
+def cmd_login(args):
+    """Handle login command."""
+    client_id, tenant_id = get_azure_config()
+
+    if args.device_code:
+        print("Using device code flow (for headless environments)...")
+        result = login_device_code(client_id, tenant_id)
+    else:
+        print("Using interactive browser login...")
+        result = login_interactive(client_id, tenant_id)
+
+    # Save tokens
+    save_token_to_config(result)
+
+    # Show success
+    claims = decode_token_claims(result.get("access_token", ""))
+    if claims:
+        name = claims.get("name") or claims.get("preferred_username") or claims.get("email") or "Unknown"
+        print(f"\n✓ Logged in as: {name}")
+    else:
+        print("\n✓ Login successful!")
+
+    print(f"Token saved to: {CONFIG_FILE}")
+
+
+def cmd_logout(args):
+    """Handle logout command."""
+    # Clear auth-related config
+    CONFIG["api_token"] = None
+    CONFIG["refresh_token"] = None
+    CONFIG["token_expires_at"] = None
+    save_config(CONFIG)
+    print("Logged out. Credentials cleared.")
+
+
+def cmd_whoami(args):
+    """Handle whoami command - show current authentication status."""
+    token = CONFIG.get("api_token")
+
+    if not token:
+        print("Not logged in.")
+        print("\nTo authenticate, run:")
+        print("  i2remote login              # Browser-based login")
+        print("  i2remote login --device-code  # For SSH/headless")
+        return
+
+    claims = decode_token_claims(token)
+
+    if claims:
+        print("Current authentication:")
+        print(f"  Name:     {claims.get('name', 'N/A')}")
+        print(f"  Email:    {claims.get('preferred_username') or claims.get('email', 'N/A')}")
+        print(f"  Subject:  {claims.get('sub', 'N/A')[:20]}...")
+
+        # Check expiration
+        import datetime
+        exp = claims.get("exp")
+        if exp:
+            expires = datetime.datetime.fromtimestamp(exp, tz=datetime.timezone.utc)
+            now = datetime.datetime.now(datetime.timezone.utc)
+            if now > expires:
+                print(f"  Status:   EXPIRED (at {expires.isoformat()})")
+            else:
+                remaining = expires - now
+                print(f"  Expires:  {expires.isoformat()} (in {remaining})")
+    else:
+        print("Token present but could not decode claims.")
+        print("Token may be valid - try running a command to test.")
+
+    print(f"\nConfig file: {CONFIG_FILE}")
+
+
 def cmd_config(args):
     """Handle config command."""
     if args.action == "show" or args.action is None:
         print("Current configuration:")
         for key, value in CONFIG.items():
-            if key == "api_token" and value:
+            # Hide sensitive values
+            if key in ("api_token", "refresh_token") and value:
                 print(f"  {key}: ****")
             else:
                 print(f"  {key}: {value}")
@@ -639,7 +1092,7 @@ def cmd_jobs(args):
     action = args.action
 
     # Handle case where action is actually a project ID (i2remote jobs <project>)
-    if action and action not in ("list", "create", "run", "clone", "status", "wait", "kpi", "tree", "validate"):
+    if action and action not in ("list", "create", "run", "clone", "status", "wait", "kpi", "tree", "validate", "set-param", "get-param", "upload-param"):
         # action is actually the project, shift args
         args.project = action
         action = "list"
@@ -777,6 +1230,155 @@ def cmd_jobs(args):
         print(f"Files for job {args.job}:")
         print_table(files, ["id", "filename", "filetype", "role"])
 
+    elif action == "set-param":
+        # Set a job parameter, with support for fileUse references
+        if not args.project or not args.job or not args.param_name:
+            print("Usage: i2remote jobs set-param <project> <job> <param_name> <value>...", file=sys.stderr)
+            print("\nExamples:", file=sys.stderr)
+            print("  i2remote jobs set-param myproject 5 XYZIN fullPath=/path/to/file.pdb", file=sys.stderr)
+            print("  i2remote jobs set-param myproject 5 XYZIN '[-1].XYZOUT[0]'", file=sys.stderr)
+            print("  i2remote jobs set-param myproject 5 HKLIN 'prosmart_refmac[-1].HKLOUT'", file=sys.stderr)
+            sys.exit(1)
+
+        project_id = resolve_project(client, args.project)
+        job_id = resolve_job(client, project_id, args.job)
+        param_name = args.param_name
+        param_values = args.param_values or []
+
+        if not param_values:
+            print("Error: No value provided for parameter", file=sys.stderr)
+            sys.exit(1)
+
+        # Join values for processing
+        value = " ".join(param_values) if len(param_values) > 1 else param_values[0]
+
+        # Check if this is a fileUse reference (explicit or pattern-matched)
+        is_fileuse = value.startswith("fileUse=") or is_fileuse_pattern(value)
+
+        if is_fileuse:
+            # Resolve the fileUse reference
+            fileuse_str = parse_fileuse_value(value)
+            print(f"Resolving fileUse reference: {fileuse_str}")
+
+            try:
+                result = client.resolve_fileuse(project_id, fileuse_str)
+                if result.get("status") == "Success":
+                    file_data = result.get("data", {})
+                    print(f"  Resolved to: {file_data.get('baseName')} ({file_data.get('fullPath')})")
+
+                    # Build the value for set_parameter using fullPath
+                    value = f"fullPath={file_data.get('fullPath')}"
+                else:
+                    print(f"Error resolving fileUse: {result.get('error', 'Unknown error')}", file=sys.stderr)
+                    sys.exit(1)
+            except APIError as e:
+                print(f"Error resolving fileUse: {e}", file=sys.stderr)
+                sys.exit(1)
+
+        # Set the parameter
+        # The param_name should be prefixed with inputData. for most file params
+        # But let the user specify the full path if needed
+        if "." not in param_name:
+            object_path = f"inputData.{param_name}"
+        else:
+            object_path = param_name
+
+        print(f"Setting {object_path} = {value}")
+        result = client.set_job_parameter(job_id, object_path, value)
+
+        if result.get("status") == "Success":
+            print(f"Parameter set successfully")
+            data = result.get("data", {})
+            if data.get("message"):
+                print(f"  {data.get('message')}")
+        else:
+            print(f"Error: {result.get('error', 'Unknown error')}", file=sys.stderr)
+            sys.exit(1)
+
+    elif action == "get-param":
+        # Get a job parameter value
+        if not args.project or not args.job or not args.param_name:
+            print("Usage: i2remote jobs get-param <project> <job> <param_name>", file=sys.stderr)
+            sys.exit(1)
+
+        project_id = resolve_project(client, args.project)
+        job_id = resolve_job(client, project_id, args.job)
+        param_name = args.param_name
+
+        # Prefix with inputData. if no dot in path
+        if "." not in param_name:
+            object_path = f"inputData.{param_name}"
+        else:
+            object_path = param_name
+
+        result = client.get_job_parameter(job_id, object_path)
+
+        if result.get("status") == "Success":
+            data = result.get("data", {})
+            print(f"{object_path}:")
+            if data.get("file_path"):
+                print(f"  File: {data.get('file_path')}")
+                print(f"  Base name: {data.get('base_name')}")
+                if data.get("db_file_id"):
+                    print(f"  DB ID: {data.get('db_file_id')}")
+            elif data.get("value") is not None:
+                print(f"  Value: {data.get('value')}")
+            else:
+                print_json(data)
+        else:
+            print(f"Error: {result.get('error', 'Unknown error')}", file=sys.stderr)
+            sys.exit(1)
+
+    elif action == "upload-param":
+        # Upload a file and set it as a job parameter
+        if not args.project or not args.job or not args.param_name or not args.param_values:
+            print("Usage: i2remote jobs upload-param <project> <job> <param_name> <file_path> [column_selector]", file=sys.stderr)
+            print("\nExamples:", file=sys.stderr)
+            print("  i2remote jobs upload-param myproject 5 XYZIN /path/to/model.pdb", file=sys.stderr)
+            print("  i2remote jobs upload-param myproject 5 F_SIGF /path/to/data.mtz '/*/*/[FP,SIGFP]'", file=sys.stderr)
+            sys.exit(1)
+
+        project_id = resolve_project(client, args.project)
+        job_id = resolve_job(client, project_id, args.job)
+        param_name = args.param_name
+        file_path = args.param_values[0]
+        column_selector = args.param_values[1] if len(args.param_values) > 1 else None
+
+        # Build object_path (prefix with inputData. if no dot in path)
+        if "." not in param_name:
+            object_path = f"inputData.{param_name}"
+        else:
+            object_path = param_name
+
+        # Check file exists
+        if not Path(file_path).exists():
+            print(f"Error: File not found: {file_path}", file=sys.stderr)
+            sys.exit(1)
+
+        print(f"Uploading {file_path} to {object_path}...")
+        if column_selector:
+            print(f"  Column selector: {column_selector}")
+
+        try:
+            result = client.upload_file_param(job_id, object_path, file_path, column_selector)
+            if result.get("status") == "Success":
+                data = result.get("data", {})
+                updated = data.get("updated_item", {})
+                print(f"Upload successful:")
+                print(f"  Base name: {updated.get('baseName', 'N/A')}")
+                print(f"  Annotation: {updated.get('annotation', 'N/A')}")
+                if updated.get('dbFileId'):
+                    print(f"  DB ID: {updated.get('dbFileId')}")
+            else:
+                print(f"Error: {result.get('error', 'Unknown error')}", file=sys.stderr)
+                sys.exit(1)
+        except APIError as e:
+            print(f"Error uploading file: {e}", file=sys.stderr)
+            sys.exit(1)
+        except ValueError as e:
+            print(f"Error: {e}", file=sys.stderr)
+            sys.exit(1)
+
     else:
         print(f"Unknown action: {action}", file=sys.stderr)
         sys.exit(1)
@@ -891,6 +1493,17 @@ def main():
 
     subparsers = parser.add_subparsers(dest="command", help="Command")
 
+    # Login command
+    login_parser = subparsers.add_parser("login", help="Authenticate with Azure AD")
+    login_parser.add_argument("--device-code", action="store_true",
+                              help="Use device code flow (for SSH/headless environments)")
+
+    # Logout command
+    subparsers.add_parser("logout", help="Clear saved credentials")
+
+    # Whoami command
+    subparsers.add_parser("whoami", help="Show current authentication status")
+
     # Config command
     config_parser = subparsers.add_parser("config", help="Configuration")
     config_parser.add_argument("action", nargs="?", choices=["show", "set"])
@@ -906,9 +1519,11 @@ def main():
 
     # Jobs command
     jobs_parser = subparsers.add_parser("jobs", help="Job operations")
-    jobs_parser.add_argument("action", nargs="?", help="list|create|run|clone|status|wait|kpi|tree")
+    jobs_parser.add_argument("action", nargs="?", help="list|create|run|clone|status|wait|kpi|tree|set-param|get-param|upload-param")
     jobs_parser.add_argument("project", nargs="?", help="Project name/ID")
     jobs_parser.add_argument("job", nargs="?", help="Job number or ID")
+    jobs_parser.add_argument("param_name", nargs="?", help="Parameter name for set-param/get-param")
+    jobs_parser.add_argument("param_values", nargs="*", help="Parameter value(s) for set-param")
     jobs_parser.add_argument("--task", "-t", help="Task name for create")
 
     # Files command
@@ -940,7 +1555,13 @@ def main():
         sys.exit(0)
 
     try:
-        if args.command == "config":
+        if args.command == "login":
+            cmd_login(args)
+        elif args.command == "logout":
+            cmd_logout(args)
+        elif args.command == "whoami":
+            cmd_whoami(args)
+        elif args.command == "config":
             cmd_config(args)
         elif args.command == "projects":
             cmd_projects(args)

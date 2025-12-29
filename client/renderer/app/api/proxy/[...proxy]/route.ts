@@ -1,5 +1,51 @@
 import { NextRequest, NextResponse } from "next/server";
 
+/**
+ * Check if authentication should be required.
+ *
+ * Authentication is required when:
+ * - REQUIRE_PROXY_AUTH=true is set (explicit opt-in)
+ * - We're running in Azure (WEBSITE_INSTANCE_ID or similar Azure indicator is present)
+ *
+ * This ensures local development works without auth while Azure is protected.
+ */
+function isAuthRequired(): boolean {
+  // Explicit opt-in
+  if (process.env.REQUIRE_PROXY_AUTH?.toLowerCase() === "true") {
+    return true;
+  }
+
+  // Running in Azure Container Apps (has these environment variables)
+  if (process.env.CONTAINER_APP_NAME || process.env.CONTAINER_APP_ENV_DNS_SUFFIX) {
+    return true;
+  }
+
+  return false;
+}
+
+/**
+ * Extract authentication token from request.
+ * Supports:
+ * - Authorization: Bearer <token>
+ * - X-MS-TOKEN-AAD-ACCESS-TOKEN header (Azure Easy Auth)
+ * - Cookie-based session from Easy Auth
+ */
+function extractAuthToken(req: NextRequest): string | null {
+  // Check Authorization header first
+  const authHeader = req.headers.get("Authorization");
+  if (authHeader?.startsWith("Bearer ")) {
+    return authHeader.substring(7);
+  }
+
+  // Check Azure Easy Auth token header
+  const easyAuthToken = req.headers.get("X-MS-TOKEN-AAD-ACCESS-TOKEN");
+  if (easyAuthToken) {
+    return easyAuthToken;
+  }
+
+  return null;
+}
+
 export async function GET(
   req: NextRequest,
   { params }: { params: Promise<{ proxy: string[] }> }
@@ -38,8 +84,27 @@ export async function DELETE(
 interface RequestInitWithDuplex extends RequestInit {
   duplex?: string;
 }
+
 // Common handler for all HTTP methods
 async function handleProxy(req: NextRequest, params: { proxy: string[] }) {
+  // Check authentication if required
+  if (isAuthRequired()) {
+    const token = extractAuthToken(req);
+    if (!token) {
+      // Check for Azure Easy Auth principal header (indicates authenticated user)
+      const principalId = req.headers.get("X-MS-CLIENT-PRINCIPAL-ID");
+      if (!principalId) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Authentication required. Please sign in.",
+          },
+          { status: 401 }
+        );
+      }
+    }
+  }
+
   // Priority: runtime API_BASE_URL (set by Electron) > build-time NEXT_PUBLIC > default
   // Note: NEXT_PUBLIC_* vars are embedded at build time, so we check API_BASE_URL first
   // for runtime configuration in packaged Electron apps
@@ -109,6 +174,30 @@ async function handleProxy(req: NextRequest, params: { proxy: string[] }) {
   try {
     // Clone the headers from the incoming request
     const headers = new Headers(req.headers);
+
+    // Forward authentication headers to backend
+    // This allows Django's auth middleware to validate the token
+    const token = extractAuthToken(req);
+    if (token) {
+      // Forward as Authorization header for Django middleware
+      headers.set("Authorization", `Bearer ${token}`);
+    }
+
+    // Forward Azure Easy Auth headers if present
+    const easyAuthHeaders = [
+      "X-MS-TOKEN-AAD-ACCESS-TOKEN",
+      "X-MS-TOKEN-AAD-ID-TOKEN",
+      "X-MS-CLIENT-PRINCIPAL",
+      "X-MS-CLIENT-PRINCIPAL-ID",
+      "X-MS-CLIENT-PRINCIPAL-NAME",
+    ];
+
+    for (const headerName of easyAuthHeaders) {
+      const headerValue = req.headers.get(headerName);
+      if (headerValue) {
+        headers.set(headerName, headerValue);
+      }
+    }
 
     // Detect if the request is multipart/form-data (file upload)
     const isMultipart = headers

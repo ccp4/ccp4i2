@@ -261,6 +261,20 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
               name: 'FILE_UPLOAD_MAX_NUMBER_FILES'
               value: '10'
             }
+            // Azure AD authentication configuration
+            // When CCP4I2_REQUIRE_AUTH=true, Django will validate JWT tokens
+            {
+              name: 'CCP4I2_REQUIRE_AUTH'
+              value: 'true'
+            }
+            {
+              name: 'AZURE_AD_TENANT_ID'
+              value: aadTenantId
+            }
+            {
+              name: 'AZURE_AD_CLIENT_ID'
+              value: aadClientId
+            }
           ]
           volumeMounts: [
             {
@@ -583,6 +597,11 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'NEXT_PUBLIC_REQUIRE_AUTH'
+              value: 'true'
+            }
+            // Enable proxy authentication (requires valid Azure AD token for API calls)
+            {
+              name: 'REQUIRE_PROXY_AUTH'
               value: 'true'
             }
           ]

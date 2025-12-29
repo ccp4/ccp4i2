@@ -58,6 +58,14 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+# Azure AD authentication middleware (optional)
+# Enable by setting CCP4I2_REQUIRE_AUTH=true along with:
+#   AZURE_AD_TENANT_ID - Your Azure AD tenant ID
+#   AZURE_AD_CLIENT_ID - Your Azure AD app registration client ID
+if os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
+    MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
+    print("Azure AD authentication middleware ENABLED")
+
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
 }
