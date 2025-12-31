@@ -227,6 +227,8 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' =
 }
 
 // Storage Account
+// Note: publicNetworkAccess is 'Enabled' to allow SAS URL uploads from external clients
+// Anonymous blob access is disabled (allowBlobPublicAccess: false) - only SAS-authenticated requests work
 resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   name: storageAccountName
   location: location
@@ -235,13 +237,13 @@ resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
   }
   kind: 'StorageV2'
   properties: {
-    allowBlobPublicAccess: false
+    allowBlobPublicAccess: false  // No anonymous access, SAS required
     allowSharedKeyAccess: true
     minimumTlsVersion: 'TLS1_2'
     supportsHttpsTrafficOnly: true
-    publicNetworkAccess: 'Disabled'
+    publicNetworkAccess: 'Enabled'  // Required for SAS URL uploads from external clients
     networkAcls: {
-      defaultAction: 'Deny'
+      defaultAction: 'Allow'  // Allow SAS-authenticated requests from anywhere
       bypass: 'AzureServices'
     }
   }
@@ -266,6 +268,20 @@ resource mediafilesShare 'Microsoft.Storage/storageAccounts/fileServices/shares@
   name: '${storageAccount.name}/default/mediafiles'
   properties: {
     shareQuota: 50
+  }
+}
+
+// Blob container for staged uploads (large file uploads via SAS URL)
+resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
+  name: 'default'
+  parent: storageAccount
+}
+
+resource stagingUploadsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  name: 'staging-uploads'
+  parent: blobServices
+  properties: {
+    publicAccess: 'None'  // No anonymous access, SAS required
   }
 }
 

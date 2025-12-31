@@ -36,7 +36,13 @@ class ProjectExportViewSet(ModelViewSet):
         )
 
         if os.path.exists(export_file_path):
-            return FileResponse(open(export_file_path, "rb"), filename=export_file_name)
+            # FileResponse handles Content-Length and file closing automatically
+            # Use as_attachment=True for proper download headers
+            return FileResponse(
+                open(export_file_path, "rb"),
+                as_attachment=True,
+                filename=export_file_name,
+            )
         else:
             return Response({"error": "Export file not found"}, status=404)
 

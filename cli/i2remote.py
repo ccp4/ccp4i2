@@ -44,7 +44,12 @@ Usage:
 
     i2remote export job <project> <job>   Export a job to zip
     i2remote export project <project>     Export a project to zip
-    i2remote import <zipfile>             Import a project from zip
+    i2remote import <zipfile>             Import a project from zip (small files)
+
+    i2remote upload-request <file>        Get SAS URL for large file upload
+    i2remote upload-complete <id>         Complete upload and trigger processing
+    i2remote upload-status <id>           Check status of staged upload
+    i2remote upload-list                  List all staged uploads
 
     i2remote config                       Show current configuration
     i2remote config set <key> <value>     Set configuration value
@@ -487,12 +492,136 @@ class CCP4i2Client:
         """Export project to ZIP."""
         return self.post(f"/projects/{project_id}/export")
 
-    def import_project(self, project_id: str, zip_path: str) -> dict:
-        """Import project from ZIP."""
-        with open(zip_path, "rb") as f:
-            files = {"file": (Path(zip_path).name, f, "application/zip")}
-            # Need to use form data for file upload
-            return self._request("POST", f"/projects/{project_id}/import_project", files=files)
+    def import_project(self, zip_path: str, progress_callback=None) -> dict:
+        """
+        Import project from ZIP file. Creates a new project from the archive.
+
+        For large files, uses streaming upload with extended timeout.
+
+        Args:
+            zip_path: Path to the ZIP file to upload
+            progress_callback: Optional callback(bytes_sent, total_bytes) for progress
+        """
+        file_path = Path(zip_path)
+        file_size = file_path.stat().st_size
+
+        # Calculate appropriate timeout based on file size
+        # Allow ~1 MB/s minimum upload speed + 60s buffer
+        upload_timeout = max(300, int(file_size / (1024 * 1024)) + 60)
+
+        # Use requests-toolbelt for multipart streaming if available
+        try:
+            from requests_toolbelt import MultipartEncoder, MultipartEncoderMonitor
+
+            # Create streaming encoder
+            encoder = MultipartEncoder(
+                fields={
+                    "files": (file_path.name, open(zip_path, "rb"), "application/zip")
+                }
+            )
+
+            # Wrap with monitor for progress if callback provided
+            if progress_callback:
+                monitor = MultipartEncoderMonitor(
+                    encoder,
+                    lambda m: progress_callback(m.bytes_read, encoder.len)
+                )
+                data = monitor
+            else:
+                data = encoder
+
+            headers = {"Content-Type": encoder.content_type}
+            url = self._url("/projects/import_project")
+
+            response = self.session.post(
+                url,
+                data=data,
+                headers=headers,
+                timeout=upload_timeout,
+                verify=self.verify_ssl,
+            )
+
+        except ImportError:
+            # Fallback to standard upload without progress
+            with open(zip_path, "rb") as f:
+                files = {"files": (file_path.name, f, "application/zip")}
+                url = self._url("/projects/import_project")
+                response = self.session.post(
+                    url,
+                    files=files,
+                    timeout=upload_timeout,
+                    verify=self.verify_ssl,
+                )
+
+        # Handle response
+        if not response.ok:
+            try:
+                error_data = response.json()
+                message = error_data.get("error") or error_data.get("detail") or str(error_data)
+            except (json.JSONDecodeError, ValueError):
+                message = response.text or f"HTTP {response.status_code}"
+            raise APIError(message, response.status_code)
+
+        if response.content:
+            try:
+                return response.json()
+            except (json.JSONDecodeError, ValueError):
+                return {"status": "ok", "response": response.text}
+        return {"status": "ok"}
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Staged Uploads (for large files)
+    # ─────────────────────────────────────────────────────────────────────────
+
+    def request_upload(self, filename: str, upload_type: str, target_job_uuid: Optional[str] = None) -> dict:
+        """
+        Request a SAS URL for uploading a large file.
+
+        Args:
+            filename: Name of the file to upload
+            upload_type: 'project_import' or 'unmerged_data'
+            target_job_uuid: For unmerged_data, the target job UUID
+
+        Returns:
+            Dict with upload_id, sas_url, blob_path, expiry, instructions
+        """
+        data = {
+            "filename": filename,
+            "upload_type": upload_type,
+        }
+        if target_job_uuid:
+            data["target_job_uuid"] = target_job_uuid
+
+        return self.post("/uploads/request", data)
+
+    def complete_upload(self, upload_id: str) -> dict:
+        """
+        Mark an upload as complete and trigger processing.
+
+        Args:
+            upload_id: The upload UUID returned from request_upload
+
+        Returns:
+            Dict with processing status and message
+        """
+        return self.post(f"/uploads/{upload_id}/complete")
+
+    def get_upload_status(self, upload_id: str) -> dict:
+        """Get the status of a staged upload."""
+        return self.get(f"/uploads/{upload_id}")
+
+    def list_uploads(self, status: Optional[str] = None, upload_type: Optional[str] = None) -> list:
+        """List staged uploads, optionally filtered."""
+        params = {}
+        if status:
+            params["status"] = status
+        if upload_type:
+            params["type"] = upload_type
+        return self.get("/uploads", **params)
+
+    def cancel_upload(self, upload_id: str) -> dict:
+        """Cancel a pending upload."""
+        return self.delete(f"/uploads/{upload_id}/cancel")
 
     # ─────────────────────────────────────────────────────────────────────────
     # Jobs
@@ -1470,14 +1599,228 @@ def cmd_import(args):
         print("Usage: i2remote import <zipfile>", file=sys.stderr)
         sys.exit(1)
 
-    if not Path(args.zipfile).exists():
+    zip_path = Path(args.zipfile)
+    if not zip_path.exists():
         print(f"Error: File not found: {args.zipfile}", file=sys.stderr)
         sys.exit(1)
 
-    # Import requires a project - create one or specify
-    print("Note: Project import creates a new project from the ZIP")
-    # This would need the import endpoint which creates a new project
-    print("Import functionality requires server-side implementation")
+    if not zip_path.suffix == ".zip":
+        print(f"Error: File must be a .zip archive: {args.zipfile}", file=sys.stderr)
+        sys.exit(1)
+
+    # Get file size for progress indication
+    file_size = zip_path.stat().st_size
+    file_size_mb = file_size / (1024 * 1024)
+    file_size_gb = file_size_mb / 1024
+
+    # Warn about large files - Azure Container Apps has request size limits
+    LARGE_FILE_THRESHOLD_MB = 500  # 500 MB
+    if file_size_mb > LARGE_FILE_THRESHOLD_MB:
+        print(f"WARNING: Large file detected ({file_size_gb:.1f} GB)", file=sys.stderr)
+        print("Azure Container Apps has request size limits (~100MB default).", file=sys.stderr)
+        print("For large files, consider uploading directly to Azure Files:", file=sys.stderr)
+        print("", file=sys.stderr)
+        print("  # Upload to Azure Files share", file=sys.stderr)
+        print("  az storage file upload \\", file=sys.stderr)
+        print("    --account-name <storage-account> \\", file=sys.stderr)
+        print("    --share-name ccp4data \\", file=sys.stderr)
+        print(f"    --source '{zip_path}' \\", file=sys.stderr)
+        print(f"    --path 'imports/{zip_path.name}'", file=sys.stderr)
+        print("", file=sys.stderr)
+        print("  # Then run import from server (via maintenance job)", file=sys.stderr)
+        print("", file=sys.stderr)
+        response = input("Continue with HTTP upload anyway? [y/N]: ")
+        if response.lower() != 'y':
+            print("Aborted.")
+            sys.exit(0)
+
+    # Calculate expected timeout
+    upload_timeout = max(300, int(file_size_mb) + 60)
+
+    print(f"Importing project from: {zip_path.name} ({file_size_mb:.1f} MB)")
+    print(f"Upload timeout: {upload_timeout}s (adjust if needed)")
+
+    # Progress tracking
+    last_percent = [0]
+    start_time = [time.time()]
+
+    def progress_callback(bytes_sent, total_bytes):
+        percent = int(100 * bytes_sent / total_bytes)
+        if percent > last_percent[0]:
+            last_percent[0] = percent
+            elapsed = time.time() - start_time[0]
+            speed_mbps = (bytes_sent / (1024 * 1024)) / elapsed if elapsed > 0 else 0
+            remaining_mb = (total_bytes - bytes_sent) / (1024 * 1024)
+            eta = remaining_mb / speed_mbps if speed_mbps > 0 else 0
+            print(f"\rUploading: {percent}% ({bytes_sent/(1024*1024):.1f}/{total_bytes/(1024*1024):.1f} MB) "
+                  f"- {speed_mbps:.1f} MB/s - ETA: {int(eta)}s   ", end="", flush=True)
+
+    print("Uploading to server...")
+
+    try:
+        result = client.import_project(str(zip_path), progress_callback=progress_callback)
+        print()  # New line after progress
+        if result.get("imported"):
+            print("Project imported successfully!")
+            print("Note: Import runs in background - project will appear shortly")
+        else:
+            print(f"Import response: {result}")
+    except APIError as e:
+        print()  # New line after progress
+        print(f"Import failed: {e}", file=sys.stderr)
+        sys.exit(1)
+    except requests.exceptions.SSLError as e:
+        print()  # New line after progress
+        print(f"SSL/Connection error: {e}", file=sys.stderr)
+        print("", file=sys.stderr)
+        print("This usually means the file is too large for HTTP upload.", file=sys.stderr)
+        print("Use 'i2remote upload-request' for large files instead.", file=sys.stderr)
+        sys.exit(1)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Staged Upload Commands (for large files)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def cmd_upload_request(args):
+    """Request a SAS URL for uploading a large file."""
+    client = get_client()
+
+    if not args.file:
+        print("Usage: i2remote upload-request <file> [--type project_import|unmerged_data]", file=sys.stderr)
+        sys.exit(1)
+
+    file_path = Path(args.file)
+    if not file_path.exists():
+        print(f"Error: File not found: {args.file}", file=sys.stderr)
+        sys.exit(1)
+
+    upload_type = args.type or "project_import"
+    if upload_type not in ["project_import", "unmerged_data"]:
+        print(f"Error: Invalid upload type: {upload_type}", file=sys.stderr)
+        print("Valid types: project_import, unmerged_data", file=sys.stderr)
+        sys.exit(1)
+
+    file_size = file_path.stat().st_size
+    file_size_mb = file_size / (1024 * 1024)
+
+    print(f"Requesting upload URL for: {file_path.name} ({file_size_mb:.1f} MB)")
+    print(f"Upload type: {upload_type}")
+
+    try:
+        result = client.request_upload(
+            filename=file_path.name,
+            upload_type=upload_type,
+            target_job_uuid=args.job if hasattr(args, 'job') else None,
+        )
+
+        print()
+        print("=" * 70)
+        print("Upload URL generated successfully!")
+        print("=" * 70)
+        print()
+        print(f"Upload ID: {result['upload_id']}")
+        print(f"Expires:   {result['expiry']}")
+        print()
+        print("To upload, run one of these commands:")
+        print()
+        print("  # Using azcopy (recommended for large files):")
+        print(f"  azcopy copy '{file_path}' '{result['sas_url']}'")
+        print()
+        print("  # Using curl:")
+        print("  curl -X PUT -H 'x-ms-blob-type: BlockBlob' \\")
+        print(f"       --data-binary @'{file_path}' \\")
+        print(f"       '{result['sas_url']}'")
+        print()
+        print("After upload completes, run:")
+        print(f"  i2remote upload-complete {result['upload_id']}")
+        print()
+
+    except APIError as e:
+        print(f"Failed to request upload URL: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def cmd_upload_complete(args):
+    """Complete a staged upload and trigger processing."""
+    client = get_client()
+
+    if not args.upload_id:
+        print("Usage: i2remote upload-complete <upload_id>", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Completing upload: {args.upload_id}")
+    print("Verifying file and triggering processing...")
+
+    try:
+        result = client.complete_upload(args.upload_id)
+
+        print()
+        print("Upload completed successfully!")
+        print(f"Status: {result.get('status', 'unknown')}")
+        if result.get('message'):
+            print(f"Message: {result['message']}")
+        if result.get('note'):
+            print(f"Note: {result['note']}")
+
+    except APIError as e:
+        print(f"Failed to complete upload: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def cmd_upload_status(args):
+    """Check status of a staged upload."""
+    client = get_client()
+
+    if not args.upload_id:
+        print("Usage: i2remote upload-status <upload_id>", file=sys.stderr)
+        sys.exit(1)
+
+    try:
+        result = client.get_upload_status(args.upload_id)
+
+        print(f"Upload ID:     {result.get('uuid', 'N/A')}")
+        print(f"Type:          {result.get('upload_type', 'N/A')}")
+        print(f"Status:        {result.get('status', 'N/A')}")
+        print(f"Filename:      {result.get('original_filename', 'N/A')}")
+        print(f"Created:       {result.get('created_at', 'N/A')}")
+        print(f"SAS Expiry:    {result.get('sas_expiry', 'N/A')}")
+        print(f"Expired:       {result.get('is_expired', 'N/A')}")
+        if result.get('completed_at'):
+            print(f"Completed:     {result['completed_at']}")
+        if result.get('error_message'):
+            print(f"Error:         {result['error_message']}")
+
+    except APIError as e:
+        print(f"Failed to get upload status: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def cmd_upload_list(args):
+    """List staged uploads."""
+    client = get_client()
+
+    try:
+        uploads = client.list_uploads(
+            status=args.status if hasattr(args, 'status') else None,
+            upload_type=args.type if hasattr(args, 'type') else None,
+        )
+
+        if not uploads:
+            print("No staged uploads found.")
+            return
+
+        print(f"{'ID':<36}  {'Type':<16}  {'Status':<12}  {'Filename'}")
+        print("-" * 100)
+        for upload in uploads:
+            print(f"{upload.get('uuid', 'N/A'):<36}  "
+                  f"{upload.get('upload_type', 'N/A'):<16}  "
+                  f"{upload.get('status', 'N/A'):<12}  "
+                  f"{upload.get('original_filename', 'N/A')}")
+
+    except APIError as e:
+        print(f"Failed to list uploads: {e}", file=sys.stderr)
+        sys.exit(1)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1548,6 +1891,50 @@ def main():
     import_parser = subparsers.add_parser("import", help="Import project from ZIP")
     import_parser.add_argument("zipfile", help="Path to ZIP file")
 
+    # Upload commands (for large files that exceed HTTP body limits)
+    upload_request_parser = subparsers.add_parser(
+        "upload-request",
+        help="Request a SAS URL for uploading large files"
+    )
+    upload_request_parser.add_argument("file", help="Path to file to upload")
+    upload_request_parser.add_argument(
+        "--type", "-t",
+        choices=["project_import", "unmerged_data"],
+        default="project_import",
+        help="Type of upload (default: project_import)"
+    )
+    upload_request_parser.add_argument(
+        "--job", "-j",
+        help="Target job UUID (for unmerged_data uploads)"
+    )
+
+    upload_complete_parser = subparsers.add_parser(
+        "upload-complete",
+        help="Complete a staged upload and trigger processing"
+    )
+    upload_complete_parser.add_argument("upload_id", help="Upload UUID from upload-request")
+
+    upload_status_parser = subparsers.add_parser(
+        "upload-status",
+        help="Check status of a staged upload"
+    )
+    upload_status_parser.add_argument("upload_id", help="Upload UUID")
+
+    upload_list_parser = subparsers.add_parser(
+        "upload-list",
+        help="List staged uploads"
+    )
+    upload_list_parser.add_argument(
+        "--status", "-s",
+        choices=["pending", "uploaded", "processing", "completed", "failed", "expired"],
+        help="Filter by status"
+    )
+    upload_list_parser.add_argument(
+        "--type", "-t",
+        choices=["project_import", "unmerged_data"],
+        help="Filter by upload type"
+    )
+
     args = parser.parse_args()
 
     if not args.command:
@@ -1575,6 +1962,14 @@ def main():
             cmd_export(args)
         elif args.command == "import":
             cmd_import(args)
+        elif args.command == "upload-request":
+            cmd_upload_request(args)
+        elif args.command == "upload-complete":
+            cmd_upload_complete(args)
+        elif args.command == "upload-status":
+            cmd_upload_status(args)
+        elif args.command == "upload-list":
+            cmd_upload_list(args)
         else:
             print(f"Unknown command: {args.command}", file=sys.stderr)
             sys.exit(1)

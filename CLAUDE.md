@@ -136,3 +136,44 @@ This scans `wrappers/`, `wrappers2/`, and `pipelines/` directories and generates
 - `qticons/`, `svgicons/` - Task icons
 - `tipsOfTheDay/` - User tips
 - `docs/` - Documentation
+
+## Azure Deployment
+
+### Configuration
+
+- **Environment file**: `Docker/azure/.env.deployment` - Contains ACR name, resource group, and other deployment settings
+- **ACR Registry**: `ccp4acrnekmay.azurecr.io`
+
+### Container Images
+
+| Repository | Description |
+|------------|-------------|
+| `ccp4i2/web` | Next.js frontend |
+| `ccp4i2/server` | Django backend |
+
+### Container Apps
+
+| App Name | Purpose |
+|----------|---------|
+| `ccp4i2-bicep-web` | Frontend container app |
+| `ccp4i2-bicep-server` | Backend API container app |
+| `ccp4i2-bicep-worker` | Background job worker |
+
+### Deployment Commands
+
+```bash
+# Source environment variables
+. ./Docker/azure/.env.deployment
+
+# Build and push an image (web, server, or worker)
+./Docker/azure/scripts/build-and-push.sh web
+
+# Deploy to container app
+./Docker/azure/scripts/deploy-applications.sh web
+
+# Check current deployed image
+az containerapp show --name ccp4i2-bicep-web --resource-group "$RESOURCE_GROUP" --query "properties.template.containers[0].image" -o tsv
+
+# Check available image tags
+az acr repository show-tags --name "$ACR_NAME" --repository ccp4i2/web --orderby time_desc --top 5
+```

@@ -37,6 +37,9 @@ param containerAppsIdentityPrincipalId string
 @description('CCP4 version directory name (e.g., ccp4-9, ccp4-20251105)')
 param ccp4Version string = 'ccp4-20251105'
 
+@description('Storage account name for staged uploads (SAS URL generation)')
+param storageAccountName string
+
 // - PostgreSQL is accessed via private endpoint (no public access)
 // - Key Vault is accessed via private endpoint (no public access)
 // - Storage Account is accessed via private endpoint (no public access)
@@ -274,6 +277,11 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'AZURE_AD_CLIENT_ID'
               value: aadClientId
+            }
+            // Azure Storage for staged uploads (large file uploads via SAS URL)
+            {
+              name: 'AZURE_STORAGE_ACCOUNT_NAME'
+              value: storageAccountName
             }
           ]
           volumeMounts: [

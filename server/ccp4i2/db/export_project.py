@@ -301,7 +301,7 @@ def _export_file_table(
 
         file_elem.set("fileid", _format_uuid_for_xml(file_obj.uuid))
         file_elem.set("jobid", _format_uuid_for_xml(file_obj.job.uuid))
-        file_elem.set("filename", file_obj.objectName() or "")
+        file_elem.set("filename", file_obj.name or "")
 
         # Use the path property to get directory information
         if file_obj.path:

@@ -262,3 +262,14 @@ FILE_UPLOAD_MAX_NUMBER_FILES = int(
 print(
     f"File upload settings: MAX_MEMORY_SIZE={FILE_UPLOAD_MAX_MEMORY_SIZE}, DATA_MAX_MEMORY_SIZE={DATA_UPLOAD_MAX_MEMORY_SIZE}, MAX_FILES={FILE_UPLOAD_MAX_NUMBER_FILES}"
 )
+
+# Azure Storage configuration for staged uploads (large file uploads via SAS URL)
+# These are used by the StagedUpload feature for files > 100MB
+AZURE_STORAGE_ACCOUNT_NAME = os.environ.get("AZURE_STORAGE_ACCOUNT_NAME")
+AZURE_STORAGE_ACCOUNT_KEY = os.environ.get("AZURE_STORAGE_ACCOUNT_KEY")
+AZURE_STORAGE_CONNECTION_STRING = os.environ.get("AZURE_STORAGE_CONNECTION_STRING")
+
+if AZURE_STORAGE_ACCOUNT_NAME:
+    print(f"Azure Storage configured: {AZURE_STORAGE_ACCOUNT_NAME}")
+elif AZURE_STORAGE_CONNECTION_STRING:
+    print("Azure Storage configured via connection string")

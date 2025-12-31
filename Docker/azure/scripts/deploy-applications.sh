@@ -107,6 +107,17 @@ if [ -z "$KEY_VAULT_NAME" ]; then
     exit 1
 fi
 
+STORAGE_ACCOUNT_NAME=$(az deployment group show \
+  --resource-group $RESOURCE_GROUP \
+  --name $INFRA_DEPLOYMENT \
+  --query properties.outputs.storageAccountName.value \
+  --output tsv)
+
+if [ -z "$STORAGE_ACCOUNT_NAME" ]; then
+    echo -e "${RED}❌ Could not get Storage Account name from deployment $INFRA_DEPLOYMENT${NC}"
+    exit 1
+fi
+
 echo -e "${GREEN}✅ Infrastructure outputs retrieved${NC}"
 
 # Note: Secrets are already stored in Key Vault during infrastructure deployment
@@ -149,6 +160,7 @@ az deployment group create \
                containerAppsIdentityId="$CONTAINER_APPS_IDENTITY_ID" \
                containerAppsIdentityPrincipalId="$CONTAINER_APPS_IDENTITY_PRINCIPAL_ID" \
                ccp4Version="${CCP4_VERSION:-ccp4-9}" \
+               storageAccountName="$STORAGE_ACCOUNT_NAME" \
   --name $APP_DEPLOYMENT_NAME \
   --mode Incremental
 

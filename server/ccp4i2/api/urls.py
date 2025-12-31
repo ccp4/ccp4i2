@@ -11,6 +11,7 @@ from .JobViewSet import JobViewSet
 from .FileTypeViewSet import FileTypeViewSet
 from .FileImportViewSet import FileImportViewSet
 from .FileUseViewSet import FileUseViewSet
+from .StagedUploadViewSet import StagedUploadViewSet
 from . import views
 
 router = routers.DefaultRouter()
@@ -22,6 +23,7 @@ router.register("filetypes", FileTypeViewSet)
 router.register("fileimports", FileImportViewSet)
 router.register("fileuses", FileUseViewSet)
 router.register("projectexports", ProjectExportViewSet)
+router.register("uploads", StagedUploadViewSet)
 
 urlpatterns = [
     path("", include(router.urls)),
