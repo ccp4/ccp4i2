@@ -32,10 +32,10 @@ urlpatterns = [
 
 # Include azure_extensions URLs if the app is installed
 # This allows Azure-specific features (staged uploads) without polluting core ccp4i2
-try:
-    from django.apps import apps
-    if apps.is_installed("azure_extensions"):
+if "azure_extensions" in settings.INSTALLED_APPS:
+    try:
         from azure_extensions.urls import urlpatterns as azure_urls
         urlpatterns = urlpatterns + azure_urls
-except ImportError:
-    pass  # azure_extensions not available (non-Azure deployment)
+        print("Azure Extensions URLs loaded")
+    except ImportError as e:
+        print(f"Warning: azure_extensions in INSTALLED_APPS but import failed: {e}")
