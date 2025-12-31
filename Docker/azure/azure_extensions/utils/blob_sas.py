@@ -7,13 +7,13 @@ the HTTP body size limits of the API gateway.
 """
 
 import logging
+import os
 from datetime import datetime, timedelta, timezone
-from typing import Optional
 from uuid import uuid4
 
 from django.conf import settings
 
-logger = logging.getLogger(f"ccp4i2:{__name__}")
+logger = logging.getLogger(f"azure_extensions:{__name__}")
 
 # Container name for staged uploads
 STAGING_CONTAINER = "staging-uploads"
@@ -204,8 +204,6 @@ def get_blob_local_path(blob_path: str, download_dir: str = "/tmp/staged-uploads
     Returns:
         Local file path where blob was downloaded
     """
-    import os
-
     blob_service_client = get_blob_service_client()
     blob_client = blob_service_client.get_blob_client(
         container=STAGING_CONTAINER,

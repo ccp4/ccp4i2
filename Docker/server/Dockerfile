@@ -16,10 +16,11 @@
 FROM python:3.11-slim
 
 # Set environment variables
+# Use azure_extensions.settings to enable Azure-specific features
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/usr/src/app \
-    DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
+    DJANGO_SETTINGS_MODULE=azure_extensions.settings
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -34,6 +35,10 @@ WORKDIR /usr/src/app
 # Copy server code
 # Note: Build context should be repository root
 COPY server/ .
+
+# Copy Azure extensions Django app (only used in Azure deployment)
+# This keeps Azure-specific code separate from the core ccp4i2 distribution
+COPY Docker/azure/azure_extensions /usr/src/app/azure_extensions
 
 # Install Python dependencies
 # Core Django dependencies (quoted to prevent shell interpretation of < >)

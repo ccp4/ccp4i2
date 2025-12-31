@@ -11,8 +11,7 @@ Flow:
 """
 
 import logging
-import subprocess
-from django.conf import settings
+
 from django.utils import timezone
 from rest_framework import status
 from rest_framework.decorators import action
@@ -20,10 +19,19 @@ from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from ..db.models import StagedUpload
-from ..lib.response import api_success, api_error
+from .models import StagedUpload
 
-logger = logging.getLogger(f"ccp4i2:{__name__}")
+logger = logging.getLogger(f"azure_extensions:{__name__}")
+
+
+def api_success(data, status_code=200):
+    """Return a success response."""
+    return Response(data, status=status_code)
+
+
+def api_error(message, status=400):
+    """Return an error response."""
+    return Response({"error": message}, status=status)
 
 
 class StagedUploadSerializer:
@@ -106,7 +114,7 @@ class StagedUploadViewSet(ModelViewSet):
         }
         """
         try:
-            from ..lib.utils.storage.blob_sas import generate_upload_sas_url
+            from .utils.blob_sas import generate_upload_sas_url
         except ImportError as e:
             logger.error(f"Storage utilities not available: {e}")
             return api_error(
@@ -158,7 +166,7 @@ class StagedUploadViewSet(ModelViewSet):
 
             # Link to target job if provided
             if target_job_uuid:
-                from ..db.models import Job
+                from ccp4i2.db.models import Job
                 try:
                     job = Job.objects.get(uuid=target_job_uuid)
                     upload.target_job = job
@@ -215,7 +223,7 @@ class StagedUploadViewSet(ModelViewSet):
 
         # Verify blob exists
         try:
-            from ..lib.utils.storage.blob_sas import verify_blob_exists, get_blob_local_path
+            from .utils.blob_sas import verify_blob_exists, get_blob_local_path
         except ImportError:
             return api_error("Storage utilities not available", status=501)
 
@@ -249,7 +257,7 @@ class StagedUploadViewSet(ModelViewSet):
 
     def _process_project_import(self, upload: StagedUpload) -> dict:
         """Process a project import upload."""
-        from ..lib.utils.storage.blob_sas import get_blob_local_path, delete_blob
+        from .utils.blob_sas import get_blob_local_path, delete_blob
         from django.core.management import call_command
 
         upload.status = StagedUpload.Status.PROCESSING
@@ -289,7 +297,7 @@ class StagedUploadViewSet(ModelViewSet):
 
     def _process_unmerged_data(self, upload: StagedUpload) -> dict:
         """Process an unmerged data upload."""
-        from ..lib.utils.storage.blob_sas import get_blob_local_path
+        from .utils.blob_sas import get_blob_local_path
 
         upload.status = StagedUpload.Status.PROCESSING
         upload.save()
@@ -338,7 +346,7 @@ class StagedUploadViewSet(ModelViewSet):
 
         # Try to delete the blob if it exists
         try:
-            from ..lib.utils.storage.blob_sas import delete_blob
+            from .utils.blob_sas import delete_blob
             delete_blob(upload.blob_path)
         except Exception as e:
             logger.warning(f"Failed to delete blob during cancel: {e}")
