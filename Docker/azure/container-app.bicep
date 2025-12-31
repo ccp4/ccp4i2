@@ -235,7 +235,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'DJANGO_SETTINGS_MODULE'
-              value: 'ccp4i2.config.settings'
+              value: 'azure_extensions.settings'
             }
             {
               name: 'CCP4_DATA_PATH'

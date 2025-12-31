@@ -149,7 +149,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               type: 'Readiness'
               httpGet: {
-                path: '/projects/'
+                path: '/health/'  // Changed from /projects/ which requires auth
                 port: 8000
               }
               initialDelaySeconds: 60
@@ -178,7 +178,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'DJANGO_SETTINGS_MODULE'
-              value: 'ccp4i2.config.settings'
+              value: 'azure_extensions.settings'
             }
             {
               name: 'CCP4_VERSION'
@@ -417,7 +417,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'DJANGO_SETTINGS_MODULE'
-              value: 'ccp4i2.config.settings'
+              value: 'azure_extensions.settings'
             }
             {
               name: 'CCP4_VERSION'
