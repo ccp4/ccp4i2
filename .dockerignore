@@ -36,7 +36,9 @@ build/
 *.egg
 
 # Exclude Docker azure deployment scripts (not needed in image)
+# But include azure_extensions Django app which IS needed
 Docker/azure/
+!Docker/azure/azure_extensions/
 
 # Exclude local environment files
 .env
