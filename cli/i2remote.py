@@ -592,7 +592,8 @@ class CCP4i2Client:
         if target_job_uuid:
             data["target_job_uuid"] = target_job_uuid
 
-        return self.post("/uploads/request", data)
+        # Use longer timeout for upload requests (SAS URL generation can be slow)
+        return self.post("/uploads/request", data, timeout=120)
 
     def complete_upload(self, upload_id: str) -> dict:
         """
@@ -604,7 +605,8 @@ class CCP4i2Client:
         Returns:
             Dict with processing status and message
         """
-        return self.post(f"/uploads/{upload_id}/complete")
+        # Use longer timeout - server needs to verify large files and start processing
+        return self.post(f"/uploads/{upload_id}/complete", timeout=300)
 
     def get_upload_status(self, upload_id: str) -> dict:
         """Get the status of a staged upload."""
@@ -622,6 +624,14 @@ class CCP4i2Client:
     def cancel_upload(self, upload_id: str) -> dict:
         """Cancel a pending upload."""
         return self.delete(f"/uploads/{upload_id}/cancel")
+
+    def reset_upload(self, upload_id: str) -> dict:
+        """Reset a stuck upload back to 'uploaded' status."""
+        return self.post(f"/uploads/{upload_id}/reset")
+
+    def force_complete_upload(self, upload_id: str) -> dict:
+        """Force completion of an upload, bypassing expiry check."""
+        return self.post(f"/uploads/{upload_id}/force-complete", timeout=300)
 
     # ─────────────────────────────────────────────────────────────────────────
     # Jobs
@@ -1768,6 +1778,57 @@ def cmd_upload_complete(args):
         sys.exit(1)
 
 
+def cmd_upload_reset(args):
+    """Reset a stuck upload back to 'uploaded' status."""
+    client = get_client()
+
+    if not args.upload_id:
+        print("Usage: i2remote upload-reset <upload_id>", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Resetting upload: {args.upload_id}")
+
+    try:
+        result = client.reset_upload(args.upload_id)
+
+        print()
+        print("Upload reset successfully!")
+        print(f"Status: {result.get('status', 'unknown')}")
+        print()
+        print("You can now run 'upload-complete' to re-trigger processing.")
+
+    except APIError as e:
+        print(f"Failed to reset upload: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
+def cmd_upload_force_complete(args):
+    """Force complete an expired upload."""
+    client = get_client()
+
+    if not args.upload_id:
+        print("Usage: i2remote upload-force-complete <upload_id>", file=sys.stderr)
+        sys.exit(1)
+
+    print(f"Force completing upload: {args.upload_id}")
+    print("Verifying blob exists and triggering processing...")
+
+    try:
+        result = client.force_complete_upload(args.upload_id)
+
+        print()
+        print("Upload force-completed successfully!")
+        print(f"Status: {result.get('status', 'unknown')}")
+        if result.get('message'):
+            print(f"Message: {result['message']}")
+        if result.get('note'):
+            print(f"Note: {result['note']}")
+
+    except APIError as e:
+        print(f"Failed to force-complete upload: {e}", file=sys.stderr)
+        sys.exit(1)
+
+
 def cmd_upload_status(args):
     """Check status of a staged upload."""
     client = get_client()
@@ -1935,6 +1996,18 @@ def main():
         help="Filter by upload type"
     )
 
+    upload_reset_parser = subparsers.add_parser(
+        "upload-reset",
+        help="Reset a stuck upload to allow re-processing"
+    )
+    upload_reset_parser.add_argument("upload_id", help="Upload UUID to reset")
+
+    upload_force_complete_parser = subparsers.add_parser(
+        "upload-force-complete",
+        help="Force complete an expired upload (blob must still exist)"
+    )
+    upload_force_complete_parser.add_argument("upload_id", help="Upload UUID to force complete")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -1970,6 +2043,10 @@ def main():
             cmd_upload_status(args)
         elif args.command == "upload-list":
             cmd_upload_list(args)
+        elif args.command == "upload-reset":
+            cmd_upload_reset(args)
+        elif args.command == "upload-force-complete":
+            cmd_upload_force_complete(args)
         else:
             print(f"Unknown command: {args.command}", file=sys.stderr)
             sys.exit(1)

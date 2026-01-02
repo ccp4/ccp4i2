@@ -46,7 +46,17 @@ def get_blob_service_client():
         # Use managed identity (recommended for Azure deployment)
         account_url = f"https://{storage_account_name}.blob.core.windows.net"
         try:
-            credential = DefaultAzureCredential()
+            # For User-Assigned Managed Identity, we need to specify the client ID
+            # This can be set via AZURE_CLIENT_ID env var or passed explicitly
+            managed_identity_client_id = os.environ.get("AZURE_CLIENT_ID")
+            if managed_identity_client_id:
+                logger.debug(f"Using managed identity with client ID: {managed_identity_client_id}")
+                credential = DefaultAzureCredential(
+                    managed_identity_client_id=managed_identity_client_id
+                )
+            else:
+                logger.debug("Using DefaultAzureCredential without explicit client ID")
+                credential = DefaultAzureCredential()
             client = BlobServiceClient(account_url=account_url, credential=credential)
             logger.debug(f"Using managed identity for storage account: {storage_account_name}")
             return client

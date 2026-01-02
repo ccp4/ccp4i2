@@ -31,8 +31,11 @@ param aadTenantId string
 @description('Shared Container Apps Identity ID')
 param containerAppsIdentityId string
 
-@description('Shared Container Apps Identity Principal ID')
+@description('Shared Container Apps Identity Principal ID (for RBAC)')
 param containerAppsIdentityPrincipalId string
+
+@description('Shared Container Apps Identity Client ID (for DefaultAzureCredential)')
+param containerAppsIdentityClientId string
 
 @description('CCP4 version directory name (e.g., ccp4-9, ccp4-20251105)')
 param ccp4Version string = 'ccp4-20251105'
@@ -222,7 +225,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'DEBUG'
-              value: 'true' // Ensure DEBUG is false in production
+              value: 'false'
             }
             {
               name: 'CCP4_DATA_PATH'
@@ -282,6 +285,12 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'AZURE_STORAGE_ACCOUNT_NAME'
               value: storageAccountName
+            }
+            // Managed Identity Client ID for DefaultAzureCredential
+            // Required for User-Assigned Managed Identity to authenticate to Azure services
+            {
+              name: 'AZURE_CLIENT_ID'
+              value: containerAppsIdentityClientId
             }
           ]
           volumeMounts: [
@@ -482,6 +491,16 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'SERVICE_BUS_QUEUE_NAME'
               value: '${prefix}-jobs'
+            }
+            // Azure Storage for staged uploads (large file downloads in worker)
+            {
+              name: 'AZURE_STORAGE_ACCOUNT_NAME'
+              value: storageAccountName
+            }
+            // Managed Identity Client ID for DefaultAzureCredential
+            {
+              name: 'AZURE_CLIENT_ID'
+              value: containerAppsIdentityClientId
             }
           ]
           volumeMounts: [

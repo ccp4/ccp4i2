@@ -201,10 +201,11 @@ class StagedUploadViewSet(ModelViewSet):
     @action(detail=True, methods=["post"], url_path="complete")
     def complete_upload(self, request, uuid=None):
         """
-        Mark an upload as complete and trigger processing.
+        Mark an upload as complete and queue it for background processing.
 
         This should be called after the client has finished uploading
-        the file to the SAS URL.
+        the file to the SAS URL. The actual processing (download from blob,
+        import/processing) happens asynchronously in the worker.
         """
         try:
             upload = StagedUpload.objects.get(uuid=uuid)
@@ -223,7 +224,7 @@ class StagedUploadViewSet(ModelViewSet):
 
         # Verify blob exists
         try:
-            from .utils.blob_sas import verify_blob_exists, get_blob_local_path
+            from .utils.blob_sas import verify_blob_exists
         except ImportError:
             return api_error("Storage utilities not available", status=501)
 
@@ -233,16 +234,16 @@ class StagedUploadViewSet(ModelViewSet):
                 status=404
             )
 
-        # Mark as uploaded
+        # Mark as uploaded (verified blob exists)
         upload.status = StagedUpload.Status.UPLOADED
         upload.save()
 
-        # Process based on upload type
+        # Queue for background processing based on upload type
         try:
             if upload.upload_type == StagedUpload.UploadType.PROJECT_IMPORT:
-                result = self._process_project_import(upload)
+                result = self._queue_project_import(upload)
             elif upload.upload_type == StagedUpload.UploadType.UNMERGED_DATA:
-                result = self._process_unmerged_data(upload)
+                result = self._queue_unmerged_data(upload)
             else:
                 return api_error(f"Unknown upload type: {upload.upload_type}", status=400)
 
@@ -252,86 +253,71 @@ class StagedUploadViewSet(ModelViewSet):
             upload.status = StagedUpload.Status.FAILED
             upload.error_message = str(e)
             upload.save()
-            logger.exception(f"Failed to process upload {upload.uuid}")
-            return api_error(f"Processing failed: {e}", status=500)
+            logger.exception(f"Failed to queue upload {upload.uuid}")
+            return api_error(f"Failed to queue processing: {e}", status=500)
 
-    def _process_project_import(self, upload: StagedUpload) -> dict:
-        """Process a project import upload."""
-        from .utils.blob_sas import get_blob_local_path, delete_blob
-        from django.core.management import call_command
+    def _queue_project_import(self, upload: StagedUpload) -> dict:
+        """Queue a project import for background processing."""
+        from .utils.queue import send_to_queue
 
+        # Prepare message for worker
+        message = {
+            "action": "import_project",
+            "upload_id": str(upload.uuid),
+            "blob_path": upload.blob_path,
+            "original_filename": upload.original_filename,
+        }
+
+        # Send to queue
+        if not send_to_queue(message):
+            raise RuntimeError("Failed to send message to processing queue")
+
+        # Mark as processing (queued for worker)
         upload.status = StagedUpload.Status.PROCESSING
         upload.save()
 
-        try:
-            # Download blob to local temp file
-            local_path = get_blob_local_path(upload.blob_path)
+        logger.info(f"Queued project import for upload {upload.uuid}")
 
-            logger.info(f"Starting project import from {local_path}")
+        return {
+            "message": "Project import queued for processing",
+            "upload_id": str(upload.uuid),
+            "status": upload.status,
+            "note": "Import runs in background. Project will appear when complete.",
+        }
 
-            # Run import command (detached so it doesn't block)
-            call_command("import_ccp4_project_zip", local_path, "--detach")
+    def _queue_unmerged_data(self, upload: StagedUpload) -> dict:
+        """Queue unmerged data upload for background processing."""
+        from .utils.queue import send_to_queue
 
-            upload.status = StagedUpload.Status.COMPLETED
-            upload.completed_at = timezone.now()
-            upload.save()
+        if not upload.target_job:
+            raise ValueError("No target job specified for unmerged data upload")
 
-            # Clean up blob (async, don't block response)
-            try:
-                delete_blob(upload.blob_path)
-            except Exception as e:
-                logger.warning(f"Failed to delete staging blob: {e}")
+        # Prepare message for worker
+        message = {
+            "action": "process_unmerged_data",
+            "upload_id": str(upload.uuid),
+            "blob_path": upload.blob_path,
+            "original_filename": upload.original_filename,
+            "target_job_id": upload.target_job.id,
+            "target_job_uuid": str(upload.target_job.uuid),
+        }
 
-            return {
-                "message": "Project import started",
-                "upload_id": str(upload.uuid),
-                "status": upload.status,
-                "note": "Import runs in background. Project will appear shortly.",
-            }
+        # Send to queue
+        if not send_to_queue(message):
+            raise RuntimeError("Failed to send message to processing queue")
 
-        except Exception as e:
-            upload.status = StagedUpload.Status.FAILED
-            upload.error_message = str(e)
-            upload.save()
-            raise
-
-    def _process_unmerged_data(self, upload: StagedUpload) -> dict:
-        """Process an unmerged data upload."""
-        from .utils.blob_sas import get_blob_local_path
-
+        # Mark as processing (queued for worker)
         upload.status = StagedUpload.Status.PROCESSING
         upload.save()
 
-        try:
-            # Download blob to local temp file
-            local_path = get_blob_local_path(upload.blob_path)
+        logger.info(f"Queued unmerged data processing for upload {upload.uuid}")
 
-            # For unmerged data, we need to move it to the appropriate job directory
-            if not upload.target_job:
-                raise ValueError("No target job specified for unmerged data upload")
-
-            # TODO: Implement unmerged data handling
-            # This would involve:
-            # 1. Moving the file to the job's input directory
-            # 2. Setting the appropriate job parameter
-            # 3. Optionally triggering the job
-
-            upload.status = StagedUpload.Status.COMPLETED
-            upload.completed_at = timezone.now()
-            upload.save()
-
-            return {
-                "message": "Unmerged data uploaded",
-                "upload_id": str(upload.uuid),
-                "local_path": local_path,
-                "status": upload.status,
-            }
-
-        except Exception as e:
-            upload.status = StagedUpload.Status.FAILED
-            upload.error_message = str(e)
-            upload.save()
-            raise
+        return {
+            "message": "Unmerged data processing queued",
+            "upload_id": str(upload.uuid),
+            "status": upload.status,
+            "target_job": str(upload.target_job.uuid),
+        }
 
     @action(detail=True, methods=["delete"], url_path="cancel")
     def cancel_upload(self, request, uuid=None):
@@ -355,3 +341,116 @@ class StagedUploadViewSet(ModelViewSet):
         upload.delete()
 
         return api_success({"message": "Upload cancelled"})
+
+    @action(detail=True, methods=["post"], url_path="reset")
+    def reset_upload(self, request, uuid=None):
+        """
+        Reset a stuck upload back to 'uploaded' status.
+
+        This allows re-triggering processing for uploads that got stuck
+        in 'processing' state due to timeouts or errors.
+        """
+        logger.info(f"reset_upload called for uuid={uuid}")
+
+        try:
+            upload = StagedUpload.objects.get(uuid=uuid)
+            logger.info(f"Found upload: status={upload.status}, blob_path={upload.blob_path}")
+        except StagedUpload.DoesNotExist:
+            logger.warning(f"Upload not found: {uuid}")
+            return api_error("Upload not found", status=404)
+        except Exception as e:
+            logger.exception(f"Error fetching upload {uuid}: {e}")
+            return api_error(f"Database error: {e}", status=500)
+
+        if upload.status not in [StagedUpload.Status.PROCESSING, StagedUpload.Status.FAILED]:
+            logger.info(f"Upload {uuid} in wrong status: {upload.status}")
+            return api_error(
+                f"Cannot reset upload in {upload.status} status. "
+                "Only 'processing' or 'failed' uploads can be reset.",
+                status=400
+            )
+
+        # Verify the blob still exists before resetting (skip on any error)
+        try:
+            from .utils.blob_sas import verify_blob_exists
+            blob_exists = verify_blob_exists(upload.blob_path)
+            logger.info(f"Blob verification: exists={blob_exists}")
+            if not blob_exists:
+                return api_error(
+                    "Blob no longer exists. Cannot reset this upload.",
+                    status=410
+                )
+        except ImportError as e:
+            logger.info(f"Skipping blob verification (ImportError): {e}")
+        except Exception as e:
+            # Log warning but allow reset - blob check may fail due to permissions
+            logger.warning(f"Could not verify blob exists for reset: {e}")
+
+        # Reset to uploaded status
+        try:
+            upload.status = StagedUpload.Status.UPLOADED
+            upload.error_message = None
+            upload.save()
+            logger.info(f"Reset upload {upload.uuid} to 'uploaded' status")
+        except Exception as e:
+            logger.exception(f"Error saving upload {uuid}: {e}")
+            return api_error(f"Failed to save upload: {e}", status=500)
+
+        return api_success({
+            "message": "Upload reset to 'uploaded' status",
+            "upload_id": str(upload.uuid),
+            "status": upload.status,
+        })
+
+    @action(detail=True, methods=["post"], url_path="force-complete")
+    def force_complete_upload(self, request, uuid=None):
+        """
+        Force completion of an upload, bypassing expiry check.
+
+        Use this when the blob exists but the SAS URL has expired.
+        The blob will be verified before queuing for processing.
+        """
+        logger.info(f"force_complete_upload called for uuid={uuid}")
+
+        try:
+            upload = StagedUpload.objects.get(uuid=uuid)
+        except StagedUpload.DoesNotExist:
+            return api_error("Upload not found", status=404)
+
+        # Check if already processed
+        if upload.status in [StagedUpload.Status.PROCESSING, StagedUpload.Status.COMPLETED]:
+            return api_error(f"Upload already {upload.status}", status=400)
+
+        # Verify blob exists (this is the key check - blob must exist)
+        try:
+            from .utils.blob_sas import verify_blob_exists
+        except ImportError:
+            return api_error("Storage utilities not available", status=501)
+
+        if not verify_blob_exists(upload.blob_path):
+            return api_error(
+                "File not found in storage. The blob may have been deleted.",
+                status=404
+            )
+
+        # Mark as uploaded (verified blob exists)
+        upload.status = StagedUpload.Status.UPLOADED
+        upload.save()
+
+        # Queue for background processing based on upload type
+        try:
+            if upload.upload_type == StagedUpload.UploadType.PROJECT_IMPORT:
+                result = self._queue_project_import(upload)
+            elif upload.upload_type == StagedUpload.UploadType.UNMERGED_DATA:
+                result = self._queue_unmerged_data(upload)
+            else:
+                return api_error(f"Unknown upload type: {upload.upload_type}", status=400)
+
+            return api_success(result)
+
+        except Exception as e:
+            upload.status = StagedUpload.Status.FAILED
+            upload.error_message = str(e)
+            upload.save()
+            logger.exception(f"Failed to queue upload {upload.uuid}")
+            return api_error(f"Failed to queue processing: {e}", status=500)

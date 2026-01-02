@@ -55,7 +55,7 @@ class StagedUpload(Model):
     )
     created_at = DateTimeField(default=timezone.now)
     completed_at = DateTimeField(blank=True, null=True)
-    error_message = TextField(blank=True)
+    error_message = TextField(blank=True, null=True)
     requested_by = CharField(max_length=255, blank=True)
 
     class Meta:
