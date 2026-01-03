@@ -198,6 +198,41 @@ def run_ccp4_analysis(parameters):
         return {"status": "failed", "error": error_msg}
 
 
+def validate_zip_file(file_path):
+    """
+    Validate that a file is a valid zip archive.
+
+    Checks the zip file header and attempts to read the central directory
+    to detect corrupted or incomplete uploads.
+
+    Returns:
+        True if file is a valid zip, False otherwise
+    """
+    import zipfile
+
+    if not os.path.exists(file_path):
+        logger.error("File does not exist: %s", file_path)
+        return False
+
+    file_size = os.path.getsize(file_path)
+    if file_size < 22:  # Minimum size for an empty zip file
+        logger.error("File too small to be a valid zip: %d bytes", file_size)
+        return False
+
+    try:
+        with zipfile.ZipFile(file_path, "r") as zf:
+            # Test the zip file integrity by reading the file list
+            file_list = zf.namelist()
+            logger.info("Zip file validated: %d files found", len(file_list))
+            return True
+    except zipfile.BadZipFile as e:
+        logger.error("Invalid zip file: %s", str(e))
+        return False
+    except Exception as e:
+        logger.error("Error validating zip file: %s", str(e))
+        return False
+
+
 def process_project_import(parameters):
     """
     Process a project import from a staged upload.
@@ -225,6 +260,18 @@ def process_project_import(parameters):
         # Download blob to local temp file
         local_path = download_blob_to_local(blob_path)
         logger.info("Downloaded blob to %s", local_path)
+
+        # Validate zip file before attempting import
+        if not validate_zip_file(local_path):
+            error_msg = "Downloaded file is not a valid zip file (corrupted or incomplete upload)"
+            logger.error(error_msg)
+            update_staged_upload_status(upload_id, "failed", error_msg)
+            # Clean up the invalid file
+            try:
+                os.remove(local_path)
+            except Exception:
+                pass
+            return {"status": "failed", "error": error_msg}
 
         # Get CCP4 Python executable
         ccp4_python = os.getenv("CCP4_PYTHON")
@@ -388,11 +435,15 @@ blob_service_client = BlobServiceClient(account_url=account_url, credential=cred
 
 blob_client = blob_service_client.get_blob_client(container=container_name, blob=blob_path)
 
+# Stream download in chunks to avoid loading entire file into memory
+download_stream = blob_client.download_blob()
+total_bytes = 0
 with open(local_path, "wb") as f:
-    download_stream = blob_client.download_blob()
-    f.write(download_stream.readall())
+    for chunk in download_stream.chunks():
+        f.write(chunk)
+        total_bytes += len(chunk)
 
-print(f"Downloaded {os.path.getsize(local_path)} bytes")
+print(f"Downloaded {total_bytes} bytes")
 '''
 
     result = subprocess.run(

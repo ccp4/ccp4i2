@@ -547,6 +547,29 @@ resource containerAppsIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities
   location: location
 }
 
+// Role Assignments for Container Apps Identity on Storage Account
+// Storage Blob Data Contributor - allows read/write access to blobs
+resource storageBlobDataContributorRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(storageAccount.id, containerAppsIdentity.id, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+  scope: storageAccount
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+    principalId: containerAppsIdentity.properties.principalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
+// Storage Blob Delegator - allows generating user delegation SAS tokens
+resource storageBlobDelegatorRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(storageAccount.id, containerAppsIdentity.id, 'db58b8e5-c6ad-4a2a-8342-4190687cbf4a')
+  scope: storageAccount
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'db58b8e5-c6ad-4a2a-8342-4190687cbf4a')
+    principalId: containerAppsIdentity.properties.principalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
 // Storage for Container Apps Environment
 resource containerAppsStorage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
   name: 'ccp4data-mount'
@@ -603,3 +626,4 @@ output privateEndpointsSubnetId string = '${vnet.id}/subnets/private-endpoints-s
 output resourceGroupName string = resourceGroup().name
 output containerAppsIdentityId string = containerAppsIdentity.id
 output containerAppsIdentityPrincipalId string = containerAppsIdentity.properties.principalId
+output containerAppsIdentityClientId string = containerAppsIdentity.properties.clientId

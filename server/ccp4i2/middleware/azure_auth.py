@@ -23,6 +23,8 @@ import os
 import json
 import time
 import logging
+import ssl
+import certifi
 from functools import lru_cache
 from typing import Optional, Tuple
 from urllib.request import urlopen
@@ -54,7 +56,9 @@ class AzureADTokenValidator:
             return self._keys_cache
 
         try:
-            with urlopen(self.jwks_uri, timeout=10) as response:
+            # Use certifi's certificate bundle for SSL verification
+            ssl_context = ssl.create_default_context(cafile=certifi.where())
+            with urlopen(self.jwks_uri, timeout=10, context=ssl_context) as response:
                 jwks = json.loads(response.read().decode("utf-8"))
                 self._keys_cache = {key["kid"]: key for key in jwks.get("keys", [])}
                 self._keys_cache_time = now
@@ -77,7 +81,7 @@ class AzureADTokenValidator:
         """
         try:
             import jwt
-            from jwt import PyJWKClient
+            from jwt import PyJWK
         except ImportError:
             logger.error("PyJWT not installed. Run: pip install PyJWT[crypto]")
             return False, None, "Server configuration error: PyJWT not installed"
@@ -101,14 +105,15 @@ class AzureADTokenValidator:
 
             key_data = keys[kid]
 
-            # Use PyJWKClient to construct the key
-            jwk_client = PyJWKClient(self.jwks_uri)
-            signing_key = jwk_client.get_signing_key(kid)
+            # Construct signing key directly from cached JWK data
+            # (avoids PyJWKClient making its own HTTPS request)
+            jwk = PyJWK.from_dict(key_data)
+            signing_key = jwk.key
 
             # Decode and validate the token
             claims = jwt.decode(
                 token,
-                signing_key.key,
+                signing_key,
                 algorithms=["RS256"],
                 audience=self.client_id,
                 issuer=self.issuer,

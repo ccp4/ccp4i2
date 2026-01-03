@@ -722,9 +722,12 @@ class ProjectViewSet(ModelViewSet):
         project_export.save()
         timestamp = project_export.time.strftime("%Y%m%d_%H%M%S")
         export_file_name = f"{project_name}_export_{timestamp}.ccp4_project.zip"
-        export_file_path = os.path.join(
-            the_project.directory, "CCP4_PROJECT_FILES", export_file_name
-        )
+
+        # Use CCP4_EXPORT_FILES directory (excluded from exports to prevent recursive inclusion)
+        export_dir = os.path.join(the_project.directory, "CCP4_EXPORT_FILES")
+        os.makedirs(export_dir, exist_ok=True)
+
+        export_file_path = os.path.join(export_dir, export_file_name)
 
         # Ensure the export file path doesn't already exist (add counter if needed)
         counter = 1
@@ -732,16 +735,12 @@ class ProjectViewSet(ModelViewSet):
         while os.path.exists(export_file_path):
             name_without_ext = base_name.rsplit(".", 1)[0]
             export_file_name = f"{name_without_ext}_{counter}.ccp4_project.zip"
-            export_file_path = os.path.join(
-                the_project.directory, "CCP4_PROJECT_FILES", export_file_name
-            )
+            export_file_path = os.path.join(export_dir, export_file_name)
             counter += 1
 
         # Create log file path with same base name but .export.log extension
         log_file_name = export_file_name.replace(".ccp4_project.zip", ".export.log")
-        log_file_path = os.path.join(
-            the_project.directory, "CCP4_PROJECT_FILES", log_file_name
-        )
+        log_file_path = os.path.join(export_dir, log_file_name)
 
         # Start subprocess to run export_project management command in background
         try:

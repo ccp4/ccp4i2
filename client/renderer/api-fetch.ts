@@ -84,10 +84,12 @@ async function coreFetch(
   const token = await getAccessToken();
   if (token) {
     headers["Authorization"] = `Bearer ${token}`;
-    console.warn("[FETCH] Token injected (length:", token.length, ") for:", normalizedUrl.substring(0, 60));
-  } else {
-    console.warn("[FETCH] No token available for:", normalizedUrl.substring(0, 60));
+    // Only log token injection in development for debugging
+    if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH) {
+      console.log("[FETCH] Token injected for:", normalizedUrl.substring(0, 60));
+    }
   }
+  // Don't log "no token" warnings - it's expected in local dev mode
 
   // Convert options.headers to Record<string, string> format
   if (options.headers) {

@@ -139,9 +139,25 @@ CONTAINER_APPS_IDENTITY_PRINCIPAL_ID=$(az deployment group show \
   --query properties.outputs.containerAppsIdentityPrincipalId.value \
   --output tsv)
 
+CONTAINER_APPS_IDENTITY_CLIENT_ID=$(az deployment group show \
+  --resource-group $RESOURCE_GROUP \
+  --name $INFRA_DEPLOYMENT \
+  --query properties.outputs.containerAppsIdentityClientId.value \
+  --output tsv)
+
 if [ -z "$CONTAINER_APPS_IDENTITY_ID" ] || [ -z "$CONTAINER_APPS_IDENTITY_PRINCIPAL_ID" ]; then
     echo -e "${RED}❌ Could not get Container Apps Identity from deployment $INFRA_DEPLOYMENT${NC}"
     exit 1
+fi
+
+# If client ID is not in deployment outputs (older infra), get it directly from the identity
+if [ -z "$CONTAINER_APPS_IDENTITY_CLIENT_ID" ]; then
+    IDENTITY_NAME=$(basename $CONTAINER_APPS_IDENTITY_ID)
+    CONTAINER_APPS_IDENTITY_CLIENT_ID=$(az identity show \
+      --name $IDENTITY_NAME \
+      --resource-group $RESOURCE_GROUP \
+      --query clientId \
+      --output tsv 2>/dev/null || echo "")
 fi
 
 az deployment group create \
@@ -159,6 +175,7 @@ az deployment group create \
                aadTenantId="${NEXT_PUBLIC_AAD_TENANT_ID:-}" \
                containerAppsIdentityId="$CONTAINER_APPS_IDENTITY_ID" \
                containerAppsIdentityPrincipalId="$CONTAINER_APPS_IDENTITY_PRINCIPAL_ID" \
+               containerAppsIdentityClientId="$CONTAINER_APPS_IDENTITY_CLIENT_ID" \
                ccp4Version="${CCP4_VERSION:-ccp4-9}" \
                storageAccountName="$STORAGE_ACCOUNT_NAME" \
   --name $APP_DEPLOYMENT_NAME \

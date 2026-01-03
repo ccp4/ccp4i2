@@ -15,7 +15,9 @@ let tokenGetter: TokenGetter | null = null;
  * Called by AuthProvider when MSAL is initialized.
  */
 export function setTokenGetter(getter: TokenGetter): void {
-  console.warn("[AUTH-TOKEN] setTokenGetter called - auth provider is now configured");
+  if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH) {
+    console.log("[AUTH-TOKEN] setTokenGetter called - auth provider is now configured");
+  }
   tokenGetter = getter;
 }
 
@@ -32,14 +34,15 @@ export function clearTokenGetter(): void {
  */
 export async function getAccessToken(): Promise<string | null> {
   if (!tokenGetter) {
-    console.warn("[AUTH-TOKEN] No tokenGetter configured - auth not initialized yet");
+    // No warning - this is expected in local dev mode without Azure AD
     return null;
   }
 
   try {
-    console.warn("[AUTH-TOKEN] Calling tokenGetter...");
     const token = await tokenGetter();
-    console.warn("[AUTH-TOKEN] tokenGetter returned:", token ? `token(${token.length} chars)` : "null");
+    if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH) {
+      console.log("[AUTH-TOKEN] tokenGetter returned:", token ? `token(${token.length} chars)` : "null");
+    }
     return token;
   } catch (error) {
     console.error("[AUTH-TOKEN] Failed to get access token:", error);

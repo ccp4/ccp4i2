@@ -567,6 +567,8 @@ def _add_project_files_to_zip(
             job_directories = {d for d in ccp4_jobs_dir.iterdir() if d.is_dir()}
 
     # Standard project directories to include
+    # NOTE: CCP4_EXPORT_FILES is intentionally excluded - it contains export archives
+    # which would cause recursive inclusion (exports containing previous exports)
     standard_dirs = [
         "CCP4_COOT",
         "CCP4_DOWNLOADED_FILES",

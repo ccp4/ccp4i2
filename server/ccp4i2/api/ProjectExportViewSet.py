@@ -32,7 +32,7 @@ class ProjectExportViewSet(ModelViewSet):
         timestamp = export.time.strftime("%Y%m%d_%H%M%S")
         export_file_name = f"{project_name}_export_{timestamp}.ccp4_project.zip"
         export_file_path = os.path.join(
-            project.directory, "CCP4_PROJECT_FILES", export_file_name
+            project.directory, "CCP4_EXPORT_FILES", export_file_name
         )
 
         if os.path.exists(export_file_path):
@@ -61,9 +61,8 @@ class ProjectExportViewSet(ModelViewSet):
         project_name = slugify(project.name or f"project_{project.id}")
         timestamp = export.time.strftime("%Y%m%d_%H%M%S")
         export_file_name = f"{project_name}_export_{timestamp}.ccp4_project.zip"
-        export_file_path = os.path.join(
-            project.directory, "CCP4_PROJECT_FILES", export_file_name
-        )
+        export_dir = os.path.join(project.directory, "CCP4_EXPORT_FILES")
+        export_file_path = os.path.join(export_dir, export_file_name)
 
         print(f"Constructed export file path: {export_file_path}")
         print(f"Export file exists: {os.path.exists(export_file_path)}")
@@ -77,18 +76,14 @@ class ProjectExportViewSet(ModelViewSet):
         ):  # Reasonable limit
             name_without_ext = base_name.rsplit(".", 1)[0]
             export_file_name = f"{name_without_ext}_{counter}.ccp4_project.zip"
-            actual_export_path = os.path.join(
-                project.directory, "CCP4_PROJECT_FILES", export_file_name
-            )
+            actual_export_path = os.path.join(export_dir, export_file_name)
             counter += 1
 
         print(f"Final export file path after counter check: {actual_export_path}")
 
         # Create log file path with same base name but .export.log extension
         log_file_name = export_file_name.replace(".ccp4_project.zip", ".export.log")
-        log_file_path = os.path.join(
-            project.directory, "CCP4_PROJECT_FILES", log_file_name
-        )
+        log_file_path = os.path.join(export_dir, log_file_name)
 
         print(f"Log file path: {log_file_path}")
         print(f"Log file exists: {os.path.exists(log_file_path)}")

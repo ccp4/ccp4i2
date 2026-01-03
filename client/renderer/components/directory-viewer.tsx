@@ -1,14 +1,19 @@
 "use client";
 import { LinearProgress } from "@mui/material";
-import { useProject } from "../utils";
-import { useEffect, useMemo, useState } from "react";
+import { useApi } from "../api";
+import { useEffect, useState } from "react";
 import DirectoryBrowser from "./directory-browser";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
 import { FileSystemFileMenu } from "./file-system-file-menu";
 
+/** Polling interval for directory refresh (10 seconds) */
+const DIRECTORY_POLL_INTERVAL = 10000;
+
 interface CCP4i2DirectoryViewerProps {
   projectId: number;
   searchTerm?: string;
+  /** Enable periodic polling to refresh directory contents (default: true) */
+  enablePolling?: boolean;
 }
 
 // Utility function to find all paths that contain matching items
@@ -68,9 +73,21 @@ const useSearchExpansion = (directoryTree: any[], searchTerm?: string) => {
 export const CCP4i2DirectoryViewer: React.FC<CCP4i2DirectoryViewerProps> = ({
   projectId,
   searchTerm,
+  enablePolling = true,
 }) => {
-  const { directory } = useProject(projectId);
+  const api = useApi();
   const { closeMenu } = useFileSystemFileBrowser();
+
+  // Fetch directory with optional polling
+  const pollInterval = enablePolling ? DIRECTORY_POLL_INTERVAL : 0;
+  const { data: directory } = api.get_endpoint<any>(
+    {
+      type: "projects",
+      id: projectId,
+      endpoint: "directory",
+    },
+    pollInterval
+  );
 
   // Use search expansion hook
   const { expandedPaths, shouldAutoExpand } = useSearchExpansion(

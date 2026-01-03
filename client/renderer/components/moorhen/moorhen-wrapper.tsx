@@ -26,14 +26,57 @@ import { useDispatch, useSelector, useStore } from "react-redux";
 import { webGL } from "moorhen/types/mgWebGL";
 import { useCCP4i2Window } from "../../app-context";
 import { MoorhenControlPanel } from "./moorhen-control-panel";
-import { apiGet, apiText } from "../../api-fetch";
+import { apiGet, apiText, apiArrayBuffer } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
+
+// Detect Safari browser (has WASM threading issues with Moorhen)
+const isSafariBrowser = (): boolean => {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+  const isIOS = /iPad|iPhone|iPod/.test(ua);
+  return isSafari || isIOS;
+};
+
+// Safari warning component
+const SafariWarning: React.FC = () => (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100%",
+      padding: "40px",
+      textAlign: "center",
+      backgroundColor: "#fff3cd",
+      border: "1px solid #ffc107",
+      borderRadius: "8px",
+      margin: "20px",
+    }}
+  >
+    <h2 style={{ color: "#856404", marginBottom: "16px" }}>
+      Browser Not Supported
+    </h2>
+    <p style={{ color: "#856404", maxWidth: "600px", lineHeight: "1.6" }}>
+      The Moorhen molecular viewer requires WebAssembly threading features that
+      are not fully supported in Safari. Please use <strong>Google Chrome</strong>,{" "}
+      <strong>Microsoft Edge</strong>, or <strong>Firefox</strong> to view
+      molecular structures.
+    </p>
+    <p style={{ color: "#856404", marginTop: "16px", fontSize: "14px" }}>
+      Alternatively, use the CCP4i2 desktop application (Electron) which works
+      on all platforms.
+    </p>
+  </div>
+);
 
 export interface MoorhenWrapperProps {
   fileIds?: number[];
 }
 
 const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
+  const [isSafari] = useState(() => isSafariBrowser());
   const dispatch = useDispatch();
   const theme = useTheme();
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
@@ -175,7 +218,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
     newMolecule.setBackgroundColour(backgroundColor);
     newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
     try {
-      await newMolecule.loadToCootFromURL(url, molName);
+      // Fetch PDB data using authenticated api-fetch, then load into Moorhen
+      const pdbData = await apiText(url);
+      await newMolecule.loadToCootFromString(pdbData, molName);
       if (newMolecule.molNo === -1) {
         throw new Error("Cannot read the fetched molecule...");
       }
@@ -203,7 +248,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
       store
     );
     try {
-      await newMap.loadToCootFromMtzURL(url, mapName, {
+      // Fetch MTZ data using authenticated api-fetch, then load into Moorhen
+      const mtzData = await apiArrayBuffer(url);
+      await newMap.loadToCootFromMtzData(new Uint8Array(mtzData), mapName, {
         F: "F",
         PHI: "PHI",
         useWeight: false,
@@ -267,6 +314,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
       dispatch(addMolecule(newMolecule));
     }
   };
+
+  // Show Safari warning instead of Moorhen viewer
+  if (isSafari) {
+    return <SafariWarning />;
+  }
 
   return (
     store &&
