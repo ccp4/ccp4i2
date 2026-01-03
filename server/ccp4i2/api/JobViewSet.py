@@ -364,16 +364,19 @@ class JobViewSet(ModelViewSet):
 
     @action(
         detail=True,
-        methods=["get"],
+        methods=["get", "put"],
         permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def params_xml(self, request, pk=None):
         """
-        Retrieve job parameters as XML document.
+        Retrieve or update job parameters as XML document.
 
-        Returns the job's parameter configuration in XML format, either from
+        GET: Returns the job's parameter configuration in XML format, either from
         params.xml (for completed jobs) or input_params.xml (for pending jobs).
+
+        PUT: Updates the job's input_params.xml with the provided XML content.
+        Only allowed for jobs in PENDING status.
 
         Uses the unified utility from ccp4i2.lib.utils.jobs.reports for
         consistent behavior with CLI commands.
@@ -385,28 +388,39 @@ class JobViewSet(ModelViewSet):
         Returns:
             Response: XML content or error message
 
-        Response Format:
+        Response Format (GET):
             {
                 "status": "Success",
                 "xml": "<xml>...</xml>"
             }
 
-        File Priority:
+        Response Format (PUT):
+            {
+                "status": "Success",
+                "message": "Parameters saved successfully"
+            }
+
+        File Priority (GET):
             1. params.xml (for running/completed jobs)
             2. input_params.xml (fallback for pending jobs)
 
         Example:
             GET /api/jobs/123/params_xml/
+            PUT /api/jobs/123/params_xml/  (body: {"xml": "<CCP4i2_body>...</CCP4i2_body>"})
 
         Architecture:
-            - Uses get_job_params_xml() utility
+            - Uses get_job_params_xml() utility for GET
+            - Direct file write for PUT (validation via CPluginScript planned)
             - Shared with get_job_report --type params command
             - Consistent file path logic and error handling
         """
         try:
             the_job = models.Job.objects.get(id=pk)
 
-            # Use unified utility
+            if request.method == "PUT":
+                return self._put_params_xml(request, the_job)
+
+            # GET request - use unified utility
             from ..lib.utils.jobs.reports import get_job_params_xml
 
             result = get_job_params_xml(the_job)
@@ -422,6 +436,75 @@ class JobViewSet(ModelViewSet):
         except Exception as err:
             logger.exception("Unexpected error getting params XML for job %s", pk, exc_info=err)
             return api_error(f"Unexpected error: {str(err)}", status=500)
+
+    def _put_params_xml(self, request, job):
+        """
+        Handle PUT request to update job's input_params.xml.
+
+        Only allowed for jobs in PENDING status. Validates the XML is well-formed
+        before saving.
+
+        Args:
+            request: HTTP request with JSON body containing 'xml' key
+            job: Job model instance
+
+        Returns:
+            Response with success/error status
+        """
+        import xml.etree.ElementTree as ET
+
+        # Check job status - only allow editing pending jobs
+        if job.status not in [models.Job.Status.UNKNOWN, models.Job.Status.PENDING]:
+            return api_error(
+                f"Cannot modify parameters on job with status '{job.get_status_display()}'. "
+                f"Only PENDING jobs can be edited.",
+                status=400,
+                details={
+                    "job_id": str(job.uuid),
+                    "job_status": job.status,
+                    "allowed_statuses": ["UNKNOWN", "PENDING"]
+                }
+            )
+
+        try:
+            # Parse request body
+            body = json.loads(request.body.decode("utf-8"))
+            xml_content = body.get("xml")
+
+            if not xml_content:
+                return api_error("Missing 'xml' field in request body", status=400)
+
+            # Validate XML is well-formed
+            try:
+                ET.fromstring(xml_content)
+            except ET.ParseError as e:
+                return api_error(
+                    f"Invalid XML: {str(e)}",
+                    status=400,
+                    details={"parse_error": str(e)}
+                )
+
+            # Write to input_params.xml
+            input_params_file = job.directory / "input_params.xml"
+            logger.info("Saving params XML to %s for job %s", input_params_file, job.uuid)
+
+            with open(input_params_file, "w", encoding="utf-8") as f:
+                f.write(xml_content)
+
+            logger.info("Successfully saved params XML to %s", input_params_file)
+            return api_success({
+                "message": "Parameters saved successfully",
+                "file": str(input_params_file)
+            })
+
+        except json.JSONDecodeError as e:
+            return api_error(f"Invalid JSON in request body: {str(e)}", status=400)
+        except IOError as e:
+            logger.exception("Failed to write params XML for job %s", job.uuid)
+            return api_error(f"Failed to write file: {str(e)}", status=500)
+        except Exception as e:
+            logger.exception("Unexpected error saving params XML for job %s", job.uuid)
+            return api_error(f"Unexpected error: {str(e)}", status=500)
 
     @action(
         detail=True,

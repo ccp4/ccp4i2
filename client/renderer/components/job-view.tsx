@@ -1,6 +1,15 @@
 "use client";
-import { useEffect, useMemo } from "react";
-import { Box, Container, LinearProgress, Tab, Tabs } from "@mui/material";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  LinearProgress,
+  Stack,
+  Tab,
+  Tabs,
+} from "@mui/material";
+import { Save as SaveIcon, Restore as RestoreIcon } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
 import { JobHeader } from "../components/job-header";
 import { CCP4i2ReportXMLView } from "../components/report/CCP4i2ReportXMLView";
@@ -12,6 +21,7 @@ import { JobCommentEditor } from "../components/job-comment-editor";
 import { JobMenu } from "../providers/job-context-menu";
 import { JobDirectoryView } from "../components/job-directory-view";
 import { useApi } from "../api";
+import { apiPut } from "../api-fetch";
 import $ from "jquery";
 import Diagnostic from "../components/diagnostic";
 import { JobLogViewer } from "../components/job-log-viewer";
@@ -39,8 +49,15 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   }, [jobs, jobid]);
 
   // Get detailed job data (params_xml, container, etc.) - status may lag behind
-  const { job, params_xml, validation, diagnostic_xml, def_xml, container } =
-    useJob(jobid);
+  const {
+    job,
+    params_xml,
+    mutateParams_xml,
+    validation,
+    diagnostic_xml,
+    def_xml,
+    container,
+  } = useJob(jobid);
 
   const {
     setExtraDialogActions,
@@ -70,6 +87,68 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
 
   const previousJob = usePrevious(job);
   const { jobTabValue: tabValue, setJobTabValue: setTabValue } = useJobTab();
+
+  // State for editable params XML (only used for pending jobs)
+  const [editedParamsXml, setEditedParamsXml] = useState<string | null>(null);
+  const [isSavingXml, setIsSavingXml] = useState(false);
+  const [xmlSaveError, setXmlSaveError] = useState<string | null>(null);
+
+  // Track if the XML has been modified
+  const isXmlModified = useMemo(() => {
+    return editedParamsXml !== null && editedParamsXml !== params_xml;
+  }, [editedParamsXml, params_xml]);
+
+  // Check if job is pending (editable)
+  const isPending = currentStatus === 1;
+
+  // Reset edited XML when job changes or params_xml changes
+  useEffect(() => {
+    setEditedParamsXml(null);
+    setXmlSaveError(null);
+  }, [jobid, params_xml]);
+
+  // Handle XML editor changes
+  const handleXmlChange = useCallback((value: string | undefined) => {
+    if (value !== undefined) {
+      setEditedParamsXml(value);
+      setXmlSaveError(null);
+    }
+  }, []);
+
+  // Save XML to server
+  const handleSaveXml = useCallback(async () => {
+    if (!editedParamsXml || !job) return;
+
+    setIsSavingXml(true);
+    setXmlSaveError(null);
+
+    try {
+      const response = await apiPut(`jobs/${job.id}/params_xml/`, {
+        xml: editedParamsXml,
+      });
+
+      if (response.success) {
+        // Clear edited state on successful save
+        setEditedParamsXml(null);
+        // Trigger a refresh of params_xml from server
+        mutateParams_xml();
+        console.log("[JobView] XML saved successfully:", response.data?.message);
+      } else {
+        setXmlSaveError(response.error || "Failed to save XML");
+      }
+    } catch (error: any) {
+      console.error("[JobView] Failed to save XML:", error);
+      setXmlSaveError(error.message || "Failed to save XML");
+    } finally {
+      setIsSavingXml(false);
+    }
+  }, [editedParamsXml, job, mutateParams_xml]);
+
+  // Reset XML to original
+  const handleResetXml = useCallback(() => {
+    setEditedParamsXml(null);
+    setXmlSaveError(null);
+  }, []);
 
   // This is for the raw XML editor view (tabValue == 2)
   // Uses same key as CCP4i2ReportXMLView so SWR deduplicates - keep polling logic consistent
@@ -167,12 +246,64 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
             </TaskProvider>
           )}
           {devMode && tabValue == 1 && params_xml && (
-            <Editor
-              height="100%"
-              value={params_xml}
-              language="xml"
-              theme={mode === "dark" ? "vs-dark" : "light"}
-            />
+            <Box sx={{ height: "100%", display: "flex", flexDirection: "column" }}>
+              {/* Toolbar with Save/Reset buttons for pending jobs */}
+              {isPending && (
+                <Stack
+                  direction="row"
+                  spacing={1}
+                  sx={{ p: 1, borderBottom: 1, borderColor: "divider" }}
+                >
+                  <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<SaveIcon />}
+                    onClick={handleSaveXml}
+                    disabled={!isXmlModified || isSavingXml}
+                  >
+                    {isSavingXml ? "Saving..." : "Save"}
+                  </Button>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    startIcon={<RestoreIcon />}
+                    onClick={handleResetXml}
+                    disabled={!isXmlModified || isSavingXml}
+                  >
+                    Reset
+                  </Button>
+                  {isXmlModified && (
+                    <Box
+                      component="span"
+                      sx={{ color: "warning.main", alignSelf: "center", ml: 1 }}
+                    >
+                      (unsaved changes)
+                    </Box>
+                  )}
+                  {xmlSaveError && (
+                    <Box
+                      component="span"
+                      sx={{ color: "error.main", alignSelf: "center", ml: 1 }}
+                    >
+                      {xmlSaveError}
+                    </Box>
+                  )}
+                </Stack>
+              )}
+              <Box sx={{ flex: 1 }}>
+                <Editor
+                  height="100%"
+                  value={editedParamsXml ?? params_xml}
+                  language="xml"
+                  theme={mode === "dark" ? "vs-dark" : "light"}
+                  onChange={isPending ? handleXmlChange : undefined}
+                  options={{
+                    readOnly: !isPending,
+                    minimap: { enabled: false },
+                  }}
+                />
+              </Box>
+            </Box>
           )}
           {devMode && tabValue == 2 && report_xml && (
             <Editor
