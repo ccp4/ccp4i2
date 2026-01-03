@@ -224,8 +224,9 @@ CCP4I2_ROOT_ENV = os.environ.get("CCP4I2_ROOT")
 if CCP4I2_ROOT_ENV:
     CCP4I2_ROOT = Path(CCP4I2_ROOT_ENV)
 else:
-    # Standalone Django: BASE_DIR is server/ccp4i2/config, so go up to project root
-    CCP4I2_ROOT = BASE_DIR.parent.parent
+    # Standalone Django / Docker: BASE_DIR is ccp4i2/ directory containing qticons/svgicons
+    # BASE_DIR = Path(__file__).parent.parent = server/ccp4i2 (where icons are located)
+    CCP4I2_ROOT = BASE_DIR
 
 STATICFILES_DIRS = [
     # Icon directories - served at /djangostatic/qticons/ and /djangostatic/svgicons/
