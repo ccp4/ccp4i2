@@ -160,8 +160,7 @@ async function handleProxy(req: NextRequest, params: { proxy: string[] }) {
   let targetUrl = `${backendBaseUrl}${path}`;
 
   // Ensure trailing slash for Django REST Framework endpoints
-  // (except for static files which shouldn't have trailing slashes)
-  if (!path.includes("djangostatic") && !targetUrl.endsWith("/")) {
+  if (!targetUrl.endsWith("/")) {
     targetUrl += "/";
   }
 

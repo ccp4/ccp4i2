@@ -29,7 +29,7 @@ export const FileAvatar = forwardRef<HTMLDivElement, { file: File }>(
             boxShadow: "0 0 0 3px rgba(25, 118, 210, 0.5)",
           },
         }}
-        src={`/api/proxy/djangostatic/qticons/${fileTypeIcon(file.type)}.png`}
+        src={`/qticons/${fileTypeIcon(file.type)}.png`}
       />
     );
   }

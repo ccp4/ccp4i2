@@ -54,11 +54,9 @@ INSTALLED_APPS = [
     "ccp4i2.api.config.ApiConfig",
     "ccp4i2.db.config.DbConfig",
     "rest_framework",
-    "whitenoise",
 ]
 
 MIDDLEWARE = [
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Add WhiteNoise middleware
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -217,7 +215,6 @@ STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.StaticFilesStorage"  # Use default storage
 )
 
-# Keep your existing STATICFILES_DIRS - WhiteNoise will serve directly from these
 # CCP4I2_ROOT is set by Electron app (packaged: Resources/ccp4i2, dev: project root)
 # Fall back to calculating from BASE_DIR for standalone Django usage
 CCP4I2_ROOT_ENV = os.environ.get("CCP4I2_ROOT")
@@ -228,17 +225,8 @@ else:
     # BASE_DIR = Path(__file__).parent.parent = server/ccp4i2 (where icons are located)
     CCP4I2_ROOT = BASE_DIR
 
-STATICFILES_DIRS = [
-    # Icon directories - served at /djangostatic/qticons/ and /djangostatic/svgicons/
-    # In packaged app: CCP4I2_ROOT points to Resources/ccp4i2/ (where qticons/ and svgicons/ are bundled)
-    # In development: CCP4I2_ROOT points to project root (where qticons/ and svgicons/ exist)
-    ("qticons", str(CCP4I2_ROOT / "qticons")),
-    ("svgicons", str(CCP4I2_ROOT / "svgicons")),
-]
-
-# Disable manifest storage features that require collectstatic
-WHITENOISE_USE_FINDERS = True  # Serve directly from STATICFILES_DIRS
-WHITENOISE_AUTOREFRESH = True  # Enable in development
+# Note: Static files (icons, report assets) are now served by Next.js from public/
+# Django staticfiles is only used for Electron desktop app where Next.js handles statics
 
 
 def parse_size_value(value_str, default):

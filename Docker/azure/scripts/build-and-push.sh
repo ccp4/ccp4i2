@@ -178,7 +178,7 @@ fi
 
 if [ "$BUILD_WEB" = true ]; then
     echo -e "${YELLOW}🔨 Building web image...${NC}"
-    # Build from client/ directory for minimal context upload
+    # Build from repo root to include icons from server/ccp4i2/{qticons,svgicons}
     if [ -f "Docker/client/Dockerfile" ]; then
         az acr build \
           --registry $ACR_NAME \
@@ -189,7 +189,7 @@ if [ "$BUILD_WEB" = true ]; then
           --build-arg NEXT_PUBLIC_AAD_CLIENT_ID=${NEXT_PUBLIC_AAD_CLIENT_ID:-""} \
           --build-arg NEXT_PUBLIC_AAD_TENANT_ID=${NEXT_PUBLIC_AAD_TENANT_ID:-""} \
           --build-arg NEXT_PUBLIC_REQUIRE_AUTH=${NEXT_PUBLIC_REQUIRE_AUTH:-"false"} \
-          client/
+          .
     else
         echo -e "${YELLOW}⚠️  Docker/client/Dockerfile not found, skipping web build${NC}"
         BUILD_WEB=false

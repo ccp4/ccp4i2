@@ -102,9 +102,7 @@ export default function FilesTable({
           <TableRow key={file.id}>
             <TableCell title={file.type}>
               <Avatar
-                src={`/api/proxy/djangostatic/qticons/${fileTypeIcon(
-                  file.type
-                )}.png`}
+                src={`/qticons/${fileTypeIcon(file.type)}.png`}
                 sx={{ height: "1.5rem", width: "1.5rem" }}
               />
             </TableCell>

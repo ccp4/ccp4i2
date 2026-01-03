@@ -47,7 +47,6 @@ RUN pip install --no-cache-dir \
     "djangorestframework>=3.14" \
     "django-cors-headers>=4.0" \
     "django-filter>=23.0" \
-    "whitenoise>=6.0" \
     "uvicorn>=0.20.0" \
     "gunicorn>=21.0" \
     "psycopg2-binary>=2.9" \

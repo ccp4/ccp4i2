@@ -288,7 +288,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     >
       <Stack ref={setNodeRef} direction="row" alignItems="center">
         <Avatar
-          src={`/api/proxy/djangostatic/qticons/${item?._class?.slice(1)}.png`}
+          src={`/qticons/${item?._class?.slice(1)}.png`}
           alt={item?._class || "File type"}
         />
 

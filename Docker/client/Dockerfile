@@ -4,7 +4,7 @@
 # It creates a web deployment (not Electron).
 #
 # Build (from repo root):
-#   docker build -t ccp4i2-client -f Docker/client/Dockerfile client/
+#   docker build -t ccp4i2-client -f Docker/client/Dockerfile .
 #
 # Run:
 #   docker run -p 3000:3000 \
@@ -22,8 +22,8 @@ ENV NEXT_PUBLIC_REQUIRE_AUTH=$NEXT_PUBLIC_REQUIRE_AUTH
 
 WORKDIR /app
 
-# Copy package files (build context is client/ directory)
-COPY package*.json ./
+# Copy package files (build context is repo root)
+COPY client/package*.json ./
 
 # Remove Electron-specific packages from package.json for web-only build
 # This significantly reduces install time and avoids downloading ~300MB of Electron binaries
@@ -37,8 +37,13 @@ RUN npm config set fetch-retry-mintimeout 20000 && \
     npm config set fetch-retries 5 && \
     npm ci --legacy-peer-deps --verbose || (npm cache clean --force && npm ci --legacy-peer-deps --verbose)
 
-# Copy source code
-COPY . .
+# Copy client source code
+COPY client/ .
+
+# Copy icons to Next.js public directory for direct serving
+# This avoids the Django proxy hop for static assets
+COPY server/ccp4i2/qticons/ ./renderer/public/qticons/
+COPY server/ccp4i2/svgicons/ ./renderer/public/svgicons/
 
 # Build for web (from client root directory as originally intended)
 RUN npx cross-env BUILD_TARGET=web npm run copy-assets
