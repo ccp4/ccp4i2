@@ -1,0 +1,226 @@
+CIRCULAR IMPORT PROBLEM: Converting CDataFile to Stub/Full-Fat Pattern
+
+================================================================================
+CURRENT ARCHITECTURE (Works ✅)
+================================================================================
+
+┌─────────────────────────────────────┐
+│  base_object/base_classes.py        │
+│                                      │
+│  class CData(HierarchicalObject):   │
+│      pass                            │
+│                                      │
+│  class CDataFile(CData):  ← Hand-written
+│      def __init__(...): ...          │
+│      def setFullPath(...): ...       │
+│                                      │
+└──────────────┬──────────────────────┘
+               │
+               │ Imported by
+               ↓
+┌─────────────────────────────────────┐
+│  cdata_stubs/CCP4XtalData.py        │
+│                                      │
+│  from base_classes import CDataFile │
+│                                      │
+│  class CObsDataFileStub(             │
+│      CMiniMtzDataFileStub):          │
+│      pass                            │
+│                                      │
+└──────────────┬──────────────────────┘
+               │
+               │ Imported by
+               ↓
+┌─────────────────────────────────────┐
+│  core/CCP4XtalData.py                │
+│                                      │
+│  from cdata_stubs.CCP4XtalData       │
+│    import CObsDataFileStub           │
+│                                      │
+│  class CObsDataFile(                 │
+│      CObsDataFileStub,               │
+│      CMiniMtzDataFile):              │
+│      pass                            │
+│                                      │
+└─────────────────────────────────────┘
+
+Flow: base_classes.py → cdata_stubs/*.py → core/*.py
+✅ NO CYCLES, works perfectly!
+
+================================================================================
+PROPOSED ARCHITECTURE (Circular Import ❌)
+================================================================================
+
+┌─────────────────────────────────────┐
+│  base_object/base_classes.py        │
+│                                      │
+│  class CData(HierarchicalObject):   │
+│      pass                            │
+│                                      │
+│  from cdata_stubs.CCP4File import   │ ← IMPORTS STUB!
+│      CDataFileStub                   │
+│                                      │
+│  class CDataFile(CDataFileStub): ←─┐│
+│      def __init__(...): ...         ││
+│      def setFullPath(...): ...      ││
+│                                     ││
+└──────────────┬──────────────────────┘│
+               │                       │
+               │ Imports CData         │
+               ↓                       │
+┌─────────────────────────────────────┐│
+│  cdata_stubs/CCP4File.py  (NEW!)    ││
+│                                      ││
+│  from base_classes import CData  ←──┘│ ← CIRCULAR!
+│                                      │
+│  @cdata_class(...)                   │
+│  class CDataFileStub(CData):         │
+│      pass                            │
+│                                      │
+└──────────────┬──────────────────────┘
+               │
+               │ Imported by other stubs
+               ↓
+┌─────────────────────────────────────┐
+│  cdata_stubs/CCP4XtalData.py        │
+│                                      │
+│  from cdata_stubs.CCP4File import   │
+│      CDataFileStub                   │
+│                                      │
+│  class CMiniMtzDataFileStub(         │
+│      CMtzDataFileStub): ...          │
+│                                      │
+│  class CObsDataFileStub(             │
+│      CMiniMtzDataFileStub): ...      │
+│                                      │
+└─────────────────────────────────────┘
+
+Flow: base_classes.py → CCP4File.py → base_classes.py → CIRCULAR!
+❌ Python ImportError or incomplete module initialization!
+
+================================================================================
+THE PROBLEM
+================================================================================
+
+1. base_classes.py tries to import CDataFileStub
+   → Python starts loading cdata_stubs/CCP4File.py
+
+2. cdata_stubs/CCP4File.py tries to import CData
+   → Python tries to import base_classes.py
+   → But base_classes.py is ALREADY being imported (step 1)!
+   → Python sees incomplete module
+
+3. Python raises ImportError or gives incomplete module
+   → CDataFileStub doesn't get CData as parent
+   → Everything breaks
+
+================================================================================
+SOLUTION 1: Split Files (Breaks Cycle)
+================================================================================
+
+┌─────────────────────────────────────┐
+│  base_object/base_data.py (NEW!)    │
+│                                      │
+│  class CData(HierarchicalObject):   │
+│      pass  ← ONLY CData here        │
+│                                      │
+└──────────────┬──────────────────────┘
+               │
+               │ Imported by
+               ├──────────────────────────────┐
+               ↓                              ↓
+┌──────────────────────────┐  ┌───────────────────────────┐
+│  cdata_stubs/CCP4File.py │  │  base_object/             │
+│                          │  │    base_classes.py        │
+│  from base_data import   │  │                           │
+│      CData  ← No cycle!  │  │  from base_data import   │
+│                          │  │      CData                │
+│  @cdata_class(...)       │  │                           │
+│  class CDataFileStub(    │  │  from cdata_stubs.        │
+│      CData):             │  │    CCP4File import        │
+│      pass                │  │      CDataFileStub        │
+│                          │  │                           │
+└──────────┬───────────────┘  │  class CDataFile(         │
+           │                  │      CDataFileStub):      │
+           │                  │      pass                 │
+           │                  │                           │
+           │                  └───────────────────────────┘
+           │
+           │ Used by other stubs
+           ↓
+┌─────────────────────────────────────┐
+│  cdata_stubs/CCP4XtalData.py        │
+│                                      │
+│  from cdata_stubs.CCP4File import   │
+│      CDataFileStub                   │
+│  ...                                 │
+└─────────────────────────────────────┘
+
+Flow:
+  - CCP4File.py imports base_data.py (just CData)
+  - base_classes.py imports base_data.py AND CCP4File.py
+  - NO CYCLE! ✅
+
+Cost: Refactoring, changing import paths
+
+================================================================================
+SOLUTION 2: Hybrid (Add Decorator, Keep Hand-Written)
+================================================================================
+
+┌─────────────────────────────────────┐
+│  base_object/base_classes.py        │
+│                                      │
+│  class CData(HierarchicalObject):   │
+│      pass                            │
+│                                      │
+│  @cdata_class(                       │ ← Add decorator!
+│      attributes={                    │
+│          'baseName': attribute(...), │
+│          'relPath': attribute(...),  │
+│      }                               │
+│  )                                   │
+│  class CDataFile(CData):  ← Still hand-written
+│      def __init__(...): ...          │
+│      def setFullPath(...): ...       │
+│                                      │
+└──────────────┬──────────────────────┘
+               │
+               │ Imported by (no change)
+               ↓
+┌─────────────────────────────────────┐
+│  cdata_stubs/CCP4XtalData.py        │
+│                                      │
+│  from base_classes import CDataFile │
+│  (No stub generated for CDataFile)   │
+│                                      │
+│  class CObsDataFileStub(             │
+│      CMiniMtzDataFileStub):          │
+│      pass                            │
+│                                      │
+└─────────────────────────────────────┘
+
+Flow: Same as current, NO CYCLE! ✅
+Benefit: Metadata-driven attributes via decorator
+Cost: CDataFile still hand-written (not generated)
+
+================================================================================
+RECOMMENDATION
+================================================================================
+
+Use SOLUTION 2 (Hybrid Approach):
+
+✅ Pros:
+  - No circular import risk
+  - Metadata-driven attributes
+  - Low effort (hours, not days)
+  - Can test incrementally
+  - Keeps working code working
+
+❌ Cons:
+  - Not pure stub/full-fat pattern
+  - Still have to maintain hand-written code
+
+SOLUTION 1 is architecturally purer but HIGH RISK and HIGH EFFORT.
+
+For base classes that are foundational (CData, CDataFile, CContainer),
+the hybrid approach is the pragmatic choice.

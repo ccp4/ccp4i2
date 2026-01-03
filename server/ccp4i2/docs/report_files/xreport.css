@@ -1,0 +1,270 @@
+
+
+TABLE.banner TD.header_text { font-size:xx-large; }
+TABLE.banner TD.logohead { font-size:x-large; }
+TABLE.banner TD.logotitle { font-size:x-large; }
+
+
+/* general */
+html {
+	line-height: 1.6em;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	margin: 10px;
+	text-align: left;
+	border-collapse: collapse;
+}
+
+/* initialise hidesection and subjob as hidden */
+.hidesection {display: none}
+.subjob {display: none}
+
+/* fancy buttons */
+span.button {
+	color:#000;
+	text-decoration:none;
+        margin:3px;
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	border:1px solid #DDD;
+	text-align:center;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+span.button:hover {
+	border-color:#3278BE;
+
+        background:#CCCCEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+}
+/* folder header */
+span.folder {
+        display:block;
+	color:#E0000;
+	text-decoration:none;
+        margin:3px;
+        /*width:600px;*/
+        height:1.6em;
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	border:2px solid #DDD;
+	text-align:left;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#CED4D4;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+span.folder_link {
+        display:block;
+	color:#E0000;
+	text-decoration:none;
+        margin:1px;
+        /*width:600px;*/
+        height:1.6em;
+	padding:1px;
+	padding-left:10px;
+	padding-right:10px;
+	border:2px solid #DDD;
+	text-align:left;
+
+	-moz-border-radius:10px;
+	-webkit-border-radius:10px;
+	-o-border-radius:10px;
+	border-radius:1px;
+
+        background:#CED4D4;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF);
+}
+
+span.folder_link a {
+    color: #000000;
+    text-decoration:none;
+}
+
+span.button:hover {
+	border-color:#3278BE;
+
+        background:#87C8D;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFFFFF), to(#CCE));
+        background:-moz-linear-gradient(0% 90% 90deg, #CCE, #FFF);
+}
+
+/* fancy tables */
+th {
+	font-weight: normal;
+	padding: 2px 5px;
+        background:#8CD;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#8
+CD), to(#CEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #8CD, #CEE); 
+	border-top: 2px solid #8CD;
+	border-bottom: 1px solid #fff;
+	color: #000;
+}
+tbody.fancy tr td {
+	padding: 1px 5px; 
+	border-bottom: 1px solid #fff;
+	color: #669;
+	border-top: 1px solid #fff;
+        background:#EEEEEE;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#EEE));
+        background:-moz-linear-gradient(0% 90% 90deg, #EEE, #FFF); 
+}
+tfoot.fancy tr td {
+	background: #e8edff;
+	font-size: 12px;
+	color: #99c;
+}
+tbody.fancy tr:hover td {
+        background:#*CD;
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#FFF), to(#8CD));
+        background:-moz-linear-gradient(0% 90% 90deg, #8CD, #FFF);
+	color: #339;
+}
+
+tbody.layout  {
+      padding: 0px;
+      border : 1px solid;
+      border-spacing: 1px;
+      border-collapse: collapse;
+     }
+
+tbody.layout tr {
+      padding: 1px;
+      border : 1px solid;
+      line-height: 30px;
+     }
+
+tbody.layout tr td.thin {
+      border : 1px solid;
+      padding: 0px;
+      background:#EEEEEE;
+      line-height: 30px;
+    }
+
+h1.error_report {
+    color:#EE0000;
+}
+
+h5.section {
+    font-size:x-large;
+}
+
+span.help {
+    display:block;
+    vertical-align:bottom;
+}
+
+div.datalist {
+   margin: 3px 3px;
+
+}
+
+object.qt_object  {
+   margin: 0px 0px;
+
+}
+object.qt_launch  {
+   margin: 0px 0px;
+   border-width: 0px;
+   padding: 0px;
+   height:30px;
+   width:150px;
+}
+object.qt_launch_task  {
+   margin: 1px 1px;
+   height:30px;
+   width:150px;
+}
+
+object.loggraph  {
+   align: center;
+   margin-left:auto;
+   margin-right:auto;
+   margin-top: 1px;
+   margin-bottom: 1px;
+   border-width: 1px;
+   border-style: solid;
+   align: center;
+   width: 400px;
+   height: 300px;
+}
+
+div.container {
+   display: table;
+   width: 400px;
+    }
+div.row {
+   display: table-row;
+   width: 400px;
+    }
+div.thinrow {
+   display: table-row;
+   height: 5px;
+   margin: 0px;
+   padding: 0px;
+   width: 400px;
+
+    }
+div.cell {
+   display: table-cell;
+   width: 200px;
+    }
+
+
+img.mg {
+   margin: 0px 0px;
+   border-width: 1px;
+   border-style: solid;
+   height: 300px;
+   width: 300px;
+  }
+
+table.picture {
+  background:#EEE;
+  padding: 0px 0px;
+}
+table.picture tr {
+  margin: 2px;
+  padding: 0px 0px;
+}
+
+table.picture tr td {
+  width: 150px;
+  height: 1px;
+  padding: 0px 0px;
+  border: 0px;
+  margin: 0px;
+}
+
+p.annotation {
+  font-style:italic;
+}
+
+div.subjob {
+  background:#EEE;
+  }
+
+div.bibreference p.authors {
+  font-weight:bold;
+}
+div.bibreference p.articletitle {
+  font-style:italic;
+}
+div.bibreference p.source {
+}

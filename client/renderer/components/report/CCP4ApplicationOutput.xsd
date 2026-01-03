@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="CCP4ApplicationOutput">
+    <xs:complexType>
+        <xs:sequence>
+         <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="CCP4Table" type="tCCP4Table"/>
+          <xs:element name="Fonts" type="tFonts"/>
+          <xs:element name="CCP4Surface" type="tSurface"/>
+         </xs:choice>
+        </xs:sequence>
+        <xs:attribute name="title" type="xs:string" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="tData">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="separator" type="xs:string" use="optional"/>
+        <xs:attribute name="id" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tHeader">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="separator" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tBarChart">
+    <xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="colour" type="xs:string"/>
+      <xs:element name="width" type="xs:string"/>
+    </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="col" type="xs:int" use="required"/>
+    <xs:attribute name="tcol" type="xs:int" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="tHistogram">
+    <xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="colour" type="xs:string"/>
+      <xs:element name="nbins" type="xs:int"/>
+      <xs:element name="binwidth" type="xs:float"/>
+    </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="col" type="xs:int" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="tTextLabel">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+       <xs:attribute name="xpos" type="xs:float" use="required"/>
+       <xs:attribute name="ypos" type="xs:float" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tPlotLine">
+    <xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="symbol" type="xs:string"/>
+      <xs:element name="symbolsize" type="xs:int"/>
+      <xs:element name="linestyle" type="xs:string"/>
+      <xs:element name="linesize" type="xs:int"/>
+      <xs:element name="colour" type="xs:string"/>
+      <xs:element name="label" type="xs:string"/>
+      <xs:element name="visible" type="xs:boolean"/>
+      <xs:element name="showinlegend" type="xs:boolean"/>
+      <xs:element name="markeredgewidth" type="xs:float"/>
+    </xs:choice>
+    </xs:sequence>
+    <xs:attribute name="xcol" type="xs:int" use="required"/>
+    <xs:attribute name="ycol" type="xs:int" use="required"/>
+    <xs:attribute name="dataid" type="xs:string" use="optional"/>
+    <xs:attribute name="rightaxis" type="xs:boolean" use="optional"/>
+  </xs:complexType>
+  <xs:complexType name="tPos">
+    <xs:attribute name="x" type="xs:float" use="required"/>
+    <xs:attribute name="y" type="xs:float" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="tRange">
+    <xs:attribute name="rightaxis" type="xs:boolean" use="optional"/>
+    <xs:attribute name="colour" type="xs:string" use="optional"/>
+    <xs:attribute name="min" use="required">
+     <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="([\t ]*)?(\+|-)?([0-9]+(\.[0-9]*)?|\.[0-9]+)([Ee](\+|-)?[0-9]+)?|(\+|-)?None"/>
+      </xs:restriction>
+     </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="max" use="required">
+     <xs:simpleType>
+      <xs:restriction base="xs:string">
+        <xs:pattern value="([\t ]*)?(\+|-)?([0-9]+(\.[0-9]*)?|\.[0-9]+)([Ee](\+|-)?[0-9]+)?|(\+|-)?None"/>
+      </xs:restriction>
+     </xs:simpleType>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="tBreaks">
+    <xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="break" type="tRange"/>
+    </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tPlot">
+    <xs:sequence>
+     <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="circle" type="tCircle"/>
+      <xs:element name="line" type="tLine"/>
+      <xs:element name="linestrip" type="tLineStrip"/>
+      <xs:element name="polygon" type="tPolygon"/>
+      <xs:element name="title" type="xs:string"/>
+      <xs:element name="plotline" type="tPlotLine"/>
+      <xs:element name="histogram" type="tHistogram"/>
+      <xs:element name="barchart" type="tBarChart"/>
+      <xs:element name="xlabel" type="xs:string"/>
+      <xs:element name="ylabel" type="xs:string"/>
+      <xs:element name="rylabel" type="xs:string"/>
+      <xs:element name="plottype" type="xs:string"/>
+      <xs:element name="text" type="tTextLabel"/>
+      <xs:element name="barplacement" type="xs:string"/>
+      <xs:element name="showlegend" type="xs:boolean"/>
+      <xs:element name="fixaspectratio" type="xs:boolean"/>
+      <xs:element name="xscale" type="xs:string"/>
+      <xs:element name="yscale" type="xs:string"/>
+      <xs:element name="legendposition" type="tPos"/>
+      <xs:element name="xrange" type="tRange"/>
+      <xs:element name="yrange" type="tRange"/>
+      <xs:element name="xbreaks" type="tBreaks"/>
+      <xs:element name="ybreaks" type="xs:string"/>
+      <xs:element name="xintegral" type="xs:boolean"/>
+      <xs:element name="yintegral" type="xs:boolean"/>
+      <xs:element name="description" type="xs:string"/>
+      <xs:element name="background" type="xs:string"/>
+      <xs:element name="customXTicks" type="xs:string"/>
+     </xs:choice>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tCircle">
+    <xs:attribute name="radius" type="xs:float" use="required"/>
+    <xs:attribute name="xpos" type="xs:float" use="required"/>
+    <xs:attribute name="ypos" type="xs:float" use="required"/>
+    <xs:attribute name="alpha" type="xs:float" use="optional"/>
+    <xs:attribute name="linestyle" type="xs:string"/>
+    <xs:attribute name="linesize" type="xs:int"/>
+    <xs:attribute name="fillcolour" type="xs:string"/>
+    <xs:attribute name="linecolour" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="tLine">
+    <xs:attribute name="x1" type="xs:float" use="required"/>
+    <xs:attribute name="y1" type="xs:float" use="required"/>
+    <xs:attribute name="x2" type="xs:float" use="required"/>
+    <xs:attribute name="y2" type="xs:float" use="required"/>
+    <xs:attribute name="linestyle" type="xs:string"/>
+    <xs:attribute name="linesize" type="xs:int"/>
+    <xs:attribute name="linecolour" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="tLineStrip">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="separator" type="xs:string" use="optional"/>
+        <xs:attribute name="linestyle" type="xs:string"/>
+        <xs:attribute name="linesize" type="xs:int"/>
+        <xs:attribute name="linecolour" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tPolygon">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="separator" type="xs:string" use="optional"/>
+        <xs:attribute name="linestyle" type="xs:string"/>
+        <xs:attribute name="linesize" type="xs:int"/>
+        <xs:attribute name="fillcolour" type="xs:string"/>
+        <xs:attribute name="linecolour" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tFontLine">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="family" type="xs:string" use="optional"/>
+        <xs:attribute name="size" type="xs:int" use="optional"/>
+        <xs:attribute name="weight" type="xs:string" use="optional"/>
+        <xs:attribute name="slant" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tFonts">
+   <xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="titleFont" type="tFontLine"/>
+      <xs:element name="legendFont" type="tFontLine"/>
+      <xs:element name="axesTickerFont" type="tFontLine"/>
+      <xs:element name="axesLabelFont" type="tFontLine"/>
+      <xs:element name="annotationFont" type="tFontLine"/>
+    </xs:choice>
+   </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="tSurface">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="rows" type="xs:int" use="optional"/>
+        <xs:attribute name="columns" type="xs:int" use="optional"/>
+        <xs:attribute name="title" type="xs:string" use="optional"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  <xs:complexType name="tCCP4Table">
+   <xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="headers" type="tHeader"/>
+      <xs:element name="data" type="tData"/>
+      <xs:element name="plot" type="tPlot"/>
+    </xs:choice>
+   </xs:sequence>
+   <xs:attribute name="title" type="xs:string" use="optional"/>
+  </xs:complexType>
+</xs:schema>

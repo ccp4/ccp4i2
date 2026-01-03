@@ -1,0 +1,28 @@
+# Exclude server-related files for web builds
+../server/
+../__pycache__/
+../requirements.txt
+
+# Exclude large build artifacts and dependencies (must come before any negations)
+node_modules/
+.next/
+dist/
+build/
+
+# Recursive exclusions for thorough coverage
+**/node_modules/
+**/node_modules/**
+**/.next/
+**/.next/**
+node_modules/
+node_modules/**
+.next/
+.next/**
+renderer/.next/
+renderer/.next/**
+
+# Include only essential web-relevant files (negations should come last)
+!package*.json
+!..next.config.js
+!..env*
+!..gitignore

@@ -1,0 +1,130 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ccp4i2"
+dynamic = ["version"]
+description = "CCP4i2 - Graphical interface and scripting environment for CCP4"
+readme = "README.md"
+keywords = [
+    "Crystallography",
+    "CCP4",
+    "Structural Biology",
+    "MX",
+    "Macromolecular",
+    "Interface",
+]
+authors = [{ name = "CCP4", email = "ccp4@ccp4.ac.uk" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Chemistry",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "autopep8",
+    "django-cors-headers",
+    "django-filter",
+    "djangorestframework",
+    "mypy",
+    "pytest-asyncio",
+    "pytest-django",
+    "pytest-xdist",
+    "uvicorn",
+    "whitenoise",
+    "requests-cache",
+    "xmlschema",
+    "lxml_html_clean",     # lxml.html.clean moved to separate package
+]
+
+# Dependencies in CCP4 site-packages:
+# - acedrg
+# - adding_stats_to_mmcif
+# - ample
+# - asgiref
+# - biopython
+# - ccp4mg
+# - ccp4srs
+# - chardet
+# - chem_data
+# - clipper
+# - dials
+# - django
+# - dxtbx
+# - gemmi
+# - iotbx
+# - iris_validation
+# - lxml
+# - matplotlib
+# - mmtbx
+# - mrbump
+# - mrcfile
+# - mrparse
+# - networkx
+# - onedep_api
+# - pandas
+# - paramiko
+# - phaser
+# - phaser_ext
+# - psutil
+# - pyrvapi
+# - PySide2
+# - pytest
+# - python-dateutil
+# - python-docx
+# - pytz
+# - rdkit
+# - requests
+# - scipy
+# - shiboken2
+# - simbad
+# - svgwrite
+# - xia2
+
+# Dependencies outside site-packages included by modifying sys.path:
+# - pycofe
+
+[project.urls]
+Homepage = "https://www.ccp4.ac.uk/"
+Repository = "https://github.com/ccp4/ccp4i2"
+Documentation = "https://www.ccp4.ac.uk/html/INDEX.html"
+
+[project.scripts]
+i2 = "ccp4i2.cli.i2:main"
+i2run = "ccp4i2.cli.i2run.main:main"
+
+[tool.setuptools.dynamic]
+version = { attr = "ccp4i2.__version__" }
+
+[tool.setuptools.package-data]
+ccp4i2 = ["**/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.black]
+line-length = 100
+target-version = ["py39", "py310", "py311"]
+exclude = '''
+/(
+    \.git
+    | \.venv
+    | client
+    | node_modules
+    | __pycache__
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip = [".git", ".venv", "client", "node_modules"]

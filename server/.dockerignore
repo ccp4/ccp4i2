@@ -1,0 +1,10 @@
+# Exclude client-related files for server builds
+../client/
+../node_modules/
+../.next/
+../package*.json
+
+# Include only server-relevant files
+!../server/
+!../requirements.txt
+!../Docker/

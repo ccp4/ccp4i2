@@ -1,0 +1,96 @@
+import copy
+import json
+import os
+import xml.etree.ElementTree as etree
+from ccp4i2.report.CCP4ReportParser import Report
+from ccp4i2.wrappers.modelcraft.script.modelcraft_report import modelcraft_report
+
+
+class phaser_EP_report(Report):
+    TASKNAME = 'phaser_EP'
+    RUNNING = True
+
+    def remove_element(self,name, value, root):
+      """
+      Iterates through the @root element and removes elements
+      where the @name != @value.
+      """
+      for element in root:
+          if element.attrib.get(name) != value:
+              root.remove(element)
+
+    def remove_siblings_of(self,name, value, root):
+      """
+      Recursively removes from the @root element all elements which (1) do
+      not have @name == @value but (2) do have a sibling where @name == @value.
+      """
+      for element in root:
+          if element.attrib.get(name) == value:
+              self.remove_element(name, value, root)  # need to reiterate through element now to remove previous siblings
+          if len(element):
+              self.remove_siblings_of(name, value, element)
+      return root
+
+    def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
+        Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
+        if jobStatus is None or jobStatus.lower() =='nooutput':
+            return
+        self.drawContent(jobStatus, self)
+
+    def drawContent(self, jobStatus=None, parent=None):
+        if parent is None: parent = self
+        if len(self.xmlnode.findall('ShelxCD'))>0:
+            shelxNode = self.xmlnode.findall('ShelxCD')[0]
+            from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
+            shelx_report = ShelxCD_report (xmlnode=shelxNode, jobStatus='nooutput')
+            self.addDiv(style='clear:both;')
+            if len(shelxNode.findall('.//Shelxd'))>0:
+                shelx_report.shelXCReport(self, initiallyOpen=True )
+            else:
+                shelx_report.shelXCReport(self, initiallyOpen=False )
+                shelx_report.shelXDReport(self, initiallyOpen=False)
+
+        treePhaser = copy.deepcopy(self.xmlnode)
+        treePhaser.findall(".//PhaserEpResults")[0].attrib["myid"] = "phaser_EP_res_tree"
+        self.remove_siblings_of("myid","phaser_EP_res_tree",treePhaser)
+        phaserNode = treePhaser.findall('.//PhaserEpResults')[0]
+        phaserDiv = self.addDiv( xmlnode=phaserNode,style="width:100%;border-width: 0px; border-color: black; clear:both; margin:1px; padding:1px;")
+
+        if phaserNode is not None:
+            from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
+            phaser_report = phaser_EP_AUTO_report(xmlnode=phaserNode, jobStatus='nooutput')
+            phaser_report.drawContent(jobStatus=jobStatus, parent=phaserDiv)
+
+        if len(self.xmlnode.findall('.//original/ParrotResult'))>0:
+            parrotOriginalHandNode = self.xmlnode.findall('.//original/ParrotResult')[0]
+            from ccp4i2.wrappers.parrot.script.parrot_report import parrot_report
+            parrotOriginalNode = etree.fromstring(etree.tostring(parrotOriginalHandNode))
+            parrot_original_report = parrot_report(xmlnode=parrotOriginalNode, jobStatus='nooutput')
+            parrot_original_hand = parent.addFold(label='Density modification: Original hand', initiallyOpen=False)
+            parrot_original_report.defaultReport(parent=parrot_original_hand)
+            parrot_original_hand.addDiv(style="clear:both;")
+        if len(self.xmlnode.findall('.//inverted/ParrotResult'))>0:
+            parrotInvertedHandNode = self.xmlnode.findall('.//inverted/ParrotResult')[0]
+            from ccp4i2.wrappers.parrot.script.parrot_report import parrot_report
+            parrotInvertedNode = etree.fromstring(etree.tostring(parrotInvertedHandNode))
+            parrot_inverted_report = parrot_report(xmlnode=parrotInvertedNode, jobStatus='nooutput')
+            parrot_inverted_hand = parent.addFold(label='Density modification: Inverted hand', initiallyOpen=False)
+            parrot_inverted_report.defaultReport(parent=parrot_inverted_hand)
+            parrot_inverted_hand.addDiv(style="clear:both;")
+
+        for hand in ["original", "inverted"]:
+            if (node := self.xmlnode.find(f".//{hand}/ModelCraft")) is not None:
+                div = self.addDiv(style="width: 100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
+                fold = div.addFold(label=f"Model building: {hand} hand", initiallyOpen=False)
+                report = modelcraft_report(jobInfo={"fileroot": ""})  # Empty so it doesn't load yet
+                if jobStatus in ["Running", "Running remotely"]:
+                    fold.append("<p><b>The job is currently running.</b></p>")
+                json_path = os.path.join(node.text, "modelcraft", "modelcraft.json")
+                if os.path.exists(json_path):
+                    with open(json_path, encoding="utf-8") as stream:
+                        report.json = json.load(stream)
+                    report.add_running_job(parent=fold)
+                    report.add_table(parent=fold)
+                    report.add_message(jobStatus, parent=fold)
+                    report.add_graph(parent=fold)
+                fold.addDiv(style="clear:both;")
