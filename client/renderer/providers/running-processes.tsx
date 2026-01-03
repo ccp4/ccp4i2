@@ -111,8 +111,8 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
                     <TableCell variant="body">{process.job_id}</TableCell>
                     <TableCell variant="body">
                       <Avatar
-                        src={`/api/proxy/djangostatic/svgicons/${process.job_task_name}.svg`}
-                        alt={`/api/proxy/djangostatic/qticons/${process.job_task_name}.png`}
+                        src={`/svgicons/${process.job_task_name}.svg`}
+                        alt={`/qticons/${process.job_task_name}.png`}
                       />{" "}
                       {process.job_task_name}
                     </TableCell>

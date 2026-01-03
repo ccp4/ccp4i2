@@ -20,6 +20,15 @@ Usage:
 
     i2 run <task> [options]         Create and run a task (i2run shortcut)
 
+    i2 jobs set-param <project> <job> <param> <value>  Set job parameter
+    i2 jobs get-param <project> <job> <param>  Get job parameter value
+    i2 jobs upload-param <project> <job> <param> <file> [col]  Upload file param
+
+    FileUse Syntax for set-param:
+        When setting file parameters, you can reference outputs from previous jobs:
+        i2 jobs set-param myproject 5 XYZIN '[-1].XYZOUT[0]'      # Last job's XYZOUT
+        i2 jobs set-param myproject 5 HKLIN 'refmac[-1].HKLOUT'   # Last refmac's HKLOUT
+
     i2 files <project> <job> [list] List files in a job
     i2 files cat <project> <job> <name>  Display file contents
 
@@ -179,6 +188,68 @@ def main():
                 print("Usage: i2 jobs kpi <project> <job>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('job_kpi', *job_args(rest[1], rest[2]), *rest[3:])
+        elif rest[0] == 'set-param':
+            if len(rest) < 5:
+                print("Usage: i2 jobs set-param <project> <job> <param_name> <value>", file=sys.stderr)
+                print("\nExamples:", file=sys.stderr)
+                print("  i2 jobs set-param myproject 5 XYZIN fullPath=/path/to/file.pdb", file=sys.stderr)
+                print("  i2 jobs set-param myproject 5 XYZIN '[-1].XYZOUT[0]'", file=sys.stderr)
+                print("  i2 jobs set-param myproject 5 HKLIN 'prosmart_refmac[-1].HKLOUT'", file=sys.stderr)
+                sys.exit(1)
+            project, job_number, param_name = rest[1], rest[2], rest[3]
+            # Join remaining args as the value (to handle spaces)
+            value = ' '.join(rest[4:])
+
+            # Build object_path (prefix with inputData. if no dot in path)
+            if '.' not in param_name:
+                object_path = f'inputData.{param_name}'
+            else:
+                object_path = param_name
+
+            run_management_command('set_job_parameter',
+                                   *job_args(project, job_number),
+                                   '--path', object_path,
+                                   '--value', value)
+        elif rest[0] == 'get-param':
+            if len(rest) < 4:
+                print("Usage: i2 jobs get-param <project> <job> <param_name>", file=sys.stderr)
+                sys.exit(1)
+            project, job_number, param_name = rest[1], rest[2], rest[3]
+
+            # Build object_path (prefix with inputData. if no dot in path)
+            if '.' not in param_name:
+                object_path = f'inputData.{param_name}'
+            else:
+                object_path = param_name
+
+            run_management_command('get_job_parameter',
+                                   *job_args(project, job_number),
+                                   '--path', object_path)
+        elif rest[0] == 'upload-param':
+            if len(rest) < 5:
+                print("Usage: i2 jobs upload-param <project> <job> <param_name> <file_path> [column_selector]", file=sys.stderr)
+                print("\nExamples:", file=sys.stderr)
+                print("  i2 jobs upload-param myproject 5 XYZIN /path/to/model.pdb", file=sys.stderr)
+                print("  i2 jobs upload-param myproject 5 F_SIGF /path/to/data.mtz '/*/*/[FP,SIGFP]'", file=sys.stderr)
+                sys.exit(1)
+            project, job_number, param_name, file_path = rest[1], rest[2], rest[3], rest[4]
+            column_selector = rest[5] if len(rest) > 5 else None
+
+            # Build object_path (prefix with inputData. if no dot in path)
+            if '.' not in param_name:
+                object_path = f'inputData.{param_name}'
+            else:
+                object_path = param_name
+
+            cmd_args = [
+                *job_args(project, job_number),
+                '--path', object_path,
+                '--file', file_path
+            ]
+            if column_selector:
+                cmd_args.extend(['--column-selector', column_selector])
+
+            run_management_command('upload_file_param', *cmd_args)
         else:
             # Assume first arg is project name, list jobs in that project
             run_management_command('list_jobs', rest[0])

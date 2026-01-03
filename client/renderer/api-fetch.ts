@@ -8,6 +8,8 @@
  * - Automatic /api/proxy/ prefix for relative API endpoints
  */
 
+import { getAccessToken } from "./utils/auth-token";
+
 /**
  * Configuration for API requests
  */
@@ -77,6 +79,17 @@ async function coreFetch(
   const headers: Record<string, string> = {
     ...finalConfig.headers,
   };
+
+  // Inject authentication token if available
+  const token = await getAccessToken();
+  if (token) {
+    headers["Authorization"] = `Bearer ${token}`;
+    // Only log token injection in development for debugging
+    if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH) {
+      console.log("[FETCH] Token injected for:", normalizedUrl.substring(0, 60));
+    }
+  }
+  // Don't log "no token" warnings - it's expected in local dev mode
 
   // Convert options.headers to Record<string, string> format
   if (options.headers) {

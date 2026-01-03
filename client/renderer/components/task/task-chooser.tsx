@@ -158,10 +158,10 @@ const CCP4i2TaskTreeFolder: React.FC<CCP4i2TaskTreeFolderProps> = ({
           <Avatar
             src={
               iconLookup
-                ? `/api/proxy/djangostatic/${iconLookup[category[0]]}`
-                : `/api/proxy/djangostatic/qticons/ccp4i2.png`
+                ? `/${iconLookup[category[0]]}`
+                : `/qticons/ccp4i2.png`
             }
-            alt={`/api/proxy/djangostatic/qticons/ccp4i2.png`}
+            alt="/qticons/ccp4i2.png"
           />
         }
         title={category[1]}
@@ -261,8 +261,8 @@ const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({
         title={
           <>
             <Avatar
-              src={`/api/proxy/djangostatic/svgicons/${task[latestVersion].taskName}.svg`}
-              alt={`/api/proxy/djangostatic/qticons/${task[latestVersion].taskName}.png`}
+              src={`/svgicons/${task[latestVersion].taskName}.svg`}
+              alt={`/qticons/${task[latestVersion].taskName}.png`}
             />
             {task[latestVersion].shortTitle}
           </>

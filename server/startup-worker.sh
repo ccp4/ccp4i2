@@ -128,10 +128,14 @@ HEALTH_PID=$!  # Store the PID of the Python process
 echo "Health server PID: $HEALTH_PID"
 
 # CCP4 is pre-transferred to the file share
-echo "CCP4 distribution is pre-transferred to $CCP4_DATA_PATH/ccp4-9"
+# Use CCP4_VERSION env var if set, otherwise default to ccp4-9
+echo "DEBUG: CCP4_VERSION env var before default: '${CCP4_VERSION}'"
+CCP4_VERSION=${CCP4_VERSION:-"ccp4-9"}
+CCP4_DIR="$CCP4_DATA_PATH/$CCP4_VERSION"
+echo "CCP4 distribution is pre-transferred to $CCP4_DIR (version: $CCP4_VERSION)"
 
 # Setup CCP4 environment with retry logic for mounting delays
-CCP4_SETUP_SCRIPT="$CCP4_DATA_PATH/ccp4-9/bin/ccp4.setup-sh"
+CCP4_SETUP_SCRIPT="$CCP4_DIR/bin/ccp4.setup-sh"
 echo "Waiting for CCP4 setup script ${CCP4_SETUP_SCRIPT} to become available..."
 WAIT_COUNT=0
 MAX_WAIT=120  # 2 minutes
@@ -140,8 +144,8 @@ while [ $WAIT_COUNT -lt $MAX_WAIT ]; do
   if [ -f "$CCP4_SETUP_SCRIPT" ]; then
     echo "CCP4 setup script found after ${WAIT_COUNT} seconds"
     . "$CCP4_SETUP_SCRIPT"
-    export CCP4_PYTHON="$CCP4_DATA_PATH/ccp4-9/bin/ccp4-python"
-    echo "CCP4 environment configured successfully"
+    export CCP4_PYTHON="$CCP4_DIR/bin/ccp4-python"
+    echo "CCP4 environment configured successfully (version: $CCP4_VERSION)"
     break
   else
     echo "Waiting for CCP4 setup script... (${WAIT_COUNT}/${MAX_WAIT}s)"
@@ -153,8 +157,8 @@ done
 # Change to app directory
 cd /usr/src/app
 
-# After sourcing CCP4 setup, ensure PYTHONPATH starts with py-packages
-export PYTHONPATH="/mnt/ccp4data/py-packages:$PYTHONPATH"
+# After sourcing CCP4 setup, ensure PYTHONPATH starts with version-specific py-packages and app directory
+export PYTHONPATH="/mnt/ccp4data/py-packages-${CCP4_VERSION}:/usr/src/app:$PYTHONPATH"
 echo "PYTHONPATH manually corrected: $PYTHONPATH"
 
 echo "=========================================="

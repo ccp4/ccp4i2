@@ -215,10 +215,10 @@ def escapeI2Quotify(itemparams):
 def htmlBase():
     """Return base path for report static files (images, CSS, etc.).
 
-    In the new architecture, static files are served via Django.
-    Legacy HTTPSERVER is no longer used.
+    Static files are served from Next.js public directory.
+    Path: /report_files/{version}/
     """
-    return '/djangostatic/report_files/' + CURRENT_CSS_VERSION
+    return '/report_files/' + CURRENT_CSS_VERSION
 
 
 # htmlDoc function removed - HTML generation no longer used

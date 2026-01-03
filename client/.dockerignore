@@ -1,28 +1,37 @@
-# Exclude server-related files for web builds
-../server/
-../__pycache__/
-../requirements.txt
+# Client build dockerignore
+# Build context is client/ directory
 
-# Exclude large build artifacts and dependencies (must come before any negations)
+# Exclude build artifacts and dependencies
 node_modules/
 .next/
 dist/
-build/
+out/
 
-# Recursive exclusions for thorough coverage
-**/node_modules/
-**/node_modules/**
-**/.next/
-**/.next/**
-node_modules/
-node_modules/**
-.next/
-.next/**
-renderer/.next/
-renderer/.next/**
+# Exclude Electron-specific files (not needed for web build)
+main/
+release/
 
-# Include only essential web-relevant files (negations should come last)
-!package*.json
-!..next.config.js
-!..env*
-!..gitignore
+# Exclude development files
+*.log
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Exclude IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Exclude macOS files
+.DS_Store
+
+# Exclude test files
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__tests__/
+coverage/

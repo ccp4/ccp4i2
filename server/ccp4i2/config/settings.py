@@ -15,9 +15,17 @@ from urllib.parse import urlparse, unquote
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get(
-    "SECRET_KEY", "django-insecure-xq@_ci4r3sl+1!3vt5xz5wurncfvfyq^$k5anjsi3+*wb)(5!v"
-)
+# In production, SECRET_KEY must be set via environment variable.
+# For local development, a default is provided.
+_secret_key_default = "django-insecure-xq@_ci4r3sl+1!3vt5xz5wurncfvfyq^$k5anjsi3+*wb)(5!v"
+SECRET_KEY = os.environ.get("SECRET_KEY")
+if not SECRET_KEY:
+    if os.environ.get("DEBUG", "True").lower() not in ("true", "1", "yes"):
+        raise ValueError(
+            "SECRET_KEY environment variable is required in production. "
+            "Generate one with: python -c \"import secrets; print(secrets.token_urlsafe(50))\""
+        )
+    SECRET_KEY = _secret_key_default
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG", "True").lower() in ("true", "1", "yes")
@@ -46,17 +54,23 @@ INSTALLED_APPS = [
     "ccp4i2.api.config.ApiConfig",
     "ccp4i2.db.config.DbConfig",
     "rest_framework",
-    "whitenoise",
 ]
 
 MIDDLEWARE = [
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # Add WhiteNoise middleware
     "django.middleware.security.SecurityMiddleware",
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+# Azure AD authentication middleware (optional)
+# Enable by setting CCP4I2_REQUIRE_AUTH=true along with:
+#   AZURE_AD_TENANT_ID - Your Azure AD tenant ID
+#   AZURE_AD_CLIENT_ID - Your Azure AD app registration client ID
+if os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
+    MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
+    print("Azure AD authentication middleware ENABLED")
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
@@ -201,27 +215,18 @@ STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.StaticFilesStorage"  # Use default storage
 )
 
-# Keep your existing STATICFILES_DIRS - WhiteNoise will serve directly from these
 # CCP4I2_ROOT is set by Electron app (packaged: Resources/ccp4i2, dev: project root)
 # Fall back to calculating from BASE_DIR for standalone Django usage
 CCP4I2_ROOT_ENV = os.environ.get("CCP4I2_ROOT")
 if CCP4I2_ROOT_ENV:
     CCP4I2_ROOT = Path(CCP4I2_ROOT_ENV)
 else:
-    # Standalone Django: BASE_DIR is server/ccp4i2/config, so go up to project root
-    CCP4I2_ROOT = BASE_DIR.parent.parent
+    # Standalone Django / Docker: BASE_DIR is ccp4i2/ directory containing qticons/svgicons
+    # BASE_DIR = Path(__file__).parent.parent = server/ccp4i2 (where icons are located)
+    CCP4I2_ROOT = BASE_DIR
 
-STATICFILES_DIRS = [
-    # Icon directories - served at /djangostatic/qticons/ and /djangostatic/svgicons/
-    # In packaged app: CCP4I2_ROOT points to Resources/ccp4i2/ (where qticons/ and svgicons/ are bundled)
-    # In development: CCP4I2_ROOT points to project root (where qticons/ and svgicons/ exist)
-    ("qticons", str(CCP4I2_ROOT / "qticons")),
-    ("svgicons", str(CCP4I2_ROOT / "svgicons")),
-]
-
-# Disable manifest storage features that require collectstatic
-WHITENOISE_USE_FINDERS = True  # Serve directly from STATICFILES_DIRS
-WHITENOISE_AUTOREFRESH = True  # Enable in development
+# Note: Static files (icons, report assets) are now served by Next.js from public/
+# Django staticfiles is only used for Electron desktop app where Next.js handles statics
 
 
 def parse_size_value(value_str, default):

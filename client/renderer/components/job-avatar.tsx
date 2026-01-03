@@ -61,7 +61,7 @@ export const CCP4i2JobAvatar = forwardRef<HTMLDivElement, CCP4i2JobAvatarProps>(
           },
           ...runningAnimation,
         }}
-        src={`/api/proxy/djangostatic/svgicons/${job.task_name}.svg`}
+        src={`/svgicons/${job.task_name}.svg`}
         alt={job.task_name}
       />
     );

@@ -1,0 +1,18 @@
+# Deployment secrets - DO NOT COMMIT
+.env.deployment
+.env.vm
+
+# Keep templates for reference
+!.env.deployment.template
+
+# Azure CLI cache
+*.azcli
+
+# Terraform state (if used)
+*.tfstate
+*.tfstate.*
+.terraform/
+
+# Local parameters with secrets
+parameters.json
+!parameters.example.json

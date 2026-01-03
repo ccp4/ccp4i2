@@ -84,8 +84,8 @@ export const CCP4i2WhatNext = () => {
                 height: 20,
                 mr: 1,
               }}
-              src={`/api/proxy/djangostatic/svgicons/${task.taskName}.svg`}
-              alt={`/api/proxy/djangostatic/qticons/${task.taskName}.png`}
+              src={`/svgicons/${task.taskName}.svg`}
+              alt={`/qticons/${task.taskName}.png`}
             />
             {task.shortTitle}
           </Button>

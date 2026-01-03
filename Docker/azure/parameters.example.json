@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "baseName": {
+      "value": "ccp4i2"
+    },
+    "location": {
+      "value": "uksouth"
+    },
+    "serverImage": {
+      "value": "ghcr.io/ccp4/ccp4i2-server:latest"
+    },
+    "clientImage": {
+      "value": "ghcr.io/ccp4/ccp4i2-client:latest"
+    },
+    "dbPassword": {
+      "value": "REPLACE_WITH_SECURE_PASSWORD"
+    },
+    "secretKey": {
+      "value": "REPLACE_WITH_DJANGO_SECRET_KEY"
+    },
+    "ccp4Version": {
+      "value": "ccp4-9"
+    }
+  }
+}

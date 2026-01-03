@@ -105,7 +105,7 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
       <DragOverlay>
         {activeDragItem ? (
           <Avatar
-            src={`/api/proxy/djangostatic/qticons/ccp4i2.png`}
+            src="/qticons/ccp4i2.png"
             sx={{
               width: 64,
               height: 64,

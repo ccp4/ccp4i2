@@ -124,11 +124,12 @@ print('Health check server started on port 8000')
 HEALTH_PID=$!  # Store the PID of the Python process
 echo "Health server PID: $HEALTH_PID"
 
-# CCP4 is pre-transferred to the file share
-echo "CCP4 distribution is pre-transferred to $CCP4_DATA_PATH/ccp4-9"
+# CCP4 version from environment (default to ccp4-9 for backwards compatibility)
+CCP4_VERSION=${CCP4_VERSION:-"ccp4-9"}
+echo "CCP4 distribution expected at $CCP4_DATA_PATH/$CCP4_VERSION"
 
 # Setup CCP4 environment with retry logic for mounting delays
-CCP4_SETUP_SCRIPT="$CCP4_DATA_PATH/ccp4-9/bin/ccp4.setup-sh"
+CCP4_SETUP_SCRIPT="$CCP4_DATA_PATH/$CCP4_VERSION/bin/ccp4.setup-sh"
 echo "Waiting for CCP4 setup script ${CCP4_SETUP_SCRIPT} to become available..."
 WAIT_COUNT=0
 MAX_WAIT=120  # 2 minutes
@@ -136,12 +137,15 @@ MAX_WAIT=120  # 2 minutes
 while [ $WAIT_COUNT -lt $MAX_WAIT ]; do
   if [ -f "$CCP4_SETUP_SCRIPT" ]; then
     echo "CCP4 setup script found after ${WAIT_COUNT} seconds"
+    # Source without set -e to handle missing optional components (like arp_warp)
+    set +e
     . "$CCP4_SETUP_SCRIPT"
-    export CCP4_PYTHON="$CCP4_DATA_PATH/ccp4-9/bin/ccp4-python"
-    echo "CCP4 environment configured successfully"
-    
-    # After sourcing CCP4 setup, restore py-packages and app paths at the front
-    export PYTHONPATH="/mnt/ccp4data/py-packages:/usr/src/app:$PYTHONPATH"
+    set -e
+    export CCP4_PYTHON="$CCP4_DATA_PATH/$CCP4_VERSION/bin/ccp4-python"
+    echo "CCP4 environment configured successfully (version: $CCP4_VERSION)"
+
+    # After sourcing CCP4 setup, restore version-specific py-packages and app path at the front
+    export PYTHONPATH="/mnt/ccp4data/py-packages-${CCP4_VERSION}:/usr/src/app:$PYTHONPATH"
     echo "PYTHONPATH manually corrected: $PYTHONPATH"
     break
   else
@@ -154,10 +158,16 @@ done
 # Change to app directory
 cd /usr/src/app
 
+# Determine which Python to use for Django
+# Use system Python for Django (works on all architectures)
+# CCP4_PYTHON is still available for running actual CCP4 jobs
+DJANGO_PYTHON=${DJANGO_PYTHON:-python3}
+echo "Using $DJANGO_PYTHON for Django server"
+
 # Run Django setup (can run on all replicas, but migrations are idempotent)
 echo "Running Django migrations..."
-$CCP4_PYTHON manage.py migrate
-$CCP4_PYTHON manage.py collectstatic --noinput
+$DJANGO_PYTHON manage.py migrate
+$DJANGO_PYTHON manage.py collectstatic --noinput
 
 # Before starting Django, kill the health server
 echo "Stopping health check server to free port 8000..."
@@ -172,7 +182,7 @@ fi
 # Start Django server (choose one of the following options)
 
 echo "Starting Django server with gunicorn (uvicorn workers)..."
-exec $CCP4_PYTHON -m gunicorn asgi:application \
+exec $DJANGO_PYTHON -m gunicorn asgi:application \
   -b 0.0.0.0:8000 \
   --worker-class uvicorn.workers.UvicornWorker \
   --workers 2 \

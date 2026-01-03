@@ -291,6 +291,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               />
               <CCP4i2TaskElement
                 {...props}
+                itemName="VALIDATE_IRIS"
+                qualifiers={{
+                  guiLabel: "Analyse using iris",
+                  toolTip: "Generate using iris validation tool",
+                }}
+              />
+              <CCP4i2TaskElement
+                {...props}
                 itemName="VALIDATE_RAMACHANDRAN"
                 qualifiers={{
                   guiLabel: "Calculate Ramachandran plots",
