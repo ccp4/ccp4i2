@@ -2,16 +2,7 @@
 <ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
   <ccp4i2_header>
     <function>DEF</function>
-    <comment></comment>
-    <creationTime>13:20 03/Aug/12</creationTime>
-    <userId>lizp</userId>
-    <ccp4iVersion>0.0.1</ccp4iVersion>
-    <jobId/>
-    <project></project>
     <pluginName>splitMtz</pluginName>
-    <pluginVersion></pluginVersion>
-    <pluginTitle>Split MTZ to experimental data objects</pluginTitle>
-    <jobNumber></jobNumber>
   </ccp4i2_header>
   <ccp4i2_body id="splitMtz">
     <container id="inputData">
@@ -29,8 +20,6 @@
     <content id="USERCOLUMNGROUP">  
     <className>CColumnGroup</className>
     </content>
-    </container>
-    <container id="controlParameters">
      </container>
     <container id="outputData">
      <content id="MINIMTZOUTLIST">
