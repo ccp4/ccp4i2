@@ -5,7 +5,6 @@ from .utils import demoData, i2run
 def test_gamma_abcd_column_group_list():
     args = ["splitMtz"]
     args += ["--HKLIN", demoData("gamma", "initial_phases.mtz")]
-    # All COLUMNGROUPLIST sub-parameters must be in the same argument list
     args += ["--COLUMNGROUPLIST", "columnGroupType=Phs", "contentFlag=1", "dataset=ds1", "selected=True"]
     args += mtzColumnArgs(["HLA", "HLB", "HLC", "HLD"], "A", "ds1")
     with i2run(args) as job:
@@ -15,7 +14,6 @@ def test_gamma_abcd_column_group_list():
 def test_gamma_abcd_user_column_group():
     args = ["splitMtz"]
     args += ["--HKLIN", demoData("gamma", "initial_phases.mtz")]
-    # All USERCOLUMNGROUP sub-parameters must be in the same argument list
     args += ["--USERCOLUMNGROUP", "columnGroupType=Phs", "contentFlag=1", "dataset=ds1"]
     args += mtzColumnArgs(["HLA", "HLB", "HLC", "HLD"], "A", "ds1")
     with i2run(args) as job:
@@ -25,7 +23,6 @@ def test_gamma_abcd_user_column_group():
 def test_4iid_phi_fom():
     args = ["splitMtz"]
     args += ["--HKLIN", demoData("glyco", "4iid.mtz")]
-    # All USERCOLUMNGROUP sub-parameters must be in the same argument list
     args += ["--USERCOLUMNGROUP", "columnGroupType=Phs", "contentFlag=2", "dataset=1"]
     args += mtzColumnArgs(["PHIC", "FOM"], ["P", "W"], "1")
     with i2run(args) as job:
