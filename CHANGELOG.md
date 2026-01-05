@@ -1,6 +1,10 @@
 # CCP4i2 Changelog
 
+<<<<<<< HEAD
 ## [2.5.0] - 2026-01-06
+=======
+## [2.5.0] - 2025-12-02
+>>>>>>> de3e58958 (Fix to user selected columns in split MTZ task (#108))
 
 - New task to check a model against AU contents
 - Standardised ModelCraft output file name
@@ -9,7 +13,10 @@
 - Stop the Refmac pipeline producing map files by default
 - Fix to Servalcat USE_WORK_IN_EST
 - Fix to user selected columns in split MTZ task
+<<<<<<< HEAD
 - Changed coot_rsr_morph and coot_add_waters to use CHAPI
+=======
+>>>>>>> de3e58958 (Fix to user selected columns in split MTZ task (#108))
 
 ## [2.4.3] - 2025-10-24
 
