@@ -99,3 +99,102 @@ export interface PaginatedResponse<T> {
   previous: string | null;
   results: T[];
 }
+
+/**
+ * Compounds Assays type definitions.
+ * Maps to Django models in apps/compounds/assays.
+ */
+
+export interface DilutionSeries {
+  id: string;
+  concentrations: number[];
+  unit: 'nM' | 'uM' | 'mM';
+  display_name?: string;
+}
+
+export type AnalysisMethod =
+  | 'hill_langmuir'
+  | 'hill_langmuir_fix_hill'
+  | 'hill_langmuir_fix_hill_minmax'
+  | 'hill_langmuir_fix_minmax'
+  | 'ms_intact'
+  | 'table_of_values';
+
+export interface Protocol {
+  id: string;
+  name: string;
+  analysis_method: AnalysisMethod;
+  pherastar_table: string | null;
+  preferred_dilutions: string | null;
+  preferred_dilutions_display?: string;
+  created_by: number | null;
+  created_by_email?: string;
+  created_at: string;
+  comments: string | null;
+  assays_count?: number;
+}
+
+export interface Assay {
+  id: string;
+  protocol: string;
+  protocol_name?: string;
+  target: string | null;
+  target_name?: string;
+  data_file: string;
+  data_filename?: string;
+  labbook_number: number | null;
+  page_number: number | null;
+  created_by: number | null;
+  created_by_email?: string;
+  created_at: string;
+  comments: string | null;
+  data_series_count?: number;
+  data_series?: DataSeries[];
+}
+
+export type AnalysisStatus = 'valid' | 'invalid' | 'unassigned';
+
+export interface AnalysisResult {
+  id: string;
+  status: AnalysisStatus;
+  results: Record<string, any>;
+  kpi_value?: number | null;
+}
+
+export interface DataSeries {
+  id: string;
+  assay: string;
+  compound: string | null;
+  compound_formatted_id?: string;
+  compound_name: string | null;
+  row: number;
+  start_column: number;
+  end_column: number;
+  dilution_series?: DilutionSeries;
+  extracted_data: Record<string, any>;
+  skip_points: number[];
+  analysis?: AnalysisResult;
+  analysis_status?: AnalysisStatus;
+  analysis_kpi?: number | null;
+  svg_file: string | null;
+}
+
+export type HypothesisStatus = 'pending' | 'rejected' | 'chemistry' | 'shelved' | 'made';
+
+export interface Hypothesis {
+  id: string;
+  target: string;
+  target_name?: string;
+  parent: string | null;
+  parent_smiles?: string;
+  smiles: string;
+  rationale: string | null;
+  model_url: string | null;
+  status: HypothesisStatus;
+  product_compound: string | null;
+  product_formatted_id?: string;
+  completion_notes: string | null;
+  svg_file: string | null;
+  created_at: string;
+  updated_at: string;
+}

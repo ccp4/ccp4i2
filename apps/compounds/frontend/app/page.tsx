@@ -46,14 +46,17 @@ export default function HomePage() {
             display: 'flex',
             alignItems: 'center',
             gap: 2,
-            opacity: 0.6,
+            cursor: 'pointer',
+            '&:hover': { bgcolor: 'action.hover' },
           }}
+          component={Link}
+          href="/assays"
         >
           <Biotech sx={{ fontSize: 48, color: 'secondary.main' }} />
           <Box>
             <Typography variant="h5">Assays</Typography>
             <Typography color="text.secondary">
-              Coming soon - protocols, experiments, and analysis
+              Protocols, experiments, and dose-response analysis
             </Typography>
           </Box>
         </Paper>
@@ -65,17 +68,21 @@ export default function HomePage() {
             display: 'flex',
             alignItems: 'center',
             gap: 2,
-            opacity: 0.6,
+            cursor: 'pointer',
+            '&:hover': { bgcolor: 'action.hover' },
           }}
+          component={Link}
+          href="/assays/protocols"
         >
-          <Assignment sx={{ fontSize: 48, color: 'warning.main' }} />
+          <Assignment sx={{ fontSize: 48, color: 'info.main' }} />
           <Box>
-            <Typography variant="h5">Hypotheses</Typography>
+            <Typography variant="h5">Protocols</Typography>
             <Typography color="text.secondary">
-              Coming soon - compound design tracking
+              Assay protocol definitions and methods
             </Typography>
           </Box>
         </Paper>
+
       </Stack>
     </Container>
   );
