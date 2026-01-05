@@ -1,13 +1,12 @@
 import os
 import pathlib
 import shutil
+import xml.etree.ElementTree as ET
 
 import coot_headless_api
-from lxml import etree
 
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ModelData import CPdbDataFile
-from core import CCP4File
 
 
 class coot_find_waters(CPluginScript):
@@ -36,7 +35,7 @@ class coot_find_waters(CPluginScript):
         
         mc = coot_headless_api.molecules_container_py(True)
         mc.set_make_backups(False)
-        mc.set_use_gemmi(True)
+        mc.set_use_gemmi(False)
         imol = mc.read_pdb(xyzin)
         imap = mc.read_mtz(mtzin, "F", "PHI", "", False, False)
         mc.set_add_waters_sigma_cutoff(threshold)
@@ -45,11 +44,11 @@ class coot_find_waters(CPluginScript):
         nwaters = mc.add_waters(imol, imap)
         mc.write_coordinates(imol, xyzout)
 
-        root = etree.Element('coot_find_waters')
-        nWatersElement = etree.SubElement(root, "WatersFound")
-        nWatersElement.text = str(nwaters)
-        f = CCP4File.CXmlDataFile(fullPath=self.makeFileName('PROGRAMXML'))
-        f.saveFile(root)
+        root = ET.Element('coot_find_waters')
+        element = ET.SubElement(root, "WatersFound")
+        element.text = str(nwaters)
+        tree = ET.ElementTree(root)
+        tree.write(self.makeFileName('PROGRAMXML'))
 
         shutil.rmtree("coot-backup", ignore_errors=True)
 
