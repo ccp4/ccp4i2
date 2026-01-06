@@ -1,3 +1,9 @@
+import os
+import sys
+from datetime import datetime
+
+from lxml import etree
+
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -43,13 +49,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     #The startProcess method is where you build in the pipeline logic
     def startProcess(self, command, **kws):
-        import os
-        import sys
-        from datetime import datetime
-
-        from lxml import etree
-
-        from ccp4i2.baselayer import QtCore
         from ccp4i2.core.CCP4Modules import JOBCONTROLLER, PROJECTSMANAGER
         pm = PROJECTSMANAGER()
         

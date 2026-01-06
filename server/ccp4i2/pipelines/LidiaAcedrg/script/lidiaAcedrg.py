@@ -1,12 +1,11 @@
+import os
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
-import os,glob,re,time,sys
-from ccp4i2.core import CCP4XtalData
 from lxml import etree
-import math
-from ccp4i2.core import CCP4Modules,CCP4Utils
-from ccp4i2.core import CCP4ErrorHandling
+
+from ccp4i2.baselayer import QtCore
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class lidiaAcedrg(CPluginScript):
     TASKNAME = 'LidiaAcedrg'            # Task name - should be same as class name
