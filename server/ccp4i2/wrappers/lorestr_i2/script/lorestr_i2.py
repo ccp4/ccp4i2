@@ -239,7 +239,6 @@ class lorestr_i2(CPluginScript):
            self.validate.container.controlParameters.DO_MOLPROBITY = True
 
            self.validate.doAsync = False
-           self.validate.waitForFinished = -1
            self.validate.process()
 
 

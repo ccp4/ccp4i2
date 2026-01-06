@@ -469,7 +469,6 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.controlParameters.DO_MOLPROBITY.set(validate_molprobity)
 
             self.validate.doAsync = False
-            self.validate.waitForFinished = -1
             self.validate.process()
 
             validateXMLPath = self.validate.makeFileName('PROGRAMXML')
