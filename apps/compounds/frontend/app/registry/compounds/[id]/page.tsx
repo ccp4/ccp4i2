@@ -11,8 +11,10 @@ import {
   Chip,
   Skeleton,
   Divider,
+  Button,
 } from '@mui/material';
-import { Inventory, Medication, Science } from '@mui/icons-material';
+import { Inventory, Medication, Science, TableChart } from '@mui/icons-material';
+import Link from 'next/link';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { MoleculeView } from '@/components/MoleculeView';
@@ -140,34 +142,44 @@ export default function CompoundDetailPage({ params }: PageProps) {
           </>
         ) : compound ? (
           <>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-              <Medication sx={{ fontSize: 48, color: 'secondary.main' }} />
-              <Box>
-                <Typography variant="h4" fontFamily="monospace">
-                  {compound.formatted_id}
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
-                  {compound.stereo_comment &&
-                    compound.stereo_comment !== 'unset' && (
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Medication sx={{ fontSize: 48, color: 'secondary.main' }} />
+                <Box>
+                  <Typography variant="h4" fontFamily="monospace">
+                    {compound.formatted_id}
+                  </Typography>
+                  <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
+                    {compound.stereo_comment &&
+                      compound.stereo_comment !== 'unset' && (
+                        <Chip
+                          label={compound.stereo_comment}
+                          size="small"
+                          color="primary"
+                          variant="outlined"
+                        />
+                      )}
+                    {target && (
                       <Chip
-                        label={compound.stereo_comment}
+                        icon={<Science fontSize="small" />}
+                        label={target.name}
                         size="small"
-                        color="primary"
-                        variant="outlined"
+                        onClick={() =>
+                          router.push(`/registry/targets/${target.id}`)
+                        }
                       />
                     )}
-                  {target && (
-                    <Chip
-                      icon={<Science fontSize="small" />}
-                      label={target.name}
-                      size="small"
-                      onClick={() =>
-                        router.push(`/registry/targets/${target.id}`)
-                      }
-                    />
-                  )}
+                  </Box>
                 </Box>
               </Box>
+              <Button
+                component={Link}
+                href={`/assays/aggregate?compound=${compound.formatted_id}`}
+                variant="outlined"
+                startIcon={<TableChart />}
+              >
+                View Assay Data
+              </Button>
             </Box>
 
             <Divider sx={{ my: 2 }} />

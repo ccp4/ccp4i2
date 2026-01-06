@@ -9,8 +9,10 @@ import {
   Paper,
   Chip,
   Skeleton,
+  Button,
 } from '@mui/material';
-import { Medication, Science } from '@mui/icons-material';
+import { Medication, Science, TableChart } from '@mui/icons-material';
+import Link from 'next/link';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { MoleculeChip } from '@/components/MoleculeView';
@@ -135,14 +137,24 @@ export default function TargetDetailPage({ params }: PageProps) {
             <Skeleton variant="text" width={200} />
           </>
         ) : target ? (
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Science sx={{ fontSize: 48, color: 'primary.main' }} />
-            <Box>
-              <Typography variant="h4">{target.name}</Typography>
-              <Typography color="text.secondary">
-                {compounds?.length ?? 0} compounds registered
-              </Typography>
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Science sx={{ fontSize: 48, color: 'primary.main' }} />
+              <Box>
+                <Typography variant="h4">{target.name}</Typography>
+                <Typography color="text.secondary">
+                  {compounds?.length ?? 0} compounds registered
+                </Typography>
+              </Box>
             </Box>
+            <Button
+              component={Link}
+              href={`/assays/aggregate?target=${id}`}
+              variant="outlined"
+              startIcon={<TableChart />}
+            >
+              View Assay Data
+            </Button>
           </Box>
         ) : (
           <Typography color="error">Target not found</Typography>

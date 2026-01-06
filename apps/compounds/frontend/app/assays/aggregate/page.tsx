@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Container, Typography, Box, Alert } from '@mui/material';
 import { TableChart } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -15,6 +16,13 @@ import {
 import { fetchAggregation } from '@/lib/aggregation-api';
 
 export default function AggregationPage() {
+  const searchParams = useSearchParams();
+
+  // Read initial values from URL params for deep linking
+  const initialCompoundSearch = searchParams.get('compound') || undefined;
+  const initialTargetId = searchParams.get('target') || undefined;
+  const autoSubmit = !!(initialCompoundSearch || initialTargetId);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AggregationResponse | null>(null);
@@ -66,7 +74,13 @@ export default function AggregationPage() {
         </Box>
       </Box>
 
-      <PredicateBuilder onSubmit={handleSubmit} loading={loading} />
+      <PredicateBuilder
+        onSubmit={handleSubmit}
+        loading={loading}
+        initialCompoundSearch={initialCompoundSearch}
+        initialTargetId={initialTargetId}
+        autoSubmit={autoSubmit}
+      />
 
       {error && (
         <Alert severity="error" sx={{ mb: 3 }}>

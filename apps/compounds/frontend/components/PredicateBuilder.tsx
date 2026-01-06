@@ -38,6 +38,10 @@ import { fetchTargets, fetchProtocols } from '@/lib/aggregation-api';
 interface PredicateBuilderProps {
   /** Initial target ID (for target detail page) */
   initialTargetId?: string;
+  /** Initial compound search text (for compound detail navigation) */
+  initialCompoundSearch?: string;
+  /** Auto-submit query when initial values are provided */
+  autoSubmit?: boolean;
   /** Called when user submits the query */
   onSubmit: (
     predicates: Predicates,
@@ -57,6 +61,8 @@ const AGGREGATION_OPTIONS: { value: AggregationType; label: string; description:
 
 export function PredicateBuilder({
   initialTargetId,
+  initialCompoundSearch,
+  autoSubmit = false,
   onSubmit,
   loading = false,
 }: PredicateBuilderProps) {
@@ -73,8 +79,11 @@ export function PredicateBuilder({
   const [protocolSearch, setProtocolSearch] = useState('');
 
   // Other predicates
-  const [compoundSearch, setCompoundSearch] = useState('');
+  const [compoundSearch, setCompoundSearch] = useState(initialCompoundSearch || '');
   const [status, setStatus] = useState<string>('valid');
+
+  // Track if we've auto-submitted
+  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false);
 
   // Output options
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('compact');
@@ -108,6 +117,30 @@ export function PredicateBuilder({
       .then((protocols) => setProtocolOptions(protocols as any))
       .finally(() => setProtocolLoading(false));
   }, [protocolSearch, selectedTargets]);
+
+  // Auto-submit when initial values are provided
+  useEffect(() => {
+    if (autoSubmit && !hasAutoSubmitted && !loading) {
+      // Check if we have any predicates to submit
+      const hasTarget = selectedTargets.length > 0;
+      const hasCompound = compoundSearch.trim().length > 0;
+
+      if (hasTarget || hasCompound) {
+        setHasAutoSubmitted(true);
+
+        const predicates: Predicates = {};
+        if (selectedTargets.length > 0) {
+          predicates.targets = selectedTargets.map((t) => t.id);
+        }
+        if (compoundSearch.trim()) {
+          predicates.compound_search = compoundSearch.trim();
+        }
+        predicates.status = status as any;
+
+        onSubmit(predicates, outputFormat, aggregations);
+      }
+    }
+  }, [autoSubmit, hasAutoSubmitted, loading, selectedTargets, compoundSearch, status, outputFormat, aggregations, onSubmit]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
