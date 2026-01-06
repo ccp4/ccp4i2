@@ -491,9 +491,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'unique':
         from ccp4i2.wrappers.unique.script.unique import unique
         return unique
-    if plugin_name == 'uniqueify':
-        from ccp4i2.pipelines.uniqueify.script.uniqueify import uniqueify
-        return uniqueify
     if plugin_name == 'validate_protein':
         from ccp4i2.wrappers.validate_protein.script.validate_protein import validate_protein
         return validate_protein
@@ -693,7 +690,6 @@ PLUGIN_NAMES: set[str] = {
     'splitMtz',
     'tableone',
     'unique',
-    'uniqueify',
     'validate_protein',
     'x2mtz',
     'xia2_aimless',
