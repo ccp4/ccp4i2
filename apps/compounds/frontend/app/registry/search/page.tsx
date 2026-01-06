@@ -31,6 +31,7 @@ import {
   Draw,
   AccountTree,
   Hub,
+  Download,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -62,9 +63,16 @@ export default function CompoundSearchPage() {
   // Structure search state
   const [structureExpanded, setStructureExpanded] = useState(false);
   const [drawnSmiles, setDrawnSmiles] = useState('');
+  const [initialSmiles, setInitialSmiles] = useState('');
   const [structureSearchMode, setStructureSearchMode] = useState<StructureSearchMode>('substructure');
   const [structureSearchLoading, setStructureSearchLoading] = useState(false);
   const [structureSearchError, setStructureSearchError] = useState<string | null>(null);
+
+  // Compound lookup state for loading structures
+  const [compoundLookupQuery, setCompoundLookupQuery] = useState('');
+  const [compoundLookupResults, setCompoundLookupResults] = useState<Compound[]>([]);
+  const [compoundLookupLoading, setCompoundLookupLoading] = useState(false);
+  const [selectedLookupCompound, setSelectedLookupCompound] = useState<Compound | null>(null);
 
   // Target options
   const { data: targets } = api.get<Target[]>('targets/');
@@ -84,6 +92,34 @@ export default function CompoundSearchPage() {
     }, 300);
     return () => clearTimeout(timer);
   }, [searchQuery]);
+
+  // Debounced compound lookup for loading structures
+  useEffect(() => {
+    if (!compoundLookupQuery.trim()) {
+      setCompoundLookupResults([]);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setCompoundLookupLoading(true);
+      try {
+        const params = new URLSearchParams();
+        params.set('search', compoundLookupQuery.trim());
+        const response = await fetch(`/api/proxy/compounds/compounds/?${params}`);
+        if (response.ok) {
+          const data = await response.json();
+          // Limit to first 20 results for the dropdown
+          setCompoundLookupResults(data.slice(0, 20));
+        }
+      } catch (error) {
+        console.error('Compound lookup failed:', error);
+      } finally {
+        setCompoundLookupLoading(false);
+      }
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [compoundLookupQuery]);
 
   // Perform text search
   const doSearch = useCallback(async () => {
@@ -183,6 +219,17 @@ export default function CompoundSearchPage() {
     setSearched(false);
     setStructureSearchError(null);
   };
+
+  // Load a compound's structure into the JSME editor
+  const loadStructure = useCallback((compound: Compound | null) => {
+    if (compound?.smiles) {
+      setInitialSmiles(compound.smiles);
+      setDrawnSmiles(compound.smiles);
+      setStructureSearchError(null);
+      // Expand the structure search panel if not already expanded
+      setStructureExpanded(true);
+    }
+  }, []);
 
   const handleStructureChange = useCallback((smiles: string) => {
     setDrawnSmiles(smiles);
@@ -379,11 +426,68 @@ export default function CompoundSearchPage() {
           <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
             {/* JSME Editor */}
             <Box sx={{ flexShrink: 0 }}>
+              {/* Compound lookup to load structure */}
+              <Box sx={{ mb: 2 }}>
+                <Autocomplete
+                  options={compoundLookupResults}
+                  value={selectedLookupCompound}
+                  onChange={(_, newValue) => {
+                    setSelectedLookupCompound(newValue);
+                    loadStructure(newValue);
+                  }}
+                  onInputChange={(_, value) => setCompoundLookupQuery(value)}
+                  getOptionLabel={(option) => `${option.formatted_id}${option.supplier_ref ? ` (${option.supplier_ref})` : ''}`}
+                  isOptionEqualToValue={(option, value) => option.id === value.id}
+                  loading={compoundLookupLoading}
+                  filterOptions={(x) => x} // Disable client-side filtering since we do server-side
+                  renderOption={(props, option) => (
+                    <Box component="li" {...props} key={option.id} sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+                      <MoleculeChip smiles={option.smiles} size={40} />
+                      <Box>
+                        <Typography variant="body2" fontFamily="monospace">
+                          {option.formatted_id}
+                        </Typography>
+                        {option.supplier_ref && (
+                          <Typography variant="caption" color="text.secondary">
+                            {option.supplier_ref}
+                          </Typography>
+                        )}
+                      </Box>
+                    </Box>
+                  )}
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Load structure from compound"
+                      placeholder="Search by ID or supplier ref..."
+                      size="small"
+                      InputProps={{
+                        ...params.InputProps,
+                        startAdornment: (
+                          <>
+                            <Download sx={{ mr: 1, color: 'action.active' }} />
+                            {params.InputProps.startAdornment}
+                          </>
+                        ),
+                        endAdornment: (
+                          <>
+                            {compoundLookupLoading ? <CircularProgress size={16} /> : null}
+                            {params.InputProps.endAdornment}
+                          </>
+                        ),
+                      }}
+                    />
+                  )}
+                  sx={{ width: 400 }}
+                />
+              </Box>
+
               <JSMEEditor
                 id="search-jsme"
                 onChange={handleStructureChange}
                 editable={true}
                 query={true}
+                initialSmiles={initialSmiles}
                 width={400}
                 height={350}
                 showPreview={true}
