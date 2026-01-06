@@ -8,7 +8,6 @@ and filtering options.
 
 from pathlib import Path
 from typing import Optional, List, Set
-import os
 
 
 class DirectoryTree:
