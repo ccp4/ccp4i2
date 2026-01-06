@@ -100,6 +100,7 @@ function formatAggLabel(agg: AggregationType): string {
 
 /**
  * Compact table component (one row per compound).
+ * Clicking on protocol cells opens a modal with data series details.
  */
 function CompactTable({
   data,
@@ -111,6 +112,17 @@ function CompactTable({
   const router = useRouter();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
+
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCompound, setSelectedCompound] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+  const [selectedProtocol, setSelectedProtocol] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
 
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
@@ -125,13 +137,41 @@ function CompactTable({
     downloadCsv(csv, `aggregation_compact_${new Date().toISOString().slice(0, 10)}.csv`);
   };
 
+  const handleProtocolCellClick = (
+    event: React.MouseEvent,
+    row: CompactRow,
+    protocol: ProtocolInfo
+  ) => {
+    event.stopPropagation(); // Prevent row click navigation
+    setSelectedCompound({ id: row.compound_id, name: row.formatted_id });
+    setSelectedProtocol({ id: protocol.id, name: protocol.name });
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedCompound(null);
+    setSelectedProtocol(null);
+  };
+
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="body2" color="text.secondary">
-          {data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
-          {data.meta.total_measurements} measurements
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="body2" color="text.secondary">
+            {data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
+            {data.meta.total_measurements} measurements
+          </Typography>
+          <Tooltip title="Click any protocol cell to view dose-response charts">
+            <Chip
+              icon={<ZoomIn fontSize="small" />}
+              label="Click cell for details"
+              size="small"
+              variant="outlined"
+              color="info"
+            />
+          </Tooltip>
+        </Box>
         <Button startIcon={<Download />} onClick={handleExport} size="small">
           Export CSV
         </Button>
@@ -209,9 +249,20 @@ function CompactTable({
                   aggregations.map((agg) => {
                     const protocolData = row.protocols[protocol.id];
                     const value = protocolData?.[agg];
+                    const hasData = protocolData && Object.keys(protocolData).length > 0;
 
                     return (
-                      <TableCell key={`${protocol.id}-${agg}`} align="right">
+                      <TableCell
+                        key={`${protocol.id}-${agg}`}
+                        align="right"
+                        onClick={(e) => hasData && handleProtocolCellClick(e, row, protocol)}
+                        sx={{
+                          cursor: hasData ? 'zoom-in' : 'default',
+                          '&:hover': hasData ? {
+                            bgcolor: 'action.hover',
+                          } : {},
+                        }}
+                      >
                         {agg === 'list' ? (
                           <Tooltip title={value || '-'}>
                             <Typography
@@ -256,6 +307,18 @@ function CompactTable({
         }}
         rowsPerPageOptions={[10, 25, 50, 100]}
       />
+
+      {/* Data series detail modal */}
+      {selectedCompound && selectedProtocol && (
+        <DataSeriesDetailModal
+          open={modalOpen}
+          onClose={handleCloseModal}
+          compoundId={selectedCompound.id}
+          protocolId={selectedProtocol.id}
+          compoundName={selectedCompound.name}
+          protocolName={selectedProtocol.name}
+        />
+      )}
     </>
   );
 }
