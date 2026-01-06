@@ -41,13 +41,24 @@ export default function TargetDetailPage({ params }: PageProps) {
       label: 'ID',
       sortable: true,
       searchable: true,
-      width: 140,
-      render: (value) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Medication fontSize="small" color="secondary" />
-          <Typography fontWeight={500} fontFamily="monospace">
-            {value}
-          </Typography>
+      width: 180,
+      render: (value, row) => (
+        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
+          <Medication fontSize="small" color="secondary" sx={{ mt: 0.3 }} />
+          <Box>
+            <Typography fontWeight={500} fontFamily="monospace">
+              {value}
+            </Typography>
+            {row.supplier_ref && (
+              <Typography
+                variant="caption"
+                color="text.secondary"
+                sx={{ display: 'block', fontFamily: 'monospace' }}
+              >
+                {row.supplier_ref}
+              </Typography>
+            )}
+          </Box>
         </Box>
       ),
     },
