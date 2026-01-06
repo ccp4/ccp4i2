@@ -4,6 +4,8 @@ Registry ViewSets
 DRF ViewSets for compound registration models with reversion support.
 """
 
+import logging
+
 import reversion
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status
@@ -12,6 +14,16 @@ from rest_framework.response import Response
 from reversion.models import Version
 
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
+
+logger = logging.getLogger(__name__)
+
+# Try to import RDKit for structure searches
+try:
+    from rdkit import Chem
+    RDKIT_AVAILABLE = True
+except ImportError:
+    RDKIT_AVAILABLE = False
+    logger.warning("RDKit not available - structure search will be disabled")
 from .serializers import (
     SupplierSerializer,
     TargetSerializer,
@@ -139,6 +151,100 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
         batches = compound.batches.all()
         serializer = BatchSerializer(batches, many=True)
         return Response(serializer.data)
+
+    @action(detail=False, methods=['get'])
+    def structure_search(self, request):
+        """
+        Search compounds by structure (substructure or superstructure).
+
+        Query parameters:
+            smiles: SMILES or SMARTS pattern to search for
+            mode: 'substructure' or 'superstructure' (default: 'substructure')
+            target: Optional target UUID to filter by
+
+        Substructure search: Find compounds containing the query as a substructure
+                            (query is a fragment of the compound)
+        Superstructure search: Find compounds that are substructures of the query
+                              (compound is a fragment of the query)
+        """
+        if not RDKIT_AVAILABLE:
+            return Response(
+                {'error': 'Structure search not available - RDKit not installed'},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE
+            )
+
+        smiles = request.query_params.get('smiles')
+        mode = request.query_params.get('mode', 'substructure')
+        target_id = request.query_params.get('target')
+
+        if not smiles:
+            return Response(
+                {'error': 'smiles parameter required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if mode not in ('substructure', 'superstructure'):
+            return Response(
+                {'error': 'mode must be "substructure" or "superstructure"'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Parse the query pattern
+        try:
+            # Try as SMARTS first (for query patterns with wildcards)
+            query_mol = Chem.MolFromSmarts(smiles)
+            if query_mol is None:
+                # Try as SMILES
+                query_mol = Chem.MolFromSmiles(smiles)
+            if query_mol is None:
+                return Response(
+                    {'error': 'Invalid SMILES/SMARTS pattern'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+        except Exception as e:
+            return Response(
+                {'error': f'Failed to parse structure: {str(e)}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Get compounds to search through
+        queryset = self.get_queryset()
+        if target_id:
+            queryset = queryset.filter(target_id=target_id)
+
+        # Perform structure search
+        matches = []
+        for compound in queryset:
+            if not compound.smiles:
+                continue
+
+            try:
+                compound_mol = Chem.MolFromSmiles(compound.smiles)
+                if compound_mol is None:
+                    continue
+
+                if mode == 'substructure':
+                    # Find compounds containing the query as a substructure
+                    # i.e., query is a fragment of the compound
+                    if compound_mol.HasSubstructMatch(query_mol):
+                        matches.append(compound)
+                else:  # superstructure
+                    # Find compounds that are substructures of the query
+                    # i.e., compound is a fragment of the query
+                    if query_mol.HasSubstructMatch(compound_mol):
+                        matches.append(compound)
+
+            except Exception as e:
+                logger.warning(f"Error processing compound {compound.id}: {e}")
+                continue
+
+        serializer = CompoundListSerializer(matches, many=True)
+        return Response({
+            'query': smiles,
+            'mode': mode,
+            'count': len(matches),
+            'matches': serializer.data
+        })
 
 
 class BatchViewSet(ReversionMixin, viewsets.ModelViewSet):

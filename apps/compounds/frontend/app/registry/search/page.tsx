@@ -14,14 +14,33 @@ import {
   CircularProgress,
   InputAdornment,
   Alert,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+  ToggleButton,
+  ToggleButtonGroup,
+  Tooltip,
 } from '@mui/material';
-import { Search, Medication, Science, TableChart, Clear } from '@mui/icons-material';
+import {
+  Search,
+  Medication,
+  Science,
+  TableChart,
+  Clear,
+  ExpandMore,
+  Draw,
+  AccountTree,
+  Hub,
+} from '@mui/icons-material';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { MoleculeChip } from '@/components/MoleculeView';
+import { JSMEEditor } from '@/components/JSMEEditor';
 import { useCompoundsApi } from '@/lib/api';
 import { Target, Compound } from '@/types/models';
+
+type StructureSearchMode = 'substructure' | 'superstructure';
 
 export default function CompoundSearchPage() {
   const router = useRouter();
@@ -39,6 +58,13 @@ export default function CompoundSearchPage() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<Compound[]>([]);
   const [searched, setSearched] = useState(false);
+
+  // Structure search state
+  const [structureExpanded, setStructureExpanded] = useState(false);
+  const [drawnSmiles, setDrawnSmiles] = useState('');
+  const [structureSearchMode, setStructureSearchMode] = useState<StructureSearchMode>('substructure');
+  const [structureSearchLoading, setStructureSearchLoading] = useState(false);
+  const [structureSearchError, setStructureSearchError] = useState<string | null>(null);
 
   // Target options
   const { data: targets } = api.get<Target[]>('targets/');
@@ -59,7 +85,7 @@ export default function CompoundSearchPage() {
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-  // Perform search
+  // Perform text search
   const doSearch = useCallback(async () => {
     if (!debouncedQuery.trim() && !selectedTarget) {
       setResults([]);
@@ -113,12 +139,55 @@ export default function CompoundSearchPage() {
     window.history.replaceState({}, '', newUrl);
   }, [debouncedQuery, selectedTarget]);
 
+  // Perform structure search
+  const doStructureSearch = useCallback(async () => {
+    if (!drawnSmiles.trim()) {
+      setStructureSearchError('Please draw a structure first');
+      return;
+    }
+
+    setStructureSearchLoading(true);
+    setStructureSearchError(null);
+    setSearched(true);
+
+    try {
+      const params = new URLSearchParams();
+      params.set('smiles', drawnSmiles.trim());
+      params.set('mode', structureSearchMode);
+      if (selectedTarget) {
+        params.set('target', selectedTarget.id);
+      }
+
+      const response = await fetch(`/api/proxy/compounds/compounds/structure_search/?${params}`);
+      if (response.ok) {
+        const data = await response.json();
+        setResults(data.matches || []);
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        setStructureSearchError(errorData.error || 'Structure search failed');
+        setResults([]);
+      }
+    } catch (error) {
+      console.error('Structure search failed:', error);
+      setStructureSearchError('Structure search failed. Please try again.');
+      setResults([]);
+    } finally {
+      setStructureSearchLoading(false);
+    }
+  }, [drawnSmiles, structureSearchMode, selectedTarget]);
+
   const clearSearch = () => {
     setSearchQuery('');
     setSelectedTarget(null);
     setResults([]);
     setSearched(false);
+    setStructureSearchError(null);
   };
+
+  const handleStructureChange = useCallback((smiles: string) => {
+    setDrawnSmiles(smiles);
+    setStructureSearchError(null);
+  }, []);
 
   const columns: Column<Compound>[] = [
     {
@@ -216,12 +285,12 @@ export default function CompoundSearchPage() {
         </Typography>
       </Box>
 
-      {/* Search form */}
+      {/* Text Search form */}
       <Paper sx={{ p: 3, mb: 3 }}>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
             <TextField
-              label="Search"
+              label="Text Search"
               placeholder="NCL-00026..., supplier ref, or SMILES"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -266,7 +335,7 @@ export default function CompoundSearchPage() {
               variant="outlined"
               onClick={clearSearch}
               startIcon={<Clear />}
-              disabled={!searchQuery && !selectedTarget}
+              disabled={!searchQuery && !selectedTarget && !drawnSmiles}
             >
               Clear
             </Button>
@@ -286,8 +355,98 @@ export default function CompoundSearchPage() {
         </Box>
       </Paper>
 
+      {/* Structure Search */}
+      <Accordion
+        expanded={structureExpanded}
+        onChange={(_, expanded) => setStructureExpanded(expanded)}
+        sx={{ mb: 3 }}
+      >
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Draw />
+            <Typography fontWeight={500}>Structure Search</Typography>
+            {drawnSmiles && (
+              <Chip
+                size="small"
+                label="Structure drawn"
+                color="success"
+                variant="outlined"
+              />
+            )}
+          </Box>
+        </AccordionSummary>
+        <AccordionDetails>
+          <Box sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, gap: 3 }}>
+            {/* JSME Editor */}
+            <Box sx={{ flexShrink: 0 }}>
+              <JSMEEditor
+                id="search-jsme"
+                onChange={handleStructureChange}
+                editable={true}
+                query={true}
+                width={400}
+                height={350}
+                showPreview={true}
+              />
+            </Box>
+
+            {/* Search controls */}
+            <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Typography variant="subtitle2" color="text.secondary">
+                Search Mode
+              </Typography>
+              <ToggleButtonGroup
+                value={structureSearchMode}
+                exclusive
+                onChange={(_, value) => value && setStructureSearchMode(value)}
+                size="small"
+              >
+                <ToggleButton value="substructure">
+                  <Tooltip title="Find compounds containing the drawn structure">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <Hub fontSize="small" />
+                      Substructure
+                    </Box>
+                  </Tooltip>
+                </ToggleButton>
+                <ToggleButton value="superstructure">
+                  <Tooltip title="Find compounds that are substructures of the drawn structure">
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                      <AccountTree fontSize="small" />
+                      Superstructure
+                    </Box>
+                  </Tooltip>
+                </ToggleButton>
+              </ToggleButtonGroup>
+
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                {structureSearchMode === 'substructure'
+                  ? 'Find all compounds that contain the drawn structure as a fragment (the drawn structure is a substructure of the results).'
+                  : 'Find all compounds that are contained within the drawn structure (the results are substructures of the drawn structure).'}
+              </Typography>
+
+              {structureSearchError && (
+                <Alert severity="error" sx={{ mt: 1 }}>
+                  {structureSearchError}
+                </Alert>
+              )}
+
+              <Button
+                variant="contained"
+                onClick={doStructureSearch}
+                disabled={!drawnSmiles || structureSearchLoading}
+                startIcon={structureSearchLoading ? <CircularProgress size={20} /> : <Search />}
+                sx={{ mt: 2, alignSelf: 'flex-start' }}
+              >
+                {structureSearchLoading ? 'Searching...' : `Find ${structureSearchMode === 'substructure' ? 'Superstructures' : 'Substructures'}`}
+              </Button>
+            </Box>
+          </Box>
+        </AccordionDetails>
+      </Accordion>
+
       {/* Results */}
-      {searched && !loading && results.length === 0 && (
+      {searched && !loading && !structureSearchLoading && results.length === 0 && (
         <Alert severity="info" sx={{ mb: 3 }}>
           No compounds found matching your search criteria.
         </Alert>
@@ -314,7 +473,7 @@ export default function CompoundSearchPage() {
           <DataTable
             data={results}
             columns={columns}
-            loading={loading}
+            loading={loading || structureSearchLoading}
             onRowClick={(compound) =>
               router.push(`/registry/compounds/${compound.id}`)
             }
@@ -335,7 +494,7 @@ export default function CompoundSearchPage() {
           <Typography color="text.secondary">
             Enter a compound ID (e.g., NCL-00026123), supplier reference, or SMILES string.
             <br />
-            You can also filter by target to narrow your search.
+            You can also filter by target or use the structure editor to draw a query structure.
           </Typography>
         </Paper>
       )}
