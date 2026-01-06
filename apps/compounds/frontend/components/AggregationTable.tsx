@@ -17,7 +17,7 @@ import {
   LinearProgress,
   Tooltip,
 } from '@mui/material';
-import { Download, Medication } from '@mui/icons-material';
+import { Download, Medication, ZoomIn } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import {
   AggregationResponse,
@@ -30,6 +30,7 @@ import {
   ProtocolInfo,
 } from '@/types/aggregation';
 import { MoleculeChip } from './MoleculeView';
+import { DataSeriesDetailModal } from './DataSeriesDetailModal';
 import {
   formatKpiValue,
   generateCompactCsv,
@@ -261,6 +262,7 @@ function CompactTable({
 
 /**
  * Medium table component (one row per compound-protocol pair).
+ * Clicking a row opens a modal with data series details and charts.
  */
 function MediumTable({
   data,
@@ -269,9 +271,12 @@ function MediumTable({
   data: AggregationResponse;
   aggregations: AggregationType[];
 }) {
-  const router = useRouter();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
+
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<MediumRow | null>(null);
 
   const rows = data.data as MediumRow[];
 
@@ -285,13 +290,34 @@ function MediumTable({
     downloadCsv(csv, `aggregation_medium_${new Date().toISOString().slice(0, 10)}.csv`);
   };
 
+  const handleRowClick = (row: MediumRow) => {
+    setSelectedRow(row);
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedRow(null);
+  };
+
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="body2" color="text.secondary">
-          {data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
-          {data.meta.total_measurements} measurements
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="body2" color="text.secondary">
+            {data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
+            {data.meta.total_measurements} measurements
+          </Typography>
+          <Tooltip title="Click any row to view dose-response charts">
+            <Chip
+              icon={<ZoomIn fontSize="small" />}
+              label="Click row for details"
+              size="small"
+              variant="outlined"
+              color="info"
+            />
+          </Tooltip>
+        </Box>
         <Button startIcon={<Download />} onClick={handleExport} size="small">
           Export CSV
         </Button>
@@ -318,7 +344,7 @@ function MediumTable({
                 key={`${row.compound_id}-${row.protocol_id}-${idx}`}
                 hover
                 sx={{ cursor: 'pointer' }}
-                onClick={() => router.push(`/registry/compounds/${row.compound_id}`)}
+                onClick={() => handleRowClick(row)}
               >
                 <TableCell>
                   {row.smiles ? (
@@ -400,6 +426,18 @@ function MediumTable({
         }}
         rowsPerPageOptions={[10, 25, 50, 100]}
       />
+
+      {/* Data series detail modal */}
+      {selectedRow && (
+        <DataSeriesDetailModal
+          open={modalOpen}
+          onClose={handleCloseModal}
+          compoundId={selectedRow.compound_id}
+          protocolId={selectedRow.protocol_id}
+          compoundName={selectedRow.formatted_id}
+          protocolName={selectedRow.protocol_name}
+        />
+      )}
     </>
   );
 }

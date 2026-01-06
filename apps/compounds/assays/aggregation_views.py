@@ -139,3 +139,71 @@ class AggregationViewSet(viewsets.ViewSet):
         targets = queryset.values('id', 'name')[:100]
 
         return Response(list(targets))
+
+    @action(detail=False, methods=['get'])
+    def data_series(self, request):
+        """
+        Fetch detailed data series for a compound-protocol pair.
+
+        Query params:
+            compound: Compound UUID (required)
+            protocol: Protocol UUID (required)
+            status: Analysis status filter (optional, default: 'valid')
+
+        Returns:
+            List of data series with full dose-response data for charting.
+        """
+        from .models import DataSeries
+        from .serializers import DataSeriesListSerializer
+
+        compound_id = request.query_params.get('compound')
+        protocol_id = request.query_params.get('protocol')
+        status_filter = request.query_params.get('status', 'valid')
+
+        if not compound_id or not protocol_id:
+            return Response(
+                {'error': 'Both compound and protocol parameters are required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        queryset = DataSeries.objects.select_related(
+            'assay',
+            'assay__protocol',
+            'compound',
+            'analysis',
+            'dilution_series',
+        ).filter(
+            compound_id=compound_id,
+            assay__protocol_id=protocol_id,
+        )
+
+        if status_filter:
+            queryset = queryset.filter(analysis__status=status_filter)
+
+        # Order by assay date descending
+        queryset = queryset.order_by('-assay__created_at')
+
+        serializer = DataSeriesListSerializer(queryset, many=True)
+
+        # Include compound and protocol info in response
+        compound_info = None
+        protocol_info = None
+        if queryset.exists():
+            first = queryset.first()
+            if first.compound:
+                compound_info = {
+                    'id': str(first.compound.id),
+                    'formatted_id': first.compound.formatted_id,
+                    'smiles': first.compound.smiles or first.compound.rdkit_smiles,
+                }
+            protocol_info = {
+                'id': str(first.assay.protocol.id),
+                'name': first.assay.protocol.name,
+            }
+
+        return Response({
+            'compound': compound_info,
+            'protocol': protocol_info,
+            'count': queryset.count(),
+            'data_series': serializer.data,
+        })
