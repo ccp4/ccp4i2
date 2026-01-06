@@ -87,8 +87,8 @@ function extractFitParams(analysis: DataSeriesItem['analysis']): FitParameters |
   return {
     ec50: results.EC50 ?? results.ec50 ?? null,
     hill: results.Hill ?? results.hill ?? results.slope ?? null,
-    minVal: results.Min ?? results.min ?? results.bottom ?? 0,
-    maxVal: results.Max ?? results.max ?? results.top ?? 100,
+    minVal: results.minVal ?? results.Min ?? results.min ?? results.bottom ?? null,
+    maxVal: results.maxVal ?? results.Max ?? results.max ?? results.top ?? null,
     status: analysis.status,
   };
 }
