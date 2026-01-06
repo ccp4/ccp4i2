@@ -4719,68 +4719,6 @@
       }
     }
   },
-  "demo_multi_mtzdump": {
-    "module": "ccp4i2.wrappers2.demo_multi_mtzdump.script.demo_multi_mtzdump",
-    "class": "demo_multi_mtzdump",
-    "module_file": "../../wrappers2/demo_multi_mtzdump/script/demo_multi_mtzdump.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "demo",
-    "TASKTITLE": "Demo multi MTZ dump",
-    "TASKNAME": "demo_multi_mtzdump",
-    "TASKVERSION": 0.0,
-    "ASYNCHRONOUS": true,
-    "TIMEOUT_PERIOD": 0.1,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
-      }
-    }
-  },
   "molrep_pipe": {
     "module": "ccp4i2.pipelines.molrep_pipe.script.molrep_pipe",
     "class": "molrep_pipe",
