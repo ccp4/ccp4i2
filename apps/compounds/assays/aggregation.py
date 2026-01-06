@@ -134,16 +134,17 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
         queryset = queryset.filter(compound_id__in=compounds)
 
     # Filter by compound search (formatted_id pattern)
+    # Supports comma-separated list of IDs (e.g., "NCL-00026123, NCL-00026124")
     compound_search = predicates.get('compound_search', '')
     if compound_search:
-        # Extract NCL number if present
         import re
-        match = re.search(r'NCL-?(\d+)', compound_search, re.IGNORECASE)
-        if match:
-            reg_number = int(match.group(1))
-            queryset = queryset.filter(compound__reg_number=reg_number)
+        # Find all NCL numbers in the search string (handles comma-separated lists)
+        matches = re.findall(r'NCL-?(\d+)', compound_search, re.IGNORECASE)
+        if matches:
+            reg_numbers = [int(m) for m in matches]
+            queryset = queryset.filter(compound__reg_number__in=reg_numbers)
         else:
-            # Fall back to compound_name search
+            # Fall back to compound_name search (handles non-NCL formatted IDs)
             queryset = queryset.filter(compound_name__icontains=compound_search)
 
     # Filter by protocols
