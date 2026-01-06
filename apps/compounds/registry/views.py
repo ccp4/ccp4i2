@@ -152,6 +152,87 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
         serializer = BatchSerializer(batches, many=True)
         return Response(serializer.data)
 
+    @action(detail=False, methods=['post'])
+    def bulk_create(self, request):
+        """
+        Create multiple compounds in a single request.
+
+        Request body:
+        {
+            "compounds": [
+                {
+                    "target": "<uuid>",
+                    "smiles": "...",
+                    "stereo_comment": "...",
+                    "supplier": "<uuid>",
+                    "supplier_ref": "...",
+                    "comments": "...",
+                    "labbook_number": 123,
+                    "page_number": 45
+                },
+                ...
+            ]
+        }
+
+        Returns:
+        {
+            "created": [{"id": "...", "formatted_id": "NCL-..."}],
+            "errors": [{"index": 0, "error": "..."}]
+        }
+        """
+        compounds_data = request.data.get('compounds', [])
+
+        if not compounds_data:
+            return Response(
+                {'error': 'No compounds provided'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if len(compounds_data) > 1000:
+            return Response(
+                {'error': 'Maximum 1000 compounds per request'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        created = []
+        errors = []
+
+        for idx, compound_data in enumerate(compounds_data):
+            try:
+                serializer = CompoundCreateSerializer(
+                    data=compound_data,
+                    context={'request': request}
+                )
+                if serializer.is_valid():
+                    with reversion.create_revision():
+                        instance = serializer.save()
+                        if request.user.is_authenticated:
+                            reversion.set_user(request.user)
+                        reversion.set_comment("Created via bulk import")
+
+                    created.append({
+                        'id': str(instance.id),
+                        'formatted_id': instance.formatted_id,
+                        'index': idx,
+                    })
+                else:
+                    errors.append({
+                        'index': idx,
+                        'error': serializer.errors,
+                    })
+            except Exception as e:
+                errors.append({
+                    'index': idx,
+                    'error': str(e),
+                })
+
+        return Response({
+            'created': created,
+            'errors': errors,
+            'total_created': len(created),
+            'total_errors': len(errors),
+        })
+
     @action(detail=False, methods=['get'])
     def structure_search(self, request):
         """

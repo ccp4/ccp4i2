@@ -11,7 +11,7 @@ import {
   Skeleton,
   Button,
 } from '@mui/material';
-import { Medication, Science, TableChart } from '@mui/icons-material';
+import { Medication, Science, TableChart, Add } from '@mui/icons-material';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
@@ -158,14 +158,24 @@ export default function TargetDetailPage({ params }: PageProps) {
                 </Typography>
               </Box>
             </Box>
-            <Button
-              component={Link}
-              href={`/assays/aggregate?target=${id}`}
-              variant="outlined"
-              startIcon={<TableChart />}
-            >
-              View Assay Data
-            </Button>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Button
+                component={Link}
+                href={`/assays/aggregate?target=${id}`}
+                variant="outlined"
+                startIcon={<TableChart />}
+              >
+                View Assay Data
+              </Button>
+              <Button
+                component={Link}
+                href={`/registry/new?target=${id}`}
+                variant="contained"
+                startIcon={<Add />}
+              >
+                New Compound
+              </Button>
+            </Box>
           </Box>
         ) : (
           <Typography color="error">Target not found</Typography>

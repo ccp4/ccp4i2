@@ -1,8 +1,9 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { Container, Typography, Box, Chip } from '@mui/material';
-import { Assessment, Science, Description } from '@mui/icons-material';
+import Link from 'next/link';
+import { Container, Typography, Box, Chip, Button } from '@mui/material';
+import { Assessment, Science, Description, Upload, Functions } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { useCompoundsApi } from '@/lib/api';
@@ -103,13 +104,33 @@ export default function AssaysPage() {
         ]}
       />
 
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          Assays
-        </Typography>
-        <Typography color="text.secondary">
-          Dose-response experiments and compound activity data
-        </Typography>
+      <Box sx={{ mb: 3, display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h4" gutterBottom>
+            Assays
+          </Typography>
+          <Typography color="text.secondary">
+            Dose-response experiments and compound activity data
+          </Typography>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button
+            component={Link}
+            href="/assays/aggregate"
+            variant="outlined"
+            startIcon={<Functions />}
+          >
+            Aggregate
+          </Button>
+          <Button
+            component={Link}
+            href="/assays/import"
+            variant="contained"
+            startIcon={<Upload />}
+          >
+            Import Data
+          </Button>
+        </Box>
       </Box>
 
       <DataTable

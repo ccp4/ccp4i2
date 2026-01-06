@@ -1,13 +1,13 @@
 'use client';
 
 import { Breadcrumbs as MuiBreadcrumbs, Link, Typography, Box } from '@mui/material';
-import { Home, NavigateNext, Science, Medication, Inventory, Description, Assessment, TableChart } from '@mui/icons-material';
+import { Home, NavigateNext, Science, Medication, Inventory, Description, Assessment, TableChart, Search, Upload } from '@mui/icons-material';
 import NextLink from 'next/link';
 
 export interface BreadcrumbItem {
   label: string;
   href?: string;
-  icon?: 'home' | 'target' | 'compound' | 'batch' | 'qc' | 'protocol' | 'assay' | 'aggregate';
+  icon?: 'home' | 'target' | 'compound' | 'batch' | 'qc' | 'protocol' | 'assay' | 'aggregate' | 'search' | 'import';
 }
 
 interface BreadcrumbsProps {
@@ -23,6 +23,8 @@ const iconMap = {
   protocol: <Description fontSize="small" />,
   assay: <Assessment fontSize="small" />,
   aggregate: <TableChart fontSize="small" />,
+  search: <Search fontSize="small" />,
+  import: <Upload fontSize="small" />,
 };
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {

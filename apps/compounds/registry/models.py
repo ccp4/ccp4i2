@@ -227,6 +227,22 @@ class Compound(models.Model):
         # Ensure reg_number is set
         if not self.reg_number:
             self.reg_number = _next_reg_number()
+
+        # Generate canonical SMILES and molecular weight via RDKit
+        if self.smiles and not self.rdkit_smiles:
+            try:
+                from rdkit import Chem
+                from rdkit.Chem import Descriptors
+                mol = Chem.MolFromSmiles(self.smiles)
+                if mol:
+                    self.rdkit_smiles = Chem.MolToSmiles(mol, canonical=True)
+                    if not self.molecular_weight:
+                        self.molecular_weight = Descriptors.MolWt(mol)
+            except ImportError:
+                pass  # RDKit not available
+            except Exception:
+                pass  # Invalid SMILES or other RDKit error
+
         super().save(*args, **kwargs)
 
 

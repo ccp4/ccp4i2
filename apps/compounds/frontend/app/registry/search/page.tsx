@@ -32,6 +32,8 @@ import {
   AccountTree,
   Hub,
   Download,
+  Add,
+  Upload,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
@@ -323,13 +325,33 @@ export default function CompoundSearchPage() {
         ]}
       />
 
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          Compound Search
-        </Typography>
-        <Typography color="text.secondary">
-          Search compounds by ID, supplier reference, or structure
-        </Typography>
+      <Box sx={{ mb: 3, display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h4" gutterBottom>
+            Compound Search
+          </Typography>
+          <Typography color="text.secondary">
+            Search compounds by ID, supplier reference, or structure
+          </Typography>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button
+            component={Link}
+            href="/registry/import"
+            variant="outlined"
+            startIcon={<Upload />}
+          >
+            Bulk Import
+          </Button>
+          <Button
+            component={Link}
+            href="/registry/new"
+            variant="contained"
+            startIcon={<Add />}
+          >
+            New Compound
+          </Button>
+        </Box>
       </Box>
 
       {/* Text Search form */}
