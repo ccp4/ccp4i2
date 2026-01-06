@@ -7,7 +7,6 @@ import {
   Typography,
   Box,
   Paper,
-  Grid,
   Chip,
   Skeleton,
 } from '@mui/material';

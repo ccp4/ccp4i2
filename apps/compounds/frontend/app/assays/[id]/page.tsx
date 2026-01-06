@@ -25,6 +25,7 @@ import {
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { DoseResponseThumb } from '@/components/DoseResponseChart';
+import { CompoundStructureCell } from '@/components/CompoundStructureCell';
 import { useCompoundsApi } from '@/lib/api';
 import { Assay, DataSeries, Protocol, Target } from '@/types/models';
 
@@ -117,6 +118,18 @@ export default function AssayDetailPage({ params }: PageProps) {
         } : undefined;
         return <DoseResponseThumb data={chartData} fit={fitParams} size={120} />;
       },
+    },
+    {
+      key: 'structure',
+      label: 'Structure',
+      width: 90,
+      render: (_, row) => (
+        <CompoundStructureCell
+          compoundId={row.compound}
+          compoundName={row.compound_name}
+          size={80}
+        />
+      ),
     },
     {
       key: 'compound_name',

@@ -215,3 +215,53 @@ class HypothesisDetailSerializer(serializers.ModelSerializer):
             'svg_file',
             'created_at', 'updated_at',
         ]
+
+
+# Aggregation serializers
+
+class PredicatesSerializer(serializers.Serializer):
+    """Serializer for aggregation filter predicates."""
+    targets = serializers.ListField(
+        child=serializers.UUIDField(),
+        required=False,
+        default=list,
+        help_text="List of target UUIDs to filter by"
+    )
+    compounds = serializers.ListField(
+        child=serializers.UUIDField(),
+        required=False,
+        default=list,
+        help_text="List of compound UUIDs to filter by"
+    )
+    compound_search = serializers.CharField(
+        required=False,
+        default='',
+        help_text="Text search for compound formatted_id (e.g., NCL-00026)"
+    )
+    protocols = serializers.ListField(
+        child=serializers.UUIDField(),
+        required=False,
+        default=list,
+        help_text="List of protocol UUIDs to filter by"
+    )
+    status = serializers.ChoiceField(
+        choices=['valid', 'invalid', 'unassigned', ''],
+        required=False,
+        default='valid',
+        help_text="Analysis status filter (default: valid)"
+    )
+
+
+class AggregationRequestSerializer(serializers.Serializer):
+    """Serializer for aggregation request validation."""
+    predicates = PredicatesSerializer(required=False, default=dict)
+    output_format = serializers.ChoiceField(
+        choices=['compact', 'long'],
+        default='compact',
+        help_text="Output format: 'compact' (one row per compound) or 'long' (one row per measurement)"
+    )
+    aggregations = serializers.ListField(
+        child=serializers.ChoiceField(choices=['geomean', 'count', 'stdev', 'list']),
+        default=['geomean', 'count'],
+        help_text="Aggregation functions to compute"
+    )

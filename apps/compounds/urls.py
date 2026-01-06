@@ -24,6 +24,7 @@ from compounds.assays.views import (
     AnalysisResultViewSet,
     HypothesisViewSet,
 )
+from compounds.assays.aggregation_views import AggregationViewSet
 
 router = DefaultRouter()
 
@@ -42,6 +43,9 @@ router.register(r'assays', AssayViewSet, basename='assay')
 router.register(r'data-series', DataSeriesViewSet, basename='data-series')
 router.register(r'analysis-results', AnalysisResultViewSet, basename='analysis-result')
 router.register(r'hypotheses', HypothesisViewSet, basename='hypothesis')
+
+# Aggregation routes
+router.register(r'aggregations', AggregationViewSet, basename='aggregation')
 
 urlpatterns = [
     path('', include(router.urls)),

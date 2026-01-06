@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Typography, Box, Button, Stack, Paper } from '@mui/material';
-import { Science, Assignment, Biotech } from '@mui/icons-material';
+import { Science, Assignment, Biotech, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
 
 export default function HomePage() {
@@ -79,6 +79,28 @@ export default function HomePage() {
             <Typography variant="h5">Protocols</Typography>
             <Typography color="text.secondary">
               Assay protocol definitions and methods
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 2,
+            cursor: 'pointer',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/assays/aggregate"
+        >
+          <TableChart sx={{ fontSize: 48, color: 'success.main' }} />
+          <Box>
+            <Typography variant="h5">Data Aggregation</Typography>
+            <Typography color="text.secondary">
+              Query and aggregate KPI values across compounds and protocols
             </Typography>
           </Box>
         </Paper>
