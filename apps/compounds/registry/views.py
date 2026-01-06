@@ -114,7 +114,7 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
     queryset = Compound.objects.select_related('target', 'supplier', 'registered_by')
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['target', 'supplier', 'stereo_comment']
-    search_fields = ['smiles', 'supplier_ref', 'comments']
+    search_fields = ['reg_number', 'smiles', 'supplier_ref', 'comments']
     ordering_fields = ['reg_number', 'registered_at', 'molecular_weight']
     ordering = ['-reg_number']
 
