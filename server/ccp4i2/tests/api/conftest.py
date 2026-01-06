@@ -17,6 +17,8 @@ from pathlib import Path
 import pytest
 import django
 
+from ccp4i2 import I2_TOP
+
 # Configure Django settings
 # Force use of test_settings even if run_test.sh set ccp4i2.config.settings
 os.environ["DJANGO_SETTINGS_MODULE"] = "ccp4i2.config.test_settings"
@@ -263,7 +265,7 @@ def file_based_db(isolated_test_db, test_project_path):
 @pytest.fixture(scope="session")
 def demo_data_dir():
     """Return path to demo_data directory."""
-    return Path(os.environ.get('CCP4I2_ROOT', project_root)) / 'demo_data'
+    return I2_TOP / 'demo_data'
 
 
 @pytest.fixture(scope="session")
