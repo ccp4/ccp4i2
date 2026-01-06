@@ -108,14 +108,14 @@ export default function AssayDetailPage({ params }: PageProps) {
         if (!chartData || chartData.concentrations.length === 0) {
           return <Box sx={{ width: 60, height: 60, bgcolor: 'grey.100', borderRadius: 1 }} />;
         }
-        const fitParams = row.analysis ? {
-          ec50: row.analysis.results?.EC50,
-          hill: row.analysis.results?.Hill,
-          minVal: row.analysis.results?.minVal,
-          maxVal: row.analysis.results?.maxVal,
+        const fitParams = row.analysis?.results ? {
+          ec50: row.analysis.results.EC50,
+          hill: row.analysis.results.Hill,
+          minVal: row.analysis.results.minVal,
+          maxVal: row.analysis.results.maxVal,
           status: row.analysis.status,
         } : undefined;
-        return <DoseResponseThumb data={chartData} fit={fitParams} size={60} />;
+        return <DoseResponseThumb data={chartData} fit={fitParams} size={120} />;
       },
     },
     {

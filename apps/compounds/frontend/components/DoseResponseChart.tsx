@@ -152,52 +152,59 @@ export function DoseResponseChart({
       });
     }
 
-    // Add fitted curve if we have valid parameters
-    if (
-      fit?.ec50 &&
+    // Add fitted curve if we have valid numeric parameters
+    const hasValidFitParams =
+      fit?.ec50 != null &&
       fit.ec50 > 0 &&
-      fit.hill !== undefined &&
-      fit.hill !== null &&
-      fit.minVal !== undefined &&
-      fit.minVal !== null &&
-      fit.maxVal !== undefined &&
-      fit.maxVal !== null &&
-      fit.status === 'valid'
-    ) {
+      fit.hill != null &&
+      typeof fit.hill === 'number' &&
+      fit.minVal != null &&
+      typeof fit.minVal === 'number' &&
+      fit.maxVal != null &&
+      typeof fit.maxVal === 'number';
+
+    if (hasValidFitParams) {
       const curvePoints = generateFittedCurve(
         concentrations,
-        fit.ec50,
-        fit.hill,
-        fit.minVal,
-        fit.maxVal
+        fit!.ec50!,
+        fit!.hill!,
+        fit!.minVal!,
+        fit!.maxVal!
       );
 
+      // Use different color for invalid fits
+      const curveColor = fit?.status === 'valid'
+        ? 'rgba(220, 53, 69, 1)'
+        : 'rgba(150, 150, 150, 0.7)';
+
+      // Use type: 'line' for the curve dataset in mixed chart
       datasets.push({
-        label: `Fitted Curve (EC50: ${fit.ec50.toExponential(2)})`,
+        type: 'line' as const,
+        label: `Fitted Curve (EC50: ${fit!.ec50!.toExponential(2)})`,
         data: curvePoints,
         backgroundColor: 'transparent',
-        borderColor: 'rgba(220, 53, 69, 1)',
+        borderColor: curveColor,
         borderWidth: 2,
         pointRadius: 0,
-        showLine: true,
-        tension: 0.4,
-      });
+        fill: false,
+      } as any);
 
       // Add EC50 marker line
-      const ec50Y = hillLangmuir(fit.ec50, fit.ec50, fit.hill, fit.minVal, fit.maxVal);
+      const ec50Y = hillLangmuir(fit!.ec50!, fit!.ec50!, fit!.hill!, fit!.minVal!, fit!.maxVal!);
       datasets.push({
+        type: 'line' as const,
         label: 'EC50',
         data: [
-          { x: fit.ec50, y: fit.minVal },
-          { x: fit.ec50, y: ec50Y },
+          { x: fit!.ec50!, y: fit!.minVal! },
+          { x: fit!.ec50!, y: ec50Y },
         ],
         backgroundColor: 'transparent',
-        borderColor: 'rgba(220, 53, 69, 0.5)',
+        borderColor: curveColor.replace('1)', '0.5)'),
         borderWidth: 1,
         borderDash: [5, 5],
         pointRadius: 0,
-        showLine: true,
-      });
+        fill: false,
+      } as any);
     }
 
     return { datasets };
@@ -206,6 +213,7 @@ export function DoseResponseChart({
   const options = useMemo<ChartOptions<'scatter'>>(() => ({
     responsive: true,
     maintainAspectRatio: false,
+    animation: false,
     plugins: {
       legend: {
         display: showLegend,
@@ -289,6 +297,7 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
 
     const datasets: ChartData<'scatter'>['datasets'] = [
       {
+        label: 'Data',
         data: points,
         backgroundColor: 'rgba(70, 130, 180, 0.8)',
         borderColor: 'rgba(70, 130, 180, 1)',
@@ -296,41 +305,69 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
       },
     ];
 
-    // Add fitted curve
-    if (
-      fit?.ec50 &&
+    // Add fitted curve if we have valid numeric parameters
+    const hasValidFitParams =
+      fit?.ec50 != null &&
       fit.ec50 > 0 &&
-      fit.hill !== undefined &&
-      fit.minVal !== undefined &&
-      fit.maxVal !== undefined &&
-      fit.status === 'valid'
-    ) {
+      fit.hill != null &&
+      typeof fit.hill === 'number' &&
+      fit.minVal != null &&
+      typeof fit.minVal === 'number' &&
+      fit.maxVal != null &&
+      typeof fit.maxVal === 'number';
+
+    if (hasValidFitParams) {
       const curvePoints = generateFittedCurve(
         concentrations,
-        fit.ec50,
-        fit.hill!,
-        fit.minVal!,
-        fit.maxVal!,
+        fit!.ec50!,
+        fit!.hill!,
+        fit!.minVal!,
+        fit!.maxVal!,
         50
       );
 
+      // Use red for valid fits, dark gray for invalid
+      const curveColor = fit?.status === 'valid'
+        ? 'rgba(220, 53, 69, 1)'
+        : 'rgba(100, 100, 100, 0.9)';
+
+      // For scatter charts, use type: 'line' for the curve dataset
       datasets.push({
+        type: 'line' as const,
+        label: 'Fit',
         data: curvePoints,
         backgroundColor: 'transparent',
-        borderColor: 'rgba(220, 53, 69, 1)',
-        borderWidth: 1.5,
+        borderColor: curveColor,
+        borderWidth: 2,
         pointRadius: 0,
-        showLine: true,
-        tension: 0.4,
-      });
+        fill: false,
+      } as any);
     }
 
     return { datasets };
   }, [data, fit]);
 
+  // Calculate axis bounds from data
+  const axisBounds = useMemo(() => {
+    const { concentrations, responses } = data;
+    const validConcs = concentrations.filter(c => c > 0);
+    const validResponses = responses.filter(r => r !== undefined && r !== null);
+
+    return {
+      xMin: validConcs.length ? Math.min(...validConcs) : 1,
+      xMax: validConcs.length ? Math.max(...validConcs) : 1000,
+      yMin: validResponses.length ? Math.min(...validResponses) : 0,
+      yMax: validResponses.length ? Math.max(...validResponses) : 100,
+    };
+  }, [data]);
+
   const options = useMemo<ChartOptions<'scatter'>>(() => ({
     responsive: true,
     maintainAspectRatio: false,
+    animation: false,
+    layout: {
+      padding: { left: 2, right: 2, top: 2, bottom: 2 },
+    },
     plugins: {
       legend: { display: false },
       title: { display: false },
@@ -339,11 +376,37 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
     scales: {
       x: {
         type: 'logarithmic' as const,
-        display: false,
+        display: true,
+        grid: { display: false },
+        border: { display: true, color: 'rgba(0,0,0,0.1)' },
+        ticks: {
+          display: true,
+          font: { size: 8 },
+          color: 'rgba(0,0,0,0.5)',
+          maxTicksLimit: 2,
+          callback: (value) => {
+            const num = Number(value);
+            if (num >= 1000) return `${(num / 1000).toFixed(0)}k`;
+            if (num >= 1) return num.toFixed(0);
+            return num.toExponential(0);
+          },
+        },
       },
       y: {
         type: 'linear' as const,
-        display: false,
+        display: true,
+        grid: { display: false },
+        border: { display: true, color: 'rgba(0,0,0,0.1)' },
+        ticks: {
+          display: true,
+          font: { size: 8 },
+          color: 'rgba(0,0,0,0.5)',
+          maxTicksLimit: 2,
+          callback: (value) => {
+            const num = Number(value);
+            return num.toFixed(0);
+          },
+        },
       },
     },
     elements: {

@@ -39,3 +39,14 @@ if "azure_extensions" in settings.INSTALLED_APPS:
         print("Azure Extensions URLs loaded")
     except ImportError as e:
         print(f"Warning: azure_extensions in INSTALLED_APPS but import failed: {e}")
+
+# Include compounds URLs if the app is enabled
+if getattr(settings, "COMPOUNDS_ENABLED", False):
+    try:
+        from compounds.urls import urlpatterns as compounds_urls
+        urlpatterns = urlpatterns + [
+            path("compounds/", include((compounds_urls, "compounds"))),
+        ]
+        print("Compounds URLs loaded at /compounds/")
+    except ImportError as e:
+        print(f"Warning: COMPOUNDS_ENABLED but import failed: {e}")

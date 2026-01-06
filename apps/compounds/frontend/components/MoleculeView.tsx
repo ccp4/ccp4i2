@@ -13,8 +13,8 @@ interface MoleculeViewProps {
 
 export const MoleculeView: React.FC<MoleculeViewProps> = ({
   smiles,
-  width = 200,
-  height = 200,
+  width = 400,
+  height = 400,
   showSmiles = false,
 }) => {
   const { rdkitModule, isLoading: rdkitLoading } = useRDKit();
@@ -101,7 +101,7 @@ interface MoleculeChipProps {
   size?: number;
 }
 
-export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 60 }) => {
+export const MoleculeChip: React.FC<MoleculeChipProps> = ({ smiles, size = 120 }) => {
   const { rdkitModule, isLoading } = useRDKit();
   const [svgUrl, setSvgUrl] = useState<string | null>(null);
 

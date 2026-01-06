@@ -55,7 +55,7 @@ export default function TargetDetailPage({ params }: PageProps) {
       label: 'Structure',
       searchable: true,
       width: 80,
-      render: (value) => <MoleculeChip smiles={value} size={60} />,
+      render: (value) => <MoleculeChip smiles={value} size={120} />,
     },
     {
       key: 'smiles',

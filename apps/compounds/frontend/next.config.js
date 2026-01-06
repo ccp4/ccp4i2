@@ -14,6 +14,16 @@ const nextConfig = {
       },
     ],
   },
+
+  // Proxy /drf/ to Django for the DRF browsable API
+  async rewrites() {
+    return [
+      {
+        source: '/drf/:path*',
+        destination: 'http://localhost:8000/compounds/:path*',
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

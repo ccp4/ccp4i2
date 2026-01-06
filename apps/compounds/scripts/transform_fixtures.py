@@ -22,11 +22,33 @@ Output will be:
 from __future__ import annotations
 
 import json
+import re
 import sys
 import os
 from pathlib import Path
 from datetime import datetime
 from typing import Optional
+
+
+# Datetime fields that need timezone info
+DATETIME_FIELDS = {
+    'created_at', 'updated_at', 'modified_at', 'registered_at', 'uploaded_at',
+    'creation_date', 'reg_date', 'modified_date',
+}
+
+
+def make_timezone_aware(value: str) -> str:
+    """Add UTC timezone to naive datetime strings."""
+    if not value or not isinstance(value, str):
+        return value
+    # Already has timezone info
+    if value.endswith('Z') or '+' in value[-6:]:
+        return value
+    # Check if it looks like a datetime (YYYY-MM-DD or similar)
+    if re.match(r'^\d{4}-\d{2}-\d{2}', value):
+        # Append Z for UTC
+        return value + 'Z'
+    return value
 
 
 # Model name mappings: old -> new
@@ -200,6 +222,10 @@ def transform_record(record: dict, user_lookup: dict) -> dict | None:
                     # If keys aren't numeric, leave as-is
                     pass
 
+        # Make datetime fields timezone-aware
+        if new_key in DATETIME_FIELDS or old_key in DATETIME_FIELDS:
+            value = make_timezone_aware(value)
+
         if new_key:
             new_fields[new_key] = value
 
@@ -237,6 +263,11 @@ def clean_auth_fixtures(auth_data: list) -> list:
             # Ensure email is set (use username as fallback if it looks like email)
             if not fields.get('email') and '@' in fields.get('username', ''):
                 fields['email'] = fields['username']
+
+            # Make datetime fields timezone-aware
+            for dt_field in ('date_joined', 'last_login'):
+                if fields.get(dt_field):
+                    fields[dt_field] = make_timezone_aware(fields[dt_field])
 
             cleaned.append({
                 'model': 'auth.user',

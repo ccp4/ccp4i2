@@ -79,18 +79,23 @@ class AnalysisResultSerializer(serializers.ModelSerializer):
 
 
 class DataSeriesListSerializer(serializers.ModelSerializer):
-    """Compact serializer for list views."""
+    """Compact serializer for list views with chart data."""
     compound_formatted_id = serializers.CharField(
         source='compound.formatted_id', read_only=True
     )
     analysis_status = serializers.CharField(source='analysis.status', read_only=True)
     analysis_kpi = serializers.SerializerMethodField()
+    # Include dilution_series and analysis for chart rendering in tables
+    dilution_series = DilutionSeriesSerializer(read_only=True)
+    analysis = AnalysisResultSerializer(read_only=True)
 
     class Meta:
         model = DataSeries
         fields = [
             'id', 'assay', 'compound', 'compound_formatted_id', 'compound_name',
-            'analysis_status', 'analysis_kpi',
+            'row', 'start_column', 'end_column',
+            'dilution_series', 'extracted_data',
+            'analysis', 'analysis_status', 'analysis_kpi',
         ]
 
     def get_analysis_kpi(self, obj):
