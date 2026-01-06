@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Typography, Box, Button, Stack, Paper } from '@mui/material';
-import { Science, Assignment, Biotech, TableChart } from '@mui/icons-material';
+import { Science, Assignment, Biotech, TableChart, Search } from '@mui/icons-material';
 import Link from 'next/link';
 
 export default function HomePage() {
@@ -35,6 +35,28 @@ export default function HomePage() {
             <Typography variant="h5">Registry</Typography>
             <Typography color="text.secondary">
               Browse targets, compounds, and batches
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 2,
+            cursor: 'pointer',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/registry/search"
+        >
+          <Search sx={{ fontSize: 48, color: 'warning.main' }} />
+          <Box>
+            <Typography variant="h5">Compound Search</Typography>
+            <Typography color="text.secondary">
+              Search compounds by ID, supplier reference, or structure
             </Typography>
           </Box>
         </Paper>
