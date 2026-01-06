@@ -204,7 +204,14 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.JSONParser",
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
-    )
+    ),
+    # Allow unauthenticated API access for development
+    # The Next.js frontend proxies requests and doesn't have access to CSRF tokens
+    # In production, Azure AD authentication is handled at the container app level
+    "DEFAULT_AUTHENTICATION_CLASSES": [],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
 }
 
 # Static files settings

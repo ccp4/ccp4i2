@@ -46,11 +46,17 @@ class ProtocolSerializer(serializers.ModelSerializer):
         source='preferred_dilutions.__str__', read_only=True
     )
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    fitting_method_name = serializers.CharField(
+        source='fitting_method.name', read_only=True
+    )
 
     class Meta:
         model = Protocol
         fields = [
-            'id', 'name', 'analysis_method', 'pherastar_table',
+            'id', 'name', 'analysis_method',
+            'fitting_method', 'fitting_method_name',
+            'plate_layout', 'fitting_parameters',
+            'pherastar_table',
             'preferred_dilutions', 'preferred_dilutions_display',
             'created_by', 'created_by_email', 'created_at',
             'comments',

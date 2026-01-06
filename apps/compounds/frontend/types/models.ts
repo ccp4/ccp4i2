@@ -124,6 +124,10 @@ export interface Protocol {
   id: string;
   name: string;
   analysis_method: AnalysisMethod;
+  fitting_method?: string | null;
+  fitting_method_name?: string;
+  plate_layout?: Partial<PlateLayout> | null;
+  fitting_parameters?: Record<string, any> | null;
   pherastar_table: string | null;
   preferred_dilutions: string | null;
   preferred_dilutions_display?: string;
@@ -197,4 +201,93 @@ export interface Hypothesis {
   svg_file: string | null;
   created_at: string;
   updated_at: string;
+}
+
+/**
+ * Plate Layout Configuration types.
+ * Used to define the physical arrangement of assay plates.
+ */
+
+export type PlateFormat = 24 | 96 | 384 | 1536;
+
+export type ReplicatePattern =
+  | 'adjacent_rows'      // A1,B1 are replicates of compound 1
+  | 'adjacent_columns'   // A1,A2 are replicates of compound 1
+  | 'grouped_rows'       // A1-A12, B1-B12 are replicates of compounds 1-12
+  | 'interleaved_rows';  // Alternating rows for same compound
+
+export type ControlPlacement =
+  | 'edge_columns'       // Controls in dedicated columns at plate edges
+  | 'edge_rows'          // Controls in dedicated rows at top/bottom
+  | 'per_compound';      // Controls interspersed with each compound's data strip
+
+export type CompoundSourceType =
+  | 'row_order'          // Compounds assigned by row order in sample region
+  | 'column_header'      // Compound IDs from column headers in import file
+  | 'row_header'         // Compound IDs from row labels
+  | 'plate_map_file'     // Separate plate map defines compound positions
+  | 'explicit_wells';    // Per-well compound assignment in layout
+
+export type DilutionDirection = 'horizontal' | 'vertical';
+
+export interface WellRegion {
+  columns: number[];      // 1-indexed column numbers
+  rows: string[];         // Row letters: A, B, C, etc.
+}
+
+export interface ControlsConfig {
+  placement: ControlPlacement;
+  max: WellRegion;
+  min: WellRegion;
+}
+
+/**
+ * Strip layout configuration for "per_compound" control placement.
+ *
+ * Example: 24-column plate with pattern [min×2][data×8][max×2] repeated twice per row
+ * - strip_width: 12 (total columns per compound including controls)
+ * - min_wells: 2 (control wells at start of strip)
+ * - data_wells: 8 (concentration points)
+ * - max_wells: 2 (control wells at end of strip)
+ * - strips_per_row: 2 (A1-A12 and A13-A24 are replicates of same compound)
+ */
+export interface StripLayoutConfig {
+  strip_width: number;        // Total columns per strip (min + data + max)
+  min_wells: number;          // Number of min control wells at start
+  data_wells: number;         // Number of data/concentration wells
+  max_wells: number;          // Number of max control wells at end
+  strips_per_row: number;     // Number of replicate strips per row
+}
+
+export interface SampleRegion {
+  start_column: number;
+  end_column: number;
+  start_row: string;
+  end_row: string;
+}
+
+export interface DilutionConfig {
+  direction: DilutionDirection;
+  num_concentrations: number;
+}
+
+export interface ReplicateConfig {
+  count: number;
+  pattern: ReplicatePattern;
+}
+
+export interface CompoundSourceConfig {
+  type: CompoundSourceType;
+  id_column?: string;     // Column name for column_header type
+}
+
+export interface PlateLayout {
+  plate_format: PlateFormat;
+  controls: ControlsConfig;
+  sample_region: SampleRegion;
+  dilution: DilutionConfig;
+  replicate: ReplicateConfig;
+  compound_source: CompoundSourceConfig;
+  // For strip-based layouts with embedded controls
+  strip_layout?: StripLayoutConfig;
 }

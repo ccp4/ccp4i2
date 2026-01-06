@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -11,12 +11,21 @@ import {
   Chip,
   Skeleton,
   Divider,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+  Alert,
 } from '@mui/material';
-import { Description, Science, Assessment } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
+import { PlatePreview } from '@/components/PlatePreview';
+import { PlateLayoutEditor } from '@/components/PlateLayoutEditor';
 import { useCompoundsApi } from '@/lib/api';
-import { Protocol, Assay } from '@/types/models';
+import { Protocol, Assay, PlateLayout } from '@/types/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -50,12 +59,49 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const router = useRouter();
   const api = useCompoundsApi();
 
-  const { data: protocol, isLoading: protocolLoading } = api.get<Protocol>(
+  const [layoutEditorOpen, setLayoutEditorOpen] = useState(false);
+  const [editedLayout, setEditedLayout] = useState<PlateLayout | null>(null);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
   );
   const { data: assays, isLoading: assaysLoading } = api.get<Assay[]>(
     `assays/?protocol=${id}`
   );
+
+  const handleOpenLayoutEditor = () => {
+    setEditedLayout(protocol?.plate_layout as PlateLayout || null);
+    setLayoutEditorOpen(true);
+    setSaveError(null);
+  };
+
+  const handleSaveLayout = async () => {
+    if (!editedLayout) return;
+
+    setSaving(true);
+    setSaveError(null);
+
+    try {
+      const response = await fetch(`/api/proxy/compounds/protocols/${id}/`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ plate_layout: editedLayout }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to save plate layout');
+      }
+
+      await mutate();
+      setLayoutEditorOpen(false);
+    } catch (err) {
+      setSaveError(err instanceof Error ? err.message : 'Failed to save');
+    } finally {
+      setSaving(false);
+    }
+  };
 
   const columns: Column<Assay>[] = [
     {
@@ -212,11 +258,87 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                 <Typography>{protocol.comments}</Typography>
               </>
             )}
+
+            {/* Plate Layout Section */}
+            <Divider sx={{ my: 2 }} />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+              <Typography variant="h6">
+                Plate Layout
+              </Typography>
+              <Button
+                size="small"
+                startIcon={protocol.plate_layout ? <Edit /> : <GridOn />}
+                onClick={handleOpenLayoutEditor}
+              >
+                {protocol.plate_layout ? 'Edit Layout' : 'Configure Layout'}
+              </Button>
+            </Box>
+
+            {protocol.plate_layout && Object.keys(protocol.plate_layout).length > 0 ? (
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <PlatePreview
+                  layout={protocol.plate_layout}
+                  width={450}
+                  height={300}
+                />
+              </Box>
+            ) : (
+              <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
+                <GridOn sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
+                <Typography color="text.secondary">
+                  No plate layout configured
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                  Configure a plate layout to define control positions, sample regions, and dilution patterns
+                </Typography>
+              </Paper>
+            )}
           </>
         ) : (
           <Typography color="error">Protocol not found</Typography>
         )}
       </Paper>
+
+      {/* Plate Layout Editor Dialog */}
+      <Dialog
+        open={layoutEditorOpen}
+        onClose={() => setLayoutEditorOpen(false)}
+        maxWidth="lg"
+        fullWidth
+      >
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <GridOn color="primary" />
+            Configure Plate Layout
+          </Box>
+          <IconButton onClick={() => setLayoutEditorOpen(false)} size="small">
+            <Close />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          {saveError && (
+            <Alert severity="error" sx={{ mb: 2 }}>
+              {saveError}
+            </Alert>
+          )}
+          <PlateLayoutEditor
+            value={editedLayout || {}}
+            onChange={(layout) => setEditedLayout(layout)}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setLayoutEditorOpen(false)}>
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleSaveLayout}
+            disabled={saving || !editedLayout}
+          >
+            {saving ? 'Saving...' : 'Save Layout'}
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Assays table */}
       <DataTable
