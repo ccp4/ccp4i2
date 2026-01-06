@@ -74,9 +74,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'ShelxCE':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCE import ShelxCE
         return ShelxCE
-    if plugin_name == 'ShelxCECompareHands':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands import ShelxCECompareHands
-        return ShelxCECompareHands
     if plugin_name == 'SubstituteLigand':
         from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand import SubstituteLigand
         return SubstituteLigand
@@ -548,7 +545,6 @@ PLUGIN_NAMES: set[str] = {
     'SIMBAD',
     'ShelxCD',
     'ShelxCE',
-    'ShelxCECompareHands',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',

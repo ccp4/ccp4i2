@@ -71,9 +71,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'ShelxCE':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCE_report import ShelxCE_report
         return ShelxCE_report
-    if task_name == 'ShelxCECompareHands':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands_report import ShelxCECompareHands_report
-        return ShelxCECompareHands_report
     if task_name == 'SubstituteLigand':
         from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report import SubstituteLigand_report
         return SubstituteLigand_report
@@ -475,7 +472,6 @@ REPORT_NAMES: set[str] = {
     'ShelxCD',
     'ShelxCDEBaseReport',
     'ShelxCE',
-    'ShelxCECompareHands',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',

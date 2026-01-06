@@ -3642,38 +3642,6 @@
       }
     }
   },
-  "ShelxCECompareHands": {
-    "module": "ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands",
-    "class": "ShelxCECompareHands",
-    "module_file": "../../wrappers/ShelxCDE/script/ShelxCECompareHands.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "ShelxE",
-    "TASKNAME": "ShelxCECompareHands",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "coot_rebuild",
-      "parrot",
-      [
-        "modelcraft",
-        "$CCP4I2/wrappers/modelcraft/script/experimental.params.xml"
-      ]
-    ],
-    "ASYNCHRONOUS": false,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "301": {
-        "description": "Failed in first hand run"
-      },
-      "302": {
-        "description": "No MAPOUT created"
-      },
-      "303": {
-        "description": "Message from mars"
-      }
-    }
-  },
   "density_calculator": {
     "module": "ccp4i2.wrappers.density_calculator.script.density_calculator",
     "class": "density_calculator",
