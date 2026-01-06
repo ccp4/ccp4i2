@@ -169,15 +169,9 @@ class servalcat_pipe(CPluginScript):
               self.prosmart_protein.container.controlParameters.RESTRAIN_ALT = self.container.prosmartProtein.TOGGLE_ALT
               self.prosmart_protein.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartProtein.OCCUPANCY
               self.prosmart_protein.container.controlParameters.KEYWORDS = self.container.prosmartProtein.KEYWORDS
-           self.connectSignal(self.prosmart_protein, 'finished', self.prosmartProteinFinished)
-           self.prosmart_protein.waitForFinished = -1
-           self.prosmart_protein.process()
-
-    @QtCore.Slot(dict)
-    def prosmartProteinFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
+           status = self.prosmart_protein.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executeProsmartNucleicAcid(self):
        if self.container.prosmartNucleicAcid.TOGGLE:
@@ -197,15 +191,9 @@ class servalcat_pipe(CPluginScript):
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_ALT = self.container.prosmartNucleicAcid.TOGGLE_ALT
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartNucleicAcid.OCCUPANCY
               self.prosmart_nucleicacid.container.controlParameters.KEYWORDS = self.container.prosmartNucleicAcid.KEYWORDS
-           self.connectSignal(self.prosmart_nucleicacid,'finished',self.prosmartNucleicAcidFinished)
-           self.prosmart_nucleicacid.waitForFinished = -1
-           self.prosmart_nucleicacid.process()
-
-    @QtCore.Slot(dict)
-    def prosmartNucleicAcidFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
+           status = self.prosmart_nucleicacid.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executeMetalCoords(self):
         if self.container.metalCoordPipeline.RUN_METALCOORD and \

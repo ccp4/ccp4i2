@@ -111,16 +111,9 @@ class prosmart_refmac(CPluginScript):
               self.prosmart_protein.container.controlParameters.RESTRAIN_ALT = self.container.prosmartProtein.TOGGLE_ALT
               self.prosmart_protein.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartProtein.OCCUPANCY
               self.prosmart_protein.container.controlParameters.KEYWORDS = self.container.prosmartProtein.KEYWORDS
-           self.connectSignal(self.prosmart_protein,'finished',self.prosmartProteinFinished)
-           self.prosmart_protein.waitForFinished = -1
-           self.prosmart_protein.process()
-
-    @QtCore.Slot(dict)
-    def prosmartProteinFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
+           status = self.prosmart_protein.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executeProsmartNucleicAcid(self):
        if self.container.prosmartNucleicAcid.TOGGLE:
@@ -140,16 +133,9 @@ class prosmart_refmac(CPluginScript):
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_ALT = self.container.prosmartNucleicAcid.TOGGLE_ALT
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartNucleicAcid.OCCUPANCY
               self.prosmart_nucleicacid.container.controlParameters.KEYWORDS = self.container.prosmartNucleicAcid.KEYWORDS
-           self.connectSignal(self.prosmart_nucleicacid,'finished',self.prosmartNucleicAcidFinished)
-           self.prosmart_nucleicacid.waitForFinished = -1
-           self.prosmart_nucleicacid.process()
-
-    @QtCore.Slot(dict)
-    def prosmartNucleicAcidFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
+           status = self.prosmart_nucleicacid.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executePlatonyzer(self):
        if self.container.platonyzer.TOGGLE:
@@ -157,16 +143,9 @@ class prosmart_refmac(CPluginScript):
           self.platonyzer.container.inputData.XYZIN = self.container.inputData.XYZIN
           self.platonyzer.container.controlParameters.MODE = self.container.platonyzer.MODE
           self.platonyzer.container.controlParameters.RM_VDW = self.container.platonyzer.RM_VDW
-          self.connectSignal(self.platonyzer,'finished',self.platonyzerFinished)
-          self.platonyzer.waitForFinished = -1
-          self.platonyzer.process()
-
-    @QtCore.Slot(dict)
-    def platonyzerFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
+          status = self.platonyzer.process()
+          if status == CPluginScript.FAILED:
+              self.reportStatus(status)
 
     def executeFirstRefmac(self, withWeight=-1):
         """Execute the main Refmac refinement step."""
