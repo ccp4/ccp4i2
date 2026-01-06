@@ -171,8 +171,8 @@ export interface DataSeries {
   start_column: number;
   end_column: number;
   dilution_series?: DilutionSeries;
-  extracted_data: Record<string, any>;
-  skip_points: number[];
+  extracted_data: number[];  // Response values aligned with dilution_series.concentrations
+  skip_points: number[];     // Indices of points to exclude from curve fitting
   analysis?: AnalysisResult;
   analysis_status?: AnalysisStatus;
   analysis_kpi?: number | null;

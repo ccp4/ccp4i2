@@ -184,6 +184,22 @@ def transform_record(record: dict, user_lookup: dict) -> dict | None:
         if new_key == 'status' and value:
             value = value.lower()
 
+        # Unwrap legacy {"data": ...} wrapper from JSONFields
+        # The old system wrapped arrays/objects in a {"data": ...} container
+        if new_key in ('extracted_data', 'skip_points') and isinstance(value, dict):
+            if 'data' in value:
+                value = value['data']
+            # Also handle extracted_data which may be {"data": {"0": val, "1": val, ...}}
+            # Convert indexed object to array for extracted_data
+            if new_key == 'extracted_data' and isinstance(value, dict):
+                # Convert {"0": 1.2, "1": 3.4, ...} to [1.2, 3.4, ...]
+                try:
+                    max_idx = max(int(k) for k in value.keys()) if value else -1
+                    value = [value.get(str(i)) for i in range(max_idx + 1)]
+                except (ValueError, TypeError):
+                    # If keys aren't numeric, leave as-is
+                    pass
+
         if new_key:
             new_fields[new_key] = value
 

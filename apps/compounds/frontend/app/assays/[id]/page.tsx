@@ -24,6 +24,7 @@ import {
 } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
+import { DoseResponseThumb } from '@/components/DoseResponseChart';
 import { useCompoundsApi } from '@/lib/api';
 import { Assay, DataSeries, Protocol, Target } from '@/types/models';
 
@@ -87,7 +88,36 @@ export default function AssayDetailPage({ params }: PageProps) {
     assay?.target ? `targets/${assay.target}/` : null
   );
 
+  // Helper to get chart data from a data series
+  const getChartData = (row: DataSeries) => {
+    if (!row.dilution_series?.concentrations || !row.extracted_data) return null;
+    return {
+      concentrations: row.dilution_series.concentrations,
+      responses: Array.isArray(row.extracted_data) ? row.extracted_data : [],
+      unit: row.dilution_series.unit,
+    };
+  };
+
   const columns: Column<DataSeries>[] = [
+    {
+      key: 'chart',
+      label: 'Curve',
+      width: 80,
+      render: (_, row) => {
+        const chartData = getChartData(row);
+        if (!chartData || chartData.concentrations.length === 0) {
+          return <Box sx={{ width: 60, height: 60, bgcolor: 'grey.100', borderRadius: 1 }} />;
+        }
+        const fitParams = row.analysis ? {
+          ec50: row.analysis.results?.EC50,
+          hill: row.analysis.results?.Hill,
+          minVal: row.analysis.results?.minVal,
+          maxVal: row.analysis.results?.maxVal,
+          status: row.analysis.status,
+        } : undefined;
+        return <DoseResponseThumb data={chartData} fit={fitParams} size={60} />;
+      },
+    },
     {
       key: 'compound_name',
       label: 'Compound Name',
@@ -263,6 +293,7 @@ export default function AssayDetailPage({ params }: PageProps) {
         getRowKey={(row) => row.id}
         title={dataSeries ? `${dataSeries.length} data series` : undefined}
         emptyMessage="No data series in this assay"
+        onRowClick={(row) => router.push(`/assays/data-series/${row.id}`)}
       />
     </Container>
   );
