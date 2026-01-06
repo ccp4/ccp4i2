@@ -2,7 +2,6 @@ import pathlib
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4ErrorHandling, CCP4Modules
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -26,33 +25,11 @@ class refmac_i2(CPluginScript):
     
     def __init__(self,*args, **kwargs):
         super(refmac_i2, self).__init__(*args, **kwargs)
-        self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = etree.Element('REFMAC')
         from .refmacLogScraper import logScraper
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
 
-    @QtCore.Slot()
-    def handleReadyReadStandardOutput(self):
-        if not hasattr(self,'logFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            self.logFileHandle = logFilePath.open('w')
-        if not hasattr(self,'errFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            errFilePath = logFilePath.with_stem(logFilePath.stem + "_err")
-            self.errFileHandle = errFilePath.open('w')
-
-        if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
-        pid = self.getProcessId()
-        qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
-        availableStdout = qprocess.readAllStandardOutput()
-        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        self.logFileHandle.flush()
-        availableStderr = qprocess.readAllStandardError()
-        self.errFileHandle.write(availableStderr.data().decode("utf-8"))
-        self.errFileHandle.flush()
-        self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
-    
     def flushXML(self):
         """Write XML atomically and emit progress signal (throttled).
 
