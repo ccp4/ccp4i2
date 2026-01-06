@@ -40,7 +40,7 @@ class coot_find_waters(CPluginScript):
         imap = mc.read_mtz(mtzin, "F", "PHI", "", False, False)
         mc.set_add_waters_sigma_cutoff(threshold)
         mc.set_add_waters_water_to_protein_distance_lim_min(mindist)
-        mc.set_add_waters_water_to_protein_distance_lim_min(maxdist)
+        mc.set_add_waters_water_to_protein_distance_lim_max(maxdist)
         nwaters = mc.add_waters(imol, imap)
         mc.write_coordinates(imol, xyzout)
 
