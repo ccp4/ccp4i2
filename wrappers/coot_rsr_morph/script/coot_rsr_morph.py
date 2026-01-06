@@ -35,7 +35,7 @@ class coot_rsr_morph(CPluginScript):
 
         mc = coot_headless_api.molecules_container_py(True)
         mc.set_make_backups(False)
-        mc.set_use_gemmi(True)
+        mc.set_use_gemmi(False)
         imol = mc.read_pdb(xyzin)
         imap = mc.read_mtz(mtzin, "F", "PHI", "", False, False)
         imap_blurred = mc.sharpen_blur_map(imap, blur_b_factor, False)
