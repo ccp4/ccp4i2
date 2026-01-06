@@ -70,7 +70,6 @@ class molrep_mr(CPluginScript):
         par = self.container.controlParameters
         gui = self.container.guiParameters
 
-        import os
         self.path_wrk = str(self.getWorkDirectory())
         self.path_scr = os.path.join(self.path_wrk, 'scratch')
 
