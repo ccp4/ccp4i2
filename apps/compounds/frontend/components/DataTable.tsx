@@ -36,6 +36,8 @@ interface DataTableProps<T> {
   getRowKey: (row: T) => string | number;
   title?: string;
   emptyMessage?: string;
+  /** Additional field names to include in search (fields not displayed as columns) */
+  additionalSearchFields?: string[];
 }
 
 type Order = 'asc' | 'desc';
@@ -48,6 +50,7 @@ export function DataTable<T extends Record<string, any>>({
   getRowKey,
   title,
   emptyMessage = 'No data found',
+  additionalSearchFields = [],
 }: DataTableProps<T>) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(25);
@@ -62,14 +65,24 @@ export function DataTable<T extends Record<string, any>>({
 
     const query = searchQuery.toLowerCase();
     return data.filter((row) => {
-      return columns.some((col) => {
+      // Search in columns marked as searchable
+      const matchesColumn = columns.some((col) => {
         if (!col.searchable) return false;
         const value = row[col.key];
         if (value == null) return false;
         return String(value).toLowerCase().includes(query);
       });
+
+      if (matchesColumn) return true;
+
+      // Search in additional fields not displayed as columns
+      return additionalSearchFields.some((field) => {
+        const value = row[field];
+        if (value == null) return false;
+        return String(value).toLowerCase().includes(query);
+      });
     });
-  }, [data, searchQuery, columns]);
+  }, [data, searchQuery, columns, additionalSearchFields]);
 
   // Sort data
   const sortedData = useMemo(() => {
@@ -117,7 +130,7 @@ export function DataTable<T extends Record<string, any>>({
     setPage(0);
   };
 
-  const hasSearchableColumns = columns.some((col) => col.searchable);
+  const hasSearchableColumns = columns.some((col) => col.searchable) || additionalSearchFields.length > 0;
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>

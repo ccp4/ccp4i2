@@ -172,6 +172,7 @@ export default function TargetDetailPage({ params }: PageProps) {
         getRowKey={(row) => row.id}
         title={compounds ? `${compounds.length} compounds` : undefined}
         emptyMessage="No compounds registered for this target"
+        additionalSearchFields={['supplier_ref', 'supplier_name', 'barcode', 'comments']}
       />
     </Container>
   );
