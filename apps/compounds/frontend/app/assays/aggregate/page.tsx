@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useCallback, useRef } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Container, Typography, Box, Alert } from '@mui/material';
 import { TableChart } from '@mui/icons-material';
@@ -21,18 +21,23 @@ export default function AggregationPage() {
   // Read initial values from URL params for deep linking
   const initialCompoundSearch = searchParams.get('compound') || undefined;
   const initialTargetId = searchParams.get('target') || undefined;
-  const autoSubmit = !!(initialCompoundSearch || initialTargetId);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AggregationResponse | null>(null);
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(['geomean', 'count']);
 
-  const handleSubmit = async (
+  // Track current request to avoid race conditions
+  const requestIdRef = useRef(0);
+
+  const handleChange = useCallback(async (
     predicates: Predicates,
     outputFormat: OutputFormat,
     aggregations: AggregationType[]
   ) => {
+    // Increment request ID to track latest request
+    const requestId = ++requestIdRef.current;
+
     setLoading(true);
     setError(null);
     setCurrentAggregations(aggregations);
@@ -43,14 +48,24 @@ export default function AggregationPage() {
         output_format: outputFormat,
         aggregations,
       });
-      setData(result);
+
+      // Only update if this is still the latest request
+      if (requestId === requestIdRef.current) {
+        setData(result);
+      }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to run aggregation');
-      setData(null);
+      // Only update error if this is still the latest request
+      if (requestId === requestIdRef.current) {
+        setError(err instanceof Error ? err.message : 'Failed to run aggregation');
+        setData(null);
+      }
     } finally {
-      setLoading(false);
+      // Only clear loading if this is still the latest request
+      if (requestId === requestIdRef.current) {
+        setLoading(false);
+      }
     }
-  };
+  }, []);
 
   return (
     <Container maxWidth="xl" sx={{ py: 3 }}>
@@ -75,11 +90,10 @@ export default function AggregationPage() {
       </Box>
 
       <PredicateBuilder
-        onSubmit={handleSubmit}
+        onChange={handleChange}
         loading={loading}
         initialCompoundSearch={initialCompoundSearch}
         initialTargetId={initialTargetId}
-        autoSubmit={autoSubmit}
       />
 
       {error && (

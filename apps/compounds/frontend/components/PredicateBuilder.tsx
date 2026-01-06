@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import {
   Box,
   Paper,
@@ -12,7 +12,6 @@ import {
   FormGroup,
   FormControlLabel,
   Checkbox,
-  Button,
   CircularProgress,
   Chip,
   Select,
@@ -25,7 +24,6 @@ import {
   Science,
   Description,
   Search,
-  PlayArrow,
 } from '@mui/icons-material';
 import {
   Predicates,
@@ -40,16 +38,16 @@ interface PredicateBuilderProps {
   initialTargetId?: string;
   /** Initial compound search text (for compound detail navigation) */
   initialCompoundSearch?: string;
-  /** Auto-submit query when initial values are provided */
-  autoSubmit?: boolean;
-  /** Called when user submits the query */
-  onSubmit: (
+  /** Called when predicates change (debounced for text fields) */
+  onChange: (
     predicates: Predicates,
     outputFormat: OutputFormat,
     aggregations: AggregationType[]
   ) => void;
   /** Whether a query is currently running */
   loading?: boolean;
+  /** Debounce delay in ms for text fields (default 500) */
+  debounceMs?: number;
 }
 
 const AGGREGATION_OPTIONS: { value: AggregationType; label: string; description: string }[] = [
@@ -62,9 +60,9 @@ const AGGREGATION_OPTIONS: { value: AggregationType; label: string; description:
 export function PredicateBuilder({
   initialTargetId,
   initialCompoundSearch,
-  autoSubmit = false,
-  onSubmit,
+  onChange,
   loading = false,
+  debounceMs = 500,
 }: PredicateBuilderProps) {
   // Target selection
   const [selectedTargets, setSelectedTargets] = useState<Target[]>([]);
@@ -82,12 +80,65 @@ export function PredicateBuilder({
   const [compoundSearch, setCompoundSearch] = useState(initialCompoundSearch || '');
   const [status, setStatus] = useState<string>('valid');
 
-  // Track if we've auto-submitted
-  const [hasAutoSubmitted, setHasAutoSubmitted] = useState(false);
-
   // Output options
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('compact');
   const [aggregations, setAggregations] = useState<AggregationType[]>(['geomean', 'count']);
+
+  // Debounce timer ref
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Track if initial load is complete
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Build predicates object
+  const buildPredicates = useCallback((): Predicates => {
+    const predicates: Predicates = {};
+    if (selectedTargets.length > 0) {
+      predicates.targets = selectedTargets.map((t) => t.id);
+    }
+    if (selectedProtocols.length > 0) {
+      predicates.protocols = selectedProtocols.map((p) => p.id);
+    }
+    if (compoundSearch.trim()) {
+      predicates.compound_search = compoundSearch.trim();
+    }
+    if (status) {
+      predicates.status = status as any;
+    }
+    return predicates;
+  }, [selectedTargets, selectedProtocols, compoundSearch, status]);
+
+  // Check if we have any predicates
+  const hasPredicates = useCallback(() => {
+    return selectedTargets.length > 0 ||
+      selectedProtocols.length > 0 ||
+      compoundSearch.trim().length > 0;
+  }, [selectedTargets, selectedProtocols, compoundSearch]);
+
+  // Trigger onChange (debounced version)
+  const triggerChangeDebounced = useCallback(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+    debounceTimerRef.current = setTimeout(() => {
+      if (hasPredicates() && aggregations.length > 0) {
+        onChange(buildPredicates(), outputFormat, aggregations);
+      }
+    }, debounceMs);
+  }, [buildPredicates, hasPredicates, onChange, outputFormat, aggregations, debounceMs]);
+
+  // Trigger onChange immediately (for non-text fields)
+  const triggerChangeImmediate = useCallback(() => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current);
+    }
+    // Small delay to allow state to update
+    setTimeout(() => {
+      if (hasPredicates() && aggregations.length > 0) {
+        onChange(buildPredicates(), outputFormat, aggregations);
+      }
+    }, 50);
+  }, [buildPredicates, hasPredicates, onChange, outputFormat, aggregations]);
 
   // Load initial target if provided
   useEffect(() => {
@@ -97,7 +148,10 @@ export function PredicateBuilder({
         if (target) {
           setSelectedTargets([target]);
         }
+        setIsInitialized(true);
       });
+    } else {
+      setIsInitialized(true);
     }
   }, [initialTargetId]);
 
@@ -118,59 +172,53 @@ export function PredicateBuilder({
       .finally(() => setProtocolLoading(false));
   }, [protocolSearch, selectedTargets]);
 
-  // Auto-submit when initial values are provided
+  // Auto-submit when initial values are loaded
   useEffect(() => {
-    if (autoSubmit && !hasAutoSubmitted && !loading) {
-      // Check if we have any predicates to submit
-      const hasTarget = selectedTargets.length > 0;
-      const hasCompound = compoundSearch.trim().length > 0;
-
-      if (hasTarget || hasCompound) {
-        setHasAutoSubmitted(true);
-
-        const predicates: Predicates = {};
-        if (selectedTargets.length > 0) {
-          predicates.targets = selectedTargets.map((t) => t.id);
-        }
-        if (compoundSearch.trim()) {
-          predicates.compound_search = compoundSearch.trim();
-        }
-        predicates.status = status as any;
-
-        onSubmit(predicates, outputFormat, aggregations);
-      }
+    if (isInitialized && hasPredicates() && aggregations.length > 0) {
+      onChange(buildPredicates(), outputFormat, aggregations);
     }
-  }, [autoSubmit, hasAutoSubmitted, loading, selectedTargets, compoundSearch, status, outputFormat, aggregations, onSubmit]);
+    // Only run once after initialization
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInitialized]);
+
+  // Trigger on output format or aggregation changes (immediate)
+  useEffect(() => {
+    if (isInitialized && hasPredicates() && aggregations.length > 0) {
+      triggerChangeImmediate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [outputFormat, aggregations]);
+
+  // Trigger on compound search changes (debounced)
+  useEffect(() => {
+    if (isInitialized) {
+      triggerChangeDebounced();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [compoundSearch]);
+
+  // Trigger on selection changes (immediate)
+  useEffect(() => {
+    if (isInitialized) {
+      triggerChangeImmediate();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedTargets, selectedProtocols, status]);
+
+  // Cleanup debounce timer
+  useEffect(() => {
+    return () => {
+      if (debounceTimerRef.current) {
+        clearTimeout(debounceTimerRef.current);
+      }
+    };
+  }, []);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
       prev.includes(agg) ? prev.filter((a) => a !== agg) : [...prev, agg]
     );
   };
-
-  const handleSubmit = () => {
-    const predicates: Predicates = {};
-
-    if (selectedTargets.length > 0) {
-      predicates.targets = selectedTargets.map((t) => t.id);
-    }
-    if (selectedProtocols.length > 0) {
-      predicates.protocols = selectedProtocols.map((p) => p.id);
-    }
-    if (compoundSearch.trim()) {
-      predicates.compound_search = compoundSearch.trim();
-    }
-    if (status) {
-      predicates.status = status as any;
-    }
-
-    onSubmit(predicates, outputFormat, aggregations);
-  };
-
-  const hasPredicates =
-    selectedTargets.length > 0 ||
-    selectedProtocols.length > 0 ||
-    compoundSearch.trim().length > 0;
 
   return (
     <Paper sx={{ p: 3, mb: 3 }}>
@@ -340,19 +388,24 @@ export function PredicateBuilder({
           </FormControl>
         )}
 
-        {/* Submit button */}
-        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-          <Button
-            variant="contained"
-            onClick={handleSubmit}
-            disabled={loading || !hasPredicates || ((outputFormat === 'compact' || outputFormat === 'medium') && aggregations.length === 0)}
-            startIcon={loading ? <CircularProgress size={20} /> : <PlayArrow />}
-          >
-            {loading ? 'Running Query...' : 'Generate Report'}
-          </Button>
-          {!hasPredicates && (
+        {/* Status indicator */}
+        <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', minHeight: 36 }}>
+          {loading && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+              <CircularProgress size={20} />
+              <Typography variant="body2" color="text.secondary">
+                Running query...
+              </Typography>
+            </Box>
+          )}
+          {!loading && !hasPredicates() && (
             <Typography variant="body2" color="text.secondary">
-              Select at least one target, protocol, or enter a compound search
+              Select at least one target, protocol, or enter a compound search to see results
+            </Typography>
+          )}
+          {!loading && hasPredicates() && (outputFormat === 'compact' || outputFormat === 'medium') && aggregations.length === 0 && (
+            <Typography variant="body2" color="warning.main">
+              Select at least one aggregation function
             </Typography>
           )}
         </Box>

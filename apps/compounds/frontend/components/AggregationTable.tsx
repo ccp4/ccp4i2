@@ -31,6 +31,7 @@ import {
 } from '@/types/aggregation';
 import { MoleculeChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
+import { ProtocolScatterPlot } from './ProtocolScatterPlot';
 import {
   formatKpiValue,
   generateCompactCsv,
@@ -156,6 +157,11 @@ function CompactTable({
 
   return (
     <>
+      {/* Protocol comparison scatter plot */}
+      {aggregations.includes('geomean') && protocols.length >= 2 && (
+        <ProtocolScatterPlot data={rows} protocols={protocols} />
+      )}
+
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
