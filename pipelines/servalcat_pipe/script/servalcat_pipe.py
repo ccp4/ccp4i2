@@ -34,7 +34,7 @@ class servalcat_pipe(CPluginScript):
 
     TASKMODULE = 'refinement'
     SHORTTASKTITLE = 'Servalcat'
-    TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART, MetalCoord and DNATCO'
+    TASKTITLE = 'Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.1
@@ -338,6 +338,8 @@ class servalcat_pipe(CPluginScript):
                 result.container.inputData.METALCOORD_RESTRAINTS=self.container.metalCoordPipeline.METALCOORD_RESTRAINTS
         if self.container.dnatco.TOGGLE_RESTRAINTS:
             result.container.inputData.DNATCO_RESTRAINTS=self.dnatco.container.outputData.RESTRAINTS
+
+        # Set parameters if there is prior ProSMART (for job cloning)
         if self.container.prosmartProtein.TOGGLE:
             result.container.controlParameters.PROSMART_PROTEIN_SGMN=self.container.prosmartProtein.SGMN
             result.container.controlParameters.PROSMART_PROTEIN_SGMX=self.container.prosmartProtein.SGMX
@@ -383,20 +385,21 @@ class servalcat_pipe(CPluginScript):
 
         if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran:
             self.validate = self.makePluginObject('validate_protein')
-            self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
-            self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
-            self.validate.container.inputData.NAME_1.set("Refined")
-            self.validate.container.inputData.NAME_2.set("Input")
+            self.validate.container.inputData.XYZIN_2.set(self.container.outputData.CIFFILE)
+            self.validate.container.inputData.XYZIN_1.set(self.container.inputData.XYZIN)
+            self.validate.container.inputData.NAME_2.set("Refined")
+            self.validate.container.inputData.NAME_1.set("Input")
             if (
                 str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY"
                 and str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged"
             ):
-                self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
                 self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
+                self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
             else:
-                self.validate.container.inputData.F_SIGF_1.set(None)
                 self.validate.container.inputData.F_SIGF_2.set(None)
+                self.validate.container.inputData.F_SIGF_1.set(None)
 
+            self.validate.container.controlParameters.TWO_DATASETS.set(True)
             self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
             self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)
             self.validate.container.controlParameters.DO_RAMA.set(validate_ramachandran)
@@ -869,33 +872,6 @@ class servalcat_pipe(CPluginScript):
 
         self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
         self.reportStatus(CPluginScript.FAILED)
-
-def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-    import clipper
-    mtz_file = clipper.CCP4MTZfile()
-    hkl_info = clipper.HKL_info()
-    mtz_file.open_read (str(coefficientsPath))
-    mtz_file.import_hkl_info ( hkl_info )
-    fphidata = clipper.HKL_data_F_phi_float(hkl_info)
-    mtz_file.import_hkl_data( fphidata, str("/*/*/[F,PHI]") );
-    mtz_file.close_read()
-    #Clipper will sample the output map according to Fourier theory and hte nominal resolution
-    #for visualisation, it is generally nicer to make things a bit more finely sampled
-    fudgedResolution = hkl_info.resolution()
-    fudgedResolution.init(hkl_info.resolution().limit()/overSample)
-    mygrid=clipper.Grid_sampling ( hkl_info.spacegroup(), hkl_info.cell(), fudgedResolution )
-    mymap = clipper.Xmap_float(hkl_info.spacegroup(), hkl_info.cell(), mygrid )
-    mymap.fft_from_float(fphidata)
-
-    mapout = clipper.CCP4MAPfile()
-    if mapPath is None:
-        coefficientsRoot, extension = os.path.splitext(os.path.abspath(coefficientsPath))
-        mapPath = coefficientsRoot+".map"
-
-    mapout.open_write( mapPath )
-    mapout.export_xmap_float( mymap )
-    mapout.close_write()
-    return mapPath
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):

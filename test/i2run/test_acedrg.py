@@ -39,8 +39,7 @@ def test_from_cif_rcsb_metal_AF3():
 
 
 def test_from_mol():
-    molUrl = "https://www.ebi.ac.uk/chebi/saveStructure.do"
-    molUrl += "?defaultImage=true&chebiId=46195&imageId=0"
+    molUrl = "https://www.ebi.ac.uk/chebi/backend/api/public/molfile/46195"
     with download(molUrl) as molPath:
         args = ["LidiaAcedrgNew"]
         args += ["--MOLSMILESORSKETCH", "MOL"]
@@ -80,25 +79,23 @@ def test_from_mol2():
             check_output(job, "LIG")
 
 
+def test_from_smiles_atom_name_matching():
+    args = ["LidiaAcedrgNew"]
+    args += ["--MOLSMILESORSKETCH", "SMILES"]
+    args += ["--TLC", "LIG"]
+    args += ["--SMILESIN", '"CO[C@@H]1[C@@H]([C@H](O[C@H]1N2C=NC3=C2N=C(NC3=O)N)COP(=O)(O)O)O"']
+    args += ["--ATOMMATCHOPTION", "MONLIBCODE"]
+    args += ["--MATCHTLC", "5GP"]
+    args += ["--NRANDOM", "5"]
+    with i2run(args) as job:
+        check_output(job, "LIG")
+
+
 def check_output(job: Path, code: str):
     if len(code) <= 3:
         gemmi.read_pdb(str(job / f"{code}.pdb"))
     doc = gemmi.cif.read(str(job / f"{code}.cif"))
     gemmi.make_chemcomp_from_block(doc[-1])
-
-
-# Test fails at the moment due to a bug in atom name matching
-
-# def test_from_smiles_atom_name_matching():
-#     args = ["LidiaAcedrgNew"]
-#     args += ["--MOLSMILESORSKETCH", "SMILES"]
-#     args += ["--TLC", "LIG"]
-#     args += ["--SMILESIN", '"CO[C@@H]1[C@@H]([C@H](O[C@H]1N2C=NC3=C2N=C(NC3=O)N)COP(=O)(O)O)O"']
-#     args += ["--ATOMMATCHOPTION", "MONLIBCODE"]
-#     args += ["--MATCHTLC", "5GP"]
-#     args += ["--NRANDOM", "5"]
-#     with i2run(args) as job:
-#         check_output(job, "LIG")
 
 
 # These tests crashes as acedrg or metalCoord crash themselves, not an i2 problem.

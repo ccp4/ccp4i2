@@ -454,7 +454,7 @@ class CI2Runner(object):
                     parameterName = dataPathElements[-1]
                     #print('Parameter name: [{}] [{}]'.format( parameterName, type(theEntity)))
                     
-                    if isinstance(theEntity, CCP4XtalData.CXia2ImageSelectionList):
+                    if isinstance(theEntity, (CCP4XtalData.CXia2ImageSelectionList, CCP4XtalData.CColumnGroupList)):
                         entityList = theEntity
                         valueLists = [value]
                     elif isinstance(theEntity,(CCP4Data.CList,)) and not isinstance(theEntity,(CCP4Data.CString,)):

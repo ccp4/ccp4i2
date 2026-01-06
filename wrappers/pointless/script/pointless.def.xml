@@ -310,6 +310,22 @@
            <enumerators>P,A,B,C,I,F,H</enumerators>
         </qualifiers>
       </content>
+      <content id="KEEP_LATTICE_CENTERING">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Always keep centred lattice reflections</toolTip>
+        </qualifiers>
+      </content>
+      <content id="LATTICE_CENTERING_THRESHOLD">
+        <className>CFloat</className>
+        <qualifiers>
+          <default>0.35</default>
+          <guiLabel>None</guiLabel>
+          <toolTip>Probility threshold for removing centred lattice reflections </toolTip>
+          <charWidth>7</charWidth>
+        </qualifiers>
+      </content>
       <content id="ALLOW_NONCHIRAL">
         <className>CBoolean</className>
         <qualifiers>

@@ -25,6 +25,9 @@ from core.CCP4PluginScript import CPluginScript
 from core import CCP4ErrorHandling
 from core import CCP4Utils
 import os,sys,shutil,re
+import traceback
+from wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
+
 
 class prosmart_refmac(CPluginScript):
 
@@ -648,16 +651,16 @@ class prosmart_refmac(CPluginScript):
              xml_validation_status = etree.SubElement(xml_validation,"Success")
              try:
                 self.validate = self.makePluginObject('validate_protein')
-                self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
-                self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
+                self.validate.container.inputData.XYZIN_2.set(self.container.outputData.CIFFILE)
+                self.validate.container.inputData.XYZIN_1.set(self.container.inputData.XYZIN)
                 if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
-                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
                     self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.F_SIGF)
+                    self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.F_SIGF)
                 else:
-                    self.validate.container.inputData.F_SIGF_1.set(None)
                     self.validate.container.inputData.F_SIGF_2.set(None)
-                self.validate.container.inputData.NAME_1 = "Refined"
-                self.validate.container.inputData.NAME_2 = "Input"
+                    self.validate.container.inputData.F_SIGF_1.set(None)
+                self.validate.container.inputData.NAME_2 = "Refined"
+                self.validate.container.inputData.NAME_1 = "Input"
                 #MN...Using "="" to set this is an odd thing and breaks under some circumstances.
                 #Specifically, the path for this is now in the prosmart_refmac (i.e. parent job) directory,
                 #but it is an output of the validate_protein subjob.  When that subjob seeks to save it to the
@@ -666,6 +669,7 @@ class prosmart_refmac(CPluginScript):
                 #Agirre and Rob Nicholls
                 self.validate.container.outputData.COOTSCRIPTOUT = self.container.outputData.COOTSCRIPTOUT
 
+                self.validate.container.controlParameters.TWO_DATASETS.set(True)
                 self.validate.container.controlParameters.DO_IRIS = validate_iris
                 self.validate.container.controlParameters.DO_BFACT = validate_baverage
                 self.validate.container.controlParameters.DO_RAMA = validate_ramachandran
@@ -678,10 +682,10 @@ class prosmart_refmac(CPluginScript):
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
                 validateXML = CCP4Utils.openFileToEtree(validateXMLPath)
                 if len(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info"))>0:
-                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0]) 
+                   xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Model_info")[0])
                 if self.validate.container.controlParameters.DO_IRIS:
                    if len(validateXML.xpath("//Validate_geometry_CCP4i2/Iris"))>0:
-                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0]) 
+                      xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/Iris")[0])
                 if self.validate.container.controlParameters.DO_BFACT:
                    if len(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors"))>0:
                       xml_validation.append(validateXML.xpath("//Validate_geometry_CCP4i2/B_factors")[0])
@@ -734,7 +738,6 @@ class prosmart_refmac(CPluginScript):
 
                        self.saveXml()
                    except:
-                       import traceback
                        print("Some problem with verdict...."); sys.stdout.flush()
                        exc_type, exc_value, exc_tb = sys.exc_info()[:3]
                        sys.stderr.write(str(exc_type) + '\n')
@@ -745,7 +748,6 @@ class prosmart_refmac(CPluginScript):
              except Exception as err:
                 xml_validation_status.text = "FAILURE"
                 self.saveXml()
-                import traceback
                 traceback.print_exc()
                 print("...Failed validation run after refinement", err)
 
@@ -754,6 +756,16 @@ class prosmart_refmac(CPluginScript):
             logfiles.append(self.firstRefmac.makeFileName('LOG'))
         if hasattr(self,"refmacPostCootPlugin"):
             logfiles.append(self.refmacPostCootPlugin.makeFileName('LOG'))
+
+        asuin = self.container.inputData.ASUIN
+        if asuin.isSet():
+            self.saveXml()
+            try:
+                xyzinPath = str(self.container.outputData.XYZOUT)
+                self.xmlroot.append(sequenceAlignment(xyzinPath, asuin))
+            except Exception as err:
+                traceback.print_exc()
+                print("...importing sequences for alignment test failed", err)
 
         self.createWarningsXML(logfiles)
         self.saveXml()
@@ -859,40 +871,10 @@ class prosmart_refmac(CPluginScript):
         self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
         self.reportStatus(CPluginScript.FAILED)
 
-def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-    import clipper
-    mtz_file = clipper.CCP4MTZfile()
-    hkl_info = clipper.HKL_info()
-    mtz_file.open_read (str(coefficientsPath))
-    mtz_file.import_hkl_info ( hkl_info )
-    sg, cell = hkl_info.spacegroup(), hkl_info.cell()
-    fphidata = clipper.HKL_data_F_phi_float(hkl_info)
-    mtz_file.import_hkl_data( fphidata, str("/*/*/[F,PHI]") );
-    mtz_file.close_read()
-    #Clipper will sample the output map according to Fourier theory and hte nominal resolution
-    #for visualisation, it is generally nicer to make things a bit more finely sampled
-    fudgedResolution = hkl_info.resolution()
-    fudgedResolution.init(hkl_info.resolution().limit()/overSample)
-    mygrid=clipper.Grid_sampling ( hkl_info.spacegroup(), hkl_info.cell(), fudgedResolution )
-    mymap = clipper.Xmap_float(hkl_info.spacegroup(), hkl_info.cell(), mygrid )
-    mymap.fft_from_float(fphidata)
-
-    mapout = clipper.CCP4MAPfile()
-    if mapPath is None:
-        coefficientsRoot, extension = os.path.splitext(os.path.abspath(coefficientsPath))
-        mapPath = coefficientsRoot+".map"
-
-    mapout.open_write( mapPath )
-    mapout.export_xmap_float( mymap )
-    mapout.close_write()
-    return mapPath
-
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
     import os
     from core import CCP4Modules
-    from dbapi.CCP4DbApi import CDbApi
-    from dbapi.CCP4DbApi import FILE_ROLE_OUT
 
     theDb = CCP4Modules.PROJECTSMANAGER().db()
     if mode == 'complete_mtz':
@@ -909,27 +891,13 @@ def exportJobFile(jobId=None,mode=None,fileInfo={}):
              if os.path.exists(os.path.join(jobDir,'hklout.mtz')):
                 return  os.path.join(jobDir,'hklout.mtz')
 
-    elif mode == '2FoFc_as_map' or mode == 'FoFc_as_map':
-        files = theDb.getJobFiles(jobId=jobId, role=FILE_ROLE_OUT, searchFileUses=True, fileTypes=[13])
-        for fileId in files:
-            fileInfo = theDb.getFileInfo(fileId=fileId, mode='jobparamname')
-            if (fileInfo == 'FPHIOUT' and mode == '2FoFc_as_map') or (fileInfo == 'DIFFPHIOUT' and mode == 'FoFc_as_map'):
-                filePath = theDb.getFullPath(fileId=fileId)
-                mapPath = os.path.splitext(os.path.abspath(filePath))[0]+".map"
-                if os.path.isfile(mapPath):
-                    return mapPath
-                return coefficientsToMap(filePath, mapPath=mapPath, overSample=1.5)
-
     return None
 
 # Function to return list of names of exportable MTZ(s)
 def exportJobFileMenu(jobId=None):
     # Return a list of items to appear on the 'Export' menu - each has three subitems:
     # [ unique identifier - will be mode argument to exportJobFile() , menu item , mime type (see CCP4CustomMimeTypes module) ]
-    return [ [ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ],
-            ['2FoFc_as_map', '2FoFc as map', 'application/CCP4-map'],
-            ['FoFc_as_map', 'FoFc as map', 'application/CCP4-map'],
-            ]
+    return [[ 'complete_mtz' ,'MTZ file' , 'application/CCP4-mtz' ]]
 
 #============================================================================================
 import unittest

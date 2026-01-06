@@ -124,6 +124,7 @@
             "coordinate_selector",
             "add_fractional_coords",
             "editbfac",
+            "modelASUCheck",
             "pdbset_ui",
             "pdbview_edit"
         ],
@@ -140,9 +141,6 @@
             "i2Dimple",
             "morda_i2",
             "phaser_singleMR"
-        ],
-        "pipelines": [
-            "dnatco_pipe"
         ],
         "preferences": [
             "guipreferences"
@@ -1196,6 +1194,15 @@
                 "modes": [
                     "Running"
                 ]
+            }
+        },
+        "modelASUCheck": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.modelASUCheck.script.modelASUCheck_reportmodelASUCheck_report",
+                "clsModule": "wrappers.modelASUCheck.script.modelASUCheck_report",
+                "clsName": "modelASUCheck_report",
+                "modes": []
             }
         },
         "modelcraft": {
@@ -3136,6 +3143,19 @@
                 "subTasks": []
             }
         },
+        "modelASUCheck": {
+            "0.1": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "person@server.com",
+                "TASKTITLE": null,
+                "class": "wrappers.modelASUCheck.script.modelASUCheckmodelASUCheck",
+                "clsModule": "wrappers.modelASUCheck.script.modelASUCheck",
+                "clsName": "modelASUCheck",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "modelcraft": {
             "0.1": {
                 "DESCRIPTION": null,
@@ -3886,7 +3906,7 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
-                "TASKTITLE": "Refinement against diffraction data or SPA map & optional restraints from ProSMART, MetalCoord and DNATCO",
+                "TASKTITLE": "Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord",
                 "class": "pipelines.servalcat_pipe.script.servalcat_pipeservalcat_pipe",
                 "clsModule": "pipelines.servalcat_pipe.script.servalcat_pipe",
                 "clsName": "servalcat_pipe",
@@ -4273,6 +4293,7 @@
         "matthews": "qticons/matthews.png",
         "mergeMtz": "qticons/mergeMtz.png",
         "metalCoord": "qticons/ccp4.png",
+        "modelASUCheck": "qticons/ccp4.png",
         "model_building": "qticons/model_building.png",
         "model_data_utility": "qticons/model_data_utility.png",
         "modelcraft": "qticons/modelcraft.png",
@@ -5824,7 +5845,7 @@
                 "clsName": "CmetalCoord_gui",
                 "shortTitle": "MetalCoord",
                 "taskName": "metalCoord",
-                "taskVersion": 0.2
+                "taskVersion": 1.0
             }
         },
         "modelcraft": {
@@ -6375,7 +6396,7 @@
         },
         "servalcat_pipe": {
             "0.0.0": {
-                "DESCRIPTION": "Refinement against diffraction data or cryo-EM SPA map with optional restraints from ProSmart and/or MetalCoord",
+                "DESCRIPTION": "Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)",
                 "MAINTAINER": "Nobody",
                 "RANK": 1,
                 "TASKTITLE": "Refinement - Servalcat",

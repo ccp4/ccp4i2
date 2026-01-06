@@ -448,8 +448,6 @@ class refmac_report(Report):
         
         #Provide default filenames to identify database object
         coordObjectName = objectNameMap.get('XYZ','XYZOUT')
-        mapObjectName = objectNameMap.get('MAP','FPHIOUT')
-        difmapObjectName = objectNameMap.get('DIFMAP','DIFFPHIOUT')
         dictObjectName = objectNameMap.get('DICT','DICTOUT')
         
         #I *do not know* why This is needed
@@ -532,15 +530,7 @@ class refmac_report(Report):
             #Draw the interesting bit
             selectionText=interestingBit
             self.appendMolDisp(molDataNode=molDataNode, selectionText=selectionText, carbonColour='yellow', othersByElement=True,style='BALLSTICK',bondOrder=True)
-            
-            #Load and draw 2Fo-Fc
-            mapDataNode = etree.SubElement(dataNode,'MapData',id='id3')
-            self.addMap(mapDataNode, fPhiObjectName=mapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=1.0, isDifmap=False)
-            
-            #Load and draw Fo-Fc
-            mapDataNode = etree.SubElement(dataNode,'MapData',id='id4')
-            self.addMap(mapDataNode, fPhiObjectName=difmapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=3.0, isDifmap=True)
-            
+
             # Dump out the XML
             et = etree.ElementTree(baseSceneXML)
             sceneFilePath = os.path.join(jobDirectory,'monomer'+str(iMonomer)+'.scene.xml')
@@ -615,15 +605,7 @@ class refmac_report(Report):
             #Draw the interesting bit
             selectionText=interestingBit
             self.appendMolDisp(molDataNode=molDataNode, selectionText=selectionText, carbonColour='yellow', othersByElement=True,style='BALLSTICK',bondOrder=True)
-        
-        #Load and draw 2Fo-Fc
-        mapDataNode = etree.SubElement(dataNode,'MapData',id='id3')
-        self.addMap(mapDataNode, fPhiObjectName=mapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=1.0, isDifmap=False)
-        
-        #Load and draw Fo-Fc
-        mapDataNode = etree.SubElement(dataNode,'MapData',id='id4')
-        self.addMap(mapDataNode, fPhiObjectName=difmapObjectName, fCol='F', phiCol='PHI', gridSize=0.5, contourUnits='sigma', model='id1', contourLevel=3.0, isDifmap=True)
-        
+
         # Dump out the XML
         et = etree.ElementTree(baseSceneXML)
         sceneFilePath = os.path.join(jobDirectory,'fullMonty.scene.xml')

@@ -40,7 +40,7 @@ class Cservalcat_pipe(CCP4TaskWidget.CTaskWidget):
 
   TASKTITLE='Refinement - Servalcat'
   SHORTTASKTITLE='Servalcat'
-  DESCRIPTION='Refinement against diffraction data or cryo-EM SPA map with optional restraints from ProSmart and/or MetalCoord'
+  DESCRIPTION='Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
   TASKNAME = 'servalcat_pipe'
   TASKLABEL = 'servalcat_pipe'
   TASKVERSION = 0.0

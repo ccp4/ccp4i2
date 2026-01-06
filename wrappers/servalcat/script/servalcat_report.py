@@ -21,6 +21,8 @@ from report.CCP4ReportParser import *
 import sys
 from xml.etree import ElementTree as ET
 from numpy import sign
+import re
+import json
 
 
 def isnumber(n):
@@ -46,9 +48,15 @@ class servalcat_report(Report):
         # 'nooutput' mode would be used by another report class that wanted
         # to use some method(s) from this class for its own report
         self.outputXml = jobStatus is not None and jobStatus.lower().count('running')
+
         if jobStatus is not None and jobStatus.lower() == 'nooutput':
             return
-        
+
+        outputJsonPath = os.path.normpath(
+            os.path.join(self.jobInfo["fileroot"], "refined_stats.json")
+        )
+        self.outputJson = json.load(open(outputJsonPath)) if os.path.isfile(outputJsonPath) else None
+
         self.addDiv(style='clear:both;')
 
         if jobStatus.lower().count('running'):
@@ -70,6 +78,7 @@ class servalcat_report(Report):
             perCycleFold = parent.addFold(label='Per cycle statistics', brief='Per cycle', initiallyOpen=False)
             self.addTablePerCycle(cycle_data, parent=perCycleFold, initialFinalOnly=False)
             self.addGraphsVsResolution()
+            self.addTwinningAnalysis(outputJson=self.outputJson)
             self.addOutlierAnalysis()
 
     def addGraphPerCycle(self, parent=None, xmlnode=None):
@@ -117,7 +126,7 @@ class servalcat_report(Report):
             plotCC.append('ylabel', '⟨FSCmodel⟩')
             plotCC.append('yrange', min=0.0, max=1.0)
             plotCC.append('xintegral', 'true')
-            plotCC.append('legendposition', x=0, y=1)
+            plotCC.append('legendposition', x=0, y=0)
             plotLine = plotCC.append('plotline', xcol=1, ycol=3)
             plotLine.append('colour', 'orange')
             plotLine.append('symbolsize', '0')
@@ -134,7 +143,7 @@ class servalcat_report(Report):
         plotLL.append('xlabel', 'Cycle')
         plotLL.append('ylabel', '-LL')
         plotLL.append('xintegral', 'true')
-        plotLL.append('legendposition', x=0, y=1)
+        plotLL.append('legendposition', x=0, y=0)
         plotLine = plotLL.append('plotline', xcol=1, ycol=2)
         plotLine.append('colour', 'blue')
         plotLine.append('symbolsize', '0')
@@ -163,7 +172,7 @@ class servalcat_report(Report):
             plotRmsd.append('ylabel', ' ')
             plotRmsd.append('yrange', min=0.0)
             plotRmsd.append('xintegral', 'true')
-            plotRmsd.append('legendposition', x=0, y=0)
+            plotRmsd.append('legendposition', x=1, y=1)
             plotLine = plotRmsd.append('plotline', xcol=1, ycol=2, rightaxis='false')
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
@@ -178,7 +187,7 @@ class servalcat_report(Report):
             plotRmsz.append('ylabel', '')
             plotRmsz.append('yrange', min=0.0)
             plotRmsz.append('xintegral', 'true')
-            plotRmsz.append('legendposition', x=0, y=0)
+            plotRmsz.append('legendposition', x=1, y=1)
             plotLine = plotRmsz.append('plotline', xcol=1, ycol=4, rightaxis='false')
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
@@ -476,8 +485,8 @@ class servalcat_report(Report):
             plotLine.append('colour', 'blue')
             plotLine.append('symbolsize', '0')
 
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0 and \
-                len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
+        # Number of reflections - only for servalcat_xtal_norefmac
+        if len(xmlnode.findall('.//cycle[last()]/data/binned/n_obs')) > 0:
             graphNtitle = "Number of reflections"
             graphN = gallery.addFlotGraph(
                 xmlnode=xmlnode,
@@ -488,9 +497,28 @@ class servalcat_report(Report):
                 style=galleryGraphStyle)
             graphN.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
             graphN.addData(title="Nobs", select=".//cycle[last()]/data/binned/./n_obs")
-            graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
-            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_free')) > 0:
-                graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
+            avail_n_work = False
+            avail_n_free = False
+            avail_n_R1work = False
+            avail_n_R1free = False
+            avail_n_R1 = False
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1')) > 0:
+                graphN.addData(title="N_R1", select=".//cycle[last()]/data/binned/./n_R1")
+                avail_n_R1 = True
+            else:
+                if len(xmlnode.findall('.//cycle[last()]/data/binned/n_work')) > 0:
+                    graphN.addData(title="Nwork", select=".//cycle[last()]/data/binned/./n_work")
+                    avail_n_work = True
+                    if len(xmlnode.findall('.//cycle[last()]/data/binned/n_free')) > 0:
+                        graphN.addData(title="Nfree", select=".//cycle[last()]/data/binned/./n_free")
+                        avail_n_free = True
+                    if len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1work')) > 0:
+                        graphN.addData(title="N_R1work", select=".//cycle[last()]/data/binned/./n_R1work")
+                        avail_n_R1work = True
+                    if len(xmlnode.findall('.//cycle[last()]/data/binned/n_R1free')) > 0:
+                        graphN.addData(title="N_R1free", select=".//cycle[last()]/data/binned/./n_R1free")
+                        avail_n_R1free = True
+
             plotN = graphN.addPlotObject()
             plotN.append('title', graphNtitle)
             plotN.append('plottype', 'xy')
@@ -498,15 +526,92 @@ class servalcat_report(Report):
             plotN.append('legendposition', x=0, y=1)
             plotN.append('xscale', 'oneoversqrt')
             plotLine = plotN.append('plotline', xcol=1, ycol=2)
-            plotLine.append('colour', 'orange')
+            plotLine.append('colour', 'gray')
             plotLine.append('symbolsize', '0')
-            plotLine = plotN.append('plotline', xcol=1, ycol=3)
-            plotLine.append('colour', 'blue')
-            plotLine.append('symbolsize', '0')
-            plotN.append('yrange', rightaxis='true')
-            plotLine = plotN.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
-            plotLine.append('colour', 'red')
-            plotLine.append('symbolsize', '0')
+            if avail_n_R1:
+                plotLine = plotN.append('plotline', xcol=1, ycol=3)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+            else:
+                if avail_n_work:
+                    plotLine = plotN.append('plotline', xcol=1, ycol=3)
+                    plotLine.append('colour', 'orange')
+                    plotLine.append('symbolsize', '0')
+                if avail_n_free:
+                    plotLine = plotN.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
+                    plotLine.append('colour', 'blue')
+                    plotLine.append('symbolsize', '0')
+                if avail_n_R1work:
+                    plotLine = plotN.append('plotline', xcol=1, ycol=5)
+                    plotLine.append('colour', 'red')
+                    plotLine.append('symbolsize', '0')
+                if avail_n_R1free:
+                    plotLine = plotN.append('plotline', xcol=1, ycol=6)
+                    plotLine.append('colour', 'cyan')
+                    plotLine.append('symbolsize', '0')
+
+            if avail_n_work and avail_n_free and avail_n_R1work and avail_n_R1free:
+                # plot of only n_obs n_work n_free
+                plotN2 = graphN.addPlotObject()
+                plotN2.append('title', "Number of reflections (only Nobs and Nwork and Nfree)")
+                plotN2.append('plottype', 'xy')
+                plotN2.append('xlabel', 'Resolution (&Aring;)')
+                plotN2.append('legendposition', x=0, y=1)
+                plotN2.append('xscale', 'oneoversqrt')
+                plotLine = plotN2.append('plotline', xcol=1, ycol=2)
+                plotLine.append('colour', 'gray')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotN2.append('plotline', xcol=1, ycol=3)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotN2.append('plotline', xcol=1, ycol=4) # , rightaxis='true')
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
+
+            if avail_n_R1work and avail_n_R1free:
+                plotN3 = graphN.addPlotObject()
+                plotN3.append('title', "Number of reflections (only N_R1work and N_R1free)")
+                plotN3.append('plottype', 'xy')
+                plotN3.append('xlabel', 'Resolution (&Aring;)')
+                plotN3.append('legendposition', x=0, y=1)
+                plotN3.append('xscale', 'oneoversqrt')
+                plotLine = plotN3.append('plotline', xcol=1, ycol=5)
+                plotLine.append('colour', 'red')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotN3.append('plotline', xcol=1, ycol=6)
+                plotLine.append('colour', 'cyan')
+                plotLine.append('symbolsize', '0')
+
+            if avail_n_work and avail_n_R1work:
+                plotN4 = graphN.addPlotObject()
+                plotN4.append('title', "Number of reflections (only Nwork and N_R1work)")
+                plotN4.append('plottype', 'xy')
+                plotN4.append('xlabel', 'Resolution (&Aring;)')
+                plotN4.append('legendposition', x=0, y=1)
+                plotN4.append('xscale', 'oneoversqrt')
+                plotLine = plotN4.append('plotline', xcol=1, ycol=2)
+                plotLine.append('colour', 'gray')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotN4.append('plotline', xcol=1, ycol=3)
+                plotLine.append('colour', 'orange')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotN4.append('plotline', xcol=1, ycol=5)
+                plotLine.append('colour', 'red')
+                plotLine.append('symbolsize', '0')
+
+            if avail_n_free and avail_n_R1free:
+                plotN5 = graphN.addPlotObject()
+                plotN5.append('title', "Number of reflections (only Nfree and N_R1free)")
+                plotN5.append('plottype', 'xy')
+                plotN5.append('xlabel', 'Resolution (&Aring;)')
+                plotN5.append('legendposition', x=0, y=1)
+                plotN5.append('xscale', 'oneoversqrt')
+                plotLine = plotN5.append('plotline', xcol=1, ycol=4)
+                plotLine.append('colour', 'blue')
+                plotLine.append('symbolsize', '0')
+                plotLine = plotN5.append('plotline', xcol=1, ycol=6)
+                plotLine.append('colour', 'cyan')
+                plotLine.append('symbolsize', '0')
 
         # Completeness - only for servalcat_xtal_norefmac
         if len(xmlnode.findall('.//cycle[last()]/data/binned/Cmpl')) > 0:
@@ -524,16 +629,60 @@ class servalcat_report(Report):
             plotCmpl.append('title', graphCmplTitle)
             plotCmpl.append('plottype', 'xy')
             plotCmpl.append('xlabel', 'Resolution (&Aring;)')
-            plotCmpl.append('legendposition', x=0, y=1)
+            plotCmpl.append('legendposition', x=0, y=0)
             plotCmpl.append('xscale', 'oneoversqrt')
             plotCmpl.append('yrange', min=0.0, max=100.0)
             plotLine = plotCmpl.append('plotline', xcol=1, ycol=2)
             plotLine.append('colour', 'orange')
             plotLine.append('symbolsize', '0')
 
+        # MnIo & MnIc or MnFo & MnFc - only for servalcat_xtal_norefmac
+        if (
+            len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0
+            or len(xmlnode.findall('.//cycle[last()]/data/binned/MnFo')) > 0
+        ):
+            if len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0 and \
+                    len(xmlnode.findall('.//cycle[last()]/data/binned/MnIc')) > 0:
+                graphMnOCTitle = "Mean Io and Ic"
+                MnO = "MnIo"
+                MnC = "MnIc"
+            elif len(xmlnode.findall('.//cycle[last()]/data/binned/MnFo')) > 0 and \
+                    len(xmlnode.findall('.//cycle[last()]/data/binned/MnFc')) > 0:
+                graphMnOCTitle = "Mean Fo and Fc"
+                MnO = "MnFo"
+                MnC = "MnFc"
+            graphMnOC = gallery.addFlotGraph(
+                xmlnode=xmlnode,
+                title=graphMnOCTitle,
+                internalId=graphMnOCTitle,
+                outputXml=self.outputXml,
+                label=graphMnOCTitle,
+                style=galleryGraphStyle)
+            graphMnOC.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
+            graphMnOC.addData(title=MnO, select=f".//cycle[last()]/data/binned/./{MnO}")
+            graphMnOC.addData(title=MnC, select=f".//cycle[last()]/data/binned/./{MnC}")
+            plotMnIoIc = graphMnOC.addPlotObject()
+            plotMnIoIc.append('title', graphMnOCTitle)
+            plotMnIoIc.append('plottype', 'xy')
+            plotMnIoIc.append('xlabel', 'Resolution (&Aring;)')
+            plotMnIoIc.append('xscale', 'oneoversqrt')
+            plotMnIoIc.append('yrange', min=0.0)
+            plotMnIoIc.append('legendposition', x=1, y=1)
+            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=2)
+            plotLine.append('colour', 'blue')
+            plotLine.append('symbolsize', '0')
+            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=3)
+            plotLine.append('colour', 'red')
+            plotLine.append('symbolsize', '0')
+
         #  MnD0FC0, MnD1FCbulk - only for servalcat_xtal_norefmac
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/MnD0FC0')) > 0 and \
-                len(xmlnode.findall('.//cycle[last()]/data/binned/MnD1FCbulk')) > 0:
+        MnD_parent = ""
+        MnD_parents = ["binned", "ml"]
+        for p in MnD_parents:
+            if len(xmlnode.findall(f'.//cycle[last()]/data/{p}/MnD0FC0')) > 0 and \
+                    len(xmlnode.findall(f'.//cycle[last()]/data/{p}/MnD1FCbulk')) > 0:
+                MnD_parent = p
+        if MnD_parent:
             graphDtitle = "Mean |D0*FC0| and |D1*FCbulk|"
             graphD = gallery.addFlotGraph(
                 xmlnode=xmlnode,
@@ -542,9 +691,9 @@ class servalcat_report(Report):
                 outputXml=self.outputXml,
                 label=graphDtitle,
                 style=galleryGraphStyle)
-            graphD.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-            graphD.addData(title="Mean|D0*FC0|", select=".//cycle[last()]/data/binned/./MnD0FC0")
-            graphD.addData(title="Mean|D1*FCbulk|", select=".//cycle[last()]/data/binned/./MnD1FCbulk")
+            graphD.addData(title="Resolution(&Aring;)", select=f".//cycle[last()]/data/{MnD_parent}/./d_min_4ssqll")
+            graphD.addData(title="Mean|D0*FC0|", select=f".//cycle[last()]/data/{MnD_parent}/./MnD0FC0")
+            graphD.addData(title="Mean|D1*FCbulk|", select=f".//cycle[last()]/data/{MnD_parent}/./MnD1FCbulk")
             plotD = graphD.addPlotObject()
             plotD.append('title', graphDtitle)
             plotD.append('plottype', 'xy')
@@ -560,33 +709,61 @@ class servalcat_report(Report):
             plotLine.append('colour', 'red')
             plotLine.append('symbolsize', '0')
 
-        # MnIo, MnIc - only for servalcat_xtal_norefmac
-        if len(xmlnode.findall('.//cycle[last()]/data/binned/MnIo')) > 0 and \
-                len(xmlnode.findall('.//cycle[last()]/data/binned/MnIc')) > 0:
-            graphMnIoIcTitle = "Mean Io and mean Ic"
-            graphMnIoIc = gallery.addFlotGraph(
-                xmlnode=xmlnode,
-                title=graphDtitle,
-                internalId=graphDtitle,
-                outputXml=self.outputXml,
-                label=graphMnIoIcTitle,
-                style=galleryGraphStyle)
-            graphMnIoIc.addData(title="Resolution(&Aring;)", select=".//cycle[last()]/data/binned/./d_min_4ssqll")
-            graphMnIoIc.addData(title="MeanIo", select=".//cycle[last()]/data/binned/./MnIo")
-            graphMnIoIc.addData(title="MeanIc", select=".//cycle[last()]/data/binned/./MnIc")
-            plotMnIoIc = graphMnIoIc.addPlotObject()
-            plotMnIoIc.append('title', graphMnIoIcTitle)
-            plotMnIoIc.append('plottype', 'xy')
-            plotMnIoIc.append('xlabel', 'Resolution (&Aring;)')
-            plotMnIoIc.append('xscale', 'oneoversqrt')
-            plotMnIoIc.append('yrange', min=0.0)
-            plotMnIoIc.append('legendposition', x=1, y=1)
-            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=2)
-            plotLine.append('colour', 'blue')
-            plotLine.append('symbolsize', '0')
-            plotLine = plotMnIoIc.append('plotline', xcol=1, ycol=3)
-            plotLine.append('colour', 'red')
-            plotLine.append('symbolsize', '0')
+        clearingDiv = parent.addDiv(style="clear:both;")
+
+
+    def addTwinningAnalysis(self, outputJson=None, parent=None, xmlnode=None):
+        if parent is None: parent = self
+        if xmlnode is None: xmlnode = self.xmlnode
+        if outputJson is None: outputJson = self.outputJson
+        # if len(xmlnode.findall('.//cycle[last()]/twin_alpha')) == 0:
+        if not outputJson or outputJson[-1].get('twin_alpha', {}) == {}:
+            # No twinning analysis
+            return
+        twinFold = parent.addFold(label="Twinning analysis", brief='Twinning', initiallyOpen=True)
+        divLeft = twinFold.addDiv(style='font-size:110%;float:left')
+
+        try:
+            twin_alpha_final = outputJson[-1]['twin_alpha']
+            twin_operators = list(twin_alpha_final.keys())
+            twin_fraction_final_values = list(twin_alpha_final.values())
+            twin_fraction_final_values = ["{:.2f}".format(v) for v in twin_fraction_final_values]
+            twin_operators_labels = twin_operators
+            twin_alpha_data = {op: [] for op in twin_operators}
+            cycles_list = list(range(1, len(outputJson) + 1))
+            for c in outputJson:
+                for op in twin_operators:
+                    twin_alpha_data[op].append(c.get('twin_alpha', {}).get(op, 0.0))
+
+            twinGraph = divLeft.addFlotGraph(
+                title="Twin fraction vs cycle",
+                xmlnode=self.xmlnode,
+                style="height:250px;width:400px;float:left;")
+            twinGraph.addData(title="Cycle", data=cycles_list)
+            for i, twin_op in enumerate(twin_operators):
+                twinGraph.addData(
+                    title=twin_operators_labels[i],
+                    data=twin_alpha_data[twin_op],
+                )
+            plotTwin = twinGraph.addPlotObject()
+            plotTwin.append('title', 'Twin fraction vs cycle')
+            plotTwin.append('plottype', 'xy')
+            plotTwin.append('xlabel', 'Cycle')
+            plotTwin.append('ylabel', 'Twin fraction vs cycle')
+            plotTwin.append('xintegral', 'true')
+            plotTwin.append('legendposition', x=0, y=0)
+            plotTwin.append('yrange', min=0.0, max=1.0)
+            for i, twin_op in enumerate(twin_operators):
+                plotLine = plotTwin.append('plotline', xcol=1, ycol=i + 2)
+                plotLine.append('symbolsize', '0')
+
+            divRight = twinFold.addDiv(style='font-size:110%;float:left;margin-left:1em;')
+            divRight.append("Final twin fractions after refinement:")
+            tableTwin = divRight.addTable()
+            tableTwin.addData(title="Twin operator", data=twin_operators_labels)
+            tableTwin.addData(title="Twin fraction", data=twin_fraction_final_values)
+        except:
+            divLeft.append("Error: Twinning report was not found.")
 
         clearingDiv = parent.addDiv(style="clear:both;")
 
@@ -636,26 +813,41 @@ class servalcat_report(Report):
                 except:
                     outData['z'][i] = '-'
                     outData['z_abs'][i] = '-'
-                try:
-                    outType = int(outlier.findall('type')[0].text)
-                    if outType == 1:
-                        outData['note'][i] = "Van der Waals"
-                    elif outType == 2:
-                        outData['note'][i] = "Torsion"
-                    elif outType == 3:
-                        outData['note'][i] = "Hydrogen bond"
-                    elif outType == 4:
-                        outData['note'][i] = "Metal"
-                    elif outType == 5:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType == 6:
-                        outData['note'][i] = "Dummy-nondummy"
-                    elif outType > 6:
-                        outData['note'][i] = "Symmetry related"
-                    outData['type'][i] = -outType
-                except:
-                    outData['type'][i] = '-'
-                    outData['note'][i] = '-'
+
+                # Outlier type
+                outType = outlier.findall('type')[0].text
+                if (isinstance(outType, int)) or (isinstance(outType, str) and outType.isdigit()):
+                    # before Servalcat 0.4.123
+                    # convert outlier type given as integer to description
+                    try:
+                        outType = int(outType)
+                        if outType == 1:
+                            outData['note'][i] = "Van der Waals"
+                        elif outType == 2:
+                            outData['note'][i] = "Torsion"
+                        elif outType == 3:
+                            outData['note'][i] = "Hydrogen bond"
+                        elif outType == 4:
+                            outData['note'][i] = "Metal"
+                        elif outType == 5:
+                            outData['note'][i] = "Dummy-nondummy"
+                        elif outType == 6:
+                            outData['note'][i] = "Dummy-nondummy"
+                        elif outType > 6:
+                            outData['note'][i] = "Symmetry related"
+                        outData['type'][i] = -outType
+                    except:
+                        outData['type'][i] = '-'
+                        outData['note'][i] = '-'
+                else:
+                    # Servalcat 0.4.123 and later
+                    try:
+                        outData['type'][i] = outType
+                        outData['note'][i] = outType
+                    except:
+                        outData['type'][i] = '-'
+                        outData['note'][i] = '-'
+
                 try:
                     # difference = | value - ideal |
                     difference = abs(float(outlier.findall('value')[0].text) - float(outlier.findall('ideal')[0].text))
@@ -1270,7 +1462,7 @@ def addCorrelationProgress(progressGraph):
     plot.append('ylabel', 'Correlation')
     plot.append('yrange', min=0.0, max=1.0)
     plot.append('xintegral', 'true')
-    plot.append('legendposition', x=0, y=1)
+    plot.append('legendposition', x=0, y=0)
     line = plot.append('plotline', xcol=1, ycol=4)
     line.append('colour', 'orange')
     line.append('symbolsize', '0')

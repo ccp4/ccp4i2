@@ -23,6 +23,7 @@ def test_8xfm(cif8xfm, mtz8xfm):
     args += ["--VALIDATE_MOLPROBITY", "False"]
     args += ["--RUN_ADP_ANALYSIS", "False"]
     args += ["--RUN_COORDADPDEV_ANALYSIS", "False"]
+    args += ["--USE_WORK_IN_EST", "True"]
     with i2run(args) as job:
         assert hasLongLigandName(job / "CIFFILE.pdb")
         xml = ET.parse(job / "program.xml")
@@ -69,14 +70,14 @@ def test_1gyu_unmerged():
                 maxRwork=0.20,
                 maxRfree=0.25,
                 minCCwork=0.90,
-                minCCfree=0.80,
+                minCCfree=0.75,
             )
 
 
 # electron diffraction data
 # prosmart reference protein
-def test_7beq_electron():
-    with download(redo_cif("7beq")) as cif7beq, download(redo_mtz("7beq")) as mtz7beq, download(redo_cif("7ber")) as cif7ber:
+def test_7beq_electron(cif7beq, mtz7beq):
+    with download(redo_cif("7ber")) as cif7ber:
         ncycle = 3
         args = ["servalcat_pipe"]
         args += ["--XYZIN", cif7beq]

@@ -1,13 +1,48 @@
 # CCP4i2 Changelog
 
-## [2.4.0] - 2025-06-23
+## [2.5.0] - 2025-12-02
+
+- New task to check a model against AU contents
+- Standardised ModelCraft output file name
+- Twinning analysis in Servalcat report
+- Preserving ProSMART parameters when cloning Servalcat jobs
+- Stop the Refmac pipeline producing map files by default
+- Fix to Servalcat USE_WORK_IN_EST
+- Fix to user selected columns in split MTZ task
+
+## [2.4.3] - 2025-10-24
+
+- Improved checking/rebuilding of database and project-list XML files on startup
+
+## [2.4.2] - 2025-10-22
+
+- Capturing stderr for subjobs in Refmac, Servalcat and Lorestr pipelines
+- Reducing size of reports by fetching log files instead of embedding them
+- Fix for reflection CIF files containing both merged and unmerged data
+- New Pointless options to remove lattice centering reflections
+- Fix to Servalcat report type handling
+- Fixes to i2run testing
+
+## [2.4.1] - 2025-10-07
+
+- Fix Coot map coluring with multiple models
+- Fix for AceDRG atom name matching
+- Improved graphs in Servalcat report
+- Added checks before xmlnode append
+- Searching Python 3.11 paths for CCP4 10
+- PDB-REDO text change
+
+## [2.4.0] - 2025-07-15
 
 - Servalcat refinement against unmerged data
 - Servalcat option for van der Waals restraint weight
+- Updated Iris validation to work with v0.3.3
 - More graphs in the Servalcat report
 - More Servalcat i2 run tests
 - Fix for deprecated numpy.float
 - More AceDrg i2run tests
+- Support for 5-letter ligand codes in AceDRG make link
+- Fix for Coot 0.9 anomalous map colouring
 
 ## [2.3.3] - 2025-05-29
 

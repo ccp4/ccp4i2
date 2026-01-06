@@ -18,11 +18,15 @@
 """
 
 import sys
+import os
 from xml.etree import ElementTree as ET
 from report.CCP4ReportParser import *
+from report import CCP4ReportGenerator
 
 from wrappers.servalcat.script import servalcat_report
 from wrappers.validate_protein.script import validate_protein_report
+import base64
+import json
 
 
 class servalcat_pipe_report(Report):
@@ -68,6 +72,7 @@ class servalcat_pipe_report(Report):
         servalcatReportNode0 = None
         servalcatReportNode1 = None
         cootAddWatersNode = None
+
         try:
             servalcatReportNode0 = xmlnode.findall('.//SERVALCAT_FIRST')[0]
         except:
@@ -89,6 +94,16 @@ class servalcat_pipe_report(Report):
             cootAddWatersNode = xmlnode.findall('.//CootAddWaters')[0]
         except:
             pass
+
+        servalcatOutputJsonLast = None
+        for descendentJob in self.jobInfo["descendentjobs"]:
+            subJobFileRoot = CCP4ReportGenerator.getReportJobInfo(jobId=descendentJob[0])["fileroot"]
+            servalcatOutputJsonLastCandidate = os.path.normpath(os.path.join(subJobFileRoot, "refined_stats.json"))
+            if os.path.isfile(servalcatOutputJsonLastCandidate):
+                try:
+                    servalcatOutputJsonLast = json.load(open(servalcatOutputJsonLastCandidate))
+                except:
+                    servalcatOutputJsonLast = []
 
         clearingDiv = self.addDiv(style="clear:both;")
 
@@ -131,6 +146,7 @@ class servalcat_pipe_report(Report):
                 perCycleFold1 = self.addFold(label='Per cycle statistics after addition of water molecules', brief='Per cycle after waters', initiallyOpen=False)
                 servalcatReport1.addTablePerCycle(cycle_data1, parent=perCycleFold1, initialFinalOnly=False)
             servalcatReport.addGraphsVsResolution(parent=self, xmlnode=servalcatReportNodeLast)
+            servalcatReport.addTwinningAnalysis(parent=self, outputJson=servalcatOutputJsonLast, xmlnode=servalcatReportNodeLast)
             validationFold = self.addFold ( label="Validation", initiallyOpen=False, brief='Validation' )
             indentDiv = validationFold.addDiv(style="margin-left:1.5em;")
             servalcatReport.addOutlierAnalysis(parent=indentDiv, xmlnode=servalcatReportNodeLast)
