@@ -2,10 +2,14 @@
 """
 Standalone worker script to process jobs from Azure Service Bus queue.
 This runs independently of Django and monitors the queue for new jobs.
+
+Handles graceful shutdown on SIGTERM/SIGINT by marking in-progress jobs as FAILED.
 """
 import os
 import json
 import time
+import signal
+import sys
 import threading
 import logging
 import socket
@@ -15,11 +19,65 @@ from azure.identity import DefaultAzureCredential
 # Get worker identity for logging
 WORKER_ID = os.getenv("HOSTNAME", socket.gethostname())
 
+# Track currently processing job for graceful shutdown
+_current_job_uuid = None
+_current_job_lock = threading.Lock()
+_shutdown_requested = False
+
 logging.basicConfig(
     level=logging.INFO,
     format=f"%(asctime)s - [{WORKER_ID}] - %(levelname)s - %(message)s",
 )
 logger = logging.getLogger(__name__)
+
+
+def handle_shutdown_signal(signum, frame):
+    """
+    Handle SIGTERM/SIGINT for graceful shutdown.
+
+    When Azure Container Apps scales down or restarts a container, it sends SIGTERM
+    followed by SIGKILL after a grace period (default 30s). This handler:
+    1. Sets shutdown flag to stop accepting new jobs
+    2. Marks any in-progress job as FAILED so it doesn't get stuck in RUNNING state
+    """
+    global _shutdown_requested, _current_job_uuid
+
+    signal_name = signal.Signals(signum).name
+    logger.warning("Received %s signal - initiating graceful shutdown", signal_name)
+    _shutdown_requested = True
+
+    # If we have a job in progress, mark it as failed
+    with _current_job_lock:
+        if _current_job_uuid and _current_job_uuid != "unknown":
+            logger.warning(
+                "Marking in-progress job %s as FAILED due to worker shutdown",
+                _current_job_uuid
+            )
+            try:
+                update_job_status(_current_job_uuid, "FAILED")
+                logger.info("Successfully marked job %s as FAILED", _current_job_uuid)
+            except Exception as e:
+                logger.error(
+                    "Failed to mark job %s as FAILED during shutdown: %s",
+                    _current_job_uuid, str(e)
+                )
+
+    logger.info("Graceful shutdown complete, exiting")
+    sys.exit(0)
+
+
+def set_current_job(job_uuid):
+    """Track the currently processing job UUID for graceful shutdown handling."""
+    global _current_job_uuid
+    with _current_job_lock:
+        _current_job_uuid = job_uuid
+
+
+def clear_current_job():
+    """Clear the current job tracker after job completes."""
+    global _current_job_uuid
+    with _current_job_lock:
+        _current_job_uuid = None
 
 
 def renew_lock_periodically(receiver, msg, stop_event, interval=30):
@@ -38,8 +96,18 @@ def process_job(job_data, receiver=None, msg=None):
     Process a job from the queue.
     If receiver and msg are provided, start a thread to renew the lock during processing.
     """
+    global _shutdown_requested
+
     job_uuid = job_data.get("uuid", job_data.get("job_uuid", "unknown"))
     action = job_data.get("action", "unknown")
+
+    # Check if shutdown was requested before starting
+    if _shutdown_requested:
+        logger.warning("Shutdown requested, not processing job %s", job_uuid)
+        return False
+
+    # Track this job for graceful shutdown handling
+    set_current_job(job_uuid)
 
     logger.info(
         "=== WORKER %s STARTING JOB %s (action: %s) ===", WORKER_ID, job_uuid, action
@@ -112,6 +180,8 @@ def process_job(job_data, receiver=None, msg=None):
             )
         return False
     finally:
+        # Clear job tracking for graceful shutdown
+        clear_current_job()
         if lock_thread is not None:
             lock_stop_event.set()
             lock_thread.join()
@@ -711,8 +781,66 @@ def run_worker_loop(sb_client, queue_name):
                     time.sleep(5)  # Brief pause before retry
 
 
+def cleanup_stale_jobs(stale_threshold_hours=2):
+    """
+    Clean up jobs stuck in RUNNING or RUNNING_REMOTELY state.
+
+    This handles cases where:
+    - Worker was OOM-killed without catching signal
+    - Container crashed unexpectedly
+    - Network partition prevented status update
+
+    Args:
+        stale_threshold_hours: Jobs running longer than this are considered stale
+    """
+    import subprocess
+
+    logger.info("Checking for stale jobs (threshold: %d hours)...", stale_threshold_hours)
+
+    ccp4_python = os.getenv("CCP4_PYTHON")
+    if not ccp4_python:
+        logger.warning("CCP4_PYTHON not set, skipping stale job cleanup")
+        return
+
+    cmd = [
+        ccp4_python,
+        "/usr/src/app/manage.py",
+        "cleanup_stale_jobs",
+        "--hours", str(stale_threshold_hours),
+    ]
+
+    env = os.environ.copy()
+    try:
+        result = subprocess.run(
+            cmd,
+            capture_output=True,
+            text=True,
+            timeout=60,
+            cwd="/usr/src/app",
+            check=False,
+            env=env,
+        )
+
+        if result.returncode == 0:
+            logger.info("Stale job cleanup completed: %s", result.stdout.strip())
+        else:
+            logger.warning("Stale job cleanup failed: %s", result.stderr)
+
+    except subprocess.TimeoutExpired:
+        logger.warning("Stale job cleanup timed out")
+    except FileNotFoundError:
+        logger.warning("cleanup_stale_jobs command not found - skipping")
+    except Exception as e:
+        logger.warning("Error during stale job cleanup: %s", e)
+
+
 def main():
     """Main worker loop"""
+    # Register signal handlers for graceful shutdown
+    signal.signal(signal.SIGTERM, handle_shutdown_signal)
+    signal.signal(signal.SIGINT, handle_shutdown_signal)
+    logger.info("Signal handlers registered for graceful shutdown")
+
     # Get configuration from environment
     queue_name = os.getenv("SERVICE_BUS_QUEUE_NAME", "ccp4i2-bicep-jobs")
     connection_string = os.getenv("SERVICE_BUS_CONNECTION_STRING")
@@ -722,6 +850,9 @@ def main():
         return
 
     logger.info("Starting worker for queue: %s", queue_name)
+
+    # Clean up any stale jobs from previous worker crashes on startup
+    cleanup_stale_jobs()
 
     # Initialize Service Bus client
     try:
