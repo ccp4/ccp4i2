@@ -168,12 +168,21 @@ export function DoseResponseChart({
       typeof fit.maxVal === 'number';
 
     if (hasValidFitParams) {
+      // Normalize min/max: for standard dose-response, minVal should be < maxVal
+      // Legacy data may have these inverted - detect and correct
+      let normalizedMin = fit!.minVal!;
+      let normalizedMax = fit!.maxVal!;
+      if (normalizedMin > normalizedMax) {
+        // Swap if inverted (legacy data with opposite interpretation)
+        [normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
+      }
+
       const curvePoints = generateFittedCurve(
         concentrations,
         fit!.ec50!,
         fit!.hill!,
-        fit!.minVal!,
-        fit!.maxVal!
+        normalizedMin,
+        normalizedMax
       );
 
       // Use different color for invalid fits
@@ -194,12 +203,12 @@ export function DoseResponseChart({
       } as any);
 
       // Add EC50 marker line
-      const ec50Y = hillLangmuir(fit!.ec50!, fit!.ec50!, fit!.hill!, fit!.minVal!, fit!.maxVal!);
+      const ec50Y = hillLangmuir(fit!.ec50!, fit!.ec50!, fit!.hill!, normalizedMin, normalizedMax);
       datasets.push({
         type: 'line' as const,
         label: 'EC50',
         data: [
-          { x: fit!.ec50!, y: fit!.minVal! },
+          { x: fit!.ec50!, y: normalizedMin },
           { x: fit!.ec50!, y: ec50Y },
         ],
         backgroundColor: 'transparent',
@@ -321,12 +330,20 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
       typeof fit.maxVal === 'number';
 
     if (hasValidFitParams) {
+      // Normalize min/max: for standard dose-response, minVal should be < maxVal
+      // Legacy data may have these inverted - detect and correct
+      let normalizedMin = fit!.minVal!;
+      let normalizedMax = fit!.maxVal!;
+      if (normalizedMin > normalizedMax) {
+        [normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
+      }
+
       const curvePoints = generateFittedCurve(
         concentrations,
         fit!.ec50!,
         fit!.hill!,
-        fit!.minVal!,
-        fit!.maxVal!,
+        normalizedMin,
+        normalizedMax,
         50
       );
 
