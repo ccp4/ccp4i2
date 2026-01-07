@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
+import { useState, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Container, Typography, Box, Alert } from '@mui/material';
+import { Container, Typography, Box, Alert, CircularProgress } from '@mui/material';
 import { TableChart } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { PredicateBuilder } from '@/components/PredicateBuilder';
@@ -16,6 +16,14 @@ import {
 import { fetchAggregation } from '@/lib/aggregation-api';
 
 export default function AggregationPage() {
+  return (
+    <Suspense fallback={<Container maxWidth="xl" sx={{ py: 3 }}><CircularProgress /></Container>}>
+      <AggregationPageContent />
+    </Suspense>
+  );
+}
+
+function AggregationPageContent() {
   const searchParams = useSearchParams();
 
   // Read initial values from URL params for deep linking

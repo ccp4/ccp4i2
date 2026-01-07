@@ -281,6 +281,15 @@ export interface CompoundSourceConfig {
   id_column?: string;     // Column name for column_header type
 }
 
+/**
+ * Spreadsheet origin configuration.
+ * Defines where the plate data starts in imported Excel files.
+ */
+export interface SpreadsheetOrigin {
+  column: string;  // Excel column letter (e.g., "A", "B", "AA")
+  row: number;     // 1-indexed row number
+}
+
 export interface PlateLayout {
   plate_format: PlateFormat;
   controls: ControlsConfig;
@@ -290,4 +299,6 @@ export interface PlateLayout {
   compound_source: CompoundSourceConfig;
   // For strip-based layouts with embedded controls
   strip_layout?: StripLayoutConfig;
+  // Where plate data starts in imported spreadsheets
+  spreadsheet_origin?: SpreadsheetOrigin;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Container,
@@ -46,6 +46,14 @@ import { Target, Compound } from '@/types/models';
 type StructureSearchMode = 'substructure' | 'superstructure';
 
 export default function CompoundSearchPage() {
+  return (
+    <Suspense fallback={<Container maxWidth="lg" sx={{ py: 3 }}><CircularProgress /></Container>}>
+      <CompoundSearchContent />
+    </Suspense>
+  );
+}
+
+function CompoundSearchContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const api = useCompoundsApi();

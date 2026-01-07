@@ -19,11 +19,12 @@ import {
   IconButton,
   Alert,
 } from '@mui/material';
-import { Description, Science, Assessment, Edit, GridOn, Close } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close, Add } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { PlatePreview } from '@/components/PlatePreview';
 import { PlateLayoutEditor } from '@/components/PlateLayoutEditor';
+import { AssayUploadDrawer } from '@/components/AssayUploadDrawer';
 import { useCompoundsApi } from '@/lib/api';
 import { Protocol, Assay, PlateLayout } from '@/types/models';
 
@@ -63,11 +64,12 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const [editedLayout, setEditedLayout] = useState<PlateLayout | null>(null);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
+  const [uploadDrawerOpen, setUploadDrawerOpen] = useState(false);
 
   const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
   );
-  const { data: assays, isLoading: assaysLoading } = api.get<Assay[]>(
+  const { data: assays, isLoading: assaysLoading, mutate: mutateAssays } = api.get<Assay[]>(
     `assays/?protocol=${id}`
   );
 
@@ -340,6 +342,21 @@ export default function ProtocolDetailPage({ params }: PageProps) {
         </DialogActions>
       </Dialog>
 
+      {/* Assays section header with Add button */}
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+        <Typography variant="h6">
+          Assays
+        </Typography>
+        <Button
+          variant="contained"
+          startIcon={<Add />}
+          onClick={() => setUploadDrawerOpen(true)}
+          disabled={!protocol}
+        >
+          Add Assay
+        </Button>
+      </Box>
+
       {/* Assays table */}
       <DataTable
         data={assays}
@@ -350,6 +367,17 @@ export default function ProtocolDetailPage({ params }: PageProps) {
         title={assays ? `${assays.length} assays` : undefined}
         emptyMessage="No assays using this protocol"
       />
+
+      {/* Assay Upload Drawer */}
+      {protocol && (
+        <AssayUploadDrawer
+          open={uploadDrawerOpen}
+          onClose={() => setUploadDrawerOpen(false)}
+          protocolId={id}
+          protocolName={protocol.name}
+          onAssayCreated={() => mutateAssays()}
+        />
+      )}
     </Container>
   );
 }

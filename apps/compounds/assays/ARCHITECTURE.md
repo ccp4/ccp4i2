@@ -14,8 +14,9 @@ Protocols now include a `plate_layout` JSON field that captures the physical arr
 {
   "plate_format": 384,
   "controls": {
-    "max": {"columns": [1, 2], "rows": ["A", "B"]},
-    "min": {"columns": [23, 24], "rows": ["A", "B"]}
+    "placement": "edge_columns",
+    "max": {"columns": [1, 2], "rows": ["A", "B", "..."]},
+    "min": {"columns": [23, 24], "rows": ["A", "B", "..."]}
   },
   "sample_region": {
     "start_column": 3,
@@ -33,9 +34,37 @@ Protocols now include a `plate_layout` JSON field that captures the physical arr
   },
   "compound_source": {
     "type": "row_order"
+  },
+  "spreadsheet_origin": {
+    "column": "A",
+    "row": 1
   }
 }
 ```
+
+**Control placement types**:
+- `edge_columns` - Controls in dedicated columns at plate edges
+- `edge_rows` - Controls in dedicated rows at top/bottom
+- `per_compound` - Embedded controls per compound (strip layout)
+
+**Strip layout configuration** (for `per_compound` placement):
+
+When controls are embedded per compound, each row contains repeating strips:
+```json
+{
+  "controls": {"placement": "per_compound"},
+  "strip_layout": {
+    "strip_width": 12,
+    "min_wells": 2,
+    "data_wells": 8,
+    "max_wells": 2,
+    "strips_per_row": 2
+  }
+}
+```
+This defines a pattern: [min×2][data×8][max×2] repeated 2 times per row.
+
+**Spreadsheet origin**: Defines where plate data starts in imported Excel files (cell A1 of the plate). The default is column A, row 1.
 
 **Supported plate formats**: 24, 96, 384, 1536-well
 
@@ -124,12 +153,40 @@ y = bottom + (top - bottom) / (1 + (x / IC50)^hill)
 - `unusual_hill_slope` - Hill < 0.3 or > 5
 - `incomplete_top/bottom` - Curve doesn't reach asymptotes
 
+## Frontend Upload Wizard
+
+The `AssayUploadDrawer` component provides a 3-step wizard for adding assays:
+
+### Step 1: Upload Excel
+- Drag-and-drop or browse for Excel file (.xlsx, .xls, .csv)
+- Parses file into a 2D cell grid using xlsx library
+- Validates file format and shows row/column count
+
+### Step 2: Review Extraction
+- Applies protocol's plate layout to extract data series
+- Uses `spreadsheet_origin` to locate plate data in the spreadsheet
+- For each row in the sample region:
+  - Extracts data values from sample columns
+  - Extracts min/max control values from control regions
+  - Identifies compound names (from row headers if configured)
+- Shows validation status (missing data, missing controls)
+- Displays extraction summary with valid/invalid series counts
+
+### Step 3: Create Assay
+- Configure target, lab book number, page number, comments
+- **Run curve fitting analysis** toggle (enabled by default)
+  - When enabled, automatically runs the protocol's fitting method
+  - Uses the analysis method associated with the protocol
+- Creates assay record with uploaded file
+- Creates data series records for each extracted row
+- Optionally triggers analysis pipeline
+
 ## Data Flow
 
 ```
 ┌─────────────────┐     ┌──────────────────┐     ┌─────────────────┐
 │  Plate Reader   │────▶│  Import/Parse    │────▶│  DataSeries     │
-│  Output (CSV)   │     │  (plate_layout)  │     │  (raw values)   │
+│  Output (Excel) │     │  (plate_layout)  │     │  (raw values)   │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
                                                          │
                                                          ▼
@@ -137,6 +194,25 @@ y = bottom + (top - bottom) / (1 + (x / IC50)^hill)
 │  Analysis       │◀────│  FittingMethod   │◀────│  Extract for    │
 │  (ic50, hill)   │     │  .fit()          │     │  fitting        │
 └─────────────────┘     └──────────────────┘     └─────────────────┘
+```
+
+### Upload API Request
+
+The upload wizard sends a multipart/form-data POST to `/api/proxy/compounds/assays/`:
+
+```
+POST /api/proxy/compounds/assays/
+Content-Type: multipart/form-data
+
+Fields:
+- protocol: Protocol ID
+- data_file: Excel file
+- target: Target ID (optional)
+- labbook_number: Lab book number (optional)
+- page_number: Page number (optional)
+- comments: Comments (optional)
+- extracted_series: JSON array of extracted data series
+- run_analysis: "true" or "false" to trigger curve fitting
 ```
 
 ## File Structure

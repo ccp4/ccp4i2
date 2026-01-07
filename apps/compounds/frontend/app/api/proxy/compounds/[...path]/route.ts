@@ -39,19 +39,36 @@ export async function POST(
   const { path } = await params;
   const pathString = path.join('/');
   const url = `${DJANGO_URL}/compounds/${pathString}/`;
-  const body = await request.json();
 
   console.log(`[API Proxy] POST ${url}`);
 
   try {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(body),
-    });
+    const contentType = request.headers.get('content-type') || '';
+    let response: Response;
+
+    if (contentType.includes('multipart/form-data')) {
+      // Handle file uploads - pass through the FormData
+      const formData = await request.formData();
+      response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          // Don't set Content-Type - let fetch set it with boundary for multipart
+        },
+        body: formData,
+      });
+    } else {
+      // Handle JSON requests
+      const body = await request.json();
+      response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+    }
 
     const data = await response.json();
     return NextResponse.json(data, { status: response.status });

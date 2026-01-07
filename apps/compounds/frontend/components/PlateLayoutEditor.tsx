@@ -31,6 +31,7 @@ import {
   LinearScale,
   ContentCopy,
   Source,
+  TableChart,
 } from '@mui/icons-material';
 import { PlatePreview } from './PlatePreview';
 import type {
@@ -40,6 +41,7 @@ import type {
   CompoundSourceType,
   DilutionDirection,
   ControlPlacement,
+  SpreadsheetOrigin,
 } from '@/types/models';
 
 /**
@@ -90,6 +92,10 @@ const DEFAULT_LAYOUT: PlateLayout = {
   },
   compound_source: {
     type: 'row_order',
+  },
+  spreadsheet_origin: {
+    column: 'A',
+    row: 1,
   },
 };
 
@@ -204,6 +210,7 @@ const STEPS = [
   { label: 'Sample Region', icon: <LinearScale /> },
   { label: 'Replicates', icon: <ContentCopy /> },
   { label: 'Compound Source', icon: <Source /> },
+  { label: 'Data Import', icon: <TableChart /> },
 ];
 
 interface PlateLayoutEditorProps {
@@ -963,6 +970,71 @@ export function PlateLayoutEditor({
                   />
                 </Box>
               )}
+
+              <Box sx={{ mt: 2 }}>
+                <Button onClick={handleBack} sx={{ mr: 1 }}>Back</Button>
+                <Button variant="contained" onClick={handleNext}>Continue</Button>
+              </Box>
+            </StepContent>
+          </Step>
+
+          {/* Step 6: Data Import (Spreadsheet Origin) */}
+          <Step>
+            <StepLabel>{STEPS[5].label}</StepLabel>
+            <StepContent>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                Configure where plate data starts in imported Excel files.
+                This is typically where cell A1 of the plate appears in the spreadsheet.
+              </Typography>
+
+              <Grid container spacing={2}>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Column"
+                    size="small"
+                    fullWidth
+                    value={layout.spreadsheet_origin?.column || 'A'}
+                    onChange={(e) => {
+                      const col = e.target.value.toUpperCase().replace(/[^A-Z]/g, '');
+                      updateLayout({
+                        spreadsheet_origin: {
+                          column: col || 'A',
+                          row: layout.spreadsheet_origin?.row || 1,
+                        },
+                      });
+                    }}
+                    placeholder="A"
+                    helperText="Excel column letter (e.g., A, B, AA)"
+                    inputProps={{ maxLength: 3, style: { textTransform: 'uppercase' } }}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <TextField
+                    label="Row"
+                    size="small"
+                    type="number"
+                    fullWidth
+                    value={layout.spreadsheet_origin?.row || 1}
+                    onChange={(e) => updateLayout({
+                      spreadsheet_origin: {
+                        column: layout.spreadsheet_origin?.column || 'A',
+                        row: Math.max(1, Number(e.target.value)),
+                      },
+                    })}
+                    helperText="Starting row number (1-indexed)"
+                    inputProps={{ min: 1 }}
+                  />
+                </Grid>
+              </Grid>
+
+              <Alert severity="info" sx={{ mt: 2 }}>
+                <Typography variant="body2">
+                  The plate data starts at cell <strong>{layout.spreadsheet_origin?.column || 'A'}{layout.spreadsheet_origin?.row || 1}</strong>.
+                </Typography>
+                <Typography variant="caption" color="text.secondary">
+                  This cell should contain the value for well A1 of your plate.
+                </Typography>
+              </Alert>
 
               <Box sx={{ mt: 2 }}>
                 <Button onClick={handleBack} sx={{ mr: 1 }}>Back</Button>

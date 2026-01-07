@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect, useMemo } from 'react';
+import { useState, useCallback, useEffect, useMemo, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -86,6 +86,14 @@ const STEREO_OPTIONS = [
 ];
 
 export default function NewCompoundPage() {
+  return (
+    <Suspense fallback={<Container maxWidth="lg" sx={{ py: 3 }}><CircularProgress /></Container>}>
+      <NewCompoundPageContent />
+    </Suspense>
+  );
+}
+
+function NewCompoundPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const api = useCompoundsApi();
