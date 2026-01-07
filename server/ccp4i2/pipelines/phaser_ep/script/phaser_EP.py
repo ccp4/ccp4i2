@@ -123,7 +123,6 @@ class phaser_EP(CPluginScript):
                     if hasattr(attr,'isSet') and attr.isSet(allSet=False):
                         setattr(self.phaserPlugin.container.keywords,attrName,attr)
             self.phaserPlugin.container.inputData=self.container.inputData
-            self.phaserPlugin.doAsync = False
         except Exception as e:
             self.appendErrorReport(205, 'Exception during phaser_EP_AUTO setup: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
@@ -153,7 +152,6 @@ class phaser_EP(CPluginScript):
                     self.parrotPlugin.container.inputData.ABCD.set(self.phaserPlugin.container.outputData.ABCDOUT[1])
                 else:
                     self.parrotPlugin.container.inputData.ABCD.set(self.phaserPlugin.container.outputData.ABCDOUT[0])
-            self.parrotPlugin.doAsync = False
             return self.parrotPlugin
         except Exception as e:
             self.appendErrorReport(206, 'Exception during Parrot setup (hand=' + hand + '): ' + str(e))

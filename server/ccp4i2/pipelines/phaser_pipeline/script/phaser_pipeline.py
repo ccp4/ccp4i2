@@ -64,7 +64,6 @@ class phaser_pipeline(CPluginScript):
                     getattr(self.phaserPlugin.container.keywords,attrName).set(attr)
         self.phaserPlugin.container.inputData.set(self.container.inputData)
         self.phaserPlugin.container.inputData.KILLFILEPATH.set(os.path.join(self.getWorkDirectory(),'INTERRUPT'))
-        self.phaserPlugin.doAsync = False
         self.connectSignal(self.phaserPlugin,'finished', self.phaserFinished)
         self.oldXMLLength = 0
         self.phaserPlugin.callbackObject.addResponder(self.phaserXMLUpdated)
@@ -276,7 +275,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.refmacPlugin.container.controlParameters.USE_JELLY.set(True)
             self.refmacPlugin.container.controlParameters.JELLY_SIGMA.set(0.05)
             self.refmacPlugin.container.controlParameters.MAKE_NEW_LIGAND_EXIT.set(False)
-            self.refmacPlugin.doAsync = False
             rv = self.refmacPlugin.process()
             if rv == CPluginScript.FAILED: self.reportStatus(rv)
 

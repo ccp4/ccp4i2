@@ -238,7 +238,6 @@ class lorestr_i2(CPluginScript):
            self.validate.container.controlParameters.DO_RAMA = True
            self.validate.container.controlParameters.DO_MOLPROBITY = True
 
-           self.validate.doAsync = False
            self.validate.process()
 
 

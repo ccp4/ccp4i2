@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from lxml import etree
 
@@ -76,12 +77,10 @@ class lidiaAcedrg(CPluginScript):
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         acedrgPlugin.container.inputData.TLC = self.container.inputData.TLC
         acedrgPlugin.container.inputData.NRANDOM = self.container.inputData.NRANDOM
-        acedrgPlugin.doAsync = False
         result = acedrgPlugin.process()
         if result != CPluginScript.SUCCEEDED:
             self.finishWithStatus(result)
         out = self.container.outputData
-        import shutil
 
         if self.container.inputData.CONFORMERSFROM.__str__() != "RDKIT":
             if os.path.isfile(acedrgPlugin.container.outputData.DICTOUT.fullPath.__str__()):

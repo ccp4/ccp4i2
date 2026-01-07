@@ -28,7 +28,6 @@ class pisapipe(CPluginScript):
       self.xmlTask = self.makePluginObject('pisa_xml')
       self.xmlTask.container.controlParameters.IDENTIFIER = identifier
       self.connectSignal(self.xmlTask,'finished',self.pisa_xmlFinished)
-      self.xmlTask.doAsync = False
       self.xmlTask.process()
 
     @QtCore.Slot(dict)

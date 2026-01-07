@@ -96,7 +96,6 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             print(columnStrings)
             if 'F' in columnStrings: phaserPlugin.container.inputData.F_OR_I.set('F')
 
-            phaserPlugin.doAsync = False
             rv = phaserPlugin.process()
             if rv != CPluginScript.SUCCEEDED:
                 self.appendErrorReport(204,'phaser_MR_RNP')

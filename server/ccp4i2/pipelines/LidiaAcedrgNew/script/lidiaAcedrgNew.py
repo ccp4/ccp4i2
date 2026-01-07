@@ -125,8 +125,6 @@ class lidiaAcedrgNew(CPluginScript):
         acedrgPlugin.container.inputData.ATOMMATCHOPTION = myATOMMATCHOPTION
         acedrgPlugin.container.inputData.DICTIN = myLOCALDICT
 
-        acedrgPlugin.doAsync = False
-
         result = acedrgPlugin.process()
         if result != CPluginScript.SUCCEEDED:
             self.finishWithStatus(result)

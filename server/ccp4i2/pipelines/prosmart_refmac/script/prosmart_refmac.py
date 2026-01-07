@@ -654,7 +654,6 @@ class prosmart_refmac(CPluginScript):
                 self.validate.container.controlParameters.DO_RAMA = validate_ramachandran
                 self.validate.container.controlParameters.DO_MOLPROBITY = validate_molprobity
 
-                self.validate.doAsync = False
                 self.validate.process()
 
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')

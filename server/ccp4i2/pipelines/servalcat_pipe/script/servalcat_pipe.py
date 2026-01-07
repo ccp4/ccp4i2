@@ -468,7 +468,6 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.controlParameters.DO_RAMA.set(validate_ramachandran)
             self.validate.container.controlParameters.DO_MOLPROBITY.set(validate_molprobity)
 
-            self.validate.doAsync = False
             self.validate.process()
 
             validateXMLPath = self.validate.makeFileName('PROGRAMXML')
