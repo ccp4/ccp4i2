@@ -125,6 +125,19 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
     ordering_fields = ['created_at']
     ordering = ['-created_at']
 
+    def perform_destroy(self, instance):
+        """Delete assay and clean up associated analysis results."""
+        # Delete analysis results first (they're not CASCADE from DataSeries)
+        analysis_ids = list(
+            instance.data_series.filter(analysis__isnull=False)
+            .values_list('analysis_id', flat=True)
+        )
+        if analysis_ids:
+            AnalysisResult.objects.filter(id__in=analysis_ids).delete()
+
+        # Call parent to delete assay (cascades to data series)
+        super().perform_destroy(instance)
+
     def get_serializer_class(self):
         if self.action == 'create':
             return AssayCreateSerializer

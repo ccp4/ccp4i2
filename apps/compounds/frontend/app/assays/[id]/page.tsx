@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -12,6 +12,13 @@ import {
   Skeleton,
   Divider,
   Link as MuiLink,
+  Button,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
+  CircularProgress,
 } from '@mui/material';
 import {
   Assessment,
@@ -21,6 +28,7 @@ import {
   CheckCircle,
   Cancel,
   HelpOutline,
+  Delete,
 } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
@@ -75,6 +83,8 @@ export default function AssayDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deleting, setDeleting] = useState(false);
 
   const { data: assay, isLoading: assayLoading } = api.get<Assay>(
     `assays/${id}/`
@@ -88,6 +98,30 @@ export default function AssayDetailPage({ params }: PageProps) {
   const { data: target } = api.get<Target>(
     assay?.target ? `targets/${assay.target}/` : null
   );
+
+  const handleDelete = async () => {
+    setDeleting(true);
+    try {
+      const response = await fetch(`/api/proxy/compounds/assays/${id}/`, {
+        method: 'DELETE',
+      });
+      if (response.ok || response.status === 204) {
+        // Navigate back to protocol page or assays list
+        if (protocol) {
+          router.push(`/assays/protocols/${protocol.id}`);
+        } else {
+          router.push('/assays');
+        }
+      } else {
+        console.error('Delete failed:', await response.text());
+      }
+    } catch (err) {
+      console.error('Delete error:', err);
+    } finally {
+      setDeleting(false);
+      setDeleteDialogOpen(false);
+    }
+  };
 
   // Helper to get chart data from a data series - requires dilution_series
   const getChartData = (row: DataSeries) => {
@@ -225,7 +259,7 @@ export default function AssayDetailPage({ params }: PageProps) {
           <>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
               <Assessment sx={{ fontSize: 48, color: 'info.main' }} />
-              <Box>
+              <Box sx={{ flex: 1 }}>
                 <Typography variant="h4">{assay.data_filename || 'Assay'}</Typography>
                 <Box sx={{ display: 'flex', gap: 1, mt: 0.5, flexWrap: 'wrap' }}>
                   {protocol && (
@@ -247,6 +281,15 @@ export default function AssayDetailPage({ params }: PageProps) {
                   )}
                 </Box>
               </Box>
+              <Button
+                variant="outlined"
+                color="error"
+                startIcon={<Delete />}
+                onClick={() => setDeleteDialogOpen(true)}
+                size="small"
+              >
+                Delete
+              </Button>
             </Box>
 
             <Divider sx={{ my: 2 }} />
@@ -316,6 +359,32 @@ export default function AssayDetailPage({ params }: PageProps) {
         emptyMessage="No data series in this assay"
         onRowClick={(row) => router.push(`/assays/data-series/${row.id}`)}
       />
+
+      {/* Delete confirmation dialog */}
+      <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
+        <DialogTitle>Delete Assay?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            This will permanently delete the assay &quot;{assay?.data_filename}&quot;
+            and all {dataSeries?.length || 0} data series with their analysis results.
+            Dilution series will not be affected.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)} disabled={deleting}>
+            Cancel
+          </Button>
+          <Button
+            onClick={handleDelete}
+            color="error"
+            variant="contained"
+            disabled={deleting}
+            startIcon={deleting ? <CircularProgress size={16} /> : <Delete />}
+          >
+            {deleting ? 'Deleting...' : 'Delete'}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }
