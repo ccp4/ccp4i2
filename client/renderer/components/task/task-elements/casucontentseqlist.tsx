@@ -1,22 +1,62 @@
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import {
+  Box,
   Button,
+  Card,
+  CardActionArea,
+  CardContent,
+  Chip,
   Dialog,
   DialogActions,
   DialogContent,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  Toolbar,
+  IconButton,
+  Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import { useApi } from "../../../api";
 import { useJob, usePrevious, valueOfItem } from "../../../utils";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Add, Delete } from "@mui/icons-material";
+import { Add, Delete, Science } from "@mui/icons-material";
 import { useParameterChangeIntent } from "../../../providers/parameter-change-intent-provider";
+
+/** Get abbreviated polymer type label */
+const getPolymerTypeLabel = (type: string): string => {
+  switch (type?.toUpperCase()) {
+    case "PROTEIN":
+      return "Protein";
+    case "DNA":
+      return "DNA";
+    case "RNA":
+      return "RNA";
+    default:
+      return type || "Unknown";
+  }
+};
+
+/** Get color for polymer type */
+const getPolymerTypeColor = (
+  type: string
+): "primary" | "secondary" | "success" | "warning" | "info" => {
+  switch (type?.toUpperCase()) {
+    case "PROTEIN":
+      return "primary";
+    case "DNA":
+      return "info";
+    case "RNA":
+      return "success";
+    default:
+      return "warning";
+  }
+};
+
+/** Format sequence for preview (first N residues with ellipsis) */
+const formatSequencePreview = (sequence: string, maxLength = 60): string => {
+  if (!sequence) return "No sequence";
+  const seq = sequence.replace(/\s/g, "");
+  if (seq.length <= maxLength) return seq;
+  return seq.substring(0, maxLength) + "…";
+};
 
 export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
   props
@@ -31,21 +71,27 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
   // Store the object path when we open, so it doesn't change during editing
   const selectedObjectPathRef = useRef<string | null>(null);
 
-  const { useTaskItem, setParameter, container, mutateContainer, getValidationColor } = useJob(
-    job.id
-  );
+  const {
+    useTaskItem,
+    setParameter,
+    mutateContainer,
+    getValidationColor,
+  } = useJob(job.id);
   const { intent, setIntent, clearIntent } = useParameterChangeIntent();
 
   const { item, update: updateList, value: itemValue } = useTaskItem(itemName);
   const previousItemValue = usePrevious(itemValue);
 
-  const handleOpenDialog = useCallback((index: number) => {
-    if (!item?._value?.[index]) return;
+  const handleOpenDialog = useCallback(
+    (index: number) => {
+      if (!item?._value?.[index]) return;
 
-    // Store the object path at the time of opening
-    selectedObjectPathRef.current = item._value[index]._objectPath;
-    setIsDialogOpen(true);
-  }, [item?._value]);
+      // Store the object path at the time of opening
+      selectedObjectPathRef.current = item._value[index]._objectPath;
+      setIsDialogOpen(true);
+    },
+    [item?._value]
+  );
 
   const handleCloseDialog = useCallback(() => {
     setIsDialogOpen(false);
@@ -128,135 +174,177 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
   return (
     item && (
       <>
-        <Toolbar sx={{ m: 0, p: 0, mt: 0, pt: 0 }}>
-          <Typography variant="body1" sx={{ mt: 0, pt: 0, flexGrow: 1 }}>
-            Click a table row to edit the constituents of the ASU
+        {/* Header with add button */}
+        <Stack
+          direction="row"
+          justifyContent="space-between"
+          alignItems="center"
+          sx={{ mb: 2 }}
+        >
+          <Typography variant="body2" color="text.secondary">
+            Click a card to edit sequence details
           </Typography>
           <Button
             variant="contained"
+            size="small"
             startIcon={<Add />}
             onClick={async () => {
               await extendListItem();
             }}
-          />
-        </Toolbar>
+          >
+            Add Sequence
+          </Button>
+        </Stack>
 
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell style={{ maxWidth: "5rem" }}>Name</TableCell>
-              <TableCell style={{ maxWidth: "5rem" }}>Type</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell style={{ maxWidth: "5rem" }}>Number in AU</TableCell>
-              <TableCell>Sequence</TableCell>
-              <TableCell style={{ maxWidth: "5rem" }}>Delete</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {item?._value?.map((contentElement: any, iElement: number) => {
-              // Get validation color for the whole row (CAsuContentSeq element)
-              const rowValidationColor = getValidationColor(contentElement);
-              return (
-                <TableRow
-                  key={`${iElement}`}
-                  onClick={() => handleOpenDialog(iElement)}
-                  sx={{
-                    transition: "box-shadow 0.2s",
-                    cursor: "pointer",
-                    // Apply left border based on row validation status
-                    borderLeft: rowValidationColor !== "inherit" ? `4px solid ${rowValidationColor}` : undefined,
-                    "&:hover": {
-                      boxShadow: 3,
-                      backgroundColor: "rgba(0, 0, 0, 0.04)",
-                    },
-                  }}
-                >
-                  {[
-                    "name",
-                    "polymerType",
-                    "description",
-                    "nCopies",
-                    "sequence",
-                  ].map((property) => {
-                    // Get validation color for each individual field
-                    const cellValidationColor = getValidationColor(contentElement._value[property]);
-                    return (
-                      <TableCell
-                        key={property}
-                        sx={{
-                          maxWidth: ["name", "polymerType", "nCopies"].includes(
-                            property
-                          )
-                            ? "5rem"
-                            : property === "description"
-                              ? "10rem"
-                              : property === "sequence"
-                                ? "20rem"
-                                : undefined,
-                          // Apply bottom border if field has validation error
-                          borderBottom: cellValidationColor !== "inherit"
-                            ? `3px solid ${cellValidationColor}`
-                            : undefined,
-                        }}
+        {/* Sequence cards */}
+        <Stack spacing={1.5}>
+          {item?._value?.map((contentElement: any, iElement: number) => {
+            const rowValidationColor = getValidationColor(contentElement);
+            const name = contentElement._value?.name?._value || `Sequence ${iElement + 1}`;
+            const polymerType = contentElement._value?.polymerType?._value || "";
+            const description = contentElement._value?.description?._value || "";
+            const nCopies = contentElement._value?.nCopies?._value ?? 1;
+            const sequence = contentElement._value?.sequence?._value || "";
+            const seqLength = sequence.replace(/\s/g, "").length;
+
+            return (
+              <Card
+                key={`${iElement}`}
+                variant="outlined"
+                sx={{
+                  borderLeft:
+                    rowValidationColor !== "inherit"
+                      ? `4px solid ${rowValidationColor}`
+                      : undefined,
+                  transition: "all 0.2s",
+                  "&:hover": {
+                    boxShadow: 2,
+                    borderColor: "primary.main",
+                  },
+                }}
+              >
+                <CardActionArea onClick={() => handleOpenDialog(iElement)}>
+                  <CardContent sx={{ py: 1.5, "&:last-child": { pb: 1.5 } }}>
+                    <Stack spacing={1}>
+                      {/* Top row: name, type, copies, delete */}
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
                       >
-                        <div
-                          style={{
-                            maxHeight: "12rem",
-                            overflowY: "auto",
-                            wordWrap: "break-word",
-                            whiteSpace: "pre-wrap",
+                        <Stack direction="row" alignItems="center" spacing={1.5}>
+                          <Science fontSize="small" color="action" />
+                          <Typography variant="subtitle2" fontWeight="bold">
+                            {name}
+                          </Typography>
+                          <Chip
+                            label={getPolymerTypeLabel(polymerType)}
+                            size="small"
+                            color={getPolymerTypeColor(polymerType)}
+                            variant="outlined"
+                          />
+                          {nCopies > 1 && (
+                            <Chip
+                              label={`×${nCopies} copies`}
+                              size="small"
+                              variant="filled"
+                              color="default"
+                            />
+                          )}
+                        </Stack>
+                        <Stack direction="row" alignItems="center" spacing={1}>
+                          <Typography variant="caption" color="text.secondary">
+                            {seqLength} residues
+                          </Typography>
+                          <Tooltip title="Delete sequence">
+                            <IconButton
+                              size="small"
+                              color="error"
+                              onClick={(ev) => {
+                                ev.stopPropagation();
+                                ev.preventDefault();
+                                deleteItem(iElement);
+                              }}
+                            >
+                              <Delete fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                        </Stack>
+                      </Stack>
+
+                      {/* Description if present */}
+                      {description && (
+                        <Typography
+                          variant="body2"
+                          color="text.secondary"
+                          sx={{
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
                           }}
                         >
-                          {contentElement._value[property]?._value ?? ""}
-                        </div>
-                      </TableCell>
-                    );
-                  })}
-                  <TableCell style={{ maxWidth: "5rem" }}>
-                    <Button
-                      startIcon={<Delete />}
-                      size="small"
-                      onClick={(ev: any) => {
-                        ev.stopPropagation();
-                        ev.preventDefault();
-                        deleteItem(iElement);
-                      }}
-                    />
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-          </TableBody>
-        </Table>
+                          {description}
+                        </Typography>
+                      )}
+
+                      {/* Sequence preview */}
+                      <Box
+                        sx={{
+                          p: 1,
+                          bgcolor: "action.hover",
+                          borderRadius: 0.5,
+                          fontFamily: "monospace",
+                          fontSize: "0.75rem",
+                          letterSpacing: "0.05em",
+                          color: "text.secondary",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          whiteSpace: "nowrap",
+                        }}
+                      >
+                        {formatSequencePreview(sequence)}
+                      </Box>
+                    </Stack>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            );
+          })}
+        </Stack>
+
+        {/* Empty state */}
         {(item?._value?.length ?? 0) === 0 && (
-          <div
-            style={{
-              margin: "1rem auto",
-              maxWidth: 340,
-              background: "rgba(255,255,200,0.95)",
-              borderRadius: 10,
-              boxShadow: "0 1px 4px rgba(0,0,0,0.06)",
-              padding: "0.75rem 1rem",
+          <Box
+            sx={{
+              mt: 2,
+              p: 3,
               textAlign: "center",
-              color: "#666",
-              fontSize: 15,
-              lineHeight: 1.3,
-              position: "relative",
+              borderRadius: 2,
+              bgcolor: "action.hover",
+              border: 1,
+              borderColor: "divider",
+              borderStyle: "dashed",
             }}
           >
-            <span
-              role="img"
-              aria-label="hint"
-              style={{ fontSize: 20, marginBottom: 4 }}
+            <Science sx={{ fontSize: 40, color: "action.disabled", mb: 1 }} />
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+              No sequences defined yet
+            </Typography>
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<Add />}
+              onClick={async () => {
+                await extendListItem();
+              }}
+              sx={{ mt: 1 }}
             >
-              💡
-            </span>
-            <div>
-              No content yet. Use the <b>+</b> button above to add a constituent
-              to the ASU.
-            </div>
-          </div>
+              Add First Sequence
+            </Button>
+          </Box>
         )}
+
+        {/* Edit dialog */}
         <Dialog
           open={isDialogOpen}
           onClose={handleCloseDialog}

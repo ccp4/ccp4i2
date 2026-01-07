@@ -1,10 +1,5 @@
-import {
-  Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableRow,
-} from "@mui/material";
+import { Box, Chip, Stack, Typography } from "@mui/material";
+import GridOnIcon from "@mui/icons-material/GridOn";
 
 interface CCell {
   a: number;
@@ -39,70 +34,109 @@ interface BaseSpacegroupCellElementProps {
   data?: CObsData;
 }
 
+/** Format cell parameter value with appropriate precision */
+const formatCellParam = (value: number, isAngle: boolean): string => {
+  if (isAngle) {
+    return value.toFixed(1) + "°";
+  }
+  return value.toFixed(2) + " Å";
+};
+
+/** Format resolution value */
+const formatResolution = (value: number | undefined): string => {
+  if (typeof value !== "number") return "—";
+  return value.toFixed(2) + " Å";
+};
+
 export const BaseSpacegroupCellElement: React.FC<
   BaseSpacegroupCellElementProps
-> = (props) => {
-  return props.data?.cell ? (
-    <Stack direction="column">
-      <Table>
-        <TableBody>
-          <TableRow>
-            <TableCell variant="head">Spacegroup</TableCell>
-            <TableCell
-              variant="body"
-              key="Spacegroup"
-              colSpan={6}
-              sx={{ textAlign: "justify" }}
-            >
-              {typeof props.data?.spaceGroup === "string"
-                ? JSON.stringify(props.data?.spaceGroup)
-                : "?"}
-            </TableCell>
-          </TableRow>
-          {props.data.cell && (
-            <TableRow>
-              <TableCell variant="head">Cell</TableCell>
-              {["a", "b", "c", "alpha", "beta", "gamma"].map((key: string) => {
-                if (props?.data?.cell) {
-                  const { a, b, c, alpha, beta, gamma } = props.data.cell;
-                  const cell: CCell = { a, b, c, alpha, beta, gamma };
-                  const constrainedKey = key as
-                    | "a"
-                    | "b"
-                    | "c"
-                    | "alpha"
-                    | "beta"
-                    | "gamma";
-                  return (
-                    <TableCell variant="body" key={key}>
-                      {key}={cell[constrainedKey].toPrecision(4)}
-                    </TableCell>
-                  );
-                }
-              })}
-            </TableRow>
-          )}
-          <TableRow>
-            <TableCell variant="head">Resolution</TableCell>
-            <TableCell variant="body" key="low">
-              {(() => {
-                // Support both formats: resolutionRange.low (legacy) and lowRes (digest API)
-                const low = props.data?.resolutionRange?.low ?? props.data?.lowRes;
-                return typeof low === "number" ? low.toPrecision(4) : "?";
-              })()}
-            </TableCell>
-            <TableCell variant="body" key="high">
-              {(() => {
-                // Support both formats: resolutionRange.high (legacy) and highRes (digest API)
-                const high = props.data?.resolutionRange?.high ?? props.data?.highRes;
-                return typeof high === "number" ? high.toPrecision(4) : "?";
-              })()}
-            </TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </Stack>
-  ) : (
-    <div></div>
+> = ({ data }) => {
+  if (!data?.cell) {
+    return null;
+  }
+
+  const { cell, spaceGroup } = data;
+  const lowRes = data.resolutionRange?.low ?? data.lowRes;
+  const highRes = data.resolutionRange?.high ?? data.highRes;
+
+  return (
+    <Box
+      sx={{
+        p: 1.5,
+        borderRadius: 1,
+        bgcolor: "action.hover",
+        border: 1,
+        borderColor: "divider",
+      }}
+    >
+      <Stack spacing={1.5}>
+        {/* Spacegroup */}
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <GridOnIcon fontSize="small" color="action" />
+          <Typography variant="body2" color="text.secondary">
+            Spacegroup:
+          </Typography>
+          <Chip
+            label={spaceGroup || "Unknown"}
+            size="small"
+            variant="outlined"
+            color="primary"
+          />
+        </Stack>
+
+        {/* Cell parameters */}
+        <Box>
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ mb: 0.5, display: "block" }}
+          >
+            Unit cell
+          </Typography>
+          <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
+            <Chip
+              label={`a = ${formatCellParam(cell.a, false)}`}
+              size="small"
+              variant="outlined"
+            />
+            <Chip
+              label={`b = ${formatCellParam(cell.b, false)}`}
+              size="small"
+              variant="outlined"
+            />
+            <Chip
+              label={`c = ${formatCellParam(cell.c, false)}`}
+              size="small"
+              variant="outlined"
+            />
+            <Chip
+              label={`α = ${formatCellParam(cell.alpha, true)}`}
+              size="small"
+              variant="outlined"
+            />
+            <Chip
+              label={`β = ${formatCellParam(cell.beta, true)}`}
+              size="small"
+              variant="outlined"
+            />
+            <Chip
+              label={`γ = ${formatCellParam(cell.gamma, true)}`}
+              size="small"
+              variant="outlined"
+            />
+          </Stack>
+        </Box>
+
+        {/* Resolution */}
+        <Stack direction="row" alignItems="center" spacing={1}>
+          <Typography variant="body2" color="text.secondary">
+            Resolution:
+          </Typography>
+          <Typography variant="body2">
+            {formatResolution(lowRes)} – {formatResolution(highRes)}
+          </Typography>
+        </Stack>
+      </Stack>
+    </Box>
   );
 };

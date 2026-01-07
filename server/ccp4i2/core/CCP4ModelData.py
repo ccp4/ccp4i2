@@ -2516,16 +2516,26 @@ class CSequence(CSequenceStub, CBioPythonSeqInterface):
     - Save to FASTA format
     """
 
-    def loadFile(self, fileName: str, format: str = 'unknown'):
+    def loadFile(self, fileName: str = None, format: str = 'unknown'):
         """
         Load sequence from file.
 
         Args:
-            fileName: Path to sequence file
+            fileName: Path to sequence file. If None, gets path from parent CDataFile.
             format: Format hint ('internal', 'uniprot', 'fasta', 'pir', 'unknown')
         """
         from pathlib import Path
         from ccp4i2.core.base_object.error_reporting import CErrorReport
+
+        # If no path provided, get from parent CDataFile
+        if fileName is None:
+            parent = self.get_parent()
+            if parent is not None and hasattr(parent, 'getFullPath'):
+                fileName = parent.getFullPath()
+
+        # Return early if still no file path
+        if not fileName:
+            return
 
         if format == 'internal':
             # Internal format: simple FASTA-like with pipe-separated metadata

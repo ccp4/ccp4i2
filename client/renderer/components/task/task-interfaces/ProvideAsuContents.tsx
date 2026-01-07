@@ -1,12 +1,9 @@
 import {
   Alert,
+  Box,
   Grid2,
+  LinearProgress,
   Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
   Typography,
 } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
@@ -179,28 +176,99 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             </Grid2>
             <Grid2 size={{ xs: 12, sm: 4 }}>
               {matthewsAnalysis?.success && matthewsAnalysis?.data?.result ? (
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Multiplier</TableCell>
-                      <TableCell>%Solvent</TableCell>
-                      <TableCell>Probability</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {matthewsAnalysis?.data?.result?.results.map((result) => (
-                      <TableRow key={result.nmol_in_asu}>
-                        <TableCell>{result.nmol_in_asu}</TableCell>
-                        <TableCell>
-                          {result.percent_solvent.toFixed(2)}
-                        </TableCell>
-                        <TableCell>{result.prob_matth.toFixed(2)}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <Box
+                  sx={{
+                    p: 1.5,
+                    borderRadius: 1,
+                    bgcolor: "action.hover",
+                    border: 1,
+                    borderColor: "divider",
+                  }}
+                >
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ mb: 1, display: "block" }}
+                  >
+                    Matthews Analysis
+                  </Typography>
+                  <Stack spacing={1}>
+                    {matthewsAnalysis?.data?.result?.results.map(
+                      (result: {
+                        nmol_in_asu: number;
+                        percent_solvent: number;
+                        prob_matth: number;
+                      }) => {
+                        const probability = result.prob_matth;
+                        const isLikely = probability > 0.5;
+                        return (
+                          <Box
+                            key={result.nmol_in_asu}
+                            sx={{
+                              p: 1,
+                              borderRadius: 0.5,
+                              bgcolor: isLikely
+                                ? "success.main"
+                                : "background.paper",
+                              color: isLikely
+                                ? "success.contrastText"
+                                : "text.primary",
+                              border: 1,
+                              borderColor: isLikely
+                                ? "success.main"
+                                : "divider",
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="space-between"
+                              alignItems="center"
+                            >
+                              <Typography variant="body2" fontWeight="medium">
+                                {result.nmol_in_asu} mol/ASU
+                              </Typography>
+                              <Typography variant="body2" fontWeight="bold">
+                                {(probability * 100).toFixed(0)}%
+                              </Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
+                              <Typography
+                                variant="caption"
+                                sx={{
+                                  opacity: isLikely ? 0.9 : 0.7,
+                                }}
+                              >
+                                {result.percent_solvent.toFixed(1)}% solvent
+                              </Typography>
+                              <LinearProgress
+                                variant="determinate"
+                                value={probability * 100}
+                                sx={{
+                                  flex: 1,
+                                  alignSelf: "center",
+                                  height: 4,
+                                  borderRadius: 2,
+                                  bgcolor: isLikely
+                                    ? "success.light"
+                                    : "action.disabledBackground",
+                                  "& .MuiLinearProgress-bar": {
+                                    bgcolor: isLikely
+                                      ? "success.contrastText"
+                                      : "primary.main",
+                                  },
+                                }}
+                              />
+                            </Stack>
+                          </Box>
+                        );
+                      }
+                    )}
+                  </Stack>
+                </Box>
               ) : (
-                "Provide MTZ file to calculate Matthews coefficient"
+                <Typography variant="body2" color="text.secondary">
+                  Provide MTZ file to calculate Matthews coefficient
+                </Typography>
               )}
             </Grid2>
           </Grid2>
