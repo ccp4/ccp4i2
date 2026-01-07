@@ -110,9 +110,14 @@ def fit(input_data: dict) -> dict:
     # Set up bounds and initial guess
     p0 = [top_init, bottom_init, ic50_init, hill_init]
 
-    # Reasonable bounds for biological data
-    bounds_lower = [0, -20, concentrations.min() / 100, 0.1]
-    bounds_upper = [200, 100, concentrations.max() * 100, 10]
+    # Dynamic bounds based on actual data range (handles both percent and raw values)
+    data_min = min(responses.min(), bottom_init if bottom_init else responses.min())
+    data_max = max(responses.max(), top_init if top_init else responses.max())
+    data_range = data_max - data_min
+
+    # Allow some headroom beyond observed data
+    bounds_lower = [data_min - data_range * 0.5, data_min - data_range * 0.5, concentrations.min() / 100, 0.1]
+    bounds_upper = [data_max + data_range * 0.5, data_max + data_range * 0.5, concentrations.max() * 100, 10]
 
     # Handle fixed parameters
     fix_hill = parameters.get('fix_hill')
@@ -142,12 +147,12 @@ def fit(input_data: dict) -> dict:
 
             if fix_top is None:
                 p0_adj.append(top_init)
-                bounds_lower_adj.append(0)
-                bounds_upper_adj.append(200)
+                bounds_lower_adj.append(data_min - data_range * 0.5)
+                bounds_upper_adj.append(data_max + data_range * 0.5)
             if fix_bottom is None:
                 p0_adj.append(bottom_init)
-                bounds_lower_adj.append(-20)
-                bounds_upper_adj.append(100)
+                bounds_lower_adj.append(data_min - data_range * 0.5)
+                bounds_upper_adj.append(data_max + data_range * 0.5)
 
             p0_adj.append(ic50_init)  # IC50 always free
             bounds_lower_adj.append(concentrations.min() / 100)

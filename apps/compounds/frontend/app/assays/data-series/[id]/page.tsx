@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -17,15 +17,17 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  Button,
+  CircularProgress,
 } from '@mui/material';
 import {
   Assessment,
-  Science,
   Medication,
   CheckCircle,
   Cancel,
   HelpOutline,
   ShowChart,
+  Refresh,
 } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DoseResponseChart } from '@/components/DoseResponseChart';
@@ -75,8 +77,9 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const [analysing, setAnalysing] = useState(false);
 
-  const { data: series, isLoading: seriesLoading } = api.get<DataSeries>(
+  const { data: series, isLoading: seriesLoading, mutate: mutateSeries } = api.get<DataSeries>(
     `data-series/${id}/`
   );
   const { data: assay } = api.get<Assay>(
@@ -86,14 +89,43 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
     series?.compound ? `compounds/${series.compound}/` : null
   );
 
-  // Extract chart data from series
-  const chartData = series?.dilution_series && series?.extracted_data ? {
-    concentrations: series.dilution_series.concentrations || [],
-    responses: Array.isArray(series.extracted_data)
-      ? series.extracted_data
-      : [],
-    unit: series.dilution_series.unit,
-  } : null;
+  const handleReanalyse = async () => {
+    if (!id) return;
+    setAnalysing(true);
+    try {
+      const response = await fetch(`/api/proxy/compounds/data-series/${id}/analyse/`, {
+        method: 'POST',
+      });
+      if (response.ok) {
+        // Refresh the series data to show updated analysis
+        mutateSeries();
+      } else {
+        console.error('Analysis failed:', await response.text());
+      }
+    } catch (err) {
+      console.error('Analysis error:', err);
+    } finally {
+      setAnalysing(false);
+    }
+  };
+
+  // Extract chart data from series - requires dilution_series
+  const chartData = series?.dilution_series?.concentrations && series?.extracted_data ? (() => {
+    const concentrations = series.dilution_series.concentrations;
+    let responses = Array.isArray(series.extracted_data) ? series.extracted_data : [];
+    const unit = series.dilution_series.unit || 'nM';
+
+    // Detect format: if extracted_data has 2 more elements than concentrations,
+    // it has embedded controls at first and last positions
+    if (responses.length === concentrations.length + 2) {
+      responses = responses.slice(1, -1);
+    }
+
+    return { concentrations, responses, unit };
+  })() : null;
+
+  // Check for missing dilution series
+  const missingDilutionSeries = series && !series.dilution_series;
 
   const fitParams = series?.analysis ? {
     ec50: series.analysis.results?.EC50,
@@ -109,10 +141,15 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
         items={[
           { label: 'Home', href: '/', icon: 'home' },
           { label: 'Assays', href: '/assays', icon: 'assay' },
+          ...(assay?.protocol_name ? [{
+            label: assay.protocol_name,
+            href: `/assays/protocols/${assay.protocol}`,
+            icon: 'protocol' as const,
+          }] : []),
           {
             label: assay?.data_filename || 'Assay',
             href: series?.assay ? `/assays/${series.assay}` : undefined,
-            icon: 'assay',
+            icon: 'assay' as const,
           },
           { label: series?.compound_name || 'Data Series' },
         ]}
@@ -179,16 +216,25 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                   <Paper
                     sx={{
                       p: 4,
-                      bgcolor: 'grey.50',
+                      bgcolor: missingDilutionSeries ? 'error.50' : 'grey.50',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       height: 350,
+                      flexDirection: 'column',
+                      gap: 1,
                     }}
                   >
-                    <Typography color="text.secondary">
-                      No concentration data available
+                    <Typography color={missingDilutionSeries ? 'error' : 'text.secondary'} fontWeight={missingDilutionSeries ? 500 : 400}>
+                      {missingDilutionSeries
+                        ? 'No dilution series configured'
+                        : 'No concentration data available'}
                     </Typography>
+                    {missingDilutionSeries && (
+                      <Typography variant="caption" color="text.secondary">
+                        Set preferred dilutions on the protocol to enable analysis
+                      </Typography>
+                    )}
                   </Paper>
                 )}
               </Grid>
@@ -282,6 +328,18 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                   </Paper>
                 )}
 
+                {/* Re-analyse button */}
+                <Button
+                  variant="outlined"
+                  startIcon={analysing ? <CircularProgress size={16} /> : <Refresh />}
+                  onClick={handleReanalyse}
+                  disabled={analysing || missingDilutionSeries}
+                  sx={{ mt: 2 }}
+                  size="small"
+                >
+                  {analysing ? 'Analysing...' : 'Re-analyse'}
+                </Button>
+
                 {/* Compound structure if matched */}
                 {compound && (
                   <Box sx={{ mt: 3 }}>
@@ -305,59 +363,114 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
             </Grid>
 
             {/* Raw data table */}
-            {chartData && chartData.concentrations.length > 0 && (
-              <>
-                <Divider sx={{ my: 3 }} />
-                <Typography variant="h6" gutterBottom>
-                  Raw Data
-                </Typography>
-                <TableContainer component={Paper} variant="outlined">
-                  <Table size="small">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell>Point</TableCell>
-                        <TableCell>
-                          Concentration ({series.dilution_series?.unit || 'nM'})
-                        </TableCell>
-                        <TableCell>Response</TableCell>
-                        <TableCell>Included</TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      {chartData.concentrations.map((conc, idx) => (
-                        <TableRow
-                          key={idx}
-                          sx={{
-                            bgcolor: (Array.isArray(series.skip_points) ? series.skip_points : []).includes(idx)
-                              ? 'grey.100'
-                              : undefined,
-                          }}
-                        >
-                          <TableCell>{idx + 1}</TableCell>
+            {chartData && chartData.concentrations.length > 0 && (() => {
+              // Extract control values from extracted_data if present
+              const rawData = Array.isArray(series.extracted_data) ? series.extracted_data : [];
+              const hasControls = rawData.length === chartData.concentrations.length + 2;
+              const minControl = hasControls ? rawData[0] : null;
+              const maxControl = hasControls ? rawData[rawData.length - 1] : null;
+
+              return (
+                <>
+                  <Divider sx={{ my: 3 }} />
+                  <Typography variant="h6" gutterBottom>
+                    Raw Data
+                  </Typography>
+                  <TableContainer component={Paper} variant="outlined">
+                    <Table size="small">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Point</TableCell>
                           <TableCell>
-                            <Typography fontFamily="monospace">
-                              {conc.toExponential(2)}
-                            </Typography>
+                            Concentration ({series.dilution_series?.unit || 'nM'})
                           </TableCell>
-                          <TableCell>
-                            <Typography fontFamily="monospace">
-                              {chartData.responses[idx]?.toFixed(1) ?? '-'}
-                            </Typography>
-                          </TableCell>
-                          <TableCell>
-                            {(Array.isArray(series.skip_points) ? series.skip_points : []).includes(idx) ? (
-                              <Cancel fontSize="small" color="disabled" />
-                            ) : (
-                              <CheckCircle fontSize="small" color="success" />
-                            )}
-                          </TableCell>
+                          <TableCell>Response</TableCell>
+                          <TableCell>Included</TableCell>
                         </TableRow>
-                      ))}
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </>
-            )}
+                      </TableHead>
+                      <TableBody>
+                        {/* Min control row */}
+                        {hasControls && (
+                          <TableRow sx={{ bgcolor: 'info.50' }}>
+                            <TableCell>
+                              <Chip label="Min Ctrl" size="small" color="info" variant="outlined" />
+                            </TableCell>
+                            <TableCell>
+                              <Typography variant="body2" color="text.secondary">
+                                (low signal control)
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Typography fontFamily="monospace" fontWeight={500}>
+                                {typeof minControl === 'number' ? minControl.toFixed(1) : '-'}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Typography variant="caption" color="text.secondary">
+                                Control
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+                        )}
+                        {/* Data points */}
+                        {chartData.concentrations.map((conc, idx) => (
+                          <TableRow
+                            key={idx}
+                            sx={{
+                              bgcolor: (Array.isArray(series.skip_points) ? series.skip_points : []).includes(idx)
+                                ? 'grey.100'
+                                : undefined,
+                            }}
+                          >
+                            <TableCell>{idx + 1}</TableCell>
+                            <TableCell>
+                              <Typography fontFamily="monospace">
+                                {conc.toExponential(2)}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Typography fontFamily="monospace">
+                                {chartData.responses[idx]?.toFixed(1) ?? '-'}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              {(Array.isArray(series.skip_points) ? series.skip_points : []).includes(idx) ? (
+                                <Cancel fontSize="small" color="disabled" />
+                              ) : (
+                                <CheckCircle fontSize="small" color="success" />
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                        {/* Max control row */}
+                        {hasControls && (
+                          <TableRow sx={{ bgcolor: 'primary.50' }}>
+                            <TableCell>
+                              <Chip label="Max Ctrl" size="small" color="primary" variant="outlined" />
+                            </TableCell>
+                            <TableCell>
+                              <Typography variant="body2" color="text.secondary">
+                                (high signal control)
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Typography fontFamily="monospace" fontWeight={500}>
+                                {typeof maxControl === 'number' ? maxControl.toFixed(1) : '-'}
+                              </Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Typography variant="caption" color="text.secondary">
+                                Control
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </>
+              );
+            })()}
 
             {/* Source info */}
             <Divider sx={{ my: 3 }} />

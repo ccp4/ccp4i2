@@ -58,16 +58,30 @@ export async function POST(
         body: formData,
       });
     } else {
-      // Handle JSON requests
-      const body = await request.json();
-      response = await fetch(url, {
+      // Handle JSON requests (or empty body for action endpoints)
+      let body: any = null;
+      const contentLength = request.headers.get('content-length');
+      if (contentLength && parseInt(contentLength) > 0) {
+        try {
+          body = await request.json();
+        } catch (e) {
+          // Ignore JSON parse errors for empty bodies
+        }
+      }
+
+      const fetchOptions: RequestInit = {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: JSON.stringify(body),
-      });
+      };
+
+      if (body !== null) {
+        (fetchOptions.headers as Record<string, string>)['Content-Type'] = 'application/json';
+        fetchOptions.body = JSON.stringify(body);
+      }
+
+      response = await fetch(url, fetchOptions);
     }
 
     const data = await response.json();

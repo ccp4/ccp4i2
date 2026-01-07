@@ -94,18 +94,24 @@ function extractFitParams(analysis: DataSeriesItem['analysis']): FitParameters |
 }
 
 /**
- * Extract dose-response data from a data series
+ * Extract dose-response data from a data series - requires dilution_series
  */
 function extractDoseResponseData(series: DataSeriesItem): DoseResponseData | null {
   if (!series.dilution_series?.concentrations || !series.extracted_data) {
     return null;
   }
 
-  return {
-    concentrations: series.dilution_series.concentrations,
-    responses: series.extracted_data,
-    unit: series.dilution_series.unit,
-  };
+  const concentrations = series.dilution_series.concentrations;
+  let responses = series.extracted_data;
+  const unit = series.dilution_series.unit || 'nM';
+
+  // Detect format: if extracted_data has 2 more elements than concentrations,
+  // it has embedded controls at first and last positions
+  if (responses.length === concentrations.length + 2) {
+    responses = responses.slice(1, -1);
+  }
+
+  return { concentrations, responses, unit };
 }
 
 export function DataSeriesDetailModal({

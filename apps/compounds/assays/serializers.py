@@ -128,6 +128,46 @@ class DataSeriesDetailSerializer(serializers.ModelSerializer):
         ]
 
 
+class DataSeriesCreateSerializer(serializers.ModelSerializer):
+    """Serializer for creating data series from frontend extraction."""
+
+    class Meta:
+        model = DataSeries
+        fields = [
+            'id', 'assay', 'compound', 'compound_name',
+            'row', 'start_column', 'end_column',
+            'dilution_series', 'extracted_data',
+        ]
+        read_only_fields = ['id']
+
+    def create(self, validated_data):
+        # Try to match compound by name if not provided
+        if not validated_data.get('compound') and validated_data.get('compound_name'):
+            from compounds.registry.models import Compound
+            import re
+            compound_name = validated_data['compound_name']
+
+            # Parse NCL-XXXXXXXX format to extract reg_number
+            # formatted_id is a @cached_property, not a DB field, so we must filter by reg_number
+            match = re.match(r'^NCL-0*(\d+)$', compound_name, re.IGNORECASE)
+            if match:
+                try:
+                    reg_number = int(match.group(1))
+                    compound = Compound.objects.filter(reg_number=reg_number).first()
+                    if compound:
+                        validated_data['compound'] = compound
+                except ValueError:
+                    pass
+
+        # Inherit dilution_series from protocol if not explicitly provided
+        if not validated_data.get('dilution_series'):
+            assay = validated_data.get('assay')
+            if assay and assay.protocol and assay.protocol.preferred_dilutions:
+                validated_data['dilution_series'] = assay.protocol.preferred_dilutions
+
+        return super().create(validated_data)
+
+
 class AssayListSerializer(serializers.ModelSerializer):
     """Compact serializer for list views."""
     protocol_name = serializers.CharField(source='protocol.name', read_only=True)

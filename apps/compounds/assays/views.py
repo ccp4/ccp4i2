@@ -11,6 +11,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from reversion.models import Version
 
+from .analysis import analyse_assay, analyse_data_series
+
 from .models import (
     DilutionSeries,
     Protocol,
@@ -30,6 +32,7 @@ from .serializers import (
     AssayCreateSerializer,
     DataSeriesListSerializer,
     DataSeriesDetailSerializer,
+    DataSeriesCreateSerializer,
     AnalysisResultSerializer,
     HypothesisListSerializer,
     HypothesisDetailSerializer,
@@ -155,17 +158,32 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
     @action(detail=True, methods=['post'])
     def analyse_all(self, request, pk=None):
         """
-        Run analysis on all data series in this assay.
+        Run curve fitting analysis on all data series in this assay.
 
-        This is a placeholder - actual implementation would run
-        curve fitting on each series.
+        Returns summary of analysis results.
         """
-        assay = self.get_object()
-        # TODO: Implement actual analysis logic from legacy code
-        return Response({
-            'status': 'not_implemented',
-            'message': 'Bulk analysis not yet implemented'
-        })
+        import logging
+        logger = logging.getLogger(__name__)
+
+        try:
+            assay = self.get_object()
+            logger.info(f"Starting analysis for assay {assay.id} with {assay.data_series.count()} data series")
+            results = analyse_assay(assay)
+            logger.info(f"Analysis completed: {results['successful']} successful, {results['failed']} failed")
+            return Response({
+                'status': 'completed',
+                'total': results['total'],
+                'successful': results['successful'],
+                'failed': results['failed'],
+                'valid': results['valid'],
+                'invalid': results['invalid'],
+            })
+        except Exception as e:
+            logger.exception(f"Analysis failed for assay {pk}: {e}")
+            return Response({
+                'status': 'error',
+                'error': str(e),
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
@@ -178,6 +196,8 @@ class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
     ordering = ['compound_name']
 
     def get_serializer_class(self):
+        if self.action == 'create':
+            return DataSeriesCreateSerializer
         if self.action == 'retrieve':
             return DataSeriesDetailSerializer
         return DataSeriesListSerializer
@@ -187,15 +207,23 @@ class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
         """
         Run curve fitting analysis on this data series.
 
-        This is a placeholder - actual implementation would run
-        Hill-Langmuir or other fitting.
+        Returns the analysis result.
         """
         series = self.get_object()
-        # TODO: Implement actual analysis logic from legacy code
-        return Response({
-            'status': 'not_implemented',
-            'message': 'Analysis not yet implemented'
-        })
+        fitting_method = series.assay.protocol.get_effective_fitting_method()
+
+        try:
+            analysis = analyse_data_series(series, fitting_method)
+            return Response({
+                'status': analysis.status,
+                'results': analysis.results,
+                'kpi_value': analysis.kpi_value,
+            })
+        except Exception as e:
+            return Response({
+                'status': 'error',
+                'error': str(e),
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class AnalysisResultViewSet(viewsets.ReadOnlyModelViewSet):

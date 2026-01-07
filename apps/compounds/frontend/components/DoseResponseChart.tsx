@@ -30,8 +30,12 @@ ChartJS.register(
 );
 
 /**
- * Hill-Langmuir equation for dose-response curve fitting
- * y = minVal + (maxVal - minVal) / (1 + (EC50/x)^Hill)
+ * Four-parameter logistic (4PL) equation for dose-response curve fitting
+ * y = minVal + (maxVal - minVal) / (1 + (x/EC50)^Hill)
+ *
+ * This matches the Python fitting implementation where:
+ * - minVal (bottom) is approached at high concentrations
+ * - maxVal (top) is approached at low concentrations
  */
 function hillLangmuir(
   x: number,
@@ -40,8 +44,8 @@ function hillLangmuir(
   minVal: number,
   maxVal: number
 ): number {
-  if (x <= 0 || ec50 <= 0) return minVal;
-  return minVal + (maxVal - minVal) / (1 + Math.pow(ec50 / x, hill));
+  if (x <= 0 || ec50 <= 0) return maxVal;
+  return minVal + (maxVal - minVal) / (1 + Math.pow(x / ec50, hill));
 }
 
 /**

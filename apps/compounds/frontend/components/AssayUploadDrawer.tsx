@@ -73,10 +73,13 @@ interface SpreadsheetGrid {
 interface ExtractedSeries {
   row: number;  // Plate row (0-indexed)
   rowLetter: string;
+  stripIndex?: number;  // Strip index within the row (0-indexed), undefined for non-strip layouts
   compoundName: string | null;
-  dataValues: (number | null)[];
-  minControlValues: (number | null)[];
-  maxControlValues: (number | null)[];
+  dataValues: (number | null)[];  // Data values per concentration
+  minControlValues: (number | null)[];  // Raw control values for display
+  maxControlValues: (number | null)[];  // Raw control values for display
+  minControl: number | null;  // Averaged min control for analysis
+  maxControl: number | null;  // Averaged max control for analysis
   startColumn: number;
   endColumn: number;
   hasIssues: boolean;
@@ -155,7 +158,8 @@ export function AssayUploadDrawer({
 
     // Process based on control placement
     if (plateLayout.controls?.placement === 'per_compound' && plateLayout.strip_layout) {
-      // Strip layout: each row has embedded controls
+      // Strip layout: each row has embedded controls per strip
+      // Each strip becomes a separate data series (technical replicates)
       const strip = plateLayout.strip_layout;
 
       for (let plateRow = startRowIdx; plateRow <= endRowIdx; plateRow++) {
@@ -163,72 +167,99 @@ export function AssayUploadDrawer({
         if (spreadsheetRow >= cells.length) continue;
 
         const rowData = cells[spreadsheetRow] || [];
-        const issues: string[] = [];
 
-        // For strip layouts, we process each strip separately but combine into one series per row
-        const allMinValues: (number | null)[] = [];
-        const allDataValues: (number | null)[] = [];
-        const allMaxValues: (number | null)[] = [];
-
-        for (let stripIdx = 0; stripIdx < strip.strips_per_row; stripIdx++) {
-          const stripStartCol = originCol + stripIdx * strip.strip_width;
-
-          // Extract min controls
-          for (let i = 0; i < strip.min_wells; i++) {
-            const cellIdx = stripStartCol + i;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            allMinValues.push(typeof val === 'number' ? val : null);
-          }
-
-          // Extract data values
-          for (let i = 0; i < strip.data_wells; i++) {
-            const cellIdx = stripStartCol + strip.min_wells + i;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            allDataValues.push(typeof val === 'number' ? val : null);
-          }
-
-          // Extract max controls
-          for (let i = 0; i < strip.max_wells; i++) {
-            const cellIdx = stripStartCol + strip.min_wells + strip.data_wells + i;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            allMaxValues.push(typeof val === 'number' ? val : null);
-          }
-        }
-
-        // Get compound name from row header if configured
+        // Get compound name (shared across all strips in this row)
         let compoundName: string | null = null;
         if (plateLayout.compound_source?.type === 'row_header') {
-          // Assume compound name is in column before plate data
           const nameColIdx = originCol - 1;
           if (nameColIdx >= 0 && nameColIdx < rowData.length) {
             const nameVal = rowData[nameColIdx];
             compoundName = nameVal ? String(nameVal) : null;
           }
+        } else if (plateLayout.compound_source?.type === 'adjacent_column') {
+          const totalStripWidth = strip.strip_width * strip.strips_per_row;
+          const nameColIdx = originCol + totalStripWidth;
+          if (nameColIdx < rowData.length) {
+            const nameVal = rowData[nameColIdx];
+            compoundName = nameVal ? String(nameVal) : null;
+          }
         }
 
-        // Validate data
-        if (allDataValues.every(v => v === null)) {
-          issues.push('No numeric data found');
-        }
-        if (allMinValues.every(v => v === null)) {
-          issues.push('Missing min controls');
-        }
-        if (allMaxValues.every(v => v === null)) {
-          issues.push('Missing max controls');
-        }
+        // Process each strip as a separate data series
+        for (let stripIdx = 0; stripIdx < strip.strips_per_row; stripIdx++) {
+          const stripStartCol = originCol + stripIdx * strip.strip_width;
+          const issues: string[] = [];
 
-        series.push({
-          row: plateRow,
-          rowLetter: indexToRowLetter(plateRow),
-          compoundName,
-          dataValues: allDataValues,
-          minControlValues: allMinValues,
-          maxControlValues: allMaxValues,
-          startColumn: 1,
-          endColumn: numCols,
-          hasIssues: issues.length > 0,
-          issues,
-        });
+          // Extract min controls for this strip
+          const minControlValues: (number | null)[] = [];
+          for (let i = 0; i < strip.min_wells; i++) {
+            const cellIdx = stripStartCol + i;
+            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
+            minControlValues.push(typeof val === 'number' ? val : null);
+          }
+
+          // Extract data values for this strip
+          const dataValues: (number | null)[] = [];
+          for (let i = 0; i < strip.data_wells; i++) {
+            const cellIdx = stripStartCol + strip.min_wells + i;
+            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
+            dataValues.push(typeof val === 'number' ? val : null);
+          }
+
+          // Extract max controls for this strip
+          const maxControlValues: (number | null)[] = [];
+          for (let i = 0; i < strip.max_wells; i++) {
+            const cellIdx = stripStartCol + strip.min_wells + strip.data_wells + i;
+            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
+            maxControlValues.push(typeof val === 'number' ? val : null);
+          }
+
+          // Average min control values for this strip
+          const validMinValues = minControlValues.filter((v): v is number => v !== null);
+          const averagedMinControl = validMinValues.length > 0
+            ? validMinValues.reduce((a, b) => a + b, 0) / validMinValues.length
+            : null;
+
+          // Average max control values for this strip
+          const validMaxValues = maxControlValues.filter((v): v is number => v !== null);
+          const averagedMaxControl = validMaxValues.length > 0
+            ? validMaxValues.reduce((a, b) => a + b, 0) / validMaxValues.length
+            : null;
+
+          // Validate data
+          if (dataValues.every(v => v === null)) {
+            issues.push('No numeric data found');
+          }
+          if (averagedMinControl === null) {
+            issues.push('Missing min controls');
+          }
+          if (averagedMaxControl === null) {
+            issues.push('Missing max controls');
+          }
+
+          // Build final data array: [min_control, data1, data2, ..., dataN, max_control]
+          const finalDataValues: (number | null)[] = [
+            averagedMinControl,
+            ...dataValues,
+            averagedMaxControl,
+          ];
+
+          series.push({
+            row: plateRow,
+            rowLetter: indexToRowLetter(plateRow),
+            stripIndex: stripIdx,
+            compoundName,
+            dataValues: finalDataValues,
+            minControlValues,
+            maxControlValues,
+            minControl: averagedMinControl,
+            maxControl: averagedMaxControl,
+            startColumn: stripStartCol - originCol + 1,
+            endColumn: stripStartCol - originCol + strip.strip_width,
+            hasIssues: issues.length > 0,
+            issues,
+          });
+        }
       }
     } else {
       // Standard edge controls layout
@@ -270,28 +301,56 @@ export function AssayUploadDrawer({
           dataValues.push(typeof val === 'number' ? val : null);
         }
 
-        // Get compound name
+        // Get compound name based on compound_source type
         let compoundName: string | null = null;
         if (plateLayout.compound_source?.type === 'row_header') {
+          // Compound name in column before plate data
           const nameColIdx = originCol - 1;
           if (nameColIdx >= 0 && nameColIdx < rowData.length) {
             const nameVal = rowData[nameColIdx];
             compoundName = nameVal ? String(nameVal) : null;
           }
+        } else if (plateLayout.compound_source?.type === 'adjacent_column') {
+          // Compound name in column immediately after the data region
+          const nameColIdx = originCol + endCol;  // endCol is already relative, so this is the next column
+          if (nameColIdx < rowData.length) {
+            const nameVal = rowData[nameColIdx];
+            compoundName = nameVal ? String(nameVal) : null;
+          }
         }
+
+        // Compute averaged control values
+        const validMinValues = minControlValues.filter((v): v is number => v !== null);
+        const averagedMinControl = validMinValues.length > 0
+          ? validMinValues.reduce((a, b) => a + b, 0) / validMinValues.length
+          : null;
+
+        const validMaxValues = maxControlValues.filter((v): v is number => v !== null);
+        const averagedMaxControl = validMaxValues.length > 0
+          ? validMaxValues.reduce((a, b) => a + b, 0) / validMaxValues.length
+          : null;
 
         // Validate
         if (dataValues.every(v => v === null)) {
           issues.push('No numeric data found');
         }
 
+        // Build final data array: [min_control, data1, data2, ..., dataN, max_control]
+        const finalDataValues: (number | null)[] = [
+          averagedMinControl,
+          ...dataValues,
+          averagedMaxControl,
+        ];
+
         series.push({
           row: plateRow,
           rowLetter: indexToRowLetter(plateRow),
           compoundName,
-          dataValues,
+          dataValues: finalDataValues,  // Controls at first/last positions
           minControlValues,
           maxControlValues,
+          minControl: averagedMinControl,
+          maxControl: averagedMaxControl,
           startColumn: startCol,
           endColumn: endCol,
           hasIssues: issues.length > 0,
@@ -331,6 +390,7 @@ export function AssayUploadDrawer({
     setError(null);
 
     try {
+      // Step 1: Create the assay
       const formData = new FormData();
       formData.append('protocol', protocolId);
       formData.append('data_file', selectedFile);
@@ -348,21 +408,67 @@ export function AssayUploadDrawer({
         formData.append('comments', comments);
       }
 
-      // Include extracted series data for backend processing
-      formData.append('extracted_series', JSON.stringify(extractedSeries.filter(s => !s.hasIssues)));
-      formData.append('run_analysis', runAnalysis ? 'true' : 'false');
-
-      const response = await fetch('/api/proxy/compounds/assays/', {
+      const assayResponse = await fetch('/api/proxy/compounds/assays/', {
         method: 'POST',
         body: formData,
       });
 
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
+      if (!assayResponse.ok) {
+        const errorData = await assayResponse.json().catch(() => ({}));
         throw new Error(errorData.detail || 'Failed to create assay');
       }
 
-      const newAssay = await response.json();
+      const newAssay = await assayResponse.json();
+
+      // Step 2: Create data series sequentially to avoid SQLite locking
+      const validSeries = extractedSeries.filter(s => !s.hasIssues);
+      for (const series of validSeries) {
+        // extracted_data format: [min_control, data1, ..., dataN, max_control]
+        const seriesData = {
+          assay: newAssay.id,
+          compound_name: series.compoundName,
+          row: series.row,
+          start_column: series.startColumn,
+          end_column: series.endColumn,
+          extracted_data: series.dataValues,  // Controls embedded at first/last positions
+        };
+
+        const seriesResponse = await fetch('/api/proxy/compounds/data-series/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(seriesData),
+        });
+
+        if (!seriesResponse.ok) {
+          const seriesLabel = series.stripIndex !== undefined
+            ? `${series.rowLetter}-${series.stripIndex + 1}`
+            : series.rowLetter;
+          console.warn(`Failed to create data series for ${seriesLabel}`);
+        }
+      }
+
+      // Step 3: Optionally trigger curve fitting analysis
+      console.log('Analysis check:', { runAnalysis, validSeriesCount: validSeries.length });
+      if (runAnalysis && validSeries.length > 0) {
+        console.log('Triggering analysis for assay:', newAssay.id);
+        try {
+          const analysisResponse = await fetch(
+            `/api/proxy/compounds/assays/${newAssay.id}/analyse_all/`,
+            { method: 'POST' }
+          );
+          console.log('Analysis response status:', analysisResponse.status);
+          if (!analysisResponse.ok) {
+            console.warn('Analysis request failed, but assay was created');
+          } else {
+            const analysisResult = await analysisResponse.json();
+            console.log('Analysis completed:', analysisResult);
+          }
+        } catch (err) {
+          console.error('Analysis failed:', err);
+        }
+      } else {
+        console.log('Skipping analysis:', { runAnalysis, validSeriesCount: validSeries.length });
+      }
 
       // Reset state
       setActiveStep(0);
@@ -461,7 +567,7 @@ export function AssayUploadDrawer({
                   <Table size="small" stickyHeader>
                     <TableHead>
                       <TableRow>
-                        <TableCell sx={{ fontWeight: 600 }}>Row</TableCell>
+                        <TableCell sx={{ fontWeight: 600 }}>Series</TableCell>
                         <TableCell sx={{ fontWeight: 600 }}>Compound</TableCell>
                         <TableCell sx={{ fontWeight: 600 }}>Data Points</TableCell>
                         <TableCell sx={{ fontWeight: 600 }}>Controls</TableCell>
@@ -469,13 +575,17 @@ export function AssayUploadDrawer({
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {extractedSeries.map((series) => (
+                      {extractedSeries.map((series, idx) => (
                         <TableRow
-                          key={series.row}
+                          key={`${series.row}-${series.stripIndex ?? 0}-${idx}`}
                           sx={{ bgcolor: series.hasIssues ? 'warning.50' : undefined }}
                         >
                           <TableCell>
-                            <Typography fontFamily="monospace">{series.rowLetter}</Typography>
+                            <Typography fontFamily="monospace">
+                              {series.stripIndex !== undefined
+                                ? `${series.rowLetter}-${series.stripIndex + 1}`
+                                : series.rowLetter}
+                            </Typography>
                           </TableCell>
                           <TableCell>
                             {series.compoundName || (

@@ -89,14 +89,21 @@ export default function AssayDetailPage({ params }: PageProps) {
     assay?.target ? `targets/${assay.target}/` : null
   );
 
-  // Helper to get chart data from a data series
+  // Helper to get chart data from a data series - requires dilution_series
   const getChartData = (row: DataSeries) => {
     if (!row.dilution_series?.concentrations || !row.extracted_data) return null;
-    return {
-      concentrations: row.dilution_series.concentrations,
-      responses: Array.isArray(row.extracted_data) ? row.extracted_data : [],
-      unit: row.dilution_series.unit,
-    };
+
+    const concentrations = row.dilution_series.concentrations;
+    let responses = Array.isArray(row.extracted_data) ? row.extracted_data : [];
+    const unit = row.dilution_series.unit || 'nM';
+
+    // Detect format: if extracted_data has 2 more elements than concentrations,
+    // it has embedded controls at first and last positions
+    if (responses.length === concentrations.length + 2) {
+      responses = responses.slice(1, -1);
+    }
+
+    return { concentrations, responses, unit };
   };
 
   const columns: Column<DataSeries>[] = [
