@@ -225,6 +225,7 @@ export type CompoundSourceType =
   | 'row_order'          // Compounds assigned by row order in sample region
   | 'column_header'      // Compound IDs from column headers in import file
   | 'row_header'         // Compound IDs from row labels
+  | 'adjacent_column'    // Compound IDs in column immediately after data region
   | 'plate_map_file'     // Separate plate map defines compound positions
   | 'explicit_wells';    // Per-well compound assignment in layout
 

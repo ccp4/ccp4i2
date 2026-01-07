@@ -78,6 +78,7 @@ This defines a pattern: [min×2][data×8][max×2] repeated 2 times per row.
 - `row_order` - Compounds assigned by row order in sample region
 - `column_header` - Compound IDs from column headers in import file
 - `row_header` - Compound IDs from row labels
+- `adjacent_column` - Compound names in the column immediately after the data region (common team standard)
 - `plate_map_file` - Separate plate map defines compound positions
 - `explicit_wells` - Per-well compound assignment in layout
 

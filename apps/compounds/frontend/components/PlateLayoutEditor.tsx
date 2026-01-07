@@ -331,11 +331,16 @@ export function PlateLayoutEditor({
           </Box>
         </Paper>
 
-        {/* Stepper */}
-        <Stepper activeStep={activeStep} orientation="vertical">
+        {/* Stepper - nonLinear allows clicking on any step to edit */}
+        <Stepper activeStep={activeStep} orientation="vertical" nonLinear>
           {/* Step 1: Plate Format */}
-          <Step>
-            <StepLabel>{STEPS[0].label}</StepLabel>
+          <Step completed={activeStep > 0}>
+            <StepLabel
+              onClick={() => setActiveStep(0)}
+              sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' }, borderRadius: 1, py: 0.5 }}
+            >
+              {STEPS[0].label}
+            </StepLabel>
             <StepContent>
               <FormControl component="fieldset">
                 <FormLabel>Select plate format</FormLabel>
@@ -359,8 +364,13 @@ export function PlateLayoutEditor({
           </Step>
 
           {/* Step 2: Controls */}
-          <Step>
-            <StepLabel>{STEPS[1].label}</StepLabel>
+          <Step completed={activeStep > 1}>
+            <StepLabel
+              onClick={() => setActiveStep(1)}
+              sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' }, borderRadius: 1, py: 0.5 }}
+            >
+              {STEPS[1].label}
+            </StepLabel>
             <StepContent>
               {/* Control placement type */}
               <FormControl component="fieldset" sx={{ mb: 3 }}>
@@ -612,8 +622,13 @@ export function PlateLayoutEditor({
           </Step>
 
           {/* Step 3: Sample Region & Dilution */}
-          <Step>
-            <StepLabel>{STEPS[2].label}</StepLabel>
+          <Step completed={activeStep > 2}>
+            <StepLabel
+              onClick={() => setActiveStep(2)}
+              sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' }, borderRadius: 1, py: 0.5 }}
+            >
+              {STEPS[2].label}
+            </StepLabel>
             <StepContent>
               {layout.controls.placement === 'per_compound' ? (
                 /* Strip layout: columns and concentrations are defined by strip config */
@@ -781,8 +796,13 @@ export function PlateLayoutEditor({
           </Step>
 
           {/* Step 4: Replicates */}
-          <Step>
-            <StepLabel>{STEPS[3].label}</StepLabel>
+          <Step completed={activeStep > 3}>
+            <StepLabel
+              onClick={() => setActiveStep(3)}
+              sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' }, borderRadius: 1, py: 0.5 }}
+            >
+              {STEPS[3].label}
+            </StepLabel>
             <StepContent>
               {layout.controls.placement === 'per_compound' ? (
                 /* Strip layout: replicates are defined by strips_per_row */
@@ -894,8 +914,13 @@ export function PlateLayoutEditor({
           </Step>
 
           {/* Step 5: Compound Source */}
-          <Step>
-            <StepLabel>{STEPS[4].label}</StepLabel>
+          <Step completed={activeStep > 4}>
+            <StepLabel
+              onClick={() => setActiveStep(4)}
+              sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' }, borderRadius: 1, py: 0.5 }}
+            >
+              {STEPS[4].label}
+            </StepLabel>
             <StepContent>
               <FormControl component="fieldset">
                 <FormLabel>How are compounds identified?</FormLabel>
@@ -942,6 +967,18 @@ export function PlateLayoutEditor({
                     }
                   />
                   <FormControlLabel
+                    value="adjacent_column"
+                    control={<Radio size="small" />}
+                    label={
+                      <Box>
+                        <Typography variant="body2">Adjacent Column (Right of Data)</Typography>
+                        <Typography variant="caption" color="text.secondary">
+                          Compound names in the column immediately after the data region
+                        </Typography>
+                      </Box>
+                    }
+                  />
+                  <FormControlLabel
                     value="plate_map_file"
                     control={<Radio size="small" />}
                     label={
@@ -979,8 +1016,13 @@ export function PlateLayoutEditor({
           </Step>
 
           {/* Step 6: Data Import (Spreadsheet Origin) */}
-          <Step>
-            <StepLabel>{STEPS[5].label}</StepLabel>
+          <Step completed={activeStep > 5}>
+            <StepLabel
+              onClick={() => setActiveStep(5)}
+              sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' }, borderRadius: 1, py: 0.5 }}
+            >
+              {STEPS[5].label}
+            </StepLabel>
             <StepContent>
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                 Configure where plate data starts in imported Excel files.

@@ -30,6 +30,7 @@ COMPOUND_SOURCE_TYPES = [
     'row_order',          # Compounds ordered by row in data file
     'column_header',      # Compound IDs in column headers
     'row_header',         # Compound IDs in row headers
+    'adjacent_column',    # Compound names in column immediately after data region
     'plate_map_file',     # Separate plate map file
     'explicit_wells',     # Explicit well-to-compound mapping in layout
 ]
