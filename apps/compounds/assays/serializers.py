@@ -174,9 +174,10 @@ class AssayCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Assay
         fields = [
-            'protocol', 'target', 'data_file',
+            'id', 'protocol', 'target', 'data_file',
             'labbook_number', 'page_number', 'comments',
         ]
+        read_only_fields = ['id']
 
     def create(self, validated_data):
         request = self.context.get('request')
