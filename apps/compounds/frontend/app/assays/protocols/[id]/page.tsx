@@ -15,11 +15,13 @@ import {
   Dialog,
   DialogTitle,
   DialogContent,
+  DialogContentText,
   DialogActions,
   IconButton,
   Alert,
+  CircularProgress,
 } from '@mui/material';
-import { Description, Science, Assessment, Edit, GridOn, Close, Add } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { PlatePreview } from '@/components/PlatePreview';
@@ -65,6 +67,9 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [uploadDrawerOpen, setUploadDrawerOpen] = useState(false);
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [assayToDelete, setAssayToDelete] = useState<Assay | null>(null);
+  const [deleting, setDeleting] = useState(false);
 
   const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
@@ -102,6 +107,34 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       setSaveError(err instanceof Error ? err.message : 'Failed to save');
     } finally {
       setSaving(false);
+    }
+  };
+
+  const handleDeleteClick = (assay: Assay, e: React.MouseEvent) => {
+    e.stopPropagation();
+    setAssayToDelete(assay);
+    setDeleteDialogOpen(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    if (!assayToDelete) return;
+
+    setDeleting(true);
+    try {
+      const response = await fetch(`/api/proxy/compounds/assays/${assayToDelete.id}/`, {
+        method: 'DELETE',
+      });
+      if (response.ok || response.status === 204) {
+        mutateAssays();
+      } else {
+        console.error('Delete failed:', await response.text());
+      }
+    } catch (err) {
+      console.error('Delete error:', err);
+    } finally {
+      setDeleting(false);
+      setDeleteDialogOpen(false);
+      setAssayToDelete(null);
     }
   };
 
@@ -165,6 +198,21 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       width: 100,
       render: (value) =>
         value ? new Date(value).toLocaleDateString() : '-',
+    },
+    {
+      key: 'actions',
+      label: '',
+      width: 50,
+      render: (_, row) => (
+        <IconButton
+          size="small"
+          color="error"
+          onClick={(e) => handleDeleteClick(row, e)}
+          sx={{ opacity: 0.6, '&:hover': { opacity: 1 } }}
+        >
+          <Delete fontSize="small" />
+        </IconButton>
+      ),
     },
   ];
 
@@ -378,6 +426,31 @@ export default function ProtocolDetailPage({ params }: PageProps) {
           onAssayCreated={() => mutateAssays()}
         />
       )}
+
+      {/* Delete Assay Confirmation Dialog */}
+      <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
+        <DialogTitle>Delete Assay?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            This will permanently delete &quot;{assayToDelete?.data_filename}&quot;
+            and all its data series with analysis results.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setDeleteDialogOpen(false)} disabled={deleting}>
+            Cancel
+          </Button>
+          <Button
+            onClick={handleDeleteConfirm}
+            color="error"
+            variant="contained"
+            disabled={deleting}
+            startIcon={deleting ? <CircularProgress size={16} /> : <Delete />}
+          >
+            {deleting ? 'Deleting...' : 'Delete'}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 }
