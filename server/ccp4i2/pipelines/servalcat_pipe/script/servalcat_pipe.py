@@ -249,7 +249,7 @@ class servalcat_pipe(CPluginScript):
         if str(self.container.metalCoordPipeline.LINKS) == "KEEP":
             self.metalCoordPlugin.container.controlParameters.KEEP_LINKS.set(True)
         self.connectSignal(self.metalCoordPlugin, 'finished', self.metalCoordFinished)
-        self.metalCoordPlugin.waitForFinished = -1
+        self.metalCoordPlugin.doAsyc = True
         self.metalCoordPlugin.process()
         self.outputJsonFilename = str(self.metalCoordPlugin.container.inputData.LIGAND_CODE) + ".json"
         self.outputJsonPath = os.path.join(self.metalCoordPlugin.getWorkDirectory(), self.outputJsonFilename)

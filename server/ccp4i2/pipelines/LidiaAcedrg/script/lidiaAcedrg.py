@@ -34,7 +34,7 @@ class lidiaAcedrg(CPluginScript):
             if self.container.inputData.MOLIN.isSet():
                 self.lidiaPlugin.container.inputData.MOLIN = self.container.inputData.MOLIN
             self.connectSignal(self.lidiaPlugin,'finished',self.lidiaFinished)
-            self.lidiaPlugin.waitForFinished = -1
+            self.lidiaPlugin.doAsync = True
             self.lidiaPlugin.process()
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'MOL':
             result = self.doAcedrg('MOL', self.container.inputData.MOLIN)
