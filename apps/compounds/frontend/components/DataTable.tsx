@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, ReactNode } from 'react';
+import { useState, useMemo, useRef, ReactNode } from 'react';
 import {
   Table,
   TableBody,
@@ -8,7 +8,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TablePagination,
   TableSortLabel,
   Paper,
   TextField,
@@ -18,6 +17,7 @@ import {
   InputAdornment,
 } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
+import { useVirtualizer } from '@tanstack/react-virtual';
 
 export interface Column<T> {
   key: string;
@@ -38,6 +38,10 @@ interface DataTableProps<T> {
   emptyMessage?: string;
   /** Additional field names to include in search (fields not displayed as columns) */
   additionalSearchFields?: string[];
+  /** Estimated row height for virtualization (default: 53) */
+  estimateRowHeight?: number;
+  /** Maximum height of the table container (default: 600) */
+  maxHeight?: number;
 }
 
 type Order = 'asc' | 'desc';
@@ -51,12 +55,14 @@ export function DataTable<T extends Record<string, any>>({
   title,
   emptyMessage = 'No data found',
   additionalSearchFields = [],
+  estimateRowHeight = 53,
+  maxHeight = 600,
 }: DataTableProps<T>) {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
   const [orderBy, setOrderBy] = useState<string | null>(null);
   const [order, setOrder] = useState<Order>('asc');
   const [searchQuery, setSearchQuery] = useState('');
+
+  const parentRef = useRef<HTMLDivElement>(null);
 
   // Filter data by search query
   const filteredData = useMemo(() => {
@@ -109,11 +115,13 @@ export function DataTable<T extends Record<string, any>>({
     });
   }, [filteredData, orderBy, order]);
 
-  // Paginate data
-  const paginatedData = useMemo(() => {
-    const start = page * rowsPerPage;
-    return sortedData.slice(start, start + rowsPerPage);
-  }, [sortedData, page, rowsPerPage]);
+  // Set up virtualizer for windowed rendering
+  const rowVirtualizer = useVirtualizer({
+    count: sortedData.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => estimateRowHeight,
+    overscan: 5, // Render 5 extra rows above/below viewport for smoother scrolling
+  });
 
   const handleSort = (column: string) => {
     const isAsc = orderBy === column && order === 'asc';
@@ -121,16 +129,9 @@ export function DataTable<T extends Record<string, any>>({
     setOrderBy(column);
   };
 
-  const handleChangePage = (_: unknown, newPage: number) => {
-    setPage(newPage);
-  };
-
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setRowsPerPage(parseInt(event.target.value, 10));
-    setPage(0);
-  };
-
   const hasSearchableColumns = columns.some((col) => col.searchable) || additionalSearchFields.length > 0;
+
+  const virtualItems = rowVirtualizer.getVirtualItems();
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
@@ -141,15 +142,13 @@ export function DataTable<T extends Record<string, any>>({
             {title}
           </Typography>
         )}
+        {!title && <Box sx={{ flexGrow: 1 }} />}
         {hasSearchableColumns && (
           <TextField
             size="small"
             placeholder="Search..."
             value={searchQuery}
-            onChange={(e) => {
-              setSearchQuery(e.target.value);
-              setPage(0);
-            }}
+            onChange={(e) => setSearchQuery(e.target.value)}
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">
@@ -160,14 +159,23 @@ export function DataTable<T extends Record<string, any>>({
             sx={{ minWidth: 200 }}
           />
         )}
+        <Typography variant="body2" color="text.secondary">
+          {sortedData.length} {sortedData.length === 1 ? 'row' : 'rows'}
+        </Typography>
       </Box>
 
       {/* Loading indicator */}
       {loading && <LinearProgress />}
 
-      {/* Table */}
-      <TableContainer sx={{ maxHeight: 600 }}>
-        <Table stickyHeader size="small">
+      {/* Table with virtualized scrolling */}
+      <TableContainer
+        ref={parentRef}
+        sx={{
+          maxHeight,
+          overflow: 'auto',
+        }}
+      >
+        <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
               {columns.map((column) => (
@@ -191,7 +199,7 @@ export function DataTable<T extends Record<string, any>>({
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedData.length === 0 ? (
+            {sortedData.length === 0 ? (
               <TableRow>
                 <TableCell colSpan={columns.length} align="center" sx={{ py: 4 }}>
                   <Typography color="text.secondary">
@@ -200,42 +208,69 @@ export function DataTable<T extends Record<string, any>>({
                 </TableCell>
               </TableRow>
             ) : (
-              paginatedData.map((row) => (
-                <TableRow
-                  key={getRowKey(row)}
-                  hover
-                  onClick={() => onRowClick?.(row)}
-                  sx={{
-                    cursor: onRowClick ? 'pointer' : 'default',
-                    '&:hover': onRowClick
-                      ? { bgcolor: 'action.hover' }
-                      : undefined,
-                  }}
-                >
-                  {columns.map((column) => (
-                    <TableCell key={column.key}>
-                      {column.render
-                        ? column.render(row[column.key], row)
-                        : row[column.key] ?? '-'}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+              <>
+                {/* Spacer for rows above viewport */}
+                {virtualItems.length > 0 && virtualItems[0].start > 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length}
+                      sx={{
+                        height: virtualItems[0].start,
+                        padding: 0,
+                        border: 'none',
+                      }}
+                    />
+                  </TableRow>
+                )}
+
+                {/* Virtualized rows */}
+                {virtualItems.map((virtualRow) => {
+                  const row = sortedData[virtualRow.index];
+                  return (
+                    <TableRow
+                      key={getRowKey(row)}
+                      data-index={virtualRow.index}
+                      ref={rowVirtualizer.measureElement}
+                      hover
+                      onClick={() => onRowClick?.(row)}
+                      sx={{
+                        cursor: onRowClick ? 'pointer' : 'default',
+                        '&:hover': onRowClick
+                          ? { bgcolor: 'action.hover' }
+                          : undefined,
+                      }}
+                    >
+                      {columns.map((column) => (
+                        <TableCell key={column.key}>
+                          {column.render
+                            ? column.render(row[column.key], row)
+                            : row[column.key] ?? '-'}
+                        </TableCell>
+                      ))}
+                    </TableRow>
+                  );
+                })}
+
+                {/* Spacer for rows below viewport */}
+                {virtualItems.length > 0 && (
+                  <TableRow>
+                    <TableCell
+                      colSpan={columns.length}
+                      sx={{
+                        height:
+                          rowVirtualizer.getTotalSize() -
+                          (virtualItems[virtualItems.length - 1]?.end ?? 0),
+                        padding: 0,
+                        border: 'none',
+                      }}
+                    />
+                  </TableRow>
+                )}
+              </>
             )}
           </TableBody>
         </Table>
       </TableContainer>
-
-      {/* Pagination */}
-      <TablePagination
-        component="div"
-        count={sortedData.length}
-        page={page}
-        onPageChange={handleChangePage}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-        rowsPerPageOptions={[10, 25, 50, 100]}
-      />
     </Paper>
   );
 }

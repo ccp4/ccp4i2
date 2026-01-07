@@ -242,6 +242,7 @@ export function PlateLayoutEditor({
     updateLayout({
       plate_format: format,
       controls: {
+        placement: 'edge_columns',
         max: { columns: [1, 2], rows: newRowLetters },
         min: { columns: [newCols - 1, newCols], rows: newRowLetters },
       },

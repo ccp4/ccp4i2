@@ -201,7 +201,8 @@ export default function AssayDetailPage({ params }: PageProps) {
       <Breadcrumbs
         items={[
           { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Assays', href: '/assays', icon: 'assay' },
+          { label: 'Protocols', href: '/assays/protocols', icon: 'protocol' },
+          ...(protocol ? [{ label: protocol.name, href: `/assays/protocols/${protocol.id}`, icon: 'protocol' as const }] : []),
           { label: assay?.data_filename || 'Loading...', icon: 'assay' },
         ]}
       />
