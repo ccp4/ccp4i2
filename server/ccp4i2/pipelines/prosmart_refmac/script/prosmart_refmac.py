@@ -415,15 +415,12 @@ class prosmart_refmac(CPluginScript):
             oldXml = etree.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
-            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"log.txt")
-            with open(cootLogTxt, 'r') as f:
-               for l in f:
-                   if l.startswith("INFO::") and "found" in l and "water fitting" in l:
-                      nwaters = l.strip()
-                      numsearch = [ x for x in nwaters.split() if x.isdigit() ]
-                      if len(numsearch)>0:
-                         nwaters = numsearch[0]
-                      break
+            cootLogXml = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"program.xml")
+            with open(cootLogXml, encoding='utf-8') as f:
+                watersXml = etree.fromstring(f.read())
+                nodes = watersXml.findall(".//WatersFound")
+                if len(nodes) > 0:
+                    nwaters = nodes[0].text
             postRefmacCoot = etree.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added "+nwaters+" waters"
             oldXml.append(postRefmacCoot)
@@ -443,6 +440,8 @@ class prosmart_refmac(CPluginScript):
           rv = self.refmacPostCootPlugin.process()
           if rv == CPluginScript.FAILED: self.reportStatus(rv)
         except Exception as e:
+          print('Exception in prosmart_refmac.cootFinished:')
+          print(traceback.format_exc(), flush=True)
           self.appendErrorReport(CPluginScript,39,str(e))
 
     @QtCore.Slot('CPluginScript',dict)
