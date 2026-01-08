@@ -742,35 +742,28 @@ class servalcat_pipe(CPluginScript):
             self.fileSystemWatcher = None
             self.reportStatus(CPluginScript.FAILED)
             return
+        print("AAA12")
+        # self.addCycleXML(self.firstServalcat) # MM
+        aFile=open( self.pipelinexmlfile,'w')
+        CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot, pretty_print=True) )
+        aFile.close()
+        print("AAA13")
+        print("AAA15")
+        print("AAA15.1")
+        if self.container.controlParameters.ADD_WATERS:
+            # Coot sujob to add waters
+            print("AAA16")
+            self.currentCoordinates = self.firstServalcat.container.outputData.CIFFILE
+            self.cootPlugin = self.makeCootPlugin()
+            self.cootPlugin.doAsync = self.doAsync
+            self.cootPlugin.connectSignal(self.cootPlugin, 'finished', self.cootFinished)
+            print("AAA17")
+            rv = self.cootPlugin.process()
+            if rv == CPluginScript.FAILED:
+                self.reportStatus(rv)
         else:
-            print("AAA12")
-            # self.addCycleXML(self.firstServalcat) # MM
-            aFile=open( self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot, pretty_print=True) )
-            aFile.close()
-            print("AAA13")
-            if self.container.controlParameters.OPTIMISE_WEIGHT:
-                print("AAA14")
                 self.fileSystemWatcher = None
-                weightUsed = float(self.xmlroot.xpath('//weight')[-1].text)
-                self.tryVariousRefmacWeightsAround(weightUsed)
-            else:
-               print("AAA15")
-               print("AAA15.1")
-               if self.container.controlParameters.ADD_WATERS:
-                   # Coot sujob to add waters
-                   print("AAA16")
-                   self.currentCoordinates = self.firstServalcat.container.outputData.CIFFILE
-                   self.cootPlugin = self.makeCootPlugin()
-                   self.cootPlugin.doAsync = self.doAsync
-                   self.cootPlugin.connectSignal(self.cootPlugin, 'finished', self.cootFinished)
-                   print("AAA17")
-                   rv = self.cootPlugin.process()
-                   if rv == CPluginScript.FAILED:
-                        self.reportStatus(rv)
-               else:
-                     self.fileSystemWatcher = None
-                     self.finishUp(self.firstServalcat)
+                self.finishUp(self.firstServalcat)
         print('done servalcat_pipe.firstServalcatFinished')
 
     def makeCootPlugin(self):
