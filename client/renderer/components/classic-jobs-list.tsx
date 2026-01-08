@@ -319,7 +319,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
 
       const job = lookups.jobsByUuid.get(ids);
       if (job) {
-        navigate.push(`/project/${job.project}/job/${job.id}`);
+        navigate.push(`/ccp4i2/project/${job.project}/job/${job.id}`);
       }
       setSelectedItems(ids);
     },

@@ -269,7 +269,7 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
         );
         if (runResult?.id) {
           mutateJobs();
-          router.push(`/project/${job.project}/job/${runResult.id}`);
+          router.push(`/ccp4i2/project/${job.project}/job/${runResult.id}`);
         }
 
         console.log(

@@ -9,9 +9,9 @@ import {
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-import { useJob } from "../../../utils";
+import { useJob, useProjectFiles } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useApi } from "../../../api";
 import { BaseSpacegroupCellElement } from "../task-elements/base-spacegroup-cell-element";
 
@@ -19,10 +19,18 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const api = useApi();
   const { useTaskItem, useFileDigest, fetchDigest, getErrors, mutateValidation } = useJob(job.id);
+  const { files: projectFiles } = useProjectFiles(job.project);
   const { forceUpdate: forceSetAsuContent } = useTaskItem("ASU_CONTENT");
   const { item: asuContentInItem } = useTaskItem("ASUCONTENTIN");
   const { item: asuContentItem } = useTaskItem("ASU_CONTENT");
   const { value: HKLINValue } = useTaskItem("HKLIN");
+
+  // Check if there are any existing CAsuDataFiles in the project
+  // Hide the "load existing" section if none exist (prevents recursive create button)
+  const hasExistingAsuFiles = useMemo(() => {
+    if (!projectFiles) return false;
+    return projectFiles.some((file) => file.type === "application/CCP4-asu-content");
+  }, [projectFiles]);
 
   // File digest for HKLIN (used for Matthews calculation)
   // Only fetch when a file has been uploaded (has dbFileId) - otherwise digest endpoint fails
@@ -98,22 +106,25 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   return (
     <CCP4i2Tabs {...props}>
       <CCP4i2Tab label="Main inputs">
-        <CCP4i2ContainerElement
-          {...props}
-          itemName=""
-          qualifiers={{
-            guiLabel: "Optionally load existing AU content file to edit",
-          }}
-          containerHint="BlockLevel"
-          initiallyOpen={true}
-        >
-          <CCP4i2TaskElement
+        {/* Only show "load existing" option if there are existing ASU files in project */}
+        {hasExistingAsuFiles && (
+          <CCP4i2ContainerElement
             {...props}
-            itemName="ASUCONTENTIN"
-            qualifiers={{ guiLabel: "ASU contents" }}
-            onChange={handleAsuContentInChange}
-          />
-        </CCP4i2ContainerElement>
+            itemName=""
+            qualifiers={{
+              guiLabel: "Optionally load existing ASU content file to edit",
+            }}
+            containerHint="BlockLevel"
+            initiallyOpen={true}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="ASUCONTENTIN"
+              qualifiers={{ guiLabel: "ASU contents" }}
+              onChange={handleAsuContentInChange}
+            />
+          </CCP4i2ContainerElement>
+        )}
         <CCP4i2ContainerElement
           {...props}
           itemName=""

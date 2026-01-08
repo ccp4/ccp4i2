@@ -36,7 +36,7 @@ export const CCP4i2WhatNext = () => {
         if (created_job_result?.success && created_job_result.data?.new_job) {
           const created_job: Job = created_job_result.data.new_job;
           mutateJobs();
-          router.push(`/project/${job.project}/job/${created_job.id}`);
+          router.push(`/ccp4i2/project/${job.project}/job/${created_job.id}`);
         } else {
           const errorMessage = created_job_result?.error || "Failed to create task";
           setMessage(`Failed to create task: ${errorMessage}`, "error");

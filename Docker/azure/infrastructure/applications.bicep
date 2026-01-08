@@ -140,7 +140,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               type: 'Liveness'
               httpGet: {
-                path: '/health/'
+                path: '/api/ccp4i2/health/'
                 port: 8000
               }
               initialDelaySeconds: 60 // Reduced from 120 to comply with Azure limits (max 60)
@@ -152,7 +152,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               type: 'Readiness'
               httpGet: {
-                path: '/health/'  // Changed from /projects/ which requires auth
+                path: '/api/ccp4i2/health/'  // Changed from /projects/ which requires auth
                 port: 8000
               }
               initialDelaySeconds: 60
@@ -164,7 +164,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               type: 'Startup'
               httpGet: {
-                path: '/health/'
+                path: '/api/ccp4i2/health/'
                 port: 8000
               }
               initialDelaySeconds: 60 // Reduced from 180 to comply with Azure limits (max 60) - Django should start within 60 seconds

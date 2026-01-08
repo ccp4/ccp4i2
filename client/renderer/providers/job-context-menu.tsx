@@ -305,7 +305,7 @@ export const JobMenu: React.FC = () => {
           mutateAllJobs();
           setJobMenuAnchorEl(null);
           setMessage(`Job ${job.number} cloned successfully`);
-          router.push(`/project/${job.project}/job/${cloneResult.id}`);
+          router.push(`/ccp4i2/project/${job.project}/job/${cloneResult.id}`);
         }
       } catch (error) {
         setMessage(`Failed to clone job ${job.number}`);
@@ -356,7 +356,7 @@ export const JobMenu: React.FC = () => {
             runResult.task_name || job.title
           );
           mutateAllJobs();
-          router.push(`/project/${job.project}/job/${runResult.id}`);
+          router.push(`/ccp4i2/project/${job.project}/job/${runResult.id}`);
         }
       } catch (error) {
         setMessage(`Failed to run job ${job.number}`);
@@ -393,7 +393,7 @@ export const JobMenu: React.FC = () => {
       if (!job) return;
       ev.stopPropagation();
       setJobMenuAnchorEl(null);
-      const path = `/moorhen-page/job-by-id/${job.id}`;
+      const path = `/ccp4i2/moorhen-page/job-by-id/${job.id}`;
       window.open(path, "_blank", "noopener,noreferrer");
     },
     [job, setJobMenuAnchorEl]
@@ -413,7 +413,7 @@ export const JobMenu: React.FC = () => {
             mutateAllJobs();
             setJobMenuAnchorEl(null);
             setJob(null);
-            router.push(`/project/${job.project}`);
+            router.push(`/ccp4i2/project/${job.project}`);
           },
           onCancel: () => {
             setJobMenuAnchorEl(null);

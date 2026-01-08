@@ -1042,7 +1042,10 @@ class CDataFile(CData):
             # None argument: clear the file path
             self.setFullPath('')
             self.unSet()
+            # Allow subclasses to clear their specific metadata (e.g., selection in CAsuDataFile)
+            self._clear_metadata()
             return
+
         if isinstance(value, str):
             # String argument: set as file path
             self.setFullPath(value)
@@ -1080,6 +1083,14 @@ class CDataFile(CData):
         else:
             # Fallback to parent implementation
             super().set(value)
+
+    def _clear_metadata(self):
+        """Hook for subclasses to clear type-specific metadata when file is cleared.
+
+        Override this method in subclasses that have additional metadata attributes
+        (like selection in CAsuDataFile) that should be cleared when the file is unset.
+        """
+        pass
 
     def load_from_file(self, file_path: str):
         """Load data from file."""

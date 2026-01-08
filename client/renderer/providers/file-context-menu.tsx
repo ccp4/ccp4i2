@@ -284,7 +284,7 @@ export const FileMenu: React.FC = () => {
     async (ev: SyntheticEvent) => {
       ev.stopPropagation();
       if (file) {
-        handleOpenInNewWindow(`/moorhen-page/file-by-id/${file.id}`);
+        handleOpenInNewWindow(`/ccp4i2/moorhen-page/file-by-id/${file.id}`);
         setFileMenuAnchorEl(null);
       }
     },

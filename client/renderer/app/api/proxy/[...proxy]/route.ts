@@ -157,7 +157,8 @@ async function handleProxy(req: NextRequest, params: { proxy: string[] }) {
     }
   }
 
-  let targetUrl = `${backendBaseUrl}${path}`;
+  // Construct target URL with /api/ccp4i2/ prefix for multi-app integration
+  let targetUrl = `${backendBaseUrl}api/ccp4i2/${path}`;
 
   // Ensure trailing slash for Django REST Framework endpoints
   if (!targetUrl.endsWith("/")) {

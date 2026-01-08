@@ -110,8 +110,11 @@ TEMPLATES = [
     },
 ]
 
+# Static and media URLs
+# In production (Azure), static files are served by Next.js web container
+# In development, Django serves them directly
 STATIC_URL = "/djangostatic/"
-MEDIA_URL = "files/"
+MEDIA_URL = "/files/"
 
 USER_DIR = Path.home().resolve() / ".ccp4i2"
 USER_DIR.mkdir(exist_ok=True)

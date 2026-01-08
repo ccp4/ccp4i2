@@ -149,7 +149,7 @@ export const JobCard: React.FC<JobCardProps> = ({
       if (cloneResult?.id) {
         mutateAllJobs();
         setAnchorEl(null);
-        router.push(`/project/${projectId}/job/${cloneResult.id}`);
+        router.push(`/ccp4i2/project/${projectId}/job/${cloneResult.id}`);
       }
     } catch (error) {
       setMessage(`Error cloning job: ${error instanceof Error ? error.message : String(error)}`, "error");
@@ -177,7 +177,7 @@ export const JobCard: React.FC<JobCardProps> = ({
           runResult.task_name || job.title
         );
         mutateAllJobs();
-        router.push(`/project/${projectId}/job/${runResult.id}`);
+        router.push(`/ccp4i2/project/${projectId}/job/${runResult.id}`);
       }
     } catch (error) {
       setMessage(`Error running job: ${error instanceof Error ? error.message : String(error)}`, "error");
@@ -269,7 +269,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         variant="elevation"
         onClick={(ev) => {
           ev.stopPropagation();
-          router.push(`/project/${job.project}/job/${job.id}`);
+          router.push(`/ccp4i2/project/${job.project}/job/${job.id}`);
         }}
       >
         <CardHeader

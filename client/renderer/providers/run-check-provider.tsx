@@ -330,7 +330,7 @@ export const useOptionalInputWarning = ({
       try {
         const createdJob: Job | undefined = await createPeerTask(taskName);
         if (createdJob) {
-          router.push(`/project/${job.project}/job/${createdJob.id}`);
+          router.push(`/ccp4i2/project/${job.project}/job/${createdJob.id}`);
           setRunTaskRequested(null);
         }
       } catch (error) {

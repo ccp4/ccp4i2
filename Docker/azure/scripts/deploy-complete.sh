@@ -216,7 +216,7 @@ SERVER_FQDN=$(az containerapp show \
     --query properties.configuration.ingress.fqdn -o tsv)
 
 echo "Testing health endpoint..."
-HEALTH_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://${SERVER_FQDN}/health/" 2>/dev/null || echo "000")
+HEALTH_STATUS=$(curl -s -o /dev/null -w "%{http_code}" "https://${SERVER_FQDN}/api/ccp4i2/health/" 2>/dev/null || echo "000")
 
 if [ "$HEALTH_STATUS" = "200" ]; then
     echo -e "${GREEN}✓${NC} Health check passed"

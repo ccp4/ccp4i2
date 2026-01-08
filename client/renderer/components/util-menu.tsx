@@ -17,7 +17,7 @@ export default function UtilMenu() {
     setAnchorEl(null);
   };
   const handleSystemAdministratorToolsClick = () => {
-    router.push("/config");
+    router.push("/ccp4i2/config");
     handleClose();
   };
   const handleRunningJobsClick = useCallback(async () => {

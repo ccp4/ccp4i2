@@ -66,7 +66,7 @@ export const ConfigContent: React.FC = () => {
         setDevMode(data.config.devMode);
         setTheme(data.config.theme || "dark");
       } else if (data.message === "start-uvicorn") {
-        router.push("/");
+        router.push("/ccp4i2");
       } else if (data.message === "check-file-exists") {
         if (config) {
           if (data.path === config.CCP4I2_PROJECTS_DIR) {
@@ -245,7 +245,7 @@ export const ConfigContent: React.FC = () => {
             variant="contained"
             size="large"
             startIcon={<Folder />}
-            onClick={config ? onStartUvicorn : () => router.push("/")}
+            onClick={config ? onStartUvicorn : () => router.push("/ccp4i2")}
             disabled={config ? !isReadyToLaunch : false}
             sx={{
               minWidth: 200,

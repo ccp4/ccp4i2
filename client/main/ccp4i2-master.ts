@@ -160,8 +160,9 @@ app
     nextServer = await startNextServer(isDev, nextServerPort, djangoServerPort);
   })
   .then(async () => {
+    // Use /ccp4i2 base path for multi-app integration
     mainWindow = await createWindow(
-      `http://localhost:${nextServerPort}/config`,
+      `http://localhost:${nextServerPort}/ccp4i2/config`,
       store
     );
     console.log({
@@ -184,8 +185,9 @@ app.on("before-quit", () => {
 
 app.on("activate", async () => {
   if (BrowserWindow.getAllWindows().length === 0) {
+    // Use /ccp4i2 base path for multi-app integration
     mainWindow = await createWindow(
-      `http://localhost:${nextServerPort}`,
+      `http://localhost:${nextServerPort}/ccp4i2`,
       store
     );
   }

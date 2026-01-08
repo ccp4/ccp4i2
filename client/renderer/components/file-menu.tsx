@@ -50,7 +50,7 @@ export default function FileMenu() {
   };
 
   const handleBrowser = () => {
-    const newWindow = window.open("/");
+    const newWindow = window.open("/ccp4i2");
     setAnchorEl(null);
     // Check if the window was successfully opened
     if (newWindow) {
@@ -77,7 +77,7 @@ export default function FileMenu() {
   };
 
   const handleImportProject = () => {
-    const newWindow = window.open("/import-project");
+    const newWindow = window.open("/ccp4i2/import-project");
     setAnchorEl(null);
     // Check if the window was successfully opened
     if (newWindow) {
@@ -104,7 +104,7 @@ export default function FileMenu() {
           key="Manage"
           onClick={() => {
             handleClose();
-            router.push("/");
+            router.push("/ccp4i2");
           }}
         >
           <ListItemIcon>
@@ -116,7 +116,7 @@ export default function FileMenu() {
           key="Add"
           onClick={() => {
             handleClose();
-            router.push("/new-project");
+            router.push("/ccp4i2/new-project");
           }}
         >
           <ListItemIcon>
@@ -165,7 +165,7 @@ export default function FileMenu() {
                     .then(() => {
                       mutateProjects();
                     });
-                  router.push(`/project/${project.id}`);
+                  router.push(`/ccp4i2/project/${project.id}`);
                 }}
               >
                 {project.name} - {`${new Date(project.last_access)}`}

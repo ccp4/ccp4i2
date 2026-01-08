@@ -464,6 +464,16 @@ class CAsuDataFile(CAsuDataFileStub):
     # No custom overrides needed - base CDataFile.loadFile() handles everything!
     # Just need CAsuContent.loadFile() implementation below
 
+    def _clear_metadata(self):
+        """Clear the selection dict when the file is cleared.
+
+        This override ensures that when a user clears an ASU data file reference,
+        any per-sequence selection metadata is also cleared. This prevents stale
+        selection state from persisting when a different file is later selected.
+        """
+        if hasattr(self, 'selection') and self.selection is not None:
+            self.selection.unSet()
+
     def isSelected(self, seqObj) -> bool:
         """
         Check if a sequence object is selected.

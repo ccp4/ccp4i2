@@ -171,30 +171,34 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
     };
   }, []);
 
+  const hasSequences = (item?._value?.length ?? 0) > 0;
+
   return (
     item && (
       <>
-        {/* Header with add button */}
-        <Stack
-          direction="row"
-          justifyContent="space-between"
-          alignItems="center"
-          sx={{ mb: 2 }}
-        >
-          <Typography variant="body2" color="text.secondary">
-            Click a card to edit sequence details
-          </Typography>
-          <Button
-            variant="contained"
-            size="small"
-            startIcon={<Add />}
-            onClick={async () => {
-              await extendListItem();
-            }}
+        {/* Header with add button - only show when there are sequences */}
+        {hasSequences && (
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            alignItems="center"
+            sx={{ mb: 2 }}
           >
-            Add Sequence
-          </Button>
-        </Stack>
+            <Typography variant="body2" color="text.secondary">
+              Click a card to edit sequence details
+            </Typography>
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<Add />}
+              onClick={async () => {
+                await extendListItem();
+              }}
+            >
+              Add Sequence
+            </Button>
+          </Stack>
+        )}
 
         {/* Sequence cards */}
         <Stack spacing={1.5}>
@@ -243,14 +247,12 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
                             color={getPolymerTypeColor(polymerType)}
                             variant="outlined"
                           />
-                          {nCopies > 1 && (
-                            <Chip
-                              label={`×${nCopies} copies`}
-                              size="small"
-                              variant="filled"
-                              color="default"
-                            />
-                          )}
+                          <Chip
+                            label={`×${nCopies} ${nCopies === 1 ? "copy" : "copies"}`}
+                            size="small"
+                            variant="filled"
+                            color="default"
+                          />
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={1}>
                           <Typography variant="caption" color="text.secondary">
@@ -313,7 +315,7 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
         </Stack>
 
         {/* Empty state */}
-        {(item?._value?.length ?? 0) === 0 && (
+        {!hasSequences && (
           <Box
             sx={{
               mt: 2,
