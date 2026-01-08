@@ -10,7 +10,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem, fetchDigest } = useJob(job.id);
 
-  const { update: setSEQUENCETEXT } = useTaskItem("SEQUENCETEXT");
+  const { forceUpdate: forceSetSEQUENCETEXT } = useTaskItem("SEQUENCETEXT");
   const { item: SEQINItem } = useTaskItem("SEQIN");
 
   // Handle SEQIN file change - explicitly fetch digest and populate SEQUENCETEXT
@@ -22,8 +22,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
     // Build the formatted sequence text
     const newSequence = `>${digestData.identifier || ""}\n${digestData.sequence}`.replace("*", "");
-    await setSEQUENCETEXT(newSequence);
-  }, [SEQINItem?._objectPath, fetchDigest, setSEQUENCETEXT]);
+    await forceSetSEQUENCETEXT(newSequence);
+  }, [SEQINItem?._objectPath, fetchDigest, forceSetSEQUENCETEXT]);
 
   return (
     <CCP4i2Tabs {...props}>

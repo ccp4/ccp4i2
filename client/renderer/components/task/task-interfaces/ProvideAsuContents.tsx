@@ -19,7 +19,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const api = useApi();
   const { useTaskItem, useFileDigest, fetchDigest, getErrors, mutateValidation } = useJob(job.id);
-  const { update: setAsuContent } = useTaskItem("ASU_CONTENT");
+  const { forceUpdate: forceSetAsuContent } = useTaskItem("ASU_CONTENT");
   const { item: asuContentInItem } = useTaskItem("ASUCONTENTIN");
   const { item: asuContentItem } = useTaskItem("ASU_CONTENT");
   const { value: HKLINValue } = useTaskItem("HKLIN");
@@ -86,14 +86,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         description: seq.description,
         nCopies: seq.nCopies ?? 1,  // Default to 1 if not provided
       }));
-      await setAsuContent(seqList);
+      await forceSetAsuContent(seqList);
       // Refresh validation, molecular weight, and Matthews after updating ASU content
       // Must await molWeight mutation so the new value is available for Matthews calculation
       mutateValidation();
       await mutateMolWeight();
       mutateMatthews();
     }
-  }, [asuContentInItem?._objectPath, fetchDigest, setAsuContent, mutateValidation, mutateMolWeight, mutateMatthews]);
+  }, [asuContentInItem?._objectPath, fetchDigest, forceSetAsuContent, mutateValidation, mutateMolWeight, mutateMatthews]);
 
   return (
     <CCP4i2Tabs {...props}>

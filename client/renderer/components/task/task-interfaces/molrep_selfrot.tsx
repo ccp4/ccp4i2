@@ -21,7 +21,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // Get task items for file handling and parameter updates
   const { item: F_SIGFItem } = useTaskItem("F_SIGF");
-  const { update: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
+  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
 
   // Handle F_SIGF file change - extract wavelength from digest
   const handleF_SIGFChange = useCallback(async () => {
@@ -30,9 +30,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     const digestData = await fetchDigest(F_SIGFItem._objectPath);
     const wavelength = digestData?.wavelengths?.at(-1);
     if (wavelength && wavelength > 0 && wavelength < 9) {
-      await updateWAVELENGTH(wavelength);
+      await forceUpdateWAVELENGTH(wavelength);
     }
-  }, [F_SIGFItem?._objectPath, fetchDigest, updateWAVELENGTH]);
+  }, [F_SIGFItem?._objectPath, fetchDigest, forceUpdateWAVELENGTH]);
 
   // Task values for visibility conditions
   const taskValues = useMemo(

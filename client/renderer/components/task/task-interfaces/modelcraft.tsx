@@ -10,7 +10,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem, createPeerTask, validation } = useJob(job.id);
   const { value: USE_MODEL_PHASES } = useTaskItem("USE_MODEL_PHASES");
-  const { value: XYZIN, update: setXYZIN } = useTaskItem("XYZIN");
+  const { value: XYZIN, forceUpdate: forceSetXYZIN } = useTaskItem("XYZIN");
   const { value: ASUIN } = useTaskItem("ASUIN");
 
   // Use centralized ASU content warning hook
@@ -27,10 +27,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       //Look at the return value of the USE_MODEL_PHASES item
       //Clear XYZIN if updated USE_MODEL_PHASES is false
       if (!new_USE_MODEL_PHASES._value && XYZIN?.dbFileId) {
-        setXYZIN({});
+        forceSetXYZIN({});
       }
     },
-    [XYZIN, setXYZIN]
+    [XYZIN, forceSetXYZIN]
   );
 
   return (

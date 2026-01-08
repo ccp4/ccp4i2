@@ -28,7 +28,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // Get task items
   const { item: F_SIGFItem, value: F_SIGFValue } = useTaskItem("F_SIGF");
-  const { update: updateF_OR_I } = useTaskItem("F_OR_I");
+  const { forceUpdate: forceUpdateF_OR_I } = useTaskItem("F_OR_I");
   const { value: COMP_BY_value } = useTaskItem("COMP_BY");
   const { value: SGALT_SELECT_value } = useTaskItem("SGALT_SELECT");
 
@@ -37,7 +37,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if (
       initializationDone.current ||
       !F_SIGFItem ||
-      !updateF_OR_I ||
+      !forceUpdateF_OR_I ||
       job?.status !== 1
     ) {
       return;
@@ -46,17 +46,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     const currentFlag = F_SIGFItem.contentFlag;
     if ([2, 4].includes(currentFlag)) {
       try {
-        await updateF_OR_I("F");
+        await forceUpdateF_OR_I("F");
         initializationDone.current = true;
       } catch (error) {
         console.error("Error during initialization:", error);
       }
     }
-  }, [F_SIGFItem, updateF_OR_I, job?.status]);
+  }, [F_SIGFItem, forceUpdateF_OR_I, job?.status]);
 
   // Stable change handler with cycle prevention
   const handleF_SIGFChange = useCallback(async () => {
-    if (!F_SIGFItem || !updateF_OR_I || job?.status !== 1) return;
+    if (!F_SIGFItem || !forceUpdateF_OR_I || job?.status !== 1) return;
 
     // Prevent processing the same value multiple times
     const currentFlag = F_SIGFItem.contentFlag;
@@ -65,12 +65,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if ([2, 4].includes(currentFlag)) {
       try {
         lastProcessedF_SIGFValue.current = currentFlag;
-        await updateF_OR_I("F");
+        await forceUpdateF_OR_I("F");
       } catch (error) {
         console.error("Error updating F_OR_I:", error);
       }
     }
-  }, [F_SIGFItem, updateF_OR_I, job?.status]);
+  }, [F_SIGFItem, forceUpdateF_OR_I, job?.status]);
 
   // Reset initialization when job changes
   useEffect(() => {

@@ -219,22 +219,22 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   }, [hasUploadedFile, digestObjectPath, HKLINValue, HKLINDigest, digestLoading, digestError]);
 
   const { item: HKLIN_OBSItem } = useTaskItem("HKLIN_OBS");
-  const { update: updateSPACEGROUP } = useTaskItem("SPACEGROUP");
-  const { update: updateUNITCELL } = useTaskItem("UNITCELL");
-  const { update: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
-  const { update: updateCRYSTALNAME } = useTaskItem("CRYSTALNAME");
-  const { update: updateDATASETNAME } = useTaskItem("DATASETNAME");
-  const { update: setHKLIN_OBS_COLUMNS } = useTaskItem("HKLIN_OBS_COLUMNS");
-  const { update: setHKLIN_OBS_CONTENT_FLAG } = useTaskItem("HKLIN_OBS_CONTENT_FLAG");
-  const { value: HKLIN_FORMATValue, update: updateHKLIN_FORMAT } = useTaskItem("HKLIN_FORMAT");
+  const { forceUpdate: forceUpdateSPACEGROUP } = useTaskItem("SPACEGROUP");
+  const { forceUpdate: forceUpdateUNITCELL } = useTaskItem("UNITCELL");
+  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
+  const { forceUpdate: forceUpdateCRYSTALNAME } = useTaskItem("CRYSTALNAME");
+  const { forceUpdate: forceUpdateDATASETNAME } = useTaskItem("DATASETNAME");
+  const { forceUpdate: forceSetHKLIN_OBS_COLUMNS } = useTaskItem("HKLIN_OBS_COLUMNS");
+  const { forceUpdate: forceSetHKLIN_OBS_CONTENT_FLAG } = useTaskItem("HKLIN_OBS_CONTENT_FLAG");
+  const { value: HKLIN_FORMATValue, forceUpdate: forceUpdateHKLIN_FORMAT } = useTaskItem("HKLIN_FORMAT");
 
   // mmCIF specific
-  const { update: setMMCIF_SELECTED_BLOCK } = useTaskItem("MMCIF_SELECTED_BLOCK");
-  const { update: setMMCIF_SELECTED_COLUMNS } = useTaskItem("MMCIF_SELECTED_COLUMNS");
-  const { update: setMMCIF_SELECTED_ISINTENSITY } = useTaskItem("MMCIF_SELECTED_ISINTENSITY");
-  const { update: setMMCIF_SELECTED_INFO } = useTaskItem("MMCIF_SELECTED_INFO");
-  const { update: setMMCIF_SELECTED_CONTENT } = useTaskItem("MMCIF_SELECTED_CONTENT");
-  const { update: setHASFREER } = useTaskItem("HASFREER");
+  const { forceUpdate: forceSetMMCIF_SELECTED_BLOCK } = useTaskItem("MMCIF_SELECTED_BLOCK");
+  const { forceUpdate: forceSetMMCIF_SELECTED_COLUMNS } = useTaskItem("MMCIF_SELECTED_COLUMNS");
+  const { forceUpdate: forceSetMMCIF_SELECTED_ISINTENSITY } = useTaskItem("MMCIF_SELECTED_ISINTENSITY");
+  const { forceUpdate: forceSetMMCIF_SELECTED_INFO } = useTaskItem("MMCIF_SELECTED_INFO");
+  const { forceUpdate: forceSetMMCIF_SELECTED_CONTENT } = useTaskItem("MMCIF_SELECTED_CONTENT");
+  const { forceUpdate: forceSetHASFREER } = useTaskItem("HASFREER");
 
   // Local state for UI
   const [selectedObsGroup, setSelectedObsGroup] = useState<ColumnGroup | null>(null);
@@ -291,12 +291,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
     console.log("[import_merged] Processing new digest:", HKLINDigest);
     console.log("[import_merged] Update functions available:", {
-      updateSPACEGROUP: !!updateSPACEGROUP,
-      updateUNITCELL: !!updateUNITCELL,
-      updateWAVELENGTH: !!updateWAVELENGTH,
-      updateHKLIN_FORMAT: !!updateHKLIN_FORMAT,
-      updateCRYSTALNAME: !!updateCRYSTALNAME,
-      updateDATASETNAME: !!updateDATASETNAME,
+      forceUpdateSPACEGROUP: !!forceUpdateSPACEGROUP,
+      forceUpdateUNITCELL: !!forceUpdateUNITCELL,
+      forceUpdateWAVELENGTH: !!forceUpdateWAVELENGTH,
+      forceUpdateHKLIN_FORMAT: !!forceUpdateHKLIN_FORMAT,
+      forceUpdateCRYSTALNAME: !!forceUpdateCRYSTALNAME,
+      forceUpdateDATASETNAME: !!forceUpdateDATASETNAME,
     });
 
     const processDigest = async () => {
@@ -308,29 +308,29 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       if (HKLINDigest.spaceGroup) {
         const cleanedSG = String(HKLINDigest.spaceGroup).replace(/\s+/g, "");
         console.log("[import_merged] Setting spaceGroup to:", cleanedSG);
-        if (updateSPACEGROUP) {
+        if (forceUpdateSPACEGROUP) {
           try {
-            const result = await updateSPACEGROUP(cleanedSG);
-            console.log("[import_merged] updateSPACEGROUP result:", result);
+            const result = await forceUpdateSPACEGROUP(cleanedSG);
+            console.log("[import_merged] forceUpdateSPACEGROUP result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
-            console.error("[import_merged] updateSPACEGROUP error:", e);
+            console.error("[import_merged] forceUpdateSPACEGROUP error:", e);
           }
         } else {
-          console.warn("[import_merged] updateSPACEGROUP is not available!");
+          console.warn("[import_merged] forceUpdateSPACEGROUP is not available!");
         }
       }
 
       // Update wavelength
       if (HKLINDigest.wavelength) {
         console.log("[import_merged] Setting wavelength to:", HKLINDigest.wavelength);
-        if (updateWAVELENGTH) {
+        if (forceUpdateWAVELENGTH) {
           try {
-            const result = await updateWAVELENGTH(HKLINDigest.wavelength);
-            console.log("[import_merged] updateWAVELENGTH result:", result);
+            const result = await forceUpdateWAVELENGTH(HKLINDigest.wavelength);
+            console.log("[import_merged] forceUpdateWAVELENGTH result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
-            console.error("[import_merged] updateWAVELENGTH error:", e);
+            console.error("[import_merged] forceUpdateWAVELENGTH error:", e);
           }
         }
       }
@@ -338,13 +338,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       // Update format
       if (HKLINDigest.format) {
         console.log("[import_merged] Setting format to:", HKLINDigest.format.toUpperCase());
-        if (updateHKLIN_FORMAT) {
+        if (forceUpdateHKLIN_FORMAT) {
           try {
-            const result = await updateHKLIN_FORMAT(HKLINDigest.format.toUpperCase());
-            console.log("[import_merged] updateHKLIN_FORMAT result:", result);
+            const result = await forceUpdateHKLIN_FORMAT(HKLINDigest.format.toUpperCase());
+            console.log("[import_merged] forceUpdateHKLIN_FORMAT result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
-            console.error("[import_merged] updateHKLIN_FORMAT error:", e);
+            console.error("[import_merged] forceUpdateHKLIN_FORMAT error:", e);
           }
         }
       }
@@ -352,13 +352,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       // Update unit cell
       if (HKLINDigest.cell) {
         console.log("[import_merged] Setting cell to:", HKLINDigest.cell);
-        if (updateUNITCELL) {
+        if (forceUpdateUNITCELL) {
           try {
-            const result = await updateUNITCELL(HKLINDigest.cell);
-            console.log("[import_merged] updateUNITCELL result:", result);
+            const result = await forceUpdateUNITCELL(HKLINDigest.cell);
+            console.log("[import_merged] forceUpdateUNITCELL result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
-            console.error("[import_merged] updateUNITCELL error:", e);
+            console.error("[import_merged] forceUpdateUNITCELL error:", e);
           }
         }
       }
@@ -366,33 +366,33 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       // Update crystal name and dataset name from digest
       if (HKLINDigest.crystalNames && HKLINDigest.crystalNames.length > 0 ) {
         console.log("[import_merged] Setting crystalName to:", HKLINDigest.crystalNames);
-        if (updateCRYSTALNAME) {
+        if (forceUpdateCRYSTALNAME) {
           try {
-            const result = await updateCRYSTALNAME(HKLINDigest.crystalNames[0]);
-            console.log("[import_merged] updateCRYSTALNAME result:", result);
+            const result = await forceUpdateCRYSTALNAME(HKLINDigest.crystalNames[0]);
+            console.log("[import_merged] forceUpdateCRYSTALNAME result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
-            console.error("[import_merged] updateCRYSTALNAME error:", e);
+            console.error("[import_merged] forceUpdateCRYSTALNAME error:", e);
           }
         }
       }
 
       if (HKLINDigest.datasets && HKLINDigest.datasets.length > 0 ) {
         console.log("[import_merged] Setting datasetName to:", HKLINDigest.datasets[0]);
-        if (updateDATASETNAME) {
+        if (forceUpdateDATASETNAME) {
           try {
-            const result = await updateDATASETNAME(HKLINDigest.datasets[0]);
-            console.log("[import_merged] updateDATASETNAME result:", result);
+            const result = await forceUpdateDATASETNAME(HKLINDigest.datasets[0]);
+            console.log("[import_merged] forceUpdateDATASETNAME result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
-            console.error("[import_merged] updateDATASETNAME error:", e);
+            console.error("[import_merged] forceUpdateDATASETNAME error:", e);
           }
         }
       }
 
       // Update HASFREER
-      if (setHASFREER) {
-        await setHASFREER(Boolean(HKLINDigest.hasFreeR && HKLINDigest.freerValid));
+      if (forceSetHASFREER) {
+        await forceSetHASFREER(Boolean(HKLINDigest.hasFreeR && HKLINDigest.freerValid));
       }
 
       console.log("[import_merged] parametersChanged:", parametersChanged);
@@ -412,25 +412,25 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Handle observation group selection (MTZ)
   const handleObsGroupSelect = useCallback(
     async (group: ColumnGroup) => {
-      if (!setHKLIN_OBS_CONTENT_FLAG || !setHKLIN_OBS_COLUMNS || job?.status !== 1)
+      if (!forceSetHKLIN_OBS_CONTENT_FLAG || !forceSetHKLIN_OBS_COLUMNS || job?.status !== 1)
         return;
 
       setSelectedObsGroup(group);
 
       const columnLabels = group.columnList.map((c) => c.columnLabel).join(",");
-      await setHKLIN_OBS_COLUMNS(columnLabels);
-      await setHKLIN_OBS_CONTENT_FLAG(group.contentFlag);
+      await forceSetHKLIN_OBS_COLUMNS(columnLabels);
+      await forceSetHKLIN_OBS_CONTENT_FLAG(group.contentFlag);
 
       // Update dataset and crystal name
-      if (group.dataset && updateDATASETNAME) {
-        await updateDATASETNAME(group.dataset);
+      if (group.dataset && forceUpdateDATASETNAME) {
+        await forceUpdateDATASETNAME(group.dataset);
       }
 
       // Try to find crystal name from digest
-      if (HKLINDigest?.crystalNames && HKLINDigest.datasets && updateCRYSTALNAME) {
+      if (HKLINDigest?.crystalNames && HKLINDigest.datasets && forceUpdateCRYSTALNAME) {
         const datasetIndex = HKLINDigest.datasets.indexOf(group.dataset);
         if (datasetIndex >= 0 && datasetIndex < HKLINDigest.crystalNames.length) {
-          await updateCRYSTALNAME(HKLINDigest.crystalNames[datasetIndex]);
+          await forceUpdateCRYSTALNAME(HKLINDigest.crystalNames[datasetIndex]);
         }
       }
 
@@ -439,10 +439,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     },
     [
       job?.status,
-      setHKLIN_OBS_COLUMNS,
-      setHKLIN_OBS_CONTENT_FLAG,
-      updateDATASETNAME,
-      updateCRYSTALNAME,
+      forceSetHKLIN_OBS_COLUMNS,
+      forceSetHKLIN_OBS_CONTENT_FLAG,
+      forceUpdateDATASETNAME,
+      forceUpdateCRYSTALNAME,
       HKLINDigest,
       mutateContainer,
       mutateValidation,
@@ -460,13 +460,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       setSelectedMmcifBlock(blockName);
 
       // Update parameters from block
-      if (setMMCIF_SELECTED_BLOCK) await setMMCIF_SELECTED_BLOCK(blockName);
-      if (updateDATASETNAME) await updateDATASETNAME(blockName);
-      if (updateCRYSTALNAME) await updateCRYSTALNAME(blockName);
-      if (updateSPACEGROUP) await updateSPACEGROUP(block.spacegroup_name);
-      if (updateWAVELENGTH && block.wavelength) await updateWAVELENGTH(block.wavelength);
-      if (updateUNITCELL && block.cell) {
-        await updateUNITCELL({
+      if (forceSetMMCIF_SELECTED_BLOCK) await forceSetMMCIF_SELECTED_BLOCK(blockName);
+      if (forceUpdateDATASETNAME) await forceUpdateDATASETNAME(blockName);
+      if (forceUpdateCRYSTALNAME) await forceUpdateCRYSTALNAME(blockName);
+      if (forceUpdateSPACEGROUP) await forceUpdateSPACEGROUP(block.spacegroup_name);
+      if (forceUpdateWAVELENGTH && block.wavelength) await forceUpdateWAVELENGTH(block.wavelength);
+      if (forceUpdateUNITCELL && block.cell) {
+        await forceUpdateUNITCELL({
           a: block.cell[0],
           b: block.cell[1],
           c: block.cell[2],
@@ -477,14 +477,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       // Set info
-      if (setMMCIF_SELECTED_INFO) {
+      if (forceSetMMCIF_SELECTED_INFO) {
         const info = `${block.info}\nhkl list type: ${block.hklcheckformat}\nHighest resolution: ${block.highres}`;
-        await setMMCIF_SELECTED_INFO(info);
+        await forceSetMMCIF_SELECTED_INFO(info);
       }
 
       // Update HASFREER based on block
-      if (setHASFREER) {
-        await setHASFREER(block.hasFreeR && block.freerValid);
+      if (forceSetHASFREER) {
+        await forceSetHASFREER(block.hasFreeR && block.freerValid);
       }
 
       // Find the best observation data type
@@ -503,14 +503,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     [
       HKLINDigest,
       job?.status,
-      setMMCIF_SELECTED_BLOCK,
-      setMMCIF_SELECTED_INFO,
-      updateDATASETNAME,
-      updateCRYSTALNAME,
-      updateSPACEGROUP,
-      updateWAVELENGTH,
-      updateUNITCELL,
-      setHASFREER,
+      forceSetMMCIF_SELECTED_BLOCK,
+      forceSetMMCIF_SELECTED_INFO,
+      forceUpdateDATASETNAME,
+      forceUpdateCRYSTALNAME,
+      forceUpdateSPACEGROUP,
+      forceUpdateWAVELENGTH,
+      forceUpdateUNITCELL,
+      forceSetHASFREER,
       mutateContainer,
       mutateValidation,
     ]
@@ -525,36 +525,36 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       // Set content type label
       const contentLabel = block.columnSetsText?.[block.typeCodes?.indexOf(typeCode) ?? 0] || "";
-      if (setMMCIF_SELECTED_CONTENT) await setMMCIF_SELECTED_CONTENT(contentLabel);
+      if (forceSetMMCIF_SELECTED_CONTENT) await forceSetMMCIF_SELECTED_CONTENT(contentLabel);
 
       // Set columns based on content type
-      if (block.columnnames && setMMCIF_SELECTED_COLUMNS) {
+      if (block.columnnames && forceSetMMCIF_SELECTED_COLUMNS) {
         const columns = block.columnnames[contentLabel];
         if (columns) {
-          await setMMCIF_SELECTED_COLUMNS(columns.join(", "));
+          await forceSetMMCIF_SELECTED_COLUMNS(columns.join(", "));
         }
       }
 
       // Set isIntensity: +1 for I types (1, 2), -1 for F types (3, 4)
-      if (setMMCIF_SELECTED_ISINTENSITY) {
+      if (forceSetMMCIF_SELECTED_ISINTENSITY) {
         const isIntensity = typeCode === 1 || typeCode === 2 ? 1 : -1;
-        await setMMCIF_SELECTED_ISINTENSITY(isIntensity);
+        await forceSetMMCIF_SELECTED_ISINTENSITY(isIntensity);
       }
 
       await mutateContainer();
       await mutateValidation();
     },
-    [job?.status, setMMCIF_SELECTED_CONTENT, setMMCIF_SELECTED_COLUMNS, setMMCIF_SELECTED_ISINTENSITY, mutateContainer, mutateValidation]
+    [job?.status, forceSetMMCIF_SELECTED_CONTENT, forceSetMMCIF_SELECTED_COLUMNS, forceSetMMCIF_SELECTED_ISINTENSITY, mutateContainer, mutateValidation]
   );
 
   // Process column selection from MTZ dialog (legacy path)
   const processColumnSelection = useCallback(
     async (columnPath: string, file: File) => {
-      if (!setHKLIN_OBS_CONTENT_FLAG || !setHKLIN_OBS_COLUMNS) return;
+      if (!forceSetHKLIN_OBS_CONTENT_FLAG || !forceSetHKLIN_OBS_COLUMNS) return;
 
       const match = columnPath.match(/\[([^\]]+)\]/);
       if (match) {
-        await setHKLIN_OBS_COLUMNS(match[1]);
+        await forceSetHKLIN_OBS_COLUMNS(match[1]);
         const columnNames = match[1].split(",").map((name) => name.trim());
 
         // Determine content flag from column types
@@ -568,7 +568,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           const signature = columnTypes.join("");
           const contentFlag = ["KMKM", "GLGL", "JQ", "FQ"].indexOf(signature);
           if (contentFlag > -1) {
-            await setHKLIN_OBS_CONTENT_FLAG(contentFlag + 1);
+            await forceSetHKLIN_OBS_CONTENT_FLAG(contentFlag + 1);
           }
         }
       }
@@ -583,7 +583,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         });
       }
     },
-    [HKLINDigest, HKLIN_OBSItem, setHKLIN_OBS_COLUMNS, setHKLIN_OBS_CONTENT_FLAG, uploadFileParam]
+    [HKLINDigest, HKLIN_OBSItem, forceSetHKLIN_OBS_COLUMNS, forceSetHKLIN_OBS_CONTENT_FLAG, uploadFileParam]
   );
 
   // Handle HKLIN file change (trigger column dialog for MTZ)
