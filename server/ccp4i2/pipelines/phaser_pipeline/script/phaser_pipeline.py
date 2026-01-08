@@ -239,7 +239,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             if XYZIN is not None: self.sheetbendPlugin.container.inputData.XYZIN.set(XYZIN)
             if F_SIGF is not None: self.sheetbendPlugin.container.inputData.F_SIGF.set(F_SIGF)
             if FREERFLAG is not None: self.sheetbendPlugin.container.inputData.FREERFLAG.set(FREERFLAG)
-            self.sheetbendPlugin.doAsync=False
             rv = self.sheetbendPlugin.process()
             if rv == CPluginScript.FAILED: self.reportStatus(rv)
             pluginOutputs=self.sheetbendPlugin.container.outputData
