@@ -2,7 +2,6 @@ import os
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -64,10 +63,10 @@ class phaser_pipeline(CPluginScript):
                     getattr(self.phaserPlugin.container.keywords,attrName).set(attr)
         self.phaserPlugin.container.inputData.set(self.container.inputData)
         self.phaserPlugin.container.inputData.KILLFILEPATH.set(os.path.join(self.getWorkDirectory(),'INTERRUPT'))
-        self.connectSignal(self.phaserPlugin,'finished', self.phaserFinished)
         self.oldXMLLength = 0
         self.phaserPlugin.callbackObject.addResponder(self.phaserXMLUpdated)
         rv = self.phaserPlugin.process()
+        self.phaserFinished(rv)
         if rv == CPluginScript.FAILED:
             # Check if LOG file exists before reading it
             # In standalone/i2run mode, subjobs with RUNEXTERNALPROCESS=False don't create LOG files
@@ -95,16 +94,9 @@ class phaser_pipeline(CPluginScript):
         finalFilename = self.makeFileName('PROGRAMXML')
         self.renameFile(tmpFilename,finalFilename)
 
-    @QtCore.Slot(dict)
-    def phaserFinished(self, statusDict = {}):
-        # Extract finish status from statusDict (handles both int and dict formats)
-        if isinstance(statusDict, dict):
-            finish_status = statusDict.get('finishStatus', CPluginScript.SUCCEEDED)
-        else:
-            finish_status = statusDict
-
+    def phaserFinished(self, finishStatus):
         # If phaser subjob failed, propagate the failure status
-        if finish_status == CPluginScript.FAILED:
+        if finishStatus == CPluginScript.FAILED:
             self.reportStatus(CPluginScript.FAILED)
             return
 
@@ -118,10 +110,9 @@ class phaser_pipeline(CPluginScript):
             self.appendXML(self.phaserPlugin.makeFileName('PROGRAMXML'),'PhaserMrResults')
             self.reportStatus(CPluginScript.SUCCEEDED)
             return
-        print('StatusDict',statusDict)
-        self.checkSolutionsFound(statusDict=statusDict, failedErrCode=200)
+        self.checkSolutionsFound(finishStatus=finishStatus, failedErrCode=200)
         if len(self.phaserPlugin.container.outputData.XYZOUT) > 0:
-            self.checkFinishStatus(statusDict=statusDict,failedErrCode=200,outputFile = self.phaserPlugin.container.outputData.XYZOUT[0] ,noFileErrCode=207)
+            self.checkFinishStatus(finishStatus=finishStatus,failedErrCode=200,outputFile = self.phaserPlugin.container.outputData.XYZOUT[0] ,noFileErrCode=207)
         else:
             self.appendErrorReport(207,'No output files in list')
             self.reportStatus(CPluginScript.FAILED)
@@ -316,7 +307,6 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
             self.reportStatus(CPluginScript.FAILED)
 
     def appendXML(self, changedFile, replacingElementOfType=None):
-        import os
         for oldNode in self.xmlroot.xpath(replacingElementOfType):
             self.xmlroot.remove(oldNode)
         try:
@@ -328,20 +318,20 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))
         with open(output_file,'w') as xmlfile:
             CCP4Utils.writeXML(xmlfile,etree.tostring(self.xmlroot,pretty_print=True))
 
-    def checkFinishStatus( self, statusDict,failedErrCode,outputFile = None,noFileErrCode= None):
-        if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
+    def checkFinishStatus( self, finishStatus,failedErrCode,outputFile = None,noFileErrCode= None):
+        if finishStatus == CPluginScript.FAILED:
             self.appendErrorReport(failedErrCode)
-            self.reportStatus(statusDict['finishStatus'])
+            self.reportStatus(finishStatus)
         try:
             assert outputFile.exists(),'Entity provided is not CDataFile or does not exist'
         except Exception as e:
             self.appendErrorReport(noFileErrCode,'Expected file: '+str(outputFile) + ' - ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
 
-    def checkSolutionsFound(self, statusDict, failedErrCode):
-        if len(statusDict)>0 and statusDict['finishStatus'] == CPluginScript.FAILED:
+    def checkSolutionsFound(self, finishStatus, failedErrCode):
+        if finishStatus == CPluginScript.FAILED:
             self.appendErrorReport(failedErrCode)
-            self.reportStatus(statusDict['finishStatus'])
+            self.reportStatus(finishStatus)
         self.appendXML(self.phaserPlugin.makeFileName('PROGRAMXML'),'PhaserMrResults')
         if self.xmlroot.xpath('//solutionsFound')[0].text == 'False':
             self.reportStatus(CPluginScript.UNSATISFACTORY)
