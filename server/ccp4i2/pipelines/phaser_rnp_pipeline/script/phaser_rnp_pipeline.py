@@ -29,11 +29,7 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
         #print 'self.F_SIGF_TOUSE is',self.F_SIGF_TOUSE
         rv = self.runPhaser(F_SIGF=self.F_SIGF_TOUSE)
         XYZIN_TOUSE = self.container.outputData.XYZOUT[0]
-        
-        if self.container.inputData.RUNCOOT:
-            self.runCoot(MAPIN=self.container.outputData.MAPOUT[0], XYZIN=XYZIN_TOUSE)
-            XYZIN_TOUSE = self.container.outputData.XYZOUT_COOT
-        
+
         if self.container.inputData.RUNREFMAC:
             self.runRefmac(F_SIGF=self.F_SIGF_TOUSE, FREERFLAG=self.FREERFLAG_TOUSE, XYZIN=XYZIN_TOUSE)
 

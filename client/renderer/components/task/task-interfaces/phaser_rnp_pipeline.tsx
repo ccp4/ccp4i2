@@ -245,14 +245,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                       "Run Refmac refinement after molecular replacement",
                   }}
                 />
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="RUNCOOT"
-                  qualifiers={{
-                    guiLabel: "Coot add-waters",
-                    toolTip: "Run Coot to add water molecules",
-                  }}
-                />
               </FieldRow>
             </CCP4i2ContainerElement>
           </CCP4i2ContainerElement>
