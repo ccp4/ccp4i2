@@ -144,11 +144,11 @@ export default function AssayDetailPage({ params }: PageProps) {
     {
       key: 'chart',
       label: 'Curve',
-      width: 80,
+      width: 140,
       render: (_, row) => {
         const chartData = getChartData(row);
         if (!chartData || chartData.concentrations.length === 0) {
-          return <Box sx={{ width: 60, height: 60, bgcolor: 'grey.100', borderRadius: 1 }} />;
+          return <Box sx={{ width: 120, height: 120, bgcolor: 'grey.100', borderRadius: 1 }} />;
         }
         const fitParams = row.analysis?.results ? {
           ec50: row.analysis.results.EC50,
@@ -163,12 +163,12 @@ export default function AssayDetailPage({ params }: PageProps) {
     {
       key: 'structure',
       label: 'Structure',
-      width: 90,
+      width: 110,
       render: (_, row) => (
         <CompoundStructureCell
           compoundId={row.compound}
           compoundName={row.compound_name}
-          size={80}
+          size={100}
         />
       ),
     },

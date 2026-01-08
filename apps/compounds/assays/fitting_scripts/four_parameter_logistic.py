@@ -97,9 +97,18 @@ def fit(input_data: dict) -> dict:
     # Initial parameter estimates
     response_range = responses.max() - responses.min()
 
-    # Use control values if available, otherwise estimate from data
-    top_init = controls.get('max', responses.max())
-    bottom_init = controls.get('min', responses.min())
+    # Get control values - handle potentially mislabeled controls
+    # For inhibition assays: 'max' should be high signal (uninhibited), 'min' should be low signal (inhibited)
+    ctrl_max = controls.get('max')
+    ctrl_min = controls.get('min')
+
+    # If controls are provided but inverted (max < min), swap them
+    if ctrl_max is not None and ctrl_min is not None and ctrl_max < ctrl_min:
+        ctrl_max, ctrl_min = ctrl_min, ctrl_max
+
+    # Use controls if available, otherwise use data extremes
+    top_init = ctrl_max if ctrl_max is not None else float(responses.max())
+    bottom_init = ctrl_min if ctrl_min is not None else float(responses.min())
 
     # Estimate IC50 as geometric mean of concentration range
     ic50_init = np.sqrt(concentrations.min() * concentrations.max())

@@ -48,8 +48,28 @@ def execute_fitting_script(script_code: str, input_data: dict) -> dict:
     Returns:
         Result dictionary from the fit() function
     """
-    # Create a namespace for the script
-    namespace = {}
+    # Create a namespace with common imports available for fitting scripts
+    # Include __builtins__ so import statements in scripts work
+    import builtins
+    import typing
+    import numpy as np
+    import scipy
+    namespace = {
+        '__builtins__': builtins,
+        'np': np,
+        'numpy': np,
+        'scipy': scipy,
+        'typing': typing,
+        'Tuple': typing.Tuple,
+        'Optional': typing.Optional,
+    }
+    # Add scipy.optimize for curve_fit
+    try:
+        from scipy.optimize import curve_fit, minimize
+        namespace['curve_fit'] = curve_fit
+        namespace['minimize'] = minimize
+    except ImportError:
+        pass
 
     # Execute the script to define the fit() function
     try:
@@ -111,19 +131,19 @@ def analyse_data_series(data_series: DataSeries, fitting_method: Optional[Fittin
         raw_data = []
 
     # Extract controls from first/last positions and responses from the middle
-    # Data format: [min_control, data1, ..., dataN, max_control]
-    # The plate layout naming is literal:
-    #   - First position (min_wells) = low signal control → bottom asymptote for fitting
-    #   - Last position (max_wells) = high signal control → top asymptote for fitting
+    # Data format: [high_signal_control, data1, ..., dataN, low_signal_control]
+    # For inhibition assays:
+    #   - First position = uninhibited control = HIGH signal → top asymptote for fitting
+    #   - Last position = fully inhibited control = LOW signal → bottom asymptote for fitting
     controls = {}
     responses = []
     if len(raw_data) >= 3:
-        # First element is the low signal control (bottom asymptote)
+        # First element is high signal control (top of curve)
         if raw_data[0] is not None:
-            controls['min'] = raw_data[0]
-        # Last element is the high signal control (top asymptote)
+            controls['max'] = raw_data[0]
+        # Last element is low signal control (bottom of curve)
         if raw_data[-1] is not None:
-            controls['max'] = raw_data[-1]
+            controls['min'] = raw_data[-1]
         # Middle elements are the dose-response data
         responses = raw_data[1:-1]
     elif len(raw_data) > 0:
@@ -219,17 +239,21 @@ def analyse_data_series(data_series: DataSeries, fitting_method: Optional[Fittin
 
     # Build results dict for storage
     # Concentrations come from dilution_series, not stored here
+    kpi_value = result.get('kpi', 'ic50')
     stored_results = {
         'EC50': result.get('ic50'),
+        'Ki': result.get('ki'),
+        'IC50_apparent': result.get('ic50_apparent'),
         'Hill': result.get('hill_slope'),
         'minVal': result.get('bottom'),
         'maxVal': result.get('top'),
         'r_squared': result.get('r_squared'),
-        'KPI': result.get('kpi', 'EC50'),
+        'KPI': kpi_value.upper() if kpi_value else 'EC50',
         'flags': result.get('flags', []),
         'curve_points': result.get('curve_points'),
         'fit_successful': result.get('fit_successful', False),
         'error': result.get('error'),
+        'tight_binding_params': result.get('tight_binding_params'),
     }
 
     return _create_or_update_analysis(data_series, status, stored_results)

@@ -21,8 +21,10 @@ from .models import (
     DataSeries,
     AnalysisResult,
     Hypothesis,
+    FittingMethod,
 )
 from .serializers import (
+    FittingMethodSerializer,
     DilutionSeriesSerializer,
     ProtocolSerializer,
     ProtocolDetailSerializer,
@@ -76,6 +78,20 @@ class ReversionMixin:
             'user': v.revision.user.email if v.revision.user else None,
             'comment': v.revision.comment,
         } for v in versions[:50]])
+
+
+class FittingMethodViewSet(ReversionMixin, viewsets.ModelViewSet):
+    """CRUD operations for Fitting Methods."""
+    queryset = FittingMethod.objects.filter(is_active=True)
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['name', 'description']
+    ordering = ['name']
+
+    def get_serializer_class(self):
+        if self.action == 'retrieve':
+            from .serializers import FittingMethodDetailSerializer
+            return FittingMethodDetailSerializer
+        return FittingMethodSerializer
 
 
 class DilutionSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):

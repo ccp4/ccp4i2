@@ -112,6 +112,24 @@ export interface DilutionSeries {
   display_name?: string;
 }
 
+export interface FittingMethod {
+  id: string;
+  name: string;
+  slug: string;
+  version: string;
+  description: string;
+  is_active: boolean;
+  is_builtin: boolean;
+}
+
+export interface FittingMethodDetail extends FittingMethod {
+  script: string;
+  input_schema: Record<string, unknown>;
+  output_schema: Record<string, unknown>;
+  created_at: string;
+  updated_at: string;
+}
+
 export type AnalysisMethod =
   | 'hill_langmuir'
   | 'hill_langmuir_fix_hill'
@@ -120,6 +138,31 @@ export type AnalysisMethod =
   | 'ms_intact'
   | 'table_of_values';
 
+/**
+ * Tight-binding analysis parameters for Wang equation fitting.
+ * Required when using the 'tight-binding-wang' fitting method.
+ */
+export interface TightBindingParameters {
+  protein_conc: number;   // Total protein [P]t in nM
+  ligand_conc: number;    // Total labeled ligand [L]t in nM
+  ligand_kd: number;      // Kd of labeled ligand in nM
+}
+
+/**
+ * Fitting parameters that can be stored on a Protocol.
+ * Different fitting methods use different subsets of these parameters.
+ */
+export interface FittingParameters {
+  // Standard 4PL parameters
+  fix_hill?: number | null;
+  fix_top?: number | null;
+  fix_bottom?: number | null;
+  // Tight-binding parameters (for Wang equation)
+  protein_conc?: number;
+  ligand_conc?: number;
+  ligand_kd?: number;
+}
+
 export interface Protocol {
   id: string;
   name: string;
@@ -127,7 +170,7 @@ export interface Protocol {
   fitting_method?: string | null;
   fitting_method_name?: string;
   plate_layout?: Partial<PlateLayout> | null;
-  fitting_parameters?: Record<string, any> | null;
+  fitting_parameters?: FittingParameters | null;
   pherastar_table: string | null;
   preferred_dilutions: string | null;
   preferred_dilutions_display?: string;

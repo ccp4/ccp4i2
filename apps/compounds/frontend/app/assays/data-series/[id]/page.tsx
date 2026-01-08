@@ -254,7 +254,34 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                             <StatusChip status={series.analysis.status} />
                           </TableCell>
                         </TableRow>
-                        {series.analysis.results?.EC50 !== undefined && (
+                        {series.analysis.results?.error && (
+                          <TableRow>
+                            <TableCell component="th">Error</TableCell>
+                            <TableCell>
+                              <Typography color="error" variant="body2">
+                                {series.analysis.results.error}
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+                        )}
+                        {series.analysis.results?.flags && series.analysis.results.flags.length > 0 && (
+                          <TableRow>
+                            <TableCell component="th">Flags</TableCell>
+                            <TableCell>
+                              {series.analysis.results.flags.map((flag: string) => (
+                                <Chip
+                                  key={flag}
+                                  label={flag}
+                                  size="small"
+                                  color="warning"
+                                  variant="outlined"
+                                  sx={{ mr: 0.5, mb: 0.5 }}
+                                />
+                              ))}
+                            </TableCell>
+                          </TableRow>
+                        )}
+                        {series.analysis.results?.EC50 !== undefined && series.analysis.results.EC50 !== null && (
                           <TableRow>
                             <TableCell component="th">EC50</TableCell>
                             <TableCell>
@@ -262,6 +289,32 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                                 {typeof series.analysis.results.EC50 === 'number'
                                   ? series.analysis.results.EC50.toExponential(3)
                                   : series.analysis.results.EC50}{' '}
+                                {series.dilution_series?.unit || 'nM'}
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+                        )}
+                        {series.analysis.results?.Ki !== undefined && series.analysis.results.Ki !== null && (
+                          <TableRow>
+                            <TableCell component="th">Ki</TableCell>
+                            <TableCell>
+                              <Typography fontFamily="monospace" fontWeight={600} color="secondary">
+                                {typeof series.analysis.results.Ki === 'number'
+                                  ? series.analysis.results.Ki.toExponential(3)
+                                  : series.analysis.results.Ki}{' '}
+                                {series.dilution_series?.unit || 'nM'}
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+                        )}
+                        {series.analysis.results?.IC50_apparent !== undefined && series.analysis.results.IC50_apparent !== null && (
+                          <TableRow>
+                            <TableCell component="th">IC50 (apparent)</TableCell>
+                            <TableCell>
+                              <Typography fontFamily="monospace" color="text.secondary">
+                                {typeof series.analysis.results.IC50_apparent === 'number'
+                                  ? series.analysis.results.IC50_apparent.toExponential(3)
+                                  : series.analysis.results.IC50_apparent}{' '}
                                 {series.dilution_series?.unit || 'nM'}
                               </Typography>
                             </TableCell>

@@ -17,6 +17,7 @@ from compounds.registry.views import (
     CompoundTemplateViewSet,
 )
 from compounds.assays.views import (
+    FittingMethodViewSet,
     DilutionSeriesViewSet,
     ProtocolViewSet,
     AssayViewSet,
@@ -37,6 +38,7 @@ router.register(r'batch-qc-files', BatchQCFileViewSet, basename='batch-qc-file')
 router.register(r'compound-templates', CompoundTemplateViewSet, basename='compound-template')
 
 # Assay routes
+router.register(r'fitting-methods', FittingMethodViewSet, basename='fitting-method')
 router.register(r'dilution-series', DilutionSeriesViewSet, basename='dilution-series')
 router.register(r'protocols', ProtocolViewSet, basename='protocol')
 router.register(r'assays', AssayViewSet, basename='assay')

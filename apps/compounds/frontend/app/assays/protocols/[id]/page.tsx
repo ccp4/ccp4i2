@@ -27,6 +27,7 @@ import { DataTable, Column } from '@/components/DataTable';
 import { PlatePreview } from '@/components/PlatePreview';
 import { PlateLayoutEditor } from '@/components/PlateLayoutEditor';
 import { AssayUploadDrawer } from '@/components/AssayUploadDrawer';
+import { ProtocolEditDialog } from '@/components/ProtocolEditDialog';
 import { useCompoundsApi } from '@/lib/api';
 import { Protocol, Assay, PlateLayout } from '@/types/models';
 
@@ -70,6 +71,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [assayToDelete, setAssayToDelete] = useState<Assay | null>(null);
   const [deleting, setDeleting] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
 
   const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
@@ -235,19 +237,28 @@ export default function ProtocolDetailPage({ params }: PageProps) {
           </>
         ) : protocol ? (
           <>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-              <Description sx={{ fontSize: 48, color: 'primary.main' }} />
-              <Box>
-                <Typography variant="h4">{protocol.name}</Typography>
-                <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
-                  <Chip
-                    label={ANALYSIS_METHOD_LABELS[protocol.analysis_method] || protocol.analysis_method}
-                    size="small"
-                    color="primary"
-                    variant="outlined"
-                  />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                <Description sx={{ fontSize: 48, color: 'primary.main' }} />
+                <Box>
+                  <Typography variant="h4">{protocol.name}</Typography>
+                  <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
+                    <Chip
+                      label={ANALYSIS_METHOD_LABELS[protocol.analysis_method] || protocol.analysis_method}
+                      size="small"
+                      color="primary"
+                      variant="outlined"
+                    />
+                  </Box>
                 </Box>
               </Box>
+              <Button
+                variant="outlined"
+                startIcon={<Edit />}
+                onClick={() => setEditDialogOpen(true)}
+              >
+                Edit Protocol
+              </Button>
             </Box>
 
             <Divider sx={{ my: 2 }} />
@@ -306,6 +317,34 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   Comments
                 </Typography>
                 <Typography>{protocol.comments}</Typography>
+              </>
+            )}
+
+            {/* Fitting Method Section */}
+            {protocol.fitting_method_name && (
+              <>
+                <Divider sx={{ my: 2 }} />
+                <Typography variant="h6" gutterBottom>
+                  Fitting Method
+                </Typography>
+                <InfoRow
+                  label="Method"
+                  value={
+                    <Chip
+                      label={protocol.fitting_method_name}
+                      color="secondary"
+                      variant="outlined"
+                      size="small"
+                    />
+                  }
+                />
+                {protocol.fitting_parameters?.protein_conc && (
+                  <>
+                    <InfoRow label="[Protein]" value={`${protocol.fitting_parameters.protein_conc} nM`} />
+                    <InfoRow label="[Ligand]" value={`${protocol.fitting_parameters.ligand_conc} nM`} />
+                    <InfoRow label="Ligand Kd" value={`${protocol.fitting_parameters.ligand_kd} nM`} />
+                  </>
+                )}
               </>
             )}
 
@@ -451,6 +490,16 @@ export default function ProtocolDetailPage({ params }: PageProps) {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Protocol Edit Dialog */}
+      {protocol && (
+        <ProtocolEditDialog
+          open={editDialogOpen}
+          onClose={() => setEditDialogOpen(false)}
+          protocol={protocol}
+          onSave={() => mutate()}
+        />
+      )}
     </Container>
   );
 }

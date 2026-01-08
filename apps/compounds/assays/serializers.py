@@ -14,8 +14,32 @@ from .models import (
     DataSeries,
     AnalysisResult,
     Hypothesis,
+    FittingMethod,
 )
 from compounds.registry.serializers import CompoundListSerializer
+
+
+class FittingMethodSerializer(serializers.ModelSerializer):
+    """Serializer for FittingMethod - exposes metadata without the script code."""
+
+    class Meta:
+        model = FittingMethod
+        fields = ['id', 'name', 'slug', 'version', 'description', 'is_active', 'is_builtin']
+        read_only_fields = ['id', 'slug', 'version', 'is_builtin']
+
+
+class FittingMethodDetailSerializer(serializers.ModelSerializer):
+    """Full serializer for FittingMethod including script code for editing."""
+
+    class Meta:
+        model = FittingMethod
+        fields = [
+            'id', 'name', 'slug', 'version', 'description',
+            'script', 'input_schema', 'output_schema',
+            'is_active', 'is_builtin',
+            'created_at', 'updated_at',
+        ]
+        read_only_fields = ['id', 'slug', 'is_builtin', 'created_at', 'updated_at']
 
 
 class DilutionSeriesSerializer(serializers.ModelSerializer):
@@ -49,6 +73,29 @@ class ProtocolSerializer(serializers.ModelSerializer):
     fitting_method_name = serializers.CharField(
         source='fitting_method.name', read_only=True
     )
+    # Explicitly allow null for ForeignKey fields
+    fitting_method = serializers.PrimaryKeyRelatedField(
+        queryset=FittingMethod.objects.all(),
+        allow_null=True,
+        required=False
+    )
+    preferred_dilutions = serializers.PrimaryKeyRelatedField(
+        queryset=DilutionSeries.objects.all(),
+        allow_null=True,
+        required=False
+    )
+    # Override to allow free-form text (model has choices but we want flexibility)
+    pherastar_table = serializers.CharField(
+        max_length=32,
+        allow_blank=True,
+        allow_null=True,
+        required=False
+    )
+    # fitting_parameters doesn't allow null in DB, so convert null to empty dict
+    fitting_parameters = serializers.JSONField(
+        required=False,
+        allow_null=True
+    )
 
     class Meta:
         model = Protocol
@@ -62,6 +109,14 @@ class ProtocolSerializer(serializers.ModelSerializer):
             'comments',
         ]
         read_only_fields = ['created_by', 'created_at']
+
+    def validate_fitting_parameters(self, value):
+        """Convert null to empty dict since DB column doesn't allow NULL."""
+        return value if value is not None else {}
+
+    def validate_plate_layout(self, value):
+        """Convert null to empty dict since DB column doesn't allow NULL."""
+        return value if value is not None else {}
 
 
 class ProtocolDetailSerializer(ProtocolSerializer):
