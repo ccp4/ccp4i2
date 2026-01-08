@@ -2,13 +2,12 @@ import os
 import re
 import shutil
 import subprocess
+
 from lxml import etree
 
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core import CCP4Modules
+
 
 class buster(CPluginScript):
     TASKMODULE = 'refinement'         # Gui menu location
@@ -20,7 +19,6 @@ class buster(CPluginScript):
     COMTEMPLATEFILE = None            # Name of file containing com file template
     WHATNEXT = ['buster', 'prosmart_refmac', 'modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
-    ASYNCHRONOUS = False
     MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Failed to initialise BUSTER, do you have BUSTER installed & the i2 preferences setup ' \

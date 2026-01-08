@@ -9,7 +9,6 @@ class phaser_MR_RNP(phaser_MR_AUTO.phaser_MR_AUTO):
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
@@ -70,5 +69,3 @@ class phaser_MR_RNP(phaser_MR_AUTO.phaser_MR_AUTO):
                 print('ghb', fragName)
                 inputObject.addSOLU_6DIM_ENSE(fragName, [0.,0.,0.],False,[0.,0.,0.],20.0, False, False, False, 1,1)
             return CPluginScript.SUCCEEDED
-
-

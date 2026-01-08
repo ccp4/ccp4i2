@@ -23,7 +23,6 @@ class pdb_redo_api(CPluginScript):
     TASKVERSION= 0.0
     COMLINETEMPLATE = None
     COMTEMPLATE = None
-    ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
     PERFORMANCECLASS = 'CRefinementPerformance'
 

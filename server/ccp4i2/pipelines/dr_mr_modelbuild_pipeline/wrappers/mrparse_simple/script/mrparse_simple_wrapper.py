@@ -17,7 +17,6 @@ class mrparse_simple(CPluginScript):
     COMTEMPLATEFILE = None             # Name of file containing com file template
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    ASYNCHRONOUS = False
     MAINTAINER = 'hlasimpk@liverpool.ac.uk'
 
     def __init__(self, *args, **kwargs):

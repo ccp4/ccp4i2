@@ -1,11 +1,11 @@
-import os
 import json
+import os
+
 from lxml import etree
+
+from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core import CCP4Modules
+
 
 class findmyseq(CPluginScript):
     TASKMODULE = 'bioinformatics'         # Gui location
@@ -17,7 +17,6 @@ class findmyseq(CPluginScript):
     COMTEMPLATEFILE = None            # Name of file containing com file template
     WHATNEXT = ['modelcraft']         # after ?
     PERFORMANCECLASS = 'CRefinementPerformance'
-    ASYNCHRONOUS = False
     MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Blank ' \
@@ -114,4 +113,3 @@ class findmyseq(CPluginScript):
             sfo.write(seqid)
             sfo.write(seqtrs)
             sfo.close()
-

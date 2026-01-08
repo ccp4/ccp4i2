@@ -14,7 +14,6 @@ class pdb_extract_wrapper(CPluginScript):
     TASKNAME = 'pdb_extract_wrapper'                                  # Task name - should be same as class name
     TASKCOMMAND = 'pdb_extract'                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     RUNEXTERNALPROCESS=False
 
@@ -60,4 +59,3 @@ class pdb_extract_wrapper(CPluginScript):
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot, pretty_print=True))
         
         self.reportStatus(CPluginScript.SUCCEEDED)
-

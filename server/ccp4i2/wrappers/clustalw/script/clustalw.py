@@ -14,7 +14,6 @@ class clustalw(CPluginScript):
     DESCRIPTION = 'Perform multiple alignment'
     TASKNAME = 'clustalw'                                  # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD =3.
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to catenate sequences' },201 : { 'description' : 'Failed to setFullPath' },}

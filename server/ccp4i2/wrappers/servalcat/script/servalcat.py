@@ -18,7 +18,6 @@ class servalcat(CPluginScript):
     TASKNAME = 'servalcat'
     TASKCOMMAND = 'servalcat'
     TASKVERSION= 0.0
-    ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CServalcatPerformance'
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },

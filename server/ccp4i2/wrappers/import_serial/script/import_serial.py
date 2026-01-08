@@ -1,16 +1,8 @@
 import os
-import re
-import shutil
-import subprocess
-import glob
-import json
-from lxml import etree
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4XtalData
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
-from ccp4i2.core import CCP4Modules
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class import_serial(CPluginScript):
     TASKMODULE = 'data_entry'         # GIU menu location
@@ -20,15 +12,10 @@ class import_serial(CPluginScript):
     TASKVERSION = 1.1                 # plugin version
     COMTEMPLATE = None                # The program com file template
     COMTEMPLATEFILE = None            # Name of file containing com file template
-    # PERFORMANCECLASS = ''
-    ASYNCHRONOUS = False
     MAINTAINER = 'martin.maly@soton.ac.uk'
-    # ERROR_CODES = { 101 : {'description' : 'Blank for now, may need this ',
-    #                        'severity':CCP4ErrorHandling.SEVERITY_ERROR } }
 
     def __init__(self, *args, **kwargs):
         print("import_serial: init")
-        # self.seqin = None
         self.hklin = None
         self.hklin1 = None
         self.hklin2 = None
@@ -92,12 +79,6 @@ class import_serial(CPluginScript):
 
         # XML output 'program.xml' is produced by the command line application
         self.xmlout = self.makeFileName('PROGRAMXML')
-        # rootNode = etree.Element("import_serial")
-        # Save xml
-        #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(rootNode, pretty_print=True)
-        #xmlfile.write(xmlString)
-        #xmlfile.close()
         print("import_serial: makeCommandAndScript end")
         return CPluginScript.SUCCEEDED
 
@@ -107,10 +88,5 @@ class import_serial(CPluginScript):
         self.container.outputData.HKLOUT.setAnnotation("Merged intensities")
         self.container.outputData.HKLOUT.contentFlag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN # not sure if does anything
 
-        # Save xml
-        #xmlfile = open(self.xmlout, 'wb')
-        #xmlString= etree.tostring(root, pretty_print=True)
-        #xmlfile.write(xmlString)
-        #xmlfile.close()
         print("import_serial: processOutputFiles end")
         return CPluginScript.SUCCEEDED

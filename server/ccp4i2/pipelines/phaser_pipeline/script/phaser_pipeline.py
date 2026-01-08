@@ -13,7 +13,6 @@ class phaser_pipeline(CPluginScript):
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CRefinementPerformance'
     SEPARATEDATA=True
     INTERRUPTABLE=True

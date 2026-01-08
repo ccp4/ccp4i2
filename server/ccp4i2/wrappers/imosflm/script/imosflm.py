@@ -15,7 +15,6 @@ class imosflm(CPluginScript):
     if platform.system() == 'Windows':
         TASKCOMMAND = 'imosflm.bat'
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     
@@ -60,4 +59,3 @@ class imosflm(CPluginScript):
                 outputUNMERGED[-1].setFullPath(file)
                 outputUNMERGED[-1].annotation = os.path.basename(file)
         return CPluginScript.SUCCEEDED
-            

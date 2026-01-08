@@ -19,7 +19,6 @@ class acedrgNew(CPluginScript):
     TASKCOMMAND = 'acedrg'                                     # The command to run the executable
     if platform.system() == 'Windows': TASKCOMMAND = 'acedrg.bat'
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

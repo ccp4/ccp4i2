@@ -11,17 +11,10 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS = False
     
     ERROR_CODES = {  200 : { 'description' : 'Phaser exited with error statut' }, 202 : { 'description' : 'Failed in harvest operation' }, 203 : { 'description' : 'Columns not present' }, 204 : { 'description' : 'Failed in plugin:',205 : { 'description' : 'Failed in pointless reindex operation' }, }, }
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
-    
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
     def process(self):
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
@@ -156,5 +149,3 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             self.appendErrorReport(205,'pointless_reindexToMatch')
             self.reportStatus(CPluginScript.FAILED)
         return CPluginScript.SUCCEEDED
-
-
