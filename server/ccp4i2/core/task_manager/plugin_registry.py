@@ -32,9 +32,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'Lidia':
         from ccp4i2.wrappers.Lidia.script.Lidia import lidia
         return lidia
-    if plugin_name == 'LidiaAcedrg':
-        from ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg import lidiaAcedrg
-        return lidiaAcedrg
     if plugin_name == 'LidiaAcedrgNew':
         from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew import lidiaAcedrgNew
         return lidiaAcedrgNew

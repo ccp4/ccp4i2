@@ -5184,27 +5184,6 @@
       }
     }
   },
-  "LidiaAcedrg": {
-    "module": "ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg",
-    "class": "lidiaAcedrg",
-    "module_file": "../../pipelines/LidiaAcedrg/script/lidiaAcedrg.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "LidiaAcedrg",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": false,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "ERROR_CODES": {
-      "201": {
-        "description": "Expected output file not made",
-        "severity": 2
-      }
-    }
-  },
   "SubstituteLigand": {
     "module": "ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand",
     "class": "SubstituteLigand",

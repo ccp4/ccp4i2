@@ -29,9 +29,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'AlternativeImportXIA2':
         from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report import AlternativeImportXIA2_report
         return AlternativeImportXIA2_report
-    if task_name == 'LidiaAcedrg':
-        from ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg_report import lidiaAcedrg_report
-        return lidiaAcedrg_report
     if task_name == 'LidiaAcedrgNew':
         from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import lidiaAcedrgNew_report
         return lidiaAcedrgNew_report
