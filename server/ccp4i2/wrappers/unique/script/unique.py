@@ -6,15 +6,12 @@
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
-class unique(CPluginScript):
 
+class unique(CPluginScript):
     TASKTITLE = 'Create dummy dataset' # A short title for gui menu
     TASKNAME = 'unique'   # Task name - should be same as class name
     TASKVERSION= 0.1               # Version of this plugin
-
-    # used by the base class startProcess()
     TASKCOMMAND = 'unique'   # The command to run the executable
-    # used by the base class makeCommandAndScript()
     COMLINETEMPLATE = '''1 HKLOUT $HKLOUT'''
     COMTEMPLATE = '''1 SYMM $SPACEGROUPCELL.spaceGroup.quote
 1 CELL $SPACEGROUPCELL.cell.a $SPACEGROUPCELL.cell.b $SPACEGROUPCELL.cell.c $SPACEGROUPCELL.cell.alpha $SPACEGROUPCELL.cell.beta $SPACEGROUPCELL.cell.gamma  
@@ -46,4 +43,3 @@ $TITLE TITLE $TITLE
       self.container.saveDataToXml(self.makeFileName('PROGRAMXML'))
 
       self.reportStatus(rv)
-

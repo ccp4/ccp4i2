@@ -16,9 +16,6 @@ class MakeLink(CPluginScript):
                        ]
     RUNEXTERNALPROCESS = False
 
-    #Uncomment the following if this pipeline will run plugins asynchronously
-    #ASYNCHRONOUS=True
-
     def __init__(self, *args, **kws):
         super(MakeLink, self).__init__(*args, **kws)
         self.container.inputData.RES_NAME_1_CIF.setQualifier('onlyEnumerators', False)

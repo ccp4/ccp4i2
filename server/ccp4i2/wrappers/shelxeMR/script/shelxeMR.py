@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class shelxeMR(CPluginScript):
-
     TASKMODULE = 'model_building'      # Gui menu location
     TASKTITLE = 'ShelxeMR'             # Short title for Gui
     TASKNAME = 'shelxeMR'              # Task name - same as class name
@@ -18,8 +17,6 @@ class shelxeMR(CPluginScript):
     COMTEMPLATE = None                 # The program com file template
     COMTEMPLATEFILE = None             # Name of file containing com file template
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    ASYNCHRONOUS = True
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
     filecaught = False
 
     def __init__(self, *args, **kwargs):

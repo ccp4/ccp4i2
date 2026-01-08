@@ -1,24 +1,21 @@
+import os
+
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ctruncate(CPluginScript):
-
     TASKMODULE = 'expt_data_utility'      # Where this plugin will appear on the gui
     TASKTITLE = 'Intensities to amplitudes' # A short title for gui menu
     DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
     TASKNAME = 'ctruncate'   # Task name - should be same as class name
     TASKVERSION= 0.0               # Version of this plugin
-
-    # used by the base class startProcess()
     TASKCOMMAND = 'ctruncate'   # The command to run the executable
-    # used by the base class makeCommandAndScript()
     COMLINETEMPLATE = None 
     COMTEMPLATE = None
     MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
     ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }
-
 
     def makeCommandAndScript(self):
 
@@ -45,12 +42,6 @@ class ctruncate(CPluginScript):
       self.appendCommandLine(['-hklin',inp.HKLIN.fullPath])
       if inp.SEQIN.isSet():
          self.appendCommandLine(['-seqin',inp.SEQIN.fullPath])
-      #print 'ctruncate.makeCommandAndScript OUTPUTMINIMTZ',self.container.controlParameters.OUTPUTMINIMTZ,type(self.container.controlParameters.OUTPUTMINIMTZ)
-      #if self.container.controlParameters.OUTPUTMINIMTZ:
-        #import os
-        #self.tmpHklout = os.path.join(self.workDirectory,'ctruncate_output.mtz')
-        #self.appendCommandLine(['-hklout',self.tmpHklout])
-       # else:
       self.appendCommandLine(['-hklout',self.container.outputData.HKLOUT.fullPath])
 
       ### column assignments
@@ -91,9 +82,6 @@ class ctruncate(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-      import os
-      import shutil
-
       #print 'ctruncate.processOutputFiles',self.container.controlParameters.OUTPUTMINIMTZ,self.container.controlParameters.OUTPUTMINIMTZCONTENTFLAG
       #print 'ctruncate.processOutputFiles HKLOUT',self.container.outputData.HKLOUT.__str__(),os.path.exists(self.container.outputData.HKLOUT.__str__())
               
@@ -158,19 +146,5 @@ class ctruncate(CPluginScript):
           self.container.outputData.OBSOUT1.annotation.set(dName + ' as '+self.container.outputData.OBSOUT.CONTENT_ANNOTATION[3])
           self.container.outputData.OBSOUT1.contentFlag.set(4)
         #print('\n***ctruncate.processOutputFiles after splitMtz status',status,'contentFlag',self.container.outputData.OBSOUT.contentFlag)
-
-        '''
-        if status != CPluginScript.SUCCEEDED: return status
-        if os.path.exists(self.container.outputData.HKLOUT.__str__()):
-          bakup,ext = os.path.splitext(self.container.outputData.HKLOUT.__str__())
-          bakup = bakup + '_bak'+ext
-          shutil.move(self.container.outputData.HKLOUT.__str__(),bakup)
-          print 'bakup',bakup,os.path.exists(bakup)
-        try:
-          shutil.move(self.tmpHklfile,self.container.outputData.HKLOUT.__str__())
-        except:
-          print 'Failed ctruncATE.processOutputFiles'
-          return CPluginScript.FAILED
-        '''  
 
       return CPluginScript.SUCCEEDED

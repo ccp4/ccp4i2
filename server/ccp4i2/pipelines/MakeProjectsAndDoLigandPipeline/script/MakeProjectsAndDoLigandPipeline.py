@@ -29,10 +29,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                         ['log_mtzjoin.txt', 0]
                        ]
     RUNEXTERNALPROCESS = False
-    ASYNCHRONOUS=False
-
-    #Uncomment the following if this pipeline will run plugins asynchronously
-    #ASYNCHRONOUS=True
 
     def __init__(self, *args, **kws):
         super(MakeProjectsAndDoLigandPipeline, self).__init__(*args, **kws)
