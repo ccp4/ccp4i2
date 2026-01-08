@@ -81,9 +81,6 @@
             "adding_stats_to_mmcif_i2",
             "mergeMtz"
         ],
-        "expt_data_util": [
-            "reindex_processed_data"
-        ],
         "expt_data_utility": [
             "pointless_reindexToMatch",
             "phaser_EP_LLG",
@@ -202,10 +199,6 @@
             "mrbump_model_prep",
             "phaser_MR_RNP",
             "pisapipe",
-            "coot_fit_residues",
-            "coot_stepped_refine",
-            "reindex_minimtz",
-            "reindex_processed_data",
             "tableone",
             "uniqueify"
         ],
@@ -228,8 +221,7 @@
             "prosmart",
             "refmac",
             "servalcat",
-            "pdb_extract_wrapper",
-            "reindex_minimtz"
+            "pdb_extract_wrapper"
         ]
     },
     "performanceClasses": {
@@ -754,18 +746,9 @@
         "coot_find_waters": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_reportcoot_find_waters_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_report",
+                "class": "wrappers.coot_find_waters.script.coot_find_waters_reportcoot_find_waters_report",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters_report",
                 "clsName": "coot_find_waters_report",
-                "modes": []
-            }
-        },
-        "coot_fit_residues": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_reportcoot_fit_residues_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report",
-                "clsName": "coot_fit_residues_report",
                 "modes": []
             }
         },
@@ -790,21 +773,10 @@
         "coot_script_lines": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report",
+                "class": "wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines_report",
                 "clsName": "coot_script_lines_report",
                 "modes": []
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_reportcoot_stepped_refine_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_report",
-                "clsName": "coot_stepped_refine_report",
-                "modes": [
-                    "Running"
-                ]
             }
         },
         "cpatterson": {
@@ -1614,15 +1586,6 @@
                 "modes": [
                     "Running"
                 ]
-            }
-        },
-        "reindex_processed_data": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_reportreindex_processed_data_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_report",
-                "clsName": "reindex_processed_data_report",
-                "modes": []
             }
         },
         "scaleit": {
@@ -2474,23 +2437,10 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
-                "TASKTITLE": "Find waters with coot",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waterscoot_find_waters",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters",
+                "TASKTITLE": "Find waters with Coot API",
+                "class": "wrappers.coot_find_waters.script.coot_find_waterscoot_find_waters",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters",
                 "clsName": "coot_find_waters",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_fit_residues": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Coot fit residues",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residuescoot_fit_residues",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues",
-                "clsName": "coot_fit_residues",
                 "internal": false,
                 "subTasks": []
             }
@@ -2513,7 +2463,7 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "stuart.mcnicholas@york.ac.uk",
-                "TASKTITLE": "Real space refinement morphing with coot",
+                "TASKTITLE": "Real space refinement morphing with Coot API",
                 "class": "wrappers.coot_rsr_morph.script.coot_rsr_morphcoot_rsr_morph",
                 "clsModule": "wrappers.coot_rsr_morph.script.coot_rsr_morph",
                 "clsName": "coot_rsr_morph",
@@ -2527,22 +2477,9 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
                 "TASKTITLE": "Execute arbitrary script code within Coot",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines",
+                "class": "wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines",
                 "clsName": "coot_script_lines",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Coot stepped refinement",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refinecoot_stepped_refine",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine",
-                "clsName": "coot_stepped_refine",
                 "internal": false,
                 "subTasks": []
             }
@@ -3773,32 +3710,6 @@
                 "subTasks": []
             }
         },
-        "reindex_minimtz": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "reindex_minimtz",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtzreindex_minimtz",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz",
-                "clsName": "reindex_minimtz",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "reindex_processed_data": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "reindex_processed_data",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_datareindex_processed_data",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data",
-                "clsName": "reindex_processed_data",
-                "internal": false,
-                "subTasks": []
-            }
-        },
         "scaleit": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -4190,13 +4101,10 @@
         "coordinate_selector": "qticons/coordinate_selector.png",
         "coot1": "qticons/coot1.png",
         "coot_find_waters": "qticons/coot_find_waters.png",
-        "coot_fit_residues": "qticons/ccp4.png",
         "coot_rebuild": "qticons/coot_rebuild.png",
         "coot_rsr_morph": "qticons/coot_rsr_morph.png",
         "coot_script_lines": "qticons/coot_script_lines.png",
-        "coot_stepped_refine": "qticons/ccp4.png",
         "cpatterson": "qticons/cpatterson.png",
-        "cphasematch": "qticons/cphasematch.png",
         "crank2": "qticons/crank2.png",
         "crank2_comb_phdmmb": "qticons/ccp4.png",
         "crank2_dmfull": "qticons/ccp4.png",
@@ -4282,8 +4190,6 @@
         "pyphaser_mr": "qticons/ccp4.png",
         "qtpisa": "qticons/qtpisa.png",
         "refinement": "qticons/refinement.png",
-        "reindex_minimtz": "qticons/ccp4.png",
-        "reindex_processed_data": "qticons/ccp4.png",
         "scaleit": "qticons/scaleit.png",
         "sculptor": "qticons/sculptor.png",
         "servalcat_pipe": "qticons/servalcat_pipe.png",
@@ -5200,25 +5106,11 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Find waters - COOT",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_guiCcoot_find_waters",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_gui",
+                "class": "wrappers.coot_find_waters.script.coot_find_waters_guiCcoot_find_waters",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters_gui",
                 "clsName": "Ccoot_find_waters",
                 "shortTitle": "Find waters - COOT",
                 "taskName": "coot_find_waters",
-                "taskVersion": 0.1
-            }
-        },
-        "coot_fit_residues": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Coot fit residues",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_guiCcoot_fit_residues",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_gui",
-                "clsName": "Ccoot_fit_residues",
-                "shortTitle": "Coot fit residues",
-                "taskName": "coot_fit_residues",
                 "taskVersion": 0.1
             }
         },
@@ -5256,25 +5148,11 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Scripted model building - COOT",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_gui",
+                "class": "wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines_gui",
                 "clsName": "Ccoot_script_lines",
                 "shortTitle": "Scripted COOT",
                 "taskName": "coot_script_lines",
-                "taskVersion": 0.1
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Coot stepped refinement",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_guiCcoot_stepped_refine",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_gui",
-                "clsName": "Ccoot_stepped_refine",
-                "shortTitle": "Coot stepped refinement",
-                "taskName": "coot_stepped_refine",
                 "taskVersion": 0.1
             }
         },
@@ -6284,34 +6162,6 @@
                 "shortTitle": "PISA",
                 "taskName": "qtpisa",
                 "taskVersion": 0.1
-            }
-        },
-        "reindex_minimtz": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Reindex any miniMTZ",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz_guiCreindex_minimtz",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz_gui",
-                "clsName": "Creindex_minimtz",
-                "shortTitle": "Reindex any miniMTZ",
-                "taskName": "reindex_minimtz",
-                "taskVersion": 0.0
-            }
-        },
-        "reindex_processed_data": {
-            "0.0.0": {
-                "DESCRIPTION": "Reindex processed data to correspond to a master dataset (Reindex)",
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Reindex observed and FreeR data",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_guiCreindex_processed_data",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_gui",
-                "clsName": "Creindex_processed_data",
-                "shortTitle": "Reindex observed and FreeR data",
-                "taskName": "reindex_processed_data",
-                "taskVersion": 0.0
             }
         },
         "scaleit": {

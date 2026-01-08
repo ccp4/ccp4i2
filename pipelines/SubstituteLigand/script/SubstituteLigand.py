@@ -224,7 +224,6 @@ class SubstituteLigand(CPluginScript):
         fphiinList.append(fphiinList.makeItem())
         fphiinList[-1].set(self.mapToUse)
         self.cootPlugin.container.inputData.DICT = self.dictToUse
-        #coot_stepped_refine,coot_fit_residues,coot_script_lines
         self.cootPlugin.container.controlParameters.SCRIPT = '''#Script to fit lignad into density
 monomerMolNo = get_monomer('DRG')
 add_ligand_clear_ligands()
