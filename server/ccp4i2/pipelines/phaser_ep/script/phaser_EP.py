@@ -1,11 +1,12 @@
 import os
+
 from lxml import etree
-from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class phaser_EP(CPluginScript):
-
     TASKNAME = 'phaser_EP'                                  # Task name - should be same as class name
     TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
@@ -88,7 +89,6 @@ class phaser_EP(CPluginScript):
             self.shelxPlugin.container.controlParameters.SFAC = self.container.inputData.SFAC
             self.shelxPlugin.container.controlParameters.NTRY = self.container.inputData.NTRY
             self.shelxPlugin.container.controlParameters.FIND = self.container.inputData.FIND
-            self.shelxPlugin.doAsync = False
         except Exception as e:
             self.appendErrorReport(204, 'Exception during ShelxCD setup: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
