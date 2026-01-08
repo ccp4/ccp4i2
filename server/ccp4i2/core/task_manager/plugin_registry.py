@@ -275,9 +275,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'import_xia2':
         from ccp4i2.pipelines.import_xia2.script.import_xia2 import import_xia2
         return import_xia2
-    if plugin_name == 'libcheck':
-        from ccp4i2.wrappers.libcheck.script.libcheck import libcheck
-        return libcheck
     if plugin_name == 'lorestr_i2':
         from ccp4i2.wrappers.lorestr_i2.script.lorestr_i2 import lorestr_i2
         return lorestr_i2
@@ -604,7 +601,6 @@ PLUGIN_NAMES: set[str] = {
     'import_serial',
     'import_serial_pipe',
     'import_xia2',
-    'libcheck',
     'lorestr_i2',
     'mergeMtz',
     'metalCoord',
