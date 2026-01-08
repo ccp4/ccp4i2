@@ -326,7 +326,7 @@ if __name__ == "__main__":
                 print(f"Scanning {plugin_dir}...")
                 plugins = build_lookup_from_dir(dir_path)
                 # Module paths are already computed relative to CCP4I2_ROOT
-                # so they include the plugin_dir (e.g., "ccp4i2.wrappers.phaser_mr...")
+                # so they include the plugin_dir (e.g., "ccp4i2.wrappers.pyphaser_mr...")
                 result.update(plugins)
                 print(f"  Found {len(plugins)} plugins in {plugin_dir}")
 

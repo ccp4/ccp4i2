@@ -869,37 +869,6 @@
       }
     }
   },
-  "phaser_mr": {
-    "module": "ccp4i2.wrappers.phaser_mr.script.phaser_mr",
-    "class": "phaser_mr",
-    "module_file": "../../wrappers/phaser_mr/script/phaser_mr.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "MR using Phaser",
-    "TASKNAME": "phaser_mr",
-    "TASKVERSION": 0.1,
-    "WHATNEXT": [
-      "prosmart_refmac",
-      "modelcraft",
-      "coot_rebuild"
-    ],
-    "ASYNCHRONOUS": true,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "ERROR_CODES": {
-      "201": {
-        "description": "Failed killing log poller"
-      },
-      "202": {
-        "description": "Failed analysing problem"
-      },
-      "203": {
-        "description": "Failed analysing solutions"
-      },
-      "204": {
-        "description": "Failed analysing log"
-      }
-    }
-  },
   "edstats": {
     "module": "ccp4i2.wrappers.edstats.script.edstats",
     "class": "edstats",

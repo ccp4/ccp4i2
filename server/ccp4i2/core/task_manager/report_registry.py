@@ -347,9 +347,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'phaser_ensembler':
         from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler_report import phaser_ensembler_report
         return phaser_ensembler_report
-    if task_name == 'phaser_mr':
-        from ccp4i2.wrappers.phaser_mr.script.phaser_mr_report import phaser_mr_report
-        return phaser_mr_report
     if task_name == 'phaser_phil':
         from ccp4i2.wrappers.phaser_phil.script.phaser_phil_report import phaser_phil_report
         return phaser_phil_report
@@ -562,7 +559,6 @@ REPORT_NAMES: set[str] = {
     'phaser_MR_RNP',
     'phaser_analysis',
     'phaser_ensembler',
-    'phaser_mr',
     'phaser_phil',
     'phaser_pipeline',
     'phaser_rnp_pipeline',

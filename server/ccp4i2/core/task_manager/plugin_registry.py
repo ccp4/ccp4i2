@@ -389,9 +389,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'phaser_ensembler':
         from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler import phaser_ensembler
         return phaser_ensembler
-    if plugin_name == 'phaser_mr':
-        from ccp4i2.wrappers.phaser_mr.script.phaser_mr import phaser_mr
-        return phaser_mr
     if plugin_name == 'phaser_phil':
         from ccp4i2.wrappers.phaser_phil.script.phaser_phil import phaser_phil
         return phaser_phil
@@ -648,7 +645,6 @@ PLUGIN_NAMES: set[str] = {
     'phaser_MR_RNP',
     'phaser_analysis',
     'phaser_ensembler',
-    'phaser_mr',
     'phaser_phil',
     'phaser_pipeline',
     'phaser_rnp_pipeline',
