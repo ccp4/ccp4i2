@@ -10,7 +10,6 @@ class ShelxCD(ShelxCDEBase.ShelxCDEBase):
     TASKVERSION= 0.0                                     # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
-    #WHATNEXT = ['ShelxCE','phaser_EP_AUTO']
     PERFORMANCECLASS = 'CExpPhasPerformance'
 
     def processInputFiles(self):

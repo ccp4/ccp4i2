@@ -3585,32 +3585,6 @@
       }
     }
   },
-  "ShelxCE": {
-    "module": "ccp4i2.wrappers.ShelxCDE.script.ShelxCE",
-    "class": "ShelxCE",
-    "module_file": "../../wrappers/ShelxCDE/script/ShelxCE.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": "test",
-    "TASKTITLE": "ShelxE",
-    "TASKNAME": "ShelxCE",
-    "TASKVERSION": 0.0,
-    "WHATNEXT": [
-      "coot_rebuild",
-      "parrot",
-      [
-        "modelcraft",
-        "$CCP4I2/wrappers/modelcraft/script/experimental.params.xml"
-      ]
-    ],
-    "ASYNCHRONOUS": true,
-    "TIMEOUT_PERIOD": 9999999.9,
-    "PERFORMANCECLASS": "CExpPhasPerformance",
-    "ERROR_CODES": {
-      "300": {
-        "description": "No overall FOM found"
-      }
-    }
-  },
   "density_calculator": {
     "module": "ccp4i2.wrappers.density_calculator.script.density_calculator",
     "class": "density_calculator",

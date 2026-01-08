@@ -37,7 +37,6 @@ import GeneratedPrepareDepositInterface from "./generated/PrepareDeposit";
 import GeneratedProvideAlignmentInterface from "./generated/ProvideAlignment";
 import GeneratedSIMBADInterface from "./generated/SIMBAD";
 import GeneratedShelxCDInterface from "./generated/ShelxCD";
-import GeneratedShelxCEInterface from "./generated/ShelxCE";
 import GeneratedSubtractNativeInterface from "./generated/SubtractNative";
 import GeneratedTestObsConversionsInterface from "./generated/TestObsConversions";
 import GeneratedAddFractionalCoordsInterface from "./generated/add_fractional_coords";
@@ -163,8 +162,6 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <GeneratedSIMBADInterface job={job} />;
       case "ShelxCD":
         return <GeneratedShelxCDInterface job={job} />;
-      case "ShelxCE":
-        return <GeneratedShelxCEInterface job={job} />;
       case "SubtractNative":
         return <GeneratedSubtractNativeInterface job={job} />;
       case "TestObsConversions":

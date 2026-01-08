@@ -68,9 +68,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'ShelxCD':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCD import ShelxCD
         return ShelxCD
-    if plugin_name == 'ShelxCE':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCE import ShelxCE
-        return ShelxCE
     if plugin_name == 'SubstituteLigand':
         from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand import SubstituteLigand
         return SubstituteLigand
@@ -538,7 +535,6 @@ PLUGIN_NAMES: set[str] = {
     'ProvideTLS',
     'SIMBAD',
     'ShelxCD',
-    'ShelxCE',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
