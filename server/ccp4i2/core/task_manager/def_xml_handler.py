@@ -509,8 +509,29 @@ class DefXmlParser:
                     obj.set_qualifier("fromPreviousJob", value)
 
             elif key == "requiredSubType":
+                # Parse comma-separated integers if string
+                if isinstance(value, str) and "," in value:
+                    value = [int(x.strip()) for x in value.split(",")]
+                elif isinstance(value, str):
+                    try:
+                        value = [int(value)]
+                    except ValueError:
+                        pass
                 if hasattr(obj, "set_qualifier"):
                     obj.set_qualifier("requiredSubType", value)
+
+            elif key == "requiredContentFlag":
+                # Parse comma-separated integers if string
+                # This is critical for filtering file selections in the frontend
+                if isinstance(value, str) and "," in value:
+                    value = [int(x.strip()) for x in value.split(",")]
+                elif isinstance(value, str):
+                    try:
+                        value = [int(value)]
+                    except ValueError:
+                        pass
+                if hasattr(obj, "set_qualifier"):
+                    obj.set_qualifier("requiredContentFlag", value)
 
             elif key == "saveToDb":
                 if hasattr(obj, "set_qualifier"):

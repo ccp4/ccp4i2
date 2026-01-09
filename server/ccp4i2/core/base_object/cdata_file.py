@@ -1598,4 +1598,36 @@ class CDataFile(CData):
                     severity=SEVERITY_ERROR
                 )
 
+        # Check requiredContentFlag
+        # If requiredContentFlag is specified and file has a contentFlag,
+        # validate the file's content is compatible
+        required_flags = self.get_qualifier('requiredContentFlag')
+        if required_flags and has_path:
+            # Normalize to list
+            if not isinstance(required_flags, (list, tuple)):
+                required_flags = [required_flags]
+
+            # Get this file's content flag if it has one
+            if hasattr(self, 'contentFlag') and self.contentFlag.isSet():
+                actual_flag = self.contentFlag.get()
+                if actual_flag not in required_flags:
+                    obj_path = self.object_path()
+                    # Map flag values to human-readable names
+                    flag_names = {
+                        1: 'IPAIR (I+/I-)',
+                        2: 'FPAIR (F+/F-)',
+                        3: 'IMEAN',
+                        4: 'FMEAN'
+                    }
+                    actual_name = flag_names.get(actual_flag, str(actual_flag))
+                    required_names = ', '.join(flag_names.get(f, str(f)) for f in required_flags)
+                    report.append(
+                        klass=self.__class__.__name__,
+                        code=104,
+                        details=f'File content type mismatch for {obj_path}: '
+                                f'got {actual_name}, requires one of: {required_names}',
+                        name=obj_path,
+                        severity=SEVERITY_ERROR
+                    )
+
         return report

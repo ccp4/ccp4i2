@@ -118,7 +118,14 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     const acceptedExtensions =
       qualifiers?.fileExtensions?.map((ext: string) => `.${ext}`).join(",") ||
       "";
-    return { allowedTypes, acceptedExtensions };
+    // requiredContentFlag filters files by their content flag (e.g., [1,2] for anomalous pairs)
+    // This is critical for tasks like SAD/MAD phasing that need specific data types
+    const requiredContentFlag = qualifiers?.requiredContentFlag
+      ? Array.isArray(qualifiers.requiredContentFlag)
+        ? qualifiers.requiredContentFlag
+        : [qualifiers.requiredContentFlag]
+      : null;
+    return { allowedTypes, acceptedExtensions, requiredContentFlag };
   }, [qualifiers]);
 
   const fileOptions = useMemo(() => {
@@ -130,10 +137,17 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
           fileConfig.allowedTypes!.includes(file.type) ||
           fileConfig.allowedTypes!.includes("Unknown");
         const isNotParentJob = fileJob ? !fileJob.parent : true;
-        return isValidType && isNotParentJob;
+        // Filter by requiredContentFlag if specified (and non-empty)
+        // This prevents selecting incompatible files (e.g., IMEAN for SAD phasing)
+        // null, undefined, or empty array means no filtering
+        const hasValidContentFlag =
+          !fileConfig.requiredContentFlag ||
+          fileConfig.requiredContentFlag.length === 0 ||
+          fileConfig.requiredContentFlag.includes(file.content);
+        return isValidType && isNotParentJob && hasValidContentFlag;
       })
       .sort((a, b) => b.job - a.job);
-  }, [projectFiles, projectJobs, fileConfig.allowedTypes]);
+  }, [projectFiles, projectJobs, fileConfig.allowedTypes, fileConfig.requiredContentFlag]);
 
   const borderColor = getValidationColor(item);
   const hasError = borderColor === "error.light";
