@@ -131,8 +131,6 @@ class CPluginScript(CData):
         # Set to True to run plugin asynchronously (non-blocking)
         # Set to False for synchronous (blocking) execution
         self.doAsync = False
-        # waitForFinished = -1 also triggers async mode (legacy compatibility)
-        self.waitForFinished = 0
 
         # Child job counter for sub-plugins (follows legacy convention)
         self._childJobCounter = 0
@@ -1613,8 +1611,6 @@ class CPluginScript(CData):
         Returns:
             CErrorReport with any errors
         """
-        import subprocess
-        import os
 
         error = CErrorReport()
 
@@ -1632,14 +1628,12 @@ class CPluginScript(CData):
         #    - doAsync=False OVERRIDES ASYNCHRONOUS=True
         #    - This allows i2run tests to force synchronous execution
         # 2. ASYNCHRONOUS class variable (set in plugin definition)
-        # 3. waitForFinished = -1 (legacy compatibility)
         if self.doAsync is False:
             # Explicit synchronous override
             return self._startProcessSync()
-        elif self.ASYNCHRONOUS or self.doAsync or self.waitForFinished == -1:
+        if self.ASYNCHRONOUS or self.doAsync:
             return self._startProcessAsync()
-        else:
-            return self._startProcessSync()
+        return self._startProcessSync()
 
     def _prepareProcessExecution(self):
         """

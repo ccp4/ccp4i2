@@ -10,11 +10,9 @@ class pointless_reindexToMatch(CPluginScript):
     TASKNAME = 'pointless_reindexToMatch'
     TASKCOMMAND = 'pointless'
     TASKVERSION= 0.0
-    ASYNCHRONOUS = False
     
     ERROR_CODES = { 201 : {'description' : 'Failed to make input files' }, 202 : {'description' : 'Failed to make output files' }, 203 : {'description' : 'Failed to identify a best reindexing' }}
-    
-    
+
     def formatCellLength(self, p):
         return "%7.1f" % float(p)
 
@@ -98,18 +96,7 @@ class pointless_reindexToMatch(CPluginScript):
             print("postProcessCheck FAIL")
             return CPluginScript.UNSATISFACTORY, exitStatus, exitCode
         return status, exitStatus, exitCode
-        
-        '''
-print "PRM postProcessCheck"
-        processId = self.getProcessId()
-        from ccp4i2.core import CCP4Modules
-        exitStatus = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitStatus')
-        exitCode = CCP4Modules.PROCESSMANAGER().getJobData(processId,'exitCode')
-        print "exitStatus", exitStatus
-        print "exitCode", exitCode
-        print "postProcessCheck success"
-        return CPluginScript.SUCCEEDED
-'''
+
     def processOutputFiles(self):
         print('#PRM processOutputFiles')
         try:
@@ -215,4 +202,3 @@ print "PRM postProcessCheck"
             self.container.outputData.F_SIGF_OUT.subType = self.container.inputData.F_SIGF.subType
             if self.container.inputData.FREERFLAG.isSet():
                 self.container.outputData.FREERFLAG_OUT.annotation = title
-

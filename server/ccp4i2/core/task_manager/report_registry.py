@@ -29,9 +29,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'AlternativeImportXIA2':
         from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report import AlternativeImportXIA2_report
         return AlternativeImportXIA2_report
-    if task_name == 'LidiaAcedrg':
-        from ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg_report import lidiaAcedrg_report
-        return lidiaAcedrg_report
     if task_name == 'LidiaAcedrgNew':
         from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import lidiaAcedrgNew_report
         return lidiaAcedrgNew_report
@@ -68,12 +65,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'ShelxCDEBaseReport':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCDEBaseReport
         return ShelxCDEBaseReport
-    if task_name == 'ShelxCE':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCE_report import ShelxCE_report
-        return ShelxCE_report
-    if task_name == 'ShelxCECompareHands':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands_report import ShelxCECompareHands_report
-        return ShelxCECompareHands_report
     if task_name == 'SubstituteLigand':
         from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report import SubstituteLigand_report
         return SubstituteLigand_report
@@ -353,9 +344,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'phaser_ensembler':
         from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler_report import phaser_ensembler_report
         return phaser_ensembler_report
-    if task_name == 'phaser_mr':
-        from ccp4i2.wrappers.phaser_mr.script.phaser_mr_report import phaser_mr_report
-        return phaser_mr_report
     if task_name == 'phaser_phil':
         from ccp4i2.wrappers.phaser_phil.script.phaser_phil_report import phaser_phil_report
         return phaser_phil_report
@@ -474,8 +462,6 @@ REPORT_NAMES: set[str] = {
     'RvapiReport',
     'ShelxCD',
     'ShelxCDEBaseReport',
-    'ShelxCE',
-    'ShelxCECompareHands',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
@@ -569,7 +555,6 @@ REPORT_NAMES: set[str] = {
     'phaser_MR_RNP',
     'phaser_analysis',
     'phaser_ensembler',
-    'phaser_mr',
     'phaser_phil',
     'phaser_pipeline',
     'phaser_rnp_pipeline',

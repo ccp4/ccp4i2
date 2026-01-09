@@ -2,16 +2,12 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class sculptor(CPluginScript):
-
     TASKMODULE = 'bioinformatics'
     TASKTITLE = 'Truncate search model - SCULPTOR'
     TASKNAME = 'sculptor'  
     TASKVERSION= 0.1
     PERFORMANCECLASS = 'CAtomCountPerformance'
-
-    # used by the base class startProcess()
     TASKCOMMAND = 'phaser.sculptor'   # The command to run the executable
-    # used by the base class makeCommandAndScript()
     COMLINETEMPLATE = None 
     COMTEMPLATE = None
     

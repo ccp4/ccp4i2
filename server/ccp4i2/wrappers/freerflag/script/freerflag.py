@@ -8,16 +8,12 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class freerflag(CPluginScript):
-
     TASKMODULE = 'test'      # Where this plugin will appear on the gui
     TASKTITLE = 'Add a freeR flag' # A short title for gui menu
     TASKNAME = 'freerflag'   # Task name - should be same as class name
     TASKVERSION= 0.0               # Version of this plugin
     MAINTAINER = 'liz.potterton@york.ac.uk'
-
-    # used by the base class startProcess()
     TASKCOMMAND = 'freerflag'   # The command to run the executable
-    # used by the base class makeCommandAndScript()
     COMLINETEMPLATE = None 
     COMTEMPLATE = None  
 
@@ -67,11 +63,6 @@ class freerflag(CPluginScript):
             # Data go to higher resolution, no need to do anything
             return
 
-        #print("***FSF", self.container.inputData.F_SIGF.CONTENTS)
-        #print("***FREE", self.container.inputData.FREERFLAG.CONTENTS)
-        #print("***FSF", self.container.inputData.F_SIGF.fileContent)
-        #print("***FREE", self.container.inputData.FREERFLAG.fileContent)
-
         # File names
         FSIGF_file = str(self.container.inputData.F_SIGF)
         FREER_file = str(self.container.inputData.FREERFLAG)
@@ -95,14 +86,10 @@ class freerflag(CPluginScript):
             print(">>**>> cutting all data", highRes, resmax)
             mtz.set_data(mtz.array[mtz.make_d_array() >= resmax])
             mtz.write_to_file(self.hklin)
-            # outfile = os.path.join(self.workDirectory, 'hklin2.mtz')
-            # mtz.write_to_file(outfile)
-            # self.hklin = outfile
             self.globalCutoff = resmax
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     def makeCommandAndScript(self):
-      import os
       self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 
       self.appendCommandLine(['HKLIN', self.hklin])

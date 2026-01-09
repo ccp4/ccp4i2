@@ -1,10 +1,11 @@
-import time
+import glob
 import os
 import re
-import glob
 import shutil
+import time
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class dui(CPluginScript):
     TASKMODULE = 'data_processing'
@@ -13,7 +14,6 @@ class dui(CPluginScript):
     TASKNAME = 'dui'
     TASKCOMMAND = 'dui2'
     TASKVERSION= 0.1
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
 
@@ -76,4 +76,3 @@ class dui(CPluginScript):
             if self.stime < os.path.getmtime(afile):
                 shutil.copy(afile, self.getWorkDirectory())
         return CPluginScript.SUCCEEDED
-

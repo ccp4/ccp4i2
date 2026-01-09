@@ -1,11 +1,12 @@
 import os
+
 from lxml import etree
-from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class phaser_EP(CPluginScript):
-
     TASKNAME = 'phaser_EP'                                  # Task name - should be same as class name
     TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
@@ -88,7 +89,6 @@ class phaser_EP(CPluginScript):
             self.shelxPlugin.container.controlParameters.SFAC = self.container.inputData.SFAC
             self.shelxPlugin.container.controlParameters.NTRY = self.container.inputData.NTRY
             self.shelxPlugin.container.controlParameters.FIND = self.container.inputData.FIND
-            self.shelxPlugin.doAsync = False
         except Exception as e:
             self.appendErrorReport(204, 'Exception during ShelxCD setup: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
@@ -123,7 +123,6 @@ class phaser_EP(CPluginScript):
                     if hasattr(attr,'isSet') and attr.isSet(allSet=False):
                         setattr(self.phaserPlugin.container.keywords,attrName,attr)
             self.phaserPlugin.container.inputData=self.container.inputData
-            self.phaserPlugin.doAsync = False
         except Exception as e:
             self.appendErrorReport(205, 'Exception during phaser_EP_AUTO setup: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
@@ -153,7 +152,6 @@ class phaser_EP(CPluginScript):
                     self.parrotPlugin.container.inputData.ABCD.set(self.phaserPlugin.container.outputData.ABCDOUT[1])
                 else:
                     self.parrotPlugin.container.inputData.ABCD.set(self.phaserPlugin.container.outputData.ABCDOUT[0])
-            self.parrotPlugin.doAsync = False
             return self.parrotPlugin
         except Exception as e:
             self.appendErrorReport(206, 'Exception during Parrot setup (hand=' + hand + '): ' + str(e))

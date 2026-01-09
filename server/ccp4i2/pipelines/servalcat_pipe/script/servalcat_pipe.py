@@ -169,15 +169,9 @@ class servalcat_pipe(CPluginScript):
               self.prosmart_protein.container.controlParameters.RESTRAIN_ALT = self.container.prosmartProtein.TOGGLE_ALT
               self.prosmart_protein.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartProtein.OCCUPANCY
               self.prosmart_protein.container.controlParameters.KEYWORDS = self.container.prosmartProtein.KEYWORDS
-           self.connectSignal(self.prosmart_protein, 'finished', self.prosmartProteinFinished)
-           self.prosmart_protein.waitForFinished = -1
-           self.prosmart_protein.process()
-
-    @QtCore.Slot(dict)
-    def prosmartProteinFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
+           status = self.prosmart_protein.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executeProsmartNucleicAcid(self):
        if self.container.prosmartNucleicAcid.TOGGLE:
@@ -197,15 +191,9 @@ class servalcat_pipe(CPluginScript):
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_ALT = self.container.prosmartNucleicAcid.TOGGLE_ALT
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartNucleicAcid.OCCUPANCY
               self.prosmart_nucleicacid.container.controlParameters.KEYWORDS = self.container.prosmartNucleicAcid.KEYWORDS
-           self.connectSignal(self.prosmart_nucleicacid,'finished',self.prosmartNucleicAcidFinished)
-           self.prosmart_nucleicacid.waitForFinished = -1
-           self.prosmart_nucleicacid.process()
-
-    @QtCore.Slot(dict)
-    def prosmartNucleicAcidFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
+           status = self.prosmart_nucleicacid.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executeMetalCoords(self):
         if self.container.metalCoordPipeline.RUN_METALCOORD and \
@@ -261,7 +249,7 @@ class servalcat_pipe(CPluginScript):
         if str(self.container.metalCoordPipeline.LINKS) == "KEEP":
             self.metalCoordPlugin.container.controlParameters.KEEP_LINKS.set(True)
         self.connectSignal(self.metalCoordPlugin, 'finished', self.metalCoordFinished)
-        self.metalCoordPlugin.waitForFinished = -1
+        self.metalCoordPlugin.doAsyc = True
         self.metalCoordPlugin.process()
         self.outputJsonFilename = str(self.metalCoordPlugin.container.inputData.LIGAND_CODE) + ".json"
         self.outputJsonPath = os.path.join(self.metalCoordPlugin.getWorkDirectory(), self.outputJsonFilename)
@@ -480,8 +468,6 @@ class servalcat_pipe(CPluginScript):
             self.validate.container.controlParameters.DO_RAMA.set(validate_ramachandran)
             self.validate.container.controlParameters.DO_MOLPROBITY.set(validate_molprobity)
 
-            self.validate.doAsync = False
-            self.validate.waitForFinished = -1
             self.validate.process()
 
             validateXMLPath = self.validate.makeFileName('PROGRAMXML')
@@ -756,35 +742,28 @@ class servalcat_pipe(CPluginScript):
             self.fileSystemWatcher = None
             self.reportStatus(CPluginScript.FAILED)
             return
+        print("AAA12")
+        # self.addCycleXML(self.firstServalcat) # MM
+        aFile=open( self.pipelinexmlfile,'w')
+        CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot, pretty_print=True) )
+        aFile.close()
+        print("AAA13")
+        print("AAA15")
+        print("AAA15.1")
+        if self.container.controlParameters.ADD_WATERS:
+            # Coot sujob to add waters
+            print("AAA16")
+            self.currentCoordinates = self.firstServalcat.container.outputData.CIFFILE
+            self.cootPlugin = self.makeCootPlugin()
+            self.cootPlugin.doAsync = self.doAsync
+            self.cootPlugin.connectSignal(self.cootPlugin, 'finished', self.cootFinished)
+            print("AAA17")
+            rv = self.cootPlugin.process()
+            if rv == CPluginScript.FAILED:
+                self.reportStatus(rv)
         else:
-            print("AAA12")
-            # self.addCycleXML(self.firstServalcat) # MM
-            aFile=open( self.pipelinexmlfile,'w')
-            CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot, pretty_print=True) )
-            aFile.close()
-            print("AAA13")
-            if self.container.controlParameters.OPTIMISE_WEIGHT:
-                print("AAA14")
                 self.fileSystemWatcher = None
-                weightUsed = float(self.xmlroot.xpath('//weight')[-1].text)
-                self.tryVariousRefmacWeightsAround(weightUsed)
-            else:
-               print("AAA15")
-               print("AAA15.1")
-               if self.container.controlParameters.ADD_WATERS:
-                   # Coot sujob to add waters
-                   print("AAA16")
-                   self.currentCoordinates = self.firstServalcat.container.outputData.CIFFILE
-                   self.cootPlugin = self.makeCootPlugin()
-                   self.cootPlugin.doAsync = self.doAsync
-                   self.cootPlugin.connectSignal(self.cootPlugin, 'finished', self.cootFinished)
-                   print("AAA17")
-                   rv = self.cootPlugin.process()
-                   if rv == CPluginScript.FAILED:
-                        self.reportStatus(rv)
-               else:
-                     self.fileSystemWatcher = None
-                     self.finishUp(self.firstServalcat)
+                self.finishUp(self.firstServalcat)
         print('done servalcat_pipe.firstServalcatFinished')
 
     def makeCootPlugin(self):
@@ -815,15 +794,12 @@ class servalcat_pipe(CPluginScript):
             oldXml = etree.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
-            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()), "log.txt")
-            with open(cootLogTxt, 'r') as f:
-               for l in f:
-                   if l.startswith("INFO::") and "found" in l and "water fitting" in l:
-                      nwaters = l.strip()
-                      numsearch = [ x for x in nwaters.split() if x.isdigit() ]
-                      if len(numsearch)>0:
-                         nwaters = numsearch[0]
-                      break
+            cootLogXml = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"program.xml")
+            with open(cootLogXml, encoding='utf-8') as f:
+                watersXml = etree.fromstring(f.read())
+                nodes = watersXml.findall(".//WatersFound")
+                if len(nodes) > 0:
+                    nwaters = nodes[0].text
             postRefmacCoot = etree.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added " + nwaters + " water molecules."
             oldXml.append(postRefmacCoot)

@@ -16,7 +16,6 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
     WHATNEXT = ['phaser_expert']
 
@@ -135,4 +134,3 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
 
         self.flushXML(self.xmlroot)
         return  CPluginScript.SUCCEEDED
-

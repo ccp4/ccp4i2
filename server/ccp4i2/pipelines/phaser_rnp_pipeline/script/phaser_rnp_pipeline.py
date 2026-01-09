@@ -11,17 +11,10 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS = False
     
     ERROR_CODES = {  200 : { 'description' : 'Phaser exited with error statut' }, 202 : { 'description' : 'Failed in harvest operation' }, 203 : { 'description' : 'Columns not present' }, 204 : { 'description' : 'Failed in plugin:',205 : { 'description' : 'Failed in pointless reindex operation' }, }, }
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
-    
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
     def process(self):
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
@@ -36,11 +29,7 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
         #print 'self.F_SIGF_TOUSE is',self.F_SIGF_TOUSE
         rv = self.runPhaser(F_SIGF=self.F_SIGF_TOUSE)
         XYZIN_TOUSE = self.container.outputData.XYZOUT[0]
-        
-        if self.container.inputData.RUNCOOT:
-            self.runCoot(MAPIN=self.container.outputData.MAPOUT[0], XYZIN=XYZIN_TOUSE)
-            XYZIN_TOUSE = self.container.outputData.XYZOUT_COOT
-        
+
         if self.container.inputData.RUNREFMAC:
             self.runRefmac(F_SIGF=self.F_SIGF_TOUSE, FREERFLAG=self.FREERFLAG_TOUSE, XYZIN=XYZIN_TOUSE)
 
@@ -96,7 +85,6 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             print(columnStrings)
             if 'F' in columnStrings: phaserPlugin.container.inputData.F_OR_I.set('F')
 
-            phaserPlugin.doAsync = False
             rv = phaserPlugin.process()
             if rv != CPluginScript.SUCCEEDED:
                 self.appendErrorReport(204,'phaser_MR_RNP')
@@ -157,5 +145,3 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
             self.appendErrorReport(205,'pointless_reindexToMatch')
             self.reportStatus(CPluginScript.FAILED)
         return CPluginScript.SUCCEEDED
-
-

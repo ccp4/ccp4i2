@@ -57,7 +57,6 @@ class phaser_analysis(CPluginScript):
     TASKVERSION= 0.0               # Version of this plugin
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     
-    ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
  
     def startProcess(self, dummy,  **kw):
@@ -132,7 +131,7 @@ class phaser_analysis(CPluginScript):
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def makeXML(self, xmlout):
-        from .phaser_analysis_utils import AnalyseGraph, AnalysisLog, Makexmlgraph, Tabledata
+        from .phaser_analysis_utils import AnalysisLog
 
         # Uses self.logfile and self.loggraphs
         self.xmlroot = etree.Element('PHASER_ANALYSIS')
@@ -191,13 +190,7 @@ class phaser_analysis(CPluginScript):
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def resolutionlimit(self, threshold):
-        from .phaser_analysis_utils import (
-            AnalyseGraph,
-            AnalysisLog,
-            Makexmlgraph,
-            Tabledata,
-            addElement,
-        )
+        from .phaser_analysis_utils import AnalyseGraph, addElement
 
         # estimate resolution limit from XML graph of information content
         # Add result to self.xmlroot

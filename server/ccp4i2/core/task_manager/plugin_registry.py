@@ -32,9 +32,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'Lidia':
         from ccp4i2.wrappers.Lidia.script.Lidia import lidia
         return lidia
-    if plugin_name == 'LidiaAcedrg':
-        from ccp4i2.pipelines.LidiaAcedrg.script.lidiaAcedrg import lidiaAcedrg
-        return lidiaAcedrg
     if plugin_name == 'LidiaAcedrgNew':
         from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew import lidiaAcedrgNew
         return lidiaAcedrgNew
@@ -71,12 +68,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'ShelxCD':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCD import ShelxCD
         return ShelxCD
-    if plugin_name == 'ShelxCE':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCE import ShelxCE
-        return ShelxCE
-    if plugin_name == 'ShelxCECompareHands':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCECompareHands import ShelxCECompareHands
-        return ShelxCECompareHands
     if plugin_name == 'SubstituteLigand':
         from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand import SubstituteLigand
         return SubstituteLigand
@@ -227,9 +218,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'demo_copycell':
         from ccp4i2.wrappers2.demo_copycell.script.demo_copycell import demo_copycell
         return demo_copycell
-    if plugin_name == 'demo_multi_mtzdump':
-        from ccp4i2.wrappers2.demo_multi_mtzdump.script.demo_multi_mtzdump import demo_multi_mtzdump
-        return demo_multi_mtzdump
     if plugin_name == 'density_calculator':
         from ccp4i2.wrappers.density_calculator.script.density_calculator import density_calculator
         return density_calculator
@@ -287,9 +275,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'import_xia2':
         from ccp4i2.pipelines.import_xia2.script.import_xia2 import import_xia2
         return import_xia2
-    if plugin_name == 'libcheck':
-        from ccp4i2.wrappers.libcheck.script.libcheck import libcheck
-        return libcheck
     if plugin_name == 'lorestr_i2':
         from ccp4i2.wrappers.lorestr_i2.script.lorestr_i2 import lorestr_i2
         return lorestr_i2
@@ -398,9 +383,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'phaser_ensembler':
         from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler import phaser_ensembler
         return phaser_ensembler
-    if plugin_name == 'phaser_mr':
-        from ccp4i2.wrappers.phaser_mr.script.phaser_mr import phaser_mr
-        return phaser_mr
     if plugin_name == 'phaser_phil':
         from ccp4i2.wrappers.phaser_phil.script.phaser_phil import phaser_phil
         return phaser_phil
@@ -491,9 +473,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'unique':
         from ccp4i2.wrappers.unique.script.unique import unique
         return unique
-    if plugin_name == 'uniqueify':
-        from ccp4i2.pipelines.uniqueify.script.uniqueify import uniqueify
-        return uniqueify
     if plugin_name == 'validate_protein':
         from ccp4i2.wrappers.validate_protein.script.validate_protein import validate_protein
         return validate_protein
@@ -553,8 +532,6 @@ PLUGIN_NAMES: set[str] = {
     'ProvideTLS',
     'SIMBAD',
     'ShelxCD',
-    'ShelxCE',
-    'ShelxCECompareHands',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
@@ -605,7 +582,6 @@ PLUGIN_NAMES: set[str] = {
     'csymmatch',
     'ctruncate',
     'demo_copycell',
-    'demo_multi_mtzdump',
     'density_calculator',
     'dials_image',
     'dials_rlattice',
@@ -625,7 +601,6 @@ PLUGIN_NAMES: set[str] = {
     'import_serial',
     'import_serial_pipe',
     'import_xia2',
-    'libcheck',
     'lorestr_i2',
     'mergeMtz',
     'metalCoord',
@@ -662,7 +637,6 @@ PLUGIN_NAMES: set[str] = {
     'phaser_MR_RNP',
     'phaser_analysis',
     'phaser_ensembler',
-    'phaser_mr',
     'phaser_phil',
     'phaser_pipeline',
     'phaser_rnp_pipeline',
@@ -693,7 +667,6 @@ PLUGIN_NAMES: set[str] = {
     'splitMtz',
     'tableone',
     'unique',
-    'uniqueify',
     'validate_protein',
     'x2mtz',
     'xia2_aimless',

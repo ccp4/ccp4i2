@@ -18,7 +18,6 @@ class servalcat(CPluginScript):
     TASKNAME = 'servalcat'
     TASKCOMMAND = 'servalcat'
     TASKVERSION= 0.0
-    ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CServalcatPerformance'
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },
@@ -29,29 +28,8 @@ class servalcat(CPluginScript):
     
     def __init__(self,*args, **kwargs):
         super(servalcat, self).__init__(*args, **kwargs)
-        self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = ET.Element('SERVALCAT')
         self.xmlLength = 0
-
-    @QtCore.Slot()
-    def handleReadyReadStandardOutput(self):
-        if not hasattr(self,'logFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            self.logFileHandle = logFilePath.open('w')
-        if not hasattr(self,'errFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            errFilePath = logFilePath.with_stem(logFilePath.stem + "_err")
-            self.errFileHandle = errFilePath.open('w')
-
-        if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
-        pid = self.getProcessId()
-        qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
-        availableStdout = qprocess.readAllStandardOutput()
-        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        self.logFileHandle.flush()
-        availableStderr = qprocess.readAllStandardError()
-        self.errFileHandle.write(availableStderr.data().decode("utf-8"))
-        self.errFileHandle.flush()
 
     def xmlAddRoot(self, xmlText, xmlFilePath=None, xmlRootName=None):
         if xmlRootName:

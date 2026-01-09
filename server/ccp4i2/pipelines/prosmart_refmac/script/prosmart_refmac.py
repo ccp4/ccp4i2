@@ -1,8 +1,10 @@
+import functools
 import os
 import shutil
 import traceback
 
 from lxml import etree
+from rdkit import Chem
 
 from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
@@ -111,16 +113,9 @@ class prosmart_refmac(CPluginScript):
               self.prosmart_protein.container.controlParameters.RESTRAIN_ALT = self.container.prosmartProtein.TOGGLE_ALT
               self.prosmart_protein.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartProtein.OCCUPANCY
               self.prosmart_protein.container.controlParameters.KEYWORDS = self.container.prosmartProtein.KEYWORDS
-           self.connectSignal(self.prosmart_protein,'finished',self.prosmartProteinFinished)
-           self.prosmart_protein.waitForFinished = -1
-           self.prosmart_protein.process()
-
-    @QtCore.Slot(dict)
-    def prosmartProteinFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
+           status = self.prosmart_protein.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executeProsmartNucleicAcid(self):
        if self.container.prosmartNucleicAcid.TOGGLE:
@@ -140,16 +135,9 @@ class prosmart_refmac(CPluginScript):
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_ALT = self.container.prosmartNucleicAcid.TOGGLE_ALT
               self.prosmart_nucleicacid.container.controlParameters.RESTRAIN_OCCUP = self.container.prosmartNucleicAcid.OCCUPANCY
               self.prosmart_nucleicacid.container.controlParameters.KEYWORDS = self.container.prosmartNucleicAcid.KEYWORDS
-           self.connectSignal(self.prosmart_nucleicacid,'finished',self.prosmartNucleicAcidFinished)
-           self.prosmart_nucleicacid.waitForFinished = -1
-           self.prosmart_nucleicacid.process()
-
-    @QtCore.Slot(dict)
-    def prosmartNucleicAcidFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
+           status = self.prosmart_nucleicacid.process()
+           if status == CPluginScript.FAILED:
+               self.reportStatus(status)
 
     def executePlatonyzer(self):
        if self.container.platonyzer.TOGGLE:
@@ -157,16 +145,9 @@ class prosmart_refmac(CPluginScript):
           self.platonyzer.container.inputData.XYZIN = self.container.inputData.XYZIN
           self.platonyzer.container.controlParameters.MODE = self.container.platonyzer.MODE
           self.platonyzer.container.controlParameters.RM_VDW = self.container.platonyzer.RM_VDW
-          self.connectSignal(self.platonyzer,'finished',self.platonyzerFinished)
-          self.platonyzer.waitForFinished = -1
-          self.platonyzer.process()
-
-    @QtCore.Slot(dict)
-    def platonyzerFinished(self, statusDict):
-        status = statusDict['finishStatus']
-        if status == CPluginScript.FAILED:
-            self.reportStatus(status)
-            return
+          status = self.platonyzer.process()
+          if status == CPluginScript.FAILED:
+              self.reportStatus(status)
 
     def executeFirstRefmac(self, withWeight=-1):
         """Execute the main Refmac refinement step."""
@@ -236,7 +217,6 @@ class prosmart_refmac(CPluginScript):
            tmpFileName = self.pipelinexmlfile+'_tmp'
            with open(tmpFileName,'w') as aFile:
                CCP4Utils.writeXML(aFile, newXml )
-           import shutil
            shutil.move(tmpFileName, self.pipelinexmlfile)
            self.xmlLength = len(newXml)
 
@@ -288,18 +268,15 @@ class prosmart_refmac(CPluginScript):
         """Handle completion of the first Refmac refinement job."""
         # Handle unsatisfactory result (e.g., ligand geometry issues)
         if statusDict['finishStatus'] == CPluginScript.UNSATISFACTORY:
-            import os
             if os.path.isfile(self.firstRefmac.container.outputData.LIBOUT.__str__()):
                 from ccp4i2.wrappers.acedrg.script import acedrg
                 try:
                     rdkitMol = acedrg.molFromDict(self.firstRefmac.container.outputData.LIBOUT.__str__())
-                    from rdkit import Chem
                     molRemovedHs = Chem.RemoveHs(rdkitMol)
                     svgXml = acedrg.svgFromMol(molRemovedHs)
                     self.xmlroot.append(svgXml)
                 except Exception as e:
                     self.appendErrorReport(106, f'Unable to generate SVG from ligand dictionary: {e}')
-                import shutil
                 shutil.copyfile(self.firstRefmac.container.outputData.LIBOUT.__str__(), self.container.outputData.LIBOUT.__str__())
                 self.container.outputData.LIBOUT.annotation = 'Refmac-generated library...use with caution'
             if os.path.isfile(self.firstRefmac.container.outputData.PSOUT.__str__()):
@@ -343,35 +320,24 @@ class prosmart_refmac(CPluginScript):
         with open(self.pipelinexmlfile,'w') as aFile:
             CCP4Utils.writeXML(aFile, etree.tostring(self.xmlroot,pretty_print=True))
 
-        # Check if weight optimization is requested
-        if self.container.controlParameters.OPTIMISE_WEIGHT:
-            self.fileSystemWatcher = None
+        # Check if water finding should be done
+        best_r_free = self.firstRefmac.container.outputData.PERFORMANCEINDICATOR.RFactor
+        if self.container.controlParameters.ADD_WATERS and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT:
             try:
-                weightUsed = float(self.xmlroot.xpath('//weight')[-1].text)
-                self.tryVariousRefmacWeightsAround(weightUsed)
+                self.currentCoordinates = self.firstRefmac.container.outputData.CIFFILE
+                self.cootPlugin = self.makeCootPlugin()
+                self.cootPlugin.doAsync = self.doAsync
+                self.cootPlugin.connectSignal(self.cootPlugin,'finished',self.cootFinished)
+                rv = self.cootPlugin.process()
+                if rv == CPluginScript.FAILED:
+                    self.appendErrorReport(107, 'Coot find waters process() returned FAILED')
+                    self.reportStatus(rv)
             except Exception as e:
-                self.appendErrorReport(109, f'Weight optimization: {e}')
+                self.appendErrorReport(107, f'Coot find waters: {e}')
                 self.reportStatus(CPluginScript.FAILED)
         else:
-            # Check if water finding should be done
-            best_r_free = self.firstRefmac.container.outputData.PERFORMANCEINDICATOR.RFactor
-            if self.container.controlParameters.ADD_WATERS and best_r_free < self.container.controlParameters.REFPRO_RSR_RWORK_LIMIT:
-                try:
-                    self.currentCoordinates = self.firstRefmac.container.outputData.CIFFILE
-                    self.cootPlugin = self.makeCootPlugin()
-                    self.cootPlugin.doAsync = self.doAsync
-                    self.cootPlugin.connectSignal(self.cootPlugin,'finished',self.cootFinished)
-                    rv = self.cootPlugin.process()
-                    if rv == CPluginScript.FAILED:
-                        self.appendErrorReport(107, 'Coot find waters process() returned FAILED')
-                        self.reportStatus(rv)
-                except Exception as e:
-                    self.appendErrorReport(107, f'Coot find waters: {e}')
-                    self.reportStatus(CPluginScript.FAILED)
-            else:
-                self.fileSystemWatcher = None
-                self.finishUp(self.firstRefmac)
-        return
+            self.fileSystemWatcher = None
+            self.finishUp(self.firstRefmac)
 
     def makeCootPlugin(self):
          # FIXME - This is all nonsense - needs to consider best task, etc... *NOT* just firstRefmaca?
@@ -441,8 +407,6 @@ class prosmart_refmac(CPluginScript):
 
     @QtCore.Slot(dict)
     def cootFinished(self, statusDict={}):
-        import functools
-
         # Check coot status and start refmac
         self.checkFinishStatus(statusDict=statusDict,failedErrCode=204, outputFile= self.cootPlugin.container.outputData.XYZOUT,noFileErrCode=205)
         try:
@@ -451,15 +415,12 @@ class prosmart_refmac(CPluginScript):
             oldXml = etree.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
-            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"log.txt")
-            with open(cootLogTxt, 'r') as f:
-               for l in f:
-                   if l.startswith("INFO::") and "found" in l and "water fitting" in l:
-                      nwaters = l.strip()
-                      numsearch = [ x for x in nwaters.split() if x.isdigit() ]
-                      if len(numsearch)>0:
-                         nwaters = numsearch[0]
-                      break
+            cootLogXml = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"program.xml")
+            with open(cootLogXml, encoding='utf-8') as f:
+                watersXml = etree.fromstring(f.read())
+                nodes = watersXml.findall(".//WatersFound")
+                if len(nodes) > 0:
+                    nwaters = nodes[0].text
             postRefmacCoot = etree.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added "+nwaters+" waters"
             oldXml.append(postRefmacCoot)
@@ -479,13 +440,14 @@ class prosmart_refmac(CPluginScript):
           rv = self.refmacPostCootPlugin.process()
           if rv == CPluginScript.FAILED: self.reportStatus(rv)
         except Exception as e:
+          print('Exception in prosmart_refmac.cootFinished:')
+          print(traceback.format_exc(), flush=True)
           self.appendErrorReport(CPluginScript,39,str(e))
 
     @QtCore.Slot('CPluginScript',dict)
     def postCootRefmacFinished(self, refmacJob, statusDict={}):
         self.handleXmlChanged(refmacJob.makeFileName(format='PROGRAMXML'))
 
-        import os
         self.fileSystemWatcher = None
         if statusDict['finishStatus'] == CPluginScript.FAILED:
             #This gets done in the firstRefmac.reportStatus() - Liz
@@ -511,8 +473,6 @@ class prosmart_refmac(CPluginScript):
 
         Handles validation, cleanup, and optional molprobity analysis.
         """
-        import shutil
-
         from ccp4i2.core import CCP4ProjectsManager
 
         # Copy output files from refmac job to pipeline directory
@@ -675,8 +635,6 @@ class prosmart_refmac(CPluginScript):
                 self.validate.container.controlParameters.DO_RAMA = validate_ramachandran
                 self.validate.container.controlParameters.DO_MOLPROBITY = validate_molprobity
 
-                self.validate.doAsync = False
-                self.validate.waitForFinished = -1
                 self.validate.process()
 
                 validateXMLPath = self.validate.makeFileName('PROGRAMXML')
@@ -769,32 +727,6 @@ class prosmart_refmac(CPluginScript):
 
         self.reportStatus(CPluginScript.SUCCEEDED)
 
-    def tryVariousRefmacWeightsAround(self, weight):
-        import math
-
-        # Generate jobs with weights around the initial weight
-        # make an array to hold the child-jobs
-        refmacJobs = []
-        for factorExponent in range(-3,4):
-            if factorExponent != 0:
-                factor = math.pow(2., factorExponent)
-                refmacJobs.append(self.refmacJobWithWeight(float(factor)*float(weight)))
-                # Set to run asynchronously and set a callback
-        self.submitBunchOfJobs(refmacJobs)
-
-    def submitBunchOfJobs(self, jobs):
-        self.jobsToSubmit = []
-        self.jobsInTrain = {}
-        self.jobsCompleted = []
-        for job in jobs:
-            job.doAsync  = True
-            job.connectSignal(job,'finished',self.handleDone)
-            self.jobsToSubmit.append(job)
-
-        for job in self.jobsToSubmit:
-            if len(self.jobsInTrain) < prosmart_refmac.MAXNJOBS:
-                self.submitJob(job)
-
     def submitJob(self,job):
         rv = job.process()
         # The job instance must be saved to keep it in scope
@@ -856,8 +788,6 @@ class prosmart_refmac(CPluginScript):
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):
-    import os
-
     from ccp4i2.core import CCP4Modules
 
     theDb = CCP4Modules.PROJECTSMANAGER().db()

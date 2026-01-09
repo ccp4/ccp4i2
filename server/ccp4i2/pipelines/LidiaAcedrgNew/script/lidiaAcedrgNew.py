@@ -12,7 +12,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class lidiaAcedrgNew(CPluginScript):
     TASKNAME = 'LidiaAcedrgNew'            # Task name - should be same as class name
     TASKVERSION= 0.0                    # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     WHATNEXT = ['coot_rebuild']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
@@ -36,7 +35,7 @@ class lidiaAcedrgNew(CPluginScript):
             if self.container.inputData.MOLIN.isSet():
                 self.lidiaPlugin.container.inputData.MOLIN = self.container.inputData.MOLIN
             self.connectSignal(self.lidiaPlugin,'finished',self.lidiaFinished)
-            self.lidiaPlugin.waitForFinished = -1
+            self.lidiaPlugin.doAsync = True
             self.lidiaPlugin.process()
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'SMILESFILE':
             result = self.doAcedrg('SMILESFILE', self.container.inputData.SMILESFILEIN)
@@ -124,8 +123,6 @@ class lidiaAcedrgNew(CPluginScript):
         acedrgPlugin.container.inputData.MATCHTLC = myMatchTLC
         acedrgPlugin.container.inputData.ATOMMATCHOPTION = myATOMMATCHOPTION
         acedrgPlugin.container.inputData.DICTIN = myLOCALDICT
-
-        acedrgPlugin.doAsync = False
 
         result = acedrgPlugin.process()
         if result != CPluginScript.SUCCEEDED:

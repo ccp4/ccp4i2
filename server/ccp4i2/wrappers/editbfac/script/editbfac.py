@@ -18,7 +18,6 @@ class editbfac(CPluginScript):
     TASKMODULE=['alpha_fold', 'model_data_utility' ]
     TASKCOMMAND = 'None'
     TASKVERSION = 0.0
-    ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

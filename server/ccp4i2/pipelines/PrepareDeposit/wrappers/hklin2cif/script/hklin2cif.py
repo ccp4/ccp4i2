@@ -1,22 +1,22 @@
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-import os,glob,re,time,sys
-from ccp4i2.core import CCP4XtalData
+import os
+import sys
+
 from lxml import etree
-import math
-from ccp4i2.core import CCP4Modules,CCP4Utils
+
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class hklin2cif(CPluginScript):
     DESCRIPTION = 'Convert hklin file (+/- scaled unmerged data) creates as aprt of adding_stats_to_mmcif pipeline'
     TASKNAME = 'hklin2cif'                                  # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD =3.
     TASKCOMMAND='gemmi'
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' },}
     
     def __init__(self,*args,**kws):
-        innate=CPluginScript.__init__(self, *args, **kws)
+        CPluginScript.__init__(self, *args, **kws)
         self.xmlroot = etree.Element('Hklin2cif')
 
     def makeCommandAndScript(self):

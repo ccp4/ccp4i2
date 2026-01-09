@@ -10,7 +10,6 @@ class dials_rlattice(CPluginScript):
     COMTEMPLATE = None                 # The program com file template
     COMTEMPLATEFILE = None             # Name of file containing com file template
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    ASYNCHRONOUS = False
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
     def __init__(self, *args, **kwargs):
@@ -30,4 +29,3 @@ class dials_rlattice(CPluginScript):
         inputPickle = self.container.inputData.PICKLE_IN.fullPath.__str__()
         self.appendCommandLine(inputJson)
         self.appendCommandLine(inputPickle)
-

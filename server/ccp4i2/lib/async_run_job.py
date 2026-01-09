@@ -9,7 +9,6 @@ This module replaces the legacy run_job.py with:
 """
 
 import asyncio
-import datetime
 import logging
 import uuid
 import xml.etree.ElementTree as ET

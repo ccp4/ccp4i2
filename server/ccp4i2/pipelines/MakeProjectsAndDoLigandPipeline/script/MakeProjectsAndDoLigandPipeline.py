@@ -1,3 +1,9 @@
+import os
+import sys
+from datetime import datetime
+
+from lxml import etree
+
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -23,10 +29,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
                         ['log_mtzjoin.txt', 0]
                        ]
     RUNEXTERNALPROCESS = False
-    ASYNCHRONOUS=False
-
-    #Uncomment the following if this pipeline will run plugins asynchronously
-    #ASYNCHRONOUS=True
 
     def __init__(self, *args, **kws):
         super(MakeProjectsAndDoLigandPipeline, self).__init__(*args, **kws)
@@ -43,13 +45,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
 
     #The startProcess method is where you build in the pipeline logic
     def startProcess(self, command, **kws):
-        import os
-        import sys
-        from datetime import datetime
-
-        from lxml import etree
-
-        from ccp4i2.baselayer import QtCore
         from ccp4i2.core.CCP4Modules import JOBCONTROLLER, PROJECTSMANAGER
         pm = PROJECTSMANAGER()
         

@@ -1,18 +1,19 @@
+import os
+import re
+import shutil
+import sys
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
-import os,glob,re,time,sys,shutil
-from ccp4i2.core import CCP4XtalData
 from lxml import etree
-import math
-from ccp4i2.core import CCP4Modules,CCP4Utils
+
+from ccp4i2.core import CCP4Utils
+from ccp4i2.core.CCP4PluginScript import CPluginScript
+
 
 class clustalw(CPluginScript):
     TASKTITLE = 'clustalw'     # A short title for gui menu
     DESCRIPTION = 'Perform multiple alignment'
     TASKNAME = 'clustalw'                                  # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD =3.
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to catenate sequences' },201 : { 'description' : 'Failed to setFullPath' },}
@@ -117,7 +118,3 @@ class clustalw(CPluginScript):
         self.container.outputData.ALIGNMENTOUT.annotation = anno[0:-2]
 
         return CPluginScript.SUCCEEDED
-
-
-
-    

@@ -1,13 +1,11 @@
+import os
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.baselayer import QtCore
-import os,re,time,sys
+
 
 class MakeMonster(CPluginScript):
-    
     TASKNAME = 'MakeMonster'                                  # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     RUNEXTERNALPROCESS=False

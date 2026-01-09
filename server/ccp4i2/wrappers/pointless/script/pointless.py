@@ -2,15 +2,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pointless(CPluginScript):
-
     TASKNAME = 'pointless'   # Task name - should be same as class name
-    ##TASKMODULE = 'expt_data_utility'      # Where this plugin will appear on the gui
     TASKTITLE = 'Analyse unmerged dataset (POINTLESS)' # A short title for gui menu
     TASKVERSION= 0.0               # Version of this plugin
-
-    # used by the base class startProcess()
     TASKCOMMAND = 'pointless'   # The command to run the executable
-    # used by the base class makeCommandAndScript()
     COMLINETEMPLATE = None 
     COMTEMPLATE = None  
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'

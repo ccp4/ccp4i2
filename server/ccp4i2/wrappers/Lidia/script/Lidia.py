@@ -1,13 +1,15 @@
 import glob
 import os
-from pathlib import Path
 import platform
 import sys
-from ccp4i2.baselayer import QtCore
+from pathlib import Path
+
 from lxml import etree
+
+from ccp4i2.baselayer import QtCore
+from ccp4i2.core import CCP4Modules, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4Modules
-from ccp4i2.core import CCP4Utils
+
 
 class lidia(CPluginScript):
     TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui

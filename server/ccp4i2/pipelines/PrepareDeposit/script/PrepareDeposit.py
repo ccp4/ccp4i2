@@ -1,4 +1,5 @@
 import os
+import shutil
 
 from lxml import etree
 
@@ -9,7 +10,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class PrepareDeposit(CPluginScript):
     TASKNAME = 'PrepareDeposit'
     TASKVERSION= 0.0
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
     SUBTASKS=['refmac']
@@ -120,24 +120,10 @@ class PrepareDeposit(CPluginScript):
                             modifiedTemplate.write('<molecule_entity_id="%d">\n'%(iEntity))
                             modifiedTemplate.write('<molecule_entity_type="polypeptide(L)" >\n')
                             modifiedTemplate.write('<molecule_one_letter_sequence="\n%s">\n'%(seqObj.sequence.__str__()))
-                            #if len(chainsOfSequence) > iEntity-1:
-                            #    modifiedTemplate.write('<molecule_chain_id="%s">\n'%(','.join(chainsOfSequence[iEntity-1])))
                             modifiedTemplate.write('< target_DB_id=" " > (if known) \n\n\n')
                             iEntity += 1
                     if not inMolecules: modifiedTemplate.write(line)
 
-        """
-        #Second pass of pdb_extract
-        pdbExtract2Plugin = self.makePluginObject('pdb_extract_wrapper')
-        pdbExtract2Plugin.container.inputData.XYZIN = refmacPlugin.container.outputData.XYZOUT
-        pdbExtract2Plugin.container.inputData.ENTRYDATAIN.set(modifiedTemplatePath)
-
-        rv = pdbExtract2Plugin.process()
-        if rv is not CPluginScript.SUCCEEDED:
-            self.reportStatus(rv)
-        """
-        
-        import shutil
         if self.container.inputData.OUTPUTTYPE.__str__() == "DATABASE":
             structureCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'Coordinates.cif'))
             reflectionCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'Reflections.cif'))
@@ -147,7 +133,6 @@ class PrepareDeposit(CPluginScript):
             structureCifPath = os.path.normpath(os.path.join(self.container.inputData.OUTPUT_DIRECTORY.__str__(),'Coordinates.cif'))
             reflectionCifPath = os.path.normpath(os.path.join(self.container.inputData.OUTPUT_DIRECTORY.__str__(),'Reflections.cif'))
         try:
-            #shutil.copyfile(pdbExtract2Plugin.container.outputData.CIFFILE.__str__(), structureCifPath)
             shutil.copyfile(refmacPlugin.container.outputData.CIFFILE.__str__(), structureCifPath)
             shutil.copyfile(self.hklin2cifPlugin.container.outputData.CIFFILE.__str__(), reflectionCifPath)
         except:
@@ -158,9 +143,7 @@ class PrepareDeposit(CPluginScript):
     def flushXML(self, xml=None):
         if xml is None:
             if hasattr(self,'xmlroot'): xml=self.xmlroot
-        import os
         tmpFilename = self.makeFileName('PROGRAMXML')+'_tmp'
         with open(tmpFilename,'w') as tmpFile:
             CCP4Utils.writeXML(tmpFile,etree.tostring(xml, pretty_print=True))
         self.renameFile(tmpFilename, self.makeFileName('PROGRAMXML'))
-

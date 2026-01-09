@@ -11,7 +11,6 @@ class csymmatch(CPluginScript):
     TASKMODULE = 'molecular_replacement'
     TASKCOMMAND = 'csymmatch'
     TASKVERSION = 0.0
-    ASYNCHRONOUS = False
     MAINTAINER = 'liz.potterton@york.ac.uk'
 
     def makeCommandAndScript(self):

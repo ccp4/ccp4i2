@@ -15,7 +15,6 @@ class acedrg(CPluginScript):
     TASKCOMMAND = 'acedrg'                                     # The command to run the executable
     if platform.system() == 'Windows': TASKCOMMAND = 'acedrg.bat'
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
@@ -90,8 +89,6 @@ class acedrg(CPluginScript):
         tmpSmileFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'tmp.smi'))
         with open(tmpSmileFilePath,'w') as tmpSmileFile:
             tmpSmileFile.write(self.smilesString)
-        #self.appendCommandLine('-m')
-        #self.appendCommandLine(self.tmpMolFileName)
         self.appendCommandLine('-z')
         self.appendCommandLine('-i')
         self.appendCommandLine(tmpSmileFilePath)

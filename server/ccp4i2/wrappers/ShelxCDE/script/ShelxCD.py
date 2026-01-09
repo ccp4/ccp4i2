@@ -1,16 +1,17 @@
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from lxml import etree
 import os
+
+from lxml import etree
+
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.wrappers.ShelxCDE.script import ShelxCDEBase
+
 
 class ShelxCD(ShelxCDEBase.ShelxCDEBase):
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui
     TASKNAME = 'ShelxCD'                                  # Task name - should be same as class name
     TASKCOMMAND = 'shelxd'                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
-    #WHATNEXT = ['ShelxCE','phaser_EP_AUTO']
     PERFORMANCECLASS = 'CExpPhasPerformance'
 
     def processInputFiles(self):
@@ -73,5 +74,3 @@ class ShelxCD(ShelxCDEBase.ShelxCDEBase):
             self.container.outputData.PERFORMANCE.CC.set(sortedList[-1]['CC'])
         
         return CPluginScript.SUCCEEDED
-
-

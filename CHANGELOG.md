@@ -1,6 +1,6 @@
 # CCP4i2 Changelog
 
-## [2.5.0] - 2025-12-01
+## [2.5.0] - 2026-01-06
 
 - New task to check a model against AU contents
 - Standardised ModelCraft output file name
@@ -8,6 +8,8 @@
 - Preserving ProSMART parameters when cloning Servalcat jobs
 - Stop the Refmac pipeline producing map files by default
 - Fix to Servalcat USE_WORK_IN_EST
+- Fix to user selected columns in split MTZ task
+- Changed coot_rsr_morph and coot_add_waters to use CHAPI
 
 ## [2.4.3] - 2025-10-24
 

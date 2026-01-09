@@ -45,16 +45,11 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS = False
     RUNEXTERNALPROCESS=False
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }, 202 : { 'description' : 'Failed to interpret searches from Ensemble list' },}
     requiredDefaultList = ['PART_VARI', 'PART_DEVI']
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-        phaser_MR.phaser_MR. __init__(self,parent=parent,name=name,workDirectory=workDirectory)
-    '''
     def __init__(self, *args, **kw):
         super(phaser_EP_AUTO, self).__init__(*args, **kw)
         
@@ -256,4 +251,3 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
             self.container.outputData.LLGMAPOUT[1].annotation.set(str(self.container.outputData.LLGMAPOUT[1]) + ' - reversed hand')
         
         return CPluginScript.SUCCEEDED
-

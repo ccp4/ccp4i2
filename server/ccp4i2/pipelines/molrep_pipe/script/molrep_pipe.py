@@ -1,20 +1,17 @@
 import os
 import shutil
+import subprocess
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class molrep_pipe(CPluginScript):
-
     TASKNAME = 'molrep_pipe'
-    MAINTAINER = 'liz.potterton@york.ac.uk'
     PERFORMANCECLASS = 'CRefinementPerformance'
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
-    ASYNCHRONOUS = True     # controls dynamic refmac table and graph only
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
     ERROR_CODES = { 301 : { 'description' : 'Error reading program xml output from first molrep run' },
@@ -26,7 +23,6 @@ class molrep_pipe(CPluginScript):
                         ]
 
     def process(self):
-      self.dynrep = bool(self.container.inputData.DYNREP)
       if str(self.container.controlParameters.SG_OPTIONS) == 'specify':
         self.newspacegroup = str(self.container.controlParameters.SG)
 
@@ -51,8 +47,8 @@ class molrep_pipe(CPluginScript):
       self.molrep1.container.inputData.copyData(self.container.inputData)
       self.molrep1.container.controlParameters.copyData(self.container.controlParameters)
       self.molrep1.container.guiParameters.copyData(self.container.guiParameters)
-      self.connectSignal(self.molrep1,'finished', self.fin1)
-      self.molrep1.process()
+      status = self.molrep1.process()
+      self.fin1(status)
 
     def unique_tags(self, tree):
       cou = 0
@@ -64,14 +60,6 @@ class molrep_pipe(CPluginScript):
           rf = float(rft)
           rf_list.append((rf, e2))
 
-        '''
-        # not suitable for lxml
-        e1 = etree.SubElement(tree, 'RFsorted' + str(cou))
-        e1.text = '\n    '
-        e1.tail = '\n  '
-        for rf, e2 in sorted(rf_list):
-          e1.append(e2)
-        '''
         f1 = etree.SubElement(tree, 'RFsorted' + str(cou))
         f1.text = e1.text
         f1.tail = e1.tail
@@ -96,9 +84,8 @@ class molrep_pipe(CPluginScript):
       with open(str(self.makeFileName('PROGRAMXML')), 'w') as ostream:
         CCP4Utils.writeXML(ostream,etree.tostring(self.xmlroot,pretty_print=True))
 
-    @QtCore.Slot(dict)
     def fin1(self, status):
-      if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+      if status == CPluginScript.FAILED:
         self.reportStatus(status)
         return
 
@@ -145,10 +132,9 @@ class molrep_pipe(CPluginScript):
       self.run2()
 
     def reindex(self, mtzin, mtzout):
-      import subprocess as SP
       cmd = ('reindex', 'hklin', mtzin, 'hklout', mtzout)
       stdi = 'symm \'%s\'\nend\n' %self.newspacegroup
-      sp = SP.Popen(cmd, stdin=SP.PIPE)
+      sp = subprocess.Popen(cmd, stdin=subprocess.PIPE)
       sp.stdin.write(stdi.encode('ascii'))
       sp.stdin.close()
       return sp.wait()
@@ -177,12 +163,11 @@ class molrep_pipe(CPluginScript):
       self.molrep2.container.controlParameters.copyData(self.container.controlParameters)
       self.molrep2.container.controlParameters.SG_OPTIONS = 'no'
       self.molrep2.container.guiParameters.copyData(self.container.guiParameters)
-      self.connectSignal(self.molrep2, 'finished', self.fin2)
-      self.molrep2.process()
+      status = self.molrep2.process()
+      self.fin2(status)
 
-    @QtCore.Slot(dict)
     def fin2(self, status):
-      if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+      if status == CPluginScript.FAILED:
         self.reportStatus(status)
         return
 
@@ -212,13 +197,10 @@ class molrep_pipe(CPluginScript):
       self.sheetbendPlugin.container.inputData.XYZIN.set(self.xyz)
       self.sheetbendPlugin.container.inputData.F_SIGF.set(self.fobs)
       self.sheetbendPlugin.container.inputData.FREERFLAG.set(self.free)
-
-
-      self.connectSignal(self.sheetbendPlugin, 'finished', self.finSheetbend)
-      self.sheetbendPlugin.process()
+      status = self.sheetbendPlugin.process()
+      self.finSheetbend(status)
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
-      import shutil
       try:
         shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
         pipelineOutputItem.annotation = pluginOutputItem.annotation
@@ -228,9 +210,8 @@ class molrep_pipe(CPluginScript):
         self.appendErrorReport(202,str(pluginOutputItem.fullPath)+' '+str(pipelineOutputItem.fullPath))
         self.reportStatus(CPluginScript.FAILED)
 
-    @QtCore.Slot(dict)
     def finSheetbend(self, status):
-      if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+      if status == CPluginScript.FAILED:
         self.reportStatus(status)
         return
 
@@ -252,7 +233,6 @@ class molrep_pipe(CPluginScript):
       else:
         self.reportStatus(CPluginScript.SUCCEEDED)
 
-
     def run3(self):
       self.refmac = self.makePluginObject('refmac')
       self.refmac.container.inputData.XYZIN.set(self.xyz)
@@ -261,26 +241,11 @@ class molrep_pipe(CPluginScript):
       self.refmac.container.controlParameters.HYDROGENS = 'NO'
       self.refmac.container.controlParameters.NCYCLES = str(self.container.inputData.REFMAC_NCYC)
       self.refmac.container.controlParameters.PHOUT = False
-      self.connectSignal(self.refmac, 'finished', self.fin3)
-
-      if self.dynrep:
-#     if self.ASYNCHRONOUS:
-        self.refmac.doAsync = self.doAsync
-        xml = self.refmac.makeFileName(format='PROGRAMXML')
-        self.watchFile(xml, handler=self.handleXmlChanged, minDeltaSize=34, unwatchWhileHandling=True)
-
-      self.refmac.process()
-
-    @QtCore.Slot(dict)
-    def handleXmlChanged(self, xmlFilename):
-      tree = CCP4Utils.openFileToEtree(self.refmac.makeFileName('PROGRAMXML'))
-      if tree is None:
-        return
-
-      self.appendxml(tree, 'RefmacRunning')
+      status = self.refmac.process()
+      self.fin3(status)
 
     def fin3(self, status):
-      if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+      if status == CPluginScript.FAILED:
         self.reportStatus(status)
         return
 
@@ -308,4 +273,3 @@ class molrep_pipe(CPluginScript):
 
       except:
         self.reportStatus(CPluginScript.FAILED)
-

@@ -1,11 +1,10 @@
 import os
-import pathlib
 import shutil
 from xml.etree import ElementTree as ET
 
 from lxml import etree
 
-from ccp4i2.core import CCP4Modules, CCP4Utils
+from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -24,7 +23,6 @@ class lorestr_i2(CPluginScript):
     
     def __init__(self, *args, **kws):
         super(lorestr_i2, self).__init__(*args, **kws)
-        self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = etree.Element('lorestr_i2')
 #        from refmacLogScraper import logScraper
 #        self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
@@ -93,38 +91,6 @@ class lorestr_i2(CPluginScript):
         else:
             return CPluginScript.SUCCEEDED
 
-    def handleReadyReadStandardOutput(self):
-
-        print('Runtime call handleReadyReadStandardOutput\n\n')
-
-        if not hasattr(self,'logFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            self.logFileHandle = logFilePath.open('w')
-        if not hasattr(self,'errFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            errFilePath = logFilePath.with_stem(logFilePath.stem + "_err")
-            self.errFileHandle = errFilePath.open('w')
-
-        if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
-        pid = self.getProcessId()
-        qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
-        availableStdout = qprocess.readAllStandardOutput()
-        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        self.logFileHandle.flush()
-        availableStderr = qprocess.readAllStandardError()
-        self.errFileHandle.write(availableStderr.data().decode("utf-8"))
-        self.errFileHandle.flush()
-
-
-        self.xmlroot = etree.Element("lorestr_i2")
-        logText = etree.SubElement(self.xmlroot,"LogText")
-        logText.text = etree.CDATA(availableStdout)
-        self.flushXML()
-
-#        self.logScraper.processLogChunk(str(availableStdout))
-
-
-
     def flushXML(self):
         newXml = ET.tostring(self.xmlroot)
         if len(newXml)>self.xmlLength:
@@ -133,7 +99,6 @@ class lorestr_i2(CPluginScript):
                 programXmlFile.write(newXml)
             import shutil
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
-
 
     def makeCommandAndScript(self, **kw):
         import os
@@ -273,8 +238,6 @@ class lorestr_i2(CPluginScript):
            self.validate.container.controlParameters.DO_RAMA = True
            self.validate.container.controlParameters.DO_MOLPROBITY = True
 
-           self.validate.doAsync = False
-           self.validate.waitForFinished = -1
            self.validate.process()
 
 

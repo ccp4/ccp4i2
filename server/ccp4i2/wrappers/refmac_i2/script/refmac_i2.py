@@ -2,20 +2,17 @@ import pathlib
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4ErrorHandling, CCP4Modules
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class refmac_i2(CPluginScript):
-    
     TASKMODULE = 'wrappers'
     TASKTITLE = 'Refinement (Refmac5)'
     TASKNAME = 'refmac'
     TASKCOMMAND = 'refmacat'
     TASKVERSION= 0.0
     WHATNEXT = ['prosmart_refmac','modelcraft']
-    ASYNCHRONOUS = False
     PERFORMANCECLASS = 'CRefinementPerformance'
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },
@@ -26,33 +23,11 @@ class refmac_i2(CPluginScript):
     
     def __init__(self,*args, **kwargs):
         super(refmac_i2, self).__init__(*args, **kwargs)
-        self._readyReadStandardOutputHandler = self.handleReadyReadStandardOutput
         self.xmlroot = etree.Element('REFMAC')
         from .refmacLogScraper import logScraper
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)
         self.xmlLength = 0
 
-    @QtCore.Slot()
-    def handleReadyReadStandardOutput(self):
-        if not hasattr(self,'logFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            self.logFileHandle = logFilePath.open('w')
-        if not hasattr(self,'errFileHandle'):
-            logFilePath = pathlib.Path(self.makeFileName('LOG'))
-            errFilePath = logFilePath.with_stem(logFilePath.stem + "_err")
-            self.errFileHandle = errFilePath.open('w')
-
-        if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
-        pid = self.getProcessId()
-        qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
-        availableStdout = qprocess.readAllStandardOutput()
-        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
-        self.logFileHandle.flush()
-        availableStderr = qprocess.readAllStandardError()
-        self.errFileHandle.write(availableStderr.data().decode("utf-8"))
-        self.errFileHandle.flush()
-        self.logScraper.processLogChunk(availableStdout.data().decode("utf-8"))
-    
     def flushXML(self):
         """Write XML atomically and emit progress signal (throttled).
 
@@ -414,9 +389,6 @@ class refmac_i2(CPluginScript):
                           occupText += " ALT %s" % (str(sel['alt']))
                        self.appendCommandScript(occupText + '\n')
                        occup_groupids.append(sel['groupId'])
-#                    else:
-#                       self.appendErrorReport(201,"Error - incorrectly specified occupancy group.")
-#                       return CPluginScript.FAILED
 
                  if self.container.controlParameters.OCCUPANCY_REFINEMENT:
                     self.appendCommandScript("OCCUPANCY REFINE")
@@ -424,20 +396,12 @@ class refmac_i2(CPluginScript):
                  if self.container.controlParameters.OCCUPANCY_COMPLETE:
                     for sel0 in self.container.controlParameters.OCCUPANCY_COMPLETE_TABLE:
                        sel = sel0.get()
-#                       for id in sel['groupIds'].split(' '):
-#                          if not id in occup_groupids:
-#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
-#                             return CPluginScript.FAILED
                        occupText = "OCCUPANCY GROUP ALTS COMPLETE %s" % (str(sel['groupIds']))
                        self.appendCommandScript(occupText + '\n')
 
                  if self.container.controlParameters.OCCUPANCY_INCOMPLETE:
                     for sel0 in self.container.controlParameters.OCCUPANCY_INCOMPLETE_TABLE:
                        sel = sel0.get()
-#                       for id in sel['groupIds'].split(' '):
-#                          if not id in occup_groupids:
-#                             self.appendErrorReport(201,"Error - group ID "+id+" not specified in the list of occupancy groups.")
-#                             return CPluginScript.FAILED
                        occupText = "OCCUPANCY GROUP ALTS INCOMPLETE %s" % (str(sel['groupIds']))
                        self.appendCommandScript(occupText + '\n')
 
@@ -559,26 +523,6 @@ class refmac_i2(CPluginScript):
             self.appendCommandScript("MAKE NEWLIGAND EXIT")
         else:
             self.appendCommandScript("MAKE NEWLIGAND NOEXIT")
-        
-        #if self.container.controlParameters.SCALETYPE.isSet():
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'REFMACDEFAULT':
-        #        pass
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'BABINET':
-        #        self.appendCommandScript("SCALE TYPE BULK")
-        #        self.appendCommandScript("SOLVENT NO")
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'SIMPLE':
-        #        self.appendCommandScript("SCALE TYPE SIMPLE")
-        #        self.appendCommandScript("SOLVENT YES")
-        #        if self.container.controlParameters.SOLVENT_ADVANCED:
-        #            if self.container.controlParameters.SOLVENT_VDW_RADIUS.isSet():
-        #               self.appendCommandScript("SOLVENT VDWProb %s"%(str(self.container.controlParameters.SOLVENT_VDW_RADIUS)))
-        #            if self.container.controlParameters.SOLVENT_IONIC_RADIUS.isSet():
-        #                self.appendCommandScript("SOLVENT IONProb %s"%(str(self.container.controlParameters.SOLVENT_IONIC_RADIUS)))
-        #            if self.container.controlParameters.SOLVENT_SHRINK.isSet():
-        #                self.appendCommandScript("SOLVENT RSHRink %s"%(str(self.container.controlParameters.SOLVENT_SHRINK)))
-        #    if self.container.controlParameters.SCALETYPE.__str__() == 'WILSON':
-        #        self.appendCommandScript("SCALE TYPE SIMPLE")
-        #        self.appendCommandScript("SOLVENT NO")
 
         if self.container.controlParameters.SCALE_TYPE.isSet():
             if self.container.controlParameters.SCALE_TYPE.__str__() == 'SIMPLE':
@@ -670,19 +614,6 @@ class refmac_i2(CPluginScript):
             if self.container.controlParameters.USEANOMALOUS:
                 labin = "LABIN F+=Fplus SIGF+=SIGFplus F-=Fminus SIGF-=SIGFminus"
 
-
-#        labin = None
-#        if self.container.controlParameters.USE_TWIN and self.container.controlParameters.TWIN_TYPE.isSet() and self.container.controlParameters.TWIN_TYPE=="I":
-#            if self.container.controlParameters.USEANOMALOUSFOR.isSet() and self.container.controlParameters.USEANOMALOUSFOR.__str__() != 'NOTHING':
-#                labin = "LABIN I+=Iplus SIGI+=SIGIplus I-=Iminus SIGI-=SIGIminus"
-#            else:
-#                labin = "LABIN IP=I SIGIP=SIGI"
-#        else:
-#            if self.container.controlParameters.USEANOMALOUSFOR.isSet() and self.container.controlParameters.USEANOMALOUSFOR.__str__() != 'NOTHING':
-#                labin = "LABIN F+=Fplus SIGF+=SIGFplus F-=Fminus SIGF-=SIGFminus"
-#            else:
-#                labin = "LABIN FP=F SIGFP=SIGF"
-
         if self.container.inputData.ABCD.isSet():
             from ccp4i2.core import CCP4XtalData
             if  self.container.inputData.ABCD.contentFlag == CCP4XtalData.CPhsDataFile.CONTENT_FLAG_HL:
@@ -710,5 +641,3 @@ class refmac_i2(CPluginScript):
     def setProgramVersion(self):
       print('refmac.getProgramVersion')
       return CPluginScript.setProgramVersion(self,'Refmac_5')
-
-
