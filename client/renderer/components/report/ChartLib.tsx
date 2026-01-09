@@ -137,6 +137,16 @@ export class CCP4Table implements CCP4TableInterface {
         // Fallback if URL parsing fails - assume it's already a path
         imagePath = selectedPlot.background;
       }
+
+      // Handle legacy paths that may include /djangostatic/ prefix
+      // These should be served from /report_files/ instead
+      if (imagePath.startsWith("/djangostatic/")) {
+        imagePath = imagePath.replace("/djangostatic/", "/");
+      }
+
+      console.log(
+        `[ChartLib] Background image: original="${selectedPlot.background}", resolved="${imagePath}"`
+      );
       const img = new Image();
       img.src = imagePath;
       result.plugins.backgroundImage = {

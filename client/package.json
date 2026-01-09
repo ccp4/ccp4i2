@@ -236,5 +236,10 @@
   },
   "overrides": {
     "@swc/helpers": "0.5.17"
+  },
+  "optionalDependencies": {
+    "@emnapi/core": "^1.8.1",
+    "@emnapi/wasi-threads": "^1.1.0",
+    "@tybys/wasm-util": "^0.10.1"
   }
 }
