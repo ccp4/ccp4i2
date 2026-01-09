@@ -792,7 +792,7 @@ export default function ProjectsTable() {
                     ? selectedIds.delete(project.id)
                     : selectedIds.add(project.id);
                 }}
-                onNavigate={() => router.push(`/project/${project.id}`)}
+                onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
                 onExport={() => exportProject(project)}
                 onDelete={() => deleteProjects([project])}
               />
@@ -836,7 +836,7 @@ export default function ProjectsTable() {
                       ? selectedIds.delete(project.id)
                       : selectedIds.add(project.id);
                   }}
-                  onNavigate={() => router.push(`/project/${project.id}`)}
+                  onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
                   onExport={() => exportProject(project)}
                   onDelete={() => deleteProjects([project])}
                 />

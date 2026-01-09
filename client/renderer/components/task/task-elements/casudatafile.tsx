@@ -1,15 +1,21 @@
 import {
+  Box,
+  Button,
   Checkbox,
+  CircularProgress,
   FormControlLabel,
   FormGroup,
   Stack,
+  Tooltip,
   Typography,
   Chip,
 } from "@mui/material";
+import { Add as AddIcon } from "@mui/icons-material";
 import { CSimpleDataFileElement } from "./csimpledatafile";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useJob } from "../../../utils";
+import { useJob, useProjectFiles } from "../../../utils";
+import { useRouter } from "next/navigation";
 
 /**
  * Sequence entry from the CAsuDataFile digest
@@ -41,13 +47,27 @@ interface CAsuDataFileDigest {
  * When a file is selected, the digest is fetched and the sequences are displayed
  * as checkboxes. Users can select/deselect individual sequences, which updates
  * the selection CDict on the file object.
+ *
+ * If no CAsuDataFiles exist in the project, shows a "Create ASU Content" button
+ * that creates and runs a ProvideAsuContents job, then auto-selects the output.
  */
 export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   props
 ) => {
   const { job, itemName, qualifiers } = props;
-  const { useTaskItem, useFileDigest, setParameter, mutateContainer } = useJob(job.id);
+  const router = useRouter();
+  const { useTaskItem, useFileDigest, setParameter, mutateContainer, createPeerTask } = useJob(job.id);
   const { item, value } = useTaskItem(itemName);
+  const { files: projectFiles } = useProjectFiles(job.project);
+
+  // State for create action
+  const [isCreating, setIsCreating] = useState(false);
+
+  // Check if there are any existing CAsuDataFiles in the project
+  const existingAsuFiles = useMemo(() => {
+    if (!projectFiles) return [];
+    return projectFiles.filter((file) => file.type === "application/CCP4-asu-content");
+  }, [projectFiles]);
 
   // Only fetch digest when a file has been uploaded (has dbFileId)
   const hasFile = Boolean(value?.dbFileId);
@@ -125,6 +145,32 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     return Object.values(localSelections).some((selected) => !selected);
   }, [hasSequences, localSelections]);
 
+  /**
+   * Handle creating a new ASU content file.
+   * Creates a ProvideAsuContents job, runs it synchronously, and auto-selects the output.
+   */
+  const handleCreateAsuContent = useCallback(async () => {
+    if (isCreating || job.status !== 1) return;
+
+    setIsCreating(true);
+    try {
+      // 1. Create the ProvideAsuContents job
+      const createdJob = await createPeerTask("ProvideAsuContents");
+      if (!createdJob) {
+        console.error("Failed to create ProvideAsuContents job");
+        return;
+      }
+
+      // 2. Navigate to the new job so user can configure it
+      router.push(`/ccp4i2/project/${job.project}/job/${createdJob.id}`);
+
+    } catch (error) {
+      console.error("Error creating ASU content:", error);
+    } finally {
+      setIsCreating(false);
+    }
+  }, [isCreating, job.status, job.project, createPeerTask, router]);
+
   // Override qualifiers to enable selectionMode display
   const overriddenQualifiers = useMemo(() => {
     return { ...item?._qualifiers, ...qualifiers };
@@ -141,8 +187,37 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 
   if (!inferredVisibility) return null;
 
+  // Determine if we should show the expanded panel (for create button when no files exist)
+  const shouldForceExpand = forceExpanded || (!hasFile && existingAsuFiles.length === 0);
+
   return (
-    <CSimpleDataFileElement {...props} forceExpanded={forceExpanded}>
+    <CSimpleDataFileElement {...props} forceExpanded={shouldForceExpand}>
+      {/* Create ASU Content action - shown when no file selected */}
+      {!hasFile && job.status === 1 && (
+        <Box sx={{ mb: hasSequences ? 2 : 0 }}>
+          <Stack direction="row" spacing={1} alignItems="center">
+            <Tooltip title="Create a new ASU content file by launching the ProvideAsuContents task">
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={isCreating ? <CircularProgress size={16} /> : <AddIcon />}
+                onClick={handleCreateAsuContent}
+                disabled={isCreating}
+                sx={{ textTransform: "none" }}
+              >
+                {isCreating ? "Creating..." : "Create ASU Content"}
+              </Button>
+            </Tooltip>
+            {existingAsuFiles.length === 0 && (
+              <Typography variant="caption" color="text.secondary">
+                No ASU content files in project
+              </Typography>
+            )}
+          </Stack>
+        </Box>
+      )}
+
+      {/* Sequence selection checkboxes - shown when file is selected */}
       {hasSequences && overriddenQualifiers.selectionMode !== undefined && (
         <Stack spacing={1} sx={{ mt: 1 }}>
           <Typography variant="subtitle2" color="text.secondary">

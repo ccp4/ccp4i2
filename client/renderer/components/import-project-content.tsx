@@ -47,7 +47,7 @@ export const ImportProjectContent: React.FC = () => {
           console.log("Files uploaded successfully:", response.data);
           setUploading(false);
           mutateProjects();
-          router.push("/");
+          router.push("/ccp4i2");
         })
         .catch((error) => {
           console.error("Error uploading files:", error);

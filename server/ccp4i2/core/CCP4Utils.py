@@ -588,10 +588,10 @@ def getCCP4I2Dir(**kw) -> str:
         >>> ccp4i2_root = getCCP4I2Dir()
         >>> smartie_path = os.path.join(ccp4i2_root, 'smartie')
     """
-    # Use the module's file location to find CCP4i2 root
+    # Use this module's file location to find CCP4i2 root
     # CCP4Utils is at <CCP4I2_ROOT>/core/CCP4Utils.py
     # So we go up one level from core/ to get CCP4I2_ROOT
-    module_file = Path(__import__('core.CCP4Utils').__file__)
+    module_file = Path(__file__)
     ccp4i2_root = module_file.parent.parent
     return str(ccp4i2_root)
 

@@ -34,11 +34,10 @@ class AzureADGroupMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response
         self.public_paths = [
-            "/health/",
+            "/api/ccp4i2/health/",
             "/.auth/",
             "/static/",
             "/media/",
-            "/api/health/",
         ]
         self.admin_paths = [
             "/admin/",

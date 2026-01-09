@@ -1,20 +1,17 @@
 import {
   Alert,
+  Box,
   Grid2,
+  LinearProgress,
   Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
   Typography,
 } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-import { useJob } from "../../../utils";
+import { useJob, useProjectFiles } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
 import { useApi } from "../../../api";
 import { BaseSpacegroupCellElement } from "../task-elements/base-spacegroup-cell-element";
 
@@ -22,10 +19,18 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const api = useApi();
   const { useTaskItem, useFileDigest, fetchDigest, getErrors, mutateValidation } = useJob(job.id);
-  const { update: setAsuContent } = useTaskItem("ASU_CONTENT");
+  const { files: projectFiles } = useProjectFiles(job.project);
+  const { forceUpdate: forceSetAsuContent } = useTaskItem("ASU_CONTENT");
   const { item: asuContentInItem } = useTaskItem("ASUCONTENTIN");
   const { item: asuContentItem } = useTaskItem("ASU_CONTENT");
   const { value: HKLINValue } = useTaskItem("HKLIN");
+
+  // Check if there are any existing CAsuDataFiles in the project
+  // Hide the "load existing" section if none exist (prevents recursive create button)
+  const hasExistingAsuFiles = useMemo(() => {
+    if (!projectFiles) return false;
+    return projectFiles.some((file) => file.type === "application/CCP4-asu-content");
+  }, [projectFiles]);
 
   // File digest for HKLIN (used for Matthews calculation)
   // Only fetch when a file has been uploaded (has dbFileId) - otherwise digest endpoint fails
@@ -89,34 +94,37 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         description: seq.description,
         nCopies: seq.nCopies ?? 1,  // Default to 1 if not provided
       }));
-      await setAsuContent(seqList);
+      await forceSetAsuContent(seqList);
       // Refresh validation, molecular weight, and Matthews after updating ASU content
       // Must await molWeight mutation so the new value is available for Matthews calculation
       mutateValidation();
       await mutateMolWeight();
       mutateMatthews();
     }
-  }, [asuContentInItem?._objectPath, fetchDigest, setAsuContent, mutateValidation, mutateMolWeight, mutateMatthews]);
+  }, [asuContentInItem?._objectPath, fetchDigest, forceSetAsuContent, mutateValidation, mutateMolWeight, mutateMatthews]);
 
   return (
     <CCP4i2Tabs {...props}>
       <CCP4i2Tab label="Main inputs">
-        <CCP4i2ContainerElement
-          {...props}
-          itemName=""
-          qualifiers={{
-            guiLabel: "Optionally load existing AU content file to edit",
-          }}
-          containerHint="BlockLevel"
-          initiallyOpen={true}
-        >
-          <CCP4i2TaskElement
+        {/* Only show "load existing" option if there are existing ASU files in project */}
+        {hasExistingAsuFiles && (
+          <CCP4i2ContainerElement
             {...props}
-            itemName="ASUCONTENTIN"
-            qualifiers={{ guiLabel: "ASU contents" }}
-            onChange={handleAsuContentInChange}
-          />
-        </CCP4i2ContainerElement>
+            itemName=""
+            qualifiers={{
+              guiLabel: "Optionally load existing ASU content file to edit",
+            }}
+            containerHint="BlockLevel"
+            initiallyOpen={true}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="ASUCONTENTIN"
+              qualifiers={{ guiLabel: "ASU contents" }}
+              onChange={handleAsuContentInChange}
+            />
+          </CCP4i2ContainerElement>
+        )}
         <CCP4i2ContainerElement
           {...props}
           itemName=""
@@ -179,28 +187,99 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             </Grid2>
             <Grid2 size={{ xs: 12, sm: 4 }}>
               {matthewsAnalysis?.success && matthewsAnalysis?.data?.result ? (
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Multiplier</TableCell>
-                      <TableCell>%Solvent</TableCell>
-                      <TableCell>Probability</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {matthewsAnalysis?.data?.result?.results.map((result) => (
-                      <TableRow key={result.nmol_in_asu}>
-                        <TableCell>{result.nmol_in_asu}</TableCell>
-                        <TableCell>
-                          {result.percent_solvent.toFixed(2)}
-                        </TableCell>
-                        <TableCell>{result.prob_matth.toFixed(2)}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
+                <Box
+                  sx={{
+                    p: 1.5,
+                    borderRadius: 1,
+                    bgcolor: "action.hover",
+                    border: 1,
+                    borderColor: "divider",
+                  }}
+                >
+                  <Typography
+                    variant="caption"
+                    color="text.secondary"
+                    sx={{ mb: 1, display: "block" }}
+                  >
+                    Matthews Analysis
+                  </Typography>
+                  <Stack spacing={1}>
+                    {matthewsAnalysis?.data?.result?.results.map(
+                      (result: {
+                        nmol_in_asu: number;
+                        percent_solvent: number;
+                        prob_matth: number;
+                      }) => {
+                        const probability = result.prob_matth;
+                        const isLikely = probability > 0.5;
+                        return (
+                          <Box
+                            key={result.nmol_in_asu}
+                            sx={{
+                              p: 1,
+                              borderRadius: 0.5,
+                              bgcolor: isLikely
+                                ? "success.main"
+                                : "background.paper",
+                              color: isLikely
+                                ? "success.contrastText"
+                                : "text.primary",
+                              border: 1,
+                              borderColor: isLikely
+                                ? "success.main"
+                                : "divider",
+                            }}
+                          >
+                            <Stack
+                              direction="row"
+                              justifyContent="space-between"
+                              alignItems="center"
+                            >
+                              <Typography variant="body2" fontWeight="medium">
+                                {result.nmol_in_asu} mol/ASU
+                              </Typography>
+                              <Typography variant="body2" fontWeight="bold">
+                                {(probability * 100).toFixed(0)}%
+                              </Typography>
+                            </Stack>
+                            <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
+                              <Typography
+                                variant="caption"
+                                sx={{
+                                  opacity: isLikely ? 0.9 : 0.7,
+                                }}
+                              >
+                                {result.percent_solvent.toFixed(1)}% solvent
+                              </Typography>
+                              <LinearProgress
+                                variant="determinate"
+                                value={probability * 100}
+                                sx={{
+                                  flex: 1,
+                                  alignSelf: "center",
+                                  height: 4,
+                                  borderRadius: 2,
+                                  bgcolor: isLikely
+                                    ? "success.light"
+                                    : "action.disabledBackground",
+                                  "& .MuiLinearProgress-bar": {
+                                    bgcolor: isLikely
+                                      ? "success.contrastText"
+                                      : "primary.main",
+                                  },
+                                }}
+                              />
+                            </Stack>
+                          </Box>
+                        );
+                      }
+                    )}
+                  </Stack>
+                </Box>
               ) : (
-                "Provide MTZ file to calculate Matthews coefficient"
+                <Typography variant="body2" color="text.secondary">
+                  Provide MTZ file to calculate Matthews coefficient
+                </Typography>
               )}
             </Grid2>
           </Grid2>

@@ -92,7 +92,7 @@ export default function ToolBar() {
         if (cloneResult?.id) {
           mutateJob();
           mutateAllJobs();
-          router.push(`/project/${projectId}/job/${cloneResult.id}`);
+          router.push(`/ccp4i2/project/${projectId}/job/${cloneResult.id}`);
         }
       } catch (error) {
         setMessage(`Error cloning job: ${error instanceof Error ? error.message : String(error)}`, "error");
@@ -123,7 +123,7 @@ export default function ToolBar() {
           mutateAllJobs();
           // Navigate to the running job if it's a new job (different from current)
           if (runResult.id !== job.id) {
-            router.push(`/project/${projectId}/job/${runResult.id}`);
+            router.push(`/ccp4i2/project/${projectId}/job/${runResult.id}`);
           }
         }
       } catch (error) {
@@ -154,7 +154,7 @@ export default function ToolBar() {
       {
         label: "Task menu",
         icon: <Menu />,
-        onClick: () => router.push(`/project/${projectId}`),
+        onClick: () => router.push(`/ccp4i2/project/${projectId}`),
         show: true,
       },
       {

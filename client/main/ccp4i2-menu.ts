@@ -38,7 +38,8 @@ export function addNewWindowMenuItem(NEXT_PORT: number, DJANGO_PORT: number) {
         label: "New Window",
         accelerator: "CmdOrCtrl+N", // Optional: add a keyboard shortcut (Cmd+N / Ctrl+N)
         click: () => {
-          createWindow(`http://localhost:${NEXT_PORT}`, store); // Create new window when this option is clicked
+          // Use /ccp4i2 base path for multi-app integration
+          createWindow(`http://localhost:${NEXT_PORT}/ccp4i2`, store); // Create new window when this option is clicked
         },
       })
     );

@@ -62,6 +62,16 @@ export interface TaskItem {
   value: any;
   update: (value: any) => Promise<boolean | Response>;
   updateNoMutate: (value: any) => Promise<boolean | Response>;
+  /**
+   * Programmatic update that clears the intent after updating.
+   * Use this for programmatic/derived updates (e.g., extracting wavelength from a file)
+   * where you want the UI to immediately reflect the new value from the server.
+   *
+   * Regular `update` sets an intent that prevents the TextField from accepting
+   * server values for 10 seconds (to avoid overwriting user edits). This function
+   * clears that intent so the UI updates immediately.
+   */
+  forceUpdate: (value: any) => Promise<boolean | Response>;
 }
 
 export interface ProjectData {
@@ -1131,6 +1141,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           value: null,
           update: async () => false,
           updateNoMutate: async () => false,
+          forceUpdate: async () => false,
         };
       }
 
@@ -1185,9 +1196,36 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       };
 
-      return { item, value, update, updateNoMutate };
+      /**
+       * Programmatic update that clears the intent after updating.
+       * This allows the UI to immediately reflect the new server value.
+       */
+      const forceUpdate = async (
+        newValue: any
+      ): Promise<boolean | Response> => {
+        if (!job || job.status !== JOB_STATUS.PENDING) return false;
+
+        try {
+          const result = await setParameter({
+            object_path: item._objectPath,
+            value: newValue,
+          });
+
+          // Clear intent so the TextField will accept the new value from the container
+          if (item._objectPath) {
+            clearIntentForPath(item._objectPath);
+          }
+
+          return result?.success ? true : false;
+        } catch (error) {
+          console.error("Error force updating task item:", error);
+          return false;
+        }
+      };
+
+      return { item, value, update, updateNoMutate, forceUpdate };
     };
-  }, [container, job, setParameter]);
+  }, [container, job, setParameter, clearIntentForPath]);
 
   const createPeerTask = useCallback(
     async (taskName: string): Promise<Job | undefined> => {

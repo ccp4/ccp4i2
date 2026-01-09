@@ -34,9 +34,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     validation,
     createPeerTask,
   });
-  const { update: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
-  const { update: updateUSEANOMALOUS } = useTaskItem("USEANOMALOUS");
-  const { update: updateUSE_TWIN } = useTaskItem("USE_TWIN");
+  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
+  const { forceUpdate: forceUpdateUSEANOMALOUS } = useTaskItem("USEANOMALOUS");
+  const { forceUpdate: forceUpdateUSE_TWIN } = useTaskItem("USE_TWIN");
 
   // Get current values for visibility conditions
   const { value: hydrUseValue } = useTaskItem("HYDR_USE");
@@ -61,8 +61,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if (F_SIGFItem?._objectPath) {
       const digestData = await fetchDigest(F_SIGFItem._objectPath);
       const wavelength = digestData?.wavelengths?.at(-1);
-      if (wavelength && wavelength > 0 && wavelength < 9 && updateWAVELENGTH) {
-        await updateWAVELENGTH(wavelength);
+      if (wavelength && wavelength > 0 && wavelength < 9 && forceUpdateWAVELENGTH) {
+        await forceUpdateWAVELENGTH(wavelength);
       }
     }
 
@@ -70,17 +70,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if (F_SIGFValue) {
       try {
         const contentFlag = F_SIGFValue.contentFlag;
-        if (![1, 2].includes(contentFlag) && updateUSEANOMALOUS) {
-          await updateUSEANOMALOUS(false);
+        if (![1, 2].includes(contentFlag) && forceUpdateUSEANOMALOUS) {
+          await forceUpdateUSEANOMALOUS(false);
         }
-        if (![3].includes(contentFlag) && updateUSE_TWIN) {
-          await updateUSE_TWIN(false);
+        if (![3].includes(contentFlag) && forceUpdateUSE_TWIN) {
+          await forceUpdateUSE_TWIN(false);
         }
       } catch (error) {
         console.error("Error processing F_SIGF change:", error);
       }
     }
-  }, [F_SIGFItem?._objectPath, F_SIGFValue, job, fetchDigest, updateWAVELENGTH, updateUSEANOMALOUS, updateUSE_TWIN]);
+  }, [F_SIGFItem?._objectPath, F_SIGFValue, job, fetchDigest, forceUpdateWAVELENGTH, forceUpdateUSEANOMALOUS, forceUpdateUSE_TWIN]);
 
   // Visibility conditions
   const visibility = {

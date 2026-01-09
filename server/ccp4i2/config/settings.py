@@ -110,8 +110,11 @@ TEMPLATES = [
     },
 ]
 
+# Static and media URLs
+# In production (Azure), static files are served by Next.js web container
+# In development, Django serves them directly
 STATIC_URL = "/djangostatic/"
-MEDIA_URL = "files/"
+MEDIA_URL = "/files/"
 
 USER_DIR = Path.home().resolve() / ".ccp4i2"
 USER_DIR.mkdir(exist_ok=True)
@@ -201,9 +204,17 @@ CCP4I2_PROJECTS_DIR.mkdir(exist_ok=True)
 
 REST_FRAMEWORK = {
     "DEFAULT_PARSER_CLASSES": (
+        "rest_framework.parsers.JSONParser",
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
-    )
+    ),
+    # Allow unauthenticated API access for development
+    # The Next.js frontend proxies requests and doesn't have access to CSRF tokens
+    # In production, Azure AD authentication is handled at the container app level
+    "DEFAULT_AUTHENTICATION_CLASSES": [],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
 }
 
 # Static files settings

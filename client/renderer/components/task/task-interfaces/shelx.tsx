@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { Paper } from "@mui/material";
+import { Box, IconButton, Paper, Tooltip } from "@mui/material";
+import { Download } from "@mui/icons-material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
@@ -22,7 +23,7 @@ import {
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, useFileDigest, mutateContainer, validation, createPeerTask } = useJob(
+  const { useTaskItem, useFileDigest, fetchDigest, mutateContainer, validation, createPeerTask } = useJob(
     job.id
   );
   const { setProcessedErrors } = useRunCheck();
@@ -45,8 +46,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Get task items for file handling and parameter updates
   const { item: ATOM_TYPEItem, value: ATOM_TYPEValue } = useTaskItem("ATOM_TYPE");
   const { item: F_SIGFanomItem, value: F_SIGFanomValue } = useTaskItem("F_SIGFanom");
-  const { value: WAVELENGTHValue, updateNoMutate: updateWAVELENGTH } = useTaskItem("WAVELENGTH");
-  const { updateNoMutate: updateUSER_WAVELENGTH } = useTaskItem("USER_WAVELENGTH");
+  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
+  const { forceUpdate: forceUpdateUSER_WAVELENGTH } = useTaskItem("USER_WAVELENGTH");
   const { updateNoMutate: updateSHELXCDE } = useTaskItem("SHELXCDE");
   const { updateNoMutate: updateUSE_COMB } = useTaskItem("USE_COMB");
   const { updateNoMutate: updateSHELX_SEPAR } = useTaskItem("SHELX_SEPAR");
@@ -69,12 +70,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { data: F_SIGFanomDigest } = useFileDigest(f_sigfanomDigestPath);
 
   // Wavelength extraction handler for F_SIGFanom onChange (imperative)
+  // Uses fetchDigest to get the digest for the newly selected file
   const handleF_SIGFanomChange = useCallback(async () => {
-    if (!updateWAVELENGTH || !F_SIGFanomDigest || !job || job.status !== 1)
+    if (!forceUpdateWAVELENGTH || !F_SIGFanomItem?._objectPath || !job || job.status !== 1)
       return;
 
-    // F_SIGFanomDigest is now unwrapped by useFileDigest
-    const digestData = F_SIGFanomDigest;
+    // Fetch digest imperatively for the new file
+    const digestData = await fetchDigest(F_SIGFanomItem._objectPath);
 
     // Extract wavelength from digest
     if (digestData?.wavelengths?.length > 0) {
@@ -84,13 +86,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       // Only update if wavelength is valid
       if (newWavelength && newWavelength < 9) {
         try {
-          console.log(
-            `Extracting wavelength from F_SIGFanom: ${newWavelength}`
-          );
-          await updateWAVELENGTH(newWavelength);
+          // Use forceUpdate to ensure UI reflects the new value immediately
+          await forceUpdateWAVELENGTH(newWavelength);
           // Set USER_WAVELENGTH=true so crank2 knows to use it
-          if (updateUSER_WAVELENGTH) {
-            await updateUSER_WAVELENGTH(true);
+          if (forceUpdateUSER_WAVELENGTH) {
+            await forceUpdateUSER_WAVELENGTH(true);
           }
           mutateContainer();
         } catch (error) {
@@ -98,95 +98,58 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         }
       }
     }
-  }, [updateWAVELENGTH, updateUSER_WAVELENGTH, F_SIGFanomDigest, job?.status, mutateContainer]);
+  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomItem?._objectPath, fetchDigest, job?.status, mutateContainer]);
 
-  // Passive wavelength population: if file was auto-populated before task loaded,
-  // and wavelength is unset (zero or undefined), extract from digest
-  const wavelengthInitialized = useRef(false);
-  useEffect(() => {
-    // Only run once per job, when job is editable
-    if (wavelengthInitialized.current || !job || job.status !== 1) return;
-    if (!updateWAVELENGTH || !F_SIGFanomDigest) return;
-
-    // Check if wavelength is unset (zero, undefined, or null)
-    const wavelengthIsUnset = !WAVELENGTHValue || WAVELENGTHValue === 0;
-    if (!wavelengthIsUnset) {
-      wavelengthInitialized.current = true;
+  // Handler for fetching wavelength from reflection file (button click)
+  const handleFetchWavelength = useCallback(async () => {
+    if (!forceUpdateWAVELENGTH || !F_SIGFanomDigest || !job || job.status !== 1) {
       return;
     }
 
-    // Extract wavelength from digest
     const digestData = F_SIGFanomDigest;
+
     if (digestData?.wavelengths?.length > 0) {
       const newWavelength =
         digestData.wavelengths[digestData.wavelengths.length - 1];
 
-      // Only update if wavelength is valid
       if (newWavelength && newWavelength < 9) {
-        console.log(
-          `Passively populating wavelength from F_SIGFanom digest: ${newWavelength}`
-        );
-        updateWAVELENGTH(newWavelength);
-        // Set USER_WAVELENGTH=true so crank2 knows to use it
-        if (updateUSER_WAVELENGTH) {
-          updateUSER_WAVELENGTH(true);
+        try {
+          // Use forceUpdate to ensure UI reflects the new value immediately
+          await forceUpdateWAVELENGTH(newWavelength);
+          if (forceUpdateUSER_WAVELENGTH) {
+            await forceUpdateUSER_WAVELENGTH(true);
+          }
+          mutateContainer();
+        } catch (error) {
+          console.error("Error updating wavelength:", error);
         }
-        mutateContainer();
-        wavelengthInitialized.current = true;
       }
     }
-  }, [job?.status, WAVELENGTHValue, F_SIGFanomDigest, updateWAVELENGTH, updateUSER_WAVELENGTH, mutateContainer]);
+  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomDigest, job?.status, mutateContainer]);
 
-  // Reset wavelength initialization flag when job changes
-  useEffect(() => {
-    wavelengthInitialized.current = false;
-  }, [job?.id]);
+  // Check if we can fetch wavelength (file is set and has wavelength data)
+  const canFetchWavelength = hasF_SIGFanom && F_SIGFanomDigest?.wavelengths?.length > 0 && job.status === 1;
 
-  // Element configurations
-  const elementConfigs = useMemo(
-    () => ({
-      keyFiles: [
-        {
-          key: "F_SIGFanom",
-          label: "Reflections",
-          toolTip: "Anomalous reflection data for phasing",
-          onChange: handleF_SIGFanomChange,
-        },
-        {
-          key: "WAVELENGTH",
-          label: "Wavelength",
-          toolTip: "X-ray wavelength used for data collection",
-        },
-        {
-          key: "SEQIN",
-          label: "Asymmetric unit content",
-          toolTip: "Sequence file defining the protein content",
-        },
-        {
-          key: "FREERFLAG",
-          label: "Free R flags",
-          toolTip: "Test set flags for cross-validation",
-        },
-      ],
-      parameters: [
-        {
-          key: "ATOM_TYPE",
-          label: "Anomalous atom type",
-          toolTip: "Type of heavy atom providing anomalous signal",
-        },
-        {
-          key: "START_PIPELINE",
-          label: "First step for analysis",
-          toolTip: "Starting point in the SHELX pipeline",
-        },
-        {
-          key: "END_PIPELINE",
-          label: "Last step for analysis",
-          toolTip: "Ending point in the SHELX pipeline",
-        },
-      ],
-    }),
-    [handleF_SIGFanomChange]
+  // Element configurations for parameters section
+  const parameterConfigs = useMemo(
+    () => [
+      {
+        key: "ATOM_TYPE",
+        label: "Anomalous atom type",
+        toolTip: "Type of heavy atom providing anomalous signal",
+      },
+      {
+        key: "START_PIPELINE",
+        label: "First step for analysis",
+        toolTip: "Starting point in the SHELX pipeline",
+      },
+      {
+        key: "END_PIPELINE",
+        label: "Last step for analysis",
+        toolTip: "Ending point in the SHELX pipeline",
+      },
+    ],
+    []
   );
 
   // Reset initialization flag when job changes
@@ -294,7 +257,55 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             }}
             containerHint="FolderLevel"
           >
-            {renderElements(elementConfigs.keyFiles)}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="F_SIGFanom"
+              qualifiers={{
+                guiLabel: "Reflections",
+                toolTip: "Anomalous reflection data for phasing",
+              }}
+              onChange={handleF_SIGFanomChange}
+            />
+            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 0.5 }}>
+              {canFetchWavelength && (
+                <Tooltip title="Fetch wavelength from reflection file">
+                  <IconButton
+                    size="small"
+                    onClick={handleFetchWavelength}
+                    color="primary"
+                    sx={{ mt: 1 }}
+                  >
+                    <Download fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              )}
+              <Box sx={{ flex: 1 }}>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="WAVELENGTH"
+                  qualifiers={{
+                    guiLabel: "Wavelength",
+                    toolTip: "X-ray wavelength used for data collection",
+                  }}
+                />
+              </Box>
+            </Box>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SEQIN"
+              qualifiers={{
+                guiLabel: "Asymmetric unit content",
+                toolTip: "Sequence file defining the protein content",
+              }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="FREERFLAG"
+              qualifiers={{
+                guiLabel: "Free R flags",
+                toolTip: "Test set flags for cross-validation",
+              }}
+            />
           </CCP4i2ContainerElement>
 
           <CCP4i2ContainerElement
@@ -306,7 +317,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             }}
             containerHint="FolderLevel"
           >
-            {renderElements(elementConfigs.parameters)}
+            {renderElements(parameterConfigs)}
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
       </CCP4i2Tabs>

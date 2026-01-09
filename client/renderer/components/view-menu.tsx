@@ -107,7 +107,7 @@ export default function ViewMenu() {
         {project && (
           <MenuItem
             onClick={() => {
-              router.push(`/project/${projectId}/network`);
+              router.push(`/ccp4i2/project/${projectId}/network`);
               handleClose();
             }}
           >

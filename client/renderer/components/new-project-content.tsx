@@ -70,7 +70,7 @@ export const NewProjectContent: React.FC = () => {
     formData.append("directory", customDirectory ? directory : "__default__");
     try {
       api.post<Project>("projects", formData).then((project) => {
-        router.push(`/project/${project.id}`);
+        router.push(`/ccp4i2/project/${project.id}`);
       });
     } catch (err) {
       console.error("Error creating project:", err);
@@ -177,7 +177,7 @@ export const NewProjectContent: React.FC = () => {
 
         <EditTags tags={tags} onChange={setTags} />
         <Stack direction="row" spacing={2} justifyContent="flex-end">
-          <Button variant="outlined" onClick={() => router.push("/")}>
+          <Button variant="outlined" onClick={() => router.push("/ccp4i2")}>
             Cancel
           </Button>
           <Button

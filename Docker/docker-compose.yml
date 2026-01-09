@@ -57,7 +57,7 @@ services:
       # Mount server code for hot-reload in development
       - ../server:/usr/src/app:ro
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/health/"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/ccp4i2/health/"]
       interval: 30s
       timeout: 10s
       retries: 3

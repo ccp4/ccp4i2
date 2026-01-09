@@ -12,16 +12,17 @@ import {
   Autocomplete,
   AutocompleteChangeReason,
   Avatar,
-  Button,
+  Box,
   IconButton,
   LinearProgress,
   Stack,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import {
   Menu as MenuIcon,
-  ExpandMore as ExpandMoreIcon,
   ChevronRight as ChevronRightIcon,
+  Clear,
 } from "@mui/icons-material";
 import { useDndContext, useDroppable } from "@dnd-kit/core";
 
@@ -37,13 +38,6 @@ import { InputFileUpload } from "./input-file-upload";
 import { FIELD_SPACING } from "./field-sizes";
 import { ExpandableSection } from "./expandable-section";
 
-const BORDER_RADIUS_STYLES = {
-  none: { borderRadius: 0 },
-  left: { borderTopLeftRadius: "0.5rem", borderBottomLeftRadius: "0.5rem" },
-  right: { borderTopRightRadius: "0.5rem", borderBottomRightRadius: "0.5rem" },
-  full: { borderRadius: "0.5rem" },
-} as const;
-
 // Types
 export interface CCP4i2DataFileElementProps
   extends CCP4i2TaskElementProps,
@@ -55,6 +49,17 @@ export interface CCP4i2DataFileElementProps
   hasValidationError?: boolean;
   forceExpanded?: boolean;
 }
+
+/** Get a friendly file type label */
+const getFileTypeLabel = (className: string | undefined): string => {
+  if (!className) return "File";
+  // Remove leading 'C' and trailing 'DataFile' or 'File'
+  const clean = className
+    .replace(/^C/, "")
+    .replace(/DataFile$/, "")
+    .replace(/File$/, "");
+  return clean || "File";
+};
 
 // Main component
 export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
@@ -113,7 +118,14 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     const acceptedExtensions =
       qualifiers?.fileExtensions?.map((ext: string) => `.${ext}`).join(",") ||
       "";
-    return { allowedTypes, acceptedExtensions };
+    // requiredContentFlag filters files by their content flag (e.g., [1,2] for anomalous pairs)
+    // This is critical for tasks like SAD/MAD phasing that need specific data types
+    const requiredContentFlag = qualifiers?.requiredContentFlag
+      ? Array.isArray(qualifiers.requiredContentFlag)
+        ? qualifiers.requiredContentFlag
+        : [qualifiers.requiredContentFlag]
+      : null;
+    return { allowedTypes, acceptedExtensions, requiredContentFlag };
   }, [qualifiers]);
 
   const fileOptions = useMemo(() => {
@@ -125,13 +137,21 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
           fileConfig.allowedTypes!.includes(file.type) ||
           fileConfig.allowedTypes!.includes("Unknown");
         const isNotParentJob = fileJob ? !fileJob.parent : true;
-        return isValidType && isNotParentJob;
+        // Filter by requiredContentFlag if specified (and non-empty)
+        // This prevents selecting incompatible files (e.g., IMEAN for SAD phasing)
+        // null, undefined, or empty array means no filtering
+        const hasValidContentFlag =
+          !fileConfig.requiredContentFlag ||
+          fileConfig.requiredContentFlag.length === 0 ||
+          fileConfig.requiredContentFlag.includes(file.content);
+        return isValidType && isNotParentJob && hasValidContentFlag;
       })
       .sort((a, b) => b.job - a.job);
-  }, [projectFiles, projectJobs, fileConfig.allowedTypes]);
+  }, [projectFiles, projectJobs, fileConfig.allowedTypes, fileConfig.requiredContentFlag]);
 
   const borderColor = getValidationColor(item);
-  const computedValidationError = borderColor === "error.light";
+  const hasError = borderColor === "error.light";
+  const computedValidationError = hasError;
   const hasValidationError = overrideValidationError ?? computedValidationError;
   const hasChildren = React.Children.count(children) > 0;
   const isExpanded = hasValidationError || isManuallyExpanded || forceExpanded;
@@ -157,11 +177,8 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
       false) &&
     job.status === 1;
 
-  const backgroundColor = isOver
-    ? isValidDrop
-      ? "success.light"
-      : "error.light"
-    : "background.paper";
+  const fileTypeLabel = getFileTypeLabel(item?._class);
+  const hasFile = value && value !== nullFile;
 
   // Update value when item changes
   useEffect(() => {
@@ -207,10 +224,11 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
 
       try {
         const result = await setParameter(parameterArg);
-        // Call onChange on success - pass updated_item if available (from upload_file_param),
-        // otherwise pass the result.data (from set_parameter) with the objectPath added
         if (result?.success) {
-          const updatedItem = result.data?.updated_item ?? { ...result.data, _objectPath: objectPath };
+          const updatedItem = result.data?.updated_item ?? {
+            ...result.data,
+            _objectPath: objectPath,
+          };
           onChange?.(updatedItem);
         }
       } catch (error) {
@@ -252,6 +270,14 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     [setFileMenuAnchorEl, setFile, value]
   );
 
+  const handleClear = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      handleFileSelect(event as unknown as SyntheticEvent, nullFile, "clear");
+    },
+    [handleFileSelect]
+  );
+
   const handleToggle = useCallback(() => {
     if (!hasValidationError) setIsManuallyExpanded((prev) => !prev);
   }, [hasValidationError]);
@@ -270,145 +296,169 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   if (!projectFiles || !projectJobs) return <LinearProgress />;
   if (!isVisible) return null;
 
-  const showMenuButton = value && value !== nullFile;
   const canUpload = job.status === 1;
   const canFetch = qualifiers?.downloadModes?.length > 0 && job.status === 1;
 
   return (
-    <Stack
+    <Box
       sx={{
-        border: "3px solid",
-        borderColor,
-        backgroundColor,
-        borderRadius: "0.5rem",
         mx: FIELD_SPACING.marginLeft,
         my: 0.5,
       }}
-      direction="column"
     >
-      <Stack ref={setNodeRef} direction="row" alignItems="center">
-        <Avatar
-          src={`/qticons/${item?._class?.slice(1)}.png`}
-          alt={item?._class || "File type"}
-        />
+      <Box
+        ref={setNodeRef}
+        sx={{
+          border: 1,
+          borderColor: hasError ? "error.main" : hasFile ? "primary.main" : "divider",
+          borderLeftWidth: hasError ? 4 : hasFile ? 3 : 1,
+          borderRadius: 1,
+          bgcolor: isOver
+            ? isValidDrop
+              ? "success.light"
+              : "error.light"
+            : "background.paper",
+          transition: "all 0.2s",
+          "&:hover": {
+            borderColor: hasError ? "error.main" : "primary.main",
+          },
+        }}
+      >
+        {/* Main row */}
+        <Stack direction="row" alignItems="center" sx={{ p: 1 }}>
+          {/* File type icon */}
+          <Avatar
+            src={`/qticons/${item?._class?.slice(1)}.png`}
+            alt={item?._class || "File type"}
+            sx={{
+              width: 40,
+              height: 40,
+              mr: 1.5,
+              flexShrink: 0,
+              bgcolor: hasFile ? "primary.light" : "action.hover",
+            }}
+          />
 
-        <Autocomplete
-          disabled={isDisabled}
-          sx={{ m: 1, flex: 1, minWidth: 0, ...sx }}
-          size="small"
-          value={value}
-          onChange={handleFileSelect}
-          options={[...fileOptions, nullFile]}
-          getOptionLabel={getOptionLabel}
-          getOptionKey={(option: CCP4i2File) => option.uuid}
-          freeSolo={false}
-          renderInput={(params) => (
-            <TextField
-              {...params}
-              error={borderColor === "error.light"}
-              slotProps={{
-                inputLabel: { shrink: true, disableAnimation: true },
-              }}
-              label={guiLabel}
-              size="small"
-            />
-          )}
-          title={item?._objectPath || item?._className || "File selector"}
-        />
-
-        <Stack direction="row">
-          {canUpload && (
-            <InputFileUpload
-              sx={{
-                my: 2,
-                ...BORDER_RADIUS_STYLES.none,
-                "&:first-of-type": BORDER_RADIUS_STYLES.left,
-                "&:last-of-type": BORDER_RADIUS_STYLES.right,
-              }}
+          {/* File selector */}
+          <Box sx={{ flex: 1, minWidth: 0 }}>
+            <Autocomplete
               disabled={isDisabled}
-              accept={fileConfig.acceptedExtensions}
-              handleFileChange={handleFileChange}
-            />
-          )}
-
-          {canFetch && (
-            <InputFileFetch
-              sx={{
-                my: 2,
-                ...BORDER_RADIUS_STYLES.none,
-                "&:first-of-type": BORDER_RADIUS_STYLES.left,
-                "&:last-of-type": BORDER_RADIUS_STYLES.right,
-              }}
-              disabled={isDisabled}
-              modes={qualifiers.downloadModes}
-              handleFileChange={handleFileChange}
-              onChange={onChange}
-              item={item}
-            />
-          )}
-
-          {showMenuButton && (
-            <Button
-              disabled={false}
-              role="button"
-              variant="outlined"
-              tabIndex={-1}
+              sx={{ ...sx }}
               size="small"
-              startIcon={<MenuIcon fontSize="small" />}
-              sx={{
-                my: 2,
-                ...BORDER_RADIUS_STYLES.none,
-                "&:first-of-type": BORDER_RADIUS_STYLES.left,
-                "&:last-of-type": BORDER_RADIUS_STYLES.right,
-              }}
-              onClick={handleMenuClick}
-              aria-label="Open file menu"
+              value={value}
+              onChange={handleFileSelect}
+              options={[...fileOptions, nullFile]}
+              getOptionLabel={getOptionLabel}
+              getOptionKey={(option: CCP4i2File) => option.uuid}
+              freeSolo={false}
+              renderInput={(params) => (
+                <TextField
+                  {...params}
+                  error={hasError}
+                  slotProps={{
+                    inputLabel: { shrink: true, disableAnimation: true },
+                  }}
+                  label={guiLabel}
+                  size="small"
+                  placeholder={`Select ${fileTypeLabel} file...`}
+                />
+              )}
+              title={item?._objectPath || item?._className || "File selector"}
             />
-          )}
+          </Box>
+
+          {/* Action buttons */}
+          <Stack direction="row" spacing={0.5} sx={{ ml: 1, flexShrink: 0 }}>
+            {canUpload && (
+              <InputFileUpload
+                sx={{ minWidth: "auto" }}
+                disabled={isDisabled}
+                accept={fileConfig.acceptedExtensions}
+                handleFileChange={handleFileChange}
+              />
+            )}
+
+            {canFetch && (
+              <InputFileFetch
+                sx={{ minWidth: "auto" }}
+                disabled={isDisabled}
+                modes={qualifiers.downloadModes}
+                handleFileChange={handleFileChange}
+                onChange={onChange}
+                item={item}
+              />
+            )}
+
+            {hasFile && (
+              <>
+                <Tooltip title="File options">
+                  <IconButton
+                    size="small"
+                    onClick={handleMenuClick}
+                    aria-label="Open file menu"
+                  >
+                    <MenuIcon fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+                {!isDisabled && (
+                  <Tooltip title="Clear selection">
+                    <IconButton
+                      size="small"
+                      onClick={handleClear}
+                      aria-label="Clear file selection"
+                      color="default"
+                    >
+                      <Clear fontSize="small" />
+                    </IconButton>
+                  </Tooltip>
+                )}
+              </>
+            )}
+
+            {hasChildren && (
+              <Tooltip
+                title={
+                  hasValidationError
+                    ? "Options expanded due to validation error"
+                    : isExpanded
+                      ? "Collapse options"
+                      : "Expand options"
+                }
+              >
+                <IconButton
+                  onClick={handleToggle}
+                  size="small"
+                  disabled={hasValidationError}
+                  sx={{
+                    transition: "transform 0.2s ease-in-out",
+                    transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                    opacity: hasValidationError ? 0.6 : 1,
+                  }}
+                  aria-label={isExpanded ? "Collapse options" : "Expand options"}
+                >
+                  <ChevronRightIcon fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
+
+            <ErrorTrigger item={item} job={job} />
+          </Stack>
         </Stack>
 
+        {/* Expandable children */}
         {hasChildren && (
-          <IconButton
-            onClick={handleToggle}
-            size="small"
-            disabled={hasValidationError}
-            sx={{
-              ml: 1,
-              transition: "transform 0.2s ease-in-out",
-              transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
-              opacity: hasValidationError ? 0.6 : 1,
-            }}
-            aria-label={
-              hasValidationError
-                ? "Options expanded due to validation error"
-                : isExpanded
-                  ? "Collapse options"
-                  : "Expand options"
-            }
+          <ExpandableSection
+            expanded={isExpanded}
+            onToggle={(expanded) => setIsManuallyExpanded(expanded)}
+            forceExpanded={hasValidationError || forceExpanded}
+            hasError={hasValidationError}
+            hideTitle
+            forceExpandedTitle="Required Options (Error)"
           >
-            {isExpanded ? (
-              <ExpandMoreIcon fontSize="small" />
-            ) : (
-              <ChevronRightIcon fontSize="small" />
-            )}
-          </IconButton>
+            <Box sx={{ px: 1, pb: 1 }}>{children}</Box>
+          </ExpandableSection>
         )}
-
-        <ErrorTrigger item={item} job={job} />
-      </Stack>
-
-      {hasChildren && (
-        <ExpandableSection
-          expanded={isExpanded}
-          onToggle={(expanded) => setIsManuallyExpanded(expanded)}
-          forceExpanded={hasValidationError || forceExpanded}
-          hasError={hasValidationError}
-          hideTitle
-          forceExpandedTitle="Required Options (Error)"
-        >
-          {children}
-        </ExpandableSection>
-      )}
-    </Stack>
+      </Box>
+    </Box>
   );
 };

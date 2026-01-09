@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { Server } from "node:http";
+import fs from "node:fs";
 
 // Use createRequire for CJS modules to avoid ESM/CJS interop issues in Electron
 const require = createRequire(import.meta.url);
@@ -10,6 +11,76 @@ const express = require("express");
 //import { createProxyMiddleware } from "http-proxy-middleware";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/**
+ * Serves static files from the public directory, handling ASAR archives.
+ * For files in report_files/, serves directly from the ASAR-aware fs.
+ */
+const serveStaticWithAsar = (publicPath: string) => {
+  // Log once at setup time
+  console.log(`[serveStaticWithAsar] Initialized with publicPath: ${publicPath}`);
+  console.log(`[serveStaticWithAsar] publicPath exists: ${fs.existsSync(publicPath)}`);
+
+  // Check if report_files exists
+  const reportFilesPath = path.join(publicPath, "report_files", "0.1.0");
+  console.log(`[serveStaticWithAsar] report_files path: ${reportFilesPath}`);
+  console.log(`[serveStaticWithAsar] report_files exists: ${fs.existsSync(reportFilesPath)}`);
+
+  if (fs.existsSync(reportFilesPath)) {
+    try {
+      const files = fs.readdirSync(reportFilesPath);
+      console.log(`[serveStaticWithAsar] report_files contents: ${files.join(", ")}`);
+    } catch (e) {
+      console.log(`[serveStaticWithAsar] Error reading report_files: ${e}`);
+    }
+  }
+
+  return (req: any, res: any, next: any) => {
+    // Only handle specific static paths that might have issues
+    const staticPaths = ["/report_files/", "/qticons/", "/svgicons/"];
+    const isStaticPath = staticPaths.some((p) => req.url.startsWith(p));
+
+    if (!isStaticPath) {
+      return next();
+    }
+
+    const filePath = path.join(publicPath, req.url.split("?")[0]);
+    console.log(`[serveStaticWithAsar] Requested: ${req.url} -> ${filePath}`);
+
+    // Check if file exists (fs is ASAR-aware in Electron)
+    const fileExists = fs.existsSync(filePath);
+    console.log(`[serveStaticWithAsar] File exists: ${fileExists}`);
+
+    if (fileExists) {
+      const stat = fs.statSync(filePath);
+      if (stat.isFile()) {
+        // Determine content type
+        const ext = path.extname(filePath).toLowerCase();
+        const contentTypes: Record<string, string> = {
+          ".png": "image/png",
+          ".jpg": "image/jpeg",
+          ".jpeg": "image/jpeg",
+          ".gif": "image/gif",
+          ".svg": "image/svg+xml",
+          ".css": "text/css",
+          ".js": "application/javascript",
+          ".html": "text/html",
+        };
+        const contentType = contentTypes[ext] || "application/octet-stream";
+
+        res.setHeader("Content-Type", contentType);
+        res.setHeader("Content-Length", stat.size);
+
+        // Stream the file (fs.createReadStream is ASAR-aware)
+        const stream = fs.createReadStream(filePath);
+        stream.pipe(res);
+        return;
+      }
+    }
+
+    next();
+  };
+};
 
 /**
  * Starts a Next.js server with custom configurations, including a Content Security Policy (CSP)
@@ -103,7 +174,15 @@ export const startNextServer = async (
     next_operator();
   });
 
-  server.use(express.static(path.join(__dirname, "../renderer/public")));
+  // Serve static files from public directory
+  const publicPath = path.join(__dirname, "../renderer/public");
+  console.log(`[Next Server] Static files path: ${publicPath}`);
+
+  // Use custom ASAR-aware middleware for specific paths
+  server.use(serveStaticWithAsar(publicPath));
+
+  // Also use express.static as fallback for other static files
+  server.use(express.static(publicPath));
 
   server.use((req, res) => handle(req, res));
 

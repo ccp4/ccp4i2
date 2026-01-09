@@ -69,7 +69,7 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
     (row: RunningProcess) => {
       const project = projects?.find((project) => project.name === row.project);
       if (project) {
-        const url = `/project/${project.id}/job/${row.job_id}`;
+        const url = `/ccp4i2/project/${project.id}/job/${row.job_id}`;
         window.open(url, "_blank");
       }
     },

@@ -16,7 +16,10 @@ class crank2(CPluginScript):
   TASKCOMMAND      = 'crank2.py'
   TASKVERSION      = 0.02
   PERFORMANCECLASS = 'CExpPhasPerformance'
-  ERROR_CODES = { 0: {'description': ' '}, }
+  ERROR_CODES = {
+    0: {'description': ' '},
+    201: {'description': 'Anomalous data input contains mean intensities/amplitudes. SAD/MAD/SIRAS phasing requires anomalous pairs (I+/I- or F+/F-) to calculate anomalous differences.'},
+  }
   MAINTAINER = 'skubakp@gmail.com'
 
 
@@ -32,7 +35,6 @@ class crank2(CPluginScript):
     is_set = param_obj.isSet()
     has_user = self.has_cont_attr(cont, 'USER_'+param)
     user_val = getattr(cont, 'USER_'+param) if has_user else None
-    print(f"[DEBUG CheckUse] param={param}, isSet={is_set}, has_USER={has_user}, USER_val={user_val}, value={param_obj}")
     if is_set and ( not has_user or user_val ):
       return True
     else:
@@ -82,16 +84,6 @@ class crank2(CPluginScript):
     inp  = self.container.inputData
     ctrl = self.container.controlParameters
 
-    # Debug: show input file info
-    print(f"[DEBUG crank2 process()] Starting to build crank_lines")
-    print(f"[DEBUG crank2] inp.NON_MTZ = {inp.NON_MTZ}")
-    print(f"[DEBUG crank2] F_SIGFanom type: {type(inp.F_SIGFanom)}")
-    print(f"[DEBUG crank2] F_SIGFanom.baseName: {inp.F_SIGFanom.baseName}")
-    print(f"[DEBUG crank2] F_SIGFanom.fullPath: {inp.F_SIGFanom.fullPath}")
-    print(f"[DEBUG crank2] F_SIGFanom.fullPath.isSet(): {inp.F_SIGFanom.fullPath.isSet()}")
-    print(f"[DEBUG crank2] F_SIGFanom.contentFlag: {inp.F_SIGFanom.contentFlag}")
-    print(f"[DEBUG crank2] F_SIGFanom.contentFlag.isSet(): {inp.F_SIGFanom.contentFlag.isSet()}")
-
     crank_lines = []
     fpfpp = {}
     cell, spgr = '', ''
@@ -105,7 +97,6 @@ class crank2(CPluginScript):
       anom = getattr(inp,'F_SIGFanom'+sif)
       dn = getattr(inp,'DNAME'+si)
       dnstr = "dname="+str(dn)  if dn  else ""
-      print(f"[DEBUG crank2] i={i}, F_SIGFanom{sif}: fullPath.isSet()={anom.fullPath.isSet()}, fullPath={anom.fullPath}, contentFlag.isSet()={anom.contentFlag.isSet()}, contentFlag={anom.contentFlag}")
       if anom.fullPath.isSet() and (anom.contentFlag.isSet() or inp.NON_MTZ) and (not i or getattr(inp,'MAD'+si)):
         saved_fpm = getattr(inp,'SAVED_FPMFILE'+si)
         if saved_fpm and defaults and os.path.isfile(str(saved_fpm)):
@@ -118,6 +109,11 @@ class crank2(CPluginScript):
         elif anom.contentFlag.isSet() and anom.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FPAIR:
           crank_lines.append("fsigf plus {} f=Fplus sigf=SIGFplus \"file={}\" {} {}".format(dnstr,anom.fullPath,cell,spgr))
           crank_lines.append("fsigf minus {} f=Fminus sigf=SIGFminus {} {}".format(dnstr,cell,spgr))
+        elif anom.contentFlag.isSet() and anom.contentFlag in (CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN,
+                                                                CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN):
+          flag_name = 'FMEAN' if anom.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN else 'IMEAN'
+          self.appendErrorReport(201, 'Anomalous data input contains {} (mean values). SAD/MAD/SIRAS phasing requires anomalous pairs (I+/I- or F+/F-) to calculate anomalous differences.'.format(flag_name))
+          return CPluginScript.FAILED
         elif inp.NON_MTZ or anom.contentFlag == CCP4XtalData.CObsDataFile.CONTENT_FLAG_IPAIR:
           crank_lines.append("fsigf plus {1} i=Iplus sigi=SIGIplus \"file={0}\" {2} {3}".format(anom.fullPath,dnstr,cell,spgr))
           crank_lines.append("fsigf minus {} i=Iminus sigi=SIGIminus {} {}".format(dnstr,cell,spgr))

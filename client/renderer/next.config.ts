@@ -44,17 +44,20 @@ const nextConfig: NextConfig = {
     unoptimized: isElectron || isWeb,
   },
 
-  assetPrefix: isWeb ? "" : undefined,
-  basePath: isWeb ? "" : undefined,
+  // No basePath - routes are organized at app level (/ccp4i2/*, /compounds/*)
+  // This allows multiple apps in the same Next.js deployment
 
   rewrites: isWeb
     ? async () => [
         {
-          source: "/api/proxy/:path*",
+          // Proxy API requests to Django backend
+          // /api/ccp4i2/* -> Django /api/ccp4i2/*
+          source: "/api/ccp4i2/:path*",
           destination:
             (process.env.NEXT_PUBLIC_API_BASE_URL || "http://server:8000") +
-            "/:path*",
+            "/api/ccp4i2/:path*",
         },
+        // Future: /api/compounds/* -> compounds backend
       ]
     : undefined,
 

@@ -7,7 +7,7 @@ export default function ProjectsToolbar() {
   const router = useRouter();
 
   function importProjects() {
-    router.push("/import-project");
+    router.push("/ccp4i2/import-project");
   }
 
   return (
@@ -16,7 +16,7 @@ export default function ProjectsToolbar() {
         <Button
           variant="contained"
           startIcon={<Add />}
-          onClick={() => router.push("/new-project")}
+          onClick={() => router.push("/ccp4i2/new-project")}
         >
           New
         </Button>

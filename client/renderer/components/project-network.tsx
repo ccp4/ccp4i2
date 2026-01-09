@@ -567,7 +567,7 @@ export const ProjectNetwork = ({ projectId }: ProjectNetworkProps) => {
         const jobId = ele.data("jobId");
         const projId = ele.data("projectId") ?? projectId;
         if (jobId && projId) {
-          router.push(`/project/${projId}/job/${jobId}`);
+          router.push(`/ccp4i2/project/${projId}/job/${jobId}`);
         }
       }
     };
