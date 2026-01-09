@@ -20,7 +20,7 @@ const nextConfig = {
     return [
       {
         source: '/drf/:path*',
-        destination: 'http://localhost:8000/compounds/:path*',
+        destination: 'http://localhost:8000/api/compounds/:path*',
       },
     ];
   },

@@ -17,6 +17,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { MoleculeChip } from '@/components/MoleculeView';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Target, Compound } from '@/types/models';
 
 interface PageProps {
@@ -188,7 +189,7 @@ export default function TargetDetailPage({ params }: PageProps) {
         columns={columns}
         loading={compoundsLoading}
         onRowClick={(compound) =>
-          router.push(`/registry/compounds/${compound.id}`)
+          router.push(routes.registry.compound(compound.id))
         }
         getRowKey={(row) => row.id}
         title={compounds ? `${compounds.length} compounds` : undefined}

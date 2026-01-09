@@ -41,6 +41,7 @@ import { DataTable, Column } from '@/components/DataTable';
 import { MoleculeChip } from '@/components/MoleculeView';
 import { JSMEEditor } from '@/components/JSMEEditor';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Target, Compound } from '@/types/models';
 
 type StructureSearchMode = 'substructure' | 'superstructure';
@@ -345,7 +346,7 @@ function CompoundSearchContent() {
         <Box sx={{ display: 'flex', gap: 1 }}>
           <Button
             component={Link}
-            href="/registry/import"
+            href={routes.registry.import()}
             variant="outlined"
             startIcon={<Upload />}
           >
@@ -353,7 +354,7 @@ function CompoundSearchContent() {
           </Button>
           <Button
             component={Link}
-            href="/registry/new"
+            href={routes.registry.new()}
             variant="contained"
             startIcon={<Add />}
           >
@@ -609,7 +610,7 @@ function CompoundSearchContent() {
             columns={columns}
             loading={loading || structureSearchLoading}
             onRowClick={(compound) =>
-              router.push(`/registry/compounds/${compound.id}`)
+              router.push(routes.registry.compound(compound.id))
             }
             getRowKey={(row) => row.id}
             emptyMessage="No compounds found"

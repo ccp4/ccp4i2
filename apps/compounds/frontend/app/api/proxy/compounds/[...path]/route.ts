@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 
 const DJANGO_URL = process.env.DJANGO_URL || 'http://localhost:8000';
 
+// API path on Django backend - matches ccp4i2 multi-app URL structure
+const API_PATH = '/api/compounds';
+
 export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
@@ -10,7 +13,7 @@ export async function GET(
   const pathString = path.join('/');
   const searchParams = request.nextUrl.searchParams.toString();
   const queryString = searchParams ? `?${searchParams}` : '';
-  const url = `${DJANGO_URL}/compounds/${pathString}/${queryString}`;
+  const url = `${DJANGO_URL}${API_PATH}/${pathString}/${queryString}`;
 
   console.log(`[API Proxy] GET ${url}`);
 
@@ -38,7 +41,7 @@ export async function POST(
 ) {
   const { path } = await params;
   const pathString = path.join('/');
-  const url = `${DJANGO_URL}/compounds/${pathString}/`;
+  const url = `${DJANGO_URL}${API_PATH}/${pathString}/`;
 
   console.log(`[API Proxy] POST ${url}`);
 
@@ -101,7 +104,7 @@ export async function PATCH(
 ) {
   const { path } = await params;
   const pathString = path.join('/');
-  const url = `${DJANGO_URL}/compounds/${pathString}/`;
+  const url = `${DJANGO_URL}${API_PATH}/${pathString}/`;
   const body = await request.json();
 
   console.log(`[API Proxy] PATCH ${url}`);
@@ -133,7 +136,7 @@ export async function DELETE(
 ) {
   const { path } = await params;
   const pathString = path.join('/');
-  const url = `${DJANGO_URL}/compounds/${pathString}/`;
+  const url = `${DJANGO_URL}${API_PATH}/${pathString}/`;
 
   console.log(`[API Proxy] DELETE ${url}`);
 

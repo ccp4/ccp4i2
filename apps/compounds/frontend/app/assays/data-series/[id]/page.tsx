@@ -33,6 +33,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DoseResponseChart } from '@/components/DoseResponseChart';
 import { MoleculeView } from '@/components/MoleculeView';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { DataSeries, Assay, Compound } from '@/types/models';
 
 interface PageProps {
@@ -178,7 +179,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                       label={series.compound_formatted_id}
                       size="small"
                       onClick={() =>
-                        series.compound && router.push(`/registry/compounds/${series.compound}`)
+                        series.compound && router.push(routes.registry.compound(series.compound))
                       }
                     />
                   )}
@@ -188,7 +189,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                       label={assay.data_filename}
                       size="small"
                       variant="outlined"
-                      onClick={() => router.push(`/assays/${assay.id}`)}
+                      onClick={() => router.push(routes.assays.detail(assay.id))}
                     />
                   )}
                 </Box>

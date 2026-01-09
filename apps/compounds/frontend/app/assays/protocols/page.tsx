@@ -6,6 +6,7 @@ import { Science, Description } from '@mui/icons-material';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Protocol } from '@/types/models';
 
 const ANALYSIS_METHOD_LABELS: Record<string, string> = {
@@ -104,7 +105,7 @@ export default function ProtocolsPage() {
         data={protocols}
         columns={columns}
         loading={isLoading}
-        onRowClick={(protocol) => router.push(`/assays/protocols/${protocol.id}`)}
+        onRowClick={(protocol) => router.push(routes.assays.protocol(protocol.id))}
         getRowKey={(row) => row.id}
         title={protocols ? `${protocols.length} protocols` : undefined}
         emptyMessage="No protocols found"

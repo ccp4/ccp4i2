@@ -35,6 +35,7 @@ import { DataTable, Column } from '@/components/DataTable';
 import { DoseResponseThumb } from '@/components/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/CompoundStructureCell';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Assay, DataSeries, Protocol, Target } from '@/types/models';
 
 interface PageProps {
@@ -108,9 +109,9 @@ export default function AssayDetailPage({ params }: PageProps) {
       if (response.ok || response.status === 204) {
         // Navigate back to protocol page or assays list
         if (protocol) {
-          router.push(`/assays/protocols/${protocol.id}`);
+          router.push(routes.assays.protocol(protocol.id));
         } else {
-          router.push('/assays');
+          router.push(routes.assays.list());
         }
       } else {
         console.error('Delete failed:', await response.text());
@@ -195,7 +196,7 @@ export default function AssayDetailPage({ params }: PageProps) {
             variant="outlined"
             onClick={(e) => {
               e.stopPropagation();
-              if (row.compound) router.push(`/registry/compounds/${row.compound}`);
+              if (row.compound) router.push(routes.registry.compound(row.compound));
             }}
           />
         ) : (
@@ -267,7 +268,7 @@ export default function AssayDetailPage({ params }: PageProps) {
                       icon={<Description fontSize="small" />}
                       label={protocol.name}
                       size="small"
-                      onClick={() => router.push(`/assays/protocols/${protocol.id}`)}
+                      onClick={() => router.push(routes.assays.protocol(protocol.id))}
                     />
                   )}
                   {target && (
@@ -276,7 +277,7 @@ export default function AssayDetailPage({ params }: PageProps) {
                       label={target.name}
                       size="small"
                       variant="outlined"
-                      onClick={() => router.push(`/registry/targets/${target.id}`)}
+                      onClick={() => router.push(routes.registry.target(target.id))}
                     />
                   )}
                 </Box>
@@ -357,7 +358,7 @@ export default function AssayDetailPage({ params }: PageProps) {
         getRowKey={(row) => row.id}
         title={dataSeries ? `${dataSeries.length} data series` : undefined}
         emptyMessage="No data series in this assay"
-        onRowClick={(row) => router.push(`/assays/data-series/${row.id}`)}
+        onRowClick={(row) => router.push(routes.assays.dataSeries(row.id))}
       />
 
       {/* Delete confirmation dialog */}

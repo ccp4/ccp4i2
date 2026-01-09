@@ -48,6 +48,7 @@ import {
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { SpreadsheetUpload, SpreadsheetData, SpreadsheetPreview, SpreadsheetRow } from '@/components/SpreadsheetUpload';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 
 interface Protocol {
   id: string;
@@ -189,7 +190,7 @@ export default function ImportAssayPage() {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
         <Button
           component={Link}
-          href="/assays"
+          href={routes.assays.list()}
           startIcon={<ArrowBack />}
           size="small"
         >

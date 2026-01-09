@@ -27,6 +27,7 @@ import {
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Batch, BatchQCFile, Compound, Target } from '@/types/models';
 
 interface PageProps {
@@ -186,7 +187,7 @@ export default function BatchDetailPage({ params }: PageProps) {
                       label={compound.formatted_id}
                       size="small"
                       onClick={() =>
-                        router.push(`/registry/compounds/${compound.id}`)
+                        router.push(routes.registry.compound(compound.id))
                       }
                     />
                   )}
@@ -197,7 +198,7 @@ export default function BatchDetailPage({ params }: PageProps) {
                       size="small"
                       variant="outlined"
                       onClick={() =>
-                        router.push(`/registry/targets/${target.id}`)
+                        router.push(routes.registry.target(target.id))
                       }
                     />
                   )}

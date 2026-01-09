@@ -19,6 +19,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { MoleculeView } from '@/components/MoleculeView';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Compound, Batch, Target } from '@/types/models';
 
 interface PageProps {
@@ -165,7 +166,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
                         label={target.name}
                         size="small"
                         onClick={() =>
-                          router.push(`/registry/targets/${target.id}`)
+                          router.push(routes.registry.target(target.id))
                         }
                       />
                     )}
@@ -272,7 +273,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
         data={batches}
         columns={columns}
         loading={batchesLoading}
-        onRowClick={(batch) => router.push(`/registry/batches/${batch.id}`)}
+        onRowClick={(batch) => router.push(routes.registry.batch(batch.id))}
         getRowKey={(row) => row.id}
         title={batches ? `${batches.length} batches` : undefined}
         emptyMessage="No batches registered for this compound"

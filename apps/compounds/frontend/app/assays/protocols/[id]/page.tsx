@@ -29,6 +29,7 @@ import { PlateLayoutEditor } from '@/components/PlateLayoutEditor';
 import { AssayUploadDrawer } from '@/components/AssayUploadDrawer';
 import { ProtocolEditDialog } from '@/components/ProtocolEditDialog';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Protocol, Assay, PlateLayout } from '@/types/models';
 
 interface PageProps {
@@ -167,7 +168,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
             variant="outlined"
             onClick={(e) => {
               e.stopPropagation();
-              if (row.target) router.push(`/registry/targets/${row.target}`);
+              if (row.target) router.push(routes.registry.target(row.target));
             }}
           />
         ) : (
@@ -449,7 +450,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
         data={assays}
         columns={columns}
         loading={assaysLoading}
-        onRowClick={(assay) => router.push(`/assays/${assay.id}`)}
+        onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
         getRowKey={(row) => row.id}
         title={assays ? `${assays.length} assays` : undefined}
         emptyMessage="No assays using this protocol"

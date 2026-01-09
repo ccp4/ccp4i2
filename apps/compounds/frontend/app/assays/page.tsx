@@ -7,6 +7,7 @@ import { Assessment, Science, Description, Upload, Functions } from '@mui/icons-
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Assay } from '@/types/models';
 
 export default function AssaysPage() {
@@ -40,7 +41,7 @@ export default function AssaysPage() {
           variant="outlined"
           onClick={(e) => {
             e.stopPropagation();
-            router.push(`/assays/protocols/${row.protocol}`);
+            router.push(routes.assays.protocol(row.protocol));
           }}
         />
       ),
@@ -59,7 +60,7 @@ export default function AssaysPage() {
             variant="outlined"
             onClick={(e) => {
               e.stopPropagation();
-              if (row.target) router.push(`/registry/targets/${row.target}`);
+              if (row.target) router.push(routes.registry.target(row.target));
             }}
           />
         ) : (
@@ -99,7 +100,7 @@ export default function AssaysPage() {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Assays', icon: 'assay' },
         ]}
       />
@@ -116,7 +117,7 @@ export default function AssaysPage() {
         <Box sx={{ display: 'flex', gap: 1 }}>
           <Button
             component={Link}
-            href="/assays/aggregate"
+            href={routes.assays.aggregate()}
             variant="outlined"
             startIcon={<Functions />}
           >
@@ -124,7 +125,7 @@ export default function AssaysPage() {
           </Button>
           <Button
             component={Link}
-            href="/assays/import"
+            href={routes.assays.import()}
             variant="contained"
             startIcon={<Upload />}
           >
@@ -137,7 +138,7 @@ export default function AssaysPage() {
         data={assays}
         columns={columns}
         loading={isLoading}
-        onRowClick={(assay) => router.push(`/assays/${assay.id}`)}
+        onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
         getRowKey={(row) => row.id}
         title={assays ? `${assays.length} assays` : undefined}
         emptyMessage="No assays found"

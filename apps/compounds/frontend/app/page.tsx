@@ -3,6 +3,7 @@
 import { Container, Typography, Box, Button, Stack, Paper } from '@mui/material';
 import { Science, Assignment, Biotech, TableChart, Search } from '@mui/icons-material';
 import Link from 'next/link';
+import { routes } from '@/lib/routes';
 
 export default function HomePage() {
   return (
@@ -28,7 +29,7 @@ export default function HomePage() {
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href="/registry/targets"
+          href={routes.registry.targets()}
         >
           <Science sx={{ fontSize: 48, color: 'primary.main' }} />
           <Box>
@@ -50,7 +51,7 @@ export default function HomePage() {
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href="/registry/search"
+          href={routes.registry.search()}
         >
           <Search sx={{ fontSize: 48, color: 'warning.main' }} />
           <Box>
@@ -72,7 +73,7 @@ export default function HomePage() {
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href="/assays"
+          href={routes.assays.list()}
         >
           <Biotech sx={{ fontSize: 48, color: 'secondary.main' }} />
           <Box>
@@ -94,7 +95,7 @@ export default function HomePage() {
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href="/assays/protocols"
+          href={routes.assays.protocols()}
         >
           <Assignment sx={{ fontSize: 48, color: 'info.main' }} />
           <Box>
@@ -116,7 +117,7 @@ export default function HomePage() {
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href="/assays/aggregate"
+          href={routes.assays.aggregate()}
         >
           <TableChart sx={{ fontSize: 48, color: 'success.main' }} />
           <Box>
