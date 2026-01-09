@@ -1,17 +1,28 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Container, Typography, Box, Chip } from '@mui/material';
-import { Science } from '@mui/icons-material';
+import { Container, Typography, Box, Chip, Button } from '@mui/material';
+import { Science, Add } from '@mui/icons-material';
+import { useSWRConfig } from 'swr';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { DataTable, Column } from '@/components/DataTable';
+import { TargetCreateDialog } from '@/components/TargetCreateDialog';
 import { useCompoundsApi } from '@/lib/api';
+import { routes } from '@/lib/routes';
 import { Target } from '@/types/models';
 
 export default function TargetsPage() {
   const router = useRouter();
+  const { mutate } = useSWRConfig();
   const api = useCompoundsApi();
   const { data: targets, isLoading } = api.get<Target[]>('targets/');
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
+
+  const handleTargetCreated = () => {
+    // Invalidate the targets cache to refresh the list
+    mutate('/api/proxy/compounds/targets/');
+  };
 
   const columns: Column<Target>[] = [
     {
@@ -58,23 +69,38 @@ export default function TargetsPage() {
         ]}
       />
 
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          Targets
-        </Typography>
-        <Typography color="text.secondary">
-          Drug discovery targets and campaigns
-        </Typography>
+      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            Targets
+          </Typography>
+          <Typography color="text.secondary">
+            Drug discovery targets and campaigns
+          </Typography>
+        </Box>
+        <Button
+          variant="contained"
+          startIcon={<Add />}
+          onClick={() => setCreateDialogOpen(true)}
+        >
+          New Target
+        </Button>
       </Box>
 
       <DataTable
         data={targets}
         columns={columns}
         loading={isLoading}
-        onRowClick={(target) => router.push(`/registry/targets/${target.id}`)}
+        onRowClick={(target) => router.push(routes.registry.target(target.id))}
         getRowKey={(row) => row.id}
         title={targets ? `${targets.length} targets` : undefined}
         emptyMessage="No targets found"
+      />
+
+      <TargetCreateDialog
+        open={createDialogOpen}
+        onClose={() => setCreateDialogOpen(false)}
+        onCreated={handleTargetCreated}
       />
     </Container>
   );

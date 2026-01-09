@@ -41,6 +41,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JSMEEditor } from '@/components/JSMEEditor';
 import { MoleculeChip } from '@/components/MoleculeView';
 import { useCompoundsApi, apiPost } from '@/lib/api';
+import { routes } from '@/lib/routes';
 
 interface Target {
   id: string;
@@ -279,7 +280,7 @@ function NewCompoundPageContent() {
                 { label: 'Register Compound' },
               ]
             : [
-                { label: 'Registry', href: '/registry' },
+                { label: 'Registry', href: '/registry/targets' },
                 { label: 'Register Compound' },
               ]
         }
@@ -299,7 +300,7 @@ function NewCompoundPageContent() {
         </Typography>
         <Button
           component={Link}
-          href="/registry/import"
+          href={routes.registry.import()}
           variant="outlined"
           startIcon={<Upload />}
         >
@@ -522,7 +523,7 @@ function NewCompoundPageContent() {
               <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
                 <Button
                   component={Link}
-                  href="/registry/search"
+                  href={routes.registry.search()}
                   variant="outlined"
                 >
                   Cancel

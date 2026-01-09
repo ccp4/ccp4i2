@@ -45,6 +45,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow } from '@/components/SpreadsheetUpload';
 import { MoleculeChip } from '@/components/MoleculeView';
 import { useCompoundsApi, apiPost } from '@/lib/api';
+import { routes } from '@/lib/routes';
 
 interface Target {
   id: string;
@@ -309,7 +310,7 @@ export default function ImportCompoundsPage() {
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Breadcrumbs
         items={[
-          { label: 'Registry', href: '/registry' },
+          { label: 'Registry', href: '/registry/targets' },
           { label: 'Bulk Import' },
         ]}
       />
@@ -317,7 +318,7 @@ export default function ImportCompoundsPage() {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
         <Button
           component={Link}
-          href="/registry/new"
+          href={routes.registry.new()}
           startIcon={<ArrowBack />}
           size="small"
         >
@@ -605,7 +606,7 @@ export default function ImportCompoundsPage() {
                 <Button
                   variant="contained"
                   component={Link}
-                  href="/registry/search"
+                  href={routes.registry.search()}
                 >
                   Go to Registry
                 </Button>
