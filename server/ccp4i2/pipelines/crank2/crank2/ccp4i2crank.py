@@ -35,12 +35,8 @@ def CallCrankFromCCP4i2(ccp4i2crank, xmlfile=None, inpfile=None, defaults=False,
     f.close()
     if error:
       os.chdir(cwd_saved)
-      # simple raise used to lose the trace...  raise_ is needed to make a python2/3 compatible specific error raise with trace
-      #raise_(error,None,sys.exc_info()[2])
-      try: #python2
-        raise
-      except RuntimeError: #python3
-        raise error
+      # Re-raise the captured exception
+      raise error
   # register output objects from the last step... (or from previous step if not present in last)
   if not defaults:
     if hasattr(crank.processes[-1],'ccp4i2job'):
