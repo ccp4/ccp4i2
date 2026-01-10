@@ -11,6 +11,8 @@ const msalConfig = {
   auth: {
     clientId,
     authority: `https://login.microsoftonline.com/${tenantId}`,
+    // Default to "/" - loginRedirect() in require-auth.tsx overrides this
+    // with the current path so users return to the page they were accessing
     redirectUri: "/",
   },
 };
