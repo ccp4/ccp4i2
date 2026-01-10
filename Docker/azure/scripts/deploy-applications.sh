@@ -166,7 +166,7 @@ fi
 
 az deployment group create \
   --resource-group $RESOURCE_GROUP \
-  --template-file infrastructure/applications.bicep \
+  --template-file "$SCRIPT_DIR/../infrastructure/applications.bicep" \
   --parameters containerAppsEnvironmentId="$CONTAINER_APPS_ENV_ID" \
                acrLoginServer="$ACR_LOGIN_SERVER" \
                acrName="$ACR_NAME" \
