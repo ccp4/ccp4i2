@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-const DJANGO_URL = process.env.DJANGO_URL || 'http://localhost:8000';
+// Use same env var pattern as main ccp4i2 proxy for consistency
+// Priority: runtime API_BASE_URL > build-time NEXT_PUBLIC > default
+const DJANGO_URL = process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:8000';
 
 // API path on Django backend - matches ccp4i2 multi-app URL structure
 const API_PATH = '/api/compounds';

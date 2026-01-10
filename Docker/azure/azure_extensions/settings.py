@@ -16,10 +16,16 @@ import os
 # Import all settings from the core ccp4i2 settings
 from ccp4i2.config.settings import *  # noqa: F401, F403
 
-# Add azure_extensions to INSTALLED_APPS
+# Add azure_extensions and compounds apps to INSTALLED_APPS
 INSTALLED_APPS = INSTALLED_APPS + [  # noqa: F405
     "azure_extensions",
+    "compounds.registry",
+    "compounds.assays",
+    "reversion",
 ]
+
+# Enable compounds URLs
+COMPOUNDS_ENABLED = True
 
 # Azure Storage configuration for staged uploads (large file uploads via SAS URL)
 # These are used by the StagedUpload feature for files > 100MB
@@ -33,3 +39,4 @@ elif AZURE_STORAGE_CONNECTION_STRING:
     print("Azure Storage configured via connection string")
 
 print("Azure Extensions app enabled")
+print("Compounds app enabled (registry, assays)")

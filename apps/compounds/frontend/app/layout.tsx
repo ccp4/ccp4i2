@@ -4,7 +4,7 @@ import './globals.css';
 import { PropsWithChildren } from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
-import { RDKitProvider } from '@/lib/rdkit-context';
+import { RDKitProvider } from '@/lib/compounds/rdkit-context';
 
 const theme = createTheme({
   palette: {

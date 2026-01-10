@@ -36,13 +36,13 @@ import {
   Upload,
 } from '@mui/icons-material';
 import Link from 'next/link';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { MoleculeChip } from '@/components/MoleculeView';
-import { JSMEEditor } from '@/components/JSMEEditor';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Target, Compound } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { MoleculeChip } from '@/components/compounds/MoleculeView';
+import { JSMEEditor } from '@/components/compounds/JSMEEditor';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Target, Compound } from '@/types/compounds/models';
 
 type StructureSearchMode = 'substructure' | 'superstructure';
 
@@ -180,8 +180,8 @@ function CompoundSearchContent() {
     if (selectedTarget) params.set('target', selectedTarget.id);
 
     const newUrl = params.toString()
-      ? `/registry/search?${params}`
-      : '/registry/search';
+      ? `${routes.registry.search()}?${params}`
+      : routes.registry.search();
 
     window.history.replaceState({}, '', newUrl);
   }, [debouncedQuery, selectedTarget]);
@@ -313,7 +313,7 @@ function CompoundSearchContent() {
       render: (_, row) => (
         <Button
           component={Link}
-          href={`/assays/aggregate?compound=${row.formatted_id}`}
+          href={routes.assays.aggregate({ compound: row.formatted_id })}
           size="small"
           startIcon={<TableChart />}
           onClick={(e) => e.stopPropagation()}
@@ -328,8 +328,8 @@ function CompoundSearchContent() {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Registry', href: '/registry/targets' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Registry', href: routes.registry.targets() },
           { label: 'Search', icon: 'search' },
         ]}
       />
@@ -596,7 +596,7 @@ function CompoundSearchContent() {
             {results.length > 0 && (
               <Button
                 component={Link}
-                href={`/assays/aggregate?compound=${results.map(r => r.formatted_id).join(',')}`}
+                href={routes.assays.aggregate({ compound: results.map(r => r.formatted_id).join(',') })}
                 variant="contained"
                 startIcon={<TableChart />}
               >

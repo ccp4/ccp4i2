@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Container, Typography, Box, Chip, Button } from '@mui/material';
 import { Assessment, Science, Description, Upload, Functions } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Assay } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Assay } from '@/types/compounds/models';
 
 export default function AssaysPage() {
   const router = useRouter();

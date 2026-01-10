@@ -18,8 +18,8 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Close, Science, Add } from '@mui/icons-material';
-import { useCompoundsApi, apiPost } from '@/lib/api';
-import type { Target } from '@/types/models';
+import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
+import type { Target } from '@/types/compounds/models';
 
 interface TargetCreateDialogProps {
   open: boolean;

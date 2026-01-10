@@ -29,9 +29,9 @@ import {
   Predicates,
   AggregationType,
   OutputFormat,
-} from '@/types/aggregation';
-import { Target, Protocol } from '@/types/models';
-import { fetchTargets, fetchProtocols } from '@/lib/aggregation-api';
+} from '@/types/compounds/aggregation';
+import { Target, Protocol } from '@/types/compounds/models';
+import { fetchTargets, fetchProtocols } from '@/lib/compounds/aggregation-api';
 
 interface PredicateBuilderProps {
   /** Initial target ID (for target detail page) */

@@ -40,6 +40,14 @@ COPY server/ .
 # This keeps Azure-specific code separate from the core ccp4i2 distribution
 COPY Docker/azure/azure_extensions /usr/src/app/azure_extensions
 
+# =============================================================================
+# Overlay compounds Django apps (registry & assays)
+# =============================================================================
+COPY apps/compounds/registry /usr/src/app/compounds/registry
+COPY apps/compounds/assays /usr/src/app/compounds/assays
+COPY apps/compounds/__init__.py /usr/src/app/compounds/__init__.py
+COPY apps/compounds/urls.py /usr/src/app/compounds/urls.py
+
 # Install Python dependencies
 # Core Django dependencies (quoted to prevent shell interpretation of < >)
 RUN pip install --no-cache-dir \
@@ -51,7 +59,8 @@ RUN pip install --no-cache-dir \
     "gunicorn>=21.0" \
     "psycopg2-binary>=2.9" \
     "dj-database-url>=2.0" \
-    "python-dotenv>=1.0"
+    "python-dotenv>=1.0" \
+    "django-reversion>=5.0"
 
 # Install Azure integration dependencies
 RUN pip install --no-cache-dir -r requirements-azure.txt

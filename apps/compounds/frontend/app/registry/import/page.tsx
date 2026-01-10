@@ -41,11 +41,11 @@ import {
   Download,
   Refresh,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow } from '@/components/SpreadsheetUpload';
-import { MoleculeChip } from '@/components/MoleculeView';
-import { useCompoundsApi, apiPost } from '@/lib/api';
-import { routes } from '@/lib/routes';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow } from '@/components/compounds/SpreadsheetUpload';
+import { MoleculeChip } from '@/components/compounds/MoleculeView';
+import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
 
 interface Target {
   id: string;
@@ -310,7 +310,7 @@ export default function ImportCompoundsPage() {
     <Container maxWidth="lg" sx={{ py: 4 }}>
       <Breadcrumbs
         items={[
-          { label: 'Registry', href: '/registry/targets' },
+          { label: 'Registry', href: routes.registry.targets() },
           { label: 'Bulk Import' },
         ]}
       />
@@ -575,7 +575,7 @@ export default function ImportCompoundsPage() {
                         </TableCell>
                         <TableCell>
                           {result.formatted_id ? (
-                            <Link href={`/registry/compounds/${result.id}`}>
+                            <Link href={routes.registry.compound(result.id!)}>
                               <Chip
                                 label={result.formatted_id}
                                 size="small"

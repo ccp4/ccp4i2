@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 import { CCP4i2ThemeProvider } from "../theme/theme-provider";
 
 export const metadata = {
-  title: "CCP4 Cloud",
+  title: "ccp4i2",
   description: "Software for Macromolecular X-Ray Crystallography",
 };
 

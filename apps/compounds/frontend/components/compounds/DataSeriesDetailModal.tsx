@@ -25,7 +25,7 @@ import { Close, Medication, Science, OpenInNew } from '@mui/icons-material';
 import Link from 'next/link';
 import { MoleculeChip } from './MoleculeView';
 import { DoseResponseChart, DoseResponseThumb, FitParameters, DoseResponseData } from './DoseResponseChart';
-import { formatKpiValue } from '@/lib/aggregation-api';
+import { formatKpiValue } from '@/lib/compounds/aggregation-api';
 
 interface DataSeriesItem {
   id: string;

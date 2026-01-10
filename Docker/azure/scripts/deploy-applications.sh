@@ -5,11 +5,15 @@
 # Ensure Homebrew paths are available
 export PATH="/opt/homebrew/bin:$PATH"
 
+# Get the directory where the script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ENV_FILE="$SCRIPT_DIR/../.env.deployment"
+
 # Load environment variables
-if [ -f .env.deployment ]; then
-    source .env.deployment
+if [ -f "$ENV_FILE" ]; then
+    source "$ENV_FILE"
 else
-    echo "❌ .env.deployment not found. Run deploy-infrastructure.sh first."
+    echo "❌ .env.deployment not found at $ENV_FILE. Run deploy-infrastructure.sh first."
     exit 1
 fi
 

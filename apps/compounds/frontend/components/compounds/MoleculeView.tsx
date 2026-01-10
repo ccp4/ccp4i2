@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Box, Skeleton, Typography } from '@mui/material';
-import { useRDKit } from '@/lib/rdkit-context';
+import { useRDKit } from '@/lib/compounds/rdkit-context';
 
 interface MoleculeViewProps {
   smiles: string;

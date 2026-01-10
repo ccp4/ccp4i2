@@ -41,7 +41,8 @@ services:
     environment:
       - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
       - DEBUG=${DEBUG:-true}
-      - DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
+      # Use azure_extensions.settings which includes compounds apps
+      - DJANGO_SETTINGS_MODULE=azure_extensions.settings
       - CCP4_DATA_PATH=/mnt/ccp4data
       - CCP4_VERSION=${CCP4_VERSION:-ccp4-9}
       - CCP4I2_PROJECTS_DIR=/mnt/projects
@@ -56,8 +57,10 @@ services:
       - ${PROJECTS_PATH:-./data/projects}:/mnt/projects
       # Mount server code for hot-reload in development
       - ../server:/usr/src/app:ro
+      # Mount compounds Django apps for hot-reload in development
+      - ../apps/compounds:/usr/src/app/compounds:ro
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/ccp4i2/health/"]
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/ccp4i2/health/", "-f", "http://localhost:8000/api/compounds/targets/"]
       interval: 30s
       timeout: 10s
       retries: 3
@@ -99,7 +102,8 @@ services:
     environment:
       - CCP4_DATA_PATH=/mnt/ccp4data
       - CCP4I2_PROJECTS_DIR=/mnt/projects
-      - DJANGO_SETTINGS_MODULE=ccp4i2.config.settings
+      # Use azure_extensions.settings which includes compounds apps
+      - DJANGO_SETTINGS_MODULE=azure_extensions.settings
       - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
     volumes:
       # Mount CCP4 data directory (READ-WRITE for setup/building)
@@ -108,6 +112,8 @@ services:
       - ${PROJECTS_PATH:-./data/projects}:/mnt/projects
       # Mount server code (useful for testing)
       - ../server:/usr/src/app:ro
+      # Mount compounds Django apps
+      - ../apps/compounds:/usr/src/app/compounds:ro
     entrypoint: ["/bin/bash"]
     command: ["-c", "echo 'CCP4i2 Shell Container Ready. CCP4 data at /mnt/ccp4data, projects at /mnt/projects'; exec bash"]
 

@@ -2,7 +2,7 @@
 
 import { useMemo } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
-import type { PlateLayout, PlateFormat } from '@/types/models';
+import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
 
 /**
  * Plate dimensions for different formats

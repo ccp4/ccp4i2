@@ -21,7 +21,7 @@ import {
   Chip,
   ToggleButton,
   ToggleButtonGroup,
-  Grid,
+  Grid2 as Grid,
   Paper,
   Alert,
 } from '@mui/material';
@@ -42,7 +42,7 @@ import type {
   DilutionDirection,
   ControlPlacement,
   SpreadsheetOrigin,
-} from '@/types/models';
+} from '@/types/compounds/models';
 
 /**
  * Plate dimensions for generating row/column options
@@ -307,7 +307,7 @@ export function PlateLayoutEditor({
   return (
     <Grid container spacing={3}>
       {/* Editor panel */}
-      <Grid item xs={12} md={showPreview ? 7 : 12}>
+      <Grid size={{ xs: 12, md: showPreview ? 7 : 12 }}>
         {/* Template selector */}
         <Paper sx={{ p: 2, mb: 2 }}>
           <Typography variant="subtitle2" gutterBottom>
@@ -428,7 +428,7 @@ export function PlateLayoutEditor({
                   </Typography>
 
                   <Grid container spacing={2}>
-                    <Grid item xs={6} sm={3}>
+                    <Grid size={{ xs: 6, sm: 3 }}>
                       <TextField
                         label="Min Wells"
                         type="number"
@@ -445,7 +445,7 @@ export function PlateLayoutEditor({
                         inputProps={{ min: 1, max: 4 }}
                       />
                     </Grid>
-                    <Grid item xs={6} sm={3}>
+                    <Grid size={{ xs: 6, sm: 3 }}>
                       <TextField
                         label="Data Wells"
                         type="number"
@@ -466,7 +466,7 @@ export function PlateLayoutEditor({
                         inputProps={{ min: 4, max: 20 }}
                       />
                     </Grid>
-                    <Grid item xs={6} sm={3}>
+                    <Grid size={{ xs: 6, sm: 3 }}>
                       <TextField
                         label="Max Wells"
                         type="number"
@@ -483,7 +483,7 @@ export function PlateLayoutEditor({
                         inputProps={{ min: 1, max: 4 }}
                       />
                     </Grid>
-                    <Grid item xs={6} sm={3}>
+                    <Grid size={{ xs: 6, sm: 3 }}>
                       <TextField
                         label="Strips/Row"
                         type="number"
@@ -649,7 +649,7 @@ export function PlateLayoutEditor({
                   </Typography>
 
                   <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid size={{ xs: 6 }}>
                       <FormControl fullWidth size="small">
                         <InputLabel>Start Row</InputLabel>
                         <Select
@@ -665,7 +665,7 @@ export function PlateLayoutEditor({
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={{ xs: 6 }}>
                       <FormControl fullWidth size="small">
                         <InputLabel>End Row</InputLabel>
                         <Select
@@ -687,7 +687,7 @@ export function PlateLayoutEditor({
                 /* Standard layout: full sample region configuration */
                 <>
                   <Grid container spacing={2}>
-                    <Grid item xs={6}>
+                    <Grid size={{ xs: 6 }}>
                       <FormControl fullWidth size="small">
                         <InputLabel>Start Column</InputLabel>
                         <Select
@@ -703,7 +703,7 @@ export function PlateLayoutEditor({
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={{ xs: 6 }}>
                       <FormControl fullWidth size="small">
                         <InputLabel>End Column</InputLabel>
                         <Select
@@ -719,7 +719,7 @@ export function PlateLayoutEditor({
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={{ xs: 6 }}>
                       <FormControl fullWidth size="small">
                         <InputLabel>Start Row</InputLabel>
                         <Select
@@ -735,7 +735,7 @@ export function PlateLayoutEditor({
                         </Select>
                       </FormControl>
                     </Grid>
-                    <Grid item xs={6}>
+                    <Grid size={{ xs: 6 }}>
                       <FormControl fullWidth size="small">
                         <InputLabel>End Row</InputLabel>
                         <Select
@@ -1030,7 +1030,7 @@ export function PlateLayoutEditor({
               </Typography>
 
               <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <TextField
                     label="Column"
                     size="small"
@@ -1050,7 +1050,7 @@ export function PlateLayoutEditor({
                     inputProps={{ maxLength: 3, style: { textTransform: 'uppercase' } }}
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <TextField
                     label="Row"
                     size="small"
@@ -1091,7 +1091,7 @@ export function PlateLayoutEditor({
 
       {/* Preview panel */}
       {showPreview && (
-        <Grid item xs={12} md={5}>
+        <Grid size={{ xs: 12, md: 5 }}>
           <Box sx={{ position: 'sticky', top: 16 }}>
             <Typography variant="subtitle2" gutterBottom>
               Layout Preview

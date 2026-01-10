@@ -39,7 +39,7 @@ export default function HelpMenu() {
           <ListItemText>View YouTube video</ListItemText>
         </MenuItem>
         <MenuItem>Task documentation</MenuItem>
-        <MenuItem>Task info from CCP4 Cloud</MenuItem>
+        <MenuItem>Task info from ccp4i2</MenuItem>
         <MenuItem>
           <ListItemIcon>
             <Help fontSize="small" />

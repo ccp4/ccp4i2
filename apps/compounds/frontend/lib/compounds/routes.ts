@@ -6,7 +6,7 @@
  * to add a prefix to all routes (e.g., '/compounds' or leave empty for standalone).
  *
  * Usage:
- *   import { routes } from '@/lib/routes';
+ *   import { routes } from '@/lib/compounds/routes';
  *
  *   // In Link components:
  *   <Link href={routes.registry.targets()}>Targets</Link>

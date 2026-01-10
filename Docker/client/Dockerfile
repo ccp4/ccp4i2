@@ -45,6 +45,29 @@ COPY client/ .
 COPY server/ccp4i2/qticons/ ./renderer/public/qticons/
 COPY server/ccp4i2/svgicons/ ./renderer/public/svgicons/
 
+# =============================================================================
+# Overlay compounds frontend (registry & assays sub-apps)
+# =============================================================================
+# Copy app routes
+COPY apps/compounds/frontend/app/registry/ ./renderer/app/registry/
+COPY apps/compounds/frontend/app/assays/ ./renderer/app/assays/
+COPY apps/compounds/frontend/app/api/proxy/compounds/ ./renderer/app/api/proxy/compounds/
+
+# Copy app selector as the root page (replaces the redirect-only page)
+COPY apps/compounds/frontend/app/app-selector/page.tsx ./renderer/app/page.tsx
+
+# Copy components, lib, and types (already in compounds/ subfolders)
+COPY apps/compounds/frontend/components/compounds/ ./renderer/components/compounds/
+COPY apps/compounds/frontend/lib/compounds/ ./renderer/lib/compounds/
+COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
+
+# Add path aliases to tsconfig.json for @/ imports used by compounds
+# The ccp4i2 client uses relative imports, but compounds uses @/ aliases
+RUN apk add --no-cache jq && \
+    jq '.compilerOptions += {"baseUrl": ".", "paths": {"@/*": ["./*"]}}' \
+    ./renderer/tsconfig.json > ./renderer/tsconfig.new.json && \
+    mv ./renderer/tsconfig.new.json ./renderer/tsconfig.json
+
 # Build for web (from client root directory as originally intended)
 RUN npx cross-env BUILD_TARGET=web npm run copy-assets
 

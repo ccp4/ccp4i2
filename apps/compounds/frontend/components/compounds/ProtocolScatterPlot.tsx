@@ -36,7 +36,7 @@ import {
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { useRouter } from 'next/navigation';
-import { CompactRow, ProtocolInfo } from '@/types/aggregation';
+import { CompactRow, ProtocolInfo } from '@/types/compounds/aggregation';
 
 // Register Chart.js components
 ChartJS.register(

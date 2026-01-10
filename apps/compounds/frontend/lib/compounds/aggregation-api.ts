@@ -8,8 +8,8 @@ import {
   AggregationRequest,
   AggregationResponse,
   ProtocolInfo,
-} from '@/types/aggregation';
-import { Target } from '@/types/models';
+} from '@/types/compounds/aggregation';
+import { Target } from '@/types/compounds/models';
 
 const API_BASE = '/api/proxy/compounds';
 

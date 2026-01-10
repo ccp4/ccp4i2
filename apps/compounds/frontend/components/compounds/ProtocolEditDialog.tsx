@@ -22,8 +22,8 @@ import {
 import { Close, Edit, Code } from '@mui/icons-material';
 import { TightBindingParametersForm } from './TightBindingParametersForm';
 import { FittingMethodEditDialog } from './FittingMethodEditDialog';
-import { useCompoundsApi } from '@/lib/api';
-import type { Protocol, FittingMethod, FittingParameters, DilutionSeries } from '@/types/models';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import type { Protocol, FittingMethod, FittingParameters, DilutionSeries } from '@/types/compounds/models';
 
 interface ProtocolEditDialogProps {
   open: boolean;

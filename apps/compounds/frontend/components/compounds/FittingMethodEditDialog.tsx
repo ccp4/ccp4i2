@@ -18,8 +18,8 @@ import {
   Chip,
 } from '@mui/material';
 import { Close, Code, Save } from '@mui/icons-material';
-import { useCompoundsApi } from '@/lib/api';
-import type { FittingMethodDetail } from '@/types/models';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import type { FittingMethodDetail } from '@/types/compounds/models';
 
 // Dynamically import Monaco to avoid SSR issues
 const Editor = dynamic(() => import('@monaco-editor/react'), { ssr: false });

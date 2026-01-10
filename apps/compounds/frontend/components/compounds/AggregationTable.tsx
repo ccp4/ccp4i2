@@ -28,7 +28,7 @@ import {
   isCompactResponse,
   isMediumResponse,
   ProtocolInfo,
-} from '@/types/aggregation';
+} from '@/types/compounds/aggregation';
 import { MoleculeChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
 import { ProtocolScatterPlot } from './ProtocolScatterPlot';
@@ -37,7 +37,7 @@ import {
   generateCompactCsv,
   generateLongCsv,
   downloadCsv,
-} from '@/lib/aggregation-api';
+} from '@/lib/compounds/aggregation-api';
 
 /**
  * Generate CSV content from medium aggregation data.

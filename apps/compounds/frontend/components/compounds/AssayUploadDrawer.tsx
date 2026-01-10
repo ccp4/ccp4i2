@@ -40,8 +40,8 @@ import {
   Error as ErrorIcon,
   Analytics,
 } from '@mui/icons-material';
-import { useCompoundsApi } from '@/lib/api';
-import type { PlateLayout, PlateFormat } from '@/types/models';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
 
 interface Target {
   id: string;

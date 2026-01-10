@@ -3,8 +3,8 @@
 import { useMemo } from 'react';
 import { Box, Skeleton, Typography } from '@mui/material';
 import { MoleculeChip } from './MoleculeView';
-import { useCompoundsApi } from '@/lib/api';
-import { Compound } from '@/types/models';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { Compound } from '@/types/compounds/models';
 
 interface CompoundStructureCellProps {
   /** UUID of the compound if already matched */

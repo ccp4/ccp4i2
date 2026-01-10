@@ -7,12 +7,12 @@ import {
   Typography,
   Alert,
   InputAdornment,
-  Grid,
+  Grid2 as Grid,
   Tooltip,
   IconButton,
 } from '@mui/material';
 import { HelpOutline } from '@mui/icons-material';
-import type { FittingParameters } from '@/types/models';
+import type { FittingParameters } from '@/types/compounds/models';
 
 interface TightBindingParametersFormProps {
   value: FittingParameters;
