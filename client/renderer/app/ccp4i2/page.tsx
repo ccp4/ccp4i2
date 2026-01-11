@@ -2,6 +2,7 @@
 import { Badge, Container, Skeleton, Stack } from "@mui/material";
 import ProjectsToolbar from "../../components/projects-toolbar";
 import ProjectsTable from "../../components/projects-table";
+import CCP4i2TopBar from "../../components/ccp4i2-topbar";
 import { useApi } from "../../api";
 import { Project } from "../../types/models";
 
@@ -11,7 +12,9 @@ export default function ProjectsPage() {
   const { data: task_tree } = api.get<any>(`task_tree/`);
 
   return (
-    <Container sx={{ my: 3 }}>
+    <>
+      <CCP4i2TopBar title="CCP4i2 Projects" />
+      <Container sx={{ my: 3 }}>
       <Stack spacing={2}>
         {task_tree?.task_tree?.tree && (
           <Badge badgeContent={task_tree.task_tree.tree.length} color="primary">
@@ -66,5 +69,6 @@ export default function ProjectsPage() {
         )}
       </Stack>
     </Container>
+    </>
   );
 }
