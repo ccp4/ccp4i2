@@ -17,7 +17,7 @@ import {
   Select,
   MenuItem,
   Autocomplete,
-  Grid,
+  Grid2 as Grid,
   Divider,
   Chip,
   Accordion,
@@ -37,11 +37,11 @@ import {
   Draw,
   Clear,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { JSMEEditor } from '@/components/JSMEEditor';
-import { MoleculeChip } from '@/components/MoleculeView';
-import { useCompoundsApi, apiPost } from '@/lib/api';
-import { routes } from '@/lib/routes';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { JSMEEditor } from '@/components/compounds/JSMEEditor';
+import { MoleculeChip } from '@/components/compounds/MoleculeView';
+import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
 
 interface Target {
   id: string;
@@ -259,7 +259,7 @@ function NewCompoundPageContent() {
             <Button
               variant="contained"
               component={Link}
-              href={`/registry/compounds/${success.id}`}
+              href={routes.registry.compound(success.id)}
             >
               View Compound
             </Button>
@@ -275,12 +275,12 @@ function NewCompoundPageContent() {
         items={
           preselectedTargetId && preselectedTarget
             ? [
-                { label: 'Registry', href: '/registry/targets' },
-                { label: preselectedTarget.name, href: `/registry/targets/${preselectedTargetId}`, icon: 'target' },
+                { label: 'Registry', href: routes.registry.targets() },
+                { label: preselectedTarget.name, href: routes.registry.target(preselectedTargetId), icon: 'target' },
                 { label: 'Register Compound' },
               ]
             : [
-                { label: 'Registry', href: '/registry/targets' },
+                { label: 'Registry', href: routes.registry.targets() },
                 { label: 'Register Compound' },
               ]
         }
@@ -289,7 +289,7 @@ function NewCompoundPageContent() {
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 3 }}>
         <Button
           component={Link}
-          href={preselectedTargetId ? `/registry/targets/${preselectedTargetId}` : '/registry/search'}
+          href={preselectedTargetId ? routes.registry.target(preselectedTargetId) : routes.registry.search()}
           startIcon={<ArrowBack />}
           size="small"
         >
@@ -311,7 +311,7 @@ function NewCompoundPageContent() {
       <form onSubmit={handleSubmit}>
         <Grid container spacing={3}>
           {/* Left column - Structure input */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 3 }}>
               <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Science color="primary" />
@@ -394,7 +394,7 @@ function NewCompoundPageContent() {
           </Grid>
 
           {/* Right column - Form fields */}
-          <Grid item xs={12} md={6}>
+          <Grid size={{ xs: 12, md: 6 }}>
             <Paper sx={{ p: 3 }}>
               <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Medication color="secondary" />
@@ -480,7 +480,7 @@ function NewCompoundPageContent() {
 
               {/* Lab notebook info */}
               <Grid container spacing={2}>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <TextField
                     label="Lab Notebook #"
                     type="number"
@@ -490,7 +490,7 @@ function NewCompoundPageContent() {
                     fullWidth
                   />
                 </Grid>
-                <Grid item xs={6}>
+                <Grid size={{ xs: 6 }}>
                   <TextField
                     label="Page #"
                     type="number"

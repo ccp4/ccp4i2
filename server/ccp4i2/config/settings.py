@@ -127,61 +127,75 @@ if DATABASE_URL:
     # Parse the DATABASE_URL
     url = urlparse(DATABASE_URL)
 
-    # Parse query parameters from the URL
-    from urllib.parse import parse_qs
-
-    query_params = parse_qs(url.query)
-
-    # Extract SSL mode from query parameters, default to 'require'
-    sslmode = query_params.get("sslmode", ["require"])[0]
-
-    # Extract other common PostgreSQL options from query parameters
-    connect_timeout = query_params.get("connect_timeout", ["10"])[0]
-    application_name = query_params.get("application_name", ["ccp4i2-django"])[0]
-
-    # Build OPTIONS dictionary with extracted parameters
-    db_options = {
-        "sslmode": sslmode,
-        "connect_timeout": int(connect_timeout),
-    }
-
-    # Add application_name if specified
-    if "application_name" in query_params:
-        db_options["application_name"] = application_name
-
-    # Add any other supported PostgreSQL options from query parameters
-    # Common options: sslcert, sslkey, sslrootcert, etc.
-    for param in ["sslcert", "sslkey", "sslrootcert", "sslcrl"]:
-        if param in query_params:
-            db_options[param] = query_params[param][0]
-
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": url.path[1:],  # Remove leading slash
-            "USER": unquote(url.username),
-            "PASSWORD": unquote(url.password),
-            "HOST": unquote(url.hostname),
-            "PORT": url.port or 5432,
-            "OPTIONS": db_options,
+    # Check if this is a SQLite URL (from startup script when no DB_HOST is set)
+    if url.scheme.startswith("sqlite"):
+        # Handle SQLite DATABASE_URL (format: sqlite:///path/to/db.sqlite)
+        # The path is everything after sqlite:// (url.path contains the full path)
+        db_path = url.path
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.sqlite3",
+                "NAME": db_path,
+            }
         }
-    }
+        print(f"Using SQLite database from DATABASE_URL: {db_path}")
+    else:
+        # PostgreSQL configuration
+        # Parse query parameters from the URL
+        from urllib.parse import parse_qs
 
-    # Log connection details (hide password for security)
-    masked_password = "*" * len(url.password) if url.password else "None"
-    print(
-        f"Using PostgreSQL database: {url.username}:{masked_password}@{url.hostname}:{url.port}/{url.path[1:]} "
-        f"with SSL mode: {sslmode}"
-    )
+        query_params = parse_qs(url.query)
 
-    # Log other options if they exist
-    if len(db_options) > 2:  # More than just sslmode and connect_timeout
-        other_options = {
-            k: v
-            for k, v in db_options.items()
-            if k not in ["sslmode", "connect_timeout"]
+        # Extract SSL mode from query parameters, default to 'require'
+        sslmode = query_params.get("sslmode", ["require"])[0]
+
+        # Extract other common PostgreSQL options from query parameters
+        connect_timeout = query_params.get("connect_timeout", ["10"])[0]
+        application_name = query_params.get("application_name", ["ccp4i2-django"])[0]
+
+        # Build OPTIONS dictionary with extracted parameters
+        db_options = {
+            "sslmode": sslmode,
+            "connect_timeout": int(connect_timeout),
         }
-        print(f"Additional database options: {other_options}")
+
+        # Add application_name if specified
+        if "application_name" in query_params:
+            db_options["application_name"] = application_name
+
+        # Add any other supported PostgreSQL options from query parameters
+        # Common options: sslcert, sslkey, sslrootcert, etc.
+        for param in ["sslcert", "sslkey", "sslrootcert", "sslcrl"]:
+            if param in query_params:
+                db_options[param] = query_params[param][0]
+
+        DATABASES = {
+            "default": {
+                "ENGINE": "django.db.backends.postgresql",
+                "NAME": url.path[1:],  # Remove leading slash
+                "USER": unquote(url.username),
+                "PASSWORD": unquote(url.password),
+                "HOST": unquote(url.hostname),
+                "PORT": url.port or 5432,
+                "OPTIONS": db_options,
+            }
+        }
+
+        # Log connection details (hide password for security)
+        masked_password = "*" * len(url.password) if url.password else "None"
+        print(
+            f"Using PostgreSQL database: {url.username}:{masked_password}@{url.hostname}:{url.port}/{url.path[1:]} "
+            f"with SSL mode: {sslmode}"
+        )
+
+        # Log other options if they exist
+        if len(db_options) > 2:  # More than just sslmode and connect_timeout
+            other_options = {
+                k: v
+                for k, v in db_options.items()
+                if k not in ["sslmode", "connect_timeout"]
+            }
+            print(f"Additional database options: {other_options}")
 
 else:
     # Default SQLite configuration
@@ -270,3 +284,21 @@ FILE_UPLOAD_MAX_NUMBER_FILES = int(
 print(
     f"File upload settings: MAX_MEMORY_SIZE={FILE_UPLOAD_MAX_MEMORY_SIZE}, DATA_MAX_MEMORY_SIZE={DATA_UPLOAD_MAX_MEMORY_SIZE}, MAX_FILES={FILE_UPLOAD_MAX_NUMBER_FILES}"
 )
+
+# =============================================================================
+# Security Settings (Production)
+# =============================================================================
+# These headers protect against common web vulnerabilities.
+# Note: HTTPS/SSL settings are NOT enabled here because the Django server
+# runs behind the Next.js proxy (internal HTTP). HTTPS termination happens
+# at the Azure Container Apps ingress/web container level.
+
+if not DEBUG:
+    # Prevent clickjacking attacks
+    X_FRAME_OPTIONS = "DENY"
+
+    # Prevent MIME type sniffing
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    # Enable XSS filter in browsers (legacy, but still useful)
+    SECURE_BROWSER_XSS_FILTER = True

@@ -3,7 +3,7 @@
 import { Container, Typography, Box, Button, Stack, Paper } from '@mui/material';
 import { Science, Assignment, Biotech, TableChart, Search } from '@mui/icons-material';
 import Link from 'next/link';
-import { routes } from '@/lib/routes';
+import { routes } from '@/lib/compounds/routes';
 
 export default function HomePage() {
   return (

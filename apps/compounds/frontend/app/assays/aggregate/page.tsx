@@ -4,16 +4,17 @@ import { useState, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Container, Typography, Box, Alert, CircularProgress } from '@mui/material';
 import { TableChart } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { PredicateBuilder } from '@/components/PredicateBuilder';
-import { AggregationTable } from '@/components/AggregationTable';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { routes } from '@/lib/compounds/routes';
+import { PredicateBuilder } from '@/components/compounds/PredicateBuilder';
+import { AggregationTable } from '@/components/compounds/AggregationTable';
 import {
   Predicates,
   AggregationType,
   OutputFormat,
   AggregationResponse,
-} from '@/types/aggregation';
-import { fetchAggregation } from '@/lib/aggregation-api';
+} from '@/types/compounds/aggregation';
+import { fetchAggregation } from '@/lib/compounds/aggregation-api';
 
 export default function AggregationPage() {
   return (
@@ -79,8 +80,8 @@ function AggregationPageContent() {
     <Container maxWidth="xl" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Assays', href: '/assays', icon: 'assay' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Assays', href: routes.assays.list(), icon: 'assay' },
           { label: 'Data Aggregation', icon: 'aggregate' },
         ]}
       />

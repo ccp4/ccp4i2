@@ -13,12 +13,12 @@ import {
 } from '@mui/material';
 import { Medication, Science, TableChart, Add } from '@mui/icons-material';
 import Link from 'next/link';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { MoleculeChip } from '@/components/MoleculeView';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Target, Compound } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { MoleculeChip } from '@/components/compounds/MoleculeView';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Target, Compound } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -135,8 +135,8 @@ export default function TargetDetailPage({ params }: PageProps) {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Targets', href: '/registry/targets', icon: 'target' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
           { label: target?.name || 'Loading...', icon: 'target' },
         ]}
       />
@@ -162,7 +162,7 @@ export default function TargetDetailPage({ params }: PageProps) {
             <Box sx={{ display: 'flex', gap: 1 }}>
               <Button
                 component={Link}
-                href={`/assays/aggregate?target=${id}`}
+                href={routes.assays.aggregate({ target: id })}
                 variant="outlined"
                 startIcon={<TableChart />}
               >
@@ -170,7 +170,7 @@ export default function TargetDetailPage({ params }: PageProps) {
               </Button>
               <Button
                 component={Link}
-                href={`/registry/new?target=${id}`}
+                href={`${routes.registry.new()}?target=${id}`}
                 variant="contained"
                 startIcon={<Add />}
               >

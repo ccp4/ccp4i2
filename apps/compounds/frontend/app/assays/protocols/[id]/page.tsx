@@ -7,7 +7,7 @@ import {
   Typography,
   Box,
   Paper,
-  Grid,
+  Grid2 as Grid,
   Chip,
   Skeleton,
   Divider,
@@ -22,15 +22,15 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { PlatePreview } from '@/components/PlatePreview';
-import { PlateLayoutEditor } from '@/components/PlateLayoutEditor';
-import { AssayUploadDrawer } from '@/components/AssayUploadDrawer';
-import { ProtocolEditDialog } from '@/components/ProtocolEditDialog';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Protocol, Assay, PlateLayout } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { PlatePreview } from '@/components/compounds/PlatePreview';
+import { PlateLayoutEditor } from '@/components/compounds/PlateLayoutEditor';
+import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';
+import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Protocol, Assay, PlateLayout } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -223,8 +223,8 @@ export default function ProtocolDetailPage({ params }: PageProps) {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Protocols', href: '/assays/protocols', icon: 'protocol' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
           { label: protocol?.name || 'Loading...', icon: 'protocol' },
         ]}
       />
@@ -265,7 +265,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
             <Divider sx={{ my: 2 }} />
 
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="h6" gutterBottom>
                   Configuration
                 </Typography>
@@ -291,7 +291,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   value={protocol.pherastar_table}
                 />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="h6" gutterBottom>
                   Metadata
                 </Typography>

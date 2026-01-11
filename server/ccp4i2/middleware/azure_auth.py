@@ -208,6 +208,7 @@ class AzureADAuthMiddleware:
         "/healthz",
         "/ready",
         "/api/health",
+        "/api/ccp4i2/health",
     ]
 
     def __init__(self, get_response):
