@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
   Box,
@@ -7,24 +7,16 @@ import {
   CardContent,
   Checkbox,
   Chip,
-  Grid,
   IconButton,
   LinearProgress,
   Paper,
   Skeleton,
   Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
   Theme,
   Tooltip,
   Typography,
   ToggleButton,
   ToggleButtonGroup,
-  Pagination,
-  TableContainer,
 } from "@mui/material";
 import {
   Clear,
@@ -34,7 +26,6 @@ import {
   Schedule,
   Science,
   StarBorder,
-  Star,
   ViewModule,
   ViewList,
 } from "@mui/icons-material";
@@ -46,6 +37,8 @@ import { useDeleteDialog } from "../providers/delete-dialog";
 import { useSet } from "../hooks";
 import SearchField from "./search-field";
 import { usePopcorn } from "../providers/popcorn-provider";
+import { DataTable, Column } from "./data-table";
+import { VirtualizedCardGrid } from "./virtualized-card-grid";
 
 // Component to display project tag chips
 const ProjectTagChips = React.memo(
@@ -96,7 +89,7 @@ const ProjectTagChips = React.memo(
           flexWrap: "wrap",
           gap: 0.5,
           mt: size === "small" ? 0.5 : 1,
-          minHeight: size === "small" ? 20 : 24, // Maintain consistent height even when no tags
+          minHeight: size === "small" ? 20 : 24,
         }}
       >
         {visibleTags.map((tag) => (
@@ -299,119 +292,7 @@ const ProjectCard = React.memo(
   }
 );
 
-// Memoized TableRow component for performance
-const ProjectTableRow = React.memo(
-  ({
-    project,
-    isSelected,
-    onToggleSelection,
-    onNavigate,
-    onExport,
-    onDelete,
-  }: {
-    project: Project;
-    isSelected: boolean;
-    onToggleSelection: () => void;
-    onNavigate: () => void;
-    onExport: () => void;
-    onDelete: () => void;
-  }) => (
-    <TableRow
-      hover
-      onClick={onNavigate}
-      sx={{ cursor: "pointer", ...(isSelected && sxSelected) }}
-    >
-      <TableCell padding="checkbox">
-        <Checkbox
-          checked={isSelected}
-          onChange={(event) => {
-            event.stopPropagation();
-            onToggleSelection();
-          }}
-        />
-      </TableCell>
-      <TableCell>
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-          <Box
-            sx={{
-              width: 32,
-              height: 32,
-              borderRadius: 1,
-              bgcolor: "primary.50",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              border: "1px solid",
-              borderColor: "primary.200",
-            }}
-          >
-            <Science sx={{ color: "primary.main", fontSize: 16 }} />
-          </Box>
-          <Box>
-            <Typography variant="body2" sx={{ fontWeight: 500 }}>
-              {project.name}
-            </Typography>
-            {new Date(project.last_access).getTime() >
-              Date.now() - 7 * 24 * 60 * 60 * 1000 && (
-              <Chip
-                label="Recent"
-                size="small"
-                color="success"
-                sx={{ height: 16, fontSize: "0.65rem", mt: 0.5 }}
-              />
-            )}
-          </Box>
-        </Box>
-      </TableCell>
-      <TableCell>
-        <ProjectTagChips project={project} maxVisible={3} size="small" />
-      </TableCell>
-      <TableCell>
-        <Typography variant="body2" color="text.secondary">
-          {shortDate(project.creation_time)}
-        </Typography>
-      </TableCell>
-      <TableCell>
-        <Typography variant="body2" color="text.secondary">
-          {shortDate(project.last_access)}
-        </Typography>
-      </TableCell>
-      <TableCell align="right">
-        <Stack direction="row" spacing={0.5} justifyContent="flex-end">
-          <Tooltip title="Export project">
-            <IconButton
-              size="small"
-              onClick={(event) => {
-                event.stopPropagation();
-                onExport();
-              }}
-              sx={{ color: "primary.main" }}
-            >
-              <Download fontSize="small" />
-            </IconButton>
-          </Tooltip>
-          <Tooltip title="Delete project">
-            <IconButton
-              size="small"
-              onClick={(event) => {
-                event.stopPropagation();
-                onDelete();
-              }}
-              sx={{ color: "error.main" }}
-            >
-              <Delete fontSize="small" />
-            </IconButton>
-          </Tooltip>
-        </Stack>
-      </TableCell>
-    </TableRow>
-  )
-);
-
-const sxSelected = {
-  bgcolor: (theme: Theme) =>
-    alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-};
+ProjectCard.displayName = "ProjectCard";
 
 const sxProjectCard = {
   cursor: "pointer",
@@ -433,19 +314,17 @@ const sxSelectedCard = {
 
 type ViewMode = "cards" | "table";
 
-const ITEMS_PER_PAGE = 50; // For performance with large datasets
-
 export default function ProjectsTable() {
   const api = useApi();
   const router = useRouter();
   const { data: projects, mutate } = api.get<Project[]>("projects");
   const selectedIds = useSet<number>([]);
   const [query, setQuery] = useState("");
-  const [viewMode, setViewMode] = useState<ViewMode>("cards");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [viewMode, setViewMode] = useState<ViewMode>("table");
   const deleteDialog = useDeleteDialog();
   const { setMessage } = usePopcorn();
 
+  // Filter and sort projects
   const filteredProjects = useMemo(() => {
     if (!Array.isArray(projects)) return [];
     return projects
@@ -465,7 +344,6 @@ export default function ProjectsTable() {
         // Search in project tags
         if (Array.isArray(project.tags)) {
           const tagMatches = project.tags.some((tag) => {
-            // Handle both legacy (number[]) and enhanced (ProjectTag[]) formats
             if (typeof tag === "object" && tag.text) {
               return tag.text.toLowerCase().includes(searchTerm);
             }
@@ -484,36 +362,24 @@ export default function ProjectsTable() {
       );
   }, [projects, query]);
 
-  const paginatedProjects = useMemo(() => {
-    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-    const endIndex = startIndex + ITEMS_PER_PAGE;
-    return filteredProjects.slice(startIndex, endIndex);
-  }, [filteredProjects, currentPage]);
-
-  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
-
-  // Reset to first page when search changes
-  useMemo(() => {
-    setCurrentPage(1);
-  }, [query]);
-
-  function deleteSelected() {
+  // Handlers
+  const deleteSelected = useCallback(() => {
     const selectedProjects = projects?.filter((project) =>
       selectedIds.has(project.id)
     );
     if (selectedProjects) deleteProjects(selectedProjects);
-  }
+  }, [projects, selectedIds]);
 
-  function deleteProjects(projects: Project[]) {
+  function deleteProjects(projectsToDelete: Project[]) {
     if (deleteDialog)
       deleteDialog({
         type: "show",
         what:
-          projects.length === 1
-            ? projects[0].name
-            : `${projects.length} projects`,
+          projectsToDelete.length === 1
+            ? projectsToDelete[0].name
+            : `${projectsToDelete.length} projects`,
         onDelete: () => {
-          const promises = projects.map((project) => {
+          const promises = projectsToDelete.map((project) => {
             selectedIds.delete(project.id);
             return api.delete(`projects/${project.id}`);
           });
@@ -524,19 +390,19 @@ export default function ProjectsTable() {
 
   async function exportProject(project: Project) {
     try {
-      // Start the export process by calling the API endpoint
-      const exportResult: any = await api.post(`projects/${project.id}/export/`, {});
+      const exportResult: any = await api.post(
+        `projects/${project.id}/export/`,
+        {}
+      );
 
       if (exportResult?.success === false) {
-        setMessage(`Failed to export "${project.name}": ${exportResult?.error || "Unknown error"}`, "error");
+        setMessage(
+          `Failed to export "${project.name}": ${exportResult?.error || "Unknown error"}`,
+          "error"
+        );
         return;
       }
 
-      // Show success notification
-      console.log(
-        `Export started for project "${project.name}":`,
-        exportResult
-      );
       setMessage(
         `Export started for "${project.name}". Available in File/Projects → Exports when complete.`,
         "success"
@@ -561,12 +427,18 @@ export default function ProjectsTable() {
         return;
       }
 
-      // Start exports for all selected projects
       const exportPromises = selectedProjects.map(async (project) => {
         try {
-          const result: any = await api.post(`projects/${project.id}/export/`, {});
+          const result: any = await api.post(
+            `projects/${project.id}/export/`,
+            {}
+          );
           if (result?.success === false) {
-            return { project: project.name, success: false, error: result?.error };
+            return {
+              project: project.name,
+              success: false,
+              error: result?.error,
+            };
           }
           return { project: project.name, success: true, result };
         } catch (error) {
@@ -579,7 +451,6 @@ export default function ProjectsTable() {
       const successful = results.filter((r) => r.success);
       const failed = results.filter((r) => !r.success);
 
-      // Show results to user
       if (successful.length > 0 && failed.length === 0) {
         setMessage(
           `Started exports for ${successful.length} project${successful.length > 1 ? "s" : ""}. Available in File/Projects → Exports when complete.`,
@@ -596,23 +467,168 @@ export default function ProjectsTable() {
           "warning"
         );
       }
-
-      console.log("Bulk export results:", results);
     } catch (error) {
       console.error("Failed to export selected projects:", error);
-      setMessage(`Failed to start exports: ${error instanceof Error ? error.message : String(error)}`, "error");
+      setMessage(
+        `Failed to start exports: ${error instanceof Error ? error.message : String(error)}`,
+        "error"
+      );
     }
   }
 
   function toggleAll() {
-    if (projects) {
-      if (selectedIds.size === projects.length) {
+    if (filteredProjects) {
+      if (selectedIds.size === filteredProjects.length) {
         selectedIds.clear();
       } else {
-        projects.forEach((project) => selectedIds.add(project.id));
+        filteredProjects.forEach((project) => selectedIds.add(project.id));
       }
     }
   }
+
+  // Table columns definition
+  const tableColumns: Column<Project>[] = useMemo(
+    () => [
+      {
+        key: "checkbox",
+        label: "",
+        width: 50,
+        render: (_, project) => (
+          <Checkbox
+            checked={selectedIds.has(project.id)}
+            onChange={(event) => {
+              event.stopPropagation();
+              selectedIds.has(project.id)
+                ? selectedIds.delete(project.id)
+                : selectedIds.add(project.id);
+            }}
+            onClick={(e) => e.stopPropagation()}
+          />
+        ),
+      },
+      {
+        key: "name",
+        label: "Project Name",
+        sortable: true,
+        searchable: true,
+        render: (_, project) => (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+            <Box
+              sx={{
+                width: 32,
+                height: 32,
+                borderRadius: 1,
+                bgcolor: "primary.50",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                border: "1px solid",
+                borderColor: "primary.200",
+                flexShrink: 0,
+              }}
+            >
+              <Science sx={{ color: "primary.main", fontSize: 16 }} />
+            </Box>
+            <Box sx={{ minWidth: 0 }}>
+              <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
+                {project.name}
+              </Typography>
+              {new Date(project.last_access).getTime() >
+                Date.now() - 7 * 24 * 60 * 60 * 1000 && (
+                <Chip
+                  label="Recent"
+                  size="small"
+                  color="success"
+                  sx={{ height: 16, fontSize: "0.65rem", mt: 0.5 }}
+                />
+              )}
+            </Box>
+          </Box>
+        ),
+      },
+      {
+        key: "tags",
+        label: "Tags",
+        render: (_, project) => (
+          <ProjectTagChips project={project} maxVisible={3} size="small" />
+        ),
+      },
+      {
+        key: "creation_time",
+        label: "Created",
+        sortable: true,
+        width: 120,
+        render: (value) => (
+          <Typography variant="body2" color="text.secondary">
+            {shortDate(value)}
+          </Typography>
+        ),
+      },
+      {
+        key: "last_access",
+        label: "Last Accessed",
+        sortable: true,
+        width: 120,
+        render: (value) => (
+          <Typography variant="body2" color="text.secondary">
+            {shortDate(value)}
+          </Typography>
+        ),
+      },
+      {
+        key: "actions",
+        label: "",
+        width: 100,
+        render: (_, project) => (
+          <Stack
+            direction="row"
+            spacing={0.5}
+            justifyContent="flex-end"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Tooltip title="Export project">
+              <IconButton
+                size="small"
+                onClick={() => exportProject(project)}
+                sx={{ color: "primary.main" }}
+              >
+                <Download fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Delete project">
+              <IconButton
+                size="small"
+                onClick={() => deleteProjects([project])}
+                sx={{ color: "error.main" }}
+              >
+                <Delete fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        ),
+      },
+    ],
+    [selectedIds]
+  );
+
+  // Card renderer for virtualized grid
+  const renderProjectCard = useCallback(
+    (project: Project) => (
+      <ProjectCard
+        project={project}
+        isSelected={selectedIds.has(project.id)}
+        onToggleSelection={() => {
+          selectedIds.has(project.id)
+            ? selectedIds.delete(project.id)
+            : selectedIds.add(project.id);
+        }}
+        onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
+        onExport={() => exportProject(project)}
+        onDelete={() => deleteProjects([project])}
+      />
+    ),
+    [selectedIds, router]
+  );
 
   if (projects === undefined) return <LinearProgress />;
   if (projects.length === 0)
@@ -712,25 +728,7 @@ export default function ProjectsTable() {
                     sx={{ "& .MuiChip-icon": { mr: 0.5 }, borderRadius: 2 }}
                   />
                 </Tooltip>
-
-                {filteredProjects.length > ITEMS_PER_PAGE && (
-                  <Typography variant="body2" color="text.secondary">
-                    Showing {Math.min(ITEMS_PER_PAGE, filteredProjects.length)}{" "}
-                    of {filteredProjects.length}
-                  </Typography>
-                )}
               </Box>
-
-              {/* Pagination for large datasets */}
-              {totalPages > 1 && (
-                <Pagination
-                  count={totalPages}
-                  page={currentPage}
-                  onChange={(_, page) => setCurrentPage(page)}
-                  size="small"
-                  color="primary"
-                />
-              )}
             </Box>
           </Box>
         ) : (
@@ -780,84 +778,29 @@ export default function ProjectsTable() {
 
       {/* Render based on view mode */}
       {viewMode === "cards" ? (
-        // Card View - Better for visual browsing, limited by pagination for performance
-        <Grid container spacing={3}>
-          {paginatedProjects.map((project: Project) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={project.id}>
-              <ProjectCard
-                project={project}
-                isSelected={selectedIds.has(project.id)}
-                onToggleSelection={() => {
-                  selectedIds.has(project.id)
-                    ? selectedIds.delete(project.id)
-                    : selectedIds.add(project.id);
-                }}
-                onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
-                onExport={() => exportProject(project)}
-                onDelete={() => deleteProjects([project])}
-              />
-            </Grid>
-          ))}
-        </Grid>
+        // Virtualized Card Grid View
+        <VirtualizedCardGrid
+          data={filteredProjects}
+          renderCard={renderProjectCard}
+          getItemKey={(project) => project.id}
+          columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 4 }}
+          estimateCardHeight={280}
+          gap={24}
+          maxHeight={700}
+          emptyMessage="No projects found"
+        />
       ) : (
-        // Table View - Better for large datasets, more compact
-        <TableContainer component={Paper} elevation={1}>
-          <Table size="small" stickyHeader>
-            <TableHead>
-              <TableRow>
-                <TableCell padding="checkbox">
-                  <Checkbox
-                    checked={
-                      selectedIds.size == paginatedProjects.length &&
-                      paginatedProjects.length > 0
-                    }
-                    indeterminate={
-                      selectedIds.size > 0 &&
-                      selectedIds.size < paginatedProjects.length
-                    }
-                    onChange={toggleAll}
-                  />
-                </TableCell>
-                <TableCell>Project Name</TableCell>
-                <TableCell>Tags</TableCell>
-                <TableCell>Created</TableCell>
-                <TableCell>Last Accessed</TableCell>
-                <TableCell align="right">Actions</TableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {paginatedProjects.map((project: Project) => (
-                <ProjectTableRow
-                  key={project.id}
-                  project={project}
-                  isSelected={selectedIds.has(project.id)}
-                  onToggleSelection={() => {
-                    selectedIds.has(project.id)
-                      ? selectedIds.delete(project.id)
-                      : selectedIds.add(project.id);
-                  }}
-                  onNavigate={() => router.push(`/ccp4i2/project/${project.id}`)}
-                  onExport={() => exportProject(project)}
-                  onDelete={() => deleteProjects([project])}
-                />
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      )}
-
-      {/* Bottom pagination for large datasets */}
-      {totalPages > 1 && (
-        <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-          <Pagination
-            count={totalPages}
-            page={currentPage}
-            onChange={(_, page) => setCurrentPage(page)}
-            color="primary"
-            showFirstButton
-            showLastButton
-          />
-        </Box>
+        // Virtualized Table View
+        <DataTable
+          data={filteredProjects}
+          columns={tableColumns}
+          getRowKey={(project) => project.id}
+          onRowClick={(project) => router.push(`/ccp4i2/project/${project.id}`)}
+          hideHeader
+          maxHeight={700}
+          estimateRowHeight={60}
+          emptyMessage="No projects found"
+        />
       )}
 
       {/* Show message when no projects match search */}
