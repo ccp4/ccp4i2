@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation';
 import { Container, Typography, Box, Chip, Button } from '@mui/material';
 import { Science, Add } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { TargetCreateDialog } from '@/components/TargetCreateDialog';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Target } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { TargetCreateDialog } from '@/components/compounds/TargetCreateDialog';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Target } from '@/types/compounds/models';
 
 export default function TargetsPage() {
   const router = useRouter();
@@ -63,8 +63,8 @@ export default function TargetsPage() {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Registry', href: '/registry/targets' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Registry', href: routes.registry.targets() },
           { label: 'Targets', icon: 'target' },
         ]}
       />

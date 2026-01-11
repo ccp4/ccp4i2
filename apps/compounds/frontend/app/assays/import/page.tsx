@@ -26,7 +26,7 @@ import {
   TextField,
   IconButton,
   Tooltip,
-  Grid,
+  Grid2 as Grid,
   Divider,
   Checkbox,
   FormControlLabel,
@@ -45,10 +45,10 @@ import {
   VisibilityOff,
   Highlight,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { SpreadsheetUpload, SpreadsheetData, SpreadsheetPreview, SpreadsheetRow } from '@/components/SpreadsheetUpload';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { SpreadsheetUpload, SpreadsheetData, SpreadsheetPreview, SpreadsheetRow } from '@/components/compounds/SpreadsheetUpload';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
 
 interface Protocol {
   id: string;
@@ -182,7 +182,7 @@ export default function ImportAssayPage() {
     <Container maxWidth="xl" sx={{ py: 4 }}>
       <Breadcrumbs
         items={[
-          { label: 'Assays', href: '/assays' },
+          { label: 'Assays', href: routes.assays.list() },
           { label: 'Import Data' },
         ]}
       />
@@ -213,7 +213,7 @@ export default function ImportAssayPage() {
         // Step 2: Configure and preview
         <Grid container spacing={3}>
           {/* Left panel: Configuration */}
-          <Grid item xs={12} md={4}>
+          <Grid size={{ xs: 12, md: 4 }}>
             <Paper sx={{ p: 3, position: 'sticky', top: 16 }}>
               <Typography variant="h6" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <Settings color="primary" />
@@ -385,7 +385,7 @@ export default function ImportAssayPage() {
           </Grid>
 
           {/* Right panel: Preview */}
-          <Grid item xs={12} md={8}>
+          <Grid size={{ xs: 12, md: 8 }}>
             <Paper sx={{ p: 3 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
                 <Typography variant="h6" sx={{ flex: 1, display: 'flex', alignItems: 'center', gap: 1 }}>

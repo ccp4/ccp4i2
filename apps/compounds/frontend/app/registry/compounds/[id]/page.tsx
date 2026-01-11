@@ -7,7 +7,7 @@ import {
   Typography,
   Box,
   Paper,
-  Grid,
+  Grid2 as Grid,
   Chip,
   Skeleton,
   Divider,
@@ -15,12 +15,12 @@ import {
 } from '@mui/material';
 import { Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { MoleculeView } from '@/components/MoleculeView';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Compound, Batch, Target } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { MoleculeView } from '@/components/compounds/MoleculeView';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Compound, Batch, Target } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -121,12 +121,12 @@ export default function CompoundDetailPage({ params }: PageProps) {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Targets', href: '/registry/targets', icon: 'target' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
           {
             label: target?.name || 'Target',
             href: compound?.target
-              ? `/registry/targets/${compound.target}`
+              ? routes.registry.target(compound.target)
               : undefined,
             icon: 'target',
           },
@@ -175,7 +175,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
               </Box>
               <Button
                 component={Link}
-                href={`/assays/aggregate?compound=${compound.formatted_id}`}
+                href={routes.assays.aggregate({ compound: compound.formatted_id })}
                 variant="outlined"
                 startIcon={<TableChart />}
               >
@@ -186,7 +186,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
             <Divider sx={{ my: 2 }} />
 
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="h6" gutterBottom>
                   Structure
                 </Typography>
@@ -226,7 +226,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
                   </Box>
                 </Box>
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="h6" gutterBottom>
                   Provenance
                 </Typography>

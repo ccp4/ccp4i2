@@ -7,7 +7,7 @@ import {
   Typography,
   Box,
   Paper,
-  Grid,
+  Grid2 as Grid,
   Chip,
   Skeleton,
   Divider,
@@ -30,13 +30,13 @@ import {
   HelpOutline,
   Delete,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { DoseResponseThumb } from '@/components/DoseResponseChart';
-import { CompoundStructureCell } from '@/components/CompoundStructureCell';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Assay, DataSeries, Protocol, Target } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
+import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Assay, DataSeries, Protocol, Target } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -242,9 +242,9 @@ export default function AssayDetailPage({ params }: PageProps) {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Protocols', href: '/assays/protocols', icon: 'protocol' },
-          ...(protocol ? [{ label: protocol.name, href: `/assays/protocols/${protocol.id}`, icon: 'protocol' as const }] : []),
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
+          ...(protocol ? [{ label: protocol.name, href: routes.assays.protocol(protocol.id), icon: 'protocol' as const }] : []),
           { label: assay?.data_filename || 'Loading...', icon: 'assay' },
         ]}
       />
@@ -296,7 +296,7 @@ export default function AssayDetailPage({ params }: PageProps) {
             <Divider sx={{ my: 2 }} />
 
             <Grid container spacing={3}>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="h6" gutterBottom>
                   Experiment Details
                 </Typography>
@@ -305,7 +305,7 @@ export default function AssayDetailPage({ params }: PageProps) {
                 <InfoRow label="Lab Book" value={assay.labbook_number} />
                 <InfoRow label="Page" value={assay.page_number} />
               </Grid>
-              <Grid item xs={12} md={6}>
+              <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="h6" gutterBottom>
                   Metadata
                 </Typography>

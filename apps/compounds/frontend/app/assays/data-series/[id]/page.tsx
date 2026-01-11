@@ -7,7 +7,7 @@ import {
   Typography,
   Box,
   Paper,
-  Grid,
+  Grid2 as Grid,
   Chip,
   Skeleton,
   Divider,
@@ -29,12 +29,12 @@ import {
   ShowChart,
   Refresh,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DoseResponseChart } from '@/components/DoseResponseChart';
-import { MoleculeView } from '@/components/MoleculeView';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { DataSeries, Assay, Compound } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DoseResponseChart } from '@/components/compounds/DoseResponseChart';
+import { MoleculeView } from '@/components/compounds/MoleculeView';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { DataSeries, Assay, Compound } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -140,16 +140,16 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Assays', href: '/assays', icon: 'assay' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Assays', href: routes.assays.list(), icon: 'assay' },
           ...(assay?.protocol_name ? [{
             label: assay.protocol_name,
-            href: `/assays/protocols/${assay.protocol}`,
+            href: routes.assays.protocol(assay.protocol),
             icon: 'protocol' as const,
           }] : []),
           {
             label: assay?.data_filename || 'Assay',
-            href: series?.assay ? `/assays/${series.assay}` : undefined,
+            href: series?.assay ? routes.assays.detail(series.assay) : undefined,
             icon: 'assay' as const,
           },
           { label: series?.compound_name || 'Data Series' },
@@ -200,7 +200,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
 
             <Grid container spacing={3}>
               {/* Chart */}
-              <Grid item xs={12} md={7}>
+              <Grid size={{ xs: 12, md: 7 }}>
                 <Typography variant="h6" gutterBottom>
                   Dose-Response Curve
                 </Typography>
@@ -241,7 +241,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
               </Grid>
 
               {/* Analysis Results */}
-              <Grid item xs={12} md={5}>
+              <Grid size={{ xs: 12, md: 5 }}>
                 <Typography variant="h6" gutterBottom>
                   Analysis Results
                 </Typography>
@@ -532,14 +532,14 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
               Source Information
             </Typography>
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <InfoRow label="Row" value={series.row} />
                 <InfoRow
                   label="Columns"
                   value={`${series.start_column} - ${series.end_column}`}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid size={{ xs: 12, sm: 6 }}>
                 <InfoRow label="Assay" value={assay?.data_filename} />
                 <InfoRow label="Protocol" value={assay?.protocol_name} />
               </Grid>

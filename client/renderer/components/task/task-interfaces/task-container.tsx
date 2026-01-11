@@ -30,7 +30,6 @@ import { useJob } from "../../../utils";
 import GeneratedAMPLEInterface from "./generated/AMPLE";
 import GeneratedAcedrgLinkInterface from "./generated/AcedrgLink";
 import GeneratedAlternativeImportXIA2Interface from "./generated/AlternativeImportXIA2";
-import GeneratedLidiaAcedrgInterface from "./generated/LidiaAcedrg";
 import GeneratedMakeLinkInterface from "./generated/MakeLink";
 import GeneratedMakeProjectsAndDoLigandPipelineInterface from "./generated/MakeProjectsAndDoLigandPipeline";
 import GeneratedPrepareDepositInterface from "./generated/PrepareDeposit";
@@ -148,8 +147,6 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <GeneratedAcedrgLinkInterface job={job} />;
       case "AlternativeImportXIA2":
         return <GeneratedAlternativeImportXIA2Interface job={job} />;
-      case "LidiaAcedrg":
-        return <GeneratedLidiaAcedrgInterface job={job} />;
       case "MakeLink":
         return <GeneratedMakeLinkInterface job={job} />;
       case "MakeProjectsAndDoLigandPipeline":

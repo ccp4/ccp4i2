@@ -3,11 +3,11 @@
 import { useRouter } from 'next/navigation';
 import { Container, Typography, Box, Chip } from '@mui/material';
 import { Science, Description } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { DataTable, Column } from '@/components/DataTable';
-import { useCompoundsApi } from '@/lib/api';
-import { routes } from '@/lib/routes';
-import { Protocol } from '@/types/models';
+import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { DataTable, Column } from '@/components/compounds/DataTable';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import { routes } from '@/lib/compounds/routes';
+import { Protocol } from '@/types/compounds/models';
 
 const ANALYSIS_METHOD_LABELS: Record<string, string> = {
   hill_langmuir: 'Hill-Langmuir',
@@ -86,8 +86,8 @@ export default function ProtocolsPage() {
     <Container maxWidth="lg" sx={{ py: 3 }}>
       <Breadcrumbs
         items={[
-          { label: 'Home', href: '/', icon: 'home' },
-          { label: 'Assays', href: '/assays/protocols' },
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Assays', href: routes.assays.protocols() },
           { label: 'Protocols', icon: 'protocol' },
         ]}
       />
