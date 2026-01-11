@@ -13,7 +13,7 @@ import {
 } from '@mui/material';
 import { Medication, Science, TableChart, Add } from '@mui/icons-material';
 import Link from 'next/link';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
@@ -133,8 +133,8 @@ export default function TargetDetailPage({ params }: PageProps) {
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
           { label: target?.name || 'Loading...', icon: 'target' },

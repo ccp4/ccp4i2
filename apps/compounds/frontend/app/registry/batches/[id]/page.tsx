@@ -24,7 +24,7 @@ import {
   Download,
   OpenInNew,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
@@ -142,8 +142,8 @@ export default function BatchDetailPage({ params }: PageProps) {
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
           {

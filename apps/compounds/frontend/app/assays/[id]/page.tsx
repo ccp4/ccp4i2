@@ -30,7 +30,7 @@ import {
   HelpOutline,
   Delete,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
@@ -240,8 +240,8 @@ export default function AssayDetailPage({ params }: PageProps) {
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
           ...(protocol ? [{ label: protocol.name, href: routes.assays.protocol(protocol.id), icon: 'protocol' as const }] : []),

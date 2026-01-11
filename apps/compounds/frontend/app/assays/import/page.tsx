@@ -45,7 +45,7 @@ import {
   VisibilityOff,
   Highlight,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { SpreadsheetUpload, SpreadsheetData, SpreadsheetPreview, SpreadsheetRow } from '@/components/compounds/SpreadsheetUpload';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
@@ -180,8 +180,8 @@ export default function ImportAssayPage() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 4 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Assays', href: routes.assays.list() },
           { label: 'Import Data' },
         ]}

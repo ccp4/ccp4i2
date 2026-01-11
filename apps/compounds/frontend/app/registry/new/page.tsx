@@ -37,7 +37,7 @@ import {
   Draw,
   Clear,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { JSMEEditor } from '@/components/compounds/JSMEEditor';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
@@ -271,8 +271,8 @@ function NewCompoundPageContent() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Breadcrumbs
-        items={
+      <PageHeader
+        breadcrumbs={
           preselectedTargetId && preselectedTarget
             ? [
                 { label: 'Registry', href: routes.registry.targets() },

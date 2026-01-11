@@ -36,7 +36,7 @@ import {
   Upload,
 } from '@mui/icons-material';
 import Link from 'next/link';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { JSMEEditor } from '@/components/compounds/JSMEEditor';
@@ -326,8 +326,8 @@ function CompoundSearchContent() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Registry', href: routes.registry.targets() },
           { label: 'Search', icon: 'search' },

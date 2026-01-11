@@ -29,7 +29,7 @@ import {
   ShowChart,
   Refresh,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { DoseResponseChart } from '@/components/compounds/DoseResponseChart';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
@@ -138,8 +138,8 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Assays', href: routes.assays.list(), icon: 'assay' },
           ...(assay?.protocol_name ? [{

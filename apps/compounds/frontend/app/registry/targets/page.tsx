@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Container, Typography, Box, Chip, Button } from '@mui/material';
 import { Science, Add } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { TargetCreateDialog } from '@/components/compounds/TargetCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
@@ -61,8 +61,8 @@ export default function TargetsPage() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Registry', href: routes.registry.targets() },
           { label: 'Targets', icon: 'target' },

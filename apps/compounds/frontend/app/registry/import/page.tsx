@@ -41,7 +41,7 @@ import {
   Download,
   Refresh,
 } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow } from '@/components/compounds/SpreadsheetUpload';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
@@ -308,8 +308,8 @@ export default function ImportCompoundsPage() {
 
   return (
     <Container maxWidth="lg" sx={{ py: 4 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Registry', href: routes.registry.targets() },
           { label: 'Bulk Import' },
         ]}

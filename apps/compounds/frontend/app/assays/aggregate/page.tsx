@@ -4,7 +4,7 @@ import { useState, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Container, Typography, Box, Alert, CircularProgress } from '@mui/material';
 import { TableChart } from '@mui/icons-material';
-import { Breadcrumbs } from '@/components/compounds/Breadcrumbs';
+import { PageHeader } from '@/components/compounds/PageHeader';
 import { routes } from '@/lib/compounds/routes';
 import { PredicateBuilder } from '@/components/compounds/PredicateBuilder';
 import { AggregationTable } from '@/components/compounds/AggregationTable';
@@ -78,8 +78,8 @@ function AggregationPageContent() {
 
   return (
     <Container maxWidth="xl" sx={{ py: 3 }}>
-      <Breadcrumbs
-        items={[
+      <PageHeader
+        breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Assays', href: routes.assays.list(), icon: 'assay' },
           { label: 'Data Aggregation', icon: 'aggregate' },
