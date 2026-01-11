@@ -53,12 +53,7 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 
     if (accounts.length === 0) {
       console.log("No accounts found, redirecting to login");
-      // Specify the current path as redirectUri so users return here after login
-      const currentPath = typeof window !== "undefined" ? window.location.pathname : "/";
-      instance.loginRedirect({
-        scopes: ["openid", "profile", "email"],
-        redirectUri: currentPath,
-      });
+      instance.loginRedirect();
       return;
     }
 

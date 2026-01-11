@@ -1,11 +1,11 @@
 /**
- * Centralized API fetching utilities
+ * Centralized API fetching utilities for ccp4i2 app.
  * All fetch() calls should go through these functions to enable:
  * - Consistent error handling
  * - Authentication token injection
  * - Request/response logging
  * - Retry logic
- * - Automatic /api/proxy/ prefix for relative API endpoints
+ * - Automatic /api/proxy/ccp4i2/ prefix for relative API endpoints
  */
 
 import { getAccessToken } from "./utils/auth-token";
@@ -28,20 +28,20 @@ const DEFAULT_CONFIG: ApiFetchConfig = {
 };
 
 /**
- * Normalize a URL to include the /api/proxy/ prefix for API endpoints.
+ * Normalize a URL to include the /api/proxy/ccp4i2/ prefix for API endpoints.
  *
  * - If URL starts with "http://" or "https://", return as-is (absolute URL)
  * - If URL starts with "/api/", return as-is (already prefixed)
- * - Otherwise, prepend "/api/proxy/"
+ * - Otherwise, prepend "/api/proxy/ccp4i2/"
  *
  * NOTE: Trailing slashes are NOT added here. The proxy route (route.ts) handles
  * adding trailing slashes when forwarding to Django. This avoids 308 redirects
  * from Next.js when trailingSlash config doesn't match the URL.
  *
  * @example
- * normalizeApiUrl("jobs/123/digest") => "/api/proxy/jobs/123/digest"
- * normalizeApiUrl("jobs/123/digest?foo=bar") => "/api/proxy/jobs/123/digest?foo=bar"
- * normalizeApiUrl("/api/proxy/jobs/123") => "/api/proxy/jobs/123"
+ * normalizeApiUrl("jobs/123/digest") => "/api/proxy/ccp4i2/jobs/123/digest"
+ * normalizeApiUrl("jobs/123/digest?foo=bar") => "/api/proxy/ccp4i2/jobs/123/digest?foo=bar"
+ * normalizeApiUrl("/api/proxy/ccp4i2/jobs/123") => "/api/proxy/ccp4i2/jobs/123"
  * normalizeApiUrl("/api/config") => "/api/config"
  * normalizeApiUrl("https://example.com/data") => "https://example.com/data"
  */
@@ -59,7 +59,7 @@ function normalizeApiUrl(url: string): string {
   // Strip leading slash if present for consistency
   const endpoint = url.startsWith("/") ? url.slice(1) : url;
 
-  return `/api/proxy/${endpoint}`;
+  return `/api/proxy/ccp4i2/${endpoint}`;
 }
 
 /**

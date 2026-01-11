@@ -40,7 +40,8 @@ elif [ -n "$DB_HOST" ]; then
     echo "Constructed DATABASE_URL for PostgreSQL"
 else
     # Default to SQLite in projects directory
-    export DATABASE_URL="sqlite:///${CCP4I2_PROJECTS_DIR}/ccp4i2.sqlite"
+    # Note: sqlite:// followed by absolute path (which starts with /) = sqlite:///abs/path
+    export DATABASE_URL="sqlite://${CCP4I2_PROJECTS_DIR}/ccp4i2.sqlite"
     echo "Using SQLite database at ${CCP4I2_PROJECTS_DIR}/ccp4i2.sqlite"
 fi
 
@@ -91,6 +92,12 @@ fi
 DJANGO_PYTHON="${CCP4_PYTHON:-python}"
 echo "Using $DJANGO_PYTHON for Django server"
 
+# Install Pillow if not already present
+# Required for Django ImageField in compounds app
+# Use --user to install to writable user site-packages (works with read-only CCP4 mount)
+echo "Ensuring Pillow is available..."
+$DJANGO_PYTHON -m pip install --user --quiet Pillow 2>/dev/null || echo "Note: Pillow install skipped"
+
 # Ensure projects directory exists
 mkdir -p "$CCP4I2_PROJECTS_DIR"
 
@@ -113,7 +120,25 @@ echo "CCP4I2_PROJECTS_DIR: $CCP4I2_PROJECTS_DIR"
 echo "DJANGO_SETTINGS_MODULE: $DJANGO_SETTINGS_MODULE"
 echo "PORT: $PORT"
 echo "CCP4 Available: $([ -n "$CCP4_DIR" ] && echo "Yes ($CCP4_DIR)" || echo 'No')"
+echo "PYTHONPATH: $PYTHONPATH"
 echo "============================="
+echo ""
+
+# Test Django URL loading before starting server
+echo "=== Testing Django URL Configuration ==="
+$DJANGO_PYTHON -c "
+import django
+django.setup()
+from django.urls import get_resolver
+from django.conf import settings
+print(f'ROOT_URLCONF: {settings.ROOT_URLCONF}')
+print(f'INSTALLED_APPS: {settings.INSTALLED_APPS}')
+resolver = get_resolver()
+print('URL patterns:')
+for pattern in resolver.url_patterns:
+    print(f'  {pattern.pattern}')
+" || echo "WARNING: Django URL test failed"
+echo "========================================"
 echo ""
 
 # Start the server

@@ -79,7 +79,7 @@ Authentication Methods:
 
 Examples:
     # Authenticate and set server URL
-    i2remote config set api_url https://myserver.azurecontainerapps.io/api/proxy
+    i2remote config set api_url https://myserver.azurecontainerapps.io/api/proxy/ccp4i2
     i2remote login
 
     # List projects
