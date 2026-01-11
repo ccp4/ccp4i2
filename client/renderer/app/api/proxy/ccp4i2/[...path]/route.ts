@@ -78,6 +78,8 @@ interface RequestInitWithDuplex extends RequestInit {
 async function handleProxy(req: NextRequest, params: { path: string[] }) {
   const path = params.path ? params.path.join("/") : "";
   console.log("[CCP4I2 PROXY] Handling request:", req.method, path);
+  console.log("[CCP4I2 PROXY] API_BASE_URL:", process.env.API_BASE_URL);
+  console.log("[CCP4I2 PROXY] NEXT_PUBLIC_API_BASE_URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
 
   // Check authentication if required
   if (isAuthRequired()) {
@@ -174,8 +176,11 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     });
   } catch (error: any) {
     console.error("[CCP4I2 PROXY] Error forwarding request:", error);
+    console.error("[CCP4I2 PROXY] Target URL was:", targetUrl);
+    console.error("[CCP4I2 PROXY] Error code:", error.code);
+    console.error("[CCP4I2 PROXY] Error cause:", error.cause);
     return NextResponse.json(
-      { error: `Proxy error: ${error.message}` },
+      { error: `Proxy error: ${error.message}`, targetUrl, code: error.code },
       { status: 500 }
     );
   }
