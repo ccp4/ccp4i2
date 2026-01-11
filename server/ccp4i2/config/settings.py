@@ -284,3 +284,21 @@ FILE_UPLOAD_MAX_NUMBER_FILES = int(
 print(
     f"File upload settings: MAX_MEMORY_SIZE={FILE_UPLOAD_MAX_MEMORY_SIZE}, DATA_MAX_MEMORY_SIZE={DATA_UPLOAD_MAX_MEMORY_SIZE}, MAX_FILES={FILE_UPLOAD_MAX_NUMBER_FILES}"
 )
+
+# =============================================================================
+# Security Settings (Production)
+# =============================================================================
+# These headers protect against common web vulnerabilities.
+# Note: HTTPS/SSL settings are NOT enabled here because the Django server
+# runs behind the Next.js proxy (internal HTTP). HTTPS termination happens
+# at the Azure Container Apps ingress/web container level.
+
+if not DEBUG:
+    # Prevent clickjacking attacks
+    X_FRAME_OPTIONS = "DENY"
+
+    # Prevent MIME type sniffing
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+
+    # Enable XSS filter in browsers (legacy, but still useful)
+    SECURE_BROWSER_XSS_FILTER = True

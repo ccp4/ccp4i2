@@ -237,7 +237,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'ALLOWED_HOSTS'
-              value: '${serverAppName},${serverAppName}.whitecliff-258bc831.northeurope.azurecontainerapps.io,localhost,127.0.0.1,*'
+              value: '${serverAppName},${serverAppName}.internal.whitecliff-258bc831.northeurope.azurecontainerapps.io,localhost,127.0.0.1'
             }
             {
               name: 'CORS_ALLOWED_ORIGINS'
