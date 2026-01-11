@@ -71,7 +71,7 @@ class ProjectViewSet(ModelViewSet):
         - Logging is used extensively to capture errors and important events.
     """
 
-    queryset = models.Project.objects.all()
+    queryset = models.Project.objects.prefetch_related('tags').all()
     serializer_class = serializers.ProjectSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
 
