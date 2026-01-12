@@ -1,10 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Container, Typography, Box, Chip } from '@mui/material';
-import { Science, Description } from '@mui/icons-material';
+import { Container, Typography, Box, Chip, Button } from '@mui/material';
+import { Science, Description, Add } from '@mui/icons-material';
+import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
+import { ProtocolCreateDialog } from '@/components/compounds/ProtocolCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Protocol } from '@/types/compounds/models';
@@ -20,8 +23,17 @@ const ANALYSIS_METHOD_LABELS: Record<string, string> = {
 
 export default function ProtocolsPage() {
   const router = useRouter();
+  const { mutate } = useSWRConfig();
+  const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const api = useCompoundsApi();
   const { data: protocols, isLoading } = api.get<Protocol[]>('protocols/');
+
+  const handleProtocolCreated = (protocol: Protocol) => {
+    // Refresh the protocols list
+    mutate('/api/proxy/compounds/protocols/');
+    // Navigate to the new protocol
+    router.push(routes.assays.protocol(protocol.id));
+  };
 
   const columns: Column<Protocol>[] = [
     {
@@ -92,13 +104,22 @@ export default function ProtocolsPage() {
         ]}
       />
 
-      <Box sx={{ mb: 3 }}>
-        <Typography variant="h4" gutterBottom>
-          Protocols
-        </Typography>
-        <Typography color="text.secondary">
-          Assay protocols define experimental methods and analysis approaches
-        </Typography>
+      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+        <Box>
+          <Typography variant="h4" gutterBottom>
+            Protocols
+          </Typography>
+          <Typography color="text.secondary">
+            Assay protocols define experimental methods and analysis approaches
+          </Typography>
+        </Box>
+        <Button
+          variant="contained"
+          startIcon={<Add />}
+          onClick={() => setCreateDialogOpen(true)}
+        >
+          Add Protocol
+        </Button>
       </Box>
 
       <DataTable
@@ -109,6 +130,12 @@ export default function ProtocolsPage() {
         getRowKey={(row) => row.id}
         title={protocols ? `${protocols.length} protocols` : undefined}
         emptyMessage="No protocols found"
+      />
+
+      <ProtocolCreateDialog
+        open={createDialogOpen}
+        onClose={() => setCreateDialogOpen(false)}
+        onCreated={handleProtocolCreated}
       />
     </Container>
   );

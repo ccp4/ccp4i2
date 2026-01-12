@@ -21,16 +21,17 @@ import {
   Alert,
   CircularProgress,
 } from '@mui/material';
-import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { PlatePreview } from '@/components/compounds/PlatePreview';
 import { PlateLayoutEditor } from '@/components/compounds/PlateLayoutEditor';
 import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';
 import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
+import { DocumentUploadDialog } from '@/components/compounds/DocumentUploadDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
-import { Protocol, Assay, PlateLayout } from '@/types/compounds/models';
+import { Protocol, Assay, PlateLayout, ProtocolDocument } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -73,12 +74,16 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const [assayToDelete, setAssayToDelete] = useState<Assay | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
+  const [documentUploadOpen, setDocumentUploadOpen] = useState(false);
 
   const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
   );
   const { data: assays, isLoading: assaysLoading, mutate: mutateAssays } = api.get<Assay[]>(
     `assays/?protocol=${id}`
+  );
+  const { data: documents, isLoading: documentsLoading, mutate: mutateDocuments } = api.get<ProtocolDocument[]>(
+    `protocol-documents/?protocol=${id}`
   );
 
   const handleOpenLayoutEditor = () => {
@@ -140,6 +145,55 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       setAssayToDelete(null);
     }
   };
+
+  const documentColumns: Column<ProtocolDocument>[] = [
+    {
+      key: 'filename',
+      label: 'File',
+      sortable: true,
+      searchable: true,
+      render: (value) => (
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Description fontSize="small" color="action" />
+          <Typography fontWeight={500}>{value || 'Unnamed file'}</Typography>
+        </Box>
+      ),
+    },
+    {
+      key: 'created_at',
+      label: 'Uploaded',
+      sortable: true,
+      width: 120,
+      render: (value) =>
+        value ? new Date(value).toLocaleDateString() : '-',
+    },
+    {
+      key: 'file',
+      label: 'Actions',
+      width: 100,
+      render: (value) =>
+        value ? (
+          <Box sx={{ display: 'flex', gap: 0.5 }}>
+            <IconButton
+              size="small"
+              href={value}
+              target="_blank"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <Download fontSize="small" />
+            </IconButton>
+            <IconButton
+              size="small"
+              href={value}
+              target="_blank"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <OpenInNew fontSize="small" />
+            </IconButton>
+          </Box>
+        ) : null,
+    },
+  ];
 
   const columns: Column<Assay>[] = [
     {
@@ -429,6 +483,43 @@ export default function ProtocolDetailPage({ params }: PageProps) {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Documents section */}
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+        <Typography variant="h6">
+          Documents
+        </Typography>
+        <Button
+          variant="outlined"
+          startIcon={<CloudUpload />}
+          onClick={() => setDocumentUploadOpen(true)}
+          disabled={!protocol}
+        >
+          Upload Documents
+        </Button>
+      </Box>
+
+      <Box sx={{ mb: 3 }}>
+        <DataTable
+          data={documents}
+          columns={documentColumns}
+          loading={documentsLoading}
+          getRowKey={(row) => row.id}
+          title={documents ? `${documents.length} document(s)` : undefined}
+          emptyMessage="No documents uploaded for this protocol"
+        />
+      </Box>
+
+      {/* Document Upload Dialog */}
+      <DocumentUploadDialog
+        open={documentUploadOpen}
+        onClose={() => setDocumentUploadOpen(false)}
+        title="Upload Protocol Documents"
+        endpoint="protocol-documents/"
+        parentField="protocol"
+        parentId={id}
+        onUploaded={() => mutateDocuments()}
+      />
 
       {/* Assays section header with Add button */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>

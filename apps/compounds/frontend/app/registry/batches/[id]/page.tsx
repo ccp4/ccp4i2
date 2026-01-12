@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -23,9 +23,11 @@ import {
   Description,
   Download,
   OpenInNew,
+  CloudUpload,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DocumentUploadDialog } from '@/components/compounds/DocumentUploadDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Batch, BatchQCFile, Compound, Target } from '@/types/compounds/models';
@@ -52,11 +54,12 @@ export default function BatchDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const [uploadDialogOpen, setUploadDialogOpen] = useState(false);
 
   const { data: batch, isLoading: batchLoading } = api.get<Batch>(
     `batches/${id}/`
   );
-  const { data: qcFiles, isLoading: qcFilesLoading } = api.get<BatchQCFile[]>(
+  const { data: qcFiles, isLoading: qcFilesLoading, mutate: mutateQcFiles } = api.get<BatchQCFile[]>(
     `batch-qc-files/?batch=${id}`
   );
   const { data: compound } = api.get<Compound>(
@@ -259,14 +262,40 @@ export default function BatchDetailPage({ params }: PageProps) {
         )}
       </Paper>
 
+      {/* QC Files section header with Upload button */}
+      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+        <Typography variant="h6">
+          QC Files
+        </Typography>
+        <Button
+          variant="outlined"
+          startIcon={<CloudUpload />}
+          onClick={() => setUploadDialogOpen(true)}
+          disabled={!batch}
+        >
+          Upload QC Files
+        </Button>
+      </Box>
+
       {/* QC Files table */}
       <DataTable
         data={qcFiles}
         columns={columns}
         loading={qcFilesLoading}
         getRowKey={(row) => row.id}
-        title={qcFiles ? `${qcFiles.length} QC files` : undefined}
+        title={qcFiles ? `${qcFiles.length} QC file(s)` : undefined}
         emptyMessage="No QC files uploaded for this batch"
+      />
+
+      {/* QC File Upload Dialog */}
+      <DocumentUploadDialog
+        open={uploadDialogOpen}
+        onClose={() => setUploadDialogOpen(false)}
+        title="Upload QC Files"
+        endpoint="batch-qc-files/"
+        parentField="batch"
+        parentId={id}
+        onUploaded={() => mutateQcFiles()}
       />
     </Container>
   );

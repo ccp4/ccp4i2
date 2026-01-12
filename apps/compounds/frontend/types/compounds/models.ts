@@ -93,6 +93,16 @@ export interface BatchQCFile {
   uploaded_at: string | null;
 }
 
+export interface ProtocolDocument {
+  id: string;
+  protocol: string;
+  file: string;
+  filename: string | null;
+  created_by: number | null;
+  created_by_email?: string;
+  created_at: string;
+}
+
 export interface PaginatedResponse<T> {
   count: number;
   next: string | null;

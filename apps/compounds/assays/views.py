@@ -263,6 +263,25 @@ class AnalysisResultViewSet(viewsets.ReadOnlyModelViewSet):
     filterset_fields = ['status']
 
 
+class ProtocolDocumentViewSet(ReversionMixin, viewsets.ModelViewSet):
+    """CRUD operations for Protocol Documents."""
+    queryset = ProtocolDocument.objects.select_related('protocol', 'created_by')
+    serializer_class = ProtocolDocumentSerializer
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['protocol']
+    ordering = ['-created_at']
+
+    def perform_create(self, serializer):
+        with reversion.create_revision():
+            instance = serializer.save(
+                created_by=self.request.user if self.request.user.is_authenticated else None
+            )
+            if self.request.user.is_authenticated:
+                reversion.set_user(self.request.user)
+            reversion.set_comment("Uploaded via API")
+            return instance
+
+
 class HypothesisViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Hypotheses."""
     queryset = Hypothesis.objects.select_related('target', 'parent', 'product_compound')
