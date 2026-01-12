@@ -14,13 +14,19 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 ### Compatibility Layer
 - **BaseLayer** (`baselayer/`) - Qt-free implementations of PySide2 APIs
 
+### Compounds App (Optional)
+- **Compounds Registry & Assays** (`apps/compounds/`) - Compound registration, batch tracking, and assay management
+- **Compounds Frontend** (`apps/compounds/frontend/`) - Next.js pages/components for compounds features
+
 ## Key Directories
 
 | Directory | Purpose |
 |-----------|---------|
-| `baselayer/` | Qt-free compatibility layer (Signal, Slot, QObject stubs) |
 | `server/` | Django backend (models, REST API, job execution) |
-| `client/` | Electron/React frontend |
+| `client/` | Electron/React frontend for desktop |
+| `apps/` | Optional apps (compounds registry, assays) |
+| `apps/compounds/frontend/` | Compounds frontend components (overlaid during Docker build) |
+| `baselayer/` | Qt-free compatibility layer (Signal, Slot, QObject stubs) |
 | `core/` | Core Python modules and business logic |
 | `cli/` | Command-line tools (i2run, utilities) |
 | `wrappers/` | Task wrappers for crystallographic programs |
@@ -30,6 +36,7 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 | `smartie/` | Log parsing utilities |
 | `report/` | Report generation and parsing |
 | `tests/` | Test suite |
+| `Docker/` | Docker configuration for web/cloud deployment |
 
 ## Environment Detection
 
@@ -137,6 +144,42 @@ This scans `wrappers/`, `wrappers2/`, and `pipelines/` directories and generates
 - `tipsOfTheDay/` - User tips
 - `docs/` - Documentation
 
+## Docker Build Process
+
+### Web Image Build (Compounds Overlay)
+
+The web Docker image (`ccp4i2/web`) is built using `Docker/client/Dockerfile`. This builds a **unified frontend** by overlaying the compounds app onto the ccp4i2 base:
+
+**Base**: `client/renderer/` (CCP4i2 Electron/Next.js app)
+
+**Overlay process** (performed in Dockerfile):
+1. Copy compounds routes into the renderer app directory:
+   - `apps/compounds/frontend/app/registry/` → `renderer/app/registry/`
+   - `apps/compounds/frontend/app/assays/` → `renderer/app/assays/`
+   - `apps/compounds/frontend/app/api/proxy/compounds/` → `renderer/app/api/proxy/compounds/`
+
+2. **Replace the root page** with the app selector:
+   - `apps/compounds/frontend/app/app-selector/page.tsx` → `renderer/app/page.tsx`
+   - This provides the landing page with links to both CCP4i2 and Compounds features
+
+3. Copy shared components/lib/types:
+   - `apps/compounds/frontend/components/compounds/` → `renderer/components/compounds/`
+   - `apps/compounds/frontend/lib/compounds/` → `renderer/lib/compounds/`
+   - `apps/compounds/frontend/types/compounds/` → `renderer/types/compounds/`
+
+4. Add `@/*` path aliases to tsconfig.json (compounds uses `@/` imports)
+
+**Key file**: `apps/compounds/frontend/app/app-selector/page.tsx` - The front page of the deployed web app
+
+### Local Development vs Docker Build
+
+| Mode | Frontend Source | Root Page |
+|------|-----------------|-----------|
+| Desktop (Electron) | `client/renderer/` only | CCP4i2 projects list |
+| Docker/Cloud | `client/renderer/` + compounds overlay | App selector (`app-selector/page.tsx`) |
+
+**Important**: Changes to the compounds frontend won't appear in the deployed app until you rebuild the web image.
+
 ## Azure Deployment
 
 ### Configuration
@@ -148,15 +191,15 @@ This scans `wrappers/`, `wrappers2/`, and `pipelines/` directories and generates
 
 | Repository | Description |
 |------------|-------------|
-| `ccp4i2/web` | Next.js frontend |
+| `ccp4i2/web` | Unified Next.js frontend (CCP4i2 + Compounds overlay) |
 | `ccp4i2/server` | Django backend |
 
 ### Container Apps
 
 | App Name | Purpose |
 |----------|---------|
-| `ccp4i2-bicep-web` | Frontend container app |
-| `ccp4i2-bicep-server` | Backend API container app |
+| `ccp4i2-bicep-web` | Unified frontend (CCP4i2 + Compounds) |
+| `ccp4i2-bicep-server` | Unified backend API (CCP4i2 + Compounds) |
 | `ccp4i2-bicep-worker` | Background job worker |
 
 ### Deployment Commands
