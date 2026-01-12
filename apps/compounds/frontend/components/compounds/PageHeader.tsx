@@ -9,7 +9,6 @@ import {
   ListItemIcon,
   ListItemText,
   Divider,
-  Typography,
   Tooltip,
   Chip,
 } from '@mui/material';
@@ -20,7 +19,6 @@ import {
   Person,
 } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
-import { useMsal } from '@azure/msal-react';
 import { Breadcrumbs, BreadcrumbItem } from './Breadcrumbs';
 import { routes } from '@/lib/compounds/routes';
 
@@ -36,16 +34,22 @@ const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === 'true';
 /**
  * Consistent page header for compounds app pages.
  * Includes breadcrumbs and navigation actions (home, targets, user menu with logout).
+ *
+ * Note: User authentication features (user menu, logout) are only available when
+ * running in the Docker/ccp4i2 environment with MSAL configured. In standalone
+ * development mode, auth features are disabled.
  */
 export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps) {
   const router = useRouter();
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(null);
 
-  // Only use MSAL when auth is required
-  const msalContext = REQUIRE_AUTH ? useMsalSafe() : null;
-  const accounts = msalContext?.accounts || [];
-  const instance = msalContext?.instance;
-  const currentUser = accounts[0];
+  // Auth context is injected by the parent app (ccp4i2) when running in Docker
+  // In standalone mode, we don't have access to MSAL
+  const currentUser = null; // Populated by parent app context in production
+  const handleLogout = () => {
+    // Handled by parent app in production
+    handleUserMenuClose();
+  };
 
   const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setUserMenuAnchor(event.currentTarget);
@@ -53,13 +57,6 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
 
   const handleUserMenuClose = () => {
     setUserMenuAnchor(null);
-  };
-
-  const handleLogout = () => {
-    handleUserMenuClose();
-    if (instance) {
-      instance.logoutRedirect();
-    }
   };
 
   const handleNavigateHome = () => {
@@ -118,14 +115,14 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
               </IconButton>
             </Tooltip>
 
-            {/* User menu - only show when auth is required */}
+            {/* User menu - only show when auth is required and user is available */}
             {REQUIRE_AUTH && currentUser && (
               <>
                 <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
-                <Tooltip title={currentUser.username || 'User'}>
+                <Tooltip title={(currentUser as { username?: string }).username || 'User'}>
                   <Chip
                     icon={<Person fontSize="small" />}
-                    label={currentUser.name?.split(' ')[0] || 'User'}
+                    label={(currentUser as { name?: string }).name?.split(' ')[0] || 'User'}
                     size="small"
                     variant="outlined"
                     onClick={handleUserMenuOpen}
@@ -144,8 +141,8 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
                 >
                   <MenuItem disabled>
                     <ListItemText
-                      primary={currentUser.name}
-                      secondary={currentUser.username}
+                      primary={(currentUser as { name?: string }).name}
+                      secondary={(currentUser as { username?: string }).username}
                       primaryTypographyProps={{ fontWeight: 500 }}
                     />
                   </MenuItem>
@@ -164,16 +161,4 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
       </Box>
     </Box>
   );
-}
-
-/**
- * Safe wrapper for useMsal that handles the case when MsalProvider is not present.
- * This prevents crashes in non-auth environments.
- */
-function useMsalSafe() {
-  try {
-    return useMsal();
-  } catch {
-    return null;
-  }
 }

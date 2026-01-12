@@ -36,6 +36,7 @@ else:
 INSTALLED_APPS = INSTALLED_APPS + [  # noqa: F405
     "compounds.registry",
     "compounds.assays",
+    "compounds.constructs",
     "reversion",
 ]
 
@@ -61,5 +62,5 @@ if DEBUG:  # noqa: F405
             # AuthenticationMiddleware not found, append to end
             MIDDLEWARE.append(_dev_middleware)  # noqa: F405
 
-print(f"Compounds app enabled (registry, assays)")
+print(f"Compounds app enabled (registry, assays, constructs)")
 print(f"  Dev user email: {DEV_USER_EMAIL}")

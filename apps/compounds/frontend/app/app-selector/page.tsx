@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Typography, Box, Stack, Paper } from '@mui/material';
-import { Science, Biotech } from '@mui/icons-material';
+import { Science, Biotech, TableChart, Search, AccountTree } from '@mui/icons-material';
 import Link from 'next/link';
 
 /**
@@ -65,7 +65,103 @@ export default function AppSelectorPage() {
           <Box>
             <Typography variant="h5">Compounds Registry</Typography>
             <Typography color="text.secondary">
-              Compound registration, batch tracking, and assay management
+              Compound registration, batch tracking, and target management
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/registry/search"
+        >
+          <Search sx={{ fontSize: 56, color: 'warning.main' }} />
+          <Box>
+            <Typography variant="h5">Compound Search</Typography>
+            <Typography color="text.secondary">
+              Search compounds by ID, supplier reference, or structure
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/assays"
+        >
+          <Biotech sx={{ fontSize: 56, color: 'info.main' }} />
+          <Box>
+            <Typography variant="h5">Assays</Typography>
+            <Typography color="text.secondary">
+              Protocols, experiments, and dose-response analysis
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/assays/aggregate"
+        >
+          <TableChart sx={{ fontSize: 56, color: 'success.main' }} />
+          <Box>
+            <Typography variant="h5">Data Aggregation</Typography>
+            <Typography color="text.secondary">
+              Query and aggregate KPI values across compounds and protocols
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/constructs"
+        >
+          <AccountTree sx={{ fontSize: 56, color: 'error.main' }} />
+          <Box>
+            <Typography variant="h5">Construct Database</Typography>
+            <Typography color="text.secondary">
+              Plasmid registry, cassette tracking, and sequencing results
             </Typography>
           </Box>
         </Paper>

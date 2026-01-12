@@ -1,19 +1,24 @@
 'use client';
 
-import { Container, Typography, Box, Button, Stack, Paper } from '@mui/material';
-import { Science, Assignment, Biotech, TableChart, Search } from '@mui/icons-material';
+import { Container, Typography, Box, Stack, Paper } from '@mui/material';
+import { Science, Biotech, TableChart, Search, AccountTree } from '@mui/icons-material';
 import Link from 'next/link';
-import { routes } from '@/lib/compounds/routes';
 
+/**
+ * Root page for the compounds frontend.
+ *
+ * In standalone development mode, this shows the app selector.
+ * In Docker deployment, this file is replaced by app-selector/page.tsx.
+ */
 export default function HomePage() {
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Box sx={{ textAlign: 'center', mb: 4 }}>
+    <Container maxWidth="md" sx={{ py: 6 }}>
+      <Box sx={{ textAlign: 'center', mb: 5 }}>
         <Typography variant="h3" component="h1" gutterBottom>
-          Compounds Management
+          Compounds Apps
         </Typography>
         <Typography variant="subtitle1" color="text.secondary">
-          Compound registration, batch tracking, and assay management
+          Select an application to get started
         </Typography>
       </Box>
 
@@ -24,18 +29,20 @@ export default function HomePage() {
             p: 3,
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
+            gap: 3,
             cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href={routes.registry.targets()}
+          href="/registry/targets"
         >
-          <Science sx={{ fontSize: 48, color: 'primary.main' }} />
+          <Biotech sx={{ fontSize: 56, color: 'secondary.main' }} />
           <Box>
-            <Typography variant="h5">Registry</Typography>
+            <Typography variant="h5">Compounds Registry</Typography>
             <Typography color="text.secondary">
-              Browse targets, compounds, and batches
+              Compound registration, batch tracking, and target management
             </Typography>
           </Box>
         </Paper>
@@ -46,14 +53,16 @@ export default function HomePage() {
             p: 3,
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
+            gap: 3,
             cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href={routes.registry.search()}
+          href="/registry/search"
         >
-          <Search sx={{ fontSize: 48, color: 'warning.main' }} />
+          <Search sx={{ fontSize: 56, color: 'warning.main' }} />
           <Box>
             <Typography variant="h5">Compound Search</Typography>
             <Typography color="text.secondary">
@@ -68,14 +77,16 @@ export default function HomePage() {
             p: 3,
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
+            gap: 3,
             cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href={routes.assays.list()}
+          href="/assays"
         >
-          <Biotech sx={{ fontSize: 48, color: 'secondary.main' }} />
+          <Biotech sx={{ fontSize: 56, color: 'info.main' }} />
           <Box>
             <Typography variant="h5">Assays</Typography>
             <Typography color="text.secondary">
@@ -90,18 +101,20 @@ export default function HomePage() {
             p: 3,
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
+            gap: 3,
             cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href={routes.assays.protocols()}
+          href="/assays/aggregate"
         >
-          <Assignment sx={{ fontSize: 48, color: 'info.main' }} />
+          <TableChart sx={{ fontSize: 56, color: 'success.main' }} />
           <Box>
-            <Typography variant="h5">Protocols</Typography>
+            <Typography variant="h5">Data Aggregation</Typography>
             <Typography color="text.secondary">
-              Assay protocol definitions and methods
+              Query and aggregate KPI values across compounds and protocols
             </Typography>
           </Box>
         </Paper>
@@ -112,22 +125,23 @@ export default function HomePage() {
             p: 3,
             display: 'flex',
             alignItems: 'center',
-            gap: 2,
+            gap: 3,
             cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href={routes.assays.aggregate()}
+          href="/constructs"
         >
-          <TableChart sx={{ fontSize: 48, color: 'success.main' }} />
+          <AccountTree sx={{ fontSize: 56, color: 'error.main' }} />
           <Box>
-            <Typography variant="h5">Data Aggregation</Typography>
+            <Typography variant="h5">Construct Database</Typography>
             <Typography color="text.secondary">
-              Query and aggregate KPI values across compounds and protocols
+              Plasmid registry, cassette tracking, and sequencing results
             </Typography>
           </Box>
         </Paper>
-
       </Stack>
     </Container>
   );

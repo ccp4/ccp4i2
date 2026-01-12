@@ -1,7 +1,7 @@
 """
 Compounds App URL Configuration
 
-Combines routes from registry and assays sub-apps.
+Combines routes from registry, assays, and constructs sub-apps.
 These URLs are included by the main ccp4i2 urls.py when compounds is enabled.
 """
 
@@ -27,6 +27,20 @@ from compounds.assays.views import (
     HypothesisViewSet,
 )
 from compounds.assays.aggregation_views import AggregationViewSet
+from compounds.constructs.views import (
+    ConstructProjectViewSet,
+    PlasmidViewSet,
+    ProteinViewSet,
+    ProteinSynonymViewSet,
+    ProteinUseViewSet,
+    CassetteViewSet,
+    CassetteUseViewSet,
+    SequencingResultViewSet,
+    ExpressionTagTypeViewSet,
+    ProteaseViewSet,
+    ExpressionTagLocationViewSet,
+    ExpressionTagViewSet,
+)
 
 router = DefaultRouter()
 
@@ -50,6 +64,20 @@ router.register(r'hypotheses', HypothesisViewSet, basename='hypothesis')
 
 # Aggregation routes
 router.register(r'aggregations', AggregationViewSet, basename='aggregation')
+
+# Construct Database routes
+router.register(r'construct-projects', ConstructProjectViewSet, basename='construct-project')
+router.register(r'plasmids', PlasmidViewSet, basename='plasmid')
+router.register(r'proteins', ProteinViewSet, basename='protein')
+router.register(r'protein-synonyms', ProteinSynonymViewSet, basename='protein-synonym')
+router.register(r'protein-uses', ProteinUseViewSet, basename='protein-use')
+router.register(r'cassettes', CassetteViewSet, basename='cassette')
+router.register(r'cassette-uses', CassetteUseViewSet, basename='cassette-use')
+router.register(r'sequencing-results', SequencingResultViewSet, basename='sequencing-result')
+router.register(r'expression-tag-types', ExpressionTagTypeViewSet, basename='expression-tag-type')
+router.register(r'proteases', ProteaseViewSet, basename='protease')
+router.register(r'expression-tag-locations', ExpressionTagLocationViewSet, basename='expression-tag-location')
+router.register(r'expression-tags', ExpressionTagViewSet, basename='expression-tag')
 
 urlpatterns = [
     path('', include(router.urls)),

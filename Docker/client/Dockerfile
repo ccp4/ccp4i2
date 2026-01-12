@@ -46,11 +46,12 @@ COPY server/ccp4i2/qticons/ ./renderer/public/qticons/
 COPY server/ccp4i2/svgicons/ ./renderer/public/svgicons/
 
 # =============================================================================
-# Overlay compounds frontend (registry & assays sub-apps)
+# Overlay compounds frontend (registry, assays & constructs sub-apps)
 # =============================================================================
 # Copy app routes
 COPY apps/compounds/frontend/app/registry/ ./renderer/app/registry/
 COPY apps/compounds/frontend/app/assays/ ./renderer/app/assays/
+COPY apps/compounds/frontend/app/constructs/ ./renderer/app/constructs/
 COPY apps/compounds/frontend/app/api/proxy/compounds/ ./renderer/app/api/proxy/compounds/
 
 # Copy app selector as the root page (replaces the redirect-only page)

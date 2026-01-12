@@ -105,6 +105,27 @@ export const routes = {
     }) => routeWithQuery('/assays/aggregate', params),
   },
 
+  /** Constructs app routes */
+  constructs: {
+    /** Plasmids list (constructs home) */
+    list: () => route('/constructs'),
+
+    /** Projects list */
+    projects: () => route('/constructs/projects'),
+
+    /** Project detail page */
+    project: (id: string | number) => route(`/constructs/projects/${id}`),
+
+    /** Plasmid detail page */
+    plasmid: (id: string | number) => route(`/constructs/plasmids/${id}`),
+
+    /** Proteins list */
+    proteins: () => route('/constructs/proteins'),
+
+    /** Protein detail page */
+    protein: (id: string | number) => route(`/constructs/proteins/${id}`),
+  },
+
   /** External app routes (for cross-app navigation when integrated) */
   external: {
     /** CCP4i2 home (only relevant when integrated) */
