@@ -382,10 +382,12 @@ class PlasmidDetailSerializer(serializers.ModelSerializer):
 
 class PlasmidCreateSerializer(serializers.ModelSerializer):
     """Serializer for creating plasmids."""
+    formatted_id = serializers.CharField(read_only=True)
 
     class Meta:
         model = Plasmid
-        fields = ['name', 'project', 'parent', 'genbank_file']
+        fields = ['id', 'formatted_id', 'name', 'project', 'parent', 'genbank_file']
+        read_only_fields = ['id', 'formatted_id']
 
     def create(self, validated_data):
         request = self.context.get('request')
