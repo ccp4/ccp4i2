@@ -32,10 +32,11 @@ RUN apk add --no-cache jq && \
     mv package.web.json package.json
 
 # Install dependencies (excluding Electron) with retry logic
+# Using npm install instead of npm ci to auto-update lock file when package.json changes
 RUN npm config set fetch-retry-mintimeout 20000 && \
     npm config set fetch-retry-maxtimeout 120000 && \
     npm config set fetch-retries 5 && \
-    npm ci --legacy-peer-deps --verbose || (npm cache clean --force && npm ci --legacy-peer-deps --verbose)
+    npm install --legacy-peer-deps --verbose || (npm cache clean --force && npm install --legacy-peer-deps --verbose)
 
 # Copy client source code
 COPY client/ .
@@ -88,7 +89,7 @@ COPY --from=builder /app/renderer ./renderer
 COPY --from=builder /app/package*.json ./
 
 # Install production dependencies only
-RUN npm ci --omit=dev --legacy-peer-deps && npm cache clean --force
+RUN npm install --omit=dev --legacy-peer-deps && npm cache clean --force
 
 # Create a non-root user
 RUN addgroup -g 1001 -S nodejs
