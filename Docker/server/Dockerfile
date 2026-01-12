@@ -41,10 +41,11 @@ COPY server/ .
 COPY Docker/azure/azure_extensions /usr/src/app/azure_extensions
 
 # =============================================================================
-# Overlay compounds Django apps (registry & assays)
+# Overlay compounds Django apps (registry, assays & constructs)
 # =============================================================================
 COPY apps/compounds/registry /usr/src/app/compounds/registry
 COPY apps/compounds/assays /usr/src/app/compounds/assays
+COPY apps/compounds/constructs /usr/src/app/compounds/constructs
 COPY apps/compounds/__init__.py /usr/src/app/compounds/__init__.py
 COPY apps/compounds/urls.py /usr/src/app/compounds/urls.py
 
