@@ -51,6 +51,17 @@ if "azure_extensions" in settings.INSTALLED_APPS:
     except ImportError as e:
         print(f"Warning: azure_extensions in INSTALLED_APPS but import failed: {e}")
 
+# Include users URLs if the app is installed
+if "users" in settings.INSTALLED_APPS:
+    try:
+        from users.urls import urlpatterns as users_urls
+        urlpatterns = urlpatterns + [
+            path("api/users/", include((users_urls, "users"))),
+        ]
+        print("Users URLs loaded at /api/users/")
+    except ImportError as e:
+        print(f"Warning: users in INSTALLED_APPS but import failed: {e}")
+
 # Include compounds URLs if the app is enabled
 # Compounds is a separate app, so it gets its own API namespace /api/compounds/
 if getattr(settings, "COMPOUNDS_ENABLED", False):

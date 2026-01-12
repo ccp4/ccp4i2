@@ -187,6 +187,7 @@ export function SeqVizViewer({
       showIndex: true,
       translations: [],
       enzymes: [],
+      primers: [],
       onError: (err: Error) => {
         console.error('SeqViz error:', err);
         setParseError(err.message);

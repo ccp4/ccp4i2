@@ -34,6 +34,7 @@ else:
 
 # Add compounds apps to INSTALLED_APPS
 INSTALLED_APPS = INSTALLED_APPS + [  # noqa: F405
+    "users",
     "compounds.registry",
     "compounds.assays",
     "compounds.constructs",
@@ -62,5 +63,11 @@ if DEBUG:  # noqa: F405
             # AuthenticationMiddleware not found, append to end
             MIDDLEWARE.append(_dev_middleware)  # noqa: F405
 
+# Platform admin emails (bootstrap admins from environment)
+PLATFORM_ADMIN_EMAILS = os.environ.get("PLATFORM_ADMIN_EMAILS", "").split(",")
+PLATFORM_ADMIN_EMAILS = [e.strip().lower() for e in PLATFORM_ADMIN_EMAILS if e.strip()]
+
 print(f"Compounds app enabled (registry, assays, constructs)")
 print(f"  Dev user email: {DEV_USER_EMAIL}")
+if PLATFORM_ADMIN_EMAILS:
+    print(f"  Platform admins: {len(PLATFORM_ADMIN_EMAILS)} from environment")

@@ -7,7 +7,7 @@ import NextLink from 'next/link';
 export interface BreadcrumbItem {
   label: string;
   href?: string;
-  icon?: 'home' | 'target' | 'compound' | 'batch' | 'qc' | 'protocol' | 'assay' | 'aggregate' | 'search' | 'import';
+  icon?: 'home' | 'target' | 'compound' | 'batch' | 'qc' | 'protocol' | 'assay' | 'aggregate' | 'search' | 'import' | 'construct';
 }
 
 interface BreadcrumbsProps {
@@ -25,6 +25,7 @@ const iconMap = {
   aggregate: <TableChart fontSize="small" />,
   search: <Search fontSize="small" />,
   import: <Upload fontSize="small" />,
+  construct: <Science fontSize="small" />,
 };
 
 export function Breadcrumbs({ items }: BreadcrumbsProps) {

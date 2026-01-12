@@ -19,8 +19,10 @@ from ccp4i2.config.settings import *  # noqa: F401, F403
 # Add azure_extensions and compounds apps to INSTALLED_APPS
 INSTALLED_APPS = INSTALLED_APPS + [  # noqa: F405
     "azure_extensions",
+    "users",
     "compounds.registry",
     "compounds.assays",
+    "compounds.constructs",
     "reversion",
 ]
 
@@ -38,5 +40,11 @@ if AZURE_STORAGE_ACCOUNT_NAME:
 elif AZURE_STORAGE_CONNECTION_STRING:
     print("Azure Storage configured via connection string")
 
+# Platform admin emails (bootstrap admins from environment)
+PLATFORM_ADMIN_EMAILS = os.environ.get("PLATFORM_ADMIN_EMAILS", "").split(",")
+PLATFORM_ADMIN_EMAILS = [e.strip().lower() for e in PLATFORM_ADMIN_EMAILS if e.strip()]
+
 print("Azure Extensions app enabled")
-print("Compounds app enabled (registry, assays)")
+print("Compounds app enabled (registry, assays, constructs)")
+if PLATFORM_ADMIN_EMAILS:
+    print(f"Platform admins configured: {len(PLATFORM_ADMIN_EMAILS)} from environment")

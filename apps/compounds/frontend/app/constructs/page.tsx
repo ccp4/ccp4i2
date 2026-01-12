@@ -6,13 +6,11 @@ import {
   Typography,
   Box,
   Chip,
-  TextField,
-  InputAdornment,
   Button,
   IconButton,
   Tooltip,
 } from '@mui/material';
-import { Science, Search, Add, Delete } from '@mui/icons-material';
+import { Science, Add, Delete } from '@mui/icons-material';
 import { useState } from 'react';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
@@ -28,7 +26,6 @@ export default function ConstructsPage() {
   const api = useCompoundsApi();
   const { mutate } = useSWRConfig();
   const { data: plasmids, isLoading } = api.get<Plasmid[]>('plasmids/');
-  const [searchTerm, setSearchTerm] = useState('');
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<Plasmid | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -125,7 +122,7 @@ export default function ConstructsPage() {
       <PageHeader
         breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Constructs', icon: 'science' },
+          { label: 'Constructs', icon: 'construct' },
         ]}
       />
 
@@ -147,23 +144,6 @@ export default function ConstructsPage() {
         </Button>
       </Box>
 
-      <Box sx={{ mb: 2 }}>
-        <TextField
-          size="small"
-          placeholder="Search plasmids..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <Search />
-              </InputAdornment>
-            ),
-          }}
-          sx={{ width: 300 }}
-        />
-      </Box>
-
       <DataTable
         data={plasmids}
         columns={columns}
@@ -172,7 +152,6 @@ export default function ConstructsPage() {
         getRowKey={(row) => row.id}
         title={plasmids ? `${plasmids.length} plasmids` : undefined}
         emptyMessage="No plasmids found. Click 'Add Construct' to create one."
-        searchTerm={searchTerm}
       />
 
       <PlasmidCreateDialog
