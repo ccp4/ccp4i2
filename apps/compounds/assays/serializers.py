@@ -179,7 +179,7 @@ class DataSeriesDetailSerializer(serializers.ModelSerializer):
             'id', 'assay', 'compound', 'compound_formatted_id', 'compound_name',
             'row', 'start_column', 'end_column',
             'dilution_series', 'extracted_data', 'skip_points',
-            'analysis', 'svg_file',
+            'analysis', 'plot_image',
         ]
 
 

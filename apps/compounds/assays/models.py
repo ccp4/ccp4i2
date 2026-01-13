@@ -409,12 +409,13 @@ class Assay(models.Model):
         return Path(self.data_file.name).name if self.data_file else None
 
 
-def _series_svg_path(instance, filename):
-    """Generate upload path for data series plot SVGs.
+def _series_plot_path(instance, filename):
+    """Generate upload path for data series plot images.
 
     Legacy pattern: Same directory as parent Experiment's dataFile.
     AssayCompounds/Experiments/Experiment_{uuid}/{filename}
 
+    Supports various image formats (SVG, PNG, JPG, etc.).
     For Hill-Langmuir: auto-generated plots pass '{id}.svg' as filename
     For Table-Of-Values: preserves original filename for matching via
                          analysis.results['Image File']
@@ -481,11 +482,11 @@ class DataSeries(models.Model):
         blank=True,
         related_name='data_series'
     )
-    svg_file = models.ImageField(
-        upload_to=_series_svg_path,
+    plot_image = models.ImageField(
+        upload_to=_series_plot_path,
         blank=True,
         null=True,
-        help_text="Fitted curve plot"
+        help_text="Fitted curve plot image"
     )
 
     class Meta:

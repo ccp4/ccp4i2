@@ -194,7 +194,7 @@ export interface DataSeries {
   // Results
   analysis: string | null;  // UUID
   analysis_result?: AnalysisResult;  // Nested from serializer
-  svg_file: string | null;  // URL
+  plot_image: string | null;  // URL to fitted curve plot image
 }
 
 export type AnalysisStatus = 'valid' | 'invalid' | 'unassigned';

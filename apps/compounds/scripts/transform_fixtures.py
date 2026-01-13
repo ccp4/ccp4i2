@@ -80,8 +80,13 @@ def clean_json_content(content: str) -> str:
     return content[start:]
 
 
-def transform_field_name(old_name: str) -> str:
-    """Transform camelCase field names to snake_case."""
+def transform_field_name(old_name: str, model_type: str = None) -> str:
+    """Transform camelCase field names to snake_case.
+
+    Args:
+        old_name: The legacy field name
+        model_type: The target model type (e.g., 'assays.dataseries')
+    """
     mappings = {
         # RegisterCompounds field mappings
         'project_name': 'name',  # RegProjects -> Target
@@ -97,8 +102,8 @@ def transform_field_name(old_name: str) -> str:
         'inchi1': 'inchi',
         'inchi1_qualifier': None,  # Drop this field
         'stereo_comments': 'stereo_comment',
-        'pklFile': None,  # Drop pickle files
-        'svgFile': 'svg_file',
+        'pklFile': None,  # Drop pickle files - no longer used, mol objects generated on-demand from SMILES
+        'svgFile': 'svg_file',  # Default for Compound (structure SVG)
         'rdkitSmiles': 'rdkit_smiles',
         'aliases': None,  # Drop aliases for now
         'original_id': None,  # Legacy import tracking
@@ -124,13 +129,18 @@ def transform_field_name(old_name: str) -> str:
         'dilutionSeries': 'dilution_series',
         'extractedData': 'extracted_data',
         'skipPoints': 'skip_points',
-        'svgFile': 'svg_file',
         'modelMinyURL': 'model_url',
         'updated_at': 'updated_at',
         'productRegId': 'product_compound',  # FK to compound
         'completionNotes': 'completion_notes',
         'project': 'target',  # FK renamed
     }
+
+    # Model-specific overrides
+    # DataSeries uses plot_image for image files (can be any image format, not just SVG)
+    if model_type == 'assays.dataseries' and old_name == 'svgFile':
+        return 'plot_image'
+
     return mappings.get(old_name, old_name)
 
 
@@ -168,7 +178,7 @@ def transform_record(record: dict, user_lookup: dict) -> dict | None:
     new_fields = {}
 
     for old_key, value in old_fields.items():
-        new_key = transform_field_name(old_key)
+        new_key = transform_field_name(old_key, new_model)
 
         # Skip dropped fields
         if new_key is None:

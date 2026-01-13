@@ -1,0 +1,515 @@
+"""
+Admin API views for compounds app.
+
+Provides endpoints for administrative tasks like importing legacy fixtures.
+These endpoints require platform admin permissions.
+"""
+
+import json
+import logging
+import tempfile
+from pathlib import Path
+
+from django.core.management import call_command
+from django.db import transaction
+from rest_framework import status
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+
+from users.permissions import IsPlatformAdmin
+
+# Note: IsPlatformAdmin already handles the no-auth case (returns True when
+# CCP4I2_REQUIRE_AUTH is not set), so we don't need IsAuthenticated here.
+
+logger = logging.getLogger(__name__)
+
+
+# Import the transformation logic from the management command
+from compounds.registry.management.commands.import_legacy_compounds import (
+    MODEL_MAPPINGS,
+    DATETIME_FIELDS,
+)
+
+
+def _make_timezone_aware(value):
+    """Convert datetime string to timezone-aware format."""
+    from django.utils import timezone
+    if not value:
+        return value
+    if isinstance(value, str):
+        if value.endswith('Z'):
+            return value
+        if '+' in value or value.endswith('Z'):
+            return value
+        return value + 'Z'
+    return value
+
+
+def _transform_field_name(old_name, model_type=None):
+    """Transform field names to new schema.
+
+    Args:
+        old_name: The legacy field name
+        model_type: The target model type (e.g., 'assays.dataseries')
+    """
+    mappings = {
+        'project_name': 'name',
+        'creation_date': 'created_at',
+        'reg_id': 'reg_number',
+        'project_id': 'target',
+        'reg_date': 'registered_at',
+        'labbook_id': 'labbook_number',
+        'page_id': 'page_number',
+        'compound_id': 'compound_number',
+        'user_name': 'legacy_registered_by',
+        'mw': 'molecular_weight',
+        'inchi1': 'inchi',
+        'inchi1_qualifier': None,
+        'stereo_comments': 'stereo_comment',
+        'pklFile': None,  # Drop pickle files - no longer used
+        'svgFile': 'svg_file',
+        'rdkitSmiles': 'rdkit_smiles',
+        'aliases': None,
+        'original_id': None,
+        'modified_date': 'modified_at',
+        'regdata_id': 'compound',
+        'batch_number': 'batch_number',
+        'mwt': 'molecular_weight',
+        'batch_id': 'batch',
+        'mol2d': 'mol2d',
+        'shortName': None,
+        'created_by': 'created_by',
+        'created_at': 'created_at',
+        'analysisMethod': 'analysis_method',
+        'preferredDilutions': 'preferred_dilutions',
+        'pherastarTableChoice': 'pherastar_table',
+        'dataFile': 'data_file',
+        'experiment': 'assay',
+        'compoundName': 'compound_name',
+        'startColumn': 'start_column',
+        'endColumn': 'end_column',
+        'dilutionSeries': 'dilution_series',
+        'extractedData': 'extracted_data',
+        'skipPoints': 'skip_points',
+        'modelMinyURL': 'model_url',
+        'updated_at': 'updated_at',
+        'productRegId': 'product_compound',
+        'completionNotes': 'completion_notes',
+        'project': 'target',
+    }
+
+    # Model-specific overrides
+    # DataSeries uses plot_image for image files (not svg_file)
+    if model_type == 'assays.dataseries' and old_name == 'svgFile':
+        return 'plot_image'
+
+    return mappings.get(old_name, old_name)
+
+
+def _transform_file_path(old_path, model_type):
+    """Transform file paths to new structure."""
+    if not old_path:
+        return old_path
+
+    path_mappings = {
+        'RegisterCompounds/svg/': 'compounds/registry/svg/',
+        'RegBatchQCFile_': 'compounds/registry/qc/',
+        'AssayCompounds/Experiments/': 'compounds/assays/data/',
+        'AssayCompounds/svg/': 'compounds/assays/svg/',
+    }
+
+    for old_prefix, new_prefix in path_mappings.items():
+        if old_prefix in old_path:
+            return old_path.replace(old_prefix, new_prefix)
+
+    return old_path
+
+
+def _transform_record(record, user_lookup, app_filter=None):
+    """Transform a single fixture record."""
+    old_model = record['model']
+
+    if old_model not in MODEL_MAPPINGS:
+        return None
+
+    new_model = MODEL_MAPPINGS[old_model]
+
+    # Filter by app if specified
+    if app_filter and not new_model.startswith(app_filter):
+        return None
+
+    pk = record['pk']
+    old_fields = record['fields']
+    new_fields = {}
+
+    for old_key, value in old_fields.items():
+        new_key = _transform_field_name(old_key, new_model)
+
+        if new_key is None:
+            continue
+
+        # Transform file paths
+        if 'file' in old_key.lower() or old_key in ('svgFile', 'dataFile'):
+            value = _transform_file_path(value, new_model)
+
+        # Handle created_by natural key references
+        if old_key == 'created_by' and isinstance(value, list):
+            if value and len(value) > 0:
+                if 'legacy_registered_by' not in new_fields and new_model == 'registry.compound':
+                    new_fields['legacy_registered_by'] = value[0]
+            value = None
+
+        # Normalize stereo_comment
+        if new_key == 'stereo_comment':
+            value = (value.lower().replace(' ', '_').replace('-', '_')) if value else 'unset'
+
+        # Normalize analysis_method
+        if new_key == 'analysis_method' and value:
+            value = value.lower().replace('-', '_').replace(' ', '_')
+
+        # Normalize status
+        if new_key == 'status' and value:
+            value = value.lower()
+
+        # Unwrap legacy {"data": ...} wrapper
+        if new_key in ('extracted_data', 'skip_points') and isinstance(value, dict):
+            if 'data' in value:
+                value = value['data']
+            if new_key == 'extracted_data' and isinstance(value, dict):
+                try:
+                    max_idx = max(int(k) for k in value.keys()) if value else -1
+                    value = [value.get(str(i)) for i in range(max_idx + 1)]
+                except (ValueError, TypeError):
+                    pass
+
+        # Make datetime fields timezone-aware
+        if new_key in DATETIME_FIELDS or old_key in DATETIME_FIELDS:
+            value = _make_timezone_aware(value)
+
+        if new_key:
+            new_fields[new_key] = value
+
+    return {
+        'model': new_model,
+        'pk': pk,
+        'fields': new_fields
+    }
+
+
+def _transform_records(records, user_lookup, app_filter=None):
+    """Transform a list of fixture records."""
+    transformed = []
+    for record in records:
+        result = _transform_record(record, user_lookup, app_filter)
+        if result:
+            transformed.append(result)
+    return transformed
+
+
+def _import_users_from_fixture(fixture_content, dry_run=False):
+    """
+    Import users from legacy auth.json fixture content.
+
+    Returns dict with 'created', 'updated', 'skipped', 'errors' counts.
+    """
+    from django.contrib.auth import get_user_model
+    from django.utils import timezone
+    from users.models import UserProfile
+
+    User = get_user_model()
+
+    try:
+        # Handle Django debug output in fixture
+        start = fixture_content.find('[')
+        if start > 0:
+            fixture_content = fixture_content[start:]
+        data = json.loads(fixture_content)
+    except json.JSONDecodeError as e:
+        return {'error': f'Invalid JSON: {str(e)}'}
+
+    # Filter to auth.user records
+    user_records = [r for r in data if r.get('model') == 'auth.user']
+
+    stats = {'created': 0, 'updated': 0, 'skipped': 0, 'errors': [], 'total': len(user_records)}
+
+    for record in user_records:
+        try:
+            fields = record.get('fields', {})
+            pk = record.get('pk')
+            username = fields.get('username', '')
+            email = fields.get('email', '')
+
+            if not username:
+                stats['skipped'] += 1
+                continue
+
+            # Normalize email
+            if not email and '@' in username:
+                email = username
+
+            # Check for existing user by PK first (to preserve FK references)
+            existing = None
+            try:
+                existing = User.objects.get(pk=pk)
+            except User.DoesNotExist:
+                # Try by username or email
+                existing = User.objects.filter(username=username).first()
+                if not existing and email:
+                    existing = User.objects.filter(email__iexact=email).first()
+
+            # Parse date_joined
+            date_joined = fields.get('date_joined')
+            if date_joined:
+                if not date_joined.endswith('Z') and '+' not in date_joined[-6:]:
+                    date_joined = date_joined + 'Z'
+                if date_joined.endswith('Z'):
+                    date_joined = date_joined[:-1] + '+00:00'
+
+            user_data = {
+                'email': email,
+                'first_name': fields.get('first_name', '')[:30],
+                'last_name': fields.get('last_name', '')[:150],
+                'is_active': fields.get('is_active', True),
+                'is_staff': fields.get('is_staff', False),
+                'is_superuser': fields.get('is_superuser', False),
+            }
+
+            if not dry_run:
+                if existing:
+                    for key, value in user_data.items():
+                        setattr(existing, key, value)
+                    existing.save()
+                    user = existing
+                    stats['updated'] += 1
+                else:
+                    # Create with specific PK to preserve FK references
+                    user = User.objects.create(
+                        pk=pk,
+                        username=username,
+                        **user_data
+                    )
+                    stats['created'] += 1
+
+                # Update profile
+                profile, _ = UserProfile.objects.get_or_create(user=user)
+                profile.legacy_username = username
+                profile.legacy_display_name = f"{fields.get('first_name', '')} {fields.get('last_name', '')}".strip()
+                profile.imported_at = timezone.now()
+                profile.save()
+            else:
+                # Dry run - just count
+                if existing:
+                    stats['updated'] += 1
+                else:
+                    stats['created'] += 1
+
+        except Exception as e:
+            stats['errors'].append(f"Error importing user {username}: {str(e)}")
+
+    return stats
+
+
+@api_view(['POST'])
+@permission_classes([IsPlatformAdmin])
+def import_legacy_fixtures(request):
+    """
+    Import legacy RegisterCompounds and/or AssayCompounds fixtures.
+
+    Accepts multipart form data with JSON fixture files:
+    - users_fixture: auth.json (optional, should be imported first)
+    - registry_fixture: RegisterCompounds.json (optional)
+    - assays_fixture: AssayCompounds.json (optional)
+    - dry_run: If true, transform and validate without loading (optional)
+
+    Returns summary of imported records or validation results.
+    """
+    users_file = request.FILES.get('users_fixture')
+    registry_file = request.FILES.get('registry_fixture')
+    assays_file = request.FILES.get('assays_fixture')
+    dry_run = request.data.get('dry_run', 'false').lower() == 'true'
+
+    if not users_file and not registry_file and not assays_file:
+        return Response(
+            {'error': 'Must provide at least one fixture file'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    results = {
+        'dry_run': dry_run,
+        'users': None,
+        'registry': None,
+        'assays': None,
+        'errors': [],
+    }
+
+    user_lookup = {}
+
+    try:
+        # Process users fixture FIRST (to establish FK targets)
+        if users_file:
+            try:
+                users_content = users_file.read().decode('utf-8')
+                users_result = _import_users_from_fixture(users_content, dry_run)
+
+                if 'error' in users_result:
+                    results['errors'].append(f'Users fixture: {users_result["error"]}')
+                else:
+                    results['users'] = {
+                        'total_records': users_result['total'],
+                        'created': users_result['created'],
+                        'updated': users_result['updated'],
+                        'skipped': users_result['skipped'],
+                    }
+                    if users_result.get('errors'):
+                        results['errors'].extend(users_result['errors'])
+            except Exception as e:
+                results['errors'].append(f'Error processing users_fixture: {str(e)}')
+
+        with tempfile.TemporaryDirectory(prefix='compounds_import_') as temp_dir:
+            temp_path = Path(temp_dir)
+            transformed_files = []
+
+            # Process registry fixture
+            if registry_file:
+                try:
+                    registry_content = registry_file.read().decode('utf-8')
+                    # Handle Django debug output in fixture (same as users)
+                    start = registry_content.find('[')
+                    if start > 0:
+                        registry_content = registry_content[start:]
+                    registry_data = json.loads(registry_content)
+
+                    registry_records = _transform_records(registry_data, user_lookup, 'registry')
+
+                    # Sort by model for FK dependencies
+                    model_order = ['registry.supplier', 'registry.target', 'registry.compound',
+                                   'registry.batch', 'registry.batchqcfile', 'registry.compoundtemplate']
+                    registry_records.sort(
+                        key=lambda r: model_order.index(r['model']) if r['model'] in model_order else 999
+                    )
+
+                    registry_output = temp_path / 'compounds_registry.json'
+                    with open(registry_output, 'w') as f:
+                        json.dump(registry_records, f, indent=2)
+                    transformed_files.append(str(registry_output))
+
+                    # Count by model type
+                    model_counts = {}
+                    for rec in registry_records:
+                        model = rec['model']
+                        model_counts[model] = model_counts.get(model, 0) + 1
+
+                    results['registry'] = {
+                        'total_records': len(registry_records),
+                        'by_model': model_counts,
+                    }
+                except json.JSONDecodeError as e:
+                    results['errors'].append(f'Invalid JSON in registry_fixture: {str(e)}')
+                except Exception as e:
+                    results['errors'].append(f'Error processing registry_fixture: {str(e)}')
+
+            # Process assays fixture
+            if assays_file:
+                try:
+                    assays_content = assays_file.read().decode('utf-8')
+                    # Handle Django debug output in fixture (same as users)
+                    start = assays_content.find('[')
+                    if start > 0:
+                        assays_content = assays_content[start:]
+                    assays_data = json.loads(assays_content)
+
+                    assays_records = _transform_records(assays_data, user_lookup, 'assays')
+
+                    # Sort by model for FK dependencies
+                    model_order = ['assays.dilutionseries', 'assays.protocol', 'assays.assay',
+                                   'assays.analysisresult', 'assays.dataseries', 'assays.hypothesis']
+                    assays_records.sort(
+                        key=lambda r: model_order.index(r['model']) if r['model'] in model_order else 999
+                    )
+
+                    assays_output = temp_path / 'compounds_assays.json'
+                    with open(assays_output, 'w') as f:
+                        json.dump(assays_records, f, indent=2)
+                    transformed_files.append(str(assays_output))
+
+                    # Count by model type
+                    model_counts = {}
+                    for rec in assays_records:
+                        model = rec['model']
+                        model_counts[model] = model_counts.get(model, 0) + 1
+
+                    results['assays'] = {
+                        'total_records': len(assays_records),
+                        'by_model': model_counts,
+                    }
+                except json.JSONDecodeError as e:
+                    results['errors'].append(f'Invalid JSON in assays_fixture: {str(e)}')
+                except Exception as e:
+                    results['errors'].append(f'Error processing assays_fixture: {str(e)}')
+
+            # Load fixtures if not dry run and no errors
+            if not dry_run and not results['errors'] and transformed_files:
+                try:
+                    with transaction.atomic():
+                        for fixture_file in transformed_files:
+                            call_command('loaddata', fixture_file, verbosity=0)
+                        results['loaded'] = True
+                        logger.info(
+                            f"Legacy fixtures imported by {getattr(request.user, 'email', 'local')}: "
+                            f"users={results.get('users', {}).get('total_records', 0) if results.get('users') else 0}, "
+                            f"registry={results.get('registry', {}).get('total_records', 0) if results.get('registry') else 0}, "
+                            f"assays={results.get('assays', {}).get('total_records', 0) if results.get('assays') else 0}"
+                        )
+                except Exception as e:
+                    results['errors'].append(f'Error loading fixtures: {str(e)}')
+                    results['loaded'] = False
+
+    except Exception as e:
+        logger.exception("Error in import_legacy_fixtures")
+        results['errors'].append(f'Unexpected error: {str(e)}')
+
+    if results['errors']:
+        return Response(results, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(results)
+
+
+@api_view(['GET'])
+@permission_classes([IsPlatformAdmin])
+def import_status(request):
+    """
+    Get current database counts for users and compounds models.
+
+    Useful for checking import results or current state.
+    """
+    from django.contrib.auth import get_user_model
+    from users.models import UserProfile
+    from compounds.registry.models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
+    from compounds.assays.models import (
+        DilutionSeries, Protocol, Assay, DataSeries, AnalysisResult, Hypothesis
+    )
+
+    User = get_user_model()
+
+    return Response({
+        'users': {
+            'total': User.objects.count(),
+            'with_legacy_username': UserProfile.objects.exclude(legacy_username='').count(),
+        },
+        'registry': {
+            'suppliers': Supplier.objects.count(),
+            'targets': Target.objects.count(),
+            'compounds': Compound.objects.count(),
+            'batches': Batch.objects.count(),
+            'batch_qc_files': BatchQCFile.objects.count(),
+            'compound_templates': CompoundTemplate.objects.count(),
+        },
+        'assays': {
+            'dilution_series': DilutionSeries.objects.count(),
+            'protocols': Protocol.objects.count(),
+            'assays': Assay.objects.count(),
+            'data_series': DataSeries.objects.count(),
+            'analysis_results': AnalysisResult.objects.count(),
+            'hypotheses': Hypothesis.objects.count(),
+        },
+    })

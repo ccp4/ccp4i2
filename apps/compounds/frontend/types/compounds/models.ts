@@ -233,7 +233,7 @@ export interface DataSeries {
   analysis?: AnalysisResult;
   analysis_status?: AnalysisStatus;
   analysis_kpi?: number | null;
-  svg_file: string | null;
+  plot_image: string | null;
 }
 
 export type HypothesisStatus = 'pending' | 'rejected' | 'chemistry' | 'shelved' | 'made';

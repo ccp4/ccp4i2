@@ -68,10 +68,12 @@ class UserViewSet(ModelViewSet):
     ViewSet for user management.
 
     Only accessible by platform admins.
+    Note: IsPlatformAdmin handles the no-auth case (returns True when
+    CCP4I2_REQUIRE_AUTH is not set), so we don't need IsAuthenticated here.
     """
 
     queryset = User.objects.select_related('profile').all()
-    permission_classes = [IsAuthenticated, IsPlatformAdmin]
+    permission_classes = [IsPlatformAdmin]
 
     def get_serializer_class(self):
         if self.action == 'list':

@@ -8,6 +8,7 @@ import {
   LogarithmicScale,
   PointElement,
   LineElement,
+  LineController,
   Title,
   Tooltip,
   Legend,
@@ -18,12 +19,14 @@ import { Scatter } from 'react-chartjs-2';
 import { Box, Typography, Paper } from '@mui/material';
 
 // Register Chart.js components
+// LineController is needed for mixed chart datasets with type: 'line'
 ChartJS.register(
   CategoryScale,
   LinearScale,
   LogarithmicScale,
   PointElement,
   LineElement,
+  LineController,
   Title,
   Tooltip,
   Legend

@@ -8,6 +8,7 @@ These URLs are included by the main ccp4i2 urls.py when compounds is enabled.
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
+from compounds.admin_views import import_legacy_fixtures, import_status
 from compounds.registry.views import (
     SupplierViewSet,
     TargetViewSet,
@@ -80,5 +81,10 @@ router.register(r'expression-tag-locations', ExpressionTagLocationViewSet, basen
 router.register(r'expression-tags', ExpressionTagViewSet, basename='expression-tag')
 
 urlpatterns = [
+    # Admin endpoints for legacy data import
+    path('admin/import-legacy/', import_legacy_fixtures, name='import-legacy-fixtures'),
+    path('admin/import-status/', import_status, name='import-status'),
+
+    # Router-based endpoints
     path('', include(router.urls)),
 ]

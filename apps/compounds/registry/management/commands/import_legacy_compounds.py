@@ -244,7 +244,7 @@ class Command(BaseCommand):
         new_fields = {}
 
         for old_key, value in old_fields.items():
-            new_key = self._transform_field_name(old_key)
+            new_key = self._transform_field_name(old_key, new_model)
 
             if new_key is None:
                 continue
@@ -296,8 +296,13 @@ class Command(BaseCommand):
             'fields': new_fields
         }
 
-    def _transform_field_name(self, old_name):
-        """Transform field names to new schema."""
+    def _transform_field_name(self, old_name, model_type=None):
+        """Transform field names to new schema.
+
+        Args:
+            old_name: The legacy field name
+            model_type: The target model type (e.g., 'assays.dataseries')
+        """
         mappings = {
             'project_name': 'name',
             'creation_date': 'created_at',
@@ -312,7 +317,7 @@ class Command(BaseCommand):
             'inchi1': 'inchi',
             'inchi1_qualifier': None,
             'stereo_comments': 'stereo_comment',
-            'pklFile': None,
+            'pklFile': None,  # Drop pickle files - no longer used, mol objects generated on-demand from SMILES
             'svgFile': 'svg_file',
             'rdkitSmiles': 'rdkit_smiles',
             'aliases': None,
@@ -343,6 +348,12 @@ class Command(BaseCommand):
             'completionNotes': 'completion_notes',
             'project': 'target',
         }
+
+        # Model-specific overrides
+        # DataSeries uses plot_image for image files (not svg_file)
+        if model_type == 'assays.dataseries' and old_name == 'svgFile':
+            return 'plot_image'
+
         return mappings.get(old_name, old_name)
 
     def _transform_file_path(self, old_path, model_type):

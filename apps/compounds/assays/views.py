@@ -250,8 +250,8 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                 # Check if this file matches the 'Image File' in analysis results
                 image_filename = series.analysis.results.get('Image File')
                 if image_filename and image_filename == f.name:
-                    # Save image to svg_file field (preserves original filename)
-                    series.svg_file.save(f.name, f, save=True)
+                    # Save image to plot_image field (preserves original filename)
+                    series.plot_image.save(f.name, f, save=True)
                     matched.append({
                         'filename': f.name,
                         'data_series_id': str(series.id),
