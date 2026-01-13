@@ -8,6 +8,7 @@ in the Azure Container App environment.
 This enables:
 - The azure_extensions Django app (staged uploads, etc.)
 - Azure Storage configuration for SAS URL uploads
+- Azure Blob Storage for Django file uploads (STORAGES)
 - Azure-specific URL routing
 """
 
@@ -18,6 +19,7 @@ from ccp4i2.config.settings import *  # noqa: F401, F403
 
 # Add azure_extensions and compounds apps to INSTALLED_APPS
 INSTALLED_APPS = INSTALLED_APPS + [  # noqa: F405
+    "storages",  # django-storages for Azure Blob Storage
     "azure_extensions",
     "users",
     "compounds.registry",
@@ -39,6 +41,31 @@ if AZURE_STORAGE_ACCOUNT_NAME:
     print(f"Azure Storage configured: {AZURE_STORAGE_ACCOUNT_NAME}")
 elif AZURE_STORAGE_CONNECTION_STRING:
     print("Azure Storage configured via connection string")
+
+# Django file storage configuration using Azure Blob Storage
+# Uses django-storages[azure] for file uploads (cheaper than Azure Files for object storage)
+# Authentication uses DefaultAzureCredential (Managed Identity in production)
+if AZURE_STORAGE_ACCOUNT_NAME:
+    # Remove deprecated STATICFILES_STORAGE (Django 4.2+ uses STORAGES instead)
+    # This is imported from base settings but conflicts with the STORAGES dict
+    globals().pop("STATICFILES_STORAGE", None)
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.azure_storage.AzureStorage",
+            "OPTIONS": {
+                "account_name": AZURE_STORAGE_ACCOUNT_NAME,
+                "azure_container": "django-uploads",
+                # Use DefaultAzureCredential (Managed Identity) instead of account key
+                # This requires AZURE_CLIENT_ID env var for User-Assigned Managed Identity
+                "token_credential": True,
+            },
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+    print("Django file storage configured: Azure Blob Storage (django-uploads container)")
 
 # Platform admin emails (bootstrap admins from environment)
 PLATFORM_ADMIN_EMAILS = os.environ.get("PLATFORM_ADMIN_EMAILS", "").split(",")

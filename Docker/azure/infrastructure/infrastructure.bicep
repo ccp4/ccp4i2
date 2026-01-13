@@ -125,6 +125,11 @@ resource privateDnsZoneStorage 'Microsoft.Network/privateDnsZones@2020-06-01' = 
   location: 'global'
 }
 
+resource privateDnsZoneBlob 'Microsoft.Network/privateDnsZones@2020-06-01' = {
+  name: 'privatelink.blob.${az.environment().suffixes.storage}'
+  location: 'global'
+}
+
 resource privateDnsZoneKeyVault 'Microsoft.Network/privateDnsZones@2020-06-01' = {
   name: 'privatelink.vaultcore.azure.net'
   location: 'global'
@@ -149,6 +154,18 @@ resource privateDnsZoneServiceBus 'Microsoft.Network/privateDnsZones@2020-06-01'
 resource privateDnsZoneStorageLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
   name: 'storage-link'
   parent: privateDnsZoneStorage
+  location: 'global'
+  properties: {
+    registrationEnabled: false
+    virtualNetwork: {
+      id: vnet.id
+    }
+  }
+}
+
+resource privateDnsZoneBlobLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
+  name: 'blob-link'
+  parent: privateDnsZoneBlob
   location: 'global'
   properties: {
     registrationEnabled: false
@@ -271,6 +288,15 @@ resource mediafilesShare 'Microsoft.Storage/storageAccounts/fileServices/shares@
   }
 }
 
+// File share for CCP4i2 projects (separate from ccp4data which contains CCP4 installation)
+// Uses Azure Files for POSIX filesystem semantics needed by CCP4 tools
+resource projectsShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
+  name: '${storageAccount.name}/default/ccp4i2-projects'
+  properties: {
+    shareQuota: 100  // 100GB initial quota for projects
+  }
+}
+
 // Blob container for staged uploads (large file uploads via SAS URL)
 resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
   name: 'default'
@@ -282,6 +308,16 @@ resource stagingUploadsContainer 'Microsoft.Storage/storageAccounts/blobServices
   parent: blobServices
   properties: {
     publicAccess: 'None'  // No anonymous access, SAS required
+  }
+}
+
+// Blob container for Django file uploads (using django-storages)
+// Uses Blob Storage (cheaper than Files) for object storage of Django uploads
+resource djangoUploadsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  name: 'django-uploads'
+  parent: blobServices
+  properties: {
+    publicAccess: 'None'  // No anonymous access, managed identity auth
   }
 }
 
@@ -368,6 +404,41 @@ resource storagePrivateDnsZoneGroup 'Microsoft.Network/privateEndpoints/privateD
         name: 'storage-config'
         properties: {
           privateDnsZoneId: privateDnsZoneStorage.id
+        }
+      }
+    ]
+  }
+}
+
+// Private endpoint for Blob storage (django-storages uploads)
+resource blobPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01' = {
+  name: '${resourceSuffix}-blob-pe'
+  location: location
+  properties: {
+    subnet: {
+      id: '${vnet.id}/subnets/private-endpoints-subnet'
+    }
+    privateLinkServiceConnections: [
+      {
+        name: 'blob-connection'
+        properties: {
+          privateLinkServiceId: storageAccount.id
+          groupIds: ['blob']
+        }
+      }
+    ]
+  }
+}
+
+resource blobPrivateDnsZoneGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2023-05-01' = {
+  name: 'blob-dns-zone-group'
+  parent: blobPrivateEndpoint
+  properties: {
+    privateDnsZoneConfigs: [
+      {
+        name: 'blob-config'
+        properties: {
+          privateDnsZoneId: privateDnsZoneBlob.id
         }
       }
     ]
@@ -605,6 +676,20 @@ resource containerAppsMediaStorage 'Microsoft.App/managedEnvironments/storages@2
       accountName: storageAccount.name
       accountKey: storageAccount.listKeys().keys[0].value
       shareName: 'mediafiles'
+      accessMode: 'ReadWrite'
+    }
+  }
+}
+
+// Storage mount for CCP4i2 projects (dedicated file share separate from ccp4data)
+resource containerAppsProjectsStorage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
+  name: 'projects-mount'
+  parent: containerAppsEnvironment
+  properties: {
+    azureFile: {
+      accountName: storageAccount.name
+      accountKey: storageAccount.listKeys().keys[0].value
+      shareName: 'ccp4i2-projects'
       accessMode: 'ReadWrite'
     }
   }

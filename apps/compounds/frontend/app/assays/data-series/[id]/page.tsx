@@ -94,15 +94,9 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
     if (!id) return;
     setAnalysing(true);
     try {
-      const response = await fetch(`/api/proxy/compounds/data-series/${id}/analyse/`, {
-        method: 'POST',
-      });
-      if (response.ok) {
-        // Refresh the series data to show updated analysis
-        mutateSeries();
-      } else {
-        console.error('Analysis failed:', await response.text());
-      }
+      await api.post(`data-series/${id}/analyse/`, {});
+      // Refresh the series data to show updated analysis
+      mutateSeries();
     } catch (err) {
       console.error('Analysis error:', err);
     } finally {

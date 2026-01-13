@@ -99,16 +99,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
     setSaveError(null);
 
     try {
-      const response = await fetch(`/api/proxy/compounds/protocols/${id}/`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plate_layout: editedLayout }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to save plate layout');
-      }
-
+      await api.patch(`protocols/${id}/`, { plate_layout: editedLayout });
       await mutate();
       setLayoutEditorOpen(false);
     } catch (err) {
@@ -129,14 +120,8 @@ export default function ProtocolDetailPage({ params }: PageProps) {
 
     setDeleting(true);
     try {
-      const response = await fetch(`/api/proxy/compounds/assays/${assayToDelete.id}/`, {
-        method: 'DELETE',
-      });
-      if (response.ok || response.status === 204) {
-        mutateAssays();
-      } else {
-        console.error('Delete failed:', await response.text());
-      }
+      await api.delete(`assays/${assayToDelete.id}/`);
+      mutateAssays();
     } catch (err) {
       console.error('Delete error:', err);
     } finally {

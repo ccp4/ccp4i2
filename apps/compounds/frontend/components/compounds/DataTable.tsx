@@ -175,7 +175,7 @@ export function DataTable<T extends Record<string, any>>({
           overflow: 'auto',
         }}
       >
-        <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
+        <Table stickyHeader sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
               {columns.map((column) => (

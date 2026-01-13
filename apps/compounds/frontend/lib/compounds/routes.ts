@@ -91,6 +91,9 @@ export const routes = {
     /** Protocol detail page */
     protocol: (id: string | number) => route(`/assays/protocols/${id}`),
 
+    /** Dilution series list */
+    dilutionSeries: () => route('/assays/dilution-series'),
+
     /** Data series detail page */
     dataSeries: (id: string | number) => route(`/assays/data-series/${id}`),
 

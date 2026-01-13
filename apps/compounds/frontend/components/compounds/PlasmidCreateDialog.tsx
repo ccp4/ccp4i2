@@ -300,22 +300,7 @@ export function PlasmidCreateDialog({
         formData.append('genbank_file', genbankFile);
       }
 
-      const response = await fetch('/api/proxy/compounds/plasmids/', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        const errorMsg =
-          errorData.detail ||
-          errorData.name?.[0] ||
-          errorData.genbank_file?.[0] ||
-          `Failed to create plasmid (${response.status})`;
-        throw new Error(errorMsg);
-      }
-
-      const newPlasmid = await response.json();
+      const newPlasmid = await api.upload<Plasmid>('plasmids/', formData);
       onCreated(newPlasmid);
       onClose();
     } catch (err) {

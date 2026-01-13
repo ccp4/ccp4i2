@@ -16,8 +16,13 @@ import {
   Alert,
   IconButton,
   CircularProgress,
+  Divider,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
 import { Close, Description, Add } from '@mui/icons-material';
+import { useSWRConfig } from 'swr';
+import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
 import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
 import type { Protocol, DilutionSeries, AnalysisMethod } from '@/types/compounds/models';
 
@@ -42,8 +47,10 @@ export function ProtocolCreateDialog({
   onCreated,
 }: ProtocolCreateDialogProps) {
   const api = useCompoundsApi();
+  const { mutate } = useSWRConfig();
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [createDilutionsDialogOpen, setCreateDilutionsDialogOpen] = useState(false);
 
   // Form state
   const [name, setName] = useState('');
@@ -55,6 +62,11 @@ export function ProtocolCreateDialog({
   const { data: dilutionSeries, isLoading: dilutionsLoading } = api.get<DilutionSeries[]>(
     'dilution-series/'
   );
+
+  const handleDilutionSeriesCreated = (newSeries: DilutionSeries) => {
+    mutate('/api/proxy/compounds/dilution-series/');
+    setPreferredDilutionsId(newSeries.id);
+  };
 
   // Reset form when dialog opens
   useEffect(() => {
@@ -143,7 +155,14 @@ export function ProtocolCreateDialog({
             <InputLabel>Preferred Dilutions</InputLabel>
             <Select
               value={preferredDilutionsId || ''}
-              onChange={(e) => setPreferredDilutionsId(e.target.value || null)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === '__create_new__') {
+                  setCreateDilutionsDialogOpen(true);
+                } else {
+                  setPreferredDilutionsId(value || null);
+                }
+              }}
               label="Preferred Dilutions"
             >
               <MenuItem value="">
@@ -158,6 +177,13 @@ export function ProtocolCreateDialog({
                   </MenuItem>
                 ))
               )}
+              <Divider />
+              <MenuItem value="__create_new__">
+                <ListItemIcon>
+                  <Add fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Create New...</ListItemText>
+              </MenuItem>
             </Select>
           </FormControl>
 
@@ -187,6 +213,12 @@ export function ProtocolCreateDialog({
           {saving ? 'Creating...' : 'Create Protocol'}
         </Button>
       </DialogActions>
+
+      <DilutionSeriesCreateDialog
+        open={createDilutionsDialogOpen}
+        onClose={() => setCreateDilutionsDialogOpen(false)}
+        onCreated={handleDilutionSeriesCreated}
+      />
     </Dialog>
   );
 }

@@ -66,12 +66,8 @@ export default function PlasmidDetailPage({ params }: PageProps) {
   const handleDelete = async () => {
     setDeleting(true);
     try {
-      const response = await fetch(`/api/proxy/compounds/plasmids/${id}/`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        router.push(routes.constructs.list());
-      }
+      await api.delete(`plasmids/${id}/`);
+      router.push(routes.constructs.list());
     } catch (error) {
       console.error('Failed to delete plasmid:', error);
     } finally {

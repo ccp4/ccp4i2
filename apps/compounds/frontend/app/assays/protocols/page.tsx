@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Container, Typography, Box, Chip, Button } from '@mui/material';
-import { Science, Description, Add } from '@mui/icons-material';
+import { Science, Description, Add, Settings } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -113,13 +113,22 @@ export default function ProtocolsPage() {
             Assay protocols define experimental methods and analysis approaches
           </Typography>
         </Box>
-        <Button
-          variant="contained"
-          startIcon={<Add />}
-          onClick={() => setCreateDialogOpen(true)}
-        >
-          Add Protocol
-        </Button>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button
+            variant="outlined"
+            startIcon={<Settings />}
+            onClick={() => router.push(routes.assays.dilutionSeries())}
+          >
+            Manage Dilutions
+          </Button>
+          <Button
+            variant="contained"
+            startIcon={<Add />}
+            onClick={() => setCreateDialogOpen(true)}
+          >
+            Add Protocol
+          </Button>
+        </Box>
       </Box>
 
       <DataTable

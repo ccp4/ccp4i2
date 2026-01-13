@@ -408,17 +408,7 @@ export function AssayUploadDrawer({
         formData.append('comments', comments);
       }
 
-      const assayResponse = await fetch('/api/proxy/compounds/assays/', {
-        method: 'POST',
-        body: formData,
-      });
-
-      if (!assayResponse.ok) {
-        const errorData = await assayResponse.json().catch(() => ({}));
-        throw new Error(errorData.detail || 'Failed to create assay');
-      }
-
-      const newAssay = await assayResponse.json();
+      const newAssay = await api.upload<{ id: string }>('assays/', formData);
 
       // Step 2: Create data series sequentially to avoid SQLite locking
       const validSeries = extractedSeries.filter(s => !s.hasIssues);
@@ -433,13 +423,9 @@ export function AssayUploadDrawer({
           extracted_data: series.dataValues,  // Controls embedded at first/last positions
         };
 
-        const seriesResponse = await fetch('/api/proxy/compounds/data-series/', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(seriesData),
-        });
-
-        if (!seriesResponse.ok) {
+        try {
+          await api.post('data-series/', seriesData);
+        } catch {
           const seriesLabel = series.stripIndex !== undefined
             ? `${series.rowLetter}-${series.stripIndex + 1}`
             : series.rowLetter;
@@ -452,18 +438,10 @@ export function AssayUploadDrawer({
       if (runAnalysis && validSeries.length > 0) {
         console.log('Triggering analysis for assay:', newAssay.id);
         try {
-          const analysisResponse = await fetch(
-            `/api/proxy/compounds/assays/${newAssay.id}/analyse_all/`,
-            { method: 'POST' }
-          );
-          console.log('Analysis response status:', analysisResponse.status);
-          if (!analysisResponse.ok) {
-            console.warn('Analysis request failed, but assay was created');
-          } else {
-            const analysisResult = await analysisResponse.json();
-            console.log('Analysis completed:', analysisResult);
-          }
+          const analysisResult = await api.post(`assays/${newAssay.id}/analyse_all/`, {});
+          console.log('Analysis completed:', analysisResult);
         } catch (err) {
+          console.warn('Analysis request failed, but assay was created');
           console.error('Analysis failed:', err);
         }
       } else {

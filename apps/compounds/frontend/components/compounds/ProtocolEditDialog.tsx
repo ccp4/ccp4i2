@@ -18,10 +18,14 @@ import {
   IconButton,
   Divider,
   CircularProgress,
+  ListItemIcon,
+  ListItemText,
 } from '@mui/material';
-import { Close, Edit, Code } from '@mui/icons-material';
+import { Close, Edit, Code, Add } from '@mui/icons-material';
+import { useSWRConfig } from 'swr';
 import { TightBindingParametersForm } from './TightBindingParametersForm';
 import { FittingMethodEditDialog } from './FittingMethodEditDialog';
+import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import type { Protocol, FittingMethod, FittingParameters, DilutionSeries } from '@/types/compounds/models';
 
@@ -39,9 +43,11 @@ export function ProtocolEditDialog({
   onSave,
 }: ProtocolEditDialogProps) {
   const api = useCompoundsApi();
+  const { mutate } = useSWRConfig();
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [scriptEditorOpen, setScriptEditorOpen] = useState(false);
+  const [createDilutionsDialogOpen, setCreateDilutionsDialogOpen] = useState(false);
 
   // Form state
   const [name, setName] = useState(protocol.name);
@@ -66,6 +72,11 @@ export function ProtocolEditDialog({
   const { data: dilutionSeries, isLoading: dilutionsLoading } = api.get<DilutionSeries[]>(
     'dilution-series/'
   );
+
+  const handleDilutionSeriesCreated = (newSeries: DilutionSeries) => {
+    mutate('/api/proxy/compounds/dilution-series/');
+    setPreferredDilutionsId(newSeries.id);
+  };
 
   // Reset form when protocol changes
   useEffect(() => {
@@ -93,33 +104,14 @@ export function ProtocolEditDialog({
     setError(null);
 
     try {
-      const response = await fetch(`/api/proxy/compounds/protocols/${protocol.id}/`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          fitting_method: fittingMethodId || null,
-          fitting_parameters: fittingParams || {},
-          preferred_dilutions: preferredDilutionsId || null,
-          pherastar_table: pherastarTable || null,
-          comments: comments || null,
-        }),
+      await api.patch(`protocols/${protocol.id}/`, {
+        name,
+        fitting_method: fittingMethodId || null,
+        fitting_parameters: fittingParams || {},
+        preferred_dilutions: preferredDilutionsId || null,
+        pherastar_table: pherastarTable || null,
+        comments: comments || null,
       });
-
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        // DRF returns validation errors as {field_name: ["error"]}
-        const errorMessages: string[] = [];
-        for (const [field, errors] of Object.entries(data)) {
-          if (Array.isArray(errors)) {
-            errorMessages.push(`${field}: ${errors.join(', ')}`);
-          } else if (typeof errors === 'string') {
-            errorMessages.push(`${field}: ${errors}`);
-          }
-        }
-        throw new Error(errorMessages.length > 0 ? errorMessages.join('; ') : 'Failed to save protocol');
-      }
-
       onSave();
       onClose();
     } catch (err) {
@@ -210,7 +202,14 @@ export function ProtocolEditDialog({
             <InputLabel>Preferred Dilutions</InputLabel>
             <Select
               value={preferredDilutionsId || ''}
-              onChange={(e) => setPreferredDilutionsId(e.target.value || null)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === '__create_new__') {
+                  setCreateDilutionsDialogOpen(true);
+                } else {
+                  setPreferredDilutionsId(value || null);
+                }
+              }}
               label="Preferred Dilutions"
             >
               <MenuItem value="">
@@ -225,6 +224,13 @@ export function ProtocolEditDialog({
                   </MenuItem>
                 ))
               )}
+              <Divider />
+              <MenuItem value="__create_new__">
+                <ListItemIcon>
+                  <Add fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Create New...</ListItemText>
+              </MenuItem>
             </Select>
           </FormControl>
 
@@ -289,6 +295,12 @@ export function ProtocolEditDialog({
           fittingMethodId={fittingMethodId}
         />
       )}
+
+      <DilutionSeriesCreateDialog
+        open={createDilutionsDialogOpen}
+        onClose={() => setCreateDilutionsDialogOpen(false)}
+        onCreated={handleDilutionSeriesCreated}
+      />
     </Dialog>
   );
 }

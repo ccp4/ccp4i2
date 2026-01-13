@@ -236,7 +236,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'CCP4I2_PROJECTS_DIR'
-              value: '/mnt/ccp4data/ccp4i2-projects'
+              value: '/mnt/projects'
             }
             {
               name: 'ALLOWED_HOSTS'
@@ -313,6 +313,10 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
               volumeName: 'mediafiles-volume'
               mountPath: '/mnt/mediafiles'
             }
+            {
+              volumeName: 'projects-volume'
+              mountPath: '/mnt/projects'
+            }
           ]
         }
       ]
@@ -364,6 +368,11 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
         {
           name: 'mediafiles-volume'
           storageName: 'mediafiles-mount'
+          storageType: 'AzureFile'
+        }
+        {
+          name: 'projects-volume'
+          storageName: 'projects-mount'
           storageType: 'AzureFile'
         }
       ]
@@ -489,7 +498,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'CCP4I2_PROJECTS_DIR'
-              value: '/mnt/ccp4data/ccp4i2-projects'
+              value: '/mnt/projects'
             }
             {
               name: 'SERVICE_BUS_CONNECTION_STRING'
@@ -522,6 +531,10 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               volumeName: 'mediafiles-volume'
               mountPath: '/mnt/mediafiles'
+            }
+            {
+              volumeName: 'projects-volume'
+              mountPath: '/mnt/projects'
             }
           ]
         }
@@ -563,6 +576,11 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
         {
           name: 'mediafiles-volume'
           storageName: 'mediafiles-mount'
+          storageType: 'AzureFile'
+        }
+        {
+          name: 'projects-volume'
+          storageName: 'projects-mount'
           storageType: 'AzureFile'
         }
       ]
@@ -652,6 +670,10 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
               volumeName: 'mediafiles-volume'
               mountPath: '/mnt/mediafiles'
             }
+            {
+              volumeName: 'projects-volume'
+              mountPath: '/mnt/projects'
+            }
           ]
         }
       ]
@@ -683,6 +705,11 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
         {
           name: 'mediafiles-volume'
           storageName: 'mediafiles-mount'
+          storageType: 'AzureFile'
+        }
+        {
+          name: 'projects-volume'
+          storageName: 'projects-mount'
           storageType: 'AzureFile'
         }
       ]

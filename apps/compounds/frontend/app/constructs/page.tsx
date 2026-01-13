@@ -34,13 +34,9 @@ export default function ConstructsPage() {
     if (!deleteTarget) return;
     setDeleting(true);
     try {
-      const response = await fetch(`/api/proxy/compounds/plasmids/${deleteTarget.id}/`, {
-        method: 'DELETE',
-      });
-      if (response.ok) {
-        mutate('/api/proxy/compounds/plasmids/');
-        setDeleteTarget(null);
-      }
+      await api.delete(`plasmids/${deleteTarget.id}/`);
+      mutate('/api/proxy/compounds/plasmids/');
+      setDeleteTarget(null);
     } catch (error) {
       console.error('Failed to delete plasmid:', error);
     } finally {

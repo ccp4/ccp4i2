@@ -68,30 +68,12 @@ export function FittingMethodEditDialog({
     setError(null);
 
     try {
-      const response = await fetch(`/api/proxy/compounds/fitting-methods/${fittingMethodId}/`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          name,
-          description,
-          script,
-          version,
-        }),
+      await api.patch(`fitting-methods/${fittingMethodId}/`, {
+        name,
+        description,
+        script,
+        version,
       });
-
-      if (!response.ok) {
-        const data = await response.json().catch(() => ({}));
-        const errorMessages: string[] = [];
-        for (const [field, errors] of Object.entries(data)) {
-          if (Array.isArray(errors)) {
-            errorMessages.push(`${field}: ${errors.join(', ')}`);
-          } else if (typeof errors === 'string') {
-            errorMessages.push(`${field}: ${errors}`);
-          }
-        }
-        throw new Error(errorMessages.length > 0 ? errorMessages.join('; ') : 'Failed to save');
-      }
-
       mutate();
       onSave?.();
       onClose();

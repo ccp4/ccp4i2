@@ -103,18 +103,12 @@ export default function AssayDetailPage({ params }: PageProps) {
   const handleDelete = async () => {
     setDeleting(true);
     try {
-      const response = await fetch(`/api/proxy/compounds/assays/${id}/`, {
-        method: 'DELETE',
-      });
-      if (response.ok || response.status === 204) {
-        // Navigate back to protocol page or assays list
-        if (protocol) {
-          router.push(routes.assays.protocol(protocol.id));
-        } else {
-          router.push(routes.assays.list());
-        }
+      await api.delete(`assays/${id}/`);
+      // Navigate back to protocol page or assays list
+      if (protocol) {
+        router.push(routes.assays.protocol(protocol.id));
       } else {
-        console.error('Delete failed:', await response.text());
+        router.push(routes.assays.list());
       }
     } catch (err) {
       console.error('Delete error:', err);
