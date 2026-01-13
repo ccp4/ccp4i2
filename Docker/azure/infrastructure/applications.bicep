@@ -28,6 +28,9 @@ param aadClientId string
 @description('Azure AD Tenant ID for frontend authentication')
 param aadTenantId string
 
+@description('Bootstrap platform admin emails (comma-separated)')
+param platformAdminEmails string = ''
+
 @description('Shared Container Apps Identity ID')
 param containerAppsIdentityId string
 
@@ -237,7 +240,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'ALLOWED_HOSTS'
-              value: '${serverAppName},${serverAppName}.internal.whitecliff-258bc831.northeurope.azurecontainerapps.io,localhost,127.0.0.1'
+              value: '*'  // Allow all hosts - health probes use various internal IPs/hostnames
             }
             {
               name: 'CORS_ALLOWED_ORIGINS'
@@ -280,6 +283,10 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'AZURE_AD_CLIENT_ID'
               value: aadClientId
+            }
+            {
+              name: 'PLATFORM_ADMIN_EMAILS'
+              value: platformAdminEmails
             }
             // Azure Storage for staged uploads (large file uploads via SAS URL)
             {

@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Typography, Box, Stack, Paper } from '@mui/material';
-import { Science, Biotech, TableChart, Search, AccountTree } from '@mui/icons-material';
+import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings } from '@mui/icons-material';
 import Link from 'next/link';
 
 /**
@@ -107,7 +107,7 @@ export default function AppSelectorPage() {
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
-          href="/assays"
+          href="/assays/protocols"
         >
           <Biotech sx={{ fontSize: 56, color: 'info.main' }} />
           <Box>
@@ -162,6 +162,30 @@ export default function AppSelectorPage() {
             <Typography variant="h5">Construct Database</Typography>
             <Typography color="text.secondary">
               Plasmid registry, cassette tracking, and sequencing results
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/admin"
+        >
+          <AdminPanelSettings sx={{ fontSize: 56, color: 'grey.600' }} />
+          <Box>
+            <Typography variant="h5">Platform Admin</Typography>
+            <Typography color="text.secondary">
+              User management, platform settings, and data import tools
             </Typography>
           </Box>
         </Paper>

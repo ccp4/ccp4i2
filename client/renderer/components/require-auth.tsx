@@ -53,7 +53,9 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 
     if (accounts.length === 0) {
       console.log("No accounts found, redirecting to login");
-      instance.loginRedirect();
+      // Always redirect to root "/" which is registered in Azure AD
+      // After auth, user will be at root and can navigate to their destination
+      instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/" });
       return;
     }
 

@@ -63,6 +63,13 @@ COPY apps/compounds/frontend/components/compounds/ ./renderer/components/compoun
 COPY apps/compounds/frontend/lib/compounds/ ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 
+# =============================================================================
+# Overlay users frontend (platform admin)
+# =============================================================================
+COPY apps/users/frontend/app/admin/ ./renderer/app/admin/
+COPY apps/users/frontend/app/api/proxy/users/ ./renderer/app/api/proxy/users/
+COPY apps/users/frontend/lib/users/ ./renderer/lib/users/
+
 # Add path aliases to tsconfig.json for @/ imports used by compounds
 # The ccp4i2 client uses relative imports, but compounds uses @/ aliases
 RUN apk add --no-cache jq && \

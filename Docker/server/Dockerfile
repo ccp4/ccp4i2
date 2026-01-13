@@ -41,6 +41,11 @@ COPY server/ .
 COPY Docker/azure/azure_extensions /usr/src/app/azure_extensions
 
 # =============================================================================
+# Overlay users Django app (platform admin system)
+# =============================================================================
+COPY apps/users /usr/src/app/users
+
+# =============================================================================
 # Overlay compounds Django apps (registry, assays & constructs)
 # =============================================================================
 COPY apps/compounds/registry /usr/src/app/compounds/registry

@@ -30,6 +30,7 @@ from typing import Optional, Tuple
 from urllib.request import urlopen
 from urllib.error import URLError
 
+from django.contrib.auth import get_user_model
 from django.http import JsonResponse, HttpRequest
 
 logger = logging.getLogger(__name__)
@@ -268,5 +269,35 @@ class AzureADAuthMiddleware:
         request.azure_ad_claims = claims
         request.azure_ad_user_id = claims.get("sub")
         request.azure_ad_email = claims.get("email") or claims.get("preferred_username")
+
+        # Get or create Django user from claims
+        # This enables DRF's IsAuthenticated permission to work
+        email = request.azure_ad_email
+        if email:
+            User = get_user_model()
+            # Use email as the unique identifier
+            user, created = User.objects.get_or_create(
+                email=email.lower(),
+                defaults={
+                    "username": email.lower().replace("@", "_at_").replace(".", "_"),
+                    "first_name": claims.get("given_name", ""),
+                    "last_name": claims.get("family_name", ""),
+                }
+            )
+            if created:
+                logger.info(f"Created user from Azure AD: {email}")
+            else:
+                # Update name if changed in Azure AD
+                updated = False
+                if claims.get("given_name") and user.first_name != claims.get("given_name"):
+                    user.first_name = claims.get("given_name")
+                    updated = True
+                if claims.get("family_name") and user.last_name != claims.get("family_name"):
+                    user.last_name = claims.get("family_name")
+                    updated = True
+                if updated:
+                    user.save(update_fields=["first_name", "last_name"])
+
+            request.user = user
 
         return self.get_response(request)

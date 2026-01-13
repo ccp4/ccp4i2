@@ -182,6 +182,7 @@ az deployment group create \
                containerAppsIdentityClientId="$CONTAINER_APPS_IDENTITY_CLIENT_ID" \
                ccp4Version="${CCP4_VERSION:-ccp4-9}" \
                storageAccountName="$STORAGE_ACCOUNT_NAME" \
+               platformAdminEmails="${PLATFORM_ADMIN_EMAILS:-}" \
   --name $APP_DEPLOYMENT_NAME \
   --mode Incremental
 
