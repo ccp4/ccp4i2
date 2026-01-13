@@ -28,6 +28,7 @@ import {
   CheckCircle,
   Error as ErrorIcon,
 } from '@mui/icons-material';
+import { apiUpload } from '@/lib/compounds/api';
 
 interface UploadFile {
   file: File;
@@ -124,16 +125,8 @@ export function DocumentUploadDialog({
         formData.append('file', uploadFile.file);
         formData.append(parentField, parentId);
 
-        const response = await fetch(`/api/proxy/compounds/${endpoint}`, {
-          method: 'POST',
-          body: formData,
-        });
-
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          const errorMsg = errorData.detail || errorData.file?.[0] || 'Upload failed';
-          throw new Error(errorMsg);
-        }
+        // Use apiUpload which includes auth headers
+        await apiUpload(endpoint, formData);
 
         setFiles((prev) =>
           prev.map((f, idx) =>
