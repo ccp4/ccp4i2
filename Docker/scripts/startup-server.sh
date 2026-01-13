@@ -105,8 +105,10 @@ mkdir -p "$CCP4I2_PROJECTS_DIR"
 cd /usr/src/app
 
 # Run migrations
+# --fake-initial: If tables already exist but migrations aren't recorded, mark them as applied
+# This handles cases where tables were created before migrations were added to source control
 echo "Running Django migrations..."
-$DJANGO_PYTHON manage.py migrate --run-syncdb
+$DJANGO_PYTHON manage.py migrate --run-syncdb --fake-initial
 
 # Collect static files (for admin interface)
 echo "Collecting static files..."
