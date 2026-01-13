@@ -305,8 +305,11 @@ class Protocol(models.Model):
 
 
 def _protocol_doc_path(instance, filename):
-    """Generate upload path for protocol documents."""
-    return Path('protocols') / str(instance.protocol.id) / filename
+    """Generate upload path for protocol documents.
+
+    Legacy pattern: AssayCompounds/Protocols/Protocol_{uuid}/{filename}
+    """
+    return Path('AssayCompounds') / 'Protocols' / f'Protocol_{instance.protocol.id}' / filename
 
 
 class ProtocolDocument(models.Model):
@@ -341,8 +344,12 @@ class ProtocolDocument(models.Model):
 
 
 def _assay_data_path(instance, filename):
-    """Generate upload path for assay data files."""
-    return Path('assays') / str(instance.id) / filename
+    """Generate upload path for assay data files.
+
+    Legacy pattern: AssayCompounds/Experiments/Experiment_{uuid}/{filename}
+    Note: 'Assay' was called 'Experiment' in legacy.
+    """
+    return Path('AssayCompounds') / 'Experiments' / f'Experiment_{instance.id}' / filename
 
 
 class Assay(models.Model):
@@ -403,9 +410,17 @@ class Assay(models.Model):
 
 
 def _series_svg_path(instance, filename):
-    """Generate upload path for data series plot SVGs."""
+    """Generate upload path for data series plot SVGs.
+
+    Legacy pattern: Same directory as parent Experiment's dataFile.
+    AssayCompounds/Experiments/Experiment_{uuid}/{filename}
+
+    For Hill-Langmuir: auto-generated plots pass '{id}.svg' as filename
+    For Table-Of-Values: preserves original filename for matching via
+                         analysis.results['Image File']
+    """
     assay_id = instance.assay.id
-    return Path('assays') / str(assay_id) / 'plots' / f'{instance.id}.svg'
+    return Path('AssayCompounds') / 'Experiments' / f'Experiment_{assay_id}' / filename
 
 
 class DataSeries(models.Model):
@@ -535,8 +550,11 @@ class AnalysisResult(models.Model):
 
 
 def _hypothesis_svg_path(instance, filename):
-    """Generate upload path for hypothesis SVG images."""
-    return Path('hypotheses') / 'svg' / f'{instance.id}.svg'
+    """Generate upload path for hypothesis SVG images.
+
+    Legacy pattern: AssayCompounds/svg/{uuid}.svg
+    """
+    return Path('AssayCompounds') / 'svg' / f'{instance.id}.svg'
 
 
 class Hypothesis(models.Model):

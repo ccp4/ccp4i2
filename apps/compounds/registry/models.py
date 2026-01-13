@@ -94,8 +94,11 @@ def _next_reg_number():
 
 
 def _compound_svg_path(instance, filename):
-    """Generate upload path for compound SVG images."""
-    return Path('compounds') / 'svg' / f'{instance.formatted_id}.svg'
+    """Generate upload path for compound SVG images.
+
+    Legacy pattern: RegisterCompounds/svg/NCL-XXXXXXXX.svg
+    """
+    return Path('RegisterCompounds') / 'svg' / f'{instance.formatted_id}.svg'
 
 
 class Compound(models.Model):
@@ -247,9 +250,12 @@ class Compound(models.Model):
 
 
 def _batch_qc_path(instance, filename):
-    """Generate upload path for batch QC files."""
+    """Generate upload path for batch QC files.
+
+    Legacy pattern: RegBatchQCFile_NCL-XXXXXXXX/{uuid}_{filename}
+    """
     compound_id = instance.batch.compound.formatted_id
-    return Path('batches') / 'qc' / compound_id / f'{instance.id}_{filename}'
+    return f'RegBatchQCFile_{compound_id}/{instance.id}_{filename}'
 
 
 class Batch(models.Model):

@@ -214,6 +214,63 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                 'error': str(e),
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    @action(detail=True, methods=['post'])
+    def upload_images(self, request, pk=None):
+        """
+        Batch upload images for Table-Of-Values analysis.
+
+        For protocols using 'table_of_values' analysis method, images are
+        pre-analyzed externally. This endpoint matches uploaded filenames
+        to the 'Image File' value in each DataSeries analysis results.
+
+        Expects multipart/form-data with one or more files.
+
+        Returns summary of matched/unmatched files.
+        """
+        assay = self.get_object()
+        files = request.FILES.getlist('files')
+
+        if not files:
+            return Response({
+                'status': 'error',
+                'error': 'No files provided'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Get all data series for this assay that have analysis results
+        data_series_qs = assay.data_series.select_related('analysis').filter(
+            analysis__isnull=False
+        )
+
+        matched = []
+        unmatched = []
+
+        for f in files:
+            found = False
+            for series in data_series_qs:
+                # Check if this file matches the 'Image File' in analysis results
+                image_filename = series.analysis.results.get('Image File')
+                if image_filename and image_filename == f.name:
+                    # Save image to svg_file field (preserves original filename)
+                    series.svg_file.save(f.name, f, save=True)
+                    matched.append({
+                        'filename': f.name,
+                        'data_series_id': str(series.id),
+                        'compound_name': series.compound_name,
+                    })
+                    found = True
+                    break
+
+            if not found:
+                unmatched.append(f.name)
+
+        return Response({
+            'status': 'completed',
+            'matched': len(matched),
+            'unmatched': len(unmatched),
+            'matched_files': matched,
+            'unmatched_files': unmatched,
+        })
+
 
 class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Data Series."""
