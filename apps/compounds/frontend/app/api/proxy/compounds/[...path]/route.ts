@@ -55,6 +55,12 @@ function buildForwardHeaders(req: NextRequest): Headers {
     headers.set("Authorization", `Bearer ${token}`);
   }
 
+  // Forward user email header (fallback for when access token lacks email claim)
+  const userEmail = req.headers.get("X-User-Email");
+  if (userEmail) {
+    headers.set("X-User-Email", userEmail);
+  }
+
   // Forward Azure Easy Auth headers if present
   const easyAuthHeaders = [
     "X-MS-TOKEN-AAD-ACCESS-TOKEN",

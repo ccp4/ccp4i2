@@ -267,49 +267,65 @@ class AzureADAuthMiddleware:
 
         # Attach claims to request for downstream use
         request.azure_ad_claims = claims
-        request.azure_ad_user_id = claims.get("sub")
+        azure_ad_sub = claims.get("sub")
+        request.azure_ad_user_id = azure_ad_sub
+
         # Try multiple claim fields where email might be found
-        request.azure_ad_email = (
+        email = (
             claims.get("email") or
             claims.get("preferred_username") or
             claims.get("upn") or  # User Principal Name
             claims.get("unique_name")  # Legacy claim
         )
 
-        # Get or create Django user from claims
-        # This enables DRF's IsAuthenticated permission to work
-        email = request.azure_ad_email
+        # Fallback: check X-User-Email header (sent by frontend from MSAL account info)
+        # This is secure because:
+        # 1. The JWT is already validated - we know WHO this is via cryptographic 'sub'
+        # 2. We use 'sub' as the primary key, not email
+        # 3. Email is just for display/lookup convenience
         if not email:
-            # Last resort: use the subject ID to create a placeholder user
-            logger.warning(f"No email claim found in token. Claims: {list(claims.keys())}")
-            email = f"user_{claims.get('sub', 'unknown')[:8]}@azuread.local"
-            request.azure_ad_email = email
+            header_email = request.headers.get("X-User-Email")
+            if header_email:
+                logger.info(f"Using X-User-Email header for sub={azure_ad_sub[:8]}...")
+                email = header_email
 
-        if email:
-            User = get_user_model()
-            # Use email as the unique identifier
-            user, created = User.objects.get_or_create(
-                email=email.lower(),
-                defaults={
-                    "username": email.lower().replace("@", "_at_").replace(".", "_"),
-                    "first_name": claims.get("given_name", ""),
-                    "last_name": claims.get("family_name", ""),
-                }
-            )
-            if created:
-                logger.info(f"Created user from Azure AD: {email}")
-            else:
-                # Update name if changed in Azure AD
-                updated = False
-                if claims.get("given_name") and user.first_name != claims.get("given_name"):
-                    user.first_name = claims.get("given_name")
-                    updated = True
-                if claims.get("family_name") and user.last_name != claims.get("family_name"):
-                    user.last_name = claims.get("family_name")
-                    updated = True
-                if updated:
-                    user.save(update_fields=["first_name", "last_name"])
+        if not email:
+            # Last resort: generate placeholder from verified sub
+            logger.warning(f"No email found for sub={azure_ad_sub}. Claims: {list(claims.keys())}")
+            email = f"user_{azure_ad_sub[:8]}@azuread.local"
 
-            request.user = user
+        request.azure_ad_email = email
 
+        # Get or create Django user
+        # Use 'sub' as the unique identifier (cryptographically verified)
+        # This prevents email header spoofing from allowing impersonation
+        User = get_user_model()
+        username = f"aad_{azure_ad_sub[:32]}"  # Stable username from sub
+        user, created = User.objects.get_or_create(
+            username=username,
+            defaults={
+                "email": email.lower(),
+                "first_name": claims.get("given_name", ""),
+                "last_name": claims.get("family_name", ""),
+            }
+        )
+
+        if created:
+            logger.info(f"Created user from Azure AD: {email} (sub={azure_ad_sub[:8]}...)")
+        else:
+            # Update email and name if changed
+            updated = False
+            if user.email != email.lower():
+                user.email = email.lower()
+                updated = True
+            if claims.get("given_name") and user.first_name != claims.get("given_name"):
+                user.first_name = claims.get("given_name")
+                updated = True
+            if claims.get("family_name") and user.last_name != claims.get("family_name"):
+                user.last_name = claims.get("family_name")
+                updated = True
+            if updated:
+                user.save(update_fields=["email", "first_name", "last_name"])
+
+        request.user = user
         return self.get_response(request)

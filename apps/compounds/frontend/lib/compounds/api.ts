@@ -16,18 +16,21 @@ import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
 // Authentication Integration
 // =============================================================================
 
-// For Docker integration: Try to import getAccessToken from ccp4i2 client's auth-token
+// For Docker integration: Try to import auth helpers from ccp4i2 client's auth-token
 // Falls back to no-op for standalone development
 let getAccessToken: () => Promise<string | null>;
+let getUserEmail: () => string | null;
 
 try {
   // This path works when overlaid into ccp4i2 client (renderer/lib/compounds/)
   // The dynamic import is resolved at build time by webpack
   const authModule = require('../../utils/auth-token');
   getAccessToken = authModule.getAccessToken;
+  getUserEmail = authModule.getUserEmail || (() => null);
 } catch {
   // Fallback for standalone development - no auth needed
   getAccessToken = async () => null;
+  getUserEmail = () => null;
 }
 
 // =============================================================================
@@ -53,6 +56,12 @@ async function coreFetch(
   const token = await getAccessToken();
   if (token) {
     headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  // Include user email as fallback for backends where access tokens don't have email claims
+  const email = getUserEmail();
+  if (email) {
+    headers['X-User-Email'] = email;
   }
 
   // Merge with provided headers

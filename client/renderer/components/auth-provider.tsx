@@ -2,7 +2,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
-import { setTokenGetter, clearTokenGetter } from "../utils/auth-token";
+import { setTokenGetter, setEmailGetter, clearTokenGetter } from "../utils/auth-token";
 
 const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
 const tenantId = process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
@@ -18,6 +18,19 @@ const msalConfig = {
 };
 
 const pca = new PublicClientApplication(msalConfig);
+
+/**
+ * Get the current user's email from MSAL account.
+ * Returns null if no account is available.
+ */
+function getAccountEmail(): string | null {
+  const accounts = pca.getAllAccounts();
+  if (accounts.length === 0) {
+    return null;
+  }
+  // Account username is typically the email/UPN
+  return accounts[0].username || null;
+}
 
 /**
  * Get an access token for API calls.
@@ -73,8 +86,9 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         return pca.handleRedirectPromise();
       })
       .then(() => {
-        // Set up the token getter for API calls
+        // Set up the token and email getters for API calls
         setTokenGetter(getApiAccessToken);
+        setEmailGetter(getAccountEmail);
         setInitialized(true);
       })
       .catch((error) => {

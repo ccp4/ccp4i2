@@ -7,8 +7,10 @@
  */
 
 type TokenGetter = () => Promise<string | null>;
+type EmailGetter = () => string | null;
 
 let tokenGetter: TokenGetter | null = null;
+let emailGetter: EmailGetter | null = null;
 
 /**
  * Set the token getter function.
@@ -22,10 +24,19 @@ export function setTokenGetter(getter: TokenGetter): void {
 }
 
 /**
+ * Set the email getter function.
+ * Called by AuthProvider when MSAL is initialized.
+ */
+export function setEmailGetter(getter: EmailGetter): void {
+  emailGetter = getter;
+}
+
+/**
  * Clear the token getter (for logout).
  */
 export function clearTokenGetter(): void {
   tokenGetter = null;
+  emailGetter = null;
 }
 
 /**
@@ -55,4 +66,16 @@ export async function getAccessToken(): Promise<string | null> {
  */
 export function isAuthConfigured(): boolean {
   return tokenGetter !== null;
+}
+
+/**
+ * Get the current user's email from MSAL account info.
+ * This is useful for sending to the backend as a fallback when
+ * the access token doesn't include email claims.
+ */
+export function getUserEmail(): string | null {
+  if (!emailGetter) {
+    return null;
+  }
+  return emailGetter();
 }
