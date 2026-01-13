@@ -222,10 +222,12 @@ REST_FRAMEWORK = {
         "rest_framework.parsers.FormParser",
         "rest_framework.parsers.MultiPartParser",
     ),
-    # Allow unauthenticated API access for development
-    # The Next.js frontend proxies requests and doesn't have access to CSRF tokens
-    # In production, Azure AD authentication is handled at the container app level
-    "DEFAULT_AUTHENTICATION_CLASSES": [],
+    # Authentication: AzureADAuthentication reads from middleware-validated users
+    # In development (no auth), this returns None and AllowAny permits access
+    # In production, the middleware validates JWT and sets request.user
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "ccp4i2.middleware.azure_auth.AzureADAuthentication",
+    ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],

@@ -32,8 +32,38 @@ from urllib.error import URLError
 
 from django.contrib.auth import get_user_model
 from django.http import JsonResponse, HttpRequest
+from rest_framework.authentication import BaseAuthentication
 
 logger = logging.getLogger(__name__)
+
+
+class AzureADAuthentication(BaseAuthentication):
+    """
+    DRF authentication class that uses the user set by AzureADAuthMiddleware.
+
+    This allows DRF's IsAuthenticated permission to work with our middleware.
+    The middleware does the actual JWT validation; this class just passes
+    the authenticated user to DRF.
+    """
+
+    def authenticate(self, request):
+        """
+        Return the user if already authenticated by middleware, None otherwise.
+
+        Returns:
+            Tuple of (user, None) if authenticated, None if not.
+        """
+        # Check if middleware already validated and set user
+        # The middleware sets these attributes on the underlying Django request
+        django_request = getattr(request, '_request', request)
+
+        # Check if our middleware ran and validated the token
+        if hasattr(django_request, 'azure_ad_claims'):
+            user = getattr(django_request, 'user', None)
+            if user and user.is_authenticated:
+                return (user, None)
+
+        return None
 
 
 class AzureADTokenValidator:
