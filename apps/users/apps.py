@@ -7,5 +7,5 @@ class UsersConfig(AppConfig):
     verbose_name = 'User Management'
 
     def ready(self):
-        # Import signals if needed
-        pass
+        # Import models to register signals
+        from . import models  # noqa: F401
