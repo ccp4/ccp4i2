@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useRef } from 'react';
 import {
   Box,
   Paper,
@@ -11,12 +11,12 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  TablePagination,
   Button,
   Chip,
   LinearProgress,
   Tooltip,
 } from '@mui/material';
+import { useVirtualizer } from '@tanstack/react-virtual';
 import { Download, Medication, ZoomIn } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import {
@@ -111,8 +111,7 @@ function CompactTable({
   aggregations: AggregationType[];
 }) {
   const router = useRouter();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
@@ -128,10 +127,13 @@ function CompactTable({
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
 
-  const paginatedRows = useMemo(() => {
-    const start = page * rowsPerPage;
-    return rows.slice(start, start + rowsPerPage);
-  }, [rows, page, rowsPerPage]);
+  // Virtualization for smooth scrolling with large datasets
+  const rowVirtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 76, // Approximate row height with molecule chip
+    overscan: 5,
+  });
 
   const handleExport = () => {
     const csv = generateCompactCsv(data, aggregations);
@@ -183,18 +185,21 @@ function CompactTable({
         </Button>
       </Box>
 
-      <TableContainer sx={{ maxHeight: 600 }}>
-        <Table stickyHeader size="small">
+      <TableContainer
+        ref={parentRef}
+        sx={{ maxHeight: 600, overflow: 'auto' }}
+      >
+        <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 600, minWidth: 80 }}>Structure</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 120 }}>Compound</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 100 }}>Target</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 80 }}>Structure</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
               {protocols.map((protocol) => (
                 aggregations.map((agg) => (
                   <TableCell
                     key={`${protocol.id}-${agg}`}
-                    sx={{ fontWeight: 600, minWidth: 80 }}
+                    sx={{ fontWeight: 600, width: 100 }}
                     align="right"
                   >
                     <Tooltip title={protocol.name}>
@@ -214,105 +219,131 @@ function CompactTable({
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedRows.map((row) => (
-              <TableRow
-                key={row.compound_id}
-                hover
-                sx={{ cursor: 'pointer' }}
-                onClick={() => router.push(`/registry/compounds/${row.compound_id}`)}
-              >
-                <TableCell>
-                  {row.smiles ? (
-                    <MoleculeChip smiles={row.smiles} size={60} />
-                  ) : (
-                    <Box
-                      sx={{
-                        width: 60,
-                        height: 60,
-                        bgcolor: 'grey.100',
-                        borderRadius: 1,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Typography variant="caption" color="text.secondary">-</Typography>
-                    </Box>
-                  )}
-                </TableCell>
-                <TableCell>
-                  <Chip
-                    icon={<Medication fontSize="small" />}
-                    label={row.formatted_id}
-                    size="small"
-                    variant="outlined"
-                  />
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body2">{row.target_name || '-'}</Typography>
-                </TableCell>
-                {protocols.map((protocol) => (
-                  aggregations.map((agg) => {
-                    const protocolData = row.protocols[protocol.id];
-                    const value = protocolData?.[agg];
-                    const hasData = protocolData && Object.keys(protocolData).length > 0;
+            {/* Spacer for rows above viewport */}
+            {rowVirtualizer.getVirtualItems().length > 0 &&
+              rowVirtualizer.getVirtualItems()[0].start > 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={3 + protocols.length * aggregations.length}
+                  sx={{
+                    height: rowVirtualizer.getVirtualItems()[0].start,
+                    padding: 0,
+                    border: 'none',
+                  }}
+                />
+              </TableRow>
+            )}
 
-                    return (
-                      <TableCell
-                        key={`${protocol.id}-${agg}`}
-                        align="right"
-                        onClick={(e) => hasData && handleProtocolCellClick(e, row, protocol)}
+            {/* Virtualized rows */}
+            {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+              const row = rows[virtualRow.index];
+              return (
+                <TableRow
+                  key={row.compound_id}
+                  data-index={virtualRow.index}
+                  ref={rowVirtualizer.measureElement}
+                  hover
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => router.push(`/registry/compounds/${row.compound_id}`)}
+                >
+                  <TableCell>
+                    {row.smiles ? (
+                      <MoleculeChip smiles={row.smiles} size={60} />
+                    ) : (
+                      <Box
                         sx={{
-                          cursor: hasData ? 'zoom-in' : 'default',
-                          '&:hover': hasData ? {
-                            bgcolor: 'action.hover',
-                          } : {},
+                          width: 60,
+                          height: 60,
+                          bgcolor: 'grey.100',
+                          borderRadius: 1,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
                         }}
                       >
-                        {agg === 'list' ? (
-                          <Tooltip title={value || '-'}>
-                            <Typography
-                              variant="body2"
-                              fontFamily="monospace"
-                              sx={{
-                                maxWidth: 100,
-                                overflow: 'hidden',
-                                textOverflow: 'ellipsis',
-                                whiteSpace: 'nowrap',
-                              }}
-                            >
-                              {value || '-'}
+                        <Typography variant="caption" color="text.secondary">-</Typography>
+                      </Box>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      icon={<Medication fontSize="small" />}
+                      label={row.formatted_id}
+                      size="small"
+                      variant="outlined"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">{row.target_name || '-'}</Typography>
+                  </TableCell>
+                  {protocols.map((protocol) => (
+                    aggregations.map((agg) => {
+                      const protocolData = row.protocols[protocol.id];
+                      const value = protocolData?.[agg];
+                      const hasData = protocolData && Object.keys(protocolData).length > 0;
+
+                      return (
+                        <TableCell
+                          key={`${protocol.id}-${agg}`}
+                          align="right"
+                          onClick={(e) => hasData && handleProtocolCellClick(e, row, protocol)}
+                          sx={{
+                            cursor: hasData ? 'zoom-in' : 'default',
+                            '&:hover': hasData ? {
+                              bgcolor: 'action.hover',
+                            } : {},
+                          }}
+                        >
+                          {agg === 'list' ? (
+                            <Tooltip title={value || '-'}>
+                              <Typography
+                                variant="body2"
+                                fontFamily="monospace"
+                                sx={{
+                                  maxWidth: 100,
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                  whiteSpace: 'nowrap',
+                                }}
+                              >
+                                {value || '-'}
+                              </Typography>
+                            </Tooltip>
+                          ) : (
+                            <Typography variant="body2" fontFamily="monospace">
+                              {agg === 'count'
+                                ? value ?? '-'
+                                : formatKpiValue(value as number | null)}
                             </Typography>
-                          </Tooltip>
-                        ) : (
-                          <Typography variant="body2" fontFamily="monospace">
-                            {agg === 'count'
-                              ? value ?? '-'
-                              : formatKpiValue(value as number | null)}
-                          </Typography>
-                        )}
-                      </TableCell>
-                    );
-                  })
-                ))}
+                          )}
+                        </TableCell>
+                      );
+                    })
+                  ))}
+                </TableRow>
+              );
+            })}
+
+            {/* Spacer for rows below viewport */}
+            {rowVirtualizer.getVirtualItems().length > 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={3 + protocols.length * aggregations.length}
+                  sx={{
+                    height:
+                      rowVirtualizer.getTotalSize() -
+                      (rowVirtualizer.getVirtualItems()[
+                        rowVirtualizer.getVirtualItems().length - 1
+                      ]?.end ?? 0),
+                    padding: 0,
+                    border: 'none',
+                  }}
+                />
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </TableContainer>
-
-      <TablePagination
-        component="div"
-        count={rows.length}
-        page={page}
-        onPageChange={(_, newPage) => setPage(newPage)}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={(e) => {
-          setRowsPerPage(parseInt(e.target.value, 10));
-          setPage(0);
-        }}
-        rowsPerPageOptions={[10, 25, 50, 100]}
-      />
 
       {/* Data series detail modal */}
       {selectedCompound && selectedProtocol && (
@@ -340,8 +371,7 @@ function MediumTable({
   data: AggregationResponse;
   aggregations: AggregationType[];
 }) {
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
@@ -349,10 +379,13 @@ function MediumTable({
 
   const rows = data.data as MediumRow[];
 
-  const paginatedRows = useMemo(() => {
-    const start = page * rowsPerPage;
-    return rows.slice(start, start + rowsPerPage);
-  }, [rows, page, rowsPerPage]);
+  // Virtualization for smooth scrolling with large datasets
+  const rowVirtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 76, // Approximate row height with molecule chip
+    overscan: 5,
+  });
 
   const handleExport = () => {
     const csv = generateMediumCsv(data, aggregations);
@@ -392,109 +425,138 @@ function MediumTable({
         </Button>
       </Box>
 
-      <TableContainer sx={{ maxHeight: 600 }}>
-        <Table stickyHeader size="small">
+      <TableContainer
+        ref={parentRef}
+        sx={{ maxHeight: 600, overflow: 'auto' }}
+      >
+        <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 600, minWidth: 80 }}>Structure</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 120 }}>Compound</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 100 }}>Target</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 120 }}>Protocol</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 80 }}>Structure</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
               {aggregations.map((agg) => (
-                <TableCell key={agg} sx={{ fontWeight: 600 }} align="right">
+                <TableCell key={agg} sx={{ fontWeight: 600, width: 80 }} align="right">
                   {formatAggLabel(agg)}
                 </TableCell>
               ))}
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedRows.map((row, idx) => (
-              <TableRow
-                key={`${row.compound_id}-${row.protocol_id}-${idx}`}
-                hover
-                sx={{ cursor: 'pointer' }}
-                onClick={() => handleRowClick(row)}
-              >
-                <TableCell>
-                  {row.smiles ? (
-                    <MoleculeChip smiles={row.smiles} size={60} />
-                  ) : (
-                    <Box
-                      sx={{
-                        width: 60,
-                        height: 60,
-                        bgcolor: 'grey.100',
-                        borderRadius: 1,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Typography variant="caption" color="text.secondary">-</Typography>
-                    </Box>
-                  )}
-                </TableCell>
-                <TableCell>
-                  <Chip
-                    icon={<Medication fontSize="small" />}
-                    label={row.formatted_id}
-                    size="small"
-                    variant="outlined"
-                  />
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body2">{row.target_name || '-'}</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body2">{row.protocol_name}</Typography>
-                </TableCell>
-                {aggregations.map((agg) => {
-                  const value = row[agg as keyof MediumRow];
-                  return (
-                    <TableCell key={agg} align="right">
-                      {agg === 'list' ? (
-                        <Tooltip title={String(value || '-')}>
-                          <Typography
-                            variant="body2"
-                            fontFamily="monospace"
-                            sx={{
-                              maxWidth: 100,
-                              overflow: 'hidden',
-                              textOverflow: 'ellipsis',
-                              whiteSpace: 'nowrap',
-                            }}
-                          >
-                            {String(value || '-')}
-                          </Typography>
-                        </Tooltip>
-                      ) : (
-                        <Typography variant="body2" fontFamily="monospace">
-                          {agg === 'count'
-                            ? value ?? '-'
-                            : formatKpiValue(value as number | null)}
-                        </Typography>
-                      )}
-                    </TableCell>
-                  );
-                })}
+            {/* Spacer for rows above viewport */}
+            {rowVirtualizer.getVirtualItems().length > 0 &&
+              rowVirtualizer.getVirtualItems()[0].start > 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={4 + aggregations.length}
+                  sx={{
+                    height: rowVirtualizer.getVirtualItems()[0].start,
+                    padding: 0,
+                    border: 'none',
+                  }}
+                />
               </TableRow>
-            ))}
+            )}
+
+            {/* Virtualized rows */}
+            {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+              const row = rows[virtualRow.index];
+              return (
+                <TableRow
+                  key={`${row.compound_id}-${row.protocol_id}-${virtualRow.index}`}
+                  data-index={virtualRow.index}
+                  ref={rowVirtualizer.measureElement}
+                  hover
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => handleRowClick(row)}
+                >
+                  <TableCell>
+                    {row.smiles ? (
+                      <MoleculeChip smiles={row.smiles} size={60} />
+                    ) : (
+                      <Box
+                        sx={{
+                          width: 60,
+                          height: 60,
+                          bgcolor: 'grey.100',
+                          borderRadius: 1,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Typography variant="caption" color="text.secondary">-</Typography>
+                      </Box>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      icon={<Medication fontSize="small" />}
+                      label={row.formatted_id}
+                      size="small"
+                      variant="outlined"
+                    />
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">{row.target_name || '-'}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">{row.protocol_name}</Typography>
+                  </TableCell>
+                  {aggregations.map((agg) => {
+                    const value = row[agg as keyof MediumRow];
+                    return (
+                      <TableCell key={agg} align="right">
+                        {agg === 'list' ? (
+                          <Tooltip title={String(value || '-')}>
+                            <Typography
+                              variant="body2"
+                              fontFamily="monospace"
+                              sx={{
+                                maxWidth: 100,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                              }}
+                            >
+                              {String(value || '-')}
+                            </Typography>
+                          </Tooltip>
+                        ) : (
+                          <Typography variant="body2" fontFamily="monospace">
+                            {agg === 'count'
+                              ? value ?? '-'
+                              : formatKpiValue(value as number | null)}
+                          </Typography>
+                        )}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+
+            {/* Spacer for rows below viewport */}
+            {rowVirtualizer.getVirtualItems().length > 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={4 + aggregations.length}
+                  sx={{
+                    height:
+                      rowVirtualizer.getTotalSize() -
+                      (rowVirtualizer.getVirtualItems()[
+                        rowVirtualizer.getVirtualItems().length - 1
+                      ]?.end ?? 0),
+                    padding: 0,
+                    border: 'none',
+                  }}
+                />
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
-
-      <TablePagination
-        component="div"
-        count={rows.length}
-        page={page}
-        onPageChange={(_, newPage) => setPage(newPage)}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={(e) => {
-          setRowsPerPage(parseInt(e.target.value, 10));
-          setPage(0);
-        }}
-        rowsPerPageOptions={[10, 25, 50, 100]}
-      />
 
       {/* Data series detail modal */}
       {selectedRow && (
@@ -516,15 +578,17 @@ function MediumTable({
  */
 function LongTable({ data }: { data: AggregationResponse }) {
   const router = useRouter();
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
+  const parentRef = useRef<HTMLDivElement>(null);
 
   const rows = data.data as LongRow[];
 
-  const paginatedRows = useMemo(() => {
-    const start = page * rowsPerPage;
-    return rows.slice(start, start + rowsPerPage);
-  }, [rows, page, rowsPerPage]);
+  // Virtualization for smooth scrolling with large datasets
+  const rowVirtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => parentRef.current,
+    estimateSize: () => 76, // Approximate row height with molecule chip
+    overscan: 5,
+  });
 
   const handleExport = () => {
     const csv = generateLongCsv(data);
@@ -543,101 +607,130 @@ function LongTable({ data }: { data: AggregationResponse }) {
         </Button>
       </Box>
 
-      <TableContainer sx={{ maxHeight: 600 }}>
-        <Table stickyHeader size="small">
+      <TableContainer
+        ref={parentRef}
+        sx={{ maxHeight: 600, overflow: 'auto' }}
+      >
+        <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 600, minWidth: 80 }}>Structure</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 120 }}>Compound</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 100 }}>Target</TableCell>
-              <TableCell sx={{ fontWeight: 600, minWidth: 120 }}>Protocol</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Date</TableCell>
-              <TableCell sx={{ fontWeight: 600 }} align="right">KPI</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Status</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 80 }}>Structure</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }}>Date</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 80 }} align="right">KPI</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 80 }}>Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {paginatedRows.map((row) => (
-              <TableRow
-                key={row.data_series_id}
-                hover
-                sx={{ cursor: 'pointer' }}
-                onClick={() => row.compound_id && router.push(`/registry/compounds/${row.compound_id}`)}
-              >
-                <TableCell>
-                  {row.smiles ? (
-                    <MoleculeChip smiles={row.smiles} size={60} />
-                  ) : (
-                    <Box
-                      sx={{
-                        width: 60,
-                        height: 60,
-                        bgcolor: 'grey.100',
-                        borderRadius: 1,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <Typography variant="caption" color="text.secondary">-</Typography>
-                    </Box>
-                  )}
-                </TableCell>
-                <TableCell>
-                  {row.formatted_id ? (
-                    <Chip
-                      icon={<Medication fontSize="small" />}
-                      label={row.formatted_id}
-                      size="small"
-                      variant="outlined"
-                    />
-                  ) : (
-                    <Typography variant="body2" color="text.secondary">
-                      {row.compound_name || 'Unknown'}
-                    </Typography>
-                  )}
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body2">{row.target_name || '-'}</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body2">{row.protocol_name}</Typography>
-                </TableCell>
-                <TableCell>
-                  <Typography variant="body2">
-                    {row.assay_date ? new Date(row.assay_date).toLocaleDateString() : '-'}
-                  </Typography>
-                </TableCell>
-                <TableCell align="right">
-                  <Typography variant="body2" fontFamily="monospace" fontWeight={500}>
-                    {formatKpiValue(row.kpi_value)}
-                  </Typography>
-                </TableCell>
-                <TableCell>
-                  <Chip
-                    label={row.status || 'unknown'}
-                    size="small"
-                    color={row.status === 'valid' ? 'success' : row.status === 'invalid' ? 'error' : 'default'}
-                  />
-                </TableCell>
+            {/* Spacer for rows above viewport */}
+            {rowVirtualizer.getVirtualItems().length > 0 &&
+              rowVirtualizer.getVirtualItems()[0].start > 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={7}
+                  sx={{
+                    height: rowVirtualizer.getVirtualItems()[0].start,
+                    padding: 0,
+                    border: 'none',
+                  }}
+                />
               </TableRow>
-            ))}
+            )}
+
+            {/* Virtualized rows */}
+            {rowVirtualizer.getVirtualItems().map((virtualRow) => {
+              const row = rows[virtualRow.index];
+              return (
+                <TableRow
+                  key={row.data_series_id}
+                  data-index={virtualRow.index}
+                  ref={rowVirtualizer.measureElement}
+                  hover
+                  sx={{ cursor: 'pointer' }}
+                  onClick={() => row.compound_id && router.push(`/registry/compounds/${row.compound_id}`)}
+                >
+                  <TableCell>
+                    {row.smiles ? (
+                      <MoleculeChip smiles={row.smiles} size={60} />
+                    ) : (
+                      <Box
+                        sx={{
+                          width: 60,
+                          height: 60,
+                          bgcolor: 'grey.100',
+                          borderRadius: 1,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Typography variant="caption" color="text.secondary">-</Typography>
+                      </Box>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    {row.formatted_id ? (
+                      <Chip
+                        icon={<Medication fontSize="small" />}
+                        label={row.formatted_id}
+                        size="small"
+                        variant="outlined"
+                      />
+                    ) : (
+                      <Typography variant="body2" color="text.secondary">
+                        {row.compound_name || 'Unknown'}
+                      </Typography>
+                    )}
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">{row.target_name || '-'}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">{row.protocol_name}</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Typography variant="body2">
+                      {row.assay_date ? new Date(row.assay_date).toLocaleDateString() : '-'}
+                    </Typography>
+                  </TableCell>
+                  <TableCell align="right">
+                    <Typography variant="body2" fontFamily="monospace" fontWeight={500}>
+                      {formatKpiValue(row.kpi_value)}
+                    </Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Chip
+                      label={row.status || 'unknown'}
+                      size="small"
+                      color={row.status === 'valid' ? 'success' : row.status === 'invalid' ? 'error' : 'default'}
+                    />
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+
+            {/* Spacer for rows below viewport */}
+            {rowVirtualizer.getVirtualItems().length > 0 && (
+              <TableRow>
+                <TableCell
+                  colSpan={7}
+                  sx={{
+                    height:
+                      rowVirtualizer.getTotalSize() -
+                      (rowVirtualizer.getVirtualItems()[
+                        rowVirtualizer.getVirtualItems().length - 1
+                      ]?.end ?? 0),
+                    padding: 0,
+                    border: 'none',
+                  }}
+                />
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>
-
-      <TablePagination
-        component="div"
-        count={rows.length}
-        page={page}
-        onPageChange={(_, newPage) => setPage(newPage)}
-        rowsPerPage={rowsPerPage}
-        onRowsPerPageChange={(e) => {
-          setRowsPerPage(parseInt(e.target.value, 10));
-          setPage(0);
-        }}
-        rowsPerPageOptions={[10, 25, 50, 100]}
-      />
     </>
   );
 }
