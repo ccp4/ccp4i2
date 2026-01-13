@@ -268,11 +268,23 @@ class AzureADAuthMiddleware:
         # Attach claims to request for downstream use
         request.azure_ad_claims = claims
         request.azure_ad_user_id = claims.get("sub")
-        request.azure_ad_email = claims.get("email") or claims.get("preferred_username")
+        # Try multiple claim fields where email might be found
+        request.azure_ad_email = (
+            claims.get("email") or
+            claims.get("preferred_username") or
+            claims.get("upn") or  # User Principal Name
+            claims.get("unique_name")  # Legacy claim
+        )
 
         # Get or create Django user from claims
         # This enables DRF's IsAuthenticated permission to work
         email = request.azure_ad_email
+        if not email:
+            # Last resort: use the subject ID to create a placeholder user
+            logger.warning(f"No email claim found in token. Claims: {list(claims.keys())}")
+            email = f"user_{claims.get('sub', 'unknown')[:8]}@azuread.local"
+            request.azure_ad_email = email
+
         if email:
             User = get_user_model()
             # Use email as the unique identifier
