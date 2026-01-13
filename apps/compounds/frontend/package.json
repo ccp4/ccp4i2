@@ -3,8 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 3001",
-    "build": "next build",
+    "copy-rdkit": "copyfiles -u 4 node_modules/@rdkit/rdkit/dist/* public/",
+    "copy-jsme": "copyfiles -u 1 assets/JSME_2020-06-11/**/* public/",
+    "copy-assets": "npm run copy-rdkit && npm run copy-jsme",
+    "dev": "npm run copy-assets && next dev -p 3001",
+    "build": "npm run copy-assets && next build",
     "start": "next start -p 3001",
     "lint": "next lint"
   },
@@ -16,6 +19,7 @@
     "@mui/icons-material": "^6.1.6",
     "@mui/material": "^6.1.6",
     "@mui/material-nextjs": "^6.1.6",
+    "@rdkit/rdkit": "^2024.3.5",
     "@tanstack/react-virtual": "^3.13.17",
     "chart.js": "^4.5.1",
     "next": "^15.0.0",
@@ -30,6 +34,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "copyfiles": "^2.4.1",
     "typescript": "^5"
   }
 }

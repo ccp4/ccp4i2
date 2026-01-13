@@ -63,6 +63,9 @@ COPY apps/compounds/frontend/components/compounds/ ./renderer/components/compoun
 COPY apps/compounds/frontend/lib/compounds/ ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 
+# Note: RDKit comes from @rdkit/rdkit npm package, JSME from client/assets/
+# Both are copied by "npm run copy-assets" below
+
 # =============================================================================
 # Overlay users frontend (platform admin)
 # =============================================================================
