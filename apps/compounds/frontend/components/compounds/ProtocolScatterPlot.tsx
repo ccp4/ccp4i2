@@ -18,17 +18,21 @@ import {
   IconButton,
   Tooltip,
   Chip,
+  Switch,
+  FormControlLabel,
 } from '@mui/material';
 import {
   BubbleChart,
   Close,
   Refresh,
+  TrendingUp,
 } from '@mui/icons-material';
 import {
   Chart as ChartJS,
   LinearScale,
   LogarithmicScale,
   PointElement,
+  LineElement,
   Tooltip as ChartTooltip,
   Legend,
   ChartOptions,
@@ -43,9 +47,69 @@ ChartJS.register(
   LinearScale,
   LogarithmicScale,
   PointElement,
+  LineElement,
   ChartTooltip,
   Legend
 );
+
+/**
+ * Linear regression result interface
+ */
+interface RegressionResult {
+  slope: number;
+  intercept: number;
+  rSquared: number;
+  // For display: in log-log space, y = a * x^b where a = 10^intercept, b = slope
+  // For display: in linear space, y = slope * x + intercept
+}
+
+/**
+ * Calculate linear regression, optionally in log-space for each axis
+ * When both axes are logarithmic, we fit log(y) = slope * log(x) + intercept
+ * This corresponds to y = 10^intercept * x^slope (power law)
+ */
+function calculateRegression(
+  points: Array<{ x: number; y: number }>,
+  xLog: boolean,
+  yLog: boolean
+): RegressionResult | null {
+  if (points.length < 2) return null;
+
+  // Transform values based on scale type
+  const transformedPoints = points
+    .filter((p) => p.x > 0 && p.y > 0) // Must be positive for log
+    .map((p) => ({
+      x: xLog ? Math.log10(p.x) : p.x,
+      y: yLog ? Math.log10(p.y) : p.y,
+    }));
+
+  if (transformedPoints.length < 2) return null;
+
+  const n = transformedPoints.length;
+  const sumX = transformedPoints.reduce((acc, p) => acc + p.x, 0);
+  const sumY = transformedPoints.reduce((acc, p) => acc + p.y, 0);
+  const sumXY = transformedPoints.reduce((acc, p) => acc + p.x * p.y, 0);
+  const sumXX = transformedPoints.reduce((acc, p) => acc + p.x * p.x, 0);
+  const sumYY = transformedPoints.reduce((acc, p) => acc + p.y * p.y, 0);
+
+  const denominator = n * sumXX - sumX * sumX;
+  if (Math.abs(denominator) < 1e-10) return null;
+
+  const slope = (n * sumXY - sumX * sumY) / denominator;
+  const intercept = (sumY - slope * sumX) / n;
+
+  // Calculate R² (coefficient of determination)
+  const meanY = sumY / n;
+  const ssTotal = sumYY - n * meanY * meanY;
+  const ssResidual = transformedPoints.reduce((acc, p) => {
+    const predicted = slope * p.x + intercept;
+    return acc + (p.y - predicted) ** 2;
+  }, 0);
+
+  const rSquared = ssTotal > 0 ? 1 - ssResidual / ssTotal : 0;
+
+  return { slope, intercept, rSquared };
+}
 
 interface ProtocolScatterPlotProps {
   /** Compact aggregation data rows */
@@ -83,6 +147,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
     min: '',
     max: '',
   });
+  const [showRegression, setShowRegression] = useState(false);
 
   // Update axis selections when protocols change
   useEffect(() => {
@@ -149,8 +214,21 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
           pointHoverBackgroundColor: 'rgba(25, 118, 210, 0.8)',
         },
       ],
+      // Store raw points for regression calculation
+      _rawPoints: points,
     };
   }, [data, xAxis.protocolId, yAxis.protocolId]);
+
+  // Calculate regression based on current scale settings
+  const regression = useMemo(() => {
+    const points = (chartData as any)._rawPoints as Array<{ x: number; y: number }> || [];
+    if (points.length < 2) return null;
+    return calculateRegression(
+      points,
+      xAxis.scale === 'logarithmic',
+      yAxis.scale === 'logarithmic'
+    );
+  }, [chartData, xAxis.scale, yAxis.scale]);
 
   // Calculate axis bounds
   const axisBounds = useMemo(() => {
@@ -179,6 +257,81 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
     };
   }, [chartData, xAxis.scale, yAxis.scale]);
 
+  // Generate regression line points for display
+  const regressionLineData = useMemo(() => {
+    if (!showRegression || !regression) return null;
+
+    const xLog = xAxis.scale === 'logarithmic';
+    const yLog = yAxis.scale === 'logarithmic';
+
+    // Get effective axis bounds
+    const xMin = xAxis.min ? parseFloat(xAxis.min) : axisBounds.xMin;
+    const xMax = xAxis.max ? parseFloat(xAxis.max) : axisBounds.xMax;
+
+    // Generate points for the regression line
+    // Use more points for log scale to ensure smooth curve appearance
+    const numPoints = 100;
+    const linePoints: Array<{ x: number; y: number }> = [];
+
+    for (let i = 0; i <= numPoints; i++) {
+      let x: number;
+      if (xLog) {
+        // Logarithmic spacing
+        const logMin = Math.log10(Math.max(xMin, 1e-10));
+        const logMax = Math.log10(Math.max(xMax, 1e-10));
+        x = Math.pow(10, logMin + (i / numPoints) * (logMax - logMin));
+      } else {
+        // Linear spacing
+        x = xMin + (i / numPoints) * (xMax - xMin);
+      }
+
+      // Calculate y using the regression equation in the appropriate space
+      let y: number;
+      if (xLog && yLog) {
+        // log(y) = slope * log(x) + intercept
+        y = Math.pow(10, regression.slope * Math.log10(x) + regression.intercept);
+      } else if (xLog && !yLog) {
+        // y = slope * log(x) + intercept
+        y = regression.slope * Math.log10(x) + regression.intercept;
+      } else if (!xLog && yLog) {
+        // log(y) = slope * x + intercept
+        y = Math.pow(10, regression.slope * x + regression.intercept);
+      } else {
+        // y = slope * x + intercept
+        y = regression.slope * x + regression.intercept;
+      }
+
+      // Only include points within reasonable bounds
+      if (y > 0 && isFinite(y)) {
+        linePoints.push({ x, y });
+      }
+    }
+
+    return linePoints;
+  }, [showRegression, regression, xAxis, yAxis, axisBounds]);
+
+  // Final chart data including regression line
+  const finalChartData: ChartData<'scatter'> = useMemo(() => {
+    const datasets = [...chartData.datasets];
+
+    if (showRegression && regressionLineData && regressionLineData.length > 0) {
+      datasets.push({
+        label: 'Regression Line',
+        data: regressionLineData,
+        backgroundColor: 'transparent',
+        borderColor: 'rgba(211, 47, 47, 0.8)',
+        borderWidth: 2,
+        pointRadius: 0,
+        pointHoverRadius: 0,
+        showLine: true,
+        tension: 0,
+        order: 1, // Draw behind scatter points
+      } as any);
+    }
+
+    return { datasets };
+  }, [chartData, showRegression, regressionLineData]);
+
   // Chart options
   const chartOptions: ChartOptions<'scatter'> = useMemo(
     () => ({
@@ -189,6 +342,10 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
           display: false,
         },
         tooltip: {
+          filter: (tooltipItem) => {
+            // Don't show tooltip for regression line
+            return tooltipItem.dataset.label !== 'Regression Line';
+          },
           callbacks: {
             label: (context) => {
               const point = context.raw as {
@@ -197,6 +354,8 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
                 formatted_id: string;
                 target_name?: string;
               };
+              // Skip regression line points (they won't have formatted_id)
+              if (!point.formatted_id) return [];
               return [
                 point.formatted_id,
                 point.target_name ? `Target: ${point.target_name}` : '',
@@ -247,15 +406,18 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
       },
       onClick: (_, elements) => {
         if (elements.length > 0) {
-          const dataIndex = elements[0].index;
-          const point = (chartData.datasets[0].data as any[])[dataIndex];
-          if (point?.compound_id) {
-            router.push(`/registry/compounds/${point.compound_id}`);
+          const element = elements[0];
+          // Only navigate for scatter points (dataset index 0), not regression line
+          if (element.datasetIndex === 0) {
+            const point = (finalChartData.datasets[0].data as any[])[element.index];
+            if (point?.compound_id) {
+              router.push(`/registry/compounds/${point.compound_id}`);
+            }
           }
         }
       },
     }),
-    [xAxis, yAxis, xProtocolName, yProtocolName, axisBounds, chartData, router]
+    [xAxis, yAxis, xProtocolName, yProtocolName, axisBounds, finalChartData, router]
   );
 
   // Reset axis ranges to auto
@@ -439,14 +601,79 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
                 </IconButton>
               </Tooltip>
             </Box>
+
+            {/* Regression controls */}
+            <Box sx={{ display: 'flex', alignItems: 'flex-end', pb: 0.5, ml: 'auto' }}>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={showRegression}
+                    onChange={(e) => setShowRegression(e.target.checked)}
+                    size="small"
+                  />
+                }
+                label={
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <TrendingUp fontSize="small" />
+                    <Typography variant="body2">Regression</Typography>
+                  </Box>
+                }
+              />
+            </Box>
           </Box>
+
+          {/* Regression statistics */}
+          {showRegression && regression && (
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 2,
+                mb: 1,
+                p: 1,
+                bgcolor: 'grey.50',
+                borderRadius: 1,
+                flexWrap: 'wrap',
+              }}
+            >
+              <Typography variant="body2">
+                <strong>R²:</strong> {regression.rSquared.toFixed(4)}
+              </Typography>
+              <Typography variant="body2">
+                <strong>
+                  {xAxis.scale === 'logarithmic' && yAxis.scale === 'logarithmic'
+                    ? 'Exponent (b):'
+                    : 'Slope:'}
+                </strong>{' '}
+                {regression.slope.toFixed(4)}
+              </Typography>
+              <Typography variant="body2">
+                <strong>
+                  {xAxis.scale === 'logarithmic' && yAxis.scale === 'logarithmic'
+                    ? 'Coefficient (a):'
+                    : 'Intercept:'}
+                </strong>{' '}
+                {xAxis.scale === 'logarithmic' && yAxis.scale === 'logarithmic'
+                  ? Math.pow(10, regression.intercept).toExponential(3)
+                  : regression.intercept.toFixed(4)}
+              </Typography>
+              <Typography variant="caption" color="text.secondary" sx={{ width: '100%' }}>
+                {xAxis.scale === 'logarithmic' && yAxis.scale === 'logarithmic'
+                  ? 'Power law fit: y = a × x^b'
+                  : xAxis.scale === 'logarithmic'
+                    ? 'Semi-log fit: y = slope × log₁₀(x) + intercept'
+                    : yAxis.scale === 'logarithmic'
+                      ? 'Semi-log fit: log₁₀(y) = slope × x + intercept'
+                      : 'Linear fit: y = slope × x + intercept'}
+              </Typography>
+            </Box>
+          )}
 
           {/* Chart */}
           <Box sx={{ flex: 1, minHeight: 0 }}>
             {xAxis.protocolId && yAxis.protocolId ? (
               pointCount > 0 ? (
                 <Box sx={{ height: '100%' }}>
-                  <Scatter ref={chartRef} data={chartData} options={chartOptions} />
+                  <Scatter ref={chartRef} data={finalChartData} options={chartOptions} />
                 </Box>
               ) : (
                 <Box

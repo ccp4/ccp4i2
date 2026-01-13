@@ -69,7 +69,7 @@ class Migration(migrations.Migration):
                 ('end_column', models.IntegerField()),
                 ('extracted_data', models.JSONField(default=dict, help_text='Parsed data points from source file')),
                 ('skip_points', models.JSONField(default=list, help_text='Indices of points to exclude from fitting')),
-                ('svg_file', models.ImageField(blank=True, help_text='Fitted curve plot', null=True, upload_to=compounds.assays.models._series_svg_path)),
+                ('svg_file', models.ImageField(blank=True, help_text='Fitted curve plot', null=True, upload_to=compounds.assays.models._series_plot_path)),
                 ('analysis', models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='data_series', to='assays.analysisresult')),
                 ('assay', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='data_series', to='assays.assay')),
                 ('compound', models.ForeignKey(blank=True, help_text='Linked compound (matched by name/barcode)', null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='assay_results', to='registry.compound')),
