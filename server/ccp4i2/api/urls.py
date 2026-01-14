@@ -6,6 +6,8 @@ from rest_framework import routers
 from .ProjectExportViewSet import ProjectExportViewSet
 from .ProjectViewSet import ProjectViewSet
 from .ProjectTagViewSet import ProjectTagViewSet
+from .ProjectGroupViewSet import ProjectGroupViewSet
+from .ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
 from .FileViewSet import FileViewSet
 from .JobViewSet import JobViewSet
 from .FileTypeViewSet import FileTypeViewSet
@@ -17,6 +19,8 @@ from .admin_views import import_legacy_ccp4i2, ccp4i2_import_status
 router = routers.DefaultRouter()
 router.register("projects", ProjectViewSet)
 router.register("projecttags", ProjectTagViewSet)
+router.register("projectgroups", ProjectGroupViewSet)
+router.register("projectgroupmemberships", ProjectGroupMembershipViewSet)
 router.register("files", FileViewSet)
 router.register("jobs", JobViewSet)
 router.register("filetypes", FileTypeViewSet)

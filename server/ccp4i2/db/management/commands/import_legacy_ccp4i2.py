@@ -418,7 +418,7 @@ class Command(BaseCommand):
 
             group = ProjectGroup.objects.create(
                 name=group_name,
-                type=ProjectGroup.GroupType.GENERAL_SET
+                type=ProjectGroup.GroupType.FRAGMENT_SET  # Default to fragment_set for legacy imports
             )
             self.stats["groups"] += 1
 

@@ -34,14 +34,17 @@ def resolve_list_upload_path(container, normalized_path: str, skip_first: bool =
     """
     Smart resolution of upload paths for list parameters.
 
-    Handles three cases:
+    Handles these cases:
     1. Path points to list without index (e.g., "prosmartProtein.REFERENCE_MODELS")
        → Append a new item to the list
 
-    2. Path points to list with index that exists (e.g., "REFERENCE_MODELS[1]" when list has 3+ items)
-       → Use existing item at that index
+    2. Path has index at end (e.g., "REFERENCE_MODELS[1]")
+       → Ensure list has enough items, then resolve
 
-    3. Path points to list with index beyond current length (e.g., "REFERENCE_MODELS[5]" when list has 2 items)
+    3. Path has index in middle with nested path (e.g., "UNMERGEDFILES[0].file")
+       → Ensure list has enough items, then resolve the full path
+
+    4. Path has index beyond current length (e.g., "REFERENCE_MODELS[5]" when list has 2 items)
        → Append items until list has enough entries (index + 1 items)
 
     Args:
@@ -57,15 +60,17 @@ def resolve_list_upload_path(container, normalized_path: str, skip_first: bool =
     Raises:
         AttributeError: If path does not point to a valid list or file parameter
     """
-    # Check if path ends with array indexing
-    array_match = re.search(r'(\w+)(\[(\d+)\])$', normalized_path)
+    # Check if path contains array indexing ANYWHERE (not just at the end)
+    # Match patterns like: UNMERGEDFILES[0] or UNMERGEDFILES[0].file
+    array_match = re.search(r'(\w+)\[(\d+)\]', normalized_path)
 
     if array_match:
-        # Path already has an index - extract the list path and index
-        path_before_index = normalized_path[:array_match.start(2)]
-        requested_index = int(array_match.group(3))
+        # Path has an index - extract the list path and index
+        # path_before_index is everything up to (but not including) the [N]
+        path_before_index = normalized_path[:array_match.end(1)]
+        requested_index = int(array_match.group(2))
 
-        logger.info(f"Path has index [{requested_index}], checking if list needs expansion")
+        logger.info(f"Path has index [{requested_index}] at '{array_match.group(0)}', checking if list needs expansion")
 
         # Try to get the list object
         try:
@@ -540,6 +545,18 @@ def handle_reflections(
     # is provided, proceed with column extraction
     try:
         _ = gemmi.read_mtz_file(str(downloaded_file_path))
+        # If no column_selector provided for a specific type, auto-detect columns
+        if column_selector is None and not is_general_container:
+            logger.info("No column_selector provided - auto-detecting columns for %s", type(param_object).__name__)
+            analysis = find_column_selections(param_object, downloaded_file_path)
+            if analysis["options"]:
+                column_selector = analysis["options"][0]["columnPath"]
+                logger.info("Auto-detected column selector: %s", column_selector)
+            else:
+                raise Exception(
+                    "smartSplitMTZ Exception:",
+                    f"No suitable column groups found in MTZ file for {type(param_object).__name__}"
+                )
     except RuntimeError as err:
         logger.exception(
             "Error reading MTZ file %s", downloaded_file_path, exc_info=err

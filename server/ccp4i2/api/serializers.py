@@ -152,3 +152,29 @@ class JobCharValueSerializer(ModelSerializer):
     class Meta:
         model = models.JobCharValue
         fields = "__all__"
+
+
+class ProjectGroupMembershipSerializer(ModelSerializer):
+    """Serializer for project group memberships."""
+
+    class Meta:
+        model = models.ProjectGroupMembership
+        fields = "__all__"
+
+
+class ProjectGroupSerializer(ModelSerializer):
+    """Basic serializer for project groups."""
+
+    class Meta:
+        model = models.ProjectGroup
+        fields = "__all__"
+
+
+class ProjectGroupDetailSerializer(ModelSerializer):
+    """Extended serializer with nested memberships for detail view."""
+
+    memberships = ProjectGroupMembershipSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = models.ProjectGroup
+        fields = "__all__"

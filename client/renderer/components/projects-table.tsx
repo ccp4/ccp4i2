@@ -1,6 +1,7 @@
 "use client";
 import React, { useMemo, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import useSWR from "swr";
 import {
   Box,
   Card,
@@ -28,6 +29,7 @@ import {
   StarBorder,
   ViewModule,
   ViewList,
+  Science as CampaignIcon,
 } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
 import { useApi } from "../api";
@@ -39,6 +41,29 @@ import SearchField from "./search-field";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
+
+// Type for campaign info returned from API
+interface CampaignInfo {
+  campaign_id: number;
+  campaign_name: string;
+  member_count: number;
+}
+
+// Hook to fetch campaign info for projects
+function useProjectCampaigns(projectIds: number[]) {
+  const idsParam = projectIds.join(",");
+  const { data } = useSWR<Record<string, CampaignInfo>>(
+    projectIds.length > 0
+      ? `/api/proxy/ccp4i2/projectgroups/project_campaigns/?project_ids=${idsParam}`
+      : null,
+    async (url: string) => {
+      const response = await fetch(url);
+      if (!response.ok) return {};
+      return response.json();
+    }
+  );
+  return data || {};
+}
 
 // Component to display project tag chips
 const ProjectTagChips = React.memo(
@@ -324,6 +349,13 @@ export default function ProjectsTable() {
   const deleteDialog = useDeleteDialog();
   const { setMessage } = usePopcorn();
 
+  // Get campaign info for all projects
+  const projectIds = useMemo(
+    () => (projects || []).map((p) => p.id),
+    [projects]
+  );
+  const campaignInfo = useProjectCampaigns(projectIds);
+
   // Filter and sort projects
   const filteredProjects = useMemo(() => {
     if (!Array.isArray(projects)) return [];
@@ -511,40 +543,64 @@ export default function ProjectsTable() {
         label: "Project Name",
         sortable: true,
         searchable: true,
-        render: (_, project) => (
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
-            <Box
-              sx={{
-                width: 32,
-                height: 32,
-                borderRadius: 1,
-                bgcolor: "primary.50",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                border: "1px solid",
-                borderColor: "primary.200",
-                flexShrink: 0,
-              }}
-            >
-              <Science sx={{ color: "primary.main", fontSize: 16 }} />
+        render: (_, project) => {
+          const campaign = campaignInfo[String(project.id)];
+          return (
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+              <Box
+                sx={{
+                  width: 32,
+                  height: 32,
+                  borderRadius: 1,
+                  bgcolor: campaign ? "secondary.50" : "primary.50",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  border: "1px solid",
+                  borderColor: campaign ? "secondary.200" : "primary.200",
+                  flexShrink: 0,
+                }}
+              >
+                {campaign ? (
+                  <CampaignIcon sx={{ color: "secondary.main", fontSize: 16 }} />
+                ) : (
+                  <Science sx={{ color: "primary.main", fontSize: 16 }} />
+                )}
+              </Box>
+              <Box sx={{ minWidth: 0 }}>
+                <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
+                  {project.name}
+                </Typography>
+                <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>
+                  {new Date(project.last_access).getTime() >
+                    Date.now() - 7 * 24 * 60 * 60 * 1000 && (
+                    <Chip
+                      label="Recent"
+                      size="small"
+                      color="success"
+                      sx={{ height: 16, fontSize: "0.65rem", mt: 0.5 }}
+                    />
+                  )}
+                  {campaign && (
+                    <Tooltip title={`Campaign parent: ${campaign.campaign_name} (${campaign.member_count} datasets)`}>
+                      <Chip
+                        icon={<CampaignIcon sx={{ fontSize: "12px !important" }} />}
+                        label={`${campaign.member_count} datasets`}
+                        size="small"
+                        color="secondary"
+                        sx={{ height: 16, fontSize: "0.65rem", mt: 0.5, cursor: "pointer" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(`/ccp4i2/campaigns/${campaign.campaign_id}`);
+                        }}
+                      />
+                    </Tooltip>
+                  )}
+                </Stack>
+              </Box>
             </Box>
-            <Box sx={{ minWidth: 0 }}>
-              <Typography variant="body2" sx={{ fontWeight: 500 }} noWrap>
-                {project.name}
-              </Typography>
-              {new Date(project.last_access).getTime() >
-                Date.now() - 7 * 24 * 60 * 60 * 1000 && (
-                <Chip
-                  label="Recent"
-                  size="small"
-                  color="success"
-                  sx={{ height: 16, fontSize: "0.65rem", mt: 0.5 }}
-                />
-              )}
-            </Box>
-          </Box>
-        ),
+          );
+        },
       },
       {
         key: "tags",
@@ -608,7 +664,7 @@ export default function ProjectsTable() {
         ),
       },
     ],
-    [selectedIds]
+    [selectedIds, campaignInfo, router]
   );
 
   // Card renderer for virtualized grid
