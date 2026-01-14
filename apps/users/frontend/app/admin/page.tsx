@@ -242,7 +242,7 @@ export default function AdminPage() {
     setImportStatusLoading(true);
     setImportError(null);
     try {
-      const response = await fetch('/api/proxy/compounds/admin/import-status/');
+      const response = await authenticatedFetch('/api/proxy/compounds/admin/import-status/');
       if (!response.ok) {
         throw new Error(`Failed to fetch status: ${response.statusText}`);
       }
@@ -278,7 +278,7 @@ export default function AdminPage() {
       }
       formData.append('dry_run', dryRun.toString());
 
-      const response = await fetch('/api/proxy/compounds/admin/import-legacy/', {
+      const response = await authenticatedFetch('/api/proxy/compounds/admin/import-legacy/', {
         method: 'POST',
         body: formData,
       });
