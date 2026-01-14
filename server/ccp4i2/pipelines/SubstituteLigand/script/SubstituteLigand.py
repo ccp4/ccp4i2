@@ -24,6 +24,7 @@ class SubstituteLigand(CPluginScript):
         206: {'description': 'Exception in i2Dimple'},
         207: {'description': 'Exception in coot ligand fitting'},
         208: {'description': 'Exception in coot postprocessing'},
+        209: {'description': 'Failed to create sub-plugin'},
     }
 
     def __init__(self, *args,**kws):
@@ -58,7 +59,12 @@ class SubstituteLigand(CPluginScript):
         elif self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
             self.dictDone()
         elif self.container.controlParameters.LIGANDAS.__str__() != 'NONE':
-            self.lidiaAcedrgPlugin = self.makePluginObject('LidiaAcedrgNew')
+            try:
+                self.lidiaAcedrgPlugin = self.makePluginObject('LidiaAcedrgNew')
+            except Exception as e:
+                self.appendErrorReport(209, f'Failed to create LidiaAcedrgNew plugin: {e}')
+                self.reportStatus(CPluginScript.FAILED)
+                return
             self.lidiaAcedrgPlugin.container.inputData.MOLSMILESORSKETCH = self.container.controlParameters.LIGANDAS
             if self.container.inputData.MOLIN.isSet():
                 self.lidiaAcedrgPlugin.container.inputData.MOLIN=self.container.inputData.MOLIN
@@ -95,7 +101,12 @@ class SubstituteLigand(CPluginScript):
             self.rigidBodyPipeline()
 
     def aimlessPipe(self):
-        self.aimlessPlugin = self.makePluginObject('aimless_pipe')
+        try:
+            self.aimlessPlugin = self.makePluginObject('aimless_pipe')
+        except Exception as e:
+            self.appendErrorReport(209, f'Failed to create aimless_pipe plugin: {e}')
+            self.reportStatus(CPluginScript.FAILED)
+            return
         self.aimlessPlugin.container.controlParameters.MODE.set('MATCH')
         self.aimlessPlugin.container.controlParameters.RESOLUTION_RANGE = self.container.controlParameters.RESOLUTION_RANGE
         self.aimlessPlugin.container.controlParameters.SCALING_PROTOCOL.set('DEFAULT')
@@ -121,8 +132,20 @@ class SubstituteLigand(CPluginScript):
             pluginRoot = CCP4Utils.openFileToEtree(self.aimlessPlugin.makeFileName('PROGRAMXML'))
             self.xmlroot.append(pluginRoot)
             self.flushXML()
-            self.harvestFile(self.aimlessPlugin.container.outputData.FREEROUT, self.container.outputData.FREERFLAG_OUT)
-            self.harvestFile(self.aimlessPlugin.container.outputData.HKLOUT[0], self.container.outputData.F_SIGF_OUT)
+
+            # Check that aimless produced expected outputs before harvesting
+            aimlessOut = self.aimlessPlugin.container.outputData
+            if not aimlessOut.FREEROUT.isSet() or not os.path.isfile(str(aimlessOut.FREEROUT.fullPath)):
+                self.appendErrorReport(204, 'Aimless did not produce FreeR output')
+                self.reportStatus(CPluginScript.FAILED)
+                return
+            if len(aimlessOut.HKLOUT) == 0 or not os.path.isfile(str(aimlessOut.HKLOUT[0].fullPath)):
+                self.appendErrorReport(204, 'Aimless did not produce merged HKL output')
+                self.reportStatus(CPluginScript.FAILED)
+                return
+
+            self.harvestFile(aimlessOut.FREEROUT, self.container.outputData.FREERFLAG_OUT)
+            self.harvestFile(aimlessOut.HKLOUT[0], self.container.outputData.F_SIGF_OUT)
             self.obsToUse = self.container.outputData.F_SIGF_OUT
             self.freerToUse = self.container.outputData.FREERFLAG_OUT
             self.rigidBodyPipeline()
@@ -138,7 +161,12 @@ class SubstituteLigand(CPluginScript):
             self.phaser_rnp_pipeline()
 
     def phaser_rnp_pipeline(self):
-        self.rnpPlugin = self.makePluginObject('phaser_rnp_pipeline')
+        try:
+            self.rnpPlugin = self.makePluginObject('phaser_rnp_pipeline')
+        except Exception as e:
+            self.appendErrorReport(209, f'Failed to create phaser_rnp_pipeline plugin: {e}')
+            self.reportStatus(CPluginScript.FAILED)
+            return
         self.rnpPlugin.container.inputData.XYZIN_PARENT = self.selAtomsFile
         self.rnpPlugin.container.inputData.F_SIGF = self.obsToUse
         self.rnpPlugin.container.inputData.FREERFLAG = self.freerToUse
@@ -176,12 +204,17 @@ class SubstituteLigand(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
         
     def i2Dimple(self):
-        self.i2Dimple = self.makePluginObject('i2Dimple')
-        self.i2Dimple.container.inputData.XYZIN = self.selAtomsFile
-        self.i2Dimple.container.inputData.F_SIGF = self.obsToUse
-        self.i2Dimple.container.inputData.FREERFLAG = self.freerToUse
-        self.connectSignal(self.i2Dimple,'finished',self.i2Dimple_finished)
-        self.i2Dimple.process()
+        try:
+            self.i2DimplePlugin = self.makePluginObject('i2Dimple')
+        except Exception as e:
+            self.appendErrorReport(209, f'Failed to create i2Dimple plugin: {e}')
+            self.reportStatus(CPluginScript.FAILED)
+            return
+        self.i2DimplePlugin.container.inputData.XYZIN = self.selAtomsFile
+        self.i2DimplePlugin.container.inputData.F_SIGF = self.obsToUse
+        self.i2DimplePlugin.container.inputData.FREERFLAG = self.freerToUse
+        self.connectSignal(self.i2DimplePlugin,'finished',self.i2Dimple_finished)
+        self.i2DimplePlugin.process()
 
     @QtCore.Slot(dict)
     def i2Dimple_finished(self, status):
@@ -190,22 +223,22 @@ class SubstituteLigand(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
             return
         try:
-            pluginRoot = CCP4Utils.openFileToEtree(self.i2Dimple.makeFileName('PROGRAMXML'))
+            pluginRoot = CCP4Utils.openFileToEtree(self.i2DimplePlugin.makeFileName('PROGRAMXML'))
             self.xmlroot.append(pluginRoot)
             self.flushXML()
-            self.harvestFile(self.i2Dimple.container.outputData.FPHIOUT, self.container.outputData.FPHIOUT)
+            self.harvestFile(self.i2DimplePlugin.container.outputData.FPHIOUT, self.container.outputData.FPHIOUT)
             self.mapToUse = self.container.outputData.FPHIOUT
-            self.harvestFile(self.i2Dimple.container.outputData.DIFFPHIOUT, self.container.outputData.DIFFPHIOUT)
+            self.harvestFile(self.i2DimplePlugin.container.outputData.DIFFPHIOUT, self.container.outputData.DIFFPHIOUT)
             #Adopt the reindexed output of the dimple file if present
-            if os.path.isfile(self.i2Dimple.container.outputData.F_SIGF_OUT.fullPath.__str__()):
-                self.harvestFile(self.i2Dimple.container.outputData.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
-            if os.path.isfile(self.i2Dimple.container.outputData.FREERFLAG_OUT.fullPath.__str__()):
-                self.harvestFile(self.i2Dimple.container.outputData.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
+            if os.path.isfile(self.i2DimplePlugin.container.outputData.F_SIGF_OUT.fullPath.__str__()):
+                self.harvestFile(self.i2DimplePlugin.container.outputData.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
+            if os.path.isfile(self.i2DimplePlugin.container.outputData.FREERFLAG_OUT.fullPath.__str__()):
+                self.harvestFile(self.i2DimplePlugin.container.outputData.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
             if self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
-                self.harvestFile(self.i2Dimple.container.outputData.XYZOUT, self.container.outputData.XYZOUT)
+                self.harvestFile(self.i2DimplePlugin.container.outputData.XYZOUT, self.container.outputData.XYZOUT)
                 self.reportStatus(CPluginScript.SUCCEEDED)
             else:
-                self.coordinatesForCoot = self.i2Dimple.container.outputData.XYZOUT
+                self.coordinatesForCoot = self.i2DimplePlugin.container.outputData.XYZOUT
                 self.cootAddLigand()
         except Exception as e:
             self.appendErrorReport(206, 'Exception in i2Dimple_finished: ' + str(e))

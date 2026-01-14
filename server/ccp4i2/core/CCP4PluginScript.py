@@ -2550,14 +2550,17 @@ class CPluginScript(CData):
                 logger.debug(f"[makePluginObject] Plugin '{taskName}' not found, creating dummy CPluginScript")
                 plugin_class = CPluginScript
             else:
-                # Log error and return None
+                # Raise CException - this makes the error immediately visible
+                # rather than returning None and causing NoneType errors downstream
+                from ccp4i2.core.base_object.error_reporting import CException
+                error_msg = f"Plugin '{taskName}' not found in registry. Check that the plugin exists and all its dependencies can be imported."
                 self.errorReport.append(
                     klass=self.__class__.__name__,
                     code=108,
-                    details=f"Plugin '{taskName}' not found in registry",
+                    details=error_msg,
                     name=taskName
                 )
-                return None
+                raise CException(error_msg)
 
         # Instantiate the plugin with computed workDirectory and name
         # Use automatic workDirectory/name unless explicitly provided in kwargs

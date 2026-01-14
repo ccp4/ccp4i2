@@ -172,8 +172,10 @@ export function BatchImportDialog({
         `/api/proxy/ccp4i2/files/${latestCoordsFileId}/download/`
       );
       const coordsBlob = await coordsResponse.blob();
+      // Extract filename from Content-Disposition header, handling both quoted and unquoted forms
+      // e.g., 'filename="XYZOUT.pdb"' or 'filename=XYZOUT.pdb'
       const coordsFileName = coordsResponse.headers.get("Content-Disposition")
-        ?.match(/filename="?(.+)"?/)?.[1] || "reference.pdb";
+        ?.match(/filename="?([^"]+)"?/)?.[1] || "reference.pdb";
 
       const coordsFormData = new FormData();
       coordsFormData.append("file", coordsBlob, coordsFileName);

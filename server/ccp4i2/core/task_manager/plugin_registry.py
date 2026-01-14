@@ -734,8 +734,11 @@ class PluginRegistry:
                 self._cache[cache_key] = plugin_class
             return plugin_class
         except Exception as e:
-            import warnings
-            warnings.warn(f"Failed to import plugin {task_name}: {e}")
+            import logging
+            import traceback
+            logger = logging.getLogger(f"ccp4i2:{__name__}")
+            logger.error(f"Failed to import plugin {task_name}: {e}")
+            logger.error(f"Traceback:\n{traceback.format_exc()}")
             return None
 
     def get_plugin_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:

@@ -142,7 +142,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
 
   const handleDownloadFile = (file: CCP4File) => {
     doDownload(
-      `/api/proxy/ccp4i2/files/${file.id}/download_by_uuid/`,
+      `/api/proxy/ccp4i2/files/${file.uuid}/download_by_uuid/`,
       file.name
     );
   };

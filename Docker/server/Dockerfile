@@ -23,10 +23,31 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     DJANGO_SETTINGS_MODULE=azure_extensions.settings
 
 # Install system dependencies
+# libgl1, libfreetype6, libxcb-*, etc. are required for ccp4mg/PySide2 imports used by various wrappers
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
     curl \
+    libgl1 \
+    libfreetype6 \
+    libfontconfig1 \
+    libxcb1 \
+    libxcb-render0 \
+    libxcb-shm0 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
+    libxcb-randr0 \
+    libxcb-render-util0 \
+    libxcb-shape0 \
+    libxcb-xfixes0 \
+    libxcb-xinerama0 \
+    libxcb-xkb1 \
+    libxkbcommon0 \
+    libxkbcommon-x11-0 \
+    libx11-6 \
+    libxext6 \
+    libxrender1 \
     && rm -rf /var/lib/apt/lists/*
 
 # Create app directory

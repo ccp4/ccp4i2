@@ -15,7 +15,10 @@ class lidiaAcedrgNew(CPluginScript):
     TIMEOUT_PERIOD = 9999999.9
     WHATNEXT = ['coot_rebuild']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
-    ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.SEVERITY_WARNING },}
+    ERROR_CODES = {
+        201: {'description': 'Expected output file not made', 'severity': CCP4ErrorHandling.SEVERITY_WARNING},
+        202: {'description': 'Failed to create sub-plugin', 'severity': CCP4ErrorHandling.SEVERITY_ERROR},
+    }
 
     def process(self):
         
@@ -31,7 +34,12 @@ class lidiaAcedrgNew(CPluginScript):
         self.checkOutputData()
         
         if self.container.inputData.MOLSMILESORSKETCH.__str__() == 'SKETCH':
-            self.lidiaPlugin = self.makePluginObject('Lidia')
+            try:
+                self.lidiaPlugin = self.makePluginObject('Lidia')
+            except Exception as e:
+                self.appendErrorReport(202, f'Failed to create Lidia plugin: {e}')
+                self.reportStatus(CPluginScript.FAILED)
+                return
             if self.container.inputData.MOLIN.isSet():
                 self.lidiaPlugin.container.inputData.MOLIN = self.container.inputData.MOLIN
             self.connectSignal(self.lidiaPlugin,'finished',self.lidiaFinished)
@@ -80,8 +88,11 @@ class lidiaAcedrgNew(CPluginScript):
         self.finishWithStatus(CPluginScript.SUCCEEDED)
 
     def doAcedrg(self, inputType, inputObject):
-        
-        acedrgPlugin = self.makePluginObject('acedrgNew')
+        try:
+            acedrgPlugin = self.makePluginObject('acedrgNew')
+        except Exception as e:
+            self.appendErrorReport(202, f'Failed to create acedrgNew plugin: {e}')
+            return CPluginScript.FAILED
         acedrgPlugin.container.inputData.MOLORSMILES = inputType
         if inputType == 'MOL':
             acedrgPlugin.container.inputData.MOLIN = inputObject
