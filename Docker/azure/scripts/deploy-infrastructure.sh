@@ -49,7 +49,7 @@ if [ -n "$EXISTING_POSTGRES" ]; then
         sleep 5
 
         # Try to get existing password
-        DB_PASSWORD=$(az keyvault secret show --vault-name $EXISTING_KV --name db-password --query value -o tsv 2>/dev/null)
+        DB_PASSWORD=$(az keyvault secret show --vault-name $EXISTING_KV --name database-admin-password --query value -o tsv 2>/dev/null)
 
         # Restore Key Vault access
         az keyvault network-rule remove --name $EXISTING_KV --ip-address $CURRENT_IP --output none 2>/dev/null || true
@@ -150,7 +150,7 @@ if [ $DEPLOYMENT_EXIT_CODE -eq 0 ]; then
         echo -e "${YELLOW}🔐 Storing PostgreSQL password in Key Vault...${NC}"
         az keyvault secret set \
           --vault-name $KEY_VAULT_NAME \
-          --name db-password \
+          --name database-admin-password \
           --value "$DB_PASSWORD" \
           --output none
     else

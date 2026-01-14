@@ -326,7 +326,7 @@ resource mediafilesShare 'Microsoft.Storage/storageAccounts/fileServices/shares@
 resource projectsShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
   name: '${privateStorageAccount.name}/default/ccp4i2-projects'
   properties: {
-    shareQuota: 100  // 100GB initial quota for projects
+    shareQuota: 5120  // 5 TiB quota for projects (matching legacy storage)
   }
 }
 
