@@ -1,3 +1,7 @@
+import glob
+import os
+import shutil
+
 from lxml import etree
 
 from ccp4i2.core import CCP4Utils
@@ -5,24 +9,16 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_script_lines(CPluginScript):
-    
-    TASKMODULE = 'model_building'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'Execute arbitrary script code within Coot'     # A short title for gui menu
-    TASKNAME = 'coot_script_lines'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'coot'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
+    TASKMODULE = 'model_building'
+    TASKTITLE = 'Execute arbitrary script code within Coot'
+    TASKNAME = 'coot_script_lines'
+    TASKCOMMAND = 'coot'
+    TASKVERSION= 0.0
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
-    
-    '''
-        def __init__(self,parent=None,name=None,workDirectory=''):
-        CPluginScript. __init__(self,parent=parent,name=name)
-        '''
-    
+
     def makeCommandAndScript(self):
-        import os
-        
         self.dropDir = os.path.join(self.workDirectory,'COOT_FILE_DROP')
         if not os.path.exists(self.dropDir):
             try:
@@ -91,12 +87,8 @@ class coot_script_lines(CPluginScript):
             print('Unable to recover exitStatus')
             return CPluginScript.FAILED
 
-
         iPDBOut = 0
         try:
-            import glob
-            import os
-            import shutil
             outList = glob.glob(os.path.join(self.dropDir,'*.pdb'))
             xyzoutList = self.container.outputData.XYZOUT
             print(outList)
@@ -127,7 +119,6 @@ class coot_script_lines(CPluginScript):
             return CPluginScript.FAILED
 
         # Create a trivial xml output file
-        from ccp4i2.core import CCP4File
         self.xmlroot = etree.Element('coot_script_lines')
         e = etree.Element('number_output_pdbs')
         e.text = str(iPDBOut)
@@ -149,12 +140,11 @@ class coot_script_lines(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def logToXML(self):
-        
         tableelement = etree.Element('Table', title='Per residue statistics')
         
         pairs = [('Col_0','N'),('Col_1','StartBonds'),('Col_2','FinalBonds')]
         for pair in pairs:
-            headerElement = etree.SubElement(tableelement,'Header',label=pair[1],identifier=pair[0])
+            etree.SubElement(tableelement,'Header',label=pair[1],identifier=pair[0])
         
         cootlines = open(self.makeFileName('LOG')).readlines()
         iRow = 1
@@ -179,8 +169,8 @@ class coot_script_lines(CPluginScript):
         if iRow == 1: return None
     
         graphElement = etree.SubElement(tableelement,"Graph", title = "By residue bonds")
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='N', positionInList=str(0))
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='StartBonds', positionInList=str(1))
-        graphColumnElement = etree.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
+        etree.SubElement(graphElement,"Column", label='N', positionInList=str(0))
+        etree.SubElement(graphElement,"Column", label='StartBonds', positionInList=str(1))
+        etree.SubElement(graphElement,"Column", label='FinalBonds', positionInList=str(2))
         
         return tableelement

@@ -4,21 +4,19 @@ from ccp4i2.report import Report
 class coot_script_lines_report(Report):
     TASKNAME = 'coot_script_lines'
     RUNNING = False
+
     def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
-        Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,**kw)
-        
+        super().__init__(xmlnode=xmlnode,jobInfo=jobInfo,**kw)
+
         self.addText(text='Happily finished')
-        try:
-            pdbsWrittenPath = './/number_output_pdbs'
-            if len(xmlnode.findall(pdbsWrittenPath)) > 0:
-                pdbsWrittenString = xmlnode.findall(pdbsWrittenPath)[0].text
-                self.addText(text='Number of PDBs written: ' + pdbsWrittenString)
-            cifsWrittenPath = './/number_output_cifs'
-            if len(xmlnode.findall(cifsWrittenPath)) > 0:
-                cifsWrittenString = xmlnode.findall(cifsWrittenPath)[0].text
-                self.addText(text='Number of CIFs written: ' + cifsWrittenString)
-        except:
-            pass
+        pdbsWrittenPath = './/number_output_pdbs'
+        if len(xmlnode.findall(pdbsWrittenPath)) > 0:
+            pdbsWrittenString = xmlnode.findall(pdbsWrittenPath)[0].text
+            self.addText(text='Number of PDBs written: ' + pdbsWrittenString)
+        cifsWrittenPath = './/number_output_cifs'
+        if len(xmlnode.findall(cifsWrittenPath)) > 0:
+            cifsWrittenString = xmlnode.findall(cifsWrittenPath)[0].text
+            self.addText(text='Number of CIFs written: ' + cifsWrittenString)
 
         tableRows = self.xmlnode.findall('.//Table/row')
         if len(tableRows) > 0:
@@ -32,5 +30,5 @@ class coot_script_lines_report(Report):
             plot.append('plottype','xy')
             plot.append('xintegral','true')
             for coordinate, colour in [(2,'blue'),(3,'green')]:
-                plotLine = plot.append('plotline',xcol=1,ycol=coordinate,colour=colour)
-        newDiv = self.addDiv(style='clear:both;')
+                plot.append('plotline',xcol=1,ycol=coordinate,colour=colour)
+        self.addDiv(style='clear:both;')
