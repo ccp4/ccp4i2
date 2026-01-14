@@ -53,11 +53,11 @@ interface ValidationErrors {
 // =============================================================================
 
 /**
- * @deprecated No longer needed - apiGet/apiPost/etc. now auto-prefix with /api/proxy/
+ * @deprecated No longer needed - apiGet/apiPost/etc. now auto-prefix with /api/proxy/ccp4i2/
  * Kept for backward compatibility. Just use the endpoint directly with api functions.
  */
 export function makeApiUrl(endpoint: string): string {
-  let api_path = `/api/proxy/${endpoint}`;
+  let api_path = `/api/proxy/ccp4i2/${endpoint}`;
   if (api_path.charAt(api_path.length - 1) !== "/") api_path += "/";
   return api_path;
 }
@@ -269,7 +269,7 @@ export function useApi() {
      * Build URL without trailing slash
      */
     noSlashUrl(endpoint: string): string {
-      return `/api/proxy/${endpoint}`;
+      return `/api/proxy/ccp4i2/${endpoint}`;
     },
 
     /**
@@ -457,7 +457,34 @@ export function useApi() {
 // File Download Utilities
 // =============================================================================
 
+/**
+ * Download a file using the browser's native download capability.
+ * This streams directly to disk without loading into memory - safe for large files.
+ *
+ * Note: This doesn't provide progress feedback, but avoids memory issues with large files.
+ */
 export const doDownload = (
+  theURL: string,
+  targetName: string,
+  _optionsIn?: any,
+  _onProgress?: (bytesRead: number) => void
+) => {
+  // Use direct anchor approach - browser handles streaming to disk
+  // This avoids loading the entire file into memory
+  const link = document.createElement("a");
+  link.href = theURL;
+  link.download = targetName;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+};
+
+/**
+ * Download a file with progress tracking.
+ * WARNING: This loads the entire file into browser memory before downloading.
+ * Only use for small files where progress feedback is important.
+ */
+export const doDownloadWithProgress = (
   theURL: string,
   targetName: string,
   optionsIn?: any,

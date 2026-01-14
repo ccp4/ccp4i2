@@ -126,7 +126,7 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
 
   const handleDownload = (exportItem: ProjectExport) => {
     // Create a download link for the export file
-    const downloadUrl = `/api/proxy/projectexports/${exportItem.id}/download/`;
+    const downloadUrl = `/api/proxy/ccp4i2/projectexports/${exportItem.id}/download/`;
     const link = document.createElement("a");
     const projectName =
       typeof exportItem.project === "object"

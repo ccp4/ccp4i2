@@ -357,22 +357,22 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
       volumes: [
         {
           name: 'ccp4data-volume'
-          storageName: 'ccp4data-mount'
+          storageName: 'ccp4-software'
           storageType: 'AzureFile'
         }
         {
           name: 'staticfiles-volume'
-          storageName: 'staticfiles-mount'
+          storageName: 'staticfiles-private'
           storageType: 'AzureFile'
         }
         {
           name: 'mediafiles-volume'
-          storageName: 'mediafiles-mount'
+          storageName: 'mediafiles-private'
           storageType: 'AzureFile'
         }
         {
           name: 'projects-volume'
-          storageName: 'projects-mount'
+          storageName: 'projects-private'
           storageType: 'AzureFile'
         }
       ]
@@ -565,22 +565,22 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
       volumes: [
         {
           name: 'ccp4data-volume'
-          storageName: 'ccp4data-mount'
+          storageName: 'ccp4-software'
           storageType: 'AzureFile'
         }
         {
           name: 'staticfiles-volume'
-          storageName: 'staticfiles-mount'
+          storageName: 'staticfiles-private'
           storageType: 'AzureFile'
         }
         {
           name: 'mediafiles-volume'
-          storageName: 'mediafiles-mount'
+          storageName: 'mediafiles-private'
           storageType: 'AzureFile'
         }
         {
           name: 'projects-volume'
-          storageName: 'projects-mount'
+          storageName: 'projects-private'
           storageType: 'AzureFile'
         }
       ]
@@ -694,22 +694,22 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
       volumes: [
         {
           name: 'ccp4data-volume'
-          storageName: 'ccp4data-mount'
+          storageName: 'ccp4-software'
           storageType: 'AzureFile'
         }
         {
           name: 'staticfiles-volume'
-          storageName: 'staticfiles-mount'
+          storageName: 'staticfiles-private'
           storageType: 'AzureFile'
         }
         {
           name: 'mediafiles-volume'
-          storageName: 'mediafiles-mount'
+          storageName: 'mediafiles-private'
           storageType: 'AzureFile'
         }
         {
           name: 'projects-volume'
-          storageName: 'projects-mount'
+          storageName: 'projects-private'
           storageType: 'AzureFile'
         }
       ]

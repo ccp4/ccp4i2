@@ -36,7 +36,7 @@ export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
     (ev: SyntheticEvent) => {
       if (!menuNode || !project) return;
       ev.stopPropagation();
-      const composite_path = `/api/proxy/projects/${
+      const composite_path = `/api/proxy/ccp4i2/projects/${
         project.id
       }/project_file?path=${encodeURIComponent(
         menuNode?.path.slice(project.directory.length + 1) || ""
@@ -52,7 +52,7 @@ export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
     async (ev: SyntheticEvent) => {
       if (!menuNode || !project) return;
       ev.stopPropagation();
-      const composite_path = `/api/proxy/projects/${
+      const composite_path = `/api/proxy/ccp4i2/projects/${
         project.id
       }/project_file?path=${encodeURIComponent(
         menuNode?.path.slice(project.directory.length + 1) || ""

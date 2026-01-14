@@ -5,6 +5,10 @@
 # Ensure Homebrew paths are available
 export PATH="/opt/homebrew/bin:$PATH"
 
+# Get the directory where the script is located
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+BICEP_DIR="$(dirname "$SCRIPT_DIR")"
+
 # Configuration
 RESOURCE_GROUP="ccp4i2-bicep-rg-ne"
 LOCATION="northeurope"
@@ -18,12 +22,56 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}🏗️ Deploying Infrastructure with Bicep${NC}"
 
-# Generate PostgreSQL password if not exists
-DB_PASSWORD=$(openssl rand -base64 16)
-
-# Create resource group
-echo -e "${YELLOW}📁 Creating resource group...${NC}"
+# Create resource group first (needed to check for existing resources)
+echo -e "${YELLOW}📁 Creating/verifying resource group...${NC}"
 az group create --name $RESOURCE_GROUP --location $LOCATION
+
+# Check if PostgreSQL server already exists
+echo -e "${YELLOW}🔍 Checking for existing PostgreSQL server...${NC}"
+EXISTING_POSTGRES=$(az postgres flexible-server list \
+    --resource-group $RESOURCE_GROUP \
+    --query "[?contains(name, 'ccp4i2-bicep-db')].name" \
+    -o tsv 2>/dev/null)
+
+if [ -n "$EXISTING_POSTGRES" ]; then
+    echo -e "${GREEN}✅ Found existing PostgreSQL server: $EXISTING_POSTGRES${NC}"
+    SKIP_POSTGRES="true"
+    echo -e "${YELLOW}🔑 Retrieving existing password from Key Vault...${NC}"
+
+    # Get existing Key Vault name
+    EXISTING_KV=$(az keyvault list --resource-group $RESOURCE_GROUP --query "[0].name" -o tsv 2>/dev/null)
+
+    if [ -n "$EXISTING_KV" ]; then
+        # Temporarily enable access to retrieve secret
+        CURRENT_IP=$(curl -4 -s ifconfig.me 2>/dev/null || curl -s ipv4.icanhazip.com 2>/dev/null)
+        az keyvault network-rule add --name $EXISTING_KV --ip-address $CURRENT_IP --output none 2>/dev/null || true
+        az keyvault update --name $EXISTING_KV --public-network-access Enabled --output none 2>/dev/null || true
+        sleep 5
+
+        # Try to get existing password
+        DB_PASSWORD=$(az keyvault secret show --vault-name $EXISTING_KV --name db-password --query value -o tsv 2>/dev/null)
+
+        # Restore Key Vault access
+        az keyvault network-rule remove --name $EXISTING_KV --ip-address $CURRENT_IP --output none 2>/dev/null || true
+        az keyvault update --name $EXISTING_KV --public-network-access Disabled --output none 2>/dev/null || true
+
+        if [ -n "$DB_PASSWORD" ]; then
+            echo -e "${GREEN}✅ Retrieved existing database password from Key Vault${NC}"
+        else
+            echo -e "${RED}⚠️  Could not retrieve password from Key Vault${NC}"
+            echo -e "${RED}⚠️  Database exists but password unknown - deployment may fail${NC}"
+            echo -e "${YELLOW}Using placeholder password - you may need to reset it manually${NC}"
+            DB_PASSWORD="PLACEHOLDER_EXISTING_DB"
+        fi
+    else
+        echo -e "${RED}⚠️  No Key Vault found - using placeholder password${NC}"
+        DB_PASSWORD="PLACEHOLDER_EXISTING_DB"
+    fi
+else
+    echo -e "${YELLOW}📝 No existing PostgreSQL server - generating new password${NC}"
+    SKIP_POSTGRES="false"
+    DB_PASSWORD=$(openssl rand -base64 16)
+fi
 
 # Check for and purge any existing soft-deleted Key Vault
 echo -e "${YELLOW}🔍 Checking for soft-deleted Key Vaults...${NC}"
@@ -44,11 +92,12 @@ INFRA_DEPLOYMENT_NAME="infrastructure-$(date +%Y%m%d-%H%M%S)"
 # Capture deployment output and errors
 DEPLOYMENT_OUTPUT=$(az deployment group create \
   --resource-group $RESOURCE_GROUP \
-  --template-file infrastructure/infrastructure.bicep \
+  --template-file "$BICEP_DIR/infrastructure/infrastructure.bicep" \
   --parameters location=$LOCATION \
                prefix=ccp4i2-bicep \
                environment=ne \
                postgresAdminPassword="$DB_PASSWORD" \
+               skipPostgresDeployment=$SKIP_POSTGRES \
   --name $INFRA_DEPLOYMENT_NAME \
   --mode Incremental 2>&1)
 
@@ -96,13 +145,17 @@ if [ $DEPLOYMENT_EXIT_CODE -eq 0 ]; then
     # Wait a moment for the changes to propagate
     sleep 30
     
-    # Store PostgreSQL password in Key Vault
-    echo -e "${YELLOW}🔐 Storing PostgreSQL password in Key Vault...${NC}"
-    az keyvault secret set \
-      --vault-name $KEY_VAULT_NAME \
-      --name db-password \
-      --value "$DB_PASSWORD" \
-      --output none
+    # Store PostgreSQL password in Key Vault (only if we have a real password)
+    if [[ "$DB_PASSWORD" != "PLACEHOLDER_EXISTING_DB" ]]; then
+        echo -e "${YELLOW}🔐 Storing PostgreSQL password in Key Vault...${NC}"
+        az keyvault secret set \
+          --vault-name $KEY_VAULT_NAME \
+          --name db-password \
+          --value "$DB_PASSWORD" \
+          --output none
+    else
+        echo -e "${YELLOW}⚠️  Skipping password storage - using existing Key Vault secret${NC}"
+    fi
     
     # Store ACR password in Key Vault
     ACR_PASSWORD=$(az acr credential show --name $ACR_NAME --query passwords[0].value -o tsv)
@@ -146,7 +199,7 @@ if [ $DEPLOYMENT_EXIT_CODE -eq 0 ]; then
     echo "Shared Identity Principal ID: $CONTAINER_APPS_IDENTITY_PRINCIPAL_ID"
     
     # Store outputs in environment file for application deployment
-    cat > .env.deployment << EOF
+    cat > "$BICEP_DIR/.env.deployment" << EOF
 ACR_NAME=$ACR_NAME
 ACR_LOGIN_SERVER=$ACR_LOGIN_SERVER
 RESOURCE_GROUP=$RESOURCE_GROUP
@@ -156,7 +209,7 @@ IMAGE_TAG_WEB=latest
 IMAGE_TAG_SERVER=latest
 EOF
     
-    echo -e "${GREEN}✅ Infrastructure deployment completed. Environment saved to .env.deployment${NC}"
+    echo -e "${GREEN}✅ Infrastructure deployment completed. Environment saved to $BICEP_DIR/.env.deployment${NC}"
 else
     echo -e "${RED}❌ Infrastructure deployment failed${NC}"
     echo -e "${RED}Error details:${NC}"

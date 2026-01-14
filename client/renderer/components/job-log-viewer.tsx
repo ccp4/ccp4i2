@@ -92,7 +92,7 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
     // Handle file selection if needed, e.g., preview or download
     if (menuNode.type !== "directory") {
       // Set the preview node or perform any action needed
-      const composite_path = `/api/proxy/projects/${
+      const composite_path = `/api/proxy/ccp4i2/projects/${
         project.id
       }/project_file?path=${encodeURIComponent(
         menuNode?.path.slice(project.directory.length + 1) || ""

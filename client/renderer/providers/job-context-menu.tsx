@@ -501,7 +501,7 @@ export const JobMenu: React.FC = () => {
         await api.post(`jobs/${job.id}/regenerate_report/`);
 
         // Invalidate the report_xml SWR cache to trigger refetch
-        await globalMutate(`/api/proxy/jobs/${job.id}/report_xml/`);
+        await globalMutate(`/api/proxy/ccp4i2/jobs/${job.id}/report_xml/`);
 
         setMessage(`Report regenerated for job ${job.number}`);
       } catch (error) {
@@ -527,7 +527,7 @@ export const JobMenu: React.FC = () => {
         }
 
         // Otherwise fetch the full job data to get the directory property
-        const response = await fetch(`/api/proxy/jobs/${job.id}/`);
+        const response = await fetch(`/api/proxy/ccp4i2/jobs/${job.id}/`);
         const jobData = await response.json();
 
         if (jobData?.directory) {

@@ -192,17 +192,17 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
       return;
     }
     if (fileInfo.type === "chemical/x-pdb") {
-      const url = `/api/proxy/files/${fileId}/download/`;
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.annotation || fileInfo.job_param_name;
       await fetchMolecule(url, molName);
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
-      const url = `/api/proxy/files/${fileId}/download/`;
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
       // subType: 1=normal, 2=difference, 3=anomalous difference
       const isDiffMap = fileInfo.sub_type === 2;
       await fetchMap(url, molName, isDiffMap);
     } else if (fileInfo.type === "application/refmac-dictionary") {
-      const url = `/api/proxy/files/${fileId}/download/`;
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       await fetchDict(url);
     }
   };

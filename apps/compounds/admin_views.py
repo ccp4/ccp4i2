@@ -7,6 +7,7 @@ These endpoints require platform admin permissions.
 
 import json
 import logging
+import os
 import tempfile
 from pathlib import Path
 
@@ -106,10 +107,55 @@ def _transform_field_name(old_name, model_type=None):
     return mappings.get(old_name, old_name)
 
 
+def _normalize_absolute_path(path):
+    """
+    Strip absolute path prefixes to get relative media path.
+
+    Handles paths like:
+    - /var/app/media/RegisterCompounds/svg/file.svg
+    - /home/user/project/media/RegBatchQCFile_NCL-123/file.pdf
+    - /data/media/AssayCompounds/Experiments/file.xlsx
+
+    Returns the relative path from MEDIA_ROOT.
+    """
+    if not path or not path.startswith('/'):
+        return path
+
+    # Known directory markers that indicate start of relative media path
+    media_markers = [
+        'RegisterCompounds/',
+        'RegBatchQCFile_',
+        'AssayCompounds/',
+        'compounds/',  # Already transformed paths
+    ]
+
+    for marker in media_markers:
+        if marker in path:
+            # Find where the marker starts and return from there
+            idx = path.find(marker)
+            relative_path = path[idx:]
+            logger.debug(f"Normalized absolute path: {path} -> {relative_path}")
+            return relative_path
+
+    # Check for /media/ directory pattern
+    if '/media/' in path:
+        idx = path.find('/media/') + len('/media/')
+        relative_path = path[idx:]
+        logger.debug(f"Normalized path via /media/: {path} -> {relative_path}")
+        return relative_path
+
+    # Path is absolute but doesn't match known patterns - log warning
+    logger.warning(f"Unable to normalize absolute path: {path}")
+    return path
+
+
 def _transform_file_path(old_path, model_type):
     """Transform file paths to new structure."""
     if not old_path:
         return old_path
+
+    # First normalize any absolute paths to relative
+    old_path = _normalize_absolute_path(old_path)
 
     path_mappings = {
         'RegisterCompounds/svg/': 'compounds/registry/svg/',
@@ -513,3 +559,154 @@ def import_status(request):
             'hypotheses': Hypothesis.objects.count(),
         },
     })
+
+
+# =============================================================================
+# DANGER ZONE - Data Reset Endpoint
+# =============================================================================
+#
+# This endpoint exists ONLY for the initial data migration phase.
+# It should be DISABLED in production by removing the environment variable.
+#
+# To enable: Set CCP4I2_ALLOW_DB_RESET=true in the environment
+# To disable: Remove or unset CCP4I2_ALLOW_DB_RESET
+#
+# =============================================================================
+
+RESET_CONFIRMATION_PHRASE = "DELETE ALL COMPOUNDS DATA"
+
+
+@api_view(['POST'])
+@permission_classes([IsPlatformAdmin])
+def reset_compounds_data(request):
+    """
+    ⚠️  DANGER: Delete all compounds registry and assays data.
+
+    This endpoint is ONLY for use during initial data migration.
+    It is gated by the CCP4I2_ALLOW_DB_RESET environment variable.
+
+    Required POST parameters:
+    - confirmation: Must be exactly "DELETE ALL COMPOUNDS DATA"
+
+    Optional parameters:
+    - include_users: If "true", also clears legacy user data (default: false)
+
+    Returns counts of deleted records.
+    """
+    # Gate 1: Environment variable must be set
+    if not os.environ.get('CCP4I2_ALLOW_DB_RESET', '').lower() == 'true':
+        logger.warning(
+            f"Reset attempt blocked - CCP4I2_ALLOW_DB_RESET not enabled. "
+            f"User: {getattr(request.user, 'email', 'anonymous')}"
+        )
+        return Response(
+            {
+                'error': 'Database reset is disabled',
+                'hint': 'Set CCP4I2_ALLOW_DB_RESET=true to enable (migration phase only)',
+            },
+            status=status.HTTP_403_FORBIDDEN
+        )
+
+    # Gate 2: Confirmation phrase must match exactly
+    confirmation = request.data.get('confirmation', '')
+    if confirmation != RESET_CONFIRMATION_PHRASE:
+        return Response(
+            {
+                'error': 'Confirmation phrase does not match',
+                'required': RESET_CONFIRMATION_PHRASE,
+                'received': confirmation,
+            },
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    include_users = request.data.get('include_users', 'false').lower() == 'true'
+
+    # Import models
+    from compounds.registry.models import (
+        Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
+    )
+    from compounds.assays.models import (
+        DilutionSeries, Protocol, Assay, DataSeries, AnalysisResult, Hypothesis
+    )
+
+    results = {
+        'deleted': {
+            'registry': {},
+            'assays': {},
+        },
+        'users': None,
+        'warning': '⚠️  This action is irreversible!',
+    }
+
+    user_email = getattr(request.user, 'email', 'anonymous')
+
+    try:
+        with transaction.atomic():
+            # Delete in reverse dependency order
+
+            # Assays (DataSeries -> AnalysisResult -> Assay -> Protocol -> DilutionSeries)
+            # Hypothesis references Assay, so delete first
+            results['deleted']['assays']['hypotheses'] = Hypothesis.objects.count()
+            Hypothesis.objects.all().delete()
+
+            results['deleted']['assays']['data_series'] = DataSeries.objects.count()
+            DataSeries.objects.all().delete()
+
+            results['deleted']['assays']['analysis_results'] = AnalysisResult.objects.count()
+            AnalysisResult.objects.all().delete()
+
+            results['deleted']['assays']['assays'] = Assay.objects.count()
+            Assay.objects.all().delete()
+
+            results['deleted']['assays']['protocols'] = Protocol.objects.count()
+            Protocol.objects.all().delete()
+
+            results['deleted']['assays']['dilution_series'] = DilutionSeries.objects.count()
+            DilutionSeries.objects.all().delete()
+
+            # Registry (BatchQCFile -> Batch -> Compound -> Target/Supplier)
+            results['deleted']['registry']['batch_qc_files'] = BatchQCFile.objects.count()
+            BatchQCFile.objects.all().delete()
+
+            results['deleted']['registry']['batches'] = Batch.objects.count()
+            Batch.objects.all().delete()
+
+            results['deleted']['registry']['compound_templates'] = CompoundTemplate.objects.count()
+            CompoundTemplate.objects.all().delete()
+
+            results['deleted']['registry']['compounds'] = Compound.objects.count()
+            Compound.objects.all().delete()
+
+            results['deleted']['registry']['targets'] = Target.objects.count()
+            Target.objects.all().delete()
+
+            results['deleted']['registry']['suppliers'] = Supplier.objects.count()
+            Supplier.objects.all().delete()
+
+            # Optionally clear legacy user data
+            if include_users:
+                from users.models import UserProfile
+                results['users'] = {
+                    'profiles_cleared': UserProfile.objects.exclude(legacy_username='').count()
+                }
+                UserProfile.objects.all().update(
+                    legacy_username='',
+                    legacy_display_name='',
+                    imported_at=None
+                )
+
+            logger.warning(
+                f"🚨 COMPOUNDS DATA RESET by {user_email}: "
+                f"registry={sum(results['deleted']['registry'].values())}, "
+                f"assays={sum(results['deleted']['assays'].values())}, "
+                f"include_users={include_users}"
+            )
+
+    except Exception as e:
+        logger.exception(f"Error during compounds data reset by {user_email}")
+        return Response(
+            {'error': f'Reset failed: {str(e)}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )
+
+    return Response(results)

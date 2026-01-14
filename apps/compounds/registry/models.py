@@ -339,7 +339,7 @@ class BatchQCFile(models.Model):
         on_delete=models.CASCADE,
         related_name='qc_files'
     )
-    file = models.FileField(upload_to=_batch_qc_path)
+    file = models.FileField(upload_to=_batch_qc_path, max_length=255)
     comments = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 

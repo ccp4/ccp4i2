@@ -276,7 +276,7 @@ export const ExportJobMenu: React.FC<ExportJobMenuProps> = ({
 
     // Use identifier as the mode parameter
     const mode = encodeURIComponent(item.identifier);
-    const composite_path = `/api/proxy/jobs/${jobId}/export_job_file?mode=${mode}`;
+    const composite_path = `/api/proxy/ccp4i2/jobs/${jobId}/export_job_file?mode=${mode}`;
 
     // Create a descriptive filename from the label and identifier
     const description = item.label || item.identifier;

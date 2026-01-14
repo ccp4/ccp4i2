@@ -306,7 +306,7 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
         setError(null);
 
         // Fetch the program.xml file for this job
-        const composite_path = `/api/proxy/projects/${
+        const composite_path = `/api/proxy/ccp4i2/projects/${
           project.id
         }/project_file?path=${encodeURIComponent(
           `CCP4_JOBS/job_${job.number}/program.xml`

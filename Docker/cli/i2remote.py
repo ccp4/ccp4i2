@@ -20,8 +20,10 @@ Usage:
     i2remote whoami                       Show current authentication status
 
     i2remote projects [list]              List all projects
+    i2remote projects [list] -v           List all projects with directory
+    i2remote projects [list] -j           List all projects as JSON
     i2remote projects create <name>       Create a new project
-    i2remote projects show <project>      Show project details
+    i2remote projects show <project>      Show project details (JSON)
     i2remote projects tree <project>      Show project job tree
 
     i2remote jobs <project> [list]        List jobs in a project
@@ -1187,7 +1189,12 @@ def cmd_projects(args):
 
     if action == "list":
         projects = client.list_projects()
-        print_table(projects, ["id", "name", "description", "last_access"])
+        if args.json:
+            print_json(projects)
+        elif args.verbose:
+            print_table(projects, ["id", "name", "directory", "description", "last_access"])
+        else:
+            print_table(projects, ["id", "name", "description", "last_access"])
 
     elif action == "create":
         if not args.name:
@@ -1920,6 +1927,8 @@ def main():
     projects_parser.add_argument("project", nargs="?", help="Project name/ID")
     projects_parser.add_argument("--name", "-n", help="Project name for create")
     projects_parser.add_argument("--description", "-d", help="Project description")
+    projects_parser.add_argument("--json", "-j", action="store_true", help="Output full JSON (for list)")
+    projects_parser.add_argument("--verbose", "-v", action="store_true", help="Show all columns including directory")
 
     # Jobs command
     jobs_parser = subparsers.add_parser("jobs", help="Job operations")

@@ -11,10 +11,16 @@ param environment string = 'ne'
 @secure()
 param postgresAdminPassword string
 
+@description('Skip PostgreSQL deployment if it already exists (use when Azure has transient issues)')
+param skipPostgresDeployment bool = false
+
 // Variables
 var resourceSuffix = '${prefix}-${environment}'
 var acrName = 'ccp4acr${environment}${substring(uniqueString(resourceGroup().id), 0, 4)}' // Keep it short and unique
-var storageAccountName = 'stor${environment}${substring(uniqueString(resourceGroup().id), 0, 8)}' // Shorter for 24 char limit
+// CCP4 storage: existing stornekmayz3n2 - PUBLIC access for CCP4 software (working installation with pip packages)
+var ccp4StorageAccountName = 'stor${environment}${substring(uniqueString(resourceGroup().id), 0, 8)}'
+// Private storage: NEW account for sensitive user data (projects, media, static)
+var privateStorageAccountName = 'storprv${environment}${substring(uniqueString(resourceGroup().id), 0, 5)}'
 var keyVaultName = 'kv-${environment}-${substring(uniqueString(resourceGroup().id), 0, 6)}' // Keep under 24 chars
 var postgresServerName = '${prefix}-db-${environment}'
 var containerAppsEnvironmentName = '${prefix}-env-${environment}'
@@ -243,64 +249,91 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' =
   }
 }
 
-// Storage Account
-// Note: publicNetworkAccess is 'Enabled' to allow SAS URL uploads from external clients
-// Anonymous blob access is disabled (allowBlobPublicAccess: false) - only SAS-authenticated requests work
-resource storageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
-  name: storageAccountName
+// Storage Account for CCP4 software (stornekmayz3n2 - existing working installation)
+// PUBLIC access - contains read-only CCP4 installation with pip packages, not sensitive user data
+resource ccp4StorageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: ccp4StorageAccountName
   location: location
   sku: {
     name: 'Standard_LRS'
   }
   kind: 'StorageV2'
   properties: {
-    allowBlobPublicAccess: false  // No anonymous access, SAS required
+    allowBlobPublicAccess: false  // No anonymous blob access, SAS/key required
     allowSharedKeyAccess: true
     minimumTlsVersion: 'TLS1_2'
     supportsHttpsTrafficOnly: true
-    publicNetworkAccess: 'Enabled'  // Required for SAS URL uploads from external clients
+    publicNetworkAccess: 'Enabled'
     networkAcls: {
-      defaultAction: 'Allow'  // Allow SAS-authenticated requests from anywhere
+      defaultAction: 'Allow'  // Allow access from anywhere with valid SAS/key
       bypass: 'AzureServices'
     }
   }
 }
 
-// File Shares
+// Storage Account (PRIVATE) - for sensitive user data (projects, media, static)
+// Network access is restricted - only accessible via:
+// - Private endpoints (container apps within VNet)
+// - Azure services bypass
+// - Temporarily added IPs (via admin scripts)
+resource privateStorageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: privateStorageAccountName
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    allowBlobPublicAccess: false  // No anonymous access
+    allowSharedKeyAccess: true
+    minimumTlsVersion: 'TLS1_2'
+    supportsHttpsTrafficOnly: true
+    publicNetworkAccess: 'Enabled'  // Required for IP-based firewall rules to work
+    networkAcls: {
+      defaultAction: 'Deny'  // Deny by default - only private endpoints and allowed IPs
+      bypass: 'AzureServices'
+      ipRules: []  // Admin scripts will temporarily add IPs as needed
+      virtualNetworkRules: []
+    }
+  }
+}
+
+// File Share for CCP4 software (on CCP4 storage account - existing stornekmayz3n2)
 resource ccp4dataShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
-  name: '${storageAccount.name}/default/ccp4data'
+  name: '${ccp4StorageAccount.name}/default/ccp4data'
   properties: {
     shareQuota: 100
   }
 }
 
+// File shares on PRIVATE storage account (for sensitive user data)
 resource staticfilesShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
-  name: '${storageAccount.name}/default/staticfiles'
+  name: '${privateStorageAccount.name}/default/staticfiles'
   properties: {
     shareQuota: 10
   }
 }
 
 resource mediafilesShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
-  name: '${storageAccount.name}/default/mediafiles'
+  name: '${privateStorageAccount.name}/default/mediafiles'
   properties: {
     shareQuota: 50
   }
 }
 
-// File share for CCP4i2 projects (separate from ccp4data which contains CCP4 installation)
+// File share for CCP4i2 projects (on private storage - separate from ccp4data)
 // Uses Azure Files for POSIX filesystem semantics needed by CCP4 tools
 resource projectsShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
-  name: '${storageAccount.name}/default/ccp4i2-projects'
+  name: '${privateStorageAccount.name}/default/ccp4i2-projects'
   properties: {
     shareQuota: 100  // 100GB initial quota for projects
   }
 }
 
-// Blob container for staged uploads (large file uploads via SAS URL)
+// Blob services on PRIVATE storage account
 resource blobServices 'Microsoft.Storage/storageAccounts/blobServices@2023-01-01' = {
   name: 'default'
-  parent: storageAccount
+  parent: privateStorageAccount
 }
 
 resource stagingUploadsContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
@@ -350,8 +383,9 @@ resource postgresPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' =
   }
 }
 
-// PostgreSQL Flexible Server
-resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview' = {
+// PostgreSQL Flexible Server - conditionally deployed
+// When skipPostgresDeployment is true, reference existing server instead of deploying
+resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview' = if (!skipPostgresDeployment) {
   name: postgresServerName
   location: location
   sku: {
@@ -373,11 +407,17 @@ resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-pr
   }
 }
 
+// Reference existing PostgreSQL server when skipping deployment
+resource existingPostgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview' existing = if (skipPostgresDeployment) {
+  name: postgresServerName
+}
+
 // Remove the old firewall rule since we're using private endpoints
 
-// Private Endpoints
+// Private Endpoints for NEW private storage account
+// Using new names because existing endpoints can't change their target resource
 resource storagePrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01' = {
-  name: '${resourceSuffix}-storage-pe'
+  name: '${resourceSuffix}-storage-private-pe'
   location: location
   properties: {
     subnet: {
@@ -387,7 +427,7 @@ resource storagePrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01' 
       {
         name: 'storage-connection'
         properties: {
-          privateLinkServiceId: storageAccount.id
+          privateLinkServiceId: privateStorageAccount.id
           groupIds: ['file']
         }
       }
@@ -412,7 +452,7 @@ resource storagePrivateDnsZoneGroup 'Microsoft.Network/privateEndpoints/privateD
 
 // Private endpoint for Blob storage (django-storages uploads)
 resource blobPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01' = {
-  name: '${resourceSuffix}-blob-pe'
+  name: '${resourceSuffix}-blob-private-pe'
   location: location
   properties: {
     subnet: {
@@ -422,7 +462,7 @@ resource blobPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01' = {
       {
         name: 'blob-connection'
         properties: {
-          privateLinkServiceId: storageAccount.id
+          privateLinkServiceId: privateStorageAccount.id
           groupIds: ['blob']
         }
       }
@@ -524,7 +564,7 @@ resource postgresPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01'
       {
         name: 'postgres-connection'
         properties: {
-          privateLinkServiceId: postgresServer.id
+          privateLinkServiceId: skipPostgresDeployment ? existingPostgresServer.id : postgresServer.id
           groupIds: ['postgresqlServer']
         }
       }
@@ -618,11 +658,11 @@ resource containerAppsIdentity 'Microsoft.ManagedIdentity/userAssignedIdentities
   location: location
 }
 
-// Role Assignments for Container Apps Identity on Storage Account
+// Role Assignments for Container Apps Identity on Private Storage Account
 // Storage Blob Data Contributor - allows read/write access to blobs
 resource storageBlobDataContributorRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(storageAccount.id, containerAppsIdentity.id, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
-  scope: storageAccount
+  name: guid(privateStorageAccount.id, containerAppsIdentity.id, 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
+  scope: privateStorageAccount
   properties: {
     roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')
     principalId: containerAppsIdentity.properties.principalId
@@ -632,8 +672,8 @@ resource storageBlobDataContributorRole 'Microsoft.Authorization/roleAssignments
 
 // Storage Blob Delegator - allows generating user delegation SAS tokens
 resource storageBlobDelegatorRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
-  name: guid(storageAccount.id, containerAppsIdentity.id, 'db58b8e5-c6ad-4a2a-8342-4190687cbf4a')
-  scope: storageAccount
+  name: guid(privateStorageAccount.id, containerAppsIdentity.id, 'db58b8e5-c6ad-4a2a-8342-4190687cbf4a')
+  scope: privateStorageAccount
   properties: {
     roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'db58b8e5-c6ad-4a2a-8342-4190687cbf4a')
     principalId: containerAppsIdentity.properties.principalId
@@ -641,27 +681,30 @@ resource storageBlobDelegatorRole 'Microsoft.Authorization/roleAssignments@2022-
   }
 }
 
-// Storage for Container Apps Environment
-resource containerAppsStorage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
-  name: 'ccp4data-mount'
+// Storage for Container Apps Environment - CCP4 software (from existing stornekmayz3n2)
+// Using new mount name because existing mount can't change storage account properties
+resource containerAppsCcp4Storage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
+  name: 'ccp4-software'
   parent: containerAppsEnvironment
   properties: {
     azureFile: {
-      accountName: storageAccount.name
-      accountKey: storageAccount.listKeys().keys[0].value
+      accountName: ccp4StorageAccount.name
+      accountKey: ccp4StorageAccount.listKeys().keys[0].value
       shareName: 'ccp4data'
-      accessMode: 'ReadWrite'
+      accessMode: 'ReadOnly'  // CCP4 software is read-only
     }
   }
 }
 
+// Storage mounts for private user data (from new secure storage account)
+// Using new mount names with '-private' suffix because existing mounts can't change storage accounts
 resource containerAppsStaticStorage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
-  name: 'staticfiles-mount'
+  name: 'staticfiles-private'
   parent: containerAppsEnvironment
   properties: {
     azureFile: {
-      accountName: storageAccount.name
-      accountKey: storageAccount.listKeys().keys[0].value
+      accountName: privateStorageAccount.name
+      accountKey: privateStorageAccount.listKeys().keys[0].value
       shareName: 'staticfiles'
       accessMode: 'ReadWrite'
     }
@@ -669,26 +712,26 @@ resource containerAppsStaticStorage 'Microsoft.App/managedEnvironments/storages@
 }
 
 resource containerAppsMediaStorage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
-  name: 'mediafiles-mount'
+  name: 'mediafiles-private'
   parent: containerAppsEnvironment
   properties: {
     azureFile: {
-      accountName: storageAccount.name
-      accountKey: storageAccount.listKeys().keys[0].value
+      accountName: privateStorageAccount.name
+      accountKey: privateStorageAccount.listKeys().keys[0].value
       shareName: 'mediafiles'
       accessMode: 'ReadWrite'
     }
   }
 }
 
-// Storage mount for CCP4i2 projects (dedicated file share separate from ccp4data)
+// Storage mount for CCP4i2 projects (on private storage - separate from ccp4data)
 resource containerAppsProjectsStorage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
-  name: 'projects-mount'
+  name: 'projects-private'
   parent: containerAppsEnvironment
   properties: {
     azureFile: {
-      accountName: storageAccount.name
-      accountKey: storageAccount.listKeys().keys[0].value
+      accountName: privateStorageAccount.name
+      accountKey: privateStorageAccount.listKeys().keys[0].value
       shareName: 'ccp4i2-projects'
       accessMode: 'ReadWrite'
     }
@@ -698,10 +741,11 @@ resource containerAppsProjectsStorage 'Microsoft.App/managedEnvironments/storage
 // Outputs
 output acrName string = containerRegistry.name
 output acrLoginServer string = containerRegistry.properties.loginServer
-output storageAccountName string = storageAccount.name
+output ccp4StorageAccountName string = ccp4StorageAccount.name
+output privateStorageAccountName string = privateStorageAccount.name
 output keyVaultName string = keyVault.name
-output postgresServerName string = postgresServer.name
-output postgresServerFqdn string = postgresServer.properties.fullyQualifiedDomainName
+output postgresServerName string = skipPostgresDeployment ? existingPostgresServer.name : postgresServer.name
+output postgresServerFqdn string = skipPostgresDeployment ? existingPostgresServer.properties.fullyQualifiedDomainName : postgresServer.properties.fullyQualifiedDomainName
 output containerAppsEnvironmentName string = containerAppsEnvironment.name
 output containerAppsEnvironmentId string = containerAppsEnvironment.id
 output vnetId string = vnet.id
