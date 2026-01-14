@@ -19,6 +19,7 @@ import { ProjectExport } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
 import { useProject } from "../utils";
 import { useApi } from "../api";
+import { getAccessToken } from "../utils/auth-token";
 
 interface ProjectExportsDialogProps {
   open: boolean;
@@ -124,9 +125,16 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
     return date.toLocaleString();
   };
 
-  const handleDownload = (exportItem: ProjectExport) => {
+  const handleDownload = async (exportItem: ProjectExport) => {
+    // Get access token to append to URL (anchor clicks don't send Authorization header)
+    const token = await getAccessToken();
+
     // Create a download link for the export file
-    const downloadUrl = `/api/proxy/ccp4i2/projectexports/${exportItem.id}/download/`;
+    let downloadUrl = `/api/proxy/ccp4i2/projectexports/${exportItem.id}/download/`;
+    if (token) {
+      downloadUrl += `?access_token=${encodeURIComponent(token)}`;
+    }
+
     const link = document.createElement("a");
     const projectName =
       typeof exportItem.project === "object"

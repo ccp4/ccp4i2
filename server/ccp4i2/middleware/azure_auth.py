@@ -211,6 +211,7 @@ def extract_token(request: HttpRequest) -> Optional[str]:
     Checks in order:
     1. Authorization header (Bearer token)
     2. X-MS-TOKEN-AAD-ACCESS-TOKEN header (Azure Easy Auth)
+    3. Query parameter access_token (for file downloads/anchor links)
     """
     # Check Authorization header
     auth_header = request.headers.get("Authorization", "")
@@ -221,6 +222,11 @@ def extract_token(request: HttpRequest) -> Optional[str]:
     easy_auth_token = request.headers.get("X-MS-TOKEN-AAD-ACCESS-TOKEN")
     if easy_auth_token:
         return easy_auth_token
+
+    # Check query parameter (for file downloads - anchor links don't send headers)
+    query_token = request.GET.get("access_token")
+    if query_token:
+        return query_token
 
     return None
 

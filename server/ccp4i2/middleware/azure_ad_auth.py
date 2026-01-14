@@ -74,10 +74,17 @@ class AzureADGroupMiddleware:
         """Check if user is authenticated via Azure AD"""
         # Check for Azure AD authentication headers
         auth_header = request.META.get("HTTP_AUTHORIZATION", "")
-        if not auth_header.startswith("Bearer "):
-            return False
+        token = None
 
-        token = auth_header[7:]  # Remove 'Bearer ' prefix
+        if auth_header.startswith("Bearer "):
+            token = auth_header[7:]  # Remove 'Bearer ' prefix
+        else:
+            # Also check for token in query string (for downloads/anchor links)
+            # This allows file downloads to work without Authorization header
+            token = request.GET.get("access_token") or request.GET.get("token")
+
+        if not token:
+            return False
 
         # Validate token (simplified - you might want to use azure-identity library)
         try:

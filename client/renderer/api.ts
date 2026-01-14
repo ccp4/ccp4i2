@@ -9,6 +9,7 @@ import {
   apiPatch,
   apiDelete,
 } from "./api-fetch";
+import { getAccessToken } from "./utils/auth-token";
 
 // =============================================================================
 // Constants
@@ -461,18 +462,31 @@ export function useApi() {
  * Download a file using the browser's native download capability.
  * This streams directly to disk without loading into memory - safe for large files.
  *
+ * For authenticated endpoints, the access token is appended as a query parameter
+ * since anchor clicks don't include Authorization headers.
+ *
  * Note: This doesn't provide progress feedback, but avoids memory issues with large files.
  */
-export const doDownload = (
+export const doDownload = async (
   theURL: string,
   targetName: string,
   _optionsIn?: any,
   _onProgress?: (bytesRead: number) => void
 ) => {
+  // Get access token to append to URL (anchor clicks don't send Authorization header)
+  const token = await getAccessToken();
+
+  // Append token as query parameter if available
+  let downloadUrl = theURL;
+  if (token) {
+    const separator = theURL.includes("?") ? "&" : "?";
+    downloadUrl = `${theURL}${separator}access_token=${encodeURIComponent(token)}`;
+  }
+
   // Use direct anchor approach - browser handles streaming to disk
   // This avoids loading the entire file into memory
   const link = document.createElement("a");
-  link.href = theURL;
+  link.href = downloadUrl;
   link.download = targetName;
   document.body.appendChild(link);
   link.click();

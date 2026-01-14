@@ -6,7 +6,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { doRetrieve } from "../api";
+import { doRetrieve, doDownload } from "../api";
 import {
   Dialog,
   DialogContent,
@@ -156,12 +156,7 @@ const FilePreviewDialog: React.FC = () => {
 
   const handleDownload = () => {
     if (!contentSpecification?.url) return;
-    const link = document.createElement("a");
-    link.href = contentSpecification.url;
-    link.download = contentSpecification.title || "download";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    doDownload(contentSpecification.url, contentSpecification.title || "download");
   };
 
   const monacoLanguage = useMemo(() => {
