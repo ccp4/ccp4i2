@@ -26,7 +26,6 @@ class phaser_pipeline(CPluginScript):
         205: {'description': 'Exception in pointless_reindexToMatch'},
         206: {'description': 'Exception in csymmatch'},
         207: {'description': 'No output files in list'},
-        208: {'description': 'Exception in coot_script_lines'},
         209: {'description': 'Exception in sheetbend'},
         210: {'description': 'Exception in refmac'},
         211: {'description': 'Exception in harvestFile'},
