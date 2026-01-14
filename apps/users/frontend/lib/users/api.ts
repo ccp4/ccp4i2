@@ -145,3 +145,14 @@ export async function apiDelete(endpoint: string): Promise<void> {
     throw error;
   }
 }
+
+/**
+ * Authenticated fetch for arbitrary URLs (e.g., ccp4i2 admin endpoints).
+ * Injects the Azure AD access token and user email headers.
+ */
+export async function authenticatedFetch(
+  url: string,
+  options: RequestInit = {}
+): Promise<Response> {
+  return coreFetch(url, options);
+}

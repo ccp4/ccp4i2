@@ -12,6 +12,7 @@ from .FileTypeViewSet import FileTypeViewSet
 from .FileImportViewSet import FileImportViewSet
 from .FileUseViewSet import FileUseViewSet
 from . import views
+from .admin_views import import_legacy_ccp4i2, ccp4i2_import_status
 
 router = routers.DefaultRouter()
 router.register("projects", ProjectViewSet)
@@ -29,6 +30,9 @@ _api_patterns = [
     path("health/", views.health_check, name="health_check"),
     path("task_tree/", views.task_tree, name="task_tree"),
     path("active_jobs/", views.active_jobs, name="active_jobs"),
+    # Admin endpoints for legacy data import
+    path("admin/import-legacy/", import_legacy_ccp4i2, name="import-legacy-ccp4i2"),
+    path("admin/import-status/", ccp4i2_import_status, name="ccp4i2-import-status"),
 ]
 
 # Wrap all patterns under /api/ccp4i2/ for multi-app integration
