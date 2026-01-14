@@ -2,7 +2,7 @@
 Test CPluginScript async execution with signal system.
 
 This verifies that our CPluginScript now works exactly like the Qt version
-for async plugin chaining (the demo_copycell pattern).
+for async plugin chaining.
 """
 
 import pytest
@@ -44,7 +44,6 @@ class SimplePipeline(CPluginScript):
     """
     Simple pipeline that chains two async plugins.
 
-    This mimics the demo_copycell pattern:
     1. Run plugin1 (like mtzdump)
     2. When it finishes, run plugin2 (like pdbset)
     3. Report final status
@@ -146,7 +145,7 @@ class TestCPluginScriptAsync:
             assert result['status'] == CPluginScript.SUCCEEDED
 
     def test_pipeline_two_async_plugins(self):
-        """Test pipeline with two chained async plugins (demo_copycell pattern)."""
+        """Test pipeline with two chained async plugins."""
         with tempfile.TemporaryDirectory() as tmpdir:
             result = {'status': None, 'completed': False}
 

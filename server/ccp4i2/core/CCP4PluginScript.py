@@ -881,7 +881,7 @@ class CPluginScript(CData):
             self._glean_output_files_sync()
 
         # Emit finished signal so pipelines can continue
-        # This is essential for sub-plugins in pipelines (e.g., mtzdump in demo_copycell)
+        # This is essential for sub-plugins in pipelines
         logger.info(f"[DEBUG process] Calling reportStatus with status: {status}")
         self.reportStatus(status)
         logger.info(f"[DEBUG process] Returning status: {status}")
@@ -1338,7 +1338,7 @@ class CPluginScript(CData):
 
         # Save params.xml after setting output file attributes
         # Do this in checkOutputData() rather than process() because some plugins
-        # (like demo_copycell) override process() and bypass the base implementation
+        # override process() and bypass the base implementation
         # NOTE: We save to params.xml (not input_params.xml) to preserve the original inputs
         if self.get_db_job_id():
             try:

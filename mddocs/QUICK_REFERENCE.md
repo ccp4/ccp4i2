@@ -468,7 +468,6 @@ def on_finished(self, status):
 - **CLAUDE.md** - Project overview and metadata system
 - **core/CCP4PluginScript.py** - Main plugin implementation (heavily documented)
 - **core/CCP4ComTemplate.py** - Template expansion system
-- **tests/test_demo_copycell_integration.py** - Real-world pipeline example
 
 ---
 

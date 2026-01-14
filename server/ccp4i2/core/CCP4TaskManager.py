@@ -59,7 +59,6 @@ MODULE_DEFAULTS = {
     'expt_data_utility': ['pointless_reindexToMatch', 'phaser_EP_LLG', 'cmapcoeff', 'chltofom', 'cphasematch', 'ctruncate', 'splitMtz', 'scaleit'],
     'model_data_utility': ['csymmatch', 'gesamt', 'coordinate_selector', 'qtpisa'],
     'developer_tools': [],
-    'test': ['demo_copycell']
 }
 
 

@@ -209,9 +209,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'ctruncate':
         from ccp4i2.wrappers.ctruncate.script.ctruncate import ctruncate
         return ctruncate
-    if plugin_name == 'demo_copycell':
-        from ccp4i2.wrappers2.demo_copycell.script.demo_copycell import demo_copycell
-        return demo_copycell
     if plugin_name == 'density_calculator':
         from ccp4i2.wrappers.density_calculator.script.density_calculator import density_calculator
         return density_calculator
@@ -567,7 +564,6 @@ PLUGIN_NAMES: set[str] = {
     'crank2_substrdet',
     'csymmatch',
     'ctruncate',
-    'demo_copycell',
     'density_calculator',
     'dials_image',
     'dials_rlattice',
