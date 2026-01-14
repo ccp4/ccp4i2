@@ -5,8 +5,8 @@ import xml.etree.ElementTree as ET
 
 import coot_headless_api
 
-from core.CCP4PluginScript import CPluginScript
-from core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4ModelData import CPdbDataFile
+from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_find_waters(CPluginScript):
