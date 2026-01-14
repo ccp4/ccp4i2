@@ -152,9 +152,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'coot_find_waters':
         from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
         return coot_find_waters
-    if plugin_name == 'coot_fit_residues':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues import coot_fit_residues
-        return coot_fit_residues
     if plugin_name == 'coot_rebuild':
         from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild import coot_rebuild
         return coot_rebuild
@@ -164,9 +161,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'coot_script_lines':
         from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines import coot_script_lines
         return coot_script_lines
-    if plugin_name == 'coot_stepped_refine':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine import coot_stepped_refine
-        return coot_stepped_refine
     if plugin_name == 'cpatterson':
         from ccp4i2.wrappers.cpatterson.script.cpatterson import cpatterson
         return cpatterson
@@ -431,12 +425,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'refmac':
         from ccp4i2.wrappers.refmac_i2.script.refmac_i2 import refmac_i2
         return refmac_i2
-    if plugin_name == 'reindex_minimtz':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz import reindex_minimtz
-        return reindex_minimtz
-    if plugin_name == 'reindex_processed_data':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data import reindex_processed_data
-        return reindex_processed_data
     if plugin_name == 'scaleit':
         from ccp4i2.wrappers.scaleit.script.scaleit import scaleit
         return scaleit
@@ -560,11 +548,9 @@ PLUGIN_NAMES: set[str] = {
     'coordinate_selector',
     'coot1',
     'coot_find_waters',
-    'coot_fit_residues',
     'coot_rebuild',
     'coot_rsr_morph',
     'coot_script_lines',
-    'coot_stepped_refine',
     'cpatterson',
     'cphasematch',
     'crank2',
@@ -653,8 +639,6 @@ PLUGIN_NAMES: set[str] = {
     'pyphaser_mr',
     'qtpisa',
     'refmac',
-    'reindex_minimtz',
-    'reindex_processed_data',
     'scaleit',
     'scalepack2mtz',
     'sculptor',

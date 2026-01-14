@@ -140,9 +140,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'coot_find_waters':
         from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_report import coot_find_waters_report
         return coot_find_waters_report
-    if task_name == 'coot_fit_residues':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report import coot_fit_residues_report
-        return coot_fit_residues_report
     if task_name == 'coot_rebuild':
         from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild_report import coot_rebuild_report
         return coot_rebuild_report
@@ -152,9 +149,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'coot_script_lines':
         from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report import coot_script_lines_report
         return coot_script_lines_report
-    if task_name == 'coot_stepped_refine':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_report import coot_stepped_refine_report
-        return coot_stepped_refine_report
     if task_name == 'cpatterson':
         from ccp4i2.wrappers.cpatterson.script.cpatterson_report import cpatterson_report
         return cpatterson_report
@@ -392,9 +386,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'refmac':
         from ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report import refmac_report
         return refmac_report
-    if task_name == 'reindex_processed_data':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_report import reindex_processed_data_report
-        return reindex_processed_data_report
     if task_name == 'scaleit':
         from ccp4i2.wrappers.scaleit.script.scaleit_report import scaleit_report
         return scaleit_report
@@ -487,11 +478,9 @@ REPORT_NAMES: set[str] = {
     'coordinate_selector',
     'coot1',
     'coot_find_waters',
-    'coot_fit_residues',
     'coot_rebuild',
     'coot_rsr_morph',
     'coot_script_lines',
-    'coot_stepped_refine',
     'cpatterson',
     'cphasematch',
     'crank2',
@@ -571,7 +560,6 @@ REPORT_NAMES: set[str] = {
     'pyphaser_mr',
     'qtpisa',
     'refmac',
-    'reindex_processed_data',
     'scaleit',
     'sculptor',
     'servalcat',
