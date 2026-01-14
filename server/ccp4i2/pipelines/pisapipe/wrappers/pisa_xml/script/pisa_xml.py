@@ -17,9 +17,7 @@ class pisa_xml(CPluginScript):
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS=True
 
-  
     def process(self):
         self.xmlroot = etree.Element('pisa_xml')
         result = self.retrieveAssemblies()
