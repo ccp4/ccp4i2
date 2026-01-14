@@ -150,7 +150,7 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.coot1.script.coot1 import coot1
         return coot1
     if plugin_name == 'coot_find_waters':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
+        from ccp4i2.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
         return coot_find_waters
     if plugin_name == 'coot_rebuild':
         from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild import coot_rebuild
@@ -159,7 +159,7 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph import coot_rsr_morph
         return coot_rsr_morph
     if plugin_name == 'coot_script_lines':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines import coot_script_lines
+        from ccp4i2.wrappers.coot_script_lines.script.coot_script_lines import coot_script_lines
         return coot_script_lines
     if plugin_name == 'cpatterson':
         from ccp4i2.wrappers.cpatterson.script.cpatterson import cpatterson
