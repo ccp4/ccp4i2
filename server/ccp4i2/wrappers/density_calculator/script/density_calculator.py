@@ -16,7 +16,7 @@ class density_calculator(CPluginScript):
     RUNEXTERNALPROCESS = False
     WHATNEXT = ["coot_rebuild"]
 
-    def startProcess(self, command=None, handler=None, **kw):
+    def startProcess(self):
         xyzin = os.path.join(self.getWorkDirectory(), "xyzin.xyz")
         hklout = os.path.join(self.getWorkDirectory(), "hklout.mtz")
         mapout = os.path.join(self.getWorkDirectory(), "mapout.map")

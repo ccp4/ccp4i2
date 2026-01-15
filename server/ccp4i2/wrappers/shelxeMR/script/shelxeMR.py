@@ -29,7 +29,7 @@ class shelxeMR(CPluginScript):
         if not self.filecaught:
             jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=self.jobId)
             self.watchDirectory(jobDirectory, handler=self.handleDirectoryChanged)
-        CPluginScript.process(self)
+        super().process()
 
     def handleOutputChanged(self, logfile):
         self.parseLogfile()

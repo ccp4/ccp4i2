@@ -19,7 +19,7 @@ class coot_rsr_morph(CPluginScript):
     MAINTAINER = "stuart.mcnicholas@york.ac.uk"
     RUNEXTERNALPROCESS = False
 
-    def startProcess(self, command=None, handler=None, **kw):
+    def startProcess(self):
         outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"
         oldFullPath = pathlib.Path(str(self.container.outputData.XYZOUT.fullPath))
         if outFormat == "cif":

@@ -1,16 +1,14 @@
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ModelData
-import os,sys
+import sys
 import shutil
 from lxml import etree
 
 class ProvideAsuContents(CPluginScript):
-
-    TASKNAME = 'ProvideAsuContents'                        # Task name - should be same as class name
+    TASKNAME = 'ProvideAsuContents'
     RUNEXTERNALPROCESS=False
-   
-    def startProcess(self, command, **kw):
+
+    def startProcess(self):
       asuFileObject = self.container.outputData.ASUCONTENTFILE
       asuFileObject.fileContent.seqList.set(self.container.inputData.ASU_CONTENT)
       if self._dbHandler:

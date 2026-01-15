@@ -76,13 +76,12 @@ class servalcat_pipe(CPluginScript):
         # Call parent validity
         return super(servalcat_pipe, self).validity()
 
-    def startProcess(self, processId):
+    def startProcess(self):
         """
         Main pipeline execution - runs ProSMART, MetalCoord, then Servalcat.
 
         Each phase uses try/except with proper CErrorReport logging including traceback.
         """
-        print(f"[servalcat_pipe] startProcess called with processId={processId}")
         print(f"[servalcat_pipe] workDirectory: {self.getWorkDirectory()}")
         print(f"[servalcat_pipe] container type: {type(self.container)}")
 

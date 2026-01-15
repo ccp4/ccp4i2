@@ -41,7 +41,6 @@ class EPAUTOCallbackObject(phaser_MR.CallbackObject):
 class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
     TASKNAME = 'phaser_EP_AUTO'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
@@ -59,7 +58,7 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
         self.xmlroot = etree.Element('PhaserEpResults')
         self.callbackObject = EPAUTOCallbackObject(self.xmlroot, [self.flushXML])
     
-    def startProcess(self, command, **kw):
+    def startProcess(self):
         
         import phaser
         outputObject = phaser.Output()

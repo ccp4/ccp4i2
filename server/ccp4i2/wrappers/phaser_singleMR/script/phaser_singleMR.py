@@ -24,9 +24,6 @@ class phaser_singleMR(CPluginScript):
         self.xmlout = None
         CPluginScript.__init__(self, *args, **kwargs)
 
-    def process(self):
-        CPluginScript.process(self)
-
     def processInputFiles(self):
         cols1 = []
         self.container.inputData.F_SIGF.loadFile()

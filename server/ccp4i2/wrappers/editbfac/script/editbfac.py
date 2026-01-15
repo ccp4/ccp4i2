@@ -12,19 +12,14 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class editbfac(CPluginScript):
-
     TASKTITLE='Process Predicted Models'
     TASKNAME = 'editbfac'
     TASKMODULE=['alpha_fold', 'model_data_utility' ]
-    TASKCOMMAND = 'None'
     TASKVERSION = 0.0
     RUNEXTERNALPROCESS=False
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
-    def makeCommandAndScript(self):
-        return
-
-    def startProcess(self, comList, **kw):
+    def startProcess(self):
         # Run cctbx conversion in startProcess. Setup cctbx dm & redirect std for this ftn.
         self.dm = DataManager()
         self.dm.set_overwrite(True)

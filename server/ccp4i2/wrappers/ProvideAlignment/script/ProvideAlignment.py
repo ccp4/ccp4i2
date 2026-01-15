@@ -2,12 +2,12 @@ from io import StringIO
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from Bio import AlignIO
+from lxml import etree
 
 
 class ProvideAlignment(CPluginScript):
-
     TASKNAME = 'ProvideAlignment'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
     COMTEMPLATE = None                                   # The program com file template
     COMTEMPLATEFILE = None                               # Name of file containing com file template
@@ -17,18 +17,8 @@ class ProvideAlignment(CPluginScript):
                     202 : { 'description' : 'Failed reading input alignment file' },
                     203 : { 'description' : 'Failed writing alignment file extracted from HHPred file' }
                     }
-    
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
-    def startProcess(self, command, **kw):
-        import os
 
-        from Bio import AlignIO, SeqIO
-        from lxml import etree
-
+    def startProcess(self):
         status = CPluginScript.SUCCEEDED
         mode = str(self.container.controlParameters.PASTEORREAD)
 

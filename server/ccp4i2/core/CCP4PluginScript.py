@@ -647,7 +647,7 @@ class CPluginScript(CData):
     # Process workflow methods
     # =========================================================================
 
-    def process(self, **kwargs) -> int:
+    def process(self) -> int:
         """
         Main processing method - orchestrates the entire workflow.
 
@@ -657,10 +657,6 @@ class CPluginScript(CData):
         3. processInputFiles() - pre-process input files
         4. makeCommandAndScript() - generate command line/file
         5. startProcess() - execute the program
-
-        Args:
-            **kwargs: Optional keyword arguments to forward to startProcess()
-                     (e.g., filename, pxdname for phaser_analysis)
 
         Returns:
             Status code (SUCCEEDED, FAILED, or RUNNING)
@@ -797,31 +793,7 @@ class CPluginScript(CData):
         # Legacy compatibility: plugins have various startProcess signatures
         # Inspect the signature and call with appropriate arguments
         try:
-            import inspect
-            sig = inspect.signature(self.startProcess)
-            params = list(sig.parameters.keys())
-
-            if len(params) == 0:
-                # Modern signature: startProcess(self)
-                result = self.startProcess(**kwargs)
-            elif 'processId' in params:
-                # Legacy signature: startProcess(self, processId, ...)
-                result = self.startProcess(processId=0, **kwargs)
-            elif 'comList' in params or (len(params) > 0 and params[0] == 'comList'):
-                # Legacy signature: startProcess(self, comList, **kw)
-                # Pass empty list for comList
-                result = self.startProcess([], **kwargs)
-            elif 'command' in params or (len(params) > 0 and params[0] == 'command'):
-                # Legacy signature: startProcess(self, command, **kw)
-                # Pass None for command (used by phaser plugins with Python-based logic)
-                result = self.startProcess(None, **kwargs)
-            else:
-                # Unknown signature - try with empty args and let **kwargs catch extras
-                try:
-                    result = self.startProcess(**kwargs)
-                except TypeError:
-                    # If that fails, try passing None for the first positional param
-                    result = self.startProcess(None, **kwargs)
+            result = self.startProcess()
 
             # Handle both modern API (CErrorReport) and legacy API (int)
             if isinstance(result, int):

@@ -42,7 +42,7 @@ class dui(CPluginScript):
 
     def process(self):
         self.stime = time.time()
-        CPluginScript.process(self)
+        super().process()
 
     def processOutputFiles(self):
         # Carry forward the bkp file - (added to carry forward loc. of original dui run). nb. take care with annot.

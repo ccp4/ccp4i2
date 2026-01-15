@@ -71,7 +71,7 @@ class splitMtz(CPluginScript):
         204: {'description': 'Input MTZ file not found'},
     }
 
-    def startProcess(self, command, **kw):  # noqa: ARG002
+    def startProcess(self):
         inp = self.container.inputData
         out = self.container.outputData
 

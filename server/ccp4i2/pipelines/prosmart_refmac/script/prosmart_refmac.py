@@ -49,7 +49,7 @@ class prosmart_refmac(CPluginScript):
         self.xmlroot = etree.Element("RefmacOptimiseWeight")
         self.xmlroot2 = etree.Element("RefmacOptimiseWeight")
 
-    def startProcess(self, processId):
+    def startProcess(self):
         """
         Main pipeline execution - runs ProSMART, Platonyzer, then Refmac.
 

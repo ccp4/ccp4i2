@@ -17,7 +17,7 @@ class TestObsConversions(CPluginScript):
         super(TestObsConversions,self).__init__(parent, name, workDirectory, dummy, taskName, **kw)
         self.xmlroot = etree.Element('TestObsConversions')
 
-    def startProcess(self, command):
+    def startProcess(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot, pretty_print=True))
         return CPluginScript.SUCCEEDED

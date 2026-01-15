@@ -1,5 +1,3 @@
-import sys
-
 from ccp4i2.report import Report
 from ccp4i2.wrappers.phaser_analysis.script.phaser_analysis_utils import Tabledata
 
@@ -11,8 +9,6 @@ class phaser_analysis_report(Report):
   def __init__(self,xmlnode=None,jobInfo={},jobStatus=None,**kw):
     Report.__init__(self,xmlnode=xmlnode,jobInfo=jobInfo,jobStatus=None,**kw)
 
-    #print("phaser_analysis_report, tag",self.xmlnode.tag)
-
     # For now (testing), isolate PHASER_ANALYSES:1 block 
     select1 = False   # True to use PHASER_ANALYSES1 if present
     if self.xmlnode.tag == 'IMPORT_MERGED':
@@ -22,7 +18,6 @@ class phaser_analysis_report(Report):
         self.xmlnode = self.xmlnode.findall('PHASER_ANALYSES1/PHASER_ANALYSIS')[0]
       else:
         self.xmlnode = self.xmlnode.findall('PHASER_ANALYSES/PHASER_ANALYSIS')[0]
-    
 
     try:
       self.fileroot = self.jobInfo['fileroot']

@@ -26,7 +26,7 @@ class pdb_redo_api(CPluginScript):
     RUNEXTERNALPROCESS=False
     PERFORMANCECLASS = 'CRefinementPerformance'
 
-    def startProcess(self,command,**kw):
+    def startProcess(self):
         print("pdb_redo_api.startProcess")
         inp = self.container.inputData
         xyzin = str( inp.XYZIN.fullPath )

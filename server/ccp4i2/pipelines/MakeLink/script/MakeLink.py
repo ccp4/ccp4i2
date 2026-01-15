@@ -409,7 +409,7 @@ class MakeLink(CPluginScript):
 
 
     #The startProcess method is where you build in the pipeline logic
-    def startProcess(self, command, **kws):
+    def startProcess(self):
         self.AcedrgLinkPlugins = []
         self.completedPlugins = []
 

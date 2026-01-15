@@ -31,9 +31,6 @@ class findmyseq(CPluginScript):
         self.seqout = None
         CPluginScript.__init__(self, *args, **kwargs)
 
-    def process(self):
-        CPluginScript.process(self)
-
     def processInputFiles(self):
         self.pdbin = self.container.inputData.XYZIN.fullPath.__str__()
         if self.container.inputData.LSEQDB.isSet():

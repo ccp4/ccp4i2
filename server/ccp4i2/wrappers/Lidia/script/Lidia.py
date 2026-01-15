@@ -16,7 +16,7 @@ class lidia(CPluginScript):
     TASKTITLE = 'Lidia'  # A short title for gui menu
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'Lidia'  # Task name - should be same as class name
-    TASKCOMMAND = 'lidia.bat' if platform.system() == "Windows" else 'lidia'  # The command to run the executable
+    TASKCOMMAND = 'lidia.bat' if platform.system() == "Windows" else 'lidia'
     TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
@@ -26,7 +26,7 @@ class lidia(CPluginScript):
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},
                    201 : {'description' : 'Failed to setFullPath'},}
     
-    def startProcess(self, command, **kw):
+    def startProcess(self):
         viewer = 'lidia'
         argList = []
         lidiaPath = _lidiaPath()

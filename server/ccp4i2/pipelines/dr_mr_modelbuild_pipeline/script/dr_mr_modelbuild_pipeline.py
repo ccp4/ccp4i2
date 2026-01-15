@@ -681,10 +681,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         if plugin.editComFile:
             plugin.displayEditor()
             return
-        #return apply(plugin.startProcess, [plugin.command,[plugin.postProcess,{}]] , kw )
         try:
-            #MN...apply has been deprecated in favour of the syntax below since python 2.3
-            #rv = apply(plugin.startProcess, [plugin.command] , kw )
             rv = self.startModelCraftProcess(plugin)
         except:
             plugin.appendErrorReport(48, exc_info=sys.exc_info())

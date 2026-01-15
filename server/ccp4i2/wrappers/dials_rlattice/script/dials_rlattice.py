@@ -12,15 +12,6 @@ class dials_rlattice(CPluginScript):
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
-    def __init__(self, *args, **kwargs):
-        CPluginScript.__init__(self, *args, **kwargs)
-
-    def process(self):
-        CPluginScript.process(self)
-
-    def processInputFiles(self):
-        return CPluginScript.SUCCEEDED
-
     def processOutputFiles(self):
         return CPluginScript.MARK_TO_DELETE
 

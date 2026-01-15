@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coordinate_selector(CPluginScript):
-    
     TASKMODULE = 'model_data_utility' # Where this plugin will appear on gui
     TASKTITLE = 'Select subset from coordinates' # A short title for gui menu
     TASKNAME = 'coordinate_selector'   # Task name - should be same as class name
@@ -15,14 +14,10 @@ class coordinate_selector(CPluginScript):
     ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
                     202 : {'description' : 'Failed applying selection to PDB file' }
                     }
-    TASKCOMMAND='None'
     RUNEXTERNALPROCESS=False
     PERFORMANCECLASS ='CAtomCountPerformance'
-    
-    def makeCommandAndScript(self,**kw):
-      return
-    
-    def startProcess(self,comList,**kw):
+
+    def startProcess(self):
         try:
             self.container.inputData.XYZIN.loadFile()
             oldFullPath = pathlib.Path(self.container.outputData.XYZOUT.fullPath.__str__())
@@ -31,7 +26,7 @@ class coordinate_selector(CPluginScript):
             self.container.inputData.XYZIN.getSelectedAtomsPdbFile(str(self.container.outputData.XYZOUT.fullPath))
         except:
             raise
-            self.appendErrorReport(202)         
+            self.appendErrorReport(202)
             return(CPluginScript.FAILED)
             
     def postProcessCheck(self, processId=None):

@@ -2,13 +2,7 @@
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <userId>pre</userId>
-    <creationTime>11:00 12/Nov/2020</creationTime>
-    <pluginVersion></pluginVersion>
-    <ccp4iVersion>0.0.1</ccp4iVersion>
     <pluginName>phaser_analysis</pluginName>
-    <pluginTitle>Analyse data with Phaser</pluginTitle>
-    <jobId/>
   </ccp4i2_header>
   <ccp4i2_body id="phaser_analysis">
     <container id="inputData">
@@ -16,7 +10,13 @@
         <className>CMtzDataFile</className>
         <qualifiers>
           <mustExist>True</mustExist>
-          <allowUndefined>True</allowUndefined>
+          <allowUndefined>False</allowUndefined>
+        </qualifiers>
+      </content>
+      <content id="PXDNAME">
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>False</allowUndefined>
         </qualifiers>
       </content>
     </container>
@@ -27,7 +27,7 @@
         <qualifiers>
           <guiLabel>None</guiLabel>
           <default>0.02</default>
-`          <toolTip>Information content threshold</toolTip>
+          <toolTip>Information content threshold</toolTip>
           <min>0.0</min>
         </qualifiers>
       </content>

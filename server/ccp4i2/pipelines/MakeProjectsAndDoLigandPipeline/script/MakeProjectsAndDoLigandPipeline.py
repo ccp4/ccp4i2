@@ -43,8 +43,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         self.datasetElements = {}
         self.dumpXml()
 
-    #The startProcess method is where you build in the pipeline logic
-    def startProcess(self, command, **kws):
+    def startProcess(self):
         from ccp4i2.core.CCP4Modules import JOBCONTROLLER, PROJECTSMANAGER
         pm = PROJECTSMANAGER()
         

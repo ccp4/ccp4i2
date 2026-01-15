@@ -64,7 +64,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         self.coordinatesToUse = self.container.inputData.XYZIN
         return CPluginScript.SUCCEEDED
 
-    def startProcess(self, *args, **kwargs):
+    def startProcess(self):
         self.createReflectionsCif()
 
         from adding_stats_to_mmcif.__main__ import run_process

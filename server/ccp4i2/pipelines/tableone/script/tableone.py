@@ -33,7 +33,7 @@ class tableone(CPluginScript):
         CPluginScript.__init__(self, *args, **kwargs)
 
     def process(self):
-        CPluginScript.process(self)
+        super().process()
         # Be careful with this. validate_protein may well change, best to co-ordinate this.
         vprotein = validate_protein.validate_protein()
         l1, x1 = vprotein.b_averages(str(self.container.inputData.XYZIN))

@@ -18,7 +18,7 @@ class coot_find_ligand(CPluginScript):
     TIMEOUT_PERIOD = 9999999.9
     RUNEXTERNALPROCESS = False
 
-    def startProcess(self, command=None, handler=None, **kw):
+    def startProcess(self):
         inputData = self.container.inputData
         outputData = self.container.outputData
         params = self.container.controlParameters

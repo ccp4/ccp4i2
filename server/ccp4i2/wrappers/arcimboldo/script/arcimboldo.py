@@ -186,9 +186,6 @@ class arcimboldo(CPluginScript):
             self.appendCommandLine([os.path.join(self.getWorkDirectory(),'setup.bor')])
         return CPluginScript.SUCCEEDED
 
-    def process(self):
-        CPluginScript.process(self)
-
     def processOutputFiles(self):
         outputData = self.container.outputData
         pdbout = os.path.join(self.getWorkDirectory(), "best.pdb")
@@ -196,11 +193,6 @@ class arcimboldo(CPluginScript):
             outputData.XYZOUT.append(outputData.XYZOUT.makeItem())
             outputData.XYZOUT[-1].setFullPath(pdbout)
             outputData.XYZOUT[-1].annotation = 'Best pdb solution'
-    #      phsout = os.path.join(self.getWorkDirectory(), "best.phs")
-    #      if os.path.exists(phsout):
-    #         outputData.PHSOUT.append(outputData.PHSOUT.makeItem())
-    #         outputData.PHSOUT[-1].setFullPath(phsout)
-    #         outputData.PHSOUT[-1].annotation = 'Best phs solution'
         return CPluginScript.SUCCEEDED
 
     def refreshXML(self, filename):

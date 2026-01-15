@@ -19,7 +19,7 @@ class coot_find_waters(CPluginScript):
     TIMEOUT_PERIOD = 9999999.9
     RUNEXTERNALPROCESS = False
 
-    def startProcess(self, command=None, handler=None, **kw):
+    def startProcess(self):
         outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"
         oldFullPath = pathlib.Path(str(self.container.outputData.XYZOUT.fullPath))
         if outFormat == "cif":

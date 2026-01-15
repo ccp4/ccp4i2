@@ -23,9 +23,6 @@ class mrparse(CPluginScript):
         self.hklin = None
         CPluginScript.__init__(self, *args, **kwargs)
 
-    def process(self):
-        CPluginScript.process(self)
-
     def processInputFiles(self):
         self.seqin = self.container.inputData.SEQIN
         if self.container.inputData.F_SIGF.isSet():

@@ -1,5 +1,6 @@
 import os
 import sys
+import tempfile
 from io import StringIO
 
 from lxml import etree
@@ -17,14 +18,7 @@ class ProvideSequence(CPluginScript):
     COMTEMPLATEFILE = None                               # Name of file containing com file template
     RUNEXTERNALPROCESS=False
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
-    def startProcess(self, command, **kw):
-        import tempfile
-
+    def startProcess(self):
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
         
         root = etree.Element('ProvideSequence')

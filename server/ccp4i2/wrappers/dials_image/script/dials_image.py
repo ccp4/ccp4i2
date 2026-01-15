@@ -12,12 +12,6 @@ class dials_image(CPluginScript):
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
-    def process(self):
-        CPluginScript.process(self)
-
-    def processInputFiles(self):
-        return CPluginScript.SUCCEEDED
-
     def processOutputFiles(self):
         return CPluginScript.MARK_TO_DELETE
 

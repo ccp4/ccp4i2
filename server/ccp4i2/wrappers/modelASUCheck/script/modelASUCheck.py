@@ -19,7 +19,7 @@ class modelASUCheck(CPluginScript):
     }
     RUNEXTERNALPROCESS = False
 
-    def startProcess(self, command=None, handler=None, **kw):
+    def startProcess(self):
         xyzin = self.container.inputData.XYZIN
         asuin = self.container.inputData.ASUIN
 

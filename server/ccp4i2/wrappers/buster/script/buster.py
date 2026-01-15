@@ -41,16 +41,14 @@ class buster(CPluginScript):
             print(scriplo)
             self.source_script(scriplo)
             goodtogo = True
-        if goodtogo:
-            CPluginScript.process(self)
-        else:
+        if not goodtogo:
             # Failed to find BUSTER. Flag problem & also write advice into stdout.
             self.appendErrorReport(101)
             print("ERROR REPORTED : Failed to find BUSTER installation.\n"
                   "                 If you have installed BUSTER, please ensure you either run the setup script\n" 
                   "                 for BUSTER, before running ccp4i2, or point i2 to the BUSTER installation folder\n"
                   "                 in user preferences.")
-            CPluginScript.process(self)
+        super().process()
 
     def source_script(self, script):
         pipe = subprocess.Popen(". %s; env" % script, stdout=subprocess.PIPE, shell=True)
