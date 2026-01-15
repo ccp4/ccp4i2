@@ -100,17 +100,12 @@ export function FreeRImportDialog({
         await apiUpload(`jobs/${newJobId}/upload_file_param/`, freeRFormData);
       }
 
-      // 5. Run the job
+      // 5. Run the job synchronously (freerflag is quick)
       setProgress(70);
       setProgressMessage("Running FreeR generation...");
 
-      await apiPost(`jobs/${newJobId}/run/`, {});
-
-      setProgress(90);
-      setProgressMessage("Job queued, waiting for completion...");
-
-      // Wait for job to complete (freerflag can take ~20 seconds)
-      await new Promise((resolve) => setTimeout(resolve, 15000));
+      // Use run_local with synchronous=true to wait for completion
+      await apiPost(`jobs/${newJobId}/run_local/`, { synchronous: true });
 
       setProgress(100);
       setProgressMessage("Done!");

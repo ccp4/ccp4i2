@@ -77,14 +77,9 @@ export function CoordsImportDialog({
       setProgress(60);
       setProgressMessage("Running coordinate import...");
 
-      // 3. Run the job
-      await apiPost(`jobs/${newJobId}/run/`, {});
-
-      setProgress(90);
-      setProgressMessage("Job queued, waiting for completion...");
-
-      // 4. Wait a bit for the job to run (coordinate_selector is quick)
-      await new Promise((resolve) => setTimeout(resolve, 5000));
+      // 3. Run the job synchronously (coordinate_selector is quick)
+      // Use run_local with synchronous=true to wait for completion
+      await apiPost(`jobs/${newJobId}/run_local/`, { synchronous: true });
 
       setProgress(100);
       setProgressMessage("Done!");

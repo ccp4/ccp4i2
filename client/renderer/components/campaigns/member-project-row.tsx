@@ -138,7 +138,7 @@ export function MemberProjectRow({
         `jobs/${slJob.id}/clone/`,
         {}
       );
-      await apiPost(`jobs/${cloneResult.new_job.id}/run/`, { queue: "batch" });
+      await apiPost(`jobs/${cloneResult.new_job.id}/run/`, {});
       onRefresh();
     } catch (err) {
       console.error("Failed to rerun job:", err);
@@ -163,7 +163,7 @@ export function MemberProjectRow({
       // TODO: Upload new coords to the cloned job
       // This requires the file upload workflow
 
-      await apiPost(`jobs/${cloneResult.new_job.id}/run/`, { queue: "batch" });
+      await apiPost(`jobs/${cloneResult.new_job.id}/run/`, {});
       onRefresh();
     } catch (err) {
       console.error("Failed to rerun with new coords:", err);

@@ -220,9 +220,9 @@ export function BatchImportDialog({
       // Use apiUpload for authenticated upload
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, reflFormData);
 
-      // 7. Queue job
+      // 7. Queue job (in Azure mode, this queues via Service Bus)
       dispatch({ type: "UPDATE_STATUS", file, status: "queuing" });
-      await apiPost(`jobs/${newJobId}/run/`, { queue: "batch" });
+      await apiPost(`jobs/${newJobId}/run/`, {});
 
       dispatch({ type: "UPDATE_STATUS", file, status: "done" });
     } catch (error) {
