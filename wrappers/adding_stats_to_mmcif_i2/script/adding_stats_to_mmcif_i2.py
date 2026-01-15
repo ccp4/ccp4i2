@@ -30,6 +30,7 @@ from core import CCP4Container
 from core.CCP4Modules import PROJECTSMANAGER
 from core import CCP4Utils
 from core import CCP4ErrorHandling
+from fix_tls_cif_hetero_aniso import fix_tls_cif_hetero_aniso
 import ccp4mg
 import hklfile
 import logging
@@ -94,6 +95,19 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         self.createReflectionsCif()
 
         from adding_stats_to_mmcif.__main__ import run_process
+
+        # If a structure was refined with TLS but ANISO records are not
+        # present in the mmCIF, this code block will add them.
+        try:
+            fix_tls_cif_hetero_aniso(
+                str(self.container.outputData.MMCIFOUT.fullPath),
+                str(self.container.outputData.MMCIFOUT.fullPath)
+            )
+        except Exception as e:
+            self.appendErrorReport(self.__class__, 205, 
+                f"Failed to generate ANSOU records from TLS parameters: {str(e)}")
+            return self.reportStatus(CPluginScript.FAILED)
+
         #print("Imported adding_stats_to_mmcif")
         if self.container.controlParameters.USEAIMLESSXML:
             aimless_xml_file = str(
