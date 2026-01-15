@@ -3,7 +3,7 @@
 """create phaser_MR_AUTO.def.xml from PHIL parameters"""
 import os
 import re
-import sys
+import io
 
 import phaser
 from lxml import etree
@@ -325,12 +325,7 @@ class PhaserKeywordsCreator(PhilTaskCreator):
     # Write out prettified version
     out_file = self.fmt_dic['PLUGINNAME'] + '.def.xml'
     parser = etree.XMLParser(remove_blank_text=True)
-    if sys.version_info >= (3,0):
-        import io
-        tree = etree.parse(io.StringIO(etree.tostring(task_xml).decode("utf-8")), parser)
-    else:
-        import StringIO
-        tree = etree.parse(StringIO.StringIO(etree.tostring(task_xml)), parser)
+    tree = etree.parse(io.StringIO(etree.tostring(task_xml).decode("utf-8")), parser)
     try:
       with open(out_file, 'wb') as f:
         print('Writing def.xml to %s' % out_file)

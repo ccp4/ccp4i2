@@ -173,13 +173,7 @@ class ccp4i2CootInterface():
         url = self.serverRoot + "?File?fileId="+fileId
         try:
             with open(destination,"w") as f:
-                #proxy = urllib2.ProxyHandler({})
-                #opener = urllib2.build_opener(proxy)
-                #urllib2.install_opener(opener)
-                if sys.version_info >= (3,0):
-                    f.write(urllib.request.urlopen(url,proxies={}).read())
-                else:
-                    f.write(urllib.urlopen(url,proxies={}).read())
+                f.write(urllib.request.urlopen(url,proxies={}).read())
         except IOError:
             print('Unable to retrieve '+url)
             return None
@@ -192,12 +186,10 @@ class ccp4i2CootInterface():
 
     def getJobsWithOutputFiles(self, **kwargs):
         #Premissible arguments: projectId=None, fileTypeId=None,projectName=None,fileType=None,fileTypeClass=None,
-        #subType=None,contentFlag=None,topLevelOnly=True,importFiles=False):
         return self.performDatabaseLookup("getJobsWithOutputFiles",**kwargs)
 
     def getProjectFiles(self, **kwargs):
         #Premissible arguments: projectId=None, fileTypeId=None,projectName=None,fileType=None,fileTypeClass=None,
-        #subType=None,contentFlag=None,topLevelOnly=True,importFiles=False):
         return self.performDatabaseLookup("getProjectFiles",**kwargs)
 
     def getFullPath(self, **kwargs):
@@ -211,10 +203,7 @@ class ccp4i2CootInterface():
         url = self.serverRoot + "?" + command
         for key in kwargs: url+="?"+str(key)+"="+str(kwargs[key])
         # fetch the url
-        if sys.version_info >= (3,0):
-            json = urllib.request.urlopen(url,proxies={}).read()
-        else:
-            json = urllib.urlopen(url,proxies={}).read()
+        json = urllib.request.urlopen(url,proxies={}).read()
         # convert to a native python object
         (true,false,null) = (True,False,None)
         fileInfo = eval(json)

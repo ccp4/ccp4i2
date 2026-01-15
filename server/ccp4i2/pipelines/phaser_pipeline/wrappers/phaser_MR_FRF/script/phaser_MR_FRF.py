@@ -84,20 +84,12 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
         solutions = resultObject.getDotRlist()
         if len(solutions) > 0:
             picklePath = str(self.container.outputData.RFILEOUT.fullPath)
-            if sys.version_info > (3,0):
-                with open(picklePath,'wb') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except Exception as e:
-                        print('Unable to Pickle Rfile solutions', e)
-                    self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
-            else:
-                with open(picklePath,'w') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except Exception as e:
-                        print('Unable to Pickle Rfile solutions', e)
-                    self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
+            with open(picklePath,'wb') as pickleFile:
+                try:
+                    pickle.dump(solutions, pickleFile)
+                except Exception as e:
+                    print('Unable to Pickle Rfile solutions', e)
+                self.container.outputData.RFILEOUT.annotation.set('Rfile (pkl) from rotation search')
         #Remove old digested summaries and add new ones parsed from the result summary block
         for summaryNode in self.xmlroot.xpath('Summary'):
             summaryNode.getparent().remove(summaryNode)

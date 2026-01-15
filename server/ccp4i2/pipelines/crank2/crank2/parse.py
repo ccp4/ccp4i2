@@ -232,16 +232,12 @@ class parse:
 
 
   def ParseInputFile(self,crank,dummy=False):
-    # may be changed to only str after py2 support is obsoleted
-    self.unicod = str
-    if sys.version_info[0] < 3:
-      self.unicod = unicode
     # we can read from stdin or file
     if self.pars_arg.keyin:
       self.f_in=self.pars_arg.keyin
     else:
       if not self.f_in: # allow multiple reading of stdin on terminals that dont support seek in << redirection
-        self.f_in=io.StringIO(self.unicod(sys.stdin.read()))
+        self.f_in=io.StringIO(str(sys.stdin.read()))
       if dummy:
         # a CCP4 CRANK header may come here
         print( 'CRANK2. Waiting for keyword input.' )

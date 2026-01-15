@@ -1,5 +1,4 @@
 import os
-import sys
 import tempfile
 from io import StringIO
 
@@ -25,10 +24,7 @@ class ProvideSequence(CPluginScript):
         
         # Create a temporary file to store the sequence(s) that will be used
         tempFile = tempfile.NamedTemporaryFile(suffix='.txt',delete=False)
-        if sys.version_info > (3,0):
-            tempFile.file.write(self.container.controlParameters.SEQUENCETEXT.__str__().encode('utf-8'))
-        else:
-            tempFile.file.write(self.container.controlParameters.SEQUENCETEXT.__str__())
+        tempFile.file.write(self.container.controlParameters.SEQUENCETEXT.__str__().encode('utf-8'))
         tempFile.close()
         
         #Attempt to interpret that as an alignment and/or stack of sequences

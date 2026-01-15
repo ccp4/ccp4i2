@@ -249,24 +249,14 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
         solutions = resultObject.getDotSol()
         if len(solutions) > 0:
-            if sys.version_info > (3,0):
-                picklePath = str(self.container.outputData.SOLOUT.fullPath)
-                with open(picklePath,'wb') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except:
-                        raise
-                        print('Unable to Pickle solutions')
-                    self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
-            else:
-                picklePath = str(self.container.outputData.SOLOUT.fullPath)
-                with open(picklePath,'w') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except:
-                        raise
-                        print('Unable to Pickle solutions')
-                    self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
+            picklePath = str(self.container.outputData.SOLOUT.fullPath)
+            with open(picklePath,'wb') as pickleFile:
+                try:
+                    pickle.dump(solutions, pickleFile)
+                except:
+                    raise
+                    print('Unable to Pickle solutions')
+                self.container.outputData.SOLOUT.annotation.set('Solutions from Phaser')
 
         #Remove warnings and replace with ones parsed from the resultObject
         if len(self.xmlroot.xpath('PhaserWarnings')) > 0:

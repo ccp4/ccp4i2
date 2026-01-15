@@ -104,10 +104,7 @@ class ccp4mg_edit_nomrbump(CPluginScript):
                 #an issue with the existence of files
                 pass
 
-        if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
-        else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
 
         print("Writing",self.mgStatusPath)
         print(status_xml)

@@ -1,11 +1,7 @@
 #!/usr/bin/env ccp4-python
 from __future__ import with_statement
-import os,sys
+import os
 import parse,common
-
-# check python version
-if sys.version_info < (2, 6):
-  common.Error("CRANK2 requires python of version 2.6 or higher")
 
 #if not "CRANK2" in os.environ:
 #  sys.exit('Error: Environment variable CRANK2 not found.')

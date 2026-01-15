@@ -1,7 +1,6 @@
 import copy
 import json
 import os
-import sys
 
 from ccp4i2.pipelines.aimless_pipe.script import aimless_pipe_report
 from ccp4i2.report import Report
@@ -23,10 +22,7 @@ class MyRefmacReport(refmac_report):
         import uuid
         uuid._uuid_generate_time = None
         uuid._uuid_generate_random = None
-        if sys.version_info >= (3,0):
-            uuid_str = uuid.uuid4().hex
-        else:
-            uuid_str = uuid.uuid4().get_hex()
+        uuid_str = uuid.uuid4().hex
         
         self.addScrollableDownloadableTable1(parent=summaryFold,internalId=uuid_str)
         self.addProgressGraph(parent=summaryFold)

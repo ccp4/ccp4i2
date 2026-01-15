@@ -65,10 +65,7 @@ class mrbump_model_prep(CPluginScript):
                  break
                  
              newFile = model_dict[theKey].modelPDBfile
-             if sys.version_info < (3,0):
-                 return str(newFile)
-             else:
-                 return newFile
+             return newFile
         else:
                  sys.write("Error: Can't find MrBUMP models json file:\n %s\n" % modelsJsonFile)
 

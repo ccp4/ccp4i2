@@ -1,7 +1,6 @@
 import os
 import re
 import shutil
-import sys
 
 from lxml import etree
 
@@ -53,16 +52,10 @@ class clustalw(CPluginScript):
                         iCount += 1
                     sequenceStack.append([possibleName, sequenceFile.fileContent.sequence.__str__()])
                     sequenceStack_check.append(possibleName)
-                if sys.version_info > (3,0):
-                    with open(self.startFileName,'w') as startFile:
-                        for identifier,seq in sequenceStack:
-                            startFile.write(identifier+'\n')
-                            startFile.write(seq+'\n')
-                else:
-                    with open(self.startFileName,'wb') as startFile:
-                        for identifier,seq in sequenceStack:
-                            startFile.write(identifier+'\n')
-                            startFile.write(seq+'\n')
+                with open(self.startFileName,'w') as startFile:
+                    for identifier,seq in sequenceStack:
+                        startFile.write(identifier+'\n')
+                        startFile.write(seq+'\n')
         else:
             self.appendErrorReport(200)
             return CPluginScript.FAILED

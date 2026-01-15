@@ -1012,10 +1012,7 @@ class program(object):
     startupinfo=None
     if os.name == 'nt':
       startupinfo = subprocess.STARTUPINFO()
-      if sys.version_info == (2, 7):
-        startupinfo.dwFlags |= subprocess._subprocess.STARTF_USESHOWWINDOW
-      else:
-        startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
+      startupinfo.dwFlags |= subprocess.STARTF_USESHOWWINDOW
     # interactive output - use with care
     # runs the program in a separate thread, allowing to process its output simultanously
     # the output lines are passed one by one to the Interact_output method of the program

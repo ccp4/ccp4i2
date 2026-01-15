@@ -1,6 +1,5 @@
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-import sys
 import shutil
 from lxml import etree
 
@@ -69,11 +68,7 @@ class ProvideAsuContents(CPluginScript):
 
       newXml = etree.tostring(xmlroot,pretty_print=True)
       with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
-          if sys.version_info > (3,0):
-              programXmlFile.write(newXml.decode("utf-8"))
-          else:
-              programXmlFile.write(newXml)
+          programXmlFile.write(newXml.decode("utf-8"))
       shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
-          
-              
+
       return CPluginScript.SUCCEEDED

@@ -44,6 +44,7 @@ Modern Usage:
 
 import logging
 import os
+import re
 import sys
 import xml.etree.ElementTree as etree
 from io import StringIO
@@ -367,49 +368,8 @@ def findallEval(srcexpr, xmlnode):
     return eval(tgtexpr)
 
 
-"""
-class SearchableElement(etree.ElementBase):
-   def select(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       if '@' in path:
-         return l[0]
-       else:
-         return l[0].text
-     else:
-       return ''
-   def ifselect(self,path,default=False):
-     l = self.findall(path)
-     if len(l)>0:
-       return toBoolean(l[0].text)
-     else:
-       return default
-   def haspath(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       return True
-     else:
-       return False
-   def findall0(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       return l[0]
-     else:
-       None
-   def findall1(self,path):
-     l = self.findall(path)
-     if len(l)>0:
-       return l[0]
-     else:
-       return PARSER().makeelement("dummy")
-"""
-
-
 def PARSER():
-    if sys.version_info > (3, 0):
-        I2XmlParser.insts = etree.XMLParser(encoding='utf-8')
-    else:
-        I2XmlParser.insts = etree.XMLParser()
+    I2XmlParser.insts = etree.XMLParser(encoding='utf-8')
     return I2XmlParser.insts
 
 
@@ -1598,10 +1558,7 @@ class Text(ReportClass):
 
         if fileName is not None:
             with open(fileName, 'w') as outputFile:
-                if sys.version_info > (3, 0):
-                    outputFile.write(etree.tostring(root).decode())
-                else:
-                    outputFile.write(etree.tostring(root))
+                outputFile.write(etree.tostring(root).decode())
 
         return root
 
@@ -1675,13 +1632,10 @@ class Generic(ReportClass):
 
         if xrtnode is None and text is not None:
             try:
-                if sys.version_info > (3, 0):
-                    xrtnode = etree.fromstring(text.encode('utf-8'))
-                else:
-                    xrtnode = etree.fromstring(text, PARSER())
+                xrtnode = etree.fromstring(text.encode('utf-8'))
             except BaseException:
                 try:
-                    if sys.version_info > (3, 0) and isinstance(text, bytes):
+                    if isinstance(text, bytes):
                         xrtnode = etree.fromstring(
                             '<' + defaultTag + '>' + text.encode('utf-8') + '</' + defaultTag + '>')
                     else:
@@ -1819,10 +1773,7 @@ class BaseTable(ReportClass):
         if len(self.coldata) == 0:
             return CErrorReport()
         try:
-            if sys.version_info > (3, 0):
-                f = open(fileName, 'w', newline='')
-            else:
-                f = open(fileName, 'wb')
+            f = open(fileName, 'w', newline='')
         except BaseException:
             return CErrorReport(Report, 107, str(fileName))
         try:
@@ -2418,10 +2369,7 @@ class Graph(ReportClass):
                 from ccp4i2.core import CCP4Utils
                 try:
                     text = CCP4Utils.readFile(kw['plotFile'])
-                    import re
 
-                    # text = re.sub('<xrt:','<'+XRTNS,text)
-                    # text = re.sub('</xrt:','</'+XRTNS,text)
                     text = re.sub('<xrt:', '<', text)
                     text = re.sub('</xrt:', '</', text)
                     # print 'addPlot plot',text
@@ -2430,11 +2378,9 @@ class Graph(ReportClass):
                     raise CException(self.__class__, 1, str(kw['plotFile']))
             if kw.get('plot', None) is not None:
                 print(kw['plot'])
-                import re
+                
 
-                # text = re.sub('<xrt:','<'+XRTNS,kw['plot'])
-                # text = re.sub('</xrt:','</'+XRTNS,text)
-                if sys.version_info > (3, 0) and hasattr(kw['plot'], "decode"):
+                if hasattr(kw['plot'], "decode"):
                     text = re.sub('<xrt:', '<', kw['plot'].decode())
                 else:
                     text = re.sub('<xrt:', '<', kw['plot'])
@@ -3187,8 +3133,6 @@ class Help:
         else:
             self.ref = kw.get('ref', None)
         if self.ref is not None and self.ref[0] == '$':
-            import re
-            import sys
 
             from ccp4i2.core import CCP4Utils
             if sys.platform == "win32":
@@ -3500,7 +3444,6 @@ class ReferenceGroup(Container):
                 str(fileName))
             return
         self.taskName = taskName
-        import re
 
         from ccp4i2.core import CCP4Utils
         try:
