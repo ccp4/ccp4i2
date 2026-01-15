@@ -14,6 +14,7 @@ def mtz_fixture():
         yield path
 
 
+@mark.skip(reason="Skipping temporarily as no shelx in build")
 def test_arcimboldo(mtz):
     args = ["arcimboldo"]
     args += ["--F_SIGF", f"fullPath={mtz}", "columnLabels=/*/*/[FP,SIGFP]"]
