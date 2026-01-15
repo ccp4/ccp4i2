@@ -88,10 +88,22 @@ RUN pip install --no-cache-dir \
     "psycopg2-binary>=2.9" \
     "dj-database-url>=2.0" \
     "python-dotenv>=1.0" \
-    "django-reversion>=5.0"
+    "django-reversion>=5.0" \
+    "pytz"
 
 # Install Azure integration dependencies
+# Install to main site-packages for container's Python (uvicorn/gunicorn)
 RUN pip install --no-cache-dir -r requirements-azure.txt
+
+# Also install packages to a dedicated directory for ccp4-python subprocesses.
+# These are packages that ccp4-python needs but aren't in the CCP4 py-packages.
+# Use --no-deps for Django apps to avoid duplicating Django itself (which is in py-packages).
+# The subprocess PYTHONPATH puts azure_packages AFTER py-packages, so Django comes from py-packages.
+RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages \
+    --no-deps "django-storages==1.14.4" \
+    --no-deps "django-reversion>=5.0" && \
+    pip install --no-cache-dir --target=/usr/src/app/azure_packages \
+    "azure-storage-blob>=12.26.0"
 
 # Install from pyproject.toml if additional deps needed
 RUN pip install --no-cache-dir -e . 2>/dev/null || true

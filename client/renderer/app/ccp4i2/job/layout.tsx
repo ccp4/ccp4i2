@@ -1,7 +1,7 @@
 "use client";
 import { PropsWithChildren } from "react";
 import { CootProvider } from "../../../providers/coot-provider";
-import { RdkitProvider } from "../../../providers/rdkit-provider";
+import { RDKitProvider } from "../../../providers/rdkit-provider";
 import { RunningProcessesProvider } from "../../../providers/running-processes";
 import { DraggableContext } from "../../../providers/draggable-context";
 import { NavigationShortcutsProvider } from "../../../providers/navigation-shortcuts-provider";
@@ -17,7 +17,7 @@ import { Panel, PanelGroup } from "react-resizable-panels";
 export default function JobLayout(props: PropsWithChildren) {
   return (
     <CootProvider>
-      <RdkitProvider>
+      <RDKitProvider>
         <RunningProcessesProvider>
           <DraggableContext>
             <NavigationShortcutsProvider>
@@ -48,7 +48,7 @@ export default function JobLayout(props: PropsWithChildren) {
             </NavigationShortcutsProvider>
           </DraggableContext>
         </RunningProcessesProvider>
-      </RdkitProvider>
+      </RDKitProvider>
     </CootProvider>
   );
 }

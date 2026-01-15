@@ -3,6 +3,11 @@
 import { useMemo } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
+import {
+  computeSeriesRanges,
+  getSeriesColor,
+  getSeriesBorderColor,
+} from '@/lib/compounds/plateSeriesRanges';
 
 /**
  * Plate dimensions for different formats
@@ -13,13 +18,6 @@ const PLATE_DIMENSIONS: Record<PlateFormat, { rows: number; cols: number }> = {
   384: { rows: 16, cols: 24 },
   1536: { rows: 32, cols: 48 },
 };
-
-/**
- * Convert row letter to 0-indexed number
- */
-function rowLetterToIndex(letter: string): number {
-  return letter.charCodeAt(0) - 'A'.charCodeAt(0);
-}
 
 /**
  * Convert 0-indexed number to row letter
@@ -39,6 +37,8 @@ interface PlatePreviewProps {
   height?: number;
   showLabels?: boolean;
   showLegend?: boolean;
+  /** Show bounding boxes around each data series range */
+  showSeriesRanges?: boolean;
 }
 
 /**
@@ -51,9 +51,16 @@ export function PlatePreview({
   height = 280,
   showLabels = true,
   showLegend = true,
+  showSeriesRanges = false,
 }: PlatePreviewProps) {
   const plateFormat = layout.plate_format || 96;
   const { rows: numRows, cols: numCols } = PLATE_DIMENSIONS[plateFormat];
+
+  // Compute series ranges for visualization
+  const seriesRanges = useMemo(() => {
+    if (!showSeriesRanges) return [];
+    return computeSeriesRanges(layout);
+  }, [layout, showSeriesRanges]);
 
   // Calculate well positions and types
   const wells = useMemo(() => {
@@ -185,6 +192,41 @@ export function PlatePreview({
             {indexToRowLetter(i)}
           </text>
         ))}
+
+        {/* Series range boxes (rendered before wells so they appear behind) */}
+        {showSeriesRanges && seriesRanges.map((range) => {
+          const x = labelWidth + wellWidth * range.colStart;
+          const y = labelHeight + wellHeight * range.rowStart;
+          const boxWidth = wellWidth * (range.colEnd - range.colStart + 1);
+          const boxHeight = wellHeight * (range.rowEnd - range.rowStart + 1);
+          const padding = 2;
+
+          return (
+            <g key={`series-${range.seriesIndex}-${range.rowStart}-${range.colStart}`}>
+              <rect
+                x={x - padding}
+                y={y - padding}
+                width={boxWidth + padding * 2}
+                height={boxHeight + padding * 2}
+                fill={getSeriesColor(range.seriesIndex, 0.15)}
+                stroke={getSeriesBorderColor(range.seriesIndex)}
+                strokeWidth={1.5}
+                rx={3}
+                ry={3}
+              />
+              {/* Series label in corner */}
+              <text
+                x={x + 2}
+                y={y + 8}
+                fontSize={Math.min(wellHeight * 0.6, 9)}
+                fontWeight="bold"
+                fill={getSeriesBorderColor(range.seriesIndex)}
+              >
+                {range.label}
+              </text>
+            </g>
+          );
+        })}
 
         {/* Wells */}
         {wells.map(({ row, col, type }) => (

@@ -1096,7 +1096,7 @@ export function PlateLayoutEditor({
             <Typography variant="subtitle2" gutterBottom>
               Layout Preview
             </Typography>
-            <PlatePreview layout={layout} width={350} height={250} />
+            <PlatePreview layout={layout} width={350} height={250} showSeriesRanges />
           </Box>
         </Grid>
       )}

@@ -8,7 +8,7 @@ interface RDKitModule {
   get_mol: (smiles: string) => {
     get_svg: (width?: number, height?: number) => string;
     delete: () => void;
-  };
+  } | null;
 }
 
 interface RDKitContextType {
@@ -25,6 +25,13 @@ const RDKitContext = createContext<RDKitContextType>({
 
 export const useRDKit = () => useContext(RDKitContext);
 
+/**
+ * RDKit provider for standalone compounds app development.
+ *
+ * Note: In Docker builds, this file is NOT copied - the core client's
+ * lib/compounds/rdkit-context.tsx (which re-exports from providers/)
+ * is used instead to ensure a single shared React context.
+ */
 export const RDKitProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [rdkitModule, setRdkitModule] = useState<RDKitModule | null>(null);
   const [isLoading, setIsLoading] = useState(true);

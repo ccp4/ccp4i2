@@ -2,8 +2,7 @@ import "./globals.css";
 import { PropsWithChildren } from "react";
 import { CCP4i2ThemeProvider } from "../theme/theme-provider";
 import AuthProvider from "../components/auth-provider";
-// RDKitProvider is copied from apps/compounds/frontend/lib/compounds/ during Docker build
-import { RDKitProvider } from "../lib/compounds/rdkit-context";
+import { RDKitProvider } from "../providers/rdkit-provider";
 
 export const metadata = {
   title: "ccp4i2",

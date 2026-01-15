@@ -31,6 +31,40 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 
+def get_subprocess_env():
+    """
+    Get environment dict for subprocesses with azure_packages in PYTHONPATH.
+
+    The worker spawns ccp4-python subprocesses to run Django management commands.
+    These need access to packages installed in the container (like django-storages)
+    that aren't in the mounted CCP4 py-packages directory.
+
+    The Dockerfile installs these packages to /usr/src/app/azure_packages/
+    specifically so they can be added to PYTHONPATH without mixing Python
+    site-packages between different Python installations.
+
+    IMPORTANT: azure_packages is APPENDED (not prepended) so that packages from
+    py-packages (like Django) take precedence. azure_packages only provides
+    packages that aren't in py-packages (like django-storages).
+    """
+    env = os.environ.copy()
+
+    # Path where Azure packages are installed in the Docker image
+    azure_packages_path = "/usr/src/app/azure_packages"
+
+    # Build new PYTHONPATH with azure_packages APPENDED (not prepended)
+    # This ensures py-packages Django takes precedence over any Django in azure_packages
+    existing_pythonpath = env.get("PYTHONPATH", "")
+
+    if existing_pythonpath:
+        env["PYTHONPATH"] = f"{existing_pythonpath}:{azure_packages_path}"
+    else:
+        env["PYTHONPATH"] = azure_packages_path
+
+    logger.debug("Subprocess PYTHONPATH: %s", env["PYTHONPATH"])
+    return env
+
+
 def handle_shutdown_signal(signum, frame):
     """
     Handle SIGTERM/SIGINT for graceful shutdown.
@@ -212,15 +246,12 @@ def run_ccp4_analysis(parameters):
 
     logger.info("Executing command: %s", " ".join(cmd))
 
-    # Ensure subprocess inherits PYTHONPATH
-    env = os.environ.copy()
-    if "PYTHONPATH" in env:
-        logger.info("PYTHONPATH passed to subprocess: %s", env["PYTHONPATH"])
-    else:
-        logger.warning("PYTHONPATH not set in environment")
+    # Get environment with container site-packages in PYTHONPATH
+    env = get_subprocess_env()
+    logger.info("PYTHONPATH passed to subprocess: %s", env.get("PYTHONPATH", ""))
 
     try:
-        # Run the command with inherited environment
+        # Run the command with environment including container packages
         result = subprocess.run(
             cmd,
             capture_output=True,
@@ -228,7 +259,7 @@ def run_ccp4_analysis(parameters):
             timeout=3600,  # 1 hour timeout
             cwd="/usr/src/app",
             check=False,  # We handle return codes manually
-            env=env,  # <-- ADD THIS LINE
+            env=env,
         )
 
         logger.info("Command completed with return code: %s", result.returncode)
@@ -361,7 +392,8 @@ def process_project_import(parameters):
 
         logger.info("Executing import command: %s", " ".join(cmd))
 
-        env = os.environ.copy()
+        # Get environment with azure_packages in PYTHONPATH
+        env = get_subprocess_env()
         result = subprocess.run(
             cmd,
             capture_output=True,
@@ -622,7 +654,8 @@ def update_staged_upload_status(upload_id, status, error_message=None):
 
     logger.info("Updating staged upload %s to status %s", upload_id, status)
 
-    env = os.environ.copy()
+    # Get environment with container site-packages in PYTHONPATH
+    env = get_subprocess_env()
     try:
         result = subprocess.run(
             cmd,
@@ -672,15 +705,12 @@ def update_job_status(job_uuid, status, result=None):
 
     logger.info("Executing status update command: %s", " ".join(cmd))
 
-    # Ensure subprocess inherits PYTHONPATH
-    env = os.environ.copy()
-    if "PYTHONPATH" in env:
-        logger.info("PYTHONPATH passed to subprocess: %s", env["PYTHONPATH"])
-    else:
-        logger.warning("PYTHONPATH not set in environment")
+    # Get environment with container site-packages in PYTHONPATH
+    env = get_subprocess_env()
+    logger.info("PYTHONPATH passed to subprocess: %s", env.get("PYTHONPATH", ""))
 
     try:
-        # Run the command
+        # Run the command with environment including container packages
         result = subprocess.run(
             cmd,
             capture_output=True,
@@ -809,7 +839,8 @@ def cleanup_stale_jobs(stale_threshold_hours=2):
         "--hours", str(stale_threshold_hours),
     ]
 
-    env = os.environ.copy()
+    # Get environment with azure_packages in PYTHONPATH
+    env = get_subprocess_env()
     try:
         result = subprocess.run(
             cmd,
