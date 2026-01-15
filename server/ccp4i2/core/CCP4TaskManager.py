@@ -436,10 +436,6 @@ class CTaskManager:
         # Normalize spaces to underscores
         module = str(module).replace(' ', '_').lower()
 
-        # Map some legacy names
-        if module == 'expt_data_util':
-            module = 'expt_data_utility'
-
         return module
 
     def _get_task_module(self, task_name: str, metadata: Dict[str, Any]) -> str:
