@@ -15,7 +15,7 @@ import {
   Typography,
 } from "@mui/material";
 import { CloudUpload as UploadIcon } from "@mui/icons-material";
-import { apiPost } from "../../api-fetch";
+import { apiPost, apiUpload } from "../../api-fetch";
 
 interface CoordsImportDialogProps {
   open: boolean;
@@ -72,14 +72,7 @@ export function CoordsImportDialog({
       formData.append("file", coordFile, coordFile.name);
       formData.append("objectPath", "coordinate_selector.inputData.XYZIN");
 
-      const uploadResponse = await fetch(`/api/proxy/ccp4i2/jobs/${newJobId}/upload_file_param/`, {
-        method: "POST",
-        body: formData,
-      });
-      if (!uploadResponse.ok) {
-        const errorText = await uploadResponse.text();
-        throw new Error(`Upload failed: ${errorText}`);
-      }
+      await apiUpload(`jobs/${newJobId}/upload_file_param/`, formData);
 
       setProgress(60);
       setProgressMessage("Running coordinate import...");

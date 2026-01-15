@@ -16,7 +16,7 @@ import {
   Typography,
 } from "@mui/material";
 import { CloudUpload as UploadIcon } from "@mui/icons-material";
-import { apiPost } from "../../api-fetch";
+import { apiPost, apiUpload } from "../../api-fetch";
 
 interface FreeRImportDialogProps {
   open: boolean;
@@ -86,14 +86,7 @@ export function FreeRImportDialog({
       fSigFFormData.append("file", fSigFFile, fSigFFile.name);
       fSigFFormData.append("objectPath", "freerflag.inputData.F_SIGF");
 
-      const fSigFResponse = await fetch(`/api/proxy/ccp4i2/jobs/${newJobId}/upload_file_param/`, {
-        method: "POST",
-        body: fSigFFormData,
-      });
-      if (!fSigFResponse.ok) {
-        const errorText = await fSigFResponse.text();
-        throw new Error(`F/SigF upload failed: ${errorText}`);
-      }
+      await apiUpload(`jobs/${newJobId}/upload_file_param/`, fSigFFormData);
 
       // 4. Upload FreeR file if provided
       if (freeRFile) {
@@ -104,14 +97,7 @@ export function FreeRImportDialog({
         freeRFormData.append("file", freeRFile, freeRFile.name);
         freeRFormData.append("objectPath", "freerflag.inputData.FREERFLAG");
 
-        const freeRResponse = await fetch(`/api/proxy/ccp4i2/jobs/${newJobId}/upload_file_param/`, {
-          method: "POST",
-          body: freeRFormData,
-        });
-        if (!freeRResponse.ok) {
-          const errorText = await freeRResponse.text();
-          throw new Error(`FreeR upload failed: ${errorText}`);
-        }
+        await apiUpload(`jobs/${newJobId}/upload_file_param/`, freeRFormData);
       }
 
       // 5. Run the job

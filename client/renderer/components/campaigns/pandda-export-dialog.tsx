@@ -25,6 +25,7 @@ import {
   Science as ScienceIcon,
 } from "@mui/icons-material";
 import useSWR from "swr";
+import { apiFetch } from "../../api-fetch";
 
 interface PanddaDataset {
   project_name: string;
@@ -66,10 +67,9 @@ export function PanddaExportDialog({
 
   // Fetch PANDDA data when dialog opens
   const { data, isLoading, error: fetchError } = useSWR<PanddaDataResponse>(
-    open ? `/api/proxy/ccp4i2/projectgroups/${campaignId}/pandda_data/` : null,
+    open ? `projectgroups/${campaignId}/pandda_data/` : null,
     async (url: string) => {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error("Failed to fetch PANDDA data");
+      const response = await apiFetch(url);
       return response.json();
     }
   );
@@ -87,15 +87,10 @@ export function PanddaExportDialog({
     setError(null);
 
     try {
-      const response = await fetch(
-        `/api/proxy/ccp4i2/projectgroups/${campaignId}/export_pandda/`,
+      const response = await apiFetch(
+        `projectgroups/${campaignId}/export_pandda/`,
         { method: "POST" }
       );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Export failed");
-      }
 
       // Download the ZIP file
       const blob = await response.blob();

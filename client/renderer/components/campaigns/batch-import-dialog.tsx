@@ -28,7 +28,7 @@ import {
   Clear as ClearIcon,
 } from "@mui/icons-material";
 import { useCampaignsApi, useSmilesLookup } from "../../lib/campaigns-api";
-import { apiPost } from "../../api-fetch";
+import { apiPost, apiFetch, apiUpload } from "../../api-fetch";
 import {
   BatchFileItem,
   BatchFileStatus,
@@ -168,8 +168,9 @@ export function BatchImportDialog({
       // 3. Upload reference coordinates using upload_file_param endpoint
       dispatch({ type: "UPDATE_STATUS", file, status: "uploading_coords" });
       // Get coords file content (use download/ with numeric id, not download_by_uuid/)
-      const coordsResponse = await fetch(
-        `/api/proxy/ccp4i2/files/${latestCoordsFileId}/download/`
+      // Use apiFetch for authenticated download
+      const coordsResponse = await apiFetch(
+        `files/${latestCoordsFileId}/download/`
       );
       const coordsBlob = await coordsResponse.blob();
       // Extract filename from Content-Disposition header, handling both quoted and unquoted forms
@@ -181,13 +182,8 @@ export function BatchImportDialog({
       coordsFormData.append("file", coordsBlob, coordsFileName);
       coordsFormData.append("objectPath", "SubstituteLigand.inputData.XYZIN");
 
-      const coordsUploadResponse = await fetch(`/api/proxy/ccp4i2/jobs/${newJobId}/upload_file_param/`, {
-        method: "POST",
-        body: coordsFormData,
-      });
-      if (!coordsUploadResponse.ok) {
-        throw new Error(`Coords upload failed: ${await coordsUploadResponse.text()}`);
-      }
+      // Use apiUpload for authenticated upload
+      await apiUpload(`jobs/${newJobId}/upload_file_param/`, coordsFormData);
 
       // 4. Set SMILES if we have a compound
       if (nclId && nclId !== "00000000") {
@@ -221,13 +217,8 @@ export function BatchImportDialog({
       reflFormData.append("file", file, file.name);
       reflFormData.append("objectPath", "SubstituteLigand.inputData.UNMERGEDFILES[0].file");
 
-      const reflUploadResponse = await fetch(`/api/proxy/ccp4i2/jobs/${newJobId}/upload_file_param/`, {
-        method: "POST",
-        body: reflFormData,
-      });
-      if (!reflUploadResponse.ok) {
-        throw new Error(`Reflection upload failed: ${await reflUploadResponse.text()}`);
-      }
+      // Use apiUpload for authenticated upload
+      await apiUpload(`jobs/${newJobId}/upload_file_param/`, reflFormData);
 
       // 7. Queue job
       dispatch({ type: "UPDATE_STATUS", file, status: "queuing" });
