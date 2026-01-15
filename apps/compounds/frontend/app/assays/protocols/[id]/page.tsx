@@ -21,7 +21,8 @@ import {
   Alert,
   CircularProgress,
 } from '@mui/material';
-import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart } from '@mui/icons-material';
+import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { PlatePreview } from '@/components/compounds/PlatePreview';
@@ -511,14 +512,25 @@ export default function ProtocolDetailPage({ params }: PageProps) {
         <Typography variant="h6">
           Assays
         </Typography>
-        <Button
-          variant="contained"
-          startIcon={<Add />}
-          onClick={() => setUploadDrawerOpen(true)}
-          disabled={!protocol}
-        >
-          Add Assay
-        </Button>
+        {protocol?.analysis_method === 'table_of_values' ? (
+          <Button
+            component={Link}
+            href={routes.assays.importTableOfValues({ protocol: id })}
+            variant="contained"
+            startIcon={<TableChart />}
+          >
+            Import Table of Values
+          </Button>
+        ) : (
+          <Button
+            variant="contained"
+            startIcon={<Add />}
+            onClick={() => setUploadDrawerOpen(true)}
+            disabled={!protocol}
+          >
+            Add Assay
+          </Button>
+        )}
       </Box>
 
       {/* Assays table */}

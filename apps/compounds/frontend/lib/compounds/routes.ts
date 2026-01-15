@@ -100,6 +100,10 @@ export const routes = {
     /** Import assay data */
     import: () => route('/assays/import'),
 
+    /** Import Table of Values data */
+    importTableOfValues: (params?: { protocol?: string }) =>
+      routeWithQuery('/assays/import-tov', params),
+
     /** Aggregation view with optional filters */
     aggregate: (params?: {
       compound?: string;

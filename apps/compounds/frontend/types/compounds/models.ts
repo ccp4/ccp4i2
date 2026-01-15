@@ -267,7 +267,8 @@ export type ReplicatePattern =
   | 'adjacent_rows'      // A1,B1 are replicates of compound 1
   | 'adjacent_columns'   // A1,A2 are replicates of compound 1
   | 'grouped_rows'       // A1-A12, B1-B12 are replicates of compounds 1-12
-  | 'interleaved_rows';  // Alternating rows for same compound
+  | 'interleaved_rows'   // Alternating rows for same compound
+  | 'explicit';          // Each strip named explicitly; replicates inferred from matching names
 
 export type ControlPlacement =
   | 'edge_columns'       // Controls in dedicated columns at plate edges
@@ -333,6 +334,12 @@ export interface ReplicateConfig {
 export interface CompoundSourceConfig {
   type: CompoundSourceType;
   id_column?: string;     // Column name for column_header type
+  /**
+   * Absolute Excel row (1-indexed) where compound names start.
+   * For stripe layouts, compound names are read from the left-most control column
+   * of each stripe at this row. One compound name per data row.
+   */
+  compound_name_row?: number;
 }
 
 /**

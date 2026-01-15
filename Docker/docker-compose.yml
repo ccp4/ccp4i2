@@ -48,7 +48,7 @@ services:
       - CCP4_VERSION=${CCP4_VERSION:-ccp4-9}
       - CCP4I2_PROJECTS_DIR=/mnt/projects
       - DATABASE_URL=${DATABASE_URL:-sqlite:////mnt/projects/ccp4i2.sqlite}
-      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,server}
       - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
       - USE_GUNICORN=${USE_GUNICORN:-false}
       # Azure AD Authentication (set CCP4I2_REQUIRE_AUTH=true in .env to enable)

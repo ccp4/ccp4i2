@@ -84,7 +84,7 @@ const DEFAULT_LAYOUT: PlateLayout = {
   },
   dilution: {
     direction: 'horizontal',
-    num_concentrations: 10,
+    num_concentrations: 20,
   },
   replicate: {
     count: 2,
@@ -104,8 +104,8 @@ const DEFAULT_LAYOUT: PlateLayout = {
  */
 const TEMPLATES: { name: string; description: string; layout: PlateLayout }[] = [
   {
-    name: 'Standard 384-well (10-point)',
-    description: 'Edge controls, 10 concentrations horizontal, 2 replicates',
+    name: 'Standard 384-well (20-point)',
+    description: '2 high + 2 low edge control columns, 20-point dilution series, 2 replicates',
     layout: DEFAULT_LAYOUT,
   },
   {
@@ -167,8 +167,8 @@ const TEMPLATES: { name: string; description: string; layout: PlateLayout }[] = 
     },
   },
   {
-    name: '384-well Strip (8-point, 2 reps)',
-    description: 'Embedded controls per strip: [min×2][data×8][max×2] × 2 per row',
+    name: '384-well Strip (10-point, 2 reps)',
+    description: 'Embedded controls per strip: [min×1][data×10][max×1] × 2 per row',
     layout: {
       plate_format: 384,
       controls: {
@@ -184,7 +184,7 @@ const TEMPLATES: { name: string; description: string; layout: PlateLayout }[] = 
       },
       dilution: {
         direction: 'horizontal',
-        num_concentrations: 8,
+        num_concentrations: 10,
       },
       replicate: {
         count: 2,
@@ -195,10 +195,46 @@ const TEMPLATES: { name: string; description: string; layout: PlateLayout }[] = 
       },
       strip_layout: {
         strip_width: 12,
-        min_wells: 2,
-        data_wells: 8,
-        max_wells: 2,
+        min_wells: 1,
+        data_wells: 10,
+        max_wells: 1,
         strips_per_row: 2,
+      },
+    },
+  },
+  {
+    name: '1536-well Strip (10-point, 4 strips paired)',
+    description: 'Embedded controls: [min×1][data×10][max×1] × 4 strips, paired replicates (1+2, 3+4)',
+    layout: {
+      plate_format: 1536,
+      controls: {
+        placement: 'per_compound',
+        max: { columns: [], rows: [] },
+        min: { columns: [], rows: [] },
+      },
+      sample_region: {
+        start_column: 1,
+        end_column: 48,
+        start_row: 'A',
+        end_row: 'P',  // First 16 rows; plate has 32 total
+      },
+      dilution: {
+        direction: 'horizontal',
+        num_concentrations: 10,
+      },
+      replicate: {
+        count: 2,
+        pattern: 'adjacent_columns',  // Strips 1+2 paired, 3+4 paired
+      },
+      compound_source: {
+        type: 'row_order',
+      },
+      strip_layout: {
+        strip_width: 12,
+        min_wells: 1,
+        data_wells: 10,
+        max_wells: 1,
+        strips_per_row: 4,
       },
     },
   },
@@ -229,6 +265,8 @@ export function PlateLayoutEditor({
     ...DEFAULT_LAYOUT,
     ...value,
   } as PlateLayout);
+  // Track the raw compound name row input (can be "+2" relative or "25" absolute)
+  const [compoundNameRowInput, setCompoundNameRowInput] = useState<string>('');
 
   const plateFormat = layout.plate_format;
   const { rows: numRows, cols: numCols } = PLATE_DIMENSIONS[plateFormat];
@@ -240,6 +278,50 @@ export function PlateLayoutEditor({
     setLayout(newLayout);
     onChange(newLayout);
   }, [layout, onChange]);
+
+  // Calculate the Excel row at the bottom of the plate (for relative compound name row calculation)
+  // Use the full plate height, not just the sample region, so names don't overlap with plate data
+  const getPlateBottomRow = useCallback((): number => {
+    const originRow = layout.spreadsheet_origin?.row || 1;
+    const { rows: plateRows } = PLATE_DIMENSIONS[layout.plate_format];
+    return originRow + plateRows - 1;  // 1-indexed Excel row of last plate row
+  }, [layout.spreadsheet_origin?.row, layout.plate_format]);
+
+  // Parse compound name row input: "+N" means relative to data bottom, "N" means absolute
+  const handleCompoundNameRowChange = useCallback((inputValue: string) => {
+    setCompoundNameRowInput(inputValue);
+
+    if (!inputValue.trim()) {
+      // Clear the setting
+      updateLayout({
+        compound_source: { ...layout.compound_source, compound_name_row: undefined },
+      });
+      return;
+    }
+
+    const trimmed = inputValue.trim();
+    let absoluteRow: number;
+
+    if (trimmed.startsWith('+')) {
+      // Relative: add offset to data bottom row
+      const offset = parseInt(trimmed.slice(1), 10);
+      if (!isNaN(offset)) {
+        absoluteRow = getPlateBottomRow() + offset;
+      } else {
+        return; // Invalid input, don't update
+      }
+    } else {
+      // Absolute row number
+      absoluteRow = parseInt(trimmed, 10);
+      if (isNaN(absoluteRow) || absoluteRow < 1) {
+        return; // Invalid input, don't update
+      }
+    }
+
+    updateLayout({
+      compound_source: { ...layout.compound_source, compound_name_row: absoluteRow },
+    });
+  }, [layout.compound_source, getPlateBottomRow, updateLayout]);
 
   const handlePlateFormatChange = (format: PlateFormat) => {
     // When format changes, reset regions to sensible defaults
@@ -805,28 +887,92 @@ export function PlateLayoutEditor({
             </StepLabel>
             <StepContent>
               {layout.controls.placement === 'per_compound' ? (
-                /* Strip layout: replicates are defined by strips_per_row */
+                /* Strip layout: choose between grouped replicates or explicit naming */
                 <Box>
-                  <Alert severity="info" sx={{ mb: 2 }}>
-                    For strip layouts, replicates are defined by the number of strips per row.
-                    You have configured <strong>{layout.strip_layout?.strips_per_row || 2} strips per row</strong>,
-                    meaning each compound has {layout.strip_layout?.strips_per_row || 2} replicate measurements.
-                  </Alert>
-                  <Typography variant="body2" color="text.secondary">
-                    Example: With 2 strips per row on a 24-column plate:
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                    You have configured <strong>{layout.strip_layout?.strips_per_row || 2} strips per row</strong>.
+                    Choose how replicates are determined:
                   </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontFamily: 'monospace' }}>
-                    • A1-A12 = Compound 1, replicate 1
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
-                    • A13-A24 = Compound 1, replicate 2
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
-                    • B1-B12 = Compound 2, replicate 1
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
-                    • B13-B24 = Compound 2, replicate 2
-                  </Typography>
+
+                  <FormControl component="fieldset">
+                    <RadioGroup
+                      value={layout.replicate.pattern === 'explicit' ? 'explicit' : 'grouped'}
+                      onChange={(e) => {
+                        if (e.target.value === 'explicit') {
+                          updateLayout({
+                            replicate: { ...layout.replicate, pattern: 'explicit', count: 1 },
+                          });
+                        } else {
+                          updateLayout({
+                            replicate: { ...layout.replicate, pattern: 'adjacent_columns', count: layout.strip_layout?.strips_per_row || 2 },
+                          });
+                        }
+                      }}
+                    >
+                      <FormControlLabel
+                        value="grouped"
+                        control={<Radio size="small" />}
+                        label={
+                          <Box>
+                            <Typography variant="body2">Grouped Replicates</Typography>
+                            <Typography variant="caption" color="text.secondary">
+                              Strips are grouped as replicates of the same compound
+                            </Typography>
+                          </Box>
+                        }
+                      />
+                      <FormControlLabel
+                        value="explicit"
+                        control={<Radio size="small" />}
+                        label={
+                          <Box>
+                            <Typography variant="body2">Explicit Naming</Typography>
+                            <Typography variant="caption" color="text.secondary">
+                              Each strip has its own compound name; replicates inferred from matching names
+                            </Typography>
+                          </Box>
+                        }
+                      />
+                    </RadioGroup>
+                  </FormControl>
+
+                  {layout.replicate.pattern === 'explicit' ? (
+                    <Alert severity="info" sx={{ mt: 2 }}>
+                      <Typography variant="body2">
+                        With {layout.strip_layout?.strips_per_row || 2} strips per row, you&apos;ll provide{' '}
+                        <strong>{layout.strip_layout?.strips_per_row || 2} compound names per row</strong>.
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 0.5 }}>
+                        Strips with identical compound names will be treated as replicates during analysis.
+                      </Typography>
+                    </Alert>
+                  ) : (
+                    <>
+                      <Box sx={{ mt: 2, mb: 1 }}>
+                        <TextField
+                          label="Replicates per Compound"
+                          type="number"
+                          size="small"
+                          value={layout.replicate.count}
+                          onChange={(e) => updateLayout({
+                            replicate: { ...layout.replicate, count: Number(e.target.value) },
+                          })}
+                          inputProps={{ min: 1, max: layout.strip_layout?.strips_per_row || 4 }}
+                          sx={{ width: 200 }}
+                          helperText={`${Math.floor((layout.strip_layout?.strips_per_row || 2) / layout.replicate.count)} compound(s) × ${layout.replicate.count} replicate(s) per row`}
+                        />
+                      </Box>
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                        Example with {layout.replicate.count} replicates:
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, fontFamily: 'monospace' }}>
+                        • A1-A12 = Compound 1, replicate 1
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
+                        • A13-A24 = Compound 1, replicate 2
+                      </Typography>
+                    </>
+                  )}
                 </Box>
               ) : (
                 /* Standard layout: configure replicate pattern */
@@ -1005,6 +1151,48 @@ export function PlateLayoutEditor({
                     placeholder="e.g., Compound_ID"
                     sx={{ width: 250 }}
                   />
+                </Box>
+              )}
+
+              {/* Compound name row specification for stripe layouts */}
+              {layout.controls.placement === 'per_compound' && (
+                <Box sx={{ mt: 3 }}>
+                  <Typography variant="subtitle2" gutterBottom>
+                    Compound Name Location
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                    Specify the Excel row where compound names start. Names are read from the
+                    left-most control column of each stripe, one per data row.
+                  </Typography>
+                  <TextField
+                    label="Compound Name Row"
+                    size="small"
+                    value={compoundNameRowInput}
+                    onChange={(e) => handleCompoundNameRowChange(e.target.value)}
+                    placeholder="e.g., 25 or +2"
+                    helperText={
+                      layout.compound_source.compound_name_row
+                        ? `Stored as absolute row ${layout.compound_source.compound_name_row}`
+                        : `Enter absolute row (e.g., 25) or relative offset (e.g., +2 = 2 rows below plate row ${getPlateBottomRow()})`
+                    }
+                    sx={{ width: 250 }}
+                  />
+                  {layout.compound_source.compound_name_row && (
+                    <Alert severity="info" sx={{ mt: 1 }}>
+                      <Typography variant="body2">
+                        For a {layout.strip_layout?.strips_per_row || 2}-stripe layout, compound names will be read from:
+                      </Typography>
+                      <Typography variant="body2" sx={{ fontFamily: 'monospace', mt: 0.5 }}>
+                        {Array.from({ length: layout.strip_layout?.strips_per_row || 2 }, (_, i) => {
+                          const stripStartCol = 1 + i * (layout.strip_layout?.strip_width || 12);
+                          return `Stripe ${i + 1}: Column ${stripStartCol}`;
+                        }).join(', ')}
+                      </Typography>
+                      <Typography variant="body2" sx={{ mt: 0.5 }}>
+                        Starting at row {layout.compound_source.compound_name_row}
+                      </Typography>
+                    </Alert>
+                  )}
                 </Box>
               )}
 

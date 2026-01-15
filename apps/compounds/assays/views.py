@@ -38,6 +38,7 @@ from .serializers import (
     AnalysisResultSerializer,
     HypothesisListSerializer,
     HypothesisDetailSerializer,
+    TableOfValuesImportSerializer,
 )
 
 
@@ -269,6 +270,148 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
             'unmatched': len(unmatched),
             'matched_files': matched,
             'unmatched_files': unmatched,
+        })
+
+    @action(detail=True, methods=['post'])
+    def import_table_of_values(self, request, pk=None):
+        """
+        Bulk import pre-analyzed data for Table-Of-Values protocols.
+
+        For protocols using 'table_of_values' analysis method, data comes
+        pre-analyzed externally. This endpoint creates DataSeries and
+        AnalysisResult records from the spreadsheet data.
+
+        Expects JSON body:
+        {
+            "compound_column": "Compound",  // Column with compound names
+            "kpi_column": "KPI",            // Column containing the KPI name
+            "image_column": "Image File",   // Optional: column with image filenames
+            "data": [
+                {"Compound": "NCL-00042", "KPI": "EC50", "EC50": 234.5, ...},
+                ...
+            ]
+        }
+
+        The KPI column value (e.g., "EC50") must match a column name in the data.
+        All rows must have the same KPI value.
+
+        Returns summary of created records.
+        """
+        import re
+        import logging
+        logger = logging.getLogger(__name__)
+
+        assay = self.get_object()
+
+        # Validate protocol is table_of_values
+        if assay.protocol.analysis_method != 'table_of_values':
+            return Response({
+                'status': 'error',
+                'error': f"Protocol analysis method is '{assay.protocol.analysis_method}', not 'table_of_values'"
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Validate request data
+        serializer = TableOfValuesImportSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response({
+                'status': 'error',
+                'errors': serializer.errors
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        validated = serializer.validated_data
+        compound_column = validated['compound_column']
+        kpi_column = validated['kpi_column']
+        image_column = validated.get('image_column', '')
+        data_rows = validated['data']
+
+        created_series = []
+        errors = []
+
+        with reversion.create_revision():
+            for idx, row in enumerate(data_rows):
+                try:
+                    compound_name = row.get(compound_column)
+                    if not compound_name:
+                        errors.append({
+                            'row': idx,
+                            'error': f"Missing compound name in column '{compound_column}'"
+                        })
+                        continue
+
+                    # Get KPI value (the column name that holds the primary metric)
+                    kpi_value = row.get(kpi_column)
+
+                    # Build the results dictionary from all columns
+                    results = {}
+                    for col_name, col_value in row.items():
+                        # Skip the compound column from results
+                        if col_name == compound_column:
+                            continue
+                        results[col_name] = col_value
+
+                    # Ensure KPI is properly set
+                    results['KPI'] = kpi_value
+                    results['fit_successful'] = True
+
+                    # If there's an image column, ensure it's stored as 'Image File'
+                    if image_column and image_column in row:
+                        results['Image File'] = row[image_column]
+
+                    # Try to match compound by name
+                    compound = None
+                    from compounds.registry.models import Compound
+                    match = re.match(r'^NCL-0*(\d+)$', str(compound_name), re.IGNORECASE)
+                    if match:
+                        try:
+                            reg_number = int(match.group(1))
+                            compound = Compound.objects.filter(reg_number=reg_number).first()
+                        except ValueError:
+                            pass
+
+                    # Create AnalysisResult
+                    analysis = AnalysisResult.objects.create(
+                        status='valid',
+                        results=results
+                    )
+
+                    # Create DataSeries
+                    series = DataSeries.objects.create(
+                        assay=assay,
+                        compound=compound,
+                        compound_name=str(compound_name),
+                        row=idx,
+                        start_column=0,
+                        end_column=0,
+                        extracted_data={},
+                        analysis=analysis
+                    )
+
+                    created_series.append({
+                        'id': str(series.id),
+                        'compound_name': compound_name,
+                        'compound_matched': compound is not None,
+                        'kpi': kpi_value,
+                        'kpi_value': results.get(kpi_value) if kpi_value else None,
+                    })
+
+                except Exception as e:
+                    logger.exception(f"Error creating series for row {idx}: {e}")
+                    errors.append({
+                        'row': idx,
+                        'compound_name': row.get(compound_column, 'unknown'),
+                        'error': str(e)
+                    })
+
+            if request.user.is_authenticated:
+                reversion.set_user(request.user)
+            reversion.set_comment(f"Imported {len(created_series)} data series from Table of Values")
+
+        return Response({
+            'status': 'completed',
+            'created': len(created_series),
+            'errors_count': len(errors),
+            'series': created_series,
+            'errors': errors if errors else None,
         })
 
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState } from 'react';
+import { use, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -29,14 +29,18 @@ import {
   Cancel,
   HelpOutline,
   Delete,
+  Image as ImageIcon,
+  Palette,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
+import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';
+import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
-import { Assay, DataSeries, Protocol, Target } from '@/types/compounds/models';
+import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -86,11 +90,15 @@ export default function AssayDetailPage({ params }: PageProps) {
   const api = useCompoundsApi();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [imageUploadOpen, setImageUploadOpen] = useState(false);
+  const [heatMapOpen, setHeatMapOpen] = useState(false);
+  const [heatMapCells, setHeatMapCells] = useState<(string | number | null)[][] | null>(null);
+  const [heatMapLoading, setHeatMapLoading] = useState(false);
 
   const { data: assay, isLoading: assayLoading } = api.get<Assay>(
     `assays/${id}/`
   );
-  const { data: dataSeries, isLoading: dataSeriesLoading } = api.get<DataSeries[]>(
+  const { data: dataSeries, isLoading: dataSeriesLoading, mutate: mutateDataSeries } = api.get<DataSeries[]>(
     `data-series/?assay=${id}`
   );
   const { data: protocol } = api.get<Protocol>(
@@ -117,6 +125,58 @@ export default function AssayDetailPage({ params }: PageProps) {
       setDeleteDialogOpen(false);
     }
   };
+
+  const handleOpenHeatMap = useCallback(async () => {
+    if (!assay?.data_file) return;
+
+    // If we already have the cells loaded, just open the dialog
+    if (heatMapCells) {
+      setHeatMapOpen(true);
+      return;
+    }
+
+    setHeatMapLoading(true);
+    try {
+      // Fetch the Excel file
+      const response = await fetch(assay.data_file);
+      const buffer = await response.arrayBuffer();
+
+      // Parse with XLSX
+      const XLSX = await import('xlsx');
+      const workbook = XLSX.read(buffer, { type: 'array' });
+      const sheetName = workbook.SheetNames[0];
+      const worksheet = workbook.Sheets[sheetName];
+
+      if (!worksheet) {
+        throw new Error('No worksheet found');
+      }
+
+      // Get sheet as 2D array
+      const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
+      const cells: (string | number | null)[][] = [];
+
+      for (let row = range.s.r; row <= range.e.r; row++) {
+        const rowData: (string | number | null)[] = [];
+        for (let col = range.s.c; col <= range.e.c; col++) {
+          const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
+          const cell = worksheet[cellAddress];
+          if (cell) {
+            rowData.push(cell.v as string | number | null);
+          } else {
+            rowData.push(null);
+          }
+        }
+        cells.push(rowData);
+      }
+
+      setHeatMapCells(cells);
+      setHeatMapOpen(true);
+    } catch (err) {
+      console.error('Failed to load Excel file for heat map:', err);
+    } finally {
+      setHeatMapLoading(false);
+    }
+  }, [assay?.data_file, heatMapCells]);
 
   // Helper to get chart data from a data series - requires dilution_series
   const getChartData = (row: DataSeries) => {
@@ -276,15 +336,38 @@ export default function AssayDetailPage({ params }: PageProps) {
                   )}
                 </Box>
               </Box>
-              <Button
-                variant="outlined"
-                color="error"
-                startIcon={<Delete />}
-                onClick={() => setDeleteDialogOpen(true)}
-                size="small"
-              >
-                Delete
-              </Button>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                {protocol?.plate_layout && assay?.data_file && (
+                  <Button
+                    variant="outlined"
+                    startIcon={heatMapLoading ? <CircularProgress size={16} /> : <Palette />}
+                    onClick={handleOpenHeatMap}
+                    disabled={heatMapLoading}
+                    size="small"
+                  >
+                    Heat Map
+                  </Button>
+                )}
+                {protocol?.analysis_method === 'table_of_values' && (
+                  <Button
+                    variant="outlined"
+                    startIcon={<ImageIcon />}
+                    onClick={() => setImageUploadOpen(true)}
+                    size="small"
+                  >
+                    Upload Images
+                  </Button>
+                )}
+                <Button
+                  variant="outlined"
+                  color="error"
+                  startIcon={<Delete />}
+                  onClick={() => setDeleteDialogOpen(true)}
+                  size="small"
+                >
+                  Delete
+                </Button>
+              </Box>
             </Box>
 
             <Divider sx={{ my: 2 }} />
@@ -380,6 +463,24 @@ export default function AssayDetailPage({ params }: PageProps) {
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Image batch upload dialog for Table of Values */}
+      <ImageBatchUpload
+        open={imageUploadOpen}
+        onClose={() => setImageUploadOpen(false)}
+        assayId={id}
+        onUploaded={() => mutateDataSeries()}
+      />
+
+      {/* Plate Heat Map dialog */}
+      {heatMapCells && protocol?.plate_layout && (
+        <PlateHeatMapDialog
+          open={heatMapOpen}
+          onClose={() => setHeatMapOpen(false)}
+          cells={heatMapCells}
+          plateLayout={protocol.plate_layout as PlateLayout}
+        />
+      )}
     </Container>
   );
 }

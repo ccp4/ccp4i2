@@ -39,8 +39,10 @@ import {
   Warning,
   Error as ErrorIcon,
   Analytics,
+  Palette,
 } from '@mui/icons-material';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { PlateHeatMapDialog } from './PlateHeatMap';
 import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
 
 interface Target {
@@ -74,6 +76,7 @@ interface ExtractedSeries {
   row: number;  // Plate row (0-indexed)
   rowLetter: string;
   stripIndex?: number;  // Strip index within the row (0-indexed), undefined for non-strip layouts
+  compoundGroupIndex?: number;  // Compound group index for paired strips (e.g., 0 for strips 1+2, 1 for strips 3+4)
   compoundName: string | null;
   dataValues: (number | null)[];  // Data values per concentration
   minControlValues: (number | null)[];  // Raw control values for display
@@ -127,6 +130,7 @@ export function AssayUploadDrawer({
   const [creating, setCreating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [runAnalysis, setRunAnalysis] = useState(true);  // Run curve fitting by default
+  const [showHeatMap, setShowHeatMap] = useState(false);  // Heat map overlay visibility
 
   // Fetch targets and protocol details
   const { data: targetsData } = api.get<Target[]>('targets/');
@@ -161,33 +165,78 @@ export function AssayUploadDrawer({
       // Strip layout: each row has embedded controls per strip
       // Each strip becomes a separate data series (technical replicates)
       const strip = plateLayout.strip_layout;
+      const replicateCount = plateLayout.replicate?.count || 1;
+      const isExplicitNaming = plateLayout.replicate?.pattern === 'explicit';
+
+      // How many distinct compounds per row:
+      // - Explicit naming: each strip gets its own name (strips_per_row compounds)
+      // - Grouped replicates: e.g., 4 strips / 2 replicates = 2 compounds
+      const compoundsPerRow = isExplicitNaming
+        ? strip.strips_per_row
+        : Math.max(1, Math.floor(strip.strips_per_row / replicateCount));
 
       for (let plateRow = startRowIdx; plateRow <= endRowIdx; plateRow++) {
         const spreadsheetRow = originRow + plateRow;
         if (spreadsheetRow >= cells.length) continue;
 
         const rowData = cells[spreadsheetRow] || [];
-
-        // Get compound name (shared across all strips in this row)
-        let compoundName: string | null = null;
-        if (plateLayout.compound_source?.type === 'row_header') {
-          const nameColIdx = originCol - 1;
-          if (nameColIdx >= 0 && nameColIdx < rowData.length) {
-            const nameVal = rowData[nameColIdx];
-            compoundName = nameVal ? String(nameVal) : null;
-          }
-        } else if (plateLayout.compound_source?.type === 'adjacent_column') {
-          const totalStripWidth = strip.strip_width * strip.strips_per_row;
-          const nameColIdx = originCol + totalStripWidth;
-          if (nameColIdx < rowData.length) {
-            const nameVal = rowData[nameColIdx];
-            compoundName = nameVal ? String(nameVal) : null;
-          }
-        }
+        const rowLetter = indexToRowLetter(plateRow);
 
         // Process each strip as a separate data series
         for (let stripIdx = 0; stripIdx < strip.strips_per_row; stripIdx++) {
+          // Determine which compound group this strip belongs to:
+          // - Explicit naming: each strip is its own compound group
+          // - Grouped replicates: strips are grouped (e.g., strips 0,1 -> compound 0)
+          const compoundGroupIdx = isExplicitNaming
+            ? stripIdx
+            : Math.floor(stripIdx / replicateCount);
           const stripStartCol = originCol + stripIdx * strip.strip_width;
+
+          // Get compound name based on source type and compound group
+          let compoundName: string | null = null;
+
+          // New naming schema: compound_name_row specifies where names start
+          // Names are in the left-most control column of each stripe
+          if (plateLayout.compound_source?.compound_name_row) {
+            // compound_name_row is absolute Excel row (1-indexed)
+            // For each data row, read from corresponding name row
+            const nameRowOffset = plateRow - startRowIdx;  // How far into data region
+            const nameRow = plateLayout.compound_source.compound_name_row - 1 + nameRowOffset;  // 0-indexed
+            const nameCol = stripStartCol;  // Left-most control column of this stripe
+
+            if (nameRow >= 0 && nameRow < cells.length) {
+              const nameRowData = cells[nameRow] || [];
+              if (nameCol < nameRowData.length) {
+                const nameVal = nameRowData[nameCol];
+                compoundName = nameVal ? String(nameVal) : null;
+              }
+            }
+          } else if (plateLayout.compound_source?.type === 'row_header') {
+            // Legacy: For row_header with multiple compounds per row, read from column before plate
+            // Each compound group reads from a different column (offset by compoundGroupIdx)
+            const nameColIdx = originCol - compoundsPerRow + compoundGroupIdx;
+            if (nameColIdx >= 0 && nameColIdx < rowData.length) {
+              const nameVal = rowData[nameColIdx];
+              compoundName = nameVal ? String(nameVal) : null;
+            }
+          } else if (plateLayout.compound_source?.type === 'adjacent_column') {
+            // Legacy: For adjacent_column with multiple compounds per row, read from columns after plate
+            const totalStripWidth = strip.strip_width * strip.strips_per_row;
+            const nameColIdx = originCol + totalStripWidth + compoundGroupIdx;
+            if (nameColIdx < rowData.length) {
+              const nameVal = rowData[nameColIdx];
+              compoundName = nameVal ? String(nameVal) : null;
+            }
+          } else if (plateLayout.compound_source?.type === 'row_order') {
+            // For row_order, generate sequential names
+            // - Explicit naming: A1, A2, A3, A4 for 4 strips (each strip gets unique name)
+            // - Grouped replicates: A1, A1, A2, A2 for 4 strips with 2 replicates
+            if (compoundsPerRow > 1) {
+              compoundName = `${rowLetter}${compoundGroupIdx + 1}`;
+            } else {
+              compoundName = rowLetter;
+            }
+          }
           const issues: string[] = [];
 
           // Extract min controls for this strip
@@ -246,8 +295,9 @@ export function AssayUploadDrawer({
 
           series.push({
             row: plateRow,
-            rowLetter: indexToRowLetter(plateRow),
+            rowLetter,
             stripIndex: stripIdx,
+            compoundGroupIndex: compoundGroupIdx,
             compoundName,
             dataValues: finalDataValues,
             minControlValues,
@@ -534,6 +584,15 @@ export function AssayUploadDrawer({
                         color="warning"
                       />
                     )}
+                    <Button
+                      size="small"
+                      startIcon={<Palette />}
+                      onClick={() => setShowHeatMap(true)}
+                      variant="outlined"
+                      sx={{ ml: 'auto' }}
+                    >
+                      Heat Map
+                    </Button>
                   </Box>
                   <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mt: 1 }}>
                     Origin: cell {plateLayout?.spreadsheet_origin?.column || 'A'}{plateLayout?.spreadsheet_origin?.row || 1}
@@ -739,6 +798,7 @@ export function AssayUploadDrawer({
   };
 
   return (
+    <>
     <Drawer
       anchor="right"
       open={open}
@@ -822,6 +882,17 @@ export function AssayUploadDrawer({
         )}
       </Box>
     </Drawer>
+
+    {/* Heat Map Dialog */}
+    {spreadsheetGrid && plateLayout && (
+      <PlateHeatMapDialog
+        open={showHeatMap}
+        onClose={() => setShowHeatMap(false)}
+        cells={spreadsheetGrid.cells}
+        plateLayout={plateLayout}
+      />
+    )}
+    </>
   );
 }
 

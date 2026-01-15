@@ -3,6 +3,8 @@ import shutil
 
 from lxml import etree
 
+import coot_headless_api
+
 from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -245,76 +247,151 @@ class SubstituteLigand(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
         
     def cootAddLigand(self):
+        """Fit ligand into density using coot_headless_api."""
         try:
-            self.cootPlugin = self.makePluginObject('coot_script_lines')
-            xyzinList = self.cootPlugin.container.inputData.XYZIN
-            xyzinList.append(xyzinList.makeItem())
-            xyzinList[-1].set(self.coordinatesForCoot)
-            fphiinList = self.cootPlugin.container.inputData.FPHIIN
-            fphiinList.append(fphiinList.makeItem())
-            fphiinList[-1].set(self.mapToUse)
-            self.cootPlugin.container.inputData.DICT = self.dictToUse
-            #coot_stepped_refine,coot_fit_residues,coot_script_lines
-            self.cootPlugin.container.controlParameters.SCRIPT = '''#Script to fit lignad into density
-monomerMolNo = get_monomer('DRG')
-add_ligand_clear_ligands()
-set_ligand_search_protein_molecule(MolHandle_1)
-set_ligand_search_map_molecule(MapHandle_1)
-add_ligand_search_wiggly_ligand_molecule(monomerMolNo)
-#Execute search
-nToCopy = 0
-ligandsFound=execute_ligand_search()
-if ligandsFound is not False:
-    nToCopy = len(ligandsFound)
-#Check on ncs
-equivs = ncs_chain_ids(0)
-if equivs is not False and len(equivs)>0:
-    nToCopy = min(len(ligandsFound),len(equivs[0]))
-if nToCopy > 0:
-    ligandsToCopy = ligandsFound[0:nToCopy]
-    merge_molecules(ligandsToCopy,0)
+            # Get file paths
+            xyzin = str(self.coordinatesForCoot.fullPath)
+            mtzin = str(self.mapToUse.fullPath)
+            dictin = str(self.dictToUse.fullPath)
+            xyzout = str(self.container.outputData.XYZOUT.fullPath)
 
-write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))'''
-            self.connectSignal(self.cootPlugin,'finished',self.cootPlugin_finished)
-            self.cootPlugin.process()
+            print(f"[COOT DEBUG] cootAddLigand starting...")
+            print(f"[COOT DEBUG] xyzin = {xyzin}")
+            print(f"[COOT DEBUG] mtzin = {mtzin}")
+            print(f"[COOT DEBUG] dictin = {dictin}")
+            print(f"[COOT DEBUG] xyzout = {xyzout}")
+
+            # Initialize coot headless API
+            print("[COOT DEBUG] Initializing coot_headless_api...")
+            mc = coot_headless_api.molecules_container_py(True)
+            mc.set_make_backups(False)
+            mc.set_use_gemmi(False)
+            print("[COOT DEBUG] molecules_container_py initialized")
+
+            # Load protein coordinates
+            print(f"[COOT DEBUG] Loading protein coordinates from {xyzin}...")
+            imol_protein = mc.read_pdb(xyzin)
+            print(f"[COOT DEBUG] imol_protein = {imol_protein}")
+            if imol_protein < 0:
+                self.appendErrorReport(207, f'Failed to read protein coordinates: {xyzin}')
+                self.reportStatus(CPluginScript.FAILED)
+                return
+
+            # Load map from MTZ
+            # CCP4i2 minimtz format uses F/PHI columns
+            print(f"[COOT DEBUG] Loading map from {mtzin}...")
+
+            # Try CCP4i2 minimtz column names (F/PHI)
+            imol_map = mc.read_mtz(mtzin, "F", "PHI", "", False, False)
+            print(f"[COOT DEBUG] F/PHI attempt: imol_map = {imol_map}")
+            if imol_map < 0:
+                # Fallback to dimple raw output (2FOFCWT/PH2FOFCWT)
+                print("[COOT DEBUG] F/PHI columns failed, trying dimple columns (2FOFCWT/PH2FOFCWT)...")
+                imol_map = mc.read_mtz(mtzin, "2FOFCWT", "PH2FOFCWT", "", False, False)
+            if imol_map < 0:
+                # Fallback to REFMAC columns (FWT/PHWT)
+                print("[COOT DEBUG] Dimple columns failed, trying REFMAC columns (FWT/PHWT)...")
+                imol_map = mc.read_mtz(mtzin, "FWT", "PHWT", "", False, False)
+
+            print(f"[COOT DEBUG] Final imol_map = {imol_map}")
+            if imol_map < 0:
+                self.appendErrorReport(207, f'Failed to read map coefficients: {mtzin}')
+                self.reportStatus(CPluginScript.FAILED)
+                return
+
+            # Set the refinement map
+            print("[COOT DEBUG] Setting refinement map...")
+            mc.set_imol_refinement_map(imol_map)
+
+            # Import ligand dictionary (use -999999 for IMOL_ENC_ANY)
+            print(f"[COOT DEBUG] Importing ligand dictionary from {dictin}...")
+            dict_result = mc.import_cif_dictionary(dictin, -999999)
+            print(f"[COOT DEBUG] dict_result = {dict_result}")
+            if dict_result == 0:
+                self.appendErrorReport(207, f'Failed to import ligand dictionary: {dictin}')
+                self.reportStatus(CPluginScript.FAILED)
+                return
+
+            # Get a monomer for fitting (using 'DRG' as the TLC)
+            print("[COOT DEBUG] Getting monomer 'DRG'...")
+            imol_ligand = mc.get_monomer('DRG')
+            print(f"[COOT DEBUG] imol_ligand = {imol_ligand}")
+            if imol_ligand < 0:
+                self.appendErrorReport(207, 'Failed to get monomer DRG from dictionary')
+                self.reportStatus(CPluginScript.FAILED)
+                return
+
+            # Fit ligand into density
+            print("[COOT DEBUG] Running fit_ligand...")
+            ligands_found = mc.fit_ligand(imol_protein, imol_map, imol_ligand, 1.5, True, 20)
+            print(f"[COOT DEBUG] ligands_found = {ligands_found}")
+
+            if ligands_found and len(ligands_found) > 0:
+                # Determine how many ligands to merge based on NCS
+                print("[COOT DEBUG] Checking NCS chains...")
+                ncs_chains = mc.get_ncs_related_chains(imol_protein)
+                print(f"[COOT DEBUG] ncs_chains = {ncs_chains}")
+                n_to_copy = len(ligands_found)
+                if ncs_chains and len(ncs_chains) > 0:
+                    n_to_copy = min(len(ligands_found), len(ncs_chains))
+
+                # Merge found ligands into protein model
+                if n_to_copy > 0:
+                    ligand_indices = ','.join(str(lig) for lig in ligands_found[:n_to_copy])
+                    print(f"[COOT DEBUG] Merging ligands: {ligand_indices}")
+                    mc.merge_molecules(imol_protein, ligand_indices)
+            else:
+                print("[COOT DEBUG] No ligands found by fit_ligand")
+
+            # Write output coordinates
+            print(f"[COOT DEBUG] Writing coordinates to {xyzout}...")
+            mc.write_coordinates(imol_protein, xyzout)
+
+            # Clean up coot backup directory
+            shutil.rmtree("coot-backup", ignore_errors=True)
+
+            # Check output was created
+            if not os.path.isfile(xyzout):
+                self.appendErrorReport(207, 'Coot did not produce output coordinates')
+                self.reportStatus(CPluginScript.FAILED)
+                return
+
+            print("[COOT DEBUG] Output file created successfully")
+
+            # Postprocessing: update XML with model composition
+            self._updateModelComposition()
+
+            print("[COOT DEBUG] cootAddLigand completed successfully")
+            self.finishWithStatus(CPluginScript.SUCCEEDED)
+
         except Exception as e:
-            self.appendErrorReport(207, 'Exception in cootAddLigand setup: ' + str(e))
+            import traceback
+            print(f"[COOT DEBUG] Exception in cootAddLigand: {e}")
+            print(f"[COOT DEBUG] Traceback: {traceback.format_exc()}")
+            self.appendErrorReport(207, 'Exception in cootAddLigand: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
 
-    @QtCore.Slot(dict)
-    def cootPlugin_finished(self, status):
-        if status.get('finishStatus') == CPluginScript.FAILED:
-            self.appendErrorReport(207, 'Coot ligand fitting failed')
-            self.reportStatus(CPluginScript.FAILED)
-            return
-
+    def _updateModelComposition(self):
+        """Update XML with monomer composition from output coordinates."""
         try:
-            self.harvestFile(self.cootPlugin.container.outputData.XYZOUT[0], self.container.outputData.XYZOUT)
-        except Exception as e:
-            self.appendErrorReport(207, 'Exception harvesting coot output: ' + str(e))
-            self.reportStatus(CPluginScript.FAILED)
-            return
-
-        try:
-            #Substitute the composition section of REFMAC output to include new monomers
-            #Perform analysis of output coordinate file composition
             if os.path.isfile(str(self.container.outputData.XYZOUT.fullPath)):
                 from ccp4i2.core.CCP4ModelData import CPdbData
                 aCPdbData = CPdbData()
                 aCPdbData.loadFile(self.container.outputData.XYZOUT.fullPath)
                 modelCompositionNode = None
                 modelCompositionNodes = self.xmlroot.xpath('//ModelComposition')
-                if len(modelCompositionNodes) > 0: modelCompositionNode = modelCompositionNodes[-1]
+                if len(modelCompositionNodes) > 0:
+                    modelCompositionNode = modelCompositionNodes[-1]
                 else:
                     refmacNodes = self.xmlroot.xpath('//REFMAC')
-                    if len(refmacNodes) > 0: modelCompositionNode = etree.SubElement(refmacNodes[-1],"ModelComposition")
+                    if len(refmacNodes) > 0:
+                        modelCompositionNode = etree.SubElement(refmacNodes[-1], "ModelComposition")
                 if modelCompositionNode is not None:
                     for monomer in aCPdbData.composition.monomers:
-                        etree.SubElement(modelCompositionNode,'Monomer',id=monomer)
-            self.finishWithStatus(CPluginScript.SUCCEEDED)
+                        etree.SubElement(modelCompositionNode, 'Monomer', id=monomer)
         except Exception as e:
-            self.appendErrorReport(208, 'Exception in coot postprocessing: ' + str(e))
-            self.reportStatus(CPluginScript.FAILED)
+
+            self.appendErrorReport(208, 'Exception in model composition update: ' + str(e))
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
         try:

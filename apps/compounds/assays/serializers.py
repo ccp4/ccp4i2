@@ -367,3 +367,70 @@ class AggregationRequestSerializer(serializers.Serializer):
         default=['geomean', 'count'],
         help_text="Aggregation functions to compute"
     )
+
+
+class TableOfValuesRowSerializer(serializers.Serializer):
+    """Serializer for a single row in Table of Values import."""
+    # All fields are dynamic - we just validate it's a dict
+    pass
+
+
+class TableOfValuesImportSerializer(serializers.Serializer):
+    """
+    Serializer for Table of Values bulk import.
+
+    Validates the import request structure for pre-analyzed data.
+    """
+    compound_column = serializers.CharField(
+        help_text="Name of the column containing compound identifiers"
+    )
+    kpi_column = serializers.CharField(
+        help_text="Name of the column containing KPI names (e.g., 'KPI')"
+    )
+    image_column = serializers.CharField(
+        required=False,
+        allow_blank=True,
+        default='',
+        help_text="Optional: Name of the column containing image filenames"
+    )
+    data = serializers.ListField(
+        child=serializers.DictField(),
+        help_text="List of row objects from the spreadsheet"
+    )
+
+    def validate(self, attrs):
+        """Validate that required columns exist in the data."""
+        data = attrs.get('data', [])
+        compound_column = attrs.get('compound_column')
+        kpi_column = attrs.get('kpi_column')
+
+        if not data:
+            raise serializers.ValidationError("No data rows provided")
+
+        # Check first row has required columns
+        first_row = data[0]
+        if compound_column not in first_row:
+            raise serializers.ValidationError(
+                f"Compound column '{compound_column}' not found in data"
+            )
+        if kpi_column not in first_row:
+            raise serializers.ValidationError(
+                f"KPI column '{kpi_column}' not found in data"
+            )
+
+        # Validate all rows have the same KPI value
+        kpi_values = set(row.get(kpi_column) for row in data if row.get(kpi_column))
+        if len(kpi_values) > 1:
+            raise serializers.ValidationError(
+                f"All rows must have the same KPI value. Found: {', '.join(str(v) for v in kpi_values)}"
+            )
+
+        # Validate the KPI value is a column name that exists
+        if kpi_values:
+            kpi_value = next(iter(kpi_values))
+            if kpi_value not in first_row:
+                raise serializers.ValidationError(
+                    f"KPI value '{kpi_value}' is not a column name in the data"
+                )
+
+        return attrs

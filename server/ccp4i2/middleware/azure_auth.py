@@ -263,8 +263,27 @@ class AzureADAuthMiddleware:
             logger.info("Azure AD authentication is DISABLED")
 
     def __call__(self, request: HttpRequest):
-        # Skip auth if not required
+        # Skip auth if not required - auto-login as dev admin for full access
         if not self.auth_required:
+            User = get_user_model()
+            dev_user, created = User.objects.get_or_create(
+                username='dev_admin',
+                defaults={
+                    'email': 'dev_admin@localhost',
+                    'first_name': 'Dev',
+                    'last_name': 'Admin',
+                    'is_staff': True,
+                    'is_superuser': True,
+                }
+            )
+            if created:
+                logger.info("Created dev_admin superuser for no-auth mode")
+            # Ensure dev_admin always has admin privileges (in case it was created earlier without them)
+            if not dev_user.is_staff or not dev_user.is_superuser:
+                dev_user.is_staff = True
+                dev_user.is_superuser = True
+                dev_user.save(update_fields=['is_staff', 'is_superuser'])
+            request.user = dev_user
             return self.get_response(request)
 
         # Skip exempt paths
