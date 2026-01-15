@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Typography, Box, Stack, Paper } from '@mui/material';
-import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings } from '@mui/icons-material';
+import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings, GridView } from '@mui/icons-material';
 import Link from 'next/link';
 
 /**
@@ -42,6 +42,30 @@ export default function AppSelectorPage() {
             <Typography variant="h5">Crystallography Workbench</Typography>
             <Typography color="text.secondary">
               Structure determination, refinement, and analysis pipelines
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/ccp4i2/campaigns"
+        >
+          <GridView sx={{ fontSize: 56, color: 'success.main' }} />
+          <Box>
+            <Typography variant="h5">Fragment Screening</Typography>
+            <Typography color="text.secondary">
+              Manage fragment screening campaigns with batch processing
             </Typography>
           </Box>
         </Paper>
