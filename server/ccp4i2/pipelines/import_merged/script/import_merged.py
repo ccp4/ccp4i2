@@ -3,7 +3,6 @@ import sys
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
@@ -125,18 +124,13 @@ class import_merged(CPluginScript):
               self.process1(status)
               return  # Probably doesnt get here
 
-          self.connectSignal(self.x2mtz,'finished',self.process1slot)
-          ret = self.x2mtz.process()
-        
-    #------------------------------------------------------------------------
-    @QtCore.Slot(dict)
-    def process1slot(self,status):
-        self.process1(status)
+          status = self.x2mtz.process()
+          self.process1(status)
 
     def process1(self,status, completeFreeR=True):
         'if completeFreeR False, always generate new FreeR (for 2nd attempt)'
         #print('process1',type(status),status)
-        if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+        if status == CPluginScript.FAILED:
             self.reportStatus(status)
             return
       
@@ -217,18 +211,17 @@ class import_merged(CPluginScript):
         self.outputLogXML(self.importXML)  # send self.importXML to program.xml
         self.freerflag.container.outputData.FREEROUT.setFullPath(str(self.container.outputData.FREEOUT))
 
-        self.connectSignal(self.freerflag,'finished',self.process2)
         status = self.freerflag.process()
+        self.process2(status)
         
     #------------------------------------------------------------------------
-    @QtCore.Slot(dict)
     def process2(self,status):
       freerOK = True
       doFreeR = True
       if self.container.controlParameters.SKIP_FREER:
         doFreeR = False
       else:
-        if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+        if status == CPluginScript.FAILED:
           # FreeR run has failed, create error message and continue
           self.addElement(self.importXML, 'FreeRfailed', 'True')
           self.outputLogXML(self.importXML)  # send self.importXML to program.xml
@@ -333,18 +326,15 @@ class import_merged(CPluginScript):
       self.addElement(tempXML, "DRPIPE_RUNNING", "True") 
       self.outputLogXML(tempXML)  # SEND self.importXML to program.xml
       #  Start data reduction
-      self.connectSignal(self.aimlesspipe,'finished',self.nearlyDone)
       print("starting aimless_pipe")
-      self.aimlesspipe.process()
-
+      status = self.aimlesspipe.process()
+      self.nearlyDone(status)
       return CPluginScript.SUCCEEDED
 
     #------------------------------------------------------------------------
-    @QtCore.Slot(dict)
     def nearlyDone(self,status):
       print('import_merged.nearlyDone')
       self.container.outputData.OBSOUT.setContentFlag(reset=True)
-      import shutil
       try:
           # XML data: We have
           #   a) self.importXML etree element report on the import step
