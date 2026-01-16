@@ -90,11 +90,6 @@ class mrbump_model_prep(CPluginScript):
     def makeCommandAndScript(self):
 
       inp = self.container.inputData
-      out = self.container.outputData
-
-      import os
-
-      from ccp4i2.core import CCP4Utils
 
       keyin = "GESMAX 1\n" 
       keyin += "PICKLE False\n" 
@@ -130,25 +125,25 @@ class mrbump_model_prep(CPluginScript):
 
       keyin += "EXIT True\n" 
 
-      keyfile=os.path.join(self.getWorkDirectory(), "keywords.txt")
-      kf=open(keyfile, "w")
-      kf.write(keyin)
-      kf.close()
+      keyfile = self.workDirectory / "keywords.txt"
+      with keyfile.open("w") as kf:
+          kf.write(keyin)
 
       if self.container.inputData.F_SIGF.isSet():
           self.appendCommandLine( [ 'HKLIN', self.hklin ] )
       
-      seqFile = os.path.join(self.workDirectory,'SEQIN.fasta')
+      seqFile = self.workDirectory / 'SEQIN.fasta'
       inp.ASUIN.writeFasta(fileName=seqFile)
       self.appendCommandLine( [ 'SEQIN', seqFile ] )
-      self.appendCommandLine( [ 'KEYIN', str( keyfile ) ] )
+      self.appendCommandLine( [ 'KEYIN', keyfile ] )
 
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
 
-        self.writeProgramXML(os.path.join(self.getWorkDirectory(),"search_mrbump_1","logs"))
-        xyzout = self.findOutputFileFromLog(os.path.join(self.getWorkDirectory(),"search_mrbump_1","logs"))
+        log_dir = str(self.workDirectory / "search_mrbump_1" / "logs")
+        self.writeProgramXML(log_dir)
+        xyzout = self.findOutputFileFromLog(log_dir)
         if os.path.exists(xyzout):
             self.container.outputData.XYZOUT.set(xyzout)
             self.container.outputData.XYZOUT.annotation.set('Model from MrBump model search')

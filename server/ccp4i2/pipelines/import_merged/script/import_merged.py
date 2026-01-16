@@ -487,11 +487,10 @@ class import_merged(CPluginScript):
             freerfile = str(self.container.outputData.FREEOUT)
         else:
             # Temporary place for FreeR in job_1 subdirectory
-            wd = self.getWorkDirectory()
-            wdir = os.path.join(wd, 'job_1')
-            if not os.path.exists(wdir):
-                os.mkdir(wdir, 0o777)
-                freerfile = os.path.join(wdir, 'FREEOUT.mtz')
+            wdir = self.workDirectory / 'job_1'
+            if not wdir.exists():
+                wdir.mkdir(mode=0o777)
+                freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now
@@ -551,11 +550,10 @@ class import_merged(CPluginScript):
                 freerfile = str(self.container.outputData.FREEOUT)
             else:
                 # Temporary place for FreeR in job_1 subdirectory
-                wd = self.getWorkDirectory()
-                wdir = os.path.join(wd, 'job_1')
-                if not os.path.exists(wdir):
-                    os.mkdir(wdir, 0o777)
-                    freerfile = os.path.join(wdir, 'FREEOUT.mtz')
+                wdir = self.workDirectory / 'job_1'
+                if not wdir.exists():
+                    wdir.mkdir(mode=0o777)
+                    freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now

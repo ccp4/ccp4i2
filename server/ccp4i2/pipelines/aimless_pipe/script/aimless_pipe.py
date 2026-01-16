@@ -346,7 +346,6 @@ class aimless_pipe(CPluginScript):
           #   fixed, but don't use it for now
           xname = unmergedcontent.crystalName
 
-          #print "WD:", self.getWorkDirectory()
           # Add to UNMERGEDOUT
           out.UNMERGEDOUT.append(out.UNMERGEDOUT.makeItem())
           outfile = os.path.join(self.workDirectory,fname)
