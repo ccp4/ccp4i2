@@ -2772,24 +2772,9 @@ class CPluginScript(CData):
         """
         return self._childJobCounter
 
-    def getWorkDirectory(self, ifRelPath=False):
-        """Get the working directory path.
-
-        Args:
-            ifRelPath: If True and path contains 'CCP4_JOBS', return relative path from CCP4_JOBS onwards.
-                      If False, return absolute path.
-
-        Returns:
-            Working directory path as string (absolute or relative based on ifRelPath)
-        """
-        import os
-        work_dir = str(self.workDirectory)
-
-        if ifRelPath and 'CCP4_JOBS' in work_dir:
-            # Return relative path starting from CCP4_JOBS
-            return work_dir[work_dir.index('CCP4_JOBS'):]
-        else:
-            return work_dir
+    def getWorkDirectory(self):
+        "Get the absolute working directory path as string."
+        return str(self.workDirectory)
 
     def testForInterrupt(self) -> bool:
         """Test if user has requested pipeline interruption.
