@@ -190,8 +190,7 @@ class CDataFile(CData):
         Args:
             path: Full file path as a string
         """
-        from pathlib import Path
-
+        path = str(path)  # In case a Path object is passed
         logger.debug(
             "[setFullPath] Called for %s, input path: %s, hasattr baseName: %s",
             self.name if hasattr(self, 'name') else 'unnamed',
