@@ -5,7 +5,7 @@ from distutils.dir_util import copy_tree
 
 from lxml import etree
 
-from ccp4i2.core import CCP4Modules, CCP4Utils, CCP4XtalData
+from ccp4i2.core import CCP4Modules, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
@@ -21,9 +21,8 @@ class arcimboldo(CPluginScript):
     ASYNCHRONOUS = True
 
     def genHKL(self, hklin):
-        binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2hkl' ))
         arglist = ['-f', hklin.__str__()]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist)
+        pid = CCP4Modules.PROCESSMANAGER().startProcess('mtz2hkl', arglist)
         return CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
 
     def generateBor (self, hklin, columns):

@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+from pathlib import Path
 
 from lxml import etree
 
@@ -13,13 +14,13 @@ class clustalw(CPluginScript):
     DESCRIPTION = 'Perform multiple alignment'
     TASKNAME = 'clustalw'                                  # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
+    TASKCOMMAND = shutil.which("clustalw2", path=Path(os.environ["CCP4"], "libexec"))
     TIMEOUT_PERIOD =3.
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to catenate sequences' },201 : { 'description' : 'Failed to setFullPath' },}
     
     def __init__(self,*args,**kws):
         CPluginScript.__init__(self, *args,**kws)
-        self.TASKCOMMAND = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir(),'libexec','clustalw2'))
         self.xmlroot = etree.Element('Clustalw')
 
     def makeCommandAndScript(self):

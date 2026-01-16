@@ -174,11 +174,10 @@ class ShelxCDEBase(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeScafile( self, infile=None, outfile=[], parentPlugin=None ):
-        bin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'mtz2sca' ))
         name,colin = outfile
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'mtz2sca.log'))
         arglist = ['-p',colin[0],'-P',colin[1],'-m',colin[2],'-M',colin[3],infile,name]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin,arglist,logFile=logFile)
+        pid = CCP4Modules.PROCESSMANAGER().startProcess("mtz2sca",arglist,logFile=logFile)
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
@@ -188,13 +187,12 @@ class ShelxCDEBase(CPluginScript):
             return CPluginScript.FAILED
 
     def makeHklfile( self, infile=None, outfile=[], parentPlugin=None ):
-        bin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'mtz2various' ))
         name,colin = outfile
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'mtz2various.log'))
         arglist = ['hklin',infile,'hklout',name]
         inputText = 'output SHELX\n'
         inputText += ('LABIN ' + ' '.join(colin) + '\n')
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin,arglist,inputText=inputText, logFile=logFile)
+        pid = CCP4Modules.PROCESSMANAGER().startProcess("mtz2various",arglist,inputText=inputText, logFile=logFile)
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
         if status == 0 and os.path.exists(outfile[0]):
@@ -372,7 +370,6 @@ class ShelxCDEBase(CPluginScript):
         self.renameFile(tmpFileName, PROGRAMXML)
 
     def pdbToRes( self, pdbDataFile, insFilePath):
-        bin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'coordconv' ))
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'coordconv.log'))
         fracFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(), 'ha.frac'))
         arglist = ['XYZIN',pdbDataFile.fullPath.__str__(),'XYZOUT',fracFilePath]
@@ -380,12 +377,12 @@ class ShelxCDEBase(CPluginScript):
         inputText = '''INPUT pdb
 OUTPUT frac
 '''
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        pid = CCP4Modules.PROCESSMANAGER().startProcess("coordconv", arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(fracFilePath):
-            self.appendErrorReport(201,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(fracFilePath))
+            self.appendErrorReport(201,"coordconv "+str(arglist)+' '+str(inputText)+' '+str(fracFilePath))
             return CPluginScript.FAILED
 
         linetypesToGrab = ['TITL','CELL','LATT','SYMM','SFAC','UNIT','HKLF','END']
@@ -460,8 +457,6 @@ OUTPUT frac
         return cellString, spaceGroupNumber, extantFile
 
     def harvestPhsFile(self, phsFilePath, mapFilePath, phsOutFilePath=None):
-        
-        bin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'f2mtz' ))
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'f2mtz_map.log'))
         tmpMtzFilePath = mapFilePath+'_tmp'
         arglist = ['HKLIN',phsFilePath,'HKLOUT',tmpMtzFilePath]
@@ -478,16 +473,15 @@ OUTPUT frac
 
         inputText += 'SYMMETRY %s\n'%spgrName
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        pid = CCP4Modules.PROCESSMANAGER().startProcess("f2mtz", arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(tmpMtzFilePath):
-            self.appendErrorReport(203,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
+            self.appendErrorReport(203,"f2mtz "+str(arglist)+' '+str(inputText)+' '+str(logFile))
             return CPluginScript.FAILED
         
         #Separate out mFo,Phi map coefficents
-        bin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'sftools' ))
         logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'sftools_map.log'))
         argList = []
         
@@ -500,17 +494,16 @@ OUTPUT frac
         inputText += "WRITE "+mapFilePath+" COL 4 3\n"
         inputText += "STOP\n"
 
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+        pid = CCP4Modules.PROCESSMANAGER().startProcess("sftools", arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
 
         if status != 0 or not os.path.exists(mapFilePath):
-            self.appendErrorReport(205,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
+            self.appendErrorReport(205,"sftools "+str(arglist)+' '+str(inputText)+' '+str(logFile))
             return CPluginScript.FAILED
                 
         #Separate out PHI,FOM Phase probability distribution
         if phsOutFilePath is not None:
-            bin =  os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir(), 'bin', 'sftools' ))
             logFile =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'sftools_phs.log'))
             argList = []
             
@@ -520,12 +513,12 @@ OUTPUT frac
             inputText += "WRITE "+phsOutFilePath+" COL 3 2\n"
             inputText += "STOP\n"
 
-            pid = CCP4Modules.PROCESSMANAGER().startProcess(bin, arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
+            pid = CCP4Modules.PROCESSMANAGER().startProcess("sftools", arglist, inputText=inputText, logFile=logFile,cwd=self.getWorkDirectory())
             status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
             exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid,'exitCode')
 
             if status != 0 or not os.path.exists(phsOutFilePath):
-                self.appendErrorReport(206,str(bin)+' '+str(arglist)+' '+str(inputText)+' '+str(logFile))
+                self.appendErrorReport(206,"sftools "+str(arglist)+' '+str(inputText)+' '+str(logFile))
                 return CPluginScript.FAILED
 
         return CPluginScript.SUCCEEDED

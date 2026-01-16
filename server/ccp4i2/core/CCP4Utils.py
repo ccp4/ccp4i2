@@ -446,37 +446,6 @@ def merge_mtz_files(
     return output_path
 
 
-def getCCP4Dir():
-    """
-    Get the CCP4 installation directory.
-
-    Returns the root directory of the CCP4 suite installation from the $CCP4
-    environment variable. This is used by plugins to locate CCP4 resources
-    like monomer libraries, reference data, etc.
-
-    Returns:
-        str: Absolute path to CCP4 root directory, or '.' if not set
-
-    Example:
-        >>> ccp4_root = getCCP4Dir()
-        >>> # Build path to monomer library
-        >>> comp_id = 'ATP'
-        >>> cif_path = os.path.join(ccp4_root, 'lib', 'data', 'monomers',
-        ...                         comp_id[0].lower(), comp_id + '.cif')
-
-    Notes:
-        - Reads from $CCP4 environment variable
-        - Returns '.' (current directory) if $CCP4 is not set (due to normpath behavior)
-        - Normalizes the path before returning
-        - Matches legacy ccp4i2 behavior exactly
-    """
-    try:
-        target = os.path.normpath(os.environ.get('CCP4', ''))
-    except Exception:
-        target = ''
-    return target
-
-
 def getTMP(**kw) -> str:
     """
     Get the temporary directory for CCP4 jobs.

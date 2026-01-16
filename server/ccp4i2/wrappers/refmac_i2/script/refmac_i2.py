@@ -327,7 +327,6 @@ class refmac_i2(CPluginScript):
     def makeCommandAndScript(self):
         import os
 
-        from ccp4i2.core import CCP4Utils
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
         # make refmac command script
         self.appendCommandLine(['XYZIN',self.inputCoordPath])
@@ -352,9 +351,9 @@ class refmac_i2(CPluginScript):
            if self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'ELECTRON':
               if self.container.controlParameters.SCATTERING_ELECTRON.isSet():
                  if self.container.controlParameters.SCATTERING_ELECTRON.__str__() == 'GAUSSIAN':
-                    self.appendCommandLine(['ATOMSF',os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'lib', 'data', 'atomsf_electron.lib')])
+                    self.appendCommandLine(['ATOMSF', str(pathlib.Path(os.environ["CLIBD"], 'atomsf_electron.lib'))])
            elif self.container.controlParameters.SCATTERING_FACTORS.__str__() == 'NEUTRON':
-              self.appendCommandLine(['ATOMSF',os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'lib', 'data', 'atomsf_neutron.lib')])
+              self.appendCommandLine(['ATOMSF', str(pathlib.Path(os.environ["CLIBD"], 'atomsf_neutron.lib'))])
 
         if self.container.controlParameters.TITLE.isSet():
             self.appendCommandScript("TITLE %s"%(str(self.container.controlParameters.TITLE)))
