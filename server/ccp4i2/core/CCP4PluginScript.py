@@ -2784,9 +2784,7 @@ class CPluginScript(CData):
         Returns:
             True if INTERRUPT file exists, False otherwise
         """
-        import os
-        interrupt_file = os.path.join(self.getWorkDirectory(), 'INTERRUPT')
-        return os.path.exists(interrupt_file)
+        return (self.workDirectory / "INTERRUPT").exists()
 
     # connectSignal() is now inherited from HierarchicalObject base class
     # with automatic signature adaptation for legacy int handlers
