@@ -2,12 +2,7 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>nicholls</userId>
-        <creationTime>2022-09-27T12:21:43.994600</creationTime>
-        <pluginVersion></pluginVersion>
         <pluginName>Platonyzer</pluginName>
-        <pluginTitle>platonyzer metal site restraints</pluginTitle>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="Platonyzer">
         <container id="inputData">
@@ -17,7 +12,6 @@
                     <ifAtomSelection>True</ifAtomSelection>
                     <allowUndefined>False</allowUndefined>
                     <mustExist>True</mustExist>
-                    <requiredSubType>4,3,2,1,0</requiredSubType>
                 </qualifiers>
             </content>
         </container>
@@ -53,11 +47,6 @@
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
-<!--Here specify what sort of data constitutes a PERFORMANCEinDICATOR  for this task
-            <content id="PERFORMANCEINDICATOR">
-                <className>CRefinementPerformance</className>
-            </content>
--->
         </container>
     </ccp4i2_body>
 </ccp4i2>

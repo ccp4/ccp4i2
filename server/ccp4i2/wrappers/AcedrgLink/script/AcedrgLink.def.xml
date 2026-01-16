@@ -2,15 +2,9 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>nicholls</userId>
-        <creationTime>2019-02-04T16:38:09.729577</creationTime>
-        <pluginVersion></pluginVersion>
         <pluginName>AcedrgLink</pluginName>
-        <pluginTitle>Brief title For plugin</pluginTitle>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="AcedrgLink">
-       <!--You must provide an inputData container, although it can be empty-->
        <container id="inputData">
           <content id="INSTRUCTION_FILE">
               <className>CTextDataFile</className>
@@ -33,8 +27,6 @@
              <className>CString</className>
           </content>
        </container>
-       <!--generally we put control parameters into a container called "controlParameters"...although the-->
-       <!--existence and name of this container are both optional-->
        <container id="controlParameters">
           <content id="EXTRA_ACEDRG_KEYWORDS">
              <className>CString</className>
@@ -45,7 +37,6 @@
              </qualifiers>
           </content>
        </container>
-       <!--You must provide an outputData container, although it can be empty-->
        <container id="outputData">
           <content id="CIF_OUT">
              <className>CDictDataFile</className>

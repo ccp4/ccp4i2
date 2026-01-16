@@ -2,12 +2,7 @@
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <userId>mdw</userId>
-    <creationTime>11:28 7/Jun/11</creationTime>
-    <pluginVersion></pluginVersion>
     <pluginName>pyphaser_mr</pluginName>
-    <pluginTitle>pyPHASER_MR: molecular replacement</pluginTitle>
-    <jobId/>
   </ccp4i2_header>
   <ccp4i2_body id="pyphaser_mr">
     <container id="inputData">
@@ -149,19 +144,6 @@
       <content id="ROOT">
         <className>CString</className>
       </content>
-      <!--
-       setCOMP_BY(str ["AVERAGE" | "SOLVENT" | "ASU" ])
-       setCOMP_PERC(float <SOLVENT>)
-       addCOMP_PROT_MW_NUM(float <MW>,float <NUM>)
-       addCOMP_PROT_STR_NUM(str <SEQ>,float <NUM>)
-       addCOMP_PROT_NRES_NUM(float <NRES>,float <NUM>)
-       addCOMP_PROT_SEQ_NUM(str <FILE>,float <NUM>)
-       addCOMP_NUCL_MW_NUM(float <MW>,float <NUM>)
-       addCOMP_NUCL_STR_NUM(str <SEQ>,float <NUM>)
-       addCOMP_NUCL_NRES_NUM(float <NRES>,float <NUM>)
-       addCOMP_NUCL_SEQ_NUM(str <FILE>,float <NUM>)
-       addCOMP_ATOM(str <TYPE>,float <NUM>)
-       -->
       <content id="COMP_BY">
           <className>CString</className>
           <qualifiers>

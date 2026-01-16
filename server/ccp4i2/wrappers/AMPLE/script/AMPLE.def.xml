@@ -2,15 +2,9 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>jmht</userId>
-        <creationTime>2017-03-22T11:32:25.035413</creationTime>
-        <pluginVersion></pluginVersion>
         <pluginName>AMPLE</pluginName>
-        <pluginTitle>Brief title For plugin</pluginTitle>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="AMPLE">
-<!--You must provide an inputData container, although it can be empty-->
         <container id="inputData">
 			<content id="AMPLE_SEQIN">
 			  <className>CSeqDataFile</className>
@@ -164,8 +158,6 @@
 		              <min>1</min>
 	            </qualifiers>
             </content>
-
-<!-- Advanced Options -->
 			<content id="AMPLE_ENSEMBLING_TM">
 	            <className>CBoolean</className>
 	            <qualifiers>
@@ -207,12 +199,6 @@
 	            </qualifiers>
             </content>
         </container>
-<!--generally we put control parameters into a container called "controlParameters"...although the-->
-<!--existence and name of this container are both optional-->
-        <container id="controlParameters">
-
-        </container>
-<!--You must provide an outputData container, although it can be empty-->
         <container id="outputData">
             <content id="XYZOUT">
                 <className>CList</className>
