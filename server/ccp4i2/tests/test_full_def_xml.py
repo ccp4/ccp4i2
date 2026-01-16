@@ -15,7 +15,6 @@ FULL_SERVALCAT_XML = """<?xml version="1.0" encoding="UTF-8"?>
     <comment/>
     <creationTime>14:00 19/Jul/12</creationTime>
     <userId>martinmaly</userId>
-    <ccp4iVersion>0.0.1</ccp4iVersion>
     <jobId/>
     <project/>
     <pluginName>servalcat_pipe</pluginName>

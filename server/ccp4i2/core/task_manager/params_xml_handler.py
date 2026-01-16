@@ -63,9 +63,6 @@ class ParamsXmlHandler:
             ET.SubElement(header, "creationTime").text = datetime.now().strftime(
                 "%H:%M %d/%b/%y"
             )
-            ET.SubElement(header, "ccp4iVersion").text = (
-                "alpha_rev_90011"  # Could be configurable
-            )
             ET.SubElement(header, "pluginName").text = getattr(
                 task, "name", "unknown_task"
             )

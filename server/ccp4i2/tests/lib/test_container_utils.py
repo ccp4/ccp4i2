@@ -202,7 +202,6 @@ prosmart_defmac_xml = """<ns0:ccp4i2 xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns">
     <comment/>
     <creationTime>14:00 19/Jul/12</creationTime>
     <userId>cowtan</userId>
-    <ccp4iVersion>0.0.1</ccp4iVersion>
     <jobId/>
     <project/>
     <pluginName>prosmart_refmac</pluginName>

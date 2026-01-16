@@ -281,7 +281,6 @@ export interface CI2XmlHeader {
   userId: CUserId;
   hostName: CHostName;
   creationTime: CTime;
-  ccp4iVersion: CVersion;
   pluginName: CString;
   pluginVersion: CVersion;
   pluginTitle: CString;

@@ -41,7 +41,6 @@ interface HeaderInfo {
   userId: string;
   hostName: string;
   creationTime: string;
-  ccp4iVersion: string;
   pluginName: string;
   projectName: string;
   projectId: string;
@@ -66,7 +65,6 @@ const Diagnostic: React.FC<DiagnosticProps> = ({ xmlDocument }) => {
         "userId",
         "hostName",
         "creationTime",
-        "ccp4iVersion",
         "pluginName",
         "projectName",
         "projectId",

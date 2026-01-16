@@ -188,7 +188,6 @@ class PhaserKeywordsCreator(PhilTaskCreator):
         <hostName>{HOSTNAME}</hostName>
         <creationTime>{CREATIONTIME}</creationTime>
         <pluginVersion></pluginVersion>
-        <ccp4iVersion>{CCP4IVERSION}</ccp4iVersion>
         <pluginName>{PLUGINNAME}</pluginName>
         <OS>{OS}</OS>
         <jobId/>

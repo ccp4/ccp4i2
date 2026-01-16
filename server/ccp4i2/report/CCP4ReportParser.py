@@ -3029,21 +3029,6 @@ class JobDetails(ReportClass):
         self.jobInfo = {}
         self.jobInfo.update(jobInfo)
 
-    def getI2Version(self):
-        # try getting i2 version from the diagnostic.xml file
-        diagfile = os.path.normpath(
-            os.path.join(
-                self.jobInfo['fileroot'],
-                'diagnostic.xml'))
-        # print 'JobDetails.getI2Version diagfile',diagfile
-        if os.path.exists(diagfile):
-            from ccp4i2.core import CCP4File
-            x = CCP4File.CI2XmlHeader()
-            x.loadFromXml(diagfile)
-            return str(x.ccp4iVersion)
-        else:
-            return 'Unknown'
-
     def as_data_etree(self):
         import time
         root = super().as_data_etree()
@@ -3080,21 +3065,6 @@ class JobLogFiles(ReportClass):
         self.class_ = kw.get('class_', None)
         self.jobInfo = {}
         self.jobInfo.update(jobInfo)
-
-    def getI2Version(self):
-        # try getting i2 version from the diagnostic.xml file
-        diagfile = os.path.normpath(
-            os.path.join(
-                self.jobInfo['fileroot'],
-                'diagnostic.xml'))
-        # print 'JobDetails.getI2Version diagfile',diagfile
-        if os.path.exists(diagfile):
-            from ccp4i2.core import CCP4File
-            x = CCP4File.CI2XmlHeader()
-            x.loadFromXml(diagfile)
-            return str(x.ccp4iVersion)
-        else:
-            return 'Unknown'
 
     def as_data_etree(self):
         import time

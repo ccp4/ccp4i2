@@ -5,8 +5,12 @@
 #  Acknowledgements: based on ideas and code by Nat Echols and Martin Noble.
 #
 
+import getpass
 import re
+import socket
 import sys
+import time
+from datetime import datetime
 from io import StringIO
 
 from lxml import etree
@@ -188,7 +192,6 @@ class PhilTaskCreator(object):
         <hostName>{HOSTNAME}</hostName>
         <creationTime>{CREATIONTIME}</creationTime>
         <pluginVersion></pluginVersion>
-        <ccp4iVersion>{CCP4IVERSION}</ccp4iVersion>
         <pluginName>{PLUGINNAME}</pluginName>
         <OS>{OS}</OS>
         <jobId/>
@@ -203,33 +206,15 @@ class PhilTaskCreator(object):
     </ccp4i2_body>
 </ccp4i2>
 """
-
-        self.fmt_dic = {}
-
-        import getpass
-
-        self.fmt_dic["USERID"] = getpass.getuser()
-
-        import time
-        from datetime import datetime
-
-        self.fmt_dic["CREATIONTIME"] = datetime.fromtimestamp(time.time()).isoformat()
-
-        import socket
-
-        self.fmt_dic["HOSTNAME"] = socket.gethostname()
-
-        # FIXME, how to get this properly?
-        self.fmt_dic["CCP4IVERSION"] = "0.0.1"
-
-        self.fmt_dic["OS"] = sys.platform
-
-        # overload by derived classes
-        self.fmt_dic["PLUGINNAME"] = "PhilGUITask"
+        self.fmt_dic = {
+            "CREATIONTIME": datetime.fromtimestamp(time.time()).isoformat(),
+            "HOSTNAME": socket.gethostname(),
+            "OS": sys.platform,
+            "PLUGINNAME": "PhilGUITask",  # overload by derived classes
+            "USERID": getpass.getuser(),
+        }
         self.inputDataXML = None
         self.outputDataXML = None
-
-        return
 
     @staticmethod
     def _remove_elements_by_id(etree_xml, id_list):
@@ -243,12 +228,10 @@ class PhilTaskCreator(object):
 
     @staticmethod
     def _replace_element(etree_xml, element_id, new_element):
-
         for cont in etree_xml.iter():
             if cont.get("id") == element_id:
                 parent = cont.getparent()
                 parent.replace(cont, new_element)
-        return
 
     def __call__(self):
 
@@ -275,4 +258,3 @@ class PhilTaskCreator(object):
                     "utf-8"
                 )
             )
-        return

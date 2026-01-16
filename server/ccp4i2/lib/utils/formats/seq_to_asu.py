@@ -224,7 +224,6 @@ def create_asu_xml(
     creation_time = datetime.now().strftime('%H:%M %d/%b/%y')
     ET.SubElement(header, 'creationTime').text = creation_time
 
-    ET.SubElement(header, 'ccp4iVersion').text = 'alpha_rev_90011'
     ET.SubElement(header, 'projectName').text = project_name
     ET.SubElement(header, 'projectId').text = project_id
 
