@@ -77,9 +77,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'TestObsConversions':
         from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions import TestObsConversions
         return TestObsConversions
-    if plugin_name == 'ZZPluginNameZZ':
-        from ccp4i2.wrappers.boilerplate.script.boilerplate import ZZPluginNameZZ
-        return ZZPluginNameZZ
     if plugin_name == 'acedrg':
         from ccp4i2.wrappers.acedrg.script.acedrg import acedrg
         return acedrg
@@ -520,7 +517,6 @@ PLUGIN_NAMES: set[str] = {
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
-    'ZZPluginNameZZ',
     'acedrg',
     'acedrgNew',
     'acorn',

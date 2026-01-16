@@ -188,13 +188,7 @@ class PhilTaskCreator(object):
         self.boilerPlateXML = """<ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>{USERID}</userId>
-        <hostName>{HOSTNAME}</hostName>
-        <creationTime>{CREATIONTIME}</creationTime>
-        <pluginVersion></pluginVersion>
         <pluginName>{PLUGINNAME}</pluginName>
-        <OS>{OS}</OS>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="{PLUGINNAME}">
         <container id="inputData">

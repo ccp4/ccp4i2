@@ -2917,35 +2917,6 @@
       }
     }
   },
-  "ZZPluginNameZZ": {
-    "module": "ccp4i2.wrappers.boilerplate.script.boilerplate",
-    "class": "ZZPluginNameZZ",
-    "module_file": "../../wrappers/boilerplate/script/boilerplate.py",
-    "COMTEMPLATE": null,
-    "TASKMODULE": null,
-    "TASKTITLE": null,
-    "TASKNAME": "ZZPluginNameZZ",
-    "TASKVERSION": 0.1,
-    "ASYNCHRONOUS": false,
-    "PURGESEARCHLIST": [
-      [
-        "hklin.mtz",
-        0
-      ],
-      [
-        "log_mtzjoin.txt",
-        0
-      ]
-    ],
-    "ERROR_CODES": {
-      "201": {
-        "description": "Failed to analyse output files"
-      },
-      "202": {
-        "description": "Failed applying selection ot PDB file"
-      }
-    }
-  },
   "parrot": {
     "module": "ccp4i2.wrappers.parrot.script.parrot",
     "class": "parrot",

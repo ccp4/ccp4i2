@@ -74,12 +74,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'TestObsConversions':
         from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions_report import TestObsConversions_report
         return TestObsConversions_report
-    if task_name == 'ZZPipelineNameZZ':
-        from ccp4i2.pipelines.boilerplate.script.boilerplate_report import ZZPipelineNameZZ_report
-        return ZZPipelineNameZZ_report
-    if task_name == 'ZZPluginNameZZ':
-        from ccp4i2.wrappers.boilerplate.script.boilerplate_report import ZZPluginNameZZ_report
-        return ZZPluginNameZZ_report
     if task_name == 'acorn':
         from ccp4i2.wrappers.acorn.script.acorn_report import acorn_report
         return acorn_report
@@ -456,8 +450,6 @@ REPORT_NAMES: set[str] = {
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
-    'ZZPipelineNameZZ',
-    'ZZPluginNameZZ',
     'acorn',
     'add_fractional_coords',
     'adding_stats_to_mmcif_i2',
