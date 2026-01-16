@@ -105,7 +105,7 @@ class CtruncateConverter:
 
         # Create ctruncate plugin instance
         ctruncate_plugin = CtruncatePlugin(parent=None, name='ctruncate_converter')
-        ctruncate_plugin.workDirectory = str(work_dir)
+        ctruncate_plugin.workDirectory = work_dir
 
         # Set up input file
         input_obs = CObsDataFile(parent=ctruncate_plugin.container.inputData, name='OBSIN')
