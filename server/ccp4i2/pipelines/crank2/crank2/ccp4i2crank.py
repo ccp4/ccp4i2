@@ -1,4 +1,3 @@
-from __future__ import with_statement
 from future.utils import raise_
 import os,sys,copy,shutil
 import common,manager,parse

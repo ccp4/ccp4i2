@@ -1,5 +1,4 @@
 #!/usr/bin/env ccp4-python
-from __future__ import with_statement
 import os
 import parse,common
 

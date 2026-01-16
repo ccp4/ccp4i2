@@ -19,8 +19,6 @@ Output will be:
     - compounds_assays.json (protocols, assays, data_series, etc.)
 """
 
-from __future__ import annotations
-
 import json
 import re
 import sys

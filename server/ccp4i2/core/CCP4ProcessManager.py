@@ -45,7 +45,6 @@ Author: Generated for CCP4i2 Qt-free migration
 Date: 2025-11-07
 """
 
-from __future__ import annotations
 
 import os
 import sys

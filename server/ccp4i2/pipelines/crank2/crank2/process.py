@@ -1,4 +1,3 @@
-from __future__ import with_statement
 import os,sys,copy,shutil
 import common,data,inout
 from xml.etree import ElementTree as ET

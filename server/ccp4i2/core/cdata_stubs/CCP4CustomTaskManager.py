@@ -3,7 +3,6 @@
 This is a stub file - extend classes in core/ to add methods.
 """
 
-from __future__ import annotations
 from typing import TYPE_CHECKING, Optional, Any
 
 # Metadata system

@@ -6,7 +6,6 @@ while maintaining backward compatibility with the existing API used
 by all .def.xml files and plugin implementations.
 """
 
-from __future__ import annotations
 from typing import Optional
 from pathlib import Path
 import xml.etree.ElementTree as ET
