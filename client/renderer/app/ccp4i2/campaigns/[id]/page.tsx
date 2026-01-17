@@ -455,7 +455,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                           j => j.task_name === "refmac" && j.status === 6
                         );
                         if (refmacJob) {
-                          router.push(`/ccp4i2/moorhen-page/job-by-id/${refmacJob.id}`);
+                          window.open(`/ccp4i2/moorhen-page/job-by-id/${refmacJob.id}`, '_blank');
                         }
                       }
                     }
@@ -685,8 +685,8 @@ function MemberProjectRow({
       event.stopPropagation();
       event.preventDefault();
       if (event.shiftKey) {
-        // Shift-click opens Moorhen
-        router.push(`/ccp4i2/moorhen-page/job-by-id/${job.id}`);
+        // Shift-click opens Moorhen in new tab (needs separate window for cross-origin isolation)
+        window.open(`/ccp4i2/moorhen-page/job-by-id/${job.id}`, '_blank');
       } else {
         // Regular click opens job in project view
         router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);

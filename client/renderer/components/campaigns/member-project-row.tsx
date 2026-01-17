@@ -112,8 +112,8 @@ export function MemberProjectRow({
     (job: Job, event: React.MouseEvent) => {
       event.stopPropagation();
       if (event.shiftKey) {
-        // Shift-click opens Moorhen
-        router.push(`/ccp4i2/moorhen-page/job-by-id/${job.id}`);
+        // Shift-click opens Moorhen in new tab (needs separate window for cross-origin isolation)
+        window.open(`/ccp4i2/moorhen-page/job-by-id/${job.id}`, '_blank');
       } else {
         // Regular click opens job in project view
         router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);

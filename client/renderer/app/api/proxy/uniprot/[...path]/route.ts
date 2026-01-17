@@ -33,6 +33,8 @@ export async function GET(
       status: 200,
       headers: {
         "Content-Type": res.headers.get("Content-Type") || "text/plain",
+        // Allow loading from COEP-enabled pages (Moorhen)
+        "Cross-Origin-Resource-Policy": "cross-origin",
       },
     });
   } catch (err: any) {
