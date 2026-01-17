@@ -203,6 +203,9 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   >({});
   const [isBuilderExpanded, setIsBuilderExpanded] = useState(false);
   const [manualEdit, setManualEdit] = useState(false);
+  // Local state for the text field to prevent re-render issues while typing
+  const [localSelectionText, setLocalSelectionText] = useState<string>("");
+  const [isTyping, setIsTyping] = useState(false);
 
   // Extract composition data
   const composition = fileDigest?.composition;
@@ -219,6 +222,13 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
       setSelectedChains(new Set(chains));
     }
   }, [chains]);
+
+  // Sync local text with server value when not typing
+  useEffect(() => {
+    if (!isTyping && selectionString !== undefined) {
+      setLocalSelectionText(selectionString || "");
+    }
+  }, [selectionString, isTyping]);
 
   // Generate selection string from UI state
   const generatedSelection = useMemo(() => {
@@ -334,21 +344,34 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     []
   );
 
-  // Handle manual text edit
+  // Handle manual text edit - update local state immediately, debounce server sync
   const handleManualTextChange = useCallback(
-    async (value: string) => {
+    (value: string) => {
       setManualEdit(true);
-      if (updateSelectionString && job.status === 1) {
+      setIsTyping(true);
+      setLocalSelectionText(value);
+    },
+    []
+  );
+
+  // Debounced effect to sync manual edits to server
+  useEffect(() => {
+    if (!isTyping || !manualEdit) return;
+
+    const timeoutId = setTimeout(async () => {
+      setIsTyping(false);
+      if (updateSelectionString && job.status === 1 && localSelectionText !== selectionString) {
         try {
-          await updateSelectionString(value);
-          await mutateContainer();
+          await updateSelectionString(localSelectionText);
+          mutateContainer();
         } catch (error) {
           console.error("Error updating selection:", error);
         }
       }
-    },
-    [updateSelectionString, mutateContainer, job.status]
-  );
+    }, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [localSelectionText, isTyping, manualEdit, updateSelectionString, mutateContainer, job.status, selectionString]);
 
   // Get chain type label
   const getChainTypeLabel = (chain: string): string => {
@@ -418,7 +441,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
             <TextField
               size="small"
               fullWidth
-              value={selectionString || ""}
+              value={localSelectionText}
               onChange={(e) => handleManualTextChange(e.target.value)}
               placeholder="e.g., protein and not solvent"
               disabled={job.status !== 1}
@@ -621,7 +644,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
                   multiline
                   minRows={1}
                   maxRows={3}
-                  value={manualEdit ? selectionString : generatedSelection}
+                  value={manualEdit ? localSelectionText : generatedSelection}
                   onChange={(e) => handleManualTextChange(e.target.value)}
                   placeholder="e.g., protein and not solvent"
                   disabled={job.status !== 1}
