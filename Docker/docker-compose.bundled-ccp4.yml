@@ -1,0 +1,114 @@
+# CCP4i2 Docker Compose - Bundled CCP4 (Azure-compatible)
+#
+# This compose file uses the CCP4 base image with CCP4 bundled inside,
+# matching the Azure deployment configuration exactly.
+#
+# Use this for:
+#   - Testing Azure-equivalent deployments locally
+#   - Environments where CCP4 can't be mounted (no local install)
+#   - Ensuring parity between local and cloud deployments
+#
+# Prerequisites:
+#   - Build the CCP4 base image first:
+#     ./Docker/azure/scripts/build-base-image.sh ~/path/to/ccp4-dereferenced.tgz
+#
+# Usage:
+#   # Start all services
+#   docker compose -f Docker/docker-compose.bundled-ccp4.yml up
+#
+#   # Rebuild after code changes (fast - CCP4 is in base image)
+#   docker compose -f Docker/docker-compose.bundled-ccp4.yml up --build
+
+services:
+  # Django REST API Server (with bundled CCP4)
+  server:
+    platform: linux/amd64
+    build:
+      context: ..
+      dockerfile: Docker/server/Dockerfile.with-ccp4
+      args:
+        ACR_LOGIN_SERVER: ${ACR_LOGIN_SERVER:-ccp4acrnekmay.azurecr.io}
+        CCP4_VERSION: ${CCP4_VERSION:-ccp4-20251105}
+    ports:
+      - "${SERVER_PORT:-8000}:8000"
+    environment:
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - DEBUG=${DEBUG:-true}
+      - DJANGO_SETTINGS_MODULE=azure_extensions.settings
+      # CCP4 is bundled at the path expected by ccp4.setup-sh
+      - CCP4=/mnt/ccp4data/${CCP4_VERSION:-ccp4-20251105}
+      - CCP4_VERSION=${CCP4_VERSION:-ccp4-20251105}
+      - CCP4I2_PROJECTS_DIR=/mnt/projects
+      - DATABASE_URL=${DATABASE_URL:-sqlite:////mnt/projects/ccp4i2.sqlite}
+      - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,server}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+      - USE_GUNICORN=${USE_GUNICORN:-false}
+      # Azure AD Authentication (set CCP4I2_REQUIRE_AUTH=true in .env to enable)
+      - CCP4I2_REQUIRE_AUTH=${CCP4I2_REQUIRE_AUTH:-false}
+      - AZURE_AD_CLIENT_ID=${AZURE_AD_CLIENT_ID:-}
+      - AZURE_AD_TENANT_ID=${AZURE_AD_TENANT_ID:-}
+      # Bootstrap platform admins (comma-separated emails)
+      - PLATFORM_ADMIN_EMAILS=${PLATFORM_ADMIN_EMAILS:-}
+    volumes:
+      # Only mount projects directory - CCP4 is in the image
+      - ${PROJECTS_PATH:-./data/projects}:/mnt/projects
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/ccp4i2/health/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    restart: unless-stopped
+
+  # Next.js Web Client
+  client:
+    build:
+      context: ..
+      dockerfile: Docker/client/Dockerfile
+      args:
+        NEXT_PUBLIC_AAD_CLIENT_ID: ${NEXT_PUBLIC_AAD_CLIENT_ID:-}
+        NEXT_PUBLIC_AAD_TENANT_ID: ${NEXT_PUBLIC_AAD_TENANT_ID:-}
+        NEXT_PUBLIC_REQUIRE_AUTH: ${NEXT_PUBLIC_REQUIRE_AUTH:-false}
+    ports:
+      - "${CLIENT_PORT:-3000}:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=${API_URL:-http://localhost:8000}
+      - NODE_ENV=${NODE_ENV:-development}
+      - API_BASE_URL=http://server:8000
+    depends_on:
+      server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+    restart: unless-stopped
+
+  # PostgreSQL Database (optional)
+  db:
+    image: postgres:15-alpine
+    profiles:
+      - postgres
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      - POSTGRES_USER=${DB_USER:-ccp4i2}
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-ccp4i2}
+      - POSTGRES_DB=${DB_NAME:-ccp4i2}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-ccp4i2}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  default:
+    name: ccp4i2-network

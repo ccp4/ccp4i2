@@ -46,19 +46,29 @@ else
 fi
 
 # Setup CCP4 environment if available
-# Use CCP4_VERSION env var if set, otherwise auto-detect
+# Priority:
+#   1. CCP4 env var (set by bundled image or explicit config)
+#   2. /opt/ccp4 (bundled in image)
+#   3. CCP4_DATA_PATH/CCP4_VERSION (mounted)
+#   4. Auto-detect in CCP4_DATA_PATH
 CCP4_VERSION=${CCP4_VERSION:-""}
 CCP4_DIR=""
 
-if [ -n "$CCP4_VERSION" ]; then
-    # Explicit version specified
+if [ -n "$CCP4" ] && [ -d "$CCP4" ]; then
+    # CCP4 env var already set (e.g., by base image)
+    CCP4_DIR="$CCP4"
+elif [ -d "/opt/ccp4" ] && [ -f "/opt/ccp4/bin/ccp4.setup-sh" ]; then
+    # CCP4 bundled in image at /opt/ccp4
+    CCP4_DIR="/opt/ccp4"
+elif [ -n "$CCP4_VERSION" ]; then
+    # Explicit version specified via mount
     CCP4_DIR="$CCP4_DATA_PATH/$CCP4_VERSION"
     if [ ! -d "$CCP4_DIR" ]; then
         echo "WARNING: Specified CCP4_VERSION=$CCP4_VERSION not found at $CCP4_DIR"
         CCP4_DIR=""
     fi
 else
-    # Auto-detect CCP4 installation
+    # Auto-detect CCP4 installation in mount path
     for dir in "$CCP4_DATA_PATH"/ccp4-*; do
         if [ -d "$dir" ] && [ -f "$dir/bin/ccp4.setup-sh" ]; then
             CCP4_DIR="$dir"

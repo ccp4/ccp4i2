@@ -1,9 +1,11 @@
 #!/bin/bash
 
-# Migrate CCP4i2 Projects from Legacy Storage to New Storage
+# Migrate CCP4i2 Projects from Legacy Storage to New Storage (UK South)
 #
-# Source: ddudatabasestorageac / ddudatebasefileshare / CompoundDatabaseData / {CCP4I2_PROJECTS, CCP4I2_NEW_PROJECTS}
-# Destination: stornekmayz3n2 / ccp4i2-projects
+# Source: ddudatabasestorageac / ddudatabasefileshare / CompoundDatabaseData / {CCP4I2_PROJECTS, CCP4I2_NEW_PROJECTS}
+# Destination: storprv* (dynamically discovered in ccp4i2-bicep-rg-uksouth) / ccp4i2-projects
+#
+# Environment: Docker/azure-uksouth/.env.deployment
 #
 # Usage: ./migrate-projects.sh [check|copy|snapshot]
 #   check    - Check for filename clashes and show what would be copied
@@ -118,14 +120,9 @@ enable_network_access() {
         --ip-address "$CURRENT_IP" \
         --output none 2>/dev/null || true
 
-    # Temporarily allow access
-    az storage account update \
-        --name "$account" \
-        --resource-group "$rg" \
-        --default-action Allow \
-        --output none 2>/dev/null || true
-
-    sleep 3
+    # Wait for network rules to propagate (Azure can take 30+ seconds)
+    echo -e "${YELLOW}Waiting 30 seconds for network rules to propagate...${NC}"
+    sleep 30
 }
 
 # Generate SAS token for a storage account

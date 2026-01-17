@@ -32,8 +32,8 @@ if [[ -f "$ENV_FILE" ]]; then
     source "$ENV_FILE"
 fi
 
-# Configuration
-API_BASE_URL="${API_BASE_URL:-https://ccp4i2-bicep-server.delightfulglacier-65d13ac2.northeurope.azurecontainerapps.io}"
+# Configuration - API_BASE_URL will be set after deployment, no default hardcoded
+API_BASE_URL="${API_BASE_URL:-}"
 TOKEN_CACHE_FILE="${SCRIPT_DIR}/.api-token-cache"
 AAD_CLIENT_ID="${NEXT_PUBLIC_AAD_CLIENT_ID:-}"
 AAD_TENANT_ID="${NEXT_PUBLIC_AAD_TENANT_ID:-}"
@@ -336,7 +336,7 @@ show_logs() {
     log_info "Fetching worker logs..."
     az containerapp logs show \
         --name ccp4i2-bicep-worker \
-        --resource-group "${RESOURCE_GROUP:-ccp4i2-bicep-rg-ne}" \
+        --resource-group "${RESOURCE_GROUP:-ccp4i2-bicep-rg-uksouth}" \
         --type console \
         --tail 100 2>/dev/null | jq -r '.Log' 2>/dev/null || cat
 }

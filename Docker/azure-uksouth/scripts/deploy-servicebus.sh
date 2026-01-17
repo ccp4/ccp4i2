@@ -10,10 +10,10 @@ if [ -f ../.env.deployment ]; then
 fi
 
 # Fallback defaults if not set
-RESOURCE_GROUP="${RESOURCE_GROUP:-ccp4i2-bicep-rg-ne}"
-LOCATION="${LOCATION:-northeurope}"
+RESOURCE_GROUP="${RESOURCE_GROUP:-ccp4i2-bicep-rg-uksouth}"
+LOCATION="${LOCATION:-uksouth}"
 PREFIX="${PREFIX:-ccp4i2-bicep}"
-KEYVAULT_NAME="${KEYVAULT_NAME:-kv-ne-kmayz3}"
+KEYVAULT_NAME="${KEYVAULT_NAME:-}"  # Will be set by .env.deployment after infrastructure deployment
 
 az deployment group create \
   --resource-group "$RESOURCE_GROUP" \

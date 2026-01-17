@@ -1,0 +1,76 @@
+# CCP4 Base Image for CCP4i2
+#
+# This image contains the CCP4 suite with symlinks dereferenced for Azure compatibility.
+# It serves as the base for the server image, separating CCP4 (rarely changes) from
+# application code (frequently changes).
+#
+# Build locally (recommended for large images):
+#   ./Docker/azure/scripts/build-base-image.sh
+#
+# The CCP4 installation should be prepared with:
+#   tar --dereference -czf ccp4-20251105-dereferenced.tgz ccp4-20251105
+
+FROM python:3.11-slim
+
+ARG CCP4_VERSION=ccp4-20251105
+
+# Set environment variables
+# CCP4 path must match what's baked into ccp4.setup-sh during the original build
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    CCP4=/mnt/ccp4data/${CCP4_VERSION} \
+    CCP4_VERSION=${CCP4_VERSION}
+
+# Install system dependencies required by CCP4 binaries
+# libgl1, libfreetype6, libxcb-*, etc. are required for ccp4mg/PySide2 imports
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libpq-dev \
+    curl \
+    libgl1 \
+    libfreetype6 \
+    libfontconfig1 \
+    libxcb1 \
+    libxcb-render0 \
+    libxcb-shm0 \
+    libxcb-icccm4 \
+    libxcb-image0 \
+    libxcb-keysyms1 \
+    libxcb-randr0 \
+    libxcb-render-util0 \
+    libxcb-shape0 \
+    libxcb-xfixes0 \
+    libxcb-xinerama0 \
+    libxcb-xkb1 \
+    libxkbcommon0 \
+    libxkbcommon-x11-0 \
+    libx11-6 \
+    libxext6 \
+    libxrender1 \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create directory structure and copy the dereferenced CCP4 installation
+# Install at the path expected by ccp4.setup-sh (baked in during original CCP4 build)
+RUN mkdir -p /mnt/ccp4data
+COPY ${CCP4_VERSION} /mnt/ccp4data/${CCP4_VERSION}
+
+# Create a shell profile that sources CCP4 setup
+# This ensures CCP4 environment is available in all bash sessions
+RUN echo '# Source CCP4 environment' >> /etc/bash.bashrc && \
+    echo 'if [ -f /mnt/ccp4data/${CCP4_VERSION}/bin/ccp4.setup-sh ]; then' >> /etc/bash.bashrc && \
+    echo '    . /mnt/ccp4data/${CCP4_VERSION}/bin/ccp4.setup-sh' >> /etc/bash.bashrc && \
+    echo 'fi' >> /etc/bash.bashrc
+
+# Skip verification during build - CCP4 binaries are x86_64 and can't run
+# under Rosetta emulation on Apple Silicon during Docker build.
+# Verification will happen at runtime on x86_64 Azure infrastructure.
+# RUN /bin/bash -c 'source /mnt/ccp4data/${CCP4_VERSION}/bin/ccp4.setup-sh 2>/dev/null; ccp4-python --version'
+
+# Set default shell to bash (for CCP4 environment)
+SHELL ["/bin/bash", "-c"]
+
+# Labels for image management
+LABEL org.opencontainers.image.title="CCP4i2 Base Image" \
+      org.opencontainers.image.description="Base image with CCP4 suite for CCP4i2" \
+      org.opencontainers.image.version="${CCP4_VERSION}"

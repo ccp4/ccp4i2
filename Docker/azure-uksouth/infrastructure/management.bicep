@@ -45,6 +45,15 @@ param containerAppsIdentityPrincipalId string
 var managementAppName = '${prefix}-management'
 var webAppName = '${prefix}-web'
 
+// Reference existing Container Apps Environment to get its default domain
+resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' existing = {
+  name: last(split(containerAppsEnvironmentId, '/'))
+}
+
+// Dynamic URLs using the Container Apps Environment's default domain
+var managementAppExternalFqdn = '${managementAppName}.${containerAppsEnvironment.properties.defaultDomain}'
+var webAppExternalFqdn = '${webAppName}.${containerAppsEnvironment.properties.defaultDomain}'
+
 // Existing resources
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' existing = {
   name: acrName
@@ -170,11 +179,11 @@ resource managementApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'ALLOWED_HOSTS'
-              value: '${managementAppName},${managementAppName}.whitecliff-258bc831.northeurope.azurecontainerapps.io,localhost,127.0.0.1,*'
+              value: '${managementAppName},${managementAppExternalFqdn},localhost,127.0.0.1,*'
             }
             {
               name: 'CORS_ALLOWED_ORIGINS'
-              value: 'http://${webAppName},https://${webAppName}.whitecliff-258bc831.northeurope.azurecontainerapps.io'
+              value: 'http://${webAppName},https://${webAppExternalFqdn}'
             }
             {
               name: 'CORS_ALLOW_CREDENTIALS'

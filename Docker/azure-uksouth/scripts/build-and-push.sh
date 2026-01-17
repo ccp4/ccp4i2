@@ -160,14 +160,29 @@ fi
 
 # Build and push images
 if [ "$BUILD_SERVER" = true ]; then
-    echo -e "${YELLOW}🔨 Building server image...${NC}"
-    # Build from project root with Docker/server/Dockerfile
+    echo -e "${YELLOW}🔨 Building server image (with bundled CCP4)...${NC}"
+
+    # Use Dockerfile.with-ccp4 which has CCP4 baked into the base image
+    # The base image should already exist in ACR (built by build-base-image.sh)
+    # The arp-warp layer should also exist (built by build-arpwarp-image.sh)
+    #
+    # By default, uses the same ACR as the server image (from .env.deployment)
+    # To use a different ACR (e.g., cross-region), set BASE_IMAGE_ACR explicitly
+    BASE_IMAGE_ACR="${BASE_IMAGE_ACR:-$ACR_LOGIN_SERVER}"
+    CCP4_VERSION="${CCP4_VERSION:-ccp4-20251105}"
+    BASE_IMAGE_NAME="${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}"
+
+    echo -e "${YELLOW}📦 Using base image from: ${BASE_IMAGE_ACR}/${BASE_IMAGE_NAME}:${CCP4_VERSION}${NC}"
+
     az acr build \
       --registry $ACR_NAME \
       --image ccp4i2/server:$IMAGE_TAG_SERVER \
       --image ccp4i2/server:latest \
-      --file Docker/server/Dockerfile \
+      --file Docker/server/Dockerfile.with-ccp4 \
       --platform linux/amd64 \
+      --build-arg ACR_LOGIN_SERVER=$BASE_IMAGE_ACR \
+      --build-arg CCP4_VERSION=$CCP4_VERSION \
+      --build-arg BASE_IMAGE_NAME=$BASE_IMAGE_NAME \
       .
 
     if [ $? -ne 0 ]; then

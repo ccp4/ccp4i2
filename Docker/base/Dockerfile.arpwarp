@@ -1,0 +1,28 @@
+# ARP/wARP Layer for CCP4i2
+#
+# This image adds ARP/wARP on top of the CCP4 base image.
+# Keeping it as a separate layer allows independent updates.
+#
+# Build with:
+#   ./Docker/azure-uksouth/scripts/build-arpwarp-image.sh
+#
+# The ARP/wARP installation should be prepared with:
+#   tar --dereference -czf arp-warp-8.0-dereferenced.tgz arp_warp_8.0
+
+ARG ACR_LOGIN_SERVER=ccp4acrukbwmx.azurecr.io
+ARG CCP4_VERSION=ccp4-20251105
+
+FROM ${ACR_LOGIN_SERVER}/ccp4i2/base:${CCP4_VERSION}
+
+ARG ARPWARP_VERSION=arp_warp_8.0
+
+# Set arp-warp environment variable
+ENV ARPWARP_VERSION=${ARPWARP_VERSION}
+
+# Copy the dereferenced ARP/wARP installation
+# Install alongside CCP4 in /mnt/ccp4data
+COPY ${ARPWARP_VERSION} /mnt/ccp4data/${ARPWARP_VERSION}
+
+# Labels for image management
+LABEL org.opencontainers.image.title="CCP4i2 Base Image with ARP/wARP" \
+      org.opencontainers.image.description="Base image with CCP4 suite and ARP/wARP for CCP4i2"

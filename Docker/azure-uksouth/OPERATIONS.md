@@ -1,12 +1,14 @@
-# Azure Deployment Operations Guide
+# Azure UK South Deployment Operations Guide
 
-This guide covers day-to-day operations for the CCP4i2 Azure deployment.
+This guide covers day-to-day operations for the CCP4i2 Azure UK South deployment.
+
+> **Note**: This deployment uses bundled CCP4 images. See [CCP4-DISTRIBUTION-CURATION.md](../CCP4-DISTRIBUTION-CURATION.md) for the build process.
 
 ## Quick Reference
 
 ```bash
 # Always source environment first
-source ./Docker/azure/.env.deployment
+source ./Docker/azure-uksouth/.env.deployment
 
 # Check deployment status
 az containerapp show --name ccp4i2-bicep-server --resource-group "$RESOURCE_GROUP" \
@@ -16,8 +18,8 @@ az containerapp show --name ccp4i2-bicep-server --resource-group "$RESOURCE_GROU
 az containerapp logs show --name ccp4i2-bicep-server --resource-group "$RESOURCE_GROUP" --type console --tail 100
 
 # Build and deploy
-./Docker/azure/scripts/build-and-push.sh server
-./Docker/azure/scripts/deploy-applications.sh server
+./Docker/azure-uksouth/scripts/build-and-push.sh server
+./Docker/azure-uksouth/scripts/deploy-applications.sh server
 ```
 
 ## Container Apps Overview
@@ -30,42 +32,42 @@ az containerapp logs show --name ccp4i2-bicep-server --resource-group "$RESOURCE
 
 ## Deployment Scripts
 
-All scripts are in `Docker/azure/scripts/`. Source `.env.deployment` before running.
+All scripts are in `Docker/azure-uksouth/scripts/`. Source `.env.deployment` before running.
 
 ### Build and Push Images
 
 ```bash
 # Build and push a single image
-./Docker/azure/scripts/build-and-push.sh server   # Django backend
-./Docker/azure/scripts/build-and-push.sh web      # Next.js frontend
-./Docker/azure/scripts/build-and-push.sh worker   # Same as server (different entrypoint)
+./Docker/azure-uksouth/scripts/build-and-push.sh server   # Django backend
+./Docker/azure-uksouth/scripts/build-and-push.sh web      # Next.js frontend
+./Docker/azure-uksouth/scripts/build-and-push.sh worker   # Same as server (different entrypoint)
 ```
 
 ### Deploy Applications
 
 ```bash
 # Deploy single application
-./Docker/azure/scripts/deploy-applications.sh server
-./Docker/azure/scripts/deploy-applications.sh web
+./Docker/azure-uksouth/scripts/deploy-applications.sh server
+./Docker/azure-uksouth/scripts/deploy-applications.sh web
 
 # Full deployment (infrastructure + applications)
-./Docker/azure/scripts/deploy-complete.sh
+./Docker/azure-uksouth/scripts/deploy-complete.sh
 ```
 
 ### Other Scripts
 
 ```bash
 # Infrastructure management
-./Docker/azure/scripts/deploy-infrastructure.sh   # Core Azure resources
-./Docker/azure/scripts/deploy-servicebus.sh       # Service Bus queue
-./Docker/azure/scripts/deploy-management.sh       # Management VM
+./Docker/azure-uksouth/scripts/deploy-infrastructure.sh   # Core Azure resources
+./Docker/azure-uksouth/scripts/deploy-servicebus.sh       # Service Bus queue
+./Docker/azure-uksouth/scripts/deploy-management.sh       # Management VM
 
 # Management access
-./Docker/azure/scripts/connect-management.sh      # SSH to management VM
+./Docker/azure-uksouth/scripts/connect-management.sh      # SSH to management VM
 
 # Maintenance jobs
-./Docker/azure/scripts/run-maintenance-job.sh     # Run maintenance
-./Docker/azure/scripts/view-job-logs.sh           # View job output
+./Docker/azure-uksouth/scripts/run-maintenance-job.sh     # Run maintenance
+./Docker/azure-uksouth/scripts/view-job-logs.sh           # View job output
 ```
 
 ## Environment Variables
@@ -117,7 +119,7 @@ env: [
 ]
 ```
 
-Then redeploy: `./Docker/azure/scripts/deploy-applications.sh server`
+Then redeploy: `./Docker/azure-uksouth/scripts/deploy-applications.sh server`
 
 ## Admin API Endpoints
 
@@ -291,7 +293,7 @@ Connect to PostgreSQL via management VM:
 
 ```bash
 # SSH to management VM
-./Docker/azure/scripts/connect-management.sh
+./Docker/azure-uksouth/scripts/connect-management.sh
 
 # On the VM, connect to PostgreSQL
 psql "host=$DB_HOST dbname=postgres user=ccp4i2 password=$DB_PASSWORD sslmode=require"

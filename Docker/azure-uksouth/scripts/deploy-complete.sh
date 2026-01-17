@@ -14,8 +14,8 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-RESOURCE_GROUP="ccp4i2-bicep-rg-ne"
-LOCATION="northeurope"
+RESOURCE_GROUP="ccp4i2-bicep-rg-uksouth"
+LOCATION="uksouth"
 PREFIX="ccp4i2-bicep"
 
 echo -e "${BLUE}========================================${NC}"

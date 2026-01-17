@@ -23,10 +23,10 @@ param imageTagServer string = 'latest'
 param prefix string = 'ccp4i2-bicep'
 
 @description('Azure AD Client ID for frontend authentication')
-param aadClientId string
+param aadClientId string = '386da83f-1bf4-4ad8-b742-79b600e2208b'
 
 @description('Azure AD Tenant ID for frontend authentication')
-param aadTenantId string
+param aadTenantId string = '9c5012c9-b616-44c2-a917-66814fbe3e87'
 
 @description('Bootstrap platform admin emails (comma-separated)')
 param platformAdminEmails string = ''
@@ -46,6 +46,9 @@ param ccp4Version string = 'ccp4-20251105'
 @description('Storage account name for staged uploads (SAS URL generation)')
 param storageAccountName string
 
+@description('Skip CCP4 storage mount if CCP4 is baked into container image')
+param skipCcp4Storage bool = false
+
 // - PostgreSQL is accessed via private endpoint (no public access)
 // - Key Vault is accessed via private endpoint (no public access)
 // - Storage Account is accessed via private endpoint (no public access)
@@ -56,6 +59,22 @@ param storageAccountName string
 var serverAppName = '${prefix}-server'
 var webAppName = '${prefix}-web'
 var workerAppName = '${prefix}-worker'
+
+// Conditional CCP4 volume configuration
+// When skipCcp4Storage=true, CCP4 is baked into the container image at /mnt/ccp4data
+var ccp4Volume = skipCcp4Storage ? [] : [
+  {
+    name: 'ccp4data-volume'
+    storageName: 'ccp4-software'
+    storageType: 'AzureFile'
+  }
+]
+var ccp4VolumeMount = skipCcp4Storage ? [] : [
+  {
+    volumeName: 'ccp4data-volume'
+    mountPath: '/mnt/ccp4data'
+  }
+]
 
 // Existing resources
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' existing = {
@@ -73,6 +92,10 @@ resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2023-05-01'
 
 // Internal URL for server (accessible only within the Container Apps environment)
 var serverInternalFqdn = '${serverAppName}.internal.${containerAppsEnvironment.properties.defaultDomain}'
+
+// Dynamic CORS origin using the Container Apps Environment's default domain
+// This avoids hardcoding region-specific URLs like 'whitecliff-258bc831.northeurope.azurecontainerapps.io'
+var webAppExternalFqdn = '${webAppName}.${containerAppsEnvironment.properties.defaultDomain}'
 
 // Server Container App
 resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
@@ -244,7 +267,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'CORS_ALLOWED_ORIGINS'
-              value: 'http://${webAppName},https://${webAppName}.whitecliff-258bc831.northeurope.azurecontainerapps.io'
+              value: 'http://${webAppName},https://${webAppExternalFqdn}'
             }
             {
               name: 'CORS_ALLOW_CREDENTIALS'
@@ -300,11 +323,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
               value: containerAppsIdentityClientId
             }
           ]
-          volumeMounts: [
-            {
-              volumeName: 'ccp4data-volume'
-              mountPath: '/mnt/ccp4data'
-            }
+          volumeMounts: concat(ccp4VolumeMount, [
             {
               volumeName: 'staticfiles-volume'
               mountPath: '/mnt/staticfiles'
@@ -317,7 +336,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
               volumeName: 'projects-volume'
               mountPath: '/mnt/projects'
             }
-          ]
+          ])
         }
       ]
       scale: {
@@ -354,12 +373,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
           }
         ]
       }
-      volumes: [
-        {
-          name: 'ccp4data-volume'
-          storageName: 'ccp4-software'
-          storageType: 'AzureFile'
-        }
+      volumes: concat(ccp4Volume, [
         {
           name: 'staticfiles-volume'
           storageName: 'staticfiles-private'
@@ -375,7 +389,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
           storageName: 'projects-private'
           storageType: 'AzureFile'
         }
-      ]
+      ])
     }
   }
 }
@@ -432,8 +446,8 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
           command: ['/bin/bash']
           args: ['-c', 'export PYTHONPATH="/mnt/ccp4data/py-packages-${ccp4Version}:/usr/src/app:$PYTHONPATH" && exec /usr/src/app/startup-worker.sh']
           resources: {
-            cpu: json('2.0')
-            memory: '4.0Gi'
+            cpu: json('2.0')  // Maximum for Consumption plan
+            memory: '4.0Gi'   // Maximum for Consumption plan (2 vCPU supports up to 4GB)
           }
           env: [
             {
@@ -519,11 +533,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
               value: containerAppsIdentityClientId
             }
           ]
-          volumeMounts: [
-            {
-              volumeName: 'ccp4data-volume'
-              mountPath: '/mnt/ccp4data'
-            }
+          volumeMounts: concat(ccp4VolumeMount, [
             {
               volumeName: 'staticfiles-volume'
               mountPath: '/mnt/staticfiles'
@@ -536,12 +546,12 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
               volumeName: 'projects-volume'
               mountPath: '/mnt/projects'
             }
-          ]
+          ])
         }
       ]
       scale: {
-        minReplicas: 0 // Scale to zero when no jobs
-        maxReplicas: 5
+        minReplicas: 0 // Scale to zero when no jobs - cost optimization for episodic workloads
+        maxReplicas: 20  // Allow burst to 20 workers for parallel job processing
         rules: [
           {
             name: 'queue-scaling'
@@ -562,12 +572,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
           }
         ]
       }
-      volumes: [
-        {
-          name: 'ccp4data-volume'
-          storageName: 'ccp4-software'
-          storageType: 'AzureFile'
-        }
+      volumes: concat(ccp4Volume, [
         {
           name: 'staticfiles-volume'
           storageName: 'staticfiles-private'
@@ -583,7 +588,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
           storageName: 'projects-private'
           storageType: 'AzureFile'
         }
-      ]
+      ])
     }
   }
 }
@@ -657,14 +662,10 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
               value: 'true'
             }
           ]
-          volumeMounts: [
+          volumeMounts: concat(ccp4VolumeMount, [
             {
               volumeName: 'staticfiles-volume'
               mountPath: '/mnt/staticfiles'
-            }
-            {
-              volumeName: 'ccp4data-volume'
-              mountPath: '/mnt/ccp4data'
             }
             {
               volumeName: 'mediafiles-volume'
@@ -674,7 +675,7 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
               volumeName: 'projects-volume'
               mountPath: '/mnt/projects'
             }
-          ]
+          ])
         }
       ]
       scale: {
@@ -691,12 +692,7 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
           }
         ]
       }
-      volumes: [
-        {
-          name: 'ccp4data-volume'
-          storageName: 'ccp4-software'
-          storageType: 'AzureFile'
-        }
+      volumes: concat(ccp4Volume, [
         {
           name: 'staticfiles-volume'
           storageName: 'staticfiles-private'
@@ -712,7 +708,7 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
           storageName: 'projects-private'
           storageType: 'AzureFile'
         }
-      ]
+      ])
     }
   }
 }

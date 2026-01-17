@@ -10,8 +10,8 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 BICEP_DIR="$(dirname "$SCRIPT_DIR")"
 
 # Configuration
-RESOURCE_GROUP="ccp4i2-bicep-rg-ne"
-LOCATION="northeurope"
+RESOURCE_GROUP="ccp4i2-bicep-rg-uksouth"
+LOCATION="uksouth"
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 
 # Colors for output
@@ -75,10 +75,10 @@ fi
 
 # Check for and purge any existing soft-deleted Key Vault
 echo -e "${YELLOW}🔍 Checking for soft-deleted Key Vaults...${NC}"
-DELETED_VAULTS=$(az keyvault list-deleted --query "[?contains(name, 'ccp4i2-bicep-kv-ne')]" -o tsv)
+DELETED_VAULTS=$(az keyvault list-deleted --query "[?contains(name, 'kv-uk')]" -o tsv)
 if [ ! -z "$DELETED_VAULTS" ]; then
     echo -e "${YELLOW}🗑️ Purging soft-deleted Key Vaults...${NC}"
-    az keyvault list-deleted --query "[?contains(name, 'ccp4i2-bicep-kv-ne')].name" -o tsv | while read vault_name; do
+    az keyvault list-deleted --query "[?contains(name, 'kv-uk')].name" -o tsv | while read vault_name; do
         echo "Purging vault: $vault_name"
         az keyvault purge --name "$vault_name" --location $LOCATION || true
     done
@@ -89,15 +89,20 @@ fi
 echo -e "${YELLOW}🚀 Deploying infrastructure...${NC}"
 INFRA_DEPLOYMENT_NAME="infrastructure-$(date +%Y%m%d-%H%M%S)"
 
+# Skip CCP4 storage when CCP4 is baked into container image (new approach)
+# Set to false if you need the ccp4data file share mount
+SKIP_CCP4_STORAGE="${SKIP_CCP4_STORAGE:-true}"
+
 # Capture deployment output and errors
 DEPLOYMENT_OUTPUT=$(az deployment group create \
   --resource-group $RESOURCE_GROUP \
   --template-file "$BICEP_DIR/infrastructure/infrastructure.bicep" \
   --parameters location=$LOCATION \
                prefix=ccp4i2-bicep \
-               environment=ne \
+               environment=uk \
                postgresAdminPassword="$DB_PASSWORD" \
                skipPostgresDeployment=$SKIP_POSTGRES \
+               skipCcp4Storage=$SKIP_CCP4_STORAGE \
   --name $INFRA_DEPLOYMENT_NAME \
   --mode Incremental 2>&1)
 

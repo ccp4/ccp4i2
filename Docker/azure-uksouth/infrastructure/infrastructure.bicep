@@ -5,7 +5,7 @@ param location string = resourceGroup().location
 param prefix string = 'ccp4i2-bicep'
 
 @description('Environment suffix (e.g., dev, staging, prod)')
-param environment string = 'ne'
+param environment string = 'uk'
 
 @description('PostgreSQL administrator password')
 @secure()
@@ -13,6 +13,9 @@ param postgresAdminPassword string
 
 @description('Skip PostgreSQL deployment if it already exists (use when Azure has transient issues)')
 param skipPostgresDeployment bool = false
+
+@description('Skip CCP4 storage deployment if CCP4 is baked into container image')
+param skipCcp4Storage bool = false
 
 // Variables
 var resourceSuffix = '${prefix}-${environment}'
@@ -25,6 +28,8 @@ var keyVaultName = 'kv-${environment}-${substring(uniqueString(resourceGroup().i
 var postgresServerName = '${prefix}-db-${environment}'
 var containerAppsEnvironmentName = '${prefix}-env-${environment}'
 var vnetName = '${prefix}-vnet-${environment}'
+var serviceBusName = '${prefix}-servicebus-${environment}'
+var serviceBusQueueName = '${prefix}-jobs'
 
 // Network Configuration
 var vnetAddressSpace = '10.0.0.0/16'
@@ -229,9 +234,42 @@ resource privateDnsZoneServiceBusLink 'Microsoft.Network/privateDnsZones/virtual
   }
 }
 
-// Existing resources (deployed separately)
-resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' existing = {
-  name: '${prefix}-servicebus'
+// Service Bus Namespace (integrated - previously required separate deployment)
+resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
+  name: serviceBusName
+  location: location
+  sku: {
+    name: 'Premium'
+    tier: 'Premium'
+  }
+  properties: {
+    zoneRedundant: false
+    minimumTlsVersion: '1.2'
+    publicNetworkAccess: 'Disabled'  // Use private endpoints for security
+  }
+}
+
+resource serviceBusQueue 'Microsoft.ServiceBus/namespaces/queues@2024-01-01' = {
+  parent: serviceBusNamespace
+  name: serviceBusQueueName
+  properties: {
+    enablePartitioning: false  // Cannot change after creation
+    maxSizeInMegabytes: 1024
+    requiresDuplicateDetection: false
+    enableBatchedOperations: true
+    deadLetteringOnMessageExpiration: true
+  }
+}
+
+resource serviceBusAuthRule 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2024-01-01' = {
+  parent: serviceBusQueue
+  name: 'SendListen'
+  properties: {
+    rights: [
+      'Send'
+      'Listen'
+    ]
+  }
 }
 resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' = {
   name: acrName
@@ -249,9 +287,9 @@ resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' =
   }
 }
 
-// Storage Account for CCP4 software (stornekmayz3n2 - existing working installation)
+// Storage Account for CCP4 software - OPTIONAL when CCP4 is baked into container image
 // PUBLIC access - contains read-only CCP4 installation with pip packages, not sensitive user data
-resource ccp4StorageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+resource ccp4StorageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = if (!skipCcp4Storage) {
   name: ccp4StorageAccountName
   location: location
   sku: {
@@ -298,8 +336,8 @@ resource privateStorageAccount 'Microsoft.Storage/storageAccounts@2023-01-01' = 
   }
 }
 
-// File Share for CCP4 software (on CCP4 storage account - existing stornekmayz3n2)
-resource ccp4dataShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = {
+// File Share for CCP4 software - OPTIONAL when CCP4 is baked into container image
+resource ccp4dataShare 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-01-01' = if (!skipCcp4Storage) {
   name: '${ccp4StorageAccount.name}/default/ccp4data'
   properties: {
     shareQuota: 100
@@ -374,12 +412,39 @@ resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' = {
   }
 }
 
-// Store PostgreSQL password in Key Vault
+// Store PostgreSQL password in Key Vault (legacy name for reference)
 resource postgresPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
   name: 'database-admin-password'
   parent: keyVault
   properties: {
     value: postgresAdminPassword
+  }
+}
+
+// Store PostgreSQL password with name expected by applications.bicep
+resource dbPasswordSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  name: 'db-password'
+  parent: keyVault
+  properties: {
+    value: postgresAdminPassword
+  }
+}
+
+// Store Django secret key in Key Vault
+resource djangoSecretKeySecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  name: 'django-secret-key'
+  parent: keyVault
+  properties: {
+    value: uniqueString(resourceGroup().id, keyVault.id, 'django-secret')
+  }
+}
+
+// Store Service Bus connection string in Key Vault
+resource serviceBusConnectionSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-01' = {
+  name: 'servicebus-connection'
+  parent: keyVault
+  properties: {
+    value: listKeys(serviceBusAuthRule.id, serviceBusAuthRule.apiVersion).primaryConnectionString
   }
 }
 
@@ -681,9 +746,19 @@ resource storageBlobDelegatorRole 'Microsoft.Authorization/roleAssignments@2022-
   }
 }
 
-// Storage for Container Apps Environment - CCP4 software (from existing stornekmayz3n2)
-// Using new mount name because existing mount can't change storage account properties
-resource containerAppsCcp4Storage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = {
+// Key Vault Secrets User - allows reading secrets from Key Vault
+resource keyVaultSecretsUserRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = {
+  name: guid(keyVault.id, containerAppsIdentity.id, '4633458b-17de-408a-b874-0445c86b69e6')
+  scope: keyVault
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '4633458b-17de-408a-b874-0445c86b69e6')
+    principalId: containerAppsIdentity.properties.principalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
+// Storage for Container Apps Environment - CCP4 software - OPTIONAL when CCP4 is baked into container image
+resource containerAppsCcp4Storage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = if (!skipCcp4Storage) {
   name: 'ccp4-software'
   parent: containerAppsEnvironment
   properties: {
@@ -741,8 +816,9 @@ resource containerAppsProjectsStorage 'Microsoft.App/managedEnvironments/storage
 // Outputs
 output acrName string = containerRegistry.name
 output acrLoginServer string = containerRegistry.properties.loginServer
-output ccp4StorageAccountName string = ccp4StorageAccount.name
+output ccp4StorageAccountName string = skipCcp4Storage ? '' : ccp4StorageAccount.name
 output privateStorageAccountName string = privateStorageAccount.name
+output storageAccountName string = privateStorageAccount.name  // Alias for deploy scripts
 output keyVaultName string = keyVault.name
 output postgresServerName string = skipPostgresDeployment ? existingPostgresServer.name : postgresServer.name
 output postgresServerFqdn string = skipPostgresDeployment ? existingPostgresServer.properties.fullyQualifiedDomainName : postgresServer.properties.fullyQualifiedDomainName
@@ -756,3 +832,5 @@ output resourceGroupName string = resourceGroup().name
 output containerAppsIdentityId string = containerAppsIdentity.id
 output containerAppsIdentityPrincipalId string = containerAppsIdentity.properties.principalId
 output containerAppsIdentityClientId string = containerAppsIdentity.properties.clientId
+output serviceBusNamespaceName string = serviceBusNamespace.name
+output serviceBusQueueName string = serviceBusQueue.name

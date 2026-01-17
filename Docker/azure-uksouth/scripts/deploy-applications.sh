@@ -131,6 +131,9 @@ echo -e "${GREEN}✅ Infrastructure outputs retrieved${NC}"
 echo -e "${YELLOW}🚀 Deploying container applications...${NC}"
 APP_DEPLOYMENT_NAME="applications-$(date +%Y%m%d-%H%M%S)"
 
+# Skip CCP4 storage mount when CCP4 is baked into container image (new approach)
+SKIP_CCP4_STORAGE="${SKIP_CCP4_STORAGE:-true}"
+
 CONTAINER_APPS_IDENTITY_ID=$(az deployment group show \
   --resource-group $RESOURCE_GROUP \
   --name $INFRA_DEPLOYMENT \
@@ -180,9 +183,10 @@ az deployment group create \
                containerAppsIdentityId="$CONTAINER_APPS_IDENTITY_ID" \
                containerAppsIdentityPrincipalId="$CONTAINER_APPS_IDENTITY_PRINCIPAL_ID" \
                containerAppsIdentityClientId="$CONTAINER_APPS_IDENTITY_CLIENT_ID" \
-               ccp4Version="${CCP4_VERSION:-ccp4-9}" \
+               ccp4Version="${CCP4_VERSION:-ccp4-20251105}" \
                storageAccountName="$STORAGE_ACCOUNT_NAME" \
                platformAdminEmails="${PLATFORM_ADMIN_EMAILS:-}" \
+               skipCcp4Storage=$SKIP_CCP4_STORAGE \
   --name $APP_DEPLOYMENT_NAME \
   --mode Incremental
 
