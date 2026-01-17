@@ -17,7 +17,7 @@
 #     -e SECRET_KEY=your-secret-key \
 #     ccp4i2-server
 
-ARG ACR_LOGIN_SERVER=ccp4acrnekmay.azurecr.io
+ARG ACR_LOGIN_SERVER=ccp4acrukbwmx.azurecr.io
 ARG CCP4_VERSION=ccp4-20251105
 ARG BASE_IMAGE_NAME=ccp4i2/base-arpwarp
 
@@ -40,7 +40,7 @@ COPY server/ .
 
 # Copy Azure extensions Django app (only used in Azure deployment)
 # This keeps Azure-specific code separate from the core ccp4i2 distribution
-COPY Docker/azure/azure_extensions /usr/src/app/azure_extensions
+COPY Docker/azure-uksouth/azure_extensions /usr/src/app/azure_extensions
 
 # =============================================================================
 # Overlay users Django app (platform admin system)

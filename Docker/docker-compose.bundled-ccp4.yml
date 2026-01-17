@@ -9,8 +9,9 @@
 #   - Ensuring parity between local and cloud deployments
 #
 # Prerequisites:
-#   - Build the CCP4 base image first:
-#     ./Docker/azure/scripts/build-base-image.sh ~/path/to/ccp4-dereferenced.tgz
+#   - Build the CCP4 base images first (layered: base → arpwarp → server):
+#     ./Docker/azure-uksouth/scripts/build-base-image.sh ~/path/to/ccp4-dereferenced.tgz
+#     ./Docker/azure-uksouth/scripts/build-arpwarp-image.sh ~/path/to/arpwarp-dereferenced.tgz
 #
 # Usage:
 #   # Start all services
@@ -27,7 +28,8 @@ services:
       context: ..
       dockerfile: Docker/server/Dockerfile.with-ccp4
       args:
-        ACR_LOGIN_SERVER: ${ACR_LOGIN_SERVER:-ccp4acrnekmay.azurecr.io}
+        ACR_LOGIN_SERVER: ${ACR_LOGIN_SERVER:-ccp4acrukbwmx.azurecr.io}
+        BASE_IMAGE_NAME: ${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}
         CCP4_VERSION: ${CCP4_VERSION:-ccp4-20251105}
     ports:
       - "${SERVER_PORT:-8000}:8000"
