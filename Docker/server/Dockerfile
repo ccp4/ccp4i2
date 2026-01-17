@@ -1,54 +1,35 @@
-# CCP4i2 Django Server Dockerfile
+# CCP4i2 Django Server Dockerfile (with bundled CCP4)
 #
-# This Dockerfile builds the Django REST API backend for CCP4i2.
-# It requires CCP4 to be mounted at runtime (not bundled in image).
+# This Dockerfile builds the Django REST API backend for CCP4i2 using the
+# CCP4 base image. CCP4 is bundled in the image rather than mounted at runtime.
+#
+# Prerequisites:
+#   Build the base images first:
+#   ./Docker/azure-uksouth/scripts/build-base-image.sh
+#   ./Docker/azure-uksouth/scripts/build-arpwarp-image.sh
 #
 # Build:
 #   docker build -t ccp4i2-server -f Docker/server/Dockerfile .
 #
-# Run (local development):
+# Run:
 #   docker run -p 8000:8000 \
-#     -v /path/to/ccp4:/mnt/ccp4data/ccp4-9:ro \
-#     -v /path/to/projects:/mnt/ccp4data/ccp4i2-projects \
+#     -v /path/to/projects:/mnt/projects \
 #     -e SECRET_KEY=your-secret-key \
 #     ccp4i2-server
 
-FROM python:3.11-slim
+ARG ACR_LOGIN_SERVER=ccp4acrukbwmx.azurecr.io
+ARG CCP4_VERSION=ccp4-20251105
+ARG BASE_IMAGE_NAME=ccp4i2/base-arpwarp
+
+FROM ${ACR_LOGIN_SERVER}/${BASE_IMAGE_NAME}:${CCP4_VERSION}
 
 # Set environment variables
 # Use azure_extensions.settings to enable Azure-specific features
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/usr/src/app \
-    DJANGO_SETTINGS_MODULE=azure_extensions.settings
-
-# Install system dependencies
-# libgl1, libfreetype6, libxcb-*, etc. are required for ccp4mg/PySide2 imports used by various wrappers
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
-    libpq-dev \
-    curl \
-    libgl1 \
-    libfreetype6 \
-    libfontconfig1 \
-    libxcb1 \
-    libxcb-render0 \
-    libxcb-shm0 \
-    libxcb-icccm4 \
-    libxcb-image0 \
-    libxcb-keysyms1 \
-    libxcb-randr0 \
-    libxcb-render-util0 \
-    libxcb-shape0 \
-    libxcb-xfixes0 \
-    libxcb-xinerama0 \
-    libxcb-xkb1 \
-    libxkbcommon0 \
-    libxkbcommon-x11-0 \
-    libx11-6 \
-    libxext6 \
-    libxrender1 \
-    && rm -rf /var/lib/apt/lists/*
+    DJANGO_SETTINGS_MODULE=azure_extensions.settings \
+    CCP4_PYTHON=/opt/ccp4/bin/ccp4-python
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -59,7 +40,7 @@ COPY server/ .
 
 # Copy Azure extensions Django app (only used in Azure deployment)
 # This keeps Azure-specific code separate from the core ccp4i2 distribution
-COPY Docker/azure/azure_extensions /usr/src/app/azure_extensions
+COPY Docker/azure-uksouth/azure_extensions /usr/src/app/azure_extensions
 
 # =============================================================================
 # Overlay users Django app (platform admin system)
@@ -75,6 +56,7 @@ COPY apps/compounds/constructs /usr/src/app/compounds/constructs
 COPY apps/compounds/__init__.py /usr/src/app/compounds/__init__.py
 COPY apps/compounds/urls.py /usr/src/app/compounds/urls.py
 COPY apps/compounds/admin_views.py /usr/src/app/compounds/admin_views.py
+COPY apps/compounds/media_views.py /usr/src/app/compounds/media_views.py
 
 # Install Python dependencies
 # Core Django dependencies (quoted to prevent shell interpretation of < >)
@@ -109,11 +91,12 @@ RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages \
 RUN pip install --no-cache-dir -e . 2>/dev/null || true
 
 # Create directories for runtime
-RUN mkdir -p /mnt/ccp4data/ccp4i2-projects
+RUN mkdir -p /mnt/projects
 
 # Copy startup scripts
 COPY Docker/scripts/startup-server.sh /usr/src/app/startup.sh
-RUN chmod +x /usr/src/app/startup.sh
+COPY Docker/scripts/startup-worker.sh /usr/src/app/startup-worker.sh
+RUN chmod +x /usr/src/app/startup.sh /usr/src/app/startup-worker.sh
 
 # Expose port
 EXPOSE 8000

@@ -4,8 +4,10 @@
 **/node_modules/
 **/.next/
 
-# Exclude demo data
+# Exclude demo and test data
 server/ccp4i2/demo_data/
+Docker/data/
+**/test_data/
 
 # Exclude git history
 .git/
@@ -35,10 +37,15 @@ dist/
 build/
 *.egg
 
-# Exclude Docker azure deployment scripts (not needed in image)
+# Exclude Docker deployment directories (not needed in image)
 # But include azure_extensions Django app which IS needed
 Docker/azure/
 !Docker/azure/azure_extensions/
+Docker/azure-uksouth/
+!Docker/azure-uksouth/azure_extensions/
+
+# Exclude pytest cache
+**/.pytest_cache/
 
 # Exclude local environment files
 .env
@@ -47,3 +54,11 @@ Docker/azure/
 
 # Exclude macOS files
 .DS_Store
+**/.DS_Store
+
+# Exclude uncompressed Moorhen data files (compressed versions exist)
+client/renderer/public/baby-gru/rota500-arg.data
+client/renderer/public/baby-gru/rota500-lys.data
+
+# Exclude tsbuildinfo files
+**/*.tsbuildinfo

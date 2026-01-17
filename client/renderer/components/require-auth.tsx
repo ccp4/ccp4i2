@@ -3,11 +3,46 @@
 import { ReactNode, useEffect, useState, useRef } from "react";
 import { useMsal } from "@azure/msal-react";
 import { InteractionStatus } from "@azure/msal-browser";
-import { useRouter } from "next/navigation";
 import {
   checkTeamsMembership,
   DEFAULT_TEAMS_CONFIG,
 } from "../utils/teams-auth";
+
+// Teams SSO types for dynamic import
+type TeamsSSOResult = {
+  success: boolean;
+  token?: string;
+  error?: string;
+  needsConsent?: boolean;
+};
+
+/**
+ * Dynamically attempt Teams SSO - only loads Teams SDK when actually in Teams
+ * Returns null if not in Teams or if Teams SSO module fails to load
+ */
+async function tryTeamsSSO(clientId: string, tenantId: string): Promise<TeamsSSOResult | null> {
+  // Only attempt Teams SSO in web builds and when in an iframe
+  if (!isRunningInIframe()) {
+    return null;
+  }
+
+  try {
+    // Dynamically import Teams SSO module - this avoids bundling in Electron
+    const teamsSSO = await import("../utils/teams-sso");
+    const inTeams = await teamsSSO.isRunningInTeams();
+
+    if (!inTeams) {
+      console.log("[Auth] In iframe but not in Teams context");
+      return null;
+    }
+
+    console.log("[Auth] Teams context detected, attempting SSO...");
+    return await teamsSSO.attemptTeamsSSO(clientId, tenantId);
+  } catch (error) {
+    console.log("[Auth] Teams SSO not available:", error);
+    return null;
+  }
+}
 import {
   Box,
   Typography,
@@ -18,6 +53,18 @@ import {
 } from "@mui/material";
 import { Security, Warning, Info } from "@mui/icons-material";
 import { useTheme } from "../theme/theme-provider";
+
+/**
+ * Detect if the app is running inside an iframe (e.g., Microsoft Teams)
+ */
+function isRunningInIframe(): boolean {
+  try {
+    return window.self !== window.top;
+  } catch {
+    // If we can't access window.top due to cross-origin restrictions, we're in an iframe
+    return true;
+  }
+}
 
 interface RequireAuthProps {
   children: ReactNode;
@@ -34,7 +81,6 @@ interface AuthState {
 export default function RequireAuth({ children }: RequireAuthProps) {
   const { customColors } = useTheme();
   const { instance, accounts, inProgress } = useMsal();
-  const router = useRouter();
   const [authState, setAuthState] = useState<AuthState>({
     isChecking: true,
     hasAccess: false,
@@ -52,10 +98,47 @@ export default function RequireAuth({ children }: RequireAuthProps) {
     }
 
     if (accounts.length === 0) {
-      console.log("No accounts found, redirecting to login");
-      // Always redirect to root "/" which is registered in Azure AD
-      // After auth, user will be at root and can navigate to their destination
-      instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/" });
+      console.log("No accounts found, initiating login");
+
+      // Use popup auth when running in an iframe (e.g., Teams) since redirects don't work
+      if (isRunningInIframe()) {
+        // Try Teams SSO first - this provides seamless auth for Teams users
+        const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
+        const tenantId = process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
+
+        tryTeamsSSO(clientId, tenantId)
+          .then((ssoResult) => {
+            if (ssoResult?.success && ssoResult.token) {
+              console.log("Teams SSO successful, token obtained");
+              // SSO succeeded - the token can be used directly or exchanged via OBO flow
+              // For now, we still need MSAL to handle the session, so trigger a silent login
+              // using the SSO token hint
+              return instance.ssoSilent({
+                scopes: ["openid", "profile"],
+                loginHint: undefined, // Teams SSO doesn't give us the hint directly
+              }).catch(() => {
+                // If ssoSilent fails, fall back to popup
+                console.log("SSO silent failed, falling back to popup");
+                return instance.loginPopup({ scopes: ["openid", "profile"] });
+              });
+            } else {
+              // Teams SSO not available or failed, use popup
+              console.log("Teams SSO not available, using popup login");
+              return instance.loginPopup({ scopes: ["openid", "profile"] });
+            }
+          })
+          .then(() => {
+            console.log("Login successful");
+            hasInitialized.current = false;
+          })
+          .catch((error) => {
+            console.error("Login failed:", error);
+          });
+      } else {
+        // Standard redirect flow for normal browser usage
+        console.log("Running in browser, using redirect login");
+        instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/" });
+      }
       return;
     }
 
@@ -317,7 +400,7 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 
             <Button
               variant="outlined"
-              onClick={() => instance.logoutRedirect()}
+              onClick={() => isRunningInIframe() ? instance.logoutPopup() : instance.logoutRedirect()}
               startIcon={<Warning />}
             >
               Sign Out

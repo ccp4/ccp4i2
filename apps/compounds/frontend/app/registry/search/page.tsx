@@ -44,6 +44,57 @@ import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Target, Compound } from '@/types/compounds/models';
 
+// =============================================================================
+// Authentication Integration
+// =============================================================================
+
+// For Docker integration: Try to import auth helpers from ccp4i2 client's auth-token
+// Falls back to no-op for standalone development
+let getAccessToken: () => Promise<string | null>;
+let getUserEmail: () => string | null;
+
+try {
+  const authModule = require('../../../utils/auth-token');
+  getAccessToken = authModule.getAccessToken;
+  getUserEmail = authModule.getUserEmail || (() => null);
+} catch {
+  getAccessToken = async () => null;
+  getUserEmail = () => null;
+}
+
+/**
+ * Authenticated fetch wrapper
+ */
+async function authFetch(url: string, options: RequestInit = {}): Promise<Response> {
+  const headers: Record<string, string> = {};
+
+  const token = await getAccessToken();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const email = getUserEmail();
+  if (email) {
+    headers['X-User-Email'] = email;
+  }
+
+  if (options.headers) {
+    if (options.headers instanceof Headers) {
+      options.headers.forEach((value, key) => {
+        headers[key] = value;
+      });
+    } else if (Array.isArray(options.headers)) {
+      options.headers.forEach(([key, value]) => {
+        headers[key] = value;
+      });
+    } else {
+      Object.assign(headers, options.headers);
+    }
+  }
+
+  return fetch(url, { ...options, headers });
+}
+
 type StructureSearchMode = 'substructure' | 'superstructure';
 
 export default function CompoundSearchPage() {
@@ -116,7 +167,7 @@ function CompoundSearchContent() {
       try {
         const params = new URLSearchParams();
         params.set('search', compoundLookupQuery.trim());
-        const response = await fetch(`/api/proxy/compounds/compounds/?${params}`);
+        const response = await authFetch(`/api/proxy/compounds/compounds/?${params}`);
         if (response.ok) {
           const data = await response.json();
           // Limit to first 20 results for the dropdown
@@ -153,7 +204,7 @@ function CompoundSearchContent() {
         params.set('target', selectedTarget.id);
       }
 
-      const response = await fetch(`/api/proxy/compounds/compounds/?${params}`);
+      const response = await authFetch(`/api/proxy/compounds/compounds/?${params}`);
       if (response.ok) {
         const data = await response.json();
         setResults(data);
@@ -205,7 +256,7 @@ function CompoundSearchContent() {
         params.set('target', selectedTarget.id);
       }
 
-      const response = await fetch(`/api/proxy/compounds/compounds/structure_search/?${params}`);
+      const response = await authFetch(`/api/proxy/compounds/compounds/structure_search/?${params}`);
       if (response.ok) {
         const data = await response.json();
         setResults(data.matches || []);

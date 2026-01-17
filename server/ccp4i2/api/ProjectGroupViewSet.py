@@ -454,16 +454,26 @@ class ProjectGroupViewSet(ModelViewSet):
 
         Query params:
             - project_ids: Comma-separated list of project IDs
+            - include_members: If 'true', also include campaigns where project is a member
 
         Returns:
-            Response: Dict mapping project_id to campaign info (if parent of a campaign).
+            Response: Dict mapping project_id to campaign info.
+            Each entry includes:
+                - campaign_id: The campaign ID
+                - campaign_name: The campaign name
+                - member_count: Number of member projects (for parent entries)
+                - membership_type: 'parent' or 'member'
         """
         try:
             project_ids_param = request.query_params.get("project_ids", "")
+            include_members = request.query_params.get("include_members", "false").lower() == "true"
+
             if not project_ids_param:
                 return Response({})
 
             project_ids = [int(pid) for pid in project_ids_param.split(",") if pid]
+
+            result = {}
 
             # Find all campaigns where these projects are parents
             parent_memberships = models.ProjectGroupMembership.objects.filter(
@@ -471,7 +481,6 @@ class ProjectGroupViewSet(ModelViewSet):
                 type=models.ProjectGroupMembership.MembershipType.PARENT,
             ).select_related("group")
 
-            result = {}
             for membership in parent_memberships:
                 member_count = membership.group.memberships.filter(
                     type=models.ProjectGroupMembership.MembershipType.MEMBER
@@ -480,7 +489,25 @@ class ProjectGroupViewSet(ModelViewSet):
                     "campaign_id": membership.group.id,
                     "campaign_name": membership.group.name,
                     "member_count": member_count,
+                    "membership_type": "parent",
                 }
+
+            # Optionally find campaigns where these projects are members
+            if include_members:
+                member_memberships = models.ProjectGroupMembership.objects.filter(
+                    project_id__in=project_ids,
+                    type=models.ProjectGroupMembership.MembershipType.MEMBER,
+                ).select_related("group")
+
+                for membership in member_memberships:
+                    project_id_str = str(membership.project_id)
+                    # Don't overwrite parent info if project is both parent and member
+                    if project_id_str not in result:
+                        result[project_id_str] = {
+                            "campaign_id": membership.group.id,
+                            "campaign_name": membership.group.name,
+                            "membership_type": "member",
+                        }
 
             return Response(result)
 

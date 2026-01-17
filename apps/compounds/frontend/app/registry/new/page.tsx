@@ -52,6 +52,13 @@ interface Supplier {
   id: string;
   name: string;
   initials: string | null;
+  is_current_user?: boolean;
+}
+
+interface MySupplierResponse {
+  supplier: Supplier | null;
+  suggested_name: string;
+  suggested_initials: string;
 }
 
 interface CompoundFormData {
@@ -118,13 +125,19 @@ function NewCompoundPageContent() {
   const [success, setSuccess] = useState<{ formatted_id: string; id: string } | null>(null);
   const [sketcherExpanded, setSketcherExpanded] = useState(false);
   const [jsmeInitialSmiles, setJsmeInitialSmiles] = useState('');
+  const [creatingSupplier, setCreatingSupplier] = useState(false);
 
   // Fetch targets and suppliers
   const { data: targetsData } = api.get<Target[]>('targets/');
-  const { data: suppliersData } = api.get<Supplier[]>('suppliers/');
+  const { data: suppliersData, mutate: mutateSuppliersData } = api.get<Supplier[]>('suppliers/');
+  // Fetch current user's supplier info (for auto-selection)
+  const { data: mySupplierData } = api.get<MySupplierResponse>('suppliers/my_supplier/');
 
   const targets = targetsData || [];
   const suppliers = suppliersData || [];
+  const mySupplier = mySupplierData?.supplier;
+  const suggestedSupplierName = mySupplierData?.suggested_name;
+  const suggestedSupplierInitials = mySupplierData?.suggested_initials;
 
   // Get pre-selected target info for display
   const preselectedTarget = useMemo(() => {
@@ -138,6 +151,42 @@ function NewCompoundPageContent() {
       setFormData((prev) => ({ ...prev, target: preselectedTargetId }));
     }
   }, [preselectedTargetId, targets, formData.target]);
+
+  // Auto-select current user's supplier when data loads
+  useEffect(() => {
+    if (mySupplier && suppliers.length > 0 && !formData.supplier) {
+      // Check if the user's supplier is in the suppliers list
+      const supplierExists = suppliers.some((s) => s.id === mySupplier.id);
+      if (supplierExists) {
+        setFormData((prev) => ({ ...prev, supplier: mySupplier.id }));
+      }
+    }
+  }, [mySupplier, suppliers, formData.supplier]);
+
+  // Handler to create a personal supplier for the current user
+  const handleCreateMySupplier = useCallback(async () => {
+    if (!suggestedSupplierName) return;
+
+    setCreatingSupplier(true);
+    setError(null);
+
+    try {
+      const result = await apiPost<MySupplierResponse>('suppliers/my_supplier/', {
+        name: suggestedSupplierName,
+        initials: suggestedSupplierInitials,
+      });
+
+      if (result.supplier) {
+        // Refresh the suppliers list and select the new supplier
+        await mutateSuppliersData();
+        setFormData((prev) => ({ ...prev, supplier: result.supplier!.id }));
+      }
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create supplier');
+    } finally {
+      setCreatingSupplier(false);
+    }
+  }, [suggestedSupplierName, suggestedSupplierInitials, mutateSuppliersData]);
 
   const handleFieldChange = useCallback((field: keyof CompoundFormData, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -206,7 +255,7 @@ function NewCompoundPageContent() {
       }
 
       const result = await apiPost<{ id: string; formatted_id: string }>(
-        'registry/compounds/',
+        'compounds/',
         submitData
       );
 
@@ -456,6 +505,14 @@ function NewCompoundPageContent() {
                 getOptionLabel={(option) => option.name}
                 value={suppliers.find((s) => s.id === formData.supplier) || null}
                 onChange={(_, newValue) => handleFieldChange('supplier', newValue?.id || null)}
+                renderOption={(props, option) => (
+                  <li {...props} key={option.id}>
+                    {option.name}
+                    {option.is_current_user && (
+                      <Chip label="You" size="small" color="primary" sx={{ ml: 1 }} />
+                    )}
+                  </li>
+                )}
                 renderInput={(params) => (
                   <TextField
                     {...params}
@@ -465,6 +522,27 @@ function NewCompoundPageContent() {
                   />
                 )}
               />
+
+              {/* Show option to create personal supplier if user doesn't have one */}
+              {mySupplierData && !mySupplier && suggestedSupplierName && (
+                <Alert
+                  severity="info"
+                  sx={{ mt: 1 }}
+                  action={
+                    <Button
+                      color="inherit"
+                      size="small"
+                      onClick={handleCreateMySupplier}
+                      disabled={creatingSupplier}
+                      startIcon={creatingSupplier ? <CircularProgress size={16} /> : <Add />}
+                    >
+                      {creatingSupplier ? 'Creating...' : 'Create'}
+                    </Button>
+                  }
+                >
+                  Create &quot;{suggestedSupplierName}&quot; as your personal supplier?
+                </Alert>
+              )}
 
               {/* Supplier Reference */}
               <TextField

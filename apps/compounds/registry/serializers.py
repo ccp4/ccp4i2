@@ -4,15 +4,74 @@ Registry Serializers
 DRF serializers for compound registration models.
 """
 
+from django.urls import reverse
 from rest_framework import serializers
 
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
 
 
+class ProtectedFileField(serializers.Field):
+    """
+    Custom field that returns a protected API URL for file downloads
+    instead of the direct storage URL.
+
+    This ensures files are served through authenticated endpoints.
+    """
+
+    def __init__(self, url_name, id_field='id', **kwargs):
+        """
+        Args:
+            url_name: Name of the URL pattern for the protected endpoint
+            id_field: Field on the model to use as the URL argument
+        """
+        self.url_name = url_name
+        self.id_field = id_field
+        kwargs['read_only'] = True
+        super().__init__(**kwargs)
+
+    def to_representation(self, value):
+        """Return the protected URL if file exists, None otherwise."""
+        if not value:
+            return None
+
+        # Get the parent object's ID
+        obj = self.parent.instance
+        if hasattr(obj, '__iter__') and not isinstance(obj, dict):
+            return None
+
+        obj_id = getattr(obj, self.id_field, None)
+        if not obj_id:
+            return None
+
+        # Build the protected URL
+        request = self.context.get('request')
+        url = reverse(f'compounds:{self.url_name}', kwargs={f'{self.id_field}': obj_id})
+
+        if request:
+            return request.build_absolute_uri(url)
+        return url
+
+
 class SupplierSerializer(serializers.ModelSerializer):
+    is_current_user = serializers.SerializerMethodField()
+    compound_count = serializers.IntegerField(source='compounds.count', read_only=True)
+    batch_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Supplier
-        fields = ['id', 'name', 'initials']
+        fields = ['id', 'name', 'initials', 'user', 'is_current_user', 'compound_count', 'batch_count']
+        read_only_fields = ['is_current_user', 'compound_count', 'batch_count']
+
+    def get_is_current_user(self, obj):
+        """Check if this supplier is linked to the current user."""
+        request = self.context.get('request')
+        if request and request.user.is_authenticated and obj.user:
+            return obj.user.id == request.user.id
+        return False
+
+    def get_batch_count(self, obj):
+        """Count batches from this supplier."""
+        return Batch.objects.filter(supplier=obj).count()
 
 
 class TargetSerializer(serializers.ModelSerializer):
@@ -121,6 +180,8 @@ class BatchSerializer(serializers.ModelSerializer):
 
 class BatchQCFileSerializer(serializers.ModelSerializer):
     filename = serializers.CharField(read_only=True)
+    # Use protected URL for file instead of direct storage URL
+    file = ProtectedFileField(url_name='batch-qc-file', id_field='id')
 
     class Meta:
         model = BatchQCFile

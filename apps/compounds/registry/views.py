@@ -85,6 +85,104 @@ class SupplierViewSet(ReversionMixin, viewsets.ModelViewSet):
     ordering_fields = ['name']
     ordering = ['name']
 
+    @action(detail=False, methods=['get', 'post'])
+    def my_supplier(self, request):
+        """
+        Get or create a supplier linked to the current user.
+
+        GET: Returns the current user's linked supplier, or null if none exists.
+             Also returns suggested_name for creating a new one.
+
+        POST: Creates a supplier linked to the current user.
+              Optional body: {"name": "Custom Name", "initials": "CN"}
+              If not provided, uses user's full name or email.
+
+        Only works when authentication is enabled.
+        """
+        if not request.user.is_authenticated:
+            return Response(
+                {'error': 'Authentication required'},
+                status=status.HTTP_401_UNAUTHORIZED
+            )
+
+        # Build suggested name from user info
+        if request.user.first_name and request.user.last_name:
+            suggested_name = f"{request.user.first_name} {request.user.last_name}"
+        elif request.user.first_name:
+            suggested_name = request.user.first_name
+        elif request.user.email:
+            # Use email prefix as name
+            suggested_name = request.user.email.split('@')[0].replace('.', ' ').replace('_', ' ').title()
+        else:
+            suggested_name = f"User {request.user.id}"
+
+        # Generate initials from suggested name
+        name_parts = suggested_name.split()
+        if len(name_parts) >= 2:
+            suggested_initials = (name_parts[0][0] + name_parts[-1][0]).upper()
+        else:
+            suggested_initials = suggested_name[:2].upper()
+
+        if request.method == 'GET':
+            # Try to find existing supplier linked to this user
+            try:
+                supplier = Supplier.objects.get(user=request.user)
+                serializer = SupplierSerializer(supplier, context={'request': request})
+                return Response({
+                    'supplier': serializer.data,
+                    'suggested_name': suggested_name,
+                    'suggested_initials': suggested_initials,
+                })
+            except Supplier.DoesNotExist:
+                return Response({
+                    'supplier': None,
+                    'suggested_name': suggested_name,
+                    'suggested_initials': suggested_initials,
+                })
+
+        else:  # POST - create supplier
+            # Check if user already has a supplier
+            if Supplier.objects.filter(user=request.user).exists():
+                return Response(
+                    {'error': 'You already have a linked supplier'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Get name from request or use suggested
+            name = request.data.get('name', suggested_name)
+            initials = request.data.get('initials', suggested_initials)
+
+            # Check for name uniqueness
+            if Supplier.objects.filter(name=name).exists():
+                return Response(
+                    {'error': f'A supplier named "{name}" already exists'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Check for initials uniqueness (if provided)
+            if initials and Supplier.objects.filter(initials=initials).exists():
+                return Response(
+                    {'error': f'A supplier with initials "{initials}" already exists'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
+            # Create the supplier
+            with reversion.create_revision():
+                supplier = Supplier.objects.create(
+                    name=name,
+                    initials=initials if initials else None,
+                    user=request.user
+                )
+                reversion.set_user(request.user)
+                reversion.set_comment("Created personal supplier via API")
+
+            serializer = SupplierSerializer(supplier, context={'request': request})
+            return Response({
+                'supplier': serializer.data,
+                'suggested_name': suggested_name,
+                'suggested_initials': suggested_initials,
+            }, status=status.HTTP_201_CREATED)
+
 
 class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Targets (drug discovery campaigns)."""
@@ -113,7 +211,13 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Compounds."""
     queryset = Compound.objects.select_related('target', 'supplier', 'registered_by')
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['target', 'supplier', 'stereo_comment']
+    # Use dict format to enable __in lookup for reg_number (batch SMILES lookup)
+    filterset_fields = {
+        'target': ['exact'],
+        'supplier': ['exact'],
+        'stereo_comment': ['exact'],
+        'reg_number': ['exact', 'in'],
+    }
     search_fields = ['reg_number', 'smiles', 'supplier_ref', 'comments']
     ordering_fields = ['reg_number', 'registered_at', 'molecular_weight']
     ordering = ['-reg_number']

@@ -352,6 +352,22 @@ class AzureADAuthMiddleware:
         request.azure_ad_email = email
 
         # Get or create Django user
+        # Extract name from claims
+        # Priority: given_name/family_name > 'name' claim > empty
+        first_name = claims.get("given_name", "")
+        last_name = claims.get("family_name", "")
+
+        # If no given_name/family_name, try to parse from 'name' claim (e.g., "Martin Noble")
+        if not first_name and not last_name:
+            full_name = claims.get("name", "")
+            if full_name:
+                name_parts = full_name.strip().split()
+                if len(name_parts) >= 2:
+                    first_name = name_parts[0]
+                    last_name = " ".join(name_parts[1:])
+                elif len(name_parts) == 1:
+                    first_name = name_parts[0]
+
         # Use 'sub' as the unique identifier (cryptographically verified)
         # This prevents email header spoofing from allowing impersonation
         User = get_user_model()
@@ -360,27 +376,27 @@ class AzureADAuthMiddleware:
             username=username,
             defaults={
                 "email": email.lower(),
-                "first_name": claims.get("given_name", ""),
-                "last_name": claims.get("family_name", ""),
+                "first_name": first_name,
+                "last_name": last_name,
             }
         )
 
         if created:
             logger.info(f"Created user from Azure AD: {email} (sub={azure_ad_sub[:8]}...)")
-        else:
-            # Update email and name if changed
-            updated = False
-            if user.email != email.lower():
-                user.email = email.lower()
-                updated = True
-            if claims.get("given_name") and user.first_name != claims.get("given_name"):
-                user.first_name = claims.get("given_name")
-                updated = True
-            if claims.get("family_name") and user.last_name != claims.get("family_name"):
-                user.last_name = claims.get("family_name")
-                updated = True
-            if updated:
-                user.save(update_fields=["email", "first_name", "last_name"])
+
+        # Update email and name if changed or missing
+        updated = False
+        if user.email != email.lower():
+            user.email = email.lower()
+            updated = True
+        if first_name and user.first_name != first_name:
+            user.first_name = first_name
+            updated = True
+        if last_name and user.last_name != last_name:
+            user.last_name = last_name
+            updated = True
+        if updated:
+            user.save(update_fields=["email", "first_name", "last_name"])
 
         request.user = user
         return self.get_response(request)

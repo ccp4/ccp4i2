@@ -7,7 +7,7 @@
 
 import useSWR, { mutate } from "swr";
 import { useApi } from "../api";
-import { apiPost, apiDelete, apiPatch } from "../api-fetch";
+import { apiPost, apiDelete, apiPatch, apiFetch } from "../api-fetch";
 import {
   ProjectGroup,
   ProjectGroupDetail,
@@ -214,18 +214,17 @@ export function useCampaignsApi() {
  * Uses the compounds API if available.
  */
 export function useSmilesLookup(regIds: number[]) {
-  const api = useApi();
-
   // Build query string for batch lookup
+  // Use reg_number__in for django-filter lookup
   const queryString =
-    regIds.length > 0 ? `reg_id__in=${regIds.join(",")}` : null;
+    regIds.length > 0 ? `reg_number__in=${regIds.join(",")}` : null;
 
   // This assumes compounds API is available at /api/compounds/
-  // We use a custom fetcher since compounds might be on a different endpoint
+  // Use apiFetch for authenticated requests (required in Azure deployment)
   const { data, error, isLoading } = useSWR(
     queryString ? `/api/proxy/compounds/compounds/?${queryString}` : null,
     async (url: string) => {
-      const response = await fetch(url);
+      const response = await apiFetch(url);
       if (!response.ok) {
         throw new Error("Failed to fetch compound data");
       }

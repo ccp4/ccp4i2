@@ -255,7 +255,7 @@ export default function ImportCompoundsPage() {
 
         // Submit to API
         const result = await apiPost<{ id: string; formatted_id: string }>(
-          'registry/compounds/',
+          'compounds/',
           compoundData
         );
 

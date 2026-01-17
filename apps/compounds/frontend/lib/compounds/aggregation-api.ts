@@ -1,6 +1,10 @@
 /**
  * Aggregation API utilities.
  * Provides functions and hooks for the aggregation endpoint.
+ *
+ * Authentication Integration:
+ * - Standalone (development): No auth required, works without tokens
+ * - Integrated (Docker): Uses auth-token module from ccp4i2 client
  */
 
 import useSWR, { SWRConfiguration, SWRResponse } from 'swr';
@@ -11,7 +15,81 @@ import {
 } from '@/types/compounds/aggregation';
 import { Target } from '@/types/compounds/models';
 
+// =============================================================================
+// Authentication Integration
+// =============================================================================
+
+// For Docker integration: Try to import auth helpers from ccp4i2 client's auth-token
+// Falls back to no-op for standalone development
+let getAccessToken: () => Promise<string | null>;
+let getUserEmail: () => string | null;
+
+try {
+  // This path works when overlaid into ccp4i2 client (renderer/lib/compounds/)
+  const authModule = require('../../utils/auth-token');
+  getAccessToken = authModule.getAccessToken;
+  getUserEmail = authModule.getUserEmail || (() => null);
+} catch {
+  // Fallback for standalone development - no auth needed
+  getAccessToken = async () => null;
+  getUserEmail = () => null;
+}
+
+// =============================================================================
+// Configuration
+// =============================================================================
+
 const API_BASE = '/api/proxy/compounds';
+
+/**
+ * Core fetch wrapper with authentication support.
+ * Mirrors the pattern in api.ts
+ */
+async function coreFetch(
+  url: string,
+  options: RequestInit = {}
+): Promise<Response> {
+  const headers: Record<string, string> = {};
+
+  // Inject authentication token if available
+  const token = await getAccessToken();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  // Include user email as fallback for backends where access tokens don't have email claims
+  const email = getUserEmail();
+  if (email) {
+    headers['X-User-Email'] = email;
+  }
+
+  // Merge with provided headers
+  if (options.headers) {
+    if (options.headers instanceof Headers) {
+      options.headers.forEach((value, key) => {
+        headers[key] = value;
+      });
+    } else if (Array.isArray(options.headers)) {
+      options.headers.forEach(([key, value]) => {
+        headers[key] = value;
+      });
+    } else {
+      Object.assign(headers, options.headers);
+    }
+  }
+
+  // Set Content-Type for JSON bodies (but not FormData)
+  if (options.body && !(options.body instanceof FormData)) {
+    if (!Object.keys(headers).some(k => k.toLowerCase() === 'content-type')) {
+      headers['Content-Type'] = 'application/json';
+    }
+  }
+
+  return fetch(url, {
+    ...options,
+    headers,
+  });
+}
 
 /**
  * Fetch aggregation data.
@@ -20,11 +98,8 @@ const API_BASE = '/api/proxy/compounds';
 export async function fetchAggregation(
   request: AggregationRequest
 ): Promise<AggregationResponse> {
-  const res = await fetch(`${API_BASE}/aggregations/aggregate/`, {
+  const res = await coreFetch(`${API_BASE}/aggregations/aggregate/`, {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
     body: JSON.stringify(request),
   });
 
@@ -75,7 +150,7 @@ export async function fetchProtocols(params?: {
   if (params?.search) searchParams.set('search', params.search);
 
   const url = `${API_BASE}/aggregations/protocols/?${searchParams}`;
-  const res = await fetch(url);
+  const res = await coreFetch(url);
 
   if (!res.ok) {
     throw new Error('Failed to fetch protocols');
@@ -94,7 +169,7 @@ export async function fetchTargets(params?: {
   if (params?.search) searchParams.set('search', params.search);
 
   const url = `${API_BASE}/aggregations/targets/?${searchParams}`;
-  const res = await fetch(url);
+  const res = await coreFetch(url);
 
   if (!res.ok) {
     throw new Error('Failed to fetch targets');

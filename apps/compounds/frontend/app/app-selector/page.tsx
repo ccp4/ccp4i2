@@ -214,6 +214,40 @@ export default function AppSelectorPage() {
           </Box>
         </Paper>
       </Stack>
+
+      <Box
+        sx={{
+          mt: 6,
+          pt: 3,
+          borderTop: 1,
+          borderColor: 'divider',
+          textAlign: 'center',
+        }}
+      >
+        <Typography variant="body2" color="text.secondary">
+          Newcastle University
+        </Typography>
+        <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center', gap: 3 }}>
+          <Typography
+            component={Link}
+            href="/privacy"
+            variant="body2"
+            color="text.secondary"
+            sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+          >
+            Privacy Policy
+          </Typography>
+          <Typography
+            component={Link}
+            href="/terms"
+            variant="body2"
+            color="text.secondary"
+            sx={{ textDecoration: 'none', '&:hover': { textDecoration: 'underline' } }}
+          >
+            Terms of Use
+          </Typography>
+        </Box>
+      </Box>
     </Container>
   );
 }

@@ -42,6 +42,57 @@ import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
 
+// =============================================================================
+// Authentication Integration
+// =============================================================================
+
+// For Docker integration: Try to import auth helpers from ccp4i2 client's auth-token
+// Falls back to no-op for standalone development
+let getAccessToken: () => Promise<string | null>;
+let getUserEmail: () => string | null;
+
+try {
+  const authModule = require('../../../utils/auth-token');
+  getAccessToken = authModule.getAccessToken;
+  getUserEmail = authModule.getUserEmail || (() => null);
+} catch {
+  getAccessToken = async () => null;
+  getUserEmail = () => null;
+}
+
+/**
+ * Authenticated fetch wrapper
+ */
+async function authFetch(url: string, options: RequestInit = {}): Promise<Response> {
+  const headers: Record<string, string> = {};
+
+  const token = await getAccessToken();
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const email = getUserEmail();
+  if (email) {
+    headers['X-User-Email'] = email;
+  }
+
+  if (options.headers) {
+    if (options.headers instanceof Headers) {
+      options.headers.forEach((value, key) => {
+        headers[key] = value;
+      });
+    } else if (Array.isArray(options.headers)) {
+      options.headers.forEach(([key, value]) => {
+        headers[key] = value;
+      });
+    } else {
+      Object.assign(headers, options.headers);
+    }
+  }
+
+  return fetch(url, { ...options, headers });
+}
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
@@ -137,8 +188,8 @@ export default function AssayDetailPage({ params }: PageProps) {
 
     setHeatMapLoading(true);
     try {
-      // Fetch the Excel file
-      const response = await fetch(assay.data_file);
+      // Fetch the Excel file (through protected endpoint with auth)
+      const response = await authFetch(assay.data_file);
       const buffer = await response.arrayBuffer();
 
       // Parse with XLSX

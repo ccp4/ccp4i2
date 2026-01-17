@@ -31,6 +31,10 @@ class Supplier(models.Model):
 
     Tracks where compounds/batches originate from (commercial vendors,
     internal synthesis, collaborators, etc.)
+
+    When a user is linked, this supplier represents that user's personal
+    synthesis source (e.g., "Martin Noble" as a supplier for compounds
+    they synthesized themselves).
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -41,6 +45,14 @@ class Supplier(models.Model):
         blank=True,
         null=True,
         help_text="Short code used in barcodes, e.g., 'NCL', 'AST'"
+    )
+    user = models.OneToOneField(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='supplier',
+        help_text="User account linked to this supplier (for personal suppliers)"
     )
 
     class Meta:

@@ -61,6 +61,12 @@ export const routes = {
     /** Target detail page */
     target: (id: string | number) => route(`/registry/targets/${id}`),
 
+    /** Suppliers list */
+    suppliers: () => route('/registry/suppliers'),
+
+    /** Supplier detail page */
+    supplier: (id: string | number) => route(`/registry/suppliers/${id}`),
+
     /** Compound detail page */
     compound: (id: string | number) => route(`/registry/compounds/${id}`),
 

@@ -1,51 +1,45 @@
-# CCP4i2 Docker Compose - Local Development
+# CCP4i2 Docker Compose - Bundled CCP4 (Azure-compatible)
 #
-# This compose file sets up the full CCP4i2 stack for local development:
-# - Django REST API server
-# - Next.js web client
-# - PostgreSQL database (optional, defaults to SQLite)
-# - Shell container for CCP4 setup/maintenance
+# This compose file uses the CCP4 base image with CCP4 bundled inside,
+# matching the Azure deployment configuration exactly.
+#
+# Use this for:
+#   - Testing Azure-equivalent deployments locally
+#   - Environments where CCP4 can't be mounted (no local install)
+#   - Ensuring parity between local and cloud deployments
 #
 # Prerequisites:
-#   - CCP4 installed locally (path configured in .env)
-#   - Docker and Docker Compose installed
+#   - Build the CCP4 base images first (layered: base → arpwarp → server):
+#     ./Docker/azure-uksouth/scripts/build-base-image.sh ~/path/to/ccp4-dereferenced.tgz
+#     ./Docker/azure-uksouth/scripts/build-arpwarp-image.sh ~/path/to/arpwarp-dereferenced.tgz
 #
 # Usage:
-#   # Copy example env file and configure
-#   cp Docker/.env.example Docker/.env
-#
 #   # Start all services
 #   docker compose -f Docker/docker-compose.yml up
 #
-#   # Start only server (for Electron client development)
-#   docker compose -f Docker/docker-compose.yml up server
-#
-#   # Rebuild after code changes
+#   # Rebuild after code changes (fast - CCP4 is in base image)
 #   docker compose -f Docker/docker-compose.yml up --build
-#
-#   # Start shell container for CCP4 setup (interactive)
-#   docker compose -f Docker/docker-compose.yml run --rm shell
-#
-#   # Or start shell in background and attach later
-#   docker compose -f Docker/docker-compose.yml up -d shell
-#   docker compose -f Docker/docker-compose.yml exec shell bash
 
 services:
-  # Django REST API Server
+  # Django REST API Server (with bundled CCP4)
   server:
     platform: linux/amd64
     build:
       context: ..
       dockerfile: Docker/server/Dockerfile
+      args:
+        ACR_LOGIN_SERVER: ${ACR_LOGIN_SERVER:-ccp4acrukbwmx.azurecr.io}
+        BASE_IMAGE_NAME: ${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}
+        CCP4_VERSION: ${CCP4_VERSION:-ccp4-20251105}
     ports:
       - "${SERVER_PORT:-8000}:8000"
     environment:
       - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
       - DEBUG=${DEBUG:-true}
-      # Use azure_extensions.settings which includes compounds apps
       - DJANGO_SETTINGS_MODULE=azure_extensions.settings
-      - CCP4_DATA_PATH=/mnt/ccp4data
-      - CCP4_VERSION=${CCP4_VERSION:-ccp4-9}
+      # CCP4 is bundled at the path expected by ccp4.setup-sh
+      - CCP4=/mnt/ccp4data/${CCP4_VERSION:-ccp4-20251105}
+      - CCP4_VERSION=${CCP4_VERSION:-ccp4-20251105}
       - CCP4I2_PROJECTS_DIR=/mnt/projects
       - DATABASE_URL=${DATABASE_URL:-sqlite:////mnt/projects/ccp4i2.sqlite}
       - ALLOWED_HOSTS=${ALLOWED_HOSTS:-localhost,127.0.0.1,server}
@@ -58,9 +52,7 @@ services:
       # Bootstrap platform admins (comma-separated emails)
       - PLATFORM_ADMIN_EMAILS=${PLATFORM_ADMIN_EMAILS:-}
     volumes:
-      # Mount CCP4 installation (read-only)
-      - ${CCP4_PATH:-/opt/ccp4}:/mnt/ccp4data/${CCP4_VERSION:-ccp4-9}:ro
-      # Mount projects directory (read-write, separate from ccp4data)
+      # Only mount projects directory - CCP4 is in the image
       - ${PROJECTS_PATH:-./data/projects}:/mnt/projects
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/api/ccp4i2/health/"]
@@ -76,7 +68,6 @@ services:
       context: ..
       dockerfile: Docker/client/Dockerfile
       args:
-        # Azure AD Authentication (baked in at build time for Next.js)
         NEXT_PUBLIC_AAD_CLIENT_ID: ${NEXT_PUBLIC_AAD_CLIENT_ID:-}
         NEXT_PUBLIC_AAD_TENANT_ID: ${NEXT_PUBLIC_AAD_TENANT_ID:-}
         NEXT_PUBLIC_REQUIRE_AUTH: ${NEXT_PUBLIC_REQUIRE_AUTH:-false}
@@ -85,7 +76,6 @@ services:
     environment:
       - NEXT_PUBLIC_API_URL=${API_URL:-http://localhost:8000}
       - NODE_ENV=${NODE_ENV:-development}
-      # Server-side proxy URL (for container-to-container communication)
       - API_BASE_URL=http://server:8000
     depends_on:
       server:
@@ -98,37 +88,11 @@ services:
       start_period: 30s
     restart: unless-stopped
 
-  # Shell container for CCP4 setup and maintenance
-  # Provides an interactive environment matching the server container
-  # with read-write access to the CCP4 data volume
-  shell:
-    platform: linux/amd64
-    build:
-      context: ..
-      dockerfile: Docker/server/Dockerfile
-    profiles:
-      - shell  # Only starts with: docker compose --profile shell up
-    stdin_open: true  # Keep stdin open for interactive use
-    tty: true         # Allocate a pseudo-TTY
-    environment:
-      - CCP4_DATA_PATH=/mnt/ccp4data
-      - CCP4I2_PROJECTS_DIR=/mnt/projects
-      # Use azure_extensions.settings which includes compounds apps
-      - DJANGO_SETTINGS_MODULE=azure_extensions.settings
-      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
-    volumes:
-      # Mount CCP4 data directory (READ-WRITE for setup/building)
-      - ${CCP4_DATA_PATH:-./data/ccp4data}:/mnt/ccp4data
-      # Mount projects directory (separate from ccp4data to avoid permission issues)
-      - ${PROJECTS_PATH:-./data/projects}:/mnt/projects
-    entrypoint: ["/bin/bash"]
-    command: ["-c", "echo 'CCP4i2 Shell Container Ready. CCP4 data at /mnt/ccp4data, projects at /mnt/projects'; exec bash"]
-
-  # PostgreSQL Database (optional - for production-like setup)
+  # PostgreSQL Database (optional)
   db:
     image: postgres:15-alpine
     profiles:
-      - postgres  # Only starts with: docker compose --profile postgres up
+      - postgres
     ports:
       - "${DB_PORT:-5432}:5432"
     environment:

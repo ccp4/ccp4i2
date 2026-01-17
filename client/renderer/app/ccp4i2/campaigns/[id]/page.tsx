@@ -8,6 +8,7 @@ import {
   Box,
   Button,
   Chip,
+  CircularProgress,
   Container,
   Dialog,
   DialogActions,
@@ -31,6 +32,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
@@ -38,6 +40,7 @@ import {
   Add as AddIcon,
   Delete as DeleteIcon,
   Download as DownloadIcon,
+  Edit as EditIcon,
   MoreHoriz as MoreIcon,
   PlayArrow as RerunIcon,
   Preview as PreviewIcon,
@@ -64,6 +67,22 @@ import {
   parseDatasetFilename,
 } from "../../../../types/campaigns";
 import { File as CCP4File } from "../../../../types/models";
+import { apiPatch } from "../../../../api-fetch";
+
+/**
+ * Get a display label for a file.
+ * Priority: annotation > "Job X: PARAM_NAME" > filename
+ */
+function getFileDisplayLabel(file: CCP4File): string {
+  if (file.annotation && file.annotation.trim()) {
+    return file.annotation;
+  }
+  // Fallback to job number and param name if available
+  if (file.job && file.job_param_name) {
+    return `Job ${file.job}: ${file.job_param_name}`;
+  }
+  return file.name;
+}
 
 // Status ID to color mapping (matching legacy CCP4i2)
 const STATUS_COLORS: Record<number, string> = {
@@ -117,6 +136,30 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
   const [showPanddaExport, setShowPanddaExport] = useState(false);
   const [showSubJobs, setShowSubJobs] = useState(false);
   const [deleteProject, setDeleteProject] = useState<MemberProjectWithSummary | null>(null);
+
+  // File annotation editing state
+  const [editingFile, setEditingFile] = useState<CCP4File | null>(null);
+  const [editAnnotation, setEditAnnotation] = useState("");
+  const [savingAnnotation, setSavingAnnotation] = useState(false);
+
+  const handleEditAnnotation = (file: CCP4File) => {
+    setEditingFile(file);
+    setEditAnnotation(file.annotation || "");
+  };
+
+  const handleSaveAnnotation = async () => {
+    if (!editingFile) return;
+    setSavingAnnotation(true);
+    try {
+      await apiPatch(`files/${editingFile.id}/`, { annotation: editAnnotation });
+      mutateParentFiles();
+      setEditingFile(null);
+    } catch (err) {
+      console.error("Failed to save annotation:", err);
+    } finally {
+      setSavingAnnotation(false);
+    }
+  };
 
   const handleRefresh = () => {
     mutateParentFiles();
@@ -249,14 +292,30 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                       <TableBody>
                         {parentFiles.coordinates.map((file) => (
                           <TableRow key={file.id}>
-                            <TableCell>{file.name}</TableCell>
-                            <TableCell align="right">
-                              <IconButton
-                                size="small"
-                                onClick={() => handleDownloadFile(file)}
-                              >
-                                <DownloadIcon />
-                              </IconButton>
+                            <TableCell>
+                              <Tooltip title={file.name}>
+                                <Typography variant="body2" noWrap>
+                                  {getFileDisplayLabel(file)}
+                                </Typography>
+                              </Tooltip>
+                            </TableCell>
+                            <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
+                              <Tooltip title="Edit annotation">
+                                <IconButton
+                                  size="small"
+                                  onClick={() => handleEditAnnotation(file)}
+                                >
+                                  <EditIcon fontSize="small" />
+                                </IconButton>
+                              </Tooltip>
+                              <Tooltip title="Download">
+                                <IconButton
+                                  size="small"
+                                  onClick={() => handleDownloadFile(file)}
+                                >
+                                  <DownloadIcon fontSize="small" />
+                                </IconButton>
+                              </Tooltip>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -298,14 +357,30 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                       <TableBody>
                         {parentFiles.freer.map((file) => (
                           <TableRow key={file.id}>
-                            <TableCell>{file.name}</TableCell>
-                            <TableCell align="right">
-                              <IconButton
-                                size="small"
-                                onClick={() => handleDownloadFile(file)}
-                              >
-                                <DownloadIcon />
-                              </IconButton>
+                            <TableCell>
+                              <Tooltip title={file.name}>
+                                <Typography variant="body2" noWrap>
+                                  {getFileDisplayLabel(file)}
+                                </Typography>
+                              </Tooltip>
+                            </TableCell>
+                            <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
+                              <Tooltip title="Edit annotation">
+                                <IconButton
+                                  size="small"
+                                  onClick={() => handleEditAnnotation(file)}
+                                >
+                                  <EditIcon fontSize="small" />
+                                </IconButton>
+                              </Tooltip>
+                              <Tooltip title="Download">
+                                <IconButton
+                                  size="small"
+                                  onClick={() => handleDownloadFile(file)}
+                                >
+                                  <DownloadIcon fontSize="small" />
+                                </IconButton>
+                              </Tooltip>
                             </TableCell>
                           </TableRow>
                         ))}
@@ -516,6 +591,43 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
         campaignId={campaignId}
         campaignName={campaign.name}
       />
+
+      {/* Edit File Annotation Dialog */}
+      <Dialog
+        open={!!editingFile}
+        onClose={() => setEditingFile(null)}
+        maxWidth="sm"
+        fullWidth
+      >
+        <DialogTitle>Edit File Annotation</DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            File: {editingFile?.name}
+          </Typography>
+          <TextField
+            autoFocus
+            fullWidth
+            label="Annotation"
+            placeholder="Enter a descriptive label for this file"
+            value={editAnnotation}
+            onChange={(e) => setEditAnnotation(e.target.value)}
+            helperText="This label will be displayed instead of the filename"
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setEditingFile(null)} disabled={savingAnnotation}>
+            Cancel
+          </Button>
+          <Button
+            onClick={handleSaveAnnotation}
+            variant="contained"
+            disabled={savingAnnotation}
+            startIcon={savingAnnotation ? <CircularProgress size={16} /> : null}
+          >
+            {savingAnnotation ? "Saving..." : "Save"}
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 }

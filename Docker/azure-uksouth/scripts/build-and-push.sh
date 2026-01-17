@@ -162,7 +162,7 @@ fi
 if [ "$BUILD_SERVER" = true ]; then
     echo -e "${YELLOW}🔨 Building server image (with bundled CCP4)...${NC}"
 
-    # Use Dockerfile.with-ccp4 which has CCP4 baked into the base image
+    # Use Dockerfile which has CCP4 baked into the base image
     # The base image should already exist in ACR (built by build-base-image.sh)
     # The arp-warp layer should also exist (built by build-arpwarp-image.sh)
     #
@@ -178,7 +178,7 @@ if [ "$BUILD_SERVER" = true ]; then
       --registry $ACR_NAME \
       --image ccp4i2/server:$IMAGE_TAG_SERVER \
       --image ccp4i2/server:latest \
-      --file Docker/server/Dockerfile.with-ccp4 \
+      --file Docker/server/Dockerfile \
       --platform linux/amd64 \
       --build-arg ACR_LOGIN_SERVER=$BASE_IMAGE_ACR \
       --build-arg CCP4_VERSION=$CCP4_VERSION \

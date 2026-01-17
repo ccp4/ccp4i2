@@ -46,15 +46,16 @@ import { VirtualizedCardGrid } from "./virtualized-card-grid";
 interface CampaignInfo {
   campaign_id: number;
   campaign_name: string;
-  member_count: number;
+  member_count?: number;
+  membership_type: "parent" | "member";
 }
 
-// Hook to fetch campaign info for projects
+// Hook to fetch campaign info for projects (includes both parent and member campaigns)
 function useProjectCampaigns(projectIds: number[]) {
   const idsParam = projectIds.join(",");
   const { data } = useSWR<Record<string, CampaignInfo>>(
     projectIds.length > 0
-      ? `/api/proxy/ccp4i2/projectgroups/project_campaigns/?project_ids=${idsParam}`
+      ? `/api/proxy/ccp4i2/projectgroups/project_campaigns/?project_ids=${idsParam}&include_members=true`
       : null,
     async (url: string) => {
       const response = await fetch(url);
@@ -545,6 +546,8 @@ export default function ProjectsTable() {
         searchable: true,
         render: (_, project) => {
           const campaign = campaignInfo[String(project.id)];
+          const isParent = campaign?.membership_type === "parent";
+          const isMember = campaign?.membership_type === "member";
           return (
             <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
               <Box
@@ -581,13 +584,29 @@ export default function ProjectsTable() {
                       sx={{ height: 16, fontSize: "0.65rem", mt: 0.5 }}
                     />
                   )}
-                  {campaign && (
+                  {isParent && (
                     <Tooltip title={`Campaign parent: ${campaign.campaign_name} (${campaign.member_count} datasets)`}>
                       <Chip
                         icon={<CampaignIcon sx={{ fontSize: "12px !important" }} />}
                         label={`${campaign.member_count} datasets`}
                         size="small"
                         color="secondary"
+                        sx={{ height: 16, fontSize: "0.65rem", mt: 0.5, cursor: "pointer" }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          router.push(`/ccp4i2/campaigns/${campaign.campaign_id}`);
+                        }}
+                      />
+                    </Tooltip>
+                  )}
+                  {isMember && (
+                    <Tooltip title={`Member of campaign: ${campaign.campaign_name}`}>
+                      <Chip
+                        icon={<CampaignIcon sx={{ fontSize: "12px !important" }} />}
+                        label={campaign.campaign_name}
+                        size="small"
+                        color="secondary"
+                        variant="outlined"
                         sx={{ height: 16, fontSize: "0.65rem", mt: 0.5, cursor: "pointer" }}
                         onClick={(e) => {
                           e.stopPropagation();

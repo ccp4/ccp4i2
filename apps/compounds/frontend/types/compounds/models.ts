@@ -7,6 +7,10 @@ export interface Supplier {
   id: string;
   name: string;
   initials: string | null;
+  user: number | null;
+  is_current_user?: boolean;
+  compound_count?: number;
+  batch_count?: number;
 }
 
 export interface Target {

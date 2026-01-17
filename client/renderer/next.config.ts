@@ -21,7 +21,8 @@ const csp = {
   workerSrc: "'self' blob:",
   frameSrc:
     "'self' https://login.microsoftonline.com https://*.microsoftonline.com",
-  frameAncestors: "'self'",
+  // Allow Teams to embed the app
+  frameAncestors: "'self' https://teams.microsoft.com https://*.teams.microsoft.com https://*.office.com https://*.microsoft.com",
 };
 
 const cspString = [
@@ -73,58 +74,175 @@ const nextConfig: NextConfig = {
   },
 
   async headers() {
+    // Cross-origin isolation headers required for SharedArrayBuffer (Moorhen WebAssembly)
+    const webAssemblyHeaders = [
+      {
+        key: "Cross-Origin-Opener-Policy",
+        value: "same-origin",
+      },
+      {
+        key: "Cross-Origin-Embedder-Policy",
+        value: "require-corp",
+      },
+    ];
+
     // Development headers (more permissive)
     if (isDevelopment) {
+      const devCommonHeaders = [
+        { key: "Content-Security-Policy", value: cspString },
+        { key: "Access-Control-Allow-Origin", value: "*" },
+        {
+          key: "Access-Control-Allow-Headers",
+          value:
+            "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
+        },
+        {
+          key: "Access-Control-Allow-Methods",
+          value: "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+        },
+      ];
+
+      // Cross-Origin-Resource-Policy: cross-origin allows loading from any context
+      // This is safe and enables both COEP pages and cross-origin embedding
+      const corpHeader = {
+        key: "Cross-Origin-Resource-Policy",
+        value: "cross-origin",
+      };
+
       return [
+        // All static assets get CORP: cross-origin to work with both COEP and Teams embedding
+        {
+          source: "/_next/:path*",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.js",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.wasm",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.css",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.json",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.png",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.svg",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.woff",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.woff2",
+          headers: [corpHeader],
+        },
+        // Moorhen pages need strict cross-origin isolation for WebAssembly
+        {
+          source: "/ccp4i2/moorhen-page",
+          headers: [...devCommonHeaders, ...webAssemblyHeaders],
+        },
+        {
+          source: "/ccp4i2/moorhen-page/:path*",
+          headers: [...devCommonHeaders, ...webAssemblyHeaders],
+        },
+        // All other routes
         {
           source: "/:path*",
-          headers: [
-            { key: "Content-Security-Policy", value: cspString },
-            { key: "Access-Control-Allow-Origin", value: "*" },
-            {
-              key: "Access-Control-Allow-Headers",
-              value:
-                "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
-            },
-            {
-              key: "Access-Control-Allow-Methods",
-              value: "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            },
-          ],
+          headers: devCommonHeaders,
         },
       ];
     }
 
-    // Production headers (WebAssembly-compatible)
+    // Common headers for all routes
+    const commonHeaders = [
+      { key: "Content-Security-Policy", value: cspString },
+      {
+        key: "Access-Control-Allow-Origin",
+        value: process.env.CORS_ALLOWED_ORIGINS || "https://yourdomain.com",
+      },
+      {
+        key: "Access-Control-Allow-Headers",
+        value:
+          "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
+      },
+      {
+        key: "Access-Control-Allow-Methods",
+        value: "GET, POST, PUT, DELETE, PATCH, OPTIONS",
+      },
+    ];
+
+    // Cross-Origin-Resource-Policy: cross-origin allows loading from any context
+    // This is safe and enables both COEP pages and Teams embedding
+    const corpHeader = {
+      key: "Cross-Origin-Resource-Policy",
+      value: "cross-origin",
+    };
+
+    // Production headers with route-specific policies
     return [
+      // Static assets need CORP header to be loadable from COEP-enabled pages
+      // Apply to all common static asset patterns
+      {
+        source: "/_next/:path*",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.js",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.wasm",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.css",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.json",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.png",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.svg",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.woff",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.woff2",
+        headers: [corpHeader],
+      },
+      // Moorhen pages need strict cross-origin isolation for WebAssembly/SharedArrayBuffer
+      // Need both patterns: one for /moorhen-page itself, one for subroutes
+      {
+        source: "/ccp4i2/moorhen-page",
+        headers: [...commonHeaders, ...webAssemblyHeaders],
+      },
+      {
+        source: "/ccp4i2/moorhen-page/:path*",
+        headers: [...commonHeaders, ...webAssemblyHeaders],
+      },
+      // All other routes - no cross-origin isolation, allows Teams embedding
       {
         source: "/:path*",
-        headers: [
-          { key: "Content-Security-Policy", value: cspString },
-          // Restrictive CORS for production
-          {
-            key: "Access-Control-Allow-Origin",
-            value: process.env.CORS_ALLOWED_ORIGINS || "https://yourdomain.com",
-          },
-          {
-            key: "Access-Control-Allow-Headers",
-            value:
-              "Origin, X-Requested-With, Content, Accept, Content-Type, Authorization",
-          },
-          {
-            key: "Access-Control-Allow-Methods",
-            value: "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-          },
-          // Cross-origin isolation for WebAssembly
-          {
-            key: "Cross-Origin-Opener-Policy",
-            value: "same-origin",
-          },
-          {
-            key: "Cross-Origin-Embedder-Policy",
-            value: "require-corp",
-          },
-        ],
+        headers: commonHeaders,
       },
     ];
   },

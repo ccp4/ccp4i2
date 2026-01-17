@@ -50,7 +50,15 @@ class coordinate_selector(CPluginScript):
 
         if self.container.controlParameters.OVERRIDE_SUBTYPE.isSet():
             self.container.outputData.XYZOUT.subType = int(self.container.controlParameters.OVERRIDE_SUBTYPE)
-        self.container.outputData.XYZOUT.annotation.set(self.container.inputData.XYZIN.selection.__str__()+' of '+self.container.inputData.XYZIN.annotation.__str__())
+        # Get the selection text, defaulting to "All" if not set or empty
+        selection = self.container.inputData.XYZIN.selection
+        if selection and selection.text and selection.text.isSet():
+            selection_text = str(selection.text).strip()
+            if not selection_text:
+                selection_text = "All"
+        else:
+            selection_text = "All"
+        self.container.outputData.XYZOUT.annotation.set(selection_text + ' of ' + self.container.inputData.XYZIN.annotation.__str__())
 
         from ccp4i2.core.CCP4ModelData import CPdbData
         aCPdbData = CPdbData()

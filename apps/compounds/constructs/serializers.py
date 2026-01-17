@@ -5,6 +5,7 @@ DRF serializers for construct database models.
 Follows tiered serializer pattern (List, Detail, Create variants).
 """
 
+from django.urls import reverse
 from rest_framework import serializers
 
 from .models import (
@@ -21,6 +22,48 @@ from .models import (
     ExpressionTagLocation,
     ExpressionTag,
 )
+
+
+class ProtectedFileField(serializers.Field):
+    """
+    Custom field that returns a protected API URL for file downloads
+    instead of the direct storage URL.
+
+    This ensures files are served through authenticated endpoints.
+    """
+
+    def __init__(self, url_name, id_field='id', **kwargs):
+        """
+        Args:
+            url_name: Name of the URL pattern for the protected endpoint
+            id_field: Field on the model to use as the URL argument
+        """
+        self.url_name = url_name
+        self.id_field = id_field
+        kwargs['read_only'] = True
+        super().__init__(**kwargs)
+
+    def to_representation(self, value):
+        """Return the protected URL if file exists, None otherwise."""
+        if not value:
+            return None
+
+        # Get the parent object's ID
+        obj = self.parent.instance
+        if hasattr(obj, '__iter__') and not isinstance(obj, dict):
+            return None
+
+        obj_id = getattr(obj, self.id_field, None)
+        if not obj_id:
+            return None
+
+        # Build the protected URL
+        request = self.context.get('request')
+        url = reverse(f'compounds:{self.url_name}', kwargs={f'{self.id_field}': obj_id})
+
+        if request:
+            return request.build_absolute_uri(url)
+        return url
 
 
 # =============================================================================
@@ -256,6 +299,8 @@ class CassetteUseDetailSerializer(serializers.ModelSerializer):
     )
     expression_tags = ExpressionTagSerializer(many=True, read_only=True)
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    # Use protected URL for alignment file instead of direct storage URL
+    alignment_file = ProtectedFileField(url_name='cassette-use-alignment', id_field='id')
 
     class Meta:
         model = CassetteUse
@@ -295,6 +340,8 @@ class SequencingResultSerializer(serializers.ModelSerializer):
         source='cassette_use.cassette.display_name', read_only=True
     )
     filename = serializers.CharField(read_only=True)
+    # Use protected URL for file instead of direct storage URL
+    file = ProtectedFileField(url_name='sequencing-result-file', id_field='id')
 
     class Meta:
         model = SequencingResult
@@ -356,7 +403,8 @@ class PlasmidDetailSerializer(serializers.ModelSerializer):
     cassette_uses = CassetteUseDetailSerializer(many=True, read_only=True)
     sequencing_results = SequencingResultSerializer(many=True, read_only=True)
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
-    genbank_file_url = serializers.SerializerMethodField()
+    # Use protected URL for genbank file instead of direct storage URL
+    genbank_file = ProtectedFileField(url_name='plasmid-genbank', id_field='id')
 
     class Meta:
         model = Plasmid
@@ -364,20 +412,11 @@ class PlasmidDetailSerializer(serializers.ModelSerializer):
             'id', 'ncn_id', 'formatted_id', 'name',
             'project', 'project_name',
             'parent', 'parent_formatted_id',
-            'genbank_file', 'genbank_file_url',
+            'genbank_file',
             'cassette_uses', 'sequencing_results',
             'created_at', 'updated_at', 'created_by', 'created_by_email',
         ]
         read_only_fields = ['ncn_id', 'formatted_id', 'created_at', 'updated_at']
-
-    def get_genbank_file_url(self, obj):
-        """Return URL for downloading the GenBank file."""
-        if obj.genbank_file:
-            request = self.context.get('request')
-            if request:
-                return request.build_absolute_uri(obj.genbank_file.url)
-            return obj.genbank_file.url
-        return None
 
 
 class PlasmidCreateSerializer(serializers.ModelSerializer):

@@ -4,6 +4,7 @@ Assays Serializers
 DRF serializers for assay models.
 """
 
+from django.urls import reverse
 from rest_framework import serializers
 
 from .models import (
@@ -17,6 +18,50 @@ from .models import (
     FittingMethod,
 )
 from compounds.registry.serializers import CompoundListSerializer
+
+
+class ProtectedFileField(serializers.Field):
+    """
+    Custom field that returns a protected API URL for file downloads
+    instead of the direct storage URL.
+
+    This ensures files are served through authenticated endpoints.
+    """
+
+    def __init__(self, url_name, id_field='id', **kwargs):
+        """
+        Args:
+            url_name: Name of the URL pattern for the protected endpoint
+            id_field: Field on the model to use as the URL argument
+        """
+        self.url_name = url_name
+        self.id_field = id_field
+        kwargs['read_only'] = True
+        super().__init__(**kwargs)
+
+    def to_representation(self, value):
+        """Return the protected URL if file exists, None otherwise."""
+        if not value:
+            return None
+
+        # Get the parent object's ID
+        obj = self.parent.instance
+        if hasattr(obj, '__iter__') and not isinstance(obj, dict):
+            # If serializing a list, we need to find the right object
+            # This shouldn't happen for file fields, but handle gracefully
+            return None
+
+        obj_id = getattr(obj, self.id_field, None)
+        if not obj_id:
+            return None
+
+        # Build the protected URL
+        request = self.context.get('request')
+        url = reverse(f'compounds:{self.url_name}', kwargs={f'{self.id_field}': obj_id})
+
+        if request:
+            return request.build_absolute_uri(url)
+        return url
 
 
 class FittingMethodSerializer(serializers.ModelSerializer):
@@ -52,6 +97,8 @@ class DilutionSeriesSerializer(serializers.ModelSerializer):
 
 class ProtocolDocumentSerializer(serializers.ModelSerializer):
     filename = serializers.SerializerMethodField()
+    # Use protected URL for file instead of direct storage URL
+    file = ProtectedFileField(url_name='protocol-document-file', id_field='id')
 
     class Meta:
         model = ProtocolDocument
@@ -248,6 +295,8 @@ class AssayDetailSerializer(serializers.ModelSerializer):
     data_filename = serializers.CharField(read_only=True)
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
     data_series = DataSeriesListSerializer(many=True, read_only=True)
+    # Use protected URL for data file instead of direct storage URL
+    data_file = ProtectedFileField(url_name='assay-data-file', id_field='id')
 
     class Meta:
         model = Assay

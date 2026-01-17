@@ -9,6 +9,14 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from compounds.admin_views import import_legacy_fixtures, import_status, reset_compounds_data
+from compounds.media_views import (
+    serve_assay_data_file,
+    serve_protocol_document,
+    serve_batch_qc_file,
+    serve_plasmid_genbank,
+    serve_cassette_use_alignment,
+    serve_sequencing_result,
+)
 from compounds.registry.views import (
     SupplierViewSet,
     TargetViewSet,
@@ -86,6 +94,15 @@ urlpatterns = [
     path('admin/import-status/', import_status, name='import-status'),
     # DANGER: Reset endpoint - only works when CCP4I2_ALLOW_DB_RESET=true
     path('admin/reset-data/', reset_compounds_data, name='reset-compounds-data'),
+
+    # Protected media file endpoints
+    # These serve files through authentication rather than direct /files/ access
+    path('media/assays/<uuid:assay_id>/data_file/', serve_assay_data_file, name='assay-data-file'),
+    path('media/protocol-documents/<uuid:document_id>/file/', serve_protocol_document, name='protocol-document-file'),
+    path('media/batch-qc-files/<uuid:qc_file_id>/file/', serve_batch_qc_file, name='batch-qc-file'),
+    path('media/plasmids/<uuid:plasmid_id>/genbank/', serve_plasmid_genbank, name='plasmid-genbank'),
+    path('media/cassette-uses/<uuid:cassette_use_id>/alignment/', serve_cassette_use_alignment, name='cassette-use-alignment'),
+    path('media/sequencing-results/<uuid:result_id>/file/', serve_sequencing_result, name='sequencing-result-file'),
 
     # Router-based endpoints
     path('', include(router.urls)),

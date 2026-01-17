@@ -184,35 +184,69 @@ The web Docker image (`ccp4i2/web`) is built using `Docker/client/Dockerfile`. T
 
 ### Configuration
 
-- **Environment file**: `Docker/azure/.env.deployment` - Contains ACR name, resource group, and other deployment settings
-- **ACR Registry**: `ccp4acrnekmay.azurecr.io`
+- **Region**: UK South
+- **Environment file**: `Docker/azure-uksouth/.env.deployment` - Contains ACR name, resource group, and deployment settings
+- **ACR Registry**: `ccp4acrukbwmx.azurecr.io`
+- **Resource Group**: `ccp4i2-bicep-rg-uksouth`
+
+### Layered Container Build Architecture
+
+The deployment uses a **3-layer approach** to optimize image sizes and rebuild times:
+
+#### Layer 1: CCP4 Base Image
+- **Dockerfile**: `Docker/base/Dockerfile.ccp4-base`
+- **Image**: `ccp4i2/base:ccp4-20251105`
+- **Purpose**: Contains the large, static CCP4 installation (~10GB)
+- **Rebuild**: Only when CCP4 version updates
+
+#### Layer 2: ARP/wARP Layer
+- **Dockerfile**: `Docker/base/Dockerfile.arpwarp`
+- **Image**: `ccp4i2/base-arpwarp:ccp4-20251105`
+- **Purpose**: Adds ARP/wARP tools on top of CCP4 base
+- **Rebuild**: Only when ARP/wARP updates
+
+#### Layer 3: Application Images
+- **Server Dockerfile**: `Docker/server/Dockerfile.with-ccp4`
+- **Web Dockerfile**: `Docker/client/Dockerfile`
+- **Images**: `ccp4i2/server:timestamp`, `ccp4i2/web:timestamp`
+- **Purpose**: Application code only (~500MB)
+- **Rebuild**: On every code change (fast)
 
 ### Container Images
 
 | Repository | Description |
 |------------|-------------|
-| `ccp4i2/web` | Unified Next.js frontend (CCP4i2 + Compounds overlay) |
-| `ccp4i2/server` | Django backend |
+| `ccp4i2/base` | CCP4 installation base layer |
+| `ccp4i2/base-arpwarp` | CCP4 + ARP/wARP layer |
+| `ccp4i2/server` | Django backend (built on base-arpwarp) |
+| `ccp4i2/web` | Next.js frontend (CCP4i2 + Compounds overlay) |
 
 ### Container Apps
 
-| App Name | Purpose |
-|----------|---------|
-| `ccp4i2-bicep-web` | Unified frontend (CCP4i2 + Compounds) |
-| `ccp4i2-bicep-server` | Unified backend API (CCP4i2 + Compounds) |
-| `ccp4i2-bicep-worker` | Background job worker |
+| App Name | Purpose | Scaling |
+|----------|---------|---------|
+| `ccp4i2-bicep-web` | Next.js frontend | 1-5 replicas (HTTP) |
+| `ccp4i2-bicep-server` | Django REST API | 1-10 replicas (CPU/HTTP) |
+| `ccp4i2-bicep-worker` | Background job processor | 0-20 replicas (queue depth) |
 
 ### Deployment Commands
 
 ```bash
 # Source environment variables
-. ./Docker/azure/.env.deployment
+. ./Docker/azure-uksouth/.env.deployment
 
-# Build and push an image (web, server, or worker)
-./Docker/azure/scripts/build-and-push.sh web
+# Build base layers (one-time or on CCP4/ARP updates)
+./Docker/azure-uksouth/scripts/build-base-image.sh ~/ccp4data/ccp4-20251105-dereferenced.tgz
+./Docker/azure-uksouth/scripts/build-arpwarp-image.sh ~/ccp4data/arp-warp-8.0-dereferenced.tgz
 
-# Deploy to container app
-./Docker/azure/scripts/deploy-applications.sh web
+# Build and push application images (frequent - on code changes)
+./Docker/azure-uksouth/scripts/build-and-push.sh web
+./Docker/azure-uksouth/scripts/build-and-push.sh server
+
+# Deploy to container apps
+./Docker/azure-uksouth/scripts/deploy-applications.sh web
+./Docker/azure-uksouth/scripts/deploy-applications.sh server
+./Docker/azure-uksouth/scripts/deploy-applications.sh worker
 
 # Check current deployed image
 az containerapp show --name ccp4i2-bicep-web --resource-group "$RESOURCE_GROUP" --query "properties.template.containers[0].image" -o tsv
@@ -220,3 +254,15 @@ az containerapp show --name ccp4i2-bicep-web --resource-group "$RESOURCE_GROUP" 
 # Check available image tags
 az acr repository show-tags --name "$ACR_NAME" --repository ccp4i2/web --orderby time_desc --top 5
 ```
+
+### Key Differences from Previous Architecture
+
+| Aspect | Previous (North Europe) | Current (UK South) |
+|--------|------------------------|-------------------|
+| Region | North Europe | UK South |
+| ACR | `ccp4acrnekmay` | `ccp4acrukbwmx` |
+| Config directory | `Docker/azure/` | `Docker/azure-uksouth/` |
+| CCP4 deployment | Mounted from Azure Files at runtime | Bundled in container images |
+| Image build | Single monolithic build | 3-layer approach |
+| Server image size | ~15GB (full CCP4) | ~500MB (app only) |
+| Rebuild speed | Slow (rebuilds entire CCP4) | Fast (only app layer) |
