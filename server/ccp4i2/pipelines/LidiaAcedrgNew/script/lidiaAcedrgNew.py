@@ -31,6 +31,7 @@ class lidiaAcedrgNew(CPluginScript):
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:
             self.reportStatus(CPluginScript.FAILED)
+            return
         self.checkOutputData()
         
         if self.container.inputData.MOLSMILESORSKETCH.__str__() == 'SKETCH':
@@ -138,6 +139,7 @@ class lidiaAcedrgNew(CPluginScript):
         result = acedrgPlugin.process()
         if result != CPluginScript.SUCCEEDED:
             self.finishWithStatus(result)
+            return result
         out = self.container.outputData
         import shutil
 

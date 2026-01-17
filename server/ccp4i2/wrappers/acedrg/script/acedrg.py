@@ -150,7 +150,7 @@ class acedrg(CPluginScript):
                                     propertyNode = etree.SubElement(exampleNode, property)
                                     propertyNode.text = example[property]
             except:
-                self.apppendErrorReport(202)
+                self.appendErrorReport(202)
                 return CPluginScript.FAILED
             
         from rdkit import Chem

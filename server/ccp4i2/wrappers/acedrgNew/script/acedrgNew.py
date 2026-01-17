@@ -293,7 +293,7 @@ class acedrgNew(CPluginScript):
                                     propertyNode = etree.SubElement(exampleNode, property)
                                     propertyNode.text = example[property]
             except:
-                self.apppendErrorReport(202)
+                self.appendErrorReport(202)
                 return CPluginScript.FAILED
             
         # AND THIS IS WHERE I START TRASHING STUFF ......
