@@ -529,10 +529,8 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
       {parentProject && parentFiles?.coordinates?.[0] && (
         <BatchImportDialog
           open={showBatchImport}
-          onClose={() => {
-            setShowBatchImport(false);
-            mutateMemberProjects();
-          }}
+          onClose={() => setShowBatchImport(false)}
+          onSuccess={() => mutateMemberProjects()}
           campaignId={campaignId}
           parentProjectId={parentProject.id}
           latestCoordsFileId={parentFiles.coordinates[parentFiles.coordinates.length - 1].id}

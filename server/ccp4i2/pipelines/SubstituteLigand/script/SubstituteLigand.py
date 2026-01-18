@@ -328,12 +328,21 @@ class SubstituteLigand(CPluginScript):
 
             if ligands_found and len(ligands_found) > 0:
                 # Determine how many ligands to merge based on NCS
-                print("[COOT DEBUG] Checking NCS chains...")
-                ncs_chains = mc.get_ncs_related_chains(imol_protein)
-                print(f"[COOT DEBUG] ncs_chains = {ncs_chains}")
-                n_to_copy = len(ligands_found)
-                if ncs_chains and len(ncs_chains) > 0:
-                    n_to_copy = min(len(ligands_found), len(ncs_chains))
+                n_to_copy = 1  # Default to merging just the best ligand
+                try:
+                    print("[COOT DEBUG] Checking NCS chains...")
+                    ncs_chains = mc.get_ncs_related_chains(imol_protein)
+                    print(f"[COOT DEBUG] ncs_chains = {ncs_chains}")
+                    if ncs_chains and len(ncs_chains) > 0:
+                        # ncs_chains is a nested list like [[A,C], [B,D]]
+                        # Use the number of chains in the first group as ligand count
+                        n_to_copy = min(len(ligands_found), len(ncs_chains[0]))
+                except (AttributeError, Exception) as e:
+                    # Method may not be available in older coot versions
+                    print(f"[COOT DEBUG] NCS check not available: {e}")
+                    n_to_copy = 1
+
+                print(f"[COOT DEBUG] Found {len(ligands_found)} ligand positions, merging {n_to_copy}")
 
                 # Merge found ligands into protein model
                 if n_to_copy > 0:

@@ -12,6 +12,7 @@ import {
   LinearProgress,
   Paper,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
 import { CloudUpload as UploadIcon } from "@mui/icons-material";
@@ -31,6 +32,7 @@ export function CoordsImportDialog({
   parentProjectName,
 }: CoordsImportDialogProps) {
   const [coordFile, setCoordFile] = useState<File | null>(null);
+  const [selectionText, setSelectionText] = useState("");
   const [progress, setProgress] = useState(0);
   const [progressMessage, setProgressMessage] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -74,10 +76,20 @@ export function CoordsImportDialog({
 
       await apiUpload(`jobs/${newJobId}/upload_file_param/`, formData);
 
+      // 3. Set selection text if provided (to exclude ligands etc.)
+      if (selectionText.trim()) {
+        setProgress(45);
+        setProgressMessage("Setting atom selection...");
+        await apiPost(`jobs/${newJobId}/set_parameter/`, {
+          object_path: "coordinate_selector.inputData.XYZIN.selection.text",
+          value: selectionText.trim(),
+        });
+      }
+
       setProgress(60);
       setProgressMessage("Running coordinate import...");
 
-      // 3. Run the job synchronously (coordinate_selector is quick)
+      // 4. Run the job synchronously (coordinate_selector is quick)
       // Use run_local with synchronous=true to wait for completion
       await apiPost(`jobs/${newJobId}/run_local/`, { synchronous: true });
 
@@ -94,11 +106,12 @@ export function CoordsImportDialog({
     } finally {
       setLoading(false);
     }
-  }, [coordFile, parentProjectId]);
+  }, [coordFile, parentProjectId, selectionText]);
 
   const handleClose = () => {
     if (!loading) {
       setCoordFile(null);
+      setSelectionText("");
       setProgress(0);
       setProgressMessage(null);
       onClose();
@@ -163,6 +176,18 @@ export function CoordsImportDialog({
               </>
             )}
           </Paper>
+
+          {/* Atom selection field */}
+          <TextField
+            label="Atom Selection (optional)"
+            placeholder="e.g., protein and not ligand"
+            value={selectionText}
+            onChange={(e) => setSelectionText(e.target.value)}
+            disabled={loading}
+            fullWidth
+            size="small"
+            helperText="Use keywords: protein, ligand, solvent, backbone. Combine with: and, or, not. Leave blank for all atoms."
+          />
 
           {loading && <LinearProgress variant="determinate" value={progress} />}
         </Stack>

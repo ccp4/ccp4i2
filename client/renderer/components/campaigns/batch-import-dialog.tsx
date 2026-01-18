@@ -34,10 +34,12 @@ import {
   BatchFileStatus,
   parseDatasetFilename,
 } from "../../types/campaigns";
+import { usePopcorn } from "../../providers/popcorn-provider";
 
 interface BatchImportDialogProps {
   open: boolean;
   onClose: () => void;
+  onSuccess?: () => void;
   campaignId: number;
   parentProjectId: number;
   latestCoordsFileId: number;
@@ -93,6 +95,7 @@ function filesReducer(state: BatchFileItem[], action: FileAction): BatchFileItem
 export function BatchImportDialog({
   open,
   onClose,
+  onSuccess,
   campaignId,
   parentProjectId,
   latestCoordsFileId,
@@ -102,6 +105,7 @@ export function BatchImportDialog({
   const [currentFileIndex, setCurrentFileIndex] = useState(-1);
 
   const campaignsApi = useCampaignsApi();
+  const { setMessage } = usePopcorn();
 
   // Extract unique regIds for SMILES lookup
   const regIds = files
@@ -239,21 +243,36 @@ export function BatchImportDialog({
   // Process all files sequentially
   const processAllFiles = async () => {
     setProcessing(true);
+    let successCount = 0;
+    let errorCount = 0;
 
     for (let i = 0; i < files.length; i++) {
       if (files[i].status === "idle" || files[i].status === "error") {
         setCurrentFileIndex(i);
         try {
           await processFile(files[i]);
+          successCount++;
         } catch (error) {
           // Continue with next file even if one fails
           console.error("Error processing file:", error);
+          errorCount++;
         }
       }
     }
 
     setCurrentFileIndex(-1);
     setProcessing(false);
+
+    // Auto-close on success and show popcorn message
+    if (errorCount === 0 && successCount > 0) {
+      const message = successCount === 1
+        ? "1 dataset queued for processing"
+        : `${successCount} datasets queued for processing`;
+      setMessage(message, "success");
+      dispatch({ type: "CLEAR" });
+      onSuccess?.();
+      onClose();
+    }
   };
 
   const handleClose = () => {

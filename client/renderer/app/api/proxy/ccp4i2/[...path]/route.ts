@@ -23,15 +23,24 @@ function isAuthRequired(): boolean {
 
 /**
  * Extract authentication token from request.
+ * Checks (in order): Authorization header, Azure Easy Auth header, query parameter.
+ * Query parameter is needed for file downloads where anchor clicks don't send headers.
  */
 function extractAuthToken(req: NextRequest): string | null {
+  // Check Authorization header first
   const authHeader = req.headers.get("Authorization");
   if (authHeader?.startsWith("Bearer ")) {
     return authHeader.substring(7);
   }
+  // Check Azure Easy Auth header
   const easyAuthToken = req.headers.get("X-MS-TOKEN-AAD-ACCESS-TOKEN");
   if (easyAuthToken) {
     return easyAuthToken;
+  }
+  // Check query parameter (used by file downloads via anchor clicks)
+  const queryToken = req.nextUrl.searchParams.get("access_token");
+  if (queryToken) {
+    return queryToken;
   }
   return null;
 }
