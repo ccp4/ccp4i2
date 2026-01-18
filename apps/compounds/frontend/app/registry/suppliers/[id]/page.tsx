@@ -141,8 +141,9 @@ export default function SupplierDetailPage() {
     <Container maxWidth="md" sx={{ py: 4 }}>
       <PageHeader
         breadcrumbs={[
+          { label: 'Home', href: routes.home(), icon: 'home' },
           { label: 'Registry', href: routes.registry.targets() },
-          { label: 'Suppliers', href: routes.registry.suppliers() },
+          { label: 'Suppliers', href: routes.registry.suppliers(), icon: 'supplier' },
           { label: supplier.name },
         ]}
       />

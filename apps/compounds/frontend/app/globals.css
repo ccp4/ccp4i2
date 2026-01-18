@@ -1,14 +1,8 @@
-:root {
-  --foreground: #171717;
-  --background: #ffffff;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground: #ededed;
-    --background: #0a0a0a;
-  }
-}
+/*
+ * Global styles for compounds frontend.
+ * Theme colors (background, text) are handled by MUI's CssBaseline and ThemeProvider.
+ * This file only contains layout and reset styles.
+ */
 
 html,
 body {
@@ -17,8 +11,6 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;

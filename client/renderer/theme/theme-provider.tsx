@@ -7,6 +7,7 @@ import React, {
   ReactNode,
 } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
 import {
   lightPaletteOptions,
   darkPaletteOptions,
@@ -43,6 +44,7 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
   children,
 }) => {
   const [mode, setMode] = useState<ThemeMode>("light");
+  const [mounted, setMounted] = useState(false);
 
   // Load theme preference from localStorage on mount
   useEffect(() => {
@@ -56,12 +58,15 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
       ).matches;
       setMode(prefersDark ? "dark" : "light");
     }
+    setMounted(true);
   }, []);
 
-  // Save theme preference to localStorage
+  // Save theme preference to localStorage (only after initial mount)
   useEffect(() => {
-    localStorage.setItem("ccp4i2-theme", mode);
-  }, [mode]);
+    if (mounted) {
+      localStorage.setItem("ccp4i2-theme", mode);
+    }
+  }, [mode, mounted]);
 
   // Listen for theme changes from Electron native menu
   useEffect(() => {
@@ -115,7 +120,10 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
 
   return (
     <ThemeContext.Provider value={contextValue}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
     </ThemeContext.Provider>
   );
 };

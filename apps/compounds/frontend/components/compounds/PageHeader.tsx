@@ -17,10 +17,13 @@ import {
   Science,
   Logout,
   Person,
+  DarkMode,
+  LightMode,
 } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { Breadcrumbs, BreadcrumbItem } from './Breadcrumbs';
 import { routes } from '@/lib/compounds/routes';
+import { useTheme } from '@/lib/compounds/theme-provider';
 
 interface PageHeaderProps {
   /** Breadcrumb items for the current page */
@@ -41,6 +44,7 @@ const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === 'true';
  */
 export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps) {
   const router = useRouter();
+  const { mode, toggleTheme } = useTheme();
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(null);
 
   // Auth context is injected by the parent app (ccp4i2) when running in Docker
@@ -112,6 +116,17 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
                 sx={{ color: 'text.secondary' }}
               >
                 <Science fontSize="small" />
+              </IconButton>
+            </Tooltip>
+
+            {/* Theme toggle */}
+            <Tooltip title={mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}>
+              <IconButton
+                size="small"
+                onClick={toggleTheme}
+                sx={{ color: 'text.secondary' }}
+              >
+                {mode === 'light' ? <DarkMode fontSize="small" /> : <LightMode fontSize="small" />}
               </IconButton>
             </Tooltip>
 

@@ -60,7 +60,8 @@ COPY apps/compounds/frontend/app/app-selector/page.tsx ./renderer/app/page.tsx
 
 # Copy components, lib, and types (already in compounds/ subfolders)
 COPY apps/compounds/frontend/components/compounds/ ./renderer/components/compounds/
-# Copy lib/compounds files EXCEPT rdkit-context.tsx (core has its own that re-exports from providers)
+# Copy lib/compounds files EXCEPT rdkit-context.tsx and theme-provider.tsx
+# (core has its own that re-exports from providers/theme)
 # This ensures compounds components share the same React context as the root layout
 COPY apps/compounds/frontend/lib/compounds/aggregation-api.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/api.ts ./renderer/lib/compounds/
