@@ -82,14 +82,16 @@ export default function AppSelectorPage() {
             color: 'inherit',
             '&:hover': { bgcolor: 'action.hover' },
           }}
-          component={Link}
+          component="a"
           href="/ccp4i2/moorhen-page"
+          target="_blank"
+          rel="noopener"
         >
           <Visibility sx={{ fontSize: 56, color: 'primary.light' }} />
           <Box>
             <Typography variant="h5">Moorhen Viewer</Typography>
             <Typography color="text.secondary">
-              Interactive molecular structure viewer (blank session)
+              Opens in new tab (requires cross-origin isolation)
             </Typography>
           </Box>
         </Paper>
