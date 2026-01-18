@@ -115,12 +115,22 @@ const nextConfig: NextConfig = {
           source: "/_next/:path*",
           headers: [corpHeader],
         },
+        // Root-level static files (moorhen.js, CootWorker.js, etc.)
         {
-          source: "/:path*.js",
+          source: "/:file.js",
           headers: [corpHeader],
         },
         {
-          source: "/:path*.wasm",
+          source: "/:file.wasm",
+          headers: [corpHeader],
+        },
+        // Nested static files
+        {
+          source: "/:path*/:file.js",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*/:file.wasm",
           headers: [corpHeader],
         },
         {
@@ -145,6 +155,15 @@ const nextConfig: NextConfig = {
         },
         {
           source: "/:path*.woff2",
+          headers: [corpHeader],
+        },
+        // Data files for Moorhen (rotamer data, etc.)
+        {
+          source: "/:path*.data",
+          headers: [corpHeader],
+        },
+        {
+          source: "/:path*.gz",
           headers: [corpHeader],
         },
         // Moorhen pages need strict cross-origin isolation for WebAssembly
@@ -197,12 +216,22 @@ const nextConfig: NextConfig = {
         source: "/_next/:path*",
         headers: [corpHeader],
       },
+      // Root-level static files (moorhen.js, CootWorker.js, etc.)
       {
-        source: "/:path*.js",
+        source: "/:file.js",
         headers: [corpHeader],
       },
       {
-        source: "/:path*.wasm",
+        source: "/:file.wasm",
+        headers: [corpHeader],
+      },
+      // Nested static files
+      {
+        source: "/:path*/:file.js",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*/:file.wasm",
         headers: [corpHeader],
       },
       {
@@ -227,6 +256,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/:path*.woff2",
+        headers: [corpHeader],
+      },
+      // Data files for Moorhen (rotamer data, etc.)
+      {
+        source: "/:path*.data",
+        headers: [corpHeader],
+      },
+      {
+        source: "/:path*.gz",
         headers: [corpHeader],
       },
       // Moorhen pages need strict cross-origin isolation for WebAssembly/SharedArrayBuffer

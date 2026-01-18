@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Container, Typography, Box, Chip, Button } from '@mui/material';
-import { Science, Add, LocalShipping } from '@mui/icons-material';
+import { Science, Add, LocalShipping, Apps } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -80,6 +80,14 @@ export default function TargetsPage() {
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', gap: 1 }}>
+          <Button
+            component={Link}
+            href="/"
+            variant="outlined"
+            startIcon={<Apps />}
+          >
+            All Apps
+          </Button>
           <Button
             component={Link}
             href={routes.registry.suppliers()}
