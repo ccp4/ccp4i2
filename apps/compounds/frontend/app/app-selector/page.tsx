@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Typography, Box, Stack, Paper } from '@mui/material';
-import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings, GridView } from '@mui/icons-material';
+import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings, GridView, Visibility } from '@mui/icons-material';
 import Link from 'next/link';
 
 /**
@@ -66,6 +66,30 @@ export default function AppSelectorPage() {
             <Typography variant="h5">Fragment Screening</Typography>
             <Typography color="text.secondary">
               Manage fragment screening campaigns with batch processing
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/ccp4i2/moorhen-page"
+        >
+          <Visibility sx={{ fontSize: 56, color: 'primary.light' }} />
+          <Box>
+            <Typography variant="h5">Moorhen Viewer</Typography>
+            <Typography color="text.secondary">
+              Interactive molecular structure viewer (blank session)
             </Typography>
           </Box>
         </Paper>

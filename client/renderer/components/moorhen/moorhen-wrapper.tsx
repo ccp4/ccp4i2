@@ -131,6 +131,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
     return result;
   }, [leftPanelWidth, windowHeight]);
 
+  // URL prefix for Moorhen to load its resources
+  // In web browsers, use API route for CORP headers (COEP compatibility)
+  // In Electron, serve directly from public/baby-gru
+  const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
+  const urlPrefix = isElectron ? "/baby-gru" : "/api/moorhen/baby-gru";
+
   const collectedProps = {
     glRef,
     timeCapsuleRef,
@@ -142,6 +148,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
     prevActiveMoleculeRef,
     setMoorhenDimensions,
     monomerLibraryPath,
+    urlPrefix,
   };
 
   const { origin } = useSelector((state: moorhen.State) => state.glRef);

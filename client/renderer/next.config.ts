@@ -17,7 +17,7 @@ const csp = {
     "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.googleapis.com/css2",
   fontSrc:
     "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.gstatic.com",
-  scriptSrc: "'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'",
+  scriptSrc: "'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval' blob:",
   workerSrc: "'self' blob:",
   frameSrc:
     "'self' https://login.microsoftonline.com https://*.microsoftonline.com",
@@ -75,6 +75,8 @@ const nextConfig: NextConfig = {
 
   async headers() {
     // Cross-origin isolation headers required for SharedArrayBuffer (Moorhen WebAssembly)
+    // Using "credentialless" instead of "require-corp" - it still enables SharedArrayBuffer
+    // but doesn't require every sub-resource to have CORP headers
     const webAssemblyHeaders = [
       {
         key: "Cross-Origin-Opener-Policy",
@@ -82,7 +84,7 @@ const nextConfig: NextConfig = {
       },
       {
         key: "Cross-Origin-Embedder-Policy",
-        value: "require-corp",
+        value: "credentialless",
       },
     ];
 
