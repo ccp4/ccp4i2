@@ -58,6 +58,10 @@ COPY apps/compounds/frontend/app/api/proxy/compounds/ ./renderer/app/api/proxy/c
 # Copy app selector as the root page (replaces the redirect-only page)
 COPY apps/compounds/frontend/app/app-selector/page.tsx ./renderer/app/page.tsx
 
+# Copy legal pages (privacy policy, terms of use)
+COPY apps/compounds/frontend/app/privacy/ ./renderer/app/privacy/
+COPY apps/compounds/frontend/app/terms/ ./renderer/app/terms/
+
 # Copy components, lib, and types (already in compounds/ subfolders)
 COPY apps/compounds/frontend/components/compounds/ ./renderer/components/compounds/
 # Copy lib/compounds files EXCEPT rdkit-context.tsx and theme-provider.tsx
