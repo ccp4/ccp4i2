@@ -83,24 +83,26 @@ def _serve_file(file_field, filename_override=None):
 
     # Check if using Azure Blob Storage
     if _is_azure_storage_configured():
+        sas_error = None
         try:
             # Generate SAS URL for direct blob download
             # The blob path is stored in file_field.name (relative path in container)
             blob_path = file_field.name
             sas_url = _generate_sas_download_url(blob_path, filename)
-            logger.info(f"Redirecting to SAS URL for: {blob_path}")
-            return HttpResponseRedirect(sas_url)
+            logger.info(f"[SAS] Redirecting to SAS URL for: {blob_path}")
+            response = HttpResponseRedirect(sas_url)
+            response['X-Download-Method'] = 'sas-redirect'
+            return response
         except ValueError as e:
-            logger.error(f"Failed to generate SAS URL: {e}")
-            # Fall back to streaming through Django instead of 404
-            logger.info(f"Falling back to streaming file through Django: {file_field.name}")
+            sas_error = str(e)
+            logger.error(f"[SAS] Failed to generate SAS URL: {e}")
         except Exception as e:
-            logger.exception(f"Error generating SAS URL for {file_field.name}")
-            # Fall back to streaming through Django
-            logger.info(f"Falling back to streaming file through Django after error")
+            sas_error = str(e)
+            logger.exception(f"[SAS] Error generating SAS URL for {file_field.name}")
 
         # Stream file through Django when SAS generation fails
         # This uses the server's Managed Identity to read from Azure
+        logger.info(f"[STREAM] Falling back to streaming file through Django: {file_field.name}")
         try:
             content_type, _ = mimetypes.guess_type(filename)
             if not content_type:
@@ -117,9 +119,12 @@ def _serve_file(file_field, filename_override=None):
             ]
             disposition = 'inline' if content_type in viewable_types else 'attachment'
             response['Content-Disposition'] = f'{disposition}; filename="{filename}"'
+            response['X-Download-Method'] = 'django-stream'
+            if sas_error:
+                response['X-SAS-Error'] = sas_error[:200]  # Truncate for header safety
             return response
         except Exception as e:
-            logger.exception(f"Failed to stream file from Azure: {e}")
+            logger.exception(f"[STREAM] Failed to stream file from Azure: {e}")
             raise Http404(f"File not accessible: {e}")
 
     # Local filesystem access (non-Azure deployment)
