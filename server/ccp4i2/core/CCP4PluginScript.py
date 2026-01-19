@@ -3284,7 +3284,6 @@ class CPluginScript(CData):
             >>> # Returns: ('hklin.mtz', 'F_SIGF_F,F_SIGF_SIGF,ABCD_HLA,ABCD_HLB,ABCD_HLC,ABCD_HLD', error)
             >>> self.makeHklin0(['F_SIGF', 'ABCD'])
         """
-        from pathlib import Path
         import gemmi
 
         # Initialize error report
