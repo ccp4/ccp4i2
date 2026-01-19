@@ -264,10 +264,13 @@ class Compound(models.Model):
 def _batch_qc_path(instance, filename):
     """Generate upload path for batch QC files.
 
-    Legacy pattern: RegBatchQCFile_NCL-XXXXXXXX/{uuid}_{filename}
+    New pattern: RegisterCompounds/BatchQCFiles/NCL-XXXXXXXX/{uuid}_{filename}
+
+    Files are organized under a dedicated BatchQCFiles subdirectory within
+    RegisterCompounds, with per-compound directories named by their formatted ID.
     """
     compound_id = instance.batch.compound.formatted_id
-    return f'RegBatchQCFile_{compound_id}/{instance.id}_{filename}'
+    return f'RegisterCompounds/BatchQCFiles/{compound_id}/{instance.id}_{filename}'
 
 
 class Batch(models.Model):

@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import {
   Avatar,
   Box,
-  Button,
-  Chip,
   IconButton,
   ListItemIcon,
   ListItemText,
@@ -25,10 +23,10 @@ import {
   PlayArrow as RerunIcon,
   Refresh as RefreshCoordsIcon,
 } from "@mui/icons-material";
-import { useApi } from "../../api";
-import { apiPost, apiDelete } from "../../api-fetch";
+import { apiPost } from "../../api-fetch";
 import { parseDatasetFilename } from "../../types/campaigns";
 import { Job } from "../../types/models";
+import { SmilesView } from "./smiles-view";
 
 // Status ID to color mapping (matching legacy)
 const STATUS_COLORS: Record<number, string> = {
@@ -65,7 +63,6 @@ export function MemberProjectRow({
   onDelete,
 }: MemberProjectRowProps) {
   const router = useRouter();
-  const api = useApi();
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
 
   // Parse project name for metadata
@@ -222,7 +219,7 @@ export function MemberProjectRow({
             Presumed Apo
           </Typography>
         ) : smiles ? (
-          <SmilesViewer smiles={smiles} width={100} height={75} />
+          <SmilesView smiles={smiles} width={100} height={75} />
         ) : parsed.nclId ? (
           <Skeleton variant="rectangular" width={100} height={75} />
         ) : (
@@ -314,65 +311,3 @@ export function MemberProjectRow({
   );
 }
 
-// Simple SMILES viewer using RDKit (if available) or fallback
-function SmilesViewer({
-  smiles,
-  width,
-  height,
-}: {
-  smiles: string;
-  width: number;
-  height: number;
-}) {
-  // Try to use RDKit if available via window
-  // This requires RDKit to be loaded (which CCP4i2 does have)
-  const [svg, setSvg] = useState<string | null>(null);
-  const [error, setError] = useState(false);
-
-  // Attempt to render with RDKit
-  useMemo(() => {
-    if (typeof window !== "undefined" && (window as any).RDKit) {
-      try {
-        const RDKit = (window as any).RDKit;
-        const mol = RDKit.get_mol(smiles);
-        if (mol) {
-          const svgString = mol.get_svg(width, height);
-          setSvg(svgString);
-          mol.delete();
-        } else {
-          setError(true);
-        }
-      } catch (e) {
-        setError(true);
-      }
-    } else {
-      // RDKit not loaded yet, show skeleton
-      setError(true);
-    }
-  }, [smiles, width, height]);
-
-  if (error) {
-    // Fallback: show SMILES as tooltip on a chip
-    return (
-      <Tooltip title={smiles}>
-        <Chip
-          label={`NCL-${smiles.substring(0, 8)}...`}
-          size="small"
-          color="primary"
-          variant="outlined"
-        />
-      </Tooltip>
-    );
-  }
-
-  if (!svg) {
-    return <Skeleton variant="rectangular" width={width} height={height} />;
-  }
-
-  return (
-    <Box
-      sx={{ width, height }}
-      dangerouslySetInnerHTML={{ __html: svg }}
-    />
-  );
-}

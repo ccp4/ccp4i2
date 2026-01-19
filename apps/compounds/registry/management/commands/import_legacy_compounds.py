@@ -357,13 +357,36 @@ class Command(BaseCommand):
         return mappings.get(old_name, old_name)
 
     def _transform_file_path(self, old_path, model_type):
-        """Transform file paths to new structure."""
+        """Transform file paths to new structure.
+
+        Batch QC files are relocated from:
+            RegBatchQCFile_NCL-XXXXX/{uuid}_{filename}
+        to:
+            RegisterCompounds/BatchQCFiles/NCL-XXXXX/{uuid}_{filename}
+        """
         if not old_path:
             return old_path
 
+        # Handle batch QC file path transformation
+        # Old: RegBatchQCFile_NCL-00029551/uuid_filename.pdf
+        # New: RegisterCompounds/BatchQCFiles/NCL-00029551/uuid_filename.pdf
+        if old_path.startswith('RegBatchQCFile_'):
+            # Extract compound ID and rest of path
+            # e.g., RegBatchQCFile_NCL-00029551/uuid_file.pdf
+            parts = old_path.split('/', 1)
+            if len(parts) == 2:
+                dir_name = parts[0]  # RegBatchQCFile_NCL-00029551
+                file_part = parts[1]  # uuid_file.pdf
+                compound_id = dir_name.replace('RegBatchQCFile_', '')  # NCL-00029551
+                return f'RegisterCompounds/BatchQCFiles/{compound_id}/{file_part}'
+            else:
+                # Just the directory name without a file
+                compound_id = old_path.replace('RegBatchQCFile_', '')
+                return f'RegisterCompounds/BatchQCFiles/{compound_id}'
+
+        # Other path mappings (unchanged)
         path_mappings = {
             'RegisterCompounds/svg/': 'compounds/registry/svg/',
-            'RegBatchQCFile_': 'compounds/registry/qc/',
             'AssayCompounds/Experiments/': 'compounds/assays/data/',
             'AssayCompounds/svg/': 'compounds/assays/svg/',
         }
