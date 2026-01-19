@@ -987,7 +987,6 @@ class CDataFile(CData):
         Returns:
             full path string with .get() method for Qt compatibility
         """
-        from ..base_object.fundamental_types import CString
         from ..base_object.qt_compat import QtStringCompat
         path_string = self.getFullPath()
         # Return a string-like object with .get() method for Qt API compatibility
