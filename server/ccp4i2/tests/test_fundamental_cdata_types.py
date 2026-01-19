@@ -31,6 +31,7 @@ def test_cfloat_basic():
 def test_cstring_basic():
     s = CString('hello', qualifiers={'allowedChars': 'abcdehlor'})
     assert str(s) == 'hello'
+    assert f"{s}" == 'hello'
     assert s == 'hello'
     assert s + ' world' == 'hello world'
     # Qualifiers
