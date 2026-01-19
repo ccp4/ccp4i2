@@ -100,7 +100,7 @@ class lorestr_i2(CPluginScript):
             import shutil
             shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         import os
         self.hklout = os.path.join(self.workDirectory,"hklout.mtz")
 

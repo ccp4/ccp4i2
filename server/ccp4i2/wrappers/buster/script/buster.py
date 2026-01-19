@@ -176,7 +176,7 @@ class buster(CPluginScript):
         xmlfile.close()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("-p")
         self.appendCommandLine(str(self.pdbin))
         self.appendCommandLine("-m")

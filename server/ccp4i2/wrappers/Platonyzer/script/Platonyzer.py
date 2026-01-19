@@ -21,7 +21,7 @@ class Platonyzer(CPluginScript):
     def processInputFiles(self):
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         if str(self.container.controlParameters.MODE) == 'NA_MG':
            self.appendCommandLine(['--create-na-mg-links'])
            if self.container.controlParameters.RM_VDW:

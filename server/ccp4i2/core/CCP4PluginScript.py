@@ -1337,24 +1337,17 @@ class CPluginScript(CData):
         """
         return CErrorReport()
 
-    def makeCommandAndScript(self, container=None) -> CErrorReport:
+    def makeCommandAndScript(self) -> CErrorReport:
         """
         Generate command line and command file for the program.
 
         Uses COMLINETEMPLATE and COMTEMPLATE class attributes to
         generate the command line and input file.
 
-        Args:
-            container: Container object with input/output data (defaults to self.container)
-
         Returns:
             CErrorReport with any errors
         """
         error = CErrorReport()
-
-        # Use the container from this plugin if not specified
-        if container is None:
-            container = self.container
 
         # Use our modern CComTemplate implementation (Qt-free)
         try:
@@ -1371,7 +1364,7 @@ class CPluginScript(CData):
             logger.debug(f"[DEBUG makeCommandAndScript] Processing COMTEMPLATE: {self.COMTEMPLATE}")
             try:
                 comTemplate = CCP4ComTemplate.CComTemplate(parent=self, template=self.COMTEMPLATE)
-                text, tmpl_err = comTemplate.makeComScript(container)
+                text, tmpl_err = comTemplate.makeComScript(self.container)
                 logger.debug(f"[DEBUG makeCommandAndScript] COMTEMPLATE expanded to: '{text}'")
                 if tmpl_err and len(tmpl_err) > 0:
                     logger.debug(f"[DEBUG makeCommandAndScript] COMTEMPLATE errors: {tmpl_err}")
@@ -1396,7 +1389,7 @@ class CPluginScript(CData):
             logger.debug(f"[DEBUG makeCommandAndScript] Processing COMLINETEMPLATE: {self.COMLINETEMPLATE}")
             try:
                 comTemplate = CCP4ComTemplate.CComTemplate(parent=self, template=self.COMLINETEMPLATE)
-                text, tmpl_err = comTemplate.makeComScript(container)
+                text, tmpl_err = comTemplate.makeComScript(self.container)
                 logger.debug(f"[DEBUG makeCommandAndScript] Template expanded to: '{text}'")
                 if tmpl_err and len(tmpl_err) > 0:
                     logger.debug(f"[DEBUG makeCommandAndScript] Template errors: {tmpl_err}")

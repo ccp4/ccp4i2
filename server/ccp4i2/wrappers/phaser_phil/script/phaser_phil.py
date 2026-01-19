@@ -75,7 +75,7 @@ class phaser_phil(CPluginScript):
                 result.append((name, val))
         return result
 
-    def makeCommandAndScript(self,**kw):
+    def makeCommandAndScript(self):
         par = self.container.controlParameters
         inp = self.container.inputData
 

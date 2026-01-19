@@ -15,7 +15,7 @@ class dials_image(CPluginScript):
     def processOutputFiles(self):
         return CPluginScript.MARK_TO_DELETE
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         inputJson = self.container.inputData.JSON_IN.fullPath.__str__()
         self.appendCommandLine(inputJson)
         if self.container.inputData.PICKLE_IN.isSet():

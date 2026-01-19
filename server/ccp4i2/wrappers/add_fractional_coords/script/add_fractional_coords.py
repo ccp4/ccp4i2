@@ -27,7 +27,7 @@ class add_fractional_coords(CPluginScript):
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.xyzin_path)
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         current_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
         script_path = os.path.join(os.path.dirname(current_path), "script.py")
         self.appendCommandLine([script_path, self.xyzin_path, self.xyzout_path])

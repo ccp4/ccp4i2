@@ -52,7 +52,7 @@ class pairef(CPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--XYZIN")
         self.appendCommandLine(str(self.pdbin))
         self.appendCommandLine("--HKLIN")

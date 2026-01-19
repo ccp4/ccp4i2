@@ -36,7 +36,7 @@ class zanuda(CPluginScript):
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.model)
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         self.appendCommandLine(["xyzin", self.model])
         self.appendCommandLine(["hklin", self.hklin])
         self.appendCommandLine(["xyzout", "zanuda.pdb"])

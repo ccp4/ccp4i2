@@ -45,7 +45,7 @@ class AUSPEX(CPluginScript):
             outContA[-1].annotation = 'AUSPEX IMG'
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--no-filename-in-title")
         self.appendCommandLine(self.hklin)
         self.appendCommandLine(["--ylim", self.container.inputData.YLIM])

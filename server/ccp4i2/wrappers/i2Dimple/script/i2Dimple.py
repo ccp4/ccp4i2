@@ -62,7 +62,7 @@ class i2Dimple(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self,**kw):
+    def makeCommandAndScript(self):
         self.appendCommandLine(["-M",self.container.controlParameters.MR_WHEN_R.__str__()])
         self.appendCommandLine(["--fcolumn", self.columnsAsArray[0],
                                 "--sigfcolumn", self.columnsAsArray[1]])

@@ -68,7 +68,7 @@ class mrparse_simple(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--seqin")
         self.appendCommandLine(str(self.seqin))
         if self.hklin:

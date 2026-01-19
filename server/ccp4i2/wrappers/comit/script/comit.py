@@ -23,7 +23,7 @@ class comit(CPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self,**kw):
+    def makeCommandAndScript(self):
         inp = self.container.inputData
         out = self.container.outputData
         con = self.container.controlParameters

@@ -36,7 +36,7 @@ class import_serial(CPluginScript):
             self.streamfile = self.container.inputData.STREAMFILE.fullPath.__str__()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         print("import_serial: makeCommandAndScript start")
         self.appendCommandLine("--hklin")
         self.appendCommandLine(str(self.hklin))

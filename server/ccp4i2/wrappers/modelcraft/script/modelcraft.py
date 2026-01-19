@@ -62,7 +62,7 @@ class modelcraft(CPluginScript):
         with open(self.seqin, "w") as stream:
             json.dump(contents, stream, indent=4)
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         params = self.container.controlParameters
         self.appendCommandLine(["xray"])
         self.appendCommandLine(["--contents", self.seqin])

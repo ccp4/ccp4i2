@@ -72,7 +72,7 @@ class findmyseq(CPluginScript):
         xmlfile.close()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--mtzin")
         self.appendCommandLine(str(self.hklin))
         self.appendCommandLine("--labin")

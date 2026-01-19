@@ -110,7 +110,7 @@ class tableone(CPluginScript):
             CCP4Utils.writeXML(xml_file,etree.tostring(self.xml_root, pretty_print=True))
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine(str(self.container.inputData.UNMERGED.fullPath))
         self.appendCommandLine("labels=I,SIGI")
         # Get the resolution bounds from the merged mtz file

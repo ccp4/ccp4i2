@@ -255,7 +255,7 @@ class acorn(CPluginScript):
             print("\n \n")
             return CPluginScript.FAILED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         print("Constructing Command Script for Acorn (KJS)")
 
         mainfile = os.path.join(self.getWorkDirectory(), 'EXTENDED.mtz')

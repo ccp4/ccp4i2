@@ -25,7 +25,7 @@ class morda_i2(CCP4PluginScript.CPluginScript):
         self.container.inputData.ASUIN.writeFasta(self.seqin_file)
         return self.SUCCEEDED
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         self.appendCommandLine(['-m', 'morda'])
         self.appendCommandLine(['-f', self.hklin])
         if self.container.inputData.ALTSG:

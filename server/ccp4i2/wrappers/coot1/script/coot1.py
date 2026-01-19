@@ -25,7 +25,7 @@ class coot1(CPluginScript):
 
     ERROR_CODES = {}
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         inputData = self.container.inputData
 
         if inputData.XYZIN_LIST.isSet():

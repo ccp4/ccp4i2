@@ -99,7 +99,7 @@ class shelxeMR(CPluginScript):
         xmlString= etree.tostring(rootNode, pretty_print=True)
         xmlfile.write(xmlString)
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         print("Constructing command script (KJS-24/09-shelxeMR)")
         pdbfile_name = self.shelx_fname + '.pda'
         self.appendCommandLine(pdbfile_name)

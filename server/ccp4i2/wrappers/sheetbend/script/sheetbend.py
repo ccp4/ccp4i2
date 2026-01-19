@@ -39,7 +39,7 @@ class sheetbend(CPluginScript):
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self,**kw):
+    def makeCommandAndScript(self):
         self.appendCommandLine([ '-stdin' ])
         self.appendCommandScript( 'mtzin '  + self.hklin )
         self.appendCommandScript( 'pdbin '  + self.selectedCoordinatesPath )

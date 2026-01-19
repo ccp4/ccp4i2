@@ -74,7 +74,7 @@ class phaser_singleMR(CPluginScript):
         self.parseLogfile()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         # nb. the -xml flag doesn't work in phaser & the html flag does not work in smartie.
         self.appendCommandScript("TITLE SingleMR")
         self.appendCommandScript("MODE MR_ATOM")
