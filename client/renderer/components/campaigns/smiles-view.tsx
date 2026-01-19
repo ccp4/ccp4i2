@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Box, Skeleton, Typography } from "@mui/material";
+import { Box, Skeleton, Tooltip, Typography } from "@mui/material";
 import { useCCP4i2Window } from "../../app-context";
 
 interface SmilesViewProps {
@@ -95,25 +95,30 @@ export function SmilesView({ smiles, width = 100, height = 75 }: SmilesViewProps
     );
   }
 
+  // Truncate long SMILES strings for tooltip display
+  const tooltipSmiles = smiles.length > 80 ? smiles.substring(0, 77) + "..." : smiles;
+
   return (
-    <Box
-      sx={{
-        width,
-        height,
-        bgcolor: "background.paper",
-        borderRadius: 1,
-        overflow: "hidden",
-      }}
-    >
-      <img
-        src={dataURI}
-        alt="Molecule structure"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "contain",
+    <Tooltip title={tooltipSmiles} placement="top">
+      <Box
+        sx={{
+          width,
+          height,
+          bgcolor: "background.paper",
+          borderRadius: 1,
+          overflow: "hidden",
         }}
-      />
-    </Box>
+      >
+        <img
+          src={dataURI}
+          alt="Molecule structure"
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+        />
+      </Box>
+    </Tooltip>
   );
 }

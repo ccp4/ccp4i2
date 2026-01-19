@@ -5,6 +5,7 @@
  * to manage fragment screening campaigns.
  */
 
+import { useMemo } from "react";
 import useSWR, { mutate } from "swr";
 import { useApi } from "../api";
 import { apiPost, apiDelete, apiPatch, apiFetch } from "../api-fetch";
@@ -216,8 +217,10 @@ export function useCampaignsApi() {
 export function useSmilesLookup(regIds: number[]) {
   // Build query string for batch lookup
   // Use reg_number__in for django-filter lookup
+  // Sort and dedupe to ensure stable cache key
+  const uniqueRegIds = [...new Set(regIds)].sort((a, b) => a - b);
   const queryString =
-    regIds.length > 0 ? `reg_number__in=${regIds.join(",")}` : null;
+    uniqueRegIds.length > 0 ? `reg_number__in=${uniqueRegIds.join(",")}` : null;
 
   // This assumes compounds API is available at /api/compounds/
   // Use apiFetch for authenticated requests (required in Azure deployment)
@@ -233,15 +236,18 @@ export function useSmilesLookup(regIds: number[]) {
     }
   );
 
-  // Build lookup map
-  const smilesMap: Record<number, string> = {};
-  if (data && Array.isArray(data)) {
-    data.forEach((compound: { reg_number?: number; smiles?: string }) => {
-      if (compound.reg_number && compound.smiles) {
-        smilesMap[compound.reg_number] = compound.smiles;
-      }
-    });
-  }
+  // Build lookup map - memoized to avoid recreating on every render
+  const smilesMap = useMemo(() => {
+    const map: Record<number, string> = {};
+    if (data && Array.isArray(data)) {
+      data.forEach((compound: { reg_number?: number; smiles?: string }) => {
+        if (compound.reg_number && compound.smiles) {
+          map[compound.reg_number] = compound.smiles;
+        }
+      });
+    }
+    return map;
+  }, [data]);
 
   return {
     smilesMap,

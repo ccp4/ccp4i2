@@ -747,7 +747,7 @@ function MemberProjectRow({
         {regId === 0 ? (
           <Typography variant="body2" color="text.secondary">Presumed Apo</Typography>
         ) : smiles ? (
-          <Tooltip title={smiles}>
+          <Tooltip title={`NCL-${parsed.nclId} (reg#${regId})`} placement="bottom">
             <Box>
               <SmilesView smiles={smiles} width={100} height={75} />
             </Box>
