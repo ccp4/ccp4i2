@@ -357,6 +357,165 @@ Typical workflow for importing legacy data:
      --remove-env-vars CCP4I2_ALLOW_DB_RESET
    ```
 
+## Data Management
+
+### Overview
+
+The system manages data across multiple apps:
+
+| App | Description | Fixture Name |
+|-----|-------------|--------------|
+| `ccp4i2` | Projects, jobs, files | `*-CCP4i2.json` |
+| `registry` | Compound registration | `*-RegisterCompounds.json` |
+| `assays` | Assay experiments | `*-AssayCompounds.json` |
+| `constructs` | Plasmid/construct database | `*-ConstructDatabase.json` |
+| `users` | User accounts & profiles | `*-auth.json` |
+
+### Scheduled Backups
+
+Backups run automatically via Azure Container Apps Job:
+
+```bash
+# Deploy the backup job (one-time setup)
+./Docker/azure-uksouth/scripts/deploy-backup-job.sh create
+
+# Check job status
+./Docker/azure-uksouth/scripts/deploy-backup-job.sh status
+
+# Trigger a backup manually
+./Docker/azure-uksouth/scripts/deploy-backup-job.sh trigger
+
+# View recent executions
+./Docker/azure-uksouth/scripts/deploy-backup-job.sh logs
+```
+
+**Schedule**: Daily at 2am UTC
+
+**Location**: `/mnt/azure-files/fixtures/YYYYMMDD-HH-MM-{app}.json`
+
+**Retention**: 30 days (older backups auto-deleted)
+
+### Migrating Fixtures from Legacy Storage
+
+Copy fixture files from the legacy Azure File Share to new blob storage:
+
+```bash
+# List available fixtures in legacy storage
+./Docker/azure-uksouth/scripts/migrate-fixtures.sh list
+
+# Copy only the latest fixture of each type
+./Docker/azure-uksouth/scripts/migrate-fixtures.sh latest
+
+# Copy all historical fixtures
+./Docker/azure-uksouth/scripts/migrate-fixtures.sh copy
+```
+
+**Source**: `ddudatabasestorageac/ddudatabasefileshare/CompoundDatabaseData`
+**Destination**: `storprv*/django-uploads/fixtures/`
+
+### Migrating Media Files
+
+Copy media files (attachments, QC documents) from legacy storage:
+
+```bash
+# Check what will be migrated
+./Docker/azure-uksouth/scripts/migrate-media.sh check
+
+# Perform the migration
+./Docker/azure-uksouth/scripts/migrate-media.sh copy
+
+# Verify migrated files
+./Docker/azure-uksouth/scripts/migrate-media.sh list
+```
+
+**Path transformations**:
+- Most files: `media/*` → `media/*` (unchanged)
+- Batch QC: `media/RegBatchQCFile_NCL-*` → `media/RegisterCompounds/BatchQCFiles/NCL-*`
+
+### Import Management Commands
+
+Each app has a management command for importing legacy fixtures:
+
+```bash
+# Import CCP4i2 data (projects, jobs, files)
+python manage.py import_legacy_ccp4i2 \
+    --fixture path/to/ccp4i2.json \
+    --remap-dirs /old/path:/new/path
+
+# Import compound registry and assays
+python manage.py import_legacy_compounds \
+    --auth-fixture auth.json \
+    --registry-fixture RegisterCompounds.json \
+    --assays-fixture AssayCompounds.json
+
+# Import construct database
+python manage.py import_legacy_constructs \
+    --auth-fixture auth.json \
+    --constructs-fixture ConstructDatabase.json
+
+# Import users
+python manage.py import_legacy_users auth.json
+```
+
+**Common options**:
+- `--dry-run` - Validate without committing changes
+- `--verbose` - Show detailed progress
+- `--output-dir DIR` - Save transformed fixtures for inspection
+
+### Manual Backup Command
+
+For ad-hoc backups or local development:
+
+```bash
+# Backup all apps to a directory
+python manage.py backup_database --output-dir /tmp/backups
+
+# Backup specific apps
+python manage.py backup_database --apps registry assays --output-dir /tmp/backups
+
+# Backup and upload to Azure Blob Storage
+python manage.py backup_database --upload
+
+# List backups in blob storage
+python manage.py backup_database --list
+```
+
+### Database Reset (Migration Phase Only)
+
+**WARNING**: Only use during initial migration. Permanently deletes data!
+
+```bash
+# Enable reset endpoint
+az containerapp update --name ccp4i2-bicep-server --resource-group "$RESOURCE_GROUP" \
+  --set-env-vars CCP4I2_ALLOW_DB_RESET=true
+
+# Reset via API
+curl -X POST "https://$WEB_URL/api/compounds/admin/reset-data/" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"confirmation": "DELETE ALL COMPOUNDS DATA"}'
+
+# Disable when done
+az containerapp update --name ccp4i2-bicep-server --resource-group "$RESOURCE_GROUP" \
+  --remove-env-vars CCP4I2_ALLOW_DB_RESET
+```
+
+### Fixture File Format
+
+All fixtures use Django's JSON format with timestamp prefixes:
+
+```
+YYYYMMDD-HH-MM-{app}.json
+
+Examples:
+  20260119-02-00-CCP4i2.json
+  20260119-02-00-RegisterCompounds.json
+  20260119-02-00-AssayCompounds.json
+  20260119-02-00-ConstructDatabase.json
+```
+
+**Note**: Legacy fixtures may contain Django debug output before the JSON array. The import commands handle this automatically by finding the first `[` character.
+
 ## Security Checklist
 
 Before going to production:

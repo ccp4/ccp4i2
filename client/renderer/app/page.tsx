@@ -102,7 +102,7 @@ function AppSelector() {
       >
         <Box>
           <Typography variant="h3" component="h1" gutterBottom>
-            CCP4 Cloud
+            CCP4i2
           </Typography>
           <Typography variant="subtitle1" color="text.secondary">
             Crystallographic computing and compound management

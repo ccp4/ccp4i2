@@ -25,10 +25,10 @@ WORKDIR /app
 # Copy package files (build context is repo root)
 COPY client/package*.json ./
 
-# Remove Electron-specific packages from package.json for web-only build
+# Remove Electron-specific packages and add markdown rendering packages for web-only build
 # This significantly reduces install time and avoids downloading ~300MB of Electron binaries
 RUN apk add --no-cache jq && \
-    jq 'del(.devDependencies.electron) | del(.devDependencies["electron-builder"]) | del(.devDependencies["@electron/packager"]) | del(.dependencies["electron-store"])' package.json > package.web.json && \
+    jq 'del(.devDependencies.electron) | del(.devDependencies["electron-builder"]) | del(.devDependencies["@electron/packager"]) | del(.dependencies["electron-store"]) | .dependencies["react-markdown"] = "^9.0.1" | .dependencies["remark-gfm"] = "^4.0.0"' package.json > package.web.json && \
     mv package.web.json package.json
 
 # Install dependencies (excluding Electron) with retry logic
@@ -82,6 +82,12 @@ COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 COPY apps/users/frontend/app/admin/ ./renderer/app/admin/
 COPY apps/users/frontend/app/api/proxy/users/ ./renderer/app/api/proxy/users/
 COPY apps/users/frontend/lib/users/ ./renderer/lib/users/
+
+# =============================================================================
+# Copy documentation (markdown files served as static assets)
+# =============================================================================
+# Admin documentation is rendered client-side with react-markdown
+COPY Docker/azure-uksouth/docs/*.md ./renderer/public/docs/
 
 # Add path aliases to tsconfig.json for @/ imports used by compounds
 # The ccp4i2 client uses relative imports, but compounds uses @/ aliases

@@ -1,9 +1,10 @@
 """
-Azure Blob Storage SAS URL generation for staged uploads.
+Azure Blob Storage SAS URL generation for uploads and downloads.
 
 This module provides utilities for generating SAS (Shared Access Signature) URLs
-that allow clients to upload large files directly to Azure Blob Storage, bypassing
-the HTTP body size limits of the API gateway.
+that allow clients to:
+- Upload large files directly to Azure Blob Storage (bypassing API gateway limits)
+- Download files securely with time-limited, authenticated URLs
 """
 
 import logging
@@ -18,8 +19,12 @@ logger = logging.getLogger(f"azure_extensions:{__name__}")
 # Container name for staged uploads
 STAGING_CONTAINER = "staging-uploads"
 
-# Default SAS token expiry (1 hour)
-DEFAULT_EXPIRY_HOURS = 1
+# Container name for Django media files (uploads, project files)
+MEDIA_CONTAINER = "django-uploads"
+
+# Default SAS token expiry
+DEFAULT_UPLOAD_EXPIRY_HOURS = 1
+DEFAULT_DOWNLOAD_EXPIRY_HOURS = 1  # Short-lived for security
 
 
 def get_blob_service_client():
@@ -79,7 +84,7 @@ def get_blob_service_client():
 def generate_upload_sas_url(
     filename: str,
     upload_type: str,
-    expiry_hours: int = DEFAULT_EXPIRY_HOURS,
+    expiry_hours: int = DEFAULT_UPLOAD_EXPIRY_HOURS,
 ) -> tuple[str, str, datetime]:
     """
     Generate a SAS URL for uploading a file to blob storage.
@@ -260,3 +265,132 @@ def delete_blob(blob_path: str) -> bool:
     except Exception as e:
         logger.warning(f"Failed to delete blob {blob_path}: {e}")
         return False
+
+
+def generate_download_sas_url(
+    blob_path: str,
+    filename: str | None = None,
+    container: str = MEDIA_CONTAINER,
+    expiry_hours: int = DEFAULT_DOWNLOAD_EXPIRY_HOURS,
+) -> tuple[str, datetime]:
+    """
+    Generate a SAS URL for downloading a file from blob storage.
+
+    This creates a time-limited, read-only URL that can be used to download
+    a file directly from Azure Blob Storage. The URL includes:
+    - Read permission only (no write/delete)
+    - Time-limited expiry (default 1 hour)
+    - Content-Disposition header with original filename
+
+    Args:
+        blob_path: Path to the blob within the container (e.g., "media/files/abc.pdb")
+        filename: Optional filename for Content-Disposition header (defaults to blob name)
+        container: Container name (default: django-uploads)
+        expiry_hours: Hours until the SAS token expires (default: 1)
+
+    Returns:
+        Tuple of (sas_url, expiry_datetime)
+
+    Raises:
+        ValueError: If storage is not configured or blob doesn't exist
+        Exception: If SAS generation fails
+    """
+    from azure.storage.blob import (
+        BlobSasPermissions,
+        ContentSettings,
+        generate_blob_sas,
+    )
+
+    # Calculate expiry time
+    expiry_time = datetime.now(timezone.utc) + timedelta(hours=expiry_hours)
+
+    # Get blob service client
+    blob_service_client = get_blob_service_client()
+    account_name = blob_service_client.account_name
+
+    # Verify blob exists
+    blob_client = blob_service_client.get_blob_client(
+        container=container,
+        blob=blob_path,
+    )
+    try:
+        blob_props = blob_client.get_blob_properties()
+    except Exception as e:
+        logger.error(f"Blob not found: {container}/{blob_path} - {e}")
+        raise ValueError(f"File not found in storage: {blob_path}")
+
+    # Determine filename for Content-Disposition
+    if not filename:
+        filename = blob_path.split("/")[-1]
+
+    # Content-Disposition for download
+    content_disposition = f'attachment; filename="{filename}"'
+
+    # For managed identity, we need to use user delegation key
+    # For connection string/account key, we use account key directly
+    try:
+        # Try user delegation SAS (for managed identity)
+        user_delegation_key = blob_service_client.get_user_delegation_key(
+            key_start_time=datetime.now(timezone.utc) - timedelta(minutes=5),
+            key_expiry_time=expiry_time,
+        )
+
+        sas_token = generate_blob_sas(
+            account_name=account_name,
+            container_name=container,
+            blob_name=blob_path,
+            user_delegation_key=user_delegation_key,
+            permission=BlobSasPermissions(read=True),  # Read-only!
+            expiry=expiry_time,
+            content_disposition=content_disposition,
+        )
+        logger.debug("Generated user delegation SAS token for download")
+
+    except Exception as e:
+        logger.debug(f"User delegation SAS failed ({e}), trying account key SAS")
+
+        # Fallback to account key SAS (for connection string auth)
+        account_key = getattr(settings, "AZURE_STORAGE_ACCOUNT_KEY", None)
+
+        if not account_key:
+            # Try to extract from connection string
+            conn_str = getattr(settings, "AZURE_STORAGE_CONNECTION_STRING", "")
+            if "AccountKey=" in conn_str:
+                account_key = conn_str.split("AccountKey=")[1].split(";")[0]
+
+        if not account_key:
+            raise ValueError(
+                "Cannot generate SAS: no account key available. "
+                "Ensure managed identity has Storage Blob Data Contributor role, "
+                "or provide AZURE_STORAGE_ACCOUNT_KEY in settings."
+            )
+
+        sas_token = generate_blob_sas(
+            account_name=account_name,
+            container_name=container,
+            blob_name=blob_path,
+            account_key=account_key,
+            permission=BlobSasPermissions(read=True),  # Read-only!
+            expiry=expiry_time,
+            content_disposition=content_disposition,
+        )
+        logger.debug("Generated account key SAS token for download")
+
+    # Construct full URL
+    sas_url = f"https://{account_name}.blob.core.windows.net/{container}/{blob_path}?{sas_token}"
+
+    logger.info(f"Generated download SAS URL for: {blob_path}, expires: {expiry_time}")
+
+    return sas_url, expiry_time
+
+
+def is_blob_storage_configured() -> bool:
+    """
+    Check if Azure Blob Storage is configured.
+
+    Returns:
+        True if blob storage is available, False otherwise
+    """
+    storage_account_name = getattr(settings, "AZURE_STORAGE_ACCOUNT_NAME", None)
+    connection_string = getattr(settings, "AZURE_STORAGE_CONNECTION_STRING", None)
+    return bool(storage_account_name or connection_string)

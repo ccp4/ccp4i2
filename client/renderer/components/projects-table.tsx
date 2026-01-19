@@ -33,6 +33,7 @@ import {
 } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
 import { useApi } from "../api";
+import { apiFetch } from "../api-fetch";
 import { Project, ProjectTag } from "../types/models";
 import { shortDate } from "../pipes";
 import { useDeleteDialog } from "../providers/delete-dialog";
@@ -58,7 +59,8 @@ function useProjectCampaigns(projectIds: number[]) {
       ? `/api/proxy/ccp4i2/projectgroups/project_campaigns/?project_ids=${idsParam}&include_members=true`
       : null,
     async (url: string) => {
-      const response = await fetch(url);
+      // Use apiFetch for authenticated requests (required in Azure deployment)
+      const response = await apiFetch(url);
       if (!response.ok) return {};
       return response.json();
     }

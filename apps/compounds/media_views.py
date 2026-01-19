@@ -6,14 +6,21 @@ ensuring that sensitive data (assay files, QC documents, etc.) are not publicly 
 
 Authentication is handled by the AzureADAuthMiddleware - these views only need to
 ensure they're not added to exempt paths.
+
+When Azure Blob Storage is configured (via django-storages), files are served using
+time-limited SAS URLs for direct download from blob storage. This provides:
+- Better performance (clients download directly from Azure CDN)
+- Reduced server load (no file streaming through Django)
+- Security via short-lived tokens (default 1 hour)
 """
 
+import logging
 import os
 import mimetypes
 from pathlib import Path
 
 from django.conf import settings
-from django.http import FileResponse, Http404, HttpResponseBadRequest
+from django.http import FileResponse, Http404, HttpResponseBadRequest, HttpResponseRedirect
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
@@ -21,23 +28,82 @@ from compounds.assays.models import Assay, ProtocolDocument
 from compounds.registry.models import BatchQCFile
 from compounds.constructs.models import Plasmid, CassetteUse, SequencingResult
 
+logger = logging.getLogger(__name__)
+
+
+def _is_azure_storage_configured():
+    """Check if Azure Blob Storage is configured for file storage."""
+    try:
+        from azure_extensions.utils.blob_sas import is_blob_storage_configured
+        return is_blob_storage_configured()
+    except ImportError:
+        return False
+
+
+def _generate_sas_download_url(blob_path: str, filename: str) -> str:
+    """
+    Generate a SAS URL for downloading a file from Azure Blob Storage.
+
+    Args:
+        blob_path: Path to the blob (from FileField.name)
+        filename: Filename for Content-Disposition header
+
+    Returns:
+        SAS URL with time-limited read access
+
+    Raises:
+        ValueError: If blob storage is not configured or file doesn't exist
+    """
+    from azure_extensions.utils.blob_sas import generate_download_sas_url
+    sas_url, expiry = generate_download_sas_url(blob_path, filename)
+    return sas_url
+
 
 def _serve_file(file_field, filename_override=None):
     """
     Serve a file from a FileField with proper headers.
+
+    When Azure Blob Storage is configured, returns a redirect to a time-limited
+    SAS URL for direct download from blob storage.
+
+    When using local filesystem storage, streams the file through Django.
 
     Args:
         file_field: Django FileField instance
         filename_override: Optional filename for Content-Disposition header
 
     Returns:
-        FileResponse with appropriate content type and disposition
+        HttpResponseRedirect to SAS URL (Azure) or FileResponse (local filesystem)
     """
     if not file_field:
         raise Http404("File not found")
 
-    # Get the file path
-    file_path = file_field.path
+    # Get filename for Content-Disposition
+    filename = filename_override or os.path.basename(file_field.name)
+
+    # Check if using Azure Blob Storage
+    if _is_azure_storage_configured():
+        try:
+            # Generate SAS URL for direct blob download
+            # The blob path is stored in file_field.name (relative path in container)
+            blob_path = file_field.name
+            sas_url = _generate_sas_download_url(blob_path, filename)
+            logger.debug(f"Redirecting to SAS URL for: {blob_path}")
+            return HttpResponseRedirect(sas_url)
+        except ValueError as e:
+            logger.error(f"Failed to generate SAS URL: {e}")
+            raise Http404(f"File not found in storage: {e}")
+        except Exception as e:
+            logger.exception(f"Error generating SAS URL for {file_field.name}")
+            # Fall through to filesystem access as fallback
+            pass
+
+    # Local filesystem access (fallback or non-Azure deployment)
+    try:
+        file_path = file_field.path
+    except NotImplementedError:
+        # django-storages backends may not support .path
+        raise Http404("File storage backend does not support direct file access")
 
     if not os.path.exists(file_path):
         raise Http404("File not found on disk")
@@ -46,9 +112,6 @@ def _serve_file(file_field, filename_override=None):
     content_type, _ = mimetypes.guess_type(file_path)
     if not content_type:
         content_type = 'application/octet-stream'
-
-    # Get filename for Content-Disposition
-    filename = filename_override or os.path.basename(file_field.name)
 
     # Create response
     response = FileResponse(

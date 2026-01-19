@@ -14,10 +14,10 @@ export default function AppSelectorPage() {
     <Container maxWidth="md" sx={{ py: 6 }}>
       <Box sx={{ textAlign: 'center', mb: 5 }}>
         <Typography variant="h3" component="h1" gutterBottom>
-          ccp4i2
+          SBDD Database
         </Typography>
         <Typography variant="subtitle1" color="text.secondary">
-          Select an application to get started
+          Structure Based Drug Design - Select an application to get started
         </Typography>
       </Box>
 

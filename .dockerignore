@@ -17,6 +17,8 @@ Docker/data/
 docs/
 tests/
 *.md
+# But include admin docs for frontend rendering
+!Docker/azure-uksouth/docs/*.md
 
 # Exclude IDE and editor files
 .vscode/
@@ -38,11 +40,12 @@ build/
 *.egg
 
 # Exclude Docker deployment directories (not needed in image)
-# But include azure_extensions Django app which IS needed
+# But include azure_extensions Django app and docs which ARE needed
 Docker/azure/
 !Docker/azure/azure_extensions/
 Docker/azure-uksouth/
 !Docker/azure-uksouth/azure_extensions/
+!Docker/azure-uksouth/docs/
 
 # Exclude pytest cache
 **/.pytest_cache/

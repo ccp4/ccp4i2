@@ -3,6 +3,7 @@ from django.http import FileResponse, JsonResponse
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, JSONParser
+from rest_framework.permissions import IsAuthenticated
 
 # Modern utilities
 from ..lib.utils.files.digest import digest_file
@@ -30,7 +31,7 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
+        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def by_uuid(self, request, pk=None):
@@ -45,7 +46,7 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
+        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def download(self, request, pk=None):
@@ -59,7 +60,7 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
+        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def download_by_uuid(self, request, pk=None):
@@ -73,7 +74,7 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
+        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def digest(self, request, pk=None):
@@ -107,7 +108,7 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
+        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def digest_by_uuid(self, request, pk=None):
@@ -141,7 +142,7 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
+        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def preview(self, request, pk=None):

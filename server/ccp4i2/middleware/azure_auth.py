@@ -44,6 +44,14 @@ class AzureADAuthentication(BaseAuthentication):
     This allows DRF's IsAuthenticated permission to work with our middleware.
     The middleware does the actual JWT validation; this class just passes
     the authenticated user to DRF.
+
+    In dev/Electron mode (CCP4I2_REQUIRE_AUTH not set), the middleware
+    auto-assigns a dev_admin user, which this class also recognizes.
+
+    Security: Only trusts users when our middleware has explicitly processed
+    the request (marked by _ccp4i2_auth_middleware_ran attribute). This
+    prevents spoofing attacks where a request might have request.user set
+    by some other means.
     """
 
     def authenticate(self, request):
@@ -57,11 +65,15 @@ class AzureADAuthentication(BaseAuthentication):
         # The middleware sets these attributes on the underlying Django request
         django_request = getattr(request, '_request', request)
 
-        # Check if our middleware ran and validated the token
-        if hasattr(django_request, 'azure_ad_claims'):
-            user = getattr(django_request, 'user', None)
-            if user and user.is_authenticated:
-                return (user, None)
+        # Security check: only trust users set by our middleware
+        # This prevents spoofing where request.user might be set elsewhere
+        if not getattr(django_request, '_ccp4i2_auth_middleware_ran', False):
+            return None
+
+        # Middleware ran - trust the user it set
+        user = getattr(django_request, 'user', None)
+        if user and user.is_authenticated and not user.is_anonymous:
+            return (user, None)
 
         return None
 
@@ -284,6 +296,8 @@ class AzureADAuthMiddleware:
                 dev_user.is_superuser = True
                 dev_user.save(update_fields=['is_staff', 'is_superuser'])
             request.user = dev_user
+            # Mark that this request was processed by our middleware (prevents spoofing)
+            request._ccp4i2_auth_middleware_ran = True
             return self.get_response(request)
 
         # Skip exempt paths
@@ -399,4 +413,6 @@ class AzureADAuthMiddleware:
             user.save(update_fields=["email", "first_name", "last_name"])
 
         request.user = user
+        # Mark that this request was processed by our middleware (prevents spoofing)
+        request._ccp4i2_auth_middleware_ran = True
         return self.get_response(request)

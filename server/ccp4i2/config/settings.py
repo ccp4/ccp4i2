@@ -65,13 +65,16 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Azure AD authentication middleware (optional)
-# Enable by setting CCP4I2_REQUIRE_AUTH=true along with:
-#   AZURE_AD_TENANT_ID - Your Azure AD tenant ID
-#   AZURE_AD_CLIENT_ID - Your Azure AD app registration client ID
+# Azure AD authentication middleware
+# Always enabled to set request.user for DRF authentication.
+# Behavior depends on CCP4I2_REQUIRE_AUTH:
+#   - When true: Validates JWT tokens, requires AZURE_AD_TENANT_ID and AZURE_AD_CLIENT_ID
+#   - When false/unset: Auto-assigns dev_admin user for local/Electron development
+MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
 if os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
-    MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
-    print("Azure AD authentication middleware ENABLED")
+    print("Azure AD authentication middleware ENABLED (auth required)")
+else:
+    print("Azure AD authentication middleware ENABLED (dev mode - no auth required)")
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
