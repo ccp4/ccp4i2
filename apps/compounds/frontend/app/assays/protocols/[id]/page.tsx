@@ -31,7 +31,7 @@ import { PlatePreview } from '@/components/compounds/PlatePreview';
 import { PlateLayoutEditor } from '@/components/compounds/PlateLayoutEditor';
 import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';
 import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
-import { useCompoundsApi, apiUpload } from '@/lib/compounds/api';
+import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Protocol, Assay, PlateLayout, ProtocolDocument } from '@/types/compounds/models';
 
@@ -334,9 +334,11 @@ export default function ProtocolDetailPage({ params }: PageProps) {
               <Tooltip title="Download">
                 <IconButton
                   size="small"
-                  href={value}
-                  target="_blank"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    const url = await getAuthenticatedDownloadUrl(value);
+                    window.open(url, '_blank');
+                  }}
                 >
                   <Download fontSize="small" />
                 </IconButton>
@@ -344,9 +346,11 @@ export default function ProtocolDetailPage({ params }: PageProps) {
               <Tooltip title="Open in new tab">
                 <IconButton
                   size="small"
-                  href={value}
-                  target="_blank"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    const url = await getAuthenticatedDownloadUrl(value);
+                    window.open(url, '_blank');
+                  }}
                 >
                   <OpenInNew fontSize="small" />
                 </IconButton>

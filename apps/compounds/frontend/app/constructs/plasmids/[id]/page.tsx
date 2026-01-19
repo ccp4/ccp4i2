@@ -19,7 +19,7 @@ import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { SeqVizViewer } from '@/components/compounds/SeqVizViewer';
 import { ConfirmDialog } from '@/components/compounds/ConfirmDialog';
-import { useCompoundsApi } from '@/lib/compounds/api';
+import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import {
   PlasmidDetail,
@@ -130,8 +130,10 @@ export default function PlasmidDetailPage({ params }: PageProps) {
             <Button
               size="small"
               startIcon={<Download />}
-              href={row.file}
-              target="_blank"
+              onClick={async () => {
+                const url = await getAuthenticatedDownloadUrl(row.file!);
+                window.open(url, '_blank');
+              }}
               sx={{ minWidth: 'auto', p: 0.5 }}
             >
               Download
@@ -196,8 +198,10 @@ export default function PlasmidDetailPage({ params }: PageProps) {
                   <Button
                     variant="outlined"
                     startIcon={<Download />}
-                    href={plasmid.genbank_file_url}
-                    download
+                    onClick={async () => {
+                      const url = await getAuthenticatedDownloadUrl(plasmid.genbank_file_url!);
+                      window.open(url, '_blank');
+                    }}
                   >
                     Download GenBank
                   </Button>

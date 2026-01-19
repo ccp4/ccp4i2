@@ -38,7 +38,7 @@ import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
 import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';
 import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
-import { useCompoundsApi } from '@/lib/compounds/api';
+import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
 
@@ -454,7 +454,14 @@ export default function AssayDetailPage({ params }: PageProps) {
                   <InfoRow
                     label="Data File"
                     value={
-                      <MuiLink href={assay.data_file} target="_blank">
+                      <MuiLink
+                        component="button"
+                        onClick={async () => {
+                          const url = await getAuthenticatedDownloadUrl(assay.data_file!);
+                          window.open(url, '_blank');
+                        }}
+                        sx={{ cursor: 'pointer' }}
+                      >
                         Download
                       </MuiLink>
                     }

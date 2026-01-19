@@ -36,7 +36,7 @@ import {
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
-import { useCompoundsApi, apiUpload } from '@/lib/compounds/api';
+import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Batch, BatchQCFile, Compound, Target } from '@/types/compounds/models';
 
@@ -299,9 +299,11 @@ export default function BatchDetailPage({ params }: PageProps) {
               <Tooltip title="Download">
                 <IconButton
                   size="small"
-                  href={value}
-                  target="_blank"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    const url = await getAuthenticatedDownloadUrl(value);
+                    window.open(url, '_blank');
+                  }}
                 >
                   <Download fontSize="small" />
                 </IconButton>
@@ -309,9 +311,11 @@ export default function BatchDetailPage({ params }: PageProps) {
               <Tooltip title="Open in new tab">
                 <IconButton
                   size="small"
-                  href={value}
-                  target="_blank"
-                  onClick={(e) => e.stopPropagation()}
+                  onClick={async (e) => {
+                    e.stopPropagation();
+                    const url = await getAuthenticatedDownloadUrl(value);
+                    window.open(url, '_blank');
+                  }}
                 >
                   <OpenInNew fontSize="small" />
                 </IconButton>

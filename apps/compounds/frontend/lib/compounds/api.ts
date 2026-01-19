@@ -177,6 +177,20 @@ export async function apiUpload<T>(endpoint: string, formData: FormData): Promis
   return res.json();
 }
 
+/**
+ * Get an authenticated download URL.
+ * Appends the access token as a query parameter for anchor-based downloads
+ * where headers cannot be set.
+ */
+export async function getAuthenticatedDownloadUrl(url: string): Promise<string> {
+  const token = await getAccessToken();
+  if (!token) {
+    return url; // No auth needed in standalone mode
+  }
+  const separator = url.includes('?') ? '&' : '?';
+  return `${url}${separator}access_token=${encodeURIComponent(token)}`;
+}
+
 // =============================================================================
 // Main API Hook
 // =============================================================================
