@@ -88,21 +88,45 @@ def _serve_file(file_field, filename_override=None):
             # The blob path is stored in file_field.name (relative path in container)
             blob_path = file_field.name
             sas_url = _generate_sas_download_url(blob_path, filename)
-            logger.debug(f"Redirecting to SAS URL for: {blob_path}")
+            logger.info(f"Redirecting to SAS URL for: {blob_path}")
             return HttpResponseRedirect(sas_url)
         except ValueError as e:
             logger.error(f"Failed to generate SAS URL: {e}")
-            raise Http404(f"File not found in storage: {e}")
+            # Fall back to streaming through Django instead of 404
+            logger.info(f"Falling back to streaming file through Django: {file_field.name}")
         except Exception as e:
             logger.exception(f"Error generating SAS URL for {file_field.name}")
-            # Fall through to filesystem access as fallback
-            pass
+            # Fall back to streaming through Django
+            logger.info(f"Falling back to streaming file through Django after error")
 
-    # Local filesystem access (fallback or non-Azure deployment)
+        # Stream file through Django when SAS generation fails
+        # This uses the server's Managed Identity to read from Azure
+        try:
+            content_type, _ = mimetypes.guess_type(filename)
+            if not content_type:
+                content_type = 'application/octet-stream'
+
+            # Read from Azure storage via django-storages and stream to client
+            response = FileResponse(
+                file_field.open('rb'),
+                content_type=content_type,
+            )
+            viewable_types = [
+                'application/pdf', 'text/plain', 'text/csv',
+                'image/png', 'image/jpeg', 'image/gif',
+            ]
+            disposition = 'inline' if content_type in viewable_types else 'attachment'
+            response['Content-Disposition'] = f'{disposition}; filename="{filename}"'
+            return response
+        except Exception as e:
+            logger.exception(f"Failed to stream file from Azure: {e}")
+            raise Http404(f"File not accessible: {e}")
+
+    # Local filesystem access (non-Azure deployment)
     try:
         file_path = file_field.path
     except NotImplementedError:
-        # django-storages backends may not support .path
+        # django-storages backends may not support .path - but we should have handled Azure above
         raise Http404("File storage backend does not support direct file access")
 
     if not os.path.exists(file_path):
