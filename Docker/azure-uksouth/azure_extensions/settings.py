@@ -51,6 +51,10 @@ if AZURE_STORAGE_ACCOUNT_NAME:
     # This is imported from base settings but conflicts with the STORAGES dict
     globals().pop("STATICFILES_STORAGE", None)
 
+    # Import DefaultAzureCredential for Managed Identity authentication
+    # For User-Assigned Managed Identity, AZURE_CLIENT_ID env var must be set
+    from azure.identity import DefaultAzureCredential
+
     STORAGES = {
         "default": {
             "BACKEND": "storages.backends.azure_storage.AzureStorage",
@@ -58,8 +62,8 @@ if AZURE_STORAGE_ACCOUNT_NAME:
                 "account_name": AZURE_STORAGE_ACCOUNT_NAME,
                 "azure_container": "django-uploads",
                 # Use DefaultAzureCredential (Managed Identity) instead of account key
-                # This requires AZURE_CLIENT_ID env var for User-Assigned Managed Identity
-                "token_credential": True,
+                # DefaultAzureCredential automatically uses AZURE_CLIENT_ID for User-Assigned MI
+                "token_credential": DefaultAzureCredential(),
             },
         },
         "staticfiles": {
