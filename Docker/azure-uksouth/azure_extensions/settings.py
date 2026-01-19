@@ -84,3 +84,47 @@ print("Azure Extensions app enabled")
 print("Compounds app enabled (registry, assays, constructs)")
 if PLATFORM_ADMIN_EMAILS:
     print(f"Platform admins configured: {len(PLATFORM_ADMIN_EMAILS)} from environment")
+
+# Logging configuration - log errors to stdout for Azure Container Apps
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "formatters": {
+        "verbose": {
+            "format": "{levelname} {asctime} {module} {message}",
+            "style": "{",
+        },
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "verbose",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+    "loggers": {
+        "django": {
+            "handlers": ["console"],
+            "level": "INFO",
+            "propagate": False,
+        },
+        "django.request": {
+            "handlers": ["console"],
+            "level": "ERROR",  # Log all request errors with full traceback
+            "propagate": False,
+        },
+        "storages": {
+            "handlers": ["console"],
+            "level": "DEBUG",  # Debug logging for Azure Storage
+            "propagate": False,
+        },
+        "azure": {
+            "handlers": ["console"],
+            "level": "DEBUG",  # Debug logging for Azure SDK
+            "propagate": False,
+        },
+    },
+}
