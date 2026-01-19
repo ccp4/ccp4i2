@@ -18,19 +18,33 @@ MAX_DATA_FILE_SIZE = 100 * 1024 * 1024  # 100 MB for assay data files
 MAX_GENBANK_SIZE = 10 * 1024 * 1024  # 10 MB for GenBank files
 MAX_SEQUENCE_FILE_SIZE = 5 * 1024 * 1024  # 5 MB for sequencing files
 
-# Allowed file extensions by category
-QC_FILE_EXTENSIONS = {
-    '.pdf', '.png', '.jpg', '.jpeg', '.gif', '.tif', '.tiff',
-    '.doc', '.docx', '.xls', '.xlsx',
-    '.mnova', '.jdf', '.fid',  # NMR formats
-    '.raw', '.d', '.wiff',  # MS formats
+# Common document and image extensions (shared across QC files and protocol documents)
+COMMON_DOCUMENT_EXTENSIONS = {
+    # PDF
+    '.pdf',
+    # Microsoft Office
+    '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx',
+    # OpenDocument (LibreOffice, OpenOffice)
+    '.odt', '.ods', '.odp', '.odg',
+    # Text and data
+    '.txt', '.csv', '.tsv', '.md', '.rtf',
+    # Images
+    '.png', '.jpg', '.jpeg', '.gif', '.tif', '.tiff', '.bmp', '.webp', '.svg',
+    # Archives (for bundled data)
+    '.zip',
 }
 
-DOCUMENT_EXTENSIONS = {
-    '.pdf', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx',
-    '.txt', '.csv', '.md',
-    '.png', '.jpg', '.jpeg', '.gif',
+# Allowed file extensions by category
+QC_FILE_EXTENSIONS = COMMON_DOCUMENT_EXTENSIONS | {
+    # NMR formats
+    '.mnova', '.jdf', '.fid',
+    # MS formats
+    '.raw', '.d', '.wiff', '.mzml', '.mzxml',
+    # HPLC/chromatography
+    '.cdf', '.aia',
 }
+
+DOCUMENT_EXTENSIONS = COMMON_DOCUMENT_EXTENSIONS
 
 DATA_FILE_EXTENSIONS = {
     '.xlsx', '.xls', '.csv', '.txt', '.tsv',
