@@ -201,6 +201,18 @@ export async function POST(
       // Don't set Content-Type - let fetch set it with boundary for multipart
       headers.delete('Content-Type');
       const formData = await request.formData();
+
+      // Log form data fields for debugging
+      const formDataFields: string[] = [];
+      for (const [key, value] of formData.entries()) {
+        if (value instanceof File || (value && typeof value === 'object' && 'name' in value)) {
+          formDataFields.push(`${key}: File(${(value as File).name}, ${(value as File).size} bytes)`);
+        } else {
+          formDataFields.push(`${key}: ${String(value).substring(0, 50)}`);
+        }
+      }
+      console.log(`[Compounds Proxy] FormData fields: ${formDataFields.join(', ')}`);
+
       response = await fetch(url, {
         method: 'POST',
         headers,
@@ -229,12 +241,27 @@ export async function POST(
       });
     }
 
-    const data = await response.json();
-    return NextResponse.json(data, { status: response.status });
+    // Try to parse response as JSON, handling non-JSON error responses
+    const responseText = await response.text();
+    try {
+      const data = JSON.parse(responseText);
+      return NextResponse.json(data, { status: response.status });
+    } catch (jsonError) {
+      // Django returned non-JSON response (likely HTML error page)
+      console.error('[Compounds Proxy] Non-JSON response:', response.status, responseText.substring(0, 500));
+      return NextResponse.json(
+        {
+          error: 'Server error',
+          detail: responseText.substring(0, 1000),
+          status: response.status
+        },
+        { status: response.status || 500 }
+      );
+    }
   } catch (error) {
     console.error('[Compounds Proxy] Error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch from Django' },
+      { error: 'Failed to fetch from Django', detail: String(error) },
       { status: 500 }
     );
   }
@@ -264,12 +291,26 @@ export async function PATCH(
       body: JSON.stringify(body),
     });
 
-    const data = await response.json();
-    return NextResponse.json(data, { status: response.status });
+    // Try to parse response as JSON, handling non-JSON error responses
+    const responseText = await response.text();
+    try {
+      const data = JSON.parse(responseText);
+      return NextResponse.json(data, { status: response.status });
+    } catch (jsonError) {
+      console.error('[Compounds Proxy] Non-JSON response:', response.status, responseText.substring(0, 500));
+      return NextResponse.json(
+        {
+          error: 'Server error',
+          detail: responseText.substring(0, 1000),
+          status: response.status
+        },
+        { status: response.status || 500 }
+      );
+    }
   } catch (error) {
     console.error('[Compounds Proxy] Error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch from Django' },
+      { error: 'Failed to fetch from Django', detail: String(error) },
       { status: 500 }
     );
   }
@@ -298,12 +339,26 @@ export async function DELETE(
       return new NextResponse(null, { status: 204 });
     }
 
-    const data = await response.json();
-    return NextResponse.json(data, { status: response.status });
+    // Try to parse response as JSON, handling non-JSON error responses
+    const responseText = await response.text();
+    try {
+      const data = JSON.parse(responseText);
+      return NextResponse.json(data, { status: response.status });
+    } catch (jsonError) {
+      console.error('[Compounds Proxy] Non-JSON response:', response.status, responseText.substring(0, 500));
+      return NextResponse.json(
+        {
+          error: 'Server error',
+          detail: responseText.substring(0, 1000),
+          status: response.status
+        },
+        { status: response.status || 500 }
+      );
+    }
   } catch (error) {
     console.error('[Compounds Proxy] Error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch from Django' },
+      { error: 'Failed to fetch from Django', detail: String(error) },
       { status: 500 }
     );
   }
