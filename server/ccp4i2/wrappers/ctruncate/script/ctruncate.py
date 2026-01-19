@@ -79,8 +79,6 @@ class ctruncate(CPluginScript):
              # only if input file does not already have an IMEAN column
              self.appendCommandLine(['-Imean'])
 
-      return CPluginScript.SUCCEEDED
-
     def processOutputFiles(self):
       #print 'ctruncate.processOutputFiles',self.container.controlParameters.OUTPUTMINIMTZ,self.container.controlParameters.OUTPUTMINIMTZCONTENTFLAG
       #print 'ctruncate.processOutputFiles HKLOUT',self.container.outputData.HKLOUT.__str__(),os.path.exists(self.container.outputData.HKLOUT.__str__())
@@ -146,5 +144,3 @@ class ctruncate(CPluginScript):
           self.container.outputData.OBSOUT1.annotation.set(dName + ' as '+self.container.outputData.OBSOUT.CONTENT_ANNOTATION[3])
           self.container.outputData.OBSOUT1.contentFlag.set(4)
         #print('\n***ctruncate.processOutputFiles after splitMtz status',status,'contentFlag',self.container.outputData.OBSOUT.contentFlag)
-
-      return CPluginScript.SUCCEEDED
