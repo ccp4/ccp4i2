@@ -13,6 +13,7 @@ This enables:
 """
 
 import os
+from pathlib import Path
 
 # Import all settings from the core ccp4i2 settings
 from ccp4i2.config.settings import *  # noqa: F401, F403
@@ -66,6 +67,14 @@ if AZURE_STORAGE_ACCOUNT_NAME:
         },
     }
     print("Django file storage configured: Azure Blob Storage (django-uploads container)")
+else:
+    # Local Docker Compose mode (no Azure Blob Storage)
+    # Override MEDIA_ROOT to use a path inside the mounted /mnt/projects volume
+    # This ensures uploaded files persist across container restarts
+    PROJECTS_DIR = Path(os.environ.get("CCP4I2_PROJECTS_DIR", "/mnt/projects"))
+    MEDIA_ROOT = PROJECTS_DIR / "media"  # noqa: F405
+    MEDIA_ROOT.mkdir(parents=True, exist_ok=True)
+    print(f"Django file storage configured: Local filesystem ({MEDIA_ROOT})")
 
 # Platform admin emails (bootstrap admins from environment)
 PLATFORM_ADMIN_EMAILS = os.environ.get("PLATFORM_ADMIN_EMAILS", "").split(",")

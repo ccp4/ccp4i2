@@ -355,6 +355,12 @@ class BatchQCFile(models.Model):
         related_name='qc_files'
     )
     file = models.FileField(upload_to=_batch_qc_path, max_length=255)
+    original_filename = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="Original filename as uploaded by user"
+    )
     comments = models.TextField(blank=True, null=True)
     uploaded_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
@@ -365,9 +371,17 @@ class BatchQCFile(models.Model):
     def __str__(self):
         return f'QC for {self.batch}'
 
+    def save(self, *args, **kwargs):
+        # Capture original filename on first save
+        if self.file and not self.original_filename:
+            self.original_filename = Path(self.file.name).name
+        super().save(*args, **kwargs)
+
     @property
     def filename(self):
-        """Extract filename from path."""
+        """Return original filename if available, otherwise extract from path."""
+        if self.original_filename:
+            return self.original_filename
         return Path(self.file.name).name if self.file else None
 
 

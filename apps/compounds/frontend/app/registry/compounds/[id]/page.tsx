@@ -1,6 +1,6 @@
 'use client';
 
-import { use } from 'react';
+import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -13,11 +13,12 @@ import {
   Divider,
   Button,
 } from '@mui/material';
-import { Inventory, Medication, Science, TableChart } from '@mui/icons-material';
+import { Add, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
+import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Compound, Batch, Target } from '@/types/compounds/models';
@@ -45,10 +46,12 @@ export default function CompoundDetailPage({ params }: PageProps) {
   const router = useRouter();
   const api = useCompoundsApi();
 
+  const [batchDialogOpen, setBatchDialogOpen] = useState(false);
+
   const { data: compound, isLoading: compoundLoading } = api.get<Compound>(
     `compounds/${id}/`
   );
-  const { data: batches, isLoading: batchesLoading } = api.get<Batch[]>(
+  const { data: batches, isLoading: batchesLoading, mutate: mutateBatches } = api.get<Batch[]>(
     `batches/?compound=${id}`
   );
   const { data: target } = api.get<Target>(
@@ -277,7 +280,33 @@ export default function CompoundDetailPage({ params }: PageProps) {
         getRowKey={(row) => row.id}
         title={batches ? `${batches.length} batches` : undefined}
         emptyMessage="No batches registered for this compound"
+        headerAction={
+          compound && (
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<Add />}
+              onClick={() => setBatchDialogOpen(true)}
+            >
+              Add Batch
+            </Button>
+          )
+        }
       />
+
+      {/* Batch creation dialog */}
+      {compound && (
+        <BatchCreateDialog
+          open={batchDialogOpen}
+          onClose={() => setBatchDialogOpen(false)}
+          onCreated={(newBatch) => {
+            mutateBatches();
+            router.push(routes.registry.batch(newBatch.id));
+          }}
+          compoundId={compound.id}
+          compoundFormattedId={compound.formatted_id}
+        />
+      )}
     </Container>
   );
 }

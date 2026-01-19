@@ -171,7 +171,8 @@ def serve_protocol_document(request, document_id):
     if not doc.file:
         raise Http404("Document has no file")
 
-    return _serve_file(doc.file, doc.title + Path(doc.file.name).suffix)
+    # Use the original filename from the stored path
+    return _serve_file(doc.file)
 
 
 @api_view(['GET'])
@@ -190,7 +191,8 @@ def serve_batch_qc_file(request, qc_file_id):
     if not qc_file.file:
         raise Http404("QC record has no file")
 
-    return _serve_file(qc_file.file)
+    # Use the original filename for Content-Disposition
+    return _serve_file(qc_file.file, qc_file.filename)
 
 
 @api_view(['GET'])

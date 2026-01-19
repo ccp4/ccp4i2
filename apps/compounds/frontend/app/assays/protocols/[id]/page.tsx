@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState } from 'react';
+import { use, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -20,8 +20,10 @@ import {
   IconButton,
   Alert,
   CircularProgress,
+  LinearProgress,
+  Tooltip,
 } from '@mui/material';
-import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart, CheckCircle } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -29,10 +31,15 @@ import { PlatePreview } from '@/components/compounds/PlatePreview';
 import { PlateLayoutEditor } from '@/components/compounds/PlateLayoutEditor';
 import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';
 import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
-import { DocumentUploadDialog } from '@/components/compounds/DocumentUploadDialog';
-import { useCompoundsApi } from '@/lib/compounds/api';
+import { useCompoundsApi, apiUpload } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Protocol, Assay, PlateLayout, ProtocolDocument } from '@/types/compounds/models';
+
+interface UploadingFile {
+  name: string;
+  status: 'uploading' | 'success' | 'error';
+  error?: string;
+}
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -75,7 +82,16 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const [assayToDelete, setAssayToDelete] = useState<Assay | null>(null);
   const [deleting, setDeleting] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
-  const [documentUploadOpen, setDocumentUploadOpen] = useState(false);
+
+  // Document drop zone state
+  const [isDragOver, setIsDragOver] = useState(false);
+  const [uploadingFiles, setUploadingFiles] = useState<UploadingFile[]>([]);
+  const [uploadError, setUploadError] = useState<string | null>(null);
+
+  // Document delete state
+  const [deleteDocDialogOpen, setDeleteDocDialogOpen] = useState(false);
+  const [docToDelete, setDocToDelete] = useState<ProtocolDocument | null>(null);
+  const [deletingDoc, setDeletingDoc] = useState(false);
 
   const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
@@ -132,6 +148,160 @@ export default function ProtocolDetailPage({ params }: PageProps) {
     }
   };
 
+  const handleDeleteDocClick = (doc: ProtocolDocument) => {
+    setDocToDelete(doc);
+    setDeleteDocDialogOpen(true);
+  };
+
+  const handleDeleteDocConfirm = async () => {
+    if (!docToDelete) return;
+
+    setDeletingDoc(true);
+    try {
+      await api.delete(`protocol-documents/${docToDelete.id}/`);
+      mutateDocuments();
+    } catch (err) {
+      console.error('Delete error:', err);
+      setUploadError('Failed to delete document');
+    } finally {
+      setDeletingDoc(false);
+      setDeleteDocDialogOpen(false);
+      setDocToDelete(null);
+    }
+  };
+
+  // Handle drag and drop for document uploads
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(true);
+  }, []);
+
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+  }, []);
+
+  const handleDrop = useCallback(async (e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragOver(false);
+    setUploadError(null);
+
+    const droppedFiles = Array.from(e.dataTransfer.files);
+    if (droppedFiles.length === 0) return;
+
+    // Initialize upload status for all files
+    const initialStatus: UploadingFile[] = droppedFiles.map((f) => ({
+      name: f.name,
+      status: 'uploading',
+    }));
+    setUploadingFiles(initialStatus);
+
+    let successCount = 0;
+    let errorCount = 0;
+
+    // Upload files serially
+    for (let i = 0; i < droppedFiles.length; i++) {
+      const file = droppedFiles[i];
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('protocol', id);
+
+        await apiUpload('protocol-documents/', formData);
+
+        setUploadingFiles((prev) =>
+          prev.map((f, idx) =>
+            idx === i ? { ...f, status: 'success' } : f
+          )
+        );
+        successCount++;
+      } catch (err) {
+        setUploadingFiles((prev) =>
+          prev.map((f, idx) =>
+            idx === i
+              ? { ...f, status: 'error', error: err instanceof Error ? err.message : 'Upload failed' }
+              : f
+          )
+        );
+        errorCount++;
+      }
+    }
+
+    // Refresh the documents list
+    if (successCount > 0) {
+      mutateDocuments();
+    }
+
+    // Clear upload status after a delay
+    setTimeout(() => {
+      setUploadingFiles([]);
+      if (errorCount > 0) {
+        setUploadError(`${errorCount} file(s) failed to upload`);
+      }
+    }, 3000);
+  }, [id, mutateDocuments]);
+
+  const handleFileSelect = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (!e.target.files || e.target.files.length === 0) return;
+
+    const selectedFiles = Array.from(e.target.files);
+    setUploadError(null);
+
+    // Initialize upload status
+    const initialStatus: UploadingFile[] = selectedFiles.map((f) => ({
+      name: f.name,
+      status: 'uploading',
+    }));
+    setUploadingFiles(initialStatus);
+
+    let successCount = 0;
+    let errorCount = 0;
+
+    // Upload files serially
+    for (let i = 0; i < selectedFiles.length; i++) {
+      const file = selectedFiles[i];
+      try {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('protocol', id);
+
+        await apiUpload('protocol-documents/', formData);
+
+        setUploadingFiles((prev) =>
+          prev.map((f, idx) =>
+            idx === i ? { ...f, status: 'success' } : f
+          )
+        );
+        successCount++;
+      } catch (err) {
+        setUploadingFiles((prev) =>
+          prev.map((f, idx) =>
+            idx === i
+              ? { ...f, status: 'error', error: err instanceof Error ? err.message : 'Upload failed' }
+              : f
+          )
+        );
+        errorCount++;
+      }
+    }
+
+    // Refresh the documents list
+    if (successCount > 0) {
+      mutateDocuments();
+    }
+
+    // Clear upload status after a delay
+    setTimeout(() => {
+      setUploadingFiles([]);
+      if (errorCount > 0) {
+        setUploadError(`${errorCount} file(s) failed to upload`);
+      }
+    }, 3000);
+
+    // Reset input
+    e.target.value = '';
+  }, [id, mutateDocuments]);
+
   const documentColumns: Column<ProtocolDocument>[] = [
     {
       key: 'filename',
@@ -156,28 +326,47 @@ export default function ProtocolDetailPage({ params }: PageProps) {
     {
       key: 'file',
       label: 'Actions',
-      width: 100,
-      render: (value) =>
-        value ? (
-          <Box sx={{ display: 'flex', gap: 0.5 }}>
+      width: 140,
+      render: (value, row) => (
+        <Box sx={{ display: 'flex', gap: 0.5 }}>
+          {value && (
+            <>
+              <Tooltip title="Download">
+                <IconButton
+                  size="small"
+                  href={value}
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <Download fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Open in new tab">
+                <IconButton
+                  size="small"
+                  href={value}
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <OpenInNew fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </>
+          )}
+          <Tooltip title="Delete">
             <IconButton
               size="small"
-              href={value}
-              target="_blank"
-              onClick={(e) => e.stopPropagation()}
+              color="error"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleDeleteDocClick(row);
+              }}
             >
-              <Download fontSize="small" />
+              <Delete fontSize="small" />
             </IconButton>
-            <IconButton
-              size="small"
-              href={value}
-              target="_blank"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <OpenInNew fontSize="small" />
-            </IconButton>
-          </Box>
-        ) : null,
+          </Tooltip>
+        </Box>
+      ),
     },
   ];
 
@@ -471,20 +660,79 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       </Dialog>
 
       {/* Documents section */}
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-        <Typography variant="h6">
-          Documents
-        </Typography>
-        <Button
-          variant="outlined"
-          startIcon={<CloudUpload />}
-          onClick={() => setDocumentUploadOpen(true)}
-          disabled={!protocol}
-        >
-          Upload Documents
-        </Button>
-      </Box>
+      <Typography variant="h6" sx={{ mb: 2 }}>
+        Documents
+      </Typography>
 
+      {/* Upload error alert */}
+      {uploadError && (
+        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setUploadError(null)}>
+          {uploadError}
+        </Alert>
+      )}
+
+      {/* Drop zone for document uploads */}
+      <Paper
+        variant="outlined"
+        onDrop={handleDrop}
+        onDragOver={handleDragOver}
+        onDragLeave={handleDragLeave}
+        sx={{
+          p: 3,
+          mb: 2,
+          textAlign: 'center',
+          bgcolor: isDragOver ? 'primary.50' : 'grey.50',
+          borderStyle: 'dashed',
+          borderColor: isDragOver ? 'primary.main' : 'grey.300',
+          borderWidth: 2,
+          cursor: 'pointer',
+          transition: 'all 0.2s ease',
+          '&:hover': { bgcolor: 'grey.100', borderColor: 'grey.400' },
+        }}
+        onClick={() => document.getElementById('protocol-doc-input')?.click()}
+      >
+        <CloudUpload sx={{ fontSize: 40, color: isDragOver ? 'primary.main' : 'grey.400', mb: 1 }} />
+        <Typography color={isDragOver ? 'primary.main' : 'text.secondary'}>
+          {isDragOver ? 'Drop files here' : 'Drag and drop documents here, or click to select'}
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+          Multiple files supported (PDF, Word, Excel, images, etc.)
+        </Typography>
+        <input
+          id="protocol-doc-input"
+          type="file"
+          multiple
+          accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg"
+          onChange={handleFileSelect}
+          style={{ display: 'none' }}
+        />
+      </Paper>
+
+      {/* Upload progress */}
+      {uploadingFiles.length > 0 && (
+        <Paper sx={{ p: 2, mb: 2 }}>
+          <Typography variant="subtitle2" sx={{ mb: 1 }}>
+            Uploading {uploadingFiles.length} file(s)...
+          </Typography>
+          {uploadingFiles.map((file, index) => (
+            <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+              {file.status === 'uploading' && <LinearProgress sx={{ flex: 1, height: 6, borderRadius: 1 }} />}
+              {file.status === 'success' && <CheckCircle color="success" fontSize="small" />}
+              {file.status === 'error' && <Description color="error" fontSize="small" />}
+              <Typography
+                variant="body2"
+                color={file.status === 'error' ? 'error' : 'text.secondary'}
+                sx={{ minWidth: 200 }}
+              >
+                {file.name}
+                {file.status === 'error' && file.error && ` - ${file.error}`}
+              </Typography>
+            </Box>
+          ))}
+        </Paper>
+      )}
+
+      {/* Documents table */}
       <Box sx={{ mb: 3 }}>
         <DataTable
           data={documents}
@@ -495,17 +743,6 @@ export default function ProtocolDetailPage({ params }: PageProps) {
           emptyMessage="No documents uploaded for this protocol"
         />
       </Box>
-
-      {/* Document Upload Dialog */}
-      <DocumentUploadDialog
-        open={documentUploadOpen}
-        onClose={() => setDocumentUploadOpen(false)}
-        title="Upload Protocol Documents"
-        endpoint="protocol-documents/"
-        parentField="protocol"
-        parentId={id}
-        onUploaded={() => mutateDocuments()}
-      />
 
       {/* Assays section header with Add button */}
       <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
@@ -576,6 +813,37 @@ export default function ProtocolDetailPage({ params }: PageProps) {
             startIcon={deleting ? <CircularProgress size={16} /> : <Delete />}
           >
             {deleting ? 'Deleting...' : 'Delete'}
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* Delete Document Confirmation Dialog */}
+      <Dialog
+        open={deleteDocDialogOpen}
+        onClose={() => setDeleteDocDialogOpen(false)}
+      >
+        <DialogTitle>Delete Document</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete &quot;{docToDelete?.filename || 'this document'}&quot;?
+            This action cannot be undone.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            onClick={() => setDeleteDocDialogOpen(false)}
+            disabled={deletingDoc}
+          >
+            Cancel
+          </Button>
+          <Button
+            onClick={handleDeleteDocConfirm}
+            color="error"
+            variant="contained"
+            disabled={deletingDoc}
+            startIcon={deletingDoc ? <CircularProgress size={16} /> : <Delete />}
+          >
+            {deletingDoc ? 'Deleting...' : 'Delete'}
           </Button>
         </DialogActions>
       </Dialog>

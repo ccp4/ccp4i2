@@ -534,6 +534,11 @@ def import_status(request):
     from compounds.assays.models import (
         DilutionSeries, Protocol, Assay, DataSeries, AnalysisResult, Hypothesis
     )
+    from compounds.constructs.models import (
+        ConstructProject, Plasmid, Protein, ProteinSynonym, ProteinUse,
+        Cassette, CassetteUse, SequencingResult, ExpressionTagType,
+        Protease, ExpressionTagLocation, ExpressionTag
+    )
 
     User = get_user_model()
 
@@ -558,7 +563,212 @@ def import_status(request):
             'analysis_results': AnalysisResult.objects.count(),
             'hypotheses': Hypothesis.objects.count(),
         },
+        'constructs': {
+            'projects': ConstructProject.objects.count(),
+            'plasmids': Plasmid.objects.count(),
+            'proteins': Protein.objects.count(),
+            'protein_synonyms': ProteinSynonym.objects.count(),
+            'protein_uses': ProteinUse.objects.count(),
+            'cassettes': Cassette.objects.count(),
+            'cassette_uses': CassetteUse.objects.count(),
+            'sequencing_results': SequencingResult.objects.count(),
+            'expression_tag_types': ExpressionTagType.objects.count(),
+            'proteases': Protease.objects.count(),
+            'expression_tag_locations': ExpressionTagLocation.objects.count(),
+            'expression_tags': ExpressionTag.objects.count(),
+        },
     })
+
+
+@api_view(['POST'])
+@permission_classes([IsPlatformAdmin])
+def import_constructs_fixtures(request):
+    """
+    Import legacy ConstructDatabase fixtures.
+
+    Accepts multipart form data with JSON fixture files:
+    - users_fixture: auth.json (optional, for user references)
+    - constructs_fixture: ConstructDatabase.json (required)
+    - dry_run: If true, transform and validate without loading (optional)
+
+    Returns summary of imported records or validation results.
+    """
+    from compounds.constructs.management.commands.import_legacy_constructs import (
+        MODEL_MAPPINGS as CONSTRUCTS_MODEL_MAPPINGS,
+        DATETIME_FIELDS as CONSTRUCTS_DATETIME_FIELDS,
+    )
+
+    users_file = request.FILES.get('users_fixture')
+    constructs_file = request.FILES.get('constructs_fixture')
+    dry_run = request.data.get('dry_run', 'false').lower() == 'true'
+
+    if not constructs_file:
+        return Response(
+            {'error': 'Must provide constructs_fixture file'},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+
+    results = {
+        'dry_run': dry_run,
+        'users': None,
+        'constructs': None,
+        'errors': [],
+    }
+
+    user_lookup = {}
+
+    try:
+        # Process users fixture if provided (to build lookup)
+        if users_file:
+            try:
+                users_content = users_file.read().decode('utf-8')
+                users_result = _import_users_from_fixture(users_content, dry_run)
+
+                if 'error' in users_result:
+                    results['errors'].append(f'Users fixture: {users_result["error"]}')
+                else:
+                    results['users'] = {
+                        'total_records': users_result['total'],
+                        'created': users_result['created'],
+                        'updated': users_result['updated'],
+                        'skipped': users_result['skipped'],
+                    }
+                    if users_result.get('errors'):
+                        results['errors'].extend(users_result['errors'])
+            except Exception as e:
+                results['errors'].append(f'Error processing users_fixture: {str(e)}')
+
+        with tempfile.TemporaryDirectory(prefix='constructs_import_') as temp_dir:
+            temp_path = Path(temp_dir)
+
+            # Process constructs fixture
+            try:
+                constructs_content = constructs_file.read().decode('utf-8')
+                # Handle Django debug output in fixture
+                start = constructs_content.find('[')
+                if start > 0:
+                    constructs_content = constructs_content[start:]
+                constructs_data = json.loads(constructs_content)
+
+                # Transform records
+                constructs_records = []
+                for record in constructs_data:
+                    old_model = record.get('model', '')
+                    if old_model not in CONSTRUCTS_MODEL_MAPPINGS:
+                        continue
+
+                    new_model = CONSTRUCTS_MODEL_MAPPINGS[old_model]
+                    pk = record['pk']
+                    old_fields = record.get('fields', {})
+                    new_fields = {}
+
+                    # Field name mappings
+                    field_mappings = {
+                        'createdAt': 'created_at',
+                        'updatedAt': 'updated_at',
+                        'createdBy': None,  # Skip - FK refs won't match
+                        'createdBy_id': None,
+                        'parent_id': 'parent',
+                        'ncnId': 'ncn_id',
+                        'snapgeneFile': 'genbank_file',
+                        'project_id': 'project',
+                        'uniprotId': 'uniprot_id',
+                        'protein_id': 'protein',
+                        'cassette_id': 'cassette',
+                        'plasmid_id': 'plasmid',
+                        'alignmentFile': 'alignment_file',
+                        'cassetteUse_id': 'cassette_use',
+                        'expressionTagType_id': 'expression_tag_type',
+                        'protease_id': 'protease',
+                        'location_id': 'location',
+                        'original_id': None,  # Drop
+                    }
+
+                    for old_key, value in old_fields.items():
+                        if old_key in field_mappings:
+                            new_key = field_mappings[old_key]
+                        else:
+                            new_key = old_key
+
+                        if new_key is None:
+                            continue
+
+                        # Make datetime fields timezone-aware
+                        if new_key in CONSTRUCTS_DATETIME_FIELDS or old_key in CONSTRUCTS_DATETIME_FIELDS:
+                            if value and isinstance(value, str):
+                                if not value.endswith('Z') and '+' not in value[-6:]:
+                                    value = value + 'Z'
+
+                        if new_key and value is not None:
+                            new_fields[new_key] = value
+
+                    constructs_records.append({
+                        'model': new_model,
+                        'pk': pk,
+                        'fields': new_fields
+                    })
+
+                # Sort by model for FK dependencies
+                model_order = [
+                    'constructs.expressiontagtype',
+                    'constructs.protease',
+                    'constructs.expressiontaglocation',
+                    'constructs.constructproject',
+                    'constructs.protein',
+                    'constructs.proteinsynonym',
+                    'constructs.plasmid',
+                    'constructs.cassette',
+                    'constructs.cassetteuse',
+                    'constructs.proteinuse',
+                    'constructs.sequencingresult',
+                    'constructs.expressiontag',
+                ]
+                constructs_records.sort(
+                    key=lambda r: model_order.index(r['model']) if r['model'] in model_order else 999
+                )
+
+                constructs_output = temp_path / 'compounds_constructs.json'
+                with open(constructs_output, 'w') as f:
+                    json.dump(constructs_records, f, indent=2)
+
+                # Count by model type
+                model_counts = {}
+                for rec in constructs_records:
+                    model = rec['model']
+                    model_counts[model] = model_counts.get(model, 0) + 1
+
+                results['constructs'] = {
+                    'total_records': len(constructs_records),
+                    'by_model': model_counts,
+                }
+
+                # Load fixtures if not dry run and no errors
+                if not dry_run and not results['errors']:
+                    try:
+                        with transaction.atomic():
+                            call_command('loaddata', str(constructs_output), verbosity=0)
+                            results['loaded'] = True
+                            logger.info(
+                                f"Constructs fixtures imported by {getattr(request.user, 'email', 'local')}: "
+                                f"total={len(constructs_records)}"
+                            )
+                    except Exception as e:
+                        results['errors'].append(f'Error loading fixtures: {str(e)}')
+                        results['loaded'] = False
+
+            except json.JSONDecodeError as e:
+                results['errors'].append(f'Invalid JSON in constructs_fixture: {str(e)}')
+            except Exception as e:
+                results['errors'].append(f'Error processing constructs_fixture: {str(e)}')
+
+    except Exception as e:
+        logger.exception("Error in import_constructs_fixtures")
+        results['errors'].append(f'Unexpected error: {str(e)}')
+
+    if results['errors']:
+        return Response(results, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(results)
 
 
 # =============================================================================

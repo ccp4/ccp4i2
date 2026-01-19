@@ -126,14 +126,53 @@ export async function GET(
   try {
     const response = await fetch(url, {
       headers: buildForwardHeaders(request),
+      redirect: 'manual', // Handle redirects manually for file downloads
     });
 
-    const data = await response.json();
-    return NextResponse.json(data, { status: response.status });
+    // Handle redirects (e.g., to Azure SAS URLs for file downloads)
+    if (response.status >= 300 && response.status < 400) {
+      const location = response.headers.get('Location');
+      if (location) {
+        return NextResponse.redirect(location, response.status);
+      }
+    }
+
+    // Check content type to determine how to handle response
+    const contentType = response.headers.get('Content-Type') || '';
+
+    // For file downloads (non-JSON responses), stream the response
+    if (!contentType.includes('application/json')) {
+      const headers = new Headers();
+      // Forward relevant headers
+      const forwardHeaders = ['Content-Type', 'Content-Disposition', 'Content-Length'];
+      for (const header of forwardHeaders) {
+        const value = response.headers.get(header);
+        if (value) headers.set(header, value);
+      }
+
+      return new NextResponse(response.body, {
+        status: response.status,
+        headers,
+      });
+    }
+
+    // For JSON responses, parse and return
+    const text = await response.text();
+    try {
+      const data = JSON.parse(text);
+      return NextResponse.json(data, { status: response.status });
+    } catch (jsonError) {
+      // Response wasn't valid JSON - return the raw text
+      console.error('[Compounds Proxy] Failed to parse JSON:', text);
+      return new NextResponse(text, {
+        status: response.status,
+        headers: { 'Content-Type': 'text/plain' },
+      });
+    }
   } catch (error) {
     console.error('[Compounds Proxy] Error:', error);
     return NextResponse.json(
-      { error: 'Failed to fetch from Django' },
+      { error: 'Failed to fetch from Django', detail: String(error) },
       { status: 500 }
     );
   }

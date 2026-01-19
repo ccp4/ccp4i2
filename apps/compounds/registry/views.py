@@ -33,6 +33,7 @@ from .serializers import (
     CompoundCreateSerializer,
     BatchSerializer,
     BatchQCFileSerializer,
+    BatchQCFileCreateSerializer,
     CompoundTemplateSerializer,
 )
 
@@ -456,6 +457,12 @@ class BatchQCFileViewSet(ReversionMixin, viewsets.ModelViewSet):
     serializer_class = BatchQCFileSerializer
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['batch']
+
+    def get_serializer_class(self):
+        """Use create serializer for POST (file upload), read serializer otherwise."""
+        if self.action == 'create':
+            return BatchQCFileCreateSerializer
+        return BatchQCFileSerializer
 
 
 class CompoundTemplateViewSet(ReversionMixin, viewsets.ModelViewSet):

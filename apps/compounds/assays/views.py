@@ -29,6 +29,7 @@ from .serializers import (
     ProtocolSerializer,
     ProtocolDetailSerializer,
     ProtocolDocumentSerializer,
+    ProtocolDocumentCreateSerializer,
     AssayListSerializer,
     AssayDetailSerializer,
     AssayCreateSerializer,
@@ -470,6 +471,12 @@ class ProtocolDocumentViewSet(ReversionMixin, viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['protocol']
     ordering = ['-created_at']
+
+    def get_serializer_class(self):
+        """Use create serializer for POST (file upload), read serializer otherwise."""
+        if self.action == 'create':
+            return ProtocolDocumentCreateSerializer
+        return ProtocolDocumentSerializer
 
     def perform_create(self, serializer):
         with reversion.create_revision():

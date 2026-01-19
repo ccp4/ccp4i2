@@ -61,6 +61,20 @@ interface ImportStatus {
     analysis_results: number;
     hypotheses: number;
   };
+  constructs?: {
+    projects: number;
+    plasmids: number;
+    proteins: number;
+    protein_synonyms: number;
+    protein_uses: number;
+    cassettes: number;
+    cassette_uses: number;
+    sequencing_results: number;
+    expression_tag_types: number;
+    proteases: number;
+    expression_tag_locations: number;
+    expression_tags: number;
+  };
 }
 
 interface CCP4i2ImportStatus {
@@ -114,6 +128,22 @@ interface ImportResult {
   errors: string[];
 }
 
+interface ConstructsImportResult {
+  dry_run: boolean;
+  loaded?: boolean;
+  users?: {
+    total_records: number;
+    created: number;
+    updated: number;
+    skipped: number;
+  };
+  constructs?: {
+    total_records: number;
+    by_model: Record<string, number>;
+  };
+  errors: string[];
+}
+
 export default function ImportPage() {
   const { mode, toggleTheme } = useTheme();
   const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
@@ -140,6 +170,14 @@ export default function ImportPage() {
   const [ccp4i2DryRun, setCCP4i2DryRun] = useState(true);
   const [ccp4i2RemapFrom, setCCP4i2RemapFrom] = useState('');
   const [ccp4i2RemapTo, setCCP4i2RemapTo] = useState('');
+
+  // Constructs fixture import state
+  const [constructsImporting, setConstructsImporting] = useState(false);
+  const [constructsResult, setConstructsResult] = useState<ConstructsImportResult | null>(null);
+  const [constructsError, setConstructsError] = useState<string | null>(null);
+  const [constructsUsersFile, setConstructsUsersFile] = useState<File | null>(null);
+  const [constructsFile, setConstructsFile] = useState<File | null>(null);
+  const [constructsDryRun, setConstructsDryRun] = useState(true);
 
   const fetchCurrentUser = async (): Promise<CurrentUser | null> => {
     try {
@@ -275,6 +313,50 @@ export default function ImportPage() {
       setCCP4i2Error(err instanceof Error ? err.message : 'Import failed');
     } finally {
       setCCP4i2Importing(false);
+    }
+  };
+
+  // Constructs fixture import function
+  const handleConstructsImport = async () => {
+    if (!constructsFile) {
+      setConstructsError('Please select a ConstructDatabase fixture file');
+      return;
+    }
+
+    setConstructsImporting(true);
+    setConstructsError(null);
+    setConstructsResult(null);
+
+    try {
+      const formData = new FormData();
+      if (constructsUsersFile) {
+        formData.append('users_fixture', constructsUsersFile);
+      }
+      formData.append('constructs_fixture', constructsFile);
+      formData.append('dry_run', constructsDryRun.toString());
+
+      const response = await authenticatedFetch('/api/proxy/compounds/admin/import-constructs/', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setConstructsResult(data);
+        if (data.errors?.length > 0) {
+          setConstructsError(data.errors.join('; '));
+        }
+      } else {
+        setConstructsResult(data);
+        if (!constructsDryRun) {
+          await fetchImportStatus();
+        }
+      }
+    } catch (err) {
+      setConstructsError(err instanceof Error ? err.message : 'Import failed');
+    } finally {
+      setConstructsImporting(false);
     }
   };
 
@@ -700,6 +782,171 @@ export default function ImportPage() {
                     {ccp4i2Result.output}
                   </Typography>
                 </Box>
+              )}
+            </Alert>
+          )}
+        </Stack>
+      </Paper>
+
+      {/* Constructs Database Legacy Fixture Import */}
+      <Paper sx={{ p: 3, mt: 3 }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+          <Typography variant="h6">Import Constructs Database Fixtures</Typography>
+          <Tooltip title="Refresh database counts">
+            <IconButton onClick={fetchImportStatus} sx={{ ml: 1 }} disabled={importStatusLoading}>
+              <Refresh />
+            </IconButton>
+          </Tooltip>
+        </Box>
+
+        <Typography variant="body2" color="text.secondary" paragraph>
+          Upload JSON fixtures from the legacy ConstructDatabase app. Optionally include the auth.json
+          fixture to import users first.
+        </Typography>
+
+        <Divider sx={{ my: 2 }} />
+
+        {/* Current Database Status */}
+        {importStatus?.constructs && (
+          <Box sx={{ mb: 3 }}>
+            <Typography variant="subtitle2" gutterBottom>
+              Current Constructs Database Counts
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 4, flexWrap: 'wrap' }}>
+              <Box>
+                <Typography variant="caption" color="text.secondary">Projects & Plasmids</Typography>
+                <Typography variant="body2">
+                  {importStatus.constructs.projects} projects, {importStatus.constructs.plasmids} plasmids
+                </Typography>
+              </Box>
+              <Box>
+                <Typography variant="caption" color="text.secondary">Proteins</Typography>
+                <Typography variant="body2">
+                  {importStatus.constructs.proteins} proteins, {importStatus.constructs.protein_synonyms} synonyms, {importStatus.constructs.protein_uses} uses
+                </Typography>
+              </Box>
+              <Box>
+                <Typography variant="caption" color="text.secondary">Cassettes</Typography>
+                <Typography variant="body2">
+                  {importStatus.constructs.cassettes} cassettes, {importStatus.constructs.cassette_uses} uses, {importStatus.constructs.sequencing_results} seq results
+                </Typography>
+              </Box>
+            </Box>
+          </Box>
+        )}
+
+        <Stack spacing={2}>
+          {/* Users Fixture Upload (optional) */}
+          <Box>
+            <Typography variant="subtitle2" gutterBottom>
+              Users Fixture (auth.json) - Optional, for user references
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Button
+                variant="outlined"
+                component="label"
+                startIcon={<CloudUpload />}
+                size="small"
+              >
+                Select File
+                <input
+                  type="file"
+                  hidden
+                  accept=".json"
+                  onChange={(e) => setConstructsUsersFile(e.target.files?.[0] || null)}
+                />
+              </Button>
+              {constructsUsersFile && (
+                <Typography variant="body2" color="text.secondary">
+                  {constructsUsersFile.name} ({(constructsUsersFile.size / 1024).toFixed(1)} KB)
+                </Typography>
+              )}
+            </Box>
+          </Box>
+
+          {/* Constructs Fixture Upload */}
+          <Box>
+            <Typography variant="subtitle2" gutterBottom>
+              Constructs Fixture (ConstructDatabase.json) - Required
+            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+              <Button
+                variant="outlined"
+                component="label"
+                startIcon={<CloudUpload />}
+                size="small"
+              >
+                Select File
+                <input
+                  type="file"
+                  hidden
+                  accept=".json"
+                  onChange={(e) => setConstructsFile(e.target.files?.[0] || null)}
+                />
+              </Button>
+              {constructsFile && (
+                <Typography variant="body2" color="text.secondary">
+                  {constructsFile.name} ({(constructsFile.size / 1024).toFixed(1)} KB)
+                </Typography>
+              )}
+            </Box>
+          </Box>
+
+          {/* Options */}
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={constructsDryRun}
+                onChange={(e) => setConstructsDryRun(e.target.checked)}
+                size="small"
+              />
+            }
+            label="Dry run (validate without loading)"
+          />
+
+          {/* Import Button */}
+          <Box>
+            <Button
+              variant="contained"
+              onClick={handleConstructsImport}
+              disabled={constructsImporting || !constructsFile}
+              startIcon={constructsImporting ? <CircularProgress size={16} /> : <CloudUpload />}
+              size="small"
+            >
+              {constructsImporting ? 'Processing...' : constructsDryRun ? 'Validate' : 'Import'}
+            </Button>
+          </Box>
+
+          {/* Error Display */}
+          {constructsError && (
+            <Alert severity="error" icon={<ErrorIcon />} onClose={() => setConstructsError(null)}>
+              {constructsError}
+            </Alert>
+          )}
+
+          {/* Import Result */}
+          {constructsResult && !constructsError && (
+            <Alert
+              severity={constructsResult.errors?.length ? 'warning' : 'success'}
+              icon={constructsResult.errors?.length ? <ErrorIcon /> : <CheckCircle />}
+            >
+              <Typography variant="subtitle2" gutterBottom>
+                {constructsResult.dry_run ? 'Validation Result' : 'Import Result'}
+              </Typography>
+              {constructsResult.users && (
+                <Typography variant="body2">
+                  Users: {constructsResult.users.total_records} records ({constructsResult.users.created} new, {constructsResult.users.updated} updated)
+                </Typography>
+              )}
+              {constructsResult.constructs && (
+                <Typography variant="body2">
+                  Constructs: {constructsResult.constructs.total_records} records
+                </Typography>
+              )}
+              {!constructsResult.dry_run && constructsResult.loaded && (
+                <Typography variant="body2" sx={{ fontWeight: 'bold', mt: 1 }}>
+                  Successfully loaded into database
+                </Typography>
               )}
             </Alert>
           )}

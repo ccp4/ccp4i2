@@ -57,6 +57,7 @@ COPY apps/compounds/__init__.py /usr/src/app/compounds/__init__.py
 COPY apps/compounds/urls.py /usr/src/app/compounds/urls.py
 COPY apps/compounds/admin_views.py /usr/src/app/compounds/admin_views.py
 COPY apps/compounds/media_views.py /usr/src/app/compounds/media_views.py
+COPY apps/compounds/validators.py /usr/src/app/compounds/validators.py
 
 # Install Python dependencies
 # Core Django dependencies (quoted to prevent shell interpretation of < >)

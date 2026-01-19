@@ -7,6 +7,7 @@ DRF serializers for compound registration models.
 from django.urls import reverse
 from rest_framework import serializers
 
+from compounds.validators import validate_qc_file
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
 
 
@@ -18,14 +19,16 @@ class ProtectedFileField(serializers.Field):
     This ensures files are served through authenticated endpoints.
     """
 
-    def __init__(self, url_name, id_field='id', **kwargs):
+    def __init__(self, url_name, model_field='id', url_kwarg=None, **kwargs):
         """
         Args:
             url_name: Name of the URL pattern for the protected endpoint
-            id_field: Field on the model to use as the URL argument
+            model_field: Field on the model to get the ID from (default: 'id')
+            url_kwarg: Name of the URL kwarg (default: same as model_field)
         """
         self.url_name = url_name
-        self.id_field = id_field
+        self.model_field = model_field
+        self.url_kwarg = url_kwarg or model_field
         kwargs['read_only'] = True
         super().__init__(**kwargs)
 
@@ -34,21 +37,30 @@ class ProtectedFileField(serializers.Field):
         if not value:
             return None
 
-        # Get the parent object's ID
-        obj = self.parent.instance
-        if hasattr(obj, '__iter__') and not isinstance(obj, dict):
+        # Django's FieldFile has an 'instance' attribute pointing to the model
+        # This works correctly during both single and list serialization
+        obj = getattr(value, 'instance', None)
+
+        # Fallback to parent's instance for single object serialization
+        if obj is None and self.parent:
+            instance = getattr(self.parent, 'instance', None)
+            if instance and not (hasattr(instance, '__iter__') and not isinstance(instance, dict)):
+                obj = instance
+
+        if obj is None:
             return None
 
-        obj_id = getattr(obj, self.id_field, None)
+        obj_id = getattr(obj, self.model_field, None)
         if not obj_id:
             return None
 
-        # Build the protected URL
-        request = self.context.get('request')
-        url = reverse(f'compounds:{self.url_name}', kwargs={f'{self.id_field}': obj_id})
-
-        if request:
-            return request.build_absolute_uri(url)
+        # Build the protected URL - return path through the Next.js proxy
+        # The Django URL is /api/compounds/media/... but frontend needs /api/proxy/compounds/media/...
+        # This ensures URLs work both in Docker (where Django is at server:8000) and locally
+        url = reverse(f'compounds:{self.url_name}', kwargs={self.url_kwarg: obj_id})
+        # Convert /api/compounds/... to /api/proxy/compounds/...
+        if url.startswith('/api/compounds/'):
+            url = '/api/proxy/compounds/' + url[len('/api/compounds/'):]
         return url
 
 
@@ -179,14 +191,29 @@ class BatchSerializer(serializers.ModelSerializer):
 
 
 class BatchQCFileSerializer(serializers.ModelSerializer):
+    """Serializer for reading batch QC files - returns protected download URLs."""
     filename = serializers.CharField(read_only=True)
     # Use protected URL for file instead of direct storage URL
-    file = ProtectedFileField(url_name='batch-qc-file', id_field='id')
+    file = ProtectedFileField(url_name='batch-qc-file', model_field='id', url_kwarg='qc_file_id')
 
     class Meta:
         model = BatchQCFile
         fields = ['id', 'batch', 'file', 'filename', 'comments', 'uploaded_at']
         read_only_fields = ['uploaded_at']
+
+
+class BatchQCFileCreateSerializer(serializers.ModelSerializer):
+    """Serializer for creating/uploading batch QC files."""
+
+    class Meta:
+        model = BatchQCFile
+        fields = ['id', 'batch', 'file', 'comments']
+        read_only_fields = ['id']
+
+    def validate_file(self, value):
+        """Validate file extension and size."""
+        validate_qc_file(value)
+        return value
 
 
 class CompoundTemplateSerializer(serializers.ModelSerializer):

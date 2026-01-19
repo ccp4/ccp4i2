@@ -42,6 +42,8 @@ interface DataTableProps<T> {
   estimateRowHeight?: number;
   /** Maximum height of the table container (default: 600) */
   maxHeight?: number;
+  /** Optional action element to display in the header (e.g., an "Add" button) */
+  headerAction?: ReactNode;
 }
 
 type Order = 'asc' | 'desc';
@@ -57,6 +59,7 @@ export function DataTable<T extends Record<string, any>>({
   additionalSearchFields = [],
   estimateRowHeight = 53,
   maxHeight = 600,
+  headerAction,
 }: DataTableProps<T>) {
   const [orderBy, setOrderBy] = useState<string | null>(null);
   const [order, setOrder] = useState<Order>('asc');
@@ -143,6 +146,7 @@ export function DataTable<T extends Record<string, any>>({
           </Typography>
         )}
         {!title && <Box sx={{ flexGrow: 1 }} />}
+        {headerAction}
         {hasSearchableColumns && (
           <TextField
             size="small"

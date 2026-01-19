@@ -8,7 +8,12 @@ These URLs are included by the main ccp4i2 urls.py when compounds is enabled.
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from compounds.admin_views import import_legacy_fixtures, import_status, reset_compounds_data
+from compounds.admin_views import (
+    import_legacy_fixtures,
+    import_constructs_fixtures,
+    import_status,
+    reset_compounds_data,
+)
 from compounds.media_views import (
     serve_assay_data_file,
     serve_protocol_document,
@@ -91,6 +96,7 @@ router.register(r'expression-tags', ExpressionTagViewSet, basename='expression-t
 urlpatterns = [
     # Admin endpoints for legacy data import
     path('admin/import-legacy/', import_legacy_fixtures, name='import-legacy-fixtures'),
+    path('admin/import-constructs/', import_constructs_fixtures, name='import-constructs-fixtures'),
     path('admin/import-status/', import_status, name='import-status'),
     # DANGER: Reset endpoint - only works when CCP4I2_ALLOW_DB_RESET=true
     path('admin/reset-data/', reset_compounds_data, name='reset-compounds-data'),
