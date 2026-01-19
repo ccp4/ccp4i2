@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Box, Skeleton, Tooltip, Typography } from "@mui/material";
-import { useCCP4i2Window } from "../../app-context";
+import { useRDKit } from "../../providers/rdkit-provider";
 
 interface SmilesViewProps {
   smiles: string;
@@ -15,7 +15,7 @@ interface SmilesViewProps {
  * Renders a molecule as SVG from a SMILES string.
  */
 export function SmilesView({ smiles, width = 100, height = 75 }: SmilesViewProps) {
-  const { rdkitModule } = useCCP4i2Window();
+  const { rdkitModule } = useRDKit();
   const [dataURI, setDataURI] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
