@@ -327,6 +327,12 @@ class SubstituteLigand(CPluginScript):
             print(f"[COOT DEBUG] ligands_found = {ligands_found}")
 
             if ligands_found and len(ligands_found) > 0:
+                # fit_ligand returns fit_ligand_info_t objects with imol attribute
+                # Log details of the first result for debugging
+                first_lig = ligands_found[0]
+                print(f"[COOT DEBUG] First ligand info: imol={first_lig.imol}, "
+                      f"cluster_idx={first_lig.cluster_idx}, ligand_idx={first_lig.ligand_idx}")
+
                 # Determine how many ligands to merge based on NCS
                 n_to_copy = 1  # Default to merging just the best ligand
                 try:
@@ -345,9 +351,11 @@ class SubstituteLigand(CPluginScript):
                 print(f"[COOT DEBUG] Found {len(ligands_found)} ligand positions, merging {n_to_copy}")
 
                 # Merge found ligands into protein model
+                # Extract imol from fit_ligand_info_t objects
                 if n_to_copy > 0:
-                    ligand_indices = ','.join(str(lig) for lig in ligands_found[:n_to_copy])
-                    print(f"[COOT DEBUG] Merging ligands: {ligand_indices}")
+                    ligand_imols = [lig.imol for lig in ligands_found[:n_to_copy]]
+                    ligand_indices = ','.join(str(imol) for imol in ligand_imols)
+                    print(f"[COOT DEBUG] Merging ligand imols: {ligand_indices}")
                     mc.merge_molecules(imol_protein, ligand_indices)
             else:
                 print("[COOT DEBUG] No ligands found by fit_ligand")
