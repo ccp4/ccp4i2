@@ -1,63 +1,63 @@
 <?xml version='1.0' encoding='ASCII'?>
 <ccp4i2>
-    <ccp4i2_header>
-        <function>DEF</function>
-        <pluginName>AcedrgLink</pluginName>
-    </ccp4i2_header>
-    <ccp4i2_body id="AcedrgLink">
-       <container id="inputData">
-          <content id="INSTRUCTION_FILE">
-              <className>CTextDataFile</className>
-              <qualifiers>
-                 <saveToDb>True</saveToDb>
-                 <mustExist>True</mustExist>
-                 <allowUndefined>False</allowUndefined>
-                 <fromPreviousJob>False</fromPreviousJob>
-                 <guiLabel>AceDRG instruction file</guiLabel>
-              </qualifiers>
-           </content>
-          <content id="LINK_ID">
-             <className>CString</className>
-             <qualifiers>
-                <allowUndefined>False</allowUndefined>
-                <default>mylink</default>
-             </qualifiers>
-          </content>
-          <content id="ANNOTATION">
-             <className>CString</className>
-          </content>
-       </container>
-       <container id="controlParameters">
-          <content id="EXTRA_ACEDRG_KEYWORDS">
-             <className>CString</className>
-             <qualifiers>
-                <default>
-                   &#13;# Replace this with optional additional AceDRG command line arguments&#13;
-                </default>
-             </qualifiers>
-          </content>
-       </container>
-       <container id="outputData">
-          <content id="CIF_OUT">
-             <className>CDictDataFile</className>
-             <qualifiers>
-                <allowUndefined>True</allowUndefined>
-                <saveToDb>True</saveToDb>
-                <guiLabel>Link dictionary</guiLabel>
-             </qualifiers>
-          </content>
-          <content id="UNL_PDB">
-             <className>CPdbDataFile</className>
-             <qualifiers>
-                <allowUndefined>True</allowUndefined>
-             </qualifiers>
-          </content>
-          <content id="UNL_CIF">
-             <className>CDictDataFile</className>
-             <qualifiers>
-                <allowUndefined>True</allowUndefined>
-             </qualifiers>
-          </content>
-       </container>
-    </ccp4i2_body>
+   <ccp4i2_header>
+      <function>DEF</function>
+      <pluginName>AcedrgLink</pluginName>
+   </ccp4i2_header>
+   <ccp4i2_body id="AcedrgLink">
+      <container id="inputData">
+         <content id="INSTRUCTION_FILE">
+            <className>CTextDataFile</className>
+            <qualifiers>
+               <saveToDb>True</saveToDb>
+               <mustExist>True</mustExist>
+               <allowUndefined>False</allowUndefined>
+               <fromPreviousJob>False</fromPreviousJob>
+               <guiLabel>AceDRG instruction file</guiLabel>
+            </qualifiers>
+         </content>
+         <content id="LINK_ID">
+            <className>CString</className>
+            <qualifiers>
+               <allowUndefined>False</allowUndefined>
+               <default>mylink</default>
+            </qualifiers>
+         </content>
+         <content id="ANNOTATION">
+            <className>CString</className>
+         </content>
+      </container>
+      <container id="controlParameters">
+         <content id="EXTRA_ACEDRG_KEYWORDS">
+            <className>CString</className>
+            <qualifiers>
+               <default>
+                  &#13;# Replace this with optional additional AceDRG command line arguments&#13;
+               </default>
+            </qualifiers>
+         </content>
+      </container>
+      <container id="outputData">
+         <content id="CIF_OUT">
+            <className>CDictDataFile</className>
+            <qualifiers>
+               <allowUndefined>True</allowUndefined>
+               <saveToDb>True</saveToDb>
+               <guiLabel>Link dictionary</guiLabel>
+            </qualifiers>
+         </content>
+         <content id="UNL_PDB">
+            <className>CPdbDataFile</className>
+            <qualifiers>
+               <allowUndefined>True</allowUndefined>
+            </qualifiers>
+         </content>
+         <content id="UNL_CIF">
+            <className>CDictDataFile</className>
+            <qualifiers>
+               <allowUndefined>True</allowUndefined>
+            </qualifiers>
+         </content>
+      </container>
+   </ccp4i2_body>
 </ccp4i2>
