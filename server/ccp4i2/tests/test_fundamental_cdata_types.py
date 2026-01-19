@@ -69,3 +69,12 @@ def test_ccontainer_basic():
 
     # Qualifiers
     assert c.qualifiers['containerType'] == 'mixed'
+
+def test_cstring_or_operation():
+    s1 = CString("Foo")
+    s2 = CString("Bar")
+    empty = CString()
+    assert (s1 or s2) == "Foo"
+    assert (empty or s2) == "Bar"
+    assert f"{s1 or s2}" == "Foo"
+    assert f"{empty or s2}" == "Bar"
