@@ -164,6 +164,42 @@ def transform_file_path(old_path: str, model_type: str) -> str:
     return old_path
 
 
+def extract_original_filename(file_path: str, model_type: str) -> Optional[str]:
+    """Extract original filename from file path using reverse heuristics.
+
+    Different models store files with different path patterns:
+    - BatchQCFile: RegisterCompounds/BatchQCFiles/{compound_id}/{uuid}_{filename}
+    - ProtocolDocument: AssayCompounds/Protocols/Protocol_{uuid}/{filename}
+    - Assay data_file: AssayCompounds/Experiments/Experiment_{uuid}/{filename}
+    - DataSeries plot: AssayCompounds/Experiments/Experiment_{uuid}/{filename}
+
+    Returns the original filename if it can be extracted, otherwise None.
+    """
+    if not file_path:
+        return None
+
+    # Get the filename part (after last /)
+    filename = Path(file_path).name
+
+    if model_type == 'registry.batchqcfile':
+        # Pattern: {uuid}_{original_filename}
+        # UUID is 36 chars (8-4-4-4-12 with hyphens)
+        # Look for UUID prefix pattern
+        if '_' in filename and len(filename) > 37:
+            # Check if first part looks like a UUID (36 chars + underscore = 37)
+            potential_uuid = filename[:36]
+            if re.match(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$',
+                       potential_uuid, re.IGNORECASE):
+                return filename[37:]  # Skip UUID and underscore
+
+    # For other models, the filename is preserved as-is in the path
+    # (no UUID prefix), so we can just use the basename
+    if model_type in ('assays.assay', 'assays.dataseries'):
+        return filename
+
+    return None
+
+
 def transform_record(record: dict, user_lookup: dict) -> dict | None:
     """Transform a single fixture record to new schema."""
     old_model = record['model']
@@ -184,8 +220,15 @@ def transform_record(record: dict, user_lookup: dict) -> dict | None:
         if new_key is None:
             continue
 
-        # Transform file paths
+        # Transform file paths and extract original filenames
         if 'file' in old_key.lower() or old_key in ('svgFile', 'dataFile'):
+            # Extract original filename before transforming path
+            # This uses reverse heuristics to recover the original filename
+            # from patterns like {uuid}_{filename}
+            original_filename = extract_original_filename(value, new_model)
+            if original_filename and new_model == 'registry.batchqcfile':
+                new_fields['original_filename'] = original_filename
+
             value = transform_file_path(value, new_model)
 
         # Handle natural key references (created_by is [username])
