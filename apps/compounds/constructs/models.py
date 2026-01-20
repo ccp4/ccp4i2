@@ -202,8 +202,13 @@ class Plasmid(models.Model):
 def _plasmid_post_delete(sender, instance, **kwargs):
     """Delete associated file when plasmid is deleted."""
     if instance.genbank_file:
-        if os.path.isfile(instance.genbank_file.path):
-            os.remove(instance.genbank_file.path)
+        try:
+            # For local filesystem storage
+            if os.path.isfile(instance.genbank_file.path):
+                os.remove(instance.genbank_file.path)
+        except NotImplementedError:
+            # For cloud storage (Azure Blob, S3, etc.), use the storage backend's delete
+            instance.genbank_file.delete(save=False)
 
 
 # =============================================================================
