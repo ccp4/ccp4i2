@@ -229,7 +229,7 @@ check_clashes() {
     # Note ConstructDatabase special handling
     if [ "$HAS_CONSTRUCT_DB" = true ]; then
         echo -e "  ${CYAN}ConstructDatabase${NC}"
-        echo -e "    ${YELLOW}-> Will flatten nested structure: ConstructDatabase/ConstructDatabase/* -> ConstructDatabase/*${NC}"
+        echo -e "    ${YELLOW}-> Will flatten and copy to container root: ConstructDatabase/ConstructDatabase/* -> ConstructDatabase/*${NC}"
     fi
 
     # Check destination (Blob Container)
@@ -456,17 +456,19 @@ do_copy() {
 
     # Step 3: Copy ConstructDatabase with path flattening
     # Legacy data has double-nested structure: ConstructDatabase/ConstructDatabase/NCLCON-*
-    # Django expects: ConstructDatabase/NCLCON-*
+    # Django expects files at container root: ConstructDatabase/NCLCON-* (no media/ prefix)
+    # This is because django-storages uses the container as the root, not a media/ subdirectory
     if [ "$HAS_CONSTRUCT_DB" = true ]; then
         echo -e "${CYAN}----------------------------------------${NC}"
         echo -e "${CYAN}Step 3: Flattening ConstructDatabase${NC}"
         echo -e "${CYAN}  From: media/ConstructDatabase/ConstructDatabase/*${NC}"
-        echo -e "${CYAN}  To:   media/ConstructDatabase/*${NC}"
+        echo -e "${CYAN}  To:   ConstructDatabase/* (container root, no media/ prefix)${NC}"
         echo -e "${CYAN}----------------------------------------${NC}"
 
-        # Copy from the nested ConstructDatabase/ConstructDatabase/ to ConstructDatabase/
+        # Copy from the nested ConstructDatabase/ConstructDatabase/ to container root ConstructDatabase/
+        # Note: We copy to container root (no DEST_PATH) because django-storages doesn't use media/ prefix
         SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/ConstructDatabase/ConstructDatabase/*?${SOURCE_SAS}"
-        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${DEST_PATH}/ConstructDatabase/?${DEST_SAS}"
+        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/ConstructDatabase/?${DEST_SAS}"
 
         echo -e "${YELLOW}  Copying nested ConstructDatabase contents...${NC}"
         azcopy copy \
