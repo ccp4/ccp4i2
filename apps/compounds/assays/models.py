@@ -17,13 +17,15 @@ Model mapping from legacy:
 import uuid
 from pathlib import Path
 
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.utils.functional import cached_property
 
 # Import from registry for cross-app relationships
 from compounds.registry.models import Target, Compound
+from compounds.utils import delete_file_field
 
 User = get_user_model()
 
@@ -343,6 +345,12 @@ class ProtocolDocument(models.Model):
         return f'{self.protocol.name}: {filename}'
 
 
+@receiver(post_delete, sender=ProtocolDocument)
+def _protocol_document_post_delete(sender, instance, **kwargs):
+    """Delete associated file when protocol document is deleted."""
+    delete_file_field(instance.file)
+
+
 def _assay_data_path(instance, filename):
     """Generate upload path for assay data files.
 
@@ -407,6 +415,12 @@ class Assay(models.Model):
     def data_filename(self):
         """Extract filename from data_file path."""
         return Path(self.data_file.name).name if self.data_file else None
+
+
+@receiver(post_delete, sender=Assay)
+def _assay_post_delete(sender, instance, **kwargs):
+    """Delete associated data file when assay is deleted."""
+    delete_file_field(instance.data_file)
 
 
 def _series_plot_path(instance, filename):
@@ -496,6 +510,12 @@ class DataSeries(models.Model):
 
     def __str__(self):
         return f'{self.compound_name} in {self.assay}'
+
+
+@receiver(post_delete, sender=DataSeries)
+def _data_series_post_delete(sender, instance, **kwargs):
+    """Delete associated plot image when data series is deleted."""
+    delete_file_field(instance.plot_image)
 
 
 class AnalysisResult(models.Model):

@@ -16,11 +16,14 @@ Model mapping from legacy:
 import uuid
 from pathlib import Path
 
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Max
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 from django.utils.functional import cached_property
+
+from compounds.utils import delete_file_field
 
 User = get_user_model()
 
@@ -383,6 +386,12 @@ class BatchQCFile(models.Model):
         if self.original_filename:
             return self.original_filename
         return Path(self.file.name).name if self.file else None
+
+
+@receiver(post_delete, sender=BatchQCFile)
+def _batch_qc_file_post_delete(sender, instance, **kwargs):
+    """Delete associated file when BatchQCFile is deleted."""
+    delete_file_field(instance.file)
 
 
 def _template_svg_path(instance, filename):

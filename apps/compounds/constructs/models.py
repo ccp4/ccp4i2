@@ -19,17 +19,17 @@ Model mapping from legacy:
     ExpressionTag -> ExpressionTag
 """
 
-import os
 import uuid
 from pathlib import Path
 
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Max
 from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.utils.functional import cached_property
+
+from compounds.utils import delete_file_field
 
 User = get_user_model()
 
@@ -201,14 +201,7 @@ class Plasmid(models.Model):
 @receiver(post_delete, sender=Plasmid)
 def _plasmid_post_delete(sender, instance, **kwargs):
     """Delete associated file when plasmid is deleted."""
-    if instance.genbank_file:
-        try:
-            # For local filesystem storage
-            if os.path.isfile(instance.genbank_file.path):
-                os.remove(instance.genbank_file.path)
-        except NotImplementedError:
-            # For cloud storage (Azure Blob, S3, etc.), use the storage backend's delete
-            instance.genbank_file.delete(save=False)
+    delete_file_field(instance.genbank_file)
 
 
 # =============================================================================
@@ -406,6 +399,12 @@ class CassetteUse(models.Model):
         return f'{self.cassette} in {self.plasmid.formatted_id}'
 
 
+@receiver(post_delete, sender=CassetteUse)
+def _cassette_use_post_delete(sender, instance, **kwargs):
+    """Delete associated alignment file when cassette use is deleted."""
+    delete_file_field(instance.alignment_file)
+
+
 # =============================================================================
 # Sequencing Result Model
 # =============================================================================
@@ -455,6 +454,12 @@ class SequencingResult(models.Model):
     def filename(self):
         """Extract filename from path."""
         return Path(self.file.name).name if self.file else None
+
+
+@receiver(post_delete, sender=SequencingResult)
+def _sequencing_result_post_delete(sender, instance, **kwargs):
+    """Delete associated file when sequencing result is deleted."""
+    delete_file_field(instance.file)
 
 
 # =============================================================================
