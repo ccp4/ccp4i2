@@ -12,6 +12,8 @@
 #   - Most files: media/* -> media/*  (unchanged paths)
 #   - Batch QC files: media/RegBatchQCFile_NCL-* -> media/RegisterCompounds/BatchQCFiles/NCL-*
 #     (relocates per-compound QC directories into a dedicated subdirectory)
+#   - Construct database: media/ConstructDatabase/ConstructDatabase/* -> media/ConstructDatabase/*
+#     (flattens legacy double-nested directory structure)
 #
 # Environment: Docker/azure-uksouth/.env.deployment
 #
@@ -194,10 +196,13 @@ check_clashes() {
     echo ""
     echo -e "${YELLOW}Source media subdirectories:${NC}"
     BATCH_QC_COUNT=0
+    HAS_CONSTRUCT_DB=false
     OTHER_DIRS=""
     while read dir; do
         if [[ "$dir" == RegBatchQCFile_* ]]; then
             ((BATCH_QC_COUNT++))
+        elif [[ "$dir" == "ConstructDatabase" ]]; then
+            HAS_CONSTRUCT_DB=true
         else
             OTHER_DIRS="$OTHER_DIRS$dir\n"
         fi
@@ -219,6 +224,12 @@ check_clashes() {
     if [ $BATCH_QC_COUNT -gt 0 ]; then
         echo -e "  ${CYAN}RegBatchQCFile_NCL-* (${BATCH_QC_COUNT} directories)${NC}"
         echo -e "    ${YELLOW}-> Will be relocated to: RegisterCompounds/BatchQCFiles/NCL-*${NC}"
+    fi
+
+    # Note ConstructDatabase special handling
+    if [ "$HAS_CONSTRUCT_DB" = true ]; then
+        echo -e "  ${CYAN}ConstructDatabase${NC}"
+        echo -e "    ${YELLOW}-> Will flatten nested structure: ConstructDatabase/ConstructDatabase/* -> ConstructDatabase/*${NC}"
     fi
 
     # Check destination (Blob Container)
@@ -359,10 +370,13 @@ do_copy() {
     echo -e "${YELLOW}Analyzing source directories...${NC}"
     BATCH_QC_DIRS=()
     OTHER_ITEMS=()
+    HAS_CONSTRUCT_DB=false
 
     while read item; do
         if [[ "$item" == RegBatchQCFile_* ]]; then
             BATCH_QC_DIRS+=("$item")
+        elif [[ "$item" == "ConstructDatabase" ]]; then
+            HAS_CONSTRUCT_DB=true
         else
             OTHER_ITEMS+=("$item")
         fi
@@ -375,6 +389,9 @@ do_copy() {
 
     echo -e "${GREEN}Found ${#BATCH_QC_DIRS[@]} batch QC directories to relocate${NC}"
     echo -e "${GREEN}Found ${#OTHER_ITEMS[@]} other items to copy${NC}"
+    if [ "$HAS_CONSTRUCT_DB" = true ]; then
+        echo -e "${GREEN}Found ConstructDatabase directory (will flatten nested structure)${NC}"
+    fi
     echo ""
 
     # Step 1: Copy non-QC items (preserving paths)
@@ -434,6 +451,45 @@ do_copy() {
             fi
         done
         echo -e "${GREEN}Batch QC directories relocated${NC}"
+        echo ""
+    fi
+
+    # Step 3: Copy ConstructDatabase with path flattening
+    # Legacy data has double-nested structure: ConstructDatabase/ConstructDatabase/NCLCON-*
+    # Django expects: ConstructDatabase/NCLCON-*
+    if [ "$HAS_CONSTRUCT_DB" = true ]; then
+        echo -e "${CYAN}----------------------------------------${NC}"
+        echo -e "${CYAN}Step 3: Flattening ConstructDatabase${NC}"
+        echo -e "${CYAN}  From: media/ConstructDatabase/ConstructDatabase/*${NC}"
+        echo -e "${CYAN}  To:   media/ConstructDatabase/*${NC}"
+        echo -e "${CYAN}----------------------------------------${NC}"
+
+        # Copy from the nested ConstructDatabase/ConstructDatabase/ to ConstructDatabase/
+        SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/ConstructDatabase/ConstructDatabase/*?${SOURCE_SAS}"
+        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${DEST_PATH}/ConstructDatabase/?${DEST_SAS}"
+
+        echo -e "${YELLOW}  Copying nested ConstructDatabase contents...${NC}"
+        azcopy copy \
+            "$SOURCE_URL" \
+            "$DEST_URL" \
+            --recursive \
+            --skip-version-check \
+            --log-level=ERROR 2>/dev/null
+
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}    Error copying ConstructDatabase${NC}"
+            echo -e "${YELLOW}    Attempting direct copy (source may not be nested)...${NC}"
+            # Fallback: try direct copy in case the source isn't double-nested
+            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/ConstructDatabase/*?${SOURCE_SAS}"
+            azcopy copy \
+                "$SOURCE_URL" \
+                "$DEST_URL" \
+                --recursive \
+                --skip-version-check \
+                --log-level=ERROR 2>/dev/null
+        fi
+
+        echo -e "${GREEN}ConstructDatabase copied${NC}"
         echo ""
     fi
 
