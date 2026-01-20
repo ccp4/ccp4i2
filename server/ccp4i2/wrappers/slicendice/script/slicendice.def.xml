@@ -84,12 +84,14 @@
         <className>CPdbDataFile</className>
         <qualifiers>
           <saveToDb>True</saveToDb>
+          <annotation>Model from SliceNDice refinement</annotation>
         </qualifiers>
       </content>
       <content id="DIFFPHIOUT">
           <className>CMapCoeffsDataFile</className>
           <qualifiers><default><subType>2</subType><contentFlag>1</contentFlag></default>
               <saveToDb>True</saveToDb>
+              <annotation>Weighted difference map from SliceNDice refinement</annotation>
           </qualifiers>
       </content>
       <content id="FPHIOUT">
@@ -97,6 +99,7 @@
           <qualifiers>
               <default><subType>1</subType><contentFlag>1</contentFlag></default>
               <saveToDb>True</saveToDb>
+              <annotation>Weighted map from SliceNDice refinement</annotation>
           </qualifiers>
       </content>
       <content id="XMLOUT">
