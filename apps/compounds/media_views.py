@@ -84,8 +84,16 @@ def _serve_file(file_field, filename_override=None):
     # Check if using Azure Blob Storage
     if _is_azure_storage_configured():
         sas_error = None
-        # SAS URL downloads disabled until Storage Blob Delegator role propagates
-        # Set AZURE_USE_SAS_DOWNLOADS=true to enable once role is working
+        # SAS URL redirects are DISABLED by default because they don't work with
+        # private storage accounts. When public network access is disabled on the
+        # storage account (which is our security configuration), the browser cannot
+        # follow the SAS URL redirect - only the server can access storage via the
+        # private endpoint inside the VNet.
+        #
+        # Django streaming is the correct approach for private storage: the server
+        # reads from Azure (via private endpoint) and streams to the client.
+        #
+        # Only enable SAS if you have a PUBLIC storage account configuration.
         use_sas = os.environ.get('AZURE_USE_SAS_DOWNLOADS', 'false').lower() in ('true', '1', 'yes')
 
         if use_sas:
