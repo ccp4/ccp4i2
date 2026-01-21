@@ -69,6 +69,7 @@ COPY apps/compounds/frontend/components/compounds/ ./renderer/components/compoun
 # This ensures compounds components share the same React context as the root layout
 COPY apps/compounds/frontend/lib/compounds/aggregation-api.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/api.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/auth-context.tsx ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/routes.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/plateSeriesRanges.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/

@@ -58,8 +58,11 @@ export const routes = {
     /** Targets list (registry home) */
     targets: () => route('/registry/targets'),
 
-    /** Target detail page */
+    /** Target detail page (dashboard) */
     target: (id: string | number) => route(`/registry/targets/${id}`),
+
+    /** Target compounds list page */
+    targetCompounds: (id: string | number) => route(`/registry/targets/${id}/compounds`),
 
     /** Suppliers list */
     suppliers: () => route('/registry/suppliers'),
@@ -140,6 +143,15 @@ export const routes = {
 
     /** Protein detail page */
     protein: (id: string | number) => route(`/constructs/proteins/${id}`),
+  },
+
+  /** Admin routes (requires admin operating level) */
+  admin: {
+    /** Admin home */
+    home: () => route('/admin'),
+
+    /** User management */
+    users: () => route('/admin/users'),
   },
 
   /** External app routes (for cross-app navigation when integrated) */

@@ -4,7 +4,10 @@ Registry Serializers
 DRF serializers for compound registration models.
 """
 
+from datetime import timedelta
+
 from django.urls import reverse
+from django.utils import timezone
 from rest_framework import serializers
 
 from compounds.validators import validate_qc_file
@@ -89,10 +92,35 @@ class SupplierSerializer(serializers.ModelSerializer):
 class TargetSerializer(serializers.ModelSerializer):
     parent_name = serializers.CharField(source='parent.name', read_only=True)
     compound_count = serializers.IntegerField(source='compounds.count', read_only=True)
+    assay_count = serializers.SerializerMethodField()
+    has_recent_compounds = serializers.SerializerMethodField()
+    has_recent_assays = serializers.SerializerMethodField()
+    latest_activity = serializers.DateTimeField(read_only=True, required=False)
+    image = ProtectedFileField(url_name='target-image', model_field='id', url_kwarg='target_id')
 
     class Meta:
         model = Target
-        fields = ['id', 'name', 'parent', 'parent_name', 'created_at', 'compound_count']
+        fields = [
+            'id', 'name', 'parent', 'parent_name', 'created_at',
+            'compound_count', 'assay_count',
+            'has_recent_compounds', 'has_recent_assays',
+            'latest_activity',
+            'image',
+        ]
+
+    def get_assay_count(self, obj):
+        """Count assays for this target."""
+        return obj.assays.count()
+
+    def get_has_recent_compounds(self, obj):
+        """Check if any compounds were registered in the last 7 days."""
+        cutoff = timezone.now() - timedelta(days=7)
+        return obj.compounds.filter(registered_at__gte=cutoff).exists()
+
+    def get_has_recent_assays(self, obj):
+        """Check if any assays were created in the last 7 days."""
+        cutoff = timezone.now() - timedelta(days=7)
+        return obj.assays.filter(created_at__gte=cutoff).exists()
 
 
 class TargetDetailSerializer(TargetSerializer):
@@ -102,6 +130,41 @@ class TargetDetailSerializer(TargetSerializer):
 
     class Meta(TargetSerializer.Meta):
         fields = TargetSerializer.Meta.fields + ['compounds_count', 'children']
+
+
+class DashboardCompoundSerializer(serializers.ModelSerializer):
+    """Compact compound serializer for dashboard carousel."""
+    formatted_id = serializers.CharField(read_only=True)
+
+    class Meta:
+        model = Compound
+        fields = ['id', 'formatted_id', 'smiles', 'registered_at', 'molecular_weight']
+
+
+class DashboardAssaySerializer(serializers.Serializer):
+    """Assay serializer for dashboard carousel."""
+    id = serializers.UUIDField()
+    protocol_name = serializers.CharField()
+    created_at = serializers.DateTimeField()
+    data_series_count = serializers.IntegerField()
+
+
+class DashboardProjectSerializer(serializers.Serializer):
+    """CCP4i2 project serializer for dashboard carousel."""
+    id = serializers.IntegerField()
+    name = serializers.CharField()
+    last_access = serializers.DateTimeField()
+    job_count = serializers.IntegerField()
+    matching_compound_ids = serializers.ListField(child=serializers.CharField())
+
+
+class TargetDashboardSerializer(TargetSerializer):
+    """Target serializer with dashboard data (recent compounds, assays)."""
+    recent_compounds = DashboardCompoundSerializer(many=True, read_only=True)
+    recent_assays = DashboardAssaySerializer(many=True, read_only=True)
+
+    class Meta(TargetSerializer.Meta):
+        fields = TargetSerializer.Meta.fields + ['recent_compounds', 'recent_assays']
 
 
 class CompoundListSerializer(serializers.ModelSerializer):

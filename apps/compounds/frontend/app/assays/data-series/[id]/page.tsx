@@ -196,9 +196,35 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
               {/* Chart */}
               <Grid size={{ xs: 12, md: 7 }}>
                 <Typography variant="h6" gutterBottom>
-                  Dose-Response Curve
+                  {series.plot_image ? 'Plot' : 'Dose-Response Curve'}
                 </Typography>
-                {chartData && chartData.concentrations.length > 0 ? (
+                {series.plot_image ? (
+                  // Display uploaded plot image (for Table-Of-Values assays)
+                  <Box
+                    sx={{
+                      width: '100%',
+                      maxWidth: 500,
+                      height: 350,
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      bgcolor: 'grey.50',
+                      borderRadius: 1,
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <Box
+                      component="img"
+                      src={`/api/proxy/compounds/media/data-series/${id}/plot/`}
+                      alt={`Plot for ${series.compound_name || 'compound'}`}
+                      sx={{
+                        maxWidth: '100%',
+                        maxHeight: '100%',
+                        objectFit: 'contain',
+                      }}
+                    />
+                  </Box>
+                ) : chartData && chartData.concentrations.length > 0 ? (
                   <DoseResponseChart
                     data={chartData}
                     fit={fitParams}

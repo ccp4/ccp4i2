@@ -21,6 +21,8 @@ from compounds.media_views import (
     serve_plasmid_genbank,
     serve_cassette_use_alignment,
     serve_sequencing_result,
+    serve_target_image,
+    serve_data_series_plot,
 )
 from compounds.registry.views import (
     SupplierViewSet,
@@ -109,6 +111,8 @@ urlpatterns = [
     path('media/plasmids/<uuid:plasmid_id>/genbank/', serve_plasmid_genbank, name='plasmid-genbank'),
     path('media/cassette-uses/<uuid:cassette_use_id>/alignment/', serve_cassette_use_alignment, name='cassette-use-alignment'),
     path('media/sequencing-results/<uuid:result_id>/file/', serve_sequencing_result, name='sequencing-result-file'),
+    path('media/targets/<uuid:target_id>/image/', serve_target_image, name='target-image'),
+    path('media/data-series/<uuid:series_id>/plot/', serve_data_series_plot, name='data-series-plot'),
 
     # Router-based endpoints
     path('', include(router.urls)),

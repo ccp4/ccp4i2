@@ -23,6 +23,24 @@ class UserProfile(models.Model):
     Automatically created for each User via signal.
     """
 
+    # Role choices for authorization levels
+    ROLE_USER = 'user'
+    ROLE_CONTRIBUTOR = 'contributor'
+    ROLE_ADMIN = 'admin'
+
+    ROLE_CHOICES = [
+        (ROLE_USER, 'User (read-only)'),
+        (ROLE_CONTRIBUTOR, 'Contributor (can add/edit/delete)'),
+        (ROLE_ADMIN, 'Admin (full access)'),
+    ]
+
+    # Role hierarchy for comparison
+    ROLE_HIERARCHY = {
+        ROLE_USER: 0,
+        ROLE_CONTRIBUTOR: 1,
+        ROLE_ADMIN: 2,
+    }
+
     user = models.OneToOneField(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -30,10 +48,19 @@ class UserProfile(models.Model):
         primary_key=True,
     )
 
-    # Admin designation (for web mode)
+    # Role-based authorization
+    role = models.CharField(
+        max_length=20,
+        choices=ROLE_CHOICES,
+        default=ROLE_CONTRIBUTOR,
+        help_text="Maximum authorization level for this user"
+    )
+
+    # Admin designation (for web mode) - DEPRECATED, use role='admin' instead
+    # Kept for backwards compatibility during migration
     is_platform_admin = models.BooleanField(
         default=False,
-        help_text="Can manage platform settings, import data, and administer users"
+        help_text="DEPRECATED: Use role field instead. Can manage platform settings, import data, and administer users"
     )
 
     # Legacy import tracking
@@ -84,6 +111,28 @@ class UserProfile(models.Model):
         """Update last seen timestamp."""
         self.last_seen_at = timezone.now()
         self.save(update_fields=['last_seen_at'])
+
+    def has_role(self, required_role):
+        """
+        Check if user has at least the required role level.
+
+        Args:
+            required_role: One of ROLE_USER, ROLE_CONTRIBUTOR, ROLE_ADMIN
+
+        Returns:
+            bool: True if user's role is >= required_role
+        """
+        user_level = self.ROLE_HIERARCHY.get(self.role, 0)
+        required_level = self.ROLE_HIERARCHY.get(required_role, 0)
+        return user_level >= required_level
+
+    def is_admin(self):
+        """Check if user has admin role."""
+        return self.role == self.ROLE_ADMIN or self.is_platform_admin
+
+    def is_contributor_or_above(self):
+        """Check if user can contribute (add/edit/delete)."""
+        return self.has_role(self.ROLE_CONTRIBUTOR) or self.is_platform_admin
 
 
 @receiver(post_save, sender=settings.AUTH_USER_MODEL)

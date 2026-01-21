@@ -9,7 +9,14 @@ from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
 from .models import UserProfile
-from .permissions import IsPlatformAdmin, is_platform_admin, require_auth
+from .permissions import (
+    IsPlatformAdmin,
+    is_platform_admin,
+    require_auth,
+    get_user_role,
+    get_operating_level,
+    set_operating_level,
+)
 from .serializers import (
     CurrentUserSerializer,
     UserListSerializer,
@@ -23,8 +30,14 @@ class CurrentUserView(APIView):
     """
     Get current authenticated user info.
 
-    In Electron mode: Returns a default local user
-    In Web mode: Returns the Azure AD authenticated user
+    In Electron mode: Returns a default local user with full admin access
+    In Web mode: Returns the Azure AD authenticated user with role/operating level
+
+    Response includes:
+    - role: The user's maximum authorized role
+    - operating_level: Current session operating level (can be <= role)
+    - can_contribute: Whether user can add/edit/delete at current level
+    - can_administer: Whether user can perform admin actions at current level
     """
 
     def get_permissions(self):
@@ -34,7 +47,7 @@ class CurrentUserView(APIView):
 
     def get(self, request):
         if not require_auth():
-            # Electron mode: return a synthetic local user
+            # Electron mode: return a synthetic local user with full access
             return Response({
                 'id': 0,
                 'username': 'local_user',
@@ -43,7 +56,12 @@ class CurrentUserView(APIView):
                 'last_name': 'User',
                 'display_name': 'Local User',
                 'is_admin': True,
+                'role': UserProfile.ROLE_ADMIN,
+                'operating_level': UserProfile.ROLE_ADMIN,
+                'can_contribute': True,
+                'can_administer': True,
                 'profile': {
+                    'role': UserProfile.ROLE_ADMIN,
                     'is_platform_admin': True,
                     'legacy_username': '',
                     'legacy_display_name': '',
@@ -59,7 +77,7 @@ class CurrentUserView(APIView):
         if hasattr(user, 'profile'):
             user.profile.record_activity()
 
-        serializer = CurrentUserSerializer(user)
+        serializer = CurrentUserSerializer(user, context={'request': request})
         return Response(serializer.data)
 
 
@@ -118,6 +136,52 @@ class UserViewSet(ModelViewSet):
         )
         return Response({'status': 'admin revoked', 'user': user.email})
 
+    @action(detail=True, methods=['post'])
+    def set_role(self, request, pk=None):
+        """
+        Set the role for a user.
+
+        POST data:
+        - role: One of 'admin', 'contributor', 'user'
+        """
+        user = self.get_object()
+        role = request.data.get('role')
+
+        if not role:
+            return Response(
+                {'error': 'role is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if role not in UserProfile.ROLE_HIERARCHY:
+            return Response(
+                {'error': f'Invalid role. Must be one of: {list(UserProfile.ROLE_HIERARCHY.keys())}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Prevent demoting yourself
+        if user == request.user and role != UserProfile.ROLE_ADMIN:
+            return Response(
+                {'error': 'Cannot demote your own role'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Update role and sync is_platform_admin
+        is_admin = (role == UserProfile.ROLE_ADMIN)
+        UserProfile.objects.update_or_create(
+            user=user,
+            defaults={
+                'role': role,
+                'is_platform_admin': is_admin,
+            }
+        )
+
+        return Response({
+            'status': 'role updated',
+            'user': user.email,
+            'role': role,
+        })
+
 
 class AdminListView(APIView):
     """List all platform admins."""
@@ -134,3 +198,81 @@ class AdminListView(APIView):
 
         serializer = UserListSerializer(admins, many=True)
         return Response(serializer.data)
+
+
+class OperatingLevelView(APIView):
+    """
+    Get or set the user's operating level for this session.
+
+    The operating level controls what actions a user can perform:
+    - 'admin': Full access
+    - 'contributor': Can add/edit/delete data
+    - 'user': Read-only access
+
+    Users can only set their operating level to values <= their assigned role.
+    """
+
+    def get_permissions(self):
+        if require_auth():
+            return [IsAuthenticated()]
+        return []
+
+    def get(self, request):
+        """Get current operating level and available options."""
+        if not require_auth():
+            return Response({
+                'operating_level': UserProfile.ROLE_ADMIN,
+                'role': UserProfile.ROLE_ADMIN,
+                'available_levels': [UserProfile.ROLE_ADMIN],
+            })
+
+        user_role = get_user_role(request.user)
+        operating_level = get_operating_level(request)
+
+        # Get available levels (all levels up to and including user's role)
+        user_level = UserProfile.ROLE_HIERARCHY.get(user_role, 0)
+        available_levels = [
+            role for role, level in UserProfile.ROLE_HIERARCHY.items()
+            if level <= user_level
+        ]
+
+        return Response({
+            'operating_level': operating_level,
+            'role': user_role,
+            'available_levels': available_levels,
+        })
+
+    def post(self, request):
+        """Set operating level for this session."""
+        if not require_auth():
+            return Response({
+                'operating_level': UserProfile.ROLE_ADMIN,
+                'message': 'Operating level not applicable in Electron mode',
+            })
+
+        level = request.data.get('level')
+        if not level:
+            return Response(
+                {'error': 'level is required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if level not in UserProfile.ROLE_HIERARCHY:
+            return Response(
+                {'error': f'Invalid level. Must be one of: {list(UserProfile.ROLE_HIERARCHY.keys())}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        actual_level = set_operating_level(request, level)
+
+        # Check if level was capped
+        if actual_level != level:
+            return Response({
+                'operating_level': actual_level,
+                'message': f'Level capped to your maximum role: {actual_level}',
+            })
+
+        return Response({
+            'operating_level': actual_level,
+            'message': f'Now operating as: {actual_level}',
+        })

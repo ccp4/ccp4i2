@@ -2,17 +2,26 @@
 Registry ViewSets
 
 DRF ViewSets for compound registration models with reversion support.
+
+Permission model:
+- Read access: Anyone (including 'user' operating level)
+- Write access: Requires 'contributor' or 'admin' operating level
 """
 
 import logging
+import re
 
 import reversion
+from django.db.models import Count, Max
+from django.db.models.functions import Coalesce, Greatest
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status
 from rest_framework.decorators import action
+from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from reversion.models import Version
 
+from users.permissions import IsContributorOrReadOnly
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
 
 logger = logging.getLogger(__name__)
@@ -28,6 +37,8 @@ from .serializers import (
     SupplierSerializer,
     TargetSerializer,
     TargetDetailSerializer,
+    TargetDashboardSerializer,
+    DashboardProjectSerializer,
     CompoundListSerializer,
     CompoundDetailSerializer,
     CompoundCreateSerializer,
@@ -81,6 +92,7 @@ class SupplierViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Suppliers."""
     queryset = Supplier.objects.all()
     serializer_class = SupplierSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name', 'initials']
     ordering_fields = ['name']
@@ -188,11 +200,34 @@ class SupplierViewSet(ReversionMixin, viewsets.ModelViewSet):
 class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Targets (drug discovery campaigns)."""
     queryset = Target.objects.all()
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['parent']
     search_fields = ['name']
-    ordering_fields = ['name', 'created_at']
-    ordering = ['name']
+    ordering_fields = ['name', 'created_at', 'latest_activity']
+    ordering = ['-latest_activity', 'name']  # Most recent activity first, then alphabetically
+
+    def get_queryset(self):
+        """
+        Annotate targets with latest_activity date for sorting.
+
+        This computes the most recent date from either:
+        - The most recently registered compound
+        - The most recently created assay
+        """
+        return Target.objects.annotate(
+            latest_compound=Max('compounds__registered_at'),
+            latest_assay=Max('assays__created_at'),
+        ).annotate(
+            # Use Greatest to get the most recent of compound or assay dates
+            # Coalesce handles nulls - falls back to created_at if no activity
+            latest_activity=Coalesce(
+                Greatest('latest_compound', 'latest_assay'),
+                'latest_compound',
+                'latest_assay',
+                'created_at',
+            )
+        )
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
@@ -207,10 +242,176 @@ class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
         serializer = CompoundListSerializer(compounds, many=True)
         return Response(serializer.data)
 
+    @action(detail=True, methods=['get'])
+    def dashboard(self, request, pk=None):
+        """
+        Get dashboard data for a target.
+
+        Returns target info with:
+        - recent_compounds: 50 most recently registered compounds
+        - recent_assays: 50 most recent assays for this target
+        """
+        target = self.get_object()
+
+        # Get 50 most recent compounds
+        recent_compounds = target.compounds.order_by('-registered_at')[:50]
+
+        # Get 50 most recent assays for this target
+        from compounds.assays.models import Assay
+        recent_assays_qs = (
+            Assay.objects.filter(target=target)
+            .select_related('protocol')
+            .annotate(data_series_count=Count('data_series'))
+            .order_by('-created_at')[:50]
+        )
+
+        # Transform assays to dashboard format
+        recent_assays = [
+            {
+                'id': assay.id,
+                'protocol_name': assay.protocol.name,
+                'created_at': assay.created_at,
+                'data_series_count': assay.data_series_count,
+            }
+            for assay in recent_assays_qs
+        ]
+
+        # Build response with dashboard data
+        serializer = TargetDashboardSerializer(target)
+        data = serializer.data
+        data['recent_compounds'] = CompoundListSerializer(recent_compounds, many=True).data
+        data['recent_assays'] = recent_assays
+
+        return Response(data)
+
+    @action(detail=True, methods=['post'], parser_classes=[MultiPartParser])
+    def upload_image(self, request, pk=None):
+        """
+        Upload a branding image for the target dashboard.
+
+        Expects multipart form data with 'image' field.
+        """
+        target = self.get_object()
+
+        if 'image' not in request.FILES:
+            return Response(
+                {'error': 'No image file provided'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        image_file = request.FILES['image']
+
+        # Validate file type
+        allowed_types = ['image/jpeg', 'image/png', 'image/gif', 'image/webp']
+        if image_file.content_type not in allowed_types:
+            return Response(
+                {'error': f'Invalid file type. Allowed: {", ".join(allowed_types)}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Delete old image if exists
+        if target.image:
+            target.image.delete(save=False)
+
+        # Save new image
+        with reversion.create_revision():
+            target.image = image_file
+            target.save()
+            if request.user.is_authenticated:
+                reversion.set_user(request.user)
+            reversion.set_comment("Uploaded dashboard image")
+
+        serializer = TargetSerializer(target, context={'request': request})
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['delete'])
+    def delete_image(self, request, pk=None):
+        """Delete the target's branding image."""
+        target = self.get_object()
+
+        if not target.image:
+            return Response(
+                {'error': 'Target has no image'},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        with reversion.create_revision():
+            target.image.delete(save=True)
+            if request.user.is_authenticated:
+                reversion.set_user(request.user)
+            reversion.set_comment("Deleted dashboard image")
+
+        return Response({'success': True})
+
+    @action(detail=True, methods=['get'])
+    def recent_projects(self, request, pk=None):
+        """
+        Get CCP4i2 projects that match compounds in this target.
+
+        Projects are matched by name containing compound IDs in patterns like:
+        - ncl-XXXXX or NCL-XXXXXXXX (case-insensitive)
+        - The integer portion must match a compound's reg_number
+
+        Returns projects ordered by most recent activity.
+        """
+        target = self.get_object()
+
+        # Get all compound reg_numbers for this target
+        reg_numbers = list(
+            target.compounds.values_list('reg_number', flat=True)
+        )
+
+        if not reg_numbers:
+            return Response([])
+
+        # Build regex pattern to match NCL-XXXXX formats
+        # Pattern matches: ncl-12345, NCL-00012345, Ncl-12345, etc.
+        ncl_pattern = re.compile(r'ncl-0*(\d+)', re.IGNORECASE)
+
+        try:
+            from ccp4i2.db.models import Project
+        except ImportError:
+            logger.warning("CCP4i2 models not available - cannot query projects")
+            return Response([])
+
+        # Query all projects and filter by compound ID match
+        reg_number_set = set(reg_numbers)
+        matching_projects = []
+
+        for project in Project.objects.annotate(job_count=Count('jobs')).order_by('-last_access'):
+            # Find all NCL-XXXXX patterns in the project name
+            matches = ncl_pattern.findall(project.name)
+            matched_ids = []
+
+            for match in matches:
+                try:
+                    reg_num = int(match)
+                    if reg_num in reg_number_set:
+                        matched_ids.append(f'NCL-{reg_num:08d}')
+                except ValueError:
+                    continue
+
+            if matched_ids:
+                matching_projects.append({
+                    'id': project.id,
+                    'name': project.name,
+                    'last_access': project.last_access,
+                    'job_count': project.job_count,
+                    'matching_compound_ids': matched_ids,
+                })
+
+            # Limit to 50 projects
+            if len(matching_projects) >= 50:
+                break
+
+        serializer = DashboardProjectSerializer(matching_projects, many=True)
+        return Response(serializer.data)
+
 
 class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Compounds."""
     queryset = Compound.objects.select_related('target', 'supplier', 'registered_by')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     # Use dict format to enable __in lookup for reg_number (batch SMILES lookup)
     filterset_fields = {
@@ -437,6 +638,7 @@ class BatchViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Batches."""
     queryset = Batch.objects.select_related('compound', 'supplier')
     serializer_class = BatchSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['compound', 'supplier']
     ordering_fields = ['batch_number', 'registered_at']
@@ -455,6 +657,7 @@ class BatchQCFileViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Batch QC Files."""
     queryset = BatchQCFile.objects.select_related('batch', 'batch__compound')
     serializer_class = BatchQCFileSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['batch']
 
@@ -469,6 +672,7 @@ class CompoundTemplateViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Compound Templates."""
     queryset = CompoundTemplate.objects.select_related('target')
     serializer_class = CompoundTemplateSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['target']
     search_fields = ['name']

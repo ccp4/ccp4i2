@@ -67,6 +67,11 @@ class Supplier(models.Model):
         return self.name
 
 
+def _target_image_path(instance, filename):
+    """Generate upload path for target branding images."""
+    return f'targets/images/{instance.id}_{filename}'
+
+
 class Target(models.Model):
     """
     Drug discovery target or campaign.
@@ -88,6 +93,12 @@ class Target(models.Model):
         blank=True,
         related_name='children',
         help_text="Parent target for hierarchical organization"
+    )
+    image = models.ImageField(
+        upload_to=_target_image_path,
+        blank=True,
+        null=True,
+        help_text="Branding image for the target dashboard"
     )
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -246,15 +257,28 @@ class Compound(models.Model):
         if not self.reg_number:
             self.reg_number = _next_reg_number()
 
+        # Check if SMILES has changed (compare with database value if this is an update)
+        smiles_changed = False
+        if self.pk:
+            try:
+                old_instance = Compound.objects.get(pk=self.pk)
+                smiles_changed = old_instance.smiles != self.smiles
+            except Compound.DoesNotExist:
+                smiles_changed = True  # New record
+        else:
+            smiles_changed = True  # New record
+
         # Generate canonical SMILES and molecular weight via RDKit
-        if self.smiles and not self.rdkit_smiles:
+        # Recalculate if SMILES is new/changed, or if rdkit_smiles is missing
+        if self.smiles and (smiles_changed or not self.rdkit_smiles):
             try:
                 from rdkit import Chem
                 from rdkit.Chem import Descriptors
                 mol = Chem.MolFromSmiles(self.smiles)
                 if mol:
                     self.rdkit_smiles = Chem.MolToSmiles(mol, canonical=True)
-                    if not self.molecular_weight:
+                    # Recalculate molecular weight if SMILES changed or not set
+                    if smiles_changed or not self.molecular_weight:
                         self.molecular_weight = Descriptors.MolWt(mol)
             except ImportError:
                 pass  # RDKit not available

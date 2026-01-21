@@ -4,11 +4,26 @@ Permission helpers for CCP4i2/Compounds platform.
 Handles the dual-mode authentication:
 - Electron (desktop): No auth, everyone is effectively admin
 - Web (Docker/Azure): Azure AD auth with admin checks
+
+Role-based authorization:
+- admin: Full access (user management, imports, all CRUD)
+- contributor: Can add/edit/delete data
+- user: Read-only access
+
+Operating level:
+- Users can choose to operate at any level up to their assigned role
+- Stored in session, defaults to their maximum role
+- Allows admins to safely browse as "user" to avoid accidental changes
 """
 
 import os
 from django.conf import settings
 from rest_framework.permissions import BasePermission
+
+from .models import UserProfile
+
+# Session key for operating level
+OPERATING_LEVEL_SESSION_KEY = 'operating_level'
 
 
 def require_auth():
@@ -90,3 +105,196 @@ class IsPlatformAdminOrReadOnly(BasePermission):
         if request.method in ('GET', 'HEAD', 'OPTIONS'):
             return True
         return is_platform_admin(request.user)
+
+
+# =============================================================================
+# Operating Level Functions
+# =============================================================================
+
+def get_user_role(user):
+    """
+    Get the user's assigned role (maximum authorization level).
+
+    In Electron mode: Returns 'admin'
+    In Web mode: Returns the role from UserProfile
+
+    Args:
+        user: Django User instance or None
+
+    Returns:
+        str: One of 'admin', 'contributor', 'user'
+    """
+    if not require_auth():
+        return UserProfile.ROLE_ADMIN
+
+    if not user or not getattr(user, 'is_authenticated', False):
+        return UserProfile.ROLE_USER
+
+    # Check if user is a platform admin (env or superuser)
+    user_email = getattr(user, 'email', '').lower()
+    if user_email and user_email in get_admin_emails():
+        return UserProfile.ROLE_ADMIN
+    if getattr(user, 'is_superuser', False):
+        return UserProfile.ROLE_ADMIN
+
+    # Get role from profile
+    profile = getattr(user, 'profile', None)
+    if profile:
+        # If is_platform_admin is set, they're an admin
+        if profile.is_platform_admin:
+            return UserProfile.ROLE_ADMIN
+        return profile.role
+
+    return UserProfile.ROLE_USER
+
+
+def get_operating_level(request):
+    """
+    Get the user's current operating level from session.
+
+    The operating level determines what actions the user can perform in this session.
+    It can be lower than their assigned role (e.g., an admin operating as 'user').
+
+    Args:
+        request: Django/DRF request object
+
+    Returns:
+        str: One of 'admin', 'contributor', 'user'
+    """
+    if not require_auth():
+        return UserProfile.ROLE_ADMIN
+
+    if not hasattr(request, 'session'):
+        # No session available, use their max role
+        return get_user_role(request.user)
+
+    # Get from session, default to their max role
+    session_level = request.session.get(OPERATING_LEVEL_SESSION_KEY)
+
+    if session_level is None:
+        # First request - default to their max role
+        return get_user_role(request.user)
+
+    # Validate the session level doesn't exceed their role
+    user_role = get_user_role(request.user)
+    user_level = UserProfile.ROLE_HIERARCHY.get(user_role, 0)
+    operating_level = UserProfile.ROLE_HIERARCHY.get(session_level, 0)
+
+    if operating_level > user_level:
+        # Session level exceeds their role - reset to max
+        return user_role
+
+    return session_level
+
+
+def set_operating_level(request, level):
+    """
+    Set the user's operating level in session.
+
+    Args:
+        request: Django/DRF request object
+        level: One of 'admin', 'contributor', 'user'
+
+    Returns:
+        str: The actual level set (may be capped at user's max role)
+
+    Raises:
+        ValueError: If level is invalid
+    """
+    if level not in UserProfile.ROLE_HIERARCHY:
+        raise ValueError(f"Invalid operating level: {level}")
+
+    if not hasattr(request, 'session'):
+        return get_user_role(request.user)
+
+    # Cap at user's max role
+    user_role = get_user_role(request.user)
+    user_level = UserProfile.ROLE_HIERARCHY.get(user_role, 0)
+    requested_level = UserProfile.ROLE_HIERARCHY.get(level, 0)
+
+    if requested_level > user_level:
+        # Can't elevate above their role
+        level = user_role
+
+    request.session[OPERATING_LEVEL_SESSION_KEY] = level
+    return level
+
+
+def can_contribute(request):
+    """
+    Check if the current operating level allows contributing (add/edit/delete).
+
+    Args:
+        request: Django/DRF request object
+
+    Returns:
+        bool: True if operating as contributor or admin
+    """
+    if not require_auth():
+        return True
+
+    level = get_operating_level(request)
+    return level in (UserProfile.ROLE_CONTRIBUTOR, UserProfile.ROLE_ADMIN)
+
+
+def can_administer(request):
+    """
+    Check if the current operating level allows administration.
+
+    Args:
+        request: Django/DRF request object
+
+    Returns:
+        bool: True if operating as admin
+    """
+    if not require_auth():
+        return True
+
+    return get_operating_level(request) == UserProfile.ROLE_ADMIN
+
+
+# =============================================================================
+# New Permission Classes
+# =============================================================================
+
+class IsContributorOrAbove(BasePermission):
+    """
+    DRF permission class: requires contributor or admin operating level.
+
+    Use this for endpoints that modify data (POST, PUT, PATCH, DELETE).
+    """
+
+    message = "Contributor access required. Switch to Contributor or Admin mode to make changes."
+
+    def has_permission(self, request, view):
+        return can_contribute(request)
+
+
+class IsContributorOrReadOnly(BasePermission):
+    """
+    DRF permission class: contributors can write, users can only read.
+
+    Use this on ViewSets to allow anyone to read but require contributor+ to modify.
+    """
+
+    message = "Contributor access required for write operations. Switch to Contributor or Admin mode."
+
+    def has_permission(self, request, view):
+        if request.method in ('GET', 'HEAD', 'OPTIONS'):
+            return True
+        return can_contribute(request)
+
+
+class IsAdminOrReadOnly(BasePermission):
+    """
+    DRF permission class: admins can write, others can only read.
+
+    Similar to IsPlatformAdminOrReadOnly but respects operating level.
+    """
+
+    message = "Admin access required for write operations. Switch to Admin mode."
+
+    def has_permission(self, request, view):
+        if request.method in ('GET', 'HEAD', 'OPTIONS'):
+            return True
+        return can_administer(request)

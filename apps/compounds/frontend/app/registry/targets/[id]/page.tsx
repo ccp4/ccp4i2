@@ -1,135 +1,108 @@
 'use client';
 
-import { use } from 'react';
+import { use, useRef, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
   Typography,
   Box,
   Paper,
-  Chip,
   Skeleton,
   Button,
+  IconButton,
+  Tooltip,
 } from '@mui/material';
-import { Medication, Science, TableChart, Add } from '@mui/icons-material';
+import {
+  Science,
+  TableChart,
+  Add,
+  CloudUpload,
+  Delete,
+  ViewList,
+} from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
-import { MoleculeChip } from '@/components/compounds/MoleculeView';
+import { HorizontalCarousel } from '@/components/compounds/HorizontalCarousel';
+import { CompoundCard } from '@/components/compounds/CompoundCard';
+import { AssayCard } from '@/components/compounds/AssayCard';
+import { ProjectCard } from '@/components/compounds/ProjectCard';
+import { AddAssayMenu } from '@/components/compounds/AddAssayMenu';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
-import { Target, Compound } from '@/types/compounds/models';
+import {
+  TargetDashboard,
+  DashboardProject,
+} from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-export default function TargetDetailPage({ params }: PageProps) {
+export default function TargetDashboardPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const { data: target, isLoading: targetLoading } = api.get<Target>(
-    `targets/${id}/`
-  );
-  const { data: compounds, isLoading: compoundsLoading } = api.get<Compound[]>(
-    `compounds/?target=${id}`
-  );
+  // Fetch dashboard data
+  const {
+    data: dashboardData,
+    isLoading: dashboardLoading,
+    mutate: mutateDashboard,
+  } = api.get<TargetDashboard>(`targets/${id}/dashboard/`);
 
-  const columns: Column<Compound>[] = [
-    {
-      key: 'formatted_id',
-      label: 'ID',
-      sortable: true,
-      searchable: true,
-      width: 180,
-      render: (value, row) => (
-        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 1 }}>
-          <Medication fontSize="small" color="secondary" sx={{ mt: 0.3 }} />
-          <Box>
-            <Typography fontWeight={500} fontFamily="monospace">
-              {value}
-            </Typography>
-            {row.supplier_ref && (
-              <Typography
-                variant="caption"
-                color="text.secondary"
-                sx={{ display: 'block', fontFamily: 'monospace' }}
-              >
-                {row.supplier_ref}
-              </Typography>
-            )}
-          </Box>
-        </Box>
-      ),
-    },
-    {
-      key: 'smiles',
-      label: 'Structure',
-      searchable: true,
-      width: 80,
-      render: (value) => <MoleculeChip smiles={value} size={120} />,
-    },
-    {
-      key: 'smiles',
-      label: 'SMILES',
-      searchable: true,
-      render: (value) => (
-        <Typography
-          sx={{
-            maxWidth: 200,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            fontFamily: 'monospace',
-            fontSize: '0.85rem',
-          }}
-          title={value}
-        >
-          {value}
-        </Typography>
-      ),
-    },
-    {
-      key: 'molecular_weight',
-      label: 'MW',
-      sortable: true,
-      width: 80,
-      render: (value) => (value ? value.toFixed(1) : '-'),
-    },
-    {
-      key: 'stereo_comment',
-      label: 'Stereo',
-      sortable: true,
-      width: 100,
-      render: (value) =>
-        value && value !== 'unset' ? (
-          <Chip label={value} size="small" variant="outlined" />
-        ) : (
-          '-'
-        ),
-    },
-    {
-      key: 'batch_count',
-      label: 'Batches',
-      sortable: true,
-      width: 80,
-      render: (value) =>
-        value ? (
-          <Chip label={value} size="small" color="info" variant="outlined" />
-        ) : (
-          '-'
-        ),
-    },
-    {
-      key: 'registered_at',
-      label: 'Registered',
-      sortable: true,
-      width: 100,
-      render: (value) =>
-        value ? new Date(value).toLocaleDateString() : '-',
-    },
-  ];
+  // Fetch recent projects
+  const { data: projects, isLoading: projectsLoading } = api.get<
+    DashboardProject[]
+  >(`targets/${id}/recent_projects/`);
+
+  const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append('image', file);
+
+    try {
+      await api.upload(`targets/${id}/upload_image/`, formData);
+      mutateDashboard();
+    } catch (error) {
+      console.error('Failed to upload image:', error);
+    }
+
+    // Reset file input
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+  };
+
+  const handleDeleteImage = async () => {
+    try {
+      await api.delete(`targets/${id}/delete_image/`);
+      mutateDashboard();
+    } catch (error) {
+      console.error('Failed to delete image:', error);
+    }
+  };
+
+  const navigateToCompounds = () => {
+    router.push(routes.registry.targetCompounds(id));
+  };
+
+  if (dashboardLoading) {
+    return (
+      <Container maxWidth="lg" sx={{ py: 3 }}>
+        <Skeleton variant="rectangular" height={200} sx={{ mb: 3 }} />
+        <Skeleton variant="rectangular" height={300} sx={{ mb: 3 }} />
+        <Skeleton variant="rectangular" height={200} sx={{ mb: 3 }} />
+        <Skeleton variant="rectangular" height={200} />
+      </Container>
+    );
+  }
+
+  const target = dashboardData;
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
@@ -141,33 +114,112 @@ export default function TargetDetailPage({ params }: PageProps) {
         ]}
       />
 
-      {/* Target header */}
-      <Paper sx={{ p: 3, mb: 3 }}>
-        {targetLoading ? (
-          <>
-            <Skeleton variant="text" width={300} height={40} />
-            <Skeleton variant="text" width={200} />
-          </>
-        ) : target ? (
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Science sx={{ fontSize: 48, color: 'primary.main' }} />
-              <Box>
-                <Typography variant="h4">{target.name}</Typography>
-                <Typography color="text.secondary">
-                  {compounds?.length ?? 0} compounds registered
-                </Typography>
-              </Box>
-            </Box>
-            <Box sx={{ display: 'flex', gap: 1 }}>
+      {/* Branding Image & Header */}
+      <Paper sx={{ p: 3, mb: 3, position: 'relative' }}>
+        {/* Branding image */}
+        {target?.image ? (
+          <Box sx={{ position: 'relative', mb: 2 }}>
+            <Box
+              component="img"
+              src={target.image}
+              alt={`${target.name} banner`}
+              sx={{
+                width: '100%',
+                maxHeight: 200,
+                objectFit: 'cover',
+                borderRadius: 1,
+              }}
+            />
+            {canContribute && (
+              <Tooltip title="Remove image">
+                <IconButton
+                  onClick={handleDeleteImage}
+                  size="small"
+                  sx={{
+                    position: 'absolute',
+                    top: 8,
+                    right: 8,
+                    bgcolor: 'background.paper',
+                    '&:hover': { bgcolor: 'error.lighter' },
+                  }}
+                >
+                  <Delete fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            )}
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              height: 120,
+              bgcolor: 'grey.100',
+              borderRadius: 1,
+              mb: 2,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            {canContribute ? (
               <Button
-                component={Link}
-                href={routes.assays.aggregate({ target: id })}
                 variant="outlined"
-                startIcon={<TableChart />}
+                startIcon={<CloudUpload />}
+                component="label"
               >
-                View Assay Data
+                Upload Branding Image
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  hidden
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
               </Button>
+            ) : (
+              <Typography color="text.secondary" fontStyle="italic">
+                No branding image
+              </Typography>
+            )}
+          </Box>
+        )}
+
+        {/* Target info and actions */}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: 2,
+          }}
+        >
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Science sx={{ fontSize: 48, color: 'primary.main' }} />
+            <Box>
+              <Typography variant="h4">{target?.name}</Typography>
+              <Typography color="text.secondary">
+                {target?.compound_count ?? 0} compounds registered
+              </Typography>
+            </Box>
+          </Box>
+          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+            <Button
+              component={Link}
+              href={routes.registry.targetCompounds(id)}
+              variant="outlined"
+              startIcon={<ViewList />}
+            >
+              All Compounds
+            </Button>
+            <Button
+              component={Link}
+              href={routes.assays.aggregate({ target: id })}
+              variant="outlined"
+              startIcon={<TableChart />}
+            >
+              View Assay Data
+            </Button>
+            {canContribute && (
               <Button
                 component={Link}
                 href={`${routes.registry.new()}?target=${id}`}
@@ -176,26 +228,93 @@ export default function TargetDetailPage({ params }: PageProps) {
               >
                 New Compound
               </Button>
-            </Box>
+            )}
           </Box>
-        ) : (
-          <Typography color="error">Target not found</Typography>
-        )}
+        </Box>
       </Paper>
 
-      {/* Compounds table */}
-      <DataTable
-        data={compounds}
-        columns={columns}
-        loading={compoundsLoading}
-        onRowClick={(compound) =>
-          router.push(routes.registry.compound(compound.id))
+      {/* Recent Compounds Carousel */}
+      <HorizontalCarousel
+        items={dashboardData?.recent_compounds || []}
+        title="Recent Compounds"
+        renderItem={(compound) => (
+          <CompoundCard
+            compound={compound}
+            onClick={() => router.push(routes.registry.compound(compound.id))}
+          />
+        )}
+        getItemKey={(c) => c.id}
+        onBackgroundClick={navigateToCompounds}
+        itemWidth={180}
+        height={260}
+        emptyMessage="No compounds registered yet"
+        headerAction={
+          canContribute && (
+            <Button
+              component={Link}
+              href={`${routes.registry.new()}?target=${id}`}
+              variant="outlined"
+              size="small"
+              startIcon={<Add />}
+            >
+              Register
+            </Button>
+          )
         }
-        getRowKey={(row) => row.id}
-        title={compounds ? `${compounds.length} compounds` : undefined}
-        emptyMessage="No compounds registered for this target"
-        additionalSearchFields={['supplier_ref', 'supplier_name', 'barcode', 'comments']}
       />
+
+      {/* Recent Assays Carousel */}
+      <HorizontalCarousel
+        items={dashboardData?.recent_assays || []}
+        title="Recent Assays"
+        renderItem={(assay) => (
+          <AssayCard
+            assay={assay}
+            onClick={() => router.push(routes.assays.detail(assay.id))}
+          />
+        )}
+        getItemKey={(a) => a.id}
+        itemWidth={180}
+        height={220}
+        emptyMessage="No assays for this target"
+        headerAction={canContribute && <AddAssayMenu targetId={id} />}
+      />
+
+      {/* Related CCP4i2 Projects Carousel */}
+      <HorizontalCarousel
+        items={projects || []}
+        title="Related CCP4i2 Projects"
+        loading={projectsLoading}
+        renderItem={(project) => (
+          <ProjectCard
+            project={project}
+            onClick={() => router.push(routes.external.ccp4i2Project(project.id))}
+          />
+        )}
+        getItemKey={(p) => String(p.id)}
+        itemWidth={200}
+        height={220}
+        emptyMessage="No matching projects found"
+      />
+
+      {/* Lead Compounds Table (Placeholder) */}
+      <Paper sx={{ p: 3 }}>
+        <Typography variant="h6" gutterBottom>
+          Lead Compounds
+        </Typography>
+        <Box
+          sx={{
+            p: 4,
+            bgcolor: 'grey.50',
+            borderRadius: 1,
+            textAlign: 'center',
+          }}
+        >
+          <Typography color="text.secondary">
+            Configurable lead compounds table - coming in a future release
+          </Typography>
+        </Box>
+      </Paper>
     </Container>
   );
 }

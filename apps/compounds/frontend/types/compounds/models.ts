@@ -3,6 +3,59 @@
  * Maps to Django models in apps/compounds/registry.
  */
 
+// =============================================================================
+// User & Authorization Types
+// =============================================================================
+
+/**
+ * User role levels (matches backend UserProfile.ROLE_CHOICES)
+ */
+export type UserRole = 'user' | 'contributor' | 'admin';
+
+/**
+ * User profile from the API
+ */
+export interface UserProfile {
+  role: UserRole;
+  is_platform_admin: boolean;
+  legacy_username: string;
+  legacy_display_name: string;
+  imported_at: string | null;
+  first_login_at: string | null;
+  last_seen_at: string | null;
+}
+
+/**
+ * Current user info from /api/users/me/
+ */
+export interface CurrentUser {
+  id: number;
+  username: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+  display_name: string;
+  is_admin: boolean;
+  role: UserRole;
+  operating_level: UserRole;
+  can_contribute: boolean;
+  can_administer: boolean;
+  profile: UserProfile;
+}
+
+/**
+ * Operating level info from /api/users/me/operating-level/
+ */
+export interface OperatingLevelInfo {
+  operating_level: UserRole;
+  role: UserRole;
+  available_levels: UserRole[];
+}
+
+// =============================================================================
+// Registry Types
+// =============================================================================
+
 export interface Supplier {
   id: string;
   name: string;
@@ -19,6 +72,43 @@ export interface Target {
   parent: string | null;
   created_at: string;
   compound_count?: number;
+  assay_count?: number;
+  has_recent_compounds?: boolean;
+  has_recent_assays?: boolean;
+  latest_activity?: string | null;
+  image?: string | null;
+}
+
+/**
+ * Dashboard types for target landing page.
+ */
+
+export interface DashboardCompound {
+  id: string;
+  formatted_id: string;
+  smiles: string;
+  registered_at: string;
+  molecular_weight: number | null;
+}
+
+export interface DashboardAssay {
+  id: string;
+  protocol_name: string;
+  created_at: string;
+  data_series_count: number;
+}
+
+export interface DashboardProject {
+  id: number;
+  name: string;
+  last_access: string;
+  job_count: number;
+  matching_compound_ids: string[];
+}
+
+export interface TargetDashboard extends Target {
+  recent_compounds: DashboardCompound[];
+  recent_assays: DashboardAssay[];
 }
 
 export type StereoComment =

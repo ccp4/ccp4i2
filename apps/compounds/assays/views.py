@@ -2,6 +2,10 @@
 Assays ViewSets
 
 DRF ViewSets for assay models with reversion support.
+
+Permission model:
+- Read access: Anyone (including 'user' operating level)
+- Write access: Requires 'contributor' or 'admin' operating level
 """
 
 import reversion
@@ -11,6 +15,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from reversion.models import Version
 
+from users.permissions import IsContributorOrReadOnly
 from .analysis import analyse_assay, analyse_data_series
 
 from .models import (
@@ -85,6 +90,7 @@ class ReversionMixin:
 class FittingMethodViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Fitting Methods."""
     queryset = FittingMethod.objects.filter(is_active=True)
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name', 'description']
     ordering = ['name']
@@ -100,6 +106,7 @@ class DilutionSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Dilution Series."""
     queryset = DilutionSeries.objects.all()
     serializer_class = DilutionSeriesSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.OrderingFilter]
     ordering = ['unit']
 
@@ -107,6 +114,7 @@ class DilutionSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
 class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Protocols."""
     queryset = Protocol.objects.select_related('preferred_dilutions', 'created_by')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['analysis_method']
     search_fields = ['name', 'comments']
@@ -181,6 +189,7 @@ class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
 class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Assays."""
     queryset = Assay.objects.select_related('protocol', 'target', 'created_by')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['protocol', 'target']
     ordering_fields = ['created_at']
@@ -826,6 +835,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
 class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Data Series."""
     queryset = DataSeries.objects.select_related('assay', 'compound', 'analysis', 'dilution_series')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['assay', 'compound']
     search_fields = ['compound_name']
@@ -875,6 +885,7 @@ class ProtocolDocumentViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Protocol Documents."""
     queryset = ProtocolDocument.objects.select_related('protocol', 'created_by')
     serializer_class = ProtocolDocumentSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['protocol']
     ordering = ['-created_at']
@@ -899,6 +910,7 @@ class ProtocolDocumentViewSet(ReversionMixin, viewsets.ModelViewSet):
 class HypothesisViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Hypotheses."""
     queryset = Hypothesis.objects.select_related('target', 'parent', 'product_compound')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['target', 'status']
     search_fields = ['smiles', 'rationale']

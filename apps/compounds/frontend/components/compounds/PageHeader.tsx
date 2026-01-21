@@ -11,6 +11,9 @@ import {
   Divider,
   Tooltip,
   Chip,
+  Select,
+  SelectChangeEvent,
+  Typography,
 } from '@mui/material';
 import {
   Home,
@@ -19,11 +22,17 @@ import {
   Person,
   DarkMode,
   LightMode,
+  Visibility,
+  Edit,
+  AdminPanelSettings,
+  Check,
 } from '@mui/icons-material';
 import { useRouter } from 'next/navigation';
 import { Breadcrumbs, BreadcrumbItem } from './Breadcrumbs';
 import { routes } from '@/lib/compounds/routes';
 import { useTheme } from '@/lib/compounds/theme-provider';
+import { useAuth, ROLE_LABELS, ROLE_DESCRIPTIONS } from '@/lib/compounds/auth-context';
+import { UserRole } from '@/types/compounds/models';
 
 interface PageHeaderProps {
   /** Breadcrumb items for the current page */
@@ -34,25 +43,67 @@ interface PageHeaderProps {
 
 const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === 'true';
 
+// Icons for each role level
+const RoleIcon = ({ role, fontSize = 'small' }: { role: UserRole; fontSize?: 'small' | 'inherit' }) => {
+  switch (role) {
+    case 'user':
+      return <Visibility fontSize={fontSize} />;
+    case 'contributor':
+      return <Edit fontSize={fontSize} />;
+    case 'admin':
+      return <AdminPanelSettings fontSize={fontSize} />;
+    default:
+      return <Person fontSize={fontSize} />;
+  }
+};
+
+// Color for each role level
+const getRoleColor = (role: UserRole): 'default' | 'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning' => {
+  switch (role) {
+    case 'user':
+      return 'default';
+    case 'contributor':
+      return 'primary';
+    case 'admin':
+      return 'error';
+    default:
+      return 'default';
+  }
+};
+
 /**
  * Consistent page header for compounds app pages.
  * Includes breadcrumbs and navigation actions (home, targets, user menu with logout).
  *
- * Note: User authentication features (user menu, logout) are only available when
- * running in the Docker/ccp4i2 environment with MSAL configured. In standalone
- * development mode, auth features are disabled.
+ * Features:
+ * - Operating level selector (user/contributor/admin) for role-based access control
+ * - User menu with logout (when auth is enabled)
+ * - Theme toggle (light/dark mode)
+ * - Navigation shortcuts (home, targets)
+ *
+ * Note: User authentication features are only available when
+ * running in the Docker/ccp4i2 environment with auth configured.
  */
 export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps) {
   const router = useRouter();
   const { mode, toggleTheme } = useTheme();
-  const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(null);
+  const {
+    user,
+    operatingLevel,
+    availableLevels,
+    canContribute,
+    setOperatingLevel,
+    isLoading,
+  } = useAuth();
 
-  // Auth context is injected by the parent app (ccp4i2) when running in Docker
-  // In standalone mode, we don't have access to MSAL
-  const currentUser = null; // Populated by parent app context in production
+  const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(null);
+  const [roleMenuAnchor, setRoleMenuAnchor] = useState<null | HTMLElement>(null);
+  const [isChangingRole, setIsChangingRole] = useState(false);
+
   const handleLogout = () => {
     // Handled by parent app in production
     handleUserMenuClose();
+    // In integrated mode, this would call the MSAL logout
   };
 
   const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -61,6 +112,31 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
 
   const handleUserMenuClose = () => {
     setUserMenuAnchor(null);
+  };
+
+  const handleRoleMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setRoleMenuAnchor(event.currentTarget);
+  };
+
+  const handleRoleMenuClose = () => {
+    setRoleMenuAnchor(null);
+  };
+
+  const handleRoleChange = async (newRole: UserRole) => {
+    if (newRole === operatingLevel) {
+      handleRoleMenuClose();
+      return;
+    }
+
+    setIsChangingRole(true);
+    try {
+      await setOperatingLevel(newRole);
+    } catch (err) {
+      console.error('Failed to change operating level:', err);
+    } finally {
+      setIsChangingRole(false);
+      handleRoleMenuClose();
+    }
   };
 
   const handleNavigateHome = () => {
@@ -97,6 +173,95 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
               gap: 0.5,
             }}
           >
+            {/* Operating Level Selector - Show when auth is required */}
+            {REQUIRE_AUTH && user && availableLevels.length > 1 && (
+              <>
+                <Tooltip
+                  title={
+                    <Box>
+                      <Typography variant="body2" fontWeight="bold">
+                        Operating as: {ROLE_LABELS[operatingLevel]}
+                      </Typography>
+                      <Typography variant="caption">
+                        {ROLE_DESCRIPTIONS[operatingLevel]}
+                      </Typography>
+                      <Typography variant="caption" display="block" sx={{ mt: 0.5, fontStyle: 'italic' }}>
+                        Click to change
+                      </Typography>
+                    </Box>
+                  }
+                >
+                  <Chip
+                    icon={<RoleIcon role={operatingLevel} />}
+                    label={ROLE_LABELS[operatingLevel]}
+                    size="small"
+                    color={getRoleColor(operatingLevel)}
+                    variant={operatingLevel === 'user' ? 'outlined' : 'filled'}
+                    onClick={handleRoleMenuOpen}
+                    disabled={isChangingRole}
+                    sx={{
+                      cursor: 'pointer',
+                      fontWeight: 500,
+                      '&:hover': { opacity: 0.9 },
+                    }}
+                  />
+                </Tooltip>
+                <Menu
+                  anchorEl={roleMenuAnchor}
+                  open={Boolean(roleMenuAnchor)}
+                  onClose={handleRoleMenuClose}
+                  anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+                  transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                >
+                  <MenuItem disabled sx={{ opacity: 1 }}>
+                    <Typography variant="caption" color="text.secondary">
+                      Operating Level
+                    </Typography>
+                  </MenuItem>
+                  <Divider />
+                  {(['user', 'contributor', 'admin'] as UserRole[])
+                    .filter(role => availableLevels.includes(role))
+                    .map(role => (
+                      <MenuItem
+                        key={role}
+                        onClick={() => handleRoleChange(role)}
+                        selected={role === operatingLevel}
+                      >
+                        <ListItemIcon>
+                          <RoleIcon role={role} />
+                        </ListItemIcon>
+                        <ListItemText
+                          primary={ROLE_LABELS[role]}
+                          secondary={ROLE_DESCRIPTIONS[role]}
+                          secondaryTypographyProps={{ variant: 'caption' }}
+                        />
+                        {role === operatingLevel && (
+                          <Check fontSize="small" color="primary" sx={{ ml: 1 }} />
+                        )}
+                      </MenuItem>
+                    ))}
+                </Menu>
+                <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+              </>
+            )}
+
+            {/* Read-only indicator when operating as user */}
+            {REQUIRE_AUTH && user && !canContribute && (
+              <>
+                <Tooltip title="You are in read-only mode. Switch to Contributor or Admin to make changes.">
+                  <Chip
+                    icon={<Visibility fontSize="small" />}
+                    label="Read-only"
+                    size="small"
+                    variant="outlined"
+                    color="default"
+                    sx={{ fontStyle: 'italic' }}
+                  />
+                </Tooltip>
+                <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+              </>
+            )}
+
             {/* Home / App Selector */}
             <Tooltip title={REQUIRE_AUTH ? "Home / App Selector" : "Home"}>
               <IconButton
@@ -131,13 +296,13 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
             </Tooltip>
 
             {/* User menu - only show when auth is required and user is available */}
-            {REQUIRE_AUTH && currentUser && (
+            {REQUIRE_AUTH && user && (
               <>
                 <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
-                <Tooltip title={(currentUser as { username?: string }).username || 'User'}>
+                <Tooltip title={user.email || user.username || 'User'}>
                   <Chip
                     icon={<Person fontSize="small" />}
-                    label={(currentUser as { name?: string }).name?.split(' ')[0] || 'User'}
+                    label={user.display_name?.split(' ')[0] || 'User'}
                     size="small"
                     variant="outlined"
                     onClick={handleUserMenuOpen}
@@ -154,10 +319,19 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
                   anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
                   transformOrigin={{ vertical: 'top', horizontal: 'right' }}
                 >
-                  <MenuItem disabled>
+                  <MenuItem disabled sx={{ opacity: 1 }}>
                     <ListItemText
-                      primary={(currentUser as { name?: string }).name}
-                      secondary={(currentUser as { username?: string }).username}
+                      primary={user.display_name}
+                      secondary={
+                        <Box component="span">
+                          <Typography variant="caption" display="block">
+                            {user.email}
+                          </Typography>
+                          <Typography variant="caption" display="block" color="text.secondary">
+                            Role: {ROLE_LABELS[user.role]}
+                          </Typography>
+                        </Box>
+                      }
                       primaryTypographyProps={{ fontWeight: 500 }}
                     />
                   </MenuItem>

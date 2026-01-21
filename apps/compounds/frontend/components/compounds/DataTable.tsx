@@ -38,15 +38,21 @@ interface DataTableProps<T> {
   emptyMessage?: string;
   /** Additional field names to include in search (fields not displayed as columns) */
   additionalSearchFields?: string[];
-  /** Estimated row height for virtualization (default: 53) */
+  /** Estimated row height for virtualization (auto-calculated based on comfortable setting if not specified) */
   estimateRowHeight?: number;
   /** Maximum height of the table container (default: 600) */
   maxHeight?: number;
   /** Optional action element to display in the header (e.g., an "Add" button) */
   headerAction?: ReactNode;
+  /** Use comfortable padding for better mobile/touch experience (default: false) */
+  comfortable?: boolean;
 }
 
 type Order = 'asc' | 'desc';
+
+// Row height constants
+const DENSE_ROW_HEIGHT = 53;
+const COMFORTABLE_ROW_HEIGHT = 64;
 
 export function DataTable<T extends Record<string, any>>({
   data,
@@ -57,10 +63,14 @@ export function DataTable<T extends Record<string, any>>({
   title,
   emptyMessage = 'No data found',
   additionalSearchFields = [],
-  estimateRowHeight = 53,
+  estimateRowHeight,
   maxHeight = 600,
   headerAction,
+  comfortable = false,
 }: DataTableProps<T>) {
+  // Calculate row height based on comfortable setting if not explicitly provided
+  const effectiveRowHeight = estimateRowHeight ?? (comfortable ? COMFORTABLE_ROW_HEIGHT : DENSE_ROW_HEIGHT);
+  const cellPadding = comfortable ? 2 : undefined; // MUI spacing units (16px per unit)
   const [orderBy, setOrderBy] = useState<string | null>(null);
   const [order, setOrder] = useState<Order>('asc');
   const [searchQuery, setSearchQuery] = useState('');
@@ -122,7 +132,7 @@ export function DataTable<T extends Record<string, any>>({
   const rowVirtualizer = useVirtualizer({
     count: sortedData.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => estimateRowHeight,
+    estimateSize: () => effectiveRowHeight,
     overscan: 5, // Render 5 extra rows above/below viewport for smoother scrolling
   });
 
@@ -245,7 +255,7 @@ export function DataTable<T extends Record<string, any>>({
                       }}
                     >
                       {columns.map((column) => (
-                        <TableCell key={column.key}>
+                        <TableCell key={column.key} sx={cellPadding ? { py: cellPadding } : undefined}>
                           {column.render
                             ? column.render(row[column.key], row)
                             : row[column.key] ?? '-'}

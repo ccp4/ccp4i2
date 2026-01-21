@@ -3,15 +3,36 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Container, Typography, Box, Chip, Button } from '@mui/material';
-import { Science, Add, LocalShipping, Apps } from '@mui/icons-material';
+import {
+  Container,
+  Typography,
+  Box,
+  Chip,
+  Button,
+  ToggleButtonGroup,
+  ToggleButton,
+  Tooltip,
+} from '@mui/material';
+import {
+  Science,
+  Add,
+  LocalShipping,
+  Apps,
+  ViewList,
+  ViewModule,
+  Biotech,
+  FiberNew,
+} from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
+import { TargetCardGrid } from '@/components/compounds/TargetCardGrid';
 import { TargetCreateDialog } from '@/components/compounds/TargetCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Target } from '@/types/compounds/models';
+
+type ViewMode = 'table' | 'grid';
 
 export default function TargetsPage() {
   const router = useRouter();
@@ -19,10 +40,17 @@ export default function TargetsPage() {
   const api = useCompoundsApi();
   const { data: targets, isLoading } = api.get<Target[]>('targets/');
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<ViewMode>('grid');
 
   const handleTargetCreated = () => {
     // Invalidate the targets cache to refresh the list
     mutate('/api/proxy/compounds/targets/');
+  };
+
+  const handleViewModeChange = (_: React.MouseEvent<HTMLElement>, newMode: ViewMode | null) => {
+    if (newMode !== null) {
+      setViewMode(newMode);
+    }
   };
 
   const columns: Column<Target>[] = [
@@ -31,10 +59,15 @@ export default function TargetsPage() {
       label: 'Target Name',
       sortable: true,
       searchable: true,
-      render: (value) => (
+      render: (value, row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Science fontSize="small" color="primary" />
           <Typography fontWeight={500}>{value}</Typography>
+          {(row.has_recent_compounds || row.has_recent_assays) && (
+            <Tooltip title="New activity in the last 7 days">
+              <FiberNew fontSize="small" color="secondary" />
+            </Tooltip>
+          )}
         </Box>
       ),
     },
@@ -46,6 +79,24 @@ export default function TargetsPage() {
       render: (value) =>
         value ? (
           <Chip label={value} size="small" color="primary" variant="outlined" />
+        ) : (
+          '-'
+        ),
+    },
+    {
+      key: 'assay_count',
+      label: 'Assays',
+      sortable: true,
+      width: 120,
+      render: (value) =>
+        value ? (
+          <Chip
+            icon={<Biotech fontSize="small" />}
+            label={value}
+            size="small"
+            color="secondary"
+            variant="outlined"
+          />
         ) : (
           '-'
         ),
@@ -79,7 +130,26 @@ export default function TargetsPage() {
             Drug discovery targets and campaigns
           </Typography>
         </Box>
-        <Box sx={{ display: 'flex', gap: 1 }}>
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+          {/* View mode toggle */}
+          <ToggleButtonGroup
+            value={viewMode}
+            exclusive
+            onChange={handleViewModeChange}
+            size="small"
+          >
+            <ToggleButton value="grid">
+              <Tooltip title="Card view">
+                <ViewModule />
+              </Tooltip>
+            </ToggleButton>
+            <ToggleButton value="table">
+              <Tooltip title="Table view">
+                <ViewList />
+              </Tooltip>
+            </ToggleButton>
+          </ToggleButtonGroup>
+
           <Button
             component={Link}
             href="/"
@@ -106,15 +176,24 @@ export default function TargetsPage() {
         </Box>
       </Box>
 
-      <DataTable
-        data={targets}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={(target) => router.push(routes.registry.target(target.id))}
-        getRowKey={(row) => row.id}
-        title={targets ? `${targets.length} targets` : undefined}
-        emptyMessage="No targets found"
-      />
+      {viewMode === 'table' ? (
+        <DataTable
+          data={targets}
+          columns={columns}
+          loading={isLoading}
+          onRowClick={(target) => router.push(routes.registry.target(target.id))}
+          getRowKey={(row) => row.id}
+          emptyMessage="No targets found"
+          comfortable
+        />
+      ) : (
+        <TargetCardGrid
+          targets={targets}
+          loading={isLoading}
+          onTargetClick={(target) => router.push(routes.registry.target(target.id))}
+          emptyMessage="No targets found"
+        />
+      )}
 
       <TargetCreateDialog
         open={createDialogOpen}

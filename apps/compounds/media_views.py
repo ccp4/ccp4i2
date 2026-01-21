@@ -24,8 +24,8 @@ from django.http import FileResponse, Http404, HttpResponseBadRequest, HttpRespo
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
-from compounds.assays.models import Assay, ProtocolDocument
-from compounds.registry.models import BatchQCFile
+from compounds.assays.models import Assay, DataSeries, ProtocolDocument
+from compounds.registry.models import BatchQCFile, Target
 from compounds.constructs.models import Plasmid, CassetteUse, SequencingResult
 
 logger = logging.getLogger(__name__)
@@ -293,3 +293,41 @@ def serve_sequencing_result(request, result_id):
         raise Http404("Sequencing result has no file")
 
     return _serve_file(result.file)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def serve_target_image(request, target_id):
+    """
+    Serve a target's dashboard branding image.
+
+    URL: /api/compounds/media/targets/<target_id>/image/
+    """
+    try:
+        target = Target.objects.get(id=target_id)
+    except Target.DoesNotExist:
+        raise Http404("Target not found")
+
+    if not target.image:
+        raise Http404("Target has no image")
+
+    return _serve_file(target.image)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def serve_data_series_plot(request, series_id):
+    """
+    Serve a data series plot image (for Table-Of-Values assays with uploaded plots).
+
+    URL: /api/compounds/media/data-series/<series_id>/plot/
+    """
+    try:
+        series = DataSeries.objects.get(id=series_id)
+    except DataSeries.DoesNotExist:
+        raise Http404("Data series not found")
+
+    if not series.plot_image:
+        raise Http404("Data series has no plot image")
+
+    return _serve_file(series.plot_image)

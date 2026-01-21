@@ -139,9 +139,7 @@ class ProtocolDocumentCreateSerializer(serializers.ModelSerializer):
 
 
 class ProtocolSerializer(serializers.ModelSerializer):
-    preferred_dilutions_display = serializers.CharField(
-        source='preferred_dilutions.__str__', read_only=True
-    )
+    preferred_dilutions_display = serializers.SerializerMethodField()
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
     fitting_method_name = serializers.CharField(
         source='fitting_method.name', read_only=True
@@ -189,6 +187,12 @@ class ProtocolSerializer(serializers.ModelSerializer):
     def validate_plate_layout(self, value):
         """Convert null to empty dict since DB column doesn't allow NULL."""
         return value if value is not None else {}
+
+    def get_preferred_dilutions_display(self, obj):
+        """Return string representation of dilution series, or None if not set."""
+        if obj.preferred_dilutions:
+            return str(obj.preferred_dilutions)
+        return None
 
 
 class ProtocolDetailSerializer(ProtocolSerializer):
