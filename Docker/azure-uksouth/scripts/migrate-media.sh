@@ -199,12 +199,18 @@ check_clashes() {
     echo -e "${YELLOW}Source media subdirectories:${NC}"
     BATCH_QC_COUNT=0
     HAS_CONSTRUCT_DB=false
+    HAS_ASSAY_COMPOUNDS=false
+    HAS_REGISTER_COMPOUNDS=false
     OTHER_DIRS=""
     while read dir; do
         if [[ "$dir" == RegBatchQCFile_* ]]; then
             ((BATCH_QC_COUNT++))
         elif [[ "$dir" == "ConstructDatabase" ]]; then
             HAS_CONSTRUCT_DB=true
+        elif [[ "$dir" == "AssayCompounds" ]]; then
+            HAS_ASSAY_COMPOUNDS=true
+        elif [[ "$dir" == "RegisterCompounds" ]]; then
+            HAS_REGISTER_COMPOUNDS=true
         else
             OTHER_DIRS="$OTHER_DIRS$dir\n"
         fi
@@ -374,11 +380,19 @@ do_copy() {
     OTHER_ITEMS=()
     HAS_CONSTRUCT_DB=false
 
+    # Track directories that have double-nested structure in legacy storage
+    HAS_ASSAY_COMPOUNDS=false
+    HAS_REGISTER_COMPOUNDS=false
+
     while read item; do
         if [[ "$item" == RegBatchQCFile_* ]]; then
             BATCH_QC_DIRS+=("$item")
         elif [[ "$item" == "ConstructDatabase" ]]; then
             HAS_CONSTRUCT_DB=true
+        elif [[ "$item" == "AssayCompounds" ]]; then
+            HAS_ASSAY_COMPOUNDS=true
+        elif [[ "$item" == "RegisterCompounds" ]]; then
+            HAS_REGISTER_COMPOUNDS=true
         else
             OTHER_ITEMS+=("$item")
         fi
@@ -393,6 +407,12 @@ do_copy() {
     echo -e "${GREEN}Found ${#OTHER_ITEMS[@]} other items to copy${NC}"
     if [ "$HAS_CONSTRUCT_DB" = true ]; then
         echo -e "${GREEN}Found ConstructDatabase directory (will flatten nested structure)${NC}"
+    fi
+    if [ "$HAS_ASSAY_COMPOUNDS" = true ]; then
+        echo -e "${GREEN}Found AssayCompounds directory (will flatten nested structure)${NC}"
+    fi
+    if [ "$HAS_REGISTER_COMPOUNDS" = true ]; then
+        echo -e "${GREEN}Found RegisterCompounds directory (will flatten nested structure)${NC}"
     fi
     echo ""
 
@@ -494,6 +514,80 @@ do_copy() {
         fi
 
         echo -e "${GREEN}ConstructDatabase copied${NC}"
+        echo ""
+    fi
+
+    # Step 4: Copy AssayCompounds with path flattening
+    # Legacy data has double-nested structure: AssayCompounds/AssayCompounds/*
+    # Django expects: AssayCompounds/*
+    if [ "$HAS_ASSAY_COMPOUNDS" = true ]; then
+        echo -e "${CYAN}----------------------------------------${NC}"
+        echo -e "${CYAN}Step 4: Flattening AssayCompounds${NC}"
+        echo -e "${CYAN}  From: media/AssayCompounds/AssayCompounds/*${NC}"
+        echo -e "${CYAN}  To:   AssayCompounds/* (container root)${NC}"
+        echo -e "${CYAN}----------------------------------------${NC}"
+
+        SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/AssayCompounds/AssayCompounds/*?${SOURCE_SAS}"
+        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/AssayCompounds/?${DEST_SAS}"
+
+        echo -e "${YELLOW}  Copying nested AssayCompounds contents...${NC}"
+        azcopy copy \
+            "$SOURCE_URL" \
+            "$DEST_URL" \
+            --recursive \
+            --skip-version-check \
+            --log-level=ERROR 2>/dev/null
+
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}    Error copying AssayCompounds${NC}"
+            echo -e "${YELLOW}    Attempting direct copy (source may not be nested)...${NC}"
+            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/AssayCompounds/*?${SOURCE_SAS}"
+            azcopy copy \
+                "$SOURCE_URL" \
+                "$DEST_URL" \
+                --recursive \
+                --skip-version-check \
+                --log-level=ERROR 2>/dev/null
+        fi
+
+        echo -e "${GREEN}AssayCompounds copied${NC}"
+        echo ""
+    fi
+
+    # Step 5: Copy RegisterCompounds with path flattening
+    # Legacy data has double-nested structure: RegisterCompounds/RegisterCompounds/*
+    # Django expects: RegisterCompounds/*
+    if [ "$HAS_REGISTER_COMPOUNDS" = true ]; then
+        echo -e "${CYAN}----------------------------------------${NC}"
+        echo -e "${CYAN}Step 5: Flattening RegisterCompounds${NC}"
+        echo -e "${CYAN}  From: media/RegisterCompounds/RegisterCompounds/*${NC}"
+        echo -e "${CYAN}  To:   RegisterCompounds/* (container root)${NC}"
+        echo -e "${CYAN}----------------------------------------${NC}"
+
+        SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/RegisterCompounds/RegisterCompounds/*?${SOURCE_SAS}"
+        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/RegisterCompounds/?${DEST_SAS}"
+
+        echo -e "${YELLOW}  Copying nested RegisterCompounds contents...${NC}"
+        azcopy copy \
+            "$SOURCE_URL" \
+            "$DEST_URL" \
+            --recursive \
+            --skip-version-check \
+            --log-level=ERROR 2>/dev/null
+
+        if [ $? -ne 0 ]; then
+            echo -e "${RED}    Error copying RegisterCompounds${NC}"
+            echo -e "${YELLOW}    Attempting direct copy (source may not be nested)...${NC}"
+            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/RegisterCompounds/*?${SOURCE_SAS}"
+            azcopy copy \
+                "$SOURCE_URL" \
+                "$DEST_URL" \
+                --recursive \
+                --skip-version-check \
+                --log-level=ERROR 2>/dev/null
+        fi
+
+        echo -e "${GREEN}RegisterCompounds copied${NC}"
         echo ""
     fi
 
