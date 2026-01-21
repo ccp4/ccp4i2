@@ -319,8 +319,10 @@ class Command(BaseCommand):
         protocol = self._get_or_create_protocol(parser)
 
         # Create Assay for this import
+        # Use protocol's default target if available
         assay = Assay.objects.create(
             protocol=protocol,
+            target=protocol.target,
             comments=f"Imported from {filepath.name}",
         )
         self.log(f"Created assay: {assay.id}")

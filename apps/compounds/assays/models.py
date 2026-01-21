@@ -266,6 +266,16 @@ class Protocol(models.Model):
         help_text="Default parameters passed to fitting script"
     )
 
+    # Default target for assays using this protocol
+    target = models.ForeignKey(
+        Target,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='protocols',
+        help_text="Default target for assays using this protocol"
+    )
+
     created_by = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,

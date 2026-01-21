@@ -29,6 +29,7 @@ import {
   Cancel,
   HelpOutline,
   Delete,
+  Edit,
   Image as ImageIcon,
   Palette,
 } from '@mui/icons-material';
@@ -38,6 +39,7 @@ import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
 import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';
 import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
+import { AssayEditDialog } from '@/components/compounds/AssayEditDialog';
 import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
@@ -141,12 +143,13 @@ export default function AssayDetailPage({ params }: PageProps) {
   const api = useCompoundsApi();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [imageUploadOpen, setImageUploadOpen] = useState(false);
   const [heatMapOpen, setHeatMapOpen] = useState(false);
   const [heatMapCells, setHeatMapCells] = useState<(string | number | null)[][] | null>(null);
   const [heatMapLoading, setHeatMapLoading] = useState(false);
 
-  const { data: assay, isLoading: assayLoading } = api.get<Assay>(
+  const { data: assay, isLoading: assayLoading, mutate: mutateAssay } = api.get<Assay>(
     `assays/${id}/`
   );
   const { data: dataSeries, isLoading: dataSeriesLoading, mutate: mutateDataSeries } = api.get<DataSeries[]>(
@@ -411,6 +414,14 @@ export default function AssayDetailPage({ params }: PageProps) {
                 )}
                 <Button
                   variant="outlined"
+                  startIcon={<Edit />}
+                  onClick={() => setEditDialogOpen(true)}
+                  size="small"
+                >
+                  Edit
+                </Button>
+                <Button
+                  variant="outlined"
                   color="error"
                   startIcon={<Delete />}
                   onClick={() => setDeleteDialogOpen(true)}
@@ -529,6 +540,16 @@ export default function AssayDetailPage({ params }: PageProps) {
         assayId={id}
         onUploaded={() => mutateDataSeries()}
       />
+
+      {/* Assay edit dialog */}
+      {assay && (
+        <AssayEditDialog
+          open={editDialogOpen}
+          onClose={() => setEditDialogOpen(false)}
+          assay={assay}
+          onSave={() => mutateAssay()}
+        />
+      )}
 
       {/* Plate Heat Map dialog */}
       {heatMapCells && protocol?.plate_layout && (

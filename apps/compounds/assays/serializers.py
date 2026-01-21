@@ -18,6 +18,7 @@ from .models import (
     Hypothesis,
     FittingMethod,
 )
+from compounds.registry.models import Target
 from compounds.registry.serializers import CompoundListSerializer
 
 
@@ -145,6 +146,7 @@ class ProtocolSerializer(serializers.ModelSerializer):
     fitting_method_name = serializers.CharField(
         source='fitting_method.name', read_only=True
     )
+    target_name = serializers.CharField(source='target.name', read_only=True)
     # Explicitly allow null for ForeignKey fields
     fitting_method = serializers.PrimaryKeyRelatedField(
         queryset=FittingMethod.objects.all(),
@@ -153,6 +155,11 @@ class ProtocolSerializer(serializers.ModelSerializer):
     )
     preferred_dilutions = serializers.PrimaryKeyRelatedField(
         queryset=DilutionSeries.objects.all(),
+        allow_null=True,
+        required=False
+    )
+    target = serializers.PrimaryKeyRelatedField(
+        queryset=Target.objects.all(),
         allow_null=True,
         required=False
     )
@@ -167,6 +174,7 @@ class ProtocolSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'name', 'analysis_method',
             'fitting_method', 'fitting_method_name',
+            'target', 'target_name',
             'plate_layout', 'fitting_parameters',
             'preferred_dilutions', 'preferred_dilutions_display',
             'created_by', 'created_by_email', 'created_at',
@@ -349,6 +357,11 @@ class AssayCreateSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         if request and request.user.is_authenticated:
             validated_data['created_by'] = request.user
+        # Default target from protocol if not provided explicitly
+        if 'target' not in validated_data or validated_data['target'] is None:
+            protocol = validated_data.get('protocol')
+            if protocol and protocol.target:
+                validated_data['target'] = protocol.target
         return super().create(validated_data)
 
 

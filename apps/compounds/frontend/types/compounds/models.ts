@@ -184,6 +184,8 @@ export interface Protocol {
   analysis_method: AnalysisMethod;
   fitting_method?: string | null;
   fitting_method_name?: string;
+  target?: string | null;
+  target_name?: string;
   plate_layout?: Partial<PlateLayout> | null;
   fitting_parameters?: FittingParameters | null;
   preferred_dilutions: string | null;

@@ -134,6 +134,49 @@ class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
         serializer = AssayListSerializer(assays, many=True)
         return Response(serializer.data)
 
+    @action(detail=True, methods=['post'])
+    def propagate_target(self, request, pk=None):
+        """
+        Update all assays using this protocol to use the protocol's target.
+
+        This is useful when the protocol's default target is changed and
+        the user wants to apply that change to existing assays.
+
+        Returns the count of updated assays.
+        """
+        protocol = self.get_object()
+
+        if not protocol.target:
+            return Response({
+                'status': 'error',
+                'error': 'Protocol has no target set'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Count assays that would be updated (different target or null)
+        assays_to_update = protocol.assays.exclude(target=protocol.target)
+        count = assays_to_update.count()
+
+        if count == 0:
+            return Response({
+                'status': 'success',
+                'updated': 0,
+                'message': 'All assays already have this target'
+            })
+
+        # Update all assays to use the protocol's target
+        with reversion.create_revision():
+            assays_to_update.update(target=protocol.target)
+            if request.user.is_authenticated:
+                reversion.set_user(request.user)
+            reversion.set_comment(f"Propagated target from protocol: {protocol.name}")
+
+        return Response({
+            'status': 'success',
+            'updated': count,
+            'target_id': str(protocol.target.id),
+            'target_name': protocol.target.name
+        })
+
 
 class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Assays."""
@@ -606,6 +649,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
         results_data = request.data.get('results', [])
         skip_unmatched = request.data.get('skip_unmatched', False)
         comments = request.data.get('comments', '')
+        target_id = request.data.get('target')  # Optional target UUID
 
         if not parser_slug:
             return Response({
@@ -636,6 +680,17 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
             }
         )
 
+        # Resolve target: use provided target_id, or fall back to protocol's default target
+        from compounds.registry.models import Target
+        target = None
+        if target_id:
+            try:
+                target = Target.objects.get(id=target_id)
+            except Target.DoesNotExist:
+                logger.warning(f"Target {target_id} not found, ignoring")
+        elif protocol.target:
+            target = protocol.target
+
         created_series = []
         errors = []
         skipped = 0
@@ -644,6 +699,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
             # Create Assay for this import
             assay = Assay.objects.create(
                 protocol=protocol,
+                target=target,
                 created_by=request.user if request.user.is_authenticated else None,
                 comments=f"Imported from {filename}" + (f"\n{comments}" if comments else ""),
             )

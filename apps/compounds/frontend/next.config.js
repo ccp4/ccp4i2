@@ -8,6 +8,8 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '100mb',
     },
+    // For API routes (route handlers), use middlewareClientMaxBodySize
+    middlewareClientMaxBodySize: '100mb',
   },
 
   // Allow images from Django backend

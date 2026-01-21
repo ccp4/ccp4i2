@@ -20,14 +20,15 @@ import {
   CircularProgress,
   ListItemIcon,
   ListItemText,
+  Autocomplete,
 } from '@mui/material';
-import { Close, Edit, Code, Add } from '@mui/icons-material';
+import { Close, Edit, Code, Add, Update } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { TightBindingParametersForm } from './TightBindingParametersForm';
 import { FittingMethodEditDialog } from './FittingMethodEditDialog';
 import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
-import type { Protocol, FittingMethod, FittingParameters, DilutionSeries, AnalysisMethod } from '@/types/compounds/models';
+import type { Protocol, FittingMethod, FittingParameters, DilutionSeries, AnalysisMethod, Target } from '@/types/compounds/models';
 
 const ANALYSIS_METHOD_OPTIONS: { value: AnalysisMethod; label: string }[] = [
   { value: 'hill_langmuir', label: 'Hill-Langmuir' },
@@ -66,6 +67,11 @@ export function ProtocolEditDialog({
   const [scriptEditorOpen, setScriptEditorOpen] = useState(false);
   const [createDilutionsDialogOpen, setCreateDilutionsDialogOpen] = useState(false);
 
+  // Propagation confirmation dialog state
+  const [showPropagateDialog, setShowPropagateDialog] = useState(false);
+  const [propagating, setPropagating] = useState(false);
+  const [propagateResult, setPropagateResult] = useState<{ updated: number } | null>(null);
+
   // Form state
   const [name, setName] = useState(protocol.name);
   const [analysisMethod, setAnalysisMethod] = useState<AnalysisMethod>(
@@ -80,6 +86,8 @@ export function ProtocolEditDialog({
   const [preferredDilutionsId, setPreferredDilutionsId] = useState<string | null>(
     protocol.preferred_dilutions || null
   );
+  const [targetId, setTargetId] = useState<string | null>(protocol.target || null);
+  const [originalTargetId] = useState<string | null>(protocol.target || null);
   const [comments, setComments] = useState(protocol.comments || '');
 
   // Fetch available fitting methods
@@ -91,6 +99,9 @@ export function ProtocolEditDialog({
   const { data: dilutionSeries, isLoading: dilutionsLoading } = api.get<DilutionSeries[]>(
     'dilution-series/'
   );
+
+  // Fetch available targets
+  const { data: targets } = api.get<Target[]>('targets/');
 
   const handleDilutionSeriesCreated = (newSeries: DilutionSeries) => {
     mutate('/api/proxy/compounds/dilution-series/');
@@ -104,8 +115,10 @@ export function ProtocolEditDialog({
     setFittingMethodId(protocol.fitting_method || null);
     setFittingParams(protocol.fitting_parameters || {});
     setPreferredDilutionsId(protocol.preferred_dilutions || null);
+    setTargetId(protocol.target || null);
     setComments(protocol.comments || '');
     setError(null);
+    setPropagateResult(null);
   }, [protocol]);
 
   // Check if selected fitting method is tight-binding
@@ -129,15 +142,46 @@ export function ProtocolEditDialog({
         fitting_method: fittingMethodId || null,
         fitting_parameters: fittingParams || {},
         preferred_dilutions: preferredDilutionsId || null,
+        target: targetId || null,
         comments: comments || null,
       });
-      onSave();
-      onClose();
+
+      // If target changed and new target is set, offer to propagate to assays
+      const targetChanged = targetId !== originalTargetId;
+      const hasAssays = (protocol.assays_count || 0) > 0;
+
+      if (targetChanged && targetId && hasAssays) {
+        setShowPropagateDialog(true);
+      } else {
+        onSave();
+        onClose();
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save');
     } finally {
       setSaving(false);
     }
+  };
+
+  const handlePropagate = async () => {
+    setPropagating(true);
+    setError(null);
+
+    try {
+      const result = await api.post<{ updated: number }>(`protocols/${protocol.id}/propagate_target/`, {});
+      setPropagateResult(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update assays');
+    } finally {
+      setPropagating(false);
+    }
+  };
+
+  const handleClosePropagateDialog = () => {
+    setShowPropagateDialog(false);
+    setPropagateResult(null);
+    onSave();
+    onClose();
   };
 
   return (
@@ -185,6 +229,22 @@ export function ProtocolEditDialog({
               ))}
             </Select>
           </FormControl>
+
+          {/* Default Target */}
+          <Autocomplete
+            options={targets || []}
+            getOptionLabel={(option) => option.name}
+            value={targets?.find((t) => t.id === targetId) || null}
+            onChange={(_, newValue) => setTargetId(newValue?.id || null)}
+            size="small"
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Default Target"
+                helperText="Default target for assays using this protocol"
+              />
+            )}
+          />
 
           {/* Analysis Settings - hidden for ADME protocols */}
           {!isAdmeProtocol(analysisMethod) && (
@@ -336,6 +396,57 @@ export function ProtocolEditDialog({
         onClose={() => setCreateDilutionsDialogOpen(false)}
         onCreated={handleDilutionSeriesCreated}
       />
+
+      {/* Propagate Target Confirmation Dialog */}
+      <Dialog open={showPropagateDialog} onClose={handleClosePropagateDialog} maxWidth="xs" fullWidth>
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Update color="primary" />
+          Update Existing Assays?
+        </DialogTitle>
+        <DialogContent>
+          {propagateResult ? (
+            <Alert severity="success" sx={{ mt: 1 }}>
+              Updated {propagateResult.updated} assay{propagateResult.updated !== 1 ? 's' : ''} to use the new target.
+            </Alert>
+          ) : (
+            <>
+              <Typography variant="body2" gutterBottom>
+                You changed the default target for this protocol. Would you like to update
+                all existing assays ({protocol.assays_count}) to use this target as well?
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                New target: <strong>{targets?.find((t) => t.id === targetId)?.name}</strong>
+              </Typography>
+            </>
+          )}
+          {error && (
+            <Alert severity="error" sx={{ mt: 2 }}>
+              {error}
+            </Alert>
+          )}
+        </DialogContent>
+        <DialogActions>
+          {propagateResult ? (
+            <Button variant="contained" onClick={handleClosePropagateDialog}>
+              Done
+            </Button>
+          ) : (
+            <>
+              <Button onClick={handleClosePropagateDialog} disabled={propagating}>
+                No, Keep Existing
+              </Button>
+              <Button
+                variant="contained"
+                onClick={handlePropagate}
+                disabled={propagating}
+                startIcon={propagating ? <CircularProgress size={16} /> : <Update />}
+              >
+                {propagating ? 'Updating...' : 'Yes, Update All'}
+              </Button>
+            </>
+          )}
+        </DialogActions>
+      </Dialog>
     </Dialog>
   );
 }

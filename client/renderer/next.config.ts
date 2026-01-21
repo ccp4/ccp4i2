@@ -50,6 +50,8 @@ const nextConfig: NextConfig = {
     serverActions: {
       bodySizeLimit: '100mb',
     },
+    // For API routes (route handlers), use middlewareClientMaxBodySize
+    middlewareClientMaxBodySize: '100mb',
   },
 
   // No basePath - routes are organized at app level (/ccp4i2/*, /compounds/*)

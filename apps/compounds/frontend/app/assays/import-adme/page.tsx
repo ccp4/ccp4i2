@@ -29,6 +29,7 @@ import {
   Tooltip,
   IconButton,
   Collapse,
+  Autocomplete,
 } from '@mui/material';
 import {
   Upload,
@@ -46,7 +47,12 @@ import {
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { routes } from '@/lib/compounds/routes';
-import { apiUpload, apiPost } from '@/lib/compounds/api';
+import { apiUpload, apiPost, useCompoundsApi } from '@/lib/compounds/api';
+
+interface Target {
+  id: string;
+  name: string;
+}
 
 interface ParsedResult {
   compound_id: string;
@@ -118,6 +124,11 @@ export default function ImportADMEPage() {
 
 function ImportADMEContent() {
   const router = useRouter();
+  const api = useCompoundsApi();
+
+  // Fetch targets for the dropdown
+  const { data: targetsData } = api.get<Target[]>('targets/');
+  const targets = targetsData || [];
 
   // File state
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -130,6 +141,7 @@ function ImportADMEContent() {
   // Import options
   const [skipUnmatched, setSkipUnmatched] = useState(false);
   const [importComments, setImportComments] = useState('');
+  const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
 
   // Import state
   const [isImporting, setIsImporting] = useState(false);
@@ -192,6 +204,7 @@ function ImportADMEContent() {
     setImportError(null);
     setSkipUnmatched(false);
     setImportComments('');
+    setSelectedTarget(null);
   }, []);
 
   // Handle import
@@ -208,6 +221,7 @@ function ImportADMEContent() {
         results: preview.results.filter(r => !r.is_control),
         skip_unmatched: skipUnmatched,
         comments: importComments,
+        target: selectedTarget || undefined,
       });
 
       if (response.status === 'completed') {
@@ -222,7 +236,7 @@ function ImportADMEContent() {
     } finally {
       setIsImporting(false);
     }
-  }, [preview, skipUnmatched, importComments, router]);
+  }, [preview, skipUnmatched, importComments, selectedTarget, router]);
 
   // Calculate import count
   const importCount = preview
@@ -412,6 +426,23 @@ function ImportADMEContent() {
               <Typography variant="h6" gutterBottom>
                 Import Options
               </Typography>
+
+              {/* Target selection */}
+              <Autocomplete
+                options={targets}
+                getOptionLabel={(option) => option.name}
+                value={targets.find((t) => t.id === selectedTarget) || null}
+                onChange={(_, newValue) => setSelectedTarget(newValue?.id || null)}
+                size="small"
+                renderInput={(params) => (
+                  <TextField
+                    {...params}
+                    label="Target"
+                    helperText="Optional: target being tested"
+                  />
+                )}
+                sx={{ mb: 2 }}
+              />
 
               <FormControlLabel
                 control={
