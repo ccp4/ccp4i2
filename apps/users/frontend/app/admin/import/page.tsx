@@ -125,7 +125,10 @@ interface ImportResult {
     total_records: number;
     by_model: Record<string, number>;
   };
-  errors: string[];
+  errors?: string[];
+  // Proxy error format (when request fails before reaching Django)
+  error?: string;
+  detail?: string;
 }
 
 interface ConstructsImportResult {
