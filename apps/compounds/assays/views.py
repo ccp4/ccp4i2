@@ -630,7 +630,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
         """
         Import ADME data after preview confirmation.
 
-        Expects JSON body:
+        Expects multipart/form-data or JSON body:
         {
             "filename": "ADME-NCU-LM-20231218.xlsx",
             "parser_slug": "ncu-lm",
@@ -644,21 +644,39 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                 ...
             ],
             "skip_unmatched": false,
-            "comments": "Optional import notes"
+            "comments": "Optional import notes",
+            "file": <uploaded file>  // Optional: original Excel file to store
         }
 
         Returns summary of created records.
         """
         import logging
+        import json
         logger = logging.getLogger(__name__)
 
+        # Handle both FormData and JSON requests
+        # For FormData, the data fields may be JSON strings
+        uploaded_file = request.FILES.get('file')
+
+        def get_field(name, default=None):
+            """Get a field from request.data, parsing JSON if needed."""
+            value = request.data.get(name, default)
+            if isinstance(value, str) and name == 'results':
+                try:
+                    return json.loads(value)
+                except (json.JSONDecodeError, TypeError):
+                    pass
+            return value
+
         # Validate request data
-        filename = request.data.get('filename', 'ADME Import')
-        parser_slug = request.data.get('parser_slug')
-        results_data = request.data.get('results', [])
-        skip_unmatched = request.data.get('skip_unmatched', False)
-        comments = request.data.get('comments', '')
-        target_id = request.data.get('target')  # Optional target UUID
+        filename = get_field('filename', 'ADME Import')
+        parser_slug = get_field('parser_slug')
+        results_data = get_field('results', [])
+        skip_unmatched = get_field('skip_unmatched', False)
+        if isinstance(skip_unmatched, str):
+            skip_unmatched = skip_unmatched.lower() in ('true', '1', 'yes')
+        comments = get_field('comments', '')
+        target_id = get_field('target')  # Optional target UUID
 
         if not parser_slug:
             return Response({
@@ -709,6 +727,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
             assay = Assay.objects.create(
                 protocol=protocol,
                 target=target,
+                data_file=uploaded_file,  # Store the original Excel file if provided
                 created_by=request.user if request.user.is_authenticated else None,
                 comments=f"Imported from {filename}" + (f"\n{comments}" if comments else ""),
             )

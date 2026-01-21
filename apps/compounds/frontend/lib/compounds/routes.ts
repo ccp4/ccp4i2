@@ -64,6 +64,10 @@ export const routes = {
     /** Target compounds list page */
     targetCompounds: (id: string | number) => route(`/registry/targets/${id}/compounds`),
 
+    /** All compounds list with optional target filter */
+    compounds: (params?: { target?: string }) =>
+      routeWithQuery('/registry/compounds', params),
+
     /** Suppliers list */
     suppliers: () => route('/registry/suppliers'),
 

@@ -47,7 +47,7 @@ import {
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { routes } from '@/lib/compounds/routes';
-import { apiUpload, apiPost, useCompoundsApi } from '@/lib/compounds/api';
+import { apiUpload, useCompoundsApi } from '@/lib/compounds/api';
 
 interface Target {
   id: string;
@@ -215,14 +215,24 @@ function ImportADMEContent() {
     setImportError(null);
 
     try {
-      const response = await apiPost<ImportResponse>('assays/import_adme/', {
-        filename: preview.filename,
-        parser_slug: preview.parser.protocol_slug,
-        results: preview.results.filter(r => !r.is_control),
-        skip_unmatched: skipUnmatched,
-        comments: importComments,
-        target: selectedTarget || undefined,
-      });
+      // Use FormData to include the original file for download later
+      const formData = new FormData();
+      formData.append('filename', preview.filename);
+      formData.append('parser_slug', preview.parser.protocol_slug);
+      formData.append('results', JSON.stringify(preview.results.filter(r => !r.is_control)));
+      formData.append('skip_unmatched', String(skipUnmatched));
+      if (importComments) {
+        formData.append('comments', importComments);
+      }
+      if (selectedTarget) {
+        formData.append('target', selectedTarget);
+      }
+      // Include the original file so it can be downloaded later
+      if (selectedFile) {
+        formData.append('file', selectedFile);
+      }
+
+      const response = await apiUpload<ImportResponse>('assays/import_adme/', formData);
 
       if (response.status === 'completed') {
         // Navigate to the new assay
@@ -236,7 +246,7 @@ function ImportADMEContent() {
     } finally {
       setIsImporting(false);
     }
-  }, [preview, skipUnmatched, importComments, selectedTarget, router]);
+  }, [preview, skipUnmatched, importComments, selectedTarget, selectedFile, router]);
 
   // Calculate import count
   const importCount = preview

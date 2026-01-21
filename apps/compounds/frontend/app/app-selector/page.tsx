@@ -111,11 +111,35 @@ export default function AppSelectorPage() {
           component={Link}
           href="/registry/targets"
         >
-          <Biotech sx={{ fontSize: 56, color: 'secondary.main' }} />
+          <Science sx={{ fontSize: 56, color: 'secondary.main' }} />
+          <Box>
+            <Typography variant="h5">Drug Discovery Targets</Typography>
+            <Typography color="text.secondary">
+              Target dashboards with compounds, assays, and related projects
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/registry/compounds"
+        >
+          <Biotech sx={{ fontSize: 56, color: 'info.main' }} />
           <Box>
             <Typography variant="h5">Compounds Registry</Typography>
             <Typography color="text.secondary">
-              Compound registration, batch tracking, and target management
+              Browse all compounds, filter by target, and register new compounds
             </Typography>
           </Box>
         </Paper>
