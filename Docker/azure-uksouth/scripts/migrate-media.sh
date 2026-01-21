@@ -9,10 +9,11 @@
 # The new infrastructure uses Blob storage (cheaper) instead of Azure Files for Django uploads.
 #
 # Path transformations during migration:
-#   - Most files: media/* -> media/*  (unchanged paths)
-#   - Batch QC files: media/RegBatchQCFile_NCL-* -> media/RegisterCompounds/BatchQCFiles/NCL-*
+# Note: Django's AzureStorage uses the blob container root (no media/ prefix)
+#   - Most files: media/* -> /* (copied to container root)
+#   - Batch QC files: media/RegBatchQCFile_NCL-* -> RegisterCompounds/BatchQCFiles/NCL-*
 #     (relocates per-compound QC directories into a dedicated subdirectory)
-#   - Construct database: media/ConstructDatabase/ConstructDatabase/* -> media/ConstructDatabase/*
+#   - Construct database: media/ConstructDatabase/ConstructDatabase/* -> ConstructDatabase/*
 #     (flattens legacy double-nested directory structure)
 #
 # Environment: Docker/azure-uksouth/.env.deployment
@@ -52,8 +53,9 @@ SOURCE_PATH="CompoundDatabaseData/media"
 # Destination storage account (new private storage)
 # Will be determined dynamically - looks for storage account starting with 'storprv'
 # Uses Blob storage container instead of File share (per infrastructure.bicep)
+# Note: Django's AzureStorage uses the container root, not a media/ subdirectory
 DEST_CONTAINER="django-uploads"
-DEST_PATH="media"
+DEST_PATH=""
 
 # Get destination storage account dynamically
 get_dest_storage_account() {
@@ -403,7 +405,7 @@ do_copy() {
         for item in "${OTHER_ITEMS[@]}"; do
             echo -e "${YELLOW}  Copying: $item${NC}"
             SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/${item}?${SOURCE_SAS}"
-            DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${DEST_PATH}/${item}?${DEST_SAS}"
+            DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${item}?${DEST_SAS}"
 
             azcopy copy \
                 "$SOURCE_URL" \
@@ -426,7 +428,7 @@ do_copy() {
         echo -e "${CYAN}----------------------------------------${NC}"
         echo -e "${CYAN}Step 2: Relocating batch QC directories${NC}"
         echo -e "${CYAN}  From: media/RegBatchQCFile_NCL-*${NC}"
-        echo -e "${CYAN}  To:   media/RegisterCompounds/BatchQCFiles/NCL-*${NC}"
+        echo -e "${CYAN}  To:   RegisterCompounds/BatchQCFiles/NCL-*${NC}"
         echo -e "${CYAN}----------------------------------------${NC}"
 
         for qc_dir in "${BATCH_QC_DIRS[@]}"; do
@@ -437,7 +439,7 @@ do_copy() {
             echo -e "${YELLOW}  $qc_dir -> $NEW_PATH${NC}"
 
             SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/${qc_dir}/*?${SOURCE_SAS}"
-            DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${DEST_PATH}/${NEW_PATH}/?${DEST_SAS}"
+            DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${NEW_PATH}/?${DEST_SAS}"
 
             azcopy copy \
                 "$SOURCE_URL" \
@@ -500,7 +502,7 @@ do_copy() {
     echo -e "${GREEN}========================================${NC}"
     echo ""
     echo -e "${YELLOW}Next steps:${NC}"
-    echo "1. Verify the data: az storage blob list --container-name $DEST_CONTAINER --account-name $DEST_STORAGE_ACCOUNT --prefix $DEST_PATH/"
+    echo "1. Verify the data: az storage blob list --container-name $DEST_CONTAINER --account-name $DEST_STORAGE_ACCOUNT"
     echo "2. Ensure Django is configured to use Azure Blob Storage (django-storages)"
     echo "3. Update AZURE_CONTAINER and DEFAULT_FILE_STORAGE settings if needed"
     echo ""
@@ -518,12 +520,11 @@ list_blobs() {
         exit 1
     fi
 
-    echo -e "${YELLOW}Blobs in $DEST_CONTAINER/$DEST_PATH/:${NC}"
+    echo -e "${YELLOW}Blobs in $DEST_CONTAINER (container root):${NC}"
     az storage blob list \
         --container-name "$DEST_CONTAINER" \
         --account-name "$DEST_STORAGE_ACCOUNT" \
         --account-key "$DEST_KEY" \
-        --prefix "$DEST_PATH/" \
         --query "[].{Name:name, Size:properties.contentLength}" \
         -o table
 }
@@ -543,7 +544,7 @@ show_usage() {
     echo "Destination (Azure Blob Storage):"
     echo "  Storage Account: storprv* (auto-discovered)"
     echo "  Container: $DEST_CONTAINER"
-    echo "  Path: $DEST_PATH/"
+    echo "  Path: (container root - Django uses root, no media/ prefix)"
     echo ""
     echo "Usage: $0 <command>"
     echo ""
