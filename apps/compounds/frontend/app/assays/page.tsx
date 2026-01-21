@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Container, Typography, Box, Chip, Button } from '@mui/material';
-import { Assessment, Science, Description, Upload, Functions, TableChart } from '@mui/icons-material';
+import { Assessment, Science, Description, Upload, Functions, TableChart, Biotech } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { useCompoundsApi } from '@/lib/compounds/api';
@@ -130,6 +130,14 @@ export default function AssaysPage() {
             startIcon={<TableChart />}
           >
             Import Table of Values
+          </Button>
+          <Button
+            component={Link}
+            href={routes.assays.importAdme()}
+            variant="outlined"
+            startIcon={<Biotech />}
+          >
+            Import ADME
           </Button>
           <Button
             component={Link}

@@ -45,6 +45,13 @@ const nextConfig: NextConfig = {
     unoptimized: isElectron || isWeb,
   },
 
+  // Increase body size limit for large fixture file imports (AssayCompounds can be >10MB)
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '100mb',
+    },
+  },
+
   // No basePath - routes are organized at app level (/ccp4i2/*, /compounds/*)
   // This allows multiple apps in the same Next.js deployment
 

@@ -110,6 +110,9 @@ export const routes = {
     importTableOfValues: (params?: { protocol?: string }) =>
       routeWithQuery('/assays/import-tov', params),
 
+    /** Import ADME data */
+    importAdme: () => route('/assays/import-adme'),
+
     /** Aggregation view with optional filters */
     aggregate: (params?: {
       compound?: string;

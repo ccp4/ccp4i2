@@ -213,13 +213,7 @@ class Protocol(models.Model):
         ('hill_langmuir_fix_minmax', 'Hill-Langmuir (fixed min/max)'),
         ('ms_intact', 'MS-Intact'),
         ('table_of_values', 'Table of values'),
-    ]
-
-    PHERASTAR_TABLE_CHOICES = [
-        ('none', 'None'),
-        ('table_1', 'Table 1'),
-        ('table_2', 'Table 2'),
-        ('table_3', 'Table 3'),
+        ('pharmaron_adme', 'Pharmaron ADME'),
     ]
 
     PLATE_FORMAT_CHOICES = [
@@ -270,15 +264,6 @@ class Protocol(models.Model):
         default=dict,
         blank=True,
         help_text="Default parameters passed to fitting script"
-    )
-
-    pherastar_table = models.CharField(
-        max_length=32,
-        choices=PHERASTAR_TABLE_CHOICES,
-        default='table_3',
-        blank=True,
-        null=True,
-        help_text="PHERAstar plate reader table selection"
     )
 
     created_by = models.ForeignKey(

@@ -150,7 +150,6 @@ export interface Protocol {
   name: string;
   analysis_method: AnalysisMethod;
   preferred_dilutions: string | null;  // UUID
-  pherastar_table: string | null;
   created_by: number | null;
   created_at: string;  // ISO datetime
   comments: string | null;

@@ -150,7 +150,8 @@ export type AnalysisMethod =
   | 'hill_langmuir_fix_hill_minmax'
   | 'hill_langmuir_fix_minmax'
   | 'ms_intact'
-  | 'table_of_values';
+  | 'table_of_values'
+  | 'pharmaron_adme';
 
 /**
  * Tight-binding analysis parameters for Wang equation fitting.
@@ -185,7 +186,6 @@ export interface Protocol {
   fitting_method_name?: string;
   plate_layout?: Partial<PlateLayout> | null;
   fitting_parameters?: FittingParameters | null;
-  pherastar_table: string | null;
   preferred_dilutions: string | null;
   preferred_dilutions_display?: string;
   created_by: number | null;

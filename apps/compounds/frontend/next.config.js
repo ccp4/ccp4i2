@@ -3,6 +3,13 @@ const nextConfig = {
   // API proxy is handled by app/api/proxy/compounds/[...path]/route.ts
   // This gives us more control and better error handling than rewrites
 
+  // Increase body size limit for large fixture file imports (AssayCompounds can be >10MB)
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '100mb',
+    },
+  },
+
   // Allow images from Django backend
   images: {
     remotePatterns: [

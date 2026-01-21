@@ -156,13 +156,6 @@ class ProtocolSerializer(serializers.ModelSerializer):
         allow_null=True,
         required=False
     )
-    # Override to allow free-form text (model has choices but we want flexibility)
-    pherastar_table = serializers.CharField(
-        max_length=32,
-        allow_blank=True,
-        allow_null=True,
-        required=False
-    )
     # fitting_parameters doesn't allow null in DB, so convert null to empty dict
     fitting_parameters = serializers.JSONField(
         required=False,
@@ -175,7 +168,6 @@ class ProtocolSerializer(serializers.ModelSerializer):
             'id', 'name', 'analysis_method',
             'fitting_method', 'fitting_method_name',
             'plate_layout', 'fitting_parameters',
-            'pherastar_table',
             'preferred_dilutions', 'preferred_dilutions_display',
             'created_by', 'created_by_email', 'created_at',
             'comments',

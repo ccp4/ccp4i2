@@ -333,7 +333,7 @@ class Command(BaseCommand):
             'created_at': 'created_at',
             'analysisMethod': 'analysis_method',
             'preferredDilutions': 'preferred_dilutions',
-            'pherastarTableChoice': 'pherastar_table',
+            'pherastarTableChoice': None,  # Field removed
             'dataFile': 'data_file',
             'experiment': 'assay',
             'compoundName': 'compound_name',

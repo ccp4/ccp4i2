@@ -27,7 +27,24 @@ import { TightBindingParametersForm } from './TightBindingParametersForm';
 import { FittingMethodEditDialog } from './FittingMethodEditDialog';
 import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
-import type { Protocol, FittingMethod, FittingParameters, DilutionSeries } from '@/types/compounds/models';
+import type { Protocol, FittingMethod, FittingParameters, DilutionSeries, AnalysisMethod } from '@/types/compounds/models';
+
+const ANALYSIS_METHOD_OPTIONS: { value: AnalysisMethod; label: string }[] = [
+  { value: 'hill_langmuir', label: 'Hill-Langmuir' },
+  { value: 'hill_langmuir_fix_hill', label: 'Hill-Langmuir (fixed Hill)' },
+  { value: 'hill_langmuir_fix_hill_minmax', label: 'Hill-Langmuir (fixed Hill/min/max)' },
+  { value: 'hill_langmuir_fix_minmax', label: 'Hill-Langmuir (fixed min/max)' },
+  { value: 'ms_intact', label: 'MS-Intact' },
+  { value: 'table_of_values', label: 'Table of values' },
+  { value: 'pharmaron_adme', label: 'Pharmaron ADME' },
+];
+
+// Helper to check if analysis method is Pharmaron ADME (handles both underscore and hyphen variants)
+function isAdmeProtocol(analysisMethod: string | undefined): boolean {
+  if (!analysisMethod) return false;
+  const normalized = analysisMethod.toLowerCase().replace(/-/g, '_');
+  return normalized === 'pharmaron_adme' || normalized === 'adme';
+}
 
 interface ProtocolEditDialogProps {
   open: boolean;
@@ -51,6 +68,9 @@ export function ProtocolEditDialog({
 
   // Form state
   const [name, setName] = useState(protocol.name);
+  const [analysisMethod, setAnalysisMethod] = useState<AnalysisMethod>(
+    protocol.analysis_method as AnalysisMethod || 'hill_langmuir'
+  );
   const [fittingMethodId, setFittingMethodId] = useState<string | null>(
     protocol.fitting_method || null
   );
@@ -60,7 +80,6 @@ export function ProtocolEditDialog({
   const [preferredDilutionsId, setPreferredDilutionsId] = useState<string | null>(
     protocol.preferred_dilutions || null
   );
-  const [pherastarTable, setPherastarTable] = useState(protocol.pherastar_table || '');
   const [comments, setComments] = useState(protocol.comments || '');
 
   // Fetch available fitting methods
@@ -81,10 +100,10 @@ export function ProtocolEditDialog({
   // Reset form when protocol changes
   useEffect(() => {
     setName(protocol.name);
+    setAnalysisMethod(protocol.analysis_method as AnalysisMethod || 'hill_langmuir');
     setFittingMethodId(protocol.fitting_method || null);
     setFittingParams(protocol.fitting_parameters || {});
     setPreferredDilutionsId(protocol.preferred_dilutions || null);
-    setPherastarTable(protocol.pherastar_table || '');
     setComments(protocol.comments || '');
     setError(null);
   }, [protocol]);
@@ -106,10 +125,10 @@ export function ProtocolEditDialog({
     try {
       await api.patch(`protocols/${protocol.id}/`, {
         name,
+        analysis_method: analysisMethod,
         fitting_method: fittingMethodId || null,
         fitting_parameters: fittingParams || {},
         preferred_dilutions: preferredDilutionsId || null,
-        pherastar_table: pherastarTable || null,
         comments: comments || null,
       });
       onSave();
@@ -151,115 +170,131 @@ export function ProtocolEditDialog({
             size="small"
           />
 
-          <Divider />
-
-          {/* Fitting Method */}
-          <Typography variant="subtitle2" color="text.secondary">
-            Analysis Settings
-          </Typography>
-
-          <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-            <FormControl fullWidth size="small">
-              <InputLabel>Fitting Method</InputLabel>
-              <Select
-                value={fittingMethodId || ''}
-                onChange={(e) => {
-                  setFittingMethodId(e.target.value || null);
-                  // Clear fitting params when method changes
-                  setFittingParams({});
-                }}
-                label="Fitting Method"
-              >
-                <MenuItem value="">
-                  <em>Default (4PL)</em>
-                </MenuItem>
-                {methodsLoading ? (
-                  <MenuItem disabled>Loading...</MenuItem>
-                ) : (
-                  fittingMethods?.map((method) => (
-                    <MenuItem key={method.id} value={method.id}>
-                      {method.name}
-                    </MenuItem>
-                  ))
-                )}
-              </Select>
-            </FormControl>
-            {fittingMethodId && (
-              <Button
-                variant="outlined"
-                size="small"
-                startIcon={<Code />}
-                onClick={() => setScriptEditorOpen(true)}
-                sx={{ minWidth: 'auto', whiteSpace: 'nowrap', mt: 0.5 }}
-              >
-                Edit Script
-              </Button>
-            )}
-          </Box>
-
-          {/* Preferred Dilutions */}
+          {/* Analysis Method */}
           <FormControl fullWidth size="small">
-            <InputLabel>Preferred Dilutions</InputLabel>
+            <InputLabel>Analysis Method</InputLabel>
             <Select
-              value={preferredDilutionsId || ''}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (value === '__create_new__') {
-                  setCreateDilutionsDialogOpen(true);
-                } else {
-                  setPreferredDilutionsId(value || null);
-                }
-              }}
-              label="Preferred Dilutions"
+              value={analysisMethod}
+              onChange={(e) => setAnalysisMethod(e.target.value as AnalysisMethod)}
+              label="Analysis Method"
             >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {dilutionsLoading ? (
-                <MenuItem disabled>Loading...</MenuItem>
-              ) : (
-                dilutionSeries?.map((ds) => (
-                  <MenuItem key={ds.id} value={ds.id}>
-                    {ds.display_name || `${ds.concentrations.length} points (${ds.unit})`}
-                  </MenuItem>
-                ))
-              )}
-              <Divider />
-              <MenuItem value="__create_new__">
-                <ListItemIcon>
-                  <Add fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Create New...</ListItemText>
-              </MenuItem>
+              {ANALYSIS_METHOD_OPTIONS.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
             </Select>
           </FormControl>
 
-          {/* Tight-binding parameters (conditional) */}
-          {isTightBinding && (
-            <Box sx={{ pl: 1, borderLeft: 3, borderColor: 'secondary.main' }}>
-              <TightBindingParametersForm
-                value={fittingParams}
-                onChange={setFittingParams}
-                unit={concentrationUnit}
-              />
-            </Box>
+          {/* Analysis Settings - hidden for ADME protocols */}
+          {!isAdmeProtocol(analysisMethod) && (
+            <>
+              <Divider />
+
+              {/* Fitting Method */}
+              <Typography variant="subtitle2" color="text.secondary">
+                Analysis Settings
+              </Typography>
+
+              <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
+                <FormControl fullWidth size="small">
+                  <InputLabel>Fitting Method</InputLabel>
+                  <Select
+                    value={fittingMethodId || ''}
+                    onChange={(e) => {
+                      setFittingMethodId(e.target.value || null);
+                      // Clear fitting params when method changes
+                      setFittingParams({});
+                    }}
+                    label="Fitting Method"
+                  >
+                    <MenuItem value="">
+                      <em>Default (4PL)</em>
+                    </MenuItem>
+                    {methodsLoading ? (
+                      <MenuItem disabled>Loading...</MenuItem>
+                    ) : (
+                      fittingMethods?.map((method) => (
+                        <MenuItem key={method.id} value={method.id}>
+                          {method.name}
+                        </MenuItem>
+                      ))
+                    )}
+                  </Select>
+                </FormControl>
+                {fittingMethodId && (
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    startIcon={<Code />}
+                    onClick={() => setScriptEditorOpen(true)}
+                    sx={{ minWidth: 'auto', whiteSpace: 'nowrap', mt: 0.5 }}
+                  >
+                    Edit Script
+                  </Button>
+                )}
+              </Box>
+
+              {/* Preferred Dilutions */}
+              <FormControl fullWidth size="small">
+                <InputLabel>Preferred Dilutions</InputLabel>
+                <Select
+                  value={preferredDilutionsId || ''}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    if (value === '__create_new__') {
+                      setCreateDilutionsDialogOpen(true);
+                    } else {
+                      setPreferredDilutionsId(value || null);
+                    }
+                  }}
+                  label="Preferred Dilutions"
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  {dilutionsLoading ? (
+                    <MenuItem disabled>Loading...</MenuItem>
+                  ) : (
+                    dilutionSeries?.map((ds) => (
+                      <MenuItem key={ds.id} value={ds.id}>
+                        {ds.display_name || `${ds.concentrations.length} points (${ds.unit})`}
+                      </MenuItem>
+                    ))
+                  )}
+                  <Divider />
+                  <MenuItem value="__create_new__">
+                    <ListItemIcon>
+                      <Add fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>Create New...</ListItemText>
+                  </MenuItem>
+                </Select>
+              </FormControl>
+
+              {/* Tight-binding parameters (conditional) */}
+              {isTightBinding && (
+                <Box sx={{ pl: 1, borderLeft: 3, borderColor: 'secondary.main' }}>
+                  <TightBindingParametersForm
+                    value={fittingParams}
+                    onChange={setFittingParams}
+                    unit={concentrationUnit}
+                  />
+                </Box>
+              )}
+            </>
           )}
 
-          <Divider />
-
-          {/* Other Settings */}
-          <Typography variant="subtitle2" color="text.secondary">
-            Other Settings
-          </Typography>
-
-          <TextField
-            label="PHERAstar Table"
-            value={pherastarTable}
-            onChange={(e) => setPherastarTable(e.target.value)}
-            fullWidth
-            size="small"
-            placeholder="e.g., FI 485 520"
-          />
+          {/* ADME-specific info */}
+          {isAdmeProtocol(analysisMethod) && (
+            <>
+              <Divider />
+              <Alert severity="info" sx={{ mt: 1 }}>
+                This is a Pharmaron ADME protocol. Data is imported from Excel files
+                (ADME-NCU-*.xlsx) rather than plate-based assays.
+              </Alert>
+            </>
+          )}
 
           <TextField
             label="Comments"

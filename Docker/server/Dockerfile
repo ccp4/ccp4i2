@@ -58,6 +58,7 @@ COPY apps/compounds/urls.py /usr/src/app/compounds/urls.py
 COPY apps/compounds/admin_views.py /usr/src/app/compounds/admin_views.py
 COPY apps/compounds/media_views.py /usr/src/app/compounds/media_views.py
 COPY apps/compounds/validators.py /usr/src/app/compounds/validators.py
+COPY apps/compounds/utils.py /usr/src/app/compounds/utils.py
 
 # Install Python dependencies
 # Core Django dependencies (quoted to prevent shell interpretation of < >)
@@ -72,7 +73,8 @@ RUN pip install --no-cache-dir \
     "dj-database-url>=2.0" \
     "python-dotenv>=1.0" \
     "django-reversion>=5.0" \
-    "pytz"
+    "pytz" \
+    "openpyxl>=3.1.0"
 
 # Install Azure integration dependencies
 # Install to main site-packages for container's Python (uvicorn/gunicorn)

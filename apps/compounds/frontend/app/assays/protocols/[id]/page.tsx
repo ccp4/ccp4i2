@@ -23,7 +23,7 @@ import {
   LinearProgress,
   Tooltip,
 } from '@mui/material';
-import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart, CheckCircle } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart, CheckCircle, Biotech } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -52,6 +52,7 @@ const ANALYSIS_METHOD_LABELS: Record<string, string> = {
   hill_langmuir_fix_minmax: 'Hill-Langmuir (fixed min/max)',
   ms_intact: 'MS-Intact',
   table_of_values: 'Table of values',
+  pharmaron_adme: 'Pharmaron ADME',
 };
 
 function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
@@ -66,6 +67,13 @@ function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
       <Typography component="div">{value ?? '-'}</Typography>
     </Box>
   );
+}
+
+// Helper to check if analysis method is Pharmaron ADME (handles both underscore and hyphen variants)
+function isAdmeProtocol(analysisMethod: string | undefined): boolean {
+  if (!analysisMethod) return false;
+  const normalized = analysisMethod.toLowerCase().replace(/-/g, '_');
+  return normalized === 'pharmaron_adme' || normalized === 'adme';
 }
 
 export default function ProtocolDetailPage({ params }: PageProps) {
@@ -506,23 +514,44 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   label="Analysis"
                   value={ANALYSIS_METHOD_LABELS[protocol.analysis_method]}
                 />
-                <InfoRow
-                  label="Dilutions"
-                  value={
-                    protocol.preferred_dilutions_display ? (
-                      <Typography
-                        component="span"
-                        sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
-                      >
-                        {protocol.preferred_dilutions_display}
-                      </Typography>
-                    ) : null
-                  }
-                />
-                <InfoRow
-                  label="PHERAstar Table"
-                  value={protocol.pherastar_table}
-                />
+                {/* Hide dilution/plate reader fields for ADME protocols */}
+                {!isAdmeProtocol(protocol.analysis_method) && (
+                  <>
+                    <InfoRow
+                      label="Dilutions"
+                      value={
+                        protocol.preferred_dilutions_display ? (
+                          <Typography
+                            component="span"
+                            sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
+                          >
+                            {protocol.preferred_dilutions_display}
+                          </Typography>
+                        ) : null
+                      }
+                    />
+                  </>
+                )}
+                {/* ADME-specific info */}
+                {isAdmeProtocol(protocol.analysis_method) && (
+                  <>
+                    <InfoRow
+                      label="Data Source"
+                      value="Pharmaron/NCU Excel exports"
+                    />
+                    <InfoRow
+                      label="File Pattern"
+                      value={
+                        <Typography
+                          component="span"
+                          sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
+                        >
+                          ADME-NCU-*.xlsx
+                        </Typography>
+                      }
+                    />
+                  </>
+                )}
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
                 <Typography variant="h6" gutterBottom>
@@ -582,39 +611,43 @@ export default function ProtocolDetailPage({ params }: PageProps) {
               </>
             )}
 
-            {/* Plate Layout Section */}
-            <Divider sx={{ my: 2 }} />
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-              <Typography variant="h6">
-                Plate Layout
-              </Typography>
-              <Button
-                size="small"
-                startIcon={protocol.plate_layout ? <Edit /> : <GridOn />}
-                onClick={handleOpenLayoutEditor}
-              >
-                {protocol.plate_layout ? 'Edit Layout' : 'Configure Layout'}
-              </Button>
-            </Box>
+            {/* Plate Layout Section - only for non-ADME protocols */}
+            {!isAdmeProtocol(protocol.analysis_method) && (
+              <>
+                <Divider sx={{ my: 2 }} />
+                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+                  <Typography variant="h6">
+                    Plate Layout
+                  </Typography>
+                  <Button
+                    size="small"
+                    startIcon={protocol.plate_layout ? <Edit /> : <GridOn />}
+                    onClick={handleOpenLayoutEditor}
+                  >
+                    {protocol.plate_layout ? 'Edit Layout' : 'Configure Layout'}
+                  </Button>
+                </Box>
 
-            {protocol.plate_layout && Object.keys(protocol.plate_layout).length > 0 ? (
-              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <PlatePreview
-                  layout={protocol.plate_layout}
-                  width={450}
-                  height={300}
-                />
-              </Box>
-            ) : (
-              <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
-                <GridOn sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
-                <Typography color="text.secondary">
-                  No plate layout configured
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                  Configure a plate layout to define control positions, sample regions, and dilution patterns
-                </Typography>
-              </Paper>
+                {protocol.plate_layout && Object.keys(protocol.plate_layout).length > 0 ? (
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <PlatePreview
+                      layout={protocol.plate_layout}
+                      width={450}
+                      height={300}
+                    />
+                  </Box>
+                ) : (
+                  <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
+                    <GridOn sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
+                    <Typography color="text.secondary">
+                      No plate layout configured
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                      Configure a plate layout to define control positions, sample regions, and dilution patterns
+                    </Typography>
+                  </Paper>
+                )}
+              </>
             )}
           </>
         ) : (
@@ -761,6 +794,15 @@ export default function ProtocolDetailPage({ params }: PageProps) {
             startIcon={<TableChart />}
           >
             Import Table of Values
+          </Button>
+        ) : isAdmeProtocol(protocol?.analysis_method) ? (
+          <Button
+            component={Link}
+            href={routes.assays.importAdme()}
+            variant="contained"
+            startIcon={<Biotech />}
+          >
+            Import Pharmaron ADME
           </Button>
         ) : (
           <Button

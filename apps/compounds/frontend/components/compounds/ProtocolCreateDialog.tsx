@@ -39,6 +39,7 @@ const ANALYSIS_METHOD_OPTIONS: { value: AnalysisMethod; label: string }[] = [
   { value: 'hill_langmuir_fix_minmax', label: 'Hill-Langmuir (fixed min/max)' },
   { value: 'ms_intact', label: 'MS-Intact' },
   { value: 'table_of_values', label: 'Table of values' },
+  { value: 'pharmaron_adme', label: 'Pharmaron ADME' },
 ];
 
 export function ProtocolCreateDialog({
@@ -151,41 +152,44 @@ export function ProtocolCreateDialog({
             </Select>
           </FormControl>
 
-          <FormControl fullWidth size="small">
-            <InputLabel>Preferred Dilutions</InputLabel>
-            <Select
-              value={preferredDilutionsId || ''}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (value === '__create_new__') {
-                  setCreateDilutionsDialogOpen(true);
-                } else {
-                  setPreferredDilutionsId(value || null);
-                }
-              }}
-              label="Preferred Dilutions"
-            >
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              {dilutionsLoading ? (
-                <MenuItem disabled>Loading...</MenuItem>
-              ) : (
-                dilutionSeries?.map((ds) => (
-                  <MenuItem key={ds.id} value={ds.id}>
-                    {ds.display_name || `${ds.concentrations.join(', ')} ${ds.unit}`}
-                  </MenuItem>
-                ))
-              )}
-              <Divider />
-              <MenuItem value="__create_new__">
-                <ListItemIcon>
-                  <Add fontSize="small" />
-                </ListItemIcon>
-                <ListItemText>Create New...</ListItemText>
-              </MenuItem>
-            </Select>
-          </FormControl>
+          {/* Hide dilutions for ADME protocols - they use time points instead */}
+          {analysisMethod !== 'pharmaron_adme' && (
+            <FormControl fullWidth size="small">
+              <InputLabel>Preferred Dilutions</InputLabel>
+              <Select
+                value={preferredDilutionsId || ''}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (value === '__create_new__') {
+                    setCreateDilutionsDialogOpen(true);
+                  } else {
+                    setPreferredDilutionsId(value || null);
+                  }
+                }}
+                label="Preferred Dilutions"
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                {dilutionsLoading ? (
+                  <MenuItem disabled>Loading...</MenuItem>
+                ) : (
+                  dilutionSeries?.map((ds) => (
+                    <MenuItem key={ds.id} value={ds.id}>
+                      {ds.display_name || `${ds.concentrations.join(', ')} ${ds.unit}`}
+                    </MenuItem>
+                  ))
+                )}
+                <Divider />
+                <MenuItem value="__create_new__">
+                  <ListItemIcon>
+                    <Add fontSize="small" />
+                  </ListItemIcon>
+                  <ListItemText>Create New...</ListItemText>
+                </MenuItem>
+              </Select>
+            </FormControl>
+          )}
 
           <TextField
             label="Comments"

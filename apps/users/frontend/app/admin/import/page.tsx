@@ -207,7 +207,15 @@ export default function ImportPage() {
   };
 
   const handleImport = async () => {
+    console.log('[Import] handleImport called with files:', {
+      usersFile: usersFile?.name || null,
+      registryFile: registryFile?.name || null,
+      assaysFile: assaysFile?.name || null,
+      dryRun
+    });
+
     if (!usersFile && !registryFile && !assaysFile) {
+      console.log('[Import] No files selected, returning early');
       setImportError('Please select at least one fixture file');
       return;
     }
@@ -220,26 +228,37 @@ export default function ImportPage() {
       const formData = new FormData();
       if (usersFile) {
         formData.append('users_fixture', usersFile);
+        console.log('[Import] Added users_fixture:', usersFile.name);
       }
       if (registryFile) {
         formData.append('registry_fixture', registryFile);
+        console.log('[Import] Added registry_fixture:', registryFile.name);
       }
       if (assaysFile) {
         formData.append('assays_fixture', assaysFile);
+        console.log('[Import] Added assays_fixture:', assaysFile.name);
       }
       formData.append('dry_run', dryRun.toString());
 
+      console.log('[Import] Making POST request to /api/proxy/compounds/admin/import-legacy/');
       const response = await authenticatedFetch('/api/proxy/compounds/admin/import-legacy/', {
         method: 'POST',
         body: formData,
       });
+      console.log('[Import] Response status:', response.status);
 
       const data = await response.json();
+      console.log('[Import] Response data:', data);
 
       if (!response.ok) {
         setImportResult(data);
+        // Handle different error formats: { errors: [...] } or { error: '...', detail: '...' }
         if (data.errors?.length > 0) {
           setImportError(data.errors.join('; '));
+        } else if (data.error) {
+          setImportError(data.detail ? `${data.error}: ${data.detail}` : data.error);
+        } else {
+          setImportError(`Request failed with status ${response.status}`);
         }
       } else {
         setImportResult(data);
@@ -248,6 +267,7 @@ export default function ImportPage() {
         }
       }
     } catch (err) {
+      console.error('[Import] Error:', err);
       setImportError(err instanceof Error ? err.message : 'Import failed');
     } finally {
       setImporting(false);
@@ -486,7 +506,14 @@ export default function ImportPage() {
                   type="file"
                   hidden
                   accept=".json"
-                  onChange={(e) => setUsersFile(e.target.files?.[0] || null)}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0] || null;
+                    console.log('[Import] Users file selected:', file?.name || 'none');
+                    setUsersFile(file);
+                    // Clear previous result when file selection changes
+                    setImportResult(null);
+                    setImportError(null);
+                  }}
                 />
               </Button>
               {usersFile && (
@@ -514,7 +541,14 @@ export default function ImportPage() {
                   type="file"
                   hidden
                   accept=".json"
-                  onChange={(e) => setRegistryFile(e.target.files?.[0] || null)}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0] || null;
+                    console.log('[Import] Registry file selected:', file?.name || 'none');
+                    setRegistryFile(file);
+                    // Clear previous result when file selection changes
+                    setImportResult(null);
+                    setImportError(null);
+                  }}
                 />
               </Button>
               {registryFile && (
@@ -542,7 +576,14 @@ export default function ImportPage() {
                   type="file"
                   hidden
                   accept=".json"
-                  onChange={(e) => setAssaysFile(e.target.files?.[0] || null)}
+                  onChange={(e) => {
+                    const file = e.target.files?.[0] || null;
+                    console.log('[Import] Assays file selected:', file?.name || 'none');
+                    setAssaysFile(file);
+                    // Clear previous result when file selection changes
+                    setImportResult(null);
+                    setImportError(null);
+                  }}
                 />
               </Button>
               {assaysFile && (
@@ -565,11 +606,30 @@ export default function ImportPage() {
             label="Dry run (validate without loading)"
           />
 
+          {/* Summary of selected files */}
+          {(usersFile || registryFile || assaysFile) && (
+            <Box sx={{ p: 1.5, bgcolor: 'grey.100', borderRadius: 1 }}>
+              <Typography variant="caption" color="text.secondary">
+                Files to {dryRun ? 'validate' : 'import'}:
+              </Typography>
+              <Typography variant="body2">
+                {[
+                  usersFile && `Users: ${usersFile.name}`,
+                  registryFile && `Registry: ${registryFile.name}`,
+                  assaysFile && `Assays: ${assaysFile.name}`,
+                ].filter(Boolean).join(', ') || 'None selected'}
+              </Typography>
+            </Box>
+          )}
+
           {/* Import Button */}
           <Box>
             <Button
               variant="contained"
-              onClick={handleImport}
+              onClick={() => {
+                console.log('[Import] Button clicked');
+                handleImport();
+              }}
               disabled={importing || (!usersFile && !registryFile && !assaysFile)}
               startIcon={importing ? <CircularProgress size={16} /> : <CloudUpload />}
               size="small"
@@ -588,8 +648,8 @@ export default function ImportPage() {
           {/* Import Result */}
           {importResult && !importError && (
             <Alert
-              severity={importResult.errors?.length ? 'warning' : 'success'}
-              icon={importResult.errors?.length ? <ErrorIcon /> : <CheckCircle />}
+              severity={importResult.errors?.length || importResult.error ? 'warning' : 'success'}
+              icon={importResult.errors?.length || importResult.error ? <ErrorIcon /> : <CheckCircle />}
             >
               <Typography variant="subtitle2" gutterBottom>
                 {importResult.dry_run ? 'Validation Result' : 'Import Result'}

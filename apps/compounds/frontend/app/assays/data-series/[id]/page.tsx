@@ -276,95 +276,69 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                             </TableCell>
                           </TableRow>
                         )}
-                        {series.analysis.results?.EC50 !== undefined && series.analysis.results.EC50 !== null && (
-                          <TableRow>
-                            <TableCell component="th">EC50</TableCell>
-                            <TableCell>
-                              <Typography fontFamily="monospace">
-                                {typeof series.analysis.results.EC50 === 'number'
-                                  ? series.analysis.results.EC50.toExponential(3)
-                                  : series.analysis.results.EC50}{' '}
-                                {series.dilution_series?.unit || 'nM'}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
-                        {series.analysis.results?.Ki !== undefined && series.analysis.results.Ki !== null && (
-                          <TableRow>
-                            <TableCell component="th">Ki</TableCell>
-                            <TableCell>
-                              <Typography fontFamily="monospace" fontWeight={600} color="secondary">
-                                {typeof series.analysis.results.Ki === 'number'
-                                  ? series.analysis.results.Ki.toExponential(3)
-                                  : series.analysis.results.Ki}{' '}
-                                {series.dilution_series?.unit || 'nM'}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
-                        {series.analysis.results?.IC50_apparent !== undefined && series.analysis.results.IC50_apparent !== null && (
-                          <TableRow>
-                            <TableCell component="th">IC50 (apparent)</TableCell>
-                            <TableCell>
-                              <Typography fontFamily="monospace" color="text.secondary">
-                                {typeof series.analysis.results.IC50_apparent === 'number'
-                                  ? series.analysis.results.IC50_apparent.toExponential(3)
-                                  : series.analysis.results.IC50_apparent}{' '}
-                                {series.dilution_series?.unit || 'nM'}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
-                        {series.analysis.results?.Hill !== undefined && (
-                          <TableRow>
-                            <TableCell component="th">Hill Coefficient</TableCell>
-                            <TableCell>
-                              <Typography fontFamily="monospace">
-                                {typeof series.analysis.results.Hill === 'number'
-                                  ? series.analysis.results.Hill.toFixed(2)
-                                  : series.analysis.results.Hill}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
-                        {series.analysis.results?.minVal !== undefined && (
-                          <TableRow>
-                            <TableCell component="th">Min Value</TableCell>
-                            <TableCell>
-                              <Typography fontFamily="monospace">
-                                {typeof series.analysis.results.minVal === 'number'
-                                  ? series.analysis.results.minVal.toFixed(1)
-                                  : series.analysis.results.minVal}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
-                        {series.analysis.results?.maxVal !== undefined && (
-                          <TableRow>
-                            <TableCell component="th">Max Value</TableCell>
-                            <TableCell>
-                              <Typography fontFamily="monospace">
-                                {typeof series.analysis.results.maxVal === 'number'
-                                  ? series.analysis.results.maxVal.toFixed(1)
-                                  : series.analysis.results.maxVal}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
+                        {/* KPI row - highlighted at top */}
                         {series.analysis.kpi_value !== undefined && (
-                          <TableRow>
+                          <TableRow sx={{ bgcolor: 'primary.50' }}>
                             <TableCell component="th">
-                              KPI ({series.analysis.results?.KPI || 'EC50'})
+                              <Typography fontWeight={600}>
+                                KPI ({series.analysis.results?.KPI || 'EC50'})
+                              </Typography>
                             </TableCell>
                             <TableCell>
-                              <Typography fontFamily="monospace" fontWeight={600}>
+                              <Typography fontFamily="monospace" fontWeight={600} color="primary">
                                 {typeof series.analysis.kpi_value === 'number'
-                                  ? series.analysis.kpi_value.toExponential(3)
+                                  ? (series.analysis.kpi_value >= 0.01 && series.analysis.kpi_value < 10000
+                                      ? series.analysis.kpi_value.toFixed(2)
+                                      : series.analysis.kpi_value.toExponential(3))
                                   : series.analysis.kpi_value}
                               </Typography>
                             </TableCell>
                           </TableRow>
                         )}
+                        {/* Dynamically render all other results fields */}
+                        {series.analysis.results && Object.entries(series.analysis.results)
+                          .filter(([key]) => !['error', 'flags', 'KPI', 'source', 'time_course'].includes(key))
+                          .map(([key, value]) => {
+                            // Format the key for display (snake_case to Title Case)
+                            const label = key
+                              .replace(/_/g, ' ')
+                              .replace(/\b\w/g, c => c.toUpperCase())
+                              .replace(/T1 2/i, 't½');
+
+                            // Format the value based on type
+                            let displayValue: React.ReactNode;
+                            if (value === null || value === undefined) {
+                              displayValue = '-';
+                            } else if (typeof value === 'number') {
+                              displayValue = (
+                                <Typography fontFamily="monospace">
+                                  {value >= 0.01 && value < 10000
+                                    ? value.toFixed(2)
+                                    : value.toExponential(3)}
+                                </Typography>
+                              );
+                            } else if (typeof value === 'object') {
+                              // For nested objects, show as formatted JSON
+                              displayValue = (
+                                <Typography
+                                  fontFamily="monospace"
+                                  variant="body2"
+                                  sx={{ whiteSpace: 'pre-wrap', maxWidth: 200 }}
+                                >
+                                  {JSON.stringify(value, null, 2)}
+                                </Typography>
+                              );
+                            } else {
+                              displayValue = String(value);
+                            }
+
+                            return (
+                              <TableRow key={key}>
+                                <TableCell component="th">{label}</TableCell>
+                                <TableCell>{displayValue}</TableCell>
+                              </TableRow>
+                            );
+                          })}
                       </TableBody>
                     </Table>
                   </TableContainer>
@@ -513,6 +487,52 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                             </TableCell>
                           </TableRow>
                         )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                </>
+              );
+            })()}
+
+            {/* Time Course Data (for ADME assays) */}
+            {series.analysis?.results?.time_course && (() => {
+              const timeCourse = series.analysis.results.time_course;
+              const timePoints = timeCourse.time_points_min || [];
+              const remainingPct = timeCourse.remaining_pct || [];
+
+              if (timePoints.length === 0) return null;
+
+              return (
+                <>
+                  <Divider sx={{ my: 3 }} />
+                  <Typography variant="h6" gutterBottom>
+                    Time Course Data
+                  </Typography>
+                  <TableContainer component={Paper} variant="outlined">
+                    <Table size="small">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>Time (min)</TableCell>
+                          <TableCell>Remaining (%)</TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {timePoints.map((time: number, idx: number) => (
+                          <TableRow key={idx}>
+                            <TableCell>
+                              <Typography fontFamily="monospace">{time}</Typography>
+                            </TableCell>
+                            <TableCell>
+                              <Typography fontFamily="monospace">
+                                {remainingPct[idx] !== null && remainingPct[idx] !== undefined
+                                  ? typeof remainingPct[idx] === 'number'
+                                    ? remainingPct[idx].toFixed(1)
+                                    : remainingPct[idx]
+                                  : '-'}
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+                        ))}
                       </TableBody>
                     </Table>
                   </TableContainer>

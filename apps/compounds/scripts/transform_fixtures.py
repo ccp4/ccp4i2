@@ -120,7 +120,7 @@ def transform_field_name(old_name: str, model_type: str = None) -> str:
         'created_at': 'created_at',
         'analysisMethod': 'analysis_method',
         'preferredDilutions': 'preferred_dilutions',
-        'pherastarTableChoice': 'pherastar_table',
+        'pherastarTableChoice': None,  # Field removed
         'dataFile': 'data_file',
         'experiment': 'assay',  # FK renamed
         'compoundName': 'compound_name',

@@ -38,6 +38,7 @@ dependencies = [
     "requests-cache",
     "xmlschema",
     "lxml_html_clean",     # lxml.html.clean moved to separate package
+    "openpyxl",            # Excel file parsing for ADME importers
 ]
 
 # Dependencies in CCP4 site-packages:
