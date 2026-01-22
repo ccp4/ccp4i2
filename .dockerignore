@@ -22,8 +22,6 @@ Docker/data/
 docs/
 tests/
 *.md
-# But include admin docs for frontend rendering
-!Docker/azure-uksouth/docs/*.md
 
 # Exclude IDE and editor files
 .vscode/
@@ -51,6 +49,8 @@ Docker/azure/
 Docker/azure-uksouth/
 !Docker/azure-uksouth/azure_extensions/
 !Docker/azure-uksouth/docs/
+# Re-include admin docs (must come AFTER directory negation)
+!Docker/azure-uksouth/docs/*.md
 
 # Exclude pytest cache
 **/.pytest_cache/

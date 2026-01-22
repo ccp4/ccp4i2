@@ -208,7 +208,16 @@ create_filtered_context() {
         --exclude='Docker/azure-uksouth/.env*' \
         --exclude='client/renderer/public/baby-gru/rota500-arg.data' \
         --exclude='client/renderer/public/baby-gru/rota500-lys.data' \
+        --exclude='.dockerignore' \
         .
+
+    # BSD tar's --exclude='./docs' matches 'docs' at any level, not just root
+    # Explicitly add back the azure-uksouth docs that were incorrectly excluded
+    echo -e "${YELLOW}📋 Adding azure-uksouth docs to tarball...${NC}" >&2
+    gunzip "$tarball_path"
+    local uncompressed="${tarball_path%.gz}"
+    tar -rf "$uncompressed" Docker/azure-uksouth/docs/
+    gzip "$uncompressed"
 
     local size=$(ls -lh "$tarball_path" | awk '{print $5}')
     echo -e "${GREEN}✅ Context tarball created: $size${NC}" >&2
