@@ -298,8 +298,12 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                         )}
                         {/* Dynamically render all other results fields */}
                         {series.analysis.results && Object.entries(series.analysis.results)
-                          .filter(([key]) => !['error', 'flags', 'KPI', 'source', 'time_course'].includes(key))
+                          .filter(([key]) => !['error', 'flags', 'KPI', 'source', 'time_course', 'curve_points'].includes(key.toLowerCase()))
                           .map(([key, value]) => {
+                            // Skip arrays of arrays (e.g., coordinate data better shown in charts)
+                            if (Array.isArray(value) && value.length > 0 && Array.isArray(value[0])) {
+                              return null;
+                            }
                             // Format the key for display (snake_case to Title Case)
                             const label = key
                               .replace(/_/g, ' ')
