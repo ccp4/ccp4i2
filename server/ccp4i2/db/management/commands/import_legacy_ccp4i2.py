@@ -580,9 +580,17 @@ class Command(BaseCommand):
                 if job_id not in self.job_map or keytype_id not in self.keytype_map:
                     continue
 
+                job = self.job_map[job_id]
+                key = self.keytype_map[keytype_id]
+
+                # Skip if already exists (unique constraint on job + key)
+                if JobFloatValue.objects.filter(job=job, key=key).exists():
+                    self.stats["jobfloatvalues_skipped"] += 1
+                    continue
+
                 JobFloatValue.objects.create(
-                    job=self.job_map[job_id],
-                    key=self.keytype_map[keytype_id],
+                    job=job,
+                    key=key,
                     value=float(value) if value is not None else 0.0,
                 )
                 self.stats["jobfloatvalues"] += 1
@@ -593,7 +601,8 @@ class Command(BaseCommand):
                 else:
                     raise
 
-        self.log_count("JobFloatValues", self.stats["jobfloatvalues"])
+        extra = f"{self.stats['jobfloatvalues_skipped']} skipped" if self.stats.get("jobfloatvalues_skipped") else ""
+        self.log_count("JobFloatValues", self.stats["jobfloatvalues"], extra)
 
     def import_jobkeycharvalues(self, records):
         """Import Jobkeycharvalues -> JobCharValue."""
@@ -607,9 +616,17 @@ class Command(BaseCommand):
                 if job_id not in self.job_map or keytype_id not in self.keytype_map:
                     continue
 
+                job = self.job_map[job_id]
+                key = self.keytype_map[keytype_id]
+
+                # Skip if already exists (unique constraint on job + key)
+                if JobCharValue.objects.filter(job=job, key=key).exists():
+                    self.stats["jobcharvalues_skipped"] += 1
+                    continue
+
                 JobCharValue.objects.create(
-                    job=self.job_map[job_id],
-                    key=self.keytype_map[keytype_id],
+                    job=job,
+                    key=key,
                     value=value or "",
                 )
                 self.stats["jobcharvalues"] += 1
@@ -620,7 +637,8 @@ class Command(BaseCommand):
                 else:
                     raise
 
-        self.log_count("JobCharValues", self.stats["jobcharvalues"])
+        extra = f"{self.stats['jobcharvalues_skipped']} skipped" if self.stats.get("jobcharvalues_skipped") else ""
+        self.log_count("JobCharValues", self.stats["jobcharvalues"], extra)
 
     def import_xdata(self, records):
         """Import Xdata -> XData."""
@@ -716,8 +734,15 @@ class Command(BaseCommand):
                 if file_id not in self.file_map:
                     continue
 
+                file_obj = self.file_map[file_id]
+
+                # Skip if already exists (OneToOne on file)
+                if FileImport.objects.filter(file=file_obj).exists():
+                    self.stats["fileimports_skipped"] += 1
+                    continue
+
                 FileImport.objects.create(
-                    file=self.file_map[file_id],
+                    file=file_obj,
                     time=self.convert_timestamp(fields.get("creationtime")) or timezone.now(),
                     name=fields.get("sourcefilename", "") or "",
                     checksum=fields.get("checksum", "") or "",
@@ -731,7 +756,8 @@ class Command(BaseCommand):
                 else:
                     raise
 
-        self.log_count("FileImports", self.stats["fileimports"])
+        extra = f"{self.stats['fileimports_skipped']} skipped" if self.stats.get("fileimports_skipped") else ""
+        self.log_count("FileImports", self.stats["fileimports"], extra)
 
     def import_exportfiles(self, records):
         """Import Exportfiles -> FileExport."""
@@ -770,13 +796,21 @@ class Command(BaseCommand):
                 if file_id not in self.file_map or job_id not in self.job_map:
                     continue
 
+                file_obj = self.file_map[file_id]
+                job = self.job_map[job_id]
                 role = self.filerole_map.get(role_id, FileUse.Role.OUT)
+                job_param_name = fields.get("jobparamname", "") or ""
+
+                # Skip if already exists (unique constraint on file + job + role + job_param_name)
+                if FileUse.objects.filter(file=file_obj, job=job, role=role, job_param_name=job_param_name).exists():
+                    self.stats["fileuses_skipped"] += 1
+                    continue
 
                 FileUse.objects.create(
-                    file=self.file_map[file_id],
-                    job=self.job_map[job_id],
+                    file=file_obj,
+                    job=job,
                     role=role,
-                    job_param_name=fields.get("jobparamname", "") or "",
+                    job_param_name=job_param_name,
                 )
                 self.stats["fileuses"] += 1
 
@@ -786,7 +820,8 @@ class Command(BaseCommand):
                 else:
                     raise
 
-        self.log_count("FileUses", self.stats["fileuses"])
+        extra = f"{self.stats['fileuses_skipped']} skipped" if self.stats.get("fileuses_skipped") else ""
+        self.log_count("FileUses", self.stats["fileuses"], extra)
 
     def import_projectexports(self, records):
         """Import Projectexports -> ProjectExport."""
