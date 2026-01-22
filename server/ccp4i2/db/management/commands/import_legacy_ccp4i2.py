@@ -488,11 +488,19 @@ class Command(BaseCommand):
                     continue
 
                 project = self.project_map[project_id]
+                job_number = fields.get("jobnumber", "1")
+
+                # Check if job already exists (unique constraint on project + number)
+                existing_job = Job.objects.filter(project=project, number=job_number).first()
+                if existing_job:
+                    self.job_map[pk] = existing_job
+                    self.stats["jobs_skipped"] += 1
+                    continue
 
                 job = Job.objects.create(
                     uuid=self.convert_uuid(pk) or None,
                     project=project,
-                    number=fields.get("jobnumber", "1"),
+                    number=job_number,
                     title=fields.get("jobtitle", "") or "",
                     status=fields.get("status", 0) or 0,
                     evaluation=fields.get("evaluation", 0) or 0,
@@ -522,7 +530,8 @@ class Command(BaseCommand):
                 job.parent = self.job_map[legacy_parent_id]
                 job.save()
 
-        self.log_count("Jobs", self.stats["jobs"])
+        extra = f"{self.stats['jobs_skipped']} skipped" if self.stats.get("jobs_skipped") else ""
+        self.log_count("Jobs", self.stats["jobs"], extra)
 
     def import_serverjobs(self, records):
         """Import Serverjobs -> ServerJob."""
@@ -650,6 +659,15 @@ class Command(BaseCommand):
                     self.log(f"Skipping file {pk}: job {job_id} not found")
                     continue
 
+                # Check if file already exists by uuid
+                file_uuid = self.convert_uuid(pk)
+                if file_uuid:
+                    existing_file = File.objects.filter(uuid=file_uuid).first()
+                    if existing_file:
+                        self.file_map[pk] = existing_file
+                        self.stats["files_skipped"] += 1
+                        continue
+
                 if filetype_id not in self.filetype_map:
                     # Create a default filetype
                     filetype, _ = FileType.objects.get_or_create(
@@ -666,7 +684,7 @@ class Command(BaseCommand):
                     directory = File.Directory.JOB_DIR
 
                 file_obj = File.objects.create(
-                    uuid=self.convert_uuid(pk) or None,
+                    uuid=file_uuid,
                     name=fields.get("filename", ""),
                     directory=directory,
                     type=self.filetype_map[filetype_id],
@@ -685,7 +703,8 @@ class Command(BaseCommand):
                 else:
                     raise
 
-        self.log_count("Files", self.stats["files"])
+        extra = f"{self.stats['files_skipped']} skipped" if self.stats.get("files_skipped") else ""
+        self.log_count("Files", self.stats["files"], extra)
 
     def import_importfiles(self, records):
         """Import Importfiles -> FileImport."""
