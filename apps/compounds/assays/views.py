@@ -219,7 +219,10 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
     def data_series(self, request, pk=None):
         """List all data series for this assay."""
         assay = self.get_object()
-        series = assay.data_series.select_related('compound', 'analysis')
+        series = assay.data_series.select_related(
+            'compound', 'analysis', 'dilution_series',
+            'assay__protocol', 'assay__protocol__preferred_dilutions'
+        )
         serializer = DataSeriesListSerializer(series, many=True)
         return Response(serializer.data)
 
@@ -853,7 +856,10 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
 
 class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Data Series."""
-    queryset = DataSeries.objects.select_related('assay', 'compound', 'analysis', 'dilution_series')
+    queryset = DataSeries.objects.select_related(
+        'assay', 'assay__protocol', 'assay__protocol__preferred_dilutions',
+        'compound', 'analysis', 'dilution_series'
+    )
     permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['assay', 'compound']

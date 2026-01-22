@@ -223,7 +223,8 @@ class DataSeriesListSerializer(serializers.ModelSerializer):
     analysis_status = serializers.CharField(source='analysis.status', read_only=True)
     analysis_kpi = serializers.SerializerMethodField()
     # Include dilution_series and analysis for chart rendering in tables
-    dilution_series = DilutionSeriesSerializer(read_only=True)
+    # Use SerializerMethodField to implement fallback to protocol's preferred_dilutions
+    dilution_series = serializers.SerializerMethodField()
     analysis = AnalysisResultSerializer(read_only=True)
 
     class Meta:
@@ -234,6 +235,15 @@ class DataSeriesListSerializer(serializers.ModelSerializer):
             'dilution_series', 'extracted_data',
             'analysis', 'analysis_status', 'analysis_kpi',
         ]
+
+    def get_dilution_series(self, obj):
+        """Return dilution_series, falling back to protocol's preferred_dilutions."""
+        dilution = obj.dilution_series
+        if not dilution and obj.assay and obj.assay.protocol:
+            dilution = obj.assay.protocol.preferred_dilutions
+        if dilution:
+            return DilutionSeriesSerializer(dilution).data
+        return None
 
     def get_analysis_kpi(self, obj):
         if obj.analysis:
@@ -247,7 +257,8 @@ class DataSeriesDetailSerializer(serializers.ModelSerializer):
         source='compound.formatted_id', read_only=True
     )
     analysis = AnalysisResultSerializer(read_only=True)
-    dilution_series = DilutionSeriesSerializer(read_only=True)
+    # Use SerializerMethodField to implement fallback to protocol's preferred_dilutions
+    dilution_series = serializers.SerializerMethodField()
 
     class Meta:
         model = DataSeries
@@ -257,6 +268,15 @@ class DataSeriesDetailSerializer(serializers.ModelSerializer):
             'dilution_series', 'extracted_data', 'skip_points',
             'analysis', 'plot_image',
         ]
+
+    def get_dilution_series(self, obj):
+        """Return dilution_series, falling back to protocol's preferred_dilutions."""
+        dilution = obj.dilution_series
+        if not dilution and obj.assay and obj.assay.protocol:
+            dilution = obj.assay.protocol.preferred_dilutions
+        if dilution:
+            return DilutionSeriesSerializer(dilution).data
+        return None
 
 
 class DataSeriesCreateSerializer(serializers.ModelSerializer):
