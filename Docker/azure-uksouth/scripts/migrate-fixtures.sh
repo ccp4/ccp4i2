@@ -7,10 +7,12 @@
 # Destination: storprv* blob container "fixtures" folder in django-uploads
 #
 # These fixtures are periodic snapshots of the legacy databases:
-#   - *-ccp4i2.json (CCP4i2 Django dumpdata)
+#   - *-CCP4i2.json (CCP4i2 Django dumpdata)
 #   - *-RegisterCompounds.json (Compound registry)
 #   - *-AssayCompounds.json (Assay data)
 #   - *-ConstructDatabase.json (Construct/plasmid data)
+#   - *-auth.json (Django auth users/groups)
+#   - *-reversion.json (Django reversion history)
 #
 # Environment: Docker/azure-uksouth/.env.deployment
 #
@@ -52,7 +54,7 @@ DEST_CONTAINER="django-uploads"
 DEST_PATH="fixtures"
 
 # Fixture types we're looking for (case-sensitive, must match actual filenames)
-FIXTURE_TYPES=("CCP4i2" "RegisterCompounds" "AssayCompounds" "ConstructDatabase")
+FIXTURE_TYPES=("CCP4i2" "RegisterCompounds" "AssayCompounds" "ConstructDatabase" "auth" "reversion")
 
 # Get destination storage account dynamically
 get_dest_storage_account() {
@@ -281,7 +283,8 @@ copy_fixtures() {
 
                     azcopy copy "$SOURCE_URL" "$DEST_URL" \
                         --skip-version-check \
-                        --log-level=ERROR 2>/dev/null
+                        --log-level=ERROR \
+                        --output-level=quiet 2>/dev/null
 
                     ((COUNT++))
                 fi
@@ -313,10 +316,12 @@ show_usage() {
     echo "  latest  - Copy only the LATEST fixture of each type"
     echo ""
     echo "Fixture types managed:"
-    echo "  - ccp4i2.json           (CCP4i2 projects, jobs, files)"
+    echo "  - CCP4i2.json            (CCP4i2 projects, jobs, files)"
     echo "  - RegisterCompounds.json (Compound registry)"
     echo "  - AssayCompounds.json    (Assay data)"
     echo "  - ConstructDatabase.json (Construct/plasmid data)"
+    echo "  - auth.json              (Django auth users/groups)"
+    echo "  - reversion.json         (Django reversion history)"
     echo ""
     echo "Source: ${SOURCE_STORAGE_ACCOUNT}/${SOURCE_SHARE}/${SOURCE_PATH}"
     echo "Destination: storprv*/${DEST_CONTAINER}/${DEST_PATH}/"

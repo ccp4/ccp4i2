@@ -413,6 +413,41 @@ Copy fixture files from the legacy Azure File Share to new blob storage:
 **Source**: `ddudatabasestorageac/ddudatabasefileshare/CompoundDatabaseData`
 **Destination**: `storprv*/django-uploads/fixtures/`
 
+### Restoring Fixtures to File Share
+
+Download fixtures from blob storage to the Azure File Share (accessible by containers):
+
+```bash
+# List available fixtures in blob storage
+./Docker/azure-uksouth/scripts/restore-fixtures.sh list
+
+# Download only the latest fixture of each type
+./Docker/azure-uksouth/scripts/restore-fixtures.sh latest
+
+# Download all fixtures
+./Docker/azure-uksouth/scripts/restore-fixtures.sh copy
+
+# Download a specific file
+./Docker/azure-uksouth/scripts/restore-fixtures.sh download 20260122-02-00-RegisterCompounds.json
+```
+
+**Source**: `storprv*/django-uploads/fixtures/`
+**Destination**: `storprv*/ccp4i2-projects/fixtures/`
+**Container mount**: `/mnt/azure-files/fixtures/`
+
+After downloading, import from within a container:
+
+```bash
+# Connect to container
+az containerapp exec --name ccp4i2-bicep-server --resource-group $RESOURCE_GROUP
+
+# Import compounds (from inside container)
+python manage.py import_legacy_compounds \
+    --auth-fixture /mnt/azure-files/fixtures/20260122-02-00-auth.json \
+    --registry-fixture /mnt/azure-files/fixtures/20260122-02-00-RegisterCompounds.json \
+    --assays-fixture /mnt/azure-files/fixtures/20260122-02-00-AssayCompounds.json
+```
+
 ### Migrating Media Files
 
 Copy media files (attachments, QC documents) from legacy storage:
