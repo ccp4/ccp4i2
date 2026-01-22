@@ -112,7 +112,20 @@ class Command(BaseCommand):
 
         try:
             with open(fixture_file, "r") as f:
-                data = json.load(f)
+                content = f.read()
+
+            # Strip any garbage before the JSON array starts
+            # Legacy dumpdata may have stdout noise at the beginning
+            json_start = content.find("[")
+            if json_start == -1:
+                raise CommandError(f"No JSON array found in fixture file: {fixture_file}")
+            if json_start > 0:
+                self.stdout.write(
+                    self.style.WARNING(f"Skipping {json_start} bytes of non-JSON content at start of file")
+                )
+                content = content[json_start:]
+
+            data = json.loads(content)
         except FileNotFoundError:
             raise CommandError(f"Fixture file not found: {fixture_file}")
         except json.JSONDecodeError as e:

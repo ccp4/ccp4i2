@@ -71,6 +71,60 @@ get_storage_account() {
     echo -e "${GREEN}Storage account: $STORAGE_ACCOUNT${NC}"
 }
 
+# Enable temporary network access to storage
+enable_network_access() {
+    echo -e "${YELLOW}Enabling temporary network access...${NC}"
+
+    CURRENT_IP=$(curl -s https://ipinfo.io/ip 2>/dev/null || curl -s https://api.ipify.org 2>/dev/null)
+    if [ -z "$CURRENT_IP" ]; then
+        echo -e "${RED}Error: Could not determine current IP address${NC}"
+        exit 1
+    fi
+    echo -e "${CYAN}Current IP: $CURRENT_IP${NC}"
+
+    # Save original default action
+    ORIGINAL_DEFAULT_ACTION=$(az storage account show \
+        --name "$STORAGE_ACCOUNT" \
+        --resource-group "$RESOURCE_GROUP" \
+        --query "networkRuleSet.defaultAction" -o tsv 2>/dev/null || echo "Allow")
+
+    # Add current IP to allow list
+    az storage account network-rule add \
+        --account-name "$STORAGE_ACCOUNT" \
+        --resource-group "$RESOURCE_GROUP" \
+        --ip-address "$CURRENT_IP" \
+        --output none 2>/dev/null || true
+
+    # Temporarily allow all traffic (in case IP rule doesn't propagate immediately)
+    az storage account update \
+        --name "$STORAGE_ACCOUNT" \
+        --resource-group "$RESOURCE_GROUP" \
+        --default-action Allow \
+        --output none
+
+    echo -e "${GREEN}Network access enabled${NC}"
+    sleep 3  # Wait for network rules to propagate
+}
+
+# Restore network settings
+restore_network_access() {
+    if [ -n "$STORAGE_ACCOUNT" ] && [ -n "$ORIGINAL_DEFAULT_ACTION" ]; then
+        echo -e "${YELLOW}Restoring network settings...${NC}"
+        az storage account update \
+            --name "$STORAGE_ACCOUNT" \
+            --resource-group "$RESOURCE_GROUP" \
+            --default-action "$ORIGINAL_DEFAULT_ACTION" \
+            --output none 2>/dev/null || true
+        echo -e "${GREEN}Network settings restored${NC}"
+    fi
+}
+
+# Set up trap to restore network access on exit
+cleanup() {
+    restore_network_access
+}
+trap cleanup EXIT
+
 # Check if azcopy is installed
 check_azcopy() {
     if ! command -v azcopy &> /dev/null; then
@@ -132,6 +186,7 @@ list_fixtures() {
     echo ""
 
     get_storage_account
+    enable_network_access
 
     # Get storage key
     STORAGE_KEY=$(get_storage_key)
@@ -185,6 +240,7 @@ download_fixtures() {
 
     check_azcopy
     get_storage_account
+    enable_network_access
 
     # Get storage key
     STORAGE_KEY=$(get_storage_key)
@@ -225,6 +281,14 @@ download_fixtures() {
     DOWNLOADED_ConstructDatabase=""
     DOWNLOADED_auth=""
     DOWNLOADED_reversion=""
+    DOWNLOADED_ccp4i2=""
+    DOWNLOADED_registry=""
+    DOWNLOADED_assays=""
+    DOWNLOADED_constructs=""
+    DOWNLOADED_users=""
+
+    # Track the timestamp prefix from downloaded files
+    FIXTURE_TIMESTAMP=""
 
     if [ "$mode" = "latest" ]; then
         # Download only the latest fixture of each type
@@ -263,7 +327,16 @@ download_fixtures() {
                         ConstructDatabase) DOWNLOADED_ConstructDatabase="$FILENAME" ;;
                         auth) DOWNLOADED_auth="$FILENAME" ;;
                         reversion) DOWNLOADED_reversion="$FILENAME" ;;
+                        ccp4i2) DOWNLOADED_ccp4i2="$FILENAME" ;;
+                        registry) DOWNLOADED_registry="$FILENAME" ;;
+                        assays) DOWNLOADED_assays="$FILENAME" ;;
+                        constructs) DOWNLOADED_constructs="$FILENAME" ;;
+                        users) DOWNLOADED_users="$FILENAME" ;;
                     esac
+                    # Extract timestamp prefix from filename (e.g., "20251105-14-30" from "20251105-14-30-auth.json")
+                    if [ -z "$FIXTURE_TIMESTAMP" ]; then
+                        FIXTURE_TIMESTAMP=$(echo "$FILENAME" | sed -E 's/^([0-9]{8}-[0-9]{2}-[0-9]{2})-.*/\1/')
+                    fi
                 else
                     echo -e "  ${RED}Failed${NC}"
                 fi
@@ -299,12 +372,13 @@ download_fixtures() {
     echo "  Container path: /mnt/projects/${DEST_PATH}/"
     echo ""
 
-    # Use actual filenames if available, otherwise use placeholders
-    AUTH_FILE="${DOWNLOADED_auth:-YYYYMMDD-HH-MM-auth.json}"
-    REGISTRY_FILE="${DOWNLOADED_RegisterCompounds:-YYYYMMDD-HH-MM-RegisterCompounds.json}"
-    ASSAYS_FILE="${DOWNLOADED_AssayCompounds:-YYYYMMDD-HH-MM-AssayCompounds.json}"
-    CONSTRUCTS_FILE="${DOWNLOADED_ConstructDatabase:-YYYYMMDD-HH-MM-ConstructDatabase.json}"
-    CCP4I2_FILE="${DOWNLOADED_CCP4i2:-YYYYMMDD-HH-MM-CCP4i2.json}"
+    # Use actual filenames if available, otherwise use timestamp prefix or placeholders
+    TIMESTAMP_PREFIX="${FIXTURE_TIMESTAMP:-YYYYMMDD-HH-MM}"
+    AUTH_FILE="${DOWNLOADED_auth:-${DOWNLOADED_users:-${TIMESTAMP_PREFIX}-auth.json}}"
+    REGISTRY_FILE="${DOWNLOADED_RegisterCompounds:-${DOWNLOADED_registry:-${TIMESTAMP_PREFIX}-RegisterCompounds.json}}"
+    ASSAYS_FILE="${DOWNLOADED_AssayCompounds:-${DOWNLOADED_assays:-${TIMESTAMP_PREFIX}-AssayCompounds.json}}"
+    CONSTRUCTS_FILE="${DOWNLOADED_ConstructDatabase:-${DOWNLOADED_constructs:-${TIMESTAMP_PREFIX}-ConstructDatabase.json}}"
+    CCP4I2_FILE="${DOWNLOADED_CCP4i2:-${DOWNLOADED_ccp4i2:-${TIMESTAMP_PREFIX}-CCP4i2.json}}"
 
     echo -e "${YELLOW}To import fixtures, connect to container and run:${NC}"
     echo ""
@@ -333,6 +407,7 @@ download_file() {
 
     check_azcopy
     get_storage_account
+    enable_network_access
 
     STORAGE_KEY=$(get_storage_key)
     SOURCE_SAS=$(generate_blob_sas "$STORAGE_KEY" "rl")

@@ -72,6 +72,60 @@ get_dest_storage_account() {
     echo -e "${GREEN}Destination storage: $DEST_STORAGE_ACCOUNT${NC}"
 }
 
+# Enable temporary network access to destination storage
+enable_network_access() {
+    echo -e "${YELLOW}Enabling temporary network access...${NC}"
+
+    CURRENT_IP=$(curl -s https://ipinfo.io/ip 2>/dev/null || curl -s https://api.ipify.org 2>/dev/null)
+    if [ -z "$CURRENT_IP" ]; then
+        echo -e "${RED}Error: Could not determine current IP address${NC}"
+        exit 1
+    fi
+    echo -e "${CYAN}Current IP: $CURRENT_IP${NC}"
+
+    # Save original default action
+    ORIGINAL_DEFAULT_ACTION=$(az storage account show \
+        --name "$DEST_STORAGE_ACCOUNT" \
+        --resource-group "$RESOURCE_GROUP" \
+        --query "networkRuleSet.defaultAction" -o tsv 2>/dev/null || echo "Allow")
+
+    # Add current IP to allow list
+    az storage account network-rule add \
+        --account-name "$DEST_STORAGE_ACCOUNT" \
+        --resource-group "$RESOURCE_GROUP" \
+        --ip-address "$CURRENT_IP" \
+        --output none 2>/dev/null || true
+
+    # Temporarily allow all traffic (in case IP rule doesn't propagate immediately)
+    az storage account update \
+        --name "$DEST_STORAGE_ACCOUNT" \
+        --resource-group "$RESOURCE_GROUP" \
+        --default-action Allow \
+        --output none
+
+    echo -e "${GREEN}Network access enabled${NC}"
+    sleep 3  # Wait for network rules to propagate
+}
+
+# Restore network settings
+restore_network_access() {
+    if [ -n "$DEST_STORAGE_ACCOUNT" ] && [ -n "$ORIGINAL_DEFAULT_ACTION" ]; then
+        echo -e "${YELLOW}Restoring network settings...${NC}"
+        az storage account update \
+            --name "$DEST_STORAGE_ACCOUNT" \
+            --resource-group "$RESOURCE_GROUP" \
+            --default-action "$ORIGINAL_DEFAULT_ACTION" \
+            --output none 2>/dev/null || true
+        echo -e "${GREEN}Network settings restored${NC}"
+    fi
+}
+
+# Set up trap to restore network access on exit
+cleanup() {
+    restore_network_access
+}
+trap cleanup EXIT
+
 # Check if azcopy is installed
 check_azcopy() {
     if ! command -v azcopy &> /dev/null; then
@@ -159,11 +213,13 @@ list_fixtures() {
 
         # List files matching pattern YYYYMMDD-HH-MM-{type}.json
         # Filter: starts with '20' (2020s dates) AND ends with -{type}.json
+        # Use --num-results '*' to get all files
         az storage file list \
             --share-name "$SOURCE_SHARE" \
             --account-name "$SOURCE_STORAGE_ACCOUNT" \
             --account-key "$SOURCE_KEY" \
             --path "$SOURCE_PATH" \
+            --num-results '*' \
             --query "[?starts_with(name, '20') && ends_with(name, '-${fixture_type}.json')].{name:name, size:properties.contentLength}" \
             -o table 2>/dev/null | tail -n +3 | sort -r | head -10
 
@@ -177,6 +233,7 @@ list_fixtures() {
         --account-name "$SOURCE_STORAGE_ACCOUNT" \
         --account-key "$SOURCE_KEY" \
         --path "$SOURCE_PATH" \
+        --num-results '*' \
         --query "length([?ends_with(name, '.json')])" \
         -o tsv 2>/dev/null)
     echo "  Total JSON files in ${SOURCE_PATH}: ${TOTAL}"
@@ -193,6 +250,7 @@ copy_fixtures() {
 
     check_azcopy
     get_dest_storage_account
+    enable_network_access
 
     # Get storage keys
     SOURCE_KEY=$(get_storage_key "$SOURCE_STORAGE_ACCOUNT")
@@ -229,11 +287,13 @@ copy_fixtures() {
             echo -e "${GREEN}Finding latest ${fixture_type} fixture...${NC}"
 
             # Get the latest file for this type (must start with '20' for 2020s dates)
+            # Use --num-results '*' to ensure we get all files before sorting
             LATEST_FILE=$(az storage file list \
                 --share-name "$SOURCE_SHARE" \
                 --account-name "$SOURCE_STORAGE_ACCOUNT" \
                 --account-key "$SOURCE_KEY" \
                 --path "$SOURCE_PATH" \
+                --num-results '*' \
                 --query "[?starts_with(name, '20') && ends_with(name, '-${fixture_type}.json')].name" \
                 -o tsv 2>/dev/null | sort -r | head -1)
 
@@ -266,18 +326,20 @@ copy_fixtures() {
             echo -e "${GREEN}Copying ${fixture_type} fixtures...${NC}"
 
             # Get all files for this type (must start with '20' for 2020s dates)
+            # Use --num-results to ensure we get all files (default may be limited)
             FILES=$(az storage file list \
                 --share-name "$SOURCE_SHARE" \
                 --account-name "$SOURCE_STORAGE_ACCOUNT" \
                 --account-key "$SOURCE_KEY" \
                 --path "$SOURCE_PATH" \
+                --num-results '*' \
                 --query "[?starts_with(name, '20') && ends_with(name, '-${fixture_type}.json')].name" \
-                -o tsv 2>/dev/null)
+                -o tsv 2>/dev/null | sort -r)
 
             COUNT=0
-            while read -r file; do
+            for file in $FILES; do
                 if [ -n "$file" ]; then
-                    echo -e "  ${YELLOW}Copying: ${file}${NC}"
+                    echo -e "  Copying: ${file}"
 
                     SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/${file}?${SOURCE_SAS}"
                     DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${DEST_PATH}/${file}?${DEST_SAS}"
@@ -289,7 +351,7 @@ copy_fixtures() {
 
                     ((COUNT++))
                 fi
-            done <<< "$FILES"
+            done
 
             echo -e "  ${GREEN}Copied ${COUNT} ${fixture_type} fixtures${NC}"
             echo ""
