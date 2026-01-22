@@ -48,7 +48,7 @@ fi
 SOURCE_CONTAINER="django-uploads"
 SOURCE_PATH="fixtures"
 
-# Destination: File share (mounted in containers at /mnt/azure-files)
+# Destination: File share (mounted in containers at /mnt/projects)
 DEST_SHARE="ccp4i2-projects"
 DEST_PATH="fixtures"
 
@@ -296,7 +296,7 @@ download_fixtures() {
     echo ""
     echo -e "${YELLOW}Fixtures are now available at:${NC}"
     echo "  File share: ${DEST_SHARE}/${DEST_PATH}/"
-    echo "  Container path: /mnt/azure-files/${DEST_PATH}/"
+    echo "  Container path: /mnt/projects/${DEST_PATH}/"
     echo ""
 
     # Use actual filenames if available, otherwise use placeholders
@@ -310,18 +310,18 @@ download_fixtures() {
     echo ""
     echo -e "${CYAN}# 1. Import compounds registry AND assays (includes auth users):${NC}"
     echo "python manage.py import_legacy_compounds \\"
-    echo "    --auth-fixture /mnt/azure-files/${DEST_PATH}/${AUTH_FILE} \\"
-    echo "    --registry-fixture /mnt/azure-files/${DEST_PATH}/${REGISTRY_FILE} \\"
-    echo "    --assays-fixture /mnt/azure-files/${DEST_PATH}/${ASSAYS_FILE}"
+    echo "    --auth-fixture /mnt/projects/${DEST_PATH}/${AUTH_FILE} \\"
+    echo "    --registry-fixture /mnt/projects/${DEST_PATH}/${REGISTRY_FILE} \\"
+    echo "    --assays-fixture /mnt/projects/${DEST_PATH}/${ASSAYS_FILE}"
     echo ""
     echo -e "${CYAN}# 2. Import construct/plasmid database:${NC}"
     echo "python manage.py import_legacy_constructs \\"
-    echo "    --auth-fixture /mnt/azure-files/${DEST_PATH}/${AUTH_FILE} \\"
-    echo "    --constructs-fixture /mnt/azure-files/${DEST_PATH}/${CONSTRUCTS_FILE}"
+    echo "    --auth-fixture /mnt/projects/${DEST_PATH}/${AUTH_FILE} \\"
+    echo "    --constructs-fixture /mnt/projects/${DEST_PATH}/${CONSTRUCTS_FILE}"
     echo ""
     echo -e "${CYAN}# 3. Import CCP4i2 projects/jobs (optional):${NC}"
     echo "python manage.py import_legacy_ccp4i2 \\"
-    echo "    /mnt/azure-files/${DEST_PATH}/${CCP4I2_FILE}"
+    echo "    /mnt/projects/${DEST_PATH}/${CCP4I2_FILE}"
 }
 
 # Download a specific file
@@ -355,7 +355,7 @@ download_file() {
 
     if [ $? -eq 0 ]; then
         echo -e "${GREEN}Downloaded to: ${DEST_SHARE}/${DEST_PATH}/${filename}${NC}"
-        echo -e "${GREEN}Container path: /mnt/azure-files/${DEST_PATH}/${filename}${NC}"
+        echo -e "${GREEN}Container path: /mnt/projects/${DEST_PATH}/${filename}${NC}"
     else
         echo -e "${RED}Failed to download ${filename}${NC}"
         exit 1
@@ -374,7 +374,7 @@ show_usage() {
     echo ""
     echo "Source: storprv*/${SOURCE_CONTAINER}/${SOURCE_PATH}/"
     echo "Destination: storprv*/${DEST_SHARE}/${DEST_PATH}/"
-    echo "Container mount: /mnt/azure-files/${DEST_PATH}/"
+    echo "Container mount: /mnt/projects/${DEST_PATH}/"
     echo ""
     echo "Fixture types:"
     echo "  Legacy: CCP4i2, RegisterCompounds, AssayCompounds, ConstructDatabase, auth, reversion"
@@ -394,18 +394,18 @@ show_usage() {
     echo ""
     echo "     # Compounds registry + assays (includes auth users):"
     echo "     python manage.py import_legacy_compounds \\"
-    echo "         --auth-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-auth.json \\"
-    echo "         --registry-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-RegisterCompounds.json \\"
-    echo "         --assays-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-AssayCompounds.json"
+    echo "         --auth-fixture /mnt/projects/fixtures/YYYYMMDD-HH-MM-auth.json \\"
+    echo "         --registry-fixture /mnt/projects/fixtures/YYYYMMDD-HH-MM-RegisterCompounds.json \\"
+    echo "         --assays-fixture /mnt/projects/fixtures/YYYYMMDD-HH-MM-AssayCompounds.json"
     echo ""
     echo "     # Construct/plasmid database:"
     echo "     python manage.py import_legacy_constructs \\"
-    echo "         --auth-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-auth.json \\"
-    echo "         --constructs-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-ConstructDatabase.json"
+    echo "         --auth-fixture /mnt/projects/fixtures/YYYYMMDD-HH-MM-auth.json \\"
+    echo "         --constructs-fixture /mnt/projects/fixtures/YYYYMMDD-HH-MM-ConstructDatabase.json"
     echo ""
     echo "     # CCP4i2 projects/jobs (optional, large file):"
     echo "     python manage.py import_legacy_ccp4i2 \\"
-    echo "         /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-CCP4i2.json"
+    echo "         /mnt/projects/fixtures/YYYYMMDD-HH-MM-CCP4i2.json"
 }
 
 # Main command dispatcher
