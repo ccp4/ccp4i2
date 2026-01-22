@@ -357,33 +357,44 @@ class Command(BaseCommand):
                 fields = record.get("fields", {})
 
                 name = fields.get("projectname", f"project_{pk}")
-                unique_name = self.get_unique_project_name(name)
-
                 directory = fields.get("projectdirectory", "")
                 directory = self.remap_directory(directory)
 
-                project = Project.objects.create(
-                    uuid=self.convert_uuid(pk) or None,
-                    name=unique_name,
-                    description="",  # Legacy doesn't have description
-                    directory=directory or "",
-                    creation_time=self.convert_timestamp(fields.get("projectcreated")) or timezone.now(),
-                    creation_user=fields.get("userid", "legacy_import") or "legacy_import",
-                    creation_host="legacy_import",
-                    last_access=self.convert_timestamp(fields.get("lastaccess")) or timezone.now(),
-                    last_job_number=int(fields.get("lastjobnumber", 0) or 0),
-                    i1_project_name=fields.get("i1projectname", "") or "",
-                    i1_project_directory=fields.get("i1projectdirectory", "") or "",
-                )
-                self.project_map[pk] = project
-                self.stats["projects"] += 1
+                # Check if project already exists by directory (unique constraint)
+                existing_project = None
+                if directory:
+                    existing_project = Project.objects.filter(directory=directory).first()
+
+                if existing_project:
+                    # Project already exists - use it and skip creation
+                    self.project_map[pk] = existing_project
+                    self.stats["projects_skipped"] += 1
+                    self.log(f"Project exists (skipped): {existing_project.name}")
+                else:
+                    # Create new project
+                    unique_name = self.get_unique_project_name(name)
+
+                    project = Project.objects.create(
+                        uuid=self.convert_uuid(pk) or None,
+                        name=unique_name,
+                        description="",  # Legacy doesn't have description
+                        directory=directory or "",
+                        creation_time=self.convert_timestamp(fields.get("projectcreated")) or timezone.now(),
+                        creation_user=fields.get("userid", "legacy_import") or "legacy_import",
+                        creation_host="legacy_import",
+                        last_access=self.convert_timestamp(fields.get("lastaccess")) or timezone.now(),
+                        last_job_number=int(fields.get("lastjobnumber", 0) or 0),
+                        i1_project_name=fields.get("i1projectname", "") or "",
+                        i1_project_directory=fields.get("i1projectdirectory", "") or "",
+                    )
+                    self.project_map[pk] = project
+                    self.stats["projects"] += 1
+                    self.log(f"Project: {unique_name}")
 
                 # Track parent relationship for later
                 parent_id = fields.get("parentprojectid")
                 if parent_id:
                     self.parent_relationships.append((pk, parent_id))
-
-                self.log(f"Project: {unique_name}")
 
             except Exception as e:
                 if self.continue_on_error:
@@ -391,7 +402,12 @@ class Command(BaseCommand):
                 else:
                     raise
 
-        extra = f"{self.stats['projects_renamed']} renamed" if self.stats["projects_renamed"] else ""
+        extra_parts = []
+        if self.stats["projects_renamed"]:
+            extra_parts.append(f"{self.stats['projects_renamed']} renamed")
+        if self.stats["projects_skipped"]:
+            extra_parts.append(f"{self.stats['projects_skipped']} skipped (already exist)")
+        extra = ", ".join(extra_parts)
         self.log_count("Projects", self.stats["projects"], extra)
 
     def import_projecttags(self, records):
