@@ -159,7 +159,7 @@ resource maintenanceJob 'Microsoft.App/jobs@2023-05-01' = {
             }
             {
               name: 'CCP4I2_PROJECTS_DIR'
-              value: '/mnt/ccp4data/ccp4i2-projects'
+              value: '/mnt/projects'
             }
             {
               name: 'SERVICE_BUS_CONNECTION_STRING'
@@ -188,6 +188,10 @@ resource maintenanceJob 'Microsoft.App/jobs@2023-05-01' = {
               mountPath: '/mnt/ccp4data'
             }
             {
+              volumeName: 'projects-volume'
+              mountPath: '/mnt/projects'
+            }
+            {
               volumeName: 'staticfiles-volume'
               mountPath: '/mnt/staticfiles'
             }
@@ -202,6 +206,11 @@ resource maintenanceJob 'Microsoft.App/jobs@2023-05-01' = {
         {
           name: 'ccp4data-volume'
           storageName: 'ccp4data-mount'
+          storageType: 'AzureFile'
+        }
+        {
+          name: 'projects-volume'
+          storageName: 'projects-private'
           storageType: 'AzureFile'
         }
         {

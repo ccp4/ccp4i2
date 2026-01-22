@@ -25,11 +25,13 @@ FROM ${ACR_LOGIN_SERVER}/${BASE_IMAGE_NAME}:${CCP4_VERSION}
 
 # Set environment variables
 # Use azure_extensions.settings to enable Azure-specific features
+# CCP4 env var is inherited from base image (e.g., /mnt/ccp4data/ccp4-20251105)
+# CCP4_PYTHON points to the ccp4-python binary in that installation
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/usr/src/app \
     DJANGO_SETTINGS_MODULE=azure_extensions.settings \
-    CCP4_PYTHON=/opt/ccp4/bin/ccp4-python
+    CCP4_PYTHON=${CCP4}/bin/ccp4-python
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -60,35 +62,31 @@ COPY apps/compounds/media_views.py /usr/src/app/compounds/media_views.py
 COPY apps/compounds/validators.py /usr/src/app/compounds/validators.py
 COPY apps/compounds/utils.py /usr/src/app/compounds/utils.py
 
-# Install Python dependencies
-# Core Django dependencies (quoted to prevent shell interpretation of < >)
-RUN pip install --no-cache-dir \
+# Install ALL Python dependencies to azure_packages for ccp4-python
+# This is the ONLY location for Django packages - ccp4-python uses PYTHONPATH to find them
+# entrypoint.sh sets PYTHONPATH to include azure_packages before CCP4's paths
+RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages \
     "django>=4.2,<5.0" \
     "djangorestframework>=3.14" \
     "django-cors-headers>=4.0" \
     "django-filter>=23.0" \
+    "django-storages[azure]>=1.14" \
+    "django-reversion>=5.0" \
     "uvicorn>=0.20.0" \
     "gunicorn>=21.0" \
     "psycopg2-binary>=2.9" \
     "dj-database-url>=2.0" \
     "python-dotenv>=1.0" \
-    "django-reversion>=5.0" \
+    "openpyxl>=3.1.0" \
     "pytz" \
-    "openpyxl>=3.1.0"
-
-# Install Azure integration dependencies
-# Install to main site-packages for container's Python (uvicorn/gunicorn)
-RUN pip install --no-cache-dir -r requirements-azure.txt
-
-# Also install packages to a dedicated directory for ccp4-python subprocesses.
-# These are packages that ccp4-python needs but aren't in the CCP4 py-packages.
-# Use --no-deps for Django apps to avoid duplicating Django itself (which is in py-packages).
-# The subprocess PYTHONPATH puts azure_packages AFTER py-packages, so Django comes from py-packages.
-RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages \
-    --no-deps "django-storages==1.14.4" \
-    --no-deps "django-reversion>=5.0" && \
-    pip install --no-cache-dir --target=/usr/src/app/azure_packages \
-    "azure-storage-blob>=12.26.0"
+    "azure-storage-blob>=12.26.0" \
+    "azure-identity>=1.25.0" \
+    "azure-servicebus>=7.14" \
+    "azure-keyvault-secrets>=4.10" \
+    "azure-monitor-opentelemetry>=1.8" \
+    "PyJWT[crypto]>=2.10" \
+    "certifi>=2024.0.0" \
+    "Pillow>=10.0.0"
 
 # Install from pyproject.toml if additional deps needed
 RUN pip install --no-cache-dir -e . 2>/dev/null || true
@@ -97,9 +95,13 @@ RUN pip install --no-cache-dir -e . 2>/dev/null || true
 RUN mkdir -p /mnt/projects
 
 # Copy startup scripts
+# entrypoint.sh: Sets up environment for ALL commands (including interactive shells)
+# startup.sh: Runs migrations and starts the Django server
+# startup-worker.sh: Starts the background worker
+COPY Docker/scripts/entrypoint.sh /usr/src/app/entrypoint.sh
 COPY Docker/scripts/startup-server.sh /usr/src/app/startup.sh
 COPY Docker/scripts/startup-worker.sh /usr/src/app/startup-worker.sh
-RUN chmod +x /usr/src/app/startup.sh /usr/src/app/startup-worker.sh
+RUN chmod +x /usr/src/app/entrypoint.sh /usr/src/app/startup.sh /usr/src/app/startup-worker.sh
 
 # Expose port
 EXPOSE 8000
@@ -108,5 +110,7 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
     CMD curl -f http://localhost:8000/api/ccp4i2/health/ || exit 1
 
-# Default command
-ENTRYPOINT ["/usr/src/app/startup.sh"]
+# Entrypoint sets up environment for ALL commands (including interactive shells)
+# This ensures 'az containerapp exec' gets the same environment as the server
+ENTRYPOINT ["/usr/src/app/entrypoint.sh"]
+CMD ["/usr/src/app/startup.sh"]

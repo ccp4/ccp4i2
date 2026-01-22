@@ -222,7 +222,7 @@ docker build -t ccp4i2-server -f Docker/server/Dockerfile .
 # Run with CCP4 mounted
 docker run -p 8000:8000 \
   -v /path/to/ccp4-9:/mnt/ccp4data/ccp4-9:ro \
-  -v $(pwd)/data/projects:/mnt/ccp4data/ccp4i2-projects \
+  -v $(pwd)/data/projects:/mnt/projects \
   -e SECRET_KEY=your-secret-key \
   ccp4i2-server
 ```
@@ -249,7 +249,7 @@ docker run -p 3000:3000 \
 | `DEBUG` | Enable debug mode | `false` |
 | `DATABASE_URL` | Database connection URL | SQLite |
 | `CCP4_DATA_PATH` | Path to CCP4 data mount | `/mnt/ccp4data` |
-| `CCP4I2_PROJECTS_DIR` | Projects storage path | `/mnt/ccp4data/ccp4i2-projects` |
+| `CCP4I2_PROJECTS_DIR` | Projects storage path | `/mnt/projects` |
 | `ALLOWED_HOSTS` | Comma-separated allowed hosts | `localhost` |
 | `CORS_ALLOWED_ORIGINS` | CORS origins | `http://localhost:3000` |
 | `USE_GUNICORN` | Use gunicorn (production) | `true` |
@@ -268,7 +268,7 @@ docker run -p 3000:3000 \
 
 For development and single-user deployments:
 ```bash
-DATABASE_URL=sqlite:////mnt/ccp4data/ccp4i2-projects/ccp4i2.sqlite
+DATABASE_URL=sqlite:////mnt/projects/ccp4i2.sqlite
 ```
 
 ### PostgreSQL

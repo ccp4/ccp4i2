@@ -96,6 +96,7 @@ class Target(models.Model):
     )
     image = models.ImageField(
         upload_to=_target_image_path,
+        max_length=255,
         blank=True,
         null=True,
         help_text="Branding image for the target dashboard"
@@ -227,6 +228,7 @@ class Compound(models.Model):
     # Generated files
     svg_file = models.ImageField(
         upload_to=_compound_svg_path,
+        max_length=255,
         blank=True,
         null=True,
         help_text="SVG structure image"
@@ -443,6 +445,7 @@ class CompoundTemplate(models.Model):
     mol2d = models.TextField(help_text="2D MOL block for the template structure")
     svg_file = models.ImageField(
         upload_to=_template_svg_path,
+        max_length=255,
         blank=True,
         null=True
     )

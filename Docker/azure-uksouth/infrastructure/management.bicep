@@ -112,9 +112,9 @@ resource managementApp 'Microsoft.App/containerApps@2023-05-01' = {
         {
           name: 'server'
           image: '${acrLoginServer}/ccp4i2/server:${imageTagServer}'
-          // Override default command to keep container running for interactive access
-          command: ['/bin/bash']
-          args: ['-c', 'export PYTHONPATH="/mnt/ccp4data/py-packages:$PYTHONPATH" && echo "Management container ready for interactive access" && tail -f /dev/null']
+          // Use Dockerfile's ENTRYPOINT (entrypoint.sh) to set up environment
+          // Then run tail to keep container alive for interactive access
+          args: ['bash', '-c', 'echo "Management container ready for interactive access" && tail -f /dev/null']
           resources: {
             cpu: json('2.0')
             memory: '4.0Gi'
@@ -175,7 +175,7 @@ resource managementApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'CCP4I2_PROJECTS_DIR'
-              value: '/mnt/ccp4data/ccp4i2-projects'
+              value: '/mnt/projects'
             }
             {
               name: 'ALLOWED_HOSTS'
@@ -214,6 +214,10 @@ resource managementApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               volumeName: 'ccp4data-volume'
               mountPath: '/mnt/ccp4data'
+            }
+            {
+              volumeName: 'projects-volume'
+              mountPath: '/mnt/projects'
             }
             {
               volumeName: 'staticfiles-volume'
@@ -264,6 +268,11 @@ resource managementApp 'Microsoft.App/containerApps@2023-05-01' = {
         {
           name: 'ccp4data-volume'
           storageName: 'ccp4data-mount'
+          storageType: 'AzureFile'
+        }
+        {
+          name: 'projects-volume'
+          storageName: 'projects-private'
           storageType: 'AzureFile'
         }
         {

@@ -4,6 +4,11 @@
 **/node_modules/
 **/.next/
 
+# Explicit paths for ACR compatibility (double-star globs may not work reliably)
+client/node_modules/
+client/renderer/.next/
+apps/compounds/frontend/node_modules/
+
 # Exclude demo and test data
 server/ccp4i2/demo_data/
 Docker/data/

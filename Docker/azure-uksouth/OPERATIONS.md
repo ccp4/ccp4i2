@@ -441,11 +441,20 @@ After downloading, import from within a container:
 # Connect to container
 az containerapp exec --name ccp4i2-bicep-server --resource-group $RESOURCE_GROUP
 
-# Import compounds (from inside container)
+# 1. Import compounds registry + assays (includes auth users)
 python manage.py import_legacy_compounds \
-    --auth-fixture /mnt/azure-files/fixtures/20260122-02-00-auth.json \
-    --registry-fixture /mnt/azure-files/fixtures/20260122-02-00-RegisterCompounds.json \
-    --assays-fixture /mnt/azure-files/fixtures/20260122-02-00-AssayCompounds.json
+    --auth-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-auth.json \
+    --registry-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-RegisterCompounds.json \
+    --assays-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-AssayCompounds.json
+
+# 2. Import construct/plasmid database
+python manage.py import_legacy_constructs \
+    --auth-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-auth.json \
+    --constructs-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-ConstructDatabase.json
+
+# 3. Import CCP4i2 projects/jobs (optional - large file ~300MB)
+python manage.py import_legacy_ccp4i2 \
+    /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-CCP4i2.json
 ```
 
 ### Migrating Media Files
@@ -473,9 +482,8 @@ Each app has a management command for importing legacy fixtures:
 
 ```bash
 # Import CCP4i2 data (projects, jobs, files)
-python manage.py import_legacy_ccp4i2 \
-    --fixture path/to/ccp4i2.json \
-    --remap-dirs /old/path:/new/path
+python manage.py import_legacy_ccp4i2 path/to/ccp4i2.json \
+    --remap-dirs /old/path /new/path
 
 # Import compound registry and assays
 python manage.py import_legacy_compounds \

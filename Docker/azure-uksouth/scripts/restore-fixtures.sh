@@ -143,29 +143,29 @@ list_fixtures() {
     echo -e "${YELLOW}Source: ${STORAGE_ACCOUNT}/${SOURCE_CONTAINER}/${SOURCE_PATH}/${NC}"
     echo ""
 
-    # List all fixture files
+    # List all fixture files (filter for dated fixtures starting with '20')
     echo -e "${BLUE}Available fixtures:${NC}"
     echo ""
 
-    # Group by date (most recent first)
+    # Group by date (most recent first) - only show properly dated fixtures
     az storage blob list \
         --container-name "$SOURCE_CONTAINER" \
         --account-name "$STORAGE_ACCOUNT" \
         --account-key "$STORAGE_KEY" \
-        --prefix "${SOURCE_PATH}/" \
+        --prefix "${SOURCE_PATH}/20" \
         --query "[].{name:name, size:properties.contentLength, modified:properties.lastModified}" \
         -o table 2>/dev/null | tail -n +3 | sort -r | head -30
 
     echo ""
 
-    # Show count by type
+    # Show count by type (filter for proper dated fixtures starting with '20')
     echo -e "${YELLOW}Summary by type:${NC}"
     for fixture_type in "${FIXTURE_TYPES[@]}"; do
         COUNT=$(az storage blob list \
             --container-name "$SOURCE_CONTAINER" \
             --account-name "$STORAGE_ACCOUNT" \
             --account-key "$STORAGE_KEY" \
-            --prefix "${SOURCE_PATH}/" \
+            --prefix "${SOURCE_PATH}/20" \
             --query "length([?contains(name, '-${fixture_type}.json')])" \
             -o tsv 2>/dev/null)
         if [ "$COUNT" != "0" ] && [ -n "$COUNT" ]; then
@@ -218,18 +218,26 @@ download_fixtures() {
     echo -e "${YELLOW}Destination: ${STORAGE_ACCOUNT}/${DEST_SHARE}/${DEST_PATH}/${NC}"
     echo ""
 
+    # Track downloaded filenames for each type (using regular variables for portability)
+    DOWNLOADED_CCP4i2=""
+    DOWNLOADED_RegisterCompounds=""
+    DOWNLOADED_AssayCompounds=""
+    DOWNLOADED_ConstructDatabase=""
+    DOWNLOADED_auth=""
+    DOWNLOADED_reversion=""
+
     if [ "$mode" = "latest" ]; then
         # Download only the latest fixture of each type
         echo -e "${CYAN}Downloading latest fixtures only...${NC}"
         echo ""
 
         for fixture_type in "${FIXTURE_TYPES[@]}"; do
-            # Get the latest file for this type
+            # Get the latest file for this type (filter for dated fixtures starting with '20')
             LATEST_FILE=$(az storage blob list \
                 --container-name "$SOURCE_CONTAINER" \
                 --account-name "$STORAGE_ACCOUNT" \
                 --account-key "$STORAGE_KEY" \
-                --prefix "${SOURCE_PATH}/" \
+                --prefix "${SOURCE_PATH}/20" \
                 --query "[?contains(name, '-${fixture_type}.json')].name" \
                 -o tsv 2>/dev/null | sort -r | head -1)
 
@@ -247,6 +255,15 @@ download_fixtures() {
 
                 if [ $? -eq 0 ]; then
                     echo -e "  ${GREEN}Done${NC}"
+                    # Store filename in corresponding variable
+                    case "$fixture_type" in
+                        CCP4i2) DOWNLOADED_CCP4i2="$FILENAME" ;;
+                        RegisterCompounds) DOWNLOADED_RegisterCompounds="$FILENAME" ;;
+                        AssayCompounds) DOWNLOADED_AssayCompounds="$FILENAME" ;;
+                        ConstructDatabase) DOWNLOADED_ConstructDatabase="$FILENAME" ;;
+                        auth) DOWNLOADED_auth="$FILENAME" ;;
+                        reversion) DOWNLOADED_reversion="$FILENAME" ;;
+                    esac
                 else
                     echo -e "  ${RED}Failed${NC}"
                 fi
@@ -281,10 +298,30 @@ download_fixtures() {
     echo "  File share: ${DEST_SHARE}/${DEST_PATH}/"
     echo "  Container path: /mnt/azure-files/${DEST_PATH}/"
     echo ""
-    echo -e "${YELLOW}To import, run from a container:${NC}"
-    echo "  python manage.py import_legacy_compounds \\"
-    echo "      --auth-fixture /mnt/azure-files/${DEST_PATH}/YYYYMMDD-HH-MM-auth.json \\"
-    echo "      --registry-fixture /mnt/azure-files/${DEST_PATH}/YYYYMMDD-HH-MM-RegisterCompounds.json"
+
+    # Use actual filenames if available, otherwise use placeholders
+    AUTH_FILE="${DOWNLOADED_auth:-YYYYMMDD-HH-MM-auth.json}"
+    REGISTRY_FILE="${DOWNLOADED_RegisterCompounds:-YYYYMMDD-HH-MM-RegisterCompounds.json}"
+    ASSAYS_FILE="${DOWNLOADED_AssayCompounds:-YYYYMMDD-HH-MM-AssayCompounds.json}"
+    CONSTRUCTS_FILE="${DOWNLOADED_ConstructDatabase:-YYYYMMDD-HH-MM-ConstructDatabase.json}"
+    CCP4I2_FILE="${DOWNLOADED_CCP4i2:-YYYYMMDD-HH-MM-CCP4i2.json}"
+
+    echo -e "${YELLOW}To import fixtures, connect to container and run:${NC}"
+    echo ""
+    echo -e "${CYAN}# 1. Import compounds registry AND assays (includes auth users):${NC}"
+    echo "python manage.py import_legacy_compounds \\"
+    echo "    --auth-fixture /mnt/azure-files/${DEST_PATH}/${AUTH_FILE} \\"
+    echo "    --registry-fixture /mnt/azure-files/${DEST_PATH}/${REGISTRY_FILE} \\"
+    echo "    --assays-fixture /mnt/azure-files/${DEST_PATH}/${ASSAYS_FILE}"
+    echo ""
+    echo -e "${CYAN}# 2. Import construct/plasmid database:${NC}"
+    echo "python manage.py import_legacy_constructs \\"
+    echo "    --auth-fixture /mnt/azure-files/${DEST_PATH}/${AUTH_FILE} \\"
+    echo "    --constructs-fixture /mnt/azure-files/${DEST_PATH}/${CONSTRUCTS_FILE}"
+    echo ""
+    echo -e "${CYAN}# 3. Import CCP4i2 projects/jobs (optional):${NC}"
+    echo "python manage.py import_legacy_ccp4i2 \\"
+    echo "    /mnt/azure-files/${DEST_PATH}/${CCP4I2_FILE}"
 }
 
 # Download a specific file
@@ -350,11 +387,25 @@ show_usage() {
     echo "  2. Download latest fixtures:"
     echo "     ./restore-fixtures.sh latest"
     echo ""
-    echo "  3. Import from container:"
+    echo "  3. Connect to container:"
     echo "     az containerapp exec --name ccp4i2-bicep-server --resource-group \$RESOURCE_GROUP"
+    echo ""
+    echo "  4. Import fixtures (run these in order):"
+    echo ""
+    echo "     # Compounds registry + assays (includes auth users):"
     echo "     python manage.py import_legacy_compounds \\"
     echo "         --auth-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-auth.json \\"
-    echo "         --registry-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-RegisterCompounds.json"
+    echo "         --registry-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-RegisterCompounds.json \\"
+    echo "         --assays-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-AssayCompounds.json"
+    echo ""
+    echo "     # Construct/plasmid database:"
+    echo "     python manage.py import_legacy_constructs \\"
+    echo "         --auth-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-auth.json \\"
+    echo "         --constructs-fixture /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-ConstructDatabase.json"
+    echo ""
+    echo "     # CCP4i2 projects/jobs (optional, large file):"
+    echo "     python manage.py import_legacy_ccp4i2 \\"
+    echo "         /mnt/azure-files/fixtures/YYYYMMDD-HH-MM-CCP4i2.json"
 }
 
 # Main command dispatcher

@@ -158,6 +158,144 @@ if [ "$BUILD_SERVER" = true ]; then
     IMAGE_TAG_SERVER=$TIMESTAMP
 fi
 
+# Helper function to create filtered context tarball
+# az acr build ignores .dockerignore when creating its upload archive,
+# so we create a pre-filtered tarball and upload it to blob storage
+#
+# Note: tar doesn't support Docker's ! negation syntax, so we use explicit
+# --exclude patterns instead of --exclude-from=.dockerignore
+create_filtered_context() {
+    local tarball_path="$1"
+    echo -e "${YELLOW}📦 Creating filtered build context (respecting .dockerignore)...${NC}" >&2
+
+    # Create tarball with explicit exclude patterns
+    # This mirrors .dockerignore but uses tar-compatible syntax
+    # Key difference: Instead of "Docker/azure-uksouth/" with !exceptions,
+    # we explicitly exclude subdirectories we DON'T want (scripts/, bicep/, etc.)
+    tar -czf "$tarball_path" \
+        --exclude='node_modules' \
+        --exclude='.next' \
+        --exclude='.git' \
+        --exclude='.gitignore' \
+        --exclude='.vscode' \
+        --exclude='.idea' \
+        --exclude='__pycache__' \
+        --exclude='*.pyc' \
+        --exclude='*.pyo' \
+        --exclude='*.egg-info' \
+        --exclude='.eggs' \
+        --exclude='dist' \
+        --exclude='build' \
+        --exclude='.pytest_cache' \
+        --exclude='.DS_Store' \
+        --exclude='*.swp' \
+        --exclude='*.swo' \
+        --exclude='*~' \
+        --exclude='*.tsbuildinfo' \
+        --exclude='.env' \
+        --exclude='.env.*' \
+        --exclude='*.local' \
+        --exclude='server/ccp4i2/demo_data' \
+        --exclude='Docker/data' \
+        --exclude='./docs' \
+        --exclude='./tests' \
+        --exclude='**/test_data' \
+        --exclude='Docker/azure/scripts' \
+        --exclude='Docker/azure/bicep' \
+        --exclude='Docker/azure/.env*' \
+        --exclude='Docker/azure-uksouth/scripts' \
+        --exclude='Docker/azure-uksouth/bicep' \
+        --exclude='Docker/azure-uksouth/.env*' \
+        --exclude='client/renderer/public/baby-gru/rota500-arg.data' \
+        --exclude='client/renderer/public/baby-gru/rota500-lys.data' \
+        .
+
+    local size=$(ls -lh "$tarball_path" | awk '{print $5}')
+    echo -e "${GREEN}✅ Context tarball created: $size${NC}" >&2
+}
+
+# Helper function to upload tarball to blob storage and get SAS URL
+upload_context_to_blob() {
+    local tarball_path="$1"
+    local blob_name="build-context-$(date +%s).tar.gz"
+    local container_name="build-contexts"
+
+    # Get storage account from environment or auto-discover from resource group
+    # Prefer non-private storage accounts (those without 'prv' in the name)
+    # Private storage accounts can't be accessed by ACR build agents
+    local storage_account="${AZURE_STORAGE_ACCOUNT:-}"
+    if [ -z "$storage_account" ]; then
+        echo -e "${YELLOW}🔍 Auto-discovering storage account in $RESOURCE_GROUP...${NC}" >&2
+        # First try to find a non-private storage account (without 'prv' in name)
+        storage_account=$(az storage account list \
+            --resource-group "$RESOURCE_GROUP" \
+            --query "[?contains(name, 'prv')==\`false\`].name | [0]" \
+            --output tsv 2>/dev/null)
+
+        # Fall back to any storage account
+        if [ -z "$storage_account" ]; then
+            storage_account=$(az storage account list \
+                --resource-group "$RESOURCE_GROUP" \
+                --query "[0].name" \
+                --output tsv 2>/dev/null)
+        fi
+
+        if [ -z "$storage_account" ]; then
+            echo -e "${RED}❌ No storage account found in $RESOURCE_GROUP${NC}" >&2
+            return 1
+        fi
+        echo -e "${GREEN}✅ Using storage account: $storage_account${NC}" >&2
+    fi
+
+    # Get storage account key for authentication
+    local storage_key=$(az storage account keys list \
+        --account-name "$storage_account" \
+        --query "[0].value" \
+        --output tsv 2>/dev/null)
+
+    if [ -z "$storage_key" ]; then
+        echo -e "${RED}❌ Failed to get storage account key${NC}" >&2
+        return 1
+    fi
+
+    # Create container if it doesn't exist (ignore errors if it exists)
+    az storage container create \
+        --name "$container_name" \
+        --account-name "$storage_account" \
+        --account-key "$storage_key" \
+        >/dev/null 2>&1 || true
+
+    # Upload the tarball
+    echo -e "${YELLOW}📤 Uploading context to blob storage...${NC}" >&2
+    az storage blob upload \
+        --account-name "$storage_account" \
+        --container-name "$container_name" \
+        --name "$blob_name" \
+        --file "$tarball_path" \
+        --account-key "$storage_key" \
+        --overwrite \
+        --only-show-errors >&2
+
+    if [ $? -ne 0 ]; then
+        echo -e "${RED}❌ Failed to upload context to blob storage${NC}" >&2
+        return 1
+    fi
+
+    # Generate SAS URL valid for 1 hour
+    local expiry=$(date -u -v+1H +%Y-%m-%dT%H:%MZ 2>/dev/null || date -u -d '+1 hour' +%Y-%m-%dT%H:%MZ)
+    local sas_url=$(az storage blob generate-sas \
+        --account-name "$storage_account" \
+        --container-name "$container_name" \
+        --name "$blob_name" \
+        --permissions r \
+        --expiry "$expiry" \
+        --account-key "$storage_key" \
+        --full-uri \
+        --output tsv)
+
+    echo "$sas_url"
+}
+
 # Build and push images
 if [ "$BUILD_SERVER" = true ]; then
     echo -e "${YELLOW}🔨 Building server image (with bundled CCP4)...${NC}"
@@ -174,6 +312,18 @@ if [ "$BUILD_SERVER" = true ]; then
 
     echo -e "${YELLOW}📦 Using base image from: ${BASE_IMAGE_ACR}/${BASE_IMAGE_NAME}:${CCP4_VERSION}${NC}"
 
+    # Create filtered context tarball and upload to blob storage
+    CONTEXT_TARBALL="/tmp/build-context-$$.tar.gz"
+    create_filtered_context "$CONTEXT_TARBALL"
+
+    CONTEXT_URL=$(upload_context_to_blob "$CONTEXT_TARBALL")
+    if [ -z "$CONTEXT_URL" ]; then
+        echo -e "${RED}❌ Failed to get context URL${NC}"
+        rm -f "$CONTEXT_TARBALL"
+        exit 1
+    fi
+
+    echo -e "${YELLOW}🔨 Starting ACR build with filtered context...${NC}"
     az acr build \
       --registry $ACR_NAME \
       --image ccp4i2/server:$IMAGE_TAG_SERVER \
@@ -183,9 +333,12 @@ if [ "$BUILD_SERVER" = true ]; then
       --build-arg ACR_LOGIN_SERVER=$BASE_IMAGE_ACR \
       --build-arg CCP4_VERSION=$CCP4_VERSION \
       --build-arg BASE_IMAGE_NAME=$BASE_IMAGE_NAME \
-      .
+      "$CONTEXT_URL"
 
-    if [ $? -ne 0 ]; then
+    BUILD_RESULT=$?
+    rm -f "$CONTEXT_TARBALL"
+
+    if [ $BUILD_RESULT -ne 0 ]; then
         echo -e "${RED}❌ Failed to build server image${NC}"
         exit 1
     fi
@@ -195,6 +348,18 @@ if [ "$BUILD_WEB" = true ]; then
     echo -e "${YELLOW}🔨 Building web image...${NC}"
     # Build from repo root to include icons from server/ccp4i2/{qticons,svgicons}
     if [ -f "Docker/client/Dockerfile" ]; then
+        # Create filtered context tarball and upload to blob storage
+        CONTEXT_TARBALL="/tmp/build-context-$$.tar.gz"
+        create_filtered_context "$CONTEXT_TARBALL"
+
+        CONTEXT_URL=$(upload_context_to_blob "$CONTEXT_TARBALL")
+        if [ -z "$CONTEXT_URL" ]; then
+            echo -e "${RED}❌ Failed to get context URL${NC}"
+            rm -f "$CONTEXT_TARBALL"
+            exit 1
+        fi
+
+        echo -e "${YELLOW}🔨 Starting ACR build with filtered context...${NC}"
         az acr build \
           --registry $ACR_NAME \
           --image ccp4i2/web:$IMAGE_TAG_WEB \
@@ -204,15 +369,18 @@ if [ "$BUILD_WEB" = true ]; then
           --build-arg NEXT_PUBLIC_AAD_CLIENT_ID=${NEXT_PUBLIC_AAD_CLIENT_ID:-""} \
           --build-arg NEXT_PUBLIC_AAD_TENANT_ID=${NEXT_PUBLIC_AAD_TENANT_ID:-""} \
           --build-arg NEXT_PUBLIC_REQUIRE_AUTH=${NEXT_PUBLIC_REQUIRE_AUTH:-"false"} \
-          .
+          "$CONTEXT_URL"
+
+        BUILD_RESULT=$?
+        rm -f "$CONTEXT_TARBALL"
+
+        if [ $BUILD_RESULT -ne 0 ]; then
+            echo -e "${RED}❌ Failed to build web image${NC}"
+            exit 1
+        fi
     else
         echo -e "${YELLOW}⚠️  Docker/client/Dockerfile not found, skipping web build${NC}"
         BUILD_WEB=false
-    fi
-
-    if [ $? -ne 0 ]; then
-        echo -e "${RED}❌ Failed to build web image${NC}"
-        exit 1
     fi
 fi
 

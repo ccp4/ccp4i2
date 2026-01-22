@@ -322,7 +322,7 @@ class ProtocolDocument(models.Model):
         on_delete=models.CASCADE,
         related_name='documents'
     )
-    file = models.FileField(upload_to=_protocol_doc_path)
+    file = models.FileField(upload_to=_protocol_doc_path, max_length=255)
     created_by = models.ForeignKey(
         User,
         on_delete=models.SET_NULL,
@@ -383,6 +383,7 @@ class Assay(models.Model):
 
     data_file = models.FileField(
         upload_to=_assay_data_path,
+        max_length=255,
         help_text="Raw data file (Excel, CSV, etc.)"
     )
     labbook_number = models.IntegerField(null=True, blank=True)
@@ -493,6 +494,7 @@ class DataSeries(models.Model):
     )
     plot_image = models.ImageField(
         upload_to=_series_plot_path,
+        max_length=255,
         blank=True,
         null=True,
         help_text="Fitted curve plot image"
@@ -630,6 +632,7 @@ class Hypothesis(models.Model):
 
     svg_file = models.ImageField(
         upload_to=_hypothesis_svg_path,
+        max_length=255,
         blank=True,
         null=True
     )

@@ -158,12 +158,13 @@ list_fixtures() {
         echo -e "${GREEN}=== ${fixture_type} ===${NC}"
 
         # List files matching pattern YYYYMMDD-HH-MM-{type}.json
+        # Filter: starts with '20' (2020s dates) AND ends with -{type}.json
         az storage file list \
             --share-name "$SOURCE_SHARE" \
             --account-name "$SOURCE_STORAGE_ACCOUNT" \
             --account-key "$SOURCE_KEY" \
             --path "$SOURCE_PATH" \
-            --query "[?ends_with(name, '-${fixture_type}.json')].{name:name, size:properties.contentLength}" \
+            --query "[?starts_with(name, '20') && ends_with(name, '-${fixture_type}.json')].{name:name, size:properties.contentLength}" \
             -o table 2>/dev/null | tail -n +3 | sort -r | head -10
 
         echo ""
@@ -227,13 +228,13 @@ copy_fixtures() {
         for fixture_type in "${FIXTURE_TYPES[@]}"; do
             echo -e "${GREEN}Finding latest ${fixture_type} fixture...${NC}"
 
-            # Get the latest file for this type
+            # Get the latest file for this type (must start with '20' for 2020s dates)
             LATEST_FILE=$(az storage file list \
                 --share-name "$SOURCE_SHARE" \
                 --account-name "$SOURCE_STORAGE_ACCOUNT" \
                 --account-key "$SOURCE_KEY" \
                 --path "$SOURCE_PATH" \
-                --query "[?ends_with(name, '-${fixture_type}.json')].name" \
+                --query "[?starts_with(name, '20') && ends_with(name, '-${fixture_type}.json')].name" \
                 -o tsv 2>/dev/null | sort -r | head -1)
 
             if [ -n "$LATEST_FILE" ]; then
@@ -264,13 +265,13 @@ copy_fixtures() {
         for fixture_type in "${FIXTURE_TYPES[@]}"; do
             echo -e "${GREEN}Copying ${fixture_type} fixtures...${NC}"
 
-            # Get all files for this type
+            # Get all files for this type (must start with '20' for 2020s dates)
             FILES=$(az storage file list \
                 --share-name "$SOURCE_SHARE" \
                 --account-name "$SOURCE_STORAGE_ACCOUNT" \
                 --account-key "$SOURCE_KEY" \
                 --path "$SOURCE_PATH" \
-                --query "[?ends_with(name, '-${fixture_type}.json')].name" \
+                --query "[?starts_with(name, '20') && ends_with(name, '-${fixture_type}.json')].name" \
                 -o tsv 2>/dev/null)
 
             COUNT=0
