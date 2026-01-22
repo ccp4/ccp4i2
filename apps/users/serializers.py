@@ -53,14 +53,15 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class UserListSerializer(serializers.ModelSerializer):
-    """Lightweight serializer for user lists."""
+    """Serializer for user lists with profile role information."""
 
     is_admin = serializers.SerializerMethodField()
     display_name = serializers.SerializerMethodField()
+    profile = UserProfileSerializer(read_only=True)
 
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'display_name', 'is_admin', 'is_active']
+        fields = ['id', 'username', 'email', 'display_name', 'is_admin', 'is_active', 'profile']
 
     def get_is_admin(self, obj):
         return is_platform_admin(obj)
