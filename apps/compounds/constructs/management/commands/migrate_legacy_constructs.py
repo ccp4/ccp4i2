@@ -17,11 +17,13 @@ Usage:
 
 import os
 import shutil
+from datetime import datetime
 from pathlib import Path
 
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.db import connections, transaction
+from django.utils import timezone
 
 
 class Command(BaseCommand):
@@ -100,6 +102,23 @@ class Command(BaseCommand):
         """Get cursor for legacy database."""
         return connections['legacy'].cursor()
 
+    def _parse_datetime(self, value):
+        """Parse datetime string from legacy database, making it timezone-aware."""
+        if not value:
+            return None
+        if isinstance(value, datetime):
+            if value.tzinfo is None:
+                return timezone.make_aware(value, timezone.utc)
+            return value
+        # Parse string datetime
+        try:
+            dt = datetime.fromisoformat(value.replace('Z', '+00:00'))
+            if dt.tzinfo is None:
+                dt = timezone.make_aware(dt, timezone.utc)
+            return dt
+        except (ValueError, AttributeError):
+            return None
+
     def _migrate_reference_data(self, dry_run: bool):
         """Migrate reference data (already seeded, just verify)."""
         self.stdout.write('Checking reference data...')
@@ -134,13 +153,20 @@ class Command(BaseCommand):
         for row in cursor.fetchall():
             id_, name, parent_id, created_at, created_by_id = row
             if not dry_run:
-                ConstructProject.objects.update_or_create(
+                project, created = ConstructProject.objects.update_or_create(
                     id=id_,
                     defaults={
                         'name': name,
                         'parent_id': parent_id,
+                        'created_by_id': created_by_id,
                     }
                 )
+                # Preserve original created_at timestamp
+                legacy_created_at = self._parse_datetime(created_at)
+                if legacy_created_at:
+                    ConstructProject.objects.filter(id=id_).update(
+                        created_at=legacy_created_at
+                    )
             count += 1
 
         self.stdout.write(f'  Migrated {count} ConstructProjects')
@@ -166,8 +192,15 @@ class Command(BaseCommand):
                     id=id_,
                     defaults={
                         'uniprot_id': uniprot_id,
+                        'created_by_id': created_by_id,
                     }
                 )
+                # Preserve original created_at timestamp
+                legacy_created_at = self._parse_datetime(created_at)
+                if legacy_created_at:
+                    Protein.objects.filter(id=id_).update(
+                        created_at=legacy_created_at
+                    )
             count += 1
 
         self.stdout.write(f'  Migrated {count} Proteins')
@@ -187,8 +220,15 @@ class Command(BaseCommand):
                     defaults={
                         'name': name,
                         'protein_id': protein_id,
+                        'created_by_id': created_by_id,
                     }
                 )
+                # Preserve original created_at timestamp
+                legacy_created_at = self._parse_datetime(created_at)
+                if legacy_created_at:
+                    ProteinSynonym.objects.filter(id=id_).update(
+                        created_at=legacy_created_at
+                    )
             count += 1
 
         self.stdout.write(f'  Migrated {count} ProteinSynonyms')
@@ -217,8 +257,16 @@ class Command(BaseCommand):
                         'ncn_id': ncn_id,
                         'name': name,
                         'parent_id': parent_id,
+                        'created_by_id': created_by_id,
                     }
                 )
+
+                # Preserve original created_at timestamp
+                legacy_created_at = self._parse_datetime(created_at)
+                if legacy_created_at:
+                    Plasmid.objects.filter(id=id_).update(
+                        created_at=legacy_created_at
+                    )
 
                 # Migrate file if exists
                 if snapgene_file and legacy_media and not skip_files:
@@ -265,8 +313,15 @@ class Command(BaseCommand):
                         'protein_id': protein_id,
                         'start': start,
                         'end': end,
+                        'created_by_id': created_by_id,
                     }
                 )
+                # Preserve original created_at timestamp
+                legacy_created_at = self._parse_datetime(created_at)
+                if legacy_created_at:
+                    Cassette.objects.filter(id=id_).update(
+                        created_at=legacy_created_at
+                    )
             count += 1
 
         self.stdout.write(f'  Migrated {count} Cassettes')
@@ -292,9 +347,16 @@ class Command(BaseCommand):
                     defaults={
                         'cassette_id': cassette_id,
                         'plasmid_id': plasmid_id,
+                        'created_by_id': created_by_id,
                         # alignment_file migration would need file copy
                     }
                 )
+                # Preserve original created_at timestamp
+                legacy_created_at = self._parse_datetime(created_at)
+                if legacy_created_at:
+                    CassetteUse.objects.filter(id=id_).update(
+                        created_at=legacy_created_at
+                    )
             count += 1
 
         self.stdout.write(f'  Migrated {count} CassetteUses')
@@ -320,9 +382,16 @@ class Command(BaseCommand):
                     defaults={
                         'cassette_use_id': cassette_use_id,
                         'plasmid_id': plasmid_id,
+                        'created_by_id': created_by_id,
                         # file migration would need file copy
                     }
                 )
+                # Preserve original created_at timestamp
+                legacy_created_at = self._parse_datetime(created_at)
+                if legacy_created_at:
+                    SequencingResult.objects.filter(id=id_).update(
+                        created_at=legacy_created_at
+                    )
             count += 1
 
         self.stdout.write(f'  Migrated {count} SequencingResults')
@@ -362,9 +431,16 @@ class Command(BaseCommand):
                             defaults={
                                 'expression_tag_type': tag_type,
                                 'protease': protease,
+                                'created_by_id': created_by_id,
                                 # cassette_use_id needs mapping - legacy had FK bug
                             }
                         )
+                        # Preserve original created_at timestamp
+                        legacy_created_at = self._parse_datetime(created_at)
+                        if legacy_created_at:
+                            ExpressionTag.objects.filter(id=id_).update(
+                                created_at=legacy_created_at
+                            )
                         count += 1
                     else:
                         skipped += 1

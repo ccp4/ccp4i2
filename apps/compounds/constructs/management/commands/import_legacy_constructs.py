@@ -17,12 +17,11 @@ Usage:
 
 import json
 import re
-import tempfile
-from pathlib import Path
+from datetime import datetime
 
-from django.core.management import call_command
 from django.core.management.base import BaseCommand, CommandError
 from django.db import transaction
+from django.utils import timezone
 
 
 # Datetime fields that need timezone info
@@ -75,18 +74,12 @@ class Command(BaseCommand):
             action='store_true',
             help='Show detailed progress',
         )
-        parser.add_argument(
-            '--output-dir',
-            type=str,
-            help='Directory to save transformed fixtures (for inspection)',
-        )
 
     def handle(self, *args, **options):
         auth_fixture = options.get('auth_fixture')
         constructs_fixture = options['constructs_fixture']
         dry_run = options['dry_run']
         verbose = options['verbose']
-        output_dir = options.get('output_dir')
 
         self.verbose = verbose
         self.stdout.write("\nImporting legacy constructs fixtures")
@@ -103,82 +96,45 @@ class Command(BaseCommand):
             user_lookup = self._build_user_lookup(auth_data)
             self.stdout.write(f"  Built user lookup with {len(user_lookup)} users")
 
-        # Use temp dir or specified output dir
-        if output_dir:
-            temp_dir = Path(output_dir)
-            temp_dir.mkdir(parents=True, exist_ok=True)
-        else:
-            temp_dir = Path(tempfile.mkdtemp(prefix='constructs_import_'))
+        # Load and group fixture data by model
+        self.stdout.write(f"\nProcessing constructs fixture: {constructs_fixture}")
+        constructs_data = self._load_fixture(constructs_fixture)
 
-        self.stdout.write(f"  Working directory: {temp_dir}")
+        # Group records by model type
+        records_by_model = {}
+        for record in constructs_data:
+            old_model = record['model']
+            if old_model in MODEL_MAPPINGS:
+                new_model = MODEL_MAPPINGS[old_model]
+                if new_model not in records_by_model:
+                    records_by_model[new_model] = []
+                records_by_model[new_model].append(record)
 
+        # Show counts
+        for model, records in sorted(records_by_model.items()):
+            self.stdout.write(f"    {model}: {len(records)}")
+
+        if dry_run:
+            self.stdout.write(self.style.WARNING("\n[DRY RUN] No changes made"))
+            return
+
+        # Import in dependency order, preserving dates
         try:
-            transformed_files = []
-
-            # Transform constructs fixture
-            self.stdout.write(f"\nProcessing constructs fixture: {constructs_fixture}")
-            constructs_data = self._load_fixture(constructs_fixture)
-            constructs_records = self._transform_records(constructs_data, user_lookup)
-
-            # Sort by model for FK dependencies
-            # Order matters for foreign key relationships:
-            # 1. Reference data (expression tag types, proteases, locations)
-            # 2. Projects
-            # 3. Proteins and synonyms
-            # 4. Plasmids
-            # 5. Cassettes
-            # 6. CassetteUses and ProteinUses
-            # 7. SequencingResults and ExpressionTags
-            model_order = [
-                'constructs.expressiontagtype',
-                'constructs.protease',
-                'constructs.expressiontaglocation',
-                'constructs.constructproject',
-                'constructs.protein',
-                'constructs.proteinsynonym',
-                'constructs.plasmid',
-                'constructs.cassette',
-                'constructs.cassetteuse',
-                'constructs.proteinuse',
-                'constructs.sequencingresult',
-                'constructs.expressiontag',
-            ]
-            constructs_records.sort(
-                key=lambda r: model_order.index(r['model']) if r['model'] in model_order else 999
-            )
-
-            constructs_file = temp_dir / 'compounds_constructs.json'
-            with open(constructs_file, 'w') as f:
-                json.dump(constructs_records, f, indent=2)
-            transformed_files.append(constructs_file)
-            self.stdout.write(f"  Transformed {len(constructs_records)} constructs records")
-
-            # Show counts by model
-            model_counts = {}
-            for record in constructs_records:
-                model = record['model']
-                model_counts[model] = model_counts.get(model, 0) + 1
-            for model, count in sorted(model_counts.items()):
-                self.stdout.write(f"    {model}: {count}")
-
-            # Load fixtures
-            if not dry_run:
-                self.stdout.write("\nLoading fixtures into database...")
-                for fixture_file in transformed_files:
-                    self.stdout.write(f"  Loading: {fixture_file.name}")
-                    call_command('loaddata', str(fixture_file), verbosity=1 if verbose else 0)
+            with transaction.atomic():
+                self._import_reference_data(records_by_model)
+                self._import_construct_projects(records_by_model)
+                self._import_proteins(records_by_model)
+                self._import_plasmids(records_by_model)
+                self._import_cassettes(records_by_model)
+                self._import_cassette_uses(records_by_model)
+                self._import_protein_uses(records_by_model)
+                self._import_sequencing_results(records_by_model)
+                self._import_expression_tags(records_by_model)
 
                 self.stdout.write(self.style.SUCCESS("\nImport completed successfully!"))
-            else:
-                self.stdout.write(self.style.WARNING(
-                    f"\n[DRY RUN] Transformed fixtures saved to: {temp_dir}"
-                ))
-
-        finally:
-            # Clean up temp files if not using output_dir
-            if not output_dir and not dry_run:
-                import shutil
-                shutil.rmtree(temp_dir, ignore_errors=True)
+        except Exception as e:
+            self.stdout.write(self.style.ERROR(f"\nImport failed: {e}"))
+            raise
 
     def log(self, message):
         """Log message if verbose mode is enabled."""
@@ -214,133 +170,6 @@ class Command(BaseCommand):
                 }
         return lookup
 
-    def _transform_records(self, data, user_lookup):
-        """Transform records to new schema."""
-        records = []
-        for record in data:
-            transformed = self._transform_record(record, user_lookup)
-            if transformed:
-                records.append(transformed)
-        return records
-
-    def _transform_record(self, record, user_lookup):
-        """Transform a single fixture record."""
-        old_model = record['model']
-
-        if old_model not in MODEL_MAPPINGS:
-            return None
-
-        new_model = MODEL_MAPPINGS[old_model]
-        pk = record['pk']
-        old_fields = record['fields']
-        new_fields = {}
-
-        for old_key, value in old_fields.items():
-            new_key = self._transform_field_name(old_key, new_model)
-
-            if new_key is None:
-                continue
-
-            # Transform file paths
-            if 'file' in old_key.lower() or old_key in ('snapgeneFile', 'alignmentFile'):
-                value = self._transform_file_path(value, new_model)
-
-            # Handle created_by natural key references
-            if old_key == 'createdBy' and isinstance(value, list):
-                # Natural key format - skip as we don't have the user
-                value = None
-                new_key = 'created_by'
-            elif old_key == 'createdBy_id':
-                # Direct FK - skip as legacy user IDs don't match
-                value = None
-                new_key = 'created_by'
-
-            # Normalize field names from camelCase
-            if new_key == 'cassette_use' and old_key == 'cassetteUse_id':
-                new_key = 'cassette_use'
-            if new_key == 'expression_tag_type' and old_key == 'expressionTagType_id':
-                new_key = 'expression_tag_type'
-
-            # Make datetime fields timezone-aware
-            if new_key in DATETIME_FIELDS or old_key in DATETIME_FIELDS:
-                value = self._make_timezone_aware(value)
-
-            if new_key and value is not None:
-                new_fields[new_key] = value
-
-        return {
-            'model': new_model,
-            'pk': pk,
-            'fields': new_fields
-        }
-
-    def _transform_field_name(self, old_name, model_type=None):
-        """Transform field names to new schema.
-
-        Args:
-            old_name: The legacy field name
-            model_type: The target model type (e.g., 'constructs.plasmid')
-        """
-        mappings = {
-            # Common fields (camelCase -> snake_case)
-            'createdAt': 'created_at',
-            'updatedAt': 'updated_at',
-            'createdBy': 'created_by',
-            'createdBy_id': 'created_by',
-
-            # Project fields
-            'parent_id': 'parent',
-
-            # Plasmid fields
-            'ncnId': 'ncn_id',
-            'snapgeneFile': 'genbank_file',
-            'project_id': 'project',
-
-            # Protein fields
-            'uniprotId': 'uniprot_id',
-            'protein_id': 'protein',
-
-            # Cassette fields
-            'start': 'start',
-            'end': 'end',
-
-            # CassetteUse fields
-            'cassette_id': 'cassette',
-            'plasmid_id': 'plasmid',
-            'alignmentFile': 'alignment_file',
-
-            # SequencingResult fields
-            'cassetteUse_id': 'cassette_use',
-            'file': 'file',
-
-            # ExpressionTag fields
-            'expressionTagType_id': 'expression_tag_type',
-            'protease_id': 'protease',
-            'location_id': 'location',
-
-            # Drop these fields
-            'original_id': None,
-        }
-
-        return mappings.get(old_name, old_name)
-
-    def _transform_file_path(self, old_path, model_type):
-        """Transform file paths to new structure.
-
-        Legacy pattern: ConstructDatabase/{filename} or ConstructDatabase/snapgene/{filename}
-        New pattern: ConstructDatabase/NCLCON-XXXXXXXX/{filename}
-
-        Note: The actual file relocation should be handled by migrate-media.sh
-        This only transforms the path references in the fixture.
-        """
-        if not old_path:
-            return old_path
-
-        # Most paths should already be in ConstructDatabase/
-        # No transformation needed as the new upload paths use the same structure
-
-        return old_path
-
     def _make_timezone_aware(self, value):
         """Add UTC timezone to naive datetime strings."""
         if not value or not isinstance(value, str):
@@ -350,3 +179,301 @@ class Command(BaseCommand):
         if re.match(r'^\d{4}-\d{2}-\d{2}', value):
             return value + 'Z'
         return value
+
+    def _parse_datetime(self, value):
+        """Parse datetime string from fixture, making it timezone-aware."""
+        if not value:
+            return None
+        if isinstance(value, datetime):
+            if value.tzinfo is None:
+                return timezone.make_aware(value, timezone.utc)
+            return value
+        # Parse string datetime
+        try:
+            # Handle Z suffix
+            value_str = value.replace('Z', '+00:00')
+            dt = datetime.fromisoformat(value_str)
+            if dt.tzinfo is None:
+                dt = timezone.make_aware(dt, timezone.utc)
+            return dt
+        except (ValueError, AttributeError):
+            return None
+
+    def _get_field(self, fields, *keys):
+        """Get field value trying multiple key names."""
+        for key in keys:
+            if key in fields:
+                return fields[key]
+        return None
+
+    def _import_reference_data(self, records_by_model):
+        """Import reference data (expression tag types, proteases, locations)."""
+        from compounds.constructs.models import (
+            ExpressionTagType, Protease, ExpressionTagLocation
+        )
+
+        # ExpressionTagType
+        records = records_by_model.get('constructs.expressiontagtype', [])
+        for record in records:
+            fields = record['fields']
+            ExpressionTagType.objects.update_or_create(
+                id=record['pk'],
+                defaults={'name': fields.get('name', '')}
+            )
+        self.stdout.write(f"  Imported {len(records)} ExpressionTagTypes")
+
+        # Protease
+        records = records_by_model.get('constructs.protease', [])
+        for record in records:
+            fields = record['fields']
+            Protease.objects.update_or_create(
+                id=record['pk'],
+                defaults={'name': fields.get('name', '')}
+            )
+        self.stdout.write(f"  Imported {len(records)} Proteases")
+
+        # ExpressionTagLocation
+        records = records_by_model.get('constructs.expressiontaglocation', [])
+        for record in records:
+            fields = record['fields']
+            ExpressionTagLocation.objects.update_or_create(
+                id=record['pk'],
+                defaults={'name': fields.get('name', '')}
+            )
+        self.stdout.write(f"  Imported {len(records)} ExpressionTagLocations")
+
+    def _import_construct_projects(self, records_by_model):
+        """Import ConstructProject records preserving dates."""
+        from compounds.constructs.models import ConstructProject
+
+        records = records_by_model.get('constructs.constructproject', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            ConstructProject.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'name': fields.get('name', ''),
+                    'parent_id': self._get_field(fields, 'parent_id', 'parent'),
+                }
+            )
+            # Preserve original created_at
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                ConstructProject.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} ConstructProjects")
+
+    def _import_proteins(self, records_by_model):
+        """Import Protein and ProteinSynonym records preserving dates."""
+        from compounds.constructs.models import Protein, ProteinSynonym
+
+        # Proteins
+        records = records_by_model.get('constructs.protein', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            Protein.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'uniprot_id': self._get_field(fields, 'uniprotId', 'uniprot_id', 'name') or '',
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                Protein.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} Proteins")
+
+        # ProteinSynonyms
+        records = records_by_model.get('constructs.proteinsynonym', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            ProteinSynonym.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'name': fields.get('name', ''),
+                    'protein_id': self._get_field(fields, 'protein_id', 'protein'),
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                ProteinSynonym.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} ProteinSynonyms")
+
+    def _import_plasmids(self, records_by_model):
+        """Import Plasmid records preserving dates."""
+        from compounds.constructs.models import Plasmid
+
+        records = records_by_model.get('constructs.plasmid', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            Plasmid.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'ncn_id': self._get_field(fields, 'ncnId', 'ncn_id'),
+                    'name': fields.get('name', ''),
+                    'parent_id': self._get_field(fields, 'parent_id', 'parent'),
+                    'project_id': self._get_field(fields, 'project_id', 'project'),
+                    'genbank_file': self._get_field(fields, 'snapgeneFile', 'genbank_file') or '',
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                Plasmid.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} Plasmids")
+
+    def _import_cassettes(self, records_by_model):
+        """Import Cassette records preserving dates."""
+        from compounds.constructs.models import Cassette
+
+        records = records_by_model.get('constructs.cassette', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            Cassette.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'protein_id': self._get_field(fields, 'protein_id', 'protein'),
+                    'start': fields.get('start', 0),
+                    'end': fields.get('end', 0),
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                Cassette.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} Cassettes")
+
+    def _import_cassette_uses(self, records_by_model):
+        """Import CassetteUse records preserving dates."""
+        from compounds.constructs.models import CassetteUse
+
+        records = records_by_model.get('constructs.cassetteuse', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            CassetteUse.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'cassette_id': self._get_field(fields, 'cassette_id', 'cassette'),
+                    'plasmid_id': self._get_field(fields, 'plasmid_id', 'plasmid'),
+                    'alignment_file': self._get_field(fields, 'alignmentFile', 'alignment_file') or '',
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                CassetteUse.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} CassetteUses")
+
+    def _import_protein_uses(self, records_by_model):
+        """Import ProteinUse records preserving dates."""
+        from compounds.constructs.models import ProteinUse
+
+        records = records_by_model.get('constructs.proteinuse', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            ProteinUse.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'protein_id': self._get_field(fields, 'protein_id', 'protein'),
+                    'project_id': self._get_field(fields, 'project_id', 'project'),
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                ProteinUse.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} ProteinUses")
+
+    def _import_sequencing_results(self, records_by_model):
+        """Import SequencingResult records preserving dates."""
+        from compounds.constructs.models import SequencingResult
+
+        records = records_by_model.get('constructs.sequencingresult', [])
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            SequencingResult.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'cassette_use_id': self._get_field(fields, 'cassetteUse_id', 'cassette_use'),
+                    'plasmid_id': self._get_field(fields, 'plasmid_id', 'plasmid'),
+                    'file': fields.get('file', ''),
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                SequencingResult.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+        self.stdout.write(f"  Imported {len(records)} SequencingResults")
+
+    def _import_expression_tags(self, records_by_model):
+        """Import ExpressionTag records preserving dates."""
+        from compounds.constructs.models import (
+            ExpressionTag, ExpressionTagType, Protease, ExpressionTagLocation, CassetteUse
+        )
+
+        records = records_by_model.get('constructs.expressiontag', [])
+        count = 0
+        skipped = 0
+
+        for record in records:
+            fields = record['fields']
+            created_at = self._get_field(fields, 'createdAt', 'created_at')
+
+            tag_type_id = self._get_field(fields, 'expressionTagType_id', 'expression_tag_type')
+            protease_id = self._get_field(fields, 'protease_id', 'protease')
+            location_id = self._get_field(fields, 'location_id', 'location')
+            cassette_use_id = self._get_field(fields, 'cassetteUse_id', 'cassette_use')
+
+            # Validate references exist
+            tag_type = ExpressionTagType.objects.filter(id=tag_type_id).first() if tag_type_id else None
+            location = ExpressionTagLocation.objects.filter(id=location_id).first() if location_id else None
+            cassette_use = CassetteUse.objects.filter(id=cassette_use_id).first() if cassette_use_id else None
+
+            if not tag_type or not location or not cassette_use:
+                skipped += 1
+                continue
+
+            protease = Protease.objects.filter(id=protease_id).first() if protease_id else None
+
+            ExpressionTag.objects.update_or_create(
+                id=record['pk'],
+                defaults={
+                    'expression_tag_type': tag_type,
+                    'protease': protease,
+                    'location': location,
+                    'cassette_use': cassette_use,
+                }
+            )
+            legacy_created_at = self._parse_datetime(created_at)
+            if legacy_created_at:
+                ExpressionTag.objects.filter(id=record['pk']).update(
+                    created_at=legacy_created_at
+                )
+            count += 1
+
+        self.stdout.write(f"  Imported {count} ExpressionTags, skipped {skipped}")
