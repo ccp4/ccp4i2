@@ -156,19 +156,20 @@ export async function GET(
       });
     }
 
-    // For JSON responses, parse and return
-    const text = await response.text();
-    try {
-      const data = JSON.parse(text);
-      return NextResponse.json(data, { status: response.status });
-    } catch (jsonError) {
-      // Response wasn't valid JSON - return the raw text
-      console.error('[Compounds Proxy] Failed to parse JSON:', text);
-      return new NextResponse(text, {
-        status: response.status,
-        headers: { 'Content-Type': 'text/plain' },
-      });
+    // For JSON responses, stream directly to avoid memory issues with large payloads
+    // Previous approach of parsing and re-serializing caused issues with ~12MB compound lists
+    const headers = new Headers();
+    headers.set('Content-Type', 'application/json');
+    // Forward content-length if available
+    const contentLength = response.headers.get('Content-Length');
+    if (contentLength) {
+      headers.set('Content-Length', contentLength);
     }
+
+    return new NextResponse(response.body, {
+      status: response.status,
+      headers,
+    });
   } catch (error) {
     console.error('[Compounds Proxy] Error:', error);
     return NextResponse.json(

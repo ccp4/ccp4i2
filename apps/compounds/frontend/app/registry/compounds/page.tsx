@@ -21,6 +21,7 @@ import {
   Add,
   FilterList,
   Apps,
+  Error as ErrorIcon,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -54,8 +55,13 @@ function CompoundsPageContent() {
   }, [targetFilter]);
 
   // Fetch compounds with optional target filter
-  const { data: compoundsResponse, isLoading } = api.get<PaginatedResponse<Compound>>(compoundsUrl);
+  const { data: compoundsResponse, isLoading, error } = api.get<PaginatedResponse<Compound>>(compoundsUrl);
   const compounds = compoundsResponse?.results || [];
+
+  // Log error for debugging - this helps identify if the large response is failing
+  if (error) {
+    console.error('[Compounds Page] API error:', error);
+  }
 
   const handleTargetChange = (event: SelectChangeEvent) => {
     const newTarget = event.target.value;
@@ -210,6 +216,15 @@ function CompoundsPageContent() {
           )}
         </Box>
       </Box>
+
+      {error && (
+        <Box sx={{ mb: 2, p: 2, bgcolor: 'error.light', borderRadius: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+          <ErrorIcon color="error" />
+          <Typography color="error.dark">
+            Failed to load compounds: {error.message || 'Unknown error'}
+          </Typography>
+        </Box>
+      )}
 
       <DataTable
         data={compounds}
