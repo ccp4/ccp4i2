@@ -28,12 +28,12 @@ import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { PlatePreview } from '@/components/compounds/PlatePreview';
-import { PlateLayoutEditor } from '@/components/compounds/PlateLayoutEditor';
+import { PlateLayoutCreateDialog } from '@/components/compounds/PlateLayoutCreateDialog';
 import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';
 import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
-import { Protocol, Assay, PlateLayout, ProtocolDocument } from '@/types/compounds/models';
+import { Protocol, Assay, ProtocolDocument, PlateLayoutRecord } from '@/types/compounds/models';
 
 interface UploadingFile {
   name: string;
@@ -81,8 +81,8 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const router = useRouter();
   const api = useCompoundsApi();
 
-  const [layoutEditorOpen, setLayoutEditorOpen] = useState(false);
-  const [editedLayout, setEditedLayout] = useState<PlateLayout | null>(null);
+  const [layoutSelectOpen, setLayoutSelectOpen] = useState(false);
+  const [createLayoutOpen, setCreateLayoutOpen] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [uploadDrawerOpen, setUploadDrawerOpen] = useState(false);
@@ -111,27 +111,28 @@ export default function ProtocolDetailPage({ params }: PageProps) {
     `protocol-documents/?protocol=${id}`
   );
 
-  const handleOpenLayoutEditor = () => {
-    setEditedLayout(protocol?.plate_layout as PlateLayout || null);
-    setLayoutEditorOpen(true);
-    setSaveError(null);
-  };
+  // Fetch available plate layouts for selection
+  const { data: plateLayouts } = api.get<PlateLayoutRecord[]>('plate-layouts/');
 
-  const handleSaveLayout = async () => {
-    if (!editedLayout) return;
-
+  const handleLayoutChange = async (layoutId: string | null) => {
     setSaving(true);
     setSaveError(null);
 
     try {
-      await api.patch(`protocols/${id}/`, { plate_layout: editedLayout });
+      await api.patch(`protocols/${id}/`, { plate_layout: layoutId });
       await mutate();
-      setLayoutEditorOpen(false);
+      setLayoutSelectOpen(false);
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : 'Failed to save');
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleLayoutCreated = async (newLayout: PlateLayoutRecord) => {
+    // Set the newly created layout on this protocol
+    await handleLayoutChange(newLayout.id);
+    setCreateLayoutOpen(false);
   };
 
   const handleDeleteClick = (assay: Assay, e: React.MouseEvent) => {
@@ -619,19 +620,42 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   <Typography variant="h6">
                     Plate Layout
                   </Typography>
-                  <Button
-                    size="small"
-                    startIcon={protocol.plate_layout ? <Edit /> : <GridOn />}
-                    onClick={handleOpenLayoutEditor}
-                  >
-                    {protocol.plate_layout ? 'Edit Layout' : 'Configure Layout'}
-                  </Button>
+                  <Box sx={{ display: 'flex', gap: 1 }}>
+                    <Button
+                      size="small"
+                      startIcon={<Edit />}
+                      onClick={() => setLayoutSelectOpen(true)}
+                    >
+                      {protocol.plate_layout ? 'Change Layout' : 'Select Layout'}
+                    </Button>
+                    {protocol.plate_layout && (
+                      <Button
+                        size="small"
+                        component={Link}
+                        href={routes.assays.plateLayout(protocol.plate_layout)}
+                        startIcon={<OpenInNew />}
+                      >
+                        View Details
+                      </Button>
+                    )}
+                  </Box>
                 </Box>
 
-                {protocol.plate_layout && Object.keys(protocol.plate_layout).length > 0 ? (
+                {protocol.plate_layout_name && (
+                  <Box sx={{ mb: 2 }}>
+                    <Chip
+                      icon={<GridOn />}
+                      label={protocol.plate_layout_name}
+                      color="primary"
+                      variant="outlined"
+                    />
+                  </Box>
+                )}
+
+                {protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0 ? (
                   <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                     <PlatePreview
-                      layout={protocol.plate_layout}
+                      layout={protocol.plate_layout_config}
                       width={450}
                       height={300}
                     />
@@ -643,7 +667,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                       No plate layout configured
                     </Typography>
                     <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                      Configure a plate layout to define control positions, sample regions, and dilution patterns
+                      Select a plate layout to define control positions, sample regions, and dilution patterns
                     </Typography>
                   </Paper>
                 )}
@@ -655,19 +679,19 @@ export default function ProtocolDetailPage({ params }: PageProps) {
         )}
       </Paper>
 
-      {/* Plate Layout Editor Dialog */}
+      {/* Plate Layout Selection Dialog */}
       <Dialog
-        open={layoutEditorOpen}
-        onClose={() => setLayoutEditorOpen(false)}
-        maxWidth="lg"
+        open={layoutSelectOpen}
+        onClose={() => setLayoutSelectOpen(false)}
+        maxWidth="sm"
         fullWidth
       >
         <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <GridOn color="primary" />
-            Configure Plate Layout
+            Select Plate Layout
           </Box>
-          <IconButton onClick={() => setLayoutEditorOpen(false)} size="small">
+          <IconButton onClick={() => setLayoutSelectOpen(false)} size="small">
             <Close />
           </IconButton>
         </DialogTitle>
@@ -677,24 +701,84 @@ export default function ProtocolDetailPage({ params }: PageProps) {
               {saveError}
             </Alert>
           )}
-          <PlateLayoutEditor
-            value={editedLayout || {}}
-            onChange={(layout) => setEditedLayout(layout)}
-          />
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            Select a plate layout for this protocol, or create a new one.
+          </Typography>
+          {plateLayouts && plateLayouts.length > 0 ? (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              {plateLayouts.map((layout) => (
+                <Paper
+                  key={layout.id}
+                  variant="outlined"
+                  sx={{
+                    p: 2,
+                    cursor: 'pointer',
+                    bgcolor: protocol?.plate_layout === layout.id ? 'primary.50' : 'background.paper',
+                    borderColor: protocol?.plate_layout === layout.id ? 'primary.main' : 'divider',
+                    '&:hover': { bgcolor: 'action.hover' },
+                  }}
+                  onClick={() => handleLayoutChange(layout.id)}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Box>
+                      <Typography fontWeight="medium">{layout.name}</Typography>
+                      {layout.description && (
+                        <Typography variant="body2" color="text.secondary">
+                          {layout.description}
+                        </Typography>
+                      )}
+                    </Box>
+                    <Box sx={{ display: 'flex', gap: 1 }}>
+                      {layout.plate_format && (
+                        <Chip label={`${layout.plate_format}-well`} size="small" variant="outlined" />
+                      )}
+                      {protocol?.plate_layout === layout.id && (
+                        <Chip label="Current" size="small" color="primary" />
+                      )}
+                    </Box>
+                  </Box>
+                </Paper>
+              ))}
+            </Box>
+          ) : (
+            <Typography color="text.secondary">
+              No plate layouts available. Create one to get started.
+            </Typography>
+          )}
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setLayoutEditorOpen(false)}>
+          {protocol?.plate_layout && (
+            <Button
+              onClick={() => handleLayoutChange(null)}
+              color="error"
+              disabled={saving}
+            >
+              Remove Layout
+            </Button>
+          )}
+          <Box sx={{ flex: 1 }} />
+          <Button onClick={() => setLayoutSelectOpen(false)}>
             Cancel
           </Button>
           <Button
             variant="contained"
-            onClick={handleSaveLayout}
-            disabled={saving || !editedLayout}
+            startIcon={<Add />}
+            onClick={() => {
+              setLayoutSelectOpen(false);
+              setCreateLayoutOpen(true);
+            }}
           >
-            {saving ? 'Saving...' : 'Save Layout'}
+            Create New Layout
           </Button>
         </DialogActions>
       </Dialog>
+
+      {/* Create Layout Dialog */}
+      <PlateLayoutCreateDialog
+        open={createLayoutOpen}
+        onClose={() => setCreateLayoutOpen(false)}
+        onCreated={handleLayoutCreated}
+      />
 
       {/* Documents section */}
       <Typography variant="h6" sx={{ mb: 2 }}>

@@ -20,11 +20,12 @@ import {
   ListItemIcon,
   ListItemText,
 } from '@mui/material';
-import { Close, Description, Add } from '@mui/icons-material';
+import { Close, Description, Add, GridOn } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
+import { PlateLayoutCreateDialog } from './PlateLayoutCreateDialog';
 import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
-import type { Protocol, DilutionSeries, AnalysisMethod } from '@/types/compounds/models';
+import type { Protocol, DilutionSeries, AnalysisMethod, PlateLayoutRecord } from '@/types/compounds/models';
 
 interface ProtocolCreateDialogProps {
   open: boolean;
@@ -52,11 +53,13 @@ export function ProtocolCreateDialog({
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [createDilutionsDialogOpen, setCreateDilutionsDialogOpen] = useState(false);
+  const [createLayoutDialogOpen, setCreateLayoutDialogOpen] = useState(false);
 
   // Form state
   const [name, setName] = useState('');
   const [analysisMethod, setAnalysisMethod] = useState<AnalysisMethod>('hill_langmuir');
   const [preferredDilutionsId, setPreferredDilutionsId] = useState<string | null>(null);
+  const [plateLayoutId, setPlateLayoutId] = useState<string | null>(null);
   const [comments, setComments] = useState('');
 
   // Fetch available dilution series
@@ -64,9 +67,19 @@ export function ProtocolCreateDialog({
     'dilution-series/'
   );
 
+  // Fetch available plate layouts
+  const { data: plateLayouts, isLoading: layoutsLoading } = api.get<PlateLayoutRecord[]>(
+    'plate-layouts/'
+  );
+
   const handleDilutionSeriesCreated = (newSeries: DilutionSeries) => {
     mutate('/api/proxy/compounds/dilution-series/');
     setPreferredDilutionsId(newSeries.id);
+  };
+
+  const handlePlateLayoutCreated = (newLayout: PlateLayoutRecord) => {
+    mutate('/api/proxy/compounds/plate-layouts/');
+    setPlateLayoutId(newLayout.id);
   };
 
   // Reset form when dialog opens
@@ -75,6 +88,7 @@ export function ProtocolCreateDialog({
       setName('');
       setAnalysisMethod('hill_langmuir');
       setPreferredDilutionsId(null);
+      setPlateLayoutId(null);
       setComments('');
       setError(null);
     }
@@ -94,6 +108,7 @@ export function ProtocolCreateDialog({
         name: name.trim(),
         analysis_method: analysisMethod,
         preferred_dilutions: preferredDilutionsId || null,
+        plate_layout: plateLayoutId || null,
         comments: comments.trim() || null,
       });
 
@@ -191,6 +206,48 @@ export function ProtocolCreateDialog({
             </FormControl>
           )}
 
+          <FormControl fullWidth size="small">
+            <InputLabel>Plate Layout</InputLabel>
+            <Select
+              value={plateLayoutId || ''}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (value === '__create_new__') {
+                  setCreateLayoutDialogOpen(true);
+                } else {
+                  setPlateLayoutId(value || null);
+                }
+              }}
+              label="Plate Layout"
+            >
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
+              {layoutsLoading ? (
+                <MenuItem disabled>Loading...</MenuItem>
+              ) : (
+                plateLayouts?.map((layout) => (
+                  <MenuItem key={layout.id} value={layout.id}>
+                    <ListItemIcon>
+                      <GridOn fontSize="small" />
+                    </ListItemIcon>
+                    <ListItemText>
+                      {layout.name}
+                      {layout.plate_format && ` (${layout.plate_format}-well)`}
+                    </ListItemText>
+                  </MenuItem>
+                ))
+              )}
+              <Divider />
+              <MenuItem value="__create_new__">
+                <ListItemIcon>
+                  <Add fontSize="small" />
+                </ListItemIcon>
+                <ListItemText>Create New...</ListItemText>
+              </MenuItem>
+            </Select>
+          </FormControl>
+
           <TextField
             label="Comments"
             value={comments}
@@ -222,6 +279,12 @@ export function ProtocolCreateDialog({
         open={createDilutionsDialogOpen}
         onClose={() => setCreateDilutionsDialogOpen(false)}
         onCreated={handleDilutionSeriesCreated}
+      />
+
+      <PlateLayoutCreateDialog
+        open={createLayoutDialogOpen}
+        onClose={() => setCreateLayoutDialogOpen(false)}
+        onCreated={handlePlateLayoutCreated}
       />
     </Dialog>
   );

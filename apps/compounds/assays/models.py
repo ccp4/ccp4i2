@@ -163,6 +163,100 @@ class DilutionSeries(models.Model):
         return f"{concs} {self.unit}"
 
 
+class PlateLayout(models.Model):
+    """
+    Reusable plate layout configuration.
+
+    Defines the physical arrangement of assay plates including
+    plate format, control positions, sample regions, dilution patterns,
+    and compound source rules. Can be shared across multiple protocols.
+
+    The config field stores a JSON structure defining:
+    - Plate format (24, 96, 384, 1536)
+    - Control well positions (max/min)
+    - Sample region boundaries
+    - Dilution direction and orientation
+    - Replicate pattern
+    - Compound source/mapping rules
+    - Strip layout for embedded controls
+
+    Example config:
+    {
+        "plate_format": 384,
+        "controls": {
+            "placement": "edge_columns",
+            "max": {"columns": [1, 2], "rows": ["A", "B", ...]},
+            "min": {"columns": [23, 24], "rows": ["A", "B", ...]}
+        },
+        "sample_region": {
+            "start_column": 3,
+            "end_column": 22,
+            "start_row": "A",
+            "end_row": "P"
+        },
+        "dilution": {
+            "direction": "horizontal",
+            "num_concentrations": 10
+        },
+        "replicate": {
+            "count": 2,
+            "pattern": "adjacent_rows"
+        },
+        "compound_source": {
+            "type": "row_order"
+        }
+    }
+    """
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(
+        max_length=128,
+        unique=True,
+        help_text="Display name for the plate layout"
+    )
+    description = models.TextField(
+        blank=True,
+        null=True,
+        help_text="Description of when to use this layout"
+    )
+
+    # The layout configuration
+    config = models.JSONField(
+        default=dict,
+        help_text="Plate layout configuration: control positions, sample region, replicate pattern"
+    )
+
+    # Control flags
+    is_builtin = models.BooleanField(
+        default=False,
+        help_text="Built-in layouts shipped with the system"
+    )
+
+    # Audit fields
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='created_plate_layouts'
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['name']
+        verbose_name = 'Plate Layout'
+        verbose_name_plural = 'Plate Layouts'
+
+    def __str__(self):
+        return self.name
+
+    @property
+    def plate_format(self):
+        """Return the plate format from config, if set."""
+        return self.config.get('plate_format') if self.config else None
+
+
 class Protocol(models.Model):
     """
     Assay protocol definition.
@@ -252,10 +346,13 @@ class Protocol(models.Model):
         help_text="Default dilution series for experiments using this protocol"
     )
 
-    # New: Plate layout configuration
-    plate_layout = models.JSONField(
-        default=dict,
+    # Plate layout configuration (FK to reusable PlateLayout)
+    plate_layout = models.ForeignKey(
+        PlateLayout,
+        on_delete=models.SET_NULL,
+        null=True,
         blank=True,
+        related_name='protocols',
         help_text="Plate layout template: control positions, sample region, replicate pattern"
     )
 

@@ -104,6 +104,12 @@ export const routes = {
     /** Protocol detail page */
     protocol: (id: string | number) => route(`/assays/protocols/${id}`),
 
+    /** Plate layouts list */
+    plateLayouts: () => route('/assays/plate-layouts'),
+
+    /** Plate layout detail/edit page */
+    plateLayout: (id: string | number) => route(`/assays/plate-layouts/${id}`),
+
     /** Dilution series list */
     dilutionSeries: () => route('/assays/dilution-series'),
 

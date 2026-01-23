@@ -391,7 +391,7 @@ export default function AssayDetailPage({ params }: PageProps) {
                 </Box>
               </Box>
               <Box sx={{ display: 'flex', gap: 1 }}>
-                {protocol?.plate_layout && assay?.data_file && (
+                {protocol?.plate_layout_config && assay?.data_file && (
                   <Button
                     variant="outlined"
                     startIcon={heatMapLoading ? <CircularProgress size={16} /> : <Palette />}
@@ -552,12 +552,12 @@ export default function AssayDetailPage({ params }: PageProps) {
       )}
 
       {/* Plate Heat Map dialog */}
-      {heatMapCells && protocol?.plate_layout && (
+      {heatMapCells && protocol?.plate_layout_config && (
         <PlateHeatMapDialog
           open={heatMapOpen}
           onClose={() => setHeatMapOpen(false)}
           cells={heatMapCells}
-          plateLayout={protocol.plate_layout as PlateLayout}
+          plateLayout={protocol.plate_layout_config}
         />
       )}
     </Container>

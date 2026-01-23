@@ -234,6 +234,24 @@ export interface FittingMethodDetail extends FittingMethod {
   updated_at: string;
 }
 
+/**
+ * Reusable plate layout configuration.
+ * Maps to Django PlateLayout model in apps/compounds/assays.
+ */
+export interface PlateLayoutRecord {
+  id: string;
+  name: string;
+  description?: string | null;
+  config: PlateLayout;  // The actual plate layout configuration
+  plate_format?: PlateFormat;  // Convenience field derived from config
+  is_builtin: boolean;
+  created_by: number | null;
+  created_by_email?: string;
+  created_at: string;
+  updated_at: string;
+  protocols_count?: number;  // Number of protocols using this layout
+}
+
 export type AnalysisMethod =
   | 'hill_langmuir'
   | 'hill_langmuir_fix_hill'
@@ -276,7 +294,10 @@ export interface Protocol {
   fitting_method_name?: string;
   target?: string | null;
   target_name?: string;
-  plate_layout?: Partial<PlateLayout> | null;
+  // Plate layout is now a FK to PlateLayoutRecord
+  plate_layout?: string | null;          // FK ID to PlateLayoutRecord
+  plate_layout_name?: string;            // Denormalized name for display
+  plate_layout_config?: PlateLayout | null;  // Denormalized config for convenience
   fitting_parameters?: FittingParameters | null;
   preferred_dilutions: string | null;
   preferred_dilutions_display?: string;

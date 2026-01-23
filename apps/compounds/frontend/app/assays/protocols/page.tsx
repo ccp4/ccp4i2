@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Container, Typography, Box, Chip, Button } from '@mui/material';
-import { Science, Description, Add, Settings } from '@mui/icons-material';
+import { Science, Description, Add, Settings, GridOn } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -120,6 +120,13 @@ export default function ProtocolsPage() {
             onClick={() => router.push(routes.assays.dilutionSeries())}
           >
             Manage Dilutions
+          </Button>
+          <Button
+            variant="outlined"
+            startIcon={<GridOn />}
+            onClick={() => router.push(routes.assays.plateLayouts())}
+          >
+            Manage Plate Layouts
           </Button>
           <Button
             variant="contained"

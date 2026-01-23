@@ -20,6 +20,7 @@ from .analysis import analyse_assay, analyse_data_series
 
 from .models import (
     DilutionSeries,
+    PlateLayout,
     Protocol,
     ProtocolDocument,
     Assay,
@@ -31,6 +32,7 @@ from .models import (
 from .serializers import (
     FittingMethodSerializer,
     DilutionSeriesSerializer,
+    PlateLayoutSerializer,
     ProtocolSerializer,
     ProtocolDetailSerializer,
     ProtocolDocumentSerializer,
@@ -109,6 +111,34 @@ class DilutionSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
     permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.OrderingFilter]
     ordering = ['unit']
+
+
+class PlateLayoutViewSet(ReversionMixin, viewsets.ModelViewSet):
+    """CRUD operations for Plate Layouts."""
+    queryset = PlateLayout.objects.all()
+    serializer_class = PlateLayoutSerializer
+    permission_classes = [IsContributorOrReadOnly]
+    filter_backends = [filters.SearchFilter, filters.OrderingFilter]
+    search_fields = ['name', 'description']
+    ordering = ['name']
+
+    def perform_create(self, serializer):
+        with reversion.create_revision():
+            instance = serializer.save(
+                created_by=self.request.user if self.request.user.is_authenticated else None
+            )
+            if self.request.user.is_authenticated:
+                reversion.set_user(self.request.user)
+            reversion.set_comment("Created via API")
+            return instance
+
+    @action(detail=True, methods=['get'])
+    def protocols(self, request, pk=None):
+        """List protocols using this plate layout."""
+        layout = self.get_object()
+        protocols = layout.protocols.all()
+        serializer = ProtocolSerializer(protocols, many=True)
+        return Response(serializer.data)
 
 
 class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):

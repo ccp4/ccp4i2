@@ -35,6 +35,7 @@ from compounds.registry.views import (
 from compounds.assays.views import (
     FittingMethodViewSet,
     DilutionSeriesViewSet,
+    PlateLayoutViewSet,
     ProtocolViewSet,
     ProtocolDocumentViewSet,
     AssayViewSet,
@@ -71,6 +72,7 @@ router.register(r'compound-templates', CompoundTemplateViewSet, basename='compou
 # Assay routes
 router.register(r'fitting-methods', FittingMethodViewSet, basename='fitting-method')
 router.register(r'dilution-series', DilutionSeriesViewSet, basename='dilution-series')
+router.register(r'plate-layouts', PlateLayoutViewSet, basename='plate-layout')
 router.register(r'protocols', ProtocolViewSet, basename='protocol')
 router.register(r'protocol-documents', ProtocolDocumentViewSet, basename='protocol-document')
 router.register(r'assays', AssayViewSet, basename='assay')

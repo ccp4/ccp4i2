@@ -10,6 +10,7 @@ from rest_framework import serializers
 from compounds.validators import validate_protocol_document, validate_assay_data_file
 from .models import (
     DilutionSeries,
+    PlateLayout,
     Protocol,
     ProtocolDocument,
     Assay,
@@ -106,6 +107,32 @@ class DilutionSeriesSerializer(serializers.ModelSerializer):
         fields = ['id', 'concentrations', 'unit', 'display_name']
 
 
+class PlateLayoutSerializer(serializers.ModelSerializer):
+    """Serializer for PlateLayout - reusable plate configurations."""
+    created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    protocols_count = serializers.SerializerMethodField()
+    # Convenience field to expose plate_format from config
+    plate_format = serializers.IntegerField(source='config.plate_format', read_only=True)
+
+    class Meta:
+        model = PlateLayout
+        fields = [
+            'id', 'name', 'description', 'config',
+            'plate_format', 'is_builtin',
+            'created_by', 'created_by_email',
+            'created_at', 'updated_at',
+            'protocols_count',
+        ]
+        read_only_fields = ['id', 'created_by', 'created_at', 'updated_at', 'is_builtin']
+
+    def get_protocols_count(self, obj):
+        return obj.protocols.count()
+
+    def validate_config(self, value):
+        """Convert null to empty dict."""
+        return value if value is not None else {}
+
+
 class ProtocolDocumentSerializer(serializers.ModelSerializer):
     """Serializer for reading protocol documents - returns protected download URLs."""
     filename = serializers.SerializerMethodField()
@@ -145,6 +172,14 @@ class ProtocolSerializer(serializers.ModelSerializer):
         source='fitting_method.name', read_only=True
     )
     target_name = serializers.CharField(source='target.name', read_only=True)
+    # Plate layout FK with denormalized fields for display
+    plate_layout = serializers.PrimaryKeyRelatedField(
+        queryset=PlateLayout.objects.all(),
+        allow_null=True,
+        required=False
+    )
+    plate_layout_name = serializers.CharField(source='plate_layout.name', read_only=True)
+    plate_layout_config = serializers.JSONField(source='plate_layout.config', read_only=True)
     # Explicitly allow null for ForeignKey fields
     fitting_method = serializers.PrimaryKeyRelatedField(
         queryset=FittingMethod.objects.all(),
@@ -173,7 +208,8 @@ class ProtocolSerializer(serializers.ModelSerializer):
             'id', 'name', 'analysis_method',
             'fitting_method', 'fitting_method_name',
             'target', 'target_name',
-            'plate_layout', 'fitting_parameters',
+            'plate_layout', 'plate_layout_name', 'plate_layout_config',
+            'fitting_parameters',
             'preferred_dilutions', 'preferred_dilutions_display',
             'created_by', 'created_by_email', 'created_at',
             'comments',
@@ -181,10 +217,6 @@ class ProtocolSerializer(serializers.ModelSerializer):
         read_only_fields = ['created_by', 'created_at']
 
     def validate_fitting_parameters(self, value):
-        """Convert null to empty dict since DB column doesn't allow NULL."""
-        return value if value is not None else {}
-
-    def validate_plate_layout(self, value):
         """Convert null to empty dict since DB column doesn't allow NULL."""
         return value if value is not None else {}
 
