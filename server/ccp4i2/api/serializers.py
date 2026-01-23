@@ -52,9 +52,8 @@ class ProjectListSerializer(ModelSerializer):
             "uuid",
             "name",
             "directory",
-            "creation",
+            "creation_time",
             "last_access",
-            "owner",
             "tags",
         ]
 
