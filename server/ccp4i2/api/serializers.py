@@ -41,9 +41,7 @@ class ProjectTagSerializer(ModelSerializer):
 
 
 class ProjectListSerializer(ModelSerializer):
-    """Lightweight serializer for project lists."""
-
-    tags = ProjectTagSerializer(many=True, read_only=True)
+    """Lightweight serializer for project lists - no tags for performance."""
 
     class Meta:
         model = models.Project
@@ -54,7 +52,6 @@ class ProjectListSerializer(ModelSerializer):
             "directory",
             "creation_time",
             "last_access",
-            "tags",
         ]
 
 
