@@ -444,17 +444,23 @@ class refmac_report(Report):
             colourNode.text='ice blue'
 
     def addRefinementPictures(self, xmlnode=None, jobInfo=None, parent=None, objectNameMap={}, initiallyOpen=False):
+        # Scene file generation is currently disabled while reconsidering their role in ccp4i2 reporting
+        # The scene.xml files are used by the Qt-based CCP4MG viewer which is not part of the
+        # Django/React architecture. Returning early prevents crashes from missing files or
+        # format mismatches in legacy data.
+        return
+
         if parent is None: parent = self
         if xmlnode is None: xmlnode = self.xmlnode
         if jobInfo is None: jobInfo = self.jobInfo
-        
+
         #Provide default filenames to identify database object
         coordObjectName = objectNameMap.get('XYZ','XYZOUT')
         dictObjectName = objectNameMap.get('DICT','DICTOUT')
-        
+
         #I *do not know* why This is needed
         clearingDiv = parent.addDiv(style="clear:both;")
-        
+
         pictureFold = parent.addFold(label='Picture', initiallyOpen=initiallyOpen,brief='Picture')
         pictureGallery = pictureFold.addObjectGallery(style='float:left;',height='550px', tableWidth='260px', contentWidth='450px')
         clearingDiv = parent.addDiv(style="clear:both;")
