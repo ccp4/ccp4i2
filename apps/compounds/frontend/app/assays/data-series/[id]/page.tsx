@@ -128,7 +128,10 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
   // Check if this is a table_of_values assay with an uploaded plot image
   const isTableOfValues = protocol?.analysis_method === 'table_of_values';
   const hasImageFile = series?.analysis?.results?.['Image File'];
-  const plotImageUrl = series?.plot_image;
+  // Use the media proxy endpoint instead of direct blob URL (requires auth/SAS)
+  const plotImageUrl = series?.plot_image
+    ? `/api/proxy/compounds/media/data-series/${series.id}/plot/`
+    : null;
 
   const fitParams = series?.analysis ? {
     ec50: series.analysis.results?.EC50,
