@@ -42,7 +42,7 @@ function CompoundsPageContent() {
   const [targetFilter, setTargetFilter] = useState(initialTarget);
 
   // Fetch targets for filter dropdown
-  const { data: targets } = api.get<Target[]>('targets/');
+  const { data: targets, error: targetsError } = api.get<Target[]>('targets/');
 
   // Build API URL with target filter
   const compoundsUrl = useMemo(() => {
@@ -56,14 +56,18 @@ function CompoundsPageContent() {
 
   // Fetch compounds with optional target filter
   // Backend may return either paginated response (with results array) or plain array
-  const { data: compoundsResponse, isLoading, error } = api.get<PaginatedResponse<Compound> | Compound[]>(compoundsUrl);
+  const { data: compoundsResponse, isLoading, error: compoundsError } = api.get<PaginatedResponse<Compound> | Compound[]>(compoundsUrl);
   const compounds = Array.isArray(compoundsResponse)
     ? compoundsResponse
     : (compoundsResponse?.results || []);
 
+  // Combine errors for display - identify which endpoint failed
+  const error = compoundsError || targetsError;
+  const errorSource = compoundsError ? 'compounds' : targetsError ? 'targets' : null;
+
   // Log error for debugging - this helps identify if the large response is failing
   if (error) {
-    console.error('[Compounds Page] API error:', error);
+    console.error(`[Compounds Page] API error (${errorSource}):`, error);
   }
 
   const handleTargetChange = (event: SelectChangeEvent) => {
@@ -224,7 +228,7 @@ function CompoundsPageContent() {
         <Box sx={{ mb: 2, p: 2, bgcolor: 'error.light', borderRadius: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
           <ErrorIcon color="error" />
           <Typography color="error.dark">
-            Failed to load compounds: {error.message || 'Unknown error'}
+            Failed to load {errorSource}: {error.message || 'Unknown error'}
           </Typography>
         </Box>
       )}
