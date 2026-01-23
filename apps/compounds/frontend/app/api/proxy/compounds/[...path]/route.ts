@@ -156,17 +156,15 @@ export async function GET(
       });
     }
 
-    // For JSON responses, stream directly to avoid memory issues with large payloads
-    // Previous approach of parsing and re-serializing caused issues with ~12MB compound lists
+    // For JSON responses, read the full response and forward it
+    // Using arrayBuffer() handles gzip decompression automatically
+    const data = await response.arrayBuffer();
+
     const headers = new Headers();
     headers.set('Content-Type', 'application/json');
-    // Forward content-length if available
-    const contentLength = response.headers.get('Content-Length');
-    if (contentLength) {
-      headers.set('Content-Length', contentLength);
-    }
+    headers.set('Content-Length', String(data.byteLength));
 
-    return new NextResponse(response.body, {
+    return new NextResponse(data, {
       status: response.status,
       headers,
     });
