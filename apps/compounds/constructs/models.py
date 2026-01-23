@@ -41,27 +41,26 @@ User = get_user_model()
 def _plasmid_file_path(instance, filename):
     """Generate upload path for plasmid files (GenBank, etc.).
 
-    Legacy pattern: ConstructDatabase/NCLCON-XXXXXXXX/{filename}
+    Path: compounds/constructs/NCLCON-XXXXXXXX/{filename}
     """
-    return Path('ConstructDatabase') / instance.formatted_id / filename
+    return Path('compounds') / 'constructs' / instance.formatted_id / filename
 
 
 def _sequencing_file_path(instance, filename):
     """Generate upload path for sequencing result files.
 
-    Legacy pattern: ConstructDatabase/NCLCON-XXXXXXXX/{filename}
+    Path: compounds/constructs/NCLCON-XXXXXXXX/{filename}
     (Same directory as plasmid files)
     """
-    return Path('ConstructDatabase') / instance.plasmid.formatted_id / filename
+    return Path('compounds') / 'constructs' / instance.plasmid.formatted_id / filename
 
 
 def _alignment_file_path(instance, filename):
     """Generate upload path for alignment files.
 
-    Legacy had no custom path (just filename in MEDIA_ROOT).
-    Keeping ConstructDatabase structure for consistency.
+    Path: compounds/constructs/NCLCON-XXXXXXXX/{filename}
     """
-    return Path('ConstructDatabase') / instance.plasmid.formatted_id / filename
+    return Path('compounds') / 'constructs' / instance.plasmid.formatted_id / filename
 
 
 # =============================================================================

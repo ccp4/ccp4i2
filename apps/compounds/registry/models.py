@@ -68,8 +68,11 @@ class Supplier(models.Model):
 
 
 def _target_image_path(instance, filename):
-    """Generate upload path for target branding images."""
-    return f'targets/images/{instance.id}_{filename}'
+    """Generate upload path for target branding images.
+
+    Path: compounds/registry/targets/{uuid}_{filename}
+    """
+    return f'compounds/registry/targets/{instance.id}_{filename}'
 
 
 class Target(models.Model):
@@ -123,9 +126,9 @@ def _next_reg_number():
 def _compound_svg_path(instance, filename):
     """Generate upload path for compound SVG images.
 
-    Legacy pattern: RegisterCompounds/svg/NCL-XXXXXXXX.svg
+    Path: compounds/registry/svg/NCL-XXXXXXXX.svg
     """
-    return Path('RegisterCompounds') / 'svg' / f'{instance.formatted_id}.svg'
+    return Path('compounds') / 'registry' / 'svg' / f'{instance.formatted_id}.svg'
 
 
 class Compound(models.Model):
@@ -293,13 +296,13 @@ class Compound(models.Model):
 def _batch_qc_path(instance, filename):
     """Generate upload path for batch QC files.
 
-    New pattern: RegisterCompounds/BatchQCFiles/NCL-XXXXXXXX/{uuid}_{filename}
+    Path: compounds/registry/qc/NCL-XXXXXXXX/{uuid}_{filename}
 
-    Files are organized under a dedicated BatchQCFiles subdirectory within
-    RegisterCompounds, with per-compound directories named by their formatted ID.
+    Files are organized under a dedicated qc subdirectory within
+    compounds/registry, with per-compound directories named by their formatted ID.
     """
     compound_id = instance.batch.compound.formatted_id
-    return f'RegisterCompounds/BatchQCFiles/{compound_id}/{instance.id}_{filename}'
+    return f'compounds/registry/qc/{compound_id}/{instance.id}_{filename}'
 
 
 class Batch(models.Model):
@@ -421,8 +424,11 @@ def _batch_qc_file_post_delete(sender, instance, **kwargs):
 
 
 def _template_svg_path(instance, filename):
-    """Generate upload path for template SVG images."""
-    return Path('templates') / 'svg' / f'{instance.id}.svg'
+    """Generate upload path for template SVG images.
+
+    Path: compounds/registry/templates/{uuid}.svg
+    """
+    return Path('compounds') / 'registry' / 'templates' / f'{instance.id}.svg'
 
 
 class CompoundTemplate(models.Model):
