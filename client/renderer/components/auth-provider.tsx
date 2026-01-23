@@ -38,34 +38,27 @@ function getAccountEmail(): string | null {
  */
 async function getApiAccessToken(): Promise<string | null> {
   const accounts = pca.getAllAccounts();
-  console.warn("[AUTH] getApiAccessToken called, accounts:", accounts.length);
   if (accounts.length === 0) {
-    console.warn("[AUTH] No accounts found, returning null");
     return null;
   }
 
   try {
     // Use .default scope to get token for our API
-    console.warn("[AUTH] Attempting acquireTokenSilent with scope:", `${clientId}/.default`);
     const response = await pca.acquireTokenSilent({
       scopes: [`${clientId}/.default`],
       account: accounts[0],
     });
-    console.warn("[AUTH] Token acquired successfully, length:", response.accessToken?.length, "expires:", response.expiresOn);
     return response.accessToken;
   } catch (error: any) {
-    console.error("[AUTH] Failed to acquire token silently:", error?.message || error);
     // Try interactive login if silent fails
-    console.warn("[AUTH] Attempting interactive token acquisition...");
     try {
       const response = await pca.acquireTokenPopup({
         scopes: [`${clientId}/.default`],
         account: accounts[0],
       });
-      console.warn("[AUTH] Interactive token acquired, length:", response.accessToken?.length);
       return response.accessToken;
     } catch (interactiveError: any) {
-      console.error("[AUTH] Interactive token acquisition also failed:", interactiveError?.message || interactiveError);
+      console.error("[AUTH] Token acquisition failed:", interactiveError?.message || interactiveError);
       return null;
     }
   }
