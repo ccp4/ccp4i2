@@ -40,7 +40,7 @@ export default function TargetsPage() {
   const api = useCompoundsApi();
   const { data: targets, isLoading } = api.get<Target[]>('targets/');
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [viewMode, setViewMode] = useState<ViewMode>('table');
 
   const handleTargetCreated = () => {
     // Invalidate the targets cache to refresh the list
