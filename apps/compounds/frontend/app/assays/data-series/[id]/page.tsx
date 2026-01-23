@@ -34,7 +34,7 @@ import { DoseResponseChart } from '@/components/compounds/DoseResponseChart';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
-import { DataSeries, Assay, Compound } from '@/types/compounds/models';
+import { DataSeries, Assay, Compound, Protocol } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -86,6 +86,9 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
   const { data: assay } = api.get<Assay>(
     series?.assay ? `assays/${series.assay}/` : null
   );
+  const { data: protocol } = api.get<Protocol>(
+    assay?.protocol ? `protocols/${assay.protocol}/` : null
+  );
   const { data: compound } = api.get<Compound>(
     series?.compound ? `compounds/${series.compound}/` : null
   );
@@ -121,6 +124,11 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
 
   // Check for missing dilution series
   const missingDilutionSeries = series && !series.dilution_series;
+
+  // Check if this is a table_of_values assay with an uploaded plot image
+  const isTableOfValues = protocol?.analysis_method === 'table_of_values';
+  const hasImageFile = series?.analysis?.results?.['Image File'];
+  const plotImageUrl = series?.plot_image;
 
   const fitParams = series?.analysis ? {
     ec50: series.analysis.results?.EC50,
@@ -196,10 +204,63 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
               {/* Chart */}
               <Grid size={{ xs: 12, md: 7 }}>
                 <Typography variant="h6" gutterBottom>
-                  Dose-Response Curve
+                  {isTableOfValues ? 'Plot Image' : 'Dose-Response Curve'}
                 </Typography>
-                {/* Prefer interactive chart when dilution_series data is available */}
-                {chartData && chartData.concentrations.length > 0 ? (
+                {/* For table_of_values, always use plot_image - never attempt interactive chart */}
+                {isTableOfValues ? (
+                  hasImageFile && plotImageUrl ? (
+                    <Box
+                      component="img"
+                      src={plotImageUrl}
+                      alt={`Plot for ${series.compound_name || 'compound'}`}
+                      sx={{
+                        maxWidth: '100%',
+                        height: 'auto',
+                        maxHeight: 400,
+                        borderRadius: 1,
+                        border: '1px solid',
+                        borderColor: 'divider',
+                      }}
+                    />
+                  ) : hasImageFile ? (
+                    <Paper
+                      sx={{
+                        p: 4,
+                        bgcolor: 'warning.50',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 350,
+                        flexDirection: 'column',
+                        gap: 1,
+                      }}
+                    >
+                      <Typography color="warning.main" fontWeight={500}>
+                        Image not uploaded
+                      </Typography>
+                      <Typography variant="caption" color="text.secondary">
+                        Expected: {hasImageFile}
+                      </Typography>
+                    </Paper>
+                  ) : (
+                    <Paper
+                      sx={{
+                        p: 4,
+                        bgcolor: 'grey.50',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: 350,
+                        flexDirection: 'column',
+                        gap: 1,
+                      }}
+                    >
+                      <Typography color="text.secondary">
+                        No plot image available
+                      </Typography>
+                    </Paper>
+                  )
+                ) : chartData && chartData.concentrations.length > 0 ? (
                   <DoseResponseChart
                     data={chartData}
                     fit={fitParams}
