@@ -46,6 +46,12 @@ MODEL_MAPPINGS = {
     'ConstructDatabase.expressiontag': 'constructs.expressiontag',
 }
 
+# Legacy file path prefixes that need transformation to new paths
+# Old: ConstructDatabase/NCLCON-*/file.gb -> New: compounds/constructs/NCLCON-*/file.gb
+LEGACY_PATH_MAPPINGS = [
+    ('ConstructDatabase/', 'compounds/constructs/'),
+]
+
 
 class Command(BaseCommand):
     """Import legacy ConstructDatabase fixtures."""
@@ -205,6 +211,26 @@ class Command(BaseCommand):
             if key in fields:
                 return fields[key]
         return None
+
+    def _transform_file_path(self, path):
+        """Transform legacy file paths to new storage paths.
+
+        Legacy fixtures contain paths like:
+            ConstructDatabase/NCLCON-00000444/file.gb
+
+        But migrate-media.sh copies files to:
+            compounds/constructs/NCLCON-00000444/file.gb
+
+        This method transforms legacy paths to match the new storage location.
+        """
+        if not path:
+            return path
+
+        for old_prefix, new_prefix in LEGACY_PATH_MAPPINGS:
+            if path.startswith(old_prefix):
+                return path.replace(old_prefix, new_prefix, 1)
+
+        return path
 
     def _import_reference_data(self, records_by_model):
         """Import reference data (expression tag types, proteases, locations)."""
