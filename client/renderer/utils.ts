@@ -1387,16 +1387,25 @@ export const useJob = (jobId: number | null | undefined): JobData => {
       projectJobs: Job[],
       projects: Project[]
     ): SetParameterArg => {
-      // Base parameter structure
+      // Base parameter structure - only include non-null values
+      // to avoid backend TypeError when assigning null to typed CData fields
+      const paramValue: Record<string, unknown> = {
+        dbFileId: value.uuid.replace(/-/g, ""),
+        annotation: value.annotation,
+        baseName: value.name,
+      };
+
+      // Only include optional fields if they have values
+      if (value.sub_type != null) {
+        paramValue.subType = value.sub_type;
+      }
+      if (value.content != null) {
+        paramValue.contentFlag = value.content;
+      }
+
       const setParameterArg: SetParameterArg = {
         object_path: objectPath,
-        value: {
-          dbFileId: value.uuid.replace(/-/g, ""),
-          subType: value.sub_type,
-          contentFlag: value.content,
-          annotation: value.annotation,
-          baseName: value.name,
-        },
+        value: paramValue,
       };
 
       // Handle different file directory types

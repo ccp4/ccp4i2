@@ -403,13 +403,22 @@ class CData(HierarchicalObject):
             current = getattr(self, k, None)
             # Smart assignment: if current is a CData value type, update its value
             if hasattr(current, 'value') and not isinstance(v, type(current)):
-                current.value = v
+                if v is None:
+                    # Handle None by unsetting the CData object instead of assigning None
+                    # This prevents TypeError when trying to assign None to typed values like CInt
+                    if hasattr(current, 'unSet'):
+                        current.unSet()
+                else:
+                    current.value = v
             else:
                 setattr(self, k, v)
 
-            # Mark as explicitly set
+            # Mark as explicitly set (or not set if v is None)
             if hasattr(self, '_value_states'):
-                self._value_states[k] = ValueState.EXPLICITLY_SET
+                if v is None:
+                    self._value_states[k] = ValueState.NOT_SET
+                else:
+                    self._value_states[k] = ValueState.EXPLICITLY_SET
 
     # objectPath() is now inherited from HierarchicalObject
     # It uses object_path() which properly handles objectName()
