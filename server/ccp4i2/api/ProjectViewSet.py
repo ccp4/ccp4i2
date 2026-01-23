@@ -79,8 +79,8 @@ class ProjectViewSet(ModelViewSet):
         """Optimize queryset based on action."""
         queryset = super().get_queryset()
         if self.action == 'list':
-            # List view: order by most recent first, no need for tags prefetch
-            return queryset.order_by('-last_access')
+            # List view: order by most recent first, prefetch tags
+            return queryset.prefetch_related('tags').order_by('-last_access')
         else:
             # Detail view: include tags
             return queryset.prefetch_related('tags')

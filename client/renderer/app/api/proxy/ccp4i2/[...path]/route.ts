@@ -179,6 +179,20 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
 
     const response = await fetch(targetUrl, fetchOptions);
 
+    // Check if this is a JSON response - if so, use arrayBuffer to handle gzip decompression
+    const contentType = response.headers.get('Content-Type') || '';
+    if (contentType.includes('application/json')) {
+      const data = await response.arrayBuffer();
+      const headers = new Headers();
+      headers.set('Content-Type', 'application/json');
+      headers.set('Content-Length', String(data.byteLength));
+      return new NextResponse(data, {
+        status: response.status,
+        headers,
+      });
+    }
+
+    // For non-JSON responses (file downloads, etc.), stream directly
     return new NextResponse(response.body, {
       status: response.status,
       headers: response.headers,

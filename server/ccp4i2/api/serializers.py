@@ -41,7 +41,9 @@ class ProjectTagSerializer(ModelSerializer):
 
 
 class ProjectListSerializer(ModelSerializer):
-    """Lightweight serializer for project lists - omits nested tags for performance."""
+    """Lightweight serializer for project lists."""
+
+    tags = ProjectTagSerializer(many=True, read_only=True)
 
     class Meta:
         model = models.Project
@@ -53,6 +55,7 @@ class ProjectListSerializer(ModelSerializer):
             "creation",
             "last_access",
             "owner",
+            "tags",
         ]
 
 
