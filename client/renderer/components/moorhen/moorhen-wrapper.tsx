@@ -179,17 +179,33 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
     }
   }, [fileIds, cootInitialized, cootModule]);
 
+  // Track if we've logged initialization to avoid repeat logs
+  const hasLoggedInit = useRef(false);
+
+  // One-time initialization message when Coot is ready
+  useEffect(() => {
+    if (cootInitialized && !hasLoggedInit.current) {
+      console.log("Coot is initialized, you can now load molecules and maps.");
+      hasLoggedInit.current = true;
+    }
+  }, [cootInitialized]);
+
+  // Handle dimension updates separately - these can change frequently
   useEffect(() => {
     if (cootInitialized) {
-      console.log("Coot is initialized, you can now load molecules and maps.");
       dispatch(setWidth(leftPanelWidth));
       dispatch(setHeight(windowHeight - 75));
+    }
+  }, [cootInitialized, leftPanelWidth, windowHeight, dispatch]);
+
+  // Handle theme changes separately
+  useEffect(() => {
+    if (cootInitialized) {
       dispatch(
         setBackgroundColor(theme.mode === "light" ? [1, 1, 1, 1] : [0, 0, 0, 1])
       );
-      handleResize();
     }
-  }, [cootInitialized, leftPanelWidth, windowHeight, theme.mode]);
+  }, [cootInitialized, theme.mode, dispatch]);
 
   const fetchFile = async (fileId: number) => {
     const fileInfo = await apiGet(`files/${fileId}`);
