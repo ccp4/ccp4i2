@@ -193,9 +193,20 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
     }
 
     // For non-JSON responses (file downloads, etc.), stream directly
+    // Create new headers, excluding Content-Encoding since fetch() auto-decompresses
+    // the response body but the original header would tell the browser to decompress again
+    const responseHeaders = new Headers();
+    response.headers.forEach((value, key) => {
+      // Skip Content-Encoding as fetch() already decompressed the body
+      // Also skip Content-Length as it may be wrong after decompression
+      if (key.toLowerCase() !== 'content-encoding' && key.toLowerCase() !== 'content-length') {
+        responseHeaders.set(key, value);
+      }
+    });
+
     return new NextResponse(response.body, {
       status: response.status,
-      headers: response.headers,
+      headers: responseHeaders,
     });
   } catch (error: any) {
     console.error("[CCP4I2 PROXY] Error forwarding request:", error);
