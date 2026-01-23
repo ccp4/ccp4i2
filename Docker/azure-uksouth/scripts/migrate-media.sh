@@ -8,19 +8,21 @@
 # These media files back *File objects in the registry, assay, and construct database.
 # The new infrastructure uses Blob storage (cheaper) instead of Azure Files for Django uploads.
 #
-# Path transformations during migration:
-# Note: Django's AzureStorage uses the blob container root (no media/ prefix)
-#   - Most files: media/* -> /* (copied to container root)
-#   - Batch QC files: media/RegBatchQCFile_NCL-* -> RegisterCompounds/BatchQCFiles/NCL-*
-#     (relocates per-compound QC directories into a dedicated subdirectory)
-#   - Construct database: media/ConstructDatabase/ConstructDatabase/* -> ConstructDatabase/*
-#     (flattens legacy double-nested directory structure)
+# Path transformations during migration (legacy -> new):
+#   AssayCompounds/Experiments/*  -> compounds/assays/data/*
+#   AssayCompounds/DataSeries/*   -> compounds/assays/plots/*  (not used - plots are in Experiments)
+#   AssayCompounds/Protocols/*    -> compounds/assays/protocols/*
+#   AssayCompounds/svg/*          -> compounds/assays/svg/*
+#   RegisterCompounds/svg/*       -> compounds/registry/svg/*
+#   RegBatchQCFile_NCL-*          -> compounds/registry/qc/NCL-*
+#   ConstructDatabase/*           -> compounds/constructs/*
 #
 # Environment: Docker/azure-uksouth/.env.deployment
 #
-# Usage: ./migrate-media.sh [check|copy]
-#   check    - Check for filename clashes and show what would be copied
-#   copy     - Perform the actual copy
+# Usage: ./migrate-media.sh [check|copy|rename]
+#   check    - Check source directories and show what would be copied
+#   copy     - Perform fresh migration with path transformations
+#   rename   - Rename already-migrated blobs from legacy to new paths
 
 # Ensure Homebrew paths are available
 export PATH="/opt/homebrew/bin:$PATH"
@@ -196,7 +198,7 @@ check_clashes() {
 
     # List top-level directories in source media
     echo ""
-    echo -e "${YELLOW}Source media subdirectories:${NC}"
+    echo -e "${YELLOW}Source media subdirectories and path transformations:${NC}"
     BATCH_QC_COUNT=0
     HAS_CONSTRUCT_DB=false
     HAS_ASSAY_COMPOUNDS=false
@@ -221,30 +223,41 @@ check_clashes() {
         --path "$SOURCE_PATH" \
         --query "[?type=='dir'].name" -o tsv 2>/dev/null)
 
-    # Show non-QC directories
-    echo -e "$OTHER_DIRS" | while read dir; do
-        if [ -n "$dir" ]; then
-            echo -e "  ${BLUE}$dir${NC}"
-        fi
-    done
+    # Show path transformations
+    if [ "$HAS_ASSAY_COMPOUNDS" = true ]; then
+        echo -e "  ${CYAN}AssayCompounds/${NC}"
+        echo -e "    ${YELLOW}Experiments/*  -> compounds/assays/data/*${NC}"
+        echo -e "    ${YELLOW}Protocols/*    -> compounds/assays/protocols/*${NC}"
+        echo -e "    ${YELLOW}svg/*          -> compounds/assays/svg/*${NC}"
+        echo -e "    ${YELLOW}DataSeries/*   -> compounds/assays/plots/*${NC}"
+    fi
 
-    # Summarize batch QC directories
+    if [ "$HAS_REGISTER_COMPOUNDS" = true ]; then
+        echo -e "  ${CYAN}RegisterCompounds/${NC}"
+        echo -e "    ${YELLOW}svg/*          -> compounds/registry/svg/*${NC}"
+    fi
+
     if [ $BATCH_QC_COUNT -gt 0 ]; then
         echo -e "  ${CYAN}RegBatchQCFile_NCL-* (${BATCH_QC_COUNT} directories)${NC}"
-        echo -e "    ${YELLOW}-> Will be relocated to: RegisterCompounds/BatchQCFiles/NCL-*${NC}"
+        echo -e "    ${YELLOW}-> compounds/registry/qc/NCL-*${NC}"
     fi
 
-    # Note ConstructDatabase special handling
     if [ "$HAS_CONSTRUCT_DB" = true ]; then
-        echo -e "  ${CYAN}ConstructDatabase${NC}"
-        echo -e "    ${YELLOW}-> Will flatten and copy to container root: ConstructDatabase/ConstructDatabase/* -> ConstructDatabase/*${NC}"
+        echo -e "  ${CYAN}ConstructDatabase/${NC}"
+        echo -e "    ${YELLOW}-> compounds/constructs/*${NC}"
     fi
+
+    # Show other directories
+    echo -e "$OTHER_DIRS" | while read dir; do
+        if [ -n "$dir" ]; then
+            echo -e "  ${BLUE}$dir (will be skipped)${NC}"
+        fi
+    done
 
     # Check destination (Blob Container)
     echo ""
     echo -e "${YELLOW}Checking destination blob container...${NC}"
 
-    # Check if destination container exists
     CONTAINER_EXISTS=$(az storage container exists \
         --name "$DEST_CONTAINER" \
         --account-name "$DEST_STORAGE_ACCOUNT" \
@@ -256,14 +269,14 @@ check_clashes() {
         echo -e "${YELLOW}It should be created by infrastructure.bicep deployment${NC}"
         DEST_BLOBS=0
     else
-        # Count blobs in the media prefix
+        # Count blobs in compounds/ prefix
         DEST_BLOBS=$(az storage blob list \
             --container-name "$DEST_CONTAINER" \
             --account-name "$DEST_STORAGE_ACCOUNT" \
             --account-key "$DEST_KEY" \
-            --prefix "$DEST_PATH/" \
+            --prefix "compounds/" \
             --query "length(@)" -o tsv 2>/dev/null || echo "0")
-        echo -e "${GREEN}Found $DEST_BLOBS blobs in destination ($DEST_CONTAINER/$DEST_PATH)${NC}"
+        echo -e "${GREEN}Found $DEST_BLOBS blobs in destination (compounds/*)${NC}"
     fi
 
     # Summary
@@ -281,16 +294,16 @@ check_clashes() {
     echo "Destination (Azure Blob Storage):"
     echo "  Storage Account: $DEST_STORAGE_ACCOUNT"
     echo "  Container: $DEST_CONTAINER"
-    echo "  Path: $DEST_PATH/"
+    echo "  Target prefix: compounds/"
     echo "  Current Blobs: $DEST_BLOBS"
     echo ""
     echo -e "${YELLOW}Run '$0 copy' to perform the migration${NC}"
 }
 
-# Perform the copy
+# Perform the copy with path transformations to new schema
 do_copy() {
     echo -e "${CYAN}========================================${NC}"
-    echo -e "${CYAN}  Migrating Media Files${NC}"
+    echo -e "${CYAN}  Migrating Media Files (Fresh Copy)${NC}"
     echo -e "${CYAN}========================================${NC}"
     echo ""
 
@@ -324,7 +337,7 @@ do_copy() {
         exit 1
     fi
 
-    # Verify destination container exists (should be created by infrastructure.bicep)
+    # Verify destination container exists
     echo -e "${YELLOW}Checking destination container exists...${NC}"
     CONTAINER_EXISTS=$(az storage container exists \
         --name "$DEST_CONTAINER" \
@@ -340,11 +353,8 @@ do_copy() {
     echo -e "${GREEN}Container '$DEST_CONTAINER' exists${NC}"
 
     # Generate SAS tokens
-    # Source: File share needs 'f' service type
-    # Destination: Blob container needs 'b' service type
     echo -e "${YELLOW}Generating SAS tokens...${NC}"
 
-    # Source SAS for File share
     local source_expiry=$(date -u -v+24H "+%Y-%m-%dT%H:%MZ" 2>/dev/null || date -u -d "+24 hours" "+%Y-%m-%dT%H:%MZ")
     SOURCE_SAS=$(az storage account generate-sas \
         --account-name "$SOURCE_STORAGE_ACCOUNT" \
@@ -355,7 +365,6 @@ do_copy() {
         --expiry "$source_expiry" \
         -o tsv)
 
-    # Destination SAS for Blob storage
     local dest_expiry=$(date -u -v+24H "+%Y-%m-%dT%H:%MZ" 2>/dev/null || date -u -d "+24 hours" "+%Y-%m-%dT%H:%MZ")
     DEST_SAS=$(az storage account generate-sas \
         --account-name "$DEST_STORAGE_ACCOUNT" \
@@ -374,27 +383,93 @@ do_copy() {
     echo -e "${GREEN}SAS tokens generated (valid for 24 hours)${NC}"
     echo ""
 
-    # Get list of top-level directories to determine what needs relocation
-    echo -e "${YELLOW}Analyzing source directories...${NC}"
+    # Helper function to copy with path transformation
+    copy_with_transform() {
+        local src_subpath=$1
+        local dest_subpath=$2
+        local description=$3
+
+        echo -e "${YELLOW}  $description${NC}"
+        echo -e "${BLUE}    From: $src_subpath${NC}"
+        echo -e "${BLUE}    To:   $dest_subpath${NC}"
+
+        SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/${src_subpath}?${SOURCE_SAS}"
+        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${dest_subpath}?${DEST_SAS}"
+
+        azcopy copy \
+            "$SOURCE_URL" \
+            "$DEST_URL" \
+            --recursive \
+            --skip-version-check \
+            --log-level=WARNING 2>&1 | grep -v "^$" | head -5
+
+        if [ ${PIPESTATUS[0]} -ne 0 ]; then
+            echo -e "${RED}    Warning: Some errors during copy${NC}"
+        else
+            echo -e "${GREEN}    Done${NC}"
+        fi
+    }
+
+    # =========================================================================
+    # Step 1: AssayCompounds subdirectories -> compounds/assays/*
+    # =========================================================================
+    echo -e "${CYAN}----------------------------------------${NC}"
+    echo -e "${CYAN}Step 1: Migrating AssayCompounds${NC}"
+    echo -e "${CYAN}----------------------------------------${NC}"
+
+    # AssayCompounds/Experiments/* -> compounds/assays/data/*
+    copy_with_transform \
+        "AssayCompounds/Experiments/*" \
+        "compounds/assays/data/" \
+        "Experiments -> compounds/assays/data"
+
+    # AssayCompounds/Protocols/* -> compounds/assays/protocols/*
+    copy_with_transform \
+        "AssayCompounds/Protocols/*" \
+        "compounds/assays/protocols/" \
+        "Protocols -> compounds/assays/protocols"
+
+    # AssayCompounds/svg/* -> compounds/assays/svg/*
+    copy_with_transform \
+        "AssayCompounds/svg/*" \
+        "compounds/assays/svg/" \
+        "svg -> compounds/assays/svg"
+
+    # AssayCompounds/DataSeries/* -> compounds/assays/plots/* (if needed)
+    copy_with_transform \
+        "AssayCompounds/DataSeries/*" \
+        "compounds/assays/plots/" \
+        "DataSeries -> compounds/assays/plots"
+
+    echo ""
+
+    # =========================================================================
+    # Step 2: RegisterCompounds subdirectories -> compounds/registry/*
+    # =========================================================================
+    echo -e "${CYAN}----------------------------------------${NC}"
+    echo -e "${CYAN}Step 2: Migrating RegisterCompounds${NC}"
+    echo -e "${CYAN}----------------------------------------${NC}"
+
+    # RegisterCompounds/svg/* -> compounds/registry/svg/*
+    copy_with_transform \
+        "RegisterCompounds/svg/*" \
+        "compounds/registry/svg/" \
+        "svg -> compounds/registry/svg"
+
+    echo ""
+
+    # =========================================================================
+    # Step 3: Batch QC files -> compounds/registry/qc/*
+    # =========================================================================
+    echo -e "${CYAN}----------------------------------------${NC}"
+    echo -e "${CYAN}Step 3: Migrating Batch QC Files${NC}"
+    echo -e "${CYAN}----------------------------------------${NC}"
+
+    # Get list of RegBatchQCFile_* directories
     BATCH_QC_DIRS=()
-    OTHER_ITEMS=()
-    HAS_CONSTRUCT_DB=false
-
-    # Track directories that have double-nested structure in legacy storage
-    HAS_ASSAY_COMPOUNDS=false
-    HAS_REGISTER_COMPOUNDS=false
-
     while read item; do
         if [[ "$item" == RegBatchQCFile_* ]]; then
             BATCH_QC_DIRS+=("$item")
-        elif [[ "$item" == "ConstructDatabase" ]]; then
-            HAS_CONSTRUCT_DB=true
-        elif [[ "$item" == "AssayCompounds" ]]; then
-            HAS_ASSAY_COMPOUNDS=true
-        elif [[ "$item" == "RegisterCompounds" ]]; then
-            HAS_REGISTER_COMPOUNDS=true
-        else
-            OTHER_ITEMS+=("$item")
         fi
     done < <(az storage file list \
         --share-name "$SOURCE_SHARE" \
@@ -403,200 +478,57 @@ do_copy() {
         --path "$SOURCE_PATH" \
         --query "[].name" -o tsv 2>/dev/null)
 
-    echo -e "${GREEN}Found ${#BATCH_QC_DIRS[@]} batch QC directories to relocate${NC}"
-    echo -e "${GREEN}Found ${#OTHER_ITEMS[@]} other items to copy${NC}"
-    if [ "$HAS_CONSTRUCT_DB" = true ]; then
-        echo -e "${GREEN}Found ConstructDatabase directory (will flatten nested structure)${NC}"
-    fi
-    if [ "$HAS_ASSAY_COMPOUNDS" = true ]; then
-        echo -e "${GREEN}Found AssayCompounds directory (will flatten nested structure)${NC}"
-    fi
-    if [ "$HAS_REGISTER_COMPOUNDS" = true ]; then
-        echo -e "${GREEN}Found RegisterCompounds directory (will flatten nested structure)${NC}"
-    fi
+    echo -e "${GREEN}Found ${#BATCH_QC_DIRS[@]} batch QC directories${NC}"
+
+    for qc_dir in "${BATCH_QC_DIRS[@]}"; do
+        # Extract compound ID (e.g., RegBatchQCFile_NCL-00029551 -> NCL-00029551)
+        COMPOUND_ID="${qc_dir#RegBatchQCFile_}"
+        copy_with_transform \
+            "${qc_dir}/*" \
+            "compounds/registry/qc/${COMPOUND_ID}/" \
+            "${qc_dir} -> compounds/registry/qc/${COMPOUND_ID}"
+    done
+
     echo ""
 
-    # Step 1: Copy non-QC items (preserving paths)
-    if [ ${#OTHER_ITEMS[@]} -gt 0 ]; then
-        echo -e "${CYAN}----------------------------------------${NC}"
-        echo -e "${CYAN}Step 1: Copying non-QC media files${NC}"
-        echo -e "${CYAN}----------------------------------------${NC}"
+    # =========================================================================
+    # Step 4: ConstructDatabase -> compounds/constructs/*
+    # =========================================================================
+    echo -e "${CYAN}----------------------------------------${NC}"
+    echo -e "${CYAN}Step 4: Migrating ConstructDatabase${NC}"
+    echo -e "${CYAN}----------------------------------------${NC}"
 
-        for item in "${OTHER_ITEMS[@]}"; do
-            echo -e "${YELLOW}  Copying: $item${NC}"
-            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/${item}?${SOURCE_SAS}"
-            DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${item}?${DEST_SAS}"
+    # Check if source has nested structure (ConstructDatabase/ConstructDatabase/*)
+    # or flat structure (ConstructDatabase/NCLCON-*)
+    NESTED_EXISTS=$(az storage file list \
+        --share-name "$SOURCE_SHARE" \
+        --account-name "$SOURCE_STORAGE_ACCOUNT" \
+        --account-key "$SOURCE_KEY" \
+        --path "$SOURCE_PATH/ConstructDatabase/ConstructDatabase" \
+        --query "length(@)" -o tsv 2>/dev/null || echo "0")
 
-            azcopy copy \
-                "$SOURCE_URL" \
-                "$DEST_URL" \
-                --recursive \
-                --skip-version-check \
-                --log-level=ERROR 2>/dev/null
-
-            if [ $? -ne 0 ]; then
-                echo -e "${RED}    Error copying $item${NC}"
-            fi
-        done
-        echo -e "${GREEN}Non-QC files copied${NC}"
-        echo ""
+    if [ "$NESTED_EXISTS" -gt 0 ]; then
+        # Nested structure - copy from ConstructDatabase/ConstructDatabase/*
+        copy_with_transform \
+            "ConstructDatabase/ConstructDatabase/*" \
+            "compounds/constructs/" \
+            "ConstructDatabase (nested) -> compounds/constructs"
+    else
+        # Flat structure - copy from ConstructDatabase/*
+        copy_with_transform \
+            "ConstructDatabase/*" \
+            "compounds/constructs/" \
+            "ConstructDatabase -> compounds/constructs"
     fi
 
-    # Step 2: Copy batch QC directories with path transformation
-    # RegBatchQCFile_NCL-XXXXX -> RegisterCompounds/BatchQCFiles/NCL-XXXXX
-    if [ ${#BATCH_QC_DIRS[@]} -gt 0 ]; then
-        echo -e "${CYAN}----------------------------------------${NC}"
-        echo -e "${CYAN}Step 2: Relocating batch QC directories${NC}"
-        echo -e "${CYAN}  From: media/RegBatchQCFile_NCL-*${NC}"
-        echo -e "${CYAN}  To:   RegisterCompounds/BatchQCFiles/NCL-*${NC}"
-        echo -e "${CYAN}----------------------------------------${NC}"
-
-        for qc_dir in "${BATCH_QC_DIRS[@]}"; do
-            # Extract compound ID from directory name (e.g., RegBatchQCFile_NCL-00029551 -> NCL-00029551)
-            COMPOUND_ID="${qc_dir#RegBatchQCFile_}"
-            NEW_PATH="RegisterCompounds/BatchQCFiles/${COMPOUND_ID}"
-
-            echo -e "${YELLOW}  $qc_dir -> $NEW_PATH${NC}"
-
-            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/${qc_dir}/*?${SOURCE_SAS}"
-            DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/${NEW_PATH}/?${DEST_SAS}"
-
-            azcopy copy \
-                "$SOURCE_URL" \
-                "$DEST_URL" \
-                --recursive \
-                --skip-version-check \
-                --log-level=ERROR 2>/dev/null
-
-            if [ $? -ne 0 ]; then
-                echo -e "${RED}    Error copying $qc_dir${NC}"
-            fi
-        done
-        echo -e "${GREEN}Batch QC directories relocated${NC}"
-        echo ""
-    fi
-
-    # Step 3: Copy ConstructDatabase with path flattening
-    # Legacy data has double-nested structure: ConstructDatabase/ConstructDatabase/NCLCON-*
-    # Django expects files at container root: ConstructDatabase/NCLCON-* (no media/ prefix)
-    # This is because django-storages uses the container as the root, not a media/ subdirectory
-    if [ "$HAS_CONSTRUCT_DB" = true ]; then
-        echo -e "${CYAN}----------------------------------------${NC}"
-        echo -e "${CYAN}Step 3: Flattening ConstructDatabase${NC}"
-        echo -e "${CYAN}  From: media/ConstructDatabase/ConstructDatabase/*${NC}"
-        echo -e "${CYAN}  To:   ConstructDatabase/* (container root, no media/ prefix)${NC}"
-        echo -e "${CYAN}----------------------------------------${NC}"
-
-        # Copy from the nested ConstructDatabase/ConstructDatabase/ to container root ConstructDatabase/
-        # Note: We copy to container root (no DEST_PATH) because django-storages doesn't use media/ prefix
-        SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/ConstructDatabase/ConstructDatabase/*?${SOURCE_SAS}"
-        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/ConstructDatabase/?${DEST_SAS}"
-
-        echo -e "${YELLOW}  Copying nested ConstructDatabase contents...${NC}"
-        azcopy copy \
-            "$SOURCE_URL" \
-            "$DEST_URL" \
-            --recursive \
-            --skip-version-check \
-            --log-level=ERROR 2>/dev/null
-
-        if [ $? -ne 0 ]; then
-            echo -e "${RED}    Error copying ConstructDatabase${NC}"
-            echo -e "${YELLOW}    Attempting direct copy (source may not be nested)...${NC}"
-            # Fallback: try direct copy in case the source isn't double-nested
-            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/ConstructDatabase/*?${SOURCE_SAS}"
-            azcopy copy \
-                "$SOURCE_URL" \
-                "$DEST_URL" \
-                --recursive \
-                --skip-version-check \
-                --log-level=ERROR 2>/dev/null
-        fi
-
-        echo -e "${GREEN}ConstructDatabase copied${NC}"
-        echo ""
-    fi
-
-    # Step 4: Copy AssayCompounds with path flattening
-    # Legacy data has double-nested structure: AssayCompounds/AssayCompounds/*
-    # Django expects: AssayCompounds/*
-    if [ "$HAS_ASSAY_COMPOUNDS" = true ]; then
-        echo -e "${CYAN}----------------------------------------${NC}"
-        echo -e "${CYAN}Step 4: Flattening AssayCompounds${NC}"
-        echo -e "${CYAN}  From: media/AssayCompounds/AssayCompounds/*${NC}"
-        echo -e "${CYAN}  To:   AssayCompounds/* (container root)${NC}"
-        echo -e "${CYAN}----------------------------------------${NC}"
-
-        SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/AssayCompounds/AssayCompounds/*?${SOURCE_SAS}"
-        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/AssayCompounds/?${DEST_SAS}"
-
-        echo -e "${YELLOW}  Copying nested AssayCompounds contents...${NC}"
-        azcopy copy \
-            "$SOURCE_URL" \
-            "$DEST_URL" \
-            --recursive \
-            --skip-version-check \
-            --log-level=ERROR 2>/dev/null
-
-        if [ $? -ne 0 ]; then
-            echo -e "${RED}    Error copying AssayCompounds${NC}"
-            echo -e "${YELLOW}    Attempting direct copy (source may not be nested)...${NC}"
-            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/AssayCompounds/*?${SOURCE_SAS}"
-            azcopy copy \
-                "$SOURCE_URL" \
-                "$DEST_URL" \
-                --recursive \
-                --skip-version-check \
-                --log-level=ERROR 2>/dev/null
-        fi
-
-        echo -e "${GREEN}AssayCompounds copied${NC}"
-        echo ""
-    fi
-
-    # Step 5: Copy RegisterCompounds with path flattening
-    # Legacy data has double-nested structure: RegisterCompounds/RegisterCompounds/*
-    # Django expects: RegisterCompounds/*
-    if [ "$HAS_REGISTER_COMPOUNDS" = true ]; then
-        echo -e "${CYAN}----------------------------------------${NC}"
-        echo -e "${CYAN}Step 5: Flattening RegisterCompounds${NC}"
-        echo -e "${CYAN}  From: media/RegisterCompounds/RegisterCompounds/*${NC}"
-        echo -e "${CYAN}  To:   RegisterCompounds/* (container root)${NC}"
-        echo -e "${CYAN}----------------------------------------${NC}"
-
-        SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/RegisterCompounds/RegisterCompounds/*?${SOURCE_SAS}"
-        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.blob.core.windows.net/${DEST_CONTAINER}/RegisterCompounds/?${DEST_SAS}"
-
-        echo -e "${YELLOW}  Copying nested RegisterCompounds contents...${NC}"
-        azcopy copy \
-            "$SOURCE_URL" \
-            "$DEST_URL" \
-            --recursive \
-            --skip-version-check \
-            --log-level=ERROR 2>/dev/null
-
-        if [ $? -ne 0 ]; then
-            echo -e "${RED}    Error copying RegisterCompounds${NC}"
-            echo -e "${YELLOW}    Attempting direct copy (source may not be nested)...${NC}"
-            SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_PATH}/RegisterCompounds/*?${SOURCE_SAS}"
-            azcopy copy \
-                "$SOURCE_URL" \
-                "$DEST_URL" \
-                --recursive \
-                --skip-version-check \
-                --log-level=ERROR 2>/dev/null
-        fi
-
-        echo -e "${GREEN}RegisterCompounds copied${NC}"
-        echo ""
-    fi
+    echo ""
 
     echo -e "${GREEN}========================================${NC}"
     echo -e "${GREEN}  Media Migration Complete!${NC}"
     echo -e "${GREEN}========================================${NC}"
     echo ""
     echo -e "${YELLOW}Next steps:${NC}"
-    echo "1. Verify the data: az storage blob list --container-name $DEST_CONTAINER --account-name $DEST_STORAGE_ACCOUNT"
+    echo "1. Verify the data: az storage blob list --container-name $DEST_CONTAINER --account-name $DEST_STORAGE_ACCOUNT --prefix compounds/"
     echo "2. Ensure Django is configured to use Azure Blob Storage (django-storages)"
     echo "3. Update AZURE_CONTAINER and DEFAULT_FILE_STORAGE settings if needed"
     echo ""
@@ -614,11 +546,27 @@ list_blobs() {
         exit 1
     fi
 
-    echo -e "${YELLOW}Blobs in $DEST_CONTAINER (container root):${NC}"
+    echo -e "${YELLOW}Blobs in $DEST_CONTAINER/compounds/:${NC}"
+    echo ""
+
+    # Count by subdirectory
+    echo -e "${CYAN}Blob counts by directory:${NC}"
     az storage blob list \
         --container-name "$DEST_CONTAINER" \
         --account-name "$DEST_STORAGE_ACCOUNT" \
         --account-key "$DEST_KEY" \
+        --prefix "compounds/" \
+        --query "[].name" -o tsv 2>/dev/null | \
+        sed 's|/[^/]*$||' | sort | uniq -c | sort -rn | head -20
+
+    echo ""
+    echo -e "${CYAN}Sample blobs:${NC}"
+    az storage blob list \
+        --container-name "$DEST_CONTAINER" \
+        --account-name "$DEST_STORAGE_ACCOUNT" \
+        --account-key "$DEST_KEY" \
+        --prefix "compounds/" \
+        --num-results 20 \
         --query "[].{Name:name, Size:properties.contentLength}" \
         -o table
 }
@@ -628,7 +576,7 @@ show_usage() {
     echo "Media Files Migration Script"
     echo ""
     echo "Migrates media files (registry, assay, construct database attachments)"
-    echo "from legacy File Share storage to new Blob storage."
+    echo "from legacy File Share storage to new Blob storage with path transformations."
     echo ""
     echo "Source (Azure File Share):"
     echo "  Storage Account: $SOURCE_STORAGE_ACCOUNT"
@@ -638,13 +586,22 @@ show_usage() {
     echo "Destination (Azure Blob Storage):"
     echo "  Storage Account: storprv* (auto-discovered)"
     echo "  Container: $DEST_CONTAINER"
-    echo "  Path: (container root - Django uses root, no media/ prefix)"
+    echo "  Target prefix: compounds/"
+    echo ""
+    echo "Path transformations:"
+    echo "  AssayCompounds/Experiments/*  -> compounds/assays/data/*"
+    echo "  AssayCompounds/Protocols/*    -> compounds/assays/protocols/*"
+    echo "  AssayCompounds/svg/*          -> compounds/assays/svg/*"
+    echo "  AssayCompounds/DataSeries/*   -> compounds/assays/plots/*"
+    echo "  RegisterCompounds/svg/*       -> compounds/registry/svg/*"
+    echo "  RegBatchQCFile_NCL-*          -> compounds/registry/qc/NCL-*"
+    echo "  ConstructDatabase/*           -> compounds/constructs/*"
     echo ""
     echo "Usage: $0 <command>"
     echo ""
     echo "Commands:"
-    echo "  check     Check source and destination (run this first)"
-    echo "  copy      Perform the migration"
+    echo "  check     Check source and destination, show path transformations"
+    echo "  copy      Perform the migration with path transformations"
     echo "  list      List blobs after migration (verification)"
     echo ""
     echo "Recommended workflow:"
