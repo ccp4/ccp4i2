@@ -7,7 +7,7 @@ const isDevelopment = process.env.NODE_ENV === "development";
 // Set the Content Security Policy header
 const csp = {
   defaultSrc: "'self'",
-  imgSrc: "'self' data: blob:",
+  imgSrc: "'self' data: blob: https://*.blob.core.windows.net",
   connectSrc:
     "'self' https://www.ebi.ac.uk https://www.uniprot.org https://pubmed.ncbi.nlm.nih.gov https://raw.githubusercontent.com/MonomerLibrary/monomers/master/ " +
     "https://login.microsoftonline.com https://graph.microsoft.com https://*.microsoftonline.com https://*.microsoft.com " +
