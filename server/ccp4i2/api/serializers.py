@@ -41,15 +41,11 @@ class ProjectTagSerializer(ModelSerializer):
 
 
 class ProjectListSerializer(ModelSerializer):
-    """Lightweight serializer for project lists with prefetched tags.
+    """Minimal serializer for project lists - optimized for large datasets.
 
-    Excludes 'directory' field to reduce response size - long paths repeated
-    across many projects add significant bytes. Directory is available in
-    detail view via ProjectSerializer.
+    Excludes 'directory' and 'tags' to keep response size manageable.
+    Tags can be fetched separately if needed for filtering/display.
     """
-
-    # Use nested serializer for tags - requires prefetch_related('tags') in ViewSet
-    tags = ProjectTagSerializer(many=True, read_only=True)
 
     class Meta:
         model = models.Project
@@ -59,7 +55,6 @@ class ProjectListSerializer(ModelSerializer):
             "name",
             "creation_time",
             "last_access",
-            "tags",
         ]
 
 
