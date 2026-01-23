@@ -7,8 +7,9 @@ import {
   useMediaQuery,
   useTheme,
   Box,
+  Tooltip,
 } from "@mui/material";
-import { MoreHoriz } from "@mui/icons-material";
+import { MoreHoriz, Home } from "@mui/icons-material";
 import EditMenu from "./edit-menu";
 import FileMenu from "./file-menu";
 import HelpMenu from "./help-menu";
@@ -22,6 +23,7 @@ import EditableTypography from "./editable-typography";
 import HistoryToolbar from "./history-toolbar";
 import { useRouter } from "next/navigation";
 import { TagsOfProject } from "./tags-of-project";
+import { isElectron } from "../utils/platform";
 
 export default function MenuBar() {
   const { projectId, jobId, devMode, setDevMode } = useCCP4i2Window();
@@ -97,9 +99,31 @@ export default function MenuBar() {
     } else console.log("window.electron is not available");
   }, []);
 
+  // Show Home button only in web deployments (not Electron)
+  const showHomeButton = !isElectron();
+
+  const handleHome = () => {
+    router.push("/");
+  };
+
   return (
     <AppBar position="static">
       <HistoryToolbar>
+        {/* Home button - only shown in web/Azure deployments */}
+        {showHomeButton && (
+          <Tooltip title="Home">
+            <IconButton
+              color="inherit"
+              onClick={handleHome}
+              aria-label="Home"
+              size="small"
+              sx={{ mr: 0.5 }}
+            >
+              <Home />
+            </IconButton>
+          </Tooltip>
+        )}
+
         {/* Always visible menus based on screen size */}
         {visible.includes("file") && <FileMenu />}
         {visible.includes("edit") && <EditMenu />}
