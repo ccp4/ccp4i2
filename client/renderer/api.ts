@@ -279,7 +279,11 @@ export function useApi() {
      * Pass null to skip fetching (conditional fetch pattern)
      */
     get<T>(endpoint: string | null, refreshInterval: number = 0) {
-      return useSWR<T>(getStringKey(endpoint), jsonFetcher, { refreshInterval });
+      return useSWR<T>(getStringKey(endpoint), jsonFetcher, {
+        refreshInterval,
+        dedupingInterval: 5000,  // Dedupe identical requests within 5 seconds
+        keepPreviousData: true,  // Keep showing old data while revalidating
+      });
     },
 
     /**

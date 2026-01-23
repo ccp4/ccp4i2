@@ -58,6 +58,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "django.middleware.gzip.GZipMiddleware",  # Compress large responses
     "corsheaders.middleware.CorsMiddleware",
     "ccp4i2.middleware.corp.CORPMiddleware",
     "django.middleware.common.CommonMiddleware",

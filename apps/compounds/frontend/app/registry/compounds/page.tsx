@@ -55,8 +55,11 @@ function CompoundsPageContent() {
   }, [targetFilter]);
 
   // Fetch compounds with optional target filter
-  const { data: compoundsResponse, isLoading, error } = api.get<PaginatedResponse<Compound>>(compoundsUrl);
-  const compounds = compoundsResponse?.results || [];
+  // Backend may return either paginated response (with results array) or plain array
+  const { data: compoundsResponse, isLoading, error } = api.get<PaginatedResponse<Compound> | Compound[]>(compoundsUrl);
+  const compounds = Array.isArray(compoundsResponse)
+    ? compoundsResponse
+    : (compoundsResponse?.results || []);
 
   // Log error for debugging - this helps identify if the large response is failing
   if (error) {
@@ -164,8 +167,8 @@ function CompoundsPageContent() {
             Compounds
           </Typography>
           <Typography color="text.secondary">
-            {compoundsResponse?.count !== undefined
-              ? `${compoundsResponse.count} compounds${selectedTargetName ? ` for ${selectedTargetName}` : ' registered'}`
+            {compounds.length > 0
+              ? `${compounds.length} compounds${selectedTargetName ? ` for ${selectedTargetName}` : ' registered'}`
               : 'Browse registered compounds'}
           </Typography>
         </Box>

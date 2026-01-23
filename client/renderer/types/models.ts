@@ -178,3 +178,13 @@ export const nullFile = {
   job: -1,
   job_param_name: "",
 };
+
+/**
+ * Standard Django REST Framework paginated response.
+ */
+export interface PaginatedResponse<T> {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T[];
+}

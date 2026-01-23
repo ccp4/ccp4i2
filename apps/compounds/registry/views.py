@@ -424,6 +424,14 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
     ordering_fields = ['reg_number', 'registered_at', 'molecular_weight']
     ordering = ['-reg_number']
 
+    def get_queryset(self):
+        """Optimize queryset with batch count annotation for list view."""
+        queryset = super().get_queryset()
+        if self.action == 'list':
+            # Annotate batch_count to avoid N+1 queries in list view
+            return queryset.annotate(batch_count=Count('batches'))
+        return queryset
+
     def get_serializer_class(self):
         if self.action == 'create':
             return CompoundCreateSerializer

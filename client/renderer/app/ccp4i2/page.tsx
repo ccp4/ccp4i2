@@ -8,7 +8,8 @@ import { Project } from "../../types/models";
 
 export default function ProjectsPage() {
   const api = useApi();
-  const { data: projects } = api.get<Project[]>("projects", 1000);
+  // Note: second param is refreshInterval, not timeout. Set to 0 to disable auto-refresh.
+  const { data: projects } = api.get<Project[]>("projects");
   const { data: task_tree } = api.get<any>(`task_tree/`);
 
   return (

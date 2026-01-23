@@ -172,7 +172,8 @@ class CompoundListSerializer(serializers.ModelSerializer):
     formatted_id = serializers.CharField(read_only=True)
     target_name = serializers.CharField(source='target.name', read_only=True)
     supplier_name = serializers.CharField(source='supplier.name', read_only=True)
-    batch_count = serializers.IntegerField(source='batches.count', read_only=True)
+    # Use annotated field from queryset (avoids N+1), falls back to count for non-list views
+    batch_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Compound
@@ -184,6 +185,12 @@ class CompoundListSerializer(serializers.ModelSerializer):
             'registered_at',
             'batch_count',
         ]
+
+    def get_batch_count(self, obj):
+        """Use annotated batch_count if available, otherwise compute."""
+        if hasattr(obj, 'batch_count'):
+            return obj.batch_count
+        return obj.batches.count()
 
 
 class CompoundDetailSerializer(serializers.ModelSerializer):

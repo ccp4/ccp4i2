@@ -71,9 +71,25 @@ class ProjectViewSet(ModelViewSet):
         - Logging is used extensively to capture errors and important events.
     """
 
-    queryset = models.Project.objects.prefetch_related('tags').all()
+    queryset = models.Project.objects.all()
     serializer_class = serializers.ProjectSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
+
+    def get_queryset(self):
+        """Optimize queryset based on action."""
+        queryset = super().get_queryset()
+        if self.action == 'list':
+            # List view: order by most recent first, no need for tags prefetch
+            return queryset.order_by('-last_access')
+        else:
+            # Detail view: include tags
+            return queryset.prefetch_related('tags')
+
+    def get_serializer_class(self):
+        """Use lightweight serializer for list view."""
+        if self.action == 'list':
+            return serializers.ProjectListSerializer
+        return serializers.ProjectSerializer
 
     def destroy(self, request, *args, **kwargs):
         try:
