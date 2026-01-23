@@ -44,6 +44,7 @@ SOURCE_FOLDERS=("CCP4I2_PROJECTS" "CCP4I2_NEW_PROJECTS")
 # Destination storage account (new private storage)
 # Will be determined dynamically - looks for storage account starting with 'storprv'
 DEST_SHARE="ccp4i2-projects"
+DEST_SUBDIR="CCP4I2_PROJECTS"
 
 # Get destination storage account dynamically
 get_dest_storage_account() {
@@ -199,6 +200,7 @@ check_clashes() {
         --share-name "$DEST_SHARE" \
         --account-name "$DEST_STORAGE_ACCOUNT" \
         --account-key "$DEST_KEY" \
+        --path "$DEST_SUBDIR" \
         --query "[?type=='dir'].name" -o tsv 2>/dev/null > "$DEST_DIRS" || true
 
     DEST_COUNT=$(wc -l < "$DEST_DIRS" | tr -d ' ')
@@ -242,7 +244,7 @@ check_clashes() {
         echo "  - $SOURCE_BASE_PATH/$folder: $count directories"
     done
     echo ""
-    echo "Destination: $DEST_STORAGE_ACCOUNT/$DEST_SHARE"
+    echo "Destination: $DEST_STORAGE_ACCOUNT/$DEST_SHARE/$DEST_SUBDIR"
     echo "  - Current directories: $DEST_COUNT"
     echo ""
     echo -e "${YELLOW}Run '$0 copy' to perform the migration${NC}"
@@ -308,10 +310,10 @@ do_copy() {
         echo -e "${CYAN}----------------------------------------${NC}"
 
         SOURCE_URL="https://${SOURCE_STORAGE_ACCOUNT}.file.core.windows.net/${SOURCE_SHARE}/${SOURCE_BASE_PATH}/${folder}/*?${SOURCE_SAS}"
-        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.file.core.windows.net/${DEST_SHARE}/?${DEST_SAS}"
+        DEST_URL="https://${DEST_STORAGE_ACCOUNT}.file.core.windows.net/${DEST_SHARE}/${DEST_SUBDIR}/?${DEST_SAS}"
 
         echo -e "${YELLOW}Source: $SOURCE_STORAGE_ACCOUNT/$SOURCE_SHARE/$SOURCE_BASE_PATH/$folder${NC}"
-        echo -e "${YELLOW}Dest:   $DEST_STORAGE_ACCOUNT/$DEST_SHARE${NC}"
+        echo -e "${YELLOW}Dest:   $DEST_STORAGE_ACCOUNT/$DEST_SHARE/$DEST_SUBDIR${NC}"
         echo ""
 
         # Run azcopy with progress
@@ -364,7 +366,7 @@ show_usage() {
     echo ""
     echo "Destination:"
     echo "  Storage Account: $DEST_STORAGE_ACCOUNT"
-    echo "  File Share: $DEST_SHARE"
+    echo "  File Share: $DEST_SHARE/$DEST_SUBDIR"
     echo ""
     echo "Usage: $0 <command>"
     echo ""
