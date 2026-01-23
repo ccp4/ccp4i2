@@ -22,6 +22,9 @@ param imageTagServer string = 'latest'
 @description('Resource naming prefix')
 param prefix string = 'ccp4i2-bicep'
 
+@description('Custom domain for the web app (optional)')
+param customDomain string = ''
+
 @description('Azure AD Client ID for frontend authentication')
 param aadClientId string = '386da83f-1bf4-4ad8-b742-79b600e2208b'
 
@@ -96,6 +99,11 @@ var serverInternalFqdn = '${serverAppName}.internal.${containerAppsEnvironment.p
 // Dynamic CORS origin using the Container Apps Environment's default domain
 // This avoids hardcoding region-specific URLs like 'whitecliff-258bc831.northeurope.azurecontainerapps.io'
 var webAppExternalFqdn = '${webAppName}.${containerAppsEnvironment.properties.defaultDomain}'
+
+// CORS origins including custom domain if provided
+var corsOrigins = empty(customDomain)
+  ? 'http://${webAppName},https://${webAppExternalFqdn}'
+  : 'http://${webAppName},https://${webAppExternalFqdn},https://${customDomain}'
 
 // Server Container App
 resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
@@ -267,7 +275,7 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             }
             {
               name: 'CORS_ALLOWED_ORIGINS'
-              value: 'http://${webAppName},https://${webAppExternalFqdn}'
+              value: corsOrigins
             }
             {
               name: 'CORS_ALLOW_CREDENTIALS'

@@ -187,6 +187,7 @@ az deployment group create \
                storageAccountName="$STORAGE_ACCOUNT_NAME" \
                platformAdminEmails="${PLATFORM_ADMIN_EMAILS:-}" \
                skipCcp4Storage=$SKIP_CCP4_STORAGE \
+               customDomain="${CUSTOM_DOMAIN:-}" \
   --name $APP_DEPLOYMENT_NAME \
   --mode Incremental
 
