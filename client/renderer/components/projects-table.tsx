@@ -52,15 +52,30 @@ interface CampaignInfo {
 }
 
 // Hook to fetch campaign info for projects (includes both parent and member campaigns)
+// Uses POST to avoid URL length limits with large numbers of projects
 function useProjectCampaigns(projectIds: number[]) {
-  const idsParam = projectIds.join(",");
+  // Use a stable key for SWR based on sorted IDs
+  const cacheKey = projectIds.length > 0
+    ? `project_campaigns:${projectIds.slice().sort((a, b) => a - b).join(",")}`
+    : null;
+
   const { data } = useSWR<Record<string, CampaignInfo>>(
-    projectIds.length > 0
-      ? `/api/proxy/ccp4i2/projectgroups/project_campaigns/?project_ids=${idsParam}&include_members=true`
-      : null,
-    async (url: string) => {
-      // Use apiFetch for authenticated requests (required in Azure deployment)
-      const response = await apiFetch(url);
+    cacheKey,
+    async () => {
+      // Use POST to send project IDs in body (avoids URL length limits)
+      const response = await apiFetch(
+        "/api/proxy/ccp4i2/projectgroups/project_campaigns/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            project_ids: projectIds,
+            include_members: true,
+          }),
+        }
+      );
       if (!response.ok) return {};
       return response.json();
     }

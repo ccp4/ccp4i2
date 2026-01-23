@@ -447,14 +447,20 @@ class ProjectGroupViewSet(ModelViewSet):
             logger.exception("Failed to set parent for group %s", pk, exc_info=e)
             return api_error(str(e), status=500)
 
-    @action(detail=False, methods=["get"], permission_classes=[])
+    @action(detail=False, methods=["get", "post"], permission_classes=[])
     def project_campaigns(self, request):
         """
         Get campaign membership info for multiple projects.
 
-        Query params:
-            - project_ids: Comma-separated list of project IDs
-            - include_members: If 'true', also include campaigns where project is a member
+        For GET requests (legacy, limited by URL length):
+            Query params:
+                - project_ids: Comma-separated list of project IDs
+                - include_members: If 'true', also include campaigns where project is a member
+
+        For POST requests (preferred for large numbers of projects):
+            Request body (JSON):
+                - project_ids: List of project IDs
+                - include_members: Boolean, whether to include member campaigns
 
         Returns:
             Response: Dict mapping project_id to campaign info.
@@ -465,13 +471,22 @@ class ProjectGroupViewSet(ModelViewSet):
                 - membership_type: 'parent' or 'member'
         """
         try:
-            project_ids_param = request.query_params.get("project_ids", "")
-            include_members = request.query_params.get("include_members", "false").lower() == "true"
+            # Handle both GET (query params) and POST (request body)
+            if request.method == "POST":
+                project_ids = request.data.get("project_ids", [])
+                include_members = request.data.get("include_members", False)
+                # Handle case where project_ids might be passed as comma-separated string in POST too
+                if isinstance(project_ids, str):
+                    project_ids = [int(pid) for pid in project_ids.split(",") if pid]
+            else:
+                project_ids_param = request.query_params.get("project_ids", "")
+                include_members = request.query_params.get("include_members", "false").lower() == "true"
+                if not project_ids_param:
+                    return Response({})
+                project_ids = [int(pid) for pid in project_ids_param.split(",") if pid]
 
-            if not project_ids_param:
+            if not project_ids:
                 return Response({})
-
-            project_ids = [int(pid) for pid in project_ids_param.split(",") if pid]
 
             result = {}
 
