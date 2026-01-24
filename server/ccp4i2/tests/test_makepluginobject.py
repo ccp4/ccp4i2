@@ -62,11 +62,9 @@ class TestMakePluginObject:
         # Create multiple sub-plugins (using plugins with minimal dependencies)
         plugin1 = parent.makePluginObject("pointless")
         plugin2 = parent.makePluginObject("aimless")
-        plugin3 = parent.makePluginObject("unique")
 
         assert plugin1 is not None and plugin1.TASKNAME == "pointless"
         assert plugin2 is not None and plugin2.TASKNAME == "aimless"
-        # unique plugin may not exist - just check it doesn't crash
         # The important thing is that we can call makePluginObject multiple times
 
     def test_makepluginobject_containers_initialized(self):

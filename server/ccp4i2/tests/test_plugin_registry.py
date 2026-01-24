@@ -79,7 +79,7 @@ class TestPluginRegistry:
         tm = TASKMANAGER()
 
         # These plugins have minimal dependencies and should load
-        test_plugins = ['pointless', 'unique', 'mtzheader']
+        test_plugins = ['pointless', 'mtzheader']
 
         loaded_count = 0
         for plugin_name in test_plugins:
