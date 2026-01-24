@@ -72,7 +72,7 @@ class CProcessManager:
     """
 
     # Singleton instance
-    _instance: Optional[CProcessManager] = None
+    _instance: Optional["CProcessManager"] = None
 
     # Error codes matching original CProcessManager
     ERROR_CODES = {
