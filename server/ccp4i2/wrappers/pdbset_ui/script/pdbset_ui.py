@@ -10,7 +10,6 @@ class pdbset_ui(CPluginScript):
     TASKCOMMAND = 'pdbset'
     TASKVERSION= 0.0
     COMLINETEMPLATE = None
-    COMTEMPLATE = None
 
     def makeCommandAndScript(self):
 

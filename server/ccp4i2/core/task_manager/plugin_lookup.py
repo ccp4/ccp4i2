@@ -23,7 +23,6 @@ except Exception as e:
 
 TASKATTRIBUTES = [
     "COMTEMPLATE",
-    "COMTEMPLATEFILE",
     "TASKMODULE",
     "TASKTITLE",
     "TASKNAME",

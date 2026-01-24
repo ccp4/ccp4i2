@@ -13,8 +13,6 @@ class mrparse_simple(CPluginScript):
     TASKNAME = 'mrparse_simple'               # Task name - same as class name
     TASKCOMMAND = 'mrparse'            # The command to run the executable
     TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'hlasimpk@liverpool.ac.uk'

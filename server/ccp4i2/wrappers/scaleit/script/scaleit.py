@@ -17,7 +17,6 @@ class scaleit(CPluginScript):
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     TASKCOMMAND = 'scaleit'   # The command to run the executable
     COMLINETEMPLATE = None 
-    COMTEMPLATE = None
 
     ERROR_CODES = {  200 : { 'description' : 'Too few datasets defined' },
                      201 : { 'description' : 'Inconsistent cells between datasets'}

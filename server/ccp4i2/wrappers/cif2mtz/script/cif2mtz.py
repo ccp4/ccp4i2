@@ -8,7 +8,6 @@ class cif2mtz(x2mtz.x2mtz):
     TASKVERSION= 0.0               # Version of this plugin
     TASKCOMMAND = 'cif2mtz'   # The command to run the executable
     COMLINETEMPLATE = None 
-    COMTEMPLATE = None
 
     ERROR_CODES = { 301 : { 'description' : 'No output file found after cif2mtz conversion' },
                     302 : { 'description' : 'Output from cif2mtz does not contain recognised reflection or FreeR set data' }

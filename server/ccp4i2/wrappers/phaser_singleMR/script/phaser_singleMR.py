@@ -11,8 +11,6 @@ class phaser_singleMR(CPluginScript):
     TASKNAME = 'phaser_singleMR'              # Task name - same as class name
     TASKCOMMAND = 'phaser'                    # The command to run the executable
     TASKVERSION = 1.0                         # plugin version
-    COMTEMPLATE = None
-    COMTEMPLATEFILE = None
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'   #  I think this is mostly ok now

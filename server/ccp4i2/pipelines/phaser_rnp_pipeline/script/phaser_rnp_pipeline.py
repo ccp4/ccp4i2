@@ -9,8 +9,6 @@ class phaser_rnp_pipeline(phaser_pipeline.phaser_pipeline):
     TASKNAME = 'phaser_rnp_pipeline'                                  # Task name - should be same as class name
     TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
     
     ERROR_CODES = {  200 : { 'description' : 'Phaser exited with error statut' }, 202 : { 'description' : 'Failed in harvest operation' }, 203 : { 'description' : 'Columns not present' }, 204 : { 'description' : 'Failed in plugin:',205 : { 'description' : 'Failed in pointless reindex operation' }, }, }
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']

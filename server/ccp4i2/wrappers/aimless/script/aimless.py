@@ -10,7 +10,6 @@ class aimless(CPluginScript):
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     TASKCOMMAND = 'aimless'   # The command to run the executable
     COMLINETEMPLATE = None
-    COMTEMPLATE = None
 
     ERROR_CODES = { 201 : { 'description' : 'Aimless program failed?  No output reflection files found. See log file.' }
                     }

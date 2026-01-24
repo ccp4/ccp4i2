@@ -7,8 +7,6 @@ class dials_rlattice(CPluginScript):
     TASKNAME = 'dials_rlattice'              # Task name - same as class name
     TASKCOMMAND = 'dials.reciprocal_lattice_viewer'    # The command to run the executable
     TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 

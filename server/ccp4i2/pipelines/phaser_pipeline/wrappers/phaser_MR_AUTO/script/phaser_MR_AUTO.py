@@ -61,8 +61,6 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
     TASKNAME = 'phaser_MR_AUTO'                          # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
     RUNEXTERNALPROCESS=False
     INTERRUPTABLE=True
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']

@@ -4,7 +4,6 @@
     "class": "import_serial",
     "module_file": "../../wrappers/import_serial/script/import_serial.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_entry",
     "TASKTITLE": "Import Serial Core",
     "TASKNAME": "import_serial",
@@ -271,7 +270,6 @@
     "class": "AUSPEX",
     "module_file": "../../wrappers/AUSPEX/script/auspex_wrapper.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_reduction",
     "TASKTITLE": "AUSPEX",
     "TASKNAME": "AUSPEX",
@@ -355,67 +353,6 @@
       },
       "202": {
         "description": "Failed applying selection ot PDB file"
-      }
-    }
-  },
-  "unique": {
-    "module": "ccp4i2.wrappers.unique.script.unique",
-    "class": "unique",
-    "module_file": "../../wrappers/unique/script/unique.py",
-    "COMTEMPLATE": "1 SYMM $SPACEGROUPCELL.spaceGroup.quote\n1 CELL $SPACEGROUPCELL.cell.a $SPACEGROUPCELL.cell.b $SPACEGROUPCELL.cell.c $SPACEGROUPCELL.cell.alpha $SPACEGROUPCELL.cell.beta $SPACEGROUPCELL.cell.gamma  \n1 RESO $RESOLUTION\n$TITLE TITLE $TITLE\n1 END",
-    "TASKMODULE": null,
-    "TASKTITLE": "Create dummy dataset",
-    "TASKNAME": "unique",
-    "TASKVERSION": 0.1,
-    "ASYNCHRONOUS": false,
-    "ERROR_CODES": {
-      "200": {
-        "description": "Error merging MTZ files"
-      },
-      "201": {
-        "description": "Invalid miniMtzsIn specification"
-      },
-      "202": {
-        "description": "File object has no CONTENT_SIGNATURE_LIST"
-      },
-      "203": {
-        "description": "File object has no path set"
-      },
-      "204": {
-        "description": "MTZ file not found"
-      },
-      "205": {
-        "description": "File object not found in inputData or outputData"
-      },
-      "206": {
-        "description": "Invalid contentFlag for file type"
-      },
-      "207": {
-        "description": "Invalid item format in miniMtzsIn"
-      },
-      "208": {
-        "description": "Conversion method not found on file object"
-      },
-      "209": {
-        "description": "Conversion to requested format not yet implemented"
-      },
-      "210": {
-        "description": "Error during MTZ file conversion"
-      },
-      "300": {
-        "description": "Input MTZ file not found for split operation"
-      },
-      "301": {
-        "description": "miniMtzsOut and programColumnNames length mismatch"
-      },
-      "302": {
-        "description": "Output object not found in container.outputData"
-      },
-      "303": {
-        "description": "Output object has no path set"
-      },
-      "304": {
-        "description": "Error splitting MTZ file"
       }
     }
   },
@@ -790,7 +727,6 @@
     "class": "ProvideSequence",
     "module_file": "../../wrappers/ProvideSequence/script/ProvideSequence.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "ProvideSequence",
@@ -1048,7 +984,6 @@
     "class": "import_mosflm",
     "module_file": "../../wrappers/import_mosflm/script/import_mosflm.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "import_mosflm",
@@ -1139,7 +1074,6 @@
     "class": "AlternativeImportXIA2",
     "module_file": "../../wrappers/AlternativeImportXIA2/script/AlternativeImportXIA2.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "AlternativeImportXIA2",
@@ -1350,7 +1284,6 @@
     "class": "acorn",
     "module_file": "../../wrappers/acorn/script/acorn.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "density_modification",
     "TASKTITLE": "Acorn",
     "TASKNAME": "acorn",
@@ -1680,7 +1613,6 @@
     "class": "pairef",
     "module_file": "../../wrappers/pairef/script/pairef.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "refinement",
     "TASKTITLE": "Pairef",
     "TASKNAME": "pairef",
@@ -1699,7 +1631,6 @@
     "class": "ProvideAlignment",
     "module_file": "../../wrappers/ProvideAlignment/script/ProvideAlignment.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "ProvideAlignment",
@@ -1723,7 +1654,6 @@
     "class": "dials_rlattice",
     "module_file": "../../wrappers/dials_rlattice/script/dials_rlattice.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_processing",
     "TASKTITLE": "Dials_rLattice",
     "TASKNAME": "dials_rlattice",
@@ -2005,7 +1935,6 @@
     "class": "cad_copy_column",
     "module_file": "../../wrappers/cad_copy_column/script/cad_copy_column.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Copy an MTZ column between files",
     "TASKNAME": "cad_copy_column",
@@ -2171,7 +2100,6 @@
     "class": "buster",
     "module_file": "../../wrappers/buster/script/buster.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "refinement",
     "TASKTITLE": "Refinement with Buster (Global Phasing Limited)",
     "TASKNAME": "buster",
@@ -2498,7 +2426,6 @@
     "class": "phaser_singleMR",
     "module_file": "../../wrappers/phaser_singleMR/script/phaser_singleMR.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "molecular_replacement",
     "TASKTITLE": "Single Atom MR",
     "TASKNAME": "phaser_singleMR",
@@ -2678,7 +2605,6 @@
     "class": "findmyseq",
     "module_file": "../../wrappers/findmyseq/script/findmyseq.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "bioinformatics",
     "TASKTITLE": "Find My Sequence",
     "TASKNAME": "findmyseq",
@@ -2734,7 +2660,6 @@
     "class": "baverage",
     "module_file": "../../wrappers/baverage/script/baverage.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "wrappers",
     "TASKTITLE": "Average B over main and side chain atoms",
     "TASKNAME": "baverage",
@@ -2922,7 +2847,6 @@
     "class": "parrot",
     "module_file": "../../wrappers/parrot/script/parrot.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "density_modification",
     "TASKTITLE": "Parrot",
     "TASKNAME": "parrot",
@@ -3067,7 +2991,6 @@
     "class": "shelxeMR",
     "module_file": "../../wrappers/shelxeMR/script/shelxeMR.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "model_building",
     "TASKTITLE": "ShelxeMR",
     "TASKNAME": "shelxeMR",
@@ -3285,7 +3208,6 @@
     "class": "dials_image",
     "module_file": "../../wrappers/dials_image/script/dials_image.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_processing",
     "TASKTITLE": "Dials_image",
     "TASKNAME": "dials_image",
@@ -3439,7 +3361,6 @@
     "class": "mrparse",
     "module_file": "../../wrappers/mrparse/script/mrparse_wrapper.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "bioinformatics",
     "TASKTITLE": "mrparse",
     "TASKNAME": "mrparse",
@@ -3790,7 +3711,6 @@
     "class": "mosflm",
     "module_file": "../../wrappers/mosflm/script/mosflm.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Run mosflm and capture output",
     "TASKNAME": "mosflm",
@@ -4120,7 +4040,6 @@
     "class": "mtzutils",
     "module_file": "../../wrappers/mtzutils/script/mtzutils.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Add or delete MTZ columns",
     "TASKNAME": "mtzutils",
@@ -4324,7 +4243,6 @@
     "class": "ProvideTLS",
     "module_file": "../../wrappers/ProvideTLS/script/ProvideTLS.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "ProvideTLS",
@@ -5039,7 +4957,6 @@
     "class": "tableone",
     "module_file": "../../pipelines/tableone/script/tableone.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "test",
     "TASKTITLE": "Generate Table One",
     "TASKNAME": "tableone",
@@ -5102,7 +5019,6 @@
     "class": "phaser_MR_FRF",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_FRF/script/phaser_MR_FRF.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Rotation function - PHASER",
     "TASKNAME": "phaser_MR_FRF",
@@ -5123,7 +5039,6 @@
     "class": "phaser_EP_LLG",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_EP_LLG/script/phaser_EP_LLG.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_EP_LLG",
@@ -5151,7 +5066,6 @@
     "class": "phaser_MR",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR/script/phaser_MR.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_MR",
@@ -5189,7 +5103,6 @@
     "class": "phaser_MR_PAK",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_PAK/script/phaser_MR_PAK.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Packing function - PHASER",
     "TASKNAME": "phaser_MR_PAK",
@@ -5210,7 +5123,6 @@
     "class": "phaser_MR_RNP",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_RNP/script/phaser_MR_RNP.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_MR_RNP",
@@ -5233,7 +5145,6 @@
     "class": "phaser_MR_FTF",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_FTF/script/phaser_MR_FTF.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Translation function - PHASER",
     "TASKNAME": "phaser_MR_FTF",
@@ -5254,7 +5165,6 @@
     "class": "phaser_EP_AUTO",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_EP_AUTO/script/phaser_EP_AUTO.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_EP_AUTO",
@@ -5275,7 +5185,6 @@
     "class": "phaser_MR_AUTO",
     "module_file": "../../pipelines/phaser_pipeline/wrappers/phaser_MR_AUTO/script/phaser_MR_AUTO.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_MR_AUTO",
@@ -5301,7 +5210,6 @@
     "class": "phaser_pipeline",
     "module_file": "../../pipelines/phaser_pipeline/script/phaser_pipeline.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_pipeline",
@@ -5357,7 +5265,6 @@
     "class": "phaser_EP",
     "module_file": "../../pipelines/phaser_ep/script/phaser_EP.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_EP",
@@ -5760,7 +5667,6 @@
     "class": "phaser_rnp_pipeline",
     "module_file": "../../pipelines/phaser_rnp_pipeline/script/phaser_rnp_pipeline.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_rnp_pipeline",
@@ -5795,7 +5701,6 @@
     "class": "pisa_analyse",
     "module_file": "../../pipelines/pisapipe/wrappers/pisa_analyse/script/pisa_analyse.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Structure analysis with Pisa",
     "TASKNAME": "pisa_analyse",
@@ -5857,7 +5762,6 @@
     "class": "pisa_list",
     "module_file": "../../pipelines/pisapipe/wrappers/pisa_list/script/pisa_list.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Structure analysis with Pisa",
     "TASKNAME": "pisa_list",
@@ -5919,7 +5823,6 @@
     "class": "pisa_xml",
     "module_file": "../../pipelines/pisapipe/wrappers/pisa_xml/script/pisa_xml.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": "Structure analysis with Pisa",
     "TASKNAME": "pisa_xml",
@@ -5981,7 +5884,6 @@
     "class": "pisapipe",
     "module_file": "../../pipelines/pisapipe/script/pisapipe.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "test",
     "TASKTITLE": " Structure analysis with Pisa",
     "TASKNAME": "pisapipe",
@@ -6120,7 +6022,6 @@
     "class": "mrparse_simple",
     "module_file": "../../pipelines/dr_mr_modelbuild_pipeline/wrappers/mrparse_simple/script/mrparse_simple_wrapper.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "developer_tools",
     "TASKTITLE": "mrparse_simple",
     "TASKNAME": "mrparse_simple",
@@ -6291,7 +6192,6 @@
     "class": "import_serial_pipe",
     "module_file": "../../pipelines/import_serial_pipe/script/import_serial_pipe.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": "data_entry",
     "TASKTITLE": "Import Serial Pipeline",
     "TASKNAME": "import_serial_pipe",
@@ -6386,7 +6286,6 @@
     "class": "phaser_simple",
     "module_file": "../../pipelines/phaser_simple/script/phaser_simple.py",
     "COMTEMPLATE": null,
-    "COMTEMPLATEFILE": null,
     "TASKMODULE": null,
     "TASKTITLE": null,
     "TASKNAME": "phaser_simple",

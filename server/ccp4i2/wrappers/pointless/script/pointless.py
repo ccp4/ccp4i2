@@ -7,7 +7,6 @@ class pointless(CPluginScript):
     TASKVERSION= 0.0               # Version of this plugin
     TASKCOMMAND = 'pointless'   # The command to run the executable
     COMLINETEMPLATE = None 
-    COMTEMPLATE = None  
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 

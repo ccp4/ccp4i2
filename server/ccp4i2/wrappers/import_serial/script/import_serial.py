@@ -10,8 +10,6 @@ class import_serial(CPluginScript):
     TASKNAME = 'import_serial'        # Task name - same as class name
     TASKCOMMAND = 'import_serial'     # The command to run the executable
     TASKVERSION = 1.1                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
     MAINTAINER = 'martin.maly@soton.ac.uk'
 
     def __init__(self, *args, **kwargs):

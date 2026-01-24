@@ -15,8 +15,6 @@ class pisa_xml(CPluginScript):
     TASKNAME = 'pisa_xml'                                  # Task name - should be same as class name
     TASKCOMMAND = 'pisa'                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
 
     def process(self):
         self.xmlroot = etree.Element('pisa_xml')

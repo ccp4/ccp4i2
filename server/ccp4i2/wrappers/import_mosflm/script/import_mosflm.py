@@ -7,8 +7,6 @@ class import_mosflm(CPluginScript):
     TASKNAME = 'import_mosflm'                                  # Task name - should be same as class name
     TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     '''

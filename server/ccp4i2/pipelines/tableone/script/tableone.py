@@ -21,8 +21,6 @@ class tableone(CPluginScript):
     TASKNAME = 'tableone'                     # Task name - same as class name
     TASKCOMMAND = 'xia2.merging_statistics'   # The command to run the executable - there is more than one here.
     TASKVERSION = 1.0                         # plugin version
-    COMTEMPLATE = None
-    COMTEMPLATEFILE = None
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'

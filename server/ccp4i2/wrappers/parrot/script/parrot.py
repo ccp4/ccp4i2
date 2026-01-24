@@ -11,8 +11,6 @@ class parrot(CPluginScript):
     TASKNAME = 'parrot'                                 # Task name - should be same as class name
     TASKCOMMAND = 'cparrot'                             # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
     PERFORMANCECLASS = 'CExpPhasPerformance'             # Only FOM is relevent
     MAINTAINER = 'kevin.cowtan@york.ac.uk'
 

@@ -4,7 +4,7 @@ import shutil
 
 from lxml import etree
 
-from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -14,8 +14,6 @@ class shelxeMR(CPluginScript):
     TASKNAME = 'shelxeMR'              # Task name - same as class name
     TASKCOMMAND = 'shelxe'             # The command to run the executable
     TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
     PERFORMANCECLASS = 'CExpPhasPerformance'
     filecaught = False
 

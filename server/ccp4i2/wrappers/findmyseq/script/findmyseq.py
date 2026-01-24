@@ -13,8 +13,6 @@ class findmyseq(CPluginScript):
     TASKNAME = 'findmyseq'            # Task name - same as class name
     TASKCOMMAND = 'findmysequence'    # executable
     TASKVERSION = 1.0                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
     WHATNEXT = ['modelcraft']         # after ?
     PERFORMANCECLASS = 'CRefinementPerformance'
     MAINTAINER = 'kyle.stevenson@stfc.ac.uk'

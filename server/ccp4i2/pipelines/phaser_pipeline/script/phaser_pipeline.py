@@ -11,8 +11,6 @@ class phaser_pipeline(CPluginScript):
     TASKNAME = 'phaser_pipeline'                                  # Task name - should be same as class name
     TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
     PERFORMANCECLASS = 'CRefinementPerformance'
     SEPARATEDATA=True
     INTERRUPTABLE=True

@@ -12,8 +12,6 @@ class pairef(CPluginScript):
     TASKNAME = 'pairef'               # Task name - same as class name
     TASKCOMMAND = 'pairef'            # The command to run the executable
     TASKVERSION = 1.1                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
     PERFORMANCECLASS = 'CPairefPerformance'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     

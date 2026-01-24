@@ -10,8 +10,6 @@ class phaser_EP(CPluginScript):
     TASKNAME = 'phaser_EP'                                  # Task name - should be same as class name
     TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
 
     ERROR_CODES = {
         201: {'description': 'ShelxCD sub-job failed'},

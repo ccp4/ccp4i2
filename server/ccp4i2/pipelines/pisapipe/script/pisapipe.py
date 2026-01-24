@@ -10,9 +10,6 @@ class pisapipe(CPluginScript):
     TASKNAME = 'pisapipe'                                  # Task name - should be same as class name
     TASKCOMMAND = ''                                     # The command to run the executable
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
-
 
     def process(self):
         identifier = str(self.container.inputData.PDBIN.dbFileId)

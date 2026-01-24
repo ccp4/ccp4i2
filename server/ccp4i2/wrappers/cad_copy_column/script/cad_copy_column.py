@@ -8,8 +8,6 @@ class cad_copy_column(CPluginScript):
     TASKNAME = 'cad_copy_column'   # Task name - should be same as class name
     TASKCOMMAND = 'cad'            # The command to run the executable
     TASKVERSION= 0.0               # Version of this plugin
-    COMTEMPLATE = None             # The program com file template
-    COMTEMPLATEFILE = None         # Name of file containing com file template
 
     def makeCommandAndScript(self):
 

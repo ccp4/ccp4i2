@@ -10,8 +10,6 @@ class arp_warp_classic(CPluginScript):
     TASKTITLE = 'ARP/WARP classic'
     TASKNAME = 'arp_warp_classic'
     TASKVERSION = 0.0
-    COMTEMPLATE = None
-    COMTEMPLATEFILE = None
     MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
 
     TASKHOME = os.path.join(CCP4Utils.getCCP4I2Dir(), 'wrappers', 'arp_warp_classic')

@@ -13,8 +13,6 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
     TASKNAME = 'phaser_MR_FRF'                                  # Task name - should be same as class name
     TASKTITLE='Rotation function - PHASER'
     TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
     RUNEXTERNALPROCESS=False
     WHATNEXT = ['phaser_expert']
 

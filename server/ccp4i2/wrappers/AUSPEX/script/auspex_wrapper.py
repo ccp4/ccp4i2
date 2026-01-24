@@ -11,8 +11,6 @@ class AUSPEX(CPluginScript):
     TASKNAME = 'AUSPEX'              # Task name - same as class name
     TASKCOMMAND = 'auspex'             # The command to run the executable
     TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Andrea.Thorn@web.de'

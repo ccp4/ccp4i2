@@ -7,7 +7,6 @@ class baverage(CPluginScript):
     TASKNAME = 'baverage'
     TASKCOMMAND = 'baverage'
     TASKVERSION= 0.0
-    COMTEMPLATEFILE = None
 
     def makeCommandAndScript(self):
       inp = self.container.inputData
