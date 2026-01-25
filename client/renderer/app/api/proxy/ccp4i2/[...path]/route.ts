@@ -186,6 +186,8 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
       const headers = new Headers();
       headers.set('Content-Type', 'application/json');
       headers.set('Content-Length', String(data.byteLength));
+      // CORP header allows loading from pages with COEP: require-corp (Moorhen)
+      headers.set('Cross-Origin-Resource-Policy', 'cross-origin');
       return new NextResponse(data, {
         status: response.status,
         headers,
@@ -203,6 +205,8 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
         responseHeaders.set(key, value);
       }
     });
+    // CORP header allows loading from pages with COEP: require-corp (Moorhen)
+    responseHeaders.set('Cross-Origin-Resource-Policy', 'cross-origin');
 
     return new NextResponse(response.body, {
       status: response.status,
