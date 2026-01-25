@@ -31,6 +31,7 @@ import { AssayCard } from '@/components/compounds/AssayCard';
 import { ProjectCard } from '@/components/compounds/ProjectCard';
 import { AddAssayMenu } from '@/components/compounds/AddAssayMenu';
 import { AggregationTable } from '@/components/compounds/AggregationTable';
+import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
@@ -191,16 +192,13 @@ export default function TargetDashboardPage({ params }: PageProps) {
         {/* Branding image */}
         {target?.image ? (
           <Box sx={{ position: 'relative', mb: 2 }}>
-            <Box
-              component="img"
+            <AuthenticatedImage
               src={target.image}
               alt={`${target.name} banner`}
-              sx={{
-                width: '100%',
-                maxHeight: 200,
-                objectFit: 'cover',
-                borderRadius: 1,
-              }}
+              width="100%"
+              height={200}
+              objectFit="cover"
+              sx={{ borderRadius: 1 }}
             />
             <Tooltip title={canContribute ? "Remove image" : "Requires Contributor or Admin operating level"}>
               <span style={{ position: 'absolute', top: 8, right: 8 }}>

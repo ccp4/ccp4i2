@@ -1,8 +1,9 @@
 'use client';
 
-import { Box, Card, CardActionArea, CardContent, CardMedia, Chip, Typography, Badge } from '@mui/material';
+import { Box, Card, CardActionArea, CardContent, Chip, Typography } from '@mui/material';
 import { Science, Biotech, FiberNew } from '@mui/icons-material';
 import { Target } from '@/types/compounds/models';
+import { AuthenticatedImage } from './AuthenticatedImage';
 
 interface TargetCardProps {
   target: Target;
@@ -69,12 +70,12 @@ export function TargetCard({ target, onClick }: TargetCardProps) {
       <CardActionArea onClick={onClick} sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}>
         {/* Target image or placeholder */}
         {target.image ? (
-          <CardMedia
-            component="img"
-            height={120}
-            image={target.image}
+          <AuthenticatedImage
+            src={target.image}
             alt={target.name}
-            sx={{ objectFit: 'cover' }}
+            width="100%"
+            height={120}
+            objectFit="cover"
           />
         ) : (
           <Box
