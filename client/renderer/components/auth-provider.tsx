@@ -2,7 +2,7 @@
 import { ReactNode, useEffect, useState } from "react";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
-import { setTokenGetter, setEmailGetter, clearTokenGetter } from "../utils/auth-token";
+import { setTokenGetter, setEmailGetter, setLogoutHandler, clearTokenGetter } from "../utils/auth-token";
 
 const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
 const tenantId = process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
@@ -82,6 +82,7 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         // Set up the token and email getters for API calls
         setTokenGetter(getApiAccessToken);
         setEmailGetter(getAccountEmail);
+        setLogoutHandler(() => pca.logoutRedirect());
         setInitialized(true);
       })
       .catch((error) => {

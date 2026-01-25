@@ -11,8 +11,6 @@ import {
   Divider,
   Tooltip,
   Chip,
-  Select,
-  SelectChangeEvent,
   Typography,
 } from '@mui/material';
 import {
@@ -93,7 +91,7 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
     availableLevels,
     canContribute,
     setOperatingLevel,
-    isLoading,
+    logout,
   } = useAuth();
 
   const [userMenuAnchor, setUserMenuAnchor] = useState<null | HTMLElement>(null);
@@ -101,9 +99,8 @@ export function PageHeader({ breadcrumbs, hideActions = false }: PageHeaderProps
   const [isChangingRole, setIsChangingRole] = useState(false);
 
   const handleLogout = () => {
-    // Handled by parent app in production
     handleUserMenuClose();
-    // In integrated mode, this would call the MSAL logout
+    logout();
   };
 
   const handleUserMenuOpen = (event: React.MouseEvent<HTMLElement>) => {

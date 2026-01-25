@@ -48,6 +48,8 @@ interface AuthContextValue {
   setOperatingLevel: (level: UserRole) => Promise<void>;
   /** Refresh user data */
   refreshUser: () => Promise<void>;
+  /** Sign out the user (redirects to login) */
+  logout: () => void;
 }
 
 // Default context for server-side rendering and initial state
@@ -61,6 +63,7 @@ const defaultContext: AuthContextValue = {
   canAdminister: true,
   setOperatingLevel: async () => {},
   refreshUser: async () => {},
+  logout: () => {},
 };
 
 const AuthContext = createContext<AuthContextValue>(defaultContext);
@@ -71,12 +74,25 @@ const AuthContext = createContext<AuthContextValue>(defaultContext);
 
 // Try to import auth helpers from ccp4i2 client (when integrated)
 let getAccessToken: () => Promise<string | null>;
+let performLogout: () => void;
 
 try {
   const authModule = require('../../utils/auth-token');
   getAccessToken = authModule.getAccessToken;
+  performLogout = authModule.logout || (() => {
+    // Fallback: redirect to root which will trigger re-auth
+    if (typeof window !== 'undefined') {
+      window.location.href = '/';
+    }
+  });
 } catch {
   getAccessToken = async () => null;
+  performLogout = () => {
+    // In standalone mode, just redirect to root
+    if (typeof window !== 'undefined') {
+      window.location.href = '/';
+    }
+  };
 }
 
 /**
@@ -245,6 +261,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
     canAdminister,
     setOperatingLevel,
     refreshUser,
+    logout: performLogout,
   };
 
   return (
