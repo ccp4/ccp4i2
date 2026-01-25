@@ -1,9 +1,55 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Box, Skeleton } from '@mui/material';
 import { BrokenImage } from '@mui/icons-material';
 import { authFetch } from '@/lib/compounds/api';
+
+// Module-level cache for blob URLs to survive component remounts (e.g., virtual scrolling)
+// Key: source URL, Value: { blobUrl, refCount }
+const blobCache = new Map<string, { blobUrl: string; refCount: number }>();
+
+// Cache cleanup: remove entries after 5 minutes of no usage
+const CACHE_TTL_MS = 5 * 60 * 1000;
+const cacheTimers = new Map<string, NodeJS.Timeout>();
+
+function acquireBlobUrl(src: string, blobUrl: string): void {
+  const existing = blobCache.get(src);
+  if (existing) {
+    existing.refCount++;
+    // Clear any pending cleanup timer
+    const timer = cacheTimers.get(src);
+    if (timer) {
+      clearTimeout(timer);
+      cacheTimers.delete(src);
+    }
+  } else {
+    blobCache.set(src, { blobUrl, refCount: 1 });
+  }
+}
+
+function releaseBlobUrl(src: string): void {
+  const entry = blobCache.get(src);
+  if (!entry) return;
+
+  entry.refCount--;
+  if (entry.refCount <= 0) {
+    // Schedule cleanup after TTL (allows remounting without refetch)
+    const timer = setTimeout(() => {
+      const current = blobCache.get(src);
+      if (current && current.refCount <= 0) {
+        URL.revokeObjectURL(current.blobUrl);
+        blobCache.delete(src);
+      }
+      cacheTimers.delete(src);
+    }, CACHE_TTL_MS);
+    cacheTimers.set(src, timer);
+  }
+}
+
+function getCachedBlobUrl(src: string): string | null {
+  return blobCache.get(src)?.blobUrl ?? null;
+}
 
 interface AuthenticatedImageProps {
   /** URL to fetch (must be an authenticated endpoint) */
@@ -47,6 +93,8 @@ export function AuthenticatedImage({
   const [blobUrl, setBlobUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  // Track which src we acquired from cache for cleanup
+  const acquiredSrcRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!src) {
@@ -56,10 +104,20 @@ export function AuthenticatedImage({
     }
 
     let isMounted = true;
-    let objectUrl: string | null = null;
 
     const fetchImage = async () => {
       try {
+        // Check cache first (handles virtual scrolling remounts)
+        const cached = getCachedBlobUrl(src);
+        if (cached) {
+          acquireBlobUrl(src, cached);
+          acquiredSrcRef.current = src;
+          setBlobUrl(cached);
+          setLoading(false);
+          onLoad?.();
+          return;
+        }
+
         setLoading(true);
         setError(false);
 
@@ -75,8 +133,10 @@ export function AuthenticatedImage({
 
         if (!isMounted) return;
 
-        // Create object URL
-        objectUrl = URL.createObjectURL(blob);
+        // Create object URL and add to cache
+        const objectUrl = URL.createObjectURL(blob);
+        acquireBlobUrl(src, objectUrl);
+        acquiredSrcRef.current = src;
         setBlobUrl(objectUrl);
         setLoading(false);
         onLoad?.();
@@ -94,8 +154,10 @@ export function AuthenticatedImage({
 
     return () => {
       isMounted = false;
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
+      // Release our reference to the cached blob URL
+      if (acquiredSrcRef.current) {
+        releaseBlobUrl(acquiredSrcRef.current);
+        acquiredSrcRef.current = null;
       }
     };
   }, [src, onError, onLoad]);
