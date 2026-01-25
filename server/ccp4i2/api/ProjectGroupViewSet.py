@@ -294,7 +294,6 @@ class ProjectGroupViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["delete"],
-        ,
         url_path=r"members/(?P<project_id>\d+)",
     )
     def remove_member(self, request, pk=None, project_id=None):
@@ -330,7 +329,7 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=False, methods=["post"], , url_path="create_with_parent")
+    @action(detail=False, methods=["post"], url_path="create_with_parent")
     def create_with_parent(self, request):
         """
         Create a new campaign with an auto-created parent project.
