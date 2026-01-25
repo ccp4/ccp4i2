@@ -130,23 +130,21 @@ export default function TargetDashboardPage({ params }: PageProps) {
                 borderRadius: 1,
               }}
             />
-            {canContribute && (
-              <Tooltip title="Remove image">
+            <Tooltip title={canContribute ? "Remove image" : "Requires Contributor or Admin operating level"}>
+              <span style={{ position: 'absolute', top: 8, right: 8 }}>
                 <IconButton
                   onClick={handleDeleteImage}
                   size="small"
+                  disabled={!canContribute}
                   sx={{
-                    position: 'absolute',
-                    top: 8,
-                    right: 8,
                     bgcolor: 'background.paper',
-                    '&:hover': { bgcolor: 'error.lighter' },
+                    '&:hover': { bgcolor: canContribute ? 'error.lighter' : undefined },
                   }}
                 >
                   <Delete fontSize="small" />
                 </IconButton>
-              </Tooltip>
-            )}
+              </span>
+            </Tooltip>
           </Box>
         ) : (
           <Box
@@ -160,26 +158,26 @@ export default function TargetDashboardPage({ params }: PageProps) {
               justifyContent: 'center',
             }}
           >
-            {canContribute ? (
-              <Button
-                variant="outlined"
-                startIcon={<CloudUpload />}
-                component="label"
-              >
-                Upload Branding Image
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  hidden
-                  accept="image/*"
-                  onChange={handleImageUpload}
-                />
-              </Button>
-            ) : (
-              <Typography color="text.secondary" fontStyle="italic">
-                No branding image
-              </Typography>
-            )}
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+              <span>
+                <Button
+                  variant="outlined"
+                  startIcon={<CloudUpload />}
+                  component="label"
+                  disabled={!canContribute}
+                >
+                  Upload Branding Image
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    hidden
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                    disabled={!canContribute}
+                  />
+                </Button>
+              </span>
+            </Tooltip>
           </Box>
         )}
 
@@ -219,16 +217,19 @@ export default function TargetDashboardPage({ params }: PageProps) {
             >
               View Assay Data
             </Button>
-            {canContribute && (
-              <Button
-                component={Link}
-                href={`${routes.registry.new()}?target=${id}`}
-                variant="contained"
-                startIcon={<Add />}
-              >
-                New Compound
-              </Button>
-            )}
+            <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+              <span>
+                <Button
+                  component={Link}
+                  href={`${routes.registry.new()}?target=${id}`}
+                  variant="contained"
+                  startIcon={<Add />}
+                  disabled={!canContribute}
+                >
+                  New Compound
+                </Button>
+              </span>
+            </Tooltip>
           </Box>
         </Box>
       </Paper>
@@ -249,17 +250,20 @@ export default function TargetDashboardPage({ params }: PageProps) {
         height={260}
         emptyMessage="No compounds registered yet"
         headerAction={
-          canContribute && (
-            <Button
-              component={Link}
-              href={`${routes.registry.new()}?target=${id}`}
-              variant="outlined"
-              size="small"
-              startIcon={<Add />}
-            >
-              Register
-            </Button>
-          )
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                component={Link}
+                href={`${routes.registry.new()}?target=${id}`}
+                variant="outlined"
+                size="small"
+                startIcon={<Add />}
+                disabled={!canContribute}
+              >
+                Register
+              </Button>
+            </span>
+          </Tooltip>
         }
       />
 
@@ -277,7 +281,7 @@ export default function TargetDashboardPage({ params }: PageProps) {
         itemWidth={180}
         height={220}
         emptyMessage="No assays for this target"
-        headerAction={canContribute && <AddAssayMenu targetId={id} />}
+        headerAction={<AddAssayMenu targetId={id} disabled={!canContribute} />}
       />
 
       {/* Related CCP4i2 Projects Carousel */}

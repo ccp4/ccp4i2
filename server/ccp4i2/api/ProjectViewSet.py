@@ -26,6 +26,7 @@ from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from django.db.models import Prefetch
 from . import serializers
 from ..db import models
@@ -69,11 +70,16 @@ class ProjectViewSet(ModelViewSet):
         - Several actions update the `last_access` timestamp of the project to track usage.
         - Directory traversal attacks are mitigated in file-related actions by validating file paths.
         - Logging is used extensively to capture errors and important events.
+
+    Security:
+        - All endpoints require authentication via Azure AD middleware.
+        - The IsAuthenticated permission class provides an additional layer of defense.
     """
 
     queryset = models.Project.objects.all()
     serializer_class = serializers.ProjectSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """Optimize queryset based on action."""
@@ -170,7 +176,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=False,
         methods=["post"],
-        permission_classes=[],
         parser_classes=[
             JSONParser,
             FormParser,
@@ -213,7 +218,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.FileSerializer,
     )
     def files(self, request, pk=None):
@@ -240,7 +244,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.FileSerializer,
     )
     def file_uses(self, request, pk=None):
@@ -267,7 +270,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
         parser_classes=[
             JSONParser,
@@ -296,7 +298,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobFloatValueSerializer,
     )
     def job_float_values(self, request, pk=None):
@@ -320,7 +321,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobCharValueSerializer,
     )
     def job_char_values(self, request, pk=None):
@@ -471,7 +471,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get", "post"],
-        permission_classes=[],
         serializer_class=serializers.ProjectTagSerializer,
     )
     def tags(self, request, pk=None):
@@ -531,7 +530,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.ProjectSerializer,
     )
     def directory(self, request, pk=None):
@@ -567,7 +565,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.ProjectSerializer,
     )
     def project_file(self, request, pk=None):
@@ -599,7 +596,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.ProjectSerializer,
     )
     def preview_file(self, request, pk=None):
@@ -647,7 +643,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.ProjectSerializer,
     )
     def create_task(self, request, pk=None):
@@ -724,7 +719,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.ProjectSerializer,
     )
     def export(self, request, pk=None):
@@ -795,7 +789,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.ProjectExportSerializer,
     )
     def exports(self, request, pk=None):
@@ -844,7 +837,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["delete"],
-        permission_classes=[],
         url_path=r"tags/(?P<tag_id>\d+)",
     )
     def remove_tag(self, request, pk=None, tag_id=None):
@@ -886,7 +878,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get", "post"],
-        permission_classes=[],
         serializer_class=serializers.ProjectSerializer,
     )
     def resolve_fileuse(self, request, pk=None):

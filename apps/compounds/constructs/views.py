@@ -13,6 +13,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from reversion.models import Version
 
+from users.permissions import IsContributorOrReadOnly
+
 from .models import (
     ConstructProject,
     Plasmid,
@@ -103,6 +105,7 @@ class ExpressionTagTypeViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Expression Tag Types."""
     queryset = ExpressionTagType.objects.all()
     serializer_class = ExpressionTagTypeSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name']
     ordering_fields = ['name']
@@ -113,6 +116,7 @@ class ProteaseViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Proteases."""
     queryset = Protease.objects.all()
     serializer_class = ProteaseSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name']
     ordering_fields = ['name']
@@ -123,6 +127,7 @@ class ExpressionTagLocationViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Expression Tag Locations."""
     queryset = ExpressionTagLocation.objects.all()
     serializer_class = ExpressionTagLocationSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['name']
     ordering_fields = ['name']
@@ -135,6 +140,7 @@ class ExpressionTagViewSet(ReversionMixin, viewsets.ModelViewSet):
         'expression_tag_type', 'protease', 'cassette_use', 'location'
     )
     serializer_class = ExpressionTagSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['cassette_use', 'expression_tag_type', 'location']
     ordering = ['cassette_use__plasmid__ncn_id']
@@ -147,6 +153,7 @@ class ExpressionTagViewSet(ReversionMixin, viewsets.ModelViewSet):
 class ConstructProjectViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Construct Projects."""
     queryset = ConstructProject.objects.select_related('parent', 'created_by')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['parent']
     search_fields = ['name']
@@ -176,6 +183,7 @@ class ConstructProjectViewSet(ReversionMixin, viewsets.ModelViewSet):
 class ProteinViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Proteins."""
     queryset = Protein.objects.prefetch_related('synonyms', 'cassettes')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['uniprot_id', 'synonyms__name']
     ordering_fields = ['uniprot_id', 'created_at']
@@ -220,6 +228,7 @@ class ProteinSynonymViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Protein Synonyms."""
     queryset = ProteinSynonym.objects.select_related('protein')
     serializer_class = ProteinSynonymSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['protein']
     search_fields = ['name']
@@ -231,6 +240,7 @@ class ProteinUseViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Protein Uses (protein-project links)."""
     queryset = ProteinUse.objects.select_related('protein', 'project')
     serializer_class = ProteinUseSerializer
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['protein', 'project']
     ordering = ['protein__uniprot_id']
@@ -243,6 +253,7 @@ class ProteinUseViewSet(ReversionMixin, viewsets.ModelViewSet):
 class CassetteViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Cassettes."""
     queryset = Cassette.objects.select_related('protein', 'created_by')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['protein']
     search_fields = ['protein__uniprot_id']
@@ -271,6 +282,7 @@ class CassetteUseViewSet(ReversionMixin, viewsets.ModelViewSet):
     queryset = CassetteUse.objects.select_related(
         'cassette', 'cassette__protein', 'plasmid', 'created_by'
     ).prefetch_related('expression_tags')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['cassette', 'plasmid']
     ordering = ['plasmid__ncn_id']
@@ -302,6 +314,7 @@ class SequencingResultViewSet(ReversionMixin, viewsets.ModelViewSet):
     queryset = SequencingResult.objects.select_related(
         'cassette_use', 'cassette_use__cassette', 'plasmid'
     )
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['cassette_use', 'plasmid']
     ordering = ['-created_at']
@@ -319,6 +332,7 @@ class SequencingResultViewSet(ReversionMixin, viewsets.ModelViewSet):
 class PlasmidViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Plasmids."""
     queryset = Plasmid.objects.select_related('project', 'parent', 'created_by')
+    permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['project', 'parent']
     search_fields = ['ncn_id', 'name', 'formatted_id']

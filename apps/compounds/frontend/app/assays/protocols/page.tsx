@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Container, Typography, Box, Chip, Button } from '@mui/material';
+import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material';
 import { Science, Description, Add, Settings, GridOn } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { ProtocolCreateDialog } from '@/components/compounds/ProtocolCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Protocol } from '@/types/compounds/models';
 
@@ -24,6 +25,7 @@ const ANALYSIS_METHOD_LABELS: Record<string, string> = {
 export default function ProtocolsPage() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
+  const { canContribute } = useAuth();
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const api = useCompoundsApi();
   const { data: protocols, isLoading } = api.get<Protocol[]>('protocols/');
@@ -128,13 +130,18 @@ export default function ProtocolsPage() {
           >
             Manage Plate Layouts
           </Button>
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => setCreateDialogOpen(true)}
-          >
-            Add Protocol
-          </Button>
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={() => setCreateDialogOpen(true)}
+                disabled={!canContribute}
+              >
+                Add Protocol
+              </Button>
+            </span>
+          </Tooltip>
         </Box>
       </Box>
 

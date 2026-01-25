@@ -17,6 +17,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import status
 from . import serializers
 from ..db import models
@@ -47,6 +48,7 @@ class ProjectGroupViewSet(ModelViewSet):
     queryset = models.ProjectGroup.objects.prefetch_related("memberships").all()
     serializer_class = serializers.ProjectGroupSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
+    permission_classes = [IsAuthenticated]
 
     def get_serializer_class(self):
         """Use detailed serializer for retrieve action."""
@@ -62,7 +64,7 @@ class ProjectGroupViewSet(ModelViewSet):
             queryset = queryset.filter(type=group_type)
         return queryset
 
-    @action(detail=True, methods=["get"], permission_classes=[])
+    @action(detail=True, methods=["get"], )
     def parent_project(self, request, pk=None):
         """
         Get the parent project for this group.
@@ -91,7 +93,7 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["get"], permission_classes=[])
+    @action(detail=True, methods=["get"], )
     def member_projects(self, request, pk=None):
         """
         Get all member projects with their job summaries and full job list.
@@ -167,7 +169,7 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["get"], permission_classes=[])
+    @action(detail=True, methods=["get"], )
     def parent_files(self, request, pk=None):
         """
         Get reference files (coordinates and FreeR) from the parent project.
@@ -220,7 +222,7 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["post"], permission_classes=[])
+    @action(detail=True, methods=["post"], )
     def add_member(self, request, pk=None):
         """
         Add a project to the group.
@@ -292,7 +294,7 @@ class ProjectGroupViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["delete"],
-        permission_classes=[],
+        ,
         url_path=r"members/(?P<project_id>\d+)",
     )
     def remove_member(self, request, pk=None, project_id=None):
@@ -328,7 +330,7 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=False, methods=["post"], permission_classes=[], url_path="create_with_parent")
+    @action(detail=False, methods=["post"], , url_path="create_with_parent")
     def create_with_parent(self, request):
         """
         Create a new campaign with an auto-created parent project.
@@ -398,7 +400,7 @@ class ProjectGroupViewSet(ModelViewSet):
             logger.exception("Failed to create campaign with parent", exc_info=e)
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["post"], permission_classes=[])
+    @action(detail=True, methods=["post"], )
     def set_parent(self, request, pk=None):
         """
         Set or change the parent project for this group.
@@ -447,7 +449,7 @@ class ProjectGroupViewSet(ModelViewSet):
             logger.exception("Failed to set parent for group %s", pk, exc_info=e)
             return api_error(str(e), status=500)
 
-    @action(detail=False, methods=["get", "post"], permission_classes=[])
+    @action(detail=False, methods=["get", "post"], )
     def project_campaigns(self, request):
         """
         Get campaign membership info for multiple projects.
@@ -530,7 +532,7 @@ class ProjectGroupViewSet(ModelViewSet):
             logger.exception("Failed to get project campaigns", exc_info=e)
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["get"], permission_classes=[])
+    @action(detail=True, methods=["get"], )
     def pandda_data(self, request, pk=None):
         """
         Get PANDDA-ready data from member projects.
@@ -596,7 +598,7 @@ class ProjectGroupViewSet(ModelViewSet):
             )
             return api_error(str(e), status=500)
 
-    @action(detail=True, methods=["post"], permission_classes=[])
+    @action(detail=True, methods=["post"], )
     def export_pandda(self, request, pk=None):
         """
         Build and return a PANDDA-ready ZIP file.

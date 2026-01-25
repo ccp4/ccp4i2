@@ -18,6 +18,7 @@ import { DataTable, Column } from '@/components/compounds/DataTable';
 import { PlasmidCreateDialog } from '@/components/compounds/PlasmidCreateDialog';
 import { ConfirmDialog } from '@/components/compounds/ConfirmDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Plasmid } from '@/types/compounds/constructs';
 
@@ -25,6 +26,7 @@ export default function ConstructsPage() {
   const router = useRouter();
   const api = useCompoundsApi();
   const { mutate } = useSWRConfig();
+  const { canContribute } = useAuth();
   const { data: plasmids, isLoading } = api.get<Plasmid[]>('plasmids/');
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState<Plasmid | null>(null);
@@ -97,17 +99,20 @@ export default function ConstructsPage() {
       label: '',
       width: 50,
       render: (_, row) => (
-        <Tooltip title="Delete">
-          <IconButton
-            size="small"
-            color="error"
-            onClick={(e) => {
-              e.stopPropagation();
-              setDeleteTarget(row);
-            }}
-          >
-            <Delete fontSize="small" />
-          </IconButton>
+        <Tooltip title={canContribute ? 'Delete' : 'Requires Contributor or Admin operating level'}>
+          <span>
+            <IconButton
+              size="small"
+              color="error"
+              disabled={!canContribute}
+              onClick={(e) => {
+                e.stopPropagation();
+                setDeleteTarget(row);
+              }}
+            >
+              <Delete fontSize="small" />
+            </IconButton>
+          </span>
         </Tooltip>
       ),
     },
@@ -131,13 +136,18 @@ export default function ConstructsPage() {
             Plasmid constructs, cassettes, and sequencing results
           </Typography>
         </Box>
-        <Button
-          variant="contained"
-          startIcon={<Add />}
-          onClick={() => setCreateDialogOpen(true)}
-        >
-          Add Construct
-        </Button>
+        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <Button
+              variant="contained"
+              startIcon={<Add />}
+              onClick={() => setCreateDialogOpen(true)}
+              disabled={!canContribute}
+            >
+              Add Construct
+            </Button>
+          </span>
+        </Tooltip>
       </Box>
 
       <DataTable

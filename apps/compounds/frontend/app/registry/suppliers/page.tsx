@@ -2,13 +2,14 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Container, Typography, Box, Chip, Button } from '@mui/material';
+import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material';
 import { LocalShipping, Add, Person } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { SupplierCreateDialog } from '@/components/compounds/SupplierCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Supplier } from '@/types/compounds/models';
 
@@ -16,6 +17,7 @@ export default function SuppliersPage() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
   const { data: suppliers, isLoading } = api.get<Supplier[]>('suppliers/');
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
 
@@ -99,13 +101,18 @@ export default function SuppliersPage() {
             Chemical suppliers and synthesis sources
           </Typography>
         </Box>
-        <Button
-          variant="contained"
-          startIcon={<Add />}
-          onClick={() => setCreateDialogOpen(true)}
-        >
-          New Supplier
-        </Button>
+        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <Button
+              variant="contained"
+              startIcon={<Add />}
+              onClick={() => setCreateDialogOpen(true)}
+              disabled={!canContribute}
+            >
+              New Supplier
+            </Button>
+          </span>
+        </Tooltip>
       </Box>
 
       <DataTable

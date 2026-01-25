@@ -13,6 +13,7 @@ import {
   DialogContent,
   DialogActions,
   Alert,
+  Tooltip,
 } from '@mui/material';
 import { GridOn, Add, Delete, ArrowBack } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
@@ -21,12 +22,14 @@ import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { PlateLayoutCreateDialog } from '@/components/compounds/PlateLayoutCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import type { PlateLayoutRecord } from '@/types/compounds/models';
 
 export default function PlateLayoutsPage() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
+  const { canContribute } = useAuth();
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [selectedLayout, setSelectedLayout] = useState<PlateLayoutRecord | null>(null);
@@ -150,16 +153,30 @@ export default function PlateLayoutsPage() {
       key: 'id',
       label: '',
       width: 50,
-      render: (_value, row) => (
-        <IconButton
-          size="small"
-          onClick={(e) => handleDeleteClick(e, row)}
-          disabled={row.is_builtin || (row.protocols_count ?? 0) > 0}
-          sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
-        >
-          <Delete fontSize="small" />
-        </IconButton>
-      ),
+      render: (_value, row) => {
+        const isDisabled = !canContribute || row.is_builtin || (row.protocols_count ?? 0) > 0;
+        const disabledReason = !canContribute
+          ? 'Requires Contributor or Admin operating level'
+          : row.is_builtin
+          ? 'Built-in layouts cannot be deleted'
+          : (row.protocols_count ?? 0) > 0
+          ? 'Layout is in use by protocols'
+          : 'Delete';
+        return (
+          <Tooltip title={disabledReason}>
+            <span>
+              <IconButton
+                size="small"
+                onClick={(e) => handleDeleteClick(e, row)}
+                disabled={isDisabled}
+                sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+              >
+                <Delete fontSize="small" />
+              </IconButton>
+            </span>
+          </Tooltip>
+        );
+      },
     },
   ];
 
@@ -191,13 +208,18 @@ export default function PlateLayoutsPage() {
           >
             Back to Protocols
           </Button>
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => setCreateDialogOpen(true)}
-          >
-            Add Plate Layout
-          </Button>
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={() => setCreateDialogOpen(true)}
+                disabled={!canContribute}
+              >
+                Add Plate Layout
+              </Button>
+            </span>
+          </Tooltip>
         </Box>
       </Box>
 

@@ -31,6 +31,7 @@ import { TargetCreateDialog } from '@/components/compounds/TargetCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Target } from '@/types/compounds/models';
+import { useAuth } from '@/lib/compounds/auth-context';
 
 type ViewMode = 'table' | 'grid';
 
@@ -38,6 +39,7 @@ export default function TargetsPage() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
   const { data: targets, isLoading } = api.get<Target[]>('targets/');
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('table');
@@ -166,13 +168,21 @@ export default function TargetsPage() {
           >
             Suppliers
           </Button>
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => setCreateDialogOpen(true)}
+          <Tooltip
+            title={canContribute ? '' : 'Requires Contributor or Admin operating level'}
+            arrow
           >
-            New Target
-          </Button>
+            <span>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={() => setCreateDialogOpen(true)}
+                disabled={!canContribute}
+              >
+                New Target
+              </Button>
+            </span>
+          </Tooltip>
         </Box>
       </Box>
 

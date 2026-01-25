@@ -8,6 +8,7 @@ import {
   MenuItem,
   ListItemIcon,
   ListItemText,
+  Tooltip,
 } from '@mui/material';
 import {
   Add,
@@ -20,9 +21,11 @@ import { routes } from '@/lib/compounds/routes';
 interface AddAssayMenuProps {
   /** Target ID to pre-select in import forms */
   targetId?: string;
+  /** Whether the menu trigger is disabled (e.g., user lacks contributor permission) */
+  disabled?: boolean;
 }
 
-export function AddAssayMenu({ targetId }: AddAssayMenuProps) {
+export function AddAssayMenu({ targetId, disabled = false }: AddAssayMenuProps) {
   const router = useRouter();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -44,17 +47,22 @@ export function AddAssayMenu({ targetId }: AddAssayMenuProps) {
 
   return (
     <>
-      <Button
-        variant="outlined"
-        size="small"
-        startIcon={<Add />}
-        onClick={handleClick}
-        aria-controls={open ? 'add-assay-menu' : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? 'true' : undefined}
-      >
-        Add Assay
-      </Button>
+      <Tooltip title={disabled ? 'Requires Contributor or Admin operating level' : ''} arrow>
+        <span>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<Add />}
+            onClick={handleClick}
+            disabled={disabled}
+            aria-controls={open ? 'add-assay-menu' : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? 'true' : undefined}
+          >
+            Add Assay
+          </Button>
+        </span>
+      </Tooltip>
       <Menu
         id="add-assay-menu"
         anchorEl={anchorEl}

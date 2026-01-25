@@ -12,6 +12,7 @@ import {
   Skeleton,
   Divider,
   Button,
+  Tooltip,
 } from '@mui/material';
 import { Add, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
@@ -20,6 +21,7 @@ import { DataTable, Column } from '@/components/compounds/DataTable';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Compound, Batch, Target } from '@/types/compounds/models';
 
@@ -45,6 +47,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
 
   const [batchDialogOpen, setBatchDialogOpen] = useState(false);
 
@@ -282,14 +285,19 @@ export default function CompoundDetailPage({ params }: PageProps) {
         emptyMessage="No batches registered for this compound"
         headerAction={
           compound && (
-            <Button
-              variant="contained"
-              size="small"
-              startIcon={<Add />}
-              onClick={() => setBatchDialogOpen(true)}
-            >
-              Add Batch
-            </Button>
+            <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+              <span>
+                <Button
+                  variant="contained"
+                  size="small"
+                  startIcon={<Add />}
+                  onClick={() => setBatchDialogOpen(true)}
+                  disabled={!canContribute}
+                >
+                  Add Batch
+                </Button>
+              </span>
+            </Tooltip>
           )
         }
       />

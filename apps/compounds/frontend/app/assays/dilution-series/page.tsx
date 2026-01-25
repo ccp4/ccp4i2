@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogContent,
   DialogActions,
+  Tooltip,
 } from '@mui/material';
 import { Science, Add, Delete, ArrowBack } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
@@ -21,12 +22,14 @@ import { DataTable, Column } from '@/components/compounds/DataTable';
 import { DilutionSeriesCreateDialog } from '@/components/compounds/DilutionSeriesCreateDialog';
 import { DilutionSeriesEditDialog } from '@/components/compounds/DilutionSeriesEditDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import type { DilutionSeries } from '@/types/compounds/models';
 
 export default function DilutionSeriesPage() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
+  const { canContribute } = useAuth();
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
@@ -108,13 +111,18 @@ export default function DilutionSeriesPage() {
       label: '',
       width: 50,
       render: (_value, row) => (
-        <IconButton
-          size="small"
-          onClick={(e) => handleDeleteClick(e, row)}
-          sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
-        >
-          <Delete fontSize="small" />
-        </IconButton>
+        <Tooltip title={canContribute ? 'Delete' : 'Requires Contributor or Admin operating level'}>
+          <span>
+            <IconButton
+              size="small"
+              onClick={(e) => handleDeleteClick(e, row)}
+              disabled={!canContribute}
+              sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+            >
+              <Delete fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
       ),
     },
   ];
@@ -147,13 +155,18 @@ export default function DilutionSeriesPage() {
           >
             Back to Protocols
           </Button>
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => setCreateDialogOpen(true)}
-          >
-            Add Dilution Series
-          </Button>
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={() => setCreateDialogOpen(true)}
+                disabled={!canContribute}
+              >
+                Add Dilution Series
+              </Button>
+            </span>
+          </Tooltip>
         </Box>
       </Box>
 
