@@ -41,61 +41,11 @@ import { CompoundStructureCell } from '@/components/compounds/CompoundStructureC
 import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';
 import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
 import { AssayEditDialog } from '@/components/compounds/AssayEditDialog';
-import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
+import { useCompoundsApi, getAuthenticatedDownloadUrl, authFetch } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
-
-// =============================================================================
-// Authentication Integration
-// =============================================================================
-
-// For Docker integration: Try to import auth helpers from ccp4i2 client's auth-token
-// Falls back to no-op for standalone development
-let getAccessToken: () => Promise<string | null>;
-let getUserEmail: () => string | null;
-
-try {
-  const authModule = require('../../../utils/auth-token');
-  getAccessToken = authModule.getAccessToken;
-  getUserEmail = authModule.getUserEmail || (() => null);
-} catch {
-  getAccessToken = async () => null;
-  getUserEmail = () => null;
-}
-
-/**
- * Authenticated fetch wrapper
- */
-async function authFetch(url: string, options: RequestInit = {}): Promise<Response> {
-  const headers: Record<string, string> = {};
-
-  const token = await getAccessToken();
-  if (token) {
-    headers['Authorization'] = `Bearer ${token}`;
-  }
-
-  const email = getUserEmail();
-  if (email) {
-    headers['X-User-Email'] = email;
-  }
-
-  if (options.headers) {
-    if (options.headers instanceof Headers) {
-      options.headers.forEach((value, key) => {
-        headers[key] = value;
-      });
-    } else if (Array.isArray(options.headers)) {
-      options.headers.forEach(([key, value]) => {
-        headers[key] = value;
-      });
-    } else {
-      Object.assign(headers, options.headers);
-    }
-  }
-
-  return fetch(url, { ...options, headers });
-}
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -252,12 +202,53 @@ export default function AssayDetailPage({ params }: PageProps) {
     return { concentrations, responses, unit };
   };
 
+  // Check if this is a table_of_values assay
+  const isTableOfValues = protocol?.analysis_method === 'table_of_values';
+
   const columns: Column<DataSeries>[] = [
     {
       key: 'chart',
-      label: 'Curve',
+      label: isTableOfValues ? 'Plot' : 'Curve',
       width: 140,
       render: (_, row) => {
+        // For table_of_values, show the plot image if available
+        if (isTableOfValues) {
+          const hasImageFile = row.analysis?.results?.['Image File'];
+          const plotImageUrl = row.plot_image
+            ? `/api/proxy/compounds/media/data-series/${row.id}/plot/`
+            : null;
+
+          if (hasImageFile && plotImageUrl) {
+            return (
+              <AuthenticatedImage
+                src={plotImageUrl}
+                alt={`Plot for ${row.compound_name || 'compound'}`}
+                width={120}
+                height={120}
+                objectFit="contain"
+                sx={{ borderRadius: 1 }}
+              />
+            );
+          }
+          // No image available
+          return (
+            <Box
+              sx={{
+                width: 120,
+                height: 120,
+                bgcolor: 'grey.100',
+                borderRadius: 1,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <ImageIcon sx={{ color: 'grey.400', fontSize: 32 }} />
+            </Box>
+          );
+        }
+
+        // For dose-response assays, show the chart
         const chartData = getChartData(row);
         if (!chartData || chartData.concentrations.length === 0) {
           return <Box sx={{ width: 120, height: 120, bgcolor: 'grey.100', borderRadius: 1 }} />;
