@@ -56,6 +56,15 @@ class UserProfile(models.Model):
         help_text="Maximum authorization level for this user"
     )
 
+    # Current operating level (can be <= role for self-imposed restrictions)
+    operating_level = models.CharField(
+        max_length=20,
+        choices=ROLE_CHOICES,
+        null=True,
+        blank=True,
+        help_text="Current operating level (defaults to role if not set)"
+    )
+
     # Admin designation (for web mode) - DEPRECATED, use role='admin' instead
     # Kept for backwards compatibility during migration
     is_platform_admin = models.BooleanField(

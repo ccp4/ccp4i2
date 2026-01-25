@@ -22,9 +22,6 @@ from rest_framework.permissions import BasePermission
 
 from .models import UserProfile
 
-# Session key for operating level
-OPERATING_LEVEL_SESSION_KEY = 'operating_level'
-
 
 def require_auth():
     """Check if authentication is required (web mode)."""
@@ -150,9 +147,9 @@ def get_user_role(user):
 
 def get_operating_level(request):
     """
-    Get the user's current operating level from session.
+    Get the user's current operating level from their profile.
 
-    The operating level determines what actions the user can perform in this session.
+    The operating level determines what actions the user can perform.
     It can be lower than their assigned role (e.g., an admin operating as 'user').
 
     Args:
@@ -164,32 +161,35 @@ def get_operating_level(request):
     if not require_auth():
         return UserProfile.ROLE_ADMIN
 
-    if not hasattr(request, 'session'):
-        # No session available, use their max role
-        return get_user_role(request.user)
+    user = getattr(request, 'user', None)
+    if not user or not getattr(user, 'is_authenticated', False):
+        return UserProfile.ROLE_USER
 
-    # Get from session, default to their max role
-    session_level = request.session.get(OPERATING_LEVEL_SESSION_KEY)
+    # Get from profile, default to their max role
+    profile = getattr(user, 'profile', None)
+    if not profile:
+        return get_user_role(user)
 
-    if session_level is None:
-        # First request - default to their max role
-        return get_user_role(request.user)
+    stored_level = profile.operating_level
+    if not stored_level:
+        # No operating level set - default to their max role
+        return get_user_role(user)
 
-    # Validate the session level doesn't exceed their role
-    user_role = get_user_role(request.user)
+    # Validate the stored level doesn't exceed their role
+    user_role = get_user_role(user)
     user_level = UserProfile.ROLE_HIERARCHY.get(user_role, 0)
-    operating_level = UserProfile.ROLE_HIERARCHY.get(session_level, 0)
+    operating_level = UserProfile.ROLE_HIERARCHY.get(stored_level, 0)
 
     if operating_level > user_level:
-        # Session level exceeds their role - reset to max
+        # Stored level exceeds their role - reset to max
         return user_role
 
-    return session_level
+    return stored_level
 
 
 def set_operating_level(request, level):
     """
-    Set the user's operating level in session.
+    Set the user's operating level in their profile.
 
     Args:
         request: Django/DRF request object
@@ -204,11 +204,12 @@ def set_operating_level(request, level):
     if level not in UserProfile.ROLE_HIERARCHY:
         raise ValueError(f"Invalid operating level: {level}")
 
-    if not hasattr(request, 'session'):
-        return get_user_role(request.user)
+    user = getattr(request, 'user', None)
+    if not user or not getattr(user, 'is_authenticated', False):
+        return UserProfile.ROLE_USER
 
     # Cap at user's max role
-    user_role = get_user_role(request.user)
+    user_role = get_user_role(user)
     user_level = UserProfile.ROLE_HIERARCHY.get(user_role, 0)
     requested_level = UserProfile.ROLE_HIERARCHY.get(level, 0)
 
@@ -216,7 +217,12 @@ def set_operating_level(request, level):
         # Can't elevate above their role
         level = user_role
 
-    request.session[OPERATING_LEVEL_SESSION_KEY] = level
+    # Save to profile
+    profile = getattr(user, 'profile', None)
+    if profile:
+        profile.operating_level = level
+        profile.save(update_fields=['operating_level'])
+
     return level
 
 
