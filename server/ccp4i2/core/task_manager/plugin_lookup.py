@@ -22,7 +22,6 @@ except Exception as e:
     logging.warning(f"Failed to configure Django: {e}")
 
 TASKATTRIBUTES = [
-    "COMTEMPLATE",
     "TASKMODULE",
     "TASKTITLE",
     "TASKNAME",

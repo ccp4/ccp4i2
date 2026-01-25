@@ -547,58 +547,52 @@ async def create_jobs_batch_async(
 # Example usage
 # ============================================================================
 
+# async def example_usage():
+#     """Example demonstrating typical usage patterns."""
 
-async def example_usage():
-    """Example demonstrating typical usage patterns."""
+#     # Example 1: Simple job creation
+#     result = await create_job_async(
+#         project_uuid=uuid.UUID("..."),
+#         task_name="ctruncate",
+#         title="Convert intensities to amplitudes",
+#     )
+#     print(f"Created job {result['job_number']} at {result['job_directory']}")
 
-    # Example 1: Simple job creation
-    result = await create_job_async(
-        project_uuid=uuid.UUID("..."),
-        task_name="ctruncate",
-        title="Convert intensities to amplitudes",
-    )
-    print(f"Created job {result['job_number']} at {result['job_directory']}")
+#     # Example 2: Job with input parameters
+#     result = await create_job_with_params_async(
+#         project_uuid=uuid.UUID("..."),
+#         task_name="ctruncate",
+#         input_params={
+#             "HKLIN": "/path/to/input.mtz",
+#             "COLANO": "/*/*/[IMEAN,SIGIMEAN]",
+#         }
+#     )
 
-    # Example 2: Job with input parameters
-    result = await create_job_with_params_async(
-        project_uuid=uuid.UUID("..."),
-        task_name="ctruncate",
-        input_params={
-            "HKLIN": "/path/to/input.mtz",
-            "COLANO": "/*/*/[IMEAN,SIGIMEAN]",
-        }
-    )
+#     # Example 3: Create parent and child jobs
+#     parent = await create_job_async(
+#         project_uuid=uuid.UUID("..."),
+#         task_name="copycell",
+#         title="Data processing pipeline",
+#     )
 
-    # Example 3: Create parent and child jobs
-    parent = await create_job_async(
-        project_uuid=uuid.UUID("..."),
-        task_name="copycell",
-        title="Data processing pipeline",
-    )
+#     child1 = await create_subjob_async(
+#         parent_job_uuid=parent['job_uuid'],
+#         task_name="mtzdump",
+#         title="Extract cell parameters",
+#     )
 
-    child1 = await create_subjob_async(
-        parent_job_uuid=parent['job_uuid'],
-        task_name="mtzdump",
-        title="Extract cell parameters",
-    )
+#     child2 = await create_subjob_async(
+#         parent_job_uuid=parent['job_uuid'],
+#         task_name="pdbset",
+#         title="Apply cell to PDB",
+#     )
 
-    child2 = await create_subjob_async(
-        parent_job_uuid=parent['job_uuid'],
-        task_name="pdbset",
-        title="Apply cell to PDB",
-    )
-
-    # Example 4: Batch job creation
-    jobs = await create_jobs_batch_async(
-        project_uuid=uuid.UUID("..."),
-        job_specs=[
-            {"task_name": "ctruncate", "title": "Step 1"},
-            {"task_name": "refmac", "title": "Step 2"},
-            {"task_name": "coot", "title": "Step 3"},
-        ]
-    )
-
-
-if __name__ == "__main__":
-    # Run examples
-    asyncio.run(example_usage())
+#     # Example 4: Batch job creation
+#     jobs = await create_jobs_batch_async(
+#         project_uuid=uuid.UUID("..."),
+#         job_specs=[
+#             {"task_name": "ctruncate", "title": "Step 1"},
+#             {"task_name": "refmac", "title": "Step 2"},
+#             {"task_name": "coot", "title": "Step 3"},
+#         ]
+#     )

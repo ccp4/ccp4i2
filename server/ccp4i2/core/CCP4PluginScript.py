@@ -61,7 +61,6 @@ class CPluginScript(CData):
         TASKCOMMAND: Executable name
         TASKVERSION: Version number
         COMLINETEMPLATE: Command line template (optional)
-        COMTEMPLATE: Command file template (optional)
     """
 
     # Class attributes to be defined in subclasses
@@ -71,7 +70,6 @@ class CPluginScript(CData):
     TASKCOMMAND = None
     TASKVERSION = None
     COMLINETEMPLATE = None
-    COMTEMPLATE = None
     ASYNCHRONOUS = False  # Set to True for async execution
 
     # Status codes
@@ -1341,7 +1339,7 @@ class CPluginScript(CData):
         """
         Generate command line and command file for the program.
 
-        Uses COMLINETEMPLATE and COMTEMPLATE class attributes to
+        Uses COMLINETEMPLATE class attribute to
         generate the command line and input file.
 
         Returns:
@@ -1357,31 +1355,6 @@ class CPluginScript(CData):
             # Should never happen since CCP4ComTemplate is in our core package
             logger.debug(f"[DEBUG makeCommandAndScript] CComTemplate import failed: {e}")
             return error
-
-        # Process COMTEMPLATE (generates stdin script)
-        # The numeric prefix is stripped by CComTemplate, output goes to stdin
-        if self.COMTEMPLATE is not None:
-            logger.debug(f"[DEBUG makeCommandAndScript] Processing COMTEMPLATE: {self.COMTEMPLATE}")
-            try:
-                comTemplate = CCP4ComTemplate.CComTemplate(parent=self, template=self.COMTEMPLATE)
-                text, tmpl_err = comTemplate.makeComScript(self.container)
-                logger.debug(f"[DEBUG makeCommandAndScript] COMTEMPLATE expanded to: '{text}'")
-                if tmpl_err and len(tmpl_err) > 0:
-                    logger.debug(f"[DEBUG makeCommandAndScript] COMTEMPLATE errors: {tmpl_err}")
-                    error.extend(tmpl_err)
-                if text and len(text) > 0:
-                    # Add to commandScript (stdin) - preserve newlines
-                    logger.debug(f"[DEBUG makeCommandAndScript] Adding to commandScript (stdin)")
-                    self.commandScript.append(text + '\n')
-            except Exception as e:
-                logger.debug(f"[DEBUG makeCommandAndScript] Exception processing COMTEMPLATE: {e}")
-                import traceback
-                traceback.print_exc()
-                error.append(
-                    klass=self.__class__.__name__,
-                    code=13,
-                    details=f"Error processing COMTEMPLATE: {e}"
-                )
 
         # Process COMLINETEMPLATE (generates command line arguments)
         # The leading numeric prefix (e.g., "1 HKLIN") is stripped by CComTemplate

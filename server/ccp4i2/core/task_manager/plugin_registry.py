@@ -308,9 +308,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'mrparse_simple':
         from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_wrapper import mrparse_simple
         return mrparse_simple
-    if plugin_name == 'mtzdump':
-        from ccp4i2.wrappers.mtzdump.script.mtzdump import mtzdump
-        return mtzdump
     if plugin_name == 'mtzheader':
         from ccp4i2.wrappers.mtzheader.script.mtzheader import mtzheader
         return mtzheader
@@ -329,9 +326,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'pdb_redo_api':
         from ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api import pdb_redo_api
         return pdb_redo_api
-    if plugin_name == 'pdbset':
-        from ccp4i2.wrappers.pdbset.script.pdbset import pdbset
-        return pdbset
     if plugin_name == 'pdbset_ui':
         from ccp4i2.wrappers.pdbset_ui.script.pdbset_ui import pdbset_ui
         return pdbset_ui
@@ -591,14 +585,12 @@ PLUGIN_NAMES: set[str] = {
     'mrbump_model_prep',
     'mrparse',
     'mrparse_simple',
-    'mtzdump',
     'mtzheader',
     'mtzutils',
     'pairef',
     'parrot',
     'pdb_extract_wrapper',
     'pdb_redo_api',
-    'pdbset',
     'pdbset_ui',
     'pdbview_edit',
     'phaser_EP',
