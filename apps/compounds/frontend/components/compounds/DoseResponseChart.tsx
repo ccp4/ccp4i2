@@ -16,7 +16,7 @@ import {
   ChartData,
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
-import { Box, Typography, Paper } from '@mui/material';
+import { Box, Typography, Paper, useTheme } from '@mui/material';
 
 // Register Chart.js components
 // LineController is needed for mixed chart datasets with type: 'line'
@@ -117,6 +117,22 @@ export function DoseResponseChart({
   showLegend = true,
   skipPoints = [],
 }: DoseResponseChartProps) {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
+
+  // Theme-aware colors
+  const colors = useMemo(() => ({
+    dataPoint: isDarkMode ? 'rgba(100, 181, 246, 0.9)' : 'rgba(70, 130, 180, 0.8)',
+    dataPointBorder: isDarkMode ? 'rgba(100, 181, 246, 1)' : 'rgba(70, 130, 180, 1)',
+    skippedPoint: isDarkMode ? 'rgba(120, 120, 120, 0.6)' : 'rgba(200, 200, 200, 0.6)',
+    skippedPointBorder: isDarkMode ? 'rgba(100, 100, 100, 1)' : 'rgba(150, 150, 150, 1)',
+    validCurve: isDarkMode ? 'rgba(239, 83, 80, 1)' : 'rgba(220, 53, 69, 1)',
+    invalidCurve: isDarkMode ? 'rgba(120, 120, 120, 0.7)' : 'rgba(150, 150, 150, 0.7)',
+    textColor: theme.palette.text.primary,
+    secondaryText: theme.palette.text.secondary,
+    gridColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+  }), [isDarkMode, theme.palette]);
+
   const chartData = useMemo<ChartData<'scatter'>>(() => {
     const { concentrations, responses } = data;
 
@@ -139,8 +155,8 @@ export function DoseResponseChart({
       {
         label: 'Data Points',
         data: includedPoints,
-        backgroundColor: 'rgba(70, 130, 180, 0.8)',
-        borderColor: 'rgba(70, 130, 180, 1)',
+        backgroundColor: colors.dataPoint,
+        borderColor: colors.dataPointBorder,
         pointRadius: 6,
         pointHoverRadius: 8,
       },
@@ -151,8 +167,8 @@ export function DoseResponseChart({
       datasets.push({
         label: 'Excluded Points',
         data: skippedPoints,
-        backgroundColor: 'rgba(200, 200, 200, 0.6)',
-        borderColor: 'rgba(150, 150, 150, 1)',
+        backgroundColor: colors.skippedPoint,
+        borderColor: colors.skippedPointBorder,
         pointRadius: 5,
         pointHoverRadius: 7,
         pointStyle: 'crossRot',
@@ -190,8 +206,8 @@ export function DoseResponseChart({
 
       // Use different color for invalid fits
       const curveColor = fit?.status === 'valid'
-        ? 'rgba(220, 53, 69, 1)'
-        : 'rgba(150, 150, 150, 0.7)';
+        ? colors.validCurve
+        : colors.invalidCurve;
 
       // Use type: 'line' for the curve dataset in mixed chart
       datasets.push({
@@ -224,7 +240,7 @@ export function DoseResponseChart({
     }
 
     return { datasets };
-  }, [data, fit, skipPoints]);
+  }, [data, fit, skipPoints, colors]);
 
   const options = useMemo<ChartOptions<'scatter'>>(() => ({
     responsive: true,
@@ -236,6 +252,7 @@ export function DoseResponseChart({
         position: 'bottom' as const,
         labels: {
           usePointStyle: true,
+          color: colors.textColor,
           filter: (item) => !item.text?.includes('EC50'),
         },
       },
@@ -243,6 +260,7 @@ export function DoseResponseChart({
         display: !!title || !!compoundName,
         text: title || compoundName || '',
         font: { size: 14 },
+        color: colors.textColor,
       },
       tooltip: {
         callbacks: {
@@ -259,8 +277,10 @@ export function DoseResponseChart({
         title: {
           display: true,
           text: `Concentration (${data.unit || 'nM'})`,
+          color: colors.textColor,
         },
         ticks: {
+          color: colors.secondaryText,
           callback: (value) => {
             const num = Number(value);
             if (num >= 1000) return `${num / 1000}k`;
@@ -268,16 +288,26 @@ export function DoseResponseChart({
             return num.toExponential(0);
           },
         },
+        grid: {
+          color: colors.gridColor,
+        },
       },
       y: {
         type: 'linear' as const,
         title: {
           display: true,
           text: 'Response',
+          color: colors.textColor,
+        },
+        ticks: {
+          color: colors.secondaryText,
+        },
+        grid: {
+          color: colors.gridColor,
         },
       },
     },
-  }), [title, compoundName, showLegend, data.unit]);
+  }), [title, compoundName, showLegend, data.unit, colors]);
 
   if (!data.concentrations.length || !data.responses.length) {
     return (
@@ -304,6 +334,20 @@ interface DoseResponseThumbProps {
 }
 
 export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbProps) {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
+
+  // Theme-aware colors for thumbnail
+  const colors = useMemo(() => ({
+    dataPoint: isDarkMode ? 'rgba(100, 181, 246, 0.9)' : 'rgba(70, 130, 180, 0.8)',
+    dataPointBorder: isDarkMode ? 'rgba(100, 181, 246, 1)' : 'rgba(70, 130, 180, 1)',
+    validCurve: isDarkMode ? 'rgba(239, 83, 80, 1)' : 'rgba(220, 53, 69, 1)',
+    invalidCurve: isDarkMode ? 'rgba(150, 150, 150, 0.9)' : 'rgba(100, 100, 100, 0.9)',
+    tickColor: isDarkMode ? 'rgba(255, 255, 255, 0.5)' : 'rgba(0, 0, 0, 0.5)',
+    borderColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+    emptyBg: isDarkMode ? 'grey.800' : 'grey.100',
+  }), [isDarkMode]);
+
   const chartData = useMemo<ChartData<'scatter'>>(() => {
     const { concentrations, responses } = data;
 
@@ -315,8 +359,8 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
       {
         label: 'Data',
         data: points,
-        backgroundColor: 'rgba(70, 130, 180, 0.8)',
-        borderColor: 'rgba(70, 130, 180, 1)',
+        backgroundColor: colors.dataPoint,
+        borderColor: colors.dataPointBorder,
         pointRadius: 3,
       },
     ];
@@ -350,10 +394,10 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
         50
       );
 
-      // Use red for valid fits, dark gray for invalid
+      // Use red for valid fits, gray for invalid
       const curveColor = fit?.status === 'valid'
-        ? 'rgba(220, 53, 69, 1)'
-        : 'rgba(100, 100, 100, 0.9)';
+        ? colors.validCurve
+        : colors.invalidCurve;
 
       // For scatter charts, use type: 'line' for the curve dataset
       datasets.push({
@@ -369,7 +413,7 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
     }
 
     return { datasets };
-  }, [data, fit]);
+  }, [data, fit, colors]);
 
   // Calculate axis bounds from data
   const axisBounds = useMemo(() => {
@@ -402,11 +446,11 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
         type: 'logarithmic' as const,
         display: true,
         grid: { display: false },
-        border: { display: true, color: 'rgba(0,0,0,0.1)' },
+        border: { display: true, color: colors.borderColor },
         ticks: {
           display: true,
           font: { size: 8 },
-          color: 'rgba(0,0,0,0.5)',
+          color: colors.tickColor,
           maxTicksLimit: 2,
           callback: (value) => {
             const num = Number(value);
@@ -420,11 +464,11 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
         type: 'linear' as const,
         display: true,
         grid: { display: false },
-        border: { display: true, color: 'rgba(0,0,0,0.1)' },
+        border: { display: true, color: colors.borderColor },
         ticks: {
           display: true,
           font: { size: 8 },
-          color: 'rgba(0,0,0,0.5)',
+          color: colors.tickColor,
           maxTicksLimit: 2,
           callback: (value) => {
             const num = Number(value);
@@ -436,7 +480,7 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
     elements: {
       point: { radius: 2 },
     },
-  }), []);
+  }), [colors]);
 
   if (!data.concentrations.length) {
     return (
@@ -447,7 +491,7 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          bgcolor: 'grey.100',
+          bgcolor: colors.emptyBg,
           borderRadius: 1,
         }}
       >
