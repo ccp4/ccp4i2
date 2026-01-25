@@ -19,6 +19,7 @@ import {
   DialogContentText,
   DialogActions,
   CircularProgress,
+  Tooltip,
 } from '@mui/material';
 import {
   Assessment,
@@ -41,6 +42,7 @@ import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';
 import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
 import { AssayEditDialog } from '@/components/compounds/AssayEditDialog';
 import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
 
@@ -141,6 +143,7 @@ export default function AssayDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [editDialogOpen, setEditDialogOpen] = useState(false);
@@ -403,32 +406,47 @@ export default function AssayDetailPage({ params }: PageProps) {
                   </Button>
                 )}
                 {protocol?.analysis_method === 'table_of_values' && (
-                  <Button
-                    variant="outlined"
-                    startIcon={<ImageIcon />}
-                    onClick={() => setImageUploadOpen(true)}
-                    size="small"
-                  >
-                    Upload Images
-                  </Button>
+                  <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                    <span>
+                      <Button
+                        variant="outlined"
+                        startIcon={<ImageIcon />}
+                        onClick={() => setImageUploadOpen(true)}
+                        size="small"
+                        disabled={!canContribute}
+                      >
+                        Upload Images
+                      </Button>
+                    </span>
+                  </Tooltip>
                 )}
-                <Button
-                  variant="outlined"
-                  startIcon={<Edit />}
-                  onClick={() => setEditDialogOpen(true)}
-                  size="small"
-                >
-                  Edit
-                </Button>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  startIcon={<Delete />}
-                  onClick={() => setDeleteDialogOpen(true)}
-                  size="small"
-                >
-                  Delete
-                </Button>
+                <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      startIcon={<Edit />}
+                      onClick={() => setEditDialogOpen(true)}
+                      size="small"
+                      disabled={!canContribute}
+                    >
+                      Edit
+                    </Button>
+                  </span>
+                </Tooltip>
+                <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      startIcon={<Delete />}
+                      onClick={() => setDeleteDialogOpen(true)}
+                      size="small"
+                      disabled={!canContribute}
+                    >
+                      Delete
+                    </Button>
+                  </span>
+                </Tooltip>
               </Box>
             </Box>
 
