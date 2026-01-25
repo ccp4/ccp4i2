@@ -15,6 +15,7 @@ import {
   MenuItem,
   SelectChangeEvent,
   Skeleton,
+  Tooltip,
 } from '@mui/material';
 import {
   Science,
@@ -211,16 +212,19 @@ function CompoundsPageContent() {
             All Apps
           </Button>
 
-          {canContribute && (
-            <Button
-              component={Link}
-              href={targetFilter ? `${routes.registry.new()}?target=${targetFilter}` : routes.registry.new()}
-              variant="contained"
-              startIcon={<Add />}
-            >
-              Register Compound
-            </Button>
-          )}
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                component={Link}
+                href={targetFilter ? `${routes.registry.new()}?target=${targetFilter}` : routes.registry.new()}
+                variant="contained"
+                startIcon={<Add />}
+                disabled={!canContribute}
+              >
+                Register Compound
+              </Button>
+            </span>
+          </Tooltip>
         </Box>
       </Box>
 
