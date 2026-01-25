@@ -77,14 +77,24 @@ export async function GET(
     const ext = "." + filePath.split(".").pop();
     const contentType = contentTypes[ext] || "application/octet-stream";
 
+    // Build headers - all files need CORP for COEP compatibility
+    const headers: Record<string, string> = {
+      "Content-Type": contentType,
+      "Cross-Origin-Resource-Policy": "cross-origin",
+      "Access-Control-Allow-Origin": "*",
+      "Cache-Control": "public, max-age=31536000, immutable",
+    };
+
+    // Worker scripts (moorhen.js, CootWorker.js) need COEP/COOP headers
+    // because they run in a worker context that needs SharedArrayBuffer
+    if (filePath.endsWith(".js")) {
+      headers["Cross-Origin-Embedder-Policy"] = "require-corp";
+      headers["Cross-Origin-Opener-Policy"] = "same-origin";
+    }
+
     return new NextResponse(fileContent, {
       status: 200,
-      headers: {
-        "Content-Type": contentType,
-        "Cross-Origin-Resource-Policy": "cross-origin",
-        "Access-Control-Allow-Origin": "*",
-        "Cache-Control": "public, max-age=31536000, immutable",
-      },
+      headers,
     });
   } catch (error) {
     console.error(`Failed to read moorhen file: ${filePath}`, error);
