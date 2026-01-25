@@ -14,6 +14,13 @@ let tokenGetter: TokenGetter | null = null;
 let emailGetter: EmailGetter | null = null;
 let logoutHandler: LogoutHandler | null = null;
 
+// Token cache to avoid calling acquireTokenSilent on every request
+// This dramatically improves performance for Moorhen which makes many API calls
+let cachedToken: string | null = null;
+let tokenExpiresAt: number = 0;
+// Cache tokens for 4 minutes (tokens typically valid for 5+ minutes)
+const TOKEN_CACHE_MS = 4 * 60 * 1000;
+
 /**
  * Set the token getter function.
  * Called by AuthProvider when MSAL is initialized.
@@ -42,17 +49,23 @@ export function setLogoutHandler(handler: LogoutHandler): void {
 }
 
 /**
- * Clear the token getter (for logout).
+ * Clear the token getter and cache (for logout).
  */
 export function clearTokenGetter(): void {
   tokenGetter = null;
   emailGetter = null;
   logoutHandler = null;
+  cachedToken = null;
+  tokenExpiresAt = 0;
 }
 
 /**
  * Get the current access token.
  * Returns null if no token getter is set or if token acquisition fails.
+ *
+ * Uses a short-lived cache to avoid calling acquireTokenSilent on every request,
+ * which dramatically improves performance for applications like Moorhen that
+ * make many API calls in rapid succession.
  */
 export async function getAccessToken(): Promise<string | null> {
   if (!tokenGetter) {
@@ -60,11 +73,24 @@ export async function getAccessToken(): Promise<string | null> {
     return null;
   }
 
+  // Return cached token if still valid
+  const now = Date.now();
+  if (cachedToken && now < tokenExpiresAt) {
+    return cachedToken;
+  }
+
   try {
     const token = await tokenGetter();
     if (process.env.NODE_ENV === "development" && process.env.DEBUG_AUTH) {
       console.log("[AUTH-TOKEN] tokenGetter returned:", token ? `token(${token.length} chars)` : "null");
     }
+
+    // Cache the token
+    if (token) {
+      cachedToken = token;
+      tokenExpiresAt = now + TOKEN_CACHE_MS;
+    }
+
     return token;
   } catch (error) {
     console.error("[AUTH-TOKEN] Failed to get access token:", error);

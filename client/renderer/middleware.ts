@@ -39,7 +39,6 @@ export function middleware(request: NextRequest) {
 
   // For Moorhen pages, add full cross-origin isolation headers
   if (pathname.startsWith("/ccp4i2/moorhen-page")) {
-    console.log("[Middleware] Adding COEP/COOP headers to:", pathname);
     const response = NextResponse.next();
     response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
     // Use credentialless instead of require-corp - it's more permissive and still enables
