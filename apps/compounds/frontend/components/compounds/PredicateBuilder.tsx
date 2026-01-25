@@ -108,6 +108,8 @@ export function PredicateBuilder({
 
   // Track if initial load is complete
   const [isInitialized, setIsInitialized] = useState(false);
+  // Track if initial query has been submitted (to prevent duplicate queries on load)
+  const initialQueryDoneRef = useRef(false);
 
   // Build predicates object
   const buildPredicates = useCallback((): Predicates => {
@@ -225,7 +227,8 @@ export function PredicateBuilder({
 
   // Auto-submit when initial values are loaded
   useEffect(() => {
-    if (isInitialized && hasPredicates() && aggregations.length > 0) {
+    if (isInitialized && !initialQueryDoneRef.current && hasPredicates() && aggregations.length > 0) {
+      initialQueryDoneRef.current = true;
       onChange(buildPredicates(), outputFormat, aggregations);
     }
     // Only run once after initialization
@@ -261,9 +264,9 @@ export function PredicateBuilder({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [compoundSearch]);
 
-  // Trigger on selection changes (immediate)
+  // Trigger on selection changes (immediate) - skip if this is the initial load
   useEffect(() => {
-    if (isInitialized) {
+    if (isInitialized && initialQueryDoneRef.current) {
       triggerChangeImmediate();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
