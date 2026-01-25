@@ -339,6 +339,76 @@ class AzureADAuthMiddleware:
         azure_ad_sub = claims.get("sub")
         request.azure_ad_user_id = azure_ad_sub
 
+        # ========================================================================
+        # TEAMS/GROUPS AUTHORIZATION CHECK
+        # ========================================================================
+        # Validate user is a member of authorized Azure AD groups (e.g., Teams)
+        # This prevents console-based bypass attacks where authenticated users
+        # who aren't in the Teams group try to access the API directly
+        #
+        # Requires:
+        # 1. Azure AD app configured to emit 'groups' claim (Token Configuration)
+        # 2. ALLOWED_AZURE_AD_GROUPS env var with comma-separated group IDs
+        # 3. Azure AD Premium P1/P2 (for groups claim in tokens)
+        #
+        # The 'groups' claim contains Object IDs of all security groups the user
+        # is a member of. We validate against the allowed list.
+        # ========================================================================
+        allowed_groups_str = os.environ.get("ALLOWED_AZURE_AD_GROUPS", "")
+        allowed_groups = [g.strip() for g in allowed_groups_str.split(",") if g.strip()]
+
+        if allowed_groups:
+            logger.debug(f"Groups authorization enabled. Allowed groups: {allowed_groups}")
+
+            # Extract groups claim from validated JWT token
+            user_groups = claims.get("groups", [])
+
+            # Check for group claims overage (happens when user is in >200 groups)
+            # Azure AD adds _claim_names/_claim_sources instead of full list
+            if "_claim_names" in claims or "_claim_sources" in claims:
+                logger.warning(
+                    f"Group claims overage detected for user {azure_ad_sub[:8]}. "
+                    "User is in >200 groups - cannot validate Teams membership from token. "
+                    "Consider using a dedicated app access group with fewer members."
+                )
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "error": "Your account has too many group memberships to verify automatically. "
+                                 "Please contact your administrator to be added to a dedicated "
+                                 "application access group.",
+                    },
+                    status=403,
+                )
+
+            logger.debug(f"User {azure_ad_sub[:8]}... has groups: {user_groups}")
+
+            # Check if user is in any of the allowed groups
+            has_access = any(group_id in allowed_groups for group_id in user_groups)
+
+            if not has_access:
+                logger.warning(
+                    f"Access denied for user {azure_ad_sub[:8]}... - not in authorized groups. "
+                    f"User groups: {user_groups[:5]}{'...' if len(user_groups) > 5 else ''}, "
+                    f"Required: {allowed_groups}"
+                )
+                return JsonResponse(
+                    {
+                        "success": False,
+                        "error": "Access denied: You are not a member of an authorized group. "
+                                 "This application requires membership in the Newcastle Drug Discovery Unit team. "
+                                 "Please contact your administrator to request access.",
+                    },
+                    status=403,
+                )
+
+            logger.info(f"✅ User {azure_ad_sub[:8]}... authorized via Teams/Groups membership")
+        else:
+            logger.debug("Groups authorization not configured (ALLOWED_AZURE_AD_GROUPS not set)")
+        # ========================================================================
+        # END TEAMS/GROUPS AUTHORIZATION CHECK
+        # ========================================================================
+
         # Try multiple claim fields where email might be found
         email = (
             claims.get("email") or

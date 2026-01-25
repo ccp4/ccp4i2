@@ -26,6 +26,39 @@ NC='\033[0m' # No Color
 
 echo -e "${GREEN}🚀 Deploying Container Apps${NC}"
 
+# Security check: Ensure authentication is required for production deployments
+echo -e "${YELLOW}🔒 Checking authentication configuration...${NC}"
+if [ "$CCP4I2_REQUIRE_AUTH" != "true" ]; then
+    echo -e "${RED}╔═══════════════════════════════════════════════════════════════════╗${NC}"
+    echo -e "${RED}║                   ⚠️  SECURITY WARNING ⚠️                          ║${NC}"
+    echo -e "${RED}╠═══════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${RED}║  CCP4I2_REQUIRE_AUTH is not set to 'true' in .env.deployment     ║${NC}"
+    echo -e "${RED}║                                                                   ║${NC}"
+    echo -e "${RED}║  This would deploy the application WITHOUT authentication,       ║${NC}"
+    echo -e "${RED}║  creating a 'dev_admin' superuser account with full access       ║${NC}"
+    echo -e "${RED}║  to ALL data for ANY request!                                    ║${NC}"
+    echo -e "${RED}║                                                                   ║${NC}"
+    echo -e "${RED}║  Current value: CCP4I2_REQUIRE_AUTH=\"$CCP4I2_REQUIRE_AUTH\"${NC}"
+    echo -e "${RED}║                                                                   ║${NC}"
+    echo -e "${RED}╠═══════════════════════════════════════════════════════════════════╣${NC}"
+    echo -e "${RED}║  To proceed, you must either:                                    ║${NC}"
+    echo -e "${RED}║  1. Set CCP4I2_REQUIRE_AUTH=true in .env.deployment (production) ║${NC}"
+    echo -e "${RED}║  2. Set ALLOW_NO_AUTH_DEPLOY=true to override (local dev only)   ║${NC}"
+    echo -e "${RED}╚═══════════════════════════════════════════════════════════════════╝${NC}"
+
+    # Allow override for local development/testing
+    if [ "$ALLOW_NO_AUTH_DEPLOY" = "true" ]; then
+        echo -e "${YELLOW}⚠️  ALLOW_NO_AUTH_DEPLOY=true detected - proceeding with NO AUTH${NC}"
+        echo -e "${YELLOW}⚠️  This should ONLY be used for local development!${NC}"
+        echo -e "${YELLOW}⚠️  Waiting 5 seconds... Press Ctrl+C to cancel${NC}"
+        sleep 5
+    else
+        exit 1
+    fi
+else
+    echo -e "${GREEN}✅ Authentication required: CCP4I2_REQUIRE_AUTH=true${NC}"
+fi
+
 # Function to check and register resource providers
 check_resource_providers() {
     echo -e "${BLUE}🔍 Checking required resource providers...${NC}"
