@@ -54,7 +54,7 @@ DEST_CONTAINER="django-uploads"
 DEST_PATH="fixtures"
 
 # Fixture types we're looking for (case-sensitive, must match actual filenames)
-FIXTURE_TYPES=("CCP4i2" "RegisterCompounds" "AssayCompounds" "ConstructDatabase" "auth" "reversion")
+FIXTURE_TYPES=("CCP4i2" "RegisterCompounds" "AssayCompounds" "ConstructDatabase" "MinyURL" "Timelines" "auth" "reversion")
 
 # Get destination storage account dynamically
 get_dest_storage_account() {
@@ -383,6 +383,8 @@ show_usage() {
     echo "  - RegisterCompounds.json (Compound registry)"
     echo "  - AssayCompounds.json    (Assay data)"
     echo "  - ConstructDatabase.json (Construct/plasmid data)"
+    echo "  - MinyURL.json           (URL shortener data)"
+    echo "  - Timelines.json         (Timeline events data)"
     echo "  - auth.json              (Django auth users/groups)"
     echo "  - reversion.json         (Django reversion history)"
     echo ""
