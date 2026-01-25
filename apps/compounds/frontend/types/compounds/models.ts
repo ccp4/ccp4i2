@@ -66,6 +66,15 @@ export interface Supplier {
   batch_count?: number;
 }
 
+/** Saved aggregation view configuration stored on a Target */
+export interface SavedAggregationView {
+  protocol_names: string[];
+  compound_search: string;
+  output_format: 'compact' | 'medium' | 'long';
+  aggregations: ('geomean' | 'count' | 'stdev' | 'list')[];
+  status: 'valid' | 'invalid' | 'unassigned' | '';
+}
+
 export interface Target {
   id: string;
   name: string;
@@ -77,6 +86,7 @@ export interface Target {
   has_recent_assays?: boolean;
   latest_activity?: string | null;
   image?: string | null;
+  saved_aggregation_view?: SavedAggregationView | null;
 }
 
 /**

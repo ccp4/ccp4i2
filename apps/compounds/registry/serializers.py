@@ -89,6 +89,35 @@ class SupplierSerializer(serializers.ModelSerializer):
         return Batch.objects.filter(supplier=obj).count()
 
 
+class SavedAggregationViewSerializer(serializers.Serializer):
+    """Serializer for validating saved aggregation view configuration."""
+    protocol_names = serializers.ListField(
+        child=serializers.CharField(max_length=256),
+        required=False,
+        default=list
+    )
+    compound_search = serializers.CharField(
+        required=False,
+        default='',
+        allow_blank=True
+    )
+    output_format = serializers.ChoiceField(
+        choices=['compact', 'medium', 'long'],
+        default='compact'
+    )
+    aggregations = serializers.ListField(
+        child=serializers.ChoiceField(choices=['geomean', 'count', 'stdev', 'list']),
+        required=False,
+        default=['geomean', 'count']
+    )
+    status = serializers.ChoiceField(
+        choices=['valid', 'invalid', 'unassigned', ''],
+        required=False,
+        default='valid',
+        allow_blank=True
+    )
+
+
 class TargetSerializer(serializers.ModelSerializer):
     parent_name = serializers.CharField(source='parent.name', read_only=True)
     compound_count = serializers.IntegerField(source='compounds.count', read_only=True)
@@ -106,6 +135,7 @@ class TargetSerializer(serializers.ModelSerializer):
             'has_recent_compounds', 'has_recent_assays',
             'latest_activity',
             'image',
+            'saved_aggregation_view',
         ]
 
     def get_assay_count(self, obj):

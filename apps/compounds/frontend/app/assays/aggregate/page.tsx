@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Container, Typography, Box, Alert, CircularProgress, IconButton, Tooltip, Snackbar } from '@mui/material';
-import { TableChart, Link as LinkIcon } from '@mui/icons-material';
+import { TableChart, Link as LinkIcon, Save } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { routes } from '@/lib/compounds/routes';
 import { PredicateBuilder, PredicateBuilderState } from '@/components/compounds/PredicateBuilder';
@@ -14,7 +14,8 @@ import {
   OutputFormat,
   AggregationResponse,
 } from '@/types/compounds/aggregation';
-import { fetchAggregation } from '@/lib/compounds/aggregation-api';
+import { fetchAggregation, saveAggregationView } from '@/lib/compounds/aggregation-api';
+import { useAuth } from '@/lib/compounds/auth-context';
 
 export default function AggregationPage() {
   return (
@@ -26,6 +27,7 @@ export default function AggregationPage() {
 
 function AggregationPageContent() {
   const searchParams = useSearchParams();
+  const { canAdminister } = useAuth();
 
   // Read initial values from URL params for deep linking
   // Support both single 'compound' param and multiple 'compounds' params
@@ -45,6 +47,8 @@ function AggregationPageContent() {
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(['geomean', 'count']);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [saving, setSaving] = useState(false);
 
   // Track current request to avoid race conditions
   const requestIdRef = useRef(0);
@@ -72,8 +76,32 @@ function AggregationPageContent() {
 
     const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     navigator.clipboard.writeText(url).then(() => {
+      setSnackbarMessage('Link copied to clipboard');
       setSnackbarOpen(true);
     });
+  }, [currentState]);
+
+  const handleSaveToTarget = useCallback(async () => {
+    if (!currentState || currentState.targets.length !== 1) return;
+
+    const target = currentState.targets[0];
+    setSaving(true);
+
+    try {
+      await saveAggregationView(target.id, {
+        protocol_names: currentState.protocolNames,
+        compound_search: currentState.compoundSearch,
+        output_format: currentState.outputFormat,
+        aggregations: currentState.aggregations,
+        status: 'valid', // Default to valid status
+      });
+      setSnackbarMessage(`Saved view to ${target.name}`);
+      setSnackbarOpen(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to save view');
+    } finally {
+      setSaving(false);
+    }
   }, [currentState]);
 
   const handleChange = useCallback(async (
@@ -142,6 +170,19 @@ function AggregationPageContent() {
             <LinkIcon />
           </IconButton>
         </Tooltip>
+        {canAdminister && (
+          <Tooltip title={currentState?.targets.length === 1 ? `Save view to ${currentState.targets[0].name}` : 'Select exactly one target to save'}>
+            <span>
+              <IconButton
+                onClick={handleSaveToTarget}
+                disabled={saving || !currentState || currentState.targets.length !== 1}
+                size="small"
+              >
+                <Save />
+              </IconButton>
+            </span>
+          </Tooltip>
+        )}
       </Box>
 
       <PredicateBuilder
@@ -167,7 +208,7 @@ function AggregationPageContent() {
         open={snackbarOpen}
         autoHideDuration={2000}
         onClose={() => setSnackbarOpen(false)}
-        message="Link copied to clipboard"
+        message={snackbarMessage}
       />
     </Container>
   );

@@ -104,6 +104,15 @@ class Target(models.Model):
         null=True,
         help_text="Branding image for the target dashboard"
     )
+    saved_aggregation_view = models.JSONField(
+        blank=True,
+        null=True,
+        help_text="Saved aggregation query configuration for dashboard display. "
+                  "Schema: {protocol_names: string[], compound_search: string, "
+                  "output_format: 'compact'|'medium'|'long', "
+                  "aggregations: ('geomean'|'count'|'stdev'|'list')[], "
+                  "status: 'valid'|'invalid'|'unassigned'|''}"
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:

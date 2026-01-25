@@ -34,12 +34,14 @@ import {
 import { Target } from '@/types/compounds/models';
 import { fetchTargets, fetchProtocols } from '@/lib/compounds/aggregation-api';
 
-/** State exposed for URL sharing */
+/** State exposed for URL sharing and saving */
 export interface PredicateBuilderState {
+  targets: Target[];
   targetNames: string[];
   protocolNames: string[];
   compoundSearch: string;
   outputFormat: OutputFormat;
+  aggregations: AggregationType[];
 }
 
 interface PredicateBuilderProps {
@@ -236,13 +238,15 @@ export function PredicateBuilder({
   useEffect(() => {
     if (onStateChange) {
       onStateChange({
+        targets: selectedTargets,
         targetNames: selectedTargets.map((t) => t.name),
         protocolNames: selectedProtocols.map((p) => p.name),
         compoundSearch,
         outputFormat,
+        aggregations,
       });
     }
-  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, onStateChange]);
+  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, onStateChange]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>

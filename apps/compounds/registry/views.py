@@ -21,7 +21,7 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from reversion.models import Version
 
-from users.permissions import IsContributorOrReadOnly
+from users.permissions import IsContributorOrReadOnly, can_administer
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
 
 logger = logging.getLogger(__name__)
@@ -39,6 +39,7 @@ from .serializers import (
     TargetDetailSerializer,
     TargetDashboardSerializer,
     DashboardProjectSerializer,
+    SavedAggregationViewSerializer,
     CompoundListSerializer,
     CompoundDetailSerializer,
     CompoundCreateSerializer,
@@ -406,6 +407,67 @@ class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
 
         serializer = DashboardProjectSerializer(matching_projects, many=True)
         return Response(serializer.data)
+
+    @action(detail=True, methods=['get', 'post', 'delete'])
+    def saved_view(self, request, pk=None):
+        """
+        Get, set, or delete the saved aggregation view for this target.
+
+        GET: Returns the current saved view configuration (or null)
+        POST: Saves a new view configuration (admin only)
+        DELETE: Removes the saved view (admin only)
+
+        Request body for POST:
+        {
+            "protocol_names": ["Protocol A"],
+            "compound_search": "",
+            "output_format": "compact",
+            "aggregations": ["geomean", "count"],
+            "status": "valid"
+        }
+        """
+        target = self.get_object()
+
+        if request.method == 'GET':
+            return Response({
+                'saved_view': target.saved_aggregation_view
+            })
+
+        # Write operations require admin
+        if not can_administer(request):
+            return Response(
+                {'error': 'Admin access required'},
+                status=status.HTTP_403_FORBIDDEN
+            )
+
+        if request.method == 'DELETE':
+            with reversion.create_revision():
+                target.saved_aggregation_view = None
+                target.save(update_fields=['saved_aggregation_view'])
+                if request.user.is_authenticated:
+                    reversion.set_user(request.user)
+                reversion.set_comment("Removed saved aggregation view")
+            return Response({'success': True})
+
+        # POST - validate and save
+        serializer = SavedAggregationViewSerializer(data=request.data)
+        if not serializer.is_valid():
+            return Response(
+                {'error': serializer.errors},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        with reversion.create_revision():
+            target.saved_aggregation_view = serializer.validated_data
+            target.save(update_fields=['saved_aggregation_view'])
+            if request.user.is_authenticated:
+                reversion.set_user(request.user)
+            reversion.set_comment("Updated saved aggregation view")
+
+        return Response({
+            'success': True,
+            'saved_view': target.saved_aggregation_view
+        })
 
 
 class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):

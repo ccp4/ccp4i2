@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useRef, ChangeEvent } from 'react';
+import { use, useRef, useState, useEffect, ChangeEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -11,6 +11,8 @@ import {
   Button,
   IconButton,
   Tooltip,
+  CircularProgress,
+  Alert,
 } from '@mui/material';
 import {
   Science,
@@ -19,6 +21,7 @@ import {
   CloudUpload,
   Delete,
   ViewList,
+  Settings,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
@@ -27,13 +30,20 @@ import { CompoundCard } from '@/components/compounds/CompoundCard';
 import { AssayCard } from '@/components/compounds/AssayCard';
 import { ProjectCard } from '@/components/compounds/ProjectCard';
 import { AddAssayMenu } from '@/components/compounds/AddAssayMenu';
+import { AggregationTable } from '@/components/compounds/AggregationTable';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import {
+  fetchAggregation,
+  fetchProtocols,
+  deleteAggregationView,
+} from '@/lib/compounds/aggregation-api';
+import {
   TargetDashboard,
   DashboardProject,
 } from '@/types/compounds/models';
+import { AggregationResponse } from '@/types/compounds/aggregation';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -43,7 +53,7 @@ export default function TargetDashboardPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
-  const { canContribute } = useAuth();
+  const { canContribute, canAdminister } = useAuth();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Fetch dashboard data
@@ -57,6 +67,68 @@ export default function TargetDashboardPage({ params }: PageProps) {
   const { data: projects, isLoading: projectsLoading } = api.get<
     DashboardProject[]
   >(`targets/${id}/recent_projects/`);
+
+  // Saved aggregation view state
+  const [aggregationData, setAggregationData] = useState<AggregationResponse | null>(null);
+  const [aggregationLoading, setAggregationLoading] = useState(false);
+  const [aggregationError, setAggregationError] = useState<string | null>(null);
+
+  // Fetch aggregation data when dashboard loads and has a saved view
+  useEffect(() => {
+    const savedView = dashboardData?.saved_aggregation_view;
+    if (!savedView || !dashboardData) return;
+
+    const runAggregation = async () => {
+      setAggregationLoading(true);
+      setAggregationError(null);
+
+      try {
+        // First fetch protocols to convert names to IDs
+        const allProtocols = await fetchProtocols({ target: id });
+        const matchedProtocols = allProtocols.filter((p) =>
+          savedView.protocol_names.some((name) => p.name.toLowerCase() === name.toLowerCase())
+        );
+
+        // Build predicates
+        const predicates: any = {
+          targets: [id],
+        };
+        if (matchedProtocols.length > 0) {
+          predicates.protocols = matchedProtocols.map((p) => p.id);
+        }
+        if (savedView.compound_search) {
+          predicates.compound_search = savedView.compound_search;
+        }
+        if (savedView.status) {
+          predicates.status = savedView.status;
+        }
+
+        // Run aggregation
+        const result = await fetchAggregation({
+          predicates,
+          output_format: savedView.output_format,
+          aggregations: savedView.aggregations,
+        });
+        setAggregationData(result);
+      } catch (err) {
+        setAggregationError(err instanceof Error ? err.message : 'Failed to load aggregation data');
+      } finally {
+        setAggregationLoading(false);
+      }
+    };
+
+    runAggregation();
+  }, [dashboardData, id]);
+
+  const handleDeleteSavedView = async () => {
+    try {
+      await deleteAggregationView(id);
+      mutateDashboard();
+      setAggregationData(null);
+    } catch (err) {
+      console.error('Failed to delete saved view:', err);
+    }
+  };
 
   const handleImageUpload = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -301,23 +373,73 @@ export default function TargetDashboardPage({ params }: PageProps) {
         emptyMessage="No matching projects found"
       />
 
-      {/* Lead Compounds Table (Placeholder) */}
+      {/* Saved Aggregation View */}
       <Paper sx={{ p: 3 }}>
-        <Typography variant="h6" gutterBottom>
-          Lead Compounds
-        </Typography>
-        <Box
-          sx={{
-            p: 4,
-            bgcolor: 'grey.50',
-            borderRadius: 1,
-            textAlign: 'center',
-          }}
-        >
-          <Typography color="text.secondary">
-            Configurable lead compounds table - coming in a future release
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+          <Typography variant="h6">
+            Lead Compounds
           </Typography>
+          {canAdminister && dashboardData?.saved_aggregation_view && (
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Tooltip title="Configure in Data Aggregation">
+                <IconButton
+                  component={Link}
+                  href={routes.assays.aggregate({ targets: [dashboardData.name] })}
+                  size="small"
+                >
+                  <Settings fontSize="small" />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title="Remove saved view">
+                <IconButton
+                  onClick={handleDeleteSavedView}
+                  size="small"
+                  color="error"
+                >
+                  <Delete fontSize="small" />
+                </IconButton>
+              </Tooltip>
+            </Box>
+          )}
         </Box>
+
+        {!dashboardData?.saved_aggregation_view ? (
+          <Box
+            sx={{
+              p: 4,
+              bgcolor: 'grey.50',
+              borderRadius: 1,
+              textAlign: 'center',
+            }}
+          >
+            <Typography color="text.secondary" sx={{ mb: canAdminister ? 2 : 0 }}>
+              No aggregation view configured for this target
+            </Typography>
+            {canAdminister && (
+              <Button
+                component={Link}
+                href={routes.assays.aggregate({ targets: [dashboardData?.name || ''] })}
+                variant="outlined"
+                size="small"
+                startIcon={<Settings />}
+              >
+                Configure in Data Aggregation
+              </Button>
+            )}
+          </Box>
+        ) : aggregationLoading ? (
+          <Box sx={{ display: 'flex', justifyContent: 'center', p: 4 }}>
+            <CircularProgress />
+          </Box>
+        ) : aggregationError ? (
+          <Alert severity="error">{aggregationError}</Alert>
+        ) : (
+          <AggregationTable
+            data={aggregationData}
+            loading={false}
+            aggregations={dashboardData.saved_aggregation_view.aggregations}
+          />
+        )}
       </Paper>
     </Container>
   );

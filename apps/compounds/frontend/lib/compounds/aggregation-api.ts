@@ -13,7 +13,7 @@ import {
   AggregationResponse,
   ProtocolInfo,
 } from '@/types/compounds/aggregation';
-import { Target } from '@/types/compounds/models';
+import { Target, SavedAggregationView } from '@/types/compounds/models';
 
 // =============================================================================
 // Authentication Integration
@@ -293,4 +293,44 @@ export function downloadCsv(content: string, filename: string): void {
   link.click();
   document.body.removeChild(link);
   URL.revokeObjectURL(url);
+}
+
+// =============================================================================
+// Saved Aggregation View API
+// =============================================================================
+
+/**
+ * Save an aggregation view configuration to a target.
+ * Requires admin operating level.
+ */
+export async function saveAggregationView(
+  targetId: string,
+  config: SavedAggregationView
+): Promise<{ success: boolean; saved_view: SavedAggregationView }> {
+  const res = await coreFetch(`${API_BASE}/targets/${targetId}/saved_view/`, {
+    method: 'POST',
+    body: JSON.stringify(config),
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({ error: 'Request failed' }));
+    throw new Error(error.error || 'Failed to save aggregation view');
+  }
+
+  return res.json();
+}
+
+/**
+ * Delete a saved aggregation view from a target.
+ * Requires admin operating level.
+ */
+export async function deleteAggregationView(targetId: string): Promise<void> {
+  const res = await coreFetch(`${API_BASE}/targets/${targetId}/saved_view/`, {
+    method: 'DELETE',
+  });
+
+  if (!res.ok) {
+    const error = await res.json().catch(() => ({ error: 'Request failed' }));
+    throw new Error(error.error || 'Failed to delete aggregation view');
+  }
 }

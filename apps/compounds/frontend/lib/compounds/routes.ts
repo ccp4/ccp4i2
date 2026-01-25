@@ -31,14 +31,21 @@ function route(path: string): string {
 /**
  * Build a route with query parameters
  */
-function routeWithQuery(path: string, params?: Record<string, string | number | undefined>): string {
+function routeWithQuery(path: string, params?: Record<string, string | number | string[] | undefined>): string {
   const base = route(path);
   if (!params) return base;
 
   const searchParams = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
     if (value !== undefined) {
-      searchParams.set(key, String(value));
+      if (Array.isArray(value)) {
+        // Join array values with comma
+        if (value.length > 0) {
+          searchParams.set(key, value.join(','));
+        }
+      } else {
+        searchParams.set(key, String(value));
+      }
     }
   });
 
@@ -130,6 +137,7 @@ export const routes = {
     aggregate: (params?: {
       compound?: string;
       target?: string | number;
+      targets?: string[];
       protocol?: string | number;
     }) => routeWithQuery('/assays/aggregate', params),
   },
