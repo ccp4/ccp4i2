@@ -17,11 +17,13 @@ import {
   InputLabel,
   ToggleButton,
   ToggleButtonGroup,
+  Button,
 } from '@mui/material';
 import {
   Science,
   Description,
   Search,
+  PlayArrow,
 } from '@mui/icons-material';
 import {
   Predicates,
@@ -51,8 +53,8 @@ interface PredicateBuilderProps {
   initialCompoundSearch?: string;
   /** Initial output format (for URL sharing) */
   initialOutputFormat?: OutputFormat;
-  /** Called when predicates change (debounced for text fields) */
-  onChange: (
+  /** Called when user clicks Run Query */
+  onRunQuery: (
     predicates: Predicates,
     outputFormat: OutputFormat,
     aggregations: AggregationType[]
@@ -61,8 +63,6 @@ interface PredicateBuilderProps {
   onStateChange?: (state: PredicateBuilderState) => void;
   /** Whether a query is currently running */
   loading?: boolean;
-  /** Debounce delay in ms for text fields (default 500) */
-  debounceMs?: number;
 }
 
 const AGGREGATION_OPTIONS: { value: AggregationType; label: string; description: string }[] = [
@@ -78,22 +78,19 @@ export function PredicateBuilder({
   initialProtocolNames,
   initialCompoundSearch,
   initialOutputFormat,
-  onChange,
+  onRunQuery,
   onStateChange,
   loading = false,
-  debounceMs = 500,
 }: PredicateBuilderProps) {
   // Target selection
   const [selectedTargets, setSelectedTargets] = useState<Target[]>([]);
   const [targetOptions, setTargetOptions] = useState<Target[]>([]);
   const [targetLoading, setTargetLoading] = useState(false);
-  const [targetSearch, setTargetSearch] = useState('');
 
   // Protocol selection
   const [selectedProtocols, setSelectedProtocols] = useState<ProtocolInfo[]>([]);
   const [protocolOptions, setProtocolOptions] = useState<ProtocolInfo[]>([]);
   const [protocolLoading, setProtocolLoading] = useState(false);
-  const [protocolSearch, setProtocolSearch] = useState('');
 
   // Other predicates
   const [compoundSearch, setCompoundSearch] = useState(initialCompoundSearch || '');
@@ -103,13 +100,12 @@ export function PredicateBuilder({
   const [outputFormat, setOutputFormat] = useState<OutputFormat>(initialOutputFormat || 'compact');
   const [aggregations, setAggregations] = useState<AggregationType[]>(['geomean', 'count']);
 
-  // Debounce timer ref
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Track if initial load is complete
+  // Track initialization state
   const [isInitialized, setIsInitialized] = useState(false);
-  // Track if initial query has been submitted (to prevent duplicate queries on load)
-  const initialQueryDoneRef = useRef(false);
+  const hasRunInitialQuery = useRef(false);
+
+  // Check if we have URL params that should trigger auto-query
+  const hasUrlParams = !!(initialTargetId || initialTargetNames?.length || initialProtocolNames?.length || initialCompoundSearch);
 
   // Build predicates object
   const buildPredicates = useCallback((): Predicates => {
@@ -136,32 +132,18 @@ export function PredicateBuilder({
       compoundSearch.trim().length > 0;
   }, [selectedTargets, selectedProtocols, compoundSearch]);
 
-  // Trigger onChange (debounced version)
-  const triggerChangeDebounced = useCallback(() => {
-    if (debounceTimerRef.current) {
-      clearTimeout(debounceTimerRef.current);
-    }
-    debounceTimerRef.current = setTimeout(() => {
-      if (hasPredicates() && aggregations.length > 0) {
-        onChange(buildPredicates(), outputFormat, aggregations);
-      }
-    }, debounceMs);
-  }, [buildPredicates, hasPredicates, onChange, outputFormat, aggregations, debounceMs]);
+  // Check if query can be run
+  const canRunQuery = hasPredicates() &&
+    (outputFormat === 'long' || aggregations.length > 0);
 
-  // Trigger onChange immediately (for non-text fields)
-  const triggerChangeImmediate = useCallback(() => {
-    if (debounceTimerRef.current) {
-      clearTimeout(debounceTimerRef.current);
+  // Handle Run Query button click
+  const handleRunQuery = useCallback(() => {
+    if (canRunQuery) {
+      onRunQuery(buildPredicates(), outputFormat, aggregations);
     }
-    // Small delay to allow state to update
-    setTimeout(() => {
-      if (hasPredicates() && aggregations.length > 0) {
-        onChange(buildPredicates(), outputFormat, aggregations);
-      }
-    }, 50);
-  }, [buildPredicates, hasPredicates, onChange, outputFormat, aggregations]);
+  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations]);
 
-  // Load initial targets and protocols if provided
+  // Load initial targets and protocols if URL params provided
   useEffect(() => {
     const initializeSelections = async () => {
       const promises: Promise<void>[] = [];
@@ -170,6 +152,7 @@ export function PredicateBuilder({
       if (initialTargetId || (initialTargetNames && initialTargetNames.length > 0)) {
         promises.push(
           fetchTargets().then((targets) => {
+            setTargetOptions(targets); // Also populate options
             if (initialTargetId) {
               const target = targets.find((t) => t.id === initialTargetId);
               if (target) {
@@ -191,6 +174,7 @@ export function PredicateBuilder({
       if (initialProtocolNames && initialProtocolNames.length > 0) {
         promises.push(
           fetchProtocols({}).then((protocols) => {
+            setProtocolOptions(protocols); // Also populate options
             const matchedProtocols = protocols.filter((p) =>
               initialProtocolNames.some((name) => p.name.toLowerCase() === name.toLowerCase())
             );
@@ -208,46 +192,49 @@ export function PredicateBuilder({
     initializeSelections();
   }, [initialTargetId, initialTargetNames, initialProtocolNames]);
 
-  // Load target options on search - only after initialization to prevent loops
+  // Auto-run query once if URL params were provided
   useEffect(() => {
-    if (!isInitialized) return;
+    if (isInitialized && hasUrlParams && !hasRunInitialQuery.current && hasPredicates()) {
+      hasRunInitialQuery.current = true;
+      const predicates = buildPredicates();
+      // Use aggregations for compact/medium, ignore for long
+      onRunQuery(predicates, outputFormat, aggregations);
+    }
+  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, onRunQuery]);
+
+  // Load target options when user types in autocomplete
+  const handleTargetSearch = useCallback((search: string) => {
     setTargetLoading(true);
-    fetchTargets({ search: targetSearch })
+    fetchTargets({ search })
       .then(setTargetOptions)
       .finally(() => setTargetLoading(false));
-  }, [targetSearch, isInitialized]);
+  }, []);
 
-  // Track the target ID used for protocol filtering to avoid unnecessary refetches
-  const prevProtocolFilterRef = useRef<{ targetId: string | undefined; search: string }>({ targetId: undefined, search: '' });
-
-  // Load protocol options on search (filtered by selected targets) - only after initialization
-  useEffect(() => {
-    if (!isInitialized) return;
+  // Load protocol options when user types in autocomplete
+  const handleProtocolSearch = useCallback((search: string) => {
     const targetId = selectedTargets.length === 1 ? selectedTargets[0].id : undefined;
-    // Skip if the filter criteria haven't actually changed
-    if (targetId === prevProtocolFilterRef.current.targetId && protocolSearch === prevProtocolFilterRef.current.search) {
-      return;
-    }
-    prevProtocolFilterRef.current = { targetId, search: protocolSearch };
     setProtocolLoading(true);
-    fetchProtocols({ target: targetId, search: protocolSearch })
-      .then((protocols) => setProtocolOptions(protocols as any))
+    fetchProtocols({ target: targetId, search })
+      .then((protocols) => setProtocolOptions(protocols))
       .finally(() => setProtocolLoading(false));
-  }, [protocolSearch, selectedTargets, isInitialized]);
+  }, [selectedTargets]);
 
-  // Auto-submit when initial values are loaded
-  useEffect(() => {
-    if (isInitialized && !initialQueryDoneRef.current && hasPredicates() && aggregations.length > 0) {
-      initialQueryDoneRef.current = true;
-      onChange(buildPredicates(), outputFormat, aggregations);
+  // Load options when autocomplete opens (if not already loaded)
+  const handleTargetOpen = useCallback(() => {
+    if (targetOptions.length === 0) {
+      handleTargetSearch('');
     }
-    // Only run once after initialization
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isInitialized]);
+  }, [targetOptions.length, handleTargetSearch]);
+
+  const handleProtocolOpen = useCallback(() => {
+    if (protocolOptions.length === 0) {
+      handleProtocolSearch('');
+    }
+  }, [protocolOptions.length, handleProtocolSearch]);
 
   // Notify parent of state changes for URL sharing
   useEffect(() => {
-    if (isInitialized && onStateChange) {
+    if (onStateChange) {
       onStateChange({
         targetNames: selectedTargets.map((t) => t.name),
         protocolNames: selectedProtocols.map((p) => p.name),
@@ -255,41 +242,7 @@ export function PredicateBuilder({
         outputFormat,
       });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, isInitialized]);
-
-  // Trigger on output format or aggregation changes (immediate)
-  useEffect(() => {
-    if (isInitialized && hasPredicates() && aggregations.length > 0) {
-      triggerChangeImmediate();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [outputFormat, aggregations]);
-
-  // Trigger on compound search changes (debounced)
-  useEffect(() => {
-    if (isInitialized) {
-      triggerChangeDebounced();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [compoundSearch]);
-
-  // Trigger on selection changes (immediate) - skip if this is the initial load
-  useEffect(() => {
-    if (isInitialized && initialQueryDoneRef.current) {
-      triggerChangeImmediate();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedTargets, selectedProtocols, status]);
-
-  // Cleanup debounce timer
-  useEffect(() => {
-    return () => {
-      if (debounceTimerRef.current) {
-        clearTimeout(debounceTimerRef.current);
-      }
-    };
-  }, []);
+  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, onStateChange]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
@@ -311,7 +264,10 @@ export function PredicateBuilder({
           options={targetOptions}
           value={selectedTargets}
           onChange={(_, newValue) => setSelectedTargets(newValue)}
-          onInputChange={(_, value) => setTargetSearch(value)}
+          onInputChange={(_, value, reason) => {
+            if (reason === 'input') handleTargetSearch(value);
+          }}
+          onOpen={handleTargetOpen}
           getOptionLabel={(option) => option.name}
           isOptionEqualToValue={(option, value) => option.id === value.id}
           loading={targetLoading}
@@ -357,7 +313,10 @@ export function PredicateBuilder({
           options={protocolOptions}
           value={selectedProtocols}
           onChange={(_, newValue) => setSelectedProtocols(newValue)}
-          onInputChange={(_, value) => setProtocolSearch(value)}
+          onInputChange={(_, value, reason) => {
+            if (reason === 'input') handleProtocolSearch(value);
+          }}
+          onOpen={handleProtocolOpen}
           getOptionLabel={(option) => option.name}
           isOptionEqualToValue={(option, value) => option.id === value.id}
           loading={protocolLoading}
@@ -426,7 +385,7 @@ export function PredicateBuilder({
         </FormControl>
       </Box>
 
-      {/* Row 2: Output options */}
+      {/* Row 2: Output options and Run button */}
       <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
         {/* Output format toggle */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -476,26 +435,17 @@ export function PredicateBuilder({
           </Box>
         )}
 
-        {/* Status indicator */}
+        {/* Run Query button */}
         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', ml: 'auto' }}>
-          {loading && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-              <CircularProgress size={16} />
-              <Typography variant="body2" color="text.secondary">
-                Loading...
-              </Typography>
-            </Box>
-          )}
-          {!loading && !hasPredicates() && (
-            <Typography variant="body2" color="text.secondary">
-              Select a filter to see results
-            </Typography>
-          )}
-          {!loading && hasPredicates() && (outputFormat === 'compact' || outputFormat === 'medium') && aggregations.length === 0 && (
-            <Typography variant="body2" color="warning.main">
-              Select an aggregation
-            </Typography>
-          )}
+          <Button
+            variant="contained"
+            size="small"
+            startIcon={loading ? <CircularProgress size={16} color="inherit" /> : <PlayArrow />}
+            onClick={handleRunQuery}
+            disabled={!canRunQuery || loading}
+          >
+            {loading ? 'Running...' : 'Run Query'}
+          </Button>
         </Box>
       </Box>
     </Paper>

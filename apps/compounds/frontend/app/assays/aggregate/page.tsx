@@ -145,7 +145,7 @@ function AggregationPageContent() {
       </Box>
 
       <PredicateBuilder
-        onChange={handleChange}
+        onRunQuery={handleChange}
         onStateChange={handleStateChange}
         loading={loading}
         initialCompoundSearch={initialCompoundSearch}
