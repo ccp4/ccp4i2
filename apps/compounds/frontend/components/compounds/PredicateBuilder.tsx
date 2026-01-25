@@ -208,22 +208,32 @@ export function PredicateBuilder({
     initializeSelections();
   }, [initialTargetId, initialTargetNames, initialProtocolNames]);
 
-  // Load target options on search
+  // Load target options on search - only after initialization to prevent loops
   useEffect(() => {
+    if (!isInitialized) return;
     setTargetLoading(true);
     fetchTargets({ search: targetSearch })
       .then(setTargetOptions)
       .finally(() => setTargetLoading(false));
-  }, [targetSearch]);
+  }, [targetSearch, isInitialized]);
 
-  // Load protocol options on search (filtered by selected targets)
+  // Track the target ID used for protocol filtering to avoid unnecessary refetches
+  const prevProtocolFilterRef = useRef<{ targetId: string | undefined; search: string }>({ targetId: undefined, search: '' });
+
+  // Load protocol options on search (filtered by selected targets) - only after initialization
   useEffect(() => {
-    setProtocolLoading(true);
+    if (!isInitialized) return;
     const targetId = selectedTargets.length === 1 ? selectedTargets[0].id : undefined;
+    // Skip if the filter criteria haven't actually changed
+    if (targetId === prevProtocolFilterRef.current.targetId && protocolSearch === prevProtocolFilterRef.current.search) {
+      return;
+    }
+    prevProtocolFilterRef.current = { targetId, search: protocolSearch };
+    setProtocolLoading(true);
     fetchProtocols({ target: targetId, search: protocolSearch })
       .then((protocols) => setProtocolOptions(protocols as any))
       .finally(() => setProtocolLoading(false));
-  }, [protocolSearch, selectedTargets]);
+  }, [protocolSearch, selectedTargets, isInitialized]);
 
   // Auto-submit when initial values are loaded
   useEffect(() => {
