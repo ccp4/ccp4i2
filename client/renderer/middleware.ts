@@ -38,10 +38,12 @@ export function middleware(request: NextRequest) {
   }
 
   // For Moorhen pages, add full cross-origin isolation headers
+  // Use "credentialless" instead of "require-corp" to allow embedding iframes
+  // (like help pages) while still enabling SharedArrayBuffer
   if (pathname.startsWith("/ccp4i2/moorhen-page")) {
     const response = NextResponse.next();
     response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
-    response.headers.set("Cross-Origin-Embedder-Policy", "require-corp");
+    response.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
     return response;
   }
 
