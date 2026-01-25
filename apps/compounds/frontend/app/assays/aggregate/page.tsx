@@ -2,11 +2,11 @@
 
 import { useState, useCallback, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Container, Typography, Box, Alert, CircularProgress } from '@mui/material';
-import { TableChart } from '@mui/icons-material';
+import { Container, Typography, Box, Alert, CircularProgress, IconButton, Tooltip, Snackbar } from '@mui/material';
+import { TableChart, Link as LinkIcon } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { routes } from '@/lib/compounds/routes';
-import { PredicateBuilder } from '@/components/compounds/PredicateBuilder';
+import { PredicateBuilder, PredicateBuilderState } from '@/components/compounds/PredicateBuilder';
 import { AggregationTable } from '@/components/compounds/AggregationTable';
 import {
   Predicates,
@@ -28,16 +28,53 @@ function AggregationPageContent() {
   const searchParams = useSearchParams();
 
   // Read initial values from URL params for deep linking
-  const initialCompoundSearch = searchParams.get('compound') || undefined;
+  // Support both single 'compound' param and multiple 'compounds' params
+  const initialCompoundSearch = searchParams.get('compound') || searchParams.get('compounds') || undefined;
   const initialTargetId = searchParams.get('target') || undefined;
+  // Support multiple target names via comma-separated 'targets' param
+  const initialTargetNames = searchParams.get('targets')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
+  // Support multiple protocol names via comma-separated 'protocols' param
+  const initialProtocolNames = searchParams.get('protocols')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
+  // Support output format via 'format' param
+  const formatParam = searchParams.get('format');
+  const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long') ? formatParam : undefined;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AggregationResponse | null>(null);
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(['geomean', 'count']);
+  const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
 
   // Track current request to avoid race conditions
   const requestIdRef = useRef(0);
+
+  const handleStateChange = useCallback((state: PredicateBuilderState) => {
+    setCurrentState(state);
+  }, []);
+
+  const handleCopyLink = useCallback(() => {
+    if (!currentState) return;
+
+    const params = new URLSearchParams();
+    if (currentState.targetNames.length > 0) {
+      params.set('targets', currentState.targetNames.join(','));
+    }
+    if (currentState.protocolNames.length > 0) {
+      params.set('protocols', currentState.protocolNames.join(','));
+    }
+    if (currentState.compoundSearch) {
+      params.set('compound', currentState.compoundSearch);
+    }
+    if (currentState.outputFormat !== 'compact') {
+      params.set('format', currentState.outputFormat);
+    }
+
+    const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
+    navigator.clipboard.writeText(url).then(() => {
+      setSnackbarOpen(true);
+    });
+  }, [currentState]);
 
   const handleChange = useCallback(async (
     predicates: Predicates,
@@ -77,7 +114,7 @@ function AggregationPageContent() {
   }, []);
 
   return (
-    <Container maxWidth="xl" sx={{ py: 3 }}>
+    <Container maxWidth="xl" sx={{ py: 2 }}>
       <PageHeader
         breadcrumbs={[
           { label: 'Home', href: routes.home(), icon: 'home' },
@@ -86,23 +123,36 @@ function AggregationPageContent() {
         ]}
       />
 
-      <Box sx={{ mb: 3, display: 'flex', alignItems: 'center', gap: 2 }}>
-        <TableChart sx={{ fontSize: 40, color: 'primary.main' }} />
-        <Box>
-          <Typography variant="h4" gutterBottom sx={{ mb: 0 }}>
+      <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
+        <TableChart sx={{ fontSize: 32, color: 'primary.main' }} />
+        <Box sx={{ flex: 1 }}>
+          <Typography variant="h5" sx={{ mb: 0 }}>
             Data Aggregation
           </Typography>
-          <Typography color="text.secondary">
+          <Typography variant="body2" color="text.secondary">
             Aggregate KPI values across compounds and protocols
           </Typography>
         </Box>
+        <Tooltip title="Copy shareable link">
+          <IconButton
+            onClick={handleCopyLink}
+            disabled={!currentState || (!currentState.targetNames.length && !currentState.protocolNames.length && !currentState.compoundSearch)}
+            size="small"
+          >
+            <LinkIcon />
+          </IconButton>
+        </Tooltip>
       </Box>
 
       <PredicateBuilder
         onChange={handleChange}
+        onStateChange={handleStateChange}
         loading={loading}
         initialCompoundSearch={initialCompoundSearch}
         initialTargetId={initialTargetId}
+        initialTargetNames={initialTargetNames}
+        initialProtocolNames={initialProtocolNames}
+        initialOutputFormat={initialOutputFormat}
       />
 
       {error && (
@@ -112,6 +162,13 @@ function AggregationPageContent() {
       )}
 
       <AggregationTable data={data} loading={loading} aggregations={currentAggregations} />
+
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={2000}
+        onClose={() => setSnackbarOpen(false)}
+        message="Link copied to clipboard"
+      />
     </Container>
   );
 }
