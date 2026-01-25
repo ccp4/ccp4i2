@@ -128,6 +128,27 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     return { allowedTypes, acceptedExtensions, requiredContentFlag };
   }, [qualifiers]);
 
+  // Compare job numbers hierarchically (e.g., "1.2.3" < "1.2.4" < "2")
+  // Returns positive if a should come after b (higher job numbers first)
+  const compareJobNumbers = useCallback(
+    (jobIdA: number, jobIdB: number): number => {
+      const jobA = projectJobs?.find((j) => j.id === jobIdA);
+      const jobB = projectJobs?.find((j) => j.id === jobIdB);
+      if (!jobA || !jobB) return 0;
+
+      const aParts = jobA.number.split(".").map(Number);
+      const bParts = jobB.number.split(".").map(Number);
+
+      for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+        const aVal = aParts[i] || 0;
+        const bVal = bParts[i] || 0;
+        if (aVal !== bVal) return bVal - aVal; // Descending order (higher first)
+      }
+      return 0;
+    },
+    [projectJobs]
+  );
+
   const fileOptions = useMemo(() => {
     if (!projectFiles || !fileConfig.allowedTypes) return [];
     return projectFiles
@@ -146,8 +167,8 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
           fileConfig.requiredContentFlag.includes(file.content);
         return isValidType && isNotParentJob && hasValidContentFlag;
       })
-      .sort((a, b) => b.job - a.job);
-  }, [projectFiles, projectJobs, fileConfig.allowedTypes, fileConfig.requiredContentFlag]);
+      .sort((a, b) => compareJobNumbers(a.job, b.job));
+  }, [projectFiles, projectJobs, fileConfig.allowedTypes, fileConfig.requiredContentFlag, compareJobNumbers]);
 
   const borderColor = getValidationColor(item);
   const hasError = borderColor === "error.light";
@@ -180,19 +201,46 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const fileTypeLabel = getFileTypeLabel(item?._class);
   const hasFile = value && value !== nullFile;
 
+  // Get the current dbFileId from the item
+  const dbFileId = item?._value?.dbFileId?._value?.trim() || null;
+
+  // Check if the selected file exists in fileOptions
+  const selectedFileInOptions = useMemo(() => {
+    if (!dbFileId || !fileOptions) return null;
+    return fileOptions.find(
+      (file) => file.uuid.replace(/-/g, "") === dbFileId.replace(/-/g, "")
+    );
+  }, [dbFileId, fileOptions]);
+
+  // Fetch file metadata by UUID if not found in fileOptions
+  // This handles files from subjobs or external sources (drag-drop, etc.)
+  const { data: fetchedFile } = api.get<CCP4i2File>(
+    dbFileId && !selectedFileInOptions ? `files/${dbFileId}/by_uuid` : null
+  );
+
+  // Combine fileOptions with fetched external file if needed
+  const displayOptions = useMemo(() => {
+    if (!fetchedFile || selectedFileInOptions) return fileOptions;
+    // Add the fetched file to the beginning of the list (it's the selected one)
+    return [fetchedFile, ...fileOptions];
+  }, [fileOptions, fetchedFile, selectedFileInOptions]);
+
   // Update value when item changes
   useEffect(() => {
-    if (!item?._objectPath || !fileOptions) return;
-    const dbFileId = item._value?.dbFileId?._value?.trim();
+    if (!item?._objectPath) return;
     if (!dbFileId) {
       setValue(nullFile);
       return;
     }
-    const selectedFile = fileOptions.find(
-      (file) => file.uuid.replace(/-/g, "") === dbFileId.replace(/-/g, "")
-    );
+    // First check fileOptions, then check fetchedFile
+    const selectedFile =
+      selectedFileInOptions ||
+      (fetchedFile &&
+        fetchedFile.uuid?.replace(/-/g, "") === dbFileId.replace(/-/g, "")
+        ? fetchedFile
+        : null);
     setValue(selectedFile || nullFile);
-  }, [item, fileOptions]);
+  }, [item, dbFileId, selectedFileInOptions, fetchedFile]);
 
   // Reset expansion when children disappear
   useEffect(() => {
@@ -347,7 +395,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
               size="small"
               value={value}
               onChange={handleFileSelect}
-              options={[...fileOptions, nullFile]}
+              options={[...displayOptions, nullFile]}
               getOptionLabel={getOptionLabel}
               getOptionKey={(option: CCP4i2File) => option.uuid}
               freeSolo={false}
