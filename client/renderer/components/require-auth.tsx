@@ -187,7 +187,7 @@ export default function RequireAuth({ children }: RequireAuthProps) {
         return;
       }
 
-      // Strategy 2: Teams membership check
+      // Strategy 2: t check
       console.log(
         "No 'User' app role found, checking Teams membership for Newcastle Drug Discovery Unit"
       );
