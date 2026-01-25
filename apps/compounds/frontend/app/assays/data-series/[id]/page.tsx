@@ -33,6 +33,7 @@ import {
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DoseResponseChart } from '@/components/compounds/DoseResponseChart';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
+import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
@@ -215,13 +216,14 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                 {/* For table_of_values, always use plot_image - never attempt interactive chart */}
                 {isTableOfValues ? (
                   hasImageFile && plotImageUrl ? (
-                    <Box
-                      component="img"
+                    <AuthenticatedImage
                       src={plotImageUrl}
                       alt={`Plot for ${series.compound_name || 'compound'}`}
+                      width="100%"
+                      height="auto"
+                      objectFit="contain"
                       sx={{
                         maxWidth: '100%',
-                        height: 'auto',
                         maxHeight: 400,
                         borderRadius: 1,
                         border: '1px solid',

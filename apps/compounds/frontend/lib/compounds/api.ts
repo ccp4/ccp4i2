@@ -45,8 +45,11 @@ const API_BASE = '/api/proxy/compounds';
 /**
  * Core fetch wrapper with authentication support.
  * Mirrors the pattern in client/renderer/api-fetch.ts
+ *
+ * Use this for fetching any protected resource (images, files, API endpoints)
+ * that requires authentication headers.
  */
-async function coreFetch(
+export async function authFetch(
   url: string,
   options: RequestInit = {}
 ): Promise<Response> {
@@ -100,7 +103,7 @@ async function coreFetch(
  * Standard fetcher for SWR - returns parsed JSON
  */
 async function fetcher<T>(url: string): Promise<T> {
-  const res = await coreFetch(url);
+  const res = await authFetch(url);
   if (!res.ok) {
     const errorText = await res.text().catch(() => 'Unknown error');
     const error = new Error(`API request failed: ${res.status} ${errorText}`);
@@ -114,7 +117,7 @@ async function fetcher<T>(url: string): Promise<T> {
  * POST request helper
  */
 export async function apiPost<T>(endpoint: string, body: any): Promise<T> {
-  const res = await coreFetch(`${API_BASE}/${endpoint}`, {
+  const res = await authFetch(`${API_BASE}/${endpoint}`, {
     method: 'POST',
     body: body instanceof FormData ? body : JSON.stringify(body),
   });
@@ -131,7 +134,7 @@ export async function apiPost<T>(endpoint: string, body: any): Promise<T> {
  * DELETE request helper
  */
 export async function apiDelete(endpoint: string): Promise<void> {
-  const res = await coreFetch(`${API_BASE}/${endpoint}`, {
+  const res = await authFetch(`${API_BASE}/${endpoint}`, {
     method: 'DELETE',
   });
   if (!res.ok) {
@@ -146,7 +149,7 @@ export async function apiDelete(endpoint: string): Promise<void> {
  * PATCH request helper
  */
 export async function apiPatch<T>(endpoint: string, body: any): Promise<T> {
-  const res = await coreFetch(`${API_BASE}/${endpoint}`, {
+  const res = await authFetch(`${API_BASE}/${endpoint}`, {
     method: 'PATCH',
     body: JSON.stringify(body),
   });
@@ -163,7 +166,7 @@ export async function apiPatch<T>(endpoint: string, body: any): Promise<T> {
  * File upload helper (multipart/form-data)
  */
 export async function apiUpload<T>(endpoint: string, formData: FormData): Promise<T> {
-  const res = await coreFetch(`${API_BASE}/${endpoint}`, {
+  const res = await authFetch(`${API_BASE}/${endpoint}`, {
     method: 'POST',
     body: formData,
     // Don't set Content-Type - let browser set it with boundary
@@ -249,4 +252,4 @@ export function useCompoundsApi() {
 //    can be added at /api/proxy/compounds/[...path]/route.ts
 //
 // 4. All authentication tokens will flow through automatically because
-//    coreFetch injects the Authorization header.
+//    authFetch injects the Authorization header.

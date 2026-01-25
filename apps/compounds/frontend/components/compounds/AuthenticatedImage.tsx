@@ -3,16 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Box, Skeleton } from '@mui/material';
 import { BrokenImage } from '@mui/icons-material';
-
-// Import auth helpers - same pattern as api.ts
-let getAccessToken: () => Promise<string | null>;
-
-try {
-  const authModule = require('../../utils/auth-token');
-  getAccessToken = authModule.getAccessToken;
-} catch {
-  getAccessToken = async () => null;
-}
+import { authFetch } from '@/lib/compounds/api';
 
 interface AuthenticatedImageProps {
   /** URL to fetch (must be an authenticated endpoint) */
@@ -37,7 +28,7 @@ interface AuthenticatedImageProps {
  * Image component that fetches images through authenticated endpoints.
  *
  * Regular <img> tags can't include auth headers, so this component:
- * 1. Fetches the image via fetch() with Authorization header
+ * 1. Fetches the image via authFetch() with Authorization header
  * 2. Converts the response to a blob URL
  * 3. Renders the blob URL in an <img> tag
  *
@@ -72,15 +63,8 @@ export function AuthenticatedImage({
         setLoading(true);
         setError(false);
 
-        // Get auth token
-        const token = await getAccessToken();
-        const headers: Record<string, string> = {};
-        if (token) {
-          headers['Authorization'] = `Bearer ${token}`;
-        }
-
-        // Fetch the image
-        const response = await fetch(src, { headers });
+        // Fetch the image with auth headers
+        const response = await authFetch(src);
 
         if (!response.ok) {
           throw new Error(`Failed to fetch image: ${response.status}`);
