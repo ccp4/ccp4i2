@@ -20,7 +20,7 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
   const scriptElement = useRef<HTMLElement | null | undefined>(null);
   const [use64Bit] = useState(() => shouldUse64BitWasm());
   const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [scriptBlob, setScriptBlob] = useState<Blob | null>(null);
+  const [scriptBlobUrl, setScriptBlobUrl] = useState<string | null>(null);
 
   // In web browsers, use API route for moorhen files to ensure CORP headers are set
   // (required for COEP/SharedArrayBuffer support). In Electron, serve directly from public/.
@@ -44,11 +44,10 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
         }
         const scriptText = await response.text();
 
-        // Create blob for both script execution AND for Emscripten worker spawning
+        // Create blob URL for both script execution AND for Emscripten worker spawning
         const blob = new Blob([scriptText], { type: "application/javascript" });
-        setScriptBlob(blob); // Store for later use with Emscripten
-
         const blobUrl = URL.createObjectURL(blob);
+        setScriptBlobUrl(blobUrl); // Store URL string for later use with Emscripten
 
         const script = document.createElement("script");
         script.src = blobUrl;
@@ -87,9 +86,9 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
     printErr(t: string) {
       console.error(["output", t]);
     },
-    // Pass the script blob directly to Emscripten for spawning workers
+    // Pass the script blob URL to Emscripten for spawning workers
     // This is needed because we load the script via blob URL
-    mainScriptUrlOrBlob: isElectron ? undefined : scriptBlob,
+    mainScriptUrlOrBlob: isElectron ? undefined : scriptBlobUrl,
     locateFile(path: string, prefix: string) {
       // Route through API to ensure CORP headers are set for COEP compatibility (web only)
       if (path.endsWith("moorhen.wasm") || path.endsWith("moorhen64.wasm")) {
@@ -106,7 +105,7 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
 
   // Initialize the module once the script is loaded (web mode only)
   useEffect(() => {
-    if (isElectron || !scriptLoaded || !scriptBlob) return;
+    if (isElectron || !scriptLoaded || !scriptBlobUrl) return;
 
     const initModule = async () => {
       const createModule = use64Bit
@@ -129,7 +128,7 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
     };
 
     initModule();
-  }, [scriptLoaded, scriptBlob, use64Bit, setCootModule, moorhenWasm, apiPrefix]);
+  }, [scriptLoaded, scriptBlobUrl, use64Bit, setCootModule, moorhenWasm, apiPrefix]);
 
   // In Electron mode, use the standard Script component approach
   if (isElectron) {
