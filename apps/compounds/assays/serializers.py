@@ -266,6 +266,7 @@ class DataSeriesListSerializer(serializers.ModelSerializer):
             'row', 'start_column', 'end_column',
             'dilution_series', 'extracted_data',
             'analysis', 'analysis_status', 'analysis_kpi',
+            'plot_image',
         ]
 
     def get_dilution_series(self, obj):
