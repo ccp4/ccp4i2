@@ -2,9 +2,6 @@ import Script from "next/script";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { useCCP4i2Window } from "../app-context";
 
-// Check if running in Electron (no COEP restrictions) vs web browser
-const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
-
 // Detect if we should use 64-bit WASM
 // Currently forced to 32-bit - the 64-bit build in moorhen 0.22.7 has a BigInt conversion bug:
 // "Cannot convert a BigInt value to a number" during initialization
@@ -12,6 +9,11 @@ const isElectron = typeof window !== "undefined" && !!(window as any).electronAP
 // Safari is blocked at moorhen-wrapper level anyway due to WASM threading issues.
 const shouldUse64BitWasm = (): boolean => {
   // TODO: Re-enable 64-bit when moorhen fixes the BigInt conversion issue
+  // if (typeof navigator === "undefined") return false;
+  // const ua = navigator.userAgent;
+  // const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+  // const isIOS = /iPad|iPhone|iPod/.test(ua);
+  // return !isSafari && !isIOS;
   return false; // Force 32-bit until moorhen 64-bit build is fixed
 };
 
@@ -20,14 +22,11 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
   const scriptElement = useRef<HTMLElement | null | undefined>(null);
   const [use64Bit] = useState(() => shouldUse64BitWasm());
 
-  // In web browsers, use API route for moorhen files to ensure CORP headers are set
-  // (required for COEP/SharedArrayBuffer support). In Electron, serve directly from public/.
-  const apiPrefix = isElectron ? "" : "/api/moorhen";
-  const moorhenScript = use64Bit ? `${apiPrefix}/moorhen64.js` : `${apiPrefix}/moorhen.js`;
-  const moorhenWasm = use64Bit ? `${apiPrefix}/moorhen64.wasm` : `${apiPrefix}/moorhen.wasm`;
+  const moorhenScript = use64Bit ? "/moorhen64.js" : "/moorhen.js";
+  const moorhenWasm = use64Bit ? "/moorhen64.wasm" : "/moorhen.wasm";
 
   useEffect(() => {
-    console.log(`[Moorhen] Using ${use64Bit ? "64-bit" : "32-bit"} WASM build, isElectron=${isElectron}`);
+    console.log(`[Moorhen] Using ${use64Bit ? "64-bit" : "32-bit"} WASM build`);
     return () => {
       if (scriptElement.current) {
         scriptElement.current.parentElement?.removeChild(scriptElement.current);
@@ -47,10 +46,7 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
       if (path.endsWith("moorhen.wasm") || path.endsWith("moorhen64.wasm")) {
         return moorhenWasm;
       }
-      // In web mode, route files through API for CORP headers
-      if (!isElectron && (path.endsWith(".wasm") || path.endsWith(".js") || path.endsWith(".data"))) {
-        return `${apiPrefix}/${path}`;
-      }
+      if (path.endsWith("mtz.wasm")) return prefix + path;
       // otherwise, use the default, the prefix (JS file's dir) + the path
       return prefix + path;
     },
@@ -64,6 +60,7 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
         id="moorhen-script-element"
         onLoad={async () => {
           // moorhen.js defines createCootModule, moorhen64.js defines createCoot64Module
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           const createModule = use64Bit
             ? (window as any).createCoot64Module
             : (window as any).createCootModule;

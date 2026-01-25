@@ -84,8 +84,6 @@ const nextConfig: NextConfig = {
 
   async headers() {
     // Cross-origin isolation headers required for SharedArrayBuffer (Moorhen WebAssembly)
-    // Using "credentialless" instead of "require-corp" - it still enables SharedArrayBuffer
-    // but doesn't require every sub-resource to have CORP headers
     const webAssemblyHeaders = [
       {
         key: "Cross-Origin-Opener-Policy",
@@ -93,7 +91,7 @@ const nextConfig: NextConfig = {
       },
       {
         key: "Cross-Origin-Embedder-Policy",
-        value: "credentialless",
+        value: "require-corp",
       },
     ];
 
