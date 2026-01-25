@@ -43,6 +43,7 @@ from .serializers import (
     DataSeriesListSerializer,
     DataSeriesDetailSerializer,
     DataSeriesCreateSerializer,
+    DataSeriesUpdateSerializer,
     AnalysisResultSerializer,
     HypothesisListSerializer,
     HypothesisDetailSerializer,
@@ -902,6 +903,8 @@ class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
             return DataSeriesCreateSerializer
         if self.action == 'retrieve':
             return DataSeriesDetailSerializer
+        if self.action in ('update', 'partial_update'):
+            return DataSeriesUpdateSerializer
         return DataSeriesListSerializer
 
     @action(detail=True, methods=['post'])

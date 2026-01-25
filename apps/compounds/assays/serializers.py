@@ -351,6 +351,17 @@ class DataSeriesCreateSerializer(serializers.ModelSerializer):
         return super().create(validated_data)
 
 
+class DataSeriesUpdateSerializer(serializers.ModelSerializer):
+    """Serializer for updating data series fields including dilution_series."""
+
+    class Meta:
+        model = DataSeries
+        fields = [
+            'id', 'dilution_series', 'skip_points',
+        ]
+        read_only_fields = ['id']
+
+
 class AssayListSerializer(serializers.ModelSerializer):
     """Compact serializer for list views."""
     protocol_name = serializers.CharField(source='protocol.name', read_only=True)

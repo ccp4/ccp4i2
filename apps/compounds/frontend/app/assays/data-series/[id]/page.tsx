@@ -29,11 +29,13 @@ import {
   HelpOutline,
   ShowChart,
   Refresh,
+  Science,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DoseResponseChart } from '@/components/compounds/DoseResponseChart';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
+import { DilutionSeriesSelectDialog } from '@/components/compounds/DilutionSeriesSelectDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
@@ -83,6 +85,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
   const api = useCompoundsApi();
   const { canContribute } = useAuth();
   const [analysing, setAnalysing] = useState(false);
+  const [dilutionDialogOpen, setDilutionDialogOpen] = useState(false);
 
   const { data: series, isLoading: seriesLoading, mutate: mutateSeries } = api.get<DataSeries>(
     `data-series/${id}/`
@@ -424,30 +427,54 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                   </Paper>
                 )}
 
-                {/* Re-analyse button */}
-                <Tooltip
-                  title={
-                    !canContribute
-                      ? 'Requires Contributor or Admin operating level'
-                      : missingDilutionSeries
-                      ? 'Cannot analyse: No dilution series configured'
-                      : ''
-                  }
-                  arrow
-                >
-                  <span>
-                    <Button
-                      variant="outlined"
-                      startIcon={analysing ? <CircularProgress size={16} /> : <Refresh />}
-                      onClick={handleReanalyse}
-                      disabled={analysing || missingDilutionSeries || !canContribute}
-                      sx={{ mt: 2 }}
-                      size="small"
-                    >
-                      {analysing ? 'Analysing...' : 'Re-analyse'}
-                    </Button>
-                  </span>
-                </Tooltip>
+                {/* Action buttons */}
+                <Box sx={{ display: 'flex', gap: 1, mt: 2, flexWrap: 'wrap' }}>
+                  {/* Change Dilution Series button */}
+                  <Tooltip
+                    title={
+                      !canContribute
+                        ? 'Requires Contributor or Admin operating level'
+                        : 'Select a different dilution series for this data'
+                    }
+                    arrow
+                  >
+                    <span>
+                      <Button
+                        variant="outlined"
+                        startIcon={<Science />}
+                        onClick={() => setDilutionDialogOpen(true)}
+                        disabled={!canContribute}
+                        size="small"
+                      >
+                        Change Dilutions
+                      </Button>
+                    </span>
+                  </Tooltip>
+
+                  {/* Re-analyse button */}
+                  <Tooltip
+                    title={
+                      !canContribute
+                        ? 'Requires Contributor or Admin operating level'
+                        : missingDilutionSeries
+                        ? 'Cannot analyse: No dilution series configured'
+                        : 'Re-run curve fitting analysis'
+                    }
+                    arrow
+                  >
+                    <span>
+                      <Button
+                        variant="outlined"
+                        startIcon={analysing ? <CircularProgress size={16} /> : <Refresh />}
+                        onClick={handleReanalyse}
+                        disabled={analysing || missingDilutionSeries || !canContribute}
+                        size="small"
+                      >
+                        {analysing ? 'Analysing...' : 'Re-analyse'}
+                      </Button>
+                    </span>
+                  </Tooltip>
+                </Box>
 
                 {/* Compound structure if matched */}
                 {compound && (
@@ -650,6 +677,18 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
           <Typography color="error">Data series not found</Typography>
         )}
       </Paper>
+
+      {/* Dilution Series Selection Dialog */}
+      {series && (
+        <DilutionSeriesSelectDialog
+          open={dilutionDialogOpen}
+          onClose={() => setDilutionDialogOpen(false)}
+          dataSeriesId={series.id}
+          currentDilutionSeriesId={series.dilution_series?.id}
+          protocolDilutionSeriesId={protocol?.preferred_dilutions || undefined}
+          onSave={() => mutateSeries()}
+        />
+      )}
     </Container>
   );
 }
