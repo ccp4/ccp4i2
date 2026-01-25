@@ -51,10 +51,19 @@ export function middleware(request: NextRequest) {
 // Configure which paths the middleware runs on
 export const config = {
   matcher: [
-    // Moorhen pages - MUST be first and explicit
+    // Moorhen pages need COEP/COOP headers
     "/ccp4i2/moorhen-page",
-    "/ccp4i2/moorhen-page/(.*)",
-    // Match all static file extensions at any path level
-    "/((?!_next/static|_next/image|favicon.ico).*)",
+    "/ccp4i2/moorhen-page/:path*",
+    // Static files that need CORP headers (explicit extensions)
+    "/:path*.js",
+    "/:path*.wasm",
+    "/:path*.css",
+    "/:path*.json",
+    "/:path*.png",
+    "/:path*.svg",
+    "/:path*.woff",
+    "/:path*.woff2",
+    "/:path*.data",
+    "/:path*.gz",
   ],
 };
