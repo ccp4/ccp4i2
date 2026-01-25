@@ -14,7 +14,6 @@ class freerflag(CPluginScript):
     TASKVERSION= 0.0               # Version of this plugin
     MAINTAINER = 'liz.potterton@york.ac.uk'
     TASKCOMMAND = 'freerflag'   # The command to run the executable
-    COMLINETEMPLATE = None 
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     def processInputFiles(self):

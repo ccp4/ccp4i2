@@ -21,7 +21,6 @@ class pdb_redo_api(CPluginScript):
     TASKMODULE= 'refinement'
     TASKCOMMAND = ''
     TASKVERSION= 0.0
-    COMLINETEMPLATE = None
     RUNEXTERNALPROCESS=False
     PERFORMANCECLASS = 'CRefinementPerformance'
 

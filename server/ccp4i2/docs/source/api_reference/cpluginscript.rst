@@ -69,5 +69,4 @@ Plugin Metadata
 - ``TASKTITLE`` - Display title for GUI
 - ``TASKCOMMAND`` - Executable name
 - ``TASKVERSION`` - Version number
-- ``COMLINETEMPLATE`` - Command line template
 - ``ASYNCHRONOUS`` - Whether to run asynchronously

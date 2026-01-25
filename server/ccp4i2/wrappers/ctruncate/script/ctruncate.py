@@ -11,7 +11,6 @@ class ctruncate(CPluginScript):
     TASKNAME = 'ctruncate'   # Task name - should be same as class name
     TASKVERSION= 0.0               # Version of this plugin
     TASKCOMMAND = 'ctruncate'   # The command to run the executable
-    COMLINETEMPLATE = None 
     MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
     ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }

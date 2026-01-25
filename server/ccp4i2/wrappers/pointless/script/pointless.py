@@ -6,7 +6,6 @@ class pointless(CPluginScript):
     TASKTITLE = 'Analyse unmerged dataset (POINTLESS)' # A short title for gui menu
     TASKVERSION= 0.0               # Version of this plugin
     TASKCOMMAND = 'pointless'   # The command to run the executable
-    COMLINETEMPLATE = None 
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 

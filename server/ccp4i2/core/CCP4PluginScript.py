@@ -60,7 +60,6 @@ class CPluginScript(CData):
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
         TASKVERSION: Version number
-        COMLINETEMPLATE: Command line template (optional)
     """
 
     # Class attributes to be defined in subclasses
@@ -69,7 +68,6 @@ class CPluginScript(CData):
     TASKNAME = None
     TASKCOMMAND = None
     TASKVERSION = None
-    COMLINETEMPLATE = None
     ASYNCHRONOUS = False  # Set to True for async execution
 
     # Status codes
@@ -1339,51 +1337,10 @@ class CPluginScript(CData):
         """
         Generate command line and command file for the program.
 
-        Uses COMLINETEMPLATE class attribute to
-        generate the command line and input file.
-
         Returns:
             CErrorReport with any errors
         """
-        error = CErrorReport()
-
-        # Use our modern CComTemplate implementation (Qt-free)
-        try:
-            from ccp4i2.core import CCP4ComTemplate
-            logger.debug(f"[DEBUG makeCommandAndScript] CComTemplate imported successfully")
-        except ImportError as e:
-            # Should never happen since CCP4ComTemplate is in our core package
-            logger.debug(f"[DEBUG makeCommandAndScript] CComTemplate import failed: {e}")
-            return error
-
-        # Process COMLINETEMPLATE (generates command line arguments)
-        # The leading numeric prefix (e.g., "1 HKLIN") is stripped by CComTemplate
-        if self.COMLINETEMPLATE is not None:
-            logger.debug(f"[DEBUG makeCommandAndScript] Processing COMLINETEMPLATE: {self.COMLINETEMPLATE}")
-            try:
-                comTemplate = CCP4ComTemplate.CComTemplate(parent=self, template=self.COMLINETEMPLATE)
-                text, tmpl_err = comTemplate.makeComScript(self.container)
-                logger.debug(f"[DEBUG makeCommandAndScript] Template expanded to: '{text}'")
-                if tmpl_err and len(tmpl_err) > 0:
-                    logger.debug(f"[DEBUG makeCommandAndScript] Template errors: {tmpl_err}")
-                    error.extend(tmpl_err)
-                if text and len(text) > 0:
-                    # Split the text and append each word to commandLine
-                    wordList = text.split()
-                    logger.debug(f"[DEBUG makeCommandAndScript] Adding words to commandLine: {wordList}")
-                    for word in wordList:
-                        self.commandLine.append(word)
-            except Exception as e:
-                logger.debug(f"[DEBUG makeCommandAndScript] Exception processing COMLINETEMPLATE: {e}")
-                import traceback
-                traceback.print_exc()
-                error.append(
-                    klass=self.__class__.__name__,
-                    code=15,
-                    details=f"Error processing COMLINETEMPLATE: {e}"
-                )
-
-        return error
+        return CErrorReport()
 
     def appendCommandLine(self, wordList=[], clear=False) -> CErrorReport:
         """

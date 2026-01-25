@@ -8,7 +8,6 @@ class sculptor(CPluginScript):
     TASKVERSION= 0.1
     PERFORMANCECLASS = 'CAtomCountPerformance'
     TASKCOMMAND = 'phaser.sculptor'   # The command to run the executable
-    COMLINETEMPLATE = None 
     
     ERROR_CODES = { 201 : {'description' : 'Unable to convert the provided alignment to clustal (.aln) format' },
                     202 : {'description' : 'Failed reading the alignment file' }, }
