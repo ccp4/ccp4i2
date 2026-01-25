@@ -35,6 +35,30 @@ export default function AppSelectorPage() {
             '&:hover': { bgcolor: 'action.hover' },
           }}
           component={Link}
+          href="/registry/targets"
+        >
+          <Science sx={{ fontSize: 56, color: 'secondary.main' }} />
+          <Box>
+            <Typography variant="h5">Drug Discovery Targets</Typography>
+            <Typography color="text.secondary">
+              Target dashboards with compounds, assays, and related projects
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
           href="/ccp4i2"
         >
           <Science sx={{ fontSize: 56, color: 'primary.main' }} />
@@ -92,30 +116,6 @@ export default function AppSelectorPage() {
             <Typography variant="h5">Moorhen Viewer</Typography>
             <Typography color="text.secondary">
               Opens in new tab (requires cross-origin isolation)
-            </Typography>
-          </Box>
-        </Paper>
-
-        <Paper
-          elevation={2}
-          sx={{
-            p: 3,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 3,
-            cursor: 'pointer',
-            textDecoration: 'none',
-            color: 'inherit',
-            '&:hover': { bgcolor: 'action.hover' },
-          }}
-          component={Link}
-          href="/registry/targets"
-        >
-          <Science sx={{ fontSize: 56, color: 'secondary.main' }} />
-          <Box>
-            <Typography variant="h5">Drug Discovery Targets</Typography>
-            <Typography color="text.secondary">
-              Target dashboards with compounds, assays, and related projects
             </Typography>
           </Box>
         </Paper>
