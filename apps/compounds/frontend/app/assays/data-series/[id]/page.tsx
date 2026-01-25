@@ -19,6 +19,7 @@ import {
   TableRow,
   Button,
   CircularProgress,
+  Tooltip,
 } from '@mui/material';
 import {
   Assessment,
@@ -33,6 +34,7 @@ import { PageHeader } from '@/components/compounds/PageHeader';
 import { DoseResponseChart } from '@/components/compounds/DoseResponseChart';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { DataSeries, Assay, Compound, Protocol } from '@/types/compounds/models';
 
@@ -78,6 +80,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
   const [analysing, setAnalysing] = useState(false);
 
   const { data: series, isLoading: seriesLoading, mutate: mutateSeries } = api.get<DataSeries>(
@@ -420,16 +423,29 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                 )}
 
                 {/* Re-analyse button */}
-                <Button
-                  variant="outlined"
-                  startIcon={analysing ? <CircularProgress size={16} /> : <Refresh />}
-                  onClick={handleReanalyse}
-                  disabled={analysing || missingDilutionSeries}
-                  sx={{ mt: 2 }}
-                  size="small"
+                <Tooltip
+                  title={
+                    !canContribute
+                      ? 'Requires Contributor or Admin operating level'
+                      : missingDilutionSeries
+                      ? 'Cannot analyse: No dilution series configured'
+                      : ''
+                  }
+                  arrow
                 >
-                  {analysing ? 'Analysing...' : 'Re-analyse'}
-                </Button>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      startIcon={analysing ? <CircularProgress size={16} /> : <Refresh />}
+                      onClick={handleReanalyse}
+                      disabled={analysing || missingDilutionSeries || !canContribute}
+                      sx={{ mt: 2 }}
+                      size="small"
+                    >
+                      {analysing ? 'Analysing...' : 'Re-analyse'}
+                    </Button>
+                  </span>
+                </Tooltip>
 
                 {/* Compound structure if matched */}
                 {compound && (
