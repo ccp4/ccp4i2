@@ -33,6 +33,7 @@ import {
   Edit,
   Image as ImageIcon,
   Palette,
+  Refresh,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -101,6 +102,7 @@ export default function AssayDetailPage({ params }: PageProps) {
   const [heatMapOpen, setHeatMapOpen] = useState(false);
   const [heatMapCells, setHeatMapCells] = useState<(string | number | null)[][] | null>(null);
   const [heatMapLoading, setHeatMapLoading] = useState(false);
+  const [reanalysing, setReanalysing] = useState(false);
 
   const { data: assay, isLoading: assayLoading, mutate: mutateAssay } = api.get<Assay>(
     `assays/${id}/`
@@ -130,6 +132,19 @@ export default function AssayDetailPage({ params }: PageProps) {
     } finally {
       setDeleting(false);
       setDeleteDialogOpen(false);
+    }
+  };
+
+  const handleReanalyseAll = async () => {
+    setReanalysing(true);
+    try {
+      await api.post(`assays/${id}/analyse_all/`, {});
+      // Refresh data series to show updated analysis results
+      mutateDataSeries();
+    } catch (err) {
+      console.error('Re-analyse error:', err);
+    } finally {
+      setReanalysing(false);
     }
   };
 
@@ -411,6 +426,19 @@ export default function AssayDetailPage({ params }: PageProps) {
                     </span>
                   </Tooltip>
                 )}
+                <Tooltip title={canContribute ? 'Re-analyse all data series' : 'Requires Contributor or Admin operating level'} arrow>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      startIcon={reanalysing ? <CircularProgress size={16} /> : <Refresh />}
+                      onClick={handleReanalyseAll}
+                      size="small"
+                      disabled={!canContribute || reanalysing}
+                    >
+                      {reanalysing ? 'Analysing...' : 'Re-analyse All'}
+                    </Button>
+                  </span>
+                </Tooltip>
                 <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
                   <span>
                     <Button
