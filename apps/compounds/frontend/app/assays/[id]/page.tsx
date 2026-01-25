@@ -241,7 +241,12 @@ export default function AssayDetailPage({ params }: PageProps) {
                 width={120}
                 height={120}
                 objectFit="contain"
-                sx={{ borderRadius: 1 }}
+                sx={{
+                  borderRadius: 1,
+                  bgcolor: 'background.paper',
+                  border: '1px solid',
+                  borderColor: 'divider',
+                }}
               />
             );
           }
