@@ -755,7 +755,7 @@ export function AggregationTable({ data, loading, aggregations }: AggregationTab
     return (
       <Paper sx={{ p: 3 }}>
         <Typography color="text.secondary" align="center">
-          Configure predicates above and click Generate Report to see results.
+          Select a target, protocol, or compound above to see results.
         </Typography>
       </Paper>
     );
