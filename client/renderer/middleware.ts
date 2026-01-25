@@ -38,12 +38,13 @@ export function middleware(request: NextRequest) {
   }
 
   // For Moorhen pages, add full cross-origin isolation headers
-  // Use "credentialless" instead of "require-corp" to allow embedding iframes
-  // (like help pages) while still enabling SharedArrayBuffer
+  // require-corp is needed for SharedArrayBuffer in Web Workers
+  // Also add CORP header so this page can be loaded by other COEP pages
   if (pathname.startsWith("/ccp4i2/moorhen-page")) {
     const response = NextResponse.next();
     response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
-    response.headers.set("Cross-Origin-Embedder-Policy", "credentialless");
+    response.headers.set("Cross-Origin-Embedder-Policy", "require-corp");
+    response.headers.set("Cross-Origin-Resource-Policy", "same-origin");
     return response;
   }
 
@@ -53,9 +54,11 @@ export function middleware(request: NextRequest) {
 // Configure which paths the middleware runs on
 export const config = {
   matcher: [
-    // Moorhen pages need COEP/COOP headers
+    // Moorhen pages need COEP/COOP/CORP headers
     "/ccp4i2/moorhen-page",
     "/ccp4i2/moorhen-page/:path*",
+    // API routes for Moorhen resources
+    "/api/moorhen/:path*",
     // Static files that need CORP headers (explicit extensions)
     "/:path*.js",
     "/:path*.wasm",
@@ -67,5 +70,6 @@ export const config = {
     "/:path*.woff2",
     "/:path*.data",
     "/:path*.gz",
+    "/:path*.html",
   ],
 };
