@@ -19,56 +19,12 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
   const { setCootModule } = useCCP4i2Window();
   const scriptElement = useRef<HTMLElement | null | undefined>(null);
   const [use64Bit] = useState(() => shouldUse64BitWasm());
-  const [scriptLoaded, setScriptLoaded] = useState(false);
-  const [scriptBlobUrl, setScriptBlobUrl] = useState<string | null>(null);
 
   // In web browsers, use API route for moorhen files to ensure CORP headers are set
   // (required for COEP/SharedArrayBuffer support). In Electron, serve directly from public/.
   const apiPrefix = isElectron ? "" : "/api/moorhen";
-  const moorhenScript = use64Bit ? "/moorhen64.js" : "/moorhen.js";
+  const moorhenScript = use64Bit ? `${apiPrefix}/moorhen64.js` : `${apiPrefix}/moorhen.js`;
   const moorhenWasm = use64Bit ? `${apiPrefix}/moorhen64.wasm` : `${apiPrefix}/moorhen.wasm`;
-
-  // For web mode, we need to fetch and execute the script manually to work with COEP
-  // The <Script> tag approach doesn't work because browsers block scripts that don't
-  // have proper CORP headers when loaded into a COEP-enabled page
-  useEffect(() => {
-    if (isElectron || scriptLoaded) return;
-
-    const loadScriptViaFetch = async () => {
-      try {
-        const scriptUrl = use64Bit ? "/api/moorhen/moorhen64.js" : "/api/moorhen/moorhen.js";
-        console.log(`[Moorhen] Fetching script from ${scriptUrl}`);
-        const response = await fetch(scriptUrl);
-        if (!response.ok) {
-          throw new Error(`Failed to fetch moorhen script: ${response.status}`);
-        }
-        const scriptText = await response.text();
-
-        // Create blob URL for both script execution AND for Emscripten worker spawning
-        const blob = new Blob([scriptText], { type: "application/javascript" });
-        const blobUrl = URL.createObjectURL(blob);
-        setScriptBlobUrl(blobUrl); // Store URL string for later use with Emscripten
-
-        const script = document.createElement("script");
-        script.src = blobUrl;
-        script.onload = () => {
-          console.log("[Moorhen] Script loaded successfully");
-          // Don't revoke the URL yet - we need it for workers
-          setScriptLoaded(true);
-        };
-        script.onerror = (err) => {
-          console.error("[Moorhen] Failed to execute script:", err);
-          URL.revokeObjectURL(blobUrl);
-        };
-        document.head.appendChild(script);
-        scriptElement.current = script;
-      } catch (err) {
-        console.error("[Moorhen] Failed to load script:", err);
-      }
-    };
-
-    loadScriptViaFetch();
-  }, [use64Bit, scriptLoaded]);
 
   useEffect(() => {
     console.log(`[Moorhen] Using ${use64Bit ? "64-bit" : "32-bit"} WASM build, isElectron=${isElectron}`);
@@ -86,83 +42,47 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
     printErr(t: string) {
       console.error(["output", t]);
     },
-    // Pass the script blob URL to Emscripten for spawning workers
-    // This is needed because we load the script via blob URL
-    mainScriptUrlOrBlob: isElectron ? undefined : scriptBlobUrl,
     locateFile(path: string, prefix: string) {
-      // Route through API to ensure CORP headers are set for COEP compatibility (web only)
+      // Use the appropriate WASM file based on browser detection
       if (path.endsWith("moorhen.wasm") || path.endsWith("moorhen64.wasm")) {
         return moorhenWasm;
       }
-      // For other files, route through API if in web mode
+      // In web mode, route files through API for CORP headers
       if (!isElectron && (path.endsWith(".wasm") || path.endsWith(".js") || path.endsWith(".data"))) {
         return `${apiPrefix}/${path}`;
       }
-      // In Electron or for other files, use the default prefix + path
+      // otherwise, use the default, the prefix (JS file's dir) + the path
       return prefix + path;
     },
   };
 
-  // Initialize the module once the script is loaded (web mode only)
-  useEffect(() => {
-    if (isElectron || !scriptLoaded || !scriptBlobUrl) return;
+  return (
+    <>
+      <Script
+        src={moorhenScript}
+        strategy="lazyOnload"
+        id="moorhen-script-element"
+        onLoad={async () => {
+          // moorhen.js defines createCootModule, moorhen64.js defines createCoot64Module
+          const createModule = use64Bit
+            ? (window as any).createCoot64Module
+            : (window as any).createCootModule;
 
-    const initModule = async () => {
-      const createModule = use64Bit
-        ? (window as any).createCoot64Module
-        : (window as any).createCootModule;
+          if (typeof createModule !== "function") {
+            console.error(`[Moorhen] ${use64Bit ? "createCoot64Module" : "createCootModule"} not found`);
+            return;
+          }
 
-      if (typeof createModule !== "function") {
-        console.error(`[Moorhen] ${use64Bit ? "createCoot64Module" : "createCootModule"} not found`);
-        return;
-      }
-
-      try {
-        console.log("[Moorhen] Initializing module...");
-        const module = await (createModule as (args: typeof createArgs) => Promise<any>)(createArgs);
-        console.log("[Moorhen] Module initialized successfully");
-        setCootModule?.(module);
-      } catch (err) {
-        console.error("[Moorhen] Failed to initialize module:", err);
-      }
-    };
-
-    initModule();
-  }, [scriptLoaded, scriptBlobUrl, use64Bit, setCootModule, moorhenWasm, apiPrefix]);
-
-  // In Electron mode, use the standard Script component approach
-  if (isElectron) {
-    return (
-      <>
-        <Script
-          src={moorhenScript}
-          strategy="lazyOnload"
-          id="moorhen-script-element"
-          onLoad={async () => {
-            // moorhen.js defines createCootModule, moorhen64.js defines createCoot64Module
-            const createModule = use64Bit
-              ? (window as any).createCoot64Module
-              : (window as any).createCootModule;
-
-            if (typeof createModule !== "function") {
-              console.error(`[Moorhen] ${use64Bit ? "createCoot64Module" : "createCootModule"} not found`);
-              return;
-            }
-
-            const module = await (createModule as (args: typeof createArgs) => Promise<any>)(createArgs);
-            setCootModule?.(module);
-            scriptElement.current = Array.from(
-              document.getElementsByTagName("script")
-            ).find((htmlElement: HTMLElement) => {
-              return htmlElement.getAttribute("src") === moorhenScript;
-            });
-          }}
-        />
-        {props.children}
-      </>
-    );
-  }
-
-  // In web mode, script is loaded via fetch/blob in useEffect
-  return <>{props.children}</>;
+          const module = await (createModule as (args: typeof createArgs) => Promise<any>)(createArgs);
+          setCootModule?.(module);
+          scriptElement.current = Array.from(
+            document.getElementsByTagName("script")
+          ).find((htmlElement: HTMLElement) => {
+            return htmlElement.getAttribute("src") === moorhenScript;
+          });
+        }}
+      />
+      {props.children}
+    </>
+  );
 };
