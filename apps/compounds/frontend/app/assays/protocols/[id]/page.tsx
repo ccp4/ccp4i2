@@ -32,6 +32,7 @@ import { PlateLayoutCreateDialog } from '@/components/compounds/PlateLayoutCreat
 import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';
 import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Protocol, Assay, ProtocolDocument, PlateLayoutRecord } from '@/types/compounds/models';
 
@@ -80,6 +81,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
 
   const [layoutSelectOpen, setLayoutSelectOpen] = useState(false);
   const [createLayoutOpen, setCreateLayoutOpen] = useState(false);
@@ -366,17 +368,20 @@ export default function ProtocolDetailPage({ params }: PageProps) {
               </Tooltip>
             </>
           )}
-          <Tooltip title="Delete">
-            <IconButton
-              size="small"
-              color="error"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDeleteDocClick(row);
-              }}
-            >
-              <Delete fontSize="small" />
-            </IconButton>
+          <Tooltip title={canContribute ? 'Delete' : 'Requires Contributor or Admin operating level'}>
+            <span>
+              <IconButton
+                size="small"
+                color="error"
+                disabled={!canContribute}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleDeleteDocClick(row);
+                }}
+              >
+                <Delete fontSize="small" />
+              </IconButton>
+            </span>
           </Tooltip>
         </Box>
       ),
@@ -449,14 +454,19 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       label: '',
       width: 50,
       render: (_, row) => (
-        <IconButton
-          size="small"
-          color="error"
-          onClick={(e) => handleDeleteClick(row, e)}
-          sx={{ opacity: 0.6, '&:hover': { opacity: 1 } }}
-        >
-          <Delete fontSize="small" />
-        </IconButton>
+        <Tooltip title={canContribute ? 'Delete' : 'Requires Contributor or Admin operating level'}>
+          <span>
+            <IconButton
+              size="small"
+              color="error"
+              disabled={!canContribute}
+              onClick={(e) => handleDeleteClick(row, e)}
+              sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+            >
+              <Delete fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
       ),
     },
   ];
@@ -495,13 +505,18 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   </Box>
                 </Box>
               </Box>
-              <Button
-                variant="outlined"
-                startIcon={<Edit />}
-                onClick={() => setEditDialogOpen(true)}
-              >
-                Edit Protocol
-              </Button>
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    variant="outlined"
+                    startIcon={<Edit />}
+                    onClick={() => setEditDialogOpen(true)}
+                    disabled={!canContribute}
+                  >
+                    Edit Protocol
+                  </Button>
+                </span>
+              </Tooltip>
             </Box>
 
             <Divider sx={{ my: 2 }} />
@@ -621,13 +636,18 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                     Plate Layout
                   </Typography>
                   <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Button
-                      size="small"
-                      startIcon={<Edit />}
-                      onClick={() => setLayoutSelectOpen(true)}
-                    >
-                      {protocol.plate_layout ? 'Change Layout' : 'Select Layout'}
-                    </Button>
+                    <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                      <span>
+                        <Button
+                          size="small"
+                          startIcon={<Edit />}
+                          onClick={() => setLayoutSelectOpen(true)}
+                          disabled={!canContribute}
+                        >
+                          {protocol.plate_layout ? 'Change Layout' : 'Select Layout'}
+                        </Button>
+                      </span>
+                    </Tooltip>
                     {protocol.plate_layout && (
                       <Button
                         size="small"
@@ -793,41 +813,45 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       )}
 
       {/* Drop zone for document uploads */}
-      <Paper
-        variant="outlined"
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        sx={{
-          p: 3,
-          mb: 2,
-          textAlign: 'center',
-          bgcolor: isDragOver ? 'primary.50' : 'grey.50',
-          borderStyle: 'dashed',
-          borderColor: isDragOver ? 'primary.main' : 'grey.300',
-          borderWidth: 2,
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
-          '&:hover': { bgcolor: 'grey.100', borderColor: 'grey.400' },
-        }}
-        onClick={() => document.getElementById('protocol-doc-input')?.click()}
-      >
-        <CloudUpload sx={{ fontSize: 40, color: isDragOver ? 'primary.main' : 'grey.400', mb: 1 }} />
-        <Typography color={isDragOver ? 'primary.main' : 'text.secondary'}>
-          {isDragOver ? 'Drop files here' : 'Drag and drop documents here, or click to select'}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-          Multiple files supported (PDF, Word, Excel, images, etc.)
-        </Typography>
-        <input
-          id="protocol-doc-input"
-          type="file"
-          multiple
-          accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg"
-          onChange={handleFileSelect}
-          style={{ display: 'none' }}
-        />
-      </Paper>
+      <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+        <Paper
+          variant="outlined"
+          onDrop={canContribute ? handleDrop : undefined}
+          onDragOver={canContribute ? handleDragOver : undefined}
+          onDragLeave={canContribute ? handleDragLeave : undefined}
+          sx={{
+            p: 3,
+            mb: 2,
+            textAlign: 'center',
+            bgcolor: isDragOver ? 'primary.50' : 'grey.50',
+            borderStyle: 'dashed',
+            borderColor: isDragOver ? 'primary.main' : 'grey.300',
+            borderWidth: 2,
+            cursor: canContribute ? 'pointer' : 'not-allowed',
+            opacity: canContribute ? 1 : 0.6,
+            transition: 'all 0.2s ease',
+            '&:hover': canContribute ? { bgcolor: 'grey.100', borderColor: 'grey.400' } : {},
+          }}
+          onClick={canContribute ? () => document.getElementById('protocol-doc-input')?.click() : undefined}
+        >
+          <CloudUpload sx={{ fontSize: 40, color: isDragOver ? 'primary.main' : 'grey.400', mb: 1 }} />
+          <Typography color={isDragOver ? 'primary.main' : 'text.secondary'}>
+            {isDragOver ? 'Drop files here' : 'Drag and drop documents here, or click to select'}
+          </Typography>
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+            {canContribute ? 'Multiple files supported (PDF, Word, Excel, images, etc.)' : 'Requires Contributor or Admin operating level'}
+          </Typography>
+          <input
+            id="protocol-doc-input"
+            type="file"
+            multiple
+            accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg"
+            onChange={handleFileSelect}
+            disabled={!canContribute}
+            style={{ display: 'none' }}
+          />
+        </Paper>
+      </Tooltip>
 
       {/* Upload progress */}
       {uploadingFiles.length > 0 && (
@@ -871,32 +895,46 @@ export default function ProtocolDetailPage({ params }: PageProps) {
           Assays
         </Typography>
         {protocol?.analysis_method === 'table_of_values' ? (
-          <Button
-            component={Link}
-            href={routes.assays.importTableOfValues({ protocol: id })}
-            variant="contained"
-            startIcon={<TableChart />}
-          >
-            Import Table of Values
-          </Button>
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                component={Link}
+                href={routes.assays.importTableOfValues({ protocol: id })}
+                variant="contained"
+                startIcon={<TableChart />}
+                disabled={!canContribute}
+              >
+                Import Table of Values
+              </Button>
+            </span>
+          </Tooltip>
         ) : isAdmeProtocol(protocol?.analysis_method) ? (
-          <Button
-            component={Link}
-            href={routes.assays.importAdme()}
-            variant="contained"
-            startIcon={<Biotech />}
-          >
-            Import Pharmaron ADME
-          </Button>
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                component={Link}
+                href={routes.assays.importAdme()}
+                variant="contained"
+                startIcon={<Biotech />}
+                disabled={!canContribute}
+              >
+                Import Pharmaron ADME
+              </Button>
+            </span>
+          </Tooltip>
         ) : (
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => setUploadDrawerOpen(true)}
-            disabled={!protocol}
-          >
-            Add Assay
-          </Button>
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                variant="contained"
+                startIcon={<Add />}
+                onClick={() => setUploadDrawerOpen(true)}
+                disabled={!protocol || !canContribute}
+              >
+                Add Assay
+              </Button>
+            </span>
+          </Tooltip>
         )}
       </Box>
 
