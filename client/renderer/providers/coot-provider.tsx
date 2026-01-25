@@ -2,6 +2,9 @@ import Script from "next/script";
 import { PropsWithChildren, useEffect, useRef, useState } from "react";
 import { useCCP4i2Window } from "../app-context";
 
+// Check if running in Electron (no COEP restrictions) vs web browser (needs API route for CORP headers)
+const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
+
 // Detect if we should use 64-bit WASM
 // Currently forced to 32-bit - the 64-bit build in moorhen 0.22.7 has a BigInt conversion bug:
 // "Cannot convert a BigInt value to a number" during initialization
@@ -22,8 +25,11 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
   const scriptElement = useRef<HTMLElement | null | undefined>(null);
   const [use64Bit] = useState(() => shouldUse64BitWasm());
 
-  const moorhenScript = use64Bit ? "/moorhen64.js" : "/moorhen.js";
-  const moorhenWasm = use64Bit ? "/moorhen64.wasm" : "/moorhen.wasm";
+  // In web browsers, use API route for moorhen files to ensure CORP headers are set
+  // (required for COEP/SharedArrayBuffer support). In Electron, serve directly from public/.
+  const apiPrefix = isElectron ? "" : "/api/moorhen";
+  const moorhenScript = use64Bit ? `${apiPrefix}/moorhen64.js` : `${apiPrefix}/moorhen.js`;
+  const moorhenWasm = use64Bit ? `${apiPrefix}/moorhen64.wasm` : `${apiPrefix}/moorhen.wasm`;
 
   useEffect(() => {
     console.log(`[Moorhen] Using ${use64Bit ? "64-bit" : "32-bit"} WASM build`);
@@ -42,12 +48,15 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
       console.error(["output", t]);
     },
     locateFile(path: string, prefix: string) {
-      // Use the appropriate WASM file based on browser detection
+      // Route through API to ensure CORP headers are set for COEP compatibility (web only)
       if (path.endsWith("moorhen.wasm") || path.endsWith("moorhen64.wasm")) {
         return moorhenWasm;
       }
-      if (path.endsWith("mtz.wasm")) return prefix + path;
-      // otherwise, use the default, the prefix (JS file's dir) + the path
+      // For other files, route through API if in web mode
+      if (!isElectron && (path.endsWith(".wasm") || path.endsWith(".js") || path.endsWith(".data"))) {
+        return `/api/moorhen/${path}`;
+      }
+      // In Electron or for other files, use the default prefix + path
       return prefix + path;
     },
   };
