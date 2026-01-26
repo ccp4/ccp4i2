@@ -40,7 +40,6 @@ except Exception as e:
 REPORT_ATTRIBUTES = [
     "TASKNAME",
     "TASKTITLE",
-    "TASKVERSION",
     "RUNNING",
     "WATCHED_FILE",
     "FAILED",

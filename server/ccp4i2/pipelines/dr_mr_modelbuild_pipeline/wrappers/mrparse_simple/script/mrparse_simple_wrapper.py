@@ -12,7 +12,6 @@ class mrparse_simple(CPluginScript):
     TASKTITLE = 'mrparse_simple'              # Short title for Gui
     TASKNAME = 'mrparse_simple'               # Task name - same as class name
     TASKCOMMAND = 'mrparse'            # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'hlasimpk@liverpool.ac.uk'

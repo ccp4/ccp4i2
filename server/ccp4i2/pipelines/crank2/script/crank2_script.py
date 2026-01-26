@@ -14,7 +14,6 @@ class crank2(CPluginScript):
   SHORTTASKTITLE   = 'CRANK2'
   TASKNAME         = 'crank2'
   TASKCOMMAND      = 'crank2.py'
-  TASKVERSION      = 0.02
   PERFORMANCECLASS = 'CExpPhasPerformance'
   ERROR_CODES = {
     0: {'description': ' '},

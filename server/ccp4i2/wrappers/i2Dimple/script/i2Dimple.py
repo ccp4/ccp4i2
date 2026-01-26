@@ -8,7 +8,6 @@ from ccp4i2.core.mgimports import mmdb2 as mmdb
 
 class i2Dimple(CPluginScript):
     TASKNAME = 'i2Dimple'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION= 0.1               # Version of this plugin
     ERROR_CODES = { 201 : {'description' : 'Unable to extract information from dimple.log...run incomplete ?' },
                     }
     TASKCOMMAND="dimple"
@@ -21,14 +20,6 @@ class i2Dimple(CPluginScript):
         self.hklin,self.columns,error = self.makeHklin0(inputs)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
-        #makeHklin0 takes as arguments a list of sublists
-        #Each sublist comprises 1) An input DATA object identifier as specified ni the inputData container of .de.f.xml
-        #                       2) The requested data representation type to be placed into the file that is generated
-        #makeHklin returns a tuple comprising:
-        #                       1) the file path of the file that has been created
-        #                       2) a list of strings each of which contains a comma-separated list of column labels output from
-        #                       the input data objects that were input
-        #                       3) A CCP4 Error object
         self.columnsAsArray = self.columns.split(",")
 
         self.xyzin = os.path.join(self.getWorkDirectory(),"selected_xyzin.pdb")

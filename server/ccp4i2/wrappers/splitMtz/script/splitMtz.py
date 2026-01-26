@@ -58,7 +58,6 @@ class splitMtz(CPluginScript):
 
     TASKTITLE = 'Import and Split MTZ to experimental data objects'
     TASKNAME = 'splitMtz'
-    TASKVERSION = 0.1
 
     ERROR_CODES = {
         200: {'description': 'No column groups selected for splitting'},

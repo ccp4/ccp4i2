@@ -14,7 +14,6 @@ class ccp4mg_general(CPluginScript):
     TASKTITLE = 'Molecular graphics visualization and figure creation - CCP4MG'     # A short title for gui menu
     TASKNAME = 'ccp4mg_general'                  # Task name - should be same as class name
     TASKCOMMAND = 'ccp4mg'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
     ASYNCHRONOUS = True
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

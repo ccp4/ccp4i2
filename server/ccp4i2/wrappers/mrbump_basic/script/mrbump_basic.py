@@ -8,7 +8,6 @@ class mrbump_basic(CPluginScript):
     TASKNAME = 'mrbump_basic'
     TASKMODULE= 'test'
     TASKCOMMAND = 'mrbump'
-    TASKVERSION= 0.1
     MAINTAINER = 'ronan.keegan@stfc.ac.uk'
 
     def validity(self):

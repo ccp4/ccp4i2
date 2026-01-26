@@ -14,7 +14,6 @@ class ccp4mg_edit_nomrbump(CPluginScript):
     TASKTITLE = 'Interactive selection of MR model components - CCP4mg'     # A short title for gui menu
     TASKNAME = 'ccp4mg_edit_nomrbump'                  # Task name - should be same as class name
     TASKCOMMAND = 'ccp4mg'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
     ASYNCHRONOUS = True
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

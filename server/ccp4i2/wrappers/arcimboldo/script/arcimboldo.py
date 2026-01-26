@@ -14,7 +14,6 @@ class arcimboldo(CPluginScript):
     TASKTITLE = 'Arcimboldo'
     TASKNAME = 'arcimboldo'
     TASKCOMMAND = 'ARCIMBOLDO_LITE'
-    TASKVERSION= 0.1
     WHATNEXT = [ 'prosmart_refmac' ]
     MAINTAINER = 'jtvcri@ibmb.csic.es'
     ASYNCHRONOUS = True

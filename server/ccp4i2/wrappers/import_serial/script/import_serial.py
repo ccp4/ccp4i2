@@ -9,7 +9,6 @@ class import_serial(CPluginScript):
     TASKTITLE = 'Import Serial Core'       # Short title for GUI
     TASKNAME = 'import_serial'        # Task name - same as class name
     TASKCOMMAND = 'import_serial'     # The command to run the executable
-    TASKVERSION = 1.1                 # plugin version
     MAINTAINER = 'martin.maly@soton.ac.uk'
 
     def __init__(self, *args, **kwargs):

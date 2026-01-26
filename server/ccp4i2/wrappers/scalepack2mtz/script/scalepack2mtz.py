@@ -6,7 +6,6 @@ class scalepack2mtz(x2mtz.x2mtz):
     TASKMODULE = 'test'
     TASKTITLE = 'Convert scalepack merged reflection file to MTZ'
     TASKNAME = 'scalepack2mtz'  
-    TASKVERSION= 0.1    
     TASKCOMMAND = 'scalepack2mtz'  
 
     def makeCommandAndScript(self):

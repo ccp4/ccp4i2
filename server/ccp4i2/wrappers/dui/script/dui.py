@@ -13,7 +13,6 @@ class dui(CPluginScript):
     DESCRIPTION = 'Launch DIALS User Interface (DUI2) and capture output'
     TASKNAME = 'dui'
     TASKCOMMAND = 'dui2'
-    TASKVERSION= 0.1
 
     def __init__(self, *args, **kwargs):
         self.stime = 0.0

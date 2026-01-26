@@ -12,7 +12,6 @@ class coot_rsr_morph(CPluginScript):
     TASKMODULE = "refinement"
     TASKTITLE = "Real space refinement morphing with Coot API"
     TASKNAME = "coot_rsr_morph"
-    TASKVERSION = 202110261437
     WHATNEXT = ["prosmart_refmac"]
     ASYNCHRONOUS = True
     MAINTAINER = "stuart.mcnicholas@york.ac.uk"

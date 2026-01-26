@@ -5,7 +5,6 @@ class crank2_ref(crank2_script.crank2):
 
   TASKMODULE = 'test'
   TASKNAME = 'crank2_ref'
-  TASKVERSION = 0.01
 
   out_params = ["XYZOUT","XYZOUT_SUBSTR", "FPHOUT_2FOFC", "FPHOUT_HL", "FPHOUT_DIFFANOM", "FPHOUT_DIFF"]
   perform = ["RFactor","RFree"]

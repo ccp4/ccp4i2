@@ -5,7 +5,6 @@ class sculptor(CPluginScript):
     TASKMODULE = 'bioinformatics'
     TASKTITLE = 'Truncate search model - SCULPTOR'
     TASKNAME = 'sculptor'  
-    TASKVERSION= 0.1
     PERFORMANCECLASS = 'CAtomCountPerformance'
     TASKCOMMAND = 'phaser.sculptor'   # The command to run the executable
     

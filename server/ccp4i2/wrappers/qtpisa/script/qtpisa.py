@@ -13,7 +13,6 @@ class qtpisa(CPluginScript):
     TASKTITLE = 'Analyze bilogical units with qtpisa'     # A short title for gui menu
     TASKNAME = 'qtpisa'                  # Task name - should be same as class name
     TASKCOMMAND = 'qtpisa'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
     ASYNCHRONOUS = True
     MAINTAINER = 'eugene.krissinel@stfc.ac.uk'
 

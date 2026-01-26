@@ -14,7 +14,6 @@ class buster(CPluginScript):
     TASKTITLE = 'Refinement with Buster (Global Phasing Limited)'        # Short title for Gui
     TASKNAME = 'buster'               # Task name - same as class name
     TASKCOMMAND = 'refine'            # The command to run the executable
-    TASKVERSION = 1.0                 # plugin version
     WHATNEXT = ['buster', 'prosmart_refmac', 'modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
     

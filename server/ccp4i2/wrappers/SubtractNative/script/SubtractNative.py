@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class SubtractNative(CPluginScript):
     TASKNAME = "SubtractNative"
-    TASKVERSION = 0.1
     MAINTAINER = "Martin Noble"
 
     def startProcess(self):

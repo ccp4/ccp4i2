@@ -6,7 +6,6 @@ class dials_rlattice(CPluginScript):
     TASKTITLE = 'Dials_rLattice'             # Short title for Gui
     TASKNAME = 'dials_rlattice'              # Task name - same as class name
     TASKCOMMAND = 'dials.reciprocal_lattice_viewer'    # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 

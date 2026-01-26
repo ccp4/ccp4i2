@@ -10,7 +10,6 @@ class prosmart(CPluginScript):
     
     TASKMODULE = 'wrappers' # Where this plugin will appear on gui
     TASKNAME = 'prosmart'   # Task name - should be same as class name
-    TASKVERSION= 0.1               # Version of this plugin
     TASKCOMMAND = 'prosmart'   # The command to run the executable
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
 

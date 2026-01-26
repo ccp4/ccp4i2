@@ -10,7 +10,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class lorestr_i2(CPluginScript):
     TASKNAME = 'lorestr_i2'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION= 0.1               # Version of this plugin
     TASKCOMMAND="lorestr"
     PERFORMANCECLASS = 'CRefinementPerformance'
     

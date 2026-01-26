@@ -11,7 +11,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class modelASUCheck(CPluginScript):
     TASKNAME = "modelASUCheck"
-    TASKVERSION = 0.1
 
     def startProcess(self):
         xyzin = self.container.inputData.XYZIN

@@ -60,7 +60,6 @@ class CPluginScript(CData):
         TASKTITLE: Display title for GUI
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
-        TASKVERSION: Version number
     """
 
     # Class attributes to be defined in subclasses
@@ -68,7 +67,6 @@ class CPluginScript(CData):
     TASKTITLE = None
     TASKNAME = None
     TASKCOMMAND = None
-    TASKVERSION = None
     ASYNCHRONOUS = False  # Set to True for async execution
 
     # Status codes
@@ -4026,7 +4024,7 @@ class CPluginScript(CData):
         Args:
             code: Error code number
             details: Error message details
-            name: Error name (defaults to wrapper name)
+            name: Error name
             label: Error label
             cls: Class where error occurred
             recordTime: Whether to record timestamp
@@ -4036,12 +4034,6 @@ class CPluginScript(CData):
         """
         if cls is None:
             cls = self.__class__
-        if name is None:
-            name = f'Error in wrapper {self.TASKNAME}'
-            if hasattr(self, 'TASKVERSION') and self.TASKVERSION is not None:
-                name = f'{name} {self.TASKVERSION}'
-        else:
-            name = f'Error in wrapper {name}'
 
         # Determine severity
         # If severity not explicitly provided, use ERROR for exceptions, WARNING otherwise

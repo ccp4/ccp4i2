@@ -7,7 +7,6 @@ for async plugin chaining.
 
 import pytest
 import time
-from pathlib import Path
 import tempfile
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.base_object.signal_system import Slot
@@ -24,7 +23,6 @@ class SimpleAsyncPlugin(CPluginScript):
     TASKTITLE = 'Simple Async Test Plugin'
     TASKNAME = 'simple_async'
     TASKCOMMAND = 'echo'
-    TASKVERSION = '1.0'
     ASYNCHRONOUS = True  # Enable async execution
 
     def __init__(self, message: str = "test output", **kwargs):
@@ -52,7 +50,6 @@ class SimplePipeline(CPluginScript):
     TASKMODULE = 'test'
     TASKTITLE = 'Simple Pipeline Test'
     TASKNAME = 'simple_pipeline'
-    TASKVERSION = '1.0'
     ASYNCHRONOUS = True
 
     def __init__(self, **kwargs):

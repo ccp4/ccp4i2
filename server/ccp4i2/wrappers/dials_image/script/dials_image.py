@@ -6,7 +6,6 @@ class dials_image(CPluginScript):
     TASKTITLE = 'Dials_image'             # Short title for Gui
     TASKNAME = 'dials_image'              # Task name - same as class name
     TASKCOMMAND = 'dials.image_viewer'    # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 

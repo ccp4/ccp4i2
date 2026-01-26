@@ -1,7 +1,6 @@
 import math
 import os
 import re
-import sys
 
 import clipper
 from iotbx import mtz
@@ -20,7 +19,6 @@ class tableone(CPluginScript):
     TASKTITLE = 'Generate Table One'          # Short title for Gui
     TASKNAME = 'tableone'                     # Task name - same as class name
     TASKCOMMAND = 'xia2.merging_statistics'   # The command to run the executable - there is more than one here.
-    TASKVERSION = 1.0                         # plugin version
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'

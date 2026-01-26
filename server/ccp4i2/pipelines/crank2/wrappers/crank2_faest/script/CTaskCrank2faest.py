@@ -3,7 +3,6 @@ from ccp4i2.pipelines.crank2.script import CTaskCrank2
 
 class CTaskCrank2faest(CTaskCrank2.CTaskCrank2):
   TASKNAME = 'crank2_faest'
-  TASKVERSION = 0.01
   TASKMODULE='test'
   TASKTITLE='FA estimation'
   SHORTTASKTITLE = None

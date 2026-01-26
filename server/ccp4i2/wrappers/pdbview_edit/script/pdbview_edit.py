@@ -13,7 +13,6 @@ class pdbview_edit(CPluginScript):
     TASKTITLE = 'Edit PDB/CIF files by hand with the PdbView program'     # A short title for gui menu
     TASKNAME = 'pdbview_edit'                  # Task name - should be same as class name
     TASKCOMMAND = 'ccp4-python'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
     ASYNCHRONOUS = True
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

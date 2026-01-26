@@ -13,7 +13,6 @@ class convert2mtz(x2mtz.x2mtz):
     TASKMODULE = 'test' # Where this plugin will appear on gui
     TASKTITLE = 'Convert merged reflection file to MTZ' # A short title for gui menu
     TASKNAME = 'convert2mtz'   # Task name - should be same as class name
-    TASKVERSION= 0.1               # Version of this plugin
     TASKCOMMAND = 'convert2mtz'   # The command to run the executable
 
     def makeCommandAndScript(self):

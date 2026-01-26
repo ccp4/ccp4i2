@@ -33,7 +33,6 @@ class TestPluginRegistry:
 
         assert meta is not None
         assert meta['TASKNAME'] == 'pointless'
-        assert meta['TASKVERSION'] == 0.0
         assert 'TASKTITLE' in meta
         assert 'ERROR_CODES' in meta
         # Should have import info
@@ -59,7 +58,6 @@ class TestPluginRegistry:
         assert PointlessClass.__name__ == 'pointless'
         assert hasattr(PointlessClass, 'TASKNAME')
         assert PointlessClass.TASKNAME == 'pointless'
-        assert PointlessClass.TASKVERSION == 0.0
 
     def test_lazy_load_caching(self):
         """Test that loaded plugins are cached."""

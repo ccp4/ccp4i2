@@ -10,7 +10,6 @@ class add_fractional_coords(CPluginScript):
     TASKTITLE = "Add Fractional Coordinates"
     TASKNAME = "add_fractional_coords"
     TASKCOMMAND = "ccp4-python"
-    TASKVERSION = 0.1
     MAINTAINER = "paul.bond@york.ac.uk"
 
     def __init__(self, *args, **kws):

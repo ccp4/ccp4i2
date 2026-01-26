@@ -22,7 +22,6 @@ class servalcat_pipe(CPluginScript):
     TASKTITLE = 'Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
-    TASKVERSION= 0.1
     WHATNEXT = ['servalcat_pipe','coot_rebuild','modelcraft']
     ASYNCHRONOUS = True
     PERFORMANCECLASS = 'CServalcatPerformance'

@@ -6,4 +6,3 @@ class shelx(crank2_script.crank2):
   TASKTITLE                                 = 'SHELX'
   SHORTTASKTITLE                            = 'SHELX'
   TASKNAME                                  = 'shelx'
-  TASKVERSION                               = 0.01

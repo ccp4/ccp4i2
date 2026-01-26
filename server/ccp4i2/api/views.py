@@ -17,7 +17,7 @@ def task_tree(request):
         "data": {
             "task_tree": {
                 "tree": [[module_name, title, [task_names...]], ...],
-                "lookup": {taskName: {version: {metadata...}}, ...},
+                "lookup": {taskName: {metadata...}, ...},
                 "iconLookup": {module_name: icon_path, ...}
             }
         }

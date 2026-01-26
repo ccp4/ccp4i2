@@ -11,7 +11,6 @@ class density_calculator(CPluginScript):
     TASKMODULE = "expt_data_utility"
     TASKTITLE = "Density Calculator"
     TASKNAME = "density_calculator"
-    TASKVERSION = 0.1
     MAINTAINER = "paul.bond@york.ac.uk"
     WHATNEXT = ["coot_rebuild"]
 

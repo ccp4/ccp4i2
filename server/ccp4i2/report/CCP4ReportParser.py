@@ -943,7 +943,6 @@ class Loop(ReportClass):
 
 class Report(Container):
     TASKNAME = ''
-    TASKVERSION = '0.0.0'
     RUNNING = False
     WATCHED_FILE = None
     FAILED = False

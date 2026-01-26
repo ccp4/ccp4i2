@@ -5,4 +5,3 @@ class crank2_createfree(CPluginScript):
 
   TASKMODULE = 'test'
   TASKNAME = 'crank2_createfree'
-  TASKVERSION = 0.01

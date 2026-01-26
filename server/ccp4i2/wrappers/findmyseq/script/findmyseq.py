@@ -12,7 +12,6 @@ class findmyseq(CPluginScript):
     TASKTITLE = 'Find My Sequence'    # Short title for Gui
     TASKNAME = 'findmyseq'            # Task name - same as class name
     TASKCOMMAND = 'findmysequence'    # executable
-    TASKVERSION = 1.0                 # plugin version
     WHATNEXT = ['modelcraft']         # after ?
     PERFORMANCECLASS = 'CRefinementPerformance'
     

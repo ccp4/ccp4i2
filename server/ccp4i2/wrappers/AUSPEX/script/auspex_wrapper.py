@@ -10,7 +10,6 @@ class AUSPEX(CPluginScript):
     TASKTITLE = 'AUSPEX'             # Short title for Gui
     TASKNAME = 'AUSPEX'              # Task name - same as class name
     TASKCOMMAND = 'auspex'             # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Andrea.Thorn@web.de'

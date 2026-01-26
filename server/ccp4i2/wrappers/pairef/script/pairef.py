@@ -11,7 +11,6 @@ class pairef(CPluginScript):
     TASKTITLE = 'Pairef'        # Short title for Gui
     TASKNAME = 'pairef'               # Task name - same as class name
     TASKCOMMAND = 'pairef'            # The command to run the executable
-    TASKVERSION = 1.1                 # plugin version
     PERFORMANCECLASS = 'CPairefPerformance'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     

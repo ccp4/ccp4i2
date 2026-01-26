@@ -13,7 +13,6 @@ class shelxeMR(CPluginScript):
     TASKTITLE = 'ShelxeMR'             # Short title for Gui
     TASKNAME = 'shelxeMR'              # Task name - same as class name
     TASKCOMMAND = 'shelxe'             # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
     PERFORMANCECLASS = 'CExpPhasPerformance'
     filecaught = False
 

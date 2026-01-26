@@ -9,7 +9,6 @@ class coordinate_selector(CPluginScript):
     TASKMODULE = 'model_data_utility' # Where this plugin will appear on gui
     TASKTITLE = 'Select subset from coordinates' # A short title for gui menu
     TASKNAME = 'coordinate_selector'   # Task name - should be same as class name
-    TASKVERSION= 0.1               # Version of this plugin
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     ERROR_CODES = { 202 : {'description' : 'Failed applying selection to PDB file' }
                     }

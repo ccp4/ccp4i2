@@ -11,7 +11,6 @@ class modelcraft(CPluginScript):
     TASKTITLE = "AutoBuild with ModelCraft, Buccaneer and Nautilus"
     SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"
-    TASKVERSION = 0.1
     TASKCOMMAND = "modelcraft"
     MAINTAINER = "paul.bond@york.ac.uk"
     PERFORMANCECLASS = "CRefinementPerformance"
