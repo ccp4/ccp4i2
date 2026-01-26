@@ -137,7 +137,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
   const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
   const urlPrefix = isElectron ? "/baby-gru" : "/api/moorhen/baby-gru";
 
-  const collectedProps = {
+  const collectedProps = useMemo(() => ({
     glRef,
     timeCapsuleRef,
     commandCentre,
@@ -149,9 +149,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
     setMoorhenDimensions,
     monomerLibraryPath,
     urlPrefix,
-  };
+  }), [setMoorhenDimensions, urlPrefix]);
 
-  const { origin } = useSelector((state: moorhen.State) => state.glRef);
+  // Note: Don't subscribe to glRef state here - it changes every frame during rotation
+  // and would cause constant re-renders. Access origin directly from store when needed.
+  const getOrigin = useCallback(() => {
+    const state = store.getState() as moorhen.State;
+    return state.glRef.origin;
+  }, [store]);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -310,7 +315,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
       {
         returnType: "status",
         command: "get_monomer_and_position_at",
-        commandArgs: [instanceName, -999999, ...origin.map((coord) => -coord)],
+        commandArgs: [instanceName, -999999, ...getOrigin().map((coord: number) => -coord)],
       },
       true
     )) as moorhen.WorkerResponse<number>;

@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useReducer, ReactNode } from "react";
+import React, { createContext, useContext, useReducer, useMemo, useCallback, ReactNode } from "react";
 import { FileSystemItem } from "../components/directory-browser";
 
 interface FileSystemFileBrowserState {
@@ -91,39 +91,42 @@ export const FileSystemFileBrowserProvider: React.FC<
     initialState
   );
 
-  const openMenu = (anchorEl: HTMLElement, menuNode: FileSystemItem) => {
+  const openMenu = useCallback((anchorEl: HTMLElement, menuNode: FileSystemItem) => {
     dispatch({ type: "OPEN_MENU", payload: { anchorEl, menuNode } });
-  };
+  }, []);
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     dispatch({ type: "CLOSE_MENU" });
-  };
+  }, []);
 
-  const setPreviewNode = (node: FileSystemItem | null) => {
+  const setPreviewNode = useCallback((node: FileSystemItem | null) => {
     dispatch({ type: "SET_PREVIEW", payload: node });
-  };
+  }, []);
 
   // Individual setters for backward compatibility
-  const setAnchorEl = (el: HTMLElement | null) => {
+  const setAnchorEl = useCallback((el: HTMLElement | null) => {
     dispatch({ type: "SET_ANCHOR_EL", payload: el });
-  };
+  }, []);
 
-  const setMenuNode = (node: FileSystemItem | null) => {
+  const setMenuNode = useCallback((node: FileSystemItem | null) => {
     dispatch({ type: "SET_MENU_NODE", payload: node });
-  };
+  }, []);
 
-  const contextValue: FileSystemFileBrowserContextType = {
-    state,
-    openMenu,
-    closeMenu,
-    setPreviewNode,
-    setAnchorEl,
-    setMenuNode,
-    // Convenient getters
-    anchorEl: state.anchorEl,
-    menuNode: state.menuNode,
-    previewNode: state.previewNode,
-  };
+  const contextValue = useMemo(
+    () => ({
+      state,
+      openMenu,
+      closeMenu,
+      setPreviewNode,
+      setAnchorEl,
+      setMenuNode,
+      // Convenient getters
+      anchorEl: state.anchorEl,
+      menuNode: state.menuNode,
+      previewNode: state.previewNode,
+    }),
+    [state, openMenu, closeMenu, setPreviewNode, setAnchorEl, setMenuNode]
+  );
 
   return (
     <FileSystemFileBrowserContext.Provider value={contextValue}>

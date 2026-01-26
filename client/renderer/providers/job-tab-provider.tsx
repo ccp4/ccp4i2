@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useMemo } from "react";
 
 interface JobTabContextType {
   jobTabValue: number;
@@ -12,8 +12,13 @@ export const JobTabProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [jobTabValue, setJobTabValue] = useState<number>(0);
 
+  const contextValue = useMemo(
+    () => ({ jobTabValue, setJobTabValue }),
+    [jobTabValue]
+  );
+
   return (
-    <JobTabContext.Provider value={{ jobTabValue, setJobTabValue }}>
+    <JobTabContext.Provider value={contextValue}>
       {children}
     </JobTabContext.Provider>
   );

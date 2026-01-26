@@ -3,6 +3,7 @@ import {
   PropsWithChildren,
   useCallback,
   useContext,
+  useMemo,
   useState,
 } from "react";
 import {
@@ -75,10 +76,13 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
     },
     [projects]
   );
+  const contextValue = useMemo(
+    () => ({ jobsAndProcessesDialogOpen, setJobsAndProcessesDialogOpen }),
+    [jobsAndProcessesDialogOpen]
+  );
+
   return (
-    <RunningProcessesContext.Provider
-      value={{ jobsAndProcessesDialogOpen, setJobsAndProcessesDialogOpen }}
-    >
+    <RunningProcessesContext.Provider value={contextValue}>
       {props.children}
       <Dialog
         open={jobsAndProcessesDialogOpen}

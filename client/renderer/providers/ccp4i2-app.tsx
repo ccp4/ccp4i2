@@ -1,5 +1,5 @@
 "use client";
-import React, { PropsWithChildren, useEffect, useState, useCallback } from "react";
+import React, { PropsWithChildren, useState, useCallback, useMemo } from "react";
 import { CCP4i2Context } from "../app-context";
 import { CssBaseline } from "@mui/material";
 import { File, Job } from "../types/models";
@@ -37,26 +37,30 @@ export const CCP4i2App = (props: PropsWithChildren) => {
   const [devMode, setDevMode] = useState<boolean>(true);
   const [activeDragItem, setActiveDragItem] = useState<Job | File | null>(null);
 
+  // Memoize context value to prevent unnecessary re-renders of consumers
+  const contextValue = useMemo(
+    () => ({
+      projectId,
+      setProjectId,
+      jobId,
+      setJobId,
+      cootModule,
+      setCootModule,
+      rdkitModule,
+      setRdkitModule,
+      jobPanelSize,
+      setJobPanelSize,
+      devMode,
+      setDevMode,
+      activeDragItem,
+      setActiveDragItem,
+    }),
+    [projectId, jobId, cootModule, rdkitModule, jobPanelSize, devMode, activeDragItem]
+  );
+
   return (
     <PopcornProvider>
-      <CCP4i2Context.Provider
-        value={{
-          projectId,
-          setProjectId,
-          jobId,
-          setJobId,
-          cootModule,
-          setCootModule,
-          rdkitModule,
-          setRdkitModule,
-          jobPanelSize,
-          setJobPanelSize,
-          devMode,
-          setDevMode,
-          activeDragItem,
-          setActiveDragItem,
-        }}
-      >
+      <CCP4i2Context.Provider value={contextValue}>
         <CssBaseline />
         <RunCheckProvider>
           <StalledJobWarningsHandler>

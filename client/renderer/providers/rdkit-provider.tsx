@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, PropsWithChildren } from 'react';
+import { createContext, useContext, useState, useMemo, PropsWithChildren } from 'react';
 import Script from 'next/script';
 
 // RDKit module type (minimal typing for what we use)
@@ -56,8 +56,13 @@ export const RDKitProvider: React.FC<PropsWithChildren> = ({ children }) => {
     },
   };
 
+  const contextValue = useMemo(
+    () => ({ rdkitModule, isLoading, error }),
+    [rdkitModule, isLoading, error]
+  );
+
   return (
-    <RDKitContext.Provider value={{ rdkitModule, isLoading, error }}>
+    <RDKitContext.Provider value={contextValue}>
       <Script
         src="/RDKit_minimal.js"
         strategy="lazyOnload"

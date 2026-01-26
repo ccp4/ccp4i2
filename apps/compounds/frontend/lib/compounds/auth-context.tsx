@@ -12,7 +12,7 @@
  * this provides a mock user with full admin access.
  */
 
-import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
+import React, { createContext, useContext, useState, useCallback, useEffect, useMemo } from 'react';
 import useSWR from 'swr';
 import { CurrentUser, UserRole, OperatingLevelInfo } from '@/types/compounds/models';
 
@@ -251,18 +251,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
     await mutateUser();
   }, [mutateUser]);
 
-  const contextValue: AuthContextValue = {
-    user: effectiveUser ?? null,
-    isLoading,
-    error: error ?? null,
-    operatingLevel,
-    availableLevels,
-    canContribute,
-    canAdminister,
-    setOperatingLevel,
-    refreshUser,
-    logout: performLogout,
-  };
+  const contextValue: AuthContextValue = useMemo(
+    () => ({
+      user: effectiveUser ?? null,
+      isLoading,
+      error: error ?? null,
+      operatingLevel,
+      availableLevels,
+      canContribute,
+      canAdminister,
+      setOperatingLevel,
+      refreshUser,
+      logout: performLogout,
+    }),
+    [
+      effectiveUser,
+      isLoading,
+      error,
+      operatingLevel,
+      availableLevels,
+      canContribute,
+      canAdminister,
+      setOperatingLevel,
+      refreshUser,
+    ]
+  );
 
   return (
     <AuthContext.Provider value={contextValue}>

@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useState } from "react";
+import { createContext, PropsWithChildren, useContext, useState, useMemo } from "react";
 import { CircularProgress, Paper, Popper } from "@mui/material";
 import { FetchFileForParam } from "../components/task/task-elements/fetch-file-for-param";
 import { ErrorPopper } from "../components/task/task-elements/error-info";
@@ -35,21 +35,24 @@ export const TaskProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [fetchItemParams, setFetchItemParams] = useState<any | null>(null);
   const [downloadDialogOpen, setDownloadDialogOpen] = useState<boolean>(false);
 
+  const contextValue = useMemo(
+    () => ({
+      errorInfoAnchor,
+      setErrorInfoAnchor,
+      errorInfoItem,
+      setErrorInfoItem,
+      inFlight,
+      setInFlight,
+      downloadDialogOpen,
+      setDownloadDialogOpen,
+      fetchItemParams,
+      setFetchItemParams,
+    }),
+    [errorInfoAnchor, errorInfoItem, inFlight, downloadDialogOpen, fetchItemParams]
+  );
+
   return (
-    <TaskInterfaceContext.Provider
-      value={{
-        errorInfoAnchor,
-        setErrorInfoAnchor,
-        errorInfoItem,
-        setErrorInfoItem,
-        inFlight,
-        setInFlight,
-        downloadDialogOpen,
-        setDownloadDialogOpen,
-        fetchItemParams,
-        setFetchItemParams,
-      }}
-    >
+    <TaskInterfaceContext.Provider value={contextValue}>
       <Paper
         key="interface"
         sx={{ maxHeight: "calc(100vh - 22rem)", overflowY: "auto" }}

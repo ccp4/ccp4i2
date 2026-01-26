@@ -4,6 +4,7 @@ import {
   useContext,
   createContext,
   useState,
+  useMemo,
   PropsWithChildren,
   useRef,
   useEffect,
@@ -45,15 +46,18 @@ export const FileMenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
   );
   const [file, setFile] = useState<DjangoFile | null>(null);
 
+  const contextValue = useMemo(
+    () => ({
+      fileMenuAnchorEl,
+      setFileMenuAnchorEl,
+      file,
+      setFile,
+    }),
+    [fileMenuAnchorEl, file]
+  );
+
   return (
-    <FileMenuContext.Provider
-      value={{
-        fileMenuAnchorEl,
-        setFileMenuAnchorEl,
-        file,
-        setFile,
-      }}
-    >
+    <FileMenuContext.Provider value={contextValue}>
       {children}
       <FileMenu />
     </FileMenuContext.Provider>

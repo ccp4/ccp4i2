@@ -3,6 +3,7 @@ import React, {
   useContext,
   useState,
   useCallback,
+  useMemo,
   ReactNode,
 } from "react";
 import Snackbar from "@mui/material/Snackbar";
@@ -69,8 +70,13 @@ export const PopcornProvider: React.FC<{ children: ReactNode }> = ({
     }
   };
 
+  const contextValue = useMemo(
+    () => ({ setMessage: showMessage, setError: showError }),
+    [showMessage, showError]
+  );
+
   return (
-    <PopcornContext.Provider value={{ setMessage: showMessage, setError: showError }}>
+    <PopcornContext.Provider value={contextValue}>
       {/* Snackbar for regular messages */}
       <Snackbar
         open={!!snackbarMessage}

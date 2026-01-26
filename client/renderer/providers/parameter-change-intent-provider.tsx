@@ -3,6 +3,7 @@ import React, {
   useContext,
   useState,
   useCallback,
+  useMemo,
   ReactNode,
 } from "react";
 
@@ -145,21 +146,33 @@ export const ParameterChangeIntentProvider: React.FC<{
     setLastIntent(null);
   }, [lastIntent, clearIntentForPath]);
 
+  const contextValue = useMemo(
+    () => ({
+      // Legacy API
+      intent: lastIntent,
+      setIntent,
+      clearIntent,
+      // New multi-intent API
+      setIntentForPath,
+      clearIntentForPath,
+      getIntentForPath,
+      wasRecentlyChanged,
+      getAllIntents,
+    }),
+    [
+      lastIntent,
+      setIntent,
+      clearIntent,
+      setIntentForPath,
+      clearIntentForPath,
+      getIntentForPath,
+      wasRecentlyChanged,
+      getAllIntents,
+    ]
+  );
+
   return (
-    <ParameterChangeIntentContext.Provider
-      value={{
-        // Legacy API
-        intent: lastIntent,
-        setIntent,
-        clearIntent,
-        // New multi-intent API
-        setIntentForPath,
-        clearIntentForPath,
-        getIntentForPath,
-        wasRecentlyChanged,
-        getAllIntents,
-      }}
-    >
+    <ParameterChangeIntentContext.Provider value={contextValue}>
       {children}
     </ParameterChangeIntentContext.Provider>
   );

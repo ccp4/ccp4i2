@@ -28,6 +28,7 @@ import { TightBindingParametersForm } from './TightBindingParametersForm';
 import { FittingMethodEditDialog } from './FittingMethodEditDialog';
 import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import type { Protocol, FittingMethod, FittingParameters, DilutionSeries, AnalysisMethod, Target } from '@/types/compounds/models';
 
 const ANALYSIS_METHOD_OPTIONS: { value: AnalysisMethod; label: string }[] = [
@@ -62,15 +63,24 @@ export function ProtocolEditDialog({
 }: ProtocolEditDialogProps) {
   const api = useCompoundsApi();
   const { mutate } = useSWRConfig();
+  const { canAdminister } = useAuth();
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [scriptEditorOpen, setScriptEditorOpen] = useState(false);
   const [createDilutionsDialogOpen, setCreateDilutionsDialogOpen] = useState(false);
 
-  // Propagation confirmation dialog state
+  // Target propagation confirmation dialog state
   const [showPropagateDialog, setShowPropagateDialog] = useState(false);
   const [propagating, setPropagating] = useState(false);
   const [propagateResult, setPropagateResult] = useState<{ updated: number } | null>(null);
+
+  // Dilution series propagation dialog state (admin only)
+  const [showDilutionPropagateDialog, setShowDilutionPropagateDialog] = useState(false);
+  const [dilutionPropagating, setDilutionPropagating] = useState(false);
+  const [dilutionPropagateResult, setDilutionPropagateResult] = useState<{
+    updated_series: number;
+    deleted_analyses: number;
+  } | null>(null);
 
   // Form state
   const [name, setName] = useState(protocol.name);
@@ -88,6 +98,7 @@ export function ProtocolEditDialog({
   );
   const [targetId, setTargetId] = useState<string | null>(protocol.target || null);
   const [originalTargetId] = useState<string | null>(protocol.target || null);
+  const [originalDilutionsId] = useState<string | null>(protocol.preferred_dilutions || null);
   const [comments, setComments] = useState(protocol.comments || '');
 
   // Fetch available fitting methods
@@ -152,10 +163,19 @@ export function ProtocolEditDialog({
 
       if (targetChanged && targetId && hasAssays) {
         setShowPropagateDialog(true);
-      } else {
-        onSave();
-        onClose();
+        return;
       }
+
+      // If dilution series changed and user is admin, offer to propagate to data series
+      const dilutionsChanged = preferredDilutionsId !== originalDilutionsId;
+
+      if (dilutionsChanged && preferredDilutionsId && hasAssays && canAdminister) {
+        setShowDilutionPropagateDialog(true);
+        return;
+      }
+
+      onSave();
+      onClose();
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save');
     } finally {
@@ -180,6 +200,40 @@ export function ProtocolEditDialog({
   const handleClosePropagateDialog = () => {
     setShowPropagateDialog(false);
     setPropagateResult(null);
+
+    // Check if dilution series also changed (for admin users)
+    const dilutionsChanged = preferredDilutionsId !== originalDilutionsId;
+    const hasAssays = (protocol.assays_count || 0) > 0;
+
+    if (dilutionsChanged && preferredDilutionsId && hasAssays && canAdminister) {
+      setShowDilutionPropagateDialog(true);
+      return;
+    }
+
+    onSave();
+    onClose();
+  };
+
+  const handleDilutionPropagate = async () => {
+    setDilutionPropagating(true);
+    setError(null);
+
+    try {
+      const result = await api.post<{
+        updated_series: number;
+        deleted_analyses: number;
+      }>(`protocols/${protocol.id}/propagate_dilutions/`, {});
+      setDilutionPropagateResult(result);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update data series');
+    } finally {
+      setDilutionPropagating(false);
+    }
+  };
+
+  const handleCloseDilutionPropagateDialog = () => {
+    setShowDilutionPropagateDialog(false);
+    setDilutionPropagateResult(null);
     onSave();
     onClose();
   };
@@ -442,6 +496,68 @@ export function ProtocolEditDialog({
                 startIcon={propagating ? <CircularProgress size={16} /> : <Update />}
               >
                 {propagating ? 'Updating...' : 'Yes, Update All'}
+              </Button>
+            </>
+          )}
+        </DialogActions>
+      </Dialog>
+
+      {/* Propagate Dilution Series Confirmation Dialog (Admin Only) */}
+      <Dialog open={showDilutionPropagateDialog} onClose={handleCloseDilutionPropagateDialog} maxWidth="sm" fullWidth>
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Update color="warning" />
+          Update Data Series Dilutions?
+        </DialogTitle>
+        <DialogContent>
+          {dilutionPropagateResult ? (
+            <Alert severity="success" sx={{ mt: 1 }}>
+              Updated {dilutionPropagateResult.updated_series} data series.
+              {dilutionPropagateResult.deleted_analyses > 0 && (
+                <> Deleted {dilutionPropagateResult.deleted_analyses} analysis result{dilutionPropagateResult.deleted_analyses !== 1 ? 's' : ''}.</>
+              )}
+            </Alert>
+          ) : (
+            <>
+              <Typography variant="body2" gutterBottom>
+                You changed the preferred dilution series for this protocol. Would you like to update
+                all data series in assays using this protocol?
+              </Typography>
+              <Alert severity="warning" sx={{ mt: 2 }}>
+                <strong>Warning:</strong> This will delete all existing analysis results for affected
+                data series. They will need to be re-analyzed with the new dilution series.
+              </Alert>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+                New dilution series: <strong>{dilutionSeries?.find((ds) => ds.id === preferredDilutionsId)?.display_name || 'Selected series'}</strong>
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+                Affected assays: <strong>{protocol.assays_count}</strong>
+              </Typography>
+            </>
+          )}
+          {error && (
+            <Alert severity="error" sx={{ mt: 2 }}>
+              {error}
+            </Alert>
+          )}
+        </DialogContent>
+        <DialogActions>
+          {dilutionPropagateResult ? (
+            <Button variant="contained" onClick={handleCloseDilutionPropagateDialog}>
+              Done
+            </Button>
+          ) : (
+            <>
+              <Button onClick={handleCloseDilutionPropagateDialog} disabled={dilutionPropagating}>
+                No, Keep Existing
+              </Button>
+              <Button
+                variant="contained"
+                color="warning"
+                onClick={handleDilutionPropagate}
+                disabled={dilutionPropagating}
+                startIcon={dilutionPropagating ? <CircularProgress size={16} /> : <Update />}
+              >
+                {dilutionPropagating ? 'Updating...' : 'Yes, Update All'}
               </Button>
             </>
           )}

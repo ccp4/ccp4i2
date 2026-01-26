@@ -71,18 +71,21 @@ export const JobMenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [job, setJob] = useState<Job | null>(null);
   const [fileExportJobId, setFileExportJobId] = useState<number | null>(null);
 
+  const contextValue = useMemo(
+    () => ({
+      jobMenuAnchorEl,
+      setJobMenuAnchorEl,
+      job,
+      setJob,
+      fileExportJobId,
+      setFileExportJobId,
+    }),
+    [jobMenuAnchorEl, job, fileExportJobId]
+  );
+
   return (
     <>
-      <JobMenuContext.Provider
-        value={{
-          jobMenuAnchorEl,
-          setJobMenuAnchorEl,
-          job,
-          setJob,
-          fileExportJobId,
-          setFileExportJobId,
-        }}
-      >
+      <JobMenuContext.Provider value={contextValue}>
         {children}
         <JobMenu />
         <ExportJobMenu jobId={fileExportJobId} setJobId={setFileExportJobId} />

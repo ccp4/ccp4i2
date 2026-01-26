@@ -4,6 +4,8 @@ import React, {
   useContext,
   useState,
   useEffect,
+  useCallback,
+  useMemo,
   ReactNode,
 } from "react";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
@@ -83,16 +85,16 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
     }
   }, []);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
-  };
+  }, []);
 
-  const setTheme = (newMode: ThemeMode) => {
+  const setThemeMode = useCallback((newMode: ThemeMode) => {
     setMode(newMode);
-  };
+  }, []);
 
   // Create theme based on current mode
-  const theme = React.useMemo(() => {
+  const theme = useMemo(() => {
     const paletteOptions =
       mode === "light" ? lightPaletteOptions : darkPaletteOptions;
 
@@ -111,12 +113,13 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
 
   const customColors = mode === "light" ? lightCustomColors : darkCustomColors;
 
-  const contextValue = {
+  // Memoize context value to prevent unnecessary re-renders of consumers
+  const contextValue = useMemo(() => ({
     mode,
     toggleTheme,
-    setTheme,
+    setTheme: setThemeMode,
     customColors,
-  };
+  }), [mode, toggleTheme, setThemeMode, customColors]);
 
   return (
     <ThemeContext.Provider value={contextValue}>

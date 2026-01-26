@@ -6,6 +6,7 @@ import React, {
   useState,
   useCallback,
   useEffect,
+  useMemo,
 } from "react";
 
 // ============================================================================
@@ -250,13 +251,22 @@ export const RecentlyStartedJobsProvider: React.FC<
     return () => clearInterval(intervalId);
   }, []);
 
-  const value: RecentlyStartedJobsContextValue = {
-    markJobAsStarting,
-    updateJobObservedStatus,
-    isJobRecentlyStarted,
-    hasRecentlyStartedJobsInProject,
-    consumeStalledJobWarnings,
-  };
+  const value: RecentlyStartedJobsContextValue = useMemo(
+    () => ({
+      markJobAsStarting,
+      updateJobObservedStatus,
+      isJobRecentlyStarted,
+      hasRecentlyStartedJobsInProject,
+      consumeStalledJobWarnings,
+    }),
+    [
+      markJobAsStarting,
+      updateJobObservedStatus,
+      isJobRecentlyStarted,
+      hasRecentlyStartedJobsInProject,
+      consumeStalledJobWarnings,
+    ]
+  );
 
   return (
     <RecentlyStartedJobsContext.Provider value={value}>

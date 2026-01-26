@@ -216,6 +216,84 @@ class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
             'target_name': protocol.target.name
         })
 
+    @action(detail=True, methods=['post'])
+    def propagate_dilutions(self, request, pk=None):
+        """
+        Update all data series for assays using this protocol to use the protocol's
+        preferred dilution series.
+
+        This also deletes analysis results since re-analysis is required.
+
+        ADMIN ONLY - dilution changes affect analysis validity.
+
+        Returns the count of updated data series and deleted analyses.
+        """
+        from users.permissions import can_administer
+
+        # Check admin permission
+        if not can_administer(request):
+            return Response({
+                'status': 'error',
+                'error': 'Admin access required for this operation'
+            }, status=status.HTTP_403_FORBIDDEN)
+
+        protocol = self.get_object()
+
+        if not protocol.preferred_dilutions:
+            return Response({
+                'status': 'error',
+                'error': 'Protocol has no preferred dilutions set'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        # Find all DataSeries for assays of this protocol that need updating
+        data_series_to_update = DataSeries.objects.filter(
+            assay__protocol=protocol
+        ).exclude(
+            dilution_series=protocol.preferred_dilutions
+        )
+
+        series_count = data_series_to_update.count()
+
+        if series_count == 0:
+            return Response({
+                'status': 'success',
+                'updated_series': 0,
+                'deleted_analyses': 0,
+                'message': 'All data series already use this dilution series'
+            })
+
+        # Get analysis IDs to delete
+        analysis_ids = list(
+            data_series_to_update.filter(analysis__isnull=False)
+            .values_list('analysis_id', flat=True)
+        )
+        analyses_count = len(analysis_ids)
+
+        with reversion.create_revision():
+            # Delete analysis results first
+            if analysis_ids:
+                AnalysisResult.objects.filter(id__in=analysis_ids).delete()
+                # Clear the analysis FK on data series
+                data_series_to_update.filter(analysis_id__in=analysis_ids).update(analysis=None)
+
+            # Update dilution series
+            data_series_to_update.update(dilution_series=protocol.preferred_dilutions)
+
+            if request.user.is_authenticated:
+                reversion.set_user(request.user)
+            reversion.set_comment(
+                f"Propagated dilution series from protocol: {protocol.name}. "
+                f"Deleted {analyses_count} analysis results."
+            )
+
+        return Response({
+            'status': 'success',
+            'updated_series': series_count,
+            'deleted_analyses': analyses_count,
+            'dilution_series_id': str(protocol.preferred_dilutions.id),
+            'dilution_series_name': protocol.preferred_dilutions.display_name or str(protocol.preferred_dilutions),
+        })
+
 
 class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Assays."""

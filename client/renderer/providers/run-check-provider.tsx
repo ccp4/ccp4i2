@@ -3,6 +3,7 @@ import React, {
   useCallback,
   useContext,
   useState,
+  useMemo,
   ReactNode,
   useEffect,
   useRef,
@@ -74,12 +75,12 @@ export const RunCheckProvider: React.FC<RunCheckProviderProps> = ({
   const [processedErrors, setProcessedErrors] =
     useState<CCP4i2ErrorReport | null>(null);
 
-  const confirmTaskRun = (taskId: number): Promise<boolean> => {
+  const confirmTaskRun = useCallback((taskId: number): Promise<boolean> => {
     return new Promise((resolve) => {
       setRunTaskRequested(taskId);
       setPendingResolve(() => resolve);
     });
-  };
+  }, []);
 
   const handleConfirm = () => {
     if (pendingResolve) {
@@ -97,20 +98,26 @@ export const RunCheckProvider: React.FC<RunCheckProviderProps> = ({
     setRunTaskRequested(null);
   };
 
+  const contextValue = useMemo(
+    () => ({
+      runTaskRequested,
+      setRunTaskRequested,
+      confirmTaskRun,
+      extraDialogActions,
+      setExtraDialogActions,
+      processedErrors,
+      setProcessedErrors,
+    }),
+    [
+      runTaskRequested,
+      confirmTaskRun,
+      extraDialogActions,
+      processedErrors,
+    ]
+  );
+
   return (
-    <RunCheckContext.Provider
-      value={
-        {
-          runTaskRequested,
-          setRunTaskRequested,
-          confirmTaskRun,
-          extraDialogActions,
-          setExtraDialogActions,
-          processedErrors,
-          setProcessedErrors,
-        } as RunCheckContextType
-      }
-    >
+    <RunCheckContext.Provider value={contextValue}>
       {children}
       <ErrorAwareRunDialog
         runTaskRequested={runTaskRequested}

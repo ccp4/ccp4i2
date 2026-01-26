@@ -46,11 +46,14 @@ export const FilePreviewProvider: React.FC<PropsWithChildren> = ({
 }) => {
   const [contentSpecification, setContentSpecification] =
     useState<EditorContentSpecification | null>(null);
+  const contextValue = useMemo(
+    () => ({ contentSpecification, setContentSpecification }),
+    [contentSpecification]
+  );
+
   return (
     <>
-      <FilePreviewContext.Provider
-        value={{ contentSpecification, setContentSpecification }}
-      >
+      <FilePreviewContext.Provider value={contextValue}>
         {children}
         <FilePreviewDialog />
       </FilePreviewContext.Provider>
