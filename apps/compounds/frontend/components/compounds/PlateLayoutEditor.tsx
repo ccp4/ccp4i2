@@ -1154,8 +1154,8 @@ export function PlateLayoutEditor({
                 </Box>
               )}
 
-              {/* Compound name row specification for stripe layouts */}
-              {layout.controls.placement === 'per_compound' && (
+              {/* Compound name row specification for stripe layouts (not needed for adjacent_column) */}
+              {layout.controls.placement === 'per_compound' && layout.compound_source.type !== 'adjacent_column' && (
                 <Box sx={{ mt: 3 }}>
                   <Typography variant="subtitle2" gutterBottom>
                     Compound Name Location
@@ -1194,6 +1194,23 @@ export function PlateLayoutEditor({
                     </Alert>
                   )}
                 </Box>
+              )}
+
+              {/* Info for adjacent column mode */}
+              {layout.controls.placement === 'per_compound' && layout.compound_source.type === 'adjacent_column' && (
+                <Alert severity="info" sx={{ mt: 3 }}>
+                  <Typography variant="body2">
+                    Compound names will be read from the column immediately after each data region,
+                    on the same row as the data values.
+                  </Typography>
+                  <Typography variant="body2" sx={{ fontFamily: 'monospace', mt: 0.5 }}>
+                    {Array.from({ length: layout.strip_layout?.strips_per_row || 2 }, (_, i) => {
+                      const stripWidth = layout.strip_layout?.strip_width || 12;
+                      const nameCol = 1 + (i + 1) * stripWidth;
+                      return `Stripe ${i + 1}: Column ${nameCol}`;
+                    }).join(', ')}
+                  </Typography>
+                </Alert>
               )}
 
               <Box sx={{ mt: 2 }}>
