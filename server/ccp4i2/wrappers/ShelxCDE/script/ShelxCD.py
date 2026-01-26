@@ -10,8 +10,6 @@ class ShelxCD(ShelxCDEBase.ShelxCDEBase):
     TASKMODULE = 'test'                               # Where this plugin will appear on the gui
     TASKNAME = 'ShelxCD'                                  # Task name - should be same as class name
     TASKCOMMAND = 'shelxd'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    TIMEOUT_PERIOD = 9999999.9
     PERFORMANCECLASS = 'CExpPhasPerformance'
 
     def processInputFiles(self):

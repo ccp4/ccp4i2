@@ -25,10 +25,7 @@ class servalcat_pipe(CPluginScript):
     TASKVERSION= 0.1
     WHATNEXT = ['servalcat_pipe','coot_rebuild','modelcraft']
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 240
-    MAXNJOBS = 4
     PERFORMANCECLASS = 'CServalcatPerformance'
-    SUBTASKS=['servalcat','prosmart','metalCoord']
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 
@@ -919,7 +916,7 @@ class servalcat_pipe(CPluginScript):
             except:
                 pass
 
-        self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
+        self.appendErrorReport(40,"240")
         self.reportStatus(CPluginScript.FAILED)
 
 # Function called from gui to support exporting MTZ files

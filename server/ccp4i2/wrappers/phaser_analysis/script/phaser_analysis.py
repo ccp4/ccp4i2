@@ -52,7 +52,6 @@ class phaser_analysis(CPluginScript):
     TASKMODULE = 'test'      # Where this plugin will appear on the gui
     TASKTITLE = 'phaser_analysis' # A short title for gui menu
     TASKNAME = 'phaser_analysis'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
  
     def startProcess(self):

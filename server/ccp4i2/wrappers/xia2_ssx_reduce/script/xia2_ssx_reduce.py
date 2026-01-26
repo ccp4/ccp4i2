@@ -19,7 +19,6 @@ class Cxia2_ssx_reduce(CPluginScript):
     TASKNAME = "xia2_ssx_reduce"
     TASKCOMMAND = "xia2.ssx_reduce"
     TASKMODULE = "data_reduction"
-    TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         225: {"description": "Unable to find merged MTZ files"},
@@ -34,17 +33,6 @@ class Cxia2_ssx_reduce(CPluginScript):
         "prosmart_refmac"
     ]
     MAINTAINER = "martin.maly@soton.ac.uk"
-
-
-    # def __init__(self, *args, **kwargs):
-    #     self.reference = None
-    #     CPluginScript.__init__(self, *args, **kwargs)
-
-    # def processInputFiles(self):
-    #     if self.container.inputData.reference.isSet():
-    #     #     self.reference = self.container.inputData.reference.fullPath.__str__()
-    #     if self.container.controlParameters.reference.isSet():
-    #         self.reference = self.container.controlParameters.reference.fullPath.__str__()
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set

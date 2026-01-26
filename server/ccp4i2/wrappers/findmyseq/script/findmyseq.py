@@ -15,7 +15,6 @@ class findmyseq(CPluginScript):
     TASKVERSION = 1.0                 # plugin version
     WHATNEXT = ['modelcraft']         # after ?
     PERFORMANCECLASS = 'CRefinementPerformance'
-    MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Blank ' \
                            'In case needed (Prob not needed here)', 

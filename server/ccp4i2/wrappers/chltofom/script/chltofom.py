@@ -6,8 +6,6 @@ class chltofom(CCP4PluginScript.CPluginScript):
 
     TASKNAME = 'chltofom'                                  # Task name - should be same as class name
     TASKCOMMAND = 'chltofom'                             # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    MAINTAINER = 'liz.potterton@york.ac.uk'
     PURGESEARCHLIST = [  [ 'hklout.mtz' , 0 ],    
                          [ 'HKLOUT.mtz' , 0 ]
                        ]

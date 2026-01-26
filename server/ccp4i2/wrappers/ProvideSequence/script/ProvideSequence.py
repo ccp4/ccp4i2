@@ -11,8 +11,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class ProvideSequence(CPluginScript):
 
     TASKNAME = 'ProvideSequence'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
 
     def startProcess(self):
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment

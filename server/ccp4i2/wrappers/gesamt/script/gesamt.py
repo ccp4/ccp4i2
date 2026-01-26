@@ -13,7 +13,6 @@ class gesamt(CPluginScript):
     TASKNAME = 'gesamt'
     TASKMODULE= 'model_data_utility'
     TASKCOMMAND = 'gesamt'
-    TASKVERSION= 0.0
     PERFORMANCECLASS = 'CSuperposePerformance'
 
     def makeCommandAndScript(self):

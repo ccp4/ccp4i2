@@ -18,7 +18,6 @@ class Cxia2_multiplex(CPluginScript):
     TASKNAME = "xia2_multiplex"
     TASKCOMMAND = "xia2.multiplex"
     TASKMODULE = "data_reduction"
-    TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         205: {"description": "Failed parsing xia2.json"},
@@ -32,7 +31,6 @@ class Cxia2_multiplex(CPluginScript):
         "ShelxCD",
         "ShelxCDE",
     ]
-    MAINTAINER = "ccp4@stfc.ac.uk"
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set

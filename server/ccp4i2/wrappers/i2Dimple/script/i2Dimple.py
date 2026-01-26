@@ -9,13 +9,8 @@ from ccp4i2.core.mgimports import mmdb2 as mmdb
 class i2Dimple(CPluginScript):
     TASKNAME = 'i2Dimple'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
     TASKVERSION= 0.1               # Version of this plugin
-    MAINTAINER = 'YOUR_EMAIL_ADDRESS'
     ERROR_CODES = { 201 : {'description' : 'Unable to extract information from dimple.log...run incomplete ?' },
-                    202 : {'description' : 'Failed applying selection ot PDB file' }
                     }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                        ['log_mtzjoin.txt', 0]
-                       ]
     TASKCOMMAND="dimple"
     PERFORMANCECLASS = 'CRefinementPerformance'
 

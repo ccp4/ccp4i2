@@ -13,9 +13,7 @@ class coot_find_ligand(CPluginScript):
     TASKMODULE = "model_building"
     TASKTITLE = "Find ligand with Coot API"
     TASKNAME = "coot_find_ligand"
-    TASKVERSION = 0.0
     WHATNEXT = ["prosmart_refmac"]
-    TIMEOUT_PERIOD = 9999999.9
 
     def startProcess(self):
         inputData = self.container.inputData

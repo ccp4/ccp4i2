@@ -1,4 +1,3 @@
-import os
 import sys
 
 from lxml import etree
@@ -13,11 +12,6 @@ from ccp4i2.pipelines.import_merged.script.mtzimport import ImportMTZ
 class import_merged(CPluginScript):
 
     TASKNAME = 'import_merged'
-    MAINTAINER = 'liz.potterton@york.ac.uk'
-    WHATNEXT = []
-    ERROR_CODES = { 301 : { 'description' : 'No output file found after conversion program' },
-                    302 : { 'description' : 'Output from conversion does not contain recognised reflection or FreeR set data' }
-                    }
     # Note - preserving the HKLOUT by changing severity from the system default of 1 to 5 and
     # beware issues with caseinsensitivity
     PURGESEARCHLIST = [ [ 'HKLIN*.mtz' , 1 ],

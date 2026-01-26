@@ -7,10 +7,8 @@ from ccp4i2.core import CCP4PluginScript
 
 class xia2_integration(CCP4PluginScript.CPluginScript):
 
-    TASKMODULE = None      # Where this plugin will appear on the gui
     TASKTITLE = 'Integration in XIA2'
     TASKNAME = 'xia2_integration'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
 
     ERROR_CODES = { 101 : {'description' : 'XIA2 run directory does not exist' }                  
                     }

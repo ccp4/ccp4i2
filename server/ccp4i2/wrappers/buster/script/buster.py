@@ -17,7 +17,6 @@ class buster(CPluginScript):
     TASKVERSION = 1.0                 # plugin version
     WHATNEXT = ['buster', 'prosmart_refmac', 'modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
-    MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Failed to initialise BUSTER, do you have BUSTER installed & the i2 preferences setup ' \
                            'to point to the correct BUSTER installation folder (or have run the setup script for BUSTER) ?', 

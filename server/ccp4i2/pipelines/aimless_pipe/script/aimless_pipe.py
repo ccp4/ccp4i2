@@ -15,7 +15,6 @@ class aimless_pipe(CPluginScript):
     TASKMODULE = 'data_reduction'      # Where this plugin will appear on the gui
     TASKTITLE = 'Scale and merge data' # A short title for gui menu
     TASKNAME = 'aimless_pipe'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
     PERFORMANCECLASS = 'CDataReductionPerformance'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     ERROR_CODES = {

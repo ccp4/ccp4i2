@@ -5,13 +5,6 @@ class MakeLink(CPluginScript):
     TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
     TASKVERSION= 0.1               # Version of this plugin
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
-    ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
-                    202 : {'description' : 'Failed applying selection to PDB file' },
-                    203 : {'description' : 'Required input data not set' }
-                    }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                        ['log_mtzjoin.txt', 0]
-                       ]
 
     def __init__(self, *args, **kws):
         super(MakeLink, self).__init__(*args, **kws)

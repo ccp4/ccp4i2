@@ -13,10 +13,8 @@ class coot_script_lines(CPluginScript):
     TASKTITLE = 'Execute arbitrary script code within Coot'
     TASKNAME = 'coot_script_lines'
     TASKCOMMAND = 'coot'
-    TASKVERSION= 0.0
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
 
     def makeCommandAndScript(self):
         self.dropDir = os.path.join(self.workDirectory,'COOT_FILE_DROP')

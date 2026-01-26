@@ -15,7 +15,6 @@ class coot_rsr_morph(CPluginScript):
     TASKVERSION = 202110261437
     WHATNEXT = ["prosmart_refmac"]
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "stuart.mcnicholas@york.ac.uk"
 
     def startProcess(self):

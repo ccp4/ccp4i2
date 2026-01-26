@@ -11,8 +11,7 @@ class coordinate_selector(CPluginScript):
     TASKNAME = 'coordinate_selector'   # Task name - should be same as class name
     TASKVERSION= 0.1               # Version of this plugin
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
-    ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
-                    202 : {'description' : 'Failed applying selection to PDB file' }
+    ERROR_CODES = { 202 : {'description' : 'Failed applying selection to PDB file' }
                     }
     PERFORMANCECLASS ='CAtomCountPerformance'
 

@@ -16,9 +16,7 @@ class lidia(CPluginScript):
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'Lidia'  # Task name - should be same as class name
     TASKCOMMAND = 'lidia'
-    TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},

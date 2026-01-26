@@ -11,7 +11,6 @@ class phaser_MR_FRF(phaser_MR_AUTO.phaser_MR_AUTO):
 
     TASKNAME = 'phaser_MR_FRF'                                  # Task name - should be same as class name
     TASKTITLE='Rotation function - PHASER'
-    TASKVERSION= 0.0                                     # Version of this plugin
     WHATNEXT = ['phaser_expert']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}

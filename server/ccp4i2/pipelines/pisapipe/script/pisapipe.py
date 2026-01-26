@@ -8,8 +8,6 @@ class pisapipe(CPluginScript):
     TASKMODULE = 'test'                              # Where this plugin will appear on the gui
     TASKTITLE = ' Structure analysis with Pisa'     # A short title for gui menu
     TASKNAME = 'pisapipe'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
 
     def process(self):
         identifier = str(self.container.inputData.PDBIN.dbFileId)

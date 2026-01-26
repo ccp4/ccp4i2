@@ -9,10 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class PrepareDeposit(CPluginScript):
     TASKNAME = 'PrepareDeposit'
-    TASKVERSION= 0.0
-    TIMEOUT_PERIOD = 240
-    MAXNJOBS = 4
-    SUBTASKS=['refmac']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     
     ERROR_CODES = {  200 : { 'description' : 'Alignments yielded nBestPairs != 1' },

@@ -15,7 +15,6 @@ class pdbview_edit(CPluginScript):
     TASKCOMMAND = 'ccp4-python'                          # The command to run the executable
     TASKVERSION= 0.1                                # Version of this plugin
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Coordinate editor exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}

@@ -8,7 +8,6 @@ class scalepack2mtz(x2mtz.x2mtz):
     TASKNAME = 'scalepack2mtz'  
     TASKVERSION= 0.1    
     TASKCOMMAND = 'scalepack2mtz'  
-    MAINTAINER = 'liz.potterton@york.ac.uk'
 
     def makeCommandAndScript(self):
 

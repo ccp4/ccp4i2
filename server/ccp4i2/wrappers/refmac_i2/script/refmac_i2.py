@@ -11,7 +11,6 @@ class refmac_i2(CPluginScript):
     TASKTITLE = 'Refinement (Refmac5)'
     TASKNAME = 'refmac'
     TASKCOMMAND = 'refmacat'
-    TASKVERSION= 0.0
     WHATNEXT = ['prosmart_refmac','modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
         

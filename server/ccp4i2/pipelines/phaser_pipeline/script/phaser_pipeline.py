@@ -9,11 +9,8 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class phaser_pipeline(CPluginScript):
 
     TASKNAME = 'phaser_pipeline'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
     PERFORMANCECLASS = 'CRefinementPerformance'
     SEPARATEDATA=True
-    INTERRUPTABLE=True
 
     ERROR_CODES = {
         200: {'description': 'Phaser exited with error status'},

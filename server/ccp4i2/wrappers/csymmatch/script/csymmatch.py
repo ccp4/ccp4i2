@@ -10,8 +10,6 @@ class csymmatch(CPluginScript):
     TASKNAME = 'csymmatch'
     TASKMODULE = 'molecular_replacement'
     TASKCOMMAND = 'csymmatch'
-    TASKVERSION = 0.0
-    MAINTAINER = 'liz.potterton@york.ac.uk'
 
     def makeCommandAndScript(self):
 

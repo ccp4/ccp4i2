@@ -5,7 +5,6 @@ from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phas
 class phaser_MR_RNP(phaser_MR_AUTO.phaser_MR_AUTO):
 
     TASKNAME = 'phaser_MR_RNP'                                  # Task name - should be same as class name
-    TASKVERSION= 0.0                                     # Version of this plugin
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}

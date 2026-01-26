@@ -14,11 +14,6 @@ class modelcraft(CPluginScript):
     TASKVERSION = 0.1
     TASKCOMMAND = "modelcraft"
     MAINTAINER = "paul.bond@york.ac.uk"
-    ERROR_CODES = {
-        201: {"description": "Failed to analyse output files"},
-        202: {"description": "Failed applying selection to PDB file"},
-    }
-    PURGESEARCHLIST = [["hklin.mtz", 0], ["log_mtzjoin.txt", 0]]
     PERFORMANCECLASS = "CRefinementPerformance"
     WHATNEXT = ["coot_rebuild"]
 

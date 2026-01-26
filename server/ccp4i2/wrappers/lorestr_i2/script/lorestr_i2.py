@@ -11,14 +11,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class lorestr_i2(CPluginScript):
     TASKNAME = 'lorestr_i2'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
     TASKVERSION= 0.1               # Version of this plugin
-    MAINTAINER = 'kovoleg'
-    ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
-                    202 : {'description' : 'Failed applying selection ot PDB file' }
-                    }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                       ['log_mtzjoin.txt', 0]
-                       ]
-    TASKCOMMAND="lorestr" #_dummy
+    TASKCOMMAND="lorestr"
     PERFORMANCECLASS = 'CRefinementPerformance'
     
     def __init__(self, *args, **kws):
@@ -29,38 +22,6 @@ class lorestr_i2(CPluginScript):
         self.xmlLength = 0
 
     def processInputFiles(self):
-        #Preprocess reflections to generate an "HKLIN" file
-        '''
-        #makeHklin0 takes as arguments a list of sublists
-        #Each sublist comprises 1) A reflection data object identifier (one of those specified in the inputData container 
-        #                           the task in the corresponding .def.xml
-        #                       2) The requested data representation type to be placed into the file that is generated
-        #
-        #makeHklin0 returns a tuple comprising:
-        #                       1) the file path of the file that has been created
-        #                       2) a list of strings, each of which contains a comma-separated list of column labels output from
-        #                       the input data objects
-        #                       3) A CCP4 Error object        
-        import CCP4XtalData
-        self.hklin, self.columns, error = self.makeHklin0([
-            ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]
-        ])
-        self.columnsAsArray = self.columns.split(",")
-        
-        import CCP4ErrorHandling
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
-        '''
-        
-        #Preprocess coordinates to extract a subset
-        '''
-        # The method "getSelectedAtomsPdbFile" applied to a coordinate data object
-        # selects those atoms declared in the objects "selectionString" property and writes them into
-        # a pruned down file, the name of which is provided in the argument
-        self.selectedCoordinatesPath = os.path.join(self.getWorkDirectory(), "selected_xyzin.pdb")
-        self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
-        '''
-
         from ccp4i2.core import CCP4XtalData
         error = None
         self.hklin = None
@@ -124,9 +85,6 @@ class lorestr_i2(CPluginScript):
         if self.container.inputData.DICT.isSet():
             self.appendCommandLine(['-libin', self.container.inputData.DICT.fullPath])
 
-#        if self.container.inputData.REFERENCE_MODEL.isSet():
-#            self.appendCommandLine(['-p2', self.container.inputData.REFERENCE_MODEL.fullPath])
-
         p2 = ['-p2']
         for iCoordSet, xyzRef in enumerate(self.container.inputData.REFERENCE_LIST):
             p2.append(str(xyzRef.fullPath))
@@ -137,11 +95,6 @@ class lorestr_i2(CPluginScript):
         self.appendCommandLine(['-xyzout', self.container.outputData.XYZOUT.fullPath])
         self.appendCommandLine(['-hklout', self.hklout])
         self.appendCommandLine(['-o', self.workDirectory + '/lorestrOutput'])
-
-
-
-#        self.appendCommandLine(['LIBOUT',self.container.outputData.LIBOUT.fullPath])
-#        self.appendCommandLine(['XMLOUT',os.path.normpath(os.path.join(self.getWorkDirectory(),'XMLOUT.xml'))])
 
 # Parameters
         self.appendCommandLine(['-xml', str(self.makeFileName('PROGRAMXML'))]) # ccp4i2 compatibility
@@ -182,14 +135,6 @@ class lorestr_i2(CPluginScript):
     def processOutputFiles(self):
         #Associate the tasks output coordinate file with the output coordinate object XYZOUT:
 
-        # self.container.outputData.XYZOUT.setFullPath(self.container.outputData.XYZOUT.fullPath)
-
-      # Split an MTZ file into minimtz data objects
-#        outputFilesToMake = ['FPHIOUT','DIFFPHIOUT']
-#        columnsToTake = ['FWT,PHWT','DELFWT,PHDELWT']
-#        infile = self.hklout
-#        error = self.splitHklout(outputFilesToMake, columnsToTake, infile=infile)
-
         self.container.outputData.XYZOUT.annotation = 'Refined model'
         self.container.outputData.FPHIOUT.annotation = 'Weighted map after refinement'
         self.container.outputData.DIFFPHIOUT.annotation = 'Weighted difference map after refinement'
@@ -200,8 +145,6 @@ class lorestr_i2(CPluginScript):
         outputColumns = ['FWT,PHWT','DELFWT,PHDELWT']
 
         error = self.splitHklout(outputFiles,outputColumns)
-
-
 
         xmlRoot = ET.parse(self.makeFileName('PROGRAMXML')).getroot()
         bestProtocolNumber = int(xmlRoot.find("Protocols/BestProtocol").text)

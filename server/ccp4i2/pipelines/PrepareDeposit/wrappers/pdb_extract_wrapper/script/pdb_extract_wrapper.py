@@ -13,8 +13,6 @@ class pdb_extract_wrapper(CPluginScript):
     DESCRIPTION = 'Run pdb_extract'
     TASKNAME = 'pdb_extract_wrapper'                                  # Task name - should be same as class name
     TASKCOMMAND = 'pdb_extract'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    TIMEOUT_PERIOD = 9999999.9
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' },}
     

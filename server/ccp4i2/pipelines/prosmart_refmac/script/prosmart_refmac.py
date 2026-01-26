@@ -18,13 +18,9 @@ class prosmart_refmac(CPluginScript):
     TASKMODULE = 'refinement'
     TASKTITLE = 'Refine with Refmac & optional restraints from Prosmart & Platonyzer'
     TASKNAME = 'prosmart_refmac'
-    TASKVERSION= 0.0
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 240
-    MAXNJOBS = 4
     PERFORMANCECLASS = 'CRefinementPerformance'
-    SUBTASKS=['Platonyzer','prosmart','refmac']
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 
@@ -782,7 +778,7 @@ class prosmart_refmac(CPluginScript):
             except Exception:
                 pass
 
-        self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
+        self.appendErrorReport(40, "240")
         self.reportStatus(CPluginScript.FAILED)
 
 # Function called from gui to support exporting MTZ files

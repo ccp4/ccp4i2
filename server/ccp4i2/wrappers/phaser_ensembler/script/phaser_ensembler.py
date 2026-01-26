@@ -5,11 +5,8 @@ from ccp4i2.core import CCP4Utils
 class phaser_ensembler(CPluginScript):
     TASKNAME = 'phaser_ensembler'                                  # Task name - should be same as class name
     TASKCOMMAND = 'phaser.ensembler'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
-
 
     def makeCommandAndScript(self):
         for iCoordSet, xyzin in enumerate(self.container.inputData.XYZIN_LIST):

@@ -5,7 +5,6 @@ class cif2mtz(x2mtz.x2mtz):
     TASKMODULE = 'test'      # Where this plugin will appear on the gui
     TASKTITLE = 'Import mmCIF reflection file' # A short title for gui menu
     TASKNAME = 'cif2mtz'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
     TASKCOMMAND = 'cif2mtz'   # The command to run the executable
 
     ERROR_CODES = { 301 : { 'description' : 'No output file found after cif2mtz conversion' },

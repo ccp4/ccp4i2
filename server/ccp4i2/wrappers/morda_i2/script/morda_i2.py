@@ -11,8 +11,6 @@ class morda_i2(CCP4PluginScript.CPluginScript):
     MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
     TASKCOMMAND = sys.executable
     PERFORMANCECLASS = 'CRefinementPerformance'
-    INTERRUPTABLE = True
-    INTERRUPTLABEL = 'Stop and keep current best solution'
     
     def processInputFiles(self):
         content_flag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN

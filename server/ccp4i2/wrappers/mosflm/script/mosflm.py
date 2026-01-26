@@ -1,5 +1,7 @@
 import os
 import socketserver
+import threading
+import time
 
 from lxml import etree
 
@@ -68,22 +70,9 @@ class mosflm(CPluginScript):
     TASKTITLE = 'Run mosflm and capture output'     # A short title for gui menu
     TASKNAME = 'mosflm'                                  # Task name - should be same as class name
     TASKCOMMAND = 'ipmosflm'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
     def makeCommandAndScript(self):
-        import os
-
-        #self.simpleServer = MyServer()
-        #self.simpleServer.start()
-        import socket
-        import threading
-        
         address = ('127.0.0.1', 0)
 
         MosflmRequestHandler.xmlRoot = etree.Element('MosflmXML')
@@ -96,11 +85,8 @@ class mosflm(CPluginScript):
         t.start()
         print('Server loop running in thread:', t.getName())
 
-        import time
         time.sleep(0.1)
         address,port = myMosflmServer.server_address
         self.appendCommandLine(['MOSFLMSOCKET', str(port)])
         self.appendCommandLine(['HKLOUT',self.container.outputData.UNMERGEDMTZ.fullPath])
         return CPluginScript.SUCCEEDED
-
-

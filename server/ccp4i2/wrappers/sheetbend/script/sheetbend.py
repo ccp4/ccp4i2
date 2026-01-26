@@ -9,11 +9,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class sheetbend(CPluginScript):
     TASKNAME = 'sheetbend'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
     TASKVERSION= 0.1               # Version of this plugin
-    MAINTAINER = 'kevin.cowtan@york.ac.uk'
-    ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
-                    202 : {'description' : 'Failed applying selection ot PDB file' }
-                    }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ], ['log_mtzjoin.txt', 0] ]
+    MAINTAINER = 'kathryn.cowtan@york.ac.uk'
     TASKCOMMAND="csheetbend"
     
     def __init__(self, *args, **kws):

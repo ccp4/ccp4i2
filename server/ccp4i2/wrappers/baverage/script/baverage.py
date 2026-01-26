@@ -6,7 +6,6 @@ class baverage(CPluginScript):
     TASKTITLE = 'Average B over main and side chain atoms'
     TASKNAME = 'baverage'
     TASKCOMMAND = 'baverage'
-    TASKVERSION= 0.0
 
     def makeCommandAndScript(self):
       inp = self.container.inputData

@@ -6,7 +6,6 @@
      Wrapper to convert2mtz
 """
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.wrappers.x2mtz.script import x2mtz
 
 class convert2mtz(x2mtz.x2mtz):
@@ -16,7 +15,6 @@ class convert2mtz(x2mtz.x2mtz):
     TASKNAME = 'convert2mtz'   # Task name - should be same as class name
     TASKVERSION= 0.1               # Version of this plugin
     TASKCOMMAND = 'convert2mtz'   # The command to run the executable
-    MAINTAINER = 'liz.potterton@york.ac.uk'
 
     def makeCommandAndScript(self):
 

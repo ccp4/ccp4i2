@@ -13,10 +13,8 @@ class coot_find_waters(CPluginScript):
     TASKMODULE = 'model_building'                               # Where this plugin will appear on the gui
     TASKTITLE = 'Find waters with Coot API'     # A short title for gui menu
     TASKNAME = 'coot_find_waters'  # Task name - should be same as class name
-    TASKVERSION= 0.0                                     # Version of this plugin
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
 
     def startProcess(self):
         outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"

@@ -25,9 +25,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         211 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to open and /or parse XML' },
         212 : {'severity':CCP4ErrorHandling.SEVERITY_ERROR, 'description' : 'Failed to determine projectId or Directory of presumed existing project' },
                     }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                        ['log_mtzjoin.txt', 0]
-                       ]
 
     def __init__(self, *args, **kws):
         super(MakeProjectsAndDoLigandPipeline, self).__init__(*args, **kws)

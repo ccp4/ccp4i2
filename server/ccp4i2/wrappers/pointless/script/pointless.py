@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class pointless(CPluginScript):
     TASKNAME = 'pointless'   # Task name - should be same as class name
     TASKTITLE = 'Analyse unmerged dataset (POINTLESS)' # A short title for gui menu
-    TASKVERSION= 0.0               # Version of this plugin
     TASKCOMMAND = 'pointless'   # The command to run the executable
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
 
@@ -128,8 +127,6 @@ class pointless(CPluginScript):
               self.appendCommandScript("choose spacegroup %s" % par.CHOOSE_SPACEGROUP)
         elif par.CHOOSE_MODE == 'REINDEX_SPACE':
           self.appendCommandScript("spacegroup %s" % par.CHOOSE_SPACEGROUP)
-          #if par.REINDEX_OPERATOR.isSet():
-          #print "REINDEX_SPACE::REINDEX_OPERATOR isset"
           self.appendCommandScript("reindex %s, %s, %s" % (par.REINDEX_OPERATOR.h,par.REINDEX_OPERATOR.k,par.REINDEX_OPERATOR.l))
 
       if par.MODE == 'COMBINE':

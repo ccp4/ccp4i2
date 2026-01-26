@@ -13,7 +13,6 @@ class scaleit(CPluginScript):
     TASKMODULE = 'test'      # Where this plugin will appear on the gui
     TASKTITLE = 'Compare two or more datafiles' # A short title for gui menu
     TASKNAME = 'scaleit'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     TASKCOMMAND = 'scaleit'   # The command to run the executable
 

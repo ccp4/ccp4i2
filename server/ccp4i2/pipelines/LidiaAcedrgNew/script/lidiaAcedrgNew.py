@@ -11,8 +11,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class lidiaAcedrgNew(CPluginScript):
     TASKNAME = 'LidiaAcedrgNew'            # Task name - should be same as class name
-    TASKVERSION= 0.0                    # Version of this plugin
-    TIMEOUT_PERIOD = 9999999.9
     WHATNEXT = ['coot_rebuild']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.SEVERITY_WARNING },}

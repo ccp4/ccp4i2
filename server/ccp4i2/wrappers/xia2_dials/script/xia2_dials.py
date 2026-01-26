@@ -16,7 +16,6 @@ class Cxia2_dials(CPluginScript):
     TASKNAME = "xia2_dials"
     TASKCOMMAND = "xia2"
     TASKMODULE = "data_processing"
-    TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         201: {"description": "Failed scaled data"},

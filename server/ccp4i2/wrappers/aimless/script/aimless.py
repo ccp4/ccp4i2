@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class aimless(CPluginScript):
     TASKNAME = 'aimless'   # Task name - should be same as class name
     TASKTITLE = 'Scale and merge dataset (AIMLESS)' # A short title for gui menu
-    TASKVERSION= 0.0               # Version of this plugin
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     TASKCOMMAND = 'aimless'   # The command to run the executable
 

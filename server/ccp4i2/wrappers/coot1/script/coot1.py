@@ -19,7 +19,6 @@ class coot1(CPluginScript):
     TASKCOMMAND = coot1Command()
     TASKVERSION = 0.1
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "paul.bond@york.ac.uk"
     WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft"]
 

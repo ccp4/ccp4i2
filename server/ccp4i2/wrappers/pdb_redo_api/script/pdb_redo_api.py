@@ -19,8 +19,6 @@ class pdb_redo_api(CPluginScript):
     TASKTITLE='PDB-REDO Web services'
     TASKNAME = 'pdb_redo_api'
     TASKMODULE= 'refinement'
-    TASKCOMMAND = ''
-    TASKVERSION= 0.0
     PERFORMANCECLASS = 'CRefinementPerformance'
 
     def startProcess(self):

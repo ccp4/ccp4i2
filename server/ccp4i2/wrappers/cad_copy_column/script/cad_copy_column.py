@@ -3,11 +3,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class cad_copy_column(CPluginScript):
 
-    TASKMODULE = None      # Where this plugin will appear on the gui
     TASKTITLE = 'Copy an MTZ column between files' # A short title for gui menu
     TASKNAME = 'cad_copy_column'   # Task name - should be same as class name
     TASKCOMMAND = 'cad'            # The command to run the executable
-    TASKVERSION= 0.0               # Version of this plugin
 
     def makeCommandAndScript(self):
 

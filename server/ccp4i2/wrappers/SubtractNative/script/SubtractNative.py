@@ -7,7 +7,6 @@ class SubtractNative(CPluginScript):
     TASKNAME = "SubtractNative"
     TASKVERSION = 0.1
     MAINTAINER = "Martin Noble"
-    PURGESEARCHLIST = [["hklin.mtz", 0], ["log_mtzjoin.txt", 0]]
 
     def startProcess(self):
         mtz_file = clipper.CCP4MTZfile()

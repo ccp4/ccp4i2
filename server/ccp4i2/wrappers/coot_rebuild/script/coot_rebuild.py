@@ -12,9 +12,7 @@ class coot_rebuild(CPluginScript):
     TASKTITLE = 'Rebuild model with coot'     # A short title for gui menu
     TASKNAME = 'coot_rebuild'                                  # Task name - should be same as class name
     TASKCOMMAND = 'coot'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Coot exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}

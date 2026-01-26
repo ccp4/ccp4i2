@@ -1,4 +1,3 @@
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4Utils
 
@@ -6,8 +5,6 @@ from ccp4i2.core import CCP4Utils
 class ProvideTLS(CPluginScript):
 
     TASKNAME = 'ProvideTLS'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
 
     def process(self):
         invalidFiles = self.checkInputData()
@@ -16,7 +13,6 @@ class ProvideTLS(CPluginScript):
         
         self.checkOutputData()
         
-        import shutil
         with open(self.container.outputData.TLSFILE.fullPath.__str__(),"w") as myFile:
             myFile.write(self.container.controlParameters.TLSTEXT.__str__() )
         

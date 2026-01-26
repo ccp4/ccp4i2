@@ -10,9 +10,8 @@ class parrot(CPluginScript):
     TASKTITLE = 'Parrot'                                # A short title for gui menu
     TASKNAME = 'parrot'                                 # Task name - should be same as class name
     TASKCOMMAND = 'cparrot'                             # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
     PERFORMANCECLASS = 'CExpPhasPerformance'             # Only FOM is relevent
-    MAINTAINER = 'kevin.cowtan@york.ac.uk'
+    MAINTAINER = 'kathryn.cowtan@york.ac.uk'
 
 
     def processInputFiles(self):

@@ -14,8 +14,6 @@ class dui(CPluginScript):
     TASKNAME = 'dui'
     TASKCOMMAND = 'dui2'
     TASKVERSION= 0.1
-    TIMEOUT_PERIOD = 9999999.9
-    MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.stime = 0.0

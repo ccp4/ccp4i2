@@ -12,11 +12,6 @@ class add_fractional_coords(CPluginScript):
     TASKCOMMAND = "ccp4-python"
     TASKVERSION = 0.1
     MAINTAINER = "paul.bond@york.ac.uk"
-    ERROR_CODES = {
-        201: {"description": "Failed to analyse output files"},
-        202: {"description": "Failed applying selection to PDB file"},
-    }
-    PURGESEARCHLIST = [["hklin.mtz", 0], ["log_mtzjoin.txt", 0]]
 
     def __init__(self, *args, **kws):
         super(add_fractional_coords, self).__init__(*args, **kws)

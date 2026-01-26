@@ -9,7 +9,6 @@ class ctruncate(CPluginScript):
     TASKTITLE = 'Intensities to amplitudes' # A short title for gui menu
     DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
     TASKNAME = 'ctruncate'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
     TASKCOMMAND = 'ctruncate'   # The command to run the executable
     MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
