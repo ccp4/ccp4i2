@@ -22,63 +22,68 @@ interface TableColumn {
   titleText: string; // Plain text version for CSV export
 }
 
+interface CellData {
+  html: string;
+  text: string;
+  isHeader: boolean;
+}
+
 export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
   props
 ) => {
   const theme = useTheme();
-  const [data, setData] = useState<any[]>([]);
+  const [data, setData] = useState<Record<string, CellData>[]>([]);
   const [columns, setColumns] = useState<TableColumn[]>([]);
 
   useEffect(() => {
-    let newData: any[] = [];
+    let newData: Record<string, CellData>[] = [];
     let newColumns: TableColumn[] = [];
+    const transposeAttr = $(props.item).attr("transpose");
+    const isHeaderRow = transposeAttr === "False";
 
     $(props.item)
       .find("tr")
-      .each((iRow, tableRow) => {
-        var dataItem: any = { key: iRow };
-        if ($(props.item).attr("transpose") === "True") {
-          $(tableRow)
-            .find("th")
-            .each((iColumn, tableData) => {
-              dataItem["col_" + iColumn] = $(tableData).html();
-              dataItem["col_" + iColumn + "_text"] = $(tableData).text();
-            });
-        }
-        const thCount = Object.keys(dataItem).filter(
-          (k) => !k.endsWith("_text") && k !== "key"
-        ).length;
+      .each((_iRow, tableRow) => {
+        const dataItem: Record<string, CellData> = {};
+        let colIndex = 0;
+
+        // Process all cells (th and td) in order
         $(tableRow)
-          .find("td")
-          .each((iColumn, tableData) => {
-            dataItem["col_" + (thCount + iColumn - 1)] = $(tableData).html();
-            dataItem["col_" + (thCount + iColumn - 1) + "_text"] =
-              $(tableData).text();
+          .find("th, td")
+          .each((_i, cell) => {
+            const $cell = $(cell);
+            const isHeader = cell.tagName.toLowerCase() === "th";
+
+            // For transpose="False" mode, th elements in header rows define columns
+            if (isHeaderRow && isHeader) {
+              while (colIndex >= newColumns.length) {
+                newColumns.push({ key: "", title: "", titleText: "" });
+              }
+              newColumns[colIndex] = {
+                key: "col_" + colIndex,
+                title: cell.innerHTML,
+                titleText: $cell.text(),
+              };
+            }
+
+            dataItem["col_" + colIndex] = {
+              html: $cell.html() || "",
+              text: $cell.text(),
+              isHeader: isHeader,
+            };
+            colIndex++;
           });
+
+        // Only add rows that have data cells (td)
         if ($(tableRow).find("td").length > 0) {
           newData.push(dataItem);
         }
-        if ($(props.item).attr("transpose") === "False") {
-          $(tableRow)
-            .find("th")
-            .each((iColumn, tableData) => {
-              while (iColumn >= newColumns.length) {
-                newColumns.push({ key: "", title: "", titleText: "" });
-              }
-              newColumns[iColumn] = {
-                key: "col_" + iColumn,
-                title: tableData.innerHTML,
-                titleText: $(tableData).text(),
-              };
-            });
-        }
       });
 
+    // If no explicit columns were defined, create them from the data
     if (newColumns.length === 0 && newData.length > 0) {
-      const colCount = Object.keys(newData[0]).filter(
-        (k) => !k.endsWith("_text") && k !== "key"
-      ).length;
-      for (var iCol = 0; iCol < colCount; iCol++) {
+      const colCount = Object.keys(newData[0]).length;
+      for (let iCol = 0; iCol < colCount; iCol++) {
         newColumns.push({
           key: "col_" + iCol,
           title: "",
@@ -106,7 +111,10 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
     const dataRows = data
       .map((row) =>
         columns
-          .map((col) => escapeCSV(row[col.key + "_text"] || row[col.key] || ""))
+          .map((col) => {
+            const cell = row[col.key];
+            return escapeCSV(cell?.text || "");
+          })
           .join(",")
       )
       .join("\n");
@@ -132,8 +140,51 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
     return null;
   }
 
+  // Check if we have any actual column titles
+  const hasColumnTitles = columns.some((col) => col.title.trim() !== "");
+
+  // Theme-aware colors for zebra striping that work in both light and dark modes
+  const isDark = theme.palette.mode === "dark";
+  const zebraColor = isDark
+    ? alpha(theme.palette.common.white, 0.03)
+    : alpha(theme.palette.common.black, 0.02);
+  const hoverColor = isDark
+    ? alpha(theme.palette.primary.main, 0.15)
+    : alpha(theme.palette.primary.main, 0.08);
+  const rowHeaderBg = isDark
+    ? alpha(theme.palette.common.white, 0.06)
+    : alpha(theme.palette.common.black, 0.04);
+  const rowHeaderHoverBg = isDark
+    ? alpha(theme.palette.primary.main, 0.2)
+    : alpha(theme.palette.primary.main, 0.12);
+
   return (
     <Box sx={{ mx: 2, my: 0.5 }}>
+      {/* Toolbar with download button */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "flex-end",
+          mb: 0.5,
+        }}
+      >
+        <Tooltip title="Download as CSV">
+          <IconButton
+            size="small"
+            onClick={downloadCSV}
+            sx={{
+              color: "text.secondary",
+              "&:hover": {
+                color: "primary.main",
+                bgcolor: alpha(theme.palette.primary.main, 0.08),
+              },
+            }}
+          >
+            <Download fontSize="small" />
+          </IconButton>
+        </Tooltip>
+      </Box>
+
       <TableContainer
         component={Paper}
         elevation={0}
@@ -145,65 +196,71 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
         }}
       >
         <Table size="small">
-          <TableHead>
-            <TableRow
-              sx={{
-                bgcolor: alpha(theme.palette.primary.main, 0.08),
-                "& .MuiTableCell-head": {
-                  fontWeight: 600,
-                  color: "text.primary",
-                  borderBottom: 2,
-                  borderColor: "primary.main",
-                  py: 1.5,
-                  px: 2,
-                },
-              }}
-            >
-              {columns.map((col) => (
-                <TableCell
-                  key={col.key}
-                  dangerouslySetInnerHTML={{ __html: col.title }}
-                />
-              ))}
-              <TableCell sx={{ width: 48, p: 0.5 }}>
-                <Tooltip title="Download as CSV">
-                  <IconButton
-                    size="small"
-                    onClick={downloadCSV}
-                    sx={{
-                      color: "primary.main",
-                      "&:hover": {
-                        bgcolor: alpha(theme.palette.primary.main, 0.12),
-                      },
-                    }}
-                  >
-                    <Download fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              </TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((row) => (
+          {hasColumnTitles && (
+            <TableHead>
               <TableRow
-                key={row.key}
                 sx={{
-                  "&:hover": {
-                    bgcolor: alpha(theme.palette.primary.main, 0.04),
+                  bgcolor: alpha(theme.palette.primary.main, 0.08),
+                  "& .MuiTableCell-head": {
+                    fontWeight: 600,
+                    color: "text.primary",
+                    borderBottom: 2,
+                    borderColor: "primary.main",
+                    py: 1.5,
+                    px: 2,
                   },
-                  "&:last-child td": { borderBottom: 0 },
                 }}
               >
                 {columns.map((col) => (
                   <TableCell
                     key={col.key}
-                    sx={{ py: 1, px: 2, color: "text.secondary" }}
-                    dangerouslySetInnerHTML={{ __html: row[col.key] || "" }}
+                    dangerouslySetInnerHTML={{ __html: col.title }}
                   />
                 ))}
-                <TableCell sx={{ width: 48 }} />
               </TableRow>
-            ))}
+            </TableHead>
+          )}
+          <TableBody>
+            {data.map((row, rowIndex) => {
+              const isOddRow = rowIndex % 2 === 1;
+              return (
+                <TableRow
+                  key={rowIndex}
+                  sx={{
+                    bgcolor: isOddRow ? zebraColor : "transparent",
+                    transition: "background-color 0.15s ease-in-out",
+                    "&:hover": {
+                      bgcolor: hoverColor,
+                    },
+                    "&:last-child td, &:last-child th": { borderBottom: 0 },
+                  }}
+                >
+                  {columns.map((col) => {
+                    const cell = row[col.key];
+                    const isHeader = cell?.isHeader;
+                    return (
+                      <TableCell
+                        key={col.key}
+                        component={isHeader ? "th" : "td"}
+                        scope={isHeader ? "row" : undefined}
+                        sx={{
+                          py: 1,
+                          px: 2,
+                          color: isHeader ? "text.primary" : "text.secondary",
+                          fontWeight: isHeader ? 600 : 400,
+                          bgcolor: isHeader ? rowHeaderBg : "transparent",
+                          transition: "background-color 0.15s ease-in-out",
+                          "tr:hover &": isHeader
+                            ? { bgcolor: rowHeaderHoverBg }
+                            : {},
+                        }}
+                        dangerouslySetInnerHTML={{ __html: cell?.html || "" }}
+                      />
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
           </TableBody>
         </Table>
       </TableContainer>
