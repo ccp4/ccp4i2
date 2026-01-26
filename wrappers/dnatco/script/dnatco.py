@@ -30,7 +30,7 @@ class dnatco(CPluginScript):
     TASKMODULE = 'wrappers'  # Where this plugin will appear on gui
     TASKNAME = 'dnatco'      # Task name - should be same as class name
     TASKVERSION= 0.1         # Version of this plugin
-    TASKCOMMAND = '/opt/ccp4-9/bin/dnatco'   # The command to run the executable
+    TASKCOMMAND = '/opt/ccp4-10/bin/dnatco'   # The command to run the executable
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from DNATCO' },
@@ -43,6 +43,7 @@ class dnatco(CPluginScript):
     def makeCommandAndScript(self):
         self.appendCommandLine(['--coords', str(self.container.inputData.XYZIN.fullPath)])
         self.appendCommandLine(['--outputDir', self.workDirectory])
+        self.appendCommandLine(['--prefix', "dnatco"])
         self.appendCommandLine(['--extendedCIF'])
         # if self.container.inputData.HKLIN.isSet():
         #     self.appendCommandLine(['--reflns', str(self.container.inputData.HKLIN.fullPath)])
@@ -71,19 +72,19 @@ class dnatco(CPluginScript):
         # outputCifFilename = outputFilenamePrefix + '_extended.cif'
         # outputCifPath = os.path.normpath(os.path.join(self.getWorkDirectory(), outputCifFilename))
         work_dir = Path(self.workDirectory)
-        cif_files = list(work_dir.glob("*_extended.cif"))
-        if not cif_files or not Path(str(cif_files[0])).is_file():
-            self.appendErrorReport(202, str(cif_files[0]))
+        cif_file = "dnatco_extended.cif"
+        if Path(str(cif_file)).is_file():
+            self.appendErrorReport(202, str(cif_file))
             return CPluginScript.FAILED
-        self.container.outputData.CIFOUT.setFullPath(str(cif_files[0]))
+        self.container.outputData.CIFOUT.setFullPath(str(cif_file))
         self.container.outputData.CIFOUT.annotation.set('Extended model (mmCIF format)')
 
         if bool(self.container.controlParameters.GENERATE_RESTRAINTS):
             # outputRestraintsFilename = outputFilenamePrefix + '_restraints_refmac.txt'
             # outputRestraintsPath = os.path.normpath(os.path.join(self.getWorkDirectory(), outputRestraintsFilename))
-            restraint_files = list(work_dir.glob("*_restraints_refmac.txt"))
-            if restraint_files:
-                outputRestraintsPath = str(restraint_files[0])
+            restraint_file = "dnatco_restraints_refmac.txt"
+            if Path(str(restraint_file)).is_file():
+                outputRestraintsPath = str(restraint_file)
             else:
                 outputRestraintsPath = ""
             if Path(outputRestraintsPath).is_file():
