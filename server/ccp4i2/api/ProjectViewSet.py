@@ -18,14 +18,12 @@ from ..lib.async_create_job import create_job_async
 
 # Modern utilities
 from ..lib.utils.navigation.list_project import list_project
-from ..lib.utils.navigation.task_tree import get_task_tree
 from ..lib.utils.files.preview import preview_file
-from ..lib.utils.files.resolve_fileuse import resolve_fileuse, is_fileuse_pattern
+from ..lib.utils.files.resolve_fileuse import resolve_fileuse
 
-from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.parsers import FormParser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
-from rest_framework.response import Response
 from django.db.models import Prefetch
 from . import serializers
 from ..db import models
