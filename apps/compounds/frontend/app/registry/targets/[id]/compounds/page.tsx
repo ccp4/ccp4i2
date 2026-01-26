@@ -15,7 +15,7 @@ import { Medication, Science, TableChart, Add, Dashboard } from '@mui/icons-mate
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
-import { MoleculeChip } from '@/components/compounds/MoleculeView';
+import { MoleculeChip, CopyableSmiles } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Target, Compound } from '@/types/compounds/models';
@@ -67,28 +67,14 @@ export default function TargetCompoundsPage({ params }: PageProps) {
       key: 'smiles',
       label: 'Structure',
       searchable: true,
-      width: 80,
-      render: (value) => <MoleculeChip smiles={value} size={120} />,
+      width: 175,
+      render: (value) => <MoleculeChip smiles={value} size={140} />,
     },
     {
       key: 'smiles',
       label: 'SMILES',
       searchable: true,
-      render: (value) => (
-        <Typography
-          sx={{
-            maxWidth: 200,
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            whiteSpace: 'nowrap',
-            fontFamily: 'monospace',
-            fontSize: '0.85rem',
-          }}
-          title={value}
-        >
-          {value}
-        </Typography>
-      ),
+      render: (value) => <CopyableSmiles smiles={value} />,
     },
     {
       key: 'molecular_weight',

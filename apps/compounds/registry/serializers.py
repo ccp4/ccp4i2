@@ -252,15 +252,18 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
 
 class CompoundCreateSerializer(serializers.ModelSerializer):
     """Serializer for creating compounds."""
+    formatted_id = serializers.CharField(read_only=True)
 
     class Meta:
         model = Compound
         fields = [
+            'id', 'formatted_id',
             'target', 'smiles', 'stereo_comment',
             'supplier', 'supplier_ref',
             'labbook_number', 'page_number', 'compound_number',
             'comments',
         ]
+        read_only_fields = ['id', 'formatted_id']
 
     def create(self, validated_data):
         # Set registered_by from request user

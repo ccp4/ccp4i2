@@ -609,6 +609,54 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
             'total_errors': len(errors),
         })
 
+    @action(detail=True, methods=['get'])
+    def adjacent(self, request, pk=None):
+        """
+        Get adjacent compounds (previous and next) within the same target.
+
+        Returns IDs and formatted_ids of the previous and next compounds,
+        ordered by registration number (reg_number).
+
+        Response:
+        {
+            "previous": {"id": "...", "formatted_id": "NCL-..."} | null,
+            "next": {"id": "...", "formatted_id": "NCL-..."} | null
+        }
+        """
+        compound = self.get_object()
+
+        def format_result(result):
+            """Convert query result to response format with formatted_id."""
+            if result is None:
+                return None
+            return {
+                'id': str(result['id']),
+                'formatted_id': f"NCL-{result['reg_number']:08d}",
+            }
+
+        # Get previous compound (lower reg_number, same target)
+        previous = (
+            Compound.objects
+            .filter(target=compound.target, reg_number__lt=compound.reg_number)
+            .order_by('-reg_number')
+            .values('id', 'reg_number')
+            .first()
+        )
+
+        # Get next compound (higher reg_number, same target)
+        next_compound = (
+            Compound.objects
+            .filter(target=compound.target, reg_number__gt=compound.reg_number)
+            .order_by('reg_number')
+            .values('id', 'reg_number')
+            .first()
+        )
+
+        return Response({
+            'previous': format_result(previous),
+            'next': format_result(next_compound),
+        })
+
     @action(detail=False, methods=['get'])
     def structure_search(self, request):
         """

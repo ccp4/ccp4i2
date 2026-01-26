@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState } from 'react';
+import { use, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Container,
@@ -13,8 +13,9 @@ import {
   Divider,
   Button,
   Tooltip,
+  IconButton,
 } from '@mui/material';
-import { Add, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
+import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -50,6 +51,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
   const { canContribute } = useAuth();
 
   const [batchDialogOpen, setBatchDialogOpen] = useState(false);
+  const [smilesCopied, setSmilesCopied] = useState(false);
 
   const { data: compound, isLoading: compoundLoading } = api.get<Compound>(
     `compounds/${id}/`
@@ -60,6 +62,21 @@ export default function CompoundDetailPage({ params }: PageProps) {
   const { data: target } = api.get<Target>(
     compound?.target ? `targets/${compound.target}/` : null
   );
+  const { data: adjacent } = api.get<{
+    previous: { id: string; formatted_id: string } | null;
+    next: { id: string; formatted_id: string } | null;
+  }>(`compounds/${id}/adjacent/`);
+
+  const handleCopySmiles = useCallback(async () => {
+    if (!compound?.smiles) return;
+    try {
+      await navigator.clipboard.writeText(compound.smiles);
+      setSmilesCopied(true);
+      setTimeout(() => setSmilesCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  }, [compound?.smiles]);
 
   const columns: Column<Batch>[] = [
     {
@@ -141,7 +158,45 @@ export default function CompoundDetailPage({ params }: PageProps) {
       />
 
       {/* Compound header */}
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3, position: 'relative' }}>
+        {/* Navigation arrows - fixed at top to avoid jumping when content changes */}
+        {adjacent && (
+          <>
+            <Tooltip title={adjacent.previous ? `Previous: ${adjacent.previous.formatted_id}` : 'No previous compound'}>
+              <span style={{ position: 'absolute', left: 8, top: 24 }}>
+                <IconButton
+                  onClick={() => adjacent.previous && router.push(routes.registry.compound(adjacent.previous.id))}
+                  disabled={!adjacent.previous}
+                  size="large"
+                  sx={{
+                    bgcolor: 'action.hover',
+                    '&:hover': { bgcolor: 'action.selected' },
+                    '&.Mui-disabled': { bgcolor: 'transparent' }
+                  }}
+                >
+                  <ChevronLeft />
+                </IconButton>
+              </span>
+            </Tooltip>
+            <Tooltip title={adjacent.next ? `Next: ${adjacent.next.formatted_id}` : 'No next compound'}>
+              <span style={{ position: 'absolute', right: 8, top: 24 }}>
+                <IconButton
+                  onClick={() => adjacent.next && router.push(routes.registry.compound(adjacent.next.id))}
+                  disabled={!adjacent.next}
+                  size="large"
+                  sx={{
+                    bgcolor: 'action.hover',
+                    '&:hover': { bgcolor: 'action.selected' },
+                    '&.Mui-disabled': { bgcolor: 'transparent' }
+                  }}
+                >
+                  <ChevronRight />
+                </IconButton>
+              </span>
+            </Tooltip>
+          </>
+        )}
+
         {compoundLoading ? (
           <>
             <Skeleton variant="text" width={300} height={40} />
@@ -149,7 +204,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
           </>
         ) : compound ? (
           <>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, mx: 5 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                 <Medication sx={{ fontSize: 48, color: 'secondary.main' }} />
                 <Box>
@@ -202,13 +257,28 @@ export default function CompoundDetailPage({ params }: PageProps) {
                     <InfoRow
                       label="SMILES"
                       value={
-                        <Typography
-                          fontFamily="monospace"
-                          fontSize="0.85rem"
-                          sx={{ wordBreak: 'break-all' }}
-                        >
-                          {compound.smiles}
-                        </Typography>
+                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.5 }}>
+                          <Typography
+                            fontFamily="monospace"
+                            fontSize="0.85rem"
+                            sx={{ wordBreak: 'break-all' }}
+                          >
+                            {compound.smiles}
+                          </Typography>
+                          <Tooltip title={smilesCopied ? 'Copied!' : 'Copy SMILES'}>
+                            <IconButton
+                              size="small"
+                              onClick={handleCopySmiles}
+                              sx={{
+                                p: 0.5,
+                                color: smilesCopied ? 'success.main' : 'action.active',
+                                flexShrink: 0,
+                              }}
+                            >
+                              {smilesCopied ? <Check fontSize="small" /> : <ContentCopy fontSize="small" />}
+                            </IconButton>
+                          </Tooltip>
+                        </Box>
                       }
                     />
                     <InfoRow
