@@ -53,7 +53,8 @@ interface Target {
 interface Protocol {
   id: string;
   name: string;
-  plate_layout?: Partial<PlateLayout> | null;
+  plate_layout?: string | null;  // FK ID
+  plate_layout_config?: Partial<PlateLayout> | null;  // Denormalized config
 }
 
 interface AssayUploadDrawerProps {
@@ -136,7 +137,7 @@ export function AssayUploadDrawer({
   const { data: targetsData } = api.get<Target[]>('targets/');
   const { data: protocolData } = api.get<Protocol>(`protocols/${protocolId}/`);
   const targets = targetsData || [];
-  const plateLayout = protocolData?.plate_layout as PlateLayout | null;
+  const plateLayout = protocolData?.plate_layout_config as PlateLayout | null;
 
   // Extract data series from spreadsheet using plate layout
   const extractedSeries = useMemo((): ExtractedSeries[] => {
