@@ -291,7 +291,7 @@ class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
             'updated_series': series_count,
             'deleted_analyses': analyses_count,
             'dilution_series_id': str(protocol.preferred_dilutions.id),
-            'dilution_series_name': protocol.preferred_dilutions.display_name or str(protocol.preferred_dilutions),
+            'dilution_series_name': str(protocol.preferred_dilutions),
         })
 
 
