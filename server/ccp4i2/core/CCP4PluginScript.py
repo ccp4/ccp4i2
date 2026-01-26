@@ -11,6 +11,7 @@ from pathlib import Path
 import xml.etree.ElementTree as ET
 import logging
 import os
+import shutil
 
 from ccp4i2.core.base_object.base_classes import CData, CContainer
 from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
@@ -1450,7 +1451,6 @@ class CPluginScript(CData):
             os.rename(src, dst)
         except OSError as e:
             # If rename fails (e.g., cross-device link), fall back to copy+delete
-            import shutil
             shutil.move(src, dst)
 
     def logFileText(self) -> str:
@@ -1544,7 +1544,6 @@ class CPluginScript(CData):
         """
         import os
         from pathlib import Path
-        import shutil
 
         # Ensure working directory exists
         work_dir_path = Path(self.workDirectory)
@@ -2263,7 +2262,6 @@ class CPluginScript(CData):
             tuple: (status_code, error_code) where status_code is SUCCEEDED/FAILED
         """
         import os
-        import shutil
 
         # Handle empty input
         if len(infiles) == 0:
@@ -2300,8 +2298,7 @@ class CPluginScript(CData):
             logger.warning("Using libcheck to merge dictionaries (output may not be self-consistent)")
 
             # Find libcheck executable
-            import sys
-            exe = 'libcheck.exe' if sys.platform == 'win32' else 'libcheck'
+            exe = shutil.which('libcheck')
 
             # Try to find libcheck in CCP4 installation
             # For now, just use subprocess to call libcheck if it's in PATH

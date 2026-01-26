@@ -1,6 +1,5 @@
 import glob
 import os
-import platform
 import sys
 from pathlib import Path
 
@@ -16,7 +15,7 @@ class lidia(CPluginScript):
     TASKTITLE = 'Lidia'  # A short title for gui menu
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'Lidia'  # Task name - should be same as class name
-    TASKCOMMAND = 'lidia.bat' if platform.system() == "Windows" else 'lidia'
+    TASKCOMMAND = 'lidia'
     TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9

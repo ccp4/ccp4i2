@@ -1,5 +1,4 @@
 import os
-import platform
 
 from lxml import etree
 
@@ -12,8 +11,7 @@ class acedrg(CPluginScript):
     TASKTITLE = 'acedrg'     # A short title for gui menu
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'acedrg'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'acedrg'                                     # The command to run the executable
-    if platform.system() == 'Windows': TASKCOMMAND = 'acedrg.bat'
+    TASKCOMMAND = 'acedrg'
     TASKVERSION= 0.0                                     # Version of this plugin
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'

@@ -1,7 +1,6 @@
 import glob
 import json
 import os
-import platform
 import shutil
 from math import sqrt
 from pathlib import Path
@@ -19,8 +18,6 @@ class Cxia2_ssx_reduce(CPluginScript):
     TASKTITLE = "Reduction of serial datasets using xia2.ssx_reduce"
     TASKNAME = "xia2_ssx_reduce"
     TASKCOMMAND = "xia2.ssx_reduce"
-    if platform.system() == "Windows":
-        TASKCOMMAND = "xia2.ssx_reduce.bat"
     TASKMODULE = "data_reduction"
     TASKVERSION = 0.0
     ERROR_CODES = {

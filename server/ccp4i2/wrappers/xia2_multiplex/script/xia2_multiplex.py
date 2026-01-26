@@ -1,7 +1,6 @@
 import glob
 import json
 import os
-import platform
 import shutil
 from math import sqrt
 
@@ -18,8 +17,6 @@ class Cxia2_multiplex(CPluginScript):
     TASKTITLE = "Data set combination with xia2.multiplex"
     TASKNAME = "xia2_multiplex"
     TASKCOMMAND = "xia2.multiplex"
-    if platform.system() == "Windows":
-        TASKCOMMAND = "xia2.multiplex.bat"
     TASKMODULE = "data_reduction"
     TASKVERSION = 0.0
     ERROR_CODES = {

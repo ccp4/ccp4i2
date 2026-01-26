@@ -1,5 +1,4 @@
 import os
-import platform
 
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4XtalData
@@ -18,12 +17,7 @@ class i2Dimple(CPluginScript):
                         ['log_mtzjoin.txt', 0]
                        ]
     TASKCOMMAND="dimple"
-    if platform.system() == 'Windows': TASKCOMMAND = 'dimple.bat'
     PERFORMANCECLASS = 'CRefinementPerformance'
-
-
-    def __init__(self, *args, **kws):
-        super(i2Dimple, self).__init__(*args, **kws)
 
     def processInputFiles(self):
         inputs = [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN] ]
