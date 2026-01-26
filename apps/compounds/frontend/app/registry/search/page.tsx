@@ -328,8 +328,8 @@ function CompoundSearchContent() {
     {
       key: 'smiles',
       label: 'Structure',
-      width: 100,
-      render: (value) => <MoleculeChip smiles={value} size={80} />,
+      width: 125,
+      render: (value) => <MoleculeChip smiles={value} size={100} />,
     },
     {
       key: 'target_name',

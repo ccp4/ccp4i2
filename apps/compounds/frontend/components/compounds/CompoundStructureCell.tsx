@@ -43,7 +43,7 @@ function extractNclId(name: string | null | undefined): string | null {
 export function CompoundStructureCell({
   compoundId,
   compoundName,
-  size = 80,
+  size = 100,
 }: CompoundStructureCellProps) {
   const api = useCompoundsApi();
 

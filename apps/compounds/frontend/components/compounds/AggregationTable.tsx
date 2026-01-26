@@ -192,7 +192,7 @@ function CompactTable({
         <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 600, width: 80 }}>Structure</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
               {protocols.map((protocol) => (
@@ -248,12 +248,12 @@ function CompactTable({
                 >
                   <TableCell>
                     {row.smiles ? (
-                      <MoleculeChip smiles={row.smiles} size={60} />
+                      <MoleculeChip smiles={row.smiles} size={80} />
                     ) : (
                       <Box
                         sx={{
-                          width: 60,
-                          height: 60,
+                          width: 80,
+                          height: 80,
                           bgcolor: 'grey.100',
                           borderRadius: 1,
                           display: 'flex',
@@ -432,7 +432,7 @@ function MediumTable({
         <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 600, width: 80 }}>Structure</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
@@ -473,12 +473,12 @@ function MediumTable({
                 >
                   <TableCell>
                     {row.smiles ? (
-                      <MoleculeChip smiles={row.smiles} size={60} />
+                      <MoleculeChip smiles={row.smiles} size={80} />
                     ) : (
                       <Box
                         sx={{
-                          width: 60,
-                          height: 60,
+                          width: 80,
+                          height: 80,
                           bgcolor: 'grey.100',
                           borderRadius: 1,
                           display: 'flex',
@@ -614,7 +614,7 @@ function LongTable({ data }: { data: AggregationResponse }) {
         <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
-              <TableCell sx={{ fontWeight: 600, width: 80 }}>Structure</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
@@ -653,12 +653,12 @@ function LongTable({ data }: { data: AggregationResponse }) {
                 >
                   <TableCell>
                     {row.smiles ? (
-                      <MoleculeChip smiles={row.smiles} size={60} />
+                      <MoleculeChip smiles={row.smiles} size={80} />
                     ) : (
                       <Box
                         sx={{
-                          width: 60,
-                          height: 60,
+                          width: 80,
+                          height: 80,
                           bgcolor: 'grey.100',
                           borderRadius: 1,
                           display: 'flex',

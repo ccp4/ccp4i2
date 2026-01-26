@@ -286,7 +286,7 @@ export default function AssayDetailPage({ params }: PageProps) {
     {
       key: 'structure',
       label: 'Structure',
-      width: 110,
+      width: 125,
       render: (_, row) => (
         <CompoundStructureCell
           compoundId={row.compound}

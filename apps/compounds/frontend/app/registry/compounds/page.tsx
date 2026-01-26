@@ -98,8 +98,8 @@ function CompoundsPageContent() {
     {
       key: 'smiles',
       label: 'Structure',
-      width: 120,
-      render: (value) => value ? <MoleculeChip smiles={value} size={80} /> : '-',
+      width: 125,
+      render: (value) => value ? <MoleculeChip smiles={value} size={100} /> : '-',
     },
     {
       key: 'target_name',
