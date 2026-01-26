@@ -13,7 +13,6 @@ class density_calculator(CPluginScript):
     TASKNAME = "density_calculator"
     TASKVERSION = 0.1
     MAINTAINER = "paul.bond@york.ac.uk"
-    RUNEXTERNALPROCESS = False
     WHATNEXT = ["coot_rebuild"]
 
     def startProcess(self):

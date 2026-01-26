@@ -49,7 +49,6 @@ class adding_stats_to_mmcif_i2(CPluginScript):
     PURGESEARCHLIST = [['hklin.mtz', 0],
                        ['log_mtzjoin.txt', 0]
                        ]
-    RUNEXTERNALPROCESS = False
 
     def __init__(self, *args, **kws):
         super(adding_stats_to_mmcif_i2, self).__init__(*args, **kws)

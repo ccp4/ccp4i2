@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class mergeMtz(CPluginScript):
     TASKTITLE = 'Merge experimental data objects to MTZ'     # A short title for gui menu
     TASKNAME = 'mergeMtz'                                  # Task name - should be same as class name
-    RUNEXTERNALPROCESS = False                                  # There is not external process
 
     def startProcess(self):
       inFiles = []

@@ -29,7 +29,6 @@ class servalcat_pipe(CPluginScript):
     MAXNJOBS = 4
     PERFORMANCECLASS = 'CServalcatPerformance'
     SUBTASKS=['servalcat','prosmart','metalCoord']
-    RUNEXTERNALPROCESS=False
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 

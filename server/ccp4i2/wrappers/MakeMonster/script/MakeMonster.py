@@ -8,7 +8,6 @@ class MakeMonster(CPluginScript):
     TASKVERSION= 0.0                                     # Version of this plugin
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
-    RUNEXTERNALPROCESS=False
 
     def processInputFiles(self):
         inputDataObjects = []

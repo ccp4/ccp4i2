@@ -14,7 +14,6 @@ class coordinate_selector(CPluginScript):
     ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
                     202 : {'description' : 'Failed applying selection to PDB file' }
                     }
-    RUNEXTERNALPROCESS=False
     PERFORMANCECLASS ='CAtomCountPerformance'
 
     def startProcess(self):

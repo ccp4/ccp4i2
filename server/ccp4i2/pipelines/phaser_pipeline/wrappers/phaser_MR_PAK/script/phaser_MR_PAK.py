@@ -12,7 +12,6 @@ class phaser_MR_PAK(phaser_MR_AUTO.phaser_MR_AUTO):
     TASKNAME = 'phaser_MR_PAK'                                  # Task name - should be same as class name
     TASKTITLE='Packing function - PHASER'
     TASKVERSION= 0.0                                     # Version of this plugin
-    RUNEXTERNALPROCESS=False
     WHATNEXT = ['phaser_expert']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}

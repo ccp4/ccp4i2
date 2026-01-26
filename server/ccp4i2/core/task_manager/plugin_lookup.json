@@ -215,7 +215,6 @@
     "TASKNAME": "adding_stats_to_mmcif_i2",
     "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "PURGESEARCHLIST": [
       [
         "hklin.mtz",
@@ -597,7 +596,6 @@
     "TASKNAME": "editbfac",
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -677,7 +675,6 @@
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
     "PERFORMANCECLASS": "CTestObsConversionsPerformance",
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "202": {
         "description": "Failed to turn the intermediate data object into the requested output representation"
@@ -715,7 +712,6 @@
     "TASKNAME": "ProvideSequence",
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -1199,7 +1195,6 @@
     "TASKNAME": "mergeMtz",
     "TASKVERSION": null,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -1361,7 +1356,6 @@
     "TASKNAME": "modelASUCheck",
     "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to analyse output files"
@@ -1598,7 +1592,6 @@
     "TASKNAME": "ProvideAlignment",
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed writing standard Clustal alignment file - did input sequence lengths match?"
@@ -2077,7 +2070,6 @@
     "TASKNAME": "ProvideAsuContents",
     "TASKVERSION": null,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -2138,7 +2130,6 @@
     "TASKNAME": "phaser_analysis",
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -2200,7 +2191,6 @@
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": true,
     "TIMEOUT_PERIOD": 9999999.9,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Failed to add item to mol list"
@@ -3075,7 +3065,6 @@
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
     "PERFORMANCECLASS": "CRefinementPerformance",
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -3258,7 +3247,6 @@
     "TASKNAME": "splitMtz",
     "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "No column groups selected for splitting"
@@ -3408,7 +3396,6 @@
       "coot_rebuild"
     ],
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -3629,7 +3616,6 @@
     "TASKNAME": "SubtractNative",
     "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "PURGESEARCHLIST": [
       [
         "hklin.mtz",
@@ -3830,7 +3816,6 @@
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
     "TIMEOUT_PERIOD": 9999999.9,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Error merging MTZ files"
@@ -3952,7 +3937,6 @@
     "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
     "PERFORMANCECLASS": "CAtomCountPerformance",
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to analyse output files"
@@ -4408,7 +4392,6 @@
       "prosmart",
       "refmac"
     ],
-    "RUNEXTERNALPROCESS": false,
     "PURGESEARCHLIST": [
       [
         "refmac%*/hklout.mtz",
@@ -4699,7 +4682,6 @@
     "TASKNAME": "MakeProjectsAndDoLigandPipeline",
     "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "PURGESEARCHLIST": [
       [
         "hklin.mtz",
@@ -4834,7 +4816,6 @@
       "phaser_expert"
     ],
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to find file"
@@ -4857,7 +4838,6 @@
       ]
     ],
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to find file"
@@ -4915,7 +4895,6 @@
       "phaser_expert"
     ],
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to find file"
@@ -4936,7 +4915,6 @@
       "coot_rebuild"
     ],
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to find file"
@@ -4955,7 +4933,6 @@
       "phaser_expert"
     ],
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to find file"
@@ -4971,7 +4948,6 @@
     "TASKNAME": "phaser_EP_AUTO",
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to find file"
@@ -4995,7 +4971,6 @@
       "coot_rebuild"
     ],
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "201": {
         "description": "Failed to find file"
@@ -5139,7 +5114,6 @@
       "prosmart",
       "metalCoord"
     ],
-    "RUNEXTERNALPROCESS": false,
     "PURGESEARCHLIST": [
       [
         "refmac%*/hklout.mtz",
@@ -5906,7 +5880,6 @@
     "TASKVERSION": 0.0,
     "ASYNCHRONOUS": false,
     "TIMEOUT_PERIOD": 9999999.9,
-    "RUNEXTERNALPROCESS": false,
     "ERROR_CODES": {
       "200": {
         "description": "Failed to add item to mol list"
@@ -6027,7 +6000,6 @@
     "TASKNAME": "MakeLink",
     "TASKVERSION": 0.1,
     "ASYNCHRONOUS": false,
-    "RUNEXTERNALPROCESS": false,
     "PURGESEARCHLIST": [
       [
         "hklin.mtz",

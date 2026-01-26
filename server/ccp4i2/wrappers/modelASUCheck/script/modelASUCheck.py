@@ -17,7 +17,6 @@ class modelASUCheck(CPluginScript):
         201: {"description": "Failed to analyse output files"},
         202: {"description": "Failed applying selection ot PDB file"},
     }
-    RUNEXTERNALPROCESS = False
 
     def startProcess(self):
         xyzin = self.container.inputData.XYZIN

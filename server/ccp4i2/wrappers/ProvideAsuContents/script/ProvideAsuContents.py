@@ -5,7 +5,6 @@ from lxml import etree
 
 class ProvideAsuContents(CPluginScript):
     TASKNAME = 'ProvideAsuContents'
-    RUNEXTERNALPROCESS=False
 
     def startProcess(self):
       asuFileObject = self.container.outputData.ASUCONTENTFILE

@@ -60,7 +60,6 @@ class splitMtz(CPluginScript):
     TASKNAME = 'splitMtz'
     TASKCOMMAND = ''
     TASKVERSION = 0.1
-    RUNEXTERNALPROCESS = False
     MAINTAINER = 'liz.potterton@york.ac.uk'
 
     ERROR_CODES = {

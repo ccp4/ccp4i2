@@ -16,7 +16,6 @@ class coot_find_ligand(CPluginScript):
     TASKVERSION = 0.0
     WHATNEXT = ["prosmart_refmac"]
     TIMEOUT_PERIOD = 9999999.9
-    RUNEXTERNALPROCESS = False
 
     def startProcess(self):
         inputData = self.container.inputData

@@ -19,7 +19,6 @@ class lidia(CPluginScript):
     TASKVERSION = 0.0  # Version of this plugin
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
-    RUNEXTERNALPROCESS = False
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},

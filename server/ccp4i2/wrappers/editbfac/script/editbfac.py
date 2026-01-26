@@ -16,7 +16,6 @@ class editbfac(CPluginScript):
     TASKNAME = 'editbfac'
     TASKMODULE=['alpha_fold', 'model_data_utility' ]
     TASKVERSION = 0.0
-    RUNEXTERNALPROCESS=False
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     def startProcess(self):

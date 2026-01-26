@@ -42,7 +42,6 @@ class phaser_EP_AUTO(phaser_MR.phaser_MR):
 
     TASKNAME = 'phaser_EP_AUTO'                                  # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
-    RUNEXTERNALPROCESS=False
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }, 202 : { 'description' : 'Failed to interpret searches from Ensemble list' },}
     requiredDefaultList = ['PART_VARI', 'PART_DEVI']

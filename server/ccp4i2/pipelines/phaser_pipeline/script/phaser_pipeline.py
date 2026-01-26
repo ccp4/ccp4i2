@@ -65,8 +65,6 @@ class phaser_pipeline(CPluginScript):
         self.phaserFinished(rv)
         if rv == CPluginScript.FAILED:
             # Check if LOG file exists before reading it
-            # In standalone/i2run mode, subjobs with RUNEXTERNALPROCESS=False don't create LOG files
-            # In GUI mode, subjobs run as proper database jobs and do create LOG files
             log_file_path = self.phaserPlugin.makeFileName('LOG')
             wasInterrupted = False
             if os.path.exists(log_file_path):

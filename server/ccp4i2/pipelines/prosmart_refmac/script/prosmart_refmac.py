@@ -25,7 +25,6 @@ class prosmart_refmac(CPluginScript):
     MAXNJOBS = 4
     PERFORMANCECLASS = 'CRefinementPerformance'
     SUBTASKS=['Platonyzer','prosmart','refmac']
-    RUNEXTERNALPROCESS=False
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 

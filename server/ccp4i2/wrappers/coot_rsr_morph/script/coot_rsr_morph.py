@@ -17,7 +17,6 @@ class coot_rsr_morph(CPluginScript):
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "stuart.mcnicholas@york.ac.uk"
-    RUNEXTERNALPROCESS = False
 
     def startProcess(self):
         outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"

@@ -9,7 +9,6 @@ from lxml import etree
 class ProvideAlignment(CPluginScript):
     TASKNAME = 'ProvideAlignment'                                  # Task name - should be same as class name
     TASKVERSION= 0.0                                     # Version of this plugin
-    RUNEXTERNALPROCESS=False
 
     ERROR_CODES = { 201 : { 'description' : 'Failed writing standard Clustal alignment file - did input sequence lengths match?' },
                     202 : { 'description' : 'Failed reading input alignment file' },

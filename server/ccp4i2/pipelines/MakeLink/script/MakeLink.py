@@ -1,5 +1,3 @@
-import os
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -14,7 +12,6 @@ class MakeLink(CPluginScript):
     PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
                         ['log_mtzjoin.txt', 0]
                        ]
-    RUNEXTERNALPROCESS = False
 
     def __init__(self, *args, **kws):
         super(MakeLink, self).__init__(*args, **kws)

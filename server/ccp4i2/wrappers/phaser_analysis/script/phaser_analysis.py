@@ -54,7 +54,6 @@ class phaser_analysis(CPluginScript):
     TASKNAME = 'phaser_analysis'   # Task name - should be same as class name
     TASKVERSION= 0.0               # Version of this plugin
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
-    RUNEXTERNALPROCESS=False
  
     def startProcess(self):
         # Where are we?

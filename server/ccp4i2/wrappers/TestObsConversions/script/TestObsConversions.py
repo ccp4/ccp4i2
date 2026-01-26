@@ -8,7 +8,6 @@ class TestObsConversions(CPluginScript):
     TASKTITLE = 'TestObsConversions'
     TASKNAME = 'TestObsConversions'
     TASKVERSION= 0.0
-    RUNEXTERNALPROCESS= False
     PERFORMANCECLASS = 'CTestObsConversionsPerformance'
     ERROR_CODES = { 201 : {'description' : 'Failed to turn the provided data object into the requested input representation' },}
     ERROR_CODES = { 202 : {'description' : 'Failed to turn the intermediate data object into the requested output representation' },}
