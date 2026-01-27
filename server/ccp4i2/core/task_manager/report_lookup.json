@@ -681,47 +681,6 @@
     "class": "ShelxCD_report",
     "module": "wrappers.ShelxCDE.script.ShelxCD_report"
   },
-  "ShelxCDEBaseReport": {
-    "ERROR_CODES": {
-      "0": {
-        "description": "OK",
-        "severity": 0
-      },
-      "101": {
-        "description": "Import xrt file does not exist"
-      },
-      "102": {
-        "description": "Failed to read import xrt file"
-      },
-      "103": {
-        "description": "Failed to find insert xrt element in program file"
-      },
-      "104": {
-        "description": "Failed to find insert element in imported xrt file"
-      },
-      "105": {
-        "description": "Failed loading job info for jobId"
-      },
-      "106": {
-        "description": "Failed loading XML file"
-      },
-      "107": {
-        "description": "Failed creating csv file"
-      },
-      "108": {
-        "description": "Failed creating xml data file"
-      }
-    },
-    "FAILED": false,
-    "RUNNING": false,
-    "SEPARATEDATA": false,
-    "TASKNAME": "",
-    "USEPROGRAMXML": true,
-    "WATCHED_FILE": null,
-    "class": "ShelxCDEBaseReport",
-    "module": "wrappers.ShelxCDE.script.ShelxCD_report",
-    "module_file": "../../wrappers/ShelxCDE/script/ShelxCDEBaseReport.py"
-  },
   "SubstituteLigand": {
     "ERROR_CODES": {
       "0": {

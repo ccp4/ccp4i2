@@ -68,9 +68,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'ShelxCD':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
         return ShelxCD_report
-    if task_name == 'ShelxCDEBaseReport':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCDEBaseReport
-        return ShelxCDEBaseReport
     if task_name == 'SubstituteLigand':
         from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report import SubstituteLigand_report
         return SubstituteLigand_report
@@ -453,7 +450,6 @@ REPORT_NAMES: set[str] = {
     'RvapiReport',
     'SIMBAD',
     'ShelxCD',
-    'ShelxCDEBaseReport',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
