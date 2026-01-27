@@ -22,6 +22,7 @@ from rest_framework.response import Response
 from reversion.models import Version
 
 from users.permissions import IsContributorOrReadOnly, can_administer
+from .filters import CompoundSearchFilter
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
 
 logger = logging.getLogger(__name__)
@@ -474,7 +475,7 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Compounds."""
     queryset = Compound.objects.select_related('target', 'supplier', 'registered_by')
     permission_classes = [IsContributorOrReadOnly]
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filter_backends = [DjangoFilterBackend, CompoundSearchFilter, filters.OrderingFilter]
     # Use dict format to enable __in lookup for reg_number (batch SMILES lookup)
     filterset_fields = {
         'target': ['exact'],
@@ -482,6 +483,9 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
         'stereo_comment': ['exact'],
         'reg_number': ['exact', 'in'],
     }
+    # Note: search_fields is handled by CompoundSearchFilter which properly parses
+    # NCL format identifiers (NCL-00018710, NCL-000187, etc.) and searches reg_number
+    # by prefix matching, plus standard icontains on text fields
     search_fields = ['reg_number', 'smiles', 'supplier_ref', 'comments']
     ordering_fields = ['reg_number', 'registered_at', 'molecular_weight']
     ordering = ['-reg_number']
