@@ -129,15 +129,24 @@ interface DataSeriesDetailModalProps {
 
 /**
  * Extract fit parameters from analysis results for DoseResponseChart
+ * Uses the KPI field to determine which result key contains the EC50/IC50 value
  */
 function extractFitParams(analysis: DataSeriesItem['analysis']): FitParameters | undefined {
   if (!analysis?.results) return undefined;
 
   const results = analysis.results;
 
+  // Get the KPI name to find the correct ec50 value
+  // KPI field indicates which key holds the primary value (e.g., 'IC50', 'KI', 'EC50')
+  const kpiKey = results.KPI || results.kpi;
+  const ec50Value = kpiKey
+    ? (results[kpiKey] ?? results[kpiKey.toLowerCase()] ?? results[kpiKey.toUpperCase()])
+    : null;
+
   return {
-    ec50: results.EC50 ?? results.ec50 ?? null,
-    hill: results.Hill ?? results.hill ?? results.slope ?? null,
+    // Use KPI-indicated value, with fallbacks for legacy data
+    ec50: ec50Value ?? results.EC50 ?? results.ec50 ?? results.IC50 ?? results.ic50 ?? null,
+    hill: results.Hill ?? results.hill ?? results.hill_slope ?? results.slope ?? null,
     minVal: results.minVal ?? results.Min ?? results.min ?? results.bottom ?? null,
     maxVal: results.maxVal ?? results.Max ?? results.max ?? results.top ?? null,
     status: analysis.status,

@@ -274,13 +274,21 @@ export default function AssayDetailPage({ params }: PageProps) {
         if (!chartData || chartData.concentrations.length === 0) {
           return <Box sx={{ width: 120, height: 120, bgcolor: 'grey.100', borderRadius: 1 }} />;
         }
-        const fitParams = row.analysis?.results ? {
-          ec50: row.analysis.results.EC50,
-          hill: row.analysis.results.Hill,
-          minVal: row.analysis.results.minVal,
-          maxVal: row.analysis.results.maxVal,
-          status: row.analysis.status,
-        } : undefined;
+        const fitParams = row.analysis?.results ? (() => {
+          const results = row.analysis.results;
+          // Use KPI field to find the correct ec50 value
+          const kpiKey = results.KPI || results.kpi;
+          const ec50Value = kpiKey
+            ? (results[kpiKey] ?? results[kpiKey.toLowerCase?.()] ?? results[kpiKey.toUpperCase?.()])
+            : null;
+          return {
+            ec50: ec50Value ?? results.EC50 ?? results.ec50 ?? results.IC50 ?? results.ic50 ?? null,
+            hill: results.Hill ?? results.hill ?? results.hill_slope ?? null,
+            minVal: results.minVal ?? results.bottom ?? null,
+            maxVal: results.maxVal ?? results.top ?? null,
+            status: row.analysis.status,
+          };
+        })() : undefined;
         return <DoseResponseThumb data={chartData} fit={fitParams} size={120} />;
       },
     },

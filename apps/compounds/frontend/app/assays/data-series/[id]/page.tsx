@@ -141,13 +141,21 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
     ? `/api/proxy/compounds/media/data-series/${series.id}/plot/`
     : null;
 
-  const fitParams = series?.analysis ? {
-    ec50: series.analysis.results?.EC50,
-    hill: series.analysis.results?.Hill,
-    minVal: series.analysis.results?.minVal,
-    maxVal: series.analysis.results?.maxVal,
-    status: series.analysis.status,
-  } : undefined;
+  const fitParams = series?.analysis?.results ? (() => {
+    const results = series.analysis.results;
+    // Use KPI field to find the correct ec50 value
+    const kpiKey = results.KPI || results.kpi;
+    const ec50Value = kpiKey
+      ? (results[kpiKey] ?? results[kpiKey.toLowerCase?.()] ?? results[kpiKey.toUpperCase?.()])
+      : null;
+    return {
+      ec50: ec50Value ?? results.EC50 ?? results.ec50 ?? results.IC50 ?? results.ic50 ?? null,
+      hill: results.Hill ?? results.hill ?? results.hill_slope ?? null,
+      minVal: results.minVal ?? results.bottom ?? null,
+      maxVal: results.maxVal ?? results.top ?? null,
+      status: series.analysis.status,
+    };
+  })() : undefined;
 
   return (
     <Container maxWidth="lg" sx={{ py: 3 }}>
