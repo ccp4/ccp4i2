@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys
-from program import program
-import common
+from ..program import program
+from .. import common
 
 class arpwarp_auto(program):
   name="ARP/wARP auto tracing/preparation"

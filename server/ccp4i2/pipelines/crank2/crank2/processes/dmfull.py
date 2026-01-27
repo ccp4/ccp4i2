@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import os,sys,re,shutil
-from process import process, crvapi
-import common,inout
+import os,shutil
+from ..process import process, crvapi
+from .. import common,inout
 import multiprocessing
 par=common.parameter
 

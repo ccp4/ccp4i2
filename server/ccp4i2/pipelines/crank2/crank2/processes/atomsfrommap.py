@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys,re
-from process import process
-import common,data
+from ..process import process
+from .. import common,data
 par=common.parameter
 
 class atomsfrommap(process):

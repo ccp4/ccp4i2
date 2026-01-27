@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys
-from program import program
-import common
+from ..program import program
+from .. import common
 
 class matthews_coef(program):
   name="MATTHEWS_COEF"

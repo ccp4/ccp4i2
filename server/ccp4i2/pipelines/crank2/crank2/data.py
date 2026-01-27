@@ -1,6 +1,6 @@
 import os,sys,copy
 from xml.etree import ElementTree as ET
-import common
+from . import common
 
 
 
@@ -280,7 +280,7 @@ class data_container(object):
             k,s,v=cond.partition('=')
             if not v:
               common.Error("Condition {0} of input keyword {1} malformed.".format(cond,key))
-            import inout
+            from . import inout
             try:
               if k not in getattr(inout.input_output,'GetAll').func_code.co_varnames:
                 common.Error("Wrong subkeyword {0} of input keyword {1}.".format(k,key))
@@ -453,7 +453,7 @@ class data_container(object):
       self.label[c]=l
     # make sure the labels are unique if requested and reset them
     if bad_lbl_obj:
-      from program import program
+      from .program import program
       lbl_o,lbl_u = program(None).GetUniqueLabels( list(bad_lbl_obj)+[self,], allow_multiple=True )
       lbl = [lbl_u[self.GetFileName('mtz')][::-1][lbl_o[self.GetFileName('mtz')][::-1].index(l)]  for l in lbl]
       for c,l in zip(col,lbl):

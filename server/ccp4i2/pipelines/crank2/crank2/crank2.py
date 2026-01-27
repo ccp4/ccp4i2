@@ -1,6 +1,6 @@
 #!/usr/bin/env ccp4-python
 import os
-import parse,common
+from . import parse,common
 
 #if not "CRANK2" in os.environ:
 #  sys.exit('Error: Environment variable CRANK2 not found.')

@@ -1,6 +1,6 @@
 import pyrvapi
 import os,sys,subprocess, time
-import common
+from . import common
 
 flush_time=None
 output_dir=None

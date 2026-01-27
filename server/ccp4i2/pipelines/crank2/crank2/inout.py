@@ -1,6 +1,6 @@
 import os,sys,copy,re
 from xml.etree import ElementTree as ET
-import data, common
+from . import data, common
 
 
 
@@ -51,7 +51,7 @@ class input_output(object):
        recur - optional; if True then also recursively asks delayed init for inputs of all 
                progs/processes of children of this input's parent (True by default)
     """
-    import process
+    from . import process
     for o in self.GetAll():
       o.DelayedInit(self, numstep, crank)
       if recur and isinstance(self.parent, process.process):

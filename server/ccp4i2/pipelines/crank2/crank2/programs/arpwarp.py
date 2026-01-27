@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys,re
-from program import program
-import common
+from ..program import program
+from .. import common
 
 class arpwarp(program):
   name="ARP/wARP"

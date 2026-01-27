@@ -10,9 +10,9 @@ from distutils import spawn
 from queue import Queue
 from xml.etree import ElementTree as ET
 
-import common
-import data
-import inout
+from . import common
+from . import data
+from . import inout
 
 
 class program(object):

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys
-from process import process, crvapi
-import common
+from ..process import process, crvapi
+from .. import common
 par=common.parameter
 
 

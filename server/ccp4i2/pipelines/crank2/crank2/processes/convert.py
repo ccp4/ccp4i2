@@ -1,7 +1,7 @@
 #!/usr/bin/python
-import os,sys
-from process import process
-import common
+import os
+from ..process import process
+from .. import common
 
 
 class convert(process):

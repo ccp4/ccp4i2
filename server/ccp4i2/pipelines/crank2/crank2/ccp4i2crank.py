@@ -1,6 +1,6 @@
 from future.utils import raise_
-import os,sys,copy,shutil
-import common,manager,parse
+import os,sys,shutil
+from . import common,parse
 
 
 def CallCrankFromCCP4i2(ccp4i2crank, xmlfile=None, inpfile=None, defaults=False, rvapi_style=None):

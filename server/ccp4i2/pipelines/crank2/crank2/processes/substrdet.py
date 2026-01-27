@@ -5,10 +5,10 @@ import os
 import shutil
 import sys
 
-import common
+from .. import common
 import data
-from process import crvapi, process
-from program import program
+from ..process import crvapi, process
+from ..program import program
 
 par=common.parameter
 
