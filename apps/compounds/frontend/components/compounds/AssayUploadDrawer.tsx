@@ -166,6 +166,9 @@ export function AssayUploadDrawer({
       // Strip layout: each row has embedded controls per strip
       // Each strip becomes a separate data series (technical replicates)
       const strip = plateLayout.strip_layout;
+      // Ensure strip dimensions have sensible defaults
+      const stripWidth = strip.strip_width || 12;
+      const stripsPerRow = strip.strips_per_row || 2;
       const replicateCount = plateLayout.replicate?.count || 1;
       const isExplicitNaming = plateLayout.replicate?.pattern === 'explicit';
 
@@ -173,8 +176,8 @@ export function AssayUploadDrawer({
       // - Explicit naming: each strip gets its own name (strips_per_row compounds)
       // - Grouped replicates: e.g., 4 strips / 2 replicates = 2 compounds
       const compoundsPerRow = isExplicitNaming
-        ? strip.strips_per_row
-        : Math.max(1, Math.floor(strip.strips_per_row / replicateCount));
+        ? stripsPerRow
+        : Math.max(1, Math.floor(stripsPerRow / replicateCount));
 
       for (let plateRow = startRowIdx; plateRow <= endRowIdx; plateRow++) {
         const spreadsheetRow = originRow + plateRow;
@@ -184,14 +187,14 @@ export function AssayUploadDrawer({
         const rowLetter = indexToRowLetter(plateRow);
 
         // Process each strip as a separate data series
-        for (let stripIdx = 0; stripIdx < strip.strips_per_row; stripIdx++) {
+        for (let stripIdx = 0; stripIdx < stripsPerRow; stripIdx++) {
           // Determine which compound group this strip belongs to:
           // - Explicit naming: each strip is its own compound group
           // - Grouped replicates: strips are grouped (e.g., strips 0,1 -> compound 0)
           const compoundGroupIdx = isExplicitNaming
             ? stripIdx
             : Math.floor(stripIdx / replicateCount);
-          const stripStartCol = originCol + stripIdx * strip.strip_width;
+          const stripStartCol = originCol + stripIdx * stripWidth;
 
           // Get compound name based on source type and compound group
           let compoundName: string | null = null;
@@ -221,8 +224,8 @@ export function AssayUploadDrawer({
               compoundName = nameVal ? String(nameVal) : null;
             }
           } else if (plateLayout.compound_source?.type === 'adjacent_column') {
-            // Legacy: For adjacent_column with multiple compounds per row, read from columns after plate
-            const totalStripWidth = strip.strip_width * strip.strips_per_row;
+            // For adjacent_column, read compound names from columns after ALL plate data
+            const totalStripWidth = stripWidth * stripsPerRow;
             const nameColIdx = originCol + totalStripWidth + compoundGroupIdx;
             if (nameColIdx < rowData.length) {
               const nameVal = rowData[nameColIdx];
@@ -306,7 +309,7 @@ export function AssayUploadDrawer({
             minControl: averagedMinControl,
             maxControl: averagedMaxControl,
             startColumn: stripStartCol - originCol + 1,
-            endColumn: stripStartCol - originCol + strip.strip_width,
+            endColumn: stripStartCol - originCol + stripWidth,
             hasIssues: issues.length > 0,
             issues,
           });

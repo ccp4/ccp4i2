@@ -1200,15 +1200,29 @@ export function PlateLayoutEditor({
               {layout.controls.placement === 'per_compound' && layout.compound_source.type === 'adjacent_column' && (
                 <Alert severity="info" sx={{ mt: 3 }}>
                   <Typography variant="body2">
-                    Compound names will be read from the column immediately after each data region,
+                    Compound names will be read from columns immediately after all plate data,
                     on the same row as the data values.
                   </Typography>
                   <Typography variant="body2" sx={{ fontFamily: 'monospace', mt: 0.5 }}>
-                    {Array.from({ length: layout.strip_layout?.strips_per_row || 2 }, (_, i) => {
+                    {(() => {
                       const stripWidth = layout.strip_layout?.strip_width || 12;
-                      const nameCol = 1 + (i + 1) * stripWidth;
-                      return `Stripe ${i + 1}: Column ${nameCol}`;
-                    }).join(', ')}
+                      const stripsPerRow = layout.strip_layout?.strips_per_row || 2;
+                      const totalWidth = stripWidth * stripsPerRow;
+                      const originCol = layout.spreadsheet_origin?.column || 'A';
+                      const originColNum = originCol.charCodeAt(0) - 'A'.charCodeAt(0);
+                      const replicateCount = layout.replicate?.count || 1;
+                      const isExplicit = layout.replicate?.pattern === 'explicit';
+                      const compoundsPerRow = isExplicit
+                        ? stripsPerRow
+                        : Math.max(1, Math.floor(stripsPerRow / replicateCount));
+                      const firstNameCol = originColNum + totalWidth + 1;  // 1-indexed
+                      if (compoundsPerRow === 1) {
+                        return `Compound names: Column ${firstNameCol}`;
+                      }
+                      return Array.from({ length: compoundsPerRow }, (_, i) =>
+                        `Compound ${i + 1}: Column ${firstNameCol + i}`
+                      ).join(', ');
+                    })()}
                   </Typography>
                 </Alert>
               )}
