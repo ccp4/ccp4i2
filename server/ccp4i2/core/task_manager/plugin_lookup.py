@@ -77,17 +77,9 @@ def import_module_from_file(module_name: str, fpath: str):
     Since ccp4i2 is installed as an editable package, we can use standard
     importlib.import_module which properly handles relative imports.
     """
-    try:
-        # Use standard import_module - this properly handles relative imports
-        # because ccp4i2 is installed as an editable package
-        mod = importlib.import_module(module_name)
-        return mod
-    except SystemExit as e:
-        # Some ccp4i2 modules call sys.exit() when dependencies are missing
-        logger.warning(f"Module {fpath} called sys.exit({e.code})")
-    except Exception as e:
-        logger.warning(f"Failed to import {fpath}: {e}")
-    return None
+    # Use standard import_module - this properly handles relative imports
+    # because ccp4i2 is installed as an editable package
+    return importlib.import_module(module_name)
 
 
 def extract_plugin_classes(mod, module_name: str) -> Dict[str, Any]:
