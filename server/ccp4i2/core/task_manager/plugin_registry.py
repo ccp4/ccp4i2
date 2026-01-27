@@ -101,6 +101,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'arcimboldo':
         from ccp4i2.wrappers.arcimboldo.script.arcimboldo import arcimboldo
         return arcimboldo
+    if plugin_name == 'arp_warp_classic':
+        from ccp4i2.wrappers.arp_warp_classic.script.arp_warp_classic import arp_warp_classic
+        return arp_warp_classic
     if plugin_name == 'baverage':
         from ccp4i2.wrappers.baverage.script.baverage import baverage
         return baverage
@@ -146,6 +149,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'coot1':
         from ccp4i2.wrappers.coot1.script.coot1 import coot1
         return coot1
+    if plugin_name == 'coot_find_ligand':
+        from ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand import coot_find_ligand
+        return coot_find_ligand
     if plugin_name == 'coot_find_waters':
         from ccp4i2.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
         return coot_find_waters
@@ -492,7 +498,6 @@ PLUGIN_NAMES: set[str] = {
     'AcedrgLink',
     'AlternativeImportXIA2',
     'Lidia',
-    'LidiaAcedrg',
     'LidiaAcedrgNew',
     'MakeLink',
     'MakeMonster',
@@ -516,6 +521,7 @@ PLUGIN_NAMES: set[str] = {
     'aimless',
     'aimless_pipe',
     'arcimboldo',
+    'arp_warp_classic',
     'baverage',
     'buster',
     'cad_copy_column',
@@ -531,6 +537,7 @@ PLUGIN_NAMES: set[str] = {
     'convert2mtz',
     'coordinate_selector',
     'coot1',
+    'coot_find_ligand',
     'coot_find_waters',
     'coot_rebuild',
     'coot_rsr_morph',

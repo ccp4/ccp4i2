@@ -17,6 +17,9 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     This function uses explicit import statements for each report,
     providing clear traceability and IDE support.
     """
+    if task_name == 'AMPLE':
+        from ccp4i2.wrappers.AMPLE.script.AMPLE_report import AMPLE_report
+        return AMPLE_report
     if task_name == 'AUSPEX':
         from ccp4i2.wrappers.AUSPEX.script.AUSPEX_report import AUSPEX_report
         return AUSPEX_report
@@ -59,6 +62,9 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'RvapiReport':
         from ccp4i2.wrappers.morda_i2.script.morda_i2_report import RvapiReport
         return RvapiReport
+    if task_name == 'SIMBAD':
+        from ccp4i2.wrappers.SIMBAD.script.SIMBAD_report import SIMBAD_report
+        return SIMBAD_report
     if task_name == 'ShelxCD':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
         return ShelxCD_report
@@ -84,11 +90,8 @@ def _get_report_class(task_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import adding_stats_to_mmcif_i2_report
         return adding_stats_to_mmcif_i2_report
     if task_name == 'aimless':
-        from ccp4i2.wrappers.aimless.script.aimless_report import aimless_report
+        from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import aimless_report
         return aimless_report
-    if task_name == 'aimless_pipe':
-        from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report import aimless_pipe_report
-        return aimless_pipe_report
     if task_name == 'arcimboldo':
         from ccp4i2.wrappers.arcimboldo.script.arcimboldo_report import arcimboldo_report
         return arcimboldo_report
@@ -131,6 +134,9 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'coot1':
         from ccp4i2.wrappers.coot1.script.coot1_report import coot1_report
         return coot1_report
+    if task_name == 'coot_find_ligand':
+        from ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand_report import coot_find_ligand_report
+        return coot_find_ligand_report
     if task_name == 'coot_find_waters':
         from ccp4i2.wrappers.coot_find_waters.script.coot_find_waters_report import coot_find_waters_report
         return coot_find_waters_report
@@ -430,11 +436,11 @@ def _get_report_class(task_name: str) -> Optional[Type]:
 
 # Report names for fast lookup without loading metadata
 REPORT_NAMES: set[str] = {
+    'AMPLE',
     'AUSPEX',
     'Acedrg',
     'AcedrgLink',
     'AlternativeImportXIA2',
-    'LidiaAcedrg',
     'LidiaAcedrgNew',
     'MakeLink',
     'MakeMonster',
@@ -445,6 +451,7 @@ REPORT_NAMES: set[str] = {
     'ProvideSequence',
     'ProvideTLS',
     'RvapiReport',
+    'SIMBAD',
     'ShelxCD',
     'ShelxCDEBaseReport',
     'SubstituteLigand',
@@ -454,7 +461,6 @@ REPORT_NAMES: set[str] = {
     'add_fractional_coords',
     'adding_stats_to_mmcif_i2',
     'aimless',
-    'aimless_pipe',
     'arcimboldo',
     'arp_warp_classic',
     'buster',
@@ -469,6 +475,7 @@ REPORT_NAMES: set[str] = {
     'comit',
     'coordinate_selector',
     'coot1',
+    'coot_find_ligand',
     'coot_find_waters',
     'coot_rebuild',
     'coot_rsr_morph',

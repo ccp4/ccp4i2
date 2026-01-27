@@ -347,50 +347,43 @@ def generate_report_registry(lookup: Dict[str, Any], output_path: str):
 
 
 if __name__ == "__main__":
-    try:
-        root_directory = CCP4I2_ROOT
-        print(f"Building report lookup from: {root_directory}")
+    root_directory = CCP4I2_ROOT
+    print(f"Building report lookup from: {root_directory}")
 
-        # Only scan plugin directories
-        plugin_dirs = ['wrappers', 'wrappers2', 'pipelines']
-        result = {}
+    # Only scan plugin directories
+    plugin_dirs = ['wrappers', 'wrappers2', 'pipelines']
+    result = {}
 
-        for plugin_dir in plugin_dirs:
-            dir_path = os.path.join(root_directory, plugin_dir)
-            if os.path.exists(dir_path):
-                print(f"Scanning {plugin_dir}...")
-                reports = build_report_lookup_from_dir(dir_path)
+    for plugin_dir in plugin_dirs:
+        dir_path = os.path.join(root_directory, plugin_dir)
+        if os.path.exists(dir_path):
+            print(f"Scanning {plugin_dir}...")
+            reports = build_report_lookup_from_dir(dir_path)
 
-                # Fix module paths to be relative to CCP4I2_ROOT
-                for task_name, report_data in reports.items():
-                    if 'module' in report_data:
-                        report_data['module'] = f"{plugin_dir}.{report_data['module']}"
+            # Fix module paths to be relative to CCP4I2_ROOT
+            for task_name, report_data in reports.items():
+                if 'module' in report_data:
+                    report_data['module'] = f"{plugin_dir}.{report_data['module']}"
 
-                result.update(reports)
-                print(f"  Found {len(reports)} reports in {plugin_dir}")
+            result.update(reports)
+            print(f"  Found {len(reports)} reports in {plugin_dir}")
 
-        print(f"Finished scanning, found {len(result)} reports")
+    print(f"Finished scanning, found {len(result)} reports")
 
-        # Write to script's own directory
-        script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Write to script's own directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
 
-        # Write JSON for debugging/reference
-        json_output_path = os.path.join(script_dir, "report_lookup.json")
-        print(f"Writing JSON to: {json_output_path}")
-        with open(json_output_path, "w") as f:
-            json.dump(result, f, indent=2)
+    # Write JSON for debugging/reference
+    json_output_path = os.path.join(script_dir, "report_lookup.json")
+    print(f"Writing JSON to: {json_output_path}")
+    with open(json_output_path, "w") as f:
+        json.dump(result, f, indent=2, sort_keys=True)
 
-        # Write Python module with lazy loading
-        py_output_path = os.path.join(script_dir, "report_registry.py")
-        print(f"Writing Python registry to: {py_output_path}")
-        generate_report_registry(result, py_output_path)
+    # Write Python module with lazy loading
+    py_output_path = os.path.join(script_dir, "report_registry.py")
+    print(f"Writing Python registry to: {py_output_path}")
+    generate_report_registry(result, py_output_path)
 
-        print(f"Report lookup written to: {json_output_path}")
-        print(f"Report registry written to: {py_output_path}")
-        print(f"Found {len(result)} reports")
-
-    except Exception as e:
-        print(f"ERROR: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
+    print(f"Report lookup written to: {json_output_path}")
+    print(f"Report registry written to: {py_output_path}")
+    print(f"Found {len(result)} reports")
