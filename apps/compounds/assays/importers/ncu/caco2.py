@@ -30,6 +30,7 @@ class Caco2PermeabilityParser(NCUBaseParser):
     assay_code = "Caco-2"
     protocol_slug = "ncu-caco2"
     kpi_field = "efflux_ratio"  # Efflux Ratio
+    kpi_unit = None  # Efflux ratio is unitless
 
     # Permeability classification thresholds (10^-6 cm/s)
     PAPP_HIGH_THRESHOLD = 10.0
@@ -109,6 +110,7 @@ class Caco2PermeabilityParser(NCUBaseParser):
             result_data = {
                 "assay_type": self.assay_type,
                 "KPI": self.kpi_field,
+                "kpi_unit": self.kpi_unit,  # Efflux ratio is unitless
                 "papp_unit": "1e-6 cm/s",
                 **metrics,
                 "source": source,

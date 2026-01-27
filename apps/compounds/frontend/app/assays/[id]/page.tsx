@@ -44,6 +44,7 @@ import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
 import { AssayEditDialog } from '@/components/compounds/AssayEditDialog';
 import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
 import { useCompoundsApi, getAuthenticatedDownloadUrl, authFetch } from '@/lib/compounds/api';
+import { formatKpiUnit } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
@@ -338,15 +339,27 @@ export default function AssayDetailPage({ params }: PageProps) {
       key: 'analysis_kpi',
       label: 'KPI',
       sortable: true,
-      width: 100,
-      render: (value) =>
-        value !== null && value !== undefined ? (
+      width: 120,
+      render: (value, row) => {
+        if (value === null || value === undefined) return '-';
+        // Get unit from analysis results or dilution series
+        const unit = row.analysis?.results?.kpi_unit || row.dilution_series?.unit;
+        const formattedUnit = formatKpiUnit(unit);
+        return (
           <Typography fontFamily="monospace" fontWeight={500}>
             {typeof value === 'number' ? value.toFixed(2) : value}
+            {formattedUnit && (
+              <Typography
+                component="span"
+                color="text.secondary"
+                sx={{ ml: 0.5, fontWeight: 400 }}
+              >
+                {formattedUnit}
+              </Typography>
+            )}
           </Typography>
-        ) : (
-          '-'
-        ),
+        );
+      },
     },
     {
       key: 'row',

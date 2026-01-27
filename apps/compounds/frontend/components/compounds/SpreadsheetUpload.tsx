@@ -42,6 +42,8 @@ export interface SpreadsheetData {
   rows: SpreadsheetRow[];
   fileName: string;
   sheetName: string;
+  /** Original file object for upload */
+  originalFile?: File;
 }
 
 export interface FieldMapping {
@@ -115,6 +117,7 @@ export function SpreadsheetUpload({
         rows: jsonData,
         fileName: file.name,
         sheetName: targetSheet,
+        originalFile: file,
       };
 
       setData(spreadsheetData);

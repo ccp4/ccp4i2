@@ -31,6 +31,7 @@ class LiverMicrosomeParser(NCUBaseParser):
     assay_code = "LM"
     protocol_slug = "ncu-lm"
     kpi_field = "clint_ul_min_mg"  # In vitro CLint (μL/min/mg)
+    kpi_unit = "uL/min/mg"  # Unit for the KPI value
 
     # Expected time points (minutes)
     TIME_POINTS = [0.5, 5, 15, 30, 60]
@@ -98,6 +99,7 @@ class LiverMicrosomeParser(NCUBaseParser):
             result_data = {
                 "assay_type": self.assay_type,
                 "KPI": self.kpi_field,
+                "kpi_unit": self.kpi_unit,
                 "species": species,
                 **metrics,
                 "source": source,

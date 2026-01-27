@@ -34,6 +34,7 @@ import { DataSeriesDetailModal } from './DataSeriesDetailModal';
 import { ProtocolScatterPlot } from './ProtocolScatterPlot';
 import {
   formatKpiValue,
+  formatKpiUnit,
   generateCompactCsv,
   generateLongCsv,
   downloadCsv,
@@ -48,8 +49,8 @@ function generateMediumCsv(
 ): string {
   const { data: rows } = data;
 
-  // Build header row
-  const headers = ['Compound ID', 'SMILES', 'Target', 'Protocol'];
+  // Build header row (include Unit column)
+  const headers = ['Compound ID', 'SMILES', 'Target', 'Protocol', 'Unit'];
   for (const agg of aggregations) {
     headers.push(agg.charAt(0).toUpperCase() + agg.slice(1));
   }
@@ -63,6 +64,7 @@ function generateMediumCsv(
       `"${row.smiles || ''}"`,
       `"${row.target_name || ''}"`,
       `"${row.protocol_name}"`,
+      `"${row.kpi_unit ? formatKpiUnit(row.kpi_unit) : ''}"`,
     ];
 
     for (const agg of aggregations) {
@@ -210,6 +212,10 @@ function CompactTable({
                         <br />
                         <Typography variant="caption" color="text.secondary">
                           {formatAggLabel(agg)}
+                          {/* Show unit for value-based aggregations */}
+                          {agg !== 'count' && agg !== 'list' && protocol.kpi_unit && (
+                            <> ({formatKpiUnit(protocol.kpi_unit)})</>
+                          )}
                         </Typography>
                       </span>
                     </Tooltip>
@@ -506,6 +512,7 @@ function MediumTable({
                   </TableCell>
                   {aggregations.map((agg) => {
                     const value = row[agg as keyof MediumRow];
+                    const unitDisplay = row.kpi_unit ? formatKpiUnit(row.kpi_unit) : '';
                     return (
                       <TableCell key={agg} align="right">
                         {agg === 'list' ? (
@@ -523,12 +530,26 @@ function MediumTable({
                               {String(value || '-')}
                             </Typography>
                           </Tooltip>
-                        ) : (
+                        ) : agg === 'count' ? (
                           <Typography variant="body2" fontFamily="monospace">
-                            {agg === 'count'
-                              ? value ?? '-'
-                              : formatKpiValue(value as number | null)}
+                            {value ?? '-'}
                           </Typography>
+                        ) : (
+                          <Tooltip title={unitDisplay || 'No unit'}>
+                            <Typography variant="body2" fontFamily="monospace">
+                              {formatKpiValue(value as number | null)}
+                              {unitDisplay && value != null && (
+                                <Typography
+                                  component="span"
+                                  variant="caption"
+                                  color="text.secondary"
+                                  sx={{ ml: 0.5 }}
+                                >
+                                  {unitDisplay}
+                                </Typography>
+                              )}
+                            </Typography>
+                          </Tooltip>
                         )}
                       </TableCell>
                     );
@@ -696,9 +717,21 @@ function LongTable({ data }: { data: AggregationResponse }) {
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <Typography variant="body2" fontFamily="monospace" fontWeight={500}>
-                      {formatKpiValue(row.kpi_value)}
-                    </Typography>
+                    <Tooltip title={row.kpi_unit ? formatKpiUnit(row.kpi_unit) : 'No unit'}>
+                      <Typography variant="body2" fontFamily="monospace" fontWeight={500}>
+                        {formatKpiValue(row.kpi_value)}
+                        {row.kpi_unit && row.kpi_value != null && (
+                          <Typography
+                            component="span"
+                            variant="caption"
+                            color="text.secondary"
+                            sx={{ ml: 0.5 }}
+                          >
+                            {formatKpiUnit(row.kpi_unit)}
+                          </Typography>
+                        )}
+                      </Typography>
+                    </Tooltip>
                   </TableCell>
                   <TableCell>
                     <Chip

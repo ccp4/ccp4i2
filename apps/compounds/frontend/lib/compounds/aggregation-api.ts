@@ -197,6 +197,38 @@ export function formatKpiValue(value: number | null | undefined): string {
 }
 
 /**
+ * Format KPI unit for display.
+ * Converts ASCII unit codes to proper display format (e.g., 'uM' -> 'μM').
+ */
+export function formatKpiUnit(unit: string | null | undefined): string {
+  if (!unit) return '';
+
+  // Convert common unit formats to display format with proper symbols
+  const unitMap: Record<string, string> = {
+    // Molar concentrations
+    'nM': 'nM',
+    'uM': 'μM',  // ASCII 'u' to Greek mu
+    'mM': 'mM',
+    'pM': 'pM',
+    'M': 'M',
+    // Time units
+    'min': 'min',
+    's': 's',
+    'h': 'h',
+    // Percentage
+    '%': '%',
+    // Rate units
+    'uL/min/mg': 'μL/min/mg',
+    'mL/min/kg': 'mL/min/kg',
+    // Permeability
+    '1e-6 cm/s': '10⁻⁶ cm/s',
+    'cm/s': 'cm/s',
+  };
+
+  return unitMap[unit] || unit;
+}
+
+/**
  * Generate CSV content from compact aggregation data.
  */
 export function generateCompactCsv(
@@ -208,10 +240,13 @@ export function generateCompactCsv(
   // Build header row
   const headers = ['Compound ID', 'SMILES', 'Target'];
 
-  // Add columns for each protocol and aggregation
+  // Add columns for each protocol and aggregation (include unit for value-based aggs)
   for (const protocol of protocols) {
     for (const agg of aggregations) {
-      headers.push(`${protocol.name} (${agg})`);
+      const unitSuffix = agg !== 'count' && agg !== 'list' && protocol.kpi_unit
+        ? ` [${formatKpiUnit(protocol.kpi_unit)}]`
+        : '';
+      headers.push(`${protocol.name} (${agg})${unitSuffix}`);
     }
   }
 
@@ -257,6 +292,7 @@ export function generateLongCsv(data: AggregationResponse): string {
     'Protocol',
     'Assay Date',
     'KPI Value',
+    'KPI Unit',
     'Status',
   ];
 
@@ -271,6 +307,7 @@ export function generateLongCsv(data: AggregationResponse): string {
       `"${row.protocol_name || ''}"`,
       `"${row.assay_date || ''}"`,
       row.kpi_value !== null && row.kpi_value !== undefined ? String(row.kpi_value) : '',
+      `"${row.kpi_unit ? formatKpiUnit(row.kpi_unit) : ''}"`,
       `"${row.status || ''}"`,
     ];
 

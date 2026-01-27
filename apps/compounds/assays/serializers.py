@@ -545,6 +545,13 @@ class TableOfValuesImportSerializer(serializers.Serializer):
         default='',
         help_text="Optional: Name of the column containing image filenames"
     )
+    kpi_unit = serializers.CharField(
+        required=False,
+        allow_blank=True,
+        allow_null=True,
+        default=None,
+        help_text="Optional: Override the inferred KPI unit (e.g., 'nM', 'uM', '%')"
+    )
     data = serializers.ListField(
         child=serializers.DictField(),
         help_text="List of row objects from the spreadsheet"

@@ -160,6 +160,39 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
     return queryset
 
 
+def get_kpi_unit(data_series: DataSeries) -> str | None:
+    """
+    Get KPI unit from data series.
+
+    Checks multiple sources in priority order:
+    1. Explicitly stored kpi_unit in analysis results (from imports)
+    2. DilutionSeries concentration unit (for dose-response fitted data)
+    3. Protocol's preferred_dilutions unit (fallback)
+
+    Args:
+        data_series: DataSeries instance with loaded analysis and dilution_series
+
+    Returns:
+        Unit string (e.g., 'nM', 'uM', 'mM') or None if not available
+    """
+    # Priority 1: Check for explicitly stored unit in analysis results
+    if data_series.analysis and data_series.analysis.results:
+        stored_unit = data_series.analysis.results.get('kpi_unit')
+        if stored_unit:
+            return stored_unit
+
+    # Priority 2: From DilutionSeries (dose-response fitted data)
+    if data_series.dilution_series:
+        return data_series.dilution_series.unit
+
+    # Priority 3: From protocol's preferred_dilutions (fallback)
+    if data_series.assay and data_series.assay.protocol:
+        if data_series.assay.protocol.preferred_dilutions:
+            return data_series.assay.protocol.preferred_dilutions.unit
+
+    return None
+
+
 def extract_kpi_value(data_series: DataSeries) -> float | None:
     """
     Extract the KPI value from a data series' analysis result.
@@ -184,6 +217,21 @@ def extract_kpi_value(data_series: DataSeries) -> float | None:
     return None
 
 
+def extract_kpi_with_unit(data_series: DataSeries) -> tuple[float | None, str | None]:
+    """
+    Extract the KPI value and unit from a data series.
+
+    Args:
+        data_series: DataSeries instance with loaded analysis and dilution_series
+
+    Returns:
+        Tuple of (kpi_value, unit_string)
+    """
+    value = extract_kpi_value(data_series)
+    unit = get_kpi_unit(data_series)
+    return value, unit
+
+
 def aggregate_compact(
     queryset: QuerySet[DataSeries],
     aggregations: list[str]
@@ -201,7 +249,7 @@ def aggregate_compact(
     Returns:
         Dictionary with:
             - meta: Summary statistics
-            - protocols: List of protocol info
+            - protocols: List of protocol info (including kpi_unit)
             - data: List of compound rows with protocol aggregations
     """
     # Group data by compound and protocol
@@ -209,6 +257,7 @@ def aggregate_compact(
     compound_protocol_values = defaultdict(lambda: defaultdict(list))
     compound_info = {}
     protocol_ids = set()
+    protocol_units: dict[str, str | None] = {}  # Track unit per protocol
 
     for ds in queryset:
         if not ds.compound:
@@ -217,9 +266,13 @@ def aggregate_compact(
         compound_id = str(ds.compound.id)
         protocol_id = str(ds.assay.protocol_id)
 
-        kpi_value = extract_kpi_value(ds)
+        kpi_value, kpi_unit = extract_kpi_with_unit(ds)
         if kpi_value is not None:
             compound_protocol_values[compound_id][protocol_id].append(kpi_value)
+
+        # Track unit per protocol (use first encountered non-null unit)
+        if protocol_id not in protocol_units and kpi_unit:
+            protocol_units[protocol_id] = kpi_unit
 
         protocol_ids.add(ds.assay.protocol_id)
 
@@ -232,9 +285,16 @@ def aggregate_compact(
                 'target_name': ds.compound.target.name if ds.compound.target else None,
             }
 
-    # Fetch protocol info
+    # Fetch protocol info and include kpi_unit
     protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name'))
-    protocol_list = [{'id': str(p['id']), 'name': p['name']} for p in protocols]
+    protocol_list = [
+        {
+            'id': str(p['id']),
+            'name': p['name'],
+            'kpi_unit': protocol_units.get(str(p['id'])),
+        }
+        for p in protocols
+    ]
 
     # Build result rows
     data = []
@@ -281,11 +341,11 @@ def aggregate_medium(
     Returns:
         Dictionary with:
             - meta: Summary statistics
-            - data: List of compound-protocol rows with aggregations
+            - data: List of compound-protocol rows with aggregations (including kpi_unit)
     """
     # Group data by compound and protocol
-    # Structure: {(compound_id, protocol_id): {'info': {...}, 'values': [...]}}
-    compound_protocol_data = defaultdict(lambda: {'info': None, 'values': []})
+    # Structure: {(compound_id, protocol_id): {'info': {...}, 'values': [], 'unit': ...}}
+    compound_protocol_data = defaultdict(lambda: {'info': None, 'values': [], 'unit': None})
     compound_ids = set()
     protocol_ids = set()
 
@@ -297,9 +357,13 @@ def aggregate_medium(
         protocol_id = str(ds.assay.protocol_id)
         key = (compound_id, protocol_id)
 
-        kpi_value = extract_kpi_value(ds)
+        kpi_value, kpi_unit = extract_kpi_with_unit(ds)
         if kpi_value is not None:
             compound_protocol_data[key]['values'].append(kpi_value)
+
+        # Track unit (use first encountered non-null unit)
+        if compound_protocol_data[key]['unit'] is None and kpi_unit:
+            compound_protocol_data[key]['unit'] = kpi_unit
 
         compound_ids.add(ds.compound.id)
         protocol_ids.add(ds.assay.protocol_id)
@@ -327,6 +391,7 @@ def aggregate_medium(
         total_measurements += len(values)
 
         row = item['info'].copy()
+        row['kpi_unit'] = item['unit']  # Include unit in row
         row.update(aggregate_kpi_values(values, aggregations))
         data.append(row)
 
@@ -360,14 +425,14 @@ def aggregate_long(
     Returns:
         Dictionary with:
             - meta: Summary statistics
-            - data: List of measurement rows
+            - data: List of measurement rows (including kpi_unit)
     """
     data = []
     compound_ids = set()
     protocol_ids = set()
 
     for ds in queryset:
-        kpi_value = extract_kpi_value(ds)
+        kpi_value, kpi_unit = extract_kpi_with_unit(ds)
 
         row = {
             'data_series_id': str(ds.id),
@@ -381,6 +446,7 @@ def aggregate_long(
             'assay_id': str(ds.assay.id),
             'assay_date': ds.assay.created_at.isoformat() if ds.assay.created_at else None,
             'kpi_value': kpi_value,
+            'kpi_unit': kpi_unit,
             'status': ds.analysis.status if ds.analysis else None,
         }
         data.append(row)

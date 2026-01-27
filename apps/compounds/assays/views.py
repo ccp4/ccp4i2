@@ -487,6 +487,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
         compound_column = validated['compound_column']
         kpi_column = validated['kpi_column']
         image_column = validated.get('image_column', '')
+        kpi_unit_override = validated.get('kpi_unit')  # Optional unit override
         data_rows = validated['data']
 
         created_series = []
@@ -517,6 +518,14 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                     # Ensure KPI is properly set
                     results['KPI'] = kpi_value
                     results['fit_successful'] = True
+
+                    # Determine KPI unit: override > inferred from field name
+                    from compounds.assays.kpi_utils import parse_unit_from_field_name
+                    kpi_unit = kpi_unit_override
+                    if not kpi_unit and kpi_value:
+                        kpi_unit = parse_unit_from_field_name(kpi_value)
+                    if kpi_unit:
+                        results['kpi_unit'] = kpi_unit
 
                     # If there's an image column, ensure it's stored as 'Image File'
                     if image_column and image_column in row:
@@ -711,6 +720,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                     'assay_type': parser.assay_type,
                     'protocol_slug': parser.protocol_slug,
                     'kpi_field': parser.kpi_field,
+                    'kpi_unit': getattr(parser, 'kpi_unit', None),  # Unit from parser class
                 },
                 'metadata': parse_result.metadata,
                 'results': results_preview,
@@ -789,6 +799,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
             skip_unmatched = skip_unmatched.lower() in ('true', '1', 'yes')
         comments = get_field('comments', '')
         target_id = get_field('target')  # Optional target UUID
+        kpi_unit_override = get_field('kpi_unit')  # Optional unit override
 
         if not parser_slug:
             return Response({
@@ -870,13 +881,20 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                         skipped += 1
                         continue
 
+                    # Determine KPI unit: override > parser default > from results
+                    kpi_unit = kpi_unit_override or getattr(parser, 'kpi_unit', None) or results.get('kpi_unit')
+
                     # Create AnalysisResult
+                    analysis_results = {
+                        **results,
+                        'KPI': parser.kpi_field,
+                    }
+                    if kpi_unit:
+                        analysis_results['kpi_unit'] = kpi_unit
+
                     analysis = AnalysisResult.objects.create(
                         status='valid',
-                        results={
-                            **results,
-                            'KPI': parser.kpi_field,
-                        }
+                        results=analysis_results
                     )
 
                     # Create DataSeries

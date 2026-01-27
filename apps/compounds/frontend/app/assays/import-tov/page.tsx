@@ -42,7 +42,7 @@ import {
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { SpreadsheetUpload, SpreadsheetData } from '@/components/compounds/SpreadsheetUpload';
-import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
+import { useCompoundsApi, apiPost, apiUpload } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 
 interface Protocol {
@@ -91,6 +91,7 @@ function ImportTableOfValuesContent() {
   const [compoundColumn, setCompoundColumn] = useState<string>('');
   const [kpiColumn, setKpiColumn] = useState<string>('');
   const [imageColumn, setImageColumn] = useState<string>('');
+  const [kpiUnitOverride, setKpiUnitOverride] = useState<string>('');
 
   // Import state
   const [isImporting, setIsImporting] = useState(false);
@@ -145,10 +146,24 @@ function ImportTableOfValuesContent() {
     }
   }, []);
 
+  // Parse unit from KPI field name (mirrors backend kpi_utils.py logic)
+  const parseUnitFromFieldName = useCallback((fieldName: string): string | null => {
+    if (!fieldName) return null;
+    // Matches units in parentheses or square brackets
+    const match = fieldName.match(/[\(\[]([nμµu]M|mM|pM|M|min|s|h|%|[μµu]L\/min\/mg|mL\/min\/kg|1e-6\s*cm\/s|cm\/s)[\)\]]/i);
+    if (match) {
+      // Normalize unicode mu to ASCII
+      let unit = match[1];
+      unit = unit.replace(/[μµ]/g, 'u');
+      return unit;
+    }
+    return null;
+  }, []);
+
   // Validate KPI column - all rows must have the same value
   const kpiValidation = useMemo(() => {
     if (!spreadsheetData || !kpiColumn) {
-      return { valid: false, message: 'Select a KPI column', kpiValue: null };
+      return { valid: false, message: 'Select a KPI column', kpiValue: null, inferredUnit: null };
     }
 
     const values = new Set(
@@ -158,7 +173,7 @@ function ImportTableOfValuesContent() {
     );
 
     if (values.size === 0) {
-      return { valid: false, message: 'KPI column is empty', kpiValue: null };
+      return { valid: false, message: 'KPI column is empty', kpiValue: null, inferredUnit: null };
     }
 
     if (values.size > 1) {
@@ -166,6 +181,7 @@ function ImportTableOfValuesContent() {
         valid: false,
         message: `KPI column has multiple values: ${Array.from(values).join(', ')}`,
         kpiValue: null,
+        inferredUnit: null,
       };
     }
 
@@ -177,11 +193,15 @@ function ImportTableOfValuesContent() {
         valid: false,
         message: `KPI value "${kpiValue}" is not a column name in the data`,
         kpiValue,
+        inferredUnit: null,
       };
     }
 
-    return { valid: true, message: `KPI: ${kpiValue}`, kpiValue };
-  }, [spreadsheetData, kpiColumn]);
+    // Try to infer unit from KPI field name
+    const inferredUnit = parseUnitFromFieldName(kpiValue);
+
+    return { valid: true, message: `KPI: ${kpiValue}`, kpiValue, inferredUnit };
+  }, [spreadsheetData, kpiColumn, parseUnitFromFieldName]);
 
   // Handle file clear
   const handleClearFile = useCallback(() => {
@@ -189,6 +209,7 @@ function ImportTableOfValuesContent() {
     setCompoundColumn('');
     setKpiColumn('');
     setImageColumn('');
+    setKpiUnitOverride('');
     setImportError(null);
   }, []);
 
@@ -202,16 +223,26 @@ function ImportTableOfValuesContent() {
     setImportError(null);
 
     try {
-      // First, create the assay
-      const assayResponse = await apiPost<{ id: string }>('assays/', {
-        protocol: selectedProtocol,
-        target: selectedTarget || undefined,
-        comments: `Imported from ${spreadsheetData.fileName}`,
-      });
+      // First, create the assay with the uploaded file
+      const formData = new FormData();
+      formData.append('protocol', selectedProtocol);
+      if (selectedTarget) {
+        formData.append('target', selectedTarget);
+      }
+      formData.append('comments', `Imported from ${spreadsheetData.fileName}`);
+      // Include the original spreadsheet as the data_file
+      if (spreadsheetData.originalFile) {
+        formData.append('data_file', spreadsheetData.originalFile);
+      }
+
+      const assayResponse = await apiUpload<{ id: string }>('assays/', formData);
 
       const assayId = assayResponse.id;
 
       // Then import the table of values data
+      // Use override unit or inferred unit
+      const effectiveUnit = kpiUnitOverride || kpiValidation.inferredUnit;
+
       const importResponse = await apiPost<{
         status: string;
         created: number;
@@ -221,6 +252,7 @@ function ImportTableOfValuesContent() {
         compound_column: compoundColumn,
         kpi_column: kpiColumn,
         image_column: imageColumn || undefined,
+        kpi_unit: effectiveUnit || undefined,
         data: spreadsheetData.rows,
       });
 
@@ -445,6 +477,24 @@ function ImportTableOfValuesContent() {
                 </Box>
               )}
 
+              {/* KPI Unit (only shown when KPI is valid) */}
+              {kpiValidation.valid && (
+                <TextField
+                  fullWidth
+                  label="KPI Unit"
+                  value={kpiUnitOverride}
+                  onChange={(e) => setKpiUnitOverride(e.target.value)}
+                  size="small"
+                  placeholder={kpiValidation.inferredUnit || 'No unit detected'}
+                  helperText={
+                    kpiValidation.inferredUnit
+                      ? `Detected: ${kpiValidation.inferredUnit} (leave blank to use)`
+                      : 'Enter unit if applicable (e.g., nM, uM, %)'
+                  }
+                  margin="normal"
+                />
+              )}
+
               {/* Image column */}
               <FormControl fullWidth margin="normal">
                 <InputLabel>Image File Column</InputLabel>
@@ -492,6 +542,13 @@ function ImportTableOfValuesContent() {
                         icon={<CheckCircle />}
                         label={`KPI: ${kpiValidation.kpiValue}`}
                         color="success"
+                      />
+                    )}
+                    {(kpiUnitOverride || kpiValidation.inferredUnit) && (
+                      <Chip
+                        size="small"
+                        label={`Unit: ${kpiUnitOverride || kpiValidation.inferredUnit}`}
+                        color="info"
                       />
                     )}
                     {imageColumn && (

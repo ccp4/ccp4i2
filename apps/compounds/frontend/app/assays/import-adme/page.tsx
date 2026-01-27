@@ -82,6 +82,7 @@ interface ParsePreviewResponse {
     assay_type: string;
     protocol_slug: string;
     kpi_field: string;
+    kpi_unit: string | null;  // Unit from parser (e.g., 'uL/min/mg')
   };
   metadata: Record<string, any>;
   results: ParsedResult[];
@@ -142,6 +143,7 @@ function ImportADMEContent() {
   const [skipUnmatched, setSkipUnmatched] = useState(false);
   const [importComments, setImportComments] = useState('');
   const [selectedTarget, setSelectedTarget] = useState<string | null>(null);
+  const [kpiUnitOverride, setKpiUnitOverride] = useState<string>('');
 
   // Import state
   const [isImporting, setIsImporting] = useState(false);
@@ -205,6 +207,7 @@ function ImportADMEContent() {
     setSkipUnmatched(false);
     setImportComments('');
     setSelectedTarget(null);
+    setKpiUnitOverride('');
   }, []);
 
   // Handle import
@@ -227,6 +230,11 @@ function ImportADMEContent() {
       if (selectedTarget) {
         formData.append('target', selectedTarget);
       }
+      // Include KPI unit (override or from parser)
+      const effectiveUnit = kpiUnitOverride || preview.parser.kpi_unit;
+      if (effectiveUnit) {
+        formData.append('kpi_unit', effectiveUnit);
+      }
       // Include the original file so it can be downloaded later
       if (selectedFile) {
         formData.append('file', selectedFile);
@@ -246,7 +254,7 @@ function ImportADMEContent() {
     } finally {
       setIsImporting(false);
     }
-  }, [preview, skipUnmatched, importComments, selectedTarget, selectedFile, router]);
+  }, [preview, skipUnmatched, importComments, selectedTarget, kpiUnitOverride, selectedFile, router]);
 
   // Calculate import count
   const importCount = preview
@@ -468,6 +476,22 @@ function ImportADMEContent() {
                 }
               />
 
+              {/* KPI Unit */}
+              <TextField
+                fullWidth
+                label="KPI Unit"
+                value={kpiUnitOverride}
+                onChange={(e) => setKpiUnitOverride(e.target.value)}
+                size="small"
+                placeholder={preview.parser.kpi_unit || 'No unit detected'}
+                helperText={
+                  preview.parser.kpi_unit
+                    ? `Detected: ${preview.parser.kpi_unit} (leave blank to use)`
+                    : 'Enter unit if applicable (e.g., nM, uM, %)'
+                }
+                sx={{ mt: 2 }}
+              />
+
               <TextField
                 fullWidth
                 multiline
@@ -489,6 +513,9 @@ function ImportADMEContent() {
                   </Typography>
                   <Typography variant="caption" color="text.secondary">
                     KPI: {preview.parser.kpi_field.replace(/_/g, ' ')}
+                    {(kpiUnitOverride || preview.parser.kpi_unit) && (
+                      <> ({kpiUnitOverride || preview.parser.kpi_unit})</>
+                    )}
                   </Typography>
                 </CardContent>
               </Card>

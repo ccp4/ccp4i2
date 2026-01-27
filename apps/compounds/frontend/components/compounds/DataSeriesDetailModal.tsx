@@ -25,7 +25,7 @@ import { Close, Medication, Science, OpenInNew } from '@mui/icons-material';
 import Link from 'next/link';
 import { MoleculeChip } from './MoleculeView';
 import { DoseResponseChart, DoseResponseThumb, FitParameters, DoseResponseData } from './DoseResponseChart';
-import { formatKpiValue } from '@/lib/compounds/aggregation-api';
+import { formatKpiValue, formatKpiUnit } from '@/lib/compounds/aggregation-api';
 
 // =============================================================================
 // Authentication Integration
@@ -322,6 +322,22 @@ export function DataSeriesDetailModal({
                           <TableCell>
                             <Typography variant="body2" fontFamily="monospace" fontWeight={500}>
                               {formatKpiValue(series.analysis_kpi)}
+                              {(() => {
+                                // Get unit from analysis results first, then from dilution_series
+                                const kpiUnit = series.analysis?.results?.kpi_unit
+                                  || series.dilution_series?.unit
+                                  || null;
+                                return kpiUnit && series.analysis_kpi != null && (
+                                  <Typography
+                                    component="span"
+                                    variant="caption"
+                                    color="text.secondary"
+                                    sx={{ ml: 0.5 }}
+                                  >
+                                    {formatKpiUnit(kpiUnit)}
+                                  </Typography>
+                                );
+                              })()}
                             </Typography>
                           </TableCell>
                           <TableCell>

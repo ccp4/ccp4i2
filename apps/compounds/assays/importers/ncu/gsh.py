@@ -30,6 +30,7 @@ class GSHStabilityParser(NCUBaseParser):
     assay_code = "GSH"
     protocol_slug = "ncu-gsh"
     kpi_field = "t1_2_min"  # t1/2 (min)
+    kpi_unit = "min"  # Unit for the KPI value
 
     # Expected time points (minutes)
     TIME_POINTS = [0, 15, 30, 60, 120]
@@ -98,6 +99,7 @@ class GSHStabilityParser(NCUBaseParser):
             result_data = {
                 "assay_type": self.assay_type,
                 "KPI": self.kpi_field,
+                "kpi_unit": self.kpi_unit,
                 **metrics,
                 "source": source,
                 "flags": [],

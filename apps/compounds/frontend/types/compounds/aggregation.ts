@@ -36,6 +36,8 @@ export interface AggregationRequest {
 export interface ProtocolInfo {
   id: string;
   name: string;
+  /** KPI unit for this protocol (e.g., 'nM', 'uM', 'mM') */
+  kpi_unit?: string | null;
 }
 
 /** Aggregated values for a single protocol */
@@ -78,6 +80,8 @@ export interface MediumRow {
   target_name: string | null;
   protocol_id: string;
   protocol_name: string;
+  /** KPI unit for this row (e.g., 'nM', 'uM', 'mM') */
+  kpi_unit?: string | null;
   /** Aggregated values inline */
   geomean?: number | null;
   count?: number;
@@ -104,6 +108,8 @@ export interface LongRow {
   assay_id: string;
   assay_date: string | null;
   kpi_value: number | null;
+  /** KPI unit for this measurement (e.g., 'nM', 'uM', 'mM') */
+  kpi_unit?: string | null;
   status: AnalysisStatus | null;
 }
 

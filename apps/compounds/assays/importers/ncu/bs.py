@@ -29,6 +29,7 @@ class BloodSerumStabilityParser(NCUBaseParser):
     assay_code = "BS"
     protocol_slug = "ncu-bs"
     kpi_field = "t1_2_min"  # t1/2 (min)
+    kpi_unit = "min"  # Unit for the KPI value
 
     # Expected time points (minutes)
     TIME_POINTS = [0, 15, 30, 60, 120]
@@ -91,6 +92,7 @@ class BloodSerumStabilityParser(NCUBaseParser):
             result_data = {
                 "assay_type": self.assay_type,
                 "KPI": self.kpi_field,
+                "kpi_unit": self.kpi_unit,
                 "species": species,
                 **metrics,
                 "source": source,

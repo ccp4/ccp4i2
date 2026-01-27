@@ -39,6 +39,7 @@ import { DilutionSeriesSelectDialog } from '@/components/compounds/DilutionSerie
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
+import { formatKpiUnit } from '@/lib/compounds/aggregation-api';
 import { DataSeries, Assay, Compound, Protocol } from '@/types/compounds/models';
 
 interface PageProps {
@@ -350,24 +351,39 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                           </TableRow>
                         )}
                         {/* KPI row - highlighted at top */}
-                        {series.analysis.kpi_value !== undefined && (
-                          <TableRow sx={{ bgcolor: 'primary.50' }}>
-                            <TableCell component="th">
-                              <Typography fontWeight={600}>
-                                KPI ({series.analysis.results?.KPI || 'EC50'})
-                              </Typography>
-                            </TableCell>
-                            <TableCell>
-                              <Typography fontFamily="monospace" fontWeight={600} color="primary">
-                                {typeof series.analysis.kpi_value === 'number'
-                                  ? (series.analysis.kpi_value >= 0.01 && series.analysis.kpi_value < 10000
-                                      ? series.analysis.kpi_value.toFixed(2)
-                                      : series.analysis.kpi_value.toExponential(3))
-                                  : series.analysis.kpi_value}
-                              </Typography>
-                            </TableCell>
-                          </TableRow>
-                        )}
+                        {series.analysis.kpi_value !== undefined && (() => {
+                          // Get unit from analysis results first, then fall back to dilution_series
+                          const kpiUnit = series.analysis.results?.kpi_unit
+                            || series.dilution_series?.unit
+                            || null;
+                          return (
+                            <TableRow sx={{ bgcolor: 'primary.50' }}>
+                              <TableCell component="th">
+                                <Typography fontWeight={600}>
+                                  KPI ({series.analysis.results?.KPI || 'EC50'})
+                                </Typography>
+                              </TableCell>
+                              <TableCell>
+                                <Typography fontFamily="monospace" fontWeight={600} color="primary">
+                                  {typeof series.analysis.kpi_value === 'number'
+                                    ? (series.analysis.kpi_value >= 0.01 && series.analysis.kpi_value < 10000
+                                        ? series.analysis.kpi_value.toFixed(2)
+                                        : series.analysis.kpi_value.toExponential(3))
+                                    : series.analysis.kpi_value}
+                                  {kpiUnit && (
+                                    <Typography
+                                      component="span"
+                                      color="text.secondary"
+                                      sx={{ ml: 1, fontWeight: 400 }}
+                                    >
+                                      {formatKpiUnit(kpiUnit)}
+                                    </Typography>
+                                  )}
+                                </Typography>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })()}
                         {/* Dynamically render all other results fields */}
                         {series.analysis.results && Object.entries(series.analysis.results)
                           .filter(([key]) => !['error', 'flags', 'KPI', 'source', 'time_course', 'curve_points'].includes(key.toLowerCase()))
