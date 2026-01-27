@@ -66,6 +66,9 @@ export interface Supplier {
   batch_count?: number;
 }
 
+/** Concentration display mode for KPI values */
+export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
+
 /** Saved aggregation view configuration stored on a Target */
 export interface SavedAggregationView {
   protocol_names: string[];
@@ -73,6 +76,8 @@ export interface SavedAggregationView {
   output_format: 'compact' | 'medium' | 'long';
   aggregations: ('geomean' | 'count' | 'stdev' | 'list')[];
   status: 'valid' | 'invalid' | 'unassigned' | '';
+  /** Concentration display mode (default: 'natural') */
+  concentration_display?: ConcentrationDisplayMode;
 }
 
 export interface Target {

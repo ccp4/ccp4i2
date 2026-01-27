@@ -116,6 +116,11 @@ class SavedAggregationViewSerializer(serializers.Serializer):
         default='valid',
         allow_blank=True
     )
+    concentration_display = serializers.ChoiceField(
+        choices=['natural', 'nM', 'uM', 'mM', 'pConc'],
+        required=False,
+        default='natural'
+    )
 
 
 class TargetSerializer(serializers.ModelSerializer):

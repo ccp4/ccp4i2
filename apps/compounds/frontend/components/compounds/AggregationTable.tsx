@@ -15,6 +15,10 @@ import {
   Chip,
   LinearProgress,
   Tooltip,
+  FormControl,
+  Select,
+  MenuItem,
+  InputLabel,
 } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { Download, Medication, ZoomIn } from '@mui/icons-material';
@@ -28,16 +32,19 @@ import {
   isCompactResponse,
   isMediumResponse,
   ProtocolInfo,
+  ConcentrationDisplayMode,
 } from '@/types/compounds/aggregation';
 import { MoleculeChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
 import { ProtocolScatterPlot } from './ProtocolScatterPlot';
 import {
-  formatKpiValue,
   formatKpiUnit,
   generateCompactCsv,
   generateLongCsv,
   downloadCsv,
+  formatConcentrationValue,
+  getConcentrationHeaderUnit,
+  isConcentrationUnit,
 } from '@/lib/compounds/aggregation-api';
 
 /**
@@ -82,10 +89,23 @@ function generateMediumCsv(
   return csvRows.join('\n');
 }
 
+/** Options for concentration display mode selector */
+const CONCENTRATION_DISPLAY_OPTIONS: { value: ConcentrationDisplayMode; label: string }[] = [
+  { value: 'natural', label: 'Natural' },
+  { value: 'nM', label: 'nM' },
+  { value: 'uM', label: 'μM' },
+  { value: 'mM', label: 'mM' },
+  { value: 'pConc', label: 'pConc' },
+];
+
 interface AggregationTableProps {
   data: AggregationResponse | null | undefined;
   loading?: boolean;
   aggregations: AggregationType[];
+  /** Concentration display mode (default: 'natural') */
+  concentrationDisplay?: ConcentrationDisplayMode;
+  /** Callback when concentration display mode changes */
+  onConcentrationDisplayChange?: (mode: ConcentrationDisplayMode) => void;
 }
 
 /**
@@ -108,9 +128,11 @@ function formatAggLabel(agg: AggregationType): string {
 function CompactTable({
   data,
   aggregations,
+  concentrationDisplay = 'natural',
 }: {
   data: AggregationResponse & { protocols: ProtocolInfo[] };
   aggregations: AggregationType[];
+  concentrationDisplay: ConcentrationDisplayMode;
 }) {
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
@@ -177,15 +199,20 @@ function CompactTable({
   useEffect(() => {
     const el = parentRef.current;
     if (el) {
-      updateScrollShadow();
+      // Wait for table to be fully laid out before measuring scroll width
+      // setTimeout ensures we run after React's commit phase and browser paint
+      const timeoutId = setTimeout(() => {
+        updateScrollShadow();
+      }, 50);
       el.addEventListener('scroll', handleTableScroll);
       window.addEventListener('resize', updateScrollShadow);
       return () => {
+        clearTimeout(timeoutId);
         el.removeEventListener('scroll', handleTableScroll);
         window.removeEventListener('resize', updateScrollShadow);
       };
     }
-  }, [handleTableScroll, updateScrollShadow]);
+  }, [handleTableScroll, updateScrollShadow, protocols.length, aggregations.length]);
 
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
@@ -217,6 +244,11 @@ function CompactTable({
     setSelectedProtocol(null);
   };
 
+  // Calculate expected table width for top scrollbar
+  // Use measured scrollWidth if available, otherwise calculate from column count
+  const expectedTableWidth = 320 + protocols.length * aggregations.length * 100;
+  const topScrollbarWidth = tableScrollWidth > 0 ? tableScrollWidth : expectedTableWidth;
+
   return (
     <>
       {/* Protocol comparison scatter plot */}
@@ -245,42 +277,41 @@ function CompactTable({
         </Button>
       </Box>
 
-      <Box sx={{ position: 'relative' }}>
+      <Box sx={{ position: 'relative', width: '100%' }}>
         {/* Top horizontal scrollbar - synced with table */}
-        {tableScrollWidth > 0 && (
-          <Box
-            ref={topScrollRef}
-            onScroll={handleTopScroll}
-            sx={{
-              overflowX: 'auto',
-              overflowY: 'hidden',
-              mb: 1,
-              // Style the scrollbar to be more visible
-              '&::-webkit-scrollbar': {
-                height: 10,
+        <Box
+          ref={topScrollRef}
+          onScroll={handleTopScroll}
+          sx={{
+            overflowX: 'auto',
+            overflowY: 'hidden',
+            width: '100%',
+            mb: 1,
+            // Style the scrollbar to be more visible
+            '&::-webkit-scrollbar': {
+              height: 10,
+            },
+            '&::-webkit-scrollbar-track': {
+              bgcolor: 'grey.100',
+              borderRadius: 1,
+            },
+            '&::-webkit-scrollbar-thumb': {
+              bgcolor: 'grey.400',
+              borderRadius: 1,
+              '&:hover': {
+                bgcolor: 'grey.500',
               },
-              '&::-webkit-scrollbar-track': {
-                bgcolor: 'grey.100',
-                borderRadius: 1,
-              },
-              '&::-webkit-scrollbar-thumb': {
-                bgcolor: 'grey.400',
-                borderRadius: 1,
-                '&:hover': {
-                  bgcolor: 'grey.500',
-                },
-              },
-            }}
-          >
-            {/* Invisible content to create scroll width */}
-            <Box sx={{ width: tableScrollWidth, height: 1 }} />
-          </Box>
-        )}
+            },
+          }}
+        >
+          {/* Invisible content to create scroll width */}
+          <Box sx={{ width: topScrollbarWidth, height: 1 }} />
+        </Box>
         {/* Right scroll shadow indicator */}
         <Box
           sx={{
             position: 'absolute',
-            top: tableScrollWidth > 0 ? 44 : 0, // Account for top scrollbar
+            top: 44, // Account for top scrollbar
             right: 0,
             bottom: 0,
             width: 40,
@@ -323,10 +354,12 @@ function CompactTable({
                           : protocol.name}
                         <br />
                         <Typography variant="caption" color="text.secondary">
-                          {formatAggLabel(agg)}
+                          {concentrationDisplay === 'pConc' && agg !== 'count' && agg !== 'list' && isConcentrationUnit(protocol.kpi_unit)
+                            ? `p${formatAggLabel(agg)}`
+                            : formatAggLabel(agg)}
                           {/* Show unit for value-based aggregations */}
-                          {agg !== 'count' && agg !== 'list' && protocol.kpi_unit && (
-                            <> ({formatKpiUnit(protocol.kpi_unit)})</>
+                          {agg !== 'count' && agg !== 'list' && protocol.kpi_unit && concentrationDisplay !== 'pConc' && (
+                            <> ({getConcentrationHeaderUnit(protocol.kpi_unit, concentrationDisplay)})</>
                           )}
                         </Typography>
                       </span>
@@ -427,11 +460,17 @@ function CompactTable({
                                 {value || '-'}
                               </Typography>
                             </Tooltip>
+                          ) : agg === 'count' ? (
+                            <Typography variant="body2" fontFamily="monospace">
+                              {value ?? '-'}
+                            </Typography>
                           ) : (
                             <Typography variant="body2" fontFamily="monospace">
-                              {agg === 'count'
-                                ? value ?? '-'
-                                : formatKpiValue(value as number | null)}
+                              {formatConcentrationValue(
+                                value as number | null,
+                                protocol.kpi_unit,
+                                concentrationDisplay
+                              ).displayValue}
                             </Typography>
                           )}
                         </TableCell>
@@ -486,9 +525,11 @@ function CompactTable({
 function MediumTable({
   data,
   aggregations,
+  concentrationDisplay = 'natural',
 }: {
   data: AggregationResponse;
   aggregations: AggregationType[];
+  concentrationDisplay: ConcentrationDisplayMode;
 }) {
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -625,7 +666,11 @@ function MediumTable({
                   </TableCell>
                   {aggregations.map((agg) => {
                     const value = row[agg as keyof MediumRow];
-                    const unitDisplay = row.kpi_unit ? formatKpiUnit(row.kpi_unit) : '';
+                    const formatted = formatConcentrationValue(
+                      value as number | null,
+                      row.kpi_unit,
+                      concentrationDisplay
+                    );
                     return (
                       <TableCell key={agg} align="right">
                         {agg === 'list' ? (
@@ -648,17 +693,17 @@ function MediumTable({
                             {value ?? '-'}
                           </Typography>
                         ) : (
-                          <Tooltip title={unitDisplay || 'No unit'}>
+                          <Tooltip title={formatted.displayUnit || 'No unit'}>
                             <Typography variant="body2" fontFamily="monospace">
-                              {formatKpiValue(value as number | null)}
-                              {unitDisplay && value != null && (
+                              {formatted.displayValue}
+                              {formatted.displayUnit && value != null && concentrationDisplay === 'natural' && (
                                 <Typography
                                   component="span"
                                   variant="caption"
                                   color="text.secondary"
                                   sx={{ ml: 0.5 }}
                                 >
-                                  {unitDisplay}
+                                  {formatted.displayUnit}
                                 </Typography>
                               )}
                             </Typography>
@@ -710,7 +755,13 @@ function MediumTable({
 /**
  * Long table component (one row per measurement).
  */
-function LongTable({ data }: { data: AggregationResponse }) {
+function LongTable({
+  data,
+  concentrationDisplay = 'natural',
+}: {
+  data: AggregationResponse;
+  concentrationDisplay: ConcentrationDisplayMode;
+}) {
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -830,21 +881,30 @@ function LongTable({ data }: { data: AggregationResponse }) {
                     </Typography>
                   </TableCell>
                   <TableCell align="right">
-                    <Tooltip title={row.kpi_unit ? formatKpiUnit(row.kpi_unit) : 'No unit'}>
-                      <Typography variant="body2" fontFamily="monospace" fontWeight={500}>
-                        {formatKpiValue(row.kpi_value)}
-                        {row.kpi_unit && row.kpi_value != null && (
-                          <Typography
-                            component="span"
-                            variant="caption"
-                            color="text.secondary"
-                            sx={{ ml: 0.5 }}
-                          >
-                            {formatKpiUnit(row.kpi_unit)}
+                    {(() => {
+                      const formatted = formatConcentrationValue(
+                        row.kpi_value,
+                        row.kpi_unit,
+                        concentrationDisplay
+                      );
+                      return (
+                        <Tooltip title={formatted.displayUnit || 'No unit'}>
+                          <Typography variant="body2" fontFamily="monospace" fontWeight={500}>
+                            {formatted.displayValue}
+                            {formatted.displayUnit && row.kpi_value != null && concentrationDisplay === 'natural' && (
+                              <Typography
+                                component="span"
+                                variant="caption"
+                                color="text.secondary"
+                                sx={{ ml: 0.5 }}
+                              >
+                                {formatted.displayUnit}
+                              </Typography>
+                            )}
                           </Typography>
-                        )}
-                      </Typography>
-                    </Tooltip>
+                        </Tooltip>
+                      );
+                    })()}
                   </TableCell>
                   <TableCell>
                     <Chip
@@ -882,10 +942,57 @@ function LongTable({ data }: { data: AggregationResponse }) {
 }
 
 /**
+ * Concentration display mode selector component.
+ */
+function ConcentrationDisplaySelector({
+  value,
+  onChange,
+}: {
+  value: ConcentrationDisplayMode;
+  onChange: (mode: ConcentrationDisplayMode) => void;
+}) {
+  return (
+    <FormControl size="small" sx={{ minWidth: 110 }}>
+      <InputLabel>Concentration</InputLabel>
+      <Select
+        value={value}
+        label="Concentration"
+        onChange={(e) => onChange(e.target.value as ConcentrationDisplayMode)}
+      >
+        {CONCENTRATION_DISPLAY_OPTIONS.map((opt) => (
+          <MenuItem key={opt.value} value={opt.value}>
+            {opt.label}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+}
+
+/**
  * Main aggregation table component.
  * Renders either compact or long format based on the response data.
  */
-export function AggregationTable({ data, loading, aggregations }: AggregationTableProps) {
+export function AggregationTable({
+  data,
+  loading,
+  aggregations,
+  concentrationDisplay = 'natural',
+  onConcentrationDisplayChange,
+}: AggregationTableProps) {
+  // Use internal state if no external control is provided
+  const [internalDisplay, setInternalDisplay] = useState<ConcentrationDisplayMode>(concentrationDisplay);
+
+  // Use controlled or uncontrolled mode
+  const displayMode = onConcentrationDisplayChange ? concentrationDisplay : internalDisplay;
+  const handleDisplayChange = (mode: ConcentrationDisplayMode) => {
+    if (onConcentrationDisplayChange) {
+      onConcentrationDisplayChange(mode);
+    } else {
+      setInternalDisplay(mode);
+    }
+  };
+
   if (loading) {
     return (
       <Paper sx={{ p: 3 }}>
@@ -920,17 +1027,35 @@ export function AggregationTable({ data, loading, aggregations }: AggregationTab
   // Determine which table to render based on response type
   const renderTable = () => {
     if (isCompactResponse(data)) {
-      return <CompactTable data={data} aggregations={aggregations} />;
+      return (
+        <CompactTable
+          data={data}
+          aggregations={aggregations}
+          concentrationDisplay={displayMode}
+        />
+      );
     } else if (isMediumResponse(data)) {
-      return <MediumTable data={data} aggregations={aggregations} />;
+      return (
+        <MediumTable
+          data={data}
+          aggregations={aggregations}
+          concentrationDisplay={displayMode}
+        />
+      );
     } else {
-      return <LongTable data={data} />;
+      return <LongTable data={data} concentrationDisplay={displayMode} />;
     }
   };
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <Box sx={{ p: 2 }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
+          <ConcentrationDisplaySelector
+            value={displayMode}
+            onChange={handleDisplayChange}
+          />
+        </Box>
         {renderTable()}
       </Box>
     </Paper>

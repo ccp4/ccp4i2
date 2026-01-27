@@ -436,6 +436,7 @@ export default function TargetDashboardPage({ params }: PageProps) {
             data={aggregationData}
             loading={false}
             aggregations={dashboardData.saved_aggregation_view.aggregations}
+            concentrationDisplay={dashboardData.saved_aggregation_view.concentration_display}
           />
         )}
       </Paper>

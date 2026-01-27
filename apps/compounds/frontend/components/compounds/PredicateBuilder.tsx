@@ -30,6 +30,7 @@ import {
   AggregationType,
   OutputFormat,
   ProtocolInfo,
+  ConcentrationDisplayMode,
 } from '@/types/compounds/aggregation';
 import { Target } from '@/types/compounds/models';
 import { fetchTargets, fetchProtocols } from '@/lib/compounds/aggregation-api';
@@ -42,6 +43,8 @@ export interface PredicateBuilderState {
   compoundSearch: string;
   outputFormat: OutputFormat;
   aggregations: AggregationType[];
+  /** Concentration display mode - managed by AggregationTable, included for saved views */
+  concentrationDisplay?: ConcentrationDisplayMode;
 }
 
 interface PredicateBuilderProps {

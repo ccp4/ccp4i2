@@ -8,6 +8,9 @@ import { AnalysisStatus } from './models';
 /** Aggregation function types */
 export type AggregationType = 'geomean' | 'count' | 'stdev' | 'list';
 
+/** Concentration display mode for KPI values */
+export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
+
 /** Output format options */
 export type OutputFormat = 'compact' | 'medium' | 'long';
 

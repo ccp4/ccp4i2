@@ -240,15 +240,21 @@ def analyse_data_series(data_series: DataSeries, fitting_method: Optional[Fittin
     # Build results dict for storage
     # Concentrations come from dilution_series, not stored here
     kpi_value = result.get('kpi', 'ic50')
+    kpi_key = kpi_value.upper() if kpi_value else 'IC50'
+
+    # Get the primary KPI value from the fitting result
+    # The fitting script returns lowercase keys (e.g., 'ic50', 'ki')
+    primary_kpi_value = result.get(kpi_value) if kpi_value else result.get('ic50')
+
     stored_results = {
-        'EC50': result.get('ic50'),
-        'Ki': result.get('ki'),
+        # Store the KPI value under the uppercased key that matches 'KPI' pointer
+        kpi_key: primary_kpi_value,
         'IC50_apparent': result.get('ic50_apparent'),
         'Hill': result.get('hill_slope'),
         'minVal': result.get('bottom'),
         'maxVal': result.get('top'),
         'r_squared': result.get('r_squared'),
-        'KPI': kpi_value.upper() if kpi_value else 'EC50',
+        'KPI': kpi_key,
         'flags': result.get('flags', []),
         'curve_points': result.get('curve_points'),
         'fit_successful': result.get('fit_successful', False),

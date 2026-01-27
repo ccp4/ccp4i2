@@ -13,6 +13,7 @@ import {
   AggregationType,
   OutputFormat,
   AggregationResponse,
+  ConcentrationDisplayMode,
 } from '@/types/compounds/aggregation';
 import { fetchAggregation, saveAggregationView } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
@@ -46,6 +47,7 @@ function AggregationPageContent() {
   const [data, setData] = useState<AggregationResponse | null>(null);
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(['geomean', 'count']);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
+  const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>('natural');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [saving, setSaving] = useState(false);
@@ -94,6 +96,7 @@ function AggregationPageContent() {
         output_format: currentState.outputFormat,
         aggregations: currentState.aggregations,
         status: 'valid', // Default to valid status
+        concentration_display: concentrationDisplay,
       });
       setSnackbarMessage(`Saved view to ${target.name}`);
       setSnackbarOpen(true);
@@ -102,7 +105,7 @@ function AggregationPageContent() {
     } finally {
       setSaving(false);
     }
-  }, [currentState]);
+  }, [currentState, concentrationDisplay]);
 
   const handleChange = useCallback(async (
     predicates: Predicates,
@@ -202,7 +205,13 @@ function AggregationPageContent() {
         </Alert>
       )}
 
-      <AggregationTable data={data} loading={loading} aggregations={currentAggregations} />
+      <AggregationTable
+        data={data}
+        loading={loading}
+        aggregations={currentAggregations}
+        concentrationDisplay={concentrationDisplay}
+        onConcentrationDisplayChange={setConcentrationDisplay}
+      />
 
       <Snackbar
         open={snackbarOpen}
