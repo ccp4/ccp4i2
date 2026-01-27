@@ -21,6 +21,7 @@ import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
+import { AliasEditor } from '@/components/compounds/AliasEditor';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
@@ -53,7 +54,7 @@ export default function CompoundDetailPage({ params }: PageProps) {
   const [batchDialogOpen, setBatchDialogOpen] = useState(false);
   const [smilesCopied, setSmilesCopied] = useState(false);
 
-  const { data: compound, isLoading: compoundLoading } = api.get<Compound>(
+  const { data: compound, isLoading: compoundLoading, mutate: mutateCompound } = api.get<Compound>(
     `compounds/${id}/`
   );
   const { data: batches, isLoading: batchesLoading, mutate: mutateBatches } = api.get<Batch[]>(
@@ -338,6 +339,15 @@ export default function CompoundDetailPage({ params }: PageProps) {
                 <Typography>{compound.comments}</Typography>
               </>
             )}
+
+            {/* Aliases section */}
+            <Divider sx={{ my: 2 }} />
+            <AliasEditor
+              compoundId={compound.id}
+              aliases={compound.aliases || []}
+              canEdit={canContribute}
+              onUpdate={() => mutateCompound()}
+            />
           </>
         ) : (
           <Typography color="error">Compound not found</Typography>

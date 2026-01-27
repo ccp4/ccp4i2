@@ -246,6 +246,7 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
             'registered_at', 'modified_at',
             'comments', 'svg_file',
             'batch_count',
+            'aliases',
         ]
         read_only_fields = ['reg_number', 'formatted_id', 'barcode', 'registered_at', 'modified_at']
 

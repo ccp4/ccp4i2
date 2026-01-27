@@ -237,6 +237,14 @@ class Compound(models.Model):
     modified_at = models.DateTimeField(auto_now=True, null=True)
     comments = models.TextField(blank=True, null=True)
 
+    # Alternative identifiers
+    aliases = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="Alternative names/identifiers for this compound (e.g., supplier codes, "
+                  "abbreviations, internal project names). Used as fallback during import matching."
+    )
+
     # Generated files
     svg_file = models.ImageField(
         upload_to=_compound_svg_path,

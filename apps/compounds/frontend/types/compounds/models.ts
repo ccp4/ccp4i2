@@ -167,6 +167,8 @@ export interface Compound {
   comments: string | null;
   svg_file: string | null;
   batch_count?: number;
+  /** Alternative names/identifiers for this compound (supplier codes, abbreviations, etc.) */
+  aliases?: string[];
 }
 
 export interface Batch {

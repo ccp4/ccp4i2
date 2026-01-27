@@ -531,16 +531,9 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                     if image_column and image_column in row:
                         results['Image File'] = row[image_column]
 
-                    # Try to match compound by name
-                    compound = None
-                    from compounds.registry.models import Compound
-                    match = re.match(r'^NCL-0*(\d+)$', str(compound_name), re.IGNORECASE)
-                    if match:
-                        try:
-                            reg_number = int(match.group(1))
-                            compound = Compound.objects.filter(reg_number=reg_number).first()
-                        except ValueError:
-                            pass
+                    # Try to match compound by name using centralized resolver
+                    from compounds.utils import resolve_compound
+                    compound = resolve_compound(str(compound_name))
 
                     # Create AnalysisResult
                     analysis = AnalysisResult.objects.create(
@@ -942,43 +935,15 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
         """
         Try to match a compound ID to a registered compound.
 
-        Supports:
-        - NCL-XXXXXXXX format (direct reg_number match)
-        - Plain numeric IDs (tries NCL-{padded})
+        Uses the centralized resolve_compound() utility which supports:
+        - NCL-XXXXXXXX format (case-insensitive, with/without leading zeros)
+        - Plain numeric IDs
+        - Supplier reference codes
+        - Barcode format ({initials}-{labbook}-{page})
+        - Compound aliases
         """
-        import re
-        from compounds.registry.models import Compound
-
-        if not compound_id:
-            return None
-
-        compound_id = str(compound_id).strip()
-
-        # Direct match on reg_number
-        try:
-            return Compound.objects.get(reg_number__iexact=compound_id)
-        except Compound.DoesNotExist:
-            pass
-
-        # Try NCL format if numeric
-        if compound_id.isdigit():
-            ncl_id = f"NCL-{compound_id.zfill(8)}"
-            try:
-                return Compound.objects.get(reg_number__iexact=ncl_id)
-            except Compound.DoesNotExist:
-                pass
-
-        # Try extracting number from NCL-XXXXX pattern
-        match = re.match(r'NCL-?(\d+)', compound_id, re.IGNORECASE)
-        if match:
-            number = match.group(1)
-            ncl_id = f"NCL-{number.zfill(8)}"
-            try:
-                return Compound.objects.get(reg_number__iexact=ncl_id)
-            except Compound.DoesNotExist:
-                pass
-
-        return None
+        from compounds.utils import resolve_compound
+        return resolve_compound(compound_id)
 
 
 class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):

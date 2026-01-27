@@ -327,21 +327,10 @@ class DataSeriesCreateSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         # Try to match compound by name if not provided
         if not validated_data.get('compound') and validated_data.get('compound_name'):
-            from compounds.registry.models import Compound
-            import re
-            compound_name = validated_data['compound_name']
-
-            # Parse NCL-XXXXXXXX format to extract reg_number
-            # formatted_id is a @cached_property, not a DB field, so we must filter by reg_number
-            match = re.match(r'^NCL-0*(\d+)$', compound_name, re.IGNORECASE)
-            if match:
-                try:
-                    reg_number = int(match.group(1))
-                    compound = Compound.objects.filter(reg_number=reg_number).first()
-                    if compound:
-                        validated_data['compound'] = compound
-                except ValueError:
-                    pass
+            from compounds.utils import resolve_compound
+            compound = resolve_compound(validated_data['compound_name'])
+            if compound:
+                validated_data['compound'] = compound
 
         # Inherit dilution_series from protocol if not explicitly provided
         if not validated_data.get('dilution_series'):
