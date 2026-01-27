@@ -9,3 +9,4 @@ export { FreeRImportDialog } from "./freer-import-dialog";
 export { MemberProjectRow } from "./member-project-row";
 export { SmilesView } from "./smiles-view";
 export { PanddaExportDialog } from "./pandda-export-dialog";
+export { VirtualizedMemberProjectsTable } from "./virtualized-member-projects-table";

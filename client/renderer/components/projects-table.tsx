@@ -34,7 +34,7 @@ import {
 import { alpha } from "@mui/material/styles";
 import { useApi } from "../api";
 import { apiFetch } from "../api-fetch";
-import { Project, ProjectTag } from "../types/models";
+import { Project } from "../types/models";
 import { shortDate } from "../pipes";
 import { useDeleteDialog } from "../providers/delete-dialog";
 import { useSet } from "../hooks";
@@ -42,6 +42,7 @@ import SearchField from "./search-field";
 import { usePopcorn } from "../providers/popcorn-provider";
 import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
+import { ProjectTagChips } from "./project-tag-chips";
 
 // Type for campaign info returned from API
 interface CampaignInfo {
@@ -82,100 +83,6 @@ function useProjectCampaigns(projectIds: number[]) {
   );
   return data || {};
 }
-
-// Component to display project tag chips
-const ProjectTagChips = React.memo(
-  ({
-    project,
-    maxVisible = 3,
-    size = "small" as "small" | "medium",
-  }: {
-    project: Project;
-    maxVisible?: number;
-    size?: "small" | "medium";
-  }) => {
-    // Handle both old format (number[]) and new format (ProjectTag[])
-    const projectTagsData = Array.isArray(project.tags)
-      ? project.tags.filter(
-          (tag): tag is ProjectTag => typeof tag === "object" && tag !== null
-        )
-      : [];
-
-    if (projectTagsData.length === 0) {
-      // Return empty container to maintain consistent layout
-      return (
-        <Box
-          sx={{
-            minHeight: size === "small" ? 20 : 24,
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
-          <Typography
-            variant="caption"
-            color="text.disabled"
-            sx={{ fontSize: size === "small" ? "0.65rem" : "0.7rem" }}
-          >
-            No tags
-          </Typography>
-        </Box>
-      );
-    }
-
-    const visibleTags = projectTagsData.slice(0, maxVisible);
-    const hiddenCount = projectTagsData.length - maxVisible;
-
-    return (
-      <Box
-        sx={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: 0.5,
-          mt: size === "small" ? 0.5 : 1,
-          minHeight: size === "small" ? 20 : 24,
-        }}
-      >
-        {visibleTags.map((tag) => (
-          <Chip
-            key={tag.id}
-            label={tag.text}
-            size={size}
-            variant="outlined"
-            sx={{
-              height: size === "small" ? 20 : 24,
-              fontSize: size === "small" ? "0.7rem" : "0.75rem",
-              bgcolor: "primary.50",
-              borderColor: "primary.200",
-              color: "primary.700",
-              fontWeight: 500,
-              "&:hover": {
-                bgcolor: "primary.100",
-                borderColor: "primary.300",
-              },
-            }}
-          />
-        ))}
-        {hiddenCount > 0 && (
-          <Chip
-            label={`+${hiddenCount}`}
-            size={size}
-            variant="outlined"
-            sx={{
-              height: size === "small" ? 20 : 24,
-              fontSize: size === "small" ? "0.7rem" : "0.75rem",
-              bgcolor: "grey.100",
-              borderColor: "grey.300",
-              color: "grey.600",
-              fontWeight: 500,
-            }}
-          />
-        )}
-      </Box>
-    );
-  }
-);
-
-ProjectTagChips.displayName = "ProjectTagChips";
 
 // Memoized ProjectCard component for performance
 const ProjectCard = React.memo(
@@ -291,7 +198,7 @@ const ProjectCard = React.memo(
           </Stack>
 
           {/* Project Tags */}
-          <ProjectTagChips project={project} maxVisible={2} size="small" />
+          <ProjectTagChips tags={project.tags} maxVisible={2} size="small" />
 
           <Stack
             direction="row"
@@ -642,7 +549,7 @@ export default function ProjectsTable() {
         key: "tags",
         label: "Tags",
         render: (_, project) => (
-          <ProjectTagChips project={project} maxVisible={3} size="small" />
+          <ProjectTagChips tags={project.tags} maxVisible={3} size="small" />
         ),
       },
       {
