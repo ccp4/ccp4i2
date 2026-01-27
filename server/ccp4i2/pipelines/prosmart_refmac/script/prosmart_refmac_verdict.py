@@ -6,7 +6,7 @@ from lxml import etree
 import os
 import sys
 old_sys_path = sys.path.copy()
-sys.path.append(os.environ["CCP4"], "share", "jscofe")
+sys.path.append(os.path.join(os.environ["CCP4"], "share", "jscofe"))
 from pycofe.verdicts import verdict_refmac
 sys.path = old_sys_path
 
