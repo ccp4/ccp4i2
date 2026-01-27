@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Box,
   Paper,
@@ -114,6 +114,7 @@ function CompactTable({
 }) {
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
+  const topScrollRef = useRef<HTMLDivElement>(null);
 
   // Modal state
   const [modalOpen, setModalOpen] = useState(false);
@@ -128,6 +129,63 @@ function CompactTable({
 
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
+
+  // Track horizontal scroll position to show/hide scroll shadow
+  const [canScrollRight, setCanScrollRight] = useState(true);
+  // Track table width for top scrollbar
+  const [tableScrollWidth, setTableScrollWidth] = useState(0);
+
+  const updateScrollShadow = useCallback(() => {
+    const el = parentRef.current;
+    if (el) {
+      const hasMoreRight = el.scrollLeft < el.scrollWidth - el.clientWidth - 1;
+      setCanScrollRight(hasMoreRight);
+      setTableScrollWidth(el.scrollWidth);
+    }
+  }, []);
+
+  // Sync horizontal scroll between top scrollbar and table
+  const isSyncingScroll = useRef(false);
+
+  const handleTopScroll = useCallback(() => {
+    if (isSyncingScroll.current) return;
+    const topEl = topScrollRef.current;
+    const tableEl = parentRef.current;
+    if (topEl && tableEl) {
+      isSyncingScroll.current = true;
+      tableEl.scrollLeft = topEl.scrollLeft;
+      requestAnimationFrame(() => {
+        isSyncingScroll.current = false;
+      });
+    }
+  }, []);
+
+  const handleTableScroll = useCallback(() => {
+    if (isSyncingScroll.current) return;
+    const topEl = topScrollRef.current;
+    const tableEl = parentRef.current;
+    if (topEl && tableEl) {
+      isSyncingScroll.current = true;
+      topEl.scrollLeft = tableEl.scrollLeft;
+      requestAnimationFrame(() => {
+        isSyncingScroll.current = false;
+      });
+    }
+    updateScrollShadow();
+  }, [updateScrollShadow]);
+
+  useEffect(() => {
+    const el = parentRef.current;
+    if (el) {
+      updateScrollShadow();
+      el.addEventListener('scroll', handleTableScroll);
+      window.addEventListener('resize', updateScrollShadow);
+      return () => {
+        el.removeEventListener('scroll', handleTableScroll);
+        window.removeEventListener('resize', updateScrollShadow);
+      };
+    }
+  }, [handleTableScroll, updateScrollShadow]);
 
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
@@ -187,11 +245,65 @@ function CompactTable({
         </Button>
       </Box>
 
-      <TableContainer
-        ref={parentRef}
-        sx={{ maxHeight: 600, overflow: 'auto' }}
-      >
-        <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
+      <Box sx={{ position: 'relative' }}>
+        {/* Top horizontal scrollbar - synced with table */}
+        {tableScrollWidth > 0 && (
+          <Box
+            ref={topScrollRef}
+            onScroll={handleTopScroll}
+            sx={{
+              overflowX: 'auto',
+              overflowY: 'hidden',
+              mb: 1,
+              // Style the scrollbar to be more visible
+              '&::-webkit-scrollbar': {
+                height: 10,
+              },
+              '&::-webkit-scrollbar-track': {
+                bgcolor: 'grey.100',
+                borderRadius: 1,
+              },
+              '&::-webkit-scrollbar-thumb': {
+                bgcolor: 'grey.400',
+                borderRadius: 1,
+                '&:hover': {
+                  bgcolor: 'grey.500',
+                },
+              },
+            }}
+          >
+            {/* Invisible content to create scroll width */}
+            <Box sx={{ width: tableScrollWidth, height: 1 }} />
+          </Box>
+        )}
+        {/* Right scroll shadow indicator */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: tableScrollWidth > 0 ? 44 : 0, // Account for top scrollbar
+            right: 0,
+            bottom: 0,
+            width: 40,
+            background: 'linear-gradient(to right, transparent, rgba(0,0,0,0.08))',
+            pointerEvents: 'none',
+            zIndex: 2,
+            opacity: canScrollRight ? 1 : 0,
+            transition: 'opacity 0.2s ease',
+          }}
+        />
+        <TableContainer
+          ref={parentRef}
+          sx={{ maxHeight: 600, overflow: 'auto' }}
+        >
+          {/* Calculate min width: 3 fixed columns (320px) + protocol columns (100px each) */}
+          <Table
+          stickyHeader
+          size="small"
+          sx={{
+            tableLayout: 'fixed',
+            minWidth: 320 + protocols.length * aggregations.length * 100,
+          }}
+        >
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
@@ -350,6 +462,7 @@ function CompactTable({
           </TableBody>
         </Table>
       </TableContainer>
+      </Box>
 
       {/* Data series detail modal */}
       {selectedCompound && selectedProtocol && (

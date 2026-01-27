@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import {
   Box,
   Paper,
@@ -105,6 +105,20 @@ export function PredicateBuilder({
   // Track initialization state
   const [isInitialized, setIsInitialized] = useState(false);
   const hasRunInitialQuery = useRef(false);
+  const hasStartedInit = useRef(false);
+
+  // Memoize initial values to prevent infinite loops from array reference changes
+  const memoizedInitialTargetId = useMemo(() => initialTargetId, [initialTargetId]);
+  const memoizedInitialTargetNames = useMemo(
+    () => initialTargetNames,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [initialTargetNames?.join(',')]
+  );
+  const memoizedInitialProtocolNames = useMemo(
+    () => initialProtocolNames,
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [initialProtocolNames?.join(',')]
+  );
 
   // Check if we have URL params that should trigger auto-query
   const hasUrlParams = !!(initialTargetId || initialTargetNames?.length || initialProtocolNames?.length || initialCompoundSearch);
@@ -147,22 +161,26 @@ export function PredicateBuilder({
 
   // Load initial targets and protocols if URL params provided
   useEffect(() => {
+    // Prevent re-running initialization
+    if (hasStartedInit.current) return;
+    hasStartedInit.current = true;
+
     const initializeSelections = async () => {
       const promises: Promise<void>[] = [];
 
       // Load targets by ID (legacy) or by names
-      if (initialTargetId || (initialTargetNames && initialTargetNames.length > 0)) {
+      if (memoizedInitialTargetId || (memoizedInitialTargetNames && memoizedInitialTargetNames.length > 0)) {
         promises.push(
           fetchTargets().then((targets) => {
             setTargetOptions(targets); // Also populate options
-            if (initialTargetId) {
-              const target = targets.find((t) => t.id === initialTargetId);
+            if (memoizedInitialTargetId) {
+              const target = targets.find((t) => t.id === memoizedInitialTargetId);
               if (target) {
                 setSelectedTargets([target]);
               }
-            } else if (initialTargetNames) {
+            } else if (memoizedInitialTargetNames) {
               const matchedTargets = targets.filter((t) =>
-                initialTargetNames.some((name) => t.name.toLowerCase() === name.toLowerCase())
+                memoizedInitialTargetNames.some((name) => t.name.toLowerCase() === name.toLowerCase())
               );
               if (matchedTargets.length > 0) {
                 setSelectedTargets(matchedTargets);
@@ -173,12 +191,12 @@ export function PredicateBuilder({
       }
 
       // Load protocols by names
-      if (initialProtocolNames && initialProtocolNames.length > 0) {
+      if (memoizedInitialProtocolNames && memoizedInitialProtocolNames.length > 0) {
         promises.push(
           fetchProtocols({}).then((protocols) => {
             setProtocolOptions(protocols); // Also populate options
             const matchedProtocols = protocols.filter((p) =>
-              initialProtocolNames.some((name) => p.name.toLowerCase() === name.toLowerCase())
+              memoizedInitialProtocolNames.some((name) => p.name.toLowerCase() === name.toLowerCase())
             );
             if (matchedProtocols.length > 0) {
               setSelectedProtocols(matchedProtocols);
@@ -192,7 +210,7 @@ export function PredicateBuilder({
     };
 
     initializeSelections();
-  }, [initialTargetId, initialTargetNames, initialProtocolNames]);
+  }, [memoizedInitialTargetId, memoizedInitialTargetNames, memoizedInitialProtocolNames]);
 
   // Auto-run query once if URL params were provided
   useEffect(() => {
