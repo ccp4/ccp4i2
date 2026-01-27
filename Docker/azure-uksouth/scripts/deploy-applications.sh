@@ -255,15 +255,54 @@ if [ $? -eq 0 ]; then
       --query properties.outputs.webUrl.value \
       --output tsv)
     
+    # Bind custom domain if configured
+    if [ -n "$CUSTOM_DOMAIN" ]; then
+        echo -e "${YELLOW}🌐 Binding custom domain: $CUSTOM_DOMAIN${NC}"
+
+        # Check if hostname is already added
+        EXISTING_HOSTNAME=$(az containerapp hostname list \
+            --name ccp4i2-bicep-web \
+            --resource-group "$RESOURCE_GROUP" \
+            --query "[?name=='$CUSTOM_DOMAIN'].name" \
+            -o tsv 2>/dev/null)
+
+        if [ -z "$EXISTING_HOSTNAME" ]; then
+            echo -e "${BLUE}📝 Adding hostname to container app...${NC}"
+            az containerapp hostname add \
+                --name ccp4i2-bicep-web \
+                --resource-group "$RESOURCE_GROUP" \
+                --hostname "$CUSTOM_DOMAIN" 2>/dev/null || true
+        fi
+
+        # Bind the hostname with managed certificate
+        echo -e "${BLUE}🔒 Binding managed certificate...${NC}"
+        az containerapp hostname bind \
+            --name ccp4i2-bicep-web \
+            --resource-group "$RESOURCE_GROUP" \
+            --hostname "$CUSTOM_DOMAIN" \
+            --environment ccp4i2-bicep-env-uk \
+            --validation-method CNAME 2>/dev/null
+
+        if [ $? -eq 0 ]; then
+            echo -e "${GREEN}✅ Custom domain bound: https://$CUSTOM_DOMAIN${NC}"
+        else
+            echo -e "${YELLOW}⚠️  Custom domain binding may need manual verification${NC}"
+            echo -e "${YELLOW}   Run: az containerapp hostname list --name ccp4i2-bicep-web --resource-group $RESOURCE_GROUP${NC}"
+        fi
+    fi
+
     echo -e "${GREEN}🎉 Deployment completed successfully!${NC}"
     echo -e "${GREEN}🔒 All services are running in private VNet with no public endpoints${NC}"
     echo -e "${YELLOW}📝 Application URLs (external access via Container Apps ingress):${NC}"
     echo "🌐 Web App: $WEB_URL"
+    if [ -n "$CUSTOM_DOMAIN" ]; then
+        echo "🌐 Custom Domain: https://$CUSTOM_DOMAIN"
+    fi
     echo "🔧 Server API: $SERVER_URL"
     echo ""
     echo -e "${YELLOW}🔐 Security Features Active:${NC}"
     echo "✅ PostgreSQL: Private endpoint only"
-    echo "✅ Storage Account: Private endpoint only"  
+    echo "✅ Storage Account: Private endpoint only"
     echo "✅ Key Vault: Private endpoint only"
     echo "✅ Container Registry: Private endpoint only"
     echo "✅ Container Apps: VNet integrated"
