@@ -1,12 +1,13 @@
-import os
-import json
-from typing import List, Dict, Any, Optional, Type, Tuple
-from pathlib import Path
-
-import sys
-import subprocess
 import argparse
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple, Type
 
+from .. import I2_TOP
+from .task_manager.defxml_lookup import defXmlPaths
 
 # Module ordering and titles matching legacy CCP4TaskManager
 MODULE_ORDER = [
@@ -113,22 +114,14 @@ class CTaskManager:
     insts = None
 
     def __init__(self):
-        self.task_manager_dir = Path(__file__).parent / "task_manager"
-        defxml_path = self.task_manager_dir / "defxml_lookup.json"
-        plugin_path = self.task_manager_dir / "plugin_lookup.json"
-        task_module_path = self.task_manager_dir / "task_module_map.json"
-        task_metadata_path = self.task_manager_dir / "task_metadata.json"
+        task_manager_dir = Path(__file__).parent / "task_manager"
+        plugin_path = task_manager_dir / "plugin_lookup.json"
+        task_module_path = task_manager_dir / "task_module_map.json"
+        task_metadata_path = task_manager_dir / "task_metadata.json"
 
-        self.defxml_lookup: Dict[str, str] = {}
         self.plugin_lookup: Dict[str, Dict[str, Any]] = {}
         self.task_module_map: Dict[str, str] = {}
         self.task_metadata: Dict[str, Dict[str, Any]] = {}
-
-        try:
-            with defxml_path.open(encoding="utf-8") as f:
-                self.defxml_lookup = json.load(f)
-        except Exception as e:
-            print(f"Error loading defxml_lookup.json: {e}")
 
         # Load plugin_lookup.json (for backward compatibility)
         try:
@@ -216,24 +209,9 @@ class CTaskManager:
         Returns:
             Path to the .def.xml file if found, None otherwise
         """
-        # CRITICAL: Paths in defxml_lookup.json are relative to the task_manager directory
-        # (where defxml_lookup.py is located), NOT relative to CCP4I2_ROOT or CWD.
-        #
-        # The defxml_lookup.py script does:
-        #   script_dir = os.path.dirname(os.path.abspath(__file__))  # core/task_manager/
-        #   rel_path = os.path.relpath(file_path, script_dir)
-        #
-        # So a path like "../../pipelines/shelx/script/shelx.def.xml" means:
-        #   - Start from core/task_manager/
-        #   - Go up two levels to project root
-        #   - Then pipelines/shelx/script/shelx.def.xml
-        #
-        # Therefore, we resolve relative to self.task_manager_dir (which is rooted to
-        # __file__, making it CWD-independent)
-        rel_path = self.defxml_lookup.get(task_name)
+        rel_path = defXmlPaths.get(task_name)  # relative to I2_TOP
         if rel_path:
-            abs_path = self.task_manager_dir / rel_path
-            abs_path = abs_path.resolve()  # Resolve any .. in the path
+            abs_path = (I2_TOP / rel_path).resolve()
             if abs_path.exists():
                 return abs_path
         return None
@@ -565,12 +543,9 @@ def main():
 
     if args.rebuild:
         dir_path = os.path.dirname(os.path.abspath(__file__))
-        defxml_script = os.path.join(dir_path, "task_manager", "defxml_lookup.py")
         plugin_script = os.path.join(dir_path, "task_manager", "plugin_lookup.py")
         report_script = os.path.join(dir_path, "task_manager", "report_lookup.py")
 
-        print("Regenerating defxml_lookup.json...")
-        subprocess.run([sys.executable, defxml_script], check=True)
         print("Regenerating plugin_lookup.json and plugin_registry.py...")
         subprocess.run([sys.executable, plugin_script], check=True)
         print("Regenerating report_lookup.json and report_registry.py...")
