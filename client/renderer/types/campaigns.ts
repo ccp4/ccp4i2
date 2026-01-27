@@ -146,15 +146,30 @@ export interface BatchFileItem {
 }
 
 /**
- * Regex pattern for extracting metadata from dataset filenames.
- * Expected format: visit_crystal_NCL-XXXXXXXX_processing.mtz
- * Example: mx12345-1_xtal1_NCL-00012345_autoproc.mtz
+ * Regex pattern for extracting NCL ID from dataset filenames.
+ * Case-insensitive, matches NCL-XXXXX or NCL_XXXXX anywhere in the string.
+ * Accepts variable-length numbers (1-8 digits), with or without zero-padding.
+ *
+ * Examples that match:
+ * - dls12092024_x0203_NCL-00028921_xia_3dii
+ * - dls041225_CDK4D1_12_NCL-00030882_AutoProcST
+ * - mx12345-1_xtal1_ncl-28921_autoproc.mtz
+ * - test_NCL_12345_data
+ */
+export const NCL_ID_PATTERN = /ncl[-_](\d{1,8})/i;
+
+/**
+ * Legacy strict pattern for backwards compatibility.
+ * Only matches the original expected format.
+ * @deprecated Use NCL_ID_PATTERN for more flexible matching
  */
 export const DATASET_FILENAME_PATTERN =
   /^(?<visit>[^_]+)_(?<crystal>[^_]+)_NCL[-_](?<nclId>\d{8})_(?<processing>.+)$/;
 
 /**
- * Parse a filename to extract campaign metadata
+ * Parse a filename to extract campaign metadata.
+ * The NCL ID is the critical piece - extracted case-insensitively from anywhere in the filename.
+ * Other fields (visit, crystal, processing) are extracted on a best-effort basis.
  */
 export function parseDatasetFilename(filename: string): {
   visit?: string;
@@ -164,18 +179,36 @@ export function parseDatasetFilename(filename: string): {
 } {
   // Remove extension
   const baseName = filename.replace(/\.[^.]+$/, "");
-  const match = DATASET_FILENAME_PATTERN.exec(baseName);
 
-  if (match?.groups) {
-    return {
-      visit: match.groups.visit,
-      crystal: match.groups.crystal,
-      nclId: match.groups.nclId,
-      processing: match.groups.processing,
-    };
+  // Extract NCL ID - this is the critical piece (case-insensitive, anywhere in string)
+  const nclMatch = NCL_ID_PATTERN.exec(baseName);
+  const nclId = nclMatch ? nclMatch[1] : undefined;
+
+  if (!nclId) {
+    return {};
   }
 
-  return {};
+  // Try to extract other metadata by splitting around the NCL pattern
+  const nclStart = baseName.toLowerCase().indexOf("ncl");
+  const beforeNcl = baseName.substring(0, nclStart).replace(/_$/, ""); // Remove trailing underscore
+  // Remove the NCL-XXXXX part and any following underscore
+  const afterNclMatch = baseName.substring(nclStart).match(/^ncl[-_]\d+_?(.*)/i);
+  const afterNcl = afterNclMatch ? afterNclMatch[1] : "";
+
+  // Before NCL: split by underscore, first is visit, rest is crystal
+  const beforeParts = beforeNcl.split("_").filter(Boolean);
+  const visit = beforeParts[0] || undefined;
+  const crystal = beforeParts.slice(1).join("_") || undefined;
+
+  // After NCL: everything remaining is processing
+  const processing = afterNcl || undefined;
+
+  return {
+    visit,
+    crystal,
+    nclId,
+    processing,
+  };
 }
 
 // =============================================================================
