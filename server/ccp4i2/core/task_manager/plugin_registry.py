@@ -404,6 +404,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'pointless_reindexToMatch':
         from ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch import pointless_reindexToMatch
         return pointless_reindexToMatch
+    if plugin_name == 'privateer':
+        from ccp4i2.wrappers.privateer.script.privateer_wrapper import privateer
+        return privateer
     if plugin_name == 'prosmart':
         from ccp4i2.wrappers.prosmart.script.prosmart import prosmart
         return prosmart
@@ -622,6 +625,7 @@ PLUGIN_NAMES: set[str] = {
     'pisapipe',
     'pointless',
     'pointless_reindexToMatch',
+    'privateer',
     'prosmart',
     'prosmart_refmac',
     'pyphaser_mr',
