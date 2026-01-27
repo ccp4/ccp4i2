@@ -119,7 +119,7 @@ class CTaskManager:
         task_module_path = self.task_manager_dir / "task_module_map.json"
         task_metadata_path = self.task_manager_dir / "task_metadata.json"
 
-        self.defxml_lookup: List[Dict[str, str]] = []
+        self.defxml_lookup: Dict[str, str] = {}
         self.plugin_lookup: Dict[str, Dict[str, Any]] = {}
         self.task_module_map: Dict[str, str] = {}
         self.task_metadata: Dict[str, Dict[str, Any]] = {}
