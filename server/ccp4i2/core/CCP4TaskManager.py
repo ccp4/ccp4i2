@@ -113,35 +113,33 @@ class CTaskManager:
     insts = None
 
     def __init__(self):
-        dir_path = os.path.dirname(os.path.abspath(__file__))
-        self.task_manager_dir = os.path.join(dir_path, "task_manager")
-        defxml_path = os.path.join(self.task_manager_dir, "defxml_lookup.json")
-        plugin_path = os.path.join(self.task_manager_dir, "plugin_lookup.json")
-        task_module_path = os.path.join(self.task_manager_dir, "task_module_map.json")
-        task_metadata_path = os.path.join(self.task_manager_dir, "task_metadata.json")
+        self.task_manager_dir = Path(__file__).parent / "task_manager"
+        defxml_path = self.task_manager_dir / "defxml_lookup.json"
+        plugin_path = self.task_manager_dir / "plugin_lookup.json"
+        task_module_path = self.task_manager_dir / "task_module_map.json"
+        task_metadata_path = self.task_manager_dir / "task_metadata.json"
 
         self.defxml_lookup: List[Dict[str, str]] = []
         self.plugin_lookup: Dict[str, Dict[str, Any]] = {}
         self.task_module_map: Dict[str, str] = {}
         self.task_metadata: Dict[str, Dict[str, Any]] = {}
 
-        # Load defxml_lookup.json
         try:
-            with open(defxml_path, "r") as f:
+            with defxml_path.open(encoding="utf-8") as f:
                 self.defxml_lookup = json.load(f)
         except Exception as e:
             print(f"Error loading defxml_lookup.json: {e}")
 
         # Load plugin_lookup.json (for backward compatibility)
         try:
-            with open(plugin_path, "r") as f:
+            with plugin_path.open(encoding="utf-8") as f:
                 self.plugin_lookup = json.load(f)
         except Exception as e:
             print(f"Error loading plugin_lookup.json: {e}")
 
         # Load task_module_map.json (task-to-folder mapping for UI)
         try:
-            with open(task_module_path, "r") as f:
+            with task_module_path.open(encoding="utf-8") as f:
                 data = json.load(f)
                 # Remove _comment key if present
                 self.task_module_map = {k: v for k, v in data.items() if not k.startswith('_')}
@@ -150,7 +148,7 @@ class CTaskManager:
 
         # Load task_metadata.json (UI display metadata: titles, descriptions, etc.)
         try:
-            with open(task_metadata_path, "r") as f:
+            with task_metadata_path.open(encoding="utf-8") as f:
                 data = json.load(f)
                 # Remove _comment/_todo keys if present
                 self.task_metadata = {k: v for k, v in data.items() if not k.startswith('_')}
@@ -217,44 +215,27 @@ class CTaskManager:
 
         Returns:
             Path to the .def.xml file if found, None otherwise
-
-        Note:
-            Version checking is intentionally disabled. Analysis of defxml_lookup.json shows:
-            - 175/176 plugins have empty string version
-            - 1 plugin has version "0.0"
-            - Only 1 plugin (lorestr_i2) has multiple .def.xml files (both same version)
-            - No plugins have actual version variants (e.g., 1.0 vs 2.0)
-            Therefore, matching by name only is both simpler and sufficient.
         """
-        for entry in self.defxml_lookup:
-            plugin_name = entry.get("pluginName", "")
-
-            # Match by plugin name only (version checking is unnecessary - see docstring)
-            if plugin_name == task_name:
-                # Get relative path from entry
-                rel_path = entry.get("file_path", "")
-
-                if rel_path:
-                    # CRITICAL: Paths in defxml_lookup.json are relative to the task_manager directory
-                    # (where defxml_lookup.py is located), NOT relative to CCP4I2_ROOT or CWD.
-                    #
-                    # The defxml_lookup.py script does:
-                    #   script_dir = os.path.dirname(os.path.abspath(__file__))  # core/task_manager/
-                    #   rel_path = os.path.relpath(file_path, script_dir)
-                    #
-                    # So a path like "../../pipelines/shelx/script/shelx.def.xml" means:
-                    #   - Start from core/task_manager/
-                    #   - Go up two levels to project root
-                    #   - Then pipelines/shelx/script/shelx.def.xml
-                    #
-                    # Therefore, we resolve relative to self.task_manager_dir (which is rooted to
-                    # __file__, making it CWD-independent)
-                    abs_path = Path(self.task_manager_dir) / rel_path
-                    abs_path = abs_path.resolve()  # Resolve any .. in the path
-
-                    if abs_path.exists():
-                        return abs_path
-
+        # CRITICAL: Paths in defxml_lookup.json are relative to the task_manager directory
+        # (where defxml_lookup.py is located), NOT relative to CCP4I2_ROOT or CWD.
+        #
+        # The defxml_lookup.py script does:
+        #   script_dir = os.path.dirname(os.path.abspath(__file__))  # core/task_manager/
+        #   rel_path = os.path.relpath(file_path, script_dir)
+        #
+        # So a path like "../../pipelines/shelx/script/shelx.def.xml" means:
+        #   - Start from core/task_manager/
+        #   - Go up two levels to project root
+        #   - Then pipelines/shelx/script/shelx.def.xml
+        #
+        # Therefore, we resolve relative to self.task_manager_dir (which is rooted to
+        # __file__, making it CWD-independent)
+        rel_path = self.defxml_lookup.get(task_name)
+        if rel_path:
+            abs_path = self.task_manager_dir / rel_path
+            abs_path = abs_path.resolve()  # Resolve any .. in the path
+            if abs_path.exists():
+                return abs_path
         return None
 
     def getReportClass(self, name: str, version: Optional[str] = None) -> Optional[Type]:
