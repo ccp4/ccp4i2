@@ -127,7 +127,7 @@ export default function RequireAuth({ children }: RequireAuthProps) {
       } else {
         // Standard redirect flow for normal browser usage
         console.log("[Auth] Running in browser, using redirect login");
-        instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/" });
+        instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/auth/callback" });
       }
       return;
     }

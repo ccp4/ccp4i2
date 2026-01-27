@@ -684,6 +684,35 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
               mountPath: '/mnt/projects'
             }
           ])
+          probes: [
+            {
+              type: 'Liveness'
+              httpGet: {
+                path: '/api/health'
+                port: 3000
+              }
+              periodSeconds: 30
+              failureThreshold: 3
+            }
+            {
+              type: 'Readiness'
+              httpGet: {
+                path: '/api/health'
+                port: 3000
+              }
+              periodSeconds: 10
+              failureThreshold: 3
+            }
+            {
+              type: 'Startup'
+              httpGet: {
+                path: '/api/health'
+                port: 3000
+              }
+              periodSeconds: 10
+              failureThreshold: 30  // Allow up to 5 minutes for startup
+            }
+          ]
         }
       ]
       scale: {

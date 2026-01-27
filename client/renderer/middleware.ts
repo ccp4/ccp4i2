@@ -2,22 +2,40 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Middleware to add Cross-Origin headers for static files.
+ * Next.js Middleware for authentication gating and Cross-Origin headers.
  *
- * Next.js's headers() config in next.config.ts doesn't apply to files in the
- * public/ directory - they're served directly without going through routing.
- * This middleware intercepts requests and adds the necessary headers.
+ * Authentication (when NEXT_PUBLIC_REQUIRE_AUTH=true):
+ * - Checks for auth-session cookie on all requests
+ * - Unauthenticated users are redirected to /auth/login
+ * - /auth/login triggers MSAL Azure AD authentication
+ * - After login, auth-provider sets the cookie
  *
- * Key headers:
- * - Cross-Origin-Resource-Policy: cross-origin
- *   Allows resources to be loaded from pages with COEP: require-corp
- *   (needed for Moorhen's SharedArrayBuffer support)
+ * This ensures NO application code loads for unauthenticated users,
+ * reducing attack surface and preventing information disclosure.
+ *
+ * Cross-Origin headers (for Moorhen):
+ * - Adds CORP headers for static files
+ * - Adds COEP/COOP headers for Moorhen pages (SharedArrayBuffer support)
  */
-export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
 
-  // Check if this is a static file that needs CORP headers
-  const isStaticFile =
+// Paths that don't require authentication
+const AUTH_EXEMPT_PATHS = [
+  "/api/health", // Health check for Azure Container Apps probes
+  "/api/auth/", // Auth session API (cookie management)
+  "/auth/login", // Login page that triggers MSAL
+  "/auth/callback", // MSAL redirect callback (completes auth flow)
+  "/_next", // Next.js internals (static assets, webpack HMR)
+  "/favicon.ico",
+];
+
+// Check if path is exempt from authentication
+function isAuthExempt(pathname: string): boolean {
+  return AUTH_EXEMPT_PATHS.some((path) => pathname.startsWith(path));
+}
+
+// Check if this is a static file request
+function isStaticFile(pathname: string): boolean {
+  return (
     pathname.endsWith(".js") ||
     pathname.endsWith(".wasm") ||
     pathname.endsWith(".css") ||
@@ -28,18 +46,36 @@ export function middleware(request: NextRequest) {
     pathname.endsWith(".woff2") ||
     pathname.endsWith(".data") ||
     pathname.endsWith(".gz") ||
-    pathname.endsWith(".html");
+    pathname.endsWith(".html")
+  );
+}
 
-  // For static files, add CORP header
-  if (isStaticFile) {
+export function middleware(request: NextRequest) {
+  const { pathname } = request.nextUrl;
+
+  // Check if authentication is required (set by environment variable)
+  const requireAuth = process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true";
+
+  // Authentication check (if enabled)
+  if (requireAuth && !isAuthExempt(pathname) && !isStaticFile(pathname)) {
+    const authSession = request.cookies.get("auth-session");
+
+    if (!authSession) {
+      // Redirect to login page with return URL
+      const loginUrl = new URL("/auth/login", request.url);
+      loginUrl.searchParams.set("returnUrl", pathname + request.nextUrl.search);
+      return NextResponse.redirect(loginUrl);
+    }
+  }
+
+  // Cross-Origin headers for static files (needed for Moorhen)
+  if (isStaticFile(pathname)) {
     const response = NextResponse.next();
     response.headers.set("Cross-Origin-Resource-Policy", "cross-origin");
     return response;
   }
 
-  // For Moorhen pages, add full cross-origin isolation headers
-  // require-corp is needed for SharedArrayBuffer in Web Workers
-  // Also add CORP header so this page can be loaded by other COEP pages
+  // Full cross-origin isolation for Moorhen pages (SharedArrayBuffer support)
   if (pathname.startsWith("/ccp4i2/moorhen-page")) {
     const response = NextResponse.next();
     response.headers.set("Cross-Origin-Opener-Policy", "same-origin");
@@ -54,22 +90,7 @@ export function middleware(request: NextRequest) {
 // Configure which paths the middleware runs on
 export const config = {
   matcher: [
-    // Moorhen pages need COEP/COOP/CORP headers
-    "/ccp4i2/moorhen-page",
-    "/ccp4i2/moorhen-page/:path*",
-    // API routes for Moorhen resources
-    "/api/moorhen/:path*",
-    // Static files that need CORP headers (explicit extensions)
-    "/:path*.js",
-    "/:path*.wasm",
-    "/:path*.css",
-    "/:path*.json",
-    "/:path*.png",
-    "/:path*.svg",
-    "/:path*.woff",
-    "/:path*.woff2",
-    "/:path*.data",
-    "/:path*.gz",
-    "/:path*.html",
+    // Match all paths except static assets (which are handled separately)
+    "/((?!_next/static|_next/image).*)",
   ],
 };

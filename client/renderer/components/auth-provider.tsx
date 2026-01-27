@@ -11,13 +11,58 @@ const msalConfig = {
   auth: {
     clientId,
     authority: `https://login.microsoftonline.com/${tenantId}`,
-    // Default to "/" - loginRedirect() in require-auth.tsx overrides this
-    // with the current path so users return to the page they were accessing
-    redirectUri: "/",
+    // Redirect to /auth/callback which is exempt from middleware auth check
+    // This allows the MSAL flow to complete and set the auth-session cookie
+    redirectUri: "/auth/callback",
   },
 };
 
 const pca = new PublicClientApplication(msalConfig);
+
+/**
+ * Set the auth-session cookie via API route.
+ * This cookie allows the middleware to gate requests server-side.
+ */
+async function setAuthSessionCookie(): Promise<void> {
+  try {
+    await fetch("/api/auth/session", {
+      method: "POST",
+      credentials: "include",
+    });
+  } catch (error) {
+    console.error("[AUTH] Failed to set auth session cookie:", error);
+  }
+}
+
+/**
+ * Clear the auth-session cookie via API route.
+ * Called during logout to ensure middleware gates future requests.
+ */
+async function clearAuthSessionCookie(): Promise<void> {
+  try {
+    await fetch("/api/auth/session", {
+      method: "DELETE",
+      credentials: "include",
+    });
+  } catch (error) {
+    console.error("[AUTH] Failed to clear auth session cookie:", error);
+  }
+}
+
+/**
+ * Handle post-login redirect to the original URL.
+ * The return URL is stored in sessionStorage by /auth/login page.
+ */
+function handleReturnUrlRedirect(): void {
+  if (typeof window === "undefined") return;
+
+  const returnUrl = sessionStorage.getItem("auth-return-url");
+  if (returnUrl && returnUrl !== "/" && returnUrl !== window.location.pathname) {
+    sessionStorage.removeItem("auth-return-url");
+    // Use replace to avoid adding to history
+    window.location.replace(returnUrl);
+  }
+}
 
 /**
  * Get the current user's email from MSAL account.
@@ -78,11 +123,27 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         // Handle redirect promises when app loads (for redirect-based auth flows)
         return pca.handleRedirectPromise();
       })
-      .then(() => {
+      .then(async (response) => {
+        // If we have authenticated accounts, ensure the session cookie is set
+        // Note: The /auth/callback page handles redirect completion and cookie setting,
+        // but we also set it here to ensure cookie exists for subsequent page loads
+        if (response && response.account) {
+          console.log("[AUTH] Login redirect completed");
+          // Cookie is set by /auth/callback page, but ensure it's set here too
+          await setAuthSessionCookie();
+        } else if (pca.getAllAccounts().length > 0) {
+          // User already has accounts (session exists), ensure cookie is set
+          await setAuthSessionCookie();
+        }
+
         // Set up the token and email getters for API calls
         setTokenGetter(getApiAccessToken);
         setEmailGetter(getAccountEmail);
-        setLogoutHandler(() => pca.logoutRedirect());
+        // Logout handler clears cookie before MSAL logout
+        setLogoutHandler(async () => {
+          await clearAuthSessionCookie();
+          pca.logoutRedirect();
+        });
         setInitialized(true);
       })
       .catch((error) => {
