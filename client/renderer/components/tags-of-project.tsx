@@ -172,9 +172,14 @@ export const TagsOfProject: React.FC<{
       details?: any
     ) => {
       if (reason === "selectOption" && details?.option) {
-        // Adding a tag
+        // Adding a tag (existing or new via "+ Create" option)
         const addedTag = details.option;
-        if (!selectedTags.find((tag) => tag.text === addedTag.text)) {
+        // Case-insensitive check to prevent duplicates
+        if (
+          !selectedTags.find(
+            (tag) => tag.text.toLowerCase() === addedTag.text.toLowerCase()
+          )
+        ) {
           handleAddTag(addedTag);
         }
       } else if (reason === "removeOption" && details?.option) {
@@ -194,17 +199,14 @@ export const TagsOfProject: React.FC<{
           option.text.toLowerCase().includes(inputValue.toLowerCase())
       );
 
-      // If the input doesn't match any existing tag and isn't empty,
-      // add an option to create a new tag
-      if (
-        inputValue &&
-        !filtered.some(
-          (option) => option.text.toLowerCase() === inputValue.toLowerCase()
-        ) &&
-        !selectedTags.some(
-          (selected) => selected.text.toLowerCase() === inputValue.toLowerCase()
-        )
-      ) {
+      // Add "+ Create new tag" at the bottom when there's input text
+      // and it's not already an exact match for an existing tag or selected tag
+      const inputLower = inputValue.toLowerCase();
+      const exactMatchExists =
+        filtered.some((option) => option.text.toLowerCase() === inputLower) ||
+        selectedTags.some((selected) => selected.text.toLowerCase() === inputLower);
+
+      if (inputValue && !exactMatchExists) {
         filtered.push({
           text: inputValue,
           isNew: true,
@@ -218,7 +220,20 @@ export const TagsOfProject: React.FC<{
 
   // Custom option rendering
   const renderOption = (props: any, option: TagOption) => (
-    <Box component="li" {...props}>
+    <Box
+      component="li"
+      {...props}
+      sx={
+        option.isNew
+          ? {
+              borderTop: "1px solid",
+              borderColor: "divider",
+              color: "primary.main",
+              fontWeight: 500,
+            }
+          : undefined
+      }
+    >
       {option.isNew && <AddIcon sx={{ mr: 1, fontSize: 16 }} />}
       {option.isNew ? `Create "${option.text}"` : option.text}
     </Box>
@@ -281,7 +296,6 @@ export const TagsOfProject: React.FC<{
           renderTags={renderTags}
           loading={isSubmitting}
           disabled={isSubmitting}
-          freeSolo={false}
           selectOnFocus
           clearOnBlur
           handleHomeEndKeys
