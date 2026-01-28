@@ -2,8 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Container, Typography, Box, Chip, Button } from '@mui/material';
-import { Assessment, Science, Description, Upload, Functions, TableChart, Biotech } from '@mui/icons-material';
+import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material';
+import { Assessment, Science, Description, Upload, Functions, TableChart, Biotech, FiberNew } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { useCompoundsApi } from '@/lib/compounds/api';
@@ -15,16 +15,29 @@ export default function AssaysPage() {
   const api = useCompoundsApi();
   const { data: assays, isLoading } = api.get<Assay[]>('assays/');
 
+  // Helper to check if assay is new (created in last 7 days)
+  const isRecentAssay = (createdAt: string | undefined) => {
+    if (!createdAt) return false;
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    return new Date(createdAt) >= sevenDaysAgo;
+  };
+
   const columns: Column<Assay>[] = [
     {
       key: 'data_filename',
       label: 'Data File',
       sortable: true,
       searchable: true,
-      render: (value) => (
+      render: (value, row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Assessment fontSize="small" color="info" />
           <Typography fontWeight={500}>{value || 'No file'}</Typography>
+          {isRecentAssay(row.created_at) && (
+            <Tooltip title="New in the last 7 days">
+              <FiberNew fontSize="small" color="secondary" />
+            </Tooltip>
+          )}
         </Box>
       ),
     },
@@ -33,6 +46,7 @@ export default function AssaysPage() {
       label: 'Protocol',
       sortable: true,
       searchable: true,
+      hiddenOnMobile: true,
       render: (value, row) => (
         <Chip
           icon={<Description fontSize="small" />}
@@ -51,6 +65,7 @@ export default function AssaysPage() {
       label: 'Target',
       sortable: true,
       searchable: true,
+      hiddenOnMobile: true,
       render: (value, row) =>
         value ? (
           <Chip
@@ -72,6 +87,7 @@ export default function AssaysPage() {
       label: 'Series',
       sortable: true,
       width: 80,
+      hiddenOnMobile: true,
       render: (value) =>
         value !== undefined ? (
           <Chip label={value} size="small" color="secondary" variant="outlined" />
@@ -84,6 +100,7 @@ export default function AssaysPage() {
       label: 'Created By',
       searchable: true,
       width: 180,
+      hiddenOnMobile: true,
       render: (value) => value || '-',
     },
     {

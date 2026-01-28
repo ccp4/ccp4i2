@@ -201,6 +201,9 @@ class ProtocolSerializer(serializers.ModelSerializer):
         required=False,
         allow_null=True
     )
+    # List view fields
+    assays_count = serializers.IntegerField(source='assays.count', read_only=True)
+    has_recent_assays = serializers.SerializerMethodField()
 
     class Meta:
         model = Protocol
@@ -213,6 +216,7 @@ class ProtocolSerializer(serializers.ModelSerializer):
             'preferred_dilutions', 'preferred_dilutions_display',
             'created_by', 'created_by_email', 'created_at',
             'comments',
+            'assays_count', 'has_recent_assays',
         ]
         read_only_fields = ['created_by', 'created_at']
 
@@ -226,14 +230,20 @@ class ProtocolSerializer(serializers.ModelSerializer):
             return str(obj.preferred_dilutions)
         return None
 
+    def get_has_recent_assays(self, obj):
+        """Return True if any assays were created in the last 7 days."""
+        from django.utils import timezone
+        from datetime import timedelta
+        seven_days_ago = timezone.now() - timedelta(days=7)
+        return obj.assays.filter(created_at__gte=seven_days_ago).exists()
+
 
 class ProtocolDetailSerializer(ProtocolSerializer):
     """Extended serializer with documents."""
     documents = ProtocolDocumentSerializer(many=True, read_only=True)
-    assays_count = serializers.IntegerField(source='assays.count', read_only=True)
 
     class Meta(ProtocolSerializer.Meta):
-        fields = ProtocolSerializer.Meta.fields + ['documents', 'assays_count']
+        fields = ProtocolSerializer.Meta.fields + ['documents']
 
 
 class AnalysisResultSerializer(serializers.ModelSerializer):

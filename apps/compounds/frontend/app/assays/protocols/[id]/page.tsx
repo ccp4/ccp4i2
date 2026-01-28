@@ -22,8 +22,11 @@ import {
   CircularProgress,
   LinearProgress,
   Tooltip,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from '@mui/material';
-import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart, CheckCircle, Biotech } from '@mui/icons-material';
+import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart, CheckCircle, Biotech, ExpandMore, FiberNew } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -75,6 +78,18 @@ function isAdmeProtocol(analysisMethod: string | undefined): boolean {
   if (!analysisMethod) return false;
   const normalized = analysisMethod.toLowerCase().replace(/-/g, '_');
   return normalized === 'pharmaron_adme' || normalized === 'adme';
+}
+
+// Helper to check if analysis method is table of values
+function isTableOfValuesProtocol(analysisMethod: string | undefined): boolean {
+  if (!analysisMethod) return false;
+  const normalized = analysisMethod.toLowerCase().replace(/-/g, '_');
+  return normalized === 'table_of_values';
+}
+
+// Helper to check if protocol is plate-based (not ADME or table of values)
+function isPlateBasedProtocol(analysisMethod: string | undefined): boolean {
+  return !isAdmeProtocol(analysisMethod) && !isTableOfValuesProtocol(analysisMethod);
 }
 
 export default function ProtocolDetailPage({ params }: PageProps) {
@@ -388,16 +403,29 @@ export default function ProtocolDetailPage({ params }: PageProps) {
     },
   ];
 
+  // Helper to check if assay is new (created in last 7 days)
+  const isRecentAssay = (createdAt: string | undefined) => {
+    if (!createdAt) return false;
+    const sevenDaysAgo = new Date();
+    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
+    return new Date(createdAt) >= sevenDaysAgo;
+  };
+
   const columns: Column<Assay>[] = [
     {
       key: 'data_filename',
       label: 'Data File',
       sortable: true,
       searchable: true,
-      render: (value) => (
+      render: (value, row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Assessment fontSize="small" color="info" />
           <Typography fontWeight={500}>{value || 'No file'}</Typography>
+          {isRecentAssay(row.created_at) && (
+            <Tooltip title="New in the last 7 days">
+              <FiberNew fontSize="small" color="secondary" />
+            </Tooltip>
+          )}
         </Box>
       ),
     },
@@ -406,6 +434,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       label: 'Target',
       sortable: true,
       searchable: true,
+      hiddenOnMobile: true,
       render: (value, row) =>
         value ? (
           <Chip
@@ -427,6 +456,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       label: 'Series',
       sortable: true,
       width: 80,
+      hiddenOnMobile: true,
       render: (value) =>
         value !== undefined ? (
           <Chip label={value} size="small" color="secondary" variant="outlined" />
@@ -439,6 +469,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       label: 'Created By',
       searchable: true,
       width: 180,
+      hiddenOnMobile: true,
       render: (value) => value || '-',
     },
     {
@@ -453,6 +484,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
       key: 'actions',
       label: '',
       width: 50,
+      hiddenOnMobile: true,
       render: (_, row) => (
         <Tooltip title={canContribute ? 'Delete' : 'Requires Contributor or Admin operating level'}>
           <span>
@@ -627,70 +659,96 @@ export default function ProtocolDetailPage({ params }: PageProps) {
               </>
             )}
 
-            {/* Plate Layout Section - only for non-ADME protocols */}
-            {!isAdmeProtocol(protocol.analysis_method) && (
+            {/* Plate Layout Section - only for plate-based protocols (not ADME or table of values) */}
+            {isPlateBasedProtocol(protocol.analysis_method) && (
               <>
                 <Divider sx={{ my: 2 }} />
-                <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-                  <Typography variant="h6">
-                    Plate Layout
-                  </Typography>
-                  <Box sx={{ display: 'flex', gap: 1 }}>
-                    <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                      <span>
+                <Accordion
+                  defaultExpanded={!(protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0)}
+                  sx={{
+                    boxShadow: 'none',
+                    '&:before': { display: 'none' },
+                    bgcolor: 'transparent',
+                  }}
+                >
+                  <AccordionSummary
+                    expandIcon={<ExpandMore />}
+                    sx={{
+                      px: 0,
+                      minHeight: 'auto',
+                      '& .MuiAccordionSummary-content': { my: 1 },
+                    }}
+                  >
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flex: 1 }}>
+                      <Typography variant="h6">
+                        Plate Layout
+                      </Typography>
+                      {protocol.plate_layout_name && (
+                        <Chip
+                          icon={<GridOn />}
+                          label={protocol.plate_layout_name}
+                          color="primary"
+                          variant="outlined"
+                          size="small"
+                        />
+                      )}
+                      {!protocol.plate_layout_config || Object.keys(protocol.plate_layout_config).length === 0 ? (
+                        <Chip
+                          label="Not configured"
+                          color="warning"
+                          variant="outlined"
+                          size="small"
+                        />
+                      ) : null}
+                    </Box>
+                  </AccordionSummary>
+                  <AccordionDetails sx={{ px: 0 }}>
+                    <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                      <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                        <span>
+                          <Button
+                            size="small"
+                            startIcon={<Edit />}
+                            onClick={() => setLayoutSelectOpen(true)}
+                            disabled={!canContribute}
+                          >
+                            {protocol.plate_layout ? 'Change Layout' : 'Select Layout'}
+                          </Button>
+                        </span>
+                      </Tooltip>
+                      {protocol.plate_layout && (
                         <Button
                           size="small"
-                          startIcon={<Edit />}
-                          onClick={() => setLayoutSelectOpen(true)}
-                          disabled={!canContribute}
+                          component={Link}
+                          href={routes.assays.plateLayout(protocol.plate_layout)}
+                          startIcon={<OpenInNew />}
                         >
-                          {protocol.plate_layout ? 'Change Layout' : 'Select Layout'}
+                          View Details
                         </Button>
-                      </span>
-                    </Tooltip>
-                    {protocol.plate_layout && (
-                      <Button
-                        size="small"
-                        component={Link}
-                        href={routes.assays.plateLayout(protocol.plate_layout)}
-                        startIcon={<OpenInNew />}
-                      >
-                        View Details
-                      </Button>
+                      )}
+                    </Box>
+
+                    {protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0 ? (
+                      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <PlatePreview
+                          layout={protocol.plate_layout_config}
+                          width={450}
+                          height={300}
+                        />
+                      </Box>
+                    ) : (
+                      <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
+                        <GridOn sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
+                        <Typography color="text.secondary">
+                          No plate layout configured
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                          Select a plate layout to define control positions, sample regions, and dilution patterns
+                        </Typography>
+                      </Paper>
                     )}
-                  </Box>
-                </Box>
-
-                {protocol.plate_layout_name && (
-                  <Box sx={{ mb: 2 }}>
-                    <Chip
-                      icon={<GridOn />}
-                      label={protocol.plate_layout_name}
-                      color="primary"
-                      variant="outlined"
-                    />
-                  </Box>
-                )}
-
-                {protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0 ? (
-                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    <PlatePreview
-                      layout={protocol.plate_layout_config}
-                      width={450}
-                      height={300}
-                    />
-                  </Box>
-                ) : (
-                  <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
-                    <GridOn sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
-                    <Typography color="text.secondary">
-                      No plate layout configured
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                      Select a plate layout to define control positions, sample regions, and dilution patterns
-                    </Typography>
-                  </Paper>
-                )}
+                  </AccordionDetails>
+                </Accordion>
               </>
             )}
           </>

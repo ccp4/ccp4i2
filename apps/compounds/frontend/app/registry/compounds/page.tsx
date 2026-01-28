@@ -107,6 +107,7 @@ function CompoundsPageContent() {
       sortable: true,
       searchable: true,
       width: 120,
+      hiddenOnMobile: true,
       render: (value, row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <Science fontSize="small" color="action" />
@@ -119,6 +120,7 @@ function CompoundsPageContent() {
       label: 'Supplier',
       sortable: true,
       searchable: true,
+      hiddenOnMobile: true,
       render: (value, row) => value || row.supplier_ref || '-',
     },
     {
@@ -126,6 +128,7 @@ function CompoundsPageContent() {
       label: 'MW',
       sortable: true,
       width: 90,
+      hiddenOnMobile: true,
       render: (value) => value ? value.toFixed(1) : '-',
     },
     {
@@ -133,6 +136,7 @@ function CompoundsPageContent() {
       label: 'Batches',
       sortable: true,
       width: 90,
+      hiddenOnMobile: true,
       render: (value) =>
         value ? (
           <Chip label={value} size="small" variant="outlined" />

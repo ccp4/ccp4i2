@@ -323,6 +323,7 @@ export interface Protocol {
   created_at: string;
   comments: string | null;
   assays_count?: number;
+  has_recent_assays?: boolean;
 }
 
 export interface Assay {

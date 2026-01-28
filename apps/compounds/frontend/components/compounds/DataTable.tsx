@@ -15,6 +15,8 @@ import {
   Typography,
   LinearProgress,
   InputAdornment,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import { Search as SearchIcon } from '@mui/icons-material';
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -26,6 +28,8 @@ export interface Column<T> {
   searchable?: boolean;
   render?: (value: any, row: T) => ReactNode;
   width?: string | number;
+  /** Hide this column on mobile devices (screen width < 600px) */
+  hiddenOnMobile?: boolean;
 }
 
 interface DataTableProps<T> {
@@ -68,6 +72,15 @@ export function DataTable<T extends Record<string, any>>({
   headerAction,
   comfortable = false,
 }: DataTableProps<T>) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  // Filter columns based on mobile visibility
+  const visibleColumns = useMemo(() => {
+    if (!isMobile) return columns;
+    return columns.filter(col => !col.hiddenOnMobile);
+  }, [columns, isMobile]);
+
   // Calculate row height based on comfortable setting if not explicitly provided
   const effectiveRowHeight = estimateRowHeight ?? (comfortable ? COMFORTABLE_ROW_HEIGHT : DENSE_ROW_HEIGHT);
   const cellPadding = comfortable ? 2 : undefined; // MUI spacing units (16px per unit)
@@ -142,6 +155,7 @@ export function DataTable<T extends Record<string, any>>({
     setOrderBy(column);
   };
 
+  // Note: search still works across all columns (including hidden ones)
   const hasSearchableColumns = columns.some((col) => col.searchable) || additionalSearchFields.length > 0;
 
   const virtualItems = rowVirtualizer.getVirtualItems();
@@ -192,7 +206,7 @@ export function DataTable<T extends Record<string, any>>({
         <Table stickyHeader sx={{ tableLayout: 'fixed' }}>
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {visibleColumns.map((column) => (
                 <TableCell
                   key={column.key}
                   sx={{ fontWeight: 600, width: column.width }}
@@ -215,7 +229,7 @@ export function DataTable<T extends Record<string, any>>({
           <TableBody>
             {sortedData.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={columns.length} align="center" sx={{ py: 4 }}>
+                <TableCell colSpan={visibleColumns.length} align="center" sx={{ py: 4 }}>
                   <Typography color="text.secondary">
                     {loading ? 'Loading...' : emptyMessage}
                   </Typography>
@@ -227,7 +241,7 @@ export function DataTable<T extends Record<string, any>>({
                 {virtualItems.length > 0 && virtualItems[0].start > 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={columns.length}
+                      colSpan={visibleColumns.length}
                       sx={{
                         height: virtualItems[0].start,
                         padding: 0,
@@ -254,7 +268,7 @@ export function DataTable<T extends Record<string, any>>({
                           : undefined,
                       }}
                     >
-                      {columns.map((column) => (
+                      {visibleColumns.map((column) => (
                         <TableCell key={column.key} sx={cellPadding ? { py: cellPadding } : undefined}>
                           {column.render
                             ? column.render(row[column.key], row)
@@ -269,7 +283,7 @@ export function DataTable<T extends Record<string, any>>({
                 {virtualItems.length > 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={columns.length}
+                      colSpan={visibleColumns.length}
                       sx={{
                         height:
                           rowVirtualizer.getTotalSize() -

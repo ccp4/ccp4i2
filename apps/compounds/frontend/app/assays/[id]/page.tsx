@@ -226,6 +226,7 @@ export default function AssayDetailPage({ params }: PageProps) {
       key: 'chart',
       label: isTableOfValues ? 'Plot' : 'Curve',
       width: 140,
+      hiddenOnMobile: true,
       render: (_, row) => {
         // For table_of_values, show the plot image if available
         if (isTableOfValues) {
@@ -309,6 +310,7 @@ export default function AssayDetailPage({ params }: PageProps) {
       label: 'Compound Name',
       sortable: true,
       searchable: true,
+      hiddenOnMobile: true,
       render: (value) => (
         <Typography fontWeight={500}>{value || 'Unknown'}</Typography>
       ),
@@ -341,6 +343,7 @@ export default function AssayDetailPage({ params }: PageProps) {
       label: 'Status',
       sortable: true,
       width: 120,
+      hiddenOnMobile: true,
       render: (value) => <StatusChip status={value} />,
     },
     {
@@ -373,6 +376,7 @@ export default function AssayDetailPage({ params }: PageProps) {
       key: 'row',
       label: 'Position',
       width: 120,
+      hiddenOnMobile: true,
       render: (value, row) => (
         <Typography variant="body2" color="text.secondary" fontFamily="monospace">
           Row {value}, Col {row.start_column}-{row.end_column}

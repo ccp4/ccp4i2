@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material';
-import { Science, Description, Add, Settings, GridOn } from '@mui/icons-material';
+import { Science, Description, Add, Settings, GridOn, FiberNew } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
@@ -43,10 +43,15 @@ export default function ProtocolsPage() {
       label: 'Protocol Name',
       sortable: true,
       searchable: true,
-      render: (value) => (
+      render: (value, row) => (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Description fontSize="small" color="primary" />
           <Typography fontWeight={500}>{value}</Typography>
+          {row.has_recent_assays && (
+            <Tooltip title="New assays in the last 7 days">
+              <FiberNew fontSize="small" color="secondary" />
+            </Tooltip>
+          )}
         </Box>
       ),
     },
@@ -54,6 +59,7 @@ export default function ProtocolsPage() {
       key: 'analysis_method',
       label: 'Analysis Method',
       sortable: true,
+      hiddenOnMobile: true,
       render: (value) => (
         <Chip
           label={ANALYSIS_METHOD_LABELS[value] || value}
@@ -65,6 +71,7 @@ export default function ProtocolsPage() {
     {
       key: 'preferred_dilutions_display',
       label: 'Dilutions',
+      hiddenOnMobile: true,
       render: (value) =>
         value ? (
           <Typography variant="body2" sx={{ fontFamily: 'monospace', fontSize: '0.8rem' }}>
@@ -91,6 +98,7 @@ export default function ProtocolsPage() {
       label: 'Created',
       sortable: true,
       width: 120,
+      hiddenOnMobile: true,
       render: (value) =>
         value ? new Date(value).toLocaleDateString() : '-',
     },

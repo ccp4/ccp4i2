@@ -78,9 +78,19 @@ export default function TargetsPage() {
       label: 'Compounds',
       sortable: true,
       width: 120,
-      render: (value) =>
+      render: (value, row) =>
         value ? (
-          <Chip label={value} size="small" color="primary" variant="outlined" />
+          <Chip
+            label={value}
+            size="small"
+            color="primary"
+            variant="outlined"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(routes.registry.compounds({ target: row.id }));
+            }}
+            sx={{ cursor: 'pointer' }}
+          />
         ) : (
           '-'
         ),
@@ -90,7 +100,7 @@ export default function TargetsPage() {
       label: 'Assays',
       sortable: true,
       width: 120,
-      render: (value) =>
+      render: (value, row) =>
         value ? (
           <Chip
             icon={<Biotech fontSize="small" />}
@@ -98,6 +108,11 @@ export default function TargetsPage() {
             size="small"
             color="secondary"
             variant="outlined"
+            onClick={(e) => {
+              e.stopPropagation();
+              router.push(routes.registry.target(row.id) + '?tab=assays');
+            }}
+            sx={{ cursor: 'pointer' }}
           />
         ) : (
           '-'
@@ -108,6 +123,7 @@ export default function TargetsPage() {
       label: 'Created',
       sortable: true,
       width: 120,
+      hiddenOnMobile: true,
       render: (value) =>
         value ? new Date(value).toLocaleDateString() : '-',
     },

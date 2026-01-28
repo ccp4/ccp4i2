@@ -20,6 +20,12 @@ import {
   Button,
   CircularProgress,
   Tooltip,
+  IconButton,
+  Select,
+  MenuItem,
+  FormControl,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import {
   Assessment,
@@ -30,6 +36,8 @@ import {
   ShowChart,
   Refresh,
   Science,
+  ChevronLeft,
+  ChevronRight,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DoseResponseChart } from '@/components/compounds/DoseResponseChart';
@@ -83,10 +91,13 @@ function StatusChip({ status }: { status: string | undefined }) {
 export default function DataSeriesDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const api = useCompoundsApi();
   const { canContribute } = useAuth();
   const [analysing, setAnalysing] = useState(false);
   const [dilutionDialogOpen, setDilutionDialogOpen] = useState(false);
+  const [updatingStatus, setUpdatingStatus] = useState(false);
 
   const { data: series, isLoading: seriesLoading, mutate: mutateSeries } = api.get<DataSeries>(
     `data-series/${id}/`
@@ -100,6 +111,10 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
   const { data: compound } = api.get<Compound>(
     series?.compound ? `compounds/${series.compound}/` : null
   );
+  const { data: adjacent } = api.get<{
+    previous: { id: string; compound_name: string } | null;
+    next: { id: string; compound_name: string } | null;
+  }>(series ? `data-series/${id}/adjacent/` : null);
 
   const handleReanalyse = async () => {
     if (!id) return;
@@ -112,6 +127,18 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
       console.error('Analysis error:', err);
     } finally {
       setAnalysing(false);
+    }
+  };
+
+  const handleStatusChange = async (newStatus: string) => {
+    setUpdatingStatus(true);
+    try {
+      await api.post(`data-series/${id}/set_status/`, { status: newStatus });
+      mutateSeries();
+    } catch (err) {
+      console.error('Failed to update status:', err);
+    } finally {
+      setUpdatingStatus(false);
     }
   };
 
@@ -178,7 +205,45 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
       />
 
       {/* Series header */}
-      <Paper sx={{ p: 3, mb: 3 }}>
+      <Paper sx={{ p: 3, mb: 3, position: 'relative' }}>
+        {/* Navigation arrows */}
+        {adjacent && (
+          <>
+            <Tooltip title={adjacent.previous ? `Previous: ${adjacent.previous.compound_name}` : 'No previous data series'}>
+              <span style={{ position: 'absolute', left: 8, top: 24 }}>
+                <IconButton
+                  onClick={() => adjacent.previous && router.push(routes.assays.dataSeries(adjacent.previous.id))}
+                  disabled={!adjacent.previous}
+                  size="large"
+                  sx={{
+                    bgcolor: 'action.hover',
+                    '&:hover': { bgcolor: 'action.selected' },
+                    '&.Mui-disabled': { bgcolor: 'transparent' }
+                  }}
+                >
+                  <ChevronLeft />
+                </IconButton>
+              </span>
+            </Tooltip>
+            <Tooltip title={adjacent.next ? `Next: ${adjacent.next.compound_name}` : 'No next data series'}>
+              <span style={{ position: 'absolute', right: 8, top: 24 }}>
+                <IconButton
+                  onClick={() => adjacent.next && router.push(routes.assays.dataSeries(adjacent.next.id))}
+                  disabled={!adjacent.next}
+                  size="large"
+                  sx={{
+                    bgcolor: 'action.hover',
+                    '&:hover': { bgcolor: 'action.selected' },
+                    '&.Mui-disabled': { bgcolor: 'transparent' }
+                  }}
+                >
+                  <ChevronRight />
+                </IconButton>
+              </span>
+            </Tooltip>
+          </>
+        )}
+
         {seriesLoading ? (
           <>
             <Skeleton variant="text" width={300} height={40} />
@@ -236,7 +301,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                       objectFit="contain"
                       sx={{
                         maxWidth: '100%',
-                        maxHeight: 400,
+                        maxHeight: isMobile ? 250 : 400,
                         borderRadius: 1,
                         border: '1px solid',
                         borderColor: 'divider',
@@ -250,7 +315,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        height: 350,
+                        height: isMobile ? 200 : 350,
                         flexDirection: 'column',
                         gap: 1,
                       }}
@@ -270,7 +335,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        height: 350,
+                        height: isMobile ? 200 : 350,
                         flexDirection: 'column',
                         gap: 1,
                       }}
@@ -285,8 +350,8 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                     data={chartData}
                     fit={fitParams}
                     compoundName={series.compound_name || undefined}
-                    width={500}
-                    height={350}
+                    width={isMobile ? 300 : 500}
+                    height={isMobile ? 250 : 350}
                     skipPoints={Array.isArray(series.skip_points) ? series.skip_points : []}
                   />
                 ) : (
@@ -297,7 +362,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      height: 350,
+                      height: isMobile ? 200 : 350,
                       flexDirection: 'column',
                       gap: 1,
                     }}
@@ -328,7 +393,37 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
                         <TableRow>
                           <TableCell component="th">Status</TableCell>
                           <TableCell>
-                            <StatusChip status={series.analysis.status} />
+                            {canContribute ? (
+                              <FormControl size="small" sx={{ minWidth: 140 }}>
+                                <Select
+                                  value={series.analysis.status || 'unassigned'}
+                                  onChange={(e) => handleStatusChange(e.target.value)}
+                                  disabled={updatingStatus}
+                                  size="small"
+                                >
+                                  <MenuItem value="valid">
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                      <CheckCircle fontSize="small" color="success" />
+                                      Valid
+                                    </Box>
+                                  </MenuItem>
+                                  <MenuItem value="invalid">
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                      <Cancel fontSize="small" color="error" />
+                                      Invalid
+                                    </Box>
+                                  </MenuItem>
+                                  <MenuItem value="unassigned">
+                                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                                      <HelpOutline fontSize="small" color="disabled" />
+                                      Unassigned
+                                    </Box>
+                                  </MenuItem>
+                                </Select>
+                              </FormControl>
+                            ) : (
+                              <StatusChip status={series.analysis.status} />
+                            )}
                           </TableCell>
                         </TableRow>
                         {series.analysis.results?.error && (
