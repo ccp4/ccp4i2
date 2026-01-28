@@ -43,6 +43,7 @@ import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';
 import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
 import { AssayEditDialog } from '@/components/compounds/AssayEditDialog';
 import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
+import { QCPanel } from '@/components/compounds/QCPanel';
 import { useCompoundsApi, getAuthenticatedDownloadUrl, authFetch } from '@/lib/compounds/api';
 import { formatKpiUnit } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
@@ -579,6 +580,9 @@ export default function AssayDetailPage({ params }: PageProps) {
           <Typography color="error">Assay not found</Typography>
         )}
       </Paper>
+
+      {/* Quality Control Panel */}
+      <QCPanel assayId={id} />
 
       {/* Data series table */}
       <DataTable

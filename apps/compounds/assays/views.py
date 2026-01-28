@@ -17,6 +17,7 @@ from reversion.models import Version
 
 from users.permissions import IsContributorOrReadOnly
 from .analysis import analyse_assay, analyse_data_series, AVAILABLE_FLAGS, DEFAULT_INVALIDATING_FLAGS
+from .qc import calculate_qc_metrics
 
 from .models import (
     DilutionSeries,
@@ -1004,6 +1005,18 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
         """
         from compounds.utils import resolve_compound
         return resolve_compound(compound_id)
+
+    @action(detail=True, methods=['get'])
+    def qc(self, request, pk=None):
+        """
+        Calculate quality control metrics for this assay.
+
+        Returns plate-level QC metrics (Z-prime, S/B, CV%, etc.) calculated
+        from control wells, plus curve fitting quality statistics.
+        """
+        assay = self.get_object()
+        metrics = calculate_qc_metrics(assay)
+        return Response(metrics.to_dict())
 
 
 class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
