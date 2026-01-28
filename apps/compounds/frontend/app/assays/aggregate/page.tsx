@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback, useRef, Suspense } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useState, useCallback, useRef, Suspense, useEffect } from 'react';
+import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { Container, Typography, Box, Alert, CircularProgress, IconButton, Tooltip, Snackbar } from '@mui/material';
 import { TableChart, Link as LinkIcon, Save } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
@@ -28,6 +28,8 @@ export default function AggregationPage() {
 
 function AggregationPageContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const { canAdminister } = useAuth();
 
   // Read initial values from URL params for deep linking
@@ -41,13 +43,27 @@ function AggregationPageContent() {
   // Support output format via 'format' param
   const formatParam = searchParams.get('format');
   const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long') ? formatParam : undefined;
+  // Support aggregations via comma-separated 'aggregations' param
+  const aggregationsParam = searchParams.get('aggregations');
+  const validAggregations = ['geomean', 'count', 'stdev', 'list'] as const;
+  const initialAggregations = aggregationsParam
+    ? aggregationsParam.split(',').map((s) => s.trim()).filter((a): a is AggregationType => validAggregations.includes(a as any))
+    : undefined;
+  // Support status filter via 'status' param
+  const statusParam = searchParams.get('status');
+  const initialStatus = (statusParam === 'valid' || statusParam === 'invalid' || statusParam === 'unassigned' || statusParam === '') ? statusParam : undefined;
+  // Support concentration display mode via 'concentrationDisplay' param
+  const concentrationDisplayParam = searchParams.get('concentrationDisplay');
+  const initialConcentrationDisplay = (concentrationDisplayParam === 'natural' || concentrationDisplayParam === 'nM' || concentrationDisplayParam === 'uM' || concentrationDisplayParam === 'mM' || concentrationDisplayParam === 'pConc')
+    ? concentrationDisplayParam as ConcentrationDisplayMode
+    : undefined;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AggregationResponse | null>(null);
-  const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(['geomean', 'count']);
+  const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
-  const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>('natural');
+  const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>(initialConcentrationDisplay || 'natural');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [saving, setSaving] = useState(false);
@@ -75,13 +91,22 @@ function AggregationPageContent() {
     if (currentState.outputFormat !== 'compact') {
       params.set('format', currentState.outputFormat);
     }
+    if (currentState.aggregations.length > 0 && !(currentState.aggregations.length === 2 && currentState.aggregations.includes('geomean') && currentState.aggregations.includes('count'))) {
+      params.set('aggregations', currentState.aggregations.join(','));
+    }
+    if (currentState.status !== undefined && currentState.status !== 'valid') {
+      params.set('status', currentState.status);
+    }
+    if (concentrationDisplay !== 'natural') {
+      params.set('concentrationDisplay', concentrationDisplay);
+    }
 
     const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     navigator.clipboard.writeText(url).then(() => {
       setSnackbarMessage('Link copied to clipboard');
       setSnackbarOpen(true);
     });
-  }, [currentState]);
+  }, [currentState, concentrationDisplay]);
 
   const handleSaveToTarget = useCallback(async () => {
     if (!currentState || currentState.targets.length !== 1) return;
@@ -107,6 +132,46 @@ function AggregationPageContent() {
     }
   }, [currentState, concentrationDisplay]);
 
+  // Update URL to persist query state for back navigation
+  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[]) => {
+    const params = new URLSearchParams();
+    if (state.targetNames.length > 0) {
+      params.set('targets', state.targetNames.join(','));
+    }
+    if (state.protocolNames.length > 0) {
+      params.set('protocols', state.protocolNames.join(','));
+    }
+    if (state.compoundSearch) {
+      params.set('compound', state.compoundSearch);
+    }
+    if (outputFormat !== 'compact') {
+      params.set('format', outputFormat);
+    }
+    if (aggregations.length > 0 && !(aggregations.length === 2 && aggregations.includes('geomean') && aggregations.includes('count'))) {
+      // Only include aggregations if different from default
+      params.set('aggregations', aggregations.join(','));
+    }
+    // Always include status in URL for complete state preservation
+    if (state.status !== undefined) {
+      params.set('status', state.status);
+    }
+    if (concentrationDisplay !== 'natural') {
+      params.set('concentrationDisplay', concentrationDisplay);
+    }
+
+    const queryString = params.toString();
+    const newUrl = `${pathname}${queryString ? '?' + queryString : ''}`;
+    router.replace(newUrl, { scroll: false });
+  }, [pathname, router, concentrationDisplay]);
+
+  // Update URL when concentration display changes (if we have data)
+  useEffect(() => {
+    if (data && currentState) {
+      updateUrlState(currentState, currentState.outputFormat, currentAggregations);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [concentrationDisplay]);
+
   const handleChange = useCallback(async (
     predicates: Predicates,
     outputFormat: OutputFormat,
@@ -118,6 +183,11 @@ function AggregationPageContent() {
     setLoading(true);
     setError(null);
     setCurrentAggregations(aggregations);
+
+    // Update URL to persist state for back navigation
+    if (currentState) {
+      updateUrlState(currentState, outputFormat, aggregations);
+    }
 
     try {
       const result = await fetchAggregation({
@@ -142,7 +212,7 @@ function AggregationPageContent() {
         setLoading(false);
       }
     }
-  }, []);
+  }, [currentState, updateUrlState]);
 
   return (
     <Container maxWidth="xl" sx={{ py: 2 }}>
@@ -197,6 +267,8 @@ function AggregationPageContent() {
         initialTargetNames={initialTargetNames}
         initialProtocolNames={initialProtocolNames}
         initialOutputFormat={initialOutputFormat}
+        initialAggregations={initialAggregations}
+        initialStatus={initialStatus}
       />
 
       {error && (

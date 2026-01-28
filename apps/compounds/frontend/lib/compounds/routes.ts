@@ -138,7 +138,11 @@ export const routes = {
       compound?: string;
       target?: string | number;
       targets?: string[];
-      protocol?: string | number;
+      protocols?: string[];
+      format?: string;
+      aggregations?: string[];
+      status?: string;
+      concentrationDisplay?: string;
     }) => routeWithQuery('/assays/aggregate', params),
   },
 
