@@ -339,6 +339,23 @@ export default function AssayDetailPage({ params }: PageProps) {
         ),
     },
     {
+      key: 'batch_number',
+      label: 'Batch',
+      sortable: true,
+      width: 70,
+      hiddenOnMobile: true,
+      render: (value) =>
+        value != null ? (
+          <Typography variant="body2" fontFamily="monospace">
+            /{value}
+          </Typography>
+        ) : (
+          <Typography color="text.secondary" variant="body2">
+            -
+          </Typography>
+        ),
+    },
+    {
       key: 'analysis_status',
       label: 'Status',
       sortable: true,

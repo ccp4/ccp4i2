@@ -289,6 +289,187 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
     return results
 
 
+def resolve_compound_with_batch(
+    identifier: str,
+    batch_number: Optional[int] = None,
+) -> tuple[Optional['Compound'], Optional['Batch']]:
+    """
+    Resolve a compound identifier to Compound and optionally Batch instances.
+
+    Supports batch specification in two ways:
+    1. Embedded in identifier with "/" separator: "NCL-00026042/1" or "NCL-00026042/001"
+    2. Explicit batch_number parameter (takes precedence if both provided)
+
+    The batch number can be zero-padded (e.g., /001) - leading zeros are stripped.
+
+    Args:
+        identifier: Compound identifier, optionally with /batch_number suffix.
+                   Examples: "NCL-00026042", "NCL-00026042/1", "NCL-00026042/001"
+        batch_number: Optional explicit batch number (overrides embedded batch).
+
+    Returns:
+        Tuple of (Compound or None, Batch or None).
+        - If compound not found: (None, None)
+        - If compound found but batch not specified or not found: (Compound, None)
+        - If both found: (Compound, Batch)
+
+    Examples:
+        >>> resolve_compound_with_batch("NCL-00026042/1")
+        (<Compound: NCL-00026042>, <Batch: NCL-00026042/1>)
+        >>> resolve_compound_with_batch("NCL-00026042/001")  # Zero-padded
+        (<Compound: NCL-00026042>, <Batch: NCL-00026042/1>)
+        >>> resolve_compound_with_batch("NCL-00026042")
+        (<Compound: NCL-00026042>, None)
+        >>> resolve_compound_with_batch("NCL-00026042", batch_number=2)
+        (<Compound: NCL-00026042>, <Batch: NCL-00026042/2>)
+    """
+    from compounds.registry.models import Batch
+
+    if not identifier:
+        return None, None
+
+    identifier = str(identifier).strip()
+    if not identifier:
+        return None, None
+
+    # Extract batch number from identifier if present (format: COMPOUND_ID/BATCH_NUM)
+    embedded_batch = None
+    compound_part = identifier
+
+    if '/' in identifier:
+        parts = identifier.rsplit('/', 1)
+        if len(parts) == 2 and parts[1]:
+            try:
+                # Strip leading zeros and parse as int
+                embedded_batch = int(parts[1].lstrip('0') or '0')
+                compound_part = parts[0]
+            except ValueError:
+                # Not a valid batch number, treat whole string as compound identifier
+                pass
+
+    # Use explicit batch_number if provided, otherwise use embedded
+    effective_batch_number = batch_number if batch_number is not None else embedded_batch
+
+    # Resolve compound using existing function
+    compound = resolve_compound(compound_part)
+    if not compound:
+        return None, None
+
+    # If no batch specified, return compound only
+    if effective_batch_number is None:
+        return compound, None
+
+    # Look up the batch
+    batch = Batch.objects.filter(
+        compound=compound,
+        batch_number=effective_batch_number
+    ).first()
+
+    return compound, batch
+
+
+def resolve_compound_with_batch_bulk(
+    identifiers: list[str],
+) -> dict[str, tuple[Optional['Compound'], Optional['Batch']]]:
+    """
+    Resolve multiple compound/batch identifiers efficiently.
+
+    For large batches, this is more efficient than calling resolve_compound_with_batch()
+    repeatedly as it pre-fetches data and minimizes database queries.
+
+    Args:
+        identifiers: List of compound identifier strings, optionally with /batch suffix.
+
+    Returns:
+        Dictionary mapping each identifier to (Compound or None, Batch or None) tuple.
+
+    Examples:
+        >>> resolve_compound_with_batch_bulk(["NCL-00026042/1", "NCL-00026043"])
+        {
+            "NCL-00026042/1": (<Compound>, <Batch>),
+            "NCL-00026043": (<Compound>, None)
+        }
+    """
+    from compounds.registry.models import Batch
+
+    results = {}
+
+    # First pass: separate compound identifiers and batch numbers
+    compound_to_batch = {}  # compound_part -> [(identifier, batch_num), ...]
+    identifier_to_compound_part = {}
+
+    for identifier in identifiers:
+        if not identifier:
+            results[identifier] = (None, None)
+            continue
+
+        identifier = str(identifier).strip()
+        if not identifier:
+            results[identifier] = (None, None)
+            continue
+
+        # Extract batch number if present
+        compound_part = identifier
+        batch_num = None
+
+        if '/' in identifier:
+            parts = identifier.rsplit('/', 1)
+            if len(parts) == 2 and parts[1]:
+                try:
+                    batch_num = int(parts[1].lstrip('0') or '0')
+                    compound_part = parts[0]
+                except ValueError:
+                    pass
+
+        identifier_to_compound_part[identifier] = compound_part
+        if compound_part not in compound_to_batch:
+            compound_to_batch[compound_part] = []
+        compound_to_batch[compound_part].append((identifier, batch_num))
+
+    # Resolve compounds in bulk
+    compound_parts = list(compound_to_batch.keys())
+    compounds_resolved = resolve_compound_batch(compound_parts)
+
+    # Collect batch lookups needed
+    batch_lookups = []  # [(compound, batch_num, identifier), ...]
+    for identifier, compound_part in identifier_to_compound_part.items():
+        compound = compounds_resolved.get(compound_part)
+        if not compound:
+            results[identifier] = (None, None)
+            continue
+
+        # Find the batch_num for this identifier
+        batch_num = None
+        for orig_id, bn in compound_to_batch[compound_part]:
+            if orig_id == identifier:
+                batch_num = bn
+                break
+
+        if batch_num is None:
+            results[identifier] = (compound, None)
+        else:
+            batch_lookups.append((compound, batch_num, identifier))
+
+    # Batch fetch all needed batches
+    if batch_lookups:
+        # Build a query for all compound/batch_number pairs
+        from django.db.models import Q
+        batch_query = Q()
+        for compound, batch_num, _ in batch_lookups:
+            batch_query |= Q(compound=compound, batch_number=batch_num)
+
+        batches = {
+            (b.compound_id, b.batch_number): b
+            for b in Batch.objects.filter(batch_query)
+        }
+
+        for compound, batch_num, identifier in batch_lookups:
+            batch = batches.get((compound.id, batch_num))
+            results[identifier] = (compound, batch)
+
+    return results
+
+
 def delete_file_field(file_field, save=False):
     """
     Delete a file from a FileField, handling both local and cloud storage.

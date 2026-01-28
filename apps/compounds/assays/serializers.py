@@ -168,6 +168,7 @@ class ProtocolDocumentCreateSerializer(serializers.ModelSerializer):
 class ProtocolSerializer(serializers.ModelSerializer):
     preferred_dilutions_display = serializers.SerializerMethodField()
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    modified_by_email = serializers.CharField(source='modified_by.email', read_only=True)
     fitting_method_name = serializers.CharField(
         source='fitting_method.name', read_only=True
     )
@@ -214,11 +215,13 @@ class ProtocolSerializer(serializers.ModelSerializer):
             'plate_layout', 'plate_layout_name', 'plate_layout_config',
             'fitting_parameters',
             'preferred_dilutions', 'preferred_dilutions_display',
-            'created_by', 'created_by_email', 'created_at',
+            'created_by', 'created_by_email',
+            'modified_by', 'modified_by_email',
+            'created_at', 'modified_at',
             'comments',
             'assays_count', 'has_recent_assays',
         ]
-        read_only_fields = ['created_by', 'created_at']
+        read_only_fields = ['created_by', 'created_at', 'modified_at']
 
     def validate_fitting_parameters(self, value):
         """Convert null to empty dict since DB column doesn't allow NULL."""
@@ -262,6 +265,9 @@ class DataSeriesListSerializer(serializers.ModelSerializer):
     compound_formatted_id = serializers.CharField(
         source='compound.formatted_id', read_only=True
     )
+    batch_number = serializers.IntegerField(
+        source='batch.batch_number', read_only=True
+    )
     analysis_status = serializers.CharField(source='analysis.status', read_only=True)
     analysis_kpi = serializers.SerializerMethodField()
     # Include dilution_series and analysis for chart rendering in tables
@@ -272,7 +278,9 @@ class DataSeriesListSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataSeries
         fields = [
-            'id', 'assay', 'compound', 'compound_formatted_id', 'compound_name',
+            'id', 'assay', 'compound', 'compound_formatted_id',
+            'batch', 'batch_number',
+            'compound_name',
             'row', 'start_column', 'end_column',
             'dilution_series', 'extracted_data',
             'analysis', 'analysis_status', 'analysis_kpi',
@@ -299,6 +307,9 @@ class DataSeriesDetailSerializer(serializers.ModelSerializer):
     compound_formatted_id = serializers.CharField(
         source='compound.formatted_id', read_only=True
     )
+    batch_number = serializers.IntegerField(
+        source='batch.batch_number', read_only=True
+    )
     analysis = AnalysisResultSerializer(read_only=True)
     # Use SerializerMethodField to implement fallback to protocol's preferred_dilutions
     dilution_series = serializers.SerializerMethodField()
@@ -306,7 +317,9 @@ class DataSeriesDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataSeries
         fields = [
-            'id', 'assay', 'compound', 'compound_formatted_id', 'compound_name',
+            'id', 'assay', 'compound', 'compound_formatted_id',
+            'batch', 'batch_number',
+            'compound_name',
             'row', 'start_column', 'end_column',
             'dilution_series', 'extracted_data', 'skip_points',
             'analysis', 'plot_image',
@@ -323,24 +336,36 @@ class DataSeriesDetailSerializer(serializers.ModelSerializer):
 
 
 class DataSeriesCreateSerializer(serializers.ModelSerializer):
-    """Serializer for creating data series from frontend extraction."""
+    """
+    Serializer for creating data series from frontend extraction.
+
+    Supports batch specification in two ways:
+    1. Embedded in compound_name with "/" separator: "NCL-00026042/1"
+    2. Explicit batch field (takes precedence)
+
+    When compound_name includes a batch suffix (e.g., "NCL-00026042/1" or
+    "NCL-00026042/001"), both compound and batch are resolved automatically.
+    """
 
     class Meta:
         model = DataSeries
         fields = [
-            'id', 'assay', 'compound', 'compound_name',
+            'id', 'assay', 'compound', 'batch', 'compound_name',
             'row', 'start_column', 'end_column',
             'dilution_series', 'extracted_data',
         ]
         read_only_fields = ['id']
 
     def create(self, validated_data):
-        # Try to match compound by name if not provided
+        # Try to match compound (and optionally batch) by name if not provided
         if not validated_data.get('compound') and validated_data.get('compound_name'):
-            from compounds.utils import resolve_compound
-            compound = resolve_compound(validated_data['compound_name'])
+            from compounds.utils import resolve_compound_with_batch
+            compound, batch = resolve_compound_with_batch(validated_data['compound_name'])
             if compound:
                 validated_data['compound'] = compound
+            # Only set batch if not explicitly provided and we found one
+            if batch and not validated_data.get('batch'):
+                validated_data['batch'] = batch
 
         # Inherit dilution_series from protocol if not explicitly provided
         if not validated_data.get('dilution_series'):
@@ -352,12 +377,12 @@ class DataSeriesCreateSerializer(serializers.ModelSerializer):
 
 
 class DataSeriesUpdateSerializer(serializers.ModelSerializer):
-    """Serializer for updating data series fields including dilution_series."""
+    """Serializer for updating data series fields including dilution_series and batch."""
 
     class Meta:
         model = DataSeries
         fields = [
-            'id', 'dilution_series', 'skip_points',
+            'id', 'batch', 'dilution_series', 'skip_points',
         ]
         read_only_fields = ['id']
 
@@ -368,6 +393,7 @@ class AssayListSerializer(serializers.ModelSerializer):
     target_name = serializers.CharField(source='target.name', read_only=True)
     data_filename = serializers.CharField(read_only=True)
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    modified_by_email = serializers.CharField(source='modified_by.email', read_only=True)
     data_series_count = serializers.IntegerField(source='data_series.count', read_only=True)
 
     class Meta:
@@ -375,7 +401,9 @@ class AssayListSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'protocol', 'protocol_name',
             'target', 'target_name',
-            'data_filename', 'created_by_email', 'created_at',
+            'data_filename',
+            'created_by_email', 'modified_by_email',
+            'created_at', 'modified_at',
             'data_series_count',
         ]
 
@@ -386,6 +414,7 @@ class AssayDetailSerializer(serializers.ModelSerializer):
     target_name = serializers.CharField(source='target.name', read_only=True)
     data_filename = serializers.CharField(read_only=True)
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    modified_by_email = serializers.CharField(source='modified_by.email', read_only=True)
     data_series = DataSeriesListSerializer(many=True, read_only=True)
     # Use protected URL for data file instead of direct storage URL
     data_file = ProtectedFileField(url_name='assay-data-file', model_field='id', url_kwarg='assay_id')
@@ -397,11 +426,13 @@ class AssayDetailSerializer(serializers.ModelSerializer):
             'target', 'target_name',
             'data_file', 'data_filename',
             'labbook_number', 'page_number',
-            'created_by', 'created_by_email', 'created_at',
+            'created_by', 'created_by_email',
+            'modified_by', 'modified_by_email',
+            'created_at', 'modified_at',
             'comments',
             'data_series',
         ]
-        read_only_fields = ['created_by', 'created_at']
+        read_only_fields = ['created_by', 'created_at', 'modified_at']
 
 
 class AssayCreateSerializer(serializers.ModelSerializer):

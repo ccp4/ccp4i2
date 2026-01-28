@@ -107,6 +107,7 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
             - compound_search: Text search for compound formatted_id
             - protocols: List of protocol UUIDs
             - status: Analysis status filter ('valid', 'invalid', 'unassigned')
+            - group_by_batch: If True, batch info will be used for grouping
 
     Returns:
         Filtered and optimized QuerySet
@@ -114,6 +115,7 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
     queryset = DataSeries.objects.select_related(
         'compound',
         'compound__target',
+        'batch',  # Include batch for batch-aware aggregation
         'assay',
         'assay__protocol',
         'assay__target',
@@ -236,28 +238,32 @@ def extract_kpi_with_unit(data_series: DataSeries) -> tuple[float | None, str | 
 
 def aggregate_compact(
     queryset: QuerySet[DataSeries],
-    aggregations: list[str]
+    aggregations: list[str],
+    group_by_batch: bool = False
 ) -> dict:
     """
-    Aggregate data series into compact format (one row per compound).
+    Aggregate data series into compact format (one row per compound or compound/batch).
 
-    Each compound gets one row with columns for each protocol containing
-    aggregated KPI statistics.
+    Each compound (or compound/batch when group_by_batch=True) gets one row with
+    columns for each protocol containing aggregated KPI statistics.
 
     Args:
         queryset: Filtered DataSeries queryset
         aggregations: List of aggregation functions to apply
+        group_by_batch: If True, create separate rows for each batch
 
     Returns:
         Dictionary with:
             - meta: Summary statistics
             - protocols: List of protocol info (including kpi_unit)
             - data: List of compound rows with protocol aggregations
+            - group_by_batch: Whether results are grouped by batch
     """
-    # Group data by compound and protocol
-    # Structure: {compound_id: {protocol_id: [kpi_values]}}
-    compound_protocol_values = defaultdict(lambda: defaultdict(list))
-    compound_info = {}
+    # Group data by compound (and optionally batch) and protocol
+    # Structure: {group_key: {protocol_id: [kpi_values]}}
+    # group_key is (compound_id,) or (compound_id, batch_id)
+    group_protocol_values = defaultdict(lambda: defaultdict(list))
+    group_info = {}
     protocol_ids = set()
     protocol_units: dict[str, str | None] = {}  # Track unit per protocol
 
@@ -268,9 +274,16 @@ def aggregate_compact(
         compound_id = str(ds.compound.id)
         protocol_id = str(ds.assay.protocol_id)
 
+        # Determine group key based on group_by_batch setting
+        if group_by_batch:
+            batch_id = str(ds.batch_id) if ds.batch_id else None
+            group_key = (compound_id, batch_id)
+        else:
+            group_key = (compound_id,)
+
         kpi_value, kpi_unit = extract_kpi_with_unit(ds)
         if kpi_value is not None:
-            compound_protocol_values[compound_id][protocol_id].append(kpi_value)
+            group_protocol_values[group_key][protocol_id].append(kpi_value)
 
         # Track unit per protocol (use first encountered non-null unit)
         if protocol_id not in protocol_units and kpi_unit:
@@ -278,14 +291,18 @@ def aggregate_compact(
 
         protocol_ids.add(ds.assay.protocol_id)
 
-        # Store compound info (first occurrence)
-        if compound_id not in compound_info:
-            compound_info[compound_id] = {
+        # Store group info (first occurrence)
+        if group_key not in group_info:
+            info = {
                 'compound_id': compound_id,
                 'formatted_id': ds.compound.formatted_id,
                 'smiles': ds.compound.smiles or ds.compound.rdkit_smiles,
                 'target_name': ds.compound.target.name if ds.compound.target else None,
             }
+            if group_by_batch:
+                info['batch_id'] = str(ds.batch_id) if ds.batch_id else None
+                info['batch_number'] = ds.batch.batch_number if ds.batch else None
+            group_info[group_key] = info
 
     # Fetch protocol info and include kpi_unit
     protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name'))
@@ -302,8 +319,8 @@ def aggregate_compact(
     data = []
     total_measurements = 0
 
-    for compound_id, protocol_values in compound_protocol_values.items():
-        row = compound_info[compound_id].copy()
+    for group_key, protocol_values in group_protocol_values.items():
+        row = group_info[group_key].copy()
         row['protocols'] = {}
 
         for protocol_id, values in protocol_values.items():
@@ -312,14 +329,22 @@ def aggregate_compact(
 
         data.append(row)
 
-    # Sort by formatted_id
-    data.sort(key=lambda x: x.get('formatted_id', ''))
+    # Sort by formatted_id, then batch_number if grouping by batch
+    if group_by_batch:
+        data.sort(key=lambda x: (x.get('formatted_id', ''), x.get('batch_number') or 0))
+    else:
+        data.sort(key=lambda x: x.get('formatted_id', ''))
+
+    # Count unique compounds (may differ from row count when group_by_batch=True)
+    unique_compounds = len(set(row['compound_id'] for row in data))
 
     return {
         'meta': {
-            'compound_count': len(data),
+            'compound_count': unique_compounds,
+            'row_count': len(data),  # May differ when group_by_batch=True
             'protocol_count': len(protocol_list),
             'total_measurements': total_measurements,
+            'group_by_batch': group_by_batch,
         },
         'protocols': protocol_list,
         'data': data,
@@ -328,26 +353,29 @@ def aggregate_compact(
 
 def aggregate_medium(
     queryset: QuerySet[DataSeries],
-    aggregations: list[str]
+    aggregations: list[str],
+    group_by_batch: bool = False
 ) -> dict:
     """
-    Aggregate data series into medium format (one row per compound-protocol pair).
+    Aggregate data series into medium format (one row per compound-protocol pair,
+    or compound-batch-protocol when group_by_batch=True).
 
-    Each row represents aggregated KPIs for a single compound tested with a
-    single protocol.
+    Each row represents aggregated KPIs for a single compound (or compound/batch)
+    tested with a single protocol.
 
     Args:
         queryset: Filtered DataSeries queryset
         aggregations: List of aggregation functions to apply
+        group_by_batch: If True, create separate rows for each batch
 
     Returns:
         Dictionary with:
             - meta: Summary statistics
             - data: List of compound-protocol rows with aggregations (including kpi_unit)
     """
-    # Group data by compound and protocol
-    # Structure: {(compound_id, protocol_id): {'info': {...}, 'values': [], 'unit': ...}}
-    compound_protocol_data = defaultdict(lambda: {'info': None, 'values': [], 'unit': None})
+    # Group data by compound (and optionally batch) and protocol
+    # Structure: {key: {'info': {...}, 'values': [], 'unit': ...}}
+    group_protocol_data = defaultdict(lambda: {'info': None, 'values': [], 'unit': None})
     compound_ids = set()
     protocol_ids = set()
 
@@ -357,22 +385,28 @@ def aggregate_medium(
 
         compound_id = str(ds.compound.id)
         protocol_id = str(ds.assay.protocol_id)
-        key = (compound_id, protocol_id)
+
+        # Determine group key based on group_by_batch setting
+        if group_by_batch:
+            batch_id = str(ds.batch_id) if ds.batch_id else None
+            key = (compound_id, batch_id, protocol_id)
+        else:
+            key = (compound_id, protocol_id)
 
         kpi_value, kpi_unit = extract_kpi_with_unit(ds)
         if kpi_value is not None:
-            compound_protocol_data[key]['values'].append(kpi_value)
+            group_protocol_data[key]['values'].append(kpi_value)
 
         # Track unit (use first encountered non-null unit)
-        if compound_protocol_data[key]['unit'] is None and kpi_unit:
-            compound_protocol_data[key]['unit'] = kpi_unit
+        if group_protocol_data[key]['unit'] is None and kpi_unit:
+            group_protocol_data[key]['unit'] = kpi_unit
 
         compound_ids.add(ds.compound.id)
         protocol_ids.add(ds.assay.protocol_id)
 
         # Store info (first occurrence)
-        if compound_protocol_data[key]['info'] is None:
-            compound_protocol_data[key]['info'] = {
+        if group_protocol_data[key]['info'] is None:
+            info = {
                 'compound_id': compound_id,
                 'formatted_id': ds.compound.formatted_id,
                 'smiles': ds.compound.smiles or ds.compound.rdkit_smiles,
@@ -380,12 +414,16 @@ def aggregate_medium(
                 'protocol_id': protocol_id,
                 'protocol_name': ds.assay.protocol.name,
             }
+            if group_by_batch:
+                info['batch_id'] = str(ds.batch_id) if ds.batch_id else None
+                info['batch_number'] = ds.batch.batch_number if ds.batch else None
+            group_protocol_data[key]['info'] = info
 
     # Build result rows
     data = []
     total_measurements = 0
 
-    for key, item in compound_protocol_data.items():
+    for key, item in group_protocol_data.items():
         if item['info'] is None:
             continue
 
@@ -397,14 +435,23 @@ def aggregate_medium(
         row.update(aggregate_kpi_values(values, aggregations))
         data.append(row)
 
-    # Sort by formatted_id, then protocol
-    data.sort(key=lambda x: (x.get('formatted_id', ''), x.get('protocol_name', '')))
+    # Sort by formatted_id, then batch_number (if applicable), then protocol
+    if group_by_batch:
+        data.sort(key=lambda x: (
+            x.get('formatted_id', ''),
+            x.get('batch_number') or 0,
+            x.get('protocol_name', '')
+        ))
+    else:
+        data.sort(key=lambda x: (x.get('formatted_id', ''), x.get('protocol_name', '')))
 
     return {
         'meta': {
             'compound_count': len(compound_ids),
+            'row_count': len(data),  # May differ when group_by_batch=True
             'protocol_count': len(protocol_ids),
             'total_measurements': total_measurements,
+            'group_by_batch': group_by_batch,
         },
         'data': data,
     }
@@ -412,22 +459,24 @@ def aggregate_medium(
 
 def aggregate_long(
     queryset: QuerySet[DataSeries],
-    aggregations: list[str]
+    aggregations: list[str],
+    group_by_batch: bool = False
 ) -> dict:
     """
     Aggregate data series into long format (one row per measurement).
 
     Each row represents a single KPI measurement with compound, protocol,
-    and assay information.
+    and assay information. When group_by_batch=True, batch info is included.
 
     Args:
         queryset: Filtered DataSeries queryset
         aggregations: Not used in long format (included for API consistency)
+        group_by_batch: If True, include batch information in rows
 
     Returns:
         Dictionary with:
             - meta: Summary statistics
-            - data: List of measurement rows (including kpi_unit)
+            - data: List of measurement rows (including kpi_unit and optionally batch)
     """
     data = []
     compound_ids = set()
@@ -451,20 +500,30 @@ def aggregate_long(
             'kpi_unit': kpi_unit,
             'status': ds.analysis.status if ds.analysis else None,
         }
+
+        # Include batch info (always in long format, but flagged by group_by_batch for UI)
+        row['batch_id'] = str(ds.batch_id) if ds.batch_id else None
+        row['batch_number'] = ds.batch.batch_number if ds.batch else None
+
         data.append(row)
 
         if ds.compound:
             compound_ids.add(ds.compound.id)
         protocol_ids.add(ds.assay.protocol_id)
 
-    # Sort by formatted_id, then protocol
-    data.sort(key=lambda x: (x.get('formatted_id') or '', x.get('protocol_name') or ''))
+    # Sort by formatted_id, then batch_number, then protocol
+    data.sort(key=lambda x: (
+        x.get('formatted_id') or '',
+        x.get('batch_number') or 0,
+        x.get('protocol_name') or ''
+    ))
 
     return {
         'meta': {
             'compound_count': len(compound_ids),
             'protocol_count': len(protocol_ids),
             'total_measurements': len(data),
+            'group_by_batch': group_by_batch,
         },
         'data': data,
     }

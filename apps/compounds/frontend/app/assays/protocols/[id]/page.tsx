@@ -1,7 +1,7 @@
 'use client';
 
-import { use, useState, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { use, useState, useCallback, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Container,
   Typography,
@@ -88,14 +88,20 @@ function isPlateBasedProtocol(importType: ImportType | undefined): boolean {
 export default function ProtocolDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
+  const searchParams = useSearchParams();
   const api = useCompoundsApi();
   const { canContribute } = useAuth();
+
+  // Check for openUpload and target query params (from import page redirect)
+  const shouldOpenUpload = searchParams.get('openUpload') === 'true';
+  const targetIdFromUrl = searchParams.get('target');
 
   const [layoutSelectOpen, setLayoutSelectOpen] = useState(false);
   const [createLayoutOpen, setCreateLayoutOpen] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
   const [saving, setSaving] = useState(false);
   const [uploadDrawerOpen, setUploadDrawerOpen] = useState(false);
+  const [hasAutoOpened, setHasAutoOpened] = useState(false);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [assayToDelete, setAssayToDelete] = useState<Assay | null>(null);
   const [deleting, setDeleting] = useState(false);
@@ -123,6 +129,19 @@ export default function ProtocolDetailPage({ params }: PageProps) {
 
   // Fetch available plate layouts for selection
   const { data: plateLayouts } = api.get<PlateLayoutRecord[]>('plate-layouts/');
+
+  // Auto-open upload drawer when redirected from import page with openUpload=true
+  useEffect(() => {
+    if (shouldOpenUpload && !hasAutoOpened && protocol && isPlateBasedProtocol(protocol.import_type)) {
+      setUploadDrawerOpen(true);
+      setHasAutoOpened(true);
+      // Clean up URL params without triggering navigation
+      const url = new URL(window.location.href);
+      url.searchParams.delete('openUpload');
+      url.searchParams.delete('target');
+      window.history.replaceState({}, '', url.toString());
+    }
+  }, [shouldOpenUpload, hasAutoOpened, protocol]);
 
   const handleLayoutChange = async (layoutId: string | null) => {
     setSaving(true);
@@ -1007,6 +1026,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
           onClose={() => setUploadDrawerOpen(false)}
           protocolId={id}
           protocolName={protocol.name}
+          defaultTargetId={targetIdFromUrl || undefined}
           onAssayCreated={() => mutateAssays()}
         />
       )}

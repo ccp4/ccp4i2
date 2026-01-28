@@ -383,6 +383,8 @@ export interface DataSeries {
   assay: string;
   compound: string | null;
   compound_formatted_id?: string;
+  batch?: string | null;  // Batch UUID
+  batch_number?: number | null;  // Batch number (e.g., 1, 2, 3)
   compound_name: string | null;
   row: number;
   start_column: number;

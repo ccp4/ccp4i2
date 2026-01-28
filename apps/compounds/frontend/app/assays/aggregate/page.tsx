@@ -57,11 +57,15 @@ function AggregationPageContent() {
   const initialConcentrationDisplay = (concentrationDisplayParam === 'natural' || concentrationDisplayParam === 'nM' || concentrationDisplayParam === 'uM' || concentrationDisplayParam === 'mM' || concentrationDisplayParam === 'pConc')
     ? concentrationDisplayParam as ConcentrationDisplayMode
     : undefined;
+  // Support group by batch via 'groupByBatch' param
+  const groupByBatchParam = searchParams.get('groupByBatch');
+  const initialGroupByBatch = groupByBatchParam === 'true';
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AggregationResponse | null>(null);
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
+  const [currentGroupByBatch, setCurrentGroupByBatch] = useState<boolean>(initialGroupByBatch);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
   const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>(initialConcentrationDisplay || 'natural');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -100,6 +104,9 @@ function AggregationPageContent() {
     if (concentrationDisplay !== 'natural') {
       params.set('concentrationDisplay', concentrationDisplay);
     }
+    if (currentState.groupByBatch) {
+      params.set('groupByBatch', 'true');
+    }
 
     const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     navigator.clipboard.writeText(url).then(() => {
@@ -133,7 +140,7 @@ function AggregationPageContent() {
   }, [currentState, concentrationDisplay]);
 
   // Update URL to persist query state for back navigation
-  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[]) => {
+  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[], groupByBatch: boolean) => {
     const params = new URLSearchParams();
     if (state.targetNames.length > 0) {
       params.set('targets', state.targetNames.join(','));
@@ -158,6 +165,9 @@ function AggregationPageContent() {
     if (concentrationDisplay !== 'natural') {
       params.set('concentrationDisplay', concentrationDisplay);
     }
+    if (groupByBatch) {
+      params.set('groupByBatch', 'true');
+    }
 
     const queryString = params.toString();
     const newUrl = `${pathname}${queryString ? '?' + queryString : ''}`;
@@ -167,7 +177,7 @@ function AggregationPageContent() {
   // Update URL when concentration display changes (if we have data)
   useEffect(() => {
     if (data && currentState) {
-      updateUrlState(currentState, currentState.outputFormat, currentAggregations);
+      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [concentrationDisplay]);
@@ -175,7 +185,8 @@ function AggregationPageContent() {
   const handleChange = useCallback(async (
     predicates: Predicates,
     outputFormat: OutputFormat,
-    aggregations: AggregationType[]
+    aggregations: AggregationType[],
+    groupByBatch: boolean
   ) => {
     // Increment request ID to track latest request
     const requestId = ++requestIdRef.current;
@@ -183,10 +194,11 @@ function AggregationPageContent() {
     setLoading(true);
     setError(null);
     setCurrentAggregations(aggregations);
+    setCurrentGroupByBatch(groupByBatch);
 
     // Update URL to persist state for back navigation
     if (currentState) {
-      updateUrlState(currentState, outputFormat, aggregations);
+      updateUrlState(currentState, outputFormat, aggregations, groupByBatch);
     }
 
     try {
@@ -194,6 +206,7 @@ function AggregationPageContent() {
         predicates,
         output_format: outputFormat,
         aggregations,
+        group_by_batch: groupByBatch,
       });
 
       // Only update if this is still the latest request
@@ -269,6 +282,7 @@ function AggregationPageContent() {
         initialOutputFormat={initialOutputFormat}
         initialAggregations={initialAggregations}
         initialStatus={initialStatus}
+        initialGroupByBatch={initialGroupByBatch}
       />
 
       {error && (

@@ -304,3 +304,29 @@ class IsAdminOrReadOnly(BasePermission):
         if request.method in ('GET', 'HEAD', 'OPTIONS'):
             return True
         return can_administer(request)
+
+
+class IsContributorCreateAdminUpdate(BasePermission):
+    """
+    DRF permission class for resources where:
+    - Contributors can CREATE new records
+    - Only admins can UPDATE or DELETE existing records
+    - Anyone can READ
+
+    Use this for resources like Compounds where registration should be open
+    to contributors, but editing registered data requires admin approval.
+    """
+
+    message = "Admin access required to edit or delete. Contributors can only create new records."
+
+    def has_permission(self, request, view):
+        # Read operations always allowed
+        if request.method in ('GET', 'HEAD', 'OPTIONS'):
+            return True
+
+        # POST (create) allowed for contributors
+        if request.method == 'POST':
+            return can_contribute(request)
+
+        # PUT, PATCH, DELETE require admin
+        return can_administer(request)

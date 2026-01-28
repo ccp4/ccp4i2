@@ -5,7 +5,8 @@ DRF ViewSets for compound registration models with reversion support.
 
 Permission model:
 - Read access: Anyone (including 'user' operating level)
-- Write access: Requires 'contributor' or 'admin' operating level
+- Create access: Requires 'contributor' or 'admin' operating level
+- Update/Delete access: Compounds require 'admin' only; other models allow 'contributor'
 """
 
 import logging
@@ -22,7 +23,7 @@ from rest_framework.response import Response
 from reversion.models import Version
 
 from compounds.formatting import format_compound_id, get_compound_pattern
-from users.permissions import IsContributorOrReadOnly, can_administer
+from users.permissions import IsContributorOrReadOnly, IsContributorCreateAdminUpdate, can_administer
 from .filters import CompoundSearchFilter
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
 
@@ -53,29 +54,87 @@ from .serializers import (
 
 
 class ReversionMixin:
-    """Mixin to add reversion support to ViewSets."""
+    """
+    Mixin to add reversion support and audit field tracking to ViewSets.
+
+    Automatically:
+    - Creates revision entries for create/update/delete operations
+    - Sets created_by/registered_by on new records
+    - Sets modified_by on updates
+    - Generates descriptive revision comments including model name and identifier
+    """
+
+    def _get_instance_identifier(self, instance):
+        """Get a human-readable identifier for the instance."""
+        # Try common identifier patterns
+        if hasattr(instance, 'formatted_id'):
+            return instance.formatted_id
+        if hasattr(instance, 'name'):
+            return instance.name
+        if hasattr(instance, 'batch_number') and hasattr(instance, 'compound'):
+            return f"{instance.compound.formatted_id}/{instance.batch_number}"
+        return str(instance.pk)[:8]
+
+    def _get_model_name(self, instance):
+        """Get the model name for the instance."""
+        return instance._meta.verbose_name
+
+    def _set_audit_user(self, instance, field_name):
+        """Set an audit user field if it exists and user is authenticated."""
+        if hasattr(instance, field_name) and self.request.user.is_authenticated:
+            setattr(instance, field_name, self.request.user)
+            return True
+        return False
 
     def perform_create(self, serializer):
         with reversion.create_revision():
             instance = serializer.save()
+
+            # Set audit fields if not already set by serializer
+            user_set = False
+            for field in ['created_by', 'registered_by']:
+                if hasattr(instance, field) and getattr(instance, field) is None:
+                    if self._set_audit_user(instance, field):
+                        user_set = True
+
+            if user_set:
+                instance.save(update_fields=[f for f in ['created_by', 'registered_by']
+                                             if hasattr(instance, f)])
+
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment(f"Created via API")
+
+            model_name = self._get_model_name(instance)
+            identifier = self._get_instance_identifier(instance)
+            reversion.set_comment(f"Created {model_name}: {identifier}")
             return instance
 
     def perform_update(self, serializer):
         with reversion.create_revision():
+            instance = serializer.instance
+
+            # Set modified_by before save
+            if hasattr(instance, 'modified_by') and self.request.user.is_authenticated:
+                serializer.validated_data['modified_by'] = self.request.user
+
             instance = serializer.save()
+
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment(f"Updated via API")
+
+            model_name = self._get_model_name(instance)
+            identifier = self._get_instance_identifier(instance)
+            reversion.set_comment(f"Updated {model_name}: {identifier}")
             return instance
 
     def perform_destroy(self, instance):
+        model_name = self._get_model_name(instance)
+        identifier = self._get_instance_identifier(instance)
+
         with reversion.create_revision():
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment(f"Deleted via API")
+            reversion.set_comment(f"Deleted {model_name}: {identifier}")
             instance.delete()
 
     @action(detail=True, methods=['get'])
@@ -473,9 +532,16 @@ class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
 
 
 class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
-    """CRUD operations for Compounds."""
+    """
+    CRUD operations for Compounds.
+
+    Permission model:
+    - READ: Anyone (including 'user' operating level)
+    - CREATE: Requires 'contributor' or 'admin' operating level
+    - UPDATE/DELETE: Requires 'admin' operating level only
+    """
     queryset = Compound.objects.select_related('target', 'supplier', 'registered_by')
-    permission_classes = [IsContributorOrReadOnly]
+    permission_classes = [IsContributorCreateAdminUpdate]
     filter_backends = [DjangoFilterBackend, CompoundSearchFilter, filters.OrderingFilter]
     # Use dict format to enable __in lookup for reg_number (batch SMILES lookup)
     filterset_fields = {

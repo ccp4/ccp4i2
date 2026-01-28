@@ -71,11 +71,22 @@ class SupplierSerializer(serializers.ModelSerializer):
     is_current_user = serializers.SerializerMethodField()
     compound_count = serializers.IntegerField(source='compounds.count', read_only=True)
     batch_count = serializers.SerializerMethodField()
+    created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    modified_by_email = serializers.CharField(source='modified_by.email', read_only=True)
 
     class Meta:
         model = Supplier
-        fields = ['id', 'name', 'initials', 'user', 'is_current_user', 'compound_count', 'batch_count']
-        read_only_fields = ['is_current_user', 'compound_count', 'batch_count']
+        fields = [
+            'id', 'name', 'initials', 'user', 'is_current_user',
+            'compound_count', 'batch_count',
+            'created_by', 'created_by_email',
+            'modified_by', 'modified_by_email',
+            'created_at', 'modified_at',
+        ]
+        read_only_fields = [
+            'is_current_user', 'compound_count', 'batch_count',
+            'created_at', 'modified_at',
+        ]
 
     def get_is_current_user(self, obj):
         """Check if this supplier is linked to the current user."""
@@ -131,17 +142,23 @@ class TargetSerializer(serializers.ModelSerializer):
     has_recent_assays = serializers.SerializerMethodField()
     latest_activity = serializers.DateTimeField(read_only=True, required=False)
     image = ProtectedFileField(url_name='target-image', model_field='id', url_kwarg='target_id')
+    created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+    modified_by_email = serializers.CharField(source='modified_by.email', read_only=True)
 
     class Meta:
         model = Target
         fields = [
-            'id', 'name', 'parent', 'parent_name', 'created_at',
+            'id', 'name', 'parent', 'parent_name',
+            'created_by', 'created_by_email',
+            'modified_by', 'modified_by_email',
+            'created_at', 'modified_at',
             'compound_count', 'assay_count',
             'has_recent_compounds', 'has_recent_assays',
             'latest_activity',
             'image',
             'saved_aggregation_view',
         ]
+        read_only_fields = ['created_at', 'modified_at']
 
     def get_assay_count(self, obj):
         """Count assays for this target."""
@@ -237,6 +254,9 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
     registered_by_email = serializers.CharField(
         source='registered_by.email', read_only=True
     )
+    modified_by_email = serializers.CharField(
+        source='modified_by.email', read_only=True
+    )
     batch_count = serializers.IntegerField(source='batches.count', read_only=True)
 
     class Meta:
@@ -247,7 +267,9 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
             'smiles', 'rdkit_smiles', 'inchi', 'molecular_weight', 'stereo_comment',
             'supplier', 'supplier_name', 'supplier_ref',
             'labbook_number', 'page_number', 'compound_number',
-            'registered_by', 'registered_by_email', 'legacy_registered_by',
+            'registered_by', 'registered_by_email',
+            'modified_by', 'modified_by_email',
+            'legacy_registered_by',
             'registered_at', 'modified_at',
             'comments', 'svg_file',
             'batch_count',
@@ -285,6 +307,12 @@ class BatchSerializer(serializers.ModelSerializer):
     )
     supplier_name = serializers.CharField(source='supplier.name', read_only=True)
     qc_file_count = serializers.IntegerField(source='qc_files.count', read_only=True)
+    registered_by_email = serializers.CharField(
+        source='registered_by.email', read_only=True
+    )
+    modified_by_email = serializers.CharField(
+        source='modified_by.email', read_only=True
+    )
 
     class Meta:
         model = Batch
@@ -293,10 +321,12 @@ class BatchSerializer(serializers.ModelSerializer):
             'supplier', 'supplier_name', 'supplier_ref',
             'labbook_number', 'page_number',
             'amount', 'salt_code', 'molecular_weight',
-            'registered_at', 'comments',
+            'registered_by', 'registered_by_email',
+            'modified_by', 'modified_by_email',
+            'registered_at', 'modified_at', 'comments',
             'qc_file_count',
         ]
-        read_only_fields = ['batch_number', 'registered_at']
+        read_only_fields = ['batch_number', 'registered_at', 'modified_at']
 
 
 class BatchQCFileSerializer(serializers.ModelSerializer):

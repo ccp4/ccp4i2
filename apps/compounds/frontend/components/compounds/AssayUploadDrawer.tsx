@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Drawer,
@@ -62,6 +62,8 @@ interface AssayUploadDrawerProps {
   onClose: () => void;
   protocolId: string;
   protocolName: string;
+  /** Optional target ID to pre-select when drawer opens */
+  defaultTargetId?: string;
   onAssayCreated?: (assayId: string) => void;
 }
 
@@ -116,6 +118,7 @@ export function AssayUploadDrawer({
   onClose,
   protocolId,
   protocolName,
+  defaultTargetId,
   onAssayCreated,
 }: AssayUploadDrawerProps) {
   const router = useRouter();
@@ -138,6 +141,16 @@ export function AssayUploadDrawer({
   const { data: protocolData } = api.get<Protocol>(`protocols/${protocolId}/`);
   const targets = targetsData || [];
   const plateLayout = protocolData?.plate_layout_config as PlateLayout | null;
+
+  // Pre-select target when defaultTargetId is provided and targets are loaded
+  useEffect(() => {
+    if (defaultTargetId && targets.length > 0 && !selectedTarget) {
+      const target = targets.find(t => t.id === defaultTargetId);
+      if (target) {
+        setSelectedTarget(target);
+      }
+    }
+  }, [defaultTargetId, targets, selectedTarget]);
 
   // Extract data series from spreadsheet using plate layout
   const extractedSeries = useMemo((): ExtractedSeries[] => {

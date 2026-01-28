@@ -151,6 +151,7 @@ function CompactTable({
 
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
+  const showBatchColumn = data.meta.group_by_batch;
 
   // Track horizontal scroll position to show/hide scroll shadow
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -259,7 +260,11 @@ function CompactTable({
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
-            {data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
+            {data.meta.compound_count} compounds
+            {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
+              <> ({data.meta.row_count} rows with batch split)</>
+            )}
+            , {data.meta.protocol_count} protocols,{' '}
             {data.meta.total_measurements} measurements
           </Typography>
           <Tooltip title="Click any protocol cell to view dose-response charts">
@@ -339,6 +344,9 @@ function CompactTable({
             <TableRow>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              {showBatchColumn && (
+                <TableCell sx={{ fontWeight: 600, width: 60 }}>Batch</TableCell>
+              )}
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
               {protocols.map((protocol) => (
                 aggregations.map((agg) => (
@@ -375,7 +383,7 @@ function CompactTable({
               rowVirtualizer.getVirtualItems()[0].start > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={3 + protocols.length * aggregations.length}
+                  colSpan={3 + (showBatchColumn ? 1 : 0) + protocols.length * aggregations.length}
                   sx={{
                     height: rowVirtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -390,7 +398,7 @@ function CompactTable({
               const row = rows[virtualRow.index];
               return (
                 <TableRow
-                  key={row.compound_id}
+                  key={showBatchColumn ? `${row.compound_id}-${row.batch_id || 'no-batch'}` : row.compound_id}
                   data-index={virtualRow.index}
                   ref={rowVirtualizer.measureElement}
                   hover
@@ -424,6 +432,13 @@ function CompactTable({
                       variant="outlined"
                     />
                   </TableCell>
+                  {showBatchColumn && (
+                    <TableCell>
+                      <Typography variant="body2" fontFamily="monospace">
+                        {row.batch_number != null ? `/${row.batch_number}` : '-'}
+                      </Typography>
+                    </TableCell>
+                  )}
                   <TableCell>
                     <Typography variant="body2">{row.target_name || '-'}</Typography>
                   </TableCell>
@@ -485,7 +500,7 @@ function CompactTable({
             {rowVirtualizer.getVirtualItems().length > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={3 + protocols.length * aggregations.length}
+                  colSpan={3 + (showBatchColumn ? 1 : 0) + protocols.length * aggregations.length}
                   sx={{
                     height:
                       rowVirtualizer.getTotalSize() -
@@ -538,6 +553,7 @@ function MediumTable({
   const [selectedRow, setSelectedRow] = useState<MediumRow | null>(null);
 
   const rows = data.data as MediumRow[];
+  const showBatchColumn = data.meta.group_by_batch;
 
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
@@ -567,7 +583,11 @@ function MediumTable({
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
-            {data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
+            {data.meta.compound_count} compounds
+            {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
+              <> ({data.meta.row_count} rows with batch split)</>
+            )}
+            , {data.meta.protocol_count} protocols,{' '}
             {data.meta.total_measurements} measurements
           </Typography>
           <Tooltip title="Click any row to view dose-response charts">
@@ -594,6 +614,9 @@ function MediumTable({
             <TableRow>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              {showBatchColumn && (
+                <TableCell sx={{ fontWeight: 600, width: 60 }}>Batch</TableCell>
+              )}
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
               {aggregations.map((agg) => (
@@ -609,7 +632,7 @@ function MediumTable({
               rowVirtualizer.getVirtualItems()[0].start > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={4 + aggregations.length}
+                  colSpan={4 + (showBatchColumn ? 1 : 0) + aggregations.length}
                   sx={{
                     height: rowVirtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -624,7 +647,7 @@ function MediumTable({
               const row = rows[virtualRow.index];
               return (
                 <TableRow
-                  key={`${row.compound_id}-${row.protocol_id}-${virtualRow.index}`}
+                  key={`${row.compound_id}-${row.batch_id || 'no-batch'}-${row.protocol_id}-${virtualRow.index}`}
                   data-index={virtualRow.index}
                   ref={rowVirtualizer.measureElement}
                   hover
@@ -658,6 +681,13 @@ function MediumTable({
                       variant="outlined"
                     />
                   </TableCell>
+                  {showBatchColumn && (
+                    <TableCell>
+                      <Typography variant="body2" fontFamily="monospace">
+                        {row.batch_number != null ? `/${row.batch_number}` : '-'}
+                      </Typography>
+                    </TableCell>
+                  )}
                   <TableCell>
                     <Typography variant="body2">{row.target_name || '-'}</Typography>
                   </TableCell>
@@ -720,7 +750,7 @@ function MediumTable({
             {rowVirtualizer.getVirtualItems().length > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={4 + aggregations.length}
+                  colSpan={4 + (showBatchColumn ? 1 : 0) + aggregations.length}
                   sx={{
                     height:
                       rowVirtualizer.getTotalSize() -
@@ -766,6 +796,8 @@ function LongTable({
   const parentRef = useRef<HTMLDivElement>(null);
 
   const rows = data.data as LongRow[];
+  // Long format always includes batch info, but only show column if any row has batch data
+  const showBatchColumn = rows.some(row => row.batch_number != null);
 
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
@@ -801,6 +833,9 @@ function LongTable({
             <TableRow>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              {showBatchColumn && (
+                <TableCell sx={{ fontWeight: 600, width: 60 }}>Batch</TableCell>
+              )}
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Date</TableCell>
@@ -814,7 +849,7 @@ function LongTable({
               rowVirtualizer.getVirtualItems()[0].start > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={7}
+                  colSpan={7 + (showBatchColumn ? 1 : 0)}
                   sx={{
                     height: rowVirtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -869,6 +904,13 @@ function LongTable({
                       </Typography>
                     )}
                   </TableCell>
+                  {showBatchColumn && (
+                    <TableCell>
+                      <Typography variant="body2" fontFamily="monospace">
+                        {row.batch_number != null ? `/${row.batch_number}` : '-'}
+                      </Typography>
+                    </TableCell>
+                  )}
                   <TableCell>
                     <Typography variant="body2">{row.target_name || '-'}</Typography>
                   </TableCell>
@@ -921,7 +963,7 @@ function LongTable({
             {rowVirtualizer.getVirtualItems().length > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={7}
+                  colSpan={7 + (showBatchColumn ? 1 : 0)}
                   sx={{
                     height:
                       rowVirtualizer.getTotalSize() -

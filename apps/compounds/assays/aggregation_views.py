@@ -49,17 +49,26 @@ class AggregationViewSet(viewsets.ViewSet):
                 "protocols": ["<uuid>", ...],
                 "status": "valid"  // optional, defaults to "valid"
             },
-            "output_format": "compact" | "long",
-            "aggregations": ["geomean", "count", "stdev", "list"]
+            "output_format": "compact" | "medium" | "long",
+            "aggregations": ["geomean", "count", "stdev", "list"],
+            "group_by_batch": false  // optional, when true splits results by batch
         }
 
         Returns:
-            Compact format: One row per compound with protocol columns
-            Long format: One row per measurement
+            Compact format: One row per compound (or compound/batch) with protocol columns
+            Medium format: One row per compound-protocol (or compound-batch-protocol) pair
+            Long format: One row per measurement (always includes batch info)
+
+        When group_by_batch is true:
+            - Compact/Medium: Separate rows are created for each batch of a compound
+            - Long: Batch info is always included; the flag affects sorting/display hints
+            - Rows include batch_id and batch_number fields
+            - meta.group_by_batch indicates the grouping mode used
         """
         predicates = request.data.get('predicates', {})
         output_format = request.data.get('output_format', 'compact')
         aggregations = request.data.get('aggregations', ['geomean', 'count'])
+        group_by_batch = request.data.get('group_by_batch', False)
 
         # Validate output format
         if output_format not in ('compact', 'medium', 'long'):
@@ -81,11 +90,11 @@ class AggregationViewSet(viewsets.ViewSet):
         queryset = build_data_series_queryset(predicates)
 
         if output_format == 'compact':
-            result = aggregate_compact(queryset, aggregations)
+            result = aggregate_compact(queryset, aggregations, group_by_batch=group_by_batch)
         elif output_format == 'medium':
-            result = aggregate_medium(queryset, aggregations)
+            result = aggregate_medium(queryset, aggregations, group_by_batch=group_by_batch)
         else:
-            result = aggregate_long(queryset, aggregations)
+            result = aggregate_long(queryset, aggregations, group_by_batch=group_by_batch)
 
         return Response(result)
 

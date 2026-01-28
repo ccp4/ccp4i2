@@ -46,6 +46,8 @@ export interface PredicateBuilderState {
   aggregations: AggregationType[];
   /** Status filter value */
   status?: string;
+  /** Whether to group results by batch */
+  groupByBatch: boolean;
   /** Concentration display mode - managed by AggregationTable, included for saved views */
   concentrationDisplay?: ConcentrationDisplayMode;
 }
@@ -65,11 +67,14 @@ interface PredicateBuilderProps {
   initialAggregations?: AggregationType[];
   /** Initial status filter (for URL sharing) */
   initialStatus?: string;
+  /** Initial group by batch setting (for URL sharing) */
+  initialGroupByBatch?: boolean;
   /** Called when user clicks Run Query */
   onRunQuery: (
     predicates: Predicates,
     outputFormat: OutputFormat,
-    aggregations: AggregationType[]
+    aggregations: AggregationType[],
+    groupByBatch: boolean
   ) => void;
   /** Called when state changes (for URL sharing) */
   onStateChange?: (state: PredicateBuilderState) => void;
@@ -92,6 +97,7 @@ export function PredicateBuilder({
   initialOutputFormat,
   initialAggregations,
   initialStatus,
+  initialGroupByBatch,
   onRunQuery,
   onStateChange,
   loading = false,
@@ -113,6 +119,7 @@ export function PredicateBuilder({
   // Output options
   const [outputFormat, setOutputFormat] = useState<OutputFormat>(initialOutputFormat || 'compact');
   const [aggregations, setAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
+  const [groupByBatch, setGroupByBatch] = useState<boolean>(initialGroupByBatch || false);
 
   // Track initialization state
   const [isInitialized, setIsInitialized] = useState(false);
@@ -170,9 +177,9 @@ export function PredicateBuilder({
   // Handle Run Query button click
   const handleRunQuery = useCallback(() => {
     if (canRunQuery) {
-      onRunQuery(buildPredicates(), outputFormat, aggregations);
+      onRunQuery(buildPredicates(), outputFormat, aggregations, groupByBatch);
     }
-  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations]);
+  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations, groupByBatch]);
 
   // Load initial targets and protocols if URL params provided
   useEffect(() => {
@@ -233,9 +240,9 @@ export function PredicateBuilder({
       hasRunInitialQuery.current = true;
       const predicates = buildPredicates();
       // Use aggregations for compact/medium, ignore for long
-      onRunQuery(predicates, outputFormat, aggregations);
+      onRunQuery(predicates, outputFormat, aggregations, groupByBatch);
     }
-  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, onRunQuery]);
+  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, groupByBatch, onRunQuery]);
 
   // Load target options when user types in autocomplete
   const handleTargetSearch = useCallback((search: string) => {
@@ -278,9 +285,10 @@ export function PredicateBuilder({
         outputFormat,
         aggregations,
         status,
+        groupByBatch,
       });
     }
-  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, onStateChange]);
+  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, groupByBatch, onStateChange]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
@@ -472,6 +480,21 @@ export function PredicateBuilder({
             ))}
           </Box>
         )}
+
+        {/* Group by batch toggle */}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={groupByBatch}
+              onChange={(e) => setGroupByBatch(e.target.checked)}
+              size="small"
+              sx={{ py: 0 }}
+            />
+          }
+          label={<Typography variant="body2">Split by Batch</Typography>}
+          title="Show separate rows for each batch of a compound"
+          sx={{ mr: 1, ml: 1 }}
+        />
 
         {/* Run Query button */}
         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', ml: 'auto' }}>

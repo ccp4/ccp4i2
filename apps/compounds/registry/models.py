@@ -59,6 +59,24 @@ class Supplier(models.Model):
         help_text="User account linked to this supplier (for personal suppliers)"
     )
 
+    # Audit
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='created_suppliers'
+    )
+    modified_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='modified_suppliers'
+    )
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    modified_at = models.DateTimeField(auto_now=True, null=True)
+
     class Meta:
         ordering = ['name']
         verbose_name = 'Supplier'
@@ -114,7 +132,24 @@ class Target(models.Model):
                   "aggregations: ('geomean'|'count'|'stdev'|'list')[], "
                   "status: 'valid'|'invalid'|'unassigned'|''}"
     )
+
+    # Audit
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='created_targets'
+    )
+    modified_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='modified_targets'
+    )
     created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, null=True)
 
     class Meta:
         ordering = ['name']
@@ -227,6 +262,14 @@ class Compound(models.Model):
         null=True,
         blank=True,
         related_name='registered_compounds'
+    )
+    modified_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='modified_compounds',
+        help_text="User who last modified this compound"
     )
     legacy_registered_by = models.CharField(
         max_length=100,
@@ -367,8 +410,25 @@ class Batch(models.Model):
         help_text="MW including salt (if different from parent)"
     )
 
-    # Metadata
+    # Audit
+    registered_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='registered_batches',
+        help_text="User who registered this batch"
+    )
+    modified_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='modified_batches',
+        help_text="User who last modified this batch"
+    )
     registered_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, null=True)
     comments = models.TextField(blank=True, null=True)
 
     class Meta:

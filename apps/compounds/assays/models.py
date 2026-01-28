@@ -24,7 +24,7 @@ from django.dispatch import receiver
 from django.utils.functional import cached_property
 
 # Import from registry for cross-app relationships
-from compounds.registry.models import Target, Compound
+from compounds.registry.models import Target, Compound, Batch
 from compounds.utils import delete_file_field
 
 User = get_user_model()
@@ -393,9 +393,19 @@ class Protocol(models.Model):
         User,
         on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        blank=True,
+        related_name='created_protocols'
+    )
+    modified_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='modified_protocols',
+        help_text="User who last modified this protocol"
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, null=True)
     comments = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -506,9 +516,19 @@ class Assay(models.Model):
         User,
         on_delete=models.SET_NULL,
         null=True,
-        blank=True
+        blank=True,
+        related_name='created_assays'
+    )
+    modified_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='modified_assays',
+        help_text="User who last modified this assay"
     )
     created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True, null=True)
     comments = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -568,6 +588,15 @@ class DataSeries(models.Model):
         blank=True,
         related_name='assay_results',
         help_text="Linked compound (matched by name/barcode)"
+    )
+    batch = models.ForeignKey(
+        Batch,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='assay_results',
+        help_text="Specific batch tested (if known). Parsed from compound_name if "
+                  "format is COMPOUND_ID/BATCH_NUMBER (e.g., NCL-00026042/1)"
     )
     compound_name = models.CharField(
         max_length=256,

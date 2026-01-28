@@ -33,6 +33,8 @@ export interface AggregationRequest {
   predicates?: Predicates;
   output_format: OutputFormat;
   aggregations: AggregationType[];
+  /** When true, split results by batch (creates separate rows for each batch) */
+  group_by_batch?: boolean;
 }
 
 /** Protocol info in response */
@@ -54,8 +56,12 @@ export interface ProtocolAggregation {
 /** Summary metadata for response */
 export interface AggregationMeta {
   compound_count: number;
+  /** Number of rows (may differ from compound_count when group_by_batch=true) */
+  row_count?: number;
   protocol_count: number;
   total_measurements: number;
+  /** Whether results are grouped by batch */
+  group_by_batch?: boolean;
 }
 
 /** A single compound row in compact format */
@@ -64,6 +70,10 @@ export interface CompactRow {
   formatted_id: string;
   smiles: string | null;
   target_name: string | null;
+  /** Batch UUID (only present when group_by_batch=true) */
+  batch_id?: string | null;
+  /** Batch number (only present when group_by_batch=true) */
+  batch_number?: number | null;
   /** Protocol aggregations keyed by protocol UUID */
   protocols: Record<string, ProtocolAggregation>;
 }
@@ -81,6 +91,10 @@ export interface MediumRow {
   formatted_id: string;
   smiles: string | null;
   target_name: string | null;
+  /** Batch UUID (only present when group_by_batch=true) */
+  batch_id?: string | null;
+  /** Batch number (only present when group_by_batch=true) */
+  batch_number?: number | null;
   protocol_id: string;
   protocol_name: string;
   /** KPI unit for this row (e.g., 'nM', 'uM', 'mM') */
@@ -106,6 +120,10 @@ export interface LongRow {
   compound_name: string | null;
   smiles: string | null;
   target_name: string | null;
+  /** Batch UUID (always present in long format) */
+  batch_id?: string | null;
+  /** Batch number (always present in long format) */
+  batch_number?: number | null;
   protocol_id: string;
   protocol_name: string;
   assay_id: string;

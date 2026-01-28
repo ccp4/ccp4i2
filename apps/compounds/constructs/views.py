@@ -59,29 +59,83 @@ logger = logging.getLogger(__name__)
 
 
 class ReversionMixin:
-    """Mixin to add reversion support to ViewSets."""
+    """
+    Mixin to add reversion support and audit field tracking to ViewSets.
+
+    Automatically:
+    - Creates revision entries for create/update/delete operations
+    - Sets created_by on new records
+    - Sets modified_by on updates
+    - Generates descriptive revision comments including model name and identifier
+    """
+
+    def _get_instance_identifier(self, instance):
+        """Get a human-readable identifier for the instance."""
+        # Try common identifier patterns
+        if hasattr(instance, 'name'):
+            return instance.name
+        if hasattr(instance, 'plasmid_name'):
+            return instance.plasmid_name
+        return str(instance.pk)[:8]
+
+    def _get_model_name(self, instance):
+        """Get the model name for the instance."""
+        return instance._meta.verbose_name
+
+    def _set_audit_user(self, instance, field_name):
+        """Set an audit user field if it exists and user is authenticated."""
+        if hasattr(instance, field_name) and self.request.user.is_authenticated:
+            setattr(instance, field_name, self.request.user)
+            return True
+        return False
 
     def perform_create(self, serializer):
         with reversion.create_revision():
             instance = serializer.save()
+
+            # Set audit fields if not already set by serializer
+            user_set = False
+            if hasattr(instance, 'created_by') and getattr(instance, 'created_by') is None:
+                if self._set_audit_user(instance, 'created_by'):
+                    user_set = True
+
+            if user_set:
+                instance.save(update_fields=['created_by'])
+
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment("Created via API")
+
+            model_name = self._get_model_name(instance)
+            identifier = self._get_instance_identifier(instance)
+            reversion.set_comment(f"Created {model_name}: {identifier}")
             return instance
 
     def perform_update(self, serializer):
         with reversion.create_revision():
+            instance = serializer.instance
+
+            # Set modified_by before save
+            if hasattr(instance, 'modified_by') and self.request.user.is_authenticated:
+                serializer.validated_data['modified_by'] = self.request.user
+
             instance = serializer.save()
+
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment("Updated via API")
+
+            model_name = self._get_model_name(instance)
+            identifier = self._get_instance_identifier(instance)
+            reversion.set_comment(f"Updated {model_name}: {identifier}")
             return instance
 
     def perform_destroy(self, instance):
+        model_name = self._get_model_name(instance)
+        identifier = self._get_instance_identifier(instance)
+
         with reversion.create_revision():
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment("Deleted via API")
+            reversion.set_comment(f"Deleted {model_name}: {identifier}")
             instance.delete()
 
     @action(detail=True, methods=['get'])

@@ -52,29 +52,87 @@ from .serializers import (
 
 
 class ReversionMixin:
-    """Mixin to add reversion support to ViewSets."""
+    """
+    Mixin to add reversion support and audit field tracking to ViewSets.
+
+    Automatically:
+    - Creates revision entries for create/update/delete operations
+    - Sets created_by on new records
+    - Sets modified_by on updates
+    - Generates descriptive revision comments including model name and identifier
+    """
+
+    def _get_instance_identifier(self, instance):
+        """Get a human-readable identifier for the instance."""
+        # Try common identifier patterns
+        if hasattr(instance, 'name'):
+            return instance.name
+        if hasattr(instance, 'protocol') and hasattr(instance, 'created_at'):
+            # Assay - use protocol name and date
+            date_str = instance.created_at.strftime('%Y-%m-%d') if instance.created_at else 'unknown'
+            return f"{instance.protocol.name} ({date_str})"
+        if hasattr(instance, 'compound_name'):
+            return instance.compound_name or str(instance.pk)[:8]
+        return str(instance.pk)[:8]
+
+    def _get_model_name(self, instance):
+        """Get the model name for the instance."""
+        return instance._meta.verbose_name
+
+    def _set_audit_user(self, instance, field_name):
+        """Set an audit user field if it exists and user is authenticated."""
+        if hasattr(instance, field_name) and self.request.user.is_authenticated:
+            setattr(instance, field_name, self.request.user)
+            return True
+        return False
 
     def perform_create(self, serializer):
         with reversion.create_revision():
             instance = serializer.save()
+
+            # Set audit fields if not already set by serializer
+            user_set = False
+            if hasattr(instance, 'created_by') and getattr(instance, 'created_by') is None:
+                if self._set_audit_user(instance, 'created_by'):
+                    user_set = True
+
+            if user_set:
+                instance.save(update_fields=['created_by'])
+
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment(f"Created via API")
+
+            model_name = self._get_model_name(instance)
+            identifier = self._get_instance_identifier(instance)
+            reversion.set_comment(f"Created {model_name}: {identifier}")
             return instance
 
     def perform_update(self, serializer):
         with reversion.create_revision():
+            instance = serializer.instance
+
+            # Set modified_by before save
+            if hasattr(instance, 'modified_by') and self.request.user.is_authenticated:
+                serializer.validated_data['modified_by'] = self.request.user
+
             instance = serializer.save()
+
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment(f"Updated via API")
+
+            model_name = self._get_model_name(instance)
+            identifier = self._get_instance_identifier(instance)
+            reversion.set_comment(f"Updated {model_name}: {identifier}")
             return instance
 
     def perform_destroy(self, instance):
+        model_name = self._get_model_name(instance)
+        identifier = self._get_instance_identifier(instance)
+
         with reversion.create_revision():
             if self.request.user.is_authenticated:
                 reversion.set_user(self.request.user)
-            reversion.set_comment(f"Deleted via API")
+            reversion.set_comment(f"Deleted {model_name}: {identifier}")
             instance.delete()
 
     @action(detail=True, methods=['get'])
@@ -531,9 +589,10 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                     if image_column and image_column in row:
                         results['Image File'] = row[image_column]
 
-                    # Try to match compound by name using centralized resolver
-                    from compounds.utils import resolve_compound
-                    compound = resolve_compound(str(compound_name))
+                    # Try to match compound (and optionally batch) by name
+                    # Supports batch notation: "NCL-00031221/1" -> compound NCL-00031221, batch 1
+                    from compounds.utils import resolve_compound_with_batch
+                    compound, batch = resolve_compound_with_batch(str(compound_name))
 
                     # Create AnalysisResult
                     analysis = AnalysisResult.objects.create(
@@ -545,6 +604,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                     series = DataSeries.objects.create(
                         assay=assay,
                         compound=compound,
+                        batch=batch,
                         compound_name=str(compound_name),
                         row=idx,
                         start_column=0,

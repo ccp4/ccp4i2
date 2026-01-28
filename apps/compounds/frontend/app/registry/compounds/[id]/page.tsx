@@ -15,12 +15,13 @@ import {
   Tooltip,
   IconButton,
 } from '@mui/material';
-import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
+import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Edit, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/compounds/DataTable';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
+import { CompoundEditDialog } from '@/components/compounds/CompoundEditDialog';
 import { AliasEditor } from '@/components/compounds/AliasEditor';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
@@ -49,9 +50,10 @@ export default function CompoundDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
-  const { canContribute } = useAuth();
+  const { canContribute, canAdminister } = useAuth();
 
   const [batchDialogOpen, setBatchDialogOpen] = useState(false);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
   const [smilesCopied, setSmilesCopied] = useState(false);
 
   const { data: compound, isLoading: compoundLoading, mutate: mutateCompound } = api.get<Compound>(
@@ -235,14 +237,27 @@ export default function CompoundDetailPage({ params }: PageProps) {
                   </Box>
                 </Box>
               </Box>
-              <Button
-                component={Link}
-                href={routes.assays.aggregate({ compound: compound.formatted_id })}
-                variant="outlined"
-                startIcon={<TableChart />}
-              >
-                View Assay Data
-              </Button>
+              <Box sx={{ display: 'flex', gap: 1 }}>
+                {canAdminister && (
+                  <Tooltip title="Edit compound details (Admin only)">
+                    <Button
+                      variant="outlined"
+                      startIcon={<Edit />}
+                      onClick={() => setEditDialogOpen(true)}
+                    >
+                      Edit
+                    </Button>
+                  </Tooltip>
+                )}
+                <Button
+                  component={Link}
+                  href={routes.assays.aggregate({ compound: compound.formatted_id })}
+                  variant="outlined"
+                  startIcon={<TableChart />}
+                >
+                  View Assay Data
+                </Button>
+              </Box>
             </Box>
 
             <Divider sx={{ my: 2 }} />
@@ -393,6 +408,18 @@ export default function CompoundDetailPage({ params }: PageProps) {
           }}
           compoundId={compound.id}
           compoundFormattedId={compound.formatted_id}
+        />
+      )}
+
+      {/* Compound edit dialog (admin only) */}
+      {compound && (
+        <CompoundEditDialog
+          open={editDialogOpen}
+          onClose={() => setEditDialogOpen(false)}
+          onSaved={() => {
+            mutateCompound();
+          }}
+          compound={compound}
         />
       )}
     </Container>
