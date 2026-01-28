@@ -6,7 +6,7 @@ import shutil
 import sys
 
 from .. import common
-import data
+from .. import data
 from ..process import crvapi, process
 from ..program import program
 
