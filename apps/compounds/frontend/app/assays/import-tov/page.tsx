@@ -43,6 +43,7 @@ import {
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { SpreadsheetUpload, SpreadsheetData } from '@/components/compounds/SpreadsheetUpload';
 import { useCompoundsApi, apiPost, apiUpload } from '@/lib/compounds/api';
+import { useCompoundConfig } from '@/lib/compounds/config';
 import { routes } from '@/lib/compounds/routes';
 
 interface Protocol {
@@ -80,6 +81,7 @@ function ImportTableOfValuesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const api = useCompoundsApi();
+  const { config: compoundConfig } = useCompoundConfig();
 
   // Get protocol from URL query param - if provided, it's locked
   const lockedProtocolId = searchParams.get('protocol');
@@ -313,7 +315,7 @@ function ImportTableOfValuesContent() {
       <Alert severity="info" sx={{ mb: 3 }}>
         Import pre-analyzed data from external analysis tools. The spreadsheet should have:
         <ul style={{ margin: '8px 0 0 0', paddingLeft: 20 }}>
-          <li><strong>Compound column</strong> - Compound identifiers (e.g., NCL-00042)</li>
+          <li><strong>Compound column</strong> - Compound identifiers (e.g., {compoundConfig.compound_id_prefix}-00042)</li>
           <li><strong>KPI column</strong> - Contains the name of the column with the primary metric (e.g., all rows have "EC50")</li>
           <li><strong>Data columns</strong> - EC50, IC50, Hill, etc. as referenced by the KPI column</li>
           <li><strong>Image File column</strong> (optional) - Filenames for plot images to upload later</li>

@@ -7,6 +7,11 @@ import os
 import re
 from typing import Optional, TYPE_CHECKING
 
+from compounds.formatting import (
+    get_compound_pattern,
+    get_malformed_pattern,
+)
+
 if TYPE_CHECKING:
     from compounds.registry.models import Compound
 
@@ -55,9 +60,10 @@ def resolve_compound(identifier: str) -> Optional['Compound']:
     if not identifier:
         return None
 
-    # Strategy 1: Handle malformed NCL patterns FIRST like "NCL000-27421" (dash after zeros)
+    # Strategy 1: Handle malformed patterns FIRST like "PREFIX000-27421" (dash after zeros)
     # Must be checked before standard pattern to avoid incorrect matches
-    ncl_malformed = re.match(r'^NCL0+-(\d+)$', identifier, re.IGNORECASE)
+    malformed_pattern = get_malformed_pattern(capturing=True)
+    ncl_malformed = malformed_pattern.match(identifier)
     if ncl_malformed:
         try:
             reg_number = int(ncl_malformed.group(1))
@@ -67,9 +73,10 @@ def resolve_compound(identifier: str) -> Optional['Compound']:
         except ValueError:
             pass
 
-    # Strategy 2: NCL format patterns (handles NCL-XXXXXXXX, NCL-XX, ncl-xx, etc.)
-    # Pattern matches: NCL-00026042, NCL-26042, ncl-26042, NCL26042, ncl 26042
-    ncl_match = re.match(r'^NCL[-\s]?0*(\d+)$', identifier, re.IGNORECASE)
+    # Strategy 2: Standard format patterns (handles PREFIX-XXXXXXXX, PREFIX-XX, etc.)
+    # Pattern matches: PREFIX-00026042, PREFIX-26042, PREFIX26042, PREFIX 26042
+    standard_pattern = get_compound_pattern(capturing=True)
+    ncl_match = standard_pattern.match(identifier)
     if ncl_match:
         try:
             reg_number = int(ncl_match.group(1))
@@ -89,10 +96,10 @@ def resolve_compound(identifier: str) -> Optional['Compound']:
         except ValueError:
             pass
 
-    # Strategy 4: More permissive NCL extraction (handles embedded NCL numbers)
-    # E.g., "sample NCL-26042 test", "NCL_26042"
+    # Strategy 4: More permissive extraction (handles embedded compound IDs)
+    # E.g., "sample PREFIX-26042 test", "PREFIX_26042"
     # First try malformed pattern for embedded malformed IDs
-    ncl_malformed_search = re.search(r'NCL0+-(\d+)', identifier, re.IGNORECASE)
+    ncl_malformed_search = malformed_pattern.search(identifier)
     if ncl_malformed_search:
         try:
             reg_number = int(ncl_malformed_search.group(1))
@@ -103,7 +110,7 @@ def resolve_compound(identifier: str) -> Optional['Compound']:
             pass
 
     # Then try standard embedded pattern
-    ncl_extract = re.search(r'NCL[-_\s]?0*(\d+)', identifier, re.IGNORECASE)
+    ncl_extract = standard_pattern.search(identifier)
     if ncl_extract:
         try:
             reg_number = int(ncl_extract.group(1))
@@ -167,10 +174,10 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
     results = {}
     remaining = []
 
-    # First pass: Extract all NCL numbers and plain numerics
+    # First pass: Extract compound IDs and plain numerics
     # Note: malformed pattern must be tried FIRST to avoid incorrect matches
-    ncl_malformed_pattern = re.compile(r'NCL0+-(\d+)', re.IGNORECASE)  # Handles NCL000-27421
-    ncl_pattern = re.compile(r'NCL[-_\s]?0*(\d+)', re.IGNORECASE)
+    malformed_pattern = get_malformed_pattern(capturing=True)
+    standard_pattern = get_compound_pattern(capturing=True)
     reg_numbers_needed = set()
     identifier_to_reg = {}
 
@@ -184,17 +191,17 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
             results[identifier] = None
             continue
 
-        # Try malformed NCL pattern FIRST (NCL000-27421)
+        # Try malformed pattern FIRST (PREFIX000-27421)
         # Must check before standard pattern to avoid 0* consuming zeros incorrectly
-        match = ncl_malformed_pattern.search(identifier)
+        match = malformed_pattern.search(identifier)
         if match:
             reg_num = int(match.group(1))
             reg_numbers_needed.add(reg_num)
             identifier_to_reg[identifier] = reg_num
             continue
 
-        # Try NCL pattern (standard format)
-        match = ncl_pattern.search(identifier)
+        # Try standard pattern (PREFIX-XXXXXXXX, etc.)
+        match = standard_pattern.search(identifier)
         if match:
             reg_num = int(match.group(1))
             reg_numbers_needed.add(reg_num)
@@ -208,7 +215,7 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
             identifier_to_reg[identifier] = reg_num
             continue
 
-        # No NCL pattern found - add to remaining for fallback strategies
+        # No compound ID pattern found - add to remaining for fallback strategies
         remaining.append(identifier)
 
     # Batch fetch compounds by reg_number

@@ -15,9 +15,22 @@ const DJANGO_URL = process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_
 const API_PATH = '/api/compounds';
 
 /**
- * Check if authentication should be required.
+ * Paths that don't require authentication.
+ * These are public endpoints that the frontend needs before the user is authenticated.
  */
-function isAuthRequired(): boolean {
+const PUBLIC_PATHS = [
+  'config',  // Compound ID configuration (prefix, digits)
+];
+
+/**
+ * Check if authentication should be required for a given path.
+ */
+function isAuthRequired(path: string): boolean {
+  // Check if this is a public path
+  if (PUBLIC_PATHS.includes(path)) {
+    return false;
+  }
+
   if (process.env.REQUIRE_PROXY_AUTH?.toLowerCase() === "true") {
     return true;
   }
@@ -92,8 +105,8 @@ function buildForwardHeaders(req: NextRequest): Headers {
 /**
  * Check auth and return 401 response if required but missing.
  */
-function checkAuth(req: NextRequest): NextResponse | null {
-  if (isAuthRequired()) {
+function checkAuth(req: NextRequest, path: string): NextResponse | null {
+  if (isAuthRequired(path)) {
     const token = extractAuthToken(req);
     if (!token) {
       const principalId = req.headers.get("X-MS-CLIENT-PRINCIPAL-ID");
@@ -112,11 +125,12 @@ export async function GET(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const authError = checkAuth(request);
-  if (authError) return authError;
-
   const { path } = await params;
   const pathString = path.join('/');
+
+  const authError = checkAuth(request, pathString);
+  if (authError) return authError;
+
   const searchParams = request.nextUrl.searchParams.toString();
   const queryString = searchParams ? `?${searchParams}` : '';
   const url = `${DJANGO_URL}${API_PATH}/${pathString}/${queryString}`;
@@ -181,11 +195,11 @@ export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const authError = checkAuth(request);
-  if (authError) return authError;
-
   const { path } = await params;
   const pathString = path.join('/');
+
+  const authError = checkAuth(request, pathString);
+  if (authError) return authError;
   const url = `${DJANGO_URL}${API_PATH}/${pathString}/`;
 
   console.log(`[Compounds Proxy] POST ${url}`);
@@ -270,11 +284,11 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const authError = checkAuth(request);
-  if (authError) return authError;
-
   const { path } = await params;
   const pathString = path.join('/');
+
+  const authError = checkAuth(request, pathString);
+  if (authError) return authError;
   const url = `${DJANGO_URL}${API_PATH}/${pathString}/`;
   const body = await request.json();
 
@@ -319,11 +333,11 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: Promise<{ path: string[] }> }
 ) {
-  const authError = checkAuth(request);
-  if (authError) return authError;
-
   const { path } = await params;
   const pathString = path.join('/');
+
+  const authError = checkAuth(request, pathString);
+  if (authError) return authError;
   const url = `${DJANGO_URL}${API_PATH}/${pathString}/`;
 
   console.log(`[Compounds Proxy] DELETE ${url}`);

@@ -41,6 +41,7 @@ import { DataTable, Column } from '@/components/compounds/DataTable';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { JSMEEditor } from '@/components/compounds/JSMEEditor';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useCompoundConfig } from '@/lib/compounds/config';
 import { routes } from '@/lib/compounds/routes';
 import { Target, Compound } from '@/types/compounds/models';
 
@@ -109,6 +110,7 @@ function CompoundSearchContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const api = useCompoundsApi();
+  const { config: compoundConfig } = useCompoundConfig();
 
   // URL params
   const initialQuery = searchParams.get('q') || '';
@@ -420,7 +422,7 @@ function CompoundSearchContent() {
           <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
             <TextField
               label="Text Search"
-              placeholder="NCL-00026..., supplier ref, or SMILES"
+              placeholder={`${compoundConfig.compound_id_prefix}-00026..., supplier ref, or SMILES`}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               sx={{ flex: 1, minWidth: 300 }}
@@ -678,7 +680,7 @@ function CompoundSearchContent() {
             Search for compounds
           </Typography>
           <Typography color="text.secondary">
-            Enter a compound ID (e.g., NCL-00026123), supplier reference, or SMILES string.
+            Enter a compound ID (e.g., {compoundConfig.compound_id_example}), supplier reference, or SMILES string.
             <br />
             You can also filter by target or use the structure editor to draw a query structure.
           </Typography>

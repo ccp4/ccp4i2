@@ -34,6 +34,7 @@ import {
 } from '@/types/compounds/aggregation';
 import { Target } from '@/types/compounds/models';
 import { fetchTargets, fetchProtocols } from '@/lib/compounds/aggregation-api';
+import { useCompoundConfig } from '@/lib/compounds/config';
 
 /** State exposed for URL sharing and saving */
 export interface PredicateBuilderState {
@@ -43,6 +44,8 @@ export interface PredicateBuilderState {
   compoundSearch: string;
   outputFormat: OutputFormat;
   aggregations: AggregationType[];
+  /** Status filter value */
+  status?: string;
   /** Concentration display mode - managed by AggregationTable, included for saved views */
   concentrationDisplay?: ConcentrationDisplayMode;
 }
@@ -58,6 +61,10 @@ interface PredicateBuilderProps {
   initialCompoundSearch?: string;
   /** Initial output format (for URL sharing) */
   initialOutputFormat?: OutputFormat;
+  /** Initial aggregations (for URL sharing) */
+  initialAggregations?: AggregationType[];
+  /** Initial status filter (for URL sharing) */
+  initialStatus?: string;
   /** Called when user clicks Run Query */
   onRunQuery: (
     predicates: Predicates,
@@ -83,6 +90,8 @@ export function PredicateBuilder({
   initialProtocolNames,
   initialCompoundSearch,
   initialOutputFormat,
+  initialAggregations,
+  initialStatus,
   onRunQuery,
   onStateChange,
   loading = false,
@@ -99,16 +108,19 @@ export function PredicateBuilder({
 
   // Other predicates
   const [compoundSearch, setCompoundSearch] = useState(initialCompoundSearch || '');
-  const [status, setStatus] = useState<string>('valid');
+  const [status, setStatus] = useState<string>(initialStatus !== undefined ? initialStatus : 'valid');
 
   // Output options
   const [outputFormat, setOutputFormat] = useState<OutputFormat>(initialOutputFormat || 'compact');
-  const [aggregations, setAggregations] = useState<AggregationType[]>(['geomean', 'count']);
+  const [aggregations, setAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
 
   // Track initialization state
   const [isInitialized, setIsInitialized] = useState(false);
   const hasRunInitialQuery = useRef(false);
   const hasStartedInit = useRef(false);
+
+  // Get compound config for dynamic placeholder
+  const { config: compoundConfig } = useCompoundConfig();
 
   // Memoize initial values to prevent infinite loops from array reference changes
   const memoizedInitialTargetId = useMemo(() => initialTargetId, [initialTargetId]);
@@ -265,9 +277,10 @@ export function PredicateBuilder({
         compoundSearch,
         outputFormat,
         aggregations,
+        status,
       });
     }
-  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, onStateChange]);
+  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, onStateChange]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
@@ -384,7 +397,7 @@ export function PredicateBuilder({
         {/* Compound search */}
         <TextField
           label="Compound Search"
-          placeholder="NCL-00026..."
+          placeholder={`${compoundConfig.compound_id_prefix}-00026...`}
           value={compoundSearch}
           onChange={(e) => setCompoundSearch(e.target.value)}
           size="small"

@@ -57,7 +57,10 @@ COPY apps/compounds/assays /usr/src/app/compounds/assays
 COPY apps/compounds/constructs /usr/src/app/compounds/constructs
 COPY apps/compounds/__init__.py /usr/src/app/compounds/__init__.py
 COPY apps/compounds/urls.py /usr/src/app/compounds/urls.py
+COPY apps/compounds/settings.py /usr/src/app/compounds/settings.py
+COPY apps/compounds/formatting.py /usr/src/app/compounds/formatting.py
 COPY apps/compounds/admin_views.py /usr/src/app/compounds/admin_views.py
+COPY apps/compounds/config_views.py /usr/src/app/compounds/config_views.py
 COPY apps/compounds/media_views.py /usr/src/app/compounds/media_views.py
 COPY apps/compounds/validators.py /usr/src/app/compounds/validators.py
 COPY apps/compounds/utils.py /usr/src/app/compounds/utils.py

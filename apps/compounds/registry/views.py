@@ -21,6 +21,7 @@ from rest_framework.parsers import MultiPartParser
 from rest_framework.response import Response
 from reversion.models import Version
 
+from compounds.formatting import format_compound_id, get_compound_pattern
 from users.permissions import IsContributorOrReadOnly, can_administer
 from .filters import CompoundSearchFilter
 from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
@@ -366,9 +367,9 @@ class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
         if not reg_numbers:
             return Response([])
 
-        # Build regex pattern to match NCL-XXXXX formats
-        # Pattern matches: ncl-12345, NCL-00012345, Ncl-12345, etc.
-        ncl_pattern = re.compile(r'ncl-0*(\d+)', re.IGNORECASE)
+        # Build regex pattern to match compound ID formats
+        # Pattern matches: PREFIX-12345, prefix-00012345, etc.
+        ncl_pattern = get_compound_pattern(capturing=True)
 
         try:
             from ccp4i2.db.models import Project
@@ -389,7 +390,7 @@ class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
                 try:
                     reg_num = int(match)
                     if reg_num in reg_number_set:
-                        matched_ids.append(f'NCL-{reg_num:08d}')
+                        matched_ids.append(format_compound_id(reg_num))
                 except ValueError:
                     continue
 
@@ -635,7 +636,7 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
                 return None
             return {
                 'id': str(result['id']),
-                'formatted_id': f"NCL-{result['reg_number']:08d}",
+                'formatted_id': format_compound_id(result['reg_number']),
             }
 
         # Get previous compound (lower reg_number, same target)

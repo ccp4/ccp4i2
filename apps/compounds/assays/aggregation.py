@@ -7,11 +7,13 @@ output formats.
 """
 
 import math
+import re
 from collections import defaultdict
 from typing import Any
 
 from django.db.models import QuerySet
 
+from compounds.formatting import get_compound_pattern
 from .models import DataSeries, Protocol
 
 
@@ -134,17 +136,17 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
         queryset = queryset.filter(compound_id__in=compounds)
 
     # Filter by compound search (formatted_id pattern)
-    # Supports comma-separated list of IDs (e.g., "NCL-00026123, NCL-00026124")
+    # Supports comma-separated list of IDs (e.g., "PREFIX-00026123, PREFIX-00026124")
     compound_search = predicates.get('compound_search', '')
     if compound_search:
-        import re
-        # Find all NCL numbers in the search string (handles comma-separated lists)
-        matches = re.findall(r'NCL-?(\d+)', compound_search, re.IGNORECASE)
+        # Find all compound IDs in the search string (handles comma-separated lists)
+        compound_pattern = get_compound_pattern(capturing=True)
+        matches = compound_pattern.findall(compound_search)
         if matches:
             reg_numbers = [int(m) for m in matches]
             queryset = queryset.filter(compound__reg_number__in=reg_numbers)
         else:
-            # Fall back to compound_name search (handles non-NCL formatted IDs)
+            # Fall back to compound_name search (handles non-formatted IDs)
             queryset = queryset.filter(compound_name__icontains=compound_search)
 
     # Filter by protocols

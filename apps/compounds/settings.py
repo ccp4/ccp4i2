@@ -67,7 +67,14 @@ if DEBUG:  # noqa: F405
 PLATFORM_ADMIN_EMAILS = os.environ.get("PLATFORM_ADMIN_EMAILS", "").split(",")
 PLATFORM_ADMIN_EMAILS = [e.strip().lower() for e in PLATFORM_ADMIN_EMAILS if e.strip()]
 
+# Compound ID formatting configuration
+# The prefix used for compound identifiers (e.g., "NCL", "NCLAK", "AST")
+COMPOUND_ID_PREFIX = os.environ.get("COMPOUND_ID_PREFIX", "NCL")
+# Number of digits to pad the registration number to (default: 8)
+COMPOUND_ID_DIGITS = int(os.environ.get("COMPOUND_ID_DIGITS", "8"))
+
 print(f"Compounds app enabled (registry, assays, constructs)")
 print(f"  Dev user email: {DEV_USER_EMAIL}")
+print(f"  Compound ID format: {COMPOUND_ID_PREFIX}-{'0' * COMPOUND_ID_DIGITS}")
 if PLATFORM_ADMIN_EMAILS:
     print(f"  Platform admins: {len(PLATFORM_ADMIN_EMAILS)} from environment")

@@ -23,6 +23,7 @@ from django.db.models.signals import post_delete
 from django.dispatch import receiver
 from django.utils.functional import cached_property
 
+from compounds.formatting import format_compound_id
 from compounds.utils import delete_file_field
 
 User = get_user_model()
@@ -264,8 +265,8 @@ class Compound(models.Model):
 
     @cached_property
     def formatted_id(self):
-        """NCL-XXXXXXXX format identifier."""
-        return f'NCL-{self.reg_number:08d}'
+        """Formatted compound identifier (e.g., NCL-00026042)."""
+        return format_compound_id(self.reg_number)
 
     @cached_property
     def barcode(self):

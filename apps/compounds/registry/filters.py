@@ -1,13 +1,15 @@
 """
 Custom filters for compound registry search.
 
-Provides NCL-aware search that properly handles compound identifier formats
-like NCL-00018710, NCL-000187, 18710, etc.
+Provides compound ID-aware search that properly handles identifier formats
+like NCL-00018710, NCL-000187, 18710, etc. The prefix is configurable.
 """
 
 import re
 from django.db.models import Q
 from rest_framework import filters
+
+from compounds.formatting import get_compound_pattern, get_malformed_pattern
 
 
 class CompoundSearchFilter(filters.SearchFilter):
@@ -58,21 +60,24 @@ class CompoundSearchFilter(filters.SearchFilter):
         Extract a registration number from various query formats.
 
         Handles multiple patterns similar to resolve_compound():
-        - Malformed: NCL000-27421, NCL00-187
-        - Standard: NCL-00018710, ncl-18710, NCL 18710, NCL_18710
+        - Malformed: PREFIX000-27421, PREFIX00-187 (dash after zeros)
+        - Standard: PREFIX-00018710, prefix-18710, PREFIX 18710, PREFIX_18710
         - Plain numeric: 18710
-        - Embedded: "sample NCL-26042 test"
+        - Embedded: "sample PREFIX-26042 test"
 
         Returns the extracted reg_number string (digits only), or None.
         """
-        # Pattern 1: Malformed NCL - dash after zeros (NCL000-27421)
+        malformed_pattern = get_malformed_pattern(capturing=True)
+        standard_pattern = get_compound_pattern(capturing=True)
+
+        # Pattern 1: Malformed - dash after zeros (PREFIX000-27421)
         # Must check first to avoid incorrect partial matches
-        ncl_malformed = re.match(r'^NCL0+-(\d+)$', query, re.IGNORECASE)
+        ncl_malformed = malformed_pattern.match(query)
         if ncl_malformed:
             return ncl_malformed.group(1)
 
-        # Pattern 2: Standard NCL format - NCL-00018710, ncl-18710, NCL 18710, NCL_18710
-        ncl_standard = re.match(r'^NCL[-_\s]?0*(\d+)$', query, re.IGNORECASE)
+        # Pattern 2: Standard format - PREFIX-00018710, prefix-18710, PREFIX 18710
+        ncl_standard = standard_pattern.match(query)
         if ncl_standard:
             return ncl_standard.group(1)
 
@@ -80,13 +85,13 @@ class CompoundSearchFilter(filters.SearchFilter):
         if query.isdigit():
             return query
 
-        # Pattern 4: Embedded malformed NCL pattern in longer string
-        ncl_malformed_search = re.search(r'NCL0+-(\d+)', query, re.IGNORECASE)
+        # Pattern 4: Embedded malformed pattern in longer string
+        ncl_malformed_search = malformed_pattern.search(query)
         if ncl_malformed_search:
             return ncl_malformed_search.group(1)
 
-        # Pattern 5: Embedded standard NCL pattern (handles NCL_26042, "text NCL-26042 text")
-        ncl_embedded = re.search(r'NCL[-_\s]?0*(\d+)', query, re.IGNORECASE)
+        # Pattern 5: Embedded standard pattern (handles PREFIX_26042, "text PREFIX-26042 text")
+        ncl_embedded = standard_pattern.search(query)
         if ncl_embedded:
             return ncl_embedded.group(1)
 

@@ -14,6 +14,7 @@ from compounds.admin_views import (
     import_status,
     reset_compounds_data,
 )
+from compounds.config_views import compound_config
 from compounds.media_views import (
     serve_assay_data_file,
     serve_protocol_document,
@@ -99,6 +100,9 @@ router.register(r'expression-tag-locations', ExpressionTagLocationViewSet, basen
 router.register(r'expression-tags', ExpressionTagViewSet, basename='expression-tag')
 
 urlpatterns = [
+    # Configuration endpoint (public, for frontend config)
+    path('config/', compound_config, name='compound-config'),
+
     # Admin endpoints for legacy data import
     path('admin/import-legacy/', import_legacy_fixtures, name='import-legacy-fixtures'),
     path('admin/import-constructs/', import_constructs_fixtures, name='import-constructs-fixtures'),
