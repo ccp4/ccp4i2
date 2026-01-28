@@ -53,7 +53,7 @@ import { routes } from '@/lib/compounds/routes';
 interface Protocol {
   id: string;
   name: string;
-  analysis_method: string;
+  import_type: string;
 }
 
 interface Target {

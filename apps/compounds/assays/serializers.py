@@ -208,7 +208,7 @@ class ProtocolSerializer(serializers.ModelSerializer):
     class Meta:
         model = Protocol
         fields = [
-            'id', 'name', 'analysis_method',
+            'id', 'name', 'import_type', 'analysis_method',
             'fitting_method', 'fitting_method_name',
             'target', 'target_name',
             'plate_layout', 'plate_layout_name', 'plate_layout_config',

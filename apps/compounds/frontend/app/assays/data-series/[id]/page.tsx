@@ -161,7 +161,7 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
   const missingDilutionSeries = series && !series.dilution_series;
 
   // Check if this is a table_of_values assay with an uploaded plot image
-  const isTableOfValues = protocol?.analysis_method === 'table_of_values';
+  const isTableOfValues = protocol?.import_type === 'table_of_values';
   const hasImageFile = series?.analysis?.results?.['Image File'];
   // Use the media proxy endpoint instead of direct blob URL (requires auth/SAS)
   const plotImageUrl = series?.plot_image

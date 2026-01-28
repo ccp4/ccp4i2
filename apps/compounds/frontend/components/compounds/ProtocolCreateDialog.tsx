@@ -24,8 +24,9 @@ import { Close, Description, Add, GridOn } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
 import { PlateLayoutCreateDialog } from './PlateLayoutCreateDialog';
+import { FourPLConstraintsForm } from './FourPLConstraintsForm';
 import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
-import type { Protocol, DilutionSeries, AnalysisMethod, PlateLayoutRecord } from '@/types/compounds/models';
+import type { Protocol, DilutionSeries, ImportType, FittingParameters, PlateLayoutRecord } from '@/types/compounds/models';
 
 interface ProtocolCreateDialogProps {
   open: boolean;
@@ -33,14 +34,11 @@ interface ProtocolCreateDialogProps {
   onCreated: (protocol: Protocol) => void;
 }
 
-const ANALYSIS_METHOD_OPTIONS: { value: AnalysisMethod; label: string }[] = [
-  { value: 'hill_langmuir', label: 'Hill-Langmuir' },
-  { value: 'hill_langmuir_fix_hill', label: 'Hill-Langmuir (fixed Hill)' },
-  { value: 'hill_langmuir_fix_hill_minmax', label: 'Hill-Langmuir (fixed Hill/min/max)' },
-  { value: 'hill_langmuir_fix_minmax', label: 'Hill-Langmuir (fixed min/max)' },
-  { value: 'ms_intact', label: 'MS-Intact' },
-  { value: 'table_of_values', label: 'Table of values' },
-  { value: 'pharmaron_adme', label: 'Pharmaron ADME' },
+const IMPORT_TYPE_OPTIONS: { value: ImportType; label: string; description?: string }[] = [
+  { value: 'raw_data', label: 'Raw Data (Dose-Response)', description: 'Plate-based assay data for curve fitting' },
+  { value: 'ms_intact', label: 'MS-Intact', description: 'Pre-analyzed MS-Intact data' },
+  { value: 'table_of_values', label: 'Table of Values', description: 'Pre-analyzed data from external tools' },
+  { value: 'pharmaron_adme', label: 'Pharmaron ADME', description: 'Pharmaron/NCU ADME Excel imports' },
 ];
 
 export function ProtocolCreateDialog({
@@ -57,7 +55,8 @@ export function ProtocolCreateDialog({
 
   // Form state
   const [name, setName] = useState('');
-  const [analysisMethod, setAnalysisMethod] = useState<AnalysisMethod>('hill_langmuir');
+  const [importType, setImportType] = useState<ImportType>('raw_data');
+  const [fittingParams, setFittingParams] = useState<FittingParameters>({});
   const [preferredDilutionsId, setPreferredDilutionsId] = useState<string | null>(null);
   const [plateLayoutId, setPlateLayoutId] = useState<string | null>(null);
   const [comments, setComments] = useState('');
@@ -86,7 +85,8 @@ export function ProtocolCreateDialog({
   useEffect(() => {
     if (open) {
       setName('');
-      setAnalysisMethod('hill_langmuir');
+      setImportType('raw_data');
+      setFittingParams({});
       setPreferredDilutionsId(null);
       setPlateLayoutId(null);
       setComments('');
@@ -104,11 +104,17 @@ export function ProtocolCreateDialog({
     setError(null);
 
     try {
+      // Build fitting_parameters - only include if there are constraints
+      const hasFittingConstraints = fittingParams.fix_hill != null ||
+        fittingParams.fix_top != null ||
+        fittingParams.fix_bottom != null;
+
       const newProtocol = await apiPost<Protocol>('protocols/', {
         name: name.trim(),
-        analysis_method: analysisMethod,
+        import_type: importType,
         preferred_dilutions: preferredDilutionsId || null,
         plate_layout: plateLayoutId || null,
+        fitting_parameters: hasFittingConstraints ? fittingParams : null,
         comments: comments.trim() || null,
       });
 
@@ -153,13 +159,19 @@ export function ProtocolCreateDialog({
           />
 
           <FormControl fullWidth size="small">
-            <InputLabel>Analysis Method</InputLabel>
+            <InputLabel>Import Type</InputLabel>
             <Select
-              value={analysisMethod}
-              onChange={(e) => setAnalysisMethod(e.target.value as AnalysisMethod)}
-              label="Analysis Method"
+              value={importType}
+              onChange={(e) => {
+                setImportType(e.target.value as ImportType);
+                // Clear fitting params when switching away from raw_data
+                if (e.target.value !== 'raw_data') {
+                  setFittingParams({});
+                }
+              }}
+              label="Import Type"
             >
-              {ANALYSIS_METHOD_OPTIONS.map((option) => (
+              {IMPORT_TYPE_OPTIONS.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>
@@ -167,8 +179,16 @@ export function ProtocolCreateDialog({
             </Select>
           </FormControl>
 
+          {/* Show curve fitting constraints for raw data protocols */}
+          {importType === 'raw_data' && (
+            <FourPLConstraintsForm
+              value={fittingParams}
+              onChange={setFittingParams}
+            />
+          )}
+
           {/* Hide dilutions for ADME protocols - they use time points instead */}
-          {analysisMethod !== 'pharmaron_adme' && (
+          {importType !== 'pharmaron_adme' && (
             <FormControl fullWidth size="small">
               <InputLabel>Preferred Dilutions</InputLabel>
               <Select

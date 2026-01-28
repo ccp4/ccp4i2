@@ -37,7 +37,7 @@ import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
-import { Protocol, Assay, ProtocolDocument, PlateLayoutRecord } from '@/types/compounds/models';
+import { Protocol, Assay, ProtocolDocument, PlateLayoutRecord, ImportType } from '@/types/compounds/models';
 
 interface UploadingFile {
   name: string;
@@ -49,13 +49,10 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-const ANALYSIS_METHOD_LABELS: Record<string, string> = {
-  hill_langmuir: 'Hill-Langmuir',
-  hill_langmuir_fix_hill: 'Hill-Langmuir (fixed Hill)',
-  hill_langmuir_fix_hill_minmax: 'Hill-Langmuir (fixed Hill/min/max)',
-  hill_langmuir_fix_minmax: 'Hill-Langmuir (fixed min/max)',
+const IMPORT_TYPE_LABELS: Record<ImportType, string> = {
+  raw_data: 'Raw Data (Dose-Response)',
   ms_intact: 'MS-Intact',
-  table_of_values: 'Table of values',
+  table_of_values: 'Table of Values',
   pharmaron_adme: 'Pharmaron ADME',
 };
 
@@ -73,23 +70,19 @@ function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
   );
 }
 
-// Helper to check if analysis method is Pharmaron ADME (handles both underscore and hyphen variants)
-function isAdmeProtocol(analysisMethod: string | undefined): boolean {
-  if (!analysisMethod) return false;
-  const normalized = analysisMethod.toLowerCase().replace(/-/g, '_');
-  return normalized === 'pharmaron_adme' || normalized === 'adme';
+// Helper to check if import type is Pharmaron ADME
+function isAdmeProtocol(importType: ImportType | undefined): boolean {
+  return importType === 'pharmaron_adme';
 }
 
-// Helper to check if analysis method is table of values
-function isTableOfValuesProtocol(analysisMethod: string | undefined): boolean {
-  if (!analysisMethod) return false;
-  const normalized = analysisMethod.toLowerCase().replace(/-/g, '_');
-  return normalized === 'table_of_values';
+// Helper to check if import type is table of values
+function isTableOfValuesProtocol(importType: ImportType | undefined): boolean {
+  return importType === 'table_of_values';
 }
 
 // Helper to check if protocol is plate-based (not ADME or table of values)
-function isPlateBasedProtocol(analysisMethod: string | undefined): boolean {
-  return !isAdmeProtocol(analysisMethod) && !isTableOfValuesProtocol(analysisMethod);
+function isPlateBasedProtocol(importType: ImportType | undefined): boolean {
+  return !isAdmeProtocol(importType) && !isTableOfValuesProtocol(importType);
 }
 
 export default function ProtocolDetailPage({ params }: PageProps) {
@@ -529,7 +522,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   <Typography variant="h4">{protocol.name}</Typography>
                   <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
                     <Chip
-                      label={ANALYSIS_METHOD_LABELS[protocol.analysis_method] || protocol.analysis_method}
+                      label={IMPORT_TYPE_LABELS[protocol.import_type] || protocol.import_type}
                       size="small"
                       color="primary"
                       variant="outlined"
@@ -559,11 +552,11 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   Configuration
                 </Typography>
                 <InfoRow
-                  label="Analysis"
-                  value={ANALYSIS_METHOD_LABELS[protocol.analysis_method]}
+                  label="Data Type"
+                  value={IMPORT_TYPE_LABELS[protocol.import_type]}
                 />
                 {/* Hide dilution/plate reader fields for ADME protocols */}
-                {!isAdmeProtocol(protocol.analysis_method) && (
+                {!isAdmeProtocol(protocol.import_type) && (
                   <>
                     <InfoRow
                       label="Dilutions"
@@ -581,7 +574,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
                   </>
                 )}
                 {/* ADME-specific info */}
-                {isAdmeProtocol(protocol.analysis_method) && (
+                {isAdmeProtocol(protocol.import_type) && (
                   <>
                     <InfoRow
                       label="Data Source"
@@ -660,7 +653,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
             )}
 
             {/* Plate Layout Section - only for plate-based protocols (not ADME or table of values) */}
-            {isPlateBasedProtocol(protocol.analysis_method) && (
+            {isPlateBasedProtocol(protocol.import_type) && (
               <>
                 <Divider sx={{ my: 2 }} />
                 <Accordion
@@ -952,7 +945,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
         <Typography variant="h6">
           Assays
         </Typography>
-        {protocol?.analysis_method === 'table_of_values' ? (
+        {protocol?.import_type === 'table_of_values' ? (
           <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
             <span>
               <Button
@@ -966,7 +959,7 @@ export default function ProtocolDetailPage({ params }: PageProps) {
               </Button>
             </span>
           </Tooltip>
-        ) : isAdmeProtocol(protocol?.analysis_method) ? (
+        ) : isAdmeProtocol(protocol?.import_type) ? (
           <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
             <span>
               <Button

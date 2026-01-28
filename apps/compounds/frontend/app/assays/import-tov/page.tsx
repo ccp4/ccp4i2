@@ -48,7 +48,7 @@ import { routes } from '@/lib/compounds/routes';
 interface Protocol {
   id: string;
   name: string;
-  analysis_method: string;
+  import_type: string;
 }
 
 interface Target {
@@ -104,7 +104,7 @@ function ImportTableOfValuesContent() {
 
   // Fetch protocols (filtered to table_of_values only) and targets
   const { data: protocolsData } = api.get<Protocol[]>(
-    !lockedProtocolId ? 'protocols/?analysis_method=table_of_values' : null
+    !lockedProtocolId ? 'protocols/?import_type=table_of_values' : null
   );
   const { data: targetsData } = api.get<Target[]>('targets/');
 

@@ -219,7 +219,7 @@ export default function AssayDetailPage({ params }: PageProps) {
   };
 
   // Check if this is a table_of_values assay
-  const isTableOfValues = protocol?.analysis_method === 'table_of_values';
+  const isTableOfValues = protocol?.import_type === 'table_of_values';
 
   const columns: Column<DataSeries>[] = [
     {
@@ -441,7 +441,7 @@ export default function AssayDetailPage({ params }: PageProps) {
                     Heat Map
                   </Button>
                 )}
-                {protocol?.analysis_method === 'table_of_values' && (
+                {protocol?.import_type === 'table_of_values' && (
                   <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
                     <span>
                       <Button

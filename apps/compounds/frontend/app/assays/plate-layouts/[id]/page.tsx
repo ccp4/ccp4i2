@@ -331,7 +331,7 @@ export default function PlateLayoutDetailPage({ params }: PageProps) {
                           >
                             <ListItemText
                               primary={protocol.name}
-                              secondary={protocol.analysis_method}
+                              secondary={protocol.import_type}
                             />
                           </ListItemButton>
                         </ListItem>

@@ -300,6 +300,7 @@ class Protocol(models.Model):
     }
     """
 
+    # DEPRECATED: Use IMPORT_TYPE_CHOICES instead
     ANALYSIS_METHOD_CHOICES = [
         ('hill_langmuir', 'Hill-Langmuir'),
         ('hill_langmuir_fix_hill', 'Hill-Langmuir (fixed Hill coefficient)'),
@@ -307,6 +308,13 @@ class Protocol(models.Model):
         ('hill_langmuir_fix_minmax', 'Hill-Langmuir (fixed min/max)'),
         ('ms_intact', 'MS-Intact'),
         ('table_of_values', 'Table of values'),
+        ('pharmaron_adme', 'Pharmaron ADME'),
+    ]
+
+    IMPORT_TYPE_CHOICES = [
+        ('raw_data', 'Raw Data (Dose-Response)'),
+        ('ms_intact', 'MS-Intact'),
+        ('table_of_values', 'Table of Values'),
         ('pharmaron_adme', 'Pharmaron ADME'),
     ]
 
@@ -320,12 +328,20 @@ class Protocol(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=256)
 
-    # Legacy analysis method - kept for backward compatibility
+    # DEPRECATED: Legacy analysis method - kept for backward compatibility
     analysis_method = models.CharField(
         max_length=50,
         choices=ANALYSIS_METHOD_CHOICES,
         default='hill_langmuir',
-        help_text="Legacy analysis method (use fitting_method for new protocols)"
+        help_text="DEPRECATED: Use import_type instead. Kept for backward compatibility."
+    )
+
+    # Type of data being imported
+    import_type = models.CharField(
+        max_length=50,
+        choices=IMPORT_TYPE_CHOICES,
+        default='raw_data',
+        help_text="Type of data: raw dose-response for fitting, or pre-analyzed imports"
     )
 
     # New: Link to versioned fitting script

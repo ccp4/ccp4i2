@@ -25,27 +25,24 @@ import {
 import { Close, Edit, Code, Add, Update } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { TightBindingParametersForm } from './TightBindingParametersForm';
+import { FourPLConstraintsForm } from './FourPLConstraintsForm';
+import { ValidationRulesForm } from './ValidationRulesForm';
 import { FittingMethodEditDialog } from './FittingMethodEditDialog';
 import { DilutionSeriesCreateDialog } from './DilutionSeriesCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
-import type { Protocol, FittingMethod, FittingParameters, DilutionSeries, AnalysisMethod, Target } from '@/types/compounds/models';
+import type { Protocol, FittingMethod, FittingParameters, DilutionSeries, ImportType, Target } from '@/types/compounds/models';
 
-const ANALYSIS_METHOD_OPTIONS: { value: AnalysisMethod; label: string }[] = [
-  { value: 'hill_langmuir', label: 'Hill-Langmuir' },
-  { value: 'hill_langmuir_fix_hill', label: 'Hill-Langmuir (fixed Hill)' },
-  { value: 'hill_langmuir_fix_hill_minmax', label: 'Hill-Langmuir (fixed Hill/min/max)' },
-  { value: 'hill_langmuir_fix_minmax', label: 'Hill-Langmuir (fixed min/max)' },
+const IMPORT_TYPE_OPTIONS: { value: ImportType; label: string }[] = [
+  { value: 'raw_data', label: 'Raw Data (Dose-Response)' },
   { value: 'ms_intact', label: 'MS-Intact' },
-  { value: 'table_of_values', label: 'Table of values' },
+  { value: 'table_of_values', label: 'Table of Values' },
   { value: 'pharmaron_adme', label: 'Pharmaron ADME' },
 ];
 
-// Helper to check if analysis method is Pharmaron ADME (handles both underscore and hyphen variants)
-function isAdmeProtocol(analysisMethod: string | undefined): boolean {
-  if (!analysisMethod) return false;
-  const normalized = analysisMethod.toLowerCase().replace(/-/g, '_');
-  return normalized === 'pharmaron_adme' || normalized === 'adme';
+// Helper to check if import type is Pharmaron ADME
+function isAdmeProtocol(importType: ImportType | undefined): boolean {
+  return importType === 'pharmaron_adme';
 }
 
 interface ProtocolEditDialogProps {
@@ -84,8 +81,8 @@ export function ProtocolEditDialog({
 
   // Form state
   const [name, setName] = useState(protocol.name);
-  const [analysisMethod, setAnalysisMethod] = useState<AnalysisMethod>(
-    protocol.analysis_method as AnalysisMethod || 'hill_langmuir'
+  const [importType, setImportType] = useState<ImportType>(
+    protocol.import_type || 'raw_data'
   );
   const [fittingMethodId, setFittingMethodId] = useState<string | null>(
     protocol.fitting_method || null
@@ -122,7 +119,7 @@ export function ProtocolEditDialog({
   // Reset form when protocol changes
   useEffect(() => {
     setName(protocol.name);
-    setAnalysisMethod(protocol.analysis_method as AnalysisMethod || 'hill_langmuir');
+    setImportType(protocol.import_type || 'raw_data');
     setFittingMethodId(protocol.fitting_method || null);
     setFittingParams(protocol.fitting_parameters || {});
     setPreferredDilutionsId(protocol.preferred_dilutions || null);
@@ -149,7 +146,7 @@ export function ProtocolEditDialog({
     try {
       await api.patch(`protocols/${protocol.id}/`, {
         name,
-        analysis_method: analysisMethod,
+        import_type: importType,
         fitting_method: fittingMethodId || null,
         fitting_parameters: fittingParams || {},
         preferred_dilutions: preferredDilutionsId || null,
@@ -268,15 +265,15 @@ export function ProtocolEditDialog({
             size="small"
           />
 
-          {/* Analysis Method */}
+          {/* Import Type */}
           <FormControl fullWidth size="small">
-            <InputLabel>Analysis Method</InputLabel>
+            <InputLabel>Import Type</InputLabel>
             <Select
-              value={analysisMethod}
-              onChange={(e) => setAnalysisMethod(e.target.value as AnalysisMethod)}
-              label="Analysis Method"
+              value={importType}
+              onChange={(e) => setImportType(e.target.value as ImportType)}
+              label="Import Type"
             >
-              {ANALYSIS_METHOD_OPTIONS.map((option) => (
+              {IMPORT_TYPE_OPTIONS.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>
@@ -301,7 +298,7 @@ export function ProtocolEditDialog({
           />
 
           {/* Analysis Settings - hidden for ADME protocols */}
-          {!isAdmeProtocol(analysisMethod) && (
+          {!isAdmeProtocol(importType) && (
             <>
               <Divider />
 
@@ -396,11 +393,34 @@ export function ProtocolEditDialog({
                   />
                 </Box>
               )}
+
+              {/* 4PL Curve Fitting Constraints (for raw data protocols) */}
+              {importType === 'raw_data' && !isTightBinding && (
+                <Box sx={{ pl: 1, borderLeft: 3, borderColor: 'primary.main' }}>
+                  <FourPLConstraintsForm
+                    value={fittingParams}
+                    onChange={setFittingParams}
+                  />
+                </Box>
+              )}
+
+              <Divider />
+
+              {/* Validation Rules */}
+              <Box sx={{ pl: 1, borderLeft: 3, borderColor: 'info.main' }}>
+                <ValidationRulesForm
+                  value={fittingParams.validation_rules?.invalidating_flags || []}
+                  onChange={(flags) => setFittingParams({
+                    ...fittingParams,
+                    validation_rules: { invalidating_flags: flags },
+                  })}
+                />
+              </Box>
             </>
           )}
 
           {/* ADME-specific info */}
-          {isAdmeProtocol(analysisMethod) && (
+          {isAdmeProtocol(importType) && (
             <>
               <Divider />
               <Alert severity="info" sx={{ mt: 1 }}>

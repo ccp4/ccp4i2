@@ -11,15 +11,13 @@ import { ProtocolCreateDialog } from '@/components/compounds/ProtocolCreateDialo
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
-import { Protocol } from '@/types/compounds/models';
+import { Protocol, ImportType } from '@/types/compounds/models';
 
-const ANALYSIS_METHOD_LABELS: Record<string, string> = {
-  hill_langmuir: 'Hill-Langmuir',
-  hill_langmuir_fix_hill: 'Hill-Langmuir (fixed Hill)',
-  hill_langmuir_fix_hill_minmax: 'Hill-Langmuir (fixed Hill/min/max)',
-  hill_langmuir_fix_minmax: 'Hill-Langmuir (fixed min/max)',
+const IMPORT_TYPE_LABELS: Record<ImportType, string> = {
+  raw_data: 'Raw Data (Dose-Response)',
   ms_intact: 'MS-Intact',
-  table_of_values: 'Table of values',
+  table_of_values: 'Table of Values',
+  pharmaron_adme: 'Pharmaron ADME',
 };
 
 export default function ProtocolsPage() {
@@ -56,13 +54,13 @@ export default function ProtocolsPage() {
       ),
     },
     {
-      key: 'analysis_method',
-      label: 'Analysis Method',
+      key: 'import_type',
+      label: 'Data Type',
       sortable: true,
       hiddenOnMobile: true,
-      render: (value) => (
+      render: (value: ImportType) => (
         <Chip
-          label={ANALYSIS_METHOD_LABELS[value] || value}
+          label={IMPORT_TYPE_LABELS[value] || value}
           size="small"
           variant="outlined"
         />

@@ -269,6 +269,19 @@ export interface PlateLayoutRecord {
   protocols_count?: number;  // Number of protocols using this layout
 }
 
+/**
+ * Import type - what kind of data is being imported.
+ * This replaces the legacy analysis_method for categorizing data.
+ */
+export type ImportType =
+  | 'raw_data'        // Raw dose-response data requiring curve fitting
+  | 'ms_intact'       // MS-Intact pre-analyzed import
+  | 'table_of_values' // Pre-analyzed table import
+  | 'pharmaron_adme'; // Pharmaron ADME import
+
+/**
+ * @deprecated Use ImportType instead. Kept for backward compatibility.
+ */
 export type AnalysisMethod =
   | 'hill_langmuir'
   | 'hill_langmuir_fix_hill'
@@ -289,23 +302,35 @@ export interface TightBindingParameters {
 }
 
 /**
+ * Validation rules for curve fitting quality flags.
+ * Determines which flags should cause automatic invalidation.
+ */
+export interface ValidationRules {
+  invalidating_flags?: string[];
+}
+
+/**
  * Fitting parameters that can be stored on a Protocol.
  * Different fitting methods use different subsets of these parameters.
  */
 export interface FittingParameters {
-  // Standard 4PL parameters
-  fix_hill?: number | null;
-  fix_top?: number | null;
-  fix_bottom?: number | null;
+  // Standard 4PL constraint parameters
+  fix_hill?: number | null;    // Specific value to fix Hill coefficient to (e.g., 1.0)
+  fix_top?: boolean | null;    // If true, use control max as fixed top asymptote
+  fix_bottom?: boolean | null; // If true, use control min as fixed bottom asymptote
   // Tight-binding parameters (for Wang equation)
   protein_conc?: number;
   ligand_conc?: number;
   ligand_kd?: number;
+  // Validation rules for curve fit quality flags
+  validation_rules?: ValidationRules;
 }
 
 export interface Protocol {
   id: string;
   name: string;
+  import_type: ImportType;
+  /** @deprecated Use import_type instead */
   analysis_method: AnalysisMethod;
   fitting_method?: string | null;
   fitting_method_name?: string;

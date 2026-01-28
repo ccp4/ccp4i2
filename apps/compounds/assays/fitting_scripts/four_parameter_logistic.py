@@ -129,9 +129,32 @@ def fit(input_data: dict) -> dict:
     bounds_upper = [data_max + data_range * 0.5, data_max + data_range * 0.5, concentrations.max() * 100, 10]
 
     # Handle fixed parameters
+    # fix_hill: number or None - specific value to fix Hill coefficient to
+    # fix_top/fix_bottom: boolean or number
+    #   - True: use control max/min as fixed value
+    #   - number: use that specific value (backward compatibility)
+    #   - None/False: let parameter float freely
     fix_hill = parameters.get('fix_hill')
-    fix_top = parameters.get('fix_top')
-    fix_bottom = parameters.get('fix_bottom')
+    fix_top_param = parameters.get('fix_top')
+    fix_bottom_param = parameters.get('fix_bottom')
+
+    # Convert boolean flags to actual values using controls
+    fix_top = None
+    fix_bottom = None
+
+    if fix_top_param is True:
+        fix_top = controls.get('max')
+        if fix_top is None:
+            flags.append('no_max_control_for_fix_top')
+    elif isinstance(fix_top_param, (int, float)) and fix_top_param is not False:
+        fix_top = float(fix_top_param)
+
+    if fix_bottom_param is True:
+        fix_bottom = controls.get('min')
+        if fix_bottom is None:
+            flags.append('no_min_control_for_fix_bottom')
+    elif isinstance(fix_bottom_param, (int, float)) and fix_bottom_param is not False:
+        fix_bottom = float(fix_bottom_param)
 
     try:
         if fix_hill is not None or fix_top is not None or fix_bottom is not None:
@@ -255,6 +278,19 @@ def fit(input_data: dict) -> dict:
     if abs(response_at_lowest - bottom_fit) > 0.2 * abs(top_fit - bottom_fit):
         flags.append('incomplete_bottom')
 
+    # Calculate end_percent: percentage of inhibition at highest concentration
+    # This is useful when compounds don't reach 50% inhibition
+    # Formula: 100 * (response_at_max_conc - bottom) / (top - bottom)
+    max_conc_idx = np.argmax(concentrations)
+    response_at_max_conc = responses[max_conc_idx]
+    max_conc = concentrations[max_conc_idx]
+
+    dynamic_range = top_fit - bottom_fit
+    if abs(dynamic_range) > 0.001:  # Avoid division by zero
+        end_percent = 100.0 * (response_at_max_conc - bottom_fit) / dynamic_range
+    else:
+        end_percent = None
+
     return {
         'ic50': float(ic50_fit),
         'hill_slope': float(hill_fit),
@@ -265,4 +301,6 @@ def fit(input_data: dict) -> dict:
         'flags': flags,
         'kpi': 'ic50',
         'fit_successful': True,
+        'end_percent': float(end_percent) if end_percent is not None else None,
+        'end_percent_display': f'{end_percent:.1f}% at {max_conc:.3g}' if end_percent is not None else None,
     }
