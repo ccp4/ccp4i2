@@ -991,6 +991,92 @@ class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
                 'error': str(e),
             }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+    @action(detail=True, methods=['get'])
+    def adjacent(self, request, pk=None):
+        """
+        Get adjacent data series (previous and next) within the same assay.
+
+        Ordered by row position (plate order) to provide consistent navigation.
+
+        Response:
+        {
+            "previous": {"id": "...", "compound_name": "..."} | null,
+            "next": {"id": "...", "compound_name": "..."} | null
+        }
+        """
+        series = self.get_object()
+
+        # Get previous series (lower row number, same assay)
+        previous = (
+            DataSeries.objects
+            .filter(assay=series.assay, row__lt=series.row)
+            .order_by('-row')
+            .values('id', 'compound_name')
+            .first()
+        )
+
+        # Get next series (higher row number, same assay)
+        next_series = (
+            DataSeries.objects
+            .filter(assay=series.assay, row__gt=series.row)
+            .order_by('row')
+            .values('id', 'compound_name')
+            .first()
+        )
+
+        def format_result(result):
+            if result is None:
+                return None
+            return {
+                'id': str(result['id']),
+                'compound_name': result['compound_name'],
+            }
+
+        return Response({
+            'previous': format_result(previous),
+            'next': format_result(next_series),
+        })
+
+    @action(detail=True, methods=['post'])
+    def set_status(self, request, pk=None):
+        """
+        Manually set the analysis result status.
+
+        Request body: {"status": "valid" | "invalid" | "unassigned"}
+
+        Creates an AnalysisResult if one doesn't exist.
+        """
+        series = self.get_object()
+        new_status = request.data.get('status')
+
+        if new_status not in ['valid', 'invalid', 'unassigned']:
+            return Response(
+                {'error': 'Invalid status. Must be one of: valid, invalid, unassigned'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        with reversion.create_revision():
+            if series.analysis:
+                series.analysis.status = new_status
+                series.analysis.save()
+            else:
+                # Create new analysis result with no fitted values
+                analysis = AnalysisResult.objects.create(
+                    status=new_status,
+                    results={'manual_override': True}
+                )
+                series.analysis = analysis
+                series.save()
+
+            if request.user.is_authenticated:
+                reversion.set_user(request.user)
+            reversion.set_comment(f"Manual status override to {new_status}")
+
+        return Response({
+            'status': series.analysis.status,
+            'results': series.analysis.results,
+        })
+
 
 class AnalysisResultViewSet(viewsets.ReadOnlyModelViewSet):
     """Read-only operations for Analysis Results."""
