@@ -12,6 +12,23 @@ from .models import DataSeries, AnalysisResult, FittingMethod, Assay
 
 logger = logging.getLogger(__name__)
 
+# Default flags that cause automatic invalidation
+# These are used when a protocol doesn't specify custom validation_rules
+DEFAULT_INVALIDATING_FLAGS = ['poor_fit', 'insufficient_data', 'unusual_hill_slope']
+
+# All available flags from fitting scripts (for reference and UI)
+AVAILABLE_FLAGS = [
+    {'id': 'poor_fit', 'label': 'Poor Fit', 'description': 'R² < 0.8'},
+    {'id': 'insufficient_data', 'label': 'Insufficient Data', 'description': 'Fewer than 4 data points'},
+    {'id': 'unusual_hill_slope', 'label': 'Unusual Hill Slope', 'description': 'Hill coefficient outside 0.3–5.0'},
+    {'id': 'incomplete_top', 'label': 'Incomplete Top', 'description': 'Top asymptote not reached'},
+    {'id': 'incomplete_bottom', 'label': 'Incomplete Bottom', 'description': 'Bottom asymptote not reached'},
+    {'id': 'ic50_extrapolated', 'label': 'IC50 Extrapolated', 'description': 'IC50 outside measured concentration range'},
+    {'id': 'low_dynamic_range', 'label': 'Low Dynamic Range', 'description': '|top - bottom| < 10'},
+    {'id': 'ki_extrapolated', 'label': 'Ki Extrapolated', 'description': 'Ki outside reasonable range (Wang fitting)'},
+    {'id': 'weak_binding_use_standard_analysis', 'label': 'Weak Binding', 'description': 'Ki > 10× protein concentration (Wang fitting)'},
+]
+
 
 def _create_or_update_analysis(data_series: 'DataSeries', status: str, results: dict) -> 'AnalysisResult':
     """Helper to create or update an AnalysisResult for a data series."""
@@ -226,11 +243,16 @@ def analyse_data_series(data_series: DataSeries, fitting_method: Optional[Fittin
                 'kpi': 'ic50',
             }
 
-    # Determine status based on result
+    # Determine status based on result and protocol validation rules
+    # Get validation rules from protocol's fitting_parameters
+    fitting_params = data_series.assay.protocol.fitting_parameters or {}
+    validation_rules = fitting_params.get('validation_rules', {})
+    invalidating_flags = validation_rules.get('invalidating_flags', DEFAULT_INVALIDATING_FLAGS)
+
     if result.get('fit_successful', False):
         flags = result.get('flags', [])
-        # Mark as invalid if there are serious quality issues
-        if 'poor_fit' in flags or 'insufficient_data' in flags:
+        # Mark as invalid if any flag is in the invalidating list
+        if any(flag in invalidating_flags for flag in flags):
             status = 'invalid'
         else:
             status = 'valid'
@@ -246,6 +268,10 @@ def analyse_data_series(data_series: DataSeries, fitting_method: Optional[Fittin
     # The fitting script returns lowercase keys (e.g., 'ic50', 'ki')
     primary_kpi_value = result.get(kpi_value) if kpi_value else result.get('ic50')
 
+    # Determine algorithm identifier for curve drawing and parameter extraction
+    # Use fitting_method slug if available, otherwise 'four-parameter-logistic' for built-in
+    algorithm = fitting_method.slug if fitting_method else 'four-parameter-logistic'
+
     stored_results = {
         # Store the KPI value under the uppercased key that matches 'KPI' pointer
         kpi_key: primary_kpi_value,
@@ -260,6 +286,10 @@ def analyse_data_series(data_series: DataSeries, fitting_method: Optional[Fittin
         'fit_successful': result.get('fit_successful', False),
         'error': result.get('error'),
         'tight_binding_params': result.get('tight_binding_params'),
+        'algorithm': algorithm,  # Identifies fitting algorithm for curve drawing
+        # End percent: percentage of inhibition at highest concentration
+        'end_percent': result.get('end_percent'),
+        'end_percent_display': result.get('end_percent_display'),
     }
 
     return _create_or_update_analysis(data_series, status, stored_results)

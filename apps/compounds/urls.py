@@ -42,6 +42,7 @@ from compounds.assays.views import (
     DataSeriesViewSet,
     AnalysisResultViewSet,
     HypothesisViewSet,
+    available_validation_flags,
 )
 from compounds.assays.aggregation_views import AggregationViewSet
 from compounds.constructs.views import (
@@ -115,6 +116,9 @@ urlpatterns = [
     path('media/sequencing-results/<uuid:result_id>/file/', serve_sequencing_result, name='sequencing-result-file'),
     path('media/targets/<uuid:target_id>/image/', serve_target_image, name='target-image'),
     path('media/data-series/<uuid:series_id>/plot/', serve_data_series_plot, name='data-series-plot'),
+
+    # Validation flags metadata for protocol configuration UI
+    path('validation-flags/', available_validation_flags, name='validation-flags'),
 
     # Router-based endpoints
     path('', include(router.urls)),
