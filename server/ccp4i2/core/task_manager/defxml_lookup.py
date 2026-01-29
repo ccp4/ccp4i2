@@ -122,7 +122,7 @@ defXmlPaths = {
   "ProvideTLS": "wrappers/ProvideTLS/script/ProvideTLS.def.xml",
   "pyphaser_mr": "wrappers/pyphaser_mr/script/pyphaser_mr.def.xml",
   "qtpisa": "wrappers/qtpisa/script/qtpisa.def.xml",
-  "refmac": "wrappers/refmac_i2/script/refmac.def.xml",
+  "refmac": "wrappers/refmac/script/refmac.def.xml",
   "scaleit": "wrappers/scaleit/script/scaleit.def.xml",
   "scalepack2mtz": "wrappers/scalepack2mtz/script/scalepack2mtz.def.xml",
   "sculptor": "wrappers/sculptor/script/sculptor.def.xml",

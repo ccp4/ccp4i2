@@ -420,8 +420,8 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.qtpisa.script.qtpisa import qtpisa
         return qtpisa
     if plugin_name == 'refmac':
-        from ccp4i2.wrappers.refmac_i2.script.refmac_i2 import refmac_i2
-        return refmac_i2
+        from ccp4i2.wrappers.refmac.script.refmac import refmac
+        return refmac
     if plugin_name == 'scaleit':
         from ccp4i2.wrappers.scaleit.script.scaleit import scaleit
         return scaleit

@@ -3,7 +3,7 @@ from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script.phaser_MR_A
 )
 from ccp4i2.report import Report
 from ccp4i2.wrappers.pointless.script.pointless_report import pointless_report
-from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.refmac.script.refmac_report import refmac_report
 
 
 class phaser_rnp_pipeline_report(Report):

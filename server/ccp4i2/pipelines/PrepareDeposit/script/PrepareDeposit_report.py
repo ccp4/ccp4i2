@@ -1,6 +1,6 @@
 
 from ccp4i2.report import Report
-from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.refmac.script.refmac_report import refmac_report
 
 
 class PrepareDeposit_report(Report):

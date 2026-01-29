@@ -212,7 +212,7 @@ prosmart_defmac_xml = """<ns0:ccp4i2 xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns">
     <file>
       <CI2XmlDataFile>
         <project>CCP4I2_TOP</project>
-        <relPath>wrappers/refmac_i2/script</relPath>
+        <relPath>wrappers/refmac/script</relPath>
         <baseName>refmac.def.xml</baseName>
       </CI2XmlDataFile>
     </file>

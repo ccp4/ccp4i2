@@ -9,7 +9,7 @@ from ccp4i2.wrappers.ctruncate.script import ctruncate_report
 from ccp4i2.wrappers.modelcraft.script import modelcraft_report
 from ccp4i2.wrappers.phaser_analysis.script import phaser_analysis_report
 from ccp4i2.wrappers.pointless.script import pointless_report
-from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.refmac.script.refmac_report import refmac_report
 from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
 

@@ -2,7 +2,7 @@ import sys
 import xml.etree.ElementTree as etree
 
 from ccp4i2.report import Report
-from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.refmac.script.refmac_report import refmac_report
 from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
 

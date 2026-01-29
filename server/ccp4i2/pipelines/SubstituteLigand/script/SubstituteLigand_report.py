@@ -53,7 +53,7 @@ class SubstituteLigand_report(Report):
     
         refmacNodes = self.xmlnode.findall('.//REFMAC')
         if len(refmacNodes) > 0:
-            from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+            from ccp4i2.wrappers.refmac.script.refmac_report import refmac_report
             refmac_report = refmac_report(xmlnode=refmacNodes[0], jobStatus='nooutput', jobInfo=self.jobInfo)
             refmac_report.addSummary(parent=self, withTables=False)
             objectMap = {}

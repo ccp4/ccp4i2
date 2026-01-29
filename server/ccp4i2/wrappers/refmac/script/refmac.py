@@ -6,7 +6,7 @@ from ccp4i2.core import CCP4ErrorHandling, CCP4Modules
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class refmac_i2(CPluginScript):
+class refmac(CPluginScript):
     TASKMODULE = 'wrappers'
     TASKTITLE = 'Refinement (Refmac5)'
     TASKNAME = 'refmac'
@@ -21,7 +21,7 @@ class refmac_i2(CPluginScript):
                     }
     
     def __init__(self,*args, **kwargs):
-        super(refmac_i2, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
         self.xmlroot = etree.Element('REFMAC')
         from .refmacLogScraper import logScraper
         self.logScraper = logScraper(xmlroot=self.xmlroot, flushXML=self.flushXML)

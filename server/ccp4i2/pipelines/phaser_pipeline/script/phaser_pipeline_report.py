@@ -1,6 +1,6 @@
 from ccp4i2.report import Report
 from ccp4i2.wrappers.csymmatch.script.csymmatch_report import csymmatch_report
-from ccp4i2.wrappers.refmac_i2.script.refmac_report import refmac_report
+from ccp4i2.wrappers.refmac.script.refmac_report import refmac_report
 from ccp4i2.wrappers.sheetbend.script.sheetbend_report import sheetbend_report
 
 

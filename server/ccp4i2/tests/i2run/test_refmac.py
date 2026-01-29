@@ -43,7 +43,7 @@ def _check_subjob_hierarchy_in_db(job):
 
     This function verifies the database structure for pipeline jobs:
     - Parent job (e.g., prosmart_refmac) should exist
-    - Child jobs (e.g., refmac_i2, validate_protein) should have parent FK
+    - Child jobs (e.g., refmac, validate_protein) should have parent FK
     - Files should be registered with proper job references
     - FileUse records should link files to jobs
 
