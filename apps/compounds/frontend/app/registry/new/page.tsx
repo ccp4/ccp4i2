@@ -70,6 +70,7 @@ interface CompoundFormData {
   comments: string;
   labbook_number: number | null;
   page_number: number | null;
+  compound_number: number | null;
 }
 
 const STEREO_OPTIONS = [
@@ -118,6 +119,7 @@ function NewCompoundPageContent() {
     comments: '',
     labbook_number: null,
     page_number: null,
+    compound_number: null,
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -253,6 +255,9 @@ function NewCompoundPageContent() {
       if (formData.page_number !== null) {
         submitData.page_number = formData.page_number;
       }
+      if (formData.compound_number !== null) {
+        submitData.compound_number = formData.compound_number;
+      }
 
       const result = await apiPost<{ id: string; formatted_id: string }>(
         'compounds/',
@@ -279,6 +284,7 @@ function NewCompoundPageContent() {
       comments: '',
       labbook_number: formData.labbook_number, // Keep lab notebook info
       page_number: null,
+      compound_number: null,
     });
   }, [formData.target, formData.supplier, formData.labbook_number]);
 
@@ -558,7 +564,7 @@ function NewCompoundPageContent() {
 
               {/* Lab notebook info */}
               <Grid container spacing={2}>
-                <Grid size={{ xs: 6 }}>
+                <Grid size={{ xs: 4 }}>
                   <TextField
                     label="Lab Notebook #"
                     type="number"
@@ -568,7 +574,7 @@ function NewCompoundPageContent() {
                     fullWidth
                   />
                 </Grid>
-                <Grid size={{ xs: 6 }}>
+                <Grid size={{ xs: 4 }}>
                   <TextField
                     label="Page #"
                     type="number"
@@ -576,6 +582,17 @@ function NewCompoundPageContent() {
                     onChange={(e) => handleFieldChange('page_number', e.target.value ? parseInt(e.target.value) : null)}
                     margin="normal"
                     fullWidth
+                  />
+                </Grid>
+                <Grid size={{ xs: 4 }}>
+                  <TextField
+                    label="Compound #"
+                    type="number"
+                    value={formData.compound_number ?? ''}
+                    onChange={(e) => handleFieldChange('compound_number', e.target.value ? parseInt(e.target.value) : null)}
+                    margin="normal"
+                    fullWidth
+                    inputProps={{ min: 1 }}
                   />
                 </Grid>
               </Grid>
