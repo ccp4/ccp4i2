@@ -40,8 +40,10 @@ import {
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { JSMEEditor } from '@/components/compounds/JSMEEditor';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
+import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
 import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
+import type { Batch } from '@/types/compounds/models';
 
 interface Target {
   id: string;
@@ -125,6 +127,8 @@ function NewCompoundPageContent() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ formatted_id: string; id: string } | null>(null);
+  const [batchDialogOpen, setBatchDialogOpen] = useState(false);
+  const [batchCreated, setBatchCreated] = useState<Batch | null>(null);
   const [sketcherExpanded, setSketcherExpanded] = useState(false);
   const [jsmeInitialSmiles, setJsmeInitialSmiles] = useState('');
   const [creatingSupplier, setCreatingSupplier] = useState(false);
@@ -275,6 +279,8 @@ function NewCompoundPageContent() {
 
   const handleRegisterAnother = useCallback(() => {
     setSuccess(null);
+    setBatchDialogOpen(false);
+    setBatchCreated(null);
     setFormData({
       target: formData.target, // Keep the target
       smiles: '',
@@ -287,6 +293,11 @@ function NewCompoundPageContent() {
       compound_number: null,
     });
   }, [formData.target, formData.supplier, formData.labbook_number]);
+
+  const handleBatchCreated = useCallback((batch: Batch) => {
+    setBatchCreated(batch);
+    setBatchDialogOpen(false);
+  }, []);
 
   // Show success screen
   if (success) {
@@ -301,25 +312,72 @@ function NewCompoundPageContent() {
             label={success.formatted_id}
             color="success"
             size="medium"
-            sx={{ fontSize: '1.2rem', py: 2, mb: 3 }}
+            sx={{ fontSize: '1.2rem', py: 2, mb: 2 }}
           />
-          <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
-            <Button
-              variant="outlined"
-              onClick={handleRegisterAnother}
-              startIcon={<Add />}
-            >
-              Register Another
-            </Button>
-            <Button
-              variant="contained"
-              component={Link}
-              href={routes.registry.compound(success.id)}
-            >
-              View Compound
-            </Button>
-          </Box>
+
+          {/* Batch creation prompt */}
+          {!batchCreated ? (
+            <>
+              <Alert severity="info" sx={{ mb: 3, textAlign: 'left' }}>
+                Would you like to create a batch for this compound? Batches track physical samples, supplier information, and amounts.
+              </Alert>
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2, flexWrap: 'wrap' }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => setBatchDialogOpen(true)}
+                  startIcon={<Add />}
+                >
+                  Create Batch
+                </Button>
+                <Button
+                  variant="outlined"
+                  onClick={handleRegisterAnother}
+                >
+                  Skip & Register Another
+                </Button>
+                <Button
+                  variant="outlined"
+                  component={Link}
+                  href={routes.registry.compound(success.id)}
+                >
+                  Skip & View Compound
+                </Button>
+              </Box>
+            </>
+          ) : (
+            <>
+              <Alert severity="success" sx={{ mb: 3, textAlign: 'left' }}>
+                Batch #{batchCreated.batch_number} created successfully!
+              </Alert>
+              <Box sx={{ display: 'flex', justifyContent: 'center', gap: 2 }}>
+                <Button
+                  variant="outlined"
+                  onClick={handleRegisterAnother}
+                  startIcon={<Add />}
+                >
+                  Register Another
+                </Button>
+                <Button
+                  variant="contained"
+                  component={Link}
+                  href={routes.registry.compound(success.id)}
+                >
+                  View Compound
+                </Button>
+              </Box>
+            </>
+          )}
         </Paper>
+
+        {/* Batch creation dialog */}
+        <BatchCreateDialog
+          open={batchDialogOpen}
+          onClose={() => setBatchDialogOpen(false)}
+          onCreated={handleBatchCreated}
+          compoundId={success.id}
+          compoundFormattedId={success.formatted_id}
+        />
       </Container>
     );
   }

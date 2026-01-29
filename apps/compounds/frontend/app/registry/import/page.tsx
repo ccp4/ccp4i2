@@ -22,6 +22,7 @@ import {
   TableRow,
   Chip,
   FormControl,
+  FormControlLabel,
   InputLabel,
   Select,
   MenuItem,
@@ -30,6 +31,7 @@ import {
   IconButton,
   Tooltip,
   LinearProgress,
+  Checkbox,
 } from '@mui/material';
 import {
   Upload,
@@ -40,6 +42,7 @@ import {
   Warning,
   Download,
   Refresh,
+  Inventory,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow } from '@/components/compounds/SpreadsheetUpload';
@@ -71,6 +74,9 @@ interface ImportResult {
   formatted_id?: string;
   id?: string;
   error?: string;
+  batch_created?: boolean;
+  batch_number?: number;
+  batch_error?: string;
 }
 
 const COMPOUND_FIELD_MAPPINGS: FieldMapping[] = [
@@ -82,6 +88,9 @@ const COMPOUND_FIELD_MAPPINGS: FieldMapping[] = [
   { field: 'comments', label: 'Comments' },
   { field: 'labbook_number', label: 'Lab Notebook #' },
   { field: 'page_number', label: 'Page #' },
+  // Batch fields (optional - used when auto-creating batches)
+  { field: 'batch_amount', label: 'Batch Amount (mg)' },
+  { field: 'batch_salt_code', label: 'Batch Salt Code' },
 ];
 
 const STEPS = ['Upload File', 'Map Columns', 'Validate', 'Import'];
@@ -95,6 +104,7 @@ export default function ImportCompoundsPage() {
   const [columnMapping, setColumnMapping] = useState<Record<string, string>>({});
   const [defaultTarget, setDefaultTarget] = useState<string | null>(null);
   const [defaultSupplier, setDefaultSupplier] = useState<string | null>(null);
+  const [autoCreateBatches, setAutoCreateBatches] = useState(true);
   const [validationResults, setValidationResults] = useState<ValidationResult[]>([]);
   const [importing, setImporting] = useState(false);
   const [importProgress, setImportProgress] = useState(0);
@@ -253,16 +263,54 @@ export default function ImportCompoundsPage() {
           compoundData.page_number = parseInt(validation.data.page_number);
         }
 
-        // Submit to API
+        // Submit compound to API
         const result = await apiPost<{ id: string; formatted_id: string }>(
           'compounds/',
           compoundData
         );
 
+        // Create batch if auto-create is enabled
+        let batchCreated = false;
+        let batchNumber: number | undefined;
+        let batchError: string | undefined;
+
+        if (autoCreateBatches) {
+          try {
+            const batchData: Record<string, any> = {
+              compound: result.id,
+            };
+
+            // Use supplier from compound if available
+            if (compoundData.supplier) {
+              batchData.supplier = compoundData.supplier;
+            }
+
+            // Add batch-specific fields from spreadsheet if mapped
+            if (validation.data.batch_amount) {
+              batchData.amount = validation.data.batch_amount;
+            }
+            if (validation.data.batch_salt_code) {
+              batchData.salt_code = validation.data.batch_salt_code;
+            }
+
+            const batchResult = await apiPost<{ id: string; batch_number: number }>(
+              'batches/',
+              batchData
+            );
+            batchCreated = true;
+            batchNumber = batchResult.batch_number;
+          } catch (batchErr) {
+            batchError = String(batchErr) || 'Failed to create batch';
+          }
+        }
+
         results.push({
           success: true,
           formatted_id: result.formatted_id,
           id: result.id,
+          batch_created: batchCreated,
+          batch_number: batchNumber,
+          batch_error: batchError,
         });
       } catch (e) {
         results.push({
@@ -276,7 +324,7 @@ export default function ImportCompoundsPage() {
     }
 
     setImporting(false);
-  }, [validationResults, targets, suppliers, defaultTarget, defaultSupplier]);
+  }, [validationResults, targets, suppliers, defaultTarget, defaultSupplier, autoCreateBatches]);
 
   // Summary stats
   const validCount = useMemo(
@@ -293,6 +341,10 @@ export default function ImportCompoundsPage() {
   );
   const failedCount = useMemo(
     () => importResults.filter((r) => !r.success).length,
+    [importResults]
+  );
+  const batchesCreatedCount = useMemo(
+    () => importResults.filter((r) => r.batch_created).length,
     [importResults]
   );
 
@@ -371,7 +423,7 @@ export default function ImportCompoundsPage() {
           </Typography>
 
           {/* Default values */}
-          <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+          <Box sx={{ display: 'flex', gap: 2, mb: 2, flexWrap: 'wrap', alignItems: 'center' }}>
             <Autocomplete
               options={targets}
               getOptionLabel={(option) => option.name}
@@ -400,6 +452,33 @@ export default function ImportCompoundsPage() {
               Re-validate
             </Button>
           </Box>
+
+          {/* Auto-create batches option */}
+          <Alert
+            severity="info"
+            icon={<Inventory />}
+            sx={{ mb: 3 }}
+            action={
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={autoCreateBatches}
+                    onChange={(e) => setAutoCreateBatches(e.target.checked)}
+                  />
+                }
+                label=""
+              />
+            }
+          >
+            <Typography variant="body2" component="span">
+              <strong>Auto-create batches</strong> for imported compounds.
+              {columnMapping.batch_amount || columnMapping.batch_salt_code ? (
+                <> Batch data from spreadsheet columns will be used.</>
+              ) : (
+                <> Batches will inherit supplier from compound.</>
+              )}
+            </Typography>
+          </Alert>
 
           {/* Summary */}
           <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
@@ -531,13 +610,21 @@ export default function ImportCompoundsPage() {
           {!importing && (
             <>
               {/* Summary */}
-              <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+              <Box sx={{ display: 'flex', gap: 2, mb: 3, flexWrap: 'wrap' }}>
                 <Chip
                   icon={<CheckCircle />}
-                  label={`${successCount} imported successfully`}
+                  label={`${successCount} compounds imported`}
                   color="success"
                   variant="outlined"
                 />
+                {batchesCreatedCount > 0 && (
+                  <Chip
+                    icon={<Inventory />}
+                    label={`${batchesCreatedCount} batches created`}
+                    color="info"
+                    variant="outlined"
+                  />
+                )}
                 {failedCount > 0 && (
                   <Chip
                     icon={<Error />}
@@ -556,6 +643,7 @@ export default function ImportCompoundsPage() {
                       <TableCell sx={{ fontWeight: 600 }}>#</TableCell>
                       <TableCell sx={{ fontWeight: 600 }}>Status</TableCell>
                       <TableCell sx={{ fontWeight: 600 }}>Compound ID</TableCell>
+                      <TableCell sx={{ fontWeight: 600 }}>Batch</TableCell>
                       <TableCell sx={{ fontWeight: 600 }}>Error</TableCell>
                     </TableRow>
                   </TableHead>
@@ -583,6 +671,29 @@ export default function ImportCompoundsPage() {
                                 clickable
                               />
                             </Link>
+                          ) : (
+                            '-'
+                          )}
+                        </TableCell>
+                        <TableCell>
+                          {result.batch_created ? (
+                            <Chip
+                              icon={<Inventory />}
+                              label={`#${result.batch_number}`}
+                              size="small"
+                              color="info"
+                              variant="outlined"
+                            />
+                          ) : result.batch_error ? (
+                            <Tooltip title={result.batch_error}>
+                              <Chip
+                                icon={<Warning />}
+                                label="Failed"
+                                size="small"
+                                color="warning"
+                                variant="outlined"
+                              />
+                            </Tooltip>
                           ) : (
                             '-'
                           )}
