@@ -2,10 +2,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class dials_image(CPluginScript):
 
-    TASKMODULE = 'data_processing'      # Gui menu location
-    TASKTITLE = 'Dials_image'             # Short title for Gui
-    TASKNAME = 'dials_image'              # Task name - same as class name
-    TASKCOMMAND = 'dials.image_viewer'    # The command to run the executable
+    TASKMODULE = 'data_processing'
+    TASKTITLE = 'Dials_image'
+    TASKNAME = 'dials_image'
+    TASKCOMMAND = 'dials.image_viewer'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 

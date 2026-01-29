@@ -11,10 +11,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class lidia(CPluginScript):
-    TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui
-    TASKTITLE = 'Lidia'  # A short title for gui menu
+    TASKMODULE = 'wrappers'
+    TASKTITLE = 'Lidia'
     DESCRIPTION = 'Sketch a ligand'
-    TASKNAME = 'Lidia'  # Task name - should be same as class name
+    TASKNAME = 'Lidia'
     TASKCOMMAND = 'lidia'
     ASYNCHRONOUS = True
     MAINTAINER = 'martin.noble@newcastle.ac.uk'

@@ -4,7 +4,7 @@ from ccp4i2.core import CCP4Utils
 
 class ProvideTLS(CPluginScript):
 
-    TASKNAME = 'ProvideTLS'                                  # Task name - should be same as class name
+    TASKNAME = 'ProvideTLS'
 
     def process(self):
         invalidFiles = self.checkInputData()

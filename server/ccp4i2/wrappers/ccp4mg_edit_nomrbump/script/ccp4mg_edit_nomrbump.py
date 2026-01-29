@@ -10,10 +10,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ccp4mg_edit_nomrbump(CPluginScript):
     
-    TASKMODULE = 'bioinformatics'            # Where this plugin will appear on the gui
-    TASKTITLE = 'Interactive selection of MR model components - CCP4mg'     # A short title for gui menu
-    TASKNAME = 'ccp4mg_edit_nomrbump'                  # Task name - should be same as class name
-    TASKCOMMAND = 'ccp4mg'                          # The command to run the executable
+    TASKMODULE = 'bioinformatics'
+    TASKTITLE = 'Interactive selection of MR model components - CCP4mg'
+    TASKNAME = 'ccp4mg_edit_nomrbump'
+    TASKCOMMAND = 'ccp4mg'
     ASYNCHRONOUS = True
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

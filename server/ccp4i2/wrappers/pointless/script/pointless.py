@@ -2,9 +2,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pointless(CPluginScript):
-    TASKNAME = 'pointless'   # Task name - should be same as class name
-    TASKTITLE = 'Analyse unmerged dataset (POINTLESS)' # A short title for gui menu
-    TASKCOMMAND = 'pointless'   # The command to run the executable
+    TASKNAME = 'pointless'
+    TASKTITLE = 'Analyse unmerged dataset (POINTLESS)'
+    TASKCOMMAND = 'pointless'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 

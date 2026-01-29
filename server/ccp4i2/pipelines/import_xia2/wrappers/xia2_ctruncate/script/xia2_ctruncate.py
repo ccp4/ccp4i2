@@ -9,7 +9,7 @@ from ccp4i2.core import CCP4PluginScript
 class xia2_ctruncate(CCP4PluginScript.CPluginScript):
 
     TASKTITLE = 'CTruncate in XIA2'
-    TASKNAME = 'xia2_ctruncate'   # Task name - should be same as class name
+    TASKNAME = 'xia2_ctruncate'
 
     ERROR_CODES = { 101 : {'description' : 'XIA2 run directory does not exist' },
                     102 : {'description' : 'The XIA2 job failed with error file' },

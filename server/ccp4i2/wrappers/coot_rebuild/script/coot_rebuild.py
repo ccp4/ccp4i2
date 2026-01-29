@@ -8,10 +8,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class coot_rebuild(CPluginScript):
 #class coot_rebuild(CInternalPlugin):
 
-    TASKMODULE = 'model_building'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'Rebuild model with coot'     # A short title for gui menu
-    TASKNAME = 'coot_rebuild'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'coot'                                     # The command to run the executable
+    TASKMODULE = 'model_building'
+    TASKTITLE = 'Rebuild model with coot'
+    TASKNAME = 'coot_rebuild'
+    TASKCOMMAND = 'coot'
     ASYNCHRONOUS = True
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 

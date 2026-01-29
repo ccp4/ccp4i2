@@ -65,7 +65,7 @@ class CallbackObject(object):
 
 class phaser_MR(CPluginScript):
 
-    TASKNAME = 'phaser_MR'                                  # Task name - should be same as class name
+    TASKNAME = 'phaser_MR'
 
     ERROR_CODES = {101 : { 'description' : 'Failed to run MR_DAT' },
                    102 : { 'description' : 'Failed to set keywords' },

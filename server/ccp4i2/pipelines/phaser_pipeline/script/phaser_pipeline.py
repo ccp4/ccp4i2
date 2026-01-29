@@ -8,7 +8,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_pipeline(CPluginScript):
 
-    TASKNAME = 'phaser_pipeline'                                  # Task name - should be same as class name
+    TASKNAME = 'phaser_pipeline'
     PERFORMANCECLASS = 'CRefinementPerformance'
     SEPARATEDATA=True
 

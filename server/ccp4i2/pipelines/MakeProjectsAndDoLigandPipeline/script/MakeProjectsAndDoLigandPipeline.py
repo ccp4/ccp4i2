@@ -9,7 +9,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
-    TASKNAME = 'MakeProjectsAndDoLigandPipeline'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
+    TASKNAME = 'MakeProjectsAndDoLigandPipeline'
     MAINTAINER = 'martin.noble@ncl.ac.uk'
     ERROR_CODES = {201 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create project' },
         202 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create job' },

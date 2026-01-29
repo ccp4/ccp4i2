@@ -7,7 +7,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class sheetbend(CPluginScript):
-    TASKNAME = 'sheetbend'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
+    TASKNAME = 'sheetbend'
     MAINTAINER = 'kathryn.cowtan@york.ac.uk'
     TASKCOMMAND="csheetbend"
     

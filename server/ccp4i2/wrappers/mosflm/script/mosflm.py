@@ -67,9 +67,9 @@ class MosflmServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
 
 class mosflm(CPluginScript):
 
-    TASKTITLE = 'Run mosflm and capture output'     # A short title for gui menu
-    TASKNAME = 'mosflm'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'ipmosflm'                                     # The command to run the executable
+    TASKTITLE = 'Run mosflm and capture output'
+    TASKNAME = 'mosflm'
+    TASKCOMMAND = 'ipmosflm'
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     def makeCommandAndScript(self):

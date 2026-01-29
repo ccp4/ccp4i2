@@ -11,10 +11,10 @@ from . import atomMatching, cifToMolBlock
 
 
 class acedrgNew(CPluginScript):
-    TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'acedrgNew'     # A short title for gui menu
+    TASKMODULE = 'wrappers'
+    TASKTITLE = 'acedrgNew'
     DESCRIPTION = 'Create a ligand dictionary with Acedrg'
-    TASKNAME = 'acedrgNew'                                  # Task name - should be same as class name
+    TASKNAME = 'acedrgNew'
     TASKCOMMAND = 'acedrg'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

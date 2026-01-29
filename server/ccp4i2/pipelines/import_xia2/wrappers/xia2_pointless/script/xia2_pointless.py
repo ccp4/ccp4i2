@@ -9,7 +9,7 @@ from ccp4i2.core import CCP4PluginScript
 class xia2_pointless(CCP4PluginScript.CPluginScript):
 
     TASKTITLE = 'Pointless in XIA2'
-    TASKNAME = 'xia2_pointless'   # Task name - should be same as class name
+    TASKNAME = 'xia2_pointless'
 
     ERROR_CODES = { 101 : {'description' : 'XIA2 run directory does not exist' },
                     102 : {'description' : 'The XIA2 job failed with error file' },

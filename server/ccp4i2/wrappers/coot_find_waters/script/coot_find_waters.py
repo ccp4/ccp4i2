@@ -10,9 +10,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_find_waters(CPluginScript):
-    TASKMODULE = 'model_building'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'Find waters with Coot API'     # A short title for gui menu
-    TASKNAME = 'coot_find_waters'  # Task name - should be same as class name
+    TASKMODULE = 'model_building'
+    TASKTITLE = 'Find waters with Coot API'
+    TASKNAME = 'coot_find_waters'
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
 

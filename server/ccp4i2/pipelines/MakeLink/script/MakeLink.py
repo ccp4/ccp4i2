@@ -2,7 +2,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class MakeLink(CPluginScript):
-    TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
+    TASKNAME = 'MakeLink'
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
 
     def __init__(self, *args, **kws):

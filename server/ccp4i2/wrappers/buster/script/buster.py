@@ -10,10 +10,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class buster(CPluginScript):
-    TASKMODULE = 'refinement'         # Gui menu location
-    TASKTITLE = 'Refinement with Buster (Global Phasing Limited)'        # Short title for Gui
-    TASKNAME = 'buster'               # Task name - same as class name
-    TASKCOMMAND = 'refine'            # The command to run the executable
+    TASKMODULE = 'refinement'
+    TASKTITLE = 'Refinement with Buster (Global Phasing Limited)'
+    TASKNAME = 'buster'
+    TASKCOMMAND = 'refine'
     WHATNEXT = ['buster', 'prosmart_refmac', 'modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
     

@@ -5,10 +5,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class edstats(CPluginScript):
 
-    TASKMODULE          = 'validation'          # Where this plugin will appear on the gui
-    TASKTITLE           = 'Measure agreement between model and density'  # A short title for gui menu
-    TASKNAME            = 'edstats'  # Task name - should be same as class name
-    TASKCOMMAND         = 'edstats'  # The command to execute, should be reachable
+    TASKMODULE          = 'validation'
+    TASKTITLE           = 'Measure agreement between model and density'
+    TASKNAME            = 'edstats'
+    TASKCOMMAND         = 'edstats'
     DESCRIPTION         = 'Calculates real-space metrics for evaluating the agreement between model and density (Edstats)'
     WHATNEXT            = ['coot_rebuild']
     PURGESEARCHLIST =  [[ 'fft%*/MAPOUT.map', 1 ] ]

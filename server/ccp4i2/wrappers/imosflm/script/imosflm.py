@@ -6,10 +6,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class imosflm(CPluginScript):
-    TASKMODULE = 'data_processing'                        # Where this plugin will appear on the gui
-    TASKTITLE = 'Integrate images - iMosflm'     # A short title for gui menu
+    TASKMODULE = 'data_processing'
+    TASKTITLE = 'Integrate images - iMosflm'
     DESCRIPTION = 'Launch iMosflm and capture output'
-    TASKNAME = 'imosflm'                                  # Task name - should be same as class name
+    TASKNAME = 'imosflm'
     TASKCOMMAND = 'imosflm'
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     

@@ -8,7 +8,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class AlternativeImportXIA2(CPluginScript):
 
-    TASKNAME = 'AlternativeImportXIA2'                                  # Task name - should be same as class name
+    TASKNAME = 'AlternativeImportXIA2'
 
     def process(self):
         invalidFiles = self.checkInputData()

@@ -4,10 +4,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class aimless(CPluginScript):
-    TASKNAME = 'aimless'   # Task name - should be same as class name
-    TASKTITLE = 'Scale and merge dataset (AIMLESS)' # A short title for gui menu
+    TASKNAME = 'aimless'
+    TASKTITLE = 'Scale and merge dataset (AIMLESS)'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
-    TASKCOMMAND = 'aimless'   # The command to run the executable
+    TASKCOMMAND = 'aimless'
 
     ERROR_CODES = { 201 : { 'description' : 'Aimless program failed?  No output reflection files found. See log file.' }
                     }

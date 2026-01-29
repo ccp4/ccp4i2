@@ -6,10 +6,10 @@ import glob
 
 class AUSPEX(CPluginScript):
 
-    TASKMODULE = 'data_reduction'      # Gui menu location
-    TASKTITLE = 'AUSPEX'             # Short title for Gui
-    TASKNAME = 'AUSPEX'              # Task name - same as class name
-    TASKCOMMAND = 'auspex'             # The command to run the executable
+    TASKMODULE = 'data_reduction'
+    TASKTITLE = 'AUSPEX'
+    TASKNAME = 'AUSPEX'
+    TASKCOMMAND = 'auspex'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Andrea.Thorn@web.de'

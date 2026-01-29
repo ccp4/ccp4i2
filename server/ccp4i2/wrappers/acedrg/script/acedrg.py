@@ -7,10 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class acedrg(CPluginScript):
-    TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'acedrg'     # A short title for gui menu
+    TASKMODULE = 'wrappers'
+    TASKTITLE = 'acedrg'
     DESCRIPTION = 'Sketch a ligand'
-    TASKNAME = 'acedrg'                                  # Task name - should be same as class name
+    TASKNAME = 'acedrg'
     TASKCOMMAND = 'acedrg'
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 

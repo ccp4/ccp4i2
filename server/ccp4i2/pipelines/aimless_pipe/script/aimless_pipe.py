@@ -12,9 +12,9 @@ from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
 
 class aimless_pipe(CPluginScript):
 
-    TASKMODULE = 'data_reduction'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Scale and merge data' # A short title for gui menu
-    TASKNAME = 'aimless_pipe'   # Task name - should be same as class name
+    TASKMODULE = 'data_reduction'
+    TASKTITLE = 'Scale and merge data'
+    TASKNAME = 'aimless_pipe'
     PERFORMANCECLASS = 'CDataReductionPerformance'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     ERROR_CODES = {

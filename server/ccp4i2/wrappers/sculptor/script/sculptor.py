@@ -6,7 +6,7 @@ class sculptor(CPluginScript):
     TASKTITLE = 'Truncate search model - SCULPTOR'
     TASKNAME = 'sculptor'  
     PERFORMANCECLASS = 'CAtomCountPerformance'
-    TASKCOMMAND = 'phaser.sculptor'   # The command to run the executable
+    TASKCOMMAND = 'phaser.sculptor'
     
     ERROR_CODES = { 201 : {'description' : 'Unable to convert the provided alignment to clustal (.aln) format' },
                     202 : {'description' : 'Failed reading the alignment file' }, }

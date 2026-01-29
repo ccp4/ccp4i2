@@ -3,8 +3,8 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4Utils
 
 class phaser_ensembler(CPluginScript):
-    TASKNAME = 'phaser_ensembler'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'phaser.ensembler'                                     # The command to run the executable
+    TASKNAME = 'phaser_ensembler'
+    TASKCOMMAND = 'phaser.ensembler'
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True
 

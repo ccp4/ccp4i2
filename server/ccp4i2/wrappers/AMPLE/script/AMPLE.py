@@ -15,7 +15,7 @@ LOGFILE_NAME = 'log.txt'
 
 
 class AMPLE(CPluginScript):
-    TASKNAME = 'AMPLE'  # Task name - should be same as class name and match pluginTitle in the .def.xml file
+    TASKNAME = 'AMPLE'
     MAINTAINER = 'jens.thomas@liv.ac.uk'
     ERROR_CODES = {
         1: {

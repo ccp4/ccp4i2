@@ -9,10 +9,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class qtpisa(CPluginScript):
     
-    TASKMODULE = 'validation'            # Where this plugin will appear on the gui
-    TASKTITLE = 'Analyze bilogical units with qtpisa'     # A short title for gui menu
-    TASKNAME = 'qtpisa'                  # Task name - should be same as class name
-    TASKCOMMAND = 'qtpisa'                          # The command to run the executable
+    TASKMODULE = 'validation'
+    TASKTITLE = 'Analyze bilogical units with qtpisa'
+    TASKNAME = 'qtpisa'
+    TASKCOMMAND = 'qtpisa'
     ASYNCHRONOUS = True
     MAINTAINER = 'eugene.krissinel@stfc.ac.uk'
 

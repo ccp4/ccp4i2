@@ -9,10 +9,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class shelxeMR(CPluginScript):
-    TASKMODULE = 'model_building'      # Gui menu location
-    TASKTITLE = 'ShelxeMR'             # Short title for Gui
-    TASKNAME = 'shelxeMR'              # Task name - same as class name
-    TASKCOMMAND = 'shelxe'             # The command to run the executable
+    TASKMODULE = 'model_building'
+    TASKTITLE = 'ShelxeMR'
+    TASKNAME = 'shelxeMR'
+    TASKCOMMAND = 'shelxe'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     filecaught = False
 

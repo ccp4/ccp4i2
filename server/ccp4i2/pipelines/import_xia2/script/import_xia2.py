@@ -9,8 +9,8 @@ from ccp4i2.pipelines.import_xia2.wrappers.xia2_run.script import xia2_run
 
 class import_xia2(CCP4PluginScript.CPluginScript):
 
-    TASKTITLE = 'Import XIA2 results' # A short title for gui menu
-    TASKNAME = 'import_xia2'   # Task name - should be same as class name
+    TASKTITLE = 'Import XIA2 results'
+    TASKNAME = 'import_xia2'
     WHATNEXT = ['aimless_pipe','phaser_pipeline','molrep_mr']
 
     ERROR_CODES = { 201 : {'description' : 'XIA2 directory does not exist' },

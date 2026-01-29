@@ -8,10 +8,10 @@ from ccp4i2.core import CCP4ErrorHandling
 
 
 class mrparse_simple(CPluginScript):
-    TASKMODULE = 'developer_tools'      # Gui menu location
-    TASKTITLE = 'mrparse_simple'              # Short title for Gui
-    TASKNAME = 'mrparse_simple'               # Task name - same as class name
-    TASKCOMMAND = 'mrparse'            # The command to run the executable
+    TASKMODULE = 'developer_tools'
+    TASKTITLE = 'mrparse_simple'
+    TASKNAME = 'mrparse_simple'
+    TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'hlasimpk@liverpool.ac.uk'

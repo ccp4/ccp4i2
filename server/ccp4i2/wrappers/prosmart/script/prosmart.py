@@ -8,9 +8,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class prosmart(CPluginScript):
     
-    TASKMODULE = 'wrappers' # Where this plugin will appear on gui
-    TASKNAME = 'prosmart'   # Task name - should be same as class name
-    TASKCOMMAND = 'prosmart'   # The command to run the executable
+    TASKMODULE = 'wrappers'
+    TASKNAME = 'prosmart'
+    TASKCOMMAND = 'prosmart'
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from Prosmart' },

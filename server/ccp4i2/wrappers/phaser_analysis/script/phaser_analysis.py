@@ -49,9 +49,9 @@ class CallbackObject(object):
 
 
 class phaser_analysis(CPluginScript):
-    TASKMODULE = 'test'      # Where this plugin will appear on the gui
-    TASKTITLE = 'phaser_analysis' # A short title for gui menu
-    TASKNAME = 'phaser_analysis'   # Task name - should be same as class name
+    TASKMODULE = 'test'
+    TASKTITLE = 'phaser_analysis'
+    TASKNAME = 'phaser_analysis'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
  
     def startProcess(self):

@@ -15,10 +15,10 @@ from ccp4i2.wrappers.validate_protein.script import validate_protein
 
 class tableone(CPluginScript):
 
-    TASKMODULE = 'test'                 # Gui menu location
-    TASKTITLE = 'Generate Table One'          # Short title for Gui
-    TASKNAME = 'tableone'                     # Task name - same as class name
-    TASKCOMMAND = 'xia2.merging_statistics'   # The command to run the executable - there is more than one here.
+    TASKMODULE = 'test'
+    TASKTITLE = 'Generate Table One'
+    TASKNAME = 'tableone'
+    TASKCOMMAND = 'xia2.merging_statistics'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'

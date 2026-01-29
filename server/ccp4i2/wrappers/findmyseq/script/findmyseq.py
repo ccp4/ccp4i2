@@ -8,11 +8,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class findmyseq(CPluginScript):
-    TASKMODULE = 'bioinformatics'         # Gui location
-    TASKTITLE = 'Find My Sequence'    # Short title for Gui
-    TASKNAME = 'findmyseq'            # Task name - same as class name
-    TASKCOMMAND = 'findmysequence'    # executable
-    WHATNEXT = ['modelcraft']         # after ?
+    TASKMODULE = 'bioinformatics'
+    TASKTITLE = 'Find My Sequence'
+    TASKNAME = 'findmyseq'
+    TASKCOMMAND = 'findmysequence'
+    WHATNEXT = ['modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
     
     ERROR_CODES = { 101 : {'description' : 'Blank ' \

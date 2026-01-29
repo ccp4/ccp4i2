@@ -7,7 +7,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class phaser_EP(CPluginScript):
-    TASKNAME = 'phaser_EP'                                  # Task name - should be same as class name
+    TASKNAME = 'phaser_EP'
 
     ERROR_CODES = {
         201: {'description': 'ShelxCD sub-job failed'},

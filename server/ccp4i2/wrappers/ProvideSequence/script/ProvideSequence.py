@@ -10,7 +10,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ProvideSequence(CPluginScript):
 
-    TASKNAME = 'ProvideSequence'                                  # Task name - should be same as class name
+    TASKNAME = 'ProvideSequence'
 
     def startProcess(self):
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment

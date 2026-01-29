@@ -10,9 +10,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class clustalw(CPluginScript):
-    TASKTITLE = 'clustalw'     # A short title for gui menu
+    TASKTITLE = 'clustalw'
     DESCRIPTION = 'Perform multiple alignment'
-    TASKNAME = 'clustalw'                                  # Task name - should be same as class name
+    TASKNAME = 'clustalw'
     TASKCOMMAND = shutil.which("clustalw2", path=Path(os.environ["CCP4"], "libexec"))
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to catenate sequences' },201 : { 'description' : 'Failed to setFullPath' },}

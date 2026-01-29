@@ -4,7 +4,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class MakeMonster(CPluginScript):
-    TASKNAME = 'MakeMonster'                                  # Task name - should be same as class name
+    TASKNAME = 'MakeMonster'
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     def processInputFiles(self):

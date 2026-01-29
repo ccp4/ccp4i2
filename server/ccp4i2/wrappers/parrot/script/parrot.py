@@ -6,11 +6,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class parrot(CPluginScript):
 
-    TASKMODULE = 'density_modification'                       # Where this plugin will appear on the gui
-    TASKTITLE = 'Parrot'                                # A short title for gui menu
-    TASKNAME = 'parrot'                                 # Task name - should be same as class name
-    TASKCOMMAND = 'cparrot'                             # The command to run the executable
-    PERFORMANCECLASS = 'CExpPhasPerformance'             # Only FOM is relevent
+    TASKMODULE = 'density_modification'
+    TASKTITLE = 'Parrot'
+    TASKNAME = 'parrot'
+    TASKCOMMAND = 'cparrot'
+    PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'kathryn.cowtan@york.ac.uk'
 
 

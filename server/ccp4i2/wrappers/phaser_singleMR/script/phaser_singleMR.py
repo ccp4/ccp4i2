@@ -6,13 +6,13 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_singleMR(CPluginScript):
 
-    TASKMODULE = 'molecular_replacement'      # Gui menu location
-    TASKTITLE = 'Single Atom MR'              # Short title for Gui
-    TASKNAME = 'phaser_singleMR'              # Task name - same as class name
-    TASKCOMMAND = 'phaser'                    # The command to run the executable
+    TASKMODULE = 'molecular_replacement'
+    TASKTITLE = 'Single Atom MR'
+    TASKNAME = 'phaser_singleMR'
+    TASKCOMMAND = 'phaser'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'   #  I think this is mostly ok now
+    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.hklin1 = None

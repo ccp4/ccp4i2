@@ -10,10 +10,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ccp4mg_general(CPluginScript):
     
-    TASKMODULE = 'model_building'            # Where this plugin will appear on the gui
-    TASKTITLE = 'Molecular graphics visualization and figure creation - CCP4MG'     # A short title for gui menu
-    TASKNAME = 'ccp4mg_general'                  # Task name - should be same as class name
-    TASKCOMMAND = 'ccp4mg'                          # The command to run the executable
+    TASKMODULE = 'model_building'
+    TASKTITLE = 'Molecular graphics visualization and figure creation - CCP4MG'
+    TASKNAME = 'ccp4mg_general'
+    TASKCOMMAND = 'ccp4mg'
     ASYNCHRONOUS = True
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

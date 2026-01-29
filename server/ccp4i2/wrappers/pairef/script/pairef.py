@@ -7,10 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pairef(CPluginScript):
-    TASKMODULE = 'refinement'         # Gui menu location
-    TASKTITLE = 'Pairef'        # Short title for Gui
-    TASKNAME = 'pairef'               # Task name - same as class name
-    TASKCOMMAND = 'pairef'            # The command to run the executable
+    TASKMODULE = 'refinement'
+    TASKTITLE = 'Pairef'
+    TASKNAME = 'pairef'
+    TASKCOMMAND = 'pairef'
     PERFORMANCECLASS = 'CPairefPerformance'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     

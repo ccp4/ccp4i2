@@ -9,11 +9,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class acorn(CPluginScript):
-    TASKMODULE = 'density_modification'                 # Gui-2 Menu Class
-    TASKTITLE = 'Acorn'                         # Menu title
-    TASKNAME = 'acorn'                          # Task name - should be same as class name
-    TASKCOMMAND = 'acorn'                       # The command to run the executable
-    PERFORMANCECLASS = 'CExpPhasPerformance'    # KJS Need to change this
+    TASKMODULE = 'density_modification'
+    TASKTITLE = 'Acorn'
+    TASKNAME = 'acorn'
+    TASKCOMMAND = 'acorn'
+    PERFORMANCECLASS = 'CExpPhasPerformance'
 
     def processInputFiles(self):
         print("Processing INPUT Files - (Acorn)")

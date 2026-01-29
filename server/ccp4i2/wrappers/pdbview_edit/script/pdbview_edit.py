@@ -9,10 +9,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pdbview_edit(CPluginScript):
     
-    TASKMODULE = 'model_data_utility'            # Where this plugin will appear on the gui
-    TASKTITLE = 'Edit PDB/CIF files by hand with the PdbView program'     # A short title for gui menu
-    TASKNAME = 'pdbview_edit'                  # Task name - should be same as class name
-    TASKCOMMAND = 'ccp4-python'                          # The command to run the executable
+    TASKMODULE = 'model_data_utility'
+    TASKTITLE = 'Edit PDB/CIF files by hand with the PdbView program'
+    TASKNAME = 'pdbview_edit'
+    TASKCOMMAND = 'ccp4-python'
     ASYNCHRONOUS = True
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 

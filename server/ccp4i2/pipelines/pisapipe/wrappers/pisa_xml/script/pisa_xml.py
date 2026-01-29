@@ -10,9 +10,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pisa_xml(CPluginScript):
 
-    TASKTITLE = 'Structure analysis with Pisa'     # A short title for gui menu
-    TASKNAME = 'pisa_xml'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'pisa'                                     # The command to run the executable
+    TASKTITLE = 'Structure analysis with Pisa'
+    TASKNAME = 'pisa_xml'
+    TASKCOMMAND = 'pisa'
 
     def process(self):
         self.xmlroot = etree.Element('pisa_xml')

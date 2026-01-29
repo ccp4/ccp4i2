@@ -5,11 +5,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ctruncate(CPluginScript):
-    TASKMODULE = 'expt_data_utility'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Intensities to amplitudes' # A short title for gui menu
+    TASKMODULE = 'expt_data_utility'
+    TASKTITLE = 'Intensities to amplitudes'
     DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
-    TASKNAME = 'ctruncate'   # Task name - should be same as class name
-    TASKCOMMAND = 'ctruncate'   # The command to run the executable
+    TASKNAME = 'ctruncate'
+    TASKCOMMAND = 'ctruncate'
     MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
     ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }

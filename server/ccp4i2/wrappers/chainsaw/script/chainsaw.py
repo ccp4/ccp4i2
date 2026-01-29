@@ -4,12 +4,12 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class chainsaw(CPluginScript):
-    TASKMODULE = 'molecular replacement' # Where this plugin will appear on gui
-    TASKTITLE = 'edit search model' # A short title for gui menu
-    TASKNAME = 'chainsaw'   # Task name - should be same as class name
+    TASKMODULE = 'molecular replacement'
+    TASKTITLE = 'edit search model'
+    TASKNAME = 'chainsaw'
     MAINTAINER = 'ronan.keegan@stfc.ac.uk'
     PERFORMANCECLASS = 'CAtomCountPerformance'
-    TASKCOMMAND = 'chainsaw'   # The command to run the executable
+    TASKCOMMAND = 'chainsaw'
 
     def makeCommandAndScript(self):
       print('chainsaw.makeCommandAndScript')

@@ -7,10 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class mrparse(CPluginScript):
-    TASKMODULE = 'bioinformatics'      # Gui menu location
-    TASKTITLE = 'mrparse'              # Short title for Gui
-    TASKNAME = 'mrparse'               # Task name - same as class name
-    TASKCOMMAND = 'mrparse'            # The command to run the executable
+    TASKMODULE = 'bioinformatics'
+    TASKTITLE = 'mrparse'
+    TASKNAME = 'mrparse'
+    TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'hlasimpk@liverpool.ac.uk'

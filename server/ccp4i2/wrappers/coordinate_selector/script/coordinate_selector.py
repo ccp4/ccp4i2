@@ -6,9 +6,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coordinate_selector(CPluginScript):
-    TASKMODULE = 'model_data_utility' # Where this plugin will appear on gui
-    TASKTITLE = 'Select subset from coordinates' # A short title for gui menu
-    TASKNAME = 'coordinate_selector'   # Task name - should be same as class name
+    TASKMODULE = 'model_data_utility'
+    TASKTITLE = 'Select subset from coordinates'
+    TASKNAME = 'coordinate_selector'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     ERROR_CODES = { 202 : {'description' : 'Failed applying selection to PDB file' }
                     }
