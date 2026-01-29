@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import {
   Box,
   Paper,
@@ -11,6 +11,7 @@ import {
   TableContainer,
   TableHead,
   TableRow,
+  TableSortLabel,
   Button,
   Chip,
   LinearProgress,
@@ -125,6 +126,41 @@ function formatAggLabel(agg: AggregationType): string {
  * Compact table component (one row per compound).
  * Clicking on protocol cells opens a modal with data series details.
  */
+/** Sort direction type */
+type Order = 'asc' | 'desc';
+
+/** Sort key for compact table - either a fixed column or protocol-based */
+type CompactSortKey = 'compound' | 'batch' | 'target' | `protocol_${string}_${AggregationType}`;
+
+/** Comparator function for sorting */
+function descendingComparator<T>(a: T, b: T, getValue: (item: T) => unknown): number {
+  const aVal = getValue(a);
+  const bVal = getValue(b);
+
+  // Handle null/undefined - push to end
+  if (aVal == null && bVal == null) return 0;
+  if (aVal == null) return 1;
+  if (bVal == null) return -1;
+
+  // Compare values
+  if (typeof aVal === 'string' && typeof bVal === 'string') {
+    return bVal.localeCompare(aVal);
+  }
+  if (typeof aVal === 'number' && typeof bVal === 'number') {
+    return bVal - aVal;
+  }
+  return 0;
+}
+
+function getComparator<T>(
+  order: Order,
+  getValue: (item: T) => unknown
+): (a: T, b: T) => number {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, getValue)
+    : (a, b) => -descendingComparator(a, b, getValue);
+}
+
 function CompactTable({
   data,
   aggregations,
@@ -149,8 +185,45 @@ function CompactTable({
     name: string;
   } | null>(null);
 
+  // Sorting state
+  const [orderBy, setOrderBy] = useState<CompactSortKey>('compound');
+  const [order, setOrder] = useState<Order>('asc');
+
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
+
+  // Handle sort request
+  const handleRequestSort = (property: CompactSortKey) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  // Get value for sorting based on orderBy key
+  const getSortValue = useCallback((row: CompactRow, key: CompactSortKey): unknown => {
+    if (key === 'compound') return row.formatted_id;
+    if (key === 'batch') return row.batch_number ?? -1;
+    if (key === 'target') return row.target_name ?? '';
+
+    // Protocol column: protocol_{id}_{aggType}
+    const match = key.match(/^protocol_(.+)_(\w+)$/);
+    if (match) {
+      const [, protocolId, aggType] = match;
+      const protocolData = row.protocols[protocolId];
+      if (!protocolData) return null;
+      const value = protocolData[aggType as AggregationType];
+      // For 'list' type, return null to keep stable sort
+      if (aggType === 'list') return null;
+      return value ?? null;
+    }
+    return null;
+  }, []);
+
+  // Sorted rows
+  const sortedRows = useMemo(() => {
+    const comparator = getComparator<CompactRow>(order, (row) => getSortValue(row, orderBy));
+    return [...rows].sort(comparator);
+  }, [rows, order, orderBy, getSortValue]);
   const showBatchColumn = data.meta.group_by_batch;
 
   // Track horizontal scroll position to show/hide scroll shadow
@@ -217,7 +290,7 @@ function CompactTable({
 
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
-    count: rows.length,
+    count: sortedRows.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 76, // Approximate row height with molecule chip
     overscan: 5,
@@ -343,37 +416,78 @@ function CompactTable({
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }} sortDirection={orderBy === 'compound' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'compound'}
+                  direction={orderBy === 'compound' ? order : 'asc'}
+                  onClick={() => handleRequestSort('compound')}
+                >
+                  Compound
+                </TableSortLabel>
+              </TableCell>
               {showBatchColumn && (
-                <TableCell sx={{ fontWeight: 600, width: 60 }}>Batch</TableCell>
-              )}
-              <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
-              {protocols.map((protocol) => (
-                aggregations.map((agg) => (
-                  <TableCell
-                    key={`${protocol.id}-${agg}`}
-                    sx={{ fontWeight: 600, width: 100 }}
-                    align="right"
+                <TableCell sx={{ fontWeight: 600, width: 60 }} sortDirection={orderBy === 'batch' ? order : false}>
+                  <TableSortLabel
+                    active={orderBy === 'batch'}
+                    direction={orderBy === 'batch' ? order : 'asc'}
+                    onClick={() => handleRequestSort('batch')}
                   >
-                    <Tooltip title={protocol.name}>
-                      <span>
-                        {protocol.name.length > 15
-                          ? `${protocol.name.slice(0, 15)}...`
-                          : protocol.name}
-                        <br />
-                        <Typography variant="caption" color="text.secondary">
-                          {concentrationDisplay === 'pConc' && agg !== 'count' && agg !== 'list' && isConcentrationUnit(protocol.kpi_unit)
-                            ? `p${formatAggLabel(agg)}`
-                            : formatAggLabel(agg)}
-                          {/* Show unit for value-based aggregations */}
-                          {agg !== 'count' && agg !== 'list' && protocol.kpi_unit && concentrationDisplay !== 'pConc' && (
-                            <> ({getConcentrationHeaderUnit(protocol.kpi_unit, concentrationDisplay)})</>
+                    Batch
+                  </TableSortLabel>
+                </TableCell>
+              )}
+              <TableCell sx={{ fontWeight: 600, width: 100 }} sortDirection={orderBy === 'target' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'target'}
+                  direction={orderBy === 'target' ? order : 'asc'}
+                  onClick={() => handleRequestSort('target')}
+                >
+                  Target
+                </TableSortLabel>
+              </TableCell>
+              {protocols.map((protocol) => (
+                aggregations.map((agg) => {
+                  const sortKey: CompactSortKey = `protocol_${protocol.id}_${agg}`;
+                  const isSortable = agg !== 'list'; // List columns aren't sortable
+                  return (
+                    <TableCell
+                      key={`${protocol.id}-${agg}`}
+                      sx={{ fontWeight: 600, width: 100 }}
+                      align="right"
+                      sortDirection={orderBy === sortKey ? order : false}
+                    >
+                      <Tooltip title={protocol.name}>
+                        <span>
+                          {isSortable ? (
+                            <TableSortLabel
+                              active={orderBy === sortKey}
+                              direction={orderBy === sortKey ? order : 'asc'}
+                              onClick={() => handleRequestSort(sortKey)}
+                            >
+                              {protocol.name.length > 15
+                                ? `${protocol.name.slice(0, 15)}...`
+                                : protocol.name}
+                            </TableSortLabel>
+                          ) : (
+                            protocol.name.length > 15
+                              ? `${protocol.name.slice(0, 15)}...`
+                              : protocol.name
                           )}
-                        </Typography>
-                      </span>
-                    </Tooltip>
-                  </TableCell>
-                ))
+                          <br />
+                          <Typography variant="caption" color="text.secondary">
+                            {concentrationDisplay === 'pConc' && agg !== 'count' && agg !== 'list' && isConcentrationUnit(protocol.kpi_unit)
+                              ? `p${formatAggLabel(agg)}`
+                              : formatAggLabel(agg)}
+                            {/* Show unit for value-based aggregations */}
+                            {agg !== 'count' && agg !== 'list' && protocol.kpi_unit && concentrationDisplay !== 'pConc' && (
+                              <> ({getConcentrationHeaderUnit(protocol.kpi_unit, concentrationDisplay)})</>
+                            )}
+                          </Typography>
+                        </span>
+                      </Tooltip>
+                    </TableCell>
+                  );
+                })
               ))}
             </TableRow>
           </TableHead>
@@ -395,7 +509,7 @@ function CompactTable({
 
             {/* Virtualized rows */}
             {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-              const row = rows[virtualRow.index];
+              const row = sortedRows[virtualRow.index];
               return (
                 <TableRow
                   key={showBatchColumn ? `${row.compound_id}-${row.batch_id || 'no-batch'}` : row.compound_id}
@@ -533,6 +647,9 @@ function CompactTable({
   );
 }
 
+/** Sort key for medium table */
+type MediumSortKey = 'compound' | 'batch' | 'target' | 'protocol' | AggregationType;
+
 /**
  * Medium table component (one row per compound-protocol pair).
  * Clicking a row opens a modal with data series details and charts.
@@ -552,12 +669,41 @@ function MediumTable({
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState<MediumRow | null>(null);
 
+  // Sorting state
+  const [orderBy, setOrderBy] = useState<MediumSortKey>('compound');
+  const [order, setOrder] = useState<Order>('asc');
+
   const rows = data.data as MediumRow[];
   const showBatchColumn = data.meta.group_by_batch;
 
+  // Handle sort request
+  const handleRequestSort = (property: MediumSortKey) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  // Get value for sorting based on orderBy key
+  const getSortValue = useCallback((row: MediumRow, key: MediumSortKey): unknown => {
+    if (key === 'compound') return row.formatted_id;
+    if (key === 'batch') return row.batch_number ?? -1;
+    if (key === 'target') return row.target_name ?? '';
+    if (key === 'protocol') return row.protocol_name;
+    // Aggregation columns
+    if (key === 'list') return null; // Not sortable
+    const value = row[key as keyof MediumRow];
+    return value ?? null;
+  }, []);
+
+  // Sorted rows
+  const sortedRows = useMemo(() => {
+    const comparator = getComparator<MediumRow>(order, (row) => getSortValue(row, orderBy));
+    return [...rows].sort(comparator);
+  }, [rows, order, orderBy, getSortValue]);
+
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
-    count: rows.length,
+    count: sortedRows.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 76, // Approximate row height with molecule chip
     overscan: 5,
@@ -613,17 +759,67 @@ function MediumTable({
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }} sortDirection={orderBy === 'compound' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'compound'}
+                  direction={orderBy === 'compound' ? order : 'asc'}
+                  onClick={() => handleRequestSort('compound')}
+                >
+                  Compound
+                </TableSortLabel>
+              </TableCell>
               {showBatchColumn && (
-                <TableCell sx={{ fontWeight: 600, width: 60 }}>Batch</TableCell>
-              )}
-              <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
-              {aggregations.map((agg) => (
-                <TableCell key={agg} sx={{ fontWeight: 600, width: 80 }} align="right">
-                  {formatAggLabel(agg)}
+                <TableCell sx={{ fontWeight: 600, width: 60 }} sortDirection={orderBy === 'batch' ? order : false}>
+                  <TableSortLabel
+                    active={orderBy === 'batch'}
+                    direction={orderBy === 'batch' ? order : 'asc'}
+                    onClick={() => handleRequestSort('batch')}
+                  >
+                    Batch
+                  </TableSortLabel>
                 </TableCell>
-              ))}
+              )}
+              <TableCell sx={{ fontWeight: 600, width: 100 }} sortDirection={orderBy === 'target' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'target'}
+                  direction={orderBy === 'target' ? order : 'asc'}
+                  onClick={() => handleRequestSort('target')}
+                >
+                  Target
+                </TableSortLabel>
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }} sortDirection={orderBy === 'protocol' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'protocol'}
+                  direction={orderBy === 'protocol' ? order : 'asc'}
+                  onClick={() => handleRequestSort('protocol')}
+                >
+                  Protocol
+                </TableSortLabel>
+              </TableCell>
+              {aggregations.map((agg) => {
+                const isSortable = agg !== 'list';
+                return (
+                  <TableCell
+                    key={agg}
+                    sx={{ fontWeight: 600, width: 80 }}
+                    align="right"
+                    sortDirection={orderBy === agg ? order : false}
+                  >
+                    {isSortable ? (
+                      <TableSortLabel
+                        active={orderBy === agg}
+                        direction={orderBy === agg ? order : 'asc'}
+                        onClick={() => handleRequestSort(agg)}
+                      >
+                        {formatAggLabel(agg)}
+                      </TableSortLabel>
+                    ) : (
+                      formatAggLabel(agg)
+                    )}
+                  </TableCell>
+                );
+              })}
             </TableRow>
           </TableHead>
           <TableBody>
@@ -644,7 +840,7 @@ function MediumTable({
 
             {/* Virtualized rows */}
             {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-              const row = rows[virtualRow.index];
+              const row = sortedRows[virtualRow.index];
               return (
                 <TableRow
                   key={`${row.compound_id}-${row.batch_id || 'no-batch'}-${row.protocol_id}-${virtualRow.index}`}
@@ -782,6 +978,9 @@ function MediumTable({
   );
 }
 
+/** Sort key for long table */
+type LongSortKey = 'compound' | 'batch' | 'target' | 'protocol' | 'date' | 'kpi' | 'status';
+
 /**
  * Long table component (one row per measurement).
  */
@@ -795,13 +994,42 @@ function LongTable({
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
 
+  // Sorting state
+  const [orderBy, setOrderBy] = useState<LongSortKey>('compound');
+  const [order, setOrder] = useState<Order>('asc');
+
   const rows = data.data as LongRow[];
   // Long format always includes batch info, but only show column if any row has batch data
   const showBatchColumn = rows.some(row => row.batch_number != null);
 
+  // Handle sort request
+  const handleRequestSort = (property: LongSortKey) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
+
+  // Get value for sorting based on orderBy key
+  const getSortValue = useCallback((row: LongRow, key: LongSortKey): unknown => {
+    if (key === 'compound') return row.formatted_id ?? row.compound_name ?? '';
+    if (key === 'batch') return row.batch_number ?? -1;
+    if (key === 'target') return row.target_name ?? '';
+    if (key === 'protocol') return row.protocol_name;
+    if (key === 'date') return row.assay_date ?? '';
+    if (key === 'kpi') return row.kpi_value ?? null;
+    if (key === 'status') return row.status ?? '';
+    return null;
+  }, []);
+
+  // Sorted rows
+  const sortedRows = useMemo(() => {
+    const comparator = getComparator<LongRow>(order, (row) => getSortValue(row, orderBy));
+    return [...rows].sort(comparator);
+  }, [rows, order, orderBy, getSortValue]);
+
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
-    count: rows.length,
+    count: sortedRows.length,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 76, // Approximate row height with molecule chip
     overscan: 5,
@@ -832,15 +1060,71 @@ function LongTable({
           <TableHead>
             <TableRow>
               <TableCell sx={{ fontWeight: 600, width: 100 }}>Structure</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 120 }}>Compound</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }} sortDirection={orderBy === 'compound' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'compound'}
+                  direction={orderBy === 'compound' ? order : 'asc'}
+                  onClick={() => handleRequestSort('compound')}
+                >
+                  Compound
+                </TableSortLabel>
+              </TableCell>
               {showBatchColumn && (
-                <TableCell sx={{ fontWeight: 600, width: 60 }}>Batch</TableCell>
+                <TableCell sx={{ fontWeight: 600, width: 60 }} sortDirection={orderBy === 'batch' ? order : false}>
+                  <TableSortLabel
+                    active={orderBy === 'batch'}
+                    direction={orderBy === 'batch' ? order : 'asc'}
+                    onClick={() => handleRequestSort('batch')}
+                  >
+                    Batch
+                  </TableSortLabel>
+                </TableCell>
               )}
-              <TableCell sx={{ fontWeight: 600, width: 100 }}>Target</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 120 }}>Protocol</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 100 }}>Date</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 80 }} align="right">KPI</TableCell>
-              <TableCell sx={{ fontWeight: 600, width: 80 }}>Status</TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }} sortDirection={orderBy === 'target' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'target'}
+                  direction={orderBy === 'target' ? order : 'asc'}
+                  onClick={() => handleRequestSort('target')}
+                >
+                  Target
+                </TableSortLabel>
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 120 }} sortDirection={orderBy === 'protocol' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'protocol'}
+                  direction={orderBy === 'protocol' ? order : 'asc'}
+                  onClick={() => handleRequestSort('protocol')}
+                >
+                  Protocol
+                </TableSortLabel>
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 100 }} sortDirection={orderBy === 'date' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'date'}
+                  direction={orderBy === 'date' ? order : 'asc'}
+                  onClick={() => handleRequestSort('date')}
+                >
+                  Date
+                </TableSortLabel>
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 80 }} align="right" sortDirection={orderBy === 'kpi' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'kpi'}
+                  direction={orderBy === 'kpi' ? order : 'asc'}
+                  onClick={() => handleRequestSort('kpi')}
+                >
+                  KPI
+                </TableSortLabel>
+              </TableCell>
+              <TableCell sx={{ fontWeight: 600, width: 80 }} sortDirection={orderBy === 'status' ? order : false}>
+                <TableSortLabel
+                  active={orderBy === 'status'}
+                  direction={orderBy === 'status' ? order : 'asc'}
+                  onClick={() => handleRequestSort('status')}
+                >
+                  Status
+                </TableSortLabel>
+              </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -861,7 +1145,7 @@ function LongTable({
 
             {/* Virtualized rows */}
             {rowVirtualizer.getVirtualItems().map((virtualRow) => {
-              const row = rows[virtualRow.index];
+              const row = sortedRows[virtualRow.index];
               return (
                 <TableRow
                   key={row.data_series_id}
