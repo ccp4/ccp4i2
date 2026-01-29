@@ -10,6 +10,9 @@ import {
   Grid2 as Grid,
   Tooltip,
   IconButton,
+  Divider,
+  FormControlLabel,
+  Checkbox,
 } from '@mui/material';
 import { HelpOutline } from '@mui/icons-material';
 import type { FittingParameters } from '@/types/compounds/models';
@@ -129,6 +132,110 @@ export function TightBindingParametersForm({
           />
         </Grid>
       </Grid>
+
+      {/* Asymptote Constraints Section */}
+      <Divider sx={{ my: 2 }} />
+
+      <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+        <Typography variant="caption" color="text.secondary">
+          Asymptote Constraints
+        </Typography>
+        <Tooltip title="Optional constraints for curve fitting. Hard constraints force exact values; soft restraints guide the fit while allowing deviation.">
+          <IconButton size="small" sx={{ ml: 0.5 }}>
+            <HelpOutline fontSize="small" />
+          </IconButton>
+        </Tooltip>
+      </Box>
+
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.5 }}>
+        {/* Hard constraints */}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={value.fix_top === true}
+              onChange={(e) =>
+                onChange({
+                  ...value,
+                  fix_top: e.target.checked ? true : null,
+                })
+              }
+              disabled={disabled}
+              size="small"
+            />
+          }
+          label={
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography variant="body2">
+                Fix top to max control
+              </Typography>
+              <Tooltip title="Hard constraint: top asymptote will be exactly equal to the max control value">
+                <HelpOutline sx={{ fontSize: 14, ml: 0.5, color: 'text.secondary' }} />
+              </Tooltip>
+            </Box>
+          }
+        />
+
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={value.fix_bottom === true}
+              onChange={(e) =>
+                onChange({
+                  ...value,
+                  fix_bottom: e.target.checked ? true : null,
+                })
+              }
+              disabled={disabled}
+              size="small"
+            />
+          }
+          label={
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography variant="body2">
+                Fix bottom to min control
+              </Typography>
+              <Tooltip title="Hard constraint: bottom asymptote will be exactly equal to the min control value">
+                <HelpOutline sx={{ fontSize: 14, ml: 0.5, color: 'text.secondary' }} />
+              </Tooltip>
+            </Box>
+          }
+        />
+
+        {/* Soft constraints */}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={value.restrain_to_controls === true}
+              onChange={(e) =>
+                onChange({
+                  ...value,
+                  restrain_to_controls: e.target.checked ? true : null,
+                })
+              }
+              disabled={disabled || (value.fix_top === true && value.fix_bottom === true)}
+              size="small"
+            />
+          }
+          label={
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Typography
+                variant="body2"
+                color={(value.fix_top === true && value.fix_bottom === true) ? 'text.disabled' : 'text.primary'}
+              >
+                Restrain to controls (soft)
+              </Typography>
+              <Tooltip title="Soft constraint: guides asymptotes toward control values using pseudo data points, while allowing deviation if data suggests different values. Only applies to asymptotes not already hard-fixed above.">
+                <HelpOutline sx={{ fontSize: 14, ml: 0.5, color: 'text.secondary' }} />
+              </Tooltip>
+            </Box>
+          }
+        />
+        {(value.fix_top === true && value.fix_bottom === true) && value.restrain_to_controls && (
+          <Typography variant="caption" color="warning.main" sx={{ ml: 4 }}>
+            Soft restraints have no effect when both asymptotes are hard-fixed
+          </Typography>
+        )}
+      </Box>
     </Box>
   );
 }
