@@ -21,7 +21,6 @@ class tableone(CPluginScript):
     TASKCOMMAND = 'xia2.merging_statistics'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
 
     def __init__(self, *args, **kwargs):

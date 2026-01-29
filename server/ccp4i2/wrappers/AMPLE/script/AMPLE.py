@@ -16,7 +16,6 @@ LOGFILE_NAME = 'log.txt'
 
 class AMPLE(CPluginScript):
     TASKNAME = 'AMPLE'
-    MAINTAINER = 'jens.thomas@liv.ac.uk'
     ERROR_CODES = {
         1: {
             'description': 'Something not very good has happened.'

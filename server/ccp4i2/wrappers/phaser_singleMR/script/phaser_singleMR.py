@@ -12,7 +12,6 @@ class phaser_singleMR(CPluginScript):
     TASKCOMMAND = 'phaser'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.hklin1 = None

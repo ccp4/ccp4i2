@@ -7,7 +7,6 @@ class dials_image(CPluginScript):
     TASKNAME = 'dials_image'
     TASKCOMMAND = 'dials.image_viewer'
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
     def processOutputFiles(self):
         return CPluginScript.MARK_TO_DELETE

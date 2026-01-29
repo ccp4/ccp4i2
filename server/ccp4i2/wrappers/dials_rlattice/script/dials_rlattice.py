@@ -7,7 +7,6 @@ class dials_rlattice(CPluginScript):
     TASKNAME = 'dials_rlattice'
     TASKCOMMAND = 'dials.reciprocal_lattice_viewer'
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
     def processOutputFiles(self):
         return CPluginScript.MARK_TO_DELETE

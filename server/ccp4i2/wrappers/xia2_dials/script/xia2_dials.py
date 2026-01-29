@@ -33,7 +33,6 @@ class Cxia2_dials(CPluginScript):
         "ShelxCD",
         "ShelxCDE",
     ]
-    MAINTAINER = "ccp4@stfc.ac.uk"
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set
