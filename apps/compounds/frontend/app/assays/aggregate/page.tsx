@@ -14,6 +14,7 @@ import {
   OutputFormat,
   AggregationResponse,
   ConcentrationDisplayMode,
+  MolecularPropertyName,
 } from '@/types/compounds/aggregation';
 import { fetchAggregation, saveAggregationView } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
@@ -63,6 +64,12 @@ function AggregationPageContent() {
   // Support include tested no data via 'includeTestedNoData' param
   const includeTestedNoDataParam = searchParams.get('includeTestedNoData');
   const initialIncludeTestedNoData = includeTestedNoDataParam === 'true';
+  // Support molecular properties via comma-separated 'properties' param
+  const propertiesParam = searchParams.get('properties');
+  const validProperties = ['molecular_weight', 'heavy_atom_count', 'hbd', 'hba', 'clogp', 'tpsa', 'rotatable_bonds', 'fraction_sp3'] as const;
+  const initialIncludeProperties = propertiesParam
+    ? propertiesParam.split(',').map((s) => s.trim()).filter((p): p is MolecularPropertyName => validProperties.includes(p as any))
+    : undefined;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -70,6 +77,7 @@ function AggregationPageContent() {
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
   const [currentGroupByBatch, setCurrentGroupByBatch] = useState<boolean>(initialGroupByBatch);
   const [currentIncludeTestedNoData, setCurrentIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData);
+  const [currentIncludeProperties, setCurrentIncludeProperties] = useState<MolecularPropertyName[]>(initialIncludeProperties || []);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
   const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>(initialConcentrationDisplay || 'natural');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -114,6 +122,9 @@ function AggregationPageContent() {
     if (currentState.includeTestedNoData) {
       params.set('includeTestedNoData', 'true');
     }
+    if (currentState.includeProperties.length > 0) {
+      params.set('properties', currentState.includeProperties.join(','));
+    }
 
     const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     navigator.clipboard.writeText(url).then(() => {
@@ -147,7 +158,7 @@ function AggregationPageContent() {
   }, [currentState, concentrationDisplay]);
 
   // Update URL to persist query state for back navigation
-  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[], groupByBatch: boolean, includeTestedNoData: boolean) => {
+  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[], groupByBatch: boolean, includeTestedNoData: boolean, includeProperties: MolecularPropertyName[]) => {
     const params = new URLSearchParams();
     if (state.targetNames.length > 0) {
       params.set('targets', state.targetNames.join(','));
@@ -178,6 +189,9 @@ function AggregationPageContent() {
     if (includeTestedNoData) {
       params.set('includeTestedNoData', 'true');
     }
+    if (includeProperties.length > 0) {
+      params.set('properties', includeProperties.join(','));
+    }
 
     const queryString = params.toString();
     const newUrl = `${pathname}${queryString ? '?' + queryString : ''}`;
@@ -187,7 +201,7 @@ function AggregationPageContent() {
   // Update URL when concentration display changes (if we have data)
   useEffect(() => {
     if (data && currentState) {
-      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch, currentIncludeTestedNoData);
+      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch, currentIncludeTestedNoData, currentIncludeProperties);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [concentrationDisplay]);
@@ -197,7 +211,8 @@ function AggregationPageContent() {
     outputFormat: OutputFormat,
     aggregations: AggregationType[],
     groupByBatch: boolean,
-    includeTestedNoData: boolean
+    includeTestedNoData: boolean,
+    includeProperties: MolecularPropertyName[]
   ) => {
     // Increment request ID to track latest request
     const requestId = ++requestIdRef.current;
@@ -207,10 +222,11 @@ function AggregationPageContent() {
     setCurrentAggregations(aggregations);
     setCurrentGroupByBatch(groupByBatch);
     setCurrentIncludeTestedNoData(includeTestedNoData);
+    setCurrentIncludeProperties(includeProperties);
 
     // Update URL to persist state for back navigation
     if (currentState) {
-      updateUrlState(currentState, outputFormat, aggregations, groupByBatch, includeTestedNoData);
+      updateUrlState(currentState, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties);
     }
 
     try {
@@ -220,6 +236,7 @@ function AggregationPageContent() {
         aggregations,
         group_by_batch: groupByBatch,
         include_tested_no_data: includeTestedNoData,
+        include_properties: includeProperties.length > 0 ? includeProperties : undefined,
       });
 
       // Only update if this is still the latest request
@@ -297,6 +314,7 @@ function AggregationPageContent() {
         initialStatus={initialStatus}
         initialGroupByBatch={initialGroupByBatch}
         initialIncludeTestedNoData={initialIncludeTestedNoData}
+        initialIncludeProperties={initialIncludeProperties}
       />
 
       {error && (

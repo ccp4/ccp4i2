@@ -248,6 +248,19 @@ class CompoundListSerializer(serializers.ModelSerializer):
         return obj.batches.count()
 
 
+class MolecularPropertiesSerializer(serializers.ModelSerializer):
+    """Serializer for computed molecular properties."""
+
+    class Meta:
+        model = MolecularProperties
+        fields = [
+            'heavy_atom_count', 'hbd', 'hba', 'clogp', 'tpsa',
+            'rotatable_bonds', 'fraction_sp3',
+            'calculated_at', 'rdkit_version',
+        ]
+        read_only_fields = fields
+
+
 class CompoundDetailSerializer(serializers.ModelSerializer):
     """Full serializer with all fields."""
     formatted_id = serializers.CharField(read_only=True)
@@ -366,19 +379,6 @@ class CompoundTemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompoundTemplate
         fields = ['id', 'target', 'target_name', 'name', 'mol2d', 'svg_file']
-
-
-class MolecularPropertiesSerializer(serializers.ModelSerializer):
-    """Serializer for computed molecular properties."""
-
-    class Meta:
-        model = MolecularProperties
-        fields = [
-            'heavy_atom_count', 'hbd', 'hba', 'clogp', 'tpsa',
-            'rotatable_bonds', 'fraction_sp3',
-            'calculated_at', 'rdkit_version',
-        ]
-        read_only_fields = fields
 
 
 class MolecularPropertyThresholdSerializer(serializers.ModelSerializer):

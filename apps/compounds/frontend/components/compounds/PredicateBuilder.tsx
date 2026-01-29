@@ -31,6 +31,7 @@ import {
   OutputFormat,
   ProtocolInfo,
   ConcentrationDisplayMode,
+  MolecularPropertyName,
 } from '@/types/compounds/aggregation';
 import { Target } from '@/types/compounds/models';
 import { fetchTargets, fetchProtocols } from '@/lib/compounds/aggregation-api';
@@ -50,6 +51,8 @@ export interface PredicateBuilderState {
   groupByBatch: boolean;
   /** Whether to include compounds tested but with no valid KPI values */
   includeTestedNoData: boolean;
+  /** Molecular properties to include as columns */
+  includeProperties: MolecularPropertyName[];
   /** Concentration display mode - managed by AggregationTable, included for saved views */
   concentrationDisplay?: ConcentrationDisplayMode;
 }
@@ -73,13 +76,16 @@ interface PredicateBuilderProps {
   initialGroupByBatch?: boolean;
   /** Initial include tested no data setting (for URL sharing) */
   initialIncludeTestedNoData?: boolean;
+  /** Initial molecular properties to include (for URL sharing) */
+  initialIncludeProperties?: MolecularPropertyName[];
   /** Called when user clicks Run Query */
   onRunQuery: (
     predicates: Predicates,
     outputFormat: OutputFormat,
     aggregations: AggregationType[],
     groupByBatch: boolean,
-    includeTestedNoData: boolean
+    includeTestedNoData: boolean,
+    includeProperties: MolecularPropertyName[]
   ) => void;
   /** Called when state changes (for URL sharing) */
   onStateChange?: (state: PredicateBuilderState) => void;
@@ -94,6 +100,17 @@ const AGGREGATION_OPTIONS: { value: AggregationType; label: string; description:
   { value: 'list', label: 'List', description: 'All values as comma-separated list' },
 ];
 
+const MOLECULAR_PROPERTY_OPTIONS: { value: MolecularPropertyName; label: string; description: string }[] = [
+  { value: 'molecular_weight', label: 'MW', description: 'Molecular Weight' },
+  { value: 'heavy_atom_count', label: 'HA', description: 'Heavy Atom Count' },
+  { value: 'hbd', label: 'HBD', description: 'Hydrogen Bond Donors' },
+  { value: 'hba', label: 'HBA', description: 'Hydrogen Bond Acceptors' },
+  { value: 'clogp', label: 'cLogP', description: 'Calculated LogP' },
+  { value: 'tpsa', label: 'TPSA', description: 'Topological Polar Surface Area' },
+  { value: 'rotatable_bonds', label: 'RotB', description: 'Rotatable Bonds' },
+  { value: 'fraction_sp3', label: 'Fsp3', description: 'Fraction sp3 Carbons' },
+];
+
 export function PredicateBuilder({
   initialTargetId,
   initialTargetNames,
@@ -104,6 +121,7 @@ export function PredicateBuilder({
   initialStatus,
   initialGroupByBatch,
   initialIncludeTestedNoData,
+  initialIncludeProperties,
   onRunQuery,
   onStateChange,
   loading = false,
@@ -127,6 +145,7 @@ export function PredicateBuilder({
   const [aggregations, setAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
   const [groupByBatch, setGroupByBatch] = useState<boolean>(initialGroupByBatch || false);
   const [includeTestedNoData, setIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData || false);
+  const [includeProperties, setIncludeProperties] = useState<MolecularPropertyName[]>(initialIncludeProperties || []);
 
   // Track initialization state
   const [isInitialized, setIsInitialized] = useState(false);
@@ -184,9 +203,9 @@ export function PredicateBuilder({
   // Handle Run Query button click
   const handleRunQuery = useCallback(() => {
     if (canRunQuery) {
-      onRunQuery(buildPredicates(), outputFormat, aggregations, groupByBatch, includeTestedNoData);
+      onRunQuery(buildPredicates(), outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties);
     }
-  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData]);
+  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties]);
 
   // Load initial targets and protocols if URL params provided
   useEffect(() => {
@@ -247,9 +266,9 @@ export function PredicateBuilder({
       hasRunInitialQuery.current = true;
       const predicates = buildPredicates();
       // Use aggregations for compact/medium, ignore for long
-      onRunQuery(predicates, outputFormat, aggregations, groupByBatch, includeTestedNoData);
+      onRunQuery(predicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties);
     }
-  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, onRunQuery]);
+  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties, onRunQuery]);
 
   // Load target options when user types in autocomplete
   const handleTargetSearch = useCallback((search: string) => {
@@ -294,13 +313,20 @@ export function PredicateBuilder({
         status,
         groupByBatch,
         includeTestedNoData,
+        includeProperties,
       });
     }
-  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, groupByBatch, includeTestedNoData, onStateChange]);
+  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, groupByBatch, includeTestedNoData, includeProperties, onStateChange]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
       prev.includes(agg) ? prev.filter((a) => a !== agg) : [...prev, agg]
+    );
+  };
+
+  const handlePropertyChange = (prop: MolecularPropertyName) => {
+    setIncludeProperties((prev) =>
+      prev.includes(prop) ? prev.filter((p) => p !== prop) : [...prev, prop]
     );
   };
 
@@ -531,6 +557,29 @@ export function PredicateBuilder({
             {loading ? 'Running...' : 'Run Query'}
           </Button>
         </Box>
+      </Box>
+
+      {/* Row 3: Molecular properties selector */}
+      <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', alignItems: 'center', mt: 1.5 }}>
+        <Typography variant="body2" color="text.secondary">
+          Properties:
+        </Typography>
+        {MOLECULAR_PROPERTY_OPTIONS.map((opt) => (
+          <FormControlLabel
+            key={opt.value}
+            control={
+              <Checkbox
+                checked={includeProperties.includes(opt.value)}
+                onChange={() => handlePropertyChange(opt.value)}
+                size="small"
+                sx={{ py: 0 }}
+              />
+            }
+            label={<Typography variant="body2">{opt.label}</Typography>}
+            title={opt.description}
+            sx={{ mr: 0.5, ml: 0 }}
+          />
+        ))}
       </Box>
     </Paper>
   );

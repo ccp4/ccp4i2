@@ -919,7 +919,7 @@ function MediumTable({
                           </Tooltip>
                         ) : agg === 'count' ? (
                           <Typography variant="body2" fontFamily="monospace">
-                            {value ?? '-'}
+                            {String(value ?? '-')}
                           </Typography>
                         ) : (
                           <Tooltip title={formatted.displayUnit || 'No unit'}>
