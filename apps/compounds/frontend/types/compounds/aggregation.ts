@@ -35,6 +35,8 @@ export interface AggregationRequest {
   aggregations: AggregationType[];
   /** When true, split results by batch (creates separate rows for each batch) */
   group_by_batch?: boolean;
+  /** When true, include compounds tested but with no valid KPI values (shown with count=0) */
+  include_tested_no_data?: boolean;
 }
 
 /** Protocol info in response */
@@ -62,6 +64,8 @@ export interface AggregationMeta {
   total_measurements: number;
   /** Whether results are grouped by batch */
   group_by_batch?: boolean;
+  /** Whether results include compounds tested but with no valid KPI values */
+  include_tested_no_data?: boolean;
 }
 
 /** A single compound row in compact format */

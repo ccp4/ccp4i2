@@ -48,6 +48,8 @@ export interface PredicateBuilderState {
   status?: string;
   /** Whether to group results by batch */
   groupByBatch: boolean;
+  /** Whether to include compounds tested but with no valid KPI values */
+  includeTestedNoData: boolean;
   /** Concentration display mode - managed by AggregationTable, included for saved views */
   concentrationDisplay?: ConcentrationDisplayMode;
 }
@@ -69,12 +71,15 @@ interface PredicateBuilderProps {
   initialStatus?: string;
   /** Initial group by batch setting (for URL sharing) */
   initialGroupByBatch?: boolean;
+  /** Initial include tested no data setting (for URL sharing) */
+  initialIncludeTestedNoData?: boolean;
   /** Called when user clicks Run Query */
   onRunQuery: (
     predicates: Predicates,
     outputFormat: OutputFormat,
     aggregations: AggregationType[],
-    groupByBatch: boolean
+    groupByBatch: boolean,
+    includeTestedNoData: boolean
   ) => void;
   /** Called when state changes (for URL sharing) */
   onStateChange?: (state: PredicateBuilderState) => void;
@@ -98,6 +103,7 @@ export function PredicateBuilder({
   initialAggregations,
   initialStatus,
   initialGroupByBatch,
+  initialIncludeTestedNoData,
   onRunQuery,
   onStateChange,
   loading = false,
@@ -120,6 +126,7 @@ export function PredicateBuilder({
   const [outputFormat, setOutputFormat] = useState<OutputFormat>(initialOutputFormat || 'compact');
   const [aggregations, setAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
   const [groupByBatch, setGroupByBatch] = useState<boolean>(initialGroupByBatch || false);
+  const [includeTestedNoData, setIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData || false);
 
   // Track initialization state
   const [isInitialized, setIsInitialized] = useState(false);
@@ -177,9 +184,9 @@ export function PredicateBuilder({
   // Handle Run Query button click
   const handleRunQuery = useCallback(() => {
     if (canRunQuery) {
-      onRunQuery(buildPredicates(), outputFormat, aggregations, groupByBatch);
+      onRunQuery(buildPredicates(), outputFormat, aggregations, groupByBatch, includeTestedNoData);
     }
-  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations, groupByBatch]);
+  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData]);
 
   // Load initial targets and protocols if URL params provided
   useEffect(() => {
@@ -240,9 +247,9 @@ export function PredicateBuilder({
       hasRunInitialQuery.current = true;
       const predicates = buildPredicates();
       // Use aggregations for compact/medium, ignore for long
-      onRunQuery(predicates, outputFormat, aggregations, groupByBatch);
+      onRunQuery(predicates, outputFormat, aggregations, groupByBatch, includeTestedNoData);
     }
-  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, groupByBatch, onRunQuery]);
+  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, onRunQuery]);
 
   // Load target options when user types in autocomplete
   const handleTargetSearch = useCallback((search: string) => {
@@ -286,9 +293,10 @@ export function PredicateBuilder({
         aggregations,
         status,
         groupByBatch,
+        includeTestedNoData,
       });
     }
-  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, groupByBatch, onStateChange]);
+  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, groupByBatch, includeTestedNoData, onStateChange]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
@@ -494,6 +502,21 @@ export function PredicateBuilder({
           label={<Typography variant="body2">Split by Batch</Typography>}
           title="Show separate rows for each batch of a compound"
           sx={{ mr: 1, ml: 1 }}
+        />
+
+        {/* Include tested with no valid data toggle */}
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={includeTestedNoData}
+              onChange={(e) => setIncludeTestedNoData(e.target.checked)}
+              size="small"
+              sx={{ py: 0 }}
+            />
+          }
+          label={<Typography variant="body2">Include No Data</Typography>}
+          title="Include compounds tested but with no valid KPI values (e.g., inactive)"
+          sx={{ mr: 1 }}
         />
 
         {/* Run Query button */}

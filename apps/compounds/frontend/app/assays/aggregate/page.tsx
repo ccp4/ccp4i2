@@ -60,12 +60,16 @@ function AggregationPageContent() {
   // Support group by batch via 'groupByBatch' param
   const groupByBatchParam = searchParams.get('groupByBatch');
   const initialGroupByBatch = groupByBatchParam === 'true';
+  // Support include tested no data via 'includeTestedNoData' param
+  const includeTestedNoDataParam = searchParams.get('includeTestedNoData');
+  const initialIncludeTestedNoData = includeTestedNoDataParam === 'true';
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AggregationResponse | null>(null);
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
   const [currentGroupByBatch, setCurrentGroupByBatch] = useState<boolean>(initialGroupByBatch);
+  const [currentIncludeTestedNoData, setCurrentIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
   const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>(initialConcentrationDisplay || 'natural');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -107,6 +111,9 @@ function AggregationPageContent() {
     if (currentState.groupByBatch) {
       params.set('groupByBatch', 'true');
     }
+    if (currentState.includeTestedNoData) {
+      params.set('includeTestedNoData', 'true');
+    }
 
     const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     navigator.clipboard.writeText(url).then(() => {
@@ -140,7 +147,7 @@ function AggregationPageContent() {
   }, [currentState, concentrationDisplay]);
 
   // Update URL to persist query state for back navigation
-  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[], groupByBatch: boolean) => {
+  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[], groupByBatch: boolean, includeTestedNoData: boolean) => {
     const params = new URLSearchParams();
     if (state.targetNames.length > 0) {
       params.set('targets', state.targetNames.join(','));
@@ -168,6 +175,9 @@ function AggregationPageContent() {
     if (groupByBatch) {
       params.set('groupByBatch', 'true');
     }
+    if (includeTestedNoData) {
+      params.set('includeTestedNoData', 'true');
+    }
 
     const queryString = params.toString();
     const newUrl = `${pathname}${queryString ? '?' + queryString : ''}`;
@@ -177,7 +187,7 @@ function AggregationPageContent() {
   // Update URL when concentration display changes (if we have data)
   useEffect(() => {
     if (data && currentState) {
-      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch);
+      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch, currentIncludeTestedNoData);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [concentrationDisplay]);
@@ -186,7 +196,8 @@ function AggregationPageContent() {
     predicates: Predicates,
     outputFormat: OutputFormat,
     aggregations: AggregationType[],
-    groupByBatch: boolean
+    groupByBatch: boolean,
+    includeTestedNoData: boolean
   ) => {
     // Increment request ID to track latest request
     const requestId = ++requestIdRef.current;
@@ -195,10 +206,11 @@ function AggregationPageContent() {
     setError(null);
     setCurrentAggregations(aggregations);
     setCurrentGroupByBatch(groupByBatch);
+    setCurrentIncludeTestedNoData(includeTestedNoData);
 
     // Update URL to persist state for back navigation
     if (currentState) {
-      updateUrlState(currentState, outputFormat, aggregations, groupByBatch);
+      updateUrlState(currentState, outputFormat, aggregations, groupByBatch, includeTestedNoData);
     }
 
     try {
@@ -207,6 +219,7 @@ function AggregationPageContent() {
         output_format: outputFormat,
         aggregations,
         group_by_batch: groupByBatch,
+        include_tested_no_data: includeTestedNoData,
       });
 
       // Only update if this is still the latest request
@@ -283,6 +296,7 @@ function AggregationPageContent() {
         initialAggregations={initialAggregations}
         initialStatus={initialStatus}
         initialGroupByBatch={initialGroupByBatch}
+        initialIncludeTestedNoData={initialIncludeTestedNoData}
       />
 
       {error && (

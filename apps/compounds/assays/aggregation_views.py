@@ -51,7 +51,8 @@ class AggregationViewSet(viewsets.ViewSet):
             },
             "output_format": "compact" | "medium" | "long",
             "aggregations": ["geomean", "count", "stdev", "list"],
-            "group_by_batch": false  // optional, when true splits results by batch
+            "group_by_batch": false,  // optional, when true splits results by batch
+            "include_tested_no_data": false  // optional, include compounds tested but with no valid KPI
         }
 
         Returns:
@@ -64,11 +65,17 @@ class AggregationViewSet(viewsets.ViewSet):
             - Long: Batch info is always included; the flag affects sorting/display hints
             - Rows include batch_id and batch_number fields
             - meta.group_by_batch indicates the grouping mode used
+
+        When include_tested_no_data is true:
+            - Includes compounds that were tested but have no valid KPI values
+            - These appear with count=0 and null aggregation values
+            - Useful for identifying inactive or problematic compounds
         """
         predicates = request.data.get('predicates', {})
         output_format = request.data.get('output_format', 'compact')
         aggregations = request.data.get('aggregations', ['geomean', 'count'])
         group_by_batch = request.data.get('group_by_batch', False)
+        include_tested_no_data = request.data.get('include_tested_no_data', False)
 
         # Validate output format
         if output_format not in ('compact', 'medium', 'long'):
@@ -90,11 +97,23 @@ class AggregationViewSet(viewsets.ViewSet):
         queryset = build_data_series_queryset(predicates)
 
         if output_format == 'compact':
-            result = aggregate_compact(queryset, aggregations, group_by_batch=group_by_batch)
+            result = aggregate_compact(
+                queryset, aggregations,
+                group_by_batch=group_by_batch,
+                include_tested_no_data=include_tested_no_data
+            )
         elif output_format == 'medium':
-            result = aggregate_medium(queryset, aggregations, group_by_batch=group_by_batch)
+            result = aggregate_medium(
+                queryset, aggregations,
+                group_by_batch=group_by_batch,
+                include_tested_no_data=include_tested_no_data
+            )
         else:
-            result = aggregate_long(queryset, aggregations, group_by_batch=group_by_batch)
+            result = aggregate_long(
+                queryset, aggregations,
+                group_by_batch=group_by_batch,
+                include_tested_no_data=include_tested_no_data
+            )
 
         return Response(result)
 

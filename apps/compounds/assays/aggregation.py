@@ -239,7 +239,8 @@ def extract_kpi_with_unit(data_series: DataSeries) -> tuple[float | None, str | 
 def aggregate_compact(
     queryset: QuerySet[DataSeries],
     aggregations: list[str],
-    group_by_batch: bool = False
+    group_by_batch: bool = False,
+    include_tested_no_data: bool = False
 ) -> dict:
     """
     Aggregate data series into compact format (one row per compound or compound/batch).
@@ -251,6 +252,8 @@ def aggregate_compact(
         queryset: Filtered DataSeries queryset
         aggregations: List of aggregation functions to apply
         group_by_batch: If True, create separate rows for each batch
+        include_tested_no_data: If True, include compounds that were tested but
+            have no valid KPI values (shown with count=0)
 
     Returns:
         Dictionary with:
@@ -263,6 +266,8 @@ def aggregate_compact(
     # Structure: {group_key: {protocol_id: [kpi_values]}}
     # group_key is (compound_id,) or (compound_id, batch_id)
     group_protocol_values = defaultdict(lambda: defaultdict(list))
+    # Track which protocols each compound was tested on (regardless of KPI validity)
+    tested_protocols: dict[tuple, set[str]] = defaultdict(set)
     group_info = {}
     protocol_ids = set()
     protocol_units: dict[str, str | None] = {}  # Track unit per protocol
@@ -280,6 +285,9 @@ def aggregate_compact(
             group_key = (compound_id, batch_id)
         else:
             group_key = (compound_id,)
+
+        # Always track that this compound was tested on this protocol
+        tested_protocols[group_key].add(protocol_id)
 
         kpi_value, kpi_unit = extract_kpi_with_unit(ds)
         if kpi_value is not None:
@@ -319,15 +327,36 @@ def aggregate_compact(
     data = []
     total_measurements = 0
 
-    for group_key, protocol_values in group_protocol_values.items():
+    # Determine which groups to include:
+    # - If include_tested_no_data=True, iterate over all tested compounds (group_info)
+    # - Otherwise, only include compounds with at least one valid KPI value
+    groups_to_include = group_info.keys() if include_tested_no_data else group_protocol_values.keys()
+
+    for group_key in groups_to_include:
+        if group_key not in group_info:
+            continue
+
         row = group_info[group_key].copy()
         row['protocols'] = {}
 
-        for protocol_id, values in protocol_values.items():
+        # Get protocols this compound was tested on
+        protocols_tested = tested_protocols.get(group_key, set())
+
+        # For include_tested_no_data mode, include all tested protocols (even with count=0)
+        # Otherwise, only include protocols with valid KPI values
+        if include_tested_no_data:
+            protocols_to_include = protocols_tested
+        else:
+            protocols_to_include = set(group_protocol_values.get(group_key, {}).keys())
+
+        for protocol_id in protocols_to_include:
+            values = group_protocol_values.get(group_key, {}).get(protocol_id, [])
             total_measurements += len(values)
             row['protocols'][protocol_id] = aggregate_kpi_values(values, aggregations)
 
-        data.append(row)
+        # Only include row if it has at least one protocol
+        if row['protocols']:
+            data.append(row)
 
     # Sort by formatted_id, then batch_number if grouping by batch
     if group_by_batch:
@@ -345,6 +374,7 @@ def aggregate_compact(
             'protocol_count': len(protocol_list),
             'total_measurements': total_measurements,
             'group_by_batch': group_by_batch,
+            'include_tested_no_data': include_tested_no_data,
         },
         'protocols': protocol_list,
         'data': data,
@@ -354,7 +384,8 @@ def aggregate_compact(
 def aggregate_medium(
     queryset: QuerySet[DataSeries],
     aggregations: list[str],
-    group_by_batch: bool = False
+    group_by_batch: bool = False,
+    include_tested_no_data: bool = False
 ) -> dict:
     """
     Aggregate data series into medium format (one row per compound-protocol pair,
@@ -367,6 +398,8 @@ def aggregate_medium(
         queryset: Filtered DataSeries queryset
         aggregations: List of aggregation functions to apply
         group_by_batch: If True, create separate rows for each batch
+        include_tested_no_data: If True, include compounds that were tested but
+            have no valid KPI values (shown with count=0)
 
     Returns:
         Dictionary with:
@@ -404,7 +437,7 @@ def aggregate_medium(
         compound_ids.add(ds.compound.id)
         protocol_ids.add(ds.assay.protocol_id)
 
-        # Store info (first occurrence)
+        # Store info (first occurrence) - always track tested compounds
         if group_protocol_data[key]['info'] is None:
             info = {
                 'compound_id': compound_id,
@@ -428,6 +461,11 @@ def aggregate_medium(
             continue
 
         values = item['values']
+
+        # Skip rows with no valid KPI values unless include_tested_no_data is True
+        if not values and not include_tested_no_data:
+            continue
+
         total_measurements += len(values)
 
         row = item['info'].copy()
@@ -452,6 +490,7 @@ def aggregate_medium(
             'protocol_count': len(protocol_ids),
             'total_measurements': total_measurements,
             'group_by_batch': group_by_batch,
+            'include_tested_no_data': include_tested_no_data,
         },
         'data': data,
     }
@@ -460,7 +499,8 @@ def aggregate_medium(
 def aggregate_long(
     queryset: QuerySet[DataSeries],
     aggregations: list[str],
-    group_by_batch: bool = False
+    group_by_batch: bool = False,
+    include_tested_no_data: bool = False
 ) -> dict:
     """
     Aggregate data series into long format (one row per measurement).
@@ -472,6 +512,8 @@ def aggregate_long(
         queryset: Filtered DataSeries queryset
         aggregations: Not used in long format (included for API consistency)
         group_by_batch: If True, include batch information in rows
+        include_tested_no_data: If True, include data series with no valid KPI values
+            (long format already includes all rows, this is for API consistency)
 
     Returns:
         Dictionary with:
@@ -484,6 +526,15 @@ def aggregate_long(
 
     for ds in queryset:
         kpi_value, kpi_unit = extract_kpi_with_unit(ds)
+
+        # In long format, we show all rows unless filtering by valid KPI only
+        # When include_tested_no_data=False, skip rows without valid KPI
+        if kpi_value is None and not include_tested_no_data:
+            # Still track the compound/protocol as tested
+            if ds.compound:
+                compound_ids.add(ds.compound.id)
+            protocol_ids.add(ds.assay.protocol_id)
+            continue
 
         row = {
             'data_series_id': str(ds.id),
@@ -524,6 +575,7 @@ def aggregate_long(
             'protocol_count': len(protocol_ids),
             'total_measurements': len(data),
             'group_by_batch': group_by_batch,
+            'include_tested_no_data': include_tested_no_data,
         },
         'data': data,
     }
