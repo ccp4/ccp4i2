@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useRef, useEffect } from 'react';
+import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
 import {
   Box,
   Button,
@@ -20,6 +20,11 @@ import {
   Chip,
   Switch,
   FormControlLabel,
+  Paper,
+  Popper,
+  Fade,
+  Skeleton,
+  Divider,
 } from '@mui/material';
 import {
   BubbleChart,
@@ -27,6 +32,7 @@ import {
   Refresh,
   TrendingUp,
 } from '@mui/icons-material';
+import { useRDKit } from '@/lib/compounds/rdkit-context';
 import {
   Chart as ChartJS,
   LinearScale,
@@ -148,6 +154,55 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
     max: '',
   });
   const [showRegression, setShowRegression] = useState(false);
+
+  // Custom tooltip state for showing molecule structure
+  const [hoveredPoint, setHoveredPoint] = useState<{
+    x: number;
+    y: number;
+    compound_id: string;
+    formatted_id: string;
+    smiles?: string;
+    target_name?: string;
+    screenX: number;
+    screenY: number;
+  } | null>(null);
+  const tooltipAnchorRef = useRef<HTMLDivElement>(null);
+  const { rdkitModule, isLoading: rdkitLoading } = useRDKit();
+
+  // Generate molecule SVG for hovered point
+  const moleculeSvgUrl = useMemo(() => {
+    if (!hoveredPoint?.smiles || !rdkitModule) return null;
+    try {
+      const mol = rdkitModule.get_mol(hoveredPoint.smiles);
+      if (!mol) return null;
+      const svg = mol.get_svg(180, 180);
+      mol.delete();
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      return URL.createObjectURL(blob);
+    } catch {
+      return null;
+    }
+  }, [hoveredPoint?.smiles, rdkitModule]);
+
+  // Clean up SVG URL when it changes
+  useEffect(() => {
+    return () => {
+      if (moleculeSvgUrl) {
+        URL.revokeObjectURL(moleculeSvgUrl);
+      }
+    };
+  }, [moleculeSvgUrl]);
+
+  // Clear hovered point when dialog closes or protocols change
+  useEffect(() => {
+    if (!open) {
+      setHoveredPoint(null);
+    }
+  }, [open]);
+
+  useEffect(() => {
+    setHoveredPoint(null);
+  }, [xAxis.protocolId, yAxis.protocolId]);
 
   // Update axis selections when protocols change
   useEffect(() => {
@@ -342,27 +397,49 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
           display: false,
         },
         tooltip: {
-          filter: (tooltipItem) => {
-            // Don't show tooltip for regression line
-            return tooltipItem.dataset.label !== 'Regression Line';
-          },
-          callbacks: {
-            label: (context) => {
-              const point = context.raw as {
-                x: number;
-                y: number;
-                formatted_id: string;
-                target_name?: string;
-              };
-              // Skip regression line points (they won't have formatted_id)
-              if (!point.formatted_id) return [];
-              return [
-                point.formatted_id,
-                point.target_name ? `Target: ${point.target_name}` : '',
-                `${xProtocolName}: ${point.x.toFixed(2)}`,
-                `${yProtocolName}: ${point.y.toFixed(2)}`,
-              ].filter(Boolean);
-            },
+          enabled: false, // Disable built-in tooltip, we use custom
+          external: (context) => {
+            const { tooltip, chart } = context;
+
+            // Hide tooltip when not visible or hovering regression line
+            if (tooltip.opacity === 0 || !tooltip.dataPoints || tooltip.dataPoints.length === 0) {
+              setHoveredPoint(null);
+              return;
+            }
+
+            const dataPoint = tooltip.dataPoints[0];
+            // Skip regression line points
+            if (dataPoint.dataset.label === 'Regression Line') {
+              setHoveredPoint(null);
+              return;
+            }
+
+            const point = dataPoint.raw as {
+              x: number;
+              y: number;
+              compound_id: string;
+              formatted_id: string;
+              smiles?: string;
+              target_name?: string;
+            };
+
+            // Skip if no formatted_id (regression line points)
+            if (!point.formatted_id) {
+              setHoveredPoint(null);
+              return;
+            }
+
+            // Get screen position from canvas position
+            const canvas = chart.canvas;
+            const rect = canvas.getBoundingClientRect();
+            const screenX = rect.left + tooltip.caretX;
+            const screenY = rect.top + tooltip.caretY;
+
+            setHoveredPoint({
+              ...point,
+              screenX,
+              screenY,
+            });
           },
         },
       },
@@ -417,7 +494,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
         }
       },
     }),
-    [xAxis, yAxis, xProtocolName, yProtocolName, axisBounds, finalChartData, router]
+    [xAxis, yAxis, xProtocolName, yProtocolName, axisBounds, finalChartData, router, setHoveredPoint]
   );
 
   // Reset axis ranges to auto
@@ -712,6 +789,126 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
           <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
             Click on a point to view compound details
           </Typography>
+
+          {/* Hidden anchor for tooltip positioning */}
+          <Box
+            ref={tooltipAnchorRef}
+            sx={{
+              position: 'fixed',
+              left: hoveredPoint?.screenX ?? 0,
+              top: hoveredPoint?.screenY ?? 0,
+              width: 1,
+              height: 1,
+              pointerEvents: 'none',
+            }}
+          />
+
+          {/* Custom tooltip with molecule structure */}
+          <Popper
+            open={!!hoveredPoint}
+            anchorEl={tooltipAnchorRef.current}
+            placement="right-start"
+            transition
+            sx={{ zIndex: 1400, pointerEvents: 'none' }}
+            modifiers={[
+              {
+                name: 'flip',
+                enabled: true,
+                options: {
+                  fallbackPlacements: ['left-start', 'bottom', 'top'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                enabled: true,
+                options: {
+                  boundary: 'viewport',
+                  padding: 8,
+                },
+              },
+              {
+                name: 'offset',
+                options: {
+                  offset: [0, 10],
+                },
+              },
+            ]}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={150}>
+                <Paper
+                  elevation={8}
+                  sx={{
+                    p: 1.5,
+                    maxWidth: 280,
+                    bgcolor: 'background.paper',
+                    border: 1,
+                    borderColor: 'divider',
+                  }}
+                >
+                  {hoveredPoint && (
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+                      {/* Compound ID and target */}
+                      <Box>
+                        <Typography variant="subtitle2" fontWeight="bold">
+                          {hoveredPoint.formatted_id}
+                        </Typography>
+                        {hoveredPoint.target_name && (
+                          <Typography variant="caption" color="text.secondary">
+                            {hoveredPoint.target_name}
+                          </Typography>
+                        )}
+                      </Box>
+
+                      {/* Molecule structure */}
+                      {hoveredPoint.smiles && (
+                        <>
+                          <Divider />
+                          <Box
+                            sx={{
+                              width: 180,
+                              height: 180,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                              bgcolor: 'grey.50',
+                              borderRadius: 1,
+                              mx: 'auto',
+                            }}
+                          >
+                            {rdkitLoading ? (
+                              <Skeleton variant="rectangular" width={180} height={180} />
+                            ) : moleculeSvgUrl ? (
+                              <img
+                                src={moleculeSvgUrl}
+                                alt={`Structure: ${hoveredPoint.formatted_id}`}
+                                style={{ width: 180, height: 180, objectFit: 'contain' }}
+                              />
+                            ) : (
+                              <Typography variant="caption" color="text.secondary">
+                                Unable to render
+                              </Typography>
+                            )}
+                          </Box>
+                        </>
+                      )}
+
+                      {/* Values */}
+                      <Divider />
+                      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}>
+                        <Typography variant="body2">
+                          <strong>{xProtocolName}:</strong> {hoveredPoint.x.toFixed(2)}
+                        </Typography>
+                        <Typography variant="body2">
+                          <strong>{yProtocolName}:</strong> {hoveredPoint.y.toFixed(2)}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )}
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
         </DialogContent>
       </Dialog>
     </>
