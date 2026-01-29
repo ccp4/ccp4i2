@@ -58,14 +58,16 @@ const IMPORT_TYPE_LABELS: Record<ImportType, string> = {
 
 function InfoRow({ label, value }: { label: string; value: React.ReactNode }) {
   return (
-    <Box sx={{ display: 'flex', py: 0.5 }}>
+    <Box sx={{ display: 'flex', py: 0.5, minWidth: 0 }}>
       <Typography
         color="text.secondary"
-        sx={{ minWidth: 140, fontWeight: 500 }}
+        sx={{ minWidth: 140, flexShrink: 0, fontWeight: 500 }}
       >
         {label}:
       </Typography>
-      <Typography component="div">{value ?? '-'}</Typography>
+      <Typography component="div" sx={{ minWidth: 0, wordBreak: 'break-word' }}>
+        {value ?? '-'}
+      </Typography>
     </Box>
   );
 }
