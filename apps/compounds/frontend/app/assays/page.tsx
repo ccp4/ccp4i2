@@ -10,6 +10,47 @@ import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Assay } from '@/types/compounds/models';
 
+/**
+ * Strip Django's uniqueifying suffix from a filename.
+ * Django adds a suffix like `_fm29oOG` (underscore + 7 alphanumeric chars) before
+ * the extension when saving files with duplicate names.
+ *
+ * Examples:
+ * - "2026_01_19_B_fm29oOG.xlsx" → "2026_01_19_B.xlsx"
+ * - "data_abc1234.csv" → "data.csv"
+ * - "report.pdf" → "report.pdf" (no suffix)
+ */
+function stripDjangoSuffix(filename: string): string {
+  // Match: underscore + exactly 7 alphanumeric chars + extension
+  // The pattern is conservative to avoid stripping legitimate filename parts
+  const match = filename.match(/^(.+)_[a-zA-Z0-9]{7}(\.[^.]+)$/);
+  if (match) {
+    return match[1] + match[2];
+  }
+  return filename;
+}
+
+/**
+ * Get a display-friendly version of a filename.
+ * Strips Django's uniqueifying suffix and optionally truncates.
+ */
+function getDisplayFilename(
+  filename: string | null | undefined,
+  maxLength: number = 30
+): { display: string; full: string; truncated: boolean } {
+  if (!filename) {
+    return { display: 'No file', full: '', truncated: false };
+  }
+
+  const cleaned = stripDjangoSuffix(filename);
+  const truncated = cleaned.length > maxLength;
+  const display = truncated
+    ? cleaned.slice(0, maxLength - 3) + '...'
+    : cleaned;
+
+  return { display, full: filename, truncated: truncated || cleaned !== filename };
+}
+
 export default function AssaysPage() {
   const router = useRouter();
   const api = useCompoundsApi();
@@ -29,17 +70,39 @@ export default function AssaysPage() {
       label: 'Data File',
       sortable: true,
       searchable: true,
-      render: (value, row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Assessment fontSize="small" color="info" />
-          <Typography fontWeight={500}>{value || 'No file'}</Typography>
-          {isRecentAssay(row.created_at) && (
-            <Tooltip title="New in the last 7 days">
-              <FiberNew fontSize="small" color="secondary" />
-            </Tooltip>
-          )}
-        </Box>
-      ),
+      width: 220,
+      render: (value, row) => {
+        const { display, full, truncated } = getDisplayFilename(value as string, 25);
+        const content = (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, minWidth: 0 }}>
+            <Assessment fontSize="small" color="info" sx={{ flexShrink: 0 }} />
+            <Typography
+              fontWeight={500}
+              sx={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              {display}
+            </Typography>
+            {isRecentAssay(row.created_at) && (
+              <Tooltip title="New in the last 7 days">
+                <FiberNew fontSize="small" color="secondary" sx={{ flexShrink: 0 }} />
+              </Tooltip>
+            )}
+          </Box>
+        );
+
+        // Wrap in tooltip if filename was cleaned or truncated
+        return truncated ? (
+          <Tooltip title={full} placement="top-start">
+            {content}
+          </Tooltip>
+        ) : (
+          content
+        );
+      },
     },
     {
       key: 'protocol_name',
