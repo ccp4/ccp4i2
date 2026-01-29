@@ -132,22 +132,16 @@ type Order = 'asc' | 'desc';
 /** Sort key for compact table - either a fixed column or protocol-based */
 type CompactSortKey = 'compound' | 'batch' | 'target' | `protocol_${string}_${AggregationType}`;
 
-/** Comparator function for sorting */
-function descendingComparator<T>(a: T, b: T, getValue: (item: T) => unknown): number {
-  const aVal = getValue(a);
-  const bVal = getValue(b);
-
-  // Handle null/undefined - push to end
-  if (aVal == null && bVal == null) return 0;
-  if (aVal == null) return 1;
-  if (bVal == null) return -1;
-
-  // Compare values
+/** Comparator function for sorting - compares non-null values only */
+function compareValues(aVal: unknown, bVal: unknown, order: Order): number {
+  // Compare values based on type
   if (typeof aVal === 'string' && typeof bVal === 'string') {
-    return bVal.localeCompare(aVal);
+    const result = aVal.localeCompare(bVal);
+    return order === 'asc' ? result : -result;
   }
   if (typeof aVal === 'number' && typeof bVal === 'number') {
-    return bVal - aVal;
+    const result = aVal - bVal;
+    return order === 'asc' ? result : -result;
   }
   return 0;
 }
@@ -156,9 +150,18 @@ function getComparator<T>(
   order: Order,
   getValue: (item: T) => unknown
 ): (a: T, b: T) => number {
-  return order === 'desc'
-    ? (a, b) => descendingComparator(a, b, getValue)
-    : (a, b) => -descendingComparator(a, b, getValue);
+  return (a, b) => {
+    const aVal = getValue(a);
+    const bVal = getValue(b);
+
+    // Handle null/undefined - ALWAYS push to end regardless of sort direction
+    if (aVal == null && bVal == null) return 0;
+    if (aVal == null) return 1;  // a (null) goes after b
+    if (bVal == null) return -1; // b (null) goes after a
+
+    // Compare non-null values with order direction
+    return compareValues(aVal, bVal, order);
+  };
 }
 
 function CompactTable({
