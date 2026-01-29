@@ -599,7 +599,7 @@ class ReportRegistry:
     def __init__(self):
         self._cache: Dict[str, Type] = {}
 
-    def get_report_class(self, task_name: str, version: Optional[str] = None) -> Optional[Type]:
+    def get_report_class(self, task_name: str) -> Optional[Type]:
         """
         Get a report class by task name.
 
@@ -607,12 +607,11 @@ class ReportRegistry:
 
         Args:
             task_name: Name of the task (e.g., "refmac", "pointless")
-            version: Optional version (currently ignored)
 
         Returns:
             Report class, or None if not found
         """
-        cache_key = f"{task_name}:{version}" if version else task_name
+        cache_key = task_name
         if cache_key in self._cache:
             return self._cache[cache_key]
 

@@ -404,23 +404,8 @@ class CPluginScript(CData):
 
         Returns:
             Path to .def.xml file, or None if not found
-
-        Note:
-            Version checking is disabled - CTaskManager.locate_def_xml() ignores version
-            parameter since no plugins in this codebase have multiple versions.
-            See CCP4TaskManager.locate_def_xml() docstring for details.
         """
-        if not self.TASKNAME:
-            return None
-
-        task_manager = TASKMANAGER()
-
-        # Version parameter is ignored by locate_def_xml (no plugins have multiple versions)
-        # Passing None for clarity, though any value would work
-        return task_manager.locate_def_xml(
-            task_name=self.TASKNAME,
-            version=None
-        )
+        return TASKMANAGER().locate_def_xml(self.TASKNAME)
 
     def loadContentsFromXml(self, fileName: str) -> CErrorReport:
         """
@@ -2366,7 +2351,7 @@ class CPluginScript(CData):
     # Utility methods for backward compatibility with old API
     # =========================================================================
 
-    def makePluginObject(self, taskName: str = None, version: Optional[str] = None,
+    def makePluginObject(self, taskName: str = None,
                          reportToDatabase: bool = True, **kwargs) -> Optional['CPluginScript']:
         """
         Create a sub-plugin (sub-job) instance using TASKMANAGER.
@@ -2381,7 +2366,6 @@ class CPluginScript(CData):
 
         Args:
             taskName: Name of the task to instantiate (or use legacy pluginName= kwarg)
-            version: Optional version of the task (defaults to latest)
             reportToDatabase: Whether to report this job to the database (default True).
                             In database-backed environments (CCP4i2 GUI), this controls
                             whether the sub-job is registered in the project database.
@@ -2431,7 +2415,7 @@ class CPluginScript(CData):
 
         # Use TASKMANAGER to get the plugin class
         task_manager = TASKMANAGER()
-        plugin_class = task_manager.get_plugin_class(taskName, version=version)
+        plugin_class = task_manager.get_plugin_class(taskName)
 
         if plugin_class is None:
             # If dummy=True, create a generic CPluginScript instead of failing

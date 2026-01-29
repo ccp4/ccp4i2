@@ -24,16 +24,6 @@ class TestMakePluginObject:
         assert isinstance(sub_plugin, CPluginScript), "Should be a CPluginScript instance"
         assert sub_plugin.TASKNAME == "pointless", "Should have correct TASKNAME"
 
-    def test_makepluginobject_with_version(self):
-        """Test that makePluginObject respects version parameter."""
-        parent = CPluginScript(name="parent_task")
-
-        # Create sub-plugin with specific version
-        sub_plugin = parent.makePluginObject("pointless", version=0.0)
-
-        assert sub_plugin is not None, "Should create plugin instance with version"
-        assert sub_plugin.TASKNAME == "pointless"
-
     def test_makepluginobject_nonexistent_plugin(self):
         """Test that makePluginObject handles non-existent plugins."""
         parent = CPluginScript(name="parent_task")

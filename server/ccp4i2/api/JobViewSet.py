@@ -1208,7 +1208,7 @@ class JobViewSet(ModelViewSet):
         try:
             the_job = models.Job.objects.get(id=pk)
             def_xml_path = CCP4TaskManager.TASKMANAGER().locate_def_xml(
-                task_name=the_job.task_name, version=None
+                task_name=the_job.task_name
             )
             with open(def_xml_path, "r") as def_xml_file:
                 def_xml = def_xml_file.read()

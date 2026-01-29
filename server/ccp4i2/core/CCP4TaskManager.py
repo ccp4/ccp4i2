@@ -168,18 +168,17 @@ class CTaskManager:
             self._report_registry = get_report_registry()
         return self._report_registry
 
-    def get_plugin_class(self, task_name: str, version: Optional[str] = None) -> Optional[Type]:
+    def get_plugin_class(self, task_name: str) -> Optional[Type]:
         """
         Get a plugin class by name, with lazy loading.
 
         Args:
             task_name: Name of the task/plugin (e.g., "refmac", "pointless")
-            version: Optional version (currently ignored - uses latest)
 
         Returns:
             Plugin class, or None if not found
         """
-        return self.plugin_registry.get_plugin_class(task_name, version)
+        return self.plugin_registry.get_plugin_class(task_name)
 
     def get_plugin_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:
         """
@@ -197,14 +196,12 @@ class CTaskManager:
         """Get list of all available plugin names."""
         return self.plugin_registry.list_plugins()
 
-    def locate_def_xml(self, task_name: str, version: Optional[str] = None) -> Optional[Path]:
+    def locate_def_xml(self, task_name: str) -> Optional[Path]:
         """
         Locate the .def.xml file for a task given its name.
 
         Args:
             task_name: Name of the task/plugin (e.g., "refmac", "pointless")
-            version: Optional version (IGNORED - kept for API compatibility, but unused since
-                     no plugins in this codebase actually have multiple versions)
 
         Returns:
             Path to the .def.xml file if found, None otherwise
@@ -216,7 +213,7 @@ class CTaskManager:
                 return abs_path
         return None
 
-    def getReportClass(self, name: str, version: Optional[str] = None) -> Optional[Type]:
+    def getReportClass(self, name: str) -> Optional[Type]:
         """
         Get the report class for a plugin/task.
 
@@ -225,12 +222,11 @@ class CTaskManager:
 
         Args:
             name: Name of the task/plugin (e.g., "refmac", "pointless")
-            version: Optional version string (currently ignored)
 
         Returns:
             Report class if found, None otherwise
         """
-        return self.report_registry.get_report_class(name, version)
+        return self.report_registry.get_report_class(name)
 
     def get_report_metadata(self, name: str) -> Optional[Dict[str, Any]]:
         """
@@ -275,7 +271,7 @@ class CTaskManager:
             os.path.join(ccp4i2_root, "pipelines", "*", "wrappers", "*", "script"),
         ]
 
-    def searchReferenceFile(self, name: Optional[str] = None, version: Optional[str] = None,
+    def searchReferenceFile(self, name: Optional[str] = None,
                            cformat: str = 'medline', drillDown: bool = False) -> List[str]:
         """
         Search for reference/bibliography files for a task.
@@ -284,7 +280,6 @@ class CTaskManager:
 
         Args:
             name: Name of the task/plugin (e.g., "refmac", "servalcat_pipe")
-            version: Optional version (currently ignored)
             cformat: Format of reference file (default "medline")
             drillDown: If True, also search for reference files in subtasks
 
@@ -318,7 +313,7 @@ class CTaskManager:
 
         return file_list
 
-    def getReportAttribute(self, name: str, attribute: str, version: Optional[str] = None) -> Any:
+    def getReportAttribute(self, name: str, attribute: str) -> Any:
         """
         Get an attribute from a plugin's report class or metadata.
 
@@ -328,7 +323,6 @@ class CTaskManager:
         Args:
             name: Name of the task/plugin (e.g., "refmac", "pointless")
             attribute: Name of the attribute to retrieve (e.g., "WATCHED_FILE")
-            version: Optional version string (currently ignored)
 
         Returns:
             Attribute value if found, None otherwise
@@ -339,7 +333,7 @@ class CTaskManager:
             return metadata[attribute]
 
         # Fall back to importing the class for non-metadata attributes
-        report_class = self.getReportClass(name, version)
+        report_class = self.getReportClass(name)
         if report_class is None:
             return None
 

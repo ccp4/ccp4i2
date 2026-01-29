@@ -162,17 +162,6 @@ class TestDefXmlLoading:
             assert path.exists(), f"{plugin_name} path should exist"
             assert plugin_name in path.name
 
-    def test_taskmanager_locate_def_xml_with_version(self):
-        """Test locating plugin with specific version."""
-        tm = TASKMANAGER()
-
-        # buccaneer_mr has version 0.0 in the lookup
-        path = tm.locate_def_xml('buccaneer_mr', version='0.0')
-
-        assert path is not None, "Should find versioned plugin"
-        assert path.exists()
-        assert path.name == 'buccaneer_mr.def.xml'
-
     def test_taskmanager_locate_def_xml_not_found(self):
         """Test that non-existent plugins return None."""
         tm = TASKMANAGER()
