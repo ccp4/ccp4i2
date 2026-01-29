@@ -181,6 +181,12 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
       minVal: results.minVal ?? results.bottom ?? null,
       maxVal: results.maxVal ?? results.top ?? null,
       status: series.analysis.status,
+      // Backend-generated curve points (algorithm-agnostic plotting)
+      curvePoints: results.curve_points ?? null,
+      // KPI name for display (e.g., 'IC50', 'Ki', 'EC50')
+      kpiName: kpiKey || 'EC50',
+      // Fitting algorithm used
+      algorithm: results.algorithm ?? null,
     };
   })() : undefined;
 
