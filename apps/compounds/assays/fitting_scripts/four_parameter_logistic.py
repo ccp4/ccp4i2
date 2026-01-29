@@ -41,8 +41,20 @@ def fit(input_data: dict) -> dict:
                 "fix_hill": null,      # fixed Hill coefficient (or null for free)
                 "fix_top": null,       # fixed top asymptote (or null for free)
                 "fix_bottom": null,    # fixed bottom asymptote (or null for free)
+                "restrain_to_controls": false,  # soft-constrain asymptotes via pseudo data points
+                "pseudo_point_offset_logs": 3.0,  # log units offset for pseudo points
             }
         }
+
+    Constraint modes:
+        - fix_top/fix_bottom: Hard constraints that force asymptotes to exact control values.
+          The optimizer has no freedom to deviate from these values.
+
+        - restrain_to_controls: Soft constraints that add pseudo data points at extreme
+          concentrations (±N log units from data range) with response values equal to
+          the controls. This guides the fit toward control values while allowing
+          deviation if the actual data strongly suggests different asymptotes.
+          Useful when controls may contain random errors or outliers.
 
     Returns:
         {
@@ -55,6 +67,7 @@ def fit(input_data: dict) -> dict:
             "flags": [],                       # warning flags
             "kpi": "ic50",                     # which result is the primary KPI
             "fit_successful": true,
+            "restraint_applied": false,        # whether pseudo-point restraints were used
         }
     """
     concentrations = np.array(input_data.get('concentrations', []))
@@ -128,7 +141,7 @@ def fit(input_data: dict) -> dict:
     bounds_lower = [data_min - data_range * 0.5, data_min - data_range * 0.5, concentrations.min() / 100, 0.1]
     bounds_upper = [data_max + data_range * 0.5, data_max + data_range * 0.5, concentrations.max() * 100, 10]
 
-    # Handle fixed parameters
+    # Handle fixed parameters (hard constraints) - parse these FIRST
     # fix_hill: number or None - specific value to fix Hill coefficient to
     # fix_top/fix_bottom: boolean or number
     #   - True: use control max/min as fixed value
@@ -155,6 +168,47 @@ def fit(input_data: dict) -> dict:
             flags.append('no_min_control_for_fix_bottom')
     elif isinstance(fix_bottom_param, (int, float)) and fix_bottom_param is not False:
         fix_bottom = float(fix_bottom_param)
+
+    # Handle restraint mode (soft constraints via pseudo data points)
+    # When enabled, adds pseudo data points at extreme concentrations to guide
+    # the fit toward control values without hard-constraining them.
+    # Only adds pseudo points for parameters that are NOT already hard-fixed.
+    restrain_to_controls = parameters.get('restrain_to_controls', False)
+    pseudo_point_offset_logs = parameters.get('pseudo_point_offset_logs', 3.0)
+    restraint_applied = False
+
+    # Store original data for R² calculation (exclude pseudo points)
+    original_concentrations = concentrations.copy()
+    original_responses = responses.copy()
+
+    if restrain_to_controls:
+        offset_factor = 10 ** pseudo_point_offset_logs
+        pseudo_concs = []
+        pseudo_resps = []
+
+        # Only add pseudo point for top asymptote if not hard-fixed
+        if fix_top is None:
+            if ctrl_max is not None:
+                # Low concentration pseudo point guides toward top asymptote (max_control)
+                pseudo_concs.append(concentrations.min() / offset_factor)
+                pseudo_resps.append(ctrl_max)
+            else:
+                flags.append('restraint_no_max_control')
+
+        # Only add pseudo point for bottom asymptote if not hard-fixed
+        if fix_bottom is None:
+            if ctrl_min is not None:
+                # High concentration pseudo point guides toward bottom asymptote (min_control)
+                pseudo_concs.append(concentrations.max() * offset_factor)
+                pseudo_resps.append(ctrl_min)
+            else:
+                flags.append('restraint_no_min_control')
+
+        # Append any pseudo points that were added
+        if pseudo_concs:
+            concentrations = np.append(concentrations, pseudo_concs)
+            responses = np.append(responses, pseudo_resps)
+            restraint_applied = True
 
     try:
         if fix_hill is not None or fix_top is not None or fix_bottom is not None:
@@ -240,26 +294,27 @@ def fit(input_data: dict) -> dict:
             'error': f'Unexpected error: {str(e)}',
         }
 
-    # Calculate R-squared
-    y_pred = four_param_logistic(concentrations, top_fit, bottom_fit, ic50_fit, hill_fit)
-    ss_res = np.sum((responses - y_pred) ** 2)
-    ss_tot = np.sum((responses - np.mean(responses)) ** 2)
+    # Calculate R-squared on ORIGINAL data only (excluding pseudo points for restraints)
+    # This gives a true measure of fit quality to actual experimental data
+    y_pred_original = four_param_logistic(original_concentrations, top_fit, bottom_fit, ic50_fit, hill_fit)
+    ss_res = np.sum((original_responses - y_pred_original) ** 2)
+    ss_tot = np.sum((original_responses - np.mean(original_responses)) ** 2)
     r_squared = 1 - (ss_res / ss_tot) if ss_tot > 0 else 0
 
-    # Generate smooth curve for plotting
+    # Generate smooth curve for plotting (use original data range, not pseudo points)
     x_smooth = np.logspace(
-        np.log10(concentrations.min() / 2),
-        np.log10(concentrations.max() * 2),
+        np.log10(original_concentrations.min() / 2),
+        np.log10(original_concentrations.max() * 2),
         100
     )
     y_smooth = four_param_logistic(x_smooth, top_fit, bottom_fit, ic50_fit, hill_fit)
     curve_points = [[float(x), float(y)] for x, y in zip(x_smooth, y_smooth)]
 
-    # Quality checks
+    # Quality checks (use original data range for these assessments)
     if r_squared < 0.8:
         flags.append('poor_fit')
 
-    if ic50_fit < concentrations.min() or ic50_fit > concentrations.max():
+    if ic50_fit < original_concentrations.min() or ic50_fit > original_concentrations.max():
         flags.append('ic50_extrapolated')
 
     if abs(top_fit - bottom_fit) < 10:
@@ -268,9 +323,9 @@ def fit(input_data: dict) -> dict:
     if hill_fit < 0.3 or hill_fit > 5:
         flags.append('unusual_hill_slope')
 
-    # Check for incomplete curve
-    response_at_highest = four_param_logistic(concentrations.max(), top_fit, bottom_fit, ic50_fit, hill_fit)
-    response_at_lowest = four_param_logistic(concentrations.min(), top_fit, bottom_fit, ic50_fit, hill_fit)
+    # Check for incomplete curve (based on original data range)
+    response_at_highest = four_param_logistic(original_concentrations.max(), top_fit, bottom_fit, ic50_fit, hill_fit)
+    response_at_lowest = four_param_logistic(original_concentrations.min(), top_fit, bottom_fit, ic50_fit, hill_fit)
 
     if abs(response_at_highest - top_fit) > 0.2 * abs(top_fit - bottom_fit):
         flags.append('incomplete_top')
@@ -281,9 +336,10 @@ def fit(input_data: dict) -> dict:
     # Calculate end_percent: percentage of inhibition at highest concentration
     # This is useful when compounds don't reach 50% inhibition
     # Formula: 100 * (response_at_max_conc - bottom) / (top - bottom)
-    max_conc_idx = np.argmax(concentrations)
-    response_at_max_conc = responses[max_conc_idx]
-    max_conc = concentrations[max_conc_idx]
+    # Use ORIGINAL data (not pseudo points)
+    max_conc_idx = np.argmax(original_concentrations)
+    response_at_max_conc = original_responses[max_conc_idx]
+    max_conc = original_concentrations[max_conc_idx]
 
     dynamic_range = top_fit - bottom_fit
     if abs(dynamic_range) > 0.001:  # Avoid division by zero
@@ -303,4 +359,5 @@ def fit(input_data: dict) -> dict:
         'fit_successful': True,
         'end_percent': float(end_percent) if end_percent is not None else None,
         'end_percent_display': f'{end_percent:.1f}% at {max_conc:.3g}' if end_percent is not None else None,
+        'restraint_applied': restraint_applied,
     }

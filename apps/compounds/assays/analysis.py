@@ -27,6 +27,9 @@ AVAILABLE_FLAGS = [
     {'id': 'low_dynamic_range', 'label': 'Low Dynamic Range', 'description': '|top - bottom| < 10'},
     {'id': 'ki_extrapolated', 'label': 'Ki Extrapolated', 'description': 'Ki outside reasonable range (Wang fitting)'},
     {'id': 'weak_binding_use_standard_analysis', 'label': 'Weak Binding', 'description': 'Ki > 10× protein concentration (Wang fitting)'},
+    {'id': 'restraint_no_controls', 'label': 'Restraint Failed', 'description': 'Soft restraints requested but control values unavailable'},
+    {'id': 'restraint_no_max_control', 'label': 'Top Restraint Failed', 'description': 'Top asymptote restraint requested but max control unavailable'},
+    {'id': 'restraint_no_min_control', 'label': 'Bottom Restraint Failed', 'description': 'Bottom asymptote restraint requested but min control unavailable'},
 ]
 
 

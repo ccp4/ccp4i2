@@ -129,7 +129,7 @@ interface DataSeriesDetailModalProps {
 
 /**
  * Extract fit parameters from analysis results for DoseResponseChart
- * Uses the KPI field to determine which result key contains the EC50/IC50 value
+ * Uses the KPI field to determine which result key contains the EC50/IC50/Ki value
  */
 function extractFitParams(analysis: DataSeriesItem['analysis']): FitParameters | undefined {
   if (!analysis?.results) return undefined;
@@ -150,6 +150,12 @@ function extractFitParams(analysis: DataSeriesItem['analysis']): FitParameters |
     minVal: results.minVal ?? results.Min ?? results.min ?? results.bottom ?? null,
     maxVal: results.maxVal ?? results.Max ?? results.max ?? results.top ?? null,
     status: analysis.status,
+    // Backend-generated curve points (algorithm-agnostic plotting)
+    curvePoints: results.curve_points ?? null,
+    // KPI name for display (e.g., 'IC50', 'Ki', 'EC50')
+    kpiName: kpiKey || 'EC50',
+    // Fitting algorithm used (e.g., 'four-parameter-logistic', 'tight-binding-wang')
+    algorithm: results.algorithm ?? null,
   };
 }
 
@@ -445,7 +451,7 @@ export function DataSeriesDetailModal({
                           >
                             <Box>
                               <Typography variant="caption" color="text.secondary">
-                                EC50
+                                {fitParams.kpiName || 'EC50'}
                               </Typography>
                               <Typography variant="body2" fontFamily="monospace">
                                 {fitParams.ec50 != null
@@ -453,14 +459,17 @@ export function DataSeriesDetailModal({
                                   : '-'}
                               </Typography>
                             </Box>
-                            <Box>
-                              <Typography variant="caption" color="text.secondary">
-                                Hill
-                              </Typography>
-                              <Typography variant="body2" fontFamily="monospace">
-                                {fitParams.hill != null ? fitParams.hill.toFixed(2) : '-'}
-                              </Typography>
-                            </Box>
+                            {/* Hill coefficient - only shown for 4PL-style algorithms */}
+                            {fitParams.hill != null && (
+                              <Box>
+                                <Typography variant="caption" color="text.secondary">
+                                  Hill
+                                </Typography>
+                                <Typography variant="body2" fontFamily="monospace">
+                                  {fitParams.hill.toFixed(2)}
+                                </Typography>
+                              </Box>
+                            )}
                             <Box>
                               <Typography variant="caption" color="text.secondary">
                                 Min

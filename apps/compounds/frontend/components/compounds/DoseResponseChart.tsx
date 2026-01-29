@@ -94,6 +94,12 @@ export interface FitParameters {
   minVal?: number | null;
   maxVal?: number | null;
   status?: string;
+  /** Pre-generated curve points from backend fitting script [[x1,y1], [x2,y2], ...] */
+  curvePoints?: [number, number][] | null;
+  /** The KPI name for display (e.g., 'EC50', 'IC50', 'Ki') */
+  kpiName?: string | null;
+  /** The fitting algorithm used (e.g., 'four-parameter-logistic', 'tight-binding-wang') */
+  algorithm?: string | null;
 }
 
 interface DoseResponseChartProps {
@@ -175,8 +181,16 @@ export function DoseResponseChart({
       });
     }
 
-    // Add fitted curve if we have valid numeric parameters
-    const hasValidFitParams =
+    // Determine KPI name for display (use provided name or default to EC50)
+    const kpiName = fit?.kpiName || 'EC50';
+    const kpiValue = fit?.ec50;
+
+    // Add fitted curve - prefer backend curve_points for algorithm-agnostic rendering
+    const hasBackendCurve = fit?.curvePoints && Array.isArray(fit.curvePoints) && fit.curvePoints.length > 0;
+
+    // Fallback: generate curve using 4PL equation if no backend curve and we have valid 4PL params
+    const hasValid4PLParams =
+      !hasBackendCurve &&
       fit?.ec50 != null &&
       fit.ec50 > 0 &&
       fit.hill != null &&
@@ -186,33 +200,44 @@ export function DoseResponseChart({
       fit.maxVal != null &&
       typeof fit.maxVal === 'number';
 
-    if (hasValidFitParams) {
-      // Normalize min/max: for standard dose-response, minVal should be < maxVal
-      // Legacy data may have these inverted - detect and correct
-      let normalizedMin = fit!.minVal!;
-      let normalizedMax = fit!.maxVal!;
-      if (normalizedMin > normalizedMax) {
-        // Swap if inverted (legacy data with opposite interpretation)
-        [normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
-      }
+    if (hasBackendCurve || hasValid4PLParams) {
+      let curvePoints: { x: number; y: number }[];
 
-      const curvePoints = generateFittedCurve(
-        concentrations,
-        fit!.ec50!,
-        fit!.hill!,
-        normalizedMin,
-        normalizedMax
-      );
+      if (hasBackendCurve) {
+        // Use backend-generated curve points (works for all algorithms)
+        curvePoints = fit!.curvePoints!.map(([x, y]) => ({ x, y }));
+      } else {
+        // Fallback: generate using 4PL equation
+        // Normalize min/max: for standard dose-response, minVal should be < maxVal
+        let normalizedMin = fit!.minVal!;
+        let normalizedMax = fit!.maxVal!;
+        if (normalizedMin > normalizedMax) {
+          [normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
+        }
+
+        curvePoints = generateFittedCurve(
+          concentrations,
+          fit!.ec50!,
+          fit!.hill!,
+          normalizedMin,
+          normalizedMax
+        );
+      }
 
       // Use different color for invalid fits
       const curveColor = fit?.status === 'valid'
         ? colors.validCurve
         : colors.invalidCurve;
 
+      // Format KPI value for legend
+      const kpiDisplay = kpiValue != null && kpiValue > 0
+        ? `${kpiName}: ${kpiValue.toExponential(2)}`
+        : kpiName;
+
       // Use type: 'line' for the curve dataset in mixed chart
       datasets.push({
         type: 'line' as const,
-        label: `Fitted Curve (EC50: ${fit!.ec50!.toExponential(2)})`,
+        label: `Fitted Curve (${kpiDisplay})`,
         data: curvePoints,
         backgroundColor: 'transparent',
         borderColor: curveColor,
@@ -221,26 +246,64 @@ export function DoseResponseChart({
         fill: false,
       } as any);
 
-      // Add EC50 marker line
-      const ec50Y = hillLangmuir(fit!.ec50!, fit!.ec50!, fit!.hill!, normalizedMin, normalizedMax);
-      datasets.push({
-        type: 'line' as const,
-        label: 'EC50',
-        data: [
-          { x: fit!.ec50!, y: normalizedMin },
-          { x: fit!.ec50!, y: ec50Y },
-        ],
-        backgroundColor: 'transparent',
-        borderColor: curveColor.replace('1)', '0.5)'),
-        borderWidth: 1,
-        borderDash: [5, 5],
-        pointRadius: 0,
-        fill: false,
-      } as any);
+      // Add KPI marker line (only if we have the value and 4PL-style params for the calculation)
+      if (kpiValue != null && kpiValue > 0 && fit?.hill != null && fit?.minVal != null && fit?.maxVal != null) {
+        let normalizedMin = fit.minVal;
+        let normalizedMax = fit.maxVal;
+        if (normalizedMin > normalizedMax) {
+          [normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
+        }
+
+        const kpiY = hillLangmuir(kpiValue, kpiValue, fit.hill, normalizedMin, normalizedMax);
+        datasets.push({
+          type: 'line' as const,
+          label: kpiName,
+          data: [
+            { x: kpiValue, y: normalizedMin },
+            { x: kpiValue, y: kpiY },
+          ],
+          backgroundColor: 'transparent',
+          borderColor: curveColor.replace('1)', '0.5)'),
+          borderWidth: 1,
+          borderDash: [5, 5],
+          pointRadius: 0,
+          fill: false,
+        } as any);
+      }
     }
 
     return { datasets };
   }, [data, fit, skipPoints, colors]);
+
+  // Calculate y-axis bounds from both data points AND fitted asymptotes
+  const yAxisBounds = useMemo(() => {
+    const { responses } = data;
+    const validResponses = responses.filter(r => r !== undefined && r !== null) as number[];
+
+    if (validResponses.length === 0) {
+      return { min: 0, max: 100 };
+    }
+
+    let yMin = Math.min(...validResponses);
+    let yMax = Math.max(...validResponses);
+
+    // Include fitted asymptotes if available
+    if (fit?.minVal != null && typeof fit.minVal === 'number') {
+      yMin = Math.min(yMin, fit.minVal);
+    }
+    if (fit?.maxVal != null && typeof fit.maxVal === 'number') {
+      yMax = Math.max(yMax, fit.maxVal);
+    }
+
+    // Add 5% padding for visual clarity
+    const range = yMax - yMin;
+    const padding = range * 0.05;
+
+    return {
+      min: yMin - padding,
+      max: yMax + padding,
+    };
+  }, [data, fit]);
 
   const options = useMemo<ChartOptions<'scatter'>>(() => ({
     responsive: true,
@@ -253,7 +316,11 @@ export function DoseResponseChart({
         labels: {
           usePointStyle: true,
           color: colors.textColor,
-          filter: (item) => !item.text?.includes('EC50'),
+          // Hide the KPI marker line from legend (it's redundant with the curve label)
+          filter: (item) => {
+            const kpiName = fit?.kpiName || 'EC50';
+            return item.text !== kpiName;
+          },
         },
       },
       title: {
@@ -294,6 +361,8 @@ export function DoseResponseChart({
       },
       y: {
         type: 'linear' as const,
+        min: yAxisBounds.min,
+        max: yAxisBounds.max,
         title: {
           display: true,
           text: 'Response',
@@ -307,7 +376,7 @@ export function DoseResponseChart({
         },
       },
     },
-  }), [title, compoundName, showLegend, data.unit, colors]);
+  }), [title, compoundName, showLegend, data.unit, colors, yAxisBounds]);
 
   if (!data.concentrations.length || !data.responses.length) {
     return (
@@ -365,8 +434,12 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
       },
     ];
 
-    // Add fitted curve if we have valid numeric parameters
-    const hasValidFitParams =
+    // Add fitted curve - prefer backend curve_points for algorithm-agnostic rendering
+    const hasBackendCurve = fit?.curvePoints && Array.isArray(fit.curvePoints) && fit.curvePoints.length > 0;
+
+    // Fallback: generate curve using 4PL equation if no backend curve and we have valid 4PL params
+    const hasValid4PLParams =
+      !hasBackendCurve &&
       fit?.ec50 != null &&
       fit.ec50 > 0 &&
       fit.hill != null &&
@@ -376,23 +449,29 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
       fit.maxVal != null &&
       typeof fit.maxVal === 'number';
 
-    if (hasValidFitParams) {
-      // Normalize min/max: for standard dose-response, minVal should be < maxVal
-      // Legacy data may have these inverted - detect and correct
-      let normalizedMin = fit!.minVal!;
-      let normalizedMax = fit!.maxVal!;
-      if (normalizedMin > normalizedMax) {
-        [normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
-      }
+    if (hasBackendCurve || hasValid4PLParams) {
+      let curvePoints: { x: number; y: number }[];
 
-      const curvePoints = generateFittedCurve(
-        concentrations,
-        fit!.ec50!,
-        fit!.hill!,
-        normalizedMin,
-        normalizedMax,
-        50
-      );
+      if (hasBackendCurve) {
+        // Use backend-generated curve points (works for all algorithms)
+        curvePoints = fit!.curvePoints!.map(([x, y]) => ({ x, y }));
+      } else {
+        // Fallback: generate using 4PL equation
+        let normalizedMin = fit!.minVal!;
+        let normalizedMax = fit!.maxVal!;
+        if (normalizedMin > normalizedMax) {
+          [normalizedMin, normalizedMax] = [normalizedMax, normalizedMin];
+        }
+
+        curvePoints = generateFittedCurve(
+          concentrations,
+          fit!.ec50!,
+          fit!.hill!,
+          normalizedMin,
+          normalizedMax,
+          50
+        );
+      }
 
       // Use red for valid fits, gray for invalid
       const curveColor = fit?.status === 'valid'
@@ -415,19 +494,34 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
     return { datasets };
   }, [data, fit, colors]);
 
-  // Calculate axis bounds from data
+  // Calculate axis bounds from data AND fitted asymptotes
   const axisBounds = useMemo(() => {
     const { concentrations, responses } = data;
     const validConcs = concentrations.filter(c => c > 0);
-    const validResponses = responses.filter(r => r !== undefined && r !== null);
+    const validResponses = responses.filter(r => r !== undefined && r !== null) as number[];
+
+    let yMin = validResponses.length ? Math.min(...validResponses) : 0;
+    let yMax = validResponses.length ? Math.max(...validResponses) : 100;
+
+    // Include fitted asymptotes if available
+    if (fit?.minVal != null && typeof fit.minVal === 'number') {
+      yMin = Math.min(yMin, fit.minVal);
+    }
+    if (fit?.maxVal != null && typeof fit.maxVal === 'number') {
+      yMax = Math.max(yMax, fit.maxVal);
+    }
+
+    // Add 5% padding
+    const yRange = yMax - yMin;
+    const yPadding = yRange * 0.05;
 
     return {
       xMin: validConcs.length ? Math.min(...validConcs) : 1,
       xMax: validConcs.length ? Math.max(...validConcs) : 1000,
-      yMin: validResponses.length ? Math.min(...validResponses) : 0,
-      yMax: validResponses.length ? Math.max(...validResponses) : 100,
+      yMin: yMin - yPadding,
+      yMax: yMax + yPadding,
     };
-  }, [data]);
+  }, [data, fit]);
 
   const options = useMemo<ChartOptions<'scatter'>>(() => ({
     responsive: true,
@@ -463,6 +557,8 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
       y: {
         type: 'linear' as const,
         display: true,
+        min: axisBounds.yMin,
+        max: axisBounds.yMax,
         grid: { display: false },
         border: { display: true, color: colors.borderColor },
         ticks: {
@@ -480,7 +576,7 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
     elements: {
       point: { radius: 2 },
     },
-  }), [colors]);
+  }), [colors, axisBounds]);
 
   if (!data.concentrations.length) {
     return (

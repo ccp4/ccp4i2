@@ -314,10 +314,13 @@ export interface ValidationRules {
  * Different fitting methods use different subsets of these parameters.
  */
 export interface FittingParameters {
-  // Standard 4PL constraint parameters
+  // Standard 4PL hard constraint parameters
   fix_hill?: number | null;    // Specific value to fix Hill coefficient to (e.g., 1.0)
   fix_top?: boolean | null;    // If true, use control max as fixed top asymptote
   fix_bottom?: boolean | null; // If true, use control min as fixed bottom asymptote
+  // Soft constraint parameters (pseudo data points)
+  restrain_to_controls?: boolean | null;  // Soft-constrain asymptotes via pseudo data points
+  pseudo_point_offset_logs?: number | null; // Log units offset for pseudo points (default 3.0)
   // Tight-binding parameters (for Wang equation)
   protein_conc?: number;
   ligand_conc?: number;
