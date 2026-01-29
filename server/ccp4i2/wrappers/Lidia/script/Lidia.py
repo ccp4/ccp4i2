@@ -10,7 +10,7 @@ from ccp4i2.core import CCP4Modules, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class lidia(CPluginScript):
+class Lidia(CPluginScript):
     TASKMODULE = 'wrappers'
     TASKTITLE = 'Lidia'
     DESCRIPTION = 'Sketch a ligand'

@@ -24,7 +24,7 @@ def _get_report_class(task_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.AUSPEX.script.AUSPEX_report import AUSPEX_report
         return AUSPEX_report
     if task_name == 'Acedrg':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import acedrgNew_report
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report import acedrgNew_report
         return acedrgNew_report
     if task_name == 'AcedrgLink':
         from ccp4i2.wrappers.AcedrgLink.script.AcedrgLink_report import AcedrgLink_report
@@ -33,8 +33,8 @@ def _get_report_class(task_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report import AlternativeImportXIA2_report
         return AlternativeImportXIA2_report
     if task_name == 'LidiaAcedrgNew':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import lidiaAcedrgNew_report
-        return lidiaAcedrgNew_report
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report import LidiaAcedrgNew_report
+        return LidiaAcedrgNew_report
     if task_name == 'MakeLink':
         from ccp4i2.pipelines.MakeLink.script.MakeLink_report import MakeLink_report
         return MakeLink_report

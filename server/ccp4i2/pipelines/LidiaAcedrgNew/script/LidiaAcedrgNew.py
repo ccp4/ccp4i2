@@ -9,7 +9,7 @@ from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class lidiaAcedrgNew(CPluginScript):
+class LidiaAcedrgNew(CPluginScript):
     TASKNAME = 'LidiaAcedrgNew'
     WHATNEXT = ['coot_rebuild']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'

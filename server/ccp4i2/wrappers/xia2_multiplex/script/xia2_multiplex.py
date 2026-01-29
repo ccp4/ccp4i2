@@ -12,7 +12,7 @@ from ccp4i2.core import CCP4Container, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class Cxia2_multiplex(CPluginScript):
+class xia2_multiplex(CPluginScript):
 
     TASKTITLE = "Data set combination with xia2.multiplex"
     TASKNAME = "xia2_multiplex"

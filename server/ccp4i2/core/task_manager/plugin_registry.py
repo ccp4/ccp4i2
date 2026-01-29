@@ -30,11 +30,11 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2 import AlternativeImportXIA2
         return AlternativeImportXIA2
     if plugin_name == 'Lidia':
-        from ccp4i2.wrappers.Lidia.script.Lidia import lidia
-        return lidia
+        from ccp4i2.wrappers.Lidia.script.Lidia import Lidia
+        return Lidia
     if plugin_name == 'LidiaAcedrgNew':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew import lidiaAcedrgNew
-        return lidiaAcedrgNew
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew import LidiaAcedrgNew
+        return LidiaAcedrgNew
     if plugin_name == 'MakeLink':
         from ccp4i2.pipelines.MakeLink.script.MakeLink import MakeLink
         return MakeLink
@@ -468,14 +468,14 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_ctruncate.script.xia2_ctruncate import xia2_ctruncate
         return xia2_ctruncate
     if plugin_name == 'xia2_dials':
-        from ccp4i2.wrappers.xia2_dials.script.xia2_dials import Cxia2_dials
-        return Cxia2_dials
+        from ccp4i2.wrappers.xia2_dials.script.xia2_dials import xia2_dials
+        return xia2_dials
     if plugin_name == 'xia2_integration':
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_integration.script.xia2_integration import xia2_integration
         return xia2_integration
     if plugin_name == 'xia2_multiplex':
-        from ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex import Cxia2_multiplex
-        return Cxia2_multiplex
+        from ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex import xia2_multiplex
+        return xia2_multiplex
     if plugin_name == 'xia2_pointless':
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_pointless.script.xia2_pointless import xia2_pointless
         return xia2_pointless
@@ -483,11 +483,11 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_run.script.xia2_run import xia2_run
         return xia2_run
     if plugin_name == 'xia2_ssx_reduce':
-        from ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce import Cxia2_ssx_reduce
-        return Cxia2_ssx_reduce
+        from ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce import xia2_ssx_reduce
+        return xia2_ssx_reduce
     if plugin_name == 'xia2_xds':
-        from ccp4i2.wrappers.xia2_xds.script.xia2_xds import Cxia2_xds
-        return Cxia2_xds
+        from ccp4i2.wrappers.xia2_xds.script.xia2_xds import xia2_xds
+        return xia2_xds
     if plugin_name == 'zanuda':
         from ccp4i2.wrappers.zanuda.script.zanuda import zanuda
         return zanuda

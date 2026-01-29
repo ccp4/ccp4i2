@@ -13,7 +13,7 @@ from ccp4i2.core import CCP4Container, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class Cxia2_ssx_reduce(CPluginScript):
+class xia2_ssx_reduce(CPluginScript):
 
     TASKTITLE = "Reduction of serial datasets using xia2.ssx_reduce"
     TASKNAME = "xia2_ssx_reduce"

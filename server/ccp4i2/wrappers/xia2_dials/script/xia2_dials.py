@@ -10,7 +10,7 @@ from ccp4i2.core import CCP4Container, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class Cxia2_dials(CPluginScript):
+class xia2_dials(CPluginScript):
 
     TASKTITLE = "Data processing with xia2/dials"
     TASKNAME = "xia2_dials"

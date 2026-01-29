@@ -4,7 +4,7 @@ from ccp4i2.report import Report
 from ccp4i2.wrappers.acedrgNew.script.acedrgNew_report import acedrgNew_report
 
 
-class lidiaAcedrgNew_report(Report):
+class LidiaAcedrgNew_report(Report):
     TASKNAME = 'LidiaAcedrgNew'
     RUNNING = True
 
