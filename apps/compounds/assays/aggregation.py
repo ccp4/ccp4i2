@@ -115,6 +115,7 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
     queryset = DataSeries.objects.select_related(
         'compound',
         'compound__target',
+        'compound__molecular_properties',  # Include molecular properties for aggregation
         'batch',  # Include batch for batch-aware aggregation
         'assay',
         'assay__protocol',
@@ -236,11 +237,45 @@ def extract_kpi_with_unit(data_series: DataSeries) -> tuple[float | None, str | 
     return value, unit
 
 
+def _get_molecular_properties(compound, include_properties: list[str]) -> dict:
+    """
+    Extract requested molecular properties from a compound.
+
+    Args:
+        compound: Compound model instance
+        include_properties: List of property names to include
+
+    Returns:
+        Dictionary with property values (or None if not available)
+    """
+    if not include_properties:
+        return {}
+
+    result = {}
+
+    # molecular_weight is on the Compound model itself
+    if 'molecular_weight' in include_properties:
+        result['molecular_weight'] = compound.molecular_weight
+
+    # Other properties are on the related MolecularProperties model
+    mol_props = getattr(compound, 'molecular_properties', None)
+    for prop_name in include_properties:
+        if prop_name == 'molecular_weight':
+            continue  # Already handled above
+        if mol_props:
+            result[prop_name] = getattr(mol_props, prop_name, None)
+        else:
+            result[prop_name] = None
+
+    return result
+
+
 def aggregate_compact(
     queryset: QuerySet[DataSeries],
     aggregations: list[str],
     group_by_batch: bool = False,
-    include_tested_no_data: bool = False
+    include_tested_no_data: bool = False,
+    include_properties: list[str] | None = None,
 ) -> dict:
     """
     Aggregate data series into compact format (one row per compound or compound/batch).
@@ -254,6 +289,7 @@ def aggregate_compact(
         group_by_batch: If True, create separate rows for each batch
         include_tested_no_data: If True, include compounds that were tested but
             have no valid KPI values (shown with count=0)
+        include_properties: Optional list of molecular properties to include
 
     Returns:
         Dictionary with:
@@ -310,6 +346,9 @@ def aggregate_compact(
             if group_by_batch:
                 info['batch_id'] = str(ds.batch_id) if ds.batch_id else None
                 info['batch_number'] = ds.batch.batch_number if ds.batch else None
+            # Include molecular properties if requested
+            if include_properties:
+                info['properties'] = _get_molecular_properties(ds.compound, include_properties)
             group_info[group_key] = info
 
     # Fetch protocol info and include kpi_unit
@@ -375,6 +414,7 @@ def aggregate_compact(
             'total_measurements': total_measurements,
             'group_by_batch': group_by_batch,
             'include_tested_no_data': include_tested_no_data,
+            'include_properties': include_properties or [],
         },
         'protocols': protocol_list,
         'data': data,
@@ -385,7 +425,8 @@ def aggregate_medium(
     queryset: QuerySet[DataSeries],
     aggregations: list[str],
     group_by_batch: bool = False,
-    include_tested_no_data: bool = False
+    include_tested_no_data: bool = False,
+    include_properties: list[str] | None = None,
 ) -> dict:
     """
     Aggregate data series into medium format (one row per compound-protocol pair,
@@ -450,6 +491,9 @@ def aggregate_medium(
             if group_by_batch:
                 info['batch_id'] = str(ds.batch_id) if ds.batch_id else None
                 info['batch_number'] = ds.batch.batch_number if ds.batch else None
+            # Include molecular properties if requested
+            if include_properties:
+                info['properties'] = _get_molecular_properties(ds.compound, include_properties)
             group_protocol_data[key]['info'] = info
 
     # Build result rows
@@ -491,6 +535,7 @@ def aggregate_medium(
             'total_measurements': total_measurements,
             'group_by_batch': group_by_batch,
             'include_tested_no_data': include_tested_no_data,
+            'include_properties': include_properties or [],
         },
         'data': data,
     }
@@ -500,7 +545,8 @@ def aggregate_long(
     queryset: QuerySet[DataSeries],
     aggregations: list[str],
     group_by_batch: bool = False,
-    include_tested_no_data: bool = False
+    include_tested_no_data: bool = False,
+    include_properties: list[str] | None = None,
 ) -> dict:
     """
     Aggregate data series into long format (one row per measurement).
@@ -514,6 +560,7 @@ def aggregate_long(
         group_by_batch: If True, include batch information in rows
         include_tested_no_data: If True, include data series with no valid KPI values
             (long format already includes all rows, this is for API consistency)
+        include_properties: Optional list of molecular properties to include
 
     Returns:
         Dictionary with:
@@ -556,6 +603,10 @@ def aggregate_long(
         row['batch_id'] = str(ds.batch_id) if ds.batch_id else None
         row['batch_number'] = ds.batch.batch_number if ds.batch else None
 
+        # Include molecular properties if requested
+        if include_properties and ds.compound:
+            row['properties'] = _get_molecular_properties(ds.compound, include_properties)
+
         data.append(row)
 
         if ds.compound:
@@ -576,6 +627,7 @@ def aggregate_long(
             'total_measurements': len(data),
             'group_by_batch': group_by_batch,
             'include_tested_no_data': include_tested_no_data,
+            'include_properties': include_properties or [],
         },
         'data': data,
     }

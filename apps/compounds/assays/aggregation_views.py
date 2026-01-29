@@ -10,7 +10,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 
-from compounds.registry.models import Target
+from compounds.registry.models import Target, MolecularPropertyThreshold
+from compounds.registry.serializers import MolecularPropertyThresholdSerializer
 from .models import Protocol
 from .aggregation import (
     build_data_series_queryset,
@@ -18,6 +19,18 @@ from .aggregation import (
     aggregate_medium,
     aggregate_long,
 )
+
+# Valid molecular properties that can be included in aggregation tables
+VALID_MOLECULAR_PROPERTIES = {
+    'molecular_weight',
+    'heavy_atom_count',
+    'hbd',
+    'hba',
+    'clogp',
+    'tpsa',
+    'rotatable_bonds',
+    'fraction_sp3',
+}
 
 
 class AggregationViewSet(viewsets.ViewSet):
@@ -52,7 +65,8 @@ class AggregationViewSet(viewsets.ViewSet):
             "output_format": "compact" | "medium" | "long",
             "aggregations": ["geomean", "count", "stdev", "list"],
             "group_by_batch": false,  // optional, when true splits results by batch
-            "include_tested_no_data": false  // optional, include compounds tested but with no valid KPI
+            "include_tested_no_data": false,  // optional, include compounds tested but with no valid KPI
+            "include_properties": ["molecular_weight", "clogp", ...]  // optional, molecular properties to include
         }
 
         Returns:
@@ -70,12 +84,18 @@ class AggregationViewSet(viewsets.ViewSet):
             - Includes compounds that were tested but have no valid KPI values
             - These appear with count=0 and null aggregation values
             - Useful for identifying inactive or problematic compounds
+
+        When include_properties is provided:
+            - Adds molecular property columns to each row
+            - Valid properties: molecular_weight, heavy_atom_count, hbd, hba, clogp, tpsa, rotatable_bonds, fraction_sp3
+            - Response includes 'property_thresholds' for RAG coloring
         """
         predicates = request.data.get('predicates', {})
         output_format = request.data.get('output_format', 'compact')
         aggregations = request.data.get('aggregations', ['geomean', 'count'])
         group_by_batch = request.data.get('group_by_batch', False)
         include_tested_no_data = request.data.get('include_tested_no_data', False)
+        include_properties = request.data.get('include_properties', [])
 
         # Validate output format
         if output_format not in ('compact', 'medium', 'long'):
@@ -93,6 +113,15 @@ class AggregationViewSet(viewsets.ViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+        # Validate include_properties
+        if include_properties:
+            invalid_props = set(include_properties) - VALID_MOLECULAR_PROPERTIES
+            if invalid_props:
+                return Response(
+                    {'error': f'Invalid properties: {invalid_props}. Valid options: {VALID_MOLECULAR_PROPERTIES}'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
         # Build and execute query
         queryset = build_data_series_queryset(predicates)
 
@@ -100,20 +129,33 @@ class AggregationViewSet(viewsets.ViewSet):
             result = aggregate_compact(
                 queryset, aggregations,
                 group_by_batch=group_by_batch,
-                include_tested_no_data=include_tested_no_data
+                include_tested_no_data=include_tested_no_data,
+                include_properties=include_properties,
             )
         elif output_format == 'medium':
             result = aggregate_medium(
                 queryset, aggregations,
                 group_by_batch=group_by_batch,
-                include_tested_no_data=include_tested_no_data
+                include_tested_no_data=include_tested_no_data,
+                include_properties=include_properties,
             )
         else:
             result = aggregate_long(
                 queryset, aggregations,
                 group_by_batch=group_by_batch,
-                include_tested_no_data=include_tested_no_data
+                include_tested_no_data=include_tested_no_data,
+                include_properties=include_properties,
             )
+
+        # Include RAG thresholds if properties were requested
+        if include_properties:
+            thresholds = MolecularPropertyThreshold.objects.filter(
+                property_name__in=include_properties,
+                enabled=True
+            )
+            result['property_thresholds'] = MolecularPropertyThresholdSerializer(
+                thresholds, many=True
+            ).data
 
         return Response(result)
 
@@ -167,6 +209,52 @@ class AggregationViewSet(viewsets.ViewSet):
         targets = queryset.values('id', 'name')[:100]
 
         return Response(list(targets))
+
+    @action(detail=False, methods=['get'])
+    def molecular_properties(self, request):
+        """
+        List available molecular properties and their RAG thresholds.
+
+        Returns:
+            {
+                "properties": [
+                    {
+                        "name": "clogp",
+                        "display_name": "cLogP",
+                        "description": "Calculated LogP - lipophilicity indicator"
+                    },
+                    ...
+                ],
+                "thresholds": [
+                    {
+                        "property_name": "clogp",
+                        "direction": "above",
+                        "amber_threshold": 4,
+                        "red_threshold": 5,
+                        "enabled": true
+                    },
+                    ...
+                ]
+            }
+        """
+        properties = [
+            {'name': 'molecular_weight', 'display_name': 'MW', 'description': 'Molecular weight (Da)'},
+            {'name': 'heavy_atom_count', 'display_name': 'HAC', 'description': 'Heavy atom count (for ligand efficiency)'},
+            {'name': 'hbd', 'display_name': 'HBD', 'description': 'Hydrogen bond donors'},
+            {'name': 'hba', 'display_name': 'HBA', 'description': 'Hydrogen bond acceptors'},
+            {'name': 'clogp', 'display_name': 'cLogP', 'description': 'Calculated LogP (lipophilicity)'},
+            {'name': 'tpsa', 'display_name': 'TPSA', 'description': 'Topological polar surface area (Å²)'},
+            {'name': 'rotatable_bonds', 'display_name': 'RotB', 'description': 'Rotatable bonds'},
+            {'name': 'fraction_sp3', 'display_name': 'Fsp³', 'description': 'Fraction of sp³ carbons'},
+        ]
+
+        thresholds = MolecularPropertyThreshold.objects.all()
+        threshold_data = MolecularPropertyThresholdSerializer(thresholds, many=True).data
+
+        return Response({
+            'properties': properties,
+            'thresholds': threshold_data,
+        })
 
     @action(detail=False, methods=['get'])
     def data_series(self, request):

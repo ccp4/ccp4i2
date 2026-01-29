@@ -353,6 +353,11 @@ class Compound(models.Model):
 
         super().save(*args, **kwargs)
 
+        # Calculate molecular properties after compound is saved
+        # (requires compound to have a PK for the OneToOne relationship)
+        if smiles_changed and self.smiles:
+            MolecularProperties.calculate_for_compound(self)
+
 
 def _batch_qc_path(instance, filename):
     """Generate upload path for batch QC files.
@@ -541,3 +546,213 @@ class CompoundTemplate(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class MolecularProperties(models.Model):
+    """
+    Cached computed molecular properties for a compound.
+
+    Stores drug-likeness descriptors calculated from SMILES via RDKit.
+    Separated from Compound model to keep registration facts distinct
+    from derived/computed values.
+
+    Properties are recalculated when compound SMILES changes.
+    """
+
+    compound = models.OneToOneField(
+        Compound,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name='molecular_properties'
+    )
+
+    # Lipinski Rule of 5 properties
+    heavy_atom_count = models.IntegerField(
+        null=True,
+        blank=True,
+        help_text="Number of non-hydrogen atoms (for ligand efficiency)"
+    )
+    hbd = models.IntegerField(
+        null=True,
+        blank=True,
+        help_text="Hydrogen bond donors (Lipinski: ≤5)"
+    )
+    hba = models.IntegerField(
+        null=True,
+        blank=True,
+        help_text="Hydrogen bond acceptors (Lipinski: ≤10)"
+    )
+    clogp = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Calculated LogP - Wildman-Crippen method (Lipinski: ≤5)"
+    )
+    tpsa = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Topological polar surface area in Å² (oral bioavailability: ≤140)"
+    )
+    rotatable_bonds = models.IntegerField(
+        null=True,
+        blank=True,
+        help_text="Number of rotatable bonds (oral bioavailability: ≤10)"
+    )
+    fraction_sp3 = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Fraction of sp3 carbons (Fsp3) - 3D complexity indicator"
+    )
+
+    # Metadata
+    calculated_at = models.DateTimeField(auto_now=True)
+    rdkit_version = models.CharField(
+        max_length=32,
+        blank=True,
+        null=True,
+        help_text="RDKit version used for calculation"
+    )
+
+    class Meta:
+        verbose_name = 'Molecular Properties'
+        verbose_name_plural = 'Molecular Properties'
+
+    def __str__(self):
+        return f'Properties for {self.compound.formatted_id}'
+
+    @classmethod
+    def calculate_for_compound(cls, compound: Compound) -> 'MolecularProperties':
+        """
+        Calculate molecular properties from compound SMILES.
+
+        Creates or updates MolecularProperties for the given compound.
+        Returns the MolecularProperties instance (saved).
+        """
+        smiles = compound.smiles or compound.rdkit_smiles
+        if not smiles:
+            return None
+
+        try:
+            from rdkit import Chem, rdBase
+            from rdkit.Chem import Descriptors, Lipinski
+
+            mol = Chem.MolFromSmiles(smiles)
+            if not mol:
+                return None
+
+            props, _ = cls.objects.get_or_create(compound=compound)
+            props.heavy_atom_count = Lipinski.HeavyAtomCount(mol)
+            props.hbd = Descriptors.NumHDonors(mol)
+            props.hba = Descriptors.NumHAcceptors(mol)
+            props.clogp = Descriptors.MolLogP(mol)
+            props.tpsa = Descriptors.TPSA(mol)
+            props.rotatable_bonds = Descriptors.NumRotatableBonds(mol)
+            props.fraction_sp3 = Descriptors.FractionCSP3(mol)
+            props.rdkit_version = rdBase.rdkitVersion
+            props.save()
+            return props
+
+        except ImportError:
+            return None
+        except Exception:
+            return None
+
+
+class MolecularPropertyThreshold(models.Model):
+    """
+    Configurable RAG (Red/Amber/Green) thresholds for molecular properties.
+
+    Allows users/admins to define warning and danger thresholds for
+    drug-likeness properties. Used for visual highlighting in aggregation tables.
+    """
+
+    PROPERTY_CHOICES = [
+        ('molecular_weight', 'Molecular Weight'),
+        ('heavy_atom_count', 'Heavy Atom Count'),
+        ('hbd', 'H-Bond Donors'),
+        ('hba', 'H-Bond Acceptors'),
+        ('clogp', 'cLogP'),
+        ('tpsa', 'TPSA'),
+        ('rotatable_bonds', 'Rotatable Bonds'),
+        ('fraction_sp3', 'Fraction sp3'),
+    ]
+
+    DIRECTION_CHOICES = [
+        ('above', 'Above threshold is bad'),  # e.g., MW > 500
+        ('below', 'Below threshold is bad'),  # e.g., Fsp3 < 0.25
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    property_name = models.CharField(
+        max_length=32,
+        choices=PROPERTY_CHOICES,
+        unique=True,
+        help_text="Which molecular property this threshold applies to"
+    )
+    direction = models.CharField(
+        max_length=8,
+        choices=DIRECTION_CHOICES,
+        default='above',
+        help_text="Whether values above or below threshold are concerning"
+    )
+    amber_threshold = models.FloatField(
+        help_text="Value at which property turns amber (warning)"
+    )
+    red_threshold = models.FloatField(
+        help_text="Value at which property turns red (danger)"
+    )
+    enabled = models.BooleanField(
+        default=True,
+        help_text="Whether RAG coloring is active for this property"
+    )
+
+    class Meta:
+        verbose_name = 'Property Threshold'
+        verbose_name_plural = 'Property Thresholds'
+        ordering = ['property_name']
+
+    def __str__(self):
+        return f'{self.get_property_name_display()} threshold'
+
+    def get_rag_status(self, value: float) -> str:
+        """
+        Determine RAG status for a given value.
+
+        Returns: 'green', 'amber', or 'red'
+        """
+        if value is None or not self.enabled:
+            return 'green'
+
+        if self.direction == 'above':
+            if value >= self.red_threshold:
+                return 'red'
+            elif value >= self.amber_threshold:
+                return 'amber'
+            return 'green'
+        else:  # below
+            if value <= self.red_threshold:
+                return 'red'
+            elif value <= self.amber_threshold:
+                return 'amber'
+            return 'green'
+
+    @classmethod
+    def get_default_thresholds(cls) -> list[dict]:
+        """
+        Return Lipinski Rule of 5 defaults for seeding the database.
+        """
+        return [
+            {'property_name': 'molecular_weight', 'direction': 'above',
+             'amber_threshold': 450, 'red_threshold': 500},
+            {'property_name': 'clogp', 'direction': 'above',
+             'amber_threshold': 4, 'red_threshold': 5},
+            {'property_name': 'hbd', 'direction': 'above',
+             'amber_threshold': 4, 'red_threshold': 5},
+            {'property_name': 'hba', 'direction': 'above',
+             'amber_threshold': 8, 'red_threshold': 10},
+            {'property_name': 'tpsa', 'direction': 'above',
+             'amber_threshold': 120, 'red_threshold': 140},
+            {'property_name': 'rotatable_bonds', 'direction': 'above',
+             'amber_threshold': 8, 'red_threshold': 10},
+            {'property_name': 'fraction_sp3', 'direction': 'below',
+             'amber_threshold': 0.3, 'red_threshold': 0.2},
+        ]

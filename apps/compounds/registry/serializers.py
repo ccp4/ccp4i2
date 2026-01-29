@@ -11,7 +11,10 @@ from django.utils import timezone
 from rest_framework import serializers
 
 from compounds.validators import validate_qc_file
-from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
+from .models import (
+    Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate,
+    MolecularProperties, MolecularPropertyThreshold
+)
 
 
 class ProtectedFileField(serializers.Field):
@@ -258,6 +261,7 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
         source='modified_by.email', read_only=True
     )
     batch_count = serializers.IntegerField(source='batches.count', read_only=True)
+    molecular_properties = MolecularPropertiesSerializer(read_only=True)
 
     class Meta:
         model = Compound
@@ -274,6 +278,7 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
             'comments', 'svg_file',
             'batch_count',
             'aliases',
+            'molecular_properties',
         ]
         read_only_fields = ['reg_number', 'formatted_id', 'barcode', 'registered_at', 'modified_at']
 
@@ -361,3 +366,34 @@ class CompoundTemplateSerializer(serializers.ModelSerializer):
     class Meta:
         model = CompoundTemplate
         fields = ['id', 'target', 'target_name', 'name', 'mol2d', 'svg_file']
+
+
+class MolecularPropertiesSerializer(serializers.ModelSerializer):
+    """Serializer for computed molecular properties."""
+
+    class Meta:
+        model = MolecularProperties
+        fields = [
+            'heavy_atom_count', 'hbd', 'hba', 'clogp', 'tpsa',
+            'rotatable_bonds', 'fraction_sp3',
+            'calculated_at', 'rdkit_version',
+        ]
+        read_only_fields = fields
+
+
+class MolecularPropertyThresholdSerializer(serializers.ModelSerializer):
+    """Serializer for RAG threshold configuration."""
+    property_display = serializers.CharField(
+        source='get_property_name_display', read_only=True
+    )
+    direction_display = serializers.CharField(
+        source='get_direction_display', read_only=True
+    )
+
+    class Meta:
+        model = MolecularPropertyThreshold
+        fields = [
+            'id', 'property_name', 'property_display',
+            'direction', 'direction_display',
+            'amber_threshold', 'red_threshold', 'enabled',
+        ]

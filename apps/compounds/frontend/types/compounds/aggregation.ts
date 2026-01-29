@@ -8,6 +8,54 @@ import { AnalysisStatus } from './models';
 /** Aggregation function types */
 export type AggregationType = 'geomean' | 'count' | 'stdev' | 'list';
 
+/** Molecular property names that can be included in aggregation tables */
+export type MolecularPropertyName =
+  | 'molecular_weight'
+  | 'heavy_atom_count'
+  | 'hbd'
+  | 'hba'
+  | 'clogp'
+  | 'tpsa'
+  | 'rotatable_bonds'
+  | 'fraction_sp3';
+
+/** Molecular property values for a compound */
+export interface MolecularPropertyValues {
+  molecular_weight?: number | null;
+  heavy_atom_count?: number | null;
+  hbd?: number | null;
+  hba?: number | null;
+  clogp?: number | null;
+  tpsa?: number | null;
+  rotatable_bonds?: number | null;
+  fraction_sp3?: number | null;
+}
+
+/** RAG threshold direction */
+export type ThresholdDirection = 'above' | 'below';
+
+/** RAG status */
+export type RagStatus = 'green' | 'amber' | 'red';
+
+/** RAG threshold configuration for a molecular property */
+export interface MolecularPropertyThreshold {
+  id: string;
+  property_name: MolecularPropertyName;
+  property_display: string;
+  direction: ThresholdDirection;
+  direction_display: string;
+  amber_threshold: number;
+  red_threshold: number;
+  enabled: boolean;
+}
+
+/** Molecular property metadata */
+export interface MolecularPropertyMeta {
+  name: MolecularPropertyName;
+  display_name: string;
+  description: string;
+}
+
 /** Concentration display mode for KPI values */
 export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
 
@@ -37,6 +85,8 @@ export interface AggregationRequest {
   group_by_batch?: boolean;
   /** When true, include compounds tested but with no valid KPI values (shown with count=0) */
   include_tested_no_data?: boolean;
+  /** Molecular properties to include as columns in the aggregation table */
+  include_properties?: MolecularPropertyName[];
 }
 
 /** Protocol info in response */
@@ -66,6 +116,8 @@ export interface AggregationMeta {
   group_by_batch?: boolean;
   /** Whether results include compounds tested but with no valid KPI values */
   include_tested_no_data?: boolean;
+  /** Molecular properties included in this response */
+  include_properties?: MolecularPropertyName[];
 }
 
 /** A single compound row in compact format */
@@ -80,6 +132,8 @@ export interface CompactRow {
   batch_number?: number | null;
   /** Protocol aggregations keyed by protocol UUID */
   protocols: Record<string, ProtocolAggregation>;
+  /** Molecular properties (only present when include_properties is specified) */
+  properties?: MolecularPropertyValues;
 }
 
 /** Compact format response (one row per compound) */
@@ -87,6 +141,8 @@ export interface CompactAggregationResponse {
   meta: AggregationMeta;
   protocols: ProtocolInfo[];
   data: CompactRow[];
+  /** RAG thresholds for included properties (only present when include_properties is specified) */
+  property_thresholds?: MolecularPropertyThreshold[];
 }
 
 /** A single row in medium format (one per compound-protocol pair) */
@@ -108,12 +164,16 @@ export interface MediumRow {
   count?: number;
   stdev?: number | null;
   list?: string;
+  /** Molecular properties (only present when include_properties is specified) */
+  properties?: MolecularPropertyValues;
 }
 
 /** Medium format response (one row per compound-protocol pair) */
 export interface MediumAggregationResponse {
   meta: AggregationMeta;
   data: MediumRow[];
+  /** RAG thresholds for included properties (only present when include_properties is specified) */
+  property_thresholds?: MolecularPropertyThreshold[];
 }
 
 /** A single measurement row in long format */
@@ -136,12 +196,16 @@ export interface LongRow {
   /** KPI unit for this measurement (e.g., 'nM', 'uM', 'mM') */
   kpi_unit?: string | null;
   status: AnalysisStatus | null;
+  /** Molecular properties (only present when include_properties is specified) */
+  properties?: MolecularPropertyValues;
 }
 
 /** Long format response (one row per measurement) */
 export interface LongAggregationResponse {
   meta: AggregationMeta;
   data: LongRow[];
+  /** RAG thresholds for included properties (only present when include_properties is specified) */
+  property_thresholds?: MolecularPropertyThreshold[];
 }
 
 /** Union type for aggregation responses */
@@ -166,4 +230,36 @@ export function isLongResponse(
   response: AggregationResponse
 ): response is LongAggregationResponse {
   return !('protocols' in response) && (response.data.length === 0 || 'data_series_id' in response.data[0]);
+}
+
+/**
+ * Determine RAG status for a property value based on thresholds.
+ * @param value The property value to evaluate
+ * @param threshold The threshold configuration for this property
+ * @returns RAG status ('green', 'amber', or 'red')
+ */
+export function getRagStatus(
+  value: number | null | undefined,
+  threshold: MolecularPropertyThreshold | undefined
+): RagStatus {
+  if (value == null || !threshold || !threshold.enabled) {
+    return 'green';
+  }
+
+  if (threshold.direction === 'above') {
+    if (value >= threshold.red_threshold) return 'red';
+    if (value >= threshold.amber_threshold) return 'amber';
+    return 'green';
+  } else {
+    // direction === 'below'
+    if (value <= threshold.red_threshold) return 'red';
+    if (value <= threshold.amber_threshold) return 'amber';
+    return 'green';
+  }
+}
+
+/** Response from /aggregations/molecular_properties/ endpoint */
+export interface MolecularPropertiesResponse {
+  properties: MolecularPropertyMeta[];
+  thresholds: MolecularPropertyThreshold[];
 }
