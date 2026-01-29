@@ -1246,18 +1246,13 @@ class Report(Container):
         self.referenceList[-1].append(obj)
         return obj
 
-    def addTaskReferences(self, taskName=None, drillDown=True):
-        if taskName is None:
-            taskName = self.TASKNAME
+    def addTaskReferences(self):
         if not hasattr(self, 'referenceList'):
             self.referenceList = []
         from ccp4i2.core import CCP4TaskManager
-        helpFileList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(
-            name=taskName, drillDown=drillDown)
-        # print 'Report.addTaskReferences',helpFileList
-        for helpFile in helpFileList:
-            self.referenceList.append(ReferenceGroup())
-            self.referenceList[-1].loadFromMedLine(fileName=helpFile)
+        refFile = CCP4TaskManager.TASKMANAGER().searchReferenceFile(self.TASKNAME)
+        self.referenceList.append(ReferenceGroup())
+        self.referenceList[-1].loadFromMedLine(fileName=refFile)
 
     def getReport(self):
         return self
@@ -3400,9 +3395,7 @@ class ReferenceGroup(Container):
     def loadFromMedLine(self, taskName=None, fileName=None):
         if fileName is None and taskName is not None:
             from ccp4i2.core import CCP4TaskManager
-            fileNameList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName)
-            if len(fileNameList) > 0:
-                fileName = fileNameList[0]
+            fileName = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName)
         if fileName is None or not os.path.exists(fileName):
             self.errReport.append(
                 self.__class__,

@@ -1,4 +1,5 @@
 import argparse
+import glob
 import json
 import os
 import subprocess
@@ -271,8 +272,7 @@ class CTaskManager:
             os.path.join(ccp4i2_root, "pipelines", "*", "wrappers", "*", "script"),
         ]
 
-    def searchReferenceFile(self, name: Optional[str] = None,
-                           cformat: str = 'medline', drillDown: bool = False) -> List[str]:
+    def searchReferenceFile(self, name: str) -> Optional[str]:
         """
         Search for reference/bibliography files for a task.
 
@@ -280,38 +280,19 @@ class CTaskManager:
 
         Args:
             name: Name of the task/plugin (e.g., "refmac", "servalcat_pipe")
-            cformat: Format of reference file (default "medline")
-            drillDown: If True, also search for reference files in subtasks
 
         Returns:
-            List of file paths to reference files found
+            File path to reference file found
         """
-        import glob
-
-        if name is None:
-            return []
-
-        file_list = []
-        search_pattern = f"{name}.{cformat}.txt"
-
         # Search all paths in the search path
         for path_pattern in self.searchPath():
             # Expand the glob pattern in the path (e.g., wrappers/*/script)
             matching_dirs = glob.glob(path_pattern)
             for directory in matching_dirs:
-                full_path = os.path.join(directory, search_pattern)
+                full_path = os.path.join(directory, f"{name}.medline.txt")
                 if os.path.exists(full_path):
-                    file_list.append(full_path)
-
-        if drillDown:
-            # Get subtasks from plugin metadata
-            metadata = self.get_plugin_metadata(name)
-            if metadata:
-                sub_tasks = metadata.get('subTasks', [])
-                for sub_task in sub_tasks:
-                    file_list.extend(self.searchReferenceFile(name=sub_task, cformat=cformat, drillDown=True))
-
-        return file_list
+                    return full_path
+        return None
 
     def getReportAttribute(self, name: str, attribute: str) -> Any:
         """
