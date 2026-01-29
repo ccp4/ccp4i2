@@ -43,9 +43,12 @@ Primary output: Ki (inhibition constant)
 
 Reference: Wang, Z-X. (1995) FEBS Letters 360, 111-114.
 
-Options:
-- fix_top: Set to fix the top asymptote
-- fix_bottom: Set to fix the bottom asymptote''',
+Constraint options:
+- fix_top: Hard-fix the top asymptote to a specific value
+- fix_bottom: Hard-fix the bottom asymptote to a specific value
+- restrain_to_controls: Soft-constrain asymptotes using control values as
+  pseudo data points. Guides fit toward controls while allowing deviation
+  if the data strongly suggests different asymptotes.''',
             'script': wang_script,
             'input_schema': {
                 'type': 'object',
@@ -84,11 +87,21 @@ Options:
                             },
                             'fix_top': {
                                 'type': ['number', 'null'],
-                                'description': 'Fixed top asymptote',
+                                'description': 'Fixed top asymptote (hard constraint)',
                             },
                             'fix_bottom': {
                                 'type': ['number', 'null'],
-                                'description': 'Fixed bottom asymptote',
+                                'description': 'Fixed bottom asymptote (hard constraint)',
+                            },
+                            'restrain_to_controls': {
+                                'type': 'boolean',
+                                'description': 'Soft-constrain asymptotes via pseudo data points',
+                                'default': False,
+                            },
+                            'pseudo_point_offset_logs': {
+                                'type': 'number',
+                                'description': 'Log units offset for pseudo points (default 3.0)',
+                                'default': 3.0,
                             },
                         },
                         'required': ['protein_conc', 'ligand_conc', 'ligand_kd'],
@@ -108,6 +121,7 @@ Options:
                     'flags': {'type': 'array', 'items': {'type': 'string'}},
                     'kpi': {'type': 'string', 'const': 'ki'},
                     'fit_successful': {'type': 'boolean'},
+                    'restraint_applied': {'type': 'boolean', 'description': 'Whether pseudo-point restraints were used'},
                     'tight_binding_params': {
                         'type': 'object',
                         'properties': {

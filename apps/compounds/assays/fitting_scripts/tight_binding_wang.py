@@ -181,10 +181,22 @@ def fit(input_data: dict) -> dict:
                 "protein_conc": 50.0,    # [P]_total in nM - REQUIRED
                 "ligand_conc": 10.0,     # [L]_total in nM - REQUIRED
                 "ligand_kd": 5.0,        # Kd of labeled ligand in nM - REQUIRED
-                "fix_top": null,         # Optional: fix top asymptote
-                "fix_bottom": null,      # Optional: fix bottom asymptote
+                "fix_top": null,         # Optional: fix top asymptote (hard constraint)
+                "fix_bottom": null,      # Optional: fix bottom asymptote (hard constraint)
+                "restrain_to_controls": false,  # Soft-constrain asymptotes via pseudo data points
+                "pseudo_point_offset_logs": 3.0,  # Log units offset for pseudo points
             }
         }
+
+    Constraint modes:
+        - fix_top/fix_bottom: Hard constraints that force asymptotes to exact values.
+          The optimizer has no freedom to deviate from these values.
+
+        - restrain_to_controls: Soft constraints that add pseudo data points at extreme
+          concentrations (±N log units from data range) with response values equal to
+          the controls. This guides the fit toward control values while allowing
+          deviation if the actual data strongly suggests different asymptotes.
+          Useful when controls may contain random errors or outliers.
 
     Returns:
         {
@@ -197,6 +209,7 @@ def fit(input_data: dict) -> dict:
             "flags": [],
             "kpi": "ki",
             "fit_successful": true,
+            "restraint_applied": false,  # Whether pseudo-point restraints were used
             "tight_binding_params": {
                 "protein_conc": 50.0,
                 "ligand_conc": 10.0,
@@ -284,6 +297,17 @@ def fit(input_data: dict) -> dict:
             'error': 'Less than 4 valid data points after filtering',
         }
 
+    # Store original data for R² calculation (exclude pseudo points)
+    original_concentrations = concentrations.copy()
+    original_responses = responses.copy()
+
+    # Handle restraint mode (soft constraints via pseudo data points)
+    # When enabled, adds pseudo data points at extreme concentrations to guide
+    # the fit toward control values without hard-constraining them.
+    restrain_to_controls = parameters.get('restrain_to_controls', False)
+    pseudo_point_offset_logs = parameters.get('pseudo_point_offset_logs', 3.0)
+    restraint_applied = False
+
     # Initial estimates
     resp_min = float(responses.min())
     resp_max = float(responses.max())
@@ -304,6 +328,41 @@ def fit(input_data: dict) -> dict:
     # Final safety check: ensure top > bottom
     if top_init < bottom_init:
         top_init, bottom_init = bottom_init, top_init
+
+    # Handle fixed parameters (hard constraints)
+    fix_top = parameters.get('fix_top')
+    fix_bottom = parameters.get('fix_bottom')
+
+    # Apply restraint mode (soft constraints via pseudo data points)
+    # Only adds pseudo points for parameters that are NOT already hard-fixed.
+    if restrain_to_controls:
+        offset_factor = 10 ** pseudo_point_offset_logs
+        pseudo_concs = []
+        pseudo_resps = []
+
+        # Only add pseudo point for top asymptote if not hard-fixed
+        if fix_top is None:
+            if ctrl_max is not None:
+                # Low concentration pseudo point guides toward top asymptote (max_control)
+                pseudo_concs.append(float(original_concentrations.min()) / offset_factor)
+                pseudo_resps.append(ctrl_max)
+            else:
+                flags.append('restraint_no_max_control')
+
+        # Only add pseudo point for bottom asymptote if not hard-fixed
+        if fix_bottom is None:
+            if ctrl_min is not None:
+                # High concentration pseudo point guides toward bottom asymptote (min_control)
+                pseudo_concs.append(float(original_concentrations.max()) * offset_factor)
+                pseudo_resps.append(ctrl_min)
+            else:
+                flags.append('restraint_no_min_control')
+
+        # Append any pseudo points that were added
+        if pseudo_concs:
+            concentrations = np.append(concentrations, pseudo_concs)
+            responses = np.append(responses, pseudo_resps)
+            restraint_applied = True
 
     # Estimate initial Ki from apparent IC50
     # Rough IC50 estimate at midpoint response
@@ -342,10 +401,6 @@ def fit(input_data: dict) -> dict:
         mid = (top_init + bottom_init) / 2
         top_init = mid + 5
         bottom_init = mid - 5
-
-    # Handle fixed parameters
-    fix_top = parameters.get('fix_top')
-    fix_bottom = parameters.get('fix_bottom')
 
     # Initialize for error reporting
     p0 = None
@@ -482,19 +537,20 @@ def fit(input_data: dict) -> dict:
             }
         }
 
-    # Calculate R-squared
-    y_pred = wang_response_curve(concentrations, ki_fit, P_total, L_total, Kd_L, top_fit, bottom_fit)
-    ss_res = np.sum((responses - y_pred) ** 2)
-    ss_tot = np.sum((responses - np.mean(responses)) ** 2)
+    # Calculate R-squared on ORIGINAL data only (excluding pseudo points for restraints)
+    # This gives a true measure of fit quality to actual experimental data
+    y_pred_original = wang_response_curve(original_concentrations, ki_fit, P_total, L_total, Kd_L, top_fit, bottom_fit)
+    ss_res = np.sum((original_responses - y_pred_original) ** 2)
+    ss_tot = np.sum((original_responses - np.mean(original_responses)) ** 2)
     r_squared = 1 - (ss_res / ss_tot) if ss_tot > 0 else 0
 
     # Calculate apparent IC50 for reference (concentration at 50% effect)
     ic50_apparent = None
     try:
         target_response = (top_fit + bottom_fit) / 2
-        # Binary search for IC50
-        low = float(concentrations.min()) / 100
-        high = float(concentrations.max()) * 100
+        # Binary search for IC50 (use original data range)
+        low = float(original_concentrations.min()) / 100
+        high = float(original_concentrations.max()) * 100
         for _ in range(50):
             mid = np.sqrt(low * high)
             resp = wang_response_curve(
@@ -508,20 +564,20 @@ def fit(input_data: dict) -> dict:
     except Exception:
         pass
 
-    # Generate curve points for plotting
+    # Generate curve points for plotting (use original data range, not pseudo points)
     x_smooth = np.logspace(
-        np.log10(float(concentrations.min()) / 2),
-        np.log10(float(concentrations.max()) * 2),
+        np.log10(float(original_concentrations.min()) / 2),
+        np.log10(float(original_concentrations.max()) * 2),
         100
     )
     y_smooth = wang_response_curve(x_smooth, ki_fit, P_total, L_total, Kd_L, top_fit, bottom_fit)
     curve_points = [[float(x), float(y)] for x, y in zip(x_smooth, y_smooth)]
 
-    # Quality checks
+    # Quality checks (use original data range for these assessments)
     if r_squared < 0.8:
         flags.append('poor_fit')
 
-    if ki_fit < float(concentrations.min()) / 10 or ki_fit > float(concentrations.max()) * 10:
+    if ki_fit < float(original_concentrations.min()) / 10 or ki_fit > float(original_concentrations.max()) * 10:
         flags.append('ki_extrapolated')
 
     if abs(top_fit - bottom_fit) < 10:
@@ -541,6 +597,7 @@ def fit(input_data: dict) -> dict:
         'flags': flags,
         'kpi': 'ki',
         'fit_successful': True,
+        'restraint_applied': restraint_applied,
         'tight_binding_params': {
             'protein_conc': P_total,
             'ligand_conc': L_total,
