@@ -34,6 +34,10 @@ import {
   isMediumResponse,
   ProtocolInfo,
   ConcentrationDisplayMode,
+  MolecularPropertyName,
+  MolecularPropertyThreshold,
+  MolecularPropertyValues,
+  getRagStatus,
 } from '@/types/compounds/aggregation';
 import { MoleculeChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
@@ -98,6 +102,32 @@ const CONCENTRATION_DISPLAY_OPTIONS: { value: ConcentrationDisplayMode; label: s
   { value: 'mM', label: 'mM' },
   { value: 'pConc', label: 'pConc' },
 ];
+
+/** Short labels for molecular properties */
+const PROPERTY_LABELS: Record<MolecularPropertyName, string> = {
+  molecular_weight: 'MW',
+  heavy_atom_count: 'HA',
+  hbd: 'HBD',
+  hba: 'HBA',
+  clogp: 'cLogP',
+  tpsa: 'TPSA',
+  rotatable_bonds: 'RotB',
+  fraction_sp3: 'Fsp3',
+};
+
+/** RAG status colors */
+const RAG_COLORS: Record<string, string> = {
+  green: 'inherit',
+  amber: '#ff9800',
+  red: '#f44336',
+};
+
+/** Format property value for display */
+function formatPropertyValue(value: number | null | undefined): string {
+  if (value == null) return '-';
+  if (Number.isInteger(value)) return String(value);
+  return value.toFixed(2);
+}
 
 interface AggregationTableProps {
   data: AggregationResponse | null | undefined;
@@ -194,6 +224,19 @@ function CompactTable({
 
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
+
+  // Extract property info from response
+  const includeProperties = data.meta.include_properties || [];
+  const propertyThresholds = (data as { property_thresholds?: MolecularPropertyThreshold[] }).property_thresholds || [];
+
+  // Create a map for quick threshold lookup
+  const thresholdMap = useMemo(() => {
+    const map: Record<string, MolecularPropertyThreshold> = {};
+    for (const t of propertyThresholds) {
+      map[t.property_name] = t;
+    }
+    return map;
+  }, [propertyThresholds]);
 
   // Handle sort request
   const handleRequestSort = (property: CompactSortKey) => {
@@ -407,13 +450,13 @@ function CompactTable({
           ref={parentRef}
           sx={{ maxHeight: 600, overflow: 'auto' }}
         >
-          {/* Calculate min width: 3 fixed columns (320px) + protocol columns (100px each) */}
+          {/* Calculate min width: 3 fixed columns (320px) + property columns (70px each) + protocol columns (100px each) */}
           <Table
           stickyHeader
           size="small"
           sx={{
             tableLayout: 'fixed',
-            minWidth: 320 + protocols.length * aggregations.length * 100,
+            minWidth: 320 + includeProperties.length * 70 + protocols.length * aggregations.length * 100,
           }}
         >
           <TableHead>
@@ -448,6 +491,18 @@ function CompactTable({
                   Target
                 </TableSortLabel>
               </TableCell>
+              {/* Molecular property columns */}
+              {includeProperties.map((propName) => (
+                <TableCell
+                  key={propName}
+                  sx={{ fontWeight: 600, width: 70 }}
+                  align="right"
+                >
+                  <Tooltip title={thresholdMap[propName]?.property_display || propName}>
+                    <span>{PROPERTY_LABELS[propName] || propName}</span>
+                  </Tooltip>
+                </TableCell>
+              ))}
               {protocols.map((protocol) => (
                 aggregations.map((agg) => {
                   const sortKey: CompactSortKey = `protocol_${protocol.id}_${agg}`;
@@ -500,7 +555,7 @@ function CompactTable({
               rowVirtualizer.getVirtualItems()[0].start > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={3 + (showBatchColumn ? 1 : 0) + protocols.length * aggregations.length}
+                  colSpan={3 + (showBatchColumn ? 1 : 0) + includeProperties.length + protocols.length * aggregations.length}
                   sx={{
                     height: rowVirtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -559,6 +614,23 @@ function CompactTable({
                   <TableCell>
                     <Typography variant="body2">{row.target_name || '-'}</Typography>
                   </TableCell>
+                  {/* Molecular property cells */}
+                  {includeProperties.map((propName) => {
+                    const propValue = row.properties?.[propName as keyof MolecularPropertyValues] as number | null | undefined;
+                    const threshold = thresholdMap[propName];
+                    const ragStatus = getRagStatus(propValue, threshold);
+                    return (
+                      <TableCell key={propName} align="right">
+                        <Typography
+                          variant="body2"
+                          fontFamily="monospace"
+                          sx={{ color: RAG_COLORS[ragStatus] }}
+                        >
+                          {formatPropertyValue(propValue)}
+                        </Typography>
+                      </TableCell>
+                    );
+                  })}
                   {protocols.map((protocol) => (
                     aggregations.map((agg) => {
                       const protocolData = row.protocols[protocol.id];
@@ -617,7 +689,7 @@ function CompactTable({
             {rowVirtualizer.getVirtualItems().length > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={3 + (showBatchColumn ? 1 : 0) + protocols.length * aggregations.length}
+                  colSpan={3 + (showBatchColumn ? 1 : 0) + includeProperties.length + protocols.length * aggregations.length}
                   sx={{
                     height:
                       rowVirtualizer.getTotalSize() -
