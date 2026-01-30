@@ -28,24 +28,15 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             sx={{ width: "100%" }}
             qualifiers={{ guiLabel: "Ligand geometry provided as" }}
           />
-          <Grid2 container>
-            <Grid2 size={{ xs: 12, sm: 6 }}>
-              <CCP4i2TaskElement
-                {...props}
-                itemName="SMILESIN"
-                qualifiers={{ guiLabel: "Smiles", guiMode: "multiLine" }}
-                sx={{ width: "100%" }}
-                visibility={() => {
-                  return MOLSMILESORSKETCH === "SMILES";
-                }}
-              />
-            </Grid2>
-            <Grid2 size={{ xs: 12, sm: 6 }}>
-              {MOLSMILESORSKETCH === "SMILES" && (
-                <RDKitView smiles={useTaskItem("SMILESIN").value || ""} />
-              )}
-            </Grid2>
-          </Grid2>
+          <CCP4i2TaskElement
+            {...props}
+            itemName="SMILESIN"
+            qualifiers={{ guiLabel: "Smiles" }}
+            sx={{ width: "100%" }}
+            visibility={() => {
+              return MOLSMILESORSKETCH === "SMILES";
+            }}
+          />
           <Grid2 container>
             <Grid2 size={{ xs: 12, sm: 6 }}>
               <CCP4i2TaskElement
