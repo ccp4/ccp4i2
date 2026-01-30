@@ -22,6 +22,7 @@ import { v4 as uuid4 } from "uuid";
 import { CAsuContentSeqElement } from "./casucontentseq";
 import { CColumnGroupElement } from "./ccolumngroup";
 import { CPdbEnsembleItemElement } from "./cpdbensembleitem";
+import { CSMILESStringElement } from "./csmilesstring";
 import { CAsuContentSeqListElement } from "./casucontentseqlist";
 import { useInferredVisibility } from "./hooks/useInferredVisibility";
 import type { ItemClass } from "./types/item-classes";
@@ -103,6 +104,14 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CAtomSelection":
         return (
           <CStringElement key={the_uuid} {...props} qualifiers={qualifiers} />
+        );
+      case "CSMILESString":
+        return (
+          <CSMILESStringElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
         );
       case "CBoolean":
         return (

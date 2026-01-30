@@ -14,7 +14,7 @@
     <ccp4i2_body id="SubstituteLigand">
         <container id="inputData">
             <content id='SMILES'>
-                <className>CString</className>
+                <className>CSMILESString</className>
                 <qualifiers>
                     <toolTip>SMILES string defining the structure of the model to be built</toolTip>
                     <default>CC(C)OC1=C(C=CC(=C1)OC)C2=NC(C(N2C(=O)N3CCNC(=O)C3)C4=CC=C(C=C4)Cl)C5=CC=C(C=C5)Cl</default>
@@ -63,9 +63,10 @@
                 </qualifiers>
             </content>
             <content id='SMILESIN'>
-                <className>CString</className>
+                <className>CSMILESString</className>
                 <qualifiers>
                     <minLength>1</minLength>
+                    <guiLabel>SMILES string</guiLabel>
                     <guiMode>multiLine</guiMode>
                 </qualifiers>
             </content>

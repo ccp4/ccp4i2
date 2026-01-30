@@ -46,9 +46,10 @@
                 </qualifiers>
             </content>
             <content id='SMILESIN'>
-                <className>CString</className>
+                <className>CSMILESString</className>
                 <qualifiers>
                     <minLength>1</minLength>
+                    <guiLabel>SMILES string</guiLabel>
                     <guiMode>multiLine</guiMode>
                 </qualifiers>
             </content>

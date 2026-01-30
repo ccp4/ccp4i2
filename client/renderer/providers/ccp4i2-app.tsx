@@ -32,12 +32,12 @@ export const CCP4i2App = (props: PropsWithChildren) => {
   const [projectId, setProjectId] = useState<number | null>(null);
   const [jobId, setJobId] = useState<number | null>(null);
   const [cootModule, setCootModule] = useState<any | null>(null);
-  const [rdkitModule, setRdkitModule] = useState<any | null>(null);
   const [jobPanelSize, setJobPanelSize] = useState<number>(70);
   const [devMode, setDevMode] = useState<boolean>(true);
   const [activeDragItem, setActiveDragItem] = useState<Job | File | null>(null);
 
   // Memoize context value to prevent unnecessary re-renders of consumers
+  // Note: RDKit module is provided separately via RDKitProvider (useRDKit hook)
   const contextValue = useMemo(
     () => ({
       projectId,
@@ -46,8 +46,6 @@ export const CCP4i2App = (props: PropsWithChildren) => {
       setJobId,
       cootModule,
       setCootModule,
-      rdkitModule,
-      setRdkitModule,
       jobPanelSize,
       setJobPanelSize,
       devMode,
@@ -55,7 +53,7 @@ export const CCP4i2App = (props: PropsWithChildren) => {
       activeDragItem,
       setActiveDragItem,
     }),
-    [projectId, jobId, cootModule, rdkitModule, jobPanelSize, devMode, activeDragItem]
+    [projectId, jobId, cootModule, jobPanelSize, devMode, activeDragItem]
   );
 
   return (

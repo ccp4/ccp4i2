@@ -10816,7 +10816,9 @@
         "menuText": [],
         "onlyEnumerators": false,
         "charWidth": -1,
-        "allowedCharsCode": 0
+        "allowedCharsCode": 0,
+        "patternRegex": "^\\S+$",
+        "patternErrorMessage": "Word must not contain whitespace"
       },
       "QUALIFIERS_ORDER": [
         "minLength",
@@ -10824,7 +10826,9 @@
         "onlyEnumerators",
         "enumerators",
         "menuText",
-        "allowedCharsCode"
+        "allowedCharsCode",
+        "patternRegex",
+        "patternErrorMessage"
       ],
       "QUALIFIERS_DEFINITION": {
         "default": {
@@ -10853,11 +10857,19 @@
         "allowedCharsCode": {
           "type": "<class 'int'>",
           "description": "Flag if the text is limited to set of allowed characters"
+        },
+        "patternRegex": {
+          "type": "<class 'str'>",
+          "description": "Regular expression pattern that the value must match"
+        },
+        "patternErrorMessage": {
+          "type": "<class 'str'>",
+          "description": "Custom error message when patternRegex validation fails"
         }
       },
       "ERROR_CODES": {
-        "201": {
-          "description": "Word contains white space item"
+        "105": {
+          "description": "Word contains white space"
         }
       }
     },
@@ -11339,7 +11351,7 @@
       "module": "ccp4i2.data_scan.CCP4Data",
       "class": "CUUID",
       "file_path": "/Applications/ccp4-9/Frameworks/Python.framework/Versions/3.9/lib/python3.9/site-packages/ccp4i2/core/CCP4Data.py",
-      "docstring": "A string",
+      "docstring": "A UUID string in standard format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)",
       "base_classes": [
         "CString"
       ],
@@ -11363,7 +11375,9 @@
         "menuText": [],
         "onlyEnumerators": false,
         "charWidth": -1,
-        "allowedCharsCode": 0
+        "allowedCharsCode": 0,
+        "patternRegex": "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        "patternErrorMessage": "Invalid UUID format (expected xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)"
       },
       "QUALIFIERS_ORDER": [
         "minLength",
@@ -11371,7 +11385,9 @@
         "onlyEnumerators",
         "enumerators",
         "menuText",
-        "allowedCharsCode"
+        "allowedCharsCode",
+        "patternRegex",
+        "patternErrorMessage"
       ],
       "QUALIFIERS_DEFINITION": {
         "default": {
@@ -11400,20 +11416,102 @@
         "allowedCharsCode": {
           "type": "<class 'int'>",
           "description": "Flag if the text is limited to set of allowed characters"
+        },
+        "patternRegex": {
+          "type": "<class 'str'>",
+          "description": "Regular expression pattern that the value must match"
+        },
+        "patternErrorMessage": {
+          "type": "<class 'str'>",
+          "description": "Custom error message when patternRegex validation fails"
         }
       },
       "ERROR_CODES": {
-        "101": {
-          "description": "String too short"
+        "105": {
+          "description": "Invalid UUID format"
+        }
+      }
+    },
+    "CSMILESString": {
+      "module": "ccp4i2.core.CCP4Data",
+      "class": "CSMILESString",
+      "file_path": "server/ccp4i2/core/CCP4Data.py",
+      "docstring": "A SMILES (Simplified Molecular Input Line Entry System) string for representing chemical structures",
+      "base_classes": [
+        "CString"
+      ],
+      "immediate_parent": "CString",
+      "mro": [
+        "CSMILESString",
+        "CString",
+        "CData"
+      ],
+      "CONTENTS": {},
+      "CONTENTS_ORDER": [],
+      "QUALIFIERS": {
+        "minLength": null,
+        "maxLength": null,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": false,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+        "patternRegex": "^[A-Za-z0-9@+\\-\\[\\]()=#/\\\\%.*:]+$",
+        "patternErrorMessage": "Invalid characters in SMILES string"
+      },
+      "QUALIFIERS_ORDER": [
+        "minLength",
+        "maxLength",
+        "onlyEnumerators",
+        "enumerators",
+        "menuText",
+        "allowedCharsCode",
+        "patternRegex",
+        "patternErrorMessage"
+      ],
+      "QUALIFIERS_DEFINITION": {
+        "default": {
+          "type": "<class 'str'>"
         },
-        "102": {
-          "description": "String too long"
+        "maxLength": {
+          "type": "<class 'int'>",
+          "description": "Maximum length of string"
         },
-        "103": {
-          "description": "not one of limited allowed values"
+        "minLength": {
+          "type": "<class 'int'>",
+          "description": "Minimum length of string"
         },
-        "104": {
-          "description": "Contains disallowed characters"
+        "enumerators": {
+          "type": "<class 'list'>",
+          "description": "A list of allowed or recommended values for string"
+        },
+        "menuText": {
+          "type": "<class 'list'>",
+          "description": "A list of strings equivalent to the enumerators that will appear in the GUI"
+        },
+        "onlyEnumerators": {
+          "type": "<class 'bool'>",
+          "description": "If this is true then the enumerators are obligatory - otherwise they are treated as recommended values"
+        },
+        "allowedCharsCode": {
+          "type": "<class 'int'>",
+          "description": "Flag if the text is limited to set of allowed characters"
+        },
+        "patternRegex": {
+          "type": "<class 'str'>",
+          "description": "Regular expression pattern that the value must match"
+        },
+        "patternErrorMessage": {
+          "type": "<class 'str'>",
+          "description": "Custom error message when patternRegex validation fails"
+        }
+      },
+      "ERROR_CODES": {
+        "105": {
+          "description": "Value does not match required pattern"
+        },
+        "201": {
+          "description": "Invalid SMILES string"
         }
       }
     },

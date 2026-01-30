@@ -1,35 +1,75 @@
-import { useEffect, useRef, useState } from "react";
-import { useCCP4i2Window } from "../app-context";
+import { useEffect, useState } from "react";
+import { useRDKit } from "../providers/rdkit-provider";
 import { Typography } from "@mui/material";
 
 interface RDKitViewProps {
   smiles: string;
+  width?: number;
+  height?: number;
 }
-export const RDKitView: React.FC<RDKitViewProps> = ({ smiles }) => {
-  const { rdkitModule } = useCCP4i2Window();
+
+/**
+ * RDKitView - Renders a molecule structure from a SMILES string using RDKit WASM.
+ */
+export const RDKitView: React.FC<RDKitViewProps> = ({
+  smiles,
+  width = 250,
+  height = 250
+}) => {
+  const { rdkitModule, isLoading, error: rdkitError } = useRDKit();
   const [dataURI, setDataURI] = useState<string | null>(null);
-  const lineSkipper: RegExp = /\>([\s\S]*)$/;
-  const theBlob = useRef<Blob | undefined>(undefined);
 
   useEffect(() => {
-    if (!rdkitModule) return;
+    if (!rdkitModule || !smiles) {
+      setDataURI(null);
+      return;
+    }
+
+    let currentUrl: string | null = null;
+
     try {
       const mol = rdkitModule.get_mol(smiles);
-      console.log("RDKit module is ready and SMILES processed:", mol);
-      let longSvg = mol.get_svg();
-      mol.delete();
-      //let trimmedSvg = lineSkipper.exec(longSvg)[1]
-      theBlob.current = new Blob([longSvg], { type: "image/svg+xml" });
-      setDataURI(URL.createObjectURL(theBlob.current));
+      if (mol) {
+        const svg = mol.get_svg(width, height);
+        mol.delete();
+        const blob = new Blob([svg], { type: "image/svg+xml" });
+        currentUrl = URL.createObjectURL(blob);
+        setDataURI(currentUrl);
+      } else {
+        setDataURI(null);
+      }
     } catch (error) {
       console.error("RDKit error:", error);
       setDataURI(null);
     }
-  }, [smiles, rdkitModule]);
+
+    // Cleanup blob URL when component unmounts or smiles changes
+    return () => {
+      if (currentUrl) {
+        URL.revokeObjectURL(currentUrl);
+      }
+    };
+  }, [smiles, rdkitModule, width, height]);
+
+  if (rdkitError) {
+    return (
+      <Typography sx={{ color: "error.main" }}>
+        Failed to load molecule viewer
+      </Typography>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <Typography sx={{ color: "text.secondary" }}>
+        Loading molecule viewer...
+      </Typography>
+    );
+  }
 
   return dataURI ? (
-    <img src={dataURI} style={{ height: 250, width: 250 }} />
+    <img src={dataURI} alt="Molecule structure" style={{ height, width }} />
   ) : (
-    <Typography sx={{ color: "text.error" }}>No valid SMILES </Typography>
+    <Typography sx={{ color: "error.main" }}>No valid SMILES</Typography>
   );
 };

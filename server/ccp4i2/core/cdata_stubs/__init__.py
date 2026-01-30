@@ -11,7 +11,7 @@ from .CCP4Annotation import CBibReferenceStub, CBibReferenceGroupStub, CFontStub
 from .CCP4ComFilePatchManager import CPatchDefinitionStub
 from .CCP4CootData import CCootHistoryDataFileStub
 from .CCP4CustomTaskManager import CCustomTaskFileFunctionStub, CCustomTaskParamListStub, CCustomComFileStub, CCustomTaskDefinitionStub, CCustomComFileListStub, CCustomTaskParamStub
-from .CCP4Data import COneWordStub, CJobTitleStub, CJobStatusStub, CCollectionStub, CI2DataTypeStub, CRangeSelectionStub, CUUIDStub, CPatchSelectionStub, COutputFileListStub, CRangeStub, CBaseDataStub, CDictStub, CFollowFromJobStub, CFloatRangeStub, CIntRangeStub
+from .CCP4Data import COneWordStub, CJobTitleStub, CJobStatusStub, CCollectionStub, CI2DataTypeStub, CRangeSelectionStub, CUUIDStub, CSMILESStringStub, CPatchSelectionStub, COutputFileListStub, CRangeStub, CBaseDataStub, CDictStub, CFollowFromJobStub, CFloatRangeStub, CIntRangeStub
 from .CCP4File import CProjectIdStub, CVersionStub, CMmcifDataStub, CExePathStub, CProjectNameStub, CFileFunctionStub, CExportedFileStub, CExportedFileListStub, CExePathListStub, CSearchPathStub, CSearchPathListStub, CFilePathStub, CI2XmlHeaderStub, CXmgrDataFileStub, CTextDataFileStub, CDataReflFileStub, CPostscriptDataFileStub, CYmlFileStub, CXmlDataFileStub, CMmcifDataFileStub, CPDFDataFileStub, CSceneDataFileStub, CI2XmlDataFileStub, CEBIValidationXMLDataFileStub
 from .CCP4ImportedJobManager import CImportedJobDataListStub, CImportedJobDataStub, CImportedJobDefinitionStub
 from .CCP4MathsData import CMatrix33Stub, CXyzBoxStub, CAngleStub, CXyzStub, CEulerRotationStub, CTransformationStub
@@ -52,6 +52,7 @@ __all__ = [
     "CI2DataTypeStub",
     "CRangeSelectionStub",
     "CUUIDStub",
+    "CSMILESStringStub",
     "CPatchSelectionStub",
     "COutputFileListStub",
     "CRangeStub",

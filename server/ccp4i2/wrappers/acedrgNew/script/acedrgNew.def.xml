@@ -101,7 +101,10 @@
                     </qualifiers>
                 </content>
             <content id='SMILESIN'>
-                <className>CString</className>
+                <className>CSMILESString</className>
+                <qualifiers>
+                    <guiLabel>SMILES string</guiLabel>
+                </qualifiers>
             </content>
             <content id='METAL_STRUCTURE'>
                 <className>CPdbDataFile</className>

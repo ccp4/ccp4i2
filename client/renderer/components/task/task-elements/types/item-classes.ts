@@ -16,6 +16,7 @@ export type SimpleItemClass =
   | "CWavelength"
   | "CString"
   | "CSequenceString"
+  | "CSMILESString"
   | "CFilePath"
   | "COneWord"
   | "CCrystalName"
@@ -120,6 +121,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CWavelength",
     "CString",
     "CSequenceString",
+    "CSMILESString",
     "CFilePath",
     "COneWord",
     "CCrystalName",
@@ -196,6 +198,7 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   CWavelength: "CFloatElement",
   CString: "CStringElement",
   CSequenceString: "CStringElement",
+  CSMILESString: "CSMILESStringElement",
   CFilePath: "CStringElement",
   COneWord: "CStringElement",
   CCrystalName: "CStringElement",

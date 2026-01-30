@@ -10,8 +10,6 @@ interface CCP4i2Context {
   setJobPanelSize?: (size: number) => void;
   cootModule?: any | null;
   setCootModule?: (module: any | null) => void;
-  rdkitModule?: any | null;
-  setRdkitModule?: (module: any | null) => void;
   devMode: boolean;
   setDevMode: (devMode: boolean) => void;
   activeDragItem: Job | File | null;
@@ -26,8 +24,6 @@ export const CCP4i2Context = createContext<CCP4i2Context>({
   setJobPanelSize: () => {},
   cootModule: null,
   setCootModule: () => {},
-  rdkitModule: null,
-  setRdkitModule: () => {},
   devMode: true,
   setDevMode: () => {},
   activeDragItem: null,

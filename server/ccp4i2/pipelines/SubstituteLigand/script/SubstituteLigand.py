@@ -34,11 +34,34 @@ class SubstituteLigand(CPluginScript):
         self.xmlroot = etree.Element('SubstituteLigand')
         self.obsToUse = None
         self.freerToUse = None
-    
+
         if self.container.controlParameters.OBSAS.__str__() != 'UNMERGED':
             #remove any (potentially invalid) entries from UNMERGED list
             while len(self.container.inputData.UNMERGEDFILES)>0:
                 self.container.inputData.UNMERGEDFILES.remove(self.container.inputData.UNMERGEDFILES[-1])
+
+    def validity(self):
+        """Filter CSMILESString validation errors when mode is not SMILES."""
+        from ccp4i2.core import CCP4ErrorHandling
+        error = super(SubstituteLigand, self).validity()
+        mode = str(self.container.controlParameters.LIGANDAS) if self.container.controlParameters.LIGANDAS.isSet() else ""
+        if mode != 'SMILES':
+            # Filter out SMILES validation errors when not using SMILES input
+            filtered = CCP4ErrorHandling.CErrorReport()
+            for err in error.getErrors():
+                err_class = err.get('class', '')
+                err_name = err.get('name', '')
+                if err_class == 'CSMILESString' and ('SMILES' in err_name or 'SMILESIN' in err_name):
+                    continue
+                filtered.append(
+                    err.get('class', ''),
+                    err.get('code', 0),
+                    err.get('details', ''),
+                    err.get('name', ''),
+                    err.get('severity', 0)
+                )
+            return filtered
+        return error
 
     def process(self):
         invalidFiles = self.checkInputData()

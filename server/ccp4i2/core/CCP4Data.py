@@ -8,7 +8,7 @@ This file is safe to edit - add your implementation code here.
 from __future__ import annotations
 from typing import Optional, Any
 
-from ccp4i2.core.cdata_stubs.CCP4Data import CBaseDataStub, CCollectionStub, CDictStub, CFloatRangeStub, CFollowFromJobStub, CI2DataTypeStub, CIntRangeStub, CJobStatusStub, CJobTitleStub, COneWordStub, COutputFileListStub, CPatchSelectionStub, CRangeStub, CRangeSelectionStub, CUUIDStub
+from ccp4i2.core.cdata_stubs.CCP4Data import CBaseDataStub, CCollectionStub, CDictStub, CFloatRangeStub, CFollowFromJobStub, CI2DataTypeStub, CIntRangeStub, CJobStatusStub, CJobTitleStub, COneWordStub, COutputFileListStub, CPatchSelectionStub, CRangeStub, CRangeSelectionStub, CSMILESStringStub, CUUIDStub
 
 # Re-export fundamental types for legacy code compatibility
 # Many legacy files use "CCP4Data.CList", "CCP4Data.CString", etc.
@@ -381,11 +381,133 @@ class CRangeSelection(CRangeSelectionStub):
 class CUUID(CUUIDStub):
     """
     A string
-    
+
     Extends CUUIDStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
     # Add your methods here
     pass
+
+
+class CSMILESString(CSMILESStringStub):
+    """
+    A SMILES (Simplified Molecular Input Line Entry System) string.
+
+    SMILES is a line notation for representing chemical structures.
+    Validation uses RDKit to parse and verify the SMILES string.
+
+    Examples:
+        - "CCO" (ethanol)
+        - "c1ccccc1" (benzene)
+        - "CC(=O)O" (acetic acid)
+        - "CC(C)Cc1ccc(cc1)[C@@H](C)C(=O)O" (ibuprofen)
+    """
+
+    # Cache for RDKit availability check
+    _rdkit_available = None
+
+    @classmethod
+    def _check_rdkit(cls) -> bool:
+        """Check if RDKit is available (cached)."""
+        if cls._rdkit_available is None:
+            try:
+                from rdkit import Chem
+                cls._rdkit_available = True
+            except ImportError:
+                cls._rdkit_available = False
+        return cls._rdkit_available
+
+    def validity(self):
+        """
+        Validate the SMILES string.
+
+        First performs base CString validation (pattern regex for basic character check).
+        Then uses RDKit to validate that the SMILES can be parsed into a valid molecule.
+
+        Returns:
+            CErrorReport containing validation errors/warnings
+        """
+        from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
+
+        # First call parent validation (handles patternRegex check for basic characters)
+        report = super().validity()
+
+        # If parent validation already found errors, or value is not set, return early
+        if report.maxSeverity() >= SEVERITY_ERROR:
+            return report
+
+        # Skip RDKit validation if value is not set or empty
+        val = self.value
+        if not val or not self.isSet():
+            return report
+
+        # Validate with RDKit if available
+        if self._check_rdkit():
+            try:
+                from rdkit import Chem
+                mol = Chem.MolFromSmiles(val)
+                if mol is None:
+                    report.append(
+                        "CSMILESString", 201,
+                        f"Invalid SMILES: RDKit could not parse '{val}'",
+                        self.object_path() if hasattr(self, 'object_path') else self.objectName(),
+                        SEVERITY_ERROR
+                    )
+            except Exception as e:
+                report.append(
+                    "CSMILESString", 201,
+                    f"Error validating SMILES: {str(e)}",
+                    self.object_path() if hasattr(self, 'object_path') else self.objectName(),
+                    SEVERITY_ERROR
+                )
+        else:
+            # RDKit not available - add a warning but don't fail
+            # The patternRegex check already filtered obviously invalid strings
+            report.append(
+                "CSMILESString", 202,
+                "RDKit not available - SMILES validation limited to character pattern only",
+                self.object_path() if hasattr(self, 'object_path') else self.objectName(),
+                SEVERITY_WARNING
+            )
+
+        return report
+
+    def to_canonical(self) -> Optional[str]:
+        """
+        Convert the SMILES to canonical form using RDKit.
+
+        Canonical SMILES provides a unique, standardized representation
+        of the molecule that can be used for comparison and deduplication.
+
+        Returns:
+            Canonical SMILES string, or None if conversion fails or RDKit unavailable
+        """
+        if not self._check_rdkit() or not self.value:
+            return None
+
+        try:
+            from rdkit import Chem
+            mol = Chem.MolFromSmiles(self.value)
+            if mol is not None:
+                return Chem.MolToSmiles(mol, canonical=True)
+        except Exception:
+            pass
+        return None
+
+    def to_mol(self):
+        """
+        Convert the SMILES to an RDKit Mol object.
+
+        Returns:
+            RDKit Mol object, or None if conversion fails or RDKit unavailable
+        """
+        if not self._check_rdkit() or not self.value:
+            return None
+
+        try:
+            from rdkit import Chem
+            return Chem.MolFromSmiles(self.value)
+        except Exception:
+            return None
 

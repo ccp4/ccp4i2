@@ -832,7 +832,8 @@ class CFloat(CData):
         "101": {"description": "String too short"},
         "102": {"description": "String too long"},
         "103": {"description": "not one of limited allowed values"},
-        "104": {"description": "Contains disallowed characters"}
+        "104": {"description": "Contains disallowed characters"},
+        "105": {"description": "Value does not match required pattern"}
     },
     qualifiers={
         "minLength": None,
@@ -859,7 +860,9 @@ class CFloat(CData):
         "menuText": {"type": list, "description": "A list of strings equivalent to the enumerators that will appear in the GUI"},
         "onlyEnumerators": {"type": bool, "description": "If this is true then the enumerators are obligatory - otherwise they are treated as recommended values"},
         "charWidth": {"type": int, "description": "Width of the string in characters (for GUI layout)"},
-        "allowedCharsCode": {"type": int, "description": "Flag if the text is limited to set of allowed characters"}
+        "allowedCharsCode": {"type": int, "description": "Flag if the text is limited to set of allowed characters"},
+        "patternRegex": {"type": str, "description": "Regular expression pattern that the value must match"},
+        "patternErrorMessage": {"type": str, "description": "Custom error message when patternRegex validation fails"}
     },
     gui_label="CString",
 )
@@ -1084,6 +1087,21 @@ class CString(CData):
                 report.append(
                     "CString", 103,
                     f"Value '{val}' not in allowed values {enumerators}",
+                    self.objectName(), SEVERITY_ERROR
+                )
+
+        # Check patternRegex if set
+        pattern_regex = self.get_qualifier("patternRegex")
+        if pattern_regex and val:
+            import re
+            if not re.fullmatch(pattern_regex, val):
+                # Use custom error message if provided, otherwise generic
+                pattern_error = self.get_qualifier("patternErrorMessage")
+                if not pattern_error:
+                    pattern_error = f"Value does not match required pattern"
+                report.append(
+                    self.__class__.__name__, 105,
+                    pattern_error,
                     self.objectName(), SEVERITY_ERROR
                 )
 

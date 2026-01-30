@@ -29,6 +29,29 @@ class acedrgNew(CPluginScript):
         self.xmlroot = etree.Element('Acedrg')
         self.smileStrCode = None
 
+    def validity(self):
+        """Filter CSMILESString validation errors when mode is not SMILES."""
+        from ccp4i2.core import CCP4ErrorHandling
+        error = super(acedrgNew, self).validity()
+        mode = str(self.container.inputData.MOLORSMILES) if self.container.inputData.MOLORSMILES.isSet() else ""
+        if mode != 'SMILES':
+            # Filter out SMILES validation errors when not using SMILES input
+            filtered = CCP4ErrorHandling.CErrorReport()
+            for err in error.getErrors():
+                err_class = err.get('class', '')
+                err_name = err.get('name', '')
+                if err_class == 'CSMILESString' and 'SMILESIN' in err_name:
+                    continue
+                filtered.append(
+                    err.get('class', ''),
+                    err.get('code', 0),
+                    err.get('details', ''),
+                    err.get('name', ''),
+                    err.get('severity', 0)
+                )
+            return filtered
+        return error
+
     def processInputFiles(self):
         from rdkit import Chem
         from rdkit.Chem import AllChem

@@ -47,7 +47,10 @@
                     </qualifiers>
                 </content>
             <content id='SMILESIN'>
-                <className>CString</className>
+                <className>CSMILESString</className>
+                <qualifiers>
+                    <guiLabel>SMILES string</guiLabel>
+                </qualifiers>
             </content>
         </container>
         <container id="outputData">

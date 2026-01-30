@@ -18,8 +18,8 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
 
 @cdata_class(
     error_codes={
-        "201": {
-            "description": "Word contains white space item"
+        "105": {
+            "description": "Word contains white space"
         }
     },
     qualifiers={
@@ -30,6 +30,8 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
         "onlyEnumerators": False,
         "charWidth": -1,
         "allowedCharsCode": 0,
+        "patternRegex": r"^\S+$",
+        "patternErrorMessage": "Word must not contain whitespace",
     },
     qualifiers_order=[
         'minLength',
@@ -37,7 +39,9 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
         'onlyEnumerators',
         'enumerators',
         'menuText',
-        'allowedCharsCode'],
+        'allowedCharsCode',
+        'patternRegex',
+        'patternErrorMessage'],
     qualifiers_definition={
         "default": {'type': 'str'},
         "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
@@ -46,6 +50,8 @@ from ccp4i2.core.base_object.fundamental_types import CFloat, CInt, CList, CStri
         "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
         "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
         "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
+        "patternRegex": {'type': 'str', 'description': 'Regular expression pattern that the value must match'},
+        "patternErrorMessage": {'type': 'str', 'description': 'Custom error message when patternRegex validation fails'},
     },
 )
 class COneWordStub(CString):
@@ -448,17 +454,8 @@ class CRangeSelectionStub(CString):
 
 @cdata_class(
     error_codes={
-        "101": {
-            "description": "String too short"
-        },
-        "102": {
-            "description": "String too long"
-        },
-        "103": {
-            "description": "not one of limited allowed values"
-        },
-        "104": {
-            "description": "Contains disallowed characters"
+        "105": {
+            "description": "Invalid UUID format"
         }
     },
     qualifiers={
@@ -469,6 +466,8 @@ class CRangeSelectionStub(CString):
         "onlyEnumerators": False,
         "charWidth": -1,
         "allowedCharsCode": 0,
+        "patternRegex": r"^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+        "patternErrorMessage": "Invalid UUID format (expected xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)",
     },
     qualifiers_order=[
         'minLength',
@@ -476,7 +475,9 @@ class CRangeSelectionStub(CString):
         'onlyEnumerators',
         'enumerators',
         'menuText',
-        'allowedCharsCode'],
+        'allowedCharsCode',
+        'patternRegex',
+        'patternErrorMessage'],
     qualifiers_definition={
         "default": {'type': 'str'},
         "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
@@ -485,11 +486,13 @@ class CRangeSelectionStub(CString):
         "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
         "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
         "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
+        "patternRegex": {'type': 'str', 'description': 'Regular expression pattern that the value must match'},
+        "patternErrorMessage": {'type': 'str', 'description': 'Custom error message when patternRegex validation fails'},
     },
 )
 class CUUIDStub(CString):
     """
-    A string
+    A UUID string in standard format (xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
 
     This is a pure data class stub. Extend it in core/CUUID.py
     to add methods and implementation-specific functionality.
@@ -498,6 +501,79 @@ class CUUIDStub(CString):
     def __init__(self, parent=None, name=None, **kwargs):
         """
         Initialize CUUIDStub.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+
+
+@cdata_class(
+    error_codes={
+        "105": {
+            "description": "Value does not match required pattern"
+        },
+        "201": {
+            "description": "Invalid SMILES string"
+        }
+    },
+    qualifiers={
+        "minLength": None,
+        "maxLength": None,
+        "enumerators": [],
+        "menuText": [],
+        "onlyEnumerators": False,
+        "charWidth": -1,
+        "allowedCharsCode": 0,
+        # Basic pattern for SMILES: letters, digits, and common SMILES characters
+        # Real validation is done via RDKit in the implementation class
+        "patternRegex": r"^[A-Za-z0-9@+\-\[\]()=#/\\%.*:]+$",
+        "patternErrorMessage": "Invalid characters in SMILES string",
+    },
+    qualifiers_order=[
+        'minLength',
+        'maxLength',
+        'onlyEnumerators',
+        'enumerators',
+        'menuText',
+        'allowedCharsCode',
+        'patternRegex',
+        'patternErrorMessage'],
+    qualifiers_definition={
+        "default": {'type': 'str'},
+        "maxLength": {'type': 'int', 'description': 'Maximum length of string'},
+        "minLength": {'type': 'int', 'description': 'Minimum length of string'},
+        "enumerators": {'type': 'list', 'description': 'A list of allowed or recommended values for string'},
+        "menuText": {'type': 'list', 'description': 'A list of strings equivalent to the enumerators that will appear in the GUI'},
+        "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
+        "allowedCharsCode": {'type': 'int', 'description': 'Flag if the text is limited to set of allowed characters'},
+        "patternRegex": {'type': 'str', 'description': 'Regular expression pattern that the value must match'},
+        "patternErrorMessage": {'type': 'str', 'description': 'Custom error message when patternRegex validation fails'},
+    },
+)
+class CSMILESStringStub(CString):
+    """
+    A SMILES (Simplified Molecular Input Line Entry System) string.
+
+    SMILES is a line notation for representing chemical structures.
+    Examples:
+        - "CCO" (ethanol)
+        - "c1ccccc1" (benzene)
+        - "CC(=O)O" (acetic acid)
+        - "CC(C)Cc1ccc(cc1)[C@@H](C)C(=O)O" (ibuprofen)
+
+    Basic character validation is done via patternRegex.
+    Full structural validation is done via RDKit in the implementation class.
+
+    This is a pure data class stub. Extend it in core/CSMILESString.py
+    to add methods and implementation-specific functionality.
+    """
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CSMILESStringStub.
 
         Args:
             parent: Parent object in hierarchy
