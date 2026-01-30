@@ -1,7 +1,6 @@
 "use client";
 import { PropsWithChildren } from "react";
 import { CootProvider } from "../../../providers/coot-provider";
-import { RDKitProvider } from "../../../providers/rdkit-provider";
 import { RunningProcessesProvider } from "../../../providers/running-processes";
 import { DraggableContext } from "../../../providers/draggable-context";
 import { NavigationShortcutsProvider } from "../../../providers/navigation-shortcuts-provider";
@@ -17,38 +16,36 @@ import { Panel, PanelGroup } from "react-resizable-panels";
 export default function JobLayout(props: PropsWithChildren) {
   return (
     <CootProvider>
-      <RDKitProvider>
-        <RunningProcessesProvider>
-          <DraggableContext>
-            <NavigationShortcutsProvider>
-              <FileSystemFileBrowserProvider>
-                <FilePreviewProvider>
-                  <JobMenuProvider>
-                    <JobTabProvider>
-                      <FileMenuProvider>
-                        <MenuBar />
-                        {/* Children components will be rendered here */}
-                        <Stack
-                          spacing={2}
-                          sx={{
-                            height: "calc(100vh - 4rem)",
-                            paddingTop: "1rem",
-                            width: "100%",
-                          }}
-                        >
-                          <PanelGroup direction="horizontal">
-                            <Panel>{props.children}</Panel>
-                          </PanelGroup>
-                        </Stack>{" "}
-                      </FileMenuProvider>
-                    </JobTabProvider>
-                  </JobMenuProvider>
-                </FilePreviewProvider>
-              </FileSystemFileBrowserProvider>
-            </NavigationShortcutsProvider>
-          </DraggableContext>
-        </RunningProcessesProvider>
-      </RDKitProvider>
+      <RunningProcessesProvider>
+        <DraggableContext>
+          <NavigationShortcutsProvider>
+            <FileSystemFileBrowserProvider>
+              <FilePreviewProvider>
+                <JobMenuProvider>
+                  <JobTabProvider>
+                    <FileMenuProvider>
+                      <MenuBar />
+                      {/* Children components will be rendered here */}
+                      <Stack
+                        spacing={2}
+                        sx={{
+                          height: "calc(100vh - 4rem)",
+                          paddingTop: "1rem",
+                          width: "100%",
+                        }}
+                      >
+                        <PanelGroup direction="horizontal">
+                          <Panel>{props.children}</Panel>
+                        </PanelGroup>
+                      </Stack>{" "}
+                    </FileMenuProvider>
+                  </JobTabProvider>
+                </JobMenuProvider>
+              </FilePreviewProvider>
+            </FileSystemFileBrowserProvider>
+          </NavigationShortcutsProvider>
+        </DraggableContext>
+      </RunningProcessesProvider>
     </CootProvider>
   );
 }
