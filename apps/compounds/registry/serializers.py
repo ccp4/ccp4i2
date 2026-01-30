@@ -116,7 +116,7 @@ class SavedAggregationViewSerializer(serializers.Serializer):
         allow_blank=True
     )
     output_format = serializers.ChoiceField(
-        choices=['compact', 'medium', 'long'],
+        choices=['compact', 'medium', 'long', 'pivot', 'cards'],
         default='compact'
     )
     aggregations = serializers.ListField(
