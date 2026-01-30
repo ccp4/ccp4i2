@@ -73,7 +73,7 @@ export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
 export interface SavedAggregationView {
   protocol_names: string[];
   compound_search: string;
-  output_format: 'compact' | 'medium' | 'long';
+  output_format: 'compact' | 'medium' | 'long' | 'pivot' | 'cards';
   aggregations: ('geomean' | 'count' | 'stdev' | 'list')[];
   status: 'valid' | 'invalid' | 'unassigned' | '';
   /** Concentration display mode (default: 'natural') */

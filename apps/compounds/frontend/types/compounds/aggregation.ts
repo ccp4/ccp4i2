@@ -60,7 +60,7 @@ export interface MolecularPropertyMeta {
 export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
 
 /** Output format options */
-export type OutputFormat = 'compact' | 'medium' | 'long';
+export type OutputFormat = 'compact' | 'medium' | 'long' | 'pivot' | 'cards';
 
 /** Filter predicates for querying data series */
 export interface Predicates {
@@ -102,6 +102,8 @@ export interface ProtocolAggregation {
   geomean?: number | null;
   count?: number;
   stdev?: number | null;
+  /** Standard deviation in log10 space, for pConc display */
+  stdev_log?: number | null;
   list?: string;
 }
 
@@ -163,6 +165,8 @@ export interface MediumRow {
   geomean?: number | null;
   count?: number;
   stdev?: number | null;
+  /** Standard deviation in log10 space, for pConc display */
+  stdev_log?: number | null;
   list?: string;
   /** Molecular properties (only present when include_properties is specified) */
   properties?: MolecularPropertyValues;

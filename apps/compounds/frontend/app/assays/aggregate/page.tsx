@@ -43,7 +43,7 @@ function AggregationPageContent() {
   const initialProtocolNames = searchParams.get('protocols')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
   // Support output format via 'format' param
   const formatParam = searchParams.get('format');
-  const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long') ? formatParam : undefined;
+  const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long' || formatParam === 'pivot' || formatParam === 'cards') ? formatParam : undefined;
   // Support aggregations via comma-separated 'aggregations' param
   const aggregationsParam = searchParams.get('aggregations');
   const validAggregations = ['geomean', 'count', 'stdev', 'list'] as const;
@@ -75,6 +75,7 @@ function AggregationPageContent() {
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<AggregationResponse | null>(null);
   const [currentAggregations, setCurrentAggregations] = useState<AggregationType[]>(initialAggregations || ['geomean', 'count']);
+  const [currentOutputFormat, setCurrentOutputFormat] = useState<OutputFormat>(initialOutputFormat || 'compact');
   const [currentGroupByBatch, setCurrentGroupByBatch] = useState<boolean>(initialGroupByBatch);
   const [currentIncludeTestedNoData, setCurrentIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData);
   const [currentIncludeProperties, setCurrentIncludeProperties] = useState<MolecularPropertyName[]>(initialIncludeProperties || []);
@@ -220,6 +221,7 @@ function AggregationPageContent() {
     setLoading(true);
     setError(null);
     setCurrentAggregations(aggregations);
+    setCurrentOutputFormat(outputFormat);
     setCurrentGroupByBatch(groupByBatch);
     setCurrentIncludeTestedNoData(includeTestedNoData);
     setCurrentIncludeProperties(includeProperties);
@@ -230,9 +232,11 @@ function AggregationPageContent() {
     }
 
     try {
+      // Map pivot and cards to compact for the API - they use the same data structure
+      const apiOutputFormat = (outputFormat === 'pivot' || outputFormat === 'cards') ? 'compact' : outputFormat;
       const result = await fetchAggregation({
         predicates,
-        output_format: outputFormat,
+        output_format: apiOutputFormat,
         aggregations,
         group_by_batch: groupByBatch,
         include_tested_no_data: includeTestedNoData,
@@ -327,6 +331,7 @@ function AggregationPageContent() {
         data={data}
         loading={loading}
         aggregations={currentAggregations}
+        outputFormat={currentOutputFormat}
         concentrationDisplay={concentrationDisplay}
         onConcentrationDisplayChange={setConcentrationDisplay}
       />

@@ -487,11 +487,17 @@ export function PredicateBuilder({
             <ToggleButton value="long" sx={{ px: 1.5, py: 0.5 }}>
               Long
             </ToggleButton>
+            <ToggleButton value="pivot" sx={{ px: 1.5, py: 0.5 }}>
+              Pivot
+            </ToggleButton>
+            <ToggleButton value="cards" sx={{ px: 1.5, py: 0.5 }}>
+              Cards
+            </ToggleButton>
           </ToggleButtonGroup>
         </Box>
 
-        {/* Aggregation functions - shown for compact and medium formats */}
-        {(outputFormat === 'compact' || outputFormat === 'medium') && (
+        {/* Aggregation functions - shown for compact, medium, pivot and cards formats */}
+        {outputFormat !== 'long' && (
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, ml: 1 }}>
             <Typography variant="body2" color="text.secondary">
               Aggregations:

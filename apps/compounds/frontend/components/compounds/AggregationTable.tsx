@@ -38,6 +38,8 @@ import {
   MolecularPropertyThreshold,
   MolecularPropertyValues,
   getRagStatus,
+  OutputFormat,
+  CompactAggregationResponse,
 } from '@/types/compounds/aggregation';
 import { MoleculeChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
@@ -133,6 +135,8 @@ interface AggregationTableProps {
   data: AggregationResponse | null | undefined;
   loading?: boolean;
   aggregations: AggregationType[];
+  /** Output format to determine which view to render (default: auto-detect from data) */
+  outputFormat?: OutputFormat;
   /** Concentration display mode (default: 'natural') */
   concentrationDisplay?: ConcentrationDisplayMode;
   /** Callback when concentration display mode changes */
@@ -635,7 +639,9 @@ function CompactTable({
                     aggregations.map((agg) => {
                       const protocolData = row.protocols[protocol.id];
                       const value = protocolData?.[agg];
-                      const hasData = protocolData && Object.keys(protocolData).length > 0;
+                      const measurementStatus = getMeasurementStatus(protocolData, aggregations.includes('count'));
+                      const hasData = measurementStatus === 'has-data';
+                      const testedNoValid = measurementStatus === 'tested-no-valid';
 
                       return (
                         <TableCell
@@ -649,7 +655,12 @@ function CompactTable({
                             } : {},
                           }}
                         >
-                          {agg === 'list' ? (
+                          {/* Show "tested but no valid" badge only on first aggregation column for this protocol */}
+                          {testedNoValid && agg === aggregations[0] ? (
+                            <TestedNoValidBadge />
+                          ) : testedNoValid ? (
+                            <Typography variant="body2" color="text.disabled">-</Typography>
+                          ) : agg === 'list' ? (
                             <Tooltip title={value || '-'}>
                               <Typography
                                 variant="body2"
@@ -965,16 +976,24 @@ function MediumTable({
                   <TableCell>
                     <Typography variant="body2">{row.protocol_name}</Typography>
                   </TableCell>
-                  {aggregations.map((agg) => {
+                  {aggregations.map((agg, aggIndex) => {
                     const value = row[agg as keyof MediumRow];
                     const formatted = formatConcentrationValue(
                       value as number | null,
                       row.kpi_unit,
                       concentrationDisplay
                     );
+                    // Check if this is a "tested but no valid" row (count === 0)
+                    const isTestedNoValid = aggregations.includes('count') && row.count === 0;
+
                     return (
                       <TableCell key={agg} align="right">
-                        {agg === 'list' ? (
+                        {/* Show badge on first column for tested-no-valid rows */}
+                        {isTestedNoValid && aggIndex === 0 ? (
+                          <TestedNoValidBadge />
+                        ) : isTestedNoValid ? (
+                          <Typography variant="body2" color="text.disabled">-</Typography>
+                        ) : agg === 'list' ? (
                           <Tooltip title={String(value || '-')}>
                             <Typography
                               variant="body2"
@@ -1343,6 +1362,824 @@ function LongTable({
 }
 
 /**
+ * Represents measurement status for a compound-protocol pair.
+ */
+type MeasurementStatus = 'not-measured' | 'tested-no-valid' | 'has-data';
+
+/**
+ * Determine the measurement status for a protocol cell.
+ * Distinguishes between not measured, tested but no valid data, and has data.
+ */
+function getMeasurementStatus(
+  protocolData: { count?: number } | undefined,
+  hasCount: boolean
+): MeasurementStatus {
+  // If no protocol data at all, compound was not measured
+  if (!protocolData || Object.keys(protocolData).length === 0) {
+    return 'not-measured';
+  }
+  // If count is explicitly 0, compound was tested but no valid results
+  if (hasCount && protocolData.count === 0) {
+    return 'tested-no-valid';
+  }
+  // Has actual data
+  return 'has-data';
+}
+
+/**
+ * Format measurement with statistics for cards view.
+ * Shows value ± stdev (n=count) when all data is available.
+ *
+ * In pConc mode, uses stdev_log (standard deviation calculated in log-space)
+ * for meaningful error display.
+ */
+function formatMeasurementWithStats(
+  geomean: number | null | undefined,
+  stdev: number | null | undefined,
+  stdevLog: number | null | undefined,
+  count: number | undefined,
+  unit: string | null | undefined,
+  concentrationDisplay: ConcentrationDisplayMode,
+  hasGeomean: boolean,
+  hasStdev: boolean,
+  hasCount: boolean
+): string {
+  if (geomean == null) return '-';
+
+  const formatted = formatConcentrationValue(geomean, unit, concentrationDisplay);
+  let result = formatted.displayValue;
+
+  // Add stdev if available and requested
+  if (hasStdev) {
+    if (concentrationDisplay === 'pConc') {
+      // In pConc mode, use log-space stdev directly (it's already in log units)
+      if (stdevLog != null) {
+        result += ` ± ${stdevLog.toFixed(2)}`;
+      }
+    } else if (stdev != null) {
+      // In linear modes, use regular stdev with unit conversion
+      const stdevFormatted = formatConcentrationValue(stdev, unit, concentrationDisplay);
+      result += ` ± ${stdevFormatted.displayValue}`;
+    }
+  }
+
+  // Add unit (only in natural mode)
+  if (formatted.displayUnit && concentrationDisplay === 'natural') {
+    result += ` ${formatted.displayUnit}`;
+  }
+
+  // Add count if available and requested
+  if (hasCount && count != null) {
+    result += ` (n=${count})`;
+  }
+
+  return result;
+}
+
+/**
+ * Display component for "tested but no valid data" status.
+ * Shows a subtle indicator that compound was tested but all results were invalid.
+ */
+function TestedNoValidBadge() {
+  return (
+    <Tooltip title="Tested but no valid results">
+      <Chip
+        label="0 valid"
+        size="small"
+        variant="outlined"
+        sx={{
+          height: 20,
+          fontSize: '0.7rem',
+          color: 'text.secondary',
+          borderColor: 'grey.400',
+          bgcolor: 'grey.50',
+        }}
+      />
+    </Tooltip>
+  );
+}
+
+/** Sort key for pivot table - sort compounds (columns) by property or protocol */
+type PivotSortKey = 'compound' | `property_${MolecularPropertyName}` | `protocol_${string}`;
+
+/**
+ * Pivot table component (compounds as columns, properties/protocols as rows).
+ * Horizontally scrollable for many compounds. Click row labels to sort columns.
+ */
+function PivotTable({
+  data,
+  aggregations,
+  concentrationDisplay = 'natural',
+}: {
+  data: CompactAggregationResponse;
+  aggregations: AggregationType[];
+  concentrationDisplay: ConcentrationDisplayMode;
+}) {
+  const router = useRouter();
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+  // Sorting state - sort compounds (columns) by a property or protocol value
+  const [orderBy, setOrderBy] = useState<PivotSortKey>('compound');
+  const [order, setOrder] = useState<Order>('asc');
+
+  const rows = data.data as CompactRow[];
+  const protocols = data.protocols;
+  const includeProperties = data.meta.include_properties || [];
+  const propertyThresholds = data.property_thresholds || [];
+  const showBatchColumn = data.meta.group_by_batch;
+
+  // Create a map for quick threshold lookup
+  const thresholdMap = useMemo(() => {
+    const map: Record<string, MolecularPropertyThreshold> = {};
+    for (const t of propertyThresholds) {
+      map[t.property_name] = t;
+    }
+    return map;
+  }, [propertyThresholds]);
+
+  // Check which aggregations are selected for combined formatting
+  const hasGeomean = aggregations.includes('geomean');
+  const hasStdev = aggregations.includes('stdev');
+  const hasCount = aggregations.includes('count');
+  const hasList = aggregations.includes('list');
+
+  // Handle sort request
+  const handleRequestSort = (key: PivotSortKey) => {
+    const isAsc = orderBy === key && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(key);
+  };
+
+  // Get sort value for a compound row
+  const getSortValue = useCallback((row: CompactRow, key: PivotSortKey): unknown => {
+    if (key === 'compound') return row.formatted_id;
+    if (key.startsWith('property_')) {
+      const propName = key.replace('property_', '') as MolecularPropertyName;
+      return row.properties?.[propName] ?? null;
+    }
+    if (key.startsWith('protocol_')) {
+      const protocolId = key.replace('protocol_', '');
+      const protocolData = row.protocols[protocolId];
+      // Sort by geomean if available, otherwise by count
+      if (hasGeomean) return protocolData?.geomean ?? null;
+      if (hasCount) return protocolData?.count ?? null;
+      return null;
+    }
+    return null;
+  }, [hasGeomean, hasCount]);
+
+  // Sorted compounds (columns)
+  const sortedRows = useMemo(() => {
+    const comparator = getComparator<CompactRow>(order, (row) => getSortValue(row, orderBy));
+    return [...rows].sort(comparator);
+  }, [rows, order, orderBy, getSortValue]);
+
+  // Build row definitions: properties first, then protocols
+  // When geomean is selected, combine value ± stdev (n=count) in a single row
+  type PivotRowDef =
+    | { type: 'property'; name: MolecularPropertyName; label: string }
+    | { type: 'protocol'; protocol: ProtocolInfo }
+    | { type: 'protocol-list'; protocol: ProtocolInfo };
+
+  const pivotRows = useMemo<PivotRowDef[]>(() => {
+    const result: PivotRowDef[] = [];
+
+    // Add property rows
+    for (const propName of includeProperties) {
+      result.push({
+        type: 'property',
+        name: propName,
+        label: PROPERTY_LABELS[propName] || propName,
+      });
+    }
+
+    // Add protocol rows - one row per protocol (combined format)
+    for (const protocol of protocols) {
+      // Main measurement row (geomean ± stdev (n=count) or just count)
+      if (hasGeomean || hasCount) {
+        result.push({ type: 'protocol', protocol });
+      }
+      // Separate list row if list is selected
+      if (hasList) {
+        result.push({ type: 'protocol-list', protocol });
+      }
+    }
+
+    return result;
+  }, [includeProperties, protocols, hasGeomean, hasCount, hasList]);
+
+  return (
+    <>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Typography variant="body2" color="text.secondary">
+          {data.meta.compound_count} compounds
+          {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
+            <> ({data.meta.row_count} columns with batch split)</>
+          )}
+          , {data.meta.protocol_count} protocols,{' '}
+          {data.meta.total_measurements} measurements
+        </Typography>
+        <Tooltip title="Click row labels to sort compounds">
+          <Chip label="Click to sort" size="small" variant="outlined" color="info" />
+        </Tooltip>
+      </Box>
+
+      <Box
+        ref={scrollContainerRef}
+        sx={{
+          overflow: 'auto',
+          maxHeight: 600,
+          border: 1,
+          borderColor: 'divider',
+          borderRadius: 1,
+        }}
+      >
+        <Table size="small" sx={{ minWidth: 200 + sortedRows.length * 110 }}>
+          <TableHead>
+            <TableRow>
+              {/* Fixed property column header */}
+              <TableCell
+                sx={{
+                  fontWeight: 600,
+                  position: 'sticky',
+                  left: 0,
+                  bgcolor: 'background.paper',
+                  zIndex: 3,
+                  width: 150,
+                  borderRight: 1,
+                  borderRightColor: 'divider',
+                }}
+              >
+                <TableSortLabel
+                  active={orderBy === 'compound'}
+                  direction={orderBy === 'compound' ? order : 'asc'}
+                  onClick={() => handleRequestSort('compound')}
+                >
+                  Property
+                </TableSortLabel>
+              </TableCell>
+              {/* Compound column headers with structure */}
+              {sortedRows.map((row) => (
+                <TableCell
+                  key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                  align="center"
+                  sx={{
+                    fontWeight: 600,
+                    width: 100,
+                    cursor: 'pointer',
+                    '&:hover': { bgcolor: 'action.hover' },
+                  }}
+                  onClick={() => router.push(`/registry/compounds/${row.compound_id}`)}
+                >
+                  <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
+                    {row.smiles ? (
+                      <MoleculeChip smiles={row.smiles} size={60} />
+                    ) : (
+                      <Box
+                        sx={{
+                          width: 60,
+                          height: 60,
+                          bgcolor: 'grey.100',
+                          borderRadius: 1,
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                        }}
+                      >
+                        <Typography variant="caption" color="text.secondary">-</Typography>
+                      </Box>
+                    )}
+                    <Typography variant="caption" fontWeight={600}>
+                      {row.formatted_id}
+                      {showBatchColumn && row.batch_number != null && `/${row.batch_number}`}
+                    </Typography>
+                  </Box>
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {pivotRows.map((rowDef) => {
+              if (rowDef.type === 'property') {
+                const threshold = thresholdMap[rowDef.name];
+                const sortKey: PivotSortKey = `property_${rowDef.name}`;
+                return (
+                  <TableRow key={`prop-${rowDef.name}`}>
+                    <TableCell
+                      sx={{
+                        position: 'sticky',
+                        left: 0,
+                        bgcolor: 'background.paper',
+                        zIndex: 2,
+                        fontWeight: 500,
+                        borderRight: 1,
+                        borderRightColor: 'divider',
+                        cursor: 'pointer',
+                      }}
+                      onClick={() => handleRequestSort(sortKey)}
+                    >
+                      <Tooltip title={`Sort by ${threshold?.property_display || rowDef.name}`}>
+                        <TableSortLabel
+                          active={orderBy === sortKey}
+                          direction={orderBy === sortKey ? order : 'asc'}
+                        >
+                          {rowDef.label}
+                        </TableSortLabel>
+                      </Tooltip>
+                    </TableCell>
+                    {sortedRows.map((row) => {
+                      const value = row.properties?.[rowDef.name as keyof MolecularPropertyValues] as number | null | undefined;
+                      const ragStatus = getRagStatus(value, threshold);
+                      return (
+                        <TableCell
+                          key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                          align="center"
+                        >
+                          <Typography
+                            variant="body2"
+                            fontFamily="monospace"
+                            sx={{ color: RAG_COLORS[ragStatus] }}
+                          >
+                            {formatPropertyValue(value)}
+                          </Typography>
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              }
+
+              if (rowDef.type === 'protocol-list') {
+                // Separate row for list values - not sortable
+                const { protocol } = rowDef;
+                return (
+                  <TableRow key={`proto-list-${protocol.id}`}>
+                    <TableCell
+                      sx={{
+                        position: 'sticky',
+                        left: 0,
+                        bgcolor: 'background.paper',
+                        zIndex: 2,
+                        borderRight: 1,
+                        borderRightColor: 'divider',
+                      }}
+                    >
+                      <Typography variant="body2">
+                        {protocol.name}
+                        <Typography component="span" variant="caption" color="text.secondary" sx={{ ml: 0.5 }}>
+                          (values)
+                        </Typography>
+                      </Typography>
+                    </TableCell>
+                    {sortedRows.map((row) => {
+                      const protocolData = row.protocols[protocol.id];
+                      const measurementStatus = getMeasurementStatus(protocolData, hasCount);
+                      const value = protocolData?.list;
+
+                      // For tested-no-valid in list row, show dash (badge shown in main row)
+                      if (measurementStatus === 'tested-no-valid') {
+                        return (
+                          <TableCell
+                            key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                            align="center"
+                          >
+                            <Typography variant="body2" color="text.disabled">-</Typography>
+                          </TableCell>
+                        );
+                      }
+
+                      return (
+                        <TableCell
+                          key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                          align="center"
+                        >
+                          <Tooltip title={value || '-'}>
+                            <Typography
+                              variant="body2"
+                              fontFamily="monospace"
+                              sx={{
+                                maxWidth: 80,
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                                whiteSpace: 'nowrap',
+                              }}
+                            >
+                              {value || '-'}
+                            </Typography>
+                          </Tooltip>
+                        </TableCell>
+                      );
+                    })}
+                  </TableRow>
+                );
+              }
+
+              // Protocol measurement row - combined format: value ± stdev (n=count)
+              const { protocol } = rowDef;
+              const sortKey: PivotSortKey = `protocol_${protocol.id}`;
+              return (
+                <TableRow key={`proto-${protocol.id}`}>
+                  <TableCell
+                    sx={{
+                      position: 'sticky',
+                      left: 0,
+                      bgcolor: 'background.paper',
+                      zIndex: 2,
+                      fontWeight: 500,
+                      borderRight: 1,
+                      borderRightColor: 'divider',
+                      cursor: 'pointer',
+                    }}
+                    onClick={() => handleRequestSort(sortKey)}
+                  >
+                    <Tooltip title={`Sort by ${protocol.name}`}>
+                      <TableSortLabel
+                        active={orderBy === sortKey}
+                        direction={orderBy === sortKey ? order : 'asc'}
+                      >
+                        {protocol.name}
+                      </TableSortLabel>
+                    </Tooltip>
+                    {protocol.kpi_unit && hasGeomean && (
+                      <Typography component="span" variant="caption" color="text.secondary" sx={{ ml: 0.5 }}>
+                        ({getConcentrationHeaderUnit(protocol.kpi_unit, concentrationDisplay)})
+                      </Typography>
+                    )}
+                  </TableCell>
+                  {sortedRows.map((row) => {
+                    const protocolData = row.protocols[protocol.id];
+                    const measurementStatus = getMeasurementStatus(protocolData, hasCount);
+
+                    // Handle tested but no valid data
+                    if (measurementStatus === 'tested-no-valid') {
+                      return (
+                        <TableCell
+                          key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                          align="center"
+                        >
+                          <TestedNoValidBadge />
+                        </TableCell>
+                      );
+                    }
+
+                    // Use combined format when geomean is selected
+                    let displayValue: string;
+                    if (hasGeomean) {
+                      displayValue = formatMeasurementWithStats(
+                        protocolData?.geomean,
+                        protocolData?.stdev,
+                        protocolData?.stdev_log,
+                        protocolData?.count,
+                        protocol.kpi_unit,
+                        concentrationDisplay,
+                        hasGeomean,
+                        hasStdev,
+                        hasCount
+                      );
+                    } else if (hasCount) {
+                      // Only count selected
+                      displayValue = protocolData?.count != null ? `n=${protocolData.count}` : '-';
+                    } else {
+                      displayValue = '-';
+                    }
+
+                    return (
+                      <TableCell
+                        key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                        align="center"
+                      >
+                        <Typography variant="body2" fontFamily="monospace">
+                          {displayValue}
+                        </Typography>
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </Box>
+    </>
+  );
+}
+
+/** Sort key type for cards view */
+type CardsSortKey = 'compound' | `property_${MolecularPropertyName}` | `protocol_${string}`;
+
+/**
+ * Cards view component (grid of compound cards).
+ * Each card shows structure, compound info, and all protocols with formatted measurements.
+ */
+function CardsView({
+  data,
+  aggregations,
+  concentrationDisplay = 'natural',
+}: {
+  data: CompactAggregationResponse;
+  aggregations: AggregationType[];
+  concentrationDisplay: ConcentrationDisplayMode;
+}) {
+  const router = useRouter();
+
+  // Sorting state
+  const [orderBy, setOrderBy] = useState<CardsSortKey>('compound');
+  const [order, setOrder] = useState<Order>('asc');
+
+  const rows = data.data as CompactRow[];
+  const protocols = data.protocols;
+  const includeProperties = data.meta.include_properties || [];
+  const propertyThresholds = data.property_thresholds || [];
+  const showBatch = data.meta.group_by_batch;
+
+  // Check which aggregations are selected
+  const hasGeomean = aggregations.includes('geomean');
+  const hasStdev = aggregations.includes('stdev');
+  const hasCount = aggregations.includes('count');
+  const hasList = aggregations.includes('list');
+
+  // Create a map for quick threshold lookup
+  const thresholdMap = useMemo(() => {
+    const map: Record<string, MolecularPropertyThreshold> = {};
+    for (const t of propertyThresholds) {
+      map[t.property_name] = t;
+    }
+    return map;
+  }, [propertyThresholds]);
+
+  // Build sort options for dropdown
+  const sortOptions = useMemo(() => {
+    const options: { value: CardsSortKey; label: string }[] = [
+      { value: 'compound', label: 'Compound ID' },
+    ];
+    // Add property options
+    for (const propName of includeProperties) {
+      options.push({
+        value: `property_${propName}` as CardsSortKey,
+        label: PROPERTY_LABELS[propName] || propName,
+      });
+    }
+    // Add protocol options
+    for (const protocol of protocols) {
+      options.push({
+        value: `protocol_${protocol.id}` as CardsSortKey,
+        label: protocol.name,
+      });
+    }
+    return options;
+  }, [includeProperties, protocols]);
+
+  // Get sort value for a compound
+  const getSortValue = useCallback((row: CompactRow, key: CardsSortKey): unknown => {
+    if (key === 'compound') return row.formatted_id;
+    if (key.startsWith('property_')) {
+      const propName = key.replace('property_', '') as MolecularPropertyName;
+      return row.properties?.[propName] ?? null;
+    }
+    if (key.startsWith('protocol_')) {
+      const protocolId = key.replace('protocol_', '');
+      const protocolData = row.protocols[protocolId];
+      if (hasGeomean) return protocolData?.geomean ?? null;
+      if (hasCount) return protocolData?.count ?? null;
+      return null;
+    }
+    return null;
+  }, [hasGeomean, hasCount]);
+
+  // Sorted cards
+  const sortedRows = useMemo(() => {
+    const comparator = getComparator<CompactRow>(order, (row) => getSortValue(row, orderBy));
+    return [...rows].sort(comparator);
+  }, [rows, order, orderBy, getSortValue]);
+
+  return (
+    <>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexWrap: 'wrap', gap: 1 }}>
+        <Typography variant="body2" color="text.secondary">
+          {data.meta.compound_count} compounds
+          {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
+            <> ({data.meta.row_count} cards with batch split)</>
+          )}
+          , {data.meta.protocol_count} protocols,{' '}
+          {data.meta.total_measurements} measurements
+        </Typography>
+        {/* Sort controls */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <Typography variant="body2" color="text.secondary">
+            Sort by:
+          </Typography>
+          <FormControl size="small" sx={{ minWidth: 140 }}>
+            <Select
+              value={orderBy}
+              onChange={(e) => setOrderBy(e.target.value as CardsSortKey)}
+              size="small"
+              sx={{ fontSize: '0.875rem' }}
+            >
+              {sortOptions.map((opt) => (
+                <MenuItem key={opt.value} value={opt.value}>
+                  {opt.label}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <Tooltip title={order === 'asc' ? 'Ascending' : 'Descending'}>
+            <Button
+              size="small"
+              variant="outlined"
+              onClick={() => setOrder(order === 'asc' ? 'desc' : 'asc')}
+              sx={{ minWidth: 36, px: 1 }}
+            >
+              {order === 'asc' ? '↑' : '↓'}
+            </Button>
+          </Tooltip>
+        </Box>
+      </Box>
+
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gap: 2,
+          maxHeight: 600,
+          overflow: 'auto',
+          p: 1,
+        }}
+      >
+        {sortedRows.map((row) => (
+          <Paper
+            key={showBatch ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+            variant="outlined"
+            sx={{
+              p: 2,
+              cursor: 'pointer',
+              '&:hover': { boxShadow: 2, borderColor: 'primary.main' },
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            onClick={() => router.push(`/registry/compounds/${row.compound_id}`)}
+          >
+            {/* Header: Structure + Compound ID */}
+            <Box sx={{ display: 'flex', gap: 2, mb: 1.5 }}>
+              {row.smiles ? (
+                <MoleculeChip smiles={row.smiles} size={80} />
+              ) : (
+                <Box
+                  sx={{
+                    width: 80,
+                    height: 80,
+                    bgcolor: 'grey.100',
+                    borderRadius: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Typography variant="caption" color="text.secondary">-</Typography>
+                </Box>
+              )}
+              <Box sx={{ flex: 1, minWidth: 0 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <Chip
+                    icon={<Medication fontSize="small" />}
+                    label={row.formatted_id}
+                    size="small"
+                    variant="outlined"
+                    color="primary"
+                  />
+                  {showBatch && row.batch_number != null && (
+                    <Typography variant="caption" color="text.secondary">
+                      /{row.batch_number}
+                    </Typography>
+                  )}
+                </Box>
+                {row.target_name && (
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                    Target: {row.target_name}
+                  </Typography>
+                )}
+              </Box>
+            </Box>
+
+            {/* Molecular Properties (if any) */}
+            {includeProperties.length > 0 && (
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 1,
+                  py: 1,
+                  borderTop: 1,
+                  borderColor: 'divider',
+                }}
+              >
+                {includeProperties.map((propName) => {
+                  const value = row.properties?.[propName as keyof MolecularPropertyValues] as number | null | undefined;
+                  const threshold = thresholdMap[propName];
+                  const ragStatus = getRagStatus(value, threshold);
+                  return (
+                    <Tooltip key={propName} title={threshold?.property_display || propName}>
+                      <Typography
+                        variant="caption"
+                        sx={{
+                          bgcolor: 'grey.100',
+                          px: 1,
+                          py: 0.25,
+                          borderRadius: 0.5,
+                          color: RAG_COLORS[ragStatus],
+                          fontFamily: 'monospace',
+                        }}
+                      >
+                        {PROPERTY_LABELS[propName]}: {formatPropertyValue(value)}
+                      </Typography>
+                    </Tooltip>
+                  );
+                })}
+              </Box>
+            )}
+
+            {/* Protocols */}
+            <Box sx={{ flex: 1, pt: 1, borderTop: 1, borderColor: 'divider' }}>
+              {protocols.map((protocol) => {
+                const protocolData = row.protocols[protocol.id];
+                const measurementStatus = getMeasurementStatus(protocolData, hasCount);
+
+                // Not measured - compound was never tested with this protocol
+                if (measurementStatus === 'not-measured') {
+                  return (
+                    <Box key={protocol.id} sx={{ mb: 1 }}>
+                      <Typography variant="body2" fontWeight={500}>
+                        {protocol.name}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary" fontFamily="monospace">
+                        -
+                      </Typography>
+                    </Box>
+                  );
+                }
+
+                // Tested but no valid data
+                if (measurementStatus === 'tested-no-valid') {
+                  return (
+                    <Box key={protocol.id} sx={{ mb: 1 }}>
+                      <Typography variant="body2" fontWeight={500}>
+                        {protocol.name}
+                      </Typography>
+                      <TestedNoValidBadge />
+                    </Box>
+                  );
+                }
+
+                // Format the measurement based on available aggregations
+                let measurementDisplay: string;
+                if (hasGeomean) {
+                  measurementDisplay = formatMeasurementWithStats(
+                    protocolData!.geomean,
+                    protocolData!.stdev,
+                    protocolData!.stdev_log,
+                    protocolData!.count,
+                    protocol.kpi_unit,
+                    concentrationDisplay,
+                    hasGeomean,
+                    hasStdev,
+                    hasCount
+                  );
+                } else if (hasCount) {
+                  measurementDisplay = `n=${protocolData!.count ?? '-'}`;
+                } else if (hasList) {
+                  measurementDisplay = protocolData!.list || '-';
+                } else {
+                  measurementDisplay = '-';
+                }
+
+                return (
+                  <Box key={protocol.id} sx={{ mb: 1 }}>
+                    <Typography variant="body2" fontWeight={500}>
+                      {protocol.name}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      fontFamily="monospace"
+                      sx={{
+                        overflow: 'hidden',
+                        textOverflow: 'ellipsis',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      {measurementDisplay}
+                    </Typography>
+                  </Box>
+                );
+              })}
+            </Box>
+          </Paper>
+        ))}
+      </Box>
+    </>
+  );
+}
+
+/**
  * Concentration display mode selector component.
  */
 function ConcentrationDisplaySelector({
@@ -1378,6 +2215,7 @@ export function AggregationTable({
   data,
   loading,
   aggregations,
+  outputFormat,
   concentrationDisplay = 'natural',
   onConcentrationDisplayChange,
 }: AggregationTableProps) {
@@ -1425,8 +2263,28 @@ export function AggregationTable({
     );
   }
 
-  // Determine which table to render based on response type
+  // Determine which table to render based on response type and outputFormat
   const renderTable = () => {
+    // For pivot and cards formats, we need compact response data
+    if (outputFormat === 'pivot' && isCompactResponse(data)) {
+      return (
+        <PivotTable
+          data={data}
+          aggregations={aggregations}
+          concentrationDisplay={displayMode}
+        />
+      );
+    }
+    if (outputFormat === 'cards' && isCompactResponse(data)) {
+      return (
+        <CardsView
+          data={data}
+          aggregations={aggregations}
+          concentrationDisplay={displayMode}
+        />
+      );
+    }
+    // Default: auto-detect from response type
     if (isCompactResponse(data)) {
       return (
         <CompactTable

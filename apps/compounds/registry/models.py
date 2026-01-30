@@ -567,6 +567,11 @@ class MolecularProperties(models.Model):
     )
 
     # Lipinski Rule of 5 properties
+    molecular_weight = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Exact molecular weight in Daltons (Lipinski: ≤500)"
+    )
     heavy_atom_count = models.IntegerField(
         null=True,
         blank=True,
@@ -640,6 +645,7 @@ class MolecularProperties(models.Model):
                 return None
 
             props, _ = cls.objects.get_or_create(compound=compound)
+            props.molecular_weight = Descriptors.ExactMolWt(mol)
             props.heavy_atom_count = Lipinski.HeavyAtomCount(mol)
             props.hbd = Descriptors.NumHDonors(mol)
             props.hba = Descriptors.NumHAcceptors(mol)

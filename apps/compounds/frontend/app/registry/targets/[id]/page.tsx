@@ -104,10 +104,13 @@ export default function TargetDashboardPage({ params }: PageProps) {
           predicates.status = savedView.status;
         }
 
-        // Run aggregation
+        // Run aggregation - map pivot/cards to compact for API (they use same data structure)
+        const apiOutputFormat = (savedView.output_format === 'pivot' || savedView.output_format === 'cards')
+          ? 'compact'
+          : savedView.output_format;
         const result = await fetchAggregation({
           predicates,
-          output_format: savedView.output_format,
+          output_format: apiOutputFormat,
           aggregations: savedView.aggregations,
         });
         setAggregationData(result);
@@ -436,6 +439,7 @@ export default function TargetDashboardPage({ params }: PageProps) {
             data={aggregationData}
             loading={false}
             aggregations={dashboardData.saved_aggregation_view.aggregations}
+            outputFormat={dashboardData.saved_aggregation_view.output_format}
             concentrationDisplay={dashboardData.saved_aggregation_view.concentration_display}
           />
         )}

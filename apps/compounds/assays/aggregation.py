@@ -60,6 +60,35 @@ def standard_deviation(values: list[float]) -> float | None:
     return math.sqrt(variance)
 
 
+def log_standard_deviation(values: list[float]) -> float | None:
+    """
+    Calculate the sample standard deviation in log10 space.
+
+    This is useful for pConc (e.g., pIC50) display where linear stdev
+    doesn't translate meaningfully. The result is the stdev of -log10(values),
+    which can be displayed directly alongside pConc values.
+
+    Args:
+        values: List of positive numeric values (concentrations)
+
+    Returns:
+        Sample standard deviation in log10 space, or None if fewer than 2 valid values
+    """
+    # Filter to positive values (can't take log of zero/negative)
+    positive_values = [v for v in values if v is not None and v > 0]
+
+    if len(positive_values) < 2:
+        return None
+
+    # Transform to -log10 space (pConc)
+    log_values = [-math.log10(v) for v in positive_values]
+
+    n = len(log_values)
+    mean = sum(log_values) / n
+    variance = sum((v - mean) ** 2 for v in log_values) / (n - 1)
+    return math.sqrt(variance)
+
+
 def aggregate_kpi_values(
     values: list[float],
     aggregations: list[str]
@@ -73,7 +102,8 @@ def aggregate_kpi_values(
                      ('geomean', 'count', 'stdev', 'list')
 
     Returns:
-        Dictionary with requested aggregation results
+        Dictionary with requested aggregation results.
+        When 'stdev' is requested, also includes 'stdev_log' for pConc display.
     """
     result = {}
     valid_values = [v for v in values if v is not None]
@@ -86,6 +116,8 @@ def aggregate_kpi_values(
 
     if 'stdev' in aggregations:
         result['stdev'] = standard_deviation(valid_values)
+        # Also calculate log-space stdev for pConc display
+        result['stdev_log'] = log_standard_deviation(valid_values)
 
     if 'list' in aggregations:
         # Format as comma-separated string with 2 decimal places
