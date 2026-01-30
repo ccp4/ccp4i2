@@ -78,6 +78,8 @@ export interface SavedAggregationView {
   status: 'valid' | 'invalid' | 'unassigned' | '';
   /** Concentration display mode (default: 'natural') */
   concentration_display?: ConcentrationDisplayMode;
+  /** Molecular properties to include as columns */
+  include_properties?: string[];
 }
 
 export interface Target {

@@ -128,9 +128,11 @@ class Target(models.Model):
         null=True,
         help_text="Saved aggregation query configuration for dashboard display. "
                   "Schema: {protocol_names: string[], compound_search: string, "
-                  "output_format: 'compact'|'medium'|'long', "
+                  "output_format: 'compact'|'medium'|'long'|'pivot'|'cards', "
                   "aggregations: ('geomean'|'count'|'stdev'|'list')[], "
-                  "status: 'valid'|'invalid'|'unassigned'|''}"
+                  "status: 'valid'|'invalid'|'unassigned'|'', "
+                  "concentration_display?: 'natural'|'nM'|'uM'|'mM'|'pConc', "
+                  "include_properties?: string[]}"
     )
 
     # Audit

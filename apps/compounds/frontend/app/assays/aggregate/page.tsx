@@ -148,6 +148,7 @@ function AggregationPageContent() {
         aggregations: currentState.aggregations,
         status: 'valid', // Default to valid status
         concentration_display: concentrationDisplay,
+        include_properties: currentState.includeProperties,
       });
       setSnackbarMessage(`Saved view to ${target.name}`);
       setSnackbarOpen(true);

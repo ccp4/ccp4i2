@@ -13,7 +13,7 @@ from typing import Any
 
 from django.db.models import QuerySet
 
-from compounds.formatting import get_compound_pattern
+from compounds.formatting import parse_compound_list
 from .models import DataSeries, Protocol
 
 
@@ -170,18 +170,18 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
     if compounds:
         queryset = queryset.filter(compound_id__in=compounds)
 
-    # Filter by compound search (formatted_id pattern)
-    # Supports comma-separated list of IDs (e.g., "PREFIX-00026123, PREFIX-00026124")
+    # Filter by compound search (flexible format)
+    # Supports whitespace/comma-separated lists of:
+    # - Formatted IDs: NCL-00035625, ncl-30282
+    # - Bare registration numbers: 56785
+    # - Mixed: "NCL-00035625 ncl-30282,56785"
     compound_search = predicates.get('compound_search', '')
     if compound_search:
-        # Find all compound IDs in the search string (handles comma-separated lists)
-        compound_pattern = get_compound_pattern(capturing=True)
-        matches = compound_pattern.findall(compound_search)
-        if matches:
-            reg_numbers = [int(m) for m in matches]
+        reg_numbers = parse_compound_list(compound_search)
+        if reg_numbers:
             queryset = queryset.filter(compound__reg_number__in=reg_numbers)
         else:
-            # Fall back to compound_name search (handles non-formatted IDs)
+            # Fall back to compound_name search (handles non-formatted text)
             queryset = queryset.filter(compound_name__icontains=compound_search)
 
     # Filter by protocols
@@ -273,6 +273,12 @@ def _get_molecular_properties(compound, include_properties: list[str]) -> dict:
     """
     Extract requested molecular properties from a compound.
 
+    All properties (including molecular_weight) come from the MolecularProperties
+    model, which stores computed Lipinski/ADME descriptors. Note that Compound
+    and Batch models also have molecular_weight fields, but those are for
+    different purposes (Compound.molecular_weight is the parent formula weight,
+    Batch.molecular_weight includes salt/hydration for weighing).
+
     Args:
         compound: Compound model instance
         include_properties: List of property names to include
@@ -284,16 +290,9 @@ def _get_molecular_properties(compound, include_properties: list[str]) -> dict:
         return {}
 
     result = {}
-
-    # molecular_weight is on the Compound model itself
-    if 'molecular_weight' in include_properties:
-        result['molecular_weight'] = compound.molecular_weight
-
-    # Other properties are on the related MolecularProperties model
     mol_props = getattr(compound, 'molecular_properties', None)
+
     for prop_name in include_properties:
-        if prop_name == 'molecular_weight':
-            continue  # Already handled above
         if mol_props:
             result[prop_name] = getattr(mol_props, prop_name, None)
         else:

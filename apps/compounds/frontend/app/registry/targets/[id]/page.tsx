@@ -112,6 +112,8 @@ export default function TargetDashboardPage({ params }: PageProps) {
           predicates,
           output_format: apiOutputFormat,
           aggregations: savedView.aggregations,
+          // Cast to MolecularPropertyName[] - backend validates the values
+          include_properties: savedView.include_properties as any,
         });
         setAggregationData(result);
       } catch (err) {

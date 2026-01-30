@@ -200,6 +200,75 @@ def search_for_compound_id(text: str) -> Optional[int]:
     return None
 
 
+def parse_compound_list(text: str) -> list[int]:
+    """
+    Parse a flexible list of compound identifiers from user input.
+
+    Handles various input formats:
+    - Whitespace-separated: "NCL-00035625 NCL-30282 56785"
+    - Comma-separated: "NCL-00035625, NCL-30282, 56785"
+    - Mixed: "NCL-00035625 ncl-30282,56785"
+    - Case-insensitive prefixes: "NCL-123", "ncl-123", "Ncl-123"
+    - Various prefix formats: "NCL-00123", "NCL123", "NCL 123"
+    - Bare registration numbers: "56785"
+    - Malformed: "NCL000-27421" (dash after zeros)
+
+    Args:
+        text: User input string containing compound identifiers.
+
+    Returns:
+        List of unique registration numbers (integers), preserving input order.
+    """
+    if not text:
+        return []
+
+    text = str(text).strip()
+    if not text:
+        return []
+
+    # Collect all matches with their positions to preserve input order
+    matches: list[tuple[int, int]] = []  # (position, reg_number)
+    matched_spans: list[tuple[int, int]] = []  # Track matched regions
+
+    # Find malformed pattern matches (PREFIX000-27421)
+    malformed = get_malformed_pattern(capturing=True)
+    for match in malformed.finditer(text):
+        reg_number = int(match.group(1))
+        matches.append((match.start(), reg_number))
+        matched_spans.append((match.start(), match.end()))
+
+    # Find standard pattern matches (PREFIX-00123, PREFIX123, etc.)
+    standard = get_compound_pattern(capturing=True)
+    for match in standard.finditer(text):
+        # Skip if this region was already matched by malformed pattern
+        if any(start <= match.start() < end for start, end in matched_spans):
+            continue
+        reg_number = int(match.group(1))
+        matches.append((match.start(), reg_number))
+        matched_spans.append((match.start(), match.end()))
+
+    # Find bare numbers in unmatched regions
+    # Split by whitespace and commas, track position
+    bare_number = re.compile(r'\b(\d+)\b')
+    for match in bare_number.finditer(text):
+        # Skip if this region was already matched by prefixed patterns
+        if any(start <= match.start() < end for start, end in matched_spans):
+            continue
+        reg_number = int(match.group(1))
+        matches.append((match.start(), reg_number))
+
+    # Sort by position and deduplicate while preserving order
+    matches.sort(key=lambda x: x[0])
+    result: list[int] = []
+    seen: set[int] = set()
+    for _, reg_number in matches:
+        if reg_number not in seen:
+            result.append(reg_number)
+            seen.add(reg_number)
+
+    return result
+
+
 def clear_pattern_cache():
     """
     Clear the cached pattern string.

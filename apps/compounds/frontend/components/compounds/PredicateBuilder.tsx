@@ -35,7 +35,7 @@ import {
 } from '@/types/compounds/aggregation';
 import { Target } from '@/types/compounds/models';
 import { fetchTargets, fetchProtocols } from '@/lib/compounds/aggregation-api';
-import { useCompoundConfig } from '@/lib/compounds/config';
+import { useCompoundConfig, CompoundConfig } from '@/lib/compounds/config';
 
 /** State exposed for URL sharing and saving */
 export interface PredicateBuilderState {
@@ -111,6 +111,90 @@ const MOLECULAR_PROPERTY_OPTIONS: { value: MolecularPropertyName; label: string;
   { value: 'fraction_sp3', label: 'Fsp3', description: 'Fraction sp3 Carbons' },
 ];
 
+/**
+ * Parse a flexible list of compound identifiers from user input.
+ * Mirrors backend logic in compounds/formatting.py:parse_compound_list()
+ *
+ * Handles:
+ * - Whitespace-separated: "NCL-00035625 NCL-30282 56785"
+ * - Comma-separated: "NCL-00035625, NCL-30282, 56785"
+ * - Mixed: "NCL-00035625 ncl-30282,56785"
+ * - Case-insensitive prefixes
+ * - Various prefix formats: PREFIX-00123, PREFIX123, PREFIX 123
+ * - Bare registration numbers: "56785"
+ * - Malformed: "NCL000-27421" (dash after zeros)
+ */
+function parseCompoundList(text: string, config: CompoundConfig | null): number[] {
+  if (!text || !config) return [];
+
+  const prefix = config.compound_id_prefix;
+  const escapedPrefix = prefix.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
+  // Collect all matches with positions to preserve input order
+  const matches: Array<{ pos: number; regNumber: number }> = [];
+  const matchedSpans: Array<{ start: number; end: number }> = [];
+
+  // Malformed pattern: PREFIX000-27421
+  const malformedPattern = new RegExp(`${escapedPrefix}0+-(\\d+)`, 'gi');
+  let match;
+
+  while ((match = malformedPattern.exec(text)) !== null) {
+    const regNumber = parseInt(match[1], 10);
+    matches.push({ pos: match.index, regNumber });
+    matchedSpans.push({ start: match.index, end: match.index + match[0].length });
+  }
+
+  // Standard pattern: PREFIX-00123, PREFIX123, PREFIX 123, PREFIX_123
+  const standardPattern = new RegExp(`${escapedPrefix}[-_\\s]?0*(\\d+)`, 'gi');
+  while ((match = standardPattern.exec(text)) !== null) {
+    // Skip if this region overlaps with malformed match
+    const overlaps = matchedSpans.some(
+      (span) => match!.index >= span.start && match!.index < span.end
+    );
+    if (overlaps) continue;
+
+    const regNumber = parseInt(match[1], 10);
+    matches.push({ pos: match.index, regNumber });
+    matchedSpans.push({ start: match.index, end: match.index + match[0].length });
+  }
+
+  // Bare numbers: \b(\d+)\b
+  const barePattern = /\b(\d+)\b/g;
+  while ((match = barePattern.exec(text)) !== null) {
+    // Skip if this region overlaps with prefixed matches
+    const overlaps = matchedSpans.some(
+      (span) => match!.index >= span.start && match!.index < span.end
+    );
+    if (overlaps) continue;
+
+    const regNumber = parseInt(match[1], 10);
+    matches.push({ pos: match.index, regNumber });
+  }
+
+  // Sort by position and deduplicate
+  matches.sort((a, b) => a.pos - b.pos);
+  const seen = new Set<number>();
+  const result: number[] = [];
+  for (const { regNumber } of matches) {
+    if (!seen.has(regNumber)) {
+      result.push(regNumber);
+      seen.add(regNumber);
+    }
+  }
+
+  return result;
+}
+
+/**
+ * Format a registration number as a compound ID.
+ */
+function formatCompoundId(regNumber: number, config: CompoundConfig | null): string {
+  if (!config) return String(regNumber);
+  const prefix = config.compound_id_prefix;
+  const digits = config.compound_id_digits;
+  return `${prefix}-${String(regNumber).padStart(digits, '0')}`;
+}
+
 export function PredicateBuilder({
   initialTargetId,
   initialTargetNames,
@@ -152,8 +236,13 @@ export function PredicateBuilder({
   const hasRunInitialQuery = useRef(false);
   const hasStartedInit = useRef(false);
 
-  // Get compound config for dynamic placeholder
+  // Get compound config for dynamic placeholder and parsing
   const { config: compoundConfig } = useCompoundConfig();
+
+  // Parse compound search input to show feedback
+  const parsedCompounds = useMemo(() => {
+    return parseCompoundList(compoundSearch, compoundConfig);
+  }, [compoundSearch, compoundConfig]);
 
   // Memoize initial values to prevent infinite loops from array reference changes
   const memoizedInitialTargetId = useMemo(() => initialTargetId, [initialTargetId]);
@@ -437,17 +526,31 @@ export function PredicateBuilder({
         />
 
         {/* Compound search */}
-        <TextField
-          label="Compound Search"
-          placeholder={`${compoundConfig.compound_id_prefix}-00026...`}
-          value={compoundSearch}
-          onChange={(e) => setCompoundSearch(e.target.value)}
-          size="small"
-          sx={{ minWidth: 180, flex: 0.8 }}
-          InputProps={{
-            startAdornment: <Search sx={{ mr: 0.5, color: 'action.active', fontSize: 18 }} />,
-          }}
-        />
+        <Box sx={{ minWidth: 180, flex: 0.8 }}>
+          <TextField
+            label="Compound Search"
+            placeholder={`${compoundConfig?.compound_id_prefix || 'NCL'}-00026, 12345...`}
+            value={compoundSearch}
+            onChange={(e) => setCompoundSearch(e.target.value)}
+            size="small"
+            fullWidth
+            InputProps={{
+              startAdornment: <Search sx={{ mr: 0.5, color: 'action.active', fontSize: 18 }} />,
+            }}
+            helperText={
+              parsedCompounds.length > 0
+                ? `${parsedCompounds.length} compound${parsedCompounds.length !== 1 ? 's' : ''}: ${parsedCompounds.slice(0, 5).map(n => formatCompoundId(n, compoundConfig)).join(', ')}${parsedCompounds.length > 5 ? `, +${parsedCompounds.length - 5} more` : ''}`
+                : compoundSearch.trim() ? 'Enter compound IDs or bare numbers' : undefined
+            }
+            FormHelperTextProps={{
+              sx: {
+                mt: 0.5,
+                fontSize: '0.7rem',
+                color: parsedCompounds.length > 0 ? 'success.main' : 'text.secondary',
+              }
+            }}
+          />
+        </Box>
 
         {/* Status filter */}
         <FormControl size="small" sx={{ minWidth: 130 }}>
