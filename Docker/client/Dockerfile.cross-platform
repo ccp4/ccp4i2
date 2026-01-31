@@ -9,13 +9,33 @@
 #     --platform linux/amd64 .
 #
 # How it works:
-#   1. Builder stage: Runs on native architecture (fast npm install & next build)
-#   2. Runner stage: Targets linux/amd64 (only copies artifacts + minimal setup)
+#   1. Package stage: Modifies package.json (removes Electron, adds web deps)
+#   2. Builder stage: Runs on native architecture (fast npm install & next build)
+#   3. Deps stage: Installs prod deps on target platform (cached separately)
+#   4. Runner stage: Targets linux/amd64 (only copies artifacts + minimal setup)
 #
 # Next.js output is JavaScript/static files, so cross-compilation is safe.
 
 # =============================================================================
-# Stage 1: Builder (runs natively for speed)
+# Stage 1: Package preparation (runs natively, cached independently)
+# =============================================================================
+# This stage creates the modified package.json that both builder and deps use.
+# Since package.json rarely changes, this stage stays cached across builds.
+FROM --platform=$BUILDPLATFORM node:20-alpine3.20 AS package
+
+WORKDIR /app
+
+# Copy package files (build context is repo root)
+COPY client/package*.json ./
+
+# Remove Electron-specific packages and add markdown rendering packages for web-only build
+# This significantly reduces install time and avoids downloading ~300MB of Electron binaries
+RUN apk add --no-cache jq && \
+    jq 'del(.devDependencies.electron) | del(.devDependencies["electron-builder"]) | del(.devDependencies["@electron/packager"]) | del(.dependencies["electron-store"]) | .dependencies["react-markdown"] = "^9.0.1" | .dependencies["remark-gfm"] = "^4.0.0"' package.json > package.web.json && \
+    mv package.web.json package.json
+
+# =============================================================================
+# Stage 2: Builder (runs natively for speed)
 # =============================================================================
 # Using $BUILDPLATFORM ensures this stage runs on the host's native arch
 FROM --platform=$BUILDPLATFORM node:20-alpine3.20 AS builder
@@ -33,14 +53,8 @@ ENV NEXT_PUBLIC_GIT_COMMIT=$NEXT_PUBLIC_GIT_COMMIT
 
 WORKDIR /app
 
-# Copy package files (build context is repo root)
-COPY client/package*.json ./
-
-# Remove Electron-specific packages and add markdown rendering packages for web-only build
-# This significantly reduces install time and avoids downloading ~300MB of Electron binaries
-RUN apk add --no-cache jq && \
-    jq 'del(.devDependencies.electron) | del(.devDependencies["electron-builder"]) | del(.devDependencies["@electron/packager"]) | del(.dependencies["electron-store"]) | .dependencies["react-markdown"] = "^9.0.1" | .dependencies["remark-gfm"] = "^4.0.0"' package.json > package.web.json && \
-    mv package.web.json package.json
+# Copy modified package.json from package stage
+COPY --from=package /app/package.json ./
 
 # Install dependencies (excluding Electron) with retry logic
 # Using npm install instead of npm ci to auto-update lock file when package.json changes
@@ -117,11 +131,16 @@ RUN cp package.json renderer/
 RUN cd renderer && npx next build
 
 # =============================================================================
-# Stage 2: Production dependencies (runs on TARGET platform for native binaries)
+# Stage 3: Production dependencies (runs on TARGET platform for native binaries)
 # =============================================================================
 # SWC and other Next.js native modules require architecture-specific binaries,
 # so we must install deps on the target platform (linux/amd64), not the build platform.
 # This stage uses QEMU emulation but is fast since it's just npm install.
+#
+# CACHING OPTIMIZATION: This stage copies from the 'package' stage, NOT 'builder'.
+# This means it can be cached independently of source code changes. As long as
+# package.json doesn't change, this entire stage is cached even when rebuilding
+# after code changes.
 FROM --platform=$TARGETPLATFORM node:20-alpine3.20 AS deps
 
 WORKDIR /app
@@ -129,15 +148,16 @@ WORKDIR /app
 # Install git (required by some npm packages that reference git repos)
 RUN apk add --no-cache git
 
-# Copy the modified package.json from builder
-COPY --from=builder /app/package.json ./
+# Copy the modified package.json from package stage (NOT builder)
+# This allows deps stage to be cached independently of source code changes
+COPY --from=package /app/package.json ./
 
 # Install production dependencies only
 # Must run on target platform to get correct architecture-specific packages (SWC, etc.)
 RUN npm install --omit=dev --legacy-peer-deps && npm cache clean --force
 
 # =============================================================================
-# Stage 3: Runner (targets deployment platform - only stage using emulation)
+# Stage 4: Runner (targets deployment platform - only stage using emulation)
 # =============================================================================
 # This stage is minimal: just copying files and setting up the runtime
 # No compilation or heavy npm operations here
