@@ -105,6 +105,10 @@ export default function ToolBar() {
       const confirmed = await confirmTaskRun(job.id);
       if (!confirmed) return;
       try {
+        // Sync container before run to ensure server has latest state
+        // This triggers a full refetch to catch any out-of-sync situations
+        await mutate(`jobs/${job.id}/container`);
+
         const runResult: any = await api.post(`jobs/${job.id}/run/`);
         if (runResult?.success === false) {
           setMessage(`Failed to run job: ${runResult?.error || "Unknown error"}`, "error");

@@ -18,7 +18,6 @@ import { useApi } from "../../../api";
 import { useJob, usePrevious, valueOfItem } from "../../../utils";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Add, Delete, Science } from "@mui/icons-material";
-import { useParameterChangeIntent } from "../../../providers/parameter-change-intent-provider";
 
 /** Get abbreviated polymer type label */
 const getPolymerTypeLabel = (type: string): string => {
@@ -77,10 +76,10 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
     mutateContainer,
     getValidationColor,
   } = useJob(job.id);
-  const { intent, setIntent, clearIntent } = useParameterChangeIntent();
 
   const { item, update: updateList, value: itemValue } = useTaskItem(itemName);
   const previousItemValue = usePrevious(itemValue);
+  const previousListLength = usePrevious(item?._value?.length);
 
   const handleOpenDialog = useCallback(
     (index: number) => {
@@ -119,32 +118,20 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
     let newItemValue = valueOfItem(taskElement);
     listValue.push(newItemValue);
     await updateList(listValue);
-  }, [item, job, updateList, setIntent, mutateContainer]);
+  }, [item, updateList]);
 
-  // After reload, select the new item if intent matches
+  // When the list grows, open the newly added item
   useEffect(() => {
+    const currentLength = item?._value?.length ?? 0;
     if (
-      item?._value &&
-      intent &&
-      typeof intent === "object" &&
-      "jobId" in intent &&
-      job.id === (intent as any).jobId &&
-      "reason" in intent &&
-      intent.reason === "UserEdit" &&
-      "parameterPath" in intent &&
-      intent.parameterPath === item._objectPath &&
-      "previousValue" in intent &&
-      intent.previousValue !== undefined &&
-      JSON.stringify(intent.previousValue) !== JSON.stringify(itemValue)
+      previousListLength !== undefined &&
+      currentLength > previousListLength
     ) {
-      if (intent.previousValue.length < itemValue.length) {
-        // Open the newly added item (last in list)
-        const newIndex = item._value.length - 1;
-        handleOpenDialog(newIndex);
-      }
-      clearIntent();
+      // Open the newly added item (last in list)
+      const newIndex = currentLength - 1;
+      handleOpenDialog(newIndex);
     }
-  }, [item?._value, intent, job.id, clearIntent, itemValue, handleOpenDialog]);
+  }, [item?._value?.length, previousListLength, handleOpenDialog]);
 
   const deleteItem = useCallback(
     async (index: number) => {

@@ -11,7 +11,6 @@ import { useJob, valueOfItem } from "../../../utils";
 import { ErrorInfo } from "./error-info";
 import { apiGet } from "../../../api-fetch";
 import { useCallback } from "react";
-import { useParameterChangeIntent } from "../../../providers/parameter-change-intent-provider";
 import { Science } from "@mui/icons-material";
 
 /** Get color for polymer type */
@@ -35,7 +34,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
 ) => {
   const { itemName, job } = props;
   const { useTaskItem, getValidationColor, mutateContainer } = useJob(job.id);
-  const { clearIntentForPath } = useParameterChangeIntent();
 
   const { item } = useTaskItem(itemName);
   const { update: setPolymerType } = useTaskItem(
@@ -82,12 +80,8 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         await setSequence(sequence);
         await setDescription(annotation);
         await setNCopies(1);
-        clearIntentForPath(`${item._objectPath}.polymerType`);
-        clearIntentForPath(`${item._objectPath}.name`);
-        clearIntentForPath(`${item._objectPath}.sequence`);
-        clearIntentForPath(`${item._objectPath}.description`);
-        clearIntentForPath(`${item._objectPath}.nCopies`);
-        await mutateContainer();
+        // With local patching, each update patches the cache immediately
+        // No need to call mutateContainer or clear intents
         props.onChange?.({ name, moleculeType, sequence });
       } else if (seqinDigest?.composition) {
         console.log("Seqin digest was a coordinate file");
@@ -103,12 +97,7 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         await setSequence(sequence);
         await setDescription(annotation);
         await setNCopies(1);
-        clearIntentForPath(`${item._objectPath}.polymerType`);
-        clearIntentForPath(`${item._objectPath}.name`);
-        clearIntentForPath(`${item._objectPath}.sequence`);
-        clearIntentForPath(`${item._objectPath}.description`);
-        clearIntentForPath(`${item._objectPath}.nCopies`);
-        await mutateContainer();
+        // With local patching, each update patches the cache immediately
         props.onChange?.({ name, moleculeType, sequence });
       }
     },
@@ -120,8 +109,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
       setNCopies,
       job,
       item,
-      mutateContainer,
-      clearIntentForPath,
       props,
     ]
   );

@@ -9,9 +9,9 @@ import {
   File as DjangoFile,
 } from "./types/models";
 import { useRunCheck } from "./providers/run-check-provider";
-import { useParameterChangeIntent } from "./providers/parameter-change-intent-provider";
 import { apiJson, apiText } from "./api-fetch";
 import { useIsJobEffectivelyActive } from "./providers/recently-started-jobs-context";
+import { patchContainer } from "./utils/container-patch";
 
 // ============================================================================
 // Types and Interfaces
@@ -917,7 +917,21 @@ export const useJob = (jobId: number | null | undefined): JobData => {
   });
 
   const { mutateJobs } = useProject(job?.project);
-  const { setIntent, setIntentForPath, clearIntentForPath } = useParameterChangeIntent();
+
+  // Event-driven sync: refetch container on window focus
+  // This ensures we have the latest server state when user returns to the tab
+  // Only sync for PENDING jobs (editable state)
+  useEffect(() => {
+    if (!jobId || job?.status !== JOB_STATUS.PENDING) return;
+
+    const handleFocus = () => {
+      console.log("[useJob] Window focus - syncing container for job", jobId);
+      mutateContainer();
+    };
+
+    window.addEventListener("focus", handleFocus);
+    return () => window.removeEventListener("focus", handleFocus);
+  }, [jobId, job?.status, mutateContainer]);
 
   // Memoized functions
   const setParameter = useCallback(
@@ -933,61 +947,39 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
       const objectPath = setParameterArg.object_path;
 
-      // Record intent BEFORE making the API call
-      // This prevents the container refetch from overwriting local state
-      // Get previous value from container lookup if available
-      const previousValue = container?.lookup?.[objectPath]?._value;
-      setIntentForPath({
-        jobId: job.id,
-        parameterPath: objectPath,
-        reason: "UserEdit",
-        previousValue,
-      });
-
       // Enqueue the operation to ensure sequential execution
       return parameterQueue.enqueue(async () => {
         try {
-          console.log(
-            "Executing setParameter for:",
-            objectPath
-          );
+          console.log("Executing setParameter for:", objectPath);
 
           const result = await api.post<SetParameterResponse>(
             `jobs/${job.id}/set_parameter`,
             setParameterArg
           );
           setProcessedErrors(null);
-          // Update all related data
-          await Promise.all([
-            mutateValidation(),
-            mutateContainer(),
-            mutateParams_xml(),
-          ]);
 
-          // NOTE: Don't clear intent here - let it expire naturally via auto-cleanup
-          // The intent mechanism persists for a short window after changes
+          // Patch the container cache locally instead of full refetch
+          // This eliminates race conditions and removes need for intent system
+          if (result.success && result.data?.updated_item) {
+            mutateContainer(
+              (currentContainer: any) =>
+                patchContainer(currentContainer, result.data.updated_item),
+              { revalidate: false }
+            );
+          }
+
+          // Still update validation and params_xml
+          await Promise.all([mutateValidation(), mutateParams_xml()]);
 
           console.log("Parameter set successfully:", result);
           return result;
         } catch (error) {
-          // Clear intent on error so future syncs work
-          clearIntentForPath(objectPath);
           console.error("Error setting parameter:", error);
           throw error;
         }
       });
     },
-    [
-      job,
-      container,
-      mutateContainer,
-      mutateValidation,
-      mutateParams_xml,
-      api,
-      setProcessedErrors,
-      setIntentForPath,
-      clearIntentForPath,
-    ]
+    [job, mutateContainer, mutateValidation, mutateParams_xml, api, setProcessedErrors]
   );
 
   const setParameterNoMutate = useCallback(
@@ -1003,50 +995,39 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
       const objectPath = setParameterArg.object_path;
 
-      // Record intent even for no-mutate calls
-      // This is important for derived updates (e.g., CImportUnmergedElement)
-      // where multiple fields are updated before a single mutateContainer()
-      const previousValue = container?.lookup?.[objectPath]?._value;
-      setIntentForPath({
-        jobId: job.id,
-        parameterPath: objectPath,
-        reason: "UserEdit",
-        previousValue,
-      });
-
       // Enqueue the operation to ensure sequential execution
       return parameterQueue.enqueue(async () => {
         try {
-          console.log(
-            "Executing setParameterNoMutate for:",
-            objectPath
-          );
+          console.log("Executing setParameterNoMutate for:", objectPath);
 
           const result = await api.post<SetParameterResponse>(
             `jobs/${job.id}/set_parameter`,
             setParameterArg
           );
 
-          // Note: We don't clear intent here because the caller will typically
-          // call mutateContainer() later, and we want the intent to persist
-          // until that refetch completes. The auto-cleanup will handle stale intents.
+          // Patch the container cache locally
+          // Even for "no mutate" calls, we patch immediately since there's no
+          // full refetch to wait for
+          if (result.success && result.data?.updated_item) {
+            mutateContainer(
+              (currentContainer: any) =>
+                patchContainer(currentContainer, result.data.updated_item),
+              { revalidate: false }
+            );
+          }
 
           return result;
         } catch (error) {
-          // Clear intent on error
-          clearIntentForPath(objectPath);
           console.error("Error setting parameter (no mutate):", error);
           throw error;
         }
       });
     },
-    [job, container, mutateParams_xml, mutateValidation, api, setIntentForPath, clearIntentForPath]
+    [job, mutateContainer, api]
   );
 
   /**
-   * Upload a file to a CDataFile parameter with intent tracking.
-   * This is the centralized function for all file uploads that should
-   * integrate with the intent tracking mechanism.
+   * Upload a file to a CDataFile parameter with local cache patching.
    */
   const uploadFileParam = useCallback(
     async (
@@ -1061,20 +1042,9 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
       const { objectPath, file, fileName, columnSelector, columnSelectors } = uploadArg;
 
-      // Record intent BEFORE making the API call
-      // This prevents the container refetch from overwriting local state
-      const previousValue = container?.lookup?.[objectPath]?._value;
-      setIntentForPath({
-        jobId: job.id,
-        parameterPath: objectPath,
-        reason: "FileUpload",
-        previousValue,
-      });
-
       // Enqueue the operation to ensure sequential execution
       return parameterQueue.enqueue(async () => {
         try {
-
           const formData = new FormData();
           formData.append("objectPath", objectPath);
           formData.append("file", file, fileName);
@@ -1093,44 +1063,33 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
           setProcessedErrors(null);
 
-          // Update all related data
-          await Promise.all([
-            mutateValidation(),
-            mutateContainer(),
-            mutateParams_xml(),
-          ]);
+          // Patch the container cache locally instead of full refetch
+          if (result.success && result.data?.updated_item) {
+            mutateContainer(
+              (currentContainer: any) =>
+                patchContainer(currentContainer, result.data.updated_item),
+              { revalidate: false }
+            );
+          }
+
+          // Still update validation and params_xml
+          await Promise.all([mutateValidation(), mutateParams_xml()]);
 
           // Invalidate the file digest cache for this objectPath
           // This triggers re-fetch of the digest, which task interfaces can use
           // to extract metadata like wavelength from the uploaded file
-          // NOTE: Key must match useFileDigest exactly (no trailing slash)
           const digestKey = `jobs/${job.id}/digest?object_path=${objectPath}`;
           await mutate(digestKey);
-
-          // NOTE: Don't clear intent here - let it expire naturally via auto-cleanup
-          // The intent mechanism persists for a short window after changes
 
           console.log("File uploaded successfully:", result);
           return result;
         } catch (error) {
-          // Clear intent on error so future syncs work
-          clearIntentForPath(objectPath);
           console.error("Error uploading file:", error);
           throw error;
         }
       }) as Promise<UploadFileParamResponse | undefined>;
     },
-    [
-      job,
-      container,
-      mutateContainer,
-      mutateValidation,
-      mutateParams_xml,
-      api,
-      setProcessedErrors,
-      setIntentForPath,
-      clearIntentForPath,
-    ]
+    [job, mutateContainer, mutateValidation, mutateParams_xml, api, setProcessedErrors]
   );
 
   const useTaskItem = useMemo(() => {
@@ -1197,35 +1156,21 @@ export const useJob = (jobId: number | null | undefined): JobData => {
       };
 
       /**
-       * Programmatic update that clears the intent after updating.
-       * This allows the UI to immediately reflect the new server value.
+       * Programmatic update for derived/computed values.
+       * With local cache patching, this is now equivalent to update() since
+       * we no longer have an intent system that needs clearing.
+       * Kept for backward compatibility with existing task interfaces.
        */
       const forceUpdate = async (
         newValue: any
       ): Promise<boolean | Response> => {
-        if (!job || job.status !== JOB_STATUS.PENDING) return false;
-
-        try {
-          const result = await setParameter({
-            object_path: item._objectPath,
-            value: newValue,
-          });
-
-          // Clear intent so the TextField will accept the new value from the container
-          if (item._objectPath) {
-            clearIntentForPath(item._objectPath);
-          }
-
-          return result?.success ? true : false;
-        } catch (error) {
-          console.error("Error force updating task item:", error);
-          return false;
-        }
+        // With local patching, forceUpdate is equivalent to update
+        return update(newValue);
       };
 
       return { item, value, update, updateNoMutate, forceUpdate };
     };
-  }, [container, job, setParameter, clearIntentForPath]);
+  }, [container, job, setParameter, setParameterNoMutate]);
 
   const createPeerTask = useCallback(
     async (taskName: string): Promise<Job | undefined> => {

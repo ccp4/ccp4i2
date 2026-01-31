@@ -14,6 +14,7 @@ from pathlib import Path
 from ccp4i2.db import models
 from ccp4i2.lib.response import Result
 from ccp4i2.lib.utils.plugins.plugin_context import get_plugin_with_context
+from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 
 logger = logging.getLogger(__name__)
 
@@ -142,7 +143,7 @@ def set_parameter(
 
         # obj now contains the CData object that was set
 
-        # Build result data
+        # Build result data (preserving existing fields for backward compatibility)
         result_data = {
             "path": object_path,
             "value": value,
@@ -168,6 +169,21 @@ def set_parameter(
                     result_data["base_name"] = str(base_name_attr.value)
                 else:
                     result_data["base_name"] = str(base_name_attr)
+
+        # NEW: Include the full serialized item for frontend cache patching
+        # This allows the frontend to patch the SWR cache directly without
+        # refetching the entire container.
+        if obj:
+            try:
+                # Serialize the updated object using the same encoder as /container endpoint
+                updated_item_json = json.dumps(obj, cls=CCP4i2JsonEncoder)
+                result_data["updated_item"] = json.loads(updated_item_json)
+            except Exception as e:
+                logger.warning(
+                    "Failed to serialize updated_item for %s: %s",
+                    object_path, str(e)
+                )
+                # Don't fail the request - updated_item is additive
 
         logger.info(
             "Successfully set parameter %s (normalized: %s) on job %s: %s",

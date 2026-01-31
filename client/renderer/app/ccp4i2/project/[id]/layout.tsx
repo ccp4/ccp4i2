@@ -23,7 +23,6 @@ import MenuBar from "../../../../components/menu-bar";
 import { NavigationShortcutsProvider } from "../../../../providers/navigation-shortcuts-provider";
 import { FileSystemFileBrowserProvider } from "../../../../providers/file-system-file-browser-context";
 import { JobTabProvider } from "../../../../providers/job-tab-provider";
-import { ParameterChangeIntentProvider } from "../../../../providers/parameter-change-intent-provider";
 
 export interface ProjectLayoutProps extends PropsWithChildren {
   params: Promise<{ id: string }>; // Removed jobid since it's not available at this route level
@@ -71,8 +70,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
             <JobMenuProvider>
               <JobTabProvider>
                 <FileMenuProvider>
-                  <ParameterChangeIntentProvider>
-                    <Stack
+                  <Stack
                       spacing={2}
                       sx={{
                         height: "calc(100vh - 4rem)",
@@ -197,8 +195,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                           </Panel>
                         </PanelGroup>
                       )}
-                    </Stack>
-                  </ParameterChangeIntentProvider>
+                  </Stack>
                 </FileMenuProvider>
               </JobTabProvider>
             </JobMenuProvider>
