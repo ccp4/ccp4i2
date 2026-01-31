@@ -79,7 +79,7 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
    * Handle file selection from the file picker.
    * This is the single entry point for file uploads - it handles:
    * 1. Showing the column selection dialog (for MTZ files) with sibling awareness
-   * 2. Uploading the file with the selected columns (with intent tracking)
+   * 2. Uploading the file with the selected columns (with local cache patching)
    * 3. Updating the UI state
    */
   const handleFileSelection = useCallback(
@@ -108,7 +108,7 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
           return;
         }
 
-        // Read file and upload using centralized uploadFileParam (with intent tracking)
+        // Read file and upload using centralized uploadFileParam (with local cache patching)
         const fileBuffer = await readFilePromise(file, "ArrayBuffer");
         const fileBlob = new Blob([fileBuffer as ArrayBuffer], { type: "application/CCP4-mtz-file" });
 

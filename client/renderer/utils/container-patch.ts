@@ -23,9 +23,10 @@ export interface ContainerItem {
 
 /**
  * Container with lookup table for O(1) path-based access.
+ * Note: The API returns { container, lookup } not { result, lookup }
  */
 export interface ContainerWithLookup {
-  result: ContainerItem;
+  container: ContainerItem;
   lookup: Record<string, ContainerItem>;
 }
 
@@ -58,6 +59,92 @@ function deepClone<T>(obj: T): T {
     return structuredClone(obj);
   }
   return JSON.parse(JSON.stringify(obj));
+}
+
+/**
+ * Removes all lookup entries that are children of a given path prefix.
+ * This is necessary when patching CLists because:
+ * 1. Items may be deleted from start/middle, causing reindexing
+ * 2. After deepClone, object identity checks won't work
+ * 3. We need to remove ALL entries under the CList path, not just exact matches
+ *
+ * For example, when patching UNMERGEDFILES (a CList), this removes:
+ * - UNMERGEDFILES[0], UNMERGEDFILES[1], etc.
+ * - UNMERGEDFILES[0].dbFileId, UNMERGEDFILES[1].annotation, etc.
+ * - Any nested children of list items
+ *
+ * @param pathPrefix - The path prefix to match (e.g., "task.container.inputData.UNMERGEDFILES")
+ * @param lookup - The lookup table to clean (mutates in place)
+ */
+function removeChildLookupEntries(
+  pathPrefix: string,
+  lookup: Record<string, ContainerItem>
+): void {
+  // Build regex to match the path prefix followed by [ (for list items)
+  // or nothing (for the list itself)
+  // This catches: UNMERGEDFILES, UNMERGEDFILES[0], UNMERGEDFILES[0].dbFileId, etc.
+  const prefixWithBracket = `${pathPrefix}[`;
+
+  const keysToRemove: string[] = [];
+
+  for (const key of Object.keys(lookup)) {
+    // Remove if key equals the prefix exactly, or starts with prefix[
+    // This handles both the list itself and all indexed children
+    if (key === pathPrefix || key.startsWith(prefixWithBracket)) {
+      keysToRemove.push(key);
+    }
+  }
+
+  for (const key of keysToRemove) {
+    delete lookup[key];
+  }
+}
+
+/**
+ * Recursively builds lookup table entries for an item and all its children.
+ * This mirrors the buildLookup function in api.ts, adding suffix paths
+ * for O(1) lookup by short name (e.g., 'UNMERGEDFILES') or full path.
+ *
+ * @param item - The item to add to the lookup (including all children)
+ * @param lookup - The lookup table to populate (mutates in place)
+ */
+function addToLookup(
+  item: ContainerItem,
+  lookup: Record<string, ContainerItem>
+): void {
+  // Add this item if it has an _objectPath
+  const objectPath = item._objectPath;
+  if (objectPath) {
+    const pathElements = objectPath.split(".");
+
+    // Add all suffix paths to lookup (mirrors buildLookup in api.ts)
+    // This enables lookup by short name like 'UNMERGEDFILES' as well as full path
+    for (let i = 0; i < pathElements.length; i++) {
+      const subPath = pathElements.slice(-i).join(".");
+      if (subPath) {
+        lookup[subPath] = item;
+      }
+    }
+    // Also add the full path explicitly (slice(-0) returns full array, not empty)
+    lookup[objectPath] = item;
+  }
+
+  // Recurse into children based on type
+  if (item._baseClass === "CList" && Array.isArray(item._value)) {
+    // CList: _value is an array of child items
+    item._value.forEach((child: any) => {
+      if (child && typeof child === "object" && child._objectPath) {
+        addToLookup(child, lookup);
+      }
+    });
+  } else if (item._value && item._value.constructor === Object) {
+    // CContainer or CDataFile: _value is an object with named children
+    Object.values(item._value).forEach((child: any) => {
+      if (child && typeof child === "object" && child._objectPath) {
+        addToLookup(child, lookup);
+      }
+    });
+  }
 }
 
 /**
@@ -178,13 +265,22 @@ export function patchContainer(
   // Deep clone to avoid mutating cached data
   const newContainer = deepClone(container);
 
-  // Update the lookup table
-  newContainer.lookup[path] = updatedItem;
+  // For CLists (and items with children), remove all existing lookup entries
+  // under this path before adding the new ones. This is critical because:
+  // 1. Delete from middle causes reindexing (ITEM[2] becomes ITEM[1])
+  // 2. Old entries like ITEM[2].dbFileId would remain stale
+  // 3. We can't use object identity after deepClone
+  //
+  // For simple scalar items, this is a no-op (removes just the item itself)
+  removeChildLookupEntries(path, newContainer.lookup);
+
+  // Update the lookup table - recursively add all children too
+  // This is crucial for CList items where new child items need lookup entries
+  addToLookup(updatedItem, newContainer.lookup);
 
   // Update the nested structure
-  setNestedItem(newContainer.result, path, updatedItem);
+  setNestedItem(newContainer.container, path, updatedItem);
 
-  console.log(`[patchContainer] Patched item at path: ${path}`);
   return newContainer;
 }
 
@@ -215,13 +311,14 @@ export function patchContainerMultiple(
       continue;
     }
 
-    // Update lookup table
-    newContainer.lookup[item._objectPath] = item;
+    // Remove old lookup entries before adding new ones (handles CList reindexing)
+    removeChildLookupEntries(item._objectPath, newContainer.lookup);
+
+    // Update lookup table - recursively add all children too
+    addToLookup(item, newContainer.lookup);
 
     // Update nested structure
-    setNestedItem(newContainer.result, item._objectPath, item);
-
-    console.log(`[patchContainerMultiple] Patched item at path: ${item._objectPath}`);
+    setNestedItem(newContainer.container, item._objectPath, item);
   }
 
   return newContainer;

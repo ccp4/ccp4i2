@@ -261,9 +261,9 @@ export const CListElement: React.FC<CListElementProps> = ({
       if (!validateListOperation(item, job)) return;
 
       try {
-        const currentArray = [...item._value];
-        const itemIndex = currentArray.findIndex(
-          (arrayItem) => arrayItem === deletedItem
+        // Find the index of the item to delete
+        const itemIndex = item._value.findIndex(
+          (arrayItem: any) => arrayItem === deletedItem
         );
 
         if (itemIndex === -1) {
@@ -271,19 +271,24 @@ export const CListElement: React.FC<CListElementProps> = ({
           return;
         }
 
-        // Remove item from array
-        currentArray.splice(itemIndex, 1);
+        // Get the current list values (not the full serialized objects)
+        // valueOfItem extracts just the _value content, stripping metadata
+        const currentListValue = Array.isArray(valueOfItem(item))
+          ? [...valueOfItem(item)]
+          : [];
+
+        // Remove item at the found index
+        currentListValue.splice(itemIndex, 1);
 
         console.log("Deleting list item:", {
           index: itemIndex,
-          deletedItem,
-          remainingItems: currentArray.length,
+          remainingItems: currentListValue.length,
         });
 
-        // Set parameter
+        // Set parameter with extracted values
         const setParameterArg: SetParameterArg = {
           object_path: item._objectPath,
-          value: currentArray,
+          value: currentListValue,
         };
 
         const result = (await setParameter(

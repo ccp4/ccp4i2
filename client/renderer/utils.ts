@@ -918,19 +918,34 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
   const { mutateJobs } = useProject(job?.project);
 
-  // Event-driven sync: refetch container on window focus
+  // Track whether the page was hidden to detect "return" events
+  const wasHiddenRef = useRef<boolean>(false);
+
+  // Event-driven sync: refetch container when page becomes visible after being hidden
   // This ensures we have the latest server state when user returns to the tab
+  // (e.g., if they edited in another window/tab or there were external changes)
   // Only sync for PENDING jobs (editable state)
+  //
+  // Using visibilitychange instead of focus because:
+  // 1. More reliable across Electron and web deployments
+  // 2. Only fires on actual tab switches, not window clicks
+  // 3. Prevents rapid-fire events that caused infinite loops
   useEffect(() => {
     if (!jobId || job?.status !== JOB_STATUS.PENDING) return;
 
-    const handleFocus = () => {
-      console.log("[useJob] Window focus - syncing container for job", jobId);
-      mutateContainer();
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        // Page is being hidden - mark it
+        wasHiddenRef.current = true;
+      } else if (wasHiddenRef.current) {
+        // Page is becoming visible AND was previously hidden - sync
+        wasHiddenRef.current = false;
+        mutateContainer();
+      }
     };
 
-    window.addEventListener("focus", handleFocus);
-    return () => window.removeEventListener("focus", handleFocus);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, [jobId, job?.status, mutateContainer]);
 
   // Memoized functions
@@ -945,13 +960,9 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         return undefined;
       }
 
-      const objectPath = setParameterArg.object_path;
-
       // Enqueue the operation to ensure sequential execution
       return parameterQueue.enqueue(async () => {
         try {
-          console.log("Executing setParameter for:", objectPath);
-
           const result = await api.post<SetParameterResponse>(
             `jobs/${job.id}/set_parameter`,
             setParameterArg
@@ -961,7 +972,10 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           // Patch the container cache locally instead of full refetch
           // This eliminates race conditions and removes need for intent system
           if (result.success && result.data?.updated_item) {
-            mutateContainer(
+            // Use the global mutate with explicit key to ensure all subscribers are notified
+            const containerKey = `jobs/${job.id}/container`;
+            await mutate(
+              containerKey,
               (currentContainer: any) =>
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
@@ -971,7 +985,6 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           // Still update validation and params_xml
           await Promise.all([mutateValidation(), mutateParams_xml()]);
 
-          console.log("Parameter set successfully:", result);
           return result;
         } catch (error) {
           console.error("Error setting parameter:", error);
@@ -979,7 +992,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       });
     },
-    [job, mutateContainer, mutateValidation, mutateParams_xml, api, setProcessedErrors]
+    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors]
   );
 
   const setParameterNoMutate = useCallback(
@@ -1005,11 +1018,13 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             setParameterArg
           );
 
-          // Patch the container cache locally
+          // Patch the container cache locally using global mutate
           // Even for "no mutate" calls, we patch immediately since there's no
           // full refetch to wait for
           if (result.success && result.data?.updated_item) {
-            mutateContainer(
+            const containerKey = `jobs/${job.id}/container`;
+            await mutate(
+              containerKey,
               (currentContainer: any) =>
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
@@ -1023,7 +1038,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       });
     },
-    [job, mutateContainer, api]
+    [job, api]
   );
 
   /**
@@ -1063,9 +1078,11 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
           setProcessedErrors(null);
 
-          // Patch the container cache locally instead of full refetch
+          // Patch the container cache locally using global mutate
           if (result.success && result.data?.updated_item) {
-            mutateContainer(
+            const containerKey = `jobs/${job.id}/container`;
+            await mutate(
+              containerKey,
               (currentContainer: any) =>
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
@@ -1089,7 +1106,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       }) as Promise<UploadFileParamResponse | undefined>;
     },
-    [job, mutateContainer, mutateValidation, mutateParams_xml, api, setProcessedErrors]
+    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors]
   );
 
   const useTaskItem = useMemo(() => {
@@ -1115,9 +1132,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           return false;
         }
 
-        // Note: Intent is now recorded inside setParameter, no need to call setIntent here
-
-        // Use the queued setParameter instead of direct fetch
+        // Use the queued setParameter which patches the cache locally
         try {
           const result = await setParameter({
             object_path: item._objectPath,

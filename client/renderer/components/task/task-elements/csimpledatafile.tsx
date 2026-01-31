@@ -27,7 +27,7 @@ export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (
     previousSelectedFiles.current = selectedFiles;
     const fileBuffer = await readFilePromise(selectedFiles[0], "ArrayBuffer");
 
-    // Use centralized uploadFileParam with intent tracking
+    // Use centralized uploadFileParam with local cache patching
     const uploadResult = await uploadFileParam({
       objectPath: item._objectPath,
       file: new Blob([fileBuffer as ArrayBuffer], { type: item._qualifiers.mimeTypeName }),

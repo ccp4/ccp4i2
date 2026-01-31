@@ -64,7 +64,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
       if (job && item) {
         setMessage(`Uploading file ${fileName} for ${item._objectPath}`);
 
-        // Use centralized uploadFileParam with intent tracking
+        // Use centralized uploadFileParam with local cache patching
         const uploadResult = await uploadFileParam({
           objectPath: item._objectPath,
           file: fileBlob,

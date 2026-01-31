@@ -23,7 +23,7 @@ import {
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, useFileDigest, fetchDigest, mutateContainer, validation, createPeerTask } = useJob(
+  const { useTaskItem, useFileDigest, fetchDigest, validation, createPeerTask } = useJob(
     job.id
   );
   const { setProcessedErrors } = useRunCheck();
@@ -46,7 +46,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Get task items for file handling and parameter updates
   const { item: ATOM_TYPEItem, value: ATOM_TYPEValue } = useTaskItem("ATOM_TYPE");
   const { item: F_SIGFanomItem, value: F_SIGFanomValue } = useTaskItem("F_SIGFanom");
-  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
+  const { value: WAVELENGTHValue, forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
   const { forceUpdate: forceUpdateUSER_WAVELENGTH } = useTaskItem("USER_WAVELENGTH");
   const { updateNoMutate: updateSHELXCDE } = useTaskItem("SHELXCDE");
   const { updateNoMutate: updateUSE_COMB } = useTaskItem("USE_COMB");
@@ -86,19 +86,18 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       // Only update if wavelength is valid
       if (newWavelength && newWavelength < 9) {
         try {
-          // Use forceUpdate to ensure UI reflects the new value immediately
+          // forceUpdate patches the cache locally - no need for mutateContainer
           await forceUpdateWAVELENGTH(newWavelength);
           // Set USER_WAVELENGTH=true so crank2 knows to use it
           if (forceUpdateUSER_WAVELENGTH) {
             await forceUpdateUSER_WAVELENGTH(true);
           }
-          mutateContainer();
         } catch (error) {
           console.error("Error updating wavelength:", error);
         }
       }
     }
-  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomItem?._objectPath, fetchDigest, job?.status, mutateContainer]);
+  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomItem?._objectPath, fetchDigest, job?.status]);
 
   // Handler for fetching wavelength from reflection file (button click)
   const handleFetchWavelength = useCallback(async () => {
@@ -114,21 +113,73 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       if (newWavelength && newWavelength < 9) {
         try {
-          // Use forceUpdate to ensure UI reflects the new value immediately
+          // forceUpdate patches the cache locally - no need for mutateContainer
           await forceUpdateWAVELENGTH(newWavelength);
           if (forceUpdateUSER_WAVELENGTH) {
             await forceUpdateUSER_WAVELENGTH(true);
           }
-          mutateContainer();
         } catch (error) {
           console.error("Error updating wavelength:", error);
         }
       }
     }
-  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomDigest, job?.status, mutateContainer]);
+  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomDigest, job?.status]);
 
   // Check if we can fetch wavelength (file is set and has wavelength data)
   const canFetchWavelength = hasF_SIGFanom && F_SIGFanomDigest?.wavelengths?.length > 0 && job.status === 1;
+
+  // Ref to track if we've already auto-populated wavelength for this file
+  const wavelengthAutoPopulatedRef = useRef<string | null>(null);
+
+  // Auto-populate wavelength when file is pre-set (e.g., from pipeline identity)
+  // This handles the case where the task is created with F_SIGFanom already populated
+  // but no onChange was fired, so wavelength wasn't extracted
+  useEffect(() => {
+    const autoPopulateWavelength = async () => {
+      // Only proceed if:
+      // 1. Job is editable
+      // 2. File is set and has digest with wavelengths
+      // 3. Wavelength is not yet set (0, undefined, or null)
+      // 4. We haven't already auto-populated for this file
+      if (
+        job?.status !== 1 ||
+        !hasF_SIGFanom ||
+        !F_SIGFanomDigest?.wavelengths?.length ||
+        !forceUpdateWAVELENGTH ||
+        (WAVELENGTHValue && WAVELENGTHValue > 0) ||
+        wavelengthAutoPopulatedRef.current === F_SIGFanomValue?.dbFileId
+      ) {
+        return;
+      }
+
+      const newWavelength = F_SIGFanomDigest.wavelengths[F_SIGFanomDigest.wavelengths.length - 1];
+
+      if (newWavelength && newWavelength < 9) {
+        try {
+          // Mark as auto-populated for this file to prevent re-running
+          wavelengthAutoPopulatedRef.current = F_SIGFanomValue?.dbFileId;
+
+          await forceUpdateWAVELENGTH(newWavelength);
+          if (forceUpdateUSER_WAVELENGTH) {
+            await forceUpdateUSER_WAVELENGTH(true);
+          }
+          console.log("Auto-populated wavelength from pre-set file:", newWavelength);
+        } catch (error) {
+          console.error("Error auto-populating wavelength:", error);
+        }
+      }
+    };
+
+    autoPopulateWavelength();
+  }, [
+    job?.status,
+    hasF_SIGFanom,
+    F_SIGFanomDigest,
+    F_SIGFanomValue?.dbFileId,
+    WAVELENGTHValue,
+    forceUpdateWAVELENGTH,
+    forceUpdateUSER_WAVELENGTH,
+  ]);
 
   // Element configurations for parameters section
   const parameterConfigs = useMemo(
@@ -206,8 +257,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       if (updates.length > 0) {
         try {
+          // Each update patches the cache locally - no need for mutateContainer
           await Promise.all(updates);
-          await mutateContainer();
         } catch (error) {
           console.error("Error initializing SHELX defaults:", error);
         }

@@ -219,11 +219,11 @@ function parseContainerResponse(response: any, isContainer: boolean): any {
 
 /**
  * Fetcher for endpoints returning {xml: string}
+ * Accepts string key (e.g., "jobs/123/params_xml")
  */
 function createXmlFetcher(transform: (data: { xml: string } | null) => any) {
-  return async (ef: EndpointFetch) => {
-    if (!isValidEndpoint(ef)) throw new Error("Invalid endpoint");
-    const data = await baseFetcher<{ xml: string }>(endpointToUrl(ef));
+  return async (key: string) => {
+    const data = await baseFetcher<{ xml: string }>(key);
     return transform(data);
   };
 }
@@ -234,27 +234,43 @@ const validationFetcher = createXmlFetcher(parseValidationXml);
 
 /**
  * Fetcher for wrapped JSON (container, etc.)
+ * Accepts string key (e.g., "jobs/123/container")
  */
-async function wrappedJsonFetcher(ef: EndpointFetch): Promise<any> {
-  if (!isValidEndpoint(ef)) throw new Error("Invalid endpoint");
-  const response = await jsonFetcher<any>(endpointToUrl(ef));
-  return parseContainerResponse(response, ef.endpoint === "container");
+async function wrappedJsonFetcher(key: string): Promise<any> {
+  console.log("[wrappedJsonFetcher] Fetching:", key);
+  const response = await jsonFetcher<any>(key);
+  // Check if this is a container endpoint by looking at the key
+  const isContainer = key.endsWith("/container");
+  const result = parseContainerResponse(response, isContainer);
+  console.log("[wrappedJsonFetcher] Result for", key, ":", {
+    hasContainer: !!result?.container,
+    hasLookup: !!result?.lookup,
+    lookupKeys: result?.lookup ? Object.keys(result.lookup).length : 0,
+  });
+  return result;
 }
 
 /**
  * Simple endpoint fetcher (returns raw API response)
+ * Accepts string key (e.g., "jobs/123/")
  */
-async function endpointFetcher<T>(ef: EndpointFetch): Promise<T> {
-  if (!isValidEndpoint(ef)) throw new Error("Invalid endpoint");
-  return jsonFetcher<T>(endpointToUrl(ef));
+async function endpointFetcher<T>(key: string): Promise<T> {
+  return jsonFetcher<T>(key);
 }
 
 // =============================================================================
 // SWR Key Helpers
 // =============================================================================
 
-function getEndpointKey(ef: EndpointFetch | null | undefined): EndpointFetch | null {
-  return isValidEndpoint(ef) ? ef : null;
+/**
+ * Convert EndpointFetch to a stable string key for SWR.
+ * Using a string key ensures proper deduplication regardless of object reference.
+ * This is critical because each component calling useJob() creates a new object,
+ * but they should all share the same SWR cache entry.
+ */
+function getEndpointKey(ef: EndpointFetch | null | undefined): string | null {
+  if (!isValidEndpoint(ef)) return null;
+  return `${ef.type}/${ef.id}/${ef.endpoint}`;
 }
 
 function getStringKey(endpoint: string | null | undefined): string | null {
@@ -322,9 +338,18 @@ export function useApi() {
 
     /**
      * Fetch JSON endpoint with legacy format handling (container, etc.)
+     * Configured to avoid unnecessary refetches - container is mutated locally
+     * via patchContainer when parameters change.
      */
     get_wrapped_endpoint_json<T>(ef: EndpointFetch) {
-      return useSWR<T>(getEndpointKey(ef), wrappedJsonFetcher);
+      return useSWR<T>(getEndpointKey(ef), wrappedJsonFetcher, {
+        // Don't refetch on window focus - we sync explicitly when needed
+        revalidateOnFocus: false,
+        // Don't refetch when reconnecting
+        revalidateOnReconnect: false,
+        // Deduplicate requests within 5 seconds
+        dedupingInterval: 5000,
+      });
     },
 
     /**
