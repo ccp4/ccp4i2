@@ -9,9 +9,30 @@ import { NextRequest, NextResponse } from "next/server";
  */
 
 /**
+ * Public endpoints that don't require authentication.
+ * Version info is fetched from the app-selector page before login.
+ * Health checks use /api/health directly, not through this proxy.
+ */
+const PUBLIC_ENDPOINTS = ["version"];
+
+/**
+ * Check if the path is a public endpoint that doesn't require auth.
+ */
+function isPublicEndpoint(path: string): boolean {
+  const normalizedPath = path.replace(/\/$/, ""); // Remove trailing slash
+  return PUBLIC_ENDPOINTS.some(
+    (endpoint) => normalizedPath === endpoint || normalizedPath.endsWith(`/${endpoint}`)
+  );
+}
+
+/**
  * Check if authentication should be required.
  */
-function isAuthRequired(): boolean {
+function isAuthRequired(path: string): boolean {
+  // Public endpoints never require auth
+  if (isPublicEndpoint(path)) {
+    return false;
+  }
   if (process.env.REQUIRE_PROXY_AUTH?.toLowerCase() === "true") {
     return true;
   }
@@ -91,7 +112,7 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
   console.log("[CCP4I2 PROXY] NEXT_PUBLIC_API_BASE_URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
 
   // Check authentication if required
-  if (isAuthRequired()) {
+  if (isAuthRequired(path)) {
     const token = extractAuthToken(req);
     if (!token) {
       const principalId = req.headers.get("X-MS-CLIENT-PRINCIPAL-ID");
