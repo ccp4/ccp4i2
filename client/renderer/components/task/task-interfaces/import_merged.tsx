@@ -190,7 +190,7 @@ function groupColumnsByPattern(columns: MtzColumn[]): ColumnGroup[] {
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const api = useApi();
   const { job } = props;
-  const { useFileDigest, useTaskItem, mutateContainer, mutateValidation, uploadFileParam } =
+  const { useFileDigest, useTaskItem, mutateValidation, uploadFileParam } =
     useJob(job.id);
   const { cootModule } = useCCP4i2Window();
 
@@ -396,8 +396,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       console.log("[import_merged] parametersChanged:", parametersChanged);
+      // forceUpdate calls patch the cache locally - no need for mutateContainer
       if (parametersChanged) {
-        await mutateContainer();
         await mutateValidation();
       }
 
@@ -434,7 +434,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         }
       }
 
-      await mutateContainer();
+      // forceUpdate calls patch the cache locally - no need for mutateContainer
       await mutateValidation();
     },
     [
@@ -444,7 +444,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       forceUpdateDATASETNAME,
       forceUpdateCRYSTALNAME,
       HKLINDigest,
-      mutateContainer,
       mutateValidation,
     ]
   );
@@ -497,7 +496,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         }
       }
 
-      await mutateContainer();
+      // forceUpdate calls patch the cache locally - no need for mutateContainer
       await mutateValidation();
     },
     [
@@ -511,7 +510,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       forceUpdateWAVELENGTH,
       forceUpdateUNITCELL,
       forceSetHASFREER,
-      mutateContainer,
       mutateValidation,
     ]
   );
@@ -541,10 +539,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         await forceSetMMCIF_SELECTED_ISINTENSITY(isIntensity);
       }
 
-      await mutateContainer();
+      // forceUpdate calls patch the cache locally - no need for mutateContainer
       await mutateValidation();
     },
-    [job?.status, forceSetMMCIF_SELECTED_CONTENT, forceSetMMCIF_SELECTED_COLUMNS, forceSetMMCIF_SELECTED_ISINTENSITY, mutateContainer, mutateValidation]
+    [job?.status, forceSetMMCIF_SELECTED_CONTENT, forceSetMMCIF_SELECTED_COLUMNS, forceSetMMCIF_SELECTED_ISINTENSITY, mutateValidation]
   );
 
   // Process column selection from MTZ dialog (legacy path)

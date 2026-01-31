@@ -1,19 +1,11 @@
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
-import { useApi } from "../../../api";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const api = useApi();
   const { job } = props;
   const { useTaskItem } = useJob(job.id);
-  const { data: container, mutate: mutateContainer } =
-    api.get_wrapped_endpoint_json<any>({
-      type: "jobs",
-      id: props.job.id,
-      endpoint: "container",
-    });
 
   const { value: ligandAs } = useTaskItem("LIGANDAS");
   const { value: obsAs } = useTaskItem("OBSAS");
