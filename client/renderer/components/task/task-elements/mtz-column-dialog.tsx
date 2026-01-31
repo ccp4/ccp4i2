@@ -776,47 +776,21 @@ const EnhancedMtzColumnDialogComponent: React.FC<EnhancedMtzColumnDialogProps> =
 export interface ParseMtzOptions {
   file: File;
   item: MtzItem;
-  cootModule: any; // The coot WASM module
+  cootModule: any; // The coot WASM module (optional - no longer used for column parsing)
 }
 
 /**
- * Parse an MTZ file and get column names using coot's WASM module.
- * Returns the parsed column names or null if parsing fails.
+ * Parse an MTZ file and get column names using the pure TypeScript parser.
+ *
+ * This is the primary parser - it's faster than WASM and works reliably
+ * across all environments (including Azure where SharedArrayBuffer isn't
+ * available for WASM threading).
  */
-export async function parseMtzColumns(
-  file: File,
-  cootModule: any
-): Promise<ColumnNames | null> {
+async function parseMtzColumnsNative(file: File): Promise<ColumnNames | null> {
   try {
-    // Read file as ArrayBuffer
-    const fileContent = await new Promise<ArrayBuffer>((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as ArrayBuffer);
-      reader.onerror = () => reject(reader.error);
-      reader.readAsArrayBuffer(file);
-    });
-
-    if (!fileContent) {
-      return null;
-    }
-
-    const fileName = `File_${uuid4()}`;
-    const byteArray = new Uint8Array(fileContent);
-
-    // Write to coot's virtual filesystem
-    cootModule.FS_createDataFile(".", fileName, byteArray, true, true);
-
-    // Get column info
-    const headerInfo = cootModule.get_mtz_columns(fileName);
-
-    // Clean up
-    cootModule.FS_unlink(`./${fileName}`);
-
-    // Parse columns
-    const columns: ColumnNames = {};
-    for (let i = 0; i < headerInfo.size(); i += 2) {
-      columns[headerInfo.get(i + 1)] = headerInfo.get(i);
-    }
+    const { parseMtzFile, getColumnNamesByType } = await import("../../../lib/mtz-parser");
+    const header = await parseMtzFile(file);
+    const columns = getColumnNamesByType(header);
 
     if (Object.keys(columns).length === 0) {
       return null;
@@ -827,6 +801,24 @@ export async function parseMtzColumns(
     console.error("Failed to parse MTZ file:", error);
     return null;
   }
+}
+
+/**
+ * Parse an MTZ file and get column names.
+ *
+ * Uses a pure TypeScript implementation that parses the MTZ header directly.
+ * This is faster and more reliable than the previous WASM-based approach,
+ * and works in all environments without SharedArrayBuffer requirements.
+ *
+ * @param file - The MTZ file to parse
+ * @param _cootModule - Deprecated, no longer used (kept for API compatibility)
+ * @returns Column names map or null if parsing fails
+ */
+export async function parseMtzColumns(
+  file: File,
+  _cootModule?: any | null
+): Promise<ColumnNames | null> {
+  return parseMtzColumnsNative(file);
 }
 
 /**

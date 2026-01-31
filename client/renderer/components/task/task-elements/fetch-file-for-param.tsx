@@ -12,6 +12,8 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { apiFetch, apiBlob, apiText } from "../../../api-fetch";
 import { useCCP4i2Window } from "../../../app-context";
 import { useJob, useProject } from "../../../utils";
+
+// Note: cootModule is no longer used here - MTZ parsing now uses native TypeScript parser
 import { usePopcorn } from "../../../providers/popcorn-provider";
 import { useTaskInterface } from "../../../providers/task-provider";
 interface FetchFileForParamProps {
@@ -39,7 +41,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
     [item, modes]
   );
 
-  const { jobId, cootModule } = useCCP4i2Window();
+  const { jobId } = useCCP4i2Window();
   const { job, uploadFileParam } = useJob(jobId);
   const { mutateJobs, mutateFiles } = useProject(job?.project);
 

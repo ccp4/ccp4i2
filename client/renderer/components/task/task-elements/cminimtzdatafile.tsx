@@ -4,7 +4,6 @@ import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useMemo } from "react";
 import { BaseSpacegroupCellElement } from "./base-spacegroup-cell-element";
 import { readFilePromise, useJob, useProject } from "../../../utils";
-import { useCCP4i2Window } from "../../../app-context";
 import { selectMtzColumnsEnhanced, SiblingInput } from "./mtz-column-dialog";
 
 /** MTZ-related class names that are siblings of interest */
@@ -23,7 +22,6 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const { useTaskItem, useFileDigest, uploadFileParam, container } = useJob(job.id);
   const { mutateJobs, mutateFiles } = useProject(job.project);
   const { item, value } = useTaskItem(itemName);
-  const { cootModule } = useCCP4i2Window();
 
   // Only fetch digest when a file has been uploaded (has dbFileId)
   const hasFile = Boolean(value?.dbFileId);
@@ -84,9 +82,13 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
    */
   const handleFileSelection = useCallback(
     async (files: FileList | null) => {
-      if (!files || files.length === 0 || !item || !cootModule) {
+      if (!files || files.length === 0 || !item) {
         return;
       }
+
+      // CMtzDataFile stores the entire MTZ file as-is without column selection.
+      // Other MTZ types need column parsing for the selection dialog.
+      // Uses native TypeScript MTZ parser (no WASM dependency).
 
       const file = files[0];
 
@@ -95,10 +97,11 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
         const siblingInputs = getSiblingInputs();
 
         // Show enhanced column selection dialog with sibling awareness
+        // Uses native TypeScript MTZ parser (no cootModule/WASM dependency)
         const result = await selectMtzColumnsEnhanced({
           file,
           item,
-          cootModule,
+          cootModule: null, // Deprecated - native parser is used
           siblingInputs,
           multiSelectMode: false, // Single-select for now, can be enabled per-task
         });
@@ -155,7 +158,7 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
         // Could show an error toast/snackbar here
       }
     },
-    [item, cootModule, getSiblingInputs, onChange, uploadFileParam, mutateJobs, mutateFiles, mutateDigest]
+    [item, getSiblingInputs, onChange, uploadFileParam, mutateJobs, mutateFiles, mutateDigest]
   );
 
   const isVisible = useMemo(

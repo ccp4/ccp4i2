@@ -25,6 +25,7 @@ import { File as DjangoFile } from "../types/models";
 import { useRouter } from "next/navigation";
 import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
 import { useCCP4i2Window } from "../app-context";
+import { TableChart } from "@mui/icons-material";
 
 interface FileMenuContextProps {
   fileMenuAnchorEl: HTMLElement | null;
@@ -317,6 +318,22 @@ export const FileMenu: React.FC = () => {
     [file, api, setFileMenuAnchorEl]
   );
 
+  // Preview MTZ header using pure TypeScript parser
+  const handlePreviewMtzHeader = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      if (file) {
+        setContentSpecification({
+          url: `/api/proxy/ccp4i2/files/${file.id}/download/`,
+          title: `${file.name} - MTZ Header`,
+          language: "mtz",
+        });
+        setFileMenuAnchorEl(null);
+      }
+    },
+    [file, setContentSpecification, setFileMenuAnchorEl]
+  );
+
   // Handle edit annotation menu item click
   const handleEditAnnotation = useCallback(
     async (ev: SyntheticEvent) => {
@@ -390,6 +407,11 @@ export const FileMenu: React.FC = () => {
         {file && file.type.startsWith("application/CCP4-mtz") && (
           <MenuItem key="ViewHKL" onClick={handlePreviewFileInViewHKL}>
             <Preview sx={{ mr: 1 }} /> ViewHKL
+          </MenuItem>
+        )}
+        {file && file.type.startsWith("application/CCP4-mtz") && (
+          <MenuItem key="MtzHeader" onClick={handlePreviewMtzHeader}>
+            <TableChart sx={{ mr: 1 }} /> MTZ Header
           </MenuItem>
         )}
         {file &&

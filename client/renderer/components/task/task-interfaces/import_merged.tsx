@@ -10,7 +10,6 @@ import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { showMtzColumnDialog, parseMtzColumns } from "../task-elements/mtz-column-dialog";
 import { Job } from "../../../types/models";
-import { useCCP4i2Window } from "../../../app-context";
 import {
   Alert,
   Box,
@@ -192,7 +191,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useFileDigest, useTaskItem, mutateValidation, uploadFileParam } =
     useJob(job.id);
-  const { cootModule } = useCCP4i2Window();
 
   const { item: HKLINItem, value: HKLINValue } = useTaskItem("HKLIN");
   const oldHKLINValue = usePrevious(HKLINValue);
@@ -674,7 +672,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         !hklinValue?.dbFileId ||
         !hklinValue?.baseName ||
         !oldHKLINValue ||
-        !cootModule ||
         job?.status !== 1
       )
         return;
@@ -689,7 +686,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       const blob = new Blob([arrayBuffer], { type: "application/CCP4-mtz-file" });
       const file = new File([blob], hklinValue.baseName, { type: "application/CCP4-mtz-file" });
 
-      const columnNames = await parseMtzColumns(file, cootModule);
+      // Use native TypeScript MTZ parser (no cootModule dependency)
+      const columnNames = await parseMtzColumns(file);
       if (!columnNames) return;
 
       const columnPath = await showMtzColumnDialog(columnNames, HKLIN_OBSItem);
@@ -697,7 +695,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       await processColumnSelection(columnPath, file);
     },
-    [oldHKLINValue, cootModule, job?.status, HKLIN_OBSItem, processColumnSelection]
+    [oldHKLINValue, job?.status, HKLIN_OBSItem, processColumnSelection]
   );
 
   // Effect: Handle HKLIN value changes

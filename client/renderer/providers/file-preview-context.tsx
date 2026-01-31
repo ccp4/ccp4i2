@@ -19,8 +19,8 @@ import { Editor } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
 import { createContext } from "react";
 import $ from "jquery";
-import { useCCP4i2Window } from "../app-context";
 import { CifTableStack } from "../components/cif-table-stack";
+import { parseMtzHeader } from "../lib/mtz-parser";
 import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
 import { useTheme } from "../theme/theme-provider";
@@ -65,28 +65,35 @@ const FilePreviewDialog: React.FC = () => {
   const { contentSpecification, setContentSpecification } =
     useFilePreviewContext();
   const [previewContent, setPreviewContent] = useState<string | null>("");
-  const { cootModule } = useCCP4i2Window();
   const { mode } = useTheme();
+
+  // Parse MTZ header using pure TypeScript parser (no WASM dependency)
   const handleMtzPreview = useCallback(
     async (fileContent: ArrayBuffer) => {
-      if (cootModule) {
-        const byteArray = new Uint8Array(fileContent);
-        try {
-          cootModule.FS_unlink("/tmp/fileName");
-        } catch (e) {}
-        cootModule.FS_createDataFile("/tmp", "fileName", byteArray, true, true);
-        const header_info_em: any = cootModule.get_mtz_columns("/tmp/fileName");
-        cootModule.FS_unlink("/tmp/fileName");
-        // Convert emscripten array to regular array for easier handling
-        const header_info: string[] = [];
-        for (let key = 0; key < header_info_em.size(); key++) {
-          header_info.push(header_info_em.get(key));
-        }
-        console.log(header_info);
-        setPreviewContent(JSON.stringify(header_info, null, 2));
+      try {
+        const header = parseMtzHeader(fileContent);
+        // Format header info for preview display
+        const previewData = {
+          title: header.title,
+          nColumns: header.nColumns,
+          nReflections: header.nReflections,
+          spaceGroup: header.spaceGroup,
+          cell: header.cell,
+          resolution: header.resolution,
+          isMerged: header.isMerged,
+          columns: header.columns.map(c => ({
+            label: c.label,
+            type: c.type,
+          })),
+          datasets: header.datasets,
+        };
+        setPreviewContent(JSON.stringify(previewData, null, 2));
+      } catch (error) {
+        console.error("Failed to parse MTZ file:", error);
+        setPreviewContent(JSON.stringify({ error: String(error) }, null, 2));
       }
     },
-    [cootModule]
+    []
   );
 
   const compactCifPreview = (parsed: Record<string, any>): string => {
@@ -155,7 +162,7 @@ const FilePreviewDialog: React.FC = () => {
       };
       asyncFunc();
     }
-  }, [contentSpecification, cootModule]);
+  }, [contentSpecification, handleMtzPreview]);
 
   const handleDownload = () => {
     if (!contentSpecification?.url) return;
