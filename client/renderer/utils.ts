@@ -918,35 +918,10 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
   const { mutateJobs } = useProject(job?.project);
 
-  // Track whether the page was hidden to detect "return" events
-  const wasHiddenRef = useRef<boolean>(false);
-
-  // Event-driven sync: refetch container when page becomes visible after being hidden
-  // This ensures we have the latest server state when user returns to the tab
-  // (e.g., if they edited in another window/tab or there were external changes)
-  // Only sync for PENDING jobs (editable state)
-  //
-  // Using visibilitychange instead of focus because:
-  // 1. More reliable across Electron and web deployments
-  // 2. Only fires on actual tab switches, not window clicks
-  // 3. Prevents rapid-fire events that caused infinite loops
-  useEffect(() => {
-    if (!jobId || job?.status !== JOB_STATUS.PENDING) return;
-
-    const handleVisibilityChange = () => {
-      if (document.hidden) {
-        // Page is being hidden - mark it
-        wasHiddenRef.current = true;
-      } else if (wasHiddenRef.current) {
-        // Page is becoming visible AND was previously hidden - sync
-        wasHiddenRef.current = false;
-        mutateContainer();
-      }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibilityChange);
-    return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
-  }, [jobId, job?.status, mutateContainer]);
+  // Note: With local parameter patching, we no longer need to refetch the container
+  // on visibility change. The local cache is kept in sync by patching API responses
+  // directly into the SWR cache. The previous visibilitychange handler was removed
+  // because it could trigger cascading refetches in complex task interfaces.
 
   // Memoized functions
   const setParameter = useCallback(
