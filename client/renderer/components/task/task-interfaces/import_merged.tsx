@@ -245,22 +245,51 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const columnGroups = useMemo(() => {
     if (!HKLINDigest) return [];
 
-    // Use pre-computed column groups if available
+    // Valid column group types - filter out any groups with empty/invalid types
+    const VALID_GROUP_TYPES = ["Obs", "Phs", "MapCoeffs", "FreeR"];
+
+    // First try pre-computed column groups from backend
     if (HKLINDigest.columnGroups && HKLINDigest.columnGroups.length > 0) {
-      return HKLINDigest.columnGroups;
+      // Filter out groups with empty or invalid columnGroupType (backend may include spurious entries)
+      const validGroups = HKLINDigest.columnGroups.filter(
+        (g) => g.columnGroupType && VALID_GROUP_TYPES.includes(g.columnGroupType)
+      );
+
+      // Check if we found any Obs groups - if not, try computing from listOfColumns
+      // (Backend pattern matching may have failed to find observations)
+      const hasObsGroups = validGroups.some((g) => g.columnGroupType === "Obs");
+
+      if (hasObsGroups || !HKLINDigest.listOfColumns) {
+        console.log("[import_merged] Using pre-computed columnGroups:", {
+          raw: HKLINDigest.columnGroups,
+          filtered: validGroups,
+        });
+        return validGroups;
+      }
+
+      // Backend didn't find Obs groups - try computing ourselves
+      console.log("[import_merged] Backend columnGroups missing Obs, computing from listOfColumns");
     }
 
-    // Otherwise compute from listOfColumns
+    // Compute from listOfColumns (either as primary source or fallback)
     if (HKLINDigest.listOfColumns) {
-      return groupColumnsByPattern(HKLINDigest.listOfColumns);
+      const computed = groupColumnsByPattern(HKLINDigest.listOfColumns);
+      console.log("[import_merged] Computed columnGroups from listOfColumns:", {
+        listOfColumns: HKLINDigest.listOfColumns,
+        computedGroups: computed,
+      });
+      return computed;
     }
 
+    console.log("[import_merged] No columnGroups or listOfColumns in digest");
     return [];
   }, [HKLINDigest]);
 
   // Filter observation groups (exclude FreeR, phases, etc.)
   const obsGroups = useMemo(() => {
-    return columnGroups.filter((g) => g.columnGroupType === "Obs");
+    const obs = columnGroups.filter((g) => g.columnGroupType === "Obs");
+    console.log("[import_merged] Filtered obsGroups:", obs, "from columnGroups:", columnGroups.map(g => g.columnGroupType));
+    return obs;
   }, [columnGroups]);
 
   // Find FreeR groups
@@ -705,6 +734,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               <MtzReflectionPanel
                 {...props}
                 digest={HKLINDigest}
+                columnGroups={columnGroups}
                 obsGroups={obsGroups}
                 freerGroups={freerGroups}
                 selectedObsGroup={selectedObsGroup}
@@ -758,6 +788,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
 interface MtzReflectionPanelProps {
   digest: GenericReflDigest;
+  columnGroups: ColumnGroup[];
   obsGroups: ColumnGroup[];
   freerGroups: ColumnGroup[];
   selectedObsGroup: ColumnGroup | null;
@@ -766,11 +797,39 @@ interface MtzReflectionPanelProps {
 
 const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
   digest,
+  columnGroups,
   obsGroups,
   freerGroups,
   selectedObsGroup,
   onObsGroupSelect,
 }) => {
+  // Identify what types of data are in the file for better messaging
+  const hasMapCoeffs = columnGroups.some((g) => g.columnGroupType === "MapCoeffs");
+  const hasPhases = columnGroups.some((g) => g.columnGroupType === "Phs");
+  const hasFreeR = freerGroups.length > 0;
+
+  // Build explanation of what's in the file
+  const getNoObsExplanation = () => {
+    const found: string[] = [];
+    if (hasMapCoeffs) found.push("map coefficients");
+    if (hasPhases) found.push("phases");
+    if (hasFreeR) found.push("Free R flag");
+
+    if (found.length > 0) {
+      return `This file contains ${found.join(", ")} but no experimental observation data (F/σF or I/σI). ` +
+        "Refined MTZ files typically contain map coefficients, not raw observations. " +
+        "To import observations, use the original data file from data processing.";
+    }
+
+    // Check if we have listOfColumns but no recognized groups
+    if (digest.listOfColumns && digest.listOfColumns.length > 0) {
+      const colLabels = digest.listOfColumns.map((c) => c.columnLabel).join(", ");
+      return `Columns found: ${colLabels}. None match expected observation patterns (F/σF, I/σI, F±/σF±, I±/σI±).`;
+    }
+
+    return "No MTZ columns were found in this file.";
+  };
+
   return (
     <Card sx={{ mb: 2 }}>
       <CardHeader title="MTZ Reflection Data" />
@@ -782,7 +841,12 @@ const MtzReflectionPanel: React.FC<MtzReflectionPanelProps> = ({
 
         {obsGroups.length === 0 ? (
           <Alert severity="warning" sx={{ mb: 2 }}>
-            No observation data groups found in this MTZ file
+            <Typography variant="body2" fontWeight="bold" gutterBottom>
+              No observation data groups found in this MTZ file
+            </Typography>
+            <Typography variant="body2">
+              {getNoObsExplanation()}
+            </Typography>
           </Alert>
         ) : (
           <List dense sx={{ mb: 2 }}>
