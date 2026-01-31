@@ -1,6 +1,6 @@
 import logging
 import uuid
-from typing import Optional, Any
+from typing import Optional, Any, Union, List
 
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.cdata_file import CDataFile
@@ -11,6 +11,37 @@ from .save_params import save_params_for_job
 from ..files.get_by_context import get_file_by_job_context
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
+
+
+def _normalize_int_qualifier(value) -> Union[int, List[int], None]:
+    """
+    Normalize a qualifier value that should be an int or list of ints.
+
+    Handles values that may come as:
+    - list of ints (already parsed by def_xml_handler)
+    - comma-separated string (legacy)
+    - single int or string representation of int
+    - None or empty string
+
+    Returns:
+        int, list of ints, or None
+    """
+    if value is None or value == "":
+        return None
+
+    # Already a list - return as-is (from def_xml_handler parsing)
+    if isinstance(value, list):
+        return value
+
+    # Comma-separated string
+    if isinstance(value, str) and "," in value:
+        return [int(x.strip()) for x in value.split(",")]
+
+    # Single value - convert to int
+    try:
+        return int(value)
+    except (ValueError, TypeError):
+        return None
 
 
 def set_input_by_context_job(
@@ -76,22 +107,15 @@ def set_input_by_context_job(
         sub_type = dobj.qualifiers("requiredSubType")
         content_flag = dobj.qualifiers("requiredContentFlag")
 
-        # Convert comma-separated strings to lists of integers
-        if isinstance(sub_type, str) and "," in sub_type:
-            sub_type = [int(x.strip()) for x in sub_type.split(",")]
-        elif sub_type is not None and sub_type != "":
-            try:
-                sub_type = int(sub_type)
-            except (ValueError, TypeError):
-                sub_type = None
+        # Normalize qualifiers to int or list of ints
+        # These may come as: list (from def_xml_handler), comma-separated string, single int/string, or None
+        sub_type = _normalize_int_qualifier(sub_type)
+        content_flag = _normalize_int_qualifier(content_flag)
 
-        if isinstance(content_flag, str) and "," in content_flag:
-            content_flag = [int(x.strip()) for x in content_flag.split(",")]
-        elif content_flag is not None and content_flag != "":
-            try:
-                content_flag = int(content_flag)
-            except (ValueError, TypeError):
-                content_flag = None
+        logger.info(
+            "Looking for file to populate %s: mimeType=%s, subType=%s, contentFlag=%s",
+            dobj.objectPath(), dobj.qualifiers("mimeTypeName"), sub_type, content_flag
+        )
 
         file_id_list = get_file_by_job_context(
             contextJobId=context_job_id,

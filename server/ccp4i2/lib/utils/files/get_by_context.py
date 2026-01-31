@@ -1,5 +1,7 @@
 import logging
 import uuid
+from typing import List, Union
+
 from ccp4i2.db import models
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -8,8 +10,8 @@ logger = logging.getLogger(f"ccp4i2:{__name__}")
 def get_file_by_job_context(
     contextJobId: str = None,
     fileType: str = None,
-    subType: int = None,
-    contentFlag: int = None,
+    subType: Union[int, List[int]] = None,
+    contentFlag: Union[int, List[int]] = None,
     projectId: str = None,
 ) -> list:
 
