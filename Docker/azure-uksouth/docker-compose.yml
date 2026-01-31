@@ -1,0 +1,51 @@
+# Docker Compose for building Azure deployment images locally
+#
+# This enables parallel builds on Apple Silicon (or any local machine)
+# instead of using ACR build tasks.
+#
+# Usage:
+#   ./scripts/build-and-push-local.sh        # Recommended wrapper script
+#
+# Or manually:
+#   source .env.deployment
+#   export TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+#   docker compose -f docker-compose.build.yml build --parallel
+#
+# Environment variables (from .env.deployment):
+#   ACR_LOGIN_SERVER - Azure Container Registry login server
+#   TIMESTAMP - Image tag timestamp
+#   CCP4_VERSION - CCP4 version for base image
+#   BASE_IMAGE_NAME - Base image name (default: ccp4i2/base-arpwarp)
+#   NEXT_PUBLIC_AAD_CLIENT_ID - Azure AD client ID for web auth
+#   NEXT_PUBLIC_AAD_TENANT_ID - Azure AD tenant ID for web auth
+#   NEXT_PUBLIC_REQUIRE_AUTH - Whether auth is required (true/false)
+#
+# Cross-platform build optimization:
+#   The web image uses Dockerfile.cross-platform which runs npm install and
+#   next build natively on the host architecture (fast), then only the final
+#   runtime stage targets linux/amd64 (minimal emulation overhead).
+
+services:
+  web:
+    build:
+      context: ../..
+      dockerfile: Docker/client/Dockerfile.cross-platform
+      platforms:
+        - linux/amd64
+      args:
+        NEXT_PUBLIC_AAD_CLIENT_ID: ${NEXT_PUBLIC_AAD_CLIENT_ID:-}
+        NEXT_PUBLIC_AAD_TENANT_ID: ${NEXT_PUBLIC_AAD_TENANT_ID:-}
+        NEXT_PUBLIC_REQUIRE_AUTH: ${NEXT_PUBLIC_REQUIRE_AUTH:-false}
+    image: ${ACR_LOGIN_SERVER}/ccp4i2/web:${TIMESTAMP:-latest}
+
+  server:
+    build:
+      context: ../..
+      dockerfile: Docker/server/Dockerfile
+      platforms:
+        - linux/amd64
+      args:
+        ACR_LOGIN_SERVER: ${ACR_LOGIN_SERVER}
+        CCP4_VERSION: ${CCP4_VERSION:-ccp4-20251105}
+        BASE_IMAGE_NAME: ${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}
+    image: ${ACR_LOGIN_SERVER}/ccp4i2/server:${TIMESTAMP:-latest}

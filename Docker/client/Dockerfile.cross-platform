@@ -1,0 +1,169 @@
+# CCP4i2 Web Client Dockerfile (Cross-Platform Optimized)
+#
+# This Dockerfile is optimized for building on Apple Silicon (arm64) while
+# targeting linux/amd64 for deployment. The build stage runs natively for
+# speed, while only the final runtime stage uses emulation.
+#
+# Build (from repo root):
+#   docker build -t ccp4i2-client -f Docker/client/Dockerfile.cross-platform \
+#     --platform linux/amd64 .
+#
+# How it works:
+#   1. Builder stage: Runs on native architecture (fast npm install & next build)
+#   2. Runner stage: Targets linux/amd64 (only copies artifacts + minimal setup)
+#
+# Next.js output is JavaScript/static files, so cross-compilation is safe.
+
+# =============================================================================
+# Stage 1: Builder (runs natively for speed)
+# =============================================================================
+# Using $BUILDPLATFORM ensures this stage runs on the host's native arch
+FROM --platform=$BUILDPLATFORM node:20-alpine3.20 AS builder
+
+ARG NEXT_PUBLIC_AAD_CLIENT_ID
+ARG NEXT_PUBLIC_AAD_TENANT_ID
+ARG NEXT_PUBLIC_REQUIRE_AUTH=true
+ENV NEXT_PUBLIC_AAD_CLIENT_ID=$NEXT_PUBLIC_AAD_CLIENT_ID
+ENV NEXT_PUBLIC_AAD_TENANT_ID=$NEXT_PUBLIC_AAD_TENANT_ID
+ENV NEXT_PUBLIC_REQUIRE_AUTH=$NEXT_PUBLIC_REQUIRE_AUTH
+
+WORKDIR /app
+
+# Copy package files (build context is repo root)
+COPY client/package*.json ./
+
+# Remove Electron-specific packages and add markdown rendering packages for web-only build
+# This significantly reduces install time and avoids downloading ~300MB of Electron binaries
+RUN apk add --no-cache jq && \
+    jq 'del(.devDependencies.electron) | del(.devDependencies["electron-builder"]) | del(.devDependencies["@electron/packager"]) | del(.dependencies["electron-store"]) | .dependencies["react-markdown"] = "^9.0.1" | .dependencies["remark-gfm"] = "^4.0.0"' package.json > package.web.json && \
+    mv package.web.json package.json
+
+# Install dependencies (excluding Electron) with retry logic
+# Using npm install instead of npm ci to auto-update lock file when package.json changes
+RUN npm config set fetch-retry-mintimeout 20000 && \
+    npm config set fetch-retry-maxtimeout 120000 && \
+    npm config set fetch-retries 5 && \
+    npm install --legacy-peer-deps --verbose || (npm cache clean --force && npm install --legacy-peer-deps --verbose)
+
+# Copy client source code
+COPY client/ .
+
+# Copy icons to Next.js public directory for direct serving
+# This avoids the Django proxy hop for static assets
+COPY server/ccp4i2/qticons/ ./renderer/public/qticons/
+COPY server/ccp4i2/svgicons/ ./renderer/public/svgicons/
+
+# =============================================================================
+# Overlay compounds frontend (registry, assays & constructs sub-apps)
+# =============================================================================
+# Copy app routes
+COPY apps/compounds/frontend/app/registry/ ./renderer/app/registry/
+COPY apps/compounds/frontend/app/assays/ ./renderer/app/assays/
+COPY apps/compounds/frontend/app/constructs/ ./renderer/app/constructs/
+COPY apps/compounds/frontend/app/api/proxy/compounds/ ./renderer/app/api/proxy/compounds/
+
+# Copy app selector as the root page (replaces the redirect-only page)
+COPY apps/compounds/frontend/app/app-selector/page.tsx ./renderer/app/page.tsx
+
+# Copy legal pages (privacy policy, terms of use)
+COPY apps/compounds/frontend/app/privacy/ ./renderer/app/privacy/
+COPY apps/compounds/frontend/app/terms/ ./renderer/app/terms/
+
+# Copy components, lib, and types (already in compounds/ subfolders)
+COPY apps/compounds/frontend/components/compounds/ ./renderer/components/compounds/
+# Copy lib/compounds files EXCEPT rdkit-context.tsx and theme-provider.tsx
+# (core has its own that re-exports from providers/theme)
+# This ensures compounds components share the same React context as the root layout
+COPY apps/compounds/frontend/lib/compounds/aggregation-api.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/api.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/auth-context.tsx ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/config.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/routes.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/plateSeriesRanges.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
+
+# Note: RDKit comes from @rdkit/rdkit npm package, JSME from client/assets/
+# Both are copied by "npm run copy-assets" below
+
+# =============================================================================
+# Overlay users frontend (platform admin)
+# =============================================================================
+COPY apps/users/frontend/app/admin/ ./renderer/app/admin/
+COPY apps/users/frontend/app/api/proxy/users/ ./renderer/app/api/proxy/users/
+COPY apps/users/frontend/lib/users/ ./renderer/lib/users/
+
+# =============================================================================
+# Copy documentation (markdown files served as static assets)
+# =============================================================================
+# Admin documentation is rendered client-side with react-markdown
+COPY Docker/azure-uksouth/docs/*.md ./renderer/public/docs/
+
+# Add path aliases to tsconfig.json for @/ imports used by compounds
+# The ccp4i2 client uses relative imports, but compounds uses @/ aliases
+RUN apk add --no-cache jq && \
+    jq '.compilerOptions += {"baseUrl": ".", "paths": {"@/*": ["./*"]}}' \
+    ./renderer/tsconfig.json > ./renderer/tsconfig.new.json && \
+    mv ./renderer/tsconfig.new.json ./renderer/tsconfig.json
+
+# Build for web (from client root directory as originally intended)
+RUN npx cross-env BUILD_TARGET=web npm run copy-assets
+
+RUN cp package.json renderer/
+
+RUN cd renderer && npx next build
+
+# =============================================================================
+# Stage 2: Production dependencies (runs natively, output is portable)
+# =============================================================================
+# Install production deps in native arch - node_modules for pure JS packages
+# are architecture-independent
+FROM --platform=$BUILDPLATFORM node:20-alpine3.20 AS deps
+
+WORKDIR /app
+
+# Install git (required by some npm packages that reference git repos)
+RUN apk add --no-cache git
+
+# Copy the modified package.json from builder
+COPY --from=builder /app/package.json ./
+
+# Install production dependencies only
+# These are pure JavaScript packages (no native bindings), so they're portable
+RUN npm install --omit=dev --legacy-peer-deps && npm cache clean --force
+
+# =============================================================================
+# Stage 3: Runner (targets deployment platform - only stage using emulation)
+# =============================================================================
+# This stage is minimal: just copying files and setting up the runtime
+# No compilation or heavy npm operations here
+FROM --platform=$TARGETPLATFORM node:20-alpine3.20 AS runner
+
+WORKDIR /app
+
+# Add curl for health checks (fast operation under emulation)
+RUN apk add --no-cache curl
+
+# Copy the built application from native builder
+COPY --from=builder /app/renderer ./renderer
+
+# Copy production dependencies from native deps stage
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/package.json ./
+
+# Create a non-root user
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S nextjs -u 1001
+
+# Change ownership of the app directory
+RUN chown -R nextjs:nodejs /app
+USER nextjs
+
+EXPOSE 3000
+
+# Health check - uses /api/health which bypasses auth middleware
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+    CMD curl -f http://localhost:3000/api/health || exit 1
+
+# Use ENTRYPOINT with CMD for better Azure Container Apps compatibility
+ENTRYPOINT ["sh", "-c"]
+CMD ["cd renderer && exec npx next start"]
