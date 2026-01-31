@@ -98,6 +98,9 @@ echo -e "${GREEN}✅ ACR login successful${NC}"
 # Generate image tag
 TIMESTAMP=$(date +%Y%m%d-%H%M%S)
 
+# Get git commit hash for version tracking
+GIT_COMMIT=$(git rev-parse --short HEAD 2>/dev/null || echo "unknown")
+
 # Export variables for docker compose
 export TIMESTAMP
 export ACR_LOGIN_SERVER
@@ -107,10 +110,13 @@ export BASE_IMAGE_NAME="${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}"
 export NEXT_PUBLIC_AAD_CLIENT_ID="${NEXT_PUBLIC_AAD_CLIENT_ID:-}"
 export NEXT_PUBLIC_AAD_TENANT_ID="${NEXT_PUBLIC_AAD_TENANT_ID:-}"
 export NEXT_PUBLIC_REQUIRE_AUTH="${NEXT_PUBLIC_REQUIRE_AUTH:-false}"
+export NEXT_PUBLIC_BUILD_TIMESTAMP="$TIMESTAMP"
+export NEXT_PUBLIC_GIT_COMMIT="$GIT_COMMIT"
 
 echo -e "${YELLOW}📦 Build configuration:${NC}"
 echo -e "   ACR: $ACR_LOGIN_SERVER"
 echo -e "   Tag: $TIMESTAMP"
+echo -e "   Git commit: $GIT_COMMIT"
 echo -e "   Platform: linux/amd64"
 if [ "$BUILD_SERVER" = true ]; then
     echo -e "   Server base: $ACR_LOGIN_SERVER/$BASE_IMAGE_NAME:$CCP4_VERSION"

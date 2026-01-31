@@ -1,8 +1,20 @@
 'use client';
 
-import { Container, Typography, Box, Stack, Paper } from '@mui/material';
+import { Container, Typography, Box, Stack, Paper, Collapse } from '@mui/material';
 import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings, GridView, Visibility } from '@mui/icons-material';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
+interface VersionInfo {
+  web?: {
+    buildTimestamp?: string;
+    gitCommit?: string;
+  };
+  server?: {
+    buildTimestamp?: string;
+    gitCommit?: string;
+  };
+}
 
 /**
  * App selector page for the web deployment.
@@ -10,6 +22,22 @@ import Link from 'next/link';
  * to provide navigation between available applications.
  */
 export default function AppSelectorPage() {
+  const [versionInfo, setVersionInfo] = useState<VersionInfo>({});
+  const [showVersion, setShowVersion] = useState(false);
+
+  useEffect(() => {
+    // Fetch web version
+    fetch('/api/version')
+      .then(res => res.json())
+      .then(data => setVersionInfo(prev => ({ ...prev, web: data.web })))
+      .catch(() => {});
+
+    // Fetch server version
+    fetch('/api/proxy/ccp4i2/version/')
+      .then(res => res.json())
+      .then(data => setVersionInfo(prev => ({ ...prev, server: data })))
+      .catch(() => {});
+  }, []);
   return (
     <Container maxWidth="md" sx={{ py: 6 }}>
       <Box sx={{ textAlign: 'center', mb: 5 }}>
@@ -296,7 +324,27 @@ export default function AppSelectorPage() {
           >
             Terms of Use
           </Typography>
+          <Typography
+            component="span"
+            variant="body2"
+            color="text.secondary"
+            sx={{ cursor: 'pointer', '&:hover': { textDecoration: 'underline' } }}
+            onClick={() => setShowVersion(!showVersion)}
+          >
+            About
+          </Typography>
         </Box>
+
+        <Collapse in={showVersion}>
+          <Box sx={{ mt: 2, p: 2, bgcolor: 'action.hover', borderRadius: 1 }}>
+            <Typography variant="caption" component="div" color="text.secondary">
+              <strong>Web:</strong> {versionInfo.web?.buildTimestamp || 'dev'} ({versionInfo.web?.gitCommit || 'unknown'})
+            </Typography>
+            <Typography variant="caption" component="div" color="text.secondary">
+              <strong>Server:</strong> {versionInfo.server?.buildTimestamp || 'dev'} ({versionInfo.server?.gitCommit || 'unknown'})
+            </Typography>
+          </Box>
+        </Collapse>
       </Box>
     </Container>
   );

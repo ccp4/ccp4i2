@@ -105,3 +105,18 @@ def health_check(request):
             },
             status=503,
         )
+
+
+def version_info(request):
+    """
+    Returns version information for the server deployment.
+    Build timestamp and git commit are set via environment variables during Docker build.
+    """
+    import os
+
+    return JsonResponse(
+        {
+            "buildTimestamp": os.environ.get("BUILD_TIMESTAMP", "dev"),
+            "gitCommit": os.environ.get("GIT_COMMIT", "unknown"),
+        }
+    )

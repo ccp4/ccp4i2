@@ -31,6 +31,7 @@ router.register("projectexports", ProjectExportViewSet)
 _api_patterns = [
     path("", include(router.urls)),
     path("health/", views.health_check, name="health_check"),
+    path("version/", views.version_info, name="version_info"),
     path("task_tree/", views.task_tree, name="task_tree"),
     path("active_jobs/", views.active_jobs, name="active_jobs"),
 ]

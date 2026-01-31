@@ -20,6 +20,8 @@
 ARG ACR_LOGIN_SERVER=ccp4acrukbwmx.azurecr.io
 ARG CCP4_VERSION=ccp4-20251105
 ARG BASE_IMAGE_NAME=ccp4i2/base-arpwarp
+ARG BUILD_TIMESTAMP
+ARG GIT_COMMIT
 
 FROM ${ACR_LOGIN_SERVER}/${BASE_IMAGE_NAME}:${CCP4_VERSION}
 
@@ -27,11 +29,14 @@ FROM ${ACR_LOGIN_SERVER}/${BASE_IMAGE_NAME}:${CCP4_VERSION}
 # Use azure_extensions.settings to enable Azure-specific features
 # CCP4 env var is inherited from base image (e.g., /mnt/ccp4data/ccp4-20251105)
 # CCP4_PYTHON points to the ccp4-python binary in that installation
+# BUILD_TIMESTAMP and GIT_COMMIT are for version tracking
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PYTHONPATH=/usr/src/app \
     DJANGO_SETTINGS_MODULE=azure_extensions.settings \
-    CCP4_PYTHON=${CCP4}/bin/ccp4-python
+    CCP4_PYTHON=${CCP4}/bin/ccp4-python \
+    BUILD_TIMESTAMP=${BUILD_TIMESTAMP} \
+    GIT_COMMIT=${GIT_COMMIT}
 
 # Create app directory
 WORKDIR /usr/src/app
