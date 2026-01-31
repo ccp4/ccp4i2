@@ -66,7 +66,27 @@ class x2mtz(CPluginScript):
       progCol = []
       if inputData.HKLIN_OBS_COLUMNS.isSet():
         mtzOut.append('OBSOUT')
-        outputData.OBSOUT.contentFlag.set(inputData.HKLIN_OBS_CONTENT_FLAG)
+        # Get content flag - use provided value or derive from column groups
+        obs_content_flag = inputData.HKLIN_OBS_CONTENT_FLAG
+        # Extract int value if it's a CInt
+        while hasattr(obs_content_flag, 'value'):
+            obs_content_flag = obs_content_flag.value
+        obs_content_flag = int(obs_content_flag) if obs_content_flag else 0
+
+        # If content flag is 0 or unset, try to derive from column groups
+        if obs_content_flag == 0:
+            col_names = inputData.HKLIN_OBS_COLUMNS.__str__().split(',')
+            for cg in columnGroups:
+                if cg.columnGroupType == 'Obs':
+                    cg_labels = [str(c.columnLabel) for c in cg.columnList]
+                    if cg_labels == col_names:
+                        cf = cg.contentFlag
+                        while hasattr(cf, 'value'):
+                            cf = cf.value
+                        obs_content_flag = int(cf) if cf else 0
+                        break
+
+        outputData.OBSOUT.contentFlag.set(obs_content_flag)
         outputData.OBSOUT.annotation.set(outputData.OBSOUT.qualifiers('guiLabel')+' from '+inputData.HKLIN.stripedName())
         progCol.append(inputData.HKLIN_OBS_COLUMNS.__str__())
       elif iBestObs>=0:

@@ -506,7 +506,10 @@ class CMiniMtzDataFile(CMiniMtzDataFileStub):
             content_flag = None
             if hasattr(self, 'contentFlag') and self.contentFlag:
                 cf = self.contentFlag
-                content_flag = cf.value if hasattr(cf, 'value') else int(cf)
+                # Extract plain int - handle nested .value or CInt objects
+                while hasattr(cf, 'value'):
+                    cf = cf.value
+                content_flag = int(cf) if cf else None
 
             signature_list = self.__class__.CONTENT_SIGNATURE_LIST
             if content_flag is not None and 1 <= content_flag <= len(signature_list):
@@ -2069,7 +2072,10 @@ class CMtzDataFile(CMtzDataFileStub):
             content_flag = None
             if hasattr(self, 'contentFlag') and self.contentFlag:
                 cf = self.contentFlag
-                content_flag = cf.value if hasattr(cf, 'value') else int(cf)
+                # Extract plain int - handle nested .value or CInt objects
+                while hasattr(cf, 'value'):
+                    cf = cf.value
+                content_flag = int(cf) if cf else None
 
             signature_list = self.__class__.CONTENT_SIGNATURE_LIST
             if content_flag is not None and 1 <= content_flag <= len(signature_list):

@@ -300,6 +300,60 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // Track if we've already processed the current digest to prevent re-processing
   const [processedDigestKey, setProcessedDigestKey] = useState<string | null>(null);
 
+  // Track if we've already auto-selected obs group for this file
+  const [autoSelectedObsForFile, setAutoSelectedObsForFile] = useState<string | null>(null);
+
+  // Effect: Auto-select the first observation group when obsGroups becomes available
+  useEffect(() => {
+    const autoSelectFirstObsGroup = async () => {
+      // Only proceed if:
+      // 1. Job is editable
+      // 2. We have observation groups
+      // 3. No obs group is currently selected
+      // 4. We haven't already auto-selected for this file
+      // 5. The update functions are available
+      if (
+        job?.status !== 1 ||
+        obsGroups.length === 0 ||
+        selectedObsGroup ||
+        autoSelectedObsForFile === HKLINValue?.dbFileId ||
+        !forceSetHKLIN_OBS_COLUMNS ||
+        !forceSetHKLIN_OBS_CONTENT_FLAG
+      ) {
+        return;
+      }
+
+      const firstGroup = obsGroups[0];
+      console.log("[import_merged] Auto-selecting first observation group:", firstGroup);
+
+      // Mark as auto-selected for this file
+      setAutoSelectedObsForFile(HKLINValue?.dbFileId || null);
+      setSelectedObsGroup(firstGroup);
+
+      // Set the columns and content flag
+      const columnLabels = firstGroup.columnList.map((c) => c.columnLabel).join(",");
+      await forceSetHKLIN_OBS_COLUMNS(columnLabels);
+      await forceSetHKLIN_OBS_CONTENT_FLAG(firstGroup.contentFlag);
+
+      // Update dataset and crystal name
+      if (firstGroup.dataset && forceUpdateDATASETNAME) {
+        await forceUpdateDATASETNAME(firstGroup.dataset);
+      }
+
+      if (HKLINDigest?.crystalNames && HKLINDigest.datasets && forceUpdateCRYSTALNAME) {
+        const datasetIndex = HKLINDigest.datasets.indexOf(firstGroup.dataset);
+        if (datasetIndex >= 0 && datasetIndex < HKLINDigest.crystalNames.length) {
+          await forceUpdateCRYSTALNAME(HKLINDigest.crystalNames[datasetIndex]);
+        }
+      }
+
+      await mutateValidation();
+    };
+
+    autoSelectFirstObsGroup();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [obsGroups, job?.status, selectedObsGroup, HKLINValue?.dbFileId, autoSelectedObsForFile]);
+
   // Effect: Handle digest changes - auto-populate metadata
   // Note: We intentionally exclude update functions from dependencies to prevent infinite loops.
   // The update functions change on every render, but we only want to run this effect
