@@ -117,11 +117,12 @@ RUN cp package.json renderer/
 RUN cd renderer && npx next build
 
 # =============================================================================
-# Stage 2: Production dependencies (runs natively, output is portable)
+# Stage 2: Production dependencies (runs on TARGET platform for native binaries)
 # =============================================================================
-# Install production deps in native arch - node_modules for pure JS packages
-# are architecture-independent
-FROM --platform=$BUILDPLATFORM node:20-alpine3.20 AS deps
+# SWC and other Next.js native modules require architecture-specific binaries,
+# so we must install deps on the target platform (linux/amd64), not the build platform.
+# This stage uses QEMU emulation but is fast since it's just npm install.
+FROM --platform=$TARGETPLATFORM node:20-alpine3.20 AS deps
 
 WORKDIR /app
 
@@ -132,7 +133,7 @@ RUN apk add --no-cache git
 COPY --from=builder /app/package.json ./
 
 # Install production dependencies only
-# These are pure JavaScript packages (no native bindings), so they're portable
+# Must run on target platform to get correct architecture-specific packages (SWC, etc.)
 RUN npm install --omit=dev --legacy-peer-deps && npm cache clean --force
 
 # =============================================================================
