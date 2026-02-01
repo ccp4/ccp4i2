@@ -460,7 +460,9 @@ class crank2(CPluginScript):
         if not defaults and self.has_cont_attr(ctrl,"CLEANUP") and bool(ctrl.CLEANUP):
           self.CleanUp(crank2)
           self.reportStatus(CPluginScript.SUCCEEDED)
-        return crank2
+          return CPluginScript.SUCCEEDED
+        self.reportStatus(CPluginScript.SUCCEEDED)
+        return CPluginScript.SUCCEEDED
 #      except common.CrankError as e:
 #        self.appendErrorReport(1000, str(e))
 #        try:
@@ -473,6 +475,7 @@ class crank2(CPluginScript):
           self.reportStatus(CPluginScript.UNSATISFACTORY)
         except RuntimeError:
           raise_(e,None,sys.exc_info()[2])
+        return CPluginScript.UNSATISFACTORY
       except Exception as e:
         err = str(e) +'\n\n'+str(traceback.format_exc())
         self.appendErrorReport(0, err)
@@ -480,8 +483,10 @@ class crank2(CPluginScript):
           self.reportStatus(CPluginScript.FAILED)
         except RuntimeError:
           raise_(e,None,sys.exc_info()[2])
+        return CPluginScript.FAILED
     else:
-      return 0
+      self.reportStatus(CPluginScript.FAILED)
+      return CPluginScript.FAILED
 
   def CleanUp(self,crank):
     # pokus - delete all mtz that are not registered as i2 i/o

@@ -26,7 +26,7 @@ class shelxeMR(CPluginScript):
         if not self.filecaught:
             jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=self.jobId)
             self.watchDirectory(jobDirectory, handler=self.handleDirectoryChanged)
-        super().process()
+        return super().process()
 
     def handleOutputChanged(self, logfile):
         self.parseLogfile()
