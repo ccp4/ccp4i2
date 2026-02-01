@@ -201,6 +201,11 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
             await db_handler.update_job_status(job.uuid, models.Job.Status.FAILED)
             raise Exception(f"Job failed - see diagnostic.xml for details")
 
+        # Explicitly update job status to FINISHED
+        # This is belt-and-braces: track_job should have done this, but some legacy
+        # pipelines don't set plugin._status properly, causing track_job to skip the update
+        await db_handler.update_job_status(job.uuid, models.Job.Status.FINISHED)
+
         logger.info(f"Job {job.number} completed successfully")
         return result
 

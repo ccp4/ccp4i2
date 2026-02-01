@@ -69,21 +69,27 @@ class LidiaAcedrgNew(CPluginScript):
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'SMILESFILE':
             result = self.doAcedrg('SMILESFILE', self.container.inputData.SMILESFILEIN)
             self.finishWithStatus(result)
+            return result
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'MOL':
             result = self.doAcedrg('MOL', self.container.inputData.MOLIN)
             self.finishWithStatus(result)
+            return result
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'MOL2':
             result = self.doAcedrg('MOL2', self.container.inputData.MOL2IN)
             self.finishWithStatus(result)
+            return result
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'SMILES':
             result = self.doAcedrg('SMILES', self.container.inputData.SMILESIN)
             self.finishWithStatus(result)
+            return result
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'DICT':
             result = self.doAcedrg('DICT', self.container.inputData.DICTIN2)
             self.finishWithStatus(result)
+            return result
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'PDBMMCIF':
             result = self.doAcedrg('PDBMMCIF', self.container.inputData.PDBMMCIFIN)
             self.finishWithStatus(result)
+            return result
 
     @QtCore.Slot(dict)
     def lidiaFinished(self, statusDict):

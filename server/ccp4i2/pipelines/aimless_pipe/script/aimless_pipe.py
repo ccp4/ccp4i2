@@ -37,7 +37,7 @@ class aimless_pipe(CPluginScript):
       unsetData = self.checkInputData()
       if len(unsetData)>0:
          self.reportStatus(CPluginScript.FAILED)
-         return
+         return CPluginScript.FAILED
 
       self.fatalError = None
 
@@ -49,6 +49,9 @@ class aimless_pipe(CPluginScript):
       self.doPhaserAnalysis = self.container.controlParameters.DOPHASERANALYSIS
 
       self.process_pointless()
+
+      # Return the status that was set by reportStatus() in process_finish()
+      return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def process_pointless(self):

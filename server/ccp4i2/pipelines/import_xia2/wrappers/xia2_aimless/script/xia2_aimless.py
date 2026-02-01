@@ -22,9 +22,11 @@ class xia2_aimless(CCP4PluginScript.CPluginScript):
       if not os.path.exists(xdir):
         self.appendErrorReport(cls=self.__class__,code=101,details=xdir)
         self.reportStatus(CCP4PluginScript.CPluginScript.FAILED)
-        
+        return CCP4PluginScript.CPluginScript.FAILED
+
       logfileList = glob.glob(os.path.join(xdir,'LogFiles','*aimless.log'))
       if len(logfileList)>0:
         shutil.copyfile(logfileList[0],os.path.join(self.workDirectory,'log.txt'))
 
       self.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
+      return CCP4PluginScript.CPluginScript.SUCCEEDED

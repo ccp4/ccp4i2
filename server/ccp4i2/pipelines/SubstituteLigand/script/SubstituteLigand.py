@@ -68,6 +68,7 @@ class SubstituteLigand(CPluginScript):
                 invalidFiles.remove(invalidFile)
         if len(invalidFiles)>0:
             self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
         self.checkOutputData()
 
         # Chop out the chunk of file we want to use
@@ -79,15 +80,19 @@ class SubstituteLigand(CPluginScript):
         if self.container.controlParameters.LIGANDAS.__str__() == 'DICT':
             self.dictToUse = self.container.inputData.DICTIN
             self.dictDone()
+            # Return the status that was set by reportStatus() in the callback chain
+            return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
         elif self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
             self.dictDone()
+            # Return the status that was set by reportStatus() in the callback chain
+            return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
         elif self.container.controlParameters.LIGANDAS.__str__() != 'NONE':
             try:
                 self.lidiaAcedrgPlugin = self.makePluginObject('LidiaAcedrgNew')
             except Exception as e:
                 self.appendErrorReport(209, f'Failed to create LidiaAcedrgNew plugin: {e}')
                 self.reportStatus(CPluginScript.FAILED)
-                return
+                return CPluginScript.FAILED
             self.lidiaAcedrgPlugin.container.inputData.MOLSMILESORSKETCH = self.container.controlParameters.LIGANDAS
             if self.container.inputData.MOLIN.isSet():
                 self.lidiaAcedrgPlugin.container.inputData.MOLIN=self.container.inputData.MOLIN

@@ -17,7 +17,7 @@ class pisapipe(CPluginScript):
         jobStatus = btask.process()
         if jobStatus == CPluginScript.FAILED:
             self.reportStatus(jobStatus)
-            return
+            return CPluginScript.FAILED
 
         self.xmlTask = self.makePluginObject('pisa_xml')
         self.xmlTask.container.controlParameters.IDENTIFIER = identifier
@@ -25,6 +25,7 @@ class pisapipe(CPluginScript):
         print('pisa_xmlFinished', status)
         if status == CPluginScript.FAILED:
             self.reportStatus(status)
+            return CPluginScript.FAILED
 
         from ccp4i2.core import CCP4Utils
         self.xmlroot = etree.Element('pisapipe')
@@ -33,3 +34,4 @@ class pisapipe(CPluginScript):
         with open(self.makeFileName('PROGRAMXML'),'w') as outputXMLFile:
             CCP4Utils.writeXML(outputXMLFile, etree.tostring(self.xmlroot,pretty_print=True))
         self.reportStatus(CPluginScript.SUCCEEDED)
+        return CPluginScript.SUCCEEDED

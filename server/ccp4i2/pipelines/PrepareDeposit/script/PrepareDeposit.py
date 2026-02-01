@@ -66,6 +66,7 @@ class PrepareDeposit(CPluginScript):
         
         if rv is not CPluginScript.SUCCEEDED:
             self.reportStatus(rv)
+            return rv
 
         refmacRootNode = CCP4Utils.openFileToEtree(refmacPlugin.makeFileName('PROGRAMXML'))
         self.xmlroot.append(refmacRootNode)
@@ -82,8 +83,10 @@ class PrepareDeposit(CPluginScript):
         hklinPath = os.path.normpath(pathForExperimentalDataToCifify)
         self.hklin2cifPlugin.container.inputData.HKLIN.setFullPath(hklinPath)
         rv = self.hklin2cifPlugin.process()
-        if rv != CPluginScript.SUCCEEDED: self.reportStatus(rv)
-        
+        if rv != CPluginScript.SUCCEEDED:
+            self.reportStatus(rv)
+            return rv
+
         if hasattr(self.container.inputData,'ISREFMACMMCIFOUTPUT') and self.container.inputData.ISREFMACMMCIFOUTPUT.isSet and self.container.inputData.ISREFMACMMCIFOUTPUT:
             self.coordsToUse = self.container.inputData.XYZIN
         else:
@@ -96,7 +99,8 @@ class PrepareDeposit(CPluginScript):
         rv = pdbExtract1Plugin.process()
         if rv is not CPluginScript.SUCCEEDED:
             self.reportStatus(rv)
-        
+            return rv
+
         modifiedTemplatePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'modifiedTemplate.text'))
         templatePath = pdbExtract1Plugin.container.outputData.ENTRYDATA.__str__()
         print('templatePath, modifiedTemplatePath',templatePath, modifiedTemplatePath)
@@ -134,7 +138,9 @@ class PrepareDeposit(CPluginScript):
         except:
             self.appendErrorReport(201)
             self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
         self.reportStatus(CPluginScript.SUCCEEDED)
+        return CPluginScript.SUCCEEDED
 
     def flushXML(self, xml=None):
         if xml is None:

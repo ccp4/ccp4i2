@@ -12,7 +12,7 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
 
     def process(self):
         self.createEnsembleElements()
-        super(phaser_simple,self).process()
+        return super(phaser_simple,self).process()
         
     def checkInputData(self):
         invalidFiles = super(phaser_simple,self).checkInputData()

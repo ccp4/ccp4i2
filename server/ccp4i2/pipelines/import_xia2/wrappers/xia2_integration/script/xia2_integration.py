@@ -18,7 +18,8 @@ class xia2_integration(CCP4PluginScript.CPluginScript):
       if not os.path.exists(xdir):
         self.appendErrReport(cls=self.__class__,code=101,details=xdir)
         self.reportStatus(CCP4PluginScript.CPluginScript.FAILED)
-        
+        return CCP4PluginScript.CPluginScript.FAILED
+
       datafileList = glob.glob(os.path.join(xdir,'DataFiles','Integrate','*.mtz'))
       datafileList.extend(glob.glob(os.path.join(xdir,'DataFiles','Integrate','*.sca')))
       datafileList.extend(glob.glob(os.path.join(xdir,'DataFiles','Integrate','*.HKL')))
@@ -35,3 +36,4 @@ class xia2_integration(CCP4PluginScript.CPluginScript):
       if len(logfileList)>0:
         shutil.copyfile(logfileList[0],os.path.join(self.workDirectory,'log.txt'))
       self.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
+      return CCP4PluginScript.CPluginScript.SUCCEEDED

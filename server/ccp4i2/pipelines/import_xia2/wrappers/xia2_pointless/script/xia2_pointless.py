@@ -22,11 +22,13 @@ class xia2_pointless(CCP4PluginScript.CPluginScript):
       if not os.path.exists(xdir):
         self.errReport.append(self.__class__,101,xdir)
         self.reportStatus(CCP4PluginScript.CPluginScript.FAILED)
-        
+        return CCP4PluginScript.CPluginScript.FAILED
+
       logfileList = glob.glob(os.path.join(xdir,'LogFiles','*pointless.log'))
       if len(logfileList)>0:
         shutil.copyfile(logfileList[0],os.path.join(self.workDirectory,'log.txt'))
 
       self.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
-    
+      return CCP4PluginScript.CPluginScript.SUCCEEDED
+
 

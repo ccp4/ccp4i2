@@ -943,6 +943,13 @@ class AsyncDatabaseHandler:
 
             # After execution, update job status based on plugin status
             plugin_status = plugin.get_status()
+
+            # Handle legacy pipelines that don't set _status properly
+            # If we got here without an exception, assume success
+            if plugin_status is None:
+                logger.warning(f"Job {job_uuid}: plugin.get_status() returned None, assuming SUCCEEDED")
+                plugin_status = CPluginScript.SUCCEEDED
+
             status_map = {
                 CPluginScript.SUCCEEDED: models.Job.Status.FINISHED,
                 CPluginScript.FAILED: models.Job.Status.FAILED,

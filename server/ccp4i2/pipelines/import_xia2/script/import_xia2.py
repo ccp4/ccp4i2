@@ -64,3 +64,4 @@ class import_xia2(CCP4PluginScript.CPluginScript):
           
 
       self.finished.emit(CCP4PluginScript.CPluginScript.SUCCEEDED)
+      return CCP4PluginScript.CPluginScript.SUCCEEDED

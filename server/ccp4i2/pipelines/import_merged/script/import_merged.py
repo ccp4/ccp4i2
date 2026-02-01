@@ -64,7 +64,8 @@ class import_merged(CPluginScript):
             status = self.importmtz()
             self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
             self.process1(status)
-            return  # Probably doesnt get here
+            # Return the status that was set by reportStatus()
+            return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
         # No resolution cutoff
         # Just call the processOutputFiles() to convert to mini mtzs
         self.x2mtz.container.outputData.HKLOUT.set(self.container.inputData.HKLIN)
@@ -99,6 +100,8 @@ class import_merged(CPluginScript):
                                 freeRcolumnLabel)
             self.outputLogXML(self.importXML)  # send self.importXML to program.xml
         self.process1({'finishStatus': ret })
+        # Return the status that was set by reportStatus()
+        return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
       else:
           # not MTZ
           self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
@@ -116,10 +119,13 @@ class import_merged(CPluginScript):
           if str(self.fformat) == 'mmcif':
               status = self.convertmmcif()
               self.process1(status)
-              return  # Probably doesnt get here
+              # Return the status that was set by reportStatus()
+              return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
 
           status = self.x2mtz.process()
           self.process1(status)
+          # Return the status that was set by reportStatus()
+          return self.get_status() if self.get_status() is not None else CPluginScript.SUCCEEDED
 
     def process1(self,status, completeFreeR=True):
         'if completeFreeR False, always generate new FreeR (for 2nd attempt)'

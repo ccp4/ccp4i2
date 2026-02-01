@@ -22,11 +22,13 @@ class xia2_ctruncate(CCP4PluginScript.CPluginScript):
       if not os.path.exists(xdir):
         self.appendErrorReport(cls=self.__class__,code=101,details=xdir)
         self.reportStatus(CCP4PluginScript.CPluginScript.FAILED)
-        
+        return CCP4PluginScript.CPluginScript.FAILED
+
       logfileList = glob.glob(os.path.join(xdir,'LogFiles','*truncate.log'))
       if len(logfileList)>0:
         shutil.copyfile(logfileList[0],os.path.join(self.workDirectory,'log.txt'))
 
       self.reportStatus(CCP4PluginScript.CPluginScript.SUCCEEDED)
-    
+      return CCP4PluginScript.CPluginScript.SUCCEEDED
+
 

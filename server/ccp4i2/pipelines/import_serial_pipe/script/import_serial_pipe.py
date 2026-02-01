@@ -64,3 +64,4 @@ class import_serial_pipe(CPluginScript):
         importSerialPipelineXMLpath = self.makeFileName('PROGRAMXML')
         shutil.copyfile(str(importSerialProcessXMLpath), str(importSerialPipelineXMLpath))
         self.reportStatus(CPluginScript.SUCCEEDED)
+        return CPluginScript.SUCCEEDED
