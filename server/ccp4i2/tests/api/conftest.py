@@ -33,6 +33,36 @@ os.environ["CCP4I2_PROJECTS_DIR"] = str(TEST_PROJECTS_DIR)
 # Initialize Django
 django.setup()
 
+# === Module-level permission bypass for Django TestCase tests ===
+# This runs at import time to ensure permissions are bypassed for
+# Django TestCase classes which don't use pytest fixtures
+def _bypass_permissions_globally():
+    """Patch all viewsets to allow unauthenticated access."""
+    from rest_framework.permissions import AllowAny
+    from ccp4i2.api.ProjectViewSet import ProjectViewSet
+    from ccp4i2.api.JobViewSet import JobViewSet
+    from ccp4i2.api.FileViewSet import FileViewSet
+    from ccp4i2.api.ProjectTagViewSet import ProjectTagViewSet
+    from ccp4i2.api.ProjectExportViewSet import ProjectExportViewSet
+    from ccp4i2.api.ProjectGroupViewSet import ProjectGroupViewSet
+    from ccp4i2.api.ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
+    from ccp4i2.api.FileTypeViewSet import FileTypeViewSet
+    from ccp4i2.api.FileUseViewSet import FileUseViewSet
+    from ccp4i2.api.FileImportViewSet import FileImportViewSet
+
+    ProjectViewSet.permission_classes = [AllowAny]
+    JobViewSet.permission_classes = [AllowAny]
+    FileViewSet.permission_classes = [AllowAny]
+    ProjectTagViewSet.permission_classes = [AllowAny]
+    ProjectExportViewSet.permission_classes = [AllowAny]
+    ProjectGroupViewSet.permission_classes = [AllowAny]
+    ProjectGroupMembershipViewSet.permission_classes = [AllowAny]
+    FileTypeViewSet.permission_classes = [AllowAny]
+    FileUseViewSet.permission_classes = [AllowAny]
+    FileImportViewSet.permission_classes = [AllowAny]
+
+_bypass_permissions_globally()
+
 # Import URL helpers from i2run
 from ccp4i2.tests.i2run.urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
 from ccp4i2.tests.i2run.utils import download
@@ -42,6 +72,41 @@ def pytest_collection_modifyitems(items):
     """Automatically add django_db marker to all test items."""
     for item in items:
         item.add_marker(pytest.mark.django_db(transaction=True))
+
+
+@pytest.fixture(autouse=True)
+def bypass_api_permissions(monkeypatch):
+    """
+    Bypass API permissions for tests.
+
+    This fixture patches the permission_classes on all viewsets to allow
+    unauthenticated access during tests.
+    """
+    from rest_framework.permissions import AllowAny
+
+    # Import viewsets after Django is set up
+    from ccp4i2.api.ProjectViewSet import ProjectViewSet
+    from ccp4i2.api.JobViewSet import JobViewSet
+    from ccp4i2.api.FileViewSet import FileViewSet
+    from ccp4i2.api.ProjectTagViewSet import ProjectTagViewSet
+    from ccp4i2.api.ProjectExportViewSet import ProjectExportViewSet
+    from ccp4i2.api.ProjectGroupViewSet import ProjectGroupViewSet
+    from ccp4i2.api.ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
+    from ccp4i2.api.FileTypeViewSet import FileTypeViewSet
+    from ccp4i2.api.FileUseViewSet import FileUseViewSet
+    from ccp4i2.api.FileImportViewSet import FileImportViewSet
+
+    # Patch permission_classes on all viewsets
+    monkeypatch.setattr(ProjectViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(JobViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(FileViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(ProjectTagViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(ProjectExportViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(ProjectGroupViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(ProjectGroupMembershipViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(FileTypeViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(FileUseViewSet, 'permission_classes', [AllowAny])
+    monkeypatch.setattr(FileImportViewSet, 'permission_classes', [AllowAny])
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

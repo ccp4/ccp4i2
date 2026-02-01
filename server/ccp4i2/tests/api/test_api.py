@@ -2,6 +2,7 @@ from pathlib import Path
 from shutil import rmtree
 import json
 import logging
+import unittest
 from django.test import Client
 from django.conf import settings
 from django.test import TestCase, override_settings
@@ -13,13 +14,21 @@ from ...db import models
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
 
+# API URL prefix - all API endpoints are under /api/ccp4i2/
+API_PREFIX = "/api/ccp4i2"
 
+# Path to test data - these tests require pre-built project zips
+TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"
+SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
+
+
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY"
 )
 class CCP4i2TestCase(TestCase):
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"
@@ -43,26 +52,26 @@ class CCP4i2TestCase(TestCase):
 
     def test_projects(self):
         response = self.client.get(
-            "/projects/", {"username": "john", "password": "smith"}
+            f"{API_PREFIX}/projects/", {"username": "john", "password": "smith"}
         )
         project_list = response.json()
         self.assertEqual(project_list[1]["name"], "MDM2CCP4X")
 
     def test_project_files(self):
         response = self.client.get(
-            "/projects/2/files/",
+            f"{API_PREFIX}/projects/2/files/",
         )
         self.assertEqual(len(response.json()), 24)
 
     def test_project_tags(self):
         response = self.client.get(
-            "/projects/2/tags/",
+            f"{API_PREFIX}/projects/2/tags/",
         )
         self.assertEqual(len(response.json()), 1)
 
     def test_clone(self):
         response = self.client.post(
-            "/jobs/1/clone/",
+            f"{API_PREFIX}/jobs/1/clone/",
         )
         self.assertDictContainsSubset(
             {
@@ -83,7 +92,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_set_simple_parameter(self):
         response = self.client.post(
-            "/jobs/1/set_parameter/",
+            f"{API_PREFIX}/jobs/1/set_parameter/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(
                 {
@@ -103,7 +112,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_set_file(self):
         response = self.client.post(
-            "/jobs/1/set_parameter/",
+            f"{API_PREFIX}/jobs/1/set_parameter/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(
                 {
@@ -123,7 +132,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_set_file_null(self):
         response = self.client.post(
-            "/jobs/1/set_parameter/",
+            f"{API_PREFIX}/jobs/1/set_parameter/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(
                 {
@@ -137,7 +146,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_preview_file(self):
         response = self.client.post(
-            "/projects/1/preview_file/",
+            f"{API_PREFIX}/projects/1/preview_file/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(
                 {
@@ -157,7 +166,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_file_upload(self):
         clone_response = self.client.post(
-            "/jobs/1/clone/",
+            f"{API_PREFIX}/jobs/1/clone/",
         )
         clone = clone_response.json()
         print(clone)
@@ -171,7 +180,7 @@ class CCP4i2TestCase(TestCase):
             "objectPath": "prosmart_refmac.inputData.XYZIN",
         }
         response = self.client.post(
-            f"/jobs/{clone['id']}/upload_file_param/", data, format="multipart"
+            f"{API_PREFIX}/jobs/{clone['id']}/upload_file_param/", data, format="multipart"
         )
         self.assertEqual(
             response.json()["data"]["updated_item"]["_value"]["baseName"]["_value"],
@@ -181,7 +190,7 @@ class CCP4i2TestCase(TestCase):
     def test_pdb_item_file_upload(self):
         project = models.Project.objects.last()
         create_response = self.client.post(
-            f"/projects/{project.id}/create_task/",
+            f"{API_PREFIX}/projects/{project.id}/create_task/",
             {"task_name": "phaser_simple"},
             content_type="application/json; charset=utf-8",
         )
@@ -196,7 +205,7 @@ class CCP4i2TestCase(TestCase):
             "objectPath": "phaser_simple.inputData.ENSEMBLES[0].pdbItemList[0].structure",
         }
         response = self.client.post(
-            f"/jobs/{create_response.json()['data']['new_job']['id']}/upload_file_param/",
+            f"{API_PREFIX}/jobs/{create_response.json()['data']['new_job']['id']}/upload_file_param/",
             data,
             format="multipart",
         )
@@ -224,14 +233,14 @@ class CCP4i2TestCase(TestCase):
         # Create the data to be sent in the request
         data = {"files": [test_file]}
         response = self.client.post(
-            "/projects/import_project/", data, format="multipart"
+            f"{API_PREFIX}/projects/import_project/", data, format="multipart"
         )
         print(response)
 
     def test_mmcif_file_upload(self):
         project = models.Project.objects.last()
         create_response = self.client.post(
-            f"/projects/{project.id}/create_task/",
+            f"{API_PREFIX}/projects/{project.id}/create_task/",
             {"task_name": "import_merged"},
             content_type="application/json; charset=utf-8",
         )
@@ -250,11 +259,11 @@ class CCP4i2TestCase(TestCase):
                 "objectPath": "import_merged.inputData.HKLIN",
             }
             response = self.client.post(
-                f"/jobs/{import_merged_task['new_job']['id']}/upload_file_param/",
+                f"{API_PREFIX}/jobs/{import_merged_task['new_job']['id']}/upload_file_param/",
                 data,
                 format="multipart",
             )
-            digest_url = f"/jobs/{import_merged_task['new_job']['id']}/digest/?object_path=import_merged.inputData.HKLIN/"
+            digest_url = f"{API_PREFIX}/jobs/{import_merged_task['new_job']['id']}/digest/?object_path=import_merged.inputData.HKLIN/"
             digest_response = self.client.get(
                 digest_url, content_type="application/json; charset=utf-8"
             )
@@ -273,7 +282,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_digest_file(self):
         file = models.File.objects.first()
-        digest_url = f"/files/{file.id}/digest/"
+        digest_url = f"{API_PREFIX}/files/{file.id}/digest/"
         digest_response = self.client.get(
             digest_url, content_type="application/json; charset=utf-8"
         )
@@ -299,7 +308,7 @@ class CCP4i2TestCase(TestCase):
     def test_upload_to_ProvideAsuContent(self):
         project = models.Project.objects.last()
         create_response = self.client.post(
-            f"/projects/{project.id}/create_task/",
+            f"{API_PREFIX}/projects/{project.id}/create_task/",
             {"task_name": "ProvideAsuContents"},
             content_type="application/json; charset=utf-8",
         )
@@ -318,7 +327,7 @@ class CCP4i2TestCase(TestCase):
                 "objectPath": "ProvideAsuContents.inputData.ASU_CONTENT[0].source",
             }
             response = self.client.post(
-                f"/jobs/{ProvideAsuContentsTask['new_job']['id']}/upload_file_param/",
+                f"{API_PREFIX}/jobs/{ProvideAsuContentsTask['new_job']['id']}/upload_file_param/",
                 data,
                 format="multipart",
             )
@@ -328,7 +337,7 @@ class CCP4i2TestCase(TestCase):
             uploaded_file = models.File.objects.get(uuid=uploaded_file_uuid)
             self.assertEqual(uploaded_file.name, "gamma.pir")
             self.assertTrue(uploaded_file.path.exists())
-            digest_url = f"/files/{uploaded_file.id}/digest/"
+            digest_url = f"{API_PREFIX}/files/{uploaded_file.id}/digest/"
             digest_response = self.client.get(
                 digest_url, content_type="application/json; charset=utf-8"
             )

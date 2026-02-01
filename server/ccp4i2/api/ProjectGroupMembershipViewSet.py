@@ -8,6 +8,7 @@ access for advanced use cases and admin operations.
 import logging
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import FormParser, MultiPartParser, JSONParser
+from rest_framework.permissions import IsAuthenticated
 from . import serializers
 from ..db import models
 
@@ -32,6 +33,7 @@ class ProjectGroupMembershipViewSet(ModelViewSet):
     ).all()
     serializer_class = serializers.ProjectGroupMembershipSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
+    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
         """Filter by group, type, or project if provided in query params."""

@@ -27,11 +27,11 @@ class FileViewSet(ModelViewSet):
     queryset = models.File.objects.all()
     serializer_class = serializers.FileSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
+    permission_classes = [IsAuthenticated]
 
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def by_uuid(self, request, pk=None):
@@ -46,7 +46,6 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def download(self, request, pk=None):
@@ -60,7 +59,6 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def download_by_uuid(self, request, pk=None):
@@ -74,7 +72,6 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def digest(self, request, pk=None):
@@ -108,7 +105,6 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def digest_by_uuid(self, request, pk=None):
@@ -142,7 +138,6 @@ class FileViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[IsAuthenticated],
         serializer_class=serializers.FileSerializer,
     )
     def preview(self, request, pk=None):

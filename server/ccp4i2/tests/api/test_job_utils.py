@@ -1,6 +1,7 @@
 from pathlib import Path
 from shutil import rmtree
 from typing import List
+import unittest
 from django.test import Client
 from django.conf import settings
 from django.test import TestCase, override_settings
@@ -23,13 +24,18 @@ from ...lib.utils.files.export import export_job_file
 from ...db.project_json import project_json
 from ...lib.utils.files.digest import digest_file_object
 
+# Path to test data - these tests require pre-built project zips
+TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"
+SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
 
+
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY"
 )
 class CCP4i2TestCase(TestCase):
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"

@@ -10,6 +10,10 @@ Tests the set_parameter endpoint to verify that:
 
 import json
 import logging
+import unittest
+
+# API URL prefix - all API endpoints are under /api/ccp4i2/
+API_PREFIX = "/api/ccp4i2"
 from pathlib import Path
 from shutil import rmtree
 
@@ -22,7 +26,12 @@ from ...db import models
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
 
+# Path to test data - these tests require pre-built project zips
+TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"
+SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
 
+
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_API_PARAMETER_DIRECTORY",
     ROOT_URLCONF="ccp4i2.api.urls",
@@ -92,7 +101,7 @@ class ParameterSettingAPITests(TestCase):
 
         # POST to set_parameter endpoint
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -140,7 +149,7 @@ class ParameterSettingAPITests(TestCase):
         }
 
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -163,7 +172,7 @@ class ParameterSettingAPITests(TestCase):
         }
 
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -185,7 +194,7 @@ class ParameterSettingAPITests(TestCase):
         }
 
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -205,7 +214,7 @@ class ParameterSettingAPITests(TestCase):
 
         # Use non-existent job ID (999999)
         response = self.client.post(
-            "/jobs/999999/set_parameter/",
+            f"{API_PREFIX}/jobs/999999/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -224,7 +233,7 @@ class ParameterSettingAPITests(TestCase):
         }
 
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -243,7 +252,7 @@ class ParameterSettingAPITests(TestCase):
         }
 
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -277,7 +286,7 @@ class ParameterSettingAPITests(TestCase):
             }
 
             response = self.client.post(
-                f"/jobs/{self.job.id}/set_parameter/",
+                f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
                 data=json.dumps(request_data),
                 content_type="application/json"
             )
@@ -306,7 +315,7 @@ class ParameterSettingAPITests(TestCase):
             "value": 5
         }
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -319,7 +328,7 @@ class ParameterSettingAPITests(TestCase):
             "value": None
         }
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -338,7 +347,7 @@ class ParameterSettingAPITests(TestCase):
         }
 
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )
@@ -362,7 +371,7 @@ class ParameterSettingAPITests(TestCase):
         }
 
         response = self.client.post(
-            f"/jobs/{self.job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{self.job.id}/set_parameter/",
             data=json.dumps(request_data),
             content_type="application/json"
         )

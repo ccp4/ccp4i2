@@ -58,6 +58,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
 from . import serializers
 from ..db import models
 from ..lib.utils.reporting.i2_report import generate_job_report
@@ -163,6 +164,7 @@ class JobViewSet(ModelViewSet):
     serializer_class = serializers.JobSerializer
     parser_classes = [FormParser, MultiPartParser, JSONParser]
     filterset_fields = ["project"]
+    permission_classes = [IsAuthenticated]
 
     def destroy(self, request, *args, **kwargs):
         """
@@ -200,7 +202,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def what_next(self, request, pk=None):
@@ -249,7 +250,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def set_context_job(self, request, pk=None):
@@ -304,7 +304,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def object_method(self, request, pk=None):
@@ -365,7 +364,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get", "put"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def params_xml(self, request, pk=None):
@@ -509,7 +507,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def report_xml(self, request, pk=None):
@@ -588,7 +585,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def regenerate_report(self, request, pk=None):
@@ -650,7 +646,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def dependent_jobs(self, request, pk=None):
@@ -699,7 +694,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def clone(self, request, pk=None):
@@ -756,7 +750,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def run(self, request, pk=None):
@@ -810,7 +803,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def run_local(self, request, pk=None):
@@ -899,7 +891,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def container(self, request, pk=None):
@@ -971,7 +962,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def diagnostic_xml(self, request, pk=None):
@@ -1038,7 +1028,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def digest(self, request, pk=None):
@@ -1078,7 +1067,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def i2run_command(self, request, pk=None):
@@ -1115,7 +1103,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def digest_param_file(self, request, pk=None):
@@ -1173,7 +1160,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def def_xml(self, request, pk=None):
@@ -1230,7 +1216,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def validation(self, request, pk=None):
@@ -1312,7 +1297,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def set_parameter(self, request, pk=None):
@@ -1389,7 +1373,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def get_parameter(self, request, pk=None):
@@ -1461,7 +1444,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def upload_file_param(self, request, pk=None):
@@ -1511,7 +1493,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["post"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def preview(self, request, pk=None):
@@ -1558,7 +1539,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.FileSerializer,
     )
     def files(self, request, pk=None):
@@ -1613,7 +1593,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def export_job(self, request, pk=None):
@@ -1751,7 +1730,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def export_job_file_menu(self, request, pk=None):
@@ -1850,7 +1828,6 @@ class JobViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
         serializer_class=serializers.JobSerializer,
     )
     def export_job_file(self, request, pk=None):

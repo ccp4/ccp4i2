@@ -4,6 +4,7 @@ from rest_framework.parsers import MultiPartParser, JSONParser, FormParser
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 from . import serializers
 from ..db import models
 
@@ -14,11 +15,11 @@ class ProjectExportViewSet(ModelViewSet):
     queryset = models.ProjectExport.objects.all()
     serializer_class = serializers.ProjectExportSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
+    permission_classes = [IsAuthenticated]
 
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
     )
     def download(self, _request, pk=None):
         export = self.get_object()

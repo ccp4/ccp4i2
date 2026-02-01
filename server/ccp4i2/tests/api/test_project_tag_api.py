@@ -1,5 +1,8 @@
 import json
 import logging
+
+# API URL prefix - all API endpoints are under /api/ccp4i2/
+API_PREFIX = "/api/ccp4i2"
 from pathlib import Path
 from shutil import rmtree
 from django.test import TestCase, override_settings
@@ -30,8 +33,8 @@ class ProjectTagAPITestCase(TestCase):
         )
 
         # Base URLs for API endpoints
-        self.projecttags_url = "/projecttags/"
-        self.project_tags_url = f"/projects/{self.project.uuid}/tags/"
+        self.projecttags_url = f"{API_PREFIX}/projecttags/"
+        self.project_tags_url = f"{API_PREFIX}/projects/{self.project.uuid}/tags/"
 
     def tearDown(self):
         """Clean up test environment"""
@@ -46,7 +49,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request to create the tag
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(tag_data),
         )
@@ -78,7 +81,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request to create the child tag
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(child_tag_data),
         )
@@ -116,7 +119,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request to create the tag
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(tag_data),
         )
@@ -151,7 +154,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request to create the duplicate tag
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(duplicate_tag_data),
         )
@@ -172,7 +175,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request with invalid data
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(invalid_tag_data),
         )
@@ -187,7 +190,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request with invalid data
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(invalid_tag_data),
         )
@@ -206,7 +209,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request with invalid data
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(invalid_tag_data),
         )
@@ -222,7 +225,7 @@ class ProjectTagAPITestCase(TestCase):
         tag3 = models.ProjectTag.objects.create(text="Child Tag", parent=tag1)
 
         # Make GET request to retrieve all tags
-        response = self.client.get("/projecttags/")
+        response = self.client.get(f"{API_PREFIX}/projecttags/")
 
         # Verify the response
         self.assertEqual(response.status_code, 200)
@@ -245,7 +248,7 @@ class ProjectTagAPITestCase(TestCase):
         tag = models.ProjectTag.objects.create(text="Single Tag", parent=None)
 
         # Make GET request to retrieve specific tag
-        response = self.client.get(f"/projecttags/{tag.id}/")
+        response = self.client.get(f"{API_PREFIX}/projecttags/{tag.id}/")
 
         # Verify the response
         self.assertEqual(response.status_code, 200)
@@ -273,7 +276,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request to associate tag with project
         response = self.client.post(
-            f"/projects/{self.project.id}/tags/",
+            f"{API_PREFIX}/projects/{self.project.id}/tags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(association_data),
         )
@@ -302,7 +305,7 @@ class ProjectTagAPITestCase(TestCase):
         self.project.tags.add(tag1, tag2)
 
         # Make GET request to retrieve project tags
-        response = self.client.get(f"/projects/{self.project.id}/tags/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/tags/")
 
         # Verify the response
         self.assertEqual(response.status_code, 200)
@@ -328,7 +331,7 @@ class ProjectTagAPITestCase(TestCase):
         self.assertEqual(self.project.tags.count(), 1)
 
         # Make DELETE request to remove tag from project
-        response = self.client.delete(f"/projects/{self.project.id}/tags/{tag.id}/")
+        response = self.client.delete(f"{API_PREFIX}/projects/{self.project.id}/tags/{tag.id}/")
 
         # Verify the response
         self.assertEqual(response.status_code, 200)
@@ -351,7 +354,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request with invalid tag ID
         response = self.client.post(
-            f"/projects/{self.project.id}/tags/",
+            f"{API_PREFIX}/projects/{self.project.id}/tags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(association_data),
         )
@@ -370,7 +373,7 @@ class ProjectTagAPITestCase(TestCase):
 
         # Make POST request with missing tag_id
         response = self.client.post(
-            f"/projects/{self.project.id}/tags/",
+            f"{API_PREFIX}/projects/{self.project.id}/tags/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(association_data),
         )

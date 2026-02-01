@@ -344,7 +344,6 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        permission_classes=[],
     )
     def job_tree(self, request, pk=None):
         """

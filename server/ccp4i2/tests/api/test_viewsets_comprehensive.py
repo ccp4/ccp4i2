@@ -19,6 +19,10 @@ from pathlib import Path
 from shutil import rmtree
 import json
 import logging
+import unittest
+
+# API URL prefix - all API endpoints are under /api/ccp4i2/
+API_PREFIX = "/api/ccp4i2"
 from unittest import skip
 from django.test import Client
 from django.conf import settings
@@ -31,7 +35,12 @@ from ...db import models
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
 
+# Path to test data - these tests require pre-built project zips
+TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"
+SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
 
+
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
     ROOT_URLCONF="ccp4i2.api.urls",
@@ -40,7 +49,7 @@ class FileViewSetTests(TestCase):
     """Tests for FileViewSet API endpoints"""
 
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"
@@ -58,7 +67,7 @@ class FileViewSetTests(TestCase):
 
     def test_file_list(self):
         """Test GET /files/ - List all files"""
-        response = self.client.get("/files/")
+        response = self.client.get(f"{API_PREFIX}/files/")
         self.assertEqual(response.status_code, 200)
         files = response.json()
         self.assertIsInstance(files, list)
@@ -66,21 +75,21 @@ class FileViewSetTests(TestCase):
 
     def test_file_retrieve(self):
         """Test GET /files/{id}/ - Retrieve specific file"""
-        response = self.client.get(f"/files/{self.file.id}/")
+        response = self.client.get(f"{API_PREFIX}/files/{self.file.id}/")
         self.assertEqual(response.status_code, 200)
         file_data = response.json()
         self.assertEqual(file_data["name"], self.file.name)
 
     def test_file_by_uuid(self):
         """Test GET /files/{id}/by_uuid/ - Retrieve file by UUID"""
-        response = self.client.get(f"/files/{self.file.uuid}/by_uuid/")
+        response = self.client.get(f"{API_PREFIX}/files/{self.file.uuid}/by_uuid/")
         self.assertEqual(response.status_code, 200)
         file_data = response.json()
         self.assertEqual(file_data["name"], self.file.name)
 
     def test_file_download(self):
         """Test GET /files/{id}/download/ - Download file by ID"""
-        response = self.client.get(f"/files/{self.file.id}/download/")
+        response = self.client.get(f"{API_PREFIX}/files/{self.file.id}/download/")
         self.assertEqual(response.status_code, 200)
         # FileResponse uses 'inline' by default, 'attachment' is optional
         self.assertIn('filename=', response["Content-Disposition"])
@@ -88,14 +97,14 @@ class FileViewSetTests(TestCase):
 
     def test_file_download_by_uuid(self):
         """Test GET /files/{uuid}/download_by_uuid/ - Download file by UUID"""
-        response = self.client.get(f"/files/{self.file.uuid}/download_by_uuid/")
+        response = self.client.get(f"{API_PREFIX}/files/{self.file.uuid}/download_by_uuid/")
         self.assertEqual(response.status_code, 200)
         self.assertIn('filename=', response["Content-Disposition"])
         self.assertIn(self.file.name, response["Content-Disposition"])
 
     def test_file_digest(self):
         """Test GET /files/{id}/digest/ - Get file digest by ID"""
-        response = self.client.get(f"/files/{self.file.id}/digest/")
+        response = self.client.get(f"{API_PREFIX}/files/{self.file.id}/digest/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -109,7 +118,7 @@ class FileViewSetTests(TestCase):
 
     def test_file_digest_by_uuid(self):
         """Test GET /files/{uuid}/digest_by_uuid/ - Get file digest by UUID"""
-        response = self.client.get(f"/files/{self.file.uuid}/digest_by_uuid/")
+        response = self.client.get(f"{API_PREFIX}/files/{self.file.uuid}/digest_by_uuid/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -123,7 +132,7 @@ class FileViewSetTests(TestCase):
     def test_file_preview(self):
         """Test POST /files/{id}/preview/ - Preview file with external viewer"""
         response = self.client.post(
-            f"/files/{self.file.id}/preview/",
+            f"{API_PREFIX}/files/{self.file.id}/preview/",
             data=json.dumps({"viewer": "coot"}),
             content_type="application/json",
         )
@@ -131,6 +140,7 @@ class FileViewSetTests(TestCase):
         pass
 
 
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
     ROOT_URLCONF="ccp4i2.api.urls",
@@ -139,7 +149,7 @@ class JobViewSetTests(TestCase):
     """Tests for JobViewSet API endpoints"""
 
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"
@@ -161,7 +171,7 @@ class JobViewSetTests(TestCase):
 
     def test_job_list(self):
         """Test GET /jobs/ - List all jobs"""
-        response = self.client.get("/jobs/")
+        response = self.client.get(f"{API_PREFIX}/jobs/")
         self.assertEqual(response.status_code, 200)
         jobs = response.json()
         self.assertIsInstance(jobs, list)
@@ -169,14 +179,14 @@ class JobViewSetTests(TestCase):
 
     def test_job_retrieve(self):
         """Test GET /jobs/{id}/ - Retrieve specific job"""
-        response = self.client.get(f"/jobs/{self.job.id}/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/")
         self.assertEqual(response.status_code, 200)
         job_data = response.json()
         self.assertEqual(job_data["id"], self.job.id)
 
     def test_job_clone(self):
         """Test POST /jobs/{id}/clone/ - Clone existing job"""
-        response = self.client.post(f"/jobs/{self.job.id}/clone/")
+        response = self.client.post(f"{API_PREFIX}/jobs/{self.job.id}/clone/")
         self.assertEqual(response.status_code, 200)
         cloned_job = response.json()
         self.assertNotEqual(cloned_job["id"], self.job.id)
@@ -185,7 +195,7 @@ class JobViewSetTests(TestCase):
 
     def test_job_params_xml(self):
         """Test GET /jobs/{id}/params_xml/ - Get job parameters as XML"""
-        response = self.client.get(f"/jobs/{self.job.id}/params_xml/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/params_xml/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -193,7 +203,7 @@ class JobViewSetTests(TestCase):
 
     def test_job_report_xml(self):
         """Test GET /jobs/{id}/report_xml/ - Get job report as XML"""
-        response = self.client.get(f"/jobs/{self.job.id}/report_xml/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/report_xml/")
         # May be 200 or 404 depending on whether report exists
         self.assertIn(response.status_code, [200, 404])
         result = response.json()
@@ -203,20 +213,20 @@ class JobViewSetTests(TestCase):
 
     def test_job_diagnostic_xml(self):
         """Test GET /jobs/{id}/diagnostic_xml/ - Get diagnostic XML"""
-        response = self.client.get(f"/jobs/{self.job.id}/diagnostic_xml/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/diagnostic_xml/")
         # May be 200 or 404 depending on whether diagnostic exists
         self.assertIn(response.status_code, [200, 404])
 
     def test_job_container(self):
         """Test GET /jobs/{id}/container/ - Get job container JSON"""
-        response = self.client.get(f"/jobs/{self.job.id}/container/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/container/")
         result = response.json()
         self.assertTrue(result.get("success"))
         self.assertIn("result", result.get("data", {}))
 
     def test_job_def_xml(self):
         """Test GET /jobs/{id}/def_xml/ - Get task definition XML"""
-        response = self.client.get(f"/jobs/{self.job.id}/def_xml/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/def_xml/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -224,7 +234,7 @@ class JobViewSetTests(TestCase):
 
     def test_job_validation(self):
         """Test GET /jobs/{id}/validation/ - Validate job parameters"""
-        response = self.client.get(f"/jobs/{self.job.id}/validation/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/validation/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -232,7 +242,7 @@ class JobViewSetTests(TestCase):
 
     def test_job_i2run_command(self):
         """Test GET /jobs/{id}/i2run_command/ - Get i2run command"""
-        response = self.client.get(f"/jobs/{self.job.id}/i2run_command/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/i2run_command/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -240,21 +250,21 @@ class JobViewSetTests(TestCase):
 
     def test_job_dependent_jobs(self):
         """Test GET /jobs/{id}/dependent_jobs/ - Get jobs that depend on this job"""
-        response = self.client.get(f"/jobs/{self.job.id}/dependent_jobs/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/dependent_jobs/")
         self.assertEqual(response.status_code, 200)
         dependent_jobs = response.json()
         self.assertIsInstance(dependent_jobs, list)
 
     def test_job_files(self):
         """Test GET /jobs/{id}/files/ - Get files associated with job"""
-        response = self.client.get(f"/jobs/{self.job.id}/files/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/files/")
         self.assertEqual(response.status_code, 200)
         files = response.json()
         self.assertIsInstance(files, list)
 
     def test_job_what_next(self):
         """Test GET /jobs/{id}/what_next/ - Get suggested next steps"""
-        response = self.client.get(f"/jobs/{self.job.id}/what_next/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/what_next/")
         result = response.json()
         # Should return suggestions or empty list
         self.assertIsInstance(result, dict)
@@ -262,11 +272,11 @@ class JobViewSetTests(TestCase):
     def test_job_set_parameter_simple(self):
         """Test POST /jobs/{id}/set_parameter/ - Set simple parameter"""
         # Clone job first to avoid modifying original
-        clone_response = self.client.post(f"/jobs/{self.job.id}/clone/")
+        clone_response = self.client.post(f"{API_PREFIX}/jobs/{self.job.id}/clone/")
         cloned_job = clone_response.json()
 
         response = self.client.post(
-            f"/jobs/{cloned_job['id']}/set_parameter/",
+            f"{API_PREFIX}/jobs/{cloned_job['id']}/set_parameter/",
             content_type="application/json",
             data=json.dumps({
                 "object_path": f"{self.job.task_name}.controlParameters.NCYCLES",
@@ -279,11 +289,11 @@ class JobViewSetTests(TestCase):
     def test_job_set_parameter_file(self):
         """Test POST /jobs/{id}/set_parameter/ - Set file parameter"""
         # Clone job first
-        clone_response = self.client.post(f"/jobs/{self.job.id}/clone/")
+        clone_response = self.client.post(f"{API_PREFIX}/jobs/{self.job.id}/clone/")
         cloned_job = clone_response.json()
 
         response = self.client.post(
-            f"/jobs/{cloned_job['id']}/set_parameter/",
+            f"{API_PREFIX}/jobs/{cloned_job['id']}/set_parameter/",
             content_type="application/json",
             data=json.dumps({
                 "object_path": f"{self.job.task_name}.inputData.XYZIN",
@@ -296,7 +306,7 @@ class JobViewSetTests(TestCase):
     def test_job_upload_file_param(self):
         """Test POST /jobs/{id}/upload_file_param/ - Upload file parameter"""
         # Clone job first
-        clone_response = self.client.post(f"/jobs/{self.job.id}/clone/")
+        clone_response = self.client.post(f"{API_PREFIX}/jobs/{self.job.id}/clone/")
         cloned_job = clone_response.json()
 
         file_content = b"Test PDB content"
@@ -307,7 +317,7 @@ class JobViewSetTests(TestCase):
             "objectPath": f"{self.job.task_name}.inputData.XYZIN",
         }
         response = self.client.post(
-            f"/jobs/{cloned_job['id']}/upload_file_param/",
+            f"{API_PREFIX}/jobs/{cloned_job['id']}/upload_file_param/",
             data,
             format="multipart",
         )
@@ -318,7 +328,7 @@ class JobViewSetTests(TestCase):
     def test_job_digest(self):
         """Test GET /jobs/{id}/digest/?object_path=... - Digest object"""
         response = self.client.get(
-            f"/jobs/{self.job.id}/digest/?object_path={self.job.task_name}.inputData.XYZIN/"
+            f"{API_PREFIX}/jobs/{self.job.id}/digest/?object_path={self.job.task_name}.inputData.XYZIN/"
         )
         # May succeed or fail depending on whether file is set
         self.assertIn(response.status_code, [200, 404, 500])
@@ -329,14 +339,14 @@ class JobViewSetTests(TestCase):
         file_obj = models.File.objects.filter(job=self.job).first()
         if file_obj and file_obj.job_param_name:
             response = self.client.get(
-                f"/jobs/{self.job.id}/digest_param_file/?job_param_name={file_obj.job_param_name}/"
+                f"{API_PREFIX}/jobs/{self.job.id}/digest_param_file/?job_param_name={file_obj.job_param_name}/"
             )
             # May succeed or fail depending on file type
             self.assertIn(response.status_code, [200, 404, 500])
 
     def test_job_export_job_file_menu(self):
         """Test GET /jobs/{id}/export_job_file_menu/ - Get export file menu"""
-        response = self.client.get(f"/jobs/{self.job.id}/export_job_file_menu/")
+        response = self.client.get(f"{API_PREFIX}/jobs/{self.job.id}/export_job_file_menu/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -363,10 +373,10 @@ class JobViewSetTests(TestCase):
     def test_job_delete(self):
         """Test DELETE /jobs/{id}/ - Delete job and dependents"""
         # Clone a job to delete
-        clone_response = self.client.post(f"/jobs/{self.job.id}/clone/")
+        clone_response = self.client.post(f"{API_PREFIX}/jobs/{self.job.id}/clone/")
         cloned_job = clone_response.json()
 
-        response = self.client.delete(f"/jobs/{cloned_job['id']}/")
+        response = self.client.delete(f"{API_PREFIX}/jobs/{cloned_job['id']}/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -375,6 +385,7 @@ class JobViewSetTests(TestCase):
         self.assertFalse(models.Job.objects.filter(id=cloned_job['id']).exists())
 
 
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
     ROOT_URLCONF="ccp4i2.api.urls",
@@ -383,7 +394,7 @@ class ProjectViewSetTests(TestCase):
     """Tests for ProjectViewSet API endpoints"""
 
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"
@@ -405,7 +416,7 @@ class ProjectViewSetTests(TestCase):
 
     def test_project_list(self):
         """Test GET /projects/ - List all projects"""
-        response = self.client.get("/projects/")
+        response = self.client.get(f"{API_PREFIX}/projects/")
         self.assertEqual(response.status_code, 200)
         projects = response.json()
         self.assertIsInstance(projects, list)
@@ -413,28 +424,28 @@ class ProjectViewSetTests(TestCase):
 
     def test_project_retrieve(self):
         """Test GET /projects/{id}/ - Retrieve specific project"""
-        response = self.client.get(f"/projects/{self.project.id}/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/")
         self.assertEqual(response.status_code, 200)
         project_data = response.json()
         self.assertEqual(project_data["name"], self.project.name)
 
     def test_project_files(self):
         """Test GET /projects/{id}/files/ - Get project files"""
-        response = self.client.get(f"/projects/{self.project.id}/files/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/files/")
         self.assertEqual(response.status_code, 200)
         files = response.json()
         self.assertIsInstance(files, list)
 
     def test_project_file_uses(self):
         """Test GET /projects/{id}/file_uses/ - Get project file uses"""
-        response = self.client.get(f"/projects/{self.project.id}/file_uses/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/file_uses/")
         self.assertEqual(response.status_code, 200)
         file_uses = response.json()
         self.assertIsInstance(file_uses, list)
 
     def test_project_jobs(self):
         """Test GET /projects/{id}/jobs/ - Get project jobs"""
-        response = self.client.get(f"/projects/{self.project.id}/jobs/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/jobs/")
         self.assertEqual(response.status_code, 200)
         jobs = response.json()
         self.assertIsInstance(jobs, list)
@@ -442,21 +453,21 @@ class ProjectViewSetTests(TestCase):
 
     def test_project_job_float_values(self):
         """Test GET /projects/{id}/job_float_values/ - Get KPI float values"""
-        response = self.client.get(f"/projects/{self.project.id}/job_float_values/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/job_float_values/")
         self.assertEqual(response.status_code, 200)
         values = response.json()
         self.assertIsInstance(values, list)
 
     def test_project_job_char_values(self):
         """Test GET /projects/{id}/job_char_values/ - Get KPI char values"""
-        response = self.client.get(f"/projects/{self.project.id}/job_char_values/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/job_char_values/")
         self.assertEqual(response.status_code, 200)
         values = response.json()
         self.assertIsInstance(values, list)
 
     def test_project_tags_get(self):
         """Test GET /projects/{id}/tags/ - Get project tags"""
-        response = self.client.get(f"/projects/{self.project.id}/tags/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/tags/")
         self.assertEqual(response.status_code, 200)
         tags = response.json()
         self.assertIsInstance(tags, list)
@@ -467,7 +478,7 @@ class ProjectViewSetTests(TestCase):
         tag = models.ProjectTag.objects.create(text="Test Tag")
 
         response = self.client.post(
-            f"/projects/{self.project.id}/tags/",
+            f"{API_PREFIX}/projects/{self.project.id}/tags/",
             data=json.dumps({"tag_id": tag.id}),
             content_type="application/json",
         )
@@ -481,14 +492,14 @@ class ProjectViewSetTests(TestCase):
         tag = models.ProjectTag.objects.create(text="Test Tag")
         self.project.tags.add(tag)
 
-        response = self.client.delete(f"/projects/{self.project.id}/tags/{tag.id}/")
+        response = self.client.delete(f"{API_PREFIX}/projects/{self.project.id}/tags/{tag.id}/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertEqual(result["status"], "success")
 
     def test_project_directory(self):
         """Test GET /projects/{id}/directory/ - Get project directory listing"""
-        response = self.client.get(f"/projects/{self.project.id}/directory/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/directory/")
         self.assertEqual(response.status_code, 200)
         result = response.json()
         self.assertTrue(result.get("success"))
@@ -502,7 +513,7 @@ class ProjectViewSetTests(TestCase):
             # Use relative path from project directory
             relative_path = file_obj.path.relative_to(self.project.directory)
             response = self.client.get(
-                f"/projects/{self.project.id}/project_file/?path={relative_path}"
+                f"{API_PREFIX}/projects/{self.project.id}/project_file/?path={relative_path}"
             )
             self.assertEqual(response.status_code, 200)
 
@@ -515,7 +526,7 @@ class ProjectViewSetTests(TestCase):
     def test_project_create_task(self):
         """Test POST /projects/{id}/create_task/ - Create new task/job"""
         response = self.client.post(
-            f"/projects/{self.project.id}/create_task/",
+            f"{API_PREFIX}/projects/{self.project.id}/create_task/",
             data=json.dumps({"task_name": "prosmart_refmac"}),
             content_type="application/json",
         )
@@ -526,7 +537,7 @@ class ProjectViewSetTests(TestCase):
 
     def test_project_exports(self):
         """Test GET /projects/{id}/exports/ - Get project export history"""
-        response = self.client.get(f"/projects/{self.project.id}/exports/")
+        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/exports/")
         self.assertEqual(response.status_code, 200)
         exports = response.json()
         self.assertIsInstance(exports, list)
@@ -550,6 +561,7 @@ class ProjectViewSetTests(TestCase):
         pass
 
 
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
     ROOT_URLCONF="ccp4i2.api.urls",
@@ -558,7 +570,7 @@ class SimpleViewSetTests(TestCase):
     """Tests for simple CRUD ViewSets: FileImport, FileUse, FileType, ProjectTag"""
 
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"
@@ -613,6 +625,7 @@ class SimpleViewSetTests(TestCase):
         self.assertEqual(tag["text"], "New Test Tag")
 
 
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
     ROOT_URLCONF="ccp4i2.api.urls",
@@ -621,7 +634,7 @@ class ProjectExportViewSetTests(TestCase):
     """Tests for ProjectExportViewSet API endpoints"""
 
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
             Path(__file__).parent.parent.parent.parent.parent.parent
             / "test101"

@@ -12,6 +12,10 @@ This validates that context-aware parameter setting works in a real execution sc
 
 import json
 import logging
+import unittest
+
+# API URL prefix - all API endpoints are under /api/ccp4i2/
+API_PREFIX = "/api/ccp4i2"
 from pathlib import Path
 from shutil import rmtree
 
@@ -28,7 +32,12 @@ from ccp4i2.tests.i2run.utils import demoData
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
 
+# Path to test data - these tests require pre-built project zips
+TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"
+SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
 
+
+@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_JOB_EXECUTION_DIRECTORY",
     ROOT_URLCONF="ccp4i2.api.urls",
@@ -82,7 +91,7 @@ class JobExecutionViaAPITests(TestCase):
         logger.info("Step 1: Creating prosmart_refmac job via API")
 
         create_job_response = self.client.post(
-            f"/projects/{self.project.id}/create_task/",
+            f"{API_PREFIX}/projects/{self.project.id}/create_task/",
             data=json.dumps({
                 "task_name": "prosmart_refmac",
                 "title": "API Integration Test Job"
@@ -120,7 +129,7 @@ class JobExecutionViaAPITests(TestCase):
         logger.info(f"Uploading PDB file: {pdb_path}")
         with open(pdb_path, 'rb') as pdb_file:
             response = self.client.post(
-                f"/jobs/{job.id}/upload_file_param/",
+                f"{API_PREFIX}/jobs/{job.id}/upload_file_param/",
                 data={
                     "objectPath": "prosmart_refmac.inputData.XYZIN",
                     "file": pdb_file,
@@ -138,7 +147,7 @@ class JobExecutionViaAPITests(TestCase):
         logger.info(f"Uploading MTZ file: {mtz_path}")
         with open(mtz_path, 'rb') as mtz_file:
             response = self.client.post(
-                f"/jobs/{job.id}/upload_file_param/",
+                f"{API_PREFIX}/jobs/{job.id}/upload_file_param/",
                 data={
                     "objectPath": "prosmart_refmac.inputData.F_SIGF",
                     "file": mtz_file,
@@ -175,7 +184,7 @@ class JobExecutionViaAPITests(TestCase):
             logger.info(f"Setting {param_path} = {param_value}")
 
             response = self.client.post(
-                f"/jobs/{job.id}/set_parameter/",
+                f"{API_PREFIX}/jobs/{job.id}/set_parameter/",
                 data=json.dumps({
                     "object_path": param_path,
                     "value": param_value
@@ -235,7 +244,7 @@ class JobExecutionViaAPITests(TestCase):
         logger.info("Step 6: Verifying run endpoint is accessible")
 
         run_response = self.client.post(
-            f"/jobs/{job.id}/run/",
+            f"{API_PREFIX}/jobs/{job.id}/run/",
             content_type="application/json"
         )
 
@@ -283,7 +292,7 @@ class JobExecutionViaAPITests(TestCase):
         """
         # Create a job via the proper API endpoint
         create_job_response = self.client.post(
-            f"/projects/{self.project.id}/create_task/",
+            f"{API_PREFIX}/projects/{self.project.id}/create_task/",
             data=json.dumps({
                 "task_name": "prosmart_refmac",
                 "title": "Reload Test Job"
@@ -300,7 +309,7 @@ class JobExecutionViaAPITests(TestCase):
 
         # Set a parameter via API (NCYCLES is in controlParameters, not inputData)
         response = self.client.post(
-            f"/jobs/{job.id}/set_parameter/",
+            f"{API_PREFIX}/jobs/{job.id}/set_parameter/",
             data=json.dumps({
                 "object_path": "prosmart_refmac.controlParameters.NCYCLES",
                 "value": 7

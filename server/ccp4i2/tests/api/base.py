@@ -16,7 +16,7 @@ import time
 from pathlib import Path
 
 import pytest
-from django.test import Client
+from rest_framework.test import APIClient
 
 # Re-export download from i2run.utils
 from ccp4i2.tests.i2run.utils import download
@@ -144,10 +144,13 @@ class APITestBase:
     timeout = 300  # Default job timeout in seconds
     poll_interval = 2  # Seconds between status checks
 
+    # API URL prefix - all API endpoints are under /api/ccp4i2/
+    API_PREFIX = "/api/ccp4i2"
+
     @pytest.fixture(autouse=True)
-    def setup_client(self):
+    def setup_client(self, bypass_api_permissions):
         """Set up test client for each test."""
-        self.client = Client()
+        self.client = APIClient()
         self.project_id = None
         self.job_id = None
         self.job_number = None
@@ -158,7 +161,7 @@ class APITestBase:
     def create_project(self, name: str, directory: str = "__default__") -> dict:
         """Create a new project via API."""
         response = self.client.post(
-            '/projects/',
+            f'{self.API_PREFIX}/projects/',
             data=json.dumps({'name': name, 'directory': directory}),
             content_type='application/json'
         )
@@ -177,7 +180,7 @@ class APITestBase:
         title = title or f"API Test: {task_name}"
 
         response = self.client.post(
-            f'/projects/{self.project_id}/create_task/',
+            f'{self.API_PREFIX}/projects/{self.project_id}/create_task/',
             data=json.dumps({
                 'task_name': task_name,
                 'title': title,
@@ -214,7 +217,7 @@ class APITestBase:
         full_path = f"{prefix}.{object_path}" if prefix else object_path
 
         response = self.client.post(
-            f'/jobs/{self.job_id}/set_parameter/',
+            f'{self.API_PREFIX}/jobs/{self.job_id}/set_parameter/',
             data=json.dumps({'object_path': full_path, 'value': value}),
             content_type='application/json'
         )
@@ -251,7 +254,7 @@ class APITestBase:
 
         with open(file_path, 'rb') as f:
             response = self.client.post(
-                f'/jobs/{self.job_id}/upload_file_param/',
+                f'{self.API_PREFIX}/jobs/{self.job_id}/upload_file_param/',
                 {'objectPath': full_path, 'file': f}
             )
 
@@ -280,7 +283,7 @@ class APITestBase:
             if column_labels:
                 post_data['column_selector'] = column_labels
             response = self.client.post(
-                f'/jobs/{self.job_id}/upload_file_param/',
+                f'{self.API_PREFIX}/jobs/{self.job_id}/upload_file_param/',
                 post_data
             )
 
@@ -293,7 +296,7 @@ class APITestBase:
         """Get job validation status."""
         assert self.job_id, "Must create job first"
 
-        response = self.client.get(f'/jobs/{self.job_id}/validation/')
+        response = self.client.get(f'{self.API_PREFIX}/jobs/{self.job_id}/validation/')
         assert response.status_code == 200, f"Failed to get validation: {response.content}"
         return response.json()
 
@@ -335,7 +338,7 @@ class APITestBase:
         assert self.job_id, "Must create job first"
 
         response = self.client.post(
-            f'/jobs/{self.job_id}/run/',
+            f'{self.API_PREFIX}/jobs/{self.job_id}/run/',
             content_type='application/json'
         )
         assert response.status_code == 200, f"Failed to run job: {response.content}"
@@ -345,7 +348,7 @@ class APITestBase:
         """Get current job status."""
         assert self.job_id, "Must create job first"
 
-        response = self.client.get(f'/jobs/{self.job_id}/')
+        response = self.client.get(f'{self.API_PREFIX}/jobs/{self.job_id}/')
         assert response.status_code == 200, f"Failed to get job status: {response.content}"
         return response.json()
 
@@ -430,7 +433,7 @@ class APITestBase:
         """Get list of job output files."""
         assert self.job_id, "Must create job first"
 
-        response = self.client.get(f'/jobs/{self.job_id}/files/')
+        response = self.client.get(f'{self.API_PREFIX}/jobs/{self.job_id}/files/')
         assert response.status_code == 200, f"Failed to get job files: {response.content}"
         return response.json()
 
@@ -488,7 +491,7 @@ class APITestBase:
         """Get job report data."""
         assert self.job_id, "Must create job first"
 
-        response = self.client.get(f'/jobs/{self.job_id}/report/')
+        response = self.client.get(f'{self.API_PREFIX}/jobs/{self.job_id}/report/')
         assert response.status_code == 200, f"Failed to get report: {response.content}"
         return response.json()
 
@@ -532,7 +535,7 @@ class APITestBase:
         Returns:
             Digest dictionary with file metadata
         """
-        response = self.client.get(f'/files/{file_id}/digest/')
+        response = self.client.get(f'{self.API_PREFIX}/files/{file_id}/digest/')
         assert response.status_code == 200, f"Failed to get file digest: {response.content}"
         result = response.json()
         # Unwrap the data if wrapped in {success: True, data: {...}}
