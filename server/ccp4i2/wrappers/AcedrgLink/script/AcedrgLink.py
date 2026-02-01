@@ -21,7 +21,7 @@ class AcedrgLink(CPluginScript):
         print("AceDRG in link mode - processing output")
         inp = self.container.inputData
         out = self.container.outputData
-        out.CIF_OUT.fullPath.set(self.workDirectory / f"{inp.LINK_ID}_link.cif")
+        out.CIF_OUT.fullPath = self.workDirectory / f"{inp.LINK_ID}_link.cif"
         out.CIF_OUT.annotation = f"Link dictionary: {inp.ANNOTATION or inp.LINK_ID}"
         unl_path = self.workDirectory / f"{inp.LINK_ID}_TMP" / "UNL_for_link"
         out.UNL_PDB.fullPath = unl_path.with_suffix(".pdb")

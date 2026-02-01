@@ -981,17 +981,14 @@ class CDataFile(CData):
         """Property to access the full file path as a string.
 
         Returns a string representing the full path to the file.
-        For backward compatibility with legacy Qt code, returns a QtStringCompat
-        object that supports both string operations and .get() method.
+        Returns a QtStringCompat for API compatibility (.get(), .isSet()).
 
         Returns:
-            full path string with .get() method for Qt compatibility
+            String with .get() and .isSet() methods for Qt compatibility
         """
         from ..base_object.qt_compat import QtStringCompat
         path_string = self.getFullPath()
-        # Return a string-like object with .get() method for Qt API compatibility
-        # Always return QtStringCompat for consistent API (even for empty strings)
-        return QtStringCompat(path_string) if path_string else QtStringCompat("")
+        return QtStringCompat(path_string if path_string else "", parent=self)
 
     @fullPath.setter
     def fullPath(self, path: str):

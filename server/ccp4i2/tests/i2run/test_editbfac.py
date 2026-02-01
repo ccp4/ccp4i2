@@ -57,7 +57,7 @@ def test_alphafold_cif(alphafold_cif):
         assert not (job / "converted_model_chainA1.pdb").exists()
 
 
-@mark.skip(reason="Skipping temporarily due to error in process predicted model")
+@pytest.mark.skip(reason="Skipping temporarily due to error in process predicted model")
 def test_alphafold_pae(alphafold_cif, alphafold_pae):
     args = ["editbfac"]
     args += ["--XYZIN", alphafold_cif]

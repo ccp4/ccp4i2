@@ -3,10 +3,11 @@ from os import environ
 from pathlib import Path
 from tempfile import NamedTemporaryFile
 import gemmi
+import pytest
 import xml.etree.ElementTree as ET
 
 
-@mark.skip(reason="Skipping temporarily until task is in registry")
+@pytest.mark.skip(reason="Skipping temporarily until task is in registry")
 def test_8xfm(cif8xfm, mtz8xfm):
     structure = gemmi.read_structure(cif8xfm)
     for chain in structure[0]:
