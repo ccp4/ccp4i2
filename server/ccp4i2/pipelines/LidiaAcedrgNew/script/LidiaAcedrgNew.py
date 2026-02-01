@@ -20,7 +20,7 @@ class LidiaAcedrgNew(CPluginScript):
 
     def validity(self):
         """Filter CSMILESString validation errors when mode is not SMILES."""
-        error = super(lidiaAcedrgNew, self).validity()
+        error = super(LidiaAcedrgNew, self).validity()
         mode = str(self.container.inputData.MOLSMILESORSKETCH) if self.container.inputData.MOLSMILESORSKETCH.isSet() else ""
         if mode != 'SMILES':
             # Filter out SMILES validation errors when not using SMILES input
