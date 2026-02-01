@@ -43,7 +43,6 @@ SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
 @unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class FileViewSetTests(TestCase):
     """Tests for FileViewSet API endpoints"""
@@ -143,7 +142,6 @@ class FileViewSetTests(TestCase):
 @unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class JobViewSetTests(TestCase):
     """Tests for JobViewSet API endpoints"""
@@ -388,7 +386,6 @@ class JobViewSetTests(TestCase):
 @unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class ProjectViewSetTests(TestCase):
     """Tests for ProjectViewSet API endpoints"""
@@ -564,7 +561,6 @@ class ProjectViewSetTests(TestCase):
 @unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class SimpleViewSetTests(TestCase):
     """Tests for simple CRUD ViewSets: FileImport, FileUse, FileType, ProjectTag"""
@@ -587,28 +583,28 @@ class SimpleViewSetTests(TestCase):
 
     def test_file_import_list(self):
         """Test GET /fileimports/ - List all file imports"""
-        response = self.client.get("/fileimports/")
+        response = self.client.get(f"{API_PREFIX}/fileimports/")
         self.assertEqual(response.status_code, 200)
         imports = response.json()
         self.assertIsInstance(imports, list)
 
     def test_file_use_list(self):
         """Test GET /fileuses/ - List all file uses"""
-        response = self.client.get("/fileuses/")
+        response = self.client.get(f"{API_PREFIX}/fileuses/")
         self.assertEqual(response.status_code, 200)
         uses = response.json()
         self.assertIsInstance(uses, list)
 
     def test_file_type_list(self):
         """Test GET /filetypes/ - List all file types"""
-        response = self.client.get("/filetypes/")
+        response = self.client.get(f"{API_PREFIX}/filetypes/")
         self.assertEqual(response.status_code, 200)
         types = response.json()
         self.assertIsInstance(types, list)
 
     def test_project_tag_list(self):
         """Test GET /projecttags/ - List all project tags"""
-        response = self.client.get("/projecttags/")
+        response = self.client.get(f"{API_PREFIX}/projecttags/")
         self.assertEqual(response.status_code, 200)
         tags = response.json()
         self.assertIsInstance(tags, list)
@@ -616,7 +612,7 @@ class SimpleViewSetTests(TestCase):
     def test_project_tag_create(self):
         """Test POST /projecttags/ - Create new tag"""
         response = self.client.post(
-            "/projecttags/",
+            f"{API_PREFIX}/projecttags/",
             data=json.dumps({"text": "New Test Tag"}),
             content_type="application/json",
         )
@@ -628,7 +624,6 @@ class SimpleViewSetTests(TestCase):
 @unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
 @override_settings(
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY",
-    ROOT_URLCONF="ccp4i2.api.urls",
 )
 class ProjectExportViewSetTests(TestCase):
     """Tests for ProjectExportViewSet API endpoints"""
@@ -652,7 +647,7 @@ class ProjectExportViewSetTests(TestCase):
 
     def test_project_export_list(self):
         """Test GET /projectexports/ - List all exports"""
-        response = self.client.get("/projectexports/")
+        response = self.client.get(f"{API_PREFIX}/projectexports/")
         self.assertEqual(response.status_code, 200)
         exports = response.json()
         self.assertIsInstance(exports, list)
