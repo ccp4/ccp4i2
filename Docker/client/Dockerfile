@@ -31,16 +31,19 @@ COPY client/package*.json ./
 
 # Remove Electron-specific packages and add markdown rendering packages for web-only build
 # This significantly reduces install time and avoids downloading ~300MB of Electron binaries
-RUN apk add --no-cache jq && \
+# git is required by some npm packages during install (e.g., for resolving git dependencies)
+RUN apk add --no-cache jq git && \
     jq 'del(.devDependencies.electron) | del(.devDependencies["electron-builder"]) | del(.devDependencies["@electron/packager"]) | del(.dependencies["electron-store"]) | .dependencies["react-markdown"] = "^9.0.1" | .dependencies["remark-gfm"] = "^4.0.0"' package.json > package.web.json && \
     mv package.web.json package.json
 
 # Install dependencies (excluding Electron) with retry logic
 # Using npm install instead of npm ci to auto-update lock file when package.json changes
-RUN npm config set fetch-retry-mintimeout 20000 && \
+# --mount=type=cache persists npm cache between builds for faster installs
+RUN --mount=type=cache,target=/root/.npm \
+    npm config set fetch-retry-mintimeout 20000 && \
     npm config set fetch-retry-maxtimeout 120000 && \
     npm config set fetch-retries 5 && \
-    npm install --legacy-peer-deps --verbose || (npm cache clean --force && npm install --legacy-peer-deps --verbose)
+    npm install --legacy-peer-deps || npm install --legacy-peer-deps
 
 # Copy client source code
 COPY client/ .
@@ -121,7 +124,9 @@ COPY --from=builder /app/renderer ./renderer
 COPY --from=builder /app/package*.json ./
 
 # Install production dependencies only
-RUN npm install --omit=dev --legacy-peer-deps && npm cache clean --force
+# --mount=type=cache persists npm cache between builds
+RUN --mount=type=cache,target=/root/.npm \
+    npm install --omit=dev --legacy-peer-deps
 
 # Create a non-root user
 RUN addgroup -g 1001 -S nodejs

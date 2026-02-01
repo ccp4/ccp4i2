@@ -56,12 +56,17 @@ WORKDIR /app
 # Copy modified package.json from package stage
 COPY --from=package /app/package.json ./
 
+# Install git (required by some npm packages that reference git repos)
+RUN apk add --no-cache git
+
 # Install dependencies (excluding Electron) with retry logic
 # Using npm install instead of npm ci to auto-update lock file when package.json changes
-RUN npm config set fetch-retry-mintimeout 20000 && \
+# --mount=type=cache persists npm cache between builds for faster installs
+RUN --mount=type=cache,target=/root/.npm \
+    npm config set fetch-retry-mintimeout 20000 && \
     npm config set fetch-retry-maxtimeout 120000 && \
     npm config set fetch-retries 5 && \
-    npm install --legacy-peer-deps --verbose || (npm cache clean --force && npm install --legacy-peer-deps --verbose)
+    npm install --legacy-peer-deps || npm install --legacy-peer-deps
 
 # Copy client source code
 COPY client/ .
@@ -154,7 +159,9 @@ COPY --from=package /app/package.json ./
 
 # Install production dependencies only
 # Must run on target platform to get correct architecture-specific packages (SWC, etc.)
-RUN npm install --omit=dev --legacy-peer-deps && npm cache clean --force
+# --mount=type=cache uses separate cache ID for target platform to avoid arch conflicts
+RUN --mount=type=cache,target=/root/.npm,id=npm-deps-$TARGETPLATFORM \
+    npm install --omit=dev --legacy-peer-deps
 
 # =============================================================================
 # Stage 4: Runner (targets deployment platform - only stage using emulation)
