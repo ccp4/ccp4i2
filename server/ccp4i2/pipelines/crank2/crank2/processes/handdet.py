@@ -237,7 +237,11 @@ class handdet(process):
     self.out.Set(self.chosen_phas.out.Get('model',typ='substr'))
     self.out.Set(self.chosen_phas.out.GetAll('mapcoef',stored_order=True))
     self.out.Set(self.chosen_phas.inp.GetAll('fsigf',stored_order=True))
-    import inout
+    # Try standalone import first (original behavior), fall back to package import (ccp4i2 context)
+    try:
+      import inout
+    except ImportError:
+      from crank2 import inout
     self.out2 = inout.input_output(is_output=True,parent=self)
     self.out2.Set(self.other_phas.out.Get('model',typ='substr'),propagate=False)
     self.out2.Set(self.other_phas.out.GetAll('mapcoef',stored_order=True),propagate=False)
