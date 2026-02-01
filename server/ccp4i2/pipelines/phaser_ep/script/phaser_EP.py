@@ -76,6 +76,7 @@ class phaser_EP(CPluginScript):
                     self.updateXml(element, 'ModelCraft', hand='inverted')
                     self.copyPluginOutput(modelCraftInverted.container.outputData.XYZOUT, pipelineOutputs.XYZOUT, annotation='Autobuilt model - reversed hand')
         self.reportStatus(CPluginScript.SUCCEEDED)
+        return CPluginScript.SUCCEEDED
 
     def run_shelx(self):
         try:
