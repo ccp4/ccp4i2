@@ -8,20 +8,16 @@ Tests the full lifecycle of configuring and running a job through the API:
 4. Verify outputs and database state
 
 This validates that context-aware parameter setting works in a real execution scenario.
+
+Converted to pytest fixture-based approach for compatibility with pytest-xdist
+parallel test execution. Uses the isolated_test_db fixture from conftest.py.
 """
 
 import json
 import logging
-import unittest
-
-# API URL prefix - all API endpoints are under /api/ccp4i2/
-API_PREFIX = "/api/ccp4i2"
-from pathlib import Path
-from shutil import rmtree
-
-from django.conf import settings
-from django.test import TestCase, Client, override_settings
 import pytest
+from pathlib import Path
+from rest_framework.test import APIClient
 
 from ...lib.utils.parameters.get_param import get_parameter
 from ...db.import_i2xml import import_ccp4_project_zip
@@ -32,47 +28,34 @@ from ccp4i2.tests.i2run.utils import demoData
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
 
+# API URL prefix - all API endpoints are under /api/ccp4i2/
+API_PREFIX = "/api/ccp4i2"
+
 # Path to test data - these tests require pre-built project zips
 TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"
 SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
 
 
-@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
-@override_settings(
-    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_JOB_EXECUTION_DIRECTORY",
-    ROOT_URLCONF="ccp4i2.api.urls",
-)
-class JobExecutionViaAPITests(TestCase):
+@pytest.mark.skipif(not TEST_DATA_DIR.exists(), reason=SKIP_REASON)
+class TestJobExecutionViaAPI:
     """Integration tests for complete job configuration and execution via API"""
 
-    @classmethod
-    def setUpClass(cls):
-        """Set up test project once for all tests"""
-        super().setUpClass()
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(parents=True, exist_ok=True)
+    @pytest.fixture(autouse=True)
+    def setup(self, bypass_api_permissions, test_project_path):
+        """Set up test project and client for each test."""
+        self.client = APIClient()
+        self.test_project_path = test_project_path
+        test_project_path.mkdir(parents=True, exist_ok=True)
 
-    def setUp(self):
-        """Set up test project and client for each test"""
         # Import a test project with demo data
         import_ccp4_project_zip(
-            Path(__file__).parent.parent.parent.parent.parent.parent
-            / "test101"
-            / "ProjectZips"
-            / "refmac_gamma_test_0.ccp4_project.zip",
-            relocate_path=(settings.CCP4I2_PROJECTS_DIR),
+            TEST_DATA_DIR / "refmac_gamma_test_0.ccp4_project.zip",
+            relocate_path=test_project_path,
         )
-        self.client = Client()
 
         # Get the project
         self.project = models.Project.objects.first()
-        self.assertIsNotNone(self.project, "Should have a project after import")
-
-        return super().setUp()
-
-    def tearDown(self):
-        """Clean up test directory"""
-        rmtree(settings.CCP4I2_PROJECTS_DIR, ignore_errors=True)
-        return super().tearDown()
+        assert self.project is not None, "Should have a project after import"
 
     def test_configure_and_run_prosmart_refmac_via_api(self):
         """
@@ -99,13 +82,11 @@ class JobExecutionViaAPITests(TestCase):
             content_type="application/json"
         )
 
-        self.assertEqual(
-            create_job_response.status_code, 200,
+        assert create_job_response.status_code == 200, \
             f"Job creation should succeed: {create_job_response.content.decode()}"
-        )
         response_data = create_job_response.json()
-        self.assertTrue(response_data.get("success"), f"API should return success: {response_data}")
-        self.assertIn("new_job", response_data.get("data", {}))
+        assert response_data.get("success"), f"API should return success: {response_data}"
+        assert "new_job" in response_data.get("data", {})
 
         job_data = response_data["data"]["new_job"]
         job = models.Job.objects.get(uuid=job_data["uuid"])
@@ -122,8 +103,8 @@ class JobExecutionViaAPITests(TestCase):
         mtz_path = Path(demoData("gamma", "merged_intensities_Xe.mtz"))
 
         # Verify demo data files exist
-        self.assertTrue(pdb_path.exists(), f"Demo PDB not found: {pdb_path}")
-        self.assertTrue(mtz_path.exists(), f"Demo MTZ not found: {mtz_path}")
+        assert pdb_path.exists(), f"Demo PDB not found: {pdb_path}"
+        assert mtz_path.exists(), f"Demo MTZ not found: {mtz_path}"
 
         # Upload PDB file (XYZIN parameter)
         logger.info(f"Uploading PDB file: {pdb_path}")
@@ -136,10 +117,8 @@ class JobExecutionViaAPITests(TestCase):
                 },
             )
 
-        self.assertEqual(
-            response.status_code, 200,
+        assert response.status_code == 200, \
             f"Failed to upload PDB: {response.content.decode()}"
-        )
         logger.info("✓ PDB file uploaded successfully")
 
         # Upload MTZ file (F_SIGF parameter)
@@ -156,10 +135,8 @@ class JobExecutionViaAPITests(TestCase):
                 },
             )
 
-        self.assertEqual(
-            response.status_code, 200,
+        assert response.status_code == 200, \
             f"Failed to upload MTZ: {response.content.decode()}"
-        )
         logger.info("✓ MTZ file uploaded successfully")
 
         # Step 3: Set control parameters via API
@@ -192,33 +169,27 @@ class JobExecutionViaAPITests(TestCase):
                 content_type="application/json"
             )
 
-            self.assertEqual(
-                response.status_code, 200,
+            assert response.status_code == 200, \
                 f"Failed to set {param_path}: {response.content.decode()}"
-            )
 
             response_data = response.json()
-            self.assertTrue(response_data.get("success"), f"API should return success: {response_data}")
+            assert response_data.get("success"), f"API should return success: {response_data}"
 
             # Verify parameter was actually set
             get_result = get_parameter(job, param_path)
-            self.assertTrue(
-                get_result.success,
+            assert get_result.success, \
                 f"Parameter {param_path} not accessible after setting"
-            )
 
         # Step 4: Verify input_params.xml was created and contains our parameters
         logger.info("Step 4: Verifying parameter persistence")
 
         input_params_file = job.directory / "input_params.xml"
-        self.assertTrue(
-            input_params_file.exists(),
+        assert input_params_file.exists(), \
             f"input_params.xml should exist at {input_params_file}"
-        )
 
         xml_content = input_params_file.read_text()
-        self.assertIn("NCYCLES", xml_content, "NCYCLES should be in saved parameters")
-        self.assertIn("XYZIN", xml_content, "XYZIN should be in saved parameters")
+        assert "NCYCLES" in xml_content, "NCYCLES should be in saved parameters"
+        assert "XYZIN" in xml_content, "XYZIN should be in saved parameters"
 
         logger.info("✓ Parameters successfully persisted to input_params.xml")
 
@@ -229,10 +200,8 @@ class JobExecutionViaAPITests(TestCase):
         job.refresh_from_db()
 
         # The job should still be in PENDING status (not yet run)
-        self.assertEqual(
-            job.status, models.Job.Status.PENDING,
+        assert job.status == models.Job.Status.PENDING, \
             "Job should be in PENDING status before execution"
-        )
 
         logger.info(f"✓ Job status: {job.status}")
 
@@ -251,10 +220,8 @@ class JobExecutionViaAPITests(TestCase):
         if run_response.status_code == 404:
             logger.info("Job run endpoint not available (expected in some configurations)")
         else:
-            self.assertIn(
-                run_response.status_code, [200, 202, 500],
+            assert run_response.status_code in [200, 202, 500], \
                 f"Run endpoint should respond with valid status: {run_response.content.decode()}"
-            )
             logger.info(f"✓ Run endpoint responded with status {run_response.status_code}")
 
         # NOTE: We do NOT wait for job completion here because:
@@ -300,10 +267,8 @@ class JobExecutionViaAPITests(TestCase):
             content_type="application/json"
         )
 
-        self.assertEqual(
-            create_job_response.status_code, 200,
+        assert create_job_response.status_code == 200, \
             f"Job creation should succeed: {create_job_response.content.decode()}"
-        )
         response_data = create_job_response.json()
         job = models.Job.objects.get(uuid=response_data["data"]["new_job"]["uuid"])
 
@@ -317,21 +282,19 @@ class JobExecutionViaAPITests(TestCase):
             content_type="application/json"
         )
 
-        self.assertEqual(response.status_code, 200)
+        assert response.status_code == 200
 
         # Verify parameter is set
         result1 = get_parameter(job, "prosmart_refmac.controlParameters.NCYCLES")
-        self.assertTrue(result1.success)
-        self.assertEqual(result1.data["value"], 7)
+        assert result1.success
+        assert result1.data["value"] == 7
 
         # Now simulate a plugin reload by getting the parameter again
         # This will load the plugin fresh from input_params.xml
         result2 = get_parameter(job, "prosmart_refmac.controlParameters.NCYCLES")
-        self.assertTrue(result2.success)
-        self.assertEqual(
-            result2.data["value"], 7,
+        assert result2.success
+        assert result2.data["value"] == 7, \
             "Parameter should persist across plugin reload"
-        )
 
 
 if __name__ == "__main__":

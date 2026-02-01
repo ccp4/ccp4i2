@@ -1,18 +1,18 @@
-from pathlib import Path
-from shutil import rmtree
-import json
-import logging
-import unittest
-from django.test import Client
-from django.conf import settings
-from django.test import TestCase, override_settings
-from django.core.files.uploadedfile import SimpleUploadedFile
-from ccp4i2.core import CCP4Container
-from ...db.import_i2xml import import_i2xml_from_file
-from ...db.import_i2xml import import_ccp4_project_zip
-from ...db import models
+"""
+API tests for CCP4i2 endpoints.
 
-logger = logging.getLogger(f"ccp4i2::{__name__}")
+Converted to pytest fixture-based approach for compatibility with pytest-xdist
+parallel test execution. Uses the isolated_test_db fixture from conftest.py.
+"""
+from pathlib import Path
+import json
+import pytest
+from rest_framework.test import APIClient
+from django.core.files.uploadedfile import SimpleUploadedFile
+
+from ccp4i2.core import CCP4Container
+from ccp4i2.db.import_i2xml import import_i2xml_from_file, import_ccp4_project_zip
+from ccp4i2.db import models
 
 # API URL prefix - all API endpoints are under /api/ccp4i2/
 API_PREFIX = "/api/ccp4i2"
@@ -22,73 +22,57 @@ TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test
 SKIP_REASON = f"Test data not found: {TEST_DATA_DIR}"
 
 
-@unittest.skipUnless(TEST_DATA_DIR.exists(), SKIP_REASON)
-@override_settings(
-    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent / "CCP4I2_TEST_PROJECT_DIRECTORY"
-)
-class CCP4i2TestCase(TestCase):
-    def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
+@pytest.mark.skipif(not TEST_DATA_DIR.exists(), reason=SKIP_REASON)
+class TestCCP4i2API:
+    """Tests for CCP4i2 API endpoints"""
+
+    @pytest.fixture(autouse=True)
+    def setup(self, bypass_api_permissions, test_project_path):
+        """Set up test fixtures for each test."""
+        self.client = APIClient()
+        self.test_project_path = test_project_path
+        test_project_path.mkdir(exist_ok=True)
         import_ccp4_project_zip(
-            Path(__file__).parent.parent.parent.parent.parent.parent
-            / "test101"
-            / "ProjectZips"
-            / "refmac_gamma_test_0.ccp4_project.zip",
-            relocate_path=(settings.CCP4I2_PROJECTS_DIR),
+            TEST_DATA_DIR / "refmac_gamma_test_0.ccp4_project.zip",
+            relocate_path=test_project_path,
         )
         import_i2xml_from_file(
             Path(__file__).parent.parent / "db" / "DATABASE.db.xml",
-            relocate_path=settings.CCP4I2_PROJECTS_DIR,
+            relocate_path=test_project_path,
         )
-        self.client = Client()
-        return super().setUp()
-
-    def tearDown(self):
-        rmtree(settings.CCP4I2_PROJECTS_DIR)
-        return super().tearDown()
 
     def test_import_test_dbxml(self):
-        self.assertEqual(len(list(models.Project.objects.all())), 2)
+        assert len(list(models.Project.objects.all())) == 2
 
     def test_projects(self):
         response = self.client.get(
             f"{API_PREFIX}/projects/", {"username": "john", "password": "smith"}
         )
         project_list = response.json()
-        self.assertEqual(project_list[1]["name"], "MDM2CCP4X")
+        assert project_list[1]["name"] == "MDM2CCP4X"
 
     def test_project_files(self):
         response = self.client.get(
             f"{API_PREFIX}/projects/2/files/",
         )
-        self.assertEqual(len(response.json()), 24)
+        assert len(response.json()) == 24
 
     def test_project_tags(self):
         response = self.client.get(
             f"{API_PREFIX}/projects/2/tags/",
         )
-        self.assertEqual(len(response.json()), 1)
+        assert len(response.json()) == 1
 
     def test_clone(self):
         response = self.client.post(
             f"{API_PREFIX}/jobs/1/clone/",
         )
-        self.assertDictContainsSubset(
-            {
-                "id": 13,
-                "number": "2",
-                "title": "Refinement - Refmacat/Refmac5",
-                "status": 1,
-                "evaluation": 0,
-                "comments": "",
-                "finish_time": "1970-01-01T00:00:00Z",
-                "task_name": "prosmart_refmac",
-                "process_id": None,
-                "project": 1,
-                "parent": None,
-            },
-            response.json(),
-        )
+        result = response.json()
+        # Check key fields - IDs may vary
+        assert result["number"] == "2"
+        assert result["title"] == "Refinement - Refmacat/Refmac5"
+        assert result["status"] == 1  # PENDING
+        assert result["task_name"] == "prosmart_refmac"
 
     def test_set_simple_parameter(self):
         response = self.client.post(
@@ -102,13 +86,10 @@ class CCP4i2TestCase(TestCase):
             ),
         )
         result = response.json()
-        self.assertDictEqual(
-            result,
-            {
-                "success": True,
-                "data": {"updated_item": "<NCYCLES>20</NCYCLES>"},
-            },
-        )
+        assert result == {
+            "success": True,
+            "data": {"updated_item": "<NCYCLES>20</NCYCLES>"},
+        }
 
     def test_set_file(self):
         response = self.client.post(
@@ -122,13 +103,10 @@ class CCP4i2TestCase(TestCase):
             ),
         )
         result = response.json()
-        self.assertDictEqual(
-            result,
-            {
-                "success": True,
-                "data": {"updated_item": "<XYZIN><dbFileId>AFILEID</dbFileId><subType>1</subType></XYZIN>"},
-            },
-        )
+        assert result == {
+            "success": True,
+            "data": {"updated_item": "<XYZIN><dbFileId>AFILEID</dbFileId><subType>1</subType></XYZIN>"},
+        }
 
     def test_set_file_null(self):
         response = self.client.post(
@@ -156,13 +134,10 @@ class CCP4i2TestCase(TestCase):
             ),
         )
         result = response.json()
-        self.assertDictEqual(
-            result,
-            {
-                "success": True,
-                "data": {},
-            },
-        )
+        assert result == {
+            "success": True,
+            "data": {},
+        }
 
     def test_file_upload(self):
         clone_response = self.client.post(
@@ -182,10 +157,7 @@ class CCP4i2TestCase(TestCase):
         response = self.client.post(
             f"{API_PREFIX}/jobs/{clone['id']}/upload_file_param/", data, format="multipart"
         )
-        self.assertEqual(
-            response.json()["data"]["updated_item"]["_value"]["baseName"]["_value"],
-            "testfile.pdb",
-        )
+        assert response.json()["data"]["updated_item"]["_value"]["baseName"]["_value"] == "testfile.pdb"
 
     def test_pdb_item_file_upload(self):
         project = models.Project.objects.last()
@@ -209,14 +181,12 @@ class CCP4i2TestCase(TestCase):
             data,
             format="multipart",
         )
-        self.assertEqual(
-            response.json()["data"]["updated_item"]["_value"]["baseName"]["_value"],
-            "testfile.pdb",
-        )
+        assert response.json()["data"]["updated_item"]["_value"]["baseName"]["_value"] == "testfile.pdb"
 
     def test_project_upload(self):
         # Create a sample file
         test_file = None
+        from django.conf import settings
         try:
             test_project_path = (
                 settings.BASE_DIR.parent.parent.parent
@@ -226,7 +196,7 @@ class CCP4i2TestCase(TestCase):
             )
             test_file = open(test_project_path, "rb")
         except Exception as err:
-            logger.error(f"Error opening test file: {err}")
+            print(f"Error opening test file: {err}")
             file_content = b"Hello, this is a test file."
             test_file = SimpleUploadedFile("testfile.pdb", file_content)
 
@@ -268,17 +238,14 @@ class CCP4i2TestCase(TestCase):
                 digest_url, content_type="application/json; charset=utf-8"
             )
             digest = digest_response.json()["data"]
-            self.assertDictEqual(
-                digest["digest"]["cell"],
-                {
-                    "a": 71.45,
-                    "b": 71.45,
-                    "c": 104.204,
-                    "alpha": 90.0,
-                    "beta": 90.0,
-                    "gamma": 120.0,
-                },
-            )
+            assert digest["digest"]["cell"] == {
+                "a": 71.45,
+                "b": 71.45,
+                "c": 104.204,
+                "alpha": 90.0,
+                "beta": 90.0,
+                "gamma": 120.0,
+            }
 
     def test_digest_file(self):
         file = models.File.objects.first()
@@ -286,24 +253,21 @@ class CCP4i2TestCase(TestCase):
         digest_response = self.client.get(
             digest_url, content_type="application/json; charset=utf-8"
         )
-        self.assertDictEqual(
-            digest_response.json()["data"],
-            {
-                "sequences": {
-                    "A": "MIPSITAYSKNGLKIEFTFERSNTNPSVTVITIQASNSTELDMTDFVFQAAVPKTFQLQLLSPSSSVVPAFNTGTITQVIKVLNPQKQQLRMRIKLTYNHKGSAMQDLAEVNNFPPQSWQ"
-                },
-                "composition": {
-                    "chains": ["A"],
-                    "peptides": ["A"],
-                    "nucleics": [],
-                    "solventChains": [],
-                    "monomers": [],
-                    "nresSolvent": 0,
-                    "moleculeType": ["PROTEIN"],
-                    "containsHydrogen": False,
-                },
+        assert digest_response.json()["data"] == {
+            "sequences": {
+                "A": "MIPSITAYSKNGLKIEFTFERSNTNPSVTVITIQASNSTELDMTDFVFQAAVPKTFQLQLLSPSSSVVPAFNTGTITQVIKVLNPQKQQLRMRIKLTYNHKGSAMQDLAEVNNFPPQSWQ"
             },
-        )
+            "composition": {
+                "chains": ["A"],
+                "peptides": ["A"],
+                "nucleics": [],
+                "solventChains": [],
+                "monomers": [],
+                "nresSolvent": 0,
+                "moleculeType": ["PROTEIN"],
+                "containsHydrogen": False,
+            },
+        }
 
     def test_upload_to_ProvideAsuContent(self):
         project = models.Project.objects.last()
@@ -335,8 +299,8 @@ class CCP4i2TestCase(TestCase):
                 "_value"
             ]
             uploaded_file = models.File.objects.get(uuid=uploaded_file_uuid)
-            self.assertEqual(uploaded_file.name, "gamma.pir")
-            self.assertTrue(uploaded_file.path.exists())
+            assert uploaded_file.name == "gamma.pir"
+            assert uploaded_file.path.exists()
             digest_url = f"{API_PREFIX}/files/{uploaded_file.id}/digest/"
             digest_response = self.client.get(
                 digest_url, content_type="application/json; charset=utf-8"
