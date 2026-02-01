@@ -2111,6 +2111,19 @@ class CObsDataFile(CObsDataFileStub, CMiniMtzDataFile):
     Add file I/O, validation, and business logic here.
     """
 
+    # Conversion map: what each content flag can be converted to
+    # Based on obs_data_converter.py conversion matrix:
+    #   IPAIR → FPAIR, IMEAN, FMEAN (via French-Wilson)
+    #   FPAIR → FMEAN (via weighted mean)
+    #   IMEAN → FMEAN (via French-Wilson)
+    #   FMEAN → nothing (already simplest form)
+    CAN_CONVERT_TO = {
+        1: [1, 2, 3, 4],  # IPAIR can convert to IPAIR, FPAIR, IMEAN, FMEAN
+        2: [2, 4],        # FPAIR can convert to FPAIR, FMEAN
+        3: [3, 4],        # IMEAN can convert to IMEAN, FMEAN
+        4: [4],           # FMEAN can convert to FMEAN only
+    }
+
     def __init__(self, file_path: str = None, parent=None, name=None, **kwargs):
         super().__init__(file_path=file_path, parent=parent, name=name, **kwargs)
         # Note: MIME type now comes from ccp4i2_static_data.py via get_file_type_from_class()

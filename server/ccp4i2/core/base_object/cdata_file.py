@@ -1598,7 +1598,7 @@ class CDataFile(CData):
 
         # Check requiredContentFlag
         # If requiredContentFlag is specified and file has a contentFlag,
-        # validate the file's content is compatible
+        # validate the file's content is compatible (including convertible types)
         required_flags = self.get_qualifier('requiredContentFlag')
         if required_flags and has_path:
             # Normalize to list
@@ -1608,7 +1608,17 @@ class CDataFile(CData):
             # Get this file's content flag if it has one
             if hasattr(self, 'contentFlag') and self.contentFlag.isSet():
                 actual_flag = self.contentFlag.get()
-                if actual_flag not in required_flags:
+
+                # Check if actual_flag matches required OR can be converted to required
+                is_compatible = actual_flag in required_flags
+
+                # If not directly compatible, check if conversion is possible
+                # Classes like CObsDataFile define CAN_CONVERT_TO mapping
+                if not is_compatible and hasattr(self.__class__, 'CAN_CONVERT_TO'):
+                    convertible_to = self.__class__.CAN_CONVERT_TO.get(actual_flag, [])
+                    is_compatible = any(req in convertible_to for req in required_flags)
+
+                if not is_compatible:
                     obj_path = self.object_path()
                     # Map flag values to human-readable names
                     flag_names = {
