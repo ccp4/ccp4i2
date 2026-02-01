@@ -68,6 +68,13 @@ from ccp4i2.tests.i2run.urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
 from ccp4i2.tests.i2run.utils import download
 
 
+def pytest_configure(config):
+    """Register custom markers."""
+    config.addinivalue_line(
+        "markers", "pipeline: mark test as a pipeline test (runs actual crystallographic jobs, slow)"
+    )
+
+
 def pytest_collection_modifyitems(items):
     """Automatically add django_db marker to all test items."""
     for item in items:

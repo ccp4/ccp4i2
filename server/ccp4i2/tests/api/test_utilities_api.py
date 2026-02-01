@@ -16,6 +16,9 @@ runs the job, and validates outputs.
 import os
 import pytest
 
+# Mark all tests in this module as pipeline tests (slow, run actual jobs)
+pytestmark = pytest.mark.pipeline
+
 from .base import APITestBase, download, URLs
 
 

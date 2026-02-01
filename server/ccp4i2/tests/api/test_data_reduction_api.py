@@ -10,6 +10,9 @@ Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs via API digest endpoints.
 """
 import pytest
+
+# Mark all tests in this module as pipeline tests (slow, run actual jobs)
+pytestmark = pytest.mark.pipeline
 from pytest import approx
 
 from .base import APITestBase

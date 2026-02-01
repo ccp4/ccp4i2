@@ -18,6 +18,9 @@ import tempfile
 
 import pytest
 
+# Mark all tests in this module as pipeline tests (slow, run actual jobs)
+pytestmark = pytest.mark.pipeline
+
 from ...db import models
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
