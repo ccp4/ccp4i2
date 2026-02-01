@@ -3688,14 +3688,35 @@ class CPluginScript(CData):
                 logger.debug(f'[DEBUG splitHklout]   Using explicit output columns: {output_col_string}')
             else:
                 # Try to infer standard column names from file object's CONTENT_SIGNATURE_LIST
+                # Use contentFlag to select the correct signature (contentFlag is 1-indexed)
                 if hasattr(file_obj, 'CONTENT_SIGNATURE_LIST'):
                     sig_list = file_obj.CONTENT_SIGNATURE_LIST
                     if sig_list and len(sig_list) > 0:
-                        # Use first signature as the standard column names
-                        standard_cols = sig_list[0]
+                        # Get contentFlag from file object (1-indexed, default to 1)
+                        content_flag = 1
+                        if hasattr(file_obj, 'contentFlag'):
+                            cf = file_obj.contentFlag
+                            # Handle CInt wrapper
+                            while hasattr(cf, 'value'):
+                                cf = cf.value
+                            if cf is not None:
+                                try:
+                                    content_flag = int(cf)
+                                except (ValueError, TypeError):
+                                    pass
+
+                        # CONTENT_SIGNATURE_LIST is 0-indexed, contentFlag is 1-indexed
+                        sig_index = max(0, content_flag - 1)
+                        if sig_index < len(sig_list):
+                            standard_cols = sig_list[sig_index]
+                        else:
+                            # Fall back to first signature if index out of range
+                            standard_cols = sig_list[0]
+                            logger.debug(f'[DEBUG splitHklout]   contentFlag={content_flag} out of range for CONTENT_SIGNATURE_LIST (len={len(sig_list)}), using [0]')
+
                         if standard_cols:
                             output_col_string = ','.join(standard_cols)
-                            logger.debug(f'[DEBUG splitHklout]   Inferred standard column names from {file_obj.__class__.__name__}.CONTENT_SIGNATURE_LIST[0]: {output_col_string}')
+                            logger.debug(f'[DEBUG splitHklout]   Inferred standard column names from {file_obj.__class__.__name__}.CONTENT_SIGNATURE_LIST[{sig_index}] (contentFlag={content_flag}): {output_col_string}')
 
             # Add to outfiles list
             if output_col_string is not None:
