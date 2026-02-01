@@ -579,7 +579,7 @@ class TestSimpleViewSets:
         unique_tag = f"Test Tag {uuid.uuid4().hex[:8]}"
         response = self.client.post(
             f"{API_PREFIX}/projecttags/",
-            data=json.dumps({"text": unique_tag}),
+            data=json.dumps({"text": unique_tag, "parent": None}),
             content_type="application/json",
         )
         # If status is not 201, print response for debugging
