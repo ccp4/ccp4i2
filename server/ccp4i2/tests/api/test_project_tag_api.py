@@ -5,7 +5,7 @@ import logging
 API_PREFIX = "/api/ccp4i2"
 from pathlib import Path
 from shutil import rmtree
-from django.test import TestCase, override_settings
+from django.test import TransactionTestCase, override_settings
 from django.conf import settings
 from ...db import models
 from ...db.models import Project, ProjectTag
@@ -18,7 +18,7 @@ logger = logging.getLogger(f"ccp4i2::{__name__}")
     CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent
     / "CCP4I2_TEST_PROJECT_TAG_DIRECTORY"
 )
-class ProjectTagAPITestCase(TestCase):
+class ProjectTagAPITestCase(TransactionTestCase):
     def setUp(self):
         """Set up test fixtures."""
         # Create a test project
@@ -40,7 +40,7 @@ class ProjectTagAPITestCase(TestCase):
         """Clean up test environment"""
         if Path(settings.CCP4I2_PROJECTS_DIR).exists():
             rmtree(settings.CCP4I2_PROJECTS_DIR)
-        return super().tearDown()
+        # Note: Don't call super().tearDown() explicitly as Django's TestCase handles it
 
     def test_create_project_tag(self):
         """Test creating a new ProjectTag via API"""
