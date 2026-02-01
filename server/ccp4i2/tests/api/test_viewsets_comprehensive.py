@@ -575,14 +575,19 @@ class TestSimpleViewSets:
 
     def test_project_tag_create(self):
         """Test POST /projecttags/ - Create new tag"""
+        import uuid
+        unique_tag = f"Test Tag {uuid.uuid4().hex[:8]}"
         response = self.client.post(
             f"{API_PREFIX}/projecttags/",
-            data=json.dumps({"text": "New Test Tag"}),
+            data=json.dumps({"text": unique_tag}),
             content_type="application/json",
         )
-        assert response.status_code == 201
+        # If status is not 201, print response for debugging
+        if response.status_code != 201:
+            print(f"Tag create failed: {response.status_code} - {response.content.decode()}")
+        assert response.status_code == 201, f"Expected 201, got {response.status_code}: {response.content.decode()}"
         tag = response.json()
-        assert tag["text"] == "New Test Tag"
+        assert tag["text"] == unique_tag
 
 
 @pytest.mark.skipif(not TEST_DATA_DIR.exists(), reason=SKIP_REASON)
