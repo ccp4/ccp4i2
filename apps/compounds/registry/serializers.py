@@ -135,6 +135,14 @@ class SavedAggregationViewSerializer(serializers.Serializer):
         required=False,
         default='natural'
     )
+    include_properties = serializers.ListField(
+        child=serializers.ChoiceField(
+            choices=['molecular_weight', 'heavy_atom_count', 'hbd', 'hba',
+                     'clogp', 'tpsa', 'rotatable_bonds', 'fraction_sp3']
+        ),
+        required=False,
+        default=list
+    )
 
 
 class TargetSerializer(serializers.ModelSerializer):

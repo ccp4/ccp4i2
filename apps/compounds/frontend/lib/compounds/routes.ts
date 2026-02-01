@@ -143,6 +143,7 @@ export const routes = {
       aggregations?: string[];
       status?: string;
       concentrationDisplay?: string;
+      properties?: string[];
     }) => routeWithQuery('/assays/aggregate', params),
   },
 

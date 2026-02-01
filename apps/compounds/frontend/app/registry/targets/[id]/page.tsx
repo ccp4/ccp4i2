@@ -387,7 +387,15 @@ export default function TargetDashboardPage({ params }: PageProps) {
               <Tooltip title="Configure in Data Aggregation">
                 <IconButton
                   component={Link}
-                  href={routes.assays.aggregate({ targets: [dashboardData.name] })}
+                  href={routes.assays.aggregate({
+                    targets: [dashboardData.name],
+                    protocols: dashboardData.saved_aggregation_view.protocol_names,
+                    format: dashboardData.saved_aggregation_view.output_format,
+                    aggregations: dashboardData.saved_aggregation_view.aggregations,
+                    status: dashboardData.saved_aggregation_view.status || undefined,
+                    concentrationDisplay: dashboardData.saved_aggregation_view.concentration_display,
+                    properties: dashboardData.saved_aggregation_view.include_properties,
+                  })}
                   size="small"
                 >
                   <Settings fontSize="small" />
