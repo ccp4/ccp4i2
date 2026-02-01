@@ -390,6 +390,7 @@ export default function TargetDashboardPage({ params }: PageProps) {
                   href={routes.assays.aggregate({
                     targets: [dashboardData.name],
                     protocols: dashboardData.saved_aggregation_view.protocol_names,
+                    compound: dashboardData.saved_aggregation_view.compound_search || undefined,
                     format: dashboardData.saved_aggregation_view.output_format,
                     aggregations: dashboardData.saved_aggregation_view.aggregations,
                     status: dashboardData.saved_aggregation_view.status || undefined,
