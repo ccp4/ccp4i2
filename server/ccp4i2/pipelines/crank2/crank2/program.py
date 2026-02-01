@@ -128,12 +128,19 @@ class program(object):
     """Create specific (derived) program instance from the (nick)name of the program"""
     try:
       # import the specific program/process
-      setattr(sys.modules[__name__], 'programs', __import__('programs.'+prognick))
+      # Try standalone import first (original behavior), fall back to package import (ccp4i2 context)
+      standalone_module_name = 'programs.' + prognick
+      full_module_name = standalone_module_name
+      try:
+        setattr(sys.modules[__name__], 'programs', __import__(standalone_module_name))
+      except ImportError:
+        full_module_name = 'crank2.programs.' + prognick
+        setattr(sys.modules[__name__], 'programs', __import__(full_module_name, fromlist=[prognick]))
     except (AttributeError,ImportError):
       common.Error('Program {0} not supported (check the spelling)'.format(prognick))
     try:
       # create an instance of the program
-      inst = getattr(sys.modules['programs.'+prognick], prognick)(parent,xmlelem,inpline,dummy=dummy)
+      inst = getattr(sys.modules[full_module_name], prognick)(parent,xmlelem,inpline,dummy=dummy)
     except (AttributeError,KeyError):
       common.Error('Error when creating program {0} instance.'.format(prognick))
     else:

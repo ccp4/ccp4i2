@@ -178,7 +178,7 @@ class CPluginScript(CData):
 
             if def_path and def_path.exists():
                 # Pattern 1: Child has .def.xml (may contain <file> tag for parent)
-                logger.info(f"[DEBUG __init__] Loading .def.xml for {self.TASKNAME}")
+                logger.debug(f"[__init__] Loading .def.xml for {self.TASKNAME}")
                 self._loadDefFile()
             else:
                 # Pattern 2: No .def.xml for child - try parent's TASKNAME
@@ -189,7 +189,7 @@ class CPluginScript(CData):
 
                 if parent_classes and parent_classes[0].TASKNAME:
                     parent_taskname = parent_classes[0].TASKNAME
-                    logger.info(f"[DEBUG __init__] No .def.xml for {self.TASKNAME}, trying parent {parent_taskname}")
+                    logger.debug(f"[__init__] No .def.xml for {self.TASKNAME}, trying parent {parent_taskname}")
 
                     # Temporarily swap TASKNAME to load parent's def file
                     original_taskname = self.TASKNAME
@@ -198,7 +198,7 @@ class CPluginScript(CData):
                     self.TASKNAME = original_taskname
                 else:
                     # No .def.xml and no parent - will use default containers
-                    logger.warning(f"[DEBUG __init__] No .def.xml found for {self.TASKNAME} and no parent class")
+                    logger.debug(f"[__init__] No .def.xml found for {self.TASKNAME} and no parent class")
 
         # Create default empty sub-containers ONLY if they don't exist after .def.xml loading
         # This ensures backward compatibility for plugins without .def.xml files
@@ -290,10 +290,10 @@ class CPluginScript(CData):
             try:
                 # Try to access via __getattr__ (which searches children)
                 container = getattr(self.container, container_name)
-                logger.info(f"[DEBUG _ensure_standard_containers] {container_name} already exists with {len(container.children())} children")
+                logger.debug(f"[_ensure_standard_containers] {container_name} already exists with {len(container.children())} children")
             except AttributeError:
                 # Container doesn't exist - create it
-                logger.info(f"[DEBUG _ensure_standard_containers] Creating new {container_name} container")
+                logger.debug(f"[_ensure_standard_containers] Creating new {container_name} container")
                 container = CContainer(
                     parent=self.container,
                     name=container_name
@@ -374,18 +374,18 @@ class CPluginScript(CData):
         DefXmlParser to load the structure into containers.
         """
         # Locate DEF file using CTaskManager
-        logger.info(f"[DEBUG _loadDefFile] Looking for .def.xml for task: {self.TASKNAME}")
+        logger.debug(f"[_loadDefFile] Looking for .def.xml for task: {self.TASKNAME}")
         def_path = self._locateDefFile()
 
         if def_path and def_path.exists():
-            logger.info(f"[DEBUG _loadDefFile] Found .def.xml at: {def_path}")
+            logger.debug(f"[_loadDefFile] Found .def.xml at: {def_path}")
             # Load using DefXmlParser
             error = self.loadContentsFromXml(str(def_path))
             if error:
                 logger.error(f"[FATAL] Failed to load .def.xml for task '{self.TASKNAME}': {error}")
                 raise RuntimeError(f"Failed to load .def.xml for task '{self.TASKNAME}': {error}")
             else:
-                logger.info(f"[DEBUG _loadDefFile] Successfully loaded .def.xml")
+                logger.debug(f"[_loadDefFile] Successfully loaded .def.xml")
         else:
             # WARNING: .def.xml not found - plugin will use default containers
             # This is normal for some legacy plugins (e.g., crank2 sub-wrappers)
@@ -419,7 +419,7 @@ class CPluginScript(CData):
         """
         error = CErrorReport()
         try:
-            logger.info(f"[DEBUG loadContentsFromXml] Parsing .def.xml file: {fileName}")
+            logger.debug(f"[loadContentsFromXml] Parsing .def.xml file: {fileName}")
             # Use DefXmlParser to parse the .def.xml file
             parsed_container = self._def_parser.parse_def_xml(fileName)
 
@@ -430,23 +430,17 @@ class CPluginScript(CData):
             # AND any custom containers (e.g., prosmartProtein, prosmartNucleicAcid for pipelines)
 
             # Iterate through all children of the parsed container
-            logger.info(f"[DEBUG loadContentsFromXml] Attaching children to self.container:")
+            logger.debug(f"[loadContentsFromXml] Attaching children to self.container:")
             for child in parsed_container.children():
                 child_name = child.objectName()
-                logger.info(f"[DEBUG loadContentsFromXml]   - {child_name} (type={type(child).__name__})")
+                logger.debug(f"[loadContentsFromXml]   - {child_name} (type={type(child).__name__})")
                 # Attach the child to our container using __setattr__
                 setattr(self.container, child_name, child)
                 # Update parent to be our container (which is parented to self)
                 child.set_parent(self.container)
 
-                # DEBUG: Show structure of inputData
-                if child_name == 'inputData' and hasattr(child, 'children'):
-                    logger.info(f"[DEBUG loadContentsFromXml]     inputData children:")
-                    for grandchild in child.children():
-                        logger.info(f"[DEBUG loadContentsFromXml]       - {grandchild.objectName()} (type={type(grandchild).__name__})")
-
             self.defFile = fileName
-            logger.info(f"[DEBUG loadContentsFromXml] Successfully loaded .def.xml and attached all children")
+            logger.debug(f"[loadContentsFromXml] Successfully loaded .def.xml and attached all children")
 
         except Exception as e:
             logger.error(f"[DEBUG loadContentsFromXml] Exception loading .def.xml: {e}")
@@ -806,7 +800,7 @@ class CPluginScript(CData):
         status, exit_status, exit_code = self.postProcessCheck()
         import logging
         logger = logging.getLogger(__name__)
-        logger.info(f"[DEBUG process] postProcessCheck returned status: {status}, exitStatus: {exit_status}, exitCode: {exit_code} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
+        logger.debug(f"[process] postProcessCheck returned status: {status}, exitStatus: {exit_status}, exitCode: {exit_code} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
 
         # Only proceed with output processing if the process succeeded
         if status == self.SUCCEEDED:
@@ -833,9 +827,9 @@ class CPluginScript(CData):
 
         # Emit finished signal so pipelines can continue
         # This is essential for sub-plugins in pipelines
-        logger.info(f"[DEBUG process] Calling reportStatus with status: {status}")
+        logger.debug(f"[process] Calling reportStatus with status: {status}")
         self.reportStatus(status)
-        logger.info(f"[DEBUG process] Returning status: {status}")
+        logger.debug(f"[process] Returning status: {status}")
 
         return status
 
@@ -1966,12 +1960,12 @@ class CPluginScript(CData):
 
         # Check exit code from synchronous execution (subprocess.run)
         if hasattr(self, '_exitCode') and self._exitCode is not None:
-            logger.info(f"[DEBUG postProcessCheck] Checking sync exit code: {self._exitCode}")
+            logger.debug(f"[postProcessCheck] Checking sync exit code: {self._exitCode}")
             exit_code = self._exitCode
             exit_status = self._exitStatus if hasattr(self, '_exitStatus') else (0 if exit_code == 0 else 1)
             if exit_code != 0:
                 # Process failed - error already added by _startProcessSync
-                logger.info(f"[DEBUG postProcessCheck] Returning FAILED due to non-zero exit code: {exit_code}")
+                logger.debug(f"[postProcessCheck] Returning FAILED due to non-zero exit code: {exit_code}")
                 status = self.FAILED
 
         # For async processes, check the exit code from the process manager
@@ -2041,32 +2035,32 @@ class CPluginScript(CData):
         import logging
         logger = logging.getLogger(__name__)
 
-        logger.info(f"[DEBUG reportStatus] Called with status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
+        logger.debug(f"[reportStatus] Called with status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
 
         # Save params
         self.saveParams()
 
         # Report final status to database
         if hasattr(self, '_dbHandler') and self._dbHandler is not None:
-            logger.info(f"[DEBUG reportStatus] _dbHandler exists: {self._dbHandler}")
+            logger.debug(f"[reportStatus] _dbHandler exists: {self._dbHandler}")
             if hasattr(self, '_dbJobId') and self._dbJobId is not None:
-                logger.info(f"[DEBUG reportStatus] _dbJobId exists: {self._dbJobId}")
+                logger.debug(f"[reportStatus] _dbJobId exists: {self._dbJobId}")
                 try:
-                    logger.info(f"[DEBUG reportStatus] Calling updateJobStatus with jobId={self._dbJobId}, finishStatus={status}")
+                    logger.debug(f"[reportStatus] Calling updateJobStatus with jobId={self._dbJobId}, finishStatus={status}")
                     self._dbHandler.updateJobStatus(
                         jobId=str(self._dbJobId),
                         finishStatus=status,
                         container=self.container
                     )
-                    logger.info(f"[DEBUG reportStatus] Successfully updated job status in database")
+                    logger.debug(f"[reportStatus] Successfully updated job status in database")
                 except Exception as e:
                     logger.warning(f"Failed to update job status in database: {e}")
                     import traceback
                     traceback.print_exc()
             else:
-                logger.warning(f"[DEBUG reportStatus] _dbJobId not set (hasattr={hasattr(self, '_dbJobId')}, value={getattr(self, '_dbJobId', None)})")
+                logger.debug(f"[reportStatus] _dbJobId not set (hasattr={hasattr(self, '_dbJobId')}, value={getattr(self, '_dbJobId', None)})")
         else:
-            logger.warning(f"[DEBUG reportStatus] _dbHandler not set (hasattr={hasattr(self, '_dbHandler')}, value={getattr(self, '_dbHandler', None)})")
+            logger.debug(f"[reportStatus] _dbHandler not set (hasattr={hasattr(self, '_dbHandler')}, value={getattr(self, '_dbHandler', None)})")
 
         # Emit finished signal with status dict (modern API)
         # Legacy plugins may expect just int, handled by connectSignal() wrapper

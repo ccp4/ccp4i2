@@ -97,12 +97,19 @@ class process(object):
       return crank(xmlelem,inpline,parent,dummy=dummy)
     try:
       # import the specific process
-      setattr(sys.modules[__name__], 'processes', __import__('processes.'+procnick))
+      # Try standalone import first (original behavior), fall back to package import (ccp4i2 context)
+      standalone_module_name = 'processes.' + procnick
+      full_module_name = standalone_module_name
+      try:
+        setattr(sys.modules[__name__], 'processes', __import__(standalone_module_name))
+      except ImportError:
+        full_module_name = 'crank2.processes.' + procnick
+        setattr(sys.modules[__name__], 'processes', __import__(full_module_name, fromlist=[procnick]))
     except (AttributeError,ImportError):
       common.Error('Process {0} not supported (check the spelling)'.format(procnick))
     try:
       # create an instance of the process
-      inst = getattr(sys.modules['processes.'+procnick], procnick)(xmlelem,inpline,parent,dummy=dummy,no_support_check=no_support_check)
+      inst = getattr(sys.modules[full_module_name], procnick)(xmlelem,inpline,parent,dummy=dummy,no_support_check=no_support_check)
     except (AttributeError,KeyError):
       common.Error('Error when creating process {0} instance.'.format(procnick))
     else:

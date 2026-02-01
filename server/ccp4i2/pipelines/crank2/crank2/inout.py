@@ -261,7 +261,12 @@ class input_output(object):
        col and label can be iterable in which case conjuction filter (and) is assumed
     """
     # prevent indefinite convert recursion
-    if try_convert and self.parent.nick in __import__('processes.convert').convert.convert.supported_progs:
+    # Try standalone import first (original behavior), fall back to package import (ccp4i2 context)
+    try:
+      _convert_module = __import__('processes.convert').convert.convert
+    except ImportError:
+      _convert_module = __import__('crank2.processes.convert', fromlist=['convert']).convert
+    if try_convert and self.parent.nick in _convert_module.supported_progs:
       try_convert=False
     if try_convert:
       try_convert=self.parent
