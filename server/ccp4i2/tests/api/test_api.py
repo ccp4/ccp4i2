@@ -75,8 +75,12 @@ class TestCCP4i2API:
         assert result["task_name"] == "prosmart_refmac"
 
     def test_set_simple_parameter(self):
+        # Clone the job first since we can't modify completed jobs
+        clone_response = self.client.post(f"{API_PREFIX}/jobs/1/clone/")
+        clone = clone_response.json()
+
         response = self.client.post(
-            f"{API_PREFIX}/jobs/1/set_parameter/",
+            f"{API_PREFIX}/jobs/{clone['id']}/set_parameter/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(
                 {
@@ -92,8 +96,12 @@ class TestCCP4i2API:
         }
 
     def test_set_file(self):
+        # Clone the job first since we can't modify completed jobs
+        clone_response = self.client.post(f"{API_PREFIX}/jobs/1/clone/")
+        clone = clone_response.json()
+
         response = self.client.post(
-            f"{API_PREFIX}/jobs/1/set_parameter/",
+            f"{API_PREFIX}/jobs/{clone['id']}/set_parameter/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(
                 {
@@ -109,8 +117,12 @@ class TestCCP4i2API:
         }
 
     def test_set_file_null(self):
+        # Clone the job first since we can't modify completed jobs
+        clone_response = self.client.post(f"{API_PREFIX}/jobs/1/clone/")
+        clone = clone_response.json()
+
         response = self.client.post(
-            f"{API_PREFIX}/jobs/1/set_parameter/",
+            f"{API_PREFIX}/jobs/{clone['id']}/set_parameter/",
             content_type="application/json; charset=utf-8",
             data=json.dumps(
                 {
@@ -163,7 +175,7 @@ class TestCCP4i2API:
         project = models.Project.objects.last()
         create_response = self.client.post(
             f"{API_PREFIX}/projects/{project.id}/create_task/",
-            {"task_name": "phaser_simple"},
+            data=json.dumps({"task_name": "phaser_simple"}),
             content_type="application/json; charset=utf-8",
         )
         print(create_response.json())
@@ -211,7 +223,7 @@ class TestCCP4i2API:
         project = models.Project.objects.last()
         create_response = self.client.post(
             f"{API_PREFIX}/projects/{project.id}/create_task/",
-            {"task_name": "import_merged"},
+            data=json.dumps({"task_name": "import_merged"}),
             content_type="application/json; charset=utf-8",
         )
         import_merged_task = create_response.json()["data"]
@@ -273,7 +285,7 @@ class TestCCP4i2API:
         project = models.Project.objects.last()
         create_response = self.client.post(
             f"{API_PREFIX}/projects/{project.id}/create_task/",
-            {"task_name": "ProvideAsuContents"},
+            data=json.dumps({"task_name": "ProvideAsuContents"}),
             content_type="application/json; charset=utf-8",
         )
         ProvideAsuContentsTask = create_response.json()["data"]
