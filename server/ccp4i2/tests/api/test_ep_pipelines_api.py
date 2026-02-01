@@ -180,10 +180,10 @@ class TestPhaserEPAPI(APITestBase):
         self.upload_file("inputData.XYZIN_HA", gamma_heavy_atoms_pdb)
         self.upload_file("inputData.ASUFILE", gamma_asu_xml)
 
-        self.set_param("controlParameters.COMP_BY", "ASU")
-        self.set_param("controlParameters.WAVELENGTH", 1.542)
-        self.set_param("controlParameters.LLGC_CYCLES", 20)
-        self.set_param("controlParameters.ELEMENTS", "Xe")
+        self.set_param("inputData.COMP_BY", "ASU")
+        self.set_param("inputData.WAVELENGTH", 1.542)
+        self.set_param("inputData.LLGC_CYCLES", 20)
+        self.set_param("inputData.ELEMENTS", "Xe")
         self.set_param("controlParameters.RUNPARROT", False)
 
         self.run_and_wait()
