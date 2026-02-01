@@ -1,6 +1,6 @@
-import os
 import json
 import shutil
+from pathlib import Path
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core import CCP4XtalData
@@ -8,13 +8,10 @@ from ccp4i2.core import CCP4ErrorHandling
 
 
 class mrparse_simple(CPluginScript):
-    TASKMODULE = 'developer_tools'      # Gui menu location
-    TASKTITLE = 'mrparse_simple'              # Short title for Gui
-    TASKNAME = 'mrparse_simple'               # Task name - same as class name
-    TASKCOMMAND = 'mrparse'            # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
+    TASKMODULE = 'developer_tools'
+    TASKTITLE = 'mrparse_simple'
+    TASKNAME = 'mrparse_simple'
+    TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'hlasimpk@liverpool.ac.uk'
@@ -23,10 +20,6 @@ class mrparse_simple(CPluginScript):
         self.seqin = None
         self.hklin = None
         CPluginScript.__init__(self, *args, **kwargs)
-
-    def process(self):
-        CPluginScript.process(self)
-        return CPluginScript.SUCCEEDED
 
     def processInputFiles(self):
         self.seqin = self.container.inputData.SEQIN
@@ -37,11 +30,11 @@ class mrparse_simple(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        pdb_json = os.path.join(self.getWorkDirectory(), "mrparse_0", "homologs.json")
-        af_json = os.path.join(self.getWorkDirectory(), "mrparse_0", "models.json")
+        pdb_json = self.workDirectory / "mrparse_0" / "homologs.json"
+        af_json = self.workDirectory / "mrparse_0" / "models.json"
 
-        if os.path.exists(pdb_json):
-            with open(pdb_json, 'r') as f:
+        if pdb_json.exists():
+            with pdb_json.open() as f:
                 pdb_data = json.load(f)
                 if self.hklin:
                     pdb_data = sorted(pdb_data, key=lambda k: k['ellg'], reverse=True)
@@ -49,22 +42,22 @@ class mrparse_simple(CPluginScript):
                     pdb_data = sorted(pdb_data, key=lambda k: k['seq_ident'], reverse=True)
                 for i in pdb_data:
                     if i['pdb_file'] is not None:
-                        xyz_in = os.path.join(self.getWorkDirectory(), "mrparse_0", i['pdb_file'])
-                        xyz_out = os.path.join(self.getWorkDirectory(), os.path.basename(i['pdb_file']))
-                    if os.path.isfile(xyz_in):
+                        xyz_in = self.workDirectory / "mrparse_0" / i['pdb_file']
+                        xyz_out = self.workDirectory / Path(i['pdb_file']).name
+                    if xyz_in.is_file():
                         shutil.copy(xyz_in, xyz_out)
                     self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
                     self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
                     self.container.outputData.XYZOUT[-1].annotation = "PDB hit: {}".format(i['name'])
 
-        if os.path.exists(af_json):
-            with open(af_json, 'r') as f:
+        if af_json.exists():
+            with af_json.open() as f:
                 pdb_data = json.load(f)
                 pdb_data = sorted(pdb_data, key=lambda k: k['seq_ident'], reverse=True)
                 for i in pdb_data:
-                    xyz_in = os.path.join(self.getWorkDirectory(), "mrparse_0", i['pdb_file'])
-                    xyz_out = os.path.join(self.getWorkDirectory(), os.path.basename(i['pdb_file']))
-                    if os.path.isfile(xyz_in):
+                    xyz_in = self.workDirectory / "mrparse_0" / i['pdb_file']
+                    xyz_out = self.workDirectory / Path(i['pdb_file']).name
+                    if xyz_in.is_file():
                         shutil.copy(xyz_in, xyz_out)
                     self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
                     self.container.outputData.XYZOUT[-1].setFullPath(xyz_out)
@@ -72,7 +65,7 @@ class mrparse_simple(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--seqin")
         self.appendCommandLine(str(self.seqin))
         if self.hklin:

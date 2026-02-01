@@ -2,7 +2,7 @@ from ccp4i2.pipelines.phaser_pipeline.script import phaser_pipeline
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_simple(phaser_pipeline.phaser_pipeline):
-    TASKNAME = 'phaser_simple'                                  # Task name - should be same as class name
+    TASKNAME = 'phaser_simple'
 
     ERROR_CODES = {
         301: {'description': 'Exception in createEnsembleElements'},

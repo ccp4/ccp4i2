@@ -8,14 +8,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class freerflag(CPluginScript):
-    TASKMODULE = 'test'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Add a freeR flag' # A short title for gui menu
-    TASKNAME = 'freerflag'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
-    MAINTAINER = 'liz.potterton@york.ac.uk'
-    TASKCOMMAND = 'freerflag'   # The command to run the executable
-    COMLINETEMPLATE = None 
-    COMTEMPLATE = None  
+    TASKMODULE = 'test'
+    TASKTITLE = 'Add a freeR flag'
+    TASKNAME = 'freerflag'
+    TASKCOMMAND = 'freerflag'
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
     def processInputFiles(self):

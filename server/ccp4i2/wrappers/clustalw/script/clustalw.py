@@ -1,7 +1,7 @@
 import os
 import re
 import shutil
-import sys
+from pathlib import Path
 
 from lxml import etree
 
@@ -10,17 +10,15 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class clustalw(CPluginScript):
-    TASKTITLE = 'clustalw'     # A short title for gui menu
+    TASKTITLE = 'clustalw'
     DESCRIPTION = 'Perform multiple alignment'
-    TASKNAME = 'clustalw'                                  # Task name - should be same as class name
-    TASKVERSION= 0.0                                     # Version of this plugin
-    TIMEOUT_PERIOD =3.
+    TASKNAME = 'clustalw'
+    TASKCOMMAND = shutil.which("clustalw2", path=Path(os.environ["CCP4"], "libexec"))
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to catenate sequences' },201 : { 'description' : 'Failed to setFullPath' },}
     
     def __init__(self,*args,**kws):
         CPluginScript.__init__(self, *args,**kws)
-        self.TASKCOMMAND = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir(),'libexec','clustalw2'))
         self.xmlroot = etree.Element('Clustalw')
 
     def makeCommandAndScript(self):
@@ -53,16 +51,10 @@ class clustalw(CPluginScript):
                         iCount += 1
                     sequenceStack.append([possibleName, sequenceFile.fileContent.sequence.__str__()])
                     sequenceStack_check.append(possibleName)
-                if sys.version_info > (3,0):
-                    with open(self.startFileName,'w') as startFile:
-                        for identifier,seq in sequenceStack:
-                            startFile.write(identifier+'\n')
-                            startFile.write(seq+'\n')
-                else:
-                    with open(self.startFileName,'wb') as startFile:
-                        for identifier,seq in sequenceStack:
-                            startFile.write(identifier+'\n')
-                            startFile.write(seq+'\n')
+                with open(self.startFileName,'w') as startFile:
+                    for identifier,seq in sequenceStack:
+                        startFile.write(identifier+'\n')
+                        startFile.write(seq+'\n')
         else:
             self.appendErrorReport(200)
             return CPluginScript.FAILED

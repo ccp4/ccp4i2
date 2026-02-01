@@ -9,13 +9,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pdbview_edit(CPluginScript):
     
-    TASKMODULE = 'model_data_utility'            # Where this plugin will appear on the gui
-    TASKTITLE = 'Edit PDB/CIF files by hand with the PdbView program'     # A short title for gui menu
-    TASKNAME = 'pdbview_edit'                  # Task name - should be same as class name
-    TASKCOMMAND = 'ccp4-python'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
+    TASKMODULE = 'model_data_utility'
+    TASKTITLE = 'Edit PDB/CIF files by hand with the PdbView program'
+    TASKNAME = 'pdbview_edit'
+    TASKCOMMAND = 'ccp4-python'
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Coordinate editor exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}

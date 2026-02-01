@@ -5,14 +5,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ctruncate(CPluginScript):
-    TASKMODULE = 'expt_data_utility'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Intensities to amplitudes' # A short title for gui menu
+    TASKMODULE = 'expt_data_utility'
+    TASKTITLE = 'Intensities to amplitudes'
     DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
-    TASKNAME = 'ctruncate'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
-    TASKCOMMAND = 'ctruncate'   # The command to run the executable
-    COMLINETEMPLATE = None 
-    COMTEMPLATE = None
+    TASKNAME = 'ctruncate'
+    TASKCOMMAND = 'ctruncate'
     MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
     ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }
@@ -79,8 +76,6 @@ class ctruncate(CPluginScript):
              # only if input file does not already have an IMEAN column
              self.appendCommandLine(['-Imean'])
 
-      return CPluginScript.SUCCEEDED
-
     def processOutputFiles(self):
       #print 'ctruncate.processOutputFiles',self.container.controlParameters.OUTPUTMINIMTZ,self.container.controlParameters.OUTPUTMINIMTZCONTENTFLAG
       #print 'ctruncate.processOutputFiles HKLOUT',self.container.outputData.HKLOUT.__str__(),os.path.exists(self.container.outputData.HKLOUT.__str__())
@@ -146,5 +141,3 @@ class ctruncate(CPluginScript):
           self.container.outputData.OBSOUT1.annotation.set(dName + ' as '+self.container.outputData.OBSOUT.CONTENT_ANNOTATION[3])
           self.container.outputData.OBSOUT1.contentFlag.set(4)
         #print('\n***ctruncate.processOutputFiles after splitMtz status',status,'contentFlag',self.container.outputData.OBSOUT.contentFlag)
-
-      return CPluginScript.SUCCEEDED

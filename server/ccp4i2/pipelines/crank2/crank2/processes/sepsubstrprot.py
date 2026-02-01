@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys,re,string
-from process import process
-import common
+from ..process import process
+from .. import common
 
 
 class sepsubstrprot(process):

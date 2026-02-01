@@ -1,7 +1,7 @@
 import pytest
 
 from ccp4i2.core.base_object.base_classes import CContainer, CDataFile
-from ccp4i2.core.base_object.fundamental_types import CInt, CList
+from ccp4i2.core.base_object.fundamental_types import CInt, CList, CString
 
 class TestExample:
     @classmethod
@@ -52,3 +52,11 @@ class TestExample:
         b.set_qualifier("max", 100)
         with pytest.raises(ValueError):
             b.value = 120  # This should raise a ValueError due to the max qualifier
+
+        # Test CDataFile annotation
+        d.annotation.set("This is a test file")
+        assert d.annotation == "This is a test file"
+        assert isinstance(d.annotation, CString)
+        d.annotation = "Updated annotation without set function"
+        assert d.annotation == "Updated annotation without set function"
+        assert isinstance(d.annotation, CString)

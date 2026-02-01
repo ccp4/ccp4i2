@@ -1,13 +1,8 @@
-from __future__ import with_statement
 import os,sys,copy,shutil
-import common,data,inout
+from . import common,data,inout
 from xml.etree import ElementTree as ET
-from program import program
-try:
-  import crvapi
-except:
-  if hasattr(sys,'exc_clear'): sys.exc_clear()
-  crvapi = False
+from .program import program
+from . import crvapi
 
 class process(object):
   """ Base class for processes such as model building, density modification etc"""
@@ -98,7 +93,7 @@ class process(object):
        inpline - if specified then initialization is performed using this input line (preprocessed list assumed)
     """
     if procnick=='crank':
-      from manager import crank
+      from .manager import crank
       return crank(xmlelem,inpline,parent,dummy=dummy)
     try:
       # import the specific process

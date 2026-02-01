@@ -8,17 +8,8 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class AlternativeImportXIA2(CPluginScript):
 
-    TASKNAME = 'AlternativeImportXIA2'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
+    TASKNAME = 'AlternativeImportXIA2'
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
     def process(self):
         invalidFiles = self.checkInputData()
         if len(invalidFiles)>0:

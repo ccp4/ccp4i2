@@ -2,13 +2,7 @@
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <userId>mdw</userId>
-    <creationTime>13:15 30/Sep/11</creationTime>
-    <pluginVersion></pluginVersion>
-    <ccp4iVersion>0.0.1</ccp4iVersion>
     <pluginName>prosmart</pluginName>
-    <pluginTitle>prosmart: comparative structural analysis</pluginTitle>
-    <jobId/>
   </ccp4i2_header>
   <ccp4i2_body id="prosmart">
   
@@ -27,14 +21,6 @@
             <allowUndefined>True</allowUndefined>
          </qualifiers>
       </content>
-       <!--<content id="REFERENCE_MODEL">
-        <className>CPdbDataFile</className>
-        <qualifiers>
-          <mustExist>True</mustExist>
-           <allowUndefined>False</allowUndefined>
-          <fromPreviousJob>True</fromPreviousJob>
-        </qualifiers>
-       </content>-->
        <content id="REFERENCE_MODELS">
           <className>CList</className>
           <qualifiers>
@@ -50,16 +36,6 @@
              </qualifiers>
           </subItem>
        </content>
-      <!---
-      <content id="XYZINLIST1">
-        <className>CPdbDataFileList</className>
-        <qualifiers>
-	  <listMinLength>1</listMinLength>
-          <ifAtomSelection>True</ifAtomSelection>
-          <mustExist>True</mustExist>
-        </qualifiers>
-	</content>
-	-->
       <content id="EXT_FILE">
         <className>CDataFile</className>
         <qualifiers>
@@ -227,49 +203,6 @@
 	  <guiLabel>Final cluster rigidity</guiLabel>
 	</qualifiers>
       </content>
-      <!--  Pymol output
-      <content id="OUTPUT_PDB_FILES">
-        <className>CBoolean</className>
-        <qualifiers>
-        <default>False</default>
-        <guiLabel>Output PDB files</guiLabel>
-        </qualifiers>
-      </content>
-      <content id="OUTPUT_WHOLE_PDB">
-        <className>CBoolean</className>
-        <qualifiers>
-        <default>False</default>
-        <guiLabel>'Output whole structure</guiLabel>
-        </qualifiers>
-      </content>
-      <content id="OUTPUT_COLOUR_SCRIPTS">
-        <className>CBoolean</className>
-        <qualifiers>
-        <default>False</default>
-        <guiLabel>Output colour scripts</guiLabel>
-        </qualifiers>
-      </content>
-      <content id="COLOUR_SCORE">
-        <className>CFloat</className>
-	<qualifiers>
-	  <guiLabel>Main chain colour score threshold</guiLabel>
-	</qualifiers>
-      </content>
-      <content id="SIDE_COLOUR_SCORE">
-        <className>CFloat</className>
-	<qualifiers>
-	  <guiLabel>Side chain colour score threshold</guiLabel>
-	</qualifiers>
-      </content>
-      <content id="PYMOL_CLUSTER_COLOR">
-        <className>CFloat</className>
-	<qualifiers>
-	  <guiLabel>Cluster colour resolution scale factor</guiLabel>
-	</qualifiers>
-      </content>
-      -->
-
-
 
       <content id="RESTRAIN_MAIN_VS_SIDE">
         <className>CString</className>
@@ -513,14 +446,6 @@
 	</qualifiers>
       </content>
 
-      <!--   
-      <content id="THREADS">
-        <className>CInt</className>
-	<qualifiers>
-	  <guiLabel></guiLabel>
-	</qualifiers>
-      </content>
-      -->
       <content id="OUTPUT_DM">
         <className>CBoolean</className>
         <qualifiers>

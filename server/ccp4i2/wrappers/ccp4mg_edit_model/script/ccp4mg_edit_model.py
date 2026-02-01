@@ -11,12 +11,10 @@ from ccp4i2.core.mgimports import PhmmerReportNoGui
 
 class ccp4mg_edit_model(CPluginScript):
     
-    TASKTITLE = 'Interactive model preparation - CCP4mg and MrBUMP'     # A short title for gui menu
-    TASKNAME = 'ccp4mg_edit_model'                  # Task name - should be same as class name
-    TASKCOMMAND = 'ccp4mg'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
+    TASKTITLE = 'Interactive model preparation - CCP4mg and MrBUMP'
+    TASKNAME = 'ccp4mg_edit_model'
+    TASKCOMMAND = 'ccp4mg'
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'CCP4MG exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
@@ -49,10 +47,7 @@ class ccp4mg_edit_model(CPluginScript):
         location_attribute = '{%s}noNamespaceSchemaLocation' % NS
         tree = etree.Element("CCP4MG_Status",nsmap = NSMAP,attrib={location_attribute: 'http://www.ysbl.york.ac.uk/~mcnicholas/schema/CCP4MGApplicationOutput.xsd'})
 
-        if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
-        else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
 
         print("Writing",self.mgStatusPath)
         print(status_xml)

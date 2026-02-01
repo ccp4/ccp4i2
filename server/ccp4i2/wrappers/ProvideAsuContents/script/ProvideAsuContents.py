@@ -1,16 +1,12 @@
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ModelData
-import os,sys
 import shutil
 from lxml import etree
 
 class ProvideAsuContents(CPluginScript):
+    TASKNAME = 'ProvideAsuContents'
 
-    TASKNAME = 'ProvideAsuContents'                        # Task name - should be same as class name
-    RUNEXTERNALPROCESS=False
-   
-    def startProcess(self, command, **kw):
+    def startProcess(self):
       asuFileObject = self.container.outputData.ASUCONTENTFILE
       asuFileObject.fileContent.seqList.set(self.container.inputData.ASU_CONTENT)
       if self._dbHandler:
@@ -71,11 +67,7 @@ class ProvideAsuContents(CPluginScript):
 
       newXml = etree.tostring(xmlroot,pretty_print=True)
       with open (self.makeFileName('PROGRAMXML')+'_tmp','w') as programXmlFile:
-          if sys.version_info > (3,0):
-              programXmlFile.write(newXml.decode("utf-8"))
-          else:
-              programXmlFile.write(newXml)
+          programXmlFile.write(newXml.decode("utf-8"))
       shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
-          
-              
+
       return CPluginScript.SUCCEEDED

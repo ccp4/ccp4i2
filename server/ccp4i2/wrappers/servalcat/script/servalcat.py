@@ -17,7 +17,6 @@ class servalcat(CPluginScript):
     TASKTITLE = 'Refinement (servalcat)'
     TASKNAME = 'servalcat'
     TASKCOMMAND = 'servalcat'
-    TASKVERSION= 0.0
     PERFORMANCECLASS = 'CServalcatPerformance'
         
     ERROR_CODES = { 201 : {'description' : 'Refmac returned with non zero status' },

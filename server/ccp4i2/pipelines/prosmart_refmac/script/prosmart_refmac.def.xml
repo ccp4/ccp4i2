@@ -2,21 +2,13 @@
 <ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
     <ccp4i2_header>
         <function>DEF</function>
-        <comment></comment>
-        <creationTime>14:00 19/Jul/12</creationTime>
-        <userId>cowtan</userId>
-        <ccp4iVersion>0.0.1</ccp4iVersion>
-        <jobId/>
-        <project></project>
         <pluginName>prosmart_refmac</pluginName>
-        <pluginVersion></pluginVersion>
-        <jobNumber></jobNumber>
     </ccp4i2_header>
     <ccp4i2_body id="prosmart_refmac">
         <file>
             <CI2XmlDataFile>
                 <project>CCP4I2_TOP</project>
-                <relPath>wrappers/refmac_i2/script</relPath>
+                <relPath>wrappers/refmac/script</relPath>
                 <baseName>refmac.def.xml</baseName>
             </CI2XmlDataFile>
         </file>
@@ -44,20 +36,6 @@
            </content>
         </container>
         <container id="prosmartProtein">
-            <!--<content id="REFERENCE_MODEL">
-              <className>CPdbDataFile</className>
-              <qualifiers>
-                 <saveToDb>True</saveToDb>
-                 <mustExist>True</mustExist>
-                 <allowUndefined>True</allowUndefined>
-                 <fromPreviousJob>False</fromPreviousJob>
-                 <guiLabel>Reference model</guiLabel>
-                 <requiredSubType>2,1,0</requiredSubType>
-                 <default>
-                    <subType>2</subType>
-                 </default>
-              </qualifiers>
-            </content>-->
             <content id="REFERENCE_MODELS">
                <className>CList</className>
                <qualifiers>

@@ -1,7 +1,6 @@
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from django.db import connection
-from django.core.exceptions import ImproperlyConfigured
 from ..db import models
 from ..lib.utils.navigation.task_tree import get_task_tree
 import psutil
@@ -18,7 +17,7 @@ def task_tree(request):
         "data": {
             "task_tree": {
                 "tree": [[module_name, title, [task_names...]], ...],
-                "lookup": {taskName: {version: {metadata...}}, ...},
+                "lookup": {taskName: {metadata...}, ...},
                 "iconLookup": {module_name: icon_path, ...}
             }
         }

@@ -1,8 +1,8 @@
 #!/usr/bin/python
-import os,sys,copy
-from process import process
-from program import program
-import common,data
+import os,copy
+from ..process import process
+from ..program import program
+from .. import common
 
 class faest(process):
   name="FA estimation and/or other substructure detection preparations"

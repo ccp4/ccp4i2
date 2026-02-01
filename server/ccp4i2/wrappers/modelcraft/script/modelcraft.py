@@ -11,14 +11,8 @@ class modelcraft(CPluginScript):
     TASKTITLE = "AutoBuild with ModelCraft, Buccaneer and Nautilus"
     SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"
-    TASKVERSION = 0.1
     TASKCOMMAND = "modelcraft"
     MAINTAINER = "paul.bond@york.ac.uk"
-    ERROR_CODES = {
-        201: {"description": "Failed to analyse output files"},
-        202: {"description": "Failed applying selection to PDB file"},
-    }
-    PURGESEARCHLIST = [["hklin.mtz", 0], ["log_mtzjoin.txt", 0]]
     PERFORMANCECLASS = "CRefinementPerformance"
     WHATNEXT = ["coot_rebuild"]
 
@@ -62,7 +56,7 @@ class modelcraft(CPluginScript):
         with open(self.seqin, "w") as stream:
             json.dump(contents, stream, indent=4)
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         params = self.container.controlParameters
         self.appendCommandLine(["xray"])
         self.appendCommandLine(["--contents", self.seqin])

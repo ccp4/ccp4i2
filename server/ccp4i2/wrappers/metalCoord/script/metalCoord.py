@@ -14,10 +14,9 @@ from . import json2restraints
 
 class metalCoord(CPluginScript):
 
-    TASKMODULE = 'wrappers'        # Where this plugin will appear on gui
-    TASKNAME = 'metalCoord'        # Task name - should be same as class name
-    TASKVERSION = 0.2              # Version of this plugin
-    TASKCOMMAND = 'metalCoord'     # The command to run the executable
+    TASKMODULE = 'wrappers'
+    TASKNAME = 'metalCoord'
+    TASKCOMMAND = 'metalCoord'
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = {

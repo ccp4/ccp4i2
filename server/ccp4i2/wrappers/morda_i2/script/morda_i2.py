@@ -7,12 +7,9 @@ from ccp4i2.core import CCP4ErrorHandling, CCP4PluginScript, CCP4XtalData
 
 class morda_i2(CCP4PluginScript.CPluginScript):
     TASKNAME = 'morda_i2'
-    TASKVERSION= 0.1
     MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
     TASKCOMMAND = sys.executable
     PERFORMANCECLASS = 'CRefinementPerformance'
-    INTERRUPTABLE = True
-    INTERRUPTLABEL = 'Stop and keep current best solution'
     
     def processInputFiles(self):
         content_flag = CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN
@@ -25,7 +22,7 @@ class morda_i2(CCP4PluginScript.CPluginScript):
         self.container.inputData.ASUIN.writeFasta(self.seqin_file)
         return self.SUCCEEDED
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         self.appendCommandLine(['-m', 'morda'])
         self.appendCommandLine(['-f', self.hklin])
         if self.container.inputData.ALTSG:

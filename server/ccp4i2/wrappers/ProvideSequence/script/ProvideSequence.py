@@ -1,5 +1,5 @@
 import os
-import sys
+import tempfile
 from io import StringIO
 
 from lxml import etree
@@ -10,31 +10,16 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ProvideSequence(CPluginScript):
 
-    TASKNAME = 'ProvideSequence'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
-    RUNEXTERNALPROCESS=False
+    TASKNAME = 'ProvideSequence'
 
-    '''
-    def __init__(self,parent=None,name=None,workDirectory=''):
-      CPluginScript. __init__(self,parent=parent,name=name)
-    '''
-    
-    def startProcess(self, command, **kw):
-        import tempfile
-
+    def startProcess(self):
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
         
         root = etree.Element('ProvideSequence')
         
         # Create a temporary file to store the sequence(s) that will be used
         tempFile = tempfile.NamedTemporaryFile(suffix='.txt',delete=False)
-        if sys.version_info > (3,0):
-            tempFile.file.write(self.container.controlParameters.SEQUENCETEXT.__str__().encode('utf-8'))
-        else:
-            tempFile.file.write(self.container.controlParameters.SEQUENCETEXT.__str__())
+        tempFile.file.write(self.container.controlParameters.SEQUENCETEXT.__str__().encode('utf-8'))
         tempFile.close()
         
         #Attempt to interpret that as an alignment and/or stack of sequences

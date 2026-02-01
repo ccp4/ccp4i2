@@ -10,16 +10,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pisa_xml(CPluginScript):
 
-    TASKMODULE = None                               # Where this plugin will appear on the gui
-    TASKTITLE = 'Structure analysis with Pisa'     # A short title for gui menu
-    TASKNAME = 'pisa_xml'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'pisa'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
-    ASYNCHRONOUS=True
+    TASKTITLE = 'Structure analysis with Pisa'
+    TASKNAME = 'pisa_xml'
+    TASKCOMMAND = 'pisa'
 
-  
     def process(self):
         self.xmlroot = etree.Element('pisa_xml')
         result = self.retrieveAssemblies()

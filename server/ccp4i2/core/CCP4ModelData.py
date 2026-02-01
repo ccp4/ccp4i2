@@ -5,10 +5,8 @@ Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logi
 This file is safe to edit - add your implementation code here.
 """
 
-from __future__ import annotations
-from typing import Optional, Any
+from typing import Optional
 
-from ccp4i2.core.base_object.base_classes import CData
 from ccp4i2.core.cdata_stubs.CCP4ModelData import CAsuContentStub, CAsuContentSeqStub, CAsuContentSeqListStub, CAsuDataFileStub, CAtomRefmacSelectionStub, CAtomRefmacSelectionGroupsStub, CAtomRefmacSelectionListStub, CAtomRefmacSelectionOccupancyStub, CAtomSelectionStub, CBlastDataStub, CBlastDataFileStub, CBlastItemStub, CChemCompStub, CDictDataStub, CDictDataFileStub, CElementStub, CEnsembleStub, CEnsembleListStub, CEnsemblePdbDataFileStub, CHhpredDataStub, CHhpredDataFileStub, CHhpredItemStub, CMDLMolDataFileStub, CMol2DataFileStub, CMonomerStub, COccRefmacSelectionListStub, COccRelationRefmacListStub, CPdbDataStub, CPdbDataFileStub, CPdbDataFileListStub, CPdbEnsembleItemStub, CResidueRangeStub, CResidueRangeListStub, CSeqAlignDataFileStub, CSeqDataFileStub, CSeqDataFileListStub, CSequenceStub, CSequenceAlignmentStub, CSequenceMetaStub, CSequenceStringStub, CTLSDataFileStub
 
 

@@ -756,10 +756,6 @@ class HierarchicalObject(ABC):
         - find("protein.XYZIN") - Finds child "protein", then its child "XYZIN"
         - find("container.inputData.HKLIN") - Multi-level path navigation
 
-        This is compatible with the CCP4ComTemplate system which expects
-        containers to have a find() method for template variable substitution
-        (e.g., $HKLIN expands by calling container.find("HKLIN")).
-
         Uses O(1) cache lookup for immediate children when possible.
 
         Args:

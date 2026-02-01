@@ -17,15 +17,13 @@ class coot1(CPluginScript):
     TASKMODULE = "model_building"
     TASKTITLE = "Coot 1"
     TASKCOMMAND = coot1Command()
-    TASKVERSION = 0.1
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = "paul.bond@york.ac.uk"
     WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft"]
 
     ERROR_CODES = {}
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         inputData = self.container.inputData
 
         if inputData.XYZIN_LIST.isSet():

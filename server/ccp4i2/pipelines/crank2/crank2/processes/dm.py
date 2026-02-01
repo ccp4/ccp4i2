@@ -1,7 +1,6 @@
 #!/usr/bin/python
-import os,sys
-from process import process
-import common
+from ..process import process
+from .. import common
 par=common.parameter
 
 class dm(process):

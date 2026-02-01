@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys,shutil
-from program import program
-import common
+from ..program import program
+from .. import common
 
 class shelxd(program):
   name="SHELXD"

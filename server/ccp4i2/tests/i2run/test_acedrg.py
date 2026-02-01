@@ -26,7 +26,7 @@ def test_from_cif_rcsb():
             check_output(job, "A1LU6")
 
 
-def test_from_cif_rcsb_metal_AF3():
+def test_from_cif_rcsb_metal_af3():
     with download(rcsb_ligand_cif("AF3")) as ligand, download(rcsb_mmcif("4dl8")) as mmcif:
         args = ["LidiaAcedrgNew"]
         args += ["--MOLSMILESORSKETCH", "DICT"]

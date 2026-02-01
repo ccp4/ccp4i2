@@ -1,8 +1,8 @@
 import os,sys
-import pkgutil,shutil,copy,math
-import common,processes,ccp4i2crank
-from process import process, crvapi
-from program import program
+import pkgutil,shutil,copy
+from . import common,processes,ccp4i2crank
+from .process import process, crvapi
+from .program import program
 
 class crank(process):
   name='CRANK2'
@@ -524,7 +524,7 @@ class crank(process):
     common.WriteXML(crank_p, p_xml)
     # "undummify" by re-creating the process from the written xml
     # pass extra attrs set by user from parse as eg disable_mtz_label_prefix needs to be set at the process creation
-    import parse
+    from . import parse
     extra_attrs = { attr:getattr(self,attr) for attr in parse.parse(dummy=True).share_with_crank if hasattr(self,attr) }
     crank_p=self.from_xml(p_xml, rundir=self.rundir, extra_attrs=extra_attrs)
     p_run = crank_p.processes[0]
@@ -781,7 +781,7 @@ class crank(process):
       if hasattr(prev_proc,'out2'):
         # create hand2 inp
         if not hasattr(p,'inp2'):
-          import inout
+          from . import inout
           p.inp2 = inout.input_output(is_output=False,parent=p)
           for o in p.inp.GetAll(stored_order=True):
             p.inp2.AddCopy(o,propagate=True)

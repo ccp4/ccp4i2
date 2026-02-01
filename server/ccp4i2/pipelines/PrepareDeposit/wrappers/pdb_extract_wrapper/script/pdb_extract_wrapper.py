@@ -8,14 +8,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pdb_extract_wrapper(CPluginScript):
-    TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'pdb_extract_wrapper'     # A short title for gui menu
+    TASKMODULE = 'wrappers'
+    TASKTITLE = 'pdb_extract_wrapper'
     DESCRIPTION = 'Run pdb_extract'
-    TASKNAME = 'pdb_extract_wrapper'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'pdb_extract'                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    TIMEOUT_PERIOD = 9999999.9
-    RUNEXTERNALPROCESS=False
+    TASKNAME = 'pdb_extract_wrapper'
+    TASKCOMMAND = 'pdb_extract'
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' },}
     

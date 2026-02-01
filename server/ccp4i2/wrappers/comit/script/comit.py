@@ -5,10 +5,8 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class comit(CPluginScript):
-    TASKNAME = 'comit'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION= 0.1               # Version of this plugin
-    MAINTAINER = 'kevin.cowtan@york.ac.uk'
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ], ['log_mtzjoin.txt', 0] ]
+    TASKNAME = 'comit'
+    MAINTAINER = 'kathryn.cowtan@york.ac.uk'
     TASKCOMMAND="comit"
     
     def __init__(self, *args, **kws):
@@ -23,7 +21,7 @@ class comit(CPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self,**kw):
+    def makeCommandAndScript(self):
         inp = self.container.inputData
         out = self.container.outputData
         con = self.container.controlParameters

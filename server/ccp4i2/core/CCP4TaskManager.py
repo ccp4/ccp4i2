@@ -1,12 +1,13 @@
-import os
-import json
-from typing import List, Dict, Any, Optional, Type, Tuple
-from pathlib import Path
-
-import sys
-import subprocess
 import argparse
+import json
+import os
+import subprocess
+import sys
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple, Type
 
+from .. import I2_TOP
+from .task_manager.defxml_lookup import defXmlPaths
 
 # Module ordering and titles matching legacy CCP4TaskManager
 MODULE_ORDER = [
@@ -59,7 +60,6 @@ MODULE_DEFAULTS = {
     'expt_data_utility': ['pointless_reindexToMatch', 'phaser_EP_LLG', 'cmapcoeff', 'chltofom', 'cphasematch', 'ctruncate', 'splitMtz', 'scaleit'],
     'model_data_utility': ['csymmatch', 'gesamt', 'coordinate_selector', 'qtpisa'],
     'developer_tools': [],
-    'test': ['demo_copycell']
 }
 
 
@@ -114,35 +114,25 @@ class CTaskManager:
     insts = None
 
     def __init__(self):
-        dir_path = os.path.dirname(os.path.abspath(__file__))
-        self.task_manager_dir = os.path.join(dir_path, "task_manager")
-        defxml_path = os.path.join(self.task_manager_dir, "defxml_lookup.json")
-        plugin_path = os.path.join(self.task_manager_dir, "plugin_lookup.json")
-        task_module_path = os.path.join(self.task_manager_dir, "task_module_map.json")
-        task_metadata_path = os.path.join(self.task_manager_dir, "task_metadata.json")
+        task_manager_dir = Path(__file__).parent / "task_manager"
+        plugin_path = task_manager_dir / "plugin_lookup.json"
+        task_module_path = task_manager_dir / "task_module_map.json"
+        task_metadata_path = task_manager_dir / "task_metadata.json"
 
-        self.defxml_lookup: List[Dict[str, str]] = []
         self.plugin_lookup: Dict[str, Dict[str, Any]] = {}
         self.task_module_map: Dict[str, str] = {}
         self.task_metadata: Dict[str, Dict[str, Any]] = {}
 
-        # Load defxml_lookup.json
-        try:
-            with open(defxml_path, "r") as f:
-                self.defxml_lookup = json.load(f)
-        except Exception as e:
-            print(f"Error loading defxml_lookup.json: {e}")
-
         # Load plugin_lookup.json (for backward compatibility)
         try:
-            with open(plugin_path, "r") as f:
+            with plugin_path.open(encoding="utf-8") as f:
                 self.plugin_lookup = json.load(f)
         except Exception as e:
             print(f"Error loading plugin_lookup.json: {e}")
 
         # Load task_module_map.json (task-to-folder mapping for UI)
         try:
-            with open(task_module_path, "r") as f:
+            with task_module_path.open(encoding="utf-8") as f:
                 data = json.load(f)
                 # Remove _comment key if present
                 self.task_module_map = {k: v for k, v in data.items() if not k.startswith('_')}
@@ -151,7 +141,7 @@ class CTaskManager:
 
         # Load task_metadata.json (UI display metadata: titles, descriptions, etc.)
         try:
-            with open(task_metadata_path, "r") as f:
+            with task_metadata_path.open(encoding="utf-8") as f:
                 data = json.load(f)
                 # Remove _comment/_todo keys if present
                 self.task_metadata = {k: v for k, v in data.items() if not k.startswith('_')}
@@ -178,18 +168,17 @@ class CTaskManager:
             self._report_registry = get_report_registry()
         return self._report_registry
 
-    def get_plugin_class(self, task_name: str, version: Optional[str] = None) -> Optional[Type]:
+    def get_plugin_class(self, task_name: str) -> Optional[Type]:
         """
         Get a plugin class by name, with lazy loading.
 
         Args:
             task_name: Name of the task/plugin (e.g., "refmac", "pointless")
-            version: Optional version (currently ignored - uses latest)
 
         Returns:
             Plugin class, or None if not found
         """
-        return self.plugin_registry.get_plugin_class(task_name, version)
+        return self.plugin_registry.get_plugin_class(task_name)
 
     def get_plugin_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:
         """
@@ -207,58 +196,24 @@ class CTaskManager:
         """Get list of all available plugin names."""
         return self.plugin_registry.list_plugins()
 
-    def locate_def_xml(self, task_name: str, version: Optional[str] = None) -> Optional[Path]:
+    def locate_def_xml(self, task_name: str) -> Optional[Path]:
         """
         Locate the .def.xml file for a task given its name.
 
         Args:
             task_name: Name of the task/plugin (e.g., "refmac", "pointless")
-            version: Optional version (IGNORED - kept for API compatibility, but unused since
-                     no plugins in this codebase actually have multiple versions)
 
         Returns:
             Path to the .def.xml file if found, None otherwise
-
-        Note:
-            Version checking is intentionally disabled. Analysis of defxml_lookup.json shows:
-            - 175/176 plugins have empty string version
-            - 1 plugin has version "0.0"
-            - Only 1 plugin (lorestr_i2) has multiple .def.xml files (both same version)
-            - No plugins have actual version variants (e.g., 1.0 vs 2.0)
-            Therefore, matching by name only is both simpler and sufficient.
         """
-        for entry in self.defxml_lookup:
-            plugin_name = entry.get("pluginName", "")
-
-            # Match by plugin name only (version checking is unnecessary - see docstring)
-            if plugin_name == task_name:
-                # Get relative path from entry
-                rel_path = entry.get("file_path", "")
-
-                if rel_path:
-                    # CRITICAL: Paths in defxml_lookup.json are relative to the task_manager directory
-                    # (where defxml_lookup.py is located), NOT relative to CCP4I2_ROOT or CWD.
-                    #
-                    # The defxml_lookup.py script does:
-                    #   script_dir = os.path.dirname(os.path.abspath(__file__))  # core/task_manager/
-                    #   rel_path = os.path.relpath(file_path, script_dir)
-                    #
-                    # So a path like "../../pipelines/shelx/script/shelx.def.xml" means:
-                    #   - Start from core/task_manager/
-                    #   - Go up two levels to project root
-                    #   - Then pipelines/shelx/script/shelx.def.xml
-                    #
-                    # Therefore, we resolve relative to self.task_manager_dir (which is rooted to
-                    # __file__, making it CWD-independent)
-                    abs_path = Path(self.task_manager_dir) / rel_path
-                    abs_path = abs_path.resolve()  # Resolve any .. in the path
-
-                    if abs_path.exists():
-                        return abs_path
-
+        rel_path = defXmlPaths.get(task_name)  # relative to I2_TOP
+        if rel_path:
+            abs_path = (I2_TOP / rel_path).resolve()
+            if abs_path.exists():
+                return abs_path
         return None
 
-    def getReportClass(self, name: str, version: Optional[str] = None) -> Optional[Type]:
+    def getReportClass(self, name: str) -> Optional[Type]:
         """
         Get the report class for a plugin/task.
 
@@ -267,12 +222,11 @@ class CTaskManager:
 
         Args:
             name: Name of the task/plugin (e.g., "refmac", "pointless")
-            version: Optional version string (currently ignored)
 
         Returns:
             Report class if found, None otherwise
         """
-        return self.report_registry.get_report_class(name, version)
+        return self.report_registry.get_report_class(name)
 
     def get_report_metadata(self, name: str) -> Optional[Dict[str, Any]]:
         """
@@ -317,7 +271,7 @@ class CTaskManager:
             os.path.join(ccp4i2_root, "pipelines", "*", "wrappers", "*", "script"),
         ]
 
-    def searchReferenceFile(self, name: Optional[str] = None, version: Optional[str] = None,
+    def searchReferenceFile(self, name: Optional[str] = None,
                            cformat: str = 'medline', drillDown: bool = False) -> List[str]:
         """
         Search for reference/bibliography files for a task.
@@ -326,7 +280,6 @@ class CTaskManager:
 
         Args:
             name: Name of the task/plugin (e.g., "refmac", "servalcat_pipe")
-            version: Optional version (currently ignored)
             cformat: Format of reference file (default "medline")
             drillDown: If True, also search for reference files in subtasks
 
@@ -360,7 +313,7 @@ class CTaskManager:
 
         return file_list
 
-    def getReportAttribute(self, name: str, attribute: str, version: Optional[str] = None) -> Any:
+    def getReportAttribute(self, name: str, attribute: str) -> Any:
         """
         Get an attribute from a plugin's report class or metadata.
 
@@ -370,7 +323,6 @@ class CTaskManager:
         Args:
             name: Name of the task/plugin (e.g., "refmac", "pointless")
             attribute: Name of the attribute to retrieve (e.g., "WATCHED_FILE")
-            version: Optional version string (currently ignored)
 
         Returns:
             Attribute value if found, None otherwise
@@ -381,7 +333,7 @@ class CTaskManager:
             return metadata[attribute]
 
         # Fall back to importing the class for non-metadata attributes
-        report_class = self.getReportClass(name, version)
+        report_class = self.getReportClass(name)
         if report_class is None:
             return None
 
@@ -436,10 +388,6 @@ class CTaskManager:
 
         # Normalize spaces to underscores
         module = str(module).replace(' ', '_').lower()
-
-        # Map some legacy names
-        if module == 'expt_data_util':
-            module = 'expt_data_utility'
 
         return module
 
@@ -525,11 +473,11 @@ class CTaskManager:
         return tree
 
     @property
-    def task_lookup(self) -> Dict[str, Dict[str, Dict[str, Any]]]:
+    def task_lookup(self) -> Dict[str, Dict[str, Any]]:
         """
         Generate the task lookup structure for the frontend.
 
-        Returns a nested dict: {taskName: {version: {metadata...}}}
+        Returns a nested dict: {taskName: {metadata...}}
 
         The frontend expects this structure for displaying task cards:
         - TASKTITLE: Full title
@@ -543,16 +491,14 @@ class CTaskManager:
         2. plugin_lookup.json (extracted from plugin scripts)
         3. Defaults
         """
-        lookup: Dict[str, Dict[str, Dict[str, Any]]] = {}
+        lookup: Dict[str, Dict[str, Any]] = {}
 
         for task_name, plugin_meta in self.plugin_lookup.items():
-            version = str(plugin_meta.get('TASKVERSION', '0.0'))
-
             # Get rich metadata from task_metadata.json (extracted from GUI widgets)
             ui_meta = self.task_metadata.get(task_name, {})
 
             # Merge metadata with priority: ui_meta > plugin_meta > defaults
-            task_info = {
+            lookup[task_name] = {
                 'TASKTITLE': ui_meta.get('TASKTITLE') or plugin_meta.get('TASKTITLE') or task_name,
                 'taskName': task_name,
                 'DESCRIPTION': ui_meta.get('DESCRIPTION') or plugin_meta.get('DESCRIPTION') or '',
@@ -560,8 +506,6 @@ class CTaskManager:
                 'shortTitle': ui_meta.get('shortTitle') or plugin_meta.get('SHORTTASKTITLE') or plugin_meta.get('TASKTITLE') or task_name,
                 'isAutogenerated': task_name in AUTOGENERATED_TASKS,
             }
-
-            lookup[task_name] = {version: task_info}
 
         return lookup
 
@@ -593,12 +537,9 @@ def main():
 
     if args.rebuild:
         dir_path = os.path.dirname(os.path.abspath(__file__))
-        defxml_script = os.path.join(dir_path, "task_manager", "defxml_lookup.py")
         plugin_script = os.path.join(dir_path, "task_manager", "plugin_lookup.py")
         report_script = os.path.join(dir_path, "task_manager", "report_lookup.py")
 
-        print("Regenerating defxml_lookup.json...")
-        subprocess.run([sys.executable, defxml_script], check=True)
         print("Regenerating plugin_lookup.json and plugin_registry.py...")
         subprocess.run([sys.executable, plugin_script], check=True)
         print("Regenerating report_lookup.json and report_registry.py...")

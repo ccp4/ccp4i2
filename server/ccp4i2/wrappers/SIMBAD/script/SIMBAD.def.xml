@@ -2,16 +2,9 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>jmht</userId>
-        <creationTime>2017-11-17T11:32:25.035413</creationTime>
-        <pluginVersion></pluginVersion>
-        <ccp4iVersion>0.0.1</ccp4iVersion>
         <pluginName>SIMBAD</pluginName>
-        <pluginTitle>Brief title For plugin</pluginTitle>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="SIMBAD">
-<!--You must provide an inputData container, although it can be empty-->
         <container id="inputData">
             <content id="F_SIGF">
                 <className>CObsDataFile</className>
@@ -48,7 +41,6 @@
 		              <default>9993</default>
 	            </qualifiers>
             </content>
-            <!-- Advanced options -->
  			<content id="SIMBAD_PROCESS_ALL">
 	            <className>CBoolean</className>
 	            <qualifiers>
@@ -95,9 +87,6 @@
 	            </qualifiers>
             </content>
         </container>
-        <container id="controlParameters">
-        </container>
-<!--You must provide an outputData container, although it can be empty-->
         <container id="outputData">
             <content id="XYZOUT">
                 <className>CList</className>

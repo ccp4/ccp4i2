@@ -10,7 +10,6 @@ class fft(CPluginScript):
     TASKTITLE = 'Export map'
     TASKNAME = 'fft'
     TASKCOMMAND = 'cfft'
-    TASKVERSION= 0.0
 
     def makeCommandAndScript(self):
         inp = self.container.inputData

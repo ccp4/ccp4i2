@@ -10,14 +10,11 @@ from ccp4i2.wrappers.scaleit.script.scaleit_utils import DatalistCheck
 
 
 class scaleit(CPluginScript):
-    TASKMODULE = 'test'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Compare two or more datafiles' # A short title for gui menu
-    TASKNAME = 'scaleit'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
+    TASKMODULE = 'test'
+    TASKTITLE = 'Compare two or more datafiles'
+    TASKNAME = 'scaleit'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
-    TASKCOMMAND = 'scaleit'   # The command to run the executable
-    COMLINETEMPLATE = None 
-    COMTEMPLATE = None
+    TASKCOMMAND = 'scaleit'
 
     ERROR_CODES = {  200 : { 'description' : 'Too few datasets defined' },
                      201 : { 'description' : 'Inconsistent cells between datasets'}

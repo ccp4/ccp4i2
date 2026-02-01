@@ -397,10 +397,9 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
                 print("##################################################")
                 print("FRACTORS FROM MODELCRAFT")
                 print("Try to read json...")
-                directory = os.path.join(self.modelcraft.getWorkDirectory(), "modelcraft")
-                modelcraft_json = os.path.join(directory, "modelcraft.json")
-                print("...",modelcraft_json)
-                with open(modelcraft_json) as stream:
+                path = self.modelcraft.workDirectory / "modelcraft" / "modelcraft.json"
+                print("...", path)
+                with path.open() as stream:
                     result = json.load(stream)
                 print("read ...")
                 print(result)
@@ -593,8 +592,7 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         self.xmlroot = copy.deepcopy(self.oldTree)
         print("Do something else!"); sys.stdout.flush()
         tree = etree.Element("ModelCraft")
-        directory = os.path.join(modelcraft.getWorkDirectory(), "modelcraft")
-        tree.text = directory
+        tree.text = str(modelcraft.workDirectory / "modelcraft")
         self.xmlroot.append(tree)
         print("Done something else!"); sys.stdout.flush()
         self.flushXML()
@@ -705,10 +703,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         if plugin.editComFile:
             plugin.displayEditor()
             return
-        #return apply(plugin.startProcess, [plugin.command,[plugin.postProcess,{}]] , kw )
         try:
-            #MN...apply has been deprecated in favour of the syntax below since python 2.3
-            #rv = apply(plugin.startProcess, [plugin.command] , kw )
             rv = self.startModelCraftProcess(plugin)
         except:
             plugin.appendErrorReport(48, exc_info=sys.exc_info())
@@ -729,8 +724,7 @@ write_pdb_file(MolHandle_1,os.path.join(dropDir,"output.pdb"))''')
         self.oldTree = copy.deepcopy(self.xmlroot)
         self.xmlroot = copy.deepcopy(self.oldTree)
         tree = etree.Element("ModelCraft")
-        directory = os.path.join(plugin.getWorkDirectory(), "modelcraft")
-        tree.text = directory
+        tree.text = str(plugin.workDirectory / "modelcraft")
         self.xmlroot.append(tree)
         self.flushXML()
         rv = plugin.process()

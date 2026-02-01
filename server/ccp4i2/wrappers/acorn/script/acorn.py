@@ -9,21 +9,12 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class acorn(CPluginScript):
-    
-    TASKMODULE = 'density_modification'                 # Gui-2 Menu Class
-    TASKTITLE = 'Acorn'                         # Menu title
-    TASKNAME = 'acorn'                          # Task name - should be same as class name
-    TASKCOMMAND = 'acorn'                       # The command to run the executable
-    TASKVERSION= 1.0                            # Version of this plugin
-    COMTEMPLATE = None                          # The program com file template
-    COMTEMPLATEFILE = None                      # Name of file containing com file template
-    PERFORMANCECLASS = 'CExpPhasPerformance'    # KJS Need to change this
-    ERROR_CODES = {  200 : { 'description' : 'Unexpected reflections in input file, list in stdout.txt'} }
-    MAINTAINER = "Kyle.Stevenson@stfc.ac.uk"
-    
-    def __init__(self,*args, **kwargs):
-        CPluginScript.__init__(self,*args, **kwargs)
-    
+    TASKMODULE = 'density_modification'
+    TASKTITLE = 'Acorn'
+    TASKNAME = 'acorn'
+    TASKCOMMAND = 'acorn'
+    PERFORMANCECLASS = 'CExpPhasPerformance'
+
     def processInputFiles(self):
         print("Processing INPUT Files - (Acorn)")
         
@@ -255,7 +246,7 @@ class acorn(CPluginScript):
             print("\n \n")
             return CPluginScript.FAILED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         print("Constructing Command Script for Acorn (KJS)")
 
         mainfile = os.path.join(self.getWorkDirectory(), 'EXTENDED.mtz')

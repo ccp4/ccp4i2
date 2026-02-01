@@ -1,5 +1,4 @@
 import os
-import sys
 import xml.etree.ElementTree as etree
 
 from ccp4i2.core import CCP4ModelData, CCP4Modules
@@ -48,10 +47,7 @@ class ProvideAsuContents_report(Report):
               #A new job
               with open(outputXmlFile,'r') as inputFile:
                   text = inputFile.read()
-                  if sys.version_info > (3,0):
-                      outputXml = etree.fromstring( text.encode('utf-8'))
-                  else:
-                      outputXml = etree.fromstring( text )
+                  outputXml = etree.fromstring( text.encode('utf-8'))
                   matthewsAnalysis = outputXml.findall( ".//matthewsCompositions" )
                   if len(matthewsAnalysis) > 0 and len(matthewsAnalysis[0])>0:
                       text = ''

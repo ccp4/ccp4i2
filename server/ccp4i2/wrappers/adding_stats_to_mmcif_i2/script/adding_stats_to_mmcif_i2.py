@@ -37,19 +37,10 @@ conversions = {
 
 
 class adding_stats_to_mmcif_i2(CPluginScript):
-    # Task name - should be same as class name and match pluginTitle in the .def.xml file
     TASKNAME = 'adding_stats_to_mmcif_i2'
-    TASKVERSION = 0.1               # Version of this plugin
     MAINTAINER = 'martin.noble@ncl.ac.uk'
-    ERROR_CODES = {201: {'description': 'Failed to analyse output files'},
-                   202: {'description': 'Failed applying selection ot PDB file'},
-                   203: {'description': 'Input XML file contains neither AIMLESS nor AIMLESS_PIPE nodes'},
-                   204: {'description': 'Failed with adding_stats_to_mmcif'}
-                   }
-    PURGESEARCHLIST = [['hklin.mtz', 0],
-                       ['log_mtzjoin.txt', 0]
-                       ]
-    RUNEXTERNALPROCESS = False
+    ERROR_CODES = {203: {'description': 'Input XML file contains neither AIMLESS nor AIMLESS_PIPE nodes'},
+                   204: {'description': 'Failed with adding_stats_to_mmcif'}}
 
     def __init__(self, *args, **kws):
         super(adding_stats_to_mmcif_i2, self).__init__(*args, **kws)
@@ -64,7 +55,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         self.coordinatesToUse = self.container.inputData.XYZIN
         return CPluginScript.SUCCEEDED
 
-    def startProcess(self, *args, **kwargs):
+    def startProcess(self):
         self.createReflectionsCif()
 
         from adding_stats_to_mmcif.__main__ import run_process

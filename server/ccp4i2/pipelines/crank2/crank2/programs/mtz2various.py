@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys
-from program import program
-import common
+from ..program import program
+from .. import common
 
 class mtz2various(program):
   name="MTZ2VARIOUS"

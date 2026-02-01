@@ -10,7 +10,6 @@ class cpatterson(CPluginScript):
     TASKTITLE = 'Prepare map coefficients'
     TASKNAME = 'cpatterson'
     TASKCOMMAND = 'cpatterson'
-    TASKVERSION= 0.0
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     def processInputFiles ( self ):

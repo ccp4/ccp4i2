@@ -4,12 +4,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class import_serial_pipe(CPluginScript):
-    TASKMODULE = 'data_entry'         # GIU menu location
-    TASKTITLE = 'Import Serial Pipeline'       # Short title for GUI
-    TASKNAME = 'import_serial_pipe'        # Task name - same as class name
-    TASKVERSION = 1.1                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
+    TASKMODULE = 'data_entry'
+    TASKTITLE = 'Import Serial Pipeline'
+    TASKNAME = 'import_serial_pipe'
     MAINTAINER = 'martin.maly@soton.ac.uk'
 
     def __init__(self, *args, **kwargs):

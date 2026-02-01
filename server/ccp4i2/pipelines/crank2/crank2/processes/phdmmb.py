@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import os,sys
-from process import process, crvapi
+from ..process import process, crvapi
 import threading
-import common
+from .. import common
 par=common.parameter
 
 class phdmmb(process):

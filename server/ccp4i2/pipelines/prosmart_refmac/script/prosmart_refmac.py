@@ -9,7 +9,6 @@ from rdkit import Chem
 from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.base_object.error_reporting import CErrorReport
 from ccp4i2.core.mgimports import mmdb2
 from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
 
@@ -19,14 +18,9 @@ class prosmart_refmac(CPluginScript):
     TASKMODULE = 'refinement'
     TASKTITLE = 'Refine with Refmac & optional restraints from Prosmart & Platonyzer'
     TASKNAME = 'prosmart_refmac'
-    TASKVERSION= 0.0
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 240
-    MAXNJOBS = 4
     PERFORMANCECLASS = 'CRefinementPerformance'
-    SUBTASKS=['Platonyzer','prosmart','refmac']
-    RUNEXTERNALPROCESS=False
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 
@@ -50,26 +44,7 @@ class prosmart_refmac(CPluginScript):
         self.xmlroot = etree.Element("RefmacOptimiseWeight")
         self.xmlroot2 = etree.Element("RefmacOptimiseWeight")
 
-    def validity(self) -> CErrorReport:
-        """Validate the plugin's container, filtering out HD_INIT errors.
-
-        Legacy input_params.xml files sometimes contain invalid HD_INIT values
-        (e.g., "NO") that were written as defaults by older CCP4i2 versions.
-        Since HD_INIT is rarely user-specified and the invalid values don't
-        affect execution, we filter out validation errors for this parameter.
-        """
-        error = super().validity()
-
-        # Filter out errors related to HD_INIT (legacy compatibility)
-        filtered_errors = [
-            e for e in error._errors
-            if 'HD_INIT' not in e.get('name', '')
-        ]
-        error._errors = filtered_errors
-
-        return error
-
-    def startProcess(self, processId):
+    def startProcess(self):
         """
         Main pipeline execution - runs ProSMART, Platonyzer, then Refmac.
 
@@ -803,7 +778,7 @@ class prosmart_refmac(CPluginScript):
             except Exception:
                 pass
 
-        self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
+        self.appendErrorReport(40, "240")
         self.reportStatus(CPluginScript.FAILED)
 
 # Function called from gui to support exporting MTZ files

@@ -4,8 +4,8 @@ import io
 import os
 import sys
 
-import common
-import manager
+from . import common
+from . import manager
 
 no_argparse=False
 
@@ -104,11 +104,11 @@ class parse:
       self.PrintProcesses()
       common.Error('No such process {0} supported.'.format(proc), debug=False)
     else:
-      from process import process
+      from .process import process
       process.from_name(proc,None).PrintParams()
 
   def PrintProcesses(self):
-    from process import process
+    from .process import process
     common.Info('The following processes are supported:')
     for proc in manager.crank.supported_procs:
       proc_obj = process.from_name(proc,None)
@@ -119,7 +119,7 @@ class parse:
         common.Info('{0:15}    supported programs:  {1}'.format('', ', '.join(proc_obj.supported_progs)))
 
   def PrintDataObjects(self):
-    from data import data_container
+    from .data import data_container
     common.Info('The following data objects are supported:')
     for data_obj in data_container.__subclasses__():
       common.Info('\n{0:10} {1}'.format(data_obj.__name__, data_obj.description))
@@ -232,16 +232,12 @@ class parse:
 
 
   def ParseInputFile(self,crank,dummy=False):
-    # may be changed to only str after py2 support is obsoleted
-    self.unicod = str
-    if sys.version_info[0] < 3:
-      self.unicod = unicode
     # we can read from stdin or file
     if self.pars_arg.keyin:
       self.f_in=self.pars_arg.keyin
     else:
       if not self.f_in: # allow multiple reading of stdin on terminals that dont support seek in << redirection
-        self.f_in=io.StringIO(self.unicod(sys.stdin.read()))
+        self.f_in=io.StringIO(str(sys.stdin.read()))
       if dummy:
         # a CCP4 CRANK header may come here
         print( 'CRANK2. Waiting for keyword input.' )

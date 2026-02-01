@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class pointless_reindexToMatch(CPluginScript):
     TASKNAME = 'pointless_reindexToMatch'
     TASKCOMMAND = 'pointless'
-    TASKVERSION= 0.0
     
     ERROR_CODES = { 201 : {'description' : 'Failed to make input files' }, 202 : {'description' : 'Failed to make output files' }, 203 : {'description' : 'Failed to identify a best reindexing' }}
 

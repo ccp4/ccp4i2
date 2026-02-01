@@ -8,10 +8,8 @@ from ccp4i2.core import CCP4PluginScript
 
 class xia2_aimless(CCP4PluginScript.CPluginScript):
 
-    TASKMODULE = None      # Where this plugin will appear on the gui
     TASKTITLE = 'Aimless in XIA2'
-    TASKNAME = 'xia2_aimless'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
+    TASKNAME = 'xia2_aimless'
 
     ERROR_CODES = { 101 : {'description' : 'XIA2 run directory does not exist' },
                     102 : {'description' : 'The XIA2 job failed with error file' },

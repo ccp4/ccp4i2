@@ -105,7 +105,7 @@ class CtruncateConverter:
 
         # Create ctruncate plugin instance
         ctruncate_plugin = CtruncatePlugin(parent=None, name='ctruncate_converter')
-        ctruncate_plugin.workDirectory = str(work_dir)
+        ctruncate_plugin.workDirectory = work_dir
 
         # Set up input file
         input_obs = CObsDataFile(parent=ctruncate_plugin.container.inputData, name='OBSIN')
@@ -124,12 +124,7 @@ class CtruncateConverter:
         # Execute the conversion
         try:
             # Build command
-            status = ctruncate_plugin.makeCommandAndScript()
-            if status != ctruncate_plugin.SUCCEEDED:
-                raise CException(
-                    CtruncateConverter, 20,
-                    details="ctruncate.makeCommandAndScript() failed"
-                )
+            ctruncate_plugin.makeCommandAndScript()
 
             # Run the process
             status = ctruncate_plugin.process()
@@ -147,12 +142,7 @@ class CtruncateConverter:
                 )
 
             # Process output files
-            status = ctruncate_plugin.processOutputFiles()
-            if status != ctruncate_plugin.SUCCEEDED:
-                raise CException(
-                    CtruncateConverter, 20,
-                    details="ctruncate.processOutputFiles() failed"
-                )
+            ctruncate_plugin.processOutputFiles()
 
             # Get the output mini-MTZ file
             if not ctruncate_plugin.container.outputData.HKLOUT.isSet():

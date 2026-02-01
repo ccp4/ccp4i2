@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys,shutil,time
-from program import program
-import common
+from ..program import program
+from .. import common
 
 class refmac(program):
   name="REFMAC5"

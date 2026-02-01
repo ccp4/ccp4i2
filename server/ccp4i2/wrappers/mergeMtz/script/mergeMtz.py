@@ -1,19 +1,13 @@
+import re
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
-  
+
 class mergeMtz(CPluginScript):
+    TASKTITLE = 'Merge experimental data objects to MTZ'
+    TASKNAME = 'mergeMtz'
 
-    TASKTITLE = 'Merge experimental data objects to MTZ'     # A short title for gui menu
-    TASKNAME = 'mergeMtz'                                  # Task name - should be same as class name
-    RUNEXTERNALPROCESS = False                                  # There is not external process
-    MAINTAINER = 'liz.potterton@york.ac.uk'
-
-
-    def startProcess(self,command,**kw):
-      # Reimplement the method that normally starts an external process to do the processing by
-      # calling the CPluginScript.joinMtz() method 
-      import re
+    def startProcess(self):
       inFiles = []
       for miniMtz in self.container.inputData.MINIMTZINLIST:
         if miniMtz.fileName.isSet() and miniMtz.fileName.exists():
@@ -29,11 +23,6 @@ class mergeMtz(CPluginScript):
               inFiles.append([miniMtz.fileName.__str__(),stdColumnNames])
             else:
               inFiles.append([miniMtz.fileName.__str__(),userColumnNames])
-            
-          
-      #print 'mergeMtz.process inFiles',inFiles
+
       rv = self.joinMtz(self.container.outputData.HKLOUT.fullPath.__str__(),inFiles)
       return rv
-
-      
-     

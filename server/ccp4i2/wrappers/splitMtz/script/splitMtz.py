@@ -58,10 +58,6 @@ class splitMtz(CPluginScript):
 
     TASKTITLE = 'Import and Split MTZ to experimental data objects'
     TASKNAME = 'splitMtz'
-    TASKCOMMAND = ''
-    TASKVERSION = 0.1
-    RUNEXTERNALPROCESS = False
-    MAINTAINER = 'liz.potterton@york.ac.uk'
 
     ERROR_CODES = {
         200: {'description': 'No column groups selected for splitting'},
@@ -71,7 +67,7 @@ class splitMtz(CPluginScript):
         204: {'description': 'Input MTZ file not found'},
     }
 
-    def startProcess(self, command, **kw):  # noqa: ARG002
+    def startProcess(self):
         inp = self.container.inputData
         out = self.container.outputData
 

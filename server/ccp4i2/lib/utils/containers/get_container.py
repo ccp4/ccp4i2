@@ -23,7 +23,7 @@ def get_job_container(the_job: models.Job):
         CCP4Container.CContainer: The loaded job container.
     """
     defFile = CCP4TaskManager.CTaskManager().locate_def_xml(
-        task_name=the_job.task_name, version=None
+        task_name=the_job.task_name
     )
     # print 'CProjectDirToDb.globJobs defFile',defFile
     container = CCP4Container.CContainer()

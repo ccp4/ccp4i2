@@ -45,14 +45,13 @@ Author: Generated for CCP4i2 Qt-free migration
 Date: 2025-11-07
 """
 
-from __future__ import annotations
 
 import os
 import sys
 import time
+import shutil
 import subprocess
 import threading
-from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional, Union
 
 from ccp4i2.core.base_object.error_reporting import CErrorReport
@@ -73,7 +72,7 @@ class CProcessManager:
     """
 
     # Singleton instance
-    _instance: Optional[CProcessManager] = None
+    _instance: Optional["CProcessManager"] = None
 
     # Error codes matching original CProcessManager
     ERROR_CODES = {
@@ -213,6 +212,7 @@ class CProcessManager:
         pid = self.lastProcessId
 
         # Parse arguments
+        command = shutil.which(command)
         if args is None:
             args = []
         argList = [command]

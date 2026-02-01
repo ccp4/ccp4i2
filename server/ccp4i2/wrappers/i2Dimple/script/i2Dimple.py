@@ -1,5 +1,4 @@
 import os
-import platform
 
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4XtalData
@@ -8,22 +7,11 @@ from ccp4i2.core.mgimports import mmdb2 as mmdb
 
 
 class i2Dimple(CPluginScript):
-    TASKNAME = 'i2Dimple'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION= 0.1               # Version of this plugin
-    MAINTAINER = 'YOUR_EMAIL_ADDRESS'
+    TASKNAME = 'i2Dimple'
     ERROR_CODES = { 201 : {'description' : 'Unable to extract information from dimple.log...run incomplete ?' },
-                    202 : {'description' : 'Failed applying selection ot PDB file' }
                     }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                        ['log_mtzjoin.txt', 0]
-                       ]
     TASKCOMMAND="dimple"
-    if platform.system() == 'Windows': TASKCOMMAND = 'dimple.bat'
     PERFORMANCECLASS = 'CRefinementPerformance'
-
-
-    def __init__(self, *args, **kws):
-        super(i2Dimple, self).__init__(*args, **kws)
 
     def processInputFiles(self):
         inputs = [ ['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN] ]
@@ -32,14 +20,6 @@ class i2Dimple(CPluginScript):
         self.hklin,self.columns,error = self.makeHklin0(inputs)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
-        #makeHklin0 takes as arguments a list of sublists
-        #Each sublist comprises 1) An input DATA object identifier as specified ni the inputData container of .de.f.xml
-        #                       2) The requested data representation type to be placed into the file that is generated
-        #makeHklin returns a tuple comprising:
-        #                       1) the file path of the file that has been created
-        #                       2) a list of strings each of which contains a comma-separated list of column labels output from
-        #                       the input data objects that were input
-        #                       3) A CCP4 Error object
         self.columnsAsArray = self.columns.split(",")
 
         self.xyzin = os.path.join(self.getWorkDirectory(),"selected_xyzin.pdb")
@@ -62,7 +42,7 @@ class i2Dimple(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self,**kw):
+    def makeCommandAndScript(self):
         self.appendCommandLine(["-M",self.container.controlParameters.MR_WHEN_R.__str__()])
         self.appendCommandLine(["--fcolumn", self.columnsAsArray[0],
                                 "--sigfcolumn", self.columnsAsArray[1]])

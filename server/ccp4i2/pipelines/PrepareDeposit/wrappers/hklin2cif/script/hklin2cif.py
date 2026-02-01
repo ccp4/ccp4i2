@@ -8,9 +8,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class hklin2cif(CPluginScript):
     DESCRIPTION = 'Convert hklin file (+/- scaled unmerged data) creates as aprt of adding_stats_to_mmcif pipeline'
-    TASKNAME = 'hklin2cif'                                  # Task name - should be same as class name
-    TASKVERSION= 0.0                                     # Version of this plugin
-    TIMEOUT_PERIOD =3.
+    TASKNAME = 'hklin2cif'
     TASKCOMMAND='gemmi'
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' },}

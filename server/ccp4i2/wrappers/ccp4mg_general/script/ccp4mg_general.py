@@ -10,13 +10,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ccp4mg_general(CPluginScript):
     
-    TASKMODULE = 'model_building'            # Where this plugin will appear on the gui
-    TASKTITLE = 'Molecular graphics visualization and figure creation - CCP4MG'     # A short title for gui menu
-    TASKNAME = 'ccp4mg_general'                  # Task name - should be same as class name
-    TASKCOMMAND = 'ccp4mg'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
+    TASKMODULE = 'model_building'
+    TASKTITLE = 'Molecular graphics visualization and figure creation - CCP4MG'
+    TASKNAME = 'ccp4mg_general'
+    TASKCOMMAND = 'ccp4mg'
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'CCP4MG exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
@@ -258,10 +256,7 @@ class ccp4mg_general(CPluginScript):
                 #an issue with the existence of files
                 pass
 
-        if sys.version_info > (3,0):
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
-        else:
-            status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True)
+        status_xml += etree.tostring(tree,encoding='utf-8', pretty_print=True).decode("utf-8")
 
         print("Writing",self.mgStatusPath)
         print(status_xml)

@@ -15,10 +15,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class mtzheader(CPluginScript):
 
-    TASKMODULE = 'test'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Read MTZ header' # A short title for gui menu
-    TASKNAME = 'mtzheader'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
+    TASKMODULE = 'test'
+    TASKTITLE = 'Read MTZ header'
+    TASKNAME = 'mtzheader'
 
     def process(self):
 

@@ -11,7 +11,6 @@ class cmapcoeff(CPluginScript):
     TASKTITLE = 'Prepare map coefficients'
     TASKNAME = 'cmapcoeff'
     TASKCOMMAND = 'cmapcoeff'
-    TASKVERSION= 0.0
     WHATNEXT = [ 'coot_rebuild' ]
     MAINTAINER = 'jon.agirre@york.ac.uk'
 

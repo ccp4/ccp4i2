@@ -1,26 +1,10 @@
 from pathlib import Path
 from shutil import rmtree
-from xml.etree import ElementTree as ET
 from django.test import TestCase, override_settings
 from django.conf import settings
 from ...db.models import Job, File, FileImport
 from ...db.import_i2xml import import_ccp4_project_zip
 
-from ...lib.utils.plugins.get_plugin import get_job_plugin
-from ...lib.utils.formats.mtz import mtz_as_dict
-from ...lib.utils.parameters.unset_output_data import unset_output_data
-from ...lib.utils.containers.remove_defaults import (
-    remove_container_default_values,
-)
-from ...lib.utils.containers.find_objects import find_objects
-from ...lib.utils.parameters.load_xml import load_nested_xml
-from ...lib.utils.containers.validate import validate_container
-from ...lib.utils.jobs.clone import clone_job
-from ...lib.utils.jobs.create import create_job
-from ...lib.utils.containers.json_for_container import json_for_job_container
-from ...lib.utils.navigation.task_tree import get_task_tree
-from ...lib.utils.reporting.i2_report import get_report_job_info
-from ...lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
 from ...lib.utils.files.export_mtz import export_job_mtz_file, get_source_reflection_file
 
 

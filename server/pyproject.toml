@@ -30,14 +30,15 @@ dependencies = [
     "django-cors-headers",
     "django-filter",
     "djangorestframework",
+    "lxml_html_clean",     # lxml.html.clean moved to separate package
     "mypy",
     "pytest-asyncio",
     "pytest-django",
     "pytest-xdist",
-    "uvicorn",
+    "python-docx>=0.8.11",
     "requests-cache",
+    "uvicorn",
     "xmlschema",
-    "lxml_html_clean",     # lxml.html.clean moved to separate package
     "openpyxl",            # Excel file parsing for ADME importers
 ]
 

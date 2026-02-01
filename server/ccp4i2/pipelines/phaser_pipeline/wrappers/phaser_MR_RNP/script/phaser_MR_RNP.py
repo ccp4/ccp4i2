@@ -4,17 +4,12 @@ from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phas
 
 class phaser_MR_RNP(phaser_MR_AUTO.phaser_MR_AUTO):
 
-    TASKNAME = 'phaser_MR_RNP'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
-    RUNEXTERNALPROCESS=False
+    TASKNAME = 'phaser_MR_RNP'
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}
 
-    def startProcess(self, command, **kw):
+    def startProcess(self):
         import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)

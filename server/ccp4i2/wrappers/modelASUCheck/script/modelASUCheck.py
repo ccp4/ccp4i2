@@ -11,15 +11,8 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class modelASUCheck(CPluginScript):
     TASKNAME = "modelASUCheck"
-    TASKVERSION = 0.1
-    MAINTAINER = "person@server.com"
-    ERROR_CODES = {
-        201: {"description": "Failed to analyse output files"},
-        202: {"description": "Failed applying selection ot PDB file"},
-    }
-    RUNEXTERNALPROCESS = False
 
-    def startProcess(self, command=None, handler=None, **kw):
+    def startProcess(self):
         xyzin = self.container.inputData.XYZIN
         asuin = self.container.inputData.ASUIN
 

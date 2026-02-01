@@ -49,35 +49,22 @@ class CallbackObject(object):
 
 
 class phaser_analysis(CPluginScript):
-    
-    TASKMODULE = 'test'      # Where this plugin will appear on the gui
-    TASKTITLE = 'phaser_analysis' # A short title for gui menu
-    TASKNAME = 'phaser_analysis'   # Task name - should be same as class name
-    TASKCOMMAND = 'phaser_analysis'
-    TASKVERSION= 0.0               # Version of this plugin
+    TASKMODULE = 'test'
+    TASKTITLE = 'phaser_analysis'
+    TASKNAME = 'phaser_analysis'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
-    
-    RUNEXTERNALPROCESS=False
  
-    def startProcess(self, dummy,  **kw):
+    def startProcess(self):
         # Where are we?
         self.xmlout = self.makeFileName( 'PROGRAMXML' )
-        #self.xmlout = 'info.xml'  # for now
 
         # Data from input
         filename = self.container.inputData.HKLIN.fullPath
-        if 'filename' in kw:
-            filename = str(kw['filename'])
         print("Filename: ",filename)
 
-        self.pxdname = 'Dname'
-        if 'pxdname' in kw:
-            self.pxdname = kw['pxdname']
-        
+        self.pxdname = str(self.container.inputData.PXDNAME)
+
         threshold = self.container.controlParameters.INFOCONTENTTHRESHOLD
-        if 'threshold' in kw:
-            threshold = kw['threshold']
-        #print('threshold: ', threshold)
         self.threshold = float(threshold)
 
         inputObject = phaser.InputMR_DAT()
@@ -100,7 +87,6 @@ class phaser_analysis(CPluginScript):
         outputObject = phaser.Output()
         callbackobject = CallbackObject()
         outputObject.setPhenixCallback(callbackobject)
-
 
         try:
             self.resultObject = phaser.runNCS(inputObject, outputObject)

@@ -4,7 +4,7 @@ import xml.etree.ElementTree as etree
 
 from ccp4i2.report.CCP4ReportParser import Report
 from ccp4i2.wrappers.aimless.script.aimless_report import aimless_report
-from ccp4i2.wrappers.refmac_i2.script import refmac_report
+from ccp4i2.wrappers.refmac.script import refmac_report
 
 
 class adding_stats_to_mmcif_i2_report(Report):

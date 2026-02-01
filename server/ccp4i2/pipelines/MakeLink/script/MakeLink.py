@@ -1,20 +1,9 @@
-import os
-
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class MakeLink(CPluginScript):
-    TASKNAME = 'MakeLink'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION= 0.1               # Version of this plugin
+    TASKNAME = 'MakeLink'
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
-    ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' },
-                    202 : {'description' : 'Failed applying selection to PDB file' },
-                    203 : {'description' : 'Required input data not set' }
-                    }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                        ['log_mtzjoin.txt', 0]
-                       ]
-    RUNEXTERNALPROCESS = False
 
     def __init__(self, *args, **kws):
         super(MakeLink, self).__init__(*args, **kws)
@@ -198,8 +187,8 @@ class MakeLink(CPluginScript):
        return instruct
     
     def createLinkInstructionFile(self,instruct):
-       instructFile = os.path.join(self.getWorkDirectory(),"link_instruction.txt")
-       with open (instructFile, "w") as file :
+       instructFile = self.workDirectory / "link_instruction.txt"
+       with instructFile.open("w") as file:
           file.write(instruct)
        self.container.outputData.INSTRUCTION_FILE.setFullPath(instructFile)
        self.container.outputData.INSTRUCTION_FILE.annotation.set('AceDRG instruction file')
@@ -380,7 +369,7 @@ class MakeLink(CPluginScript):
              if st:
                for model in st:
                  apply_links_to_model(st,model,link_desc)
-               modelOut = os.path.join(self.getWorkDirectory(),"ModelWithLinks.pdb")
+               modelOut = str(self.workDirectory / "ModelWithLinks.pdb")
                st.write_pdb(modelOut,use_linkr=True)
              else:
                raise Exception("Cannot read input model: "+path)
@@ -395,7 +384,7 @@ class MakeLink(CPluginScript):
                 for model in st:
                   apply_links_to_model(st,model,link_desc)
                 doc_out.add_copied_block(st.make_mmcif_document().sole_block())
-            modelOut = os.path.join(self.getWorkDirectory(),"ModelWithLinks.cif")
+            modelOut = str(self.workDirectory / "ModelWithLinks.cif")
             doc_out.write_file(modelOut)
    
          self.container.outputData.XYZOUT.setFullPath(modelOut)
@@ -409,7 +398,7 @@ class MakeLink(CPluginScript):
 
 
     #The startProcess method is where you build in the pipeline logic
-    def startProcess(self, command, **kws):
+    def startProcess(self):
         self.AcedrgLinkPlugins = []
         self.completedPlugins = []
 
@@ -469,9 +458,7 @@ class MakeLink(CPluginScript):
             
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
-        import os
         import shutil
-        import sys
 
         from lxml import etree
 
@@ -479,8 +466,8 @@ class MakeLink(CPluginScript):
         pipelineXMLStructure = etree.Element("MakeLink")
         
         for iPlugin, AcedrgLinkPlugin in enumerate(self.AcedrgLinkPlugins):
-            self.container.outputData.CIF_OUT.setFullPath(os.path.join(self.getWorkDirectory(),AcedrgLinkPlugin.container.inputData.LINK_ID.__str__()+"_link.cif"))
-            shutil.copyfile(AcedrgLinkPlugin.container.outputData.CIF_OUT.fullPath.__str__(),self.container.outputData.CIF_OUT.fullPath.__str__())
+            self.container.outputData.CIF_OUT.setFullPath(self.workDirectory / (AcedrgLinkPlugin.container.inputData.LINK_ID.__str__()+"_link.cif"))
+            shutil.copyfile(AcedrgLinkPlugin.container.outputData.CIF_OUT.fullPath.__str__(), self.container.outputData.CIF_OUT.fullPath.__str__())
             
             #Create link records, if an input model is provided
             link_bond_value = self.get_link_bond_value(self.container.outputData.CIF_OUT.fullPath.__str__())

@@ -7,8 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class TestObsConversions(CPluginScript):
     TASKTITLE = 'TestObsConversions'
     TASKNAME = 'TestObsConversions'
-    TASKVERSION= 0.0
-    RUNEXTERNALPROCESS= False
     PERFORMANCECLASS = 'CTestObsConversionsPerformance'
     ERROR_CODES = { 201 : {'description' : 'Failed to turn the provided data object into the requested input representation' },}
     ERROR_CODES = { 202 : {'description' : 'Failed to turn the intermediate data object into the requested output representation' },}
@@ -17,7 +15,7 @@ class TestObsConversions(CPluginScript):
         super(TestObsConversions,self).__init__(parent, name, workDirectory, dummy, taskName, **kw)
         self.xmlroot = etree.Element('TestObsConversions')
 
-    def startProcess(self, command):
+    def startProcess(self):
         with open(self.makeFileName('PROGRAMXML'),'w') as programXML:
             CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot, pretty_print=True))
         return CPluginScript.SUCCEEDED

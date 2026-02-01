@@ -6,16 +6,12 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_singleMR(CPluginScript):
 
-    TASKMODULE = 'molecular_replacement'      # Gui menu location
-    TASKTITLE = 'Single Atom MR'              # Short title for Gui
-    TASKNAME = 'phaser_singleMR'              # Task name - same as class name
-    TASKCOMMAND = 'phaser'                    # The command to run the executable
-    TASKVERSION = 1.0                         # plugin version
-    COMTEMPLATE = None
-    COMTEMPLATEFILE = None
+    TASKMODULE = 'molecular_replacement'
+    TASKTITLE = 'Single Atom MR'
+    TASKNAME = 'phaser_singleMR'
+    TASKCOMMAND = 'phaser'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'   #  I think this is mostly ok now
 
     def __init__(self, *args, **kwargs):
         self.hklin1 = None
@@ -23,9 +19,6 @@ class phaser_singleMR(CPluginScript):
         self.bIData = None
         self.xmlout = None
         CPluginScript.__init__(self, *args, **kwargs)
-
-    def process(self):
-        CPluginScript.process(self)
 
     def processInputFiles(self):
         cols1 = []
@@ -77,7 +70,7 @@ class phaser_singleMR(CPluginScript):
         self.parseLogfile()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         # nb. the -xml flag doesn't work in phaser & the html flag does not work in smartie.
         self.appendCommandScript("TITLE SingleMR")
         self.appendCommandScript("MODE MR_ATOM")

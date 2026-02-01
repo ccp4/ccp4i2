@@ -3,9 +3,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class privateer(CPluginScript):
-
-    TASKMODULE          = 'validation' # Where this plugin will appear on the gui
-    TASKCOMMAND         = 'privateer'  # The command to execute, should be reachable
+    TASKNAME = "privateer"
+    TASKMODULE = 'validation'
+    TASKCOMMAND = 'privateer'
     WHATNEXT = [ 'coot_rebuild', 'prosmart_refmac' ]
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
@@ -59,10 +59,6 @@ class privateer(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def makeCommandAndScript(self):
-      import os
-
-      from ccp4i2.core import CCP4XtalData
-
       self.appendCommandLine(['-stdin'])
 
       self.appendCommandScript( "pdbin %s"%(str(self.container.inputData.XYZIN)))

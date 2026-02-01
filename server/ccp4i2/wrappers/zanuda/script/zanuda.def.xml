@@ -2,9 +2,7 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <pluginTitle>Zanuda</pluginTitle>
         <pluginName>zanuda</pluginName>
-        <userId>andrey.lebedev@stfc.ac.uk</userId>
     </ccp4i2_header>
     <ccp4i2_body id="zanuda">
         <container id="inputData">
@@ -40,15 +38,27 @@
         <container id="outputData">
             <content id="XYZOUT">
                 <className>CPdbDataFile</className>
+                <qualifiers>
+                    <annotation>Zanuda model</annotation>
+                    <subType>1</subType>
+                    <contentFlag>1</contentFlag>
+                </qualifiers>
             </content>
             <content id="FPHIOUT">
                 <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <annotation>Zanuda best map</annotation>
+                    <subType>1</subType>
+                    <contentFlag>1</contentFlag>
+                </qualifiers>
             </content>
             <content id="DIFFPHIOUT">
                 <className>CMapCoeffsDataFile</className>
-            </content>
-            <content id="ABCDOUT">
-                <className>CPhsDataFile</className>
+                <qualifiers>
+                    <annotation>Zanuda difference map</annotation>
+                    <subType>2</subType>
+                    <contentFlag>1</contentFlag>
+                </qualifiers>
             </content>
             <content id="PERFORMANCE">
                 <className>CRefinementPerformance</className>

@@ -8,12 +8,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class mtzutils(CPluginScript):
 
-    TASKTITLE = 'Add or delete MTZ columns' # A short title for gui menu
-    TASKNAME = 'mtzutils'   # Task name - should be same as class name
-    TASKCOMMAND = 'mtzutils'            # The command to run the executable
-    TASKVERSION= 0.0               # Version of this plugin
-    COMTEMPLATE = None             # The program com file template
-    COMTEMPLATEFILE = None         # Name of file containing com file template
+    TASKTITLE = 'Add or delete MTZ columns'
+    TASKNAME = 'mtzutils'
+    TASKCOMMAND = 'mtzutils'
 
     def makeCommandAndScript(self):
 
@@ -38,7 +35,3 @@ class mtzutils(CPluginScript):
       self.appendCommandScript(inc_exc_line)
 
       self.appendCommandScript('END')
-
-      return 0
-
-     

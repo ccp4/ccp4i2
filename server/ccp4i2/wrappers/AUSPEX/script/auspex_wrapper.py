@@ -6,13 +6,10 @@ import glob
 
 class AUSPEX(CPluginScript):
 
-    TASKMODULE = 'data_reduction'      # Gui menu location
-    TASKTITLE = 'AUSPEX'             # Short title for Gui
-    TASKNAME = 'AUSPEX'              # Task name - same as class name
-    TASKCOMMAND = 'auspex'             # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
+    TASKMODULE = 'data_reduction'
+    TASKTITLE = 'AUSPEX'
+    TASKNAME = 'AUSPEX'
+    TASKCOMMAND = 'auspex'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
     MAINTAINER = 'Andrea.Thorn@web.de'
@@ -45,7 +42,7 @@ class AUSPEX(CPluginScript):
             outContA[-1].annotation = 'AUSPEX IMG'
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--no-filename-in-title")
         self.appendCommandLine(self.hklin)
         self.appendCommandLine(["--ylim", self.container.inputData.YLIM])

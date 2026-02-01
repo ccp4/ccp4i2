@@ -190,8 +190,7 @@ class CDataFile(CData):
         Args:
             path: Full file path as a string
         """
-        from pathlib import Path
-
+        path = str(path)  # In case a Path object is passed
         logger.debug(
             "[setFullPath] Called for %s, input path: %s, hasattr baseName: %s",
             self.name if hasattr(self, 'name') else 'unnamed',
@@ -988,7 +987,6 @@ class CDataFile(CData):
         Returns:
             full path string with .get() method for Qt compatibility
         """
-        from ..base_object.fundamental_types import CString
         from ..base_object.qt_compat import QtStringCompat
         path_string = self.getFullPath()
         # Return a string-like object with .get() method for Qt API compatibility

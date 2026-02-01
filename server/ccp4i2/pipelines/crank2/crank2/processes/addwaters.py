@@ -1,7 +1,7 @@
 #!/usr/bin/python
 import os,sys,string
-from process import process
-import common
+from ..process import process
+from .. import common
 
 class addwaters(process):
   name="adding waters into electron density map"

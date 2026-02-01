@@ -1,7 +1,6 @@
 import glob
 import json
 import os
-import platform
 import re
 import shutil
 
@@ -11,15 +10,12 @@ from ccp4i2.core import CCP4Container, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class Cxia2_dials(CPluginScript):
+class xia2_dials(CPluginScript):
 
     TASKTITLE = "Data processing with xia2/dials"
     TASKNAME = "xia2_dials"
     TASKCOMMAND = "xia2"
-    if platform.system() == "Windows":
-        TASKCOMMAND = "xia2.exe"
     TASKMODULE = "data_processing"
-    TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         201: {"description": "Failed scaled data"},
@@ -36,8 +32,7 @@ class Cxia2_dials(CPluginScript):
         "crank2",
         "ShelxCD",
         "ShelxCDE",
-    ]  # , 'dials_image', 'dials_rlattice']
-    MAINTAINER = "ccp4@stfc.ac.uk"
+    ]
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set

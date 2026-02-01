@@ -5,7 +5,7 @@ from distutils.dir_util import copy_tree
 
 from lxml import etree
 
-from ccp4i2.core import CCP4Modules, CCP4Utils, CCP4XtalData
+from ccp4i2.core import CCP4Modules, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
@@ -14,16 +14,13 @@ class arcimboldo(CPluginScript):
     TASKTITLE = 'Arcimboldo'
     TASKNAME = 'arcimboldo'
     TASKCOMMAND = 'ARCIMBOLDO_LITE'
-    TASKVERSION= 0.1
     WHATNEXT = [ 'prosmart_refmac' ]
     MAINTAINER = 'jtvcri@ibmb.csic.es'
-    PURGESEARCHLIST = [['hklin*.mtz', 0]]
     ASYNCHRONOUS = True
 
     def genHKL(self, hklin):
-        binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2hkl' ))
         arglist = ['-f', hklin.__str__()]
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist)
+        pid = CCP4Modules.PROCESSMANAGER().startProcess('mtz2hkl', arglist)
         return CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
 
     def generateBor (self, hklin, columns):
@@ -186,9 +183,6 @@ class arcimboldo(CPluginScript):
             self.appendCommandLine([os.path.join(self.getWorkDirectory(),'setup.bor')])
         return CPluginScript.SUCCEEDED
 
-    def process(self):
-        CPluginScript.process(self)
-
     def processOutputFiles(self):
         outputData = self.container.outputData
         pdbout = os.path.join(self.getWorkDirectory(), "best.pdb")
@@ -196,11 +190,6 @@ class arcimboldo(CPluginScript):
             outputData.XYZOUT.append(outputData.XYZOUT.makeItem())
             outputData.XYZOUT[-1].setFullPath(pdbout)
             outputData.XYZOUT[-1].annotation = 'Best pdb solution'
-    #      phsout = os.path.join(self.getWorkDirectory(), "best.phs")
-    #      if os.path.exists(phsout):
-    #         outputData.PHSOUT.append(outputData.PHSOUT.makeItem())
-    #         outputData.PHSOUT[-1].setFullPath(phsout)
-    #         outputData.PHSOUT[-1].annotation = 'Best phs solution'
         return CPluginScript.SUCCEEDED
 
     def refreshXML(self, filename):

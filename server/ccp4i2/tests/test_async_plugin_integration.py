@@ -82,7 +82,6 @@ class MockPipeline:
     """
     Mock pipeline that chains two async plugins.
 
-    This mimics the demo_copycell pattern:
     1. Run first plugin (like mtzdump)
     2. When it finishes, run second plugin (like pdbset)
     3. Report final status

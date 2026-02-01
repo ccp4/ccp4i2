@@ -3,16 +3,14 @@
      Copyright (C) 2013 STFC
 """
 
-import os,shutil
+import os
 from ccp4i2.core import CCP4PluginScript
 from ccp4i2.pipelines.import_xia2.wrappers.xia2_run.script import xia2_run
 
 class import_xia2(CCP4PluginScript.CPluginScript):
 
-    #TASKMODULE = 'data_entry'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Import XIA2 results' # A short title for gui menu
-    TASKNAME = 'import_xia2'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
+    TASKTITLE = 'Import XIA2 results'
+    TASKNAME = 'import_xia2'
     WHATNEXT = ['aimless_pipe','phaser_pipeline','molrep_mr']
 
     ERROR_CODES = { 201 : {'description' : 'XIA2 directory does not exist' },

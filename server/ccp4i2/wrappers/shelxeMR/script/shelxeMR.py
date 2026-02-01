@@ -4,18 +4,15 @@ import shutil
 
 from lxml import etree
 
-from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class shelxeMR(CPluginScript):
-    TASKMODULE = 'model_building'      # Gui menu location
-    TASKTITLE = 'ShelxeMR'             # Short title for Gui
-    TASKNAME = 'shelxeMR'              # Task name - same as class name
-    TASKCOMMAND = 'shelxe'             # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
+    TASKMODULE = 'model_building'
+    TASKTITLE = 'ShelxeMR'
+    TASKNAME = 'shelxeMR'
+    TASKCOMMAND = 'shelxe'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     filecaught = False
 
@@ -29,7 +26,7 @@ class shelxeMR(CPluginScript):
         if not self.filecaught:
             jobDirectory = CCP4Modules.PROJECTSMANAGER().db().jobDirectory(jobId=self.jobId)
             self.watchDirectory(jobDirectory, handler=self.handleDirectoryChanged)
-        CPluginScript.process(self)
+        super().process()
 
     def handleOutputChanged(self, logfile):
         self.parseLogfile()
@@ -99,7 +96,7 @@ class shelxeMR(CPluginScript):
         xmlString= etree.tostring(rootNode, pretty_print=True)
         xmlfile.write(xmlString)
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         print("Constructing command script (KJS-24/09-shelxeMR)")
         pdbfile_name = self.shelx_fname + '.pda'
         self.appendCommandLine(pdbfile_name)
@@ -127,8 +124,7 @@ class shelxeMR(CPluginScript):
     def genHKL(self):
         from mrbump.file_info import MTZ_parse
 
-        # Define the binary file (with path), as well as the mtz2various logfile
-        binf = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'mtz2various' ))
+        # Define the mtz2various logfile
         # input & output file (same name as model+.hkl). Also logfile name.
         infile = os.path.join(self.getWorkDirectory(),self.shelx_fname + '.mtz')
         outfile = os.path.join(self.getWorkDirectory(),self.shelx_fname + '.hkl')
@@ -141,7 +137,7 @@ class shelxeMR(CPluginScript):
         inputText += ('output SHELX\n')
         inputText += ('FSQUARED')
         # Fire the hkl conversion up.
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binf, arglist, inputText=inputText, logFile=logFile)
+        pid = CCP4Modules.PROCESSMANAGER().startProcess("mtz2various", arglist, inputText=inputText, logFile=logFile)
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         exitCode = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
         if status == 0 and os.path.exists(outfile):
@@ -150,9 +146,6 @@ class shelxeMR(CPluginScript):
         return CPluginScript.FAILED
 
     def convToMTZ(self):
-        binf2m = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'bin', 'f2mtz'))
-        bincad = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'bin', 'cad'))
-        binsft = os.path.normpath(os.path.join(CCP4Utils.getCCP4Dir().__str__(), 'bin', 'sftools'))
         pdb_fullpath = self.container.inputData.XYZIN.fullPath.__str__()
         infile1 = os.path.join(self.getWorkDirectory(), self.shelx_fname + '.phs')
         outfile1 = os.path.join(self.getWorkDirectory(), 'f2mtz_phs.mtz')
@@ -218,13 +211,13 @@ class shelxeMR(CPluginScript):
         logFile1 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'f2mtzCh.log'))
         logFile2 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'cad.log'))
         logFile3 =  os.path.normpath(os.path.join(self.getWorkDirectory(), 'sftools.log'))
-        pid1 = CCP4Modules.PROCESSMANAGER().startProcess(binf2m, arglist1, inputText=inputText1, logFile=logFile1)
+        pid1 = CCP4Modules.PROCESSMANAGER().startProcess("f2mtz", arglist1, inputText=inputText1, logFile=logFile1)
         stat1 = CCP4Modules.PROCESSMANAGER().getJobData(pid1)
         exCd1 = CCP4Modules.PROCESSMANAGER().getJobData(pid1, 'exitCode')
-        pid2 = CCP4Modules.PROCESSMANAGER().startProcess( bincad, arglist2, inputText=inputText2, logFile=logFile2)
+        pid2 = CCP4Modules.PROCESSMANAGER().startProcess("cad", arglist2, inputText=inputText2, logFile=logFile2)
         stat2 = CCP4Modules.PROCESSMANAGER().getJobData(pid2)
         exCd2 = CCP4Modules.PROCESSMANAGER().getJobData(pid2, 'exitCode')
-        pid3 = CCP4Modules.PROCESSMANAGER().startProcess(binsft, arglist3, inputText=inputText3, logFile=logFile3)
+        pid3 = CCP4Modules.PROCESSMANAGER().startProcess("sftools", arglist3, inputText=inputText3, logFile=logFile3)
         stat3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3)
         exCd3 = CCP4Modules.PROCESSMANAGER().getJobData(pid3, 'exitCode')
         return CPluginScript.SUCCEEDED

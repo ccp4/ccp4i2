@@ -22,19 +22,12 @@ except Exception as e:
     logging.warning(f"Failed to configure Django: {e}")
 
 TASKATTRIBUTES = [
-    "COMTEMPLATE",
-    "COMTEMPLATEFILE",
     "TASKMODULE",
     "TASKTITLE",
     "TASKNAME",
-    "TASKVERSION",
     "WHATNEXT",
     "ASYNCHRONOUS",
-    "TIMEOUT_PERIOD",
-    "MAXNJOBS",
     "PERFORMANCECLASS",
-    "SUBTASKS",
-    "RUNEXTERNALPROCESS",
     "PURGESEARCHLIST",
     "ERROR_CODES",
 ]
@@ -84,17 +77,9 @@ def import_module_from_file(module_name: str, fpath: str):
     Since ccp4i2 is installed as an editable package, we can use standard
     importlib.import_module which properly handles relative imports.
     """
-    try:
-        # Use standard import_module - this properly handles relative imports
-        # because ccp4i2 is installed as an editable package
-        mod = importlib.import_module(module_name)
-        return mod
-    except SystemExit as e:
-        # Some ccp4i2 modules call sys.exit() when dependencies are missing
-        logger.warning(f"Module {fpath} called sys.exit({e.code})")
-    except Exception as e:
-        logger.warning(f"Failed to import {fpath}: {e}")
-    return None
+    # Use standard import_module - this properly handles relative imports
+    # because ccp4i2 is installed as an editable package
+    return importlib.import_module(module_name)
 
 
 def extract_plugin_classes(mod, module_name: str) -> Dict[str, Any]:
@@ -248,20 +233,19 @@ def generate_plugin_registry(lookup: Dict[str, Any], output_path: str):
         '    def __init__(self):',
         '        self._cache: Dict[str, Type] = {}',
         '',
-        '    def get_plugin_class(self, task_name: str, version: Optional[str] = None) -> Optional[Type]:',
+        '    def get_plugin_class(self, task_name: str) -> Optional[Type]:',
         '        """',
-        '        Get a plugin class by name and optional version.',
+        '        Get a plugin class by name.',
         '',
         '        The plugin is imported lazily on first access and cached.',
         '',
         '        Args:',
         '            task_name: Name of the task/plugin',
-        '            version: Optional version (currently ignored - uses latest)',
         '',
         '        Returns:',
         '            Plugin class, or None if not found',
         '        """',
-        '        cache_key = f"{task_name}:{version}" if version else task_name',
+        '        cache_key = task_name',
         '        if cache_key in self._cache:',
         '            return self._cache[cache_key]',
         '',
@@ -311,47 +295,41 @@ def generate_plugin_registry(lookup: Dict[str, Any], output_path: str):
 
 
 if __name__ == "__main__":
-    try:
-        root_directory = CCP4I2_ROOT
-        print(f"Building plugin lookup from: {root_directory}")
-        logger.info(f"Building plugin lookup from: {root_directory}")
+    root_directory = CCP4I2_ROOT
+    print(f"Building plugin lookup from: {root_directory}")
+    logger.info(f"Building plugin lookup from: {root_directory}")
 
-        # Only scan plugin directories, not the entire project
-        plugin_dirs = ['wrappers', 'wrappers2', 'pipelines']
-        result = {}
+    # Only scan plugin directories, not the entire project
+    plugin_dirs = ['wrappers', 'wrappers2', 'pipelines']
+    result = {}
 
-        for plugin_dir in plugin_dirs:
-            dir_path = os.path.join(root_directory, plugin_dir)
-            if os.path.exists(dir_path):
-                print(f"Scanning {plugin_dir}...")
-                plugins = build_lookup_from_dir(dir_path)
-                # Module paths are already computed relative to CCP4I2_ROOT
-                # so they include the plugin_dir (e.g., "ccp4i2.wrappers.pyphaser_mr...")
-                result.update(plugins)
-                print(f"  Found {len(plugins)} plugins in {plugin_dir}")
+    for plugin_dir in plugin_dirs:
+        dir_path = os.path.join(root_directory, plugin_dir)
+        if os.path.exists(dir_path):
+            print(f"Scanning {plugin_dir}...")
+            plugins = build_lookup_from_dir(dir_path)
+            # Module paths are already computed relative to CCP4I2_ROOT
+            # so they include the plugin_dir (e.g., "ccp4i2.wrappers.pyphaser_mr...")
+            result.update(plugins)
+            print(f"  Found {len(plugins)} plugins in {plugin_dir}")
 
-        print(f"Finished scanning, found {len(result)} plugins")
+    print(f"Finished scanning, found {len(result)} plugins")
 
-        # Write to script's own directory
-        script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Write to script's own directory
+    script_dir = os.path.dirname(os.path.abspath(__file__))
 
-        # Write JSON for backward compatibility / debugging
-        json_output_path = os.path.join(script_dir, "plugin_lookup.json")
-        print(f"Writing JSON to: {json_output_path}")
-        with open(json_output_path, "w") as f:
-            json.dump(result, f, indent=2)
+    # Write JSON for backward compatibility / debugging
+    json_output_path = os.path.join(script_dir, "plugin_lookup.json")
+    result = json.loads(json.dumps(result))  # Turns keys to strings for sorting
+    print(f"Writing JSON to: {json_output_path}")
+    with open(json_output_path, "w") as f:
+        json.dump(result, f, indent=2, sort_keys=True)
 
-        # Write Python module with lazy loading
-        py_output_path = os.path.join(script_dir, "plugin_registry.py")
-        print(f"Writing Python registry to: {py_output_path}")
-        generate_plugin_registry(result, py_output_path)
+    # Write Python module with lazy loading
+    py_output_path = os.path.join(script_dir, "plugin_registry.py")
+    print(f"Writing Python registry to: {py_output_path}")
+    generate_plugin_registry(result, py_output_path)
 
-        print(f"Plugin lookup written to: {json_output_path}")
-        print(f"Plugin registry written to: {py_output_path}")
-        print(f"Found {len(result)} plugins")
-
-    except Exception as e:
-        print(f"ERROR: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)
+    print(f"Plugin lookup written to: {json_output_path}")
+    print(f"Plugin registry written to: {py_output_path}")
+    print(f"Found {len(result)} plugins")

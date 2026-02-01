@@ -1,7 +1,6 @@
 import math
 import os
 import re
-import sys
 
 import clipper
 from iotbx import mtz
@@ -16,16 +15,12 @@ from ccp4i2.wrappers.validate_protein.script import validate_protein
 
 class tableone(CPluginScript):
 
-    TASKMODULE = 'test'                 # Gui menu location
-    TASKTITLE = 'Generate Table One'          # Short title for Gui
-    TASKNAME = 'tableone'                     # Task name - same as class name
-    TASKCOMMAND = 'xia2.merging_statistics'   # The command to run the executable - there is more than one here.
-    TASKVERSION = 1.0                         # plugin version
-    COMTEMPLATE = None
-    COMTEMPLATEFILE = None
+    TASKMODULE = 'test'
+    TASKTITLE = 'Generate Table One'
+    TASKNAME = 'tableone'
+    TASKCOMMAND = 'xia2.merging_statistics'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
-    MAINTAINER = 'Kyle.Stevenson@stfc.ac.uk'
 
 
     def __init__(self, *args, **kwargs):
@@ -33,7 +28,7 @@ class tableone(CPluginScript):
         CPluginScript.__init__(self, *args, **kwargs)
 
     def process(self):
-        CPluginScript.process(self)
+        super().process()
         # Be careful with this. validate_protein may well change, best to co-ordinate this.
         vprotein = validate_protein.validate_protein()
         l1, x1 = vprotein.b_averages(str(self.container.inputData.XYZIN))
@@ -110,7 +105,7 @@ class tableone(CPluginScript):
             CCP4Utils.writeXML(xml_file,etree.tostring(self.xml_root, pretty_print=True))
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine(str(self.container.inputData.UNMERGED.fullPath))
         self.appendCommandLine("labels=I,SIGI")
         # Get the resolution bounds from the merged mtz file

@@ -10,13 +10,7 @@ class add_fractional_coords(CPluginScript):
     TASKTITLE = "Add Fractional Coordinates"
     TASKNAME = "add_fractional_coords"
     TASKCOMMAND = "ccp4-python"
-    TASKVERSION = 0.1
     MAINTAINER = "paul.bond@york.ac.uk"
-    ERROR_CODES = {
-        201: {"description": "Failed to analyse output files"},
-        202: {"description": "Failed applying selection to PDB file"},
-    }
-    PURGESEARCHLIST = [["hklin.mtz", 0], ["log_mtzjoin.txt", 0]]
 
     def __init__(self, *args, **kws):
         super(add_fractional_coords, self).__init__(*args, **kws)
@@ -27,7 +21,7 @@ class add_fractional_coords(CPluginScript):
         self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.xyzin_path)
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, **kw):
+    def makeCommandAndScript(self):
         current_path = os.path.abspath(inspect.getfile(inspect.currentframe()))
         script_path = os.path.join(os.path.dirname(current_path), "script.py")
         self.appendCommandLine([script_path, self.xyzin_path, self.xyzout_path])

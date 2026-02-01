@@ -13,7 +13,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.wrappers.xia2_dials.script import xia2_dials
 
 
-class Cxia2_xds(xia2_dials.Cxia2_dials):
+class xia2_xds(xia2_dials.xia2_dials):
 
     TASKTITLE = "Data processing with xia2/xds"
     TASKNAME = "xia2_xds"

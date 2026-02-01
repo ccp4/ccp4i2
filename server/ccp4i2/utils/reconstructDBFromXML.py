@@ -145,7 +145,6 @@ def generate_xml_from_project_directory(project_dir):
     projectName = ""
     hostName = ""
     userId = ""
-    ccp4iVersion = ""
     OS = ""
     projectId = ""
     
@@ -217,8 +216,6 @@ def generate_xml_from_project_directory(project_dir):
             hostName = tree.xpath("ccp4i2_header")[0].xpath("hostName")[0].text
         if len(tree.xpath("ccp4i2_header")[0].xpath("userId"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text)>0:
             userId = tree.xpath("ccp4i2_header")[0].xpath("userId")[0].text
-        if len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text)>0:
-            ccp4iVersion = tree.xpath("ccp4i2_header")[0].xpath("ccp4iVersion")[0].text
         if len(tree.xpath("ccp4i2_header")[0].xpath("OS"))>0 and len(tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text)>0:
             OS = tree.xpath("ccp4i2_header")[0].xpath("OS")[0].text
 
@@ -527,18 +524,7 @@ def generate_xml_from_project_directory(project_dir):
                         currentids.append(v)
         if len(file_el.attrib)>0:
             fileTable_el.append(file_el)
-    
-    
-    #sys.exit()
-    
-    #print projectName
-    #print hostName
-    #print userId
-    #print ccp4iVersion
-    #print projectId
-    #print creationTime
-    #print OS
-    
+
     fn = etree.SubElement(ccp4i2_header,"function")
     fn.text = "PROJECTDATABASE"
     projectName_el = etree.SubElement(ccp4i2_header,"projectName")
@@ -547,8 +533,6 @@ def generate_xml_from_project_directory(project_dir):
     hostName_el.text = hostName
     userId_el = etree.SubElement(ccp4i2_header,"userId")
     userId_el.text = userId
-    ccp4iVersion_el = etree.SubElement(ccp4i2_header,"ccp4iVersion")
-    ccp4iVersion_el.text = ccp4iVersion
     projectId_el = etree.SubElement(ccp4i2_header,"projectId")
     projectId_el.text = projectId
     creationTime_el = etree.SubElement(ccp4i2_header,"creationTime")

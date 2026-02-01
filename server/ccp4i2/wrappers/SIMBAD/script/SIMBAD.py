@@ -1,5 +1,4 @@
 import os
-import platform
 import shutil
 
 from simbad.util import SIMBAD_DIRNAME
@@ -9,22 +8,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class SIMBAD(CPluginScript):
-    TASKNAME = 'SIMBAD'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION = 0.1               # Version of this plugin
+    TASKNAME = 'SIMBAD'
     MAINTAINER = 'hlasimpk@liv.ac.uk'
     ERROR_CODES = {1: {'description' : 'Something not very good has happened.'}}
     WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild']
-#     PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-#                        ['log_mtzjoin.txt', 0]
-#                        ]
     TASKCOMMAND="simbad"
-
-# Andre's stuff for a clean shutdown - a file caled INTERUPT will be created.
-#     INTERRUPTABLE = True
-#     INTERRUPTLABEL = 'Stop and keep current best solution'
-    
-    def __init__(self, *args, **kws):
-        super(SIMBAD, self).__init__(*args, **kws)
 
     def processInputFiles(self):
         #Preprocess reflections to generate an "HKLIN" file
@@ -47,16 +35,6 @@ class SIMBAD(CPluginScript):
             return CPluginScript.FAILED
         if self.hklin is None:
             return CPluginScript.FAILED
-
-        #Preprocess coordinates to extract a subset
-        '''
-        # The method "getSelectedAtomsPdbFile" applied to a coordinate data object
-        # selects those atoms declared in the objects "selectionString" property and writes them into
-        # a pruned down file, the name of which is provided in the argument
-        self.selectedCoordinatesPath = os.path.join(self.getWorkDirectory(), "selected_xyzin.pdb")
-        self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.selectedCoordinatesPath)
-        '''
-        
         return self.SUCCEEDED
 
     def makeCommandAndScript(self):
@@ -68,9 +46,6 @@ class SIMBAD(CPluginScript):
         elif params.SIMBAD_SEARCH_LEVEL == 'Lattice + contaminants':
             self.TASKCOMMAND = 'simbad'
         else: assert False
-
-        if platform.system() == 'Windows':
-            self.TASKCOMMAND += '.bat'
             
         # General flags
         self.appendCommandLine(['-ccp4i2_xml', self.makeFileName('PROGRAMXML')])
@@ -97,18 +72,6 @@ class SIMBAD(CPluginScript):
         """
         Associate the tasks output coordinate file with the output coordinate object XYZOUT:
         """
-        #debug_console()
-        
-        # Split an MTZ file into minimtz data objects
-        '''
-        outputFilesToMake = ['FPHIOUT','DIFFPHIOUT']
-        columnsToTake = ['FWT,PHWT','DELFWT,PHDELWT']
-        infile = os.path.join(self.workDirectory,'final.mtz')
-        error = self.splitHklout(outputFilesToMake, columnsToTake, infile=infile)
-        import CCP4ErrorHandling
-        if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
-        '''
         top_files = SimbadResults(os.path.join(self.getWorkDirectory(),SIMBAD_DIRNAME)).top_files()
         if top_files:
             for fo in top_files:
@@ -122,6 +85,5 @@ class SIMBAD(CPluginScript):
                 self.container.outputData.XYZOUT[-1].annotation = fo.ref_pdb_annotation
                 self.container.outputData.HKLOUT.append(mtz)
                 self.container.outputData.HKLOUT[-1].annotation = fo.ref_mtz_annotation
-#         self.flushXML()
 
         return self.SUCCEEDED

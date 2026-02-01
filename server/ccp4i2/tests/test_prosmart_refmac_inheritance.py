@@ -1,8 +1,8 @@
 """
-Test prosmart_refmac plugin inheritance from refmac_i2.
+Test prosmart_refmac plugin inheritance from refmac.
 
 This test verifies that prosmart_refmac properly inherits parameters
-like NCYCLES from its parent plugin refmac_i2 via the <file> mechanism.
+like NCYCLES from its parent plugin refmac via the <file> mechanism.
 """
 
 from pathlib import Path
@@ -14,8 +14,8 @@ from ccp4i2.core.task_manager.def_xml_handler import parse_def_xml_file
 
 
 def test_refmac_has_ncycles():
-    """Test that refmac_i2 has NCYCLES parameter."""
-    refmac_def = Path(CCP4Utils.getCCP4I2Dir()) / "wrappers/refmac_i2/script/refmac.def.xml"
+    """Test that refmac has NCYCLES parameter."""
+    refmac_def = Path(CCP4Utils.getCCP4I2Dir()) / "wrappers/refmac/script/refmac.def.xml"
 
     if not refmac_def.exists():
         pytest.skip(f"refmac.def.xml not found at {refmac_def}")
@@ -38,7 +38,7 @@ def test_refmac_has_ncycles():
 
 
 def test_prosmart_refmac_inherits_ncycles():
-    """Test that prosmart_refmac inherits NCYCLES from refmac_i2."""
+    """Test that prosmart_refmac inherits NCYCLES from refmac."""
     prosmart_def = Path(CCP4Utils.getCCP4I2Dir()) / "pipelines/prosmart_refmac/script/prosmart_refmac.def.xml"
 
     if not prosmart_def.exists():

@@ -7,13 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class mrparse(CPluginScript):
-    TASKMODULE = 'bioinformatics'      # Gui menu location
-    TASKTITLE = 'mrparse'              # Short title for Gui
-    TASKNAME = 'mrparse'               # Task name - same as class name
-    TASKCOMMAND = 'mrparse'            # The command to run the executable
-    TASKVERSION = 1.0                  # plugin version
-    COMTEMPLATE = None                 # The program com file template
-    COMTEMPLATEFILE = None             # Name of file containing com file template
+    TASKMODULE = 'bioinformatics'
+    TASKTITLE = 'mrparse'
+    TASKNAME = 'mrparse'
+    TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
     MAINTAINER = 'hlasimpk@liverpool.ac.uk'
@@ -22,9 +19,6 @@ class mrparse(CPluginScript):
         self.seqin = None
         self.hklin = None
         CPluginScript.__init__(self, *args, **kwargs)
-
-    def process(self):
-        CPluginScript.process(self)
 
     def processInputFiles(self):
         self.seqin = self.container.inputData.SEQIN
@@ -84,7 +78,7 @@ class mrparse(CPluginScript):
 
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--seqin")
         self.appendCommandLine(str(self.seqin))
         if self.hklin:

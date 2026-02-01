@@ -9,13 +9,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class qtpisa(CPluginScript):
     
-    TASKMODULE = 'validation'            # Where this plugin will appear on the gui
-    TASKTITLE = 'Analyze bilogical units with qtpisa'     # A short title for gui menu
-    TASKNAME = 'qtpisa'                  # Task name - should be same as class name
-    TASKCOMMAND = 'qtpisa'                          # The command to run the executable
-    TASKVERSION= 0.1                                # Version of this plugin
+    TASKMODULE = 'validation'
+    TASKTITLE = 'Analyze bilogical units with qtpisa'
+    TASKNAME = 'qtpisa'
+    TASKCOMMAND = 'qtpisa'
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
     MAINTAINER = 'eugene.krissinel@stfc.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'QtPisa exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}

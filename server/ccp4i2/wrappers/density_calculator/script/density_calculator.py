@@ -11,12 +11,10 @@ class density_calculator(CPluginScript):
     TASKMODULE = "expt_data_utility"
     TASKTITLE = "Density Calculator"
     TASKNAME = "density_calculator"
-    TASKVERSION = 0.1
     MAINTAINER = "paul.bond@york.ac.uk"
-    RUNEXTERNALPROCESS = False
     WHATNEXT = ["coot_rebuild"]
 
-    def startProcess(self, command=None, handler=None, **kw):
+    def startProcess(self):
         xyzin = os.path.join(self.getWorkDirectory(), "xyzin.xyz")
         hklout = os.path.join(self.getWorkDirectory(), "hklout.mtz")
         mapout = os.path.join(self.getWorkDirectory(), "mapout.map")

@@ -1,5 +1,4 @@
 import os
-import platform
 import re
 import sys
 
@@ -12,14 +11,11 @@ from . import atomMatching, cifToMolBlock
 
 
 class acedrgNew(CPluginScript):
-    TASKMODULE = 'wrappers'                               # Where this plugin will appear on the gui
-    TASKTITLE = 'acedrgNew'     # A short title for gui menu
+    TASKMODULE = 'wrappers'
+    TASKTITLE = 'acedrgNew'
     DESCRIPTION = 'Create a ligand dictionary with Acedrg'
-    TASKNAME = 'acedrgNew'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'acedrg'                                     # The command to run the executable
-    if platform.system() == 'Windows': TASKCOMMAND = 'acedrg.bat'
-    TASKVERSION= 0.0                                     # Version of this plugin
-    TIMEOUT_PERIOD = 9999999.9
+    TASKNAME = 'acedrgNew'
+    TASKCOMMAND = 'acedrg'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' }, 202 : { 'description' : 'Failed to dump XMML' }, 203 : { 'description' : 'Failed to make RDKit Mol from DICT' },}

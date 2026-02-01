@@ -1,6 +1,5 @@
 import glob
 import os
-import platform
 import sys
 from pathlib import Path
 
@@ -11,22 +10,19 @@ from ccp4i2.core import CCP4Modules, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class lidia(CPluginScript):
-    TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui
-    TASKTITLE = 'Lidia'  # A short title for gui menu
+class Lidia(CPluginScript):
+    TASKMODULE = 'wrappers'
+    TASKTITLE = 'Lidia'
     DESCRIPTION = 'Sketch a ligand'
-    TASKNAME = 'Lidia'  # Task name - should be same as class name
-    TASKCOMMAND = 'lidia.bat' if platform.system() == "Windows" else 'lidia'  # The command to run the executable
-    TASKVERSION = 0.0  # Version of this plugin
+    TASKNAME = 'Lidia'
+    TASKCOMMAND = 'lidia'
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 9999999.9
-    RUNEXTERNALPROCESS = False
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},
                    201 : {'description' : 'Failed to setFullPath'},}
     
-    def startProcess(self, command, **kw):
+    def startProcess(self):
         viewer = 'lidia'
         argList = []
         lidiaPath = _lidiaPath()

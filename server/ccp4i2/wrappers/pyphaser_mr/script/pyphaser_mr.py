@@ -4,10 +4,9 @@ from ccp4i2.core import CCP4ErrorHandling
 
 class pyphaser_mr(CPluginScript):
 
-    TASKMODULE = 'test' # Where this plugin will appear on gui
-    TASKTITLE = 'MR using Phaser (pythonic)' # A short title for gui menu
-    TASKNAME = 'pyphaser_mr'   # Task name - should be same as class name
-    TASKVERSION= 0.2               # Version of this plugin
+    TASKMODULE = 'test'
+    TASKTITLE = 'MR using Phaser (pythonic)'
+    TASKNAME = 'pyphaser_mr'
 
     def process(self):
 

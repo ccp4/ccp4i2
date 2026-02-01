@@ -2,16 +2,9 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>nicholls</userId>
-        <creationTime>2019-02-04T16:38:09.992558</creationTime>
-        <pluginVersion></pluginVersion>
-        <ccp4iVersion>0.0.1</ccp4iVersion>
         <pluginName>MakeLink</pluginName>
-        <pluginTitle>Brief title For plugin</pluginTitle>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="MakeLink">
-        <!--You must provide an inputData container, although it can be empty-->
         <container id="inputData">
            <content id="LINK_ID">
               <className>CString</className>
@@ -340,9 +333,6 @@
               </qualifiers>
            </content>
         </container>
-        
-        <!--generally we put control parameters into a container called "controlParameters"...although the-->
-        <!--existence and name of this container are both optional-->
         <container id="controlParameters">
            <content id="BOND_ORDER">
               <className>CString</className>
@@ -373,13 +363,6 @@
                  <toolTip>Specify whether to automatically scan the model and apply links to all matching residue-pairs, or to manually specify the residue-pair to be linked</toolTip>
               </qualifiers>
            </content>
-<!--           <content id="TOGGLE_AUTOLINK">-->
-<!--              <className>CBoolean</className>-->
-<!--              <qualifiers>-->
-<!--                 <default>False</default>-->
-<!--                 <toolTip>Select to search for matching links in the input model, and apply link records accordingly</toolTip>-->
-<!--              </qualifiers>-->
-<!--           </content>-->
            <content id="LINK_DISTANCE">
               <className>CFloat</className>
               <qualifiers>
@@ -444,8 +427,6 @@
               </qualifiers>
            </content>
         </container>
-        
-        <!--You must provide an outputData container, although it can be empty-->
         <container id="outputData">
            <content id="INSTRUCTION_FILE">
               <className>CTextDataFile</className>

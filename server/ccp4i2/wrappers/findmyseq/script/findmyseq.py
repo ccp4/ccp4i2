@@ -8,16 +8,12 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class findmyseq(CPluginScript):
-    TASKMODULE = 'bioinformatics'         # Gui location
-    TASKTITLE = 'Find My Sequence'    # Short title for Gui
-    TASKNAME = 'findmyseq'            # Task name - same as class name
-    TASKCOMMAND = 'findmysequence'    # executable
-    TASKVERSION = 1.0                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
-    WHATNEXT = ['modelcraft']         # after ?
+    TASKMODULE = 'bioinformatics'
+    TASKTITLE = 'Find My Sequence'
+    TASKNAME = 'findmyseq'
+    TASKCOMMAND = 'findmysequence'
+    WHATNEXT = ['modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
-    MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Blank ' \
                            'In case needed (Prob not needed here)', 
@@ -30,9 +26,6 @@ class findmyseq(CPluginScript):
         self.lseqdb = None
         self.seqout = None
         CPluginScript.__init__(self, *args, **kwargs)
-
-    def process(self):
-        CPluginScript.process(self)
 
     def processInputFiles(self):
         self.pdbin = self.container.inputData.XYZIN.fullPath.__str__()
@@ -75,7 +68,7 @@ class findmyseq(CPluginScript):
         xmlfile.close()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--mtzin")
         self.appendCommandLine(str(self.hklin))
         self.appendCommandLine("--labin")

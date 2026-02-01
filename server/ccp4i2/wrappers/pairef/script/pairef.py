@@ -7,13 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pairef(CPluginScript):
-    TASKMODULE = 'refinement'         # Gui menu location
-    TASKTITLE = 'Pairef'        # Short title for Gui
-    TASKNAME = 'pairef'               # Task name - same as class name
-    TASKCOMMAND = 'pairef'            # The command to run the executable
-    TASKVERSION = 1.1                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
+    TASKMODULE = 'refinement'
+    TASKTITLE = 'Pairef'
+    TASKNAME = 'pairef'
+    TASKCOMMAND = 'pairef'
     PERFORMANCECLASS = 'CPairefPerformance'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     
@@ -52,7 +49,7 @@ class pairef(CPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("--XYZIN")
         self.appendCommandLine(str(self.pdbin))
         self.appendCommandLine("--HKLIN")

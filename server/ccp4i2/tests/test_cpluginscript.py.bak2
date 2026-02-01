@@ -53,7 +53,6 @@ def test_cpluginscript_subclass():
         TASKTITLE = 'Test Wrapper'
         TASKNAME = 'test_wrapper'
         TASKCOMMAND = 'test_command'
-        TASKVERSION = 1.0
 
     wrapper = TestWrapper()
 
@@ -61,7 +60,6 @@ def test_cpluginscript_subclass():
     assert wrapper.TASKTITLE == 'Test Wrapper'
     assert wrapper.TASKNAME == 'test_wrapper'
     assert wrapper.TASKCOMMAND == 'test_command'
-    assert wrapper.TASKVERSION == 1.0
     assert wrapper.name == 'test_wrapper'
 
 
@@ -164,17 +162,6 @@ class TestDefXmlLoading:
             assert path.exists(), f"{plugin_name} path should exist"
             assert plugin_name in path.name
 
-    def test_taskmanager_locate_def_xml_with_version(self):
-        """Test locating plugin with specific version."""
-        tm = TASKMANAGER()
-
-        # buccaneer_mr has version 0.0 in the lookup
-        path = tm.locate_def_xml('buccaneer_mr', version='0.0')
-
-        assert path is not None, "Should find versioned plugin"
-        assert path.exists()
-        assert path.name == 'buccaneer_mr.def.xml'
-
     def test_taskmanager_locate_def_xml_not_found(self):
         """Test that non-existent plugins return None."""
         tm = TASKMANAGER()
@@ -188,7 +175,6 @@ class TestDefXmlLoading:
 
         class PointlessWrapper(CPluginScript):
             TASKNAME = 'pointless'
-            TASKVERSION = None
 
         plugin = PointlessWrapper()
 
@@ -206,7 +192,6 @@ class TestDefXmlLoading:
 
         class AimlessWrapper(CPluginScript):
             TASKNAME = 'aimless'
-            TASKVERSION = None
 
         plugin = AimlessWrapper()
 
@@ -226,7 +211,6 @@ class TestDefXmlLoading:
 
         class RefmacWrapper(CPluginScript):
             TASKNAME = 'refmac'
-            TASKVERSION = None
 
         plugin = RefmacWrapper()
 
@@ -260,7 +244,6 @@ class TestDefXmlLoading:
 
         class BuccaneerWrapper(CPluginScript):
             TASKNAME = 'buccaneer_mr'
-            TASKVERSION = '0.0'
 
         plugin = BuccaneerWrapper()
 
@@ -273,7 +256,6 @@ class TestDefXmlLoading:
 
         class PointlessWrapper(CPluginScript):
             TASKNAME = 'pointless'
-            TASKVERSION = None
 
         plugin = PointlessWrapper()
 

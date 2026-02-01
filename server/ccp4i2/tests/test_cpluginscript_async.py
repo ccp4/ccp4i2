@@ -2,12 +2,11 @@
 Test CPluginScript async execution with signal system.
 
 This verifies that our CPluginScript now works exactly like the Qt version
-for async plugin chaining (the demo_copycell pattern).
+for async plugin chaining.
 """
 
 import pytest
 import time
-from pathlib import Path
 import tempfile
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.base_object.signal_system import Slot
@@ -24,7 +23,6 @@ class SimpleAsyncPlugin(CPluginScript):
     TASKTITLE = 'Simple Async Test Plugin'
     TASKNAME = 'simple_async'
     TASKCOMMAND = 'echo'
-    TASKVERSION = '1.0'
     ASYNCHRONOUS = True  # Enable async execution
 
     def __init__(self, message: str = "test output", **kwargs):
@@ -44,7 +42,6 @@ class SimplePipeline(CPluginScript):
     """
     Simple pipeline that chains two async plugins.
 
-    This mimics the demo_copycell pattern:
     1. Run plugin1 (like mtzdump)
     2. When it finishes, run plugin2 (like pdbset)
     3. Report final status
@@ -53,7 +50,6 @@ class SimplePipeline(CPluginScript):
     TASKMODULE = 'test'
     TASKTITLE = 'Simple Pipeline Test'
     TASKNAME = 'simple_pipeline'
-    TASKVERSION = '1.0'
     ASYNCHRONOUS = True
 
     def __init__(self, **kwargs):
@@ -146,7 +142,7 @@ class TestCPluginScriptAsync:
             assert result['status'] == CPluginScript.SUCCEEDED
 
     def test_pipeline_two_async_plugins(self):
-        """Test pipeline with two chained async plugins (demo_copycell pattern)."""
+        """Test pipeline with two chained async plugins."""
         with tempfile.TemporaryDirectory() as tmpdir:
             result = {'status': None, 'completed': False}
 

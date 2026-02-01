@@ -9,8 +9,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
-    TASKNAME = 'MakeProjectsAndDoLigandPipeline'   # Task name - should be same as class name and match pluginTitle in the .def.xml file
-    TASKVERSION= 0.1               # Version of this plugin
+    TASKNAME = 'MakeProjectsAndDoLigandPipeline'
     MAINTAINER = 'martin.noble@ncl.ac.uk'
     ERROR_CODES = {201 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create project' },
         202 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create job' },
@@ -25,10 +24,6 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         211 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to open and /or parse XML' },
         212 : {'severity':CCP4ErrorHandling.SEVERITY_ERROR, 'description' : 'Failed to determine projectId or Directory of presumed existing project' },
                     }
-    PURGESEARCHLIST = [ [ 'hklin.mtz' , 0 ],
-                        ['log_mtzjoin.txt', 0]
-                       ]
-    RUNEXTERNALPROCESS = False
 
     def __init__(self, *args, **kws):
         super(MakeProjectsAndDoLigandPipeline, self).__init__(*args, **kws)
@@ -43,8 +38,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
         self.datasetElements = {}
         self.dumpXml()
 
-    #The startProcess method is where you build in the pipeline logic
-    def startProcess(self, command, **kws):
+    def startProcess(self):
         from ccp4i2.core.CCP4Modules import JOBCONTROLLER, PROJECTSMANAGER
         pm = PROJECTSMANAGER()
         

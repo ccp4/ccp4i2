@@ -3,7 +3,6 @@
 This is a stub file - extend classes in core/ to add methods.
 """
 
-from __future__ import annotations
 from typing import TYPE_CHECKING, Optional, Any
 
 # Metadata system
@@ -1106,7 +1105,6 @@ class CFilePathStub(CString):
         "userId": attribute(AttributeType.CUSTOM, custom_class="CUserIdStub"),
         "hostName": attribute(AttributeType.CUSTOM, custom_class="CHostNameStub"),
         "creationTime": attribute(AttributeType.CUSTOM, custom_class="CTimeStub"),
-        "ccp4iVersion": attribute(AttributeType.CUSTOM, custom_class="CVersionStub"),
         "pluginName": attribute(AttributeType.STRING),
         "pluginVersion": attribute(AttributeType.CUSTOM, custom_class="CVersionStub"),
         "pluginTitle": attribute(AttributeType.STRING),
@@ -1172,7 +1170,6 @@ class CI2XmlHeaderStub(CData):
     userId: Optional[CUserIdStub] = None
     hostName: Optional[CHostNameStub] = None
     creationTime: Optional[CTimeStub] = None
-    ccp4iVersion: Optional[CVersionStub] = None
     pluginName: Optional[CString] = None
     pluginVersion: Optional[CVersionStub] = None
     pluginTitle: Optional[CString] = None

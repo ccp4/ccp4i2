@@ -19,14 +19,9 @@ class pdb_redo_api(CPluginScript):
     TASKTITLE='PDB-REDO Web services'
     TASKNAME = 'pdb_redo_api'
     TASKMODULE= 'refinement'
-    TASKCOMMAND = ''
-    TASKVERSION= 0.0
-    COMLINETEMPLATE = None
-    COMTEMPLATE = None
-    RUNEXTERNALPROCESS=False
     PERFORMANCECLASS = 'CRefinementPerformance'
 
-    def startProcess(self,command,**kw):
+    def startProcess(self):
         print("pdb_redo_api.startProcess")
         inp = self.container.inputData
         xyzin = str( inp.XYZIN.fullPath )

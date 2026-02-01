@@ -12,10 +12,9 @@ from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
 
 class aimless_pipe(CPluginScript):
 
-    TASKMODULE = 'data_reduction'      # Where this plugin will appear on the gui
-    TASKTITLE = 'Scale and merge data' # A short title for gui menu
-    TASKNAME = 'aimless_pipe'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
+    TASKMODULE = 'data_reduction'
+    TASKTITLE = 'Scale and merge data'
+    TASKNAME = 'aimless_pipe'
     PERFORMANCECLASS = 'CDataReductionPerformance'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     ERROR_CODES = {
@@ -346,7 +345,6 @@ class aimless_pipe(CPluginScript):
           #   fixed, but don't use it for now
           xname = unmergedcontent.crystalName
 
-          #print "WD:", self.getWorkDirectory()
           # Add to UNMERGEDOUT
           out.UNMERGEDOUT.append(out.UNMERGEDOUT.makeItem())
           outfile = os.path.join(self.workDirectory,fname)
@@ -630,10 +628,8 @@ class aimless_pipe(CPluginScript):
 
         blockid = str(blkname)
 
-        cifStatsExtractFromXML = \
-                  CifStatsExtractFromXML(aimlesspipexml, outputfile, blockid)
-        
-        
+        CifStatsExtractFromXML(aimlesspipexml, outputfile, blockid)
+
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def cleanup(self):
         # Clean up some files which are not always removed by
@@ -716,13 +712,15 @@ class aimless_pipe(CPluginScript):
             else:
                 dname = list(dsetinfo.keys())[0]  # Key from sole dict entry
             pxdname = dsetinfo[dname]['pxdname']
-            self.phaser_analysis = self.makePluginObject('phaser_analysis')
+            phaser_analysis = self.makePluginObject('phaser_analysis')
+            phaser_analysis.container.inputData.HKLIN.set(filename)
+            phaser_analysis.container.inputData.PXDNAME.set(pxdname)
             # Threshold
-            self.phaser_analysis.container.controlParameters.copyData \
+            phaser_analysis.container.controlParameters.copyData \
               (self.container.controlParameters, ['INFOCONTENTTHRESHOLD'])
             # Run phaser
-            self.phaser_analysis.process(filename=filename, pxdname=pxdname)
-            allOK, reslimit = self.phaser_analysis.getresolutionlimit()
+            phaser_analysis.process()
+            allOK, reslimit = phaser_analysis.getresolutionlimit()
             if allOK > 0:
                 numalltomaxres += 1
                 reslimit = float(dsetinfo[dname]['InputResolution'])
@@ -748,7 +746,7 @@ class aimless_pipe(CPluginScript):
             self.autocutoffxml.append(dset)
 
             #  phaser_analysis XML
-            phaseranalysisxml = self.phaser_analysis.getXML()
+            phaseranalysisxml = phaser_analysis.getXML()
             # add InputResolution into Phaser XML since the file resolution
             # from Phaser is unreliable
             self.addResolutiontoPhaser(phaseranalysisxml,
@@ -767,7 +765,7 @@ class aimless_pipe(CPluginScript):
             cutoff = 'No'
         self.addElement(self.autocutoffxml, 'Cutoff', cutoff)
 
-        self.addElement(self.autocutoffxml, 'InformationThreshold', str(infothreshold))            
+        self.addElement(self.autocutoffxml, 'InformationThreshold', str(infothreshold))
         # Best resolution
         if maxres < 1000.0:
             self.addElement(self.autocutoffxml,
@@ -782,7 +780,6 @@ class aimless_pipe(CPluginScript):
         # Run phaser_analysis after final Aimless, if needed
         # infothreshold is limit on information content for analysis
         # Make self.phaser_analysisxml XML element
-        infothreshold = str(self.container.controlParameters.INFOCONTENTTHRESHOLD)
 
         if self.aimless1xml is None:
             # If Aimless is only run once
@@ -816,25 +813,27 @@ class aimless_pipe(CPluginScript):
                 dname = dnames[0]
             pxdname = pxdnames[dname]
         
-            self.phaser_analysis = self.makePluginObject('phaser_analysis')
+            phaser_analysis = self.makePluginObject('phaser_analysis')
+            phaser_analysis.container.inputData.HKLIN.set(filename)
+            phaser_analysis.container.inputData.PXDNAME.set(pxdname)
             sys.stdout.flush()
         
             # Threshold
-            self.phaser_analysis.container.controlParameters.copyData(self.container.controlParameters, ['INFOCONTENTTHRESHOLD'])
-            rstatus = self.phaser_analysis.process(filename=filename, pxdname=pxdname)
+            phaser_analysis.container.controlParameters.copyData(self.container.controlParameters, ['INFOCONTENTTHRESHOLD'])
+            rstatus = phaser_analysis.process()
             print("after Phaser, status", rstatus, CPluginScript.FAILED)
             if rstatus  == CPluginScript.FAILED:
-                message = self.phaser_analysis.resultObject.ErrorMessage()
+                message = phaser_analysis.resultObject.ErrorMessage()
                 phaserelement = lxml_etree.Element('PHASER_ANALYSIS')
                 phaserfailXML = lxml_etree.SubElement(phaserelement,'PhaserFailMessage')
                 phaserfailXML.text = message
                 self.phaser_analysisxml.append(phaserelement)
                 return
             
-            allOK, reslimit = self.phaser_analysis.getresolutionlimit()
+            allOK, reslimit = phaser_analysis.getresolutionlimit()
 
             #  phaser_analysis XML
-            phaseranalysisxml = self.phaser_analysis.getXML()
+            phaseranalysisxml = phaser_analysis.getXML()
             # add InputResolution into Phaser XML since the file resolution
             # from Phaser is unreliable
             self.addResolutiontoPhaser(phaseranalysisxml, inputresolutions[dname])
@@ -931,7 +930,6 @@ class aimless_pipe(CPluginScript):
               print('Cells not compatible', status)
               return status, freerReportXML
 
-      from ccp4i2.wrappers.freerflag.script import freerflag
       freerReportXML = None
       self.freerflag = self.makePluginObject('freerflag')
       self.freerflag.container.inputData.F_SIGF = self.container.outputData.HKLOUT[0]
@@ -991,8 +989,6 @@ class aimless_pipe(CPluginScript):
 # ----------------------------------------------------------------------
 # Function to return list of names of exportable MTZ(s)
 def exportJobFile(jobId=None,mode=None):
-    import os
-
     from ccp4i2.core import CCP4Modules, CCP4XtalData
 
     jobDir = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId=jobId,create=False)

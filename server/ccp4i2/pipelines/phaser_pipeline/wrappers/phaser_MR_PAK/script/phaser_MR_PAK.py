@@ -1,6 +1,5 @@
 import os
 import pickle
-import sys
 
 from lxml import etree
 
@@ -10,18 +9,13 @@ from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phas
 
 class phaser_MR_PAK(phaser_MR_AUTO.phaser_MR_AUTO):
 
-    TASKNAME = 'phaser_MR_PAK'                                  # Task name - should be same as class name
+    TASKNAME = 'phaser_MR_PAK'
     TASKTITLE='Packing function - PHASER'
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
-    RUNEXTERNALPROCESS=False
     WHATNEXT = ['phaser_expert']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}
 
-    def startProcess(self, command, **kw):
+    def startProcess(self):
         import phaser
         outputObject = phaser.Output()
         outputObject.setPhenixCallback(self.callbackObject)
@@ -71,28 +65,17 @@ class phaser_MR_PAK(phaser_MR_AUTO.phaser_MR_AUTO):
     # process one or more output files
     # also writes the XML file, previously done by postProcess()
     def processOutputFiles(self):
-        import phaser
         resultObject = self.resultObject
         solutions = resultObject.getDotSol()
         if len(solutions) > 0:
-            if sys.version_info > (3,0):
-                picklePath = str(self.container.outputData.SOLOUT.fullPath)
-                with open(picklePath,'wb') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except:
-                        raise
-                        print('Unable to Pickle solutions')
-                    self.container.outputData.SOLOUT.annotation = 'Solutions from Phaser'
-            else:
-                picklePath = str(self.container.outputData.SOLOUT.fullPath)
-                with open(picklePath,'w') as pickleFile:
-                    try:
-                        pickle.dump(solutions, pickleFile)
-                    except:
-                        raise
-                        print('Unable to Pickle solutions')
-                    self.container.outputData.SOLOUT.annotation = 'Solutions from Phaser'
+            picklePath = str(self.container.outputData.SOLOUT.fullPath)
+            with open(picklePath,'wb') as pickleFile:
+                try:
+                    pickle.dump(solutions, pickleFile)
+                except:
+                    raise
+                    print('Unable to Pickle solutions')
+                self.container.outputData.SOLOUT.annotation = 'Solutions from Phaser'
 
         #Remove warnings and replace with ones parsed from the resultObject
         if len(self.xmlroot.xpath('PhaserWarnings')) > 0:

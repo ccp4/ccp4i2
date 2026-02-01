@@ -8,14 +8,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_pipeline(CPluginScript):
 
-    TASKNAME = 'phaser_pipeline'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
+    TASKNAME = 'phaser_pipeline'
     PERFORMANCECLASS = 'CRefinementPerformance'
     SEPARATEDATA=True
-    INTERRUPTABLE=True
 
     ERROR_CODES = {
         200: {'description': 'Phaser exited with error status'},
@@ -26,7 +21,6 @@ class phaser_pipeline(CPluginScript):
         205: {'description': 'Exception in pointless_reindexToMatch'},
         206: {'description': 'Exception in csymmatch'},
         207: {'description': 'No output files in list'},
-        208: {'description': 'Exception in coot_script_lines'},
         209: {'description': 'Exception in sheetbend'},
         210: {'description': 'Exception in refmac'},
         211: {'description': 'Exception in harvestFile'},
@@ -68,8 +62,6 @@ class phaser_pipeline(CPluginScript):
         self.phaserFinished(rv)
         if rv == CPluginScript.FAILED:
             # Check if LOG file exists before reading it
-            # In standalone/i2run mode, subjobs with RUNEXTERNALPROCESS=False don't create LOG files
-            # In GUI mode, subjobs run as proper database jobs and do create LOG files
             log_file_path = self.phaserPlugin.makeFileName('LOG')
             wasInterrupted = False
             if os.path.exists(log_file_path):

@@ -5,9 +5,17 @@ Collection of utility functions for CCP4 crystallographic operations.
 This module has no CData dependencies - pure utility functions.
 """
 
+import os
+import re
+import shutil
+import subprocess
+import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import List, Union, Optional
+from typing import List, Optional, Union
+
 import gemmi
+from lxml import etree
 
 
 class MtzMergeError(Exception):
@@ -154,10 +162,6 @@ def merge_mtz_files_cad(
     Args: Same as merge_mtz_files
     Returns: Path to merged MTZ file
     """
-    import subprocess
-    import os
-    import shutil
-
     output_path = Path(output_path)
 
     # Check if CAD is available
@@ -434,46 +438,12 @@ def merge_mtz_files(
 
         # Explicitly sync file to disk to ensure MTZ history is fully written
         # This prevents UnicodeDecodeError when servalcat/gemmi reads MTZ immediately after
-        import os
         with open(output_path, 'rb') as f:
             os.fsync(f.fileno())
     except Exception as e:
         raise MtzMergeError(f"Failed to write output MTZ to {output_path}: {e}")
 
     return output_path
-
-
-def getCCP4Dir():
-    """
-    Get the CCP4 installation directory.
-
-    Returns the root directory of the CCP4 suite installation from the $CCP4
-    environment variable. This is used by plugins to locate CCP4 resources
-    like monomer libraries, reference data, etc.
-
-    Returns:
-        str: Absolute path to CCP4 root directory, or '.' if not set
-
-    Example:
-        >>> ccp4_root = getCCP4Dir()
-        >>> # Build path to monomer library
-        >>> comp_id = 'ATP'
-        >>> cif_path = os.path.join(ccp4_root, 'lib', 'data', 'monomers',
-        ...                         comp_id[0].lower(), comp_id + '.cif')
-
-    Notes:
-        - Reads from $CCP4 environment variable
-        - Returns '.' (current directory) if $CCP4 is not set (due to normpath behavior)
-        - Normalizes the path before returning
-        - Matches legacy ccp4i2 behavior exactly
-    """
-    import os
-
-    try:
-        target = os.path.normpath(os.environ.get('CCP4', ''))
-    except Exception:
-        target = ''
-    return target
 
 
 def getTMP(**kw) -> str:
@@ -489,9 +459,6 @@ def getTMP(**kw) -> str:
         - Falls back to system default temporary directory
         - Creates the directory if it doesn't exist
     """
-    import os
-    import tempfile
-
     # Try standard environment variables in order of preference
     tmp_dir = os.environ.get('TMP') or os.environ.get('TEMP') or os.environ.get('TMPDIR')
 
@@ -537,9 +504,6 @@ def makeTmpFile(name: str = 'tmp', extension: str = 'tmp', mode: Optional[str] =
         >>> # Create a temporary directory
         >>> tmpdir = makeTmpFile(name='workdir', cdir=True)
     """
-    import tempfile
-    import os
-
     suffix = f'.{extension}' if extension else ''
     prefix = f'{name}_'
 
@@ -646,23 +610,18 @@ def openFileToEtree(fileName: Union[str, Path], printout: bool = False, useLXML:
     # Parse using appropriate parser
     if useLXML:
         try:
-            from lxml import etree
             xml_bytes = xml_content.encode('utf-8')
             tree = etree.fromstring(xml_bytes)
         except ImportError:
             # Fall back to standard library if lxml not available
-            import xml.etree.ElementTree as ET
             tree = ET.fromstring(xml_content)
     else:
-        import xml.etree.ElementTree as ET
         tree = ET.fromstring(xml_content)
 
     if printout:
         try:
-            from lxml import etree
             print(etree.tostring(tree, pretty_print=True, encoding='unicode'))
         except ImportError:
-            import xml.etree.ElementTree as ET
             print(ET.tostring(tree, encoding='unicode'))
 
     return tree
@@ -722,10 +681,9 @@ def saveEtreeToFile(etree_element, fileName: Union[str, Path], pretty_print: boo
 
     # Try lxml first (preferred for legacy compatibility)
     try:
-        from lxml import etree as lxml_etree
         # Check if this is an lxml element
-        if isinstance(etree_element, lxml_etree._Element):
-            xml_bytes = lxml_etree.tostring(
+        if isinstance(etree_element, etree._Element):
+            xml_bytes = etree.tostring(
                 etree_element,
                 pretty_print=pretty_print,
                 xml_declaration=True,
@@ -738,7 +696,6 @@ def saveEtreeToFile(etree_element, fileName: Union[str, Path], pretty_print: boo
         pass
 
     # Fall back to standard library ElementTree
-    import xml.etree.ElementTree as ET
 
     # If pretty_print is requested, indent the tree
     if pretty_print:
@@ -774,7 +731,6 @@ def safeOneWord(name: str) -> str:
         >>> safeOneWord("")
         ''
     """
-    import re
 
     if not name:
         return ""
@@ -798,8 +754,6 @@ def backupFile(file_path: Union[str, Path], delete: bool = True) -> Optional[Pat
         >>> backupFile('/path/to/file.txt', delete=False)
         Path('/path/to/file.txt.1')
     """
-    import shutil
-
     file_path = Path(file_path)
 
     if not file_path.exists():
@@ -851,7 +805,6 @@ def openFile(fileName: Union[str, Path], mode: str = 'r', overwrite: int = 1):
         >>> f.write('Hello')
         >>> f.close()
     """
-    import os
 
     fileName = os.path.normpath(str(fileName))
 
@@ -897,8 +850,6 @@ def saveFile(fileName: Union[str, Path], text: Optional[str] = None,
         Either text or text_list should be provided, not both.
         If both are provided, text_list takes precedence.
     """
-    import os
-
     # Normalize path
     fileName = os.path.normpath(str(fileName))
 

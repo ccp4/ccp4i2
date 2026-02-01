@@ -20,16 +20,11 @@ class servalcat_pipe(CPluginScript):
     TASKMODULE = 'refinement'
     SHORTTASKTITLE = 'Servalcat'
     TASKTITLE = 'Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
-    TASKNAME = 'servalcat_pipe'  # Task name - same as class name
+    TASKNAME = 'servalcat_pipe'
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
-    TASKVERSION= 0.1
     WHATNEXT = ['servalcat_pipe','coot_rebuild','modelcraft']
     ASYNCHRONOUS = True
-    TIMEOUT_PERIOD = 240
-    MAXNJOBS = 4
     PERFORMANCECLASS = 'CServalcatPerformance'
-    SUBTASKS=['servalcat','prosmart','metalCoord']
-    RUNEXTERNALPROCESS=False
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]
 
 
@@ -76,13 +71,12 @@ class servalcat_pipe(CPluginScript):
         # Call parent validity
         return super(servalcat_pipe, self).validity()
 
-    def startProcess(self, processId):
+    def startProcess(self):
         """
         Main pipeline execution - runs ProSMART, MetalCoord, then Servalcat.
 
         Each phase uses try/except with proper CErrorReport logging including traceback.
         """
-        print(f"[servalcat_pipe] startProcess called with processId={processId}")
         print(f"[servalcat_pipe] workDirectory: {self.getWorkDirectory()}")
         print(f"[servalcat_pipe] container type: {type(self.container)}")
 
@@ -921,7 +915,7 @@ class servalcat_pipe(CPluginScript):
             except:
                 pass
 
-        self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
+        self.appendErrorReport(40,"240")
         self.reportStatus(CPluginScript.FAILED)
 
 # Function called from gui to support exporting MTZ files

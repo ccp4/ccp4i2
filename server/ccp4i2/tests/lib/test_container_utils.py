@@ -123,7 +123,7 @@ class CCP4i2TestCase(TestCase):
 
     def test_def_xml_container(self):
         taskManager: CCP4TaskManager.CTaskManager = CCP4TaskManager.CTaskManager()
-        defFile = taskManager.locate_def_xml(task_name="prosmart_refmac", version=None)
+        defFile = taskManager.locate_def_xml(task_name="prosmart_refmac")
         container: CCP4Container.CContainer = CCP4Container.CContainer(
             definitionFile=defFile
         )
@@ -202,7 +202,6 @@ prosmart_defmac_xml = """<ns0:ccp4i2 xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns">
     <comment/>
     <creationTime>14:00 19/Jul/12</creationTime>
     <userId>cowtan</userId>
-    <ccp4iVersion>0.0.1</ccp4iVersion>
     <jobId/>
     <project/>
     <pluginName>prosmart_refmac</pluginName>
@@ -213,7 +212,7 @@ prosmart_defmac_xml = """<ns0:ccp4i2 xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns">
     <file>
       <CI2XmlDataFile>
         <project>CCP4I2_TOP</project>
-        <relPath>wrappers/refmac_i2/script</relPath>
+        <relPath>wrappers/refmac/script</relPath>
         <baseName>refmac.def.xml</baseName>
       </CI2XmlDataFile>
     </file>

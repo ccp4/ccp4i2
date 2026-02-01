@@ -1,9 +1,7 @@
-import os
 import sys
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_utils import CellCheck
@@ -14,11 +12,6 @@ from ccp4i2.pipelines.import_merged.script.mtzimport import ImportMTZ
 class import_merged(CPluginScript):
 
     TASKNAME = 'import_merged'
-    MAINTAINER = 'liz.potterton@york.ac.uk'
-    WHATNEXT = []
-    ERROR_CODES = { 301 : { 'description' : 'No output file found after conversion program' },
-                    302 : { 'description' : 'Output from conversion does not contain recognised reflection or FreeR set data' }
-                    }
     # Note - preserving the HKLOUT by changing severity from the system default of 1 to 5 and
     # beware issues with caseinsensitivity
     PURGESEARCHLIST = [ [ 'HKLIN*.mtz' , 1 ],
@@ -125,18 +118,13 @@ class import_merged(CPluginScript):
               self.process1(status)
               return  # Probably doesnt get here
 
-          self.connectSignal(self.x2mtz,'finished',self.process1slot)
-          ret = self.x2mtz.process()
-        
-    #------------------------------------------------------------------------
-    @QtCore.Slot(dict)
-    def process1slot(self,status):
-        self.process1(status)
+          status = self.x2mtz.process()
+          self.process1(status)
 
     def process1(self,status, completeFreeR=True):
         'if completeFreeR False, always generate new FreeR (for 2nd attempt)'
         #print('process1',type(status),status)
-        if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+        if status == CPluginScript.FAILED:
             self.reportStatus(status)
             return
       
@@ -217,18 +205,17 @@ class import_merged(CPluginScript):
         self.outputLogXML(self.importXML)  # send self.importXML to program.xml
         self.freerflag.container.outputData.FREEROUT.setFullPath(str(self.container.outputData.FREEOUT))
 
-        self.connectSignal(self.freerflag,'finished',self.process2)
         status = self.freerflag.process()
+        self.process2(status)
         
     #------------------------------------------------------------------------
-    @QtCore.Slot(dict)
     def process2(self,status):
       freerOK = True
       doFreeR = True
       if self.container.controlParameters.SKIP_FREER:
         doFreeR = False
       else:
-        if status is not None and status.get('finishStatus') == CPluginScript.FAILED:
+        if status == CPluginScript.FAILED:
           # FreeR run has failed, create error message and continue
           self.addElement(self.importXML, 'FreeRfailed', 'True')
           self.outputLogXML(self.importXML)  # send self.importXML to program.xml
@@ -333,18 +320,15 @@ class import_merged(CPluginScript):
       self.addElement(tempXML, "DRPIPE_RUNNING", "True") 
       self.outputLogXML(tempXML)  # SEND self.importXML to program.xml
       #  Start data reduction
-      self.connectSignal(self.aimlesspipe,'finished',self.nearlyDone)
       print("starting aimless_pipe")
-      self.aimlesspipe.process()
-
+      status = self.aimlesspipe.process()
+      self.nearlyDone(status)
       return CPluginScript.SUCCEEDED
 
     #------------------------------------------------------------------------
-    @QtCore.Slot(dict)
     def nearlyDone(self,status):
       print('import_merged.nearlyDone')
       self.container.outputData.OBSOUT.setContentFlag(reset=True)
-      import shutil
       try:
           # XML data: We have
           #   a) self.importXML etree element report on the import step
@@ -497,11 +481,10 @@ class import_merged(CPluginScript):
             freerfile = str(self.container.outputData.FREEOUT)
         else:
             # Temporary place for FreeR in job_1 subdirectory
-            wd = self.getWorkDirectory()
-            wdir = os.path.join(wd, 'job_1')
-            if not os.path.exists(wdir):
-                os.mkdir(wdir, 0o777)
-                freerfile = os.path.join(wdir, 'FREEOUT.mtz')
+            wdir = self.workDirectory / 'job_1'
+            if not wdir.exists():
+                wdir.mkdir(mode=0o777)
+                freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now
@@ -561,11 +544,10 @@ class import_merged(CPluginScript):
                 freerfile = str(self.container.outputData.FREEOUT)
             else:
                 # Temporary place for FreeR in job_1 subdirectory
-                wd = self.getWorkDirectory()
-                wdir = os.path.join(wd, 'job_1')
-                if not os.path.exists(wdir):
-                    os.mkdir(wdir, 0o777)
-                    freerfile = os.path.join(wdir, 'FREEOUT.mtz')
+                wdir = self.workDirectory / 'job_1'
+                if not wdir.exists():
+                    wdir.mkdir(mode=0o777)
+                    freerfile = str(wdir / 'FREEOUT.mtz')
 
         self.freeout = freerfile
         reducehkl = True  # for now

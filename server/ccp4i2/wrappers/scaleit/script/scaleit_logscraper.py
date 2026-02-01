@@ -1,9 +1,5 @@
-import os
 from lxml import etree
 
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core import CCP4Utils
 
 class makeGraphs:
     def __init__(self, logfilename):

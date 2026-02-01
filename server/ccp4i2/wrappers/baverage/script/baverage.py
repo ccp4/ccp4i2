@@ -2,12 +2,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
   
 class baverage(CPluginScript):
 
-    TASKMODULE = 'wrappers'  # Where this plugin will appear on the gui
+    TASKMODULE = 'wrappers'
     TASKTITLE = 'Average B over main and side chain atoms'
     TASKNAME = 'baverage'
     TASKCOMMAND = 'baverage'
-    TASKVERSION= 0.0
-    COMTEMPLATEFILE = None
 
     def makeCommandAndScript(self):
       inp = self.container.inputData

@@ -4,10 +4,8 @@ from ccp4i2.core import CCP4PluginScript, CCP4XtalData
 class chltofom(CCP4PluginScript.CPluginScript):
 
 
-    TASKNAME = 'chltofom'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'chltofom'                             # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    MAINTAINER = 'liz.potterton@york.ac.uk'
+    TASKNAME = 'chltofom'
+    TASKCOMMAND = 'chltofom'
     PURGESEARCHLIST = [  [ 'hklout.mtz' , 0 ],    
                          [ 'HKLOUT.mtz' , 0 ]
                        ]

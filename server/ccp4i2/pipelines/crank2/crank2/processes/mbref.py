@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import os,sys,shutil,subprocess,copy,multiprocessing
-from process import process, crvapi
-from program import program
-import common,inout
+from ..process import process, crvapi
+from ..program import program
+from .. import common,inout
 import fileinput
 par=common.parameter
 

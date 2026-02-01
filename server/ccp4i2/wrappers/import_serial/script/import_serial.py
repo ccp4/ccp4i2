@@ -5,13 +5,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class import_serial(CPluginScript):
-    TASKMODULE = 'data_entry'         # GIU menu location
-    TASKTITLE = 'Import Serial Core'       # Short title for GUI
-    TASKNAME = 'import_serial'        # Task name - same as class name
-    TASKCOMMAND = 'import_serial'     # The command to run the executable
-    TASKVERSION = 1.1                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
+    TASKMODULE = 'data_entry'
+    TASKTITLE = 'Import Serial Core'
+    TASKNAME = 'import_serial'
+    TASKCOMMAND = 'import_serial'
     MAINTAINER = 'martin.maly@soton.ac.uk'
 
     def __init__(self, *args, **kwargs):
@@ -36,7 +33,7 @@ class import_serial(CPluginScript):
             self.streamfile = self.container.inputData.STREAMFILE.fullPath.__str__()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         print("import_serial: makeCommandAndScript start")
         self.appendCommandLine("--hklin")
         self.appendCommandLine(str(self.hklin))

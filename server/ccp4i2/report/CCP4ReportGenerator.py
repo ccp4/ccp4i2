@@ -1,7 +1,6 @@
 import functools
 import logging
 import os
-import sys
 import xml.etree.ElementTree as etree
 
 from ccp4i2.core import CCP4Utils
@@ -157,11 +156,7 @@ class CReportGenerator(HierarchicalObject):
         try:
             with open(outputXmlFile, 'r') as inputFile:
                 text = inputFile.read()
-                if sys.version_info > (3, 0):
-                    outputXml = etree.fromstring(text.encode('utf-8'))
-                else:
-                    outputXml = etree.fromstring(
-                        text, CCP4ReportParser.PARSER())
+                outputXml = etree.fromstring(text.encode('utf-8'))
         except Exception as e:
             # print('Error in getOutputXml',e)
             outputXmlFile = os.path.join(
@@ -505,11 +500,7 @@ class CReportGenerator(HierarchicalObject):
                 return 1
             else:
                 return -1
-        if sys.version_info > (3, 0):
-            fullFileList = sorted(
-                fullFileList, key=functools.cmp_to_key(sortFiles))
-        else:
-            fullFileList = sorted(fullFileList, cmp=sortFiles)
+        fullFileList = sorted(fullFileList, key=functools.cmp_to_key(sortFiles))
         return fullFileList
 
     def extractJobId(self, path):

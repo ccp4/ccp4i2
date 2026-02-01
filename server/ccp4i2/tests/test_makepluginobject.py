@@ -24,16 +24,6 @@ class TestMakePluginObject:
         assert isinstance(sub_plugin, CPluginScript), "Should be a CPluginScript instance"
         assert sub_plugin.TASKNAME == "pointless", "Should have correct TASKNAME"
 
-    def test_makepluginobject_with_version(self):
-        """Test that makePluginObject respects version parameter."""
-        parent = CPluginScript(name="parent_task")
-
-        # Create sub-plugin with specific version
-        sub_plugin = parent.makePluginObject("pointless", version=0.0)
-
-        assert sub_plugin is not None, "Should create plugin instance with version"
-        assert sub_plugin.TASKNAME == "pointless"
-
     def test_makepluginobject_nonexistent_plugin(self):
         """Test that makePluginObject handles non-existent plugins."""
         parent = CPluginScript(name="parent_task")
@@ -62,11 +52,9 @@ class TestMakePluginObject:
         # Create multiple sub-plugins (using plugins with minimal dependencies)
         plugin1 = parent.makePluginObject("pointless")
         plugin2 = parent.makePluginObject("aimless")
-        plugin3 = parent.makePluginObject("unique")
 
         assert plugin1 is not None and plugin1.TASKNAME == "pointless"
         assert plugin2 is not None and plugin2.TASKNAME == "aimless"
-        # unique plugin may not exist - just check it doesn't crash
         # The important thing is that we can call makePluginObject multiple times
 
     def test_makepluginobject_containers_initialized(self):

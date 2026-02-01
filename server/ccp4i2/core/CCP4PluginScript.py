@@ -6,12 +6,12 @@ while maintaining backward compatibility with the existing API used
 by all .def.xml files and plugin implementations.
 """
 
-from __future__ import annotations
 from typing import Optional
 from pathlib import Path
 import xml.etree.ElementTree as ET
 import logging
 import os
+import shutil
 
 from ccp4i2.core.base_object.base_classes import CData, CContainer
 from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
@@ -60,9 +60,6 @@ class CPluginScript(CData):
         TASKTITLE: Display title for GUI
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
-        TASKVERSION: Version number
-        COMLINETEMPLATE: Command line template (optional)
-        COMTEMPLATE: Command file template (optional)
     """
 
     # Class attributes to be defined in subclasses
@@ -70,9 +67,6 @@ class CPluginScript(CData):
     TASKTITLE = None
     TASKNAME = None
     TASKCOMMAND = None
-    TASKVERSION = None
-    COMLINETEMPLATE = None
-    COMTEMPLATE = None
     ASYNCHRONOUS = False  # Set to True for async execution
 
     # Status codes
@@ -410,23 +404,8 @@ class CPluginScript(CData):
 
         Returns:
             Path to .def.xml file, or None if not found
-
-        Note:
-            Version checking is disabled - CTaskManager.locate_def_xml() ignores version
-            parameter since no plugins in this codebase have multiple versions.
-            See CCP4TaskManager.locate_def_xml() docstring for details.
         """
-        if not self.TASKNAME:
-            return None
-
-        task_manager = TASKMANAGER()
-
-        # Version parameter is ignored by locate_def_xml (no plugins have multiple versions)
-        # Passing None for clarity, though any value would work
-        return task_manager.locate_def_xml(
-            task_name=self.TASKNAME,
-            version=None
-        )
+        return TASKMANAGER().locate_def_xml(self.TASKNAME)
 
     def loadContentsFromXml(self, fileName: str) -> CErrorReport:
         """
@@ -647,7 +626,7 @@ class CPluginScript(CData):
     # Process workflow methods
     # =========================================================================
 
-    def process(self, **kwargs) -> int:
+    def process(self) -> int:
         """
         Main processing method - orchestrates the entire workflow.
 
@@ -657,10 +636,6 @@ class CPluginScript(CData):
         3. processInputFiles() - pre-process input files
         4. makeCommandAndScript() - generate command line/file
         5. startProcess() - execute the program
-
-        Args:
-            **kwargs: Optional keyword arguments to forward to startProcess()
-                     (e.g., filename, pxdname for phaser_analysis)
 
         Returns:
             Status code (SUCCEEDED, FAILED, or RUNNING)
@@ -797,31 +772,7 @@ class CPluginScript(CData):
         # Legacy compatibility: plugins have various startProcess signatures
         # Inspect the signature and call with appropriate arguments
         try:
-            import inspect
-            sig = inspect.signature(self.startProcess)
-            params = list(sig.parameters.keys())
-
-            if len(params) == 0:
-                # Modern signature: startProcess(self)
-                result = self.startProcess(**kwargs)
-            elif 'processId' in params:
-                # Legacy signature: startProcess(self, processId, ...)
-                result = self.startProcess(processId=0, **kwargs)
-            elif 'comList' in params or (len(params) > 0 and params[0] == 'comList'):
-                # Legacy signature: startProcess(self, comList, **kw)
-                # Pass empty list for comList
-                result = self.startProcess([], **kwargs)
-            elif 'command' in params or (len(params) > 0 and params[0] == 'command'):
-                # Legacy signature: startProcess(self, command, **kw)
-                # Pass None for command (used by phaser plugins with Python-based logic)
-                result = self.startProcess(None, **kwargs)
-            else:
-                # Unknown signature - try with empty args and let **kwargs catch extras
-                try:
-                    result = self.startProcess(**kwargs)
-                except TypeError:
-                    # If that fails, try passing None for the first positional param
-                    result = self.startProcess(None, **kwargs)
+            result = self.startProcess()
 
             # Handle both modern API (CErrorReport) and legacy API (int)
             if isinstance(result, int):
@@ -881,7 +832,7 @@ class CPluginScript(CData):
             self._glean_output_files_sync()
 
         # Emit finished signal so pipelines can continue
-        # This is essential for sub-plugins in pipelines (e.g., mtzdump in demo_copycell)
+        # This is essential for sub-plugins in pipelines
         logger.info(f"[DEBUG process] Calling reportStatus with status: {status}")
         self.reportStatus(status)
         logger.info(f"[DEBUG process] Returning status: {status}")
@@ -1338,7 +1289,7 @@ class CPluginScript(CData):
 
         # Save params.xml after setting output file attributes
         # Do this in checkOutputData() rather than process() because some plugins
-        # (like demo_copycell) override process() and bypass the base implementation
+        # override process() and bypass the base implementation
         # NOTE: We save to params.xml (not input_params.xml) to preserve the original inputs
         if self.get_db_job_id():
             try:
@@ -1366,87 +1317,14 @@ class CPluginScript(CData):
         """
         return CErrorReport()
 
-    def makeCommandAndScript(self, container=None) -> CErrorReport:
+    def makeCommandAndScript(self) -> CErrorReport:
         """
         Generate command line and command file for the program.
-
-        Uses COMLINETEMPLATE and COMTEMPLATE class attributes to
-        generate the command line and input file.
-
-        Args:
-            container: Container object with input/output data (defaults to self.container)
 
         Returns:
             CErrorReport with any errors
         """
-        error = CErrorReport()
-
-        # Use the container from this plugin if not specified
-        if container is None:
-            container = self.container
-
-        # Use our modern CComTemplate implementation (Qt-free)
-        try:
-            from ccp4i2.core import CCP4ComTemplate
-            logger.debug(f"[DEBUG makeCommandAndScript] CComTemplate imported successfully")
-        except ImportError as e:
-            # Should never happen since CCP4ComTemplate is in our core package
-            logger.debug(f"[DEBUG makeCommandAndScript] CComTemplate import failed: {e}")
-            return error
-
-        # Process COMTEMPLATE (generates stdin script)
-        # The numeric prefix is stripped by CComTemplate, output goes to stdin
-        if self.COMTEMPLATE is not None:
-            logger.debug(f"[DEBUG makeCommandAndScript] Processing COMTEMPLATE: {self.COMTEMPLATE}")
-            try:
-                comTemplate = CCP4ComTemplate.CComTemplate(parent=self, template=self.COMTEMPLATE)
-                text, tmpl_err = comTemplate.makeComScript(container)
-                logger.debug(f"[DEBUG makeCommandAndScript] COMTEMPLATE expanded to: '{text}'")
-                if tmpl_err and len(tmpl_err) > 0:
-                    logger.debug(f"[DEBUG makeCommandAndScript] COMTEMPLATE errors: {tmpl_err}")
-                    error.extend(tmpl_err)
-                if text and len(text) > 0:
-                    # Add to commandScript (stdin) - preserve newlines
-                    logger.debug(f"[DEBUG makeCommandAndScript] Adding to commandScript (stdin)")
-                    self.commandScript.append(text + '\n')
-            except Exception as e:
-                logger.debug(f"[DEBUG makeCommandAndScript] Exception processing COMTEMPLATE: {e}")
-                import traceback
-                traceback.print_exc()
-                error.append(
-                    klass=self.__class__.__name__,
-                    code=13,
-                    details=f"Error processing COMTEMPLATE: {e}"
-                )
-
-        # Process COMLINETEMPLATE (generates command line arguments)
-        # The leading numeric prefix (e.g., "1 HKLIN") is stripped by CComTemplate
-        if self.COMLINETEMPLATE is not None:
-            logger.debug(f"[DEBUG makeCommandAndScript] Processing COMLINETEMPLATE: {self.COMLINETEMPLATE}")
-            try:
-                comTemplate = CCP4ComTemplate.CComTemplate(parent=self, template=self.COMLINETEMPLATE)
-                text, tmpl_err = comTemplate.makeComScript(container)
-                logger.debug(f"[DEBUG makeCommandAndScript] Template expanded to: '{text}'")
-                if tmpl_err and len(tmpl_err) > 0:
-                    logger.debug(f"[DEBUG makeCommandAndScript] Template errors: {tmpl_err}")
-                    error.extend(tmpl_err)
-                if text and len(text) > 0:
-                    # Split the text and append each word to commandLine
-                    wordList = text.split()
-                    logger.debug(f"[DEBUG makeCommandAndScript] Adding words to commandLine: {wordList}")
-                    for word in wordList:
-                        self.commandLine.append(word)
-            except Exception as e:
-                logger.debug(f"[DEBUG makeCommandAndScript] Exception processing COMLINETEMPLATE: {e}")
-                import traceback
-                traceback.print_exc()
-                error.append(
-                    klass=self.__class__.__name__,
-                    code=15,
-                    details=f"Error processing COMLINETEMPLATE: {e}"
-                )
-
-        return error
+        return CErrorReport()
 
     def appendCommandLine(self, wordList=[], clear=False) -> CErrorReport:
         """
@@ -1556,7 +1434,6 @@ class CPluginScript(CData):
             os.rename(src, dst)
         except OSError as e:
             # If rename fails (e.g., cross-device link), fall back to copy+delete
-            import shutil
             shutil.move(src, dst)
 
     def logFileText(self) -> str:
@@ -1650,7 +1527,6 @@ class CPluginScript(CData):
         """
         import os
         from pathlib import Path
-        import shutil
 
         # Ensure working directory exists
         work_dir_path = Path(self.workDirectory)
@@ -2369,7 +2245,6 @@ class CPluginScript(CData):
             tuple: (status_code, error_code) where status_code is SUCCEEDED/FAILED
         """
         import os
-        import shutil
 
         # Handle empty input
         if len(infiles) == 0:
@@ -2406,8 +2281,7 @@ class CPluginScript(CData):
             logger.warning("Using libcheck to merge dictionaries (output may not be self-consistent)")
 
             # Find libcheck executable
-            import sys
-            exe = 'libcheck.exe' if sys.platform == 'win32' else 'libcheck'
+            exe = shutil.which('libcheck')
 
             # Try to find libcheck in CCP4 installation
             # For now, just use subprocess to call libcheck if it's in PATH
@@ -2477,7 +2351,7 @@ class CPluginScript(CData):
     # Utility methods for backward compatibility with old API
     # =========================================================================
 
-    def makePluginObject(self, taskName: str = None, version: Optional[str] = None,
+    def makePluginObject(self, taskName: str = None,
                          reportToDatabase: bool = True, **kwargs) -> Optional['CPluginScript']:
         """
         Create a sub-plugin (sub-job) instance using TASKMANAGER.
@@ -2492,7 +2366,6 @@ class CPluginScript(CData):
 
         Args:
             taskName: Name of the task to instantiate (or use legacy pluginName= kwarg)
-            version: Optional version of the task (defaults to latest)
             reportToDatabase: Whether to report this job to the database (default True).
                             In database-backed environments (CCP4i2 GUI), this controls
                             whether the sub-job is registered in the project database.
@@ -2542,7 +2415,7 @@ class CPluginScript(CData):
 
         # Use TASKMANAGER to get the plugin class
         task_manager = TASKMANAGER()
-        plugin_class = task_manager.get_plugin_class(taskName, version=version)
+        plugin_class = task_manager.get_plugin_class(taskName)
 
         if plugin_class is None:
             # If dummy=True, create a generic CPluginScript instead of failing
@@ -2803,24 +2676,9 @@ class CPluginScript(CData):
         """
         return self._childJobCounter
 
-    def getWorkDirectory(self, ifRelPath=False):
-        """Get the working directory path.
-
-        Args:
-            ifRelPath: If True and path contains 'CCP4_JOBS', return relative path from CCP4_JOBS onwards.
-                      If False, return absolute path.
-
-        Returns:
-            Working directory path as string (absolute or relative based on ifRelPath)
-        """
-        import os
-        work_dir = str(self.workDirectory)
-
-        if ifRelPath and 'CCP4_JOBS' in work_dir:
-            # Return relative path starting from CCP4_JOBS
-            return work_dir[work_dir.index('CCP4_JOBS'):]
-        else:
-            return work_dir
+    def getWorkDirectory(self):
+        "Get the absolute working directory path as string."
+        return str(self.workDirectory)
 
     def testForInterrupt(self) -> bool:
         """Test if user has requested pipeline interruption.
@@ -2831,9 +2689,7 @@ class CPluginScript(CData):
         Returns:
             True if INTERRUPT file exists, False otherwise
         """
-        import os
-        interrupt_file = os.path.join(self.getWorkDirectory(), 'INTERRUPT')
-        return os.path.exists(interrupt_file)
+        return (self.workDirectory / "INTERRUPT").exists()
 
     # connectSignal() is now inherited from HierarchicalObject base class
     # with automatic signature adaptation for legacy int handlers
@@ -3340,7 +3196,6 @@ class CPluginScript(CData):
             >>> # Returns: ('hklin.mtz', 'F_SIGF_F,F_SIGF_SIGF,ABCD_HLA,ABCD_HLB,ABCD_HLC,ABCD_HLD', error)
             >>> self.makeHklin0(['F_SIGF', 'ABCD'])
         """
-        from pathlib import Path
         import gemmi
 
         # Initialize error report
@@ -4177,7 +4032,7 @@ class CPluginScript(CData):
         Args:
             code: Error code number
             details: Error message details
-            name: Error name (defaults to wrapper name)
+            name: Error name
             label: Error label
             cls: Class where error occurred
             recordTime: Whether to record timestamp
@@ -4187,12 +4042,6 @@ class CPluginScript(CData):
         """
         if cls is None:
             cls = self.__class__
-        if name is None:
-            name = f'Error in wrapper {self.TASKNAME}'
-            if hasattr(self, 'TASKVERSION') and self.TASKVERSION is not None:
-                name = f'{name} {self.TASKVERSION}'
-        else:
-            name = f'Error in wrapper {name}'
 
         # Determine severity
         # If severity not explicitly provided, use ERROR for exceptions, WARNING otherwise

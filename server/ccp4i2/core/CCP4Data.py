@@ -5,7 +5,6 @@ Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logi
 This file is safe to edit - add your implementation code here.
 """
 
-from __future__ import annotations
 from typing import Optional, Any
 
 from ccp4i2.core.cdata_stubs.CCP4Data import CBaseDataStub, CCollectionStub, CDictStub, CFloatRangeStub, CFollowFromJobStub, CI2DataTypeStub, CIntRangeStub, CJobStatusStub, CJobTitleStub, COneWordStub, COutputFileListStub, CPatchSelectionStub, CRangeStub, CRangeSelectionStub, CSMILESStringStub, CUUIDStub

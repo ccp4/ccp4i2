@@ -5,21 +5,17 @@ import subprocess
 
 from lxml import etree
 
-from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
+from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class buster(CPluginScript):
-    TASKMODULE = 'refinement'         # Gui menu location
-    TASKTITLE = 'Refinement with Buster (Global Phasing Limited)'        # Short title for Gui
-    TASKNAME = 'buster'               # Task name - same as class name
-    TASKCOMMAND = 'refine'            # The command to run the executable
-    TASKVERSION = 1.0                 # plugin version
-    COMTEMPLATE = None                # The program com file template
-    COMTEMPLATEFILE = None            # Name of file containing com file template
+    TASKMODULE = 'refinement'
+    TASKTITLE = 'Refinement with Buster (Global Phasing Limited)'
+    TASKNAME = 'buster'
+    TASKCOMMAND = 'refine'
     WHATNEXT = ['buster', 'prosmart_refmac', 'modelcraft']
     PERFORMANCECLASS = 'CRefinementPerformance'
-    MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Failed to initialise BUSTER, do you have BUSTER installed & the i2 preferences setup ' \
                            'to point to the correct BUSTER installation folder (or have run the setup script for BUSTER) ?', 
@@ -41,16 +37,14 @@ class buster(CPluginScript):
             print(scriplo)
             self.source_script(scriplo)
             goodtogo = True
-        if goodtogo:
-            CPluginScript.process(self)
-        else:
+        if not goodtogo:
             # Failed to find BUSTER. Flag problem & also write advice into stdout.
             self.appendErrorReport(101)
             print("ERROR REPORTED : Failed to find BUSTER installation.\n"
                   "                 If you have installed BUSTER, please ensure you either run the setup script\n" 
                   "                 for BUSTER, before running ccp4i2, or point i2 to the BUSTER installation folder\n"
                   "                 in user preferences.")
-            CPluginScript.process(self)
+        super().process()
 
     def source_script(self, script):
         pipe = subprocess.Popen(". %s; env" % script, stdout=subprocess.PIPE, shell=True)
@@ -77,7 +71,6 @@ class buster(CPluginScript):
             cols1.append(['FREERFLAG', None])
         # Run CAD to change FREER flag name to something refine likes
         self.hklin, __, errorb = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
-        binc = os.path.normpath(os.path.join( CCP4Utils.getCCP4Dir().__str__(), 'bin', 'cad' ))
         self.outfilec = os.path.join(os.path.split(self.hklin)[0], 'rcadout.mtz')
         self.logfc = os.path.join(os.path.split(self.hklin)[0], 'rcadout.log')
         arglist = ['hklin1', self.hklin, 'hklout', self.outfilec]
@@ -89,7 +82,7 @@ class buster(CPluginScript):
             inputText = "LABIN FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREERFLAG_FREER\n"
             inputText += ("LABOUT FILE 1 E1=F_SIGF_F E2=F_SIGF_SIGF E3=FREER")
         # Fire the hkl conversion up.
-        pid = CCP4Modules.PROCESSMANAGER().startProcess(binc, arglist, inputText=inputText, logFile=self.logfc)
+        pid = CCP4Modules.PROCESSMANAGER().startProcess("cad", arglist, inputText=inputText, logFile=self.logfc)
         status = CCP4Modules.PROCESSMANAGER().getJobData(pid)
         extCde = CCP4Modules.PROCESSMANAGER().getJobData(pid, 'exitCode')
         if not(status == 0 and os.path.exists(self.outfilec)):
@@ -179,7 +172,7 @@ class buster(CPluginScript):
         xmlfile.close()
         return CPluginScript.SUCCEEDED
 
-    def makeCommandAndScript(self, container=None):
+    def makeCommandAndScript(self):
         self.appendCommandLine("-p")
         self.appendCommandLine(str(self.pdbin))
         self.appendCommandLine("-m")

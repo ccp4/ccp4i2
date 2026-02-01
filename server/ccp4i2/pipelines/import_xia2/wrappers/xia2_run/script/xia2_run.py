@@ -18,10 +18,8 @@ RUN_TITLES = {
 
 class xia2_run(CCP4PluginScript.CPluginScript):
 
-    TASKMODULE = None      # Where this plugin will appear on the gui
     TASKTITLE = 'Import data processing results from XIA2'
-    TASKNAME = 'xia2_run'   # Task name - should be same as class name
-    TASKVERSION= 0.0               # Version of this plugin
+    TASKNAME = 'xia2_run'
     ERROR_CODES = { 101 : {'description' : 'XIA2 run directory does not exist' },
                     102 : {'description' : 'The XIA2 job failed with error file' },
                     103 : {'description' : 'No XIA2 run report file found' },
@@ -30,7 +28,6 @@ class xia2_run(CCP4PluginScript.CPluginScript):
                     111 : {'description' : 'Unable to read performance data from ispyb.xml' }
                     }
     WHATNEXT = ['aimless_pipe','molrep_mr','phaser_pipeline']
-    CLONEABLE = False
     PERFORMANCECLASS = 'CDataReductionPerformance'
 
 

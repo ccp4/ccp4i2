@@ -1,7 +1,6 @@
 import glob
 import json
 import os
-import platform
 import shutil
 from math import sqrt
 
@@ -13,15 +12,12 @@ from ccp4i2.core import CCP4Container, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class Cxia2_multiplex(CPluginScript):
+class xia2_multiplex(CPluginScript):
 
     TASKTITLE = "Data set combination with xia2.multiplex"
     TASKNAME = "xia2_multiplex"
     TASKCOMMAND = "xia2.multiplex"
-    if platform.system() == "Windows":
-        TASKCOMMAND = "xia2.multiplex.bat"
     TASKMODULE = "data_reduction"
-    TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         205: {"description": "Failed parsing xia2.json"},
@@ -35,7 +31,6 @@ class Cxia2_multiplex(CPluginScript):
         "ShelxCD",
         "ShelxCDE",
     ]
-    MAINTAINER = "ccp4@stfc.ac.uk"
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set

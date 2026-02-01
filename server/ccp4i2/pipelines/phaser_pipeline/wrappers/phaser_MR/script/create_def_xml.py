@@ -3,7 +3,7 @@
 """create phaser_MR_AUTO.def.xml from PHIL parameters"""
 import os
 import re
-import sys
+import io
 
 import phaser
 from lxml import etree
@@ -184,14 +184,7 @@ class PhaserKeywordsCreator(PhilTaskCreator):
     self.boilerPlateXML = '''<ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>{USERID}</userId>
-        <hostName>{HOSTNAME}</hostName>
-        <creationTime>{CREATIONTIME}</creationTime>
-        <pluginVersion></pluginVersion>
-        <ccp4iVersion>{CCP4IVERSION}</ccp4iVersion>
         <pluginName>{PLUGINNAME}</pluginName>
-        <OS>{OS}</OS>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="{PLUGINNAME}">
         <container id="inputData">
@@ -325,12 +318,7 @@ class PhaserKeywordsCreator(PhilTaskCreator):
     # Write out prettified version
     out_file = self.fmt_dic['PLUGINNAME'] + '.def.xml'
     parser = etree.XMLParser(remove_blank_text=True)
-    if sys.version_info >= (3,0):
-        import io
-        tree = etree.parse(io.StringIO(etree.tostring(task_xml).decode("utf-8")), parser)
-    else:
-        import StringIO
-        tree = etree.parse(StringIO.StringIO(etree.tostring(task_xml)), parser)
+    tree = etree.parse(io.StringIO(etree.tostring(task_xml).decode("utf-8")), parser)
     try:
       with open(out_file, 'wb') as f:
         print('Writing def.xml to %s' % out_file)

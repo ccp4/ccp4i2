@@ -65,11 +65,7 @@ class CallbackObject(object):
 
 class phaser_MR(CPluginScript):
 
-    TASKNAME = 'phaser_MR'                                  # Task name - should be same as class name
-    TASKCOMMAND = ''                                     # The command to run the executable
-    TASKVERSION= 0.0                                     # Version of this plugin
-    COMTEMPLATE = None                                   # The program com file template
-    COMTEMPLATEFILE = None                               # Name of file containing com file template
+    TASKNAME = 'phaser_MR'
 
     ERROR_CODES = {101 : { 'description' : 'Failed to run MR_DAT' },
                    102 : { 'description' : 'Failed to set keywords' },

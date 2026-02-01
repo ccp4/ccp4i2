@@ -17,11 +17,14 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     This function uses explicit import statements for each report,
     providing clear traceability and IDE support.
     """
+    if task_name == 'AMPLE':
+        from ccp4i2.wrappers.AMPLE.script.AMPLE_report import AMPLE_report
+        return AMPLE_report
     if task_name == 'AUSPEX':
         from ccp4i2.wrappers.AUSPEX.script.AUSPEX_report import AUSPEX_report
         return AUSPEX_report
     if task_name == 'Acedrg':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import acedrgNew_report
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report import acedrgNew_report
         return acedrgNew_report
     if task_name == 'AcedrgLink':
         from ccp4i2.wrappers.AcedrgLink.script.AcedrgLink_report import AcedrgLink_report
@@ -30,8 +33,8 @@ def _get_report_class(task_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report import AlternativeImportXIA2_report
         return AlternativeImportXIA2_report
     if task_name == 'LidiaAcedrgNew':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew_report import lidiaAcedrgNew_report
-        return lidiaAcedrgNew_report
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report import LidiaAcedrgNew_report
+        return LidiaAcedrgNew_report
     if task_name == 'MakeLink':
         from ccp4i2.pipelines.MakeLink.script.MakeLink_report import MakeLink_report
         return MakeLink_report
@@ -59,12 +62,12 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'RvapiReport':
         from ccp4i2.wrappers.morda_i2.script.morda_i2_report import RvapiReport
         return RvapiReport
+    if task_name == 'SIMBAD':
+        from ccp4i2.wrappers.SIMBAD.script.SIMBAD_report import SIMBAD_report
+        return SIMBAD_report
     if task_name == 'ShelxCD':
         from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
         return ShelxCD_report
-    if task_name == 'ShelxCDEBaseReport':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCDEBaseReport
-        return ShelxCDEBaseReport
     if task_name == 'SubstituteLigand':
         from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report import SubstituteLigand_report
         return SubstituteLigand_report
@@ -74,12 +77,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'TestObsConversions':
         from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions_report import TestObsConversions_report
         return TestObsConversions_report
-    if task_name == 'ZZPipelineNameZZ':
-        from ccp4i2.pipelines.boilerplate.script.boilerplate_report import ZZPipelineNameZZ_report
-        return ZZPipelineNameZZ_report
-    if task_name == 'ZZPluginNameZZ':
-        from ccp4i2.wrappers.boilerplate.script.boilerplate_report import ZZPluginNameZZ_report
-        return ZZPluginNameZZ_report
     if task_name == 'acorn':
         from ccp4i2.wrappers.acorn.script.acorn_report import acorn_report
         return acorn_report
@@ -90,11 +87,8 @@ def _get_report_class(task_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import adding_stats_to_mmcif_i2_report
         return adding_stats_to_mmcif_i2_report
     if task_name == 'aimless':
-        from ccp4i2.wrappers.aimless.script.aimless_report import aimless_report
+        from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import aimless_report
         return aimless_report
-    if task_name == 'aimless_pipe':
-        from ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report import aimless_pipe_report
-        return aimless_pipe_report
     if task_name == 'arcimboldo':
         from ccp4i2.wrappers.arcimboldo.script.arcimboldo_report import arcimboldo_report
         return arcimboldo_report
@@ -137,12 +131,12 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'coot1':
         from ccp4i2.wrappers.coot1.script.coot1_report import coot1_report
         return coot1_report
+    if task_name == 'coot_find_ligand':
+        from ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand_report import coot_find_ligand_report
+        return coot_find_ligand_report
     if task_name == 'coot_find_waters':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_report import coot_find_waters_report
+        from ccp4i2.wrappers.coot_find_waters.script.coot_find_waters_report import coot_find_waters_report
         return coot_find_waters_report
-    if task_name == 'coot_fit_residues':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report import coot_fit_residues_report
-        return coot_fit_residues_report
     if task_name == 'coot_rebuild':
         from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild_report import coot_rebuild_report
         return coot_rebuild_report
@@ -150,11 +144,8 @@ def _get_report_class(task_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph_report import coot_rsr_morph_report
         return coot_rsr_morph_report
     if task_name == 'coot_script_lines':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report import coot_script_lines_report
+        from ccp4i2.wrappers.coot_script_lines.script.coot_script_lines_report import coot_script_lines_report
         return coot_script_lines_report
-    if task_name == 'coot_stepped_refine':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_report import coot_stepped_refine_report
-        return coot_stepped_refine_report
     if task_name == 'cpatterson':
         from ccp4i2.wrappers.cpatterson.script.cpatterson_report import cpatterson_report
         return cpatterson_report
@@ -392,9 +383,6 @@ def _get_report_class(task_name: str) -> Optional[Type]:
     if task_name == 'refmac':
         from ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report import refmac_report
         return refmac_report
-    if task_name == 'reindex_processed_data':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_report import reindex_processed_data_report
-        return reindex_processed_data_report
     if task_name == 'scaleit':
         from ccp4i2.wrappers.scaleit.script.scaleit_report import scaleit_report
         return scaleit_report
@@ -445,11 +433,11 @@ def _get_report_class(task_name: str) -> Optional[Type]:
 
 # Report names for fast lookup without loading metadata
 REPORT_NAMES: set[str] = {
+    'AMPLE',
     'AUSPEX',
     'Acedrg',
     'AcedrgLink',
     'AlternativeImportXIA2',
-    'LidiaAcedrg',
     'LidiaAcedrgNew',
     'MakeLink',
     'MakeMonster',
@@ -460,18 +448,15 @@ REPORT_NAMES: set[str] = {
     'ProvideSequence',
     'ProvideTLS',
     'RvapiReport',
+    'SIMBAD',
     'ShelxCD',
-    'ShelxCDEBaseReport',
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
-    'ZZPipelineNameZZ',
-    'ZZPluginNameZZ',
     'acorn',
     'add_fractional_coords',
     'adding_stats_to_mmcif_i2',
     'aimless',
-    'aimless_pipe',
     'arcimboldo',
     'arp_warp_classic',
     'buster',
@@ -486,12 +471,11 @@ REPORT_NAMES: set[str] = {
     'comit',
     'coordinate_selector',
     'coot1',
+    'coot_find_ligand',
     'coot_find_waters',
-    'coot_fit_residues',
     'coot_rebuild',
     'coot_rsr_morph',
     'coot_script_lines',
-    'coot_stepped_refine',
     'cpatterson',
     'cphasematch',
     'crank2',
@@ -571,7 +555,6 @@ REPORT_NAMES: set[str] = {
     'pyphaser_mr',
     'qtpisa',
     'refmac',
-    'reindex_processed_data',
     'scaleit',
     'sculptor',
     'servalcat',
@@ -616,7 +599,7 @@ class ReportRegistry:
     def __init__(self):
         self._cache: Dict[str, Type] = {}
 
-    def get_report_class(self, task_name: str, version: Optional[str] = None) -> Optional[Type]:
+    def get_report_class(self, task_name: str) -> Optional[Type]:
         """
         Get a report class by task name.
 
@@ -624,12 +607,11 @@ class ReportRegistry:
 
         Args:
             task_name: Name of the task (e.g., "refmac", "pointless")
-            version: Optional version (currently ignored)
 
         Returns:
             Report class, or None if not found
         """
-        cache_key = f"{task_name}:{version}" if version else task_name
+        cache_key = task_name
         if cache_key in self._cache:
             return self._cache[cache_key]
 

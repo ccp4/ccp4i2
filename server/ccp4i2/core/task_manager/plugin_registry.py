@@ -30,11 +30,11 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2 import AlternativeImportXIA2
         return AlternativeImportXIA2
     if plugin_name == 'Lidia':
-        from ccp4i2.wrappers.Lidia.script.Lidia import lidia
-        return lidia
+        from ccp4i2.wrappers.Lidia.script.Lidia import Lidia
+        return Lidia
     if plugin_name == 'LidiaAcedrgNew':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.lidiaAcedrgNew import lidiaAcedrgNew
-        return lidiaAcedrgNew
+        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew import LidiaAcedrgNew
+        return LidiaAcedrgNew
     if plugin_name == 'MakeLink':
         from ccp4i2.pipelines.MakeLink.script.MakeLink import MakeLink
         return MakeLink
@@ -77,9 +77,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'TestObsConversions':
         from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions import TestObsConversions
         return TestObsConversions
-    if plugin_name == 'ZZPluginNameZZ':
-        from ccp4i2.wrappers.boilerplate.script.boilerplate import ZZPluginNameZZ
-        return ZZPluginNameZZ
     if plugin_name == 'acedrg':
         from ccp4i2.wrappers.acedrg.script.acedrg import acedrg
         return acedrg
@@ -104,6 +101,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'arcimboldo':
         from ccp4i2.wrappers.arcimboldo.script.arcimboldo import arcimboldo
         return arcimboldo
+    if plugin_name == 'arp_warp_classic':
+        from ccp4i2.wrappers.arp_warp_classic.script.arp_warp_classic import arp_warp_classic
+        return arp_warp_classic
     if plugin_name == 'baverage':
         from ccp4i2.wrappers.baverage.script.baverage import baverage
         return baverage
@@ -149,12 +149,12 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'coot1':
         from ccp4i2.wrappers.coot1.script.coot1 import coot1
         return coot1
+    if plugin_name == 'coot_find_ligand':
+        from ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand import coot_find_ligand
+        return coot_find_ligand
     if plugin_name == 'coot_find_waters':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
+        from ccp4i2.wrappers.coot_find_waters.script.coot_find_waters import coot_find_waters
         return coot_find_waters
-    if plugin_name == 'coot_fit_residues':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues import coot_fit_residues
-        return coot_fit_residues
     if plugin_name == 'coot_rebuild':
         from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild import coot_rebuild
         return coot_rebuild
@@ -162,11 +162,8 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph import coot_rsr_morph
         return coot_rsr_morph
     if plugin_name == 'coot_script_lines':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines import coot_script_lines
+        from ccp4i2.wrappers.coot_script_lines.script.coot_script_lines import coot_script_lines
         return coot_script_lines
-    if plugin_name == 'coot_stepped_refine':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine import coot_stepped_refine
-        return coot_stepped_refine
     if plugin_name == 'cpatterson':
         from ccp4i2.wrappers.cpatterson.script.cpatterson import cpatterson
         return cpatterson
@@ -215,9 +212,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'ctruncate':
         from ccp4i2.wrappers.ctruncate.script.ctruncate import ctruncate
         return ctruncate
-    if plugin_name == 'demo_copycell':
-        from ccp4i2.wrappers2.demo_copycell.script.demo_copycell import demo_copycell
-        return demo_copycell
     if plugin_name == 'density_calculator':
         from ccp4i2.wrappers.density_calculator.script.density_calculator import density_calculator
         return density_calculator
@@ -320,9 +314,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'mrparse_simple':
         from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_wrapper import mrparse_simple
         return mrparse_simple
-    if plugin_name == 'mtzdump':
-        from ccp4i2.wrappers.mtzdump.script.mtzdump import mtzdump
-        return mtzdump
     if plugin_name == 'mtzheader':
         from ccp4i2.wrappers.mtzheader.script.mtzheader import mtzheader
         return mtzheader
@@ -341,9 +332,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'pdb_redo_api':
         from ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api import pdb_redo_api
         return pdb_redo_api
-    if plugin_name == 'pdbset':
-        from ccp4i2.wrappers.pdbset.script.pdbset import pdbset
-        return pdbset
     if plugin_name == 'pdbset_ui':
         from ccp4i2.wrappers.pdbset_ui.script.pdbset_ui import pdbset_ui
         return pdbset_ui
@@ -416,6 +404,9 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'pointless_reindexToMatch':
         from ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch import pointless_reindexToMatch
         return pointless_reindexToMatch
+    if plugin_name == 'privateer':
+        from ccp4i2.wrappers.privateer.script.privateer_wrapper import privateer
+        return privateer
     if plugin_name == 'prosmart':
         from ccp4i2.wrappers.prosmart.script.prosmart import prosmart
         return prosmart
@@ -429,14 +420,8 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.wrappers.qtpisa.script.qtpisa import qtpisa
         return qtpisa
     if plugin_name == 'refmac':
-        from ccp4i2.wrappers.refmac_i2.script.refmac_i2 import refmac_i2
-        return refmac_i2
-    if plugin_name == 'reindex_minimtz':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz import reindex_minimtz
-        return reindex_minimtz
-    if plugin_name == 'reindex_processed_data':
-        from ccp4i2.pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data import reindex_processed_data
-        return reindex_processed_data
+        from ccp4i2.wrappers.refmac.script.refmac import refmac
+        return refmac
     if plugin_name == 'scaleit':
         from ccp4i2.wrappers.scaleit.script.scaleit import scaleit
         return scaleit
@@ -470,9 +455,6 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
     if plugin_name == 'tableone':
         from ccp4i2.pipelines.tableone.script.tableone import tableone
         return tableone
-    if plugin_name == 'unique':
-        from ccp4i2.wrappers.unique.script.unique import unique
-        return unique
     if plugin_name == 'validate_protein':
         from ccp4i2.wrappers.validate_protein.script.validate_protein import validate_protein
         return validate_protein
@@ -486,14 +468,14 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_ctruncate.script.xia2_ctruncate import xia2_ctruncate
         return xia2_ctruncate
     if plugin_name == 'xia2_dials':
-        from ccp4i2.wrappers.xia2_dials.script.xia2_dials import Cxia2_dials
-        return Cxia2_dials
+        from ccp4i2.wrappers.xia2_dials.script.xia2_dials import xia2_dials
+        return xia2_dials
     if plugin_name == 'xia2_integration':
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_integration.script.xia2_integration import xia2_integration
         return xia2_integration
     if plugin_name == 'xia2_multiplex':
-        from ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex import Cxia2_multiplex
-        return Cxia2_multiplex
+        from ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex import xia2_multiplex
+        return xia2_multiplex
     if plugin_name == 'xia2_pointless':
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_pointless.script.xia2_pointless import xia2_pointless
         return xia2_pointless
@@ -501,11 +483,11 @@ def _get_plugin_class(plugin_name: str) -> Optional[Type]:
         from ccp4i2.pipelines.import_xia2.wrappers.xia2_run.script.xia2_run import xia2_run
         return xia2_run
     if plugin_name == 'xia2_ssx_reduce':
-        from ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce import Cxia2_ssx_reduce
-        return Cxia2_ssx_reduce
+        from ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce import xia2_ssx_reduce
+        return xia2_ssx_reduce
     if plugin_name == 'xia2_xds':
-        from ccp4i2.wrappers.xia2_xds.script.xia2_xds import Cxia2_xds
-        return Cxia2_xds
+        from ccp4i2.wrappers.xia2_xds.script.xia2_xds import xia2_xds
+        return xia2_xds
     if plugin_name == 'zanuda':
         from ccp4i2.wrappers.zanuda.script.zanuda import zanuda
         return zanuda
@@ -519,7 +501,6 @@ PLUGIN_NAMES: set[str] = {
     'AcedrgLink',
     'AlternativeImportXIA2',
     'Lidia',
-    'LidiaAcedrg',
     'LidiaAcedrgNew',
     'MakeLink',
     'MakeMonster',
@@ -535,7 +516,6 @@ PLUGIN_NAMES: set[str] = {
     'SubstituteLigand',
     'SubtractNative',
     'TestObsConversions',
-    'ZZPluginNameZZ',
     'acedrg',
     'acedrgNew',
     'acorn',
@@ -544,6 +524,7 @@ PLUGIN_NAMES: set[str] = {
     'aimless',
     'aimless_pipe',
     'arcimboldo',
+    'arp_warp_classic',
     'baverage',
     'buster',
     'cad_copy_column',
@@ -559,12 +540,11 @@ PLUGIN_NAMES: set[str] = {
     'convert2mtz',
     'coordinate_selector',
     'coot1',
+    'coot_find_ligand',
     'coot_find_waters',
-    'coot_fit_residues',
     'coot_rebuild',
     'coot_rsr_morph',
     'coot_script_lines',
-    'coot_stepped_refine',
     'cpatterson',
     'cphasematch',
     'crank2',
@@ -581,7 +561,6 @@ PLUGIN_NAMES: set[str] = {
     'crank2_substrdet',
     'csymmatch',
     'ctruncate',
-    'demo_copycell',
     'density_calculator',
     'dials_image',
     'dials_rlattice',
@@ -616,14 +595,12 @@ PLUGIN_NAMES: set[str] = {
     'mrbump_model_prep',
     'mrparse',
     'mrparse_simple',
-    'mtzdump',
     'mtzheader',
     'mtzutils',
     'pairef',
     'parrot',
     'pdb_extract_wrapper',
     'pdb_redo_api',
-    'pdbset',
     'pdbset_ui',
     'pdbview_edit',
     'phaser_EP',
@@ -648,13 +625,12 @@ PLUGIN_NAMES: set[str] = {
     'pisapipe',
     'pointless',
     'pointless_reindexToMatch',
+    'privateer',
     'prosmart',
     'prosmart_refmac',
     'pyphaser_mr',
     'qtpisa',
     'refmac',
-    'reindex_minimtz',
-    'reindex_processed_data',
     'scaleit',
     'scalepack2mtz',
     'sculptor',
@@ -666,7 +642,6 @@ PLUGIN_NAMES: set[str] = {
     'slicendice',
     'splitMtz',
     'tableone',
-    'unique',
     'validate_protein',
     'x2mtz',
     'xia2_aimless',
@@ -708,20 +683,19 @@ class PluginRegistry:
     def __init__(self):
         self._cache: Dict[str, Type] = {}
 
-    def get_plugin_class(self, task_name: str, version: Optional[str] = None) -> Optional[Type]:
+    def get_plugin_class(self, task_name: str) -> Optional[Type]:
         """
-        Get a plugin class by name and optional version.
+        Get a plugin class by name.
 
         The plugin is imported lazily on first access and cached.
 
         Args:
             task_name: Name of the task/plugin
-            version: Optional version (currently ignored - uses latest)
 
         Returns:
             Plugin class, or None if not found
         """
-        cache_key = f"{task_name}:{version}" if version else task_name
+        cache_key = task_name
         if cache_key in self._cache:
             return self._cache[cache_key]
 

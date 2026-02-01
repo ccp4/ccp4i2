@@ -13,9 +13,6 @@ class dui(CPluginScript):
     DESCRIPTION = 'Launch DIALS User Interface (DUI2) and capture output'
     TASKNAME = 'dui'
     TASKCOMMAND = 'dui2'
-    TASKVERSION= 0.1
-    TIMEOUT_PERIOD = 9999999.9
-    MAINTAINER = 'kyle.stevenson@stfc.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.stime = 0.0
@@ -42,7 +39,7 @@ class dui(CPluginScript):
 
     def process(self):
         self.stime = time.time()
-        CPluginScript.process(self)
+        super().process()
 
     def processOutputFiles(self):
         # Carry forward the bkp file - (added to carry forward loc. of original dui run). nb. take care with annot.

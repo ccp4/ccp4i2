@@ -2,16 +2,9 @@
 <ccp4i2>
     <ccp4i2_header>
         <function>DEF</function>
-        <userId>martin</userId>
-        <creationTime>2017-03-28T18:52:07.916916</creationTime>
-        <pluginVersion></pluginVersion>
-        <ccp4iVersion>0.0.1</ccp4iVersion>
         <pluginName>MakeProjectsAndDoLigandPipeline</pluginName>
-        <pluginTitle>Brief title For plugin</pluginTitle>
-        <jobId/>
     </ccp4i2_header>
     <ccp4i2_body id="MakeProjectsAndDoLigandPipeline">
-        <!--You must provide an inputData container, although it can be empty-->
         <container id="inputData">
             <content id="ROOT_DIRECTORY">
                 <className>CDataFile</className>
@@ -38,7 +31,6 @@
                     <ifAtomSelection>True</ifAtomSelection>
                     <allowUndefined>False</allowUndefined>
                     <mustExist>True</mustExist>
-                    <requiredSubType>4,3,2,1,0</requiredSubType>
                 </qualifiers>
             </content>
             <content id="FREERFLAG">
@@ -86,11 +78,6 @@
                 </subItem>
             </content>
         </container>
-        <!--generally we put control parameters into a container called "controlParameters"...although the-->
-        <!--existence and name of this container are both optional-->
-        <container id="controlParameters">
-        </container>
-        <!--You must provide an outputData container, although it can be empty-->
         <container id="outputData">
             <content id="XYZOUT_LIST">
                 <className>CList</className>
@@ -120,11 +107,6 @@
                     </qualifiers>
                 </subItem>
             </content>
-<!--Here specify what sort of data constitutes a PERFORMANCEinDICATOR  for this task
-            <content id="PERFORMANCEINDICATOR">
-                <className>CRefinementPerformance</className>
-            </content>
--->
         </container>
     </ccp4i2_body>
 </ccp4i2>

@@ -1,7 +1,6 @@
 import glob
 import json
 import os
-import platform
 import shutil
 from math import sqrt
 from pathlib import Path
@@ -14,15 +13,12 @@ from ccp4i2.core import CCP4Container, CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-class Cxia2_ssx_reduce(CPluginScript):
+class xia2_ssx_reduce(CPluginScript):
 
     TASKTITLE = "Reduction of serial datasets using xia2.ssx_reduce"
     TASKNAME = "xia2_ssx_reduce"
     TASKCOMMAND = "xia2.ssx_reduce"
-    if platform.system() == "Windows":
-        TASKCOMMAND = "xia2.ssx_reduce.bat"
     TASKMODULE = "data_reduction"
-    TASKVERSION = 0.0
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         225: {"description": "Unable to find merged MTZ files"},
@@ -37,17 +33,6 @@ class Cxia2_ssx_reduce(CPluginScript):
         "prosmart_refmac"
     ]
     MAINTAINER = "martin.maly@soton.ac.uk"
-
-
-    # def __init__(self, *args, **kwargs):
-    #     self.reference = None
-    #     CPluginScript.__init__(self, *args, **kwargs)
-
-    # def processInputFiles(self):
-    #     if self.container.inputData.reference.isSet():
-    #     #     self.reference = self.container.inputData.reference.fullPath.__str__()
-    #     if self.container.controlParameters.reference.isSet():
-    #         self.reference = self.container.controlParameters.reference.fullPath.__str__()
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set

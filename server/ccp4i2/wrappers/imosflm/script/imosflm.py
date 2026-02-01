@@ -1,21 +1,16 @@
 import glob
 import os
-import platform
 import shutil
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class imosflm(CPluginScript):
-    TASKMODULE = 'data_processing'                        # Where this plugin will appear on the gui
-    TASKTITLE = 'Integrate images - iMosflm'     # A short title for gui menu
+    TASKMODULE = 'data_processing'
+    TASKTITLE = 'Integrate images - iMosflm'
     DESCRIPTION = 'Launch iMosflm and capture output'
-    TASKNAME = 'imosflm'                                  # Task name - should be same as class name
-    TASKCOMMAND = 'imosflm'                                     # The command to run the executable
-    if platform.system() == 'Windows':
-        TASKCOMMAND = 'imosflm.bat'
-    TASKVERSION= 0.0                                     # Version of this plugin
-    TIMEOUT_PERIOD = 9999999.9
+    TASKNAME = 'imosflm'
+    TASKCOMMAND = 'imosflm'
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     
     ERROR_CODES = {  200 : { 'description' : 'imosflm exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}

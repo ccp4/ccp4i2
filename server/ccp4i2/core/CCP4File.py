@@ -5,8 +5,9 @@ Extends stub classes from ccp4i2.core.cdata_stubs with methods and business logi
 This file is safe to edit - add your implementation code here.
 """
 
-from __future__ import annotations
-from typing import Optional, Any
+import platform
+import socket
+import time
 
 from ccp4i2.core.cdata_stubs.CCP4File import CDataReflFileStub, CEBIValidationXMLDataFileStub, CExePathStub, CExePathListStub, CExportedFileStub, CExportedFileListStub, CFileFunctionStub, CFilePathStub, CI2XmlDataFileStub, CI2XmlHeaderStub, CMmcifDataStub, CMmcifDataFileStub, CPDFDataFileStub, CPostscriptDataFileStub, CProjectIdStub, CProjectNameStub, CSceneDataFileStub, CSearchPathStub, CSearchPathListStub, CTextDataFileStub, CVersionStub, CXmgrDataFileStub, CXmlDataFileStub, CYmlFileStub
 
@@ -223,10 +224,6 @@ class CI2XmlHeader(CI2XmlHeaderStub):
         This populates standard header metadata that should be set when creating
         a new XML file.
         """
-        import time
-        import socket
-        import platform
-        import sys
 
         # Set creation time to now (Unix timestamp as integer)
         if hasattr(self, 'creationTime'):
@@ -239,11 +236,6 @@ class CI2XmlHeader(CI2XmlHeaderStub):
         # Set OS
         if hasattr(self, 'OS'):
             self.OS.set(f"{platform.system()} {platform.release()}")
-
-        # Set CCP4i version (Python version as proxy for now)
-        if hasattr(self, 'ccp4iVersion'):
-            python_version = f"{sys.version_info.major}.{sys.version_info.minor}.{sys.version_info.micro}"
-            self.ccp4iVersion.set(python_version)
 
 
 class CMmcifData(CMmcifDataStub):
