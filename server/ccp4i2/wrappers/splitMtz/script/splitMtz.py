@@ -81,8 +81,19 @@ class splitMtz(CPluginScript):
         input_basename = Path(str(inp.HKLIN.baseName)).stem
         files_created = 0
 
+        # Build list of column groups to process
+        # Include both COLUMNGROUPLIST items and USERCOLUMNGROUP (if selected)
+        groups_to_process = list(inp.COLUMNGROUPLIST)
+
+        # Also check USERCOLUMNGROUP if it's set and selected
+        if hasattr(inp, 'USERCOLUMNGROUP'):
+            user_group = inp.USERCOLUMNGROUP
+            # Check if it has any content (columnList with items)
+            if hasattr(user_group, 'columnList') and len(list(user_group.columnList)) > 0:
+                groups_to_process.append(user_group)
+
         # Process each selected column group
-        for idx, group in enumerate(inp.COLUMNGROUPLIST):
+        for idx, group in enumerate(groups_to_process):
             # Check if this group is selected
             selected = group.selected
             if hasattr(selected, 'value'):

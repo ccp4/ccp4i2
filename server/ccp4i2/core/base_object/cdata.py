@@ -949,7 +949,8 @@ class CData(HierarchicalObject):
 
             # Only append if the child element has content
             if excludeUnset or allSet:
-                if child_elem.text or len(child_elem) > 0:
+                has_content = child_elem.text or len(child_elem) > 0
+                if has_content:
                     elem.append(child_elem)
             else:
                 elem.append(child_elem)

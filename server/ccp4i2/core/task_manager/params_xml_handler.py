@@ -450,23 +450,15 @@ class ParamsXmlHandler:
 
         # Special handling for CList: elements with class names indicate list items
         if isinstance(cdata_container, CList):
-            pass  # DEBUG: print(f"[DEBUG _import_container_values] Processing CList, found {len(list(xml_container))} items")
             # For CList, child elements are tagged with the item's class name (CCP4i2 convention)
             # e.g., <CImportUnmerged> for items in CImportUnmergedList
             # We create new items and populate them from the XML
             for child_elem in xml_container:
                 elem_name = child_elem.tag
-                pass  # DEBUG: print(f"[DEBUG _import_container_values] Processing CList item with tag: {elem_name}")
 
                 # Create a new list item using makeItem()
                 # This creates an item of the correct type based on the CList's subItem qualifier
                 new_item = cdata_container.makeItem()
-                pass  # DEBUG: print(f"[DEBUG _import_container_values] Created item of type: {type(new_item).__name__}")
-
-                # Verify the element name matches the expected item class
-                expected_class_name = type(new_item).__name__
-                if elem_name != expected_class_name:
-                    print(f"Warning: Expected <{expected_class_name}> but found <{elem_name}> in CList")
 
                 # Import the item's contents - use appropriate method based on item type
                 # For simple value types (CString, CInt, CFloat, CBoolean), the XML element
@@ -478,12 +470,10 @@ class ParamsXmlHandler:
                     self._import_parameter_value(child_elem, new_item)
                 else:
                     # Complex type - recurse to handle nested structure
-                    item_count = self._import_container_values(child_elem, new_item)
-                    pass  # DEBUG: print(f"[DEBUG _import_container_values] Imported {item_count} values into item")
+                    self._import_container_values(child_elem, new_item)
 
                 # Append the item to the list
                 cdata_container.append(new_item)
-            pass  # DEBUG: print(f"[DEBUG _import_container_values] CList now has {len(cdata_container)} items")
             return imported_count
 
         # Regular container handling
@@ -496,7 +486,6 @@ class ParamsXmlHandler:
 
                 if isinstance(attr, CList):
                     # CList: Recurse to handle list items
-                    pass  # DEBUG: print(f"[DEBUG _import_container_values] Found CList attribute: {elem_name}, recursing")
                     imported_count += self._import_container_values(child_elem, attr)
 
                 elif isinstance(attr, CContainer):
@@ -507,8 +496,6 @@ class ParamsXmlHandler:
                     # Import parameter value
                     if self._import_parameter_value(child_elem, attr):
                         imported_count += 1
-            else:
-                print(f"Warning: No attribute '{elem_name}' found in container")
 
         return imported_count
 
@@ -550,19 +537,17 @@ class ParamsXmlHandler:
     def _import_structured_data(self, xml_elem: ET.Element, param: CData) -> bool:
         """Import structured data from XML into a parameter."""
         from ccp4i2.core.CCP4File import CDataFile
+        from ccp4i2.core.base_object.fundamental_types import CList
         try:
             imported_any = False
 
             # Special handling for CDataFile: use setFullPath() if baseName is present
             if isinstance(param, CDataFile):
-                pass  # DEBUG: print(f"[DEBUG _import_structured_data] Found CDataFile: {type(param).__name__}")
                 basename_elem = xml_elem.find('baseName')
                 if basename_elem is not None and basename_elem.text:
                     basename_value = basename_elem.text.strip()
-                    pass  # DEBUG: print(f"[DEBUG _import_structured_data] Calling setFullPath({basename_value})")
                     # Use setFullPath to properly initialize the file
                     param.setFullPath(basename_value)
-                    pass  # DEBUG: print(f"[DEBUG _import_structured_data] After setFullPath, isSet('baseName'): {param.isSet('baseName')}")
                     imported_any = True
                 # Continue to import other attributes (relPath, project, etc.)
 
@@ -580,11 +565,16 @@ class ParamsXmlHandler:
                 # Get the attribute
                 attr = getattr(param, attr_name)
 
+                # Special handling for CList - need to use makeItem() and append()
+                if isinstance(attr, CList):
+                    self._import_container_values(child, attr)
+                    imported_any = True
+                    continue
+
                 # If the child has nested elements, it's a CData object - recurse
                 if len(list(child)) > 0:
                     if isinstance(attr, CData):
                         # Recursively import nested structure
-                        pass  # DEBUG: print(f"[DEBUG _import_structured_data] Recursing into nested CData: {attr_name} (type: {type(attr).__name__})")
                         imported_any |= self._import_structured_data(child, attr)
                     continue
 

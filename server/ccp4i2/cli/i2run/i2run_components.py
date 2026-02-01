@@ -11,6 +11,7 @@ This refactored architecture separates concerns for better maintainability:
 """
 
 import logging
+import re
 from pathlib import Path
 from typing import List, Dict, Any
 
@@ -403,28 +404,15 @@ class PluginPopulator:
                 target.append(new_item)
                 logger.warning(f"Appended item to list, list now has {len(target)} items")
 
-                # Debug: verify the item was actually added
-                print(f"[DEBUG] After append: target list has {len(target)} items")
-                print(f"[DEBUG] target type: {type(target).__name__}, target object_path: {target.object_path() if hasattr(target, 'object_path') else 'N/A'}")
-                if len(target) > 0:
-                    last_item = target[-1]
-                    print(f"[DEBUG] Last item type: {type(last_item).__name__}")
-                    # Check actual data attributes - use getattr to avoid confusion with hierarchical 'name'
-                    for attr_name in ['sequence', 'nCopies', 'polymerType', 'description']:
-                        if hasattr(last_item, attr_name):
-                            attr = getattr(last_item, attr_name)
-                            if attr is not None:
-                                val_repr = attr.value if hasattr(attr, 'value') else attr
-                                print(f"[DEBUG]   last_item.{attr_name} = {val_repr!r}"[:100])
-
         # For single-value file objects, process all subvalues
         elif isinstance(target, CDataFile):
             logger.warning(f"Handling CDataFile {type(target).__name__} with {len(values)} values")
             PluginPopulator._handle_file_with_subvalues(target, values)
         else:
-            # Single value object - take first value
+            # Single value object (e.g., CColumnGroup) - pass all values
+            # If multiple key=value pairs, _handle_single_value handles them
             if len(values) > 0:
-                PluginPopulator._handle_single_value(target, values[0])
+                PluginPopulator._handle_single_value(target, values)
 
     @staticmethod
     def _handle_single_value(target, value, is_list: bool = False) -> None:
@@ -444,12 +432,20 @@ class PluginPopulator:
         if isinstance(value, list):
             # For CData objects with .set(), check if we're dealing with key=value pairs
             if hasattr(target, "set"):
+                # IMPORTANT: Skip key=value parsing for fundamental types (CString, CInt, etc.)
+                # These types have a simple 'value' attribute and should receive values directly.
+                # This prevents SMILES strings (which contain '=' for chemical bonds) from being
+                # incorrectly parsed as key=value pairs.
+                from ccp4i2.core.base_object.fundamental_types import (
+                    CString, CInt, CFloat, CBoolean
+                )
+                is_fundamental_type = isinstance(target, (CString, CInt, CFloat, CBoolean))
+
                 # Check if this looks like multiple key=value pairs (for CList items)
                 # If most items contain "=", parse them as individual key=value pairs
+                # BUT skip this for fundamental types - they should receive values directly
                 has_equals = [("=" in str(v)) for v in value]
-                if len(has_equals) > 0 and sum(has_equals) >= len(has_equals) * 0.5:
-                    print(f"\n[DEBUG] Parsing {len(value)} key=value pairs for {type(target).__name__}")
-                    print(f"[DEBUG] value list: {value}")
+                if not is_fundamental_type and len(has_equals) > 0 and sum(has_equals) >= len(has_equals) * 0.5:
                     logger.info(f"Parsing {len(value)} key=value pairs for {type(target).__name__}: {value}")
                     # Multiple key=value pairs - parse each one individually
                     for item_str in value:
@@ -459,37 +455,42 @@ class PluginPopulator:
                             val = parts[1] if len(parts) > 1 else ""
                             logger.info(f"  Setting {key}={val!r}")
 
-                            # Handle nested paths like "source/baseName" or "pdbItemList/structure"
+                            # Handle nested paths like "source/baseName" or "columnList[0]/columnLabel"
                             if "/" in key:
                                 nested_parts = key.split("/")
                                 current = target
-                                print(f"\n[DEBUG] Processing nested path: {key}={val}")
-                                print(f"[DEBUG]   Starting from target: {type(target).__name__} at {target.object_path() if hasattr(target, 'object_path') else 'N/A'}")
                                 for nested_key in nested_parts[:-1]:
-                                    attr = getattr(current, nested_key, None)
-                                    if attr is None:
-                                        logger.warning(f"Could not navigate to {nested_key}")
-                                        break
+                                    # Parse list index if present: "columnList[0]" -> ("columnList", 0)
+                                    list_index_match = re.match(r'^(\w+)\[(\d+)\]$', nested_key)
+                                    if list_index_match:
+                                        attr_name = list_index_match.group(1)
+                                        list_index = int(list_index_match.group(2))
+                                    else:
+                                        attr_name = nested_key
+                                        list_index = None
 
-                                    print(f"[DEBUG]   Navigated to {nested_key}: {type(attr).__name__} at {attr.object_path() if hasattr(attr, 'object_path') else 'N/A'}")
+                                    attr = getattr(current, attr_name, None)
+                                    if attr is None:
+                                        logger.warning(f"Could not navigate to {attr_name}")
+                                        break
 
                                     # If this attribute is a CList, we need to handle it specially
                                     if isinstance(attr, CCP4Data.CList):
-                                        # Check if list already has an item; if not, create one
-                                        if len(attr) == 0:
-                                            # Create first item in the list
-                                            item = attr.makeItem()
-                                            attr.append(item)
-                                            print(f"[DEBUG]   Created NEW item in empty CList {nested_key}")
+                                        # If explicit index given, ensure list has enough items
+                                        if list_index is not None:
+                                            while len(attr) <= list_index:
+                                                item = attr.makeItem()
+                                                attr.append(item)
+                                            current = attr[list_index]
                                         else:
-                                            print(f"[DEBUG]   CList {nested_key} already has {len(attr)} items, using last one")
-                                        # Navigate to the LAST item in the list (the one we just appended to)
-                                        current = attr[-1]
-                                        print(f"[DEBUG]   Navigating to last item: {type(current).__name__} at {current.object_path() if hasattr(current, 'object_path') else 'N/A'}")
+                                            # No explicit index - use last item or create one
+                                            if len(attr) == 0:
+                                                item = attr.makeItem()
+                                                attr.append(item)
+                                            current = attr[-1]
                                     else:
                                         # Normal CData object - navigate directly
                                         current = attr
-                                        print(f"[DEBUG]   Normal CData, continuing navigation")
 
                                 if current is not None:
                                     final_key = nested_parts[-1]
@@ -514,7 +515,6 @@ class PluginPopulator:
                                             # Simply use setattr - no special handling needed!
                                             setattr(current, final_key, val)
 
-                                        print(f"[DEBUG]   ✓ Set {final_key}={val!r} on {type(current).__name__}")
                                         logger.info(f"    ✓ Set {'.'.join(nested_parts)}={val!r}")
                                     except Exception as e:
                                         logger.warning(f"Could not set {nested_key}.{final_key}={val}: {e}")
@@ -544,33 +544,6 @@ class PluginPopulator:
                                     logger.info(f"    ✓ Set {key}={val!r}")
                                 except Exception as e:
                                     logger.warning(f"Could not set {key}={val}: {e}")
-
-                    # Debug: verify attributes were set
-                    print(f"[DEBUG] After setting attributes on {type(target).__name__}:")
-                    # Check for pdbItemList specifically
-                    if hasattr(target, 'pdbItemList') and target.pdbItemList is not None:
-                        print(f"[DEBUG]   pdbItemList has {len(target.pdbItemList)} items:")
-                        for idx, item in enumerate(target.pdbItemList):
-                            print(f"[DEBUG]     Item {idx}: {type(item).__name__}")
-                            if hasattr(item, 'structure') and item.structure is not None:
-                                if hasattr(item.structure, 'baseName') and item.structure.baseName is not None:
-                                    bn = item.structure.baseName.value if hasattr(item.structure.baseName, 'value') else item.structure.baseName
-                                    print(f"[DEBUG]       structure.baseName: {bn}")
-                                else:
-                                    print(f"[DEBUG]       structure: (no baseName)")
-                            else:
-                                print(f"[DEBUG]       structure: None")
-                            if hasattr(item, 'identity_to_target') and item.identity_to_target is not None:
-                                ident = item.identity_to_target.value if hasattr(item.identity_to_target, 'value') else item.identity_to_target
-                                print(f"[DEBUG]       identity_to_target: {ident}")
-                    for key_to_check in ['sequence', 'nCopies', 'name', 'polymerType', 'description']:
-                        if hasattr(target, key_to_check):
-                            attr = getattr(target, key_to_check, None)
-                            if attr is not None:
-                                val_repr = attr.value if hasattr(attr, 'value') else attr
-                                print(f"[DEBUG]   {key_to_check} = {val_repr!r}")
-                            else:
-                                print(f"[DEBUG]   {key_to_check} = None")
 
                     return  # Done processing - exit early
                 elif len(value) == 1:
@@ -831,10 +804,8 @@ class PluginPopulator:
 
         # Now apply all values using original behavior
         # If we modified parsed_values (MTZ splitting), reconstruct the values list
-        print(f"[DEBUG] Checking for MTZ splitting... {has_key_value_syntax} or asu file conversion {parsed_values}")
         if has_key_value_syntax and parsed_values:
             for key, val in parsed_values.items():
-                print(f"[DEBUG] Setting {key}={val} on {type(target).__name__}")
                 PluginPopulator._handle_single_value(target, f"{key}={val}")
         else:
             # No key=value syntax or no modifications - use original behavior
