@@ -1,15 +1,19 @@
-import { useCallback, useContext, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useRunCheck } from "../../../providers/run-check-provider";
+import { FieldRow } from "../task-elements/field-row";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem, validation } = useJob(job.id);
   const { processedErrors, setProcessedErrors } = useRunCheck();
+
+  // Get syncTo for REFERENCE_FOR_AIMLESS to auto-sync it with mode
+  const { syncTo: syncToAimlessRef } = useTaskItem("REFERENCE_FOR_AIMLESS");
 
   // Consolidated task values
   const taskValues = useMemo(
@@ -23,6 +27,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     [useTaskItem]
   );
 
+  // Auto-set REFERENCE_FOR_AIMLESS based on MODE:
+  // - true when MODE is "MATCH" (always provide reference when matching)
+  // - false otherwise
+  // Uses syncTo to prevent bouncing loops (handles pending update tracking internally)
+  useEffect(() => {
+    syncToAimlessRef(taskValues.mode === "MATCH");
+  }, [taskValues.mode, syncToAimlessRef]);
+
   // Process validation errors
   // TODO: This client-side validity filtering should be moved to Python's validity() method
   // in pipelines/aimless_pipe/script/aimless_pipe.py to avoid race conditions and GUI complexity.
@@ -35,9 +47,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       .reduce((acc, key) => ({ ...acc, [key]: validation[key] }), {});
 
     // Add custom validation for HKLIN_REF
+    // Note: aimlessRef check removed since it's now auto-synced to true in MATCH mode
     if (
       taskValues.mode === "MATCH" &&
-      taskValues.aimlessRef &&
       taskValues.referenceDataset === "HKL" &&
       !taskValues.hklinRef?.dbFileId
     ) {
@@ -60,7 +72,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     }
   }, [processedValidationErrors, processedErrors, setProcessedErrors]);
 
-  // Visibility helpers
+  // Visibility and disabled helpers
+  // Note: REFERENCE_FOR_AIMLESS is auto-synced with MODE, so we no longer need
+  // to check taskValues.aimlessRef - it's always true when mode is "MATCH"
   const visibility = useMemo(
     () => ({
       isChooseMode: () => taskValues.mode === "CHOOSE",
@@ -75,17 +89,18 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         taskValues.chooseMode === "REINDEX_SPACE",
       isChooseLauegroup: () =>
         taskValues.mode === "CHOOSE" && taskValues.chooseMode === "LAUEGROUP",
-      hasAimlessRef: () => taskValues.mode === "MATCH" && taskValues.aimlessRef,
       isHklReference: () =>
-        taskValues.mode === "MATCH" &&
-        taskValues.aimlessRef &&
-        taskValues.referenceDataset === "HKL",
+        taskValues.mode === "MATCH" && taskValues.referenceDataset === "HKL",
       isXyzReference: () =>
-        taskValues.mode === "MATCH" &&
-        taskValues.aimlessRef &&
-        taskValues.referenceDataset === "XYZ",
+        taskValues.mode === "MATCH" && taskValues.referenceDataset === "XYZ",
     }),
     [taskValues]
+  );
+
+  // Disabled helper - reference type selector is visible but disabled unless mode is MATCH
+  const isReferenceTypeDisabled = useMemo(
+    () => () => taskValues.mode !== "MATCH",
+    [taskValues.mode]
   );
 
   // Element configurations
@@ -131,28 +146,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           visible: visibility.isChooseLauegroup,
         },
       ],
-      referenceOptions: [
-        {
-          key: "REFERENCE_FOR_AIMLESS",
-          label: "Reference",
-          visible: visibility.isMatchMode,
-        },
-        {
-          key: "REFERENCE_DATASET",
-          label: "Reference type",
-          visible: visibility.hasAimlessRef,
-        },
-        {
-          key: "HKLIN_REF",
-          label: "Reference reflections",
-          visible: visibility.isHklReference,
-        },
-        {
-          key: "XYZIN_REF",
-          label: "Reference coordinates",
-          visible: visibility.isXyzReference,
-        },
-      ],
+      // Note: REFERENCE_FOR_AIMLESS toggle is auto-synced with MODE and hidden from UI
+      // Reference file selectors are rendered directly in the JSX (not through helpers)
+      // to support the side-by-side MODE + REFERENCE_DATASET layout with disabled state
     }),
     [visibility]
   );
@@ -215,12 +211,24 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           containerHint="BlockLevel"
           qualifiers={{ guiLabel: "Choosing spacegroup", initiallyOpen: true }}
         >
-          <CCP4i2TaskElement
-            {...props}
-            key="MODE"
-            itemName="MODE"
-            qualifiers={{ guiLabel: "Pipeline mode" }}
-          />
+          {/* MODE and REFERENCE_DATASET side-by-side:
+              - MODE is always editable
+              - REFERENCE_DATASET is always visible but disabled unless mode is MATCH */}
+          <FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              key="MODE"
+              itemName="MODE"
+              qualifiers={{ guiLabel: "Pipeline mode" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              key="REFERENCE_DATASET"
+              itemName="REFERENCE_DATASET"
+              qualifiers={{ guiLabel: "Reference type" }}
+              disabled={isReferenceTypeDisabled}
+            />
+          </FieldRow>
 
           <CCP4i2ContainerElement
             {...props}
@@ -233,16 +241,21 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             {renderConditionalElements(elementConfigs.choiceOptions)}
           </CCP4i2ContainerElement>
 
-          <CCP4i2ContainerElement
+          {/* Reference file selectors - only shown when mode is MATCH */}
+          <CCP4i2TaskElement
             {...props}
-            key="SpecifyReference"
-            itemName=""
-            containerHint="BlockLevel"
-            qualifiers={{ guiLabel: "Specify reference" }}
-            visibility={visibility.isMatchMode}
-          >
-            {renderConditionalElements(elementConfigs.referenceOptions)}
-          </CCP4i2ContainerElement>
+            key="HKLIN_REF"
+            itemName="HKLIN_REF"
+            qualifiers={{ guiLabel: "Reference reflections" }}
+            visibility={visibility.isHklReference}
+          />
+          <CCP4i2TaskElement
+            {...props}
+            key="XYZIN_REF"
+            itemName="XYZIN_REF"
+            qualifiers={{ guiLabel: "Reference coordinates" }}
+            visibility={visibility.isXyzReference}
+          />
         </CCP4i2ContainerElement>
       </CCP4i2Tab>
     </CCP4i2Tabs>

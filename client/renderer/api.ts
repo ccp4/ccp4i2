@@ -297,6 +297,7 @@ export function useApi() {
     get<T>(endpoint: string | null, refreshInterval: number = 0) {
       return useSWR<T>(getStringKey(endpoint), jsonFetcher, {
         refreshInterval,
+        revalidateOnFocus: false,  // Don't refetch on window focus
         dedupingInterval: 5000,  // Dedupe identical requests within 5 seconds
         keepPreviousData: true,  // Keep showing old data while revalidating
       });
@@ -306,7 +307,9 @@ export function useApi() {
      * Fetch app config
      */
     config<T>() {
-      return useSWR<T>("config", () => apiJson("/api/config"));
+      return useSWR<T>("config", () => apiJson("/api/config"), {
+        revalidateOnFocus: false,
+      });
     },
 
     /**
@@ -314,14 +317,20 @@ export function useApi() {
      * Pass null to skip fetching (conditional fetch pattern)
      */
     get_endpoint<T>(ef: EndpointFetch | null, refreshInterval: number = 0) {
-      return useSWR<T>(getEndpointKey(ef), endpointFetcher as any, { refreshInterval });
+      return useSWR<T>(getEndpointKey(ef), endpointFetcher as any, {
+        refreshInterval,
+        revalidateOnFocus: false,
+      });
     },
 
     /**
      * Fetch XML endpoint, parse to XMLDocument
      */
     get_endpoint_xml(ef: EndpointFetch, refreshInterval: number = 0) {
-      return useSWR<XMLDocument | null>(getEndpointKey(ef), xmlFetcher, { refreshInterval });
+      return useSWR<XMLDocument | null>(getEndpointKey(ef), xmlFetcher, {
+        refreshInterval,
+        revalidateOnFocus: false,
+      });
     },
 
     /**
@@ -330,6 +339,7 @@ export function useApi() {
      */
     get_pretty_endpoint_xml(ef: EndpointFetch | null) {
       return useSWR<string | null>(getEndpointKey(ef), prettyXmlFetcher, {
+        revalidateOnFocus: false,
         shouldRetryOnError: false,
         // Silently handle errors - caller can check error state
         onError: () => {},
@@ -356,7 +366,9 @@ export function useApi() {
      * Fetch validation endpoint, transform to error map
      */
     get_validation(ef: EndpointFetch) {
-      return useSWR<ValidationErrors>(getEndpointKey(ef), validationFetcher);
+      return useSWR<ValidationErrors>(getEndpointKey(ef), validationFetcher, {
+        revalidateOnFocus: false,
+      });
     },
 
     /**
@@ -364,6 +376,7 @@ export function useApi() {
      */
     digest<T>(endpoint: string) {
       const swrConfig: SWRConfiguration = {
+        revalidateOnFocus: false,
         onError: (error) => console.warn(`Digest error for "${endpoint}":`, error),
         fallbackData: null as T,
         shouldRetryOnError: false,

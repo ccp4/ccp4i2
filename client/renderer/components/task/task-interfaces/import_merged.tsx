@@ -7,6 +7,7 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { doRetrieve, useApi } from "../../../api";
 import { useJob, usePrevious } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { FieldRow } from "../task-elements/field-row";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { showMtzColumnDialog, parseMtzColumns } from "../task-elements/mtz-column-dialog";
 import { Job } from "../../../types/models";
@@ -739,20 +740,23 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   <Grid2 size={{ xs: 6, md: 8 }}>
                     <CCP4i2TaskElement {...props} key="UNITCELL" itemName="UNITCELL" />
                   </Grid2>
-                  <Stack direction="row" spacing={2}>
-                    <CCP4i2TaskElement
-                      {...props}
-                      key="CRYSTALNAME"
-                      itemName="CRYSTALNAME"
-                      qualifiers={{ guiLabel: "Crystal name" }}
-                    />
-                    <CCP4i2TaskElement
-                      {...props}
-                      key="DATASETNAME"
-                      itemName="DATASETNAME"
-                      qualifiers={{ guiLabel: "Dataset name" }}
-                    />
-                  </Stack>
+                  <Grid2 size={{ xs: 12 }}>
+                    {/* FieldRow distributes children equally */}
+                    <FieldRow>
+                      <CCP4i2TaskElement
+                        {...props}
+                        key="CRYSTALNAME"
+                        itemName="CRYSTALNAME"
+                        qualifiers={{ guiLabel: "Crystal name" }}
+                      />
+                      <CCP4i2TaskElement
+                        {...props}
+                        key="DATASETNAME"
+                        itemName="DATASETNAME"
+                        qualifiers={{ guiLabel: "Dataset name" }}
+                      />
+                    </FieldRow>
+                  </Grid2>
                 </Grid2>
                 <CCP4i2TaskElement
                   {...props}

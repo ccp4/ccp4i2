@@ -107,9 +107,6 @@ interface RequestInitWithDuplex extends RequestInit {
 
 async function handleProxy(req: NextRequest, params: { path: string[] }) {
   const path = params.path ? params.path.join("/") : "";
-  console.log("[CCP4I2 PROXY] Handling request:", req.method, path);
-  console.log("[CCP4I2 PROXY] API_BASE_URL:", process.env.API_BASE_URL);
-  console.log("[CCP4I2 PROXY] NEXT_PUBLIC_API_BASE_URL:", process.env.NEXT_PUBLIC_API_BASE_URL);
 
   // Check authentication if required
   if (isAuthRequired(path)) {
@@ -159,8 +156,6 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
   if (searchParams) {
     targetUrl += `?${searchParams}`;
   }
-
-  console.log("[CCP4I2 PROXY] Forwarding to:", targetUrl, "backend:", backendBaseUrl);
 
   try {
     const headers = new Headers(req.headers);
@@ -234,10 +229,7 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
       headers: responseHeaders,
     });
   } catch (error: any) {
-    console.error("[CCP4I2 PROXY] Error forwarding request:", error);
-    console.error("[CCP4I2 PROXY] Target URL was:", targetUrl);
-    console.error("[CCP4I2 PROXY] Error code:", error.code);
-    console.error("[CCP4I2 PROXY] Error cause:", error.cause);
+    console.error("[CCP4I2 PROXY] Error:", error.message, "→", targetUrl);
     return NextResponse.json(
       { error: `Proxy error: ${error.message}`, targetUrl, code: error.code },
       { status: 500 }

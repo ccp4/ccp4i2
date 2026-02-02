@@ -72,7 +72,37 @@ export interface TaskItem {
    * clears that intent so the UI updates immediately.
    */
   forceUpdate: (value: any) => Promise<boolean | Response>;
+  /**
+   * Sync a parameter to a derived/computed value without bouncing.
+   * Use this in useEffect when auto-syncing one parameter based on another.
+   *
+   * This method tracks pending updates internally, preventing the common issue
+   * where the container re-renders before the new value propagates, causing the
+   * useEffect to fire again with stale values and create an infinite loop.
+   *
+   * Example usage:
+   * ```tsx
+   * const { value: mode } = useTaskItem("MODE");
+   * const { syncTo } = useTaskItem("REFERENCE_FOR_AIMLESS");
+   *
+   * useEffect(() => {
+   *   syncTo(mode === "MATCH");
+   * }, [mode, syncTo]);
+   * ```
+   */
+  syncTo: (targetValue: any) => Promise<boolean | Response>;
 }
+
+// ============================================================================
+// Module-level state for syncTo bounce prevention
+// ============================================================================
+/**
+ * Tracks pending sync operations to prevent useEffect bouncing loops.
+ * Key: parameter object path, Value: the target value we're syncing to.
+ * When a sync is initiated, we store the target value. When the container
+ * re-renders with the new value, we check if it matches and clear the pending state.
+ */
+const pendingSyncs = new Map<string, any>();
 
 export interface ProjectData {
   project: Project | undefined;
@@ -1093,6 +1123,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           update: async () => false,
           updateNoMutate: async () => false,
           forceUpdate: async () => false,
+          syncTo: async () => false,
         };
       }
 
@@ -1158,7 +1189,48 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         return update(newValue);
       };
 
-      return { item, value, update, updateNoMutate, forceUpdate };
+      /**
+       * Sync to a derived value without bouncing.
+       * Tracks pending updates to prevent the useEffect from firing repeatedly
+       * when the container re-renders before the new value propagates.
+       */
+      const syncTo = async (targetValue: any): Promise<boolean | Response> => {
+        if (!job || job.status !== JOB_STATUS.PENDING) return false;
+
+        const objectPath = item?._objectPath;
+        if (!objectPath) return false;
+
+        const pendingKey = objectPath;
+        const pendingValue = pendingSyncs.get(pendingKey);
+
+        // Check if we have a pending sync
+        if (pendingValue !== undefined) {
+          // Compare pending value to current value using JSON for deep equality
+          if (
+            JSON.stringify({ value: pendingValue }) ===
+            JSON.stringify({ value })
+          ) {
+            // Update has been applied, clear pending state
+            pendingSyncs.delete(pendingKey);
+          } else {
+            // Still waiting for pending update to propagate, don't trigger another
+            return false;
+          }
+        }
+
+        // Check if value needs to change
+        if (
+          JSON.stringify({ value: targetValue }) === JSON.stringify({ value })
+        ) {
+          return false; // Already at target value
+        }
+
+        // Set pending state and trigger update
+        pendingSyncs.set(pendingKey, targetValue);
+        return update(targetValue);
+      };
+
+      return { item, value, update, updateNoMutate, forceUpdate, syncTo };
     };
   }, [container, job, setParameter, setParameterNoMutate]);
 

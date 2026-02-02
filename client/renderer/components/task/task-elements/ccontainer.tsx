@@ -19,6 +19,12 @@ import { FIELD_SPACING } from "./field-sizes";
 interface CCP4i2ContainerElementProps extends CCP4i2TaskElementProps {
   initiallyOpen?: boolean;
   containerHint?: "FolderLevel" | "BlockLevel" | "RowLevel";
+  /**
+   * @deprecated Use dedicated composite widgets (CCellElement, CReindexOperatorElement)
+   * or wrap children in FieldRow with size prop instead.
+   *
+   * Base widgets are now full-width by default; containers control sizing.
+   */
   elementSx?: SxProps;
   excludeItems?: string[];
 }

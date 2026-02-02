@@ -19,7 +19,11 @@ import { useJob, SetParameterResponse } from "../../../utils";
 import { ErrorTrigger } from "./error-info";
 import { useTaskInterface } from "../../../providers/task-provider";
 import { usePopcorn } from "../../../providers/popcorn-provider";
-import { inferFieldSize, getFieldSizeStyles } from "./field-sizes";
+import {
+  FULL_WIDTH_FIELD_STYLES,
+  getFieldSizeStyles,
+  FieldSize,
+} from "./field-sizes";
 import { FieldWrapper } from "./field-wrapper";
 
 type OptionValue = string | number;
@@ -134,22 +138,18 @@ export const CSimpleAutocompleteElement: React.FC<
     [guiMode]
   );
 
-  // Calculate field size - use explicit prop or infer from item/qualifiers
-  const fieldSize = useMemo(
-    () => sizeProp || inferFieldSize(item, qualifiers),
-    [sizeProp, item, qualifiers]
-  );
-
+  // Full-width by default - containers control the width
+  // Only use explicit sizeProp for legacy compatibility
   const calculatedSx = useMemo(
     () => ({
-      ...getFieldSizeStyles(fieldSize),
+      ...(sizeProp ? getFieldSizeStyles(sizeProp) : FULL_WIDTH_FIELD_STYLES),
       // Ensure Autocomplete aligns with TextField in grid/flex layouts
       // MUI Autocomplete adds extra wrapper that can cause vertical offset
       marginTop: 0,
       verticalAlign: "top",
       ...sx,
     }),
-    [fieldSize, sx]
+    [sizeProp, sx]
   );
 
   // Parameter update handler

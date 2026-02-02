@@ -56,6 +56,7 @@ export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
 
   if (!isVisible) return null;
 
+  // Grid2 controls width - base widgets are full-width and fill their grid cells
   return (
     <Paper
       sx={{
@@ -69,7 +70,7 @@ export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
           <Grid2 key="number" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
-              sx={{ my: 0, py: 0, minWidth: "10rem" }}
+              sx={{ my: 0, py: 0 }}
               itemName={numberPath}
               qualifiers={numberQualifiers}
             />
@@ -77,7 +78,7 @@ export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
           <Grid2 key="label" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
-              sx={{ my: 0, py: 0, minWidth: "10rem" }}
+              sx={{ my: 0, py: 0 }}
               itemName={labelPath}
               qualifiers={labelQualifiers}
             />
@@ -85,7 +86,7 @@ export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
           <Grid2 key="use" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
-              sx={{ my: 0, py: 0, minWidth: "10rem" }}
+              sx={{ my: 0, py: 0 }}
               itemName={usePath}
               qualifiers={useQualifiers}
             />
@@ -95,7 +96,7 @@ export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       {item && (
         <CCP4i2TaskElement
           {...props}
-          sx={{ my: 0, py: 0, minWidth: "10rem" }}
+          sx={{ my: 0, py: 0 }}
           itemName={pdbItemListPath}
           qualifiers={pdbItemListQualifiers}
         />

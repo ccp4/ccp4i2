@@ -5,6 +5,7 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useApi } from "../../../api";
 import { useJob, usePrevious } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { FieldRow } from "../task-elements/field-row";
 import { useCallback, useEffect, useMemo } from "react";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
@@ -138,7 +139,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               return COMP_BYValue === "ASU";
             }}
           />
-          <Stack direction="row" sx={{ minWidth: "100%" }}>
+          {/* FieldRow distributes children equally */}
+          <FieldRow>
             <CCP4i2TaskElement
               {...props}
               itemName="ASU_NUCLEICACID_MW"
@@ -155,7 +157,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 return COMP_BYValue === "MW";
               }}
             />
-          </Stack>
+          </FieldRow>
         </CCP4i2ContainerElement>
         <CCP4i2ContainerElement
           {...props}

@@ -14,7 +14,11 @@ import { useJob, SetParameterResponse } from "../../../utils";
 import { ErrorTrigger } from "./error-info";
 import { useTaskInterface } from "../../../providers/task-provider";
 import { usePopcorn } from "../../../providers/popcorn-provider";
-import { inferFieldSize, getFieldSizeStyles } from "./field-sizes";
+import {
+  FULL_WIDTH_FIELD_STYLES,
+  getFieldSizeStyles,
+  FieldSize,
+} from "./field-sizes";
 import { FieldWrapper } from "./field-wrapper";
 
 // Types
@@ -185,18 +189,14 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
     return disabledProp || inFlight || isSubmitting || job.status !== 1;
   }, [disabledProp, inFlight, isSubmitting, job.status]);
 
-  // Calculate field size - use explicit prop or infer from item/qualifiers
-  const fieldSize = useMemo(
-    () => sizeProp || inferFieldSize(item, qualifiers),
-    [sizeProp, item, qualifiers]
-  );
-
+  // Full-width by default - containers control the width
+  // Only use explicit sizeProp for legacy compatibility
   const calculatedSx = useMemo(
     () => ({
-      ...getFieldSizeStyles(fieldSize),
+      ...(sizeProp ? getFieldSizeStyles(sizeProp) : FULL_WIDTH_FIELD_STYLES),
       ...sx,
     }),
-    [fieldSize, sx]
+    [sizeProp, sx]
   );
 
   const validationColor = useMemo(

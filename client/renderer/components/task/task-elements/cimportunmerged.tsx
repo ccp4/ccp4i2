@@ -142,12 +142,13 @@ export const CImportUnmergedElement: React.FC<CCP4i2TaskElementProps> = (
         />
       )}
 
+      {/* Grid2 controls width - base widgets are full-width and fill their grid cells */}
       <Grid2 container rowSpacing={0} sx={{ mt: 2 }}>
         {gridItems.map(({ path, label }) => (
           <Grid2 key={label} size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
-              sx={{ my: 0, py: 0, minWidth: "10rem" }}
+              sx={{ my: 0, py: 0 }}
               itemName={path!}
               qualifiers={{
                 ...props.qualifiers,
@@ -169,7 +170,7 @@ export const CImportUnmergedElement: React.FC<CCP4i2TaskElementProps> = (
         <Grid2 size={{ xs: 12 }}>
           <CCP4i2TaskElement
             {...props}
-            sx={{ mt: 1, mb: 0, py: 0, minWidth: "30rem" }}
+            sx={{ mt: 1, mb: 0, py: 0 }}
             itemName={`${itemName}.excludeSelection`}
             qualifiers={{
               ...props.qualifiers,

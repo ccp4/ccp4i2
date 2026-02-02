@@ -1,21 +1,29 @@
 /**
- * Centralized field sizing system for task interface widgets.
+ * Centralized sizing system for task interface widgets.
  *
- * This provides consistent, responsive widths for form fields across
- * all task interfaces. Fields use maxWidth constraints so they can
- * shrink on narrow screens while maintaining alignment on wider screens.
+ * DESIGN PRINCIPLE: Base widgets (TextField, Autocomplete) are full-width by default.
+ * Container components (FieldRow, FieldContainer, etc.) control the width of their children.
+ *
+ * This separation of concerns means:
+ * - Base widgets just render content, no width logic
+ * - Containers/layouts are the single source of truth for sizing
+ * - No duplication of width constraints across widgets
  */
 
+/**
+ * Container width constraints.
+ * Use these when wrapping fields in containers to control their width.
+ */
 export const FIELD_SIZES = {
   /** Auto-size based on content (no fixed width) - for checkboxes, toggles */
   auto: 'auto',
-  /** Very short - single digits (8rem / 128px) */
+  /** Very short - single digits, cell parameters (8rem / 128px) */
   xs: '8rem',
   /** Short - small numbers, short enums (12rem / 192px) */
   sm: '12rem',
-  /** Medium - default for most fields (20rem / 320px) */
+  /** Medium - default for standalone fields (20rem / 320px) */
   md: '20rem',
-  /** Long - file paths, longer text, multi-option dropdowns (32rem / 512px) */
+  /** Long - file paths, longer text (32rem / 512px) */
   lg: '32rem',
   /** Full container width */
   full: '100%',
@@ -37,14 +45,54 @@ export const FIELD_SPACING = {
 } as const;
 
 /**
- * Infer the appropriate field size based on item class and qualifiers.
+ * Default styles for full-width base widgets.
+ * Base widgets use these by default - containers override as needed.
+ */
+export const FULL_WIDTH_FIELD_STYLES = {
+  width: '100%',
+  minWidth: 0, // Allow shrinking in flex containers
+} as const;
+
+/**
+ * Get CSS properties for constraining a container to a specific size.
+ * Use this in container components (FieldRow, FieldContainer) to limit child width.
  *
- * This provides sensible defaults so most fields don't need explicit sizing.
- * Can be overridden by passing a `size` prop to the component.
+ * @param size - The FieldSize to constrain to
+ * @returns CSS properties object for the container
+ */
+export function getContainerSizeStyles(size: FieldSize) {
+  if (size === 'auto') {
+    return {
+      width: 'auto',
+    };
+  }
+
+  if (size === 'full') {
+    return {
+      width: '100%',
+      flex: '1 1 0',
+      minWidth: 0,
+    };
+  }
+
+  // Constrained sizes: set maxWidth on the container
+  return {
+    width: '100%',
+    maxWidth: FIELD_SIZES[size],
+    minWidth: 0,
+    flexShrink: 1,
+  };
+}
+
+// =============================================================================
+// LEGACY COMPATIBILITY - Remove after migration
+// =============================================================================
+
+/**
+ * @deprecated Use FULL_WIDTH_FIELD_STYLES for base widgets,
+ * or getContainerSizeStyles for containers.
  *
- * @param item - The task item object (contains _class, _baseClass)
- * @param qualifiers - Qualifiers object (contains enumerators, guiMode, etc.)
- * @returns The inferred FieldSize
+ * This function is kept for backwards compatibility during migration.
  */
 export function inferFieldSize(item: any, qualifiers: any): FieldSize {
   // File selectors always get full width
@@ -91,7 +139,6 @@ export function inferFieldSize(item: any, qualifiers: any): FieldSize {
   }
 
   // Boolean checkboxes use medium size to match other fields
-  // (MUI TextField wraps checkbox+label in a box that needs consistent sizing)
   if (item?._class === 'CBoolean') {
     return 'md';
   }
@@ -106,39 +153,30 @@ export function inferFieldSize(item: any, qualifiers: any): FieldSize {
 }
 
 /**
- * Get the CSS properties for a given field size.
- * Uses maxWidth constraints so fields can shrink on narrow screens
- * while maintaining consistent sizing on wider screens.
- *
- * @param size - The FieldSize to get styles for
- * @returns CSS properties object
+ * @deprecated Use FULL_WIDTH_FIELD_STYLES for base widgets,
+ * or getContainerSizeStyles for containers.
  */
 export function getFieldSizeStyles(size: FieldSize) {
-  // Auto-sizing: no width constraints, let content determine size
   if (size === 'auto') {
     return {
       width: 'auto',
-      minWidth: 0, // Allow shrinking in flex containers
+      minWidth: 0,
     };
   }
 
-  // Full width: fill container
   if (size === 'full') {
     return {
       width: '100%',
       flexGrow: 1,
-      minWidth: 0, // Allow shrinking in flex containers
+      minWidth: 0,
     };
   }
 
-  // Responsive sizes: fill available space up to maxWidth
-  // This allows fields to shrink on narrow screens while
-  // maintaining consistent max widths on wider screens
   const maxWidth = FIELD_SIZES[size];
   return {
     width: '100%',
     maxWidth,
-    minWidth: 0, // Allow shrinking below content width in flex containers
-    flexShrink: 1, // Allow shrinking when container is narrow
+    minWidth: 0,
+    flexShrink: 1,
   };
 }
