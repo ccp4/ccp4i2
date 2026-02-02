@@ -20,17 +20,22 @@ function isRunningInIframe(): boolean {
 /**
  * Save the last visited route to sessionStorage.
  * Only saves non-root routes and only in Teams context.
+ *
+ * When navigating to "/" (app-selector), clears the saved route.
+ * This allows deliberate navigation to the app-selector without bounce-back.
  */
 export function saveTeamsRoute(route: string): void {
   if (typeof window === "undefined") return;
   if (!isRunningInIframe()) return;
 
-  // Don't save root, auth pages, or API routes
-  if (
-    route === "/" ||
-    route.startsWith("/auth/") ||
-    route.startsWith("/api/")
-  ) {
+  // When navigating to root, clear saved route (deliberate navigation to app-selector)
+  if (route === "/") {
+    clearSavedTeamsRoute();
+    return;
+  }
+
+  // Don't save auth pages or API routes
+  if (route.startsWith("/auth/") || route.startsWith("/api/")) {
     return;
   }
 
