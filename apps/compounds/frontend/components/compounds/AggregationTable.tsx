@@ -1480,6 +1480,17 @@ function PivotTable({
   const router = useRouter();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
+  // Modal state for data series detail
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCompound, setSelectedCompound] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+  const [selectedProtocol, setSelectedProtocol] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+
   // Sorting state - sort compounds (columns) by a property or protocol value
   const [orderBy, setOrderBy] = useState<PivotSortKey>('compound');
   const [order, setOrder] = useState<Order>('asc');
@@ -1536,6 +1547,24 @@ function PivotTable({
     return [...rows].sort(comparator);
   }, [rows, order, orderBy, getSortValue]);
 
+  // Handle click on protocol cell to show data series detail
+  const handleProtocolCellClick = (
+    event: React.MouseEvent,
+    row: CompactRow,
+    protocol: ProtocolInfo
+  ) => {
+    event.stopPropagation(); // Prevent navigation to compound
+    setSelectedCompound({ id: row.compound_id, name: row.formatted_id });
+    setSelectedProtocol({ id: protocol.id, name: protocol.name });
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedCompound(null);
+    setSelectedProtocol(null);
+  };
+
   // Build row definitions: properties first, then protocols
   // When geomean is selected, combine value ± stdev (n=count) in a single row
   type PivotRowDef =
@@ -1573,16 +1602,27 @@ function PivotTable({
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
-        <Typography variant="body2" color="text.secondary">
-          {data.meta.compound_count} compounds
-          {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
-            <> ({data.meta.row_count} columns with batch split)</>
-          )}
-          , {data.meta.protocol_count} protocols,{' '}
-          {data.meta.total_measurements} measurements
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="body2" color="text.secondary">
+            {data.meta.compound_count} compounds
+            {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
+              <> ({data.meta.row_count} columns with batch split)</>
+            )}
+            , {data.meta.protocol_count} protocols,{' '}
+            {data.meta.total_measurements} measurements
+          </Typography>
+          <Tooltip title="Click any protocol cell to view dose-response charts">
+            <Chip
+              icon={<ZoomIn fontSize="small" />}
+              label="Click cell for details"
+              size="small"
+              variant="outlined"
+              color="info"
+            />
+          </Tooltip>
+        </Box>
         <Tooltip title="Click row labels to sort compounds">
-          <Chip label="Click to sort" size="small" variant="outlined" color="info" />
+          <Chip label="Click to sort" size="small" variant="outlined" />
         </Tooltip>
       </Box>
 
@@ -1596,7 +1636,7 @@ function PivotTable({
           borderRadius: 1,
         }}
       >
-        <Table size="small" sx={{ minWidth: 200 + sortedRows.length * 110 }}>
+        <Table size="small" sx={{ minWidth: 200 + sortedRows.length * 140 }}>
           <TableHead>
             <TableRow>
               {/* Fixed property column header */}
@@ -1627,7 +1667,7 @@ function PivotTable({
                   align="center"
                   sx={{
                     fontWeight: 600,
-                    width: 100,
+                    width: 130,
                     cursor: 'pointer',
                     '&:hover': { bgcolor: 'action.hover' },
                   }}
@@ -1635,12 +1675,12 @@ function PivotTable({
                 >
                   <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 0.5 }}>
                     {row.smiles ? (
-                      <MoleculeChip smiles={row.smiles} size={60} />
+                      <MoleculeChip smiles={row.smiles} size={90} />
                     ) : (
                       <Box
                         sx={{
-                          width: 60,
-                          height: 60,
+                          width: 90,
+                          height: 90,
                           bgcolor: 'grey.100',
                           borderRadius: 1,
                           display: 'flex',
@@ -1754,6 +1794,8 @@ function PivotTable({
                         <TableCell
                           key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
                           align="center"
+                          sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' } }}
+                          onClick={(e) => handleProtocolCellClick(e, row, protocol)}
                         >
                           <Tooltip title={value || '-'}>
                             <Typography
@@ -1849,6 +1891,8 @@ function PivotTable({
                       <TableCell
                         key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
                         align="center"
+                        sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' } }}
+                        onClick={(e) => handleProtocolCellClick(e, row, protocol)}
                       >
                         <Typography variant="body2" fontFamily="monospace">
                           {displayValue}
@@ -1862,6 +1906,18 @@ function PivotTable({
           </TableBody>
         </Table>
       </Box>
+
+      {/* Data series detail modal */}
+      {selectedCompound && selectedProtocol && (
+        <DataSeriesDetailModal
+          open={modalOpen}
+          onClose={handleCloseModal}
+          compoundId={selectedCompound.id}
+          protocolId={selectedProtocol.id}
+          compoundName={selectedCompound.name}
+          protocolName={selectedProtocol.name}
+        />
+      )}
     </>
   );
 }
@@ -1883,6 +1939,17 @@ function CardsView({
   concentrationDisplay: ConcentrationDisplayMode;
 }) {
   const router = useRouter();
+
+  // Modal state for data series detail
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedCompound, setSelectedCompound] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
+  const [selectedProtocol, setSelectedProtocol] = useState<{
+    id: string;
+    name: string;
+  } | null>(null);
 
   // Sorting state
   const [orderBy, setOrderBy] = useState<CardsSortKey>('compound');
@@ -1954,17 +2021,46 @@ function CardsView({
     return [...rows].sort(comparator);
   }, [rows, order, orderBy, getSortValue]);
 
+  // Handle click on protocol to show data series detail
+  const handleProtocolClick = (
+    event: React.MouseEvent,
+    row: CompactRow,
+    protocol: ProtocolInfo
+  ) => {
+    event.stopPropagation(); // Prevent navigation to compound
+    setSelectedCompound({ id: row.compound_id, name: row.formatted_id });
+    setSelectedProtocol({ id: protocol.id, name: protocol.name });
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    setSelectedCompound(null);
+    setSelectedProtocol(null);
+  };
+
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexWrap: 'wrap', gap: 1 }}>
-        <Typography variant="body2" color="text.secondary">
-          {data.meta.compound_count} compounds
-          {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
-            <> ({data.meta.row_count} cards with batch split)</>
-          )}
-          , {data.meta.protocol_count} protocols,{' '}
-          {data.meta.total_measurements} measurements
-        </Typography>
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <Typography variant="body2" color="text.secondary">
+            {data.meta.compound_count} compounds
+            {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
+              <> ({data.meta.row_count} cards with batch split)</>
+            )}
+            , {data.meta.protocol_count} protocols,{' '}
+            {data.meta.total_measurements} measurements
+          </Typography>
+          <Tooltip title="Click any protocol to view dose-response charts">
+            <Chip
+              icon={<ZoomIn fontSize="small" />}
+              label="Click protocol for details"
+              size="small"
+              variant="outlined"
+              color="info"
+            />
+          </Tooltip>
+        </Box>
         {/* Sort controls */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
           <Typography variant="body2" color="text.secondary">
@@ -2120,10 +2216,21 @@ function CardsView({
                   );
                 }
 
-                // Tested but no valid data
+                // Tested but no valid data - still clickable to see what data exists
                 if (measurementStatus === 'tested-no-valid') {
                   return (
-                    <Box key={protocol.id} sx={{ mb: 1 }}>
+                    <Box
+                      key={protocol.id}
+                      sx={{
+                        mb: 1,
+                        cursor: 'pointer',
+                        p: 0.5,
+                        mx: -0.5,
+                        borderRadius: 0.5,
+                        '&:hover': { bgcolor: 'action.hover' },
+                      }}
+                      onClick={(e) => handleProtocolClick(e, row, protocol)}
+                    >
                       <Typography variant="body2" fontWeight={500}>
                         {protocol.name}
                       </Typography>
@@ -2155,7 +2262,18 @@ function CardsView({
                 }
 
                 return (
-                  <Box key={protocol.id} sx={{ mb: 1 }}>
+                  <Box
+                    key={protocol.id}
+                    sx={{
+                      mb: 1,
+                      cursor: 'pointer',
+                      p: 0.5,
+                      mx: -0.5,
+                      borderRadius: 0.5,
+                      '&:hover': { bgcolor: 'action.hover' },
+                    }}
+                    onClick={(e) => handleProtocolClick(e, row, protocol)}
+                  >
                     <Typography variant="body2" fontWeight={500}>
                       {protocol.name}
                     </Typography>
@@ -2177,6 +2295,18 @@ function CardsView({
           </Paper>
         ))}
       </Box>
+
+      {/* Data series detail modal */}
+      {selectedCompound && selectedProtocol && (
+        <DataSeriesDetailModal
+          open={modalOpen}
+          onClose={handleCloseModal}
+          compoundId={selectedCompound.id}
+          protocolId={selectedProtocol.id}
+          compoundName={selectedCompound.name}
+          protocolName={selectedProtocol.name}
+        />
+      )}
     </>
   );
 }

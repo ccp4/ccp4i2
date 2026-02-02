@@ -103,6 +103,7 @@ COPY apps/compounds/frontend/lib/compounds/auth-context.tsx ./renderer/lib/compo
 COPY apps/compounds/frontend/lib/compounds/config.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/routes.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/plateSeriesRanges.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/useAdaptiveTableHeight.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 
 # Note: RDKit comes from @rdkit/rdkit npm package, JSME from client/assets/

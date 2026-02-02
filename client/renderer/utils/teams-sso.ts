@@ -67,18 +67,43 @@ async function getTeamsSDK(): Promise<typeof import("@microsoft/teams-js")> {
 }
 
 /**
+ * Helper to add timeout to a promise
+ */
+function withTimeout<T>(promise: Promise<T>, ms: number, errorMessage: string): Promise<T> {
+  return Promise.race([
+    promise,
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(errorMessage)), ms)
+    ),
+  ]);
+}
+
+/**
  * Check if we're running inside Microsoft Teams
+ * Includes timeout protection to prevent indefinite hangs
  */
 export async function isRunningInTeams(): Promise<boolean> {
   try {
     const teams = await getTeamsSDK();
-    await teams.app.initialize();
-    const context = await teams.app.getContext();
+
+    // Add timeout to prevent hanging if Teams context never responds
+    await withTimeout(
+      teams.app.initialize(),
+      3000,
+      "Teams SDK initialization timeout"
+    );
+
+    const context = await withTimeout(
+      teams.app.getContext(),
+      2000,
+      "Teams context timeout"
+    );
 
     // Check if we have a valid Teams context
     return !!(context && context.app && context.app.host);
-  } catch {
-    // Teams SDK initialization failed - not running in Teams
+  } catch (error) {
+    // Teams SDK initialization failed or timed out - not running in Teams
+    console.log("[Teams SSO] Not in Teams context:", error);
     return false;
   }
 }
