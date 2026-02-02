@@ -20,7 +20,7 @@ class FileImportSerializer(ModelSerializer):
 class ProjectTagSerializer(ModelSerializer):
     class Meta:
         model = models.ProjectTag
-        exclude = []
+        fields = ['id', 'text']
 
     def validate(self, attrs):
         """Validate unique constraint on text and parent combination."""
@@ -41,11 +41,13 @@ class ProjectTagSerializer(ModelSerializer):
 
 
 class ProjectListSerializer(ModelSerializer):
-    """Minimal serializer for project lists - optimized for large datasets.
+    """Lightweight serializer for project lists with tags.
 
-    Excludes 'directory' and 'tags' to keep response size manageable.
-    Tags can be fetched separately if needed for filtering/display.
+    Excludes 'directory' to keep response size manageable.
+    Tags use simplified serializer (id, text only) to avoid N+1 queries.
     """
+
+    tags = ProjectTagSerializer(many=True, read_only=True)
 
     class Meta:
         model = models.Project
@@ -55,6 +57,7 @@ class ProjectListSerializer(ModelSerializer):
             "name",
             "creation_time",
             "last_access",
+            "tags",
         ]
 
 

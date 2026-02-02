@@ -6,7 +6,7 @@ import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material
 import { LocalShipping, Add, Person } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { SupplierCreateDialog } from '@/components/compounds/SupplierCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';

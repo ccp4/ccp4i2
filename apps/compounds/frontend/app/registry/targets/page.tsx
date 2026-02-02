@@ -25,7 +25,7 @@ import {
 } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { TargetCardGrid } from '@/components/compounds/TargetCardGrid';
 import { TargetCreateDialog } from '@/components/compounds/TargetCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';

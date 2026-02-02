@@ -23,8 +23,10 @@ interface VirtualizedCardGridProps<T> {
   estimateCardHeight?: number;
   /** Gap between cards in pixels */
   gap?: number;
-  /** Maximum height of the container */
+  /** Maximum height of the container. Ignored if fillHeight is true. */
   maxHeight?: number;
+  /** Fill available parent height instead of using maxHeight */
+  fillHeight?: boolean;
   /** Message when no data */
   emptyMessage?: string;
   /** Loading state */
@@ -43,6 +45,7 @@ export function VirtualizedCardGrid<T>({
   estimateCardHeight = 280,
   gap = 24,
   maxHeight = 800,
+  fillHeight = false,
   emptyMessage = "No items found",
   loading = false,
 }: VirtualizedCardGridProps<T>) {
@@ -97,7 +100,7 @@ export function VirtualizedCardGrid<T>({
     <Box
       ref={parentRef}
       sx={{
-        maxHeight,
+        ...(fillHeight ? { height: "100%" } : { maxHeight }),
         overflow: "auto",
         position: "relative",
       }}

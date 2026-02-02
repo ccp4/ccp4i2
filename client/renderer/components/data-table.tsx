@@ -15,6 +15,8 @@ import {
   Typography,
   LinearProgress,
   InputAdornment,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { Search as SearchIcon } from "@mui/icons-material";
 import { useVirtualizer } from "@tanstack/react-virtual";
@@ -26,7 +28,13 @@ export interface Column<T> {
   searchable?: boolean;
   render?: (value: any, row: T) => ReactNode;
   width?: string | number;
+  /** Hide this column on mobile devices (screen width < 600px) */
+  hiddenOnMobile?: boolean;
 }
+
+// Row height constants
+const DENSE_ROW_HEIGHT = 53;
+const COMFORTABLE_ROW_HEIGHT = 64;
 
 interface DataTableProps<T> {
   data: T[] | undefined;
@@ -38,16 +46,22 @@ interface DataTableProps<T> {
   emptyMessage?: string;
   /** Additional field names to include in search (fields not displayed as columns) */
   additionalSearchFields?: string[];
-  /** Estimated row height for virtualization (default: 53) */
+  /** Estimated row height for virtualization (auto-calculated based on comfortable setting if not specified) */
   estimateRowHeight?: number;
-  /** Maximum height of the table container (default: 600) */
+  /** Maximum height of the table container (default: 600). Ignored if fillHeight is true. */
   maxHeight?: number;
+  /** Fill available parent height instead of using maxHeight */
+  fillHeight?: boolean;
   /** Hide the built-in header (title, search, count) */
   hideHeader?: boolean;
   /** External search query (controlled mode) */
   searchQuery?: string;
   /** Callback when search changes (controlled mode) */
   onSearchChange?: (query: string) => void;
+  /** Optional action element to display in the header (e.g., an "Add" button) */
+  headerAction?: ReactNode;
+  /** Use comfortable padding for better mobile/touch experience (default: false) */
+  comfortable?: boolean;
 }
 
 type Order = "asc" | "desc";
@@ -61,12 +75,29 @@ export function DataTable<T extends Record<string, any>>({
   title,
   emptyMessage = "No data found",
   additionalSearchFields = [],
-  estimateRowHeight = 53,
+  estimateRowHeight,
   maxHeight = 600,
+  fillHeight = false,
   hideHeader = false,
   searchQuery: externalSearchQuery,
   onSearchChange,
+  headerAction,
+  comfortable = false,
 }: DataTableProps<T>) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
+  // Filter columns based on mobile visibility
+  const visibleColumns = useMemo(() => {
+    if (!isMobile) return columns;
+    return columns.filter((col) => !col.hiddenOnMobile);
+  }, [columns, isMobile]);
+
+  // Calculate row height based on comfortable setting if not explicitly provided
+  const effectiveRowHeight =
+    estimateRowHeight ?? (comfortable ? COMFORTABLE_ROW_HEIGHT : DENSE_ROW_HEIGHT);
+  const cellPadding = comfortable ? 2 : undefined; // MUI spacing units
+
   const [orderBy, setOrderBy] = useState<string | null>(null);
   const [order, setOrder] = useState<Order>("asc");
   const [internalSearchQuery, setInternalSearchQuery] = useState("");
@@ -132,7 +163,7 @@ export function DataTable<T extends Record<string, any>>({
   const rowVirtualizer = useVirtualizer({
     count: sortedData.length,
     getScrollElement: () => parentRef.current,
-    estimateSize: () => estimateRowHeight,
+    estimateSize: () => effectiveRowHeight,
     overscan: 5, // Render 5 extra rows above/below viewport for smoother scrolling
   });
 
@@ -148,7 +179,17 @@ export function DataTable<T extends Record<string, any>>({
   const virtualItems = rowVirtualizer.getVirtualItems();
 
   return (
-    <Paper sx={{ width: "100%", overflow: "hidden" }}>
+    <Paper
+      sx={{
+        width: "100%",
+        overflow: "hidden",
+        ...(fillHeight && {
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+        }),
+      }}
+    >
       {/* Header with title and search */}
       {!hideHeader && (
         <Box sx={{ p: 2, display: "flex", alignItems: "center", gap: 2 }}>
@@ -158,6 +199,7 @@ export function DataTable<T extends Record<string, any>>({
             </Typography>
           )}
           {!title && <Box sx={{ flexGrow: 1 }} />}
+          {headerAction}
           {hasSearchableColumns && (
             <TextField
               size="small"
@@ -187,14 +229,14 @@ export function DataTable<T extends Record<string, any>>({
       <TableContainer
         ref={parentRef}
         sx={{
-          maxHeight,
+          ...(fillHeight ? { flex: 1 } : { maxHeight }),
           overflow: "auto",
         }}
       >
         <Table stickyHeader size="small" sx={{ tableLayout: "fixed" }}>
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {visibleColumns.map((column) => (
                 <TableCell
                   key={column.key}
                   sx={{ fontWeight: 600, width: column.width }}
@@ -218,7 +260,7 @@ export function DataTable<T extends Record<string, any>>({
             {sortedData.length === 0 ? (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
+                  colSpan={visibleColumns.length}
                   align="center"
                   sx={{ py: 4 }}
                 >
@@ -233,7 +275,7 @@ export function DataTable<T extends Record<string, any>>({
                 {virtualItems.length > 0 && virtualItems[0].start > 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={columns.length}
+                      colSpan={visibleColumns.length}
                       sx={{
                         height: virtualItems[0].start,
                         padding: 0,
@@ -260,8 +302,11 @@ export function DataTable<T extends Record<string, any>>({
                           : undefined,
                       }}
                     >
-                      {columns.map((column) => (
-                        <TableCell key={column.key}>
+                      {visibleColumns.map((column) => (
+                        <TableCell
+                          key={column.key}
+                          sx={cellPadding ? { py: cellPadding } : undefined}
+                        >
                           {column.render
                             ? column.render(row[column.key], row)
                             : row[column.key] ?? "-"}
@@ -275,7 +320,7 @@ export function DataTable<T extends Record<string, any>>({
                 {virtualItems.length > 0 && (
                   <TableRow>
                     <TableCell
-                      colSpan={columns.length}
+                      colSpan={visibleColumns.length}
                       sx={{
                         height:
                           rowVirtualizer.getTotalSize() -

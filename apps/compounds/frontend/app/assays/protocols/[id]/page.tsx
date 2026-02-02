@@ -29,7 +29,7 @@ import {
 import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart, CheckCircle, Biotech, ExpandMore, FiberNew } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { PlatePreview } from '@/components/compounds/PlatePreview';
 import { PlateLayoutCreateDialog } from '@/components/compounds/PlateLayoutCreateDialog';
 import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';

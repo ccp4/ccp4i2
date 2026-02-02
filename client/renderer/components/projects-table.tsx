@@ -644,9 +644,16 @@ export default function ProjectsTable() {
     );
 
   return Array.isArray(projects) ? (
-    <Box>
+    <Box
+      sx={{
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
+        overflow: "hidden",
+      }}
+    >
       {/* Header with search, view toggle, and selection actions */}
-      <Box sx={{ mb: 3 }}>
+      <Box sx={{ mb: 2, flexShrink: 0 }}>
         {selectedIds.size === 0 ? (
           <Box>
             {/* Title and Controls Row */}
@@ -776,43 +783,45 @@ export default function ProjectsTable() {
       </Box>
 
       {/* Render based on view mode */}
-      {viewMode === "cards" ? (
-        // Virtualized Card Grid View
-        <VirtualizedCardGrid
-          data={filteredProjects}
-          renderCard={renderProjectCard}
-          getItemKey={(project) => project.id}
-          columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 4 }}
-          estimateCardHeight={280}
-          gap={24}
-          maxHeight={700}
-          emptyMessage="No projects found"
-        />
-      ) : (
-        // Virtualized Table View
-        <DataTable
-          data={filteredProjects}
-          columns={tableColumns}
-          getRowKey={(project) => project.id}
-          onRowClick={(project) => router.push(`/ccp4i2/project/${project.id}`)}
-          hideHeader
-          maxHeight={700}
-          estimateRowHeight={60}
-          emptyMessage="No projects found"
-        />
-      )}
+      <Box sx={{ flex: 1, overflow: "hidden", minHeight: 0 }}>
+        {viewMode === "cards" ? (
+          // Virtualized Card Grid View
+          <VirtualizedCardGrid
+            data={filteredProjects}
+            renderCard={renderProjectCard}
+            getItemKey={(project) => project.id}
+            columns={{ xs: 1, sm: 2, md: 3, lg: 4, xl: 4 }}
+            estimateCardHeight={280}
+            gap={24}
+            fillHeight
+            emptyMessage="No projects found"
+          />
+        ) : (
+          // Virtualized Table View
+          <DataTable
+            data={filteredProjects}
+            columns={tableColumns}
+            getRowKey={(project) => project.id}
+            onRowClick={(project) => router.push(`/ccp4i2/project/${project.id}`)}
+            hideHeader
+            fillHeight
+            estimateRowHeight={60}
+            emptyMessage="No projects found"
+          />
+        )}
 
-      {/* Show message when no projects match search */}
-      {filteredProjects.length === 0 && query && (
-        <Box sx={{ textAlign: "center", py: 4 }}>
-          <Typography variant="h6" color="text.secondary" gutterBottom>
-            No projects found
-          </Typography>
-          <Typography variant="body2" color="text.disabled">
-            Try adjusting your search term
-          </Typography>
-        </Box>
-      )}
+        {/* Show message when no projects match search */}
+        {filteredProjects.length === 0 && query && (
+          <Box sx={{ textAlign: "center", py: 4 }}>
+            <Typography variant="h6" color="text.secondary" gutterBottom>
+              No projects found
+            </Typography>
+            <Typography variant="body2" color="text.disabled">
+              Try adjusting your search term
+            </Typography>
+          </Box>
+        )}
+      </Box>
     </Box>
   ) : (
     <Skeleton variant="rectangular" height={400} />

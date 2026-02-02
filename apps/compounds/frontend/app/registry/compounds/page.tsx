@@ -25,7 +25,7 @@ import {
   Error as ErrorIcon,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';

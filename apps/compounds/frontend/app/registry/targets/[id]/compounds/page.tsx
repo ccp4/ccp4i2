@@ -14,7 +14,7 @@ import {
 import { Medication, Science, TableChart, Add, Dashboard } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { MoleculeChip, CopyableSmiles } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';

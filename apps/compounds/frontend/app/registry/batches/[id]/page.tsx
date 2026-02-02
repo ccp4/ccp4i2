@@ -35,7 +35,7 @@ import {
   Delete,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Batch, BatchQCFile, Compound, Target } from '@/types/compounds/models';

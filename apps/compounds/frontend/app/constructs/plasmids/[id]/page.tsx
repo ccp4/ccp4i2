@@ -16,7 +16,7 @@ import {
 import { Download, Science, Link as LinkIcon, Delete } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { SeqVizViewer } from '@/components/compounds/SeqVizViewer';
 import { ConfirmDialog } from '@/components/compounds/ConfirmDialog';
 import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';

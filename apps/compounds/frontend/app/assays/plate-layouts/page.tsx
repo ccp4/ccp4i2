@@ -19,7 +19,7 @@ import { GridOn, Add, Delete, ArrowBack } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { useRouter } from 'next/navigation';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { PlateLayoutCreateDialog } from '@/components/compounds/PlateLayoutCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';

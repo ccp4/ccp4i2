@@ -36,7 +36,7 @@ import {
   Refresh,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
 import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';

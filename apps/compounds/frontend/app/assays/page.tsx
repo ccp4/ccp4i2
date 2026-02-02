@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material';
 import { Assessment, Science, Description, Upload, Functions, TableChart, Biotech, FiberNew } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Assay } from '@/types/compounds/models';

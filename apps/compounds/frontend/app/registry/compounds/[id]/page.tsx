@@ -18,7 +18,7 @@ import {
 import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Edit, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
 import { CompoundEditDialog } from '@/components/compounds/CompoundEditDialog';

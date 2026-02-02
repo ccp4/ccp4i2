@@ -14,7 +14,7 @@ import { Science, Add, Delete } from '@mui/icons-material';
 import { useState } from 'react';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { PlasmidCreateDialog } from '@/components/compounds/PlasmidCreateDialog';
 import { ConfirmDialog } from '@/components/compounds/ConfirmDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';

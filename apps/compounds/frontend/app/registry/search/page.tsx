@@ -37,7 +37,7 @@ import {
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { JSMEEditor } from '@/components/compounds/JSMEEditor';
 import { useCompoundsApi } from '@/lib/compounds/api';

@@ -110,7 +110,7 @@ class ProjectGroupViewSet(ModelViewSet):
             group = self.get_object()
             member_memberships = group.memberships.filter(
                 type=models.ProjectGroupMembership.MembershipType.MEMBER
-            ).select_related("project")
+            ).select_related("project").prefetch_related("project__tags")
 
             result = []
             for membership in member_memberships:

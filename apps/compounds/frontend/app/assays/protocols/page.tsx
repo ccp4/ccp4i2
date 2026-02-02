@@ -6,7 +6,7 @@ import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material
 import { Science, Description, Add, Settings, GridOn, FiberNew } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { DataTable, Column } from '@/components/compounds/DataTable';
+import { DataTable, Column } from '@/components/data-table';
 import { ProtocolCreateDialog } from '@/components/compounds/ProtocolCreateDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
