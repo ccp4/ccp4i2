@@ -659,7 +659,13 @@ function CompactTable({
                         >
                           {/* Show "tested but no valid" badge only on first aggregation column for this protocol */}
                           {testedNoValid && agg === aggregations[0] ? (
-                            <TestedNoValidBadge />
+                            <TestedNoValidBadge
+                              tested={protocolData?.tested}
+                              noAnalysis={protocolData?.no_analysis}
+                              invalid={protocolData?.invalid}
+                              unassigned={protocolData?.unassigned}
+                              onClick={(e) => handleProtocolCellClick(e, row, protocol)}
+                            />
                           ) : testedNoValid ? (
                             <Typography variant="body2" color="text.disabled">-</Typography>
                           ) : agg === 'list' ? (
@@ -992,7 +998,16 @@ function MediumTable({
                       <TableCell key={agg} align="right">
                         {/* Show badge on first column for tested-no-valid rows */}
                         {isTestedNoValid && aggIndex === 0 ? (
-                          <TestedNoValidBadge />
+                          <TestedNoValidBadge
+                            tested={row.tested}
+                            noAnalysis={row.no_analysis}
+                            invalid={row.invalid}
+                            unassigned={row.unassigned}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleRowClick(row);
+                            }}
+                          />
                         ) : isTestedNoValid ? (
                           <Typography variant="body2" color="text.disabled">-</Typography>
                         ) : agg === 'list' ? (
@@ -1441,20 +1456,81 @@ function formatMeasurementWithStats(
 /**
  * Display component for "tested but no valid data" status.
  * Shows a subtle indicator that compound was tested but all results were invalid.
+ * Optionally shows breakdown of tested vs no_analysis counts.
+ * Click to view the underlying data series.
  */
-function TestedNoValidBadge() {
+function TestedNoValidBadge({
+  tested,
+  noAnalysis,
+  invalid,
+  unassigned,
+  onClick,
+}: {
+  tested?: number;
+  noAnalysis?: number;
+  invalid?: number;
+  unassigned?: number;
+  onClick?: (e: React.MouseEvent) => void;
+}) {
+  // Build informative tooltip showing breakdown of non-valid results
+  const parts: string[] = [];
+  if (noAnalysis != null && noAnalysis > 0) {
+    parts.push(`${noAnalysis} no analysis`);
+  }
+  if (invalid != null && invalid > 0) {
+    parts.push(`${invalid} invalid`);
+  }
+  if (unassigned != null && unassigned > 0) {
+    parts.push(`${unassigned} unassigned`);
+  }
+
+  let tooltipText = 'Tested but no valid results';
+  if (tested != null && tested > 0) {
+    if (parts.length > 0) {
+      tooltipText = `${tested} test${tested > 1 ? 's' : ''}: ${parts.join(', ')}`;
+    } else {
+      tooltipText = `${tested} test${tested > 1 ? 's' : ''}, 0 valid results`;
+    }
+  }
+  if (onClick) {
+    tooltipText += ' — click to view';
+  }
+
+  // Determine label and color based on primary issue
+  const hasNoAnalysis = noAnalysis != null && noAnalysis > 0;
+  const hasInvalid = invalid != null && invalid > 0;
+  const totalNonValid = (noAnalysis || 0) + (invalid || 0) + (unassigned || 0);
+
+  // Pick a representative label
+  let label: string;
+  if (hasNoAnalysis && noAnalysis === tested) {
+    label = 'no analysis';
+  } else if (hasInvalid && invalid === tested) {
+    label = 'invalid';
+  } else if (totalNonValid > 0) {
+    label = `0/${tested}`;
+  } else {
+    label = '0 valid';
+  }
+
   return (
-    <Tooltip title="Tested but no valid results">
+    <Tooltip title={tooltipText}>
       <Chip
-        label="0 valid"
+        label={label}
         size="small"
         variant="outlined"
+        onClick={onClick}
         sx={{
           height: 20,
           fontSize: '0.7rem',
-          color: 'text.secondary',
-          borderColor: 'grey.400',
-          bgcolor: 'grey.50',
+          color: hasNoAnalysis ? 'warning.main' : hasInvalid ? 'error.main' : 'text.secondary',
+          borderColor: hasNoAnalysis ? 'warning.light' : hasInvalid ? 'error.light' : 'grey.400',
+          bgcolor: hasNoAnalysis ? 'warning.50' : hasInvalid ? 'error.50' : 'grey.50',
+          cursor: onClick ? 'pointer' : 'default',
+          '&:hover': onClick ? {
+            borderColor: hasNoAnalysis ? 'warning.main' : hasInvalid ? 'error.main' : 'grey.600',
+            bgcolor: hasNoAnalysis ? 'warning.100' : hasInvalid ? 'error.100' : 'grey.100',
+          } : {},
         }}
       />
     </Tooltip>
@@ -1861,7 +1937,13 @@ function PivotTable({
                           key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
                           align="center"
                         >
-                          <TestedNoValidBadge />
+                          <TestedNoValidBadge
+                            tested={protocolData?.tested}
+                            noAnalysis={protocolData?.no_analysis}
+                            invalid={protocolData?.invalid}
+                            unassigned={protocolData?.unassigned}
+                            onClick={(e) => handleProtocolCellClick(e, row, protocol)}
+                          />
                         </TableCell>
                       );
                     }
@@ -2234,7 +2316,13 @@ function CardsView({
                       <Typography variant="body2" fontWeight={500}>
                         {protocol.name}
                       </Typography>
-                      <TestedNoValidBadge />
+                      <TestedNoValidBadge
+                        tested={protocolData?.tested}
+                        noAnalysis={protocolData?.no_analysis}
+                        invalid={protocolData?.invalid}
+                        unassigned={protocolData?.unassigned}
+                        onClick={(e) => handleProtocolClick(e, row, protocol)}
+                      />
                     </Box>
                   );
                 }

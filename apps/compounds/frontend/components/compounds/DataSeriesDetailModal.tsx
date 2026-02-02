@@ -125,6 +125,8 @@ interface DataSeriesDetailModalProps {
   protocolId: string;
   compoundName?: string;
   protocolName?: string;
+  /** Status filter for data series. Empty string fetches all. Defaults to '' (all) */
+  status?: string;
 }
 
 /**
@@ -187,6 +189,7 @@ export function DataSeriesDetailModal({
   protocolId,
   compoundName,
   protocolName,
+  status = '', // Default to fetching all data series regardless of status
 }: DataSeriesDetailModalProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -207,6 +210,7 @@ export function DataSeriesDetailModal({
         const params = new URLSearchParams({
           compound: compoundId,
           protocol: protocolId,
+          status, // Pass status filter (empty string = all)
         });
 
         const response = await authFetch(`/api/proxy/compounds/aggregations/data_series/?${params}`);
@@ -230,7 +234,7 @@ export function DataSeriesDetailModal({
     };
 
     fetchData();
-  }, [open, compoundId, protocolId]);
+  }, [open, compoundId, protocolId, status]);
 
   const displayCompoundName = data?.compound?.formatted_id || compoundName || 'Unknown Compound';
   const displayProtocolName = data?.protocol?.name || protocolName || 'Unknown Protocol';
@@ -357,13 +361,15 @@ export function DataSeriesDetailModal({
                           </TableCell>
                           <TableCell>
                             <Chip
-                              label={series.analysis_status || 'unknown'}
+                              label={series.analysis_status || 'no analysis'}
                               size="small"
                               color={
                                 series.analysis_status === 'valid'
                                   ? 'success'
                                   : series.analysis_status === 'invalid'
                                   ? 'error'
+                                  : series.analysis_status === null
+                                  ? 'warning'
                                   : 'default'
                               }
                             />

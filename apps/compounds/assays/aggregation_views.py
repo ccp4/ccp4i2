@@ -293,8 +293,13 @@ class AggregationViewSet(viewsets.ViewSet):
             assay__protocol_id=protocol_id,
         )
 
+        # Filter by analysis status
+        # Options: 'valid', 'invalid', 'unassigned', 'no_analysis', or '' (all)
         if status_filter:
-            queryset = queryset.filter(analysis__status=status_filter)
+            if status_filter == 'no_analysis':
+                queryset = queryset.filter(analysis__isnull=True)
+            else:
+                queryset = queryset.filter(analysis__status=status_filter)
 
         # Order by assay date descending
         queryset = queryset.order_by('-assay__created_at')

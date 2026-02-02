@@ -190,9 +190,14 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
         queryset = queryset.filter(assay__protocol_id__in=protocols)
 
     # Filter by analysis status (default to 'valid')
+    # Options: 'valid', 'invalid', 'unassigned', 'no_analysis', or '' (all)
     status = predicates.get('status', 'valid')
     if status:
-        queryset = queryset.filter(analysis__status=status)
+        if status == 'no_analysis':
+            # Include DataSeries where analysis failed to run (analysis is NULL)
+            queryset = queryset.filter(analysis__isnull=True)
+        else:
+            queryset = queryset.filter(analysis__status=status)
 
     return queryset
 
@@ -230,17 +235,23 @@ def get_kpi_unit(data_series: DataSeries) -> str | None:
     return None
 
 
-def extract_kpi_value(data_series: DataSeries) -> float | None:
+def extract_kpi_value(data_series: DataSeries, valid_only: bool = True) -> float | None:
     """
     Extract the KPI value from a data series' analysis result.
 
     Args:
         data_series: DataSeries instance with loaded analysis
+        valid_only: If True (default), only return values for analyses with status='valid'.
+                   This ensures aggregations (geomean, stdev) only use validated data.
 
     Returns:
-        KPI value or None if not available
+        KPI value or None if not available or analysis is not valid
     """
     if not data_series.analysis:
+        return None
+
+    # Only include values from valid analyses in aggregations
+    if valid_only and data_series.analysis.status != 'valid':
         return None
 
     results = data_series.analysis.results or {}
@@ -333,8 +344,11 @@ def aggregate_compact(
     # Structure: {group_key: {protocol_id: [kpi_values]}}
     # group_key is (compound_id,) or (compound_id, batch_id)
     group_protocol_values = defaultdict(lambda: defaultdict(list))
-    # Track which protocols each compound was tested on (regardless of KPI validity)
-    tested_protocols: dict[tuple, set[str]] = defaultdict(set)
+    # Track test counts per compound-protocol: {group_key: {protocol_id: {status: count}}}
+    # Tracks: tested (total), no_analysis (NULL), invalid, unassigned
+    group_protocol_counts: dict[tuple, dict[str, dict[str, int]]] = defaultdict(
+        lambda: defaultdict(lambda: {'tested': 0, 'no_analysis': 0, 'invalid': 0, 'unassigned': 0})
+    )
     group_info = {}
     protocol_ids = set()
     protocol_units: dict[str, str | None] = {}  # Track unit per protocol
@@ -353,8 +367,14 @@ def aggregate_compact(
         else:
             group_key = (compound_id,)
 
-        # Always track that this compound was tested on this protocol
-        tested_protocols[group_key].add(protocol_id)
+        # Track test counts for this compound-protocol pair
+        group_protocol_counts[group_key][protocol_id]['tested'] += 1
+        if ds.analysis is None:
+            group_protocol_counts[group_key][protocol_id]['no_analysis'] += 1
+        elif ds.analysis.status == 'invalid':
+            group_protocol_counts[group_key][protocol_id]['invalid'] += 1
+        elif ds.analysis.status == 'unassigned':
+            group_protocol_counts[group_key][protocol_id]['unassigned'] += 1
 
         kpi_value, kpi_unit = extract_kpi_with_unit(ds)
         if kpi_value is not None:
@@ -409,8 +429,8 @@ def aggregate_compact(
         row = group_info[group_key].copy()
         row['protocols'] = {}
 
-        # Get protocols this compound was tested on
-        protocols_tested = tested_protocols.get(group_key, set())
+        # Get protocols this compound was tested on (from counts dict)
+        protocols_tested = set(group_protocol_counts.get(group_key, {}).keys())
 
         # For include_tested_no_data mode, include all tested protocols (even with count=0)
         # Otherwise, only include protocols with valid KPI values
@@ -422,7 +442,14 @@ def aggregate_compact(
         for protocol_id in protocols_to_include:
             values = group_protocol_values.get(group_key, {}).get(protocol_id, [])
             total_measurements += len(values)
-            row['protocols'][protocol_id] = aggregate_kpi_values(values, aggregations)
+            protocol_agg = aggregate_kpi_values(values, aggregations)
+            # Add test counts so frontend can distinguish "not tested" from "tested but no data"
+            counts = group_protocol_counts.get(group_key, {}).get(protocol_id, {'tested': 0, 'no_analysis': 0, 'invalid': 0, 'unassigned': 0})
+            protocol_agg['tested'] = counts['tested']
+            protocol_agg['no_analysis'] = counts['no_analysis']
+            protocol_agg['invalid'] = counts['invalid']
+            protocol_agg['unassigned'] = counts['unassigned']
+            row['protocols'][protocol_id] = protocol_agg
 
         # Only include row if it has at least one protocol
         if row['protocols']:
@@ -479,8 +506,8 @@ def aggregate_medium(
             - data: List of compound-protocol rows with aggregations (including kpi_unit)
     """
     # Group data by compound (and optionally batch) and protocol
-    # Structure: {key: {'info': {...}, 'values': [], 'unit': ...}}
-    group_protocol_data = defaultdict(lambda: {'info': None, 'values': [], 'unit': None})
+    # Structure: {key: {'info': {...}, 'values': [], 'unit': ..., counts...}}
+    group_protocol_data = defaultdict(lambda: {'info': None, 'values': [], 'unit': None, 'tested': 0, 'no_analysis': 0, 'invalid': 0, 'unassigned': 0})
     compound_ids = set()
     protocol_ids = set()
 
@@ -497,6 +524,15 @@ def aggregate_medium(
             key = (compound_id, batch_id, protocol_id)
         else:
             key = (compound_id, protocol_id)
+
+        # Track test counts by status
+        group_protocol_data[key]['tested'] += 1
+        if ds.analysis is None:
+            group_protocol_data[key]['no_analysis'] += 1
+        elif ds.analysis.status == 'invalid':
+            group_protocol_data[key]['invalid'] += 1
+        elif ds.analysis.status == 'unassigned':
+            group_protocol_data[key]['unassigned'] += 1
 
         kpi_value, kpi_unit = extract_kpi_with_unit(ds)
         if kpi_value is not None:
@@ -546,6 +582,11 @@ def aggregate_medium(
         row = item['info'].copy()
         row['kpi_unit'] = item['unit']  # Include unit in row
         row.update(aggregate_kpi_values(values, aggregations))
+        # Add test counts so frontend can distinguish "not tested" from "tested but no data"
+        row['tested'] = item['tested']
+        row['no_analysis'] = item['no_analysis']
+        row['invalid'] = item['invalid']
+        row['unassigned'] = item['unassigned']
         data.append(row)
 
     # Sort by formatted_id, then batch_number (if applicable), then protocol

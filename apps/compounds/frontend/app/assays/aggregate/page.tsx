@@ -53,7 +53,7 @@ function AggregationPageContent() {
     : undefined;
   // Support status filter via 'status' param
   const statusParam = searchParams.get('status');
-  const initialStatus = (statusParam === 'valid' || statusParam === 'invalid' || statusParam === 'unassigned' || statusParam === '') ? statusParam : undefined;
+  const initialStatus = (statusParam === 'valid' || statusParam === 'invalid' || statusParam === 'unassigned' || statusParam === 'no_analysis' || statusParam === '') ? statusParam : undefined;
   // Support concentration display mode via 'concentrationDisplay' param
   const concentrationDisplayParam = searchParams.get('concentrationDisplay');
   const initialConcentrationDisplay = (concentrationDisplayParam === 'natural' || concentrationDisplayParam === 'nM' || concentrationDisplayParam === 'uM' || concentrationDisplayParam === 'mM' || concentrationDisplayParam === 'pConc')

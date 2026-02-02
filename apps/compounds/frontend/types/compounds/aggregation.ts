@@ -3,7 +3,7 @@
  * Types for data aggregation queries and responses.
  */
 
-import { AnalysisStatus } from './models';
+import { AnalysisStatus, AnalysisStatusFilter } from './models';
 
 /** Aggregation function types */
 export type AggregationType = 'geomean' | 'count' | 'stdev' | 'list';
@@ -72,8 +72,8 @@ export interface Predicates {
   compound_search?: string;
   /** Protocol UUIDs to filter by */
   protocols?: string[];
-  /** Analysis status filter (default: 'valid') */
-  status?: AnalysisStatus | '';
+  /** Analysis status filter (default: 'valid'). Use 'no_analysis' for DataSeries where analysis failed. */
+  status?: AnalysisStatusFilter | '';
 }
 
 /** Request body for aggregation API */
@@ -105,6 +105,14 @@ export interface ProtocolAggregation {
   /** Standard deviation in log10 space, for pConc display */
   stdev_log?: number | null;
   list?: string;
+  /** Total number of DataSeries tested (regardless of analysis status) */
+  tested?: number;
+  /** Number of DataSeries where analysis failed (no AnalysisResult) */
+  no_analysis?: number;
+  /** Number of DataSeries with status='invalid' */
+  invalid?: number;
+  /** Number of DataSeries with status='unassigned' */
+  unassigned?: number;
 }
 
 /** Summary metadata for response */
@@ -168,6 +176,14 @@ export interface MediumRow {
   /** Standard deviation in log10 space, for pConc display */
   stdev_log?: number | null;
   list?: string;
+  /** Total number of DataSeries tested (regardless of analysis status) */
+  tested?: number;
+  /** Number of DataSeries where analysis failed (no AnalysisResult) */
+  no_analysis?: number;
+  /** Number of DataSeries with status='invalid' */
+  invalid?: number;
+  /** Number of DataSeries with status='unassigned' */
+  unassigned?: number;
   /** Molecular properties (only present when include_properties is specified) */
   properties?: MolecularPropertyValues;
 }

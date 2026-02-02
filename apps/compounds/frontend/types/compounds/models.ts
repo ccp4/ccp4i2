@@ -75,7 +75,7 @@ export interface SavedAggregationView {
   compound_search: string;
   output_format: 'compact' | 'medium' | 'long' | 'pivot' | 'cards';
   aggregations: ('geomean' | 'count' | 'stdev' | 'list')[];
-  status: 'valid' | 'invalid' | 'unassigned' | '';
+  status: 'valid' | 'invalid' | 'unassigned' | 'no_analysis' | '';
   /** Concentration display mode (default: 'natural') */
   concentration_display?: ConcentrationDisplayMode;
   /** Molecular properties to include as columns */
@@ -376,6 +376,12 @@ export interface Assay {
 
 export type AnalysisStatus = 'valid' | 'invalid' | 'unassigned';
 
+/**
+ * Status filter options for aggregation queries.
+ * Includes AnalysisStatus values plus 'no_analysis' for DataSeries where analysis failed to run.
+ */
+export type AnalysisStatusFilter = AnalysisStatus | 'no_analysis';
+
 export interface AnalysisResult {
   id: string;
   status: AnalysisStatus;
@@ -388,6 +394,7 @@ export interface DataSeries {
   assay: string;
   compound: string | null;
   compound_formatted_id?: string;
+  compound_smiles?: string | null;  // SMILES string from linked compound
   batch?: string | null;  // Batch UUID
   batch_number?: number | null;  // Batch number (e.g., 1, 2, 3)
   compound_name: string | null;

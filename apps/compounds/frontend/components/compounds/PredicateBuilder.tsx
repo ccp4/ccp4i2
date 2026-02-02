@@ -272,9 +272,8 @@ export function PredicateBuilder({
     if (compoundSearch.trim()) {
       predicates.compound_search = compoundSearch.trim();
     }
-    if (status) {
-      predicates.status = status as any;
-    }
+    // Always include status (empty string means "all")
+    predicates.status = (status || '') as any;
     return predicates;
   }, [selectedTargets, selectedProtocols, compoundSearch, status]);
 
@@ -563,6 +562,7 @@ export function PredicateBuilder({
             <MenuItem value="valid">Valid</MenuItem>
             <MenuItem value="invalid">Invalid</MenuItem>
             <MenuItem value="unassigned">Unassigned</MenuItem>
+            <MenuItem value="no_analysis">No Analysis</MenuItem>
             <MenuItem value="">All</MenuItem>
           </Select>
         </FormControl>

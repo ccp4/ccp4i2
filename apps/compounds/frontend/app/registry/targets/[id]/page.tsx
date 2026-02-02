@@ -100,9 +100,8 @@ export default function TargetDashboardPage({ params }: PageProps) {
         if (savedView.compound_search) {
           predicates.compound_search = savedView.compound_search;
         }
-        if (savedView.status) {
-          predicates.status = savedView.status;
-        }
+        // Always include status (empty string means "all")
+        predicates.status = savedView.status ?? 'valid';
 
         // Run aggregation - map pivot/cards to compact for API (they use same data structure)
         const apiOutputFormat = (savedView.output_format === 'pivot' || savedView.output_format === 'cards')
