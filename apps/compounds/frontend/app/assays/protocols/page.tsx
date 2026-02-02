@@ -103,69 +103,76 @@ export default function ProtocolsPage() {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Assays', href: routes.assays.protocols() },
-          { label: 'Protocols', icon: 'protocol' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Assays', href: routes.assays.protocols() },
+              { label: 'Protocols', icon: 'protocol' },
+            ]}
+          />
 
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Protocols
-          </Typography>
-          <Typography color="text.secondary">
-            Assay protocols define experimental methods and analysis approaches
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button
-            variant="outlined"
-            startIcon={<Settings />}
-            onClick={() => router.push(routes.assays.dilutionSeries())}
-          >
-            Manage Dilutions
-          </Button>
-          <Button
-            variant="outlined"
-            startIcon={<GridOn />}
-            onClick={() => router.push(routes.assays.plateLayouts())}
-          >
-            Manage Plate Layouts
-          </Button>
-          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-            <span>
+          <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                Protocols
+              </Typography>
+              <Typography color="text.secondary">
+                Assay protocols define experimental methods and analysis approaches
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1 }}>
               <Button
-                variant="contained"
-                startIcon={<Add />}
-                onClick={() => setCreateDialogOpen(true)}
-                disabled={!canContribute}
+                variant="outlined"
+                startIcon={<Settings />}
+                onClick={() => router.push(routes.assays.dilutionSeries())}
               >
-                Add Protocol
+                Manage Dilutions
               </Button>
-            </span>
-          </Tooltip>
+              <Button
+                variant="outlined"
+                startIcon={<GridOn />}
+                onClick={() => router.push(routes.assays.plateLayouts())}
+              >
+                Manage Plate Layouts
+              </Button>
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    variant="contained"
+                    startIcon={<Add />}
+                    onClick={() => setCreateDialogOpen(true)}
+                    disabled={!canContribute}
+                  >
+                    Add Protocol
+                  </Button>
+                </span>
+              </Tooltip>
+            </Box>
+          </Box>
         </Box>
-      </Box>
 
-      <DataTable
-        data={protocols}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={(protocol) => router.push(routes.assays.protocol(protocol.id))}
-        getRowKey={(row) => row.id}
-        title={protocols ? `${protocols.length} protocols` : undefined}
-        emptyMessage="No protocols found"
-      />
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <DataTable
+            data={protocols}
+            columns={columns}
+            loading={isLoading}
+            onRowClick={(protocol) => router.push(routes.assays.protocol(protocol.id))}
+            getRowKey={(row) => row.id}
+            title={protocols ? `${protocols.length} protocols` : undefined}
+            emptyMessage="No protocols found"
+            fillHeight
+          />
+        </Box>
+      </Container>
 
       <ProtocolCreateDialog
         open={createDialogOpen}
         onClose={() => setCreateDialogOpen(false)}
         onCreated={handleProtocolCreated}
       />
-    </Container>
+    </Box>
   );
 }

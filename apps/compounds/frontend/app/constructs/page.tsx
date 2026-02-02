@@ -119,46 +119,53 @@ export default function ConstructsPage() {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Constructs', icon: 'construct' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Constructs', icon: 'construct' },
+            ]}
+          />
 
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Construct Database
-          </Typography>
-          <Typography color="text.secondary">
-            Plasmid constructs, cassettes, and sequencing results
-          </Typography>
+          <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                Construct Database
+              </Typography>
+              <Typography color="text.secondary">
+                Plasmid constructs, cassettes, and sequencing results
+              </Typography>
+            </Box>
+            <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+              <span>
+                <Button
+                  variant="contained"
+                  startIcon={<Add />}
+                  onClick={() => setCreateDialogOpen(true)}
+                  disabled={!canContribute}
+                >
+                  Add Construct
+                </Button>
+              </span>
+            </Tooltip>
+          </Box>
         </Box>
-        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-          <span>
-            <Button
-              variant="contained"
-              startIcon={<Add />}
-              onClick={() => setCreateDialogOpen(true)}
-              disabled={!canContribute}
-            >
-              Add Construct
-            </Button>
-          </span>
-        </Tooltip>
-      </Box>
 
-      <DataTable
-        data={plasmids}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={(plasmid) => router.push(routes.constructs.plasmid(plasmid.id))}
-        getRowKey={(row) => row.id}
-        title={plasmids ? `${plasmids.length} plasmids` : undefined}
-        emptyMessage="No plasmids found. Click 'Add Construct' to create one."
-      />
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <DataTable
+            data={plasmids}
+            columns={columns}
+            loading={isLoading}
+            onRowClick={(plasmid) => router.push(routes.constructs.plasmid(plasmid.id))}
+            getRowKey={(row) => row.id}
+            title={plasmids ? `${plasmids.length} plasmids` : undefined}
+            emptyMessage="No plasmids found. Click 'Add Construct' to create one."
+            fillHeight
+          />
+        </Box>
+      </Container>
 
       <PlasmidCreateDialog
         open={createDialogOpen}
@@ -188,6 +195,6 @@ export default function ConstructsPage() {
         onConfirm={handleDelete}
         onCancel={() => setDeleteTarget(null)}
       />
-    </Container>
+    </Box>
   );
 }

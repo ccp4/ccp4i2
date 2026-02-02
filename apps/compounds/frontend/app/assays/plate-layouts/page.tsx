@@ -181,57 +181,64 @@ export default function PlateLayoutsPage() {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Assays', href: routes.assays.protocols() },
-          { label: 'Protocols', href: routes.assays.protocols() },
-          { label: 'Plate Layouts', icon: 'protocol' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Assays', href: routes.assays.protocols() },
+              { label: 'Protocols', href: routes.assays.protocols() },
+              { label: 'Plate Layouts', icon: 'protocol' },
+            ]}
+          />
 
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Plate Layouts
-          </Typography>
-          <Typography color="text.secondary">
-            Reusable plate configurations for assay protocols
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button
-            variant="outlined"
-            startIcon={<ArrowBack />}
-            onClick={() => router.push(routes.assays.protocols())}
-          >
-            Back to Protocols
-          </Button>
-          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-            <span>
+          <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                Plate Layouts
+              </Typography>
+              <Typography color="text.secondary">
+                Reusable plate configurations for assay protocols
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1 }}>
               <Button
-                variant="contained"
-                startIcon={<Add />}
-                onClick={() => setCreateDialogOpen(true)}
-                disabled={!canContribute}
+                variant="outlined"
+                startIcon={<ArrowBack />}
+                onClick={() => router.push(routes.assays.protocols())}
               >
-                Add Plate Layout
+                Back to Protocols
               </Button>
-            </span>
-          </Tooltip>
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    variant="contained"
+                    startIcon={<Add />}
+                    onClick={() => setCreateDialogOpen(true)}
+                    disabled={!canContribute}
+                  >
+                    Add Plate Layout
+                  </Button>
+                </span>
+              </Tooltip>
+            </Box>
+          </Box>
         </Box>
-      </Box>
 
-      <DataTable
-        data={plateLayouts}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={handleRowClick}
-        getRowKey={(row) => row.id}
-        title={plateLayouts ? `${plateLayouts.length} plate layouts` : undefined}
-        emptyMessage="No plate layouts found. Click 'Add Plate Layout' to create one."
-      />
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <DataTable
+            data={plateLayouts}
+            columns={columns}
+            loading={isLoading}
+            onRowClick={handleRowClick}
+            getRowKey={(row) => row.id}
+            title={plateLayouts ? `${plateLayouts.length} plate layouts` : undefined}
+            emptyMessage="No plate layouts found. Click 'Add Plate Layout' to create one."
+            fillHeight
+          />
+        </Box>
+      </Container>
 
       <PlateLayoutCreateDialog
         open={createDialogOpen}
@@ -275,6 +282,6 @@ export default function PlateLayoutsPage() {
           </Button>
         </DialogActions>
       </Dialog>
-    </Container>
+    </Box>
   );
 }

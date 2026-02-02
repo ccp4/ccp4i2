@@ -177,68 +177,75 @@ export default function AssaysPage() {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Assays', icon: 'assay' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Assays', icon: 'assay' },
+            ]}
+          />
 
-      <Box sx={{ mb: 3, display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-        <Box sx={{ flex: 1 }}>
-          <Typography variant="h4" gutterBottom>
-            Assays
-          </Typography>
-          <Typography color="text.secondary">
-            Dose-response experiments and compound activity data
-          </Typography>
+          <Box sx={{ mb: 2, display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+            <Box sx={{ flex: 1 }}>
+              <Typography variant="h4" gutterBottom>
+                Assays
+              </Typography>
+              <Typography color="text.secondary">
+                Dose-response experiments and compound activity data
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1 }}>
+              <Button
+                component={Link}
+                href={routes.assays.aggregate()}
+                variant="outlined"
+                startIcon={<Functions />}
+              >
+                Aggregate
+              </Button>
+              <Button
+                component={Link}
+                href={routes.assays.importTableOfValues()}
+                variant="outlined"
+                startIcon={<TableChart />}
+              >
+                Import Table of Values
+              </Button>
+              <Button
+                component={Link}
+                href={routes.assays.importAdme()}
+                variant="outlined"
+                startIcon={<Biotech />}
+              >
+                Import ADME
+              </Button>
+              <Button
+                component={Link}
+                href={routes.assays.import()}
+                variant="contained"
+                startIcon={<Upload />}
+              >
+                Import Plate Data
+              </Button>
+            </Box>
+          </Box>
         </Box>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button
-            component={Link}
-            href={routes.assays.aggregate()}
-            variant="outlined"
-            startIcon={<Functions />}
-          >
-            Aggregate
-          </Button>
-          <Button
-            component={Link}
-            href={routes.assays.importTableOfValues()}
-            variant="outlined"
-            startIcon={<TableChart />}
-          >
-            Import Table of Values
-          </Button>
-          <Button
-            component={Link}
-            href={routes.assays.importAdme()}
-            variant="outlined"
-            startIcon={<Biotech />}
-          >
-            Import ADME
-          </Button>
-          <Button
-            component={Link}
-            href={routes.assays.import()}
-            variant="contained"
-            startIcon={<Upload />}
-          >
-            Import Plate Data
-          </Button>
-        </Box>
-      </Box>
 
-      <DataTable
-        data={assays}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
-        getRowKey={(row) => row.id}
-        title={assays ? `${assays.length} assays` : undefined}
-        emptyMessage="No assays found"
-      />
-    </Container>
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <DataTable
+            data={assays}
+            columns={columns}
+            loading={isLoading}
+            onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
+            getRowKey={(row) => row.id}
+            title={assays ? `${assays.length} assays` : undefined}
+            emptyMessage="No assays found"
+            fillHeight
+          />
+        </Box>
+      </Container>
+    </Box>
   );
 }

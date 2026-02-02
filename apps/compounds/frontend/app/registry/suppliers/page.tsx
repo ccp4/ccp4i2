@@ -83,53 +83,60 @@ export default function SuppliersPage() {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Registry', href: routes.registry.targets() },
-          { label: 'Suppliers', icon: 'supplier' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Registry', href: routes.registry.targets() },
+              { label: 'Suppliers', icon: 'supplier' },
+            ]}
+          />
 
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Suppliers
-          </Typography>
-          <Typography color="text.secondary">
-            Chemical suppliers and synthesis sources
-          </Typography>
+          <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                Suppliers
+              </Typography>
+              <Typography color="text.secondary">
+                Chemical suppliers and synthesis sources
+              </Typography>
+            </Box>
+            <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+              <span>
+                <Button
+                  variant="contained"
+                  startIcon={<Add />}
+                  onClick={() => setCreateDialogOpen(true)}
+                  disabled={!canContribute}
+                >
+                  New Supplier
+                </Button>
+              </span>
+            </Tooltip>
+          </Box>
         </Box>
-        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-          <span>
-            <Button
-              variant="contained"
-              startIcon={<Add />}
-              onClick={() => setCreateDialogOpen(true)}
-              disabled={!canContribute}
-            >
-              New Supplier
-            </Button>
-          </span>
-        </Tooltip>
-      </Box>
 
-      <DataTable
-        data={suppliers}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={(supplier) => router.push(routes.registry.supplier(supplier.id))}
-        getRowKey={(row) => row.id}
-        title={suppliers ? `${suppliers.length} suppliers` : undefined}
-        emptyMessage="No suppliers found"
-      />
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <DataTable
+            data={suppliers}
+            columns={columns}
+            loading={isLoading}
+            onRowClick={(supplier) => router.push(routes.registry.supplier(supplier.id))}
+            getRowKey={(row) => row.id}
+            title={suppliers ? `${suppliers.length} suppliers` : undefined}
+            emptyMessage="No suppliers found"
+            fillHeight
+          />
+        </Box>
+      </Container>
 
       <SupplierCreateDialog
         open={createDialogOpen}
         onClose={() => setCreateDialogOpen(false)}
         onCreated={handleSupplierCreated}
       />
-    </Container>
+    </Box>
   );
 }

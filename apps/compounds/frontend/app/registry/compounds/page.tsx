@@ -160,97 +160,104 @@ function CompoundsPageContent() {
     : null;
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Registry', href: routes.registry.targets() },
-          { label: 'Compounds', icon: 'compound' },
-          ...(selectedTargetName ? [{ label: selectedTargetName }] : []),
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Registry', href: routes.registry.targets() },
+              { label: 'Compounds', icon: 'compound' },
+              ...(selectedTargetName ? [{ label: selectedTargetName }] : []),
+            ]}
+          />
 
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Compounds
-          </Typography>
-          <Typography color="text.secondary">
-            {compounds.length > 0
-              ? `${compounds.length} compounds${selectedTargetName ? ` for ${selectedTargetName}` : ' registered'}`
-              : 'Browse registered compounds'}
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
-          {/* Target filter */}
-          <FormControl size="small" sx={{ minWidth: 180 }}>
-            <InputLabel id="target-filter-label">
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
-                <FilterList fontSize="small" />
-                Target
-              </Box>
-            </InputLabel>
-            <Select
-              labelId="target-filter-label"
-              value={targetFilter}
-              label="Target"
-              onChange={handleTargetChange}
-            >
-              <MenuItem value="">
-                <em>All Targets</em>
-              </MenuItem>
-              {targets?.map((target) => (
-                <MenuItem key={target.id} value={target.id}>
-                  {target.name}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
+          <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 2 }}>
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                Compounds
+              </Typography>
+              <Typography color="text.secondary">
+                {compounds.length > 0
+                  ? `${compounds.length} compounds${selectedTargetName ? ` for ${selectedTargetName}` : ' registered'}`
+                  : 'Browse registered compounds'}
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', flexWrap: 'wrap' }}>
+              {/* Target filter */}
+              <FormControl size="small" sx={{ minWidth: 180 }}>
+                <InputLabel id="target-filter-label">
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <FilterList fontSize="small" />
+                    Target
+                  </Box>
+                </InputLabel>
+                <Select
+                  labelId="target-filter-label"
+                  value={targetFilter}
+                  label="Target"
+                  onChange={handleTargetChange}
+                >
+                  <MenuItem value="">
+                    <em>All Targets</em>
+                  </MenuItem>
+                  {targets?.map((target) => (
+                    <MenuItem key={target.id} value={target.id}>
+                      {target.name}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
-          <Button
-            component={Link}
-            href="/"
-            variant="outlined"
-            startIcon={<Apps />}
-          >
-            All Apps
-          </Button>
-
-          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-            <span>
               <Button
                 component={Link}
-                href={targetFilter ? `${routes.registry.new()}?target=${targetFilter}` : routes.registry.new()}
-                variant="contained"
-                startIcon={<Add />}
-                disabled={!canContribute}
+                href="/"
+                variant="outlined"
+                startIcon={<Apps />}
               >
-                Register Compound
+                All Apps
               </Button>
-            </span>
-          </Tooltip>
-        </Box>
-      </Box>
 
-      {error && (
-        <Box sx={{ mb: 2, p: 2, bgcolor: 'error.light', borderRadius: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
-          <ErrorIcon color="error" />
-          <Typography color="error.dark">
-            Failed to load {errorSource}: {error.message || 'Unknown error'}
-          </Typography>
-        </Box>
-      )}
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    component={Link}
+                    href={targetFilter ? `${routes.registry.new()}?target=${targetFilter}` : routes.registry.new()}
+                    variant="contained"
+                    startIcon={<Add />}
+                    disabled={!canContribute}
+                  >
+                    Register Compound
+                  </Button>
+                </span>
+              </Tooltip>
+            </Box>
+          </Box>
 
-      <DataTable
-        data={compounds}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={(compound) => router.push(routes.registry.compound(compound.id))}
-        getRowKey={(row) => row.id}
-        emptyMessage={targetFilter ? "No compounds found for this target" : "No compounds registered yet"}
-        comfortable
-      />
-    </Container>
+          {error && (
+            <Box sx={{ mb: 2, p: 2, bgcolor: 'error.light', borderRadius: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+              <ErrorIcon color="error" />
+              <Typography color="error.dark">
+                Failed to load {errorSource}: {error.message || 'Unknown error'}
+              </Typography>
+            </Box>
+          )}
+        </Box>
+
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <DataTable
+            data={compounds}
+            columns={columns}
+            loading={isLoading}
+            onRowClick={(compound) => router.push(routes.registry.compound(compound.id))}
+            getRowKey={(row) => row.id}
+            emptyMessage={targetFilter ? "No compounds found for this target" : "No compounds registered yet"}
+            comfortable
+            fillHeight
+          />
+        </Box>
+      </Container>
+    </Box>
   );
 }
 

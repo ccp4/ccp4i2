@@ -128,57 +128,64 @@ export default function DilutionSeriesPage() {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Assays', href: routes.assays.protocols() },
-          { label: 'Protocols', href: routes.assays.protocols() },
-          { label: 'Dilution Series', icon: 'protocol' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box sx={{ flexShrink: 0 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Assays', href: routes.assays.protocols() },
+              { label: 'Protocols', href: routes.assays.protocols() },
+              { label: 'Dilution Series', icon: 'protocol' },
+            ]}
+          />
 
-      <Box sx={{ mb: 3, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-        <Box>
-          <Typography variant="h4" gutterBottom>
-            Dilution Series
-          </Typography>
-          <Typography color="text.secondary">
-            Standard concentration series for dose-response experiments
-          </Typography>
-        </Box>
-        <Box sx={{ display: 'flex', gap: 1 }}>
-          <Button
-            variant="outlined"
-            startIcon={<ArrowBack />}
-            onClick={() => router.push(routes.assays.protocols())}
-          >
-            Back to Protocols
-          </Button>
-          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-            <span>
+          <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <Box>
+              <Typography variant="h4" gutterBottom>
+                Dilution Series
+              </Typography>
+              <Typography color="text.secondary">
+                Standard concentration series for dose-response experiments
+              </Typography>
+            </Box>
+            <Box sx={{ display: 'flex', gap: 1 }}>
               <Button
-                variant="contained"
-                startIcon={<Add />}
-                onClick={() => setCreateDialogOpen(true)}
-                disabled={!canContribute}
+                variant="outlined"
+                startIcon={<ArrowBack />}
+                onClick={() => router.push(routes.assays.protocols())}
               >
-                Add Dilution Series
+                Back to Protocols
               </Button>
-            </span>
-          </Tooltip>
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    variant="contained"
+                    startIcon={<Add />}
+                    onClick={() => setCreateDialogOpen(true)}
+                    disabled={!canContribute}
+                  >
+                    Add Dilution Series
+                  </Button>
+                </span>
+              </Tooltip>
+            </Box>
+          </Box>
         </Box>
-      </Box>
 
-      <DataTable
-        data={dilutionSeries}
-        columns={columns}
-        loading={isLoading}
-        onRowClick={handleRowClick}
-        getRowKey={(row) => row.id}
-        title={dilutionSeries ? `${dilutionSeries.length} dilution series` : undefined}
-        emptyMessage="No dilution series found"
-      />
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+          <DataTable
+            data={dilutionSeries}
+            columns={columns}
+            loading={isLoading}
+            onRowClick={handleRowClick}
+            getRowKey={(row) => row.id}
+            title={dilutionSeries ? `${dilutionSeries.length} dilution series` : undefined}
+            emptyMessage="No dilution series found"
+            fillHeight
+          />
+        </Box>
+      </Container>
 
       <DilutionSeriesCreateDialog
         open={createDialogOpen}
@@ -224,6 +231,6 @@ export default function DilutionSeriesPage() {
           </Button>
         </DialogActions>
       </Dialog>
-    </Container>
+    </Box>
   );
 }
