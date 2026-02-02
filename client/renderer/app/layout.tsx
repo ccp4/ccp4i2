@@ -1,9 +1,10 @@
 import "./globals.css";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, Suspense } from "react";
 import { CCP4i2ThemeProvider } from "../theme/theme-provider";
 import MsalAuthProvider from "../components/auth-provider";
 import { RDKitProvider } from "../providers/rdkit-provider";
 import { AuthProvider as CompoundsAuthProvider } from "../lib/compounds/auth-context";
+import { TeamsRoutePersistence } from "../components/teams-route-persistence";
 
 export const metadata = {
   title: "ccp4i2",
@@ -32,6 +33,9 @@ export default function RootLayout(props: PropsWithChildren) {
             {REQUIRE_AUTH ? (
               <MsalAuthProvider>
                 <CompoundsAuthProvider>
+                  <Suspense fallback={null}>
+                    <TeamsRoutePersistence />
+                  </Suspense>
                   {props.children}
                 </CompoundsAuthProvider>
               </MsalAuthProvider>

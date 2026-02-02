@@ -3,7 +3,8 @@
 import { Container, Typography, Box, Stack, Paper, Collapse } from '@mui/material';
 import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings, GridView, Visibility } from '@mui/icons-material';
 import Link from 'next/link';
-import { useState, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { useState, useEffect, useRef, Suspense } from 'react';
 
 interface VersionInfo {
   web?: {
@@ -16,10 +17,91 @@ interface VersionInfo {
   };
 }
 
+const TEAMS_ROUTE_KEY = "ccp4i2-teams-last-route";
+
+/**
+ * Check if running in an iframe (Teams context).
+ */
+function isRunningInIframe(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.self !== window.top;
+  } catch {
+    return true;
+  }
+}
+
+/**
+ * Clear the saved route from sessionStorage.
+ */
+function clearSavedTeamsRoute(): void {
+  if (typeof window === "undefined") return;
+  try {
+    sessionStorage.removeItem(TEAMS_ROUTE_KEY);
+  } catch {
+    // Ignore
+  }
+}
+
+/**
+ * Get and clear the saved route from sessionStorage.
+ * Returns null if not in Teams context or no route saved.
+ */
+function getAndClearSavedTeamsRoute(): string | null {
+  if (typeof window === "undefined") return null;
+  if (!isRunningInIframe()) return null;
+
+  try {
+    const route = sessionStorage.getItem(TEAMS_ROUTE_KEY);
+    if (route) {
+      sessionStorage.removeItem(TEAMS_ROUTE_KEY);
+    }
+    return route;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Component that handles Teams route restoration.
+ * Uses useSearchParams which requires Suspense boundary.
+ */
+function TeamsRouteHandler() {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const hasCheckedRoute = useRef(false);
+
+  useEffect(() => {
+    // Check for ?home parameter - this bypasses route restoration
+    // Useful if saved route is broken and user needs to get back to app-selector
+    if (searchParams.has('home')) {
+      console.log("[APP-SELECTOR] ?home parameter detected, clearing saved route");
+      clearSavedTeamsRoute();
+      // Don't redirect, stay on app-selector
+    } else if (!hasCheckedRoute.current) {
+      // Check for saved route (Teams context only) - do this first
+      hasCheckedRoute.current = true;
+      const savedRoute = getAndClearSavedTeamsRoute();
+      if (savedRoute && savedRoute !== "/") {
+        console.log("[APP-SELECTOR] Restoring saved Teams route:", savedRoute);
+        router.replace(savedRoute);
+      }
+    }
+  }, [router, searchParams]);
+
+  return null; // This component only handles side effects
+}
+
 /**
  * App selector page for the web deployment.
  * This page is overlaid onto the ccp4i2 client at build time
  * to provide navigation between available applications.
+ *
+ * In Teams context, if there's a saved route from a previous session,
+ * this page will automatically redirect to that route.
+ *
+ * Use /?home to bypass route restoration and stay on this page
+ * (useful if the saved route leads to a broken page).
  */
 export default function AppSelectorPage() {
   const [versionInfo, setVersionInfo] = useState<VersionInfo>({});
@@ -40,6 +122,11 @@ export default function AppSelectorPage() {
   }, []);
   return (
     <Container maxWidth="md" sx={{ py: 6 }}>
+      {/* Handle Teams route restoration - wrapped in Suspense for useSearchParams */}
+      <Suspense fallback={null}>
+        <TeamsRouteHandler />
+      </Suspense>
+
       <Box sx={{ textAlign: 'center', mb: 5 }}>
         <Typography variant="h3" component="h1" gutterBottom>
           SBDD Database
