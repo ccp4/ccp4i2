@@ -1,7 +1,7 @@
 'use client';
 
-import { Breadcrumbs as MuiBreadcrumbs, Link, Typography, Box } from '@mui/material';
-import { Home, NavigateNext, Science, Medication, Inventory, Description, Assessment, TableChart, Search, Upload, LocalShipping } from '@mui/icons-material';
+import { Breadcrumbs as MuiBreadcrumbs, Link, Typography, Box, useMediaQuery, useTheme } from '@mui/material';
+import { Home, NavigateNext, Science, Medication, Inventory, Description, Assessment, TableChart, Search, Upload, LocalShipping, ChevronLeft } from '@mui/icons-material';
 import NextLink from 'next/link';
 
 export interface BreadcrumbItem {
@@ -29,11 +29,60 @@ const iconMap = {
   supplier: <LocalShipping fontSize="small" />,
 };
 
+/**
+ * Responsive breadcrumbs component.
+ * - Desktop: Full breadcrumb trail with icons
+ * - Mobile: Compact back link to parent ("< Parent Name")
+ */
 export function Breadcrumbs({ items }: BreadcrumbsProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  // Mobile: Show back link to parent
+  if (isMobile && items.length > 1) {
+    // Find the last item with an href (the parent we can navigate back to)
+    const parentIndex = items.slice(0, -1).findLastIndex(item => item.href);
+    const parent = parentIndex >= 0 ? items[parentIndex] : null;
+
+    if (parent?.href) {
+      return (
+        <Link
+          component={NextLink}
+          href={parent.href}
+          underline="hover"
+          sx={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 0.5,
+            color: 'text.secondary',
+            fontSize: '0.875rem',
+            py: 0.5,
+            '&:hover': { color: 'primary.main' },
+          }}
+        >
+          <ChevronLeft fontSize="small" sx={{ ml: -0.5 }} />
+          {parent.label}
+        </Link>
+      );
+    }
+
+    // No navigable parent - show current page name only
+    return (
+      <Typography
+        variant="body2"
+        color="text.secondary"
+        sx={{ py: 0.5 }}
+      >
+        {items[items.length - 1].label}
+      </Typography>
+    );
+  }
+
+  // Desktop: Full breadcrumb trail
   return (
     <MuiBreadcrumbs
       separator={<NavigateNext fontSize="small" />}
-      sx={{ mb: 2 }}
+      sx={{ py: 0.5 }}
     >
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
