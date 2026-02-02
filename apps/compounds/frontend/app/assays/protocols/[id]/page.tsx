@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState, useCallback, useEffect } from 'react';
+import { Suspense, use, useState, useCallback, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Container,
@@ -87,7 +87,7 @@ function isPlateBasedProtocol(importType: ImportType | undefined): boolean {
   return !isAdmeProtocol(importType) && !isTableOfValuesProtocol(importType);
 }
 
-export default function ProtocolDetailPage({ params }: PageProps) {
+function ProtocolDetailPageContent({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -1099,5 +1099,23 @@ export default function ProtocolDetailPage({ params }: PageProps) {
         />
       )}
     </Container>
+  );
+}
+
+function ProtocolDetailPageFallback() {
+  return (
+    <Container maxWidth="lg" sx={{ py: 3 }}>
+      <Skeleton variant="rectangular" height={40} sx={{ mb: 2 }} />
+      <Skeleton variant="rectangular" height={200} sx={{ mb: 3 }} />
+      <Skeleton variant="rectangular" height={400} />
+    </Container>
+  );
+}
+
+export default function ProtocolDetailPage({ params }: PageProps) {
+  return (
+    <Suspense fallback={<ProtocolDetailPageFallback />}>
+      <ProtocolDetailPageContent params={params} />
+    </Suspense>
   );
 }

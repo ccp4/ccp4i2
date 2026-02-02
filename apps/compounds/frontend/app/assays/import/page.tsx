@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { Suspense, useState, useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
@@ -45,7 +45,7 @@ const IMPORT_TYPE_LABELS: Record<ImportType, string> = {
   pharmaron_adme: 'Pharmaron ADME',
 };
 
-export default function ImportAssayPage() {
+function ImportAssayPageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const api = useCompoundsApi();
@@ -271,5 +271,23 @@ export default function ImportAssayPage() {
         </Box>
       </Paper>
     </Container>
+  );
+}
+
+function ImportAssayPageFallback() {
+  return (
+    <Container maxWidth="md" sx={{ py: 4 }}>
+      <Skeleton variant="rectangular" height={40} sx={{ mb: 2 }} />
+      <Skeleton variant="rectangular" height={60} sx={{ mb: 3 }} />
+      <Skeleton variant="rectangular" height={400} />
+    </Container>
+  );
+}
+
+export default function ImportAssayPage() {
+  return (
+    <Suspense fallback={<ImportAssayPageFallback />}>
+      <ImportAssayPageContent />
+    </Suspense>
   );
 }
