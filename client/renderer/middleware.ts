@@ -24,6 +24,8 @@ const AUTH_EXEMPT_PATHS = [
   "/api/auth/", // Auth session API (cookie management)
   "/auth/login", // Login page that triggers MSAL
   "/auth/callback", // MSAL redirect callback (completes auth flow)
+  "/auth/teams-start", // Teams auth start (redirects to Azure AD)
+  "/auth/teams-callback", // Teams auth callback (receives token)
   "/_next", // Next.js internals (static assets, webpack HMR)
   "/favicon.ico",
 ];
