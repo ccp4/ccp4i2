@@ -59,21 +59,34 @@ async function tryTeamsAuth(clientId: string, tenantId: string): Promise<{
     }
 
     // Fall back to Teams authentication dialog (not a browser popup)
-    const authUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize?` +
-      `client_id=${clientId}` +
-      `&response_type=id_token` +
-      `&scope=${encodeURIComponent("openid profile email")}` +
-      `&redirect_uri=${encodeURIComponent(window.location.origin + "/auth/teams-callback")}` +
-      `&nonce=${Math.random().toString(36).substring(2)}` +
-      `&response_mode=fragment`;
+    // Build auth URL - Teams requires this to eventually redirect back to our domain
+    const redirectUri = `${window.location.origin}/auth/teams-callback`;
+    const authUrl = new URL(`https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize`);
+    authUrl.searchParams.set("client_id", clientId);
+    authUrl.searchParams.set("response_type", "id_token");
+    authUrl.searchParams.set("scope", "openid profile email");
+    authUrl.searchParams.set("redirect_uri", redirectUri);
+    authUrl.searchParams.set("nonce", Math.random().toString(36).substring(2));
+    authUrl.searchParams.set("response_mode", "fragment");
 
-    const result = await teamsModule.authentication.authenticate({
-      url: authUrl,
-      width: 600,
-      height: 535,
-    });
+    console.log("[LOGIN] Teams auth URL:", authUrl.toString());
+    console.log("[LOGIN] Redirect URI:", redirectUri);
 
-    return { success: true, token: result, stage: "teams-dialog" };
+    try {
+      const result = await teamsModule.authentication.authenticate({
+        url: authUrl.toString(),
+        width: 600,
+        height: 535,
+      });
+      return { success: true, token: result, stage: "teams-dialog" };
+    } catch (dialogError: any) {
+      // Return more specific error about the dialog failure
+      return {
+        success: false,
+        error: `Dialog: ${dialogError?.message || dialogError}`,
+        stage: "teams-dialog"
+      };
+    }
   } catch (error: any) {
     return {
       success: false,
@@ -158,7 +171,7 @@ export default function LoginContent() {
             console.error("[LOGIN] Teams auth failed:", result);
             const errorDetail = `${result.error || "Unknown error"} (stage: ${result.stage || "unknown"})`;
             setStatusMessage(`Sign in failed: ${errorDetail}`);
-            setDebugInfo(`Client ID: ${clientId ? "set" : "missing"}, Tenant: ${tenantId ? "set" : "missing"}`);
+            setDebugInfo(`Origin: ${window.location.origin}`);
             hasTriggeredLogin.current = false;
           }
         })
