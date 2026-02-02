@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, use, useState, useCallback, useEffect } from 'react';
+import { Suspense, use, useState, useCallback, useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Container,
@@ -37,6 +37,7 @@ import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
+import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import { Protocol, Assay, ProtocolDocument, PlateLayoutRecord, ImportType } from '@/types/compounds/models';
 
 interface UploadingFile {
@@ -118,6 +119,13 @@ function ProtocolDetailPageContent({ params }: PageProps) {
   const [deleteDocDialogOpen, setDeleteDocDialogOpen] = useState(false);
   const [docToDelete, setDocToDelete] = useState<ProtocolDocument | null>(null);
   const [deletingDoc, setDeletingDoc] = useState(false);
+
+  // Adaptive table height for the assays section
+  const { headerRef, tableHeight } = useAdaptiveTableHeight({
+    maxHeight: 500,
+    minHeight: 400,
+    bottomPadding: 32,
+  });
 
   const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
@@ -518,14 +526,17 @@ function ProtocolDetailPageContent({ params }: PageProps) {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
-          { label: protocol?.name || 'Loading...', icon: 'protocol' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      {/* Scrollable header content - inset shadow hints at scroll */}
+      <Box ref={headerRef} sx={{ flex: '0 1 auto', overflow: 'auto', minHeight: 0, boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)' }}>
+        <Container maxWidth="lg" sx={{ py: 2 }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
+              { label: protocol?.name || 'Loading...', icon: 'protocol' },
+            ]}
+          />
 
       {/* Protocol header */}
       <Paper sx={{ p: 3, mb: 3 }}>
@@ -872,154 +883,184 @@ function ProtocolDetailPageContent({ params }: PageProps) {
         onCreated={handleLayoutCreated}
       />
 
-      {/* Documents section */}
-      <Typography variant="h6" sx={{ mb: 2 }}>
-        Documents
-      </Typography>
-
-      {/* Upload error alert */}
-      {uploadError && (
-        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setUploadError(null)}>
-          {uploadError}
-        </Alert>
-      )}
-
-      {/* Drop zone for document uploads */}
-      <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-        <Paper
-          variant="outlined"
-          onDrop={canContribute ? handleDrop : undefined}
-          onDragOver={canContribute ? handleDragOver : undefined}
-          onDragLeave={canContribute ? handleDragLeave : undefined}
+      {/* Documents section - collapsible */}
+      <Accordion
+        defaultExpanded={false}
+        sx={{
+          boxShadow: 'none',
+          '&:before': { display: 'none' },
+          bgcolor: 'transparent',
+          mb: 2,
+        }}
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
           sx={{
-            p: 3,
-            mb: 2,
-            textAlign: 'center',
-            bgcolor: isDragOver ? 'primary.50' : 'grey.50',
-            borderStyle: 'dashed',
-            borderColor: isDragOver ? 'primary.main' : 'grey.300',
-            borderWidth: 2,
-            cursor: canContribute ? 'pointer' : 'not-allowed',
-            opacity: canContribute ? 1 : 0.6,
-            transition: 'all 0.2s ease',
-            '&:hover': canContribute ? { bgcolor: 'grey.100', borderColor: 'grey.400' } : {},
+            px: 0,
+            minHeight: 'auto',
+            '& .MuiAccordionSummary-content': { my: 1 },
           }}
-          onClick={canContribute ? () => document.getElementById('protocol-doc-input')?.click() : undefined}
         >
-          <CloudUpload sx={{ fontSize: 40, color: isDragOver ? 'primary.main' : 'grey.400', mb: 1 }} />
-          <Typography color={isDragOver ? 'primary.main' : 'text.secondary'}>
-            {isDragOver ? 'Drop files here' : 'Drag and drop documents here, or click to select'}
-          </Typography>
-          <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-            {canContribute ? 'Multiple files supported (PDF, Word, Excel, images, etc.)' : 'Requires Contributor or Admin operating level'}
-          </Typography>
-          <input
-            id="protocol-doc-input"
-            type="file"
-            multiple
-            accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg"
-            onChange={handleFileSelect}
-            disabled={!canContribute}
-            style={{ display: 'none' }}
-          />
-        </Paper>
-      </Tooltip>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Description color="action" />
+            <Typography variant="h6">Documents</Typography>
+            {documents && documents.length > 0 && (
+              <Chip label={documents.length} size="small" variant="outlined" />
+            )}
+          </Box>
+        </AccordionSummary>
+        <AccordionDetails sx={{ px: 0, pt: 0 }}>
+          {/* Upload error alert */}
+          {uploadError && (
+            <Alert severity="error" sx={{ mb: 2 }} onClose={() => setUploadError(null)}>
+              {uploadError}
+            </Alert>
+          )}
 
-      {/* Upload progress */}
-      {uploadingFiles.length > 0 && (
-        <Paper sx={{ p: 2, mb: 2 }}>
-          <Typography variant="subtitle2" sx={{ mb: 1 }}>
-            Uploading {uploadingFiles.length} file(s)...
-          </Typography>
-          {uploadingFiles.map((file, index) => (
-            <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-              {file.status === 'uploading' && <LinearProgress sx={{ flex: 1, height: 6, borderRadius: 1 }} />}
-              {file.status === 'success' && <CheckCircle color="success" fontSize="small" />}
-              {file.status === 'error' && <Description color="error" fontSize="small" />}
-              <Typography
-                variant="body2"
-                color={file.status === 'error' ? 'error' : 'text.secondary'}
-                sx={{ minWidth: 200 }}
-              >
-                {file.name}
-                {file.status === 'error' && file.error && ` - ${file.error}`}
+          {/* Drop zone for document uploads */}
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <Paper
+              variant="outlined"
+              onDrop={canContribute ? handleDrop : undefined}
+              onDragOver={canContribute ? handleDragOver : undefined}
+              onDragLeave={canContribute ? handleDragLeave : undefined}
+              sx={{
+                p: 2,
+                mb: 2,
+                textAlign: 'center',
+                bgcolor: isDragOver ? 'primary.50' : 'grey.50',
+                borderStyle: 'dashed',
+                borderColor: isDragOver ? 'primary.main' : 'grey.300',
+                borderWidth: 2,
+                cursor: canContribute ? 'pointer' : 'not-allowed',
+                opacity: canContribute ? 1 : 0.6,
+                transition: 'all 0.2s ease',
+                '&:hover': canContribute ? { bgcolor: 'grey.100', borderColor: 'grey.400' } : {},
+              }}
+              onClick={canContribute ? () => document.getElementById('protocol-doc-input')?.click() : undefined}
+            >
+              <CloudUpload sx={{ fontSize: 32, color: isDragOver ? 'primary.main' : 'grey.400', mb: 0.5 }} />
+              <Typography variant="body2" color={isDragOver ? 'primary.main' : 'text.secondary'}>
+                {isDragOver ? 'Drop files here' : 'Drag and drop documents, or click to select'}
               </Typography>
-            </Box>
-          ))}
-        </Paper>
-      )}
+              <input
+                id="protocol-doc-input"
+                type="file"
+                multiple
+                accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg"
+                onChange={handleFileSelect}
+                disabled={!canContribute}
+                style={{ display: 'none' }}
+              />
+            </Paper>
+          </Tooltip>
 
-      {/* Documents table */}
-      <Box sx={{ mb: 3 }}>
-        <DataTable
-          data={documents}
-          columns={documentColumns}
-          loading={documentsLoading}
-          getRowKey={(row) => row.id}
-          title={documents ? `${documents.length} document(s)` : undefined}
-          emptyMessage="No documents uploaded for this protocol"
-        />
+          {/* Upload progress */}
+          {uploadingFiles.length > 0 && (
+            <Paper sx={{ p: 2, mb: 2 }}>
+              <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                Uploading {uploadingFiles.length} file(s)...
+              </Typography>
+              {uploadingFiles.map((file, index) => (
+                <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                  {file.status === 'uploading' && <LinearProgress sx={{ flex: 1, height: 6, borderRadius: 1 }} />}
+                  {file.status === 'success' && <CheckCircle color="success" fontSize="small" />}
+                  {file.status === 'error' && <Description color="error" fontSize="small" />}
+                  <Typography
+                    variant="body2"
+                    color={file.status === 'error' ? 'error' : 'text.secondary'}
+                    sx={{ minWidth: 200 }}
+                  >
+                    {file.name}
+                    {file.status === 'error' && file.error && ` - ${file.error}`}
+                  </Typography>
+                </Box>
+              ))}
+            </Paper>
+          )}
+
+          {/* Documents table */}
+          <DataTable
+            data={documents}
+            columns={documentColumns}
+            loading={documentsLoading}
+            getRowKey={(row) => row.id}
+            title={documents ? `${documents.length} document(s)` : undefined}
+            emptyMessage="No documents uploaded for this protocol"
+          />
+        </AccordionDetails>
+      </Accordion>
+
+        </Container>
       </Box>
 
-      {/* Assays section header with Add button */}
-      <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-        <Typography variant="h6">
-          Assays
-        </Typography>
-        {protocol?.import_type === 'table_of_values' ? (
-          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-            <span>
-              <Button
-                component={Link}
-                href={routes.assays.importTableOfValues({ protocol: id })}
-                variant="contained"
-                startIcon={<TableChart />}
-                disabled={!canContribute}
-              >
-                Import Table of Values
-              </Button>
-            </span>
-          </Tooltip>
-        ) : isAdmeProtocol(protocol?.import_type) ? (
-          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-            <span>
-              <Button
-                component={Link}
-                href={routes.assays.importAdme()}
-                variant="contained"
-                startIcon={<Biotech />}
-                disabled={!canContribute}
-              >
-                Import Pharmaron ADME
-              </Button>
-            </span>
-          </Tooltip>
-        ) : (
-          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-            <span>
-              <Button
-                variant="contained"
-                startIcon={<Add />}
-                onClick={() => setUploadDrawerOpen(true)}
-                disabled={!protocol || !canContribute}
-              >
-                Add Assay
-              </Button>
-            </span>
-          </Tooltip>
-        )}
-      </Box>
+      {/* Assays section with adaptive height */}
+      <Box sx={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+        <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: 'column', height: tableHeight, px: 3 }}>
+          {/* Assays section header with Add button */}
+          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, flexShrink: 0 }}>
+            <Typography variant="h6">
+              Assays
+            </Typography>
+            {protocol?.import_type === 'table_of_values' ? (
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    component={Link}
+                    href={routes.assays.importTableOfValues({ protocol: id })}
+                    variant="contained"
+                    startIcon={<TableChart />}
+                    disabled={!canContribute}
+                  >
+                    Import Table of Values
+                  </Button>
+                </span>
+              </Tooltip>
+            ) : isAdmeProtocol(protocol?.import_type) ? (
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    component={Link}
+                    href={routes.assays.importAdme()}
+                    variant="contained"
+                    startIcon={<Biotech />}
+                    disabled={!canContribute}
+                  >
+                    Import Pharmaron ADME
+                  </Button>
+                </span>
+              </Tooltip>
+            ) : (
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    variant="contained"
+                    startIcon={<Add />}
+                    onClick={() => setUploadDrawerOpen(true)}
+                    disabled={!protocol || !canContribute}
+                  >
+                    Add Assay
+                  </Button>
+                </span>
+              </Tooltip>
+            )}
+          </Box>
 
-      {/* Assays table */}
-      <DataTable
-        data={assays}
-        columns={columns}
-        loading={assaysLoading}
-        onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
-        getRowKey={(row) => row.id}
-        title={assays ? `${assays.length} assays` : undefined}
-        emptyMessage="No assays using this protocol"
-      />
+          {/* Assays table */}
+          <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
+            <DataTable
+              data={assays}
+              columns={columns}
+              loading={assaysLoading}
+              onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
+              getRowKey={(row) => row.id}
+              title={assays ? `${assays.length} assays` : undefined}
+              emptyMessage="No assays using this protocol"
+              fillHeight
+            />
+          </Box>
+        </Container>
+      </Box>
 
       {/* Assay Upload Drawer */}
       {protocol && (
@@ -1098,7 +1139,7 @@ function ProtocolDetailPageContent({ params }: PageProps) {
           onSave={() => mutate()}
         />
       )}
-    </Container>
+    </Box>
   );
 }
 

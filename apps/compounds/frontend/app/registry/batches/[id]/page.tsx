@@ -22,6 +22,9 @@ import {
   DialogActions,
   Button,
   CircularProgress,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from '@mui/material';
 import {
   Inventory,
@@ -33,11 +36,13 @@ import {
   CloudUpload,
   CheckCircle,
   Delete,
+  ExpandMore,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/data-table';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
+import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import { Batch, BatchQCFile, Compound, Target } from '@/types/compounds/models';
 
 interface UploadingFile {
@@ -91,6 +96,13 @@ export default function BatchDetailPage({ params }: PageProps) {
   const { data: target } = api.get<Target>(
     compound?.target ? `targets/${compound.target}/` : null
   );
+
+  // Adaptive table height for QC files table
+  const { headerRef, tableHeight } = useAdaptiveTableHeight({
+    maxHeight: 400,
+    minHeight: 300,
+    bottomPadding: 32,
+  });
 
   // Handle drag and drop for QC files
   const handleDragOver = useCallback((e: React.DragEvent) => {
@@ -340,31 +352,33 @@ export default function BatchDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
-          {
-            label: target?.name || 'Target',
-            href: compound?.target
-              ? routes.registry.target(compound.target)
-              : undefined,
-            icon: 'target',
-          },
-          {
-            label: compound?.formatted_id || 'Compound',
-            href: batch?.compound
-              ? routes.registry.compound(batch.compound)
-              : undefined,
-            icon: 'compound',
-          },
-          {
-            label: batch ? `Batch #${batch.batch_number}` : 'Loading...',
-            icon: 'batch',
-          },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box ref={headerRef} sx={{ flexShrink: 0, overflow: 'auto', maxHeight: '60vh', boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)' }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
+              {
+                label: target?.name || 'Target',
+                href: compound?.target
+                  ? routes.registry.target(compound.target)
+                  : undefined,
+                icon: 'target',
+              },
+              {
+                label: compound?.formatted_id || 'Compound',
+                href: batch?.compound
+                  ? routes.registry.compound(batch.compound)
+                  : undefined,
+                icon: 'compound',
+              },
+              {
+                label: batch ? `Batch #${batch.batch_number}` : 'Loading...',
+                icon: 'batch',
+              },
+            ]}
+          />
 
       {/* Batch header */}
       <Paper sx={{ p: 3, mb: 3 }}>
@@ -405,141 +419,151 @@ export default function BatchDetailPage({ params }: PageProps) {
               </Box>
             </Box>
 
-            <Divider sx={{ my: 2 }} />
-
-            <Grid container spacing={3}>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Properties
-                </Typography>
-                <InfoRow
-                  label="Amount"
-                  value={
-                    batch.amount ? `${parseFloat(batch.amount).toFixed(2)} mg` : null
-                  }
-                />
-                <InfoRow label="Salt Code" value={batch.salt_code} />
-                <InfoRow
-                  label="MW (salt)"
-                  value={batch.molecular_weight?.toFixed(2)}
-                />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Provenance
-                </Typography>
-                <InfoRow label="Supplier" value={batch.supplier_name} />
-                <InfoRow label="Supplier Ref" value={batch.supplier_ref} />
-                <InfoRow label="Lab Book" value={batch.labbook_number} />
-                <InfoRow label="Page" value={batch.page_number} />
-                <InfoRow
-                  label="Registered"
-                  value={
-                    batch.registered_at
-                      ? new Date(batch.registered_at).toLocaleString()
-                      : null
-                  }
-                />
-              </Grid>
-            </Grid>
-
-            {batch.comments && (
-              <>
-                <Divider sx={{ my: 2 }} />
-                <Typography variant="h6" gutterBottom>
-                  Comments
-                </Typography>
-                <Typography>{batch.comments}</Typography>
-              </>
-            )}
+            <Accordion defaultExpanded={false} sx={{ mt: 2 }}>
+              <AccordionSummary expandIcon={<ExpandMore />}>
+                <Typography variant="h6">Properties & Provenance</Typography>
+              </AccordionSummary>
+              <AccordionDetails>
+                <Grid container spacing={3}>
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                      Properties
+                    </Typography>
+                    <InfoRow
+                      label="Amount"
+                      value={
+                        batch.amount ? `${parseFloat(batch.amount).toFixed(2)} mg` : null
+                      }
+                    />
+                    <InfoRow label="Salt Code" value={batch.salt_code} />
+                    <InfoRow
+                      label="MW (salt)"
+                      value={batch.molecular_weight?.toFixed(2)}
+                    />
+                  </Grid>
+                  <Grid size={{ xs: 12, md: 6 }}>
+                    <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                      Provenance
+                    </Typography>
+                    <InfoRow label="Supplier" value={batch.supplier_name} />
+                    <InfoRow label="Supplier Ref" value={batch.supplier_ref} />
+                    <InfoRow label="Lab Book" value={batch.labbook_number} />
+                    <InfoRow label="Page" value={batch.page_number} />
+                    <InfoRow
+                      label="Registered"
+                      value={
+                        batch.registered_at
+                          ? new Date(batch.registered_at).toLocaleString()
+                          : null
+                      }
+                    />
+                  </Grid>
+                </Grid>
+                {batch.comments && (
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                      Comments
+                    </Typography>
+                    <Typography>{batch.comments}</Typography>
+                  </Box>
+                )}
+              </AccordionDetails>
+            </Accordion>
           </>
         ) : (
           <Typography color="error">Batch not found</Typography>
         )}
       </Paper>
 
-      {/* QC Files section */}
-      <Typography variant="h6" sx={{ mb: 2 }}>
-        QC Files
-      </Typography>
+          {/* Upload section - Collapsible */}
+          <Accordion defaultExpanded={false} sx={{ mb: 2 }}>
+            <AccordionSummary expandIcon={<ExpandMore />}>
+              <Typography variant="h6">Upload QC Files</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              {/* Upload error alert */}
+              {uploadError && (
+                <Alert severity="error" sx={{ mb: 2 }} onClose={() => setUploadError(null)}>
+                  {uploadError}
+                </Alert>
+              )}
 
-      {/* Upload error alert */}
-      {uploadError && (
-        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setUploadError(null)}>
-          {uploadError}
-        </Alert>
-      )}
-
-      {/* Drop zone for QC file uploads */}
-      <Paper
-        variant="outlined"
-        onDrop={handleDrop}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        sx={{
-          p: 3,
-          mb: 2,
-          textAlign: 'center',
-          bgcolor: isDragOver ? 'primary.50' : 'grey.50',
-          borderStyle: 'dashed',
-          borderColor: isDragOver ? 'primary.main' : 'grey.300',
-          borderWidth: 2,
-          cursor: 'pointer',
-          transition: 'all 0.2s ease',
-          '&:hover': { bgcolor: 'grey.100', borderColor: 'grey.400' },
-        }}
-        onClick={() => document.getElementById('qc-file-input')?.click()}
-      >
-        <CloudUpload sx={{ fontSize: 40, color: isDragOver ? 'primary.main' : 'grey.400', mb: 1 }} />
-        <Typography color={isDragOver ? 'primary.main' : 'text.secondary'}>
-          {isDragOver ? 'Drop files here' : 'Drag and drop QC files here, or click to select'}
-        </Typography>
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-          Multiple files supported (PDF, images, Excel, etc.)
-        </Typography>
-        <input
-          id="qc-file-input"
-          type="file"
-          multiple
-          accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg"
-          onChange={handleFileSelect}
-          style={{ display: 'none' }}
-        />
-      </Paper>
-
-      {/* Upload progress */}
-      {uploadingFiles.length > 0 && (
-        <Paper sx={{ p: 2, mb: 2 }}>
-          <Typography variant="subtitle2" sx={{ mb: 1 }}>
-            Uploading {uploadingFiles.length} file(s)...
-          </Typography>
-          {uploadingFiles.map((file, index) => (
-            <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-              {file.status === 'uploading' && <LinearProgress sx={{ flex: 1, height: 6, borderRadius: 1 }} />}
-              {file.status === 'success' && <CheckCircle color="success" fontSize="small" />}
-              {file.status === 'error' && <Description color="error" fontSize="small" />}
-              <Typography
-                variant="body2"
-                color={file.status === 'error' ? 'error' : 'text.secondary'}
-                sx={{ minWidth: 200 }}
+              {/* Drop zone for QC file uploads */}
+              <Paper
+                variant="outlined"
+                onDrop={handleDrop}
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                sx={{
+                  p: 3,
+                  textAlign: 'center',
+                  bgcolor: isDragOver ? 'primary.50' : 'grey.50',
+                  borderStyle: 'dashed',
+                  borderColor: isDragOver ? 'primary.main' : 'grey.300',
+                  borderWidth: 2,
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  '&:hover': { bgcolor: 'grey.100', borderColor: 'grey.400' },
+                }}
+                onClick={() => document.getElementById('qc-file-input')?.click()}
               >
-                {file.name}
-                {file.status === 'error' && file.error && ` - ${file.error}`}
-              </Typography>
-            </Box>
-          ))}
-        </Paper>
-      )}
+                <CloudUpload sx={{ fontSize: 40, color: isDragOver ? 'primary.main' : 'grey.400', mb: 1 }} />
+                <Typography color={isDragOver ? 'primary.main' : 'text.secondary'}>
+                  {isDragOver ? 'Drop files here' : 'Drag and drop QC files here, or click to select'}
+                </Typography>
+                <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                  Multiple files supported (PDF, images, Excel, etc.)
+                </Typography>
+                <input
+                  id="qc-file-input"
+                  type="file"
+                  multiple
+                  accept=".pdf,.doc,.docx,.xlsx,.xls,.txt,.csv,.png,.jpg,.jpeg"
+                  onChange={handleFileSelect}
+                  style={{ display: 'none' }}
+                />
+              </Paper>
 
-      {/* QC Files table */}
-      <DataTable
-        data={qcFiles}
-        columns={columns}
-        loading={qcFilesLoading}
-        getRowKey={(row) => row.id}
-        title={qcFiles ? `${qcFiles.length} QC file(s)` : undefined}
-        emptyMessage="No QC files uploaded for this batch"
-      />
+              {/* Upload progress */}
+              {uploadingFiles.length > 0 && (
+                <Paper sx={{ p: 2, mt: 2 }}>
+                  <Typography variant="subtitle2" sx={{ mb: 1 }}>
+                    Uploading {uploadingFiles.length} file(s)...
+                  </Typography>
+                  {uploadingFiles.map((file, index) => (
+                    <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
+                      {file.status === 'uploading' && <LinearProgress sx={{ flex: 1, height: 6, borderRadius: 1 }} />}
+                      {file.status === 'success' && <CheckCircle color="success" fontSize="small" />}
+                      {file.status === 'error' && <Description color="error" fontSize="small" />}
+                      <Typography
+                        variant="body2"
+                        color={file.status === 'error' ? 'error' : 'text.secondary'}
+                        sx={{ minWidth: 200 }}
+                      >
+                        {file.name}
+                        {file.status === 'error' && file.error && ` - ${file.error}`}
+                      </Typography>
+                    </Box>
+                  ))}
+                </Paper>
+              )}
+            </AccordionDetails>
+          </Accordion>
+        </Box>
+
+        {/* QC Files table - adaptive height */}
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0, height: tableHeight }}>
+          <DataTable
+            data={qcFiles}
+            columns={columns}
+            loading={qcFilesLoading}
+            getRowKey={(row) => row.id}
+            title={qcFiles ? `${qcFiles.length} QC file(s)` : undefined}
+            emptyMessage="No QC files uploaded for this batch"
+            fillHeight
+          />
+        </Box>
+      </Container>
 
       {/* Delete confirmation dialog */}
       <Dialog
@@ -571,6 +595,6 @@ export default function BatchDetailPage({ params }: PageProps) {
           </Button>
         </DialogActions>
       </Dialog>
-    </Container>
+    </Box>
   );
 }

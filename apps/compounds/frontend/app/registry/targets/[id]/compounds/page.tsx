@@ -18,6 +18,7 @@ import { DataTable, Column } from '@/components/data-table';
 import { MoleculeChip, CopyableSmiles } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
+import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import { Target, Compound } from '@/types/compounds/models';
 
 interface PageProps {
@@ -35,6 +36,13 @@ export default function TargetCompoundsPage({ params }: PageProps) {
   const { data: compounds, isLoading: compoundsLoading } = api.get<Compound[]>(
     `compounds/?target=${id}`
   );
+
+  // Adaptive table height for compounds table
+  const { headerRef, tableHeight } = useAdaptiveTableHeight({
+    maxHeight: 600,
+    minHeight: 400,
+    bottomPadding: 32,
+  });
 
   const columns: Column<Compound>[] = [
     {
@@ -118,79 +126,96 @@ export default function TargetCompoundsPage({ params }: PageProps) {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
-          { label: target?.name || 'Loading...', href: routes.registry.target(id), icon: 'target' },
-          { label: 'Compounds', icon: 'compound' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        {/* Scrollable header - inset shadow at bottom hints at scrollable content */}
+        <Box
+          ref={headerRef}
+          sx={{
+            flexShrink: 0,
+            overflow: 'auto',
+            maxHeight: '50vh',
+            // Subtle inset shadow at bottom edge to hint at scroll
+            boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)',
+          }}
+        >
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
+              { label: target?.name || 'Loading...', href: routes.registry.target(id), icon: 'target' },
+              { label: 'Compounds', icon: 'compound' },
+            ]}
+          />
 
-      {/* Target header */}
-      <Paper sx={{ p: 3, mb: 3 }}>
-        {targetLoading ? (
-          <>
-            <Skeleton variant="text" width={300} height={40} />
-            <Skeleton variant="text" width={200} />
-          </>
-        ) : target ? (
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Science sx={{ fontSize: 48, color: 'primary.main' }} />
-              <Box>
-                <Typography variant="h4">{target.name}</Typography>
-                <Typography color="text.secondary">
-                  {compounds?.length ?? 0} compounds registered
-                </Typography>
+          {/* Target header */}
+          <Paper sx={{ p: 3 }}>
+            {targetLoading ? (
+              <>
+                <Skeleton variant="text" width={300} height={40} />
+                <Skeleton variant="text" width={200} />
+              </>
+            ) : target ? (
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                  <Science sx={{ fontSize: 48, color: 'primary.main' }} />
+                  <Box>
+                    <Typography variant="h4">{target.name}</Typography>
+                    <Typography color="text.secondary">
+                      {compounds?.length ?? 0} compounds registered
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', gap: 1 }}>
+                  <Button
+                    component={Link}
+                    href={routes.registry.target(id)}
+                    variant="outlined"
+                    startIcon={<Dashboard />}
+                  >
+                    Dashboard
+                  </Button>
+                  <Button
+                    component={Link}
+                    href={routes.assays.aggregate({ target: id })}
+                    variant="outlined"
+                    startIcon={<TableChart />}
+                  >
+                    View Assay Data
+                  </Button>
+                  <Button
+                    component={Link}
+                    href={`${routes.registry.new()}?target=${id}`}
+                    variant="contained"
+                    startIcon={<Add />}
+                  >
+                    New Compound
+                  </Button>
+                </Box>
               </Box>
-            </Box>
-            <Box sx={{ display: 'flex', gap: 1 }}>
-              <Button
-                component={Link}
-                href={routes.registry.target(id)}
-                variant="outlined"
-                startIcon={<Dashboard />}
-              >
-                Dashboard
-              </Button>
-              <Button
-                component={Link}
-                href={routes.assays.aggregate({ target: id })}
-                variant="outlined"
-                startIcon={<TableChart />}
-              >
-                View Assay Data
-              </Button>
-              <Button
-                component={Link}
-                href={`${routes.registry.new()}?target=${id}`}
-                variant="contained"
-                startIcon={<Add />}
-              >
-                New Compound
-              </Button>
-            </Box>
-          </Box>
-        ) : (
-          <Typography color="error">Target not found</Typography>
-        )}
-      </Paper>
+            ) : (
+              <Typography color="error">Target not found</Typography>
+            )}
+          </Paper>
+        </Box>
 
-      {/* Compounds table */}
-      <DataTable
-        data={compounds}
-        columns={columns}
-        loading={compoundsLoading}
-        onRowClick={(compound) =>
-          router.push(routes.registry.compound(compound.id))
-        }
-        getRowKey={(row) => row.id}
-        title={compounds ? `${compounds.length} compounds` : undefined}
-        emptyMessage="No compounds registered for this target"
-        additionalSearchFields={['supplier_ref', 'supplier_name', 'barcode', 'comments']}
-      />
-    </Container>
+        {/* Compounds table - adaptive height */}
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0, height: tableHeight, mt: 2 }}>
+          <DataTable
+            data={compounds}
+            columns={columns}
+            loading={compoundsLoading}
+            onRowClick={(compound) =>
+              router.push(routes.registry.compound(compound.id))
+            }
+            getRowKey={(row) => row.id}
+            title={compounds ? `${compounds.length} compounds` : undefined}
+            emptyMessage="No compounds registered for this target"
+            additionalSearchFields={['supplier_ref', 'supplier_name', 'barcode', 'comments']}
+            fillHeight
+          />
+        </Box>
+      </Container>
+    </Box>
   );
 }

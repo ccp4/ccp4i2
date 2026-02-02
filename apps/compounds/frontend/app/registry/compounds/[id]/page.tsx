@@ -14,8 +14,11 @@ import {
   Button,
   Tooltip,
   IconButton,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from '@mui/material';
-import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Edit, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
+import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Edit, ExpandMore, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/data-table';
@@ -26,6 +29,7 @@ import { AliasEditor } from '@/components/compounds/AliasEditor';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
+import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import { Compound, Batch, Target } from '@/types/compounds/models';
 
 interface PageProps {
@@ -69,6 +73,13 @@ export default function CompoundDetailPage({ params }: PageProps) {
     previous: { id: string; formatted_id: string } | null;
     next: { id: string; formatted_id: string } | null;
   }>(`compounds/${id}/adjacent/`);
+
+  // Adaptive table height for batches table
+  const { headerRef, tableHeight } = useAdaptiveTableHeight({
+    maxHeight: 400,
+    minHeight: 300,
+    bottomPadding: 32,
+  });
 
   const handleCopySmiles = useCallback(async () => {
     if (!compound?.smiles) return;
@@ -144,21 +155,23 @@ export default function CompoundDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
-          {
-            label: target?.name || 'Target',
-            href: compound?.target
-              ? routes.registry.target(compound.target)
-              : undefined,
-            icon: 'target',
-          },
-          { label: compound?.formatted_id || 'Loading...', icon: 'compound' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box ref={headerRef} sx={{ flexShrink: 0, overflow: 'auto', maxHeight: '65vh', boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)' }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
+              {
+                label: target?.name || 'Target',
+                href: compound?.target
+                  ? routes.registry.target(compound.target)
+                  : undefined,
+                icon: 'target',
+              },
+              { label: compound?.formatted_id || 'Loading...', icon: 'compound' },
+            ]}
+          />
 
       {/* Compound header */}
       <Paper sx={{ p: 3, mb: 3, position: 'relative' }}>
@@ -319,83 +332,96 @@ export default function CompoundDetailPage({ params }: PageProps) {
                 </Box>
               </Grid>
               <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Provenance
-                </Typography>
-                <InfoRow label="Supplier" value={compound.supplier_name} />
-                <InfoRow label="Supplier Ref" value={compound.supplier_ref} />
-                <InfoRow label="Lab Book" value={compound.labbook_number} />
-                <InfoRow label="Page" value={compound.page_number} />
-                <InfoRow label="Barcode" value={compound.barcode} />
-                <InfoRow
-                  label="Registered"
-                  value={
-                    compound.registered_at
-                      ? new Date(compound.registered_at).toLocaleString()
-                      : null
-                  }
-                />
-                <InfoRow
-                  label="By"
-                  value={
-                    compound.registered_by_email ||
-                    compound.legacy_registered_by
-                  }
-                />
+                <Accordion defaultExpanded={false}>
+                  <AccordionSummary expandIcon={<ExpandMore />}>
+                    <Typography variant="h6">Provenance & Metadata</Typography>
+                  </AccordionSummary>
+                  <AccordionDetails>
+                    <InfoRow label="Supplier" value={compound.supplier_name} />
+                    <InfoRow label="Supplier Ref" value={compound.supplier_ref} />
+                    <InfoRow label="Lab Book" value={compound.labbook_number} />
+                    <InfoRow label="Page" value={compound.page_number} />
+                    <InfoRow label="Barcode" value={compound.barcode} />
+                    <InfoRow
+                      label="Registered"
+                      value={
+                        compound.registered_at
+                          ? new Date(compound.registered_at).toLocaleString()
+                          : null
+                      }
+                    />
+                    <InfoRow
+                      label="By"
+                      value={
+                        compound.registered_by_email ||
+                        compound.legacy_registered_by
+                      }
+                    />
+                    {compound.comments && (
+                      <Box sx={{ mt: 2 }}>
+                        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                          Comments
+                        </Typography>
+                        <Typography>{compound.comments}</Typography>
+                      </Box>
+                    )}
+                  </AccordionDetails>
+                </Accordion>
               </Grid>
             </Grid>
 
-            {compound.comments && (
-              <>
-                <Divider sx={{ my: 2 }} />
-                <Typography variant="h6" gutterBottom>
-                  Comments
-                </Typography>
-                <Typography>{compound.comments}</Typography>
-              </>
-            )}
-
-            {/* Aliases section */}
-            <Divider sx={{ my: 2 }} />
-            <AliasEditor
-              compoundId={compound.id}
-              aliases={compound.aliases || []}
-              canEdit={canContribute}
-              onUpdate={() => mutateCompound()}
-            />
+            {/* Aliases section - Collapsible */}
+            <Accordion defaultExpanded={false} sx={{ mt: 2 }}>
+              <AccordionSummary expandIcon={<ExpandMore />}>
+                <Typography variant="h6">Aliases ({compound.aliases?.length || 0})</Typography>
+              </AccordionSummary>
+              <AccordionDetails sx={{ p: 0 }}>
+                <AliasEditor
+                  compoundId={compound.id}
+                  aliases={compound.aliases || []}
+                  canEdit={canContribute}
+                  onUpdate={() => mutateCompound()}
+                />
+              </AccordionDetails>
+            </Accordion>
           </>
         ) : (
           <Typography color="error">Compound not found</Typography>
         )}
       </Paper>
+        </Box>
 
-      {/* Batches table */}
-      <DataTable
-        data={batches}
-        columns={columns}
-        loading={batchesLoading}
-        onRowClick={(batch) => router.push(routes.registry.batch(batch.id))}
-        getRowKey={(row) => row.id}
-        title={batches ? `${batches.length} batches` : undefined}
-        emptyMessage="No batches registered for this compound"
-        headerAction={
-          compound && (
-            <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-              <span>
-                <Button
-                  variant="contained"
-                  size="small"
-                  startIcon={<Add />}
-                  onClick={() => setBatchDialogOpen(true)}
-                  disabled={!canContribute}
-                >
-                  Add Batch
-                </Button>
-              </span>
-            </Tooltip>
-          )
-        }
-      />
+        {/* Batches table - adaptive height */}
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0, height: tableHeight }}>
+          <DataTable
+            data={batches}
+            columns={columns}
+            loading={batchesLoading}
+            onRowClick={(batch) => router.push(routes.registry.batch(batch.id))}
+            getRowKey={(row) => row.id}
+            title={batches ? `${batches.length} batches` : undefined}
+            emptyMessage="No batches registered for this compound"
+            fillHeight
+            headerAction={
+              compound && (
+                <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                  <span>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      startIcon={<Add />}
+                      onClick={() => setBatchDialogOpen(true)}
+                      disabled={!canContribute}
+                    >
+                      Add Batch
+                    </Button>
+                  </span>
+                </Tooltip>
+              )
+            }
+          />
+        </Box>
+      </Container>
 
       {/* Batch creation dialog */}
       {compound && (
@@ -422,6 +448,6 @@ export default function CompoundDetailPage({ params }: PageProps) {
           compound={compound}
         />
       )}
-    </Container>
+    </Box>
   );
 }

@@ -141,6 +141,8 @@ interface AggregationTableProps {
   concentrationDisplay?: ConcentrationDisplayMode;
   /** Callback when concentration display mode changes */
   onConcentrationDisplayChange?: (mode: ConcentrationDisplayMode) => void;
+  /** If true, table fills available parent height instead of using fixed maxHeight */
+  fillHeight?: boolean;
 }
 
 /**
@@ -2218,6 +2220,7 @@ export function AggregationTable({
   outputFormat,
   concentrationDisplay = 'natural',
   onConcentrationDisplayChange,
+  fillHeight = false,
 }: AggregationTableProps) {
   // Use internal state if no external control is provided
   const [internalDisplay, setInternalDisplay] = useState<ConcentrationDisplayMode>(concentrationDisplay);
@@ -2234,7 +2237,7 @@ export function AggregationTable({
 
   if (loading) {
     return (
-      <Paper sx={{ p: 3 }}>
+      <Paper sx={{ p: 3, ...(fillHeight && { height: '100%' }) }}>
         <LinearProgress />
         <Typography sx={{ mt: 2 }} color="text.secondary" align="center">
           Running aggregation query...
@@ -2245,7 +2248,7 @@ export function AggregationTable({
 
   if (!data) {
     return (
-      <Paper sx={{ p: 3 }}>
+      <Paper sx={{ p: 3, ...(fillHeight && { height: '100%' }) }}>
         <Typography color="text.secondary" align="center">
           Select a target, protocol, or compound above to see results.
         </Typography>
@@ -2255,7 +2258,7 @@ export function AggregationTable({
 
   if (data.meta.total_measurements === 0) {
     return (
-      <Paper sx={{ p: 3 }}>
+      <Paper sx={{ p: 3, ...(fillHeight && { height: '100%' }) }}>
         <Typography color="text.secondary" align="center">
           No data found matching your criteria.
         </Typography>
@@ -2307,15 +2310,17 @@ export function AggregationTable({
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <Box sx={{ p: 2 }}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1 }}>
+    <Paper sx={{ width: '100%', overflow: 'hidden', ...(fillHeight && { height: '100%', display: 'flex', flexDirection: 'column' }) }}>
+      <Box sx={{ p: 2, ...(fillHeight && { flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden' }) }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1, flexShrink: 0 }}>
           <ConcentrationDisplaySelector
             value={displayMode}
             onChange={handleDisplayChange}
           />
         </Box>
-        {renderTable()}
+        <Box sx={{ ...(fillHeight && { flex: 1, minHeight: 0, overflow: 'auto' }) }}>
+          {renderTable()}
+        </Box>
       </Box>
     </Paper>
   );

@@ -48,6 +48,7 @@ import { useCompoundsApi, getAuthenticatedDownloadUrl, authFetch } from '@/lib/c
 import { formatKpiUnit } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
+import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
 
 interface PageProps {
@@ -118,6 +119,13 @@ export default function AssayDetailPage({ params }: PageProps) {
   const { data: target } = api.get<Target>(
     assay?.target ? `targets/${assay.target}/` : null
   );
+
+  // Adaptive table height for data series table
+  const { headerRef, tableHeight } = useAdaptiveTableHeight({
+    maxHeight: 500,
+    minHeight: 400,
+    bottomPadding: 32,
+  });
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -410,18 +418,20 @@ export default function AssayDetailPage({ params }: PageProps) {
   ];
 
   return (
-    <Container maxWidth="lg" sx={{ py: 3 }}>
-      <PageHeader
-        breadcrumbs={[
-          { label: 'Home', href: routes.home(), icon: 'home' },
-          { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
-          ...(protocol ? [{ label: protocol.name, href: routes.assays.protocol(protocol.id), icon: 'protocol' as const }] : []),
-          { label: assay?.data_filename || 'Loading...', icon: 'assay' },
-        ]}
-      />
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
+      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
+        <Box ref={headerRef} sx={{ flexShrink: 0, overflow: 'auto', maxHeight: '60vh', boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)' }}>
+          <PageHeader
+            breadcrumbs={[
+              { label: 'Home', href: routes.home(), icon: 'home' },
+              { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
+              ...(protocol ? [{ label: protocol.name, href: routes.assays.protocol(protocol.id), icon: 'protocol' as const }] : []),
+              { label: assay?.data_filename || 'Loading...', icon: 'assay' },
+            ]}
+          />
 
-      {/* Assay header */}
-      <Paper sx={{ p: 3, mb: 3 }}>
+          {/* Assay header */}
+          <Paper sx={{ p: 3, mb: 3 }}>
         {assayLoading ? (
           <>
             <Skeleton variant="text" width={300} height={40} />
@@ -584,22 +594,27 @@ export default function AssayDetailPage({ params }: PageProps) {
           </>
         ) : (
           <Typography color="error">Assay not found</Typography>
-        )}
-      </Paper>
+            )}
+          </Paper>
 
-      {/* Quality Control Panel */}
-      <QCPanel assayId={id} />
+          {/* Quality Control Panel - already has its own Accordion */}
+          <QCPanel assayId={id} />
+        </Box>
 
-      {/* Data series table */}
-      <DataTable
-        data={dataSeries}
-        columns={columns}
-        loading={dataSeriesLoading}
-        getRowKey={(row) => row.id}
-        title={dataSeries ? `${dataSeries.length} data series` : undefined}
-        emptyMessage="No data series in this assay"
-        onRowClick={(row) => router.push(routes.assays.dataSeries(row.id))}
-      />
+        {/* Data series table - adaptive height */}
+        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0, height: tableHeight }}>
+          <DataTable
+            data={dataSeries}
+            columns={columns}
+            loading={dataSeriesLoading}
+            getRowKey={(row) => row.id}
+            title={dataSeries ? `${dataSeries.length} data series` : undefined}
+            emptyMessage="No data series in this assay"
+            onRowClick={(row) => router.push(routes.assays.dataSeries(row.id))}
+            fillHeight
+          />
+        </Box>
+      </Container>
 
       {/* Delete confirmation dialog */}
       <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
@@ -654,6 +669,6 @@ export default function AssayDetailPage({ params }: PageProps) {
           plateLayout={protocol.plate_layout_config}
         />
       )}
-    </Container>
+    </Box>
   );
 }
