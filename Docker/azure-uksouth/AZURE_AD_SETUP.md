@@ -91,16 +91,38 @@ For seamless authentication when the app is embedded in Microsoft Teams, additio
 
 When the app runs inside Teams (as a tab or personal app), normal browser redirects are blocked by the iframe security boundary. Teams SSO allows the app to obtain an authentication token without user interaction by leveraging the user's existing Teams session.
 
+### Custom Domain Support
+
+**Recommended:** Use a custom domain (e.g., `ddudatabase.ncl.ac.uk`) instead of the default Azure Container Apps URL. This provides:
+- Stable URLs that don't change with deployments
+- Shorter, memorable URLs for users
+- Professional branding
+
+If using a custom domain:
+1. Configure the custom domain in Azure Container Apps
+2. Set `CUSTOM_DOMAIN` in `.env.deployment`
+3. Use the custom domain in all configuration below
+
 ### Step 1: Set Application ID URI
 
 1. **Azure Portal** → App Registrations → `386da83f-1bf4-4ad8-b742-79b600e2208b`
 2. Go to **Expose an API**
 3. Click **Set** next to "Application ID URI"
-4. Set the URI to:
+4. Set the URI to match your domain:
+
+   **With custom domain (recommended):**
+   ```
+   api://ddudatabase.ncl.ac.uk/386da83f-1bf4-4ad8-b742-79b600e2208b
+   ```
+
+   **Without custom domain:**
    ```
    api://ccp4i2-bicep-web.ambitiousrock-87fff394.uksouth.azurecontainerapps.io/386da83f-1bf4-4ad8-b742-79b600e2208b
    ```
+
    Format: `api://<your-app-domain>/<client-id>`
+
+   **Important:** The domain in the URI must exactly match the domain users access the app from.
 
 ### Step 2: Add the `access_as_user` Scope
 
@@ -128,7 +150,7 @@ When the app runs inside Teams (as a tab or personal app), normal browser redire
 
 ### Step 4: Create Teams App Manifest
 
-Create a Teams app package with a `manifest.json` containing:
+Create a Teams app package with a `manifest.json`. The example below uses a custom domain:
 
 ```json
 {
@@ -160,26 +182,37 @@ Create a Teams app package with a `manifest.json` containing:
     {
       "entityId": "ccp4i2-home",
       "name": "CCP4i2",
-      "contentUrl": "https://ccp4i2-bicep-web.ambitiousrock-87fff394.uksouth.azurecontainerapps.io",
-      "websiteUrl": "https://ccp4i2-bicep-web.ambitiousrock-87fff394.uksouth.azurecontainerapps.io",
+      "contentUrl": "https://ddudatabase.ncl.ac.uk",
+      "websiteUrl": "https://ddudatabase.ncl.ac.uk",
       "scopes": ["personal"]
     }
   ],
   "permissions": ["identity"],
   "validDomains": [
-    "ccp4i2-bicep-web.ambitiousrock-87fff394.uksouth.azurecontainerapps.io",
+    "ddudatabase.ncl.ac.uk",
     "login.microsoftonline.com"
   ],
   "webApplicationInfo": {
     "id": "386da83f-1bf4-4ad8-b742-79b600e2208b",
-    "resource": "api://ccp4i2-bicep-web.ambitiousrock-87fff394.uksouth.azurecontainerapps.io/386da83f-1bf4-4ad8-b742-79b600e2208b"
+    "resource": "api://ddudatabase.ncl.ac.uk/386da83f-1bf4-4ad8-b742-79b600e2208b"
   }
 }
 ```
 
-**Critical:** The `webApplicationInfo` section must match exactly:
-- `id` = Your Azure AD app client ID
-- `resource` = The Application ID URI from Step 1
+**Critical Configuration Requirements:**
+
+| Field | Must Match |
+|-------|------------|
+| `staticTabs[].contentUrl` | Your app's actual URL (custom domain or Azure Container Apps) |
+| `staticTabs[].websiteUrl` | Same as contentUrl |
+| `validDomains[]` | Your app's domain (without protocol) |
+| `webApplicationInfo.id` | Azure AD app client ID |
+| `webApplicationInfo.resource` | Application ID URI from Step 1 (must match exactly) |
+
+**Common Mistake:** If `contentUrl` and `webApplicationInfo.resource` use different domains, you'll get:
+```
+"App resource defined in manifest and iframe origin do not match"
+```
 
 ### Step 5: Deploy Teams App
 
@@ -202,11 +235,39 @@ Create a Teams app package with a `manifest.json` containing:
    - In Teams, click **Apps** → **Manage your apps**
    - Click **Upload an app** → **Upload a custom app**
 
+### How Teams SSO Token Storage Works
+
+Teams SSO returns tokens differently from standard MSAL browser authentication:
+- **Normal browser:** MSAL stores tokens in its internal cache, and `acquireTokenSilent()` retrieves them
+- **Teams iframe:** Teams SDK provides tokens directly, but MSAL's account cache isn't populated
+
+The app handles this by:
+1. Storing the Teams token in `sessionStorage` (keys: `ccp4i2-teams-token`, `ccp4i2-teams-token-expires`)
+2. The `getAccessToken()` function checks for a Teams token first before falling back to MSAL
+3. Tokens auto-refresh when they expire using the Teams SDK
+
+**Session Cookie:** The auth-session cookie uses `sameSite: "none"` in production to work within the Teams iframe (third-party context).
+
+**Security:** This is equivalent to MSAL's default storage (also sessionStorage). Tokens are:
+- Only accessible from the same origin
+- Cleared when the browser tab closes
+- Protected by HTTPS in production
+
+**Files involved:**
+- `client/renderer/utils/auth-token.ts` - Token storage and retrieval
+- `client/renderer/components/auth-provider.tsx` - Token refresh setup
+- `client/renderer/app/auth/login/login-content.tsx` - Initial Teams SSO flow
+
 ### Troubleshooting Teams SSO
+
+#### "App resource defined in manifest and iframe origin do not match"
+- The domain in `webApplicationInfo.resource` doesn't match where the app is running
+- Ensure `contentUrl` and `resource` use the same domain
+- If using a custom domain, update both to match
 
 #### "Redirecting to sign in..." hangs indefinitely
 - Verify `webApplicationInfo` in manifest matches Azure AD config
-- Check browser console for `[LOGIN]` or `[Teams SSO]` log messages
+- Check browser console for `[LOGIN]` or `[AUTH]` log messages
 - Ensure Teams client app IDs are pre-authorized in Azure AD
 
 #### "User consent required" error
@@ -220,3 +281,37 @@ Create a Teams app package with a `manifest.json` containing:
 #### Teams SSO times out, falls back to popup
 - This is expected behavior if Azure AD isn't fully configured
 - Popup auth will still work, just requires user interaction
+
+#### API calls fail after successful login (401/403)
+- Check browser console for `[AUTH-TOKEN]` log messages
+- Verify the Teams token includes the `groups` claim (see Token Configuration above)
+- The token should be stored in sessionStorage - check DevTools → Application → Session Storage
+
+#### Login works but then redirects back to login (loop)
+- Likely the auth-session cookie isn't being set or sent
+- In Teams context, cookies must have `sameSite: "none"` and `secure: true`
+- Check the cookie exists in DevTools → Application → Cookies
+
+### Updating Teams App After Domain Change
+
+If you change the domain (e.g., from Azure Container Apps URL to custom domain):
+
+1. **Update Azure AD:**
+   - Change Application ID URI in "Expose an API"
+   - Old URI must be removed before adding new one
+
+2. **Update Teams Manifest:**
+   - Update `staticTabs[].contentUrl` and `websiteUrl`
+   - Update `validDomains[]`
+   - Update `webApplicationInfo.resource`
+   - Increment `version` number
+
+3. **Update Teams App:**
+   - Download updated manifest from Teams Developer Portal
+   - Or re-upload the modified manifest.json
+
+4. **Rebuild and Deploy:**
+   ```bash
+   ./scripts/build-and-push.sh web
+   ./scripts/deploy-applications.sh web
+   ```
