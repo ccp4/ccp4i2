@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 
 const TEAMS_ROUTE_KEY = "ccp4i2-teams-last-route";
@@ -21,21 +21,21 @@ function isRunningInIframe(): boolean {
  * Save the last visited route to sessionStorage.
  * Only saves non-root routes and only in Teams context.
  *
- * When navigating to "/" (app-selector), clears the saved route.
- * This allows deliberate navigation to the app-selector without bounce-back.
+ * @param route The route to save
+ * @param isDeliberateHomeNavigation If true, navigating to "/" clears saved route
  */
-export function saveTeamsRoute(route: string): void {
+export function saveTeamsRoute(route: string, isDeliberateHomeNavigation: boolean = false): void {
   if (typeof window === "undefined") return;
   if (!isRunningInIframe()) return;
 
-  // When navigating to root, clear saved route (deliberate navigation to app-selector)
-  if (route === "/") {
+  // When deliberately navigating to root (not fresh load), clear saved route
+  if (route === "/" && isDeliberateHomeNavigation) {
     clearSavedTeamsRoute();
     return;
   }
 
-  // Don't save auth pages or API routes
-  if (route.startsWith("/auth/") || route.startsWith("/api/")) {
+  // Don't save root, auth pages, or API routes
+  if (route === "/" || route.startsWith("/auth/") || route.startsWith("/api/")) {
     return;
   }
 
@@ -77,17 +77,31 @@ export function clearSavedTeamsRoute(): void {
 /**
  * Component that tracks route changes and saves them for Teams context.
  * Add this to the root layout to enable route persistence.
+ *
+ * Tracks whether user has visited a non-root route to distinguish:
+ * - Fresh Teams reload to "/" -> should restore saved route
+ * - Deliberate navigation to "/" -> should clear and stay
  */
 export function TeamsRoutePersistence() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  // Track if we've visited a non-root route (meaning navigation to "/" is deliberate)
+  const hasVisitedNonRootRoute = useRef(false);
 
   useEffect(() => {
     // Build full path including search params
     const search = searchParams.toString();
     const fullPath = search ? `${pathname}?${search}` : pathname;
 
-    saveTeamsRoute(fullPath);
+    // Check if this is deliberate navigation to home (we've been to another route first)
+    const isDeliberateHomeNavigation = pathname === "/" && hasVisitedNonRootRoute.current;
+
+    // Track if we've visited a non-root route
+    if (pathname !== "/" && !pathname.startsWith("/auth/")) {
+      hasVisitedNonRootRoute.current = true;
+    }
+
+    saveTeamsRoute(fullPath, isDeliberateHomeNavigation);
   }, [pathname, searchParams]);
 
   // This component renders nothing
