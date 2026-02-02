@@ -59,22 +59,14 @@ async function tryTeamsAuth(clientId: string, tenantId: string): Promise<{
     }
 
     // Fall back to Teams authentication dialog (not a browser popup)
-    // Build auth URL - Teams requires this to eventually redirect back to our domain
-    const redirectUri = `${window.location.origin}/auth/teams-callback`;
-    const authUrl = new URL(`https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize`);
-    authUrl.searchParams.set("client_id", clientId);
-    authUrl.searchParams.set("response_type", "id_token");
-    authUrl.searchParams.set("scope", "openid profile email");
-    authUrl.searchParams.set("redirect_uri", redirectUri);
-    authUrl.searchParams.set("nonce", Math.random().toString(36).substring(2));
-    authUrl.searchParams.set("response_mode", "fragment");
+    // Teams requires the auth URL to start from our domain, then redirect to Azure AD
+    const startUrl = `${window.location.origin}/auth/teams-start?client_id=${clientId}&tenant_id=${tenantId}`;
 
-    console.log("[LOGIN] Teams auth URL:", authUrl.toString());
-    console.log("[LOGIN] Redirect URI:", redirectUri);
+    console.log("[LOGIN] Teams auth start URL:", startUrl);
 
     try {
       const result = await teamsModule.authentication.authenticate({
-        url: authUrl.toString(),
+        url: startUrl,
         width: 600,
         height: 535,
       });
