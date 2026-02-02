@@ -2,7 +2,16 @@
 import { ReactNode, useEffect, useState } from "react";
 import { MsalProvider } from "@azure/msal-react";
 import { PublicClientApplication } from "@azure/msal-browser";
-import { setTokenGetter, setEmailGetter, setLogoutHandler, clearTokenGetter } from "../utils/auth-token";
+import {
+  setTokenGetter,
+  setEmailGetter,
+  setLogoutHandler,
+  clearTokenGetter,
+  loadTeamsToken,
+  setTeamsTokenRefresher,
+  setTeamsToken,
+  clearTeamsToken,
+} from "../utils/auth-token";
 
 const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
 const tenantId = process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
@@ -78,6 +87,47 @@ function getAccountEmail(): string | null {
 }
 
 /**
+ * Check if running in an iframe (Teams context).
+ */
+function isRunningInIframe(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.self !== window.top;
+  } catch {
+    return true;
+  }
+}
+
+/**
+ * Refresh the Teams SSO token using the Teams SDK.
+ * Called when the stored token expires.
+ */
+async function refreshTeamsToken(): Promise<string | null> {
+  try {
+    const teamsModule = await import("@microsoft/teams-js");
+
+    // Initialize Teams SDK
+    await Promise.race([
+      teamsModule.app.initialize(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Teams init timeout")), 3000))
+    ]);
+
+    // Get fresh token
+    const token = await teamsModule.authentication.getAuthToken({
+      resources: [`api://${window.location.host}/${clientId}`],
+      silent: true,
+    });
+
+    // Store the refreshed token
+    setTeamsToken(token, 3600);
+    return token;
+  } catch (error) {
+    console.error("[AUTH] Failed to refresh Teams token:", error);
+    return null;
+  }
+}
+
+/**
  * Get an access token for API calls.
  * Uses the .default scope which requests all configured permissions.
  */
@@ -124,10 +174,18 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         return pca.handleRedirectPromise();
       })
       .then(async (response) => {
-        // If we have authenticated accounts, ensure the session cookie is set
-        // Note: The /auth/callback page handles redirect completion and cookie setting,
-        // but we also set it here to ensure cookie exists for subsequent page loads
-        if (response && response.account) {
+        // Check if we have a Teams token stored (from Teams SSO login)
+        const hasStoredTeamsToken = loadTeamsToken();
+
+        if (hasStoredTeamsToken && isRunningInIframe()) {
+          // Running in Teams with stored token - set up refresher
+          console.log("[AUTH] Running in Teams context with stored token");
+          setTeamsTokenRefresher(refreshTeamsToken);
+          await setAuthSessionCookie();
+        } else if (response && response.account) {
+          // If we have authenticated accounts, ensure the session cookie is set
+          // Note: The /auth/callback page handles redirect completion and cookie setting,
+          // but we also set it here to ensure cookie exists for subsequent page loads
           console.log("[AUTH] Login redirect completed");
           // Cookie is set by /auth/callback page, but ensure it's set here too
           await setAuthSessionCookie();
@@ -137,12 +195,20 @@ export default function AuthProvider({ children }: AuthProviderProps) {
         }
 
         // Set up the token and email getters for API calls
+        // These are used as fallback when Teams token isn't available
         setTokenGetter(getApiAccessToken);
         setEmailGetter(getAccountEmail);
-        // Logout handler clears cookie before MSAL logout
+        // Logout handler clears cookie and Teams token before MSAL logout
         setLogoutHandler(async () => {
           await clearAuthSessionCookie();
-          pca.logoutRedirect();
+          clearTeamsToken();
+          // Only do MSAL logout if not in Teams iframe
+          if (!isRunningInIframe()) {
+            pca.logoutRedirect();
+          } else {
+            // In Teams, just clear state and redirect to login
+            window.location.replace("/auth/login");
+          }
         });
         setInitialized(true);
       })

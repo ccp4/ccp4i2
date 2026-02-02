@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useMsal } from "@azure/msal-react";
 import { InteractionStatus } from "@azure/msal-browser";
 import { useSearchParams } from "next/navigation";
+import { setTeamsToken, setTeamsTokenRefresher } from "../../../utils/auth-token";
 
 /**
  * Detect if the app is running inside an iframe (e.g., Microsoft Teams)
@@ -150,10 +151,29 @@ export default function LoginContent() {
 
       tryTeamsAuth(clientId, tenantId)
         .then((result) => {
-          if (result.success) {
+          if (result.success && result.token) {
             console.log("[LOGIN] Teams auth successful via:", result.stage);
             setStatusMessage("Authenticated, loading...");
+
+            // Store the Teams token for API calls
+            // Teams tokens typically expire in 1 hour
+            setTeamsToken(result.token, 3600);
+
+            // Set up token refresher for when token expires
+            setTeamsTokenRefresher(async () => {
+              const refreshResult = await tryTeamsAuth(clientId, tenantId);
+              return refreshResult.success ? refreshResult.token || null : null;
+            });
+
             // Set session cookie and redirect
+            return fetch("/api/auth/session", { method: "POST", credentials: "include" })
+              .then(() => {
+                window.location.replace(returnUrl);
+              });
+          } else if (result.success) {
+            // Success but no token (shouldn't happen, but handle gracefully)
+            console.warn("[LOGIN] Teams auth succeeded but no token returned");
+            setStatusMessage("Authenticated, loading...");
             return fetch("/api/auth/session", { method: "POST", credentials: "include" })
               .then(() => {
                 window.location.replace(returnUrl);

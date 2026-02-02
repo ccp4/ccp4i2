@@ -15,10 +15,16 @@ export async function POST() {
 
   // Set HTTP-only cookie that middleware can verify
   // maxAge matches typical Azure AD token lifetime (8 hours)
+  //
+  // IMPORTANT: Use sameSite: "none" in production for Teams iframe support.
+  // With "lax", cookies aren't sent in third-party iframe contexts, causing login loops.
+  // sameSite: "none" requires secure: true (enforced by browsers).
+  const isProduction = process.env.NODE_ENV === "production";
+
   response.cookies.set("auth-session", "authenticated", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
+    secure: isProduction,
+    sameSite: isProduction ? "none" : "lax",
     path: "/",
     maxAge: 60 * 60 * 8, // 8 hours
   });
