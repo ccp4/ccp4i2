@@ -19,42 +19,67 @@ function isRunningInIframe(): boolean {
 }
 
 /**
- * Try Teams SSO with timeout protection
- * Returns null if not in Teams or if Teams SSO fails
+ * Try Teams authentication using the Teams SDK authentication dialog.
+ * This works even when popups are blocked because Teams handles it specially.
  */
-async function tryTeamsSSO(clientId: string, tenantId: string): Promise<{
+async function tryTeamsAuth(clientId: string, tenantId: string): Promise<{
   success: boolean;
   token?: string;
   error?: string;
-} | null> {
-  // Only attempt in iframe context
-  if (!isRunningInIframe()) {
-    return null;
-  }
-
+  stage?: string;
+}> {
   try {
-    // Add timeout to prevent indefinite hang
-    const timeoutPromise = new Promise<null>((_, reject) =>
-      setTimeout(() => reject(new Error("Teams SSO timeout")), 5000)
-    );
+    const teamsModule = await import("@microsoft/teams-js");
 
-    const ssoPromise = (async () => {
-      const teamsSSO = await import("../../../utils/teams-sso");
-      const inTeams = await teamsSSO.isRunningInTeams();
+    // Initialize Teams SDK with timeout
+    await Promise.race([
+      teamsModule.app.initialize(),
+      new Promise((_, reject) => setTimeout(() => reject(new Error("Teams init timeout")), 3000))
+    ]);
 
-      if (!inTeams) {
-        console.log("[LOGIN] In iframe but not Teams context");
-        return null;
-      }
+    // Check if we have a Teams context
+    const context = await Promise.race([
+      teamsModule.app.getContext(),
+      new Promise<null>((_, reject) => setTimeout(() => reject(new Error("Teams context timeout")), 2000))
+    ]);
 
-      console.log("[LOGIN] Teams context detected, attempting SSO...");
-      return await teamsSSO.attemptTeamsSSO(clientId, tenantId);
-    })();
+    if (!context?.app?.host) {
+      return { success: false, error: "Not in Teams context", stage: "context" };
+    }
 
-    return await Promise.race([ssoPromise, timeoutPromise]);
-  } catch (error) {
-    console.log("[LOGIN] Teams SSO not available or timed out:", error);
-    return null;
+    // Try silent SSO first
+    try {
+      const token = await teamsModule.authentication.getAuthToken({
+        resources: [`api://${window.location.host}/${clientId}`],
+        silent: true,
+      });
+      return { success: true, token, stage: "sso-silent" };
+    } catch (ssoError: any) {
+      console.log("[LOGIN] Silent SSO failed, trying Teams auth dialog:", ssoError?.message);
+    }
+
+    // Fall back to Teams authentication dialog (not a browser popup)
+    const authUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize?` +
+      `client_id=${clientId}` +
+      `&response_type=id_token` +
+      `&scope=${encodeURIComponent("openid profile email")}` +
+      `&redirect_uri=${encodeURIComponent(window.location.origin + "/auth/teams-callback")}` +
+      `&nonce=${Math.random().toString(36).substring(2)}` +
+      `&response_mode=fragment`;
+
+    const result = await teamsModule.authentication.authenticate({
+      url: authUrl,
+      width: 600,
+      height: 535,
+    });
+
+    return { success: true, token: result, stage: "teams-dialog" };
+  } catch (error: any) {
+    return {
+      success: false,
+      error: error?.message || "Teams auth failed",
+      stage: "error"
+    };
   }
 }
 
@@ -68,6 +93,7 @@ export default function LoginContent() {
   const searchParams = useSearchParams();
   const hasTriggeredLogin = useRef(false);
   const [statusMessage, setStatusMessage] = useState("Redirecting to sign in...");
+  const [debugInfo, setDebugInfo] = useState<string | null>(null);
   const [isInIframe] = useState(() => isRunningInIframe());
 
   console.log("[LOGIN] Component rendered, inProgress:", inProgress, "hasTriggered:", hasTriggeredLogin.current, "inIframe:", isInIframe);
@@ -110,40 +136,36 @@ export default function LoginContent() {
 
     // Handle authentication based on context
     if (isInIframe) {
-      // Running in iframe (e.g., Teams) - redirects don't work, use popup
-      console.log("[LOGIN] Running in iframe, attempting Teams SSO or popup auth...");
-      setStatusMessage("Signing you in...");
+      // Running in iframe (e.g., Teams) - redirects don't work
+      console.log("[LOGIN] Running in iframe, attempting Teams auth...");
+      setStatusMessage("Detecting Teams environment...");
 
       const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
       const tenantId = process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
 
-      tryTeamsSSO(clientId, tenantId)
-        .then((ssoResult) => {
-          if (ssoResult?.success && ssoResult.token) {
-            console.log("[LOGIN] Teams SSO successful");
-            // Try to use the SSO token with MSAL
-            return instance.ssoSilent({
-              scopes: ["openid", "profile"],
-            }).catch(() => {
-              console.log("[LOGIN] ssoSilent failed, falling back to popup");
-              return instance.loginPopup({ scopes: ["openid", "profile"] });
-            });
+      tryTeamsAuth(clientId, tenantId)
+        .then((result) => {
+          if (result.success) {
+            console.log("[LOGIN] Teams auth successful via:", result.stage);
+            setStatusMessage("Authenticated, loading...");
+            // Set session cookie and redirect
+            return fetch("/api/auth/session", { method: "POST", credentials: "include" })
+              .then(() => {
+                window.location.replace(returnUrl);
+              });
           } else {
-            console.log("[LOGIN] Teams SSO not available, using popup");
-            return instance.loginPopup({ scopes: ["openid", "profile"] });
+            // Teams auth failed - show detailed error for debugging
+            console.error("[LOGIN] Teams auth failed:", result);
+            const errorDetail = `${result.error || "Unknown error"} (stage: ${result.stage || "unknown"})`;
+            setStatusMessage(`Sign in failed: ${errorDetail}`);
+            setDebugInfo(`Client ID: ${clientId ? "set" : "missing"}, Tenant: ${tenantId ? "set" : "missing"}`);
+            hasTriggeredLogin.current = false;
           }
         })
-        .then(() => {
-          console.log("[LOGIN] Login successful, setting session cookie");
-          return fetch("/api/auth/session", { method: "POST", credentials: "include" });
-        })
-        .then(() => {
-          window.location.replace(returnUrl);
-        })
-        .catch((error) => {
-          console.error("[LOGIN] Popup login failed:", error);
-          setStatusMessage("Sign in failed. Please try again.");
-          hasTriggeredLogin.current = false; // Allow retry
+        .catch((error: Error) => {
+          console.error("[LOGIN] Teams auth exception:", error);
+          setStatusMessage(`Sign in error: ${error.message}`);
+          hasTriggeredLogin.current = false;
         });
     } else {
       // Normal browser - use redirect flow
@@ -183,6 +205,9 @@ export default function LoginContent() {
           }}
         />
         <p style={{ color: "#666", margin: 0 }}>{statusMessage}</p>
+        {debugInfo && (
+          <p style={{ color: "#999", margin: "8px 0 0", fontSize: "12px" }}>{debugInfo}</p>
+        )}
         <style>{`
           @keyframes spin {
             to { transform: rotate(360deg); }
