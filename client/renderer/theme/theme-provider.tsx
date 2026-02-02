@@ -21,11 +21,27 @@ import { createComponentVariants } from "./variants";
 
 export type ThemeMode = "light" | "dark";
 
+/**
+ * Check if running in an iframe (Teams context).
+ */
+function isRunningInIframe(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return window.self !== window.top;
+  } catch {
+    return true;
+  }
+}
+
+// CSS zoom level for Teams compact mode (0.85 = 85% size)
+const TEAMS_ZOOM_LEVEL = 0.85;
+
 interface ThemeContextType {
   mode: ThemeMode;
   toggleTheme: () => void;
   setTheme: (mode: ThemeMode) => void;
   customColors: typeof lightCustomColors;
+  isCompact: boolean;
 }
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
@@ -47,8 +63,10 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
 }) => {
   const [mode, setMode] = useState<ThemeMode>("light");
   const [mounted, setMounted] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
   // Load theme preference from localStorage on mount
+  // Also detect Teams iframe context for compact mode
   useEffect(() => {
     const savedTheme = localStorage.getItem("ccp4i2-theme") as ThemeMode;
     if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
@@ -60,6 +78,14 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
       ).matches;
       setMode(prefersDark ? "dark" : "light");
     }
+
+    // Enable compact mode in Teams iframe context
+    if (isRunningInIframe()) {
+      setIsCompact(true);
+      // Apply CSS zoom to make everything smaller in Teams
+      document.documentElement.style.zoom = String(TEAMS_ZOOM_LEVEL);
+    }
+
     setMounted(true);
   }, []);
 
@@ -119,7 +145,8 @@ export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
     toggleTheme,
     setTheme: setThemeMode,
     customColors,
-  }), [mode, toggleTheme, setThemeMode, customColors]);
+    isCompact,
+  }), [mode, toggleTheme, setThemeMode, customColors, isCompact]);
 
   return (
     <ThemeContext.Provider value={contextValue}>
