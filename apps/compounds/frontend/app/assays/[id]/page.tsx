@@ -3,10 +3,8 @@
 import { use, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  Container,
   Typography,
   Box,
-  Paper,
   Grid2 as Grid,
   Chip,
   Skeleton,
@@ -35,7 +33,7 @@ import {
   Palette,
   Refresh,
 } from '@mui/icons-material';
-import { PageHeader } from '@/components/compounds/PageHeader';
+import { DetailPageLayout } from '@/components/compounds/DetailPageLayout';
 import { DataTable, Column } from '@/components/data-table';
 import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
@@ -48,8 +46,7 @@ import { useCompoundsApi, getAuthenticatedDownloadUrl, authFetch } from '@/lib/c
 import { formatKpiUnit } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
-import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
-import { Assay, DataSeries, Protocol, Target, PlateLayout } from '@/types/compounds/models';
+import { Assay, DataSeries, Protocol, Target } from '@/types/compounds/models';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -119,13 +116,6 @@ export default function AssayDetailPage({ params }: PageProps) {
   const { data: target } = api.get<Target>(
     assay?.target ? `targets/${assay.target}/` : null
   );
-
-  // Adaptive table height for data series table
-  const { headerRef, tableHeight } = useAdaptiveTableHeight({
-    maxHeight: 500,
-    minHeight: 400,
-    bottomPadding: 32,
-  });
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -417,204 +407,205 @@ export default function AssayDetailPage({ params }: PageProps) {
     },
   ];
 
+  // Summary configuration for collapsed header
+  const summary = {
+    title: assay?.data_filename || 'Loading...',
+    titleIcon: <Assessment sx={{ fontSize: 'inherit' }} />,
+    fields: [
+      { label: 'Protocol', value: protocol?.name },
+      { label: 'Target', value: target?.name },
+      { label: 'Series', value: dataSeries?.length?.toString() },
+    ],
+    chips: (
+      <>
+        {protocol && (
+          <Chip
+            icon={<Description fontSize="small" />}
+            label={protocol.name}
+            size="small"
+            onClick={() => router.push(routes.assays.protocol(protocol.id))}
+          />
+        )}
+        {target && (
+          <Chip
+            icon={<Science fontSize="small" />}
+            label={target.name}
+            size="small"
+            variant="outlined"
+            onClick={() => router.push(routes.registry.target(target.id))}
+          />
+        )}
+      </>
+    ),
+    actions: (
+      <>
+        {protocol?.plate_layout_config && assay?.data_file && (
+          <Button
+            variant="outlined"
+            startIcon={heatMapLoading ? <CircularProgress size={16} /> : <Palette />}
+            onClick={handleOpenHeatMap}
+            disabled={heatMapLoading}
+            size="small"
+          >
+            Heat Map
+          </Button>
+        )}
+        {protocol?.import_type === 'table_of_values' && (
+          <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                variant="outlined"
+                startIcon={<ImageIcon />}
+                onClick={() => setImageUploadOpen(true)}
+                size="small"
+                disabled={!canContribute}
+              >
+                Upload Images
+              </Button>
+            </span>
+          </Tooltip>
+        )}
+        <Tooltip title={canContribute ? 'Re-analyse all data series' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <Button
+              variant="outlined"
+              startIcon={reanalysing ? <CircularProgress size={16} /> : <Refresh />}
+              onClick={handleReanalyseAll}
+              size="small"
+              disabled={!canContribute || reanalysing}
+            >
+              {reanalysing ? 'Analysing...' : 'Re-analyse'}
+            </Button>
+          </span>
+        </Tooltip>
+        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <Button
+              variant="outlined"
+              startIcon={<Edit />}
+              onClick={() => setEditDialogOpen(true)}
+              size="small"
+              disabled={!canContribute}
+            >
+              Edit
+            </Button>
+          </span>
+        </Tooltip>
+        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <Button
+              variant="outlined"
+              color="error"
+              startIcon={<Delete />}
+              onClick={() => setDeleteDialogOpen(true)}
+              size="small"
+              disabled={!canContribute}
+            >
+              Delete
+            </Button>
+          </span>
+        </Tooltip>
+      </>
+    ),
+  };
+
+  // Full detail content shown when header is expanded
+  const detailContent = assayLoading ? (
+    <Box>
+      <Skeleton variant="rectangular" width="100%" height={150} />
+    </Box>
+  ) : assay ? (
+    <Box>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Typography variant="h6" gutterBottom>
+            Experiment Details
+          </Typography>
+          <InfoRow label="Protocol" value={protocol?.name} />
+          <InfoRow label="Target" value={target?.name} />
+          <InfoRow label="Lab Book" value={assay.labbook_number} />
+          <InfoRow label="Page" value={assay.page_number} />
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Typography variant="h6" gutterBottom>
+            Metadata
+          </Typography>
+          <InfoRow label="Created By" value={assay.created_by_email} />
+          <InfoRow
+            label="Created"
+            value={
+              assay.created_at
+                ? new Date(assay.created_at).toLocaleString()
+                : null
+            }
+          />
+          <InfoRow
+            label="Data Series"
+            value={dataSeries ? `${dataSeries.length} compounds` : 'Loading...'}
+          />
+          {assay.data_file && (
+            <InfoRow
+              label="Data File"
+              value={
+                <MuiLink
+                  component="button"
+                  onClick={async () => {
+                    const url = await getAuthenticatedDownloadUrl(assay.data_file!);
+                    window.open(url, '_blank');
+                  }}
+                  sx={{ cursor: 'pointer' }}
+                >
+                  Download
+                </MuiLink>
+              }
+            />
+          )}
+        </Grid>
+      </Grid>
+
+      {assay.comments && (
+        <>
+          <Divider sx={{ my: 2 }} />
+          <Typography variant="h6" gutterBottom>
+            Comments
+          </Typography>
+          <Typography>{assay.comments}</Typography>
+        </>
+      )}
+
+      {/* Quality Control Panel */}
+      <Box sx={{ mt: 2 }}>
+        <QCPanel assayId={id} />
+      </Box>
+    </Box>
+  ) : (
+    <Typography color="error">Assay not found</Typography>
+  );
+
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
-        <Box ref={headerRef} sx={{ flexShrink: 0, overflow: 'auto', maxHeight: '60vh', boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)' }}>
-          <PageHeader
-            breadcrumbs={[
-              { label: 'Home', href: routes.home(), icon: 'home' },
-              { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
-              ...(protocol ? [{ label: protocol.name, href: routes.assays.protocol(protocol.id), icon: 'protocol' as const }] : []),
-              { label: assay?.data_filename || 'Loading...', icon: 'assay' },
-            ]}
-          />
-
-          {/* Assay header */}
-          <Paper sx={{ p: 3, mb: 3 }}>
-        {assayLoading ? (
-          <>
-            <Skeleton variant="text" width={300} height={40} />
-            <Skeleton variant="text" width={200} />
-          </>
-        ) : assay ? (
-          <>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 2 }}>
-              <Assessment sx={{ fontSize: 48, color: 'info.main' }} />
-              <Box sx={{ flex: 1 }}>
-                <Typography variant="h4">{assay.data_filename || 'Assay'}</Typography>
-                <Box sx={{ display: 'flex', gap: 1, mt: 0.5, flexWrap: 'wrap' }}>
-                  {protocol && (
-                    <Chip
-                      icon={<Description fontSize="small" />}
-                      label={protocol.name}
-                      size="small"
-                      onClick={() => router.push(routes.assays.protocol(protocol.id))}
-                    />
-                  )}
-                  {target && (
-                    <Chip
-                      icon={<Science fontSize="small" />}
-                      label={target.name}
-                      size="small"
-                      variant="outlined"
-                      onClick={() => router.push(routes.registry.target(target.id))}
-                    />
-                  )}
-                </Box>
-              </Box>
-              <Box sx={{ display: 'flex', gap: 1 }}>
-                {protocol?.plate_layout_config && assay?.data_file && (
-                  <Button
-                    variant="outlined"
-                    startIcon={heatMapLoading ? <CircularProgress size={16} /> : <Palette />}
-                    onClick={handleOpenHeatMap}
-                    disabled={heatMapLoading}
-                    size="small"
-                  >
-                    Heat Map
-                  </Button>
-                )}
-                {protocol?.import_type === 'table_of_values' && (
-                  <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                    <span>
-                      <Button
-                        variant="outlined"
-                        startIcon={<ImageIcon />}
-                        onClick={() => setImageUploadOpen(true)}
-                        size="small"
-                        disabled={!canContribute}
-                      >
-                        Upload Images
-                      </Button>
-                    </span>
-                  </Tooltip>
-                )}
-                <Tooltip title={canContribute ? 'Re-analyse all data series' : 'Requires Contributor or Admin operating level'} arrow>
-                  <span>
-                    <Button
-                      variant="outlined"
-                      startIcon={reanalysing ? <CircularProgress size={16} /> : <Refresh />}
-                      onClick={handleReanalyseAll}
-                      size="small"
-                      disabled={!canContribute || reanalysing}
-                    >
-                      {reanalysing ? 'Analysing...' : 'Re-analyse All'}
-                    </Button>
-                  </span>
-                </Tooltip>
-                <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                  <span>
-                    <Button
-                      variant="outlined"
-                      startIcon={<Edit />}
-                      onClick={() => setEditDialogOpen(true)}
-                      size="small"
-                      disabled={!canContribute}
-                    >
-                      Edit
-                    </Button>
-                  </span>
-                </Tooltip>
-                <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                  <span>
-                    <Button
-                      variant="outlined"
-                      color="error"
-                      startIcon={<Delete />}
-                      onClick={() => setDeleteDialogOpen(true)}
-                      size="small"
-                      disabled={!canContribute}
-                    >
-                      Delete
-                    </Button>
-                  </span>
-                </Tooltip>
-              </Box>
-            </Box>
-
-            <Divider sx={{ my: 2 }} />
-
-            <Grid container spacing={3}>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Experiment Details
-                </Typography>
-                <InfoRow label="Protocol" value={protocol?.name} />
-                <InfoRow label="Target" value={target?.name} />
-                <InfoRow label="Lab Book" value={assay.labbook_number} />
-                <InfoRow label="Page" value={assay.page_number} />
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Metadata
-                </Typography>
-                <InfoRow label="Created By" value={assay.created_by_email} />
-                <InfoRow
-                  label="Created"
-                  value={
-                    assay.created_at
-                      ? new Date(assay.created_at).toLocaleString()
-                      : null
-                  }
-                />
-                <InfoRow
-                  label="Data Series"
-                  value={dataSeries ? `${dataSeries.length} compounds` : 'Loading...'}
-                />
-                {assay.data_file && (
-                  <InfoRow
-                    label="Data File"
-                    value={
-                      <MuiLink
-                        component="button"
-                        onClick={async () => {
-                          const url = await getAuthenticatedDownloadUrl(assay.data_file!);
-                          window.open(url, '_blank');
-                        }}
-                        sx={{ cursor: 'pointer' }}
-                      >
-                        Download
-                      </MuiLink>
-                    }
-                  />
-                )}
-              </Grid>
-            </Grid>
-
-            {assay.comments && (
-              <>
-                <Divider sx={{ my: 2 }} />
-                <Typography variant="h6" gutterBottom>
-                  Comments
-                </Typography>
-                <Typography>{assay.comments}</Typography>
-              </>
-            )}
-          </>
-        ) : (
-          <Typography color="error">Assay not found</Typography>
-            )}
-          </Paper>
-
-          {/* Quality Control Panel - already has its own Accordion */}
-          <QCPanel assayId={id} />
-        </Box>
-
-        {/* Data series table - adaptive height */}
-        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0, height: tableHeight }}>
-          <DataTable
-            data={dataSeries}
-            columns={columns}
-            loading={dataSeriesLoading}
-            getRowKey={(row) => row.id}
-            title={dataSeries ? `${dataSeries.length} data series` : undefined}
-            emptyMessage="No data series in this assay"
-            onRowClick={(row) => router.push(routes.assays.dataSeries(row.id))}
-            fillHeight
-          />
-        </Box>
-      </Container>
+    <>
+      <DetailPageLayout
+        breadcrumbs={[
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
+          ...(protocol ? [{ label: protocol.name, href: routes.assays.protocol(protocol.id), icon: 'protocol' as const }] : []),
+          { label: assay?.data_filename || 'Loading...', icon: 'assay' },
+        ]}
+        summary={summary}
+        detailContent={detailContent}
+        loading={assayLoading}
+      >
+        <DataTable
+          data={dataSeries}
+          columns={columns}
+          loading={dataSeriesLoading}
+          getRowKey={(row) => row.id}
+          title={dataSeries ? `${dataSeries.length} data series` : undefined}
+          emptyMessage="No data series in this assay"
+          onRowClick={(row) => router.push(routes.assays.dataSeries(row.id))}
+          fillHeight
+        />
+      </DetailPageLayout>
 
       {/* Delete confirmation dialog */}
       <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
@@ -669,6 +660,6 @@ export default function AssayDetailPage({ params }: PageProps) {
           plateLayout={protocol.plate_layout_config}
         />
       )}
-    </Box>
+    </>
   );
 }

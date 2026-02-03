@@ -1,15 +1,13 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 
 /**
- * Teams authentication start page.
- *
- * This page runs on our domain and redirects to Azure AD.
- * Teams requires auth URLs to start from a valid domain in the manifest.
+ * Inner component that uses useSearchParams.
+ * Must be wrapped in Suspense for Next.js 15 static generation.
  */
-export default function TeamsStartPage() {
+function TeamsStartContent() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
@@ -29,6 +27,16 @@ export default function TeamsStartPage() {
     window.location.replace(authUrl.toString());
   }, [searchParams]);
 
+  return <p>Redirecting to sign in...</p>;
+}
+
+/**
+ * Teams authentication start page.
+ *
+ * This page runs on our domain and redirects to Azure AD.
+ * Teams requires auth URLs to start from a valid domain in the manifest.
+ */
+export default function TeamsStartPage() {
   return (
     <div
       style={{
@@ -39,7 +47,9 @@ export default function TeamsStartPage() {
         fontFamily: "system-ui, sans-serif",
       }}
     >
-      <p>Redirecting to sign in...</p>
+      <Suspense fallback={<p>Loading...</p>}>
+        <TeamsStartContent />
+      </Suspense>
     </div>
   );
 }

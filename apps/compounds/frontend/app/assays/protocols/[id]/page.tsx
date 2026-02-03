@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, use, useState, useCallback, useEffect, useRef } from 'react';
+import { Suspense, use, useState, useCallback, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import {
   Container,
@@ -28,7 +28,7 @@ import {
 } from '@mui/material';
 import { Description, Science, Assessment, Edit, GridOn, Close, Add, Delete, CloudUpload, Download, OpenInNew, TableChart, CheckCircle, Biotech, ExpandMore, FiberNew } from '@mui/icons-material';
 import Link from 'next/link';
-import { PageHeader } from '@/components/compounds/PageHeader';
+import { DetailPageLayout } from '@/components/compounds/DetailPageLayout';
 import { DataTable, Column } from '@/components/data-table';
 import { PlatePreview } from '@/components/compounds/PlatePreview';
 import { PlateLayoutCreateDialog } from '@/components/compounds/PlateLayoutCreateDialog';
@@ -37,7 +37,6 @@ import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
-import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import { Protocol, Assay, ProtocolDocument, PlateLayoutRecord, ImportType } from '@/types/compounds/models';
 
 interface UploadingFile {
@@ -120,13 +119,6 @@ function ProtocolDetailPageContent({ params }: PageProps) {
   const [docToDelete, setDocToDelete] = useState<ProtocolDocument | null>(null);
   const [deletingDoc, setDeletingDoc] = useState(false);
 
-  // Adaptive table height for the assays section
-  const { headerRef, tableHeight } = useAdaptiveTableHeight({
-    maxHeight: 500,
-    minHeight: 400,
-    bottomPadding: 32,
-  });
-
   const { data: protocol, isLoading: protocolLoading, mutate } = api.get<Protocol>(
     `protocols/${id}/`
   );
@@ -139,6 +131,8 @@ function ProtocolDetailPageContent({ params }: PageProps) {
 
   // Fetch available plate layouts for selection
   const { data: plateLayouts } = api.get<PlateLayoutRecord[]>('plate-layouts/');
+
+  const loading = protocolLoading;
 
   // Auto-open upload drawer when redirected from import page with openUpload=true
   useEffect(() => {
@@ -525,399 +519,234 @@ function ProtocolDetailPageContent({ params }: PageProps) {
     },
   ];
 
-  return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-      {/* Scrollable header content - inset shadow hints at scroll */}
-      <Box ref={headerRef} sx={{ flex: '0 1 auto', overflow: 'auto', minHeight: 0, boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)' }}>
-        <Container maxWidth="lg" sx={{ py: 2 }}>
-          <PageHeader
-            breadcrumbs={[
-              { label: 'Home', href: routes.home(), icon: 'home' },
-              { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
-              { label: protocol?.name || 'Loading...', icon: 'protocol' },
-            ]}
-          />
-
-      {/* Protocol header */}
-      <Paper sx={{ p: 3, mb: 3 }}>
-        {protocolLoading ? (
-          <>
-            <Skeleton variant="text" width={300} height={40} />
-            <Skeleton variant="text" width={200} />
-          </>
-        ) : protocol ? (
-          <>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Description sx={{ fontSize: 48, color: 'primary.main' }} />
-                <Box>
-                  <Typography variant="h4">{protocol.name}</Typography>
-                  <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
-                    <Chip
-                      label={IMPORT_TYPE_LABELS[protocol.import_type] || protocol.import_type}
-                      size="small"
-                      color="primary"
-                      variant="outlined"
-                    />
-                  </Box>
-                </Box>
-              </Box>
-              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                <span>
-                  <Button
-                    variant="outlined"
-                    startIcon={<Edit />}
-                    onClick={() => setEditDialogOpen(true)}
-                    disabled={!canContribute}
-                  >
-                    Edit Protocol
-                  </Button>
-                </span>
-              </Tooltip>
-            </Box>
-
-            <Divider sx={{ my: 2 }} />
-
-            <Grid container spacing={3}>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Configuration
-                </Typography>
-                <InfoRow
-                  label="Data Type"
-                  value={IMPORT_TYPE_LABELS[protocol.import_type]}
-                />
-                {/* Hide dilution/plate reader fields for ADME protocols */}
-                {!isAdmeProtocol(protocol.import_type) && (
-                  <>
-                    <InfoRow
-                      label="Dilutions"
-                      value={
-                        protocol.preferred_dilutions_display ? (
-                          <Typography
-                            component="span"
-                            sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
-                          >
-                            {protocol.preferred_dilutions_display}
-                          </Typography>
-                        ) : null
-                      }
-                    />
-                  </>
-                )}
-                {/* ADME-specific info */}
-                {isAdmeProtocol(protocol.import_type) && (
-                  <>
-                    <InfoRow
-                      label="Data Source"
-                      value="Pharmaron/NCU Excel exports"
-                    />
-                    <InfoRow
-                      label="File Pattern"
-                      value={
-                        <Typography
-                          component="span"
-                          sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}
-                        >
-                          ADME-NCU-*.xlsx
-                        </Typography>
-                      }
-                    />
-                  </>
-                )}
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Metadata
-                </Typography>
-                <InfoRow label="Created By" value={protocol.created_by_email} />
-                <InfoRow
-                  label="Created"
-                  value={
-                    protocol.created_at
-                      ? new Date(protocol.created_at).toLocaleString()
-                      : null
-                  }
-                />
-                <InfoRow
-                  label="Assays"
-                  value={assays ? `${assays.length} experiments` : 'Loading...'}
-                />
-              </Grid>
-            </Grid>
-
-            {protocol.comments && (
-              <>
-                <Divider sx={{ my: 2 }} />
-                <Typography variant="h6" gutterBottom>
-                  Comments
-                </Typography>
-                <Typography>{protocol.comments}</Typography>
-              </>
-            )}
-
-            {/* Fitting Method Section */}
-            {protocol.fitting_method_name && (
-              <>
-                <Divider sx={{ my: 2 }} />
-                <Typography variant="h6" gutterBottom>
-                  Fitting Method
-                </Typography>
-                <InfoRow
-                  label="Method"
-                  value={
-                    <Chip
-                      label={protocol.fitting_method_name}
-                      color="secondary"
-                      variant="outlined"
-                      size="small"
-                    />
-                  }
-                />
-                {protocol.fitting_parameters?.protein_conc && (
-                  <>
-                    <InfoRow label="[Protein]" value={`${protocol.fitting_parameters.protein_conc} nM`} />
-                    <InfoRow label="[Ligand]" value={`${protocol.fitting_parameters.ligand_conc} nM`} />
-                    <InfoRow label="Ligand Kd" value={`${protocol.fitting_parameters.ligand_kd} nM`} />
-                  </>
-                )}
-              </>
-            )}
-
-            {/* Plate Layout Section - only for plate-based protocols (not ADME or table of values) */}
-            {isPlateBasedProtocol(protocol.import_type) && (
-              <>
-                <Divider sx={{ my: 2 }} />
-                <Accordion
-                  defaultExpanded={!(protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0)}
-                  sx={{
-                    boxShadow: 'none',
-                    '&:before': { display: 'none' },
-                    bgcolor: 'transparent',
-                  }}
-                >
-                  <AccordionSummary
-                    expandIcon={<ExpandMore />}
-                    sx={{
-                      px: 0,
-                      minHeight: 'auto',
-                      '& .MuiAccordionSummary-content': { my: 1 },
-                    }}
-                  >
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flex: 1 }}>
-                      <Typography variant="h6">
-                        Plate Layout
-                      </Typography>
-                      {protocol.plate_layout_name && (
-                        <Chip
-                          icon={<GridOn />}
-                          label={protocol.plate_layout_name}
-                          color="primary"
-                          variant="outlined"
-                          size="small"
-                        />
-                      )}
-                      {!protocol.plate_layout_config || Object.keys(protocol.plate_layout_config).length === 0 ? (
-                        <Chip
-                          label="Not configured"
-                          color="warning"
-                          variant="outlined"
-                          size="small"
-                        />
-                      ) : null}
-                    </Box>
-                  </AccordionSummary>
-                  <AccordionDetails sx={{ px: 0 }}>
-                    <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                      <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                        <span>
-                          <Button
-                            size="small"
-                            startIcon={<Edit />}
-                            onClick={() => setLayoutSelectOpen(true)}
-                            disabled={!canContribute}
-                          >
-                            {protocol.plate_layout ? 'Change Layout' : 'Select Layout'}
-                          </Button>
-                        </span>
-                      </Tooltip>
-                      {protocol.plate_layout && (
-                        <Button
-                          size="small"
-                          component={Link}
-                          href={routes.assays.plateLayout(protocol.plate_layout)}
-                          startIcon={<OpenInNew />}
-                        >
-                          View Details
-                        </Button>
-                      )}
-                    </Box>
-
-                    {protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0 ? (
-                      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <PlatePreview
-                          layout={protocol.plate_layout_config}
-                          width={450}
-                          height={300}
-                        />
-                      </Box>
-                    ) : (
-                      <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
-                        <GridOn sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
-                        <Typography color="text.secondary">
-                          No plate layout configured
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
-                          Select a plate layout to define control positions, sample regions, and dilution patterns
-                        </Typography>
-                      </Paper>
-                    )}
-                  </AccordionDetails>
-                </Accordion>
-              </>
-            )}
-          </>
-        ) : (
-          <Typography color="error">Protocol not found</Typography>
-        )}
-      </Paper>
-
-      {/* Plate Layout Selection Dialog */}
-      <Dialog
-        open={layoutSelectOpen}
-        onClose={() => setLayoutSelectOpen(false)}
-        maxWidth="sm"
-        fullWidth
-      >
-        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <GridOn color="primary" />
-            Select Plate Layout
-          </Box>
-          <IconButton onClick={() => setLayoutSelectOpen(false)} size="small">
-            <Close />
-          </IconButton>
-        </DialogTitle>
-        <DialogContent dividers>
-          {saveError && (
-            <Alert severity="error" sx={{ mb: 2 }}>
-              {saveError}
-            </Alert>
-          )}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-            Select a plate layout for this protocol, or create a new one.
-          </Typography>
-          {plateLayouts && plateLayouts.length > 0 ? (
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-              {plateLayouts.map((layout) => (
-                <Paper
-                  key={layout.id}
-                  variant="outlined"
-                  sx={{
-                    p: 2,
-                    cursor: 'pointer',
-                    bgcolor: protocol?.plate_layout === layout.id ? 'primary.50' : 'background.paper',
-                    borderColor: protocol?.plate_layout === layout.id ? 'primary.main' : 'divider',
-                    '&:hover': { bgcolor: 'action.hover' },
-                  }}
-                  onClick={() => handleLayoutChange(layout.id)}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <Box>
-                      <Typography fontWeight="medium">{layout.name}</Typography>
-                      {layout.description && (
-                        <Typography variant="body2" color="text.secondary">
-                          {layout.description}
-                        </Typography>
-                      )}
-                    </Box>
-                    <Box sx={{ display: 'flex', gap: 1 }}>
-                      {layout.plate_format && (
-                        <Chip label={`${layout.plate_format}-well`} size="small" variant="outlined" />
-                      )}
-                      {protocol?.plate_layout === layout.id && (
-                        <Chip label="Current" size="small" color="primary" />
-                      )}
-                    </Box>
-                  </Box>
-                </Paper>
-              ))}
-            </Box>
-          ) : (
-            <Typography color="text.secondary">
-              No plate layouts available. Create one to get started.
-            </Typography>
-          )}
-        </DialogContent>
-        <DialogActions>
-          {protocol?.plate_layout && (
+  // Build action button based on protocol import type
+  const getAddAssayButton = () => {
+    if (protocol?.import_type === 'table_of_values') {
+      return (
+        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
             <Button
-              onClick={() => handleLayoutChange(null)}
-              color="error"
-              disabled={saving}
+              component={Link}
+              href={routes.assays.importTableOfValues({ protocol: id })}
+              variant="contained"
+              size="small"
+              startIcon={<TableChart />}
+              disabled={!canContribute}
             >
-              Remove Layout
+              Import
             </Button>
-          )}
-          <Box sx={{ flex: 1 }} />
-          <Button onClick={() => setLayoutSelectOpen(false)}>
-            Cancel
-          </Button>
-          <Button
-            variant="contained"
-            startIcon={<Add />}
-            onClick={() => {
-              setLayoutSelectOpen(false);
-              setCreateLayoutOpen(true);
-            }}
-          >
-            Create New Layout
-          </Button>
-        </DialogActions>
-      </Dialog>
+          </span>
+        </Tooltip>
+      );
+    } else if (isAdmeProtocol(protocol?.import_type)) {
+      return (
+        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <Button
+              component={Link}
+              href={routes.assays.importAdme()}
+              variant="contained"
+              size="small"
+              startIcon={<Biotech />}
+              disabled={!canContribute}
+            >
+              Import ADME
+            </Button>
+          </span>
+        </Tooltip>
+      );
+    } else {
+      return (
+        <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <Button
+              variant="contained"
+              size="small"
+              startIcon={<Add />}
+              onClick={() => setUploadDrawerOpen(true)}
+              disabled={!protocol || !canContribute}
+            >
+              Add Assay
+            </Button>
+          </span>
+        </Tooltip>
+      );
+    }
+  };
 
-      {/* Create Layout Dialog */}
-      <PlateLayoutCreateDialog
-        open={createLayoutOpen}
-        onClose={() => setCreateLayoutOpen(false)}
-        onCreated={handleLayoutCreated}
+  // Summary configuration for collapsed header
+  const summary = {
+    title: protocol?.name || 'Loading...',
+    titleIcon: <Description sx={{ fontSize: 'inherit' }} />,
+    fields: [
+      { label: 'Type', value: protocol ? IMPORT_TYPE_LABELS[protocol.import_type] : '-' },
+      { label: 'Assays', value: assays ? `${assays.length}` : '-' },
+      { label: 'Documents', value: documents ? `${documents.length}` : '-' },
+    ],
+    chips: protocol ? (
+      <Chip
+        label={IMPORT_TYPE_LABELS[protocol.import_type] || protocol.import_type}
+        size="small"
+        color="primary"
+        variant="outlined"
       />
+    ) : undefined,
+    actions: (
+      <>
+        <Tooltip title={canContribute ? 'Edit protocol' : 'Requires Contributor or Admin operating level'} arrow>
+          <span>
+            <IconButton
+              size="small"
+              onClick={() => setEditDialogOpen(true)}
+              disabled={!canContribute}
+            >
+              <Edit fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
+        {getAddAssayButton()}
+      </>
+    ),
+  };
 
-      {/* Documents section - collapsible */}
-      <Accordion
-        defaultExpanded={false}
-        sx={{
-          boxShadow: 'none',
-          '&:before': { display: 'none' },
-          bgcolor: 'transparent',
-          mb: 2,
-        }}
-      >
-        <AccordionSummary
-          expandIcon={<ExpandMore />}
-          sx={{
-            px: 0,
-            minHeight: 'auto',
-            '& .MuiAccordionSummary-content': { my: 1 },
-          }}
-        >
+  // Detail content: protocol info, plate layout, documents
+  const detailContent = protocol ? (
+    <Box>
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Typography variant="h6" gutterBottom>
+            Configuration
+          </Typography>
+          <InfoRow label="Data Type" value={IMPORT_TYPE_LABELS[protocol.import_type]} />
+          {!isAdmeProtocol(protocol.import_type) && (
+            <InfoRow
+              label="Dilutions"
+              value={
+                protocol.preferred_dilutions_display ? (
+                  <Typography component="span" sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>
+                    {protocol.preferred_dilutions_display}
+                  </Typography>
+                ) : null
+              }
+            />
+          )}
+          {isAdmeProtocol(protocol.import_type) && (
+            <>
+              <InfoRow label="Data Source" value="Pharmaron/NCU Excel exports" />
+              <InfoRow
+                label="File Pattern"
+                value={
+                  <Typography component="span" sx={{ fontFamily: 'monospace', fontSize: '0.85rem' }}>
+                    ADME-NCU-*.xlsx
+                  </Typography>
+                }
+              />
+            </>
+          )}
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Typography variant="h6" gutterBottom>
+            Metadata
+          </Typography>
+          <InfoRow label="Created By" value={protocol.created_by_email} />
+          <InfoRow
+            label="Created"
+            value={protocol.created_at ? new Date(protocol.created_at).toLocaleString() : null}
+          />
+          <InfoRow label="Assays" value={assays ? `${assays.length} experiments` : 'Loading...'} />
+        </Grid>
+      </Grid>
+
+      {protocol.comments && (
+        <>
+          <Divider sx={{ my: 2 }} />
+          <Typography variant="h6" gutterBottom>Comments</Typography>
+          <Typography>{protocol.comments}</Typography>
+        </>
+      )}
+
+      {protocol.fitting_method_name && (
+        <>
+          <Divider sx={{ my: 2 }} />
+          <Typography variant="h6" gutterBottom>Fitting Method</Typography>
+          <InfoRow
+            label="Method"
+            value={<Chip label={protocol.fitting_method_name} color="secondary" variant="outlined" size="small" />}
+          />
+          {protocol.fitting_parameters?.protein_conc && (
+            <>
+              <InfoRow label="[Protein]" value={`${protocol.fitting_parameters.protein_conc} nM`} />
+              <InfoRow label="[Ligand]" value={`${protocol.fitting_parameters.ligand_conc} nM`} />
+              <InfoRow label="Ligand Kd" value={`${protocol.fitting_parameters.ligand_kd} nM`} />
+            </>
+          )}
+        </>
+      )}
+
+      {isPlateBasedProtocol(protocol.import_type) && (
+        <>
+          <Divider sx={{ my: 2 }} />
+          <Accordion
+            defaultExpanded={!(protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0)}
+            sx={{ boxShadow: 'none', '&:before': { display: 'none' }, bgcolor: 'transparent' }}
+          >
+            <AccordionSummary expandIcon={<ExpandMore />} sx={{ px: 0, minHeight: 'auto', '& .MuiAccordionSummary-content': { my: 1 } }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flex: 1 }}>
+                <Typography variant="h6">Plate Layout</Typography>
+                {protocol.plate_layout_name && (
+                  <Chip icon={<GridOn />} label={protocol.plate_layout_name} color="primary" variant="outlined" size="small" />
+                )}
+                {!protocol.plate_layout_config || Object.keys(protocol.plate_layout_config).length === 0 ? (
+                  <Chip label="Not configured" color="warning" variant="outlined" size="small" />
+                ) : null}
+              </Box>
+            </AccordionSummary>
+            <AccordionDetails sx={{ px: 0 }}>
+              <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
+                <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                  <span>
+                    <Button size="small" startIcon={<Edit />} onClick={() => setLayoutSelectOpen(true)} disabled={!canContribute}>
+                      {protocol.plate_layout ? 'Change Layout' : 'Select Layout'}
+                    </Button>
+                  </span>
+                </Tooltip>
+                {protocol.plate_layout && (
+                  <Button size="small" component={Link} href={routes.assays.plateLayout(protocol.plate_layout)} startIcon={<OpenInNew />}>
+                    View Details
+                  </Button>
+                )}
+              </Box>
+              {protocol.plate_layout_config && Object.keys(protocol.plate_layout_config).length > 0 ? (
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                  <PlatePreview layout={protocol.plate_layout_config} width={450} height={300} />
+                </Box>
+              ) : (
+                <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
+                  <GridOn sx={{ fontSize: 48, color: 'grey.400', mb: 1 }} />
+                  <Typography color="text.secondary">No plate layout configured</Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5 }}>
+                    Select a plate layout to define control positions, sample regions, and dilution patterns
+                  </Typography>
+                </Paper>
+              )}
+            </AccordionDetails>
+          </Accordion>
+        </>
+      )}
+
+      {/* Documents section */}
+      <Accordion defaultExpanded={false} sx={{ boxShadow: 'none', '&:before': { display: 'none' }, bgcolor: 'transparent', mt: 2 }}>
+        <AccordionSummary expandIcon={<ExpandMore />} sx={{ px: 0, minHeight: 'auto', '& .MuiAccordionSummary-content': { my: 1 } }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <Description color="action" />
             <Typography variant="h6">Documents</Typography>
-            {documents && documents.length > 0 && (
-              <Chip label={documents.length} size="small" variant="outlined" />
-            )}
+            {documents && documents.length > 0 && <Chip label={documents.length} size="small" variant="outlined" />}
           </Box>
         </AccordionSummary>
         <AccordionDetails sx={{ px: 0, pt: 0 }}>
-          {/* Upload error alert */}
           {uploadError && (
-            <Alert severity="error" sx={{ mb: 2 }} onClose={() => setUploadError(null)}>
-              {uploadError}
-            </Alert>
+            <Alert severity="error" sx={{ mb: 2 }} onClose={() => setUploadError(null)}>{uploadError}</Alert>
           )}
-
-          {/* Drop zone for document uploads */}
           <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
             <Paper
               variant="outlined"
@@ -925,13 +754,9 @@ function ProtocolDetailPageContent({ params }: PageProps) {
               onDragOver={canContribute ? handleDragOver : undefined}
               onDragLeave={canContribute ? handleDragLeave : undefined}
               sx={{
-                p: 2,
-                mb: 2,
-                textAlign: 'center',
+                p: 2, mb: 2, textAlign: 'center',
                 bgcolor: isDragOver ? 'primary.50' : 'grey.50',
-                borderStyle: 'dashed',
-                borderColor: isDragOver ? 'primary.main' : 'grey.300',
-                borderWidth: 2,
+                borderStyle: 'dashed', borderColor: isDragOver ? 'primary.main' : 'grey.300', borderWidth: 2,
                 cursor: canContribute ? 'pointer' : 'not-allowed',
                 opacity: canContribute ? 1 : 0.6,
                 transition: 'all 0.2s ease',
@@ -954,32 +779,21 @@ function ProtocolDetailPageContent({ params }: PageProps) {
               />
             </Paper>
           </Tooltip>
-
-          {/* Upload progress */}
           {uploadingFiles.length > 0 && (
             <Paper sx={{ p: 2, mb: 2 }}>
-              <Typography variant="subtitle2" sx={{ mb: 1 }}>
-                Uploading {uploadingFiles.length} file(s)...
-              </Typography>
+              <Typography variant="subtitle2" sx={{ mb: 1 }}>Uploading {uploadingFiles.length} file(s)...</Typography>
               {uploadingFiles.map((file, index) => (
                 <Box key={index} sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
                   {file.status === 'uploading' && <LinearProgress sx={{ flex: 1, height: 6, borderRadius: 1 }} />}
                   {file.status === 'success' && <CheckCircle color="success" fontSize="small" />}
                   {file.status === 'error' && <Description color="error" fontSize="small" />}
-                  <Typography
-                    variant="body2"
-                    color={file.status === 'error' ? 'error' : 'text.secondary'}
-                    sx={{ minWidth: 200 }}
-                  >
-                    {file.name}
-                    {file.status === 'error' && file.error && ` - ${file.error}`}
+                  <Typography variant="body2" color={file.status === 'error' ? 'error' : 'text.secondary'} sx={{ minWidth: 200 }}>
+                    {file.name}{file.status === 'error' && file.error && ` - ${file.error}`}
                   </Typography>
                 </Box>
               ))}
             </Paper>
           )}
-
-          {/* Documents table */}
           <DataTable
             data={documents}
             columns={documentColumns}
@@ -990,79 +804,92 @@ function ProtocolDetailPageContent({ params }: PageProps) {
           />
         </AccordionDetails>
       </Accordion>
+    </Box>
+  ) : null;
 
-        </Container>
-      </Box>
+  return (
+    <>
+      <DetailPageLayout
+        breadcrumbs={[
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Protocols', href: routes.assays.protocols(), icon: 'protocol' },
+          { label: protocol?.name || 'Loading...', icon: 'protocol' },
+        ]}
+        summary={summary}
+        detailContent={detailContent}
+        loading={loading}
+      >
+        <DataTable
+          data={assays}
+          columns={columns}
+          loading={assaysLoading}
+          onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
+          getRowKey={(row) => row.id}
+          title={assays ? `${assays.length} assays` : undefined}
+          emptyMessage="No assays using this protocol"
+          fillHeight
+        />
+      </DetailPageLayout>
 
-      {/* Assays section with adaptive height */}
-      <Box sx={{ flex: '0 0 auto', display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-        <Container maxWidth="lg" sx={{ display: 'flex', flexDirection: 'column', height: tableHeight, px: 3 }}>
-          {/* Assays section header with Add button */}
-          <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, flexShrink: 0 }}>
-            <Typography variant="h6">
-              Assays
-            </Typography>
-            {protocol?.import_type === 'table_of_values' ? (
-              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                <span>
-                  <Button
-                    component={Link}
-                    href={routes.assays.importTableOfValues({ protocol: id })}
-                    variant="contained"
-                    startIcon={<TableChart />}
-                    disabled={!canContribute}
-                  >
-                    Import Table of Values
-                  </Button>
-                </span>
-              </Tooltip>
-            ) : isAdmeProtocol(protocol?.import_type) ? (
-              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                <span>
-                  <Button
-                    component={Link}
-                    href={routes.assays.importAdme()}
-                    variant="contained"
-                    startIcon={<Biotech />}
-                    disabled={!canContribute}
-                  >
-                    Import Pharmaron ADME
-                  </Button>
-                </span>
-              </Tooltip>
-            ) : (
-              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                <span>
-                  <Button
-                    variant="contained"
-                    startIcon={<Add />}
-                    onClick={() => setUploadDrawerOpen(true)}
-                    disabled={!protocol || !canContribute}
-                  >
-                    Add Assay
-                  </Button>
-                </span>
-              </Tooltip>
-            )}
+      {/* Plate Layout Selection Dialog */}
+      <Dialog open={layoutSelectOpen} onClose={() => setLayoutSelectOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <GridOn color="primary" />
+            Select Plate Layout
           </Box>
+          <IconButton onClick={() => setLayoutSelectOpen(false)} size="small"><Close /></IconButton>
+        </DialogTitle>
+        <DialogContent dividers>
+          {saveError && <Alert severity="error" sx={{ mb: 2 }}>{saveError}</Alert>}
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            Select a plate layout for this protocol, or create a new one.
+          </Typography>
+          {plateLayouts && plateLayouts.length > 0 ? (
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              {plateLayouts.map((layout) => (
+                <Paper
+                  key={layout.id}
+                  variant="outlined"
+                  sx={{
+                    p: 2, cursor: 'pointer',
+                    bgcolor: protocol?.plate_layout === layout.id ? 'primary.50' : 'background.paper',
+                    borderColor: protocol?.plate_layout === layout.id ? 'primary.main' : 'divider',
+                    '&:hover': { bgcolor: 'action.hover' },
+                  }}
+                  onClick={() => handleLayoutChange(layout.id)}
+                >
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                    <Box>
+                      <Typography fontWeight="medium">{layout.name}</Typography>
+                      {layout.description && <Typography variant="body2" color="text.secondary">{layout.description}</Typography>}
+                    </Box>
+                    <Box sx={{ display: 'flex', gap: 1 }}>
+                      {layout.plate_format && <Chip label={`${layout.plate_format}-well`} size="small" variant="outlined" />}
+                      {protocol?.plate_layout === layout.id && <Chip label="Current" size="small" color="primary" />}
+                    </Box>
+                  </Box>
+                </Paper>
+              ))}
+            </Box>
+          ) : (
+            <Typography color="text.secondary">No plate layouts available. Create one to get started.</Typography>
+          )}
+        </DialogContent>
+        <DialogActions>
+          {protocol?.plate_layout && (
+            <Button onClick={() => handleLayoutChange(null)} color="error" disabled={saving}>Remove Layout</Button>
+          )}
+          <Box sx={{ flex: 1 }} />
+          <Button onClick={() => setLayoutSelectOpen(false)}>Cancel</Button>
+          <Button variant="contained" startIcon={<Add />} onClick={() => { setLayoutSelectOpen(false); setCreateLayoutOpen(true); }}>
+            Create New Layout
+          </Button>
+        </DialogActions>
+      </Dialog>
 
-          {/* Assays table */}
-          <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0 }}>
-            <DataTable
-              data={assays}
-              columns={columns}
-              loading={assaysLoading}
-              onRowClick={(assay) => router.push(routes.assays.detail(assay.id))}
-              getRowKey={(row) => row.id}
-              title={assays ? `${assays.length} assays` : undefined}
-              emptyMessage="No assays using this protocol"
-              fillHeight
-            />
-          </Box>
-        </Container>
-      </Box>
+      <PlateLayoutCreateDialog open={createLayoutOpen} onClose={() => setCreateLayoutOpen(false)} onCreated={handleLayoutCreated} />
 
-      {/* Assay Upload Drawer */}
       {protocol && (
         <AssayUploadDrawer
           open={uploadDrawerOpen}
@@ -1074,72 +901,40 @@ function ProtocolDetailPageContent({ params }: PageProps) {
         />
       )}
 
-      {/* Delete Assay Confirmation Dialog */}
       <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>
         <DialogTitle>Delete Assay?</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            This will permanently delete &quot;{assayToDelete?.data_filename}&quot;
-            and all its data series with analysis results.
+            This will permanently delete &quot;{assayToDelete?.data_filename}&quot; and all its data series with analysis results.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setDeleteDialogOpen(false)} disabled={deleting}>
-            Cancel
-          </Button>
-          <Button
-            onClick={handleDeleteConfirm}
-            color="error"
-            variant="contained"
-            disabled={deleting}
-            startIcon={deleting ? <CircularProgress size={16} /> : <Delete />}
-          >
+          <Button onClick={() => setDeleteDialogOpen(false)} disabled={deleting}>Cancel</Button>
+          <Button onClick={handleDeleteConfirm} color="error" variant="contained" disabled={deleting} startIcon={deleting ? <CircularProgress size={16} /> : <Delete />}>
             {deleting ? 'Deleting...' : 'Delete'}
           </Button>
         </DialogActions>
       </Dialog>
 
-      {/* Delete Document Confirmation Dialog */}
-      <Dialog
-        open={deleteDocDialogOpen}
-        onClose={() => setDeleteDocDialogOpen(false)}
-      >
+      <Dialog open={deleteDocDialogOpen} onClose={() => setDeleteDocDialogOpen(false)}>
         <DialogTitle>Delete Document</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Are you sure you want to delete &quot;{docToDelete?.filename || 'this document'}&quot;?
-            This action cannot be undone.
+            Are you sure you want to delete &quot;{docToDelete?.filename || 'this document'}&quot;? This action cannot be undone.
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button
-            onClick={() => setDeleteDocDialogOpen(false)}
-            disabled={deletingDoc}
-          >
-            Cancel
-          </Button>
-          <Button
-            onClick={handleDeleteDocConfirm}
-            color="error"
-            variant="contained"
-            disabled={deletingDoc}
-            startIcon={deletingDoc ? <CircularProgress size={16} /> : <Delete />}
-          >
+          <Button onClick={() => setDeleteDocDialogOpen(false)} disabled={deletingDoc}>Cancel</Button>
+          <Button onClick={handleDeleteDocConfirm} color="error" variant="contained" disabled={deletingDoc} startIcon={deletingDoc ? <CircularProgress size={16} /> : <Delete />}>
             {deletingDoc ? 'Deleting...' : 'Delete'}
           </Button>
         </DialogActions>
       </Dialog>
 
-      {/* Protocol Edit Dialog */}
       {protocol && (
-        <ProtocolEditDialog
-          open={editDialogOpen}
-          onClose={() => setEditDialogOpen(false)}
-          protocol={protocol}
-          onSave={() => mutate()}
-        />
+        <ProtocolEditDialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)} protocol={protocol} onSave={() => mutate()} />
       )}
-    </Box>
+    </>
   );
 }
 

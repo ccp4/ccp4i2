@@ -2,13 +2,12 @@
 
 import { useState, useCallback, useRef, Suspense, useEffect } from 'react';
 import { useSearchParams, useRouter, usePathname } from 'next/navigation';
-import { Container, Typography, Box, Alert, CircularProgress, IconButton, Tooltip, Snackbar } from '@mui/material';
+import { Typography, Box, Alert, CircularProgress, IconButton, Tooltip, Snackbar } from '@mui/material';
 import { TableChart, Link as LinkIcon, Save } from '@mui/icons-material';
-import { PageHeader } from '@/components/compounds/PageHeader';
+import { DetailPageLayout } from '@/components/compounds/DetailPageLayout';
 import { routes } from '@/lib/compounds/routes';
 import { PredicateBuilder, PredicateBuilderState } from '@/components/compounds/PredicateBuilder';
 import { AggregationTable } from '@/components/compounds/AggregationTable';
-import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import {
   Predicates,
   AggregationType,
@@ -88,13 +87,6 @@ function AggregationPageContent() {
 
   // Track current request to avoid race conditions
   const requestIdRef = useRef(0);
-
-  // Adaptive table height for the aggregation table
-  const { headerRef, tableHeight } = useAdaptiveTableHeight({
-    maxHeight: 800,
-    minHeight: 400,
-    bottomPadding: 32,
-  });
 
   const handleStateChange = useCallback((state: PredicateBuilderState) => {
     setCurrentState(state);
@@ -270,97 +262,110 @@ function AggregationPageContent() {
     }
   }, [currentState, updateUrlState]);
 
-  return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-      <Container maxWidth="xl" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
-        {/* Scrollable header section with scroll hint */}
-        <Box
-          ref={headerRef}
-          sx={{
-            flexShrink: 0,
-            overflow: 'auto',
-            maxHeight: '50vh',
-            boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)',
-          }}
-        >
-          <PageHeader
-            breadcrumbs={[
-              { label: 'Home', href: routes.home(), icon: 'home' },
-              { label: 'Assays', href: routes.assays.list(), icon: 'assay' },
-              { label: 'Data Aggregation', icon: 'aggregate' },
-            ]}
-          />
+  // Build summary description from current state
+  const getSummaryDescription = () => {
+    const parts: string[] = [];
+    if (currentState?.targetNames.length) {
+      parts.push(`${currentState.targetNames.length} target${currentState.targetNames.length > 1 ? 's' : ''}`);
+    }
+    if (currentState?.protocolNames.length) {
+      parts.push(`${currentState.protocolNames.length} protocol${currentState.protocolNames.length > 1 ? 's' : ''}`);
+    }
+    if (currentState?.compoundSearch) {
+      parts.push(`"${currentState.compoundSearch}"`);
+    }
+    return parts.length > 0 ? parts.join(', ') : 'No filters';
+  };
 
-          <Box sx={{ mb: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-            <TableChart sx={{ fontSize: 32, color: 'primary.main' }} />
-            <Box sx={{ flex: 1 }}>
-              <Typography variant="h5" sx={{ mb: 0 }}>
-                Data Aggregation
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Aggregate KPI values across compounds and protocols
-              </Typography>
-            </Box>
-            <Tooltip title="Copy shareable link">
+  // Summary configuration for collapsed header
+  const summary = {
+    title: 'Data Aggregation',
+    titleIcon: <TableChart sx={{ fontSize: 'inherit' }} />,
+    fields: [
+      { label: 'Query', value: getSummaryDescription() },
+      { label: 'Results', value: data ? `${data.data?.length || 0} rows` : loading ? 'Loading...' : '-' },
+      { label: 'Format', value: currentOutputFormat },
+    ],
+    actions: (
+      <>
+        <Tooltip title="Copy shareable link">
+          <IconButton
+            onClick={handleCopyLink}
+            disabled={!currentState || (!currentState.targetNames.length && !currentState.protocolNames.length && !currentState.compoundSearch)}
+            size="small"
+          >
+            <LinkIcon />
+          </IconButton>
+        </Tooltip>
+        {canAdminister && (
+          <Tooltip title={currentState?.targets.length === 1 ? `Save view to ${currentState.targets[0].name}` : 'Select exactly one target to save'}>
+            <span>
               <IconButton
-                onClick={handleCopyLink}
-                disabled={!currentState || (!currentState.targetNames.length && !currentState.protocolNames.length && !currentState.compoundSearch)}
+                onClick={handleSaveToTarget}
+                disabled={saving || !currentState || currentState.targets.length !== 1}
                 size="small"
               >
-                <LinkIcon />
+                <Save />
               </IconButton>
-            </Tooltip>
-            {canAdminister && (
-              <Tooltip title={currentState?.targets.length === 1 ? `Save view to ${currentState.targets[0].name}` : 'Select exactly one target to save'}>
-                <span>
-                  <IconButton
-                    onClick={handleSaveToTarget}
-                    disabled={saving || !currentState || currentState.targets.length !== 1}
-                    size="small"
-                  >
-                    <Save />
-                  </IconButton>
-                </span>
-              </Tooltip>
-            )}
-          </Box>
+            </span>
+          </Tooltip>
+        )}
+      </>
+    ),
+  };
 
-          <PredicateBuilder
-            onRunQuery={handleChange}
-            onStateChange={handleStateChange}
-            loading={loading}
-            initialCompoundSearch={initialCompoundSearch}
-            initialTargetId={initialTargetId}
-            initialTargetNames={initialTargetNames}
-            initialProtocolNames={initialProtocolNames}
-            initialOutputFormat={initialOutputFormat}
-            initialAggregations={initialAggregations}
-            initialStatus={initialStatus}
-            initialGroupByBatch={initialGroupByBatch}
-            initialIncludeTestedNoData={initialIncludeTestedNoData}
-            initialIncludeProperties={initialIncludeProperties}
-          />
+  // Detail content: the query builder
+  const detailContent = (
+    <Box>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        Aggregate KPI values across compounds and protocols
+      </Typography>
 
-          {error && (
-            <Alert severity="error" sx={{ my: 2 }}>
-              {error}
-            </Alert>
-          )}
-        </Box>
+      <PredicateBuilder
+        onRunQuery={handleChange}
+        onStateChange={handleStateChange}
+        loading={loading}
+        initialCompoundSearch={initialCompoundSearch}
+        initialTargetId={initialTargetId}
+        initialTargetNames={initialTargetNames}
+        initialProtocolNames={initialProtocolNames}
+        initialOutputFormat={initialOutputFormat}
+        initialAggregations={initialAggregations}
+        initialStatus={initialStatus}
+        initialGroupByBatch={initialGroupByBatch}
+        initialIncludeTestedNoData={initialIncludeTestedNoData}
+        initialIncludeProperties={initialIncludeProperties}
+      />
 
-        {/* Aggregation table - adaptive height */}
-        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0, height: tableHeight, mt: 2 }}>
-          <AggregationTable
-            data={data}
-            loading={loading}
-            aggregations={currentAggregations}
-            outputFormat={currentOutputFormat}
-            concentrationDisplay={concentrationDisplay}
-            onConcentrationDisplayChange={setConcentrationDisplay}
-            fillHeight
-          />
-        </Box>
-      </Container>
+      {error && (
+        <Alert severity="error" sx={{ mt: 2 }}>
+          {error}
+        </Alert>
+      )}
+    </Box>
+  );
+
+  return (
+    <>
+      <DetailPageLayout
+        breadcrumbs={[
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Assays', href: routes.assays.list(), icon: 'assay' },
+          { label: 'Data Aggregation', icon: 'aggregate' },
+        ]}
+        summary={summary}
+        detailContent={detailContent}
+      >
+        <AggregationTable
+          data={data}
+          loading={loading}
+          aggregations={currentAggregations}
+          outputFormat={currentOutputFormat}
+          concentrationDisplay={concentrationDisplay}
+          onConcentrationDisplayChange={setConcentrationDisplay}
+          fillHeight
+        />
+      </DetailPageLayout>
 
       <Snackbar
         open={snackbarOpen}
@@ -368,6 +373,6 @@ function AggregationPageContent() {
         onClose={() => setSnackbarOpen(false)}
         message={snackbarMessage}
       />
-    </Box>
+    </>
   );
 }

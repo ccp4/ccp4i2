@@ -3,10 +3,8 @@
 import { use, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import {
-  Container,
   Typography,
   Box,
-  Paper,
   Grid2 as Grid,
   Chip,
   Skeleton,
@@ -20,7 +18,7 @@ import {
 } from '@mui/material';
 import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Edit, ExpandMore, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
 import Link from 'next/link';
-import { PageHeader } from '@/components/compounds/PageHeader';
+import { DetailPageLayout } from '@/components/compounds/DetailPageLayout';
 import { DataTable, Column } from '@/components/data-table';
 import { MoleculeView } from '@/components/compounds/MoleculeView';
 import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
@@ -29,7 +27,6 @@ import { AliasEditor } from '@/components/compounds/AliasEditor';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
-import { useAdaptiveTableHeight } from '@/lib/compounds/useAdaptiveTableHeight';
 import { Compound, Batch, Target } from '@/types/compounds/models';
 
 interface PageProps {
@@ -73,13 +70,6 @@ export default function CompoundDetailPage({ params }: PageProps) {
     previous: { id: string; formatted_id: string } | null;
     next: { id: string; formatted_id: string } | null;
   }>(`compounds/${id}/adjacent/`);
-
-  // Adaptive table height for batches table
-  const { headerRef, tableHeight } = useAdaptiveTableHeight({
-    maxHeight: 400,
-    minHeight: 300,
-    bottomPadding: 32,
-  });
 
   const handleCopySmiles = useCallback(async () => {
     if (!compound?.smiles) return;
@@ -154,274 +144,269 @@ export default function CompoundDetailPage({ params }: PageProps) {
     },
   ];
 
-  return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden' }}>
-      <Container maxWidth="lg" sx={{ flex: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden', py: 2 }}>
-        <Box ref={headerRef} sx={{ flexShrink: 0, overflow: 'auto', maxHeight: '65vh', boxShadow: 'inset 0 -12px 12px -12px rgba(0,0,0,0.08)' }}>
-          <PageHeader
-            breadcrumbs={[
-              { label: 'Home', href: routes.home(), icon: 'home' },
-              { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
-              {
-                label: target?.name || 'Target',
-                href: compound?.target
-                  ? routes.registry.target(compound.target)
-                  : undefined,
-                icon: 'target',
-              },
-              { label: compound?.formatted_id || 'Loading...', icon: 'compound' },
-            ]}
+  // Summary configuration for collapsed header
+  const summary = {
+    title: compound?.formatted_id || 'Loading...',
+    titleIcon: <Medication sx={{ fontSize: 'inherit' }} />,
+    fields: [
+      { label: 'MW', value: compound?.molecular_weight?.toFixed(2) },
+      { label: 'Target', value: target?.name },
+      { label: 'Batches', value: batches?.length?.toString() },
+    ],
+    chips: (
+      <>
+        {compound?.stereo_comment && compound.stereo_comment !== 'unset' && (
+          <Chip
+            label={compound.stereo_comment}
+            size="small"
+            color="primary"
+            variant="outlined"
           />
-
-      {/* Compound header */}
-      <Paper sx={{ p: 3, mb: 3, position: 'relative' }}>
-        {/* Navigation arrows - fixed at top to avoid jumping when content changes */}
-        {adjacent && (
-          <>
-            <Tooltip title={adjacent.previous ? `Previous: ${adjacent.previous.formatted_id}` : 'No previous compound'}>
-              <span style={{ position: 'absolute', left: 8, top: 24 }}>
-                <IconButton
-                  onClick={() => adjacent.previous && router.push(routes.registry.compound(adjacent.previous.id))}
-                  disabled={!adjacent.previous}
-                  size="large"
-                  sx={{
-                    bgcolor: 'action.hover',
-                    '&:hover': { bgcolor: 'action.selected' },
-                    '&.Mui-disabled': { bgcolor: 'transparent' }
-                  }}
-                >
-                  <ChevronLeft />
-                </IconButton>
-              </span>
-            </Tooltip>
-            <Tooltip title={adjacent.next ? `Next: ${adjacent.next.formatted_id}` : 'No next compound'}>
-              <span style={{ position: 'absolute', right: 8, top: 24 }}>
-                <IconButton
-                  onClick={() => adjacent.next && router.push(routes.registry.compound(adjacent.next.id))}
-                  disabled={!adjacent.next}
-                  size="large"
-                  sx={{
-                    bgcolor: 'action.hover',
-                    '&:hover': { bgcolor: 'action.selected' },
-                    '&.Mui-disabled': { bgcolor: 'transparent' }
-                  }}
-                >
-                  <ChevronRight />
-                </IconButton>
-              </span>
-            </Tooltip>
-          </>
         )}
+        {target && (
+          <Chip
+            icon={<Science fontSize="small" />}
+            label={target.name}
+            size="small"
+            onClick={() => router.push(routes.registry.target(target.id))}
+          />
+        )}
+      </>
+    ),
+    actions: (
+      <>
+        {canAdminister && (
+          <Tooltip title="Edit compound details (Admin only)">
+            <Button
+              variant="outlined"
+              size="small"
+              startIcon={<Edit />}
+              onClick={() => setEditDialogOpen(true)}
+            >
+              Edit
+            </Button>
+          </Tooltip>
+        )}
+        <Button
+          component={Link}
+          href={compound ? routes.assays.aggregate({ compound: compound.formatted_id }) : '#'}
+          variant="outlined"
+          size="small"
+          startIcon={<TableChart />}
+          disabled={!compound}
+        >
+          View Assay Data
+        </Button>
+      </>
+    ),
+  };
 
-        {compoundLoading ? (
-          <>
-            <Skeleton variant="text" width={300} height={40} />
-            <Skeleton variant="text" width="100%" height={60} />
-          </>
-        ) : compound ? (
-          <>
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 2, mx: 5 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                <Medication sx={{ fontSize: 48, color: 'secondary.main' }} />
-                <Box>
-                  <Typography variant="h4" fontFamily="monospace">
-                    {compound.formatted_id}
-                  </Typography>
-                  <Box sx={{ display: 'flex', gap: 1, mt: 0.5 }}>
-                    {compound.stereo_comment &&
-                      compound.stereo_comment !== 'unset' && (
-                        <Chip
-                          label={compound.stereo_comment}
-                          size="small"
-                          color="primary"
-                          variant="outlined"
-                        />
-                      )}
-                    {target && (
-                      <Chip
-                        icon={<Science fontSize="small" />}
-                        label={target.name}
+  // Full detail content shown when header is expanded
+  const detailContent = compoundLoading ? (
+    <Box>
+      <Skeleton variant="rectangular" width="100%" height={200} />
+    </Box>
+  ) : compound ? (
+    <Box sx={{ position: 'relative' }}>
+      {/* Navigation arrows */}
+      {adjacent && (
+        <>
+          <Tooltip title={adjacent.previous ? `Previous: ${adjacent.previous.formatted_id}` : 'No previous compound'}>
+            <span style={{ position: 'absolute', left: -48, top: 60 }}>
+              <IconButton
+                onClick={() => adjacent.previous && router.push(routes.registry.compound(adjacent.previous.id))}
+                disabled={!adjacent.previous}
+                size="large"
+                sx={{
+                  bgcolor: 'action.hover',
+                  '&:hover': { bgcolor: 'action.selected' },
+                  '&.Mui-disabled': { bgcolor: 'transparent' }
+                }}
+              >
+                <ChevronLeft />
+              </IconButton>
+            </span>
+          </Tooltip>
+          <Tooltip title={adjacent.next ? `Next: ${adjacent.next.formatted_id}` : 'No next compound'}>
+            <span style={{ position: 'absolute', right: -48, top: 60 }}>
+              <IconButton
+                onClick={() => adjacent.next && router.push(routes.registry.compound(adjacent.next.id))}
+                disabled={!adjacent.next}
+                size="large"
+                sx={{
+                  bgcolor: 'action.hover',
+                  '&:hover': { bgcolor: 'action.selected' },
+                  '&.Mui-disabled': { bgcolor: 'transparent' }
+                }}
+              >
+                <ChevronRight />
+              </IconButton>
+            </span>
+          </Tooltip>
+        </>
+      )}
+
+      <Grid container spacing={3}>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Typography variant="h6" gutterBottom>
+            Structure
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 3, mb: 2 }}>
+            <MoleculeView smiles={compound.smiles} width={200} height={200} />
+            <Box sx={{ flex: 1 }}>
+              <InfoRow
+                label="SMILES"
+                value={
+                  <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.5 }}>
+                    <Typography
+                      fontFamily="monospace"
+                      fontSize="0.85rem"
+                      sx={{ wordBreak: 'break-all' }}
+                    >
+                      {compound.smiles}
+                    </Typography>
+                    <Tooltip title={smilesCopied ? 'Copied!' : 'Copy SMILES'}>
+                      <IconButton
                         size="small"
-                        onClick={() =>
-                          router.push(routes.registry.target(target.id))
-                        }
-                      />
-                    )}
+                        onClick={handleCopySmiles}
+                        sx={{
+                          p: 0.5,
+                          color: smilesCopied ? 'success.main' : 'action.active',
+                          flexShrink: 0,
+                        }}
+                      >
+                        {smilesCopied ? <Check fontSize="small" /> : <ContentCopy fontSize="small" />}
+                      </IconButton>
+                    </Tooltip>
                   </Box>
-                </Box>
-              </Box>
-              <Box sx={{ display: 'flex', gap: 1 }}>
-                {canAdminister && (
-                  <Tooltip title="Edit compound details (Admin only)">
-                    <Button
-                      variant="outlined"
-                      startIcon={<Edit />}
-                      onClick={() => setEditDialogOpen(true)}
+                }
+              />
+              <InfoRow
+                label="MW"
+                value={compound.molecular_weight?.toFixed(2)}
+              />
+              {compound.inchi && (
+                <InfoRow
+                  label="InChI"
+                  value={
+                    <Typography
+                      fontFamily="monospace"
+                      fontSize="0.75rem"
+                      sx={{ wordBreak: 'break-all' }}
                     >
-                      Edit
-                    </Button>
-                  </Tooltip>
-                )}
-                <Button
-                  component={Link}
-                  href={routes.assays.aggregate({ compound: compound.formatted_id })}
-                  variant="outlined"
-                  startIcon={<TableChart />}
-                >
-                  View Assay Data
-                </Button>
-              </Box>
-            </Box>
-
-            <Divider sx={{ my: 2 }} />
-
-            <Grid container spacing={3}>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Typography variant="h6" gutterBottom>
-                  Structure
-                </Typography>
-                <Box sx={{ display: 'flex', gap: 3, mb: 2 }}>
-                  <MoleculeView smiles={compound.smiles} width={200} height={200} />
-                  <Box sx={{ flex: 1 }}>
-                    <InfoRow
-                      label="SMILES"
-                      value={
-                        <Box sx={{ display: 'flex', alignItems: 'flex-start', gap: 0.5 }}>
-                          <Typography
-                            fontFamily="monospace"
-                            fontSize="0.85rem"
-                            sx={{ wordBreak: 'break-all' }}
-                          >
-                            {compound.smiles}
-                          </Typography>
-                          <Tooltip title={smilesCopied ? 'Copied!' : 'Copy SMILES'}>
-                            <IconButton
-                              size="small"
-                              onClick={handleCopySmiles}
-                              sx={{
-                                p: 0.5,
-                                color: smilesCopied ? 'success.main' : 'action.active',
-                                flexShrink: 0,
-                              }}
-                            >
-                              {smilesCopied ? <Check fontSize="small" /> : <ContentCopy fontSize="small" />}
-                            </IconButton>
-                          </Tooltip>
-                        </Box>
-                      }
-                    />
-                    <InfoRow
-                      label="MW"
-                      value={compound.molecular_weight?.toFixed(2)}
-                    />
-                    {compound.inchi && (
-                      <InfoRow
-                        label="InChI"
-                        value={
-                          <Typography
-                            fontFamily="monospace"
-                            fontSize="0.75rem"
-                            sx={{ wordBreak: 'break-all' }}
-                          >
-                            {compound.inchi}
-                          </Typography>
-                        }
-                      />
-                    )}
-                  </Box>
-                </Box>
-              </Grid>
-              <Grid size={{ xs: 12, md: 6 }}>
-                <Accordion defaultExpanded={false}>
-                  <AccordionSummary expandIcon={<ExpandMore />}>
-                    <Typography variant="h6">Provenance & Metadata</Typography>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <InfoRow label="Supplier" value={compound.supplier_name} />
-                    <InfoRow label="Supplier Ref" value={compound.supplier_ref} />
-                    <InfoRow label="Lab Book" value={compound.labbook_number} />
-                    <InfoRow label="Page" value={compound.page_number} />
-                    <InfoRow label="Barcode" value={compound.barcode} />
-                    <InfoRow
-                      label="Registered"
-                      value={
-                        compound.registered_at
-                          ? new Date(compound.registered_at).toLocaleString()
-                          : null
-                      }
-                    />
-                    <InfoRow
-                      label="By"
-                      value={
-                        compound.registered_by_email ||
-                        compound.legacy_registered_by
-                      }
-                    />
-                    {compound.comments && (
-                      <Box sx={{ mt: 2 }}>
-                        <Typography variant="subtitle2" color="text.secondary" gutterBottom>
-                          Comments
-                        </Typography>
-                        <Typography>{compound.comments}</Typography>
-                      </Box>
-                    )}
-                  </AccordionDetails>
-                </Accordion>
-              </Grid>
-            </Grid>
-
-            {/* Aliases section - Collapsible */}
-            <Accordion defaultExpanded={false} sx={{ mt: 2 }}>
-              <AccordionSummary expandIcon={<ExpandMore />}>
-                <Typography variant="h6">Aliases ({compound.aliases?.length || 0})</Typography>
-              </AccordionSummary>
-              <AccordionDetails sx={{ p: 0 }}>
-                <AliasEditor
-                  compoundId={compound.id}
-                  aliases={compound.aliases || []}
-                  canEdit={canContribute}
-                  onUpdate={() => mutateCompound()}
+                      {compound.inchi}
+                    </Typography>
+                  }
                 />
-              </AccordionDetails>
-            </Accordion>
-          </>
-        ) : (
-          <Typography color="error">Compound not found</Typography>
-        )}
-      </Paper>
-        </Box>
+              )}
+            </Box>
+          </Box>
+        </Grid>
+        <Grid size={{ xs: 12, md: 6 }}>
+          <Accordion defaultExpanded={false}>
+            <AccordionSummary expandIcon={<ExpandMore />}>
+              <Typography variant="h6">Provenance & Metadata</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <InfoRow label="Supplier" value={compound.supplier_name} />
+              <InfoRow label="Supplier Ref" value={compound.supplier_ref} />
+              <InfoRow label="Lab Book" value={compound.labbook_number} />
+              <InfoRow label="Page" value={compound.page_number} />
+              <InfoRow label="Barcode" value={compound.barcode} />
+              <InfoRow
+                label="Registered"
+                value={
+                  compound.registered_at
+                    ? new Date(compound.registered_at).toLocaleString()
+                    : null
+                }
+              />
+              <InfoRow
+                label="By"
+                value={
+                  compound.registered_by_email ||
+                  compound.legacy_registered_by
+                }
+              />
+              {compound.comments && (
+                <Box sx={{ mt: 2 }}>
+                  <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+                    Comments
+                  </Typography>
+                  <Typography>{compound.comments}</Typography>
+                </Box>
+              )}
+            </AccordionDetails>
+          </Accordion>
+        </Grid>
+      </Grid>
 
-        {/* Batches table - adaptive height */}
-        <Box sx={{ flex: 1, overflow: 'hidden', minHeight: 0, height: tableHeight }}>
-          <DataTable
-            data={batches}
-            columns={columns}
-            loading={batchesLoading}
-            onRowClick={(batch) => router.push(routes.registry.batch(batch.id))}
-            getRowKey={(row) => row.id}
-            title={batches ? `${batches.length} batches` : undefined}
-            emptyMessage="No batches registered for this compound"
-            fillHeight
-            headerAction={
-              compound && (
-                <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
-                  <span>
-                    <Button
-                      variant="contained"
-                      size="small"
-                      startIcon={<Add />}
-                      onClick={() => setBatchDialogOpen(true)}
-                      disabled={!canContribute}
-                    >
-                      Add Batch
-                    </Button>
-                  </span>
-                </Tooltip>
-              )
-            }
+      {/* Aliases section - Collapsible */}
+      <Accordion defaultExpanded={false} sx={{ mt: 2 }}>
+        <AccordionSummary expandIcon={<ExpandMore />}>
+          <Typography variant="h6">Aliases ({compound.aliases?.length || 0})</Typography>
+        </AccordionSummary>
+        <AccordionDetails sx={{ p: 0 }}>
+          <AliasEditor
+            compoundId={compound.id}
+            aliases={compound.aliases || []}
+            canEdit={canContribute}
+            onUpdate={() => mutateCompound()}
           />
-        </Box>
-      </Container>
+        </AccordionDetails>
+      </Accordion>
+    </Box>
+  ) : (
+    <Typography color="error">Compound not found</Typography>
+  );
+
+  return (
+    <>
+      <DetailPageLayout
+        breadcrumbs={[
+          { label: 'Home', href: routes.home(), icon: 'home' },
+          { label: 'Targets', href: routes.registry.targets(), icon: 'target' },
+          {
+            label: target?.name || 'Target',
+            href: compound?.target
+              ? routes.registry.target(compound.target)
+              : undefined,
+            icon: 'target',
+          },
+          { label: compound?.formatted_id || 'Loading...', icon: 'compound' },
+        ]}
+        summary={summary}
+        detailContent={detailContent}
+        loading={compoundLoading}
+      >
+        <DataTable
+          data={batches}
+          columns={columns}
+          loading={batchesLoading}
+          onRowClick={(batch) => router.push(routes.registry.batch(batch.id))}
+          getRowKey={(row) => row.id}
+          title={batches ? `${batches.length} batches` : undefined}
+          emptyMessage="No batches registered for this compound"
+          fillHeight
+          headerAction={
+            compound && (
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    startIcon={<Add />}
+                    onClick={() => setBatchDialogOpen(true)}
+                    disabled={!canContribute}
+                  >
+                    Add Batch
+                  </Button>
+                </span>
+              </Tooltip>
+            )
+          }
+        />
+      </DetailPageLayout>
 
       {/* Batch creation dialog */}
       {compound && (
@@ -448,6 +433,6 @@ export default function CompoundDetailPage({ params }: PageProps) {
           compound={compound}
         />
       )}
-    </Box>
+    </>
   );
 }
