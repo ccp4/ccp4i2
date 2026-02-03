@@ -21,10 +21,11 @@ import {
   Alert,
   Paper,
 } from '@mui/material';
-import { Close, Medication, Science, OpenInNew } from '@mui/icons-material';
+import { Close, Medication, Science, OpenInNew, Image as ImageIcon } from '@mui/icons-material';
 import Link from 'next/link';
 import { MoleculeChip } from './MoleculeView';
 import { DoseResponseChart, DoseResponseThumb, FitParameters, DoseResponseData } from './DoseResponseChart';
+import { AuthenticatedImage } from './AuthenticatedImage';
 import { formatKpiValue, formatKpiUnit } from '@/lib/compounds/aggregation-api';
 
 // =============================================================================
@@ -102,6 +103,8 @@ interface DataSeriesItem {
   } | null;
   analysis_status: string | null;
   analysis_kpi: number | null;
+  /** Plot image URL for table_of_values imports */
+  plot_image: string | null;
 }
 
 interface DataSeriesResponse {
@@ -180,6 +183,19 @@ function extractDoseResponseData(series: DataSeriesItem): DoseResponseData | nul
   }
 
   return { concentrations, responses, unit };
+}
+
+/**
+ * Check if a data series has a stored plot image (for table_of_values imports)
+ * These imports don't have extracted_data for plotting, but reference an image file.
+ */
+function getPlotImageUrl(series: DataSeriesItem): string | null {
+  // Check if analysis results reference an 'Image File'
+  const hasImageFile = series.analysis?.results?.['Image File'];
+  if (hasImageFile && series.plot_image) {
+    return `/api/proxy/compounds/media/data-series/${series.id}/plot/`;
+  }
+  return null;
 }
 
 export function DataSeriesDetailModal({
@@ -307,6 +323,7 @@ export function DataSeriesDetailModal({
                     {data.data_series.map((series) => {
                       const doseData = extractDoseResponseData(series);
                       const fitParams = extractFitParams(series.analysis);
+                      const plotImageUrl = getPlotImageUrl(series);
                       const isSelected = selectedSeries?.id === series.id;
 
                       return (
@@ -318,9 +335,26 @@ export function DataSeriesDetailModal({
                           sx={{ cursor: 'pointer' }}
                         >
                           <TableCell>
-                            {doseData ? (
+                            {plotImageUrl ? (
+                              // Table-of-values import with stored plot image
+                              <AuthenticatedImage
+                                src={plotImageUrl}
+                                alt={`Plot for ${series.compound_name || 'compound'}`}
+                                width={80}
+                                height={80}
+                                objectFit="contain"
+                                sx={{
+                                  borderRadius: 1,
+                                  bgcolor: 'background.paper',
+                                  border: '1px solid',
+                                  borderColor: 'divider',
+                                }}
+                              />
+                            ) : doseData ? (
+                              // Dose-response data with computed chart
                               <DoseResponseThumb data={doseData} fit={fitParams} size={80} />
                             ) : (
+                              // No data available
                               <Box
                                 sx={{
                                   width: 80,
@@ -332,9 +366,7 @@ export function DataSeriesDetailModal({
                                   justifyContent: 'center',
                                 }}
                               >
-                                <Typography variant="caption" color="text.secondary">
-                                  No data
-                                </Typography>
+                                <ImageIcon sx={{ color: 'grey.400', fontSize: 24 }} />
                               </Box>
                             )}
                           </TableCell>
@@ -402,17 +434,49 @@ export function DataSeriesDetailModal({
               )}
             </Box>
 
-            {/* Right: Selected series chart */}
+            {/* Right: Selected series chart or plot image */}
             <Box sx={{ width: { xs: '100%', md: 450 }, flexShrink: 0 }}>
               <Typography variant="subtitle2" gutterBottom>
-                Dose-Response Curve
+                {selectedSeries && getPlotImageUrl(selectedSeries) ? 'Plot' : 'Dose-Response Curve'}
               </Typography>
 
               {selectedSeries ? (
                 (() => {
+                  const plotImageUrl = getPlotImageUrl(selectedSeries);
                   const doseData = extractDoseResponseData(selectedSeries);
                   const fitParams = extractFitParams(selectedSeries.analysis);
 
+                  // Show stored plot image for table_of_values imports
+                  if (plotImageUrl) {
+                    return (
+                      <Paper
+                        variant="outlined"
+                        sx={{
+                          p: 2,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                        }}
+                      >
+                        <AuthenticatedImage
+                          src={plotImageUrl}
+                          alt={`Plot for ${selectedSeries.compound_name || displayCompoundName}`}
+                          width={400}
+                          height={350}
+                          objectFit="contain"
+                          sx={{
+                            borderRadius: 1,
+                            bgcolor: 'background.paper',
+                          }}
+                        />
+                        <Typography variant="caption" color="text.secondary" sx={{ mt: 1 }}>
+                          {selectedSeries.analysis?.results?.['Image File'] || 'Stored plot image'}
+                        </Typography>
+                      </Paper>
+                    );
+                  }
+
+                  // No dose-response data and no plot image
                   if (!doseData) {
                     return (
                       <Paper
@@ -431,6 +495,7 @@ export function DataSeriesDetailModal({
                     );
                   }
 
+                  // Show computed dose-response chart
                   return (
                     <Box>
                       <DoseResponseChart
