@@ -238,6 +238,30 @@ export function useCampaignsApi() {
       );
       return result;
     },
+
+    /**
+     * Add a tag to a project by text (get-or-create semantics).
+     * @param projectId - The project ID
+     * @param text - The tag text (e.g., site name)
+     */
+    async addTagByText(
+      projectId: number,
+      text: string
+    ): Promise<{ status: string; tag: { id: number; text: string }; created: boolean; message: string }> {
+      const result = await apiPost<{ status: string; tag: { id: number; text: string }; created: boolean; message: string }>(
+        `projects/${projectId}/add_tag_by_text/`,
+        { text }
+      );
+      // Invalidate projects queries to reflect new tag
+      mutate(
+        (key) =>
+          typeof key === "string" &&
+          (key.includes(`projects/${projectId}`) || key.includes("projects")),
+        undefined,
+        { revalidate: true }
+      );
+      return result;
+    },
   };
 }
 

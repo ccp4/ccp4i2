@@ -46,6 +46,8 @@ import { CampaignControlPanel } from "./campaign-control-panel";
 import { apiText, apiArrayBuffer, apiGet } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import { useCampaignsApi } from "../../lib/campaigns-api";
+import { usePopcorn } from "../../providers/popcorn-provider";
 import {
   ProjectGroup,
   CampaignSite,
@@ -122,6 +124,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const [isSafari] = useState(() => isSafariBrowser());
   const dispatch = useDispatch();
   const theme = useTheme();
+  const campaignsApi = useCampaignsApi();
+  const { setMessage } = usePopcorn();
 
   // Representation visibility state (lifted from control panel for URL capture)
   const [visibleRepresentations, setVisibleRepresentations] = useState<string[]>(["CRs"]);
@@ -178,6 +182,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // Ligand dictionary file ID for 2D structure display
   const [ligandDictFileId, setLigandDictFileId] = useState<number | null>(null);
   const [ligandName, setLigandName] = useState<string | null>(null);
+  // Store loaded dictionary content so we can add it to molecules
+  const loadedDictContent = useRef<string | null>(null);
 
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -295,6 +301,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     // Reset ligand info
     setLigandDictFileId(null);
     setLigandName(null);
+    loadedDictContent.current = null;
     // Reset representation state to default
     setVisibleRepresentations(["CRs"]);
     hasInitializedReps.current = false;
@@ -372,8 +379,31 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       `${f.name} (type=${f.type})`
     ));
 
-    // Find coordinate files - check for both PDB and mmCIF types
-    // mmCIF may be "chemical/x-cif" or "chemical/x-mmcif"
+    // STEP 1: Load ligand dictionary FIRST (before coordinates)
+    // This ensures coot understands ligand geometry when parsing coordinates
+    // Check all files (including imported) for dictionary
+    const ligandDictFile = files.find(
+      (f: { type: string }) => f.type === "application/refmac-dictionary"
+    );
+    if (ligandDictFile) {
+      console.log("[fetchJobFiles] Loading ligand dictionary FIRST:", ligandDictFile.name);
+      const dictUrl = `/api/proxy/ccp4i2/files/${ligandDictFile.id}/download/`;
+      await fetchDict(dictUrl);
+      // Store file ID for 2D display
+      setLigandDictFileId(ligandDictFile.id);
+      // Extract ligand name from filename (e.g., "LIG.cif" -> "LIG")
+      const name = ligandDictFile.name?.replace(/\.cif$/i, "") ||
+                   ligandDictFile.annotation ||
+                   "Ligand";
+      setLigandName(name);
+    } else {
+      loadedDictContent.current = null;
+      setLigandDictFileId(null);
+      setLigandName(null);
+    }
+
+    // STEP 2: Find and load coordinate files
+    // Check for both PDB and mmCIF types
     const coordFiles = jobOutputFiles.filter(
       (f: { type: string }) =>
         f.type === "chemical/x-pdb" ||
@@ -398,7 +428,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       await fetchMolecule(url, molName);
     }
 
-    // Load map files
+    // STEP 3: Load map files
     for (const file of jobOutputFiles) {
       if (file.type === "application/CCP4-mtz-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
@@ -407,23 +437,33 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         await fetchMap(url, molName, isDiffMap);
       }
     }
+  };
 
-    // Find ligand dictionary file (check all files, including imported)
-    // Type "application/refmac-dictionary" is the ligand dictionary CIF
-    const ligandDictFile = files.find(
-      (f: { type: string }) => f.type === "application/refmac-dictionary"
-    );
-    if (ligandDictFile) {
-      console.log("[fetchJobFiles] Found ligand dictionary:", ligandDictFile.name);
-      setLigandDictFileId(ligandDictFile.id);
-      // Extract ligand name from filename (e.g., "LIG.cif" -> "LIG")
-      const name = ligandDictFile.name?.replace(/\.cif$/i, "") ||
-                   ligandDictFile.annotation ||
-                   "Ligand";
-      setLigandName(name);
-    } else {
-      setLigandDictFileId(null);
-      setLigandName(null);
+  /**
+   * Load a ligand dictionary into coot's global dictionary store.
+   * This should be called BEFORE loading coordinates so coot understands ligand geometry.
+   */
+  const fetchDict = async (url: string): Promise<string | null> => {
+    if (!commandCentre.current) return null;
+    try {
+      const fileContent = await apiText(url);
+      // Load dictionary globally into coot (molNo=-999999 means global)
+      await commandCentre.current.cootCommand(
+        {
+          returnType: "status",
+          command: "read_dictionary_string",
+          commandArgs: [fileContent, -999999],
+          changesMolecules: [],
+        },
+        false
+      );
+      console.log("[fetchDict] Loaded dictionary globally");
+      // Store content so we can add it to molecules later
+      loadedDictContent.current = fileContent;
+      return fileContent;
+    } catch (err) {
+      console.error("[fetchDict] Failed to load dictionary:", err);
+      return null;
     }
   };
 
@@ -444,6 +484,17 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         throw new Error("Cannot read the fetched molecule...");
       }
       newMolecule.uniqueId = url;
+
+      // Add dictionary to molecule if we have one loaded
+      // This ensures the molecule understands ligand geometry
+      if (loadedDictContent.current) {
+        try {
+          await newMolecule.addDict(loadedDictContent.current);
+          console.log("[fetchMolecule] Added dictionary to molecule");
+        } catch (err) {
+          console.warn("[fetchMolecule] Failed to add dictionary:", err);
+        }
+      }
 
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
@@ -613,6 +664,26 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [dispatch, maps]
   );
 
+  // Handle tagging the currently selected project with a site name
+  const handleTagProjectWithSite = useCallback(
+    async (siteName: string) => {
+      if (!selectedMemberProjectId) {
+        setMessage("Please select a member project first");
+        return;
+      }
+      try {
+        await campaignsApi.addTagByText(selectedMemberProjectId, siteName);
+        const memberProject = memberProjects.find((p) => p.id === selectedMemberProjectId);
+        const projectName = memberProject?.name || `Project ${selectedMemberProjectId}`;
+        setMessage(`Tagged "${projectName}" with "${siteName}"`);
+      } catch (err) {
+        console.error("Failed to tag project:", err);
+        setMessage("Failed to tag project");
+      }
+    },
+    [selectedMemberProjectId, campaignsApi, setMessage, memberProjects]
+  );
+
   if (isSafari) {
     return <SafariWarning />;
   }
@@ -672,6 +743,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             ligandName={ligandName}
             maps={maps}
             onMapContourLevelChange={handleMapContourLevelChange}
+            onTagProjectWithSite={handleTagProjectWithSite}
           />
         </div>
       </div>
