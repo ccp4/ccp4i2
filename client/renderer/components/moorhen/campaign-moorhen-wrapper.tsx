@@ -13,7 +13,10 @@
 import {
   addMolecule,
   addMap,
+  removeMolecule,
+  removeMap,
   setActiveMap,
+  setContourLevel,
   setWidth,
   setHeight,
   setTheme,
@@ -172,11 +175,18 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const timeCapsuleRef = useRef(null);
   const loadedFileSource = useRef<FileSource | null>(null);
 
+  // Ligand dictionary file ID for 2D structure display
+  const [ligandDictFileId, setLigandDictFileId] = useState<number | null>(null);
+  const [ligandName, setLigandName] = useState<string | null>(null);
+
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
   );
   const molecules = useSelector(
     (state: moorhen.State) => state.molecules.moleculeList
+  );
+  const maps = useSelector(
+    (state: moorhen.State) => (state as unknown as { maps: moorhen.Map[] }).maps || []
   );
   const store = useStore();
   const { cootModule } = useCCP4i2Window();
@@ -268,6 +278,28 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     };
   }, []);
 
+  // Cleanup all loaded molecules and maps
+  const cleanupLoadedContent = useCallback(() => {
+    // Remove all molecules
+    for (const mol of molecules) {
+      dispatch(removeMolecule(mol));
+      mol.delete();
+    }
+    // Remove all maps
+    for (const map of maps) {
+      dispatch(removeMap(map));
+      map.delete();
+    }
+    // Trigger redraw
+    dispatch(setRequestDrawScene(true));
+    // Reset ligand info
+    setLigandDictFileId(null);
+    setLigandName(null);
+    // Reset representation state to default
+    setVisibleRepresentations(["CRs"]);
+    hasInitializedReps.current = false;
+  }, [molecules, maps, dispatch]);
+
   // Load files when fileSource changes
   useEffect(() => {
     if (!cootInitialized || !cootModule) return;
@@ -276,6 +308,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     const sourceChanged =
       JSON.stringify(loadedFileSource.current) !== JSON.stringify(fileSource);
     if (!sourceChanged) return;
+
+    // Cleanup existing content before loading new files
+    if (loadedFileSource.current !== null) {
+      cleanupLoadedContent();
+    }
 
     loadedFileSource.current = fileSource;
 
@@ -286,7 +323,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     } else if (fileSource.type === "job") {
       fetchJobFiles(fileSource.jobId);
     }
-  }, [fileSource, cootInitialized, cootModule]);
+  }, [fileSource, cootInitialized, cootModule, cleanupLoadedContent]);
 
   useEffect(() => {
     if (cootInitialized) {
@@ -369,6 +406,24 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         const isDiffMap = file.sub_type === 2;
         await fetchMap(url, molName, isDiffMap);
       }
+    }
+
+    // Find ligand dictionary file (check all files, including imported)
+    // Type "application/refmac-dictionary" is the ligand dictionary CIF
+    const ligandDictFile = files.find(
+      (f: { type: string }) => f.type === "application/refmac-dictionary"
+    );
+    if (ligandDictFile) {
+      console.log("[fetchJobFiles] Found ligand dictionary:", ligandDictFile.name);
+      setLigandDictFileId(ligandDictFile.id);
+      // Extract ligand name from filename (e.g., "LIG.cif" -> "LIG")
+      const name = ligandDictFile.name?.replace(/\.cif$/i, "") ||
+                   ligandDictFile.annotation ||
+                   "Ligand";
+      setLigandName(name);
+    } else {
+      setLigandDictFileId(null);
+      setLigandName(null);
     }
   };
 
@@ -534,6 +589,30 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [store, sites, onUpdateSites]
   );
 
+  // Handle map contour level changes
+  // NOTE: This must be synchronous for slider dragging to work smoothly.
+  // The map redraw is fired off without awaiting to prevent blocking.
+  const handleMapContourLevelChange = useCallback(
+    (molNo: number, level: number) => {
+      // Update Redux state - Moorhen's getMapContourParams() reads contourLevel from here
+      // Note: Despite TypeScript def saying 'level', Moorhen internally expects 'contourLevel'
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      dispatch(setContourLevel({ molNo, contourLevel: level } as any));
+
+      // Find the map and redraw its contour (fire-and-forget, don't block)
+      const map = maps.find((m) => m.molNo === molNo);
+      if (map) {
+        map.drawMapContour().catch((err) => {
+          console.error("Failed to redraw map contour:", err);
+        });
+      }
+
+      // Trigger scene redraw
+      dispatch(setRequestDrawScene(true));
+    },
+    [dispatch, maps]
+  );
+
   if (isSafari) {
     return <SafariWarning />;
   }
@@ -589,6 +668,10 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             molecules={molecules}
             visibleRepresentations={visibleRepresentations}
             onRepresentationsChange={setVisibleRepresentations}
+            ligandDictFileId={ligandDictFileId}
+            ligandName={ligandName}
+            maps={maps}
+            onMapContourLevelChange={handleMapContourLevelChange}
           />
         </div>
       </div>

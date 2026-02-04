@@ -169,3 +169,79 @@ class FileViewSet(ModelViewSet):
         except Exception as err:
             logger.exception("Failed to preview file %s", pk, exc_info=err)
             return api_error(str(err), status=500)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.FileSerializer,
+    )
+    def molblock(self, request, pk=None):
+        """
+        Convert a ligand dictionary CIF file to MolBlock format.
+
+        This endpoint takes a refmac dictionary CIF file (type application/refmac-dictionary)
+        and converts it to MolBlock format suitable for 2D rendering with RDKit.
+
+        Returns:
+            JSON with 'molblock' key containing the MolBlock string,
+            'ligand_code' with the 3-letter ligand code from the CIF,
+            or error if conversion fails.
+        """
+        try:
+            the_file = models.File.objects.get(id=pk)
+
+            # Verify file type is a ligand dictionary
+            if the_file.type.name != "application/refmac-dictionary":
+                return api_error(
+                    f"File type must be application/refmac-dictionary, got {the_file.type.name}",
+                    status=400
+                )
+
+            # Check file exists
+            if not the_file.path.exists():
+                return api_error("File not found on disk", status=404)
+
+            file_path = str(the_file.path)
+
+            # Extract ligand code from CIF using gemmi
+            ligand_code = None
+            try:
+                import gemmi
+                doc = gemmi.cif.read_file(file_path)
+                for block in doc:
+                    # Try to get comp_id from atom loop
+                    for comp_id in block.find_loop("_chem_comp_atom.comp_id"):
+                        ligand_code = comp_id
+                        break
+                    if ligand_code:
+                        break
+                    # Fallback: try block name (often the ligand code)
+                    if block.name and len(block.name) <= 4:
+                        ligand_code = block.name
+                        break
+            except Exception as e:
+                logger.warning("Could not extract ligand code from CIF: %s", e)
+
+            # Import the conversion function
+            from ..wrappers.acedrgNew.script.cifToMolBlock import cifFileToMolBlock
+
+            # Convert CIF to MolBlock
+            molblock = cifFileToMolBlock(file_path)
+
+            if not molblock:
+                return api_error("Failed to convert CIF to MolBlock - check server logs for details", status=400)
+
+            return api_success({
+                "molblock": molblock,
+                "ligand_code": ligand_code,
+            })
+
+        except models.File.DoesNotExist:
+            logger.exception("File %s not found", pk)
+            return api_error("File not found", status=404)
+        except ImportError as err:
+            logger.exception("Failed to import cifToMolBlock: %s", err)
+            return api_error("MolBlock conversion not available (missing RDKit/gemmi)", status=500)
+        except Exception as err:
+            logger.exception("Failed to convert file %s to molblock", pk, exc_info=err)
+            return api_error(str(err), status=500)
