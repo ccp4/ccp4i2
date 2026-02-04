@@ -47,6 +47,7 @@ import {
   Edit as EditIcon,
   Home as HomeIcon,
   Upload as UploadIcon,
+  Label as LabelIcon,
 } from "@mui/icons-material";
 import { moorhen } from "moorhen/types/moorhen";
 import { CopyViewLinkButton } from "./copy-view-link-button";
@@ -84,6 +85,8 @@ interface CampaignControlPanelProps {
   maps?: moorhen.Map[];
   /** Callback to change map contour level */
   onMapContourLevelChange?: (molNo: number, level: number) => void;
+  /** Callback to tag the currently selected project with a site name */
+  onTagProjectWithSite?: (siteName: string) => Promise<void>;
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
@@ -105,6 +108,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   ligandName,
   maps,
   onMapContourLevelChange,
+  onTagProjectWithSite,
 }) => {
   // Get contour levels from Redux state
   const contourLevels = useSelector(
@@ -293,29 +297,57 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       {maps && maps.length > 0 && onMapContourLevelChange && (
         <Box sx={{ mb: 2 }}>
           <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
-            Map Contours
+            Map Contours (e/Å³)
           </Typography>
           {maps.map((map) => {
             const level = getContourLevel(map.molNo);
+            // Difference/anomalous maps need 2x higher values
+            const isDiff = map.isDifference;
+            const multiplier = isDiff ? 2 : 1;
+            // Logarithmic scale: 10^-3 to 10^1 for regular maps (~0.001 to ~10)
+            // For diff maps: ~0.002 to ~20
+            const minLog = -3;  // 10^-3 = 0.001
+            const maxLog = 1.0; // 10^1 = 10
+            const minValue = Math.pow(10, minLog) * multiplier;
+            const maxValue = Math.pow(10, maxLog) * multiplier;
+
+            // Convert actual value to slider position (0-100)
+            const valueToSlider = (v: number) => {
+              const clampedV = Math.max(minValue, Math.min(maxValue, v));
+              return ((Math.log10(clampedV / multiplier) - minLog) / (maxLog - minLog)) * 100;
+            };
+
+            // Convert slider position to actual value
+            const sliderToValue = (s: number) => {
+              const logValue = minLog + (s / 100) * (maxLog - minLog);
+              return Math.pow(10, logValue) * multiplier;
+            };
+
+            const sliderPosition = valueToSlider(level);
+
             return (
               <Box key={map.molNo} sx={{ mb: 1.5 }}>
                 <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
                   <Typography variant="caption" sx={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                     {map.name || `Map ${map.molNo}`}
+                    {isDiff && <span style={{ color: "#888", marginLeft: 4 }}>(diff)</span>}
                   </Typography>
-                  <Typography variant="caption" color="text.secondary" sx={{ minWidth: 45, textAlign: "right" }}>
-                    {level.toFixed(2)} σ
+                  <Typography variant="caption" color="text.secondary" sx={{ minWidth: 55, textAlign: "right" }}>
+                    {level < 0.01 ? level.toExponential(1) : level.toFixed(3)}
                   </Typography>
                 </Stack>
                 <Slider
                   size="small"
-                  value={level}
-                  onChange={(_e, value) => onMapContourLevelChange(map.molNo, value as number)}
-                  min={0.1}
-                  max={5.0}
-                  step={0.1}
+                  value={sliderPosition}
+                  onChange={(_e, value) => onMapContourLevelChange(map.molNo, sliderToValue(value as number))}
+                  min={0}
+                  max={100}
+                  step={1}
                   valueLabelDisplay="auto"
-                  valueLabelFormat={(v) => `${v.toFixed(1)}σ`}
+                  valueLabelFormat={(v) => {
+                    const actualValue = sliderToValue(v);
+                    return actualValue < 0.01 ? actualValue.toExponential(1) : actualValue.toFixed(3);
+                  }}
                   sx={{ py: 0 }}
                 />
               </Box>
@@ -457,6 +489,18 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                       <PlaceIcon fontSize="small" />
                     </IconButton>
                   </Tooltip>
+                  {selectedMemberProjectId && onTagProjectWithSite && (
+                    <Tooltip title="Tag project with this site">
+                      <IconButton
+                        edge="end"
+                        size="small"
+                        onClick={() => onTagProjectWithSite(site.name)}
+                        color="success"
+                      >
+                        <LabelIcon fontSize="small" />
+                      </IconButton>
+                    </Tooltip>
+                  )}
                   <Tooltip title="Edit site">
                     <IconButton
                       edge="end"

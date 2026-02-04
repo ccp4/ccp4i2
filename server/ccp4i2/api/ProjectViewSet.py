@@ -528,6 +528,64 @@ class ProjectViewSet(ModelViewSet):
 
     @action(
         detail=True,
+        methods=["post"],
+        url_path="add_tag_by_text",
+        serializer_class=serializers.ProjectTagSerializer,
+    )
+    def add_tag_by_text(self, request, pk=None):
+        """
+        Add a tag to a project by text (get-or-create semantics).
+
+        POST: Expects 'text' in request data. Creates the tag if it doesn't exist,
+              then adds it to the project.
+
+        Returns the tag that was added.
+        """
+        try:
+            project = models.Project.objects.get(pk=pk)
+            text = request.data.get("text")
+
+            if not text:
+                return Response(
+                    {"error": "text is required"},
+                    status=status.HTTP_400_BAD_REQUEST,
+                )
+
+            # Get or create the tag (with no parent)
+            tag, created = models.ProjectTag.objects.get_or_create(
+                text=text,
+                parent=None,
+            )
+
+            # Add tag to project
+            project.tags.add(tag)
+            project.last_access = datetime.datetime.now(tz=timezone("UTC"))
+            project.save()
+
+            return Response(
+                {
+                    "status": "success",
+                    "tag": serializers.ProjectTagSerializer(tag).data,
+                    "created": created,
+                    "message": f"Tag '{tag.text}' added to project",
+                },
+                status=status.HTTP_200_OK,
+            )
+
+        except models.Project.DoesNotExist:
+            return Response(
+                {"error": "Project not found"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+        except Exception as e:
+            logger.exception("Failed to add tag to project by text", exc_info=e)
+            return Response(
+                {"error": str(e)},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+    @action(
+        detail=True,
         methods=["get"],
         serializer_class=serializers.ProjectSerializer,
     )
