@@ -58,6 +58,9 @@ export function encodeViewState(state: MoorhenViewState): string {
   if (state.m && Object.keys(state.m).length > 0) compacted.m = state.m;
   if (state.p && Object.keys(state.p).length > 0) compacted.p = state.p;
 
+  // Include representations if present
+  if (state.r && state.r.length > 0) compacted.r = state.r;
+
   const json = JSON.stringify(compacted);
   console.log("encodeViewState - JSON to encode:", json);
 
@@ -121,6 +124,16 @@ export function decodeViewState(encoded: string): MoorhenViewState | null {
 }
 
 /**
+ * Check if two arrays have the same elements (order-independent).
+ */
+function arraysEqual(a: string[], b: readonly string[]): boolean {
+  if (a.length !== b.length) return false;
+  const sortedA = [...a].sort();
+  const sortedB = [...b].sort();
+  return sortedA.every((v, i) => v === sortedB[i]);
+}
+
+/**
  * Capture current view state from Moorhen Redux store.
  *
  * @param store - Redux store instance
@@ -128,13 +141,15 @@ export function decodeViewState(encoded: string): MoorhenViewState | null {
  * @param maps - Array of loaded maps
  * @param visibleMolecules - Array of visible molecule molNo values
  * @param visibleMaps - Array of visible map molNo values
+ * @param representations - Array of visible representation types (e.g., ["CRs", "CBs"])
  */
 export function captureViewState(
   store: { getState: () => moorhen.State },
   molecules: moorhen.Molecule[],
   maps: moorhen.Map[],
   visibleMolecules: number[],
-  visibleMaps: number[]
+  visibleMaps: number[],
+  representations?: string[]
 ): MoorhenViewState {
   const state = store.getState();
   // glRef is at the root level of the Redux store
@@ -228,6 +243,11 @@ export function captureViewState(
   }
   if (Object.keys(mapVisibility).length > 0) {
     viewState.p = mapVisibility;
+  }
+
+  // Capture representations (only if different from default)
+  if (representations && !arraysEqual(representations, MOORHEN_DEFAULTS.representations)) {
+    viewState.r = representations;
   }
 
   return viewState;
