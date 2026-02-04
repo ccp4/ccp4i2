@@ -551,19 +551,16 @@ export function PredicateBuilder({
           />
         </Box>
 
-        {/* Status filter */}
-        <FormControl size="small" sx={{ minWidth: 130 }}>
+        {/* Status filter - simplified to Valid (only valid KPIs in aggregations) or Any (all data) */}
+        <FormControl size="small" sx={{ minWidth: 110 }}>
           <InputLabel>Status</InputLabel>
           <Select
-            value={status}
+            value={status === 'valid' ? 'valid' : ''}
             label="Status"
             onChange={(e) => setStatus(e.target.value)}
           >
             <MenuItem value="valid">Valid</MenuItem>
-            <MenuItem value="invalid">Invalid</MenuItem>
-            <MenuItem value="unassigned">Unassigned</MenuItem>
-            <MenuItem value="no_analysis">No Analysis</MenuItem>
-            <MenuItem value="">All</MenuItem>
+            <MenuItem value="">Any</MenuItem>
           </Select>
         </FormControl>
       </Box>

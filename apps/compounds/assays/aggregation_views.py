@@ -14,6 +14,14 @@ from compounds.registry.models import Target, MolecularPropertyThreshold
 from compounds.registry.serializers import MolecularPropertyThresholdSerializer
 from .models import Protocol
 from .aggregation import (
+    # Query mode decision
+    should_use_compound_centric_mode,
+    # Compound-centric functions (used when targets specified)
+    build_compound_queryset,
+    aggregate_compact_from_compounds,
+    aggregate_medium_from_compounds,
+    aggregate_long_from_compounds,
+    # DataSeries-centric functions (used when only protocols specified)
     build_data_series_queryset,
     aggregate_compact,
     aggregate_medium,
@@ -60,30 +68,49 @@ class AggregationViewSet(viewsets.ViewSet):
                 "compounds": ["<uuid>", ...],
                 "compound_search": "NCL-00026",
                 "protocols": ["<uuid>", ...],
-                "status": "valid"  // optional, defaults to "valid"
+                "status": "valid"  // optional, defaults to "valid" (only for dataseries-centric mode)
             },
             "output_format": "compact" | "medium" | "long",
             "aggregations": ["geomean", "count", "stdev", "list"],
             "group_by_batch": false,  // optional, when true splits results by batch
-            "include_tested_no_data": false,  // optional, include compounds tested but with no valid KPI
+            "include_tested_no_data": false,  // optional, only used in dataseries-centric mode
             "include_properties": ["molecular_weight", "clogp", ...]  // optional, molecular properties to include
         }
+
+        Query Modes:
+        ------------
+        The API uses two distinct query strategies based on predicates:
+
+        1. **Compound-centric mode** (when targets are specified):
+           - Returns ALL compounds registered to the selected targets
+           - Compounds with no data series still appear (with count=0)
+           - If protocols are also specified, data is filtered to those protocols
+           - Status filtering happens during aggregation (only valid KPIs in geomean/stdev)
+           - include_tested_no_data is ignored (always true in this mode)
+
+        2. **DataSeries-centric mode** (when only protocols specified, no targets):
+           - Returns only compounds that have data for the specified protocols
+           - Compounds without data for those protocols are excluded
+           - Use include_tested_no_data=true to show compounds tested but with no valid KPI
 
         Returns:
             Compact format: One row per compound (or compound/batch) with protocol columns
             Medium format: One row per compound-protocol (or compound-batch-protocol) pair
             Long format: One row per measurement (always includes batch info)
 
+        Data Counts:
+            Each protocol entry includes:
+            - count: Number of valid KPI values (used in geomean/stdev)
+            - tested: Total DataSeries count
+            - no_analysis: DataSeries where analysis is NULL
+            - invalid: DataSeries where analysis.status='invalid'
+            - unassigned: DataSeries where analysis.status='unassigned'
+
         When group_by_batch is true:
             - Compact/Medium: Separate rows are created for each batch of a compound
             - Long: Batch info is always included; the flag affects sorting/display hints
             - Rows include batch_id and batch_number fields
             - meta.group_by_batch indicates the grouping mode used
-
-        When include_tested_no_data is true:
-            - Includes compounds that were tested but have no valid KPI values
-            - These appear with count=0 and null aggregation values
-            - Useful for identifying inactive or problematic compounds
 
         When include_properties is provided:
             - Adds molecular property columns to each row
@@ -122,30 +149,59 @@ class AggregationViewSet(viewsets.ViewSet):
                     status=status.HTTP_400_BAD_REQUEST
                 )
 
-        # Build and execute query
-        queryset = build_data_series_queryset(predicates)
+        # Determine query mode based on predicates
+        # Compound-centric: when targets are specified, show ALL compounds for those targets
+        # DataSeries-centric: when only protocols specified, show compounds with data
+        use_compound_centric = should_use_compound_centric_mode(predicates)
+        protocol_ids = predicates.get('protocols', [])
 
-        if output_format == 'compact':
-            result = aggregate_compact(
-                queryset, aggregations,
-                group_by_batch=group_by_batch,
-                include_tested_no_data=include_tested_no_data,
-                include_properties=include_properties,
-            )
-        elif output_format == 'medium':
-            result = aggregate_medium(
-                queryset, aggregations,
-                group_by_batch=group_by_batch,
-                include_tested_no_data=include_tested_no_data,
-                include_properties=include_properties,
-            )
+        if use_compound_centric:
+            # Compound-centric mode: ALL compounds for selected targets appear
+            compound_queryset = build_compound_queryset(predicates)
+
+            if output_format == 'compact':
+                result = aggregate_compact_from_compounds(
+                    compound_queryset, protocol_ids, aggregations,
+                    group_by_batch=group_by_batch,
+                    include_properties=include_properties,
+                )
+            elif output_format == 'medium':
+                result = aggregate_medium_from_compounds(
+                    compound_queryset, protocol_ids, aggregations,
+                    group_by_batch=group_by_batch,
+                    include_properties=include_properties,
+                )
+            else:
+                result = aggregate_long_from_compounds(
+                    compound_queryset, protocol_ids, aggregations,
+                    group_by_batch=group_by_batch,
+                    include_properties=include_properties,
+                )
         else:
-            result = aggregate_long(
-                queryset, aggregations,
-                group_by_batch=group_by_batch,
-                include_tested_no_data=include_tested_no_data,
-                include_properties=include_properties,
-            )
+            # DataSeries-centric mode: only compounds with data for specified protocols
+            queryset = build_data_series_queryset(predicates)
+
+            if output_format == 'compact':
+                result = aggregate_compact(
+                    queryset, aggregations,
+                    group_by_batch=group_by_batch,
+                    include_tested_no_data=include_tested_no_data,
+                    include_properties=include_properties,
+                )
+            elif output_format == 'medium':
+                result = aggregate_medium(
+                    queryset, aggregations,
+                    group_by_batch=group_by_batch,
+                    include_tested_no_data=include_tested_no_data,
+                    include_properties=include_properties,
+                )
+            else:
+                result = aggregate_long(
+                    queryset, aggregations,
+                    group_by_batch=group_by_batch,
+                    include_tested_no_data=include_tested_no_data,
+                    include_properties=include_properties,
+                )
 
         # Include RAG thresholds if properties were requested
         if include_properties:

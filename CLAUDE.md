@@ -100,6 +100,22 @@ Run tests with proper CCP4 environment configuration:
 
 The `run_test.sh` script sets up the required environment variables and paths.
 
+### Compounds App Tests
+
+The compounds app has its own Django settings and requires a different test configuration:
+
+```bash
+cd server
+source ../../ccp4-20251105/bin/ccp4.setup-sh
+PYTHONPATH="$PWD:$PWD/../apps" DJANGO_SETTINGS_MODULE=compounds.settings \
+  ccp4-python -m pytest ../apps/compounds/assays/tests/test_aggregation.py -v
+```
+
+Key differences from main ccp4i2 tests:
+- Uses `compounds.settings` instead of `ccp4i2.config.test_settings`
+- Requires `apps/` directory on PYTHONPATH
+- Tests are located in `apps/compounds/` subdirectories
+
 ## Import Pattern
 
 Code in wrappers/pipelines uses the baselayer compatibility module:

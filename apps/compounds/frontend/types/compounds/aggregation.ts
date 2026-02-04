@@ -72,7 +72,7 @@ export interface Predicates {
   compound_search?: string;
   /** Protocol UUIDs to filter by */
   protocols?: string[];
-  /** Analysis status filter (default: 'valid'). Use 'no_analysis' for DataSeries where analysis failed. */
+  /** Analysis status filter: 'valid' (only valid KPIs in aggregations) or '' (any status). */
   status?: AnalysisStatusFilter | '';
 }
 
@@ -120,6 +120,10 @@ export interface AggregationMeta {
   compound_count: number;
   /** Number of rows (may differ from compound_count when group_by_batch=true) */
   row_count?: number;
+  /** Number of compounds with data (long format only) */
+  compounds_with_data?: number;
+  /** Number of compounds without data for selected protocols (long format only) */
+  compounds_without_data?: number;
   protocol_count: number;
   total_measurements: number;
   /** Whether results are grouped by batch */
@@ -220,10 +224,26 @@ export interface LongRow {
   properties?: MolecularPropertyValues;
 }
 
+/** Compound without data (for long format compound-centric mode) */
+export interface CompoundWithoutData {
+  compound_id: string;
+  formatted_id: string;
+  smiles: string | null;
+  target_name: string | null;
+  /** Molecular properties (only present when include_properties is specified) */
+  properties?: MolecularPropertyValues;
+}
+
 /** Long format response (one row per measurement) */
 export interface LongAggregationResponse {
   meta: AggregationMeta;
   data: LongRow[];
+  /**
+   * Compounds that have no data series for the selected protocols.
+   * Only present in compound-centric mode (when targets or compounds are specified).
+   * Displayed separately from the measurement rows.
+   */
+  compounds_without_data?: CompoundWithoutData[];
   /** RAG thresholds for included properties (only present when include_properties is specified) */
   property_thresholds?: MolecularPropertyThreshold[];
 }
