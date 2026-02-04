@@ -265,6 +265,9 @@ class DataSeriesListSerializer(serializers.ModelSerializer):
     compound_formatted_id = serializers.CharField(
         source='compound.formatted_id', read_only=True
     )
+    compound_smiles = serializers.CharField(
+        source='compound.smiles', read_only=True
+    )
     batch_number = serializers.IntegerField(
         source='batch.batch_number', read_only=True
     )
@@ -278,7 +281,7 @@ class DataSeriesListSerializer(serializers.ModelSerializer):
     class Meta:
         model = DataSeries
         fields = [
-            'id', 'assay', 'compound', 'compound_formatted_id',
+            'id', 'assay', 'compound', 'compound_formatted_id', 'compound_smiles',
             'batch', 'batch_number',
             'compound_name',
             'row', 'start_column', 'end_column',

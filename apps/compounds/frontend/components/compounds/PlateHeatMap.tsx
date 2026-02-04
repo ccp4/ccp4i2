@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -11,9 +11,25 @@ import {
   DialogContent,
   IconButton,
   Button,
+  Skeleton,
 } from '@mui/material';
 import { Close, Palette } from '@mui/icons-material';
 import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
+import { useRDKit } from '@/lib/compounds/rdkit-context';
+
+/**
+ * Compound information for a well position.
+ */
+export interface WellCompoundInfo {
+  compoundId?: string;      // Formatted ID like "TMB-001"
+  compoundName?: string;    // Human-readable name
+  smiles?: string;          // SMILES string for molecule rendering
+}
+
+/**
+ * Map from well position (e.g., "A1", "B12") to compound info.
+ */
+export type WellCompoundMapping = Record<string, WellCompoundInfo>;
 
 const PLATE_DIMENSIONS: Record<PlateFormat, { rows: number; cols: number }> = {
   24: { rows: 4, cols: 6 },
@@ -30,12 +46,72 @@ function excelColumnToIndex(col: string): number {
   return result - 1; // 0-indexed
 }
 
+/**
+ * Small molecule thumbnail for tooltips.
+ * Renders SMILES as an SVG using RDKit.
+ */
+function MoleculeTooltipThumb({ smiles, size = 80 }: { smiles: string; size?: number }) {
+  const { rdkitModule, isLoading } = useRDKit();
+  const [svgUrl, setSvgUrl] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!rdkitModule || !smiles) return;
+
+    try {
+      const mol = rdkitModule.get_mol(smiles);
+      if (!mol) return;
+
+      const svg = mol.get_svg(size, size);
+      mol.delete();
+
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      setSvgUrl(url);
+
+      return () => URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('RDKit error in tooltip:', err);
+    }
+  }, [smiles, rdkitModule, size]);
+
+  if (isLoading) {
+    return <Skeleton variant="rectangular" width={size} height={size} />;
+  }
+
+  if (!svgUrl) {
+    return null;
+  }
+
+  return (
+    <Box
+      sx={{
+        width: size,
+        height: size,
+        bgcolor: 'white',
+        borderRadius: 0.5,
+        mt: 0.5,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <img
+        src={svgUrl}
+        alt=""
+        style={{ width: size, height: size, objectFit: 'contain' }}
+      />
+    </Box>
+  );
+}
+
 interface PlateHeatMapProps {
   cells: (string | number | null)[][];
   plateLayout: PlateLayout;
+  /** Optional mapping from well positions (e.g., "A1") to compound info */
+  compoundMapping?: WellCompoundMapping;
 }
 
-export function PlateHeatMap({ cells, plateLayout }: PlateHeatMapProps) {
+export function PlateHeatMap({ cells, plateLayout, compoundMapping }: PlateHeatMapProps) {
   const format = plateLayout.plate_format || 384;
   const { rows: numRows, cols: numCols } = PLATE_DIMENSIONS[format];
 
@@ -225,13 +301,16 @@ export function PlateHeatMap({ cells, plateLayout }: PlateHeatMapProps) {
               {/* Cells */}
               {rowData.map((value, col) => {
                 const cellType = getCellType(row, col);
+                const wellPosition = `${String.fromCharCode('A'.charCodeAt(0) + row)}${col + 1}`;
+                const compoundInfo = compoundMapping?.[wellPosition];
+
                 return (
                   <Tooltip
                     key={col}
                     title={
-                      <Box>
-                        <Typography variant="caption" display="block">
-                          {String.fromCharCode('A'.charCodeAt(0) + row)}{col + 1}
+                      <Box sx={{ minWidth: compoundInfo?.smiles ? 100 : 'auto' }}>
+                        <Typography variant="caption" display="block" fontWeight="bold">
+                          {wellPosition}
                         </Typography>
                         <Typography variant="caption" display="block">
                           Value: {value !== null ? value.toFixed(2) : 'N/A'}
@@ -239,6 +318,24 @@ export function PlateHeatMap({ cells, plateLayout }: PlateHeatMapProps) {
                         <Typography variant="caption" display="block" sx={{ textTransform: 'capitalize' }}>
                           Type: {cellType}
                         </Typography>
+                        {compoundInfo && (
+                          <>
+                            <Divider sx={{ my: 0.5, borderColor: 'rgba(255,255,255,0.3)' }} />
+                            {compoundInfo.compoundName && (
+                              <Typography variant="caption" display="block">
+                                Name: {compoundInfo.compoundName}
+                              </Typography>
+                            )}
+                            {compoundInfo.compoundId && (
+                              <Typography variant="caption" display="block" fontFamily="monospace">
+                                ID: {compoundInfo.compoundId}
+                              </Typography>
+                            )}
+                            {compoundInfo.smiles && (
+                              <MoleculeTooltipThumb smiles={compoundInfo.smiles} size={80} />
+                            )}
+                          </>
+                        )}
                       </Box>
                     }
                     arrow
@@ -282,9 +379,11 @@ interface PlateHeatMapDialogProps {
   onClose: () => void;
   cells: (string | number | null)[][];
   plateLayout: PlateLayout;
+  /** Optional mapping from well positions (e.g., "A1") to compound info */
+  compoundMapping?: WellCompoundMapping;
 }
 
-export function PlateHeatMapDialog({ open, onClose, cells, plateLayout }: PlateHeatMapDialogProps) {
+export function PlateHeatMapDialog({ open, onClose, cells, plateLayout, compoundMapping }: PlateHeatMapDialogProps) {
   return (
     <Dialog open={open} onClose={onClose} maxWidth="lg" fullWidth>
       <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -297,7 +396,7 @@ export function PlateHeatMapDialog({ open, onClose, cells, plateLayout }: PlateH
         </IconButton>
       </DialogTitle>
       <DialogContent>
-        <PlateHeatMap cells={cells} plateLayout={plateLayout} />
+        <PlateHeatMap cells={cells} plateLayout={plateLayout} compoundMapping={compoundMapping} />
       </DialogContent>
     </Dialog>
   );
@@ -309,11 +408,13 @@ export function PlateHeatMapDialog({ open, onClose, cells, plateLayout }: PlateH
 interface PlateHeatMapButtonProps {
   cells: (string | number | null)[][];
   plateLayout: PlateLayout;
+  /** Optional mapping from well positions (e.g., "A1") to compound info */
+  compoundMapping?: WellCompoundMapping;
   variant?: 'text' | 'outlined' | 'contained';
   size?: 'small' | 'medium' | 'large';
 }
 
-export function PlateHeatMapButton({ cells, plateLayout, variant = 'outlined', size = 'small' }: PlateHeatMapButtonProps) {
+export function PlateHeatMapButton({ cells, plateLayout, compoundMapping, variant = 'outlined', size = 'small' }: PlateHeatMapButtonProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -331,6 +432,7 @@ export function PlateHeatMapButton({ cells, plateLayout, variant = 'outlined', s
         onClose={() => setOpen(false)}
         cells={cells}
         plateLayout={plateLayout}
+        compoundMapping={compoundMapping}
       />
     </>
   );

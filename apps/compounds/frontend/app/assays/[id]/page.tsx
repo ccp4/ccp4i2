@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useState, useCallback } from 'react';
+import { use, useState, useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Typography,
@@ -38,7 +38,7 @@ import { DataTable, Column } from '@/components/data-table';
 import { DoseResponseThumb } from '@/components/compounds/DoseResponseChart';
 import { CompoundStructureCell } from '@/components/compounds/CompoundStructureCell';
 import { ImageBatchUpload } from '@/components/compounds/ImageBatchUpload';
-import { PlateHeatMapDialog } from '@/components/compounds/PlateHeatMap';
+import { PlateHeatMapDialog, WellCompoundMapping } from '@/components/compounds/PlateHeatMap';
 import { AssayEditDialog } from '@/components/compounds/AssayEditDialog';
 import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
 import { QCPanel } from '@/components/compounds/QCPanel';
@@ -116,6 +116,32 @@ export default function AssayDetailPage({ params }: PageProps) {
   const { data: target } = api.get<Target>(
     assay?.target ? `targets/${assay.target}/` : null
   );
+
+  // Build compound mapping for PlateHeatMap tooltips
+  // Maps well positions (e.g., "A1") to compound info
+  const compoundMapping = useMemo((): WellCompoundMapping => {
+    if (!dataSeries) return {};
+
+    const mapping: WellCompoundMapping = {};
+
+    for (const series of dataSeries) {
+      const rowLetter = String.fromCharCode('A'.charCodeAt(0) + series.row);
+      const compoundInfo = {
+        compoundId: series.compound_formatted_id,
+        compoundName: series.compound_name || undefined,
+        smiles: series.compound_smiles || undefined,
+      };
+
+      // Map all wells in the column range for this row to this compound
+      // start_column and end_column are 1-indexed
+      for (let col = series.start_column; col <= series.end_column; col++) {
+        const wellPosition = `${rowLetter}${col}`;
+        mapping[wellPosition] = compoundInfo;
+      }
+    }
+
+    return mapping;
+  }, [dataSeries]);
 
   const handleDelete = async () => {
     setDeleting(true);
@@ -658,6 +684,7 @@ export default function AssayDetailPage({ params }: PageProps) {
           onClose={() => setHeatMapOpen(false)}
           cells={heatMapCells}
           plateLayout={protocol.plate_layout_config}
+          compoundMapping={compoundMapping}
         />
       )}
     </>
