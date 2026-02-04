@@ -120,11 +120,47 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const dispatch = useDispatch();
   const theme = useTheme();
 
+  // Representation visibility state (lifted from control panel for URL capture)
+  const [visibleRepresentations, setVisibleRepresentations] = useState<string[]>(["CRs"]);
+
+  // Apply representations to all molecules (used when restoring from URL)
+  const applyRepresentationsToMolecules = useCallback(
+    async (newReps: string[], currentMolecules: moorhen.Molecule[]) => {
+      // Default is ["CRs"], which is what molecules load with
+      const defaultReps = ["CRs"];
+
+      // Determine what to add/remove compared to default
+      const toAdd = newReps.filter((r) => !defaultReps.includes(r));
+      const toRemove = defaultReps.filter((r) => !newReps.includes(r));
+
+      for (const mol of currentMolecules) {
+        for (const rep of toAdd) {
+          try {
+            await mol.addRepresentation(rep, "/*/*/*/*");
+          } catch (err) {
+            console.error(`Failed to add ${rep} to ${mol.name}:`, err);
+          }
+        }
+        for (const rep of toRemove) {
+          try {
+            mol.clearBuffersOfStyle(rep);
+          } catch (err) {
+            console.error(`Failed to remove ${rep} from ${mol.name}:`, err);
+          }
+        }
+      }
+    },
+    []
+  );
+
   // View state hook for URL parameter support
-  const { getViewUrl } = useMoorhenViewState({
+  const { getViewUrl, initialRepresentations } = useMoorhenViewState({
     viewParam: viewParam ?? null,
     onViewRestored: () => console.log("View state restored from URL"),
+    representations: visibleRepresentations,
   });
+
+  const hasInitializedReps = useRef(false);
 
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
   const commandCentre = useRef<null | moorhen.CommandCentre>(null);
@@ -144,6 +180,15 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   );
   const store = useStore();
   const { cootModule } = useCCP4i2Window();
+
+  // Initialize representations from URL if available (after molecules load)
+  useEffect(() => {
+    if (!hasInitializedReps.current && initialRepresentations && molecules.length > 0) {
+      setVisibleRepresentations(initialRepresentations);
+      applyRepresentationsToMolecules(initialRepresentations, molecules);
+      hasInitializedReps.current = true;
+    }
+  }, [initialRepresentations, molecules, applyRepresentationsToMolecules]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -348,7 +393,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
       try {
-        await newMolecule.addRepresentation("ribbons", "/*/*/*/*");
+        await newMolecule.addRepresentation("CRs", "/*/*/*/*");
       } catch {
         console.log("[fetchMolecule] Ribbons failed, falling back to CBs");
         await newMolecule.addRepresentation("CBs", "/*/*/*/*");
@@ -542,6 +587,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             parentProject={parentProject}
             getViewUrl={getViewUrl}
             molecules={molecules}
+            visibleRepresentations={visibleRepresentations}
+            onRepresentationsChange={setVisibleRepresentations}
           />
         </div>
       </div>

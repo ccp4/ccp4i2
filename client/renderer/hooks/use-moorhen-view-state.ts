@@ -32,19 +32,34 @@ import {
 interface UseMoorhenViewStateProps {
   viewParam: string | null;
   onViewRestored?: () => void;
+  /** Current visible representations (for URL capture) */
+  representations?: string[];
+  /** Called when representations should be restored from URL */
+  onRepresentationsRestored?: (representations: string[]) => void;
 }
 
 interface UseMoorhenViewStateReturn {
   getViewUrl: () => string;
+  /** Representations from decoded URL (if any) - use for initial state */
+  initialRepresentations: string[] | null;
 }
 
 export function useMoorhenViewState({
   viewParam,
   onViewRestored,
+  representations,
+  onRepresentationsRestored,
 }: UseMoorhenViewStateProps): UseMoorhenViewStateReturn {
   const dispatch = useDispatch();
   const store = useStore();
   const hasAppliedViewState = useRef(false);
+
+  // Parse initial representations from URL (for controlled component initialization)
+  const initialRepresentations = useRef<string[] | null>(null);
+  if (viewParam && initialRepresentations.current === null) {
+    const viewState = decodeViewState(viewParam);
+    initialRepresentations.current = viewState?.r ?? null;
+  }
 
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -136,10 +151,15 @@ export function useMoorhenViewState({
         }
       }
 
+      // Apply representation state
+      if (viewState.r && onRepresentationsRestored) {
+        onRepresentationsRestored(viewState.r);
+      }
+
       // Trigger redraw
       dispatch(setRequestDrawScene(true));
     },
-    [dispatch, molecules, allMaps]
+    [dispatch, molecules, allMaps, onRepresentationsRestored]
   );
 
   // Function to capture and return current view URL
@@ -149,10 +169,11 @@ export function useMoorhenViewState({
       molecules,
       allMaps,
       visibleMolecules,
-      visibleMaps
+      visibleMaps,
+      representations
     );
     return buildViewStateUrl(viewState);
-  }, [store, molecules, allMaps, visibleMolecules, visibleMaps]);
+  }, [store, molecules, allMaps, visibleMolecules, visibleMaps, representations]);
 
-  return { getViewUrl };
+  return { getViewUrl, initialRepresentations: initialRepresentations.current };
 }

@@ -69,6 +69,9 @@ interface CampaignControlPanelProps {
   getViewUrl: () => string;
   /** Molecules loaded in Moorhen for push-to-CCP4i2 */
   molecules?: moorhen.Molecule[];
+  /** Controlled representation state */
+  visibleRepresentations: string[];
+  onRepresentationsChange: (representations: string[]) => void;
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
@@ -84,6 +87,8 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   parentProject,
   getViewUrl,
   molecules,
+  visibleRepresentations,
+  onRepresentationsChange,
 }) => {
   const [showAddSiteDialog, setShowAddSiteDialog] = useState(false);
   const [newSiteName, setNewSiteName] = useState("");
@@ -97,10 +102,6 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   // Push to CCP4i2 dialog state
   const [showPushDialog, setShowPushDialog] = useState(false);
   const [selectedMolecule, setSelectedMolecule] = useState<moorhen.Molecule | null>(null);
-
-  // Display options state - track which representations are visible
-  // CRs is on by default (added during molecule loading)
-  const [visibleRepresentations, setVisibleRepresentations] = useState<string[]>(["CRs"]);
 
   // Get the currently viewed project (member project or parent)
   const currentProject = useMemo(() => {
@@ -133,7 +134,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       if (!molecules) return;
 
       const previousReps = visibleRepresentations;
-      setVisibleRepresentations(newRepresentations);
+      onRepresentationsChange(newRepresentations);
 
       // Determine which representations were added or removed
       const added = newRepresentations.filter((r) => !previousReps.includes(r));
@@ -158,7 +159,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         }
       }
     },
-    [molecules, visibleRepresentations]
+    [molecules, visibleRepresentations, onRepresentationsChange]
   );
 
   const handleSaveSite = useCallback(async () => {

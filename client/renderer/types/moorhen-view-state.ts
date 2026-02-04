@@ -26,6 +26,10 @@ export interface MoorhenViewState {
   // Only include entries that differ from default (loaded = visible)
   m?: Record<number, MoleculeVisibility>; // molecules
   p?: Record<number, MapVisibility>; // maps
+
+  // Representation styles (optional - only include if non-default)
+  // Default is ["CRs"] (ribbons only). Common values: CBs, CRs, MolecularSurface
+  r?: string[]; // representations
 }
 
 export interface MoleculeVisibility {
@@ -45,4 +49,5 @@ export const MOORHEN_DEFAULTS = {
   clipEnd: 1000,
   fogStart: 250,
   fogEnd: 1250,
+  representations: ["CRs"] as readonly string[],
 } as const;
