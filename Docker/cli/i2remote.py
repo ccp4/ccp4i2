@@ -13,6 +13,22 @@ This enables:
 - Automated test suites that work against any CCP4i2 instance
 - Scripted job submission and monitoring
 
+Quick Start (Newcastle DDU Database):
+--------------------------------------
+    # 1. Configure API URL and Azure AD credentials
+    i2remote config set api_url https://ddudatabase.ncl.ac.uk/api/proxy/ccp4i2
+    i2remote config set azure_client_id 386da83f-1bf4-4ad8-b742-79b600e2208b
+    i2remote config set azure_tenant_id 9c5012c9-b616-44c2-a917-66814fbe3e87
+
+    # 2. Authenticate (opens browser)
+    i2remote login
+
+    # 3. Verify authentication
+    i2remote whoami
+
+    # 4. List projects
+    i2remote projects
+
 Usage:
     i2remote login                        Authenticate with Azure AD (opens browser)
     i2remote login --device-code          Authenticate using device code (for headless)
@@ -48,6 +64,16 @@ Usage:
     i2remote export project <project>     Export a project to zip
     i2remote import <zipfile>             Import a project from zip (small files)
 
+    i2remote campaigns [list]             List all campaigns (ID, name, type, members)
+    i2remote campaigns create -n <name>   Create a new campaign with parent project
+    i2remote campaigns show <id>          Show campaign details (JSON)
+    i2remote campaigns members <id>       List member projects with job status
+    i2remote campaigns parent <id>        Show parent project
+    i2remote campaigns parent-files <id>  Show reference files from parent
+    i2remote campaigns add-member <id> -p <project_id>  Add project to campaign
+    i2remote campaigns remove-member <id> -p <project_id>  Remove project from campaign
+    i2remote campaigns pandda <id>        Get PANDDA-ready data
+
     i2remote upload-request <file>        Get SAS URL for large file upload
     i2remote upload-complete <id>         Complete upload and trigger processing
     i2remote upload-status <id>           Check status of staged upload
@@ -57,33 +83,35 @@ Usage:
     i2remote config set <key> <value>     Set configuration value
 
 Environment Variables:
-    CCP4I2_API_URL      Base URL for the CCP4i2 API (required)
-    CCP4I2_API_TOKEN    Authentication token (if required)
+    CCP4I2_API_URL      Base URL for the CCP4i2 API
+    CCP4I2_API_TOKEN    Authentication token (alternative to login)
     AZURE_CLIENT_ID     Azure AD client ID (for login command)
     AZURE_TENANT_ID     Azure AD tenant ID (for login command)
 
 Configuration File:
-    ~/.ccp4i2remote.json - Persistent configuration
+    ~/.ccp4i2remote.json - Persistent configuration (stores tokens securely)
 
-Authentication Methods:
-    1. Browser login (recommended for interactive use):
-       i2remote login
+Authentication:
+    i2remote uses Azure AD for authentication. The login command uses MSAL
+    (Microsoft Authentication Library) to obtain an access token, which is
+    then sent as a Bearer token with each API request.
 
-    2. Device code flow (for SSH/headless environments):
-       i2remote login --device-code
+    Authentication flow:
+    1. `i2remote login` opens browser for Azure AD authentication
+    2. MSAL obtains access token with correct audience and groups claims
+    3. Token is stored in ~/.ccp4i2remote.json
+    4. API requests include `Authorization: Bearer <token>` header
+    5. Server validates token signature, audience, issuer, and group membership
 
-    3. Azure CLI (requires az cli installed):
-       export CCP4I2_API_TOKEN=$(az account get-access-token \\
-         --resource <client-id> --query accessToken -o tsv)
+    For headless/SSH environments, use device code flow:
+        i2remote login --device-code
 
-    4. Manual token:
-       i2remote config set api_token <your-token>
+    Alternative methods:
+    - Azure CLI: export CCP4I2_API_TOKEN=$(az account get-access-token \\
+                   --resource <client-id> --query accessToken -o tsv)
+    - Manual: i2remote config set api_token <your-token>
 
 Examples:
-    # Authenticate and set server URL
-    i2remote config set api_url https://myserver.azurecontainerapps.io/api/proxy/ccp4i2
-    i2remote login
-
     # List projects
     i2remote projects
 
@@ -402,7 +430,25 @@ class APIError(Exception):
 
 
 class CCP4i2Client:
-    """HTTP client for CCP4i2 API."""
+    """
+    HTTP client for CCP4i2 API.
+
+    API Response Formats:
+    ---------------------
+    The Django API uses two response patterns:
+
+    1. DRF Standard (direct serializer data):
+       - GET endpoints (list, retrieve)
+       - POST /jobs/{id}/run/ → {id, uuid, status, ...}
+       - POST /jobs/{id}/clone/ → {id, uuid, ...}
+
+    2. api_success wrapper (for action endpoints):
+       - POST /projects/{id}/create_task/ → {success: true, data: {new_job: {id, uuid, ...}}}
+       - POST /jobs/{id}/set_parameter/ → {success: true, data: {...}}
+       - POST /jobs/{id}/upload_file_param/ → {success: true, data: {updated_item: ...}}
+
+    The high-level methods (create_job, run_job, etc.) handle unwrapping automatically.
+    """
 
     def __init__(self, api_url: str, token: str = None, timeout: int = 30, verify_ssl: bool = True):
         self.api_url = api_url.rstrip("/")
@@ -421,9 +467,8 @@ class CCP4i2Client:
         # Ensure endpoint starts with /
         if not endpoint.startswith("/"):
             endpoint = "/" + endpoint
-        # Ensure endpoint ends with / for Django
-        if not endpoint.endswith("/"):
-            endpoint = endpoint + "/"
+        # Don't add trailing slash - the Next.js proxy adds it before forwarding to Django
+        # Adding it here causes 308 redirects which strip the Authorization header
         return self.api_url + endpoint
 
     def _request(self, method: str, endpoint: str, **kwargs) -> Any:
@@ -448,9 +493,17 @@ class CCP4i2Client:
 
         # Return JSON if available
         if response.content:
+            content_type = response.headers.get("Content-Type", "")
             try:
                 return response.json()
             except (json.JSONDecodeError, ValueError):
+                # Check if we got HTML (likely auth redirect or error page)
+                if "text/html" in content_type or response.text.strip().startswith("<!"):
+                    raise APIError(
+                        "Received HTML instead of JSON. This usually means authentication is required. "
+                        "Run 'i2remote login' to authenticate.",
+                        response.status_code
+                    )
                 return response.text
         return None
 
@@ -478,9 +531,9 @@ class CCP4i2Client:
         """Get project details."""
         return self.get(f"/projects/{project_id}")
 
-    def create_project(self, name: str, description: str = "") -> dict:
+    def create_project(self, name: str, description: str = "", directory: str = "__default__") -> dict:
         """Create a new project."""
-        return self.post("/projects", {"name": name, "description": description})
+        return self.post("/projects", {"name": name, "description": description, "directory": directory})
 
     def get_project_tree(self, project_id: str) -> dict:
         """Get project job tree."""
@@ -659,8 +712,16 @@ class CCP4i2Client:
         raise APIError(f"Job {job_number} not found in project {project_id}")
 
     def create_job(self, project_id: str, task_name: str) -> dict:
-        """Create a new job."""
-        return self.post(f"/projects/{project_id}/create_task", {"task_name": task_name})
+        """
+        Create a new job.
+
+        Returns:
+            dict: Job data with keys: id, uuid, number, task_name, status, etc.
+                  (unwrapped from api_success response)
+        """
+        response = self.post(f"/projects/{project_id}/create_task", {"task_name": task_name})
+        # API returns: {success: true, data: {new_job: {id, uuid, ...}}}
+        return response.get("data", {}).get("new_job", response)
 
     def run_job(self, job_id: str) -> dict:
         """Run/submit a job."""
@@ -744,18 +805,62 @@ class CCP4i2Client:
         if not file_path.exists():
             raise ValueError(f"File not found: {file_path}")
 
-        url = f"{self.base_url}/jobs/{job_id}/upload_file_param/"
-        headers = self._get_headers()
-        # Remove Content-Type from headers - requests will set it for multipart
-        headers.pop("Content-Type", None)
+        url = self._url(f"/jobs/{job_id}/upload_file_param")
 
         data = {"objectPath": object_path}
         if column_selector:
             data["column_selector"] = column_selector
 
+        # Use requests directly (not session) to avoid Content-Type header conflicts
+        # Session's Authorization header is passed explicitly
+        auth_header = self.session.headers.get("Authorization", "")
+
         with open(file_path, "rb") as f:
             files = {"file": (file_path.name, f)}
-            response = requests.post(url, headers=headers, data=data, files=files)
+            response = requests.post(
+                url,
+                data=data,
+                files=files,
+                headers={"Authorization": auth_header} if auth_header else {},
+                timeout=self.timeout,
+                verify=self.verify_ssl,
+            )
+
+        if response.status_code >= 400:
+            raise APIError(f"Upload failed: {response.status_code} - {response.text}")
+
+        return response.json()
+
+    def upload_file_content(self, job_id: str, object_path: str,
+                            content: bytes, filename: str) -> dict:
+        """
+        Upload file content (bytes) and set it as a job parameter.
+
+        Args:
+            job_id: Job ID
+            object_path: Parameter path (e.g., "SubstituteLigand.inputData.XYZIN")
+            content: File content as bytes
+            filename: Filename to use for the upload
+
+        Returns:
+            Dict with upload result and file metadata
+        """
+        url = self._url(f"/jobs/{job_id}/upload_file_param")
+
+        data = {"objectPath": object_path}
+        files = {"file": (filename, content)}
+
+        # Use requests directly (not session) to avoid Content-Type header conflicts
+        # Session's Authorization header is passed explicitly
+        auth_header = self.session.headers.get("Authorization", "")
+        response = requests.post(
+            url,
+            data=data,
+            files=files,
+            headers={"Authorization": auth_header} if auth_header else {},
+            timeout=self.timeout,
+            verify=self.verify_ssl,
+        )
 
         if response.status_code >= 400:
             raise APIError(f"Upload failed: {response.status_code} - {response.text}")
@@ -781,6 +886,75 @@ class CCP4i2Client:
     def get_file_digest(self, file_id: str) -> dict:
         """Get file digest/summary."""
         return self.get(f"/files/{file_id}/digest")
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # Campaigns (ProjectGroups)
+    # ─────────────────────────────────────────────────────────────────────────
+
+    def list_campaigns(self, campaign_type: str = None) -> list:
+        """List all campaigns (project groups)."""
+        params = {}
+        if campaign_type:
+            params["type"] = campaign_type
+        return self.get("/projectgroups", **params)
+
+    def get_campaign(self, campaign_id: str) -> dict:
+        """Get campaign details."""
+        return self.get(f"/projectgroups/{campaign_id}")
+
+    def create_campaign(self, name: str, campaign_type: str = "fragment_set") -> dict:
+        """
+        Create a new campaign with auto-created parent project.
+
+        Args:
+            name: Campaign name (also used for parent project)
+            campaign_type: Campaign type (default: fragment_set)
+
+        Returns:
+            Created campaign data
+        """
+        return self.post("/projectgroups/create_with_parent", {
+            "name": name,
+            "type": campaign_type,
+        })
+
+    def get_campaign_parent(self, campaign_id: str) -> dict:
+        """Get the parent project for a campaign."""
+        return self.get(f"/projectgroups/{campaign_id}/parent_project")
+
+    def get_campaign_members(self, campaign_id: str) -> list:
+        """Get member projects with job summaries."""
+        return self.get(f"/projectgroups/{campaign_id}/member_projects")
+
+    def get_campaign_parent_files(self, campaign_id: str) -> dict:
+        """Get reference files (coordinates and FreeR) from parent project."""
+        return self.get(f"/projectgroups/{campaign_id}/parent_files")
+
+    def add_campaign_member(self, campaign_id: str, project_id: str,
+                            membership_type: str = "member") -> dict:
+        """
+        Add a project to a campaign.
+
+        Args:
+            campaign_id: Campaign ID
+            project_id: Project ID to add
+            membership_type: 'parent' or 'member' (default: member)
+
+        Returns:
+            Created membership data
+        """
+        return self.post(f"/projectgroups/{campaign_id}/add_member", {
+            "project_id": project_id,
+            "type": membership_type,
+        })
+
+    def remove_campaign_member(self, campaign_id: str, project_id: str) -> dict:
+        """Remove a project from a campaign."""
+        return self.delete(f"/projectgroups/{campaign_id}/members/{project_id}")
+
+    def get_campaign_pandda_data(self, campaign_id: str) -> dict:
+        """Get PANDDA-ready data from campaign members."""
+        return self.get(f"/projectgroups/{campaign_id}/pandda_data")
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1050,15 +1224,23 @@ def resolve_project(client: CCP4i2Client, identifier: str) -> str:
     # Try as-is first (might be UUID or numeric ID)
     try:
         project = client.get_project(identifier)
-        return str(project.get("id") or project.get("uuid") or identifier)
+        # Check if we got a valid dict response (not HTML/string from auth redirect)
+        if isinstance(project, dict):
+            return str(project.get("id") or project.get("uuid") or identifier)
     except APIError:
         pass
 
     # Try to find by name
-    projects = client.list_projects()
-    for p in projects:
-        if p.get("name", "").lower() == identifier.lower():
-            return str(p.get("id") or p.get("uuid"))
+    try:
+        projects = client.list_projects()
+        # Check if we got a valid list response
+        if not isinstance(projects, list):
+            raise APIError(f"Unexpected API response. Check authentication and API URL.")
+        for p in projects:
+            if isinstance(p, dict) and p.get("name", "").lower() == identifier.lower():
+                return str(p.get("id") or p.get("uuid"))
+    except APIError:
+        raise
 
     raise APIError(f"Project not found: {identifier}")
 
@@ -1891,6 +2073,113 @@ def cmd_upload_list(args):
         sys.exit(1)
 
 
+def cmd_campaigns(args):
+    """Handle campaigns command."""
+    client = get_client()
+
+    action = args.action or "list"
+
+    if action == "list":
+        campaigns = client.list_campaigns(
+            campaign_type=args.type if hasattr(args, 'type') and args.type else None
+        )
+        if args.json:
+            print_json(campaigns)
+        else:
+            # Print table with useful info for upload
+            print(f"{'ID':<6}  {'Name':<40}  {'Type':<15}  {'Members'}")
+            print("-" * 75)
+            for camp in campaigns:
+                # Use member_count from API (added to ProjectGroupSerializer)
+                member_count = camp.get('member_count', 0)
+                print(f"{camp.get('id', 'N/A'):<6}  "
+                      f"{camp.get('name', 'N/A')[:40]:<40}  "
+                      f"{camp.get('type', 'N/A'):<15}  "
+                      f"{member_count}")
+
+    elif action == "create":
+        if not args.name:
+            print("Usage: i2remote campaigns create --name <name>", file=sys.stderr)
+            sys.exit(1)
+        campaign = client.create_campaign(
+            args.name,
+            campaign_type=args.type or "fragment_set"
+        )
+        print(f"Created campaign: {campaign.get('name')} (ID: {campaign.get('id')})")
+
+    elif action == "show":
+        if not args.campaign:
+            print("Usage: i2remote campaigns show <campaign_id>", file=sys.stderr)
+            sys.exit(1)
+        campaign = client.get_campaign(args.campaign)
+        print_json(campaign)
+
+    elif action == "members":
+        if not args.campaign:
+            print("Usage: i2remote campaigns members <campaign_id>", file=sys.stderr)
+            sys.exit(1)
+        members = client.get_campaign_members(args.campaign)
+        if args.json:
+            print_json(members)
+        else:
+            print(f"{'ID':<6}  {'Name':<50}  {'Jobs':<6}  {'Finished':<10}  {'Failed'}")
+            print("-" * 90)
+            for proj in members:
+                summary = proj.get('job_summary', {})
+                print(f"{proj.get('id', 'N/A'):<6}  "
+                      f"{proj.get('name', 'N/A')[:50]:<50}  "
+                      f"{summary.get('total', 0):<6}  "
+                      f"{summary.get('finished', 0):<10}  "
+                      f"{summary.get('failed', 0)}")
+
+    elif action == "parent":
+        if not args.campaign:
+            print("Usage: i2remote campaigns parent <campaign_id>", file=sys.stderr)
+            sys.exit(1)
+        parent = client.get_campaign_parent(args.campaign)
+        if parent:
+            print_json(parent)
+        else:
+            print("No parent project set for this campaign.")
+
+    elif action == "parent-files":
+        if not args.campaign:
+            print("Usage: i2remote campaigns parent-files <campaign_id>", file=sys.stderr)
+            sys.exit(1)
+        files = client.get_campaign_parent_files(args.campaign)
+        print_json(files)
+
+    elif action == "add-member":
+        if not args.campaign or not args.project:
+            print("Usage: i2remote campaigns add-member <campaign_id> --project <project_id>", file=sys.stderr)
+            sys.exit(1)
+        membership = client.add_campaign_member(
+            args.campaign,
+            args.project,
+            membership_type=args.membership_type or "member"
+        )
+        print(f"Added project {args.project} to campaign {args.campaign}")
+
+    elif action == "remove-member":
+        if not args.campaign or not args.project:
+            print("Usage: i2remote campaigns remove-member <campaign_id> --project <project_id>", file=sys.stderr)
+            sys.exit(1)
+        client.remove_campaign_member(args.campaign, args.project)
+        print(f"Removed project {args.project} from campaign {args.campaign}")
+
+    elif action == "pandda":
+        if not args.campaign:
+            print("Usage: i2remote campaigns pandda <campaign_id>", file=sys.stderr)
+            sys.exit(1)
+        pandda_data = client.get_campaign_pandda_data(args.campaign)
+        print_json(pandda_data)
+
+    else:
+        # Assume it's a campaign ID for show
+        campaign = client.get_campaign(action)
+        print_json(campaign)
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # Main
 # ─────────────────────────────────────────────────────────────────────────────
@@ -1945,6 +2234,19 @@ def main():
     files_parser.add_argument("project", nargs="?", help="Project name/ID")
     files_parser.add_argument("job", nargs="?", help="Job number or ID")
     files_parser.add_argument("filename", nargs="?", help="Filename for cat")
+
+    # Campaigns command
+    campaigns_parser = subparsers.add_parser("campaigns", help="Campaign (project group) operations")
+    campaigns_parser.add_argument("action", nargs="?",
+                                  help="list|create|show|members|parent|parent-files|add-member|remove-member|pandda")
+    campaigns_parser.add_argument("campaign", nargs="?", help="Campaign ID")
+    campaigns_parser.add_argument("--name", "-n", help="Campaign name for create")
+    campaigns_parser.add_argument("--type", "-t", default="fragment_set",
+                                  help="Campaign type (default: fragment_set)")
+    campaigns_parser.add_argument("--project", "-p", help="Project ID for add-member/remove-member")
+    campaigns_parser.add_argument("--membership-type", choices=["parent", "member"],
+                                  default="member", help="Membership type (default: member)")
+    campaigns_parser.add_argument("--json", "-j", action="store_true", help="Output as JSON")
 
     # Report command
     report_parser = subparsers.add_parser("report", help="Get job report")
@@ -2038,6 +2340,8 @@ def main():
             cmd_jobs(args)
         elif args.command == "files":
             cmd_files(args)
+        elif args.command == "campaigns":
+            cmd_campaigns(args)
         elif args.command == "report":
             cmd_report(args)
         elif args.command == "export":

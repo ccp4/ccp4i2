@@ -1,7 +1,7 @@
 from pathlib import Path
 from django.utils.text import slugify
 from django.conf import settings
-from rest_framework.serializers import ModelSerializer, ValidationError
+from rest_framework.serializers import ModelSerializer, ValidationError, SerializerMethodField
 from ..db import models
 
 
@@ -184,11 +184,17 @@ class ProjectGroupMembershipSerializer(ModelSerializer):
 
 
 class ProjectGroupSerializer(ModelSerializer):
-    """Basic serializer for project groups."""
+    """Basic serializer for project groups with member count."""
+
+    member_count = SerializerMethodField()
 
     class Meta:
         model = models.ProjectGroup
         fields = "__all__"
+
+    def get_member_count(self, obj):
+        """Return count of member projects in this group."""
+        return obj.memberships.count()
 
 
 class ProjectGroupDetailSerializer(ModelSerializer):

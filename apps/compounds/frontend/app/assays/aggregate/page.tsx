@@ -58,6 +58,9 @@ function AggregationPageContent() {
   const initialConcentrationDisplay = (concentrationDisplayParam === 'natural' || concentrationDisplayParam === 'nM' || concentrationDisplayParam === 'uM' || concentrationDisplayParam === 'mM' || concentrationDisplayParam === 'pConc')
     ? concentrationDisplayParam as ConcentrationDisplayMode
     : undefined;
+
+  // Determine if this is a fresh aggregation (no query filters) - should start expanded
+  const isFreshAggregation = !initialCompoundSearch && !initialTargetId && !initialTargetNames?.length && !initialProtocolNames?.length;
   // Support group by batch via 'groupByBatch' param
   const groupByBatchParam = searchParams.get('groupByBatch');
   const initialGroupByBatch = groupByBatchParam === 'true';
@@ -355,6 +358,7 @@ function AggregationPageContent() {
         ]}
         summary={summary}
         detailContent={detailContent}
+        defaultCollapsed={!isFreshAggregation}
       >
         <AggregationTable
           data={data}

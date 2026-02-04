@@ -1,11 +1,13 @@
 "use client";
 
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
+  Alert,
   Avatar,
   Box,
   Chip,
+  Collapse,
   IconButton,
   ListItemIcon,
   ListItemText,
@@ -26,6 +28,10 @@ import {
   MoreHoriz as MoreIcon,
   Delete as DeleteIcon,
   PlayArrow as RerunIcon,
+  OpenInNew as OpenInNewIcon,
+  Science as MoorhenIcon,
+  Close as CloseIcon,
+  Info as InfoIcon,
 } from "@mui/icons-material";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { apiPost } from "../../api-fetch";
@@ -60,6 +66,8 @@ interface VirtualizedMemberProjectsTableProps {
   maxHeight?: number;
 }
 
+const HINT_DISMISSED_KEY = "campaign-job-icons-hint-dismissed";
+
 export function VirtualizedMemberProjectsTable({
   projects,
   smilesMap,
@@ -71,6 +79,20 @@ export function VirtualizedMemberProjectsTable({
   maxHeight = 500,
 }: VirtualizedMemberProjectsTableProps) {
   const parentRef = useRef<HTMLDivElement>(null);
+  const [showHint, setShowHint] = useState(false);
+
+  // Check localStorage on mount to see if hint was dismissed
+  useEffect(() => {
+    const dismissed = localStorage.getItem(HINT_DISMISSED_KEY);
+    if (!dismissed) {
+      setShowHint(true);
+    }
+  }, []);
+
+  const handleDismissHint = useCallback(() => {
+    setShowHint(false);
+    localStorage.setItem(HINT_DISMISSED_KEY, "true");
+  }, []);
 
   // Set up virtualizer for windowed rendering
   const rowVirtualizer = useVirtualizer({
@@ -93,7 +115,31 @@ export function VirtualizedMemberProjectsTable({
   }
 
   return (
-    <TableContainer
+    <Box>
+      {/* First-time hint banner */}
+      <Collapse in={showHint}>
+        <Alert
+          severity="info"
+          icon={<InfoIcon />}
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={handleDismissHint}
+            >
+              <CloseIcon fontSize="inherit" />
+            </IconButton>
+          }
+          sx={{ mb: 1 }}
+        >
+          <Typography variant="body2">
+            <strong>Tip:</strong> Click job icons to view in CCP4i2, or{" "}
+            <strong>Shift+click</strong> to open in Moorhen. Right-click for more options.
+          </Typography>
+        </Alert>
+      </Collapse>
+      <TableContainer
       ref={parentRef}
       sx={{
         maxHeight,
@@ -109,7 +155,7 @@ export function VirtualizedMemberProjectsTable({
             <TableCell align="center" width={80}>Resolution</TableCell>
             <TableCell align="center" width={80}>R-Factor</TableCell>
             <TableCell align="center" width={80}>R-Free</TableCell>
-            <TableCell>Jobs (click for CCP4i2, shift-click for Moorhen)</TableCell>
+            <TableCell>Jobs</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -164,6 +210,7 @@ export function VirtualizedMemberProjectsTable({
         </TableBody>
       </Table>
     </TableContainer>
+    </Box>
   );
 }
 
@@ -193,6 +240,42 @@ function MemberProjectRow({
 }: MemberProjectRowProps) {
   const router = useRouter();
   const [menuAnchor, setMenuAnchor] = useState<HTMLElement | null>(null);
+
+  // State for job context menu (right-click)
+  const [jobContextMenu, setJobContextMenu] = useState<{
+    anchor: { top: number; left: number } | null;
+    job: CampaignJobInfo | null;
+  }>({ anchor: null, job: null });
+
+  const handleJobContextMenu = useCallback(
+    (event: React.MouseEvent, job: CampaignJobInfo) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setJobContextMenu({
+        anchor: { top: event.clientY, left: event.clientX },
+        job,
+      });
+    },
+    []
+  );
+
+  const handleCloseJobContextMenu = useCallback(() => {
+    setJobContextMenu({ anchor: null, job: null });
+  }, []);
+
+  const handleOpenInCCP4i2 = useCallback(() => {
+    if (jobContextMenu.job) {
+      router.push(`/ccp4i2/project/${project.id}/job/${jobContextMenu.job.id}`);
+    }
+    handleCloseJobContextMenu();
+  }, [router, project.id, jobContextMenu.job, handleCloseJobContextMenu]);
+
+  const handleOpenInMoorhen = useCallback(() => {
+    if (jobContextMenu.job) {
+      window.open(`/ccp4i2/moorhen-page/job-by-id/${jobContextMenu.job.id}`, "_blank");
+    }
+    handleCloseJobContextMenu();
+  }, [jobContextMenu.job, handleCloseJobContextMenu]);
 
   // Parse project name for metadata
   const parsed = parseDatasetFilename(project.name);
@@ -378,8 +461,18 @@ function MemberProjectRow({
               key={job.id}
               title={
                 <Box>
-                  <Typography variant="body2">{job.task_name}</Typography>
-                  <Typography variant="caption">Job {job.number}</Typography>
+                  <Typography variant="body2" fontWeight="bold">
+                    {job.task_name}
+                  </Typography>
+                  <Typography variant="caption" display="block">
+                    Job {job.number}
+                  </Typography>
+                  <Typography
+                    variant="caption"
+                    sx={{ mt: 0.5, display: "block", color: "grey.400" }}
+                  >
+                    Click → CCP4i2 • Shift+click → Moorhen
+                  </Typography>
                 </Box>
               }
             >
@@ -392,6 +485,7 @@ function MemberProjectRow({
                   "&:hover": { opacity: 0.8 },
                 }}
                 onClick={(e) => handleJobClick(job, e)}
+                onContextMenu={(e) => handleJobContextMenu(e, job)}
               >
                 <Avatar
                   sx={{
@@ -422,6 +516,31 @@ function MemberProjectRow({
           )}
         </Stack>
       </TableCell>
+
+      {/* Job context menu (right-click) */}
+      <Menu
+        open={Boolean(jobContextMenu.anchor)}
+        onClose={handleCloseJobContextMenu}
+        anchorReference="anchorPosition"
+        anchorPosition={
+          jobContextMenu.anchor
+            ? { top: jobContextMenu.anchor.top, left: jobContextMenu.anchor.left }
+            : undefined
+        }
+      >
+        <MenuItem onClick={handleOpenInCCP4i2}>
+          <ListItemIcon>
+            <OpenInNewIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Open in CCP4i2</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={handleOpenInMoorhen}>
+          <ListItemIcon>
+            <MoorhenIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Open in Moorhen</ListItemText>
+        </MenuItem>
+      </Menu>
     </TableRow>
   );
 }

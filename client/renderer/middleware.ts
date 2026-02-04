@@ -30,6 +30,13 @@ const AUTH_EXEMPT_PATHS = [
   "/favicon.ico",
 ];
 
+// Paths that accept Bearer token authentication (for CLI tools like i2remote)
+// These paths handle their own auth validation in the route handler
+const BEARER_AUTH_PATHS = [
+  "/api/proxy/ccp4i2/", // CCP4i2 API proxy - validates Bearer token in route handler
+  "/api/proxy/compounds/", // Compounds API proxy - validates Bearer token in route handler
+];
+
 // Check if path is exempt from authentication
 function isAuthExempt(pathname: string): boolean {
   return AUTH_EXEMPT_PATHS.some((path) => pathname.startsWith(path));
@@ -62,7 +69,11 @@ export function middleware(request: NextRequest) {
   if (requireAuth && !isAuthExempt(pathname) && !isStaticFile(pathname)) {
     const authSession = request.cookies.get("auth-session");
 
-    if (!authSession) {
+    // Allow Bearer token auth for API proxy paths (CLI tools like i2remote)
+    const hasBearerToken = request.headers.get("Authorization")?.startsWith("Bearer ");
+    const isBearerAuthPath = BEARER_AUTH_PATHS.some((path) => pathname.startsWith(path));
+
+    if (!authSession && !(hasBearerToken && isBearerAuthPath)) {
       // Redirect to login page with return URL
       const loginUrl = new URL("/auth/login", request.url);
       loginUrl.searchParams.set("returnUrl", pathname + request.nextUrl.search);

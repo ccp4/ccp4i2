@@ -1,4 +1,5 @@
 import { useApi } from "../../api";
+import { apiUpload } from "../../api-fetch";
 import { Project as ProjectInfo, Job as JobInfo } from "../../types/models";
 import { moorhen } from "moorhen/types/moorhen";
 import {
@@ -127,8 +128,10 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
         // 2. No concurrent SWR fetching exists for this job yet
         // 3. The job runs immediately after upload, so no UI race conditions
         // For existing jobs, use uploadFileParam from useJob() for proper cache management
-        const uploadResult = await api.post<any>(
-          `jobs/${newJobId}/upload_file_param`,
+        // Use apiUpload instead of api.post for proper multipart/form-data handling
+        // (required for COEP-isolated Moorhen pages)
+        const uploadResult = await apiUpload<any>(
+          `jobs/${newJobId}/upload_file_param/`,
           formData
         );
 

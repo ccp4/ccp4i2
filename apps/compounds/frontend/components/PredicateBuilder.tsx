@@ -78,7 +78,7 @@ export function PredicateBuilder({
 
   // Other predicates
   const [compoundSearch, setCompoundSearch] = useState(initialCompoundSearch || '');
-  const [status, setStatus] = useState<string>('valid');
+  const [status, setStatus] = useState<string>('all');
 
   // Output options
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('compact');
@@ -102,7 +102,7 @@ export function PredicateBuilder({
     if (compoundSearch.trim()) {
       predicates.compound_search = compoundSearch.trim();
     }
-    if (status) {
+    if (status && status !== 'all') {
       predicates.status = status as any;
     }
     return predicates;
@@ -336,10 +336,10 @@ export function PredicateBuilder({
             label="Status Filter"
             onChange={(e) => setStatus(e.target.value)}
           >
+            <MenuItem value="all">All statuses</MenuItem>
             <MenuItem value="valid">Valid only</MenuItem>
             <MenuItem value="invalid">Invalid only</MenuItem>
             <MenuItem value="unassigned">Unassigned only</MenuItem>
-            <MenuItem value="">All statuses</MenuItem>
           </Select>
         </FormControl>
 

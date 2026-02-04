@@ -22,6 +22,9 @@ param imageTagServer string = 'latest'
 @description('Resource naming prefix')
 param prefix string = 'ccp4i2-bicep'
 
+@description('Environment suffix (e.g., dev, staging, prod)')
+param environment string = 'uk'
+
 @description('Custom domain for the web app (optional)')
 param customDomain string = ''
 
@@ -567,7 +570,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
               type: 'azure-servicebus'
               metadata: {
                 queueName: '${prefix}-jobs'
-                namespace: '${prefix}-servicebus'
+                namespace: '${prefix}-servicebus-${environment}'
                 messageCount: '5' // Scale up when 5+ messages in queue
               }
               auth: [
