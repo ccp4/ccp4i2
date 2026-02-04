@@ -26,10 +26,27 @@ export type ProjectGroupType = "general_set" | "fragment_set";
 
 export type MembershipType = "parent" | "member";
 
+/**
+ * A saved view state for quick navigation in the Moorhen viewer.
+ * Used for storing binding site locations in fragment campaigns.
+ */
+export interface CampaignSite {
+  /** Display name for the site */
+  name: string;
+  /** View origin coordinates [x, y, z] */
+  origin: [number, number, number];
+  /** View orientation quaternion [x, y, z, w] (optional) */
+  quat?: [number, number, number, number];
+  /** Zoom level (optional) */
+  zoom?: number;
+}
+
 export interface ProjectGroup {
   id: number;
   name: string;
   type: ProjectGroupType;
+  /** Saved binding sites for Moorhen viewer navigation */
+  sites?: CampaignSite[];
 }
 
 export interface ProjectGroupMembership {

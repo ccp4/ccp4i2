@@ -1,0 +1,552 @@
+"use client";
+
+/**
+ * Campaign-specific Moorhen wrapper with site navigation and member project switching.
+ *
+ * This is a specialized version of MoorhenWrapper for fragment screening campaigns.
+ * It provides:
+ * - Binding site navigation
+ * - Member project switching via dropdown
+ * - Standard view state URL support
+ */
+
+import {
+  addMolecule,
+  addMap,
+  setActiveMap,
+  setWidth,
+  setHeight,
+  setTheme,
+  setBackgroundColor,
+  setOrigin,
+  setQuat,
+  setZoom,
+  setRequestDrawScene,
+  MoorhenContainer,
+  MoorhenMolecule,
+  MoorhenMap,
+} from "moorhen";
+
+import {
+  RefObject,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { moorhen } from "moorhen/types/moorhen";
+import { useDispatch, useSelector, useStore } from "react-redux";
+import { webGL } from "moorhen/types/mgWebGL";
+import { useCCP4i2Window } from "../../app-context";
+import { CampaignControlPanel } from "./campaign-control-panel";
+import { apiText, apiArrayBuffer, apiGet } from "../../api-fetch";
+import { useTheme } from "../../theme/theme-provider";
+import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
+import {
+  ProjectGroup,
+  CampaignSite,
+  MemberProjectWithSummary,
+} from "../../types/campaigns";
+import { Project } from "../../types/models";
+
+// Detect Safari browser (has WASM threading issues with Moorhen)
+const isSafariBrowser = (): boolean => {
+  if (typeof navigator === "undefined") return false;
+  const ua = navigator.userAgent;
+  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
+  const isIOS = /iPad|iPhone|iPod/.test(ua);
+  return isSafari || isIOS;
+};
+
+// Safari warning component
+const SafariWarning: React.FC = () => (
+  <div
+    style={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      height: "100%",
+      padding: "40px",
+      textAlign: "center",
+      backgroundColor: "#fff3cd",
+      border: "1px solid #ffc107",
+      borderRadius: "8px",
+      margin: "20px",
+    }}
+  >
+    <h2 style={{ color: "#856404", marginBottom: "16px" }}>
+      Browser Not Supported
+    </h2>
+    <p style={{ color: "#856404", maxWidth: "600px", lineHeight: "1.6" }}>
+      The Moorhen molecular viewer requires WebAssembly threading features that
+      are not fully supported in Safari. Please use{" "}
+      <strong>Google Chrome</strong>, <strong>Microsoft Edge</strong>, or{" "}
+      <strong>Firefox</strong> to view molecular structures.
+    </p>
+  </div>
+);
+
+type FileSource =
+  | { type: "none" }
+  | { type: "files"; fileIds: number[] }
+  | { type: "job"; jobId: number };
+
+export interface CampaignMoorhenWrapperProps {
+  campaign: ProjectGroup;
+  fileSource: FileSource;
+  viewParam?: string | null;
+  sites: CampaignSite[];
+  onUpdateSites: (sites: CampaignSite[]) => Promise<void>;
+  memberProjects: MemberProjectWithSummary[];
+  selectedMemberProjectId: number | null;
+  onSelectMemberProject: (projectId: number | null) => void;
+  parentProject: Project | null | undefined;
+}
+
+const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
+  campaign,
+  fileSource,
+  viewParam,
+  sites,
+  onUpdateSites,
+  memberProjects,
+  selectedMemberProjectId,
+  onSelectMemberProject,
+  parentProject,
+}) => {
+  const [isSafari] = useState(() => isSafariBrowser());
+  const dispatch = useDispatch();
+  const theme = useTheme();
+
+  // View state hook for URL parameter support
+  const { getViewUrl } = useMoorhenViewState({
+    viewParam: viewParam ?? null,
+    onViewRestored: () => console.log("View state restored from URL"),
+  });
+
+  const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
+  const commandCentre = useRef<null | moorhen.CommandCentre>(null);
+  const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
+  const mapsRef = useRef<null | moorhen.Map[]>(null);
+  const activeMapRef = useRef<null | moorhen.Map>(null);
+  const lastHoveredAtom = useRef<null | moorhen.HoveredAtom>(null);
+  const prevActiveMoleculeRef = useRef<null | moorhen.Molecule>(null);
+  const timeCapsuleRef = useRef(null);
+  const loadedFileSource = useRef<FileSource | null>(null);
+
+  const cootInitialized = useSelector(
+    (state: moorhen.State) => state.generalStates.cootInitialized
+  );
+  const molecules = useSelector(
+    (state: moorhen.State) => state.molecules.moleculeList
+  );
+  const store = useStore();
+  const { cootModule } = useCCP4i2Window();
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      (window as any).CCP4Module = cootModule;
+    }
+  }, [cootModule]);
+
+  useEffect(() => {
+    dispatch(
+      setBackgroundColor(theme.mode === "light" ? [1, 1, 1, 1] : [0, 0, 0, 1])
+    );
+    dispatch(setTheme(theme.mode === "light" ? "flatly" : "darkly"));
+  }, [theme.mode, dispatch]);
+
+  const monomerLibraryPath =
+    "https://raw.githubusercontent.com/MonomerLibrary/monomers/master/";
+
+  const backgroundColor = useSelector(
+    (state: moorhen.State) => state.sceneSettings.backgroundColor
+  );
+  const defaultBondSmoothness = useSelector(
+    (state: moorhen.State) => state.sceneSettings.defaultBondSmoothness
+  );
+
+  const [windowWidth, setWindowWidth] = useState<number>(
+    typeof window !== "undefined" ? window.innerWidth : 1200
+  );
+  const [windowHeight, setWindowHeight] = useState<number>(
+    typeof window !== "undefined" ? window.innerHeight : 800
+  );
+
+  const rightPanelWidth = 60 * 8;
+  const leftPanelWidth = useMemo(() => {
+    return windowWidth - rightPanelWidth;
+  }, [windowWidth, rightPanelWidth]);
+
+  const setMoorhenDimensions = useCallback(() => {
+    const result = [leftPanelWidth, windowHeight];
+    return result;
+  }, [leftPanelWidth, windowHeight]);
+
+  const isElectron =
+    typeof window !== "undefined" && !!(window as any).electronAPI;
+  const urlPrefix = isElectron ? "/baby-gru" : "/api/moorhen/baby-gru";
+
+  const collectedProps = useMemo(
+    () => ({
+      glRef,
+      timeCapsuleRef,
+      commandCentre,
+      moleculesRef,
+      mapsRef,
+      activeMapRef,
+      lastHoveredAtom,
+      prevActiveMoleculeRef,
+      setMoorhenDimensions,
+      monomerLibraryPath,
+      urlPrefix,
+    }),
+    [setMoorhenDimensions, urlPrefix]
+  );
+
+  const getOrigin = useCallback(() => {
+    const state = store.getState() as moorhen.State;
+    return (state as unknown as { glRef: { origin: number[] } }).glRef.origin;
+  }, [store]);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+    setWindowHeight(window.innerHeight - 30);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // Load files when fileSource changes
+  useEffect(() => {
+    if (!cootInitialized || !cootModule) return;
+
+    // Check if file source changed
+    const sourceChanged =
+      JSON.stringify(loadedFileSource.current) !== JSON.stringify(fileSource);
+    if (!sourceChanged) return;
+
+    loadedFileSource.current = fileSource;
+
+    if (fileSource.type === "files" && fileSource.fileIds.length > 0) {
+      fileSource.fileIds.forEach((fileId) => {
+        fetchFile(fileId);
+      });
+    } else if (fileSource.type === "job") {
+      fetchJobFiles(fileSource.jobId);
+    }
+  }, [fileSource, cootInitialized, cootModule]);
+
+  useEffect(() => {
+    if (cootInitialized) {
+      dispatch(setWidth(leftPanelWidth));
+      dispatch(setHeight(windowHeight - 75));
+    }
+  }, [cootInitialized, leftPanelWidth, windowHeight, dispatch]);
+
+  useEffect(() => {
+    if (cootInitialized) {
+      dispatch(
+        setBackgroundColor(theme.mode === "light" ? [1, 1, 1, 1] : [0, 0, 0, 1])
+      );
+    }
+  }, [cootInitialized, theme.mode, dispatch]);
+
+  const fetchFile = async (fileId: number) => {
+    const fileInfo = await apiGet(`files/${fileId}`);
+    if (!fileInfo) {
+      console.warn(`File with ID ${fileId} not found.`);
+      return;
+    }
+    if (fileInfo.type === "chemical/x-pdb") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      const molName = fileInfo.annotation || fileInfo.job_param_name;
+      await fetchMolecule(url, molName);
+    } else if (fileInfo.type === "application/CCP4-mtz-map") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      const molName = fileInfo.name || fileInfo.job_param_name;
+      const isDiffMap = fileInfo.sub_type === 2;
+      await fetchMap(url, molName, isDiffMap);
+    }
+  };
+
+  const fetchJobFiles = async (jobId: number) => {
+    const files = await apiGet(`files/?job=${jobId}`);
+    if (!files || !Array.isArray(files)) return;
+
+    console.log("[fetchJobFiles] All files with types:", files.map((f: any) =>
+      `${f.name} (type=${f.type}, dir=${f.directory})`
+    ));
+
+    // Filter to only JOB_DIR files (directory=1), exclude imported files (directory=2)
+    const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
+    console.log("[fetchJobFiles] JOB_DIR files:", jobOutputFiles.map((f: any) =>
+      `${f.name} (type=${f.type})`
+    ));
+
+    // Find coordinate files - check for both PDB and mmCIF types
+    // mmCIF may be "chemical/x-cif" or "chemical/x-mmcif"
+    const coordFiles = jobOutputFiles.filter(
+      (f: { type: string }) =>
+        f.type === "chemical/x-pdb" ||
+        f.type === "chemical/x-cif" ||
+        f.type === "chemical/x-mmcif"
+    );
+    console.log("[fetchJobFiles] Coord files (PDB/CIF):", coordFiles.map((f: any) =>
+      `${f.name} (type=${f.type})`
+    ));
+
+    // Prefer mmCIF (.cif) over PDB (.pdb) for coordinates
+    const mmcifFile = coordFiles.find((f: { name: string }) =>
+      f.name.toLowerCase().endsWith(".cif")
+    );
+    const coordFile = mmcifFile || coordFiles[0];
+    console.log("[fetchJobFiles] Selected coord file:", coordFile?.name);
+
+    // Load the single best coordinate file
+    if (coordFile) {
+      const url = `/api/proxy/ccp4i2/files/${coordFile.id}/download/`;
+      const molName = coordFile.annotation || coordFile.job_param_name;
+      await fetchMolecule(url, molName);
+    }
+
+    // Load map files
+    for (const file of jobOutputFiles) {
+      if (file.type === "application/CCP4-mtz-map") {
+        const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
+        const molName = file.name || file.job_param_name;
+        const isDiffMap = file.sub_type === 2;
+        await fetchMap(url, molName, isDiffMap);
+      }
+    }
+  };
+
+  const fetchMolecule = async (url: string, molName: string) => {
+    if (!commandCentre.current) return;
+    const newMolecule = new MoorhenMolecule(
+      commandCentre as RefObject<moorhen.CommandCentre>,
+      glRef as RefObject<webGL.MGWebGL>,
+      store,
+      monomerLibraryPath
+    );
+    newMolecule.setBackgroundColour(backgroundColor);
+    newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
+    try {
+      const pdbData = await apiText(url);
+      await newMolecule.loadToCootFromString(pdbData, molName);
+      if (newMolecule.molNo === -1) {
+        throw new Error("Cannot read the fetched molecule...");
+      }
+      newMolecule.uniqueId = url;
+
+      // Try ribbon representation first (better for protein overview)
+      // Fall back to CBs if ribbons fail (e.g., no protein backbone)
+      try {
+        await newMolecule.addRepresentation("ribbons", "/*/*/*/*");
+      } catch {
+        console.log("[fetchMolecule] Ribbons failed, falling back to CBs");
+        await newMolecule.addRepresentation("CBs", "/*/*/*/*");
+      }
+
+      // Always try to add ligand representation
+      try {
+        await newMolecule.addRepresentation("ligands", "/*/*/*/*");
+      } catch {
+        console.log("[fetchMolecule] Ligands representation failed");
+      }
+
+      await newMolecule.centreOn("/*/*/*/*", false, true);
+      dispatch(addMolecule(newMolecule));
+    } catch (err) {
+      console.warn(err);
+      console.warn(`Cannot fetch PDB entry from ${url}`);
+    }
+  };
+
+  const fetchMap = async (
+    url: string,
+    mapName: string,
+    isDiffMap: boolean = false
+  ) => {
+    if (!commandCentre.current) return;
+    const newMap = new MoorhenMap(
+      commandCentre as RefObject<moorhen.CommandCentre>,
+      glRef as RefObject<webGL.MGWebGL>,
+      store
+    );
+    try {
+      const mtzData = await apiArrayBuffer(url);
+      await newMap.loadToCootFromMtzData(new Uint8Array(mtzData), mapName, {
+        F: "F",
+        PHI: "PHI",
+        useWeight: false,
+        isDifference: isDiffMap,
+      });
+      newMap.uniqueId = url;
+      if (newMap.molNo === -1) throw new Error("Cannot read the fetched map...");
+      dispatch(addMap(newMap));
+      dispatch(setActiveMap(newMap));
+    } catch (err) {
+      console.warn(err);
+      console.warn(`Cannot fetch map from ${url}`);
+    }
+  };
+
+  // Navigate to a site
+  const handleGoToSite = useCallback(
+    (site: CampaignSite) => {
+      dispatch(setOrigin(site.origin));
+      if (site.quat) {
+        dispatch(setQuat(site.quat));
+      }
+      if (site.zoom) {
+        dispatch(setZoom(site.zoom));
+      }
+      dispatch(setRequestDrawScene(true));
+    },
+    [dispatch]
+  );
+
+  // Save current view as a site
+  const handleSaveCurrentAsSite = useCallback(
+    async (name: string) => {
+      const state = store.getState() as unknown as {
+        glRef: { origin: number[]; quat: number[]; zoom: number };
+      };
+      const newSite: CampaignSite = {
+        name,
+        origin: Array.from(state.glRef.origin).slice(0, 3) as [
+          number,
+          number,
+          number
+        ],
+        quat: Array.from(state.glRef.quat).slice(0, 4) as [
+          number,
+          number,
+          number,
+          number
+        ],
+        zoom: state.glRef.zoom,
+      };
+      await onUpdateSites([...sites, newSite]);
+    },
+    [store, sites, onUpdateSites]
+  );
+
+  // Delete a site
+  const handleDeleteSite = useCallback(
+    async (index: number) => {
+      const newSites = sites.filter((_, i) => i !== index);
+      await onUpdateSites(newSites);
+    },
+    [sites, onUpdateSites]
+  );
+
+  // Update a site (rename and optionally update position)
+  const handleUpdateSite = useCallback(
+    async (index: number, name: string, updatePosition: boolean) => {
+      const existingSite = sites[index];
+      let updatedSite: CampaignSite;
+
+      if (updatePosition) {
+        // Capture current view position
+        const state = store.getState() as unknown as {
+          glRef: { origin: number[]; quat: number[]; zoom: number };
+        };
+        updatedSite = {
+          name,
+          origin: Array.from(state.glRef.origin).slice(0, 3) as [
+            number,
+            number,
+            number
+          ],
+          quat: Array.from(state.glRef.quat).slice(0, 4) as [
+            number,
+            number,
+            number,
+            number
+          ],
+          zoom: state.glRef.zoom,
+        };
+      } else {
+        // Keep existing position, just update name
+        updatedSite = {
+          ...existingSite,
+          name,
+        };
+      }
+
+      const newSites = [...sites];
+      newSites[index] = updatedSite;
+      await onUpdateSites(newSites);
+    },
+    [store, sites, onUpdateSites]
+  );
+
+  if (isSafari) {
+    return <SafariWarning />;
+  }
+
+  return (
+    store &&
+    cootModule && (
+      <div
+        style={{
+          display: "flex",
+          width: "100%",
+          height: "100%",
+          flexDirection: "row",
+        }}
+      >
+        <div
+          style={{
+            flex: 1,
+            minWidth: 0,
+            height: "calc(100% - 120px)",
+          }}
+        >
+          <MoorhenContainer {...collectedProps} />
+        </div>
+
+        <div
+          style={{
+            width: `${rightPanelWidth}px`,
+            minWidth: `${rightPanelWidth}px`,
+            maxWidth: `${rightPanelWidth}px`,
+            minHeight: "calc(100% - 150px)",
+            borderLeft: "1px solid #ddd",
+            padding: "0px",
+            fontSize: "14px",
+            fontFamily: "monospace",
+            overflowY: "auto",
+            overflowX: "hidden",
+            boxSizing: "border-box",
+          }}
+        >
+          <CampaignControlPanel
+            campaign={campaign}
+            sites={sites}
+            onGoToSite={handleGoToSite}
+            onSaveCurrentAsSite={handleSaveCurrentAsSite}
+            onUpdateSite={handleUpdateSite}
+            onDeleteSite={handleDeleteSite}
+            memberProjects={memberProjects}
+            selectedMemberProjectId={selectedMemberProjectId}
+            onSelectMemberProject={onSelectMemberProject}
+            parentProject={parentProject}
+            getViewUrl={getViewUrl}
+            molecules={molecules}
+          />
+        </div>
+      </div>
+    )
+  );
+};
+
+export default CampaignMoorhenWrapper;

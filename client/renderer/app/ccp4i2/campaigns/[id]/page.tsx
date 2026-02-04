@@ -460,6 +460,7 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
                 smilesMap={smilesMap}
                 showSubJobs={showSubJobs}
                 latestCoordsFileId={parentFiles?.coordinates?.[parentFiles.coordinates.length - 1]?.id}
+                campaignId={campaignId}
                 onRefresh={mutateMemberProjects}
                 onDelete={setDeleteProject}
                 onProjectClick={handleProjectClick}

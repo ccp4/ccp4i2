@@ -8,7 +8,7 @@
 import { useMemo } from "react";
 import useSWR, { mutate } from "swr";
 import { useApi } from "../api";
-import { apiPost, apiDelete, apiPatch, apiFetch } from "../api-fetch";
+import { apiPost, apiDelete, apiPatch, apiPut, apiFetch } from "../api-fetch";
 import {
   ProjectGroup,
   ProjectGroupDetail,
@@ -16,6 +16,7 @@ import {
   MemberProjectWithSummary,
   ParentFilesResponse,
   MembershipType,
+  CampaignSite,
 } from "../types/campaigns";
 import { Project } from "../types/models";
 
@@ -74,6 +75,16 @@ export function useCampaignsApi() {
         ? `projectgroups/${campaignId}/parent_files`
         : null;
       return api.get<ParentFilesResponse>(endpoint, refreshInterval);
+    },
+
+    /**
+     * Get binding sites for a campaign (for Moorhen viewer navigation).
+     */
+    useSites(campaignId: number | null, refreshInterval: number = 0) {
+      const endpoint = campaignId
+        ? `projectgroups/${campaignId}/sites`
+        : null;
+      return api.get<CampaignSite[]>(endpoint, refreshInterval);
     },
 
     // =========================================================================
@@ -202,6 +213,30 @@ export function useCampaignsApi() {
         undefined,
         { revalidate: true }
       );
+    },
+
+    /**
+     * Update binding sites for a campaign.
+     * @param campaignId - The campaign ID
+     * @param sites - Array of site objects with name, origin, and optional quat/zoom
+     */
+    async updateSites(
+      campaignId: number,
+      sites: CampaignSite[]
+    ): Promise<CampaignSite[]> {
+      const result = await apiPut<CampaignSite[]>(
+        `projectgroups/${campaignId}/sites/`,
+        sites
+      );
+      // Invalidate sites query
+      mutate(
+        (key) =>
+          typeof key === "string" &&
+          key.includes(`projectgroups/${campaignId}/sites`),
+        undefined,
+        { revalidate: true }
+      );
+      return result;
     },
   };
 }

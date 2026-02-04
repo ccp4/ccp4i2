@@ -50,6 +50,7 @@ interface MemberProjectRowProps {
   smilesMap: Record<number, string>;
   showSubJobs: boolean;
   latestCoordsFileId?: number;
+  campaignId?: number; // For opening jobs in campaign Moorhen view
   onRefresh: () => void;
   onDelete: (project: { id: number; name: string }) => void;
 }
@@ -60,6 +61,7 @@ export function MemberProjectRow({
   smilesMap,
   showSubJobs,
   latestCoordsFileId,
+  campaignId,
   onRefresh,
   onDelete,
 }: MemberProjectRowProps) {
@@ -111,13 +113,17 @@ export function MemberProjectRow({
       event.stopPropagation();
       if (event.shiftKey) {
         // Shift-click opens Moorhen in new tab (needs separate window for cross-origin isolation)
-        window.open(`/ccp4i2/moorhen-page/job-by-id/${job.id}`, '_blank');
+        // Use campaign Moorhen if campaignId is available, otherwise job-by-id
+        const moorhenUrl = campaignId
+          ? `/ccp4i2/moorhen-page/campaign/${campaignId}?job=${job.id}`
+          : `/ccp4i2/moorhen-page/job-by-id/${job.id}`;
+        window.open(moorhenUrl, '_blank');
       } else {
         // Regular click opens job in project view
         router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);
       }
     },
-    [router, project.id]
+    [router, project.id, campaignId]
   );
 
   // Handle rerun
@@ -265,7 +271,7 @@ export function MemberProjectRow({
                 <Box>
                   <Typography variant="body2">{job.task_name}</Typography>
                   <Typography variant="caption">
-                    Job {job.number} - Click to view, Shift+Click for Moorhen
+                    Job {job.number} - Click to view, Shift+Click for {campaignId ? "Campaign " : ""}Moorhen
                   </Typography>
                 </Box>
               }
