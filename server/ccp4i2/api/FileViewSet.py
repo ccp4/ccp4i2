@@ -28,6 +28,20 @@ class FileViewSet(ModelViewSet):
     serializer_class = serializers.FileSerializer
     parser_classes = [JSONParser, FormParser, MultiPartParser]
     permission_classes = [IsAuthenticated]
+    filterset_fields = ["job"]
+
+    def get_queryset(self):
+        """
+        Optionally filter files by job ID.
+
+        Query parameters:
+            job: Filter files to only those created by the specified job ID
+        """
+        queryset = models.File.objects.all()
+        job_id = self.request.query_params.get("job")
+        if job_id is not None:
+            queryset = queryset.filter(job_id=job_id)
+        return queryset
 
     @action(
         detail=True,

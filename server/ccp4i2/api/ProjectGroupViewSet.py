@@ -701,3 +701,72 @@ class ProjectGroupViewSet(ModelViewSet):
                 "Failed to export PANDDA for group %s", pk, exc_info=e
             )
             return api_error(str(e), status=500)
+
+    @action(detail=True, methods=["get", "put"], )
+    def sites(self, request, pk=None):
+        """
+        Get or update the binding sites for this campaign.
+
+        Sites are saved view states for quick navigation in the Moorhen viewer.
+        Each site contains:
+            - name: Display name for the site
+            - origin: [x, y, z] view origin coordinates
+            - quat: [x, y, z, w] quaternion for view orientation (optional)
+            - zoom: Zoom level (optional)
+
+        GET: Returns the current list of sites.
+        PUT: Updates the entire sites list (replaces existing sites).
+
+        Request body (PUT):
+            List of site objects, e.g.:
+            [
+                {"name": "Active Site", "origin": [10.5, 20.3, 15.2]},
+                {"name": "Binding Pocket", "origin": [5.0, 10.0, 8.0], "quat": [0, 0, 0, 1]}
+            ]
+
+        Returns:
+            Response: Current sites list.
+        """
+        try:
+            group = self.get_object()
+
+            if request.method == "GET":
+                return Response(group.sites)
+
+            # PUT - validate and update sites
+            sites_data = request.data
+
+            # Validate sites format
+            if not isinstance(sites_data, list):
+                return api_error("sites must be a list", status=400)
+
+            for i, site in enumerate(sites_data):
+                if not isinstance(site, dict):
+                    return api_error(f"Site {i} must be an object", status=400)
+                if "name" not in site:
+                    return api_error(f"Site {i} missing required field 'name'", status=400)
+                if "origin" not in site:
+                    return api_error(f"Site {i} missing required field 'origin'", status=400)
+                if not isinstance(site["origin"], list) or len(site["origin"]) != 3:
+                    return api_error(
+                        f"Site {i} 'origin' must be an array of 3 numbers",
+                        status=400
+                    )
+                # Validate optional quat if present
+                if "quat" in site:
+                    if not isinstance(site["quat"], list) or len(site["quat"]) != 4:
+                        return api_error(
+                            f"Site {i} 'quat' must be an array of 4 numbers",
+                            status=400
+                        )
+
+            # Save sites
+            group.sites = sites_data
+            group.save(update_fields=["sites"])
+            logger.info("Updated sites for campaign %s: %d sites", pk, len(sites_data))
+
+            return Response(group.sites)
+
+        except Exception as e:
+            logger.exception("Failed to manage sites for group %s", pk, exc_info=e)
+            return api_error(str(e), status=500)

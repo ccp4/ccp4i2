@@ -59,6 +59,8 @@ interface VirtualizedMemberProjectsTableProps {
   smilesMap: Record<number, string>;
   showSubJobs: boolean;
   latestCoordsFileId?: number;
+  /** Campaign ID for opening jobs in campaign Moorhen view */
+  campaignId?: number;
   onRefresh: () => void;
   onDelete: (project: MemberProjectWithSummary) => void;
   onProjectClick: (project: MemberProjectWithSummary) => void;
@@ -73,6 +75,7 @@ export function VirtualizedMemberProjectsTable({
   smilesMap,
   showSubJobs,
   latestCoordsFileId,
+  campaignId,
   onRefresh,
   onDelete,
   onProjectClick,
@@ -183,6 +186,7 @@ export function VirtualizedMemberProjectsTable({
                 smilesMap={smilesMap}
                 showSubJobs={showSubJobs}
                 latestCoordsFileId={latestCoordsFileId}
+                campaignId={campaignId}
                 onRefresh={onRefresh}
                 onDelete={() => onDelete(project)}
                 onProjectClick={() => onProjectClick(project)}
@@ -220,6 +224,7 @@ interface MemberProjectRowProps {
   smilesMap: Record<number, string>;
   showSubJobs: boolean;
   latestCoordsFileId?: number;
+  campaignId?: number;
   onRefresh: () => void;
   onDelete: () => void;
   onProjectClick: () => void;
@@ -232,6 +237,7 @@ function MemberProjectRow({
   smilesMap,
   showSubJobs,
   latestCoordsFileId,
+  campaignId,
   onRefresh,
   onDelete,
   onProjectClick,
@@ -259,23 +265,44 @@ function MemberProjectRow({
     []
   );
 
-  const handleCloseJobContextMenu = useCallback(() => {
-    setJobContextMenu({ anchor: null, job: null });
-  }, []);
+  const handleCloseJobContextMenu = useCallback(
+    (event?: {}, reason?: "backdropClick" | "escapeKeyDown") => {
+      // Prevent backdrop click from propagating to row
+      if (event && "stopPropagation" in event) {
+        (event as React.SyntheticEvent).stopPropagation?.();
+      }
+      setJobContextMenu({ anchor: null, job: null });
+    },
+    []
+  );
 
-  const handleOpenInCCP4i2 = useCallback(() => {
-    if (jobContextMenu.job) {
-      router.push(`/ccp4i2/project/${project.id}/job/${jobContextMenu.job.id}`);
-    }
-    handleCloseJobContextMenu();
-  }, [router, project.id, jobContextMenu.job, handleCloseJobContextMenu]);
+  const handleOpenInCCP4i2 = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      event.preventDefault();
+      if (jobContextMenu.job) {
+        router.push(`/ccp4i2/project/${project.id}/job/${jobContextMenu.job.id}`);
+      }
+      handleCloseJobContextMenu();
+    },
+    [router, project.id, jobContextMenu.job, handleCloseJobContextMenu]
+  );
 
-  const handleOpenInMoorhen = useCallback(() => {
-    if (jobContextMenu.job) {
-      window.open(`/ccp4i2/moorhen-page/job-by-id/${jobContextMenu.job.id}`, "_blank");
-    }
-    handleCloseJobContextMenu();
-  }, [jobContextMenu.job, handleCloseJobContextMenu]);
+  const handleOpenInMoorhen = useCallback(
+    (event: React.MouseEvent) => {
+      event.stopPropagation();
+      event.preventDefault();
+      if (jobContextMenu.job) {
+        // Use campaign Moorhen if campaignId is available
+        const moorhenUrl = campaignId
+          ? `/ccp4i2/moorhen-page/campaign/${campaignId}?job=${jobContextMenu.job.id}`
+          : `/ccp4i2/moorhen-page/job-by-id/${jobContextMenu.job.id}`;
+        window.open(moorhenUrl, "_blank");
+      }
+      handleCloseJobContextMenu();
+    },
+    [jobContextMenu.job, campaignId, handleCloseJobContextMenu]
+  );
 
   // Parse project name for metadata
   const parsed = parseDatasetFilename(project.name);
@@ -308,13 +335,17 @@ function MemberProjectRow({
       event.preventDefault();
       if (event.shiftKey) {
         // Shift-click opens Moorhen in new tab
-        window.open(`/ccp4i2/moorhen-page/job-by-id/${job.id}`, "_blank");
+        // Use campaign Moorhen if campaignId is available
+        const moorhenUrl = campaignId
+          ? `/ccp4i2/moorhen-page/campaign/${campaignId}?job=${job.id}`
+          : `/ccp4i2/moorhen-page/job-by-id/${job.id}`;
+        window.open(moorhenUrl, "_blank");
       } else {
         // Regular click opens job in project view
         router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);
       }
     },
-    [router, project.id]
+    [router, project.id, campaignId]
   );
 
   // Handle rerun initial job
@@ -471,7 +502,7 @@ function MemberProjectRow({
                     variant="caption"
                     sx={{ mt: 0.5, display: "block", color: "grey.400" }}
                   >
-                    Click → CCP4i2 • Shift+click → Moorhen
+                    Click → CCP4i2 • Shift+click → {campaignId ? "Campaign " : ""}Moorhen
                   </Typography>
                 </Box>
               }
@@ -527,6 +558,7 @@ function MemberProjectRow({
             ? { top: jobContextMenu.anchor.top, left: jobContextMenu.anchor.left }
             : undefined
         }
+        onClick={(e) => e.stopPropagation()}
       >
         <MenuItem onClick={handleOpenInCCP4i2}>
           <ListItemIcon>
@@ -538,7 +570,7 @@ function MemberProjectRow({
           <ListItemIcon>
             <MoorhenIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText>Open in Moorhen</ListItemText>
+          <ListItemText>Open in {campaignId ? "Campaign " : ""}Moorhen</ListItemText>
         </MenuItem>
       </Menu>
     </TableRow>

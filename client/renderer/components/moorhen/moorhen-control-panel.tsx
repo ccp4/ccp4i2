@@ -3,14 +3,17 @@ import { useSelector } from "react-redux";
 import { Box, Stack, Typography } from "@mui/material";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { MoorhenLoadedContent } from "./moorhen-loaded-panel";
+import { CopyViewLinkButton } from "./copy-view-link-button";
 import { useTheme } from "../../theme/theme-provider";
 
 interface MoorhenControlPanelProps {
   onFileSelect: (fileId: number) => Promise<void>;
+  getViewUrl?: () => string;
 }
 
 export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
   onFileSelect,
+  getViewUrl,
 }) => {
   const { customColors } = useTheme();
   const cootInitialized = useSelector(
@@ -42,6 +45,19 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
         width: "100%",
       }}
     >
+      {/* View Link Button */}
+      {getViewUrl && (
+        <Box
+          sx={{
+            p: 1,
+            borderBottom: `1px solid ${customColors.ui.mediumGray}`,
+            backgroundColor: customColors.ui.lightGray,
+          }}
+        >
+          <CopyViewLinkButton getViewUrl={getViewUrl} disabled={!cootInitialized} />
+        </Box>
+      )}
+
       {/* Upper section - CCP4i2HierarchyBrowser */}
       <Box
         sx={{

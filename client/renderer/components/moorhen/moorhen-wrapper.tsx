@@ -28,6 +28,7 @@ import { useCCP4i2Window } from "../../app-context";
 import { MoorhenControlPanel } from "./moorhen-control-panel";
 import { apiGet, apiText, apiArrayBuffer } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
+import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 
 // Detect Safari browser (has WASM threading issues with Moorhen)
 const isSafariBrowser = (): boolean => {
@@ -73,12 +74,19 @@ const SafariWarning: React.FC = () => (
 
 export interface MoorhenWrapperProps {
   fileIds?: number[];
+  viewParam?: string | null;
 }
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) => {
   const [isSafari] = useState(() => isSafariBrowser());
   const dispatch = useDispatch();
   const theme = useTheme();
+
+  // View state hook for URL parameter support
+  const { getViewUrl } = useMoorhenViewState({
+    viewParam: viewParam ?? null,
+    onViewRestored: () => console.log("View state restored from URL"),
+  });
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
   const commandCentre = useRef<null | moorhen.CommandCentre>(null);
   const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
@@ -385,7 +393,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds }) => {
             boxSizing: "border-box",
           }}
         >
-          <MoorhenControlPanel onFileSelect={fetchFile} />
+          <MoorhenControlPanel onFileSelect={fetchFile} getViewUrl={getViewUrl} />
         </div>
       </div>
     )

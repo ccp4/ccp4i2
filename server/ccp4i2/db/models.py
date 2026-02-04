@@ -11,6 +11,7 @@ from django.db.models import (
     ForeignKey,
     IntegerChoices,
     IntegerField,
+    JSONField,
     ManyToManyField,
     Model,
     OneToOneField,
@@ -60,6 +61,10 @@ class ProjectGroup(Model):
         through="ProjectGroupMembership",
         through_fields=("group", "project"),
     )
+
+    # Sites for fragment campaigns - stored view states for quick navigation
+    # Schema: [{"name": "Site 1", "origin": [x, y, z], "quat": [x, y, z, w], "zoom": z}, ...]
+    sites = JSONField(default=list, blank=True)
 
     def __str__(self):
         return self.name

@@ -1,12 +1,16 @@
 "use client";
-import { useParams } from "next/navigation";
-import { useMemo, useRef } from "react";
+import { Suspense, useMemo, useRef } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import MoorhenLoader from "../../../../../components/moorhen/client-side-moorhen-loader";
 import { ClientStoreProvider } from "../../../../../providers/client-store-provider";
 import { useJob, useProject } from "../../../../../utils";
 
-const JobByIdPage = () => {
+// Inner component that uses useSearchParams (requires Suspense boundary)
+function JobByIdPageContent() {
   const { id } = useParams();
+  const searchParams = useSearchParams();
+  const viewParam = searchParams.get("view");
+
   const { job } = useJob(parseInt(id as string));
   const { files } = useProject(job?.project);
 
@@ -35,8 +39,17 @@ const JobByIdPage = () => {
 
   return (
     <ClientStoreProvider>
-      <MoorhenLoader fileIds={fileIds} />
+      <MoorhenLoader fileIds={fileIds} viewParam={viewParam} />
     </ClientStoreProvider>
+  );
+}
+
+// Outer component with Suspense boundary for useSearchParams
+const JobByIdPage = () => {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <JobByIdPageContent />
+    </Suspense>
   );
 };
 
