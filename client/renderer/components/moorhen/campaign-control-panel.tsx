@@ -10,7 +10,8 @@
  * - Push modified structures back to CCP4i2
  */
 
-import React, { useState, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo, useEffect } from "react";
+import { useSelector } from "react-redux";
 import {
   Box,
   Typography,
@@ -36,6 +37,8 @@ import {
   Paper,
   ToggleButton,
   ToggleButtonGroup,
+  Slider,
+  Stack,
 } from "@mui/material";
 import {
   Place as PlaceIcon,
@@ -48,6 +51,7 @@ import {
 import { moorhen } from "moorhen/types/moorhen";
 import { CopyViewLinkButton } from "./copy-view-link-button";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
+import { Ligand2DView } from "../campaigns/ligand-2d-view";
 import {
   ProjectGroup,
   CampaignSite,
@@ -72,6 +76,14 @@ interface CampaignControlPanelProps {
   /** Controlled representation state */
   visibleRepresentations: string[];
   onRepresentationsChange: (representations: string[]) => void;
+  /** Ligand dictionary file ID for 2D structure display */
+  ligandDictFileId?: number | null;
+  /** Ligand name for display */
+  ligandName?: string | null;
+  /** Maps loaded in Moorhen for contour control */
+  maps?: moorhen.Map[];
+  /** Callback to change map contour level */
+  onMapContourLevelChange?: (molNo: number, level: number) => void;
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
@@ -89,7 +101,29 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   molecules,
   visibleRepresentations,
   onRepresentationsChange,
+  ligandDictFileId,
+  ligandName,
+  maps,
+  onMapContourLevelChange,
 }) => {
+  // Get contour levels from Redux state
+  const contourLevels = useSelector(
+    (state: moorhen.State) => state.mapContourSettings?.contourLevels || []
+  );
+
+  // Helper to get contour level for a specific map
+  // Note: Moorhen internally uses { molNo, contourLevel } despite TypeScript defs saying 'level'
+  const getContourLevel = useCallback((molNo: number): number => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const entry = contourLevels.find((c: any) => c.molNo === molNo);
+    const level = entry?.contourLevel;
+    // Guard against NaN/undefined - return sensible default
+    if (level === undefined || level === null || Number.isNaN(level)) {
+      return 1.0;
+    }
+    return level;
+  }, [contourLevels]);
+
   const [showAddSiteDialog, setShowAddSiteDialog] = useState(false);
   const [newSiteName, setNewSiteName] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -102,6 +136,14 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   // Push to CCP4i2 dialog state
   const [showPushDialog, setShowPushDialog] = useState(false);
   const [selectedMolecule, setSelectedMolecule] = useState<moorhen.Molecule | null>(null);
+
+  // Ligand code loaded from CIF file (overrides ligandName prop)
+  const [loadedLigandCode, setLoadedLigandCode] = useState<string | null>(null);
+
+  // Reset loaded ligand code when file ID changes
+  useEffect(() => {
+    setLoadedLigandCode(null);
+  }, [ligandDictFileId]);
 
   // Get the currently viewed project (member project or parent)
   const currentProject = useMemo(() => {
@@ -247,6 +289,41 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         </Box>
       )}
 
+      {/* Map Contour Controls */}
+      {maps && maps.length > 0 && onMapContourLevelChange && (
+        <Box sx={{ mb: 2 }}>
+          <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
+            Map Contours
+          </Typography>
+          {maps.map((map) => {
+            const level = getContourLevel(map.molNo);
+            return (
+              <Box key={map.molNo} sx={{ mb: 1.5 }}>
+                <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
+                  <Typography variant="caption" sx={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+                    {map.name || `Map ${map.molNo}`}
+                  </Typography>
+                  <Typography variant="caption" color="text.secondary" sx={{ minWidth: 45, textAlign: "right" }}>
+                    {level.toFixed(2)} σ
+                  </Typography>
+                </Stack>
+                <Slider
+                  size="small"
+                  value={level}
+                  onChange={(_e, value) => onMapContourLevelChange(map.molNo, value as number)}
+                  min={0.1}
+                  max={5.0}
+                  step={0.1}
+                  valueLabelDisplay="auto"
+                  valueLabelFormat={(v) => `${v.toFixed(1)}σ`}
+                  sx={{ py: 0 }}
+                />
+              </Box>
+            );
+          })}
+        </Box>
+      )}
+
       <Divider sx={{ my: 2 }} />
 
       {/* Member Project Selector */}
@@ -286,6 +363,27 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           ))}
         </Select>
       </FormControl>
+
+      {/* Ligand 2D Structure */}
+      {ligandDictFileId && (
+        <>
+          <Divider sx={{ my: 2 }} />
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
+              Ligand: {loadedLigandCode || ligandName || "Unknown"}
+            </Typography>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <Ligand2DView
+                fileId={ligandDictFileId}
+                name={ligandName || undefined}
+                width={200}
+                height={150}
+                onLigandCodeLoaded={setLoadedLigandCode}
+              />
+            </Box>
+          </Box>
+        </>
+      )}
 
       <Divider sx={{ my: 2 }} />
 
