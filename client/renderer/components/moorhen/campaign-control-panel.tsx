@@ -34,7 +34,8 @@ import {
   Divider,
   Tooltip,
   Paper,
-  Switch,
+  ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 import {
   Place as PlaceIcon,
@@ -97,8 +98,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   const [showPushDialog, setShowPushDialog] = useState(false);
   const [selectedMolecule, setSelectedMolecule] = useState<moorhen.Molecule | null>(null);
 
-  // Display options state
-  const [showCBs, setShowCBs] = useState(false);
+  // Display options state - track which representations are visible
+  // CRs is on by default (added during molecule loading)
+  const [visibleRepresentations, setVisibleRepresentations] = useState<string[]>(["CRs"]);
 
   // Get the currently viewed project (member project or parent)
   const currentProject = useMemo(() => {
@@ -126,22 +128,38 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     setSelectedMolecule(null);
   }, []);
 
-  const handleToggleCBs = useCallback(async (enabled: boolean) => {
-    setShowCBs(enabled);
-    if (!molecules) return;
+  const handleToggleRepresentation = useCallback(
+    async (_event: React.MouseEvent<HTMLElement>, newRepresentations: string[]) => {
+      if (!molecules) return;
 
-    for (const mol of molecules) {
-      try {
-        if (enabled) {
-          await mol.addRepresentation("CBs", "/*/*/*/*");
-        } else {
-          mol.clearBuffersOfStyle("CBs");
+      const previousReps = visibleRepresentations;
+      setVisibleRepresentations(newRepresentations);
+
+      // Determine which representations were added or removed
+      const added = newRepresentations.filter((r) => !previousReps.includes(r));
+      const removed = previousReps.filter((r) => !newRepresentations.includes(r));
+
+      for (const mol of molecules) {
+        // Add new representations
+        for (const rep of added) {
+          try {
+            await mol.addRepresentation(rep, "/*/*/*/*");
+          } catch (err) {
+            console.error(`Failed to add ${rep} for molecule ${mol.name}:`, err);
+          }
         }
-      } catch (err) {
-        console.error(`Failed to toggle CBs for molecule ${mol.name}:`, err);
+        // Remove old representations
+        for (const rep of removed) {
+          try {
+            mol.clearBuffersOfStyle(rep);
+          } catch (err) {
+            console.error(`Failed to remove ${rep} for molecule ${mol.name}:`, err);
+          }
+        }
       }
-    }
-  }, [molecules]);
+    },
+    [molecules, visibleRepresentations]
+  );
 
   const handleSaveSite = useCallback(async () => {
     if (!newSiteName.trim()) return;
@@ -200,16 +218,31 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       {/* Display Options */}
       {molecules && molecules.length > 0 && (
         <Box sx={{ mb: 2 }}>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={showCBs}
-                onChange={(e) => handleToggleCBs(e.target.checked)}
-                size="small"
-              />
-            }
-            label={<Typography variant="body2">Show bonds (CBs)</Typography>}
-          />
+          <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5, display: "block" }}>
+            Representations
+          </Typography>
+          <ToggleButtonGroup
+            value={visibleRepresentations}
+            onChange={handleToggleRepresentation}
+            size="small"
+            aria-label="molecule representations"
+          >
+            <ToggleButton value="CBs" aria-label="bonds">
+              <Tooltip title="Bonds">
+                <span>Bonds</span>
+              </Tooltip>
+            </ToggleButton>
+            <ToggleButton value="CRs" aria-label="ribbons">
+              <Tooltip title="Ribbons">
+                <span>Ribbons</span>
+              </Tooltip>
+            </ToggleButton>
+            <ToggleButton value="MolecularSurface" aria-label="surface">
+              <Tooltip title="Molecular Surface">
+                <span>Surface</span>
+              </Tooltip>
+            </ToggleButton>
+          </ToggleButtonGroup>
         </Box>
       )}
 
