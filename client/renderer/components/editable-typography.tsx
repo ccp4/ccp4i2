@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
 import { KeyboardEvent, useRef } from "react";
-import type { TypographyProps } from "@mui/material";
-import { on } from "events";
+import type { TypographyProps, SxProps, Theme } from "@mui/material";
 
 type TypographyVariant = TypographyProps["variant"];
 
@@ -9,6 +8,7 @@ export default function EditableTypography(props: {
   variant: TypographyVariant;
   text: string;
   onDelay?: (text: string) => void;
+  sx?: SxProps<Theme>;
 }) {
   const timeout = useRef<NodeJS.Timeout | undefined>(undefined);
 
@@ -24,6 +24,7 @@ export default function EditableTypography(props: {
       contentEditable={Boolean(props.onDelay)}
       suppressContentEditableWarning
       onKeyUp={handleKeyUp}
+      sx={props.sx}
     >
       {props.text}
     </Typography>
