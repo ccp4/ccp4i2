@@ -135,7 +135,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         if (enabled) {
           await mol.addRepresentation("CBs", "/*/*/*/*");
         } else {
-          await mol.deleteBuffersOfStyle("CBs");
+          mol.clearBuffersOfStyle("CBs");
         }
       } catch (err) {
         console.error(`Failed to toggle CBs for molecule ${mol.name}:`, err);
