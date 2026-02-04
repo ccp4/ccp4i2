@@ -50,9 +50,9 @@ function AggregationPageContent() {
   const initialAggregations = aggregationsParam
     ? aggregationsParam.split(',').map((s) => s.trim()).filter((a): a is AggregationType => validAggregations.includes(a as any))
     : undefined;
-  // Support status filter via 'status' param
+  // Support status filter via 'status' param (simplified to 'valid' or '' for any)
   const statusParam = searchParams.get('status');
-  const initialStatus = (statusParam === 'valid' || statusParam === 'invalid' || statusParam === 'unassigned' || statusParam === 'no_analysis' || statusParam === '') ? statusParam : undefined;
+  const initialStatus = (statusParam === 'valid' || statusParam === '') ? statusParam : undefined;
   // Support concentration display mode via 'concentrationDisplay' param
   const concentrationDisplayParam = searchParams.get('concentrationDisplay');
   const initialConcentrationDisplay = (concentrationDisplayParam === 'natural' || concentrationDisplayParam === 'nM' || concentrationDisplayParam === 'uM' || concentrationDisplayParam === 'mM' || concentrationDisplayParam === 'pConc')

@@ -644,6 +644,7 @@ function CompactTable({
                       const measurementStatus = getMeasurementStatus(protocolData, aggregations.includes('count'));
                       const hasData = measurementStatus === 'has-data';
                       const testedNoValid = measurementStatus === 'tested-no-valid';
+                      const notTested = measurementStatus === 'not-measured';
 
                       return (
                         <TableCell
@@ -657,8 +658,13 @@ function CompactTable({
                             } : {},
                           }}
                         >
-                          {/* Show "tested but no valid" badge only on first aggregation column for this protocol */}
-                          {testedNoValid && agg === aggregations[0] ? (
+                          {/* Show "not tested" indicator on first column for not-measured */}
+                          {notTested && agg === aggregations[0] ? (
+                            <NotTestedIndicator />
+                          ) : notTested ? (
+                            <Typography variant="body2" color="text.disabled">-</Typography>
+                          ) : /* Show "tested but no valid" badge only on first aggregation column for this protocol */
+                          testedNoValid && agg === aggregations[0] ? (
                             <TestedNoValidBadge
                               tested={protocolData?.tested}
                               noAnalysis={protocolData?.no_analysis}
@@ -1386,16 +1392,26 @@ type MeasurementStatus = 'not-measured' | 'tested-no-valid' | 'has-data';
 /**
  * Determine the measurement status for a protocol cell.
  * Distinguishes between not measured, tested but no valid data, and has data.
+ *
+ * Logic:
+ * - tested === 0 (or undefined/null): compound was never tested → 'not-measured'
+ * - tested > 0 && count === 0: compound was tested but no valid results → 'tested-no-valid'
+ * - count > 0: has valid data → 'has-data'
  */
 function getMeasurementStatus(
-  protocolData: { count?: number } | undefined,
+  protocolData: { count?: number; tested?: number } | undefined,
   hasCount: boolean
 ): MeasurementStatus {
   // If no protocol data at all, compound was not measured
   if (!protocolData || Object.keys(protocolData).length === 0) {
     return 'not-measured';
   }
-  // If count is explicitly 0, compound was tested but no valid results
+  // Check tested count first - if 0 or undefined, compound was never tested
+  const tested = protocolData.tested ?? 0;
+  if (tested === 0) {
+    return 'not-measured';
+  }
+  // If tested > 0 but count is 0, compound was tested but no valid results
   if (hasCount && protocolData.count === 0) {
     return 'tested-no-valid';
   }
@@ -1533,6 +1549,30 @@ function TestedNoValidBadge({
           } : {},
         }}
       />
+    </Tooltip>
+  );
+}
+
+/**
+ * Display component for "not tested" status.
+ * Shows a subtle grayed indicator that compound was never tested for this protocol.
+ * Visually distinct from TestedNoValidBadge (tested but invalid).
+ */
+function NotTestedIndicator() {
+  return (
+    <Tooltip title="Not tested for this protocol">
+      <Typography
+        variant="body2"
+        component="span"
+        sx={{
+          color: 'grey.400',
+          fontFamily: 'monospace',
+          fontStyle: 'italic',
+          fontSize: '0.75rem',
+        }}
+      >
+        n/t
+      </Typography>
     </Tooltip>
   );
 }
@@ -1854,6 +1894,18 @@ function PivotTable({
                       const measurementStatus = getMeasurementStatus(protocolData, hasCount);
                       const value = protocolData?.list;
 
+                      // For not-measured, show not-tested indicator
+                      if (measurementStatus === 'not-measured') {
+                        return (
+                          <TableCell
+                            key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                            align="center"
+                          >
+                            <NotTestedIndicator />
+                          </TableCell>
+                        );
+                      }
+
                       // For tested-no-valid in list row, show dash (badge shown in main row)
                       if (measurementStatus === 'tested-no-valid') {
                         return (
@@ -1929,6 +1981,18 @@ function PivotTable({
                   {sortedRows.map((row) => {
                     const protocolData = row.protocols[protocol.id];
                     const measurementStatus = getMeasurementStatus(protocolData, hasCount);
+
+                    // Handle not measured - compound was never tested with this protocol
+                    if (measurementStatus === 'not-measured') {
+                      return (
+                        <TableCell
+                          key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                          align="center"
+                        >
+                          <NotTestedIndicator />
+                        </TableCell>
+                      );
+                    }
 
                     // Handle tested but no valid data
                     if (measurementStatus === 'tested-no-valid') {
@@ -2291,9 +2355,7 @@ function CardsView({
                       <Typography variant="body2" fontWeight={500}>
                         {protocol.name}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary" fontFamily="monospace">
-                        -
-                      </Typography>
+                      <NotTestedIndicator />
                     </Box>
                   );
                 }
