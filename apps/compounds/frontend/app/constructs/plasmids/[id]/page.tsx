@@ -14,12 +14,14 @@ import {
   Button,
 } from '@mui/material';
 import { Download, Science, Link as LinkIcon, Delete } from '@mui/icons-material';
+import { Tooltip } from '@mui/material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/data-table';
 import { SeqVizViewer } from '@/components/compounds/SeqVizViewer';
 import { ConfirmDialog } from '@/components/compounds/ConfirmDialog';
 import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import {
   PlasmidDetail,
@@ -50,6 +52,7 @@ export default function PlasmidDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deleting, setDeleting] = useState(false);
 
@@ -206,14 +209,22 @@ export default function PlasmidDetailPage({ params }: PageProps) {
                     Download GenBank
                   </Button>
                 )}
-                <Button
-                  variant="outlined"
-                  color="error"
-                  startIcon={<Delete />}
-                  onClick={() => setDeleteDialogOpen(true)}
+                <Tooltip
+                  title={canContribute ? '' : 'Requires Contributor or Admin operating level'}
+                  arrow
                 >
-                  Delete
-                </Button>
+                  <span>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      startIcon={<Delete />}
+                      onClick={() => setDeleteDialogOpen(true)}
+                      disabled={!canContribute}
+                    >
+                      Delete
+                    </Button>
+                  </span>
+                </Tooltip>
               </Box>
             </Box>
 
