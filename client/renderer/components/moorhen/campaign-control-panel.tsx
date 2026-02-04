@@ -34,6 +34,7 @@ import {
   Divider,
   Tooltip,
   Paper,
+  Switch,
 } from "@mui/material";
 import {
   Place as PlaceIcon,
@@ -96,6 +97,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   const [showPushDialog, setShowPushDialog] = useState(false);
   const [selectedMolecule, setSelectedMolecule] = useState<moorhen.Molecule | null>(null);
 
+  // Display options state
+  const [showCBs, setShowCBs] = useState(false);
+
   // Get the currently viewed project (member project or parent)
   const currentProject = useMemo(() => {
     if (selectedMemberProjectId) {
@@ -121,6 +125,23 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     setShowPushDialog(false);
     setSelectedMolecule(null);
   }, []);
+
+  const handleToggleCBs = useCallback(async (enabled: boolean) => {
+    setShowCBs(enabled);
+    if (!molecules) return;
+
+    for (const mol of molecules) {
+      try {
+        if (enabled) {
+          await mol.addRepresentation("CBs", "/*/*/*/*");
+        } else {
+          await mol.deleteBuffersOfStyle("CBs");
+        }
+      } catch (err) {
+        console.error(`Failed to toggle CBs for molecule ${mol.name}:`, err);
+      }
+    }
+  }, [molecules]);
 
   const handleSaveSite = useCallback(async () => {
     if (!newSiteName.trim()) return;
@@ -175,6 +196,22 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       <Box sx={{ mb: 2 }}>
         <CopyViewLinkButton getViewUrl={getViewUrl} />
       </Box>
+
+      {/* Display Options */}
+      {molecules && molecules.length > 0 && (
+        <Box sx={{ mb: 2 }}>
+          <FormControlLabel
+            control={
+              <Switch
+                checked={showCBs}
+                onChange={(e) => handleToggleCBs(e.target.checked)}
+                size="small"
+              />
+            }
+            label={<Typography variant="body2">Show bonds (CBs)</Typography>}
+          />
+        </Box>
+      )}
 
       <Divider sx={{ my: 2 }} />
 
