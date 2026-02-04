@@ -8,8 +8,9 @@ import {
   useTheme,
   Box,
   Tooltip,
+  Chip,
 } from "@mui/material";
-import { MoreHoriz, Home } from "@mui/icons-material";
+import { MoreHoriz, Home, Science as ScienceIcon } from "@mui/icons-material";
 import EditMenu from "./edit-menu";
 import FileMenu from "./file-menu";
 import HelpMenu from "./help-menu";
@@ -25,6 +26,13 @@ import { useRouter } from "next/navigation";
 import { TagsOfProject } from "./tags-of-project";
 import { isElectron } from "../utils/platform";
 
+interface CampaignInfo {
+  campaign_id: number;
+  campaign_name: string;
+  membership_type: "parent" | "member";
+  member_count?: number;
+}
+
 export default function MenuBar() {
   const { projectId, jobId, devMode, setDevMode } = useCCP4i2Window();
   const api = useApi();
@@ -32,6 +40,15 @@ export default function MenuBar() {
     `projects/${projectId}`
   );
   const { data: job } = api.get<Job>(`jobs/${jobId}`);
+
+  // Fetch campaign membership info for current project
+  const { data: campaignInfo } = api.get<Record<string, CampaignInfo>>(
+    projectId ? `projectgroups/project_campaigns/?project_ids=${projectId}&include_members=true` : null
+  );
+
+  // Extract campaign info for current project
+  const projectCampaign = projectId && campaignInfo ? campaignInfo[String(projectId)] : null;
+
   const router = useRouter();
   const theme = useTheme();
 
@@ -53,29 +70,32 @@ export default function MenuBar() {
   };
 
   // Determine which menu items to show based on screen size
+  // Campaign shortcut is only relevant if the project belongs to a campaign
   const getVisibleMenus = () => {
+    const hasCampaign = !!projectCampaign;
+
     if (isXSmall) {
       // Extra small: Only File menu visible, rest in overflow
       return {
         visible: ["file"],
-        overflow: ["edit", "view", "util", "help", "tags"],
+        overflow: ["edit", "view", "util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
       };
     } else if (isSmall) {
       // Small: File, Edit, and View visible
       return {
         visible: ["file", "edit", "view"],
-        overflow: ["util", "help", "tags"],
+        overflow: ["util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
       };
     } else if (isMedium) {
-      // Medium: All menus visible, but tags might be hidden
+      // Medium: All menus visible, campaign in overflow if present
       return {
         visible: ["file", "edit", "view", "util", "help"],
-        overflow: ["tags"],
+        overflow: ["tags", ...(hasCampaign ? ["campaign"] : [])],
       };
     } else {
-      // Large: Everything visible
+      // Large: Everything visible including campaign
       return {
-        visible: ["file", "edit", "view", "util", "help", "tags"],
+        visible: ["file", "edit", "view", "util", "help", "tags", ...(hasCampaign ? ["campaign"] : [])],
         overflow: [],
       };
     }
@@ -106,6 +126,12 @@ export default function MenuBar() {
     router.push("/");
   };
 
+  const handleNavigateToCampaign = () => {
+    if (projectCampaign) {
+      router.push(`/ccp4i2/campaigns/${projectCampaign.campaign_id}`);
+    }
+  };
+
   return (
     <AppBar position="static">
       <HistoryToolbar>
@@ -132,6 +158,29 @@ export default function MenuBar() {
         {visible.includes("help") && <HelpMenu />}
         {visible.includes("tags") && project && (
           <TagsOfProject projectId={project.id} />
+        )}
+
+        {/* Campaign shortcut - shows when project belongs to a campaign */}
+        {visible.includes("campaign") && projectCampaign && (
+          <Tooltip title={`Go to ${projectCampaign.campaign_name} campaign`}>
+            <Chip
+              icon={<ScienceIcon />}
+              label={projectCampaign.campaign_name}
+              onClick={handleNavigateToCampaign}
+              size="small"
+              sx={{
+                ml: 1,
+                bgcolor: "rgba(255, 255, 255, 0.15)",
+                color: "inherit",
+                "&:hover": {
+                  bgcolor: "rgba(255, 255, 255, 0.25)",
+                },
+                "& .MuiChip-icon": {
+                  color: "inherit",
+                },
+              }}
+            />
+          </Tooltip>
         )}
 
         {/* Overflow menu for hidden items */}
@@ -176,6 +225,12 @@ export default function MenuBar() {
                   <TagsOfProject projectId={project.id} />
                 </Box>
               )}
+              {overflow.includes("campaign") && projectCampaign && (
+                <MenuItem onClick={() => { handleNavigateToCampaign(); handleMoreMenuClose(); }}>
+                  <ScienceIcon sx={{ mr: 1 }} fontSize="small" />
+                  {projectCampaign.campaign_name}
+                </MenuItem>
+              )}
             </Menu>
           </>
         )}
@@ -189,18 +244,21 @@ export default function MenuBar() {
             alignItems: "center",
             minWidth: 0, // Allow shrinking
             maxWidth: isXSmall ? "200px" : "none", // Limit width on mobile
+            height: "100%",
           }}
         >
           {job?.number && (
             <EditableTypography
-              variant={isXSmall ? "body1" : "h5"}
+              variant="body1"
               text={`Job ${job.number}: `}
+              sx={{ fontWeight: 400 }}
             />
           )}
           {project && (
             <EditableTypography
-              variant={isXSmall ? "body1" : "h5"}
+              variant="body1"
               text={project.name}
+              sx={{ fontWeight: 500 }}
               onDelay={(name) =>
                 api
                   .patch(`projects/${project.id}`, { name: name })
