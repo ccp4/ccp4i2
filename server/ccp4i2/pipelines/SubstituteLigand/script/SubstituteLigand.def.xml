@@ -116,6 +116,17 @@
                     <saveToDb>True</saveToDb>
                 </qualifiers>
             </content>
+            <content id="ANOMFPHIOUT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <default>
+                        <annotation>Anomalous map coefficients</annotation>
+                        <contentFlag>1</contentFlag>
+                        <subType>3</subType>
+                    </default>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
             <content id="XYZOUT">
                 <className>CPdbDataFile</className>
                 <qualifiers>
