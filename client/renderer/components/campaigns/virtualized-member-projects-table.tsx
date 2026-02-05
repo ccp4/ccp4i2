@@ -34,7 +34,7 @@ import {
   Info as InfoIcon,
 } from "@mui/icons-material";
 import { useVirtualizer } from "@tanstack/react-virtual";
-import { apiPost } from "../../api-fetch";
+import { apiPost, apiDelete } from "../../api-fetch";
 import {
   MemberProjectWithSummary,
   CampaignJobInfo,
@@ -304,6 +304,29 @@ function MemberProjectRow({
     [jobContextMenu.job, campaignId, handleCloseJobContextMenu]
   );
 
+  const handleDeleteJob = useCallback(
+    async (event: React.MouseEvent) => {
+      event.stopPropagation();
+      event.preventDefault();
+      const job = jobContextMenu.job;
+      handleCloseJobContextMenu();
+      if (job) {
+        const confirmed = window.confirm(
+          `Delete job ${job.number}: ${job.task_name}?\n\nThis will also delete any dependent sub-jobs.`
+        );
+        if (confirmed) {
+          try {
+            await apiDelete(`jobs/${job.id}/`);
+            onRefresh();
+          } catch (err) {
+            console.error("Failed to delete job:", err);
+          }
+        }
+      }
+    },
+    [jobContextMenu.job, onRefresh, handleCloseJobContextMenu]
+  );
+
   // Parse project name for metadata
   const parsed = parseDatasetFilename(project.name);
   const regId = parsed.nclId ? parseInt(parsed.nclId) : null;
@@ -571,6 +594,12 @@ function MemberProjectRow({
             <MoorhenIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText>Open in {campaignId ? "Campaign " : ""}Moorhen</ListItemText>
+        </MenuItem>
+        <MenuItem onClick={handleDeleteJob}>
+          <ListItemIcon>
+            <DeleteIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Delete job</ListItemText>
         </MenuItem>
       </Menu>
     </TableRow>
