@@ -251,20 +251,20 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   }, [editingSiteIndex, editSiteName, updatePosition, onUpdateSite, handleCloseEditDialog]);
 
   return (
-    <Box sx={{ p: 2, height: "100%", display: "flex", flexDirection: "column" }}>
+    <Box sx={{ p: 1.5, height: "100%", display: "flex", flexDirection: "column", overflowY: "auto", overflowX: "hidden" }}>
       {/* Header */}
-      <Typography variant="h6" sx={{ mb: 2, fontWeight: "bold" }}>
+      <Typography variant="subtitle1" sx={{ mb: 1, fontWeight: "bold" }}>
         {campaign.name}
       </Typography>
 
       {/* Copy View Link */}
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <CopyViewLinkButton getViewUrl={getViewUrl} />
       </Box>
 
       {/* Display Options */}
       {molecules && molecules.length > 0 && (
-        <Box sx={{ mb: 2 }}>
+        <Box sx={{ mb: 1 }}>
           <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5, display: "block" }}>
             Representations
           </Typography>
@@ -295,10 +295,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
       {/* Map Contour Controls */}
       {maps && maps.length > 0 && onMapContourLevelChange && (
-        <Box sx={{ mb: 2 }}>
-          <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
-            Map Contours (e/Å³)
-          </Typography>
+        <Box sx={{ mb: 1 }}>
           {maps.map((map) => {
             const level = getContourLevel(map.molNo);
             // Difference/anomalous maps need 2x higher values
@@ -324,18 +321,14 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             };
 
             const sliderPosition = valueToSlider(level);
+            // Short label: just "2Fo-Fc" or "Fo-Fc" style
+            const shortName = isDiff ? "Fo-Fc" : "2Fo-Fc";
 
             return (
-              <Box key={map.molNo} sx={{ mb: 1.5 }}>
-                <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-                  <Typography variant="caption" sx={{ flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {map.name || `Map ${map.molNo}`}
-                    {isDiff && <span style={{ color: "#888", marginLeft: 4 }}>(diff)</span>}
-                  </Typography>
-                  <Typography variant="caption" color="text.secondary" sx={{ minWidth: 55, textAlign: "right" }}>
-                    {level < 0.01 ? level.toExponential(1) : level.toFixed(3)}
-                  </Typography>
-                </Stack>
+              <Stack key={map.molNo} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
+                <Typography variant="caption" sx={{ minWidth: 42, flexShrink: 0 }}>
+                  {shortName}
+                </Typography>
                 <Slider
                   size="small"
                   value={sliderPosition}
@@ -348,18 +341,21 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                     const actualValue = sliderToValue(v);
                     return actualValue < 0.01 ? actualValue.toExponential(1) : actualValue.toFixed(3);
                   }}
-                  sx={{ py: 0 }}
+                  sx={{ flex: 1, py: 0, mx: 0.5 }}
                 />
-              </Box>
+                <Typography variant="caption" color="text.secondary" sx={{ minWidth: 45, textAlign: "right", flexShrink: 0 }}>
+                  {level < 0.01 ? level.toExponential(1) : level.toFixed(2)}
+                </Typography>
+              </Stack>
             );
           })}
         </Box>
       )}
 
-      <Divider sx={{ my: 2 }} />
+      <Divider sx={{ my: 1 }} />
 
       {/* Member Project Selector */}
-      <FormControl fullWidth size="small" sx={{ mb: 2 }}>
+      <FormControl fullWidth size="small" sx={{ mb: 1 }}>
         <InputLabel id="member-project-label">View Project</InputLabel>
         <Select
           labelId="member-project-label"
@@ -399,25 +395,25 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       {/* Ligand 2D Structure */}
       {ligandDictFileId && (
         <>
-          <Divider sx={{ my: 2 }} />
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="caption" color="text.secondary" sx={{ mb: 1, display: "block" }}>
-              Ligand: {loadedLigandCode || ligandName || "Unknown"}
+          <Divider sx={{ my: 1 }} />
+          <Stack direction="row" alignItems="center" spacing={1} sx={{ mb: 1 }}>
+            <Typography variant="caption" color="text.secondary" sx={{ flexShrink: 0 }}>
+              {loadedLigandCode || ligandName || "Ligand"}
             </Typography>
-            <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Box sx={{ flex: 1, display: "flex", justifyContent: "center" }}>
               <Ligand2DView
                 fileId={ligandDictFileId}
                 name={ligandName || undefined}
-                width={200}
-                height={150}
+                width={140}
+                height={90}
                 onLigandCodeLoaded={setLoadedLigandCode}
               />
             </Box>
-          </Box>
+          </Stack>
         </>
       )}
 
-      <Divider sx={{ my: 2 }} />
+      <Divider sx={{ my: 1 }} />
 
       {/* Sites Section */}
       <Box sx={{ flex: 1, display: "flex", flexDirection: "column", minHeight: 0 }}>
@@ -426,10 +422,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            mb: 1,
+            mb: 0.5,
           }}
         >
-          <Typography variant="subtitle2" sx={{ fontWeight: "bold" }}>
+          <Typography variant="caption" sx={{ fontWeight: "bold" }}>
             Binding Sites
           </Typography>
           <Tooltip title="Save current view as a site">
@@ -437,6 +433,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
               size="small"
               onClick={() => setShowAddSiteDialog(true)}
               color="primary"
+              sx={{ p: 0.5 }}
             >
               <AddIcon fontSize="small" />
             </IconButton>
@@ -447,18 +444,15 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           <Paper
             variant="outlined"
             sx={{
-              p: 2,
+              p: 1,
               textAlign: "center",
               color: "text.secondary",
               bgcolor: "background.default",
             }}
           >
-            <PlaceIcon sx={{ fontSize: 40, mb: 1, opacity: 0.5 }} />
-            <Typography variant="body2">
-              No sites saved yet.
-            </Typography>
-            <Typography variant="caption" display="block" sx={{ mt: 1 }}>
-              Navigate to a binding site and click + to save it.
+            <PlaceIcon sx={{ fontSize: 24, opacity: 0.5 }} />
+            <Typography variant="caption" display="block">
+              No sites saved. Navigate and click + to save.
             </Typography>
           </Paper>
         ) : (
@@ -466,12 +460,18 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             {sites.map((site, index) => (
               <ListItem
                 key={index}
+                component="div"
+                onClick={() => onGoToSite(site)}
                 sx={{
                   bgcolor: "background.paper",
                   mb: 0.5,
                   borderRadius: 1,
                   border: "1px solid",
                   borderColor: "divider",
+                  cursor: "pointer",
+                  "&:hover": {
+                    bgcolor: "action.hover",
+                  },
                 }}
               >
                 <ListItemText
@@ -530,9 +530,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       {/* Push to CCP4i2 Section */}
       {molecules && molecules.length > 0 && (
         <>
-          <Divider sx={{ my: 2 }} />
+          <Divider sx={{ my: 1 }} />
           <Box>
-            <Typography variant="subtitle2" sx={{ fontWeight: "bold", mb: 1 }}>
+            <Typography variant="caption" sx={{ fontWeight: "bold", mb: 0.5, display: "block" }}>
               Push to CCP4i2
             </Typography>
             <List dense>

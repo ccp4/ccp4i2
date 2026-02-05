@@ -714,13 +714,12 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             width: `${rightPanelWidth}px`,
             minWidth: `${rightPanelWidth}px`,
             maxWidth: `${rightPanelWidth}px`,
-            minHeight: "calc(100% - 150px)",
+            height: "calc(100vh - 40px)",
             borderLeft: "1px solid #ddd",
             padding: "0px",
             fontSize: "14px",
             fontFamily: "monospace",
-            overflowY: "auto",
-            overflowX: "hidden",
+            overflow: "hidden",
             boxSizing: "border-box",
           }}
         >
