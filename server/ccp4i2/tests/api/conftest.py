@@ -431,6 +431,15 @@ def mdm2_unmerged_mtz(demo_data_dir):
 
 
 @pytest.fixture(scope="session")
+def mdm2_model_cif(demo_data_dir):
+    """Path to mdm2 model CIF (4hg7)."""
+    path = demo_data_dir / 'mdm2' / '4hg7.cif'
+    if not path.exists():
+        pytest.skip(f"Demo data not found: {path}")
+    return str(path)
+
+
+@pytest.fixture(scope="session")
 def rnase_model_pdb(demo_data_dir):
     """Path to rnase model PDB."""
     path = demo_data_dir / 'rnase' / 'rnase_model.pdb'
