@@ -2,6 +2,13 @@
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+## [2.5.1] - 2026-02-05
+
+- Fix to spaces/quoting in AceDRG atom name matching
+
+>>>>>>> 2c426e578 (Acedrg atom name fixes (#123))
 ## [2.5.0] - 2026-01-06
 =======
 ## [2.5.0] - 2025-12-02
