@@ -41,6 +41,8 @@ from typing import Dict, List, Optional, Any
 
 import json
 
+from server.ccp4i2.pipelines.servalcat_pipe.script.servalcat_pipe import servalcat_pipe
+
 try:
     import yaml
     HAS_YAML = True
@@ -117,7 +119,7 @@ class UploadAction:
     # Files for SubstituteLigand (unmerged data)
     unmerged_mtz_path: str
 
-    # Files for servalcat (dimple harvest)
+    # Files for servalcat_pipe (dimple harvest)
     dimple_pdb: Optional[str] = None   # final.pdb from dimple (XYZIN)
     dimple_mtz: Optional[str] = None   # Output MTZ from dimple (HKLIN)
     compound_cif: Optional[str] = None # Compound CIF (DICT_LIST[0])
@@ -132,7 +134,7 @@ class UploadAction:
     # Results (filled in during execute)
     project_id: Optional[int] = None
     sublig_job_id: Optional[int] = None
-    servalcat_job_id: Optional[int] = None
+    servalcat_pipe_job_id: Optional[int] = None
 
 
 @dataclass
@@ -738,6 +740,27 @@ def lookup_smiles(client, ncl_id: str) -> Optional[str]:
     return None
 
 
+def find_project_by_name(client, project_name: str) -> Optional[dict]:
+    """
+    Find an existing project by exact name match.
+
+    Args:
+        client: CCP4i2Client instance
+        project_name: Exact project name to search for
+
+    Returns:
+        Project dict if found, None otherwise
+    """
+    try:
+        projects = client.list_projects()
+        for project in projects:
+            if project.get('name') == project_name:
+                return project
+    except Exception as e:
+        print(f"    Warning: Could not list projects: {e}")
+    return None
+
+
 def execute_upload(
     client,
     plan_data: dict,
@@ -747,12 +770,16 @@ def execute_upload(
     verbose: bool = False,
     status_file: Optional[str] = None,
     force_smiles_fallback: bool = False,
+    rerun: bool = False,
+    rerun_create_missing: bool = False,
+    run_sublig: bool = True,
+    run_servalcat: bool = True,
 ) -> dict:
     """
     Execute the upload plan using i2remote client.
 
     This follows the same pattern as BatchImportDialog:
-    1. Create project and add to campaign
+    1. Create project and add to campaign (or find existing in rerun mode)
     2. Create SubstituteLigand job
     3. Upload reference coords (XYZIN) from parent
     4. Set SMILES parameter (or LIGANDAS=NONE for APO)
@@ -771,6 +798,12 @@ def execute_upload(
         force_smiles_fallback: If True, fall back to local .smiles files when
             registry lookup fails. If False (default), fail the action instead
             to avoid potential SMILES mismatches.
+        rerun: If True, find existing projects by name instead of creating new ones.
+            Creates new jobs in existing projects (old jobs are preserved).
+        rerun_create_missing: If True (with rerun), create projects that don't exist.
+            If False (default with rerun), skip projects that don't exist.
+        run_sublig: If True (default), create SubstituteLigand jobs.
+        run_servalcat: If True (default), create servalcat_pipe jobs.
 
     Returns:
         Status dictionary with results for each action
@@ -822,7 +855,7 @@ def execute_upload(
             'status': 'pending',
             'project_id': None,
             'sublig_job_id': None,
-            'servalcat_job_id': None,
+            'servalcat_pipe_job_id': None,
             'error': None,
         }
 
@@ -832,33 +865,44 @@ def execute_upload(
                 print(f"    # === i2remote commands for {action['crystal_name']} ===")
                 print(f"    client.create_project('{action['project_name']}')")
                 print(f"    client.post('/projectgroups/{campaign_id}/add_member', {{'project_id': <project_id>, 'type': 'member'}})")
-                print(f"    client.create_job(<project_id>, 'SubstituteLigand')")
-                print(f"    client.upload_file_content(<job_id>, 'SubstituteLigand.inputData.XYZIN', <coords_content>, 'reference.pdb')")
 
-                compound_id = action['compound_id']
-                if compound_id == 'NCL-00000000':
-                    print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.controlParameters.LIGANDAS', 'NONE')")
-                elif compound_id.startswith('NCL-'):
-                    print(f"    smiles = lookup_smiles(client, '{compound_id}')  # Registry lookup")
-                    print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.inputData.SMILESIN', smiles)")
+                # SubstituteLigand job commands
+                if run_sublig:
+                    print(f"    # --- SubstituteLigand job ---")
+                    print(f"    client.create_job(<project_id>, 'SubstituteLigand')")
+                    print(f"    client.upload_file_content(<job_id>, 'SubstituteLigand.inputData.XYZIN', <coords_content>, 'reference.pdb')")
 
-                print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.inputData.PIPELINE', 'DIMPLE')")
-                print(f"    client.upload_file_param(<job_id>, 'SubstituteLigand.inputData.UNMERGEDFILES[0].file', '{action['unmerged_mtz_path']}')")
-                print(f"    client.run_job(<job_id>)")
+                    compound_id = action['compound_id']
+                    if compound_id == 'NCL-00000000':
+                        print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.controlParameters.LIGANDAS', 'NONE')")
+                    elif compound_id.startswith('NCL-'):
+                        print(f"    smiles = lookup_smiles(client, '{compound_id}')  # Registry lookup")
+                        print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.inputData.SMILESIN', smiles)")
 
-                # Servalcat job commands
-                dimple_pdb = action.get('dimple_pdb')
-                dimple_mtz = action.get('dimple_mtz')
-                compound_cif = action.get('compound_cif')
+                    print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.inputData.PIPELINE', 'DIMPLE')")
+                    print(f"    client.upload_file_param(<job_id>, 'SubstituteLigand.inputData.UNMERGEDFILES[0].file', '{action['unmerged_mtz_path']}')")
+                    print(f"    client.run_job(<job_id>)")
+                else:
+                    print(f"    # --- SubstituteLigand skipped (--only-servalcat) ---")
 
-                if dimple_pdb and dimple_mtz:
-                    print(f"    # --- servalcat job (dimple harvest) ---")
-                    print(f"    client.create_job(<project_id>, 'servalcat')")
-                    print(f"    client.upload_file_param(<servalcat_job_id>, 'servalcat.inputData.HKLIN', '{dimple_mtz}')")
-                    print(f"    client.upload_file_param(<servalcat_job_id>, 'servalcat.inputData.XYZIN', '{dimple_pdb}')")
-                    if compound_cif:
-                        print(f"    client.upload_file_param(<servalcat_job_id>, 'servalcat.inputData.DICT_LIST[0]', '{compound_cif}')")
-                    print(f"    client.run_job(<servalcat_job_id>)")
+                # Servalcat_pipe job commands
+                if run_servalcat:
+                    dimple_pdb = action.get('dimple_pdb')
+                    dimple_mtz = action.get('dimple_mtz')
+                    compound_cif = action.get('compound_cif')
+
+                    if dimple_pdb and dimple_mtz:
+                        print(f"    # --- servalcat_pipe job (dimple harvest) ---")
+                        print(f"    client.create_job(<project_id>, 'servalcat_pipe')")
+                        print(f"    client.upload_file_param(<servalcat_pipe_job_id>, 'servalcat_pipe.inputData.HKLIN', '{dimple_mtz}')")
+                        print(f"    client.upload_file_param(<servalcat_pipe_job_id>, 'servalcat_pipe.inputData.XYZIN', '{dimple_pdb}')")
+                        if compound_cif:
+                            print(f"    client.upload_file_param(<servalcat_pipe_job_id>, 'servalcat_pipe.inputData.DICT_LIST[0]', '{compound_cif}')")
+                        print(f"    client.run_job(<servalcat_pipe_job_id>)")
+                    else:
+                        print(f"    # --- servalcat_pipe skipped (no dimple output) ---")
+                else:
+                    print(f"    # --- servalcat_pipe skipped (--only-sublig) ---")
                 print()
             else:
                 print(f"    [DRY RUN] Would create project and upload files")
@@ -869,164 +913,204 @@ def execute_upload(
             continue
 
         try:
-            # Step 1: Create project
-            print(f"    Creating project...")
-            project_resp = client.create_project(action['project_name'])
-            project_id = project_resp.get('id')
-            action_result['project_id'] = project_id
-            print(f"    Created project ID: {project_id}")
+            # Step 1: Create or find project
+            if rerun:
+                # Rerun mode: look for existing project by name
+                print(f"    Looking for existing project...")
+                existing_project = find_project_by_name(client, action['project_name'])
 
-            # Step 2: Add project to campaign as member
-            print(f"    Adding to campaign {campaign_id}...")
-            client.post(f"/projectgroups/{campaign_id}/add_member", {
-                'project_id': project_id,
-                'type': 'member'
-            })
+                if existing_project:
+                    project_id = existing_project.get('id')
+                    action_result['project_id'] = project_id
+                    print(f"    Found existing project ID: {project_id}")
+                    # Skip adding to campaign - already a member
+                elif rerun_create_missing:
+                    # Project doesn't exist, but we're allowed to create it
+                    print(f"    Project not found, creating...")
+                    project_resp = client.create_project(action['project_name'])
+                    project_id = project_resp.get('id')
+                    action_result['project_id'] = project_id
+                    print(f"    Created project ID: {project_id}")
 
-            # Step 3: Create SubstituteLigand job
-            print(f"    Creating SubstituteLigand job...")
-            sublig_job = client.create_job(project_id, 'SubstituteLigand')
-            # i2remote.create_job returns unwrapped job data: {id, uuid, ...}
-            sublig_job_id = sublig_job.get('id')
-            print(f"    Created SubstituteLigand job ID: {sublig_job_id}")
+                    # Add new project to campaign
+                    print(f"    Adding to campaign {campaign_id}...")
+                    client.post(f"/projectgroups/{campaign_id}/add_member", {
+                        'project_id': project_id,
+                        'type': 'member'
+                    })
+                else:
+                    # Project doesn't exist and we're not creating - skip
+                    print(f"    Project not found, skipping (use --rerun-create-missing to create)")
+                    action_result['status'] = 'skipped'
+                    action_result['error'] = 'Project not found in rerun mode'
+                    results['actions'].append(action_result)
+                    results['summary']['skipped'] += 1
+                    continue
+            else:
+                # Normal mode: create new project
+                print(f"    Creating project...")
+                project_resp = client.create_project(action['project_name'])
+                project_id = project_resp.get('id')
+                action_result['project_id'] = project_id
+                print(f"    Created project ID: {project_id}")
 
-            # Step 4: Upload reference coordinates (XYZIN)
-            print(f"    Uploading reference coords...")
-            client.upload_file_content(
-                sublig_job_id,
-                'SubstituteLigand.inputData.XYZIN',
-                coords_content,
-                coords_filename
-            )
+                # Step 2: Add project to campaign as member
+                print(f"    Adding to campaign {campaign_id}...")
+                client.post(f"/projectgroups/{campaign_id}/add_member", {
+                    'project_id': project_id,
+                    'type': 'member'
+                })
 
-            # Step 5: Set compound parameters
-            compound_id = action['compound_id']
+            # Step 3: Create SubstituteLigand job (if enabled)
+            if run_sublig:
+                print(f"    Creating SubstituteLigand job...")
+                sublig_job = client.create_job(project_id, 'SubstituteLigand')
+                # i2remote.create_job returns unwrapped job data: {id, uuid, ...}
+                sublig_job_id = sublig_job.get('id')
+                print(f"    Created SubstituteLigand job ID: {sublig_job_id}")
 
-            if compound_id == 'NCL-00000000':
-                # APO crystal - no ligand
-                print(f"    Setting LIGANDAS=NONE (APO)...")
+                # Step 4: Upload reference coordinates (XYZIN)
+                print(f"    Uploading reference coords...")
+                client.upload_file_content(
+                    sublig_job_id,
+                    'SubstituteLigand.inputData.XYZIN',
+                    coords_content,
+                    coords_filename
+                )
+
+                # Step 5: Set compound parameters
+                compound_id = action['compound_id']
+
+                if compound_id == 'NCL-00000000':
+                    # APO crystal - no ligand
+                    print(f"    Setting LIGANDAS=NONE (APO)...")
+                    client.set_job_parameter(
+                        sublig_job_id,
+                        'SubstituteLigand.controlParameters.LIGANDAS',
+                        'NONE'
+                    )
+                elif compound_id.startswith('NCL-'):
+                    # Look up SMILES from the compounds registry (registerer's preferred SMILES)
+                    print(f"    Looking up SMILES for {compound_id}...")
+                    smiles = lookup_smiles(client, compound_id)
+
+                    # Handle registry lookup failure
+                    if not smiles:
+                        local_smiles = action.get('smiles')  # From local XChem data
+                        if force_smiles_fallback and local_smiles:
+                            print(f"    WARNING: Registry lookup failed, using local SMILES (--force-smiles-fallback)")
+                            print(f"    Local SMILES: {local_smiles[:50]}...")
+                            smiles = local_smiles
+                        elif local_smiles:
+                            # Local SMILES exists but fallback not enabled - fail safely
+                            error_msg = (
+                                f"Registry lookup failed for {compound_id}. "
+                                f"Local SMILES exists but --force-smiles-fallback not set. "
+                                f"Skipping to avoid potential SMILES mismatch."
+                            )
+                            print(f"    ERROR: {error_msg}")
+                            action_result['status'] = 'failed'
+                            action_result['error'] = error_msg
+                            results['actions'].append(action_result)
+                            results['summary']['failed'] += 1
+                            continue
+                        else:
+                            print(f"    Warning: No SMILES available for {compound_id} (neither registry nor local)")
+
+                    if smiles:
+                        print(f"    Setting SMILES: {smiles[:50]}...")
+                        client.set_job_parameter(
+                            sublig_job_id,
+                            'SubstituteLigand.inputData.SMILESIN',
+                            smiles
+                        )
+                    else:
+                        print(f"    Warning: No SMILES available for {compound_id}")
+                else:
+                    # Non-NCL compound (Z*, POB*, etc.) - use local SMILES if available
+                    smiles = action.get('smiles')
+                    if smiles:
+                        print(f"    Setting SMILES: {smiles[:50]}...")
+                        client.set_job_parameter(
+                            sublig_job_id,
+                            'SubstituteLigand.inputData.SMILESIN',
+                            smiles
+                        )
+                    else:
+                        print(f"    Warning: No SMILES available for {compound_id}")
+
+                # Step 6: Set pipeline to DIMPLE
+                print(f"    Setting PIPELINE=DIMPLE...")
                 client.set_job_parameter(
                     sublig_job_id,
-                    'SubstituteLigand.controlParameters.LIGANDAS',
-                    'NONE'
+                    'SubstituteLigand.inputData.PIPELINE',
+                    'DIMPLE'
                 )
-            elif compound_id.startswith('NCL-'):
-                # Look up SMILES from the compounds registry (registerer's preferred SMILES)
-                print(f"    Looking up SMILES for {compound_id}...")
-                smiles = lookup_smiles(client, compound_id)
 
-                # Handle registry lookup failure
-                if not smiles:
-                    local_smiles = action.get('smiles')  # From local XChem data
-                    if force_smiles_fallback and local_smiles:
-                        print(f"    WARNING: Registry lookup failed, using local SMILES (--force-smiles-fallback)")
-                        print(f"    Local SMILES: {local_smiles[:50]}...")
-                        smiles = local_smiles
-                    elif local_smiles:
-                        # Local SMILES exists but fallback not enabled - fail safely
-                        error_msg = (
-                            f"Registry lookup failed for {compound_id}. "
-                            f"Local SMILES exists but --force-smiles-fallback not set. "
-                            f"Skipping to avoid potential SMILES mismatch."
-                        )
-                        print(f"    ERROR: {error_msg}")
-                        action_result['status'] = 'failed'
-                        action_result['error'] = error_msg
-                        results['actions'].append(action_result)
-                        results['summary']['failed'] += 1
-                        continue
-                    else:
-                        print(f"    Warning: No SMILES available for {compound_id} (neither registry nor local)")
+                # Step 7: Upload unmerged reflection data
+                unmerged_path = action['unmerged_mtz_path']
+                print(f"    Uploading unmerged data: {Path(unmerged_path).name}...")
+                client.upload_file_param(
+                    sublig_job_id,
+                    'SubstituteLigand.inputData.UNMERGEDFILES[0].file',
+                    unmerged_path
+                )
 
-                if smiles:
-                    print(f"    Setting SMILES: {smiles[:50]}...")
-                    client.set_job_parameter(
-                        sublig_job_id,
-                        'SubstituteLigand.inputData.SMILESIN',
-                        smiles
-                    )
-                else:
-                    print(f"    Warning: No SMILES available for {compound_id}")
+                # Step 8: Queue SubstituteLigand job
+                print(f"    Queueing SubstituteLigand job...")
+                client.run_job(sublig_job_id)
+                action_result['sublig_job_id'] = sublig_job_id
             else:
-                # Non-NCL compound (Z*, POB*, etc.) - use local SMILES if available
-                smiles = action.get('smiles')
-                if smiles:
-                    print(f"    Setting SMILES: {smiles[:50]}...")
-                    client.set_job_parameter(
-                        sublig_job_id,
-                        'SubstituteLigand.inputData.SMILESIN',
-                        smiles
-                    )
-                else:
-                    print(f"    Warning: No SMILES available for {compound_id}")
-
-            # Step 6: Set pipeline to DIMPLE
-            print(f"    Setting PIPELINE=DIMPLE...")
-            client.set_job_parameter(
-                sublig_job_id,
-                'SubstituteLigand.inputData.PIPELINE',
-                'DIMPLE'
-            )
-
-            # Step 7: Upload unmerged reflection data
-            unmerged_path = action['unmerged_mtz_path']
-            print(f"    Uploading unmerged data: {Path(unmerged_path).name}...")
-            client.upload_file_param(
-                sublig_job_id,
-                'SubstituteLigand.inputData.UNMERGEDFILES[0].file',
-                unmerged_path
-            )
-
-            # Step 8: Queue SubstituteLigand job
-            print(f"    Queueing SubstituteLigand job...")
-            client.run_job(sublig_job_id)
-            action_result['sublig_job_id'] = sublig_job_id
+                print(f"    Skipping SubstituteLigand (--only-servalcat)")
 
             # ─────────────────────────────────────────────────────────────
-            # Create servalcat job to harvest dimple results
+            # Create servalcat_pipe job to harvest dimple results
             # ─────────────────────────────────────────────────────────────
-            dimple_pdb = action.get('dimple_pdb')
-            dimple_mtz = action.get('dimple_mtz')
+            if run_servalcat:
+                dimple_pdb = action.get('dimple_pdb')
+                dimple_mtz = action.get('dimple_mtz')
 
-            if dimple_pdb and dimple_mtz and Path(dimple_pdb).exists() and Path(dimple_mtz).exists():
-                print(f"    Creating servalcat job (dimple harvest)...")
-                servalcat_job = client.create_job(project_id, 'servalcat')
-                # i2remote.create_job returns unwrapped job data: {id, uuid, ...}
-                servalcat_job_id = servalcat_job.get('id')
-                action_result['servalcat_job_id'] = servalcat_job_id
-                print(f"    Created servalcat job ID: {servalcat_job_id}")
+                if dimple_pdb and dimple_mtz and Path(dimple_pdb).exists() and Path(dimple_mtz).exists():
+                    print(f"    Creating servalcat_pipe job (dimple harvest)...")
+                    servalcat_pipe_job = client.create_job(project_id, 'servalcat_pipe')
+                    # i2remote.create_job returns unwrapped job data: {id, uuid, ...}
+                    servalcat_pipe_job_id = servalcat_pipe_job.get('id')
+                    action_result['servalcat_pipe_job_id'] = servalcat_pipe_job_id
+                    print(f"    Created servalcat_pipe job ID: {servalcat_pipe_job_id}")
 
-                # Upload dimple MTZ as HKLIN
-                print(f"    Uploading HKLIN: {Path(dimple_mtz).name}...")
-                client.upload_file_param(
-                    servalcat_job_id,
-                    'servalcat.inputData.HKLIN',
-                    dimple_mtz
-                )
-
-                # Upload dimple PDB as XYZIN
-                print(f"    Uploading XYZIN: {Path(dimple_pdb).name}...")
-                client.upload_file_param(
-                    servalcat_job_id,
-                    'servalcat.inputData.XYZIN',
-                    dimple_pdb
-                )
-
-                # Upload compound CIF as DICT_LIST[0] if available
-                compound_cif = action.get('compound_cif')
-                if compound_cif and Path(compound_cif).exists():
-                    print(f"    Uploading DICT: {Path(compound_cif).name}...")
+                    # Upload dimple MTZ as HKLIN
+                    print(f"    Uploading HKLIN: {Path(dimple_mtz).name}...")
                     client.upload_file_param(
-                        servalcat_job_id,
-                        'servalcat.inputData.DICT_LIST[0]',
-                        compound_cif
+                        servalcat_pipe_job_id,
+                        'servalcat_pipe.inputData.HKLIN',
+                        dimple_mtz
                     )
 
-                # Queue servalcat job
-                print(f"    Queueing servalcat job...")
-                client.run_job(servalcat_job_id)
+                    # Upload dimple PDB as XYZIN
+                    print(f"    Uploading XYZIN: {Path(dimple_pdb).name}...")
+                    client.upload_file_param(
+                        servalcat_pipe_job_id,
+                        'servalcat_pipe.inputData.XYZIN',
+                        dimple_pdb
+                    )
+
+                    # Upload compound CIF as DICT_LIST[0] if available
+                    compound_cif = action.get('compound_cif')
+                    if compound_cif and Path(compound_cif).exists():
+                        print(f"    Uploading DICT: {Path(compound_cif).name}...")
+                        client.upload_file_param(
+                            servalcat_pipe_job_id,
+                            'servalcat_pipe.inputData.DICT_LIST[0]',
+                            compound_cif
+                        )
+
+                    # Queue servalcat_pipe job
+                    print(f"    Queueing servalcat_pipe job...")
+                    client.run_job(servalcat_pipe_job_id)
+                else:
+                    print(f"    Skipping servalcat_pipe (no dimple output)")
             else:
-                print(f"    Skipping servalcat (no dimple output)")
+                print(f"    Skipping servalcat_pipe (--only-sublig)")
 
             action_result['status'] = 'completed'
             results['summary']['completed'] += 1
@@ -1053,6 +1137,20 @@ def cmd_execute(args):
     print(f"Loading plan: {args.plan_file}")
 
     plan_data = load_config(args.plan_file)
+
+    # Validate pipeline selection flags
+    if args.only_sublig and args.only_servalcat:
+        print("\nERROR: Cannot use --only-sublig and --only-servalcat together.")
+        return 1
+
+    # Determine which pipelines to run
+    run_sublig = not args.only_servalcat
+    run_servalcat = not args.only_sublig
+
+    if args.only_sublig:
+        print("\n[MODE] Running only SubstituteLigand (skipping servalcat_pipe)")
+    elif args.only_servalcat:
+        print("\n[MODE] Running only servalcat_pipe (skipping SubstituteLigand)")
 
     if args.dry_run:
         print("\n=== DRY RUN - No changes will be made ===")
@@ -1099,6 +1197,8 @@ def cmd_execute(args):
                 coords_file_id=coords_file_id,
                 dry_run=True,
                 verbose=True,
+                run_sublig=run_sublig,
+                run_servalcat=run_servalcat,
             )
         print("\n[DRY RUN] No changes made.")
         return 0
@@ -1135,7 +1235,14 @@ def cmd_execute(args):
 
     # Confirm execution
     if not args.yes:
-        print(f"\nThis will create {plan_data['total_actions']} projects and jobs.")
+        if args.rerun:
+            print(f"\n[RERUN MODE] This will create new jobs in {plan_data['total_actions']} existing projects.")
+            if args.rerun_create_missing:
+                print("Projects that don't exist will be created.")
+            else:
+                print("Projects that don't exist will be skipped.")
+        else:
+            print(f"\nThis will create {plan_data['total_actions']} projects and jobs.")
         response = input("Continue? [y/N]: ")
         if response.lower() != 'y':
             print("Aborted.")
@@ -1151,6 +1258,10 @@ def cmd_execute(args):
         dry_run=False,
         status_file=status_file,
         force_smiles_fallback=args.force_smiles_fallback,
+        rerun=args.rerun,
+        rerun_create_missing=args.rerun_create_missing,
+        run_sublig=run_sublig,
+        run_servalcat=run_servalcat,
     )
 
     # Final summary
@@ -1158,6 +1269,8 @@ def cmd_execute(args):
     print(f"Total: {results['summary']['total']}")
     print(f"Completed: {results['summary']['completed']}")
     print(f"Failed: {results['summary']['failed']}")
+    if results['summary'].get('skipped', 0) > 0:
+        print(f"Skipped: {results['summary']['skipped']}")
 
     save_config(results, status_file)
     print(f"\nStatus saved to: {status_file}")
@@ -1210,6 +1323,15 @@ def main():
     exec_parser.add_argument('--force-smiles-fallback', action='store_true',
                             help='Fall back to local .smiles files if registry lookup fails '
                                  '(by default, missing registry SMILES causes an error)')
+    exec_parser.add_argument('--rerun', action='store_true',
+                            help='Re-run mode: find existing projects by name instead of creating new ones. '
+                                 'Creates new jobs in existing projects (old jobs preserved).')
+    exec_parser.add_argument('--rerun-create-missing', action='store_true',
+                            help='With --rerun: create projects that do not exist (default: skip missing)')
+    exec_parser.add_argument('--only-sublig', action='store_true',
+                            help='Run only SubstituteLigand pipeline (skip servalcat_pipe)')
+    exec_parser.add_argument('--only-servalcat', action='store_true',
+                            help='Run only servalcat_pipe pipeline (skip SubstituteLigand)')
 
     args = parser.parse_args()
 
