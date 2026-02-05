@@ -20,7 +20,11 @@ def changeDictionaryAtomNames(doc, changes):
                     col = block.find_values(tag)
                     for i, atomId in enumerate(col):
                         if atomId in changes:
-                            col[i] = changes[atomId]
+                            newId = changes[atomId]
+                            if "'" in newId or '"' in newId:
+                                col[i] = cif.quote(newId)
+                            else:
+                                col[i] = newId
 
 def replaceMatchesInDict(matches,theDict,outfile):
     #Gemmi returns the vaules in the cif document with no leading/trailing whitespace.
