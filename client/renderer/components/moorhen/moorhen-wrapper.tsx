@@ -234,8 +234,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
       // subType: 1=normal, 2=difference, 3=anomalous difference
-      const isDiffMap = fileInfo.sub_type === 2;
-      await fetchMap(url, molName, isDiffMap);
+      // Anomalous maps (3) behave like difference maps for contouring
+      const mapSubType = fileInfo.sub_type || 1;
+      await fetchMap(url, molName, mapSubType);
     } else if (fileInfo.type === "application/refmac-dictionary") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       await fetchDict(url);
@@ -274,7 +275,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
   const fetchMap = async (
     url: string,
     mapName: string,
-    isDiffMap: boolean = false
+    mapSubType: number = 1
   ) => {
     if (!commandCentre.current) return;
     const newMap = new MoorhenMap(
@@ -282,6 +283,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       glRef as RefObject<webGL.MGWebGL>,
       store
     );
+    // subType: 1=normal, 2=difference, 3=anomalous difference
+    // Both difference and anomalous maps use isDifference=true for contouring
+    const isDiffMap = mapSubType === 2 || mapSubType === 3;
     try {
       // Fetch MTZ data using authenticated api-fetch, then load into Moorhen
       const mtzData = await apiArrayBuffer(url);
@@ -292,6 +296,13 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
         isDifference: isDiffMap,
       });
       newMap.uniqueId = url; // Use URL as unique identifier
+      // Store the original sub_type for proper labeling and coloring
+      (newMap as any).mapSubType = mapSubType;
+      // Set custom colors for anomalous maps (orange/purple instead of green/red)
+      if (mapSubType === 3) {
+        newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 }; // Orange
+        newMap.defaultNegativeMapColour = { r: 0.6, g: 0.3, b: 0.8 }; // Purple
+      }
       if (newMap.molNo === -1)
         throw new Error("Cannot read the fetched map...");
       dispatch(addMap(newMap));

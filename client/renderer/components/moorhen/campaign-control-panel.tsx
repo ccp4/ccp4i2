@@ -298,7 +298,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         <Box sx={{ mb: 1 }}>
           {maps.map((map) => {
             const level = getContourLevel(map.molNo);
-            // Difference/anomalous maps need 2x higher values
+            // mapSubType: 1=normal, 2=difference, 3=anomalous
+            // Difference and anomalous maps need 2x higher values for contour slider
+            const mapSubType = (map as any).mapSubType as number | undefined;
             const isDiff = map.isDifference;
             const multiplier = isDiff ? 2 : 1;
             // Logarithmic scale: 10^-3 to 10^1 for regular maps (~0.001 to ~10)
@@ -321,8 +323,8 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             };
 
             const sliderPosition = valueToSlider(level);
-            // Short label: just "2Fo-Fc" or "Fo-Fc" style
-            const shortName = isDiff ? "Fo-Fc" : "2Fo-Fc";
+            // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom)
+            const shortName = mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
 
             return (
               <Stack key={map.molNo} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>

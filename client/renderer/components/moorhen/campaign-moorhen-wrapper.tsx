@@ -360,8 +360,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
-      const isDiffMap = fileInfo.sub_type === 2;
-      await fetchMap(url, molName, isDiffMap);
+      // subType: 1=normal, 2=difference, 3=anomalous difference
+      const mapSubType = fileInfo.sub_type || 1;
+      await fetchMap(url, molName, mapSubType);
     }
   };
 
@@ -433,8 +434,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       if (file.type === "application/CCP4-mtz-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
         const molName = file.name || file.job_param_name;
-        const isDiffMap = file.sub_type === 2;
-        await fetchMap(url, molName, isDiffMap);
+        // subType: 1=normal, 2=difference, 3=anomalous difference
+        const mapSubType = file.sub_type || 1;
+        await fetchMap(url, molName, mapSubType);
       }
     }
   };
@@ -523,7 +525,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const fetchMap = async (
     url: string,
     mapName: string,
-    isDiffMap: boolean = false
+    mapSubType: number = 1
   ) => {
     if (!commandCentre.current) return;
     const newMap = new MoorhenMap(
@@ -531,6 +533,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       glRef as RefObject<webGL.MGWebGL>,
       store
     );
+    // subType: 1=normal, 2=difference, 3=anomalous difference
+    // Both difference and anomalous maps use isDifference=true for contouring
+    const isDiffMap = mapSubType === 2 || mapSubType === 3;
     try {
       const mtzData = await apiArrayBuffer(url);
       await newMap.loadToCootFromMtzData(new Uint8Array(mtzData), mapName, {
@@ -540,6 +545,13 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         isDifference: isDiffMap,
       });
       newMap.uniqueId = url;
+      // Store the original sub_type for proper labeling and coloring
+      (newMap as any).mapSubType = mapSubType;
+      // Set custom colors for anomalous maps (orange/purple instead of green/red)
+      if (mapSubType === 3) {
+        newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 }; // Orange
+        newMap.defaultNegativeMapColour = { r: 0.6, g: 0.3, b: 0.8 }; // Purple
+      }
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map...");
       dispatch(addMap(newMap));
       dispatch(setActiveMap(newMap));
