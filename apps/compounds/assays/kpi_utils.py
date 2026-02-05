@@ -126,3 +126,98 @@ def parse_unit_from_field_name(field_name: str) -> str | None:
     if match:
         return normalize_unit(match.group(1))
     return None
+
+
+# Canonical list of valid units (normalized forms)
+VALID_UNITS = {
+    # Molar concentrations
+    'nM',       # nanomolar
+    'uM',       # micromolar (normalized from µM, μM)
+    'mM',       # millimolar
+    'pM',       # picomolar
+    'M',        # molar
+    # Time units
+    'min',      # minutes
+    's',        # seconds
+    'h',        # hours
+    # Percentage
+    '%',        # percent
+    # Rate units (e.g., clearance)
+    'uL/min/mg',    # microsomal clearance (normalized from µL/min/mg)
+    'mL/min/kg',    # hepatic clearance
+    # Permeability units
+    '1e-6 cm/s',    # Caco-2 Papp
+    'cm/s',         # permeability
+}
+
+# Common invalid unit patterns with suggested corrections
+UNIT_SUGGESTIONS = {
+    # Percentage variants
+    'pc': '%',
+    'percent': '%',
+    'pct': '%',
+    'percentage': '%',
+    # Missing or empty
+    '': None,
+    # Molar without case
+    'nm': 'nM',
+    'um': 'uM',
+    'mm': 'mM',
+    'pm': 'pM',
+    # Unicode variants (should be caught by normalize_unit but just in case)
+    'µM': 'uM',
+    'μM': 'uM',
+    'µm': 'uM',
+    'μm': 'uM',
+}
+
+
+def validate_unit(unit: str | None) -> tuple[bool, str | None, str | None]:
+    """
+    Validate a unit string and return validation result.
+
+    Args:
+        unit: The unit string to validate (can be None or empty)
+
+    Returns:
+        Tuple of (is_valid, normalized_unit, error_message)
+        - is_valid: True if unit is valid or None/empty
+        - normalized_unit: The normalized form of the unit, or None
+        - error_message: Human-readable error if invalid, None otherwise
+
+    Examples:
+        validate_unit('nM') -> (True, 'nM', None)
+        validate_unit('µM') -> (True, 'uM', None)
+        validate_unit('pc') -> (False, None, "Invalid unit 'pc'. Did you mean '%' for percent?")
+        validate_unit(None) -> (True, None, None)  # None is acceptable (unit optional)
+        validate_unit('') -> (True, None, None)    # Empty is acceptable
+    """
+    # None or empty is acceptable (unit is optional)
+    if not unit or unit.strip() == '':
+        return (True, None, None)
+
+    unit = unit.strip()
+
+    # First try to normalize the unit
+    normalized = normalize_unit(unit)
+
+    # Check if normalized form is valid
+    if normalized in VALID_UNITS:
+        return (True, normalized, None)
+
+    # Check if original is valid (in case normalization didn't help)
+    if unit in VALID_UNITS:
+        return (True, unit, None)
+
+    # Check for common mistakes and provide suggestions
+    unit_lower = unit.lower()
+    if unit_lower in UNIT_SUGGESTIONS:
+        suggestion = UNIT_SUGGESTIONS[unit_lower]
+        if suggestion:
+            return (False, None, f"Invalid unit '{unit}'. Did you mean '{suggestion}'?")
+        else:
+            return (False, None, f"Invalid unit '{unit}'. Please specify a valid unit.")
+
+    # Unknown unit - provide helpful error with valid options
+    common_units = ['nM', 'uM', 'mM', '%', 'min', 's', 'h']
+    return (False, None, f"Invalid unit '{unit}'. Valid units include: {', '.join(common_units)}")

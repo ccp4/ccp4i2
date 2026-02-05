@@ -567,11 +567,24 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                     kpi_value = row.get(kpi_column)
 
                     # Build the results dictionary from all columns
+                    # Convert numeric strings to actual numbers for proper aggregation
                     results = {}
                     for col_name, col_value in row.items():
                         # Skip the compound column from results
                         if col_name == compound_column:
                             continue
+                        # Try to convert string values to numbers
+                        if isinstance(col_value, str):
+                            col_value = col_value.strip()
+                            if col_value:
+                                try:
+                                    # Try int first, then float
+                                    if '.' in col_value or 'e' in col_value.lower():
+                                        col_value = float(col_value)
+                                    else:
+                                        col_value = int(col_value)
+                                except ValueError:
+                                    pass  # Keep as string if not numeric
                         results[col_name] = col_value
 
                     # Ensure KPI is properly set

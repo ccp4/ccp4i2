@@ -107,18 +107,24 @@ export async function fetchTargets(params?: {
  * Format a KPI value for display.
  * Uses exponential notation for very small or very large numbers.
  */
-export function formatKpiValue(value: number | null | undefined): string {
-  if (value === null || value === undefined) {
+export function formatKpiValue(value: number | string | null | undefined): string {
+  if (value === null || value === undefined || value === '') {
     return '-';
   }
 
+  // Convert string values to numbers (handles legacy data stored as strings)
+  const numValue = typeof value === 'string' ? parseFloat(value) : value;
+  if (isNaN(numValue)) {
+    return String(value);
+  }
+
   // Use exponential for very small or very large numbers
-  if (value !== 0 && (Math.abs(value) < 0.01 || Math.abs(value) > 100000)) {
-    return value.toExponential(2);
+  if (numValue !== 0 && (Math.abs(numValue) < 0.01 || Math.abs(numValue) > 100000)) {
+    return numValue.toExponential(2);
   }
 
   // Regular formatting with 2 decimal places
-  return value.toFixed(2);
+  return numValue.toFixed(2);
 }
 
 /**

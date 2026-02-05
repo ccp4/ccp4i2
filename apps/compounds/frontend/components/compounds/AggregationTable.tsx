@@ -125,10 +125,13 @@ const RAG_COLORS: Record<string, string> = {
 };
 
 /** Format property value for display */
-function formatPropertyValue(value: number | null | undefined): string {
-  if (value == null) return '-';
-  if (Number.isInteger(value)) return String(value);
-  return value.toFixed(2);
+function formatPropertyValue(value: number | string | null | undefined): string {
+  if (value == null || value === '') return '-';
+  // Convert string values to numbers (handles legacy data stored as strings)
+  const numValue = typeof value === 'string' ? parseFloat(value) : value;
+  if (isNaN(numValue)) return String(value);
+  if (Number.isInteger(numValue)) return String(numValue);
+  return numValue.toFixed(2);
 }
 
 interface AggregationTableProps {

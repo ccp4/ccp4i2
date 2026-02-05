@@ -590,6 +590,20 @@ class TableOfValuesImportSerializer(serializers.Serializer):
         help_text="List of row objects from the spreadsheet"
     )
 
+    def validate_kpi_unit(self, value):
+        """Validate and normalize the KPI unit if provided."""
+        if not value:
+            return value
+
+        from compounds.assays.kpi_utils import validate_unit
+        is_valid, normalized, error_msg = validate_unit(value)
+
+        if not is_valid:
+            raise serializers.ValidationError(error_msg)
+
+        # Return normalized unit
+        return normalized if normalized else value
+
     def validate(self, attrs):
         """Validate that required columns exist in the data."""
         data = attrs.get('data', [])
@@ -624,5 +638,20 @@ class TableOfValuesImportSerializer(serializers.Serializer):
                 raise serializers.ValidationError(
                     f"KPI value '{kpi_value}' is not a column name in the data"
                 )
+
+        # If no explicit unit override, check if the KPI column name has a parseable unit
+        # and validate it. Also warn if no unit is detectable.
+        kpi_unit = attrs.get('kpi_unit')
+        if not kpi_unit and kpi_values:
+            kpi_value = next(iter(kpi_values))
+            from compounds.assays.kpi_utils import parse_unit_from_field_name, validate_unit
+            inferred_unit = parse_unit_from_field_name(kpi_value)
+            if inferred_unit:
+                # Validate the inferred unit
+                is_valid, normalized, error_msg = validate_unit(inferred_unit)
+                if not is_valid:
+                    raise serializers.ValidationError(
+                        f"Invalid unit in KPI column name: {error_msg}"
+                    )
 
         return attrs

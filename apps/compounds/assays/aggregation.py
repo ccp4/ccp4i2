@@ -410,6 +410,14 @@ def extract_kpi_value(data_series: DataSeries, valid_only: bool = True) -> float
         value = results[kpi_key]
         if isinstance(value, (int, float)):
             return float(value)
+        # Handle string values that may be numeric (e.g., from Table of Values imports)
+        if isinstance(value, str):
+            value = value.strip()
+            if value:
+                try:
+                    return float(value)
+                except ValueError:
+                    pass
 
     return None
 

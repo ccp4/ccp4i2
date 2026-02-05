@@ -554,51 +554,55 @@ export default function DataSeriesDetailPage({ params }: PageProps) {
 
                 {/* Action buttons */}
                 <Box sx={{ display: 'flex', gap: 1, mt: 2, flexWrap: 'wrap' }}>
-                  {/* Change Dilution Series button */}
-                  <Tooltip
-                    title={
-                      !canContribute
-                        ? 'Requires Contributor or Admin operating level'
-                        : 'Select a different dilution series for this data'
-                    }
-                    arrow
-                  >
-                    <span>
-                      <Button
-                        variant="outlined"
-                        startIcon={<Science />}
-                        onClick={() => setDilutionDialogOpen(true)}
-                        disabled={!canContribute}
-                        size="small"
-                      >
-                        Change Dilutions
-                      </Button>
-                    </span>
-                  </Tooltip>
+                  {/* Change Dilution Series button - hidden for table_of_values (no dilution series) */}
+                  {!isTableOfValues && (
+                    <Tooltip
+                      title={
+                        !canContribute
+                          ? 'Requires Contributor or Admin operating level'
+                          : 'Select a different dilution series for this data'
+                      }
+                      arrow
+                    >
+                      <span>
+                        <Button
+                          variant="outlined"
+                          startIcon={<Science />}
+                          onClick={() => setDilutionDialogOpen(true)}
+                          disabled={!canContribute}
+                          size="small"
+                        >
+                          Change Dilutions
+                        </Button>
+                      </span>
+                    </Tooltip>
+                  )}
 
-                  {/* Re-analyse button */}
-                  <Tooltip
-                    title={
-                      !canContribute
-                        ? 'Requires Contributor or Admin operating level'
-                        : missingDilutionSeries
-                        ? 'Cannot analyse: No dilution series configured'
-                        : 'Re-run curve fitting analysis'
-                    }
-                    arrow
-                  >
-                    <span>
-                      <Button
-                        variant="outlined"
-                        startIcon={analysing ? <CircularProgress size={16} /> : <Refresh />}
-                        onClick={handleReanalyse}
-                        disabled={analysing || missingDilutionSeries || !canContribute}
-                        size="small"
-                      >
-                        {analysing ? 'Analysing...' : 'Re-analyse'}
-                      </Button>
-                    </span>
-                  </Tooltip>
+                  {/* Re-analyse button - hidden for table_of_values imports (pre-analyzed data) */}
+                  {!isTableOfValues && (
+                    <Tooltip
+                      title={
+                        !canContribute
+                          ? 'Requires Contributor or Admin operating level'
+                          : missingDilutionSeries
+                          ? 'Cannot analyse: No dilution series configured'
+                          : 'Re-run curve fitting analysis'
+                      }
+                      arrow
+                    >
+                      <span>
+                        <Button
+                          variant="outlined"
+                          startIcon={analysing ? <CircularProgress size={16} /> : <Refresh />}
+                          onClick={handleReanalyse}
+                          disabled={analysing || missingDilutionSeries || !canContribute}
+                          size="small"
+                        >
+                          {analysing ? 'Analysing...' : 'Re-analyse'}
+                        </Button>
+                      </span>
+                    </Tooltip>
+                  )}
                 </Box>
 
                 {/* Compound structure if matched */}
