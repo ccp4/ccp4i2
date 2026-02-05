@@ -137,6 +137,10 @@ class DefXmlParser:
         processed = set()
 
         if body is not None:
+            # Add direct child containers of the main body to processed set
+            for c in body.findall("./container[@id]"):
+                processed.add(c.get("id"))
+            # Also add containers from nested ccp4i2_body elements
             for nested_body in body.findall(".//ccp4i2_body"):
                 for c in nested_body.findall("./container[@id]"):
                     processed.add(c.get("id"))
@@ -257,20 +261,7 @@ class DefXmlParser:
                         })
 
             # Add to parent - setattr will trigger hierarchy setup via __setattr__
-            if content_id == 'SMILESIN':
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.info(f"[SMILESIN DEBUG] About to setattr SMILESIN to {parent.objectName() if hasattr(parent, 'objectName') else parent}")
-                logger.info(f"[SMILESIN DEBUG] obj={obj}, type={type(obj)}")
             setattr(parent, content_id, obj)
-            if content_id == 'SMILESIN':
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.info(f"[SMILESIN DEBUG] After setattr, checking if SMILESIN is in parent's children...")
-                if hasattr(parent, 'children'):
-                    children_names = [c.objectName() for c in parent.children()]
-                    logger.info(f"[SMILESIN DEBUG] children: {children_names}")
-                    logger.info(f"[SMILESIN DEBUG] SMILESIN in children: {'SMILESIN' in children_names}")
 
     def _parse_qualifiers(self, qualifiers: Optional[ET.Element]) -> Dict[str, Any]:
         """Parse qualifiers element into a dictionary."""
