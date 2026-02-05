@@ -31,6 +31,18 @@ resource sbNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
   }
 }
 
+// Network rule set to enable trusted Azure services (like Container Apps KEDA scaler)
+// while keeping public network access disabled
+resource sbNetworkRuleSet 'Microsoft.ServiceBus/namespaces/networkRuleSets@2024-01-01' = {
+  parent: sbNamespace
+  name: 'default'
+  properties: {
+    trustedServiceAccessEnabled: true  // Allow KEDA to read queue metrics for autoscaling
+    defaultAction: 'Deny'
+    publicNetworkAccess: 'Disabled'
+  }
+}
+
 resource sbQueue 'Microsoft.ServiceBus/namespaces/queues@2024-01-01' = {
   name: '${sbNamespaceName}/${sbQueueName}'
   properties: {
