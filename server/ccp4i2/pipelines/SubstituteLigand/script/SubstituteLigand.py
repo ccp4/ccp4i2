@@ -25,6 +25,7 @@ class SubstituteLigand(CPluginScript):
         207: {'description': 'Exception in coot ligand fitting'},
         208: {'description': 'Exception in coot postprocessing'},
         209: {'description': 'Failed to create sub-plugin'},
+        210: {'description': 'Exception in anomalous map calculation'},
     }
 
     def __init__(self, *args,**kws):
@@ -32,6 +33,7 @@ class SubstituteLigand(CPluginScript):
         self.xmlroot = etree.Element('SubstituteLigand')
         self.obsToUse = None
         self.freerToUse = None
+        self.AtomsToUse = None  # Final coordinates for anomalous refinement
 
         if self.container.controlParameters.OBSAS.__str__() != 'UNMERGED':
             #remove any (potentially invalid) entries from UNMERGED list
@@ -264,14 +266,154 @@ class SubstituteLigand(CPluginScript):
                 self.harvestFile(self.i2DimplePlugin.container.outputData.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
             if self.container.controlParameters.LIGANDAS.__str__() == 'NONE':
                 self.harvestFile(self.i2DimplePlugin.container.outputData.XYZOUT, self.container.outputData.XYZOUT)
-                self.reportStatus(CPluginScript.SUCCEEDED)
+                # Run optional anomalous refinement if anomalous data with wavelength available
+                self.AtomsToUse = self.container.outputData.XYZOUT
+                self._runAnomalousRefinement(self.AtomsToUse)
             else:
                 self.coordinatesForCoot = self.i2DimplePlugin.container.outputData.XYZOUT
                 self.cootAddLigand()
         except Exception as e:
             self.appendErrorReport(206, 'Exception in i2Dimple_finished: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
-        
+
+    def _getWavelengthFromObs(self):
+        """
+        Check if self.obsToUse has anomalous data (Ipair or Fpair) and extract wavelength.
+
+        Returns:
+            float or None: The wavelength if anomalous data with valid wavelength, None otherwise.
+        """
+        if self.obsToUse is None:
+            return None
+
+        # Import constants for content flags
+        from ccp4i2.core.CCP4XtalData import CObsDataFile
+
+        # Check contentFlag - must be Ipair (1) or Fpair (2)
+        contentFlag = None
+        if hasattr(self.obsToUse, 'contentFlag') and self.obsToUse.contentFlag:
+            cf = self.obsToUse.contentFlag
+            # Extract plain int - handle nested .value or CInt objects
+            while hasattr(cf, 'value'):
+                cf = cf.value
+            contentFlag = int(cf) if cf else None
+
+        if contentFlag not in [CObsDataFile.CONTENT_FLAG_IPAIR, CObsDataFile.CONTENT_FLAG_FPAIR]:
+            return None
+
+        # Load the file to access fileContent
+        try:
+            self.obsToUse.loadFile()
+        except Exception as e:
+            print(f"[SubstituteLigand] Could not load obsToUse file: {e}")
+            return None
+
+        # Try to get wavelength from fileContent
+        wavelength = None
+        if hasattr(self.obsToUse, 'fileContent') and self.obsToUse.fileContent:
+            fc = self.obsToUse.fileContent
+            # Try getListOfWavelengths() method first
+            if hasattr(fc, 'getListOfWavelengths'):
+                try:
+                    wavelengths = fc.getListOfWavelengths()
+                    if wavelengths and len(wavelengths) > 0:
+                        # Use the last (most recent) wavelength
+                        wavelength = wavelengths[-1]
+                except Exception as e:
+                    print(f"[SubstituteLigand] Error getting wavelengths: {e}")
+            # Fallback: check wavelength attribute
+            if wavelength is None and hasattr(fc, 'wavelength'):
+                wl = fc.wavelength
+                if hasattr(wl, 'value'):
+                    wl = wl.value
+                if wl and float(wl) > 0:
+                    wavelength = float(wl)
+
+        # Validate wavelength is reasonable (0.5 to 3.0 Angstroms typical for X-ray)
+        if wavelength is not None and 0.1 < wavelength < 10.0:
+            return wavelength
+
+        return None
+
+    def _runAnomalousRefinement(self, finalCoordinates):
+        """
+        Run a 5-cycle prosmart_refmac refinement to calculate anomalous map.
+
+        Args:
+            finalCoordinates: The CPdbDataFile with final coordinates to use.
+        """
+        wavelength = self._getWavelengthFromObs()
+        if wavelength is None:
+            # No anomalous data or no valid wavelength - just finish
+            self.finishWithStatus(CPluginScript.SUCCEEDED)
+            return
+
+        print(f"[SubstituteLigand] Running anomalous refinement with wavelength {wavelength}")
+
+        try:
+            self.anomRefmacPlugin = self.makePluginObject('prosmart_refmac')
+        except Exception as e:
+            self.appendErrorReport(209, f'Failed to create prosmart_refmac plugin for anomalous map: {e}')
+            # Non-fatal - still finish successfully without anomalous map
+            self.finishWithStatus(CPluginScript.SUCCEEDED)
+            return
+
+        try:
+            # Set input data
+            self.anomRefmacPlugin.container.inputData.XYZIN = finalCoordinates
+            self.anomRefmacPlugin.container.inputData.F_SIGF = self.obsToUse
+            self.anomRefmacPlugin.container.inputData.FREERFLAG = self.freerToUse
+
+            # Set wavelength for anomalous scattering calculation
+            self.anomRefmacPlugin.container.controlParameters.WAVELENGTH.set(wavelength)
+
+            # Set to 5 cycles
+            self.anomRefmacPlugin.container.controlParameters.NCYCLES.set(5)
+
+            # Disable prosmart restraints - we just want a quick refinement for the map
+            self.anomRefmacPlugin.container.prosmartProtein.TOGGLE.set(False)
+            self.anomRefmacPlugin.container.prosmartNucleicAcid.TOGGLE.set(False)
+            self.anomRefmacPlugin.container.platonyzer.TOGGLE.set(False)
+
+            # Disable validation to speed things up
+            self.anomRefmacPlugin.container.controlParameters.VALIDATE_IRIS.set(False)
+            self.anomRefmacPlugin.container.controlParameters.VALIDATE_BAVERAGE.set(False)
+            self.anomRefmacPlugin.container.controlParameters.VALIDATE_RAMACHANDRAN.set(False)
+            self.anomRefmacPlugin.container.controlParameters.VALIDATE_MOLPROBITY.set(False)
+
+            self.connectSignal(self.anomRefmacPlugin, 'finished', self.anomRefmac_finished)
+            self.anomRefmacPlugin.process()
+        except Exception as e:
+            self.appendErrorReport(210, f'Exception setting up anomalous refinement: {e}')
+            # Non-fatal - still finish successfully without anomalous map
+            self.finishWithStatus(CPluginScript.SUCCEEDED)
+
+    @QtCore.Slot(dict)
+    def anomRefmac_finished(self, status):
+        """Handle completion of the anomalous map refinement."""
+        if status.get('finishStatus') == CPluginScript.FAILED:
+            # Non-fatal - just log and continue
+            print("[SubstituteLigand] Anomalous refinement failed, continuing without anomalous map")
+        else:
+            try:
+                # Append XML from anomalous refinement
+                pluginRoot = CCP4Utils.openFileToEtree(self.anomRefmacPlugin.makeFileName('PROGRAMXML'))
+                anomNode = etree.SubElement(self.xmlroot, 'AnomalousRefinement')
+                refmacNodes = pluginRoot.xpath('//REFMAC')
+                if len(refmacNodes) > 0:
+                    anomNode.append(refmacNodes[0])
+                self.flushXML()
+
+                # Copy ANOMFPHIOUT if it exists
+                anomOut = self.anomRefmacPlugin.container.outputData.ANOMFPHIOUT
+                if anomOut and os.path.isfile(str(anomOut.fullPath)):
+                    self.harvestFile(anomOut, self.container.outputData.ANOMFPHIOUT)
+                    print(f"[SubstituteLigand] Anomalous map copied to output")
+            except Exception as e:
+                self.appendErrorReport(210, f'Exception harvesting anomalous map: {e}')
+
+        self.finishWithStatus(CPluginScript.SUCCEEDED)
+
     def cootAddLigand(self):
         """Fit ligand into density using coot_headless_api."""
         try:
@@ -405,7 +547,9 @@ class SubstituteLigand(CPluginScript):
             self._updateModelComposition()
 
             print("[COOT DEBUG] cootAddLigand completed successfully")
-            self.finishWithStatus(CPluginScript.SUCCEEDED)
+            # Run optional anomalous refinement if anomalous data with wavelength available
+            self.AtomsToUse = self.container.outputData.XYZOUT
+            self._runAnomalousRefinement(self.AtomsToUse)
 
         except Exception as e:
             import traceback
