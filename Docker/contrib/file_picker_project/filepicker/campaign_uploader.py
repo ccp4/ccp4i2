@@ -25,8 +25,9 @@ Usage:
 Design notes:
     - Project names include upload date for uniqueness across sessions
     - NCL-00000000 is used for APO crystals (no compound)
-    - Currently supports NCL-XXXXXXXX identified compounds only
-    - Future: compound resolution for Z*/POB* identifiers via API
+    - NCL-XXXXXXXX compounds: looked up directly by reg_number
+    - Non-NCL compounds (Z*, POB*): resolved via SMILES→InChI registry lookup
+    - Unresolved compounds are saved to a remaining file for later registration
 """
 
 import argparse
@@ -740,6 +741,57 @@ def lookup_smiles(client, ncl_id: str) -> Optional[str]:
     return None
 
 
+def resolve_compound_by_smiles(client, smiles: str) -> Optional[dict]:
+    """
+    Resolve a non-NCL compound by SMILES via InChI matching in the registry.
+
+    Uses the compounds registry's resolve_by_smiles endpoint to find a
+    registered compound that matches the given SMILES. The server converts
+    SMILES to InChI and performs an exact lookup.
+
+    Args:
+        client: CCP4i2Client instance (authenticated with Azure AD)
+        smiles: SMILES string from local XChem data
+
+    Returns:
+        Dict with 'smiles', 'reg_number', 'formatted_id' if found, None otherwise.
+        The returned SMILES is the registry's canonical SMILES.
+    """
+    import requests
+    from urllib.parse import quote
+
+    try:
+        # Derive compounds API URL from ccp4i2 URL
+        compounds_url = client.api_url.replace('/ccp4i2', '/compounds')
+        endpoint = f"{compounds_url}/compounds/resolve_by_smiles/?smiles={quote(smiles)}"
+
+        # Use the same authentication token
+        auth_header = client.session.headers.get('Authorization', '')
+        headers = {'Authorization': auth_header} if auth_header else {}
+
+        response = requests.get(
+            endpoint,
+            headers=headers,
+            timeout=client.timeout,
+            verify=client.verify_ssl,
+        )
+
+        if response.ok:
+            data = response.json()
+            if data.get('found') and data.get('compound'):
+                compound = data['compound']
+                return {
+                    'smiles': compound.get('smiles'),
+                    'reg_number': compound.get('reg_number'),
+                    'formatted_id': compound.get('formatted_id'),
+                }
+
+    except Exception as e:
+        print(f"    Warning: Could not resolve compound by SMILES: {e}")
+
+    return None
+
+
 def find_project_by_name(client, project_name: str) -> Optional[dict]:
     """
     Find an existing project by exact name match.
@@ -769,6 +821,7 @@ def execute_upload(
     dry_run: bool = False,
     verbose: bool = False,
     status_file: Optional[str] = None,
+    remaining_file: Optional[str] = None,
     force_smiles_fallback: bool = False,
     rerun: bool = False,
     rerun_create_missing: bool = False,
@@ -795,6 +848,8 @@ def execute_upload(
         dry_run: If True, only show what would be done
         verbose: If True (with dry_run), print i2remote commands
         status_file: Path to write status updates
+        remaining_file: Path to save unresolved non-NCL compounds for later
+            registration. If None, unresolved compounds are only reported.
         force_smiles_fallback: If True, fall back to local .smiles files when
             registry lookup fails. If False (default), fail the action instead
             to avoid potential SMILES mismatches.
@@ -822,6 +877,7 @@ def execute_upload(
         }
     }
 
+    unresolved_compounds = []
     actions = plan_data.get('actions', [])
     results['summary']['total'] = len(actions)
 
@@ -852,6 +908,7 @@ def execute_upload(
             'crystal_name': action['crystal_name'],
             'project_name': action['project_name'],
             'compound_id': action['compound_id'],
+            'resolved_compound_id': None,
             'status': 'pending',
             'project_id': None,
             'sublig_job_id': None,
@@ -878,6 +935,12 @@ def execute_upload(
                     elif compound_id.startswith('NCL-'):
                         print(f"    smiles = lookup_smiles(client, '{compound_id}')  # Registry lookup")
                         print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.inputData.SMILESIN', smiles)")
+                    else:
+                        local_smiles = action.get('smiles', '')
+                        print(f"    # Resolve non-NCL compound {compound_id} via InChI")
+                        print(f"    resolved = resolve_compound_by_smiles(client, '{local_smiles[:50]}...')")
+                        print(f"    # If resolved: use registry SMILES")
+                        print(f"    # If not resolved: SKIP (saved to --remaining file)")
 
                     print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.inputData.PIPELINE', 'DIMPLE')")
                     print(f"    client.upload_file_param(<job_id>, 'SubstituteLigand.inputData.UNMERGEDFILES[0].file', '{action['unmerged_mtz_path']}')")
@@ -913,6 +976,57 @@ def execute_upload(
             continue
 
         try:
+            # Step 0: Resolve non-NCL compounds via InChI before creating anything
+            compound_id = action['compound_id']
+            resolved_smiles = None  # Will hold registry SMILES if resolved
+
+            if (not compound_id.startswith('NCL-')
+                    and compound_id != 'unknown'):
+                local_smiles = action.get('smiles')
+                if local_smiles:
+                    print(f"    Resolving {compound_id} via InChI lookup...")
+                    resolved = resolve_compound_by_smiles(client, local_smiles)
+
+                    if resolved:
+                        resolved_id = resolved['formatted_id']
+                        resolved_smiles = resolved['smiles']
+                        action_result['resolved_compound_id'] = resolved_id
+                        print(f"    Resolved to {resolved_id}")
+                    else:
+                        # Not in registry - skip and save for later registration
+                        print(f"    Not resolved - skipping (will be saved to remaining file)")
+                        unresolved_compounds.append({
+                            'crystal_name': action['crystal_name'],
+                            'compound_id': compound_id,
+                            'smiles': local_smiles,
+                            'compound_cif': action.get('compound_cif'),
+                            'unmerged_mtz_path': action.get('unmerged_mtz_path'),
+                            'dimple_pdb': action.get('dimple_pdb'),
+                            'dimple_mtz': action.get('dimple_mtz'),
+                        })
+                        action_result['status'] = 'skipped'
+                        action_result['error'] = f'Compound {compound_id} not found in registry'
+                        results['actions'].append(action_result)
+                        results['summary']['skipped'] += 1
+                        continue
+                else:
+                    # No SMILES at all - can't resolve
+                    print(f"    No SMILES available for {compound_id} - skipping")
+                    unresolved_compounds.append({
+                        'crystal_name': action['crystal_name'],
+                        'compound_id': compound_id,
+                        'smiles': None,
+                        'compound_cif': action.get('compound_cif'),
+                        'unmerged_mtz_path': action.get('unmerged_mtz_path'),
+                        'dimple_pdb': action.get('dimple_pdb'),
+                        'dimple_mtz': action.get('dimple_mtz'),
+                    })
+                    action_result['status'] = 'skipped'
+                    action_result['error'] = f'No SMILES available for {compound_id}'
+                    results['actions'].append(action_result)
+                    results['summary']['skipped'] += 1
+                    continue
+
             # Step 1: Create or find project
             if rerun:
                 # Rerun mode: look for existing project by name
@@ -1027,17 +1141,17 @@ def execute_upload(
                     else:
                         print(f"    Warning: No SMILES available for {compound_id}")
                 else:
-                    # Non-NCL compound (Z*, POB*, etc.) - use local SMILES if available
-                    smiles = action.get('smiles')
+                    # Non-NCL compound (Z*, POB*, etc.) - resolved earlier via InChI
+                    smiles = resolved_smiles
                     if smiles:
-                        print(f"    Setting SMILES: {smiles[:50]}...")
+                        print(f"    Setting SMILES (from registry): {smiles[:50]}...")
                         client.set_job_parameter(
                             sublig_job_id,
                             'SubstituteLigand.inputData.SMILESIN',
                             smiles
                         )
                     else:
-                        print(f"    Warning: No SMILES available for {compound_id}")
+                        print(f"    Warning: No resolved SMILES for {compound_id}")
 
                 # Step 6: Set pipeline to DIMPLE
                 print(f"    Setting PIPELINE=DIMPLE...")
@@ -1127,6 +1241,28 @@ def execute_upload(
         # Save intermediate status
         if status_file:
             save_config(results, status_file)
+
+    # Add resolution summary
+    results['summary']['resolved'] = sum(
+        1 for a in results['actions']
+        if a.get('resolved_compound_id')
+    )
+    results['summary']['unresolved'] = len(unresolved_compounds)
+
+    # Save unresolved compounds to remaining file
+    if unresolved_compounds and remaining_file:
+        remaining_data = {
+            'campaign_name': plan_data.get('campaign_name'),
+            'execution_date': datetime.now().isoformat(),
+            'total_unresolved': len(unresolved_compounds),
+            'note': 'Register these compounds in the registry, then re-run with --rerun',
+            'compounds': unresolved_compounds,
+        }
+        save_config(remaining_data, remaining_file)
+        print(f"\nUnresolved compounds saved to: {remaining_file}")
+    elif unresolved_compounds:
+        print(f"\nWarning: {len(unresolved_compounds)} unresolved compounds "
+              f"(use --remaining to save them)")
 
     results['execution_end'] = datetime.now().isoformat()
     return results
@@ -1257,6 +1393,7 @@ def cmd_execute(args):
         coords_file_id=coords_file_id,
         dry_run=False,
         status_file=status_file,
+        remaining_file=args.remaining,
         force_smiles_fallback=args.force_smiles_fallback,
         rerun=args.rerun,
         rerun_create_missing=args.rerun_create_missing,
@@ -1271,6 +1408,10 @@ def cmd_execute(args):
     print(f"Failed: {results['summary']['failed']}")
     if results['summary'].get('skipped', 0) > 0:
         print(f"Skipped: {results['summary']['skipped']}")
+    if results['summary'].get('resolved', 0) > 0:
+        print(f"Resolved (InChI match): {results['summary']['resolved']}")
+    if results['summary'].get('unresolved', 0) > 0:
+        print(f"Unresolved (remaining): {results['summary']['unresolved']}")
 
     save_config(results, status_file)
     print(f"\nStatus saved to: {status_file}")
@@ -1332,6 +1473,10 @@ def main():
                             help='Run only SubstituteLigand pipeline (skip servalcat_pipe)')
     exec_parser.add_argument('--only-servalcat', action='store_true',
                             help='Run only servalcat_pipe pipeline (skip SubstituteLigand)')
+    exec_parser.add_argument('--remaining',
+                            help='Path to save unresolved non-NCL compounds for later registration '
+                                 '(default: campaign_remaining.yaml)',
+                            default='campaign_remaining.yaml')
 
     args = parser.parse_args()
 

@@ -822,6 +822,74 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
             'matches': serializer.data
         })
 
+    @action(detail=False, methods=['get'])
+    def resolve_by_smiles(self, request):
+        """
+        Resolve a compound by SMILES via InChI matching.
+
+        Converts the input SMILES to InChI server-side and performs an exact
+        lookup against the InChI field. This finds the canonical registry
+        compound regardless of SMILES representation differences.
+
+        Query parameters:
+            smiles: SMILES string to resolve (required)
+
+        Returns:
+            JSON with found=true and compound data if matched,
+            or found=false if no match.
+        """
+        if not RDKIT_AVAILABLE:
+            return Response(
+                {'error': 'Compound resolution not available - RDKit not installed'},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE
+            )
+
+        smiles_param = request.query_params.get('smiles')
+        if not smiles_param:
+            return Response(
+                {'error': 'smiles parameter required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            mol = Chem.MolFromSmiles(smiles_param)
+            if mol is None:
+                return Response(
+                    {'error': 'Invalid SMILES string'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            from rdkit.Chem import inchi as rdkit_inchi
+            query_inchi = rdkit_inchi.MolToInchi(mol)
+        except Exception as e:
+            return Response(
+                {'error': f'Failed to process SMILES: {str(e)}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if not query_inchi:
+            return Response(
+                {'error': 'Could not generate InChI from SMILES'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        compound = self.get_queryset().filter(inchi=query_inchi).first()
+
+        if compound:
+            serializer = CompoundDetailSerializer(compound)
+            return Response({
+                'found': True,
+                'query_smiles': smiles_param,
+                'query_inchi': query_inchi,
+                'compound': serializer.data,
+            })
+        else:
+            return Response({
+                'found': False,
+                'query_smiles': smiles_param,
+                'query_inchi': query_inchi,
+                'compound': None,
+            })
+
 
 class BatchViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Batches."""
