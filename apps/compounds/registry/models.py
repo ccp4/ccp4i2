@@ -337,22 +337,27 @@ class Compound(models.Model):
             smiles_changed = True  # New record
 
         # Generate canonical SMILES, InChI, and molecular weight via RDKit
-        # Recalculate if SMILES is new/changed, or if rdkit_smiles/inchi is missing
-        if self.smiles and (smiles_changed or not self.rdkit_smiles or not self.inchi):
+        # Recalculate if SMILES is new/changed, or if rdkit_smiles is missing
+        if self.smiles and (smiles_changed or not self.rdkit_smiles):
             try:
                 from rdkit import Chem
-                from rdkit.Chem import Descriptors, inchi as rdkit_inchi
+                from rdkit.Chem import Descriptors
                 mol = Chem.MolFromSmiles(self.smiles)
                 if mol:
                     # Canonical SMILES
                     if smiles_changed or not self.rdkit_smiles:
                         self.rdkit_smiles = Chem.MolToSmiles(mol, canonical=True)
-                    # InChI - calculate if missing or SMILES changed
-                    if smiles_changed or not self.inchi:
-                        self.inchi = rdkit_inchi.MolToInchi(mol)
-                    # Molecular weight - recalculate if SMILES changed or not set
+                    # Molecular weight
                     if smiles_changed or not self.molecular_weight:
                         self.molecular_weight = Descriptors.MolWt(mol)
+                    # InChI - only if support is available
+                    if smiles_changed or not self.inchi:
+                        try:
+                            from rdkit.Chem import inchi as _inchi_mod
+                            if getattr(_inchi_mod, 'INCHI_AVAILABLE', False):
+                                self.inchi = _inchi_mod.MolToInchi(mol)
+                        except (ImportError, AttributeError):
+                            pass
             except ImportError:
                 pass  # RDKit not available
             except Exception:

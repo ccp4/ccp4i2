@@ -825,11 +825,11 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
     @action(detail=False, methods=['get'])
     def resolve_by_smiles(self, request):
         """
-        Resolve a compound by SMILES via InChI matching.
+        Resolve a compound by SMILES matching.
 
-        Converts the input SMILES to InChI server-side and performs an exact
-        lookup against the InChI field. This finds the canonical registry
-        compound regardless of SMILES representation differences.
+        Converts the input SMILES to canonical RDKit SMILES and looks up
+        against the rdkit_smiles field. Falls back to InChI matching if
+        InChI support is available and rdkit_smiles lookup fails.
 
         Query parameters:
             smiles: SMILES string to resolve (required)
@@ -858,35 +858,43 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
                     {'error': 'Invalid SMILES string'},
                     status=status.HTTP_400_BAD_REQUEST
                 )
-            from rdkit.Chem import inchi as rdkit_inchi
-            query_inchi = rdkit_inchi.MolToInchi(mol)
+            canonical_smiles = Chem.MolToSmiles(mol, canonical=True)
         except Exception as e:
             return Response(
                 {'error': f'Failed to process SMILES: {str(e)}'},
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        if not query_inchi:
-            return Response(
-                {'error': 'Could not generate InChI from SMILES'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
+        # Primary lookup: canonical SMILES
+        compound = self.get_queryset().filter(rdkit_smiles=canonical_smiles).first()
 
-        compound = self.get_queryset().filter(inchi=query_inchi).first()
+        # Fallback: InChI lookup (if available and SMILES didn't match)
+        query_inchi = None
+        if not compound:
+            try:
+                from rdkit.Chem import inchi as _inchi_mod
+                if getattr(_inchi_mod, 'INCHI_AVAILABLE', False):
+                    query_inchi = _inchi_mod.MolToInchi(mol)
+                    if query_inchi:
+                        compound = self.get_queryset().filter(
+                            inchi=query_inchi
+                        ).first()
+            except (ImportError, AttributeError):
+                pass
 
         if compound:
             serializer = CompoundDetailSerializer(compound)
             return Response({
                 'found': True,
                 'query_smiles': smiles_param,
-                'query_inchi': query_inchi,
+                'canonical_smiles': canonical_smiles,
                 'compound': serializer.data,
             })
         else:
             return Response({
                 'found': False,
                 'query_smiles': smiles_param,
-                'query_inchi': query_inchi,
+                'canonical_smiles': canonical_smiles,
                 'compound': None,
             })
 

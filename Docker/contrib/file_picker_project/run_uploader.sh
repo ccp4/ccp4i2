@@ -59,9 +59,8 @@ if ! command -v ccp4-python &> /dev/null; then
     exit 1
 fi
 
-# Set up PYTHONPATH for ccp4i2 imports
-export PYTHONPATH="$PROJECT_ROOT:$PROJECT_ROOT/server:$PYTHONPATH"
+# Set up PYTHONPATH for ccp4i2 imports and filepicker module
+export PYTHONPATH="$SCRIPT_DIR:$PROJECT_ROOT:$PROJECT_ROOT/server:$PYTHONPATH"
 
 # Run campaign_uploader
-cd "$SCRIPT_DIR"
 exec ccp4-python -m filepicker.campaign_uploader "$@"

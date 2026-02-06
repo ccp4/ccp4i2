@@ -743,7 +743,7 @@ def lookup_smiles(client, ncl_id: str) -> Optional[str]:
 
 def resolve_compound_by_smiles(client, smiles: str) -> Optional[dict]:
     """
-    Resolve a non-NCL compound by SMILES via InChI matching in the registry.
+    Resolve a non-NCL compound by SMILES via canonical SMILES matching in the registry.
 
     Uses the compounds registry's resolve_by_smiles endpoint to find a
     registered compound that matches the given SMILES. The server converts
@@ -776,15 +776,25 @@ def resolve_compound_by_smiles(client, smiles: str) -> Optional[dict]:
             verify=client.verify_ssl,
         )
 
-        if response.ok:
-            data = response.json()
-            if data.get('found') and data.get('compound'):
-                compound = data['compound']
-                return {
-                    'smiles': compound.get('smiles'),
-                    'reg_number': compound.get('reg_number'),
-                    'formatted_id': compound.get('formatted_id'),
-                }
+        if not response.ok:
+            print(f"    Resolution endpoint returned HTTP {response.status_code}")
+            try:
+                print(f"    Response: {response.json()}")
+            except Exception:
+                print(f"    Response: {response.text[:200]}")
+            return None
+
+        data = response.json()
+        if data.get('found') and data.get('compound'):
+            compound = data['compound']
+            return {
+                'smiles': compound.get('smiles'),
+                'reg_number': compound.get('reg_number'),
+                'formatted_id': compound.get('formatted_id'),
+            }
+        else:
+            print(f"    No match. query_inchi={data.get('query_inchi', 'N/A')}")
+            return None
 
     except Exception as e:
         print(f"    Warning: Could not resolve compound by SMILES: {e}")
@@ -937,7 +947,7 @@ def execute_upload(
                         print(f"    client.set_job_parameter(<job_id>, 'SubstituteLigand.inputData.SMILESIN', smiles)")
                     else:
                         local_smiles = action.get('smiles', '')
-                        print(f"    # Resolve non-NCL compound {compound_id} via InChI")
+                        print(f"    # Resolve non-NCL compound {compound_id} via canonical SMILES")
                         print(f"    resolved = resolve_compound_by_smiles(client, '{local_smiles[:50]}...')")
                         print(f"    # If resolved: use registry SMILES")
                         print(f"    # If not resolved: SKIP (saved to --remaining file)")
@@ -976,21 +986,41 @@ def execute_upload(
             continue
 
         try:
-            # Step 0: Resolve non-NCL compounds via InChI before creating anything
+            # Step 0: Resolve non-NCL compounds via canonical SMILES before creating anything
             compound_id = action['compound_id']
             resolved_smiles = None  # Will hold registry SMILES if resolved
 
-            if (not compound_id.startswith('NCL-')
-                    and compound_id != 'unknown'):
+            if not compound_id.startswith('NCL-'):
                 local_smiles = action.get('smiles')
-                if local_smiles:
-                    print(f"    Resolving {compound_id} via InChI lookup...")
+                if not local_smiles:
+                    # No SMILES at all - can't resolve
+                    print(f"    No SMILES available for {compound_id} - skipping")
+                    unresolved_compounds.append({
+                        'crystal_name': action['crystal_name'],
+                        'compound_id': compound_id,
+                        'smiles': None,
+                        'compound_cif': action.get('compound_cif'),
+                        'unmerged_mtz_path': action.get('unmerged_mtz_path'),
+                        'dimple_pdb': action.get('dimple_pdb'),
+                        'dimple_mtz': action.get('dimple_mtz'),
+                    })
+                    action_result['status'] = 'skipped'
+                    action_result['error'] = f'No SMILES available for {compound_id}'
+                    results['actions'].append(action_result)
+                    results['summary']['skipped'] += 1
+                    continue
+                else:
+                    print(f"    Resolving {compound_id} via canonical SMILES lookup...")
                     resolved = resolve_compound_by_smiles(client, local_smiles)
 
                     if resolved:
                         resolved_id = resolved['formatted_id']
                         resolved_smiles = resolved['smiles']
                         action_result['resolved_compound_id'] = resolved_id
+                        # Update project name with resolved NCL ID
+                        action['project_name'] = action['project_name'].replace(
+                            compound_id, resolved_id
+                        )
                         print(f"    Resolved to {resolved_id}")
                     else:
                         # Not in registry - skip and save for later registration
@@ -1009,23 +1039,6 @@ def execute_upload(
                         results['actions'].append(action_result)
                         results['summary']['skipped'] += 1
                         continue
-                else:
-                    # No SMILES at all - can't resolve
-                    print(f"    No SMILES available for {compound_id} - skipping")
-                    unresolved_compounds.append({
-                        'crystal_name': action['crystal_name'],
-                        'compound_id': compound_id,
-                        'smiles': None,
-                        'compound_cif': action.get('compound_cif'),
-                        'unmerged_mtz_path': action.get('unmerged_mtz_path'),
-                        'dimple_pdb': action.get('dimple_pdb'),
-                        'dimple_mtz': action.get('dimple_mtz'),
-                    })
-                    action_result['status'] = 'skipped'
-                    action_result['error'] = f'No SMILES available for {compound_id}'
-                    results['actions'].append(action_result)
-                    results['summary']['skipped'] += 1
-                    continue
 
             # Step 1: Create or find project
             if rerun:
@@ -1141,7 +1154,7 @@ def execute_upload(
                     else:
                         print(f"    Warning: No SMILES available for {compound_id}")
                 else:
-                    # Non-NCL compound (Z*, POB*, etc.) - resolved earlier via InChI
+                    # Non-NCL compound (Z*, POB*, etc.) - resolved earlier via canonical SMILES
                     smiles = resolved_smiles
                     if smiles:
                         print(f"    Setting SMILES (from registry): {smiles[:50]}...")

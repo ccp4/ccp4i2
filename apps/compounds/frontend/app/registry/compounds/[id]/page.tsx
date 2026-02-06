@@ -285,10 +285,10 @@ export default function CompoundDetailPage({ params }: PageProps) {
                 label="MW"
                 value={compound.molecular_weight?.toFixed(2)}
               />
-              {compound.inchi && (
-                <InfoRow
-                  label="InChI"
-                  value={
+              <InfoRow
+                label="InChI"
+                value={
+                  compound.inchi ? (
                     <Typography
                       fontFamily="monospace"
                       fontSize="0.75rem"
@@ -296,9 +296,9 @@ export default function CompoundDetailPage({ params }: PageProps) {
                     >
                       {compound.inchi}
                     </Typography>
-                  }
-                />
-              )}
+                  ) : null
+                }
+              />
             </Box>
           </Box>
         </Grid>
