@@ -54,12 +54,14 @@ resource sbQueue 'Microsoft.ServiceBus/namespaces/queues@2024-01-01' = {
   }
 }
 
+// Note: 'Manage' right is required for KEDA to query queue metrics for autoscaling
 resource sbAuthRule 'Microsoft.ServiceBus/namespaces/queues/authorizationRules@2024-01-01' = {
   name: '${sbNamespaceName}/${sbQueueName}/SendListen'
   properties: {
     rights: [
       'Send'
       'Listen'
+      'Manage'
     ]
   }
 }
