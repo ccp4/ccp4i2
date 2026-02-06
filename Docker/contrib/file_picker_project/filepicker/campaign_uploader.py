@@ -964,7 +964,7 @@ def execute_upload(
             # Step 3: Create SubstituteLigand job (if enabled)
             if run_sublig:
                 print(f"    Creating SubstituteLigand job...")
-                sublig_job = client.create_job(project_id, 'SubstituteLigand')
+                sublig_job = client.create_job(project_id, 'SubstituteLigand', auto_context=False)
                 # i2remote.create_job returns unwrapped job data: {id, uuid, ...}
                 sublig_job_id = sublig_job.get('id')
                 print(f"    Created SubstituteLigand job ID: {sublig_job_id}")
@@ -1072,7 +1072,7 @@ def execute_upload(
 
                 if dimple_pdb and dimple_mtz and Path(dimple_pdb).exists() and Path(dimple_mtz).exists():
                     print(f"    Creating servalcat_pipe job (dimple harvest)...")
-                    servalcat_pipe_job = client.create_job(project_id, 'servalcat_pipe')
+                    servalcat_pipe_job = client.create_job(project_id, 'servalcat_pipe', auto_context=False)
                     # i2remote.create_job returns unwrapped job data: {id, uuid, ...}
                     servalcat_pipe_job_id = servalcat_pipe_job.get('id')
                     action_result['servalcat_pipe_job_id'] = servalcat_pipe_job_id
