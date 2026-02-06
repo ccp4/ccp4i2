@@ -837,6 +837,7 @@ def execute_upload(
     rerun_create_missing: bool = False,
     run_sublig: bool = True,
     run_servalcat: bool = True,
+    throttle_secs: int = 30,
 ) -> dict:
     """
     Execute the upload plan using i2remote client.
@@ -1255,6 +1256,13 @@ def execute_upload(
         if status_file:
             save_config(results, status_file)
 
+        # Throttle between actions to avoid overwhelming the database
+        # with concurrent workers (B1ms tier has 50 connection limit)
+        if throttle_secs > 0 and not dry_run and i < len(actions) - 1:
+            print(f"    Waiting {throttle_secs}s before next action...")
+            import time
+            time.sleep(throttle_secs)
+
     # Add resolution summary
     results['summary']['resolved'] = sum(
         1 for a in results['actions']
@@ -1412,6 +1420,7 @@ def cmd_execute(args):
         rerun_create_missing=args.rerun_create_missing,
         run_sublig=run_sublig,
         run_servalcat=run_servalcat,
+        throttle_secs=args.throttle,
     )
 
     # Final summary
@@ -1486,6 +1495,9 @@ def main():
                             help='Run only SubstituteLigand pipeline (skip servalcat_pipe)')
     exec_parser.add_argument('--only-servalcat', action='store_true',
                             help='Run only servalcat_pipe pipeline (skip SubstituteLigand)')
+    exec_parser.add_argument('--throttle', type=int, default=30, metavar='SECS',
+                            help='Delay in seconds between actions to avoid overloading '
+                                 'the database with concurrent workers (default: 30, 0 to disable)')
     exec_parser.add_argument('--remaining',
                             help='Path to save unresolved non-NCL compounds for later registration '
                                  '(default: campaign_remaining.yaml)',
