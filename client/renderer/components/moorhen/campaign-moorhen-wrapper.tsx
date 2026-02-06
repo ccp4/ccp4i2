@@ -755,6 +755,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
             maps={maps}
             onMapContourLevelChange={handleMapContourLevelChange}
             onTagProjectWithSite={handleTagProjectWithSite}
+            onFileSelect={fetchFile}
           />
         </div>
       </div>

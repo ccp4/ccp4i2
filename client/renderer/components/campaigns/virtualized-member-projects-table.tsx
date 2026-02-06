@@ -137,8 +137,8 @@ export function VirtualizedMemberProjectsTable({
           sx={{ mb: 1 }}
         >
           <Typography variant="body2">
-            <strong>Tip:</strong> Click job icons to view in CCP4i2, or{" "}
-            <strong>Shift+click</strong> to open in Moorhen. Right-click for more options.
+            <strong>Tip:</strong> Click job icons to open in Moorhen, or{" "}
+            <strong>Ctrl/Cmd+click</strong> to view in CCP4i2. Right-click for more options.
           </Typography>
         </Alert>
       </Collapse>
@@ -351,21 +351,21 @@ function MemberProjectRow({
     });
   }, [project.jobs, showSubJobs]);
 
-  // Handle job click - navigate to job view, shift-click for Moorhen
+  // Handle job click - open in Moorhen by default, Ctrl/Cmd+click for job detail
   const handleJobClick = useCallback(
     (job: CampaignJobInfo, event: React.MouseEvent) => {
       event.stopPropagation();
       event.preventDefault();
-      if (event.shiftKey) {
-        // Shift-click opens Moorhen in new tab
+      if (event.ctrlKey || event.metaKey) {
+        // Ctrl/Cmd+click opens job in project view
+        router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);
+      } else {
+        // Regular click opens Moorhen in new tab
         // Use campaign Moorhen if campaignId is available
         const moorhenUrl = campaignId
           ? `/ccp4i2/moorhen-page/campaign/${campaignId}?job=${job.id}`
           : `/ccp4i2/moorhen-page/job-by-id/${job.id}`;
         window.open(moorhenUrl, "_blank");
-      } else {
-        // Regular click opens job in project view
-        router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);
       }
     },
     [router, project.id, campaignId]
@@ -525,7 +525,7 @@ function MemberProjectRow({
                     variant="caption"
                     sx={{ mt: 0.5, display: "block", color: "grey.400" }}
                   >
-                    Click → CCP4i2 • Shift+click → {campaignId ? "Campaign " : ""}Moorhen
+                    Click → {campaignId ? "Campaign " : ""}Moorhen • Ctrl/Cmd+click → CCP4i2
                   </Typography>
                 </Box>
               }

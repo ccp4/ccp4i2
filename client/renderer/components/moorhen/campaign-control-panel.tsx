@@ -48,10 +48,12 @@ import {
   Home as HomeIcon,
   Upload as UploadIcon,
   Label as LabelIcon,
+  FolderOpen as FolderOpenIcon,
 } from "@mui/icons-material";
 import { moorhen } from "moorhen/types/moorhen";
 import { CopyViewLinkButton } from "./copy-view-link-button";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
+import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
 import {
   ProjectGroup,
@@ -87,6 +89,8 @@ interface CampaignControlPanelProps {
   onMapContourLevelChange?: (molNo: number, level: number) => void;
   /** Callback to tag the currently selected project with a site name */
   onTagProjectWithSite?: (siteName: string) => Promise<void>;
+  /** Callback to load a file into the Moorhen session */
+  onFileSelect?: (fileId: number) => Promise<void>;
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
@@ -109,6 +113,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   maps,
   onMapContourLevelChange,
   onTagProjectWithSite,
+  onFileSelect,
 }) => {
   // Get contour levels from Redux state
   const contourLevels = useSelector(
@@ -144,6 +149,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   // Ligand code loaded from CIF file (overrides ligandName prop)
   const [loadedLigandCode, setLoadedLigandCode] = useState<string | null>(null);
 
+  // Import from projects modal state
+  const [showImportModal, setShowImportModal] = useState(false);
+
   // Reset loaded ligand code when file ID changes
   useEffect(() => {
     setLoadedLigandCode(null);
@@ -164,6 +172,17 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     }
     return parentProject || undefined;
   }, [selectedMemberProjectId, memberProjects, parentProject]);
+
+  // Handle file selection from the hierarchy browser
+  const handleImportFileSelect = useCallback(
+    async (fileId: number) => {
+      if (onFileSelect) {
+        await onFileSelect(fileId);
+      }
+      setShowImportModal(false);
+    },
+    [onFileSelect]
+  );
 
   const handleOpenPushDialog = useCallback((molecule: moorhen.Molecule) => {
     setSelectedMolecule(molecule);
@@ -261,6 +280,21 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       <Box sx={{ mb: 1 }}>
         <CopyViewLinkButton getViewUrl={getViewUrl} />
       </Box>
+
+      {/* Import from Projects */}
+      {onFileSelect && (
+        <Box sx={{ mb: 1 }}>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<FolderOpenIcon />}
+            onClick={() => setShowImportModal(true)}
+            fullWidth
+          >
+            Import from Projects
+          </Button>
+        </Box>
+      )}
 
       {/* Display Options */}
       {molecules && molecules.length > 0 && (
@@ -673,6 +707,32 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             />
           )}
         </DialogContent>
+      </Dialog>
+
+      {/* Import from Projects Dialog */}
+      <Dialog
+        open={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: { height: "70vh", maxHeight: "600px" },
+        }}
+      >
+        <DialogTitle>
+          Import from Projects
+          <Typography variant="body2" color="text.secondary">
+            Navigate to a project and job to load files into this session
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ p: 0, display: "flex", flexDirection: "column" }}>
+          <Box sx={{ flex: 1, minHeight: 0 }}>
+            <CCP4i2HierarchyBrowser onFileSelect={handleImportFileSelect} />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowImportModal(false)}>Cancel</Button>
+        </DialogActions>
       </Dialog>
     </Box>
   );
