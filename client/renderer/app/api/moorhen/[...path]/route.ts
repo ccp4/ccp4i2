@@ -61,12 +61,15 @@ export async function GET(
   }
 
   // Determine the public directory path
-  // In production, files are in the .next/standalone/public directory
-  // In development, they're in the renderer/public directory
+  // In production (standalone build), files are in the public directory relative to cwd
+  // In development, cwd is 'client/' but public files are in 'client/renderer/public/'
+  const cwd = process.cwd();
   const publicDir =
     process.env.NODE_ENV === "production"
-      ? join(process.cwd(), "public")
-      : join(process.cwd(), "public");
+      ? join(cwd, "public")
+      : cwd.endsWith("client")
+        ? join(cwd, "renderer", "public")
+        : join(cwd, "public");
 
   const fullPath = join(publicDir, filePath);
 
