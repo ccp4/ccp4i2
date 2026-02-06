@@ -1,6 +1,7 @@
 import Script from "next/script";
-import { PropsWithChildren, useEffect, useRef, useState } from "react";
+import { PropsWithChildren, useCallback, useEffect, useRef, useState } from "react";
 import { useCCP4i2Window } from "../app-context";
+import { checkMoorhenCapabilities } from "../components/moorhen/moorhen-capability-check";
 
 // Check if running in Electron (no COEP restrictions) vs web browser (needs API route for CORP headers)
 const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
@@ -21,9 +22,10 @@ const shouldUse64BitWasm = (): boolean => {
 };
 
 export const CootProvider: React.FC<PropsWithChildren> = (props) => {
-  const { setCootModule } = useCCP4i2Window();
+  const { setCootModule, setCootModuleError } = useCCP4i2Window();
   const scriptElement = useRef<HTMLElement | null | undefined>(null);
   const [use64Bit] = useState(() => shouldUse64BitWasm());
+  const [loadAttempted, setLoadAttempted] = useState(false);
 
   // In web browsers, use API route for moorhen files to ensure CORP headers are set
   // (required for COEP/SharedArrayBuffer support). In Electron, serve directly from public/.
@@ -31,8 +33,19 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
   const moorhenScript = use64Bit ? `${apiPrefix}/moorhen64.js` : `${apiPrefix}/moorhen.js`;
   const moorhenWasm = use64Bit ? `${apiPrefix}/moorhen64.wasm` : `${apiPrefix}/moorhen.wasm`;
 
+  // Log capability check on mount
   useEffect(() => {
+    const capabilities = checkMoorhenCapabilities();
+    console.log(`[Moorhen] Browser capabilities:`, capabilities);
     console.log(`[Moorhen] Using ${use64Bit ? "64-bit" : "32-bit"} WASM build`);
+
+    // Warn if capabilities are missing (but don't block - let it try)
+    if (!capabilities.isSupported && !isElectron) {
+      console.warn(
+        `[Moorhen] ${capabilities.message}. Attempting to load anyway...`
+      );
+    }
+
     return () => {
       if (scriptElement.current) {
         scriptElement.current.parentElement?.removeChild(scriptElement.current);
@@ -61,32 +74,52 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
     },
   };
 
+  const handleScriptLoad = useCallback(async () => {
+    if (loadAttempted) return;
+    setLoadAttempted(true);
+
+    try {
+      // moorhen.js defines createCootModule, moorhen64.js defines createCoot64Module
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const createModule = use64Bit
+        ? (window as any).createCoot64Module
+        : (window as any).createCootModule;
+
+      if (typeof createModule !== "function") {
+        const errorMsg = `${use64Bit ? "createCoot64Module" : "createCootModule"} not found after script load`;
+        console.error(`[Moorhen] ${errorMsg}`);
+        setCootModuleError?.(new Error(errorMsg));
+        return;
+      }
+
+      const module = await (createModule as (args: typeof createArgs) => Promise<any>)(createArgs);
+      setCootModule?.(module);
+      console.log("[Moorhen] Module loaded successfully");
+
+      scriptElement.current = Array.from(
+        document.getElementsByTagName("script")
+      ).find((htmlElement: HTMLElement) => {
+        return htmlElement.getAttribute("src") === moorhenScript;
+      });
+    } catch (error) {
+      console.error("[Moorhen] Failed to initialize module:", error);
+      setCootModuleError?.(error instanceof Error ? error : new Error(String(error)));
+    }
+  }, [use64Bit, moorhenScript, setCootModule, setCootModuleError, loadAttempted, createArgs]);
+
+  const handleScriptError = useCallback((e: Error) => {
+    console.error("[Moorhen] Script load error:", e);
+    setCootModuleError?.(new Error(`Failed to load Moorhen script: ${e.message || "unknown error"}`));
+  }, [setCootModuleError]);
+
   return (
     <>
       <Script
         src={moorhenScript}
         strategy="lazyOnload"
         id="moorhen-script-element"
-        onLoad={async () => {
-          // moorhen.js defines createCootModule, moorhen64.js defines createCoot64Module
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          const createModule = use64Bit
-            ? (window as any).createCoot64Module
-            : (window as any).createCootModule;
-
-          if (typeof createModule !== "function") {
-            console.error(`[Moorhen] ${use64Bit ? "createCoot64Module" : "createCootModule"} not found`);
-            return;
-          }
-
-          const module = await (createModule as (args: typeof createArgs) => Promise<any>)(createArgs);
-          setCootModule?.(module);
-          scriptElement.current = Array.from(
-            document.getElementsByTagName("script")
-          ).find((htmlElement: HTMLElement) => {
-            return htmlElement.getAttribute("src") === moorhenScript;
-          });
-        }}
+        onLoad={handleScriptLoad}
+        onError={handleScriptError}
       />
       {props.children}
     </>
