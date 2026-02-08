@@ -562,7 +562,7 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
       ]
       scale: {
         minReplicas: 0 // Scale to zero when no jobs - cost optimization for episodic workloads
-        maxReplicas: 20  // Allow burst to 20 workers for parallel job processing
+        maxReplicas: 10  // Reduced from 20 to limit database load from concurrent workers
         rules: [
           {
             name: 'queue-scaling'
