@@ -7,11 +7,13 @@ import {
   Box,
   Button,
   CircularProgress,
+  Collapse,
   Container,
   Dialog,
   DialogActions,
   DialogContent,
   DialogTitle,
+  Divider,
   FormControlLabel,
   Grid,
   IconButton,
@@ -32,6 +34,8 @@ import {
   Add as AddIcon,
   Download as DownloadIcon,
   Edit as EditIcon,
+  ExpandMore as ExpandMoreIcon,
+  ExpandLess as ExpandLessIcon,
   Preview as PreviewIcon,
   Refresh as RefreshIcon,
   Upload as UploadIcon,
@@ -114,6 +118,11 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
   const [showSubJobs, setShowSubJobs] = useState(false);
   const [deleteProject, setDeleteProject] = useState<MemberProjectWithSummary | null>(null);
 
+  // Campaign info collapse state - expand by default when configuration is needed
+  const needsConfiguration = !parentProject || !parentFiles?.coordinates?.length || !parentFiles?.freer?.length;
+  const [infoExpanded, setInfoExpanded] = useState(false);
+  const showExpanded = infoExpanded || needsConfiguration;
+
   // File annotation editing state
   const [editingFile, setEditingFile] = useState<CCP4File | null>(null);
   const [editAnnotation, setEditAnnotation] = useState("");
@@ -194,184 +203,214 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
       <CCP4i2TopBar title={campaign.name} showBackButton />
       <Container sx={{ my: 3 }}>
         <Stack spacing={3}>
-          {/* Header with actions */}
-          <Stack direction="row" spacing={2} alignItems="center">
-            <ScienceIcon color="primary" fontSize="large" />
-            <Typography variant="h5" sx={{ flexGrow: 1 }}>
-              {campaign.name}
-            </Typography>
-            <Tooltip title="Refresh">
-              <IconButton onClick={handleRefresh}>
-                <RefreshIcon />
-              </IconButton>
-            </Tooltip>
-          </Stack>
-
-          {/* Parent Project Section */}
+          {/* Header with actions and collapsible campaign info */}
           <Paper sx={{ p: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              Parent Project
-            </Typography>
-            {parentProject ? (
-              <Stack spacing={1}>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <FolderIcon color="primary" />
-                  <Typography
-                    sx={{ cursor: "pointer", "&:hover": { textDecoration: "underline" } }}
-                    onClick={() => router.push(`/ccp4i2/project/${parentProject.id}`)}
-                  >
-                    {parentProject.name}
+            <Stack direction="row" spacing={2} alignItems="center">
+              <ScienceIcon color="primary" fontSize="large" />
+              <Box sx={{ flexGrow: 1, minWidth: 0 }}>
+                <Typography variant="h5">
+                  {campaign.name}
+                </Typography>
+                {/* Collapsed summary */}
+                {!showExpanded && (
+                  <Stack direction="row" spacing={2} sx={{ mt: 0.5 }}>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Parent:</strong>{" "}
+                      {parentProject?.name || "None"}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>Coords:</strong>{" "}
+                      {parentFiles?.coordinates?.length || 0} file{parentFiles?.coordinates?.length !== 1 ? "s" : ""}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      <strong>FreeR:</strong>{" "}
+                      {parentFiles?.freer?.length || 0} file{parentFiles?.freer?.length !== 1 ? "s" : ""}
+                    </Typography>
+                  </Stack>
+                )}
+              </Box>
+              <Tooltip title="Refresh">
+                <IconButton onClick={handleRefresh}>
+                  <RefreshIcon />
+                </IconButton>
+              </Tooltip>
+              <Tooltip title={showExpanded ? "Hide details" : "Show details"}>
+                <IconButton onClick={() => setInfoExpanded(!infoExpanded)}>
+                  {showExpanded ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                </IconButton>
+              </Tooltip>
+            </Stack>
+
+            <Collapse in={showExpanded} timeout={250}>
+              <Divider sx={{ my: 2 }} />
+
+              {/* Parent Project Section */}
+              <Stack spacing={2}>
+                <Box>
+                  <Typography variant="h6" gutterBottom>
+                    Parent Project
                   </Typography>
-                </Stack>
+                  {parentProject ? (
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <FolderIcon color="primary" />
+                      <Typography
+                        sx={{ cursor: "pointer", "&:hover": { textDecoration: "underline" } }}
+                        onClick={() => router.push(`/ccp4i2/project/${parentProject.id}`)}
+                      >
+                        {parentProject.name}
+                      </Typography>
+                    </Stack>
+                  ) : (
+                    <Alert severity="warning">
+                      Parent project not found. This campaign may have been created
+                      with an older version. Use the button below to associate an
+                      existing project.
+                      <Button
+                        size="small"
+                        sx={{ ml: 2 }}
+                        onClick={() => setShowSelectParent(true)}
+                      >
+                        Select Parent
+                      </Button>
+                    </Alert>
+                  )}
+                </Box>
+
+                {/* Reference Files Section */}
+                <Grid container spacing={2}>
+                  {/* Coordinates */}
+                  <Grid item xs={12} md={6}>
+                    <Paper variant="outlined" sx={{ p: 2, height: "100%" }}>
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        mb={2}
+                      >
+                        <Typography variant="h6">Starting Coordinates</Typography>
+                        {parentProject && (
+                          <Button
+                            size="small"
+                            startIcon={<UploadIcon />}
+                            onClick={() => setShowImportCoords(true)}
+                            disabled={!parentProject}
+                          >
+                            Import
+                          </Button>
+                        )}
+                      </Stack>
+                      {parentFiles?.coordinates && parentFiles.coordinates.length > 0 ? (
+                        <TableContainer>
+                          <Table size="small">
+                            <TableBody>
+                              {parentFiles.coordinates.map((file) => (
+                                <TableRow key={file.id}>
+                                  <TableCell>
+                                    <Tooltip title={file.name}>
+                                      <Typography variant="body2" noWrap>
+                                        {getFileDisplayLabel(file)}
+                                      </Typography>
+                                    </Tooltip>
+                                  </TableCell>
+                                  <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
+                                    <Tooltip title="Edit annotation">
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => handleEditAnnotation(file)}
+                                      >
+                                        <EditIcon fontSize="small" />
+                                      </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Download">
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => handleDownloadFile(file)}
+                                      >
+                                        <DownloadIcon fontSize="small" />
+                                      </IconButton>
+                                    </Tooltip>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      ) : (
+                        <Typography color="text.secondary" variant="body2">
+                          No coordinates imported yet
+                        </Typography>
+                      )}
+                    </Paper>
+                  </Grid>
+
+                  {/* FreeR */}
+                  <Grid item xs={12} md={6}>
+                    <Paper variant="outlined" sx={{ p: 2, height: "100%" }}>
+                      <Stack
+                        direction="row"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        mb={2}
+                      >
+                        <Typography variant="h6">Collective FreeR Set</Typography>
+                        {parentProject && (
+                          <Button
+                            size="small"
+                            startIcon={<UploadIcon />}
+                            onClick={() => setShowImportFreeR(true)}
+                            disabled={!parentProject}
+                          >
+                            Import
+                          </Button>
+                        )}
+                      </Stack>
+                      {parentFiles?.freer && parentFiles.freer.length > 0 ? (
+                        <TableContainer>
+                          <Table size="small">
+                            <TableBody>
+                              {parentFiles.freer.map((file) => (
+                                <TableRow key={file.id}>
+                                  <TableCell>
+                                    <Tooltip title={file.name}>
+                                      <Typography variant="body2" noWrap>
+                                        {getFileDisplayLabel(file)}
+                                      </Typography>
+                                    </Tooltip>
+                                  </TableCell>
+                                  <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
+                                    <Tooltip title="Edit annotation">
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => handleEditAnnotation(file)}
+                                      >
+                                        <EditIcon fontSize="small" />
+                                      </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Download">
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => handleDownloadFile(file)}
+                                      >
+                                        <DownloadIcon fontSize="small" />
+                                      </IconButton>
+                                    </Tooltip>
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        </TableContainer>
+                      ) : (
+                        <Typography color="text.secondary" variant="body2">
+                          No FreeR set imported yet
+                        </Typography>
+                      )}
+                    </Paper>
+                  </Grid>
+                </Grid>
               </Stack>
-            ) : (
-              <Alert severity="warning">
-                Parent project not found. This campaign may have been created
-                with an older version. Use the button below to associate an
-                existing project.
-                <Button
-                  size="small"
-                  sx={{ ml: 2 }}
-                  onClick={() => setShowSelectParent(true)}
-                >
-                  Select Parent
-                </Button>
-              </Alert>
-            )}
+            </Collapse>
           </Paper>
-
-          {/* Reference Files Section */}
-          <Grid container spacing={2}>
-            {/* Coordinates */}
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 2, height: "100%" }}>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  mb={2}
-                >
-                  <Typography variant="h6">Starting Coordinates</Typography>
-                  {parentProject && (
-                    <Button
-                      size="small"
-                      startIcon={<UploadIcon />}
-                      onClick={() => setShowImportCoords(true)}
-                      disabled={!parentProject}
-                    >
-                      Import
-                    </Button>
-                  )}
-                </Stack>
-                {parentFiles?.coordinates && parentFiles.coordinates.length > 0 ? (
-                  <TableContainer>
-                    <Table size="small">
-                      <TableBody>
-                        {parentFiles.coordinates.map((file) => (
-                          <TableRow key={file.id}>
-                            <TableCell>
-                              <Tooltip title={file.name}>
-                                <Typography variant="body2" noWrap>
-                                  {getFileDisplayLabel(file)}
-                                </Typography>
-                              </Tooltip>
-                            </TableCell>
-                            <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
-                              <Tooltip title="Edit annotation">
-                                <IconButton
-                                  size="small"
-                                  onClick={() => handleEditAnnotation(file)}
-                                >
-                                  <EditIcon fontSize="small" />
-                                </IconButton>
-                              </Tooltip>
-                              <Tooltip title="Download">
-                                <IconButton
-                                  size="small"
-                                  onClick={() => handleDownloadFile(file)}
-                                >
-                                  <DownloadIcon fontSize="small" />
-                                </IconButton>
-                              </Tooltip>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                ) : (
-                  <Typography color="text.secondary" variant="body2">
-                    No coordinates imported yet
-                  </Typography>
-                )}
-              </Paper>
-            </Grid>
-
-            {/* FreeR */}
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 2, height: "100%" }}>
-                <Stack
-                  direction="row"
-                  justifyContent="space-between"
-                  alignItems="center"
-                  mb={2}
-                >
-                  <Typography variant="h6">Collective FreeR Set</Typography>
-                  {parentProject && (
-                    <Button
-                      size="small"
-                      startIcon={<UploadIcon />}
-                      onClick={() => setShowImportFreeR(true)}
-                      disabled={!parentProject}
-                    >
-                      Import
-                    </Button>
-                  )}
-                </Stack>
-                {parentFiles?.freer && parentFiles.freer.length > 0 ? (
-                  <TableContainer>
-                    <Table size="small">
-                      <TableBody>
-                        {parentFiles.freer.map((file) => (
-                          <TableRow key={file.id}>
-                            <TableCell>
-                              <Tooltip title={file.name}>
-                                <Typography variant="body2" noWrap>
-                                  {getFileDisplayLabel(file)}
-                                </Typography>
-                              </Tooltip>
-                            </TableCell>
-                            <TableCell align="right" sx={{ whiteSpace: "nowrap" }}>
-                              <Tooltip title="Edit annotation">
-                                <IconButton
-                                  size="small"
-                                  onClick={() => handleEditAnnotation(file)}
-                                >
-                                  <EditIcon fontSize="small" />
-                                </IconButton>
-                              </Tooltip>
-                              <Tooltip title="Download">
-                                <IconButton
-                                  size="small"
-                                  onClick={() => handleDownloadFile(file)}
-                                >
-                                  <DownloadIcon fontSize="small" />
-                                </IconButton>
-                              </Tooltip>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                ) : (
-                  <Typography color="text.secondary" variant="body2">
-                    No FreeR set imported yet
-                  </Typography>
-                )}
-              </Paper>
-            </Grid>
-          </Grid>
 
           {/* Member Projects Section */}
           <Paper sx={{ p: 2 }}>
