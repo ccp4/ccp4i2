@@ -43,7 +43,7 @@ import { useDispatch, useSelector, useStore } from "react-redux";
 import { webGL } from "moorhen/types/mgWebGL";
 import { useCCP4i2Window } from "../../app-context";
 import { CampaignControlPanel } from "./campaign-control-panel";
-import { apiText, apiArrayBuffer, apiGet } from "../../api-fetch";
+import { apiText, apiArrayBuffer, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 import { useCampaignsApi } from "../../lib/campaigns-api";
@@ -667,6 +667,130 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [selectedMemberProjectId, campaignsApi, setMessage, memberProjects]
   );
 
+  // Run servalcat_pipe refinement on a molecule
+  const handleRunServalcat = useCallback(
+    async (mol: moorhen.Molecule) => {
+      // Determine the project context
+      const projectId = selectedMemberProjectId || parentProject?.id;
+      if (!projectId) {
+        setMessage("No project selected");
+        return;
+      }
+
+      // Get project UUID (needed for file references)
+      let projectUuid: string | undefined;
+      if (selectedMemberProjectId) {
+        const mp = memberProjects.find((p) => p.id === selectedMemberProjectId);
+        projectUuid = mp?.uuid;
+      } else {
+        projectUuid = parentProject?.uuid;
+      }
+      if (!projectUuid) {
+        setMessage("Cannot determine project UUID");
+        return;
+      }
+      const projectDbId = projectUuid.replace(/-/g, "");
+
+      setMessage("Creating servalcat refinement job...");
+
+      try {
+        // Step 1: Find the most recent reflections from this project
+        const jobs = await apiGet(`jobs/?project=${projectId}`);
+        if (!jobs || !Array.isArray(jobs)) {
+          setMessage("Failed to fetch jobs for project");
+          return;
+        }
+
+        // Filter to top-level jobs only (exclude sub-jobs from pipelines)
+        // and sort by ID descending (most recent first)
+        const sortedJobs = jobs
+          .filter((j: { parent: number | null }) => j.parent === null)
+          .sort((a: { id: number }, b: { id: number }) => b.id - a.id);
+
+        // Collect all observation files across jobs, preferring IPAIR/FPAIR over IMEAN/FMEAN
+        // Content flags: 1=IPAIR, 2=FPAIR, 4=IMEAN, 8=FMEAN (bitmask)
+        type ObsFile = { id: number; uuid: string; name: string; content: number | null };
+        const allObsFiles: ObsFile[] = [];
+        for (const job of sortedJobs) {
+          const files = await apiGet(`files/?job=${job.id}`);
+          if (!files || !Array.isArray(files)) continue;
+          for (const f of files) {
+            if (f.type === "application/CCP4-mtz-observed" && f.directory === 1) {
+              allObsFiles.push(f);
+            }
+          }
+          // Stop after finding observations in the most recent job that has them
+          if (allObsFiles.length > 0) break;
+        }
+
+        if (allObsFiles.length === 0) {
+          setMessage("No reflection data found in project");
+          return;
+        }
+
+        // Prefer IPAIR (content & 1) or FPAIR (content & 2) over IMEAN/FMEAN
+        const hasAnomalous = (f: ObsFile) => f.content !== null && (f.content & 3) !== 0;
+        const reflectionFile =
+          allObsFiles.find(hasAnomalous) || allObsFiles[0];
+
+        // Step 2: Create servalcat_pipe job
+        const jobResponse = await apiPost<{
+          status: string;
+          data: { new_job: { id: number; uuid: string } };
+        }>(`projects/${projectId}/create_task/`, {
+          task_name: "servalcat_pipe",
+          title: `Servalcat refinement of ${mol.name}`,
+        });
+        const newJobId = jobResponse.data.new_job.id;
+
+        // Step 3: Upload coordinates from Moorhen (may have been edited)
+        setMessage("Uploading coordinates...");
+        const pdbText = await mol.getAtoms("pdb");
+        const coordBlob = new Blob([pdbText], { type: "chemical/x-pdb" });
+        const coordFile = new File([coordBlob], `${mol.name || "coords"}.pdb`);
+        const coordFormData = new FormData();
+        coordFormData.append("file", coordFile);
+        coordFormData.append("objectPath", "servalcat_pipe.inputData.XYZIN");
+        await apiUpload(`jobs/${newJobId}/upload_file_param/`, coordFormData);
+
+        // Step 4: Link reflections via database file reference
+        setMessage("Linking reflection data...");
+        const reflDbFileId = reflectionFile.uuid.replace(/-/g, "");
+        await apiPost(`jobs/${newJobId}/set_parameter/`, {
+          object_path: "servalcat_pipe.inputData.HKLIN",
+          value: { project: projectDbId, dbFileId: reflDbFileId },
+        });
+
+        // Step 5: Upload dictionary if available
+        // Uses upload_file_param (not set_parameter) because DICT_LIST starts empty
+        // and upload_file_param handles list expansion automatically
+        if (ligandDictFileId) {
+          setMessage("Uploading ligand dictionary...");
+          const dictUrl = `/api/proxy/ccp4i2/files/${ligandDictFileId}/download/`;
+          const dictText = await apiText(dictUrl);
+          const dictBlob = new Blob([dictText], { type: "application/refmac-dictionary" });
+          const dictFile = new File([dictBlob], "ligand.cif");
+          const dictFormData = new FormData();
+          dictFormData.append("file", dictFile);
+          dictFormData.append("objectPath", "servalcat_pipe.inputData.DICT_LIST[0]");
+          await apiUpload(`jobs/${newJobId}/upload_file_param/`, dictFormData);
+        }
+
+        // Step 6: Run the job
+        setMessage("Running servalcat refinement...");
+        await apiPost(`jobs/${newJobId}/run/`, {});
+
+        setMessage("Servalcat refinement job submitted successfully");
+      } catch (error) {
+        console.error("Failed to create servalcat job:", error);
+        setMessage(
+          `Failed to create servalcat job: ${error instanceof Error ? error.message : "Unknown error"}`
+        );
+      }
+    },
+    [selectedMemberProjectId, parentProject, memberProjects, ligandDictFileId, setMessage]
+  );
+
   // Show fallback if Coot module failed to load
   if (cootModuleError) {
     return (
@@ -755,6 +879,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
               onMapContourLevelChange={handleMapContourLevelChange}
               onTagProjectWithSite={handleTagProjectWithSite}
               onFileSelect={fetchFile}
+              onRunServalcat={handleRunServalcat}
             />
           </div>
         </div>

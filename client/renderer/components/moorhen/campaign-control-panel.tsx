@@ -15,6 +15,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   hideMap,
   showMap,
+  hideMolecule,
+  showMolecule,
+  removeMolecule,
   setRequestDrawScene,
 } from "moorhen";
 import {
@@ -54,6 +57,7 @@ import {
   Upload as UploadIcon,
   Label as LabelIcon,
   FolderOpen as FolderOpenIcon,
+  Science as ScienceIcon,
   VisibilityOutlined,
   VisibilityOffOutlined,
 } from "@mui/icons-material";
@@ -98,6 +102,8 @@ interface CampaignControlPanelProps {
   onTagProjectWithSite?: (siteName: string) => Promise<void>;
   /** Callback to load a file into the Moorhen session */
   onFileSelect?: (fileId: number) => Promise<void>;
+  /** Callback to run servalcat_pipe refinement on a molecule */
+  onRunServalcat?: (mol: moorhen.Molecule) => Promise<void>;
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
@@ -121,6 +127,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   onMapContourLevelChange,
   onTagProjectWithSite,
   onFileSelect,
+  onRunServalcat,
 }) => {
   const dispatch = useDispatch();
 
@@ -130,6 +137,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   );
   const visibleMaps = useSelector(
     (state: moorhen.State) => state.mapContourSettings?.visibleMaps || []
+  );
+  const visibleMolecules = useSelector(
+    (state: moorhen.State) => state.molecules.visibleMolecules || []
   );
 
   // Helper to get contour level for a specific map
@@ -163,6 +173,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
 
   // Import from projects modal state
   const [showImportModal, setShowImportModal] = useState(false);
+
+  // Track which molecule (if any) has a servalcat job running
+  const [runningServalcatMolNo, setRunningServalcatMolNo] = useState<number | null>(null);
 
   // Reset loaded ligand code when file ID changes
   useEffect(() => {
@@ -612,35 +625,94 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
               Push to CCP4i2
             </Typography>
             <List dense>
-              {molecules.map((mol) => (
-                <ListItem
-                  key={mol.molNo}
-                  sx={{
-                    bgcolor: "background.paper",
-                    mb: 0.5,
-                    borderRadius: 1,
-                    border: "1px solid",
-                    borderColor: "divider",
-                  }}
-                >
-                  <ListItemText
-                    primary={mol.name}
-                    primaryTypographyProps={{ variant: "body2" }}
-                  />
-                  <ListItemSecondaryAction>
-                    <Tooltip title="Push to CCP4i2 project">
-                      <IconButton
-                        edge="end"
-                        size="small"
-                        onClick={() => handleOpenPushDialog(mol)}
-                        color="primary"
-                      >
-                        <UploadIcon fontSize="small" />
-                      </IconButton>
-                    </Tooltip>
-                  </ListItemSecondaryAction>
-                </ListItem>
-              ))}
+              {molecules.map((mol) => {
+                const isVisible = visibleMolecules.includes(mol.molNo);
+                return (
+                  <ListItem
+                    key={mol.molNo}
+                    sx={{
+                      bgcolor: "background.paper",
+                      mb: 0.5,
+                      borderRadius: 1,
+                      border: "1px solid",
+                      borderColor: "divider",
+                      opacity: isVisible ? 1 : 0.5,
+                    }}
+                  >
+                    <ListItemText
+                      primary={mol.name}
+                      primaryTypographyProps={{ variant: "body2" }}
+                    />
+                    <ListItemSecondaryAction>
+                      <Tooltip title={isVisible ? "Hide molecule" : "Show molecule"}>
+                        <IconButton
+                          edge="end"
+                          size="small"
+                          onClick={() => {
+                            if (isVisible) {
+                              dispatch(hideMolecule({ molNo: mol.molNo }));
+                            } else {
+                              dispatch(showMolecule({ molNo: mol.molNo, show: true }));
+                            }
+                            dispatch(setRequestDrawScene(true));
+                          }}
+                        >
+                          {isVisible
+                            ? <VisibilityOutlined sx={{ fontSize: 18 }} />
+                            : <VisibilityOffOutlined sx={{ fontSize: 18 }} />
+                          }
+                        </IconButton>
+                      </Tooltip>
+                      <Tooltip title="Remove from Coot">
+                        <IconButton
+                          edge="end"
+                          size="small"
+                          onClick={() => {
+                            dispatch(removeMolecule(mol));
+                            mol.delete();
+                            dispatch(setRequestDrawScene(true));
+                          }}
+                          color="error"
+                        >
+                          <DeleteIcon fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                      {onRunServalcat && (
+                        <Tooltip title="Run servalcat refinement">
+                          <span>
+                            <IconButton
+                              edge="end"
+                              size="small"
+                              disabled={runningServalcatMolNo !== null}
+                              onClick={async () => {
+                                setRunningServalcatMolNo(mol.molNo);
+                                try {
+                                  await onRunServalcat(mol);
+                                } finally {
+                                  setRunningServalcatMolNo(null);
+                                }
+                              }}
+                              color="secondary"
+                            >
+                              <ScienceIcon fontSize="small" />
+                            </IconButton>
+                          </span>
+                        </Tooltip>
+                      )}
+                      <Tooltip title="Push to CCP4i2 project">
+                        <IconButton
+                          edge="end"
+                          size="small"
+                          onClick={() => handleOpenPushDialog(mol)}
+                          color="primary"
+                        >
+                          <UploadIcon fontSize="small" />
+                        </IconButton>
+                      </Tooltip>
+                    </ListItemSecondaryAction>
+                  </ListItem>
+                );
+              })}
             </List>
           </Box>
         </>
