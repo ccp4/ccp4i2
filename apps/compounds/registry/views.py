@@ -822,6 +822,82 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
             'matches': serializer.data
         })
 
+    @action(detail=False, methods=['get'])
+    def resolve_by_smiles(self, request):
+        """
+        Resolve a compound by SMILES matching.
+
+        Converts the input SMILES to canonical RDKit SMILES and looks up
+        against the rdkit_smiles field. Falls back to InChI matching if
+        InChI support is available and rdkit_smiles lookup fails.
+
+        Query parameters:
+            smiles: SMILES string to resolve (required)
+
+        Returns:
+            JSON with found=true and compound data if matched,
+            or found=false if no match.
+        """
+        if not RDKIT_AVAILABLE:
+            return Response(
+                {'error': 'Compound resolution not available - RDKit not installed'},
+                status=status.HTTP_503_SERVICE_UNAVAILABLE
+            )
+
+        smiles_param = request.query_params.get('smiles')
+        if not smiles_param:
+            return Response(
+                {'error': 'smiles parameter required'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        try:
+            mol = Chem.MolFromSmiles(smiles_param)
+            if mol is None:
+                return Response(
+                    {'error': 'Invalid SMILES string'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            canonical_smiles = Chem.MolToSmiles(mol, canonical=True)
+        except Exception as e:
+            return Response(
+                {'error': f'Failed to process SMILES: {str(e)}'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        # Primary lookup: canonical SMILES
+        compound = self.get_queryset().filter(rdkit_smiles=canonical_smiles).first()
+
+        # Fallback: InChI lookup (if available and SMILES didn't match)
+        query_inchi = None
+        if not compound:
+            try:
+                from rdkit.Chem import inchi as _inchi_mod
+                if getattr(_inchi_mod, 'INCHI_AVAILABLE', False):
+                    query_inchi = _inchi_mod.MolToInchi(mol)
+                    if query_inchi:
+                        compound = self.get_queryset().filter(
+                            inchi=query_inchi
+                        ).first()
+            except (ImportError, AttributeError):
+                pass
+
+        if compound:
+            serializer = CompoundDetailSerializer(compound)
+            return Response({
+                'found': True,
+                'query_smiles': smiles_param,
+                'canonical_smiles': canonical_smiles,
+                'compound': serializer.data,
+            })
+        else:
+            return Response({
+                'found': False,
+                'query_smiles': smiles_param,
+                'canonical_smiles': canonical_smiles,
+                'compound': None,
+            })
+
 
 class BatchViewSet(ReversionMixin, viewsets.ModelViewSet):
     """CRUD operations for Batches."""

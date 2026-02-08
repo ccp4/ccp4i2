@@ -57,6 +57,59 @@ interface Target {
   name: string;
 }
 
+// Valid units (must match backend kpi_utils.py VALID_UNITS)
+const VALID_UNITS = new Set([
+  'nM', 'uM', 'mM', 'pM', 'M',  // Molar concentrations
+  'min', 's', 'h',              // Time units
+  '%',                          // Percentage
+  'uL/min/mg', 'mL/min/kg',     // Rate units
+  '1e-6 cm/s', 'cm/s',          // Permeability
+]);
+
+// Common invalid patterns with suggestions
+const UNIT_SUGGESTIONS: Record<string, string | null> = {
+  'pc': '%',
+  'percent': '%',
+  'pct': '%',
+  'percentage': '%',
+  'nm': 'nM',
+  'um': 'uM',
+  'mm': 'mM',
+  'pm': 'pM',
+};
+
+// Normalize unit (convert unicode mu to ASCII, handle case)
+function normalizeUnit(unit: string): string {
+  return unit.replace(/[μµ]/g, 'u');
+}
+
+// Validate a unit string
+function validateUnit(unit: string | null): { valid: boolean; normalized: string | null; error: string | null } {
+  if (!unit || unit.trim() === '') {
+    return { valid: true, normalized: null, error: null };
+  }
+
+  const trimmed = unit.trim();
+  const normalized = normalizeUnit(trimmed);
+
+  // Check if valid
+  if (VALID_UNITS.has(normalized) || VALID_UNITS.has(trimmed)) {
+    return { valid: true, normalized, error: null };
+  }
+
+  // Check for common mistakes
+  const lower = trimmed.toLowerCase();
+  if (lower in UNIT_SUGGESTIONS) {
+    const suggestion = UNIT_SUGGESTIONS[lower];
+    if (suggestion) {
+      return { valid: false, normalized: null, error: `Invalid unit '${trimmed}'. Did you mean '${suggestion}'?` };
+    }
+  }
+
+  // Unknown unit
+  return { valid: false, normalized: null, error: `Invalid unit '${trimmed}'. Valid units: nM, uM, mM, %, min, s, h` };
+}
+
 // Loading fallback for Suspense
 function ImportPageSkeleton() {
   return (
@@ -94,6 +147,9 @@ function ImportTableOfValuesContent() {
   const [kpiColumn, setKpiColumn] = useState<string>('');
   const [imageColumn, setImageColumn] = useState<string>('');
   const [kpiUnitOverride, setKpiUnitOverride] = useState<string>('');
+
+  // Unit validation
+  const unitValidation = useMemo(() => validateUnit(kpiUnitOverride), [kpiUnitOverride]);
 
   // Import state
   const [isImporting, setIsImporting] = useState(false);
@@ -281,6 +337,7 @@ function ImportTableOfValuesContent() {
     selectedProtocol &&
     compoundColumn &&
     kpiValidation.valid &&
+    unitValidation.valid &&
     !isImporting;
 
   return (
@@ -488,10 +545,13 @@ function ImportTableOfValuesContent() {
                   onChange={(e) => setKpiUnitOverride(e.target.value)}
                   size="small"
                   placeholder={kpiValidation.inferredUnit || 'No unit detected'}
+                  error={!unitValidation.valid}
                   helperText={
-                    kpiValidation.inferredUnit
-                      ? `Detected: ${kpiValidation.inferredUnit} (leave blank to use)`
-                      : 'Enter unit if applicable (e.g., nM, uM, %)'
+                    !unitValidation.valid
+                      ? unitValidation.error
+                      : kpiValidation.inferredUnit
+                        ? `Detected: ${kpiValidation.inferredUnit} (leave blank to use)`
+                        : 'Enter unit if applicable (e.g., nM, uM, %)'
                   }
                   margin="normal"
                 />

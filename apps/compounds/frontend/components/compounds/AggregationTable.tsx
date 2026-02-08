@@ -20,9 +20,11 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  IconButton,
 } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Download, Medication, ZoomIn } from '@mui/icons-material';
+import { Download, Medication, ZoomIn, ContentCopy, Check } from '@mui/icons-material';
+import html2canvas from 'html2canvas';
 import { useRouter } from 'next/navigation';
 import {
   AggregationResponse,
@@ -125,10 +127,13 @@ const RAG_COLORS: Record<string, string> = {
 };
 
 /** Format property value for display */
-function formatPropertyValue(value: number | null | undefined): string {
-  if (value == null) return '-';
-  if (Number.isInteger(value)) return String(value);
-  return value.toFixed(2);
+function formatPropertyValue(value: number | string | null | undefined): string {
+  if (value == null || value === '') return '-';
+  // Convert string values to numbers (handles legacy data stored as strings)
+  const numValue = typeof value === 'string' ? parseFloat(value) : value;
+  if (isNaN(numValue)) return String(value);
+  if (Number.isInteger(numValue)) return String(numValue);
+  return numValue.toFixed(2);
 }
 
 interface AggregationTableProps {
@@ -2101,6 +2106,10 @@ function CardsView({
   const [orderBy, setOrderBy] = useState<CardsSortKey>('compound');
   const [order, setOrder] = useState<Order>('asc');
 
+  // Copy to clipboard state
+  const [copiedCardId, setCopiedCardId] = useState<string | null>(null);
+  const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
+
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
   const includeProperties = data.meta.include_properties || [];
@@ -2185,6 +2194,36 @@ function CardsView({
     setSelectedProtocol(null);
   };
 
+  // Copy card to clipboard as image
+  const handleCopyCard = useCallback(async (cardId: string, event: React.MouseEvent) => {
+    event.stopPropagation(); // Prevent navigation to compound
+    const cardElement = cardRefs.current.get(cardId);
+    if (!cardElement) return;
+
+    try {
+      const canvas = await html2canvas(cardElement, {
+        backgroundColor: '#ffffff',
+        scale: 2, // Higher resolution for presentations
+        logging: false,
+      });
+
+      canvas.toBlob(async (blob: Blob | null) => {
+        if (!blob) return;
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob }),
+          ]);
+          setCopiedCardId(cardId);
+          setTimeout(() => setCopiedCardId(null), 2000);
+        } catch (err) {
+          console.error('Failed to copy to clipboard:', err);
+        }
+      }, 'image/png');
+    } catch (err) {
+      console.error('Failed to capture card:', err);
+    }
+  }, []);
+
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexWrap: 'wrap', gap: 1 }}>
@@ -2242,35 +2281,66 @@ function CardsView({
       <Box
         sx={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(400px, 1fr))',
           gap: 2,
           maxHeight: 600,
           overflow: 'auto',
           p: 1,
         }}
       >
-        {sortedRows.map((row) => (
+        {sortedRows.map((row) => {
+          const cardId = showBatch ? `${row.compound_id}-${row.batch_id}` : row.compound_id;
+          const isCopied = copiedCardId === cardId;
+          return (
           <Paper
-            key={showBatch ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+            key={cardId}
+            ref={(el) => {
+              if (el) cardRefs.current.set(cardId, el);
+              else cardRefs.current.delete(cardId);
+            }}
             variant="outlined"
             sx={{
               p: 2,
               cursor: 'pointer',
+              position: 'relative',
               '&:hover': { boxShadow: 2, borderColor: 'primary.main' },
+              '&:hover .copy-button': { opacity: 1 },
               display: 'flex',
               flexDirection: 'column',
             }}
             onClick={() => router.push(`/registry/compounds/${row.compound_id}`)}
           >
+            {/* Copy to clipboard button */}
+            <Tooltip title={isCopied ? 'Copied!' : 'Copy card as image'}>
+              <IconButton
+                className="copy-button"
+                size="small"
+                onClick={(e) => handleCopyCard(cardId, e)}
+                sx={{
+                  position: 'absolute',
+                  top: 8,
+                  right: 8,
+                  opacity: 0,
+                  transition: 'opacity 0.2s',
+                  bgcolor: 'background.paper',
+                  border: 1,
+                  borderColor: 'divider',
+                  '&:hover': { bgcolor: 'action.hover' },
+                  zIndex: 1,
+                }}
+              >
+                {isCopied ? <Check fontSize="small" color="success" /> : <ContentCopy fontSize="small" />}
+              </IconButton>
+            </Tooltip>
             {/* Header: Structure + Compound ID */}
             <Box sx={{ display: 'flex', gap: 2, mb: 1.5 }}>
               {row.smiles ? (
-                <MoleculeChip smiles={row.smiles} size={80} />
+                <MoleculeChip smiles={row.smiles} size={180} />
               ) : (
                 <Box
                   sx={{
-                    width: 80,
-                    height: 80,
+                    width: 180,
+                    height: 180,
                     bgcolor: 'grey.100',
                     borderRadius: 1,
                     display: 'flex',
@@ -2443,7 +2513,8 @@ function CardsView({
               })}
             </Box>
           </Paper>
-        ))}
+        );
+        })}
       </Box>
 
       {/* Data series detail modal */}

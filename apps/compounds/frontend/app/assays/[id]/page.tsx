@@ -491,19 +491,22 @@ export default function AssayDetailPage({ params }: PageProps) {
             </span>
           </Tooltip>
         )}
-        <Tooltip title={canContribute ? 'Re-analyse all data series' : 'Requires Contributor or Admin operating level'} arrow>
-          <span>
-            <Button
-              variant="outlined"
-              startIcon={reanalysing ? <CircularProgress size={16} /> : <Refresh />}
-              onClick={handleReanalyseAll}
-              size="small"
-              disabled={!canContribute || reanalysing}
-            >
-              {reanalysing ? 'Analysing...' : 'Re-analyse'}
-            </Button>
-          </span>
-        </Tooltip>
+        {/* Hide Re-analyse for table_of_values imports - they have pre-analyzed data */}
+        {protocol?.import_type !== 'table_of_values' && (
+          <Tooltip title={canContribute ? 'Re-analyse all data series' : 'Requires Contributor or Admin operating level'} arrow>
+            <span>
+              <Button
+                variant="outlined"
+                startIcon={reanalysing ? <CircularProgress size={16} /> : <Refresh />}
+                onClick={handleReanalyseAll}
+                size="small"
+                disabled={!canContribute || reanalysing}
+              >
+                {reanalysing ? 'Analysing...' : 'Re-analyse'}
+              </Button>
+            </span>
+          </Tooltip>
+        )}
         <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
           <span>
             <Button

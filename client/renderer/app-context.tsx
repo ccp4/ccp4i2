@@ -10,6 +10,8 @@ interface CCP4i2Context {
   setJobPanelSize?: (size: number) => void;
   cootModule?: any | null;
   setCootModule?: (module: any | null) => void;
+  cootModuleError?: Error | null;
+  setCootModuleError?: (error: Error | null) => void;
   devMode: boolean;
   setDevMode: (devMode: boolean) => void;
   activeDragItem: Job | File | null;
@@ -24,6 +26,8 @@ export const CCP4i2Context = createContext<CCP4i2Context>({
   setJobPanelSize: () => {},
   cootModule: null,
   setCootModule: () => {},
+  cootModuleError: null,
+  setCootModuleError: () => {},
   devMode: true,
   setDevMode: () => {},
   activeDragItem: null,

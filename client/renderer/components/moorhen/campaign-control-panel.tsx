@@ -11,7 +11,12 @@
  */
 
 import React, { useState, useCallback, useMemo, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  hideMap,
+  showMap,
+  setRequestDrawScene,
+} from "moorhen";
 import {
   Box,
   Typography,
@@ -48,10 +53,14 @@ import {
   Home as HomeIcon,
   Upload as UploadIcon,
   Label as LabelIcon,
+  FolderOpen as FolderOpenIcon,
+  VisibilityOutlined,
+  VisibilityOffOutlined,
 } from "@mui/icons-material";
 import { moorhen } from "moorhen/types/moorhen";
 import { CopyViewLinkButton } from "./copy-view-link-button";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
+import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
 import {
   ProjectGroup,
@@ -87,6 +96,8 @@ interface CampaignControlPanelProps {
   onMapContourLevelChange?: (molNo: number, level: number) => void;
   /** Callback to tag the currently selected project with a site name */
   onTagProjectWithSite?: (siteName: string) => Promise<void>;
+  /** Callback to load a file into the Moorhen session */
+  onFileSelect?: (fileId: number) => Promise<void>;
 }
 
 export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
@@ -109,10 +120,16 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   maps,
   onMapContourLevelChange,
   onTagProjectWithSite,
+  onFileSelect,
 }) => {
-  // Get contour levels from Redux state
+  const dispatch = useDispatch();
+
+  // Get contour levels and visibility from Redux state
   const contourLevels = useSelector(
     (state: moorhen.State) => state.mapContourSettings?.contourLevels || []
+  );
+  const visibleMaps = useSelector(
+    (state: moorhen.State) => state.mapContourSettings?.visibleMaps || []
   );
 
   // Helper to get contour level for a specific map
@@ -144,6 +161,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
   // Ligand code loaded from CIF file (overrides ligandName prop)
   const [loadedLigandCode, setLoadedLigandCode] = useState<string | null>(null);
 
+  // Import from projects modal state
+  const [showImportModal, setShowImportModal] = useState(false);
+
   // Reset loaded ligand code when file ID changes
   useEffect(() => {
     setLoadedLigandCode(null);
@@ -164,6 +184,17 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
     }
     return parentProject || undefined;
   }, [selectedMemberProjectId, memberProjects, parentProject]);
+
+  // Handle file selection from the hierarchy browser
+  const handleImportFileSelect = useCallback(
+    async (fileId: number) => {
+      if (onFileSelect) {
+        await onFileSelect(fileId);
+      }
+      setShowImportModal(false);
+    },
+    [onFileSelect]
+  );
 
   const handleOpenPushDialog = useCallback((molecule: moorhen.Molecule) => {
     setSelectedMolecule(molecule);
@@ -262,6 +293,21 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         <CopyViewLinkButton getViewUrl={getViewUrl} />
       </Box>
 
+      {/* Import from Projects */}
+      {onFileSelect && (
+        <Box sx={{ mb: 1 }}>
+          <Button
+            variant="outlined"
+            size="small"
+            startIcon={<FolderOpenIcon />}
+            onClick={() => setShowImportModal(true)}
+            fullWidth
+          >
+            Import from Projects
+          </Button>
+        </Box>
+      )}
+
       {/* Display Options */}
       {molecules && molecules.length > 0 && (
         <Box sx={{ mb: 1 }}>
@@ -298,7 +344,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         <Box sx={{ mb: 1 }}>
           {maps.map((map) => {
             const level = getContourLevel(map.molNo);
-            // Difference/anomalous maps need 2x higher values
+            const isVisible = visibleMaps.includes(map.molNo);
+            // mapSubType: 1=normal, 2=difference, 3=anomalous
+            // Difference and anomalous maps need 2x higher values for contour slider
+            const mapSubType = (map as any).mapSubType as number | undefined;
             const isDiff = map.isDifference;
             const multiplier = isDiff ? 2 : 1;
             // Logarithmic scale: 10^-3 to 10^1 for regular maps (~0.001 to ~10)
@@ -321,16 +370,20 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             };
 
             const sliderPosition = valueToSlider(level);
-            // Short label: just "2Fo-Fc" or "Fo-Fc" style
-            const shortName = isDiff ? "Fo-Fc" : "2Fo-Fc";
+            // Label based on map sub_type: 1=normal (2Fo-Fc), 2=difference (Fo-Fc), 3=anomalous (Anom)
+            const shortName = mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
 
             return (
               <Stack key={map.molNo} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
-                <Typography variant="caption" sx={{ minWidth: 42, flexShrink: 0 }}>
+                <Typography
+                  variant="caption"
+                  sx={{ minWidth: 42, flexShrink: 0, opacity: isVisible ? 1 : 0.4 }}
+                >
                   {shortName}
                 </Typography>
                 <Slider
                   size="small"
+                  disabled={!isVisible}
                   value={sliderPosition}
                   onChange={(_e, value) => onMapContourLevelChange(map.molNo, sliderToValue(value as number))}
                   min={0}
@@ -343,9 +396,32 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                   }}
                   sx={{ flex: 1, py: 0, mx: 0.5 }}
                 />
-                <Typography variant="caption" color="text.secondary" sx={{ minWidth: 45, textAlign: "right", flexShrink: 0 }}>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ minWidth: 45, textAlign: "right", flexShrink: 0, opacity: isVisible ? 1 : 0.4 }}
+                >
                   {level < 0.01 ? level.toExponential(1) : level.toFixed(2)}
                 </Typography>
+                <Tooltip title={isVisible ? "Hide map" : "Show map"}>
+                  <IconButton
+                    size="small"
+                    onClick={() => {
+                      if (isVisible) {
+                        dispatch(hideMap({ molNo: map.molNo }));
+                      } else {
+                        dispatch(showMap({ molNo: map.molNo, show: true }));
+                      }
+                      dispatch(setRequestDrawScene(true));
+                    }}
+                    sx={{ p: 0.25, flexShrink: 0 }}
+                  >
+                    {isVisible
+                      ? <VisibilityOutlined sx={{ fontSize: 16 }} />
+                      : <VisibilityOffOutlined sx={{ fontSize: 16, opacity: 0.4 }} />
+                    }
+                  </IconButton>
+                </Tooltip>
               </Stack>
             );
           })}
@@ -671,6 +747,32 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             />
           )}
         </DialogContent>
+      </Dialog>
+
+      {/* Import from Projects Dialog */}
+      <Dialog
+        open={showImportModal}
+        onClose={() => setShowImportModal(false)}
+        maxWidth="sm"
+        fullWidth
+        PaperProps={{
+          sx: { height: "70vh", maxHeight: "600px" },
+        }}
+      >
+        <DialogTitle>
+          Import from Projects
+          <Typography variant="body2" color="text.secondary">
+            Navigate to a project and job to load files into this session
+          </Typography>
+        </DialogTitle>
+        <DialogContent sx={{ p: 0, display: "flex", flexDirection: "column" }}>
+          <Box sx={{ flex: 1, minHeight: 0 }}>
+            <CCP4i2HierarchyBrowser onFileSelect={handleImportFileSelect} />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setShowImportModal(false)}>Cancel</Button>
+        </DialogActions>
       </Dialog>
     </Box>
   );

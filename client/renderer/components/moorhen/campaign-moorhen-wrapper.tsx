@@ -54,44 +54,13 @@ import {
   MemberProjectWithSummary,
 } from "../../types/campaigns";
 import { Project } from "../../types/models";
-
-// Detect Safari browser (has WASM threading issues with Moorhen)
-const isSafariBrowser = (): boolean => {
-  if (typeof navigator === "undefined") return false;
-  const ua = navigator.userAgent;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
-  const isIOS = /iPad|iPhone|iPod/.test(ua);
-  return isSafari || isIOS;
-};
-
-// Safari warning component
-const SafariWarning: React.FC = () => (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100%",
-      padding: "40px",
-      textAlign: "center",
-      backgroundColor: "#fff3cd",
-      border: "1px solid #ffc107",
-      borderRadius: "8px",
-      margin: "20px",
-    }}
-  >
-    <h2 style={{ color: "#856404", marginBottom: "16px" }}>
-      Browser Not Supported
-    </h2>
-    <p style={{ color: "#856404", maxWidth: "600px", lineHeight: "1.6" }}>
-      The Moorhen molecular viewer requires WebAssembly threading features that
-      are not fully supported in Safari. Please use{" "}
-      <strong>Google Chrome</strong>, <strong>Microsoft Edge</strong>, or{" "}
-      <strong>Firefox</strong> to view molecular structures.
-    </p>
-  </div>
-);
+import {
+  MoorhenFallback,
+  MoorhenErrorBoundary,
+  useMoorhenCapabilities,
+  isSafariBrowser,
+  SafariExperimentalWarning,
+} from "./moorhen-capability-check";
 
 type FileSource =
   | { type: "none" }
@@ -121,7 +90,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   onSelectMemberProject,
   parentProject,
 }) => {
+  const capabilities = useMoorhenCapabilities();
   const [isSafari] = useState(() => isSafariBrowser());
+  const [safariOverride, setSafariOverride] = useState(false);
   const dispatch = useDispatch();
   const theme = useTheme();
   const campaignsApi = useCampaignsApi();
@@ -195,7 +166,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     (state: moorhen.State) => (state as unknown as { maps: moorhen.Map[] }).maps || []
   );
   const store = useStore();
-  const { cootModule } = useCCP4i2Window();
+  const { cootModule, cootModuleError } = useCCP4i2Window();
 
   // Initialize representations from URL if available (after molecules load)
   useEffect(() => {
@@ -360,8 +331,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
-      const isDiffMap = fileInfo.sub_type === 2;
-      await fetchMap(url, molName, isDiffMap);
+      // subType: 1=normal, 2=difference, 3=anomalous difference
+      const mapSubType = fileInfo.sub_type || 1;
+      await fetchMap(url, molName, mapSubType);
     }
   };
 
@@ -433,8 +405,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       if (file.type === "application/CCP4-mtz-map") {
         const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
         const molName = file.name || file.job_param_name;
-        const isDiffMap = file.sub_type === 2;
-        await fetchMap(url, molName, isDiffMap);
+        // subType: 1=normal, 2=difference, 3=anomalous difference
+        const mapSubType = file.sub_type || 1;
+        await fetchMap(url, molName, mapSubType);
       }
     }
   };
@@ -523,7 +496,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const fetchMap = async (
     url: string,
     mapName: string,
-    isDiffMap: boolean = false
+    mapSubType: number = 1
   ) => {
     if (!commandCentre.current) return;
     const newMap = new MoorhenMap(
@@ -531,6 +504,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       glRef as RefObject<webGL.MGWebGL>,
       store
     );
+    // subType: 1=normal, 2=difference, 3=anomalous difference
+    // Both difference and anomalous maps use isDifference=true for contouring
+    const isDiffMap = mapSubType === 2 || mapSubType === 3;
     try {
       const mtzData = await apiArrayBuffer(url);
       await newMap.loadToCootFromMtzData(new Uint8Array(mtzData), mapName, {
@@ -540,6 +516,13 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         isDifference: isDiffMap,
       });
       newMap.uniqueId = url;
+      // Store the original sub_type for proper labeling and coloring
+      (newMap as any).mapSubType = mapSubType;
+      // Set custom colors for anomalous maps (orange/purple instead of green/red)
+      if (mapSubType === 3) {
+        newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 }; // Orange
+        newMap.defaultNegativeMapColour = { r: 0.6, g: 0.3, b: 0.8 }; // Purple
+      }
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map...");
       dispatch(addMap(newMap));
       dispatch(setActiveMap(newMap));
@@ -684,69 +667,99 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [selectedMemberProjectId, campaignsApi, setMessage, memberProjects]
   );
 
-  if (isSafari) {
-    return <SafariWarning />;
+  // Show fallback if Coot module failed to load
+  if (cootModuleError) {
+    return (
+      <MoorhenFallback
+        reason="load_error"
+        error={cootModuleError}
+        capabilities={capabilities}
+      />
+    );
+  }
+
+  // Show Safari warning - capabilities may look OK but WASM threading crashes
+  const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;
+  if (isSafari && !safariOverride && !isElectronEnv) {
+    return <SafariExperimentalWarning onProceed={() => setSafariOverride(true)} />;
+  }
+
+  // Show fallback if browser capabilities are missing and we're not in Electron
+  // But only after we've checked capabilities (undefined during SSR)
+  if (capabilities && !capabilities.isSupported && !isElectronEnv) {
+    // Still attempt to render - the MoorhenErrorBoundary will catch failures
+    // This allows browsers that have improved their support to work
+    console.log("[Moorhen] Browser capabilities limited, attempting to load anyway...");
   }
 
   return (
-    store &&
-    cootModule && (
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          flexDirection: "row",
-        }}
-      >
+    <MoorhenErrorBoundary
+      fallback={
+        <MoorhenFallback
+          reason="runtime_error"
+          capabilities={capabilities}
+        />
+      }
+    >
+      {store && cootModule && (
         <div
           style={{
-            flex: 1,
-            minWidth: 0,
-            height: "calc(100% - 120px)",
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            flexDirection: "row",
           }}
         >
-          <MoorhenContainer {...collectedProps} />
-        </div>
+          <div
+            style={{
+              flex: 1,
+              minWidth: 0,
+              height: "calc(100% - 120px)",
+            }}
+          >
+            <MoorhenContainer {...collectedProps} />
+          </div>
 
-        <div
-          style={{
-            width: `${rightPanelWidth}px`,
-            minWidth: `${rightPanelWidth}px`,
-            maxWidth: `${rightPanelWidth}px`,
-            height: "calc(100vh - 40px)",
-            borderLeft: "1px solid #ddd",
-            padding: "0px",
-            fontSize: "14px",
-            fontFamily: "monospace",
-            overflow: "hidden",
-            boxSizing: "border-box",
-          }}
-        >
-          <CampaignControlPanel
-            campaign={campaign}
-            sites={sites}
-            onGoToSite={handleGoToSite}
-            onSaveCurrentAsSite={handleSaveCurrentAsSite}
-            onUpdateSite={handleUpdateSite}
-            onDeleteSite={handleDeleteSite}
-            memberProjects={memberProjects}
-            selectedMemberProjectId={selectedMemberProjectId}
-            onSelectMemberProject={onSelectMemberProject}
-            parentProject={parentProject}
-            getViewUrl={getViewUrl}
-            molecules={molecules}
-            visibleRepresentations={visibleRepresentations}
-            onRepresentationsChange={setVisibleRepresentations}
-            ligandDictFileId={ligandDictFileId}
-            ligandName={ligandName}
-            maps={maps}
-            onMapContourLevelChange={handleMapContourLevelChange}
-            onTagProjectWithSite={handleTagProjectWithSite}
-          />
+          <div
+            style={{
+              width: `${rightPanelWidth}px`,
+              minWidth: `${rightPanelWidth}px`,
+              maxWidth: `${rightPanelWidth}px`,
+              height: "calc(100vh - 40px)",
+              borderLeft: "1px solid #ddd",
+              padding: "0px",
+              fontSize: "14px",
+              fontFamily: "monospace",
+              overflow: "hidden",
+              boxSizing: "border-box",
+            }}
+          >
+            <CampaignControlPanel
+              campaign={campaign}
+              sites={sites}
+              onGoToSite={handleGoToSite}
+              onSaveCurrentAsSite={handleSaveCurrentAsSite}
+              onUpdateSite={handleUpdateSite}
+              onDeleteSite={handleDeleteSite}
+              memberProjects={memberProjects}
+              selectedMemberProjectId={selectedMemberProjectId}
+              onSelectMemberProject={onSelectMemberProject}
+              parentProject={parentProject}
+              getViewUrl={getViewUrl}
+              molecules={molecules}
+              visibleRepresentations={visibleRepresentations}
+              onRepresentationsChange={setVisibleRepresentations}
+              ligandDictFileId={ligandDictFileId}
+              ligandName={ligandName}
+              maps={maps}
+              onMapContourLevelChange={handleMapContourLevelChange}
+              onTagProjectWithSite={handleTagProjectWithSite}
+              onFileSelect={fetchFile}
+            />
+          </div>
         </div>
-      </div>
-    )
+      )}
+    </MoorhenErrorBoundary>
   );
 };
 

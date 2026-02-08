@@ -1,3 +1,4 @@
+import glob
 import os
 import shutil
 import traceback
@@ -19,8 +20,9 @@ class SubstituteLigand(CPluginScript):
     1. Ligand dictionary generation (LidiaAcedrg) - if ligand provided
     2. Data merging (aimless_pipe) - if unmerged data provided
     3. Rigid body refinement (phaser_rnp_pipeline or i2Dimple)
-    4. Ligand fitting (coot_headless_api) - if ligand provided
-    5. Anomalous map calculation (prosmart_refmac) - if anomalous data available
+    4. Servalcat refinement - produces superior maps (normal, difference,
+       and anomalous if applicable) for use by coot and as final output
+    5. Ligand fitting (coot_headless_api) - if ligand provided
     """
 
     TASKNAME = 'SubstituteLigand'
@@ -37,7 +39,7 @@ class SubstituteLigand(CPluginScript):
         207: {'description': 'Failed in coot ligand fitting'},
         208: {'description': 'Failed in coot postprocessing'},
         209: {'description': 'Failed to create sub-plugin'},
-        210: {'description': 'Failed in anomalous map calculation'},
+        210: {'description': 'Failed in servalcat refinement'},
         211: {'description': 'Missing required output from sub-plugin'},
         212: {'description': 'Invalid input configuration'},
     }
@@ -59,7 +61,7 @@ class SubstituteLigand(CPluginScript):
         self.lidiaAcedrgPlugin = None
         self.aimlessPlugin = None
         self.refinementPlugin = None  # Either rnpPlugin or i2DimplePlugin
-        self.anomRefmacPlugin = None
+        self.servalcatPlugin = None
 
         # Pipeline state flags
         self._ligandMode = None  # 'DICT', 'SMILES', 'MOL', 'NONE'
@@ -149,8 +151,8 @@ class SubstituteLigand(CPluginScript):
         1. LidiaAcedrg (if ligand needed)
         2. aimless_pipe (if unmerged data)
         3. phaser_rnp_pipeline or i2Dimple
-        4. coot ligand fitting (if ligand)
-        5. prosmart_refmac anomalous (if anomalous data)
+        4. servalcat_pipe (always - produces final maps)
+        5. coot ligand fitting (if ligand)
 
         Returns:
             CErrorReport with any errors encountered
@@ -195,23 +197,21 @@ class SubstituteLigand(CPluginScript):
             return refine_error
 
         # =====================================================================
-        # Phase 4: Ligand Fitting (if ligand mode)
+        # Phase 4: Servalcat Refinement (always)
+        # Produces superior maps; also anomalous map if data supports it
+        # =====================================================================
+        self._checkAnomalousData()
+        servalcat_error = self._runServalcat()
+        if servalcat_error and servalcat_error.maxSeverity() >= 4:
+            return servalcat_error
+
+        # =====================================================================
+        # Phase 5: Ligand Fitting (if ligand mode)
         # =====================================================================
         if self._ligandMode != 'NONE':
             coot_error = self._runCootLigandFitting()
             if coot_error and coot_error.maxSeverity() >= 4:
                 return coot_error
-
-        # =====================================================================
-        # Phase 5: Anomalous Map Calculation (if anomalous data)
-        # =====================================================================
-        self._checkAnomalousData()
-        if self._hasAnomalous:
-            # Non-fatal - continue even if this fails
-            anom_error = self._runAnomalousRefinement()
-            if anom_error and anom_error.maxSeverity() >= 4:
-                print(f"[SubstituteLigand] Anomalous refinement failed (non-fatal): {anom_error}")
-                # Don't return error - anomalous is optional
 
         return error
 
@@ -458,21 +458,129 @@ class SubstituteLigand(CPluginScript):
 
         return error
 
+    def _runServalcat(self):
+        """Run servalcat_pipe to refine coordinates and produce maps.
+
+        Always runs after dimple/phaser_rnp to produce superior normal and
+        difference maps. Also produces anomalous maps if anomalous data
+        is available (determined by prior _checkAnomalousData() call).
+
+        Updates self.mapToUse and self.coordinatesForCoot/self.finalCoordinates
+        with servalcat's output for use by subsequent coot ligand fitting.
+        """
+        error = CErrorReport()
+
+        # Determine coordinates from the rigid body refinement step
+        coordinatesForServalcat = self.coordinatesForCoot if self.coordinatesForCoot else self.finalCoordinates
+
+        if coordinatesForServalcat is None:
+            self.appendErrorReport(210, 'No coordinates available for servalcat refinement')
+            error.append(self.__class__.__name__, 210,
+                        'No coordinates for servalcat refinement', 'servalcat', 4)
+            return error
+
+        try:
+            self.servalcatPlugin = self.makePluginObject('servalcat_pipe')
+        except Exception as e:
+            self.appendErrorReport(209, f'Failed to create servalcat_pipe plugin: {e}\n{traceback.format_exc()}')
+            error.append(self.__class__.__name__, 209,
+                        f'Failed to create servalcat_pipe: {e}', 'servalcat', 4)
+            return error
+
+        try:
+            plugin = self.servalcatPlugin
+
+            # Force synchronous execution
+            plugin.doAsync = False
+
+            # Input data
+            plugin.container.inputData.XYZIN = coordinatesForServalcat
+            plugin.container.inputData.HKLIN = self.obsToUse
+            plugin.container.inputData.FREERFLAG = self.freerToUse
+
+            # Refinement configuration
+            plugin.container.controlParameters.NCYCLES.set(5)
+            plugin.container.controlParameters.DATA_METHOD.set('xtal')
+            plugin.container.controlParameters.MERGED_OR_UNMERGED.set('merged')
+
+            # Anomalous map calculation if data supports it
+            plugin.container.controlParameters.USEANOMALOUS.set(self._hasAnomalous)
+            if self._hasAnomalous:
+                plugin.container.controlParameters.USEANOMALOUSFOR.set('OUTPUTMAPS')
+
+            # Disable ProSMART restraints
+            plugin.container.prosmartProtein.TOGGLE.set(False)
+            plugin.container.prosmartNucleicAcid.TOGGLE.set(False)
+
+            # Disable MetalCoord
+            plugin.container.metalCoordPipeline.RUN_METALCOORD.set(False)
+
+            # Disable water finding
+            plugin.container.controlParameters.ADD_WATERS.set(False)
+
+            # Disable validation (unnecessary for intermediate step)
+            plugin.container.controlParameters.VALIDATE_IRIS.set(False)
+            plugin.container.controlParameters.VALIDATE_BAVERAGE.set(False)
+            plugin.container.controlParameters.VALIDATE_RAMACHANDRAN.set(False)
+            plugin.container.controlParameters.VALIDATE_MOLPROBITY.set(False)
+            plugin.container.controlParameters.RUN_ADP_ANALYSIS.set(False)
+            plugin.container.monitor.RUN_COORDADPDEV_ANALYSIS.set(False)
+
+            print(f"[SubstituteLigand] Running servalcat refinement (anomalous={self._hasAnomalous})...")
+            status = plugin.process()
+
+            if status != CPluginScript.SUCCEEDED:
+                self.appendErrorReport(210, 'Servalcat refinement failed')
+                error.append(self.__class__.__name__, 210,
+                            'Servalcat refinement failed', 'servalcat', 4)
+                return error
+
+            # Update map and coordinates for coot
+            out = plugin.container.outputData
+            self.mapToUse = out.FPHIOUT
+
+            if self._ligandMode == 'NONE':
+                self.finalCoordinates = out.XYZOUT
+            else:
+                self.coordinatesForCoot = out.XYZOUT
+
+            print(f"[SubstituteLigand] Servalcat refinement completed")
+
+            # Append XML
+            self._appendPluginXml(plugin)
+
+        except Exception as e:
+            self.appendErrorReport(210, f'Exception in servalcat refinement: {e}\n{traceback.format_exc()}')
+            error.append(self.__class__.__name__, 210,
+                        f'Exception in servalcat refinement: {e}', 'servalcat', 4)
+            return error
+
+        return error
+
     def _runCootLigandFitting(self):
         """Fit ligand into density using coot_headless_api."""
         error = CErrorReport()
 
-        try:
-            xyzin = str(self.coordinatesForCoot.fullPath)
-            mtzin = str(self.mapToUse.fullPath)
-            dictin = str(self.dictToUse.fullPath)
-            xyzout = str(self.container.outputData.XYZOUT.fullPath)
+        xyzin = str(self.coordinatesForCoot.fullPath)
+        mtzin = str(self.mapToUse.fullPath)
+        dictin = str(self.dictToUse.fullPath)
+        xyzout = str(self.container.outputData.XYZOUT.fullPath)
 
-            print(f"[SubstituteLigand] Running coot ligand fitting...")
-            print(f"  xyzin = {xyzin}")
-            print(f"  mtzin = {mtzin}")
-            print(f"  dictin = {dictin}")
-            print(f"  xyzout = {xyzout}")
+        print(f"[SubstituteLigand] Running coot ligand fitting...")
+        print(f"  xyzin = {xyzin}")
+        print(f"  mtzin = {mtzin}")
+        print(f"  dictin = {dictin}")
+        print(f"  xyzout = {xyzout}")
+
+        # Change to job directory so coot's intermediate files are created there
+        # (coot_headless_api writes map files to CWD during fit_ligand)
+        original_cwd = os.getcwd()
+        job_dir = os.path.dirname(xyzout)
+        if job_dir:
+            os.chdir(job_dir)
+            print(f"  Changed to job directory: {job_dir}")
+
+        try:
 
             # Initialize coot headless API
             mc = coot_headless_api.molecules_container_py(True)
@@ -545,8 +653,15 @@ class SubstituteLigand(CPluginScript):
             # Write output coordinates
             mc.write_coordinates(imol_protein, xyzout)
 
-            # Clean up coot backup directory
+            # Clean up coot intermediate files
             shutil.rmtree("coot-backup", ignore_errors=True)
+            # Remove map files generated by fit_ligand() in CWD
+            for pattern in ["molecules-container-fit-ligand-*.map", "wlig.output_map.map"]:
+                for mapfile in glob.glob(pattern):
+                    try:
+                        os.remove(mapfile)
+                    except OSError:
+                        pass
 
             # Verify output
             if not os.path.isfile(xyzout):
@@ -563,6 +678,14 @@ class SubstituteLigand(CPluginScript):
             error.append(self.__class__.__name__, 207,
                         f'Exception in coot ligand fitting: {e}', 'coot', 4)
             return error
+
+        finally:
+            # Ensure we restore working directory even on error
+            if job_dir:
+                try:
+                    os.chdir(original_cwd)
+                except Exception:
+                    pass
 
         return error
 
@@ -618,87 +741,6 @@ class SubstituteLigand(CPluginScript):
         except Exception as e:
             print(f"[SubstituteLigand] Error checking for anomalous data: {e}")
 
-    def _runAnomalousRefinement(self):
-        """Run prosmart_refmac to calculate anomalous map."""
-        error = CErrorReport()
-
-        if not self._hasAnomalous or self._anomalousWavelength is None:
-            return error
-
-        # Use coordinates from dimple/phaser_rnp, NOT from coot ligand fitting
-        # coordinatesForCoot holds dimple/phaser_rnp output when ligand fitting was expected
-        # finalCoordinates holds dimple/phaser_rnp output when LIGANDAS=NONE
-        coordinatesForAnomalous = self.coordinatesForCoot if self.coordinatesForCoot else self.finalCoordinates
-
-        if coordinatesForAnomalous is None:
-            self.appendErrorReport(210, 'No coordinates available for anomalous refinement')
-            error.append(self.__class__.__name__, 210,
-                        'No coordinates for anomalous refinement', 'anomalous', 3)  # Warning only
-            return error
-
-        try:
-            self.anomRefmacPlugin = self.makePluginObject('prosmart_refmac')
-        except Exception as e:
-            self.appendErrorReport(209, f'Failed to create prosmart_refmac plugin: {e}')
-            error.append(self.__class__.__name__, 209,
-                        f'Failed to create prosmart_refmac: {e}', 'anomalous', 3)
-            return error
-
-        try:
-            plugin = self.anomRefmacPlugin
-
-            # Force synchronous execution (prosmart_refmac has ASYNCHRONOUS=True)
-            plugin.doAsync = False
-
-            plugin.container.inputData.XYZIN = coordinatesForAnomalous
-            plugin.container.inputData.F_SIGF = self.obsToUse
-            plugin.container.inputData.FREERFLAG = self.freerToUse
-
-            plugin.container.controlParameters.WAVELENGTH.set(self._anomalousWavelength)
-            plugin.container.controlParameters.NCYCLES.set(5)
-            plugin.container.controlParameters.USEANOMALOUS.set(True)
-            plugin.container.controlParameters.USE_NCS.set(True)
-
-            # Disable prosmart restraints
-            plugin.container.prosmartProtein.TOGGLE.set(False)
-            plugin.container.prosmartNucleicAcid.TOGGLE.set(False)
-            plugin.container.platonyzer.TOGGLE.set(False)
-
-            # Disable validation
-            plugin.container.controlParameters.VALIDATE_IRIS.set(False)
-            plugin.container.controlParameters.VALIDATE_BAVERAGE.set(False)
-            plugin.container.controlParameters.VALIDATE_RAMACHANDRAN.set(False)
-            plugin.container.controlParameters.VALIDATE_MOLPROBITY.set(False)
-
-            print(f"[SubstituteLigand] Running anomalous refinement with wavelength {self._anomalousWavelength}...")
-            status = plugin.process()
-
-            if status != CPluginScript.SUCCEEDED:
-                self.appendErrorReport(210, 'Anomalous refinement failed')
-                error.append(self.__class__.__name__, 210,
-                            'Anomalous refinement failed', 'anomalous', 3)
-                return error
-
-            print(f"[SubstituteLigand] Anomalous refinement completed")
-
-            # Append XML
-            try:
-                pluginRoot = CCP4Utils.openFileToEtree(plugin.makeFileName('PROGRAMXML'))
-                anomNode = etree.SubElement(self.xmlroot, 'AnomalousRefinement')
-                refmacNodes = pluginRoot.xpath('//REFMAC')
-                if len(refmacNodes) > 0:
-                    anomNode.append(refmacNodes[0])
-            except Exception as e:
-                self.appendErrorReport(210, f'Failed to append anomalous XML: {e}')
-
-        except Exception as e:
-            self.appendErrorReport(210, f'Exception in anomalous refinement: {e}\n{traceback.format_exc()}')
-            error.append(self.__class__.__name__, 210,
-                        f'Exception in anomalous refinement: {e}', 'anomalous', 3)
-            return error
-
-        return error
-
     def _appendPluginXml(self, plugin):
         """Safely append sub-plugin XML to our xmlroot."""
         try:
@@ -725,45 +767,34 @@ class SubstituteLigand(CPluginScript):
                 if len(aimlessOut.HKLOUT) > 0 and os.path.isfile(str(aimlessOut.HKLOUT[0].fullPath)):
                     self._harvestFile(aimlessOut.HKLOUT[0], self.container.outputData.F_SIGF_OUT)
 
-            # Harvest from refinement plugin
+            # Harvest F_SIGF_OUT and FREERFLAG_OUT from refinement plugin
+            # (these may have been reindexed by dimple/phaser_rnp)
             if self.refinementPlugin is not None:
                 out = self.refinementPlugin.container.outputData
-
                 if self._pipelineMode == 'DIMPLE':
-                    # i2Dimple outputs
-                    if os.path.isfile(str(out.FPHIOUT.fullPath)):
-                        self._harvestFile(out.FPHIOUT, self.container.outputData.FPHIOUT)
-                    if os.path.isfile(str(out.DIFFPHIOUT.fullPath)):
-                        self._harvestFile(out.DIFFPHIOUT, self.container.outputData.DIFFPHIOUT)
                     if os.path.isfile(str(out.F_SIGF_OUT.fullPath)):
                         self._harvestFile(out.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
                     if os.path.isfile(str(out.FREERFLAG_OUT.fullPath)):
                         self._harvestFile(out.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
-                    # If no ligand, harvest coordinates from i2Dimple
-                    if self._ligandMode == 'NONE' and os.path.isfile(str(out.XYZOUT.fullPath)):
-                        self._harvestFile(out.XYZOUT, self.container.outputData.XYZOUT)
                 else:
-                    # phaser_rnp outputs
-                    if hasattr(out, 'MAPOUT_REFMAC') and os.path.isfile(str(out.MAPOUT_REFMAC.fullPath)):
-                        self._harvestFile(out.MAPOUT_REFMAC, self.container.outputData.FPHIOUT)
-                    if hasattr(out, 'DIFMAPOUT_REFMAC') and os.path.isfile(str(out.DIFMAPOUT_REFMAC.fullPath)):
-                        self._harvestFile(out.DIFMAPOUT_REFMAC, self.container.outputData.DIFFPHIOUT)
                     if os.path.isfile(str(out.F_SIGF_OUT)):
                         self._harvestFile(out.F_SIGF_OUT, self.container.outputData.F_SIGF_OUT)
                     if os.path.isfile(str(out.FREERFLAG_OUT)):
                         self._harvestFile(out.FREERFLAG_OUT, self.container.outputData.FREERFLAG_OUT)
 
-                    # If no ligand, harvest coordinates from refinement
-                    if self._ligandMode == 'NONE' and len(out.XYZOUT) > 0:
-                        if os.path.isfile(str(out.XYZOUT[0].fullPath)):
-                            self._harvestFile(out.XYZOUT[0], self.container.outputData.XYZOUT)
-
-            # Harvest anomalous map if available
-            if self.anomRefmacPlugin is not None:
-                anomOut = self.anomRefmacPlugin.container.outputData.ANOMFPHIOUT
-                if anomOut and os.path.isfile(str(anomOut.fullPath)):
-                    self._harvestFile(anomOut, self.container.outputData.ANOMFPHIOUT)
-                    print(f"[SubstituteLigand] Harvested anomalous map")
+            # Harvest maps and coordinates from servalcat
+            if self.servalcatPlugin is not None:
+                sOut = self.servalcatPlugin.container.outputData
+                if os.path.isfile(str(sOut.FPHIOUT.fullPath)):
+                    self._harvestFile(sOut.FPHIOUT, self.container.outputData.FPHIOUT)
+                if os.path.isfile(str(sOut.DIFFPHIOUT.fullPath)):
+                    self._harvestFile(sOut.DIFFPHIOUT, self.container.outputData.DIFFPHIOUT)
+                if hasattr(sOut, 'ANOMFPHIOUT') and os.path.isfile(str(sOut.ANOMFPHIOUT.fullPath)):
+                    self._harvestFile(sOut.ANOMFPHIOUT, self.container.outputData.ANOMFPHIOUT)
+                    print(f"[SubstituteLigand] Harvested anomalous map from servalcat")
+                # If no ligand, harvest coordinates from servalcat
+                if self._ligandMode == 'NONE' and os.path.isfile(str(sOut.XYZOUT.fullPath)):
+                    self._harvestFile(sOut.XYZOUT, self.container.outputData.XYZOUT)
 
             # Update XML with model composition
             self._updateModelComposition()

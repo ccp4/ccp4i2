@@ -29,48 +29,13 @@ import { MoorhenControlPanel } from "./moorhen-control-panel";
 import { apiGet, apiText, apiArrayBuffer } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
-
-// Detect Safari browser (has WASM threading issues with Moorhen)
-const isSafariBrowser = (): boolean => {
-  if (typeof navigator === "undefined") return false;
-  const ua = navigator.userAgent;
-  const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
-  const isIOS = /iPad|iPhone|iPod/.test(ua);
-  return isSafari || isIOS;
-};
-
-// Safari warning component
-const SafariWarning: React.FC = () => (
-  <div
-    style={{
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      height: "100%",
-      padding: "40px",
-      textAlign: "center",
-      backgroundColor: "#fff3cd",
-      border: "1px solid #ffc107",
-      borderRadius: "8px",
-      margin: "20px",
-    }}
-  >
-    <h2 style={{ color: "#856404", marginBottom: "16px" }}>
-      Browser Not Supported
-    </h2>
-    <p style={{ color: "#856404", maxWidth: "600px", lineHeight: "1.6" }}>
-      The Moorhen molecular viewer requires WebAssembly threading features that
-      are not fully supported in Safari. Please use <strong>Google Chrome</strong>,{" "}
-      <strong>Microsoft Edge</strong>, or <strong>Firefox</strong> to view
-      molecular structures.
-    </p>
-    <p style={{ color: "#856404", marginTop: "16px", fontSize: "14px" }}>
-      Alternatively, use the CCP4i2 desktop application (Electron) which works
-      on all platforms.
-    </p>
-  </div>
-);
+import {
+  MoorhenFallback,
+  MoorhenErrorBoundary,
+  useMoorhenCapabilities,
+  isSafariBrowser,
+  SafariExperimentalWarning,
+} from "./moorhen-capability-check";
 
 export interface MoorhenWrapperProps {
   fileIds?: number[];
@@ -78,7 +43,9 @@ export interface MoorhenWrapperProps {
 }
 
 const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) => {
+  const capabilities = useMoorhenCapabilities();
   const [isSafari] = useState(() => isSafariBrowser());
+  const [safariOverride, setSafariOverride] = useState(false);
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -99,7 +66,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     (state: moorhen.State) => state.generalStates.cootInitialized
   );
   const store = useStore();
-  const { cootModule } = useCCP4i2Window();
+  const { cootModule, cootModuleError } = useCCP4i2Window();
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -116,7 +83,6 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
 
   const monomerLibraryPath =
     "https://raw.githubusercontent.com/MonomerLibrary/monomers/master/";
-  const baseUrl = "https://www.ebi.ac.uk/pdbe/entry-files";
 
   const backgroundColor = useSelector(
     (state: moorhen.State) => state.sceneSettings.backgroundColor
@@ -234,8 +200,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       const molName = fileInfo.name || fileInfo.job_param_name;
       // subType: 1=normal, 2=difference, 3=anomalous difference
-      const isDiffMap = fileInfo.sub_type === 2;
-      await fetchMap(url, molName, isDiffMap);
+      // Anomalous maps (3) behave like difference maps for contouring
+      const mapSubType = fileInfo.sub_type || 1;
+      await fetchMap(url, molName, mapSubType);
     } else if (fileInfo.type === "application/refmac-dictionary") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       await fetchDict(url);
@@ -274,7 +241,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
   const fetchMap = async (
     url: string,
     mapName: string,
-    isDiffMap: boolean = false
+    mapSubType: number = 1
   ) => {
     if (!commandCentre.current) return;
     const newMap = new MoorhenMap(
@@ -282,6 +249,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       glRef as RefObject<webGL.MGWebGL>,
       store
     );
+    // subType: 1=normal, 2=difference, 3=anomalous difference
+    // Both difference and anomalous maps use isDifference=true for contouring
+    const isDiffMap = mapSubType === 2 || mapSubType === 3;
     try {
       // Fetch MTZ data using authenticated api-fetch, then load into Moorhen
       const mtzData = await apiArrayBuffer(url);
@@ -292,6 +262,13 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
         isDifference: isDiffMap,
       });
       newMap.uniqueId = url; // Use URL as unique identifier
+      // Store the original sub_type for proper labeling and coloring
+      (newMap as any).mapSubType = mapSubType;
+      // Set custom colors for anomalous maps (orange/purple instead of green/red)
+      if (mapSubType === 3) {
+        newMap.defaultPositiveMapColour = { r: 1.0, g: 0.65, b: 0.0 }; // Orange
+        newMap.defaultNegativeMapColour = { r: 0.6, g: 0.3, b: 0.8 }; // Purple
+      }
       if (newMap.molNo === -1)
         throw new Error("Cannot read the fetched map...");
       dispatch(addMap(newMap));
@@ -303,10 +280,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     return newMap;
   };
 
-  const fetchDict = async (
-    url: string,
-    newMolecules: moorhen.Molecule[] = []
-  ) => {
+  const fetchDict = async (url: string) => {
     if (!commandCentre.current) return;
     const fileContent = await apiText(url);
     await commandCentre.current.cootCommand(
@@ -350,53 +324,81 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     }
   };
 
-  // Show Safari warning instead of Moorhen viewer
-  if (isSafari) {
-    return <SafariWarning />;
+  // Show fallback if Coot module failed to load
+  if (cootModuleError) {
+    return (
+      <MoorhenFallback
+        reason="load_error"
+        error={cootModuleError}
+        capabilities={capabilities}
+      />
+    );
+  }
+
+  // Show Safari warning - capabilities may look OK but WASM threading crashes
+  const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;
+  if (isSafari && !safariOverride && !isElectronEnv) {
+    return <SafariExperimentalWarning onProceed={() => setSafariOverride(true)} />;
+  }
+
+  // Show fallback if browser capabilities are missing and we're not in Electron
+  // But only after we've checked capabilities (undefined during SSR)
+  if (capabilities && !capabilities.isSupported && !isElectronEnv) {
+    // Still attempt to render - the MoorhenErrorBoundary will catch failures
+    // This allows browsers that have improved their support to work
+    console.log("[Moorhen] Browser capabilities limited, attempting to load anyway...");
   }
 
   return (
-    store &&
-    cootModule && (
-      <div
-        style={{
-          display: "flex",
-          width: "100%",
-          height: "100%",
-          flexDirection: "row",
-        }}
-      >
-        {/* Left panel - MoorhenContainer taking remaining space */}
+    <MoorhenErrorBoundary
+      fallback={
+        <MoorhenFallback
+          reason="runtime_error"
+          capabilities={capabilities}
+        />
+      }
+    >
+      {store && cootModule && (
         <div
           style={{
-            flex: 1,
-            minWidth: 0, // Allows flex item to shrink below content size
-            height: "calc(100% - 120px)",
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            flexDirection: "row",
           }}
         >
-          <MoorhenContainer {...collectedProps} />
-        </div>
+          {/* Left panel - MoorhenContainer taking remaining space */}
+          <div
+            style={{
+              flex: 1,
+              minWidth: 0, // Allows flex item to shrink below content size
+              height: "calc(100% - 120px)",
+            }}
+          >
+            <MoorhenContainer {...collectedProps} />
+          </div>
 
-        {/* Right panel - Fixed width 80 characters */}
-        <div
-          style={{
-            width: `${rightPanelWidth}px`,
-            minWidth: `${rightPanelWidth}px`,
-            maxWidth: `${rightPanelWidth}px`,
-            minHeight: "calc(100% - 150px)",
-            borderLeft: "1px solid #ddd",
-            padding: "0px",
-            fontSize: "14px",
-            fontFamily: "monospace",
-            overflowY: "auto",
-            overflowX: "hidden",
-            boxSizing: "border-box",
-          }}
-        >
-          <MoorhenControlPanel onFileSelect={fetchFile} getViewUrl={getViewUrl} />
+          {/* Right panel - Fixed width 80 characters */}
+          <div
+            style={{
+              width: `${rightPanelWidth}px`,
+              minWidth: `${rightPanelWidth}px`,
+              maxWidth: `${rightPanelWidth}px`,
+              minHeight: "calc(100% - 150px)",
+              borderLeft: "1px solid #ddd",
+              padding: "0px",
+              fontSize: "14px",
+              fontFamily: "monospace",
+              overflowY: "auto",
+              overflowX: "hidden",
+              boxSizing: "border-box",
+            }}
+          >
+            <MoorhenControlPanel onFileSelect={fetchFile} getViewUrl={getViewUrl} />
+          </div>
         </div>
-      </div>
-    )
+      )}
+    </MoorhenErrorBoundary>
   );
 };
 
