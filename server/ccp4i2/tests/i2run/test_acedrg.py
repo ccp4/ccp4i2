@@ -98,7 +98,9 @@ def check_output(job: Path, code: str):
     if len(code) <= 3:
         gemmi.read_pdb(str(job / f"{code}.pdb"))
     doc = gemmi.cif.read(str(job / f"{code}.cif"))
-    gemmi.make_chemcomp_from_block(doc[-1])
+    comp = gemmi.make_chemcomp_from_block(doc[-1])
+    for atom in comp.atoms:
+        assert " " not in atom.id
 
 
 # These tests crashes as acedrg or metalCoord crash themselves, not an i2 problem.
