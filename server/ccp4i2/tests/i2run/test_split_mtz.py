@@ -5,13 +5,9 @@ from .utils import demoData, i2run
 def test_gamma_abcd_column_group_list():
     args = ["splitMtz"]
     args += ["--HKLIN", demoData("gamma", "initial_phases.mtz")]
-<<<<<<< HEAD:server/ccp4i2/tests/i2run/test_split_mtz.py
     # All COLUMNGROUPLIST sub-parameters must be in the same argument list
-    args += ["--COLUMNGROUPLIST", "columnGroupType=Phs", "contentFlag=1", "dataset=ds1", "selected=True"] + mtzColumnArgs(["HLA", "HLB", "HLC", "HLD"], "A", "ds1")
-=======
     args += ["--COLUMNGROUPLIST", "columnGroupType=Phs", "contentFlag=1", "dataset=ds1", "selected=True"]
     args += mtzColumnArgs(["HLA", "HLB", "HLC", "HLD"], "A", "ds1")
->>>>>>> de3e58958 (Fix to user selected columns in split MTZ task (#108)):test/i2run/test_split_mtz.py
     with i2run(args) as job:
         checkMtz(job / "ds1_HLA_HLB_HLC_HLD.mtz", ["HLA", "HLB", "HLC", "HLD"])
 
@@ -19,13 +15,9 @@ def test_gamma_abcd_column_group_list():
 def test_gamma_abcd_user_column_group():
     args = ["splitMtz"]
     args += ["--HKLIN", demoData("gamma", "initial_phases.mtz")]
-<<<<<<< HEAD:server/ccp4i2/tests/i2run/test_split_mtz.py
     # All USERCOLUMNGROUP sub-parameters must be in the same argument list
-    args += ["--USERCOLUMNGROUP", "columnGroupType=Phs", "contentFlag=1", "dataset=ds1", "selected=True"] + mtzColumnArgs(["HLA", "HLB", "HLC", "HLD"], "A", "ds1")
-=======
     args += ["--USERCOLUMNGROUP", "columnGroupType=Phs", "contentFlag=1", "dataset=ds1"]
     args += mtzColumnArgs(["HLA", "HLB", "HLC", "HLD"], "A", "ds1")
->>>>>>> de3e58958 (Fix to user selected columns in split MTZ task (#108)):test/i2run/test_split_mtz.py
     with i2run(args) as job:
         checkMtz(job / "ds1_HLA_HLB_HLC_HLD.mtz", ["HLA", "HLB", "HLC", "HLD"])
 
@@ -33,13 +25,9 @@ def test_gamma_abcd_user_column_group():
 def test_4iid_phi_fom():
     args = ["splitMtz"]
     args += ["--HKLIN", demoData("glyco", "4iid.mtz")]
-<<<<<<< HEAD:server/ccp4i2/tests/i2run/test_split_mtz.py
     # All USERCOLUMNGROUP sub-parameters must be in the same argument list
-    args += ["--USERCOLUMNGROUP", "columnGroupType=Phs", "contentFlag=2", "dataset=1", "selected=True"] + mtzColumnArgs(["PHIC", "FOM"], ["P", "W"], "1")
-=======
     args += ["--USERCOLUMNGROUP", "columnGroupType=Phs", "contentFlag=2", "dataset=1"]
     args += mtzColumnArgs(["PHIC", "FOM"], ["P", "W"], "1")
->>>>>>> de3e58958 (Fix to user selected columns in split MTZ task (#108)):test/i2run/test_split_mtz.py
     with i2run(args) as job:
         checkMtz(job / "1_PHIC_FOM.mtz", ["PHI", "FOM"])
 

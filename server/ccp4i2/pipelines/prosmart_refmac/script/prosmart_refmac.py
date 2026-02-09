@@ -4,7 +4,6 @@ import shutil
 import traceback
 
 from lxml import etree
-<<<<<<< HEAD:server/ccp4i2/pipelines/prosmart_refmac/script/prosmart_refmac.py
 from rdkit import Chem
 
 from ccp4i2.baselayer import QtCore
@@ -12,15 +11,6 @@ from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.mgimports import mmdb2
 from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
-=======
-from PySide2 import QtCore
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4ErrorHandling
-from core import CCP4Utils
-import os,sys,shutil
-import traceback
-from wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
->>>>>>> ab6a32677 (Replacing Coot scripts with CHAPI (#106)):pipelines/prosmart_refmac/script/prosmart_refmac.py
 
 
 class prosmart_refmac(CPluginScript):

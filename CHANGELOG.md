@@ -1,21 +1,10 @@
 # CCP4i2 Changelog
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
 ## [2.5.1] - 2026-02-05
 
 - Fix to spaces/quoting in AceDRG atom name matching
 
->>>>>>> 2c426e578 (Acedrg atom name fixes (#123))
 ## [2.5.0] - 2026-01-06
-=======
-## [2.5.0] - 2025-12-02
->>>>>>> de3e58958 (Fix to user selected columns in split MTZ task (#108))
-=======
-## [2.5.0] - 2026-01-06
->>>>>>> ab6a32677 (Replacing Coot scripts with CHAPI (#106))
 
 - New task to check a model against AU contents
 - Standardised ModelCraft output file name
@@ -24,14 +13,7 @@
 - Stop the Refmac pipeline producing map files by default
 - Fix to Servalcat USE_WORK_IN_EST
 - Fix to user selected columns in split MTZ task
-<<<<<<< HEAD
-<<<<<<< HEAD
 - Changed coot_rsr_morph and coot_add_waters to use CHAPI
-=======
->>>>>>> de3e58958 (Fix to user selected columns in split MTZ task (#108))
-=======
-- Changed coot_rsr_morph and coot_add_waters to use CHAPI
->>>>>>> ab6a32677 (Replacing Coot scripts with CHAPI (#106))
 
 ## [2.4.3] - 2025-10-24
 

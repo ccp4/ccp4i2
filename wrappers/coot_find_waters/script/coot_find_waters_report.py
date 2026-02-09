@@ -1,9 +1,4 @@
-<<<<<<<< HEAD:server/ccp4i2/wrappers/coot_find_waters/script/coot_find_waters_report.py
 from ccp4i2.report import Report
-
-========
-from report.CCP4ReportParser import Report
->>>>>>>> ab6a32677 (Replacing Coot scripts with CHAPI (#106)):wrappers/coot_find_waters/script/coot_find_waters_report.py
 
 class coot_find_waters_report(Report):
     TASKNAME = 'coot_find_waters'
