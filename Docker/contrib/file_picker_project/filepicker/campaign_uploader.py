@@ -388,6 +388,43 @@ def scan_data_directory(data_dir: str, prefix_filter: Optional[str] = None) -> S
 # Planning Functions
 # ─────────────────────────────────────────────────────────────────────────────
 
+def parse_crystal_range(specifiers: List[str]) -> Optional[set]:
+    """
+    Parse crystal range specifiers into a set of crystal indices.
+
+    Supports:
+        x0001       Single crystal
+        x0001-x0051 Range (inclusive)
+        0001        Without 'x' prefix
+        51          Short form
+
+    Returns None if no specifiers (meaning "all crystals").
+    """
+    if not specifiers:
+        return None
+
+    indices = set()
+    range_re = re.compile(r'^x?(\d+)[-:]x?(\d+)$')
+    single_re = re.compile(r'^x?(\d+)$')
+
+    for spec in specifiers:
+        spec = spec.strip()
+        m = range_re.match(spec)
+        if m:
+            start, end = int(m.group(1)), int(m.group(2))
+            if start > end:
+                start, end = end, start
+            indices.update(range(start, end + 1))
+            continue
+        m = single_re.match(spec)
+        if m:
+            indices.add(int(m.group(1)))
+            continue
+        print(f"Warning: unrecognized crystal specifier '{spec}', ignoring")
+
+    return indices if indices else None
+
+
 def create_upload_plan(
     scan_result: ScanResult,
     campaign_name: str,
@@ -395,6 +432,7 @@ def create_upload_plan(
     compound_pattern: Optional[str] = r'NCL-\d{8}',
     include_apo: bool = True,
     date_tag: Optional[str] = None,
+    crystal_indices: Optional[set] = None,
 ) -> UploadPlan:
     """
     Create an upload plan from scan results.
@@ -407,6 +445,7 @@ def create_upload_plan(
         include_apo: Include APO crystals with NCL-00000000
         date_tag: Override the YYYYMMDD date tag used in project names
             (default: today). Use this to match project names from a previous plan.
+        crystal_indices: Set of crystal indices to include (None = all).
     """
     upload_date = date_tag or datetime.now().strftime('%Y%m%d')
 
@@ -441,6 +480,10 @@ def create_upload_plan(
 
     # Build actions for each crystal
     for crystal in scan_result.crystals:
+        # Apply crystal index filter
+        if crystal_indices is not None and crystal.crystal_index not in crystal_indices:
+            continue
+
         # Skip if no unmerged MTZ (required for SubstituteLigand)
         if not crystal.unmerged_mtz:
             continue
@@ -623,6 +666,9 @@ def cmd_plan(args):
     else:
         compound_pattern = r'NCL-\d{8}'  # Default: NCL only
 
+    # Parse crystal range filter
+    crystal_indices = parse_crystal_range(getattr(args, 'crystals', None) or [])
+
     plan = create_upload_plan(
         scan_result,
         campaign_name=campaign_name,
@@ -630,11 +676,14 @@ def cmd_plan(args):
         compound_pattern=compound_pattern,
         include_apo=args.include_apo,
         date_tag=getattr(args, 'date_tag', None),
+        crystal_indices=crystal_indices,
     )
 
     print(f"\n=== Upload Plan ===")
     print(f"Campaign: {plan.campaign_name}")
     print(f"Upload date tag: {plan.upload_date_tag}")
+    if crystal_indices:
+        print(f"Crystal filter: {len(crystal_indices)} indices selected")
     print(f"Compound filter: {plan.compound_pattern or '(all compounds)'}")
     print(f"Total actions: {plan.total_actions}")
     print(f"  NCL compounds: {plan.ncl_actions}")
@@ -1494,6 +1543,9 @@ def main():
     plan_parser.add_argument('scan_file', help='Scan YAML file from stage 1')
     plan_parser.add_argument('-o', '--output', help='Output YAML file')
     plan_parser.add_argument('-c', '--campaign', help='Campaign name')
+    plan_parser.add_argument('--crystals', nargs='+', metavar='SPEC',
+                            help='Crystal range specifiers (e.g., x0001-x0051 x0053). '
+                                 'Default: all crystals.')
     plan_parser.add_argument('-r', '--reference', help='Reference crystal name')
     plan_parser.add_argument('-p', '--compound-pattern',
                             help='Regex pattern for compound IDs to include (default: NCL-\\d{8})')
