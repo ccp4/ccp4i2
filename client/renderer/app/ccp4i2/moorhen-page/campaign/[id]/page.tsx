@@ -3,6 +3,7 @@ import { Suspense, useMemo, useState, useCallback, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { ClientStoreProvider } from "../../../../../providers/client-store-provider";
 import { useCampaignsApi } from "../../../../../lib/campaigns-api";
+import { useMoorhenBreadcrumbs } from "../../../../../providers/moorhen-breadcrumb-context";
 import CampaignMoorhenWrapper from "../../../../../components/moorhen/campaign-moorhen-wrapper";
 
 // Inner component that uses useSearchParams (requires Suspense boundary)
@@ -93,6 +94,56 @@ function CampaignPageContent() {
     // Note: maps would need to be added here when parent has map files
     return { type: "files" as const, fileIds: ids };
   }, [parentFiles, selectedMemberProjectId, selectedJobId, memberProjects]);
+
+  // Build breadcrumbs for the layout AppBar
+  const { setBreadcrumbs } = useMoorhenBreadcrumbs();
+  const currentJobId = fileIds.type === "job" ? fileIds.jobId : null;
+
+  useEffect(() => {
+    if (!campaign) return;
+
+    const crumbs: { label: string; href: string }[] = [
+      { label: campaign.name, href: `/ccp4i2/campaigns/${campaignId}` },
+    ];
+
+    if (selectedMemberProjectId !== null) {
+      const project = memberProjects?.find(
+        (p) => p.id === selectedMemberProjectId
+      );
+      if (project) {
+        crumbs.push({
+          label: project.name,
+          href: `/ccp4i2/project/${project.id}`,
+        });
+
+        if (currentJobId !== null) {
+          const job = project.jobs?.find((j) => j.id === currentJobId);
+          if (job) {
+            crumbs.push({
+              label: job.title || `${job.task_name} #${job.number}`,
+              href: `/ccp4i2/project/${project.id}/job/${job.id}`,
+            });
+          }
+        }
+      }
+    } else if (parentProject) {
+      crumbs.push({
+        label: parentProject.name,
+        href: `/ccp4i2/project/${parentProject.id}`,
+      });
+    }
+
+    setBreadcrumbs(crumbs);
+    return () => setBreadcrumbs([]);
+  }, [
+    campaign,
+    campaignId,
+    parentProject,
+    selectedMemberProjectId,
+    currentJobId,
+    memberProjects,
+    setBreadcrumbs,
+  ]);
 
   // Handle site update
   const handleUpdateSites = useCallback(

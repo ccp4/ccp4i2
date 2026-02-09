@@ -107,20 +107,19 @@ export function MemberProjectRow({
     };
   }, [projectJobs]);
 
-  // Handle job click
+  // Handle job click - open in Moorhen by default, Ctrl/Cmd+click for job detail
   const handleJobClick = useCallback(
     (job: Job, event: React.MouseEvent) => {
       event.stopPropagation();
-      if (event.shiftKey) {
-        // Shift-click opens Moorhen in new tab (needs separate window for cross-origin isolation)
-        // Use campaign Moorhen if campaignId is available, otherwise job-by-id
+      if (event.ctrlKey || event.metaKey) {
+        // Ctrl/Cmd+click opens job in project view
+        router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);
+      } else {
+        // Regular click opens Moorhen in new tab
         const moorhenUrl = campaignId
           ? `/ccp4i2/moorhen-page/campaign/${campaignId}?job=${job.id}`
           : `/ccp4i2/moorhen-page/job-by-id/${job.id}`;
         window.open(moorhenUrl, '_blank');
-      } else {
-        // Regular click opens job in project view
-        router.push(`/ccp4i2/project/${project.id}/job/${job.id}`);
       }
     },
     [router, project.id, campaignId]
@@ -271,7 +270,7 @@ export function MemberProjectRow({
                 <Box>
                   <Typography variant="body2">{job.task_name}</Typography>
                   <Typography variant="caption">
-                    Job {job.number} - Click to view, Shift+Click for {campaignId ? "Campaign " : ""}Moorhen
+                    Job {job.number} - Click → {campaignId ? "Campaign " : ""}Moorhen • Ctrl/Cmd+click → CCP4i2
                   </Typography>
                 </Box>
               }
