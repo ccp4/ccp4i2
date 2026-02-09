@@ -670,68 +670,43 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // Run servalcat_pipe refinement on a molecule
   const handleRunServalcat = useCallback(
     async (mol: moorhen.Molecule) => {
-      // Determine the project context
-      const projectId = selectedMemberProjectId || parentProject?.id;
-      if (!projectId) {
-        setMessage("No project selected");
+      // Refinement always operates on a member project (child) - the reflections
+      // and coordinates belong to the specific crystal, not the campaign parent
+      if (!selectedMemberProjectId) {
+        setMessage("No member project selected");
         return;
       }
+      const projectId = selectedMemberProjectId;
 
-      // Get project UUID (needed for file references)
-      let projectUuid: string | undefined;
-      if (selectedMemberProjectId) {
-        const mp = memberProjects.find((p) => p.id === selectedMemberProjectId);
-        projectUuid = mp?.uuid;
-      } else {
-        projectUuid = parentProject?.uuid;
-      }
-      if (!projectUuid) {
+      const mp = memberProjects.find((p) => p.id === selectedMemberProjectId);
+      if (!mp?.uuid) {
         setMessage("Cannot determine project UUID");
         return;
       }
+      const projectUuid = mp.uuid;
       const projectDbId = projectUuid.replace(/-/g, "");
 
       setMessage("Creating servalcat refinement job...");
 
       try {
-        // Step 1: Find the most recent reflections from this project
-        const jobs = await apiGet(`jobs/?project=${projectId}`);
-        if (!jobs || !Array.isArray(jobs)) {
-          setMessage("Failed to fetch jobs for project");
-          return;
-        }
+        // Step 1: Find observation reflections from this project's top-level jobs
+        type ObsFile = { id: number; job: number; uuid: string; name: string;
+                         content: number | null; sub_type: number | null };
+        const obsFiles = await apiGet(
+          `files/?type=application/CCP4-mtz-observed&directory=1` +
+          `&job__project=${projectId}&job__parent__isnull=true`
+        ) as ObsFile[] | null;
 
-        // Filter to top-level jobs only (exclude sub-jobs from pipelines)
-        // and sort by ID descending (most recent first)
-        const sortedJobs = jobs
-          .filter((j: { parent: number | null }) => j.parent === null)
-          .sort((a: { id: number }, b: { id: number }) => b.id - a.id);
-
-        // Collect all observation files across jobs, preferring IPAIR/FPAIR over IMEAN/FMEAN
-        // Content flags: 1=IPAIR, 2=FPAIR, 4=IMEAN, 8=FMEAN (bitmask)
-        type ObsFile = { id: number; uuid: string; name: string; content: number | null };
-        const allObsFiles: ObsFile[] = [];
-        for (const job of sortedJobs) {
-          const files = await apiGet(`files/?job=${job.id}`);
-          if (!files || !Array.isArray(files)) continue;
-          for (const f of files) {
-            if (f.type === "application/CCP4-mtz-observed" && f.directory === 1) {
-              allObsFiles.push(f);
-            }
-          }
-          // Stop after finding observations in the most recent job that has them
-          if (allObsFiles.length > 0) break;
-        }
-
-        if (allObsFiles.length === 0) {
+        if (!obsFiles || obsFiles.length === 0) {
           setMessage("No reflection data found in project");
           return;
         }
 
-        // Prefer IPAIR (content & 1) or FPAIR (content & 2) over IMEAN/FMEAN
+        // Sort by job ID descending (most recent first), then prefer
+        // anomalous data (IPAIR content & 1, FPAIR content & 2) over IMEAN/FMEAN
+        const sorted = [...obsFiles].sort((a, b) => b.job - a.job);
         const hasAnomalous = (f: ObsFile) => f.content !== null && (f.content & 3) !== 0;
-        const reflectionFile =
-          allObsFiles.find(hasAnomalous) || allObsFiles[0];
+        const reflectionFile = sorted.find(hasAnomalous) || sorted[0];
 
         // Step 2: Create servalcat_pipe job
         const jobResponse = await apiPost<{
@@ -756,9 +731,16 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         // Step 4: Link reflections via database file reference
         setMessage("Linking reflection data...");
         const reflDbFileId = reflectionFile.uuid.replace(/-/g, "");
+        const hklinValue: Record<string, string | number> = {
+          project: projectDbId,
+          dbFileId: reflDbFileId,
+        };
+        if (reflectionFile.sub_type !== null) {
+          hklinValue.subType = reflectionFile.sub_type;
+        }
         await apiPost(`jobs/${newJobId}/set_parameter/`, {
           object_path: "servalcat_pipe.inputData.HKLIN",
-          value: { project: projectDbId, dbFileId: reflDbFileId },
+          value: hklinValue,
         });
 
         // Step 5: Upload dictionary if available
@@ -788,7 +770,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         );
       }
     },
-    [selectedMemberProjectId, parentProject, memberProjects, ligandDictFileId, setMessage]
+    [selectedMemberProjectId, memberProjects, ligandDictFileId, setMessage]
   );
 
   // Show fallback if Coot module failed to load

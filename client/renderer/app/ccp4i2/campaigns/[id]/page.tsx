@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useState } from "react";
+import { use, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   Alert,
@@ -26,6 +26,7 @@ import {
   TableCell,
   TableContainer,
   TableRow,
+  InputAdornment,
   TextField,
   Tooltip,
   Typography,
@@ -39,6 +40,8 @@ import {
   Preview as PreviewIcon,
   Refresh as RefreshIcon,
   Upload as UploadIcon,
+  Search as SearchIcon,
+  Close as CloseIcon,
   Science as ScienceIcon,
   FolderOpen as FolderIcon,
 } from "@mui/icons-material";
@@ -58,7 +61,7 @@ import {
   MemberProjectWithSummary,
   parseDatasetFilename,
 } from "../../../../types/campaigns";
-import { File as CCP4File } from "../../../../types/models";
+import { File as CCP4File, ProjectTag } from "../../../../types/models";
 import { apiPatch } from "../../../../api-fetch";
 
 /**
@@ -117,6 +120,22 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
   const [showPanddaExport, setShowPanddaExport] = useState(false);
   const [showSubJobs, setShowSubJobs] = useState(false);
   const [deleteProject, setDeleteProject] = useState<MemberProjectWithSummary | null>(null);
+
+  // Search/filter state for member projects table
+  const [searchQuery, setSearchQuery] = useState("");
+  const filteredMemberProjects = useMemo(() => {
+    if (!memberProjects || !searchQuery.trim()) return memberProjects;
+    const q = searchQuery.trim().toLowerCase();
+    return memberProjects.filter((p) => {
+      if (p.name.toLowerCase().includes(q)) return true;
+      if (Array.isArray(p.tags)) {
+        return p.tags.some(
+          (tag) => typeof tag === "object" && (tag as ProjectTag).text?.toLowerCase().includes(q)
+        );
+      }
+      return false;
+    });
+  }, [memberProjects, searchQuery]);
 
   // Campaign info collapse state - expand by default when configuration is needed
   const needsConfiguration = !parentProject || !parentFiles?.coordinates?.length || !parentFiles?.freer?.length;
@@ -491,11 +510,34 @@ export default function CampaignDetailPage({ params }: CampaignDetailPageProps) 
               </Alert>
             ) : null}
 
+            <TextField
+              size="small"
+              placeholder="Search projects and tags..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              sx={{ mb: 1 }}
+              fullWidth
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon fontSize="small" color="action" />
+                  </InputAdornment>
+                ),
+                endAdornment: searchQuery ? (
+                  <InputAdornment position="end">
+                    <IconButton size="small" onClick={() => setSearchQuery("")}>
+                      <CloseIcon fontSize="small" />
+                    </IconButton>
+                  </InputAdornment>
+                ) : undefined,
+              }}
+            />
+
             {membersLoading ? (
               <Skeleton variant="rectangular" width="100%" height={300} />
             ) : (
               <VirtualizedMemberProjectsTable
-                projects={memberProjects || []}
+                projects={filteredMemberProjects || []}
                 smilesMap={smilesMap}
                 showSubJobs={showSubJobs}
                 latestCoordsFileId={parentFiles?.coordinates?.[parentFiles.coordinates.length - 1]?.id}
