@@ -63,6 +63,7 @@ import {
 } from "@mui/icons-material";
 import { moorhen } from "moorhen/types/moorhen";
 import { CopyViewLinkButton } from "./copy-view-link-button";
+import { PasteViewLinkField } from "./paste-view-link-field";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { Ligand2DView } from "../campaigns/ligand-2d-view";
@@ -301,10 +302,13 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
         {campaign.name}
       </Typography>
 
-      {/* Copy View Link */}
-      <Box sx={{ mb: 1 }}>
+      {/* Copy / Paste View Link */}
+      <Stack direction="row" spacing={0.5} sx={{ mb: 1, alignItems: "center" }}>
         <CopyViewLinkButton getViewUrl={getViewUrl} />
-      </Box>
+        <Box sx={{ flex: 1 }}>
+          <PasteViewLinkField />
+        </Box>
+      </Stack>
 
       {/* Import from Projects */}
       {onFileSelect && (
