@@ -79,6 +79,86 @@ interface ImportResult {
   batch_error?: string;
 }
 
+// Mapping of stereo_comment display labels and common supplier terms to internal keys.
+// Keys are lowercase; lookup is case-insensitive.
+const STEREO_COMMENT_MAP: Record<string, string> = {
+  // Internal keys (pass through)
+  'unset': 'unset',
+  'achiral': 'achiral',
+  'racemic': 'racemic',
+  'single_unknown': 'single_unknown',
+  'r_enantiomer': 'r_enantiomer',
+  's_enantiomer': 's_enantiomer',
+  'non_racemic_mixture': 'non_racemic_mixture',
+  'four_diastereomers': 'four_diastereomers',
+  'two_diastereomers': 'two_diastereomers',
+  'single_diastereomer_unknown': 'single_diastereomer_unknown',
+  'rr_diastereomer': 'rr_diastereomer',
+  'rs_diastereomer': 'rs_diastereomer',
+  'sr_diastereomer': 'sr_diastereomer',
+  'ss_diastereomer': 'ss_diastereomer',
+  'epimer_mixture': 'epimer_mixture',
+  'ez_mixture': 'ez_mixture',
+  'e_isomer': 'e_isomer',
+  'z_isomer': 'z_isomer',
+  // Display labels (from STEREO_CHOICES)
+  'racemic mixture': 'racemic',
+  'single enantiomer, configuration unknown': 'single_unknown',
+  'r enantiomer': 'r_enantiomer',
+  's enantiomer': 's_enantiomer',
+  'non-racemic stereoisomer mixture': 'non_racemic_mixture',
+  'mixture of 4 diastereoisomers': 'four_diastereomers',
+  'mixture of 2 diastereoisomers': 'two_diastereomers',
+  'single diastereoisomer, configuration unknown': 'single_diastereomer_unknown',
+  'rr diastereoisomer': 'rr_diastereomer',
+  'rs diastereoisomer': 'rs_diastereomer',
+  'sr diastereoisomer': 'sr_diastereomer',
+  'ss diastereoisomer': 'ss_diastereomer',
+  'mixture of epimers': 'epimer_mixture',
+  'mixture of e and z isomers': 'ez_mixture',
+  'e isomer': 'e_isomer',
+  'z isomer': 'z_isomer',
+  // Common supplier terms (Enamine, etc.)
+  'racemic or presumed racemic or meso': 'racemic',
+  'racemic diastereomer with known relative stereochemistry': 'racemic',
+  'meso': 'achiral',
+  'racemate': 'racemic',
+  'rac': 'racemic',
+  'single enantiomer': 'single_unknown',
+  'enantiopure': 'single_unknown',
+  'optically active': 'single_unknown',
+  'e/z mixture': 'ez_mixture',
+  'cis/trans mixture': 'ez_mixture',
+  'n/a': 'achiral',
+  'not applicable': 'achiral',
+  'none': 'unset',
+};
+
+/**
+ * Normalize a stereo_comment value from a spreadsheet to an internal key.
+ * Returns the mapped key and an optional warning if the value was transformed.
+ */
+function normalizeStereoComment(value: string): { key: string; warning?: string } {
+  if (!value || !value.trim()) {
+    return { key: 'unset' };
+  }
+  const normalized = value.trim().toLowerCase();
+  const mapped = STEREO_COMMENT_MAP[normalized];
+  if (mapped) {
+    // If the input was already the internal key, no warning
+    if (normalized === mapped) {
+      return { key: mapped };
+    }
+    return { key: mapped, warning: `Stereo "${value}" mapped to "${mapped}"` };
+  }
+  // Fallback: try underscore normalization (e.g. "R Enantiomer" → "r_enantiomer")
+  const underscored = normalized.replace(/[\s-]+/g, '_');
+  if (STEREO_COMMENT_MAP[underscored]) {
+    return { key: underscored, warning: `Stereo "${value}" mapped to "${underscored}"` };
+  }
+  return { key: 'unset', warning: `Unknown stereo "${value}" — defaulting to "unset"` };
+}
+
 const COMPOUND_FIELD_MAPPINGS: FieldMapping[] = [
   { field: 'smiles', label: 'SMILES', required: true },
   { field: 'target', label: 'Target' },
@@ -149,7 +229,14 @@ export default function ImportCompoundsPage() {
         for (const [field, column] of Object.entries(mapping)) {
           if (field === 'smiles') continue;
           if (column && row[column]) {
-            extractedData[field] = String(row[column]).trim();
+            const rawValue = String(row[column]).trim();
+            if (field === 'stereo_comment') {
+              const { key, warning } = normalizeStereoComment(rawValue);
+              extractedData[field] = key;
+              if (warning) warnings.push(warning);
+            } else {
+              extractedData[field] = rawValue;
+            }
           }
         }
 
