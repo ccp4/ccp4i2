@@ -835,6 +835,7 @@ def execute_upload(
     force_smiles_fallback: bool = False,
     rerun: bool = False,
     rerun_create_missing: bool = False,
+    skip_existing: bool = False,
     run_sublig: bool = True,
     run_servalcat: bool = True,
     throttle_secs: int = 30,
@@ -998,6 +999,7 @@ def execute_upload(
                     print(f"    No SMILES available for {compound_id} - skipping")
                     unresolved_compounds.append({
                         'crystal_name': action['crystal_name'],
+                        'project_name': action['project_name'],
                         'compound_id': compound_id,
                         'smiles': None,
                         'compound_cif': action.get('compound_cif'),
@@ -1028,6 +1030,7 @@ def execute_upload(
                         print(f"    Not resolved - skipping (will be saved to remaining file)")
                         unresolved_compounds.append({
                             'crystal_name': action['crystal_name'],
+                            'project_name': action['project_name'],
                             'compound_id': compound_id,
                             'smiles': local_smiles,
                             'compound_cif': action.get('compound_cif'),
@@ -1076,6 +1079,16 @@ def execute_upload(
                     continue
             else:
                 # Normal mode: create new project
+                if skip_existing:
+                    existing_project = find_project_by_name(client, action['project_name'])
+                    if existing_project:
+                        print(f"    Project already exists (ID: {existing_project.get('id')}), skipping")
+                        action_result['status'] = 'skipped'
+                        action_result['error'] = 'Project already exists (--skip-existing)'
+                        results['actions'].append(action_result)
+                        results['summary']['skipped'] += 1
+                        continue
+
                 print(f"    Creating project...")
                 project_resp = client.create_project(action['project_name'])
                 project_id = project_resp.get('id')
@@ -1270,14 +1283,15 @@ def execute_upload(
     )
     results['summary']['unresolved'] = len(unresolved_compounds)
 
-    # Save unresolved compounds to remaining file
+    # Save unresolved compounds to remaining file (as a valid plan)
     if unresolved_compounds and remaining_file:
         remaining_data = {
             'campaign_name': plan_data.get('campaign_name'),
-            'execution_date': datetime.now().isoformat(),
-            'total_unresolved': len(unresolved_compounds),
-            'note': 'Register these compounds in the registry, then re-run with --rerun',
-            'compounds': unresolved_compounds,
+            'plan_date': datetime.now().isoformat(),
+            'upload_date_tag': plan_data.get('upload_date_tag', datetime.now().strftime('%Y%m%d')),
+            'note': 'Register these compounds in the registry, then re-run',
+            'total_actions': len(unresolved_compounds),
+            'actions': unresolved_compounds,
         }
         save_config(remaining_data, remaining_file)
         print(f"\nUnresolved compounds saved to: {remaining_file}")
@@ -1294,6 +1308,18 @@ def cmd_execute(args):
     print(f"Loading plan: {args.plan_file}")
 
     plan_data = load_config(args.plan_file)
+
+    # Reject legacy "unresolved compounds" format (missing 'actions' key).
+    # These were saved before the remaining file used the standard plan format
+    # and lack project_name and upload_date_tag, making safe conversion impossible.
+    if 'compounds' in plan_data and 'actions' not in plan_data:
+        print("\nERROR: This file uses a legacy format that is missing required fields")
+        print("(project_name, upload_date_tag). It cannot be executed directly.")
+        print("\nTo fix, regenerate the plan from your original data directory:")
+        print("  run_uploader.sh plan <data_dir> -o new_plan.yml")
+        print("Then execute the new plan:")
+        print("  run_uploader.sh execute new_plan.yml --campaign-id <ID>")
+        return 1
 
     # Validate pipeline selection flags
     if args.only_sublig and args.only_servalcat:
@@ -1398,6 +1424,8 @@ def cmd_execute(args):
                 print("Projects that don't exist will be created.")
             else:
                 print("Projects that don't exist will be skipped.")
+        elif args.skip_existing:
+            print(f"\n[SKIP-EXISTING MODE] Processing {plan_data['total_actions']} actions, skipping projects that already exist.")
         else:
             print(f"\nThis will create {plan_data['total_actions']} projects and jobs.")
         response = input("Continue? [y/N]: ")
@@ -1418,6 +1446,7 @@ def cmd_execute(args):
         force_smiles_fallback=args.force_smiles_fallback,
         rerun=args.rerun,
         rerun_create_missing=args.rerun_create_missing,
+        skip_existing=args.skip_existing,
         run_sublig=run_sublig,
         run_servalcat=run_servalcat,
         throttle_secs=args.throttle,
@@ -1491,6 +1520,9 @@ def main():
                                  'Creates new jobs in existing projects (old jobs preserved).')
     exec_parser.add_argument('--rerun-create-missing', action='store_true',
                             help='With --rerun: create projects that do not exist (default: skip missing)')
+    exec_parser.add_argument('--skip-existing', action='store_true',
+                            help='Skip actions whose project name already exists. '
+                                 'Use when re-executing a plan to process only new/unresolved compounds.')
     exec_parser.add_argument('--only-sublig', action='store_true',
                             help='Run only SubstituteLigand pipeline (skip servalcat_pipe)')
     exec_parser.add_argument('--only-servalcat', action='store_true',
