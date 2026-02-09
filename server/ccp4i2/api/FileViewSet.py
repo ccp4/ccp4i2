@@ -31,16 +31,22 @@ class FileViewSet(ModelViewSet):
     filterset_fields = ["job"]
 
     def get_queryset(self):
-        """
-        Optionally filter files by job ID.
-
-        Query parameters:
-            job: Filter files to only those created by the specified job ID
-        """
         queryset = models.File.objects.all()
         job_id = self.request.query_params.get("job")
         if job_id is not None:
             queryset = queryset.filter(job_id=job_id)
+        file_type = self.request.query_params.get("type")
+        if file_type is not None:
+            queryset = queryset.filter(type=file_type)
+        directory = self.request.query_params.get("directory")
+        if directory is not None:
+            queryset = queryset.filter(directory=directory)
+        job_project = self.request.query_params.get("job__project")
+        if job_project is not None:
+            queryset = queryset.filter(job__project_id=job_project)
+        parent_isnull = self.request.query_params.get("job__parent__isnull")
+        if parent_isnull is not None:
+            queryset = queryset.filter(job__parent__isnull=parent_isnull.lower() == "true")
         return queryset
 
     @action(
