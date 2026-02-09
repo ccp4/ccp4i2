@@ -9,9 +9,18 @@ Handles:
 
 import posixpath
 import fnmatch
-from typing import List, Dict, Any, Optional, Set, Callable
+from typing import List, Dict, Any, Optional, Set, Callable, Tuple
 
 from .remote import SFTPScanner, RemoteCrystalScanner, format_size
+
+
+# Pipeline preference order for autoprocessing fallback (higher = better)
+PIPELINE_PREFERENCE = [
+    ('xia2-dials', 3),
+    ('xia2-3dii', 2),
+    ('autoPROC_staraniso', 1),
+    ('autoPROC', 0),
+]
 
 
 class RemoteResolvedFile:
@@ -213,10 +222,102 @@ class RemoteFileResolver:
 
         return results
 
+    def _score_pipeline(self, dirname):
+        # type: (str) -> int
+        """Score an autoprocessing directory name by pipeline preference."""
+        for pipeline_name, score in PIPELINE_PREFERENCE:
+            if pipeline_name in dirname:
+                return score
+        return -1
+
+    def _find_best_unmerged(self, seen_remotes):
+        # type: (Set[str]) -> List[RemoteResolvedFile]
+        """
+        Fallback: scan autoprocessing/*/ for *_scaled_unmerged.mtz when
+        grab_siblings didn't find one (e.g., main symlink points to autoPROC).
+
+        Ranks by pipeline: xia2-dials > xia2-3dii > autoPROC.
+        Within same pipeline, prefers most recent (by mtime).
+        Also grabs xia2.mmcif.bz2 from the same directory if present.
+
+        Returns:
+            List of RemoteResolvedFile objects (unmerged MTZ + optional mmcif)
+        """
+        autoprocessing_path = posixpath.join(self.crystal_path, 'autoprocessing')
+        if not self.sftp.exists(autoprocessing_path):
+            return []
+
+        try:
+            subdirs = self.sftp.listdir(autoprocessing_path)
+        except IOError:
+            return []
+
+        # Find all *_scaled_unmerged.mtz candidates with their pipeline score
+        candidates = []  # type: List[Tuple[int, float, str, str, int, str]]
+        for subdir in subdirs:
+            subdir_path = posixpath.join(autoprocessing_path, subdir)
+            if not self.sftp.isdir(subdir_path):
+                continue
+
+            pipeline_score = self._score_pipeline(subdir)
+
+            try:
+                entries = self.sftp.listdir(subdir_path)
+            except IOError:
+                continue
+
+            for entry in entries:
+                if entry.endswith('_scaled_unmerged.mtz'):
+                    full_path = posixpath.join(subdir_path, entry)
+                    if full_path in seen_remotes:
+                        continue
+                    if self.sftp.isfile(full_path):
+                        size = self.sftp.get_file_size(full_path)
+                        mtime = getattr(self.sftp.stat(full_path), 'st_mtime', 0) or 0
+                        candidates.append(
+                            (pipeline_score, mtime, full_path, entry, size, subdir_path))
+
+        if not candidates:
+            return []
+
+        # Pick best: highest pipeline score, then most recent
+        candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)
+        best = candidates[0]
+        _, _, remote_path, filename, size, best_dir = best
+
+        results = []
+        results.append(RemoteResolvedFile(
+            remote_path=remote_path,
+            local_path=posixpath.join(self.crystal_name, 'autoprocessing', filename),
+            original_pattern='autoprocessing fallback',
+            size=size,
+            is_sibling=True,
+        ))
+
+        # Also grab xia2.mmcif.bz2 from the same directory
+        mmcif_path = posixpath.join(best_dir, 'xia2.mmcif.bz2')
+        if mmcif_path not in seen_remotes and self.sftp.isfile(mmcif_path):
+            mmcif_size = self.sftp.get_file_size(mmcif_path)
+            results.append(RemoteResolvedFile(
+                remote_path=mmcif_path,
+                local_path=posixpath.join(
+                    self.crystal_name, 'autoprocessing', 'xia2.mmcif.bz2'),
+                original_pattern='autoprocessing fallback',
+                size=mmcif_size,
+                is_sibling=True,
+            ))
+
+        return results
+
     def resolve_template(self, template):
         # type: (List[Dict[str, Any]]) -> List[RemoteResolvedFile]
         """
         Resolve a full file template to actual remote files.
+
+        After resolving all specs, checks whether an unmerged MTZ was found
+        via grab_siblings. If not (e.g., main symlink pointed to autoPROC),
+        falls back to scanning autoprocessing directories directly, ranking
+        by pipeline preference (xia2-dials > xia2-3dii > autoPROC).
 
         Args:
             template: List of file spec dictionaries
@@ -237,6 +338,20 @@ class RemoteFileResolver:
             except FileNotFoundError:
                 if spec.get('required', False):
                     raise
+
+        # Fallback: if no *_scaled_unmerged.mtz was found via grab_siblings,
+        # scan autoprocessing directories directly
+        has_unmerged = any(
+            f.is_sibling and f.local_path.endswith('_scaled_unmerged.mtz')
+            for f in all_results
+        )
+        if not has_unmerged:
+            seen_remotes = {f.remote_path for f in all_results}
+            fallback_files = self._find_best_unmerged(seen_remotes)
+            for f in fallback_files:
+                if f.local_path not in seen_locals:
+                    all_results.append(f)
+                    seen_locals.add(f.local_path)
 
         return all_results
 

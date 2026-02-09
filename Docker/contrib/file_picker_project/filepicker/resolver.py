@@ -12,6 +12,15 @@ import glob as globmodule
 from typing import List, Dict, Any, Optional, Tuple, Set
 
 
+# Pipeline preference order for autoprocessing fallback (higher = better)
+PIPELINE_PREFERENCE = [
+    ('xia2-dials', 3),
+    ('xia2-3dii', 2),
+    ('autoPROC_staraniso', 1),
+    ('autoPROC', 0),
+]
+
+
 class ResolvedFile:
     """Represents a resolved file to be transferred."""
 
@@ -182,10 +191,83 @@ class FileResolver:
 
         return results
 
+    def _score_pipeline(self, dirname):
+        # type: (str) -> int
+        """Score an autoprocessing directory name by pipeline preference."""
+        for pipeline_name, score in PIPELINE_PREFERENCE:
+            if pipeline_name in dirname:
+                return score
+        return -1
+
+    def _find_best_unmerged(self, seen_sources):
+        # type: (Set[str]) -> List[ResolvedFile]
+        """
+        Fallback: scan autoprocessing/*/ for *_scaled_unmerged.mtz when
+        grab_siblings didn't find one (e.g., main symlink points to autoPROC).
+
+        Ranks by pipeline: xia2-dials > xia2-3dii > autoPROC.
+        Within same pipeline, prefers most recent (by mtime).
+        Also grabs xia2.mmcif.bz2 from the same directory if present.
+        """
+        autoprocessing_path = os.path.join(self.crystal_path, 'autoprocessing')
+        if not os.path.isdir(autoprocessing_path):
+            return []
+
+        candidates = []  # type: List[Tuple[int, float, str, str, str]]
+        for subdir in os.listdir(autoprocessing_path):
+            subdir_path = os.path.join(autoprocessing_path, subdir)
+            if not os.path.isdir(subdir_path):
+                continue
+
+            pipeline_score = self._score_pipeline(subdir)
+
+            for entry in os.listdir(subdir_path):
+                if entry.endswith('_scaled_unmerged.mtz'):
+                    full_path = os.path.join(subdir_path, entry)
+                    if full_path in seen_sources:
+                        continue
+                    if os.path.isfile(full_path):
+                        mtime = os.path.getmtime(full_path)
+                        candidates.append(
+                            (pipeline_score, mtime, full_path, entry, subdir_path))
+
+        if not candidates:
+            return []
+
+        candidates.sort(key=lambda x: (x[0], x[1]), reverse=True)
+        best = candidates[0]
+        _, _, source_path, filename, best_dir = best
+
+        results = []
+        results.append(ResolvedFile(
+            source_path=source_path,
+            output_path=os.path.join(self.crystal_name, 'autoprocessing', filename),
+            original_pattern='autoprocessing fallback',
+            is_sibling=True,
+        ))
+
+        # Also grab xia2.mmcif.bz2 from the same directory
+        mmcif_path = os.path.join(best_dir, 'xia2.mmcif.bz2')
+        if mmcif_path not in seen_sources and os.path.isfile(mmcif_path):
+            results.append(ResolvedFile(
+                source_path=mmcif_path,
+                output_path=os.path.join(
+                    self.crystal_name, 'autoprocessing', 'xia2.mmcif.bz2'),
+                original_pattern='autoprocessing fallback',
+                is_sibling=True,
+            ))
+
+        return results
+
     def resolve_template(self, template):
         # type: (List[Dict[str, Any]]) -> List[ResolvedFile]
         """
         Resolve a full file template to actual files.
+
+        After resolving all specs, checks whether an unmerged MTZ was found
+        via grab_siblings. If not (e.g., main symlink pointed to autoPROC),
+        falls back to scanning autoprocessing directories directly, ranking
+        by pipeline preference (xia2-dials > xia2-3dii > autoPROC).
 
         Args:
             template: List of file spec dictionaries
@@ -209,6 +291,20 @@ class FileResolver:
                 if spec.get('required', False):
                     raise
                 # Could log warning here
+
+        # Fallback: if no *_scaled_unmerged.mtz was found via grab_siblings,
+        # scan autoprocessing directories directly
+        has_unmerged = any(
+            f.is_sibling and f.output_path.endswith('_scaled_unmerged.mtz')
+            for f in all_results
+        )
+        if not has_unmerged:
+            seen_sources = {f.source_path for f in all_results}
+            fallback_files = self._find_best_unmerged(seen_sources)
+            for f in fallback_files:
+                if f.output_path not in seen_outputs:
+                    all_results.append(f)
+                    seen_outputs.add(f.output_path)
 
         return all_results
 
