@@ -394,6 +394,7 @@ def create_upload_plan(
     reference_crystal: Optional[str] = None,
     compound_pattern: Optional[str] = r'NCL-\d{8}',
     include_apo: bool = True,
+    date_tag: Optional[str] = None,
 ) -> UploadPlan:
     """
     Create an upload plan from scan results.
@@ -404,8 +405,10 @@ def create_upload_plan(
         reference_crystal: Crystal to use for parent project reference files
         compound_pattern: Regex pattern to filter compound identifiers (None = all)
         include_apo: Include APO crystals with NCL-00000000
+        date_tag: Override the YYYYMMDD date tag used in project names
+            (default: today). Use this to match project names from a previous plan.
     """
-    upload_date = datetime.now().strftime('%Y%m%d')
+    upload_date = date_tag or datetime.now().strftime('%Y%m%d')
 
     plan = UploadPlan(
         plan_date=datetime.now().isoformat(),
@@ -626,6 +629,7 @@ def cmd_plan(args):
         reference_crystal=args.reference,
         compound_pattern=compound_pattern,
         include_apo=args.include_apo,
+        date_tag=getattr(args, 'date_tag', None),
     )
 
     print(f"\n=== Upload Plan ===")
@@ -1499,6 +1503,9 @@ def main():
                             help='Include APO crystals (default: True)')
     plan_parser.add_argument('--no-apo', dest='include_apo', action='store_false',
                             help='Exclude APO crystals')
+    plan_parser.add_argument('--date-tag', metavar='YYYYMMDD',
+                            help='Override the date tag in project names '
+                                 '(default: today). Use to match a previous plan.')
 
     # Execute command
     exec_parser = subparsers.add_parser('execute', help='Stage 3: Execute upload')
