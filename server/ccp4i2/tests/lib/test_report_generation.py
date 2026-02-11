@@ -185,9 +185,6 @@ class ReportRegistryTests(TestCase):
 
         task_manager = TASKMANAGER()
 
-        # Clear cache to ensure fresh load
-        task_manager.report_registry.clear_cache()
-
         # First access should import the class
         report_class = task_manager.getReportClass("refmac")
         self.assertIsNotNone(report_class)

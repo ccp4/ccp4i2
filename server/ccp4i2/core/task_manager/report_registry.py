@@ -608,10 +608,6 @@ class ReportRegistry:
         """Check if a report exists for a task name."""
         return task_name in REPORT_NAMES
 
-    def clear_cache(self):
-        """Clear the report cache (for testing/reloading)."""
-        self._cache.clear()
-
 
 # Singleton instance
 _registry = None

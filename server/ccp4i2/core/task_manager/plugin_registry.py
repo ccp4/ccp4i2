@@ -715,10 +715,6 @@ class PluginRegistry:
         """Get list of all available plugin names."""
         return sorted(PLUGIN_NAMES)
 
-    def clear_cache(self):
-        """Clear the plugin cache (for testing/reloading)."""
-        self._cache.clear()
-
 
 # Singleton instance
 _registry = None
