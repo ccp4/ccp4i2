@@ -3,7 +3,7 @@ This file provides lazy loading
 of plugin classes using explicit import statements.
 """
 
-from typing import Optional, Type, Dict, Any
+from typing import Optional, Type, Dict
 
 
 def _get_plugin_class(plugin_name: str) -> Optional[Type]:
@@ -651,26 +651,6 @@ PLUGIN_NAMES: set[str] = {
     'xia2_xds',
     'zanuda',
 }
-
-
-# Plugin metadata loaded lazily from JSON
-_PLUGIN_METADATA: Optional[Dict[str, Dict[str, Any]]] = None
-
-
-def _load_metadata() -> Dict[str, Dict[str, Any]]:
-    """Load plugin metadata from JSON file."""
-    global _PLUGIN_METADATA
-    if _PLUGIN_METADATA is None:
-        import json
-        import os
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        json_path = os.path.join(script_dir, "plugin_lookup.json")
-        try:
-            with open(json_path, "r") as f:
-                _PLUGIN_METADATA = json.load(f)
-        except Exception:
-            _PLUGIN_METADATA = {}
-    return _PLUGIN_METADATA
 
 
 class PluginRegistry:
