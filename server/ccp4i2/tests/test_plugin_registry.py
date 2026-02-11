@@ -14,17 +14,6 @@ from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 class TestPluginRegistry:
     """Tests for the lazy-loading plugin registry."""
 
-    def test_list_plugins(self):
-        """Test listing all available plugins without importing."""
-        tm = TASKMANAGER()
-
-        plugins = tm.list_plugins()
-
-        assert len(plugins) > 100, "Should find many plugins"
-        assert 'pointless' in plugins
-        assert 'refmac' in plugins
-        assert 'aimless' in plugins
-
     def test_lazy_load_plugin(self):
         """Test lazy loading a plugin class."""
         tm = TASKMANAGER()

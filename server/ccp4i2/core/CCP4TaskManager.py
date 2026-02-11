@@ -178,10 +178,6 @@ class CTaskManager:
         """
         return self.plugin_registry.get_plugin_class(task_name)
 
-    def list_plugins(self) -> List[str]:
-        """Get list of all available plugin names."""
-        return self.plugin_registry.list_plugins()
-
     def locate_def_xml(self, task_name: str) -> Optional[Path]:
         """
         Locate the .def.xml file for a task given its name.

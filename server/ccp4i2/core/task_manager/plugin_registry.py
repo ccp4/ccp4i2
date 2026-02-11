@@ -711,10 +711,6 @@ class PluginRegistry:
             logger.error(f"Traceback:\n{traceback.format_exc()}")
             return None
 
-    def list_plugins(self) -> list[str]:
-        """Get list of all available plugin names."""
-        return sorted(PLUGIN_NAMES)
-
 
 # Singleton instance
 _registry = None
