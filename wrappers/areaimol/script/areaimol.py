@@ -26,6 +26,10 @@ class areaimol(CPluginScript):
           xyzin_target_file = str( inp.XYZIN.fullPath )
           self.appendCommandLine( [ "XYZIN",xyzin_target_file ] )
 
+      if str(self.container.controlParameters.DIFFMODE) == "COMPARE" and inp.XYZIN2.fullPath.isSet():
+          xyzin2_target_file = str( inp.XYZIN2.fullPath )
+          self.appendCommandLine( [ "XYZIN2",xyzin2_target_file ] )
+
       if out.XYZOUT.fullPath.isSet():
           xyzout_target_file = str( out.XYZOUT.fullPath )
           self.appendCommandLine( [ "XYZOUT",xyzout_target_file ] )
@@ -42,6 +46,16 @@ class areaimol(CPluginScript):
 
       print("Keyword script:",kw)
 
+      self.appendCommandScript( s+"\nDIFFMODE " + str(self.container.controlParameters.DIFFMODE) + "\n" )
+      if str(self.container.controlParameters.DIFFMODE) == "COMPARE" and inp.XYZIN2.fullPath.isSet():
+          self.appendCommandScript( s+"\nMATCHUP NOCOORDS\n" )
+      if str(self.container.controlParameters.DIFFMODE) == "IMOL" and str(self.container.controlParameters.SYMMETRY) != "":
+          self.appendCommandScript( s+"\nMODE NOHOH\n")
+          self.appendCommandScript( s+"\nOUTPUT\n")
+          self.appendCommandScript( s+"\nSYMMETRY " + str(self.container.controlParameters.SYMMETRY) + "\n" )
+          self.appendCommandScript( s+"\nSYMMETRY 19\n")
+          self.appendCommandScript( s+"\nTRANS 2\n")
+          
       self.appendCommandScript( s+"\nOUTPUT\n" )
       self.appendCommandScript( s+"\nEND\n" )
 
@@ -60,4 +74,4 @@ class areaimol(CPluginScript):
         self.container.outputData.XYZOUT.annotation = "Coordinates with atom surface area in 'B-factor' column"
 
         return CPluginScript.SUCCEEDED
-      
+

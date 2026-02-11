@@ -23,6 +23,40 @@
 	  <ifAtomSelection>True</ifAtomSelection>
         </qualifiers>
       </content>
+      <content id="XYZIN2">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="DIFFMODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>OFF</default>
+          <enumerators>OFF,IMOL,COMPARE</enumerators>
+          <menuText>Off (normal calculation),Intemolecular contact differences,Compare 2 structures</menuText>
+          <guiLabel>Differences mode</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="EXTRA_AREAIMOL_KEYWORDS">
+         <className>CString</className>
+         <qualifiers>
+            <default>END
+            </default>
+         </qualifiers>
+      </content>
+      <content id="SYMMETRY">
+         <className>CString</className>
+         <qualifiers>
+            <allowUndefined>True</allowUndefined>
+         </qualifiers>
+      </content>
     </container>
     <container id="outputData">
       <content id="XYZOUT">
@@ -33,15 +67,5 @@
         </qualifiers>
       </content>
     </container>
-       <container id="controlParameters">
-          <content id="EXTRA_AREAIMOL_KEYWORDS">
-             <className>CString</className>
-             <qualifiers>
-                <default>END
-                </default>
-             </qualifiers>
-          </content>
-       </container>
-    
   </ccp4i2_body>
 </ccp4i2>
