@@ -51,12 +51,14 @@ class areaimol(CPluginScript):
           self.appendCommandScript( s+"\nMATCHUP NOCOORDS\n" )
       if str(self.container.controlParameters.DIFFMODE) == "IMOL" and str(self.container.controlParameters.SYMMETRY) != "":
           self.appendCommandScript( s+"\nMODE NOHOH\n")
-          self.appendCommandScript( s+"\nOUTPUT\n")
+          self.appendCommandScript( s+"\nSYMMETRY 1\n")
           self.appendCommandScript( s+"\nSYMMETRY " + str(self.container.controlParameters.SYMMETRY) + "\n" )
-          self.appendCommandScript( s+"\nSYMMETRY 19\n")
           self.appendCommandScript( s+"\nTRANS 2\n")
-          
-      self.appendCommandScript( s+"\nOUTPUT\n" )
+
+      if str(self.container.controlParameters.DIFFMODE) == "OFF" and inp.XYZIN2.fullPath.isSet():
+          self.appendCommandScript( s+"\nOUTPUT "+str(self.container.controlParameters.OUTPUT_MODE)+"\n" )
+      else:
+          self.appendCommandScript( s+"\nOUTPUT "+str(self.container.controlParameters.OUTPUT_MODE_COMPARE)+"\n" )
       self.appendCommandScript( s+"\nEND\n" )
 
       return CPluginScript.SUCCEEDED

@@ -44,6 +44,26 @@
           <onlyEnumerators>True</onlyEnumerators>
         </qualifiers>
       </content>
+      <content id="OUTPUT_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>ATOM</default>
+          <enumerators>ATOM,RESIDUE,GXGRATIO</enumerators>
+          <menuText>Area per atom,Area per residue,GXGRATIO (effectively normalised)</menuText>
+          <guiLabel>Output mode</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="OUTPUT_MODE_COMPARE">
+        <className>CString</className>
+        <qualifiers>
+          <default>ATOM</default>
+          <enumerators>ATOM,RESIDUE</enumerators>
+          <menuText>Area per atom,Area per residue</menuText>
+          <guiLabel>Output mode</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
       <content id="EXTRA_AREAIMOL_KEYWORDS">
          <className>CString</className>
          <qualifiers>
