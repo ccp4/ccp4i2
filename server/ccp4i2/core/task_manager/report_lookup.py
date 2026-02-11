@@ -3,7 +3,6 @@ Report class discovery script for CCP4i2.
 
 This script discovers report classes (subclasses of Report from CCP4ReportParser)
 in the wrappers, wrappers2, and pipelines directories and generates:
-- report_lookup.json: JSON metadata for all discovered reports
 - report_registry.py: Python module with lazy loading report registry
 
 Usage:
@@ -255,26 +254,6 @@ def generate_report_registry(lookup: Dict[str, Any], output_path: str):
         '}',
         '',
         '',
-        '# Report metadata loaded lazily from JSON',
-        '_REPORT_METADATA: Optional[Dict[str, Dict[str, Any]]] = None',
-        '',
-        '',
-        'def _load_metadata() -> Dict[str, Dict[str, Any]]:',
-        '    """Load report metadata from JSON file."""',
-        '    global _REPORT_METADATA',
-        '    if _REPORT_METADATA is None:',
-        '        import json',
-        '        import os',
-        '        script_dir = os.path.dirname(os.path.abspath(__file__))',
-        '        json_path = os.path.join(script_dir, "report_lookup.json")',
-        '        try:',
-        '            with open(json_path, "r") as f:',
-        '                _REPORT_METADATA = json.load(f)',
-        '        except Exception:',
-        '            _REPORT_METADATA = {}',
-        '    return _REPORT_METADATA',
-        '',
-        '',
         'class ReportRegistry:',
         '    """Registry for lazy-loading report classes."""',
         '',
@@ -309,11 +288,6 @@ def generate_report_registry(lookup: Dict[str, Any], output_path: str):
         '            import warnings',
         '            warnings.warn(f"Failed to import report {task_name}: {e}")',
         '            return None',
-        '',
-        '    def get_report_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:',
-        '        """Get report metadata without importing the report class."""',
-        '        metadata = _load_metadata()',
-        '        return metadata.get(task_name)',
         '',
         '    def list_reports(self) -> list[str]:',
         '        """Get list of all available report task names."""',
@@ -372,17 +346,10 @@ if __name__ == "__main__":
     # Write to script's own directory
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
-    # Write JSON for debugging/reference
-    json_output_path = os.path.join(script_dir, "report_lookup.json")
-    print(f"Writing JSON to: {json_output_path}")
-    with open(json_output_path, "w") as f:
-        json.dump(result, f, indent=2, sort_keys=True)
-
     # Write Python module with lazy loading
     py_output_path = os.path.join(script_dir, "report_registry.py")
     print(f"Writing Python registry to: {py_output_path}")
     generate_report_registry(result, py_output_path)
 
-    print(f"Report lookup written to: {json_output_path}")
     print(f"Report registry written to: {py_output_path}")
     print(f"Found {len(result)} reports")

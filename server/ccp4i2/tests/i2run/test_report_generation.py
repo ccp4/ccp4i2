@@ -188,15 +188,6 @@ def test_report_metadata_access():
     # Test has_report
     assert task_manager.has_report("refmac"), "refmac should have a report"
 
-    # Test get_report_metadata (fast, no import)
-    metadata = task_manager.get_report_metadata("refmac")
-    assert metadata is not None, "refmac should have metadata"
-    assert metadata.get("TASKNAME") == "refmac"
-
-    # Test RUNNING attribute
-    running = task_manager.getReportAttribute("refmac", "RUNNING")
-    assert running is True, "refmac report should support RUNNING=True"
-
     # Test list_reports
     reports = task_manager.list_reports()
     assert len(reports) > 100, f"Expected 100+ reports, got {len(reports)}"

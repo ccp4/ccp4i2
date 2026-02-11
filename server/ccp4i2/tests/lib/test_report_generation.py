@@ -190,21 +190,6 @@ class ReportRegistryTests(TestCase):
         self.assertGreater(len(reports), 100)
         print(f"Found {len(reports)} reports in registry")
 
-    def test_report_metadata_access(self):
-        """Test accessing report metadata without importing."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
-
-        # Get metadata for refmac
-        metadata = task_manager.get_report_metadata("refmac")
-        self.assertIsNotNone(metadata)
-        self.assertEqual(metadata.get("TASKNAME"), "refmac")
-
-        # Test RUNNING attribute
-        running = task_manager.getReportAttribute("refmac", "RUNNING")
-        self.assertTrue(running)
-
     def test_report_class_lazy_loading(self):
         """Test that report classes are loaded lazily."""
         from ccp4i2.core.CCP4TaskManager import TASKMANAGER

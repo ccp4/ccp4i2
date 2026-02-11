@@ -229,18 +229,6 @@ class CTaskManager:
         """
         return self.report_registry.get_report_class(name)
 
-    def get_report_metadata(self, name: str) -> Optional[Dict[str, Any]]:
-        """
-        Get report metadata without importing the report class.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Dictionary of report metadata (RUNNING, WATCHED_FILE, etc.), or None if not found
-        """
-        return self.report_registry.get_report_metadata(name)
-
     def has_report(self, name: str) -> bool:
         """
         Check if a report class exists for a task name.
@@ -293,32 +281,6 @@ class CTaskManager:
                 if os.path.exists(full_path):
                     return full_path
         return None
-
-    def getReportAttribute(self, name: str, attribute: str) -> Any:
-        """
-        Get an attribute from a plugin's report class or metadata.
-
-        Tries to get the attribute from cached metadata first (fast, no import).
-        Falls back to importing the report class if the attribute is not in metadata.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-            attribute: Name of the attribute to retrieve (e.g., "WATCHED_FILE")
-
-        Returns:
-            Attribute value if found, None otherwise
-        """
-        # First try to get from metadata (fast, no import required)
-        metadata = self.get_report_metadata(name)
-        if metadata and attribute in metadata:
-            return metadata[attribute]
-
-        # Fall back to importing the class for non-metadata attributes
-        report_class = self.getReportClass(name)
-        if report_class is None:
-            return None
-
-        return getattr(report_class, attribute, None)
 
     def getTitle(self, name: str) -> Optional[str]:
         """
@@ -523,7 +485,7 @@ def main():
 
         print("Regenerating plugin_lookup.json and plugin_registry.py...")
         subprocess.run([sys.executable, plugin_script], check=True)
-        print("Regenerating report_lookup.json and report_registry.py...")
+        print("Regenerating report_registry.py...")
         subprocess.run([sys.executable, report_script], check=True)
         print("Lookup files regenerated.")
     else:

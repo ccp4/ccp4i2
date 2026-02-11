@@ -573,26 +573,6 @@ REPORT_NAMES: set[str] = {
 }
 
 
-# Report metadata loaded lazily from JSON
-_REPORT_METADATA: Optional[Dict[str, Dict[str, Any]]] = None
-
-
-def _load_metadata() -> Dict[str, Dict[str, Any]]:
-    """Load report metadata from JSON file."""
-    global _REPORT_METADATA
-    if _REPORT_METADATA is None:
-        import json
-        import os
-        script_dir = os.path.dirname(os.path.abspath(__file__))
-        json_path = os.path.join(script_dir, "report_lookup.json")
-        try:
-            with open(json_path, "r") as f:
-                _REPORT_METADATA = json.load(f)
-        except Exception:
-            _REPORT_METADATA = {}
-    return _REPORT_METADATA
-
-
 class ReportRegistry:
     """Registry for lazy-loading report classes."""
 
@@ -627,11 +607,6 @@ class ReportRegistry:
             import warnings
             warnings.warn(f"Failed to import report {task_name}: {e}")
             return None
-
-    def get_report_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:
-        """Get report metadata without importing the report class."""
-        metadata = _load_metadata()
-        return metadata.get(task_name)
 
     def list_reports(self) -> list[str]:
         """Get list of all available report task names."""
