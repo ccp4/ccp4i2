@@ -1,9 +1,6 @@
-import argparse
 import glob
 import json
 import os
-import subprocess
-import sys
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Type
 
@@ -181,18 +178,6 @@ class CTaskManager:
         """
         return self.plugin_registry.get_plugin_class(task_name)
 
-    def get_plugin_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:
-        """
-        Get plugin metadata without importing the plugin.
-
-        Args:
-            task_name: Name of the task/plugin
-
-        Returns:
-            Dictionary of plugin metadata, or None if not found
-        """
-        return self.plugin_registry.get_plugin_metadata(task_name)
-
     def list_plugins(self) -> List[str]:
         """Get list of all available plugin names."""
         return self.plugin_registry.list_plugins()
@@ -280,37 +265,6 @@ class CTaskManager:
                 full_path = os.path.join(directory, f"{name}.medline.txt")
                 if os.path.exists(full_path):
                     return full_path
-        return None
-
-    def getTitle(self, name: str) -> Optional[str]:
-        """
-        Get the title of a plugin/task.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Task title if found, None otherwise
-        """
-        metadata = self.get_plugin_metadata(name)
-        if metadata:
-            return metadata.get("TASKTITLE")
-        return None
-
-    def getShortTitle(self, name: str) -> Optional[str]:
-        """
-        Get the short title of a plugin/task. Falls back to TASKNAME if no short title available.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Task short title or task name if found, None otherwise
-        """
-        metadata = self.get_plugin_metadata(name)
-        if metadata:
-            # Try SHORTTITLE first, fall back to TASKNAME
-            return metadata.get("SHORTTITLE", metadata.get("TASKNAME"))
         return None
 
     def _normalize_module_name(self, module: Any) -> str:

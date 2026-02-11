@@ -1173,12 +1173,6 @@ class Report(Container):
           body.insert(2,links)
         """
 
-    def getTitle(self):
-        if 'jobnumber' in self.jobInfo and 'tasktitle' in self.jobInfo:
-            title = self.jobInfo['jobnumber'] + ' ' + self.jobInfo['tasktitle']
-        else:
-            title = 'CCP4 Report'
-
     def makeCSVFiles(self, directory=None):
         from ccp4i2.core import CCP4Utils
         if directory is None:

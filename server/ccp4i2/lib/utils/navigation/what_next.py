@@ -1,6 +1,5 @@
 from ccp4i2.db import models
-from django.http import JsonResponse
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.task_manager.metadata import TITLES
 from ..plugins.get_plugin import get_job_plugin
 
 
@@ -9,15 +8,14 @@ def get_what_next(job: models.Job):
     if the_job_plugin is None:
         return {"Status": "Failed", "result": []}
 
-    taskManager = TASKMANAGER()
     if hasattr(the_job_plugin, "WHATNEXT"):
         result = {
             "Status": "Success",
             "result": [
                 {
                     "taskName": taskName,
-                    "shortTitle": taskManager.getShortTitle(taskName),
-                    "title": taskManager.getTitle(taskName),
+                    "shortTitle": taskName,
+                    "title": TITLES.get(taskName),
                 }
                 for taskName in the_job_plugin.WHATNEXT
             ],

@@ -7,6 +7,7 @@ from ccp4i2.core import CCP4Utils
 from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2.core.CCP4Modules import PREFERENCES
+from ccp4i2.core.task_manager.metadata import TITLES
 
 # Import Django dbapi adapter constants for file type lookups
 from ccp4i2.db.ccp4i2_static_data import FILETYPES_CLASS, FINISHED_JOB_STATUS
@@ -673,9 +674,7 @@ def getReportJobInfo(jobId=None, projectName=None, jobNumber=None):
     )
 
     jobInfo['jobid'] = jobId
-    jobInfo['tasktitle'] = CCP4TaskManager.TASKMANAGER().getTitle(
-        jobInfo['taskname']
-    )
+    jobInfo['tasktitle'] = TITLES.get(jobInfo['taskname'])
     jobInfo['fileroot'] = CCP4Modules.PROJECTSMANAGER().makeFileName(
         jobId=jobId, mode='ROOT'
     )

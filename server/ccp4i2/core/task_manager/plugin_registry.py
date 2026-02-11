@@ -711,11 +711,6 @@ class PluginRegistry:
             logger.error(f"Traceback:\n{traceback.format_exc()}")
             return None
 
-    def get_plugin_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:
-        """Get plugin metadata without importing the plugin."""
-        metadata = _load_metadata()
-        return metadata.get(task_name)
-
     def list_plugins(self) -> list[str]:
         """Get list of all available plugin names."""
         return sorted(PLUGIN_NAMES)

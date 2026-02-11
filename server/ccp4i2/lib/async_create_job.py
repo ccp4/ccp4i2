@@ -13,18 +13,16 @@ Key features:
 - Database integration via AsyncDatabaseHandler
 """
 
-import asyncio
-import datetime
 import logging
 import uuid
 from pathlib import Path
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any
 
 from asgiref.sync import sync_to_async
 
-from ccp4i2.core import CCP4TaskManager
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-
+from ..core import CCP4TaskManager
+from ..core.CCP4PluginScript import CPluginScript
+from ..core.task_manager.metadata import TITLES
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler
 from .utils.containers.remove_defaults import remove_container_default_values
@@ -116,7 +114,7 @@ async def create_job_async(
 
     # Determine title if not provided
     if title is None:
-        title = task_manager.getTitle(task_name)
+        title = TITLES.get(task_name)
 
     # Create job in database
     job = await db_handler.create_job(

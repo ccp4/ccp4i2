@@ -3,13 +3,11 @@ import logging
 import uuid
 
 from ccp4i2.core import CCP4TaskManager
-from ccp4i2.core.CCP4Container import CContainer
-
+from ccp4i2.core.task_manager.metadata import TITLES
 from ccp4i2.db import models
 from ..containers.remove_defaults import remove_container_default_values
 from ..parameters.save_params import save_params_for_job
 from ..files.patch_paths import patch_output_file_paths
-from ..plugins.get_plugin import get_job_plugin
 
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
@@ -92,10 +90,7 @@ def create_job(
     new_job_plugin = plugin_class(workDirectory=str(new_job_dir))
 
     if title is None:
-        title = task_manager.getTitle(taskName)
-        # Fallback to taskName if getTitle returns None
-        if title is None:
-            title = taskName
+        title = TITLES.get(taskName, taskName)
     arg_dict = dict(
         uuid=new_job_id,
         number=str(next_job_number),

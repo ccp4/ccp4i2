@@ -25,28 +25,6 @@ class TestPluginRegistry:
         assert 'refmac' in plugins
         assert 'aimless' in plugins
 
-    def test_get_metadata_without_import(self):
-        """Test getting plugin metadata without importing the plugin."""
-        tm = TASKMANAGER()
-
-        meta = tm.get_plugin_metadata('pointless')
-
-        assert meta is not None
-        assert meta['TASKNAME'] == 'pointless'
-        assert 'TASKTITLE' in meta
-        assert 'ERROR_CODES' in meta
-        # Should have import info
-        assert '_import_module' in meta
-        assert '_import_class' in meta
-
-    def test_get_metadata_nonexistent(self):
-        """Test getting metadata for non-existent plugin."""
-        tm = TASKMANAGER()
-
-        meta = tm.get_plugin_metadata('nonexistent_plugin_xyz')
-
-        assert meta is None
-
     def test_lazy_load_plugin(self):
         """Test lazy loading a plugin class."""
         tm = TASKMANAGER()
@@ -96,17 +74,6 @@ class TestPluginRegistry:
         result = tm.get_plugin_class('nonexistent_plugin_xyz')
 
         assert result is None
-
-    def test_metadata_has_error_codes(self):
-        """Test that plugin metadata includes error codes."""
-        tm = TASKMANAGER()
-
-        meta = tm.get_plugin_metadata('pointless')
-
-        assert 'ERROR_CODES' in meta
-        error_codes = meta['ERROR_CODES']
-        assert isinstance(error_codes, dict)
-        assert len(error_codes) > 0
 
     def test_plugin_class_is_subclass_of_cpluginscript(self):
         """Test that loaded plugins are CPluginScript subclasses."""
