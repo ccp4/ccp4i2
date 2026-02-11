@@ -604,10 +604,6 @@ class ReportRegistry:
             warnings.warn(f"Failed to import report {task_name}: {e}")
             return None
 
-    def has_report(self, task_name: str) -> bool:
-        """Check if a report exists for a task name."""
-        return task_name in REPORT_NAMES
-
 
 # Singleton instance
 _registry = None

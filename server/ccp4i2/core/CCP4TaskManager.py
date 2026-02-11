@@ -214,18 +214,6 @@ class CTaskManager:
         """
         return self.report_registry.get_report_class(name)
 
-    def has_report(self, name: str) -> bool:
-        """
-        Check if a report class exists for a task name.
-
-        Args:
-            name: Name of the task/plugin
-
-        Returns:
-            True if a report class exists, False otherwise
-        """
-        return self.report_registry.has_report(name)
-
     def searchPath(self) -> List[str]:
         """
         Get the search path for plugins (wrappers, pipelines, etc.).

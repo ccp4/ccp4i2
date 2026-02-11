@@ -193,13 +193,3 @@ class ReportRegistryTests(TestCase):
         # Second access should be cached
         report_class_2 = task_manager.getReportClass("refmac")
         self.assertIs(report_class, report_class_2)
-
-    def test_has_report(self):
-        """Test has_report method."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
-
-        self.assertTrue(task_manager.has_report("refmac"))
-        self.assertTrue(task_manager.has_report("pointless"))
-        self.assertFalse(task_manager.has_report("nonexistent_task_xyz"))

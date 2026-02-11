@@ -175,22 +175,6 @@ def test_report_for_nonexistent_task():
     print("✓ Failure report generated correctly")
 
 
-def test_report_metadata_access():
-    """
-    Test that report metadata can be accessed without generating the full report.
-
-    This tests the new report registry functionality.
-    """
-    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-    task_manager = TASKMANAGER()
-
-    # Test has_report
-    assert task_manager.has_report("refmac"), "refmac should have a report"
-
-    print(f"✓ Report registry working ({len(reports)} reports available)")
-
-
 def test_csymmatch_report_generation():
     """
     Test report generation for csymmatch (coordinate utility).
