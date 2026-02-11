@@ -42,6 +42,7 @@ class areaimol(CPluginScript):
 
       print("Keyword script:",kw)
 
+      self.appendCommandScript( s+"\nOUTPUT\n" )
       self.appendCommandScript( s+"\nEND\n" )
 
       return CPluginScript.SUCCEEDED
@@ -56,6 +57,7 @@ class areaimol(CPluginScript):
             with open(self.makeFileName("LOG"),"rb") as logFile:
                 logText.text = base64.b64encode(logFile.read())
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
+        self.container.outputData.XYZOUT.annotation = "Coordinates with atom surface area in 'B-factor' column"
 
         return CPluginScript.SUCCEEDED
       
