@@ -1,12 +1,12 @@
-from __future__ import print_function
-
 import os
 import tempfile
+import pathlib
+
+import gemmi
+from smartie import smartie
 
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
-import pathlib
-from smartie import smartie
 
 class areaimol(CPluginScript):
 
@@ -84,6 +84,39 @@ class areaimol(CPluginScript):
             except:
                 print("Failed to extract summaries with smartie")
                 sys.stderr.write("Failed to extract summaries with smartie")
+                exc_type, exc_value,exc_tb = sys.exc_info()[:3]
+                sys.stderr.write(str(exc_type)+'\n')
+                sys.stderr.write(str(exc_value)+'\n')
+                print(str(exc_type)+'\n')
+                print(str(exc_value)+'\n')
+
+            try:
+                serNo = 1
+                sasValues = etree.SubElement(xmlStructure,"SASValues")
+                st = gemmi.read_structure(str(self.container.outputData.XYZOUT.fullPath))
+                for model in st:
+                    for chain in model:
+                        for residue in chain:
+                            for atom in residue:
+                                sas = etree.SubElement(sasValues,"SAS")
+                                sas_area = etree.SubElement(sas,"area")
+                                sas_name = etree.SubElement(sas,"name")
+                                sas_chain = etree.SubElement(sas,"chain")
+                                sas_resname = etree.SubElement(sas,"resname")
+                                sas_seqNum = etree.SubElement(sas,"seqNum")
+                                sas_insCode = etree.SubElement(sas,"insCode")
+                                sas_serNo = etree.SubElement(sas,"serNo")
+                                sas_area.text = '{0:.2f}'.format(atom.b_iso)
+                                sas_name.text = atom.name
+                                sas_chain.text = chain.name
+                                sas_resname.text = residue.name
+                                sas_seqNum.text = str(residue.seqid.num)
+                                sas_insCode.text = residue.seqid.icode
+                                sas_serNo.text = str(serNo)
+                                serNo += 1
+            except:
+                print("Failed to write area values to program.xml")
+                sys.stderr.write("Failed to write area values to program.xml")
                 exc_type, exc_value,exc_tb = sys.exc_info()[:3]
                 sys.stderr.write(str(exc_type)+'\n')
                 sys.stderr.write(str(exc_value)+'\n')
