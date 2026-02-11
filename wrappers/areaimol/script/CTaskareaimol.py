@@ -14,6 +14,11 @@ class CTaskAreaimolUI(CCP4TaskWidget.CTaskWidget):
   PROGRAMHELP = 'areaimol'
   DESCRIPTION='Solvent accessible surface calculation the areaimol program'
 
+  def updateXYZ2(self):
+        if self.container.controlParameters.DIFFMODE.isSet():
+            if str(self.container.controlParameters.DIFFMODE) != "COMPARE":
+                self.container.inputData.XYZIN2.unSet()
+
   def drawContents(self):
 
     self.setProgramHelpFile('areaimol')
@@ -32,6 +37,8 @@ class CTaskAreaimolUI(CCP4TaskWidget.CTaskWidget):
     self.createLine( ['label', 'Output mode', 'widget', 'OUTPUT_MODE'], toggle=[ 'DIFFMODE', 'open' , ['OFF'] ]  )
     self.createLine( ['label', 'Output mode', 'widget', 'OUTPUT_MODE_COMPARE'], toggle=[ 'DIFFMODE', 'open' , ['COMPARE','IMOL'] ]  )
     self.closeSubFrame()
+
+    self.connectDataChanged('DIFFMODE', self.updateXYZ2)
 
     #self.createLine( [ 'subtitle', 'Keywords' ] )
     #self.createLine( ['tip', 'Script'] )

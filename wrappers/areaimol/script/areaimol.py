@@ -6,6 +6,7 @@ import tempfile
 from core.CCP4PluginScript import CPluginScript
 from core import CCP4Utils
 import pathlib
+from smartie import smartie
 
 class areaimol(CPluginScript):
 
@@ -72,6 +73,23 @@ class areaimol(CPluginScript):
             logText = etree.SubElement(xmlStructure,"LogText")
             with open(self.makeFileName("LOG"),"rb") as logFile:
                 logText.text = base64.b64encode(logFile.read())
+            try:
+                smartie_text = ""
+                smartie_logfile = smartie.parselog(self.makeFileName("LOG"))
+                smartieText = etree.SubElement(xmlStructure,"SummaryText")
+                for i in range(2,smartie_logfile.nsummaries()-1):
+                    summary = smartie_logfile.summary(i).retrieve().split("\n")
+                    smartie_text += ("\n".join(summary[1:-2])) + "\n"
+                smartieText.text = base64.b64encode(bytes(smartie_text,"utf-8"))
+            except:
+                print("Failed to extract summaries with smartie")
+                sys.stderr.write("Failed to extract summaries with smartie")
+                exc_type, exc_value,exc_tb = sys.exc_info()[:3]
+                sys.stderr.write(str(exc_type)+'\n')
+                sys.stderr.write(str(exc_value)+'\n')
+                print(str(exc_type)+'\n')
+                print(str(exc_value)+'\n')
+
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
         self.container.outputData.XYZOUT.annotation = "Coordinates with atom surface area in 'B-factor' column"
 

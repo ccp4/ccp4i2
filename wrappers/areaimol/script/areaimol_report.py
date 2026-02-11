@@ -14,7 +14,21 @@ class areaimol_report(Report):
         if jobStatus in ["Running", "Running remotely"]:
             self.append("<p><b>The job is currently running.</b></p>")
 
-        fold = self.addFold(label="Log file")
+        if jobStatus not in ["Running", "Running remotely"]:
+            try:
+                summaryText = ""
+                if len(self.xmlnode.findall(".//SummaryText"))>0:
+                    xmlPath = './/SummaryText'
+                    xmlNodes = self.xmlnode.findall(xmlPath)
+                    for node in xmlNodes:
+                        summaryText += base64.b64decode(node.text).decode()
+                if summaryText:
+                    fold = self.addFold(label="Summary", initiallyOpen=True)
+                    fold.addPre(text=summaryText)
+            except:
+                pass
+
+        fold = self.addFold(label="Areaimol log file")
         if len(self.xmlnode.findall(".//LogText"))>0:
             xmlPath = './/LogText'
             xmlNodes = self.xmlnode.findall(xmlPath)
