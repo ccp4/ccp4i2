@@ -1,3 +1,4 @@
+import faulthandler
 import uuid
 import os
 import subprocess
@@ -91,6 +92,13 @@ class Command(BaseCommand):
                 the_job.process_id = process.pid
                 the_job.save()
         else:
+            # Enable faulthandler to produce a Python traceback on SIGSEGV/SIGABRT.
+            # Without this, a segfault in a C extension (e.g. iris_validation/mmdb2)
+            # kills the process silently with no diagnostic output.
+            crash_log_path = the_job.directory / "crash_traceback.txt"
+            self._crash_log = open(crash_log_path, 'w')
+            faulthandler.enable(file=self._crash_log)
+
             with open(
                 the_job.directory / "cplusplus_stdout.txt", "w", encoding="utf-8"
             ) as stdout_file:
