@@ -3,7 +3,7 @@ This file provides lazy loading
 of report classes using explicit import statements.
 """
 
-from typing import Optional, Type, Dict, Any
+from typing import Optional, Type, Dict
 
 
 def _get_report_class(task_name: str) -> Optional[Type]:
@@ -603,10 +603,6 @@ class ReportRegistry:
             import warnings
             warnings.warn(f"Failed to import report {task_name}: {e}")
             return None
-
-    def list_reports(self) -> list[str]:
-        """Get list of all available report task names."""
-        return sorted(REPORT_NAMES)
 
     def has_report(self, task_name: str) -> bool:
         """Check if a report exists for a task name."""

@@ -179,17 +179,6 @@ class ReportGenerationTests(TestCase):
 class ReportRegistryTests(TestCase):
     """Test the report registry functionality."""
 
-    def test_report_registry_initialization(self):
-        """Test that report registry loads correctly."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
-
-        # Should find many reports
-        reports = task_manager.list_reports()
-        self.assertGreater(len(reports), 100)
-        print(f"Found {len(reports)} reports in registry")
-
     def test_report_class_lazy_loading(self):
         """Test that report classes are loaded lazily."""
         from ccp4i2.core.CCP4TaskManager import TASKMANAGER

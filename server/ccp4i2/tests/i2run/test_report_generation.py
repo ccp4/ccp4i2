@@ -188,11 +188,6 @@ def test_report_metadata_access():
     # Test has_report
     assert task_manager.has_report("refmac"), "refmac should have a report"
 
-    # Test list_reports
-    reports = task_manager.list_reports()
-    assert len(reports) > 100, f"Expected 100+ reports, got {len(reports)}"
-    assert "refmac" in reports
-
     print(f"✓ Report registry working ({len(reports)} reports available)")
 
 

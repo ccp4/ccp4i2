@@ -226,10 +226,6 @@ class CTaskManager:
         """
         return self.report_registry.has_report(name)
 
-    def list_reports(self) -> List[str]:
-        """Get list of all available report task names."""
-        return self.report_registry.list_reports()
-
     def searchPath(self) -> List[str]:
         """
         Get the search path for plugins (wrappers, pipelines, etc.).

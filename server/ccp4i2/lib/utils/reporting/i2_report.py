@@ -374,10 +374,8 @@ def generate_job_report(job: Job) -> ET.Element:
 
     if report_class is None:
         logger.error(
-            "No report class found for task '%s'. "
-            "Available reports: %s",
+            "No report class found for task '%s'. ",
             task_name,
-            task_manager.list_reports()[:10],  # First 10 for brevity
         )
         return simple_failed_report(
             f"No report class found for task '{task_name}'",
