@@ -3,615 +3,176 @@ This file provides lazy loading
 of report classes using explicit import statements.
 """
 
-from typing import Optional, Type, Dict
+import importlib
+import warnings
 
-
-def _get_report_class(task_name: str) -> Optional[Type]:
-    """
-    Get a report class by task name using explicit imports.
-
-    This function uses explicit import statements for each report,
-    providing clear traceability and IDE support.
-    """
-    if task_name == 'AMPLE':
-        from ccp4i2.wrappers.AMPLE.script.AMPLE_report import AMPLE_report
-        return AMPLE_report
-    if task_name == 'AUSPEX':
-        from ccp4i2.wrappers.AUSPEX.script.AUSPEX_report import AUSPEX_report
-        return AUSPEX_report
-    if task_name == 'Acedrg':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report import acedrgNew_report
-        return acedrgNew_report
-    if task_name == 'AcedrgLink':
-        from ccp4i2.wrappers.AcedrgLink.script.AcedrgLink_report import AcedrgLink_report
-        return AcedrgLink_report
-    if task_name == 'AlternativeImportXIA2':
-        from ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report import AlternativeImportXIA2_report
-        return AlternativeImportXIA2_report
-    if task_name == 'LidiaAcedrgNew':
-        from ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report import LidiaAcedrgNew_report
-        return LidiaAcedrgNew_report
-    if task_name == 'MakeLink':
-        from ccp4i2.pipelines.MakeLink.script.MakeLink_report import MakeLink_report
-        return MakeLink_report
-    if task_name == 'MakeMonster':
-        from ccp4i2.wrappers.MakeMonster.script.MakeMonster_report import MakeMonster_report
-        return MakeMonster_report
-    if task_name == 'MakeProjectsAndDoLigandPipeline':
-        from ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline_report import MakeProjectsAndDoLigandPipeline_report
-        return MakeProjectsAndDoLigandPipeline_report
-    if task_name == 'PrepareDeposit':
-        from ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report import PrepareDeposit_report
-        return PrepareDeposit_report
-    if task_name == 'ProvideAlignment':
-        from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment_report import ProvideAlignment_report
-        return ProvideAlignment_report
-    if task_name == 'ProvideAsuContents':
-        from ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report import ProvideAsuContents_report
-        return ProvideAsuContents_report
-    if task_name == 'ProvideSequence':
-        from ccp4i2.wrappers.ProvideSequence.script.ProvideSequence_report import ProvideSequence_report
-        return ProvideSequence_report
-    if task_name == 'ProvideTLS':
-        from ccp4i2.wrappers.ProvideTLS.script.ProvideTLS_report import ProvideTLS_report
-        return ProvideTLS_report
-    if task_name == 'RvapiReport':
-        from ccp4i2.wrappers.morda_i2.script.morda_i2_report import RvapiReport
-        return RvapiReport
-    if task_name == 'SIMBAD':
-        from ccp4i2.wrappers.SIMBAD.script.SIMBAD_report import SIMBAD_report
-        return SIMBAD_report
-    if task_name == 'ShelxCD':
-        from ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report import ShelxCD_report
-        return ShelxCD_report
-    if task_name == 'SubstituteLigand':
-        from ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report import SubstituteLigand_report
-        return SubstituteLigand_report
-    if task_name == 'SubtractNative':
-        from ccp4i2.wrappers.SubtractNative.script.SubtractNative_report import SubtractNative_report
-        return SubtractNative_report
-    if task_name == 'TestObsConversions':
-        from ccp4i2.wrappers.TestObsConversions.script.TestObsConversions_report import TestObsConversions_report
-        return TestObsConversions_report
-    if task_name == 'acorn':
-        from ccp4i2.wrappers.acorn.script.acorn_report import acorn_report
-        return acorn_report
-    if task_name == 'add_fractional_coords':
-        from ccp4i2.wrappers.add_fractional_coords.script.add_fractional_coords_report import add_fractional_coords_report
-        return add_fractional_coords_report
-    if task_name == 'adding_stats_to_mmcif_i2':
-        from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import adding_stats_to_mmcif_i2_report
-        return adding_stats_to_mmcif_i2_report
-    if task_name == 'aimless':
-        from ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report import aimless_report
-        return aimless_report
-    if task_name == 'arcimboldo':
-        from ccp4i2.wrappers.arcimboldo.script.arcimboldo_report import arcimboldo_report
-        return arcimboldo_report
-    if task_name == 'arp_warp_classic':
-        from ccp4i2.wrappers.arp_warp_classic.script.arp_warp_classic_report import arp_warp_classic_report
-        return arp_warp_classic_report
-    if task_name == 'buster':
-        from ccp4i2.wrappers.buster.script.buster_report import buster_report
-        return buster_report
-    if task_name == 'ccp4mg_edit_model':
-        from ccp4i2.wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model_report import ccp4mg_edit_model_report
-        return ccp4mg_edit_model_report
-    if task_name == 'ccp4mg_edit_nomrbump':
-        from ccp4i2.wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump_report import ccp4mg_edit_no_mrbump_report
-        return ccp4mg_edit_no_mrbump_report
-    if task_name == 'ccp4mg_general':
-        from ccp4i2.wrappers.ccp4mg_general.script.ccp4mg_general_report import ccp4mg_general_report
-        return ccp4mg_general_report
-    if task_name == 'chainsaw':
-        from ccp4i2.wrappers.chainsaw.script.chainsaw_report import chainsaw_report
-        return chainsaw_report
-    if task_name == 'chltofom':
-        from ccp4i2.wrappers.chltofom.script.chltofom_report import chltofom_report
-        return chltofom_report
-    if task_name == 'cif2mtz':
-        from ccp4i2.wrappers.cif2mtz.script.cif2mtz_report import cif2mtz_report
-        return cif2mtz_report
-    if task_name == 'clustalw':
-        from ccp4i2.wrappers.clustalw.script.clustalw_report import clustalw_report
-        return clustalw_report
-    if task_name == 'cmapcoeff':
-        from ccp4i2.wrappers.cmapcoeff.script.cmapcoeff_report import cmapcoeff_report
-        return cmapcoeff_report
-    if task_name == 'comit':
-        from ccp4i2.wrappers.comit.script.comit_report import comit_report
-        return comit_report
-    if task_name == 'coordinate_selector':
-        from ccp4i2.wrappers.coordinate_selector.script.coordinate_selector_report import coordinate_selector_report
-        return coordinate_selector_report
-    if task_name == 'coot1':
-        from ccp4i2.wrappers.coot1.script.coot1_report import coot1_report
-        return coot1_report
-    if task_name == 'coot_find_ligand':
-        from ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand_report import coot_find_ligand_report
-        return coot_find_ligand_report
-    if task_name == 'coot_find_waters':
-        from ccp4i2.wrappers.coot_find_waters.script.coot_find_waters_report import coot_find_waters_report
-        return coot_find_waters_report
-    if task_name == 'coot_rebuild':
-        from ccp4i2.wrappers.coot_rebuild.script.coot_rebuild_report import coot_rebuild_report
-        return coot_rebuild_report
-    if task_name == 'coot_rsr_morph':
-        from ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph_report import coot_rsr_morph_report
-        return coot_rsr_morph_report
-    if task_name == 'coot_script_lines':
-        from ccp4i2.wrappers.coot_script_lines.script.coot_script_lines_report import coot_script_lines_report
-        return coot_script_lines_report
-    if task_name == 'cpatterson':
-        from ccp4i2.wrappers.cpatterson.script.cpatterson_report import cpatterson_report
-        return cpatterson_report
-    if task_name == 'cphasematch':
-        from ccp4i2.wrappers.cphasematch.script.cphasematch_report import cphasematch_report
-        return cphasematch_report
-    if task_name == 'crank2':
-        from ccp4i2.pipelines.crank2.script.crank2_report import crank2_report
-        return crank2_report
-    if task_name == 'crank2_comb_phdmmb':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb_report import crank2_comb_phdmmb_report
-        return crank2_comb_phdmmb_report
-    if task_name == 'crank2_dmfull':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull_report import crank2_dmfull_report
-        return crank2_dmfull_report
-    if task_name == 'crank2_faest':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_faest.script.crank2_faest_report import crank2_faest_report
-        return crank2_faest_report
-    if task_name == 'crank2_handdet':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet_report import crank2_handdet_report
-        return crank2_handdet_report
-    if task_name == 'crank2_mbref':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref_report import crank2_mbref_report
-        return crank2_mbref_report
-    if task_name == 'crank2_phas':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_phas.script.crank2_phas_report import crank2_phas_report
-        return crank2_phas_report
-    if task_name == 'crank2_phdmmb':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb_report import crank2_phdmmb_report
-        return crank2_phdmmb_report
-    if task_name == 'crank2_ref':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_ref.script.crank2_ref_report import crank2_ref_report
-        return crank2_ref_report
-    if task_name == 'crank2_refatompick':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick_report import crank2_refatompick_report
-        return crank2_refatompick_report
-    if task_name == 'crank2_substrdet':
-        from ccp4i2.pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet_report import crank2_substrdet_report
-        return crank2_substrdet_report
-    if task_name == 'csymmatch':
-        from ccp4i2.pipelines.phaser_pipeline.script.phaser_pipeline_report import csymmatch_report
-        return csymmatch_report
-    if task_name == 'ctruncate':
-        from ccp4i2.wrappers.ctruncate.script.ctruncate_report import ctruncate_report
-        return ctruncate_report
-    if task_name == 'density_calculator':
-        from ccp4i2.wrappers.density_calculator.script.density_calculator_report import density_calculator_report
-        return density_calculator_report
-    if task_name == 'dials_image':
-        from ccp4i2.wrappers.dials_image.script.dials_image_report import dials_image_report
-        return dials_image_report
-    if task_name == 'dials_rlattice':
-        from ccp4i2.wrappers.dials_rlattice.script.dials_rlattice_report import dials_rlattice_report
-        return dials_rlattice_report
-    if task_name == 'dr_mr_modelbuild_pipeline':
-        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report import dr_mr_modelbuild_pipeline_report
-        return dr_mr_modelbuild_pipeline_report
-    if task_name == 'dui':
-        from ccp4i2.wrappers.dui.script.dui_report import dui_report
-        return dui_report
-    if task_name == 'editbfac':
-        from ccp4i2.wrappers.editbfac.script.editbfac_report import editbfac_report
-        return editbfac_report
-    if task_name == 'edstats':
-        from ccp4i2.wrappers.edstats.script.edstats_report import edstats_report
-        return edstats_report
-    if task_name == 'fft':
-        from ccp4i2.wrappers.fft.script.fft_report import fft_report
-        return fft_report
-    if task_name == 'findmyseq':
-        from ccp4i2.wrappers.findmyseq.script.findmyseq_report import findmyseq_report
-        return findmyseq_report
-    if task_name == 'freerflag':
-        from ccp4i2.wrappers.freerflag.script.freerflag_report import freerflag_report
-        return freerflag_report
-    if task_name == 'gesamt':
-        from ccp4i2.wrappers.gesamt.script.gesamt_report import gesamt_report
-        return gesamt_report
-    if task_name == 'i2Dimple':
-        from ccp4i2.wrappers.i2Dimple.script.i2Dimple_report import i2Dimple_report
-        return i2Dimple_report
-    if task_name == 'imosflm':
-        from ccp4i2.wrappers.imosflm.script.imosflm_report import imosflm_report
-        return imosflm_report
-    if task_name == 'import_files':
-        from ccp4i2.wrappers2.import_files.script.import_files_report import import_files_report
-        return import_files_report
-    if task_name == 'import_merged':
-        from ccp4i2.pipelines.import_merged.script.import_merged_report import import_merged_report
-        return import_merged_report
-    if task_name == 'import_mosflm':
-        from ccp4i2.wrappers.import_mosflm.script.import_mosflm_report import import_mosflm_report
-        return import_mosflm_report
-    if task_name == 'import_serial':
-        from ccp4i2.wrappers.import_serial.script.import_serial_report import import_serial_report
-        return import_serial_report
-    if task_name == 'import_serial_pipe':
-        from ccp4i2.pipelines.import_serial_pipe.script.import_serial_pipe_report import import_serial_pipe_report
-        return import_serial_pipe_report
-    if task_name == 'import_xia2':
-        from ccp4i2.pipelines.import_xia2.script.import_xia2_report import import_xia2_report
-        return import_xia2_report
-    if task_name == 'lorestr_i2':
-        from ccp4i2.wrappers.lorestr_i2.script.lorestr_i2_report import lorestr_i2_report
-        return lorestr_i2_report
-    if task_name == 'mergeMtz':
-        from ccp4i2.wrappers.mergeMtz.script.mergeMtz_report import mergeMtz_report
-        return mergeMtz_report
-    if task_name == 'metalCoord':
-        from ccp4i2.wrappers.metalCoord.script.metalCoord_report import metalCoord_report
-        return metalCoord_report
-    if task_name == 'modelASUCheck':
-        from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck_report import modelASUCheck_report
-        return modelASUCheck_report
-    if task_name == 'modelcraft':
-        from ccp4i2.pipelines.phaser_ep.script.phaser_EP_report import modelcraft_report
-        return modelcraft_report
-    if task_name == 'molrep_den':
-        from ccp4i2.wrappers.molrep_den.script.molrep_den_report import molrep_den_report
-        return molrep_den_report
-    if task_name == 'molrep_mr':
-        from ccp4i2.wrappers.molrep_mr.script.molrep_mr_report import molrep_mr_report
-        return molrep_mr_report
-    if task_name == 'molrep_pipe':
-        from ccp4i2.pipelines.molrep_pipe.script.molrep_pipe_report import molrep_pipe_report
-        return molrep_pipe_report
-    if task_name == 'molrep_selfrot':
-        from ccp4i2.wrappers.molrep_selfrot.script.molrep_selfrot_report import molrep_selfrot_report
-        return molrep_selfrot_report
-    if task_name == 'morda_i2':
-        from ccp4i2.wrappers.morda_i2.script.morda_i2_report import morda_i2_report
-        return morda_i2_report
-    if task_name == 'mosflm':
-        from ccp4i2.wrappers.mosflm.script.mosflm_report import mosflm_report
-        return mosflm_report
-    if task_name == 'mrbump_basic':
-        from ccp4i2.wrappers.mrbump_basic.script.mrbump_basic_report import mrbump_basic_report
-        return mrbump_basic_report
-    if task_name == 'mrparse':
-        from ccp4i2.wrappers.mrparse.script.mrparse_report import mrparse_report
-        return mrparse_report
-    if task_name == 'mrparse_simple':
-        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_report import mrparse_simple_report
-        return mrparse_simple_report
-    if task_name == 'pairef':
-        from ccp4i2.wrappers.pairef.script.pairef_report import pairef_report
-        return pairef_report
-    if task_name == 'parrot':
-        from ccp4i2.wrappers.parrot.script.parrot_report import parrot_report
-        return parrot_report
-    if task_name == 'pdb_redo_api':
-        from ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api_report import pdb_redo_api_report
-        return pdb_redo_api_report
-    if task_name == 'pdbset_ui':
-        from ccp4i2.wrappers.pdbset_ui.script.pdbset_ui_report import pdbset_ui_report
-        return pdbset_ui_report
-    if task_name == 'pdbview_edit':
-        from ccp4i2.wrappers.pdbview_edit.script.pdbview_edit_report import pdbview_edit_report
-        return pdbview_edit_report
-    if task_name == 'phaser_EP':
-        from ccp4i2.pipelines.phaser_ep.script.phaser_EP_report import phaser_EP_report
-        return phaser_EP_report
-    if task_name == 'phaser_EP_AUTO':
-        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report import phaser_EP_AUTO_report
-        return phaser_EP_AUTO_report
-    if task_name == 'phaser_EP_LLG':
-        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG_report import phaser_EP_LLG_report
-        return phaser_EP_LLG_report
-    if task_name == 'phaser_MR_AUTO':
-        from ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import phaser_MR_AUTO_report
-        return phaser_MR_AUTO_report
-    if task_name == 'phaser_MR_FRF':
-        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report import phaser_MR_FRF_report
-        return phaser_MR_FRF_report
-    if task_name == 'phaser_MR_FTF':
-        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report import phaser_MR_FTF_report
-        return phaser_MR_FTF_report
-    if task_name == 'phaser_MR_PAK':
-        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report import phaser_MR_PAK_report
-        return phaser_MR_PAK_report
-    if task_name == 'phaser_MR_RNP':
-        from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP_report import phaser_MR_RNP_report
-        return phaser_MR_RNP_report
-    if task_name == 'phaser_analysis':
-        from ccp4i2.wrappers.phaser_analysis.script.phaser_analysis_report import phaser_analysis_report
-        return phaser_analysis_report
-    if task_name == 'phaser_ensembler':
-        from ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler_report import phaser_ensembler_report
-        return phaser_ensembler_report
-    if task_name == 'phaser_phil':
-        from ccp4i2.wrappers.phaser_phil.script.phaser_phil_report import phaser_phil_report
-        return phaser_phil_report
-    if task_name == 'phaser_pipeline':
-        from ccp4i2.pipelines.phaser_simple.script.phaser_simple_report import phaser_pipeline_report
-        return phaser_pipeline_report
-    if task_name == 'phaser_rnp_pipeline':
-        from ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import phaser_rnp_pipeline_report
-        return phaser_rnp_pipeline_report
-    if task_name == 'phaser_simple':
-        from ccp4i2.pipelines.phaser_simple.script.phaser_simple_report import phaser_simple_report
-        return phaser_simple_report
-    if task_name == 'phaser_singleMR':
-        from ccp4i2.wrappers.phaser_singleMR.script.phaser_singleMR_report import phaser_singleMR_report
-        return phaser_singleMR_report
-    if task_name == 'pisa_analyse':
-        from ccp4i2.pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse_report import pisa_analyse_report
-        return pisa_analyse_report
-    if task_name == 'pisa_xml':
-        from ccp4i2.pipelines.pisapipe.script.pisapipe_report import pisa_xml_report
-        return pisa_xml_report
-    if task_name == 'pisapipe':
-        from ccp4i2.pipelines.pisapipe.script.pisapipe_report import pisapipe_report
-        return pisapipe_report
-    if task_name == 'pointless':
-        from ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report import pointless_report
-        return pointless_report
-    if task_name == 'pointless_reindexToMatch':
-        from ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch_report import pointless_reindexToMatch_report
-        return pointless_reindexToMatch_report
-    if task_name == 'privateer':
-        from ccp4i2.wrappers.privateer.script.privateer_report import privateer_report
-        return privateer_report
-    if task_name == 'prosmart':
-        from ccp4i2.wrappers.prosmart.script.prosmart_report import prosmart_report
-        return prosmart_report
-    if task_name == 'prosmart_refmac':
-        from ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac_report import prosmart_refmac_report
-        return prosmart_refmac_report
-    if task_name == 'pyphaser_mr':
-        from ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr_report import pyphaser_mr_report
-        return pyphaser_mr_report
-    if task_name == 'qtpisa':
-        from ccp4i2.wrappers.qtpisa.script.qtpisa_report import qtpisa_report
-        return qtpisa_report
-    if task_name == 'refmac':
-        from ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report import refmac_report
-        return refmac_report
-    if task_name == 'scaleit':
-        from ccp4i2.wrappers.scaleit.script.scaleit_report import scaleit_report
-        return scaleit_report
-    if task_name == 'sculptor':
-        from ccp4i2.wrappers.sculptor.script.sculptor_report import sculptor_report
-        return sculptor_report
-    if task_name == 'servalcat':
-        from ccp4i2.wrappers.servalcat.script.servalcat_report import servalcat_report
-        return servalcat_report
-    if task_name == 'servalcat_pipe':
-        from ccp4i2.pipelines.servalcat_pipe.script.servalcat_pipe_report import servalcat_pipe_report
-        return servalcat_pipe_report
-    if task_name == 'sheetbend':
-        from ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report import sheetbend_report
-        return sheetbend_report
-    if task_name == 'shelx':
-        from ccp4i2.pipelines.shelx.script.shelx_report import shelx_report
-        return shelx_report
-    if task_name == 'shelxeMR':
-        from ccp4i2.wrappers.shelxeMR.script.shelxeMR_report import shelxeMR_report
-        return shelxeMR_report
-    if task_name == 'slicendice':
-        from ccp4i2.wrappers.slicendice.script.slicendice_report import slicendice_report
-        return slicendice_report
-    if task_name == 'splitMtz':
-        from ccp4i2.wrappers.splitMtz.script.splitMtz_report import splitMtz_report
-        return splitMtz_report
-    if task_name == 'validate_protein':
-        from ccp4i2.wrappers.validate_protein.script.validate_protein_report import validate_protein_report
-        return validate_protein_report
-    if task_name == 'xia2_dials':
-        from ccp4i2.wrappers.xia2_dials.script.xia2_dials_report import xia2_dials_report
-        return xia2_dials_report
-    if task_name == 'xia2_multiplex':
-        from ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex_report import xia2_multiplex_report
-        return xia2_multiplex_report
-    if task_name == 'xia2_ssx_reduce':
-        from ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_report import xia2_ssx_reduce_report
-        return xia2_ssx_reduce_report
-    if task_name == 'xia2_xds':
-        from ccp4i2.wrappers.xia2_xds.script.xia2_xds_report import xia2_xds_report
-        return xia2_xds_report
-    if task_name == 'zanuda':
-        from ccp4i2.wrappers.zanuda.script.zanuda_report import zanuda_report
-        return zanuda_report
-    return None
-
-
-# Report names for fast lookup without loading metadata
-REPORT_NAMES: set[str] = {
-    'AMPLE',
-    'AUSPEX',
-    'Acedrg',
-    'AcedrgLink',
-    'AlternativeImportXIA2',
-    'LidiaAcedrgNew',
-    'MakeLink',
-    'MakeMonster',
-    'MakeProjectsAndDoLigandPipeline',
-    'PrepareDeposit',
-    'ProvideAlignment',
-    'ProvideAsuContents',
-    'ProvideSequence',
-    'ProvideTLS',
-    'RvapiReport',
-    'SIMBAD',
-    'ShelxCD',
-    'SubstituteLigand',
-    'SubtractNative',
-    'TestObsConversions',
-    'acorn',
-    'add_fractional_coords',
-    'adding_stats_to_mmcif_i2',
-    'aimless',
-    'arcimboldo',
-    'arp_warp_classic',
-    'buster',
-    'ccp4mg_edit_model',
-    'ccp4mg_edit_nomrbump',
-    'ccp4mg_general',
-    'chainsaw',
-    'chltofom',
-    'cif2mtz',
-    'clustalw',
-    'cmapcoeff',
-    'comit',
-    'coordinate_selector',
-    'coot1',
-    'coot_find_ligand',
-    'coot_find_waters',
-    'coot_rebuild',
-    'coot_rsr_morph',
-    'coot_script_lines',
-    'cpatterson',
-    'cphasematch',
-    'crank2',
-    'crank2_comb_phdmmb',
-    'crank2_dmfull',
-    'crank2_faest',
-    'crank2_handdet',
-    'crank2_mbref',
-    'crank2_phas',
-    'crank2_phdmmb',
-    'crank2_ref',
-    'crank2_refatompick',
-    'crank2_substrdet',
-    'csymmatch',
-    'ctruncate',
-    'density_calculator',
-    'dials_image',
-    'dials_rlattice',
-    'dr_mr_modelbuild_pipeline',
-    'dui',
-    'editbfac',
-    'edstats',
-    'fft',
-    'findmyseq',
-    'freerflag',
-    'gesamt',
-    'i2Dimple',
-    'imosflm',
-    'import_files',
-    'import_merged',
-    'import_mosflm',
-    'import_serial',
-    'import_serial_pipe',
-    'import_xia2',
-    'lorestr_i2',
-    'mergeMtz',
-    'metalCoord',
-    'modelASUCheck',
-    'modelcraft',
-    'molrep_den',
-    'molrep_mr',
-    'molrep_pipe',
-    'molrep_selfrot',
-    'morda_i2',
-    'mosflm',
-    'mrbump_basic',
-    'mrparse',
-    'mrparse_simple',
-    'pairef',
-    'parrot',
-    'pdb_redo_api',
-    'pdbset_ui',
-    'pdbview_edit',
-    'phaser_EP',
-    'phaser_EP_AUTO',
-    'phaser_EP_LLG',
-    'phaser_MR_AUTO',
-    'phaser_MR_FRF',
-    'phaser_MR_FTF',
-    'phaser_MR_PAK',
-    'phaser_MR_RNP',
-    'phaser_analysis',
-    'phaser_ensembler',
-    'phaser_phil',
-    'phaser_pipeline',
-    'phaser_rnp_pipeline',
-    'phaser_simple',
-    'phaser_singleMR',
-    'pisa_analyse',
-    'pisa_xml',
-    'pisapipe',
-    'pointless',
-    'pointless_reindexToMatch',
-    'privateer',
-    'prosmart',
-    'prosmart_refmac',
-    'pyphaser_mr',
-    'qtpisa',
-    'refmac',
-    'scaleit',
-    'sculptor',
-    'servalcat',
-    'servalcat_pipe',
-    'sheetbend',
-    'shelx',
-    'shelxeMR',
-    'slicendice',
-    'splitMtz',
-    'validate_protein',
-    'xia2_dials',
-    'xia2_multiplex',
-    'xia2_ssx_reduce',
-    'xia2_xds',
-    'zanuda',
+_PATHS = {
+    "AMPLE": "ccp4i2.wrappers.AMPLE.script.AMPLE_report:AMPLE_report",
+    "AUSPEX": "ccp4i2.wrappers.AUSPEX.script.AUSPEX_report:AUSPEX_report",
+    "Acedrg": "ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report:acedrgNew_report",
+    "AcedrgLink": "ccp4i2.wrappers.AcedrgLink.script.AcedrgLink_report:AcedrgLink_report",
+    "AlternativeImportXIA2": "ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report:AlternativeImportXIA2_report",
+    "LidiaAcedrgNew": "ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report:LidiaAcedrgNew_report",
+    "MakeLink": "ccp4i2.pipelines.MakeLink.script.MakeLink_report:MakeLink_report",
+    "MakeMonster": "ccp4i2.wrappers.MakeMonster.script.MakeMonster_report:MakeMonster_report",
+    "MakeProjectsAndDoLigandPipeline": "ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline_report:MakeProjectsAndDoLigandPipeline_report",
+    "PrepareDeposit": "ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report:PrepareDeposit_report",
+    "ProvideAlignment": "ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment_report:ProvideAlignment_report",
+    "ProvideAsuContents": "ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report:ProvideAsuContents_report",
+    "ProvideSequence": "ccp4i2.wrappers.ProvideSequence.script.ProvideSequence_report:ProvideSequence_report",
+    "ProvideTLS": "ccp4i2.wrappers.ProvideTLS.script.ProvideTLS_report:ProvideTLS_report",
+    "RvapiReport": "ccp4i2.wrappers.morda_i2.script.morda_i2_report:RvapiReport",
+    "SIMBAD": "ccp4i2.wrappers.SIMBAD.script.SIMBAD_report:SIMBAD_report",
+    "ShelxCD": "ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report:ShelxCD_report",
+    "SubstituteLigand": "ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report:SubstituteLigand_report",
+    "SubtractNative": "ccp4i2.wrappers.SubtractNative.script.SubtractNative_report:SubtractNative_report",
+    "TestObsConversions": "ccp4i2.wrappers.TestObsConversions.script.TestObsConversions_report:TestObsConversions_report",
+    "acorn": "ccp4i2.wrappers.acorn.script.acorn_report:acorn_report",
+    "add_fractional_coords": "ccp4i2.wrappers.add_fractional_coords.script.add_fractional_coords_report:add_fractional_coords_report",
+    "adding_stats_to_mmcif_i2": "ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report:adding_stats_to_mmcif_i2_report",
+    "aimless": "ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report:aimless_report",
+    "arcimboldo": "ccp4i2.wrappers.arcimboldo.script.arcimboldo_report:arcimboldo_report",
+    "arp_warp_classic": "ccp4i2.wrappers.arp_warp_classic.script.arp_warp_classic_report:arp_warp_classic_report",
+    "buster": "ccp4i2.wrappers.buster.script.buster_report:buster_report",
+    "ccp4mg_edit_model": "ccp4i2.wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model_report:ccp4mg_edit_model_report",
+    "ccp4mg_edit_nomrbump": "ccp4i2.wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump_report:ccp4mg_edit_no_mrbump_report",
+    "ccp4mg_general": "ccp4i2.wrappers.ccp4mg_general.script.ccp4mg_general_report:ccp4mg_general_report",
+    "chainsaw": "ccp4i2.wrappers.chainsaw.script.chainsaw_report:chainsaw_report",
+    "chltofom": "ccp4i2.wrappers.chltofom.script.chltofom_report:chltofom_report",
+    "cif2mtz": "ccp4i2.wrappers.cif2mtz.script.cif2mtz_report:cif2mtz_report",
+    "clustalw": "ccp4i2.wrappers.clustalw.script.clustalw_report:clustalw_report",
+    "cmapcoeff": "ccp4i2.wrappers.cmapcoeff.script.cmapcoeff_report:cmapcoeff_report",
+    "comit": "ccp4i2.wrappers.comit.script.comit_report:comit_report",
+    "coordinate_selector": "ccp4i2.wrappers.coordinate_selector.script.coordinate_selector_report:coordinate_selector_report",
+    "coot1": "ccp4i2.wrappers.coot1.script.coot1_report:coot1_report",
+    "coot_find_ligand": "ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand_report:coot_find_ligand_report",
+    "coot_find_waters": "ccp4i2.wrappers.coot_find_waters.script.coot_find_waters_report:coot_find_waters_report",
+    "coot_rebuild": "ccp4i2.wrappers.coot_rebuild.script.coot_rebuild_report:coot_rebuild_report",
+    "coot_rsr_morph": "ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph_report:coot_rsr_morph_report",
+    "coot_script_lines": "ccp4i2.wrappers.coot_script_lines.script.coot_script_lines_report:coot_script_lines_report",
+    "cpatterson": "ccp4i2.wrappers.cpatterson.script.cpatterson_report:cpatterson_report",
+    "cphasematch": "ccp4i2.wrappers.cphasematch.script.cphasematch_report:cphasematch_report",
+    "crank2": "ccp4i2.pipelines.crank2.script.crank2_report:crank2_report",
+    "crank2_comb_phdmmb": "ccp4i2.pipelines.crank2.wrappers.crank2_comb_phdmmb.script.crank2_comb_phdmmb_report:crank2_comb_phdmmb_report",
+    "crank2_dmfull": "ccp4i2.pipelines.crank2.wrappers.crank2_dmfull.script.crank2_dmfull_report:crank2_dmfull_report",
+    "crank2_faest": "ccp4i2.pipelines.crank2.wrappers.crank2_faest.script.crank2_faest_report:crank2_faest_report",
+    "crank2_handdet": "ccp4i2.pipelines.crank2.wrappers.crank2_handdet.script.crank2_handdet_report:crank2_handdet_report",
+    "crank2_mbref": "ccp4i2.pipelines.crank2.wrappers.crank2_mbref.script.crank2_mbref_report:crank2_mbref_report",
+    "crank2_phas": "ccp4i2.pipelines.crank2.wrappers.crank2_phas.script.crank2_phas_report:crank2_phas_report",
+    "crank2_phdmmb": "ccp4i2.pipelines.crank2.wrappers.crank2_phdmmb.script.crank2_phdmmb_report:crank2_phdmmb_report",
+    "crank2_ref": "ccp4i2.pipelines.crank2.wrappers.crank2_ref.script.crank2_ref_report:crank2_ref_report",
+    "crank2_refatompick": "ccp4i2.pipelines.crank2.wrappers.crank2_refatompick.script.crank2_refatompick_report:crank2_refatompick_report",
+    "crank2_substrdet": "ccp4i2.pipelines.crank2.wrappers.crank2_substrdet.script.crank2_substrdet_report:crank2_substrdet_report",
+    "csymmatch": "ccp4i2.pipelines.phaser_pipeline.script.phaser_pipeline_report:csymmatch_report",
+    "ctruncate": "ccp4i2.wrappers.ctruncate.script.ctruncate_report:ctruncate_report",
+    "density_calculator": "ccp4i2.wrappers.density_calculator.script.density_calculator_report:density_calculator_report",
+    "dials_image": "ccp4i2.wrappers.dials_image.script.dials_image_report:dials_image_report",
+    "dials_rlattice": "ccp4i2.wrappers.dials_rlattice.script.dials_rlattice_report:dials_rlattice_report",
+    "dr_mr_modelbuild_pipeline": "ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report:dr_mr_modelbuild_pipeline_report",
+    "dui": "ccp4i2.wrappers.dui.script.dui_report:dui_report",
+    "editbfac": "ccp4i2.wrappers.editbfac.script.editbfac_report:editbfac_report",
+    "edstats": "ccp4i2.wrappers.edstats.script.edstats_report:edstats_report",
+    "fft": "ccp4i2.wrappers.fft.script.fft_report:fft_report",
+    "findmyseq": "ccp4i2.wrappers.findmyseq.script.findmyseq_report:findmyseq_report",
+    "freerflag": "ccp4i2.wrappers.freerflag.script.freerflag_report:freerflag_report",
+    "gesamt": "ccp4i2.wrappers.gesamt.script.gesamt_report:gesamt_report",
+    "i2Dimple": "ccp4i2.wrappers.i2Dimple.script.i2Dimple_report:i2Dimple_report",
+    "imosflm": "ccp4i2.wrappers.imosflm.script.imosflm_report:imosflm_report",
+    "import_files": "ccp4i2.wrappers2.import_files.script.import_files_report:import_files_report",
+    "import_merged": "ccp4i2.pipelines.import_merged.script.import_merged_report:import_merged_report",
+    "import_mosflm": "ccp4i2.wrappers.import_mosflm.script.import_mosflm_report:import_mosflm_report",
+    "import_serial": "ccp4i2.wrappers.import_serial.script.import_serial_report:import_serial_report",
+    "import_serial_pipe": "ccp4i2.pipelines.import_serial_pipe.script.import_serial_pipe_report:import_serial_pipe_report",
+    "import_xia2": "ccp4i2.pipelines.import_xia2.script.import_xia2_report:import_xia2_report",
+    "lorestr_i2": "ccp4i2.wrappers.lorestr_i2.script.lorestr_i2_report:lorestr_i2_report",
+    "mergeMtz": "ccp4i2.wrappers.mergeMtz.script.mergeMtz_report:mergeMtz_report",
+    "metalCoord": "ccp4i2.wrappers.metalCoord.script.metalCoord_report:metalCoord_report",
+    "modelASUCheck": "ccp4i2.wrappers.modelASUCheck.script.modelASUCheck_report:modelASUCheck_report",
+    "modelcraft": "ccp4i2.pipelines.phaser_ep.script.phaser_EP_report:modelcraft_report",
+    "molrep_den": "ccp4i2.wrappers.molrep_den.script.molrep_den_report:molrep_den_report",
+    "molrep_mr": "ccp4i2.wrappers.molrep_mr.script.molrep_mr_report:molrep_mr_report",
+    "molrep_pipe": "ccp4i2.pipelines.molrep_pipe.script.molrep_pipe_report:molrep_pipe_report",
+    "molrep_selfrot": "ccp4i2.wrappers.molrep_selfrot.script.molrep_selfrot_report:molrep_selfrot_report",
+    "morda_i2": "ccp4i2.wrappers.morda_i2.script.morda_i2_report:morda_i2_report",
+    "mosflm": "ccp4i2.wrappers.mosflm.script.mosflm_report:mosflm_report",
+    "mrbump_basic": "ccp4i2.wrappers.mrbump_basic.script.mrbump_basic_report:mrbump_basic_report",
+    "mrparse": "ccp4i2.wrappers.mrparse.script.mrparse_report:mrparse_report",
+    "mrparse_simple": "ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_report:mrparse_simple_report",
+    "pairef": "ccp4i2.wrappers.pairef.script.pairef_report:pairef_report",
+    "parrot": "ccp4i2.wrappers.parrot.script.parrot_report:parrot_report",
+    "pdb_redo_api": "ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api_report:pdb_redo_api_report",
+    "pdbset_ui": "ccp4i2.wrappers.pdbset_ui.script.pdbset_ui_report:pdbset_ui_report",
+    "pdbview_edit": "ccp4i2.wrappers.pdbview_edit.script.pdbview_edit_report:pdbview_edit_report",
+    "phaser_EP": "ccp4i2.pipelines.phaser_ep.script.phaser_EP_report:phaser_EP_report",
+    "phaser_EP_AUTO": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report:phaser_EP_AUTO_report",
+    "phaser_EP_LLG": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG_report:phaser_EP_LLG_report",
+    "phaser_MR_AUTO": "ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:phaser_MR_AUTO_report",
+    "phaser_MR_FRF": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FRF.script.phaser_MR_FRF_report:phaser_MR_FRF_report",
+    "phaser_MR_FTF": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_FTF.script.phaser_MR_FTF_report:phaser_MR_FTF_report",
+    "phaser_MR_PAK": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_PAK.script.phaser_MR_PAK_report:phaser_MR_PAK_report",
+    "phaser_MR_RNP": "ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_RNP.script.phaser_MR_RNP_report:phaser_MR_RNP_report",
+    "phaser_analysis": "ccp4i2.wrappers.phaser_analysis.script.phaser_analysis_report:phaser_analysis_report",
+    "phaser_ensembler": "ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler_report:phaser_ensembler_report",
+    "phaser_phil": "ccp4i2.wrappers.phaser_phil.script.phaser_phil_report:phaser_phil_report",
+    "phaser_pipeline": "ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_pipeline_report",
+    "phaser_rnp_pipeline": "ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:phaser_rnp_pipeline_report",
+    "phaser_simple": "ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_simple_report",
+    "phaser_singleMR": "ccp4i2.wrappers.phaser_singleMR.script.phaser_singleMR_report:phaser_singleMR_report",
+    "pisa_analyse": "ccp4i2.pipelines.pisapipe.wrappers.pisa_analyse.script.pisa_analyse_report:pisa_analyse_report",
+    "pisa_xml": "ccp4i2.pipelines.pisapipe.script.pisapipe_report:pisa_xml_report",
+    "pisapipe": "ccp4i2.pipelines.pisapipe.script.pisapipe_report:pisapipe_report",
+    "pointless": "ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:pointless_report",
+    "pointless_reindexToMatch": "ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch_report:pointless_reindexToMatch_report",
+    "privateer": "ccp4i2.wrappers.privateer.script.privateer_report:privateer_report",
+    "prosmart": "ccp4i2.wrappers.prosmart.script.prosmart_report:prosmart_report",
+    "prosmart_refmac": "ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac_report:prosmart_refmac_report",
+    "pyphaser_mr": "ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr_report:pyphaser_mr_report",
+    "qtpisa": "ccp4i2.wrappers.qtpisa.script.qtpisa_report:qtpisa_report",
+    "refmac": "ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report:refmac_report",
+    "scaleit": "ccp4i2.wrappers.scaleit.script.scaleit_report:scaleit_report",
+    "sculptor": "ccp4i2.wrappers.sculptor.script.sculptor_report:sculptor_report",
+    "servalcat": "ccp4i2.wrappers.servalcat.script.servalcat_report:servalcat_report",
+    "servalcat_pipe": "ccp4i2.pipelines.servalcat_pipe.script.servalcat_pipe_report:servalcat_pipe_report",
+    "sheetbend": "ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report:sheetbend_report",
+    "shelx": "ccp4i2.pipelines.shelx.script.shelx_report:shelx_report",
+    "shelxeMR": "ccp4i2.wrappers.shelxeMR.script.shelxeMR_report:shelxeMR_report",
+    "slicendice": "ccp4i2.wrappers.slicendice.script.slicendice_report:slicendice_report",
+    "splitMtz": "ccp4i2.wrappers.splitMtz.script.splitMtz_report:splitMtz_report",
+    "validate_protein": "ccp4i2.wrappers.validate_protein.script.validate_protein_report:validate_protein_report",
+    "xia2_dials": "ccp4i2.wrappers.xia2_dials.script.xia2_dials_report:xia2_dials_report",
+    "xia2_multiplex": "ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex_report:xia2_multiplex_report",
+    "xia2_ssx_reduce": "ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_report:xia2_ssx_reduce_report",
+    "xia2_xds": "ccp4i2.wrappers.xia2_xds.script.xia2_xds_report:xia2_xds_report",
+    "zanuda": "ccp4i2.wrappers.zanuda.script.zanuda_report:zanuda_report",
 }
 
-
-class ReportRegistry:
-    """Registry for lazy-loading report classes."""
-
-    def __init__(self):
-        self._cache: Dict[str, Type] = {}
-
-    def get_report_class(self, task_name: str) -> Optional[Type]:
-        """
-        Get a report class by task name.
-
-        The report is imported lazily on first access and cached.
-
-        Args:
-            task_name: Name of the task (e.g., "refmac", "pointless")
-
-        Returns:
-            Report class, or None if not found
-        """
-        cache_key = task_name
-        if cache_key in self._cache:
-            return self._cache[cache_key]
-
-        if task_name not in REPORT_NAMES:
-            return None
-
-        try:
-            report_class = _get_report_class(task_name)
-            if report_class is not None:
-                self._cache[cache_key] = report_class
-            return report_class
-        except Exception as e:
-            import warnings
-            warnings.warn(f"Failed to import report {task_name}: {e}")
-            return None
+_CACHE = {}
 
 
-# Singleton instance
-_registry = None
+def get_report_class(task_name: str):
+    """
+    Get a report class by task name.
 
+    The report is imported lazily on first access and cached.
 
-def get_report_registry() -> ReportRegistry:
-    """Get the singleton report registry instance."""
-    global _registry
-    if _registry is None:
-        _registry = ReportRegistry()
-    return _registry
+    Args:
+        task_name: Name of the task (e.g., "refmac", "pointless")
+
+    Returns:
+        Report class, or None if not found
+    """
+    if task_name in _CACHE:
+        return _CACHE[task_name]
+
+    path = _PATHS.get(task_name)
+    if path is None:
+        return None
+
+    try:
+        module_name, class_name = path.split(":")
+        module = importlib.import_module(module_name)
+        _CACHE[task_name] = getattr(module, class_name)
+        return _CACHE[task_name]
+    except Exception as e:
+        warnings.warn(f"Failed to import report {task_name}: {e}")
+        return None

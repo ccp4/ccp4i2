@@ -148,7 +148,6 @@ class CTaskManager:
 
         # Initialize plugin and report registries (lazy loading)
         self._plugin_registry = None
-        self._report_registry = None
 
     @property
     def plugin_registry(self):
@@ -157,14 +156,6 @@ class CTaskManager:
             from .task_manager.plugin_registry import get_registry
             self._plugin_registry = get_registry()
         return self._plugin_registry
-
-    @property
-    def report_registry(self):
-        """Get the report registry (lazy load on first access)."""
-        if self._report_registry is None:
-            from .task_manager.report_registry import get_report_registry
-            self._report_registry = get_report_registry()
-        return self._report_registry
 
     def get_plugin_class(self, task_name: str) -> Optional[Type]:
         """
@@ -194,21 +185,6 @@ class CTaskManager:
             if abs_path.exists():
                 return abs_path
         return None
-
-    def getReportClass(self, name: str) -> Optional[Type]:
-        """
-        Get the report class for a plugin/task.
-
-        Uses the report registry which discovers *_report.py files in wrappers/,
-        wrappers2/, and pipelines/ directories.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Report class if found, None otherwise
-        """
-        return self.report_registry.get_report_class(name)
 
     def searchPath(self) -> List[str]:
         """

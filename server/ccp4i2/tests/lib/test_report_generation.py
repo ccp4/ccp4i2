@@ -12,6 +12,7 @@ from django.test import TestCase, override_settings
 from django.conf import settings
 
 from ccp4i2.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.core.task_manager.report_registry import get_report_class
 from ccp4i2.db.models import Job
 from ccp4i2.lib.utils.reporting.i2_report import (
     generate_job_report,
@@ -181,15 +182,12 @@ class ReportRegistryTests(TestCase):
 
     def test_report_class_lazy_loading(self):
         """Test that report classes are loaded lazily."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
 
         # First access should import the class
-        report_class = task_manager.getReportClass("refmac")
+        report_class = get_report_class("refmac")
         self.assertIsNotNone(report_class)
         self.assertEqual(report_class.__name__, "refmac_report")
 
         # Second access should be cached
-        report_class_2 = task_manager.getReportClass("refmac")
+        report_class_2 = get_report_class("refmac")
         self.assertIs(report_class, report_class_2)
