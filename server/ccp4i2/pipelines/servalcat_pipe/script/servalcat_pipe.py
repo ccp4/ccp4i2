@@ -533,15 +533,24 @@ class servalcat_pipe(CPluginScript):
     # =========================================================================
 
     def _runValidationAndAnalysis(self):
-        """Run optional validation and analysis steps (non-fatal)."""
+        """Run optional validation and analysis steps (non-fatal).
+
+        Note: This runs inside startProcess(), BEFORE processOutputFiles() copies
+        files to the pipeline directory. All file references must use the wrapper's
+        output paths (which exist on disk), not the pipeline's output paths (which
+        don't exist yet).
+        """
         error = CErrorReport()
 
         # Determine which servalcat job produced the final output
         finalServalcatPlugin = self.servalcatPostCootPlugin or self.servalcatPlugin
 
+        # Path to the refined model (in the wrapper's job directory, not pipeline's)
+        refinedModelPath = str(finalServalcatPlugin.container.outputData.CIFFILE.fullPath)
+
         # Validation (non-fatal - errors logged but don't fail pipeline)
         try:
-            self._runMultimericValidation()
+            self._runMultimericValidation(finalServalcatPlugin)
         except Exception as e:
             self.appendErrorReport(110,
                 f'Validation failed (non-fatal): {e}\n{traceback.format_exc()}')
@@ -550,7 +559,7 @@ class servalcat_pipe(CPluginScript):
         if self.container.controlParameters.RUN_ADP_ANALYSIS:
             try:
                 self._runAdpAnalysis(
-                    str(self.container.outputData.CIFFILE.fullPath),
+                    refinedModelPath,
                     float(self.container.controlParameters.ADP_IQR_FACTOR))
             except Exception as e:
                 self.appendErrorReport(113,
@@ -561,7 +570,7 @@ class servalcat_pipe(CPluginScript):
             try:
                 self._runCoordAdpDevAnalysis(
                     str(self.container.inputData.XYZIN.fullPath),
-                    str(self.container.outputData.CIFFILE.fullPath))
+                    refinedModelPath)
             except Exception as e:
                 self.appendErrorReport(114,
                     f'Coord/ADP deviation analysis failed (non-fatal): {e}\n{traceback.format_exc()}')
@@ -672,8 +681,14 @@ class servalcat_pipe(CPluginScript):
     # Validation methods
     # =========================================================================
 
-    def _runMultimericValidation(self):
-        """Run geometry validation (Iris, B-factors, Ramachandran, MolProbity)."""
+    def _runMultimericValidation(self, finalServalcatPlugin):
+        """Run geometry validation (Iris, B-factors, Ramachandran, MolProbity).
+
+        Args:
+            finalServalcatPlugin: The servalcat wrapper that produced the refined model.
+                Uses its output CIFFILE (which exists on disk) rather than the pipeline's
+                output CIFFILE (which hasn't been copied yet).
+        """
         validate_iris = getattr(self.container.controlParameters, 'VALIDATE_IRIS', False)
         validate_baverage = getattr(self.container.controlParameters, 'VALIDATE_BAVERAGE', False)
         validate_ramachandran = getattr(self.container.controlParameters, 'VALIDATE_RAMACHANDRAN', False)
@@ -684,7 +699,7 @@ class servalcat_pipe(CPluginScript):
 
         self.validatePlugin = self.makePluginObject('validate_protein')
         self.validatePlugin.container.inputData.XYZIN_2.set(
-            self.container.outputData.CIFFILE)
+            finalServalcatPlugin.container.outputData.CIFFILE)
         self.validatePlugin.container.inputData.XYZIN_1.set(
             self.container.inputData.XYZIN)
         self.validatePlugin.container.inputData.NAME_2.set("Refined")
