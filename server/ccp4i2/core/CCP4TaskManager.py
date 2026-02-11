@@ -468,29 +468,3 @@ def TASKMANAGER():
     if CTaskManager.insts is None:
         CTaskManager.insts = CTaskManager()
     return CTaskManager.insts
-
-
-def main():
-    """Main entry point for module. Use --rebuild to regenerate lookup files."""
-    parser = argparse.ArgumentParser(description="CCP4 Task Manager Utility")
-    parser.add_argument(
-        "--rebuild", action="store_true", help="Regenerate lookup files"
-    )
-    args = parser.parse_args()
-
-    if args.rebuild:
-        dir_path = os.path.dirname(os.path.abspath(__file__))
-        plugin_script = os.path.join(dir_path, "task_manager", "plugin_lookup.py")
-        report_script = os.path.join(dir_path, "task_manager", "report_lookup.py")
-
-        print("Regenerating plugin_lookup.json and plugin_registry.py...")
-        subprocess.run([sys.executable, plugin_script], check=True)
-        print("Regenerating report_registry.py...")
-        subprocess.run([sys.executable, report_script], check=True)
-        print("Lookup files regenerated.")
-    else:
-        parser.print_help()
-
-
-if __name__ == "__main__":
-    main()
