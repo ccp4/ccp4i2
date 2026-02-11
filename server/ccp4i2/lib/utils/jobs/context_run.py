@@ -343,12 +343,20 @@ def run_job_local(job, synchronous=False):
             }
         else:
             # Asynchronous execution: start job in detached process
+            # Use crash-safe wrapper script to catch segfaults and mark jobs FAILED.
+            # Without this, a C extension crash kills the Python process and the job
+            # stays stuck in "running" state with no way to detect the failure.
+            wrapper_script = str(
+                pathlib.Path(__file__).parent.parent.parent.parent.parent
+                / "run_job_safe.sh"
+            )
+
             subprocess.Popen(
                 [
+                    "/bin/bash",
+                    wrapper_script,
                     python_interpreter,
                     manage_py,
-                    "run_job",
-                    "-ju",
                     str(job.uuid),
                 ],
                 start_new_session=True,
@@ -356,7 +364,7 @@ def run_job_local(job, synchronous=False):
             )
 
             logger.info(
-                "Started job %s (%s) via subprocess using %s",
+                "Started job %s (%s) via crash-safe wrapper using %s",
                 job.id, job.uuid, interpreter_name
             )
 
