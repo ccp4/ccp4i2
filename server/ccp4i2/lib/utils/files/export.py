@@ -28,7 +28,6 @@ from typing import Tuple, Optional
 
 from django.http import JsonResponse, FileResponse
 from ccp4i2.core import CCP4TaskManager
-from ccp4i2.core.CCP4TaskManager import CTaskManager
 
 from ccp4i2.db import models
 
@@ -101,7 +100,7 @@ def export_job_file(
         )
 
         # Get the task manager instance
-        task_manager: CTaskManager = CCP4TaskManager.TASKMANAGER()
+        task_manager = CCP4TaskManager.TASKMANAGER()
         logger.debug("Got task manager instance")
 
         # Call exportJobFiles to get the filename of the file to export

@@ -136,10 +136,10 @@ def test_cpluginscript_events():
     reason="CCP4I2_ROOT environment variable not set"
 )
 class TestDefXmlLoading:
-    """Tests for automatic .def.xml loading via CTaskManager."""
+    """Tests for automatic .def.xml loading."""
 
     def test_taskmanager_locate_def_xml(self):
-        """Test CTaskManager.locate_def_xml() finds plugin definition files."""
+        """Test locate_def_xml() finds plugin definition files."""
         tm = TASKMANAGER()
 
         # Test finding a common plugin

@@ -119,7 +119,7 @@ class CCP4i2TestCase(TestCase):
             NCYCLES.set(-1)
 
     def test_def_xml_container(self):
-        taskManager: CCP4TaskManager.CTaskManager = CCP4TaskManager.CTaskManager()
+        taskManager = CCP4TaskManager.TASKMANAGER()
         defFile = taskManager.locate_def_xml(task_name="prosmart_refmac")
         container: CCP4Container.CContainer = CCP4Container.CContainer(
             definitionFile=defFile

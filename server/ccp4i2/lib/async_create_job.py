@@ -20,7 +20,6 @@ from typing import Optional, Dict, Any
 
 from asgiref.sync import sync_to_async
 
-from ..core import CCP4TaskManager
 from ..core.CCP4PluginScript import CPluginScript
 from ..core.task_manager.metadata import TITLES
 from ..core.task_manager.plugin_registry import get_plugin_class
@@ -109,9 +108,6 @@ async def create_job_async(
     # Get project
     project = await db_handler.get_project()
     logger.debug(f"Project: {project.name} ({project.uuid})")
-
-    # Get task manager for plugin info
-    task_manager = CCP4TaskManager.CTaskManager()
 
     # Determine title if not provided
     if title is None:

@@ -371,10 +371,9 @@ class CPluginScript(CData):
         """
         Load the .def.xml file for this task.
 
-        Uses CTaskManager to locate the .def.xml file, then uses
+        Locate the .def.xml file, then uses
         DefXmlParser to load the structure into containers.
         """
-        # Locate DEF file using CTaskManager
         logger.debug(f"[_loadDefFile] Looking for .def.xml for task: {self.TASKNAME}")
         def_path = self._locateDefFile()
 
@@ -401,7 +400,7 @@ class CPluginScript(CData):
 
     def _locateDefFile(self) -> Optional[Path]:
         """
-        Locate the .def.xml file for this task using CTaskManager.
+        Locate the .def.xml file for this task.
 
         Returns:
             Path to .def.xml file, or None if not found

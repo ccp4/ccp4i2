@@ -37,7 +37,6 @@ from django.http import Http404
 from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, JSONParser
 from ccp4i2.core import CCP4TaskManager
-from ccp4i2.core.CCP4TaskManager import CTaskManager
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core import CCP4ErrorHandling
 from ..lib.utils.jobs.i2run import i2run_for_job
@@ -1783,7 +1782,7 @@ class JobViewSet(ModelViewSet):
             )
 
             # Get the task manager instance and retrieve menu data
-            task_manager: CTaskManager = CCP4TaskManager.TASKMANAGER()
+            task_manager = CCP4TaskManager.TASKMANAGER()
 
             # TODO: Modernize exportJobFiles - legacy method not available in modern TaskManager
             # For now, return empty menu structure

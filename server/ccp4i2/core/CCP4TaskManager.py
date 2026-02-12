@@ -357,7 +357,7 @@ def get_task_tree():
         - lookup: Dict mapping taskName -> {version: {metadata...}}
         - iconLookup: Dict mapping module name to icon path
     """
-    task_manager = CTaskManager()
+    task_manager = TASKMANAGER()
     result = {
         "tree": task_manager.task_tree(),
         "lookup": task_manager.task_lookup,
