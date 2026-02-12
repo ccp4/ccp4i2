@@ -8,8 +8,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-# DISABLED: Old ccp4i2 import
-# from ccp4i2.googlecode import diff_match_patch_py3
 
 # BASE_DIR is the directory where your Django project is located (containing manage.py)
 BASE_DIR = Path(__file__).resolve().parent.parent
