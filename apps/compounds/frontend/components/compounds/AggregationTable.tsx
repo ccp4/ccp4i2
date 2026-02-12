@@ -21,9 +21,11 @@ import {
   MenuItem,
   InputLabel,
   IconButton,
+  TextField,
+  InputAdornment,
 } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Download, Medication, ZoomIn, ContentCopy, Check } from '@mui/icons-material';
+import { Download, Medication, ZoomIn, ContentCopy, Check, Search, Clear } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/navigation';
 import {
@@ -209,10 +211,14 @@ function CompactTable({
   data,
   aggregations,
   concentrationDisplay = 'natural',
+  searchTerm = '',
+  fillHeight = false,
 }: {
   data: AggregationResponse & { protocols: ProtocolInfo[] };
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
+  searchTerm?: string;
+  fillHeight?: boolean;
 }) {
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
@@ -235,6 +241,13 @@ function CompactTable({
 
   const rows = data.data as CompactRow[];
   const protocols = data.protocols;
+
+  // Filter rows by search term
+  const filteredRows = useMemo(() => {
+    if (!searchTerm) return rows;
+    const term = searchTerm.toLowerCase();
+    return rows.filter(row => row.formatted_id?.toLowerCase().includes(term));
+  }, [rows, searchTerm]);
 
   // Extract property info from response
   const includeProperties = data.meta.include_properties || [];
@@ -276,11 +289,11 @@ function CompactTable({
     return null;
   }, []);
 
-  // Sorted rows
+  // Sorted rows (from filtered set)
   const sortedRows = useMemo(() => {
     const comparator = getComparator<CompactRow>(order, (row) => getSortValue(row, orderBy));
-    return [...rows].sort(comparator);
-  }, [rows, order, orderBy, getSortValue]);
+    return [...filteredRows].sort(comparator);
+  }, [filteredRows, order, orderBy, getSortValue]);
   const showBatchColumn = data.meta.group_by_batch;
 
   // Track horizontal scroll position to show/hide scroll shadow
@@ -390,7 +403,7 @@ function CompactTable({
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
-            {data.meta.compound_count} compounds
+            {searchTerm ? `${filteredRows.length} of ` : ''}{data.meta.compound_count} compounds
             {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
               <> ({data.meta.row_count} rows with batch split)</>
             )}
@@ -412,7 +425,7 @@ function CompactTable({
         </Button>
       </Box>
 
-      <Box sx={{ position: 'relative', width: '100%' }}>
+      <Box sx={{ position: 'relative', width: '100%', ...(fillHeight && { flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }) }}>
         {/* Top horizontal scrollbar - synced with table */}
         <Box
           ref={topScrollRef}
@@ -459,7 +472,7 @@ function CompactTable({
         />
         <TableContainer
           ref={parentRef}
-          sx={{ maxHeight: 600, overflow: 'auto' }}
+          sx={fillHeight ? { flex: 1, minHeight: 0, overflow: 'auto' } : { maxHeight: 600, overflow: 'auto' }}
         >
           {/* Calculate min width: 3 fixed columns (320px) + property columns (70px each) + protocol columns (100px each) */}
           <Table
@@ -763,10 +776,14 @@ function MediumTable({
   data,
   aggregations,
   concentrationDisplay = 'natural',
+  searchTerm = '',
+  fillHeight = false,
 }: {
   data: AggregationResponse;
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
+  searchTerm?: string;
+  fillHeight?: boolean;
 }) {
   const parentRef = useRef<HTMLDivElement>(null);
 
@@ -780,6 +797,13 @@ function MediumTable({
 
   const rows = data.data as MediumRow[];
   const showBatchColumn = data.meta.group_by_batch;
+
+  // Filter rows by search term
+  const filteredRows = useMemo(() => {
+    if (!searchTerm) return rows;
+    const term = searchTerm.toLowerCase();
+    return rows.filter(row => row.formatted_id?.toLowerCase().includes(term));
+  }, [rows, searchTerm]);
 
   // Handle sort request
   const handleRequestSort = (property: MediumSortKey) => {
@@ -800,11 +824,11 @@ function MediumTable({
     return value ?? null;
   }, []);
 
-  // Sorted rows
+  // Sorted rows (from filtered set)
   const sortedRows = useMemo(() => {
     const comparator = getComparator<MediumRow>(order, (row) => getSortValue(row, orderBy));
-    return [...rows].sort(comparator);
-  }, [rows, order, orderBy, getSortValue]);
+    return [...filteredRows].sort(comparator);
+  }, [filteredRows, order, orderBy, getSortValue]);
 
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
@@ -831,10 +855,10 @@ function MediumTable({
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexShrink: 0 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
-            {data.meta.compound_count} compounds
+            {searchTerm ? `${filteredRows.length} of ` : ''}{data.meta.compound_count} compounds
             {data.meta.group_by_batch && data.meta.row_count && data.meta.row_count !== data.meta.compound_count && (
               <> ({data.meta.row_count} rows with batch split)</>
             )}
@@ -858,7 +882,7 @@ function MediumTable({
 
       <TableContainer
         ref={parentRef}
-        sx={{ maxHeight: 600, overflow: 'auto' }}
+        sx={fillHeight ? { flex: 1, minHeight: 0, overflow: 'auto' } : { maxHeight: 600, overflow: 'auto' }}
       >
         <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
@@ -1109,9 +1133,13 @@ type LongSortKey = 'compound' | 'batch' | 'target' | 'protocol' | 'date' | 'kpi'
 function LongTable({
   data,
   concentrationDisplay = 'natural',
+  searchTerm = '',
+  fillHeight = false,
 }: {
   data: AggregationResponse;
   concentrationDisplay: ConcentrationDisplayMode;
+  searchTerm?: string;
+  fillHeight?: boolean;
 }) {
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
@@ -1123,6 +1151,16 @@ function LongTable({
   const rows = data.data as LongRow[];
   // Long format always includes batch info, but only show column if any row has batch data
   const showBatchColumn = rows.some(row => row.batch_number != null);
+
+  // Filter rows by search term
+  const filteredRows = useMemo(() => {
+    if (!searchTerm) return rows;
+    const term = searchTerm.toLowerCase();
+    return rows.filter(row =>
+      row.formatted_id?.toLowerCase().includes(term) ||
+      row.compound_name?.toLowerCase().includes(term)
+    );
+  }, [rows, searchTerm]);
 
   // Handle sort request
   const handleRequestSort = (property: LongSortKey) => {
@@ -1143,11 +1181,11 @@ function LongTable({
     return null;
   }, []);
 
-  // Sorted rows
+  // Sorted rows (from filtered set)
   const sortedRows = useMemo(() => {
     const comparator = getComparator<LongRow>(order, (row) => getSortValue(row, orderBy));
-    return [...rows].sort(comparator);
-  }, [rows, order, orderBy, getSortValue]);
+    return [...filteredRows].sort(comparator);
+  }, [filteredRows, order, orderBy, getSortValue]);
 
   // Virtualization for smooth scrolling with large datasets
   const rowVirtualizer = useVirtualizer({
@@ -1164,9 +1202,9 @@ function LongTable({
 
   return (
     <>
-      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2, flexShrink: 0 }}>
         <Typography variant="body2" color="text.secondary">
-          {data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
+          {searchTerm ? `${filteredRows.length} of ` : ''}{data.meta.compound_count} compounds, {data.meta.protocol_count} protocols,{' '}
           {data.meta.total_measurements} measurements
         </Typography>
         <Button startIcon={<Download />} onClick={handleExport} size="small">
@@ -1176,7 +1214,7 @@ function LongTable({
 
       <TableContainer
         ref={parentRef}
-        sx={{ maxHeight: 600, overflow: 'auto' }}
+        sx={fillHeight ? { flex: 1, minHeight: 0, overflow: 'auto' } : { maxHeight: 600, overflow: 'auto' }}
       >
         <Table stickyHeader size="small" sx={{ tableLayout: 'fixed' }}>
           <TableHead>
@@ -2573,6 +2611,14 @@ export function AggregationTable({
   onConcentrationDisplayChange,
   fillHeight = false,
 }: AggregationTableProps) {
+  // Search state for filtering compounds in the table
+  const [searchTerm, setSearchTerm] = useState('');
+
+  // Clear search when data changes (new query)
+  useEffect(() => {
+    setSearchTerm('');
+  }, [data]);
+
   // Use internal state if no external control is provided
   const [internalDisplay, setInternalDisplay] = useState<ConcentrationDisplayMode>(concentrationDisplay);
 
@@ -2645,6 +2691,8 @@ export function AggregationTable({
           data={data}
           aggregations={aggregations}
           concentrationDisplay={displayMode}
+          searchTerm={searchTerm}
+          fillHeight={fillHeight}
         />
       );
     } else if (isMediumResponse(data)) {
@@ -2653,23 +2701,55 @@ export function AggregationTable({
           data={data}
           aggregations={aggregations}
           concentrationDisplay={displayMode}
+          searchTerm={searchTerm}
+          fillHeight={fillHeight}
         />
       );
     } else {
-      return <LongTable data={data} concentrationDisplay={displayMode} />;
+      return (
+        <LongTable
+          data={data}
+          concentrationDisplay={displayMode}
+          searchTerm={searchTerm}
+          fillHeight={fillHeight}
+        />
+      );
     }
   };
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden', ...(fillHeight && { height: '100%', display: 'flex', flexDirection: 'column' }) }}>
-      <Box sx={{ p: 2, ...(fillHeight && { flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'hidden' }) }}>
-        <Box sx={{ display: 'flex', justifyContent: 'flex-end', mb: 1, flexShrink: 0 }}>
+    <Paper sx={{ width: '100%', overflow: 'clip', ...(fillHeight && { height: '100%', display: 'flex', flexDirection: 'column' }) }}>
+      <Box sx={{ p: 2, ...(fillHeight && { flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'clip' }) }}>
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', mb: 1, flexShrink: 0, gap: 1 }}>
+          <TextField
+            size="small"
+            placeholder="Search compounds..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            slotProps={{
+              input: {
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <Search fontSize="small" color="action" />
+                  </InputAdornment>
+                ),
+                endAdornment: searchTerm ? (
+                  <InputAdornment position="end">
+                    <IconButton size="small" onClick={() => setSearchTerm('')} edge="end">
+                      <Clear fontSize="small" />
+                    </IconButton>
+                  </InputAdornment>
+                ) : null,
+              },
+            }}
+            sx={{ width: 220 }}
+          />
           <ConcentrationDisplaySelector
             value={displayMode}
             onChange={handleDisplayChange}
           />
         </Box>
-        <Box sx={{ ...(fillHeight && { flex: 1, minHeight: 0, overflow: 'auto' }) }}>
+        <Box sx={{ ...(fillHeight && { flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column' }) }}>
           {renderTable()}
         </Box>
       </Box>

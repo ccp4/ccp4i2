@@ -568,7 +568,7 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.action == 'create':
             return CompoundCreateSerializer
-        if self.action == 'retrieve':
+        if self.action in ('retrieve', 'update', 'partial_update'):
             return CompoundDetailSerializer
         return CompoundListSerializer
 
@@ -822,6 +822,9 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
             'matches': serializer.data
         })
 
+    # stereo_comment values that all mean "no specific stereochemistry info"
+    UNSPECIFIED_STEREO = {None, '', 'unset', 'achiral'}
+
     @action(detail=False, methods=['get'])
     def resolve_by_smiles(self, request):
         """
@@ -831,8 +834,13 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
         against the rdkit_smiles field. Falls back to InChI matching if
         InChI support is available and rdkit_smiles lookup fails.
 
+        When stereo_comment is provided, only returns matches with an
+        equivalent stereo_comment (unset/achiral/empty are treated as
+        equivalent; all other values must match exactly).
+
         Query parameters:
             smiles: SMILES string to resolve (required)
+            stereo_comment: stereochemistry annotation (optional)
 
         Returns:
             JSON with found=true and compound data if matched,
@@ -851,6 +859,8 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
+        stereo_param = request.query_params.get('stereo_comment')
+
         try:
             mol = Chem.MolFromSmiles(smiles_param)
             if mol is None:
@@ -866,37 +876,67 @@ class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
             )
 
         # Primary lookup: canonical SMILES
-        compound = self.get_queryset().filter(rdkit_smiles=canonical_smiles).first()
+        candidates = list(
+            self.get_queryset().filter(rdkit_smiles=canonical_smiles)
+        )
 
         # Fallback: InChI lookup (if available and SMILES didn't match)
-        query_inchi = None
-        if not compound:
+        if not candidates:
             try:
                 from rdkit.Chem import inchi as _inchi_mod
                 if getattr(_inchi_mod, 'INCHI_AVAILABLE', False):
                     query_inchi = _inchi_mod.MolToInchi(mol)
                     if query_inchi:
-                        compound = self.get_queryset().filter(
-                            inchi=query_inchi
-                        ).first()
+                        candidates = list(
+                            self.get_queryset().filter(inchi=query_inchi)
+                        )
             except (ImportError, AttributeError):
                 pass
 
-        if compound:
-            serializer = CompoundDetailSerializer(compound)
-            return Response({
-                'found': True,
-                'query_smiles': smiles_param,
-                'canonical_smiles': canonical_smiles,
-                'compound': serializer.data,
-            })
-        else:
-            return Response({
-                'found': False,
-                'query_smiles': smiles_param,
-                'canonical_smiles': canonical_smiles,
-                'compound': None,
-            })
+        # If stereo_comment provided, split candidates into stereo-equivalent
+        # match (blocking duplicate) and related compounds (different stereo)
+        compound = None
+        related = []
+        if candidates and stereo_param is not None:
+            incoming_norm = (
+                None if stereo_param in self.UNSPECIFIED_STEREO
+                else stereo_param
+            )
+            for c in candidates:
+                existing_norm = (
+                    None if c.stereo_comment in self.UNSPECIFIED_STEREO
+                    else c.stereo_comment
+                )
+                if incoming_norm == existing_norm:
+                    if compound is None:
+                        compound = c
+                    # additional exact matches are ignored (first wins)
+                else:
+                    related.append(c)
+        elif candidates:
+            compound = candidates[0]
+
+        response_data = {
+            'found': compound is not None,
+            'query_smiles': smiles_param,
+            'canonical_smiles': canonical_smiles,
+            'compound': (
+                CompoundDetailSerializer(compound).data if compound else None
+            ),
+        }
+
+        # Include related compounds with different stereo (compact format)
+        if related:
+            response_data['related_compounds'] = [
+                {
+                    'formatted_id': c.formatted_id,
+                    'id': str(c.id),
+                    'stereo_comment': c.stereo_comment,
+                }
+                for c in related
+            ]
+
+        return Response(response_data)
 
 
 class BatchViewSet(ReversionMixin, viewsets.ModelViewSet):

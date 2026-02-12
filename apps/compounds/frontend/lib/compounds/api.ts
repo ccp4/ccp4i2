@@ -114,6 +114,20 @@ async function fetcher<T>(url: string): Promise<T> {
 }
 
 /**
+ * GET request helper (for one-off requests outside of SWR)
+ */
+export async function apiGet<T>(endpoint: string): Promise<T> {
+  const res = await authFetch(`${API_BASE}/${endpoint}`);
+  if (!res.ok) {
+    const errorText = await res.text().catch(() => 'Unknown error');
+    const error = new Error(`API request failed: ${res.status} ${errorText}`);
+    (error as any).status = res.status;
+    throw error;
+  }
+  return res.json();
+}
+
+/**
  * POST request helper
  */
 export async function apiPost<T>(endpoint: string, body: any): Promise<T> {

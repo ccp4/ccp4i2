@@ -15,8 +15,9 @@ import {
   Autocomplete,
   MenuItem,
 } from '@mui/material';
-import { Close, Medication, Save } from '@mui/icons-material';
+import { Close, Medication, Save, Science } from '@mui/icons-material';
 import { apiPatch, useCompoundsApi } from '@/lib/compounds/api';
+import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import type { Compound, Supplier, Target } from '@/types/compounds/models';
 
 const STEREO_CHOICES = [
@@ -38,6 +39,10 @@ const STEREO_CHOICES = [
   { value: 'ez_mixture', label: 'Mixture of E and Z isomers' },
   { value: 'e_isomer', label: 'E isomer' },
   { value: 'z_isomer', label: 'Z isomer' },
+  ...Array.from({ length: 20 }, (_, i) => ({
+    value: `isomer_${i + 1}`,
+    label: `Isomer ${i + 1}`,
+  })),
 ];
 
 interface CompoundEditDialogProps {
@@ -58,6 +63,7 @@ export function CompoundEditDialog({
   const [error, setError] = useState<string | null>(null);
 
   // Form state
+  const [smiles, setSmiles] = useState('');
   const [target, setTarget] = useState<Target | null>(null);
   const [supplier, setSupplier] = useState<Supplier | null>(null);
   const [supplierRef, setSupplierRef] = useState('');
@@ -74,6 +80,7 @@ export function CompoundEditDialog({
   // Initialize form from compound when dialog opens
   useEffect(() => {
     if (open && compound) {
+      setSmiles(compound.smiles || '');
       setSupplierRef(compound.supplier_ref || '');
       setStereoComment(compound.stereo_comment || 'unset');
       setLabbookNumber(compound.labbook_number?.toString() || '');
@@ -105,7 +112,7 @@ export function CompoundEditDialog({
     setError(null);
 
     try {
-      const updated = await apiPatch<Compound>(`compounds/${compound.id}/`, {
+      const payload: Record<string, any> = {
         target: target?.id || null,
         supplier: supplier?.id || null,
         supplier_ref: supplierRef.trim() || null,
@@ -114,7 +121,15 @@ export function CompoundEditDialog({
         page_number: pageNumber ? parseInt(pageNumber, 10) : null,
         compound_number: compoundNumber ? parseInt(compoundNumber, 10) : null,
         comments: comments.trim() || null,
-      });
+      };
+
+      // Only send SMILES if it changed (triggers recomputation of canonical SMILES etc.)
+      const trimmedSmiles = smiles.trim();
+      if (trimmedSmiles && trimmedSmiles !== compound.smiles) {
+        payload.smiles = trimmedSmiles;
+      }
+
+      const updated = await apiPatch<Compound>(`compounds/${compound.id}/`, payload);
 
       onSaved(updated);
       onClose();
@@ -145,6 +160,33 @@ export function CompoundEditDialog({
         )}
 
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, pt: 1 }}>
+          {/* SMILES editing */}
+          <Box>
+            <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+              <TextField
+                label="SMILES"
+                value={smiles}
+                onChange={(e) => setSmiles(e.target.value)}
+                fullWidth
+                size="small"
+                helperText={
+                  smiles.trim() !== compound.smiles
+                    ? 'Structure will be recomputed on save'
+                    : 'Update SMILES to refine stereochemistry'
+                }
+                InputProps={{
+                  startAdornment: <Science sx={{ mr: 1, color: 'text.secondary' }} />,
+                  sx: { fontFamily: 'monospace', fontSize: '0.85rem' },
+                }}
+              />
+              {smiles.trim() && (
+                <Box sx={{ flexShrink: 0 }}>
+                  <MoleculeChip smiles={smiles.trim()} size={80} />
+                </Box>
+              )}
+            </Box>
+          </Box>
+
           <Autocomplete
             options={targets || []}
             getOptionLabel={(option) => option.name}

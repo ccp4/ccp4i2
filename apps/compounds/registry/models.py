@@ -205,6 +205,8 @@ class Compound(models.Model):
         ('ez_mixture', 'Mixture of E and Z isomers'),
         ('e_isomer', 'E isomer'),
         ('z_isomer', 'Z isomer'),
+    ] + [
+        (f'isomer_{i}', f'Isomer {i}') for i in range(1, 21)
     ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
