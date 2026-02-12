@@ -46,5 +46,3 @@ class molrep_mr_report(Report):
                           [ "For" , "for"  ] ] :
         
         table.addData(title=title,select=select)
-
-    self.addTaskReferences()

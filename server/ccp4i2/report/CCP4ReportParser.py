@@ -51,9 +51,9 @@ from io import StringIO
 
 from lxml import html as lxml_html
 
-from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_OK, SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
+from ccp4i2 import I2_TOP
 
 # Import error handling (lazy to avoid circular imports)
 _diagnostics_module = None
@@ -978,7 +978,6 @@ class Report(Container):
         self.additionalJsFiles = kw.get('additionalJsFiles', None)
         self.additionalScript = kw.get('additionalScript', None)
         self.requireDataMain = kw.get('requireDataMain', 'mosflmApp')
-        self.referenceList = []
         self.htmlBase = kw.get('htmlBase', None)
         self.cssVersion = kw.get('cssVersion', None)
         if 'jobId' in kw:
@@ -1085,18 +1084,17 @@ class Report(Container):
                 self.children.append(cls(jobInfo=self.jobInfo))
         # If there is not list of references try adding the default for the
         # task
-        if len(self.referenceList) == 0:
-            self.addTaskReferences()
-        if len(self.referenceList) > 0:
-            fold = Fold(
-                label='Bibliographic references',
-                brief='Biblio',
-                jobInfo=self.jobInfo)
-            fold.children.extend(self.referenceList)
-            if isinstance(self.children[-1], JobDetails):
-                self.children.insert(-1, fold)
-            else:
-                self.children.append(fold)
+        fold = Fold(
+            label='Bibliographic references',
+            brief='Biblio',
+            jobInfo=self.jobInfo)
+        referenceGroup = ReferenceGroup()
+        referenceGroup.loadFromMedLine(self.TASKNAME)
+        fold.children.append(referenceGroup)
+        if isinstance(self.children[-1], JobDetails):
+            self.children.insert(-1, fold)
+        else:
+            self.children.append(fold)
 
     def standardiseXrtReport(self, report):
         # if report.find(XRTNS+'title') is None:
@@ -1213,7 +1211,6 @@ class Report(Container):
                             obj.data_as_xml(fileName=fileName))
 
     def clearXMLFiles(self, directory=None):
-        from ccp4i2.core import CCP4Utils
         if directory is None:
             directory = os.getcwd()
         for ofClass in [Table, FlotGraph, Progress, Pre]:
@@ -1224,29 +1221,6 @@ class Report(Container):
                         os.path.join(directory, obj.data_url()))
                     os.remove(fileName)
                     # print 'Report.makeXMLFiles fileName',fileName
-
-    def addReference(self, xrtnode=None, xmlnode=None, jobInfo=None, **kw):
-        if xmlnode is None:
-            xmlnode = self.xmlnode
-        if jobInfo is None:
-            jobInfo = self.jobInfo
-        if not hasattr(self, 'referenceList'):
-            self.referenceList = [ReferenceGroup()]
-        obj = Reference(
-            xrtnode=xrtnode,
-            xmlnode=xmlnode,
-            jobInfo=jobInfo,
-            **kw)
-        self.referenceList[-1].append(obj)
-        return obj
-
-    def addTaskReferences(self):
-        if not hasattr(self, 'referenceList'):
-            self.referenceList = []
-        from ccp4i2.core import CCP4TaskManager
-        refFile = CCP4TaskManager.TASKMANAGER().searchReferenceFile(self.TASKNAME)
-        self.referenceList.append(ReferenceGroup())
-        self.referenceList[-1].loadFromMedLine(fileName=refFile)
 
     def getReport(self):
         return self
@@ -3386,29 +3360,23 @@ class ReferenceGroup(Container):
         self._class = 'bibreference_group'
         self.taskName = kw.get('taskName', None)
 
-    def loadFromMedLine(self, taskName=None, fileName=None):
-        if fileName is None and taskName is not None:
-            from ccp4i2.core import CCP4TaskManager
-            fileName = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName)
-        if fileName is None or not os.path.exists(fileName):
+    def loadFromMedLine(self, taskName):
+        path = I2_TOP / "references" / f"{taskName}.medline.txt"
+        if not path.exists():
             self.errReport.append(
                 self.__class__,
                 100,
-                'Taskname: ' +
-                str(taskName) +
-                ' Filename: ' +
-                str(fileName))
+                f'Taskname: {taskName} Filename: {path}')
             return
         self.taskName = taskName
 
         from ccp4i2.core import CCP4Utils
         try:
-            text = CCP4Utils.readFile(fileName=fileName)
+            text = CCP4Utils.readFile(fileName=path)
         except CException as e:
             self.errReport.extend(e)
             return
         textList = text.split('\nPMID- ')
-        # print 'ReferenceGroup.loadFromMedLine textList',textList
         for text in textList:
             ref = Reference()
             m = re.search(r'TI  -(.*)', text)
@@ -3425,7 +3393,6 @@ class ReferenceGroup(Container):
                 ref.articleLink = m.groups()[0].strip()
             if ref.source is not None:
                 self.append(ref)
-        # print 'ReferenceGroup.loadFromMedLine',ref
 
 
 class BaublesHtml:

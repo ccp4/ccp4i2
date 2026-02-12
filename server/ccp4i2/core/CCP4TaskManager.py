@@ -1,6 +1,4 @@
-import glob
 import json
-import os
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -161,43 +159,6 @@ class CTaskManager:
             abs_path = (I2_TOP / rel_path).resolve()
             if abs_path.exists():
                 return abs_path
-        return None
-
-    def searchPath(self) -> List[str]:
-        """
-        Get the search path for plugins (wrappers, pipelines, etc.).
-
-        Returns:
-            List of directory paths containing plugin scripts
-        """
-        ccp4i2_root = os.environ.get("CCP4I2_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        return [
-            os.path.join(ccp4i2_root, "wrappers", "*", "script"),
-            os.path.join(ccp4i2_root, "wrappers2", "*", "script"),
-            os.path.join(ccp4i2_root, "pipelines", "*", "script"),
-            os.path.join(ccp4i2_root, "pipelines", "*", "wrappers", "*", "script"),
-        ]
-
-    def searchReferenceFile(self, name: str) -> Optional[str]:
-        """
-        Search for reference/bibliography files for a task.
-
-        Reference files are typically .medline.txt files containing citation information.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "servalcat_pipe")
-
-        Returns:
-            File path to reference file found
-        """
-        # Search all paths in the search path
-        for path_pattern in self.searchPath():
-            # Expand the glob pattern in the path (e.g., wrappers/*/script)
-            matching_dirs = glob.glob(path_pattern)
-            for directory in matching_dirs:
-                full_path = os.path.join(directory, f"{name}.medline.txt")
-                if os.path.exists(full_path):
-                    return full_path
         return None
 
     def _normalize_module_name(self, module: Any) -> str:

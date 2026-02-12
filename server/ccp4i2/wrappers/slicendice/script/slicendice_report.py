@@ -54,6 +54,3 @@ class slicendice_report(Report):
             alog.close()
     
             tableFoldmr.append("<pre>%s</pre>" % lines)
-    
-    
-        self.addTaskReferences()

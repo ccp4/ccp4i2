@@ -63,5 +63,3 @@ class mrbump_basic_report(Report):
             rprog=references.getReference(program)
             tableFoldreferences.append("<b>" + rprog.name + "</b> : " + rprog.paper)
             #tableFoldreferences.append(rprog.paper)
-
-    self.addTaskReferences()
