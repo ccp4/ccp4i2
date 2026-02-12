@@ -16,9 +16,6 @@ from ..base_object.base_classes import CData, CContainer, ValueState
 from ..base_object.fundamental_types import (
     CInt, CFloat, CBoolean, CString, CList
 )
-from ..base_object.metadata_system import (
-    FieldMetadata, MetadataRegistry
-)
 
 # Import load_nested_xml for handling .def.xml inheritance
 from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
@@ -29,7 +26,6 @@ class DefXmlParser:
 
     def __init__(self):
         self.class_registry = self._build_class_registry()
-        self.metadata_registry = MetadataRegistry()
 
     def _build_class_registry(self) -> Dict[str, Type[CData]]:
         """Build registry of available CData classes."""
@@ -381,26 +377,22 @@ class DefXmlParser:
     def _apply_qualifiers(
         self, obj: CData, qualifiers: Dict[str, Any], class_name: str
     ) -> None:
-        """Apply qualifiers to an object."""
-        # Create metadata for this field
-        metadata = FieldMetadata(
-            name=getattr(obj, "name", "unknown"), data_type=class_name
-        )
+        """Apply qualifiers from .def.xml to a CData object.
 
-        # Apply constraints and defaults
+        All qualifiers are passed through to the object via set_qualifier()
+        so they are available to the JSON encoder and frontend. Special
+        handling is only needed for 'default' (sets the object value) and
+        a few qualifiers that need type coercion before storage.
+        """
         for key, value in qualifiers.items():
             if key == "default":
-                # Skip if value is the string "None" (from XML parsing)
-                # This happens when .def.xml has <default>None</default>
+                # 'default' sets the object's value, not a qualifier
                 if value == "None":
                     continue
 
                 if isinstance(value, dict):
-                    # Complex default - store in metadata AND apply to object attributes
-                    # This handles cases like CPdbDataFile/CMapCoeffsDataFile with:
-                    #   <default><subType>1</subType><contentFlag>2</contentFlag></default>
-                    # These attributes need to be set on the object for fileExtensions() to work
-                    metadata.default = value
+                    # Complex default (e.g. <default><subType>1</subType></default>)
+                    # Apply each sub-attribute to the object
                     for attr_name, attr_value in value.items():
                         if hasattr(obj, attr_name):
                             try:
@@ -414,93 +406,37 @@ class DefXmlParser:
                             except Exception as e:
                                 print(f"Error setting default {attr_name}={attr_value}: {e}")
                 else:
-                    # Simple default - set the value and metadata
-                    metadata.default = value
                     try:
                         if hasattr(obj, "_set_default_value"):
                             obj._set_default_value(value)
-                        else:
-                            # For fundamental types, set the actual value
-                            if hasattr(obj, "value"):
-                                obj.value = value
-                                if hasattr(obj, "_value_states"):
-                                    obj._value_states["value"] = ValueState.DEFAULT
+                        elif hasattr(obj, "value"):
+                            obj.value = value
+                            if hasattr(obj, "_value_states"):
+                                obj._value_states["value"] = ValueState.DEFAULT
                     except Exception as e:
-                        # Silently skip errors for None-like values
                         if value not in [None, "", "None"]:
                             print(
                                 f"Error setting default value {value} for {class_name}: {e}"
                             )
+                continue
 
-            elif key == "min":
-                metadata.minimum = value
-                # Also set on object for runtime validation
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("min", value)
-
-            elif key == "max":
-                metadata.maximum = value
-                # Also set on object for runtime validation
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("max", value)
-
-            elif key == "minLength":
-                metadata.minlength = value
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("minLength", value)
-
-            elif key == "maxLength":
-                metadata.maxlength = value
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("maxLength", value)
-
-            elif key == "enumerators":
+            # Type coercion for specific qualifiers before storing
+            if key == "enumerators":
                 # Coerce string enumerators to numeric type for CInt/CFloat
-                # This ensures validation comparisons work correctly
                 if isinstance(value, list) and class_name in ("CInt", "CFloat"):
-                    coerced_value = []
+                    coerced = []
                     for item in value:
                         if isinstance(item, str):
                             try:
-                                if class_name == "CInt":
-                                    coerced_value.append(int(item))
-                                else:  # CFloat
-                                    coerced_value.append(float(item))
+                                coerced.append(int(item) if class_name == "CInt" else float(item))
                             except (ValueError, TypeError):
-                                coerced_value.append(item)  # Keep original if not convertible
+                                coerced.append(item)
                         else:
-                            coerced_value.append(item)
-                    value = coerced_value
-                metadata.enumerators = value
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("enumerators", value)
+                            coerced.append(item)
+                    value = coerced
 
-            elif key == "menuText":
-                metadata.menu_text = value
-
-            elif key == "onlyEnumerators":
-                metadata.only_enumerators = value
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("onlyEnumerators", value)
-
-            elif key == "toolTip":
-                metadata.help_text = value
-
-            elif key == "mustExist":
-                metadata.required = value
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("mustExist", value)
-
-            elif key == "allowUndefined":
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("allowUndefined", value)
-
-            elif key == "fromPreviousJob":
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("fromPreviousJob", value)
-
-            elif key == "requiredSubType":
-                # Parse comma-separated integers if string
+            elif key in ("requiredSubType", "requiredContentFlag"):
+                # Parse comma-separated integers
                 if isinstance(value, str) and "," in value:
                     value = [int(x.strip()) for x in value.split(",")]
                 elif isinstance(value, str):
@@ -508,34 +444,10 @@ class DefXmlParser:
                         value = [int(value)]
                     except ValueError:
                         pass
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("requiredSubType", value)
 
-            elif key == "requiredContentFlag":
-                # Parse comma-separated integers if string
-                # This is critical for filtering file selections in the frontend
-                if isinstance(value, str) and "," in value:
-                    value = [int(x.strip()) for x in value.split(",")]
-                elif isinstance(value, str):
-                    try:
-                        value = [int(value)]
-                    except ValueError:
-                        pass
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("requiredContentFlag", value)
-
-            elif key == "saveToDb":
-                if hasattr(obj, "set_qualifier"):
-                    obj.set_qualifier("saveToDb", value)
-
-            # Store all qualifiers for reference
-            if not hasattr(metadata, "extra_data"):
-                metadata.extra_data = {}
-            metadata.extra_data[key] = value
-
-        # Store metadata on the object (simplified for now)
-        if hasattr(obj, "name") and obj.name:
-            obj._metadata = metadata
+            # Pass all qualifiers through to the object
+            if hasattr(obj, "set_qualifier"):
+                obj.set_qualifier(key, value)
 
 
 def parse_def_xml_file(xml_path: Union[str, Path]) -> CData:
