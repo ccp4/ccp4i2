@@ -56,7 +56,7 @@ class areaimol(CPluginScript):
           self.appendCommandScript( s+"\nSYMMETRY " + str(self.container.controlParameters.SYMMETRY) + "\n" )
           self.appendCommandScript( s+"\nTRANS 2\n")
 
-      if str(self.container.controlParameters.DIFFMODE) == "OFF" and inp.XYZIN2.fullPath.isSet():
+      if str(self.container.controlParameters.DIFFMODE) == "OFF":
           self.appendCommandScript( s+"\nOUTPUT "+str(self.container.controlParameters.OUTPUT_MODE)+"\n" )
       else:
           self.appendCommandScript( s+"\nOUTPUT "+str(self.container.controlParameters.OUTPUT_MODE_COMPARE)+"\n" )
@@ -124,7 +124,19 @@ class areaimol(CPluginScript):
                 print(str(exc_value)+'\n')
 
             CCP4Utils.writeXML(programXMLFile,etree.tostring(xmlStructure))
-        self.container.outputData.XYZOUT.annotation = "Coordinates with atom surface area in 'B-factor' column"
+
+        if str(self.container.controlParameters.DIFFMODE) == "OFF":
+          if self.container.controlParameters.OUTPUT_MODE == "ATOM":
+              self.container.outputData.XYZOUT.annotation = "Coordinates with atom surface area in 'B-factor' column"
+          elif self.container.controlParameters.OUTPUT_MODE == "RESIDUE":
+              self.container.outputData.XYZOUT.annotation = "Coordinates with residue surface area in 'B-factor' column"
+          else:
+              self.container.outputData.XYZOUT.annotation = "Coordinates with GXGRATIO surface area in 'B-factor' column"
+        else:
+          if self.container.controlParameters.OUTPUT_MODE_COMPARE == "ATOM":
+              self.container.outputData.XYZOUT.annotation = "Coordinates with atom surface area in 'B-factor' column"
+          else:
+              self.container.outputData.XYZOUT.annotation = "Coordinates with residue surface area in 'B-factor' column"
 
         return CPluginScript.SUCCEEDED
 

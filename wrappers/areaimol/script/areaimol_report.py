@@ -7,25 +7,17 @@ class areaimol_report(Report):
     TASKNAME = 'areaimol'
     RUNNING = False
 
-    def addProgressGraph(self,parent,xmlnode,internalId="SummaryGraph",tag="SAS"):
-        print("##################################################")
-        print("##################################################")
-        print("addProgressGraph")
+    def addGraph(self,parent,xmlnode,internalId="SummaryGraph",tag="SAS"):
         if len(xmlnode.findall(tag))>0:
-            print("YES!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-            progressGraph = parent.addFlotGraph(title="SAS by atom",select=tag,style="height:250px; width:400px;float:left;border:0px;",outputXml=False,internalId=internalId)
+            progressGraph = parent.addFlotGraph(xmlnode=xmlnode, title="SAS by atom",select=tag,style="height:250px; width:400px;float:left;border:0px;",outputXml=False,internalId=internalId)
             progressGraph.addData(title="Atom",    select="serNo")
             progressGraph.addData(title="Area",    select="area")
             plot = progressGraph.addPlotObject()
             plot.append('title','SAS by atom')
             plot.append('plottype','xy')
-            plot.append('yrange', rightaxis='false')
-            plot.append( 'xlabel', 'Atom' )
-            plot.append( 'xintegral', 'true' )
-            plot.append( 'ylabel', 'Area' )
-            plotLine = plot.append('plotline',xcol=1,ycol=2,rightaxis='false',colour='blue')
-        print("##################################################")
-        print("##################################################")
+            plotLine = plot.append('plotline',xcol=1,ycol=2)
+            plotLine.append('colour','blue')
+            plotLine.append('symbolsize','0')
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(
@@ -49,12 +41,10 @@ class areaimol_report(Report):
             except:
                 pass
 
-            """
             fold = self.addFold(label="SAS by atom", initiallyOpen=True)
             graphDiv = fold.addDiv(style='width:800px; height:270px;overflow:auto;')
             reportNode = self.xmlnode.findall('.//SASValues')[0]
-            self.addProgressGraph(graphDiv,reportNode,internalId="SummaryGraph",tag="SAS")
-            """
+            self.addGraph(graphDiv,reportNode,internalId="SummaryGraph",tag="SAS")
 
         fold = self.addFold(label="Areaimol log file")
         if len(self.xmlnode.findall(".//LogText"))>0:
