@@ -11,7 +11,6 @@ from . import atomMatching, cifToMolBlock
 
 
 class acedrgNew(CPluginScript):
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'acedrgNew'
     DESCRIPTION = 'Create a ligand dictionary with Acedrg'
     TASKNAME = 'acedrgNew'

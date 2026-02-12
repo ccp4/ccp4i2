@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class fft(CPluginScript):
 
-    TASKMODULE = 'test'
     TASKTITLE = 'Export map'
     TASKNAME = 'fft'
     TASKCOMMAND = 'cfft'

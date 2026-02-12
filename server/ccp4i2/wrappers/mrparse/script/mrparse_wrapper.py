@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class mrparse(CPluginScript):
-    TASKMODULE = 'bioinformatics'
     TASKTITLE = 'mrparse'
     TASKNAME = 'mrparse'
     TASKCOMMAND = 'mrparse'

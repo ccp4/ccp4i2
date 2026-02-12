@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class imosflm(CPluginScript):
-    TASKMODULE = 'data_processing'
     TASKTITLE = 'Integrate images - iMosflm'
     DESCRIPTION = 'Launch iMosflm and capture output'
     TASKNAME = 'imosflm'

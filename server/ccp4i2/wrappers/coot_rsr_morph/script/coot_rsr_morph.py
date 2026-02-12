@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_rsr_morph(CPluginScript):
-    TASKMODULE = "refinement"
     TASKTITLE = "Real space refinement morphing with Coot API"
     TASKNAME = "coot_rsr_morph"
     WHATNEXT = ["prosmart_refmac"]

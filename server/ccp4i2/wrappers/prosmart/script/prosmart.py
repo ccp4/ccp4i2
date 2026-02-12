@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class prosmart(CPluginScript):
     
-    TASKMODULE = 'wrappers'
     TASKNAME = 'prosmart'
     TASKCOMMAND = 'prosmart'
     MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'

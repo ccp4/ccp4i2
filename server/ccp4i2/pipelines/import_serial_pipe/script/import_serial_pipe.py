@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class import_serial_pipe(CPluginScript):
-    TASKMODULE = 'data_entry'
     TASKTITLE = 'Import Serial Pipeline'
     TASKNAME = 'import_serial_pipe'
     MAINTAINER = 'martin.maly@soton.ac.uk'

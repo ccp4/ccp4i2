@@ -6,7 +6,6 @@ class mrbump_basic(CPluginScript):
 
     TASKTITLE='MrBUMP Basic'
     TASKNAME = 'mrbump_basic'
-    TASKMODULE= 'test'
     TASKCOMMAND = 'mrbump'
     MAINTAINER = 'ronan.keegan@stfc.ac.uk'
 

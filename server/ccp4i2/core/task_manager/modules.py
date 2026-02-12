@@ -1,12 +1,24 @@
-{
-  "_comment": "Task to module mapping for UI folder organization. Extracted from CCP4 CachedLookups.json. This maps each task to its display folder in the task chooser.",
-  "_architecture_note": "CCP4i2 architecture: CTaskWidget (GUI) defines TASKMODULE and references a CPluginScript via TASKNAME property. One plugin can have multiple GUIs appearing in different folders. This file currently captures a flattened view (one folder per plugin name).",
-  "_todo": "FUTURE: Parse GUI classes (*_gui.py, CTask*.py) without importing Qt. GUI naming patterns: (1) {taskname}_gui.py (e.g., prosmart_refmac_gui.py) or (2) CTask{Taskname}.py (e.g., CTaskParrot.py). Need AST/regex extraction of TASKMODULE and TASKNAME to properly map GUI→Plugin→Folder relationships.",
+# Task to module mapping for UI folder organization.
+# Extracted from CCP4 CachedLookups.json.
+# This maps each task to its display folder in the task chooser.
+
+# CCP4i2 architecture: CTaskWidget (GUI) defines TASKMODULE
+# and references a CPluginScript via TASKNAME property.
+# One plugin can have multiple GUIs appearing in different folders.
+# This file currently captures a flattened view (one folder per plugin name).
+
+# FUTURE: Parse GUI classes (*_gui.py, CTask*.py) without importing Qt.
+# GUI naming patterns:
+# (1) {taskname}_gui.py (e.g., prosmart_refmac_gui.py)
+# (2) CTask{Taskname}.py (e.g., CTaskParrot.py).
+# Need AST/regex extraction of TASKMODULE and TASKNAME
+# to properly map GUI→Plugin→Folder relationships.
+
+TASK_MODULE_MAP = {
   "AMPLE": "molecular_replacement",
   "AUSPEX": "data_reduction",
   "AcedrgLink": "test",
   "AlternativeImportXIA2": "data_entry",
-  "Lidia": "wrappers",
   "LidiaAcedrg": "test",
   "LidiaAcedrgNew": "ligands",
   "MakeLink": "ligands",
@@ -22,15 +34,12 @@
   "SubstituteLigand": "ligands",
   "SubtractNative": "refinement",
   "TestObsConversions": "developer_tools",
-  "acedrg": "wrappers",
-  "acedrgNew": "wrappers",
   "acorn": "density_modification",
   "add_fractional_coords": "model_data_utility",
   "adding_stats_to_mmcif_i2": "export",
   "aimless_pipe": "data_reduction",
   "arcimboldo": "molecular_replacement",
   "arp_warp_classic": "model_building",
-  "baverage": "wrappers",
   "buster": "refinement",
   "ccp4mg_edit_model": "bioinformatics",
   "ccp4mg_edit_nomrbump": "bioinformatics",
@@ -39,16 +48,15 @@
   "chltofom": "expt_data_utility",
   "cif2mtz": "test",
   "clustalw": "bioinformatics",
-  "cmapcoeff": "wrappers",
   "comit": "molecular_replacement",
   "convert2mtz": "test",
   "coordinate_selector": "data_entry",
   "coot1": "test",
   "coot_find_waters": "model_building",
+  "coot_find_ligand": "model_building",
   "coot_rebuild": "model_building",
   "coot_rsr_morph": "refinement",
   "coot_script_lines": "model_building",
-  "cpatterson": "wrappers",
   "cphasematch": "expt_data_utility",
   "crank2": "expt_phasing",
   "crank2_comb_phdmmb": "test",
@@ -79,13 +87,11 @@
   "i2Dimple": "molecular_replacement",
   "imosflm": "data_processing",
   "import_merged": "data_entry",
-  "import_mosflm": "wrappers",
   "import_serial": "data_entry",
   "import_serial_pipe": "data_entry",
   "lorestr_i2": "refinement",
   "matthews": "expt_data_utility",
   "mergeMtz": "export",
-  "metalCoord": "wrappers",
   "modelcraft": "model_building",
   "molrep_den": "molecular_replacement",
   "molrep_mr": "test",
@@ -101,7 +107,6 @@
   "mtzutils": "test",
   "pairef": "refinement",
   "parrot": "density_modification",
-  "pdb_extract_wrapper": "wrappers",
   "pdb_redo_api": "refinement",
   "pdbset_ui": "model_data_utility",
   "pdbview_edit": "model_data_utility",
@@ -119,7 +124,6 @@
   "pisapipe": "test",
   "pointless_reindexToMatch": "expt_data_utility",
   "privateer": "validation",
-  "prosmart": "wrappers",
   "prosmart_refmac": "refinement",
   "pyphaser_mr": "test",
   "qtpisa": "validation",
@@ -127,7 +131,6 @@
   "scaleit": "expt_data_utility",
   "scalepack2mtz": "test",
   "sculptor": "bioinformatics",
-  "servalcat": "wrappers",
   "servalcat_pipe": "refinement",
   "sheetbend": "refinement",
   "shelx": "expt_phasing",

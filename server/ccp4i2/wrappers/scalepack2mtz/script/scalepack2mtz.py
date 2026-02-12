@@ -3,7 +3,6 @@ from ccp4i2.wrappers.x2mtz.script import x2mtz
 
 class scalepack2mtz(x2mtz.x2mtz):
 
-    TASKMODULE = 'test'
     TASKTITLE = 'Convert scalepack merged reflection file to MTZ'
     TASKNAME = 'scalepack2mtz'  
     TASKCOMMAND = 'scalepack2mtz'  

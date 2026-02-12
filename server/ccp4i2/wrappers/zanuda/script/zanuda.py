@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4XtalData import CObsDataFile
 
 
 class zanuda(CPluginScript):
-    TASKMODULE = "refinement"
     TASKTITLE = "Zanuda"
     TASKNAME = "zanuda"
     TASKCOMMAND = "zanuda"

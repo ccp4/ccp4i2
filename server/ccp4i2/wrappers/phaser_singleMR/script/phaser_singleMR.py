@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_singleMR(CPluginScript):
 
-    TASKMODULE = 'molecular_replacement'
     TASKTITLE = 'Single Atom MR'
     TASKNAME = 'phaser_singleMR'
     TASKCOMMAND = 'phaser'

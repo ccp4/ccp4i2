@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class coot_rebuild(CPluginScript):
 #class coot_rebuild(CInternalPlugin):
 
-    TASKMODULE = 'model_building'
     TASKTITLE = 'Rebuild model with coot'
     TASKNAME = 'coot_rebuild'
     TASKCOMMAND = 'coot'

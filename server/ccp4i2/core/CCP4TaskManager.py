@@ -4,6 +4,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from .. import I2_TOP
 from .task_manager.defxml_lookup import defXmlPaths
+from .task_manager.modules import TASK_MODULE_MAP
 
 # Module ordering and titles matching legacy CCP4TaskManager
 MODULE_ORDER = [
@@ -112,11 +113,9 @@ class CTaskManager:
     def __init__(self):
         task_manager_dir = Path(__file__).parent / "task_manager"
         plugin_path = task_manager_dir / "plugin_lookup.json"
-        task_module_path = task_manager_dir / "task_module_map.json"
         task_metadata_path = task_manager_dir / "task_metadata.json"
 
         self.plugin_lookup: Dict[str, Dict[str, Any]] = {}
-        self.task_module_map: Dict[str, str] = {}
         self.task_metadata: Dict[str, Dict[str, Any]] = {}
 
         # Load plugin_lookup.json (for backward compatibility)
@@ -125,15 +124,6 @@ class CTaskManager:
                 self.plugin_lookup = json.load(f)
         except Exception as e:
             print(f"Error loading plugin_lookup.json: {e}")
-
-        # Load task_module_map.json (task-to-folder mapping for UI)
-        try:
-            with task_module_path.open(encoding="utf-8") as f:
-                data = json.load(f)
-                # Remove _comment key if present
-                self.task_module_map = {k: v for k, v in data.items() if not k.startswith('_')}
-        except Exception as e:
-            print(f"Error loading task_module_map.json: {e}")
 
         # Load task_metadata.json (UI display metadata: titles, descriptions, etc.)
         try:
@@ -161,44 +151,6 @@ class CTaskManager:
                 return abs_path
         return None
 
-    def _normalize_module_name(self, module: Any) -> str:
-        """
-        Normalize module name to match MODULE_ORDER keys.
-
-        Handles:
-        - Lists (take first element)
-        - Spaces vs underscores
-        - None values
-        """
-        if module is None:
-            return 'wrappers'
-
-        # Handle lists (some tasks have multiple modules)
-        if isinstance(module, list):
-            module = module[0] if module else 'wrappers'
-
-        # Normalize spaces to underscores
-        module = str(module).replace(' ', '_').lower()
-
-        return module
-
-    def _get_task_module(self, task_name: str, metadata: Dict[str, Any]) -> str:
-        """
-        Get the module for a task, using task_module_map.json as the primary source.
-
-        Priority:
-        1. task_module_map.json (canonical mapping from CCP4 GUI widgets)
-        2. TASKMODULE from plugin metadata
-        3. Default to 'wrappers'
-        """
-        # First check our canonical mapping (derived from GUI widget classes)
-        if task_name in self.task_module_map:
-            return self.task_module_map[task_name]
-
-        # Fall back to metadata TASKMODULE (rarely set in plugin scripts)
-        module = metadata.get('TASKMODULE')
-        return self._normalize_module_name(module)
-
     def _build_module_lookup(self) -> Dict[str, List[str]]:
         """
         Build a mapping of module names to task lists.
@@ -209,7 +161,7 @@ class CTaskManager:
         module_lookup: Dict[str, List[str]] = {}
 
         for task_name, metadata in self.plugin_lookup.items():
-            module = self._get_task_module(task_name, metadata)
+            module = TASK_MODULE_MAP.get(task_name, "wrappers")
 
             if module not in module_lookup:
                 module_lookup[module] = []

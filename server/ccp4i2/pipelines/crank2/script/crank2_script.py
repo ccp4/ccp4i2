@@ -9,7 +9,6 @@ from ccp4i2.pipelines.crank2.script import crank2_basepipe
 
 class crank2(CPluginScript):
 
-  #TASKMODULE       = 'expt_phasing'
   TASKTITLE        = 'Crank2'
   SHORTTASKTITLE   = 'CRANK2'
   TASKNAME         = 'crank2'

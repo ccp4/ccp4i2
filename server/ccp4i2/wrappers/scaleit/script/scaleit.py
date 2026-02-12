@@ -10,7 +10,6 @@ from ccp4i2.wrappers.scaleit.script.scaleit_utils import DatalistCheck
 
 
 class scaleit(CPluginScript):
-    TASKMODULE = 'test'
     TASKTITLE = 'Compare two or more datafiles'
     TASKNAME = 'scaleit'
     MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'

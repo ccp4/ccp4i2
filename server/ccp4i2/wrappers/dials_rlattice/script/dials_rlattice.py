@@ -2,7 +2,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class dials_rlattice(CPluginScript):
 
-    TASKMODULE = 'data_processing'
     TASKTITLE = 'Dials_rLattice'
     TASKNAME = 'dials_rlattice'
     TASKCOMMAND = 'dials.reciprocal_lattice_viewer'

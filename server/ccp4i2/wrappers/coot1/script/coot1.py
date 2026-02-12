@@ -14,7 +14,6 @@ def coot1Command():
 
 class coot1(CPluginScript):
     TASKNAME = "coot1"
-    TASKMODULE = "model_building"
     TASKTITLE = "Coot 1"
     TASKCOMMAND = coot1Command()
     ASYNCHRONOUS = True

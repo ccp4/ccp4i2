@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pdbview_edit(CPluginScript):
     
-    TASKMODULE = 'model_data_utility'
     TASKTITLE = 'Edit PDB/CIF files by hand with the PdbView program'
     TASKNAME = 'pdbview_edit'
     TASKCOMMAND = 'ccp4-python'

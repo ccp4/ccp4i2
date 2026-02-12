@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class add_fractional_coords(CPluginScript):
-    TASKMODULE = "model_data_utility"
     TASKTITLE = "Add Fractional Coordinates"
     TASKNAME = "add_fractional_coords"
     TASKCOMMAND = "ccp4-python"

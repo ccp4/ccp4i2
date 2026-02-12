@@ -10,7 +10,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ccp4mg_edit_nomrbump(CPluginScript):
     
-    TASKMODULE = 'bioinformatics'
     TASKTITLE = 'Interactive selection of MR model components - CCP4mg'
     TASKNAME = 'ccp4mg_edit_nomrbump'
     TASKCOMMAND = 'ccp4mg'

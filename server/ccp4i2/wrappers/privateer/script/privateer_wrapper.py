@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class privateer(CPluginScript):
     TASKNAME = "privateer"
-    TASKMODULE = 'validation'
     TASKCOMMAND = 'privateer'
     WHATNEXT = [ 'coot_rebuild', 'prosmart_refmac' ]
     MAINTAINER = 'jon.agirre@york.ac.uk'

@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class edstats(CPluginScript):
 
-    TASKMODULE          = 'validation'
     TASKTITLE           = 'Measure agreement between model and density'
     TASKNAME            = 'edstats'
     TASKCOMMAND         = 'edstats'

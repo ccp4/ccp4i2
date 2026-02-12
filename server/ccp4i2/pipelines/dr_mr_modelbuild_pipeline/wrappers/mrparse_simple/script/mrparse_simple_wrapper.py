@@ -8,7 +8,6 @@ from ccp4i2.core import CCP4ErrorHandling
 
 
 class mrparse_simple(CPluginScript):
-    TASKMODULE = 'developer_tools'
     TASKTITLE = 'mrparse_simple'
     TASKNAME = 'mrparse_simple'
     TASKCOMMAND = 'mrparse'

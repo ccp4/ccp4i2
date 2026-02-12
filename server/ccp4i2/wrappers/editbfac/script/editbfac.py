@@ -14,7 +14,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class editbfac(CPluginScript):
     TASKTITLE='Process Predicted Models'
     TASKNAME = 'editbfac'
-    TASKMODULE=['alpha_fold', 'model_data_utility' ]
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     def startProcess(self):

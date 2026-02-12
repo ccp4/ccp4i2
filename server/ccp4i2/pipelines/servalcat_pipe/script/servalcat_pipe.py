@@ -17,7 +17,6 @@ from . import monitor_differences
 
 class servalcat_pipe(CPluginScript):
 
-    TASKMODULE = 'refinement'
     SHORTTASKTITLE = 'Servalcat'
     TASKTITLE = 'Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
     TASKNAME = 'servalcat_pipe'

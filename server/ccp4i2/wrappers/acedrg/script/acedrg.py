@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class acedrg(CPluginScript):
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'acedrg'
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'acedrg'

@@ -14,7 +14,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class x2mtz(CPluginScript):
 
     TASKNAME = 'x2mtz'
-    TASKMODULE = 'test'
     ERROR_CODES = { 301 : { 'description' : 'Input data file not found' },
                     302 : { 'description' : 'Failed automatic search for best reflection and freer data in converted file' }
                     }

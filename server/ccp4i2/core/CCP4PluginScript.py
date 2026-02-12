@@ -57,14 +57,12 @@ class CPluginScript(CData):
     - Error reporting and database integration
 
     Subclasses should define:
-        TASKMODULE: Module category (e.g., 'utility', 'refinement')
         TASKTITLE: Display title for GUI
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
     """
 
     # Class attributes to be defined in subclasses
-    TASKMODULE = None
     TASKTITLE = None
     TASKNAME = None
     TASKCOMMAND = None

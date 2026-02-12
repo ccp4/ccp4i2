@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ShelxCD(CPluginScript):
-    TASKMODULE = 'test'
     TASKNAME = 'ShelxCD'
     TASKCOMMAND = 'shelxd'
     PERFORMANCECLASS = 'CExpPhasPerformance'

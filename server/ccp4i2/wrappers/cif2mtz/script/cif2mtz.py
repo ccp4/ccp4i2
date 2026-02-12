@@ -2,7 +2,6 @@ from ccp4i2.wrappers.x2mtz.script import x2mtz
 
 
 class cif2mtz(x2mtz.x2mtz):
-    TASKMODULE = 'test'
     TASKTITLE = 'Import mmCIF reflection file'
     TASKNAME = 'cif2mtz'
     TASKCOMMAND = 'cif2mtz'

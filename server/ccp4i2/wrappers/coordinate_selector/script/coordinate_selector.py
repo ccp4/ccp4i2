@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coordinate_selector(CPluginScript):
-    TASKMODULE = 'model_data_utility'
     TASKTITLE = 'Select subset from coordinates'
     TASKNAME = 'coordinate_selector'
     MAINTAINER = 'stuart.mcnicholas@york.ac.uk'

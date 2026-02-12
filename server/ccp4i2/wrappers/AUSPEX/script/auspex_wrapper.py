@@ -6,7 +6,6 @@ import glob
 
 class AUSPEX(CPluginScript):
 
-    TASKMODULE = 'data_reduction'
     TASKTITLE = 'AUSPEX'
     TASKNAME = 'AUSPEX'
     TASKCOMMAND = 'auspex'

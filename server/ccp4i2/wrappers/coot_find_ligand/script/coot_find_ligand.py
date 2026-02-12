@@ -11,7 +11,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_find_ligand(CPluginScript):
-    TASKMODULE = "model_building"
     TASKTITLE = "Find ligand with Coot API"
     TASKNAME = "coot_find_ligand"
     WHATNEXT = ["prosmart_refmac"]

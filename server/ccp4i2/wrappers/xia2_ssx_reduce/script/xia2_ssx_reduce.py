@@ -18,7 +18,6 @@ class xia2_ssx_reduce(CPluginScript):
     TASKTITLE = "Reduction of serial datasets using xia2.ssx_reduce"
     TASKNAME = "xia2_ssx_reduce"
     TASKCOMMAND = "xia2.ssx_reduce"
-    TASKMODULE = "data_reduction"
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         225: {"description": "Unable to find merged MTZ files"},

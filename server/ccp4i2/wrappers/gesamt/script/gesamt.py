@@ -11,7 +11,6 @@ class gesamt(CPluginScript):
 
     TASKTITLE='Gesamt - structural alignment'
     TASKNAME = 'gesamt'
-    TASKMODULE= 'model_data_utility'
     TASKCOMMAND = 'gesamt'
     PERFORMANCECLASS = 'CSuperposePerformance'
 

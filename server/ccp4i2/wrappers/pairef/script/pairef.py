@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pairef(CPluginScript):
-    TASKMODULE = 'refinement'
     TASKTITLE = 'Pairef'
     TASKNAME = 'pairef'
     TASKCOMMAND = 'pairef'

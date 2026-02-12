@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class chainsaw(CPluginScript):
-    TASKMODULE = 'molecular replacement'
     TASKTITLE = 'edit search model'
     TASKNAME = 'chainsaw'
     MAINTAINER = 'ronan.keegan@stfc.ac.uk'

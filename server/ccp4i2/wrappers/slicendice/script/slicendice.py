@@ -12,7 +12,6 @@ from ccp4i2.core.CCP4XtalData import CObsDataFile
 class slicendice(CPluginScript):
     TASKTITLE = "SliceNDice"
     TASKNAME = "slicendice"
-    TASKMODULE = "alpha_fold"
     TASKCOMMAND = "slicendice"
     MAINTAINER = "ronan.keegan@stfc.ac.uk"
     PERFORMANCECLASS = "CRefinementPerformance"

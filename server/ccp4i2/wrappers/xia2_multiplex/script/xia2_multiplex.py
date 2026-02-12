@@ -17,7 +17,6 @@ class xia2_multiplex(CPluginScript):
     TASKTITLE = "Data set combination with xia2.multiplex"
     TASKNAME = "xia2_multiplex"
     TASKCOMMAND = "xia2.multiplex"
-    TASKMODULE = "data_reduction"
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         205: {"description": "Failed parsing xia2.json"},

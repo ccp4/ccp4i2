@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4XtalData import CObsDataFile, CPhsDataFile
 
 
 class modelcraft(CPluginScript):
-    TASKMODULE = "model_building"
     TASKTITLE = "AutoBuild with ModelCraft, Buccaneer and Nautilus"
     SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"

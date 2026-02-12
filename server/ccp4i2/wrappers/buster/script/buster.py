@@ -10,7 +10,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class buster(CPluginScript):
-    TASKMODULE = 'refinement'
     TASKTITLE = 'Refinement with Buster (Global Phasing Limited)'
     TASKNAME = 'buster'
     TASKCOMMAND = 'refine'
