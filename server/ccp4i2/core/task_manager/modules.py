@@ -78,7 +78,7 @@ TASK_MODULE_MAP = {
   "dr_mr_modelbuild_pipeline": "model_building",
   "dui": "data_processing",
   "dummy": "demo",
-  "editbfac": "alpha_fold",
+  "editbfac": "alpha_fold",  # model_data_utility
   "edstats": "validation",
   "fft": "test",
   "findmyseq": "bioinformatics",
