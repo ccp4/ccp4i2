@@ -41,14 +41,16 @@ class areaimol_report(Report):
             except:
                 pass
 
-            self.addDiv(style="clear:both;")
+            breakDiv = self.addDiv(style="clear:both;")
+            breakDiv.append('<br/>')
             fold = self.addFold(label="SAS by atom", initiallyOpen=True)
             graphDiv = fold.addDiv(style='width:800px; height:270px;overflow:auto;')
             reportNode = self.xmlnode.findall('.//SASValues')[0]
             self.addGraph(graphDiv,reportNode,internalId="SummaryGraph",tag="SAS")
 
         if jobStatus in ['Unknown','Interrupted','Failed','Unsatisfactory']:
-            self.addDiv(style="clear:both;")
+            breakDiv = self.addDiv(style="clear:both;")
+            breakDiv.append('<br/>')
             fold = self.addFold(label="Areaimol log file")
             if len(self.xmlnode.findall(".//LogText"))>0:
                 xmlPath = './/LogText'
