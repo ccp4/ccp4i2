@@ -27,7 +27,6 @@ from ...lib.utils.containers.validate import validate_container
 from ...lib.utils.jobs.clone import clone_job
 from ...lib.utils.jobs.create import create_job
 from ...lib.utils.containers.json_for_container import json_for_job_container
-from ...lib.utils.navigation.task_tree import get_task_tree
 from ...lib.utils.reporting.i2_report import get_report_job_info
 from ...lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
 
@@ -137,7 +136,7 @@ class CCP4i2TestCase(TestCase):
         print(len(result))
 
     def test_get_task_tree(self):
-        result = get_task_tree()
+        result = CCP4TaskManager.get_task_tree()
         self.assertEqual(len(result["lookup"].items()), 135)
         self.assertEqual(len(result["tree"]), 17)
 
