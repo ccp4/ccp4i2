@@ -1,40 +1,32 @@
-import logging
 import datetime
 import json
-import pathlib
+import logging
 import os
+import pathlib
 import subprocess
+
 from asgiref.sync import async_to_sync
-from pytz import timezone
-from django.http import Http404
-from django.http import FileResponse
-from django.core.management import call_command
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework.parsers import MultiPartParser, JSONParser
-
-# Modern utilities
-from ..lib.async_create_job import create_job_async
-
-# Modern utilities
-from ..lib.utils.navigation.list_project import list_project
-from ..lib.utils.navigation.task_tree import get_task_tree
-from ..lib.utils.files.preview import preview_file
-from ..lib.utils.files.resolve_fileuse import resolve_fileuse, is_fileuse_pattern
-
-from rest_framework.parsers import FormParser, MultiPartParser
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from django.db.models import Prefetch
-from . import serializers
-from ..db import models
-from ..lib.utils.navigation.dependencies import delete_job_and_dependents
-from django.http import JsonResponse
 from django.conf import settings
+from django.core.management import call_command
+from django.db.models import Prefetch
+from django.http import FileResponse, Http404, JsonResponse
 from django.utils.text import slugify
-from ..lib.response import api_success, api_error
+from pytz import timezone
+from rest_framework import status
+from rest_framework.decorators import action
+from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
+
+from ..db import models
+from ..lib.async_create_job import create_job_async
+from ..lib.response import api_error, api_success
+from ..lib.utils.files.preview import preview_file
+from ..lib.utils.files.resolve_fileuse import resolve_fileuse
+from ..lib.utils.navigation.dependencies import delete_job_and_dependents
+from ..lib.utils.navigation.list_project import list_project
+from . import serializers
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
