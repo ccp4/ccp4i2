@@ -2,9 +2,9 @@
 Debug why get_leaf_paths misses NCYCLES during traversal.
 """
 
-from ccp4i2.core.CCP4Modules import TASKMANAGER
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core import CCP4Container as CCP4Container_module
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 def traverse_debug(node, path_parts, depth=0):
@@ -41,7 +41,7 @@ def test_traverse_control_parameters():
     """Test traversing just controlParameters."""
 
     # Get plugin
-    plugin_class = TASKMANAGER().get_plugin_class('prosmart_refmac')
+    plugin_class = get_plugin_class('prosmart_refmac')
     plugin = plugin_class(parent=None, workDirectory=None)
 
     ctrl = plugin.container.controlParameters

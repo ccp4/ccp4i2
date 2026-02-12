@@ -1,7 +1,6 @@
 import logging
 
-from ccp4i2.core import CCP4TaskManager
-
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 from ccp4i2.db.models import Job
 from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 
@@ -27,14 +26,12 @@ def get_job_plugin(the_job: Job, parent=None, dbHandler=None):
         Exception: If no parameter definition file (params.xml or input_params.xml) is found in the job directory.
     """
 
-    taskManager = CCP4TaskManager.CTaskManager()
-
     # Create a default database handler if one wasn't provided
     # This ensures CDataFile objects can resolve paths via dbFileId
     if dbHandler is None:
         dbHandler = AsyncDatabaseHandler(project_uuid=str(the_job.project.uuid))
 
-    pluginClass = taskManager.get_plugin_class(the_job.task_name)
+    pluginClass = get_plugin_class(the_job.task_name)
     try:
         pluginInstance = pluginClass(
             workDirectory=str(the_job.directory), parent=parent, dbHandler=dbHandler

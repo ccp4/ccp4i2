@@ -18,6 +18,7 @@ from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
 from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
 from ccp4i2.core.task_manager.params_xml_handler import ParamsXmlHandler
 from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 from ccp4i2.core.base_object.class_metadata import cdata_class
 
 # Module-level logger
@@ -2408,8 +2409,7 @@ class CPluginScript(CData):
         dummy_mode = kwargs.get('dummy', False)
 
         # Use TASKMANAGER to get the plugin class
-        task_manager = TASKMANAGER()
-        plugin_class = task_manager.get_plugin_class(taskName)
+        plugin_class = get_plugin_class(taskName)
 
         if plugin_class is None:
             # If dummy=True, create a generic CPluginScript instead of failing

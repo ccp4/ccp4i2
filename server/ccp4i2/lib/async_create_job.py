@@ -23,6 +23,7 @@ from asgiref.sync import sync_to_async
 from ..core import CCP4TaskManager
 from ..core.CCP4PluginScript import CPluginScript
 from ..core.task_manager.metadata import TITLES
+from ..core.task_manager.plugin_registry import get_plugin_class
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler
 from .utils.containers.remove_defaults import remove_container_default_values
@@ -382,8 +383,7 @@ async def _create_plugin_instance(
     @sync_to_async
     def _create():
         # Get plugin class
-        task_manager = CCP4TaskManager.CTaskManager()
-        plugin_class = task_manager.get_plugin_class(task_name)
+        plugin_class = get_plugin_class(task_name)
 
         # Instantiate plugin with work directory
         plugin = plugin_class(workDirectory=str(job_dir))

@@ -2,7 +2,7 @@
 Test get_leaf_paths to debug why NCYCLES isn't appearing in keywords.
 """
 
-from ccp4i2.core.CCP4Modules import TASKMANAGER
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 # Import get_leaf_paths - need to avoid Django imports
@@ -43,7 +43,7 @@ def test_prosmart_refmac_leaf_paths():
     """Test that get_leaf_paths finds NCYCLES."""
 
     # Get plugin class
-    plugin_class = TASKMANAGER().get_plugin_class('prosmart_refmac')
+    plugin_class = get_plugin_class('prosmart_refmac')
 
     # Instantiate plugin
     plugin = plugin_class(parent=None, workDirectory=None)

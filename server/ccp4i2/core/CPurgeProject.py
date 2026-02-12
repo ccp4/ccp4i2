@@ -26,8 +26,9 @@ Usage:
 import os
 import glob
 import logging
-from typing import Optional, List, Tuple, Dict
+from typing import Optional, List, Dict
 from pathlib import Path
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -236,7 +237,6 @@ class CPurgeProject:
                 return []
 
             # Try to get plugin class
-            from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
             plugin_class = get_plugin_class(task_name)
 
             if plugin_class and hasattr(plugin_class, 'PURGESEARCHLIST'):

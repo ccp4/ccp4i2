@@ -17,6 +17,7 @@ from typing import List, Dict, Any
 
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 from ccp4i2.core import CCP4Data
 
 logger = logging.getLogger(__name__)
@@ -64,10 +65,9 @@ class KeywordExtractor:
         Returns:
             List of keyword dictionaries with metadata
         """
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         # Instantiate plugin to get its structure
-        plugin_class = TASKMANAGER().get_plugin_class(task_name)
+        plugin_class = get_plugin_class(task_name)
         if plugin_class is None:
             raise RuntimeError(
                 f"Plugin '{task_name}' not found in TASKMANAGER registry. "

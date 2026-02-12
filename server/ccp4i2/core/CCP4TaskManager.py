@@ -2,7 +2,7 @@ import glob
 import json
 import os
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Type
+from typing import Any, Dict, List, Optional, Tuple
 
 from .. import I2_TOP
 from .task_manager.defxml_lookup import defXmlPaths
@@ -145,29 +145,6 @@ class CTaskManager:
                 self.task_metadata = {k: v for k, v in data.items() if not k.startswith('_')}
         except Exception as e:
             print(f"Error loading task_metadata.json: {e}")
-
-        # Initialize plugin and report registries (lazy loading)
-        self._plugin_registry = None
-
-    @property
-    def plugin_registry(self):
-        """Get the plugin registry (lazy load on first access)."""
-        if self._plugin_registry is None:
-            from .task_manager.plugin_registry import get_registry
-            self._plugin_registry = get_registry()
-        return self._plugin_registry
-
-    def get_plugin_class(self, task_name: str) -> Optional[Type]:
-        """
-        Get a plugin class by name, with lazy loading.
-
-        Args:
-            task_name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Plugin class, or None if not found
-        """
-        return self.plugin_registry.get_plugin_class(task_name)
 
     def locate_def_xml(self, task_name: str) -> Optional[Path]:
         """

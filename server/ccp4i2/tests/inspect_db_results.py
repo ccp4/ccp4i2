@@ -212,7 +212,6 @@ def show_file_hierarchy(root_path: Path):
 async def main():
     """Run the test and inspect results."""
     from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
-    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
     # Setup temporary database and project directory
     temp_db = tempfile.NamedTemporaryFile(suffix='.sqlite3', delete=False)
@@ -226,7 +225,6 @@ async def main():
     print(f"📁 Test projects: {temp_projects}\n")
 
     # Re-setup Django with new DB
-    from django.conf import settings
     from django.core.management import call_command
 
     # Run migrations
@@ -239,11 +237,6 @@ async def main():
         name=project_name,
         title="Database Inspection Test",
         directory=Path(temp_projects) / project_name
-    )
-
-    # Load task library
-    TASKMANAGER.loadTaskLibrary(
-        str(Path(__file__).parent.parent / "wrappers")
     )
 
     # Create and run plugin

@@ -19,6 +19,8 @@ from typing import Optional
 from asgiref.sync import sync_to_async
 from django.utils import timezone
 
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
@@ -48,7 +50,6 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
     from ..db import models
     from ..db.async_db_handler import AsyncDatabaseHandler
     from .async_import_files import import_input_files_async
-    from .utils.plugins.get_plugin import get_job_plugin
 
     # Get job from database with related project
     job = await sync_to_async(models.Job.objects.select_related('project').get)(uuid=job_uuid)
@@ -255,12 +256,9 @@ async def create_plugin_for_job(job, db_handler):
     Returns:
         CPluginScript instance
     """
-    from ccp4i2.core import CCP4TaskManager
-    from .utils.plugins.get_plugin import get_job_plugin
 
     # Get plugin class
-    task_manager = CCP4TaskManager.CTaskManager()
-    plugin_class = task_manager.get_plugin_class(job.task_name)
+    plugin_class = get_plugin_class(job.task_name)
 
     # Create plugin instance
     plugin = plugin_class(

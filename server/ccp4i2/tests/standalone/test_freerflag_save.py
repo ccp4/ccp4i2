@@ -4,7 +4,7 @@
 import tempfile
 from pathlib import Path
 
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 def test_freerflag_save():
     """Create a freerflag plugin and save params to see what gets written."""
@@ -14,7 +14,7 @@ def test_freerflag_save():
         workdir = Path(tmpdir)
 
         # Get the plugin class
-        plugin_class = TASKMANAGER().get_plugin_class('freerflag')
+        plugin_class = get_plugin_class('freerflag')
 
         # Create plugin instance
         print(f"\n=== Creating plugin ===")

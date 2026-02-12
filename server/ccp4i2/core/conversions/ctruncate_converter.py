@@ -23,6 +23,7 @@ Usage:
 from pathlib import Path
 from typing import Optional, Any
 from ccp4i2.core.CCP4ErrorHandling import CException, SEVERITY_ERROR
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 class CtruncateConverter:
@@ -91,7 +92,6 @@ class CtruncateConverter:
         Raises:
             CException: If ctruncate plugin fails or output not created
         """
-        from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
         from ccp4i2.core.CCP4XtalData import CObsDataFile
 
         # Get ctruncate plugin class

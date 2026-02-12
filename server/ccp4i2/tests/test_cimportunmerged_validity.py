@@ -7,6 +7,7 @@ content_qualifiers are properly applied and generate validity errors.
 
 import pytest
 from ccp4i2.core.cdata_stubs.CCP4XtalData import CImportUnmergedStub
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 class TestCImportUnmergedValidity:
@@ -67,10 +68,8 @@ class TestCImportUnmergedViaAimlessPipe:
 
     def test_additem_creates_item_with_content_qualifiers(self):
         """Test that addItem() creates items with content_qualifiers applied."""
-        from ccp4i2.core.task_manager.plugin_registry import PluginRegistry
 
-        registry = PluginRegistry()
-        plugin_class = registry.get_plugin_class('aimless_pipe')
+        plugin_class = get_plugin_class('aimless_pipe')
         plugin = plugin_class()
 
         # Get the UNMERGEDFILES list
@@ -90,10 +89,8 @@ class TestCImportUnmergedViaAimlessPipe:
 
     def test_list_validity_includes_item_errors(self):
         """Test that list validity() aggregates errors from items."""
-        from ccp4i2.core.task_manager.plugin_registry import PluginRegistry
 
-        registry = PluginRegistry()
-        plugin_class = registry.get_plugin_class('aimless_pipe')
+        plugin_class = get_plugin_class('aimless_pipe')
         plugin = plugin_class()
 
         # Get the UNMERGEDFILES list
@@ -116,10 +113,8 @@ class TestCImportUnmergedViaAimlessPipe:
 
     def test_container_validity_includes_nested_errors(self):
         """Test that container validity includes nested list item errors."""
-        from ccp4i2.core.task_manager.plugin_registry import PluginRegistry
 
-        registry = PluginRegistry()
-        plugin_class = registry.get_plugin_class('aimless_pipe')
+        plugin_class = get_plugin_class('aimless_pipe')
         plugin = plugin_class()
 
         # Add an empty item to UNMERGEDFILES

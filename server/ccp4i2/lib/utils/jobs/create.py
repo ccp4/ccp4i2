@@ -2,8 +2,8 @@ from pathlib import Path
 import logging
 import uuid
 
-from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core.task_manager.metadata import TITLES
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 from ccp4i2.db import models
 from ..containers.remove_defaults import remove_container_default_values
 from ..parameters.save_params import save_params_for_job
@@ -83,8 +83,7 @@ def create_job(
     else:
         new_job_id = jobId
 
-    task_manager = CCP4TaskManager.CTaskManager()
-    plugin_class = task_manager.get_plugin_class(taskName)
+    plugin_class = get_plugin_class(taskName)
     if saveParams:
         new_job_dir.mkdir(exist_ok=True, parents=True)
     new_job_plugin = plugin_class(workDirectory=str(new_job_dir))

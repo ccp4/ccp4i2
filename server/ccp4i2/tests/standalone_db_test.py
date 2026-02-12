@@ -6,10 +6,9 @@ Does NOT use pytest, so database persists for inspection.
 import os
 import asyncio
 import tempfile
-import uuid as uuid_module
 from pathlib import Path
 
-from ccp4i2.core import CCP4Utils
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 # Setup temp database and projects
 temp_db = tempfile.NamedTemporaryFile(suffix='.sqlite3', delete=False)
@@ -45,13 +44,8 @@ async def main():
     )
     print(f"✓ Created project: {project.name} ({project.uuid})\n")
 
-    # Load task library and create plugin
-    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-    task_mgr = TASKMANAGER()
-    task_mgr.loadTaskLibrary(str(Path(__file__).parent.parent / "wrappers"))
-
     # Get the plugin class for ctruncate
-    ctruncate_class = task_mgr.get_plugin_class('ctruncate')
+    ctruncate_class = get_plugin_class('ctruncate')
     plugin = ctruncate_class(name='test_ctruncate', parent=None)
 
     # Configure input
