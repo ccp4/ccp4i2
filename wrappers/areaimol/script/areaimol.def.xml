@@ -34,6 +34,14 @@
       </content>
     </container>
     <container id="controlParameters">
+      <content id="EXCLUDE">
+        <className>CString</className>
+        <qualifiers>
+          <default></default>
+          <menuText>Space separate list of residue names to exclude</menuText>
+          <guiLabel>Excluded residues</guiLabel>
+        </qualifiers>
+      </content>
       <content id="DIFFMODE">
         <className>CString</className>
         <qualifiers>

@@ -60,6 +60,10 @@ class areaimol(CPluginScript):
           self.appendCommandScript( s+"\nOUTPUT "+str(self.container.controlParameters.OUTPUT_MODE)+"\n" )
       else:
           self.appendCommandScript( s+"\nOUTPUT "+str(self.container.controlParameters.OUTPUT_MODE_COMPARE)+"\n" )
+
+      if self.container.controlParameters.EXCLUDE.isSet() and str(self.container.controlParameters.EXCLUDE) != "":
+          self.appendCommandScript( s+"EXCLUDE "+str(self.container.controlParameters.EXCLUDE)+"\n" )
+
       self.appendCommandScript( s+"\nEND\n" )
 
       return CPluginScript.SUCCEEDED

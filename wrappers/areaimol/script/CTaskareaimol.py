@@ -36,6 +36,7 @@ class CTaskAreaimolUI(CCP4TaskWidget.CTaskWidget):
     self.createLine( ['tip', 'A second set of input coordinates, and is only used in DIFFMODE COMPARE.', 'widget', 'XYZIN2'] , toggle=[ 'DIFFMODE', 'open' , ['COMPARE'] ] )
     self.createLine( ['label', 'Output mode', 'widget', 'OUTPUT_MODE'], toggle=[ 'DIFFMODE', 'open' , ['OFF'] ]  )
     self.createLine( ['label', 'Output mode', 'widget', 'OUTPUT_MODE_COMPARE'], toggle=[ 'DIFFMODE', 'open' , ['COMPARE','IMOL'] ]  )
+    self.createLine( ['label', 'Residue names to exclude (space separated)', 'widget', 'EXCLUDE'] )
     self.closeSubFrame()
 
     self.connectDataChanged('DIFFMODE', self.updateXYZ2)
