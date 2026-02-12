@@ -6,6 +6,7 @@ from lxml import etree
 
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
@@ -133,8 +134,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             name = projectNameStr+'_'+str(jobNumber)
 
             #Retrieve plugin
-            from ccp4i2.core import CCP4TaskManager
-            cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(pluginName)
+            cls = get_plugin_class(pluginName)
             if cls is None:
                 self.appendErrorReport(206, pluginName)
                 self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)

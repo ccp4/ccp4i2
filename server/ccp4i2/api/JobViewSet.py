@@ -26,59 +26,45 @@ Version: Compatible with CCP4i2 and Django 4.2+
     - Includes proper error handling for cloud environments
 """
 
-# Add these imports at the top of the file (after existing imports)
-import logging
 import datetime
 import json
+import logging
 import os
-from xml.etree import ElementTree as ET
-from pytz import timezone
-from django.http import Http404
-from rest_framework.response import Response
-from rest_framework.parsers import MultiPartParser, JSONParser
-from ccp4i2.core import CCP4TaskManager
-from ccp4i2.core.CCP4Container import CContainer
-from ccp4i2.core import CCP4ErrorHandling
-from ..lib.utils.jobs.i2run import i2run_for_job
-from ..lib.utils.parameters.load_xml import load_nested_xml
-# validate_container no longer used - validation/ endpoint now uses unified validate_job utility
-from ..lib.utils.files.digest import digest_param_file
-from ..lib.utils.containers.validate import getEtree  # Still used for error handling in other endpoints
-from ..lib.utils.parameters.set_input_by_context import set_input_by_context_job
-from ..lib.utils.jobs.preview import preview_job
 import tempfile
 from pathlib import Path
-from django.http import FileResponse
-from ..db.export_project import export_project_to_zip
-import subprocess
 from xml.etree import ElementTree as ET
-from rest_framework.parsers import FormParser, MultiPartParser
-from rest_framework.viewsets import ModelViewSet
+
+from django.http import FileResponse, Http404
+from pytz import timezone
 from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework import status
+from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.permissions import IsAuthenticated
-from . import serializers
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
+
+from ccp4i2.core import CCP4ErrorHandling
+from ccp4i2.core.CCP4TaskManager import locate_def_xml
+
 from ..db import models
-from ..lib.utils.reporting.i2_report import generate_job_report
-from ..lib.utils.jobs.clone import clone_job  # Modern clone utility with Result pattern
-from ..lib.utils.navigation.dependencies import find_dependent_jobs
-from ..lib.utils.navigation.dependencies import delete_job_and_dependents
-# Modern utilities
-from ..lib.utils.plugins.get_plugin import get_job_plugin
+from ..db.export_project import export_project_to_zip
+from ..lib.response import api_error, api_success
 from ..lib.utils.containers.json_encoder import CCP4i2JsonEncoder
-
-# Modern imports - all now using modern utilities
+from ..lib.utils.containers.validate import getEtree
+from ..lib.utils.files.digest import digest_param_file
 from ..lib.utils.files.upload_param import upload_file_param
-from ..lib.utils.containers.get_container import get_job_container
 from ..lib.utils.helpers.object_method import object_method
+from ..lib.utils.jobs.clone import clone_job
+from ..lib.utils.jobs.i2run import i2run_for_job
+from ..lib.utils.jobs.preview import preview_job
+from ..lib.utils.navigation.dependencies import (
+    delete_job_and_dependents,
+    find_dependent_jobs,
+)
 from ..lib.utils.navigation.what_next import get_what_next
-from django.http import JsonResponse
-from django.conf import settings
-from django.utils.text import slugify
-
-# Uniform API response helpers
-from ..lib.response import api_success, api_error
+from ..lib.utils.parameters.load_xml import load_nested_xml
+from ..lib.utils.parameters.set_input_by_context import set_input_by_context_job
+from ..lib.utils.plugins.get_plugin import get_job_plugin
+from . import serializers
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -1192,9 +1178,7 @@ class JobViewSet(ModelViewSet):
         """
         try:
             the_job = models.Job.objects.get(id=pk)
-            def_xml_path = CCP4TaskManager.TASKMANAGER().locate_def_xml(
-                task_name=the_job.task_name
-            )
+            def_xml_path = locate_def_xml(the_job.task_name)
             with open(def_xml_path, "r") as def_xml_file:
                 def_xml = def_xml_file.read()
                 packedXML = ET.fromstring(def_xml)
@@ -1772,57 +1756,10 @@ class JobViewSet(ModelViewSet):
             - Handles CCP4 Task Manager initialization errors
             - Provides detailed error messages for debugging
         """
-        try:
-            # Retrieve the job object
-            job = models.Job.objects.get(id=pk)
-            task_name = job.task_name
-
-            logger.debug(
-                "Retrieving file menu for job %s with task_name: %s", pk, task_name
-            )
-
-            # Get the task manager instance and retrieve menu data
-            task_manager = CCP4TaskManager.TASKMANAGER()
-
-            # TODO: Modernize exportJobFiles - legacy method not available in modern TaskManager
-            # For now, return empty menu structure
-            if hasattr(task_manager, 'exportJobFiles'):
-                menu_result = task_manager.exportJobFiles(
-                    taskName=task_name, jobId=job.uuid, mode="menu"
-                )
-            else:
-                # Return stub menu structure for modern code
-                logger.warning(
-                    "exportJobFiles not available in TaskManager - returning empty menu"
-                )
-                menu_result = []
-
-            # The task manager should return menu data - exact structure depends on CCP4 implementation
-            # This might need adjustment based on the actual return type from TASKMANAGER
-            menu_result = menu_result if menu_result else []
-
-            logger.debug(
-                "Successfully retrieved file menu for job %s, task %s", pk, task_name
-            )
-
-            return api_success({"result": menu_result})
-
-        except models.Job.DoesNotExist as err:
-            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
-            return api_error(f"Job not found: {str(err)}", status=404)
-
-        except Exception as err:
-            logger.exception(
-                "Failed to get file menu for job %s with task_name %s",
-                pk,
-                (
-                    getattr(job, "task_name", "unknown")
-                    if "job" in locals()
-                    else "unknown"
-                ),
-                exc_info=err,
-            )
-            return api_error(f"Task manager error: {str(err)}", status=500)
+        logger.warning(
+            "exportJobFiles not available in TaskManager - returning empty menu"
+        )
+        return api_success({"result": []})
 
     @action(
         detail=True,

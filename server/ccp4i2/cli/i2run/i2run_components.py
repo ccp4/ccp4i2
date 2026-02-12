@@ -70,7 +70,7 @@ class KeywordExtractor:
         plugin_class = get_plugin_class(task_name)
         if plugin_class is None:
             raise RuntimeError(
-                f"Plugin '{task_name}' not found in TASKMANAGER registry. "
+                f"Plugin '{task_name}' not found in registry. "
                 f"This plugin either failed to load during registry generation or does not exist. "
                 f"Check core/task_manager/plugin_registry.py"
             )

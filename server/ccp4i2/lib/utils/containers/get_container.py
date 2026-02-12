@@ -1,6 +1,6 @@
 import logging
 
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import locate_def_xml
 from ccp4i2.core import CCP4Container
 from ....db import models
 
@@ -22,10 +22,7 @@ def get_job_container(the_job: models.Job):
     Returns:
         CCP4Container.CContainer: The loaded job container.
     """
-    defFile = TASKMANAGER().locate_def_xml(
-        task_name=the_job.task_name
-    )
-    # print 'CProjectDirToDb.globJobs defFile',defFile
+    defFile = locate_def_xml(the_job.task_name)
     container = CCP4Container.CContainer()
     container.loadContentsFromXml(defFile)
 

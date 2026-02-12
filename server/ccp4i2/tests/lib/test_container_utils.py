@@ -11,6 +11,7 @@ from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Data
 from ccp4i2.core import CCP4Container
 from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core.CCP4TaskManager import locate_def_xml
 from ...db.models import Job, File
 from ...db.import_i2xml import import_ccp4_project_zip
 
@@ -119,8 +120,7 @@ class CCP4i2TestCase(TestCase):
             NCYCLES.set(-1)
 
     def test_def_xml_container(self):
-        taskManager = CCP4TaskManager.TASKMANAGER()
-        defFile = taskManager.locate_def_xml(task_name="prosmart_refmac")
+        defFile = locate_def_xml("prosmart_refmac")
         container: CCP4Container.CContainer = CCP4Container.CContainer(
             definitionFile=defFile
         )

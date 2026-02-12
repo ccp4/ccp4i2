@@ -9,12 +9,11 @@ This module maintains backward compatibility with legacy code that
 imports from ccp4i2.core.CCP4Modules.
 """
 
-from .CCP4TaskManager import TASKMANAGER
 from .CCP4ProjectsManager import PROJECTSMANAGER
 from .CCP4ProcessManager import PROCESSMANAGER
 
 
-__all__ = ['TASKMANAGER', 'PROJECTSMANAGER', 'PROCESSMANAGER', 'PREFERENCES']
+__all__ = ['PROJECTSMANAGER', 'PROCESSMANAGER', 'PREFERENCES']
 
 
 class _PreferencesStub:

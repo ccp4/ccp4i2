@@ -6,7 +6,7 @@ import pytest
 import os
 from pathlib import Path
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import locate_def_xml
 
 
 def test_cpluginscript_instantiation():
@@ -138,10 +138,9 @@ class TestDefXmlLoading:
 
     def test_taskmanager_locate_def_xml(self):
         """Test locate_def_xml() finds plugin definition files."""
-        tm = TASKMANAGER()
 
         # Test finding a common plugin
-        path = tm.locate_def_xml('pointless')
+        path = locate_def_xml('pointless')
 
         assert path is not None, "Should find pointless.def.xml"
         assert path.exists(), f"Path should exist: {path}"
@@ -150,21 +149,19 @@ class TestDefXmlLoading:
 
     def test_taskmanager_locate_def_xml_multiple_plugins(self):
         """Test locating multiple different plugins."""
-        tm = TASKMANAGER()
 
         test_plugins = ['refmac', 'pointless', 'aimless', 'coot1']
 
         for plugin_name in test_plugins:
-            path = tm.locate_def_xml(plugin_name)
+            path = locate_def_xml(plugin_name)
             assert path is not None, f"Should find {plugin_name}"
             assert path.exists(), f"{plugin_name} path should exist"
             assert plugin_name in path.name
 
     def test_taskmanager_locate_def_xml_not_found(self):
         """Test that non-existent plugins return None."""
-        tm = TASKMANAGER()
 
-        path = tm.locate_def_xml('nonexistent_plugin_xyz')
+        path = locate_def_xml('nonexistent_plugin_xyz')
 
         assert path is None, "Should return None for non-existent plugin"
 

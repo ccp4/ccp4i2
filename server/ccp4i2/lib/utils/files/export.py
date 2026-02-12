@@ -99,10 +99,6 @@ def export_job_file(
             export_mode,
         )
 
-        # Get the task manager instance
-        task_manager = CCP4TaskManager.TASKMANAGER()
-        logger.debug("Got task manager instance")
-
         # Call exportJobFiles to get the filename of the file to export
         job_uuid_formatted = str(str(job.uuid).replace("-", ""))
         logger.debug(
@@ -112,7 +108,8 @@ def export_job_file(
             export_mode,
         )
         try:
-            exported_filename = task_manager.exportJobFiles(
+            # Always throws an error becayse exportJobFiles no longer exists
+            exported_filename = exportJobFiles(
                 taskName=job.task_name, jobId=job_uuid_formatted, mode=export_mode
             )
             logger.debug(
