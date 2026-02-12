@@ -339,16 +339,6 @@ class CTaskManager:
 
         return lookup
 
-    @property
-    def task_icon_lookup(self) -> Dict[str, str]:
-        """
-        Return icon paths for module folders.
-
-        Returns:
-            Dict mapping module name to icon path (relative to static dir)
-        """
-        return MODULE_ICONS.copy()
-
 
 def TASKMANAGER():
     """Return a unique instance of CTaskManager."""
@@ -371,6 +361,6 @@ def get_task_tree():
     result = {
         "tree": task_manager.task_tree(),
         "lookup": task_manager.task_lookup,
-        "iconLookup": task_manager.task_icon_lookup,
+        "iconLookup": MODULE_ICONS,
     }
     return result
