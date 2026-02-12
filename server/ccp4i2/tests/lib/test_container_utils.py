@@ -25,7 +25,6 @@ from ...lib.utils.parameters.load_xml import load_nested_xml
 from ...lib.utils.containers.validate import validate_container
 from ...lib.utils.jobs.clone import clone_job
 from ...lib.utils.jobs.create import create_job
-from ...lib.utils.containers.json_for_container import json_for_job_container
 from ...lib.utils.reporting.i2_report import get_report_job_info
 from ...lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
 
@@ -128,11 +127,6 @@ class CCP4i2TestCase(TestCase):
         def_etree = container.getEtree()
         # ET.indent(def_etree, " ")
         print(ET.tostring(def_etree).decode("utf-8"))
-
-    def test_json_for_container(self):
-        job = Job.objects.get(project__name="refmac_gamma_test_0", number="1")
-        result = json_for_job_container(job)
-        print(len(result))
 
     def test_get_task_tree(self):
         result = CCP4TaskManager.get_task_tree()
