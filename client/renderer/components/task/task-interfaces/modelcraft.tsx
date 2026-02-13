@@ -14,6 +14,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem } = useJob(job.id);
   const { value: USE_MODEL_PHASES_RAW } = useTaskItem("USE_MODEL_PHASES");
   const { value: XYZIN, forceUpdate: forceSetXYZIN } = useTaskItem("XYZIN");
+  const { forceUpdate: forceSetCYCLES } = useTaskItem("CYCLES");
 
   // Local state for conditional rendering - drives immediate UI updates.
   // The onChange callback updates this directly, bypassing the SWR re-render
@@ -38,6 +39,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
     },
     [XYZIN, forceSetXYZIN]
+  );
+
+  const handleBASIC = useCallback(
+    async (updatedItem: any) => {
+      await forceSetCYCLES(isTruthy(updatedItem._value) ? 5 : 25);
+    },
+    [forceSetCYCLES]
   );
 
   return (
@@ -106,6 +114,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           itemName="BASIC"
           {...props}
           qualifiers={{ guiLabel: "Run a quicker basic pipeline" }}
+          onChange={handleBASIC}
         />
 
         <Box
