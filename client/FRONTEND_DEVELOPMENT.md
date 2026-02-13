@@ -289,57 +289,17 @@ const {
 
 ## Task Interface System
 
-### How Task Interfaces Work
+For the **definitive guide** to building task interfaces — including layout, conditional visibility, reactive behaviour, pitfalls, and worked examples — see:
 
-1. **Container Loading**: Job container XML is fetched from backend
-2. **Element Rendering**: `TaskElement` recursively renders based on `guiLabel`
-3. **Parameter Changes**: User edits trigger `setParameter` API calls
-4. **Validation**: Changes trigger re-validation
+**[Task Interface Implementation Guide](renderer/components/task/task-elements/TASK_INTERFACE_IMPLEMENTATION_GUIDE.md)**
 
-### TaskElement Component
+### How Task Interfaces Work (Summary)
 
-```typescript
-// task-element.tsx
-<TaskElement
-  object_path="container.inputData.XYZIN"
-  object={xyzinData}
-  containerElementTypes={containerElementTypes}
-/>
-```
-
-### Adding a New Task Element
-
-1. Create component in `task-elements/`:
-
-```typescript
-// components/task/task-elements/my-element.tsx
-export const MyElement: React.FC<TaskElementProps> = ({
-  object_path,
-  object,
-  containerElementTypes,
-}) => {
-  const { setParameter } = useTask();
-
-  const handleChange = async (value: string) => {
-    await setParameter(object_path, value);
-  };
-
-  return (
-    <TextField
-      value={object?.value || ""}
-      onChange={(e) => handleChange(e.target.value)}
-    />
-  );
-};
-```
-
-2. Register in `task-element.tsx`:
-
-```typescript
-// Add to guiLabel mapping
-case "MyElement":
-  return <MyElement {...props} />;
-```
+1. **Container Loading**: Job container JSON is fetched from the Django backend via SWR
+2. **Element Rendering**: `CCP4i2TaskElement` dispatches to type-specific widgets based on `_class`
+3. **Parameter Changes**: User edits trigger `setParameter` API calls with optimistic SWR cache patching
+4. **Validation**: Changes trigger re-validation; borders turn red/green accordingly
+5. **Custom interfaces** live in `components/task/task-interfaces/<taskname>.tsx` and are registered in `task-container.tsx`
 
 ---
 

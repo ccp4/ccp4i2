@@ -380,164 +380,163 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
 
   return (
     <Box
+      ref={setNodeRef}
       sx={{
         mx: FIELD_SPACING.marginLeft,
-        my: 0.5,
+        my: 0,
+        bgcolor: isOver
+          ? isValidDrop
+            ? "success.light"
+            : "error.light"
+          : "transparent",
+        borderRadius: 1,
+        transition: "background-color 0.2s",
       }}
     >
-      <Box
-        ref={setNodeRef}
-        sx={{
-          border: 1,
-          borderColor: hasError ? "error.main" : hasFile ? "primary.main" : "divider",
-          borderLeftWidth: hasError ? 4 : hasFile ? 3 : 1,
-          borderRadius: 1,
-          bgcolor: isOver
-            ? isValidDrop
-              ? "success.light"
-              : "error.light"
-            : "background.paper",
-          transition: "all 0.2s",
-          "&:hover": {
-            borderColor: hasError ? "error.main" : "primary.main",
-          },
-        }}
-      >
-        {/* Main row */}
-        <Stack direction="row" alignItems="center" sx={{ p: 1 }}>
-          {/* File type icon */}
-          <Avatar
-            src={`/qticons/${item?._class?.slice(1)}.png`}
-            alt={item?._class || "File type"}
-            sx={{
-              width: 40,
-              height: 40,
-              mr: 1.5,
-              flexShrink: 0,
-              bgcolor: hasFile ? "primary.light" : "action.hover",
-            }}
+      {/* Main row */}
+      <Stack direction="row" alignItems="center">
+        {/* File type icon */}
+        <Avatar
+          src={`/qticons/${item?._class?.slice(1)}.png`}
+          alt={item?._class || "File type"}
+          sx={{
+            width: 32,
+            height: 32,
+            mr: 1,
+            flexShrink: 0,
+            bgcolor: hasFile ? "primary.light" : "action.hover",
+          }}
+        />
+
+        {/* File selector */}
+        <Box sx={{ flex: 1, minWidth: 0 }}>
+          <Autocomplete
+            disabled={isDisabled}
+            sx={{ ...sx }}
+            size="small"
+            value={value}
+            onChange={handleFileSelect}
+            options={[...displayOptions, nullFile]}
+            getOptionLabel={getOptionLabel}
+            getOptionKey={(option: CCP4i2File) => option.uuid}
+            freeSolo={false}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                error={hasError}
+                slotProps={{
+                  inputLabel: { shrink: true, disableAnimation: true },
+                }}
+                label={guiLabel}
+                size="small"
+                placeholder={`Select ${fileTypeLabel} file...`}
+              />
+            )}
+            title={item?._objectPath || item?._className || "File selector"}
           />
+        </Box>
 
-          {/* File selector */}
-          <Box sx={{ flex: 1, minWidth: 0 }}>
-            <Autocomplete
+        {/* Action buttons */}
+        <Stack direction="row" spacing={0.5} sx={{ ml: 1, flexShrink: 0 }}>
+          {canUpload && (
+            <InputFileUpload
+              sx={{ minWidth: "auto" }}
               disabled={isDisabled}
-              sx={{ ...sx }}
-              size="small"
-              value={value}
-              onChange={handleFileSelect}
-              options={[...displayOptions, nullFile]}
-              getOptionLabel={getOptionLabel}
-              getOptionKey={(option: CCP4i2File) => option.uuid}
-              freeSolo={false}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  error={hasError}
-                  slotProps={{
-                    inputLabel: { shrink: true, disableAnimation: true },
-                  }}
-                  label={guiLabel}
-                  size="small"
-                  placeholder={`Select ${fileTypeLabel} file...`}
-                />
-              )}
-              title={item?._objectPath || item?._className || "File selector"}
+              accept={fileConfig.acceptedExtensions}
+              handleFileChange={handleFileChange}
             />
-          </Box>
+          )}
 
-          {/* Action buttons */}
-          <Stack direction="row" spacing={0.5} sx={{ ml: 1, flexShrink: 0 }}>
-            {canUpload && (
-              <InputFileUpload
-                sx={{ minWidth: "auto" }}
-                disabled={isDisabled}
-                accept={fileConfig.acceptedExtensions}
-                handleFileChange={handleFileChange}
-              />
-            )}
+          {canFetch && (
+            <InputFileFetch
+              sx={{ minWidth: "auto" }}
+              disabled={isDisabled}
+              modes={qualifiers.downloadModes}
+              handleFileChange={handleFileChange}
+              onChange={onChange}
+              item={item}
+            />
+          )}
 
-            {canFetch && (
-              <InputFileFetch
-                sx={{ minWidth: "auto" }}
-                disabled={isDisabled}
-                modes={qualifiers.downloadModes}
-                handleFileChange={handleFileChange}
-                onChange={onChange}
-                item={item}
-              />
-            )}
-
-            {hasFile && (
-              <>
-                <Tooltip title="File options">
-                  <IconButton
-                    size="small"
-                    onClick={handleMenuClick}
-                    aria-label="Open file menu"
-                  >
-                    <MenuIcon fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-                {!isDisabled && (
-                  <Tooltip title="Clear selection">
-                    <IconButton
-                      size="small"
-                      onClick={handleClear}
-                      aria-label="Clear file selection"
-                      color="default"
-                    >
-                      <Clear fontSize="small" />
-                    </IconButton>
-                  </Tooltip>
-                )}
-              </>
-            )}
-
-            {hasChildren && (
-              <Tooltip
-                title={
-                  hasValidationError
-                    ? "Options expanded due to validation error"
-                    : isExpanded
-                      ? "Collapse options"
-                      : "Expand options"
-                }
-              >
+          {hasFile && (
+            <>
+              <Tooltip title="File options">
                 <IconButton
-                  onClick={handleToggle}
                   size="small"
-                  disabled={hasValidationError}
-                  sx={{
-                    transition: "transform 0.2s ease-in-out",
-                    transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
-                    opacity: hasValidationError ? 0.6 : 1,
-                  }}
-                  aria-label={isExpanded ? "Collapse options" : "Expand options"}
+                  onClick={handleMenuClick}
+                  aria-label="Open file menu"
                 >
-                  <ChevronRightIcon fontSize="small" />
+                  <MenuIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-            )}
+              {!isDisabled && (
+                <Tooltip title="Clear selection">
+                  <IconButton
+                    size="small"
+                    onClick={handleClear}
+                    aria-label="Clear file selection"
+                    color="default"
+                  >
+                    <Clear fontSize="small" />
+                  </IconButton>
+                </Tooltip>
+              )}
+            </>
+          )}
 
-            <ErrorTrigger item={item} job={job} />
-          </Stack>
+          {hasChildren && (
+            <Tooltip
+              title={
+                hasValidationError
+                  ? "Options expanded due to validation error"
+                  : isExpanded
+                    ? "Collapse options"
+                    : "Expand options"
+              }
+            >
+              <IconButton
+                onClick={handleToggle}
+                size="small"
+                disabled={hasValidationError}
+                sx={{
+                  transition: "transform 0.2s ease-in-out",
+                  transform: isExpanded ? "rotate(90deg)" : "rotate(0deg)",
+                  opacity: hasValidationError ? 0.6 : 1,
+                }}
+                aria-label={isExpanded ? "Collapse options" : "Expand options"}
+              >
+                <ChevronRightIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
+
+          <ErrorTrigger item={item} job={job} />
         </Stack>
+      </Stack>
 
-        {/* Expandable children */}
-        {hasChildren && (
-          <ExpandableSection
-            expanded={isExpanded}
-            onToggle={(expanded) => setIsManuallyExpanded(expanded)}
-            forceExpanded={hasValidationError || forceExpanded}
-            hasError={hasValidationError}
-            hideTitle
-            forceExpandedTitle="Required Options (Error)"
-          >
-            <Box sx={{ px: 1, pb: 1 }}>{children}</Box>
-          </ExpandableSection>
-        )}
-      </Box>
+      {/* Expandable children */}
+      {hasChildren && (
+        <ExpandableSection
+          expanded={isExpanded}
+          onToggle={(expanded) => setIsManuallyExpanded(expanded)}
+          forceExpanded={hasValidationError || forceExpanded}
+          hasError={hasValidationError}
+          hideTitle
+          forceExpandedTitle="Required Options (Error)"
+          sx={{
+            ml: 5,
+            borderTop: "none",
+            borderLeft: "2px solid",
+            borderLeftColor: hasValidationError ? "error.main" : "divider",
+            borderRadius: 0,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            px: 1.5,
+          }}
+        >
+          {children}
+        </ExpandableSection>
+      )}
     </Box>
   );
 };

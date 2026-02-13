@@ -974,13 +974,13 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           );
           setProcessedErrors(null);
 
-          // Patch the container cache locally instead of full refetch
-          // This eliminates race conditions and removes need for intent system
+          // Patch the container cache locally instead of full refetch.
+          // Note: SWR's mutate with function updater + revalidate:false may not
+          // reliably trigger re-renders in all subscriber components. Task interfaces
+          // that need to react to parameter changes should use the onChange callback
+          // with local React state rather than depending on SWR cache updates alone.
           if (result.success && result.data?.updated_item) {
-            // Use the global mutate with explicit key to ensure all subscribers are notified
-            const containerKey = `jobs/${job.id}/container`;
-            await mutate(
-              containerKey,
+            await mutateContainer(
               (currentContainer: any) =>
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
@@ -997,7 +997,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       });
     },
-    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors]
+    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors, mutateContainer]
   );
 
   const setParameterNoMutate = useCallback(
@@ -1023,13 +1023,9 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             setParameterArg
           );
 
-          // Patch the container cache locally using global mutate
-          // Even for "no mutate" calls, we patch immediately since there's no
-          // full refetch to wait for
+          // Patch the container cache locally, then revalidate for re-render
           if (result.success && result.data?.updated_item) {
-            const containerKey = `jobs/${job.id}/container`;
-            await mutate(
-              containerKey,
+            await mutateContainer(
               (currentContainer: any) =>
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
@@ -1043,7 +1039,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       });
     },
-    [job, api]
+    [job, api, mutateContainer]
   );
 
   /**
@@ -1083,11 +1079,9 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
           setProcessedErrors(null);
 
-          // Patch the container cache locally using global mutate
+          // Patch the container cache locally, then revalidate for re-render
           if (result.success && result.data?.updated_item) {
-            const containerKey = `jobs/${job.id}/container`;
-            await mutate(
-              containerKey,
+            await mutateContainer(
               (currentContainer: any) =>
                 patchContainer(currentContainer, result.data.updated_item),
               { revalidate: false }
@@ -1111,7 +1105,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       }) as Promise<UploadFileParamResponse | undefined>;
     },
-    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors]
+    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors, mutateContainer]
   );
 
   const useTaskItem = useMemo(() => {

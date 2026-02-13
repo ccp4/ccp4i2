@@ -1,869 +1,598 @@
-# Task Interface Layout Guide
+# CCP4i2 Task Interface — Definitive Guide
 
-This guide explains how to control the size and layout of form fields in CCP4i2 task interfaces.
+This is the single reference for building task interfaces in CCP4i2. It covers everything from understanding a task's narrative description to producing a fully working, reactive interface.
 
-## Core Design Principle
+---
 
-**Base widgets are full-width by default. Containers control sizing.**
+## Table of Contents
 
-This separation of concerns means:
-- Base widgets (TextField, Autocomplete) just render content — no width logic
-- Container components (FieldRow, Grid2) are the single source of truth for sizing
-- No duplication of width constraints across widgets
+1. [Workflow Overview](#workflow-overview)
+2. [Anatomy of a Task Interface](#anatomy-of-a-task-interface)
+3. [Step 1 — Understand the Task](#step-1--understand-the-task)
+4. [Step 2 — Scaffold the Interface](#step-2--scaffold-the-interface)
+5. [Step 3 — Layout and Grouping](#step-3--layout-and-grouping)
+6. [Step 4 — Conditional Visibility](#step-4--conditional-visibility)
+7. [Step 5 — Reactive Behaviour (onChange, auto-sync)](#step-5--reactive-behaviour-onchange-auto-sync)
+8. [Step 6 — Register and Test](#step-6--register-and-test)
+9. [Props Reference](#props-reference)
+10. [Layout Components](#layout-components)
+11. [Common Patterns Cookbook](#common-patterns-cookbook)
+12. [Pitfalls and Hard-Won Lessons](#pitfalls-and-hard-won-lessons)
+13. [Complete Worked Example — ModelCraft](#complete-worked-example--modelcraft)
 
-## Available Size Constants
+---
+
+## Workflow Overview
+
+```
+  Narrative description  (what the scientist sees)
+         │
+         ▼
+  Read the .def.xml      (parameter names, types, defaults, qualifiers)
+         │
+         ▼
+  Look at generated/     (auto-generated baseline — useful for parameter names)
+         │
+         ▼
+  Write the interface    (group, label, show/hide, react)
+         │
+         ▼
+  Register in task-container.tsx
+         │
+         ▼
+  Test: toggle booleans, load files, check validation borders
+```
+
+---
+
+## Anatomy of a Task Interface
+
+Every custom interface is a React functional component that receives a single prop:
+
+```tsx
+import { CCP4i2TaskInterfaceProps } from "./task-container";
+
+const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { job } = props;
+  // ... build the UI
+  return <Paper>...</Paper>;
+};
+
+export default TaskInterface;
+```
+
+`CCP4i2TaskInterfaceProps` contains one field: `job: Job` (with `job.id`, `job.task_name`, etc.).
+
+---
+
+## Step 1 — Understand the Task
+
+Before writing any code:
+
+1. **Read the `.def.xml`** file for the task (in `wrappers/`, `wrappers2/`, or `pipelines/`). This defines every parameter: its name, type (`CBoolean`, `CObsDataFile`, `CInt`, etc.), default value, and qualifiers (`guiLabel`, `toolTip`, `min`, `max`, enumerators).
+
+2. **Open the generated interface** (if one exists) in `task-interfaces/generated/<taskname>.tsx`. This shows which parameters the legacy GUI exposed and in what order. It's a useful starting point but will be flat and unstyled.
+
+3. **Run the task in the generic interface** to see all the parameters rendered automatically. Note which groups of parameters belong together logically.
+
+---
+
+## Step 2 — Scaffold the Interface
+
+Create a new file: `task-interfaces/<taskname>.tsx`
+
+Minimal scaffold:
+
+```tsx
+import { Paper } from "@mui/material";
+import { CCP4i2TaskInterfaceProps } from "./task-container";
+import { CCP4i2TaskElement } from "../task-elements/task-element";
+import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { useJob } from "../../../utils";
+
+const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { job } = props;
+  const { useTaskItem } = useJob(job.id);
+
+  return (
+    <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
+      <CCP4i2TaskElement itemName="F_SIGF" {...props} />
+      <CCP4i2TaskElement itemName="XYZIN" {...props} />
+    </Paper>
+  );
+};
+
+export default TaskInterface;
+```
+
+**Key rule:** always spread `{...props}` onto every `CCP4i2TaskElement` and `CCP4i2ContainerElement`. This passes the `job` (and any future props) down.
+
+---
+
+## Step 3 — Layout and Grouping
+
+### Containers
+
+Use `CCP4i2ContainerElement` with an empty `itemName=""` to create visual grouping without tying to a real container in the data model:
+
+```tsx
+<CCP4i2ContainerElement
+  {...props}
+  itemName=""
+  qualifiers={{ guiLabel: "Reflection data" }}
+  containerHint="FolderLevel"    // Collapsible card with header
+>
+  <CCP4i2TaskElement itemName="F_SIGF" {...props} />
+  <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
+</CCP4i2ContainerElement>
+```
+
+| `containerHint` | Appearance |
+|-----------------|------------|
+| `FolderLevel`   | Card with collapsible header (default for top-level sections) |
+| `BlockLevel`    | Subtle bordered box with a label (for sub-sections) |
+| `RowLevel`      | Horizontal flow layout |
+
+### Tabs
+
+For interfaces with many parameters, use tabs:
+
+```tsx
+import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
+
+<CCP4i2Tabs {...props}>
+  <CCP4i2Tab label="Input data">
+    {/* Input fields */}
+  </CCP4i2Tab>
+  <CCP4i2Tab label="Options">
+    {/* Options fields */}
+  </CCP4i2Tab>
+</CCP4i2Tabs>
+```
+
+### Size Constants
 
 Defined in `field-sizes.ts`:
 
 | Size | Value | Use Case |
 |------|-------|----------|
-| `xs` | 8rem (128px) | Single digits, cell parameters |
-| `sm` | 12rem (192px) | Short numbers, small enums |
-| `md` | 20rem (320px) | Default for standalone fields |
-| `lg` | 32rem (512px) | File paths, longer text |
+| `xs` | 8rem  | Single digits, cell parameters |
+| `sm` | 12rem | Short numbers, small enums |
+| `md` | 20rem | Default for standalone fields |
+| `lg` | 32rem | File paths, longer text |
 | `full` | 100% | Full container width |
 
----
-
-## Layout Components
-
-### 1. FieldRow — Equal-Width Horizontal Layout
-
-Use `FieldRow` when you want multiple fields side-by-side with equal widths.
+### FieldRow — Horizontal Layout for Fields
 
 ```tsx
 import { FieldRow } from "../task-elements/field-row";
 
-// Two fields sharing space equally (default behavior)
+// Equal-width fields side-by-side
 <FieldRow>
-  <CCP4i2TaskElement itemName="CRYSTALNAME" qualifiers={{ guiLabel: "Crystal name" }} />
-  <CCP4i2TaskElement itemName="DATASETNAME" qualifiers={{ guiLabel: "Dataset name" }} />
+  <CCP4i2TaskElement itemName="PARAM_A" {...props} />
+  <CCP4i2TaskElement itemName="PARAM_B" {...props} />
 </FieldRow>
-```
 
-**Result:** Each field gets 50% width, wraps on narrow screens.
-
-### 2. FieldRow with Size — Constrained Widths
-
-Use `FieldRow` with `equalWidth={false}` and `size` to constrain each field to a specific width.
-
-```tsx
-// Cell parameters - each field constrained to 8rem
+// Constrained-width fields
 <FieldRow equalWidth={false} size="xs">
-  <CCP4i2TaskElement itemName="CELL_A" qualifiers={{ guiLabel: "a" }} />
-  <CCP4i2TaskElement itemName="CELL_B" qualifiers={{ guiLabel: "b" }} />
-  <CCP4i2TaskElement itemName="CELL_C" qualifiers={{ guiLabel: "c" }} />
+  <CCP4i2TaskElement itemName="CELL_A" {...props} qualifiers={{ guiLabel: "a" }} />
+  <CCP4i2TaskElement itemName="CELL_B" {...props} qualifiers={{ guiLabel: "b" }} />
+  <CCP4i2TaskElement itemName="CELL_C" {...props} qualifiers={{ guiLabel: "c" }} />
 </FieldRow>
 ```
 
-**Result:** Each field is max 8rem wide, fields wrap when container is narrow.
-
-### 3. Grid2 — Precise Column Control
-
-Use MUI's `Grid2` when you need specific column proportions or responsive breakpoints.
+### Grid2 — Precise Column Control
 
 ```tsx
 import { Grid2 } from "@mui/material";
 
 <Grid2 container spacing={2}>
   <Grid2 size={{ xs: 12, md: 4 }}>
-    <CCP4i2TaskElement itemName="SPACEGROUP" qualifiers={{ guiLabel: "Space group" }} />
+    <CCP4i2TaskElement itemName="SPACEGROUP" {...props} qualifiers={{ guiLabel: "Space group" }} />
   </Grid2>
   <Grid2 size={{ xs: 12, md: 8 }}>
-    <CCP4i2TaskElement itemName="UNITCELL" />
+    <CCP4i2TaskElement itemName="UNITCELL" {...props} />
   </Grid2>
 </Grid2>
 ```
 
-**Result:** On mobile (xs), each field is full-width. On desktop (md+), space group is 1/3, unit cell is 2/3.
+### Inline Text + Field Pattern
 
-### 4. Stack — For Non-Field Content Only
-
-Use `Stack direction="row"` **only** for display elements (Typography, Chip, Icon, Button).
+For "Run for ___ cycles" style layouts:
 
 ```tsx
-// CORRECT: Stack for display elements
-<Stack direction="row" spacing={1} alignItems="center">
-  <Typography variant="body2">Resolution:</Typography>
-  <Chip label="2.5 Å" size="small" />
-</Stack>
-
-// WRONG: Don't use Stack for form fields
-<Stack direction="row">
-  <CCP4i2TaskElement itemName="FIELD1" />  {/* Fields won't size properly! */}
-  <CCP4i2TaskElement itemName="FIELD2" />
-</Stack>
-```
-
----
-
-## Common Patterns
-
-### Pattern 1: Label + Field + Help Text
-
-```tsx
-<Box>
-  <Typography variant="subtitle2" gutterBottom>
-    Resolution Range
-  </Typography>
-  <FieldRow equalWidth={false} size="sm">
-    <CCP4i2TaskElement itemName="RES_LOW" qualifiers={{ guiLabel: "Low" }} />
-    <CCP4i2TaskElement itemName="RES_HIGH" qualifiers={{ guiLabel: "High" }} />
-  </FieldRow>
-  <Typography variant="caption" color="text.secondary">
-    Enter resolution limits in Ångstroms
-  </Typography>
+<Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+  <Typography variant="body1">Run for</Typography>
+  <Box sx={{ width: "8rem" }}>
+    <CCP4i2TaskElement itemName="CYCLES" {...props} qualifiers={{ guiLabel: " " }} />
+  </Box>
+  <Typography variant="body1">cycles</Typography>
 </Box>
 ```
 
-### Pattern 2: Mixed Layout (Some Fields Wide, Some Narrow)
+Use `guiLabel: " "` (a space) to suppress the label above the field.
+
+### What NOT to Use for Field Layout
 
 ```tsx
-<Grid2 container spacing={2}>
-  {/* Full-width file selector */}
-  <Grid2 size={{ xs: 12 }}>
-    <CCP4i2TaskElement itemName="INPUT_FILE" />
-  </Grid2>
-
-  {/* Three narrow fields in a row */}
-  <Grid2 size={{ xs: 12 }}>
-    <FieldRow equalWidth={false} size="sm">
-      <CCP4i2TaskElement itemName="PARAM1" qualifiers={{ guiLabel: "Param 1" }} />
-      <CCP4i2TaskElement itemName="PARAM2" qualifiers={{ guiLabel: "Param 2" }} />
-      <CCP4i2TaskElement itemName="PARAM3" qualifiers={{ guiLabel: "Param 3" }} />
-    </FieldRow>
-  </Grid2>
-
-  {/* Two equal-width fields */}
-  <Grid2 size={{ xs: 12 }}>
-    <FieldRow>
-      <CCP4i2TaskElement itemName="OPTION_A" qualifiers={{ guiLabel: "Option A" }} />
-      <CCP4i2TaskElement itemName="OPTION_B" qualifiers={{ guiLabel: "Option B" }} />
-    </FieldRow>
-  </Grid2>
-</Grid2>
-```
-
-### Pattern 3: Responsive 2-Column Form
-
-```tsx
-<Grid2 container spacing={2}>
-  <Grid2 size={{ xs: 12, sm: 6 }}>
-    <CCP4i2TaskElement itemName="CRYSTAL_NAME" qualifiers={{ guiLabel: "Crystal" }} />
-  </Grid2>
-  <Grid2 size={{ xs: 12, sm: 6 }}>
-    <CCP4i2TaskElement itemName="DATASET_NAME" qualifiers={{ guiLabel: "Dataset" }} />
-  </Grid2>
-  <Grid2 size={{ xs: 12, sm: 6 }}>
-    <CCP4i2TaskElement itemName="WAVELENGTH" qualifiers={{ guiLabel: "Wavelength" }} />
-  </Grid2>
-  <Grid2 size={{ xs: 12, sm: 6 }}>
-    <CCP4i2TaskElement itemName="RESOLUTION" qualifiers={{ guiLabel: "Resolution" }} />
-  </Grid2>
-</Grid2>
-```
-
-### Pattern 4: Field with Inline Suffix
-
-```tsx
-<Stack direction="row" spacing={1} alignItems="center">
-  <Box sx={{ width: "12rem" }}>
-    <CCP4i2TaskElement itemName="WAVELENGTH" qualifiers={{ guiLabel: "Wavelength" }} />
-  </Box>
-  <Typography variant="body2" color="text.secondary">Å</Typography>
+// DON'T: Stack doesn't size fields properly
+<Stack direction="row">
+  <CCP4i2TaskElement itemName="FIELD1" {...props} />
 </Stack>
+
+// DON'T: Add minWidth directly to fields
+<CCP4i2TaskElement sx={{ minWidth: "10rem" }} itemName="FIELD1" {...props} />
+
+// DON'T: Use the deprecated elementSx on containers
+<CCP4i2ContainerElement elementSx={{ width: "8rem" }} />
 ```
 
-### Pattern 5: Card with Grouped Fields
+Use `FieldRow` or `Grid2` instead.
+
+---
+
+## Step 4 — Conditional Visibility
+
+### Simple Visibility (via `visibility` prop)
+
+For showing/hiding fields based on enum or boolean values. The `visibility` prop takes a function returning `true` (show) or `false` (hide):
 
 ```tsx
-import { Card, CardHeader, CardContent } from "@mui/material";
+const { value: MODE } = useTaskItem("MODE");
 
-<Card>
-  <CardHeader title="Crystal Information" />
-  <CardContent>
-    <Grid2 container spacing={2}>
-      <Grid2 size={{ xs: 6, md: 4 }}>
-        <CCP4i2TaskElement itemName="SPACEGROUP" qualifiers={{ guiLabel: "Space group" }} />
-      </Grid2>
-      <Grid2 size={{ xs: 6, md: 8 }}>
-        <CCP4i2TaskElement itemName="UNITCELL" />
-      </Grid2>
-      <Grid2 size={{ xs: 12 }}>
-        <FieldRow>
-          <CCP4i2TaskElement itemName="CRYSTALNAME" qualifiers={{ guiLabel: "Crystal" }} />
-          <CCP4i2TaskElement itemName="DATASETNAME" qualifiers={{ guiLabel: "Dataset" }} />
-        </FieldRow>
-      </Grid2>
-    </Grid2>
-  </CardContent>
-</Card>
+<CCP4i2TaskElement
+  itemName="REFERENCE_FILE"
+  {...props}
+  visibility={() => MODE === "MATCH"}
+/>
+```
+
+### Boolean Conditional Rendering (via onChange + local state)
+
+**This is the recommended pattern for CBoolean-driven visibility.** It provides immediate UI response:
+
+```tsx
+import { useCallback, useEffect, useState } from "react";
+
+const isTruthy = (val: any): boolean =>
+  val === true || val === "True" || val === "true";
+
+const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { job } = props;
+  const { useTaskItem } = useJob(job.id);
+  const { value: MY_TOGGLE_RAW } = useTaskItem("MY_TOGGLE");
+
+  // Local state mirrors the server value
+  const [myToggle, setMyToggle] = useState(() => isTruthy(MY_TOGGLE_RAW));
+
+  // Sync from server for programmatic changes (initial load, parameter file import)
+  useEffect(() => {
+    setMyToggle(isTruthy(MY_TOGGLE_RAW));
+  }, [MY_TOGGLE_RAW]);
+
+  // onChange fires when the user clicks the checkbox
+  const handleToggle = useCallback(async (updatedItem: any) => {
+    setMyToggle(isTruthy(updatedItem._value));
+  }, []);
+
+  return (
+    <>
+      <CCP4i2TaskElement
+        itemName="MY_TOGGLE"
+        {...props}
+        onChange={handleToggle}
+      />
+      {myToggle && (
+        <CCP4i2TaskElement itemName="DEPENDENT_FIELD" {...props} />
+      )}
+    </>
+  );
+};
+```
+
+**Why local state?** The SWR cache patch path (`mutateContainer` -> `patchContainer`) is reliable for data but React may not always re-render every subscriber. Local state gives deterministic, immediate visibility toggling.
+
+**Why `isTruthy()`?** CBoolean values arrive as JS `true`/`false` from the server, but some code paths may return the strings `"True"`/`"False"`. Always normalize.
+
+### Organizing Visibility for Complex Interfaces
+
+```tsx
+const { value: mode } = useTaskItem("MODE");
+const { value: mapSharp } = useTaskItem("MAP_SHARP");
+const { value: mapSharpCustom } = useTaskItem("MAP_SHARP_CUSTOM");
+
+const visibility = useMemo(() => ({
+  showMapSharpening: () => mapSharp === true,
+  showCustomBFactor: () => mapSharp === true && mapSharpCustom === true,
+  isMatchMode: () => mode === "MATCH",
+}), [mode, mapSharp, mapSharpCustom]);
+
+// Usage
+<CCP4i2TaskElement
+  itemName="BSHARP"
+  {...props}
+  visibility={visibility.showCustomBFactor}
+/>
+```
+
+### Visibility on Containers
+
+Containers also accept `visibility`:
+
+```tsx
+<CCP4i2ContainerElement
+  {...props}
+  itemName=""
+  qualifiers={{ guiLabel: "NCS model" }}
+  containerHint="BlockLevel"
+  visibility={() => xyzinMode !== "no"}
+>
+  {/* children */}
+</CCP4i2ContainerElement>
+```
+
+### Disabled vs Visibility
+
+| Use Case | Pattern |
+|----------|---------|
+| Closely related option (user should see it exists) | `disabled` |
+| Completely different mode/section | `visibility` |
+| Cascading: immediate children | `disabled`; deeper descendants -> `visibility` |
+
+```tsx
+<CCP4i2TaskElement
+  itemName="REFERENCE_TYPE"
+  {...props}
+  disabled={() => mode !== "MATCH"}
+/>
 ```
 
 ---
 
-## Composite Widgets (Pre-Built Layouts)
+## Step 5 — Reactive Behaviour (onChange, auto-sync)
 
-Some data types have dedicated composite widgets with built-in layout:
+### onChange — Responding to User Actions
 
-| Data Type | Widget | Layout |
-|-----------|--------|--------|
-| `CCell` | `CCellElement` | 6 fields (a,b,c,α,β,γ) in a row, `xs` size each |
-| `CReindexOperator` | `CReindexOperatorElement` | Matrix values in a row, `xs` size each |
-| `CEnsemble` | `CEnsembleElement` | Grid layout with copies, label, use fields |
-| `CImportUnmerged` | `CImportUnmergedElement` | File + metadata grid |
+The `onChange` callback fires when a parameter is successfully set on the server. It receives the full serialized item:
 
-These are automatically used when rendering the corresponding data types.
+```tsx
+<CCP4i2TaskElement
+  itemName="F_SIGF"
+  {...props}
+  onChange={handleFileChange}
+/>
+```
+
+Common uses:
+- **Toggle visibility** (see Step 4 above)
+- **Extract metadata from files** (see below)
+- **Clear dependent fields** when a parent changes
+
+### Extracting File Metadata with fetchDigest
+
+When the user selects a file, extract metadata (wavelength, cell, spacegroup):
+
+```tsx
+const { useTaskItem, fetchDigest } = useJob(job.id);
+const { item: F_SIGFItem } = useTaskItem("F_SIGF");
+const { forceUpdate: setWavelength } = useTaskItem("WAVELENGTH");
+const { forceUpdate: setSpaceGroup } = useTaskItem("SPACEGROUP");
+
+const handleFileChange = useCallback(async () => {
+  if (!F_SIGFItem?._objectPath) return;
+  const digest = await fetchDigest(F_SIGFItem._objectPath);
+  if (!digest) return;
+
+  if (digest.spaceGroup) await setSpaceGroup(digest.spaceGroup.replace(/\s+/g, ""));
+  if (digest.wavelength > 0) await setWavelength(digest.wavelength);
+}, [F_SIGFItem?._objectPath, fetchDigest, setSpaceGroup, setWavelength]);
+```
+
+Available digest fields:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `spaceGroup` | `string` | e.g. "P212121" |
+| `cell` | `{ a, b, c, alpha, beta, gamma }` | Unit cell |
+| `wavelength` | `number` | Single wavelength |
+| `wavelengths` | `number[]` | Multi-wavelength |
+| `resolution` | `{ low, high }` | Resolution range |
+| `contentFlag` | `number` | 1=anom I, 2=anom F, 3=mean I, 4=mean F |
+| `hasFreeR` | `boolean` | FreeR flags present |
+
+### Auto-Syncing Parameters with `syncTo`
+
+When one parameter's value should be automatically derived from another:
+
+```tsx
+const { syncTo: syncToAimlessRef } = useTaskItem("REFERENCE_FOR_AIMLESS");
+const { value: modeValue } = useTaskItem("MODE");
+
+// REFERENCE_FOR_AIMLESS = true when MODE is "MATCH", false otherwise
+useEffect(() => {
+  syncToAimlessRef(modeValue === "MATCH");
+}, [modeValue, syncToAimlessRef]);
+
+// Don't render REFERENCE_FOR_AIMLESS in the UI — it's derived
+```
+
+`syncTo` handles bounce prevention internally (pending-update tracking). Always prefer it over raw `update` for auto-sync effects.
+
+### forceUpdate vs update vs syncTo
+
+| Function | Use Case |
+|----------|----------|
+| `forceUpdate` | Programmatic updates from code (file change handlers, digest processing). Updates server + patches SWR cache + triggers validation. |
+| `update` | Raw update function. Rarely needed directly. |
+| `syncTo` | Auto-sync one parameter from another. Handles bounce prevention. |
 
 ---
 
-## Quick Reference
+## Step 6 — Register and Test
+
+### 1. Add to task-container.tsx
+
+```tsx
+// At the top — import
+import MyTaskInterface from "./mytask";
+
+// In the switch statement
+case "mytask":
+  return <MyTaskInterface job={job} />;
+```
+
+### 2. Test Checklist
+
+- [ ] All fields render with correct labels
+- [ ] File selectors accept the right file types
+- [ ] Boolean toggles show/hide dependent fields **in both directions**
+- [ ] Validation borders appear (red = error, green = valid)
+- [ ] Enum/autocomplete fields show correct options
+- [ ] `forceUpdate` calls propagate (e.g. after file metadata extraction)
+- [ ] TypeScript compiles: `cd client && npx tsc --noEmit -p renderer/tsconfig.json`
+
+---
+
+## Props Reference
+
+### CCP4i2TaskElementProps
+
+```tsx
+interface CCP4i2TaskElementProps {
+  job: Job;                              // Required — the job object
+  itemName: string;                      // Parameter name (e.g. "F_SIGF", "CYCLES")
+  sx?: SxProps<Theme>;                   // MUI sx styling
+  visibility?: boolean | (() => boolean); // Show/hide control
+  disabled?: boolean | (() => boolean);   // Enable/disable control
+  qualifiers?: any;                       // Override guiLabel, toolTip, etc.
+  onChange?: (updatedItem: any) => void;  // Fires after successful server update
+  suppressMutations?: boolean;           // Skip SWR cache mutations (for bulk operations)
+}
+```
+
+### CCP4i2ContainerElementProps
+
+```tsx
+interface CCP4i2ContainerElementProps extends CCP4i2TaskElementProps {
+  initiallyOpen?: boolean;                          // Start collapsed/expanded (default: true)
+  containerHint?: "FolderLevel" | "BlockLevel" | "RowLevel";
+  excludeItems?: string[];                          // Hide specific child items
+}
+```
+
+### Key qualifiers
+
+| Qualifier | Effect |
+|-----------|--------|
+| `guiLabel` | Label shown above the field |
+| `toolTip` | Tooltip text on hover |
+| `guiMode: "radio"` | Render enum as radio buttons instead of dropdown |
+| `min`, `max` | Numeric bounds |
+| `enumerators` | Override available choices |
+
+---
+
+## Layout Components
+
+### Quick Reference
 
 | Want to... | Use |
 |------------|-----|
+| Collapsible section | `<CCP4i2ContainerElement containerHint="FolderLevel">` |
+| Sub-section with border | `<CCP4i2ContainerElement containerHint="BlockLevel">` |
 | Two fields side-by-side, equal width | `<FieldRow>` |
 | Multiple small fields in a row | `<FieldRow equalWidth={false} size="xs">` |
 | Specific column proportions | `<Grid2 size={{ xs: 4 }}>` |
 | Responsive breakpoints | `<Grid2 size={{ xs: 12, md: 6 }}>` |
 | Display text + icons in a row | `<Stack direction="row">` |
 | Full-width field | Just use `<CCP4i2TaskElement>` (default is full-width) |
+| Tabs | `<CCP4i2Tabs>` + `<CCP4i2Tab>` |
+
+### Composite Widgets (Pre-Built)
+
+These render automatically based on the parameter's CData type:
+
+| Data Type | Widget | Layout |
+|-----------|--------|--------|
+| `CCell` | `CCellElement` | 6 fields (a,b,c,alpha,beta,gamma) in a row |
+| `CReindexOperator` | `CReindexOperatorElement` | Matrix values in a row |
+| `CEnsemble` | `CEnsembleElement` | Grid with copies, label, use fields |
+| `CImportUnmerged` | `CImportUnmergedElement` | File + metadata grid |
 
 ---
 
-## What NOT to Do
+## Common Patterns Cookbook
+
+### Checkbox with Inline Text
 
 ```tsx
-// DON'T: Use Stack for form fields
-<Stack direction="row">
-  <CCP4i2TaskElement itemName="FIELD1" />
-</Stack>
-
-// DON'T: Add minWidth directly to fields
-<CCP4i2TaskElement sx={{ minWidth: "10rem" }} itemName="FIELD1" />
-
-// DON'T: Use elementSx on containers (deprecated)
-<CCP4i2ContainerElement elementSx={{ width: "8rem" }} />
-```
-
-Instead:
-```tsx
-// DO: Use FieldRow to control width
-<FieldRow equalWidth={false} size="sm">
-  <CCP4i2TaskElement itemName="FIELD1" />
-</FieldRow>
-
-// DO: Use Grid2 for precise control
-<Grid2 size={{ xs: 4 }}>
-  <CCP4i2TaskElement itemName="FIELD1" />
-</Grid2>
-```
-
----
-
-## Imports
-
-```tsx
-// Layout components
-import { FieldRow } from "../task-elements/field-row";
-import { Grid2, Stack, Box, Card, CardHeader, CardContent, Typography } from "@mui/material";
-
-// Task elements
-import { CCP4i2TaskElement } from "../task-elements/task-element";
-import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
-import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-```
-
----
-
-## Visibility Control
-
-Fields can be shown or hidden based on the values of other parameters using the `visibility` prop.
-
-### Basic Visibility
-
-Pass a function that returns `true` (show) or `false` (hide):
-
-```tsx
-const { value: INPUT_FIXEDValue } = useTaskItem("INPUT_FIXED");
-
-<CCP4i2TaskElement
-  {...props}
-  itemName="XYZIN_FIXED"
-  qualifiers={{ guiLabel: "Known partial model" }}
-  visibility={() => INPUT_FIXEDValue === true}
-/>
-```
-
-### Visibility Based on Enum Values
-
-```tsx
-const { value: COMP_BYValue } = useTaskItem("COMP_BY");
-
-// Show ASU file selector only when "ASU" is selected
-<CCP4i2TaskElement
-  {...props}
-  itemName="ASUFILE"
-  qualifiers={{ guiLabel: "CCP4i2 ASU file" }}
-  visibility={() => COMP_BYValue === "ASU"}
-/>
-
-// Show molecular weight fields only when "MW" is selected
-<FieldRow>
+<Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
   <CCP4i2TaskElement
+    itemName="AUTO_STOP"
     {...props}
-    itemName="ASU_NUCLEICACID_MW"
-    qualifiers={{ guiLabel: "nucleic acid (Da)" }}
-    visibility={() => COMP_BYValue === "MW"}
+    qualifiers={{ guiLabel: " " }}
+    sx={{ width: "auto" }}
+  />
+  <Typography variant="body1">
+    Stop automatically if R-free does not improve in
+  </Typography>
+  <Box sx={{ width: "8rem" }}>
+    <CCP4i2TaskElement itemName="STOP_CYCLES" {...props} qualifiers={{ guiLabel: " " }} />
+  </Box>
+  <Typography variant="body1">cycles</Typography>
+</Box>
+```
+
+### Conditional Section Based on Enum
+
+```tsx
+const { value: XYZIN_MODE } = useTaskItem("XYZIN_MODE");
+
+<CCP4i2TaskElement itemName="XYZIN_MODE" {...props} qualifiers={{ guiLabel: "Use of NCS" }} />
+
+<CCP4i2ContainerElement
+  {...props}
+  itemName=""
+  qualifiers={{ guiLabel: "Model from which to infer NCS" }}
+  containerHint="BlockLevel"
+  visibility={() => XYZIN_MODE !== "no"}
+>
+  <CCP4i2TaskElement
+    itemName="XYZIN_HA"
+    {...props}
+    visibility={() => XYZIN_MODE === "ha"}
   />
   <CCP4i2TaskElement
+    itemName="XYZIN_MR"
     {...props}
-    itemName="ASU_PROTEIN_MW"
-    qualifiers={{ guiLabel: "protein (Da)" }}
-    visibility={() => COMP_BYValue === "MW"}
+    visibility={() => XYZIN_MODE === "mr"}
   />
-</FieldRow>
+</CCP4i2ContainerElement>
 ```
 
-### Visibility Based on File Content
+### File Selection with Metadata Extraction
 
 ```tsx
-const { value: F_SIGFValue } = useTaskItem("F_SIGF");
+const { useTaskItem, fetchDigest, mutateValidation } = useJob(job.id);
+const { item: HKLINItem } = useTaskItem("HKLIN");
+const { forceUpdate: setSpaceGroup } = useTaskItem("SPACEGROUP");
+const { forceUpdate: setCell } = useTaskItem("UNITCELL");
 
-// Show F/I selector only when file contains both F and I data
-<CCP4i2TaskElement
-  {...props}
-  itemName="F_OR_I"
-  qualifiers={{ guiLabel: "Use Fs or Is" }}
-  visibility={() => [1, 3].includes(F_SIGFValue?.contentFlag)}
-/>
+const handleHKLIN = useCallback(async () => {
+  if (!HKLINItem?._objectPath) return;
+  const digest = await fetchDigest(HKLINItem._objectPath);
+  if (!digest) return;
+  if (digest.spaceGroup) await setSpaceGroup(digest.spaceGroup.replace(/\s+/g, ""));
+  if (digest.cell) await setCell(digest.cell);
+  await mutateValidation();
+}, [HKLINItem?._objectPath, fetchDigest, setSpaceGroup, setCell, mutateValidation]);
+
+<CCP4i2TaskElement itemName="HKLIN" {...props} onChange={handleHKLIN} />
 ```
 
-### Organizing Visibility Functions
-
-For complex interfaces, group visibility conditions in a `useMemo`:
+### Side-by-Side with Disabled State
 
 ```tsx
-const { value: partialModeOrMap } = useTaskItem("PARTIALMODELORMAP");
-const { value: compBy } = useTaskItem("COMP_BY");
-const { value: runModelCraft } = useTaskItem("RUNMODELCRAFT");
-
-const visibility = useMemo(() => ({
-  isPartialModel: () => partialModeOrMap === "MODEL",
-  isNoPartial: () => partialModeOrMap === "NONE",
-  isSearch: () => partialModeOrMap === "SEARCH",
-  isAsuFile: () => compBy === "ASU",
-  isMolecularWeight: () => compBy === "MW",
-  hasModelCraft: () => runModelCraft === true,
-}), [partialModeOrMap, compBy, runModelCraft]);
-
-// Usage
-<CCP4i2TaskElement
-  {...props}
-  itemName="XYZIN_PARTIAL"
-  qualifiers={{ guiLabel: "Partial model coordinates" }}
-  visibility={visibility.isPartialModel}
-/>
-```
-
----
-
-## Reactive Interfaces — Responding to Value Changes
-
-Task interfaces can respond to parameter changes to auto-populate related fields.
-
-### Reading Task Values
-
-Use `useTaskItem` to access current values:
-
-```tsx
-const { useTaskItem } = useJob(job.id);
-
-// Read-only access to value
-const { value: wavelengthValue } = useTaskItem("WAVELENGTH");
-
-// Access to both value and item metadata
-const { item: F_SIGFItem, value: F_SIGFValue } = useTaskItem("F_SIGF");
-```
-
-### Updating Task Values
-
-Use `forceUpdate` to programmatically update parameters:
-
-```tsx
-const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
-const { forceUpdate: forceUpdateSPACEGROUP } = useTaskItem("SPACEGROUP");
-
-// Update wavelength
-await forceUpdateWAVELENGTH(1.54);
-
-// Update space group
-await forceUpdateSPACEGROUP("P212121");
-```
-
-### Auto-Syncing Parameter Values
-
-Sometimes a parameter should be automatically derived from another parameter's value, removing the need for the user to set it manually. Use `useEffect` to sync values and hide the derived control from the UI.
-
-**Example: Auto-set a toggle based on mode selection**
-
-In the aimless_pipe interface, when the user selects "MATCH" mode, a reference is always required. Rather than showing a toggle asking "Provide reference?", we auto-set it based on the mode:
-
-```tsx
-const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { job } = props;
-  const { useTaskItem } = useJob(job.id);
-
-  // Get update function for the derived parameter
-  const { update: updateAimlessRef } = useTaskItem("REFERENCE_FOR_AIMLESS");
-
-  // Get values needed to compute the derived value
-  const { value: modeValue } = useTaskItem("MODE");
-  const { value: aimlessRefValue } = useTaskItem("REFERENCE_FOR_AIMLESS");
-  const { value: referenceDataset } = useTaskItem("REFERENCE_DATASET");
-
-  // Track pending updates to prevent bouncing loops
-  const pendingAimlessRef = useRef<boolean | null>(null);
-
-  // Auto-sync REFERENCE_FOR_AIMLESS based on MODE:
-  // - true when MODE is "MATCH" (always provide reference when matching)
-  // - false otherwise
-  useEffect(() => {
-    const isMatchMode = modeValue === "MATCH";
-    const currentRef = aimlessRefValue;
-    const targetRef = isMatchMode;
-
-    // Check if our pending update has been applied
-    if (pendingAimlessRef.current !== null) {
-      if (pendingAimlessRef.current === currentRef) {
-        pendingAimlessRef.current = null; // Update applied
-      } else {
-        return; // Still waiting, don't trigger another update
-      }
-    }
-
-    // Only update if value needs to change
-    if (targetRef !== currentRef) {
-      pendingAimlessRef.current = targetRef;
-      updateAimlessRef(targetRef);
-    }
-  }, [modeValue, aimlessRefValue, updateAimlessRef]);
-
-  // Visibility - since REFERENCE_FOR_AIMLESS is auto-synced, we don't show it
-  // but downstream fields that depend on it can assume it's true in MATCH mode
-  const visibility = useMemo(() => ({
-    isMatchMode: () => modeValue === "MATCH",
-    // No need to check aimlessRefValue - it's always true when mode is "MATCH"
-    isHklReference: () => modeValue === "MATCH" && referenceDataset === "HKL",
-  }), [modeValue, referenceDataset]);
-
-  return (
-    <CCP4i2Tabs {...props}>
-      <CCP4i2Tab label="Options">
-        {/* User selects mode */}
-        <CCP4i2TaskElement
-          {...props}
-          itemName="MODE"
-          qualifiers={{ guiLabel: "Pipeline mode" }}
-        />
-
-        {/* REFERENCE_FOR_AIMLESS is NOT shown - it's auto-synced with MODE */}
-
-        {/* Reference type selector - shown when mode is MATCH */}
-        <CCP4i2TaskElement
-          {...props}
-          itemName="REFERENCE_DATASET"
-          qualifiers={{ guiLabel: "Reference type" }}
-          visibility={visibility.isMatchMode}
-        />
-
-        {/* Reference file - shown based on reference type */}
-        <CCP4i2TaskElement
-          {...props}
-          itemName="HKLIN_REF"
-          qualifiers={{ guiLabel: "Reference reflections" }}
-          visibility={visibility.isHklReference}
-        />
-      </CCP4i2Tab>
-    </CCP4i2Tabs>
-  );
-};
-```
-
-**Key principles for auto-syncing:**
-
-1. **Check before updating** - Always compare current value before calling update to avoid infinite loops
-2. **Remove from UI** - Don't show the derived parameter to the user; it's computed, not chosen
-3. **Simplify downstream visibility** - Once a parameter is auto-synced, downstream visibility checks can be simplified (no need to check the derived value)
-4. **Use `syncTo` for auto-sync** - The `syncTo` method handles bounce prevention internally
-
-### Using `syncTo` for Auto-Sync (Recommended)
-
-The `syncTo` method is specifically designed for auto-syncing one parameter based on another. It handles bounce prevention internally, making your code much simpler:
-
-```tsx
-// Get syncTo for the parameter you want to auto-set
-const { syncTo: syncToAimlessRef } = useTaskItem("REFERENCE_FOR_AIMLESS");
-
-// Get the driving value
-const { value: modeValue } = useTaskItem("MODE");
-
-// Auto-sync: REFERENCE_FOR_AIMLESS = true when MODE is "MATCH", false otherwise
-useEffect(() => {
-  syncToAimlessRef(modeValue === "MATCH");
-}, [modeValue, syncToAimlessRef]);
-```
-
-That's it! The `syncTo` method:
-- Tracks pending updates internally to prevent bouncing
-- Only triggers an update if the value actually needs to change
-- Handles all the edge cases around re-renders and stale values
-
-### How `syncTo` Prevents Bouncing (Under the Hood)
-
-When `update` is called, the container re-renders before the new value has fully propagated. This can cause the useEffect to fire again with stale values, creating an infinite loop. The `syncTo` method prevents this by:
-
-1. Storing the target value in a module-level Map before triggering the update
-2. On subsequent calls (while waiting for propagation):
-   - If the stored value matches current value → update complete, clear pending state
-   - If stored value differs from current → still propagating, skip this call
-3. Once pending state is cleared, normal comparison determines if a new update is needed
-
-**Manual implementation (for reference only):**
-```tsx
-// You don't need to write this - use syncTo instead!
-const pendingRef = useRef<boolean | null>(null);
-
-useEffect(() => {
-  const targetRef = modeValue === "MATCH";
-
-  // Check if pending update has been applied
-  if (pendingRef.current !== null) {
-    if (pendingRef.current === currentRef) {
-      pendingRef.current = null;  // Update applied
-    } else {
-      return;  // Still waiting
-    }
-  }
-
-  if (targetRef !== currentRef) {
-    pendingRef.current = targetRef;
-    updateAimlessRef(targetRef);
-  }
-}, [modeValue, currentRef, updateAimlessRef]);
-```
-
-### Responding to File Selection — Extract Metadata
-
-When a user selects a file, extract metadata (wavelength, cell, spacegroup) from the file digest:
-
-```tsx
-const { useTaskItem, fetchDigest } = useJob(job.id);
-
-const { item: F_SIGFItem } = useTaskItem("F_SIGF");
-const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
-
-// Handler called when file changes
-const handleFileChange = useCallback(async () => {
-  if (!F_SIGFItem?._objectPath) return;
-
-  // Fetch file digest (contains metadata extracted from file)
-  const digestData = await fetchDigest(F_SIGFItem._objectPath);
-
-  // Extract wavelength from digest
-  const wavelength = digestData?.wavelengths?.at(-1);
-  if (wavelength && wavelength > 0 && wavelength < 9) {
-    await forceUpdateWAVELENGTH(wavelength);
-  }
-}, [F_SIGFItem?._objectPath, fetchDigest, forceUpdateWAVELENGTH]);
-
-// Pass handler to the file element
-<CCP4i2TaskElement
-  {...props}
-  itemName="F_SIGF"
-  qualifiers={{ guiLabel: "Reflections" }}
-  onChange={handleFileChange}
-/>
-```
-
-### Full Example: Auto-populate from Reflection File
-
-```tsx
-import { useCallback } from "react";
-import { useJob } from "../../../utils";
-
-const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { job } = props;
-  const { useTaskItem, fetchDigest, mutateValidation } = useJob(job.id);
-
-  // Items for reading/writing
-  const { item: HKLINItem } = useTaskItem("HKLIN");
-  const { forceUpdate: forceUpdateSPACEGROUP } = useTaskItem("SPACEGROUP");
-  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
-  const { forceUpdate: forceUpdateUNITCELL } = useTaskItem("UNITCELL");
-
-  // Handle reflection file change
-  const handleHKLINChange = useCallback(async () => {
-    if (!HKLINItem?._objectPath) return;
-
-    const digest = await fetchDigest(HKLINItem._objectPath);
-    if (!digest) return;
-
-    // Update space group
-    if (digest.spaceGroup) {
-      await forceUpdateSPACEGROUP(digest.spaceGroup.replace(/\s+/g, ""));
-    }
-
-    // Update wavelength
-    if (digest.wavelength && digest.wavelength > 0) {
-      await forceUpdateWAVELENGTH(digest.wavelength);
-    }
-
-    // Update unit cell (object with a, b, c, alpha, beta, gamma)
-    if (digest.cell) {
-      await forceUpdateUNITCELL(digest.cell);
-    }
-
-    // Refresh validation after updates
-    await mutateValidation();
-  }, [
-    HKLINItem?._objectPath,
-    fetchDigest,
-    forceUpdateSPACEGROUP,
-    forceUpdateWAVELENGTH,
-    forceUpdateUNITCELL,
-    mutateValidation,
-  ]);
-
-  return (
-    <CCP4i2Tabs {...props}>
-      <CCP4i2Tab label="Input">
-        <CCP4i2TaskElement
-          {...props}
-          itemName="HKLIN"
-          qualifiers={{ guiLabel: "Reflections" }}
-          onChange={handleHKLINChange}
-        />
-        <CCP4i2TaskElement
-          {...props}
-          itemName="SPACEGROUP"
-          qualifiers={{ guiLabel: "Space group" }}
-        />
-        <CCP4i2TaskElement {...props} itemName="UNITCELL" />
-        <CCP4i2TaskElement
-          {...props}
-          itemName="WAVELENGTH"
-          qualifiers={{ guiLabel: "Wavelength" }}
-        />
-      </CCP4i2Tab>
-    </CCP4i2Tabs>
-  );
-};
-```
-
-### Available Digest Fields
-
-When you call `fetchDigest()`, the returned object may contain:
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `spaceGroup` | `string` | Space group name (e.g., "P212121") |
-| `cell` | `{ a, b, c, alpha, beta, gamma }` | Unit cell parameters |
-| `wavelength` | `number` | Single wavelength value |
-| `wavelengths` | `number[]` | Array of wavelengths (multi-wavelength data) |
-| `resolution` | `{ low, high }` | Resolution range |
-| `contentFlag` | `number` | Data type: 1=anom I, 2=anom F, 3=mean I, 4=mean F |
-| `hasFreeR` | `boolean` | Whether file contains FreeR flags |
-| `freerValid` | `boolean` | Whether FreeR flags are valid |
-| `crystalNames` | `string[]` | Crystal names from file |
-| `datasets` | `string[]` | Dataset names from file |
-
-### When to Use forceUpdate vs update
-
-| Function | Use Case |
-|----------|----------|
-| `forceUpdate` | Programmatic updates from code (file change handlers, digest processing) |
-| `update` | Less common; used when you need the raw update function |
-
-Both functions:
-- Update the server
-- Patch the local SWR cache
-- Trigger validation refresh
-
----
-
-## Combining Visibility and Reactivity
-
-A complete example showing both patterns together:
-
-```tsx
-const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { job } = props;
-  const { useTaskItem, fetchDigest } = useJob(job.id);
-
-  // Values for visibility
-  const { value: obsTypeValue } = useTaskItem("OBS_TYPE");
-  const { value: F_SIGFValue } = useTaskItem("F_SIGF");
-
-  // Update functions for reactivity
-  const { item: F_SIGFItem } = useTaskItem("F_SIGF");
-  const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
-
-  // Reactive handler
-  const handleFileChange = useCallback(async () => {
-    if (!F_SIGFItem?._objectPath) return;
-    const digest = await fetchDigest(F_SIGFItem._objectPath);
-    if (digest?.wavelength) {
-      await forceUpdateWAVELENGTH(digest.wavelength);
-    }
-  }, [F_SIGFItem?._objectPath, fetchDigest, forceUpdateWAVELENGTH]);
-
-  return (
-    <CCP4i2Tabs {...props}>
-      <CCP4i2Tab label="Data">
-        {/* File selector with onChange handler */}
-        <CCP4i2TaskElement
-          {...props}
-          itemName="F_SIGF"
-          qualifiers={{ guiLabel: "Reflections" }}
-          onChange={handleFileChange}
-        />
-
-        {/* Conditionally visible based on file content */}
-        <CCP4i2TaskElement
-          {...props}
-          itemName="F_OR_I"
-          qualifiers={{ guiLabel: "Use Fs or Is" }}
-          visibility={() => [1, 3].includes(F_SIGFValue?.contentFlag)}
-        />
-
-        {/* Conditionally visible based on enum selection */}
-        <CCP4i2TaskElement
-          {...props}
-          itemName="ANOM_WAVELENGTH"
-          qualifiers={{ guiLabel: "Anomalous wavelength" }}
-          visibility={() => obsTypeValue === "ANOMALOUS"}
-        />
-
-        {/* Always visible, auto-populated from file */}
-        <CCP4i2TaskElement
-          {...props}
-          itemName="WAVELENGTH"
-          qualifiers={{ guiLabel: "Wavelength" }}
-        />
-      </CCP4i2Tab>
-    </CCP4i2Tabs>
-  );
-};
-```
-
----
-
-## Decision Guide: Which Pattern to Use?
-
-| Scenario | Pattern | Example |
-|----------|---------|---------|
-| Show/hide based on another parameter | **Visibility** | Show "anomalous wavelength" only when obs type is "ANOMALOUS" |
-| Show/hide based on file content | **Visibility** | Show "Use Fs or Is" only when file contains both |
-| Auto-populate from file metadata | **onChange + fetchDigest** | Extract wavelength when reflection file is selected |
-| Parameter value determined by another | **useEffect auto-sync** | Toggle always true when mode is "MATCH" |
-| Derived parameter user shouldn't control | **Auto-sync + hide from UI** | Don't show toggle, just sync it with mode |
-| Cascade of dependent fields | **Combine visibility + auto-sync** | Mode → auto-sync toggle → visibility for downstream fields |
-| Preview dependent option before enabling | **Disabled** | Show "Reference type" greyed out until "MATCH" mode selected |
-| Related options side-by-side | **FieldRow + disabled** | MODE and REFERENCE_TYPE on same row, type disabled until MATCH |
-
-### Pattern Comparison
-
-**Visibility (show/hide)**
-```tsx
-// User sees field only when condition is met
-<CCP4i2TaskElement
-  itemName="SPECIAL_OPTION"
-  visibility={() => modeValue === "ADVANCED"}
-/>
-```
-- User still controls the value when visible
-- Field state persists when hidden
-
-**Auto-sync (computed value)**
-```tsx
-// Track pending to prevent bouncing
-const pendingRef = useRef<boolean | null>(null);
-
-useEffect(() => {
-  const targetRef = modeValue === "MATCH";
-
-  // Wait for pending update to propagate
-  if (pendingRef.current !== null) {
-    if (pendingRef.current === refValue) pendingRef.current = null;
-    else return;
-  }
-
-  if (targetRef !== refValue) {
-    pendingRef.current = targetRef;
-    updateRef(targetRef);
-  }
-}, [modeValue, refValue, updateRef]);
-
-// Don't render the field at all - it's derived
-```
-- Value is always derived from other state
-- Remove from UI entirely
-- **Must use ref to prevent bouncing loops**
-
-**onChange handler (reactive to user action)**
-```tsx
-// Respond to explicit user action (file selection)
-<CCP4i2TaskElement
-  itemName="HKLIN"
-  onChange={async () => {
-    const digest = await fetchDigest(item._objectPath);
-    if (digest?.wavelength) {
-      await forceUpdateWAVELENGTH(digest.wavelength);
-    }
-  }}
-/>
-```
-- Triggered by user interaction
-- Use for extracting metadata from files
-
-**Disabled state (visible but inactive)**
-```tsx
-// Field is always visible but disabled based on condition
-const isReferenceTypeDisabled = useMemo(
-  () => () => modeValue !== "MATCH",
-  [modeValue]
-);
-
-<CCP4i2TaskElement
-  itemName="REFERENCE_TYPE"
-  qualifiers={{ guiLabel: "Reference type" }}
-  disabled={isReferenceTypeDisabled}
-/>
-```
-- User can see what options exist before enabling them
-- Use when you want to preview dependent options
-- Better UX than hiding when the relationship should be obvious
-
-### When to Use Disabled vs Visibility
-
-| Scenario | Use | Reason |
-|----------|-----|--------|
-| Related options on same row | **disabled** | Shows relationship, user can preview |
-| Completely different mode/section | **visibility** | Reduces clutter, unrelated to current mode |
-| Cascading selections | **disabled** for immediate children, **visibility** for deeper | Balance between preview and clutter |
-
-**Example: Side-by-side with disabled state**
-
-Place a mode selector next to its dependent field, with the dependent field disabled until the mode enables it:
-
-```tsx
-// Disabled helper - reference type is visible but disabled unless mode is MATCH
-const isReferenceTypeDisabled = useMemo(
-  () => () => taskValues.mode !== "MATCH",
-  [taskValues.mode]
-);
-
-// Side-by-side layout: MODE always editable, REFERENCE_DATASET disabled unless MATCH
 <FieldRow>
   <CCP4i2TaskElement
     {...props}
@@ -874,29 +603,359 @@ const isReferenceTypeDisabled = useMemo(
     {...props}
     itemName="REFERENCE_DATASET"
     qualifiers={{ guiLabel: "Reference type" }}
-    disabled={isReferenceTypeDisabled}
+    disabled={() => mode !== "MATCH"}
   />
 </FieldRow>
+```
 
-{/* File selector only shown when mode is MATCH and type is selected */}
+### Push Default Values on Boolean Toggle
+
+When checking/unchecking a boolean should set a sensible default on a sibling field (but still allow the user to override afterward):
+
+```tsx
+const { forceUpdate: forceSetCYCLES } = useTaskItem("CYCLES");
+
+const handleBASIC = useCallback(
+  async (updatedItem: any) => {
+    await forceSetCYCLES(isTruthy(updatedItem._value) ? 5 : 25);
+  },
+  [forceSetCYCLES]
+);
+
 <CCP4i2TaskElement
+  itemName="BASIC"
   {...props}
-  itemName="HKLIN_REF"
-  qualifiers={{ guiLabel: "Reference reflections" }}
-  visibility={() => taskValues.mode === "MATCH" && taskValues.referenceDataset === "HKL"}
+  qualifiers={{ guiLabel: "Run a quicker basic pipeline" }}
+  onChange={handleBASIC}
 />
 ```
 
-This pattern:
-- Shows users what options exist when they select "MATCH" mode
-- Keeps the UI compact with side-by-side layout
-- Uses visibility for the file selector since it depends on two conditions
+This is a one-shot default — the user can still manually change CYCLES afterward. Use this instead of `syncTo` when the relationship is "suggest a default" rather than "always derive."
 
-### Common Mistakes to Avoid
+### Info/Warning Text
 
-1. **Showing derived parameters** - If a value is always computed from another, hide it from the UI
-2. **Missing change guards in useEffect** - Always check if value needs to change before calling update
-3. **Using visibility for derived values** - If a parameter should always have a specific value based on state, use auto-sync, not visibility
-4. **Forgetting dependencies** - Include all referenced values in useEffect/useMemo dependency arrays
-5. **Using visibility when disabled is better** - If the dependent field is closely related and should preview, use disabled instead
-6. **Not using `syncTo` for auto-sync effects** - Always use `syncTo` instead of `update` when auto-syncing parameters to prevent bouncing loops (see "Using `syncTo` for Auto-Sync" section)
+```tsx
+<Typography variant="body2" color="warning.main" sx={{ fontStyle: "italic", fontWeight: "bold" }}>
+  You should normally let Parrot choose reference structures
+</Typography>
+```
+
+---
+
+## Pitfalls and Hard-Won Lessons
+
+### 1. CBoolean `__bool__` Trap (Server-Side)
+
+Python's CBoolean class has a `__bool__` method that returns `False` when the boolean value is `False`. This means any `if obj:` check on a CBoolean set to False will skip that code path. **Always use `if obj is not None:` in Python code that handles CData objects.**
+
+This caused a real bug where unchecking a checkbox worked on the server, but the API response omitted the `updated_item` field — so the frontend's `onChange` callback never fired and the UI never toggled.
+
+### 2. Always Normalize CBoolean Values
+
+The server returns `_value: true/false` (JS boolean) for CBoolean items, but some code paths may return the strings `"True"`/`"False"`. Always use:
+
+```tsx
+const isTruthy = (val: any): boolean =>
+  val === true || val === "True" || val === "true";
+```
+
+### 3. Use Bound `mutateContainer`, Not Global `mutate`
+
+When patching the SWR cache, use the bound `mutateContainer` from `useSWR` rather than the global `mutate(key, fn, opts)`. Global mutate can miss subscriber notifications in some SWR edge cases.
+
+### 4. onChange Only Fires When `updated_item` Exists
+
+The `onChange` callback in `CSimpleTextFieldElement` only fires when the server response includes `result.data.updated_item`. If the server doesn't return it (e.g. due to the CBoolean truthiness bug above), onChange silently doesn't fire. There's no error — it just doesn't call your handler.
+
+### 5. Spread `{...props}` on Every Element
+
+Every `CCP4i2TaskElement` and `CCP4i2ContainerElement` needs `{...props}` to receive the `job` object. Forgetting this causes "job.id is undefined" errors.
+
+### 6. `qualifiers` Override, They Don't Replace
+
+When you pass `qualifiers={{ guiLabel: "My label" }}`, this is **merged** with the item's own qualifiers from the `.def.xml`. Your values take precedence for any keys you specify, but other qualifiers (like `min`, `max`, `toolTip`) are preserved.
+
+### 7. useTaskItem Returns Undefined Initially
+
+The first render will have `item: undefined`, `value: undefined`. Always guard against this:
+
+```tsx
+const { value: MODE } = useTaskItem("MODE");
+// MODE may be undefined on first render — visibility functions handle this gracefully
+```
+
+### 8. Don't Show Derived Parameters
+
+If a parameter is always computed from another (via `syncTo`), don't render it in the UI. The user can't meaningfully edit it, and showing it creates confusion.
+
+### 9. Include All Dependencies in useCallback/useEffect/useMemo
+
+React hooks rules apply. Missing dependencies cause stale closures and subtle bugs:
+
+```tsx
+// BAD: forceSetXYZIN missing from deps
+const handleToggle = useCallback(async (item: any) => {
+  if (!isTruthy(item._value) && XYZIN?.dbFileId) {
+    forceSetXYZIN({});  // stale reference!
+  }
+}, [XYZIN]);
+
+// GOOD
+const handleToggle = useCallback(async (item: any) => {
+  if (!isTruthy(item._value) && XYZIN?.dbFileId) {
+    forceSetXYZIN({});
+  }
+}, [XYZIN, forceSetXYZIN]);
+```
+
+### 10. Test Boolean Toggles in Both Directions
+
+After implementing CBoolean-driven visibility, always test:
+1. Check -> Uncheck (fields should appear/disappear depending on your logic)
+2. Uncheck -> Check (must work symmetrically)
+3. Page reload while unchecked (state must restore from server)
+
+The most common failure mode is one-way toggling, where only one direction works.
+
+---
+
+## Complete Worked Example — ModelCraft
+
+### The Narrative (What the Scientist Wrote)
+
+> The modelcraft interface has at the top a container with label "Reflection data". That container contains the reflection data widget, the Free R set widget, and a tick box labelled "Get initial phases from refining the starting model (uncheck to specify starting phases, e.g. from experimental phasing)". If the element is unticked, an additional widget is revealed for input phases, together with an additional check box labelled "Phases are unbiased and should be used as refinement restraints when the model is poor".
+>
+> Below that is a container labelled "Asymmetric unit contents". The only widget in this container is the widget to specify an asymmetric unit content file.
+>
+> Below that is a container labelled "Starting model". That container contains the widget for providing a starting model from which to build.
+>
+> Below that is a container labelled "Options". This container contains rows with:
+> 1. A tick box with label "Run a quicker basic pipeline"
+> 2. Elements which place the text "Run for" in front of a widget to specify the number of cycles, and then the word "cycles"
+> 3. Elements that provide a tickbox, followed by the text "Stop automatically if R-free does not improve in", then a number field to specify some sort of convergence criteria, followed by the word "cycles"
+> 4. A tick box with label "Build selenomethionine (MSE) instead of methionine (MET)"
+> 5. A tick box with label "Use twinned refinement"
+>
+> Below that is a container labelled "Optional pipeline steps" which contains rows that are all tickboxes with labels:
+> 1. "Preliminary low-resolution refinement with Sheetbend"
+> 2. "Residue and chain pruning"
+> 3. "Classical density modification with Parrot"
+> 4. "Phase improvement through addition and refinement of dummy atoms"
+> 5. "Addition of waters"
+> 6. "Final side-chain fixing"
+
+### How the Narrative Maps to Code
+
+| Narrative phrase | Implementation decision |
+|-----------------|----------------------|
+| "container with label" | `CCP4i2ContainerElement` with `containerHint="FolderLevel"` and `qualifiers={{ guiLabel: "..." }}` |
+| "reflection data widget" | `<CCP4i2TaskElement itemName="F_SIGF" />` — inferred from the task's `.def.xml` |
+| "tick box labelled ..." | `<CCP4i2TaskElement itemName="USE_MODEL_PHASES" qualifiers={{ guiLabel: "..." }} />` |
+| "If unticked, an additional widget is revealed" | `onChange` + local state + `{!useModelPhases && (...)}` conditional rendering |
+| "Run a quicker basic pipeline" (checkbox) | `onChange={handleBASIC}` pushes default CYCLES value (5 or 25) |
+| "Run for ___ cycles" | `Box` with flex layout, `Typography` text, constrained-width field with `guiLabel: " "` |
+| "tickbox, followed by text, then number field" | Same inline flex pattern with checkbox `sx={{ width: "auto" }}` |
+| "rows that are all tickboxes" | Simple `CCP4i2TaskElement` items with `qualifiers={{ guiLabel: "..." }}` — one per line |
+
+### The Resulting Code
+
+This shows the real interface with grouped sections, conditional visibility driven by a CBoolean, inline field-with-text layouts, and reactive default-value pushing.
+
+```tsx
+import { Box, Paper, Typography } from "@mui/material";
+import { CCP4i2TaskInterfaceProps } from "./task-container";
+import { CCP4i2TaskElement } from "../task-elements/task-element";
+import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { useJob } from "../../../utils";
+import { useCallback, useEffect, useState } from "react";
+
+/** Normalize CBoolean values - server may return boolean or string */
+const isTruthy = (val: any): boolean =>
+  val === true || val === "True" || val === "true";
+
+const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { job } = props;
+  const { useTaskItem } = useJob(job.id);
+  const { value: USE_MODEL_PHASES_RAW } = useTaskItem("USE_MODEL_PHASES");
+  const { value: XYZIN, forceUpdate: forceSetXYZIN } = useTaskItem("XYZIN");
+  const { forceUpdate: forceSetCYCLES } = useTaskItem("CYCLES");
+
+  // Local state for immediate UI toggle
+  const [useModelPhases, setUseModelPhases] = useState(() =>
+    isTruthy(USE_MODEL_PHASES_RAW)
+  );
+
+  // Sync from container for programmatic changes (initial load, parameter file import)
+  useEffect(() => {
+    setUseModelPhases(isTruthy(USE_MODEL_PHASES_RAW));
+  }, [USE_MODEL_PHASES_RAW]);
+
+  const handleUSE_MODEL_PHASES = useCallback(
+    async (new_USE_MODEL_PHASES: any) => {
+      const newValue = isTruthy(new_USE_MODEL_PHASES._value);
+      setUseModelPhases(newValue);
+      // Clear XYZIN if unchecking and a model file is loaded
+      if (!newValue && XYZIN?.dbFileId) {
+        forceSetXYZIN({});
+      }
+    },
+    [XYZIN, forceSetXYZIN]
+  );
+
+  // Push sensible default for CYCLES when BASIC toggle changes
+  const handleBASIC = useCallback(
+    async (updatedItem: any) => {
+      await forceSetCYCLES(isTruthy(updatedItem._value) ? 5 : 25);
+    },
+    [forceSetCYCLES]
+  );
+
+  return (
+    <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
+      {/* Reflection data */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Reflection data" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="F_SIGF" {...props} />
+        <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
+        <CCP4i2TaskElement
+          itemName="USE_MODEL_PHASES"
+          {...props}
+          qualifiers={{
+            guiLabel:
+              "Get initial phases from refining the starting model (uncheck to specify starting phases, e.g. from experimental phasing)",
+          }}
+          onChange={handleUSE_MODEL_PHASES}
+        />
+        {!useModelPhases && (
+          <>
+            <CCP4i2TaskElement itemName="PHASES" {...props} />
+            <CCP4i2TaskElement
+              itemName="UNBIASED"
+              {...props}
+              qualifiers={{
+                guiLabel:
+                  "Phases are unbiased and should be used as refinement restraints when the model is poor",
+              }}
+            />
+          </>
+        )}
+      </CCP4i2ContainerElement>
+
+      {/* Asymmetric unit contents */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Asymmetric unit contents" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="ASUIN" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* Starting model */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Starting model" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="XYZIN" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* Options */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Options" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement
+          itemName="BASIC"
+          {...props}
+          qualifiers={{ guiLabel: "Run a quicker basic pipeline" }}
+          onChange={handleBASIC}
+        />
+
+        <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+          <Typography variant="body1">Run for</Typography>
+          <Box sx={{ width: "8rem" }}>
+            <CCP4i2TaskElement itemName="CYCLES" {...props} qualifiers={{ guiLabel: " " }} />
+          </Box>
+          <Typography variant="body1">cycles</Typography>
+        </Box>
+
+        <CCP4i2TaskElement
+          itemName="SELENOMET"
+          {...props}
+          qualifiers={{
+            guiLabel: "Build selenomethionine (MSE) instead of methionine (MET)",
+          }}
+        />
+        <CCP4i2TaskElement
+          itemName="TWINNED"
+          {...props}
+          qualifiers={{ guiLabel: "Use twinned refinement" }}
+        />
+      </CCP4i2ContainerElement>
+
+      {/* Optional pipeline steps */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Optional pipeline steps" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement
+          itemName="SHEETBEND"
+          {...props}
+          qualifiers={{ guiLabel: "Preliminary low-resolution refinement with Sheetbend" }}
+        />
+        <CCP4i2TaskElement itemName="PRUNING" {...props} qualifiers={{ guiLabel: "Residue and chain pruning" }} />
+        <CCP4i2TaskElement itemName="PARROT" {...props} qualifiers={{ guiLabel: "Classical density modification with Parrot" }} />
+        <CCP4i2TaskElement itemName="WATERS" {...props} qualifiers={{ guiLabel: "Addition of waters" }} />
+        <CCP4i2TaskElement itemName="SIDE_CHAIN_FIXING" {...props} qualifiers={{ guiLabel: "Final side-chain fixing" }} />
+      </CCP4i2ContainerElement>
+    </Paper>
+  );
+};
+
+export default TaskInterface;
+```
+
+### What this example demonstrates:
+
+| Technique | Where |
+|-----------|-------|
+| Grouped sections with `FolderLevel` containers | All five `CCP4i2ContainerElement` blocks |
+| CBoolean conditional visibility via onChange + local state | `USE_MODEL_PHASES` -> PHASES/UNBIASED |
+| `isTruthy()` normalization | `useState` init, `useEffect` sync, `handleUSE_MODEL_PHASES` |
+| Clear dependent field on toggle | `forceSetXYZIN({})` when unchecking |
+| Push default value on toggle | `BASIC` onChange → `forceSetCYCLES(5 or 25)` |
+| Inline text + field layout | "Run for ___ cycles" |
+| Qualifier override | Custom `guiLabel` on most fields |
+| `useEffect` sync from server | Handles initial load + parameter file import |
+
+---
+
+## Imports Cheatsheet
+
+```tsx
+// Core interface
+import { CCP4i2TaskInterfaceProps } from "./task-container";
+import { CCP4i2TaskElement } from "../task-elements/task-element";
+import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { useJob } from "../../../utils";
+
+// Tabs
+import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
+
+// Layout
+import { FieldRow } from "../task-elements/field-row";
+import { Box, Grid2, Stack, Paper, Typography, Card, CardHeader, CardContent } from "@mui/material";
+
+// React hooks
+import { useCallback, useEffect, useMemo, useState } from "react";
+```

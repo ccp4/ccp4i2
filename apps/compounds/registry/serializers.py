@@ -319,6 +319,67 @@ class CompoundCreateSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'formatted_id']
 
+    # stereo_comment values that all mean "no specific stereochemistry info"
+    UNSPECIFIED_STEREO = {None, '', 'unset', 'achiral'}
+
+    def validate_smiles(self, value):
+        """Validate that SMILES is parseable by RDKit."""
+        if not value:
+            return value
+        try:
+            from rdkit import Chem
+            mol = Chem.MolFromSmiles(value)
+            if mol is None:
+                raise serializers.ValidationError("Invalid SMILES string")
+        except ImportError:
+            pass  # RDKit not available, skip check
+        return value
+
+    def validate(self, attrs):
+        """Reject registration if canonical SMILES + equivalent stereo_comment already exists."""
+        attrs = super().validate(attrs)
+        smiles = attrs.get('smiles')
+        if not smiles:
+            return attrs
+
+        try:
+            from rdkit import Chem
+            mol = Chem.MolFromSmiles(smiles)
+            if mol is None:
+                return attrs  # already caught by validate_smiles
+            canonical = Chem.MolToSmiles(mol, canonical=True)
+        except ImportError:
+            return attrs  # RDKit not available, skip check
+
+        # Find all compounds with the same canonical SMILES
+        matches = Compound.objects.filter(rdkit_smiles=canonical)
+        if not matches.exists():
+            return attrs
+
+        # Check stereo_comment equivalence
+        incoming_stereo = attrs.get('stereo_comment', 'unset')
+        incoming_normalized = (
+            None if incoming_stereo in self.UNSPECIFIED_STEREO
+            else incoming_stereo
+        )
+
+        for existing in matches:
+            existing_normalized = (
+                None if existing.stereo_comment in self.UNSPECIFIED_STEREO
+                else existing.stereo_comment
+            )
+            if incoming_normalized == existing_normalized:
+                raise serializers.ValidationError({
+                    'smiles': (
+                        f"This structure is already registered as "
+                        f"{existing.formatted_id} (reg #{existing.reg_number}). "
+                        f"Add a new batch to the existing compound instead "
+                        f"of re-registering."
+                    )
+                })
+
+        return attrs
+
     def create(self, validated_data):
         # Set registered_by from request user
         request = self.context.get('request')

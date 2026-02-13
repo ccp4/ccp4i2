@@ -36,12 +36,14 @@ import {
   ExpandMore,
   Draw,
   Clear,
+  Warning,
+  Info,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { JSMEEditor } from '@/components/compounds/JSMEEditor';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { BatchCreateDialog } from '@/components/compounds/BatchCreateDialog';
-import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
+import { useCompoundsApi, apiPost, apiGet } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import type { Batch } from '@/types/compounds/models';
 
@@ -94,6 +96,10 @@ const STEREO_OPTIONS = [
   { value: 'ez_mixture', label: 'Mixture of E and Z isomers' },
   { value: 'e_isomer', label: 'E isomer' },
   { value: 'z_isomer', label: 'Z isomer' },
+  ...Array.from({ length: 20 }, (_, i) => ({
+    value: `isomer_${i + 1}`,
+    label: `Isomer ${i + 1}`,
+  })),
 ];
 
 export default function NewCompoundPage() {
@@ -132,6 +138,17 @@ function NewCompoundPageContent() {
   const [sketcherExpanded, setSketcherExpanded] = useState(false);
   const [jsmeInitialSmiles, setJsmeInitialSmiles] = useState('');
   const [creatingSupplier, setCreatingSupplier] = useState(false);
+  const [duplicateCompound, setDuplicateCompound] = useState<{
+    formatted_id: string;
+    id: string;
+    reg_number: number;
+  } | null>(null);
+  const [relatedCompounds, setRelatedCompounds] = useState<{
+    formatted_id: string;
+    id: string;
+    stereo_comment: string;
+  }[]>([]);
+  const [checkingDuplicate, setCheckingDuplicate] = useState(false);
 
   // Fetch targets and suppliers
   const { data: targetsData } = api.get<Target[]>('targets/');
@@ -168,6 +185,41 @@ function NewCompoundPageContent() {
       }
     }
   }, [mySupplier, suppliers, formData.supplier]);
+
+  // Debounced duplicate structure check
+  useEffect(() => {
+    const smiles = formData.smiles.trim();
+    if (!smiles || smiles.length < 2) {
+      setDuplicateCompound(null);
+      setCheckingDuplicate(false);
+      return;
+    }
+
+    setCheckingDuplicate(true);
+    const timer = setTimeout(async () => {
+      try {
+        let url = `compounds/resolve_by_smiles/?smiles=${encodeURIComponent(smiles)}`;
+        if (formData.stereo_comment) {
+          url += `&stereo_comment=${encodeURIComponent(formData.stereo_comment)}`;
+        }
+        const result = await apiGet<{
+          found: boolean;
+          compound: { formatted_id: string; id: string; reg_number: number } | null;
+          related_compounds?: { formatted_id: string; id: string; stereo_comment: string }[];
+        }>(url);
+        setDuplicateCompound(result.found && result.compound ? result.compound : null);
+        setRelatedCompounds(result.related_compounds || []);
+      } catch {
+        // Silently ignore - backend validation will catch it
+        setDuplicateCompound(null);
+        setRelatedCompounds([]);
+      } finally {
+        setCheckingDuplicate(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [formData.smiles, formData.stereo_comment]);
 
   // Handler to create a personal supplier for the current user
   const handleCreateMySupplier = useCallback(async () => {
@@ -281,6 +333,8 @@ function NewCompoundPageContent() {
     setSuccess(null);
     setBatchDialogOpen(false);
     setBatchCreated(null);
+    setDuplicateCompound(null);
+    setRelatedCompounds([]);
     setFormData({
       target: formData.target, // Keep the target
       smiles: '',
@@ -475,6 +529,58 @@ function NewCompoundPageContent() {
                   </Typography>
                 )}
               </Box>
+
+              {/* Duplicate structure warning */}
+              {duplicateCompound && (
+                <Alert
+                  severity="error"
+                  icon={<Warning />}
+                  sx={{ mb: 2 }}
+                  action={
+                    <Button
+                      color="inherit"
+                      size="small"
+                      component={Link}
+                      href={routes.registry.compound(duplicateCompound.id)}
+                    >
+                      View
+                    </Button>
+                  }
+                >
+                  This structure is already registered as <strong>{duplicateCompound.formatted_id}</strong>.
+                  Add a new batch to the existing compound instead.
+                </Alert>
+              )}
+              {/* Related structures with different stereo */}
+              {!duplicateCompound && relatedCompounds.length > 0 && (
+                <Alert
+                  severity="warning"
+                  icon={<Info />}
+                  sx={{ mb: 2 }}
+                >
+                  This structure exists with different stereochemistry:{' '}
+                  {relatedCompounds.map((rc, i) => (
+                    <span key={rc.id}>
+                      {i > 0 && ', '}
+                      <strong>
+                        <Link href={routes.registry.compound(rc.id)} style={{ color: 'inherit' }}>
+                          {rc.formatted_id}
+                        </Link>
+                      </strong>
+                      {' '}({rc.stereo_comment})
+                    </span>
+                  ))}
+                  . Registering as a distinct stereoisomer is allowed.
+                </Alert>
+              )}
+              {checkingDuplicate && formData.smiles.trim().length >= 2 && (
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                  <CircularProgress size={16} />
+                  <Typography variant="caption" color="text.secondary">
+                    Checking for existing structures...
+                  </Typography>
+                </Box>
+              )}
 
               {/* JSME Sketcher in accordion */}
               <Accordion
@@ -684,7 +790,7 @@ function NewCompoundPageContent() {
                 <Button
                   type="submit"
                   variant="contained"
-                  disabled={submitting || !formData.target || !formData.smiles}
+                  disabled={submitting || !formData.target || !formData.smiles || !!duplicateCompound}
                   startIcon={submitting ? <CircularProgress size={20} /> : <Save />}
                 >
                   {submitting ? 'Registering...' : 'Register Compound'}

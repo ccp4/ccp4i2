@@ -47,7 +47,7 @@ import {
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow } from '@/components/compounds/SpreadsheetUpload';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
-import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
+import { useCompoundsApi, apiPost, apiGet } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 
 interface Target {
@@ -101,6 +101,13 @@ const STEREO_COMMENT_MAP: Record<string, string> = {
   'ez_mixture': 'ez_mixture',
   'e_isomer': 'e_isomer',
   'z_isomer': 'z_isomer',
+  // Isomer series (for multi-stereocentre compounds)
+  ...Object.fromEntries(
+    Array.from({ length: 20 }, (_, i) => [`isomer_${i + 1}`, `isomer_${i + 1}`])
+  ),
+  ...Object.fromEntries(
+    Array.from({ length: 20 }, (_, i) => [`isomer ${i + 1}`, `isomer_${i + 1}`])
+  ),
   // Display labels (from STEREO_CHOICES)
   'racemic mixture': 'racemic',
   'single enantiomer, configuration unknown': 'single_unknown',
@@ -186,6 +193,7 @@ export default function ImportCompoundsPage() {
   const [defaultSupplier, setDefaultSupplier] = useState<string | null>(null);
   const [autoCreateBatches, setAutoCreateBatches] = useState(true);
   const [validationResults, setValidationResults] = useState<ValidationResult[]>([]);
+  const [checkingDuplicates, setCheckingDuplicates] = useState(false);
   const [importing, setImporting] = useState(false);
   const [importProgress, setImportProgress] = useState(0);
   const [importResults, setImportResults] = useState<ImportResult[]>([]);
@@ -269,9 +277,81 @@ export default function ImportCompoundsPage() {
 
       setValidationResults(results);
       setActiveStep(2);
+
+      // Async duplicate check against existing compounds
+      checkForDuplicates(results);
     },
     [defaultTarget, defaultSupplier]
   );
+
+  // Check SMILES against existing compounds in the database
+  const checkForDuplicates = useCallback(async (results: ValidationResult[]) => {
+    const rowsWithSmiles = results.filter((r) => r.data.smiles && r.valid);
+    if (rowsWithSmiles.length === 0) return;
+
+    setCheckingDuplicates(true);
+    try {
+      // Deduplicate by (smiles, stereo_comment) pairs to minimize API calls
+      const pairSet = new Set<string>();
+      const pairs: { smiles: string; stereo: string }[] = [];
+      for (const r of rowsWithSmiles) {
+        const smiles = r.data.smiles as string;
+        const stereo = (r.data.stereo_comment as string) || '';
+        const key = `${smiles}|||${stereo}`;
+        if (!pairSet.has(key)) {
+          pairSet.add(key);
+          pairs.push({ smiles, stereo });
+        }
+      }
+
+      // Maps "smiles|||stereo" -> existing formatted_id
+      const duplicateMap: Record<string, string> = {};
+
+      // Check each unique pair (in parallel batches of 10)
+      for (let i = 0; i < pairs.length; i += 10) {
+        const batch = pairs.slice(i, i + 10);
+        const checks = batch.map(async ({ smiles, stereo }) => {
+          try {
+            let url = `compounds/resolve_by_smiles/?smiles=${encodeURIComponent(smiles)}`;
+            if (stereo) {
+              url += `&stereo_comment=${encodeURIComponent(stereo)}`;
+            }
+            const result = await apiGet<{
+              found: boolean;
+              compound: { formatted_id: string } | null;
+            }>(url);
+            if (result.found && result.compound) {
+              duplicateMap[`${smiles}|||${stereo}`] = result.compound.formatted_id;
+            }
+          } catch {
+            // Ignore - backend validation will catch it during import
+          }
+        });
+        await Promise.all(checks);
+      }
+
+      // Update validation results with duplicate errors
+      if (Object.keys(duplicateMap).length > 0) {
+        setValidationResults((prev) =>
+          prev.map((r) => {
+            if (!r.data.smiles) return r;
+            const key = `${r.data.smiles}|||${(r.data.stereo_comment as string) || ''}`;
+            const existingId = duplicateMap[key];
+            if (existingId) {
+              return {
+                ...r,
+                valid: false,
+                errors: [...r.errors, `Already registered as ${existingId}`],
+              };
+            }
+            return r;
+          })
+        );
+      }
+    } finally {
+      setCheckingDuplicates(false);
+    }
+  }, []);
 
   // Re-validate when defaults change
   const handleRevalidate = useCallback(() => {
@@ -568,7 +648,7 @@ export default function ImportCompoundsPage() {
           </Alert>
 
           {/* Summary */}
-          <Box sx={{ display: 'flex', gap: 2, mb: 3 }}>
+          <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center' }}>
             <Chip
               icon={<CheckCircle />}
               label={`${validCount} valid`}
@@ -581,6 +661,13 @@ export default function ImportCompoundsPage() {
               color="error"
               variant="outlined"
             />
+            {checkingDuplicates && (
+              <Chip
+                icon={<CircularProgress size={16} />}
+                label="Checking for duplicates..."
+                variant="outlined"
+              />
+            )}
           </Box>
 
           {/* Validation table */}
@@ -668,11 +755,11 @@ export default function ImportCompoundsPage() {
             </Button>
             <Button
               variant="contained"
-              disabled={validCount === 0}
+              disabled={validCount === 0 || checkingDuplicates}
               onClick={handleStartImport}
               endIcon={<ArrowForward />}
             >
-              Import {validCount} Compounds
+              {checkingDuplicates ? 'Checking duplicates...' : `Import ${validCount} Compounds`}
             </Button>
           </Box>
         </Paper>
