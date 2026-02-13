@@ -7,7 +7,7 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { TextField } from "@mui/material";
+import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 
 import { CCP4i2CSimpleElementProps } from "./csimple";
 import { useJob, SetParameterResponse } from "../../../utils";
@@ -211,27 +211,12 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
     [validationColor, value, type]
   );
 
-  const slotProps = useMemo(() => {
-    const baseProps = {
-      inputLabel: {
-        shrink: true,
-        disableAnimation: true,
-      },
-    };
-
-    if (type === INPUT_TYPES.CHECKBOX) {
-      return {
-        ...baseProps,
-        htmlInput: {
-          checked: Boolean(value),
-          sx: { my: 1 },
-          "aria-label": processedItem.guiLabel,
-        },
-      };
-    }
-
-    return baseProps;
-  }, [type, value, processedItem.guiLabel]);
+  const slotProps = useMemo(() => ({
+    inputLabel: {
+      shrink: true,
+      disableAnimation: true,
+    },
+  }), []);
 
   // Event handlers
   const handleParameterUpdate = useCallback(
@@ -348,16 +333,30 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
     }
   }, [value, item, handleParameterUpdate]);
 
-  // Sync checkbox state with ref
-  useEffect(() => {
-    if (type === INPUT_TYPES.CHECKBOX && inputRef.current) {
-      inputRef.current.checked = Boolean(item?._value);
-    }
-  }, [type, item]);
-
   // Early return for invisible components
   if (!isVisible) {
     return null;
+  }
+
+  if (type === INPUT_TYPES.CHECKBOX) {
+    return (
+      <FieldWrapper ariaLabel={`${processedItem.guiLabel} input`}>
+        <FormControlLabel
+          disabled={isDisabled}
+          title={processedItem.tooltipText}
+          control={
+            <Checkbox
+              inputRef={inputRef}
+              checked={Boolean(value)}
+              onChange={handleChange}
+              size="small"
+            />
+          }
+          label={processedItem.guiLabel}
+        />
+        <ErrorTrigger item={item} job={job} />
+      </FieldWrapper>
+    );
   }
 
   return (
@@ -369,8 +368,8 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
         size="small"
         sx={calculatedSx}
         slotProps={slotProps}
-        type={type === INPUT_TYPES.CHECKBOX ? "checkbox" : "text"}
-        value={type === INPUT_TYPES.CHECKBOX ? undefined : value}
+        type="text"
+        value={value}
         label={processedItem.guiLabel}
         title={processedItem.tooltipText}
         onChange={handleChange}

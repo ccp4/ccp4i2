@@ -356,11 +356,16 @@ SimpleCard.displayName = "SimpleCard";
 export const ErrorTrigger: React.FC<ErrorTriggerProps> = ({ item, job }) => {
   const { setErrorInfoAnchor, setErrorInfoItem } = useTaskInterface();
   const { getValidationColor } = useJob(job.id);
+  const { devMode } = useCCP4i2Window();
 
   const validationColor = useMemo(
     () => getValidationColor(item),
     [getValidationColor, item]
   );
+
+  const hasValidationIssue =
+    validationColor === VALIDATION_COLORS.ERROR ||
+    validationColor === VALIDATION_COLORS.WARNING;
 
   const icon = useValidationIcon(validationColor);
 
@@ -373,6 +378,11 @@ export const ErrorTrigger: React.FC<ErrorTriggerProps> = ({ item, job }) => {
     },
     [setErrorInfoAnchor, setErrorInfoItem, item]
   );
+
+  // Only show when in developer mode or when the field has validation issues
+  if (!devMode && !hasValidationIssue) {
+    return null;
+  }
 
   return (
     <Button

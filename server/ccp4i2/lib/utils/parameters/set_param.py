@@ -147,11 +147,11 @@ def set_parameter(
         result_data = {
             "path": object_path,
             "value": value,
-            "object_type": type(obj).__name__ if obj else "Unknown",
+            "object_type": type(obj).__name__ if obj is not None else "Unknown",
         }
 
         # Add file-specific info if it's a CDataFile
-        if obj and hasattr(obj, 'getFullPath'):
+        if obj is not None and hasattr(obj, 'getFullPath'):
             full_path = obj.getFullPath()
             if full_path:
                 result_data["file_path"] = full_path
@@ -173,7 +173,7 @@ def set_parameter(
         # NEW: Include the full serialized item for frontend cache patching
         # This allows the frontend to patch the SWR cache directly without
         # refetching the entire container.
-        if obj:
+        if obj is not None:
             try:
                 # Serialize the updated object using the same encoder as /container endpoint
                 updated_item_json = json.dumps(obj, cls=CCP4i2JsonEncoder)

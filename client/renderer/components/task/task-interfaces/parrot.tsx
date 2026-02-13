@@ -3,22 +3,11 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
-import { useAsuContentWarning } from "../../../providers/run-check-provider";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, createPeerTask, validation } = useJob(job.id);
+  const { useTaskItem } = useJob(job.id);
   const { value: XYZIN_MODE } = useTaskItem("XYZIN_MODE");
-  const { value: ASUIN } = useTaskItem("ASUIN");
-
-  // Use centralized ASU content warning hook
-  useAsuContentWarning({
-    job,
-    taskName: "parrot",
-    asuContent: ASUIN,
-    validation,
-    createPeerTask,
-  });
 
   return (
     <CCP4i2Tabs {...props}>

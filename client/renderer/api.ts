@@ -146,7 +146,7 @@ function parseValidationXml(data: { xml: string } | null): ValidationErrors {
       }
 
       const description = $(errorNode).find("description").get(0)?.textContent;
-      if (description) {
+      if (description && !results[objectPath].messages.includes(description)) {
         results[objectPath].messages.push(description);
       }
     }

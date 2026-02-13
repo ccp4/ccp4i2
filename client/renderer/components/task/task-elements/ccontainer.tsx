@@ -38,6 +38,7 @@ const COLUMN_CONTAINER_SX = {
   flexDirection: "column",
   gap: FIELD_SPACING.rowGap,
   alignItems: "stretch",
+  pl: FIELD_SPACING.marginLeft,
   py: 1,
 } as const;
 

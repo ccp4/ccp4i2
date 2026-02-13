@@ -995,16 +995,13 @@ class CPluginScript(CData):
         """
         error = CErrorReport()
 
-        # First, get container validation
+        # Container validation recursively validates all children,
+        # including CDataFile objects (allowUndefined, mustExist, contentFlag).
+        # No separate checkInputData() call needed - that would duplicate errors.
         if hasattr(self, 'container') and self.container is not None:
             container_errors = self.container.validity()
             if container_errors:
                 error.extend(container_errors)
-
-        # Then add input data checks (file existence etc.)
-        input_errors = self.checkInputData()
-        if input_errors:
-            error.extend(input_errors)
 
         return error
 
