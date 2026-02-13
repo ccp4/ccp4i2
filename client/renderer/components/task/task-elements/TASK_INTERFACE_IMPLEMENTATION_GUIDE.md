@@ -721,7 +721,45 @@ The most common failure mode is one-way toggling, where only one direction works
 
 ## Complete Worked Example — ModelCraft
 
-This shows a real interface with grouped sections, conditional visibility driven by a CBoolean, inline field-with-text layouts, and a clear-dependent-field side effect.
+### The Narrative (What the Scientist Wrote)
+
+> The modelcraft interface has at the top a container with label "Reflection data". That container contains the reflection data widget, the Free R set widget, and a tick box labelled "Get initial phases from refining the starting model (uncheck to specify starting phases, e.g. from experimental phasing)". If the element is unticked, an additional widget is revealed for input phases, together with an additional check box labelled "Phases are unbiased and should be used as refinement restraints when the model is poor".
+>
+> Below that is a container labelled "Asymmetric unit contents". The only widget in this container is the widget to specify an asymmetric unit content file.
+>
+> Below that is a container labelled "Starting model". That container contains the widget for providing a starting model from which to build.
+>
+> Below that is a container labelled "Options". This container contains rows with:
+> 1. A tick box with label "Run a quicker basic pipeline"
+> 2. Elements which place the text "Run for" in front of a widget to specify the number of cycles, and then the word "cycles"
+> 3. Elements that provide a tickbox, followed by the text "Stop automatically if R-free does not improve in", then a number field to specify some sort of convergence criteria, followed by the word "cycles"
+> 4. A tick box with label "Build selenomethionine (MSE) instead of methionine (MET)"
+> 5. A tick box with label "Use twinned refinement"
+>
+> Below that is a container labelled "Optional pipeline steps" which contains rows that are all tickboxes with labels:
+> 1. "Preliminary low-resolution refinement with Sheetbend"
+> 2. "Residue and chain pruning"
+> 3. "Classical density modification with Parrot"
+> 4. "Phase improvement through addition and refinement of dummy atoms"
+> 5. "Addition of waters"
+> 6. "Final side-chain fixing"
+
+### How the Narrative Maps to Code
+
+| Narrative phrase | Implementation decision |
+|-----------------|----------------------|
+| "container with label" | `CCP4i2ContainerElement` with `containerHint="FolderLevel"` and `qualifiers={{ guiLabel: "..." }}` |
+| "reflection data widget" | `<CCP4i2TaskElement itemName="F_SIGF" />` — inferred from the task's `.def.xml` |
+| "tick box labelled ..." | `<CCP4i2TaskElement itemName="USE_MODEL_PHASES" qualifiers={{ guiLabel: "..." }} />` |
+| "If unticked, an additional widget is revealed" | `onChange` + local state + `{!useModelPhases && (...)}` conditional rendering |
+| "Run a quicker basic pipeline" (checkbox) | `onChange={handleBASIC}` pushes default CYCLES value (5 or 25) |
+| "Run for ___ cycles" | `Box` with flex layout, `Typography` text, constrained-width field with `guiLabel: " "` |
+| "tickbox, followed by text, then number field" | Same inline flex pattern with checkbox `sx={{ width: "auto" }}` |
+| "rows that are all tickboxes" | Simple `CCP4i2TaskElement` items with `qualifiers={{ guiLabel: "..." }}` — one per line |
+
+### The Resulting Code
+
+This shows the real interface with grouped sections, conditional visibility driven by a CBoolean, inline field-with-text layouts, and reactive default-value pushing.
 
 ```tsx
 import { Box, Paper, Typography } from "@mui/material";
