@@ -11,7 +11,6 @@ class cmapcoeff(CPluginScript):
     TASKNAME = 'cmapcoeff'
     TASKCOMMAND = 'cmapcoeff'
     WHATNEXT = [ 'coot_rebuild' ]
-    MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles ( self ):
         list_of_stuff = [ ]

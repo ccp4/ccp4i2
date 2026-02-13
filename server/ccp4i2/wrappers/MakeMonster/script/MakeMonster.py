@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class MakeMonster(CPluginScript):
     TASKNAME = 'MakeMonster'
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     def processInputFiles(self):
         inputDataObjects = []

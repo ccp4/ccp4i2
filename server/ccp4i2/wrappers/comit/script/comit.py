@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class comit(CPluginScript):
     TASKNAME = 'comit'
-    MAINTAINER = 'kathryn.cowtan@york.ac.uk'
     TASKCOMMAND="comit"
     
     def __init__(self, *args, **kws):

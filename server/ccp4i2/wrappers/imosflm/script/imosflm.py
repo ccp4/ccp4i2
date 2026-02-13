@@ -10,7 +10,6 @@ class imosflm(CPluginScript):
     DESCRIPTION = 'Launch iMosflm and capture output'
     TASKNAME = 'imosflm'
     TASKCOMMAND = 'imosflm'
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
     
     ERROR_CODES = {  200 : { 'description' : 'imosflm exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 

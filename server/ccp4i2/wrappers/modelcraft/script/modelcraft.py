@@ -11,7 +11,6 @@ class modelcraft(CPluginScript):
     SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"
     TASKCOMMAND = "modelcraft"
-    MAINTAINER = "paul.bond@york.ac.uk"
     PERFORMANCECLASS = "CRefinementPerformance"
     WHATNEXT = ["coot_rebuild"]
 

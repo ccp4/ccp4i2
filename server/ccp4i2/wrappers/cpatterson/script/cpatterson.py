@@ -9,7 +9,6 @@ class cpatterson(CPluginScript):
     TASKTITLE = 'Prepare map coefficients'
     TASKNAME = 'cpatterson'
     TASKCOMMAND = 'cpatterson'
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     def processInputFiles ( self ):
         from ccp4i2.core import CCP4XtalData

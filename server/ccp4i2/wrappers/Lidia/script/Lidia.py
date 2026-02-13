@@ -16,7 +16,6 @@ class Lidia(CPluginScript):
     TASKNAME = 'Lidia'
     TASKCOMMAND = 'lidia'
     ASYNCHRONOUS = True
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},
                    201 : {'description' : 'Failed to setFullPath'},}

@@ -10,7 +10,6 @@ class molrep_mr(CPluginScript):
     TASKTITLE='Molecular replacement using Molrep'
     TASKNAME = 'molrep_mr'
     TASKCOMMAND = 'molrep'
-    MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
 
     ERROR_CODES = {
         101: {'severity': SEVERITY_WARNING, 'description': 'Failed extracting tables from molrep.doc'},

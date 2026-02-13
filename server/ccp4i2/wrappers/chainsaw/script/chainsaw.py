@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class chainsaw(CPluginScript):
     TASKTITLE = 'edit search model'
     TASKNAME = 'chainsaw'
-    MAINTAINER = 'ronan.keegan@stfc.ac.uk'
     PERFORMANCECLASS = 'CAtomCountPerformance'
     TASKCOMMAND = 'chainsaw'
 

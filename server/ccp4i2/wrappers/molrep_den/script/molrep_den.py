@@ -10,7 +10,6 @@ class molrep_den(CPluginScript):
     TASKTITLE='Molecular replacement with electron density - MOLREP'
     TASKNAME = 'molrep_den'
     TASKCOMMAND = 'molrep'
-    MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
 
     ERROR_CODES = {101 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed extracting tables from molrep.doc' },
                    102 : { 'severity': SEVERITY_WARNING, 'description' : 'Failed writing tables to program.xml' },

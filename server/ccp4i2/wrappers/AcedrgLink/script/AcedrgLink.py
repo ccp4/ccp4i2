@@ -3,7 +3,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class AcedrgLink(CPluginScript):
     TASKNAME = "AcedrgLink"
-    MAINTAINER = "nicholls@mrc-lmb.cam.ac.uk"
     TASKCOMMAND = "acedrg"
 
     def makeCommandAndScript(self):

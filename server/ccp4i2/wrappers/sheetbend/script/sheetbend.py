@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class sheetbend(CPluginScript):
     TASKNAME = 'sheetbend'
-    MAINTAINER = 'kathryn.cowtan@york.ac.uk'
     TASKCOMMAND="csheetbend"
     
     def __init__(self, *args, **kws):

@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class coordinate_selector(CPluginScript):
     TASKTITLE = 'Select subset from coordinates'
     TASKNAME = 'coordinate_selector'
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     ERROR_CODES = { 202 : {'description' : 'Failed applying selection to PDB file' }
                     }
     PERFORMANCECLASS ='CAtomCountPerformance'

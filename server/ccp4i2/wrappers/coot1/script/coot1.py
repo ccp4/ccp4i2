@@ -17,7 +17,6 @@ class coot1(CPluginScript):
     TASKTITLE = "Coot 1"
     TASKCOMMAND = coot1Command()
     ASYNCHRONOUS = True
-    MAINTAINER = "paul.bond@york.ac.uk"
     WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft"]
 
     ERROR_CODES = {}

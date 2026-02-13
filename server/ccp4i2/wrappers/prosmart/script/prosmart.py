@@ -10,7 +10,6 @@ class prosmart(CPluginScript):
     
     TASKNAME = 'prosmart'
     TASKCOMMAND = 'prosmart'
-    MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = { 201 : { 'description' : 'No output restraint file from Prosmart' },
                     202 : { 'description' : 'Log file does not report successful job completion' , 'severity' : SEVERITY_WARNING },

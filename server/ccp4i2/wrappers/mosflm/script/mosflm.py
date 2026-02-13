@@ -70,7 +70,6 @@ class mosflm(CPluginScript):
     TASKTITLE = 'Run mosflm and capture output'
     TASKNAME = 'mosflm'
     TASKCOMMAND = 'ipmosflm'
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     def makeCommandAndScript(self):
         address = ('127.0.0.1', 0)

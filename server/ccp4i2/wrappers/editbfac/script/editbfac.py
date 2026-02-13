@@ -14,7 +14,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class editbfac(CPluginScript):
     TASKTITLE='Process Predicted Models'
     TASKNAME = 'editbfac'
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     def startProcess(self):
         # Run cctbx conversion in startProcess. Setup cctbx dm & redirect std for this ftn.

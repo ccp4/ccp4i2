@@ -13,7 +13,6 @@ class mrparse_simple(CPluginScript):
     TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'hlasimpk@liverpool.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.seqin = None

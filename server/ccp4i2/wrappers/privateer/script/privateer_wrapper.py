@@ -6,7 +6,6 @@ class privateer(CPluginScript):
     TASKNAME = "privateer"
     TASKCOMMAND = 'privateer'
     WHATNEXT = [ 'coot_rebuild', 'prosmart_refmac' ]
-    MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
       from ccp4i2.core import CCP4XtalData

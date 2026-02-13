@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class SIMBAD(CPluginScript):
     TASKNAME = 'SIMBAD'
-    MAINTAINER = 'hlasimpk@liv.ac.uk'
     ERROR_CODES = {1: {'description' : 'Something not very good has happened.'}}
     WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild']
     TASKCOMMAND="simbad"

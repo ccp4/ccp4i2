@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class import_serial_pipe(CPluginScript):
     TASKTITLE = 'Import Serial Pipeline'
     TASKNAME = 'import_serial_pipe'
-    MAINTAINER = 'martin.maly@soton.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.hklin = None

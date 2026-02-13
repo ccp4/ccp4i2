@@ -9,7 +9,6 @@ class ctruncate(CPluginScript):
     DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
     TASKNAME = 'ctruncate'
     TASKCOMMAND = 'ctruncate'
-    MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
     ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }
 

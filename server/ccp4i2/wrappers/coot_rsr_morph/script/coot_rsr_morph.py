@@ -13,7 +13,6 @@ class coot_rsr_morph(CPluginScript):
     TASKNAME = "coot_rsr_morph"
     WHATNEXT = ["prosmart_refmac"]
     ASYNCHRONOUS = True
-    MAINTAINER = "stuart.mcnicholas@york.ac.uk"
 
     def startProcess(self):
         outFormat = "cif" if self.container.inputData.XYZIN.isMMCIF() else "pdb"

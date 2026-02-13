@@ -31,7 +31,6 @@ class xia2_ssx_reduce(CPluginScript):
         "molrep_pipe",
         "prosmart_refmac"
     ]
-    MAINTAINER = "martin.maly@soton.ac.uk"
 
     def extract_parameters(self, container):
         """Walk through a container locating parameters that have been set

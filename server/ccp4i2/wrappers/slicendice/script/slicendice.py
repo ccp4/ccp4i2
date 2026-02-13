@@ -13,7 +13,6 @@ class slicendice(CPluginScript):
     TASKTITLE = "SliceNDice"
     TASKNAME = "slicendice"
     TASKCOMMAND = "slicendice"
-    MAINTAINER = "ronan.keegan@stfc.ac.uk"
     PERFORMANCECLASS = "CRefinementPerformance"
     ERROR_CODES = {
         19121: {

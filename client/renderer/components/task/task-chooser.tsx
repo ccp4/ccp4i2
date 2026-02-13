@@ -276,9 +276,6 @@ const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({
         )}
         <p>{`${task.taskName}`}</p>
         <p>{`${task.DESCRIPTION}`}</p>
-        {task.MAINTAINER !== "Nobody" && (
-          <p>{`Maintained by ${task.MAINTAINER}`}</p>
-        )}
       </CardContent>
     </Card>
   );

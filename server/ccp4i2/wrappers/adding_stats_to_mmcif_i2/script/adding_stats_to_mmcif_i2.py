@@ -38,7 +38,6 @@ conversions = {
 
 class adding_stats_to_mmcif_i2(CPluginScript):
     TASKNAME = 'adding_stats_to_mmcif_i2'
-    MAINTAINER = 'martin.noble@ncl.ac.uk'
     ERROR_CODES = {203: {'description': 'Input XML file contains neither AIMLESS nor AIMLESS_PIPE nodes'},
                    204: {'description': 'Failed with adding_stats_to_mmcif'}}
 

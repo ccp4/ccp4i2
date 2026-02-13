@@ -12,7 +12,6 @@ class coot_rebuild(CPluginScript):
     TASKNAME = 'coot_rebuild'
     TASKCOMMAND = 'coot'
     ASYNCHRONOUS = True
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Coot exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 

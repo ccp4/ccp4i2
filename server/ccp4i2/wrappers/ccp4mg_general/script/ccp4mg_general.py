@@ -14,7 +14,6 @@ class ccp4mg_general(CPluginScript):
     TASKNAME = 'ccp4mg_general'
     TASKCOMMAND = 'ccp4mg'
     ASYNCHRONOUS = True
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'CCP4MG exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 

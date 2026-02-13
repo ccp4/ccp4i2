@@ -11,7 +11,6 @@ class AUSPEX(CPluginScript):
     TASKCOMMAND = 'auspex'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
-    MAINTAINER = 'Andrea.Thorn@web.de'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

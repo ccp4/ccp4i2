@@ -11,7 +11,6 @@ from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'
-    MAINTAINER = 'martin.noble@ncl.ac.uk'
     ERROR_CODES = {201 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create project' },
         202 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create job' },
         203 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to determine job number' },

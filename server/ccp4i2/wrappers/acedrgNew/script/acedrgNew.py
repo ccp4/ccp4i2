@@ -15,7 +15,6 @@ class acedrgNew(CPluginScript):
     DESCRIPTION = 'Create a ligand dictionary with Acedrg'
     TASKNAME = 'acedrgNew'
     TASKCOMMAND = 'acedrg'
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' }, 202 : { 'description' : 'Failed to dump XMML' }, 203 : { 'description' : 'Failed to make RDKit Mol from DICT' },}
     

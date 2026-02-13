@@ -15,7 +15,6 @@ class aimless_pipe(CPluginScript):
     TASKTITLE = 'Scale and merge data'
     TASKNAME = 'aimless_pipe'
     PERFORMANCECLASS = 'CDataReductionPerformance'
-    MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'
     ERROR_CODES = {
         201 :{'description':'Pointless failed'},
         202 :{'description':'Aimless failed'},

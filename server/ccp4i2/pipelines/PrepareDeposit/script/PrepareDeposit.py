@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class PrepareDeposit(CPluginScript):
     TASKNAME = 'PrepareDeposit'
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
     
     ERROR_CODES = {  200 : { 'description' : 'Alignments yielded nBestPairs != 1' },
                     201 : { 'description' : 'Failed to copy files to destination directory...do you have write access ?' },}

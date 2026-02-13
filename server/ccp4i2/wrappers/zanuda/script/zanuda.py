@@ -10,7 +10,6 @@ class zanuda(CPluginScript):
     TASKTITLE = "Zanuda"
     TASKNAME = "zanuda"
     TASKCOMMAND = "zanuda"
-    MAINTAINER = "andrey.lebedev@stfc.ac.uk"
     PERFORMANCECLASS = "CRefinementPerformance"
 
     def processInputFiles(self):

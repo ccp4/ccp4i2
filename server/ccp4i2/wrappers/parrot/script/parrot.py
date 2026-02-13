@@ -10,7 +10,6 @@ class parrot(CPluginScript):
     TASKNAME = 'parrot'
     TASKCOMMAND = 'cparrot'
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'kathryn.cowtan@york.ac.uk'
 
 
     def processInputFiles(self):

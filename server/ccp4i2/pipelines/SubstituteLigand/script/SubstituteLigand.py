@@ -27,7 +27,6 @@ class SubstituteLigand(CPluginScript):
 
     TASKNAME = 'SubstituteLigand'
     WHATNEXT = ['coot_rebuild']
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {
         201: {'description': 'Failed in SubstituteLigand'},
