@@ -1370,6 +1370,9 @@ class CPdbDataComposition:
             gemmi_structure: gemmi.Structure object
         """
         import gemmi
+        from ccp4i2.core.coordinate_selection.evaluator import (
+            AMINO_ACIDS, NUCLEIC_ACIDS, SOLVENTS, SACCHARIDES
+        )
 
         self.chains = []
         self.monomers = []  # Now: significant ligands only (chain:resname:seqnum format)
@@ -1386,15 +1389,15 @@ class CPdbDataComposition:
         self.nresSolvent = 0
         self.elements = []
         self.containsHydrogen = False
-
-        # Saccharide residue names (for chain classification)
-        saccharide_names = {
-            'GLC', 'GAL', 'MAN', 'FUC', 'XYL', 'RIB', 'NAG', 'BMA',
-            'FUL', 'SIA', 'NDG', 'BGC'
-        }
+        # Enhanced digest fields
+        self.ligands = []           # [{chain, name, seqNum, atomCount}, ...]
+        self.chainDetails = []      # [{id, type, nResidues, nAtoms, firstRes, lastRes, ligandCount, hasAltConf}, ...]
+        self.residueNameCounts = {} # {resName: count, ...}
 
         all_resname_set = set()
         ligand_list = []
+        structured_ligand_list = []
+        residue_name_counts = {}
         element_set = set()
 
         # Analyze first model only (like legacy code)
@@ -1410,6 +1413,8 @@ class CPdbDataComposition:
                 has_nucleic = False
                 has_solvent = False
                 has_saccharide = False
+                has_altconf_chain = False
+                ligand_count_chain = 0
 
                 nres = 0
                 first_resid = None
@@ -1420,6 +1425,7 @@ class CPdbDataComposition:
                 for residue in chain:
                     res_name = residue.name
                     all_resname_set.add(res_name)
+                    residue_name_counts[res_name] = residue_name_counts.get(res_name, 0) + 1
                     nres += 1
                     natoms_res = len(residue)
 
@@ -1433,9 +1439,13 @@ class CPdbDataComposition:
                     entity_type = residue.entity_type
 
                     if entity_type == gemmi.EntityType.Polymer:
-                        # Check if it's amino acid or nucleic acid based on structure
-                        # (gemmi's entity_type handles this correctly from mmCIF)
-                        has_amino = True  # Simplified - polymer chains are typically protein
+                        # Classify by residue name for accurate protein vs nucleic
+                        if res_name in NUCLEIC_ACIDS:
+                            has_nucleic = True
+                        elif res_name in AMINO_ACIDS:
+                            has_amino = True
+                        else:
+                            has_amino = True  # Fallback for unknown polymer
                     elif entity_type == gemmi.EntityType.Water:
                         has_solvent = True
                         nres_solvent_chain += 1
@@ -1450,9 +1460,16 @@ class CPdbDataComposition:
                             # Significant ligand - add to monomers list
                             ligand_id = f"{chain_id}:{res_name}:{residue.seqid.num}"
                             ligand_list.append(ligand_id)
+                            structured_ligand_list.append({
+                                "chain": chain_id,
+                                "name": res_name,
+                                "seqNum": residue.seqid.num,
+                                "atomCount": natoms_res,
+                            })
+                            ligand_count_chain += 1
 
                         # Check for saccharides
-                        if res_name in saccharide_names:
+                        if res_name in SACCHARIDES:
                             has_saccharide = True
 
                     # Count atoms and analyze elements
@@ -1468,13 +1485,17 @@ class CPdbDataComposition:
                         if element in ['H', 'D']:
                             self.containsHydrogen = True
 
+                        # Check for alternate conformations
+                        if not has_altconf_chain and atom.altloc and atom.altloc not in ('\x00', ' ', ''):
+                            has_altconf_chain = True
+
                 # Store chain info
                 self.chainInfo.append([nres, first_resid or '', last_resid or ''])
                 self.nResidues += nres
                 self.nAtoms += natoms_chain
                 self.nresSolvent += nres_solvent_chain
 
-                # Classify chains (using has_amino as proxy for polymer)
+                # Classify chains
                 if has_amino:
                     self.peptides.append(chain_id)
                 if has_nucleic:
@@ -1484,10 +1505,28 @@ class CPdbDataComposition:
                 if has_saccharide:
                     self.saccharides.append(chain_id)
 
+                # Build per-chain detail
+                chain_type = ("protein" if has_amino else
+                              "nucleic" if has_nucleic else
+                              "solvent" if has_solvent else
+                              "saccharide" if has_saccharide else "other")
+                self.chainDetails.append({
+                    "id": chain_id,
+                    "type": chain_type,
+                    "nResidues": nres,
+                    "nAtoms": natoms_chain,
+                    "firstRes": first_resid or '',
+                    "lastRes": last_resid or '',
+                    "ligandCount": ligand_count_chain,
+                    "hasAltConf": has_altconf_chain,
+                })
+
         # monomers now contains only significant ligands in chain:resname:seqnum format
         self.monomers = sorted(ligand_list)
         self.allResidueNames = sorted(list(all_resname_set))
         self.elements = sorted(list(element_set))
+        self.ligands = structured_ligand_list
+        self.residueNameCounts = residue_name_counts
 
 
 class CPdbData(CPdbDataStub):

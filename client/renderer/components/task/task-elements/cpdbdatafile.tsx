@@ -15,7 +15,7 @@ import {
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useJob } from "../../../utils";
 import { CSimpleDataFileElement } from "./csimpledatafile";
 
@@ -24,6 +24,30 @@ import { CSimpleDataFileElement } from "./csimpledatafile";
  * [nres, first_resid, last_resid]
  */
 type ChainInfo = [number, string, string];
+
+/**
+ * Structured ligand info from enhanced digest
+ */
+interface LigandInfo {
+  chain: string;
+  name: string;
+  seqNum: number;
+  atomCount: number;
+}
+
+/**
+ * Per-chain detail from enhanced digest
+ */
+interface ChainDetail {
+  id: string;
+  type: string; // "protein" | "nucleic" | "solvent" | "saccharide" | "other"
+  nResidues: number;
+  nAtoms: number;
+  firstRes: string;
+  lastRes: string;
+  ligandCount: number;
+  hasAltConf: boolean;
+}
 
 /**
  * Digest structure returned by the backend for CPdbDataFile
@@ -43,6 +67,10 @@ interface CPdbDataFileDigest {
     nresSolvent?: number;
     elements?: string[];
     containsHydrogen?: boolean;
+    // Enhanced digest fields
+    ligands?: LigandInfo[];
+    chainDetails?: ChainDetail[];
+    residueNameCounts?: Record<string, number>;
   };
   status?: string;
   reason?: string;
@@ -68,7 +96,10 @@ const ATOM_OPTIONS = [
 ] as const;
 
 /**
- * Build a selection string from the UI state
+ * Build a selection string from the UI state.
+ *
+ * Ligand selections combine with OR (additive: "protein plus this ATP").
+ * Residue name filters combine with AND (restrictive: "only ALA in chain A").
  */
 function buildSelectionString(
   selectedChains: Set<string>,
@@ -76,7 +107,10 @@ function buildSelectionString(
   includedCategories: Set<string>,
   excludedCategories: Set<string>,
   atomFilter: string | null,
-  residueRanges: Record<string, [string, string]>
+  residueRanges: Record<string, [string, string]>,
+  selectedLigands: Set<string>,
+  ligands: LigandInfo[],
+  selectedResidueNames: Set<string>
 ): string {
   const parts: string[] = [];
 
@@ -127,14 +161,20 @@ function buildSelectionString(
     }
   }
 
+  // Residue name filter (restrictive - combines with AND)
+  if (selectedResidueNames.size > 0) {
+    const names = Array.from(selectedResidueNames).sort();
+    parts.push(`(${names.join(",")})`);
+  }
+
   // Build the main expression
-  let expr = parts.length > 0 ? parts.join(" and ") : "";
+  let mainExpr = parts.length > 0 ? parts.join(" and ") : "";
 
   // Add atom filter if set
-  if (atomFilter && expr) {
-    expr = `${expr} and ${atomFilter}`;
+  if (atomFilter && mainExpr) {
+    mainExpr = `${mainExpr} and ${atomFilter}`;
   } else if (atomFilter) {
-    expr = atomFilter;
+    mainExpr = atomFilter;
   }
 
   // Add excluded categories
@@ -144,14 +184,67 @@ function buildSelectionString(
       excludeParts.length === 1
         ? excludeParts[0]
         : `{${excludeParts.join(" or ")}}`;
-    if (expr) {
-      expr = `${expr} and not ${excludeExpr}`;
+    if (mainExpr) {
+      mainExpr = `${mainExpr} and not ${excludeExpr}`;
     } else {
-      expr = `not ${excludeExpr}`;
+      mainExpr = `not ${excludeExpr}`;
     }
   }
 
-  return expr;
+  // Ligand selections (additive - combines with OR)
+  const ligandParts: string[] = [];
+  for (const ligandKey of selectedLigands) {
+    const lig = ligands.find(
+      (l) => `${l.chain}:${l.name}:${l.seqNum}` === ligandKey
+    );
+    if (lig) {
+      ligandParts.push(`${lig.chain}/${lig.seqNum}(${lig.name})`);
+    }
+  }
+  const ligandExpr =
+    ligandParts.length === 1
+      ? ligandParts[0]
+      : ligandParts.length > 1
+        ? `{${ligandParts.join(" or ")}}`
+        : "";
+
+  // Combine main expression with ligand expression
+  if (ligandExpr && mainExpr) {
+    return `{${mainExpr}} or ${ligandExpr}`;
+  } else if (ligandExpr) {
+    return ligandExpr;
+  }
+  return mainExpr;
+}
+
+/**
+ * Build a human-readable summary of the current selection.
+ */
+function buildSelectionSummary(
+  selectedChains: Set<string>,
+  allChains: string[],
+  includedCategories: Set<string>,
+  excludedCategories: Set<string>,
+  selectedLigands: Set<string>,
+  selectedResidueNames: Set<string>
+): string {
+  const parts: string[] = [];
+  if (selectedChains.size < allChains.length) {
+    parts.push(`${selectedChains.size}/${allChains.length} chains`);
+  }
+  if (includedCategories.size > 0) {
+    parts.push(`include ${Array.from(includedCategories).join(", ")}`);
+  }
+  if (excludedCategories.size > 0) {
+    parts.push(`exclude ${Array.from(excludedCategories).join(", ")}`);
+  }
+  if (selectedLigands.size > 0) {
+    parts.push(`${selectedLigands.size} ligand(s)`);
+  }
+  if (selectedResidueNames.size > 0) {
+    parts.push(`${selectedResidueNames.size} residue type(s)`);
+  }
+  return parts.length > 0 ? `Selecting: ${parts.join(", ")}` : "Selecting: all atoms";
 }
 
 /**
@@ -206,6 +299,11 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   // Local state for the text field to prevent re-render issues while typing
   const [localSelectionText, setLocalSelectionText] = useState<string>("");
   const [isTyping, setIsTyping] = useState(false);
+  // Enhanced selection state
+  const [selectedLigands, setSelectedLigands] = useState<Set<string>>(new Set());
+  const [selectedResidueNames, setSelectedResidueNames] = useState<Set<string>>(new Set());
+  const [showLigandPicker, setShowLigandPicker] = useState(false);
+  const [showResidueNameFilter, setShowResidueNameFilter] = useState(false);
 
   // Extract composition data
   const composition = fileDigest?.composition;
@@ -214,7 +312,12 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const peptideChains = new Set(composition?.peptides || []);
   const nucleicChains = new Set(composition?.nucleics || []);
   const solventChains = new Set(composition?.solventChains || []);
+  const ligands = composition?.ligands || [];
+  const chainDetails = composition?.chainDetails || [];
+  const residueNameCounts = composition?.residueNameCounts || {};
   const hasContent = chains.length > 0;
+  const hasLigands = ligands.length > 0;
+  const hasResidueNames = Object.keys(residueNameCounts).length > 0;
 
   // Initialize selections when digest loads
   useEffect(() => {
@@ -222,6 +325,18 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
       setSelectedChains(new Set(chains));
     }
   }, [chains]);
+
+  // Reset enhanced selections when file changes
+  const prevFileId = useRef(value?.dbFileId);
+  useEffect(() => {
+    if (value?.dbFileId !== prevFileId.current) {
+      prevFileId.current = value?.dbFileId;
+      setSelectedLigands(new Set());
+      setSelectedResidueNames(new Set());
+      setShowLigandPicker(false);
+      setShowResidueNameFilter(false);
+    }
+  }, [value?.dbFileId]);
 
   // Sync local text with server value when not typing
   useEffect(() => {
@@ -239,7 +354,10 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
       includedCategories,
       excludedCategories,
       atomFilter,
-      residueRanges
+      residueRanges,
+      selectedLigands,
+      ligands,
+      selectedResidueNames
     );
   }, [
     selectedChains,
@@ -248,6 +366,9 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     excludedCategories,
     atomFilter,
     residueRanges,
+    selectedLigands,
+    ligands,
+    selectedResidueNames,
     hasContent,
   ]);
 
@@ -373,6 +494,26 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     return () => clearTimeout(timeoutId);
   }, [localSelectionText, isTyping, manualEdit, updateSelectionString, mutateContainer, job.status, selectionString]);
 
+  // Handle ligand toggle
+  const handleLigandToggle = useCallback((key: string, checked: boolean) => {
+    setSelectedLigands((prev) => {
+      const next = new Set(prev);
+      if (checked) next.add(key); else next.delete(key);
+      return next;
+    });
+    setManualEdit(false);
+  }, []);
+
+  // Handle residue name toggle
+  const handleResidueNameToggle = useCallback((name: string) => {
+    setSelectedResidueNames((prev) => {
+      const next = new Set(prev);
+      if (next.has(name)) next.delete(name); else next.add(name);
+      return next;
+    });
+    setManualEdit(false);
+  }, []);
+
   // Get chain type label
   const getChainTypeLabel = (chain: string): string => {
     const types: string[] = [];
@@ -482,13 +623,15 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
                 </Stack>
                 <FormGroup row>
                   {chains.map((chain, idx) => {
+                    const detail = chainDetails.find((d) => d.id === chain);
                     const info = getChainDisplayInfo(chain, idx);
-                    const typeLabel = getChainTypeLabel(chain);
+                    const typeLabel = detail?.type || getChainTypeLabel(chain);
+                    const nRes = detail?.nResidues ?? info.nRes;
+                    const tooltipText = detail
+                      ? `${detail.nResidues} res, ${detail.nAtoms} atoms${detail.ligandCount > 0 ? `, ${detail.ligandCount} lig` : ""}${detail.hasAltConf ? " (alt conf)" : ""} (${detail.firstRes}-${detail.lastRes})`
+                      : `${info.nRes} residues (${info.firstRes}-${info.lastRes}) - ${typeLabel}`;
                     return (
-                      <Tooltip
-                        key={chain}
-                        title={`${info.nRes} residues (${info.firstRes}-${info.lastRes}) - ${typeLabel}`}
-                      >
+                      <Tooltip key={chain} title={tooltipText}>
                         <FormControlLabel
                           control={
                             <Checkbox
@@ -509,6 +652,9 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
                                 variant="outlined"
                                 sx={{ height: 16, fontSize: "0.65rem" }}
                               />
+                              <Typography variant="caption" color="text.secondary">
+                                ({nRes})
+                              </Typography>
                             </Stack>
                           }
                           sx={{ mr: 2 }}
@@ -631,7 +777,115 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
                 </Stack>
               </Box>
 
+              {/* Ligand Picker */}
+              {hasLigands && (
+                <>
+                  <Divider />
+                  <Box>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography variant="caption" fontWeight="medium">
+                        Individual Ligands ({ligands.length})
+                      </Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => setShowLigandPicker(!showLigandPicker)}
+                        sx={{ p: 0.25 }}
+                      >
+                        {showLigandPicker ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
+                      </IconButton>
+                    </Stack>
+                    <Collapse in={showLigandPicker}>
+                      <FormGroup sx={{ mt: 0.5 }}>
+                        {ligands.map((lig) => {
+                          const key = `${lig.chain}:${lig.name}:${lig.seqNum}`;
+                          return (
+                            <FormControlLabel
+                              key={key}
+                              control={
+                                <Checkbox
+                                  checked={selectedLigands.has(key)}
+                                  onChange={(e) => handleLigandToggle(key, e.target.checked)}
+                                  disabled={job.status !== 1}
+                                  size="small"
+                                />
+                              }
+                              label={
+                                <Stack direction="row" spacing={0.5} alignItems="center">
+                                  <Typography variant="body2" fontWeight="bold">{lig.name}</Typography>
+                                  <Typography variant="caption" color="text.secondary">
+                                    Chain {lig.chain}, Res {lig.seqNum}
+                                  </Typography>
+                                  <Chip
+                                    label={`${lig.atomCount} atoms`}
+                                    size="small"
+                                    variant="outlined"
+                                    sx={{ height: 16, fontSize: "0.65rem" }}
+                                  />
+                                </Stack>
+                              }
+                            />
+                          );
+                        })}
+                      </FormGroup>
+                      <Typography variant="caption" color="text.secondary" sx={{ display: "block" }}>
+                        Selected ligands are added to the selection (OR logic)
+                      </Typography>
+                    </Collapse>
+                  </Box>
+                </>
+              )}
+
+              {/* Residue Name Filter */}
+              {hasResidueNames && (
+                <>
+                  <Divider />
+                  <Box>
+                    <Stack direction="row" alignItems="center" spacing={1}>
+                      <Typography variant="caption" fontWeight="medium">
+                        Residue Names
+                      </Typography>
+                      <IconButton
+                        size="small"
+                        onClick={() => setShowResidueNameFilter(!showResidueNameFilter)}
+                        sx={{ p: 0.25 }}
+                      >
+                        {showResidueNameFilter ? <ExpandLessIcon fontSize="small" /> : <ExpandMoreIcon fontSize="small" />}
+                      </IconButton>
+                    </Stack>
+                    <Collapse in={showResidueNameFilter}>
+                      <Stack direction="row" spacing={0.5} flexWrap="wrap" sx={{ mt: 0.5 }}>
+                        {Object.entries(residueNameCounts)
+                          .sort(([, a], [, b]) => b - a)
+                          .map(([name, count]) => (
+                            <Chip
+                              key={name}
+                              label={`${name} (${count})`}
+                              size="small"
+                              variant={selectedResidueNames.has(name) ? "filled" : "outlined"}
+                              color={selectedResidueNames.has(name) ? "primary" : "default"}
+                              onClick={() => handleResidueNameToggle(name)}
+                              disabled={job.status !== 1}
+                              sx={{ cursor: "pointer", mb: 0.5 }}
+                            />
+                          ))}
+                      </Stack>
+                      <Typography variant="caption" color="text.secondary" sx={{ mt: 0.5, display: "block" }}>
+                        Click to filter by specific residue types (AND logic)
+                      </Typography>
+                    </Collapse>
+                  </Box>
+                </>
+              )}
+
               <Divider />
+
+              {/* Selection Summary */}
+              <Typography variant="caption" color="text.secondary">
+                {buildSelectionSummary(
+                  selectedChains, chains, includedCategories, excludedCategories,
+                  selectedLigands, selectedResidueNames
+                )}
+              </Typography>
 
               {/* Generated Selection String */}
               <Box>
