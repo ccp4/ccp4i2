@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <comment/>
+    <userId>stuart</userId>
+    <creationTime>10:06 29/Jan/26</creationTime>
+    <pluginVersion></pluginVersion>
+    <ccp4iVersion>0.0.1</ccp4iVersion>
+    <project/>
+    <pluginName>areaimol</pluginName>
+    <pluginTitle>Solvent accessible surface - Areaimol</pluginTitle>
+    <jobId/>
+  </ccp4i2_header>
+  <ccp4i2_body id="areaimol">
+    <container id="inputData">
+      <content id="XYZIN">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>False</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+      <content id="XYZIN2">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <mustExist>True</mustExist>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>False</fromPreviousJob>
+	  <ifAtomSelection>True</ifAtomSelection>
+        </qualifiers>
+      </content>
+    </container>
+    <container id="controlParameters">
+      <content id="EXCLUDE">
+        <className>CString</className>
+        <qualifiers>
+          <default></default>
+          <guiLabel>Space separate list of residue names to exclude</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="DIFFMODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>OFF</default>
+          <enumerators>OFF,IMOL,COMPARE</enumerators>
+          <menuText>Off (normal calculation),Intemolecular contact differences,Compare 2 structures</menuText>
+          <guiLabel>Differences mode</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="OUTPUT_MODE">
+        <className>CString</className>
+        <qualifiers>
+          <default>ATOM</default>
+          <enumerators>ATOM,RESIDUE,GXGRATIO</enumerators>
+          <menuText>Area per atom,Area per residue,GXGRATIO (effectively normalised)</menuText>
+          <guiLabel>Output mode</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="OUTPUT_MODE_COMPARE">
+        <className>CString</className>
+        <qualifiers>
+          <default>ATOM</default>
+          <enumerators>ATOM,RESIDUE</enumerators>
+          <menuText>Area per atom,Area per residue</menuText>
+          <guiLabel>Output mode</guiLabel>
+          <onlyEnumerators>True</onlyEnumerators>
+        </qualifiers>
+      </content>
+      <content id="EXTRA_AREAIMOL_KEYWORDS">
+         <className>CString</className>
+         <qualifiers>
+            <default>END
+            </default>
+         </qualifiers>
+      </content>
+      <content id="SYMMETRY">
+         <className>CString</className>
+         <qualifiers>
+            <allowUndefined>True</allowUndefined>
+         </qualifiers>
+      </content>
+    </container>
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>False</mustExist>
+        </qualifiers>
+      </content>
+    </container>
+  </ccp4i2_body>
+</ccp4i2>
