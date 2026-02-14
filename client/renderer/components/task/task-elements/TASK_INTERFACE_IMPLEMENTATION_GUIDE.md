@@ -19,13 +19,14 @@ This is the single reference for building task interfaces in CCP4i2. It covers e
 11. [Common Patterns Cookbook](#common-patterns-cookbook)
 12. [Pitfalls and Hard-Won Lessons](#pitfalls-and-hard-won-lessons)
 13. [Complete Worked Example — ModelCraft](#complete-worked-example--modelcraft)
+14. [Complete Worked Example — ProSMART-Refmac (Multi-Tab, Digest-Driven)](#complete-worked-example--prosmart-refmac-multi-tab-digest-driven)
 
 ---
 
 ## Workflow Overview
 
 ```
-  Narrative description  (what the scientist sees)
+  Input source            (narrative description, screenshots, or both)
          │
          ▼
   Read the .def.xml      (parameter names, types, defaults, qualifiers)
@@ -74,6 +75,16 @@ Before writing any code:
 2. **Open the generated interface** (if one exists) in `task-interfaces/generated/<taskname>.tsx`. This shows which parameters the legacy GUI exposed and in what order. It's a useful starting point but will be flat and unstyled.
 
 3. **Run the task in the generic interface** to see all the parameters rendered automatically. Note which groups of parameters belong together logically.
+
+### Working from Screenshots
+
+Claude can work from **screenshots of the legacy Qt interface** to phenocopy the layout, groupings, labels, and conditional visibility logic. This is often the most efficient approach for complex interfaces:
+
+1. **Provide one screenshot per tab** — Claude will identify all visible widgets, labels, checkboxes, dropdowns, and inline text patterns.
+2. **Provide screenshots with dependent fields revealed** — Toggle checkboxes and expand sections in the old interface to show conditional elements, then screenshot those states. Claude needs to see both the collapsed and expanded states to implement visibility logic correctly.
+3. **Note any dynamic content** — If a section's visibility depends on the input data (e.g. "no nucleotide chains" messages that depend on the coordinate file composition), describe this relationship explicitly.
+
+Claude cross-references the screenshots against the `.def.xml` to map visual elements to parameter names, types, and containers. This is how `prosmart_refmac.tsx` was built — from 5 tab screenshots plus an additional screenshot showing the Restraints tab with dependent elements revealed.
 
 ---
 
@@ -388,7 +399,7 @@ const handleFileChange = useCallback(async () => {
 }, [F_SIGFItem?._objectPath, fetchDigest, setSpaceGroup, setWavelength]);
 ```
 
-Available digest fields:
+Available digest fields (reflection data):
 
 | Field | Type | Description |
 |-------|------|-------------|
@@ -399,6 +410,15 @@ Available digest fields:
 | `resolution` | `{ low, high }` | Resolution range |
 | `contentFlag` | `number` | 1=anom I, 2=anom F, 3=mean I, 4=mean F |
 | `hasFreeR` | `boolean` | FreeR flags present |
+
+**Two ways to access digests:**
+
+| Method | When to use |
+|--------|------------|
+| `fetchDigest(objectPath)` | Inside `onChange` handlers — imperative, one-shot (e.g. extract wavelength when file is selected) |
+| `useFileDigest(objectPath)` | For render-time data — reactive SWR hook, re-renders when digest changes (e.g. chain composition for visibility) |
+
+Both are returned from `useJob(job.id)`. See the [Digest-Driven Composition Visibility](#digest-driven-composition-visibility) cookbook pattern for `useFileDigest` usage with coordinate files.
 
 ### Auto-Syncing Parameters with `syncTo`
 
@@ -519,6 +539,14 @@ These render automatically based on the parameter's CData type:
 | `CEnsemble` | `CEnsembleElement` | Grid with copies, label, use fields |
 | `CImportUnmerged` | `CImportUnmergedElement` | File + metadata grid |
 
+### Standalone Widgets (Explicitly Used)
+
+These are used directly in task interfaces, not auto-dispatched:
+
+| Widget | Import | Use Case |
+|--------|--------|----------|
+| `CChainSelectElement` | `../task-elements/cchainselect` | Multi-select chain IDs as chips, backed by a comma-separated CString |
+
 ---
 
 ## Common Patterns Cookbook
@@ -631,6 +659,71 @@ const handleBASIC = useCallback(
 ```
 
 This is a one-shot default — the user can still manually change CYCLES afterward. Use this instead of `syncTo` when the relationship is "suggest a default" rather than "always derive."
+
+### Digest-Driven Composition Visibility
+
+When a section's visibility depends on the composition of an input coordinate file (e.g. "show ProSMART protein options only if the model has protein chains"), use `useFileDigest` to reactively read the XYZIN digest:
+
+```tsx
+const { useTaskItem, useFileDigest } = useJob(job.id);
+const { item: XYZINItem, value: XYZINValue } = useTaskItem("XYZIN");
+
+// Only fetch digest when a file is loaded
+const xyzinDigestPath =
+  XYZINValue?.dbFileId && XYZINItem?._objectPath ? XYZINItem._objectPath : "";
+const { data: xyzinDigest } = useFileDigest(xyzinDigestPath);
+const composition = xyzinDigest?.composition;
+
+const hasProteinChains =
+  Array.isArray(composition?.peptides) && composition.peptides.length > 0;
+const hasNucleotideChains =
+  Array.isArray(composition?.nucleics) && composition.nucleics.length > 0;
+
+// In JSX:
+{!hasProteinChains && (
+  <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+    Input atomic model contains no protein chains
+  </Typography>
+)}
+{hasProteinChains && (
+  <>{/* Show protein-specific options */}</>
+)}
+```
+
+Available composition fields from a CPdbDataFile digest:
+
+| Field | Type | Description |
+|-------|------|-------------|
+| `composition.chains` | `string[]` | All chain IDs |
+| `composition.peptides` | `string[]` | Protein chain IDs |
+| `composition.nucleics` | `string[]` | Nucleic acid chain IDs |
+| `composition.solventChains` | `string[]` | Solvent chain IDs |
+| `composition.saccharides` | `string[]` | Sugar chain IDs |
+| `composition.nChains` | `number` | Total chain count |
+| `composition.nResidues` | `number` | Total residue count |
+| `composition.nAtoms` | `number` | Total atom count |
+| `composition.ligands` | `LigandInfo[]` | Ligand details |
+| `composition.chainDetails` | `ChainDetail[]` | Per-chain composition |
+
+**Key distinction:** `useFileDigest` is reactive (SWR-based, updates when the file changes). Use this for render-time data. `fetchDigest` is imperative (async call) — use this inside `onChange` handlers for one-time metadata extraction like wavelength.
+
+### Multi-Select Chain Selector (`CChainSelectElement`)
+
+For parameters that store a comma-separated list of chain IDs (e.g. `prosmartProtein.CHAINLIST_1`), use the dedicated multi-select widget:
+
+```tsx
+import { CChainSelectElement } from "../task-elements/cchainselect";
+
+<CChainSelectElement
+  job={job}
+  itemName="prosmartProtein.CHAINLIST_1"
+  options={composition?.peptides || []}    // Available chains from digest
+  label=" "
+  visibility={() => isTruthy(prosmartProteinToggle)}
+/>
+```
+
+This renders an MUI Autocomplete with `multiple` and chip tags. It reads a comma-separated CString (e.g. `"A,B,C"`) and writes back as a comma-joined string. The `options` prop should be populated from the XYZIN digest composition.
 
 ### Info/Warning Text
 
@@ -940,6 +1033,111 @@ export default TaskInterface;
 
 ---
 
+## Complete Worked Example — ProSMART-Refmac (Multi-Tab, Digest-Driven)
+
+ProSMART-Refmac is the most complex task interface in the codebase. It demonstrates patterns beyond what ModelCraft covers: tabbed layout, file digest-driven composition visibility, sub-container dotted paths, and custom widgets.
+
+### How It Was Built
+
+The interface was built from **screenshots of the legacy Qt GUI** — one per tab (Input data, Parameterisation, Restraints, Output, Advanced) plus a screenshot showing the Restraints tab with dependent elements revealed. Claude cross-referenced the screenshots against `prosmart_refmac.def.xml` and `refmac.def.xml` to map every visible widget to its parameter name and type.
+
+### Key Techniques Demonstrated
+
+| Technique | Where in prosmart_refmac.tsx |
+|-----------|----------------------------|
+| Tabbed layout | `<CCP4i2Tabs>` with 5 `<CCP4i2Tab>` children |
+| Digest-driven visibility | XYZIN digest `composition.peptides`/`nucleics` for ProSMART sections |
+| Sub-container dotted paths | `prosmartProtein.TOGGLE`, `prosmartProtein.CHAINLIST_1`, `platonyzer.MODE`, `controlParameters.WEIGHT` |
+| Custom multi-select widget | `<CChainSelectElement>` for chain selection |
+| File onChange with side effects | F_SIGF onChange → wavelength, anomalous, twinning |
+| FreeR warning hook | `useFreeRWarning()` for cross-validation checks |
+| Conditional "no data" messages | Italic text when model has no protein/nucleotide chains |
+| Nested visibility conditions | Occupancy groups visible only when occupancy refinement is enabled |
+| Inline natural-language layouts | "Refine [isotropic] B-factors", "with sigma: [0.01] and max distance: [4.2]" |
+
+### Sub-Container Dotted Paths
+
+When the `.def.xml` defines nested containers (e.g. `prosmartProtein` containing `TOGGLE`, `CHAINLIST_1`, `WEIGHT`), access them with dotted notation:
+
+```tsx
+const { value: prosmartProteinToggle } = useTaskItem("prosmartProtein.TOGGLE");
+
+<CCP4i2TaskElement
+  {...props}
+  itemName="prosmartProtein.WEIGHT"
+  qualifiers={{ guiLabel: " " }}
+/>
+```
+
+### Digest-Driven Section (ProSMART Pattern)
+
+```tsx
+// Get XYZIN digest for chain composition
+const { item: XYZINItem, value: XYZINValue } = useTaskItem("XYZIN");
+const xyzinDigestPath =
+  XYZINValue?.dbFileId && XYZINItem?._objectPath ? XYZINItem._objectPath : "";
+const { data: xyzinDigest } = useFileDigest(xyzinDigestPath);
+const xyzinComposition = xyzinDigest?.composition;
+const hasProteinChains =
+  Array.isArray(xyzinComposition?.peptides) && xyzinComposition.peptides.length > 0;
+
+// In JSX:
+<CCP4i2ContainerElement {...props} itemName="" qualifiers={{ guiLabel: "ProSMART - protein" }} containerHint="FolderLevel">
+  {!hasProteinChains && (
+    <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+      Input atomic model contains no protein chains
+    </Typography>
+  )}
+  {hasProteinChains && (
+    <>
+      <CChainSelectElement
+        job={job}
+        itemName="prosmartProtein.CHAINLIST_1"
+        options={xyzinComposition?.peptides || []}
+        label=" "
+      />
+      {/* ... more ProSMART protein options */}
+    </>
+  )}
+</CCP4i2ContainerElement>
+```
+
+### Multi-Level Inline Layout (Restraints Tab)
+
+The Restraints tab demonstrates complex inline patterns with multiple interleaved text and field elements:
+
+```tsx
+{/* Jelly-body: checkbox + conditional inline parameters */}
+<CCP4i2TaskElement {...props} itemName="USE_JELLY" qualifiers={{ guiLabel: "Use jelly-body restraints" }} />
+{isTruthy(useJelly) && (
+  <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+    <Typography variant="body1">with sigma:</Typography>
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement {...props} itemName="JELLY_SIGMA" qualifiers={{ guiLabel: " " }} />
+    </Box>
+    <Typography variant="body1">and max distance:</Typography>
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement {...props} itemName="JELLY_DIST" qualifiers={{ guiLabel: " " }} />
+    </Box>
+  </Box>
+)}
+
+{/* ProSMART: interleaved text + dropdown + text + field + text */}
+<Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+  <Typography variant="body1">Use</Typography>
+  <Box sx={{ width: "14rem" }}>
+    <CCP4i2TaskElement {...props} itemName="prosmartProtein.ALL_BEST" qualifiers={{ guiLabel: " " }} />
+  </Box>
+  <Typography variant="body1">chain(s) from reference model(s). Minimum sequence identity:</Typography>
+  <Box sx={{ width: "6rem" }}>
+    <CCP4i2TaskElement {...props} itemName="prosmartProtein.SEQID" qualifiers={{ guiLabel: " " }} />
+  </Box>
+  <Typography variant="body1">%</Typography>
+</Box>
+```
+
+---
+
 ## Imports Cheatsheet
 
 ```tsx
@@ -955,6 +1153,12 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 // Layout
 import { FieldRow } from "../task-elements/field-row";
 import { Box, Grid2, Stack, Paper, Typography, Card, CardHeader, CardContent } from "@mui/material";
+
+// Standalone widgets
+import { CChainSelectElement } from "../task-elements/cchainselect";
+
+// Validation hooks
+import { useFreeRWarning } from "../../../providers/run-check-provider";
 
 // React hooks
 import { useCallback, useEffect, useMemo, useState } from "react";
