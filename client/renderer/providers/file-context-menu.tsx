@@ -19,7 +19,7 @@ import {
   ClickAwayListener,
   Box,
 } from "@mui/material";
-import { Download, Preview, Terminal, Edit } from "@mui/icons-material";
+import { Download, Preview, Terminal, Edit, Image as ImageIcon, Science } from "@mui/icons-material";
 import { useFilePreviewContext } from "./file-preview-context";
 import { File as DjangoFile } from "../types/models";
 import { useRouter } from "next/navigation";
@@ -205,13 +205,21 @@ export const FileMenu: React.FC = () => {
     async (ev: SyntheticEvent) => {
       ev.stopPropagation();
       if (file) {
-        setContentSpecification({
-          url: `/api/proxy/ccp4i2/files/${file.id}/download/`,
-          title: file.name,
-          language: file.type.startsWith("application/CCP4-mtz")
-            ? "mtz"
-            : "text",
-        });
+        let language = "text";
+        let url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
+
+        if (file.type.startsWith("application/CCP4-mtz")) {
+          language = "mtz";
+        } else if (file.type === "application/CCP4-image") {
+          language = "image";
+        } else if (file.type === "application/refmac-dictionary") {
+          language = "molblock";
+          url = `/api/proxy/ccp4i2/files/${file.id}/molblock/`;
+        } else if (file.type === "chemical/x-mdl-molfile") {
+          language = "molblock-raw";
+        }
+
+        setContentSpecification({ url, title: file.name, language });
         setFileMenuAnchorEl(null);
       }
     },
@@ -318,6 +326,51 @@ export const FileMenu: React.FC = () => {
     [file, api, setFileMenuAnchorEl]
   );
 
+  const handlePreviewImage = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      if (file) {
+        setContentSpecification({
+          url: `/api/proxy/ccp4i2/files/${file.id}/download/`,
+          title: file.name,
+          language: "image",
+        });
+        setFileMenuAnchorEl(null);
+      }
+    },
+    [file, setContentSpecification, setFileMenuAnchorEl]
+  );
+
+  const handlePreviewMolblock = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      if (file) {
+        setContentSpecification({
+          url: `/api/proxy/ccp4i2/files/${file.id}/molblock/`,
+          title: `${file.name} - 2D Structure`,
+          language: "molblock",
+        });
+        setFileMenuAnchorEl(null);
+      }
+    },
+    [file, setContentSpecification, setFileMenuAnchorEl]
+  );
+
+  const handlePreviewMolfileRaw = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      if (file) {
+        setContentSpecification({
+          url: `/api/proxy/ccp4i2/files/${file.id}/download/`,
+          title: `${file.name} - 2D Structure`,
+          language: "molblock-raw",
+        });
+        setFileMenuAnchorEl(null);
+      }
+    },
+    [file, setContentSpecification, setFileMenuAnchorEl]
+  );
+
   // Preview MTZ header using pure TypeScript parser
   const handlePreviewMtzHeader = useCallback(
     async (ev: SyntheticEvent) => {
@@ -412,6 +465,21 @@ export const FileMenu: React.FC = () => {
         {file && file.type.startsWith("application/CCP4-mtz") && (
           <MenuItem key="MtzHeader" onClick={handlePreviewMtzHeader}>
             <TableChart sx={{ mr: 1 }} /> MTZ Header
+          </MenuItem>
+        )}
+        {file && file.type === "application/CCP4-image" && (
+          <MenuItem key="ViewImage" onClick={handlePreviewImage}>
+            <ImageIcon sx={{ mr: 1 }} /> View Image
+          </MenuItem>
+        )}
+        {file && file.type === "application/refmac-dictionary" && (
+          <MenuItem key="ViewStructure" onClick={handlePreviewMolblock}>
+            <Science sx={{ mr: 1 }} /> View 2D Structure
+          </MenuItem>
+        )}
+        {file && file.type === "chemical/x-mdl-molfile" && (
+          <MenuItem key="ViewMolfile" onClick={handlePreviewMolfileRaw}>
+            <Science sx={{ mr: 1 }} /> View 2D Structure
           </MenuItem>
         )}
         {file &&

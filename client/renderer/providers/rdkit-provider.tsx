@@ -4,11 +4,14 @@ import { createContext, useContext, useState, useMemo, PropsWithChildren } from 
 import Script from 'next/script';
 
 // RDKit module type (minimal typing for what we use)
+interface RDKitMol {
+  get_svg: (width?: number, height?: number) => string;
+  remove_hs: () => string;
+  delete: () => void;
+}
+
 interface RDKitModule {
-  get_mol: (smiles: string) => {
-    get_svg: (width?: number, height?: number) => string;
-    delete: () => void;
-  } | null;
+  get_mol: (smiles: string) => RDKitMol | null;
 }
 
 interface RDKitContextType {

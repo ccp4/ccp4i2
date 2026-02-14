@@ -39,9 +39,21 @@ export function MolBlockView({ molblock, name, width = 200, height = 150 }: MolB
         return;
       }
 
-      // Get SVG with custom dimensions
-      const svg = mol.get_svg(width, height);
+      // Remove explicit hydrogens for a cleaner 2D depiction
+      const molBlockNoH = mol.remove_hs();
       mol.delete();
+
+      // Parse the hydrogen-free molblock back into a mol object for rendering
+      const molNoH = rdkitModule.get_mol(molBlockNoH);
+      if (!molNoH) {
+        setError("Failed to remove hydrogens");
+        setDataURI(null);
+        return;
+      }
+
+      // Get SVG with custom dimensions
+      const svg = molNoH.get_svg(width, height);
+      molNoH.delete();
 
       const blob = new Blob([svg], { type: "image/svg+xml" });
       currentUrl = URL.createObjectURL(blob);

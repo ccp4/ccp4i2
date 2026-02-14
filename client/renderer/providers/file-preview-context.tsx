@@ -8,13 +8,15 @@ import {
 } from "react";
 import { doRetrieve, doDownload } from "../api";
 import {
+  Box,
+  CircularProgress,
   Dialog,
   DialogContent,
   DialogTitle,
   DialogActions,
   Button,
 } from "@mui/material";
-import { apiArrayBuffer } from "../api-fetch";
+import { apiArrayBuffer, apiJson } from "../api-fetch";
 import { Editor } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
 import { createContext } from "react";
@@ -23,6 +25,7 @@ import { CifTableStack } from "../components/cif-table-stack";
 import { parseMtzHeader } from "../lib/mtz-parser";
 import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
+import { MolBlockView } from "../components/campaigns/molblock-view";
 import { useTheme } from "../theme/theme-provider";
 
 export interface EditorContentSpecification {
@@ -136,6 +139,41 @@ const FilePreviewDialog: React.FC = () => {
         if (!contentSpecification.url) {
           return;
         }
+
+        // Image files: use the URL directly as img src, no fetch needed
+        if (contentSpecification.language === "image") {
+          setPreviewContent(contentSpecification.url);
+          return;
+        }
+
+        // Raw molfile: download the file content directly as molblock
+        if (contentSpecification.language === "molblock-raw") {
+          try {
+            const fileContent = await apiArrayBuffer(contentSpecification.url);
+            const enc = new TextDecoder("utf-8");
+            setPreviewContent(enc.decode(fileContent));
+          } catch (error) {
+            console.error("Failed to fetch molfile:", error);
+            setPreviewContent(null);
+          }
+          return;
+        }
+
+        // Molblock: fetch from molblock endpoint and extract molblock string
+        if (contentSpecification.language === "molblock") {
+          try {
+            const response = await apiJson<{
+              success: boolean;
+              data: { molblock: string; ligand_code: string };
+            }>(contentSpecification.url);
+            setPreviewContent(response.data.molblock);
+          } catch (error) {
+            console.error("Failed to fetch molblock:", error);
+            setPreviewContent(null);
+          }
+          return;
+        }
+
         {
           const fileContent = await apiArrayBuffer(contentSpecification.url);
           var enc = new TextDecoder("utf-8");
@@ -199,7 +237,28 @@ const FilePreviewDialog: React.FC = () => {
     >
       <DialogTitle>{contentSpecification?.title}</DialogTitle>
       <DialogContent>
-        {contentSpecification?.language === "cif" ? (
+        {contentSpecification?.language === "image" ? (
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
+            {previewContent ? (
+              <img
+                src={previewContent}
+                alt={contentSpecification?.title || "Image preview"}
+                style={{ maxWidth: "100%", maxHeight: "calc(100vh - 20rem)", objectFit: "contain" }}
+              />
+            ) : (
+              <CircularProgress />
+            )}
+          </Box>
+        ) : contentSpecification?.language === "molblock" ||
+          contentSpecification?.language === "molblock-raw" ? (
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
+            {previewContent ? (
+              <MolBlockView molblock={previewContent} width={500} height={400} />
+            ) : (
+              <CircularProgress />
+            )}
+          </Box>
+        ) : contentSpecification?.language === "cif" ? (
           <CifTableStack cifText={previewContent || ""} />
         ) : contentSpecification?.language === "csv" ? (
           <CsvTable csvText={previewContent || ""} />
