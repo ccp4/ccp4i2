@@ -49,7 +49,9 @@ export type FileItemClass =
   | "CDialsPickleFile"
   | "CMDLMolDataFile"
   | "CRefmacKeywordFile"
-  | "CMol2DataFile";
+  | "CMol2DataFile"
+  | "CMapDataFile"
+  | "CUnmergedMtzDataFile";
 
 /**
  * MTZ-related file types
@@ -72,7 +74,9 @@ export type ListItemClass =
   | "CAltSpaceGroupList"
   | "CColumnGroupList"
   | "CEnsembleList"
-  | "CAsuContentSeqList";
+  | "CAsuContentSeqList"
+  | "COccRefmacSelectionList"
+  | "COccRelationRefmacList";
 
 /**
  * Container/composite types
@@ -151,6 +155,8 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CMDLMolDataFile",
     "CRefmacKeywordFile",
     "CMol2DataFile",
+    "CMapDataFile",
+    "CUnmergedMtzDataFile",
     // MTZ types
     "CObsDataFile",
     "CMapCoeffsDataFile",
@@ -166,6 +172,8 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CColumnGroupList",
     "CEnsembleList",
     "CAsuContentSeqList",
+    "COccRefmacSelectionList",
+    "COccRelationRefmacList",
     // Container types
     "CContainer",
     "CSpaceGroupCell",
@@ -215,6 +223,9 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   CTLSDataFile: "CSimpleDataFileElement",
   // ... (truncated for brevity - maps all file types)
 
+  CMapDataFile: "CSimpleDataFileElement",
+  CUnmergedMtzDataFile: "CSimpleDataFileElement",
+
   // MTZ types -> CMiniMtzDataFileElement
   CObsDataFile: "CMiniMtzDataFileElement",
   CMapCoeffsDataFile: "CMiniMtzDataFileElement",
@@ -228,6 +239,8 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   CAltSpaceGroupList: "CListElement",
   CEnsembleList: "CListElement",
   CAsuContentSeqList: "CAsuContentSeqListElement",
+  COccRefmacSelectionList: "COccRefmacSelectionListElement",
+  COccRelationRefmacList: "COccRelationRefmacListElement",
 
   // Container types
   CContainer: "CCP4i2ContainerElement",
