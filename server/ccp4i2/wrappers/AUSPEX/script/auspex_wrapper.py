@@ -6,13 +6,11 @@ import glob
 
 class AUSPEX(CPluginScript):
 
-    TASKMODULE = 'data_reduction'
     TASKTITLE = 'AUSPEX'
     TASKNAME = 'AUSPEX'
     TASKCOMMAND = 'auspex'
     PERFORMANCECLASS = 'CExpPhasPerformance'
     ASYNCHRONOUS = True
-    MAINTAINER = 'Andrea.Thorn@web.de'
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

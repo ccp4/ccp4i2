@@ -7,11 +7,9 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ShelxCD(CPluginScript):
-    TASKMODULE = 'test'
     TASKNAME = 'ShelxCD'
     TASKCOMMAND = 'shelxd'
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'matin.noble@newcastle.co.uk'
     ERROR_CODES = {  200 : { 'description' : 'ShelxCD exited with error status' }, 201 : { 'description' : 'ShelxCD failed in mtz2various' },202 : { 'description' : ' ShelxCD failed in processOutputFiles' },203 : { 'description' : 'ShelxCD failed in f2mtz - Map file' },204 : { 'description' : 'ShelxCD failed in f2mtz - PHS file' },205 : { 'description' : 'ShelxCD failed in sftools - MAP file' },206 : { 'description' : 'ShelxCD failed in sftools - PHS file' }, 207 : { 'description' : 'Failed scraping Shelxd logfile' }, 208 : { 'description' : 'Failed scraping Shelxe logfile' }, 209 : { 'description' : 'Failed converting .hat to pdb' }, 210 : { 'description' : 'ShelxE ended with non zero status' }, 211 : { 'description' : 'ShelxE ended with non zero code' }, 212 : { 'description' : 'ShelxE BETA EXPIRED' }}
 
     tagsAndKeys = {'N(data)':'NData','<I/sig>':'IOverSig','%Complete':'Completeness','<d"/sig>':'AnomalousSignal'}

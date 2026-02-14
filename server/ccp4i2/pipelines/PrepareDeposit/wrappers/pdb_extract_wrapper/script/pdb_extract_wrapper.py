@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pdb_extract_wrapper(CPluginScript):
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'pdb_extract_wrapper'
     DESCRIPTION = 'Run pdb_extract'
     TASKNAME = 'pdb_extract_wrapper'

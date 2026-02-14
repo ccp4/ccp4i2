@@ -6,9 +6,7 @@ class mrbump_basic(CPluginScript):
 
     TASKTITLE='MrBUMP Basic'
     TASKNAME = 'mrbump_basic'
-    TASKMODULE= 'test'
     TASKCOMMAND = 'mrbump'
-    MAINTAINER = 'ronan.keegan@stfc.ac.uk'
 
     def validity(self):
         """Override to filter out ENSEMBLES list length error.

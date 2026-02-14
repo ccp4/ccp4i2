@@ -6,7 +6,6 @@ class pdbset_ui(CPluginScript):
 
     TASKTITLE='Scripted structure edits - Pdbset'
     TASKNAME = 'pdbset_ui'
-    TASKMODULE= 'model_data_utility'
     TASKCOMMAND = 'pdbset'
 
     def makeCommandAndScript(self):

@@ -22,7 +22,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class dr_mr_modelbuild_pipeline(CPluginScript):
 
     TASKNAME = 'dr_mr_modelbuild_pipeline'
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     PERFORMANCECLASS = 'CRefinementPerformance'
     WHATNEXT = []
     ERROR_CODES = { 301 : { 'description' : 'Error reading program xml output from first molrep run' },

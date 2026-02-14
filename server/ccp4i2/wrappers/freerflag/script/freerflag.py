@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class freerflag(CPluginScript):
-    TASKMODULE = 'test'
     TASKTITLE = 'Add a freeR flag'
     TASKNAME = 'freerflag'
     TASKCOMMAND = 'freerflag'

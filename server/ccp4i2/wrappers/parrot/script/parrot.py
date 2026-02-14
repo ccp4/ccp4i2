@@ -6,12 +6,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class parrot(CPluginScript):
 
-    TASKMODULE = 'density_modification'
     TASKTITLE = 'Parrot'
     TASKNAME = 'parrot'
     TASKCOMMAND = 'cparrot'
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'kathryn.cowtan@york.ac.uk'
 
 
     def processInputFiles(self):

@@ -13,18 +13,16 @@ Key features:
 - Database integration via AsyncDatabaseHandler
 """
 
-import asyncio
-import datetime
 import logging
 import uuid
 from pathlib import Path
-from typing import Optional, Dict, Any, Union
+from typing import Optional, Dict, Any
 
 from asgiref.sync import sync_to_async
 
-from ccp4i2.core import CCP4TaskManager
-from ccp4i2.core.CCP4PluginScript import CPluginScript
-
+from ..core.CCP4PluginScript import CPluginScript
+from ..core.task_manager.metadata import TITLES
+from ..core.task_manager.plugin_registry import get_plugin_class
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler
 from .utils.containers.remove_defaults import remove_container_default_values
@@ -111,12 +109,9 @@ async def create_job_async(
     project = await db_handler.get_project()
     logger.debug(f"Project: {project.name} ({project.uuid})")
 
-    # Get task manager for plugin info
-    task_manager = CCP4TaskManager.CTaskManager()
-
     # Determine title if not provided
     if title is None:
-        title = task_manager.getTitle(task_name)
+        title = TITLES.get(task_name)
 
     # Create job in database
     job = await db_handler.create_job(
@@ -384,8 +379,7 @@ async def _create_plugin_instance(
     @sync_to_async
     def _create():
         # Get plugin class
-        task_manager = CCP4TaskManager.CTaskManager()
-        plugin_class = task_manager.get_plugin_class(task_name)
+        plugin_class = get_plugin_class(task_name)
 
         # Instantiate plugin with work directory
         plugin = plugin_class(workDirectory=str(job_dir))

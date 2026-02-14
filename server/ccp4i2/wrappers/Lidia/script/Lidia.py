@@ -11,13 +11,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class Lidia(CPluginScript):
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'Lidia'
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'Lidia'
     TASKCOMMAND = 'lidia'
     ASYNCHRONOUS = True
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {200 : {'description' : 'Failed to add item to mol list'},
                    201 : {'description' : 'Failed to setFullPath'},}

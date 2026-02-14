@@ -9,9 +9,9 @@ import gemmi
 from ccp4i2.core import CCP4PerformanceData
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Data
-from ccp4i2.googlecode import diff_match_patch_py3
 from ccp4i2.core import CCP4Container
 from ccp4i2.core import CCP4TaskManager
+from ccp4i2.core.CCP4TaskManager import locate_def_xml
 from ...db.models import Job, File
 from ...db.import_i2xml import import_ccp4_project_zip
 
@@ -26,8 +26,6 @@ from ...lib.utils.parameters.load_xml import load_nested_xml
 from ...lib.utils.containers.validate import validate_container
 from ...lib.utils.jobs.clone import clone_job
 from ...lib.utils.jobs.create import create_job
-from ...lib.utils.containers.json_for_container import json_for_job_container
-from ...lib.utils.navigation.task_tree import get_task_tree
 from ...lib.utils.reporting.i2_report import get_report_job_info
 from ...lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
 
@@ -122,8 +120,7 @@ class CCP4i2TestCase(TestCase):
             NCYCLES.set(-1)
 
     def test_def_xml_container(self):
-        taskManager: CCP4TaskManager.CTaskManager = CCP4TaskManager.CTaskManager()
-        defFile = taskManager.locate_def_xml(task_name="prosmart_refmac")
+        defFile = locate_def_xml("prosmart_refmac")
         container: CCP4Container.CContainer = CCP4Container.CContainer(
             definitionFile=defFile
         )
@@ -131,13 +128,8 @@ class CCP4i2TestCase(TestCase):
         # ET.indent(def_etree, " ")
         print(ET.tostring(def_etree).decode("utf-8"))
 
-    def test_json_for_container(self):
-        job = Job.objects.get(project__name="refmac_gamma_test_0", number="1")
-        result = json_for_job_container(job)
-        print(len(result))
-
     def test_get_task_tree(self):
-        result = get_task_tree()
+        result = CCP4TaskManager.get_task_tree()
         self.assertEqual(len(result["lookup"].items()), 135)
         self.assertEqual(len(result["tree"]), 17)
 
@@ -157,9 +149,6 @@ class CCP4i2TestCase(TestCase):
         self.assertEqual(result["header_info"]["spacegroup"], "P 21 21 21")
 
     def test_gemmi_split_mtz(self):
-        os.environ.setdefault(
-            "CCP4I2_TOP", str(Path(diff_match_patch_py3.__file__).parent.parent)
-        )
         beta_mtz = os.path.expandvars(
             "$CCP4I2_TOP/demo_data/beta_blip/beta_blip_P3221.mtz"
         )

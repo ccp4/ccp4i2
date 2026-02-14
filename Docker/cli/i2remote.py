@@ -711,23 +711,15 @@ class CCP4i2Client:
                 return job
         raise APIError(f"Job {job_number} not found in project {project_id}")
 
-    def create_job(self, project_id: str, task_name: str, auto_context: bool = True) -> dict:
+    def create_job(self, project_id: str, task_name: str) -> dict:
         """
         Create a new job.
-
-        Args:
-            project_id: Project ID to create the job in.
-            task_name: Name of the task/plugin to create.
-            auto_context: Whether to auto-select context job for input population
-                (default: True). Set to False to create a job without any
-                context-based input population.
 
         Returns:
             dict: Job data with keys: id, uuid, number, task_name, status, etc.
                   (unwrapped from api_success response)
         """
-        data = {"task_name": task_name, "auto_context": auto_context}
-        response = self.post(f"/projects/{project_id}/create_task", data)
+        response = self.post(f"/projects/{project_id}/create_task", {"task_name": task_name})
         # API returns: {success: true, data: {new_job: {id, uuid, ...}}}
         return response.get("data", {}).get("new_job", response)
 

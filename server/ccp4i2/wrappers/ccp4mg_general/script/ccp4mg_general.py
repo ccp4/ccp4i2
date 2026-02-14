@@ -10,12 +10,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ccp4mg_general(CPluginScript):
     
-    TASKMODULE = 'model_building'
     TASKTITLE = 'Molecular graphics visualization and figure creation - CCP4MG'
     TASKNAME = 'ccp4mg_general'
     TASKCOMMAND = 'ccp4mg'
     ASYNCHRONOUS = True
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'CCP4MG exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 

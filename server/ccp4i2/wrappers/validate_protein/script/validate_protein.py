@@ -25,7 +25,6 @@ warnings.filterwarnings('ignore')
 class validate_protein(CPluginScript):
     TASKNAME = 'validate_protein'
     WHATNEXT = [ 'coot_rebuild' ]
-    MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def process(self):
         log_string = ''

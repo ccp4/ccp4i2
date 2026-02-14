@@ -5,7 +5,7 @@ Tests for building and using parrot plugin.
 import pytest
 import os
 from pathlib import Path
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 def get_mtz_columns(mtz_path):
@@ -97,7 +97,7 @@ def test_parrot_makehklin(tmp_path):
         tmp_path: Pytest fixture providing a temporary directory for test outputs
     """
     # Create parrot task with temporary work directory
-    task = TASKMANAGER().get_plugin_class("parrot")(workDirectory=tmp_path)
+    task = get_plugin_class("parrot")(workDirectory=tmp_path)
 
     # Set input files from CCP4I2 demo data
     ccp4_root = os.environ["CCP4I2_ROOT"]
@@ -167,7 +167,7 @@ def test_parrot(tmp_path):
         tmp_path: Pytest fixture providing a temporary directory for test outputs
     """
     # Create parrot task with temporary work directory
-    task = TASKMANAGER().get_plugin_class("parrot")(workDirectory=tmp_path)
+    task = get_plugin_class("parrot")(workDirectory=tmp_path)
 
     # Verify work directory is set correctly
     assert task.workDirectory == tmp_path

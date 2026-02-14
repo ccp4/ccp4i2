@@ -23,9 +23,8 @@ from typing import Optional, Dict, Any
 from asgiref.sync import sync_to_async
 from pytz import timezone
 
-from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler
@@ -298,8 +297,7 @@ async def _clone_plugin_with_params(
     @sync_to_async
     def _clone():
         # Get plugin class
-        task_manager = CCP4TaskManager.CTaskManager()
-        plugin_class = task_manager.get_plugin_class(old_job.task_name)
+        plugin_class = get_plugin_class(old_job.task_name)
 
         # Instantiate plugin with new work directory
         plugin = plugin_class(workDirectory=str(new_job_dir))

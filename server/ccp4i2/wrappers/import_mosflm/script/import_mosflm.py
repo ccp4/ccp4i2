@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class import_mosflm(CPluginScript):
 
     TASKNAME = 'import_mosflm'
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     def process(self):
         invalidFiles = self.checkInputData()

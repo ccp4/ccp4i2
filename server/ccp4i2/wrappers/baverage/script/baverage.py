@@ -2,7 +2,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
   
 class baverage(CPluginScript):
 
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'Average B over main and side chain atoms'
     TASKNAME = 'baverage'
     TASKCOMMAND = 'baverage'

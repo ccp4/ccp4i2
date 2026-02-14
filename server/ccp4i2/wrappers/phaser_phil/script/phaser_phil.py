@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class phaser_phil(CPluginScript):
     TASKNAME = 'phaser_phil'
-    MAINTAINER = 'david.waterman@stfc.ac.uk'
     TASKCOMMAND='ccp4-python'
 
     # Copied here from xia2_dials - if useful should be moved to the base

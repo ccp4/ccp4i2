@@ -421,5 +421,3 @@ class privateer_report(Report):
         summaryFold.append ( "Please select 'Manual model rebuilding' at the bottom of this window, so Coot can guide you through all the problems raised.<br/>" )
     else :
         summaryFold.append ( "No issues were found while analysing the data." )
-
-    self.addTaskReferences()

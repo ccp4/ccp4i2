@@ -5,12 +5,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ctruncate(CPluginScript):
-    TASKMODULE = 'expt_data_utility'
     TASKTITLE = 'Intensities to amplitudes'
     DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
     TASKNAME = 'ctruncate'
     TASKCOMMAND = 'ctruncate'
-    MAINTAINER = 'charles.ballard@stfc.ac.uk'
 
     ERROR_CODES = { 201 : { 'severity' : SEVERITY_WARNING , 'description' : 'Error creating XML output' } }
 

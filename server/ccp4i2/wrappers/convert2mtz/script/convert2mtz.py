@@ -10,7 +10,6 @@ from ccp4i2.wrappers.x2mtz.script import x2mtz
 
 class convert2mtz(x2mtz.x2mtz):
 
-    TASKMODULE = 'test'
     TASKTITLE = 'Convert merged reflection file to MTZ'
     TASKNAME = 'convert2mtz'
     TASKCOMMAND = 'convert2mtz'

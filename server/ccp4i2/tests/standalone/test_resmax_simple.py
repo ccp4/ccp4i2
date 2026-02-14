@@ -5,7 +5,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 def test_resmax_not_set():
     """Verify RESMAX without default stays NOT_SET and is excluded from XML."""
@@ -13,7 +13,7 @@ def test_resmax_not_set():
         workdir = Path(tmpdir)
 
         # Create freerflag plugin
-        plugin_class = TASKMANAGER().get_plugin_class('freerflag')
+        plugin_class = get_plugin_class('freerflag')
         plugin = plugin_class(parent=None, name='freerflag_test')
         plugin.workDirectory = workdir
 

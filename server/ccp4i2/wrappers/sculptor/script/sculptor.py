@@ -2,7 +2,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class sculptor(CPluginScript):
-    TASKMODULE = 'bioinformatics'
     TASKTITLE = 'Truncate search model - SCULPTOR'
     TASKNAME = 'sculptor'  
     PERFORMANCECLASS = 'CAtomCountPerformance'

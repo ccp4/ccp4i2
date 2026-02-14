@@ -4,7 +4,6 @@ from ccp4i2.core import CCP4ErrorHandling
 
 class pyphaser_mr(CPluginScript):
 
-    TASKMODULE = 'test'
     TASKTITLE = 'MR using Phaser (pythonic)'
     TASKNAME = 'pyphaser_mr'
 

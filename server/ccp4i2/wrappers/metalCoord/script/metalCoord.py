@@ -14,10 +14,8 @@ from . import json2restraints
 
 class metalCoord(CPluginScript):
 
-    TASKMODULE = 'wrappers'
     TASKNAME = 'metalCoord'
     TASKCOMMAND = 'metalCoord'
-    MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
 
     ERROR_CODES = {
         201: {'description': 'No output JSON file from metalCoord'},

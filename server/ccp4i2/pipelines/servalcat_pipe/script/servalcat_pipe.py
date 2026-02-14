@@ -18,12 +18,12 @@ from . import monitor_differences
 
 class servalcat_pipe(CPluginScript):
 
-    TASKMODULE = 'refinement'
     SHORTTASKTITLE = 'Servalcat'
     TASKTITLE = 'Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
     TASKNAME = 'servalcat_pipe'
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     WHATNEXT = ['servalcat_pipe', 'coot_rebuild', 'modelcraft']
+    ASYNCHRONOUS = True
     PERFORMANCECLASS = 'CServalcatPerformance'
     PURGESEARCHLIST = [
         ['refmac%*/hklout.mtz', 0, "hklout"],

@@ -8,13 +8,11 @@ from ccp4i2.core import CCP4ErrorHandling
 
 
 class mrparse_simple(CPluginScript):
-    TASKMODULE = 'developer_tools'
     TASKTITLE = 'mrparse_simple'
     TASKNAME = 'mrparse_simple'
     TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'hlasimpk@liverpool.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.seqin = None

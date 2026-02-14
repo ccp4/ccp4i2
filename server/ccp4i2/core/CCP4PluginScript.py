@@ -17,7 +17,8 @@ from ccp4i2.core.base_object.base_classes import CData, CContainer
 from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
 from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
 from ccp4i2.core.task_manager.params_xml_handler import ParamsXmlHandler
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import locate_def_xml
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 from ccp4i2.core.base_object.class_metadata import cdata_class
 
 # Module-level logger
@@ -56,14 +57,12 @@ class CPluginScript(CData):
     - Error reporting and database integration
 
     Subclasses should define:
-        TASKMODULE: Module category (e.g., 'utility', 'refinement')
         TASKTITLE: Display title for GUI
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
     """
 
     # Class attributes to be defined in subclasses
-    TASKMODULE = None
     TASKTITLE = None
     TASKNAME = None
     TASKCOMMAND = None
@@ -174,7 +173,7 @@ class CPluginScript(CData):
         # Strategy: Try to load child's .def.xml. If not found AND parent class exists,
         # try loading parent's .def.xml.
         if self.TASKNAME and not dummy:
-            def_path = self._locateDefFile()
+            def_path = locate_def_xml(self.TASKNAME)
 
             if def_path and def_path.exists():
                 # Pattern 1: Child has .def.xml (may contain <file> tag for parent)
@@ -370,12 +369,11 @@ class CPluginScript(CData):
         """
         Load the .def.xml file for this task.
 
-        Uses CTaskManager to locate the .def.xml file, then uses
+        Locate the .def.xml file, then uses
         DefXmlParser to load the structure into containers.
         """
-        # Locate DEF file using CTaskManager
         logger.debug(f"[_loadDefFile] Looking for .def.xml for task: {self.TASKNAME}")
-        def_path = self._locateDefFile()
+        def_path = locate_def_xml(self.TASKNAME)
 
         if def_path and def_path.exists():
             logger.debug(f"[_loadDefFile] Found .def.xml at: {def_path}")
@@ -397,15 +395,6 @@ class CPluginScript(CData):
                 f"  This is normal for some legacy plugins (e.g., crank2 sub-wrappers)."
             )
             logger.warning(warning_msg)
-
-    def _locateDefFile(self) -> Optional[Path]:
-        """
-        Locate the .def.xml file for this task using CTaskManager.
-
-        Returns:
-            Path to .def.xml file, or None if not found
-        """
-        return TASKMANAGER().locate_def_xml(self.TASKNAME)
 
     def loadContentsFromXml(self, fileName: str) -> CErrorReport:
         """
@@ -1123,18 +1112,9 @@ class CPluginScript(CData):
 
             # Get the item type if specified
             item_class = None
-            if hasattr(obj, '_item_type') and obj._item_type:
-                # Try to get the class from registry
-                try:
-                    from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-                    tm = TASKMANAGER()
-                    if hasattr(tm, 'class_registry'):
-                        item_class = tm.class_registry.get(obj._item_type)
-                except Exception:
-                    pass
 
             # If we couldn't determine item type, check if there are existing items
-            if not item_class and current_len > 0:
+            if current_len > 0:
                 item_class = type(obj[0])
 
             # Only populate if we know it's a CDataFile list
@@ -2345,7 +2325,7 @@ class CPluginScript(CData):
     def makePluginObject(self, taskName: str = None,
                          reportToDatabase: bool = True, **kwargs) -> Optional['CPluginScript']:
         """
-        Create a sub-plugin (sub-job) instance using TASKMANAGER.
+        Create a sub-plugin (sub-job) instance.
 
         This is used when a pipeline calls other wrappers as sub-jobs.
 
@@ -2404,9 +2384,8 @@ class CPluginScript(CData):
         # Check if dummy mode requested (extract from kwargs)
         dummy_mode = kwargs.get('dummy', False)
 
-        # Use TASKMANAGER to get the plugin class
-        task_manager = TASKMANAGER()
-        plugin_class = task_manager.get_plugin_class(taskName)
+        # Get the plugin class
+        plugin_class = get_plugin_class(taskName)
 
         if plugin_class is None:
             # If dummy=True, create a generic CPluginScript instead of failing

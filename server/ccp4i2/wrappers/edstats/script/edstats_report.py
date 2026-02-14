@@ -403,5 +403,3 @@ class edstats_report(Report):
 
 
             table1.addData(title=subtitle, subtitle=subtitle, select=select)
-
-    self.addTaskReferences()

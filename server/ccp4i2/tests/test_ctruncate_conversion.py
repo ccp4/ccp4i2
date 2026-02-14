@@ -11,7 +11,7 @@ import pytest
 import os
 import shutil
 from pathlib import Path
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 def get_mtz_columns(mtz_path):
@@ -59,7 +59,7 @@ def test_ctruncate_intensity_to_fmean(tmp_path):
     ccp4_root = os.environ["CCP4I2_ROOT"]
 
     # Get ctruncate plugin class
-    ctruncate_class = TASKMANAGER().get_plugin_class('ctruncate')
+    ctruncate_class = get_plugin_class('ctruncate')
     assert ctruncate_class is not None, "ctruncate plugin not found"
 
     # Create ctruncate instance

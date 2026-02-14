@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class SubtractNative(CPluginScript):
     TASKNAME = "SubtractNative"
-    MAINTAINER = "Martin Noble"
 
     def startProcess(self):
         mtz_file = clipper.CCP4MTZfile()

@@ -18,6 +18,7 @@ from ...db import models
 from ...api import serializers
 from ...lib.utils.jobs.create import create_job
 from ...lib.utils.parameters.save_params import save_params_for_job
+from ...core.task_manager.plugin_registry import get_plugin_class
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -216,8 +217,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         logger.info(f"Work directory: {workDirectory}")
 
         # Create plugin instance
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-        thePlugin = TASKMANAGER().get_plugin_class(
+        thePlugin = get_plugin_class(
             parsed_args.task_name
         )(jobId=jobId, workDirectory=workDirectory, parent=None)
 

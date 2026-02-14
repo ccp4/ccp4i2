@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class refmac(CPluginScript):
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'Refinement (Refmac5)'
     TASKNAME = 'refmac'
     TASKCOMMAND = 'refmacat'

@@ -11,7 +11,7 @@ Key functions:
     - simple_failed_report: Generates placeholder report for error cases
 
 Report Discovery:
-    Report classes are discovered via CTaskManager.getReportClass() which uses
+    Report classes are discovered via
     the report registry (core/task_manager/report_registry.py). Reports are
     lazy-loaded to minimize startup time.
 """
@@ -22,12 +22,12 @@ import traceback
 import xml.etree.ElementTree as ET
 from typing import Optional, Dict, Any, List, Tuple
 
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.fundamental_types import CList
-from ccp4i2.core.CCP4TaskManager import CTaskManager
 from ccp4i2.report.CCP4ReportParser import ReportClass
 from ccp4i2.core import CCP4File
+from ccp4i2.core.task_manager.reports import REPORTS
+from ccp4i2.core.task_manager.report_registry import get_report_class
 from ccp4i2.db.models import Job, FileUse, File
 from ..plugins.get_plugin import get_job_plugin
 from ccp4i2.db.ccp4i2_static_data import (
@@ -368,15 +368,12 @@ def generate_job_report(job: Job) -> ET.Element:
     )
 
     # Step 1: Get report class from registry
-    task_manager: CTaskManager = TASKMANAGER()
-    report_class = task_manager.getReportClass(name=task_name)
+    report_class = get_report_class(task_name)
 
     if report_class is None:
         logger.error(
-            "No report class found for task '%s'. "
-            "Available reports: %s",
+            "No report class found for task '%s'. ",
             task_name,
-            task_manager.list_reports()[:10],  # First 10 for brevity
         )
         return simple_failed_report(
             f"No report class found for task '{task_name}'",
@@ -388,8 +385,8 @@ def generate_job_report(job: Job) -> ET.Element:
     logger.debug("Using report class: %s", report_class.__name__)
 
     # Step 2: Check for watched file (for running job reports)
-    watch_file = task_manager.getReportAttribute(task_name, "WATCHED_FILE")
-    supports_running = task_manager.getReportAttribute(task_name, "RUNNING")
+    watch_file = REPORTS.get(task_name, {}).get("WATCHED_FILE", None)
+    supports_running = REPORTS.get(task_name, {}).get("RUNNING", False)
     logger.debug(
         "Report metadata - WATCHED_FILE: %s, RUNNING: %s", watch_file, supports_running
     )

@@ -2,7 +2,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class dials_image(CPluginScript):
 
-    TASKMODULE = 'data_processing'
     TASKTITLE = 'Dials_image'
     TASKNAME = 'dials_image'
     TASKCOMMAND = 'dials.image_viewer'

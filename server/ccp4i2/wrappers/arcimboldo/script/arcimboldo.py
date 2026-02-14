@@ -15,7 +15,6 @@ class arcimboldo(CPluginScript):
     TASKNAME = 'arcimboldo'
     TASKCOMMAND = 'ARCIMBOLDO_LITE'
     WHATNEXT = [ 'prosmart_refmac' ]
-    MAINTAINER = 'jtvcri@ibmb.csic.es'
     ASYNCHRONOUS = True
 
     def genHKL(self, hklin):

@@ -25,7 +25,6 @@ import pytest
 import os
 import shutil
 from pathlib import Path
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
 
 def get_mtz_columns(mtz_path):

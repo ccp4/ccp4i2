@@ -8,7 +8,6 @@ class csymmatch(CPluginScript):
 
     TASKTITLE='Csymmatch - move model to a reference by using symmetry'
     TASKNAME = 'csymmatch'
-    TASKMODULE = 'molecular_replacement'
     TASKCOMMAND = 'csymmatch'
 
     def makeCommandAndScript(self):

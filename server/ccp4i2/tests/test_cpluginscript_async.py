@@ -19,7 +19,6 @@ class SimpleAsyncPlugin(CPluginScript):
     Mimics mtzdump/pdbset - runs a shell command asynchronously.
     """
 
-    TASKMODULE = 'test'
     TASKTITLE = 'Simple Async Test Plugin'
     TASKNAME = 'simple_async'
     TASKCOMMAND = 'echo'
@@ -47,7 +46,6 @@ class SimplePipeline(CPluginScript):
     3. Report final status
     """
 
-    TASKMODULE = 'test'
     TASKTITLE = 'Simple Pipeline Test'
     TASKNAME = 'simple_pipeline'
     ASYNCHRONOUS = True

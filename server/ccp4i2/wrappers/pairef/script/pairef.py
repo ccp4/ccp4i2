@@ -7,12 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class pairef(CPluginScript):
-    TASKMODULE = 'refinement'
     TASKTITLE = 'Pairef'
     TASKNAME = 'pairef'
     TASKCOMMAND = 'pairef'
     PERFORMANCECLASS = 'CPairefPerformance'
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
     
     ERROR_CODES = { 101 : {'description' : 'Blank for now, may need this ',
                            'severity':CCP4ErrorHandling.SEVERITY_ERROR } }

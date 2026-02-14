@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class Platonyzer(CPluginScript):
     TASKNAME = 'Platonyzer'
-    MAINTAINER = 'nicholls@mrc-lmb.cam.ac.uk'
     TASKCOMMAND="platonyzer"
 
     def makeCommandAndScript(self):

@@ -16,6 +16,8 @@ import os
 from pathlib import Path
 
 from ccp4i2.core import CCP4Utils
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+
 
 # Check for CCP4I2_ROOT
 CCP4I2_ROOT = CCP4Utils.getCCP4I2Dir()
@@ -105,11 +107,8 @@ class TestAsyncPluginWithDatabase:
         # Create handler
         handler = AsyncDatabaseHandler(project_uuid=test_project.uuid)
 
-        # Create plugin using TASKMANAGER (loads task definition properly)
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
         # Get the plugin class for ctruncate
-        ctruncate_class = TASKMANAGER().get_plugin_class('ctruncate')
+        ctruncate_class = get_plugin_class('ctruncate')
         assert ctruncate_class is not None, "ctruncate plugin not found in registry"
 
         # Create plugin instance (this will load .def.xml via TASKNAME)
@@ -378,10 +377,9 @@ class TestAsyncPluginWithDatabase:
 
         # Step 2: Create and configure plugin
         print("Step 2: Configuring plugin...")
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
 
         # Get the plugin class
-        ctruncate_class = TASKMANAGER().get_plugin_class('ctruncate')
+        ctruncate_class = get_plugin_class('ctruncate')
         assert ctruncate_class is not None, "ctruncate plugin not found"
 
         # Create plugin instance

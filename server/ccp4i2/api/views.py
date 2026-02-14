@@ -1,8 +1,8 @@
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from django.db import connection
+from ..core.CCP4TaskManager import get_task_tree
 from ..db import models
-from ..lib.utils.navigation.task_tree import get_task_tree
 import psutil
 
 

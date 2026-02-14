@@ -9,7 +9,6 @@ from ccp4i2.pipelines.crank2.script import crank2_basepipe
 
 class crank2(CPluginScript):
 
-  #TASKMODULE       = 'expt_phasing'
   TASKTITLE        = 'Crank2'
   SHORTTASKTITLE   = 'CRANK2'
   TASKNAME         = 'crank2'
@@ -19,8 +18,6 @@ class crank2(CPluginScript):
     0: {'description': ' '},
     201: {'description': 'Anomalous data input contains mean intensities/amplitudes. SAD/MAD/SIRAS phasing requires anomalous pairs (I+/I- or F+/F-) to calculate anomalous differences.'},
   }
-  MAINTAINER = 'skubakp@gmail.com'
-
 
   def has_cont_attr(self,cont,strng):
     try:

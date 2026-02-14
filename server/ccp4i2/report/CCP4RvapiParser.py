@@ -20,7 +20,6 @@ from ccp4i2.report.CCP4ReportParser import CCP4NS, Report
 
 
 class RvapiReport(Report):
-  MAINTAINER    = 'andrey.lebedev@stfc.ac.uk'
   TASKNAME      = None
   RUNNING       = True
   USEPROGRAMXML = False

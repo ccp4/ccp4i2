@@ -7,12 +7,10 @@ from ccp4i2.core.CCP4XtalData import CObsDataFile, CPhsDataFile
 
 
 class modelcraft(CPluginScript):
-    TASKMODULE = "model_building"
     TASKTITLE = "AutoBuild with ModelCraft, Buccaneer and Nautilus"
     SHORTTASKTITLE = "ModelCraft"
     TASKNAME = "modelcraft"
     TASKCOMMAND = "modelcraft"
-    MAINTAINER = "paul.bond@york.ac.uk"
     PERFORMANCECLASS = "CRefinementPerformance"
     WHATNEXT = ["coot_rebuild"]
 

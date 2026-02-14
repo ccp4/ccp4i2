@@ -12,6 +12,7 @@ from django.test import TestCase, override_settings
 from django.conf import settings
 
 from ccp4i2.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.core.task_manager.report_registry import get_report_class
 from ccp4i2.db.models import Job
 from ccp4i2.lib.utils.reporting.i2_report import (
     generate_job_report,
@@ -179,56 +180,14 @@ class ReportGenerationTests(TestCase):
 class ReportRegistryTests(TestCase):
     """Test the report registry functionality."""
 
-    def test_report_registry_initialization(self):
-        """Test that report registry loads correctly."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
-
-        # Should find many reports
-        reports = task_manager.list_reports()
-        self.assertGreater(len(reports), 100)
-        print(f"Found {len(reports)} reports in registry")
-
-    def test_report_metadata_access(self):
-        """Test accessing report metadata without importing."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
-
-        # Get metadata for refmac
-        metadata = task_manager.get_report_metadata("refmac")
-        self.assertIsNotNone(metadata)
-        self.assertEqual(metadata.get("TASKNAME"), "refmac")
-
-        # Test RUNNING attribute
-        running = task_manager.getReportAttribute("refmac", "RUNNING")
-        self.assertTrue(running)
-
     def test_report_class_lazy_loading(self):
         """Test that report classes are loaded lazily."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
-
-        # Clear cache to ensure fresh load
-        task_manager.report_registry.clear_cache()
 
         # First access should import the class
-        report_class = task_manager.getReportClass("refmac")
+        report_class = get_report_class("refmac")
         self.assertIsNotNone(report_class)
         self.assertEqual(report_class.__name__, "refmac_report")
 
         # Second access should be cached
-        report_class_2 = task_manager.getReportClass("refmac")
+        report_class_2 = get_report_class("refmac")
         self.assertIs(report_class, report_class_2)
-
-    def test_has_report(self):
-        """Test has_report method."""
-        from ccp4i2.core.CCP4TaskManager import TASKMANAGER
-
-        task_manager = TASKMANAGER()
-
-        self.assertTrue(task_manager.has_report("refmac"))
-        self.assertTrue(task_manager.has_report("pointless"))
-        self.assertFalse(task_manager.has_report("nonexistent_task_xyz"))

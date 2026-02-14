@@ -21,6 +21,7 @@ import pytest
 # Mark all tests in this module as pipeline tests (slow, run actual jobs)
 pytestmark = pytest.mark.pipeline
 
+from ...core.task_manager.plugin_registry import get_plugin_class
 from ...db import models
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
@@ -66,10 +67,8 @@ class TestServalcatAsyncRun:
         This is a more focused test that just checks the validity() behavior
         without actually running the job.
         """
-        from ccp4i2.core.CCP4TaskManager import CTaskManager
 
-        task_manager = CTaskManager()
-        plugin_class = task_manager.get_plugin_class("servalcat_pipe")
+        plugin_class = get_plugin_class("servalcat_pipe")
         plugin = plugin_class(
             workDirectory=str(TEST_DIR / "test_validity_unit"),
             name="test_validity_unit",

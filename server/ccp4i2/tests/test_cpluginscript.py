@@ -6,7 +6,7 @@ import pytest
 import os
 from pathlib import Path
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.CCP4TaskManager import TASKMANAGER
+from ccp4i2.core.CCP4TaskManager import locate_def_xml
 
 
 def test_cpluginscript_instantiation():
@@ -49,14 +49,12 @@ def test_cpluginscript_subclass():
     """Test creating a subclass of CPluginScript."""
 
     class TestWrapper(CPluginScript):
-        TASKMODULE = 'utility'
         TASKTITLE = 'Test Wrapper'
         TASKNAME = 'test_wrapper'
         TASKCOMMAND = 'test_command'
 
     wrapper = TestWrapper()
 
-    assert wrapper.TASKMODULE == 'utility'
     assert wrapper.TASKTITLE == 'Test Wrapper'
     assert wrapper.TASKNAME == 'test_wrapper'
     assert wrapper.TASKCOMMAND == 'test_command'
@@ -136,14 +134,13 @@ def test_cpluginscript_events():
     reason="CCP4I2_ROOT environment variable not set"
 )
 class TestDefXmlLoading:
-    """Tests for automatic .def.xml loading via CTaskManager."""
+    """Tests for automatic .def.xml loading."""
 
     def test_taskmanager_locate_def_xml(self):
-        """Test CTaskManager.locate_def_xml() finds plugin definition files."""
-        tm = TASKMANAGER()
+        """Test locate_def_xml() finds plugin definition files."""
 
         # Test finding a common plugin
-        path = tm.locate_def_xml('pointless')
+        path = locate_def_xml('pointless')
 
         assert path is not None, "Should find pointless.def.xml"
         assert path.exists(), f"Path should exist: {path}"
@@ -152,21 +149,19 @@ class TestDefXmlLoading:
 
     def test_taskmanager_locate_def_xml_multiple_plugins(self):
         """Test locating multiple different plugins."""
-        tm = TASKMANAGER()
 
         test_plugins = ['refmac', 'pointless', 'aimless', 'coot1']
 
         for plugin_name in test_plugins:
-            path = tm.locate_def_xml(plugin_name)
+            path = locate_def_xml(plugin_name)
             assert path is not None, f"Should find {plugin_name}"
             assert path.exists(), f"{plugin_name} path should exist"
             assert plugin_name in path.name
 
     def test_taskmanager_locate_def_xml_not_found(self):
         """Test that non-existent plugins return None."""
-        tm = TASKMANAGER()
 
-        path = tm.locate_def_xml('nonexistent_plugin_xyz')
+        path = locate_def_xml('nonexistent_plugin_xyz')
 
         assert path is None, "Should return None for non-existent plugin"
 

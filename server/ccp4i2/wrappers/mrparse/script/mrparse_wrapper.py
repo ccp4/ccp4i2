@@ -7,13 +7,11 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class mrparse(CPluginScript):
-    TASKMODULE = 'bioinformatics'
     TASKTITLE = 'mrparse'
     TASKNAME = 'mrparse'
     TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']
     PERFORMANCECLASS = 'CExpPhasPerformance'
-    MAINTAINER = 'hlasimpk@liverpool.ac.uk'
 
     def __init__(self, *args, **kwargs):
         self.seqin = None

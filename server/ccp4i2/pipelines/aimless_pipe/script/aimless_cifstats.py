@@ -378,10 +378,6 @@ class CifStatsGraphTable:
             #print('Name:', name)
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-    def getTitle(self):
-        return self.title
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def getLabel(self):
         return self.label
 

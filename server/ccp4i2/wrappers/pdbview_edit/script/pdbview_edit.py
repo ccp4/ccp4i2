@@ -9,12 +9,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pdbview_edit(CPluginScript):
     
-    TASKMODULE = 'model_data_utility'
     TASKTITLE = 'Edit PDB/CIF files by hand with the PdbView program'
     TASKNAME = 'pdbview_edit'
     TASKCOMMAND = 'ccp4-python'
     ASYNCHRONOUS = True
-    MAINTAINER = 'stuart.mcnicholas@york.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Coordinate editor exited with error status' }, 201 : { 'description' : 'Failed in harvest operation' },202 : { 'description' : 'Failed in processOutputFiles' }}
 

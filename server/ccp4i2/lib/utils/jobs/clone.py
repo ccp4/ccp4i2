@@ -2,8 +2,9 @@ import logging
 from pathlib import Path
 import datetime
 from pytz import timezone
-from ccp4i2.core import CCP4TaskManager
 from ccp4i2.core.CCP4Container import CContainer
+from ccp4i2.core.task_manager.metadata import TITLES
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 from ccp4i2.db import models
 from ccp4i2.lib.utils.parameters.save_params import save_params_for_job
 from ccp4i2.lib.utils.files.patch_paths import patch_output_file_paths
@@ -58,8 +59,7 @@ def clone_job(jobId: str = None) -> Result[models.Job]:
         new_job_dir = Path(the_project.directory) / "CCP4_JOBS" / f"job_{next_job_number}"
 
         # Create plugin instance
-        task_manager = CCP4TaskManager.CTaskManager()
-        plugin_class = task_manager.get_plugin_class(task_name)
+        plugin_class = get_plugin_class(task_name)
         new_job_dir.mkdir(exist_ok=True, parents=True)
         the_job_plugin: CContainer = plugin_class(workDirectory=str(new_job_dir))
 
@@ -83,7 +83,7 @@ def clone_job(jobId: str = None) -> Result[models.Job]:
 
         # Create new job record
         # Use title from old job, or get from task manager, or fall back to task name
-        title = old_job.title or task_manager.getTitle(task_name) or task_name
+        title = old_job.title or TITLES.get(task_name, task_name)
         new_job = models.Job(
             number=str(next_job_number),
             finish_time=datetime.datetime.fromtimestamp(0, tz=timezone("UTC")),

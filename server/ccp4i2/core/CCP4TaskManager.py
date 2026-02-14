@@ -1,553 +1,898 @@
-import argparse
-import json
-import os
-import subprocess
-import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Tuple, Type
+from typing import Optional
 
 from .. import I2_TOP
 from .task_manager.defxml_lookup import defXmlPaths
 
-# Module ordering and titles matching legacy CCP4TaskManager
-MODULE_ORDER = [
-    'data_entry', 'data_processing', 'data_reduction', 'bigpipes', 'alpha_fold',
-    'expt_phasing', 'bioinformatics', 'molecular_replacement', 'density_modification',
-    'model_building', 'refinement', 'ligands', 'validation', 'export',
-    'expt_data_utility', 'model_data_utility', 'developer_tools', 'preferences',
-    'wrappers', 'test'
+
+_TASK_TREE = [
+    (
+        "data_entry",
+        "Import merged data, AU contents, alignments or coordinates",
+        [
+            "import_merged",
+            "ProvideAsuContents",
+            "ProvideSequence",
+            "ProvideAlignment",
+            "AlternativeImportXIA2",
+            "coordinate_selector",
+            "import_serial",
+            "import_serial_pipe",
+            "splitMtz",
+        ],
+    ),
+    (
+        "data_processing",
+        "Integrate X-ray images",
+        ["xia2_dials", "xia2_xds", "imosflm", "dials_image", "dials_rlattice", "dui"],
+    ),
+    (
+        "data_reduction",
+        "X-ray data reduction and analysis",
+        ["aimless_pipe", "molrep_selfrot", "AUSPEX", "xia2_ssx_reduce"],
+    ),
+    ("alpha_fold", "AlphaFold and RoseTTAFold Utilities", ["editbfac", "slicendice"]),
+    (
+        "expt_phasing",
+        "Experimental phasing",
+        ["crank2", "shelx", "phaser_EP_AUTO", "phaser_EP"],
+    ),
+    (
+        "bioinformatics",
+        "Bioinformatics including model preparation for Molecular Replacement",
+        [
+            "ccp4mg_edit_model",
+            "ccp4mg_edit_nomrbump",
+            "chainsaw",
+            "sculptor",
+            "phaser_ensembler",
+            "clustalw",
+            "findmyseq",
+            "mrparse",
+        ],
+    ),
+    (
+        "molecular_replacement",
+        "Molecular Replacement",
+        [
+            "mrbump_basic",
+            "phaser_simple",
+            "phaser_pipeline",
+            "molrep_pipe",
+            "molrep_den",
+            "csymmatch",
+            "phaser_rnp_pipeline",
+            "AMPLE",
+            "SIMBAD",
+            "arcimboldo",
+            "comit",
+            "i2Dimple",
+            "morda_i2",
+            "phaser_singleMR",
+        ],
+    ),
+    ("density_modification", "Density modification", ["acorn", "parrot"]),
+    (
+        "model_building",
+        "Model building and Graphics",
+        [
+            "modelcraft",
+            "coot_rebuild",
+            "coot_script_lines",
+            "coot_find_waters",
+            "arp_warp_classic",
+            "shelxeMR",
+            "dr_mr_modelbuild_pipeline",
+            "ccp4mg_general",
+            "coot_find_ligand",
+        ],
+    ),
+    (
+        "refinement",
+        "Refinement",
+        [
+            "servalcat_pipe",
+            "prosmart_refmac",
+            "ProvideTLS",
+            "SubtractNative",
+            "buster",
+            "coot_rsr_morph",
+            "lorestr_i2",
+            "pairef",
+            "pdb_redo_api",
+            "refmac",
+            "sheetbend",
+            "zanuda",
+        ],
+    ),
+    ("ligands", "Ligands", ["LidiaAcedrgNew", "MakeLink", "SubstituteLigand"]),
+    (
+        "validation",
+        "Validation and analysis",
+        ["validate_protein", "edstats", "privateer", "qtpisa"],
+    ),
+    (
+        "export",
+        "Export and Deposition",
+        ["PrepareDeposit", "adding_stats_to_mmcif_i2", "mergeMtz"],
+    ),
+    (
+        "expt_data_utility",
+        "Reflection data tools",
+        [
+            "pointless_reindexToMatch",
+            "phaser_EP_LLG",
+            "chltofom",
+            "cphasematch",
+            "ctruncate",
+            "scaleit",
+            "density_calculator",
+            "freerflag",
+        ],
+    ),
+    (
+        "model_data_utility",
+        "Coordinate data tools",
+        ["gesamt", "add_fractional_coords", "pdbset_ui", "pdbview_edit"],
+    ),
+    (
+        "developer_tools",
+        "Developer tools",
+        [
+            "MakeMonster",
+            "MakeProjectsAndDoLigandPipeline",
+            "TestObsConversions",
+            "mrparse_simple",
+        ],
+    ),
 ]
 
-MODULE_TITLES = {
-    'data_entry': 'Import merged data, AU contents, alignments or coordinates',
-    'bigpipes': 'Data to complete structure solution including ligand fitting',
-    'data_processing': 'Integrate X-ray images',
-    'data_reduction': 'X-ray data reduction and analysis',
-    'alpha_fold': 'AlphaFold and RoseTTAFold Utilities',
-    'expt_phasing': 'Experimental phasing',
-    'bioinformatics': 'Bioinformatics including model preparation for Molecular Replacement',
-    'molecular_replacement': 'Molecular Replacement',
-    'density_modification': 'Density modification',
-    'model_building': 'Model building and Graphics',
-    'refinement': 'Refinement',
-    'ligands': 'Ligands',
-    'validation': 'Validation and analysis',
-    'export': 'Export and Deposition',
-    'expt_data_utility': 'Reflection data tools',
-    'model_data_utility': 'Coordinate data tools',
-    'developer_tools': 'Developer tools',
-    'preferences': 'Preferences',
-    'wrappers': 'Wrappers',
-    'demo': 'Demo code for developers only',
-    'test': 'Test code for developers only',
-    'deprecated': 'Deprecated tasks',
+
+_TASK_LOOKUP = {
+    "AMPLE": {
+        "TASKTITLE": "Molecular Replacement with unconventional models - AMPLE",
+        "DESCRIPTION": "This task is for running Molecular Replacement with unconventional models",
+        "shortTitle": "AMPLE Molecular Replacement Pipeline",
+        "isAutogenerated": True,
+    },
+    "AUSPEX": {
+        "TASKTITLE": "Graphical diagnostics by AUSPEX plots",
+        "DESCRIPTION": "Use AUSPEX, generate graphical diagnostics for data set",
+    },
+    "AcedrgLink": {
+        "TASKTITLE": "AceDRG in link generation mode",
+        "isAutogenerated": True,
+    },
+    "AlternativeImportXIA2": {
+        "TASKTITLE": "Import Xia2 results",
+        "DESCRIPTION": "Harvest merged and unmerged files from selected XIA2 data reduction protocols",
+        "isAutogenerated": True,
+    },
+    "Lidia": {},
+    "LidiaAcedrgNew": {
+        "TASKTITLE": "Make Ligand - AceDRG",
+        "DESCRIPTION": "Generate a PDB file and dictionary (acedrg) from MOL file, SMILES string/file, or sketch (lidia).<br>Optionally match atom names to known structures.",
+    },
+    "MakeLink": {
+        "TASKTITLE": "Make Covalent Link - AceDRG",
+        "DESCRIPTION": "Generate a link dictionary to describe a covalent bond between two monomers, allowing modification of the linked monomers",
+        "isAutogenerated": True,
+    },
+    "MakeMonster": {
+        "TASKTITLE": "Export monster mtz",
+        "DESCRIPTION": "Build an MTZ file from data objects",
+    },
+    "MakeProjectsAndDoLigandPipeline": {
+        "TASKTITLE": "Make projects and do ligand pipeline",
+        "DESCRIPTION": "A task to generate projects and apply ligand pipeline for multiple datasets",
+        "shortTitle": "Make projects and do ligand pipeline",
+        "isAutogenerated": True,
+    },
+    "Platonyzer": {},
+    "PrepareDeposit": {
+        "TASKTITLE": "Prepare files for deposition",
+        "isAutogenerated": True,
+    },
+    "ProvideAlignment": {
+        "TASKTITLE": "Import an alignment",
+        "DESCRIPTION": "Enter an alignment from a file or by cut and paste",
+        "isAutogenerated": True,
+    },
+    "ProvideAsuContents": {
+        "TASKTITLE": "Define AU contents",
+        "DESCRIPTION": "Define AU contents, estimate molecular weight, Matthews probability from list of sequences",
+    },
+    "ProvideSequence": {
+        "TASKTITLE": "Import sequence(s)",
+        "DESCRIPTION": "Enter one or more sequences from a sequence file, from a PDB, or by cut and paste",
+    },
+    "ProvideTLS": {
+        "TASKTITLE": "Import and/or edit TLS set definitions",
+        "DESCRIPTION": "Enter TLS information to be used later in the project",
+        "shortTitle": "Import TLS",
+    },
+    "SIMBAD": {
+        "TASKTITLE": "Sequence Free Molecular Replacement - SIMBAD",
+        "DESCRIPTION": "This task is for running Molecular Replacement without a sequence",
+        "shortTitle": "SIMBAD Molecular Replacement Pipeline",
+        "isAutogenerated": True,
+    },
+    "ShelxCD": {
+        "TASKTITLE": "Find HA sites - SHELXC/D",
+        "DESCRIPTION": "Find sites from SAD/MAD/SIR/SIRAS/RIP/RIPAS data",
+        "isAutogenerated": True,
+    },
+    "SubstituteLigand": {
+        "TASKTITLE": "Automated solution of isomorphous ligand complex",
+        "DESCRIPTION": "A ligand workflow, starting from merged or unmerged reflections, SMILES, and an isomorphous parent structure",
+        "shortTitle": "Isomorphous ligand solution",
+    },
+    "SubtractNative": {
+        "TASKTITLE": "Subtract a defied fraction of an atom map from an input map",
+        "DESCRIPTION": "Reads a set of map coefficients, generates a corresponding map, and modifies it by subtracting some fraction of the FC map corresponding to a set of coordinates that have been provided. The output is a set of modified map coefficients",
+        "shortTitle": "Subtract native map",
+        "isAutogenerated": True,
+    },
+    "TestObsConversions": {
+        "TASKTITLE": "Test CCP4i2 observed data interconversions",
+        "DESCRIPTION": "Exercise CCP4i2 Observed data representation conversions",
+        "isAutogenerated": True,
+    },
+    "acedrg": {
+    },
+    "acedrgNew": {
+    },
+    "acorn": {
+        "TASKTITLE": "ACORN - Phase Refinement with Dynamic Density Modification",
+        "DESCRIPTION": "Un-biased improvement of initial phases for high resolution data (1.5 Angstoms and better)",
+        "shortTitle": "ACORN",
+    },
+    "add_fractional_coords": {
+        "TASKTITLE": "Add Fractional Coordinates",
+        "DESCRIPTION": "Calculate fractional coordinates and output them in mmCIF format",
+        "isAutogenerated": True,
+    },
+    "adding_stats_to_mmcif_i2": {
+        "TASKTITLE": "Prepare and validate files for deposition",
+        "DESCRIPTION": "Add data reduction statistics and sequence information into coordinates for deposition",
+        "shortTitle": "New deposition task",
+        "isAutogenerated": True,
+    },
+    "aimless": {
+        "TASKTITLE": "Scale and merge dataset (AIMLESS)",
+    },
+    "aimless_pipe": {
+        "TASKTITLE": "Data reduction - AIMLESS",
+        "DESCRIPTION": "Scale and analyse unmerged data and suggest space group (Pointless, Aimless, Ctruncate, FreeRflag)",
+        "shortTitle": "Data reduction",
+    },
+    "arcimboldo": {
+        "TASKTITLE": "Ab initio phasing and chain tracing - ARCIMBOLDO (LITE, BORGES, SHREDDER)",
+        "DESCRIPTION": "Structure solution from ideal molecular fragments using PHASER and SHELXE",
+        "shortTitle": "Arcimboldo",
+        "isAutogenerated": True,
+    },
+    "arp_warp_classic": {
+        "TASKTITLE": "ARP/wARP",
+        "DESCRIPTION": "Build model (ARP/wARP classic)",
+    },
+    "baverage": {
+        "TASKTITLE": "Average B over main and side chain atoms",
+    },
+    "buster": {
+        "TASKTITLE": "Refinement - BUSTER",
+        "DESCRIPTION": "Refine (BUSTER, Global Phasing Limited) with optional solvent/water update",
+        "shortTitle": "BUSTER",
+    },
+    "cad_copy_column": {
+        "TASKTITLE": "Copy an MTZ column between files",
+    },
+    "ccp4mg_edit_model": {
+        "TASKTITLE": "Interactive model preparation - CCP4mg and MrBUMP",
+        "DESCRIPTION": "Identify MR models with MrBUMP, display and select with CCP4mg",
+        "shortTitle": "CCP4mg MrBUMP",
+        "isAutogenerated": True,
+    },
+    "ccp4mg_edit_nomrbump": {
+        "TASKTITLE": "Interactive selection of MR model components - CCP4mg",
+        "DESCRIPTION": "Use CCP4mg to select components of a search model and output to i2 for MR",
+        "shortTitle": "CCP4mg atom select",
+        "isAutogenerated": True,
+    },
+    "ccp4mg_general": {
+        "TASKTITLE": "Molecular graphics visualization and figure creation - CCP4MG",
+        "DESCRIPTION": "Interactive molecular graphics: visualization, figure preparation, analysis.",
+        "shortTitle": "CCP4MG",
+        "isAutogenerated": True,
+    },
+    "chainsaw": {
+        "TASKTITLE": "Truncate search model - CHAINSAW",
+        "DESCRIPTION": "Truncate and renumber model prior to molecular replacement",
+        "shortTitle": "CHAINSAW",
+    },
+    "chltofom": {
+        "TASKTITLE": "Convert HL phase to and from Phi/Fom",
+        "DESCRIPTION": "Interconvert phases between Hendrickson Lattman and Phi/FOM representation",
+        "isAutogenerated": True,
+    },
+    "cif2mtz": {
+        "TASKTITLE": "Import merged mmCIF X-ray data",
+        "DESCRIPTION": "Import merged mmCIF X-ray data e.g. from the PDB database",
+    },
+    "clustalw": {
+        "TASKTITLE": "Align sequences - CLUSTALW",
+        "DESCRIPTION": "Align sequences using clustalw",
+        "shortTitle": "CLUSTALW",
+    },
+    "cmapcoeff": {
+        "TASKTITLE": "Calculate unusual map coefficients",
+        "DESCRIPTION": "Compute map coefficients from set of observations and phases (cmapcoeff)",
+        "shortTitle": "Calculate map coefficients",
+        "isAutogenerated": True,
+    },
+    "comit": {
+        "TASKTITLE": "Calculate omit map to reduce model bias after molecular replacement or for validation",
+        "DESCRIPTION": "Calculate omit map to reduce model bias",
+        "shortTitle": "Calculate omit map",
+        "isAutogenerated": True,
+    },
+    "convert2mtz": {
+        "TASKTITLE": "Convert merged reflection file to MTZ",
+    },
+    "coordinate_selector": {
+        "TASKTITLE": "Import a coordinate set - optional selection of subset",
+        "DESCRIPTION": "Select (potentially complicated) subset from a coordinate set",
+        "shortTitle": "Import coordinates",
+        "isAutogenerated": True,
+    },
+    "coot1": {
+        "TASKTITLE": "Coot 1",
+        "DESCRIPTION": "Interactive model building with Coot 1",
+        "isAutogenerated": True,
+    },
+    "coot_find_ligand": {
+        "TASKTITLE": "Find ligand with Coot API",
+    },
+    "coot_find_waters": {
+        "TASKTITLE": "Find waters - COOT",
+        "DESCRIPTION": "Find and filter waters based on electron density and contacts (non-interactive Coot)",
+    },
+    "coot_rebuild": {
+        "TASKTITLE": "Model building - COOT 0.9",
+        "DESCRIPTION": "Interactive building (Coot 0.9)",
+        "shortTitle": "COOT",
+        "isAutogenerated": True,
+    },
+    "coot_rsr_morph": {
+        "TASKTITLE": "Real space refinement morphing with coot",
+        "isAutogenerated": True,
+    },
+    "coot_script_lines": {
+        "TASKTITLE": "Scripted model building - COOT",
+        "DESCRIPTION": "Use scripts to fit sidechains, perform stepped refinement, fill and fit... (non-interactive Coot)",
+        "shortTitle": "Scripted COOT",
+    },
+    "cpatterson": {
+        "TASKTITLE": "Calculate Patterson map",
+        "DESCRIPTION": "Calculate Patterson map (cpatterson)",
+        "isAutogenerated": True,
+    },
+    "cphasematch": {
+        "TASKTITLE": "Match and analyse phases to reference set",
+    },
+    "crank2": {
+        "TASKTITLE": "Automated structure solution - CRANK2 phasing and building",
+        "DESCRIPTION": "CRANK2 experimental phasing pipeline",
+        "shortTitle": "CRANK2",
+    },
+    "crank2_comb_phdmmb": {
+        "TASKTITLE": "Model building",
+        "DESCRIPTION": "Crank2 model building",
+    },
+    "crank2_createfree": {
+    },
+    "crank2_dmfull": {
+        "TASKTITLE": "Density modification",
+        "DESCRIPTION": "Crank2 density modification",
+    },
+    "crank2_faest": {
+        "TASKTITLE": "FA estimation",
+        "DESCRIPTION": "Crank2 FA estimation and other phasing preparations",
+    },
+    "crank2_handdet": {
+        "TASKTITLE": "Hand determination",
+        "DESCRIPTION": "Crank2 determination of handedness",
+    },
+    "crank2_mbref": {
+        "TASKTITLE": "Model building",
+        "DESCRIPTION": "Crank2 model building",
+    },
+    "crank2_phas": {
+        "TASKTITLE": "Phasing",
+        "DESCRIPTION": "Crank2 phasing",
+    },
+    "crank2_phdmmb": {
+        "TASKTITLE": "Density modification, poly-Ala tracing",
+        "DESCRIPTION": "SHELXE density modification and poly-Ala tracing",
+    },
+    "crank2_ref": {
+        "TASKTITLE": "Refinement",
+        "DESCRIPTION": "Crank2 refinement",
+    },
+    "crank2_refatompick": {
+        "TASKTITLE": "Iterative atom picking",
+        "DESCRIPTION": "Crank2 substructure improvement",
+    },
+    "crank2_substrdet": {
+        "TASKTITLE": "Substructure detection",
+        "DESCRIPTION": "Crank2 substructure detection",
+    },
+    "csymmatch": {
+        "TASKTITLE": "Match model to reference structure",
+        "DESCRIPTION": "Match symmetry and origin of output model to reference structure (Csymmatch)",
+        "shortTitle": "MATCH MODEL",
+    },
+    "ctruncate": {
+        "TASKTITLE": "Convert intensities to amplitudes",
+        "DESCRIPTION": "Convert reflection intensities to structure factors (ctruncate)",
+        "isAutogenerated": True,
+    },
+    "density_calculator": {
+        "TASKTITLE": "Density Calculator",
+        "DESCRIPTION": "Calculate a map for a structure",
+        "isAutogenerated": True,
+    },
+    "dials_image": {
+        "TASKTITLE": "DIALS Image Viewer",
+    },
+    "dials_rlattice": {
+        "TASKTITLE": "DIALS Reciprocal Lattice Viewer",
+        "shortTitle": "DIALS rLattice Viewer",
+    },
+    "dr_mr_modelbuild_pipeline": {
+        "TASKTITLE": "Data Reduction, MR, Model build pipeline",
+        "shortTitle": "Data Reduction, MR, model building",
+        "isAutogenerated": True,
+    },
+    "dui": {
+        "TASKTITLE": "Integrate images with DIALS",
+        "DESCRIPTION": "Launch DUI and capture output",
+        "shortTitle": "DIALS User Interface",
+    },
+    "editbfac": {
+        "TASKTITLE": "Process Predicted Models",
+        "DESCRIPTION": "Process Predicted Models - automatically process predicted models",
+        "isAutogenerated": True,
+    },
+    "edstats": {
+        "TASKTITLE": "Analyse agreement between model and density - EDSTATS",
+        "DESCRIPTION": "Calculates real-space metrics for evaluating the agreement between model and density (Edstats, cfft)",
+        "shortTitle": "EDSTATS",
+    },
+    "fft": {
+        "TASKTITLE": "Export map",
+    },
+    "findmyseq": {
+        "TASKTITLE": "Find My Sequence",
+        "DESCRIPTION": "Find the most likely sequence in a database for a given map and model",
+    },
+    "freerflag": {
+        "TASKTITLE": "Generate a Free R set",
+        "DESCRIPTION": "Generate a Free R set for a complete set of reflection indices to a given resolution (FreeRflag)",
+    },
+    "gesamt": {
+        "TASKTITLE": "Structural alignment - Gesamt",
+        "DESCRIPTION": "Superpose one protein structure on another",
+        "shortTitle": "GESAMT",
+    },
+    "hklin2cif": {
+    },
+    "i2Dimple": {
+        "TASKTITLE": "DIMPLE - Simple reflections + coordinates to map pipeline",
+        "DESCRIPTION": "This task uses the DIMPLE pipeline to generate maps for a new dataset, provided a possible starting model is available.  For simple cases of isomorphous data, the pipeline will use rigid body refinement in REFMAC to 'tweak' the starting model. Where unit cells are incompatible, it will attempt automated molecular replacement.",
+        "shortTitle": "DIMPLE",
+        "isAutogenerated": True,
+    },
+    "imosflm": {
+        "TASKTITLE": "Integrate images with Mosflm",
+        "DESCRIPTION": "Launch iMosflm and capture output",
+    },
+    "import_merged": {
+        "TASKTITLE": "Import merged reflection data",
+        "DESCRIPTION": "Import reflection data in any format, report on contents and create CCP4i2 data objects",
+        "shortTitle": "Import merged",
+    },
+    "import_mosflm": {
+        "TASKTITLE": "Import iMosflm X-ray data",
+        "DESCRIPTION": "Import merged and unmerged X-ray reflections from Mosflm",
+        "isAutogenerated": True,
+    },
+    "import_serial": {
+        "TASKTITLE": "Import Serial",
+        "DESCRIPTION": "Import merged data from CrystFEL",
+        "shortTitle": "Import Serial Data",
+    },
+    "import_serial_pipe": {
+        "TASKTITLE": "Import Serial Pipeline",
+        "DESCRIPTION": "Import merged data from CrystFEL",
+        "shortTitle": "Import Serial Data",
+    },
+    "import_xia2": {
+        "TASKTITLE": "Import XIA2 results",
+    },
+    "lorestr_i2": {
+        "TASKTITLE": "Low Resolution Refinement Pipeline (LORESTR)",
+        "DESCRIPTION": "Automated Low Resolution Structure Refinement Pipeline (LORESTR)",
+        "shortTitle": "LORESTR",
+        "isAutogenerated": True,
+    },
+    "mergeMtz": {
+        "TASKTITLE": "Merge experimental data objects to MTZ",
+        "DESCRIPTION": "Export 'old' style MTZ file",
+        "shortTitle": "Merge to MTZ",
+        "isAutogenerated": True,
+    },
+    "metalCoord": {
+        "TASKTITLE": "MetalCoord",
+        "DESCRIPTION": "Generate restraints for metal-containing monomers",
+        "isAutogenerated": True,
+    },
+    "modelASUCheck": {
+        "isAutogenerated": True,
+    },
+    "modelcraft": {
+        "TASKTITLE": "Autobuild with ModelCraft, Buccaneer and Nautilus",
+        "DESCRIPTION": "Automated model building of protein, nucleic acid and water",
+        "shortTitle": "ModelCraft",
+    },
+    "molrep_den": {
+        "TASKTITLE": "Molecular replacement with electron density - MOLREP",
+        "DESCRIPTION": "Use electron density as the search model (Molrep)",
+        "shortTitle": "MOLREP with density",
+    },
+    "molrep_mr": {
+        "TASKTITLE": "Molecular Replacement and refinement- MOLREP",
+        "DESCRIPTION": "Molecular replacement (Molrep)",
+        "shortTitle": "MOLREP MR",
+    },
+    "molrep_pipe": {
+        "TASKTITLE": "Molecular Replacement and refinement - MOLREP",
+        "DESCRIPTION": "Molecular replacement (Molrep)",
+        "shortTitle": "MOLREP",
+    },
+    "molrep_selfrot": {
+        "TASKTITLE": "Calculate self rotation function",
+        "DESCRIPTION": "Evaluate data for anisotropy, optical resolution, pseudo translation and perform self-rotation function (Molrep)",
+    },
+    "morda_i2": {
+        "TASKTITLE": "Automated molecular replacement - MORDA",
+        "DESCRIPTION": "Molecular Replacement with Domains and Assemblies",
+        "shortTitle": "MORDA",
+        "isAutogenerated": True,
+    },
+    "mosflm": {
+        "TASKTITLE": "Integrate images - MOSFLM",
+        "DESCRIPTION": "Use a script that you provide",
+        "isAutogenerated": True,
+    },
+    "mrbump_basic": {
+        "TASKTITLE": "Automated structure solution - MrBUMP",
+        "DESCRIPTION": "Run a quick MrBUMP job with streamlined settings",
+    },
+    "mrbump_model_prep": {
+        "TASKTITLE": "MrBUMP model preparation",
+        "DESCRIPTION": "Model preparation with MrBUMP for data reduction/MR/model build pipeline",
+        "shortTitle": "MrBUMP model prep",
+    },
+    "mrparse": {
+        "TASKTITLE": "MrParse",
+        "DESCRIPTION": "Search online PDB and EBI-AFDB databases to find and process search models for use in molecular replacement",
+    },
+    "mrparse_simple": {
+    },
+    "mtzheader": {
+        "TASKTITLE": "Read MTZ header",
+    },
+    "mtzutils": {
+        "TASKTITLE": "Add or delete MTZ columns",
+    },
+    "pairef": {
+        "TASKTITLE": "Pairef",
+        "DESCRIPTION": "Paired Refinement with Pairef",
+    },
+    "parrot": {
+        "TASKTITLE": "Density modification - PARROT",
+        "DESCRIPTION": "Modify the electron density (Parrot)",
+        "shortTitle": "PARROT",
+    },
+    "pdb_extract_wrapper": {
+        "TASKTITLE": "pdb_extract_wrapper",
+    },
+    "pdb_redo_api": {
+        "TASKTITLE": "PDB-REDO Web services",
+        "DESCRIPTION": "Refine structures using PDB-REDO Web service",
+        "shortTitle": "PDB-REDO",
+        "isAutogenerated": True,
+    },
+    "pdbset_ui": {
+        "TASKTITLE": "Scripted structure edits - Pdbset",
+        "DESCRIPTION": "Structure edits with the pdbset program",
+        "shortTitle": "PDBSET",
+    },
+    "pdbview_edit": {
+        "TASKTITLE": "Edit PDB/CIF files by hand",
+        "DESCRIPTION": "Edit PDB/CIF files by hand with the PdbView program",
+        "shortTitle": "Edit PDB/CIF",
+        "isAutogenerated": True,
+    },
+    "phaser_EP": {
+        "TASKTITLE": "SAD phasing - PHASER",
+        "DESCRIPTION": "Complete a heavy atom model and calculate phases",
+    },
+    "phaser_EP_AUTO": {
+        "TASKTITLE": "SAD phasing from heavy atom sites - PHASER",
+        "DESCRIPTION": "Complete a heavy atom model and calculate phases",
+    },
+    "phaser_EP_LLG": {
+        "TASKTITLE": "Anomalous map from coordinates - PHASER",
+        "DESCRIPTION": "Calculate anomalous LLG map phased by coordinates to highlight anomalous scatterers (Phaser)",
+    },
+    "phaser_MR": {
+    },
+    "phaser_MR_AUTO": {
+        "TASKTITLE": "Molecular Replacement - Phaser",
+        "DESCRIPTION": "Molecular replacement (Phaser)",
+    },
+    "phaser_MR_FRF": {
+        "TASKTITLE": "Rotation function - PHASER",
+    },
+    "phaser_MR_FTF": {
+        "TASKTITLE": "Translation function - PHASER",
+    },
+    "phaser_MR_PAK": {
+        "TASKTITLE": "Packing function - PHASER",
+    },
+    "phaser_MR_RNP": {
+        "TASKTITLE": "Run rigid body refinement - PHASER",
+        "DESCRIPTION": "Rigid body refinement usng PHASER in MR_RNP mode",
+    },
+    "phaser_analysis": {
+    },
+    "phaser_ensembler": {
+        "TASKTITLE": "Build an ensemble for PHASER",
+        "DESCRIPTION": "Compile assorted related structures into an ensemble for use in PHASER",
+        "isAutogenerated": True,
+    },
+    "phaser_phil": {
+        "TASKTITLE": "Phaser auto generated GUI",
+        "isAutogenerated": True,
+    },
+    "phaser_pipeline": {
+        "TASKTITLE": "Expert Mode Molecular Replacement - PHASER",
+        "DESCRIPTION": "Advanced MR options followed by refinement and rebuilding (Phaser, Refmac5, Coot)",
+        "shortTitle": "Expert MR - PHASER",
+    },
+    "phaser_rnp_pipeline": {
+        "TASKTITLE": "Rigid body refinement - PHASER",
+        "DESCRIPTION": "Define rigid bodies for refinement (Phaser), fill partial residues (Coot) and refine (Refmac)",
+        "shortTitle": "Rigid body PHASER",
+    },
+    "phaser_simple": {
+        "TASKTITLE": "Basic Molecular Replacement - PHASER",
+        "DESCRIPTION": "Simple MR with optional refinement and rebuilding (Phaser)",
+        "shortTitle": "Basic MR - PHASER",
+    },
+    "phaser_singleMR": {
+        "TASKTITLE": "Single Atom Molecular Replacement",
+        "DESCRIPTION": "Perform Single Atom MR using Phaser",
+        "shortTitle": "Single Atom MR",
+    },
+    "pisa_analyse": {
+        "TASKTITLE": "Structure analysis with Pisa",
+    },
+    "pisa_list": {
+        "TASKTITLE": "Structure analysis with Pisa",
+    },
+    "pisa_xml": {
+        "TASKTITLE": "Structure analysis with Pisa",
+    },
+    "pisapipe": {
+        "TASKTITLE": "Structure analysis with Pisa",
+        "DESCRIPTION": "Analyse tertiary structure and interfaces of a protein",
+        "isAutogenerated": True,
+    },
+    "pointless": {
+        "TASKTITLE": "Analyse unmerged dataset (POINTLESS)",
+    },
+    "pointless_reindexToMatch": {
+        "TASKTITLE": "Reindex reflections or change spacegroup",
+        "DESCRIPTION": "Reindex: match to reference data/coordinates; change space group; analyse symmetry; or expand to P1 (Pointless)",
+        "isAutogenerated": True,
+    },
+    "privateer": {
+        "TASKTITLE": "Validation of carbohydrate structures - Privateer",
+        "DESCRIPTION": "Validation, re-refinement and graphical analysis of carbohydrate structures",
+        "shortTitle": "Privateer",
+        "isAutogenerated": True,
+    },
+    "prosmart": {
+        "TASKTITLE": "ProSMART - Restraint generation and structural comparison",
+    },
+    "prosmart_refmac": {
+        "TASKTITLE": "Refinement - Refmacat/Refmac5",
+        "DESCRIPTION": "Refine (Refmacat/Refmac5) with optional restraints (Prosmart, Platonyzer)",
+        "shortTitle": "REFMAC5",
+    },
+    "pyphaser_mr": {
+        "TASKTITLE": "MR using Phaser (pythonic)",
+    },
+    "qtpisa": {
+        "TASKTITLE": "Interface and quaternary structure analysis - PISA",
+        "DESCRIPTION": "Interface and assembly analysis (qtpisa)",
+        "shortTitle": "PISA",
+        "isAutogenerated": True,
+    },
+    "refmac": {
+        "TASKTITLE": "Refinement (Refmac5)",
+    },
+    "scaleit": {
+        "TASKTITLE": "Compare two or more datasets",
+        "DESCRIPTION": "Compare two or more datasets by running SCALEIT",
+    },
+    "scalepack2mtz": {
+        "TASKTITLE": "Convert scalepack merged reflection file to MTZ",
+    },
+    "sculptor": {
+        "TASKTITLE": "Truncate search model - SCULPTOR",
+        "DESCRIPTION": "Truncate model prior to molecular replacement",
+        "shortTitle": "SCULPTOR",
+    },
+    "servalcat": {
+        "TASKTITLE": "Refinement (servalcat)",
+    },
+    "servalcat_pipe": {
+        "TASKTITLE": "Refinement - Servalcat",
+        "DESCRIPTION": "Refinement against diffraction data or cryo-EM SPA map with optional restraints from ProSmart and/or MetalCoord",
+        "shortTitle": "Servalcat",
+    },
+    "sheetbend": {
+        "TASKTITLE": "Fast preliminary refinement of atomic model coordinates or temperature factors, including at low resolution",
+        "DESCRIPTION": "Fast preliminary refinement of atomic model using the program sheetbend",
+        "shortTitle": "Shift field refinement",
+        "isAutogenerated": True,
+    },
+    "shelx": {
+        "TASKTITLE": "Automated structure solution - SHELXC/D/E phasing and building",
+        "DESCRIPTION": "Experimental phasing pipeline SHELX (run via Crank2)",
+        "shortTitle": "SHELX",
+    },
+    "shelxeMR": {
+        "TASKTITLE": "Model building from Molecular Replacement solution using Shelxe",
+        "DESCRIPTION": "Use Shelxe to attempt to improve (or verify) a solution from Molecular Replacement",
+        "shortTitle": "SHELXE-MR",
+    },
+    "slicendice": {
+        "TASKTITLE": "SliceNDice - Auto model processing and MR",
+        "DESCRIPTION": "Automated processing of predicted or deposited search models and Molecular Replacement",
+    },
+    "splitMtz": {
+        "TASKTITLE": "Import and Split MTZ into experimental data objects",
+        "DESCRIPTION": "Select groups of columns from the MTZ file (csplitmtz)",
+        "shortTitle": "Import and Split MTZ",
+    },
+    "tableone": {
+        "TASKTITLE": "Generate Table One",
+        "DESCRIPTION": "Generate Table One for publications.",
+        "shortTitle": "Table One",
+    },
+    "validate_protein": {
+        "TASKTITLE": "Multimetric model validation - Iris",
+        "DESCRIPTION": "Calculates per-residue metrics including B-factors, density fit quality, Ramachandran plots, rotamer outliers, and clashes (Iris-Validation & MolProbity)",
+        "shortTitle": "Multimetric validation",
+        "isAutogenerated": True,
+    },
+    "x2mtz": {
+    },
+    "xia2_aimless": {
+        "TASKTITLE": "Aimless in XIA2",
+    },
+    "xia2_ctruncate": {
+        "TASKTITLE": "CTruncate in XIA2",
+    },
+    "xia2_dials": {
+        "TASKTITLE": "Automated integration of images with DIALS using xia2",
+        "DESCRIPTION": "Select a directory containing images and integrate them",
+        "shortTitle": "xia2/dials",
+        "isAutogenerated": True,
+    },
+    "xia2_integration": {
+        "TASKTITLE": "Integration in XIA2",
+    },
+    "xia2_multiplex": {
+        "TASKTITLE": "Automated combination of datasets using xia2.multiplex",
+        "DESCRIPTION": "Select previous xia2 runs",
+        "shortTitle": "multiplex",
+        "isAutogenerated": True,
+    },
+    "xia2_pointless": {
+        "TASKTITLE": "Pointless in XIA2",
+    },
+    "xia2_run": {
+        "TASKTITLE": "Import data processing results from XIA2",
+    },
+    "xia2_ssx_reduce": {
+        "TASKTITLE": "Reduction of serial datasets using xia2.ssx_reduce",
+        "DESCRIPTION": "Select integrated data from xia2.ssx or dials.stills_process",
+        "shortTitle": "xia2.ssx_reduce",
+        "isAutogenerated": True,
+    },
+    "xia2_xds": {
+        "TASKTITLE": "Automated integration of images with XDS using xia2",
+        "DESCRIPTION": "Select a directory containing images and integrate them",
+        "shortTitle": "xia2/xds",
+    },
+    "zanuda": {
+        "TASKTITLE": "Zanuda",
+        "DESCRIPTION": "Space group validation",
+        "isAutogenerated": True,
+    },
 }
 
-# Default tasks to show in each module (these will be shown first if available)
-MODULE_DEFAULTS = {
-    'molecular_replacement': ['mrbump_basic', 'phaser_simple', 'phaser_pipeline', 'molrep_pipe', 'molrep_den', 'csymmatch', 'parrot', 'phaser_rnp_pipeline'],
-    'data_reduction': ['aimless_pipe', 'freerflag', 'matthews', 'molrep_selfrot'],
-    'data_entry': ['import_merged', 'ProvideAsuContents', 'ProvideSequence', 'ProvideAlignment'],
-    'data_processing': ['xia2_dials', 'xia2_xds', 'imosflm'],
-    'expt_phasing': ['crank2', 'shelx', 'phaser_EP_AUTO'],
-    'alpha_fold': ['ccp4mg_edit_model', 'mrparse', 'editbfac'],
-    'refinement': ['servalcat_pipe', 'prosmart_refmac'],
-    'bioinformatics': ['ccp4mg_edit_model', 'ccp4mg_edit_nomrbump', 'chainsaw', 'sculptor', 'phaser_ensembler', 'clustalw'],
-    'bigpipes': ['SubstituteLigand', 'dr_mr_modelbuild_pipeline'],
-    'model_building': ['modelcraft', 'coot_rebuild', 'coot_script_lines', 'coot_find_waters', 'arp_warp_classic', 'shelxeMR', 'dr_mr_modelbuild_pipeline'],
-    'validation': ['validate_protein', 'edstats', 'privateer', 'qtpisa'],
-    'export': ['PrepareDeposit'],
-    'expt_data_utility': ['pointless_reindexToMatch', 'phaser_EP_LLG', 'cmapcoeff', 'chltofom', 'cphasematch', 'ctruncate', 'splitMtz', 'scaleit'],
-    'model_data_utility': ['csymmatch', 'gesamt', 'coordinate_selector', 'qtpisa'],
-    'developer_tools': [],
+
+_MODULE_ICONS = {
+    "data_entry": "qticons/import_merged.png",
+    "data_processing": "qticons/xia2_dials.png",
+    "data_reduction": "qticons/aimless_pipe.png",
+    "alpha_fold": "qticons/mrparse.png",
+    "expt_phasing": "qticons/crank2.png",
+    "bioinformatics": "qticons/chainsaw.png",
+    "molecular_replacement": "qticons/phaser_simple.png",
+    "density_modification": "qticons/parrot.png",
+    "model_building": "qticons/coot_rebuild.png",
+    "refinement": "qticons/refmac.png",
+    "ligands": "qticons/acedrg.png",
+    "validation": "qticons/validate_protein.png",
+    "export": "qticons/export.png",
+    "expt_data_utility": "qticons/pointless.png",
+    "model_data_utility": "qticons/gesamt.png",
+    "developer_tools": "qticons/ccp4i2.png",
+    "wrappers": "qticons/ccp4i2.png",
+    "test": "qticons/ccp4i2.png",
+    "demo": "qticons/ccp4i2.png",
 }
 
 
-# Icon lookup for module folders
-MODULE_ICONS = {
-    'data_entry': 'qticons/import_merged.png',
-    'data_processing': 'qticons/xia2_dials.png',
-    'data_reduction': 'qticons/aimless_pipe.png',
-    'bigpipes': 'qticons/ccp4i2.png',
-    'alpha_fold': 'qticons/mrparse.png',
-    'expt_phasing': 'qticons/crank2.png',
-    'bioinformatics': 'qticons/chainsaw.png',
-    'molecular_replacement': 'qticons/phaser_simple.png',
-    'density_modification': 'qticons/parrot.png',
-    'model_building': 'qticons/coot_rebuild.png',
-    'refinement': 'qticons/refmac.png',
-    'ligands': 'qticons/acedrg.png',
-    'validation': 'qticons/validate_protein.png',
-    'export': 'qticons/export.png',
-    'expt_data_utility': 'qticons/pointless.png',
-    'model_data_utility': 'qticons/gesamt.png',
-    'developer_tools': 'qticons/ccp4i2.png',
-    'preferences': 'qticons/ccp4i2.png',
-    'wrappers': 'qticons/ccp4i2.png',
-    'test': 'qticons/ccp4i2.png',
-    'demo': 'qticons/ccp4i2.png',
-    'deprecated': 'qticons/ccp4i2.png',
-}
-
-
-# Tasks with autogenerated interfaces (generated from legacy .def.xml GUI files)
-# These interfaces are located in client/renderer/components/task/task-interfaces/generated/
-# and are auto-generated from the original Qt/XML GUI definitions
-AUTOGENERATED_TASKS = {
-    'AMPLE', 'AcedrgLink', 'AlternativeImportXIA2', 'LidiaAcedrg',
-    'MakeLink', 'MakeProjectsAndDoLigandPipeline', 'PrepareDeposit',
-    'ProvideAlignment', 'SIMBAD', 'ShelxCD', 'SubtractNative',
-    'TestObsConversions', 'add_fractional_coords', 'adding_stats_to_mmcif_i2',
-    'arcimboldo', 'ccp4mg_edit_model', 'ccp4mg_edit_nomrbump', 'ccp4mg_general',
-    'chltofom', 'cmapcoeff', 'comit', 'coordinate_selector', 'coot1',
-    'coot_rebuild', 'coot_rsr_morph', 'cpatterson', 'ctruncate', 'density_calculator',
-    'dr_mr_modelbuild_pipeline', 'editbfac', 'i2Dimple', 'import_mosflm',
-    'lorestr_i2', 'mergeMtz', 'metalCoord', 'modelASUCheck', 'morda_i2',
-    'mosflm', 'pdb_redo_api', 'pdbview_edit',
-    'phaser_ensembler', 'phaser_phil', 'pisapipe', 'pointless_reindexToMatch',
-    'privateer', 'qtpisa', 'sheetbend', 'validate_protein', 'xia2_dials',
-    'xia2_multiplex', 'xia2_ssx_reduce', 'zanuda'
-}
-
-
-class CTaskManager:
-    insts = None
-
-    def __init__(self):
-        task_manager_dir = Path(__file__).parent / "task_manager"
-        plugin_path = task_manager_dir / "plugin_lookup.json"
-        task_module_path = task_manager_dir / "task_module_map.json"
-        task_metadata_path = task_manager_dir / "task_metadata.json"
-
-        self.plugin_lookup: Dict[str, Dict[str, Any]] = {}
-        self.task_module_map: Dict[str, str] = {}
-        self.task_metadata: Dict[str, Dict[str, Any]] = {}
-
-        # Load plugin_lookup.json (for backward compatibility)
-        try:
-            with plugin_path.open(encoding="utf-8") as f:
-                self.plugin_lookup = json.load(f)
-        except Exception as e:
-            print(f"Error loading plugin_lookup.json: {e}")
-
-        # Load task_module_map.json (task-to-folder mapping for UI)
-        try:
-            with task_module_path.open(encoding="utf-8") as f:
-                data = json.load(f)
-                # Remove _comment key if present
-                self.task_module_map = {k: v for k, v in data.items() if not k.startswith('_')}
-        except Exception as e:
-            print(f"Error loading task_module_map.json: {e}")
-
-        # Load task_metadata.json (UI display metadata: titles, descriptions, etc.)
-        try:
-            with task_metadata_path.open(encoding="utf-8") as f:
-                data = json.load(f)
-                # Remove _comment/_todo keys if present
-                self.task_metadata = {k: v for k, v in data.items() if not k.startswith('_')}
-        except Exception as e:
-            print(f"Error loading task_metadata.json: {e}")
-
-        # Initialize plugin and report registries (lazy loading)
-        self._plugin_registry = None
-        self._report_registry = None
-
-    @property
-    def plugin_registry(self):
-        """Get the plugin registry (lazy load on first access)."""
-        if self._plugin_registry is None:
-            from .task_manager.plugin_registry import get_registry
-            self._plugin_registry = get_registry()
-        return self._plugin_registry
-
-    @property
-    def report_registry(self):
-        """Get the report registry (lazy load on first access)."""
-        if self._report_registry is None:
-            from .task_manager.report_registry import get_report_registry
-            self._report_registry = get_report_registry()
-        return self._report_registry
-
-    def get_plugin_class(self, task_name: str) -> Optional[Type]:
-        """
-        Get a plugin class by name, with lazy loading.
-
-        Args:
-            task_name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Plugin class, or None if not found
-        """
-        return self.plugin_registry.get_plugin_class(task_name)
-
-    def get_plugin_metadata(self, task_name: str) -> Optional[Dict[str, Any]]:
-        """
-        Get plugin metadata without importing the plugin.
-
-        Args:
-            task_name: Name of the task/plugin
-
-        Returns:
-            Dictionary of plugin metadata, or None if not found
-        """
-        return self.plugin_registry.get_plugin_metadata(task_name)
-
-    def list_plugins(self) -> List[str]:
-        """Get list of all available plugin names."""
-        return self.plugin_registry.list_plugins()
-
-    def locate_def_xml(self, task_name: str) -> Optional[Path]:
-        """
-        Locate the .def.xml file for a task given its name.
-
-        Args:
-            task_name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Path to the .def.xml file if found, None otherwise
-        """
-        rel_path = defXmlPaths.get(task_name)  # relative to I2_TOP
-        if rel_path:
-            abs_path = (I2_TOP / rel_path).resolve()
-            if abs_path.exists():
-                return abs_path
-        return None
-
-    def getReportClass(self, name: str) -> Optional[Type]:
-        """
-        Get the report class for a plugin/task.
-
-        Uses the report registry which discovers *_report.py files in wrappers/,
-        wrappers2/, and pipelines/ directories.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Report class if found, None otherwise
-        """
-        return self.report_registry.get_report_class(name)
-
-    def get_report_metadata(self, name: str) -> Optional[Dict[str, Any]]:
-        """
-        Get report metadata without importing the report class.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Dictionary of report metadata (RUNNING, WATCHED_FILE, etc.), or None if not found
-        """
-        return self.report_registry.get_report_metadata(name)
-
-    def has_report(self, name: str) -> bool:
-        """
-        Check if a report class exists for a task name.
-
-        Args:
-            name: Name of the task/plugin
-
-        Returns:
-            True if a report class exists, False otherwise
-        """
-        return self.report_registry.has_report(name)
-
-    def list_reports(self) -> List[str]:
-        """Get list of all available report task names."""
-        return self.report_registry.list_reports()
-
-    def searchPath(self) -> List[str]:
-        """
-        Get the search path for plugins (wrappers, pipelines, etc.).
-
-        Returns:
-            List of directory paths containing plugin scripts
-        """
-        ccp4i2_root = os.environ.get("CCP4I2_ROOT", os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-        return [
-            os.path.join(ccp4i2_root, "wrappers", "*", "script"),
-            os.path.join(ccp4i2_root, "wrappers2", "*", "script"),
-            os.path.join(ccp4i2_root, "pipelines", "*", "script"),
-            os.path.join(ccp4i2_root, "pipelines", "*", "wrappers", "*", "script"),
-        ]
-
-    def searchReferenceFile(self, name: Optional[str] = None,
-                           cformat: str = 'medline', drillDown: bool = False) -> List[str]:
-        """
-        Search for reference/bibliography files for a task.
-
-        Reference files are typically .medline.txt files containing citation information.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "servalcat_pipe")
-            cformat: Format of reference file (default "medline")
-            drillDown: If True, also search for reference files in subtasks
-
-        Returns:
-            List of file paths to reference files found
-        """
-        import glob
-
-        if name is None:
-            return []
-
-        file_list = []
-        search_pattern = f"{name}.{cformat}.txt"
-
-        # Search all paths in the search path
-        for path_pattern in self.searchPath():
-            # Expand the glob pattern in the path (e.g., wrappers/*/script)
-            matching_dirs = glob.glob(path_pattern)
-            for directory in matching_dirs:
-                full_path = os.path.join(directory, search_pattern)
-                if os.path.exists(full_path):
-                    file_list.append(full_path)
-
-        if drillDown:
-            # Get subtasks from plugin metadata
-            metadata = self.get_plugin_metadata(name)
-            if metadata:
-                sub_tasks = metadata.get('subTasks', [])
-                for sub_task in sub_tasks:
-                    file_list.extend(self.searchReferenceFile(name=sub_task, cformat=cformat, drillDown=True))
-
-        return file_list
-
-    def getReportAttribute(self, name: str, attribute: str) -> Any:
-        """
-        Get an attribute from a plugin's report class or metadata.
-
-        Tries to get the attribute from cached metadata first (fast, no import).
-        Falls back to importing the report class if the attribute is not in metadata.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-            attribute: Name of the attribute to retrieve (e.g., "WATCHED_FILE")
-
-        Returns:
-            Attribute value if found, None otherwise
-        """
-        # First try to get from metadata (fast, no import required)
-        metadata = self.get_report_metadata(name)
-        if metadata and attribute in metadata:
-            return metadata[attribute]
-
-        # Fall back to importing the class for non-metadata attributes
-        report_class = self.getReportClass(name)
-        if report_class is None:
-            return None
-
-        return getattr(report_class, attribute, None)
-
-    def getTitle(self, name: str) -> Optional[str]:
-        """
-        Get the title of a plugin/task.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Task title if found, None otherwise
-        """
-        metadata = self.get_plugin_metadata(name)
-        if metadata:
-            return metadata.get("TASKTITLE")
-        return None
-
-    def getShortTitle(self, name: str) -> Optional[str]:
-        """
-        Get the short title of a plugin/task. Falls back to TASKNAME if no short title available.
-
-        Args:
-            name: Name of the task/plugin (e.g., "refmac", "pointless")
-
-        Returns:
-            Task short title or task name if found, None otherwise
-        """
-        metadata = self.get_plugin_metadata(name)
-        if metadata:
-            # Try SHORTTITLE first, fall back to TASKNAME
-            return metadata.get("SHORTTITLE", metadata.get("TASKNAME"))
-        return None
-
-    def _normalize_module_name(self, module: Any) -> str:
-        """
-        Normalize module name to match MODULE_ORDER keys.
-
-        Handles:
-        - Lists (take first element)
-        - Spaces vs underscores
-        - None values
-        """
-        if module is None:
-            return 'wrappers'
-
-        # Handle lists (some tasks have multiple modules)
-        if isinstance(module, list):
-            module = module[0] if module else 'wrappers'
-
-        # Normalize spaces to underscores
-        module = str(module).replace(' ', '_').lower()
-
-        return module
-
-    def _get_task_module(self, task_name: str, metadata: Dict[str, Any]) -> str:
-        """
-        Get the module for a task, using task_module_map.json as the primary source.
-
-        Priority:
-        1. task_module_map.json (canonical mapping from CCP4 GUI widgets)
-        2. TASKMODULE from plugin metadata
-        3. Default to 'wrappers'
-        """
-        # First check our canonical mapping (derived from GUI widget classes)
-        if task_name in self.task_module_map:
-            return self.task_module_map[task_name]
-
-        # Fall back to metadata TASKMODULE (rarely set in plugin scripts)
-        module = metadata.get('TASKMODULE')
-        return self._normalize_module_name(module)
-
-    def _build_module_lookup(self) -> Dict[str, List[str]]:
-        """
-        Build a mapping of module names to task lists.
-
-        Returns:
-            Dict mapping module name to list of task names
-        """
-        module_lookup: Dict[str, List[str]] = {}
-
-        for task_name, metadata in self.plugin_lookup.items():
-            module = self._get_task_module(task_name, metadata)
-
-            if module not in module_lookup:
-                module_lookup[module] = []
-
-            module_lookup[module].append(task_name)
-
-        # Sort tasks within each module, putting defaults first
-        for module_name, task_list in module_lookup.items():
-            defaults = MODULE_DEFAULTS.get(module_name, [])
-            # Put default tasks first (in order), then remaining tasks alphabetically
-            default_tasks = [t for t in defaults if t in task_list]
-            other_tasks = sorted([t for t in task_list if t not in defaults])
-            module_lookup[module_name] = default_tasks + other_tasks
-
-        return module_lookup
-
-    def task_tree(self, show_wrappers: bool = False) -> List[Tuple[str, str, List[str]]]:
-        """
-        Generate the task tree structure for the frontend.
-
-        Returns a list of tuples: (module_name, module_title, task_names_list)
-
-        Args:
-            show_wrappers: If True, include wrappers/test/demo modules
-
-        Returns:
-            List of [module_name, module_title, [task_names...]] tuples
-        """
-        module_lookup = self._build_module_lookup()
-        tree = []
-
-        # Main modules (always shown)
-        hidden_modules = {'preferences', 'test', 'demo', 'wrappers', 'deprecated'}
-
-        for module in MODULE_ORDER:
-            if module in hidden_modules and not show_wrappers:
-                continue
-
-            if module in module_lookup and module_lookup[module]:
-                title = MODULE_TITLES.get(module, module)
-                task_list = module_lookup[module]
-                tree.append((module, title, task_list))
-
-        # Include any modules not in MODULE_ORDER
-        for module_name in sorted(module_lookup.keys()):
-            if module_name not in MODULE_ORDER:
-                if module_name in hidden_modules and not show_wrappers:
-                    continue
-                title = MODULE_TITLES.get(module_name, module_name)
-                tree.append((module_name, title, module_lookup[module_name]))
-
-        return tree
-
-    @property
-    def task_lookup(self) -> Dict[str, Dict[str, Any]]:
-        """
-        Generate the task lookup structure for the frontend.
-
-        Returns a nested dict: {taskName: {metadata...}}
-
-        The frontend expects this structure for displaying task cards:
-        - TASKTITLE: Full title
-        - taskName: Internal task name
-        - DESCRIPTION: Task description
-        - MAINTAINER: Maintainer name
-        - shortTitle: Short title for display
-
-        Metadata is merged from multiple sources with priority:
-        1. task_metadata.json (extracted from GUI widgets - has descriptions)
-        2. plugin_lookup.json (extracted from plugin scripts)
-        3. Defaults
-        """
-        lookup: Dict[str, Dict[str, Any]] = {}
-
-        for task_name, plugin_meta in self.plugin_lookup.items():
-            # Get rich metadata from task_metadata.json (extracted from GUI widgets)
-            ui_meta = self.task_metadata.get(task_name, {})
-
-            # Merge metadata with priority: ui_meta > plugin_meta > defaults
-            lookup[task_name] = {
-                'TASKTITLE': ui_meta.get('TASKTITLE') or plugin_meta.get('TASKTITLE') or task_name,
-                'taskName': task_name,
-                'DESCRIPTION': ui_meta.get('DESCRIPTION') or plugin_meta.get('DESCRIPTION') or '',
-                'MAINTAINER': ui_meta.get('MAINTAINER') or plugin_meta.get('MAINTAINER') or 'Nobody',
-                'shortTitle': ui_meta.get('shortTitle') or plugin_meta.get('SHORTTASKTITLE') or plugin_meta.get('TASKTITLE') or task_name,
-                'isAutogenerated': task_name in AUTOGENERATED_TASKS,
-            }
-
-        return lookup
-
-    @property
-    def task_icon_lookup(self) -> Dict[str, str]:
-        """
-        Return icon paths for module folders.
-
-        Returns:
-            Dict mapping module name to icon path (relative to static dir)
-        """
-        return MODULE_ICONS.copy()
-
-
-def TASKMANAGER():
-    """Return a unique instance of CTaskManager."""
-    if CTaskManager.insts is None:
-        CTaskManager.insts = CTaskManager()
-    return CTaskManager.insts
-
-
-def main():
-    """Main entry point for module. Use --rebuild to regenerate lookup files."""
-    parser = argparse.ArgumentParser(description="CCP4 Task Manager Utility")
-    parser.add_argument(
-        "--rebuild", action="store_true", help="Regenerate lookup files"
-    )
-    args = parser.parse_args()
-
-    if args.rebuild:
-        dir_path = os.path.dirname(os.path.abspath(__file__))
-        plugin_script = os.path.join(dir_path, "task_manager", "plugin_lookup.py")
-        report_script = os.path.join(dir_path, "task_manager", "report_lookup.py")
-
-        print("Regenerating plugin_lookup.json and plugin_registry.py...")
-        subprocess.run([sys.executable, plugin_script], check=True)
-        print("Regenerating report_lookup.json and report_registry.py...")
-        subprocess.run([sys.executable, report_script], check=True)
-        print("Lookup files regenerated.")
-    else:
-        parser.print_help()
-
-
-if __name__ == "__main__":
-    main()
+def get_task_tree():
+    """
+    Build the task tree structure for the frontend.
+
+    Returns:
+        Dict with:
+        - tree: List of [module_name, module_title, [task_names...]] tuples
+        - lookup: Dict mapping taskName -> {metadata...}
+        - iconLookup: Dict mapping module name to icon path
+    """
+    result = {
+        "tree": _TASK_TREE,
+        "lookup": _TASK_LOOKUP,
+        "iconLookup": _MODULE_ICONS,
+    }
+    return result
+
+
+def locate_def_xml(task_name: str) -> Optional[Path]:
+    """
+    Locate the .def.xml file for a task given its name.
+
+    Args:
+        task_name: Name of the task/plugin (e.g., "refmac", "pointless")
+
+    Returns:
+        Path to the .def.xml file if found, None otherwise
+    """
+    rel_path = defXmlPaths.get(task_name)  # relative to I2_TOP
+    if rel_path:
+        abs_path = (I2_TOP / rel_path).resolve()
+        if abs_path.exists():
+            return abs_path
+    return None

@@ -7,12 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class cmapcoeff(CPluginScript):
 
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'Prepare map coefficients'
     TASKNAME = 'cmapcoeff'
     TASKCOMMAND = 'cmapcoeff'
     WHATNEXT = [ 'coot_rebuild' ]
-    MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles ( self ):
         list_of_stuff = [ ]

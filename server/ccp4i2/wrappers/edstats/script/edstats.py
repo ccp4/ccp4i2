@@ -5,14 +5,12 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class edstats(CPluginScript):
 
-    TASKMODULE          = 'validation'
     TASKTITLE           = 'Measure agreement between model and density'
     TASKNAME            = 'edstats'
     TASKCOMMAND         = 'edstats'
     DESCRIPTION         = 'Calculates real-space metrics for evaluating the agreement between model and density (Edstats)'
     WHATNEXT            = ['coot_rebuild']
     PURGESEARCHLIST =  [[ 'fft%*/MAPOUT.map', 1 ] ]
-    MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):
       from ccp4i2.core import CCP4XtalData

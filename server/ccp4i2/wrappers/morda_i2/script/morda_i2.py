@@ -7,7 +7,6 @@ from ccp4i2.core import CCP4ErrorHandling, CCP4PluginScript, CCP4XtalData
 
 class morda_i2(CCP4PluginScript.CPluginScript):
     TASKNAME = 'morda_i2'
-    MAINTAINER = 'andrey.lebedev@stfc.ac.uk'
     TASKCOMMAND = sys.executable
     PERFORMANCECLASS = 'CRefinementPerformance'
     

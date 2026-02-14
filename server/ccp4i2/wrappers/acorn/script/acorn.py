@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class acorn(CPluginScript):
-    TASKMODULE = 'density_modification'
     TASKTITLE = 'Acorn'
     TASKNAME = 'acorn'
     TASKCOMMAND = 'acorn'

@@ -12,7 +12,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class LidiaAcedrgNew(CPluginScript):
     TASKNAME = 'LidiaAcedrgNew'
     WHATNEXT = ['coot_rebuild']
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
     ERROR_CODES = {
         201: {'description': 'Expected output file not made', 'severity': CCP4ErrorHandling.SEVERITY_WARNING},
         202: {'description': 'Failed to create sub-plugin', 'severity': CCP4ErrorHandling.SEVERITY_ERROR},

@@ -7,12 +7,10 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class acedrg(CPluginScript):
-    TASKMODULE = 'wrappers'
     TASKTITLE = 'acedrg'
     DESCRIPTION = 'Sketch a ligand'
     TASKNAME = 'acedrg'
     TASKCOMMAND = 'acedrg'
-    MAINTAINER = 'martin.noble@newcastle.ac.uk'
 
     ERROR_CODES = {  200 : { 'description' : 'Failed to add item to mol list' },201 : { 'description' : 'Failed to setFullPath' }, 202 : { 'description' : 'Failed to dump XMML' }, 203 : { 'description' : 'Failed to make RDKit Mol from DICT' },}
     

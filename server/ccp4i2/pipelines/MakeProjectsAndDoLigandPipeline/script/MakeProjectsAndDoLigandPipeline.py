@@ -6,11 +6,11 @@ from lxml import etree
 
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
 
 
 class MakeProjectsAndDoLigandPipeline(CPluginScript):
     TASKNAME = 'MakeProjectsAndDoLigandPipeline'
-    MAINTAINER = 'martin.noble@ncl.ac.uk'
     ERROR_CODES = {201 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create project' },
         202 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to create job' },
         203 : {'severity':CCP4ErrorHandling.SEVERITY_WARNING, 'description' : 'Failed to determine job number' },
@@ -133,8 +133,7 @@ class MakeProjectsAndDoLigandPipeline(CPluginScript):
             name = projectNameStr+'_'+str(jobNumber)
 
             #Retrieve plugin
-            from ccp4i2.core import CCP4TaskManager
-            cls = CCP4TaskManager.TASKMANAGER().getPluginScriptClass(pluginName)
+            cls = get_plugin_class(pluginName)
             if cls is None:
                 self.appendErrorReport(206, pluginName)
                 self.xmlroot.xpath("//Warnings")[0].text = self._errorReport.report(user=False, ifStack=False)

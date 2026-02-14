@@ -15,7 +15,6 @@ from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
 
 class prosmart_refmac(CPluginScript):
 
-    TASKMODULE = 'refinement'
     TASKTITLE = 'Refine with Refmac & optional restraints from Prosmart & Platonyzer'
     TASKNAME = 'prosmart_refmac'
     WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']

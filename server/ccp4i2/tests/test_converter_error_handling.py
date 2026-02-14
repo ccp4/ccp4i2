@@ -234,7 +234,7 @@ class TestObsDataConverterErrorHandling:
     def test_ctruncate_not_available(self):
         """Test error code 4: ctruncate plugin not available.
 
-        Note: This test is simplified since mocking TASKMANAGER is complex.
+        Note: This test is simplified since mocking is complex.
         The actual error code 4 is tested when ctruncate plugin cannot be loaded.
         """
         # This test verifies that error code 4 is defined and documented

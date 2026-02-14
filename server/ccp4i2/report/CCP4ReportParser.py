@@ -51,9 +51,9 @@ from io import StringIO
 
 from lxml import html as lxml_html
 
-from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_OK, SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2.core.CCP4Modules import PROJECTSMANAGER
+from ccp4i2 import I2_TOP
 
 # Import error handling (lazy to avoid circular imports)
 _diagnostics_module = None
@@ -978,7 +978,6 @@ class Report(Container):
         self.additionalJsFiles = kw.get('additionalJsFiles', None)
         self.additionalScript = kw.get('additionalScript', None)
         self.requireDataMain = kw.get('requireDataMain', 'mosflmApp')
-        self.referenceList = []
         self.htmlBase = kw.get('htmlBase', None)
         self.cssVersion = kw.get('cssVersion', None)
         if 'jobId' in kw:
@@ -1085,18 +1084,17 @@ class Report(Container):
                 self.children.append(cls(jobInfo=self.jobInfo))
         # If there is not list of references try adding the default for the
         # task
-        if len(self.referenceList) == 0:
-            self.addTaskReferences()
-        if len(self.referenceList) > 0:
-            fold = Fold(
-                label='Bibliographic references',
-                brief='Biblio',
-                jobInfo=self.jobInfo)
-            fold.children.extend(self.referenceList)
-            if isinstance(self.children[-1], JobDetails):
-                self.children.insert(-1, fold)
-            else:
-                self.children.append(fold)
+        fold = Fold(
+            label='Bibliographic references',
+            brief='Biblio',
+            jobInfo=self.jobInfo)
+        referenceGroup = ReferenceGroup()
+        referenceGroup.loadFromMedLine(self.TASKNAME)
+        fold.children.append(referenceGroup)
+        if isinstance(self.children[-1], JobDetails):
+            self.children.insert(-1, fold)
+        else:
+            self.children.append(fold)
 
     def standardiseXrtReport(self, report):
         # if report.find(XRTNS+'title') is None:
@@ -1173,12 +1171,6 @@ class Report(Container):
           body.insert(2,links)
         """
 
-    def getTitle(self):
-        if 'jobnumber' in self.jobInfo and 'tasktitle' in self.jobInfo:
-            title = self.jobInfo['jobnumber'] + ' ' + self.jobInfo['tasktitle']
-        else:
-            title = 'CCP4 Report'
-
     def makeCSVFiles(self, directory=None):
         from ccp4i2.core import CCP4Utils
         if directory is None:
@@ -1219,7 +1211,6 @@ class Report(Container):
                             obj.data_as_xml(fileName=fileName))
 
     def clearXMLFiles(self, directory=None):
-        from ccp4i2.core import CCP4Utils
         if directory is None:
             directory = os.getcwd()
         for ofClass in [Table, FlotGraph, Progress, Pre]:
@@ -1230,34 +1221,6 @@ class Report(Container):
                         os.path.join(directory, obj.data_url()))
                     os.remove(fileName)
                     # print 'Report.makeXMLFiles fileName',fileName
-
-    def addReference(self, xrtnode=None, xmlnode=None, jobInfo=None, **kw):
-        if xmlnode is None:
-            xmlnode = self.xmlnode
-        if jobInfo is None:
-            jobInfo = self.jobInfo
-        if not hasattr(self, 'referenceList'):
-            self.referenceList = [ReferenceGroup()]
-        obj = Reference(
-            xrtnode=xrtnode,
-            xmlnode=xmlnode,
-            jobInfo=jobInfo,
-            **kw)
-        self.referenceList[-1].append(obj)
-        return obj
-
-    def addTaskReferences(self, taskName=None, drillDown=True):
-        if taskName is None:
-            taskName = self.TASKNAME
-        if not hasattr(self, 'referenceList'):
-            self.referenceList = []
-        from ccp4i2.core import CCP4TaskManager
-        helpFileList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(
-            name=taskName, drillDown=drillDown)
-        # print 'Report.addTaskReferences',helpFileList
-        for helpFile in helpFileList:
-            self.referenceList.append(ReferenceGroup())
-            self.referenceList[-1].loadFromMedLine(fileName=helpFile)
 
     def getReport(self):
         return self
@@ -3397,31 +3360,23 @@ class ReferenceGroup(Container):
         self._class = 'bibreference_group'
         self.taskName = kw.get('taskName', None)
 
-    def loadFromMedLine(self, taskName=None, fileName=None):
-        if fileName is None and taskName is not None:
-            from ccp4i2.core import CCP4TaskManager
-            fileNameList = CCP4TaskManager.TASKMANAGER().searchReferenceFile(taskName)
-            if len(fileNameList) > 0:
-                fileName = fileNameList[0]
-        if fileName is None or not os.path.exists(fileName):
+    def loadFromMedLine(self, taskName):
+        path = I2_TOP / "references" / f"{taskName}.medline.txt"
+        if not path.exists():
             self.errReport.append(
                 self.__class__,
                 100,
-                'Taskname: ' +
-                str(taskName) +
-                ' Filename: ' +
-                str(fileName))
+                f'Taskname: {taskName} Filename: {path}')
             return
         self.taskName = taskName
 
         from ccp4i2.core import CCP4Utils
         try:
-            text = CCP4Utils.readFile(fileName=fileName)
+            text = CCP4Utils.readFile(fileName=path)
         except CException as e:
             self.errReport.extend(e)
             return
         textList = text.split('\nPMID- ')
-        # print 'ReferenceGroup.loadFromMedLine textList',textList
         for text in textList:
             ref = Reference()
             m = re.search(r'TI  -(.*)', text)
@@ -3438,7 +3393,6 @@ class ReferenceGroup(Container):
                 ref.articleLink = m.groups()[0].strip()
             if ref.source is not None:
                 self.append(ref)
-        # print 'ReferenceGroup.loadFromMedLine',ref
 
 
 class BaublesHtml:
@@ -3543,65 +3497,3 @@ class BaublesHtml:
         from ccp4i2.core import CCP4Utils
         text = lxml_html.tostring(self.fileNode, method='html')
         CCP4Utils.saveFile(fileName, text)
-
-
-"""
-$TABLE :table name:
-$GRAPHS :graph1 name:graphtype:column_list: :graph2 name:graphtype:column_list:
-        :graph 3 ...: ... $$
-column1_name column2_name ... $$ any_characters $$ numbers $$
-
-where:
-
-table name, graphN name
-    are arbitrary strings (without newline)
-columnN_name
-    are arbitrary strings without tab, space, newline
-graphtype
-    is
-A[UTO]
-    for fully automatic scaling (e.g. ... :A:1,2,4,5:)
-N[OUGHT]
-    for automatic y coordinate scaling, where y lowest limit is 0 (e.g. ... :N:1,2,4,5:)
-XMIN|XMAXxYMIN|YMAX
-    for user defined scaling where XMIN ... are axis limits (e.g. ... :0|100x-1|1:1,2,4,5:)
-any_characters
-    are treated as a comment. They can be eventually used as a human oriented table header
-numbers
-    represents the table itself. (See parsing algorithm below)
-"""
-
-
-# ========================================================================================
-def test(arg1, arg2, arg3=None):
-    xrt = etree.fromstring(open(arg1).read(), PARSER())
-    xml = etree.fromstring(open(arg2).read(), PARSER())
-    # print 'text',xrt.findall( "/report" )
-    standardise = False
-    xreport = xrt.findall("/report")[0]
-    # Get the jobInfo
-    from ccp4i2.report import CCP4ReportGenerator
-    if arg3 is not None:
-        g = CCP4ReportGenerator.CReportGenerator(jobId=arg3)
-        jobInfo = g.getJobInfo(arg3)
-        # Need to refer to job that is already in db
-        report = Report(xreport, xml, jobInfo=jobInfo, standardise=standardise)
-    else:
-        report = Report(xreport, xml, jobInfo={}, standardise=standardise)
-
-    tree = report.as_etree()
-    if len(report.errReport) > 0:
-        print('ERROR REPORT')
-        print(report.errReport.report())
-    text = etree.tostring(tree)
-    # print text
-    from ccp4i2.core import CCP4Utils
-    CCP4Utils.saveFile('report.html', text=text)
-    if report.containsPictures():
-        import functools
-        g.runMg(report.pictureQueue, functools.partial(printMgFinished, arg3))
-        print('Returned from runMg')
-
-
-def printMgFinished(jobId, exit, status):
-    print('MG finished', jobId, exit, status, jobId)
