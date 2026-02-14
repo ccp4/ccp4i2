@@ -1,6 +1,7 @@
 import logging
 
 from ccp4i2.core.task_manager.metadata import TITLES
+from ccp4i2.db.ccp4i2_static_data import FILETYPES_CLASS
 
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")

@@ -525,8 +525,10 @@ def handle_reflections(
 
     # CMtzDataFile (exact class, not subclasses) is a general container that stores
     # the intact reflection file without column extraction.
+    # CUnmergedMtzDataFile also stores the intact file — unmerged data doesn't
+    # support column splitting (getFileContent() returns None).
     # If column_selector is empty/None, just copy the file as-is.
-    is_general_container = type(param_object).__name__ == "CMtzDataFile"
+    is_general_container = type(param_object).__name__ in ("CMtzDataFile", "CUnmergedMtzDataFile")
     skip_column_split = is_general_container and not column_selector
 
     if skip_column_split:
@@ -619,8 +621,8 @@ def handle_reflections_multi(
         )
         return {"primaryPath": result["path"], "additionalPaths": [], "metadata": result.get("metadata")}
 
-    # CMtzDataFile without selectors: copy as-is
-    is_general_container = type(param_object).__name__ == "CMtzDataFile"
+    # CMtzDataFile/CUnmergedMtzDataFile without selectors: copy as-is
+    is_general_container = type(param_object).__name__ in ("CMtzDataFile", "CUnmergedMtzDataFile")
     if is_general_container and len(column_selectors) == 0:
         logger.info("CMtzDataFile with no selectors - copying file as-is")
         dest = (
