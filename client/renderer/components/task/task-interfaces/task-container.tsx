@@ -3,6 +3,7 @@ import { useCCP4i2Window } from "../../../app-context";
 import { Job } from "../../../types/models";
 import { LinearProgress } from "@mui/material";
 import AimlessPipeInterface from "./aimless_pipe";
+import AuspexInterface from "./auspex";
 import LidiaAcedrgNewInterface from "./LidiaAcedrgNew";
 import ClustalwInterface from "./clustalw";
 import Crank2Interface from "./crank2";
@@ -25,6 +26,7 @@ import SHELXInterface from "./shelx";
 import CSymmatchInterface from "./csymmatch";
 import FreerFlagInterface from "./freerflag";
 import SplitMtzInterface from "./splitMtz";
+import Xia2MultiplexInterface from "./xia2_multiplex";
 import { useJob } from "../../../utils";
 
 // Auto-generated interfaces from legacy GUI files
@@ -76,7 +78,7 @@ import GeneratedQtpisaInterface from "./generated/qtpisa";
 import GeneratedSheetbendInterface from "./generated/sheetbend";
 import GeneratedValidateProteinInterface from "./generated/validate_protein";
 import GeneratedXia2DialsInterface from "./generated/xia2_dials";
-import GeneratedXia2MultiplexInterface from "./generated/xia2_multiplex";
+
 import GeneratedXia2SsxReduceInterface from "./generated/xia2_ssx_reduce";
 import GeneratedZanudaInterface from "./generated/zanuda";
 
@@ -100,6 +102,8 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <LinearProgress />;
       case "aimless_pipe":
         return <AimlessPipeInterface job={job} />;
+      case "AUSPEX":
+        return <AuspexInterface job={job} />;
       case "clustalw":
         return <ClustalwInterface job={job} />;
       case "crank2":
@@ -241,7 +245,7 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
       case "xia2_dials":
         return <GeneratedXia2DialsInterface job={job} />;
       case "xia2_multiplex":
-        return <GeneratedXia2MultiplexInterface job={job} />;
+        return <Xia2MultiplexInterface job={job} />;
       case "xia2_ssx_reduce":
         return <GeneratedXia2SsxReduceInterface job={job} />;
       case "zanuda":
