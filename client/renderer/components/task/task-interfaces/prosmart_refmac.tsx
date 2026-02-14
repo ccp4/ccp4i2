@@ -48,6 +48,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: weightOpt } = useTaskItem("WEIGHT_OPT");
   const { value: occupancyRefinement } = useTaskItem("OCCUPANCY_REFINEMENT");
   const { value: occupancyGroups } = useTaskItem("OCCUPANCY_GROUPS");
+  const { value: occupancyComplete } = useTaskItem("OCCUPANCY_COMPLETE");
+  const { value: occupancyIncomplete } = useTaskItem("OCCUPANCY_INCOMPLETE");
   const { value: useNcs } = useTaskItem("USE_NCS");
   const { value: useJelly } = useTaskItem("USE_JELLY");
   const { value: prosmartProteinToggle } = useTaskItem(
@@ -482,23 +484,48 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="OCCUPANCY_GROUPS"
-              qualifiers={{ guiLabel: "Group occupancies by:" }}
+              qualifiers={{ guiLabel: "Specify partial occupancy groups" }}
               visibility={() => isTruthy(occupancyRefinement)}
             />
             <CCP4i2TaskElement
               {...props}
-              itemName="OCCUPANCY_COMPLETE"
-              qualifiers={{ guiLabel: "Complete groups" }}
+              itemName="OCCUPANCY_SELECTION"
               visibility={() =>
                 isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
               }
             />
             <CCP4i2TaskElement
               {...props}
-              itemName="OCCUPANCY_INCOMPLETE"
-              qualifiers={{ guiLabel: "Incomplete groups" }}
+              itemName="OCCUPANCY_COMPLETE"
+              qualifiers={{ guiLabel: "Complete groups (sum to 1.0)" }}
               visibility={() =>
                 isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
+              }
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="OCCUPANCY_COMPLETE_TABLE"
+              visibility={() =>
+                isTruthy(occupancyRefinement) &&
+                isTruthy(occupancyGroups) &&
+                isTruthy(occupancyComplete)
+              }
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="OCCUPANCY_INCOMPLETE"
+              qualifiers={{ guiLabel: "Incomplete groups (sum to < 1.0)" }}
+              visibility={() =>
+                isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
+              }
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="OCCUPANCY_INCOMPLETE_TABLE"
+              visibility={() =>
+                isTruthy(occupancyRefinement) &&
+                isTruthy(occupancyGroups) &&
+                isTruthy(occupancyIncomplete)
               }
             />
           </CCP4i2ContainerElement>

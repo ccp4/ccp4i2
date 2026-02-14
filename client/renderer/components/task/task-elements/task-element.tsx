@@ -24,6 +24,10 @@ import { CColumnGroupElement } from "./ccolumngroup";
 import { CPdbEnsembleItemElement } from "./cpdbensembleitem";
 import { CSMILESStringElement } from "./csmilesstring";
 import { CAsuContentSeqListElement } from "./casucontentseqlist";
+import {
+  COccRefmacSelectionListElement,
+  COccRelationRefmacListElement,
+} from "./coccupancygroups";
 import { useInferredVisibility } from "./hooks/useInferredVisibility";
 import type { ItemClass } from "./types/item-classes";
 
@@ -159,6 +163,8 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CMDLMolDataFile":
       case "CRefmacKeywordFile":
       case "CMol2DataFile":
+      case "CMapDataFile":
+      case "CUnmergedMtzDataFile":
         return (
           <CSimpleDataFileElement
             key={the_uuid}
@@ -230,6 +236,22 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CAsuContentSeqList":
         return (
           <CAsuContentSeqListElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
+        );
+      case "COccRefmacSelectionList":
+        return (
+          <COccRefmacSelectionListElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
+        );
+      case "COccRelationRefmacList":
+        return (
+          <COccRelationRefmacListElement
             key={the_uuid}
             {...props}
             qualifiers={qualifiers}
