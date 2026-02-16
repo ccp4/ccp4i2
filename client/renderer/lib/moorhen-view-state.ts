@@ -218,7 +218,7 @@ export function captureViewState(
   const moleculeVisibility: Record<number, { v: boolean }> = {};
   for (const mol of molecules) {
     const fileId = extractFileIdFromUniqueId(mol.uniqueId || "");
-    if (fileId !== null) {
+    if (fileId !== null && mol.molNo != null) {
       const isVisible = visibleMolecules.includes(mol.molNo);
       // Default is visible (loaded = visible), so only record if hidden
       if (!isVisible) {
@@ -234,7 +234,7 @@ export function captureViewState(
   const mapVisibility: Record<number, { v: boolean }> = {};
   for (const map of maps) {
     const fileId = extractFileIdFromUniqueId(map.uniqueId || "");
-    if (fileId !== null) {
+    if (fileId !== null && map.molNo != null) {
       const isVisible = visibleMaps.includes(map.molNo);
       if (!isVisible) {
         mapVisibility[fileId] = { v: false };

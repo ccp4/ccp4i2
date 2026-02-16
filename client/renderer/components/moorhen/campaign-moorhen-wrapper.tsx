@@ -10,6 +10,8 @@
  * - Standard view state URL support
  */
 
+import "moorhen/public/MoorhenAssets/moorhen.css";
+
 import {
   addMolecule,
   addMap,
@@ -17,18 +19,19 @@ import {
   removeMap,
   setActiveMap,
   setContourLevel,
-  setWidth,
-  setHeight,
   setTheme,
   setBackgroundColor,
   setOrigin,
   setQuat,
   setZoom,
   setRequestDrawScene,
+  setShownSidePanel,
   MoorhenContainer,
+  MoorhenInstanceProvider,
   MoorhenMolecule,
   MoorhenMap,
 } from "moorhen";
+import type { MoorhenPanel } from "moorhen";
 
 import {
   RefObject,
@@ -41,7 +44,6 @@ import {
 import { moorhen } from "moorhen/types/moorhen";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { webGL } from "moorhen/types/mgWebGL";
-import { useCCP4i2Window } from "../../app-context";
 import { CampaignControlPanel } from "./campaign-control-panel";
 import { apiText, apiArrayBuffer, apiGet, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
@@ -140,11 +142,21 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
   const hasInitializedReps = useRef(false);
 
+  // Container ref for measuring available height below the AppBar
+  const moorhenContainerRef = useRef<HTMLDivElement>(null);
+  const setMoorhenDimensions = useCallback((): [number, number] => {
+    if (moorhenContainerRef.current) {
+      const top = moorhenContainerRef.current.getBoundingClientRect().top;
+      return [window.innerWidth, window.innerHeight - top];
+    }
+    return [window.innerWidth, window.innerHeight];
+  }, []);
+
   const glRef: RefObject<webGL.MGWebGL | null> = useRef(null);
   const commandCentre = useRef<null | moorhen.CommandCentre>(null);
   const moleculesRef = useRef<null | moorhen.Molecule[]>(null);
   const mapsRef = useRef<null | moorhen.Map[]>(null);
-  const activeMapRef = useRef<null | moorhen.Map>(null);
+  const activeMapRef = useRef<moorhen.Map>(null);
   const lastHoveredAtom = useRef<null | moorhen.HoveredAtom>(null);
   const prevActiveMoleculeRef = useRef<null | moorhen.Molecule>(null);
   const timeCapsuleRef = useRef(null);
@@ -166,7 +178,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     (state: moorhen.State) => (state as unknown as { maps: moorhen.Map[] }).maps || []
   );
   const store = useStore();
-  const { cootModule, cootModuleError } = useCCP4i2Window();
 
   // Initialize representations from URL if available (after molecules load)
   useEffect(() => {
@@ -178,17 +189,16 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   }, [initialRepresentations, molecules, applyRepresentationsToMolecules]);
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      (window as any).CCP4Module = cootModule;
-    }
-  }, [cootModule]);
-
-  useEffect(() => {
     dispatch(
       setBackgroundColor(theme.mode === "light" ? [1, 1, 1, 1] : [0, 0, 0, 1])
     );
     dispatch(setTheme(theme.mode === "light" ? "flatly" : "darkly"));
   }, [theme.mode, dispatch]);
+
+  // Auto-open the campaign controls side panel
+  useEffect(() => {
+    dispatch(setShownSidePanel("campaignControls"));
+  }, [dispatch]);
 
   const monomerLibraryPath =
     "https://raw.githubusercontent.com/MonomerLibrary/monomers/master/";
@@ -200,60 +210,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     (state: moorhen.State) => state.sceneSettings.defaultBondSmoothness
   );
 
-  const [windowWidth, setWindowWidth] = useState<number>(
-    typeof window !== "undefined" ? window.innerWidth : 1200
-  );
-  const [windowHeight, setWindowHeight] = useState<number>(
-    typeof window !== "undefined" ? window.innerHeight : 800
-  );
-
-  const rightPanelWidth = 60 * 8;
-  const leftPanelWidth = useMemo(() => {
-    return windowWidth - rightPanelWidth;
-  }, [windowWidth, rightPanelWidth]);
-
-  const setMoorhenDimensions = useCallback(() => {
-    const result = [leftPanelWidth, windowHeight];
-    return result;
-  }, [leftPanelWidth, windowHeight]);
-
   const isElectron =
     typeof window !== "undefined" && !!(window as any).electronAPI;
   const urlPrefix = isElectron ? "/baby-gru" : "/api/moorhen/baby-gru";
-
-  const collectedProps = useMemo(
-    () => ({
-      glRef,
-      timeCapsuleRef,
-      commandCentre,
-      moleculesRef,
-      mapsRef,
-      activeMapRef,
-      lastHoveredAtom,
-      prevActiveMoleculeRef,
-      setMoorhenDimensions,
-      monomerLibraryPath,
-      urlPrefix,
-    }),
-    [setMoorhenDimensions, urlPrefix]
-  );
 
   const getOrigin = useCallback(() => {
     const state = store.getState() as moorhen.State;
     return (state as unknown as { glRef: { origin: number[] } }).glRef.origin;
   }, [store]);
-
-  const handleResize = () => {
-    setWindowWidth(window.innerWidth);
-    setWindowHeight(window.innerHeight - 30);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   // Cleanup all loaded molecules and maps
   const cleanupLoadedContent = useCallback(() => {
@@ -280,7 +244,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
   // Load files when fileSource changes
   useEffect(() => {
-    if (!cootInitialized || !cootModule) return;
+    if (!cootInitialized) return;
 
     // Check if file source changed
     const sourceChanged =
@@ -301,22 +265,9 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     } else if (fileSource.type === "job") {
       fetchJobFiles(fileSource.jobId);
     }
-  }, [fileSource, cootInitialized, cootModule, cleanupLoadedContent]);
+  }, [fileSource, cootInitialized, cleanupLoadedContent]);
 
-  useEffect(() => {
-    if (cootInitialized) {
-      dispatch(setWidth(leftPanelWidth));
-      dispatch(setHeight(windowHeight - 75));
-    }
-  }, [cootInitialized, leftPanelWidth, windowHeight, dispatch]);
-
-  useEffect(() => {
-    if (cootInitialized) {
-      dispatch(
-        setBackgroundColor(theme.mode === "light" ? [1, 1, 1, 1] : [0, 0, 0, 1])
-      );
-    }
-  }, [cootInitialized, theme.mode, dispatch]);
+  // Dimension updates are handled by Moorhen's MainContainer automatically
 
   const fetchFile = async (fileId: number) => {
     const fileInfo = await apiGet(`files/${fileId}`);
@@ -444,7 +395,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     if (!commandCentre.current) return;
     const newMolecule = new MoorhenMolecule(
       commandCentre as RefObject<moorhen.CommandCentre>,
-      glRef as RefObject<webGL.MGWebGL>,
       store,
       monomerLibraryPath
     );
@@ -501,7 +451,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     if (!commandCentre.current) return;
     const newMap = new MoorhenMap(
       commandCentre as RefObject<moorhen.CommandCentre>,
-      glRef as RefObject<webGL.MGWebGL>,
       store
     );
     // subType: 1=normal, 2=difference, 3=anomalous difference
@@ -773,16 +722,55 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     [selectedMemberProjectId, memberProjects, ligandDictFileId, setMessage]
   );
 
-  // Show fallback if Coot module failed to load
-  if (cootModuleError) {
-    return (
-      <MoorhenFallback
-        reason="load_error"
-        error={cootModuleError}
-        capabilities={capabilities}
-      />
-    );
-  }
+  // Custom side panel containing our campaign control panel
+  const extraSidePanels: Record<string, MoorhenPanel> = {
+    campaignControls: {
+      icon: "MatSymSettings",
+      label: "Campaign",
+      panelContent: (
+        <CampaignControlPanel
+          campaign={campaign}
+          sites={sites}
+          onGoToSite={handleGoToSite}
+          onSaveCurrentAsSite={handleSaveCurrentAsSite}
+          onUpdateSite={handleUpdateSite}
+          onDeleteSite={handleDeleteSite}
+          memberProjects={memberProjects}
+          selectedMemberProjectId={selectedMemberProjectId}
+          onSelectMemberProject={onSelectMemberProject}
+          parentProject={parentProject}
+          getViewUrl={getViewUrl}
+          molecules={molecules}
+          visibleRepresentations={visibleRepresentations}
+          onRepresentationsChange={setVisibleRepresentations}
+          ligandDictFileId={ligandDictFileId}
+          ligandName={ligandName}
+          maps={maps}
+          onMapContourLevelChange={handleMapContourLevelChange}
+          onTagProjectWithSite={handleTagProjectWithSite}
+          onFileSelect={fetchFile}
+          onRunServalcat={handleRunServalcat}
+        />
+      ),
+    },
+  };
+
+  const collectedProps = {
+    glRef,
+    timeCapsuleRef,
+    commandCentre,
+    moleculesRef,
+    mapsRef,
+    activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,
+    lastHoveredAtom,
+    prevActiveMoleculeRef,
+    monomerLibraryPath,
+    urlPrefix,
+    store,
+    viewOnly: false,
+    extraSidePanels,
+    setMoorhenDimensions,
+  };
 
   // Show Safari warning - capabilities may look OK but WASM threading crashes
   const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;
@@ -799,74 +787,15 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   }
 
   return (
-    <MoorhenErrorBoundary
-      fallback={
-        <MoorhenFallback
-          reason="runtime_error"
-          capabilities={capabilities}
-        />
-      }
-    >
-      {store && cootModule && (
-        <div
-          style={{
-            display: "flex",
-            width: "100%",
-            height: "100%",
-            flexDirection: "row",
-          }}
-        >
-          <div
-            style={{
-              flex: 1,
-              minWidth: 0,
-              height: "calc(100% - 120px)",
-            }}
-          >
+    <div ref={moorhenContainerRef}>
+      <MoorhenErrorBoundary fallback={<MoorhenFallback reason="runtime_error" capabilities={capabilities} />}>
+        {store && (
+          <MoorhenInstanceProvider>
             <MoorhenContainer {...collectedProps} />
-          </div>
-
-          <div
-            style={{
-              width: `${rightPanelWidth}px`,
-              minWidth: `${rightPanelWidth}px`,
-              maxWidth: `${rightPanelWidth}px`,
-              height: "calc(100vh - 40px)",
-              borderLeft: "1px solid #ddd",
-              padding: "0px",
-              fontSize: "14px",
-              fontFamily: "monospace",
-              overflow: "hidden",
-              boxSizing: "border-box",
-            }}
-          >
-            <CampaignControlPanel
-              campaign={campaign}
-              sites={sites}
-              onGoToSite={handleGoToSite}
-              onSaveCurrentAsSite={handleSaveCurrentAsSite}
-              onUpdateSite={handleUpdateSite}
-              onDeleteSite={handleDeleteSite}
-              memberProjects={memberProjects}
-              selectedMemberProjectId={selectedMemberProjectId}
-              onSelectMemberProject={onSelectMemberProject}
-              parentProject={parentProject}
-              getViewUrl={getViewUrl}
-              molecules={molecules}
-              visibleRepresentations={visibleRepresentations}
-              onRepresentationsChange={setVisibleRepresentations}
-              ligandDictFileId={ligandDictFileId}
-              ligandName={ligandName}
-              maps={maps}
-              onMapContourLevelChange={handleMapContourLevelChange}
-              onTagProjectWithSite={handleTagProjectWithSite}
-              onFileSelect={fetchFile}
-              onRunServalcat={handleRunServalcat}
-            />
-          </div>
-        </div>
-      )}
-    </MoorhenErrorBoundary>
+          </MoorhenInstanceProvider>
+        )}
+      </MoorhenErrorBoundary>
+    </div>
   );
 };
 

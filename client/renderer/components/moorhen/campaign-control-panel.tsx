@@ -360,8 +360,8 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
       {maps && maps.length > 0 && onMapContourLevelChange && (
         <Box sx={{ mb: 1 }}>
           {maps.map((map) => {
-            const level = getContourLevel(map.molNo);
-            const isVisible = visibleMaps.includes(map.molNo);
+            const level = getContourLevel(map.molNo!);
+            const isVisible = visibleMaps.includes(map.molNo!);
             // mapSubType: 1=normal, 2=difference, 3=anomalous
             // Difference and anomalous maps need 2x higher values for contour slider
             const mapSubType = (map as any).mapSubType as number | undefined;
@@ -391,7 +391,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             const shortName = mapSubType === 3 ? "Anom" : mapSubType === 2 ? "Fo-Fc" : isDiff ? "Fo-Fc" : "2Fo-Fc";
 
             return (
-              <Stack key={map.molNo} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
+              <Stack key={map.molNo ?? map.uniqueId} direction="row" alignItems="center" spacing={1} sx={{ mb: 0.5 }}>
                 <Typography
                   variant="caption"
                   sx={{ minWidth: 42, flexShrink: 0, opacity: isVisible ? 1 : 0.4 }}
@@ -402,7 +402,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                   size="small"
                   disabled={!isVisible}
                   value={sliderPosition}
-                  onChange={(_e, value) => onMapContourLevelChange(map.molNo, sliderToValue(value as number))}
+                  onChange={(_e, value) => onMapContourLevelChange(map.molNo!, sliderToValue(value as number))}
                   min={0}
                   max={100}
                   step={1}
@@ -425,9 +425,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                     size="small"
                     onClick={() => {
                       if (isVisible) {
-                        dispatch(hideMap({ molNo: map.molNo }));
+                        dispatch(hideMap(map as any));
                       } else {
-                        dispatch(showMap({ molNo: map.molNo, show: true }));
+                        dispatch(showMap(map as any));
                       }
                       dispatch(setRequestDrawScene(true));
                     }}
@@ -630,10 +630,10 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
             </Typography>
             <List dense>
               {molecules.map((mol) => {
-                const isVisible = visibleMolecules.includes(mol.molNo);
+                const isVisible = visibleMolecules.includes(mol.molNo!);
                 return (
                   <ListItem
-                    key={mol.molNo}
+                    key={mol.molNo ?? mol.uniqueId}
                     sx={{
                       bgcolor: "background.paper",
                       mb: 0.5,
@@ -654,9 +654,9 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           size="small"
                           onClick={() => {
                             if (isVisible) {
-                              dispatch(hideMolecule({ molNo: mol.molNo }));
+                              dispatch(hideMolecule(mol as any));
                             } else {
-                              dispatch(showMolecule({ molNo: mol.molNo, show: true }));
+                              dispatch(showMolecule(mol as any));
                             }
                             dispatch(setRequestDrawScene(true));
                           }}
@@ -817,7 +817,7 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
           {selectedMolecule && (
             <PushToCCP4i2Panel
               project={currentProject}
-              molNo={selectedMolecule.molNo}
+              molNo={selectedMolecule.molNo ?? undefined}
               item={selectedMolecule}
               onClose={handleClosePushDialog}
             />

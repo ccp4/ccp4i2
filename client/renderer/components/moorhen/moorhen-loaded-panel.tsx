@@ -107,6 +107,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (!fileId) return;
 
     const molNo = item.molNo;
+    if (molNo == null) return;
 
     // Set loading state
     setItemMetadata(
@@ -147,7 +148,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     items.forEach((item) => {
       if (item.uniqueId) {
         const fileId = extractFileId(item.uniqueId);
-        if (fileId && !itemMetadata.has(item.molNo)) {
+        if (fileId && item.molNo != null && !itemMetadata.has(item.molNo)) {
           fetchAndStoreItemMetadata(item);
         }
       }
@@ -192,12 +193,12 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (menuState.item) {
       if (type === "Molecule") {
         const molecule = menuState.item as moorhen.Molecule;
-        dispatch(hideMolecule({ molNo: molecule.molNo }));
+        dispatch(hideMolecule(molecule as any));
         dispatch(setRequestDrawScene(true));
       } else {
         const map = menuState.item as moorhen.Map;
         map.hideMapContour();
-        dispatch(hideMap({ molNo: map.molNo }));
+        dispatch(hideMap(map as any));
         dispatch(setRequestDrawScene(true));
       }
     }
@@ -208,11 +209,11 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (menuState.item) {
       if (type === "Molecule") {
         const molecule = menuState.item as moorhen.Molecule;
-        dispatch(showMolecule({ molNo: molecule.molNo, show: true }));
+        dispatch(showMolecule(molecule as any));
         dispatch(setRequestDrawScene(true));
       } else {
         const map = menuState.item as moorhen.Map;
-        dispatch(showMap({ molNo: map.molNo, show: true }));
+        dispatch(showMap(map as any));
         dispatch(setRequestDrawScene(true));
       }
     }
@@ -254,18 +255,18 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (isVisible(item)) {
       if (type === "Molecule") {
         const molecule = item as moorhen.Molecule;
-        dispatch(hideMolecule({ molNo: molecule.molNo }));
+        dispatch(hideMolecule(molecule as any));
       } else {
         const map = item as moorhen.Map;
-        dispatch(hideMap({ molNo: map.molNo }));
+        dispatch(hideMap(map as any));
       }
     } else {
       if (type === "Molecule") {
         const molecule = item as moorhen.Molecule;
-        dispatch(showMolecule({ molNo: molecule.molNo, show: true }));
+        dispatch(showMolecule(molecule as any));
       } else {
         const map = item as moorhen.Map;
-        dispatch(showMap({ molNo: map.molNo, show: true }));
+        dispatch(showMap(map as any));
       }
     }
   };
@@ -273,10 +274,10 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
   const isVisible = (item: ContentItem) => {
     if (type === "Molecule") {
       const molecule = item as moorhen.Molecule;
-      return visibleMolecules.includes(molecule.molNo);
+      return molecule.molNo != null && visibleMolecules.includes(molecule.molNo);
     } else {
       const map = item as moorhen.Map;
-      return visibleMaps.includes(map.molNo);
+      return map.molNo != null && visibleMaps.includes(map.molNo);
     }
   };
 
@@ -285,7 +286,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
   };
 
   const getItemMetadata = (item: ContentItem): ItemMetadata | undefined => {
-    return itemMetadata.get(item.molNo);
+    return item.molNo != null ? itemMetadata.get(item.molNo) : undefined;
   };
 
   // Get the primary display text for an item
@@ -605,7 +606,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
         fullWidth
       >
         <PushToCCP4i2Panel
-          molNo={molNo}
+          molNo={molNo ?? undefined}
           item={itemToPush}
           itemMetadata={itemMetadata.get(itemToPush?.molNo || 0)}
           onClose={handlePushDialogClose}

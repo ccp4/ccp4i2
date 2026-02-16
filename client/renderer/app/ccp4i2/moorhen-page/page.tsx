@@ -1,13 +1,15 @@
 "use client";
 
-import MoorhenLoader from "../../../components/moorhen/client-side-moorhen-loader";
-import MoorhenWrapper from "../../../components/moorhen/moorhen-wrapper";
-import { ClientStoreProvider } from "../../../providers/client-store-provider";
+import dynamic from "next/dynamic";
+
+// Dynamically import the entire moorhen page client component with SSR disabled.
+// Moorhen's UMD bundle references HTMLElement at module load time,
+// which is not available during Next.js server-side prerendering.
+const MoorhenPageClient = dynamic(
+  () => import("./moorhen-page-client"),
+  { ssr: false }
+);
 
 export default function MoorhenPage() {
-  return (
-    <ClientStoreProvider>
-      <MoorhenLoader fileIds={[]} />
-    </ClientStoreProvider>
-  );
+  return <MoorhenPageClient />;
 }
