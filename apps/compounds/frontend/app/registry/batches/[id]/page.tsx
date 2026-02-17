@@ -34,11 +34,14 @@ import {
   CloudUpload,
   CheckCircle,
   Delete,
+  Edit,
   ExpandMore,
 } from '@mui/icons-material';
 import { DetailPageLayout } from '@/components/compounds/DetailPageLayout';
 import { DataTable, Column } from '@/components/data-table';
+import { BatchEditDialog } from '@/components/compounds/BatchEditDialog';
 import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Batch, BatchQCFile, Compound, Target } from '@/types/compounds/models';
 
@@ -70,6 +73,10 @@ export default function BatchDetailPage({ params }: PageProps) {
   const { id } = use(params);
   const router = useRouter();
   const api = useCompoundsApi();
+  const { canContribute } = useAuth();
+
+  // Edit dialog state
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
 
   // Drop zone state
   const [isDragOver, setIsDragOver] = useState(false);
@@ -81,7 +88,7 @@ export default function BatchDetailPage({ params }: PageProps) {
   const [fileToDelete, setFileToDelete] = useState<BatchQCFile | null>(null);
   const [deleting, setDeleting] = useState(false);
 
-  const { data: batch, isLoading: batchLoading } = api.get<Batch>(
+  const { data: batch, isLoading: batchLoading, mutate: mutateBatch } = api.get<Batch>(
     `batches/${id}/`
   );
   const { data: qcFiles, isLoading: qcFilesLoading, mutate: mutateQcFiles } = api.get<BatchQCFile[]>(
@@ -373,6 +380,18 @@ export default function BatchDetailPage({ params }: PageProps) {
         )}
       </>
     ),
+    actions: canContribute ? (
+      <Tooltip title="Edit batch details">
+        <Button
+          variant="outlined"
+          size="small"
+          startIcon={<Edit />}
+          onClick={() => setEditDialogOpen(true)}
+        >
+          Edit
+        </Button>
+      </Tooltip>
+    ) : undefined,
   };
 
   // Detail content: accordions for properties and upload
@@ -528,6 +547,18 @@ export default function BatchDetailPage({ params }: PageProps) {
           fillHeight
         />
       </DetailPageLayout>
+
+      {/* Batch edit dialog */}
+      {batch && (
+        <BatchEditDialog
+          open={editDialogOpen}
+          onClose={() => setEditDialogOpen(false)}
+          onSaved={() => {
+            mutateBatch();
+          }}
+          batch={batch}
+        />
+      )}
 
       {/* Delete confirmation dialog */}
       <Dialog open={deleteDialogOpen} onClose={() => setDeleteDialogOpen(false)}>

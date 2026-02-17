@@ -241,12 +241,15 @@ function CompactTable({
                   )}
                 </TableCell>
                 <TableCell>
-                  <Chip
-                    icon={<Medication fontSize="small" />}
-                    label={row.formatted_id}
-                    size="small"
-                    variant="outlined"
-                  />
+                  <Tooltip title={row.formatted_id}>
+                    <Chip
+                      icon={<Medication fontSize="small" />}
+                      label={row.formatted_id}
+                      size="small"
+                      variant="outlined"
+                      sx={{ '& .MuiChip-label': { fontFamily: 'monospace' } }}
+                    />
+                  </Tooltip>
                 </TableCell>
                 <TableCell>
                   <Typography variant="body2">{row.target_name || '-'}</Typography>
@@ -435,12 +438,15 @@ function MediumTable({
                   )}
                 </TableCell>
                 <TableCell>
-                  <Chip
-                    icon={<Medication fontSize="small" />}
-                    label={row.formatted_id}
-                    size="small"
-                    variant="outlined"
-                  />
+                  <Tooltip title={row.formatted_id}>
+                    <Chip
+                      icon={<Medication fontSize="small" />}
+                      label={row.formatted_id}
+                      size="small"
+                      variant="outlined"
+                      sx={{ '& .MuiChip-label': { fontFamily: 'monospace' } }}
+                    />
+                  </Tooltip>
                 </TableCell>
                 <TableCell>
                   <Typography variant="body2">{row.target_name || '-'}</Typography>
@@ -585,12 +591,15 @@ function LongTable({ data }: { data: AggregationResponse }) {
                 </TableCell>
                 <TableCell>
                   {row.formatted_id ? (
-                    <Chip
-                      icon={<Medication fontSize="small" />}
-                      label={row.formatted_id}
-                      size="small"
-                      variant="outlined"
-                    />
+                    <Tooltip title={row.formatted_id}>
+                      <Chip
+                        icon={<Medication fontSize="small" />}
+                        label={row.formatted_id}
+                        size="small"
+                        variant="outlined"
+                        sx={{ '& .MuiChip-label': { fontFamily: 'monospace' } }}
+                      />
+                    </Tooltip>
                   ) : (
                     <Typography variant="body2" color="text.secondary">
                       {row.compound_name || 'Unknown'}

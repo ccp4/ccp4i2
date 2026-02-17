@@ -25,7 +25,7 @@ import {
   InputAdornment,
 } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Download, Medication, ZoomIn, ContentCopy, Check, Search, Clear } from '@mui/icons-material';
+import { Download, ZoomIn, ContentCopy, Check, Search, Clear } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/navigation';
 import {
@@ -45,7 +45,7 @@ import {
   OutputFormat,
   CompactAggregationResponse,
 } from '@/types/compounds/aggregation';
-import { MoleculeChip } from './MoleculeView';
+import { MoleculeChip, CompoundNameChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
 import { ProtocolScatterPlot } from './ProtocolScatterPlot';
 import {
@@ -621,12 +621,7 @@ function CompactTable({
                     )}
                   </TableCell>
                   <TableCell>
-                    <Chip
-                      icon={<Medication fontSize="small" />}
-                      label={row.formatted_id}
-                      size="small"
-                      variant="outlined"
-                    />
+                    <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} label={String(Number(row.formatted_id.split('-').pop()))} />
                   </TableCell>
                   {showBatchColumn && (
                     <TableCell>
@@ -999,12 +994,7 @@ function MediumTable({
                     )}
                   </TableCell>
                   <TableCell>
-                    <Chip
-                      icon={<Medication fontSize="small" />}
-                      label={row.formatted_id}
-                      size="small"
-                      variant="outlined"
-                    />
+                    <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} label={String(Number(row.formatted_id.split('-').pop()))} />
                   </TableCell>
                   {showBatchColumn && (
                     <TableCell>
@@ -1336,12 +1326,7 @@ function LongTable({
                   </TableCell>
                   <TableCell>
                     {row.formatted_id ? (
-                      <Chip
-                        icon={<Medication fontSize="small" />}
-                        label={row.formatted_id}
-                        size="small"
-                        variant="outlined"
-                      />
+                      <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} label={String(Number(row.formatted_id.split('-').pop()))} />
                     ) : (
                       <Typography variant="body2" color="text.secondary">
                         {row.compound_name || 'Unknown'}
@@ -1850,10 +1835,12 @@ function PivotTable({
                         <Typography variant="caption" color="text.secondary">-</Typography>
                       </Box>
                     )}
-                    <Typography variant="caption" fontWeight={600}>
-                      {row.formatted_id}
-                      {showBatchColumn && row.batch_number != null && `/${row.batch_number}`}
-                    </Typography>
+                    <Tooltip title={row.formatted_id + (showBatchColumn && row.batch_number != null ? `/${row.batch_number}` : '')}>
+                      <Typography variant="caption" fontWeight={600} sx={{ fontFamily: 'monospace' }}>
+                        {row.formatted_id}
+                        {showBatchColumn && row.batch_number != null && `/${row.batch_number}`}
+                      </Typography>
+                    </Tooltip>
                   </Box>
                 </TableCell>
               ))}
@@ -2392,13 +2379,7 @@ function CardsView({
               )}
               <Box sx={{ flex: 1, minWidth: 0 }}>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                  <Chip
-                    icon={<Medication fontSize="small" />}
-                    label={row.formatted_id}
-                    size="small"
-                    variant="outlined"
-                    color="primary"
-                  />
+                  <CompoundNameChip formattedId={row.formatted_id} smiles={row.smiles} chipColor="primary" label={String(Number(row.formatted_id.split('-').pop()))} />
                   {showBatch && row.batch_number != null && (
                     <Typography variant="caption" color="text.secondary">
                       /{row.batch_number}

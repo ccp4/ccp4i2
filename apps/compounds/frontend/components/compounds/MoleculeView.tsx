@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect, useState, useRef, useCallback } from 'react';
-import { Box, Skeleton, Typography, Popper, Paper, Fade, IconButton, Tooltip } from '@mui/material';
-import { ContentCopy, Check } from '@mui/icons-material';
+import { Box, Skeleton, Typography, Popper, Paper, Fade, IconButton, Tooltip, Chip } from '@mui/material';
+import { ContentCopy, Check, Medication } from '@mui/icons-material';
 import { useRDKit } from '@/lib/compounds/rdkit-context';
 
 interface MoleculeViewProps {
@@ -278,6 +278,177 @@ interface CopyableSmilesProps {
   smiles: string;
   maxWidth?: number;
 }
+
+/**
+ * Compound name chip with hover popup showing full ID and molecular sketch.
+ *
+ * The default MUI Chip truncates labels with an ellipsis, which for compound
+ * IDs like "NCL-00012345" shows only the common prefix ("NCL-00...").
+ * This component adds a hover popup that always shows the full ID and,
+ * when SMILES is available, renders a molecular structure sketch via RDKit.
+ */
+interface CompoundNameChipProps {
+  formattedId: string;
+  smiles?: string | null;
+  /** MUI Chip color variant */
+  chipColor?: 'default' | 'primary';
+  /** Override the chip label text (hover popup still shows full formattedId) */
+  label?: string;
+}
+
+const COMPOUND_HOVER_DELAY_MS = 300;
+const COMPOUND_SKETCH_SIZE = 200;
+
+export const CompoundNameChip: React.FC<CompoundNameChipProps> = ({
+  formattedId,
+  smiles,
+  chipColor = 'default',
+  label,
+}) => {
+  const { rdkitModule } = useRDKit();
+  const [showPopup, setShowPopup] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const [svgUrl, setSvgUrl] = useState<string | null>(null);
+  const hoverTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const isInPopup = useRef(false);
+
+  // Generate SVG lazily — only when popup is visible and SMILES is available
+  useEffect(() => {
+    if (!rdkitModule || !smiles || !showPopup) return;
+
+    try {
+      const mol = rdkitModule.get_mol(smiles);
+      if (!mol) return;
+
+      const svg = mol.get_svg(COMPOUND_SKETCH_SIZE, COMPOUND_SKETCH_SIZE);
+      mol.delete();
+
+      const blob = new Blob([svg], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      setSvgUrl(url);
+
+      return () => URL.revokeObjectURL(url);
+    } catch (err) {
+      console.error('RDKit error:', err);
+    }
+  }, [smiles, rdkitModule, showPopup]);
+
+  const handleMouseEnter = useCallback((event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+    hoverTimeoutRef.current = setTimeout(() => {
+      setShowPopup(true);
+    }, COMPOUND_HOVER_DELAY_MS);
+  }, []);
+
+  const hidePopup = useCallback(() => {
+    // Small delay to allow mouse to travel from chip to popup
+    setTimeout(() => {
+      if (!isInPopup.current) {
+        setShowPopup(false);
+        setAnchorEl(null);
+      }
+    }, 100);
+  }, []);
+
+  const handleMouseLeave = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    hidePopup();
+  }, [hidePopup]);
+
+  const handlePopupEnter = useCallback(() => {
+    isInPopup.current = true;
+    setShowPopup(true);
+  }, []);
+
+  const handlePopupLeave = useCallback(() => {
+    isInPopup.current = false;
+    setShowPopup(false);
+    setAnchorEl(null);
+  }, []);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    };
+  }, []);
+
+  return (
+    <>
+      <Chip
+        icon={<Medication fontSize="small" />}
+        label={label || formattedId}
+        size="small"
+        variant="outlined"
+        color={chipColor}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        sx={{ '& .MuiChip-label': { fontFamily: 'monospace' } }}
+      />
+      <Popper
+        open={showPopup}
+        anchorEl={anchorEl}
+        placement="bottom-start"
+        transition
+        sx={{ zIndex: 1300 }}
+        modifiers={[
+          {
+            name: 'flip',
+            enabled: true,
+            options: { fallbackPlacements: ['top-start', 'right-start', 'left-start'] },
+          },
+          {
+            name: 'preventOverflow',
+            enabled: true,
+            options: { boundary: 'viewport', padding: 8 },
+          },
+        ]}
+      >
+        {({ TransitionProps }) => (
+          <Fade {...TransitionProps} timeout={200}>
+            <Paper
+              elevation={8}
+              sx={{ p: 1.5, maxWidth: 280 }}
+              onMouseEnter={handlePopupEnter}
+              onMouseLeave={handlePopupLeave}
+            >
+              <Typography
+                variant="subtitle2"
+                sx={{ fontFamily: 'monospace', fontWeight: 600 }}
+              >
+                {formattedId}
+              </Typography>
+              {smiles && (
+                <Box sx={{ mt: 1, display: 'flex', justifyContent: 'center' }}>
+                  {svgUrl ? (
+                    <img
+                      src={svgUrl}
+                      alt={`Structure: ${formattedId}`}
+                      style={{
+                        width: COMPOUND_SKETCH_SIZE,
+                        height: COMPOUND_SKETCH_SIZE,
+                        objectFit: 'contain',
+                      }}
+                    />
+                  ) : (
+                    <Skeleton
+                      variant="rectangular"
+                      width={COMPOUND_SKETCH_SIZE}
+                      height={COMPOUND_SKETCH_SIZE}
+                    />
+                  )}
+                </Box>
+              )}
+            </Paper>
+          </Fade>
+        )}
+      </Popper>
+    </>
+  );
+};
 
 export const CopyableSmiles: React.FC<CopyableSmilesProps> = ({ smiles, maxWidth = 200 }) => {
   const [copied, setCopied] = useState(false);
