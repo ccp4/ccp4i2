@@ -43,7 +43,9 @@ import {
 } from '@mui/icons-material';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { PlateHeatMapDialog } from './PlateHeatMap';
-import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
+import { extractPlateData } from '@/lib/compounds/plate-extraction';
+import type { ExtractedSeries } from '@/lib/compounds/plate-extraction';
+import type { PlateLayout } from '@/types/compounds/models';
 
 interface Target {
   id: string;
@@ -74,44 +76,7 @@ interface SpreadsheetGrid {
   sheetName: string;
 }
 
-// Extracted data series from plate layout
-interface ExtractedSeries {
-  row: number;  // Plate row (0-indexed)
-  rowLetter: string;
-  stripIndex?: number;  // Strip index within the row (0-indexed), undefined for non-strip layouts
-  compoundGroupIndex?: number;  // Compound group index for paired strips (e.g., 0 for strips 1+2, 1 for strips 3+4)
-  compoundName: string | null;
-  dataValues: (number | null)[];  // Data values per concentration
-  minControlValues: (number | null)[];  // Raw control values for display
-  maxControlValues: (number | null)[];  // Raw control values for display
-  minControl: number | null;  // Averaged min control for analysis
-  maxControl: number | null;  // Averaged max control for analysis
-  startColumn: number;
-  endColumn: number;
-  hasIssues: boolean;
-  issues: string[];
-}
-
 const STEPS = ['Upload Excel', 'Review Extraction', 'Create Assay'];
-
-const PLATE_DIMENSIONS: Record<PlateFormat, { rows: number; cols: number }> = {
-  24: { rows: 4, cols: 6 },
-  96: { rows: 8, cols: 12 },
-  384: { rows: 16, cols: 24 },
-  1536: { rows: 32, cols: 48 },
-};
-
-function indexToRowLetter(index: number): string {
-  return String.fromCharCode('A'.charCodeAt(0) + index);
-}
-
-function excelColumnToIndex(col: string): number {
-  let result = 0;
-  for (let i = 0; i < col.length; i++) {
-    result = result * 26 + (col.charCodeAt(i) - 'A'.charCodeAt(0) + 1);
-  }
-  return result - 1; // 0-indexed
-}
 
 export function AssayUploadDrawer({
   open,
@@ -155,278 +120,7 @@ export function AssayUploadDrawer({
   // Extract data series from spreadsheet using plate layout
   const extractedSeries = useMemo((): ExtractedSeries[] => {
     if (!spreadsheetGrid || !plateLayout) return [];
-
-    const { cells } = spreadsheetGrid;
-    const format = plateLayout.plate_format || 384;
-    const { rows: numRows, cols: numCols } = PLATE_DIMENSIONS[format];
-
-    // Get origin offset
-    const originCol = excelColumnToIndex(plateLayout.spreadsheet_origin?.column || 'A');
-    const originRow = (plateLayout.spreadsheet_origin?.row || 1) - 1;
-
-    const series: ExtractedSeries[] = [];
-
-    // Determine row range based on sample_region
-    const startRowIdx = plateLayout.sample_region?.start_row
-      ? plateLayout.sample_region.start_row.charCodeAt(0) - 'A'.charCodeAt(0)
-      : 0;
-    const endRowIdx = plateLayout.sample_region?.end_row
-      ? plateLayout.sample_region.end_row.charCodeAt(0) - 'A'.charCodeAt(0)
-      : numRows - 1;
-
-    // Process based on control placement
-    if (plateLayout.controls?.placement === 'per_compound' && plateLayout.strip_layout) {
-      // Strip layout: each row has embedded controls per strip
-      // Each strip becomes a separate data series (technical replicates)
-      const strip = plateLayout.strip_layout;
-      // Ensure strip dimensions have sensible defaults
-      const stripWidth = strip.strip_width || 12;
-      const stripsPerRow = strip.strips_per_row || 2;
-      const replicateCount = plateLayout.replicate?.count || 1;
-      const isExplicitNaming = plateLayout.replicate?.pattern === 'explicit';
-
-      // How many distinct compounds per row:
-      // - Explicit naming: each strip gets its own name (strips_per_row compounds)
-      // - Grouped replicates: e.g., 4 strips / 2 replicates = 2 compounds
-      const compoundsPerRow = isExplicitNaming
-        ? stripsPerRow
-        : Math.max(1, Math.floor(stripsPerRow / replicateCount));
-
-      for (let plateRow = startRowIdx; plateRow <= endRowIdx; plateRow++) {
-        const spreadsheetRow = originRow + plateRow;
-        if (spreadsheetRow >= cells.length) continue;
-
-        const rowData = cells[spreadsheetRow] || [];
-        const rowLetter = indexToRowLetter(plateRow);
-
-        // Process each strip as a separate data series
-        for (let stripIdx = 0; stripIdx < stripsPerRow; stripIdx++) {
-          // Determine which compound group this strip belongs to:
-          // - Explicit naming: each strip is its own compound group
-          // - Grouped replicates: strips are grouped (e.g., strips 0,1 -> compound 0)
-          const compoundGroupIdx = isExplicitNaming
-            ? stripIdx
-            : Math.floor(stripIdx / replicateCount);
-          const stripStartCol = originCol + stripIdx * stripWidth;
-
-          // Get compound name based on source type and compound group
-          let compoundName: string | null = null;
-
-          // New naming schema: compound_name_row specifies where names start
-          // Names are in the left-most control column of each stripe
-          if (plateLayout.compound_source?.compound_name_row) {
-            // compound_name_row is absolute Excel row (1-indexed)
-            // For each data row, read from corresponding name row
-            const nameRowOffset = plateRow - startRowIdx;  // How far into data region
-            const nameRow = plateLayout.compound_source.compound_name_row - 1 + nameRowOffset;  // 0-indexed
-            const nameCol = stripStartCol;  // Left-most control column of this stripe
-
-            if (nameRow >= 0 && nameRow < cells.length) {
-              const nameRowData = cells[nameRow] || [];
-              if (nameCol < nameRowData.length) {
-                const nameVal = nameRowData[nameCol];
-                compoundName = nameVal ? String(nameVal) : null;
-              }
-            }
-          } else if (plateLayout.compound_source?.type === 'row_header') {
-            // Legacy: For row_header with multiple compounds per row, read from column before plate
-            // Each compound group reads from a different column (offset by compoundGroupIdx)
-            const nameColIdx = originCol - compoundsPerRow + compoundGroupIdx;
-            if (nameColIdx >= 0 && nameColIdx < rowData.length) {
-              const nameVal = rowData[nameColIdx];
-              compoundName = nameVal ? String(nameVal) : null;
-            }
-          } else if (plateLayout.compound_source?.type === 'adjacent_column') {
-            // For adjacent_column, read compound names from columns after ALL plate data
-            const totalStripWidth = stripWidth * stripsPerRow;
-            const nameColIdx = originCol + totalStripWidth + compoundGroupIdx;
-            if (nameColIdx < rowData.length) {
-              const nameVal = rowData[nameColIdx];
-              compoundName = nameVal ? String(nameVal) : null;
-            }
-          } else if (plateLayout.compound_source?.type === 'row_order') {
-            // For row_order, generate sequential names
-            // - Explicit naming: A1, A2, A3, A4 for 4 strips (each strip gets unique name)
-            // - Grouped replicates: A1, A1, A2, A2 for 4 strips with 2 replicates
-            if (compoundsPerRow > 1) {
-              compoundName = `${rowLetter}${compoundGroupIdx + 1}`;
-            } else {
-              compoundName = rowLetter;
-            }
-          }
-          const issues: string[] = [];
-
-          // Extract min controls for this strip
-          const minControlValues: (number | null)[] = [];
-          for (let i = 0; i < strip.min_wells; i++) {
-            const cellIdx = stripStartCol + i;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            minControlValues.push(typeof val === 'number' ? val : null);
-          }
-
-          // Extract data values for this strip
-          const dataValues: (number | null)[] = [];
-          for (let i = 0; i < strip.data_wells; i++) {
-            const cellIdx = stripStartCol + strip.min_wells + i;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            dataValues.push(typeof val === 'number' ? val : null);
-          }
-
-          // Extract max controls for this strip
-          const maxControlValues: (number | null)[] = [];
-          for (let i = 0; i < strip.max_wells; i++) {
-            const cellIdx = stripStartCol + strip.min_wells + strip.data_wells + i;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            maxControlValues.push(typeof val === 'number' ? val : null);
-          }
-
-          // Average min control values for this strip
-          const validMinValues = minControlValues.filter((v): v is number => v !== null);
-          const averagedMinControl = validMinValues.length > 0
-            ? validMinValues.reduce((a, b) => a + b, 0) / validMinValues.length
-            : null;
-
-          // Average max control values for this strip
-          const validMaxValues = maxControlValues.filter((v): v is number => v !== null);
-          const averagedMaxControl = validMaxValues.length > 0
-            ? validMaxValues.reduce((a, b) => a + b, 0) / validMaxValues.length
-            : null;
-
-          // Validate data
-          if (dataValues.every(v => v === null)) {
-            issues.push('No numeric data found');
-          }
-          if (averagedMinControl === null) {
-            issues.push('Missing min controls');
-          }
-          if (averagedMaxControl === null) {
-            issues.push('Missing max controls');
-          }
-
-          // Build final data array: [min_control, data1, data2, ..., dataN, max_control]
-          const finalDataValues: (number | null)[] = [
-            averagedMinControl,
-            ...dataValues,
-            averagedMaxControl,
-          ];
-
-          series.push({
-            row: plateRow,
-            rowLetter,
-            stripIndex: stripIdx,
-            compoundGroupIndex: compoundGroupIdx,
-            compoundName,
-            dataValues: finalDataValues,
-            minControlValues,
-            maxControlValues,
-            minControl: averagedMinControl,
-            maxControl: averagedMaxControl,
-            startColumn: stripStartCol - originCol + 1,
-            endColumn: stripStartCol - originCol + stripWidth,
-            hasIssues: issues.length > 0,
-            issues,
-          });
-        }
-      }
-    } else {
-      // Standard edge controls layout
-      const startCol = plateLayout.sample_region?.start_column || 1;
-      const endCol = plateLayout.sample_region?.end_column || numCols;
-
-      for (let plateRow = startRowIdx; plateRow <= endRowIdx; plateRow++) {
-        const spreadsheetRow = originRow + plateRow;
-        if (spreadsheetRow >= cells.length) continue;
-
-        const rowData = cells[spreadsheetRow] || [];
-        const issues: string[] = [];
-
-        // Extract min control values
-        const minControlValues: (number | null)[] = [];
-        if (plateLayout.controls?.min?.columns) {
-          for (const col of plateLayout.controls.min.columns) {
-            const cellIdx = originCol + col - 1;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            minControlValues.push(typeof val === 'number' ? val : null);
-          }
-        }
-
-        // Extract max control values
-        const maxControlValues: (number | null)[] = [];
-        if (plateLayout.controls?.max?.columns) {
-          for (const col of plateLayout.controls.max.columns) {
-            const cellIdx = originCol + col - 1;
-            const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-            maxControlValues.push(typeof val === 'number' ? val : null);
-          }
-        }
-
-        // Extract data values
-        const dataValues: (number | null)[] = [];
-        for (let col = startCol; col <= endCol; col++) {
-          const cellIdx = originCol + col - 1;
-          const val = cellIdx < rowData.length ? rowData[cellIdx] : null;
-          dataValues.push(typeof val === 'number' ? val : null);
-        }
-
-        // Get compound name based on compound_source type
-        let compoundName: string | null = null;
-        if (plateLayout.compound_source?.type === 'row_header') {
-          // Compound name in column before plate data
-          const nameColIdx = originCol - 1;
-          if (nameColIdx >= 0 && nameColIdx < rowData.length) {
-            const nameVal = rowData[nameColIdx];
-            compoundName = nameVal ? String(nameVal) : null;
-          }
-        } else if (plateLayout.compound_source?.type === 'adjacent_column') {
-          // Compound name in column immediately after the data region
-          const nameColIdx = originCol + endCol;  // endCol is already relative, so this is the next column
-          if (nameColIdx < rowData.length) {
-            const nameVal = rowData[nameColIdx];
-            compoundName = nameVal ? String(nameVal) : null;
-          }
-        }
-
-        // Compute averaged control values
-        const validMinValues = minControlValues.filter((v): v is number => v !== null);
-        const averagedMinControl = validMinValues.length > 0
-          ? validMinValues.reduce((a, b) => a + b, 0) / validMinValues.length
-          : null;
-
-        const validMaxValues = maxControlValues.filter((v): v is number => v !== null);
-        const averagedMaxControl = validMaxValues.length > 0
-          ? validMaxValues.reduce((a, b) => a + b, 0) / validMaxValues.length
-          : null;
-
-        // Validate
-        if (dataValues.every(v => v === null)) {
-          issues.push('No numeric data found');
-        }
-
-        // Build final data array: [min_control, data1, data2, ..., dataN, max_control]
-        const finalDataValues: (number | null)[] = [
-          averagedMinControl,
-          ...dataValues,
-          averagedMaxControl,
-        ];
-
-        series.push({
-          row: plateRow,
-          rowLetter: indexToRowLetter(plateRow),
-          compoundName,
-          dataValues: finalDataValues,  // Controls at first/last positions
-          minControlValues,
-          maxControlValues,
-          minControl: averagedMinControl,
-          maxControl: averagedMaxControl,
-          startColumn: startCol,
-          endColumn: endCol,
-          hasIssues: issues.length > 0,
-          issues,
-        });
-      }
-    }
-
-    return series;
+    return extractPlateData(spreadsheetGrid.cells, plateLayout);
   }, [spreadsheetGrid, plateLayout]);
 
   const validSeriesCount = extractedSeries.filter(s => !s.hasIssues).length;
@@ -941,13 +635,16 @@ function FileDropZone({ onFileSelected, selectedFile, spreadsheetGrid }: FileDro
         throw new Error('No worksheet found');
       }
 
-      // Get sheet as 2D array (preserving all cells including empty ones)
+      // Get sheet as 2D array using absolute Excel coordinates.
+      // Always start from row 0, col 0 so that cells[r][c] maps directly
+      // to Excel row r, column c. This ensures spreadsheet_origin indexing
+      // works correctly regardless of the sheet's used range.
       const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
       const cells: (string | number | null)[][] = [];
 
-      for (let row = range.s.r; row <= range.e.r; row++) {
+      for (let row = 0; row <= range.e.r; row++) {
         const rowData: (string | number | null)[] = [];
-        for (let col = range.s.c; col <= range.e.c; col++) {
+        for (let col = 0; col <= range.e.c; col++) {
           const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
           const cell = worksheet[cellAddress];
           if (cell) {

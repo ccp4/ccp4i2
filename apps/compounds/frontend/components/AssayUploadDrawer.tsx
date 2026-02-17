@@ -875,13 +875,16 @@ function FileDropZone({ onFileSelected, selectedFile, spreadsheetGrid }: FileDro
         throw new Error('No worksheet found');
       }
 
-      // Get sheet as 2D array (preserving all cells including empty ones)
+      // Get sheet as 2D array using absolute Excel coordinates.
+      // Always start from row 0, col 0 so that cells[r][c] maps directly
+      // to Excel row r, column c. This ensures spreadsheet_origin indexing
+      // works correctly regardless of the sheet's used range.
       const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
       const cells: (string | number | null)[][] = [];
 
-      for (let row = range.s.r; row <= range.e.r; row++) {
+      for (let row = 0; row <= range.e.r; row++) {
         const rowData: (string | number | null)[] = [];
-        for (let col = range.s.c; col <= range.e.c; col++) {
+        for (let col = 0; col <= range.e.c; col++) {
           const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
           const cell = worksheet[cellAddress];
           if (cell) {
