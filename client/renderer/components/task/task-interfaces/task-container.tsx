@@ -10,6 +10,7 @@ import Crank2Interface from "./crank2";
 import GenericInterface from "./generic";
 import ImportMergedInterface from "./import_merged";
 import ModelcraftInterface from "./modelcraft";
+import MolrepPipeInterface from "./molrep_pipe";
 import MolrepSelfrot from "./molrep_selfrot";
 import ProsmartRefmacInterface from "./prosmart_refmac";
 import PhaserSimpleInterface from "./phaser_simple";
@@ -118,6 +119,8 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <LidiaAcedrgNewInterface job={job} />;
       case "modelcraft":
         return <ModelcraftInterface job={job} />;
+      case "molrep_pipe":
+        return <MolrepPipeInterface job={job} />;
       case "molrep_selfrot":
         return <MolrepSelfrot job={job} />;
       case "parrot":
