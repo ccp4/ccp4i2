@@ -80,6 +80,7 @@ COPY apps/compounds/frontend/lib/compounds/api.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/auth-context.tsx ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/config.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/routes.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/plate-extraction.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/plateSeriesRanges.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/useAdaptiveTableHeight.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/useScrollDirection.ts ./renderer/lib/compounds/

@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import { Close, Palette } from '@mui/icons-material';
 import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
+import { computeWellMap, excelColumnToIndex, WellType } from '@/lib/compounds/plate-extraction';
 import { useRDKit } from '@/lib/compounds/rdkit-context';
 
 /**
@@ -37,14 +38,6 @@ const PLATE_DIMENSIONS: Record<PlateFormat, { rows: number; cols: number }> = {
   384: { rows: 16, cols: 24 },
   1536: { rows: 32, cols: 48 },
 };
-
-function excelColumnToIndex(col: string): number {
-  let result = 0;
-  for (let i = 0; i < col.length; i++) {
-    result = result * 26 + (col.charCodeAt(i) - 'A'.charCodeAt(0) + 1);
-  }
-  return result - 1; // 0-indexed
-}
 
 /**
  * Small molecule thumbnail for tooltips.
@@ -179,45 +172,21 @@ export function PlateHeatMap({ cells, plateLayout, compoundMapping }: PlateHeatM
     }
   };
 
-  // Determine cell type (control, data, etc.) for border styling
+  // Well-type map computed from the shared extraction logic
+  const wellMap = computeWellMap(plateLayout);
+
+  // Map WellType → heatmap cell type for border styling
+  const WELL_TYPE_TO_CELL: Record<WellType, 'max' | 'min' | 'data' | 'outside'> = {
+    max_control: 'max',
+    min_control: 'min',
+    sample: 'data',
+    empty: 'outside',
+  };
+
   const getCellType = (row: number, col: number): 'max' | 'min' | 'data' | 'outside' => {
-    const col1Indexed = col + 1;
-    const rowLetter = String.fromCharCode('A'.charCodeAt(0) + row);
-
-    if (plateLayout.controls?.placement === 'per_compound' && plateLayout.strip_layout) {
-      // Strip layout: controls are embedded in strips
-      const strip = plateLayout.strip_layout;
-      const posInRow = col % strip.strip_width;
-
-      if (posInRow < strip.min_wells) return 'min';
-      if (posInRow >= strip.min_wells + strip.data_wells) return 'max';
-      return 'data';
+    if (row < wellMap.length && col < wellMap[row].length) {
+      return WELL_TYPE_TO_CELL[wellMap[row][col]];
     }
-
-    // Edge controls
-    if (plateLayout.controls?.max?.columns?.includes(col1Indexed) &&
-        plateLayout.controls?.max?.rows?.includes(rowLetter)) {
-      return 'max';
-    }
-    if (plateLayout.controls?.min?.columns?.includes(col1Indexed) &&
-        plateLayout.controls?.min?.rows?.includes(rowLetter)) {
-      return 'min';
-    }
-
-    // Check if in sample region
-    const sampleRegion = plateLayout.sample_region;
-    if (sampleRegion) {
-      const startCol = sampleRegion.start_column;
-      const endCol = sampleRegion.end_column;
-      const startRowIdx = sampleRegion.start_row.charCodeAt(0) - 'A'.charCodeAt(0);
-      const endRowIdx = sampleRegion.end_row.charCodeAt(0) - 'A'.charCodeAt(0);
-
-      if (col1Indexed >= startCol && col1Indexed <= endCol &&
-          row >= startRowIdx && row <= endRowIdx) {
-        return 'data';
-      }
-    }
-
     return 'outside';
   };
 

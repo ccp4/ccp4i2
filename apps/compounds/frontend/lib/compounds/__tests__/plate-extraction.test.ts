@@ -4,8 +4,9 @@ import {
   extractPlateData,
   excelColumnToIndex,
   indexToRowLetter,
+  computeWellMap,
 } from '../plate-extraction';
-import type { CellGrid } from '../plate-extraction';
+import type { CellGrid, WellType } from '../plate-extraction';
 import type { PlateLayout } from '@/types/compounds/models';
 
 // ---------------------------------------------------------------------------
@@ -432,5 +433,179 @@ describe('extractPlateData — HTRF_06032024_T1.xlsx', () => {
     const rowA = series.filter(s => s.row === 0);
     expect(rowA).toHaveLength(2);
     expect(rowA[0].compoundName).toBeNull();
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Unit: computeWellMap — well-type classification for SVG visualisation
+// ---------------------------------------------------------------------------
+
+describe('computeWellMap — edge controls', () => {
+  const layout: PlateLayout = {
+    plate_format: 384,
+    controls: {
+      placement: 'edge_columns',
+      max: { columns: [1, 2], rows: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'] },
+      min: { columns: [23, 24], rows: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P'] },
+    },
+    sample_region: {
+      start_column: 3,
+      end_column: 22,
+      start_row: 'A',
+      end_row: 'P',
+    },
+    dilution: { direction: 'horizontal', num_concentrations: 20 },
+    replicate: { count: 2, pattern: 'adjacent_rows' },
+    compound_source: { type: 'row_order' },
+    spreadsheet_origin: { column: 'A', row: 1 },
+  };
+
+  it('returns correct grid dimensions', () => {
+    const map = computeWellMap(layout);
+    expect(map).toHaveLength(16);       // 384-well = 16 rows
+    expect(map[0]).toHaveLength(24);    // 24 columns
+  });
+
+  it('marks max control columns', () => {
+    const map = computeWellMap(layout);
+    // Columns 1,2 (0-indexed: 0,1) should be max_control for all rows
+    for (let r = 0; r < 16; r++) {
+      expect(map[r][0]).toBe('max_control');
+      expect(map[r][1]).toBe('max_control');
+    }
+  });
+
+  it('marks min control columns', () => {
+    const map = computeWellMap(layout);
+    // Columns 23,24 (0-indexed: 22,23) should be min_control
+    for (let r = 0; r < 16; r++) {
+      expect(map[r][22]).toBe('min_control');
+      expect(map[r][23]).toBe('min_control');
+    }
+  });
+
+  it('marks sample region', () => {
+    const map = computeWellMap(layout);
+    // Columns 3-22 (0-indexed: 2-21) should be sample for all rows A-P
+    for (let r = 0; r < 16; r++) {
+      for (let c = 2; c <= 21; c++) {
+        expect(map[r][c]).toBe('sample');
+      }
+    }
+  });
+
+  it('handles partial row coverage', () => {
+    const partialLayout: PlateLayout = {
+      ...layout,
+      controls: {
+        ...layout.controls,
+        max: { columns: [1], rows: ['A', 'B'] },
+        min: { columns: [12], rows: ['A', 'B'] },
+      },
+      sample_region: {
+        start_column: 2,
+        end_column: 11,
+        start_row: 'A',
+        end_row: 'B',
+      },
+      plate_format: 96,
+    };
+    const map = computeWellMap(partialLayout);
+    // Row A (0): col 0 = max, cols 1-10 = sample, col 11 = min
+    expect(map[0][0]).toBe('max_control');
+    expect(map[0][5]).toBe('sample');
+    expect(map[0][11]).toBe('min_control');
+    // Row C (2): should all be empty (not in control rows or sample region)
+    expect(map[2][0]).toBe('empty');
+    expect(map[2][5]).toBe('empty');
+    expect(map[2][11]).toBe('empty');
+  });
+});
+
+describe('computeWellMap — strip layout', () => {
+  const stripLayout: PlateLayout = {
+    plate_format: 384,
+    controls: {
+      placement: 'per_compound',
+      max: { columns: [], rows: [] },
+      min: { columns: [], rows: [] },
+    },
+    sample_region: {
+      start_column: 1,
+      end_column: 24,
+      start_row: 'A',
+      end_row: 'P',
+    },
+    dilution: { direction: 'horizontal', num_concentrations: 10 },
+    replicate: { count: 2, pattern: 'adjacent_rows' },
+    compound_source: { type: 'row_order' },
+    strip_layout: {
+      strip_width: 12,
+      min_wells: 1,
+      data_wells: 10,
+      max_wells: 1,
+      strips_per_row: 2,
+    },
+    spreadsheet_origin: { column: 'A', row: 1 },
+  };
+
+  it('classifies strip wells correctly', () => {
+    const map = computeWellMap(stripLayout);
+    // Row A: strip 1 = [min(0), data(1-10), max(11)], strip 2 = [min(12), data(13-22), max(23)]
+    expect(map[0][0]).toBe('min_control');   // Strip 1 min
+    expect(map[0][1]).toBe('sample');        // Strip 1 data start
+    expect(map[0][10]).toBe('sample');       // Strip 1 data end
+    expect(map[0][11]).toBe('max_control');  // Strip 1 max
+    expect(map[0][12]).toBe('min_control');  // Strip 2 min
+    expect(map[0][13]).toBe('sample');       // Strip 2 data start
+    expect(map[0][22]).toBe('sample');       // Strip 2 data end
+    expect(map[0][23]).toBe('max_control');  // Strip 2 max
+  });
+
+  it('marks rows outside sample region as empty', () => {
+    const partialLayout: PlateLayout = {
+      ...stripLayout,
+      sample_region: {
+        ...stripLayout.sample_region,
+        start_row: 'C',
+        end_row: 'D',
+      },
+    };
+    const map = computeWellMap(partialLayout);
+    // Row A (0) and B (1) should be all empty
+    expect(map[0].every(t => t === 'empty')).toBe(true);
+    expect(map[1].every(t => t === 'empty')).toBe(true);
+    // Row C (2) should have strip pattern
+    expect(map[2][0]).toBe('min_control');
+    expect(map[2][1]).toBe('sample');
+    // Row E (4) should be empty
+    expect(map[4].every(t => t === 'empty')).toBe(true);
+  });
+
+  it('handles strips that do not fill the full plate width', () => {
+    const narrowLayout: PlateLayout = {
+      ...stripLayout,
+      plate_format: 96,
+      sample_region: { start_column: 1, end_column: 12, start_row: 'A', end_row: 'A' },
+      strip_layout: {
+        strip_width: 5,
+        min_wells: 1,
+        data_wells: 3,
+        max_wells: 1,
+        strips_per_row: 2,  // 2 × 5 = 10 columns used, 2 remain
+      },
+    };
+    const map = computeWellMap(narrowLayout);
+    // Columns 0-4: strip 1
+    expect(map[0][0]).toBe('min_control');
+    expect(map[0][1]).toBe('sample');
+    expect(map[0][3]).toBe('sample');
+    expect(map[0][4]).toBe('max_control');
+    // Columns 5-9: strip 2
+    expect(map[0][5]).toBe('min_control');
+    expect(map[0][9]).toBe('max_control');
+    // Columns 10-11: not part of any strip — should be empty
+    expect(map[0][10]).toBe('empty');
+    expect(map[0][11]).toBe('empty');
   });
 });

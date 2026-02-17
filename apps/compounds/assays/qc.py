@@ -121,7 +121,12 @@ def calculate_qc_metrics(assay: 'Assay') -> QCMetrics:
     high_controls = []
     low_controls = []
 
-    data_series_qs = assay.data_series.select_related('analysis').all()
+    data_series_qs = (
+        assay.data_series
+        .select_related('analysis')
+        .exclude(compound_name__isnull=True)
+        .exclude(compound_name='')
+    )
 
     for ds in data_series_qs:
         # Extract controls from extracted_data

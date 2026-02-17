@@ -6,7 +6,7 @@
  * coordinates: cells[r][c] maps to Excel row r, column c (0-indexed).
  */
 
-import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
+import type { PlateLayout, PlateFormat, ControlPlacement } from '@/types/compounds/models';
 
 /** Extracted data series from a single plate row (or strip). */
 export interface ExtractedSeries {
@@ -309,4 +309,113 @@ function extractEdgeControlLayout(
       issues,
     });
   }
+}
+
+// ---------------------------------------------------------------------------
+// Well map computation for SVG visualisation
+// ---------------------------------------------------------------------------
+
+/** Well classification for visualisation. */
+export type WellType = 'empty' | 'max_control' | 'min_control' | 'sample';
+
+/**
+ * Compute a 2D well-type map for an entire plate based purely on the layout
+ * configuration (no cell data required).
+ *
+ * Uses the same strip / edge-control logic as the extraction functions above
+ * so that the visual preview always matches what extraction would do.
+ *
+ * Returns `wellMap[row][col]` where row and col are 0-indexed plate positions.
+ */
+export function computeWellMap(layout: Partial<PlateLayout>): WellType[][] {
+  const plateFormat = layout.plate_format || 96;
+  const { rows: numRows, cols: numCols } = PLATE_DIMENSIONS[plateFormat];
+
+  // Initialise all wells as empty
+  const wellMap: WellType[][] = Array.from({ length: numRows }, () =>
+    Array.from({ length: numCols }, () => 'empty' as WellType),
+  );
+
+  // Determine active row range from sample_region
+  const startRowIdx = layout.sample_region?.start_row
+    ? layout.sample_region.start_row.charCodeAt(0) - 'A'.charCodeAt(0)
+    : 0;
+  const endRowIdx = layout.sample_region?.end_row
+    ? layout.sample_region.end_row.charCodeAt(0) - 'A'.charCodeAt(0)
+    : numRows - 1;
+
+  if (layout.controls?.placement === 'per_compound' && layout.strip_layout) {
+    // ---- Strip layout: [min×N][data×M][max×N] repeated per row ----
+    const strip = layout.strip_layout;
+    const stripWidth = strip.strip_width || 12;
+    const stripsPerRow = strip.strips_per_row || 2;
+
+    for (let row = startRowIdx; row <= endRowIdx; row++) {
+      for (let stripIdx = 0; stripIdx < stripsPerRow; stripIdx++) {
+        const stripStart = stripIdx * stripWidth;
+
+        for (let i = 0; i < stripWidth; i++) {
+          const col = stripStart + i;
+          if (col >= numCols) break;
+
+          if (i < strip.min_wells) {
+            wellMap[row][col] = 'min_control';
+          } else if (i < strip.min_wells + strip.data_wells) {
+            wellMap[row][col] = 'sample';
+          } else if (i < strip.min_wells + strip.data_wells + strip.max_wells) {
+            wellMap[row][col] = 'max_control';
+          }
+        }
+      }
+    }
+  } else {
+    // ---- Edge control layout ----
+
+    // Mark max-control wells
+    if (layout.controls?.max) {
+      const { rows, columns } = layout.controls.max;
+      for (let row = 0; row < numRows; row++) {
+        const rowLetter = indexToRowLetter(row);
+        if (!rows?.includes(rowLetter)) continue;
+        for (const colNum of columns || []) {
+          const col = colNum - 1; // to 0-indexed
+          if (col >= 0 && col < numCols) {
+            wellMap[row][col] = 'max_control';
+          }
+        }
+      }
+    }
+
+    // Mark min-control wells
+    if (layout.controls?.min) {
+      const { rows, columns } = layout.controls.min;
+      for (let row = 0; row < numRows; row++) {
+        const rowLetter = indexToRowLetter(row);
+        if (!rows?.includes(rowLetter)) continue;
+        for (const colNum of columns || []) {
+          const col = colNum - 1;
+          if (col >= 0 && col < numCols && wellMap[row][col] === 'empty') {
+            wellMap[row][col] = 'min_control';
+          }
+        }
+      }
+    }
+
+    // Mark sample wells
+    if (layout.sample_region) {
+      const { start_column, end_column, start_row, end_row } = layout.sample_region;
+      const sampleStartRow = start_row.charCodeAt(0) - 'A'.charCodeAt(0);
+      const sampleEndRow = end_row.charCodeAt(0) - 'A'.charCodeAt(0);
+
+      for (let row = sampleStartRow; row <= sampleEndRow; row++) {
+        for (let col = start_column - 1; col <= end_column - 1; col++) {
+          if (col >= 0 && col < numCols && wellMap[row][col] === 'empty') {
+            wellMap[row][col] = 'sample';
+          }
+        }
+      }
+    }
+  }
+
+  return wellMap;
 }

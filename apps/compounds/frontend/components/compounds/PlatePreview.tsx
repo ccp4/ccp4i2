@@ -3,6 +3,7 @@
 import { useMemo } from 'react';
 import { Box, Typography, Paper } from '@mui/material';
 import type { PlateLayout, PlateFormat } from '@/types/compounds/models';
+import { computeWellMap, WellType, indexToRowLetter } from '@/lib/compounds/plate-extraction';
 import {
   computeSeriesRanges,
   getSeriesColor,
@@ -19,17 +20,20 @@ const PLATE_DIMENSIONS: Record<PlateFormat, { rows: number; cols: number }> = {
   1536: { rows: 32, cols: 48 },
 };
 
-/**
- * Convert 0-indexed number to row letter
- */
-function indexToRowLetter(index: number): string {
-  return String.fromCharCode('A'.charCodeAt(0) + index);
-}
+// Colors for well types
+const WELL_COLORS: Record<WellType, string> = {
+  empty: '#f5f5f5',
+  max_control: '#2196f3',
+  min_control: '#f44336',
+  sample: '#4caf50',
+};
 
-/**
- * Well type for coloring
- */
-type WellType = 'empty' | 'max_control' | 'min_control' | 'sample';
+const WELL_BORDERS: Record<WellType, string> = {
+  empty: '#e0e0e0',
+  max_control: '#1976d2',
+  min_control: '#d32f2f',
+  sample: '#388e3c',
+};
 
 interface PlatePreviewProps {
   layout: Partial<PlateLayout>;
@@ -44,6 +48,8 @@ interface PlatePreviewProps {
 /**
  * Visual preview of a plate layout configuration.
  * Renders an SVG grid showing control wells, sample regions, and empty wells.
+ * Well classification is derived from the same logic used by the data extraction
+ * code, ensuring the preview always matches what extraction would actually do.
  */
 export function PlatePreview({
   layout,
@@ -56,84 +62,14 @@ export function PlatePreview({
   const plateFormat = layout.plate_format || 96;
   const { rows: numRows, cols: numCols } = PLATE_DIMENSIONS[plateFormat];
 
+  // Well classification — uses the same logic as plate-extraction.ts
+  const wellMap = useMemo(() => computeWellMap(layout), [layout]);
+
   // Compute series ranges for visualization
   const seriesRanges = useMemo(() => {
     if (!showSeriesRanges) return [];
     return computeSeriesRanges(layout);
   }, [layout, showSeriesRanges]);
-
-  // Calculate well positions and types
-  const wells = useMemo(() => {
-    const wellData: { row: number; col: number; type: WellType }[] = [];
-
-    // Check if using strip layout with embedded controls
-    const isStripLayout = layout.controls?.placement === 'per_compound' && layout.strip_layout;
-
-    for (let row = 0; row < numRows; row++) {
-      for (let col = 0; col < numCols; col++) {
-        let type: WellType = 'empty';
-        const colNum = col + 1; // 1-indexed
-        const rowLetter = indexToRowLetter(row);
-
-        if (isStripLayout && layout.strip_layout) {
-          // Strip layout: [min×N][data×M][max×N] repeated
-          const { strip_width, min_wells, data_wells, max_wells } = layout.strip_layout;
-          const posInStrip = (col % strip_width) + 1; // 1-indexed position within strip
-
-          // Check if this row is in the sample region
-          const inSampleRows = layout.sample_region
-            ? rowLetter >= layout.sample_region.start_row && rowLetter <= layout.sample_region.end_row
-            : true;
-
-          if (inSampleRows) {
-            if (posInStrip <= min_wells) {
-              type = 'min_control';
-            } else if (posInStrip <= min_wells + data_wells) {
-              type = 'sample';
-            } else if (posInStrip <= min_wells + data_wells + max_wells) {
-              type = 'max_control';
-            }
-          }
-        } else {
-          // Standard layout: edge controls + sample region
-
-          // Check if this well is a max control
-          if (layout.controls?.max) {
-            const { rows, columns } = layout.controls.max;
-            if (rows?.includes(rowLetter) && columns?.includes(colNum)) {
-              type = 'max_control';
-            }
-          }
-
-          // Check if this well is a min control
-          if (layout.controls?.min && type === 'empty') {
-            const { rows, columns } = layout.controls.min;
-            if (rows?.includes(rowLetter) && columns?.includes(colNum)) {
-              type = 'min_control';
-            }
-          }
-
-          // Check if this well is in the sample region
-          if (layout.sample_region && type === 'empty') {
-            const { start_column, end_column, start_row, end_row } = layout.sample_region;
-
-            if (
-              colNum >= start_column &&
-              colNum <= end_column &&
-              rowLetter >= start_row &&
-              rowLetter <= end_row
-            ) {
-              type = 'sample';
-            }
-          }
-        }
-
-        wellData.push({ row, col, type });
-      }
-    }
-
-    return wellData;
-  }, [layout, numRows, numCols]);
 
   // Layout calculations
   const labelWidth = showLabels ? 20 : 0;
@@ -147,20 +83,35 @@ export function PlatePreview({
   const wellHeight = plateHeight / numRows;
   const wellRadius = Math.min(wellWidth, wellHeight) * 0.4;
 
-  // Colors for well types
-  const wellColors: Record<WellType, string> = {
-    empty: '#f5f5f5',
-    max_control: '#2196f3',    // Blue
-    min_control: '#f44336',    // Red
-    sample: '#4caf50',         // Green
-  };
+  // Strip layout metadata for visual indicators
+  const isStripLayout = layout.controls?.placement === 'per_compound' && layout.strip_layout;
+  const stripWidth = layout.strip_layout?.strip_width || 0;
+  const stripsPerRow = layout.strip_layout?.strips_per_row || 0;
 
-  const wellBorders: Record<WellType, string> = {
-    empty: '#e0e0e0',
-    max_control: '#1976d2',
-    min_control: '#d32f2f',
-    sample: '#388e3c',
-  };
+  // Replicate grouping for alternating bands
+  const replicateCount = layout.replicate?.count || 1;
+  const replicatePattern = layout.replicate?.pattern || 'adjacent_rows';
+  const startRowIdx = layout.sample_region?.start_row
+    ? layout.sample_region.start_row.charCodeAt(0) - 'A'.charCodeAt(0)
+    : 0;
+  const endRowIdx = layout.sample_region?.end_row
+    ? layout.sample_region.end_row.charCodeAt(0) - 'A'.charCodeAt(0)
+    : numRows - 1;
+
+  // Dilution direction
+  const dilutionDir = layout.dilution?.direction || 'horizontal';
+
+  // Count wells by type for summary
+  const wellCounts = useMemo(() => {
+    let sample = 0, control = 0;
+    for (let r = 0; r < wellMap.length; r++) {
+      for (let c = 0; c < wellMap[r].length; c++) {
+        if (wellMap[r][c] === 'sample') sample++;
+        else if (wellMap[r][c] === 'max_control' || wellMap[r][c] === 'min_control') control++;
+      }
+    }
+    return { sample, control };
+  }, [wellMap]);
 
   return (
     <Paper sx={{ p: 2, bgcolor: 'grey.50' }}>
@@ -192,6 +143,51 @@ export function PlatePreview({
             {indexToRowLetter(i)}
           </text>
         ))}
+
+        {/* Replicate group bands (alternating shading) */}
+        {replicatePattern === 'adjacent_rows' && replicateCount > 1 && (() => {
+          const bands: React.ReactNode[] = [];
+          let groupIdx = 0;
+          for (let row = startRowIdx; row <= endRowIdx; row += replicateCount) {
+            if (groupIdx % 2 === 0) {
+              const bandEnd = Math.min(row + replicateCount - 1, endRowIdx);
+              const y = labelHeight + wellHeight * row;
+              const bandHeight = wellHeight * (bandEnd - row + 1);
+              bands.push(
+                <rect
+                  key={`band-${row}`}
+                  x={labelWidth}
+                  y={y}
+                  width={plateWidth}
+                  height={bandHeight}
+                  fill="rgba(0, 0, 0, 0.04)"
+                  rx={2}
+                />
+              );
+            }
+            groupIdx++;
+          }
+          return bands;
+        })()}
+
+        {/* Strip boundary lines */}
+        {isStripLayout && stripsPerRow > 1 && Array.from({ length: stripsPerRow - 1 }, (_, i) => {
+          const colBoundary = (i + 1) * stripWidth;
+          if (colBoundary >= numCols) return null;
+          const x = labelWidth + wellWidth * colBoundary;
+          return (
+            <line
+              key={`strip-boundary-${i}`}
+              x1={x}
+              y1={labelHeight + wellHeight * startRowIdx}
+              x2={x}
+              y2={labelHeight + wellHeight * (endRowIdx + 1)}
+              stroke="#9e9e9e"
+              strokeWidth={1}
+              strokeDasharray="4,3"
+            />
+          );
+        })}
 
         {/* Series range boxes (rendered before wells so they appear behind) */}
         {showSeriesRanges && seriesRanges.map((range) => {
@@ -229,31 +225,99 @@ export function PlatePreview({
         })}
 
         {/* Wells */}
-        {wells.map(({ row, col, type }) => (
-          <circle
-            key={`${row}-${col}`}
-            cx={labelWidth + wellWidth * col + wellWidth / 2}
-            cy={labelHeight + wellHeight * row + wellHeight / 2}
-            r={wellRadius}
-            fill={wellColors[type]}
-            stroke={wellBorders[type]}
-            strokeWidth={1}
-          />
-        ))}
+        {wellMap.map((rowData, row) =>
+          rowData.map((type, col) => (
+            <circle
+              key={`${row}-${col}`}
+              cx={labelWidth + wellWidth * col + wellWidth / 2}
+              cy={labelHeight + wellHeight * row + wellHeight / 2}
+              r={wellRadius}
+              fill={WELL_COLORS[type]}
+              stroke={WELL_BORDERS[type]}
+              strokeWidth={1}
+            />
+          ))
+        )}
+
+        {/* Dilution direction arrow */}
+        {(() => {
+          // Find the sample region for arrow placement
+          const sampleStartCol = (layout.sample_region?.start_column || 1) - 1;
+          const sampleEndCol = (layout.sample_region?.end_column || numCols) - 1;
+
+          if (dilutionDir === 'horizontal') {
+            // Arrow across columns below the plate
+            const arrowY = labelHeight + wellHeight * (endRowIdx + 1) + 6;
+            const arrowX1 = labelWidth + wellWidth * sampleStartCol + wellWidth / 2;
+            const arrowX2 = labelWidth + wellWidth * sampleEndCol + wellWidth / 2;
+
+            // For strip layouts, draw arrow per strip
+            if (isStripLayout) {
+              const minWells = layout.strip_layout?.min_wells || 0;
+              const dataWells = layout.strip_layout?.data_wells || 0;
+              return Array.from({ length: stripsPerRow }, (_, stripIdx) => {
+                const stripStart = stripIdx * stripWidth;
+                const dataStart = stripStart + minWells;
+                const dataEnd = dataStart + dataWells - 1;
+                const x1 = labelWidth + wellWidth * dataStart + wellWidth / 2;
+                const x2 = labelWidth + wellWidth * dataEnd + wellWidth / 2;
+                return (
+                  <g key={`arrow-${stripIdx}`}>
+                    <line x1={x1} y1={arrowY} x2={x2} y2={arrowY} stroke="#757575" strokeWidth={1.5} />
+                    <polygon
+                      points={`${x2},${arrowY - 3} ${x2 + 5},${arrowY} ${x2},${arrowY + 3}`}
+                      fill="#757575"
+                    />
+                    <text x={(x1 + x2) / 2} y={arrowY + 10} textAnchor="middle" fontSize={7} fill="#757575">
+                      dilution
+                    </text>
+                  </g>
+                );
+              });
+            }
+
+            return (
+              <g key="arrow">
+                <line x1={arrowX1} y1={arrowY} x2={arrowX2} y2={arrowY} stroke="#757575" strokeWidth={1.5} />
+                <polygon
+                  points={`${arrowX2},${arrowY - 3} ${arrowX2 + 5},${arrowY} ${arrowX2},${arrowY + 3}`}
+                  fill="#757575"
+                />
+                <text x={(arrowX1 + arrowX2) / 2} y={arrowY + 10} textAnchor="middle" fontSize={7} fill="#757575">
+                  dilution
+                </text>
+              </g>
+            );
+          } else {
+            // Vertical dilution arrow to the right of the plate
+            const arrowX = labelWidth + plateWidth + 4;
+            const arrowY1 = labelHeight + wellHeight * startRowIdx + wellHeight / 2;
+            const arrowY2 = labelHeight + wellHeight * endRowIdx + wellHeight / 2;
+            return (
+              <g key="arrow">
+                <line x1={arrowX} y1={arrowY1} x2={arrowX} y2={arrowY2} stroke="#757575" strokeWidth={1.5} />
+                <polygon
+                  points={`${arrowX - 3},${arrowY2} ${arrowX},${arrowY2 + 5} ${arrowX + 3},${arrowY2}`}
+                  fill="#757575"
+                />
+              </g>
+            );
+          }
+        })()}
 
         {/* Legend */}
         {showLegend && (
           <g transform={`translate(${labelWidth}, ${height - 25})`}>
-            <circle cx={8} cy={8} r={6} fill={wellColors.max_control} stroke={wellBorders.max_control} />
+            <circle cx={8} cy={8} r={6} fill={WELL_COLORS.max_control} stroke={WELL_BORDERS.max_control} />
             <text x={20} y={12} fontSize={9} fill="#333">Max</text>
 
-            <circle cx={58} cy={8} r={6} fill={wellColors.min_control} stroke={wellBorders.min_control} />
+            <circle cx={58} cy={8} r={6} fill={WELL_COLORS.min_control} stroke={WELL_BORDERS.min_control} />
             <text x={70} y={12} fontSize={9} fill="#333">Min</text>
 
-            <circle cx={108} cy={8} r={6} fill={wellColors.sample} stroke={wellBorders.sample} />
+            <circle cx={108} cy={8} r={6} fill={WELL_COLORS.sample} stroke={WELL_BORDERS.sample} />
             <text x={120} y={12} fontSize={9} fill="#333">Sample</text>
 
-            <circle cx={178} cy={8} r={6} fill={wellColors.empty} stroke={wellBorders.empty} />
+            <circle cx={178} cy={8} r={6} fill={WELL_COLORS.empty} stroke={WELL_BORDERS.empty} />
             <text x={190} y={12} fontSize={9} fill="#333">Empty</text>
           </g>
         )}
@@ -265,10 +329,10 @@ export function PlatePreview({
           {plateFormat}-well plate
         </Typography>
         <Typography variant="caption" color="text.secondary">
-          {wells.filter(w => w.type === 'sample').length} sample wells
+          {wellCounts.sample} sample wells
         </Typography>
         <Typography variant="caption" color="text.secondary">
-          {wells.filter(w => w.type === 'max_control').length + wells.filter(w => w.type === 'min_control').length} control wells
+          {wellCounts.control} control wells
         </Typography>
       </Box>
     </Paper>
