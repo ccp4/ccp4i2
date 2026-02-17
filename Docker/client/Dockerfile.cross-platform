@@ -25,8 +25,9 @@ FROM --platform=$BUILDPLATFORM node:20-alpine3.20 AS package
 
 WORKDIR /app
 
-# Copy package files (build context is repo root)
+# Copy package files and local dependency tarballs (build context is repo root)
 COPY client/package*.json ./
+COPY client/moorhen-0.23.0-dev.tgz ./
 
 # Remove Electron-specific packages and add markdown rendering packages for web-only build
 # This significantly reduces install time and avoids downloading ~300MB of Electron binaries
@@ -53,8 +54,9 @@ ENV NEXT_PUBLIC_GIT_COMMIT=$NEXT_PUBLIC_GIT_COMMIT
 
 WORKDIR /app
 
-# Copy modified package.json from package stage
+# Copy modified package.json and local dependency tarballs from package stage
 COPY --from=package /app/package.json ./
+COPY --from=package /app/moorhen-0.23.0-dev.tgz ./
 
 # Install git (required by some npm packages that reference git repos)
 RUN apk add --no-cache git
@@ -154,9 +156,10 @@ WORKDIR /app
 # Install git (required by some npm packages that reference git repos)
 RUN apk add --no-cache git
 
-# Copy the modified package.json from package stage (NOT builder)
+# Copy the modified package.json and local dependency tarballs from package stage (NOT builder)
 # This allows deps stage to be cached independently of source code changes
 COPY --from=package /app/package.json ./
+COPY --from=package /app/moorhen-0.23.0-dev.tgz ./
 
 # Install production dependencies only
 # Must run on target platform to get correct architecture-specific packages (SWC, etc.)
