@@ -26,6 +26,7 @@ import ParrotInterface from "./parrot";
 import SHELXInterface from "./shelx";
 import CSymmatchInterface from "./csymmatch";
 import FreerFlagInterface from "./freerflag";
+import GesamtInterface from "./gesamt";
 import SplitMtzInterface from "./splitMtz";
 import Xia2MultiplexInterface from "./xia2_multiplex";
 import { useJob } from "../../../utils";
@@ -113,6 +114,8 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <CSymmatchInterface job={job} />;
       case "freerflag":
         return <FreerFlagInterface job={job} />;
+      case "gesamt":
+        return <GesamtInterface job={job} />;
       case "import_merged":
         return <ImportMergedInterface job={job} />;
       case "LidiaAcedrgNew":
