@@ -41,11 +41,11 @@ import uuid
 
 # Import will be done relatively when used as module
 try:
-    from .signal_system import Signal, SignalManager
+    from .signal_system import Signal
     from .hierarchy_system import HierarchicalObject
 except ImportError:
     # For standalone testing
-    from signal_system import Signal, SignalManager
+    from signal_system import Signal
     from hierarchy_system import HierarchicalObject
 
 logger = logging.getLogger(__name__)

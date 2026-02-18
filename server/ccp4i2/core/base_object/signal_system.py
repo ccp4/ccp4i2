@@ -57,17 +57,6 @@ class SlotInfo:
         self.connections = []
 
 
-class SignalInfo:
-    """Information about a decorated signal attribute."""
-
-    def __init__(
-        self, signal_type: type = None, arg_types: tuple = None, name: str = None
-    ):
-        self.signal_type = signal_type
-        self.arg_types = arg_types or ()
-        self.name = name
-
-
 def Slot(*arg_types, result: type = None, name: str = None, auto_connect: bool = True):
     """
     Decorator to mark methods as slots (equivalent to Qt's @Slot decorator).
@@ -139,68 +128,6 @@ def Slot(*arg_types, result: type = None, name: str = None, auto_connect: bool =
     return decorator
 
 
-def SignalDecorator(signal_type: type = None, *arg_types, name: str = None):
-    """
-    Decorator/descriptor for creating signals (equivalent to Qt's Signal).
-
-    Can be used as:
-    1. Class attribute: my_signal = SignalDecorator(str)
-    2. Method decorator: @SignalDecorator(str, int)
-
-    Args:
-        signal_type: Primary signal data type
-        *arg_types: Additional argument types
-        name: Custom signal name
-
-    Usage:
-        class MyClass:
-            # As class attribute
-            value_changed = SignalDecorator(int)
-            data_ready = SignalDecorator(dict)
-
-            # As property descriptor
-            @SignalDecorator(str)
-            def message_sent(self): pass
-    """
-
-    class SignalDescriptor:
-        """Descriptor that creates Signal instances on first access."""
-
-        def __init__(
-            self, signal_type: type = None, arg_types: tuple = (), name: str = None
-        ):
-            self.signal_type = signal_type
-            self.arg_types = arg_types
-            self.name = name
-            self._signals = weakref.WeakKeyDictionary()
-
-        def __get__(self, obj, objtype=None):
-            if obj is None:
-                return self
-
-            # Return placeholder - will be replaced when Signal class is defined
-            return None
-
-        def __set_name__(self, owner, name):
-            if self.name is None:
-                self.name = name
-
-    # If used as decorator (@SignalDecorator(int))
-    if callable(signal_type):
-        func = signal_type
-        signal_info = SignalInfo(name=name or func.__name__)
-
-        # Mark function as signal creator
-        func._signal_info = signal_info
-        func._is_signal = True
-
-        return SignalDescriptor(name=signal_info.name)
-
-    # If used as descriptor (SignalDecorator(int))
-    all_types = (signal_type,) + arg_types if signal_type else arg_types
-    return SignalDescriptor(signal_type=signal_type, arg_types=all_types, name=name)
-
-
 @runtime_checkable
 class SlotCallable(Protocol):
     """Protocol for slot callables - functions that can be connected to signals."""
@@ -268,7 +195,6 @@ class Signal(Generic[T]):
         self._connections: List[Connection] = []
         self._name = name or f"Signal_{id(self)}"
         self._lock = threading.RLock()
-        self._blocked = False
         self._emission_count = 0
 
     @property
@@ -379,9 +305,6 @@ class Signal(Generic[T]):
         Returns:
             List of return values from all connected slots
         """
-        if self._blocked:
-            return []
-
         with self._lock:
             self._emission_count += 1
             valid_connections = []
@@ -442,9 +365,6 @@ class Signal(Generic[T]):
         """
         Async version of emit that can handle async slots.
         """
-        if self._blocked:
-            return []
-
         with self._lock:
             self._emission_count += 1
             valid_connections = [c for c in self._connections if c.is_valid()]
@@ -473,97 +393,8 @@ class Signal(Generic[T]):
 
         return results
 
-    @contextmanager
-    def blocked(self):
-        """Context manager to temporarily block signal emission."""
-        self._blocked = True
-        try:
-            yield
-        finally:
-            self._blocked = False
-
     def __repr__(self) -> str:
         return f"Signal(name={self._name}, connections={self.connection_count})"
-
-
-# Utility functions for working with decorated slots and signals
-def get_slots(obj) -> Dict[str, SlotInfo]:
-    """Get all @Slot decorated methods from an object."""
-    slots = {}
-    for name in dir(obj):
-        attr = getattr(obj, name)
-        if callable(attr) and hasattr(attr, "_is_slot"):
-            slots[name] = attr._slot_info
-    return slots
-
-
-def get_signals(obj) -> Dict[str, SignalInfo]:
-    """Get all @SignalDecorator decorated attributes from an object."""
-    signals = {}
-    for name in dir(type(obj)):
-        attr = getattr(type(obj), name)
-        if hasattr(attr, "_is_signal"):
-            signals[name] = attr._signal_info
-    return signals
-
-
-def auto_connect_slots(sender_obj, receiver_obj, signal_prefix: str = ""):
-    """
-    Automatically connect signals to slots based on naming convention.
-
-    Connects signals like 'value_changed' to slots like 'on_value_changed'
-    or 'handle_value_changed'.
-
-    Args:
-        sender_obj: Object with signals
-        receiver_obj: Object with slots
-        signal_prefix: Optional prefix for signal names
-    """
-    sender_signals = get_signals(sender_obj)
-    receiver_slots = get_slots(receiver_obj)
-
-    connections = []
-
-    for signal_name, signal_info in sender_signals.items():
-        # Try different slot naming patterns
-        slot_patterns = [
-            f"on_{signal_name}",
-            f"handle_{signal_name}",
-            f"{signal_name}_handler",
-            signal_name,  # Exact match
-        ]
-
-        if signal_prefix:
-            slot_patterns.extend(
-                [
-                    f"on_{signal_prefix}_{signal_name}",
-                    f"handle_{signal_prefix}_{signal_name}",
-                ]
-            )
-
-        for slot_pattern in slot_patterns:
-            if slot_pattern in receiver_slots:
-                # Get the actual signal and slot
-                signal_obj = getattr(sender_obj, signal_name)
-                slot_method = getattr(receiver_obj, slot_pattern)
-
-                if isinstance(signal_obj, Signal):
-                    conn = signal_obj.connect(slot_method)
-                    connections.append(conn)
-                    logger.info(f"Auto-connected {signal_name} -> {slot_pattern}")
-                    break
-
-    return connections
-
-
-def create_signal_from_decorator(obj, attr_name: str, descriptor) -> Signal:
-    """Create a Signal instance from a SignalDecorator descriptor."""
-    if hasattr(descriptor, "signal_type"):
-        signal = Signal(descriptor.signal_type, name=attr_name)
-        # Store on object
-        setattr(obj, f"_{attr_name}_signal", signal)
-        return signal
-    return None
 
 
 class SignalManager:
@@ -588,16 +419,6 @@ class SignalManager:
     def get_signal(self, name: str) -> Optional[Signal]:
         """Get an existing signal by name."""
         return self._signals.get(name)
-
-    def remove_signal(self, name: str) -> bool:
-        """Remove and cleanup a signal."""
-        with self._lock:
-            if name in self._signals:
-                signal = self._signals[name]
-                signal.disconnect()  # Disconnect all slots
-                del self._signals[name]
-                return True
-            return False
 
     def disconnect_all(self):
         """Disconnect all slots from all signals."""
