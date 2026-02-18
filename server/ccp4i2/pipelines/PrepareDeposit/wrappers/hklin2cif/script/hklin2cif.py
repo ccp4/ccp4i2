@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class hklin2cif(CPluginScript):
-    DESCRIPTION = 'Convert hklin file (+/- scaled unmerged data) creates as aprt of adding_stats_to_mmcif pipeline'
     TASKNAME = 'hklin2cif'
     TASKCOMMAND='gemmi'
 

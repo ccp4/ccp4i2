@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class imosflm(CPluginScript):
     TASKTITLE = 'Integrate images - iMosflm'
-    DESCRIPTION = 'Launch iMosflm and capture output'
     TASKNAME = 'imosflm'
     TASKCOMMAND = 'imosflm'
     

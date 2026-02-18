@@ -6,7 +6,6 @@ class cphasematch(CPluginScript):
     TASKTITLE = 'Match and analyse phases to reference set'
     TASKNAME = 'cphasematch'
     TASKCOMMAND = 'cphasematch'
-    DESCRIPTION = '''Compare phases from different sources (with option change of origin/hand)'''
 
     def processInputFiles ( self ):
         from ccp4i2.core import CCP4XtalData

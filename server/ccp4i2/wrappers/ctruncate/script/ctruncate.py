@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class ctruncate(CPluginScript):
     TASKTITLE = 'Intensities to amplitudes'
-    DESCRIPTION = 'Convert reflection intensities to structure factors (ctruncate)'
     TASKNAME = 'ctruncate'
     TASKCOMMAND = 'ctruncate'
 

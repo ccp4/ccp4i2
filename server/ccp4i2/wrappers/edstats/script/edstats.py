@@ -8,7 +8,6 @@ class edstats(CPluginScript):
     TASKTITLE           = 'Measure agreement between model and density'
     TASKNAME            = 'edstats'
     TASKCOMMAND         = 'edstats'
-    DESCRIPTION         = 'Calculates real-space metrics for evaluating the agreement between model and density (Edstats)'
     WHATNEXT            = ['coot_rebuild']
     PURGESEARCHLIST =  [[ 'fft%*/MAPOUT.map', 1 ] ]
 

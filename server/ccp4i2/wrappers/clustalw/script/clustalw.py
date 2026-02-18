@@ -11,7 +11,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class clustalw(CPluginScript):
     TASKTITLE = 'clustalw'
-    DESCRIPTION = 'Perform multiple alignment'
     TASKNAME = 'clustalw'
     TASKCOMMAND = shutil.which("clustalw2", path=Path(os.environ["CCP4"], "libexec"))
 
