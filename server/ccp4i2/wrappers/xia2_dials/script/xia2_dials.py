@@ -12,7 +12,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class xia2_dials(CPluginScript):
 
-    TASKTITLE = "Data processing with xia2/dials"
     TASKNAME = "xia2_dials"
     TASKCOMMAND = "xia2"
     ERROR_CODES = {

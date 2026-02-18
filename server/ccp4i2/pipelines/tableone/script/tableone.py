@@ -15,7 +15,6 @@ from ccp4i2.wrappers.validate_protein.script import validate_protein
 
 class tableone(CPluginScript):
 
-    TASKTITLE = 'Generate Table One'
     TASKNAME = 'tableone'
     TASKCOMMAND = 'xia2.merging_statistics'
     PERFORMANCECLASS = 'CExpPhasPerformance'

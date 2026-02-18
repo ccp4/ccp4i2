@@ -2,7 +2,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class sculptor(CPluginScript):
-    TASKTITLE = 'Truncate search model - SCULPTOR'
     TASKNAME = 'sculptor'  
     PERFORMANCECLASS = 'CAtomCountPerformance'
     TASKCOMMAND = 'phaser.sculptor'
@@ -26,7 +25,7 @@ class sculptor(CPluginScript):
 
       ### output block
       self.appendCommandScript("output {")
-      self.appendCommandScript("job_title = %s" % sculptor.TASKTITLE)
+      self.appendCommandScript("job_title = Truncate search model - SCULPTOR")
       self.appendCommandScript("folder = %s" % self.workDirectory)
       self.appendCommandScript("root = ''")
       self.appendCommandScript("}")

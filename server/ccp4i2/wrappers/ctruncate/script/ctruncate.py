@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class ctruncate(CPluginScript):
-    TASKTITLE = 'Intensities to amplitudes'
     TASKNAME = 'ctruncate'
     TASKCOMMAND = 'ctruncate'
 

@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class mtzutils(CPluginScript):
 
-    TASKTITLE = 'Add or delete MTZ columns'
     TASKNAME = 'mtzutils'
     TASKCOMMAND = 'mtzutils'
 

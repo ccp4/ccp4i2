@@ -15,7 +15,6 @@ from ccp4i2.wrappers.xia2_dials.script import xia2_dials
 
 class xia2_xds(xia2_dials.xia2_dials):
 
-    TASKTITLE = "Data processing with xia2/xds"
     TASKNAME = "xia2_xds"
 
     def makeCommandAndScript(self):

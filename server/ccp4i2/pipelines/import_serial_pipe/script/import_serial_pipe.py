@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class import_serial_pipe(CPluginScript):
-    TASKTITLE = 'Import Serial Pipeline'
     TASKNAME = 'import_serial_pipe'
 
     def __init__(self, *args, **kwargs):

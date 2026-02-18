@@ -67,7 +67,6 @@ class MosflmServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
 
 class mosflm(CPluginScript):
 
-    TASKTITLE = 'Run mosflm and capture output'
     TASKNAME = 'mosflm'
     TASKCOMMAND = 'ipmosflm'
 

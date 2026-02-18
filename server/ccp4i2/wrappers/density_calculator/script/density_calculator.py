@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4XtalData import CMapCoeffsDataFile
 
 
 class density_calculator(CPluginScript):
-    TASKTITLE = "Density Calculator"
     TASKNAME = "density_calculator"
     WHATNEXT = ["coot_rebuild"]
 

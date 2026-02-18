@@ -10,7 +10,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_find_waters(CPluginScript):
-    TASKTITLE = 'Find waters with Coot API'
     TASKNAME = 'coot_find_waters'
     WHATNEXT = ['prosmart_refmac']
     ASYNCHRONOUS = True

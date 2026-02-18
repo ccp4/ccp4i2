@@ -9,7 +9,6 @@ from ccp4i2.pipelines.import_xia2.wrappers.xia2_run.script import xia2_run
 
 class import_xia2(CCP4PluginScript.CPluginScript):
 
-    TASKTITLE = 'Import XIA2 results'
     TASKNAME = 'import_xia2'
     WHATNEXT = ['aimless_pipe','phaser_pipeline','molrep_mr']
 

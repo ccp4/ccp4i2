@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class parrot(CPluginScript):
 
-    TASKTITLE = 'Parrot'
     TASKNAME = 'parrot'
     TASKCOMMAND = 'cparrot'
     PERFORMANCECLASS = 'CExpPhasPerformance'

@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class molrep_mr(CPluginScript):
 
-    TASKTITLE='Molecular replacement using Molrep'
     TASKNAME = 'molrep_mr'
     TASKCOMMAND = 'molrep'
 

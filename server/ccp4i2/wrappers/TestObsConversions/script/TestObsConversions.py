@@ -5,7 +5,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class TestObsConversions(CPluginScript):
-    TASKTITLE = 'TestObsConversions'
     TASKNAME = 'TestObsConversions'
     PERFORMANCECLASS = 'CTestObsConversionsPerformance'
     ERROR_CODES = { 201 : {'description' : 'Failed to turn the provided data object into the requested input representation' },}

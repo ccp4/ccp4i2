@@ -10,7 +10,6 @@ from ccp4i2.core.CCP4XtalData import CObsDataFile
 
 
 class slicendice(CPluginScript):
-    TASKTITLE = "SliceNDice"
     TASKNAME = "slicendice"
     TASKCOMMAND = "slicendice"
     PERFORMANCECLASS = "CRefinementPerformance"

@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class molrep_den(CPluginScript):
 
-    TASKTITLE='Molecular replacement with electron density - MOLREP'
     TASKNAME = 'molrep_den'
     TASKCOMMAND = 'molrep'
 

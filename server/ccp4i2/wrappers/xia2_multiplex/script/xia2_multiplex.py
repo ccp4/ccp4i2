@@ -14,7 +14,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class xia2_multiplex(CPluginScript):
 
-    TASKTITLE = "Data set combination with xia2.multiplex"
     TASKNAME = "xia2_multiplex"
     TASKCOMMAND = "xia2.multiplex"
     ERROR_CODES = {

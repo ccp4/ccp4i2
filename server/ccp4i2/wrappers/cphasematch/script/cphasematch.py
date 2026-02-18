@@ -3,7 +3,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class cphasematch(CPluginScript):
 
-    TASKTITLE = 'Match and analyse phases to reference set'
     TASKNAME = 'cphasematch'
     TASKCOMMAND = 'cphasematch'
 

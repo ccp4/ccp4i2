@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
   
 class pisa_list(CPluginScript):
 
-    TASKTITLE = 'Structure analysis with Pisa'
     TASKNAME = 'pisa_list'
     TASKCOMMAND = 'pisa'
 

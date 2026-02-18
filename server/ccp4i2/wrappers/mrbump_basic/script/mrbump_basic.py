@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class mrbump_basic(CPluginScript):
 
-    TASKTITLE='MrBUMP Basic'
     TASKNAME = 'mrbump_basic'
     TASKCOMMAND = 'mrbump'
 

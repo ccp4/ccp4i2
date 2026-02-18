@@ -7,7 +7,6 @@ import os, sys, shutil
 
 class arp_warp_classic(CPluginScript):
 
-    TASKTITLE = 'ARP/WARP classic'
     TASKNAME = 'arp_warp_classic'
 
     TASKHOME = os.path.join(CCP4Utils.getCCP4I2Dir(), 'wrappers', 'arp_warp_classic')

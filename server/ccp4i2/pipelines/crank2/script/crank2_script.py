@@ -9,8 +9,6 @@ from ccp4i2.pipelines.crank2.script import crank2_basepipe
 
 class crank2(CPluginScript):
 
-  TASKTITLE        = 'Crank2'
-  SHORTTASKTITLE   = 'CRANK2'
   TASKNAME         = 'crank2'
   TASKCOMMAND      = 'crank2.py'
   PERFORMANCECLASS = 'CExpPhasPerformance'

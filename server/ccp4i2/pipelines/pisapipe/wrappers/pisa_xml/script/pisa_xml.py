@@ -10,7 +10,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pisa_xml(CPluginScript):
 
-    TASKTITLE = 'Structure analysis with Pisa'
     TASKNAME = 'pisa_xml'
     TASKCOMMAND = 'pisa'
 

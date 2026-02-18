@@ -6,7 +6,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class csymmatch(CPluginScript):
 
-    TASKTITLE='Csymmatch - move model to a reference by using symmetry'
     TASKNAME = 'csymmatch'
     TASKCOMMAND = 'csymmatch'
 

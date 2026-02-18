@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class findmyseq(CPluginScript):
-    TASKTITLE = 'Find My Sequence'
     TASKNAME = 'findmyseq'
     TASKCOMMAND = 'findmysequence'
     WHATNEXT = ['modelcraft']

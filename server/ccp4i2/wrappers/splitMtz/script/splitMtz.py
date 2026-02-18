@@ -56,7 +56,6 @@ MAP_SUBTYPE_PATTERNS = {
 
 class splitMtz(CPluginScript):
 
-    TASKTITLE = 'Import and Split MTZ to experimental data objects'
     TASKNAME = 'splitMtz'
 
     ERROR_CODES = {

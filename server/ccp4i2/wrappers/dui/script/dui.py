@@ -8,7 +8,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class dui(CPluginScript):
-    TASKTITLE = 'Integrate images - DIALS'
     TASKNAME = 'dui'
     TASKCOMMAND = 'dui2'
 

@@ -11,7 +11,6 @@ from ccp4i2.core.mgimports import PhmmerReportNoGui
 
 class ccp4mg_edit_model(CPluginScript):
     
-    TASKTITLE = 'Interactive model preparation - CCP4mg and MrBUMP'
     TASKNAME = 'ccp4mg_edit_model'
     TASKCOMMAND = 'ccp4mg'
     ASYNCHRONOUS = True

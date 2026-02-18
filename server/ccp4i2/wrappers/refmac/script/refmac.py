@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class refmac(CPluginScript):
-    TASKTITLE = 'Refinement (Refmac5)'
     TASKNAME = 'refmac'
     TASKCOMMAND = 'refmacat'
     WHATNEXT = ['prosmart_refmac','modelcraft']

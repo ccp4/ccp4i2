@@ -14,7 +14,6 @@ def coot1Command():
 
 class coot1(CPluginScript):
     TASKNAME = "coot1"
-    TASKTITLE = "Coot 1"
     TASKCOMMAND = coot1Command()
     ASYNCHRONOUS = True
     WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft"]

@@ -3,7 +3,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pointless(CPluginScript):
     TASKNAME = 'pointless'
-    TASKTITLE = 'Analyse unmerged dataset (POINTLESS)'
     TASKCOMMAND = 'pointless'
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 

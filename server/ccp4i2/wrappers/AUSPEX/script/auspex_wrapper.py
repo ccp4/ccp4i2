@@ -6,7 +6,6 @@ import glob
 
 class AUSPEX(CPluginScript):
 
-    TASKTITLE = 'AUSPEX'
     TASKNAME = 'AUSPEX'
     TASKCOMMAND = 'auspex'
     PERFORMANCECLASS = 'CExpPhasPerformance'

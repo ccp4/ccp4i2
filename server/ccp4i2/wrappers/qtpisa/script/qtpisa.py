@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class qtpisa(CPluginScript):
     
-    TASKTITLE = 'Analyze bilogical units with qtpisa'
     TASKNAME = 'qtpisa'
     TASKCOMMAND = 'qtpisa'
     ASYNCHRONOUS = True

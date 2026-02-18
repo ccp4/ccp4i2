@@ -13,7 +13,6 @@ class mrbump_model_prep(CPluginScript):
 
     TASKNAME = 'mrbump_model_prep'
     TASKCOMMAND = 'mrbump'
-    TASKTITLE = 'MrBUMP model preparation'
     WHATNEXT = []
     ERROR_CODES = { 301 : { 'description' : 'Failed somehow in MrBUMP model prep' }
                     }

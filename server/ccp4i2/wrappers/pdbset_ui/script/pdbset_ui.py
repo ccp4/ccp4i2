@@ -4,7 +4,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class pdbset_ui(CPluginScript):
 
-    TASKTITLE='Scripted structure edits - Pdbset'
     TASKNAME = 'pdbset_ui'
     TASKCOMMAND = 'pdbset'
 

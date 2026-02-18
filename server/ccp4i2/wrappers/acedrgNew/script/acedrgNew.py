@@ -11,7 +11,6 @@ from . import atomMatching, cifToMolBlock
 
 
 class acedrgNew(CPluginScript):
-    TASKTITLE = 'acedrgNew'
     TASKNAME = 'acedrgNew'
     TASKCOMMAND = 'acedrg'
 

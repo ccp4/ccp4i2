@@ -9,7 +9,6 @@ from ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR_AUTO.script import phas
 class phaser_MR_FTF(phaser_MR_AUTO.phaser_MR_AUTO):
 
     TASKNAME = 'phaser_MR_FTF'
-    TASKTITLE='Translation function - PHASER'
     WHATNEXT = ['phaser_expert']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' },}

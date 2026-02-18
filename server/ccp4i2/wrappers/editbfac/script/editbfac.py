@@ -12,7 +12,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class editbfac(CPluginScript):
-    TASKTITLE='Process Predicted Models'
     TASKNAME = 'editbfac'
 
     def startProcess(self):

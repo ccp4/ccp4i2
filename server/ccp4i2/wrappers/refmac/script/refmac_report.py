@@ -6,7 +6,6 @@ from ccp4i2.report import Report, PARSER
 
 class refmac_report(Report):
     TASKNAME = 'refmac'
-    TASKTITLE = 'REFMAC5 - Macromolecular refinement'
     RUNNING = True
     SEPARATEDATA=True
     

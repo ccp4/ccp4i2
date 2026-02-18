@@ -9,7 +9,6 @@ from ccp4i2.core.mgimports import pygl_coord
 
 class gesamt(CPluginScript):
 
-    TASKTITLE='Gesamt - structural alignment'
     TASKNAME = 'gesamt'
     TASKCOMMAND = 'gesamt'
     PERFORMANCECLASS = 'CSuperposePerformance'

@@ -11,7 +11,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class Lidia(CPluginScript):
-    TASKTITLE = 'Lidia'
     TASKNAME = 'Lidia'
     TASKCOMMAND = 'lidia'
     ASYNCHRONOUS = True

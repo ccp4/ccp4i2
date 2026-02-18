@@ -49,7 +49,6 @@ class CallbackObject(object):
 
 
 class phaser_analysis(CPluginScript):
-    TASKTITLE = 'phaser_analysis'
     TASKNAME = 'phaser_analysis'
  
     def startProcess(self):

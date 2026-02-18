@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class shelxeMR(CPluginScript):
-    TASKTITLE = 'ShelxeMR'
     TASKNAME = 'shelxeMR'
     TASKCOMMAND = 'shelxe'
     PERFORMANCECLASS = 'CExpPhasPerformance'

@@ -49,13 +49,11 @@ def test_cpluginscript_subclass():
     """Test creating a subclass of CPluginScript."""
 
     class TestWrapper(CPluginScript):
-        TASKTITLE = 'Test Wrapper'
         TASKNAME = 'test_wrapper'
         TASKCOMMAND = 'test_command'
 
     wrapper = TestWrapper()
 
-    assert wrapper.TASKTITLE == 'Test Wrapper'
     assert wrapper.TASKNAME == 'test_wrapper'
     assert wrapper.TASKCOMMAND == 'test_command'
     assert wrapper.name == 'test_wrapper'

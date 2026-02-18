@@ -15,7 +15,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class mtzheader(CPluginScript):
 
-    TASKTITLE = 'Read MTZ header'
     TASKNAME = 'mtzheader'
 
     def process(self):

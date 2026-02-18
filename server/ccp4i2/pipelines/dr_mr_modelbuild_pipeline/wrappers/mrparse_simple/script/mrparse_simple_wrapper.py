@@ -8,7 +8,6 @@ from ccp4i2.core import CCP4ErrorHandling
 
 
 class mrparse_simple(CPluginScript):
-    TASKTITLE = 'mrparse_simple'
     TASKNAME = 'mrparse_simple'
     TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']

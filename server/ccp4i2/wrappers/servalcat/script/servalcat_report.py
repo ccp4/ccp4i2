@@ -20,7 +20,6 @@ def isnumber(n):
 
 class servalcat_report(Report):
     TASKNAME = 'servalcat'
-    TASKTITLE = 'Servalcat - Macromolecular refinement'
     RUNNING = True
     SEPARATEDATA = True
 

@@ -3,7 +3,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class cad_copy_column(CPluginScript):
 
-    TASKTITLE = 'Copy an MTZ column between files'
     TASKNAME = 'cad_copy_column'
     TASKCOMMAND = 'cad'
 

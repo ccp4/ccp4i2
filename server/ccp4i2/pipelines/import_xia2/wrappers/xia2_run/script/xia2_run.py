@@ -18,7 +18,6 @@ RUN_TITLES = {
 
 class xia2_run(CCP4PluginScript.CPluginScript):
 
-    TASKTITLE = 'Import data processing results from XIA2'
     TASKNAME = 'xia2_run'
     ERROR_CODES = { 101 : {'description' : 'XIA2 run directory does not exist' },
                     102 : {'description' : 'The XIA2 job failed with error file' },
@@ -95,8 +94,6 @@ class xia2_run(CCP4PluginScript.CPluginScript):
         pluginObj.container.inputData.XIA2_DIRECTORY.setFullPath(xdir)
         pluginObj.process()
 
-      self.TASKTITLE = self.runTitle(runMode)
-      
       self.setPerformance(runMode)
       self.makeXml(runMode)
       

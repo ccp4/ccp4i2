@@ -7,7 +7,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class mrparse(CPluginScript):
-    TASKTITLE = 'mrparse'
     TASKNAME = 'mrparse'
     TASKCOMMAND = 'mrparse'
     WHATNEXT = ['phaser_simple', 'phaser_pipeline', 'molrep_pipe']

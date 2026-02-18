@@ -16,7 +16,6 @@ from . import test_api
 
 class pdb_redo_api(CPluginScript):
 
-    TASKTITLE='PDB-REDO Web services'
     TASKNAME = 'pdb_redo_api'
     PERFORMANCECLASS = 'CRefinementPerformance'
 

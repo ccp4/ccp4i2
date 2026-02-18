@@ -14,7 +14,6 @@ from .json2xml import json2xml
 class servalcat(CPluginScript):
 
 
-    TASKTITLE = 'Refinement (servalcat)'
     TASKNAME = 'servalcat'
     TASKCOMMAND = 'servalcat'
     PERFORMANCECLASS = 'CServalcatPerformance'

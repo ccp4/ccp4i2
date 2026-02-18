@@ -8,7 +8,6 @@ from ccp4i2.core import CCP4PluginScript
 
 class xia2_pointless(CCP4PluginScript.CPluginScript):
 
-    TASKTITLE = 'Pointless in XIA2'
     TASKNAME = 'xia2_pointless'
 
     ERROR_CODES = { 101 : {'description' : 'XIA2 run directory does not exist' },

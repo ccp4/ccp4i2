@@ -11,7 +11,6 @@ from ccp4i2.wrappers.validate_protein.script import validate_protein_report
 
 class servalcat_pipe_report(Report):
     TASKNAME = 'servalcat_pipe'
-    TASKTITLE = 'Servalcat - Macromolecular refinement'
     RUNNING = True
     SEPARATEDATA = True
     def __init__(self, *args, **kw):

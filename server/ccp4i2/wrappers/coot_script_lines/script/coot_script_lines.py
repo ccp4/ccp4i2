@@ -9,7 +9,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
 class coot_script_lines(CPluginScript):
-    TASKTITLE = 'Execute arbitrary script code within Coot'
     TASKNAME = 'coot_script_lines'
     TASKCOMMAND = 'coot'
     WHATNEXT = ['prosmart_refmac']

@@ -11,7 +11,6 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 ccp4_home = os.environ.get ( "CCP4", "not_set" )
 
 class arcimboldo(CPluginScript):
-    TASKTITLE = 'Arcimboldo'
     TASKNAME = 'arcimboldo'
     TASKCOMMAND = 'ARCIMBOLDO_LITE'
     WHATNEXT = [ 'prosmart_refmac' ]

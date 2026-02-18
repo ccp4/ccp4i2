@@ -57,13 +57,11 @@ class CPluginScript(CData):
     - Error reporting and database integration
 
     Subclasses should define:
-        TASKTITLE: Display title for GUI
         TASKNAME: Unique task identifier
         TASKCOMMAND: Executable name
     """
 
     # Class attributes to be defined in subclasses
-    TASKTITLE = None
     TASKNAME = None
     TASKCOMMAND = None
     ASYNCHRONOUS = False  # Set to True for async execution
