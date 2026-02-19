@@ -49,9 +49,6 @@ class CData(HierarchicalObject):
         # Mark that hierarchy is initialized - now we can use custom setattr
         self._hierarchy_initialized = True
 
-        # Load default values from qualifiers if available
-        self._load_default_values()
-
         # NEW: Apply metadata-driven attribute creation
         self._apply_metadata_attributes()
 
@@ -136,21 +133,6 @@ class CData(HierarchicalObject):
 
         # Fall back to normal attribute lookup (checks __dict__, class, __getattr__)
         return object.__getattribute__(self, name)
-
-    def _load_default_values(self):
-        """Load default values from qualifiers metadata."""
-        # Try to get default values from metadata system
-        try:
-            from .metadata_system import MetadataRegistry
-            metadata = MetadataRegistry.get_class_metadata(self.__class__.__name__)
-            if metadata:
-                for field_name, field_meta in metadata.fields.items():
-                    if field_meta.default_value is not None:
-                        self._default_values[field_name] = field_meta.default_value
-                        self._value_states[field_name] = ValueState.NOT_SET
-        except Exception:
-            # If metadata not available, that's okay
-            pass
 
     def _apply_metadata_attributes(self):
         """Apply metadata-driven attribute creation if metadata is available."""
@@ -280,25 +262,14 @@ class CData(HierarchicalObject):
         if not isinstance(values, dict):
             raise TypeError(f"set() expects dict or CData, got {type(values).__name__}")
 
-        # Get all fields (metadata-aware)
-        metadata = None
-        try:
-            from .metadata_system import MetadataRegistry
-            metadata = MetadataRegistry.get_class_metadata(self.__class__.__name__)
-        except Exception:
-            pass
-
-        if metadata:
-            all_fields = list(metadata.fields.keys())
-        else:
-            # Fallback: use hierarchical children to get field names
-            # This ensures we only process actual CData children, not arbitrary __dict__ entries
-            all_fields = []
-            for child in self.children():
-                if isinstance(child, CData):
-                    child_name = child.objectName() if hasattr(child, 'objectName') else None
-                    if child_name:
-                        all_fields.append(child_name)
+        # Fallback: use hierarchical children to get field names
+        # This ensures we only process actual CData children, not arbitrary __dict__ entries
+        all_fields = []
+        for child in self.children():
+            if isinstance(child, CData):
+                child_name = child.objectName() if hasattr(child, 'objectName') else None
+                if child_name:
+                    all_fields.append(child_name)
 
         # Smart assignment for fields
         for k in all_fields:
@@ -352,25 +323,14 @@ class CData(HierarchicalObject):
         # Modern API: get() returns dict representation
         result = {}
 
-        # Get all fields (metadata-aware)
-        metadata = None
-        try:
-            from .metadata_system import MetadataRegistry
-            metadata = MetadataRegistry.get_class_metadata(self.__class__.__name__)
-        except Exception:
-            pass
-
-        if metadata:
-            all_fields = list(metadata.fields.keys())
-        else:
-            # Fallback: use hierarchical children to get field names
-            # This ensures we only process actual CData children, not arbitrary __dict__ entries
-            all_fields = []
-            for child in self.children():
-                if isinstance(child, CData):
-                    child_name = child.objectName() if hasattr(child, 'objectName') else None
-                    if child_name:
-                        all_fields.append(child_name)
+        # Fallback: use hierarchical children to get field names
+        # This ensures we only process actual CData children, not arbitrary __dict__ entries
+        all_fields = []
+        for child in self.children():
+            if isinstance(child, CData):
+                child_name = child.objectName() if hasattr(child, 'objectName') else None
+                if child_name:
+                    all_fields.append(child_name)
 
         for field_name in all_fields:
             if not hasattr(self, field_name):
@@ -458,20 +418,6 @@ class CData(HierarchicalObject):
 
         # For other CData types, return list of CData attribute names
         cdata_attributes = []
-
-        # Try metadata-aware approach first
-        try:
-            from .metadata_system import MetadataRegistry
-            metadata = MetadataRegistry.get_class_metadata(self.__class__.__name__)
-            if metadata:
-                for field_name, field_meta in metadata.fields.items():
-                    if hasattr(self, field_name):
-                        value = getattr(self, field_name)
-                        if isinstance(value, CData):
-                            cdata_attributes.append(field_name)
-                return cdata_attributes
-        except Exception:
-            pass
 
         # Fallback: use hierarchical children
         # This ensures we only return actual CData children that are part of
