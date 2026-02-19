@@ -6,6 +6,7 @@ import {
   addMolecule,
   addMap,
   setActiveMap,
+  setContourLevel,
   setTheme,
   setBackgroundColor,
   MoorhenContainer,
@@ -218,6 +219,18 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
         throw new Error("Cannot read the fetched map...");
       dispatch(addMap(newMap));
       dispatch(setActiveMap(newMap));
+      // Reduce initial contour level to 0.8x for more sensitive screening
+      const state = store.getState() as any;
+      const contourLevels = state.mapContourSettings?.contourLevels || [];
+      const entry = contourLevels.find((c: any) => c.molNo === newMap.molNo);
+      const currentLevel = entry?.contourLevel;
+      if (currentLevel != null && !Number.isNaN(currentLevel)) {
+        const reducedLevel = currentLevel * 0.8;
+        dispatch(setContourLevel({ molNo: newMap.molNo, contourLevel: reducedLevel } as any));
+        newMap.drawMapContour().catch((err: Error) => {
+          console.error("Failed to redraw map contour after level adjustment:", err);
+        });
+      }
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch map from ${url}`);
