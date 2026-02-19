@@ -190,11 +190,6 @@ class CCP4i2RunnerBase(object):
     # ========================================================================
 
     @staticmethod
-    def keywordsOfContainer(container: CContainer, growingList=None):
-        """Legacy method - delegates to KeywordExtractor."""
-        return get_leaf_paths(container)
-
-    @staticmethod
     def getCandidatePath(currentPath):
         """Legacy method - kept for backward compatibility."""
         pathElements = currentPath.split(".")
@@ -279,22 +274,6 @@ class CCP4i2RunnerBase(object):
         """
         # Delegate to new component
         PluginPopulator._handle_item(thePlugin, objectPath, value)
-
-    def fileForFileUse(
-        self,
-        thePlugin,
-        jobNumber,
-        jobParamName,
-        paramIndex,
-        task_name=None,
-        listMap=None,
-    ):
-        """
-        Abstract method for file use resolution.
-
-        Implemented in Django subclass.
-        """
-        raise NotImplementedError("fileForFileUse must be implemented in subclasses")
 
     def handleItemOrList(self, thePlugin, objectPath, value):
         """
