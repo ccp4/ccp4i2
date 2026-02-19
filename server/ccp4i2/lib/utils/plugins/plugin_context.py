@@ -135,25 +135,3 @@ def get_plugin_with_context(
                 "error_message": str(e)
             }
         )
-
-
-def get_plugin_container(job: Job) -> Result:
-    """
-    Get just the container from a plugin (legacy compatibility).
-
-    NOTE: Prefer get_plugin_with_context() for new code - it gives you
-    the full plugin with DB context, which is needed for proper file
-    handling and validation.
-
-    Args:
-        job: Django Job instance
-
-    Returns:
-        Result with container or error
-    """
-    plugin_result = get_plugin_with_context(job)
-    if not plugin_result.success:
-        return plugin_result
-
-    plugin = plugin_result.data
-    return Result.ok(plugin.container)
