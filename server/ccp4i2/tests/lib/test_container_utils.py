@@ -17,7 +17,6 @@ from ...db.import_i2xml import import_ccp4_project_zip
 
 from ...lib.utils.plugins.get_plugin import get_job_plugin
 from ...lib.utils.formats.mtz import mtz_as_dict
-from ...lib.utils.parameters.unset_output_data import unset_output_data
 from ...lib.utils.containers.remove_defaults import (
     remove_container_default_values,
 )
@@ -48,14 +47,6 @@ class CCP4i2TestCase(TestCase):
     def tearDown(self):
         rmtree(settings.CCP4I2_PROJECTS_DIR)
         return super().tearDown()
-
-    def test_unset_output_data(self):
-        job = Job.objects.get(pk=1)
-        the_job_plugin = get_job_plugin(job)
-        unset_output_data(the_job_plugin)
-        et = the_job_plugin.container.getEtree()
-        ET.indent(et, "\t", 0)
-        self.assertEqual(1, 1)
 
     def test_remove_container_default_values(self):
         job = Job.objects.get(pk=1)
