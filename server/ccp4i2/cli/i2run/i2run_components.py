@@ -397,7 +397,7 @@ class PluginPopulator:
                 if isinstance(new_item, CDataFile):
                     PluginPopulator._handle_file_with_subvalues(new_item, values)
                 else:
-                    PluginPopulator._handle_single_value(new_item, val, is_list=False)
+                    PluginPopulator._handle_single_value(new_item, val)
 
                 # Add the item to the list
                 target.append(new_item)
@@ -414,7 +414,7 @@ class PluginPopulator:
                 PluginPopulator._handle_single_value(target, values)
 
     @staticmethod
-    def _handle_single_value(target, value, is_list: bool = False) -> None:
+    def _handle_single_value(target, value) -> None:
         """
         Handle setting a single value.
 
@@ -423,7 +423,6 @@ class PluginPopulator:
         Args:
             target: Target parameter object
             value: Value to parse and set (string, list, or dict)
-            is_list: Whether this is being added to a CList
         """
         from ccp4i2.core.CCP4File import CDataFile
 
