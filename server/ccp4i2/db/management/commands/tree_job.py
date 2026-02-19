@@ -10,7 +10,6 @@ Usage:
 import uuid
 from django.core.management.base import BaseCommand, CommandError
 from ccp4i2.db.models import Job, Project
-from ccp4i2.lib.utils.directory_tree import visualize_job_directory
 
 
 class Command(BaseCommand):
