@@ -3991,7 +3991,7 @@ class CPluginScript(CData):
         return id(self)
 
     def appendErrorReport(self, code=0, details='', name=None, label=None, cls=None,
-                         recordTime=False, stack=True, exc_info=None, severity=None):
+                         stack=True, exc_info=None, severity=None):
         """
         Append an error to the plugin's error report.
 
@@ -4003,7 +4003,6 @@ class CPluginScript(CData):
             name: Error name
             label: Error label
             cls: Class where error occurred
-            recordTime: Whether to record timestamp
             stack: Whether to include stack trace
             exc_info: Exception info tuple
             severity: Error severity (defaults to ERROR if 'exception' in details, otherwise WARNING)
