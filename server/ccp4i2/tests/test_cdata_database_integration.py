@@ -367,7 +367,6 @@ def test_api_surface_documentation():
             'extract_parameter_name()',
             'extract_kpi_values()',
             'validate_file_metadata_completeness()',
-            'debug_print_container_structure()',
         ],
         'async_import_files.py': [
             'import_input_files_async()',
