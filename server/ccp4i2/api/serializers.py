@@ -103,29 +103,6 @@ class ProjectSerializer(ModelSerializer):
 
         return models.Project.objects.create(**validated_data)
 
-    def validate_name(self, data: str):
-        if any((not c.isalnum() and c not in ["_", "-"]) for c in data):
-            raise ValidationError(
-                f"Your project name contains whitespace or special characters [{data}]"
-            )
-        project_names = [
-            project.name.upper() for project in models.Project.objects.all()
-        ]
-        if "uuid" not in self.initial_data and data.upper() in project_names:
-            raise ValidationError("A project with this name already exists!")
-        if "directory" not in self.initial_data:
-            assert Path(settings.CCP4I2_PROJECTS_DIR).is_dir()
-            try:
-                testWritePath = Path(settings.CCP4I2_PROJECTS_DIR) / "testWrite.txt"
-                with open(testWritePath, "w") as testWrite:
-                    testWrite.write("test")
-                testWritePath.unlink()
-            except Exception as err:
-                raise ValidationError(
-                    f"Failure trying to write to  [{testWritePath}], {err}"
-                ) from err
-        return data
-
 
 class FileSerializer(ModelSerializer):
     class Meta:
@@ -145,21 +122,9 @@ class FileUseSerializer(ModelSerializer):
         fields = "__all__"
 
 
-class FileExportSerializer(ModelSerializer):
-    class Meta:
-        model = models.FileExport
-        fields = "__all__"
-
-
 class ProjectExportSerializer(ModelSerializer):
     class Meta:
         model = models.ProjectExport
-        fields = "__all__"
-
-
-class XDataSerializer(ModelSerializer):
-    class Meta:
-        model = models.XData
         fields = "__all__"
 
 
@@ -191,10 +156,6 @@ class ProjectGroupSerializer(ModelSerializer):
     class Meta:
         model = models.ProjectGroup
         fields = "__all__"
-
-    def get_member_count(self, obj):
-        """Return count of member projects in this group."""
-        return obj.memberships.count()
 
 
 class ProjectGroupDetailSerializer(ModelSerializer):
