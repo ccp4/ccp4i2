@@ -211,7 +211,7 @@ class ParamsXmlHandler:
                 if callable(attr):
                     continue
 
-                # Only export CData objects (not Signal, ObjectInfo, or other internal objects)
+                # Only export CData objects (not Signal or other internal objects)
                 if not isinstance(attr, CData):
                     continue
 
