@@ -416,10 +416,6 @@ class SignalManager:
             self._signals[name] = signal
             return signal
 
-    def get_signal(self, name: str) -> Optional[Signal]:
-        """Get an existing signal by name."""
-        return self._signals.get(name)
-
     def disconnect_all(self):
         """Disconnect all slots from all signals."""
         with self._lock:
@@ -431,11 +427,6 @@ class SignalManager:
         with self._lock:
             self.disconnect_all()
             self._signals.clear()
-
-    @property
-    def signal_names(self) -> List[str]:
-        """Get list of all signal names."""
-        return list(self._signals.keys())
 
 
 # Decorator for automatic signal creation
