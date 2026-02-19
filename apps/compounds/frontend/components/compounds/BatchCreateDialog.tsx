@@ -24,6 +24,12 @@ interface BatchCreateDialogProps {
   onCreated: (batch: Batch) => void;
   compoundId: string;
   compoundFormattedId: string;
+  initialValues?: {
+    supplierId?: string | null;
+    supplierRef?: string;
+    labbookNumber?: string;
+    pageNumber?: string;
+  };
 }
 
 export function BatchCreateDialog({
@@ -32,6 +38,7 @@ export function BatchCreateDialog({
   onCreated,
   compoundId,
   compoundFormattedId,
+  initialValues,
 }: BatchCreateDialogProps) {
   const api = useCompoundsApi();
   const [saving, setSaving] = useState(false);
@@ -49,19 +56,22 @@ export function BatchCreateDialog({
   // Fetch suppliers for autocomplete
   const { data: suppliers } = api.get<Supplier[]>('suppliers/');
 
-  // Reset form when dialog opens
+  // Reset form when dialog opens, using initial values if provided
   useEffect(() => {
     if (open) {
-      setSupplier(null);
-      setSupplierRef('');
+      const matchedSupplier = initialValues?.supplierId
+        ? (suppliers || []).find((s) => s.id === initialValues.supplierId) ?? null
+        : null;
+      setSupplier(matchedSupplier);
+      setSupplierRef(initialValues?.supplierRef ?? '');
       setAmount('');
       setSaltCode('');
-      setLabbookNumber('');
-      setPageNumber('');
+      setLabbookNumber(initialValues?.labbookNumber ?? '');
+      setPageNumber(initialValues?.pageNumber ?? '');
       setComments('');
       setError(null);
     }
-  }, [open]);
+  }, [open, suppliers]);
 
   const handleSave = async () => {
     setSaving(true);

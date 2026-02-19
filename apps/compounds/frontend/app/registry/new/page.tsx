@@ -25,6 +25,8 @@ import {
   AccordionDetails,
   InputAdornment,
   IconButton,
+  FormControlLabel,
+  Checkbox,
 } from '@mui/material';
 import {
   Add,
@@ -133,6 +135,7 @@ function NewCompoundPageContent() {
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<{ formatted_id: string; id: string } | null>(null);
+  const [createBatch, setCreateBatch] = useState(true);
   const [batchDialogOpen, setBatchDialogOpen] = useState(false);
   const [batchCreated, setBatchCreated] = useState<Batch | null>(null);
   const [sketcherExpanded, setSketcherExpanded] = useState(false);
@@ -321,13 +324,16 @@ function NewCompoundPageContent() {
       );
 
       setSuccess(result);
+      if (createBatch) {
+        setBatchDialogOpen(true);
+      }
 
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to register compound');
     } finally {
       setSubmitting(false);
     }
-  }, [formData]);
+  }, [formData, createBatch]);
 
   const handleRegisterAnother = useCallback(() => {
     setSuccess(null);
@@ -352,6 +358,17 @@ function NewCompoundPageContent() {
     setBatchCreated(batch);
     setBatchDialogOpen(false);
   }, []);
+
+  // Pre-populate batch dialog with compound registration data
+  const batchInitialValues = useMemo(() => {
+    if (!createBatch) return undefined;
+    return {
+      supplierId: formData.supplier,
+      supplierRef: formData.supplier_ref,
+      labbookNumber: formData.labbook_number !== null ? String(formData.labbook_number) : '',
+      pageNumber: formData.page_number !== null ? String(formData.page_number) : '',
+    };
+  }, [createBatch, formData.supplier, formData.supplier_ref, formData.labbook_number, formData.page_number]);
 
   // Show success screen
   if (success) {
@@ -431,6 +448,7 @@ function NewCompoundPageContent() {
           onCreated={handleBatchCreated}
           compoundId={success.id}
           compoundFormattedId={success.formatted_id}
+          initialValues={batchInitialValues}
         />
       </Container>
     );
@@ -778,8 +796,20 @@ function NewCompoundPageContent() {
                 </Alert>
               )}
 
+              {/* Create first batch option */}
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    checked={createBatch}
+                    onChange={(e) => setCreateBatch(e.target.checked)}
+                  />
+                }
+                label="Also create first batch"
+                sx={{ mt: 2 }}
+              />
+
               {/* Submit button */}
-              <Box sx={{ mt: 3, display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
+              <Box sx={{ mt: 2, display: 'flex', justifyContent: 'flex-end', gap: 2 }}>
                 <Button
                   component={Link}
                   href={routes.registry.search()}
