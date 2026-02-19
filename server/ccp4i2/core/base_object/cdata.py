@@ -609,20 +609,6 @@ class CData(HierarchicalObject):
         """
         return self.getValueState(field_name) == ValueState.DEFAULT
 
-    def setToDefault(self, field_name: str):
-        """Set a field to its default value.
-
-        Args:
-            field_name: Name of the field to set to default
-        """
-        if field_name in self._default_values:
-            # Set without triggering "explicitly set" state
-            self._value_states[field_name] = ValueState.DEFAULT
-            super().__setattr__(field_name, self._default_values[field_name])
-        else:
-            # No default available, unset it
-            self.unSet(field_name)
-
     def setDefault(self, value: Any):
         """Set the default value for this object (old API compatibility).
 
@@ -637,17 +623,6 @@ class CData(HierarchicalObject):
         else:
             # For complex types, store in default values
             self._default_values['default'] = value
-
-    def getDefaultValue(self, field_name: str) -> Any:
-        """Get the default value for a field.
-
-        Args:
-            field_name: Name of the field
-
-        Returns:
-            Default value or None if no default exists
-        """
-        return self._default_values.get(field_name)
 
     def validity(self):
         """Validate this object and return an error report.
