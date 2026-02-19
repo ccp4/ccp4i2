@@ -1014,7 +1014,7 @@ class CPluginScript(CData):
 
         error_report = self.validity()
 
-        # Convert CErrorReport to XML using the same logic as validate_container
+        # Convert CErrorReport to XML
         element = ET.Element("errorReportList")
 
         # Mapping from severity codes to text

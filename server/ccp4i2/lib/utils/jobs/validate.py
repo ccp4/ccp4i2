@@ -73,7 +73,7 @@ def validate_job(job: models.Job) -> Result[ET.Element]:
         return Result.ok(error_tree)
 
     except AttributeError as err:
-        # This can happen if container.validity() or validate_container has issues
+        # This can happen if container.validity() has issues
         logger.exception(
             "Validation error for job %s - possible API mismatch: %s",
             job.uuid, str(err)

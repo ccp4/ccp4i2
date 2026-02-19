@@ -23,7 +23,6 @@ from ...lib.utils.containers.remove_defaults import (
 )
 from ...lib.utils.containers.find_objects import find_objects
 from ...lib.utils.parameters.load_xml import load_nested_xml
-from ...lib.utils.containers.validate import validate_container
 from ...lib.utils.jobs.clone import clone_job
 from ...lib.utils.jobs.create import create_job
 from ...lib.utils.reporting.i2_report import get_report_job_info
@@ -88,29 +87,7 @@ class CCP4i2TestCase(TestCase):
         ET.indent(result, " ")
         print(ET.tostring(result).decode("utf-8"))
 
-    def test_validate_container(self):
-        job = Job.objects.get(pk=1)
-        the_job_plugin = get_job_plugin(job)
-        container: CCP4Container.CContainer = the_job_plugin.container
-        error_etree: ET.Element = validate_container(container)
-
-        self.assertEqual(len(error_etree.findall(".//errorReport")), 47)
-        ET.indent(error_etree, " ")
-        # print(ET.tostring(err))
-
-    def test_validate_container_no_XYZIN(self):
-        job = Job.objects.get(project__name="refmac_gamma_test_0", number="1")
-        cloned_job = clone_job(job.uuid)
-        the_job_plugin = get_job_plugin(cloned_job)
-        container: CCP4Container.CContainer = the_job_plugin.container
-        XYZIN = container.find("XYZIN")
-        XYZIN.unSet()
-        error_etree: ET.Element = validate_container(container)
-        ET.indent(error_etree, " ")
-        print(ET.tostring(error_etree).decode("utf-8"))
-        self.assertEqual(len(error_etree.findall(".//errorReport")), 45)
-
-    def test_validate_container_NCYCLES_MINUS_1(self):
+    def test_NCYCLES_MINUS_1(self):
         job = Job.objects.get(project__name="refmac_gamma_test_0", number="1")
         cloned_job = clone_job(job.uuid)
         the_job_plugin = get_job_plugin(cloned_job)

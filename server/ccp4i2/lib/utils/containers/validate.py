@@ -56,33 +56,5 @@ def getEtree(error_report: CCP4ErrorHandling.CErrorReport):
                 ele.append(e)
             element.append(ele)
         except Exception as e:
-            logger.exception("Error in validate_container", exc_info=e)
+            logger.exception("Error in getEtree", exc_info=e)
     return element
-
-
-def validate_container(
-    container: CCP4Container.CContainer,
-) -> ET.Element:
-    error_report: CCP4ErrorHandling.CErrorReport = container.validity()
-    error_etree: ET.Element = getEtree(error_report)
-
-    # Remove stacks (too nasty to live with)
-    namespace = ""
-    error_reports = error_etree.findall(".//{0}errorReport".format(namespace))
-    for error_report in error_reports:
-        stack_children = error_report.findall("./stack")
-        for stack_child in stack_children:
-            error_report.remove(stack_child)
-        description_children = error_report.findall("./description")
-
-        for description_child in description_children:
-            description_text = description_child.text
-            broken_text = description_text.split(":")
-            if len(broken_text) > 1:
-                object_element = ET.Element("objectPath")
-                object_element.text = broken_text[0].strip()
-                error_report.append(object_element)
-
-    ET.indent(error_etree, " ")
-    # print(error_log)
-    return error_etree
