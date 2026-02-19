@@ -18,7 +18,7 @@ Supports both list-style and dict-style access:
 from typing import List, Optional
 
 from .cdata import CData
-from .hierarchy_system import HierarchicalObject
+from .hierarchy_system import HierarchicalObject, ObjectState
 
 
 class CContainer(CData):
@@ -487,7 +487,6 @@ class CContainer(CData):
                 for child in children_list:
                     # Skip destroyed children
                     if hasattr(child, 'state'):
-                        from .hierarchy_system import ObjectState
                         if child.state == ObjectState.DESTROYED:
                             continue
                     # Check if name matches
