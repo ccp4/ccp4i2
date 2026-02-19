@@ -156,9 +156,7 @@ class CCP4i2DjangoDbApi(object):
             )
         return {}
 
-    def getProjectInfo(
-        self, projectId=None, projectName=None, mode="all", checkPermission=True
-    ):
+    def getProjectInfo(self, projectId=None, projectName=None, mode="all"):
         """
         Retrieve project information based on project ID or project name.
 
@@ -166,7 +164,6 @@ class CCP4i2DjangoDbApi(object):
             projectId (str, optional): The unique identifier of the project. Defaults to None.
             projectName (str, optional): The name of the project. Defaults to None.
             mode (str, optional): The mode of information retrieval. Defaults to "all".
-            checkPermission (bool, optional): Flag to check permissions. Defaults to True.
 
         Returns:
             dict or any: The project information. If only one field is requested, returns the value of that field.
