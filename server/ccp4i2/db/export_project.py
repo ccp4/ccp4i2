@@ -692,35 +692,3 @@ def _get_job_descendants(job: Job) -> Set[Job]:
         descendants.update(_get_job_descendants(child))
 
     return descendants
-
-
-# Convenience functions for different export formats
-def export_project_xml(project_id: str, output_path: Path) -> Path:
-    """Export project by ID to XML format."""
-    project = Project.objects.get(uuid=project_id)
-    return export_project_to_xml(project, output_path)
-
-
-def export_project_zip(project_id: str, output_path: Path) -> Path:
-    """Export project by ID to ZIP format."""
-    project = Project.objects.get(uuid=project_id)
-    return export_project_to_zip(project, output_path)
-
-
-# Example usage
-if __name__ == "__main__":
-    # Example: Export project to XML
-    try:
-        project = Project.objects.get(name="my_project")
-        xml_output = Path("exported_project.xml")
-        zip_output = Path("exported_project.zip")
-
-        export_project_to_xml(project, xml_output)
-        export_project_to_zip(project, zip_output)
-
-        print(f"Project exported to {xml_output} and {zip_output}")
-
-    except Project.DoesNotExist:
-        print("Project not found")
-    except Exception as e:
-        print(f"Export failed: {e}")
