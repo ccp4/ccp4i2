@@ -38,7 +38,7 @@ Breakpoints:
 """
 
 from dataclasses import dataclass, field
-from typing import Optional, List, Literal, Any
+from typing import Optional, List, Any
 from xml.etree import ElementTree as ET
 from enum import Enum
 

@@ -23,7 +23,6 @@ Usage in ViewSets:
 from typing import TypeVar, Generic, Optional, Dict, Any
 from dataclasses import dataclass, field
 from rest_framework.response import Response
-from rest_framework import status as http_status
 
 T = TypeVar('T')
 

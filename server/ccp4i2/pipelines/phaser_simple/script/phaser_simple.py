@@ -50,7 +50,7 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
 
     def createEnsembleElements(self):
         try:
-            from ccp4i2.core.CCP4ModelData import CPdbDataFile, CAtomSelection, CPdbEnsembleItem
+            from ccp4i2.core.CCP4ModelData import CPdbDataFile, CPdbEnsembleItem
             elements = self.container.inputData.ENSEMBLES
             #Before removing all elements from this list, I have to set its listMinLength to 0
             self.container.inputData.ENSEMBLES.setQualifiers({'listMinLength':0})

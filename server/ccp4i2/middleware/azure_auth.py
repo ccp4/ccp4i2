@@ -25,7 +25,6 @@ import time
 import logging
 import ssl
 import certifi
-from functools import lru_cache
 from typing import Optional, Tuple
 from urllib.request import urlopen
 from urllib.error import URLError
