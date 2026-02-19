@@ -377,7 +377,6 @@ def test_api_surface_documentation():
             'get_source_file_path()',
             'ensure_unique_path()',
             'async_copy_file()',
-            'save_params_after_import()',
         ],
         'async_glean_files.py': [
             'glean_output_files_async()',
@@ -390,9 +389,6 @@ def test_api_surface_documentation():
             'run_job_async()',
             'create_plugin_for_job()',
             'load_plugin_params()',
-            'job_execution_context()',
-            'run_pipeline_async()',
-            'run_nested_jobs_async()',
         ],
     }
 
