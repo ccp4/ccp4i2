@@ -25,7 +25,6 @@ from ...lib.utils.navigation.what_next import get_what_next
 from ...lib.utils.helpers.object_method import object_method
 from ...lib.utils.files.detect_type import detect_file_type
 from ...lib.utils.files.export import export_job_file
-from ...db.project_json import project_json
 from ...lib.utils.files.digest import digest_file_object, digest_cdatafile_file_object
 
 # Path to test data - these tests require pre-built project zips
@@ -110,15 +109,6 @@ class TestJobUtils:
             kwargs={"molWt": asuWeight},
         )
         assert abs(result["results"][0]["matth_coef"] - 2.1) < 0.1
-
-    def test_project_json(self):
-        # NOTE: This test requires "bucc_test_0" project which is not imported
-        bucc_project = models.Project.objects.filter(name="bucc_test_0").first()
-        if bucc_project is None:
-            pytest.skip("bucc_test_0 project not available")
-
-        result = project_json(bucc_project)
-        print(result)
 
     def test_what_next(self):
         old_job = models.Job.objects.get(
