@@ -6,7 +6,6 @@ Provides file path management with:
 - fullPath property for convenient access
 - __str__() returns the file path
 - Automatic contentFlag introspection
-- File I/O placeholder methods (load_from_file, save_to_file)
 
 File path handling:
 - In standalone mode: Uses baseName attribute
@@ -328,74 +327,6 @@ class CDataFile(CData):
         except Exception as e:
             logger.debug(f"Failed to create ad-hoc db handler: {e}")
             return None
-
-    def _update_from_database(self, path: str, plugin):
-        """Update file attributes from database if the file matches an existing database record.
-
-        Uses the database handler attached to the plugin, if available. This keeps
-        CDataFile decoupled from Django and allows for different database backends.
-
-        Args:
-            path: Full file path
-            plugin: Parent CPluginScript instance
-        """
-        from pathlib import Path
-        import re
-
-        # Get database handler from plugin
-        db_handler = self._get_db_handler()
-        if not db_handler:
-            return  # No database handler available
-
-        abs_path = Path(path).resolve()
-
-        # Try to extract job number from path
-        # Path structure: .../project_dir/CCP4_JOBS/job_1/job_2/filename.ext
-        # Should extract "1.2" from job_1/job_2
-        path_str = str(abs_path)
-
-        # Look for CCP4_JOBS directory pattern
-        jobs_match = re.search(r'CCP4_JOBS/(job_\d+(?:/job_\d+)*)', path_str)
-        if not jobs_match:
-            return  # Not a job directory path
-
-        # Extract job path like "job_1/job_2"
-        job_path = jobs_match.group(1)
-        # Convert to job number format: "job_1/job_2" → "1.2"
-        job_numbers = re.findall(r'job_(\d+)', job_path)
-        job_number = '.'.join(job_numbers)
-
-        filename = abs_path.name
-
-        # Query database via handler (returns dict, not Django model)
-        try:
-            file_info = db_handler.find_file_by_path_sync(
-                file_path=str(abs_path),
-                job_number=job_number,
-                filename=filename
-            )
-
-            if file_info:
-                # Update CDataFile attributes from database record
-                if hasattr(self, 'dbFileId') and hasattr(self.dbFileId, 'value'):
-                    self.dbFileId.value = file_info['uuid']
-
-                # Set relPath if available
-                if file_info.get('relative_path'):
-                    if hasattr(self, 'relPath') and hasattr(self.relPath, 'value'):
-                        self.relPath.value = file_info['relative_path']
-
-                # Set project ID
-                project_id = getattr(plugin, '_dbProjectId', None)
-                if project_id:
-                    if hasattr(self, 'project') and hasattr(self.project, 'value'):
-                        self.project.value = str(project_id)
-
-        except Exception as e:
-            # Silently ignore errors - we're in a file setter
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.debug(f"Failed to update from database: {e}")
 
     def _parse_output_path_database(self, path: str, plugin):
         """Parse output file path and set project/relPath/baseName for database context.
@@ -1086,18 +1017,6 @@ class CDataFile(CData):
         (like selection in CAsuDataFile) that should be cleared when the file is unset.
         """
         pass
-
-    def load_from_file(self, file_path: str):
-        """Load data from file."""
-        self.setFullPath(file_path)
-        # TODO: Implement file loading logic
-
-    def save_to_file(self, file_path: str = None):
-        """Save data to file."""
-        path = file_path or self.getFullPath()
-        if not path:
-            raise ValueError("No file path specified")
-        # TODO: Implement file saving logic
 
     def loadFile(self, initialise: bool = False):
         """
