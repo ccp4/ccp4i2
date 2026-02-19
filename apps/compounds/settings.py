@@ -53,7 +53,7 @@ DEV_USER_EMAIL = os.environ.get("DEV_USER_EMAIL", "dev@localhost")
 # This must be after AuthenticationMiddleware in the chain
 if DEBUG:  # noqa: F405
     # Insert after SessionMiddleware and AuthenticationMiddleware
-    _dev_middleware = "ccp4i2.middleware.dev_auth.DevAuthMiddleware"
+    _dev_middleware = "compounds.dev_auth.DevAuthMiddleware"
     if _dev_middleware not in MIDDLEWARE:  # noqa: F405
         # Find AuthenticationMiddleware position and insert after it
         try:
