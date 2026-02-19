@@ -45,16 +45,6 @@ logger = logging.getLogger(f"ccp4i2:{__name__}")
 XML_FILE_SEARCH_ORDER = ["program.xml", "XMLOUT.xml", "i2.xml"]
 
 
-class ReportGenerationError(Exception):
-    """Exception raised when report generation fails."""
-
-    def __init__(self, message: str, task_name: str, details: Optional[str] = None):
-        self.message = message
-        self.task_name = task_name
-        self.details = details
-        super().__init__(f"{message} (task: {task_name})")
-
-
 def simple_failed_report(
     reason: str, task_name: str, details: Optional[str] = None
 ) -> ET.Element:

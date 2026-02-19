@@ -366,8 +366,6 @@ def test_api_surface_documentation():
             'extract_file_metadata()',
             'extract_parameter_name()',
             'extract_kpi_values()',
-            'check_file_attributes()',
-            'get_file_full_path()',
             'validate_file_metadata_completeness()',
             'debug_print_container_structure()',
         ],

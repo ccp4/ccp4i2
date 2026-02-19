@@ -182,10 +182,6 @@ def is_basic_type(obj):
     return isinstance(obj, (str, int, float, bool, type(None)))
 
 
-def is_custom_class_instance(obj):
-    return not is_basic_type(obj) and not isinstance(obj, (list, dict, tuple))
-
-
 def flatten_instance(obj):
     if is_basic_type(obj):
         return obj
