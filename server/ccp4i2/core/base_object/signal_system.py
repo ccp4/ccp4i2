@@ -429,27 +429,6 @@ class SignalManager:
             self._signals.clear()
 
 
-# Decorator for automatic signal creation
-def signal(signal_type: type = None, name: str = None):
-    """
-    Decorator to automatically create signals as class attributes.
-
-    Example:
-        class MyClass(SignalEmitter):
-            @signal(dict)
-            def data_changed(self): pass
-
-            def some_method(self):
-                self.data_changed.emit({"key": "value"})
-    """
-
-    def decorator(func: Callable) -> Signal:
-        signal_name = name or func.__name__
-        return Signal[signal_type or Any](name=signal_name)
-
-    return decorator
-
-
 # Example usage and testing
 if __name__ == "__main__":
     # Demo of the signal system
