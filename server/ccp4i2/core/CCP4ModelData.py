@@ -496,12 +496,9 @@ class CAsuDataFile(CAsuDataFileStub):
         # Look up in selection dict, default to True if not found
         return self.selection.get(name, True)
 
-    def saveFile(self, dbInfo=None):
+    def saveFile(self):
         """
         Save fileContent to an XML file.
-
-        Args:
-            dbInfo: Optional database info dict with keys: projectName, projectId, jobId, jobNumber
         """
         # Get the file path to write to
         file_path = self.getFullPath()

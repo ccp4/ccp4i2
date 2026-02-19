@@ -9,13 +9,7 @@ class ProvideAsuContents(CPluginScript):
     def startProcess(self):
       asuFileObject = self.container.outputData.ASUCONTENTFILE
       asuFileObject.fileContent.seqList.set(self.container.inputData.ASU_CONTENT)
-      if self._dbHandler:
-          asuFileObject.saveFile(  { 'projectName': self._dbHandler.projectName,
-                                                                  'projectId' : self._dbHandler.projectId,
-                                                                  'jobId' : None,
-                                                                  'jobNumber' : None } )
-      else:
-          asuFileObject.saveFile()
+      asuFileObject.saveFile()
 
       xmlroot = etree.Element('ASUCONTENTMATTHEWS')
       totWeight = 0.0
