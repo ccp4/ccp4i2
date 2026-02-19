@@ -112,40 +112,6 @@ class Result(Generic[T]):
                 result["details"] = self.error_details
             return result
 
-    def unwrap(self) -> T:
-        """
-        Unwrap the result, raising an exception if failed.
-
-        Returns:
-            The data if successful
-
-        Raises:
-            ValueError: If the result is a failure
-
-        Example:
-            >>> result = Result.ok(42)
-            >>> value = result.unwrap()  # 42
-
-            >>> result = Result.fail("Error")
-            >>> value = result.unwrap()  # Raises ValueError
-        """
-        if self.success:
-            return self.data
-        else:
-            raise ValueError(f"Cannot unwrap failed result: {self.error}")
-
-    def unwrap_or(self, default: T) -> T:
-        """
-        Unwrap the result or return a default value.
-
-        Args:
-            default: Value to return if result is a failure
-
-        Returns:
-            The data if successful, otherwise the default
-        """
-        return self.data if self.success else default
-
     def map(self, func):
         """
         Map a function over the result data.
