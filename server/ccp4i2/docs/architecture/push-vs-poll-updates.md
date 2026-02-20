@@ -39,7 +39,7 @@ For web, equivalent push mechanisms:
 
 ## Signal/Slot as Foundation
 
-The existing `HierarchicalObject` Signal/Slot mechanism (`baselayer/`) provides a natural integration point:
+The existing `HierarchicalObject` Signal/Slot mechanism provides a natural integration point:
 
 ```python
 # In job execution code

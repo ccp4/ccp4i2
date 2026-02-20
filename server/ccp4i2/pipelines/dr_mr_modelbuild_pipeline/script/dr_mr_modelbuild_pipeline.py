@@ -13,7 +13,6 @@ import sys
 
 from lxml import etree
 
-from ccp4i2.baselayer.QtCore import Slot
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -82,7 +81,6 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
             self.connectSignal(self.lidiaAcedrgPlugin,'finished',self.lidiaAcedrg_finished)
             self.lidiaAcedrgPlugin.process()
 
-    @Slot(dict)
     def lidiaAcedrg_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
             self.reportStatus(CPluginScript.FAILED)
@@ -133,7 +131,6 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         self.connectSignal(self.aimlessPlugin,'finished',self.aimlessPlugin_finished)
         self.aimlessPlugin.process()
 
-    @Slot(dict)
     def aimlessPlugin_finished(self, status):
         if status.get('finishStatus') == CPluginScript.FAILED:
             self.reportStatus(CPluginScript.FAILED)
@@ -621,7 +618,6 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         raise
         self.reportStatus(CPluginScript.FAILED)
 
-    @Slot(dict)
     def cootPlugin_finished(self, status):
         print("\n\n1", status)
         if status.get('finishStatus') == CPluginScript.FAILED:

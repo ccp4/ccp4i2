@@ -6,7 +6,6 @@ import traceback
 from lxml import etree
 from rdkit import Chem
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.mgimports import mmdb2
@@ -170,7 +169,6 @@ class prosmart_refmac(CPluginScript):
         except Exception as e:
             print(f"Warning: Error handling refmac progress: {e}")
 
-    @QtCore.Slot(str)
     def handleXmlChanged2(self, xmlFilename):
         self.xmlroot2.clear()
         refmacEtree = CCP4Utils.openFileToEtree(xmlFilename)
@@ -180,7 +178,6 @@ class prosmart_refmac(CPluginScript):
             self.xmlroot2.append(refmacXML[0])
         self.saveXml2()
 
-    @QtCore.Slot(str)
     def handleXmlChanged(self, xmlFilename):
         self.xmlroot.clear()
         refmacEtree = CCP4Utils.openFileToEtree(xmlFilename)
@@ -256,7 +253,6 @@ class prosmart_refmac(CPluginScript):
                 result.container.controlParameters.NCYCLES.set(ncyc)
         return result
 
-    @QtCore.Slot(dict)
     def firstRefmacFinished(self, statusDict):
         """Handle completion of the first Refmac refinement job."""
         # Handle unsatisfactory result (e.g., ligand geometry issues)
@@ -398,7 +394,6 @@ class prosmart_refmac(CPluginScript):
             self.reportStatus(CPluginScript.FAILED)
         return
 
-    @QtCore.Slot(dict)
     def cootFinished(self, statusDict={}):
         # Check coot status and start refmac
         self.checkFinishStatus(statusDict=statusDict,failedErrCode=204, outputFile= self.cootPlugin.container.outputData.XYZOUT,noFileErrCode=205)
@@ -437,7 +432,6 @@ class prosmart_refmac(CPluginScript):
           print(traceback.format_exc(), flush=True)
           self.appendErrorReport(CPluginScript,39,str(e))
 
-    @QtCore.Slot('CPluginScript',dict)
     def postCootRefmacFinished(self, refmacJob, statusDict={}):
         self.handleXmlChanged(refmacJob.makeFileName(format='PROGRAMXML'))
 
@@ -726,7 +720,6 @@ class prosmart_refmac(CPluginScript):
         self.jobsInTrain[str(job.processId)]=job
         self.jobsToSubmit.remove(job)
 
-    @QtCore.Slot(dict)
     def handleDone(self, ret):
         pid =  ret.get('pid',None)
         status,exitStatus,exitCode = self.postProcessCheck(pid)

@@ -3,7 +3,6 @@ import os
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Modules, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -27,7 +26,6 @@ class pisa_xml(CPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
-    @QtCore.Slot(int,int)
     def retrieveAssembliesFinished(self,exitCode,exitStatus):
         assembliesNode = etree.SubElement(self.xmlroot,'Assemblies')
         assembliesXML = CCP4Utils.openFileToEtree(self.assembliesXMLPath)
@@ -44,7 +42,6 @@ class pisa_xml(CPluginScript):
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
-    @QtCore.Slot(int,int)
     def retrieveInterfacesFinished(self,exitCode,exitStatus):
         interfacesNode = etree.SubElement(self.xmlroot,'Interfaces')
         interfacesXML = CCP4Utils.openFileToEtree(self.interfacesXMLPath)

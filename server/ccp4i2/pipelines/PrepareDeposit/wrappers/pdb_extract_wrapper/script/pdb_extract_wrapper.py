@@ -2,7 +2,6 @@ import os
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Modules, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -40,7 +39,6 @@ class pdb_extract_wrapper(CPluginScript):
             p.waitForFinished(-1)
         return CPluginScript.SUCCEEDED
 
-    @QtCore.Slot(int,int)
     def handleFinished(self,exitCode,exitStatus):
         if not self.container.inputData.ENTRYDATAIN.isSet():
             entryPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'data_template.text'))

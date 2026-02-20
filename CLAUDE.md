@@ -11,9 +11,6 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 ### Frontend
 - **Electron/React App** (`client/`) - Next.js 15, React 19, Moorhen structure viewer
 
-### Compatibility Layer
-- **BaseLayer** (`baselayer/`) - Qt-free implementations of PySide2 APIs
-
 ### Compounds App (Optional)
 - **Compounds Registry & Assays** (`apps/compounds/`) - Compound registration, batch tracking, and assay management
 - **Compounds Frontend** (`apps/compounds/frontend/`) - Next.js pages/components for compounds features
@@ -26,7 +23,6 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 | `client/` | Electron/React frontend for desktop |
 | `apps/` | Optional apps (compounds registry, assays) |
 | `apps/compounds/frontend/` | Compounds frontend components (overlaid during Docker build) |
-| `baselayer/` | Qt-free compatibility layer (Signal, Slot, QObject stubs) |
 | `core/` | Core Python modules and business logic |
 | `cli/` | Command-line tools (i2run, utilities) |
 | `wrappers/` | Task wrappers for crystallographic programs |
@@ -115,13 +111,6 @@ Key differences from main ccp4i2 tests:
 - Uses `compounds.settings` instead of `ccp4i2.config.test_settings`
 - Requires `apps/` directory on PYTHONPATH
 - Tests are located in `apps/compounds/` subdirectories
-
-## Import Pattern
-
-Code in wrappers/pipelines uses the baselayer compatibility module:
-```python
-from ccp4i2.baselayer import QtCore, Signal, Slot
-```
 
 ## Plugin Registry
 

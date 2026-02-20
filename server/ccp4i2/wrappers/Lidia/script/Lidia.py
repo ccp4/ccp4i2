@@ -5,7 +5,6 @@ from pathlib import Path
 
 from lxml import etree
 
-from ccp4i2.baselayer import QtCore
 from ccp4i2.core import CCP4Modules, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
@@ -39,7 +38,6 @@ class Lidia(CPluginScript):
         )
         return CPluginScript.SUCCEEDED
 
-    @QtCore.Slot()
     def handleFinished(self):
         rootNode = etree.Element('Lidia')
         #This is looking forward to a position where more things might work

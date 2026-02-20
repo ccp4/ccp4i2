@@ -3,7 +3,6 @@
 i2run - CCP4i2 command-line job runner
 
 Main entry point for the i2run command-line tool.
-Supports both Django and legacy Qt backends via the baselayer module.
 
 Usage:
     python -m cli.i2run <task> [options]

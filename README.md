@@ -25,7 +25,6 @@ This branch represents a major architectural migration from Qt/PySide2 to a mode
 
 ### Key Features of the Migration
 
-- **Dual-mode compatibility**: Code works in both Qt and Django environments via the `baselayer` module
 - **Preserved plugins**: All wrappers and pipelines remain functional with minimal changes
 - **Environment detection**: Automatic detection of Qt vs Django mode
 - **Modern testing**: pytest-based test suite with Django integration
@@ -95,7 +94,6 @@ Test results are stored in `~/.cache/ccp4i2-tests/`. See cleanup instructions pr
 
 ```
 ccp4i2/
-├── baselayer/          # Qt-free compatibility layer (PySide2 stubs)
 ├── core/               # Core Python modules (CCP4Data, CCP4File, etc.)
 ├── pipelines/          # Multi-program workflows
 ├── wrappers/           # Single-program task wrappers
@@ -120,7 +118,6 @@ See [Development Setup](mddocs/setup/DEVELOPMENT_SETUP.md) for environment confi
 
 Key guidelines:
 - All changes should include tests
-- Use `baselayer` imports instead of direct PySide2 imports
 - Run the test suite before submitting PRs
 
 ## License

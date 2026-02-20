@@ -2,7 +2,6 @@ import os
 import sys
 
 from lxml import etree
-from ccp4i2.baselayer import QtCore
 
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Utils
@@ -90,7 +89,6 @@ class LidiaAcedrgNew(CPluginScript):
             self.finishWithStatus(result)
             return result
 
-    @QtCore.Slot(dict)
     def lidiaFinished(self, statusDict):
         status = statusDict['finishStatus']
         if status == CPluginScript.FAILED:
