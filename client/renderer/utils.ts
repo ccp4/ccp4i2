@@ -681,8 +681,7 @@ export const useProject = (projectId: number | null | undefined): ProjectData =>
     endpoint: "files",
   });
 
-  // Note: KPIs are now embedded in job_tree endpoint, so we no longer need
-  // separate job_float_values and job_char_values API calls
+  // Note: KPIs are now embedded in job_tree endpoint
 
   return {
     project,

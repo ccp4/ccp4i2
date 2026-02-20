@@ -419,20 +419,6 @@ class TestProjectViewSet:
         assert isinstance(jobs, list)
         assert len(jobs) > 0
 
-    def test_project_job_float_values(self):
-        """Test GET /projects/{id}/job_float_values/ - Get KPI float values"""
-        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/job_float_values/")
-        assert response.status_code == 200
-        values = response.json()
-        assert isinstance(values, list)
-
-    def test_project_job_char_values(self):
-        """Test GET /projects/{id}/job_char_values/ - Get KPI char values"""
-        response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/job_char_values/")
-        assert response.status_code == 200
-        values = response.json()
-        assert isinstance(values, list)
-
     def test_project_tags_get(self):
         """Test GET /projects/{id}/tags/ - Get project tags"""
         response = self.client.get(f"{API_PREFIX}/projects/{self.project.id}/tags/")

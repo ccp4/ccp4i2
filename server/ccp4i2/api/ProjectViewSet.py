@@ -43,8 +43,6 @@ class ProjectViewSet(ModelViewSet):
         - import_project: Handles the upload and import of project files (ZIP format).
         - files: Retrieves a list of files associated with a specific project.
         - jobs: Retrieves a list of jobs associated with a specific project.
-        - job_float_values: Retrieves all `JobFloatValue` instances associated with a specific project.
-        - job_char_values: Retrieves job characteristic values for a specific project.
         - tags: Retrieves tags associated with a specific project.
         - directory: Retrieves the directory listing of a specific project.
         - project_file: Retrieves a specific file from the project's directory.
@@ -290,59 +288,13 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
-        serializer_class=serializers.JobFloatValueSerializer,
-    )
-    def job_float_values(self, request, pk=None):
-        """
-        Retrieve all JobFloatValue instances associated with a specific project.
-        Args:
-            request (Request): The HTTP request object.
-            pk (int, optional): The primary key of the project.
-        Returns:
-            Response: A Response object containing serialized data of JobFloatValue instances.
-        """
-
-        project = models.Project.objects.get(pk=pk)
-        serializer = serializers.JobFloatValueSerializer(
-            models.JobFloatValue.objects.filter(job__project=project), many=True
-        )
-        project.last_access = datetime.datetime.now(tz=timezone("UTC"))
-        project.save()
-        return Response(serializer.data)
-
-    @action(
-        detail=True,
-        methods=["get"],
-        serializer_class=serializers.JobCharValueSerializer,
-    )
-    def job_char_values(self, request, pk=None):
-        """
-        Retrieve job characteristic values for a specific project.
-        Args:
-            request (Request): The HTTP request object.
-            pk (int, optional): The primary key of the project.
-        Returns:
-            Response: A Response object containing serialized job characteristic values.
-        """
-
-        project = models.Project.objects.get(pk=pk)
-        serializer = serializers.JobCharValueSerializer(
-            models.JobCharValue.objects.filter(job__project=project), many=True
-        )
-        project.last_access = datetime.datetime.now(tz=timezone("UTC"))
-        project.save()
-        return Response(serializer.data)
-
-    @action(
-        detail=True,
-        methods=["get"],
     )
     def job_tree(self, request, pk=None):
         """
         Consolidated endpoint for job tree view.
 
         Returns hierarchical job data with embedded files and KPIs in a single request.
-        This replaces 4 separate calls to: jobs/, files/, job_float_values/, job_char_values/
+        This replaces separate calls to: jobs/, files/
 
         The response is structured as a tree where each job includes:
         - All job fields (id, uuid, number, title, status, etc.)

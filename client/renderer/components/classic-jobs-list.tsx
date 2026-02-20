@@ -126,7 +126,7 @@ const hasActiveJobs = (jobTree: JobTreeNode[] | undefined): boolean => {
 
 /**
  * Fetch job tree data using consolidated endpoint.
- * Replaces 4 separate calls (jobs, files, job_char_values, job_float_values)
+ * Replaces 4 separate calls (jobs, files)
  * with a single optimized request.
  *
  * Uses adaptive polling: faster when jobs are running OR recently started,

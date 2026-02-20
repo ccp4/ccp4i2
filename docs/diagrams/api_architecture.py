@@ -117,7 +117,6 @@ y = draw_endpoint(ax, 4.2, y, 'GET', '/{id}/tags/', 'Get project tags')
 y = draw_endpoint(ax, 4.2, y, 'POST', '/{id}/tags/', 'Add tag to project')
 y = draw_endpoint(ax, 4.2, y, 'DELETE', '/{id}/tags/{tag_id}/', 'Remove tag')
 y = draw_endpoint(ax, 4.2, y, 'POST', '/{id}/preview_file/', 'Open in viewer')
-y = draw_endpoint(ax, 4.2, y, 'GET', '/{id}/job_float_values/', 'Get job KPIs')
 y = draw_endpoint(ax, 4.2, y, 'GET', '/{id}/exports/', 'List exports')
 
 # ==================== JOBS VIEWSET ====================
