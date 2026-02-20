@@ -5,9 +5,6 @@ This test suite provides complete coverage of all API endpoints defined in:
 - FileViewSet
 - JobViewSet
 - ProjectViewSet
-- FileImportViewSet
-- FileUseViewSet
-- FileTypeViewSet
 - ProjectTagViewSet
 - ProjectExportViewSet
 
@@ -530,27 +527,6 @@ class TestSimpleViewSets:
             TEST_DATA_DIR / "refmac_gamma_test_0.ccp4_project.zip",
             relocate_path=test_project_path,
         )
-
-    def test_file_import_list(self):
-        """Test GET /fileimports/ - List all file imports"""
-        response = self.client.get(f"{API_PREFIX}/fileimports/")
-        assert response.status_code == 200
-        imports = response.json()
-        assert isinstance(imports, list)
-
-    def test_file_use_list(self):
-        """Test GET /fileuses/ - List all file uses"""
-        response = self.client.get(f"{API_PREFIX}/fileuses/")
-        assert response.status_code == 200
-        uses = response.json()
-        assert isinstance(uses, list)
-
-    def test_file_type_list(self):
-        """Test GET /filetypes/ - List all file types"""
-        response = self.client.get(f"{API_PREFIX}/filetypes/")
-        assert response.status_code == 200
-        types = response.json()
-        assert isinstance(types, list)
 
     def test_project_tag_list(self):
         """Test GET /projecttags/ - List all project tags"""

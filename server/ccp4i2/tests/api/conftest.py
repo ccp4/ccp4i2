@@ -46,9 +46,6 @@ def _bypass_permissions_globally():
     from ccp4i2.api.ProjectExportViewSet import ProjectExportViewSet
     from ccp4i2.api.ProjectGroupViewSet import ProjectGroupViewSet
     from ccp4i2.api.ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
-    from ccp4i2.api.FileTypeViewSet import FileTypeViewSet
-    from ccp4i2.api.FileUseViewSet import FileUseViewSet
-    from ccp4i2.api.FileImportViewSet import FileImportViewSet
 
     ProjectViewSet.permission_classes = [AllowAny]
     JobViewSet.permission_classes = [AllowAny]
@@ -57,9 +54,6 @@ def _bypass_permissions_globally():
     ProjectExportViewSet.permission_classes = [AllowAny]
     ProjectGroupViewSet.permission_classes = [AllowAny]
     ProjectGroupMembershipViewSet.permission_classes = [AllowAny]
-    FileTypeViewSet.permission_classes = [AllowAny]
-    FileUseViewSet.permission_classes = [AllowAny]
-    FileImportViewSet.permission_classes = [AllowAny]
 
 _bypass_permissions_globally()
 
@@ -99,9 +93,6 @@ def bypass_api_permissions(monkeypatch):
     from ccp4i2.api.ProjectExportViewSet import ProjectExportViewSet
     from ccp4i2.api.ProjectGroupViewSet import ProjectGroupViewSet
     from ccp4i2.api.ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
-    from ccp4i2.api.FileTypeViewSet import FileTypeViewSet
-    from ccp4i2.api.FileUseViewSet import FileUseViewSet
-    from ccp4i2.api.FileImportViewSet import FileImportViewSet
 
     # Patch permission_classes on all viewsets
     monkeypatch.setattr(ProjectViewSet, 'permission_classes', [AllowAny])
@@ -111,9 +102,6 @@ def bypass_api_permissions(monkeypatch):
     monkeypatch.setattr(ProjectExportViewSet, 'permission_classes', [AllowAny])
     monkeypatch.setattr(ProjectGroupViewSet, 'permission_classes', [AllowAny])
     monkeypatch.setattr(ProjectGroupMembershipViewSet, 'permission_classes', [AllowAny])
-    monkeypatch.setattr(FileTypeViewSet, 'permission_classes', [AllowAny])
-    monkeypatch.setattr(FileUseViewSet, 'permission_classes', [AllowAny])
-    monkeypatch.setattr(FileImportViewSet, 'permission_classes', [AllowAny])
 
 
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)

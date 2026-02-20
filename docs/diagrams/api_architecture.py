@@ -177,11 +177,8 @@ y = draw_endpoint(ax, 16.4, y, 'POST', '/{id}/preview/', 'Open in viewer')
 
 ax.text(20, 16.5, 'Related ViewSets:', fontsize=8, fontweight='bold', color=colors['text_dark'])
 y = 16.1
-ax.text(20, y, '/filetypes/ - File type definitions', fontsize=7, color=colors['text_dark'])
 y -= 0.35
-ax.text(20, y, '/fileimports/ - Import records', fontsize=7, color=colors['text_dark'])
 y -= 0.35
-ax.text(20, y, '/fileuses/ - File usage tracking', fontsize=7, color=colors['text_dark'])
 y -= 0.35
 ax.text(20, y, '/projectexports/ - Export records', fontsize=7, color=colors['text_dark'])
 

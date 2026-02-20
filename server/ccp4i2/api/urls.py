@@ -10,9 +10,6 @@ from .ProjectGroupViewSet import ProjectGroupViewSet
 from .ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
 from .FileViewSet import FileViewSet
 from .JobViewSet import JobViewSet
-from .FileTypeViewSet import FileTypeViewSet
-from .FileImportViewSet import FileImportViewSet
-from .FileUseViewSet import FileUseViewSet
 from . import views
 
 router = routers.DefaultRouter()
@@ -22,9 +19,6 @@ router.register("projectgroups", ProjectGroupViewSet)
 router.register("projectgroupmemberships", ProjectGroupMembershipViewSet)
 router.register("files", FileViewSet)
 router.register("jobs", JobViewSet)
-router.register("filetypes", FileTypeViewSet)
-router.register("fileimports", FileImportViewSet)
-router.register("fileuses", FileUseViewSet)
 router.register("projectexports", ProjectExportViewSet)
 
 # Core API patterns (will be wrapped under /api/ccp4i2/ prefix)
