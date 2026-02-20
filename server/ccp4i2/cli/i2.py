@@ -9,7 +9,8 @@ Usage:
     i2 projects [list]              List all projects
     i2 projects create <name>       Create a new project
     i2 projects show <project>      Show project details
-    i2 projects tree <project>      Show project job tree
+    i2 projects tree <project>      Show project directory tree
+    i2 projects cat <project> <path>  View file in project directory
 
     i2 jobs <project> [list]        List jobs in a project
     i2 jobs create <project> <task> Create a new job
@@ -17,11 +18,11 @@ Usage:
     i2 jobs tree <project> <job>    Show job file tree
     i2 jobs clone <project> <job>   Clone a job
     i2 jobs kpi <project> <job>     Show job KPIs (float/char values)
-
-    i2 run <task> [options]         Create and run a task (i2run shortcut)
+    i2 jobs validate <project> <job>  Validate job parameters
+    i2 jobs set-status <project> <job> <status>  Change job status
+    i2 jobs cat <project> <job> <path>  View file in job directory
 
     i2 jobs set-param <project> <job> <param> <value>  Set job parameter
-    i2 jobs get-param <project> <job> <param>  Get job parameter value
     i2 jobs upload-param <project> <job> <param> <file> [col]  Upload file param
 
     FileUse Syntax for set-param:
@@ -29,8 +30,14 @@ Usage:
         i2 jobs set-param myproject 5 XYZIN '[-1].XYZOUT[0]'      # Last job's XYZOUT
         i2 jobs set-param myproject 5 HKLIN 'refmac[-1].HKLOUT'   # Last refmac's HKLOUT
 
+    i2 run <task> [options]         Create and run a task (i2run shortcut)
+
     i2 files <project> <job> [list] List files in a job
     i2 files cat <project> <job> <name>  Display file contents
+    i2 files uses [--project P] [--job J]  List file-job relationships
+    i2 files imports [--project P] [--job J]  List file imports
+
+    i2 filetypes [list]             List registered file types
 
     i2 report <project> <job>       Generate job report
 
@@ -45,7 +52,10 @@ Examples:
     i2 jobs run toxd 5
     i2 jobs clone toxd 3
     i2 jobs kpi toxd 5
+    i2 jobs validate toxd 5
     i2 files toxd 5
+    i2 files uses --project toxd
+    i2 filetypes
     i2 report toxd 5
     i2 run refmac --hklin data.mtz --xyzin model.pdb
 """
@@ -145,6 +155,11 @@ def main():
                 print("Usage: i2 projects tree <project_id>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('tree_project', rest[1])
+        elif rest[0] == 'cat':
+            if len(rest) < 3:
+                print("Usage: i2 projects cat <project> <file_path>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('cat_project_file', rest[1], rest[2], *rest[3:])
         else:
             # Assume it's a project ID for show
             run_management_command('list_project', rest[0])
@@ -188,6 +203,23 @@ def main():
                 print("Usage: i2 jobs kpi <project> <job>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('job_kpi', *job_args(rest[1], rest[2]), *rest[3:])
+        elif rest[0] == 'validate':
+            if len(rest) < 3:
+                print("Usage: i2 jobs validate <project> <job>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('validate_job', *job_args(rest[1], rest[2]), *rest[3:])
+        elif rest[0] == 'set-status':
+            if len(rest) < 4:
+                print("Usage: i2 jobs set-status <project> <job> <status>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('set_job_status', *job_args(rest[1], rest[2]),
+                                   '--status', rest[3])
+        elif rest[0] == 'cat':
+            if len(rest) < 4:
+                print("Usage: i2 jobs cat <project> <job> <file_path>", file=sys.stderr)
+                sys.exit(1)
+            run_management_command('cat_job_file', *job_args(rest[1], rest[2]),
+                                   rest[3], *rest[4:])
         elif rest[0] == 'set-param':
             if len(rest) < 5:
                 print("Usage: i2 jobs set-param <project> <job> <param_name> <value>", file=sys.stderr)
@@ -210,21 +242,6 @@ def main():
                                    *job_args(project, job_number),
                                    '--path', object_path,
                                    '--value', value)
-        elif rest[0] == 'get-param':
-            if len(rest) < 4:
-                print("Usage: i2 jobs get-param <project> <job> <param_name>", file=sys.stderr)
-                sys.exit(1)
-            project, job_number, param_name = rest[1], rest[2], rest[3]
-
-            # Build object_path (prefix with inputData. if no dot in path)
-            if '.' not in param_name:
-                object_path = f'inputData.{param_name}'
-            else:
-                object_path = param_name
-
-            run_management_command('get_job_parameter',
-                                   *job_args(project, job_number),
-                                   '--path', object_path)
         elif rest[0] == 'upload-param':
             if len(rest) < 5:
                 print("Usage: i2 jobs upload-param <project> <job> <param_name> <file_path> [column_selector]", file=sys.stderr)
@@ -281,12 +298,22 @@ def main():
                 print("Usage: i2 files cat <project> <job> <filename>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('cat_job_file', *job_args(rest[1], rest[2]), rest[3])
+        elif rest[0] == 'uses':
+            run_management_command('list_file_uses', *rest[1:])
+        elif rest[0] == 'imports':
+            run_management_command('list_file_imports', *rest[1:])
         else:
             # Assume first two args are project and job number
             if len(rest) < 2:
                 print("Usage: i2 files <project> <job>", file=sys.stderr)
                 sys.exit(1)
             run_management_command('list_files', *job_args(rest[0], rest[1]))
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # File Types
+    # ─────────────────────────────────────────────────────────────────────────
+    elif resource == 'filetypes':
+        run_management_command('list_filetypes', *rest)
 
     # ─────────────────────────────────────────────────────────────────────────
     # Report
@@ -330,7 +357,7 @@ def main():
     # ─────────────────────────────────────────────────────────────────────────
     else:
         print(f"Unknown resource: {resource}", file=sys.stderr)
-        print("Available: projects, jobs, run, files, report, export, import", file=sys.stderr)
+        print("Available: projects, jobs, run, files, filetypes, report, export, import", file=sys.stderr)
         print("Run 'i2 --help' for usage", file=sys.stderr)
         sys.exit(1)
 
