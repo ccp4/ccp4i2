@@ -24,8 +24,6 @@ class CAngle(CAngleStub):
 
 class CEulerRotation(CEulerRotationStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CEulerRotationStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -36,8 +34,6 @@ class CEulerRotation(CEulerRotationStub):
 
 class CMatrix33(CMatrix33Stub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CMatrix33Stub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -48,8 +44,6 @@ class CMatrix33(CMatrix33Stub):
 
 class CTransformation(CTransformationStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CTransformationStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -60,8 +54,6 @@ class CTransformation(CTransformationStub):
 
 class CXyz(CXyzStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CXyzStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -72,8 +64,6 @@ class CXyz(CXyzStub):
 
 class CXyzBox(CXyzBoxStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CXyzBoxStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

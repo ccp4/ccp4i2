@@ -400,8 +400,6 @@ specific to coordinates, reflections or geometry data.
 )
 class CExePathStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CExePath.py
     to add methods and implementation-specific functionality.
     """
@@ -671,8 +669,6 @@ class CFileFunctionStub(CString):
 )
 class CExportedFileStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CExportedFile.py
     to add methods and implementation-specific functionality.
     """
@@ -963,8 +959,6 @@ class CExePathListStub(CList):
 )
 class CSearchPathStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CSearchPath.py
     to add methods and implementation-specific functionality.
     """

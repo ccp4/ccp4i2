@@ -182,8 +182,6 @@ class CCellLengthStub(CFloat):
 )
 class CPhaserRFileDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPhaserRFileDataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -1019,8 +1017,6 @@ what we are searching for.
 )
 class CDialsPickleFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CDialsPickleFile.py
     to add methods and implementation-specific functionality.
     """
@@ -1411,8 +1407,6 @@ class CUnmergedDataFileStub(CDataFile):
 )
 class CDialsJsonFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CDialsJsonFile.py
     to add methods and implementation-specific functionality.
     """
@@ -1544,8 +1538,6 @@ class CShelxLabelStub(CString):
 )
 class CReindexOperatorStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CReindexOperator.py
     to add methods and implementation-specific functionality.
     """
@@ -1663,8 +1655,6 @@ class CWavelengthStub(CFloat):
 )
 class CRunBatchRangeStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CRunBatchRange.py
     to add methods and implementation-specific functionality.
     """
@@ -2185,8 +2175,6 @@ class CColumnTypeListStub(CList):
 )
 class CPhaserSolDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPhaserSolDataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -2388,8 +2376,6 @@ class CImportUnmergedListStub(CList):
 )
 class CShelxFADataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CShelxFADataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -2619,8 +2605,6 @@ class CAltSpaceGroupListStub(CList):
 )
 class CMtzDatasetStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CMtzDataset.py
     to add methods and implementation-specific functionality.
     """
@@ -2884,8 +2868,6 @@ class CAsuComponentListStub(CList):
 )
 class CGenericReflDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CGenericReflDataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -3298,8 +3280,6 @@ class CAnomalousScatteringElementStub(CElementStub):
 )
 class CImageFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CImageFile.py
     to add methods and implementation-specific functionality.
     """
@@ -3494,8 +3474,6 @@ class CProgramColumnGroupStub(CData):
 )
 class CRefmacKeywordFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CRefmacKeywordFile.py
     to add methods and implementation-specific functionality.
     """
@@ -3559,8 +3537,6 @@ class CRefmacKeywordFileStub(CDataFile):
 )
 class CResolutionRangeStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CResolutionRange.py
     to add methods and implementation-specific functionality.
     """
@@ -4949,8 +4925,6 @@ class CColumnGroupItemStub(CData):
 )
 class CXia2ImageSelectionStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CXia2ImageSelection.py
     to add methods and implementation-specific functionality.
     """
@@ -5984,8 +5958,6 @@ class CPhsDataFileStub(CMiniMtzDataFileStub):
 )
 class CMergeMiniMtzStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CMergeMiniMtz.py
     to add methods and implementation-specific functionality.
     """
@@ -6439,8 +6411,6 @@ specific to coordinates, reflections or geometry data.
 )
 class CImportUnmergedStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CImportUnmerged.py
     to add methods and implementation-specific functionality.
     """
@@ -6894,8 +6864,6 @@ class CUnmergedDataContentStub(CDataFileContent):
 )
 class CMtzColumnGroupStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CMtzColumnGroup.py
     to add methods and implementation-specific functionality.
     """
@@ -7123,8 +7091,6 @@ class CDatasetStub(CData):
 )
 class CProgramColumnGroup0Stub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CProgramColumnGroup0.py
     to add methods and implementation-specific functionality.
     """

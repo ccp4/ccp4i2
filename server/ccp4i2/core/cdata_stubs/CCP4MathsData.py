@@ -149,8 +149,6 @@ from ccp4i2.core.base_object.fundamental_types import CFloat
 )
 class CMatrix33Stub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CMatrix33.py
     to add methods and implementation-specific functionality.
     """
@@ -206,8 +204,6 @@ class CMatrix33Stub(CData):
 )
 class CXyzBoxStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CXyzBox.py
     to add methods and implementation-specific functionality.
     """
@@ -327,8 +323,6 @@ class CAngleStub(CFloat):
 )
 class CXyzStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CXyz.py
     to add methods and implementation-specific functionality.
     """
@@ -489,8 +483,6 @@ class CXyzStub(CData):
 )
 class CEulerRotationStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CEulerRotation.py
     to add methods and implementation-specific functionality.
     """
@@ -650,8 +642,6 @@ class CEulerRotationStub(CData):
 )
 class CTransformationStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CTransformation.py
     to add methods and implementation-specific functionality.
     """

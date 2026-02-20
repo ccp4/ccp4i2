@@ -75,8 +75,6 @@ from ccp4i2.core.cdata_stubs.CCP4XtalData import CSpaceGroupStub
 )
 class CPerformanceIndicatorStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPerformanceIndicator.py
     to add methods and implementation-specific functionality.
     """
@@ -154,8 +152,6 @@ class CPerformanceIndicatorStub(CData):
 )
 class CDataReductionPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CDataReductionPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -232,8 +228,6 @@ class CDataReductionPerformanceStub(CPerformanceIndicatorStub):
 )
 class CPairefPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPairefPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -310,8 +304,6 @@ class CPairefPerformanceStub(CPerformanceIndicatorStub):
 )
 class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CDataReductionCCPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -421,8 +413,6 @@ class CDataReductionCCPerformanceStub(CPerformanceIndicatorStub):
 )
 class CServalcatPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CServalcatPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -529,8 +519,6 @@ class CServalcatPerformanceStub(CPerformanceIndicatorStub):
 )
 class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CExpPhasPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -610,8 +598,6 @@ class CExpPhasPerformanceStub(CPerformanceIndicatorStub):
 )
 class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CAtomCountPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -690,8 +676,6 @@ class CAtomCountPerformanceStub(CPerformanceIndicatorStub):
 )
 class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CModelBuildPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -782,8 +766,6 @@ class CModelBuildPerformanceStub(CPerformanceIndicatorStub):
 )
 class CRefinementPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CRefinementPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -861,8 +843,6 @@ class CRefinementPerformanceStub(CPerformanceIndicatorStub):
 )
 class CSuperposePerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CSuperposePerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -945,8 +925,6 @@ class CSuperposePerformanceStub(CPerformanceIndicatorStub):
 )
 class CPhaseErrorPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPhaseErrorPerformance.py
     to add methods and implementation-specific functionality.
     """
@@ -1020,8 +998,6 @@ class CPhaseErrorPerformanceStub(CPerformanceIndicatorStub):
 )
 class CTestObsConversionsPerformanceStub(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CTestObsConversionsPerformance.py
     to add methods and implementation-specific functionality.
     """

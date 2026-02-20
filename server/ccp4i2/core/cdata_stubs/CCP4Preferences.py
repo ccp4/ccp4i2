@@ -215,8 +215,6 @@ from ccp4i2.core.base_object.base_classes import CContainer
 )
 class CPreferencesStub(CContainer):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPreferences.py
     to add methods and implementation-specific functionality.
     """

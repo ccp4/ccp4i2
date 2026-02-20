@@ -12,8 +12,6 @@ from ccp4i2.core.cdata_stubs.CCP4CustomTaskManager import CCustomComFileStub, CC
 
 class CCustomComFile(CCustomComFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CCustomComFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -36,8 +34,6 @@ class CCustomComFileList(CCustomComFileListStub):
 
 class CCustomTaskDefinition(CCustomTaskDefinitionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CCustomTaskDefinitionStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -60,8 +56,6 @@ class CCustomTaskFileFunction(CCustomTaskFileFunctionStub):
 
 class CCustomTaskParam(CCustomTaskParamStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CCustomTaskParamStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

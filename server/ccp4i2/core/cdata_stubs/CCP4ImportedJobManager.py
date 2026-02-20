@@ -229,8 +229,6 @@ class CImportedJobDataListStub(CList):
 )
 class CImportedJobDataStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CImportedJobData.py
     to add methods and implementation-specific functionality.
     """
@@ -455,8 +453,6 @@ class CImportedJobDataStub(CData):
 )
 class CImportedJobDefinitionStub(CContainer):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CImportedJobDefinition.py
     to add methods and implementation-specific functionality.
     """

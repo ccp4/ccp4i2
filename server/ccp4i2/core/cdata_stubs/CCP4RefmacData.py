@@ -126,8 +126,6 @@ from ccp4i2.core.cdata_stubs.CCP4File import CFilePathStub, CProjectIdStub
 )
 class CRefmacRestraintsDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CRefmacRestraintsDataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -194,8 +192,6 @@ class CRefmacRestraintsDataFileStub(CDataFile):
 )
 class CRefmacRigidGroupSegmentStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CRefmacRigidGroupSegment.py
     to add methods and implementation-specific functionality.
     """
@@ -360,8 +356,6 @@ class CRefmacRigidGroupSegmentStub(CData):
 )
 class CRefmacAnomalousAtomStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CRefmacAnomalousAtom.py
     to add methods and implementation-specific functionality.
     """
@@ -590,8 +584,6 @@ class CRefmacRigidGroupListStub(CList):
 )
 class CRefmacRigidGroupItemStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CRefmacRigidGroupItem.py
     to add methods and implementation-specific functionality.
     """

@@ -12,8 +12,6 @@ from ccp4i2.core.cdata_stubs.CCP4Preferences import CPreferencesStub
 
 class CPreferences(CPreferencesStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CPreferencesStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

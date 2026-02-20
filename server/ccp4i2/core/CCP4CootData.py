@@ -12,8 +12,6 @@ from ccp4i2.core.cdata_stubs.CCP4CootData import CCootHistoryDataFileStub
 
 class CCootHistoryDataFile(CCootHistoryDataFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CCootHistoryDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

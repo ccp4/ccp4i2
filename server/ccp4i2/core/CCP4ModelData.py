@@ -123,8 +123,6 @@ class CAsuContent(CAsuContentStub):
 
 class CAsuContentSeq(CAsuContentSeqStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CAsuContentSeqStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -727,8 +725,6 @@ class CAtomRefmacSelectionOccupancy(CAtomRefmacSelectionOccupancyStub):
 
 class CAtomSelection(CAtomSelectionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CAtomSelectionStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -751,8 +747,6 @@ class CBlastData(CBlastDataStub):
 
 class CBlastDataFile(CBlastDataFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CBlastDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -763,8 +757,6 @@ class CBlastDataFile(CBlastDataFileStub):
 
 class CBlastItem(CBlastItemStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CBlastItemStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -787,8 +779,6 @@ class CChemComp(CChemCompStub):
 
 class CDictData(CDictDataStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CDictDataStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -929,8 +919,6 @@ class CHhpredData(CHhpredDataStub):
 
 class CHhpredDataFile(CHhpredDataFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CHhpredDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -941,8 +929,6 @@ class CHhpredDataFile(CHhpredDataFileStub):
 
 class CHhpredItem(CHhpredItemStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CHhpredItemStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -1803,8 +1789,6 @@ class CPdbData(CPdbDataStub):
 
 class CPdbDataFile(CPdbDataFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CPdbDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2260,8 +2244,6 @@ class CPdbDataFileList(CPdbDataFileListStub):
 
 class CPdbEnsembleItem(CPdbEnsembleItemStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CPdbEnsembleItemStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2846,8 +2828,6 @@ class CSequenceAlignment(CSequenceAlignmentStub, CBioPythonSeqInterface):
 
 class CSequenceMeta(CSequenceMetaStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CSequenceMetaStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

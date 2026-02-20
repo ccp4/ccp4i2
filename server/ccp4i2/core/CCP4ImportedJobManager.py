@@ -12,8 +12,6 @@ from ccp4i2.core.cdata_stubs.CCP4ImportedJobManager import CImportedJobDataStub,
 
 class CImportedJobData(CImportedJobDataStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CImportedJobDataStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -36,8 +34,6 @@ class CImportedJobDataList(CImportedJobDataListStub):
 
 class CImportedJobDefinition(CImportedJobDefinitionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CImportedJobDefinitionStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

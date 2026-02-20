@@ -12,8 +12,6 @@ from ccp4i2.core.cdata_stubs.CCP4ComFilePatchManager import CPatchDefinitionStub
 
 class CPatchDefinition(CPatchDefinitionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CPatchDefinitionStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

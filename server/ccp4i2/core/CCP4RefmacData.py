@@ -12,8 +12,6 @@ from ccp4i2.core.cdata_stubs.CCP4RefmacData import CRefmacAnomalousAtomStub, CRe
 
 class CRefmacAnomalousAtom(CRefmacAnomalousAtomStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CRefmacAnomalousAtomStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -24,8 +22,6 @@ class CRefmacAnomalousAtom(CRefmacAnomalousAtomStub):
 
 class CRefmacRestraintsDataFile(CRefmacRestraintsDataFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CRefmacRestraintsDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -36,8 +32,6 @@ class CRefmacRestraintsDataFile(CRefmacRestraintsDataFileStub):
 
 class CRefmacRigidGroupItem(CRefmacRigidGroupItemStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CRefmacRigidGroupItemStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -60,8 +54,6 @@ class CRefmacRigidGroupList(CRefmacRigidGroupListStub):
 
 class CRefmacRigidGroupSegment(CRefmacRigidGroupSegmentStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CRefmacRigidGroupSegmentStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

@@ -281,8 +281,6 @@ class CCustomTaskParamListStub(CList):
 )
 class CCustomComFileStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CCustomComFile.py
     to add methods and implementation-specific functionality.
     """
@@ -505,8 +503,6 @@ class CCustomComFileStub(CData):
 )
 class CCustomTaskDefinitionStub(CContainer):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CCustomTaskDefinition.py
     to add methods and implementation-specific functionality.
     """
@@ -742,8 +738,6 @@ class CCustomComFileListStub(CList):
 )
 class CCustomTaskParamStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CCustomTaskParam.py
     to add methods and implementation-specific functionality.
     """

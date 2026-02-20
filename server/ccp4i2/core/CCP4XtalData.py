@@ -364,8 +364,6 @@ class CDatasetName(CDatasetNameStub):
 
 class CDialsJsonFile(CDialsJsonFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CDialsJsonFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -376,8 +374,6 @@ class CDialsJsonFile(CDialsJsonFileStub):
 
 class CDialsPickleFile(CDialsPickleFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CDialsPickleFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -656,8 +652,6 @@ class CFreeRDataFile(CFreeRDataFileStub, CMiniMtzDataFile):
 
 class CGenericReflDataFile(CGenericReflDataFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CGenericReflDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -743,8 +737,6 @@ class CISigIColumnGroup(CISigIColumnGroupStub):
 
 class CImageFile(CImageFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CImageFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -779,8 +771,6 @@ class CImosflmXmlDataFile(CImosflmXmlDataFileStub):
 
 class CImportUnmerged(CImportUnmergedStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CImportUnmergedStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -1007,8 +997,6 @@ class CMapDataFile(CMapDataFileStub):
 
 class CMergeMiniMtz(CMergeMiniMtzStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CMergeMiniMtzStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -1244,8 +1232,6 @@ class CMtzColumn(CMtzColumnStub):
 
 class CMtzColumnGroup(CMtzColumnGroupStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CMtzColumnGroupStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2089,8 +2075,6 @@ class CMtzDataFile(CMtzDataFileStub):
 
 class CMtzDataset(CMtzDatasetStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CMtzDatasetStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2445,8 +2429,6 @@ class CProgramColumnGroup(CProgramColumnGroupStub):
 
 class CProgramColumnGroup0(CProgramColumnGroup0Stub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CProgramColumnGroup0Stub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2457,8 +2439,6 @@ class CProgramColumnGroup0(CProgramColumnGroup0Stub):
 
 class CRefmacKeywordFile(CRefmacKeywordFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CRefmacKeywordFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2469,8 +2449,6 @@ class CRefmacKeywordFile(CRefmacKeywordFileStub):
 
 class CReindexOperator(CReindexOperatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CReindexOperatorStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2552,8 +2530,6 @@ class CResolutionRange(CFloatRange, CResolutionRangeStub):
 
 class CRunBatchRange(CRunBatchRangeStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CRunBatchRangeStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -2576,8 +2552,6 @@ class CRunBatchRangeList(CRunBatchRangeListStub):
 
 class CShelxFADataFile(CShelxFADataFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CShelxFADataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -3346,8 +3320,6 @@ class CWavelength(CWavelengthStub):
 
 class CXia2ImageSelection(CXia2ImageSelectionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CXia2ImageSelectionStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

@@ -128,8 +128,6 @@ from ccp4i2.core.cdata_stubs.CCP4File import CFilePathStub, CProjectIdStub
 )
 class CCootHistoryDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CCootHistoryDataFile.py
     to add methods and implementation-specific functionality.
     """

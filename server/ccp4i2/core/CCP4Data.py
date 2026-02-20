@@ -29,8 +29,6 @@ class CBaseData(CBaseDataStub):
 
 class CCollection(CCollectionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CCollectionStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -258,8 +256,6 @@ class COutputFileList(COutputFileListStub):
 
 class CPatchSelection(CPatchSelectionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CPatchSelectionStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

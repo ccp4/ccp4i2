@@ -13,8 +13,6 @@ from ccp4i2.core.cdata_stubs.CCP4PerformanceData import CAtomCountPerformanceStu
 # Define CPerformanceIndicator FIRST since other classes inherit from it
 class CPerformanceIndicator(CPerformanceIndicatorStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CPerformanceIndicatorStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -29,8 +27,6 @@ class CAtomCountPerformance(CAtomCountPerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CAtomCountPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CAtomCountPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -45,8 +41,6 @@ class CDataReductionCCPerformance(CDataReductionCCPerformanceStub, CPerformanceI
     Inherits from:
     - CDataReductionCCPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CDataReductionCCPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -61,8 +55,6 @@ class CDataReductionPerformance(CDataReductionPerformanceStub, CPerformanceIndic
     Inherits from:
     - CDataReductionPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CDataReductionPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -77,8 +69,6 @@ class CExpPhasPerformance(CExpPhasPerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CExpPhasPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CExpPhasPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -93,8 +83,6 @@ class CModelBuildPerformance(CModelBuildPerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CModelBuildPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CModelBuildPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -109,8 +97,6 @@ class CPairefPerformance(CPairefPerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CPairefPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CPairefPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -125,8 +111,6 @@ class CPhaseErrorPerformance(CPhaseErrorPerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CPhaseErrorPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CPhaseErrorPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -141,8 +125,6 @@ class CRefinementPerformance(CRefinementPerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CRefinementPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CRefinementPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -157,8 +139,6 @@ class CServalcatPerformance(CServalcatPerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CServalcatPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CServalcatPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -173,8 +153,6 @@ class CSuperposePerformance(CSuperposePerformanceStub, CPerformanceIndicator):
     Inherits from:
     - CSuperposePerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CSuperposePerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -189,8 +167,6 @@ class CTestObsConversionsPerformance(CTestObsConversionsPerformanceStub, CPerfor
     Inherits from:
     - CTestObsConversionsPerformanceStub: Metadata and structure
     - CPerformanceIndicator: Shared full-fat methods
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     Extends CTestObsConversionsPerformanceStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

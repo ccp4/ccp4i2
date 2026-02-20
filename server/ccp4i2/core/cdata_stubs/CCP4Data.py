@@ -322,8 +322,6 @@ class CJobStatusStub(CInt):
 )
 class CCollectionStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CCollection.py
     to add methods and implementation-specific functionality.
     """
@@ -721,8 +719,6 @@ class CSMILESStringStub(CString):
 )
 class CPatchSelectionStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPatchSelection.py
     to add methods and implementation-specific functionality.
     """
@@ -1022,8 +1018,6 @@ class CBaseDataStub(CData):
 )
 class CDictStub(CCollectionStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CDict.py
     to add methods and implementation-specific functionality.
     """

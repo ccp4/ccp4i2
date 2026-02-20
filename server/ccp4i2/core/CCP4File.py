@@ -42,8 +42,6 @@ class CEBIValidationXMLDataFile(CEBIValidationXMLDataFileStub):
 
 class CExePath(CExePathStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CExePathStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -66,8 +64,6 @@ class CExePathList(CExePathListStub):
 
 class CExportedFile(CExportedFileStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CExportedFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
@@ -328,8 +324,6 @@ class CSceneDataFile(CSceneDataFileStub):
 
 class CSearchPath(CSearchPathStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CSearchPathStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """

@@ -1164,8 +1164,6 @@ class CMetaDataTagListStub(CList):
 )
 class CServerGroupStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CServerGroup.py
     to add methods and implementation-specific functionality.
     """

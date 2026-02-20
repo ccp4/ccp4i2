@@ -753,8 +753,6 @@ class CSequenceStringStub(CString):
 )
 class CHhpredDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CHhpredDataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -1241,8 +1239,6 @@ or interleaved sequences.
 )
 class CBlastDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CBlastDataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -1320,8 +1316,6 @@ class CBlastDataFileStub(CDataFile):
 )
 class CDictDataStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CDictData.py
     to add methods and implementation-specific functionality.
     """
@@ -1649,8 +1643,6 @@ class CMonomerStub(CData):
 )
 class CBlastItemStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CBlastItem.py
     to add methods and implementation-specific functionality.
     """
@@ -2445,8 +2437,6 @@ class CResidueRangeStub(CData):
 )
 class CAtomSelectionStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CAtomSelection.py
     to add methods and implementation-specific functionality.
     """
@@ -2900,8 +2890,6 @@ class COccRefmacSelectionListStub(CList):
 )
 class CSequenceMetaStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CSequenceMeta.py
     to add methods and implementation-specific functionality.
     """
@@ -3247,8 +3235,6 @@ class CSeqAlignDataFileStub(CDataFile):
 )
 class CHhpredItemStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CHhpredItem.py
     to add methods and implementation-specific functionality.
     """
@@ -3985,8 +3971,6 @@ class CAsuContentSeqListStub(CList):
 )
 class CAsuContentSeqStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CAsuContentSeq.py
     to add methods and implementation-specific functionality.
     """
@@ -4101,8 +4085,6 @@ class CAsuContentSeqStub(CData):
 )
 class CPdbDataFileStub(CDataFile):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPdbDataFile.py
     to add methods and implementation-specific functionality.
     """
@@ -4362,8 +4344,6 @@ class CEnsemblePdbDataFileStub(CPdbDataFileStub):
 )
 class CPdbEnsembleItemStub(CData):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-
     This is a pure data class stub. Extend it in core/CPdbEnsembleItem.py
     to add methods and implementation-specific functionality.
     """

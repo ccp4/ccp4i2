@@ -147,8 +147,6 @@ class CMetaDataTagList(CMetaDataTagListStub):
 
 class CServerGroup(CServerGroupStub):
     """
-    QObject(self, parent: typing.Optional[PySide2.QtCore.QObject] = None) -> None
-    
     Extends CServerGroupStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
