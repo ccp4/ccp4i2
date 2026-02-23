@@ -17,6 +17,7 @@ import { CEnsembleElement } from "./censemble";
 import { CAltSpaceGroupElement } from "./caltspacegroupelement";
 import { CSimpleDataFileElement } from "./csimpledatafile";
 import { CReindexOperatorElement } from "./creindexoperator";
+import { CRunBatchRangeElement } from "./crunbatchrange";
 import { CRangeElement } from "./crange";
 import { v4 as uuid4 } from "uuid";
 import { CAsuContentSeqElement } from "./casucontentseq";
@@ -228,10 +229,19 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CList":
       case "CImportUnmergedList":
       case "CAltSpaceGroupList":
-        case "CColumnGroupList":
+      case "CColumnGroupList":
       case "CEnsembleList":
+      case "CRunBatchRangeList":
         return (
           <CListElement key={the_uuid} {...props} qualifiers={qualifiers} />
+        );
+      case "CRunBatchRange":
+        return (
+          <CRunBatchRangeElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
         );
       case "CAsuContentSeqList":
         return (

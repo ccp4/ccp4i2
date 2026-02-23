@@ -74,6 +74,7 @@ export type ListItemClass =
   | "CAltSpaceGroupList"
   | "CColumnGroupList"
   | "CEnsembleList"
+  | "CRunBatchRangeList"
   | "CAsuContentSeqList"
   | "COccRefmacSelectionList"
   | "COccRelationRefmacList";
@@ -98,7 +99,7 @@ export type SpaceGroupItemClass = "CSpaceGroup" | "CAltSpaceGroup";
 /**
  * Specialized types
  */
-export type SpecializedItemClass = "CReindexOperator" | "CColumnGroup";
+export type SpecializedItemClass = "CReindexOperator" | "CColumnGroup" | "CRunBatchRange";
 
 /**
  * All known item class names
@@ -171,6 +172,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CAltSpaceGroupList",
     "CColumnGroupList",
     "CEnsembleList",
+    "CRunBatchRangeList",
     "CAsuContentSeqList",
     "COccRefmacSelectionList",
     "COccRelationRefmacList",
@@ -188,6 +190,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     // Specialized types
     "CReindexOperator",
     "CColumnGroup",
+    "CRunBatchRange",
   ];
 
   return knownClasses.includes(className as ItemClass);
@@ -238,6 +241,7 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   CColumnGroupList: "CListElement",
   CAltSpaceGroupList: "CListElement",
   CEnsembleList: "CListElement",
+  CRunBatchRangeList: "CListElement",
   CAsuContentSeqList: "CAsuContentSeqListElement",
   COccRefmacSelectionList: "COccRefmacSelectionListElement",
   COccRelationRefmacList: "COccRelationRefmacListElement",
@@ -255,6 +259,7 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   // Specialized types
   CReindexOperator: "CReindexOperatorElement",
   CColumnGroup: "CColumnGroupElement",
+  CRunBatchRange: "CRunBatchRangeElement",
 } as const;
 
 export type ItemClassComponentMap = typeof ITEM_CLASS_COMPONENT_MAP;

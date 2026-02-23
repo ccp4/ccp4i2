@@ -31,21 +31,23 @@ import SplitMtzInterface from "./splitMtz";
 import Xia2MultiplexInterface from "./xia2_multiplex";
 import { useJob } from "../../../utils";
 
+import AcornInterface from "./acorn";
+import AMPLEInterface from "./ample";
+import ArcimboldoInterface from "./arcimboldo";
+
 // Auto-generated interfaces from legacy GUI files
-import GeneratedAMPLEInterface from "./generated/AMPLE";
 import GeneratedAcedrgLinkInterface from "./generated/AcedrgLink";
 import GeneratedAlternativeImportXIA2Interface from "./generated/AlternativeImportXIA2";
 import GeneratedMakeLinkInterface from "./generated/MakeLink";
 import GeneratedMakeProjectsAndDoLigandPipelineInterface from "./generated/MakeProjectsAndDoLigandPipeline";
 import GeneratedPrepareDepositInterface from "./generated/PrepareDeposit";
 import GeneratedProvideAlignmentInterface from "./generated/ProvideAlignment";
-import GeneratedSIMBADInterface from "./generated/SIMBAD";
+import SIMBADInterface from "./SIMBAD";
 import GeneratedShelxCDInterface from "./generated/ShelxCD";
 import GeneratedSubtractNativeInterface from "./generated/SubtractNative";
 import GeneratedTestObsConversionsInterface from "./generated/TestObsConversions";
 import GeneratedAddFractionalCoordsInterface from "./generated/add_fractional_coords";
 import GeneratedAddingStatsToMmcifI2Interface from "./generated/adding_stats_to_mmcif_i2";
-import GeneratedArcimboldo from "./generated/arcimboldo";
 import GeneratedCcp4mgEditModelInterface from "./generated/ccp4mg_edit_model";
 import GeneratedCcp4mgEditNomrbumpInterface from "./generated/ccp4mg_edit_nomrbump";
 import GeneratedCcp4mgGeneralInterface from "./generated/ccp4mg_general";
@@ -61,13 +63,14 @@ import GeneratedCtruncateInterface from "./generated/ctruncate";
 import GeneratedDensityCalculatorInterface from "./generated/density_calculator";
 import GeneratedDrMrModelbuildPipelineInterface from "./generated/dr_mr_modelbuild_pipeline";
 import GeneratedEditbfacInterface from "./generated/editbfac";
-import GeneratedI2DimpleInterface from "./generated/i2Dimple";
+import I2DimpleInterface from "./i2Dimple";
 import GeneratedImportMosflmInterface from "./generated/import_mosflm";
 import GeneratedLorestrI2Interface from "./generated/lorestr_i2";
 import GeneratedMergeMtzInterface from "./generated/mergeMtz";
 import GeneratedMetalCoordInterface from "./generated/metalCoord";
 import GeneratedModelASUCheckInterface from "./generated/modelASUCheck";
 import GeneratedMordaI2Interface from "./generated/morda_i2";
+import MrBumpBasicInterface from "./mrbump_basic";
 import GeneratedMosflmInterface from "./generated/mosflm";
 import GeneratedPdbRedoApiInterface from "./generated/pdb_redo_api";
 import GeneratedPdbviewEditInterface from "./generated/pdbview_edit";
@@ -153,9 +156,12 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
       case "splitMtz":
         return <SplitMtzInterface job={job} />;
 
-      // Auto-generated interfaces from legacy GUI files
+      case "acorn":
+        return <AcornInterface job={job} />;
       case "AMPLE":
-        return <GeneratedAMPLEInterface job={job} />;
+        return <AMPLEInterface job={job} />;
+
+      // Auto-generated interfaces from legacy GUI files
       case "AcedrgLink":
         return <GeneratedAcedrgLinkInterface job={job} />;
       case "AlternativeImportXIA2":
@@ -169,7 +175,7 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
       case "ProvideAlignment":
         return <GeneratedProvideAlignmentInterface job={job} />;
       case "SIMBAD":
-        return <GeneratedSIMBADInterface job={job} />;
+        return <SIMBADInterface job={job} />;
       case "ShelxCD":
         return <GeneratedShelxCDInterface job={job} />;
       case "SubtractNative":
@@ -181,7 +187,7 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
       case "adding_stats_to_mmcif_i2":
         return <GeneratedAddingStatsToMmcifI2Interface job={job} />;
       case "arcimboldo":
-        return <GeneratedArcimboldo job={job} />;
+        return <ArcimboldoInterface job={job} />;
       case "ccp4mg_edit_model":
         return <GeneratedCcp4mgEditModelInterface job={job} />;
       case "ccp4mg_edit_nomrbump":
@@ -213,7 +219,7 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
       case "editbfac":
         return <GeneratedEditbfacInterface job={job} />;
       case "i2Dimple":
-        return <GeneratedI2DimpleInterface job={job} />;
+        return <I2DimpleInterface job={job} />;
       case "import_mosflm":
         return <GeneratedImportMosflmInterface job={job} />;
       case "lorestr_i2":
@@ -226,6 +232,8 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <GeneratedModelASUCheckInterface job={job} />;
       case "morda_i2":
         return <GeneratedMordaI2Interface job={job} />;
+      case "mrbump_basic":
+        return <MrBumpBasicInterface job={job} />;
       case "mosflm":
         return <GeneratedMosflmInterface job={job} />;
       case "pdb_redo_api":

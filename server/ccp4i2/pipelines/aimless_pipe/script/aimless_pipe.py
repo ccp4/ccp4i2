@@ -24,7 +24,57 @@ class aimless_pipe(CPluginScript):
     PURGESEARCHLIST =  [[ 'ctruncate%*/hklout.mtz', 0],
                         [ 'aimless%*/*.xmgr', 1]
                         ]
-    
+
+    # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+    def validity(self):
+        """Validate, filtering CELL errors and enforcing HKLIN_REF when needed.
+
+        CELL parameters are populated from UNMERGEDFILES at runtime (in
+        process()), so validation errors for undefined CELL values are
+        not meaningful to the user and are filtered out.
+
+        When MODE=MATCH and REFERENCE_DATASET=HKL, HKLIN_REF is required
+        but not enforced by the .def.xml, so we add a custom error.
+        """
+        from ccp4i2.core import CCP4ErrorHandling
+
+        error = super(aimless_pipe, self).validity()
+
+        # Filter out CELL validation errors — CELL is filled at runtime
+        filtered = CCP4ErrorHandling.CErrorReport()
+        for err in error.getErrors():
+            err_name = err.get('name', '')
+            if 'controlParameters.CELL.' in err_name:
+                continue
+            filtered.append(
+                err.get('class', ''),
+                err.get('code', 0),
+                err.get('details', ''),
+                err.get('name', ''),
+                err.get('severity', 0)
+            )
+
+        # When MODE=MATCH, a reference dataset is required.
+        # If the user chose HKL, HKLIN_REF must be set.
+        mode = str(self.container.controlParameters.MODE) \
+            if self.container.controlParameters.MODE.isSet() else ''
+        ref_type = str(self.container.controlParameters.REFERENCE_DATASET) \
+            if self.container.controlParameters.REFERENCE_DATASET.isSet() else ''
+
+        if mode == 'MATCH' and ref_type == 'HKL':
+            if not self.container.inputData.HKLIN_REF.isSet():
+                filtered.append(
+                    'CObsDataFile',
+                    200,
+                    'Reference reflection file must be set when '
+                    'mode is "Match to reference" and reference '
+                    'data type is "Reflection list"',
+                    'aimless_pipe.container.inputData.HKLIN_REF',
+                    CCP4ErrorHandling.SEVERITY_ERROR
+                )
+
+        return filtered
+
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
     def process(self):
       self.rootXML = lxml_etree.Element('AIMLESS_PIPE')

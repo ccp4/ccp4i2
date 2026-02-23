@@ -146,7 +146,7 @@ Use `CCP4i2ContainerElement` with an empty `itemName=""` to create visual groupi
 
 ### Tabs
 
-For interfaces with many parameters, use tabs:
+For interfaces with many parameters (typically 3+ logical groups), use tabs. The legacy Qt interfaces often had "Input Data", "Search Models", "Options" etc. as sub-tabs within the main Input tab — replicate this layout with `CCP4i2Tabs`.
 
 ```tsx
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
@@ -160,6 +160,40 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
   </CCP4i2Tab>
 </CCP4i2Tabs>
 ```
+
+**Key points for tabbed interfaces:**
+
+1. **Wrap tabs in Paper** — the outer `<Paper>` provides the card styling, tabs sit inside it:
+   ```tsx
+   return (
+     <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
+       <CCP4i2Tabs {...props}>
+         <CCP4i2Tab label="Input Data">...</CCP4i2Tab>
+         <CCP4i2Tab label="Options">...</CCP4i2Tab>
+       </CCP4i2Tabs>
+     </Paper>
+   );
+   ```
+
+2. **FolderLevel containers inside tabs** — each tab typically has one or more `CCP4i2ContainerElement` with `containerHint="FolderLevel"` for collapsible sections (matching the blue section headers in the legacy Qt interface):
+   ```tsx
+   <CCP4i2Tab label="Input Data">
+     <CCP4i2ContainerElement {...props} itemName="" qualifiers={{ guiLabel: "Target Sequence" }} containerHint="FolderLevel">
+       <CCP4i2TaskElement itemName="ASUIN" {...props} qualifiers={{ guiLabel: "AU contents" }} />
+     </CCP4i2ContainerElement>
+     <CCP4i2ContainerElement {...props} itemName="" qualifiers={{ guiLabel: "Experimental Data" }} containerHint="FolderLevel">
+       <CCP4i2TaskElement itemName="F_SIGF" {...props} qualifiers={{ guiLabel: "Reflections" }} />
+     </CCP4i2ContainerElement>
+   </CCP4i2Tab>
+   ```
+
+3. **All `useTaskItem` hooks at top level** — React hooks can't be called conditionally, so declare all `useTaskItem` calls at the top of the component, even for items that only appear in one tab. The tabs component only renders the active tab's children, but the hooks must always run.
+
+4. **Spread `{...props}` on `CCP4i2Tabs`** — this is required so the tabs component receives the job context.
+
+**Existing tabbed interfaces to reference:**
+- `prosmart_refmac.tsx` — 5 tabs, digest-driven visibility, the most complex example
+- `mrbump_basic.tsx` — 3 tabs, CBoolean conditional sub-options, straightforward example
 
 ### Size Constants
 
@@ -1135,6 +1169,58 @@ The Restraints tab demonstrates complex inline patterns with multiple interleave
   <Typography variant="body1">%</Typography>
 </Box>
 ```
+
+---
+
+## Complete Worked Example — MrBump (Multi-Tab, Conditional Sub-Options)
+
+MrBump is a simpler tabbed interface than ProSMART-Refmac, making it a better starting template for new multi-tab interfaces. It demonstrates the core tabbed pattern with CBoolean-driven conditional visibility for sub-options.
+
+### Structure
+
+| Tab | Sections | Key Patterns |
+|-----|----------|-------------|
+| Input Data | Target Sequence, Experimental Data | Inline text + dropdown ("The number of monomers to search for [Auto]"), helper text |
+| Search Models | Model databases, Optional Settings, Local coordinate files | Checkbox → conditional indented sub-options (SEARCH_PDB → REDUNDANCYLEVEL), inline label + field |
+| Options | Molecular Replacement, Refinement, Model Building | Simple sections with italic-labelled fields, standalone checkbox |
+
+### Key Technique: Checkbox with Conditional Indented Sub-Options
+
+A common pattern in legacy Qt interfaces: a checkbox enables/disables a group of related options shown indented below it.
+
+```tsx
+// 1. Declare state and handler at top level
+const { value: SEARCH_PDB_RAW } = useTaskItem("SEARCH_PDB");
+const [searchPdb, setSearchPdb] = useState(() => isTruthy(SEARCH_PDB_RAW));
+useEffect(() => setSearchPdb(isTruthy(SEARCH_PDB_RAW)), [SEARCH_PDB_RAW]);
+const handleSearchPdb = useCallback(async (item: any) => {
+  setSearchPdb(isTruthy(item._value));
+}, []);
+
+// 2. In JSX: checkbox + conditional indented content
+<CCP4i2TaskElement
+  itemName="SEARCH_PDB"
+  {...props}
+  qualifiers={{ guiLabel: "Search PDB for possible MR search models" }}
+  onChange={handleSearchPdb}
+/>
+{searchPdb && (
+  <Box sx={{ pl: 3 }}>
+    <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
+      <Typography variant="body1" sx={{ fontStyle: "italic" }}>
+        Non-redundancy level for homologue search:
+      </Typography>
+      <Box sx={{ width: "8rem" }}>
+        <CCP4i2TaskElement itemName="REDUNDANCYLEVEL" {...props} qualifiers={{ guiLabel: " " }} />
+      </Box>
+    </Box>
+  </Box>
+)}
+```
+
+The `pl: 3` (padding-left) creates the visual indentation that signals these options belong to the parent checkbox. This matches how the legacy Qt interface indented dependent options.
+
+**Source file:** `task-interfaces/mrbump_basic.tsx`
 
 ---
 

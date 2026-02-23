@@ -91,6 +91,14 @@ const useValidationBorderColor = (
 };
 
 // Utility functions
+
+/** Floor a numeric value to the item's min qualifier if defined. */
+const respectMin = (val: any, item: any): any => {
+  const min = item?._qualifiers?.min;
+  if (min !== undefined && typeof val === "number" && val < min) return min;
+  return val;
+};
+
 const createNewItemValue = (
   taskElement: any,
   project: Project | undefined
@@ -105,12 +113,38 @@ const createNewItemValue = (
     };
   }
 
+  // For compound types with child objects, build defaults per-child
+  // respecting each child's min qualifier
+  if (
+    taskElement._value &&
+    typeof taskElement._value === "object" &&
+    !Array.isArray(taskElement._value)
+  ) {
+    const result: any = {};
+    for (const [key, child] of Object.entries(
+      taskElement._value as Record<string, any>
+    )) {
+      if (!child) {
+        result[key] = null;
+        continue;
+      }
+      const childDefault =
+        DEFAULT_VALUES[child._class as keyof typeof DEFAULT_VALUES] ??
+        DEFAULT_VALUES[child._baseClass as keyof typeof DEFAULT_VALUES];
+      const val =
+        childDefault !== undefined ? childDefault : valueOfItem(child);
+      result[key] = respectMin(val, child);
+    }
+    return result;
+  }
+
   // Use lookup table for default values
   const defaultValue =
     DEFAULT_VALUES[taskElement._class as keyof typeof DEFAULT_VALUES] ||
     DEFAULT_VALUES[taskElement._baseClass as keyof typeof DEFAULT_VALUES];
 
-  return defaultValue !== undefined ? defaultValue : newItemValue;
+  const result = defaultValue !== undefined ? defaultValue : newItemValue;
+  return respectMin(result, taskElement);
 };
 
 const updateObjectPath = (element: any, newIndex: number): any => {
