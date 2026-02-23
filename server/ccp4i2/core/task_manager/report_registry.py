@@ -78,7 +78,6 @@ _PATHS = {
     "gesamt": "ccp4i2.wrappers.gesamt.script.gesamt_report:gesamt_report",
     "i2Dimple": "ccp4i2.wrappers.i2Dimple.script.i2Dimple_report:i2Dimple_report",
     "imosflm": "ccp4i2.wrappers.imosflm.script.imosflm_report:imosflm_report",
-    "import_files": "ccp4i2.wrappers2.import_files.script.import_files_report:import_files_report",
     "import_merged": "ccp4i2.pipelines.import_merged.script.import_merged_report:import_merged_report",
     "import_mosflm": "ccp4i2.wrappers.import_mosflm.script.import_mosflm_report:import_mosflm_report",
     "import_serial": "ccp4i2.wrappers.import_serial.script.import_serial_report:import_serial_report",

@@ -93,9 +93,6 @@ class CPluginScript(CData):
         # Initialize CData base class (provides hierarchy and event system)
         super().__init__(parent=parent, name=name or self.TASKNAME, **kwargs)
 
-        # Store dummy flag for later reference
-        self._dummy = dummy
-
         # Create signals (inherits SignalManager from HierarchicalObject)
         from ccp4i2.core.base_object.signal_system import Signal
         # Emitted when the plugin completes execution
