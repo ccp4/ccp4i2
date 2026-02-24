@@ -13,9 +13,9 @@ import {
   MoorhenMolecule,
   MoorhenMap,
 } from "moorhen";
-// @ts-expect-error - moorhen 0.23 exports exist at runtime but .d.ts is incomplete
+// @ts-ignore - moorhen 0.23 exports may lack .d.ts depending on build
 import { MoorhenInstanceProvider } from "moorhen";
-// @ts-expect-error - moorhen 0.23 type exists at runtime but .d.ts is incomplete
+// @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
 import type { MoorhenPanel } from "moorhen";
 
 import {
