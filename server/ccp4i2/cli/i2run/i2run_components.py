@@ -17,7 +17,7 @@ from typing import List, Dict, Any
 
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 from ccp4i2.core import CCP4Data
 
 logger = logging.getLogger(__name__)
@@ -72,7 +72,7 @@ class KeywordExtractor:
             raise RuntimeError(
                 f"Plugin '{task_name}' not found in registry. "
                 f"This plugin either failed to load during registry generation or does not exist. "
-                f"Check core/task_manager/plugin_registry.py"
+                f"Check core/tasks.py"
             )
 
         plugin = plugin_class(parent=None)

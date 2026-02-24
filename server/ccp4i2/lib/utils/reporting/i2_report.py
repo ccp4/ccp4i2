@@ -12,7 +12,7 @@ Key functions:
 
 Report Discovery:
     Report classes are discovered via
-    the report registry (core/task_manager/report_registry.py). Reports are
+    the report registry (core/tasks.py). Reports are
     lazy-loaded to minimize startup time.
 """
 import logging
@@ -26,8 +26,11 @@ from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.report.CCP4ReportParser import ReportClass
 from ccp4i2.core import CCP4File
-from ccp4i2.core.task_manager.reports import REPORTS
-from ccp4i2.core.task_manager.report_registry import get_report_class
+from ccp4i2.core.tasks import (
+    get_report_class,
+    get_watched_file,
+    supports_running_report,
+)
 from ccp4i2.db.models import Job, FileUse, File
 from ..plugins.get_plugin import get_job_plugin
 from ccp4i2.db.ccp4i2_static_data import (
@@ -375,8 +378,8 @@ def generate_job_report(job: Job) -> ET.Element:
     logger.debug("Using report class: %s", report_class.__name__)
 
     # Step 2: Check for watched file (for running job reports)
-    watch_file = REPORTS.get(task_name, {}).get("WATCHED_FILE", None)
-    supports_running = REPORTS.get(task_name, {}).get("RUNNING", False)
+    watch_file = get_watched_file(task_name)
+    supports_running = supports_running_report(task_name)
     logger.debug(
         "Report metadata - WATCHED_FILE: %s, RUNNING: %s", watch_file, supports_running
     )

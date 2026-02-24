@@ -1,6 +1,6 @@
 import logging
 
-from ccp4i2.core.CCP4TaskManager import locate_def_xml
+from ccp4i2.core.tasks import locate_def_xml
 from ccp4i2.core import CCP4Container
 from ....db import models
 

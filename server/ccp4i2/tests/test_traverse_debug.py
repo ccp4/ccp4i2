@@ -4,7 +4,7 @@ Debug why get_leaf_paths misses NCYCLES during traversal.
 
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core import CCP4Container as CCP4Container_module
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 
 def traverse_debug(node, path_parts, depth=0):

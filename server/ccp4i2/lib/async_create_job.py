@@ -21,8 +21,7 @@ from typing import Optional, Dict, Any
 from asgiref.sync import sync_to_async
 
 from ..core.CCP4PluginScript import CPluginScript
-from ..core.task_manager.metadata import TITLES
-from ..core.task_manager.plugin_registry import get_plugin_class
+from ..core.tasks import get_plugin_class, get_task_title
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler
 from .utils.containers.remove_defaults import remove_container_default_values
@@ -111,7 +110,7 @@ async def create_job_async(
 
     # Determine title if not provided
     if title is None:
-        title = TITLES.get(task_name)
+        title = get_task_title(task_name)
 
     # Create job in database
     job = await db_handler.create_job(

@@ -5,7 +5,7 @@ Tests for building and using parrot plugin.
 import pytest
 import os
 from pathlib import Path
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 
 def get_mtz_columns(mtz_path):

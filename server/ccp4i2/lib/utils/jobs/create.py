@@ -2,8 +2,7 @@ from pathlib import Path
 import logging
 import uuid
 
-from ccp4i2.core.task_manager.metadata import TITLES
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class, get_task_title
 from ccp4i2.db import models
 from ..containers.remove_defaults import remove_container_default_values
 from ..parameters.save_params import save_params_for_job
@@ -89,7 +88,7 @@ def create_job(
     new_job_plugin = plugin_class(workDirectory=str(new_job_dir))
 
     if title is None:
-        title = TITLES.get(taskName, taskName)
+        title = get_task_title(taskName) or taskName
     arg_dict = dict(
         uuid=new_job_id,
         number=str(next_job_number),

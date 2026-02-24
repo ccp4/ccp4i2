@@ -1,6 +1,6 @@
 import logging
 
-from ccp4i2.core.task_manager.metadata import TITLES
+from ccp4i2.core.tasks import get_task_title
 from ccp4i2.db.ccp4i2_static_data import FILETYPES_CLASS
 
 
@@ -48,7 +48,7 @@ def getReportJobInfo(jobId=None, projectName=None, jobNumber=None):
     )
 
     jobInfo['jobid'] = jobId
-    jobInfo['tasktitle'] = TITLES.get(jobInfo['taskname'])
+    jobInfo['tasktitle'] = get_task_title(jobInfo['taskname'])
     jobInfo['fileroot'] = CCP4Modules.PROJECTSMANAGER().makeFileName(
         jobId=jobId, mode='ROOT'
     )

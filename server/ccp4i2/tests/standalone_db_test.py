@@ -8,7 +8,7 @@ import asyncio
 import tempfile
 from pathlib import Path
 
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 # Setup temp database and projects
 temp_db = tempfile.NamedTemporaryFile(suffix='.sqlite3', delete=False)

@@ -5,7 +5,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 def test_resmax_not_set():
     """Verify RESMAX without default stays NOT_SET and is excluded from XML."""

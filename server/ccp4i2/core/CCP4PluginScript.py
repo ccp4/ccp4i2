@@ -17,8 +17,7 @@ from ccp4i2.core.base_object.base_classes import CData, CContainer
 from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
 from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
 from ccp4i2.core.task_manager.params_xml_handler import ParamsXmlHandler
-from ccp4i2.core.CCP4TaskManager import locate_def_xml
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class, locate_def_xml
 from ccp4i2.core.base_object.class_metadata import cdata_class
 
 # Module-level logger

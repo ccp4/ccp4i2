@@ -24,7 +24,7 @@ from asgiref.sync import sync_to_async
 from pytz import timezone
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 from ..db import models
 from ..db.async_db_handler import AsyncDatabaseHandler

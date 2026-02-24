@@ -1,6 +1,6 @@
 import logging
 
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 from ccp4i2.db.models import Job
 from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 

@@ -2,7 +2,7 @@
 Test get_leaf_paths to debug why NCYCLES isn't appearing in keywords.
 """
 
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 
 # Import get_leaf_paths - need to avoid Django imports

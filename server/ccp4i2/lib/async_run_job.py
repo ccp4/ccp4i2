@@ -8,18 +8,15 @@ This module replaces the legacy run_job.py with:
 - Clean context manager patterns
 """
 
-import asyncio
 import logging
 import uuid
 import xml.etree.ElementTree as ET
-from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Optional
 
 from asgiref.sync import sync_to_async
-from django.utils import timezone
 
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 

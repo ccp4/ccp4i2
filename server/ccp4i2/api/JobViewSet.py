@@ -43,7 +43,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from ccp4i2.core import CCP4ErrorHandling
-from ccp4i2.core.CCP4TaskManager import locate_def_xml
+from ccp4i2.core.tasks import locate_def_xml
 
 from ..db import models
 from ..db.export_project import export_project_to_zip

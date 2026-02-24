@@ -1,10 +1,6 @@
 """Standalone test for JSON encoder to debug inputData.XYZIN issue."""
 import json
 
-from ccp4i2.core import CCP4TaskManager
-from ccp4i2.core import CCP4Container
-from ccp4i2.core.base_object import CData
-from ccp4i2.core.base_object.fundamental_types import CString
 from ccp4i2.lib.utils.containers.json_encoder import CCP4i2JsonEncoder
 from ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac import prosmart_refmac
 

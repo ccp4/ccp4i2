@@ -5,7 +5,7 @@ This test verifies that when prosmart_refmac is instantiated as a plugin,
 its container includes NCYCLES and other parameters inherited from refmac.
 """
 
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 
 def test_prosmart_refmac_plugin_has_ncycles():

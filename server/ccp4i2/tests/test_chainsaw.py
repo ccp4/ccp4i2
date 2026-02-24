@@ -4,7 +4,7 @@ Tests for building and using chainsaw.
 
 import os
 import pytest
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 
 @pytest.mark.skipif(

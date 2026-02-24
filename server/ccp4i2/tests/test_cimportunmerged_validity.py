@@ -7,7 +7,7 @@ content_qualifiers are properly applied and generate validity errors.
 
 import pytest
 from ccp4i2.core.cdata_stubs.CCP4XtalData import CImportUnmergedStub
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 
 class TestCImportUnmergedValidity:

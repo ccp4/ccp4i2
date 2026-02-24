@@ -18,7 +18,7 @@ from ...db import models
 from ...api import serializers
 from ...lib.utils.jobs.create import create_job
 from ...lib.utils.parameters.save_params import save_params_for_job
-from ...core.task_manager.plugin_registry import get_plugin_class
+from ...core.tasks import get_plugin_class
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 

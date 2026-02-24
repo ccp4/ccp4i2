@@ -4,7 +4,7 @@ import shutil
 import pathlib
 import os
 from xml.etree import ElementTree as ET
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 def test_plugin_script_initialization():
     """Test that plugin scripts can be initialized with database-aware path handling."""

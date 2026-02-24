@@ -28,7 +28,7 @@ import glob
 import logging
 from typing import Optional, List, Dict
 from pathlib import Path
-from ccp4i2.core.task_manager.plugin_registry import get_plugin_class
+from ccp4i2.core.tasks import get_plugin_class
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
