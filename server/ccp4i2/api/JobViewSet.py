@@ -53,6 +53,7 @@ from ..lib.utils.containers.validate import getEtree
 from ..lib.utils.files.digest import digest_param_file
 from ..lib.utils.files.upload_param import upload_file_param
 from ..lib.utils.helpers.object_method import object_method
+from ..lib.utils.helpers.plugin_method import plugin_method as call_plugin_method
 from ..lib.utils.jobs.clone import clone_job
 from ..lib.utils.jobs.i2run import i2run_for_job
 from ..lib.utils.jobs.preview import preview_job
@@ -345,6 +346,49 @@ class JobViewSet(ModelViewSet):
             logger.debug("error_tree %s", error_tree)
             ET.indent(error_tree, " ")
             return api_error(ET.tostring(error_tree).decode("utf-8"), status=400)
+
+    @action(
+        detail=True,
+        methods=["post"],
+        serializer_class=serializers.JobSerializer,
+    )
+    def plugin_method(self, request, pk=None):
+        """
+        Execute a method on a job's CPluginScript instance.
+
+        Provides dynamic access to CPluginScript methods for server-side
+        computation (e.g., calling external binaries, parameter derivation).
+
+        Request Body:
+            {
+                "method_name": "compute_anomalous_scattering",
+                "args": [],
+                "kwargs": {"atom_type": "SE", "wavelength": 0.9793}
+            }
+
+        Response:
+            {"status": "Success", "data": {"result": <method return value>}}
+        """
+        form_data = json.loads(request.body.decode("utf-8"))
+        job = models.Job.objects.get(id=pk)
+        method_name = form_data["method_name"]
+        args = form_data.get("args", [])
+        kwargs = form_data.get("kwargs", {})
+        try:
+            result = call_plugin_method(job, method_name, args, kwargs)
+            logger.debug("plugin_method result %s", result)
+            return api_success({"result": result})
+        except CCP4ErrorHandling.CException as err:
+            error_tree = getEtree(err)
+            ET.indent(error_tree, " ")
+            return api_error(ET.tostring(error_tree).decode("utf-8"), status=400)
+        except (AttributeError, RuntimeError) as err:
+            return api_error(str(err), status=400)
+        except models.Job.DoesNotExist as err:
+            return api_error(str(err), status=404)
+        except Exception as err:
+            logger.exception("plugin_method error", exc_info=err)
+            return api_error(str(err), status=500)
 
     @action(
         detail=True,

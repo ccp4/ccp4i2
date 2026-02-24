@@ -1,5 +1,8 @@
 from future.utils import raise_
 import os
+import re
+import shutil
+import subprocess
 import sys
 
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -505,6 +508,50 @@ class crank2(CPluginScript):
     elif str(inp.FREE)=='existing' and inp.FREERFLAG.isSet():
       return " exclude typ=freeR free=FREER \"file={}\"".format(inp.FREERFLAG.fullPath)
     return ""
+
+  def compute_anomalous_scattering(self, atom_type, wavelength):
+    """Compute f' and f'' by running the CCP4 crossec binary directly.
+
+    Args:
+        atom_type: Element symbol (e.g. "SE", "S", "Xe")
+        wavelength: X-ray wavelength in Angstroms (e.g. 0.9793)
+
+    Returns:
+        dict with "fp" and "fpp" floats, or "error" string on failure.
+    """
+    crossec_binary = os.path.join(os.environ.get('CCP4', ''), 'bin', 'crossec')
+    if not os.path.isfile(crossec_binary):
+      crossec_binary = shutil.which('crossec')
+      if not crossec_binary:
+        return {"error": "crossec binary not found"}
+
+    stdin_text = "ATOM {}\nNWAV 1 {}\nEND\n".format(atom_type, wavelength)
+
+    try:
+      result = subprocess.run(
+        [crossec_binary],
+        input=stdin_text,
+        capture_output=True,
+        text=True,
+        timeout=10,
+      )
+    except subprocess.TimeoutExpired:
+      return {"error": "crossec timed out"}
+    except FileNotFoundError:
+      return {"error": "crossec binary not found"}
+
+    if result.returncode != 0:
+      return {"error": "crossec failed: {}".format(result.stderr[:200])}
+
+    # Parse output line: <ATOM>  <wavelength>  <fp>  <fpp>
+    pattern = re.compile(
+      re.escape(atom_type.upper()) + r"\s+\d+\.\d+\s+(\S+)\s+(\S+)"
+    )
+    match = pattern.search(result.stdout)
+    if match:
+      return {"fp": float(match.group(1)), "fpp": float(match.group(2))}
+
+    return {"error": "Could not parse crossec output for {}".format(atom_type)}
 
   def setProgramVersion(self):
     with open(os.path.join(crank2_path,'VERSION')) as f:

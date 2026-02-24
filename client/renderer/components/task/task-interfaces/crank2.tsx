@@ -1,171 +1,1377 @@
-import { LinearProgress, Paper, Typography } from "@mui/material";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { Box, Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
-import { useApi } from "../../../api";
-import { useJob, usePrevious, valueOfItem } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { FieldRow } from "../task-elements/field-row";
+import { useJob } from "../../../utils";
 
-const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const api = useApi();
-  const { job } = props;
+const isTruthy = (val: any): boolean =>
+  val === true || val === "True" || val === "true";
 
-  return (
-    <>
-      <CCP4i2ContainerElement
-        itemName=""
-        key="inputData"
+// ---------------------------------------------------------------------------
+// Pipeline step definitions (mirrors crank2_basepipe.py)
+// ---------------------------------------------------------------------------
+const CRANK2_STEPS = [
+  "substrdet",
+  "phas",
+  "handdet",
+  "dmfull",
+  "building",
+  "ref",
+];
+const SHELX_STEPS = ["substrdet", "phdmmb", "building", "ref"];
+const REBUILD_STEPS = [
+  "refatompick",
+  "handdet",
+  "dmfull",
+  "building",
+  "ref",
+];
+
+function getBaseSteps(
+  inputPartial: boolean,
+  shelxcde: boolean,
+  exptype: string | undefined
+): string[] {
+  let steps: string[];
+  if (inputPartial) {
+    steps = [...REBUILD_STEPS];
+  } else if (shelxcde) {
+    steps = [...SHELX_STEPS];
+  } else {
+    steps = [...CRANK2_STEPS];
+  }
+  // For SAD, replace 'phas' with 'refatompick'
+  if (exptype === "SAD" && steps.includes("phas")) {
+    steps[steps.indexOf("phas")] = "refatompick";
+  }
+  return steps;
+}
+
+function checkStartEnd(
+  step: string,
+  baseSteps: string[],
+  startPipeline: string | undefined,
+  endPipeline: string | undefined
+): boolean {
+  const idx = baseSteps.indexOf(step);
+  if (idx < 0) return false;
+  const startIdx = startPipeline ? baseSteps.indexOf(startPipeline) : 0;
+  const endIdx = endPipeline
+    ? baseSteps.indexOf(endPipeline)
+    : baseSteps.length - 1;
+  if (startIdx < 0 || endIdx < 0) return false;
+  return idx >= startIdx && idx <= endIdx;
+}
+
+// ---------------------------------------------------------------------------
+// Anomalous scattering coefficient row
+// ---------------------------------------------------------------------------
+const ScatteringRow: React.FC<{
+  props: CCP4i2TaskInterfaceProps;
+  suffix: string;
+  onWavelengthChange?: () => void;
+}> = ({ props, suffix, onWavelengthChange }) => (
+  <Box
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      gap: 1,
+      flexWrap: "wrap",
+      pl: 2,
+    }}
+  >
+    <Typography variant="body2">f&apos;:</Typography>
+    <Box sx={{ width: "6rem" }}>
+      <CCP4i2TaskElement
         {...props}
-        qualifiers={{ guiLabel: "Ligand geometry" }}
-        containerHint="BlockLevel"
-      >
-        {itemList
-          .filter((item: any, iItem: number) => iItem < 30)
-          .map((itemName) => (
-            <CCP4i2TaskElement key={itemName} {...props} itemName={itemName} />
-          ))}
-      </CCP4i2ContainerElement>
-    </>
+        itemName={`FPRIME${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+      />
+    </Box>
+    <Typography variant="body2">f&quot;:</Typography>
+    <Box sx={{ width: "6rem" }}>
+      <CCP4i2TaskElement
+        {...props}
+        itemName={`FDPRIME${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+      />
+    </Box>
+    <Typography variant="body2">wavelength:</Typography>
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement
+        {...props}
+        itemName={`WAVELENGTH${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+        onChange={onWavelengthChange}
+      />
+    </Box>
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement
+        {...props}
+        itemName={`DNAME${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+      />
+    </Box>
+  </Box>
+);
+
+// ---------------------------------------------------------------------------
+// Main interface
+// ---------------------------------------------------------------------------
+const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
+  const { job } = props;
+  const { useTaskItem, callPluginMethod, fetchDigest } = useJob(job.id);
+
+  // =========================================================================
+  // useTaskItem hooks — all at top level (React rules)
+  // =========================================================================
+
+  // --- Input Data ---
+  const { value: startPipeline } = useTaskItem("START_PIPELINE");
+  const { value: endPipeline } = useTaskItem("END_PIPELINE");
+
+  const { value: inputPartialRaw } = useTaskItem("INPUT_PARTIAL");
+  const { value: inputSequenceRaw } = useTaskItem("INPUT_SEQUENCE");
+  const { value: inputPhasesRaw } = useTaskItem("INPUT_PHASES");
+  const { value: nonMtzRaw } = useTaskItem("NON_MTZ");
+  const { value: mad2Raw } = useTaskItem("MAD2");
+  const { value: mad3Raw } = useTaskItem("MAD3");
+  const { value: mad4Raw } = useTaskItem("MAD4");
+  const { value: nativeRaw } = useTaskItem("NATIVE");
+  const { value: shelxcdeRaw } = useTaskItem("SHELXCDE");
+
+  const { value: atomType } = useTaskItem("ATOM_TYPE");
+  useTaskItem("NUMBER_SUBSTRUCTURE");
+  useTaskItem("SUBSTRDET_NUM_DSUL");
+  useTaskItem("XYZIN");
+  useTaskItem("XYZIN_SUB");
+  useTaskItem("XYZIN_SUB_RES");
+  useTaskItem("PARTIAL_AS_SUBSTR");
+  useTaskItem("SEQIN");
+
+  // Cell params (visible when NON_MTZ)
+  useTaskItem("CELL_A");
+  useTaskItem("CELL_B");
+  useTaskItem("CELL_C");
+  useTaskItem("CELL_D");
+  useTaskItem("CELL_E");
+  useTaskItem("CELL_F");
+  useTaskItem("SPACEGROUP");
+
+  // Anomalous data files
+  const { item: F_SIGFanomItem } = useTaskItem("F_SIGFanom");
+  useTaskItem("F_SIGFanom2");
+  useTaskItem("F_SIGFanom3");
+  useTaskItem("F_SIGFanom4");
+  useTaskItem("F_SIGFanom_nonmtz");
+  useTaskItem("F_SIGFanom2_nonmtz");
+  useTaskItem("F_SIGFanom3_nonmtz");
+  useTaskItem("F_SIGFanom4_nonmtz");
+
+  // Wavelength / f' / f'' (4 datasets)
+  const { value: wavelength, forceUpdate: forceUpdateWAVELENGTH } =
+    useTaskItem("WAVELENGTH");
+  const { forceUpdate: forceUpdateFPRIME } = useTaskItem("FPRIME");
+  const { forceUpdate: forceUpdateFDPRIME } = useTaskItem("FDPRIME");
+  useTaskItem("WAVELENGTH2");
+  useTaskItem("WAVELENGTH3");
+  useTaskItem("WAVELENGTH4");
+  useTaskItem("FPRIME2");
+  useTaskItem("FDPRIME2");
+  useTaskItem("FPRIME3");
+  useTaskItem("FDPRIME3");
+  useTaskItem("FPRIME4");
+  useTaskItem("FDPRIME4");
+  useTaskItem("DNAME");
+  useTaskItem("DNAME2");
+  useTaskItem("DNAME3");
+  useTaskItem("DNAME4");
+
+  // Native
+  useTaskItem("F_SIGFnative");
+  useTaskItem("F_SIGFnative_nonmtz");
+  useTaskItem("SUBSTR_ATOMS_NATIVE");
+
+  // Free
+  const { value: freeVal } = useTaskItem("FREE");
+  useTaskItem("FREERFLAG");
+  useTaskItem("FREE_RATIO");
+
+  // Phases
+  useTaskItem("FPHIN_HL");
+
+  // --- Important Options ---
+  useTaskItem("RESIDUES_MON");
+  useTaskItem("MONOMERS_ASYM");
+  useTaskItem("SOLVENT_CONTENT");
+  const { value: exptype } = useTaskItem("EXPTYPE");
+
+  // --- Advanced Options ---
+  useTaskItem("FAEST_PROGRAM");
+  useTaskItem("SUBSTRDET_PROGRAM");
+  useTaskItem("SUBSTRDET_HIGH_RES_CUTOFF");
+  useTaskItem("SUBSTRDET_NUM_TRIALS");
+  useTaskItem("SUBSTRDET_THRESHOLD_STOP");
+  useTaskItem("SUBSTRDET_THRESHOLD_WEAK");
+  useTaskItem("SUBSTRDET_MIN_DIST_ATOMS");
+  useTaskItem("SUBSTRDET_MIN_DIST_SYMM_ATOMS");
+  useTaskItem("SUBSTRDET_NUM_THREADS");
+  useTaskItem("KEYWORDS_SUBSTRDET");
+
+  useTaskItem("REFATOMPICK_NUM_ITER");
+  useTaskItem("REFATOMPICK_REFCYC");
+  useTaskItem("REFATOMPICK_RMS_THRESHOLD");
+  useTaskItem("REFATOMPICK_OCC_CUT");
+
+  const { value: doHanddetRaw } = useTaskItem("DO_HANDDET");
+  useTaskItem("HANDDET_THRESHOLD_DISCRIM");
+  useTaskItem("HANDDET_DMFULL_DM_PROGRAM");
+  useTaskItem("HANDDET_DMFULL_PHCOMB_PROGRAM");
+
+  useTaskItem("DMFULL_DM_PROGRAM");
+  useTaskItem("DMFULL_PHCOMB_PROGRAM");
+  useTaskItem("DMFULL_DMCYC");
+  useTaskItem("DMFULL_THRESHOLD_STOP");
+  useTaskItem("KEYWORDS_DMFULL_DM");
+
+  const { value: useCombRaw } = useTaskItem("USE_COMB");
+  useTaskItem("MB_PROGRAM");
+  useTaskItem("COMB_PHDMMB_DMFULL_DM_PROGRAM");
+  useTaskItem("COMB_PHDMMB_MINBIGCYC");
+  useTaskItem("COMB_PHDMMB_MAXBIGCYC");
+  useTaskItem("COMB_PHDMMB_NUM_PARALLEL");
+  useTaskItem("COMB_PHDMMB_START_SHELXE");
+  useTaskItem("KEYWORDS_COMB_SHELXE");
+  useTaskItem("COMB_PHDMMB_EXCLUDE_FREE");
+  useTaskItem("COMB_PHDMMB_NCS_DET");
+  useTaskItem("COMB_PHDMMB_NCS_DET_MR");
+  useTaskItem("COMB_PHDMMB_SKIP_INITIAL_BUILD");
+  useTaskItem("COMB_PHDMMB_REBUILD_ONLY");
+  useTaskItem("KEYWORDS_COMB_DM");
+  useTaskItem("KEYWORDS_MB");
+
+  useTaskItem("MBREF_BIGCYC");
+  useTaskItem("MBREF_REF_PROGRAM");
+  useTaskItem("MBREF_EXCLUDE_FREE");
+
+  useTaskItem("PHDMMB_DMCYC");
+  useTaskItem("PHDMMB_BIGCYC");
+  useTaskItem("PHDMMB_THRESHOLD_STOP");
+  useTaskItem("PHDMMB_THRESHOLD_HAND_STOP");
+  useTaskItem("PHDMMB_THOROUGH_BUILD");
+  useTaskItem("ARGUMENTS_SHELXE");
+
+  useTaskItem("PHAS_PROGRAM");
+  useTaskItem("PHAS_CYCLES");
+
+  useTaskItem("REF_PROGRAM");
+  useTaskItem("REF_CYCLES");
+  useTaskItem("REF_EXCLUDE_FREE");
+  useTaskItem("KEYWORDS_REF");
+
+  useTaskItem("CLEANUP");
+
+  // =========================================================================
+  // Local toggle state (CBoolean pattern — immediate UI)
+  // =========================================================================
+  const [inputPartial, setInputPartial] = useState(() =>
+    isTruthy(inputPartialRaw)
+  );
+  const [inputSequence, setInputSequence] = useState(() =>
+    isTruthy(inputSequenceRaw)
+  );
+  const [inputPhases, setInputPhases] = useState(() =>
+    isTruthy(inputPhasesRaw)
+  );
+  const [nonMtz, setNonMtz] = useState(() => isTruthy(nonMtzRaw));
+  const [mad2, setMad2] = useState(() => isTruthy(mad2Raw));
+  const [mad3, setMad3] = useState(() => isTruthy(mad3Raw));
+  const [mad4, setMad4] = useState(() => isTruthy(mad4Raw));
+  const [native, setNative] = useState(() => isTruthy(nativeRaw));
+  const [shelxcde, setShelxcde] = useState(() => isTruthy(shelxcdeRaw));
+  const [doHanddet, setDoHanddet] = useState(() => isTruthy(doHanddetRaw));
+  const [useComb, setUseComb] = useState(() => isTruthy(useCombRaw));
+
+  // Sync from server
+  useEffect(() => setInputPartial(isTruthy(inputPartialRaw)), [inputPartialRaw]);
+  useEffect(() => setInputSequence(isTruthy(inputSequenceRaw)), [inputSequenceRaw]);
+  useEffect(() => setInputPhases(isTruthy(inputPhasesRaw)), [inputPhasesRaw]);
+  useEffect(() => setNonMtz(isTruthy(nonMtzRaw)), [nonMtzRaw]);
+  useEffect(() => setMad2(isTruthy(mad2Raw)), [mad2Raw]);
+  useEffect(() => setMad3(isTruthy(mad3Raw)), [mad3Raw]);
+  useEffect(() => setMad4(isTruthy(mad4Raw)), [mad4Raw]);
+  useEffect(() => setNative(isTruthy(nativeRaw)), [nativeRaw]);
+  useEffect(() => setShelxcde(isTruthy(shelxcdeRaw)), [shelxcdeRaw]);
+  useEffect(() => setDoHanddet(isTruthy(doHanddetRaw)), [doHanddetRaw]);
+  useEffect(() => setUseComb(isTruthy(useCombRaw)), [useCombRaw]);
+
+  // Toggle handlers
+  const onToggle =
+    (setter: (v: boolean) => void) => (item: any) =>
+      setter(isTruthy(item._value));
+
+  // =========================================================================
+  // Pipeline visibility (mirrors crank2_basepipe.py)
+  // =========================================================================
+  const baseSteps = useMemo(
+    () =>
+      getBaseSteps(inputPartial, shelxcde, exptype as string | undefined),
+    [inputPartial, shelxcde, exptype]
+  );
+
+  const check = useCallback(
+    (step: string) =>
+      checkStartEnd(
+        step,
+        baseSteps,
+        startPipeline as string | undefined,
+        endPipeline as string | undefined
+      ),
+    [baseSteps, startPipeline, endPipeline]
+  );
+
+  const showDetection = useMemo(() => check("substrdet"), [check]);
+  const showPeakSearch = useMemo(() => check("refatompick"), [check]);
+  const showShelxCDE = useMemo(() => check("phdmmb"), [check]);
+  const showPhasing = useMemo(() => {
+    if (inputPartial) return false; // partial model doesn't use phasing
+    return check("phas") && !shelxcde;
+  }, [check, inputPartial, shelxcde]);
+  const showHandDet = useMemo(() => {
+    if (inputPartial) return false;
+    return check("handdet") && !shelxcde;
+  }, [check, inputPartial, shelxcde]);
+  const showDensityMod = useMemo(() => {
+    if (inputPartial) return false;
+    return check("dmfull") && !shelxcde;
+  }, [check, inputPartial, shelxcde]);
+  const showModelBuilding = useMemo(() => check("building"), [check]);
+  const showRefine = useMemo(() => check("ref"), [check]);
+
+  // =========================================================================
+  // onChange handlers
+  // =========================================================================
+
+  /** Compute f'/f'' for dataset 1 */
+  const computeScatteringFactors = useCallback(
+    async (at?: string, wl?: number) => {
+      const a = at ?? (atomType as string);
+      const w = wl ?? (wavelength as number);
+      if (!a || !w || !job || job.status !== 1) return;
+      const result = await callPluginMethod("compute_anomalous_scattering", {
+        atom_type: String(a),
+        wavelength: Number(w),
+      });
+      if (result && result.fp !== undefined && result.fpp !== undefined) {
+        await forceUpdateFPRIME(result.fp);
+        await forceUpdateFDPRIME(result.fpp);
+      }
+    },
+    [
+      atomType,
+      wavelength,
+      callPluginMethod,
+      forceUpdateFPRIME,
+      forceUpdateFDPRIME,
+      job?.id,
+      job?.status,
+    ]
+  );
+
+  const handleAtomTypeChange = useCallback(
+    () => computeScatteringFactors(),
+    [computeScatteringFactors]
+  );
+
+  const handleWavelengthChange = useCallback(
+    () => computeScatteringFactors(),
+    [computeScatteringFactors]
+  );
+
+  const handleF_SIGFanomChange = useCallback(async () => {
+    if (!F_SIGFanomItem?._objectPath || !job || job.status !== 1) return;
+    const digest = await fetchDigest(F_SIGFanomItem._objectPath);
+    if (digest?.wavelengths?.length > 0) {
+      const wl = digest.wavelengths[digest.wavelengths.length - 1];
+      if (wl && wl > 0 && wl < 9) {
+        await forceUpdateWAVELENGTH(wl);
+        await computeScatteringFactors(undefined, wl);
+      }
+    }
+  }, [
+    F_SIGFanomItem?._objectPath,
+    fetchDigest,
+    forceUpdateWAVELENGTH,
+    computeScatteringFactors,
+    job?.id,
+    job?.status,
+  ]);
+
+  // =========================================================================
+  // Render
+  // =========================================================================
+  return (
+    <Paper>
+      <CCP4i2Tabs>
+        {/* ================================================================
+            TAB 1: INPUT DATA
+            ================================================================ */}
+        <CCP4i2Tab label="Input Data" key="input">
+          {/* Pipeline selection */}
+          <FieldRow>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                flexWrap: "wrap",
+              }}
+            >
+              <Typography variant="body1">Start pipeline with</Typography>
+              <Box sx={{ width: "14rem" }}>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="START_PIPELINE"
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </Box>
+              <Typography variant="body1">and end with</Typography>
+              <Box sx={{ width: "14rem" }}>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="END_PIPELINE"
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </Box>
+            </Box>
+          </FieldRow>
+
+          {/* Input partial model */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{
+              guiLabel:
+                "Input partial model (MR-SAD, model rebuilding)",
+            }}
+            containerHint="FolderLevel"
+            initiallyOpen={false}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="INPUT_PARTIAL"
+              qualifiers={{
+                guiLabel:
+                  "If a partial protein model is available from molecular replacement",
+              }}
+              onChange={onToggle(setInputPartial)}
+            />
+            {inputPartial && (
+              <>
+                <CCP4i2TaskElement {...props} itemName="XYZIN" />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="PARTIAL_AS_SUBSTR"
+                  qualifiers={{
+                    guiLabel:
+                      "Start from anomalous substructure only",
+                  }}
+                />
+              </>
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Input protein sequence */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Input protein sequence" }}
+            containerHint="FolderLevel"
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="INPUT_SEQUENCE"
+              onChange={onToggle(setInputSequence)}
+            />
+            {inputSequence && (
+              <CCP4i2TaskElement {...props} itemName="SEQIN" />
+            )}
+            {!inputSequence && (
+              <CCP4i2TaskElement
+                {...props}
+                itemName="RESIDUES_MON_COPY"
+                qualifiers={{
+                  guiLabel: "Number of residues per monomer",
+                }}
+              />
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Input starting phases */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Input starting phases" }}
+            containerHint="FolderLevel"
+            initiallyOpen={false}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="INPUT_PHASES"
+              onChange={onToggle(setInputPhases)}
+            />
+            {inputPhases && (
+              <CCP4i2TaskElement {...props} itemName="FPHIN_HL" />
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Crystal #1 composition and anomalous datasets */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{
+              guiLabel:
+                "Crystal #1 composition and collected anomalous dataset(s)",
+            }}
+            containerHint="FolderLevel"
+          >
+            {/* Atom type + number of atoms */}
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="ATOM_TYPE"
+                qualifiers={{ guiLabel: "Substructure atom" }}
+                onChange={handleAtomTypeChange}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="NUMBER_SUBSTRUCTURE"
+                qualifiers={{
+                  guiLabel:
+                    "Number of substr. atoms in asymmetric unit",
+                }}
+              />
+            </FieldRow>
+
+            {/* Disulfide count — visible for Sulphur */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_NUM_DSUL"
+              qualifiers={{
+                guiLabel:
+                  "Number of S-S pairs searched for as 1 supersulfur",
+              }}
+              visibility={() =>
+                String(atomType).toUpperCase() === "S"
+              }
+            />
+
+            {/* Substructure model (visible when detection not first step) */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="XYZIN_SUB"
+              qualifiers={{ guiLabel: "Substructure" }}
+              visibility={() => !showDetection}
+            />
+
+            {/* Cell params when NON_MTZ */}
+            {nonMtz && (
+              <FieldRow equalWidth={false} size="xs">
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_A"
+                  qualifiers={{ guiLabel: "a" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_B"
+                  qualifiers={{ guiLabel: "b" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_C"
+                  qualifiers={{ guiLabel: "c" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_D"
+                  qualifiers={{ guiLabel: "\u03B1" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_E"
+                  qualifiers={{ guiLabel: "\u03B2" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_F"
+                  qualifiers={{ guiLabel: "\u03B3" }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="SPACEGROUP"
+                  qualifiers={{ guiLabel: "Spacegroup" }}
+                />
+              </FieldRow>
+            )}
+
+            {/* Anomalous data (Friedel pairs) — Dataset 1 */}
+            <CCP4i2ContainerElement
+              {...props}
+              itemName=""
+              qualifiers={{ guiLabel: "Anomalous data (Friedel pairs)" }}
+              containerHint="BlockLevel"
+            >
+              <CCP4i2TaskElement
+                {...props}
+                itemName="NON_MTZ"
+                qualifiers={{
+                  guiLabel:
+                    "Input unmerged/merged SCA/XDS/SHELX format",
+                }}
+                onChange={onToggle(setNonMtz)}
+              />
+              {nonMtz ? (
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="F_SIGFanom_nonmtz"
+                  qualifiers={{ guiLabel: "Reflections" }}
+                />
+              ) : (
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="F_SIGFanom"
+                  qualifiers={{ guiLabel: "Reflections" }}
+                  onChange={handleF_SIGFanomChange}
+                />
+              )}
+              <ScatteringRow
+                props={props}
+                suffix=""
+                onWavelengthChange={handleWavelengthChange}
+              />
+            </CCP4i2ContainerElement>
+
+            {/* MAD Dataset 2 */}
+            {!inputPartial && (
+              <CCP4i2ContainerElement
+                {...props}
+                itemName=""
+                qualifiers={{
+                  guiLabel: "Input anomalous data #2 (MAD)",
+                }}
+                containerHint="BlockLevel"
+              >
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MAD2"
+                  onChange={onToggle(setMad2)}
+                />
+                {mad2 && (
+                  <>
+                    {nonMtz ? (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom2_nonmtz"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    ) : (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom2"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    )}
+                    <ScatteringRow props={props} suffix="2" />
+                  </>
+                )}
+              </CCP4i2ContainerElement>
+            )}
+
+            {/* MAD Dataset 3 */}
+            {!inputPartial && mad2 && (
+              <CCP4i2ContainerElement
+                {...props}
+                itemName=""
+                qualifiers={{
+                  guiLabel: "Input anomalous data #3 (MAD)",
+                }}
+                containerHint="BlockLevel"
+              >
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MAD3"
+                  onChange={onToggle(setMad3)}
+                />
+                {mad3 && (
+                  <>
+                    {nonMtz ? (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom3_nonmtz"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    ) : (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom3"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    )}
+                    <ScatteringRow props={props} suffix="3" />
+                  </>
+                )}
+              </CCP4i2ContainerElement>
+            )}
+
+            {/* MAD Dataset 4 */}
+            {!inputPartial && mad3 && (
+              <CCP4i2ContainerElement
+                {...props}
+                itemName=""
+                qualifiers={{
+                  guiLabel: "Input anomalous data #4 (MAD)",
+                }}
+                containerHint="BlockLevel"
+              >
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MAD4"
+                  onChange={onToggle(setMad4)}
+                />
+                {mad4 && (
+                  <>
+                    {nonMtz ? (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom4_nonmtz"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    ) : (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom4"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    )}
+                    <ScatteringRow props={props} suffix="4" />
+                  </>
+                )}
+              </CCP4i2ContainerElement>
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Native observations */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{
+              guiLabel: "Input native observations (Crystal #2)",
+            }}
+            containerHint="FolderLevel"
+            initiallyOpen={false}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="NATIVE"
+              onChange={onToggle(setNative)}
+            />
+            {native && (
+              <>
+                {nonMtz ? (
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="F_SIGFnative_nonmtz"
+                    qualifiers={{ guiLabel: "Reflections" }}
+                  />
+                ) : (
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="F_SIGFnative"
+                    qualifiers={{ guiLabel: "Reflections" }}
+                  />
+                )}
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="SUBSTR_ATOMS_NATIVE"
+                  qualifiers={{
+                    guiLabel:
+                      "Substructure atoms present in the native crystal",
+                  }}
+                />
+              </>
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Exclude free */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Exclude free" }}
+            containerHint="FolderLevel"
+          >
+            <CCP4i2TaskElement {...props} itemName="FREE" />
+            {freeVal === "existing" && (
+              <CCP4i2TaskElement {...props} itemName="FREERFLAG" />
+            )}
+            {freeVal === "new" && (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
+                <Typography variant="body1">
+                  consisting of
+                </Typography>
+                <Box sx={{ width: "6rem" }}>
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="FREE_RATIO"
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </Box>
+                <Typography variant="body1">
+                  % of reflections
+                </Typography>
+              </Box>
+            )}
+          </CCP4i2ContainerElement>
+        </CCP4i2Tab>
+
+        {/* ================================================================
+            TAB 2: IMPORTANT OPTIONS
+            ================================================================ */}
+        <CCP4i2Tab label="Important Options" key="important">
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Crystal composition" }}
+            containerHint="FolderLevel"
+          >
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="RESIDUES_MON"
+                qualifiers={{ guiLabel: "Residues/monomer" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="MONOMERS_ASYM"
+                qualifiers={{ guiLabel: "NCS copies" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SOLVENT_CONTENT"
+                qualifiers={{ guiLabel: "Solvent Content" }}
+              />
+            </FieldRow>
+          </CCP4i2ContainerElement>
+
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Experiment type" }}
+            containerHint="FolderLevel"
+            visibility={() => native || mad2}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="EXPTYPE"
+              qualifiers={{ guiLabel: "Phasing method" }}
+            />
+          </CCP4i2ContainerElement>
+        </CCP4i2Tab>
+
+        {/* ================================================================
+            TAB 3: ADVANCED OPTIONS
+            ================================================================ */}
+        <CCP4i2Tab label="Advanced Options" key="advanced">
+          <Typography
+            variant="body2"
+            sx={{ fontStyle: "italic", mb: 1, pl: 1 }}
+          >
+            Note: empty input fields mean that internal program defaults
+            will be used.
+          </Typography>
+
+          {/* SHELXC/D/E toggle */}
+          <CCP4i2TaskElement
+            {...props}
+            itemName="SHELXCDE"
+            qualifiers={{ guiLabel: "Use SHELXC/D/E" }}
+            onChange={onToggle(setShelxcde)}
+            visibility={() => !inputPartial}
+          />
+
+          {/* Substructure detection */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Substructure detection" }}
+            containerHint="FolderLevel"
+            visibility={() => showDetection}
+          >
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="FAEST_PROGRAM"
+                qualifiers={{ guiLabel: "FA Estimation program" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_PROGRAM"
+                qualifiers={{ guiLabel: "Detection program" }}
+              />
+            </FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_HIGH_RES_CUTOFF"
+              qualifiers={{ guiLabel: "High resolution cutoff" }}
+            />
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_NUM_TRIALS"
+                qualifiers={{ guiLabel: "Num. trials" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_THRESHOLD_STOP"
+                qualifiers={{ guiLabel: "CFOM threshold" }}
+              />
+            </FieldRow>
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_MIN_DIST_ATOMS"
+                qualifiers={{
+                  guiLabel: "Minimum distance between atoms",
+                }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_MIN_DIST_SYMM_ATOMS"
+                qualifiers={{
+                  guiLabel: "Atoms in special positions allowed",
+                }}
+              />
+            </FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_NUM_THREADS"
+              qualifiers={{ guiLabel: "Number of CPU threads" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="KEYWORDS_SUBSTRDET"
+              qualifiers={{
+                guiLabel: "Custom program keywords (comma separated)",
+              }}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* Substructure improvement */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Substructure improvement" }}
+            containerHint="FolderLevel"
+            visibility={() => showPeakSearch}
+          >
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="REFATOMPICK_NUM_ITER"
+                qualifiers={{
+                  guiLabel: "Max. num. of iterations",
+                }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="REFATOMPICK_REFCYC"
+                qualifiers={{
+                  guiLabel: "Number of ref. cycles per iteration",
+                }}
+              />
+            </FieldRow>
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="REFATOMPICK_RMS_THRESHOLD"
+                qualifiers={{
+                  guiLabel:
+                    "Pick new atoms from anom. maps at peaks above RMS",
+                }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="REFATOMPICK_OCC_CUT"
+                qualifiers={{
+                  guiLabel: "Remove atoms with occupancy below",
+                }}
+              />
+            </FieldRow>
+          </CCP4i2ContainerElement>
+
+          {/* Substructure phasing */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Substructure phasing" }}
+            containerHint="FolderLevel"
+            visibility={() => showPhasing}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="PHAS_PROGRAM"
+              qualifiers={{ guiLabel: "Phasing program" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="PHAS_CYCLES"
+              qualifiers={{ guiLabel: "Refinement cycles" }}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* Poly-Ala tracing (SHELXE) */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{
+              guiLabel: "Den.mod. & poly-Ala tracing (SHELXE)",
+            }}
+            containerHint="FolderLevel"
+            visibility={() => showShelxCDE}
+          >
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_DMCYC"
+                qualifiers={{ guiLabel: "DM cycles" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_BIGCYC"
+                qualifiers={{ guiLabel: "Model building cycles" }}
+              />
+            </FieldRow>
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_THRESHOLD_STOP"
+                qualifiers={{ guiLabel: "CC threshold" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_THRESHOLD_HAND_STOP"
+                qualifiers={{
+                  guiLabel: "Hand determination CC threshold",
+                }}
+              />
+            </FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="PHDMMB_THOROUGH_BUILD"
+              qualifiers={{ guiLabel: "Use thorough SHELXE building" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="ARGUMENTS_SHELXE"
+              qualifiers={{ guiLabel: "SHELXE arguments" }}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* Hand determination */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Hand determination" }}
+            containerHint="FolderLevel"
+            visibility={() => showHandDet}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="DO_HANDDET"
+              onChange={onToggle(setDoHanddet)}
+            />
+            {doHanddet && (
+              <>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="HANDDET_THRESHOLD_DISCRIM"
+                  qualifiers={{
+                    guiLabel:
+                      "Requested hand determination discrimination",
+                  }}
+                />
+                <FieldRow>
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="HANDDET_DMFULL_DM_PROGRAM"
+                    qualifiers={{
+                      guiLabel: "Density modif. program",
+                    }}
+                  />
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="HANDDET_DMFULL_PHCOMB_PROGRAM"
+                    qualifiers={{
+                      guiLabel: "Phase combination program",
+                    }}
+                  />
+                </FieldRow>
+              </>
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Density modification */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Density modification" }}
+            containerHint="FolderLevel"
+            visibility={() => showDensityMod}
+          >
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="DMFULL_DM_PROGRAM"
+                qualifiers={{ guiLabel: "Density modif. program" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="DMFULL_PHCOMB_PROGRAM"
+                qualifiers={{
+                  guiLabel: "Phase combination program",
+                }}
+              />
+            </FieldRow>
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="DMFULL_DMCYC"
+                qualifiers={{ guiLabel: "Number of iterations" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="DMFULL_THRESHOLD_STOP"
+                qualifiers={{ guiLabel: "FOM threshold" }}
+              />
+            </FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="KEYWORDS_DMFULL_DM"
+              qualifiers={{
+                guiLabel: "Custom options for dens.mod. program",
+              }}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* Model building */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Model building" }}
+            containerHint="FolderLevel"
+            visibility={() => showModelBuilding}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="USE_COMB"
+              qualifiers={{
+                guiLabel:
+                  "Combine phase, model and density modif. information",
+              }}
+              onChange={onToggle(setUseComb)}
+            />
+
+            {/* Combined model building */}
+            {useComb && (
+              <>
+                <FieldRow>
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="MB_PROGRAM"
+                    qualifiers={{
+                      guiLabel: "Model building program",
+                    }}
+                  />
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="COMB_PHDMMB_DMFULL_DM_PROGRAM"
+                    qualifiers={{
+                      guiLabel: "Density modif. program",
+                    }}
+                  />
+                </FieldRow>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="KEYWORDS_MB"
+                  qualifiers={{
+                    guiLabel: "Custom keywords for building program",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="KEYWORDS_COMB_DM"
+                  qualifiers={{
+                    guiLabel:
+                      "Custom keywords for dens.mod. program",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="COMB_PHDMMB_START_SHELXE"
+                  qualifiers={{
+                    guiLabel:
+                      "Start with a few SHELXE tracing cycles",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="KEYWORDS_COMB_SHELXE"
+                  qualifiers={{
+                    guiLabel: "with custom keywords",
+                  }}
+                />
+              </>
+            )}
+
+            {/* Non-combined (mbref) */}
+            {!useComb && (
+              <>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MB_PROGRAM"
+                  qualifiers={{
+                    guiLabel: "Model building program",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MBREF_REF_PROGRAM"
+                  qualifiers={{
+                    guiLabel: "Refinement program",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MBREF_BIGCYC"
+                  qualifiers={{
+                    guiLabel: "Building cycles",
+                  }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MBREF_EXCLUDE_FREE"
+                  qualifiers={{
+                    guiLabel: "Exclude free reflections",
+                  }}
+                />
+              </>
+            )}
+
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="COMB_PHDMMB_MINBIGCYC"
+                qualifiers={{
+                  guiLabel: "Minimum number of cycles",
+                }}
+                visibility={() => useComb}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="COMB_PHDMMB_MAXBIGCYC"
+                qualifiers={{
+                  guiLabel: "Maximum number of cycles",
+                }}
+                visibility={() => useComb}
+              />
+            </FieldRow>
+
+            <CCP4i2TaskElement
+              {...props}
+              itemName="COMB_PHDMMB_NUM_PARALLEL"
+              qualifiers={{
+                guiLabel:
+                  "Parallel model building: simultaneous building and refinement processes",
+              }}
+              visibility={() => useComb}
+            />
+
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="COMB_PHDMMB_SKIP_INITIAL_BUILD"
+                qualifiers={{
+                  guiLabel: "Skip the first model building cycle",
+                }}
+                visibility={() => useComb}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="COMB_PHDMMB_REBUILD_ONLY"
+                qualifiers={{ guiLabel: "Soft rebuilding" }}
+                visibility={() => useComb}
+              />
+            </FieldRow>
+
+            <CCP4i2TaskElement
+              {...props}
+              itemName="COMB_PHDMMB_EXCLUDE_FREE"
+              qualifiers={{
+                guiLabel:
+                  "Exclude the free reflections in model building",
+              }}
+              visibility={() => useComb}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* Final refinement */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Final refinement" }}
+            containerHint="FolderLevel"
+            visibility={() => showRefine}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="REF_PROGRAM"
+              qualifiers={{ guiLabel: "Refinement program" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="REF_CYCLES"
+              qualifiers={{ guiLabel: "Refinement cycles" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="REF_EXCLUDE_FREE"
+              qualifiers={{
+                guiLabel: "Exclude free reflections",
+              }}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* Cleanup */}
+          <CCP4i2TaskElement
+            {...props}
+            itemName="CLEANUP"
+            qualifiers={{
+              guiLabel: "Remove all intermediate mtz files at the end?",
+            }}
+          />
+        </CCP4i2Tab>
+      </CCP4i2Tabs>
+    </Paper>
   );
 };
 
 export default TaskInterface;
-
-const itemList = [
-  "crank2.container.inputData.F_SIGFanom",
-  "crank2.container.inputData.F_SIGFanom2",
-  "crank2.container.inputData.F_SIGFanom3",
-  "crank2.container.inputData.F_SIGFanom4",
-  "crank2.container.inputData.NON_MTZ",
-  "crank2.container.inputData.F_SIGFanom_nonmtz",
-  "crank2.container.inputData.F_SIGFanom2_nonmtz",
-  "crank2.container.inputData.F_SIGFanom3_nonmtz",
-  "crank2.container.inputData.F_SIGFanom4_nonmtz",
-  "crank2.container.inputData.ATOM_TYPE",
-  "crank2.container.inputData.F_SIGFnative",
-  "crank2.container.inputData.F_SIGFnative_nonmtz",
-  "crank2.container.inputData.WAVELENGTH4",
-  "crank2.container.inputData.WAVELENGTH3",
-  "crank2.container.inputData.WAVELENGTH2",
-  "crank2.container.inputData.WAVELENGTH",
-  "crank2.container.inputData.USER_WAVELENGTH",
-  "crank2.container.inputData.USER_WAVELENGTH2",
-  "crank2.container.inputData.USER_WAVELENGTH3",
-  "crank2.container.inputData.USER_WAVELENGTH4",
-  "crank2.container.inputData.FPRIME",
-  "crank2.container.inputData.FDPRIME",
-  "crank2.container.inputData.FPRIME2",
-  "crank2.container.inputData.FDPRIME2",
-  "crank2.container.inputData.FPRIME3",
-  "crank2.container.inputData.FDPRIME3",
-  "crank2.container.inputData.FPRIME4",
-  "crank2.container.inputData.FDPRIME4",
-  "crank2.container.inputData.USER_FPRIME",
-  "crank2.container.inputData.USER_FDPRIME",
-  "crank2.container.inputData.USER_FPRIME2",
-  "crank2.container.inputData.USER_FDPRIME2",
-  "crank2.container.inputData.USER_FPRIME3",
-  "crank2.container.inputData.USER_FDPRIME3",
-  "crank2.container.inputData.USER_FPRIME4",
-  "crank2.container.inputData.USER_FDPRIME4",
-  "crank2.container.inputData.CELL_A",
-  "crank2.container.inputData.CELL_B",
-  "crank2.container.inputData.CELL_C",
-  "crank2.container.inputData.CELL_D",
-  "crank2.container.inputData.CELL_E",
-  "crank2.container.inputData.CELL_F",
-  "crank2.container.inputData.SPACEGROUP",
-  "crank2.container.inputData.USER_CELL_A",
-  "crank2.container.inputData.USER_CELL_B",
-  "crank2.container.inputData.USER_CELL_C",
-  "crank2.container.inputData.USER_CELL_D",
-  "crank2.container.inputData.USER_CELL_E",
-  "crank2.container.inputData.USER_CELL_F",
-  "crank2.container.inputData.USER_SPACEGROUP",
-  "crank2.container.inputData.NUMBER_SUBSTRUCTURE",
-  "crank2.container.inputData.SUBSTRDET_NUM_DSUL",
-  "crank2.container.inputData.USER_NUMBER_SUBSTRUCTURE",
-  "crank2.container.inputData.USER_SUBSTRDET_NUM_DSUL",
-  "crank2.container.inputData.SEQIN",
-  "crank2.container.inputData.XYZIN",
-  "crank2.container.inputData.XYZIN.selection.text",
-  "crank2.container.inputData.XYZIN_SUB",
-  "crank2.container.inputData.XYZIN_SUB.selection.text",
-  "crank2.container.inputData.XYZIN_SUB_RES",
-  "crank2.container.inputData.FPHIN_HL",
-  "crank2.container.inputData.INPUT_PHASES",
-  "crank2.container.inputData.EXPTYPE",
-  "crank2.container.inputData.USER_EXPTYPE",
-  "crank2.container.inputData.REPLACE_MET_MSE",
-  "crank2.container.inputData.START_PIPELINE",
-  "crank2.container.inputData.END_PIPELINE",
-  "crank2.container.inputData.SHELXCDE",
-  "crank2.container.inputData.SHELX_SEPAR",
-  "crank2.container.inputData.DNA",
-  "crank2.container.inputData.SUBSTR_ATOMS_NATIVE",
-  "crank2.container.inputData.USER_SUBSTR_ATOMS_NATIVE",
-  "crank2.container.inputData.NATIVE",
-  "crank2.container.inputData.MAD2",
-  "crank2.container.inputData.MAD3",
-  "crank2.container.inputData.MAD4",
-  "crank2.container.inputData.DNAME",
-  "crank2.container.inputData.DNAME2",
-  "crank2.container.inputData.DNAME3",
-  "crank2.container.inputData.DNAME4",
-  "crank2.container.inputData.USER_DNAME",
-  "crank2.container.inputData.USER_DNAME2",
-  "crank2.container.inputData.USER_DNAME3",
-  "crank2.container.inputData.USER_DNAME4",
-  "crank2.container.inputData.INPUT_PARTIAL",
-  "crank2.container.inputData.PARTIAL_AS_SUBSTR",
-  "crank2.container.inputData.SUBSTR_IN_PARTIAL",
-  "crank2.container.inputData.FREE",
-  "crank2.container.inputData.MONOMERS_ASYM",
-  "crank2.container.inputData.USER_MONOMERS_ASYM",
-  "crank2.container.inputData.SOLVENT_CONTENT",
-  "crank2.container.inputData.USER_SOLVENT_CONTENT",
-  "crank2.container.inputData.RESIDUES_MON",
-  "crank2.container.inputData.USER_RESIDUES_MON",
-  "crank2.container.inputData.RESIDUES_MON_COPY",
-  "crank2.container.inputData.RESIDUES_MON_INFO",
-  "crank2.container.inputData.NUCLEOTIDES_MON",
-  "crank2.container.inputData.INPUT_SEQUENCE",
-  "crank2.container.inputData.SAVED_FPMFILE",
-  "crank2.container.inputData.SAVED_FPMFILE2",
-  "crank2.container.inputData.SAVED_FPMFILE3",
-  "crank2.container.inputData.SAVED_FPMFILE4",
-  "crank2.container.inputData.SAVED_FAVFILE",
-  "crank2.container.inputData.SAVED_FAVFILE2",
-  "crank2.container.inputData.SAVED_FAVFILE3",
-  "crank2.container.inputData.SAVED_FAVFILE4",
-  "crank2.container.inputData.SAVED_FAVFILE_NATIVE",
-  "crank2.container.inputData.SAVED_FPLUS",
-  "crank2.container.inputData.SAVED_FPLUS2",
-  "crank2.container.inputData.SAVED_FPLUS3",
-  "crank2.container.inputData.SAVED_FPLUS4",
-  "crank2.container.inputData.SAVED_SIGFPLUS",
-  "crank2.container.inputData.SAVED_SIGFPLUS2",
-  "crank2.container.inputData.SAVED_SIGFPLUS3",
-  "crank2.container.inputData.SAVED_SIGFPLUS4",
-  "crank2.container.inputData.SAVED_FMIN",
-  "crank2.container.inputData.SAVED_FMIN2",
-  "crank2.container.inputData.SAVED_FMIN3",
-  "crank2.container.inputData.SAVED_FMIN4",
-  "crank2.container.inputData.SAVED_SIGFMIN",
-  "crank2.container.inputData.SAVED_SIGFMIN2",
-  "crank2.container.inputData.SAVED_SIGFMIN3",
-  "crank2.container.inputData.SAVED_SIGFMIN4",
-  "crank2.container.inputData.SAVED_FAVER",
-  "crank2.container.inputData.SAVED_FAVER2",
-  "crank2.container.inputData.SAVED_FAVER3",
-  "crank2.container.inputData.SAVED_FAVER4",
-  "crank2.container.inputData.SAVED_FAVER_NATIVE",
-  "crank2.container.inputData.SAVED_SIGFAVER",
-  "crank2.container.inputData.SAVED_SIGFAVER2",
-  "crank2.container.inputData.SAVED_SIGFAVER3",
-  "crank2.container.inputData.SAVED_SIGFAVER4",
-  "crank2.container.inputData.SAVED_SIGFAVER_NATIVE",
-  "crank2.container.inputData.FREERFLAG",
-  "crank2.container.inputData.FREE_RATIO",
-];
-const rest = [];

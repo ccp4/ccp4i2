@@ -9,7 +9,7 @@ import {
   File as DjangoFile,
 } from "./types/models";
 import { useRunCheck } from "./providers/run-check-provider";
-import { apiJson, apiText } from "./api-fetch";
+import { apiJson, apiPost, apiText } from "./api-fetch";
 import { useIsJobEffectivelyActive } from "./providers/recently-started-jobs-context";
 import { patchContainer } from "./utils/container-patch";
 
@@ -186,6 +186,10 @@ export interface JobData {
   getErrors: (item: any) => ValidationError[];
   useFileDigest: (objectPath: string) => SWRResponse<any, Error>;
   fetchDigest: (objectPath: string) => Promise<any | null>;
+  callPluginMethod: (
+    methodName: string,
+    kwargs?: Record<string, any>
+  ) => Promise<any | null>;
   fileItemToParameterArg: (
     value: DjangoFile,
     objectPath: string,
@@ -1364,6 +1368,37 @@ export const useJob = (jobId: number | null | undefined): JobData => {
     [job?.id]
   );
 
+  /**
+   * Call a method on the job's CPluginScript instance (imperative, non-SWR).
+   * Use in onChange handlers for server-side computation.
+   *
+   * @example
+   *   const result = await callPluginMethod("compute_anomalous_scattering", {
+   *     atom_type: "SE", wavelength: 0.9793
+   *   });
+   *   if (result?.fp !== undefined) { ... }
+   */
+  const callPluginMethod = useCallback(
+    async (
+      methodName: string,
+      kwargs: Record<string, any> = {}
+    ): Promise<any | null> => {
+      if (!job?.id || !methodName) return null;
+
+      try {
+        const result = await apiPost(`jobs/${job.id}/plugin_method/`, {
+          method_name: methodName,
+          kwargs,
+        });
+        return result?.data?.result ?? result;
+      } catch (error) {
+        console.error(`Error calling plugin method ${methodName}:`, error);
+        return null;
+      }
+    },
+    [job?.id]
+  );
+
   const getValidationColor = useMemo(() => {
     return (item: any): string => {
       const fieldErrors = extractValidationErrors(
@@ -1473,6 +1508,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
     getErrors,
     useFileDigest,
     fetchDigest,
+    callPluginMethod,
     fileItemToParameterArg,
   };
 };
