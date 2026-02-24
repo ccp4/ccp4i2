@@ -137,7 +137,7 @@ function ImportTableOfValuesContent() {
   const { config: compoundConfig } = useCompoundConfig();
 
   // Get protocol from URL query param - if provided, it's locked
-  const lockedProtocolId = searchParams?.get('protocol');
+  const lockedProtocolId = searchParams?.get('protocol') ?? null;
 
   // Data state
   const [spreadsheetData, setSpreadsheetData] = useState<SpreadsheetData | null>(null);
