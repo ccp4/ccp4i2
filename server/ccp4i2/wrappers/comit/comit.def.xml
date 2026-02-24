@@ -1,32 +1,27 @@
 <?xml version='1.0' encoding='ASCII'?>
 <ccp4i2>
-    <ccp4i2_header>
-        <function>DEF</function>
-        <pluginName>comit</pluginName>
-    </ccp4i2_header>
-    <ccp4i2_body id="comit">
-
+    <ccp4i2_body>
         <container id="inputData">
             <content id="F_SIGF">
                 <className>CObsDataFile</className>
                 <qualifiers>
-                    <fromPreviousJob>True</fromPreviousJob>
                     <allowUndefined>False</allowUndefined>
+                    <contentFlag>4</contentFlag>
+                    <fromPreviousJob>True</fromPreviousJob>
                     <mustExist>True</mustExist>
                 </qualifiers>
             </content>
             <content id="F_PHI_IN">
                 <className>CMapCoeffsDataFile</className>
                 <qualifiers>
-                    <mustExist>True</mustExist>
+                    <allowUndefined>False</allowUndefined>
                     <fromPreviousJob>True</fromPreviousJob>
-                    <sameCrystalAs>F_SIGF</sameCrystalAs>
+                    <mustExist>True</mustExist>
                     <requiredSubType>1</requiredSubType>
-                    <allowUndefined>True</allowUndefined>
+                    <sameCrystalAs>F_SIGF</sameCrystalAs>
                 </qualifiers>
             </content>
         </container>
-
         <container id="controlParameters">
             <content id="NOMIT">
                 <className>CInt</className>
@@ -39,21 +34,19 @@
                 <className>CFloat</className>
                 <qualifiers>
                     <default>3.0</default>
-                    <min>0.0</min>
                     <max>100.0</max>
+                    <min>0.0</min>
                 </qualifiers>
             </content>
         </container>
-
         <container id="outputData">
             <content id="F_PHI_OUT">
                 <className>CMapCoeffsDataFile</className>
                 <qualifiers>
-                    <default><subType>1</subType><contentFlag>1</contentFlag></default>
-                    <saveToDb>True</saveToDb>
+                    <contentFlag>1</contentFlag>
+                    <subType>1</subType>
                 </qualifiers>
             </content>
         </container>
-
     </ccp4i2_body>
 </ccp4i2>
