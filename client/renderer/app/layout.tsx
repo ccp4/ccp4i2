@@ -11,6 +11,12 @@ export const metadata = {
   description: "Software for Macromolecular X-Ray Crystallography",
 };
 
+// Skip static prerendering of all pages. This works around a Next.js 15.5 bug
+// where prerendering fails with "Expected workUnitAsyncStorage to have a store"
+// (tracked in vercel/next.js#84026, #87719). This is safe for our use case:
+// Electron runs a local Next.js server, and Azure serves pages dynamically.
+export const dynamic = "force-dynamic";
+
 const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true";
 
 /**

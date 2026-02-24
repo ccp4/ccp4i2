@@ -103,7 +103,9 @@ export function middleware(request: NextRequest) {
 // Configure which paths the middleware runs on
 export const config = {
   matcher: [
-    // Match all paths except static assets (which are handled separately)
-    "/((?!_next/static|_next/image).*)",
+    // Match all paths except static assets, internal Next.js routes, and auth pages.
+    // Internal routes (_not-found, _error) and auth pages are prerendered at build
+    // time with no request context, so middleware must not run on them.
+    "/((?!_next/static|_next/image|_not-found|_error|auth/|favicon\\.ico).*)",
   ],
 };

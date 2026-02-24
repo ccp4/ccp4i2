@@ -25,12 +25,13 @@ import {
   setQuat,
   setZoom,
   setRequestDrawScene,
-  setShownSidePanel,
   MoorhenContainer,
-  MoorhenInstanceProvider,
   MoorhenMolecule,
   MoorhenMap,
 } from "moorhen";
+// @ts-expect-error - moorhen 0.23 exports exist at runtime but .d.ts is incomplete
+import { setShownSidePanel, MoorhenInstanceProvider } from "moorhen";
+// @ts-expect-error - moorhen 0.23 type exists at runtime but .d.ts is incomplete
 import type { MoorhenPanel } from "moorhen";
 
 import {
@@ -395,7 +396,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     if (!commandCentre.current) return;
     const newMolecule = new MoorhenMolecule(
       commandCentre as RefObject<moorhen.CommandCentre>,
-      store,
+      store as any,
       monomerLibraryPath
     );
     newMolecule.setBackgroundColour(backgroundColor);
@@ -451,7 +452,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     if (!commandCentre.current) return;
     const newMap = new MoorhenMap(
       commandCentre as RefObject<moorhen.CommandCentre>,
-      store
+      store as any
     );
     // subType: 1=normal, 2=difference, 3=anomalous difference
     // Both difference and anomalous maps use isDifference=true for contouring
@@ -474,7 +475,12 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       }
       if (newMap.molNo === -1) throw new Error("Cannot read the fetched map...");
       dispatch(addMap(newMap));
-      dispatch(setActiveMap(newMap));
+      // Only set as active map for non-difference maps (subType 1).
+      // Difference maps (Fo-Fc = 2, anomalous = 3) must never be the
+      // active map because Moorhen refines against the active map.
+      if (!isDiffMap) {
+        dispatch(setActiveMap(newMap));
+      }
       // Reduce initial contour level to 0.8x for more sensitive screening
       const state = store.getState() as any;
       const contourLevels = state.mapContourSettings?.contourLevels || [];

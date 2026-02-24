@@ -8,10 +8,11 @@ import CampaignMoorhenWrapper from "../../../../../components/moorhen/campaign-m
 
 // Inner component that uses useSearchParams (requires Suspense boundary)
 function CampaignPageContent() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params?.id as string | undefined;
   const searchParams = useSearchParams();
-  const viewParam = searchParams.get("view");
-  const jobParam = searchParams.get("job"); // Optional: specific job to load
+  const viewParam = searchParams?.get("view");
+  const jobParam = searchParams?.get("job"); // Optional: specific job to load
   const campaignId = id ? parseInt(id as string) : null;
   const initialJobId = jobParam ? parseInt(jobParam) : null;
 

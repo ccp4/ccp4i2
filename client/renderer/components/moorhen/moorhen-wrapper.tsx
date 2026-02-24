@@ -10,10 +10,12 @@ import {
   setTheme,
   setBackgroundColor,
   MoorhenContainer,
-  MoorhenInstanceProvider,
   MoorhenMolecule,
   MoorhenMap,
 } from "moorhen";
+// @ts-expect-error - moorhen 0.23 exports exist at runtime but .d.ts is incomplete
+import { MoorhenInstanceProvider } from "moorhen";
+// @ts-expect-error - moorhen 0.23 type exists at runtime but .d.ts is incomplete
 import type { MoorhenPanel } from "moorhen";
 
 import {
@@ -109,66 +111,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     return state.glRef.origin;
   }, [store]);
 
-  // Custom side panel containing our control panel
-  const extraSidePanels = useMemo<Record<string, MoorhenPanel>>(() => ({
-    ccp4i2Controls: {
-      icon: "MatSymSettings",
-      label: "CCP4i2",
-      panelContent: <MoorhenControlPanel onFileSelect={fetchFile} getViewUrl={getViewUrl} />,
-    },
-  }), [getViewUrl]);
-
-  const collectedProps = useMemo(() => ({
-    glRef,
-    timeCapsuleRef,
-    commandCentre,
-    moleculesRef,
-    mapsRef,
-    activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,
-    lastHoveredAtom,
-    prevActiveMoleculeRef,
-    monomerLibraryPath,
-    urlPrefix,
-    store,
-    viewOnly: false,
-    extraSidePanels,
-    setMoorhenDimensions,
-  }), [urlPrefix, store, extraSidePanels, setMoorhenDimensions]);
-
-  useEffect(() => {
-    if (fileIds && cootInitialized) {
-      fileIds.forEach((fileId) => {
-        fetchFile(fileId);
-      });
-    }
-  }, [fileIds, cootInitialized]);
-
-  const fetchFile = async (fileId: number) => {
-    const fileInfo = await apiGet(`files/${fileId}`);
-    if (!fileInfo) {
-      console.warn(`File with ID ${fileId} not found.`);
-      return;
-    }
-    if (fileInfo.type === "chemical/x-pdb") {
-      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      const molName = fileInfo.annotation || fileInfo.job_param_name;
-      await fetchMolecule(url, molName);
-    } else if (fileInfo.type === "application/CCP4-mtz-map") {
-      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      const molName = fileInfo.name || fileInfo.job_param_name;
-      const mapSubType = fileInfo.sub_type || 1;
-      await fetchMap(url, molName, mapSubType);
-    } else if (fileInfo.type === "application/refmac-dictionary") {
-      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      await fetchDict(url);
-    }
-  };
-
   const fetchMolecule = async (url: string, molName: string) => {
     if (!commandCentre.current) return;
     const newMolecule = new MoorhenMolecule(
       commandCentre as RefObject<moorhen.CommandCentre>,
-      store,
+      store as any,
       monomerLibraryPath
     );
     newMolecule.setBackgroundColour(backgroundColor);
@@ -198,7 +145,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     if (!commandCentre.current) return;
     const newMap = new MoorhenMap(
       commandCentre as RefObject<moorhen.CommandCentre>,
-      store
+      store as any
     );
     const isDiffMap = mapSubType === 2 || mapSubType === 3;
     try {
@@ -218,7 +165,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       if (newMap.molNo === -1)
         throw new Error("Cannot read the fetched map...");
       dispatch(addMap(newMap));
-      dispatch(setActiveMap(newMap));
+      // Only set as active map for non-difference maps (subType 1).
+      // Difference maps (Fo-Fc = 2, anomalous = 3) must never be the
+      // active map because Moorhen refines against the active map.
+      if (!isDiffMap) {
+        dispatch(setActiveMap(newMap));
+      }
       // Reduce initial contour level to 0.8x for more sensitive screening
       const state = store.getState() as any;
       const contourLevels = state.mapContourSettings?.contourLevels || [];
@@ -262,7 +214,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     if (result.data.result.status === "Completed") {
       const newMolecule = new MoorhenMolecule(
         commandCentre as RefObject<moorhen.CommandCentre>,
-        store,
+        store as any,
         monomerLibraryPath
       );
       newMolecule.uniqueId = url;
@@ -280,6 +232,61 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       dispatch(addMolecule(newMolecule));
     }
   };
+
+  const fetchFile = async (fileId: number) => {
+    const fileInfo = await apiGet(`files/${fileId}`);
+    if (!fileInfo) {
+      console.warn(`File with ID ${fileId} not found.`);
+      return;
+    }
+    if (fileInfo.type === "chemical/x-pdb") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      const molName = fileInfo.annotation || fileInfo.job_param_name;
+      await fetchMolecule(url, molName);
+    } else if (fileInfo.type === "application/CCP4-mtz-map") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      const molName = fileInfo.name || fileInfo.job_param_name;
+      const mapSubType = fileInfo.sub_type || 1;
+      await fetchMap(url, molName, mapSubType);
+    } else if (fileInfo.type === "application/refmac-dictionary") {
+      const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
+      await fetchDict(url);
+    }
+  };
+
+  // Custom side panel containing our control panel
+  const extraSidePanels: Record<string, MoorhenPanel> = {
+    ccp4i2Controls: {
+      icon: "MatSymSettings",
+      label: "CCP4i2",
+      panelContent: <MoorhenControlPanel onFileSelect={fetchFile} getViewUrl={getViewUrl} />,
+    },
+  };
+
+  const collectedProps = useMemo(() => ({
+    glRef,
+    timeCapsuleRef,
+    commandCentre,
+    moleculesRef,
+    mapsRef,
+    activeMapRef: activeMapRef as React.RefObject<moorhen.Map>,
+    lastHoveredAtom,
+    prevActiveMoleculeRef,
+    monomerLibraryPath,
+    urlPrefix,
+    store,
+    viewOnly: false,
+    extraSidePanels,
+    setMoorhenDimensions,
+  }), [urlPrefix, store, extraSidePanels, setMoorhenDimensions]);
+
+  useEffect(() => {
+    if (fileIds && cootInitialized) {
+      fileIds.forEach((fileId) => {
+        fetchFile(fileId);
+      });
+    }
+  }, [fileIds, cootInitialized]);
 
   // Show Safari warning - capabilities may look OK but WASM threading crashes
   const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;

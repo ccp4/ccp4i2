@@ -77,9 +77,11 @@ const nextConfig: NextConfig = {
     if (isServer) {
       config.externals = [...config.externals, "moorhen"];
     }
-    if (isElectron && !isServer) {
-      config.target = "electron-renderer";
-    }
+    // Note: we intentionally do NOT set config.target = "electron-renderer".
+    // Our Electron uses contextIsolation:true + nodeIntegration:false, so the
+    // renderer is a standard browser environment. The electron-renderer target
+    // causes webpack to use the CommonJS branch of UMD modules (like moorhen),
+    // which triggers deep require() parsing that corrupts export detection.
     return config;
   },
 

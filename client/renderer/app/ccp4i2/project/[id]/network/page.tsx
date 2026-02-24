@@ -7,7 +7,7 @@ import Container from "@mui/material/Container/Container";
 
 export default function Page() {
   const params = useParams();
-  const { id } = params as { id: string };
+  const { id } = (params ?? {}) as { id: string };
   const { project } = useProject(parseInt(id));
   return (
     <div>

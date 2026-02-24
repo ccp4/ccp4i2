@@ -7,9 +7,10 @@ import { useApi } from "../../../../../api";
 
 // Inner component that uses useSearchParams (requires Suspense boundary)
 function FileByIdPageContent() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params?.id as string | undefined;
   const searchParams = useSearchParams();
-  const viewParam = searchParams.get("view");
+  const viewParam = searchParams?.get("view");
 
   const api = useApi();
   // Use centralized API hook for file fetching (data unused but kept for future use)

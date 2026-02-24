@@ -11,8 +11,8 @@ function TeamsStartContent() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const clientId = searchParams.get("client_id") || process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
-    const tenantId = searchParams.get("tenant_id") || process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
+    const clientId = searchParams?.get("client_id") || process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
+    const tenantId = searchParams?.get("tenant_id") || process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
     const redirectUri = `${window.location.origin}/auth/teams-callback`;
 
     const authUrl = new URL(`https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize`);

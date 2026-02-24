@@ -89,8 +89,10 @@ export function TeamsRoutePersistence() {
   const hasVisitedNonRootRoute = useRef(false);
 
   useEffect(() => {
+    if (!pathname) return;
+
     // Build full path including search params
-    const search = searchParams.toString();
+    const search = searchParams?.toString() ?? "";
     const fullPath = search ? `${pathname}?${search}` : pathname;
 
     // Check if this is deliberate navigation to home (we've been to another route first)

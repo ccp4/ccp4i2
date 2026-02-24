@@ -7,9 +7,10 @@ import { useJob, useProject } from "../../../../../utils";
 
 // Inner component that uses useSearchParams (requires Suspense boundary)
 function JobByIdPageContent() {
-  const { id } = useParams();
+  const params = useParams();
+  const id = params?.id as string | undefined;
   const searchParams = useSearchParams();
-  const viewParam = searchParams.get("view");
+  const viewParam = searchParams?.get("view");
 
   const { job } = useJob(parseInt(id as string));
   const { files } = useProject(job?.project);

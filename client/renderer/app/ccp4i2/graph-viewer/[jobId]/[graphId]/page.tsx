@@ -17,7 +17,7 @@ import { CCP4i2ApplicationOutputView } from "../../../../../components/report/CC
  */
 export default function GraphViewerPage() {
   const params = useParams();
-  const { jobId, graphId } = params as { jobId: string; graphId: string };
+  const { jobId, graphId } = (params ?? {}) as { jobId: string; graphId: string };
   const api = useApi();
   const [title, setTitle] = useState<string>("Graph Viewer");
 

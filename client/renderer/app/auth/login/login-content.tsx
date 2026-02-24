@@ -120,7 +120,7 @@ export default function LoginContent() {
       // User is already logged in, set cookie and redirect
       fetch("/api/auth/session", { method: "POST", credentials: "include" })
         .then(() => {
-          const returnUrl = searchParams.get("returnUrl") || "/";
+          const returnUrl = searchParams?.get("returnUrl") || "/";
           window.location.replace(returnUrl);
         });
       return;
@@ -134,7 +134,7 @@ export default function LoginContent() {
     hasTriggeredLogin.current = true;
 
     // Get the return URL from query params (set by middleware)
-    const returnUrl = searchParams.get("returnUrl") || "/";
+    const returnUrl = searchParams?.get("returnUrl") || "/";
     console.log("[LOGIN] Storing returnUrl:", returnUrl);
 
     // Store return URL in session storage for post-login redirect
