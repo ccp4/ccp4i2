@@ -15,7 +15,7 @@
     "copy-moorhen-dirs": "copyfiles -u 2 node_modules/moorhen/public/**/* renderer/",
     "copy-moorhen-assets-base": "copyfiles -u 2 node_modules/moorhen/public/MoorhenAssets/* renderer/",
     "copy-moorhen-assets-dirs": "copyfiles -u 2 node_modules/moorhen/public/MoorhenAssets/**/* renderer/",
-    "copy-moorhen-wasm": "mkdir -p renderer/public/baby-gru/wasm && cp node_modules/moorhen/public/moorhen.js node_modules/moorhen/public/moorhen.wasm node_modules/moorhen/public/moorhen64.js node_modules/moorhen/public/moorhen64.wasm node_modules/moorhen/public/moorhen_st.js node_modules/moorhen/public/moorhen_st.wasm node_modules/moorhen/public/CootWorker.js node_modules/moorhen/public/coot_env_web.js renderer/public/baby-gru/wasm/",
+    "copy-moorhen-wasm": "copyfiles -u 3 node_modules/moorhen/public/moorhen.js node_modules/moorhen/public/moorhen.wasm node_modules/moorhen/public/moorhen64.js node_modules/moorhen/public/moorhen64.wasm node_modules/moorhen/public/moorhen_st.js node_modules/moorhen/public/moorhen_st.wasm node_modules/moorhen/public/CootWorker.js node_modules/moorhen/public/coot_env_web.js renderer/public/baby-gru/wasm",
     "copy-report-files-base": "copyfiles -u 1 assets/report_files/* renderer/public/",
     "copy-report-files": "copyfiles -u 1 assets/report_files/**/* renderer/public/",
     "copy-qticons": "copyfiles -u 4 ../server/ccp4i2/qticons/* renderer/public/qticons/",
