@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-// @ts-expect-error - MoorhenStoreReducers exists at runtime but moorhen's .d.ts doesn't declare it
+// @ts-ignore - MoorhenStoreReducers may lack .d.ts depending on build
 import { MoorhenStoreReducers } from "moorhen";
 import { createContext } from "react";
 
