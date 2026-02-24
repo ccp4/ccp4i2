@@ -35,26 +35,26 @@ function AggregationPageContent() {
 
   // Read initial values from URL params for deep linking
   // Support both single 'compound' param and multiple 'compounds' params
-  const initialCompoundSearch = searchParams.get('compound') || searchParams.get('compounds') || undefined;
-  const initialTargetId = searchParams.get('target') || undefined;
+  const initialCompoundSearch = searchParams?.get('compound') || searchParams?.get('compounds') || undefined;
+  const initialTargetId = searchParams?.get('target') || undefined;
   // Support multiple target names via comma-separated 'targets' param
-  const initialTargetNames = searchParams.get('targets')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
+  const initialTargetNames = searchParams?.get('targets')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
   // Support multiple protocol names via comma-separated 'protocols' param
-  const initialProtocolNames = searchParams.get('protocols')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
+  const initialProtocolNames = searchParams?.get('protocols')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
   // Support output format via 'format' param
-  const formatParam = searchParams.get('format');
+  const formatParam = searchParams?.get('format');
   const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long' || formatParam === 'pivot' || formatParam === 'cards') ? formatParam : undefined;
   // Support aggregations via comma-separated 'aggregations' param
-  const aggregationsParam = searchParams.get('aggregations');
+  const aggregationsParam = searchParams?.get('aggregations');
   const validAggregations = ['geomean', 'count', 'stdev', 'list'] as const;
   const initialAggregations = aggregationsParam
     ? aggregationsParam.split(',').map((s) => s.trim()).filter((a): a is AggregationType => validAggregations.includes(a as any))
     : undefined;
   // Support status filter via 'status' param (simplified to 'valid' or '' for any)
-  const statusParam = searchParams.get('status');
+  const statusParam = searchParams?.get('status');
   const initialStatus = (statusParam === 'valid' || statusParam === '') ? statusParam : undefined;
   // Support concentration display mode via 'concentrationDisplay' param
-  const concentrationDisplayParam = searchParams.get('concentrationDisplay');
+  const concentrationDisplayParam = searchParams?.get('concentrationDisplay');
   const initialConcentrationDisplay = (concentrationDisplayParam === 'natural' || concentrationDisplayParam === 'nM' || concentrationDisplayParam === 'uM' || concentrationDisplayParam === 'mM' || concentrationDisplayParam === 'pConc')
     ? concentrationDisplayParam as ConcentrationDisplayMode
     : undefined;
@@ -62,13 +62,13 @@ function AggregationPageContent() {
   // Determine if this is a fresh aggregation (no query filters) - should start expanded
   const isFreshAggregation = !initialCompoundSearch && !initialTargetId && !initialTargetNames?.length && !initialProtocolNames?.length;
   // Support group by batch via 'groupByBatch' param
-  const groupByBatchParam = searchParams.get('groupByBatch');
+  const groupByBatchParam = searchParams?.get('groupByBatch');
   const initialGroupByBatch = groupByBatchParam === 'true';
   // Support include tested no data via 'includeTestedNoData' param
-  const includeTestedNoDataParam = searchParams.get('includeTestedNoData');
+  const includeTestedNoDataParam = searchParams?.get('includeTestedNoData');
   const initialIncludeTestedNoData = includeTestedNoDataParam === 'true';
   // Support molecular properties via comma-separated 'properties' param
-  const propertiesParam = searchParams.get('properties');
+  const propertiesParam = searchParams?.get('properties');
   const validProperties = ['molecular_weight', 'heavy_atom_count', 'hbd', 'hba', 'clogp', 'tpsa', 'rotatable_bonds', 'fraction_sp3'] as const;
   const initialIncludeProperties = propertiesParam
     ? propertiesParam.split(',').map((s) => s.trim()).filter((p): p is MolecularPropertyName => validProperties.includes(p as any))

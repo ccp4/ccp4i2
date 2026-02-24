@@ -74,7 +74,7 @@ function TeamsRouteHandler() {
   useEffect(() => {
     // Check for ?home parameter - this bypasses route restoration
     // Useful if saved route is broken and user needs to get back to app-selector
-    if (searchParams.has('home')) {
+    if (searchParams?.has('home')) {
       console.log("[APP-SELECTOR] ?home parameter detected, clearing saved route");
       clearSavedTeamsRoute();
       // Don't redirect, stay on app-selector

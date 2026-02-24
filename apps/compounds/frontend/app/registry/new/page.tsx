@@ -118,7 +118,7 @@ function NewCompoundPageContent() {
   const api = useCompoundsApi();
 
   // Get pre-populated target from URL (e.g., from target detail page)
-  const preselectedTargetId = searchParams.get('target');
+  const preselectedTargetId = searchParams?.get('target');
 
   const [formData, setFormData] = useState<CompoundFormData>({
     target: preselectedTargetId || '',

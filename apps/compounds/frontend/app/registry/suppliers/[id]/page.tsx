@@ -37,7 +37,7 @@ import { Supplier } from '@/types/compounds/models';
 export default function SupplierDetailPage() {
   const router = useRouter();
   const params = useParams();
-  const supplierId = params.id as string;
+  const supplierId = params?.id as string;
   const { mutate } = useSWRConfig();
   const api = useCompoundsApi();
 

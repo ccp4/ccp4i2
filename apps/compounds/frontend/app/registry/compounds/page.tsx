@@ -39,7 +39,7 @@ function CompoundsPageContent() {
   const { canContribute } = useAuth();
 
   // Get initial target filter from URL
-  const initialTarget = searchParams.get('target') || '';
+  const initialTarget = searchParams?.get('target') || '';
   const [targetFilter, setTargetFilter] = useState(initialTarget);
 
   // Fetch targets for filter dropdown

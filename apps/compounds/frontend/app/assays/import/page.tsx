@@ -51,7 +51,7 @@ function ImportAssayPageContent() {
   const api = useCompoundsApi();
 
   // Get target from URL query params (passed from AddAssayMenu)
-  const targetId = searchParams.get('target');
+  const targetId = searchParams?.get('target');
 
   const [searchQuery, setSearchQuery] = useState('');
 

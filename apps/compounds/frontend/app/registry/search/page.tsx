@@ -113,8 +113,8 @@ function CompoundSearchContent() {
   const { config: compoundConfig } = useCompoundConfig();
 
   // URL params
-  const initialQuery = searchParams.get('q') || '';
-  const initialTarget = searchParams.get('target') || '';
+  const initialQuery = searchParams?.get('q') || '';
+  const initialTarget = searchParams?.get('target') || '';
 
   // Search state
   const [searchQuery, setSearchQuery] = useState(initialQuery);

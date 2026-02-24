@@ -95,8 +95,8 @@ function ProtocolDetailPageContent({ params }: PageProps) {
   const { canContribute } = useAuth();
 
   // Check for openUpload and target query params (from import page redirect)
-  const shouldOpenUpload = searchParams.get('openUpload') === 'true';
-  const targetIdFromUrl = searchParams.get('target');
+  const shouldOpenUpload = searchParams?.get('openUpload') === 'true';
+  const targetIdFromUrl = searchParams?.get('target');
 
   const [layoutSelectOpen, setLayoutSelectOpen] = useState(false);
   const [createLayoutOpen, setCreateLayoutOpen] = useState(false);
