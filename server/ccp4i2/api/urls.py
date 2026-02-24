@@ -9,6 +9,9 @@ from .ProjectTagViewSet import ProjectTagViewSet
 from .ProjectGroupViewSet import ProjectGroupViewSet
 from .ProjectGroupMembershipViewSet import ProjectGroupMembershipViewSet
 from .FileViewSet import FileViewSet
+from .FileTypeViewSet import FileTypeViewSet
+from .FileImportViewSet import FileImportViewSet
+from .FileUseViewSet import FileUseViewSet
 from .JobViewSet import JobViewSet
 from . import views
 
@@ -18,6 +21,9 @@ router.register("projecttags", ProjectTagViewSet)
 router.register("projectgroups", ProjectGroupViewSet)
 router.register("projectgroupmemberships", ProjectGroupMembershipViewSet)
 router.register("files", FileViewSet)
+router.register("filetypes", FileTypeViewSet)
+router.register("fileimports", FileImportViewSet)
+router.register("fileuses", FileUseViewSet)
 router.register("jobs", JobViewSet)
 router.register("projectexports", ProjectExportViewSet)
 

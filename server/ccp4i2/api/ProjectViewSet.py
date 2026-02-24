@@ -288,6 +288,52 @@ class ProjectViewSet(ModelViewSet):
     @action(
         detail=True,
         methods=["get"],
+        serializer_class=serializers.JobFloatValueSerializer,
+    )
+    def job_float_values(self, request, pk=None):
+        """
+        Retrieve all JobFloatValue instances associated with a specific project.
+        Args:
+            request (Request): The HTTP request object.
+            pk (int, optional): The primary key of the project.
+        Returns:
+            Response: A Response object containing serialized data of JobFloatValue instances.
+        """
+
+        project = models.Project.objects.get(pk=pk)
+        serializer = serializers.JobFloatValueSerializer(
+            models.JobFloatValue.objects.filter(job__project=project), many=True
+        )
+        project.last_access = datetime.datetime.now(tz=timezone("UTC"))
+        project.save()
+        return Response(serializer.data)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.JobCharValueSerializer,
+    )
+    def job_char_values(self, request, pk=None):
+        """
+        Retrieve job characteristic values for a specific project.
+        Args:
+            request (Request): The HTTP request object.
+            pk (int, optional): The primary key of the project.
+        Returns:
+            Response: A Response object containing serialized job characteristic values.
+        """
+
+        project = models.Project.objects.get(pk=pk)
+        serializer = serializers.JobCharValueSerializer(
+            models.JobCharValue.objects.filter(job__project=project), many=True
+        )
+        project.last_access = datetime.datetime.now(tz=timezone("UTC"))
+        project.save()
+        return Response(serializer.data)
+
+    @action(
+        detail=True,
+        methods=["get"],
     )
     def job_tree(self, request, pk=None):
         """
