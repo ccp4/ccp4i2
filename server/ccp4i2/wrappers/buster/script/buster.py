@@ -68,7 +68,7 @@ class buster(CPluginScript):
         if self.container.inputData.FREERFLAG.isSet():
             cols1.append(['FREERFLAG', None])
         # Run CAD to change FREER flag name to something refine likes
-        self.hklin, __, errorb = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
+        self.hklin, _, errorb = self.makeHklin0(cols1)
         self.outfilec = os.path.join(os.path.split(self.hklin)[0], 'rcadout.mtz')
         self.logfc = os.path.join(os.path.split(self.hklin)[0], 'rcadout.log')
         arglist = ['hklin1', self.hklin, 'hklout', self.outfilec]

@@ -17,16 +17,14 @@ class acorn(CPluginScript):
         print("Processing INPUT Files - (Acorn)")
         
         # Need to input the necessary input files for an Acorn Run. This will be conditional.
-        self.hklin, __, error = self.makeHklInput([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]],
-                                                  extendOutputColnames=False, useInputColnames=False)
+        self.hklin, error = self.makeHklInput([['F_SIGF',CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
 
         if self.container.controlParameters.ACORN_ECALC :
             try:
                 # Using clipper-python to extend data (optionally correct for anisotropy) and calculate Es
                 # set options
                 if self.container.controlParameters.ACORN_PHSIN_TYPE == "phases":
-                    self.hklin_phifom, __, error = self.makeHklInput([['ABCD',CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM]],
-                                                                     hklin='phases', extendOutputColnames=False, useInputColnames=False)
+                    self.hklin_phifom, error = self.makeHklInput([['ABCD',CCP4XtalData.CPhsDataFile.CONTENT_FLAG_PHIFOM]], hklin='phases')
                 else:
                     self.hklin_phifom = None
                 if self.container.controlParameters.ACORN_ANISOTROPY :

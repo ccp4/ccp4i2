@@ -117,7 +117,7 @@ def test_parrot_makehklin(tmp_path):
     # makeHklInput returns (outfile, colnames, error) tuple
     # Use [name, contentFlag] syntax to request FMEAN (4) conversion
     from ccp4i2.core.CCP4XtalData import CObsDataFile
-    hklin_path, colnames, error = task.makeHklInput(
+    hklin_path, error = task.makeHklInput(
         miniMtzsIn=[['F_SIGF', CObsDataFile.CONTENT_FLAG_FMEAN], 'ABCD']
     )
 

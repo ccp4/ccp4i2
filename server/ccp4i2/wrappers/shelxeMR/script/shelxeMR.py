@@ -42,7 +42,7 @@ class shelxeMR(CPluginScript):
         cols = [['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]]
         if self.container.inputData.FREERFLAG.isSet():
             cols.append('FREERFLAG')
-        self.hklin, columns, error = self.makeHklInput(cols, extendOutputColnames=True, useInputColnames=True)
+        self.hklin, _, error = self.makeHklin0(cols)
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         # Rename the .pdb file to .pda

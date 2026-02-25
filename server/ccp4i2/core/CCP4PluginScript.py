@@ -3059,80 +3059,11 @@ class CPluginScript(CData):
 
         return (hklin_filename, error)
 
-    def makeHklInput(
-        self,
-        miniMtzsIn: list = [],
-        hklin: str = 'hklin',
-        ignoreErrorCodes: list = [],
-        extendOutputColnames: bool = True,
-        useInputColnames: bool = False
-    ) -> tuple:
-        """
-        Legacy API for makeHklin - returns (outfile, colnames, error).
-
-        This method provides backward compatibility with the old CCP4i2 API.
-        It wraps the modern makeHklin() method and returns the expected tuple.
-
-        Args:
-            miniMtzsIn: List of file names or [name, contentFlag] pairs
-            hklin: Output filename (without extension)
-            ignoreErrorCodes: Error codes to ignore (not currently used)
-            extendOutputColnames: Whether to extend column names with parameter prefix
-            useInputColnames: Whether to use original input column names (identity mapping)
-                              When True, preserves standard column names like F, SIGF, FreeR_flag
-
-        Returns:
-            Tuple of (outfile_path, column_names, error_report)
-        """
-        # Choose which makeHklin variant to call based on parameters
-        #
-        # Legacy ccp4i2 behavior from _buildInputVector:
-        # - (False, False): [infile, colout]              - standard output names
-        # - (True, True):   [infile, colin, ext_outputCol] - input→prefixed mapping (old makeHklin0)
-        # - (True, False):  [infile, ext_outputCol]       - prefixed output names
-        # - (False, True):  [infile, colin, colout]       - input→standard mapping
-        #
-        # The key insight from legacy: when extendOutputColnames=True, output has PREFIXED names
-        # Both shelxeMR and phaser_singleMR use (True, True) and expect prefixed column names.
-        # shelxeMR uses MTZ_parse which finds columns by TYPE, so works with any naming.
-        # phaser_singleMR hardcodes prefixed names (F_SIGF_F, etc.)
-
-        if extendOutputColnames:
-            # extendOutputColnames=True means output MTZ has prefixed column names
-            # This matches legacy makeHklin0 behavior
-            # useInputColnames affects the LABIN (input column names) but output is still prefixed
-            outfile, colnames, error = self.makeHklin0(miniMtzsIn, hklin, ignoreErrorCodes)
-            return outfile, colnames, error
-
-        elif useInputColnames:
-            # Only useInputColnames (without extendOutputColnames): identity mapping
-            outfile, error = self.makeHklin(miniMtzsIn, hklin)
-            # Get column names from the merged MTZ
-            colnames = ""
-            try:
-                import gemmi
-                if outfile:
-                    mtz = gemmi.read_mtz_file(str(outfile))
-                    column_names = [col.label for col in mtz.columns
-                                    if col.label not in ['H', 'K', 'L', 'M/ISYM']]
-                    colnames = ','.join(column_names)
-            except Exception:
-                pass
-            return outfile, colnames, error
-
-        else:
-            # Neither parameter: identity mapping (default, old makeHklin behavior)
-            outfile, error = self.makeHklin(miniMtzsIn, hklin)
-
-        # outfile might be None if there was an error
+    def makeHklInput(self, miniMtzsIn: list, hklin: str = "hklin") -> tuple:
+        outfile, error = self.makeHklin(miniMtzsIn, hklin=hklin)
         if outfile is None:
             outfile = str(self.workDirectory / f"{hklin}.mtz")
-
-        # For now, return empty column names string
-        # (Full column introspection would require reading the merged MTZ)
-        colnames = ""
-
-        return outfile, colnames, error
+        return outfile, error
 
     def makeHklin0(
         self,

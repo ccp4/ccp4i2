@@ -46,7 +46,7 @@ class findmyseq(CPluginScript):
         if self.bFData:
             cols1.append(['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN])
         cols1.append(['FPHI', None])
-        self.hklin, __, errorb = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
+        self.hklin, _, errorb = self.makeHklin0(cols1)
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):

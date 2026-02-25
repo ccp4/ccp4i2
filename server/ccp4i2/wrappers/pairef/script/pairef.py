@@ -41,7 +41,7 @@ class pairef(CPluginScript):
             cols1.append(['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN])
         if self.container.inputData.FREERFLAG.isSet():
             cols1.append(['FREERFLAG', None])
-        self.hklin, __, errorb = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
+        self.hklin, _, errorb = self.makeHklin0(cols1)
         if errorb.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
