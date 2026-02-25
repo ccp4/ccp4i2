@@ -2943,7 +2943,7 @@ class CPluginScript(CData):
 
         raise ValueError(f"No content flag name found for value {content_flag}")
 
-    def makeHklin(self, miniMtzsIn: list, hklin: str = 'hklin', ignoreErrorCodes: list = []) -> tuple:
+    def makeHklin(self, miniMtzsIn: list, hklin: str = 'hklin') -> tuple:
         """
         Merge mini-MTZ files into HKLIN (backward-compatible legacy API).
 
@@ -2960,7 +2960,6 @@ class CPluginScript(CData):
                        converts file to target format first (handled by makeHklinGemmi)
 
             hklin: Base name for output file (default: 'hklin')
-            ignoreErrorCodes: Error codes to ignore (for compatibility, not used)
 
         Returns:
             tuple: (hklin_filename, CErrorReport) where:
@@ -3069,7 +3068,6 @@ class CPluginScript(CData):
         self,
         miniMtzsIn: list = [],
         hklin: str = 'hklin',
-        ignoreErrorCodes: list = []
     ) -> tuple:
         """
         Legacy API for makeHklin that returns prefixed column names.
@@ -3081,7 +3079,6 @@ class CPluginScript(CData):
         Args:
             miniMtzsIn: List of file names or [name, contentFlag] pairs
             hklin: Output filename (without extension)
-            ignoreErrorCodes: Error codes to ignore (for compatibility)
 
         Returns:
             Tuple of (outfile_path, column_names_string, error_report)

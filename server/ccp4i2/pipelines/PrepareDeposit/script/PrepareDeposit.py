@@ -75,7 +75,7 @@ class PrepareDeposit(CPluginScript):
         pathForExperimentalDataToCifify = os.path.join(refmacPlugin.getWorkDirectory(),'hklin.mtz')
         if self.container.inputData.F_SIGF.contentFlag != refmacContentFlag:
             pathForExperimentalDataToCifify = os.path.join(self.getWorkDirectory(),'mergedForMakingCif.mtz')
-            self.makeHklin0(miniMtzsIn=[['F_SIGF', int(self.container.inputData.F_SIGF.contentFlag)], ['F_SIGF', refmacContentFlag],['FREERFLAG',0]], hklin='mergedForMakingCif', ignoreErrorCodes=[])
+            self.makeHklin0(miniMtzsIn=[['F_SIGF', int(self.container.inputData.F_SIGF.contentFlag)], ['F_SIGF', refmacContentFlag],['FREERFLAG',0]], hklin='mergedForMakingCif')
         
         #Now convert refmac input to mmcif
         self.hklin2cifPlugin = self.makePluginObject('hklin2cif')

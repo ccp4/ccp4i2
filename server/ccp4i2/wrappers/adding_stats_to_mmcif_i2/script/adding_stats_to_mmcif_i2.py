@@ -154,7 +154,7 @@ except Exception as err:
             pathForExperimentalDataToCifify = os.path.join(
                 self.getWorkDirectory(), 'mergedForMakingCif.mtz')
             self.hklin, self.columns, error = self.makeHklin0(miniMtzsIn=[['F_SIGF', int(self.container.inputData.F_SIGF.contentFlag)], [
-                                                              'F_SIGF', refmacContentFlag], ['FREERFLAG', 0], ['FPHIOUT', 1], ['DIFFPHIOUT', 1]], hklin='mergedForMakingCif', ignoreErrorCodes=[])
+                                                              'F_SIGF', refmacContentFlag], ['FREERFLAG', 0], ['FPHIOUT', 1], ['DIFFPHIOUT', 1]], hklin='mergedForMakingCif')
             if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
                 self.reportStatus(CPluginScript.FAILED)
 

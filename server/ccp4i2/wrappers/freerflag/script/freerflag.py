@@ -32,8 +32,7 @@ class freerflag(CPluginScript):
                 #  cut the resolution of the FreeR set if it is higher than the data
                 self.cutResolution()
         
-            # ignoreErrorCodes to say makeHklin can ignore cmtzjoin gives exitCode 101 for incomplete freerflag
-            self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'],ignoreErrorCodes=[36])
+            self.hklin,error = self.makeHklin(['F_SIGF','FREERFLAG'])
             print('freerflag.processInputFiles',self.hklin,error)
             if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
                 return CPluginScript.FAILED
