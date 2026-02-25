@@ -1,11 +1,12 @@
 import os
+import xml.etree.ElementTree as ET
 
-from ccp4i2.core import CCP4ErrorHandling, CCP4XtalData
+from ccp4i2.core import CCP4XtalData
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+from ccp4i2.smartie import smartie
 
 
 class phaser_singleMR(CPluginScript):
-
     TASKNAME = 'phaser_singleMR'
     TASKCOMMAND = 'phaser'
     PERFORMANCECLASS = 'CExpPhasPerformance'
@@ -29,13 +30,11 @@ class phaser_singleMR(CPluginScript):
             cols1.append(['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_IMEAN])
         if self.bFData:
             cols1.append(['F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN])
-        self.hklin1, __, error1 = self.makeHklInput(cols1, extendOutputColnames=True, useInputColnames=True)
+        self.hklin1, _, error1 = self.makeHklin0(cols1)
         # Need to join up the previous i2-only mini-mtz's to get back the prior mtz file ...
         self.seqin = os.path.join(self.workDirectory, 'input_seq.fasta')
         self.container.inputData.ASUFILE.writeFasta(self.seqin)
-        if error1.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
-        return CPluginScript.SUCCEEDED
+        return error1
 
     def processOutputFiles(self):
         num_sol = 1
@@ -128,19 +127,154 @@ class phaser_singleMR(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def parseLogfile(self):
-        logfile = self.makeFileName('LOG')
-        # Load ccp4 smartie and qtr code
-        from ccp4i2.smartie import smartie
-        from ccp4i2.smartie.qtrgeneric import CLReader, LogConverter
-
-        # Use ccp4 automated output. Note this is replacing I2's internal xml file handling.
-        infi = CLReader({'REP_XML': 'program.xml', 'REP_XRT': 'program.xrt', 'LOGFILE': logfile})
+        logfile = self.makeFileName("LOG")
         smin = smartie.parselog(logfile)
-        lconv = LogConverter()
-        lconv.convert(smin, infi)
-        lconv.xmltree.write(os.path.join(self.getWorkDirectory(), infi.xml))
-        xrto = open(os.path.join(self.getWorkDirectory(), infi.xrt), "w")
-        from xml.etree import ElementTree as ET
-        xrto.write((ET.tostring(lconv.xrttree.getroot()).decode()).replace("ns0", "xrt"))
-        xrto.close()
-        return
+        xmltree, xrttree = _convert_log(smin)
+        xmltree.write(str(self.workDirectory / "program.xml"))
+        with (self.workDirectory / "program.xrt").open("w") as xrto:
+            xrto.write((ET.tostring(xrttree.getroot()).decode()).replace("ns0", "xrt"))
+
+
+def _convert_log(logfile):
+    job_tag = "Job"
+    job_path = "/Job"
+    xrtns = "{http://www.ccp4.ac.uk/xrt}%s"
+
+    xrttree = ET.ElementTree(ET.Element("report"))
+    e0 = xrttree.getroot()
+    e0 = ET.SubElement(e0, xrtns % "results")
+
+    xmltree = ET.ElementTree(ET.Element(job_tag))
+    f0 = xmltree.getroot()
+
+    e1 = ET.SubElement(e0, xrtns % "title", select=job_path + "/Title")
+
+    f1 = ET.SubElement(f0, "Title")
+    f1.text = None
+
+    for ip in range(logfile.nprograms()):
+        program = logfile.program(ip)
+        program_tag = f"SubJob_{ip:03d}"
+        program_path = job_path + "/" + program_tag
+
+        all_attributes = program.attributes()
+
+        progname = ""
+        if "name" in all_attributes:
+            progname = program.get_attribute("name")
+
+        elif "termination_name" in all_attributes:
+            progname = program.get_attribute("termination_name")
+
+        progtitle = "Run"
+        if progname:
+            progtitle += f" of {progname}"
+
+        rundate = ""
+        if "rundate" in all_attributes:
+            rundate = program.get_attribute("rundate")
+            progtitle += f" on {rundate}"
+
+        runtime = ""
+        if "runtime" in all_attributes:
+            runtime = program.get_attribute("runtime")
+            progtitle += f" at {runtime}"
+
+        e1 = ET.SubElement(e0, xrtns % "section", title=progtitle)
+
+        f1 = ET.SubElement(f0, program_tag)
+
+        attributes = program.attributes()
+        if "name" in attributes:
+            e1.attrib["progname"] = program.get_attribute("name")
+
+        if "rundate" in attributes:
+            info_tag = "RunDate"
+            e1.attrib["rundate"] = program_path + "/" + info_tag
+            f2 = ET.SubElement(f1, info_tag)
+            f2.text = program.get_attribute("rundate")
+
+        if "runtime" in attributes:
+            info_tag = "RunTime"
+            e1.attrib["runtime"] = program_path + "/" + info_tag
+            f2 = ET.SubElement(f1, info_tag)
+            f2.text = program.get_attribute("runtime")
+
+        e2 = None
+        for ik in range(program.nkeytexts()):
+            keytext = program.keytext(ik)
+            keytext_tag = f"KeyText_{ik + 1:03d}"
+            keytext_path = program_path + "/" + keytext_tag
+
+            e2 = ET.SubElement(e1, xrtns % "keytext")
+            e2.attrib["folded"] = "false"
+            e2.attrib["name"] = keytext.name()
+            e2.attrib["select"] = keytext_path
+
+            f2 = ET.SubElement(f1, keytext_tag)
+            f2.text = "\n" + keytext.message().strip() + "\n"
+
+        for xrt_table_tag in ("graph", "table"):
+            jt = 0
+            e1a = e1
+
+            if xrt_table_tag == "graph" and program.ntables() > 0:
+                e1a = ET.SubElement(e1, xrtns % "graph")
+
+            for it in range(program.ntables()):
+                jt += 1
+                table = program.table(it)
+                table_tag = f"Table_{jt:03d}"
+                table_path = program_path + "/" + table_tag
+
+                e2 = ET.SubElement(e1a, xrtns % "table", select=table_path)
+                e2.attrib["type"] = "plain"
+                e2.attrib["title"] = table.title().strip()
+                if xrt_table_tag == "table":
+                    e2.attrib["folded"] = "true"
+
+                for ic in range(table.ncolumns()):
+                    column = table.table_column(ic)
+
+                    e3 = ET.SubElement(e2, xrtns % "data", title=column.title())
+
+                if xrt_table_tag == "graph":
+                    f2 = ET.SubElement(f1, table_tag)
+                    f2.text = table.data().rstrip() + "\n"
+
+                    for ig in range(table.ngraphs()):
+                        graph = table.table_graph(ig)
+                        columns = graph.columns()
+
+                        e3 = ET.SubElement(e2, xrtns % "plot")
+                        e3.attrib["title"] = graph.title().strip()
+
+                        for column in columns[1:]:
+                            ET.SubElement(
+                                e3,
+                                "plotline",
+                                xcol=str(columns[0]),
+                                ycol=str(column),
+                                colour="auto",
+                            )
+
+                        scaling = graph.scaling()
+                        if scaling == "N":
+                            e3.attrib["ymin"] = "0"
+
+                        elif scaling and scaling != "A":
+                            xrange, sep, yrange = scaling.partition("x")
+                            if sep == "x":
+                                xmin, sep, xmax = xrange.partition("|")
+                                if sep == "|":
+                                    e3.attrib["xmin"] = xmin.strip()
+                                    e3.attrib["xmax"] = xmax.strip()
+
+                                ymin, sep, ymax = yrange.partition("|")
+                                if sep == "|":
+                                    e3.attrib["ymin"] = ymin.strip()
+                                    e3.attrib["ymax"] = ymax.strip()
+
+    ET.SubElement(f0, "Files")
+
+    return xmltree, xrttree

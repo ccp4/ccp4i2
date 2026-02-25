@@ -5,7 +5,6 @@ from ccp4i2.report import Report
 
 
 class phaser_singleMR_report(Report):
-
     TASKNAME = 'phaser_singleMR'
     RUNNING = False
 
@@ -18,7 +17,7 @@ class phaser_singleMR_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        results = self.addResults()
+        self.addResults()
         parent.append("<p>Results for Phaser Single Atom MR Run</p>")
         bda = self.xmlnode.findall('.//SubJob_000/RunDate')[0].text
         bestCC = self.xmlnode.findall('.//SubJob_000/KeyText_003')[0].text
@@ -85,4 +84,3 @@ class phaser_singleMR_report(Report):
                         print("Warning : out of graph colours, increase vector in phaser_singleMR") # Really shouldn't happen, but just in case.
                         l.append('colour', 'black')
             colcount += len(dcols)
-
