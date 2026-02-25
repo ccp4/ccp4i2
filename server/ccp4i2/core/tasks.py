@@ -972,9 +972,9 @@ TASKS = {
         title="Single Atom Molecular Replacement",
         description="Perform Single Atom MR using Phaser",
         shortTitle="Single Atom MR",
-        pluginPath="ccp4i2.wrappers.phaser_singleMR.script.phaser_singleMR:phaser_singleMR",
-        defXmlPath="wrappers/phaser_singleMR/script/phaser_singleMR.def.xml",
-        reportPath="ccp4i2.wrappers.phaser_singleMR.script.phaser_singleMR_report:phaser_singleMR_report",
+        pluginPath="ccp4i2.wrappers.phaser_singleMR.phaser_singleMR:phaser_singleMR",
+        defXmlPath="wrappers/phaser_singleMR/phaser_singleMR.def.xml",
+        reportPath="ccp4i2.wrappers.phaser_singleMR.phaser_singleMR_report:phaser_singleMR_report",
     ),
     "pisa": Task(
         defXmlPath="pipelines/pisapipe/wrappers/pisa_list/script/pisa.def.xml",
