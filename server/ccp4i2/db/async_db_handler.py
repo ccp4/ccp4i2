@@ -308,7 +308,7 @@ class AsyncDatabaseHandler:
 
         if jobId is None:
             logger.warning("updateJobStatus called with no jobId")
-            return CPluginScript.SUCCEEDED
+            return
 
         try:
             job_uuid = uuid.UUID(jobId) if isinstance(jobId, str) else jobId
@@ -337,7 +337,6 @@ class AsyncDatabaseHandler:
         except Exception as e:
             logger.error("Error in updateJobStatus: %s", e, exc_info=True)
 
-        return CPluginScript.SUCCEEDED
 
     async def register_output_file(
         self,
