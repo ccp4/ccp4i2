@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: macOS-dmg
-          path: client/dist/*.dmg
+          path: client/release/*.dmg
 
   build-win:
     runs-on: windows-latest
@@ -58,7 +58,7 @@ jobs:
         with:
           name: windows-installers
           path: |
-            client/dist/*.exe
+            client/release/*.exe
 
   build-linux:
     runs-on: ubuntu-latest
@@ -86,4 +86,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: linux-appimages
-          path: client/dist/*.AppImage
+          path: client/release/*.AppImage
