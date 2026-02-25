@@ -266,7 +266,7 @@ class PhaseDataConverter:
             # PROCESSMANAGER not available in minimal environment - continue anyway
             print(f"Warning: Could not set PROCESSMANAGER timeout: {e}")
 
-        pid = wrapper.process()
+        wrapper.process()
 
         # Check if output was created
         if not Path(output_path).exists():
