@@ -30,11 +30,11 @@
     "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next build",
     "start:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next dev",
     "export:web": "cross-env BUILD_TARGET=web npm run build:web && cd renderer && next export",
-    "package-mac": "npm run build:electron && npm prune --omit=dev && npx electron-builder",
-    "package-win": "npm run build:electron && npm prune --omit=dev && npx electron-builder --win",
-    "package-linux-x64": "npm run build:electron && npm prune --omit=dev && npx electron-builder --linux AppImage --x64",
-    "package-linux-arm64": "npm run build:electron && npm prune --omit=dev && npx electron-builder --linux AppImage --arm64",
-    "package-linux-all": "npm run build:electron && npm prune --omit=dev && npx electron-builder --linux AppImage --x64 --arm64"
+    "package-mac": "npm install && npm run build:electron && npm prune --omit=dev && npx electron-builder",
+    "package-win": "npm install && npm run build:electron && npm prune --omit=dev && npx electron-builder --win",
+    "package-linux-x64": "npm install && npm run build:electron && npm prune --omit=dev && npx electron-builder --linux AppImage --x64",
+    "package-linux-arm64": "npm install && npm run build:electron && npm prune --omit=dev && npx electron-builder --linux AppImage --arm64",
+    "package-linux-all": "npm install && npm run build:electron && npm prune --omit=dev && npx electron-builder --linux AppImage --x64 --arm64"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.24.1",
