@@ -28,11 +28,13 @@ jobs:
         run: npm run build:electron
         working-directory: client
 
-      - name: Free disk space
+      - name: Prune dev dependencies and free disk space
         run: |
+          npm prune --omit=dev
           npm cache clean --force
           rm -rf /tmp/* 2>/dev/null || true
           df -h
+        working-directory: client
 
       - name: Package macOS app (dmg)
         run: npx electron-builder
@@ -63,6 +65,10 @@ jobs:
         run: npm run build:electron
         working-directory: client
 
+      - name: Prune dev dependencies
+        run: npm prune --omit=dev
+        working-directory: client
+
       - name: Package Windows app (nsis & portable)
         run: npx electron-builder --win
         working-directory: client
@@ -91,6 +97,10 @@ jobs:
 
       - name: Build Electron app
         run: npm run build:electron
+        working-directory: client
+
+      - name: Prune dev dependencies
+        run: npm prune --omit=dev
         working-directory: client
 
       - name: Package Linux x64 AppImage
