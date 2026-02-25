@@ -123,7 +123,17 @@
     "extraResources": [
       {
         "from": "../server/",
-        "to": "server"
+        "to": "server",
+        "filter": [
+          "**/*",
+          "!**/demo_data",
+          "!**/demo_data/**",
+          "!**/tests",
+          "!**/tests/**",
+          "!**/__pycache__",
+          "!**/__pycache__/**",
+          "!**/*.pyc"
+        ]
       },
       {
         "from": "../core/",
