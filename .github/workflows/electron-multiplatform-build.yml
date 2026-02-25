@@ -24,20 +24,8 @@ jobs:
         run: npm ci
         working-directory: client
 
-      - name: Build Electron app
-        run: npm run build:electron
-        working-directory: client
-
-      - name: Prune dev dependencies and free disk space
-        run: |
-          npm prune --omit=dev
-          npm cache clean --force
-          rm -rf /tmp/* 2>/dev/null || true
-          df -h
-        working-directory: client
-
-      - name: Package macOS app (dmg)
-        run: npx electron-builder
+      - name: Build and package macOS app (dmg)
+        run: npm run package-mac
         working-directory: client
 
       - name: Upload macOS artifact
@@ -61,16 +49,8 @@ jobs:
         run: npm ci
         working-directory: client
 
-      - name: Build Electron app
-        run: npm run build:electron
-        working-directory: client
-
-      - name: Prune dev dependencies
-        run: npm prune --omit=dev
-        working-directory: client
-
-      - name: Package Windows app (nsis & portable)
-        run: npx electron-builder --win
+      - name: Build and package Windows app
+        run: npm run package-win
         working-directory: client
 
       - name: Upload Windows artifacts
@@ -95,16 +75,8 @@ jobs:
         run: npm ci
         working-directory: client
 
-      - name: Build Electron app
-        run: npm run build:electron
-        working-directory: client
-
-      - name: Prune dev dependencies
-        run: npm prune --omit=dev
-        working-directory: client
-
-      - name: Package Linux x64 AppImage
-        run: npx electron-builder --linux AppImage --x64
+      - name: Build and package Linux AppImage
+        run: npm run package-linux-x64
         working-directory: client
 
       - name: List dist contents

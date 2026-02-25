@@ -30,11 +30,11 @@
     "build:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next build",
     "start:web": "cross-env BUILD_TARGET=web npm run copy-assets && cd renderer && next dev",
     "export:web": "cross-env BUILD_TARGET=web npm run build:web && cd renderer && next export",
-    "package-mac": "npm run build:electron && electron-builder",
-    "package-win": "npm run build:electron && electron-builder --win",
-    "package-linux-x64": "npm run build:electron && electron-builder --linux AppImage --x64",
-    "package-linux-arm64": "npm run build:electron && electron-builder --linux AppImage --arm64",
-    "package-linux-all": "npm run build:electron && electron-builder --linux AppImage --x64 --arm64"
+    "package-mac": "npm run build:electron && npm prune --omit=dev && electron-builder",
+    "package-win": "npm run build:electron && npm prune --omit=dev && electron-builder --win",
+    "package-linux-x64": "npm run build:electron && npm prune --omit=dev && electron-builder --linux AppImage --x64",
+    "package-linux-arm64": "npm run build:electron && npm prune --omit=dev && electron-builder --linux AppImage --arm64",
+    "package-linux-all": "npm run build:electron && npm prune --omit=dev && electron-builder --linux AppImage --x64 --arm64"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.24.1",
