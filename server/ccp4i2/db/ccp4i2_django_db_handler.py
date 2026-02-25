@@ -232,7 +232,6 @@ class CCP4i2DjangoDbHandler:
                 )
         except Exception as err:
             logger.error("Issue in reportStatus %s %s", err, the_job, exc_info=err)
-        return CPluginScript.SUCCEEDED
 
     def getProjectDirectory(self, projectId):
         """
