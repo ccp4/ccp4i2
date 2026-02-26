@@ -2,15 +2,7 @@
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <comment/>
-    <userId>stuart</userId>
-    <creationTime>10:06 29/Jan/26</creationTime>
-    <pluginVersion></pluginVersion>
-    <ccp4iVersion>0.0.1</ccp4iVersion>
-    <project/>
     <pluginName>areaimol</pluginName>
-    <pluginTitle>Solvent accessible surface - Areaimol</pluginTitle>
-    <jobId/>
   </ccp4i2_header>
   <ccp4i2_body id="areaimol">
     <container id="inputData">
@@ -20,7 +12,7 @@
           <mustExist>True</mustExist>
           <allowUndefined>False</allowUndefined>
           <fromPreviousJob>False</fromPreviousJob>
-	  <ifAtomSelection>True</ifAtomSelection>
+          <ifAtomSelection>True</ifAtomSelection>
         </qualifiers>
       </content>
       <content id="XYZIN2">
@@ -29,7 +21,7 @@
           <mustExist>True</mustExist>
           <allowUndefined>True</allowUndefined>
           <fromPreviousJob>False</fromPreviousJob>
-	  <ifAtomSelection>True</ifAtomSelection>
+          <ifAtomSelection>True</ifAtomSelection>
         </qualifiers>
       </content>
     </container>
@@ -72,17 +64,17 @@
         </qualifiers>
       </content>
       <content id="EXTRA_AREAIMOL_KEYWORDS">
-         <className>CString</className>
-         <qualifiers>
-            <default>END
-            </default>
-         </qualifiers>
+        <className>CString</className>
+        <qualifiers>
+          <default>END
+          </default>
+        </qualifiers>
       </content>
       <content id="SYMMETRY">
-         <className>CString</className>
-         <qualifiers>
-            <allowUndefined>True</allowUndefined>
-         </qualifiers>
+        <className>CString</className>
+        <qualifiers>
+          <allowUndefined>True</allowUndefined>
+        </qualifiers>
       </content>
     </container>
     <container id="outputData">

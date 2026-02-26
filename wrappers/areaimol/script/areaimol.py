@@ -1,22 +1,19 @@
-import os
-import tempfile
-import pathlib
+import base64
+import sys
 
 import gemmi
+from lxml import etree
+
+from core import CCP4Utils
+from core.CCP4PluginScript import CPluginScript
 from smartie import smartie
 
-from core.CCP4PluginScript import CPluginScript
-from core import CCP4Utils
 
 class areaimol(CPluginScript):
-
-    TASKTITLE='Solvent accessible surface - Areaimol'
     TASKNAME = 'areaimol'
-    TASKMODULE= 'model_data_utility'
+    TASKTITLE = 'Solvent accessible surface - Areaimol'
+    TASKMODULE = 'model_data_utility'
     TASKCOMMAND = 'areaimol'
-    TASKVERSION= 0.0
-    COMLINETEMPLATE = None
-    COMTEMPLATE = None
 
     def makeCommandAndScript(self):
 
@@ -69,9 +66,6 @@ class areaimol(CPluginScript):
       return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        from lxml import etree
-        import sys
-        import base64
         with open(self.makeFileName("PROGRAMXML"),"w") as programXMLFile:
             xmlStructure = etree.Element("areaimol")
             logText = etree.SubElement(xmlStructure,"LogText")
@@ -143,4 +137,3 @@ class areaimol(CPluginScript):
               self.container.outputData.XYZOUT.annotation = "Coordinates with residue surface area in 'B-factor' column"
 
         return CPluginScript.SUCCEEDED
-
