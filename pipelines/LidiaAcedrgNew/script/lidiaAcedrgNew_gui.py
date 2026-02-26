@@ -44,9 +44,9 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.createLine ( [ 'label', 'SMILES file', 'widget', 'SMILESFILEIN' ] , toggle=['MOLSMILESORSKETCH','open',['SMILESFILE']])
         self.createLine ( [ 'widget', 'DICTIN2' ] , toggle=['MOLSMILESORSKETCH','open',['DICT']])
         self.connectDataChanged('DICTIN2', self.updateTLC)
-        self.createLine ( [ 'widget', 'PDBMMCIFIN' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
-        self.connectDataChanged('PDBMMCIFIN', self.updateTLC)
-        self.createLine ( [ 'label', '<i>Specified PDB/mmCIF file must contain only one monomer including hydrogen atoms.</i>' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
+        # self.createLine ( [ 'widget', 'PDBMMCIFIN' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
+        # self.connectDataChanged('PDBMMCIFIN', self.updateTLC)
+        # self.createLine ( [ 'label', '<i>Specified PDB/mmCIF file must contain only one monomer including hydrogen atoms.</i>' ] , toggle=['MOLSMILESORSKETCH','open',['PDBMMCIF']])
         self.createLine ( [ 'widget', 'TOGGLE_METAL', 'label' , 'This monomer contains a metal atom.' ] )
         self.connectDataChanged('controlParameters.TOGGLE_METAL', self.ToggleShowContainsMetal)
         self.createLine ( [ 'label', indent + 'Provide a relevant structure model in complex with this monomer to get ideal bond angles in the output:'] , toggleFunction=[self.ToggleShowContainsMetal, ['controlParameters.TOGGLE_METAL']])
@@ -67,7 +67,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.openSubFrame( frame=[False], toggle=['CONFORMERSFROM','open',['RDKIT']] )
         """
         self.createLine ( [ 'widget', 'USE_COORD', 'label', 'Use the coordinates from the input file for further optimisation (requires a reasonable input conformation)' ],
-                          toggle=['MOLSMILESORSKETCH','open',['MOL','MOL2','DICT','PDBMMCIF']] )
+                          toggle=['MOLSMILESORSKETCH','open',['MOL','MOL2','DICT']] ) # ,'PDBMMCIF']] )
         self.connectDataChanged('USE_COORD', self.useCoord)
         self.createLine ( [ 'widget','TOGGLE_NRANDOM','label','Set number of initial conformers to try:','stretch','widget','NRANDOM' ] )
         self.createLine ( [ 'widget', 'NOPROT', 'label' , 'No further protonation/deprotonation to be done by AceDRG' ] )
@@ -106,11 +106,11 @@ class lidiaAcedrgNew_gui(CTaskWidget):
                     tlc = block.find_value('_chem_comp.id')
                     if tlc:
                         break
-            elif self.container.inputData.MOLSMILESORSKETCH == "PDBMMCIF":
-                st = gemmi.read_structure(str(self.container.inputData.PDBMMCIFIN.fullPath))
-                # lookup = {x.atom: x for x in st[0].all()}
-                # tlc = list(lookup.values())[0].residue.name
-                tlc = st[0][0][0].name
+            # elif self.container.inputData.MOLSMILESORSKETCH == "PDBMMCIF":
+            #     st = gemmi.read_structure(str(self.container.inputData.PDBMMCIFIN.fullPath))
+            #     # lookup = {x.atom: x for x in st[0].all()}
+            #     # tlc = list(lookup.values())[0].residue.name
+            #     tlc = st[0][0][0].name
             if tlc:
                 if len(str(tlc)) >= 1 and len(str(tlc)) <= 5:
                     self.container.inputData.TLC.set(str(tlc))
@@ -123,14 +123,11 @@ class lidiaAcedrgNew_gui(CTaskWidget):
             return True
         if not self.container.controlParameters.TOGGLE_METAL and not fromUpdateTLC:
             return False
-        if self.container.inputData.MOLSMILESORSKETCH != 'DICT' and \
-                self.container.inputData.MOLSMILESORSKETCH != 'PDBMMCIF':
+        if self.container.inputData.MOLSMILESORSKETCH != 'DICT':  # and self.container.inputData.MOLSMILESORSKETCH != 'PDBMMCIF':
             return False
-        if not self.container.inputData.DICTIN2.isSet() and \
-                not self.container.inputData.PDBMMCIFIN.isSet():
+        if not self.container.inputData.DICTIN2.isSet(): #  and not self.container.inputData.PDBMMCIFIN.isSet():
             return False
-        if not os.path.isfile(str(self.container.inputData.DICTIN2.fullPath)) and \
-                not os.path.isfile(str(self.container.inputData.PDBMMCIFIN.fullPath)):
+        if not os.path.isfile(str(self.container.inputData.DICTIN2.fullPath)): # and not os.path.isfile(str(self.container.inputData.PDBMMCIFIN.fullPath)):
             return False
         try:
             if self.container.inputData.MOLSMILESORSKETCH == 'DICT' and self.container.inputData.DICTIN2.isSet():
@@ -141,13 +138,13 @@ class lidiaAcedrgNew_gui(CTaskWidget):
                             if gemmi.Element(element).is_metal:
                                 self.container.controlParameters.TOGGLE_METAL.set(True)
                                 return True
-            elif self.container.inputData.MOLSMILESORSKETCH == 'PDBMMCIF' and self.container.inputData.PDBMMCIFIN.isSet():
-                st = gemmi.read_structure(str(self.container.inputData.PDBMMCIFIN.fullPath))
-                lookup = {x.atom: x for x in st[0].all()}
-                for atom in lookup.keys():
-                    if atom.element.is_metal:
-                        self.container.controlParameters.TOGGLE_METAL.set(True)
-                        return True
+            # elif self.container.inputData.MOLSMILESORSKETCH == 'PDBMMCIF' and self.container.inputData.PDBMMCIFIN.isSet():
+            #     st = gemmi.read_structure(str(self.container.inputData.PDBMMCIFIN.fullPath))
+            #     lookup = {x.atom: x for x in st[0].all()}
+            #     for atom in lookup.keys():
+            #         if atom.element.is_metal:
+            #             self.container.controlParameters.TOGGLE_METAL.set(True)
+            #             return True
             else:
                 return False
         except:
