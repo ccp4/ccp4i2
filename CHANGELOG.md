@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.6.0] - 2026-02-26
+
+- New AREAIMOL task
+
 ## [2.5.2] - 2026-02-06
 
 - Xia2 DIALS only supports image directory on Windows
