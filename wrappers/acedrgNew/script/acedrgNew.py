@@ -74,31 +74,12 @@ class acedrgNew(CPluginScript):
             except:
                 return CPluginScript.FAILED
 
-        """
-        elif self.container.inputData.MOLORSMILES.__str__() == 'PDBMMCIF':
-            import gemmi
-            try:
-                if gemmi.read_structure(self.container.inputData.PDBMMCIFIN.__str__()).input_format == gemmi.CoorFormat.Pdb:
-                    self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
-                    mol = Chem.rdmolfiles.MolFromPDBFile(self.container.inputData.PDBMMCIFIN.__str__())
-                    molBlock = Chem.MolToMolBlock(mol, includeStereo=True, forceV3000=False)
-                    with open(self.originalMolFilePath,'w') as molinFile:
-                        molinFile.write(molBlock)
-                else:
-                    try_mmCIF = True
-            except:
-                self.appendErrorReport(200, exc_info=sys.exc_info())
-                return CPluginScript.FAILED
-        """
-
         if self.container.inputData.MOLORSMILES.__str__() == 'DICT' or try_mmCIF == True:
             self.originalMolFilePath = os.path.normpath(os.path.join(self.getWorkDirectory(),'MOLIN.mol'))
             print(self.originalMolFilePath)
             try:
                 if self.container.inputData.DICTIN2.isSet():
                     molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.DICTIN2.__str__())
-                # elif self.container.inputData.PDBMMCIFIN.isSet() and try_mmCIF:
-                #     molBlock = cifToMolBlock.cifFileToMolBlock(self.container.inputData.PDBMMCIFIN.__str__())
                 else:
                     pass #  should not happen
                 print("molBlock:")
@@ -169,14 +150,11 @@ class acedrgNew(CPluginScript):
         elif self.container.inputData.MOL2IN.isSet():
             self.appendCommandLine('-g')
             self.appendCommandLine(str(self.container.inputData.MOL2IN))
-        # elif self.container.inputData.PDBMMCIFIN.isSet():
-        #     self.appendCommandLine('-x')
-        #     self.appendCommandLine(str(self.container.inputData.PDBMMCIFIN))
         if self.container.inputData.METAL_STRUCTURE.isSet():
             self.appendCommandLine('--metalPDB=' + str(self.container.inputData.METAL_STRUCTURE))
         if self.container.controlParameters.NOPROT:
             self.appendCommandLine('--noProt')
-        if self.container.inputData.DICTIN2.isSet() or self.container.inputData.MOLIN.isSet() or self.container.inputData.MOL2IN.isSet():  # or self.container.inputData.PDBMMCIFIN.isSet():
+        if self.container.inputData.DICTIN2.isSet() or self.container.inputData.MOLIN.isSet() or self.container.inputData.MOL2IN.isSet():
             if self.container.controlParameters.USE_COORD:
                 self.appendCommandLine('-p')
         else:
