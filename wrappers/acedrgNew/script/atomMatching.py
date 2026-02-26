@@ -1,17 +1,10 @@
-from __future__ import print_function
-
 import sys
 import os
 import argparse
-import re
 
 import ccp4mg
 import mmdb2
 import ccp4srs
-
-from rdkit import Chem
-from rdkit.Chem import AllChem
-import rdkit
 
 from gemmi import cif
 
@@ -27,11 +20,15 @@ def changeDictionaryAtomNames(doc, changes):
                     col = block.find_values(tag)
                     for i, atomId in enumerate(col):
                         if atomId in changes:
-                            col[i] = cif.quote(changes[atomId])
+                            newId = changes[atomId]
+                            if "'" in newId or '"' in newId:
+                                col[i] = cif.quote(newId)
+                            else:
+                                col[i] = newId
 
 def replaceMatchesInDict(matches,theDict,outfile):
     #Gemmi returns the vaules in the cif document with no leading/trailing whitespace.
-    matches = {k.strip(): v for k, v in matches.items()}
+    matches = {k.strip(): v.strip() for k, v in matches.items()}
     try:
         doc = cif.read_file(theDict)
         changeDictionaryAtomNames(doc,matches)
@@ -369,10 +366,3 @@ if __name__ == "__main__":
     dictFileName = args.f
     retMatches = matchAtoms(ifname,ofname,dictMatchName,selection,dictFileName)
     print(retMatches)
-
-"""
-mol = Chem.rdmolfiles.MolFromPDBFile(sys.argv[1],removeHs=False)
-print mol
-This is how we'd get to PDB file from RDKit.
-print Chem.rdmolfiles.MolToPDBBlock(mol)
-"""

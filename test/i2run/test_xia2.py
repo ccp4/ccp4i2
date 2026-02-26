@@ -17,13 +17,23 @@ def image_dir_fixture():
                 yield tmpDir
 
 
-def run_test(task, image_dir):
+def run_test_from_image_file(task, image_dir):
     args = [task]
     args += ["--IMAGE_FILE"]
     args += ["imageFile/baseName=th_8_2_0001.cbf"]
     args += ["imageFile/relPath=" + image_dir]
     args += ["imageStart=1"]
     args += ["imageEnd=20"]
+    run_test(args)
+
+
+def run_test_from_image_directory(task, image_dir):
+    args = [task]
+    args += ["--IMAGE_DIRECTORY", str(image_dir)]
+    run_test(args)
+
+
+def run_test(args):
     with i2run(args) as job:
         for name in ("freer", "NATIVE_SWEEP1_INTEGRATE", "obs"):
             read_mtz_file(str(job / f"AUTOMATIC_DEFAULT_{name}.mtz"))
@@ -34,10 +44,15 @@ def run_test(task, image_dir):
         assert int(re.search(r"Total unique +(\d+)", log).group(1)) > 11000
 
 
-def test_xia2_dials(image_dir):
-    run_test("xia2_dials", image_dir)
+@mark.skipif(platform == "win32", reason="Not supported on Windows with Python 3.9 xia2")
+def test_xia2_dials_file(image_dir):
+    run_test_from_image_file("xia2_dials", image_dir)
+
+
+def test_xia2_dials_directory(image_dir):
+    run_test_from_image_directory("xia2_dials", image_dir)
 
 
 @mark.skipif(platform == "win32", reason="Not supported on Windows")
-def test_xia2_xds(image_dir):
-    run_test("xia2_xds", image_dir)
+def test_xia2_xds_file(image_dir):
+    run_test_from_image_file("xia2_xds", image_dir)

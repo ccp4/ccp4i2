@@ -5,7 +5,7 @@ from .utils import demoData, hasLongLigandName, i2run
 
 
 def _check_output(job: Path, max_rfree):
-    read_structure(str(job / "XYZOUT.cif"), format=CoorFormat.Mmcif)
+    read_structure(str(job / "XYZOUT.pdb"), format=CoorFormat.Mmcif)
     for name in ["ABCD", "DIFFPHI", "FPHI"]:
         read_mtz_file(str(job / f"{name}OUT.mtz"))
     with (job / "modelcraft" / "modelcraft.json").open() as json_file:
@@ -22,7 +22,7 @@ def test_8xfm(cif8xfm, mtz8xfm, seq8xfm):
     args += ["--CYCLES", "2"]
     with i2run(args) as job:
         _check_output(job, max_rfree=0.3)
-        assert hasLongLigandName(job / "XYZOUT.cif")
+        assert hasLongLigandName(job / "XYZOUT.pdb")
 
 
 def test_gamma_ep():

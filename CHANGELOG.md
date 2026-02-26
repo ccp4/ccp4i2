@@ -1,5 +1,14 @@
 # CCP4i2 Changelog
 
+## [2.5.2] - 2026-02-06
+
+- Xia2 DIALS only supports image directory on Windows
+- Testing AceDRG atom IDs do not contain spaces
+
+## [2.5.1] - 2026-02-05
+
+- Fix to spaces/quoting in AceDRG atom name matching
+
 ## [2.5.0] - 2026-01-06
 
 - New task to check a model against AU contents
