@@ -2115,6 +2115,9 @@ class CObsDataFile(CObsDataFileStub, CMiniMtzDataFile):
         self.set_qualifier('toolTip', 'MTZ format observed data file')
         self.set_qualifier('fileExtensions', ['mtz'])
 
+    def canConvertTo(self, targetContentFlag: int) -> bool:
+        return targetContentFlag in self.CAN_CONVERT_TO.get(self.contentFlag, [])
+
     def as_IPAIR(self, work_directory: Optional[Any] = None) -> str:
         """
         Convert this file to IPAIR format (Anomalous Intensities).

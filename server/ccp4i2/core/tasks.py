@@ -811,9 +811,9 @@ TASKS = {
     "pairef": Task(
         title="Pairef",
         description="Paired Refinement with Pairef",
-        pluginPath="ccp4i2.wrappers.pairef.script.pairef:pairef",
-        defXmlPath="wrappers/pairef/script/pairef.def.xml",
-        reportPath="ccp4i2.wrappers.pairef.script.pairef_report:pairef_report",
+        pluginPath="ccp4i2.wrappers.pairef.pairef:pairef",
+        defXmlPath="wrappers/pairef/pairef.def.xml",
+        reportPath="ccp4i2.wrappers.pairef.pairef_report:pairef_report",
         runningReport=True,
         watchedFile="pairef_project/PAIREF_project.html",
     ),
