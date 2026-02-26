@@ -120,6 +120,7 @@
             "gesamt",
             "coordinate_selector",
             "add_fractional_coords",
+            "areaimol",
             "editbfac",
             "modelASUCheck",
             "pdbset_ui",
@@ -602,6 +603,15 @@
                 "modes": [
                     "Running"
                 ]
+            }
+        },
+        "areaimol": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.areaimol.script.areaimol_reportareaimol_report",
+                "clsModule": "wrappers.areaimol.script.areaimol_report",
+                "clsName": "areaimol_report",
+                "modes": []
             }
         },
         "arp_warp_classic": {
@@ -2207,6 +2217,19 @@
                 "class": "wrappers.arcimboldo.script.arcimboldoarcimboldo",
                 "clsModule": "wrappers.arcimboldo.script.arcimboldo",
                 "clsName": "arcimboldo",
+                "internal": false,
+                "subTasks": []
+            }
+        },
+        "areaimol": {
+            "null": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "Nobody",
+                "TASKTITLE": "Solvent accessible surface - Areaimol",
+                "class": "wrappers.areaimol.script.areaimolareaimol",
+                "clsModule": "wrappers.areaimol.script.areaimol",
+                "clsName": "areaimol",
                 "internal": false,
                 "subTasks": []
             }
@@ -4084,6 +4107,7 @@
         "aimless_pipe": "qticons/aimless_pipe.png",
         "alpha_fold": "qticons/alpha_fold.png",
         "arcimboldo": "qticons/arcimboldo.png",
+        "areaimol": "qticons/ccp4.png",
         "arp_warp_classic": "qticons/arp_warp_classic.png",
         "bigpipes": "qticons/ccp4.png",
         "bioinformatics": "qticons/bioinformatics.png",
@@ -4902,6 +4926,20 @@
                 "shortTitle": "Arcimboldo",
                 "taskName": "arcimboldo",
                 "taskVersion": 0.1
+            }
+        },
+        "areaimol": {
+            "0.0.0": {
+                "DESCRIPTION": "Solvent accessible surface calculation with AREAIMOL",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Solvent accessible surface - AREAIMOL",
+                "class": "wrappers.areaimol.script.CTaskareaimolCTaskAreaimolUI",
+                "clsModule": "wrappers.areaimol.script.CTaskareaimol",
+                "clsName": "CTaskAreaimolUI",
+                "shortTitle": "AREAIMOL",
+                "taskName": "areaimol",
+                "taskVersion": "0.0.0"
             }
         },
         "arp_warp_classic": {
