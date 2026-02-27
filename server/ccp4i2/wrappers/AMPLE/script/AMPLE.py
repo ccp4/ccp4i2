@@ -1,13 +1,11 @@
 import os
 import shutil
 
-# AMPLE imports
 from ample.constants import AMPLE_PKL
 from ample.util import mrbump_util
 from ample.util.ample_util import I2DIR
 from lxml import etree
 
-from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 AMPLE_LOG_NODE = 'LogText'
@@ -16,41 +14,8 @@ LOGFILE_NAME = 'log.txt'
 
 class AMPLE(CPluginScript):
     TASKNAME = 'AMPLE'
-    ERROR_CODES = {
-        1: {
-            'description': 'Something not very good has happened.'
-        },
-    }
     WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild']
     TASKCOMMAND = "ample"
-
-    def processInputFiles(self):
-        #Preprocess reflections to generate an "HKLIN" file
-        '''
-        #makeHklin0 takes as arguments a list of sublists
-        #Each sublist comprises 1) A reflection data object identifier (one of those specified in the inputData container
-        #                           the task in the corresponding .def.xml
-        #                       2) The requested data representation type to be placed into the file that is generated
-        #
-        #makeHklin0 returns a tuple comprising:
-        #                       1) the file path of the file that has been created
-        #                       2) a list of strings, each of which contains a comma-separated list of column labels output from
-        #                       the input data objects
-        #                       3) A CCP4 Error object
-        '''
-        from ccp4i2.core import CCP4XtalData
-
-        # No idea why we need the 'AMPLE_F_SIGF' bit...
-        self.hklin, self.columns, error = self.makeHklin0(
-            [['AMPLE_F_SIGF', CCP4XtalData.CObsDataFile.CONTENT_FLAG_FMEAN]])
-        if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-            return CPluginScript.FAILED
-        if self.hklin is None: return CPluginScript.FAILED
-
-        self.F, self.SIGF = self.columns.split(',')
-        self.fasta = self.container.inputData.AMPLE_SEQIN
-
-        return self.SUCCEEDED
 
     def makeCommandAndScript(self):
         params = self.container.inputData
@@ -115,10 +80,10 @@ class AMPLE(CPluginScript):
                 params.AMPLE_MODELS_FILE)
 
         # Add modelling parameters shared by all run_types
-        self.appendCommandLine(['-fasta', self.fasta])
-        self.appendCommandLine(['-mtz', self.hklin])
-        self.appendCommandLine(['-F', self.F])
-        self.appendCommandLine(['-SIGF', self.SIGF])
+        self.appendCommandLine(['-fasta', self.container.inputData.AMPLE_SEQIN])
+        self.appendCommandLine(['-mtz', self.container.inputData.AMPLE_F_SIGF])
+        self.appendCommandLine(['-F', "F"])
+        self.appendCommandLine(['-SIGF', "SIGF"])
 
         # Model source if using existing models
         if run_type in [IMPORT_MODELS, IMPORT_HOMOLOGS]:
@@ -227,11 +192,11 @@ class AMPLE(CPluginScript):
                 programColumnNames=['FWT,PHWT'],
                 outputBaseName=['FPHIOUT'],
                 infileList=self.container.outputData.HKLOUT)
-            for indx in range(len(self.container.outputData.FPHIOUT)):
+            for indx, fphi in enumerate(self.container.outputData.FPHIOUT):
                 file_info = top_files[indx]
-                self.container.outputData.FPHIOUT[indx].annotation = 'Map for solution {} ({}): {}'.format(
+                fphi.annotation = 'Map for solution {} ({}): {}'.format(
                     indx + 1, file_info['name'], file_info['info'])
-                self.container.outputData.FPHIOUT[indx].contentFlag = 1
-                self.container.outputData.FPHIOUT[indx].subType = 1
+                fphi.contentFlag = 1
+                fphi.subType = 1
 
         return self.SUCCEEDED
