@@ -49,59 +49,73 @@ class scaleit(CPluginScript):
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 
     def myMakeHklInput(self, miniMtzList, mtzNameBase, targetContent=None,
-                       hklin='hklin', ignoreErrorCodes=[],
-                       extendOutputColnames=True, useInputColnames=False):
-        # Modfied from CCP4PluginScript to take files in a CList PRE Oct 2022
-        #  miniMtzList is CMiniMtzDataFileList of CObsDataFile
-        #  mtzNameBase is the prefix to make unique column names
-        
-        # This function takes a list of mini-mtz files and runs mtzjoin to
-        # merge them into one file (the two flags are used to 
-        # adjust the input to mtzjoin, the first adds the mtz file type to
-        # the output column names, the second uses fixed input 
-        # column names). False, False is equiv. to the old makeHlin ftn
-        # and True, True is the same as makeHklin0. 
-        # It's advised to use the defaults for new interfaces.
-        # The input miniMtzsIn is list of either CDataFile object names 
-        # in inputData or list of [CDataFile object names in
-        # inputData, target content type]
-            
+                       hklin='hklin'):
+        # Takes files from a CMiniMtzDataFileList (CList of CObsDataFile)
+        # and merges them into a single HKLIN file using makeHklinGemmi.
+        # Returns (outfile, allcoloutlist, error) where allcoloutlist is
+        # a list of comma-separated column name strings, one per input file.
+
         error = CErrorReport()
-        infiles = []
-        allColout = ','
-        outfile = os.path.join(self.workDirectory, hklin + '.mtz')
-        count = 1
-        self.fileSignatures = []   # column types for each input file
-        for miniMtz in miniMtzList:
-            mtzName = '{}-{}'.format(mtzNameBase, count)
-            count += 1
+        file_objects = []
+        self.fileSignatures = []
+
+        for count, miniMtz in enumerate(miniMtzList, start=1):
+            mtzName = f'{mtzNameBase}-{count}'
             obj = miniMtz
+
             if obj is None:
                 self.appendErrorReport(31, mtzName)
                 error.append(self.__class__, 31, mtzName)
+                continue
             elif not obj.isSet():
                 self.appendErrorReport(30, mtzName)
                 error.append(self.__class__, 30, mtzName)
-            else:
-                signature = ''
-                for col in obj.fileContent.listOfColumns:
-                    signature += str(col.columnType)
-                self.fileSignatures.append(signature)
-                self.appendMakeHklinInput(obj) # comments for log file
-                self._buildInputVector(obj, mtzName, targetContent, error,
-                                       extendOutputColnames, useInputColnames,
-                                       infiles, allColout)
-        #print('/\ outfile, infiles', outfile, infiles)
-        #print("/\/\ ", self.fileSignatures)
-        # Combine files
-        status, ret = self.joinMtz(outfile, infiles)
-        if status != CPluginScript.SUCCEEDED and ret not in ignoreErrorCodes:
-            error.append(CPluginScript, ret, hklin)
-            self.appendErrorReport(ret, hklin, cls=CPluginScript)
+                continue
 
+            # Build file signature (for processOutputFiles)
+            signature = ''
+            for col in obj.fileContent.listOfColumns:
+                signature += str(col.columnType)
+            self.fileSignatures.append(signature)
+
+            # Pass file object directly via file_obj key
+            spec = {
+                'file_obj': obj,
+                'name': mtzName,
+                'display_name': mtzName,
+            }
+            if targetContent is not None:
+                spec['target_contentFlag'] = targetContent
+            file_objects.append(spec)
+
+        # Merge files using makeHklinGemmi
+        outfile = os.path.join(str(self.workDirectory), hklin + '.mtz')
+        try:
+            output_path = self.makeHklinGemmi(
+                file_objects=file_objects,
+                output_name=hklin,
+                merge_strategy='rename'
+            )
+            outfile = str(output_path)
+        except Exception as e:
+            error.append(self.__class__, 200, str(e))
+
+        # Build allcoloutlist: list of comma-separated column names per file
         allcoloutlist = []
-        for infile in infiles:
-            allcoloutlist.append(infile[1])
+        for count, miniMtz in enumerate(miniMtzList, start=1):
+            obj = miniMtz
+            if obj is None or not obj.isSet():
+                continue
+            mtzName = f'{mtzNameBase}-{count}'
+            # Determine which content flag applies
+            if targetContent is not None:
+                cf = targetContent
+            else:
+                cf = int(obj.contentFlag)
+            columns = obj.CONTENT_SIGNATURE_LIST[cf - 1]
+            prefixed = [f'{mtzName}_{col}' for col in columns]
+            allcoloutlist.append(','.join(prefixed))
+
         return outfile, allcoloutlist, error
 
     # - - - - - - - - -  - - - - - - - - -  - - - - - - - - - 

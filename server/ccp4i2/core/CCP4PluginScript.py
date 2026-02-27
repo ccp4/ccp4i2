@@ -2680,7 +2680,8 @@ class CPluginScript(CData):
                        Uses the file's contentFlag to determine columns automatically.
                 - dict: Explicit specification with keys:
                     {
-                        'name': str,                    # Attribute name (required)
+                        'name': str,                    # Attribute name (required unless file_obj given)
+                        'file_obj': CDataFile,          # Optional: Direct file object (bypasses name lookup)
                         'target_contentFlag': int,      # Optional: Convert to this contentFlag if needed
                         'rename': Dict[str, str],       # Optional: Column renaming
                         'display_name': str             # Optional: Name for column prefixes (default: name)
@@ -2740,20 +2741,24 @@ class CPluginScript(CData):
                 display_name = file_spec
                 target_content_flag = None
                 rename_map = {}
+                direct_file_obj = None
             elif isinstance(file_spec, dict):
-                name = file_spec['name']
+                name = file_spec.get('name', f'file_{file_spec_idx}')
                 display_name = file_spec.get('display_name', name)
                 target_content_flag = file_spec.get('target_contentFlag', None)
                 rename_map = file_spec.get('rename', {})
+                direct_file_obj = file_spec.get('file_obj', None)
             else:
                 raise ValueError(
                     f"Invalid file_spec type: {type(file_spec)}. "
                     f"Expected str or dict."
                 )
 
-            # Lookup file object in containers
+            # Lookup file object in containers (or use directly-provided object)
             file_obj = None
-            if hasattr(self.container.inputData, name):
+            if direct_file_obj is not None:
+                file_obj = direct_file_obj
+            elif hasattr(self.container.inputData, name):
                 file_obj = getattr(self.container.inputData, name)
             elif hasattr(self.container.outputData, name):
                 file_obj = getattr(self.container.outputData, name)

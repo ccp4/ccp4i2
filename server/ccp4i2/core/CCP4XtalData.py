@@ -1702,13 +1702,16 @@ class CMtzData(CMtzDataStub):
             other_content: Another CMtzData or CUnmergedDataContent instance
             tolerance: Resolution tolerance in Angstroms (default 1.0)
                       Cells are compatible if mis-indexing doesn't occur
-                      until this resolution or higher.
+                      until resolution coarser than this value (larger d).
+                      A larger tolerance is more permissive — use ~5 Å for
+                      native/derivative pairs that may differ by tenths of Å.
 
         Returns:
             dict with keys:
                 'validity': bool - True if cells are compatible at tolerance
                 'tolerance': float - the resolution tolerance value
-                'difference': float - resolution where mis-indexing starts (Å)
+                'difference': float - critical d-spacing where mis-indexing
+                              starts (Å); large value means cells are similar
                 'maximumResolution1': float - max resolution for cell1
                 'maximumResolution2': float - max resolution for cell2
         """
@@ -1810,8 +1813,10 @@ class CMtzData(CMtzDataStub):
         max_res2 = min(a2, b2, c2) / 2.0
 
         # Cells are compatible if mis-indexing doesn't occur until
-        # resolution better than (smaller than) tolerance
-        validity = max_resolution <= tolerance
+        # resolution coarser than (larger than) tolerance.
+        # max_resolution is the critical d-spacing: a large value means
+        # the cells are very similar (mis-indexing only at very low resolution).
+        validity = max_resolution >= tolerance
 
         return {
             'validity': validity,
@@ -3145,13 +3150,16 @@ class CUnmergedDataContent(CUnmergedDataContentStub):
             other_content: Another CUnmergedDataContent or CMtzData instance
             tolerance: Resolution tolerance in Angstroms (default 1.0)
                       Cells are compatible if mis-indexing doesn't occur
-                      until this resolution or higher.
+                      until resolution coarser than this value (larger d).
+                      A larger tolerance is more permissive — use ~5 Å for
+                      native/derivative pairs that may differ by tenths of Å.
 
         Returns:
             dict with keys:
                 'validity': bool - True if cells are compatible at tolerance
                 'tolerance': float - the resolution tolerance value
-                'difference': float - resolution where mis-indexing starts (Å)
+                'difference': float - critical d-spacing where mis-indexing
+                              starts (Å); large value means cells are similar
                 'maximumResolution1': float - max resolution for cell1
                 'maximumResolution2': float - max resolution for cell2
         """
@@ -3253,8 +3261,10 @@ class CUnmergedDataContent(CUnmergedDataContentStub):
         max_res2 = min(a2, b2, c2) / 2.0
 
         # Cells are compatible if mis-indexing doesn't occur until
-        # resolution better than (smaller than) tolerance
-        validity = max_resolution <= tolerance
+        # resolution coarser than (larger than) tolerance.
+        # max_resolution is the critical d-spacing: a large value means
+        # the cells are very similar (mis-indexing only at very low resolution).
+        validity = max_resolution >= tolerance
 
         return {
             'validity': validity,

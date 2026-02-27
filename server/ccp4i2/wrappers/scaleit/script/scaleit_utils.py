@@ -45,10 +45,10 @@ class DatalistCheck:
         valid = self.compareCells(content0, obsfile.fileContent)
         if not valid:
           print("File ", i, " is NOT compatible with 1st file")
-          #print("obsfile", dir(obsfile))
           validlist[i] = False
+      i += 1
 
-      return validlist
+    return validlist
 
   # - - - - - - - - - - - - - - - - - - - - - - - - - - - 
   def compareCells(self, content0, content1):
