@@ -250,8 +250,15 @@ const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({
           <>
             <Avatar
               src={`/svgicons/${taskName}.svg`}
-              alt={`/qticons/${taskName}.png`}
-            />
+              alt={taskName}
+              imgProps={{
+                onError: (e: any) => {
+                  e.target.src = `/qticons/${taskName}.png`;
+                },
+              }}
+            >
+              {taskName?.[0]?.toUpperCase()}
+            </Avatar>
             {task.shortTitle || task.TASKTITLE || taskName}
           </>
         }
