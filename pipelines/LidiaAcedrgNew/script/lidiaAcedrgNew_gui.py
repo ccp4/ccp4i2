@@ -113,8 +113,6 @@ class lidiaAcedrgNew_gui(CTaskWidget):
             return True
         if not self.container.controlParameters.TOGGLE_METAL and not fromUpdateTLC:
             return False
-        if self.container.inputData.MOLSMILESORSKETCH != 'DICT':
-            return False
         if not self.container.inputData.DICTIN2.isSet():
             return False
         if not os.path.isfile(str(self.container.inputData.DICTIN2.fullPath)):
