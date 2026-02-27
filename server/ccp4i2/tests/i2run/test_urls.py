@@ -30,6 +30,6 @@ def read_sdf(path):
         (urls.redo_mtz, "8xfm", gemmi.read_mtz_file),
     ],
 )
-def test(url_func, code, read_func):
+def test_url(url_func, code, read_func):
     with download(url_func(code)) as path:
         read_func(path)
