@@ -10,12 +10,9 @@ def test_gamma_native_vs_xe():
     exercises the IPAIR -> FMEAN conversion path inside myMakeHklInput before
     running scaleit.
     """
-    native = demoData("gamma", "merged_intensities_native.mtz")
-    xe = demoData("gamma", "merged_intensities_Xe.mtz")
-
     args = ["scaleit"]
-    args += ["--MERGEDFILES", f"fullPath={native}"]
-    args += ["--MERGEDFILES", f"fullPath={xe}"]
+    args += ["--MERGEDFILES", demoData("gamma", "merged_intensities_native.mtz")]
+    args += ["--MERGEDFILES", demoData("gamma", "merged_intensities_Xe.mtz")]
 
     with i2run(args) as job:
         # Output MTZ must exist and be readable
