@@ -1396,28 +1396,6 @@ _TASK_LOOKUP = {key: {
 } for key, task in TASKS.items()}
 
 
-_MODULE_ICONS = {
-    "data_entry": "qticons/import_merged.png",
-    "data_processing": "qticons/xia2_dials.png",
-    "data_reduction": "qticons/aimless_pipe.png",
-    "alpha_fold": "qticons/mrparse.png",
-    "expt_phasing": "qticons/crank2.png",
-    "bioinformatics": "qticons/chainsaw.png",
-    "molecular_replacement": "qticons/phaser_simple.png",
-    "density_modification": "qticons/parrot.png",
-    "model_building": "qticons/coot_rebuild.png",
-    "refinement": "qticons/refmac.png",
-    "ligands": "qticons/acedrg.png",
-    "validation": "qticons/validate_protein.png",
-    "export": "qticons/export.png",
-    "expt_data_utility": "qticons/pointless.png",
-    "model_data_utility": "qticons/gesamt.png",
-    "developer_tools": "qticons/ccp4i2.png",
-    "wrappers": "qticons/ccp4i2.png",
-    "test": "qticons/ccp4i2.png",
-    "demo": "qticons/ccp4i2.png",
-}
-
 
 def _get_task_class(task_name: str, class_type: str):
     task = TASKS.get(task_name)
@@ -1454,7 +1432,6 @@ def get_task_tree():
     return {
         "tree": _TASK_TREE,
         "lookup": _TASK_LOOKUP,
-        "iconLookup": _MODULE_ICONS,
     }
 
 

@@ -17,11 +17,11 @@ import { ElaborateSearch } from "../General/SearchObjects";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useApi } from "../../api";
 import { MyExpandMore } from "../expand-more";
+import { moduleCategoryIconSrc } from "../../lib/icons";
 
 interface TaskTree {
   lookup: any;
   tree: any[];
-  iconLookup: any;
 }
 interface CCP4i2TaskTreeProps {
   onTaskSelect?: (taskName: string) => void;
@@ -30,7 +30,6 @@ interface CCP4i2TaskTreeFolderProps {
   category: [name: string, title: string, taskNames: string[]];
   searchText: string | null;
   taskTree: TaskTree;
-  iconLookup: any;
   onTaskSelect?: (taskName: string) => void;
 }
 interface CCP4i2TaskCardProps {
@@ -50,7 +49,6 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
   const taskTree = taskTreeResult?.success
     ? taskTreeResult?.data?.task_tree
     : taskTreeResult?.task_tree; // Fallback for legacy format
-  const iconLookup = taskTree?.iconLookup;
 
   useEffect(() => {
     console.log("taskTreeResult", taskTreeResult);
@@ -79,7 +77,7 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
           ) => (
             <CCP4i2TaskTreeFolder
               key={`${iCategory}`}
-              {...{ category, taskTree, searchText, onTaskSelect, iconLookup }}
+              {...{ category, taskTree, searchText, onTaskSelect }}
             />
           )
         )}
@@ -92,7 +90,6 @@ const CCP4i2TaskTreeFolder: React.FC<CCP4i2TaskTreeFolderProps> = ({
   category,
   searchText,
   taskTree,
-  iconLookup,
   onTaskSelect,
 }) => {
   const [tasksExpanded, setTasksExpanded] = useState<boolean>(false);
@@ -152,11 +149,7 @@ const CCP4i2TaskTreeFolder: React.FC<CCP4i2TaskTreeFolderProps> = ({
         }}
         avatar={
           <Avatar
-            src={
-              iconLookup
-                ? `/${iconLookup[category[0]]}`
-                : `/qticons/ccp4i2.png`
-            }
+            src={moduleCategoryIconSrc(category[0])}
             alt="/qticons/ccp4i2.png"
           />
         }
