@@ -4,6 +4,7 @@ import {
   CardContent,
   CardHeader,
   Collapse,
+  Divider,
   Stack,
   SxProps,
   Typography,
@@ -171,36 +172,6 @@ export const CCP4i2ContainerElement: React.FC<
     return null;
   }, [children]);
 
-  // Subtle border container styling with validation color
-  const subtleBorderContainerSx = useMemo(
-    () => ({
-      mx: 2,
-      px: 0,
-      py: 1,
-      border: 2,
-      borderColor: validationBorderColor,
-      borderRadius: 1,
-      backgroundColor: "background.paper",
-      "&:hover": {
-        borderColor:
-          validationBorderColor === "divider"
-            ? "primary.light"
-            : validationBorderColor,
-      },
-    }),
-    [validationBorderColor]
-  );
-
-  // Card styling with validation color
-  const cardSx = useMemo(
-    () => ({
-      mx: 2,
-      border: 2,
-      borderColor: validationBorderColor,
-    }),
-    [validationBorderColor]
-  );
-
   // Row-level styling - horizontal flow with tighter spacing
   const rowSx = useMemo(
     () => ({
@@ -222,10 +193,14 @@ export const CCP4i2ContainerElement: React.FC<
 
   if (containerHint === "FolderLevel") {
     return (
-      <Card sx={cardSx}>
+      <Card sx={{ mx: 2 }}>
         <CardHeader
           sx={{ py: 1 }}
-          title={qualifiers?.guiLabel}
+          title={
+            <Typography variant="subtitle2" sx={{ color: "primary.main", fontWeight: 700 }}>
+              {qualifiers?.guiLabel}
+            </Typography>
+          }
           onClick={(ev) => {
             ev.stopPropagation();
             setOpen(!open);
@@ -233,11 +208,7 @@ export const CCP4i2ContainerElement: React.FC<
           variant="lightGrey"
           action={
             <Stack direction="row">
-              <MyExpandMore
-                expand={open}
-                aria-expanded={open}
-                aria-label="show more"
-              >
+              <MyExpandMore expand={open} aria-expanded={open} aria-label="show more">
                 <ExpandMore sx={{ color: "text.primary" }} />
               </MyExpandMore>
               {item && <ErrorInfo {...props} />}
@@ -256,19 +227,19 @@ export const CCP4i2ContainerElement: React.FC<
 
   if (containerHint === "BlockLevel") {
     return (
-      <Box sx={subtleBorderContainerSx}>
+      <Box sx={{ mx: 2, my: 1 }}>
         <Typography
-          variant="body1"
-          component="div"
+          variant="subtitle2"
           sx={{
             pl: FIELD_SPACING.marginLeft,
             mb: 0.5,
-            fontWeight: 500,
-            color: "text.primary",
+            fontWeight: 700,
+            color: "primary.main",
           }}
         >
           {qualifiers?.guiLabel}
         </Typography>
+        <Divider sx={{ borderColor: "primary.main", mb: 0.5 }} />
         {columnContent}
         {columnChildren}
       </Box>
