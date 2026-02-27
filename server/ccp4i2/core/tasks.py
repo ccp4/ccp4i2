@@ -243,6 +243,14 @@ TASKS = {
         runningReport=True,
         watchedFile="program.xml",
     ),
+    "areaimol": Task(
+        title="Solvent accessible surface - AREAIMOL",
+        description="Solvent accessible surface calculation with AREAIMOL",
+        shortTitle="AREAIMOL",
+        pluginPath="ccp4i2.wrappers.areaimol.areaimol:areaimol",
+        defXmlPath="wrappers/areaimol/areaimol.def.xml",
+        reportPath="ccp4i2.wrappers.areaimol.areaimol_report:areaimol_report",
+    ),
     "arp_warp_classic": Task(
         title="ARP/wARP",
         description="Build model (ARP/wARP classic)",
@@ -1373,7 +1381,7 @@ _TASK_TREE = [
     (
         "model_data_utility",
         "Coordinate data tools",
-        ["gesamt", "add_fractional_coords", "pdbset_ui", "pdbview_edit"],
+        ["gesamt", "add_fractional_coords", "pdbset_ui", "pdbview_edit", "areaimol"],
     ),
     (
         "developer_tools",

@@ -84,10 +84,6 @@ class LidiaAcedrgNew(CPluginScript):
             result = self.doAcedrg('DICT', self.container.inputData.DICTIN2)
             self.finishWithStatus(result)
             return result
-        elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'PDBMMCIF':
-            result = self.doAcedrg('PDBMMCIF', self.container.inputData.PDBMMCIFIN)
-            self.finishWithStatus(result)
-            return result
 
     def lidiaFinished(self, statusDict):
         status = statusDict['finishStatus']
@@ -128,8 +124,6 @@ class LidiaAcedrgNew(CPluginScript):
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
-        elif inputType == 'PDBMMCIF':
-            acedrgPlugin.container.inputData.PDBMMCIFIN = inputObject
         try:
             acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
             acedrgPlugin.container.controlParameters.NOPROT.set(self.container.controlParameters.NOPROT)
