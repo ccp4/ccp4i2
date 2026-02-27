@@ -33,6 +33,7 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.createLine(['subtitle','Start point'])
         self.openSubFrame( frame=[True])
         self.createLine ( [ 'label','Start with molecular structure from ','stretch','widget','MOLSMILESORSKETCH' ] )
+        self.connectDataChanged('MOLSMILESORSKETCH', self.ToggleShowContainsMetal)
         
         self.createLine ( [ 'advice', 'Will launch Lidia to sketch molecule. Click Apply <b>and</b> Close in Lidia when sketch is ready.' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
         self.createLine ( [ 'advice', 'Optionally can provide a starting monomer for the Lidia sketch:' ], toggle=['MOLSMILESORSKETCH','open',['SKETCH']])
@@ -44,10 +45,10 @@ class lidiaAcedrgNew_gui(CTaskWidget):
         self.createLine ( [ 'label', 'SMILES file', 'widget', 'SMILESFILEIN' ] , toggle=['MOLSMILESORSKETCH','open',['SMILESFILE']])
         self.createLine ( [ 'widget', 'DICTIN2' ] , toggle=['MOLSMILESORSKETCH','open',['DICT']])
         self.connectDataChanged('DICTIN2', self.updateTLC)
-        self.createLine ( [ 'widget', 'TOGGLE_METAL', 'label' , 'This monomer contains a metal atom.' ] )
+        self.createLine ( [ 'widget', 'TOGGLE_METAL', 'label' , 'This monomer contains a metal atom.' ], toggle=['MOLSMILESORSKETCH','open',['DICT']])
         self.connectDataChanged('controlParameters.TOGGLE_METAL', self.ToggleShowContainsMetal)
-        self.createLine ( [ 'label', indent + 'Provide a relevant structure model in complex with this monomer to get ideal bond angles in the output:'] , toggleFunction=[self.ToggleShowContainsMetal, ['controlParameters.TOGGLE_METAL']])
-        self.createLine ( [ 'label', indent, 'widget', 'METAL_STRUCTURE'] , toggleFunction=[self.ToggleShowContainsMetal, ['controlParameters.TOGGLE_METAL']])
+        self.createLine ( [ 'label', indent + 'Provide a relevant structure model in complex with this monomer to get ideal bond angles in the output:'] , toggleFunction=[self.ToggleShowContainsMetal, ['inputData.MOLSMILESORSKETCH', 'controlParameters.TOGGLE_METAL']])
+        self.createLine ( [ 'label', indent, 'widget', 'METAL_STRUCTURE'] , toggleFunction=[self.ToggleShowContainsMetal, ['inputData.MOLSMILESORSKETCH', 'controlParameters.TOGGLE_METAL']])
         self.closeSubFrame()
 
         self.createLine(['subtitle', 'Output monomer'])
@@ -106,6 +107,8 @@ class lidiaAcedrgNew_gui(CTaskWidget):
             pass
 
     def ToggleShowContainsMetal(self, fromUpdateTLC=False):
+        if self.container.inputData.MOLSMILESORSKETCH != 'DICT':
+            return False
         if self.container.controlParameters.TOGGLE_METAL and not fromUpdateTLC:
             return True
         if not self.container.controlParameters.TOGGLE_METAL and not fromUpdateTLC:

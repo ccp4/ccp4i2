@@ -91,6 +91,8 @@ class lidiaAcedrgNew(CPluginScript):
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
+            if self.container.controlParameters.TOGGLE_METAL:
+                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         try:
             acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
             acedrgPlugin.container.controlParameters.NOPROT.set(self.container.controlParameters.NOPROT)
@@ -99,8 +101,6 @@ class lidiaAcedrgNew(CPluginScript):
                 acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
             else:
                 acedrgPlugin.container.inputData.NRANDOM.set(0)
-            if self.container.controlParameters.TOGGLE_METAL:
-                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         except:
             exc_type, exc_value,exc_tb = sys.exc_info()[:3]
             sys.stdout.write(str(exc_type)+'\n')
