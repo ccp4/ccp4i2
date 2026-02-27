@@ -75,8 +75,8 @@ COPY client/ .
 
 # Copy icons to Next.js public directory for direct serving
 # This avoids the Django proxy hop for static assets
-COPY server/ccp4i2/qticons/ ./renderer/public/qticons/
-COPY server/ccp4i2/svgicons/ ./renderer/public/svgicons/
+COPY client/assets/qticons/ ./renderer/public/qticons/
+COPY client/assets/svgicons/ ./renderer/public/svgicons/
 
 # =============================================================================
 # Overlay compounds frontend (registry, assays & constructs sub-apps)

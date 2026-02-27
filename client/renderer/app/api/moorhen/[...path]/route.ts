@@ -47,12 +47,13 @@ export async function GET(
     /^RDKit_minimal\.js$/,
     /^RDKit_minimal\.wasm$/,
     /^index\.d\.ts$/,
-    // baby-gru folder - CSS, data files, images, etc.
-    /^baby-gru\/.+\.(js|wasm|data|gz|css|json|html|png|ico|svg|cif|pdb)$/,
-    // baby-gru subfolders (monomers, pixmaps, tutorials)
-    /^baby-gru\/monomers\/.+$/,
-    /^baby-gru\/pixmaps\/.+$/,
-    /^baby-gru\/tutorials\/.+$/,
+    // MoorhenAssets folder - CSS, data files, images, etc.
+    /^MoorhenAssets\/.+\.(js|wasm|data|gz|css|json|html|png|ico|svg|cif|pdb)$/,
+    // MoorhenAssets subfolders (monomers, pixmaps, tutorials, mathjax)
+    /^MoorhenAssets\/monomers\/.+$/,
+    /^MoorhenAssets\/pixmaps\/.+$/,
+    /^MoorhenAssets\/tutorials\/.+$/,
+    /^MoorhenAssets\/mathjax\/.+$/,
   ];
 
   const isAllowed = allowedPatterns.some((pattern) => pattern.test(filePath));

@@ -10,8 +10,6 @@
  * - Standard view state URL support
  */
 
-import "moorhen/public/MoorhenAssets/moorhen.css";
-
 import {
   addMolecule,
   addMap,
@@ -213,7 +211,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
   const isElectron =
     typeof window !== "undefined" && !!(window as any).electronAPI;
-  const urlPrefix = isElectron ? "/baby-gru" : "/api/moorhen/baby-gru";
+  const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
 
   const getOrigin = useCallback(() => {
     const state = store.getState() as moorhen.State;

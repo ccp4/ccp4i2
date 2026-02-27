@@ -1,7 +1,5 @@
 "use client";
 
-import "moorhen/public/MoorhenAssets/moorhen.css";
-
 import {
   addMolecule,
   addMap,
@@ -14,7 +12,7 @@ import {
   MoorhenMap,
 } from "moorhen";
 // @ts-ignore - moorhen 0.23 exports may lack .d.ts depending on build
-import { MoorhenInstanceProvider } from "moorhen";
+import { MoorhenInstanceProvider, setShownSidePanel } from "moorhen";
 // @ts-ignore - moorhen 0.23 type may lack .d.ts depending on build
 import type { MoorhenPanel } from "moorhen";
 
@@ -88,6 +86,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     dispatch(setTheme(theme.mode === "light" ? "flatly" : "darkly"));
   }, [theme.mode]);
 
+  // Auto-open the CCP4i2 controls side panel
+  useEffect(() => {
+    dispatch(setShownSidePanel("ccp4i2Controls"));
+  }, [dispatch]);
+
   const monomerLibraryPath =
     "https://raw.githubusercontent.com/MonomerLibrary/monomers/master/";
 
@@ -98,11 +101,11 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     (state: moorhen.State) => state.sceneSettings.defaultBondSmoothness
   );
 
-  // URL prefix for Moorhen to load its resources
+  // URL prefix for Moorhen to load its resources (CSS, pixmaps, monomers, etc.)
   // In web browsers, use API route for CORP headers (COEP compatibility)
-  // In Electron, serve directly from public/baby-gru
+  // In Electron, serve directly from public/MoorhenAssets
   const isElectron = typeof window !== "undefined" && !!(window as any).electronAPI;
-  const urlPrefix = isElectron ? "/baby-gru" : "/api/moorhen/baby-gru";
+  const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
 
   // Note: Don't subscribe to glRef state here - it changes every frame during rotation
   // and would cause constant re-renders. Access origin directly from store when needed.

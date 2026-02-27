@@ -239,8 +239,8 @@ create_filtered_context() {
         --exclude='Docker/azure-uksouth/scripts' \
         --exclude='Docker/azure-uksouth/bicep' \
         --exclude='Docker/azure-uksouth/.env*' \
-        --exclude='client/renderer/public/baby-gru/rota500-arg.data' \
-        --exclude='client/renderer/public/baby-gru/rota500-lys.data' \
+        --exclude='client/renderer/public/MoorhenAssets/rota500-arg.data' \
+        --exclude='client/renderer/public/MoorhenAssets/rota500-lys.data' \
         --exclude='.dockerignore' \
         .
 

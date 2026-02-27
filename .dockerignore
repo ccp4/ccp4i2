@@ -64,9 +64,11 @@ Docker/azure-uksouth/
 .DS_Store
 **/.DS_Store
 
-# Exclude uncompressed Moorhen data files (compressed versions exist)
-client/renderer/public/baby-gru/rota500-arg.data
-client/renderer/public/baby-gru/rota500-lys.data
+# Exclude uncompressed Moorhen rotamer data files (compressed .gz versions exist)
+# These live under MoorhenAssets/ after npm run copy-assets, but renderer/public/
+# is gitignored so these are never in the build context anyway - kept for safety
+client/renderer/public/MoorhenAssets/rota500-arg.data
+client/renderer/public/MoorhenAssets/rota500-lys.data
 
 # Exclude tsbuildinfo files
 **/*.tsbuildinfo
