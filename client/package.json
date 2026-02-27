@@ -13,7 +13,7 @@
     "copy-rdkit-minimal": "copyfiles -u 4 node_modules/@rdkit/rdkit/dist/* renderer/public/",
     "copy-moorhen-root": "copyfiles -u 2 node_modules/moorhen/public/* renderer/",
     "copy-moorhen-assets": "copyfiles -u 4 \"node_modules/moorhen/public/MoorhenAssets/**/*\" renderer/public/MoorhenAssets/",
-    "copy-moorhen-wasm": "cp node_modules/moorhen/public/moorhen.js node_modules/moorhen/public/moorhen.wasm node_modules/moorhen/public/moorhen64.js node_modules/moorhen/public/moorhen64.wasm renderer/public/MoorhenAssets/wasm/",
+    "copy-moorhen-wasm": "copyfiles -u 3 node_modules/moorhen/public/moorhen.js node_modules/moorhen/public/moorhen.wasm node_modules/moorhen/public/moorhen64.js node_modules/moorhen/public/moorhen64.wasm renderer/public/MoorhenAssets/wasm/",
     "copy-report-files-base": "copyfiles -u 1 assets/report_files/* renderer/public/",
     "copy-report-files": "copyfiles -u 1 assets/report_files/**/* renderer/public/",
     "copy-qticons-base": "copyfiles -u 2 assets/qticons/* renderer/public/qticons/",
