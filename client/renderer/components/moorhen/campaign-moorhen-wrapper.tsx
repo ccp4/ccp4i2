@@ -211,6 +211,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 
   const isElectron =
     typeof window !== "undefined" && !!(window as any).electronAPI;
+  // In web browsers, use API route for CORP headers (COEP compatibility)
+  // In Electron, serve directly from public/MoorhenAssets
   const urlPrefix = isElectron ? "/MoorhenAssets" : "/api/moorhen/MoorhenAssets";
 
   const getOrigin = useCallback(() => {

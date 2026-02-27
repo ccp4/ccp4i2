@@ -114,7 +114,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     return state.glRef.origin;
   }, [store]);
 
-  const fetchMolecule = async (url: string, molName: string) => {
+  const fetchMolecule = useCallback(async (url: string, molName: string) => {
     if (!commandCentre.current) return;
     const newMolecule = new MoorhenMolecule(
       commandCentre as RefObject<moorhen.CommandCentre>,
@@ -130,17 +130,31 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
         throw new Error("Cannot read the fetched molecule...");
       }
       newMolecule.uniqueId = url;
-      await newMolecule.addRepresentation("CBs", "/*/*/*/*");
-      await newMolecule.addRepresentation("ligands", "/*/*/*/*");
+
+      // Try ribbon representation first (better for protein overview)
+      // Fall back to CBs if ribbons fail (e.g., no protein backbone)
+      try {
+        await newMolecule.addRepresentation("CRs", "/*/*/*/*");
+      } catch {
+        await newMolecule.addRepresentation("CBs", "/*/*/*/*");
+      }
+
+      // Always try to add ligand representation
+      try {
+        await newMolecule.addRepresentation("ligands", "/*/*/*/*");
+      } catch {
+        console.log("[fetchMolecule] Ligands representation failed");
+      }
+
       await newMolecule.centreOn("/*/*/*/*", false, true);
       dispatch(addMolecule(newMolecule));
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch PDB entry from ${url}, doing nothing...`);
     }
-  };
+  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch]);
 
-  const fetchMap = async (
+  const fetchMap = useCallback(async (
     url: string,
     mapName: string,
     mapSubType: number = 1
@@ -191,9 +205,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       console.warn(`Cannot fetch map from ${url}`);
     }
     return newMap;
-  };
+  }, [commandCentre, store, dispatch]);
 
-  const fetchDict = async (url: string) => {
+  const fetchDict = useCallback(async (url: string) => {
     if (!commandCentre.current) return;
     const fileContent = await apiText(url);
     await commandCentre.current.cootCommand(
@@ -234,9 +248,9 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       await newMolecule.fetchIfDirtyAndDraw("ligands");
       dispatch(addMolecule(newMolecule));
     }
-  };
+  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, getOrigin, dispatch]);
 
-  const fetchFile = async (fileId: number) => {
+  const fetchFile = useCallback(async (fileId: number) => {
     const fileInfo = await apiGet(`files/${fileId}`);
     if (!fileInfo) {
       console.warn(`File with ID ${fileId} not found.`);
@@ -244,7 +258,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     }
     if (fileInfo.type === "chemical/x-pdb") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
-      const molName = fileInfo.annotation || fileInfo.job_param_name;
+      const molName = fileInfo.annotation || fileInfo.job_param_name || fileInfo.name || `file_${fileId}`;
       await fetchMolecule(url, molName);
     } else if (fileInfo.type === "application/CCP4-mtz-map") {
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
@@ -255,16 +269,16 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       const url = `/api/proxy/ccp4i2/files/${fileId}/download/`;
       await fetchDict(url);
     }
-  };
+  }, [fetchMolecule, fetchMap, fetchDict]);
 
   // Custom side panel containing our control panel
-  const extraSidePanels: Record<string, MoorhenPanel> = {
+  const extraSidePanels: Record<string, MoorhenPanel> = useMemo(() => ({
     ccp4i2Controls: {
       icon: "MatSymSettings",
       label: "CCP4i2",
       panelContent: <MoorhenControlPanel onFileSelect={fetchFile} getViewUrl={getViewUrl} />,
     },
-  };
+  }), [fetchFile, getViewUrl]);
 
   const collectedProps = useMemo(() => ({
     glRef,
