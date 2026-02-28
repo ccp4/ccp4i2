@@ -1,53 +1,84 @@
-import { LinearProgress, Paper, Typography } from "@mui/material";
+import { LinearProgress, Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2TaskElement } from "../../task-elements/task-element";
-import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
+import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
 import { useJob } from "../../../../utils";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem, container } = useJob(props.job.id);
-  
+
   if (!container) return <LinearProgress />;
-  
+
   return (
-    <Paper>
+    <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
       <CCP4i2Tabs>
         <CCP4i2Tab key="inputData" label="Input data">
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Input coordinates
-          </Typography>
+          {/* --- Input coordinates --- */}
           <CCP4i2ContainerElement
             {...props}
             itemName=""
-            qualifiers={{ initiallyOpen: true }}
-            containerHint="BlockLevel"
+            qualifiers={{ guiLabel: "Input coordinates" }}
+            containerHint="FolderLevel"
           >
-            <CCP4i2TaskElement itemName="XYZIN" {...props} qualifiers={{ toolTip: "Input model" }} />
+            <CCP4i2ContainerElement
+              {...props}
+              itemName=""
+              qualifiers={{ initiallyOpen: true }}
+              containerHint="BlockLevel"
+            >
+              <CCP4i2TaskElement itemName="XYZIN" {...props} />
+            </CCP4i2ContainerElement>
           </CCP4i2ContainerElement>
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Input reflections
-          </Typography>
+
+          {/* --- Input reflections --- */}
           <CCP4i2ContainerElement
             {...props}
             itemName=""
-            qualifiers={{ initiallyOpen: true }}
-            containerHint="BlockLevel"
+            qualifiers={{ guiLabel: "Input reflections" }}
+            containerHint="FolderLevel"
           >
-            <CCP4i2TaskElement itemName="F_SIGF" {...props} qualifiers={{ toolTip: "Input reflections" }} />
+            <CCP4i2ContainerElement
+              {...props}
+              itemName=""
+              qualifiers={{ initiallyOpen: true }}
+              containerHint="BlockLevel"
+            >
+              <CCP4i2TaskElement itemName="F_SIGF" {...props} />
+            </CCP4i2ContainerElement>
           </CCP4i2ContainerElement>
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Basic parameters
-          </Typography>
+
+          {/* --- Basic parameters (nestedAutoGenerate at expertLevel 0) --- */}
           <CCP4i2ContainerElement
             {...props}
             itemName=""
-            qualifiers={{ initiallyOpen: true }}
-            containerHint="BlockLevel"
+            qualifiers={{ guiLabel: "Basic parameters" }}
+            containerHint="FolderLevel"
           >
+            <CCP4i2ContainerElement
+              {...props}
+              itemName=""
+              qualifiers={{ initiallyOpen: true }}
+              containerHint="BlockLevel"
+            >
+              <CCP4i2TaskElement itemName="phaser__mode" {...props} />
+              <CCP4i2TaskElement itemName="phaser__hklin__labin" {...props} />
+            </CCP4i2ContainerElement>
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
+
         <CCP4i2Tab key="controlParameters" label="Advanced parameters">
+          {/* Advanced parameters (nestedAutoGenerate at expertLevel 0+1) */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Advanced parameters" }}
+            containerHint="FolderLevel"
+          >
+            <CCP4i2TaskElement itemName="phaser__mode" {...props} />
+            <CCP4i2TaskElement itemName="phaser__hklin__labin" {...props} />
+            <CCP4i2TaskElement itemName="phaser__keywords__composition__by" {...props} />
+          </CCP4i2ContainerElement>
         </CCP4i2Tab>
       </CCP4i2Tabs>
     </Paper>

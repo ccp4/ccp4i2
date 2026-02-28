@@ -3,13 +3,14 @@ import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2TaskElement } from "../../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
+import { InlineField } from "../../task-elements/inline-field";
 import { useJob } from "../../../../utils";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem, container } = useJob(props.job.id);
-  
+
   if (!container) return <LinearProgress />;
-  
+
   return (
     <Paper>
       <CCP4i2Tabs>
@@ -25,6 +26,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           >
             <CCP4i2TaskElement itemName="ROOT_DIRECTORY" {...props} qualifiers={{ toolTip: "Directory in which projects can be found" }} />
           </CCP4i2ContainerElement>
+
           <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
             Compound IDs - Smiles - and Relative paths
           </Typography>
@@ -34,15 +36,22 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ initiallyOpen: true }}
             containerHint="BlockLevel"
           >
+            <CCP4i2TaskElement itemName="PATH_LIST" {...props} />
+            <CCP4i2TaskElement itemName="PROJECTNAME_LIST" {...props} />
+            <CCP4i2TaskElement itemName="SMILES_LIST" {...props} />
           </CCP4i2ContainerElement>
+
           <CCP4i2ContainerElement
             {...props}
             itemName=""
             qualifiers={{ initiallyOpen: true }}
             containerHint="BlockLevel"
           >
-            <CCP4i2TaskElement itemName="PIPELINE" {...props} qualifiers={{ guiLabel: "For rigid body refinement use" }} />
+            <InlineField label="For rigid body refinement use">
+              <CCP4i2TaskElement itemName="PIPELINE" {...props} qualifiers={{ guiLabel: " " }} />
+            </InlineField>
           </CCP4i2ContainerElement>
+
           <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
             Input coordinates
           </Typography>
@@ -54,6 +63,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           >
             <CCP4i2TaskElement itemName="XYZIN" {...props} qualifiers={{ toolTip: "Input model" }} />
           </CCP4i2ContainerElement>
+
           <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
             Free-R flags
           </Typography>
@@ -66,7 +76,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement itemName="FREERFLAG" {...props} />
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
-        <CCP4i2Tab key="inputData" label="Lists as lists">
+        <CCP4i2Tab key="lists" label="Lists as lists">
           <CCP4i2TaskElement itemName="PATH_LIST" {...props} />
           <CCP4i2TaskElement itemName="PROJECTNAME_LIST" {...props} />
           <CCP4i2TaskElement itemName="SMILES_LIST" {...props} />

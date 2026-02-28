@@ -1,40 +1,65 @@
-import { LinearProgress, Paper, Typography } from "@mui/material";
+import { LinearProgress, Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2TaskElement } from "../../task-elements/task-element";
-import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
+import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
 import { useJob } from "../../../../utils";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
-  const { useTaskItem, container } = useJob(props.job.id);
-  
+  const { container } = useJob(props.job.id);
+
   if (!container) return <LinearProgress />;
-  
+
   return (
-    <Paper>
-      <CCP4i2Tabs>
-        <CCP4i2Tab key="inputData" label="Input data">
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Coordinates
-          </Typography>
-          <CCP4i2TaskElement itemName="XYZIN_LIST" {...props} />
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Electron density maps
-          </Typography>
-          <CCP4i2TaskElement itemName="FPHIIN_LIST" {...props} />
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Difference density maps
-          </Typography>
-          <CCP4i2TaskElement itemName="DELFPHIIN_LIST" {...props} />
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Anomalous difference density maps
-          </Typography>
-          <CCP4i2TaskElement itemName="DELFPHIINANOM_LIST" {...props} />
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Additional data
-          </Typography>
-          <CCP4i2TaskElement itemName="DICT" {...props} />
-        </CCP4i2Tab>
-      </CCP4i2Tabs>
+    <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
+      {/* Coordinates */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Coordinates" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="XYZIN_LIST" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* Electron density maps */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Electron density maps" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="FPHIIN_LIST" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* Difference density maps */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Difference density maps" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="DELFPHIIN_LIST" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* Anomalous difference maps */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Anomalous difference maps" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="DELFPHIINANOM_LIST" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* Additional data */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Additional data" }}
+        containerHint="FolderLevel"
+      >
+        <CCP4i2TaskElement itemName="DICT" {...props} />
+      </CCP4i2ContainerElement>
     </Paper>
   );
 };

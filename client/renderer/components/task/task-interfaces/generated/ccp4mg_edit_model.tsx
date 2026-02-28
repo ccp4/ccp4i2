@@ -1,53 +1,87 @@
 import { LinearProgress, Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2TaskElement } from "../../task-elements/task-element";
-import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
+import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
+import { InlineField } from "../../task-elements/inline-field";
 import { useJob } from "../../../../utils";
-import { useMemo } from "react";
+import { useBoolToggle } from "../../task-elements/shared-hooks";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { useTaskItem, container } = useJob(props.job.id);
-  const { value: SEARCH_AFDB } = useTaskItem("SEARCH_AFDB");
-  const { value: SEARCH_PDB } = useTaskItem("SEARCH_PDB");
-  
+  const searchPdb = useBoolToggle(useTaskItem, "SEARCH_PDB");
+  const searchAfdb = useBoolToggle(useTaskItem, "SEARCH_AFDB");
+
   if (!container) return <LinearProgress />;
-  
+
   return (
-    <Paper>
-      <CCP4i2Tabs>
-        <CCP4i2Tab key="inputData" label="Input data">
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            Sequences from AU content:
-          </Typography>
-          <CCP4i2TaskElement itemName="ASUIN" {...props} />
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Model databases
-          </Typography>
-          <CCP4i2TaskElement itemName="SEARCH_PDB" {...props} qualifiers={{ guiLabel: "Search PDB for for possible MR search models" }} />
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            indentNon-redundancy level for homologue search:
-          </Typography>
-          {(SEARCH_PDB === true) && (
-            <CCP4i2TaskElement itemName="REDUNDANCYLEVEL" {...props} qualifiers={{ guiLabel: "indent" }} />
-          )}
-          <CCP4i2TaskElement itemName="SEARCH_AFDB" {...props} qualifiers={{ guiLabel: "Search EBI-AFDB for possible MR search models" }} />
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            indentEBI-AFDB pLDDT residue score cut-off:
-          </Typography>
-          {(SEARCH_AFDB === true) && (
-            <CCP4i2TaskElement itemName="AFDBLEVEL" {...props} qualifiers={{ guiLabel: "indent" }} />
-          )}
-          <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-            Maximum no. of search models to create:
-          </Typography>
-          <CCP4i2TaskElement itemName="MRMAX" {...props} />
-          <Typography variant="subtitle1" sx={{ fontWeight: "bold", mt: 2, mb: 1 }}>
-            Optional Settings
-          </Typography>
-          <CCP4i2TaskElement itemName="HHPREDIN" {...props} qualifiers={{ toolTip: "HHPred results" }} />
-          <CCP4i2TaskElement itemName="PDBLOCAL" {...props} qualifiers={{ toolTip: "Local PDB mirror" }} />
-        </CCP4i2Tab>
-      </CCP4i2Tabs>
+    <Paper sx={{ display: "flex", flexDirection: "column", gap: 1, p: 1 }}>
+      {/* Single folder — no tabs needed */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Input data" }}
+        containerHint="FolderLevel"
+      >
+        <Typography variant="body2" color="text.secondary">
+          Sequences from AU content:
+        </Typography>
+        <CCP4i2TaskElement itemName="ASUIN" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* --- Model databases --- */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Model databases" }}
+        containerHint="FolderLevel"
+      >
+        <Typography variant="body2" color="text.secondary">
+          Databases to search for possible search models
+        </Typography>
+
+        <CCP4i2TaskElement itemName="SEARCH_PDB" {...props} qualifiers={{ guiLabel: "Search PDB for possible MR search models" }} />
+        {searchPdb.value && (
+          <>
+            <Typography variant="body2" color="text.secondary" sx={{ pl: 3 }}>
+              Non-redundancy level for homologue search:
+            </Typography>
+            <InlineField label="" sx={{ pl: 3 }}>
+              <CCP4i2TaskElement itemName="REDUNDANCYLEVEL" {...props} qualifiers={{ guiLabel: " " }} />
+            </InlineField>
+          </>
+        )}
+
+        <CCP4i2TaskElement itemName="SEARCH_AFDB" {...props} qualifiers={{ guiLabel: "Search EBI-AFDB for possible MR search models" }} />
+        {searchAfdb.value && (
+          <>
+            <Typography variant="body2" color="text.secondary" sx={{ pl: 3 }}>
+              EBI-AFDB pLDDT residue score cut-off:
+            </Typography>
+            <InlineField label="" sx={{ pl: 3 }}>
+              <CCP4i2TaskElement itemName="AFDBLEVEL" {...props} qualifiers={{ guiLabel: " " }} />
+            </InlineField>
+          </>
+        )}
+
+        <Typography variant="body2" color="text.secondary">
+          Maximum no. of search models to create:
+        </Typography>
+        <CCP4i2TaskElement itemName="MRMAX" {...props} />
+      </CCP4i2ContainerElement>
+
+      {/* --- Optional Settings --- */}
+      <CCP4i2ContainerElement
+        {...props}
+        itemName=""
+        qualifiers={{ guiLabel: "Optional Settings" }}
+        containerHint="FolderLevel"
+      >
+        <Typography variant="body2" color="text.secondary">
+          HHpred results and path to local PDB mirror
+        </Typography>
+        <CCP4i2TaskElement itemName="HHPREDIN" {...props} />
+        <CCP4i2TaskElement itemName="PDBLOCAL" {...props} />
+      </CCP4i2ContainerElement>
     </Paper>
   );
 };
