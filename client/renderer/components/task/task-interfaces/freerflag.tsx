@@ -1,13 +1,12 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Alert, Box, Paper, Stack, Typography } from "@mui/material";
+import { useMemo } from "react";
+import { Alert, Paper, Stack, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob } from "../../../utils";
-
-const isTruthy = (val: any): boolean =>
-  val === true || val === "True" || val === "true";
+import { useBoolToggle } from "../task-elements/shared-hooks";
+import { InlineField } from "../task-elements/inline-field";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
@@ -18,18 +17,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const isComplete = useMemo(() => GEN_MODE_RAW === "COMPLETE", [GEN_MODE_RAW]);
 
   // Watch CUTRESOLUTION to conditionally show RESMAX
-  const { value: CUTRESOLUTION_RAW } = useTaskItem("CUTRESOLUTION");
-  const [cutResolution, setCutResolution] = useState(() =>
-    isTruthy(CUTRESOLUTION_RAW)
-  );
-
-  useEffect(() => {
-    setCutResolution(isTruthy(CUTRESOLUTION_RAW));
-  }, [CUTRESOLUTION_RAW]);
-
-  const handleCutResolutionChange = useCallback((updatedItem: any) => {
-    setCutResolution(isTruthy(updatedItem._value));
-  }, []);
+  const cutResolution = useBoolToggle(useTaskItem, "CUTRESOLUTION");
 
   return (
     <Paper>
@@ -76,42 +64,33 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             containerHint="FolderLevel"
             initiallyOpen={true}
           >
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <Typography variant="body1" sx={{ whiteSpace: "nowrap" }}>
-                Fraction of reflections in freeR set
-              </Typography>
-              <Box sx={{ width: 120 }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="FRAC"
-                  qualifiers={{ guiLabel: "" }}
-                />
-              </Box>
-              <Typography variant="body1" color="text.secondary">
-                (default 0.05)
-              </Typography>
-            </Stack>
+            <InlineField
+              label="Fraction of reflections in freeR set"
+              width="120px"
+              hint="(default 0.05)"
+            >
+              <CCP4i2TaskElement
+                {...props}
+                itemName="FRAC"
+                qualifiers={{ guiLabel: "" }}
+              />
+            </InlineField>
 
             <Stack direction="row" alignItems="center" spacing={1} sx={{ mt: 1 }}>
-              <Box sx={{ flexShrink: 0 }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="CUTRESOLUTION"
-                  qualifiers={{ guiLabel: "Set high resolution limit at" }}
-                  onChange={handleCutResolutionChange}
-                />
-              </Box>
-              {cutResolution && (
-                <>
-                  <Box sx={{ width: 100 }}>
-                    <CCP4i2TaskElement
-                      {...props}
-                      itemName="RESMAX"
-                      qualifiers={{ guiLabel: "" }}
-                    />
-                  </Box>
-                  <Typography variant="body1">{"\u00C5"}</Typography>
-                </>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="CUTRESOLUTION"
+                qualifiers={{ guiLabel: "Set high resolution limit at" }}
+                onChange={cutResolution.onChange}
+              />
+              {cutResolution.value && (
+                <InlineField hint={"\u00C5"} width="100px">
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="RESMAX"
+                    qualifiers={{ guiLabel: "" }}
+                  />
+                </InlineField>
               )}
             </Stack>
           </CCP4i2ContainerElement>

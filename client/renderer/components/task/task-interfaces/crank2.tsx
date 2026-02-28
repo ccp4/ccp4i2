@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
@@ -6,9 +6,8 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
-
-const isTruthy = (val: any): boolean =>
-  val === true || val === "True" || val === "true";
+import { useBoolToggle } from "../task-elements/shared-hooks";
+import { InlineField } from "../task-elements/inline-field";
 
 // ---------------------------------------------------------------------------
 // Pipeline step definitions (mirrors crank2_basepipe.py)
@@ -80,19 +79,18 @@ const ScatteringRow: React.FC<{
       alignItems: "center",
       gap: 1,
       flexWrap: "wrap",
-      pl: 2,
     }}
   >
     <Typography variant="body2">f&apos;:</Typography>
-    <Box sx={{ width: "6rem" }}>
+    <Box sx={{ width: "8rem" }}>
       <CCP4i2TaskElement
         {...props}
         itemName={`FPRIME${suffix}`}
         qualifiers={{ guiLabel: " " }}
       />
     </Box>
-    <Typography variant="body2">f&quot;:</Typography>
-    <Box sx={{ width: "6rem" }}>
+    <Typography variant="body2">f&apos;&apos;:</Typography>
+    <Box sx={{ width: "8rem" }}>
       <CCP4i2TaskElement
         {...props}
         itemName={`FDPRIME${suffix}`}
@@ -132,16 +130,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   // --- Input Data ---
   const { value: startPipeline } = useTaskItem("START_PIPELINE");
   const { value: endPipeline } = useTaskItem("END_PIPELINE");
-
-  const { value: inputPartialRaw } = useTaskItem("INPUT_PARTIAL");
-  const { value: inputSequenceRaw } = useTaskItem("INPUT_SEQUENCE");
-  const { value: inputPhasesRaw } = useTaskItem("INPUT_PHASES");
-  const { value: nonMtzRaw } = useTaskItem("NON_MTZ");
-  const { value: mad2Raw } = useTaskItem("MAD2");
-  const { value: mad3Raw } = useTaskItem("MAD3");
-  const { value: mad4Raw } = useTaskItem("MAD4");
-  const { value: nativeRaw } = useTaskItem("NATIVE");
-  const { value: shelxcdeRaw } = useTaskItem("SHELXCDE");
 
   const { value: atomType } = useTaskItem("ATOM_TYPE");
   useTaskItem("NUMBER_SUBSTRUCTURE");
@@ -226,7 +214,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   useTaskItem("REFATOMPICK_RMS_THRESHOLD");
   useTaskItem("REFATOMPICK_OCC_CUT");
 
-  const { value: doHanddetRaw } = useTaskItem("DO_HANDDET");
   useTaskItem("HANDDET_THRESHOLD_DISCRIM");
   useTaskItem("HANDDET_DMFULL_DM_PROGRAM");
   useTaskItem("HANDDET_DMFULL_PHCOMB_PROGRAM");
@@ -237,7 +224,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   useTaskItem("DMFULL_THRESHOLD_STOP");
   useTaskItem("KEYWORDS_DMFULL_DM");
 
-  const { value: useCombRaw } = useTaskItem("USE_COMB");
   useTaskItem("MB_PROGRAM");
   useTaskItem("COMB_PHDMMB_DMFULL_DM_PROGRAM");
   useTaskItem("COMB_PHDMMB_MINBIGCYC");
@@ -273,53 +259,30 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   useTaskItem("KEYWORDS_REF");
 
   useTaskItem("CLEANUP");
+  useTaskItem("RESIDUES_MON_COPY");
 
   // =========================================================================
-  // Local toggle state (CBoolean pattern — immediate UI)
+  // Boolean toggles (CBoolean pattern via useBoolToggle)
   // =========================================================================
-  const [inputPartial, setInputPartial] = useState(() =>
-    isTruthy(inputPartialRaw)
-  );
-  const [inputSequence, setInputSequence] = useState(() =>
-    isTruthy(inputSequenceRaw)
-  );
-  const [inputPhases, setInputPhases] = useState(() =>
-    isTruthy(inputPhasesRaw)
-  );
-  const [nonMtz, setNonMtz] = useState(() => isTruthy(nonMtzRaw));
-  const [mad2, setMad2] = useState(() => isTruthy(mad2Raw));
-  const [mad3, setMad3] = useState(() => isTruthy(mad3Raw));
-  const [mad4, setMad4] = useState(() => isTruthy(mad4Raw));
-  const [native, setNative] = useState(() => isTruthy(nativeRaw));
-  const [shelxcde, setShelxcde] = useState(() => isTruthy(shelxcdeRaw));
-  const [doHanddet, setDoHanddet] = useState(() => isTruthy(doHanddetRaw));
-  const [useComb, setUseComb] = useState(() => isTruthy(useCombRaw));
-
-  // Sync from server
-  useEffect(() => setInputPartial(isTruthy(inputPartialRaw)), [inputPartialRaw]);
-  useEffect(() => setInputSequence(isTruthy(inputSequenceRaw)), [inputSequenceRaw]);
-  useEffect(() => setInputPhases(isTruthy(inputPhasesRaw)), [inputPhasesRaw]);
-  useEffect(() => setNonMtz(isTruthy(nonMtzRaw)), [nonMtzRaw]);
-  useEffect(() => setMad2(isTruthy(mad2Raw)), [mad2Raw]);
-  useEffect(() => setMad3(isTruthy(mad3Raw)), [mad3Raw]);
-  useEffect(() => setMad4(isTruthy(mad4Raw)), [mad4Raw]);
-  useEffect(() => setNative(isTruthy(nativeRaw)), [nativeRaw]);
-  useEffect(() => setShelxcde(isTruthy(shelxcdeRaw)), [shelxcdeRaw]);
-  useEffect(() => setDoHanddet(isTruthy(doHanddetRaw)), [doHanddetRaw]);
-  useEffect(() => setUseComb(isTruthy(useCombRaw)), [useCombRaw]);
-
-  // Toggle handlers
-  const onToggle =
-    (setter: (v: boolean) => void) => (item: any) =>
-      setter(isTruthy(item._value));
+  const inputPartial = useBoolToggle(useTaskItem, "INPUT_PARTIAL");
+  const inputSequence = useBoolToggle(useTaskItem, "INPUT_SEQUENCE");
+  const inputPhases = useBoolToggle(useTaskItem, "INPUT_PHASES");
+  const nonMtz = useBoolToggle(useTaskItem, "NON_MTZ");
+  const mad2 = useBoolToggle(useTaskItem, "MAD2");
+  const mad3 = useBoolToggle(useTaskItem, "MAD3");
+  const mad4 = useBoolToggle(useTaskItem, "MAD4");
+  const native = useBoolToggle(useTaskItem, "NATIVE");
+  const shelxcde = useBoolToggle(useTaskItem, "SHELXCDE");
+  const doHanddet = useBoolToggle(useTaskItem, "DO_HANDDET");
+  const useComb = useBoolToggle(useTaskItem, "USE_COMB");
 
   // =========================================================================
   // Pipeline visibility (mirrors crank2_basepipe.py)
   // =========================================================================
   const baseSteps = useMemo(
     () =>
-      getBaseSteps(inputPartial, shelxcde, exptype as string | undefined),
-    [inputPartial, shelxcde, exptype]
+      getBaseSteps(inputPartial.value, shelxcde.value, exptype as string | undefined),
+    [inputPartial.value, shelxcde.value, exptype]
   );
 
   const check = useCallback(
@@ -337,17 +300,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const showPeakSearch = useMemo(() => check("refatompick"), [check]);
   const showShelxCDE = useMemo(() => check("phdmmb"), [check]);
   const showPhasing = useMemo(() => {
-    if (inputPartial) return false; // partial model doesn't use phasing
-    return check("phas") && !shelxcde;
-  }, [check, inputPartial, shelxcde]);
+    if (inputPartial.value) return false;
+    return check("phas") && !shelxcde.value;
+  }, [check, inputPartial.value, shelxcde.value]);
   const showHandDet = useMemo(() => {
-    if (inputPartial) return false;
-    return check("handdet") && !shelxcde;
-  }, [check, inputPartial, shelxcde]);
+    if (inputPartial.value) return false;
+    return check("handdet") && !shelxcde.value;
+  }, [check, inputPartial.value, shelxcde.value]);
   const showDensityMod = useMemo(() => {
-    if (inputPartial) return false;
-    return check("dmfull") && !shelxcde;
-  }, [check, inputPartial, shelxcde]);
+    if (inputPartial.value) return false;
+    return check("dmfull") && !shelxcde.value;
+  }, [check, inputPartial.value, shelxcde.value]);
   const showModelBuilding = useMemo(() => check("building"), [check]);
   const showRefine = useMemo(() => check("ref"), [check]);
 
@@ -422,31 +385,25 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2Tab label="Input Data" key="input">
           {/* Pipeline selection */}
           <FieldRow>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
+            <InlineField
+              label="Start pipeline with"
+              width="14rem"
+              after={
+                <InlineField label="and end with" width="14rem">
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="END_PIPELINE"
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
+              }
             >
-              <Typography variant="body1">Start pipeline with</Typography>
-              <Box sx={{ width: "14rem" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="START_PIPELINE"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-              <Typography variant="body1">and end with</Typography>
-              <Box sx={{ width: "14rem" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="END_PIPELINE"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-            </Box>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="START_PIPELINE"
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
           </FieldRow>
 
           {/* Input partial model */}
@@ -467,9 +424,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 guiLabel:
                   "If a partial protein model is available from molecular replacement",
               }}
-              onChange={onToggle(setInputPartial)}
+              onChange={inputPartial.onChange}
             />
-            {inputPartial && (
+            {inputPartial.value && (
               <>
                 <CCP4i2TaskElement {...props} itemName="XYZIN" />
                 <CCP4i2TaskElement
@@ -494,12 +451,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="INPUT_SEQUENCE"
-              onChange={onToggle(setInputSequence)}
+              onChange={inputSequence.onChange}
             />
-            {inputSequence && (
+            {inputSequence.value && (
               <CCP4i2TaskElement {...props} itemName="SEQIN" />
             )}
-            {!inputSequence && (
+            {!inputSequence.value && (
               <CCP4i2TaskElement
                 {...props}
                 itemName="RESIDUES_MON_COPY"
@@ -521,9 +478,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="INPUT_PHASES"
-              onChange={onToggle(setInputPhases)}
+              onChange={inputPhases.onChange}
             />
-            {inputPhases && (
+            {inputPhases.value && (
               <CCP4i2TaskElement {...props} itemName="FPHIN_HL" />
             )}
           </CCP4i2ContainerElement>
@@ -578,7 +535,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             />
 
             {/* Cell params when NON_MTZ */}
-            {nonMtz && (
+            {nonMtz.value && (
               <FieldRow equalWidth={false} size="xs">
                 <CCP4i2TaskElement
                   {...props}
@@ -632,9 +589,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   guiLabel:
                     "Input unmerged/merged SCA/XDS/SHELX format",
                 }}
-                onChange={onToggle(setNonMtz)}
+                onChange={nonMtz.onChange}
               />
-              {nonMtz ? (
+              {nonMtz.value ? (
                 <CCP4i2TaskElement
                   {...props}
                   itemName="F_SIGFanom_nonmtz"
@@ -656,7 +613,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             </CCP4i2ContainerElement>
 
             {/* MAD Dataset 2 */}
-            {!inputPartial && (
+            {!inputPartial.value && (
               <CCP4i2ContainerElement
                 {...props}
                 itemName=""
@@ -668,11 +625,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD2"
-                  onChange={onToggle(setMad2)}
+                  onChange={mad2.onChange}
                 />
-                {mad2 && (
+                {mad2.value && (
                   <>
-                    {nonMtz ? (
+                    {nonMtz.value ? (
                       <CCP4i2TaskElement
                         {...props}
                         itemName="F_SIGFanom2_nonmtz"
@@ -692,7 +649,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             )}
 
             {/* MAD Dataset 3 */}
-            {!inputPartial && mad2 && (
+            {!inputPartial.value && mad2.value && (
               <CCP4i2ContainerElement
                 {...props}
                 itemName=""
@@ -704,11 +661,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD3"
-                  onChange={onToggle(setMad3)}
+                  onChange={mad3.onChange}
                 />
-                {mad3 && (
+                {mad3.value && (
                   <>
-                    {nonMtz ? (
+                    {nonMtz.value ? (
                       <CCP4i2TaskElement
                         {...props}
                         itemName="F_SIGFanom3_nonmtz"
@@ -728,7 +685,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             )}
 
             {/* MAD Dataset 4 */}
-            {!inputPartial && mad3 && (
+            {!inputPartial.value && mad3.value && (
               <CCP4i2ContainerElement
                 {...props}
                 itemName=""
@@ -740,11 +697,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 <CCP4i2TaskElement
                   {...props}
                   itemName="MAD4"
-                  onChange={onToggle(setMad4)}
+                  onChange={mad4.onChange}
                 />
-                {mad4 && (
+                {mad4.value && (
                   <>
-                    {nonMtz ? (
+                    {nonMtz.value ? (
                       <CCP4i2TaskElement
                         {...props}
                         itemName="F_SIGFanom4_nonmtz"
@@ -777,11 +734,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="NATIVE"
-              onChange={onToggle(setNative)}
+              onChange={native.onChange}
             />
-            {native && (
+            {native.value && (
               <>
-                {nonMtz ? (
+                {nonMtz.value ? (
                   <CCP4i2TaskElement
                     {...props}
                     itemName="F_SIGFnative_nonmtz"
@@ -818,27 +775,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               <CCP4i2TaskElement {...props} itemName="FREERFLAG" />
             )}
             {freeVal === "new" && (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                }}
-              >
-                <Typography variant="body1">
-                  consisting of
-                </Typography>
-                <Box sx={{ width: "6rem" }}>
-                  <CCP4i2TaskElement
-                    {...props}
-                    itemName="FREE_RATIO"
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-                <Typography variant="body1">
-                  % of reflections
-                </Typography>
-              </Box>
+              <InlineField label="consisting of" width="6rem" hint="% of reflections">
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="FREE_RATIO"
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
             )}
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
@@ -877,7 +820,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             itemName=""
             qualifiers={{ guiLabel: "Experiment type" }}
             containerHint="FolderLevel"
-            visibility={() => native || mad2}
+            visibility={() => native.value || mad2.value}
           >
             <CCP4i2TaskElement
               {...props}
@@ -904,8 +847,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             {...props}
             itemName="SHELXCDE"
             qualifiers={{ guiLabel: "Use SHELXC/D/E" }}
-            onChange={onToggle(setShelxcde)}
-            visibility={() => !inputPartial}
+            onChange={shelxcde.onChange}
+            visibility={() => !inputPartial.value}
           />
 
           {/* Substructure detection */}
@@ -1097,9 +1040,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement
               {...props}
               itemName="DO_HANDDET"
-              onChange={onToggle(setDoHanddet)}
+              onChange={doHanddet.onChange}
             />
-            {doHanddet && (
+            {doHanddet.value && (
               <>
                 <CCP4i2TaskElement
                   {...props}
@@ -1187,11 +1130,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 guiLabel:
                   "Combine phase, model and density modif. information",
               }}
-              onChange={onToggle(setUseComb)}
+              onChange={useComb.onChange}
             />
 
             {/* Combined model building */}
-            {useComb && (
+            {useComb.value && (
               <>
                 <FieldRow>
                   <CCP4i2TaskElement
@@ -1243,7 +1186,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             )}
 
             {/* Non-combined (mbref) */}
-            {!useComb && (
+            {!useComb.value && (
               <>
                 <CCP4i2TaskElement
                   {...props}
@@ -1283,7 +1226,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 qualifiers={{
                   guiLabel: "Minimum number of cycles",
                 }}
-                visibility={() => useComb}
+                visibility={() => useComb.value}
               />
               <CCP4i2TaskElement
                 {...props}
@@ -1291,7 +1234,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 qualifiers={{
                   guiLabel: "Maximum number of cycles",
                 }}
-                visibility={() => useComb}
+                visibility={() => useComb.value}
               />
             </FieldRow>
 
@@ -1302,7 +1245,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 guiLabel:
                   "Parallel model building: simultaneous building and refinement processes",
               }}
-              visibility={() => useComb}
+              visibility={() => useComb.value}
             />
 
             <FieldRow>
@@ -1312,13 +1255,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 qualifiers={{
                   guiLabel: "Skip the first model building cycle",
                 }}
-                visibility={() => useComb}
+                visibility={() => useComb.value}
               />
               <CCP4i2TaskElement
                 {...props}
                 itemName="COMB_PHDMMB_REBUILD_ONLY"
                 qualifiers={{ guiLabel: "Soft rebuilding" }}
-                visibility={() => useComb}
+                visibility={() => useComb.value}
               />
             </FieldRow>
 
@@ -1329,7 +1272,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 guiLabel:
                   "Exclude the free reflections in model building",
               }}
-              visibility={() => useComb}
+              visibility={() => useComb.value}
             />
           </CCP4i2ContainerElement>
 

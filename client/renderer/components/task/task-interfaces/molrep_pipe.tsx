@@ -1,12 +1,12 @@
 import React, { useCallback } from "react";
-import { Box, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
-import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
 import { useFreeRWarning } from "../../../providers/run-check-provider";
+import { InlineField } from "../task-elements/inline-field";
 
 /**
  * Task interface for the MOLREP molecular replacement pipeline.
@@ -110,26 +110,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <Typography variant="body2" sx={{ mt: 1, fontStyle: "italic" }}>
               Select one sequence
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-                mt: 1,
-              }}
+            <InlineField
+              label="The number of monomers to search for"
+              sx={{ mt: 1 }}
             >
-              <Typography variant="body1">
-                The number of monomers to search for
-              </Typography>
-              <Box sx={{ width: "8rem" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="controlParameters.NMON"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-            </Box>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="controlParameters.NMON"
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
           </CCP4i2ContainerElement>
 
           {/* Fixed Model */}
@@ -153,36 +143,28 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: "Extra Steps", initiallyOpen: true }}
             containerHint="FolderLevel"
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
+            <InlineField
+              label="Run"
+              width="auto"
+              after={
+                <InlineField
+                  label="shift field refinement followed by"
+                  hint="cycles of restrained refinement"
+                >
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="REFMAC_NCYC"
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
+              }
             >
-              <Typography variant="body1">Run</Typography>
-              <Box sx={{ width: "auto" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="RUNSHEETBEND"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-              <Typography variant="body1">
-                shift field refinement followed by
-              </Typography>
-              <Box sx={{ width: "8rem" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="REFMAC_NCYC"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-              <Typography variant="body1">
-                cycles of restrained refinement
-              </Typography>
-            </Box>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="RUNSHEETBEND"
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
 
@@ -200,66 +182,45 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             }}
             containerHint="FolderLevel"
           >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
-            >
-              <Typography variant="body1">
-                Search in space group(s)
-              </Typography>
-              <Box sx={{ width: "20rem" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="controlParameters.SG_OPTIONS"
-                  qualifiers={{
-                    guiLabel: " ",
-                    menuText: [
-                      "as input reflection file",
-                      "specify alternative",
-                      "all space groups in Laue group of input reflection file",
-                    ],
-                    enumerators: ["no", "specify", "laue"],
-                  }}
-                />
-              </Box>
-            </Box>
+            <InlineField label="Search in space group(s)" width="20rem">
+              <CCP4i2TaskElement
+                {...props}
+                itemName="controlParameters.SG_OPTIONS"
+                qualifiers={{
+                  guiLabel: " ",
+                  menuText: [
+                    "as input reflection file",
+                    "specify alternative",
+                    "all space groups in Laue group of input reflection file",
+                  ],
+                  enumerators: ["no", "specify", "laue"],
+                }}
+              />
+            </InlineField>
             <CCP4i2TaskElement
               {...props}
               itemName="controlParameters.SG"
               qualifiers={{ guiLabel: "Space group" }}
               visibility={() => sgOptions === "specify"}
             />
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
+            <InlineField
+              label="Use data in resolution range from low"
+              after={
+                <InlineField label="to high">
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="controlParameters.RESMAX"
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
+              }
             >
-              <Typography variant="body1">
-                Use data in resolution range from low
-              </Typography>
-              <Box sx={{ width: "8rem" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="controlParameters.RESMIN"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-              <Typography variant="body1">to high</Typography>
-              <Box sx={{ width: "8rem" }}>
-                <CCP4i2TaskElement
-                  {...props}
-                  itemName="controlParameters.RESMAX"
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-            </Box>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="controlParameters.RESMIN"
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
           </CCP4i2ContainerElement>
 
           {/* Modify search model */}

@@ -1,13 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-
-const isTruthy = (val: any): boolean =>
-  val === true || val === "True" || val === "true";
+import { useBoolToggle } from "../task-elements/shared-hooks";
+import { InlineField } from "../task-elements/inline-field";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
@@ -17,91 +16,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: ACORN_PHSIN_TYPE } = useTaskItem("ACORN_PHSIN_TYPE");
 
   // Advanced tab - boolean toggles
-  const { value: ACORN_EXTEND_RAW } = useTaskItem("ACORN_EXTEND");
-  const { value: ACORN_BGRID_RAW } = useTaskItem("ACORN_BGRID");
-  const { value: ACORN_BSEED_RAW } = useTaskItem("ACORN_BSEED");
-  const { value: ACORN_BRESOL_RAW } = useTaskItem("ACORN_BRESOL");
-  const { value: ACORN_BEXCLUDE_RAW } = useTaskItem("ACORN_BEXCLUDE");
-  const { value: ACORN_BECUT_RAW } = useTaskItem("ACORN_BECUT");
-  const { value: ACOPH_CUSTOM_RAW } = useTaskItem("ACOPH_CUSTOM");
-  const { value: ACOPH_CUSTDDM_RAW } = useTaskItem("ACOPH_CUSTDDM");
-  const { value: ACOMPS_PEAKSEARCH_RAW } = useTaskItem("ACOMPS_PEAKSEARCH");
+  const extend = useBoolToggle(useTaskItem, "ACORN_EXTEND");
+  const bgrid = useBoolToggle(useTaskItem, "ACORN_BGRID");
+  const bseed = useBoolToggle(useTaskItem, "ACORN_BSEED");
+  const bresol = useBoolToggle(useTaskItem, "ACORN_BRESOL");
+  const bexclude = useBoolToggle(useTaskItem, "ACORN_BEXCLUDE");
+  const becut = useBoolToggle(useTaskItem, "ACORN_BECUT");
+  const customPhase = useBoolToggle(useTaskItem, "ACOPH_CUSTOM");
+  const custddm = useBoolToggle(useTaskItem, "ACOPH_CUSTDDM");
+  const peaksearch = useBoolToggle(useTaskItem, "ACOMPS_PEAKSEARCH");
+
   const { value: ACOPH_TRIALS } = useTaskItem("ACOPH_TRIALS");
-
-  // Local state for boolean-driven visibility
-  const [extend, setExtend] = useState(() => isTruthy(ACORN_EXTEND_RAW));
-  const [bgrid, setBgrid] = useState(() => isTruthy(ACORN_BGRID_RAW));
-  const [bseed, setBseed] = useState(() => isTruthy(ACORN_BSEED_RAW));
-  const [bresol, setBresol] = useState(() => isTruthy(ACORN_BRESOL_RAW));
-  const [bexclude, setBexclude] = useState(() => isTruthy(ACORN_BEXCLUDE_RAW));
-  const [becut, setBecut] = useState(() => isTruthy(ACORN_BECUT_RAW));
-  const [customPhase, setCustomPhase] = useState(() => isTruthy(ACOPH_CUSTOM_RAW));
-  const [custddm, setCustddm] = useState(() => isTruthy(ACOPH_CUSTDDM_RAW));
-  const [peaksearch, setPeaksearch] = useState(() =>
-    isTruthy(ACOMPS_PEAKSEARCH_RAW)
-  );
-
-  // Sync from server
-  useEffect(() => setExtend(isTruthy(ACORN_EXTEND_RAW)), [ACORN_EXTEND_RAW]);
-  useEffect(() => setBgrid(isTruthy(ACORN_BGRID_RAW)), [ACORN_BGRID_RAW]);
-  useEffect(() => setBseed(isTruthy(ACORN_BSEED_RAW)), [ACORN_BSEED_RAW]);
-  useEffect(() => setBresol(isTruthy(ACORN_BRESOL_RAW)), [ACORN_BRESOL_RAW]);
-  useEffect(
-    () => setBexclude(isTruthy(ACORN_BEXCLUDE_RAW)),
-    [ACORN_BEXCLUDE_RAW]
-  );
-  useEffect(() => setBecut(isTruthy(ACORN_BECUT_RAW)), [ACORN_BECUT_RAW]);
-  useEffect(
-    () => setCustomPhase(isTruthy(ACOPH_CUSTOM_RAW)),
-    [ACOPH_CUSTOM_RAW]
-  );
-  useEffect(
-    () => setCustddm(isTruthy(ACOPH_CUSTDDM_RAW)),
-    [ACOPH_CUSTDDM_RAW]
-  );
-  useEffect(
-    () => setPeaksearch(isTruthy(ACOMPS_PEAKSEARCH_RAW)),
-    [ACOMPS_PEAKSEARCH_RAW]
-  );
-
-  // onChange handlers
-  const handleExtend = useCallback(
-    async (item: any) => setExtend(isTruthy(item._value)),
-    []
-  );
-  const handleBgrid = useCallback(
-    async (item: any) => setBgrid(isTruthy(item._value)),
-    []
-  );
-  const handleBseed = useCallback(
-    async (item: any) => setBseed(isTruthy(item._value)),
-    []
-  );
-  const handleBresol = useCallback(
-    async (item: any) => setBresol(isTruthy(item._value)),
-    []
-  );
-  const handleBexclude = useCallback(
-    async (item: any) => setBexclude(isTruthy(item._value)),
-    []
-  );
-  const handleBecut = useCallback(
-    async (item: any) => setBecut(isTruthy(item._value)),
-    []
-  );
-  const handleCustomPhase = useCallback(
-    async (item: any) => setCustomPhase(isTruthy(item._value)),
-    []
-  );
-  const handleCustddm = useCallback(
-    async (item: any) => setCustddm(isTruthy(item._value)),
-    []
-  );
-  const handlePeaksearch = useCallback(
-    async (item: any) => setPeaksearch(isTruthy(item._value)),
-    []
-  );
-
   const numTrials =
     typeof ACOPH_TRIALS === "number"
       ? ACOPH_TRIALS
@@ -112,15 +37,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       <CCP4i2Tabs {...props}>
         {/* ===== Tab 1: Input Data ===== */}
         <CCP4i2Tab label="Input Data">
-          {/* Phase input type radio */}
-          <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
-            <Typography variant="body1">Run ACORN with</Typography>
+          <InlineField label="Run ACORN with" width="auto" sx={{ mb: 1 }}>
             <CCP4i2TaskElement
               itemName="ACORN_PHSIN_TYPE"
               {...props}
               qualifiers={{ guiLabel: " ", guiMode: "radio" }}
             />
-          </Box>
+          </InlineField>
 
           {/* Reflection Data */}
           <CCP4i2ContainerElement
@@ -183,28 +106,16 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="ACORN_EXTEND"
               {...props}
               qualifiers={{ guiLabel: "Extend data to high resolution" }}
-              onChange={handleExtend}
+              onChange={extend.onChange}
             />
-            {extend && (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                  pl: 3,
-                }}
-              >
-                <Typography variant="body1">Resolution limit:</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="ACORN_EXTENDRES"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-                <Typography variant="body1">Å</Typography>
-              </Box>
+            {extend.value && (
+              <InlineField label="Resolution limit:" hint="Å" sx={{ pl: 3 }}>
+                <CCP4i2TaskElement
+                  itemName="ACORN_EXTENDRES"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
             )}
           </CCP4i2ContainerElement>
 
@@ -215,153 +126,96 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: "Refinement parameters" }}
             containerHint="FolderLevel"
           >
-            {/* Grid */}
             <CCP4i2TaskElement
               itemName="ACORN_BGRID"
               {...props}
               qualifiers={{ guiLabel: "Set grid spacing" }}
-              onChange={handleBgrid}
+              onChange={bgrid.onChange}
             />
-            {bgrid && (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                  pl: 3,
-                }}
-              >
-                <Typography variant="body1">Grid spacing:</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="ACOGEN_GRID"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-              </Box>
+            {bgrid.value && (
+              <InlineField label="Grid spacing:" sx={{ pl: 3 }}>
+                <CCP4i2TaskElement
+                  itemName="ACOGEN_GRID"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
             )}
 
-            {/* Seed */}
             <CCP4i2TaskElement
               itemName="ACORN_BSEED"
               {...props}
               qualifiers={{ guiLabel: "Set random seed" }}
-              onChange={handleBseed}
+              onChange={bseed.onChange}
             />
-            {bseed && (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                  pl: 3,
-                }}
-              >
-                <Typography variant="body1">Seed value:</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="ACOGEN_SEED"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-              </Box>
+            {bseed.value && (
+              <InlineField label="Seed value:" sx={{ pl: 3 }}>
+                <CCP4i2TaskElement
+                  itemName="ACOGEN_SEED"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
             )}
 
-            {/* Resolution limits */}
             <CCP4i2TaskElement
               itemName="ACORN_BRESOL"
               {...props}
               qualifiers={{ guiLabel: "Set resolution limits" }}
-              onChange={handleBresol}
+              onChange={bresol.onChange}
             />
-            {bresol && (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                  pl: 3,
-                }}
+            {bresol.value && (
+              <InlineField
+                label="Low:"
+                sx={{ pl: 3 }}
+                after={
+                  <InlineField label="High:" hint="Å">
+                    <CCP4i2TaskElement
+                      itemName="ACOREF_RESOLU"
+                      {...props}
+                      qualifiers={{ guiLabel: " " }}
+                    />
+                  </InlineField>
+                }
               >
-                <Typography variant="body1">Low:</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="ACOREF_RESOLL"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-                <Typography variant="body1">High:</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="ACOREF_RESOLU"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-                <Typography variant="body1">Å</Typography>
-              </Box>
+                <CCP4i2TaskElement
+                  itemName="ACOREF_RESOLL"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
             )}
 
-            {/* Exclude reflections */}
             <CCP4i2TaskElement
               itemName="ACORN_BEXCLUDE"
               {...props}
               qualifiers={{ guiLabel: "Exclude reflections below E value" }}
-              onChange={handleBexclude}
+              onChange={bexclude.onChange}
             />
-            {bexclude && (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                  pl: 3,
-                }}
-              >
-                <Typography variant="body1">Exclude below E =</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="ACOREF_EXCLUDE"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-              </Box>
+            {bexclude.value && (
+              <InlineField label="Exclude below E =" sx={{ pl: 3 }}>
+                <CCP4i2TaskElement
+                  itemName="ACOREF_EXCLUDE"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
             )}
 
-            {/* E cutoff */}
             <CCP4i2TaskElement
               itemName="ACORN_BECUT"
               {...props}
               qualifiers={{ guiLabel: "Set E value cutoff for supergrid" }}
-              onChange={handleBecut}
+              onChange={becut.onChange}
             />
-            {becut && (
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                  pl: 3,
-                }}
-              >
-                <Typography variant="body1">E cutoff:</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="ACOREF_ECUT"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-              </Box>
+            {becut.value && (
+              <InlineField label="E cutoff:" sx={{ pl: 3 }}>
+                <CCP4i2TaskElement
+                  itemName="ACOREF_ECUT"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
             )}
           </CCP4i2ContainerElement>
 
@@ -377,74 +231,44 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               {...props}
               qualifiers={{ guiLabel: "Use Patterson superposition" }}
             />
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
-            >
-              <Typography variant="body1">DDM cutoff:</Typography>
-              <Box sx={{ width: "8rem" }}>
-                <CCP4i2TaskElement
-                  itemName="ACOPH_CUTDDM"
-                  {...props}
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
-            >
-              <Typography variant="body1">PS finish threshold:</Typography>
-              <Box sx={{ width: "8rem" }}>
-                <CCP4i2TaskElement
-                  itemName="ACOPH_PSFINISH"
-                  {...props}
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
-            >
-              <Typography variant="body1">CC finish threshold:</Typography>
-              <Box sx={{ width: "8rem" }}>
-                <CCP4i2TaskElement
-                  itemName="ACOPH_CCFINISH"
-                  {...props}
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-            </Box>
+            <InlineField label="DDM cutoff:">
+              <CCP4i2TaskElement
+                itemName="ACOPH_CUTDDM"
+                {...props}
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
+            <InlineField label="PS finish threshold:">
+              <CCP4i2TaskElement
+                itemName="ACOPH_PSFINISH"
+                {...props}
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
+            <InlineField label="CC finish threshold:">
+              <CCP4i2TaskElement
+                itemName="ACOPH_CCFINISH"
+                {...props}
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
 
             {/* Custom phase refinement protocol */}
             <CCP4i2TaskElement
               itemName="ACOPH_CUSTOM"
               {...props}
               qualifiers={{ guiLabel: "Use custom phase refinement protocol" }}
-              onChange={handleCustomPhase}
+              onChange={customPhase.onChange}
             />
-            {customPhase && (
+            {customPhase.value && (
               <Box sx={{ pl: 3, display: "flex", flexDirection: "column", gap: 1 }}>
                 <CCP4i2TaskElement
                   itemName="ACOPH_CUSTDDM"
                   {...props}
                   qualifiers={{ guiLabel: "Use custom DDM parameters" }}
-                  onChange={handleCustddm}
+                  onChange={custddm.onChange}
                 />
-                {custddm && (
+                {custddm.value && (
                   <Box
                     sx={{
                       pl: 3,
@@ -453,24 +277,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                       gap: 1,
                     }}
                   >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 1,
-                      }}
-                    >
-                      <Typography variant="body1">
-                        Number of trials:
-                      </Typography>
-                      <Box sx={{ width: "8rem" }}>
-                        <CCP4i2TaskElement
-                          itemName="ACOPH_TRIALS"
-                          {...props}
-                          qualifiers={{ guiLabel: " " }}
-                        />
-                      </Box>
-                    </Box>
+                    <InlineField label="Number of trials:">
+                      <CCP4i2TaskElement
+                        itemName="ACOPH_TRIALS"
+                        {...props}
+                        qualifiers={{ guiLabel: " " }}
+                      />
+                    </InlineField>
                     {Array.from({ length: numTrials }, (_, i) => i + 1).map(
                       (n) => (
                         <Box
@@ -529,9 +342,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               itemName="ACOMPS_PEAKSEARCH"
               {...props}
               qualifiers={{ guiLabel: "Perform peak search on output map" }}
-              onChange={handlePeaksearch}
+              onChange={peaksearch.onChange}
             />
-            {peaksearch && (
+            {peaksearch.value && (
               <Box
                 sx={{
                   pl: 3,
@@ -540,40 +353,20 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   gap: 1,
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 1,
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <Typography variant="body1">Maximum peaks:</Typography>
-                  <Box sx={{ width: "8rem" }}>
-                    <CCP4i2TaskElement
-                      itemName="ACOMPS_MAXPEAKS"
-                      {...props}
-                      qualifiers={{ guiLabel: " " }}
-                    />
-                  </Box>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 1,
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <Typography variant="body1">RMS multiplier:</Typography>
-                  <Box sx={{ width: "8rem" }}>
-                    <CCP4i2TaskElement
-                      itemName="ACOMPS_RMSMULT"
-                      {...props}
-                      qualifiers={{ guiLabel: " " }}
-                    />
-                  </Box>
-                </Box>
+                <InlineField label="Maximum peaks:">
+                  <CCP4i2TaskElement
+                    itemName="ACOMPS_MAXPEAKS"
+                    {...props}
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
+                <InlineField label="RMS multiplier:">
+                  <CCP4i2TaskElement
+                    itemName="ACOMPS_RMSMULT"
+                    {...props}
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
               </Box>
             )}
           </CCP4i2ContainerElement>

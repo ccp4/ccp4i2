@@ -1,44 +1,32 @@
-import { Box, Paper, Typography } from "@mui/material";
+import { Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import { useCallback, useEffect, useState } from "react";
-
-/** Normalize CBoolean values - server may return boolean or string */
-const isTruthy = (val: any): boolean =>
-  val === true || val === "True" || val === "true";
+import { useCallback } from "react";
+import { useBoolToggle, isTruthy } from "../task-elements/shared-hooks";
+import { InlineField } from "../task-elements/inline-field";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem } = useJob(job.id);
-  const { value: USE_MODEL_PHASES_RAW } = useTaskItem("USE_MODEL_PHASES");
   const { value: XYZIN, forceUpdate: forceSetXYZIN } = useTaskItem("XYZIN");
   const { forceUpdate: forceSetCYCLES } = useTaskItem("CYCLES");
 
-  // Local state for conditional rendering - drives immediate UI updates.
-  // The onChange callback updates this directly, bypassing the SWR re-render
-  // path which can miss subscriber notifications with local cache patching.
-  const [useModelPhases, setUseModelPhases] = useState(() =>
-    isTruthy(USE_MODEL_PHASES_RAW)
-  );
+  const useModelPhases = useBoolToggle(useTaskItem, "USE_MODEL_PHASES");
 
-  // Sync from container for programmatic changes (initial load, parameter file import)
-  useEffect(() => {
-    setUseModelPhases(isTruthy(USE_MODEL_PHASES_RAW));
-  }, [USE_MODEL_PHASES_RAW]);
-
+  // Custom onChange: also clears XYZIN when unchecking
   const handleUSE_MODEL_PHASES = useCallback(
     async (new_USE_MODEL_PHASES: any) => {
       const newValue = isTruthy(new_USE_MODEL_PHASES._value);
-      // Update local state immediately → triggers re-render → toggles visibility
-      setUseModelPhases(newValue);
+      // Call the standard toggle handler for state sync
+      await useModelPhases.onChange(new_USE_MODEL_PHASES);
       // Clear XYZIN if unchecking and a model file is loaded
       if (!newValue && XYZIN?.dbFileId) {
         forceSetXYZIN({});
       }
     },
-    [XYZIN, forceSetXYZIN]
+    [XYZIN, forceSetXYZIN, useModelPhases.onChange]
   );
 
   const handleBASIC = useCallback(
@@ -68,7 +56,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           }}
           onChange={handleUSE_MODEL_PHASES}
         />
-        {!useModelPhases && (
+        {!useModelPhases.value && (
           <>
             <CCP4i2TaskElement itemName="PHASES" {...props} />
             <CCP4i2TaskElement
@@ -117,32 +105,28 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           onChange={handleBASIC}
         />
 
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            flexWrap: "wrap",
-          }}
-        >
-          <Typography variant="body1">Run for</Typography>
-          <Box sx={{ width: "8rem" }}>
-            <CCP4i2TaskElement
-              itemName="CYCLES"
-              {...props}
-              qualifiers={{ guiLabel: " " }}
-            />
-          </Box>
-          <Typography variant="body1">cycles</Typography>
-        </Box>
+        <InlineField label="Run for" hint="cycles">
+          <CCP4i2TaskElement
+            itemName="CYCLES"
+            {...props}
+            qualifiers={{ guiLabel: " " }}
+          />
+        </InlineField>
 
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            flexWrap: "wrap",
-          }}
+        <InlineField
+          width="auto"
+          after={
+            <InlineField
+              label="Stop automatically if R-free does not improve in"
+              hint="cycles"
+            >
+              <CCP4i2TaskElement
+                itemName="STOP_CYCLES"
+                {...props}
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
+          }
         >
           <CCP4i2TaskElement
             itemName="AUTO_STOP"
@@ -150,18 +134,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             qualifiers={{ guiLabel: " " }}
             sx={{ width: "auto" }}
           />
-          <Typography variant="body1">
-            Stop automatically if R-free does not improve in
-          </Typography>
-          <Box sx={{ width: "8rem" }}>
-            <CCP4i2TaskElement
-              itemName="STOP_CYCLES"
-              {...props}
-              qualifiers={{ guiLabel: " " }}
-            />
-          </Box>
-          <Typography variant="body1">cycles</Typography>
-        </Box>
+        </InlineField>
 
         <CCP4i2TaskElement
           itemName="SELENOMET"

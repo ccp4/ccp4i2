@@ -1,13 +1,12 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import { Box, Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-
-const isTruthy = (val: any): boolean =>
-  val === true || val === "True" || val === "true";
+import { useBoolToggle } from "../task-elements/shared-hooks";
+import { InlineField } from "../task-elements/inline-field";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
@@ -20,7 +19,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // LITE mode
   const { value: LITE_MODELS } = useTaskItem("LITE_MODELS");
-  const { value: LITE_PARTIAL_RAW } = useTaskItem("LITE_PARTIAL");
+  const litePartial = useBoolToggle(useTaskItem, "LITE_PARTIAL");
 
   // BORGES mode
   const { value: BORGES_LIBRARY } = useTaskItem("BORGES_LIBRARY");
@@ -30,19 +29,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // Developer options
   const { value: DEVELOPER_MODE } = useTaskItem("DEVELOPER_MODE");
-
-  // Boolean local state for LITE_PARTIAL visibility
-  const [litePartial, setLitePartial] = useState(() =>
-    isTruthy(LITE_PARTIAL_RAW)
-  );
-  useEffect(
-    () => setLitePartial(isTruthy(LITE_PARTIAL_RAW)),
-    [LITE_PARTIAL_RAW]
-  );
-  const handleLitePartial = useCallback(
-    async (item: any) => setLitePartial(isTruthy(item._value)),
-    []
-  );
 
   const isLite = ARCIMBOLDO_OPTIONS === "LITE";
   const isBorges = ARCIMBOLDO_OPTIONS === "BORGES";
@@ -56,31 +42,25 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         {/* ===== Tab 1: Input Data ===== */}
         <CCP4i2Tab label="Input data">
           {/* Mode and run location */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              flexWrap: "wrap",
-            }}
+          <InlineField
+            label="Run ARCIMBOLDO"
+            width="12rem"
+            after={
+              <InlineField label="on" width="12rem">
+                <CCP4i2TaskElement
+                  itemName="ARCIMBOLDO_RUN"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
+            }
           >
-            <Typography variant="body1">Run ARCIMBOLDO</Typography>
-            <Box sx={{ width: "12rem" }}>
-              <CCP4i2TaskElement
-                itemName="ARCIMBOLDO_OPTIONS"
-                {...props}
-                qualifiers={{ guiLabel: " " }}
-              />
-            </Box>
-            <Typography variant="body1">on</Typography>
-            <Box sx={{ width: "12rem" }}>
-              <CCP4i2TaskElement
-                itemName="ARCIMBOLDO_RUN"
-                {...props}
-                qualifiers={{ guiLabel: " " }}
-              />
-            </Box>
-          </Box>
+            <CCP4i2TaskElement
+              itemName="ARCIMBOLDO_OPTIONS"
+              {...props}
+              qualifiers={{ guiLabel: " " }}
+            />
+          </InlineField>
 
           <CCP4i2TaskElement
             itemName="COIL_COILED"
@@ -128,34 +108,29 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               {...props}
               qualifiers={{ guiLabel: "Reflections" }}
             />
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: 1,
-                flexWrap: "wrap",
-              }}
+            <InlineField
+              label="Asymmetric unit contains"
+              width="6rem"
+              after={
+                <InlineField
+                  label="components of molecular weight"
+                  width="10rem"
+                  hint="Daltons"
+                >
+                  <CCP4i2TaskElement
+                    itemName="MOLECULAR_WEIGHT"
+                    {...props}
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </InlineField>
+              }
             >
-              <Typography variant="body1">Asymmetric unit contains</Typography>
-              <Box sx={{ width: "6rem" }}>
-                <CCP4i2TaskElement
-                  itemName="N_COMPONENTS"
-                  {...props}
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-              <Typography variant="body1">
-                components of molecular weight
-              </Typography>
-              <Box sx={{ width: "10rem" }}>
-                <CCP4i2TaskElement
-                  itemName="MOLECULAR_WEIGHT"
-                  {...props}
-                  qualifiers={{ guiLabel: " " }}
-                />
-              </Box>
-              <Typography variant="body1">Daltons</Typography>
-            </Box>
+              <CCP4i2TaskElement
+                itemName="N_COMPONENTS"
+                {...props}
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
           </CCP4i2ContainerElement>
 
           {/* ---- LITE Model section ---- */}
@@ -172,80 +147,56 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 qualifiers={{ guiLabel: "Search model type" }}
               />
 
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                }}
+              <InlineField
+                label="Expected r.m.s.d. from target"
+                hint="Å"
               >
-                <Typography variant="body1">
-                  Expected r.m.s.d. from target
-                </Typography>
-                <Box sx={{ width: "8rem" }}>
+                <CCP4i2TaskElement
+                  itemName="LITE_RMSD"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
+
+              {LITE_MODELS === "HELIX" && (
+                <InlineField
+                  label="Search for"
+                  width="6rem"
+                  after={
+                    <InlineField
+                      label="copies of helix with length"
+                      width="6rem"
+                      hint="residues"
+                    >
+                      <CCP4i2TaskElement
+                        itemName="HELIX_LENGTH"
+                        {...props}
+                        qualifiers={{ guiLabel: " " }}
+                      />
+                    </InlineField>
+                  }
+                >
                   <CCP4i2TaskElement
-                    itemName="LITE_RMSD"
+                    itemName="N_FRAGMENTS"
                     {...props}
                     qualifiers={{ guiLabel: " " }}
                   />
-                </Box>
-                <Typography variant="body1">Å</Typography>
-              </Box>
+                </InlineField>
+              )}
 
-              {LITE_MODELS === "HELIX" && (
-                <Box
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 1,
-                    flexWrap: "wrap",
-                  }}
-                >
-                  <Typography variant="body1">Search for</Typography>
-                  <Box sx={{ width: "6rem" }}>
+              {LITE_MODELS === "CUSTOM" && (
+                <>
+                  <InlineField
+                    label="Search for"
+                    width="6rem"
+                    hint="copies of custom model"
+                  >
                     <CCP4i2TaskElement
                       itemName="N_FRAGMENTS"
                       {...props}
                       qualifiers={{ guiLabel: " " }}
                     />
-                  </Box>
-                  <Typography variant="body1">
-                    copies of helix with length
-                  </Typography>
-                  <Box sx={{ width: "6rem" }}>
-                    <CCP4i2TaskElement
-                      itemName="HELIX_LENGTH"
-                      {...props}
-                      qualifiers={{ guiLabel: " " }}
-                    />
-                  </Box>
-                  <Typography variant="body1">residues</Typography>
-                </Box>
-              )}
-
-              {LITE_MODELS === "CUSTOM" && (
-                <>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 1,
-                      flexWrap: "wrap",
-                    }}
-                  >
-                    <Typography variant="body1">Search for</Typography>
-                    <Box sx={{ width: "6rem" }}>
-                      <CCP4i2TaskElement
-                        itemName="N_FRAGMENTS"
-                        {...props}
-                        qualifiers={{ guiLabel: " " }}
-                      />
-                    </Box>
-                    <Typography variant="body1">
-                      copies of custom model
-                    </Typography>
-                  </Box>
+                  </InlineField>
                   <CCP4i2TaskElement
                     itemName="PDB_LITE"
                     {...props}
@@ -274,9 +225,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 itemName="LITE_PARTIAL"
                 {...props}
                 qualifiers={{ guiLabel: "Start from known partial structure" }}
-                onChange={handleLitePartial}
+                onChange={litePartial.onChange}
               />
-              {litePartial && (
+              {litePartial.value && (
                 <Box sx={{ pl: 3 }}>
                   <CCP4i2TaskElement
                     itemName="LITE_FIXED"
@@ -346,24 +297,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 qualifiers={{ guiLabel: "Model to shred" }}
               />
 
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 1,
-                  flexWrap: "wrap",
-                }}
-              >
-                <Typography variant="body1">Expected r.m.s.d.</Typography>
-                <Box sx={{ width: "8rem" }}>
-                  <CCP4i2TaskElement
-                    itemName="SHREDDER_RMSD_T"
-                    {...props}
-                    qualifiers={{ guiLabel: " " }}
-                  />
-                </Box>
-                <Typography variant="body1">Å</Typography>
-              </Box>
+              <InlineField label="Expected r.m.s.d." hint="Å">
+                <CCP4i2TaskElement
+                  itemName="SHREDDER_RMSD_T"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
 
               <CCP4i2TaskElement
                 itemName="SHREDDER_CONVERT_T"
@@ -422,13 +362,17 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         {/* ===== Tab 2: Advanced Data ===== */}
         <CCP4i2Tab label="Advanced data">
           {/* TNCS option: checkbox + dropdown inline */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              flexWrap: "wrap",
-            }}
+          <InlineField
+            width="auto"
+            after={
+              <InlineField label="Switch Phaser TNCS option" width="8rem">
+                <CCP4i2TaskElement
+                  itemName="TNCS_T"
+                  {...props}
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </InlineField>
+            }
           >
             <CCP4i2TaskElement
               itemName="TNCS"
@@ -436,28 +380,10 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               qualifiers={{ guiLabel: " " }}
               sx={{ width: "auto" }}
             />
-            <Typography variant="body1">
-              Switch Phaser TNCS option
-            </Typography>
-            <Box sx={{ width: "8rem" }}>
-              <CCP4i2TaskElement
-                itemName="TNCS_T"
-                {...props}
-                qualifiers={{ guiLabel: " " }}
-              />
-            </Box>
-          </Box>
+          </InlineField>
 
           {/* shelxe line */}
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              gap: 1,
-              flexWrap: "wrap",
-            }}
-          >
-            <Typography variant="body1">shelxe_line =</Typography>
+          <InlineField label="shelxe_line =" width="auto">
             <Box sx={{ flex: 1, minWidth: "20rem" }}>
               <CCP4i2TaskElement
                 itemName="SHELXE_LINE"
@@ -465,7 +391,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 qualifiers={{ guiLabel: " " }}
               />
             </Box>
-          </Box>
+          </InlineField>
 
           {/* Add lines to bor-file */}
           <CCP4i2TaskElement

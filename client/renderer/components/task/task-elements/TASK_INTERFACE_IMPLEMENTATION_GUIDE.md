@@ -16,10 +16,11 @@ This is the single reference for building task interfaces in CCP4i2. It covers e
 8. [Step 6 — Register and Test](#step-6--register-and-test)
 9. [Props Reference](#props-reference)
 10. [Layout Components](#layout-components)
-11. [Common Patterns Cookbook](#common-patterns-cookbook)
-12. [Pitfalls and Hard-Won Lessons](#pitfalls-and-hard-won-lessons)
-13. [Complete Worked Example — ModelCraft](#complete-worked-example--modelcraft)
-14. [Complete Worked Example — ProSMART-Refmac (Multi-Tab, Digest-Driven)](#complete-worked-example--prosmart-refmac-multi-tab-digest-driven)
+11. [Modularizing Complex Multi-Tab Interfaces](#modularizing-complex-multi-tab-interfaces)
+12. [Common Patterns Cookbook](#common-patterns-cookbook)
+13. [Pitfalls and Hard-Won Lessons](#pitfalls-and-hard-won-lessons)
+14. [Complete Worked Example — ModelCraft](#complete-worked-example--modelcraft)
+15. [Complete Worked Example — ProSMART-Refmac (Multi-Tab, Digest-Driven)](#complete-worked-example--prosmart-refmac-multi-tab-digest-driven)
 
 ---
 
@@ -84,7 +85,7 @@ Claude can work from **screenshots of the legacy Qt interface** to phenocopy the
 2. **Provide screenshots with dependent fields revealed** — Toggle checkboxes and expand sections in the old interface to show conditional elements, then screenshot those states. Claude needs to see both the collapsed and expanded states to implement visibility logic correctly.
 3. **Note any dynamic content** — If a section's visibility depends on the input data (e.g. "no nucleotide chains" messages that depend on the coordinate file composition), describe this relationship explicitly.
 
-Claude cross-references the screenshots against the `.def.xml` to map visual elements to parameter names, types, and containers. This is how `prosmart_refmac.tsx` was built — from 5 tab screenshots plus an additional screenshot showing the Restraints tab with dependent elements revealed.
+Claude cross-references the screenshots against the `.def.xml` to map visual elements to parameter names, types, and containers. This is how `prosmart-refmac/` was built — from 5 tab screenshots plus an additional screenshot showing the Restraints tab with dependent elements revealed.
 
 ---
 
@@ -192,8 +193,10 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 4. **Spread `{...props}` on `CCP4i2Tabs`** — this is required so the tabs component receives the job context.
 
 **Existing tabbed interfaces to reference:**
-- `prosmart_refmac.tsx` — 5 tabs, digest-driven visibility, the most complex example
-- `mrbump_basic.tsx` — 3 tabs, CBoolean conditional sub-options, straightforward example
+- `aimless-pipe/` — 3 tabs, **modularized** (one file per tab), uses `InlineField` and `useBoolToggle`. The reference implementation for large multi-tab interfaces.
+- `prosmart-refmac/` — 5 tabs, **modularized**, digest-driven visibility, the most complex multi-tab example
+- `servalcat-pipe/` — 4 tabs, **modularized**, digest-driven visibility with FreeR warning hook
+- `mrbump_basic.tsx` — 3 tabs, `useBoolToggle` conditional sub-options, straightforward single-file example
 
 ### Size Constants
 
@@ -241,9 +244,83 @@ import { Grid2 } from "@mui/material";
 </Grid2>
 ```
 
-### Inline Text + Field Pattern
+### InlineField — Label + Widget + Hint Rows
 
-For "Run for ___ cycles" style layouts:
+The most common layout in task interfaces is a horizontal row with a label, a fixed-width widget, and optional hint text. Use `InlineField` instead of building this from raw `Box` + `Typography`:
+
+```tsx
+import { InlineField } from "../task-elements/inline-field";
+
+// Simple: label + widget
+<InlineField label="Resolution limit">
+  <CCP4i2TaskElement itemName="RESOLUTION" {...props} qualifiers={{ guiLabel: " " }} />
+</InlineField>
+
+// With hint text and custom width
+<InlineField label="CC(1/2) threshold" hint="[default 0.6]" width="12rem">
+  <CCP4i2TaskElement itemName="CCHALFLIMIT" {...props} qualifiers={{ guiLabel: " " }} />
+</InlineField>
+
+// Checkbox with external label (preferred over MUI boxed-checkbox style)
+<InlineField label="use multiple processors" hint="determined from number of reflections" width="auto">
+  <CCP4i2TaskElement itemName="PARALLEL" {...props} qualifiers={{ guiLabel: " " }} />
+</InlineField>
+
+// Compound row: [label] [checkbox] [SD input] using `after` prop
+<InlineField
+  label="Restrain B-factors to zero with SD"
+  after={
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement itemName="TIE_BZERO_SD" {...props} qualifiers={{ guiLabel: " " }} />
+    </Box>
+  }
+  width="auto"
+>
+  <CCP4i2TaskElement itemName="TIE_BZERO" {...props} qualifiers={{ guiLabel: " " }} />
+</InlineField>
+
+// Nested InlineField: [label] [widget] [label] [widget] [hint]
+// Use `after` to compose multi-segment rows without raw Box
+<InlineField
+  label="Low:"
+  sx={{ pl: 3 }}
+  after={
+    <InlineField label="High:" hint="Å">
+      <CCP4i2TaskElement itemName="RESOLUTION_HIGH" {...props} qualifiers={{ guiLabel: " " }} />
+    </InlineField>
+  }
+>
+  <CCP4i2TaskElement itemName="RESOLUTION_LOW" {...props} qualifiers={{ guiLabel: " " }} />
+</InlineField>
+
+// Checkbox + conditional inline field using nested InlineField
+<InlineField
+  width="auto"
+  after={
+    <InlineField label="Stop automatically if R-free does not improve in" hint="cycles">
+      <CCP4i2TaskElement itemName="STOP_CYCLES" {...props} qualifiers={{ guiLabel: " " }} />
+    </InlineField>
+  }
+>
+  <CCP4i2TaskElement itemName="AUTO_STOP" {...props} qualifiers={{ guiLabel: " " }} sx={{ width: "auto" }} />
+</InlineField>
+```
+
+**InlineField props:**
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `label` | `string` | — | Text shown before the widget |
+| `hint` | `string \| ReactNode` | — | Italic text (or custom node) shown after the widget |
+| `width` | `string` | `"8rem"` | Width of the widget container. Use `"auto"` for checkboxes |
+| `after` | `ReactNode` | — | Additional content after the hint (e.g. a second widget) |
+| `sx` | `SxProps` | — | Override the outer flex container styling |
+
+**Rendering order:** `[label] [Box children] [hint] [after]`
+
+Use `guiLabel: " "` (a space) on the child element to suppress the label above the field.
+
+**Nested InlineField via `after`** handles most multi-segment rows (see examples above). Only fall back to raw `Box` layout for rows with three or more interleaved text + widget segments that can't be cleanly composed (e.g. `"Reject outliers if > [field] from mean, or > [field] if 2 observations"`):
 
 ```tsx
 <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
@@ -254,8 +331,6 @@ For "Run for ___ cycles" style layouts:
   <Typography variant="body1">cycles</Typography>
 </Box>
 ```
-
-Use `guiLabel: " "` (a space) to suppress the label above the field.
 
 ### What NOT to Use for Field Layout
 
@@ -292,42 +367,27 @@ const { value: MODE } = useTaskItem("MODE");
 />
 ```
 
-### Boolean Conditional Rendering (via onChange + local state)
+### Boolean Conditional Rendering (via `useBoolToggle`)
 
-**This is the recommended pattern for CBoolean-driven visibility.** It provides immediate UI response:
+**Use the `useBoolToggle` hook** for CBoolean-driven visibility. It encapsulates the local-state + server-sync + onChange pattern in a single call:
 
 ```tsx
-import { useCallback, useEffect, useState } from "react";
-
-const isTruthy = (val: any): boolean =>
-  val === true || val === "True" || val === "true";
+import { useBoolToggle } from "../task-elements/shared-hooks";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem } = useJob(job.id);
-  const { value: MY_TOGGLE_RAW } = useTaskItem("MY_TOGGLE");
 
-  // Local state mirrors the server value
-  const [myToggle, setMyToggle] = useState(() => isTruthy(MY_TOGGLE_RAW));
-
-  // Sync from server for programmatic changes (initial load, parameter file import)
-  useEffect(() => {
-    setMyToggle(isTruthy(MY_TOGGLE_RAW));
-  }, [MY_TOGGLE_RAW]);
-
-  // onChange fires when the user clicks the checkbox
-  const handleToggle = useCallback(async (updatedItem: any) => {
-    setMyToggle(isTruthy(updatedItem._value));
-  }, []);
+  const myToggle = useBoolToggle(useTaskItem, "MY_TOGGLE");
 
   return (
     <>
       <CCP4i2TaskElement
         itemName="MY_TOGGLE"
         {...props}
-        onChange={handleToggle}
+        onChange={myToggle.onChange}
       />
-      {myToggle && (
+      {myToggle.value && (
         <CCP4i2TaskElement itemName="DEPENDENT_FIELD" {...props} />
       )}
     </>
@@ -335,9 +395,38 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 };
 ```
 
-**Why local state?** The SWR cache patch path (`mutateContainer` -> `patchContainer`) is reliable for data but React may not always re-render every subscriber. Local state gives deterministic, immediate visibility toggling.
+`useBoolToggle` returns `{ value: boolean, onChange: (item) => void }`. The `BoolToggle` type is exported from `shared-hooks.ts` for use in component prop interfaces.
 
-**Why `isTruthy()`?** CBoolean values arrive as JS `true`/`false` from the server, but some code paths may return the strings `"True"`/`"False"`. Always normalize.
+Under the hood, `useBoolToggle` manages:
+- **Local state** for immediate UI response when the user clicks
+- **`useEffect` sync** from the server for initial load and programmatic changes
+- **`isTruthy()` normalization** — CBoolean values may arrive as `true`, `"True"`, or `"true"`
+
+**When you need side effects** (e.g. clearing a dependent field on toggle), compose `useBoolToggle.onChange` with your additional logic in a `useCallback` wrapper:
+
+```tsx
+import { useBoolToggle, isTruthy } from "../task-elements/shared-hooks";
+
+const myToggle = useBoolToggle(useTaskItem, "MY_TOGGLE");
+const { value: DEPENDENT, forceUpdate: forceSetDependent } = useTaskItem("DEPENDENT");
+
+const handleToggle = useCallback(
+  async (updatedItem: any) => {
+    const newValue = isTruthy(updatedItem._value);
+    await myToggle.onChange(updatedItem);           // standard toggle (state + sync)
+    if (!newValue && DEPENDENT?.dbFileId) {
+      forceSetDependent({});                        // side effect: clear dependent field
+    }
+  },
+  [DEPENDENT, forceSetDependent, myToggle.onChange]
+);
+
+// In JSX: use handleToggle instead of myToggle.onChange
+<CCP4i2TaskElement itemName="MY_TOGGLE" {...props} onChange={handleToggle} />
+{myToggle.value && <CCP4i2TaskElement itemName="DEPENDENT_FIELD" {...props} />}
+```
+
+This keeps the benefits of `useBoolToggle` (local state, server sync, isTruthy normalization) while adding custom behaviour. See `modelcraft.tsx` for a real example (`handleUSE_MODEL_PHASES` clears XYZIN when unchecked).
 
 ### Organizing Visibility for Complex Interfaces
 
@@ -552,6 +641,7 @@ interface CCP4i2ContainerElementProps extends CCP4i2TaskElementProps {
 
 | Want to... | Use |
 |------------|-----|
+| Label + widget + hint row | `<InlineField label="..." hint="...">` |
 | Collapsible section | `<CCP4i2ContainerElement containerHint="FolderLevel">` |
 | Sub-section with border | `<CCP4i2ContainerElement containerHint="BlockLevel">` |
 | Two fields side-by-side, equal width | `<FieldRow>` |
@@ -583,26 +673,172 @@ These are used directly in task interfaces, not auto-dispatched:
 
 ---
 
-## Common Patterns Cookbook
+## Modularizing Complex Multi-Tab Interfaces
 
-### Checkbox with Inline Text
+For interfaces with many parameters spread across multiple tabs (roughly 500+ lines), consider splitting into a folder with one file per tab. This improves maintainability without duplicating logic.
+
+### When to Modularize
+
+| Interface size | Approach |
+|----------------|----------|
+| Small (< 300 lines, 1–2 tabs) | Single file: `task-interfaces/mytask.tsx` |
+| Large (500+ lines, 3+ tabs) | Folder: `task-interfaces/mytask/index.tsx` + one file per tab |
+
+### Folder Structure
+
+```
+task-interfaces/
+  mytask/
+    index.tsx              # Orchestrator: state, hooks, visibility, composes tabs
+    InputDataTab.tsx        # Tab 1 content (returns a fragment, not a CCP4i2Tab)
+    OptionsTab.tsx          # Tab 2 content
+    AdvancedTab.tsx         # Tab 3 content
+```
+
+### Key Rules
+
+**1. The orchestrator owns `<CCP4i2Tab>` wrappers — tab components return fragments.**
+
+`CCP4i2Tabs` reads `child.props.label` and `child.props.children` directly from each child element via React introspection. This means `<CCP4i2Tab>` must be a **direct child** of `<CCP4i2Tabs>`, not buried inside a component's render output.
 
 ```tsx
-<Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
-  <CCP4i2TaskElement
-    itemName="AUTO_STOP"
-    {...props}
-    qualifiers={{ guiLabel: " " }}
-    sx={{ width: "auto" }}
-  />
-  <Typography variant="body1">
-    Stop automatically if R-free does not improve in
-  </Typography>
-  <Box sx={{ width: "8rem" }}>
-    <CCP4i2TaskElement itemName="STOP_CYCLES" {...props} qualifiers={{ guiLabel: " " }} />
-  </Box>
-  <Typography variant="body1">cycles</Typography>
-</Box>
+// index.tsx — orchestrator
+<CCP4i2Tabs {...props}>
+  <CCP4i2Tab label="Input Data">
+    <InputDataTab {...props} mode={mode} vis={vis} />
+  </CCP4i2Tab>
+  <CCP4i2Tab label="Options">
+    <OptionsTab {...props} toggles={toggles} vis={vis} />
+  </CCP4i2Tab>
+</CCP4i2Tabs>
+
+// InputDataTab.tsx — returns fragment, NOT CCP4i2Tab
+export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
+  const { mode, vis, ...taskProps } = props;
+  return (
+    <>
+      <CCP4i2ContainerElement {...taskProps} itemName="" qualifiers={{ guiLabel: "Data files" }} containerHint="FolderLevel">
+        <CCP4i2TaskElement itemName="F_SIGF" {...taskProps} />
+      </CCP4i2ContainerElement>
+    </>
+  );
+};
+```
+
+**2. State lives in the orchestrator, tabs receive only what they need.**
+
+All `useTaskItem` hooks, `useBoolToggle` calls, and `useMemo` visibility helpers stay in `index.tsx`. Each tab component declares a typed props interface for the subset it needs:
+
+```tsx
+interface OptionsTabProps extends CCP4i2TaskInterfaceProps {
+  scalingProtocol: string;
+  outlierOverride: BoolToggle;
+  vis: {
+    hasRotationScales: () => boolean;
+    showBatchList: () => boolean;
+  };
+}
+```
+
+**3. Destructure extra props away from `taskProps`.**
+
+Tab components receive custom props alongside the base `CCP4i2TaskInterfaceProps`. Destructure them out and spread the rest as `taskProps`:
+
+```tsx
+export const OptionsTab: React.FC<OptionsTabProps> = (props) => {
+  const { scalingProtocol, outlierOverride, vis, ...taskProps } = props;
+  // Use taskProps (which is just { job }) for CCP4i2TaskElement spreads
+  return (
+    <>
+      <CCP4i2TaskElement itemName="SCALING_PROTOCOL" {...taskProps} />
+    </>
+  );
+};
+```
+
+**4. Import path stays clean.**
+
+In `task-container.tsx`, import from the folder — the `index.tsx` is resolved automatically:
+
+```tsx
+import AimlessPipeInterface from "./aimless-pipe";  // resolves to aimless-pipe/index.tsx
+```
+
+### Reference Implementations
+
+Three modularized interfaces serve as reference implementations:
+
+**`task-interfaces/aimless-pipe/`** — 3 tabs, scaling pipeline
+
+| File | Lines | Purpose |
+|------|-------|---------|
+| `index.tsx` | ~140 | State, visibility helpers, tab composition |
+| `InputDataTab.tsx` | ~180 | Unmerged files, resolution, symmetry, reference data |
+| `ImportantOptionsTab.tsx` | ~540 | Pointless options, analysis, SD correction, scaling |
+| `AdditionalOptionsTab.tsx` | ~445 | Cell settings, lattice centering, scaling protocol, experts |
+
+**`task-interfaces/servalcat-pipe/`** — 4 tabs, refinement pipeline with digest-driven visibility
+
+| File | Lines | Purpose |
+|------|-------|---------|
+| `index.tsx` | ~183 | State, XYZIN digest, FreeR warning, tab composition |
+| `InputDataTab.tsx` | ~246 | Reflection data, coordinate file, FreeR warning display |
+| `ParameterisationTab.tsx` | ~160 | B-factor, weight, resolution settings |
+| `RestraintsTab.tsx` | ~903 | ProSMART, MetalCoord, libg, Platonyzer sections (largest tab) |
+| `AdvancedTab.tsx` | ~474 | Refinement control, map, symmetry, twin settings |
+
+**`task-interfaces/prosmart-refmac/`** — 5 tabs, refinement pipeline with digest-driven composition visibility
+
+| File | Lines | Purpose |
+|------|-------|---------|
+| `index.tsx` | ~198 | State, digest, FreeR warning, onChange handlers, tab composition |
+| `InputDataTab.tsx` | ~164 | Reflection data, coordinate file, FreeR warning display |
+| `ParameterisationTab.tsx` | ~282 | B-factor refinement, weights, resolution, cycles |
+| `RestraintsTab.tsx` | ~625 | ProSMART protein/nucleotide, MetalCoord, libg, jelly-body |
+| `OutputTab.tsx` | ~100 | Map output, phase columns |
+| `AdvancedTab.tsx` | ~231 | Symmetry, twin, NCS settings |
+
+---
+
+## Common Patterns Cookbook
+
+### Checkbox with External Label
+
+Prefer external `Typography` labels over the MUI boxed-checkbox style. Use `InlineField` with `width="auto"`:
+
+```tsx
+// Simple checkbox with label and hint
+<InlineField label="use multiple processors" hint="determined from number of reflections" width="auto">
+  <CCP4i2TaskElement itemName="PARALLEL" {...props} qualifiers={{ guiLabel: " " }} />
+</InlineField>
+
+// Checkbox + a dependent numeric input using `after`
+<InlineField
+  label="Restrain B-factors to zero with SD"
+  after={
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement itemName="TIE_BZERO_SD" {...props} qualifiers={{ guiLabel: " " }} />
+    </Box>
+  }
+  width="auto"
+>
+  <CCP4i2TaskElement itemName="TIE_BZERO" {...props} qualifiers={{ guiLabel: " " }} />
+</InlineField>
+```
+
+For checkbox + text + field + hint patterns, use nested `InlineField` via `after`:
+
+```tsx
+<InlineField
+  width="auto"
+  after={
+    <InlineField label="Stop automatically if R-free does not improve in" hint="cycles">
+      <CCP4i2TaskElement itemName="STOP_CYCLES" {...props} qualifiers={{ guiLabel: " " }} />
+    </InlineField>
+  }
+>
+  <CCP4i2TaskElement itemName="AUTO_STOP" {...props} qualifiers={{ guiLabel: " " }} sx={{ width: "auto" }} />
+</InlineField>
 ```
 
 ### Conditional Section Based on Enum
@@ -878,58 +1114,48 @@ The most common failure mode is one-way toggling, where only one direction works
 | "container with label" | `CCP4i2ContainerElement` with `containerHint="FolderLevel"` and `qualifiers={{ guiLabel: "..." }}` |
 | "reflection data widget" | `<CCP4i2TaskElement itemName="F_SIGF" />` — inferred from the task's `.def.xml` |
 | "tick box labelled ..." | `<CCP4i2TaskElement itemName="USE_MODEL_PHASES" qualifiers={{ guiLabel: "..." }} />` |
-| "If unticked, an additional widget is revealed" | `onChange` + local state + `{!useModelPhases && (...)}` conditional rendering |
+| "If unticked, an additional widget is revealed" | `useBoolToggle` + `{!useModelPhases.value && (...)}` conditional rendering |
 | "Run a quicker basic pipeline" (checkbox) | `onChange={handleBASIC}` pushes default CYCLES value (5 or 25) |
-| "Run for ___ cycles" | `Box` with flex layout, `Typography` text, constrained-width field with `guiLabel: " "` |
-| "tickbox, followed by text, then number field" | Same inline flex pattern with checkbox `sx={{ width: "auto" }}` |
+| "Run for ___ cycles" | `<InlineField label="Run for" hint="cycles">` with constrained-width field |
+| "tickbox, followed by text, then number field" | Nested `InlineField` via `after` prop with checkbox `sx={{ width: "auto" }}` |
 | "rows that are all tickboxes" | Simple `CCP4i2TaskElement` items with `qualifiers={{ guiLabel: "..." }}` — one per line |
 
 ### The Resulting Code
 
-This shows the real interface with grouped sections, conditional visibility driven by a CBoolean, inline field-with-text layouts, and reactive default-value pushing.
+This shows the real interface with grouped sections, conditional visibility driven by `useBoolToggle`, `InlineField` for inline layouts, and reactive default-value pushing. Note how `useBoolToggle` replaces the verbose `useState`/`useEffect`/`useCallback` triad, and `InlineField` replaces raw `Box`+`Typography` flex rows.
 
 ```tsx
-import { Box, Paper, Typography } from "@mui/material";
+import { Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import { useCallback, useEffect, useState } from "react";
-
-/** Normalize CBoolean values - server may return boolean or string */
-const isTruthy = (val: any): boolean =>
-  val === true || val === "True" || val === "true";
+import { useCallback } from "react";
+import { useBoolToggle, isTruthy } from "../task-elements/shared-hooks";
+import { InlineField } from "../task-elements/inline-field";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem } = useJob(job.id);
-  const { value: USE_MODEL_PHASES_RAW } = useTaskItem("USE_MODEL_PHASES");
   const { value: XYZIN, forceUpdate: forceSetXYZIN } = useTaskItem("XYZIN");
   const { forceUpdate: forceSetCYCLES } = useTaskItem("CYCLES");
 
-  // Local state for immediate UI toggle
-  const [useModelPhases, setUseModelPhases] = useState(() =>
-    isTruthy(USE_MODEL_PHASES_RAW)
-  );
+  const useModelPhases = useBoolToggle(useTaskItem, "USE_MODEL_PHASES");
 
-  // Sync from container for programmatic changes (initial load, parameter file import)
-  useEffect(() => {
-    setUseModelPhases(isTruthy(USE_MODEL_PHASES_RAW));
-  }, [USE_MODEL_PHASES_RAW]);
-
+  // Custom onChange: also clears XYZIN when unchecking
   const handleUSE_MODEL_PHASES = useCallback(
     async (new_USE_MODEL_PHASES: any) => {
       const newValue = isTruthy(new_USE_MODEL_PHASES._value);
-      setUseModelPhases(newValue);
+      // Call the standard toggle handler for state sync
+      await useModelPhases.onChange(new_USE_MODEL_PHASES);
       // Clear XYZIN if unchecking and a model file is loaded
       if (!newValue && XYZIN?.dbFileId) {
         forceSetXYZIN({});
       }
     },
-    [XYZIN, forceSetXYZIN]
+    [XYZIN, forceSetXYZIN, useModelPhases.onChange]
   );
 
-  // Push sensible default for CYCLES when BASIC toggle changes
   const handleBASIC = useCallback(
     async (updatedItem: any) => {
       await forceSetCYCLES(isTruthy(updatedItem._value) ? 5 : 25);
@@ -957,7 +1183,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           }}
           onChange={handleUSE_MODEL_PHASES}
         />
-        {!useModelPhases && (
+        {!useModelPhases.value && (
           <>
             <CCP4i2TaskElement itemName="PHASES" {...props} />
             <CCP4i2TaskElement
@@ -1006,19 +1232,43 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           onChange={handleBASIC}
         />
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
-          <Typography variant="body1">Run for</Typography>
-          <Box sx={{ width: "8rem" }}>
-            <CCP4i2TaskElement itemName="CYCLES" {...props} qualifiers={{ guiLabel: " " }} />
-          </Box>
-          <Typography variant="body1">cycles</Typography>
-        </Box>
+        <InlineField label="Run for" hint="cycles">
+          <CCP4i2TaskElement
+            itemName="CYCLES"
+            {...props}
+            qualifiers={{ guiLabel: " " }}
+          />
+        </InlineField>
+
+        <InlineField
+          width="auto"
+          after={
+            <InlineField
+              label="Stop automatically if R-free does not improve in"
+              hint="cycles"
+            >
+              <CCP4i2TaskElement
+                itemName="STOP_CYCLES"
+                {...props}
+                qualifiers={{ guiLabel: " " }}
+              />
+            </InlineField>
+          }
+        >
+          <CCP4i2TaskElement
+            itemName="AUTO_STOP"
+            {...props}
+            qualifiers={{ guiLabel: " " }}
+            sx={{ width: "auto" }}
+          />
+        </InlineField>
 
         <CCP4i2TaskElement
           itemName="SELENOMET"
           {...props}
           qualifiers={{
-            guiLabel: "Build selenomethionine (MSE) instead of methionine (MET)",
+            guiLabel:
+              "Build selenomethionine (MSE) instead of methionine (MET)",
           }}
         />
         <CCP4i2TaskElement
@@ -1038,12 +1288,41 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2TaskElement
           itemName="SHEETBEND"
           {...props}
-          qualifiers={{ guiLabel: "Preliminary low-resolution refinement with Sheetbend" }}
+          qualifiers={{
+            guiLabel:
+              "Preliminary low-resolution refinement with Sheetbend",
+          }}
         />
-        <CCP4i2TaskElement itemName="PRUNING" {...props} qualifiers={{ guiLabel: "Residue and chain pruning" }} />
-        <CCP4i2TaskElement itemName="PARROT" {...props} qualifiers={{ guiLabel: "Classical density modification with Parrot" }} />
-        <CCP4i2TaskElement itemName="WATERS" {...props} qualifiers={{ guiLabel: "Addition of waters" }} />
-        <CCP4i2TaskElement itemName="SIDE_CHAIN_FIXING" {...props} qualifiers={{ guiLabel: "Final side-chain fixing" }} />
+        <CCP4i2TaskElement
+          itemName="PRUNING"
+          {...props}
+          qualifiers={{ guiLabel: "Residue and chain pruning" }}
+        />
+        <CCP4i2TaskElement
+          itemName="PARROT"
+          {...props}
+          qualifiers={{
+            guiLabel: "Classical density modification with Parrot",
+          }}
+        />
+        <CCP4i2TaskElement
+          itemName="DUMMY_ATOMS"
+          {...props}
+          qualifiers={{
+            guiLabel:
+              "Phase improvement through addition and refinement of dummy atoms",
+          }}
+        />
+        <CCP4i2TaskElement
+          itemName="WATERS"
+          {...props}
+          qualifiers={{ guiLabel: "Addition of waters" }}
+        />
+        <CCP4i2TaskElement
+          itemName="SIDE_CHAIN_FIXING"
+          {...props}
+          qualifiers={{ guiLabel: "Final side-chain fixing" }}
+        />
       </CCP4i2ContainerElement>
     </Paper>
   );
@@ -1057,19 +1336,18 @@ export default TaskInterface;
 | Technique | Where |
 |-----------|-------|
 | Grouped sections with `FolderLevel` containers | All five `CCP4i2ContainerElement` blocks |
-| CBoolean conditional visibility via onChange + local state | `USE_MODEL_PHASES` -> PHASES/UNBIASED |
-| `isTruthy()` normalization | `useState` init, `useEffect` sync, `handleUSE_MODEL_PHASES` |
-| Clear dependent field on toggle | `forceSetXYZIN({})` when unchecking |
+| `useBoolToggle` for CBoolean visibility | `USE_MODEL_PHASES` → `useModelPhases.value` controls PHASES/UNBIASED |
+| `useBoolToggle` with side effects | `handleUSE_MODEL_PHASES` composes `useModelPhases.onChange` + `forceSetXYZIN` |
 | Push default value on toggle | `BASIC` onChange → `forceSetCYCLES(5 or 25)` |
-| Inline text + field layout | "Run for ___ cycles" |
+| `InlineField` for text + field row | "Run for ___ cycles" |
+| Nested `InlineField` via `after` prop | AUTO_STOP checkbox + "Stop automatically..." + STOP_CYCLES |
 | Qualifier override | Custom `guiLabel` on most fields |
-| `useEffect` sync from server | Handles initial load + parameter file import |
 
 ---
 
 ## Complete Worked Example — ProSMART-Refmac (Multi-Tab, Digest-Driven)
 
-ProSMART-Refmac is the most complex task interface in the codebase. It demonstrates patterns beyond what ModelCraft covers: tabbed layout, file digest-driven composition visibility, sub-container dotted paths, and custom widgets.
+ProSMART-Refmac is the most complex task interface in the codebase. It demonstrates patterns beyond what ModelCraft covers: tabbed layout, file digest-driven composition visibility, sub-container dotted paths, and custom widgets. It is **modularized** into `task-interfaces/prosmart-refmac/` with one file per tab (see [Reference Implementations](#reference-implementations) above).
 
 ### How It Was Built
 
@@ -1077,17 +1355,18 @@ The interface was built from **screenshots of the legacy Qt GUI** — one per ta
 
 ### Key Techniques Demonstrated
 
-| Technique | Where in prosmart_refmac.tsx |
-|-----------|----------------------------|
-| Tabbed layout | `<CCP4i2Tabs>` with 5 `<CCP4i2Tab>` children |
-| Digest-driven visibility | XYZIN digest `composition.peptides`/`nucleics` for ProSMART sections |
+| Technique | Where in prosmart-refmac/ |
+|-----------|--------------------------|
+| Tabbed layout | `index.tsx` — `<CCP4i2Tabs>` with 5 `<CCP4i2Tab>` children |
+| Modularized tabs | One file per tab — state in orchestrator, fragments in tab components |
+| Digest-driven visibility | `index.tsx` — XYZIN digest `composition.peptides`/`nucleics` for ProSMART sections |
 | Sub-container dotted paths | `prosmartProtein.TOGGLE`, `prosmartProtein.CHAINLIST_1`, `platonyzer.MODE`, `controlParameters.WEIGHT` |
-| Custom multi-select widget | `<CChainSelectElement>` for chain selection |
-| File onChange with side effects | F_SIGF onChange → wavelength, anomalous, twinning |
-| FreeR warning hook | `useFreeRWarning()` for cross-validation checks |
-| Conditional "no data" messages | Italic text when model has no protein/nucleotide chains |
-| Nested visibility conditions | Occupancy groups visible only when occupancy refinement is enabled |
-| Inline natural-language layouts | "Refine [isotropic] B-factors", "with sigma: [0.01] and max distance: [4.2]" |
+| Custom multi-select widget | `RestraintsTab.tsx` — `<CChainSelectElement>` for chain selection |
+| File onChange with side effects | `index.tsx` — F_SIGF onChange → wavelength, anomalous, twinning |
+| FreeR warning hook | `index.tsx` — `useFreeRWarning()` for cross-validation checks |
+| Conditional "no data" messages | `RestraintsTab.tsx` — Italic text when model has no protein/nucleotide chains |
+| Nested visibility conditions | `RestraintsTab.tsx` — Occupancy groups visible only when occupancy refinement is enabled |
+| Inline natural-language layouts | `ParameterisationTab.tsx` — "Refine [isotropic] B-factors", `InlineField` for weights rows |
 
 ### Sub-Container Dotted Paths
 
@@ -1186,39 +1465,34 @@ MrBump is a simpler tabbed interface than ProSMART-Refmac, making it a better st
 
 ### Key Technique: Checkbox with Conditional Indented Sub-Options
 
-A common pattern in legacy Qt interfaces: a checkbox enables/disables a group of related options shown indented below it.
+A common pattern in legacy Qt interfaces: a checkbox enables/disables a group of related options shown indented below it. Use `useBoolToggle` + `InlineField`:
 
 ```tsx
-// 1. Declare state and handler at top level
-const { value: SEARCH_PDB_RAW } = useTaskItem("SEARCH_PDB");
-const [searchPdb, setSearchPdb] = useState(() => isTruthy(SEARCH_PDB_RAW));
-useEffect(() => setSearchPdb(isTruthy(SEARCH_PDB_RAW)), [SEARCH_PDB_RAW]);
-const handleSearchPdb = useCallback(async (item: any) => {
-  setSearchPdb(isTruthy(item._value));
-}, []);
+// 1. Declare toggle at top level
+const searchPdb = useBoolToggle(useTaskItem, "SEARCH_PDB");
 
 // 2. In JSX: checkbox + conditional indented content
 <CCP4i2TaskElement
   itemName="SEARCH_PDB"
   {...props}
   qualifiers={{ guiLabel: "Search PDB for possible MR search models" }}
-  onChange={handleSearchPdb}
+  onChange={searchPdb.onChange}
 />
-{searchPdb && (
-  <Box sx={{ pl: 3 }}>
-    <Box sx={{ display: "flex", alignItems: "center", gap: 1, flexWrap: "wrap" }}>
-      <Typography variant="body1" sx={{ fontStyle: "italic" }}>
-        Non-redundancy level for homologue search:
-      </Typography>
-      <Box sx={{ width: "8rem" }}>
-        <CCP4i2TaskElement itemName="REDUNDANCYLEVEL" {...props} qualifiers={{ guiLabel: " " }} />
-      </Box>
-    </Box>
-  </Box>
+{searchPdb.value && (
+  <InlineField
+    label="Non-redundancy level for homologue search:"
+    sx={{ pl: 3 }}
+  >
+    <CCP4i2TaskElement
+      itemName="REDUNDANCYLEVEL"
+      {...props}
+      qualifiers={{ guiLabel: " " }}
+    />
+  </InlineField>
 )}
 ```
 
-The `pl: 3` (padding-left) creates the visual indentation that signals these options belong to the parent checkbox. This matches how the legacy Qt interface indented dependent options.
+The `pl: 3` (padding-left on InlineField's `sx`) creates the visual indentation that signals these options belong to the parent checkbox. This matches how the legacy Qt interface indented dependent options.
 
 **Source file:** `task-interfaces/mrbump_basic.tsx`
 
@@ -1237,8 +1511,12 @@ import { useJob } from "../../../utils";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 
 // Layout
+import { InlineField } from "../task-elements/inline-field";
 import { FieldRow } from "../task-elements/field-row";
 import { Box, Grid2, Stack, Paper, Typography, Card, CardHeader, CardContent } from "@mui/material";
+
+// Shared hooks and utilities
+import { useBoolToggle, isTruthy, BoolToggle } from "../task-elements/shared-hooks";
 
 // Standalone widgets
 import { CChainSelectElement } from "../task-elements/cchainselect";
