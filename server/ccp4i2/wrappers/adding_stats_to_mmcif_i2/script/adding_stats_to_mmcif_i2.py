@@ -45,6 +45,192 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         super(adding_stats_to_mmcif_i2, self).__init__(*args, **kws)
         self.xmlroot = etree.Element('adding_stats_to_mmcif')
 
+    def trace_xyzin_lineage(self, file_uuid):
+        """Trace XYZIN file back through refinement -> scaling job chain.
+
+        Given the UUID of a coordinates file, finds the refinement job that
+        produced it, then collects all related input/output files and control
+        parameters needed for deposition.
+
+        Returns a JSON-serializable dict with keys:
+            success, files, paths, params, warnings,
+            refinement_job_id, refinement_task_name
+        """
+        from pathlib import Path
+
+        from lxml import etree as ET
+
+        from ccp4i2.db.models import File, FileUse, Job
+
+        result = {
+            "success": False,
+            "files": {},
+            "paths": {},
+            "params": {},
+            "warnings": [],
+        }
+
+        # 1. Find which job produced this file
+        try:
+            the_file = File.objects.get(uuid=file_uuid)
+        except File.DoesNotExist:
+            result["warnings"].append("File not found in database")
+            return result
+
+        ref_job = the_file.job
+        if ref_job is None:
+            result["warnings"].append("File has no producing job")
+            return result
+
+        # 2. Validate it's a refinement job
+        refinement_tasks = ["prosmart_refmac", "servalcat_pipe", "buster"]
+        if ref_job.task_name not in refinement_tasks:
+            result["warnings"].append(
+                f"Coordinates should come from a refinement job, "
+                f"not '{ref_job.task_name}'"
+            )
+            return result
+
+        if ref_job.status != Job.Status.FINISHED:
+            result["warnings"].append(
+                "Source refinement job did not finish successfully"
+            )
+            return result
+
+        result["success"] = True
+        result["refinement_job_id"] = ref_job.id
+        result["refinement_task_name"] = ref_job.task_name
+
+        # 3. Get refinement job's INPUT files via FileUse
+        input_uses = FileUse.objects.filter(
+            job=ref_job, role=FileUse.Role.IN
+        ).select_related("file")
+        for use in input_uses:
+            file_uuid_str = str(use.file.uuid)
+            param = use.job_param_name
+            # Map input reflections to canonical "F_SIGF" regardless of
+            # refinement task naming conventions:
+            #   prosmart_refmac / buster → "F_SIGF"
+            #   servalcat_pipe → "HKLIN"
+            if param in ("F_SIGF", "HKLIN"):
+                result["files"]["F_SIGF"] = file_uuid_str
+            elif param in ("FREERFLAG", "TLSIN"):
+                result["files"][param] = file_uuid_str
+            elif param in ("DICT", "DICT_LIST"):
+                result["files"].setdefault("DICT_LIST", [])
+                result["files"]["DICT_LIST"].append(file_uuid_str)
+
+        # 4. Get refinement job's OUTPUT files (may override inputs)
+        output_files = File.objects.filter(job=ref_job)
+        for f in output_files:
+            param = f.job_param_name
+            if param == "TLSOUT":
+                result["files"]["TLSIN"] = str(f.uuid)
+            elif param in ("FPHIOUT", "DIFFPHIOUT"):
+                result["files"][param] = str(f.uuid)
+
+        # 5. REFMACINPUTPARAMSXML = input_params.xml from refinement job dir
+        input_params_path = Path(ref_job.directory) / "input_params.xml"
+        if input_params_path.exists():
+            result["paths"]["REFMACINPUTPARAMSXML"] = str(input_params_path)
+
+        # 6. Get USEANOMALOUS and USE_TWIN from refinement job's params
+        #    (buster doesn't have these — skip gracefully)
+        if ref_job.task_name != "buster":
+            try:
+                from ccp4i2.lib.utils.plugins.get_plugin import get_job_plugin
+
+                ref_plugin = get_job_plugin(ref_job)
+                ctrl = ref_plugin.container.controlParameters
+                if hasattr(ctrl, "USEANOMALOUS"):
+                    result["params"]["USEANOMALOUS"] = bool(ctrl.USEANOMALOUS)
+                if hasattr(ctrl, "USE_TWIN"):
+                    result["params"]["USE_TWIN"] = bool(ctrl.USE_TWIN)
+            except Exception as e:
+                result["warnings"].append(
+                    f"Could not read refinement control parameters: {e}"
+                )
+
+        # 7. Trace F_SIGF back to its producing (scaling) job
+        f_sigf_uuid = result["files"].get("F_SIGF")
+        if f_sigf_uuid:
+            try:
+                f_sigf_file = File.objects.select_related("job").get(
+                    uuid=f_sigf_uuid
+                )
+                scaling_job = f_sigf_file.job
+                if scaling_job:
+                    result["scaling_job_id"] = scaling_job.id
+
+                    # Look for XMLOUT from scaling job (aimless statistics)
+                    xmlout_files = File.objects.filter(
+                        job=scaling_job, job_param_name="XMLOUT"
+                    )
+                    if xmlout_files.exists():
+                        xmlout = xmlout_files.first()
+                        xmlout_path = Path(scaling_job.directory) / xmlout.name
+                        if xmlout_path.exists():
+                            tree = ET.parse(str(xmlout_path))
+                            root = tree.getroot()
+                            has_aimless = (
+                                root.findall(".//AIMLESS")
+                                or root.findall(".//AIMLESS_PIPE")
+                            )
+                            if has_aimless:
+                                result["files"]["AIMLESSXML"] = str(xmlout.uuid)
+                                result["params"]["USEAIMLESSXML"] = True
+                            else:
+                                result["warnings"].append(
+                                    "Scaling job XML does not contain "
+                                    "AIMLESS statistics"
+                                )
+                    else:
+                        # Fallback: try program.xml on disk
+                        program_xml_path = (
+                            Path(scaling_job.directory) / "program.xml"
+                        )
+                        if program_xml_path.exists():
+                            tree = ET.parse(str(program_xml_path))
+                            root = tree.getroot()
+                            has_aimless = (
+                                root.findall(".//AIMLESS")
+                                or root.findall(".//AIMLESS_PIPE")
+                            )
+                            if has_aimless and root.tag != "IMPORT_MERGED":
+                                result["paths"]["AIMLESSXML"] = str(
+                                    program_xml_path
+                                )
+                                result["params"]["USEAIMLESSXML"] = True
+
+                    # Look for UNMERGEDOUT — stored as UNMERGEDOUT[0],
+                    # UNMERGEDOUT[1], etc. for multi-wavelength datasets
+                    scaling_outputs = File.objects.filter(
+                        job=scaling_job,
+                        job_param_name__startswith="UNMERGEDOUT",
+                    )
+                    count = scaling_outputs.count()
+                    if count >= 1:
+                        # Take the first (usually only) unmerged output
+                        result["files"]["SCALEDUNMERGED"] = str(
+                            scaling_outputs[0].uuid
+                        )
+                        result["params"]["INCLUDEUNMERGED"] = True
+                        if count > 1:
+                            result["warnings"].append(
+                                f"Multiple unmerged outputs found — "
+                                f"using first of {count}"
+                            )
+                    else:
+                        result["warnings"].append(
+                            "Scaling job did not output unmerged data"
+                        )
+            except File.DoesNotExist:
+                result["warnings"].append(
+                    "Could not trace F_SIGF to its producing job"
+                )
+
+        return result
+
     def processInputFiles(self):
 
         self.fastaFilePath = os.path.join(
@@ -55,7 +241,9 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def startProcess(self):
-        self.createReflectionsCif()
+        rv = self.createReflectionsCif()
+        if rv is not None:
+            return rv
 
         from adding_stats_to_mmcif.__main__ import run_process
 
@@ -66,7 +254,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         else:
             aimless_xml_file = ''
         #print("aimless_xml_file is", aimless_xml_file)
-        if aimless_xml_file is not '':
+        if aimless_xml_file != '':
             with open(aimless_xml_file, "r") as aimlessXMLFile:
                 aimlessXML = etree.fromstring(aimlessXMLFile.read())
                 try:
@@ -92,13 +280,18 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                        "output_mmcif": output_mmcif,
                        "fasta_file": self.fastaFilePath,
                        "xml_file": aimless_xml_file}
-        worked = run_process(**processArgs)
-        #print(f'Worked is [{worked}]')
+        try:
+            worked = run_process(**processArgs)
+        except Exception as e:
+            print(f'adding_stats_to_mmcif raised exception: {e}')
+            import traceback
+            traceback.print_exc()
+            self.appendErrorReport(204, str(e))
+            return CPluginScript.FAILED
 
         if not worked:
-            self.appendErrorReport(self.__class__, 204,
-                                   "Failed to adding_stats_to_mmcif")
-            return self.reportStatus(CPluginScript.FAILED)
+            self.appendErrorReport(204, "Failed in adding_stats_to_mmcif")
+            return CPluginScript.FAILED
 
         with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
             CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot))
@@ -136,43 +329,90 @@ except Exception as err:
         return CPluginScript.SUCCEEDED
 
     def createReflectionsCif(self):
-        # Create the (potentially merged) file from which to generate the data that will be spat into the PDB
+        import subprocess
+
+        # Merge F_SIGF + FREERFLAG + FPHIOUT + DIFFPHIOUT if content flags differ
         if self.container.controlParameters.USEANOMALOUS:
-            if self.container.controlParameters.USE_TWIN:
-                refmacContentFlag = 1
-            else:
-                refmacContentFlag = 2
+            refmacContentFlag = 1 if self.container.controlParameters.USE_TWIN else 2
         else:
-            if self.container.controlParameters.USE_TWIN:
-                refmacContentFlag = 3
-            else:
-                refmacContentFlag = 4
+            refmacContentFlag = 3 if self.container.controlParameters.USE_TWIN else 4
 
-        pathForExperimentalDataToCifify = str(
-            self.container.inputData.F_SIGF.fullPath)
+        mergedMtzPath = str(self.container.inputData.F_SIGF.fullPath)
         if self.container.inputData.F_SIGF.contentFlag != refmacContentFlag:
-            pathForExperimentalDataToCifify = os.path.join(
+            mergedMtzPath = os.path.join(
                 self.getWorkDirectory(), 'mergedForMakingCif.mtz')
-            self.hklin, self.columns, error = self.makeHklin0(miniMtzsIn=[['F_SIGF', int(self.container.inputData.F_SIGF.contentFlag)], [
-                                                              'F_SIGF', refmacContentFlag], ['FREERFLAG', 0], ['FPHIOUT', 1], ['DIFFPHIOUT', 1]], hklin='mergedForMakingCif')
+            self.hklin, self.columns, error = self.makeHklin0(
+                miniMtzsIn=[
+                    ['F_SIGF', int(self.container.inputData.F_SIGF.contentFlag)],
+                    ['F_SIGF', refmacContentFlag],
+                    ['FREERFLAG', 1],
+                    ['FPHIOUT', 1],
+                    ['DIFFPHIOUT', 1],
+                ],
+                hklin='mergedForMakingCif',
+            )
             if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
-                self.reportStatus(CPluginScript.FAILED)
+                return CPluginScript.FAILED
 
-        # Now convert refmac input to mmcif
-        self.hklin2cifPlugin = self.makePluginObject('hklin2cif')
-        print(f'scaledunmerged path is {self.container.inputData.SCALEDUNMERGED.fullPath}')
-        self.hklin2cifPlugin.container.inputData.SCALEDUNMERGED = self.container.inputData.SCALEDUNMERGED.getFullPath()
+        # Rename CCP4i2's prefixed column labels to standard names gemmi expects
+        import gemmi as _gemmi
+        mtz = _gemmi.read_mtz_file(os.path.normpath(mergedMtzPath))
+        COLUMN_RENAME = {
+            'FREERFLAG_FREER': 'FREE',
+            'F_SIGF_Iplus': 'I(+)',   'F_SIGF_SIGIplus': 'SIGI(+)',
+            'F_SIGF_Iminus': 'I(-)',   'F_SIGF_SIGIminus': 'SIGI(-)',
+            'F_SIGF_Fplus': 'F(+)',    'F_SIGF_SIGFplus': 'SIGF(+)',
+            'F_SIGF_Fminus': 'F(-)',   'F_SIGF_SIGFminus': 'SIGF(-)',
+            'F_SIGF_F': 'FP',         'F_SIGF_SIGF': 'SIGFP',
+            'F_SIGF_Fmean': 'FP',     'F_SIGF_SIGFmean': 'SIGFP',
+            'F_SIGF_I': 'IMEAN',      'F_SIGF_SIGI': 'SIGIMEAN',
+            'F_SIGF_Imean': 'IMEAN',  'F_SIGF_SIGImean': 'SIGIMEAN',
+            'FPHIOUT_F': 'FWT',       'FPHIOUT_PHI': 'PHWT',
+            'DIFFPHIOUT_F': 'DELFWT', 'DIFFPHIOUT_PHI': 'PHDELWT',
+        }
+        renamed = []
+        for col in mtz.columns:
+            if col.label in COLUMN_RENAME:
+                old = col.label
+                col.label = COLUMN_RENAME[old]
+                renamed.append(f'{old} -> {col.label}')
+        if renamed:
+            print(f'Renamed columns: {", ".join(renamed)}')
+        renamedMtzPath = os.path.join(self.getWorkDirectory(), 'forDeposition.mtz')
+        mtz.write_to_file(renamedMtzPath)
 
-        hklinPath = os.path.normpath(pathForExperimentalDataToCifify)
-        self.hklin2cifPlugin.container.inputData.HKLIN.setFullPath(hklinPath)
-        rv = self.hklin2cifPlugin.process()
-        if rv != CPluginScript.SUCCEEDED:
-            self.reportStatus(rv)
-        srcFile = os.path.join(
-            self.hklin2cifPlugin.getWorkDirectory(), 'Reflections.cif')
-        shutil.copyfile(srcFile, str(
-            self.container.outputData.CIFREFLECTIONS.fullPath))
-        return
+        # Call gemmi mtz2cif directly (no hklin2cif sub-plugin needed)
+        outputCifPath = str(self.container.outputData.CIFREFLECTIONS.fullPath)
+        cmd = ['gemmi', 'mtz2cif']
+
+        includeUnmerged = (
+            self.container.controlParameters.INCLUDEUNMERGED
+            and self.container.inputData.SCALEDUNMERGED.isSet()
+        )
+        if includeUnmerged:
+            cmd.append('--depo')
+
+        cmd.append(renamedMtzPath)
+
+        if includeUnmerged:
+            cmd.append(str(self.container.inputData.SCALEDUNMERGED.fullPath))
+
+        cmd.append(outputCifPath)
+
+        print(f'Running: {" ".join(cmd)}')
+        result = subprocess.run(
+            cmd, capture_output=True, text=True,
+            cwd=self.getWorkDirectory(),
+        )
+        if result.stdout:
+            print(result.stdout)
+        if result.returncode != 0:
+            print(f'gemmi mtz2cif failed (exit code {result.returncode}):')
+            print(result.stderr)
+            return CPluginScript.FAILED
+        if not os.path.exists(outputCifPath):
+            print('gemmi mtz2cif did not produce output CIF')
+            return CPluginScript.FAILED
 
     def display_status(self, sD, exitOnError=True):
         if 'onedep_error_flag' in sD and sD['onedep_error_flag']:

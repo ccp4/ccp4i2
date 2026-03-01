@@ -61,24 +61,19 @@ interface CCP4i2ThemeProviderProps {
 export const CCP4i2ThemeProvider: React.FC<CCP4i2ThemeProviderProps> = ({
   children,
 }) => {
-  const [mode, setMode] = useState<ThemeMode>("light");
+  const [mode, setMode] = useState<ThemeMode>(() => {
+    if (typeof window === "undefined") return "light";
+    const saved = localStorage.getItem("ccp4i2-theme") as ThemeMode;
+    if (saved === "light" || saved === "dark") return saved;
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? "dark"
+      : "light";
+  });
   const [mounted, setMounted] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
 
-  // Load theme preference from localStorage on mount
-  // Also detect Teams iframe context for compact mode
+  // Detect Teams iframe context for compact mode on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem("ccp4i2-theme") as ThemeMode;
-    if (savedTheme && (savedTheme === "light" || savedTheme === "dark")) {
-      setMode(savedTheme);
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia(
-        "(prefers-color-scheme: dark)"
-      ).matches;
-      setMode(prefersDark ? "dark" : "light");
-    }
-
     // Enable compact mode in Teams iframe context
     if (isRunningInIframe()) {
       setIsCompact(true);

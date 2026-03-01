@@ -2044,6 +2044,8 @@ class CPluginScript(CData):
         # Set the internal status
         self._status = status
 
+        return status
+
     def postProcessWrapper(self, finishStatus):
         """
         Wrapper method for propagating finish status from sub-plugins.
