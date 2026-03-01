@@ -70,7 +70,6 @@ export const JobCard: React.FC<JobCardProps> = ({
   const {
     jobs,
     mutateJobs,
-    mutateAllJobs,
     files,
     mutateFiles,
   } = useProject(job.project);
@@ -147,7 +146,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         return;
       }
       if (cloneResult?.id) {
-        mutateAllJobs();
+        mutateJobs();
         setAnchorEl(null);
         router.push(`/ccp4i2/project/${projectId}/job/${cloneResult.id}`);
       }
@@ -176,7 +175,7 @@ export const JobCard: React.FC<JobCardProps> = ({
           runResult.number,
           runResult.task_name || job.title
         );
-        mutateAllJobs();
+        mutateJobs();
         router.push(`/ccp4i2/project/${projectId}/job/${runResult.id}`);
       }
     } catch (error) {
@@ -191,7 +190,7 @@ export const JobCard: React.FC<JobCardProps> = ({
         what: `${job.number}: ${job.title}`,
         onDelete: () => {
           api.delete(`jobs/${job.id}`).then(() => {
-            mutateAllJobs();
+            mutateJobs();
             if (setJobId && jobId === job.id) setJobId(null);
           });
         },
@@ -224,7 +223,7 @@ export const JobCard: React.FC<JobCardProps> = ({
             dependentJobs.some((dependentJob: Job) => dependentJob.status == 6))
         ),
       });
-  }, [dependentJobs, mutateAllJobs]);
+  }, [dependentJobs, mutateJobs]);
 
   const renderMenu = (
     <Menu

@@ -26,6 +26,8 @@ import { useRouter } from "next/navigation";
 import { EndpointFetch, useApi } from "../api";
 import {
   Job,
+  JobTreeNode,
+  JobTreeResponse,
   File as DjangoFile,
 } from "../types/models";
 import { CCP4i2JobAvatar } from "./job-avatar";
@@ -43,26 +45,6 @@ interface ClassicJobListProps {
   projectId: number;
   parent?: number;
   withSubtitles?: boolean;
-}
-
-/** Job node with embedded files and KPIs from job_tree endpoint
- * We use Omit to override the files property type (Job has number[] for IDs,
- * JobTreeNode has full DjangoFile objects).
- */
-interface JobTreeNode extends Omit<Job, 'files'> {
-  files: DjangoFile[];
-  kpis: {
-    float_values: Record<string, number>;
-    char_values: Record<string, string>;
-  };
-  children: JobTreeNode[];
-}
-
-/** Response from job_tree endpoint */
-interface JobTreeResponse {
-  job_tree: JobTreeNode[];
-  total_jobs: number;
-  total_files: number;
 }
 
 /** Tree item type for RichTreeView - combines JobTreeNode with children */

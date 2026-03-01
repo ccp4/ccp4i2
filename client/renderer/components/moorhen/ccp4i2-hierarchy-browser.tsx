@@ -32,6 +32,7 @@ import {
 import { useApi } from "../../api";
 import { Project, Job, File as DjangoFile } from "../../types/models";
 import { useTheme } from "../../theme/theme-provider";
+import { useProjectJobs } from "../../utils";
 
 interface CCP4i2HierarchyBrowserProps {
   onFileSelect: (fileId: number) => Promise<void>;
@@ -427,18 +428,10 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
     error: projectsError,
   } = api.get<Project[]>("/projects", REFRESH_INTERVALS.PROJECTS);
 
-  const {
-    data: jobs,
-    isLoading: jobsLoading,
-    error: jobsError,
-  } = api.get_endpoint<Job[]>(
-    {
-      type: "projects",
-      id: selectedProject?.id,
-      endpoint: "jobs",
-    },
-    REFRESH_INTERVALS.JOBS
-  );
+  // This runs in a separate window without ClassicJobsList, so poll independently
+  const { jobs } = useProjectJobs(selectedProject?.id, REFRESH_INTERVALS.JOBS);
+  const jobsLoading = !jobs && !!selectedProject;
+  const jobsError = undefined;
 
   const {
     data: files,

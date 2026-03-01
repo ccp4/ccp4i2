@@ -5,6 +5,8 @@ import useSWR, { KeyedMutator, mutate, SWRResponse } from "swr";
 import { useApi } from "./api";
 import {
   Job,
+  JobTreeNode,
+  JobTreeResponse,
   Project,
   File as DjangoFile,
 } from "./types/models";
@@ -110,10 +112,8 @@ export interface ProjectData {
   directory: any;
   mutateDirectory: () => void;
   jobs: Job[] | undefined;
-  mutateJobs: KeyedMutator<Job[]>;
-  mutateJobTree: () => void;
-  /** Combined mutation that invalidates both jobs and job_tree endpoints */
-  mutateAllJobs: () => void;
+  /** Mutates the job_tree SWR cache (the single source of truth for jobs) */
+  mutateJobs: KeyedMutator<JobTreeResponse>;
   files: DjangoFile[] | undefined;
   mutateFiles: KeyedMutator<DjangoFile[]>;
 }
@@ -642,8 +642,48 @@ export const usePrevious = <T>(value: T): T | undefined => {
 };
 
 /**
+ * Flatten a hierarchical JobTreeNode[] into a flat Job[] array.
+ * Converts files from DjangoFile[] back to number[] (IDs).
+ */
+export function flattenJobTree(nodes: JobTreeNode[]): Job[] {
+  const result: Job[] = [];
+  const traverse = (node: JobTreeNode) => {
+    const { children, kpis, files, ...jobFields } = node;
+    result.push({ ...jobFields, files: files.map(f => f.id) } as Job);
+    children?.forEach(traverse);
+  };
+  nodes.forEach(traverse);
+  return result;
+}
+
+/**
+ * Hook to get a flat jobs list from the job_tree SWR cache.
+ * Shares the same SWR key as ClassicJobsList, so polling there keeps this current.
+ *
+ * Pass a refreshInterval for windows without ClassicJobsList (e.g. Moorhen viewer).
+ */
+export const useProjectJobs = (
+  projectId: number | null | undefined,
+  refreshInterval: number = 0,
+) => {
+  const api = useApi();
+  const { data: treeData, mutate: mutateJobs } = api.get_endpoint<JobTreeResponse>(
+    projectId ? { type: "projects", id: projectId, endpoint: "job_tree" } : null,
+    refreshInterval
+  );
+  const jobs = useMemo(
+    () => treeData?.job_tree ? flattenJobTree(treeData.job_tree) : undefined,
+    [treeData]
+  );
+  return { jobs, mutateJobs };
+};
+
+/**
  * Custom hook to fetch and manage project-related data.
  * Accepts undefined/null to skip fetching until projectId is available.
+ *
+ * Jobs are derived from the job_tree endpoint (single SWR key shared with
+ * ClassicJobsList's adaptive polling), so status is always in sync.
  */
 export const useProject = (projectId: number | null | undefined): ProjectData => {
   const api = useApi();
@@ -660,32 +700,14 @@ export const useProject = (projectId: number | null | undefined): ProjectData =>
     endpoint: "directory",
   });
 
-  const { data: jobs, mutate: mutateJobs } = api.get_endpoint<Job[]>({
-    type: "projects",
-    id: projectId,
-    endpoint: "jobs",
-  });
-
-  // Also get mutator for job_tree endpoint (used by classic-jobs-list)
-  const { mutate: mutateJobTree } = api.get_endpoint<any>({
-    type: "projects",
-    id: projectId,
-    endpoint: "job_tree",
-  });
-
-  // Combined mutation that invalidates both jobs and job_tree endpoints
-  const mutateAllJobs = useCallback(() => {
-    mutateJobs();
-    mutateJobTree();
-  }, [mutateJobs, mutateJobTree]);
+  // Subscribe to job_tree — shared SWR key with ClassicJobsList (which polls it)
+  const { jobs, mutateJobs } = useProjectJobs(projectId);
 
   const { data: files, mutate: mutateFiles } = api.get_endpoint<DjangoFile[]>({
     type: "projects",
     id: projectId,
     endpoint: "files",
   });
-
-  // Note: KPIs are now embedded in job_tree endpoint
 
   return {
     project,
@@ -694,8 +716,6 @@ export const useProject = (projectId: number | null | undefined): ProjectData =>
     mutateDirectory,
     jobs,
     mutateJobs,
-    mutateJobTree,
-    mutateAllJobs,
     files,
     mutateFiles,
   };

@@ -9,20 +9,19 @@ import {
 } from "@mui/material";
 import { Job } from "../types/models";
 import EditableTypography from "./editable-typography";
-import { useApi } from "../api";
-import { KeyedMutator } from "swr";
 import { useState } from "react";
 import { CCP4i2JobAvatar } from "./job-avatar";
 import { JobMenu, useJobMenu } from "../providers/job-context-menu";
 import { Menu } from "@mui/icons-material";
-import { useJob } from "../utils";
+import { useJob, useProjectJobs } from "../utils";
+import { useApi } from "../api";
 import { useDroppable } from "@dnd-kit/core";
 import { useTheme } from "../theme/theme-provider";
 
 interface JobHeaderProps {
   job: Job;
-  mutateJobs: KeyedMutator<Job[]>;
-  mutateJob?: KeyedMutator<Job>;
+  mutateJobs: () => void;
+  mutateJob?: () => void;
 }
 export const JobHeader: React.FC<JobHeaderProps> = ({ job, mutateJobs }) => {
   const { customColors } = useTheme();
@@ -32,11 +31,7 @@ export const JobHeader: React.FC<JobHeaderProps> = ({ job, mutateJobs }) => {
 
   const { container, mutateContainer } = useJob(job.id);
 
-  const { data: project_jobs } = api.get_endpoint<Job[]>({
-    type: "projects",
-    id: job.project,
-    endpoint: "jobs",
-  });
+  const { jobs: project_jobs } = useProjectJobs(job.project);
 
   const { isOver, setNodeRef } = useDroppable({
     id: `job_${job.id}`,

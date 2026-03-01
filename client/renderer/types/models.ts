@@ -163,6 +163,25 @@ export class XData {
   ) {}
 }
 
+/** Job node with embedded files and KPIs from job_tree endpoint.
+ * Extends Job but overrides files from number[] (IDs) to full File objects.
+ */
+export interface JobTreeNode extends Omit<Job, 'files'> {
+  files: File[];
+  kpis: {
+    float_values: Record<string, number>;
+    char_values: Record<string, string>;
+  };
+  children: JobTreeNode[];
+}
+
+/** Response from projects/{id}/job_tree endpoint */
+export interface JobTreeResponse {
+  job_tree: JobTreeNode[];
+  total_jobs: number;
+  total_files: number;
+}
+
 export const nullFile = {
   exports: [],
   fileimport: -1,

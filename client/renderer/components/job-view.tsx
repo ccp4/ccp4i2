@@ -40,15 +40,9 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     useCCP4i2Window();
   const api = useApi();
 
-  // Get project and jobs list first (from job_tree - always up to date)
   const { project, jobs, mutateJobs } = useProject(projectId);
 
-  // Find job status from jobs array (consistent with jobs list icons)
-  const jobFromTree = useMemo(() => {
-    return jobs?.find((j) => j.id === jobid);
-  }, [jobs, jobid]);
-
-  // Get detailed job data (params_xml, container, etc.) - status may lag behind
+  // Get detailed job data (params_xml, container, etc.)
   const {
     job,
     params_xml,
@@ -67,23 +61,20 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   } = useRunCheck();
   const { mode } = useTheme();
 
-  // Use job_tree status (jobFromTree) for polling - it's always current
-  // Fall back to useJob's status if job_tree hasn't loaded yet
+  // Status from job_tree (shared SWR key, polled by ClassicJobsList every 3-30s).
+  // Fall back to useJob's status during initial load.
+  const jobFromTree = useMemo(() => jobs?.find((j) => j.id === jobid), [jobs, jobid]);
   const currentStatus = jobFromTree?.status ?? job?.status;
   const isJobActive = useIsJobEffectivelyActive(jobid, currentStatus);
 
-  // Create merged job with current status from job_tree for consistent UI
-  // This ensures JobHeader shows the same status as the jobs list
+  // Merge: prefer job_tree status (more current), with useJob for detail fields
   const jobWithCurrentStatus = useMemo(() => {
-    if (!job) return undefined;
-    if (jobFromTree?.status !== undefined && jobFromTree.status !== job.status) {
+    if (!job) return jobFromTree;
+    if (jobFromTree && jobFromTree.status !== job.status) {
       return { ...job, status: jobFromTree.status };
     }
     return job;
-  }, [job, jobFromTree?.status]);
-
-  // Debug: log status sources
-  console.log(`[JobView] jobid=${jobid}, treeStatus=${jobFromTree?.status}, jobStatus=${job?.status}, mergedStatus=${jobWithCurrentStatus?.status}, isJobActive=${isJobActive}`);
+  }, [job, jobFromTree]);
 
   const previousJob = usePrevious(job);
   const { jobTabValue: tabValue, setJobTabValue: setTabValue } = useJobTab();

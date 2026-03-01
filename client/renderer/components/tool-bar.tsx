@@ -28,6 +28,7 @@ import { useRunCheck } from "../providers/run-check-provider";
 import { useJobTab } from "../providers/job-tab-provider";
 import { I2RunDialog } from "./i2run-dialog";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
+import { useProjectJobs } from "../utils";
 import { mutate } from "swr";
 
 interface ToolbarButton {
@@ -48,11 +49,7 @@ export default function ToolBar() {
     id: jobId,
     endpoint: "",
   });
-  const { mutate: mutateJobs } = api.get_endpoint<Job[]>({
-    type: "projects",
-    id: projectId,
-    endpoint: "jobs",
-  });
+  const { mutateJobs } = useProjectJobs(projectId);
   const router = useRouter();
   const [showHelpPanel, setShowHelpPanel] = useState(false);
   const [showI2RunDialog, setShowI2RunDialog] = useState(false);
@@ -62,13 +59,6 @@ export default function ToolBar() {
   const { setJobTabValue } = useJobTab();
   const { markJobAsStarting } = useRecentlyStartedJobs();
   const [menuAnchor, setMenuAnchor] = useState<null | HTMLElement>(null);
-
-  // Helper to mutate both jobs endpoints (flat list and tree)
-  const mutateAllJobs = () => {
-    mutateJobs();
-    // Also invalidate the job_tree endpoint used by classic-jobs-list
-    mutate((key: string) => typeof key === 'string' && key.includes(`/projects/${projectId}/job_tree`));
-  };
 
   useEffect(() => {
     if (!panelRef.current) return;
@@ -91,7 +81,7 @@ export default function ToolBar() {
         }
         if (cloneResult?.id) {
           mutateJob();
-          mutateAllJobs();
+          mutateJobs();
           router.push(`/ccp4i2/project/${projectId}/job/${cloneResult.id}`);
         }
       } catch (error) {
@@ -124,7 +114,7 @@ export default function ToolBar() {
             runResult.task_name || job.title
           );
           mutateJob();
-          mutateAllJobs();
+          mutateJobs();
           // Navigate to the running job if it's a new job (different from current)
           if (runResult.id !== job.id) {
             router.push(`/ccp4i2/project/${projectId}/job/${runResult.id}`);

@@ -17,21 +17,15 @@ export const CCP4i2ReportXMLView = () => {
   const { jobId, projectId } = useCCP4i2Window();
   const api = useApi();
 
-  // Get jobs from job_tree (always current status)
+  // jobs from useProject is now derived from job_tree (polled by ClassicJobsList)
   const { jobs } = useProject(projectId);
-  const jobFromTree = useMemo(() => {
-    return jobs?.find((j) => j.id === jobId);
-  }, [jobs, jobId]);
+  const jobFromTree = useMemo(() => jobs?.find((j) => j.id === jobId), [jobs, jobId]);
 
-  // Get full job data for rendering (status may lag behind job_tree)
   const { job } = useJob(jobId);
 
-  // Use job_tree status for polling (consistent with jobs list)
+  // Prefer job_tree status (polled every 3-30s), fall back to useJob
   const currentStatus = jobFromTree?.status ?? job?.status;
   const isJobActive = useIsJobEffectivelyActive(jobId ?? undefined, currentStatus);
-
-  // Debug: Log polling state on every render
-  console.log(`[Report] jobId=${jobId}, treeStatus=${jobFromTree?.status}, jobStatus=${job?.status}, isJobActive=${isJobActive}, will poll=${isJobActive ? 'yes (5s)' : 'no'}`);
 
   // Use centralized API hook for report XML fetching
   const { data: report_xml_json, error: fetchError, mutate: mutateReportXml } = api.jobReportXml(

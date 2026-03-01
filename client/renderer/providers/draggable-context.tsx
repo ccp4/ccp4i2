@@ -3,7 +3,7 @@ import { PropsWithChildren, useCallback } from "react";
 import { useCCP4i2Window } from "../app-context";
 import { Avatar } from "@mui/material";
 import { File, Job, Project } from "../types/models";
-import { useJob } from "../utils";
+import { useJob, useProjectJobs } from "../utils";
 import { useApi } from "../api";
 import { useTaskInterface } from "./task-provider";
 
@@ -19,11 +19,7 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
 
   const { activeDragItem, setActiveDragItem } = useCCP4i2Window();
 
-  const { data: project_jobs } = api.get_endpoint<Job[]>({
-    type: "projects",
-    id: job?.project,
-    endpoint: "jobs",
-  });
+  const { jobs: project_jobs } = useProjectJobs(job?.project);
 
   const { data: projects } = api.get<Project[]>("projects");
 

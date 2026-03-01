@@ -1,7 +1,7 @@
-import { useApi } from "../api";
 import { Grid2, GridSize } from "@mui/material";
 import { Job } from "../types/models";
 import { JobCard } from "./job-card";
+import { useProjectJobs } from "../utils";
 
 interface SizeProps {
   xs?: GridSize | null;
@@ -22,12 +22,7 @@ export const JobsGrid: React.FC<JobsGridProps> = ({
   parent = null,
   withSubtitles = false,
 }) => {
-  const api = useApi();
-  const { data: jobs } = api.get_endpoint<Job[]>({
-    type: "projects",
-    id: projectId,
-    endpoint: "jobs",
-  });
+  const { jobs } = useProjectJobs(projectId);
   return (
     <Grid2 container>
       {jobs &&
