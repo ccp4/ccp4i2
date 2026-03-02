@@ -1,37 +1,245 @@
-import React, { useCallback, useEffect, useMemo, useRef } from "react";
-import { Box, IconButton, Paper, Tooltip } from "@mui/material";
-import { Download } from "@mui/icons-material";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Box, Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
 import {
   useRunCheck,
   useSequenceWarning,
 } from "../../../providers/run-check-provider";
 
+const isTruthy = (val: any): boolean =>
+  val === true || val === "True" || val === "true";
+
+// ---------------------------------------------------------------------------
+// Pipeline step definitions for SHELX (always SHELXC/D/E mode)
+// ---------------------------------------------------------------------------
+const SHELX_STEPS = ["substrdet", "phdmmb", "building", "ref"];
+
+function checkStartEnd(
+  step: string,
+  startPipeline: string | undefined,
+  endPipeline: string | undefined
+): boolean {
+  const idx = SHELX_STEPS.indexOf(step);
+  if (idx < 0) return false;
+  const startIdx = startPipeline ? SHELX_STEPS.indexOf(startPipeline) : 0;
+  const endIdx = endPipeline
+    ? SHELX_STEPS.indexOf(endPipeline)
+    : SHELX_STEPS.length - 1;
+  if (startIdx < 0 || endIdx < 0) return false;
+  return idx >= startIdx && idx <= endIdx;
+}
+
+// ---------------------------------------------------------------------------
+// Anomalous scattering coefficient row
+// ---------------------------------------------------------------------------
+const ScatteringRow: React.FC<{
+  props: CCP4i2TaskInterfaceProps;
+  suffix: string;
+  onWavelengthChange?: () => void;
+}> = ({ props, suffix, onWavelengthChange }) => (
+  <Box
+    sx={{
+      display: "flex",
+      alignItems: "center",
+      gap: 1,
+      flexWrap: "wrap",
+      pl: 2,
+    }}
+  >
+    <Typography variant="body2">f&apos;:</Typography>
+    <Box sx={{ width: "6rem" }}>
+      <CCP4i2TaskElement
+        {...props}
+        itemName={`FPRIME${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+      />
+    </Box>
+    <Typography variant="body2">f&quot;:</Typography>
+    <Box sx={{ width: "6rem" }}>
+      <CCP4i2TaskElement
+        {...props}
+        itemName={`FDPRIME${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+      />
+    </Box>
+    <Typography variant="body2">wavelength:</Typography>
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement
+        {...props}
+        itemName={`WAVELENGTH${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+        onChange={onWavelengthChange}
+      />
+    </Box>
+    <Box sx={{ width: "8rem" }}>
+      <CCP4i2TaskElement
+        {...props}
+        itemName={`DNAME${suffix}`}
+        qualifiers={{ guiLabel: " " }}
+      />
+    </Box>
+  </Box>
+);
+
 /**
- * Task interface component for SHELX - Experimental Phasing Pipeline.
+ * Task interface for SHELX — SHELXC/D/E phasing and building.
  *
- * SHELX is used for:
- * - Single wavelength anomalous dispersion (SAD) phasing
- * - Multi-wavelength anomalous dispersion (MAD) phasing
- * - Heavy atom substructure determination
- * - Phase calculation and density modification
- * - Automated model building with Buccaneer integration
+ * SHELX is a simplified variant of the Crank2 pipeline that always uses
+ * SHELXC/D/E mode. Compared to the full Crank2 interface it omits:
+ * - Input partial model (MR-SAD)
+ * - Input starting phases
+ * - The SHELXC/D/E toggle (always on)
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, useFileDigest, fetchDigest, validation, createPeerTask } = useJob(
-    job.id
-  );
+  const { useTaskItem, callPluginMethod, fetchDigest, validation, createPeerTask } =
+    useJob(job.id);
   const { setProcessedErrors } = useRunCheck();
 
-  // Get SEQIN for sequence warning
-  const { value: SEQIN } = useTaskItem("SEQIN");
+  // =========================================================================
+  // useTaskItem hooks — all at top level (React rules)
+  // =========================================================================
 
-  // Use centralized sequence warning hook
+  // --- Input Data ---
+  const { value: startPipeline } = useTaskItem("START_PIPELINE");
+  const { value: endPipeline } = useTaskItem("END_PIPELINE");
+
+  const { value: inputSequenceRaw } = useTaskItem("INPUT_SEQUENCE");
+  const { value: nonMtzRaw } = useTaskItem("NON_MTZ");
+  const { value: mad2Raw } = useTaskItem("MAD2");
+  const { value: mad3Raw } = useTaskItem("MAD3");
+  const { value: mad4Raw } = useTaskItem("MAD4");
+  const { value: nativeRaw } = useTaskItem("NATIVE");
+
+  const { item: ATOM_TYPEItem, value: atomType } = useTaskItem("ATOM_TYPE");
+  useTaskItem("NUMBER_SUBSTRUCTURE");
+  useTaskItem("SUBSTRDET_NUM_DSUL");
+  useTaskItem("SEQIN");
+  useTaskItem("RESIDUES_MON_COPY");
+
+  // Cell params (visible when NON_MTZ)
+  useTaskItem("CELL_A");
+  useTaskItem("CELL_B");
+  useTaskItem("CELL_C");
+  useTaskItem("CELL_D");
+  useTaskItem("CELL_E");
+  useTaskItem("CELL_F");
+  useTaskItem("SPACEGROUP");
+
+  // Anomalous data files
+  const { item: F_SIGFanomItem } = useTaskItem("F_SIGFanom");
+  useTaskItem("F_SIGFanom2");
+  useTaskItem("F_SIGFanom3");
+  useTaskItem("F_SIGFanom4");
+  useTaskItem("F_SIGFanom_nonmtz");
+  useTaskItem("F_SIGFanom2_nonmtz");
+  useTaskItem("F_SIGFanom3_nonmtz");
+  useTaskItem("F_SIGFanom4_nonmtz");
+
+  // Wavelength / f' / f'' (4 datasets)
+  const { value: wavelength, forceUpdate: forceUpdateWAVELENGTH } =
+    useTaskItem("WAVELENGTH");
+  const { forceUpdate: forceUpdateFPRIME } = useTaskItem("FPRIME");
+  const { forceUpdate: forceUpdateFDPRIME } = useTaskItem("FDPRIME");
+  useTaskItem("WAVELENGTH2");
+  useTaskItem("WAVELENGTH3");
+  useTaskItem("WAVELENGTH4");
+  useTaskItem("FPRIME2");
+  useTaskItem("FDPRIME2");
+  useTaskItem("FPRIME3");
+  useTaskItem("FDPRIME3");
+  useTaskItem("FPRIME4");
+  useTaskItem("FDPRIME4");
+  useTaskItem("DNAME");
+  useTaskItem("DNAME2");
+  useTaskItem("DNAME3");
+  useTaskItem("DNAME4");
+
+  // Native
+  useTaskItem("F_SIGFnative");
+  useTaskItem("F_SIGFnative_nonmtz");
+  useTaskItem("SUBSTR_ATOMS_NATIVE");
+
+  // Free
+  const { value: freeVal } = useTaskItem("FREE");
+  useTaskItem("FREERFLAG");
+  useTaskItem("FREE_RATIO");
+
+  // --- Important Options ---
+  useTaskItem("RESIDUES_MON");
+  useTaskItem("MONOMERS_ASYM");
+  useTaskItem("SOLVENT_CONTENT");
+  useTaskItem("EXPTYPE");
+
+  // --- Advanced Options: Substructure detection ---
+  useTaskItem("SUBSTRDET_HIGH_RES_CUTOFF");
+  useTaskItem("SUBSTRDET_HIGH_RES_CUTOFF_CCHALF");
+  useTaskItem("SUBSTRDET_NUM_TRIALS");
+  useTaskItem("SUBSTRDET_THRESHOLD_STOP");
+  useTaskItem("SUBSTRDET_MIN_DIST_ATOMS");
+  useTaskItem("SUBSTRDET_MIN_DIST_SYMM_ATOMS");
+  useTaskItem("SUBSTRDET_NUM_THREADS");
+  useTaskItem("KEYWORDS_SUBSTRDET");
+
+  // --- Advanced Options: SHELXE (phdmmb) ---
+  useTaskItem("PHDMMB_DMCYC");
+  useTaskItem("PHDMMB_BIGCYC");
+  useTaskItem("PHDMMB_THRESHOLD_STOP");
+  useTaskItem("PHDMMB_THRESHOLD_HAND_STOP");
+  useTaskItem("SUBSTRDET_THRESHOLD_WEAK");
+  useTaskItem("ARGUMENTS_SHELXE");
+
+  // --- Advanced Options: Model building ---
+  const { value: useCombRaw } = useTaskItem("USE_COMB");
+  useTaskItem("MB_PROGRAM");
+  useTaskItem("KEYWORDS_MB");
+  useTaskItem("MBREF_BIGCYC");
+  useTaskItem("MBREF_EXCLUDE_FREE");
+
+  // --- Advanced Options: Final refinement ---
+  useTaskItem("REF_PROGRAM");
+  useTaskItem("REF_CYCLES");
+  useTaskItem("REF_EXCLUDE_FREE");
+  useTaskItem("KEYWORDS_REF");
+
+  useTaskItem("CLEANUP");
+
+  // --- Initialization: force SHELXCDE defaults ---
+  const { updateNoMutate: updateSHELXCDE } = useTaskItem("SHELXCDE");
+  const { updateNoMutate: updateUSE_COMB } = useTaskItem("USE_COMB");
+  const { updateNoMutate: updateSHELX_SEPAR } = useTaskItem("SHELX_SEPAR");
+  const { updateNoMutate: updateMB_PROGRAM, value: mbProgram } =
+    useTaskItem("MB_PROGRAM");
+  const { value: shelxcdeVal } = useTaskItem("SHELXCDE");
+  const { value: useCombVal } = useTaskItem("USE_COMB");
+  const { value: shelxSeparVal } = useTaskItem("SHELX_SEPAR");
+
+  const initDone = useRef(false);
+
+  useEffect(() => {
+    initDone.current = false;
+  }, [job?.id]);
+
+  useEffect(() => {
+    if (initDone.current || !job || job.status !== 1) return;
+    const updates: Promise<any>[] = [];
+    if (!isTruthy(shelxcdeVal)) updates.push(updateSHELXCDE(true));
+    if (isTruthy(useCombVal)) updates.push(updateUSE_COMB(false));
+    if (!isTruthy(shelxSeparVal)) updates.push(updateSHELX_SEPAR(true));
+    if (mbProgram !== "buccaneer") updates.push(updateMB_PROGRAM("buccaneer"));
+    if (updates.length > 0) Promise.all(updates).catch(console.error);
+    initDone.current = true;
+  }, [job?.status, shelxcdeVal, useCombVal, shelxSeparVal, mbProgram]);
+
+  // =========================================================================
+  // Sequence warning
+  // =========================================================================
+  const { value: SEQIN } = useTaskItem("SEQIN");
   useSequenceWarning({
     job,
     taskName: "shelx",
@@ -40,336 +248,745 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     createPeerTask,
   });
 
-  // Refs for preventing cycles
-  const initializationDone = useRef(false);
-
-  // Get task items for file handling and parameter updates
-  const { item: ATOM_TYPEItem, value: ATOM_TYPEValue } = useTaskItem("ATOM_TYPE");
-  const { item: F_SIGFanomItem, value: F_SIGFanomValue } = useTaskItem("F_SIGFanom");
-  const { value: WAVELENGTHValue, forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
-  const { forceUpdate: forceUpdateUSER_WAVELENGTH } = useTaskItem("USER_WAVELENGTH");
-  const { updateNoMutate: updateSHELXCDE } = useTaskItem("SHELXCDE");
-  const { updateNoMutate: updateUSE_COMB } = useTaskItem("USE_COMB");
-  const { updateNoMutate: updateSHELX_SEPAR } = useTaskItem("SHELX_SEPAR");
-  const { updateNoMutate: updateMB_PROGRAM } = useTaskItem("MB_PROGRAM");
-
-  // Get current values for initial setup
-  const taskValues = useMemo(
-    () => ({
-      SHELXCDE: useTaskItem("SHELXCDE").value,
-      USE_COMB: useTaskItem("USE_COMB").value,
-      SHELX_SEPAR: useTaskItem("SHELX_SEPAR").value,
-      MB_PROGRAM: useTaskItem("MB_PROGRAM").value,
-    }),
-    [useTaskItem]
-  );
-
-  // File digest for wavelength extraction - only fetch when file has been uploaded
-  const hasF_SIGFanom = Boolean(F_SIGFanomValue?.dbFileId);
-  const f_sigfanomDigestPath = hasF_SIGFanom && F_SIGFanomItem?._objectPath ? F_SIGFanomItem._objectPath : "";
-  const { data: F_SIGFanomDigest } = useFileDigest(f_sigfanomDigestPath);
-
-  // Wavelength extraction handler for F_SIGFanom onChange (imperative)
-  // Uses fetchDigest to get the digest for the newly selected file
-  const handleF_SIGFanomChange = useCallback(async () => {
-    if (!forceUpdateWAVELENGTH || !F_SIGFanomItem?._objectPath || !job || job.status !== 1)
-      return;
-
-    // Fetch digest imperatively for the new file
-    const digestData = await fetchDigest(F_SIGFanomItem._objectPath);
-
-    // Extract wavelength from digest
-    if (digestData?.wavelengths?.length > 0) {
-      const newWavelength =
-        digestData.wavelengths[digestData.wavelengths.length - 1];
-
-      // Only update if wavelength is valid
-      if (newWavelength && newWavelength < 9) {
-        try {
-          // forceUpdate patches the cache locally - no need for mutateContainer
-          await forceUpdateWAVELENGTH(newWavelength);
-          // Set USER_WAVELENGTH=true so crank2 knows to use it
-          if (forceUpdateUSER_WAVELENGTH) {
-            await forceUpdateUSER_WAVELENGTH(true);
-          }
-        } catch (error) {
-          console.error("Error updating wavelength:", error);
-        }
-      }
-    }
-  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomItem?._objectPath, fetchDigest, job?.status]);
-
-  // Handler for fetching wavelength from reflection file (button click)
-  const handleFetchWavelength = useCallback(async () => {
-    if (!forceUpdateWAVELENGTH || !F_SIGFanomDigest || !job || job.status !== 1) {
-      return;
-    }
-
-    const digestData = F_SIGFanomDigest;
-
-    if (digestData?.wavelengths?.length > 0) {
-      const newWavelength =
-        digestData.wavelengths[digestData.wavelengths.length - 1];
-
-      if (newWavelength && newWavelength < 9) {
-        try {
-          // forceUpdate patches the cache locally - no need for mutateContainer
-          await forceUpdateWAVELENGTH(newWavelength);
-          if (forceUpdateUSER_WAVELENGTH) {
-            await forceUpdateUSER_WAVELENGTH(true);
-          }
-        } catch (error) {
-          console.error("Error updating wavelength:", error);
-        }
-      }
-    }
-  }, [forceUpdateWAVELENGTH, forceUpdateUSER_WAVELENGTH, F_SIGFanomDigest, job?.status]);
-
-  // Check if we can fetch wavelength (file is set and has wavelength data)
-  const canFetchWavelength = hasF_SIGFanom && F_SIGFanomDigest?.wavelengths?.length > 0 && job.status === 1;
-
-  // Ref to track if we've already auto-populated wavelength for this file
-  const wavelengthAutoPopulatedRef = useRef<string | null>(null);
-
-  // Auto-populate wavelength when file is pre-set (e.g., from pipeline identity)
-  // This handles the case where the task is created with F_SIGFanom already populated
-  // but no onChange was fired, so wavelength wasn't extracted
-  useEffect(() => {
-    const autoPopulateWavelength = async () => {
-      // Only proceed if:
-      // 1. Job is editable
-      // 2. File is set and has digest with wavelengths
-      // 3. Wavelength is not yet set (0, undefined, or null)
-      // 4. We haven't already auto-populated for this file
-      if (
-        job?.status !== 1 ||
-        !hasF_SIGFanom ||
-        !F_SIGFanomDigest?.wavelengths?.length ||
-        !forceUpdateWAVELENGTH ||
-        (WAVELENGTHValue && WAVELENGTHValue > 0) ||
-        wavelengthAutoPopulatedRef.current === F_SIGFanomValue?.dbFileId
-      ) {
-        return;
-      }
-
-      const newWavelength = F_SIGFanomDigest.wavelengths[F_SIGFanomDigest.wavelengths.length - 1];
-
-      if (newWavelength && newWavelength < 9) {
-        try {
-          // Mark as auto-populated for this file to prevent re-running
-          wavelengthAutoPopulatedRef.current = F_SIGFanomValue?.dbFileId;
-
-          await forceUpdateWAVELENGTH(newWavelength);
-          if (forceUpdateUSER_WAVELENGTH) {
-            await forceUpdateUSER_WAVELENGTH(true);
-          }
-          console.log("Auto-populated wavelength from pre-set file:", newWavelength);
-        } catch (error) {
-          console.error("Error auto-populating wavelength:", error);
-        }
-      }
-    };
-
-    autoPopulateWavelength();
-  }, [
-    job?.status,
-    hasF_SIGFanom,
-    F_SIGFanomDigest,
-    F_SIGFanomValue?.dbFileId,
-    WAVELENGTHValue,
-    forceUpdateWAVELENGTH,
-    forceUpdateUSER_WAVELENGTH,
-  ]);
-
-  // Element configurations for parameters section
-  const parameterConfigs = useMemo(
-    () => [
-      {
-        key: "ATOM_TYPE",
-        label: "Anomalous atom type",
-        toolTip: "Type of heavy atom providing anomalous signal",
-      },
-      {
-        key: "START_PIPELINE",
-        label: "First step for analysis",
-        toolTip: "Starting point in the SHELX pipeline",
-      },
-      {
-        key: "END_PIPELINE",
-        label: "Last step for analysis",
-        toolTip: "Ending point in the SHELX pipeline",
-      },
-    ],
-    []
-  );
-
-  // Reset initialization flag when job changes
-  useEffect(() => {
-    initializationDone.current = false;
-  }, [job?.id]);
-
-  // Process validation errors - add custom ATOM_TYPE validation
-  // TODO: This client-side validation should be moved to Python's validity() method
-  // in pipelines/crank2/script/crank2.py (SHELX uses crank2 under the hood).
-  // Python validity() can check ATOM_TYPE and add appropriate error messages server-side.
+  // =========================================================================
+  // ATOM_TYPE validation
+  // =========================================================================
   useEffect(() => {
     if (!setProcessedErrors || !ATOM_TYPEItem?._objectPath) return;
-    if (!ATOM_TYPEValue || ATOM_TYPEValue.trim() === "") {
-      // ATOM_TYPE is empty - add error using the actual item's objectPath
-      const errors = {
+    if (!atomType || String(atomType).trim() === "") {
+      setProcessedErrors({
         ...(validation || {}),
         [ATOM_TYPEItem._objectPath]: {
           maxSeverity: 2,
           messages: ["ATOM_TYPE is required"],
         },
-      };
-      setProcessedErrors(errors);
+      });
     } else {
-      // ATOM_TYPE is valid - clear custom errors (revert to server validation)
       setProcessedErrors(null);
     }
-  }, [validation, setProcessedErrors, ATOM_TYPEItem?._objectPath, ATOM_TYPEValue]);
+  }, [validation, setProcessedErrors, ATOM_TYPEItem?._objectPath, atomType]);
 
-  // Initialize defaults once when job becomes editable
-  // Use a direct effect with minimal dependencies to avoid cycles
-  useEffect(() => {
-    const initializeDefaults = async () => {
-      if (initializationDone.current || !job || job.status !== 1) return;
+  // =========================================================================
+  // Local toggle state (CBoolean pattern — immediate UI)
+  // =========================================================================
+  const [inputSequence, setInputSequence] = useState(() =>
+    isTruthy(inputSequenceRaw)
+  );
+  const [nonMtz, setNonMtz] = useState(() => isTruthy(nonMtzRaw));
+  const [mad2, setMad2] = useState(() => isTruthy(mad2Raw));
+  const [mad3, setMad3] = useState(() => isTruthy(mad3Raw));
+  const [mad4, setMad4] = useState(() => isTruthy(mad4Raw));
+  const [native, setNative] = useState(() => isTruthy(nativeRaw));
+  const [useComb, setUseComb] = useState(() => isTruthy(useCombRaw));
 
-      const updates: Promise<any>[] = [];
+  // Sync from server
+  useEffect(() => setInputSequence(isTruthy(inputSequenceRaw)), [inputSequenceRaw]);
+  useEffect(() => setNonMtz(isTruthy(nonMtzRaw)), [nonMtzRaw]);
+  useEffect(() => setMad2(isTruthy(mad2Raw)), [mad2Raw]);
+  useEffect(() => setMad3(isTruthy(mad3Raw)), [mad3Raw]);
+  useEffect(() => setMad4(isTruthy(mad4Raw)), [mad4Raw]);
+  useEffect(() => setNative(isTruthy(nativeRaw)), [nativeRaw]);
+  useEffect(() => setUseComb(isTruthy(useCombRaw)), [useCombRaw]);
 
-      // Set default values only if they're not already set
-      if (taskValues.SHELXCDE === undefined || taskValues.SHELXCDE === null) {
-        updates.push(updateSHELXCDE(true));
-      }
-      if (taskValues.USE_COMB === true) {
-        updates.push(updateUSE_COMB(false));
-      }
-      if (
-        taskValues.SHELX_SEPAR === undefined ||
-        taskValues.SHELX_SEPAR === null
-      ) {
-        updates.push(updateSHELX_SEPAR(true));
-      }
-      if (taskValues.MB_PROGRAM !== "buccaneer") {
-        updates.push(updateMB_PROGRAM("buccaneer"));
-      }
+  const onToggle =
+    (setter: (v: boolean) => void) => (item: any) =>
+      setter(isTruthy(item._value));
 
-      if (updates.length > 0) {
-        try {
-          // Each update patches the cache locally - no need for mutateContainer
-          await Promise.all(updates);
-        } catch (error) {
-          console.error("Error initializing SHELX defaults:", error);
-        }
-      }
-
-      initializationDone.current = true;
-    };
-
-    // Only run when job status becomes editable and we haven't initialized yet
-    if (job?.status === 1 && !initializationDone.current) {
-      initializeDefaults();
-    }
-  }, [
-    job?.status,
-    // Only depend on the actual values, not the update functions
-    taskValues.SHELXCDE,
-    taskValues.USE_COMB,
-    taskValues.SHELX_SEPAR,
-    taskValues.MB_PROGRAM,
-  ]);
-
-  // Render helper function
-  const renderElements = useCallback(
-    (elements: any[]) =>
-      elements.map(({ key, label, onChange, ...extraProps }) => (
-        <CCP4i2TaskElement
-          {...props}
-          key={key}
-          itemName={key}
-          qualifiers={{ guiLabel: label, ...extraProps }}
-          onChange={onChange}
-        />
-      )),
-    [props]
+  // =========================================================================
+  // Pipeline visibility
+  // =========================================================================
+  const check = useCallback(
+    (step: string) =>
+      checkStartEnd(
+        step,
+        startPipeline as string | undefined,
+        endPipeline as string | undefined
+      ),
+    [startPipeline, endPipeline]
   );
 
+  const showDetection = useMemo(() => check("substrdet"), [check]);
+  const showShelxCDE = useMemo(() => check("phdmmb"), [check]);
+  const showModelBuilding = useMemo(() => check("building"), [check]);
+  const showRefine = useMemo(() => check("ref"), [check]);
+
+  // =========================================================================
+  // onChange handlers — compute f'/f'' from atom type + wavelength
+  // =========================================================================
+  const computeScatteringFactors = useCallback(
+    async (at?: string, wl?: number) => {
+      const a = at ?? (atomType as string);
+      const w = wl ?? (wavelength as number);
+      if (!a || !w || !job || job.status !== 1) return;
+      const result = await callPluginMethod("compute_anomalous_scattering", {
+        atom_type: String(a),
+        wavelength: Number(w),
+      });
+      if (result && result.fp !== undefined && result.fpp !== undefined) {
+        await forceUpdateFPRIME(result.fp);
+        await forceUpdateFDPRIME(result.fpp);
+      }
+    },
+    [
+      atomType,
+      wavelength,
+      callPluginMethod,
+      forceUpdateFPRIME,
+      forceUpdateFDPRIME,
+      job?.id,
+      job?.status,
+    ]
+  );
+
+  const handleAtomTypeChange = useCallback(
+    () => computeScatteringFactors(),
+    [computeScatteringFactors]
+  );
+
+  const handleWavelengthChange = useCallback(
+    () => computeScatteringFactors(),
+    [computeScatteringFactors]
+  );
+
+  const handleF_SIGFanomChange = useCallback(async () => {
+    if (!F_SIGFanomItem?._objectPath || !job || job.status !== 1) return;
+    const digest = await fetchDigest(F_SIGFanomItem._objectPath);
+    if (digest?.wavelengths?.length > 0) {
+      const wl = digest.wavelengths[digest.wavelengths.length - 1];
+      if (wl && wl > 0 && wl < 9) {
+        await forceUpdateWAVELENGTH(wl);
+        await computeScatteringFactors(undefined, wl);
+      }
+    }
+  }, [
+    F_SIGFanomItem?._objectPath,
+    fetchDigest,
+    forceUpdateWAVELENGTH,
+    computeScatteringFactors,
+    job?.id,
+    job?.status,
+  ]);
+
+  // =========================================================================
+  // Render
+  // =========================================================================
   return (
     <Paper>
       <CCP4i2Tabs>
-        <CCP4i2Tab label="Main inputs" key="main">
+        {/* ================================================================
+            TAB 1: INPUT DATA
+            ================================================================ */}
+        <CCP4i2Tab label="Input Data" key="input">
+          {/* Pipeline selection */}
+          <FieldRow>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                flexWrap: "wrap",
+              }}
+            >
+              <Typography variant="body1">Start pipeline with</Typography>
+              <Box sx={{ width: "14rem" }}>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="START_PIPELINE"
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </Box>
+              <Typography variant="body1">and end with</Typography>
+              <Box sx={{ width: "14rem" }}>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="END_PIPELINE"
+                  qualifiers={{ guiLabel: " " }}
+                />
+              </Box>
+            </Box>
+          </FieldRow>
+
+          {/* Input protein sequence */}
           <CCP4i2ContainerElement
             {...props}
             itemName=""
-            qualifiers={{
-              guiLabel: "Key files",
-              initiallyOpen: true,
-            }}
+            qualifiers={{ guiLabel: "Input protein sequence" }}
             containerHint="FolderLevel"
           >
             <CCP4i2TaskElement
               {...props}
-              itemName="F_SIGFanom"
-              qualifiers={{
-                guiLabel: "Reflections",
-                toolTip: "Anomalous reflection data for phasing",
-              }}
-              onChange={handleF_SIGFanomChange}
+              itemName="INPUT_SEQUENCE"
+              onChange={onToggle(setInputSequence)}
             />
-            <Box sx={{ display: "flex", alignItems: "flex-start", gap: 0.5 }}>
-              {canFetchWavelength && (
-                <Tooltip title="Fetch wavelength from reflection file">
-                  <IconButton
-                    size="small"
-                    onClick={handleFetchWavelength}
-                    color="primary"
-                    sx={{ mt: 1 }}
-                  >
-                    <Download fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              )}
-              <Box sx={{ flex: 1 }}>
+            {inputSequence && (
+              <CCP4i2TaskElement {...props} itemName="SEQIN" />
+            )}
+            {!inputSequence && (
+              <CCP4i2TaskElement
+                {...props}
+                itemName="RESIDUES_MON_COPY"
+                qualifiers={{
+                  guiLabel: "Number of residues per monomer",
+                }}
+              />
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Crystal #1 composition and anomalous datasets */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{
+              guiLabel:
+                "Crystal #1 composition and collected anomalous dataset(s)",
+            }}
+            containerHint="FolderLevel"
+          >
+            {/* Atom type + number of atoms */}
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="ATOM_TYPE"
+                qualifiers={{ guiLabel: "Substructure atom" }}
+                onChange={handleAtomTypeChange}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="NUMBER_SUBSTRUCTURE"
+                qualifiers={{
+                  guiLabel:
+                    "Number of substr. atoms in asymmetric unit",
+                }}
+              />
+            </FieldRow>
+
+            {/* Disulfide count — visible for Sulphur */}
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_NUM_DSUL"
+              qualifiers={{
+                guiLabel:
+                  "Number of S-S pairs searched for as 1 supersulfur",
+              }}
+              visibility={() =>
+                String(atomType).toUpperCase() === "S"
+              }
+            />
+
+            {/* Cell params when NON_MTZ */}
+            {nonMtz && (
+              <FieldRow equalWidth={false} size="xs">
                 <CCP4i2TaskElement
                   {...props}
-                  itemName="WAVELENGTH"
-                  qualifiers={{
-                    guiLabel: "Wavelength",
-                    toolTip: "X-ray wavelength used for data collection",
-                  }}
+                  itemName="CELL_A"
+                  qualifiers={{ guiLabel: "Cell:" }}
                 />
-              </Box>
-            </Box>
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_B"
+                  qualifiers={{ guiLabel: " " }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_C"
+                  qualifiers={{ guiLabel: " " }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_D"
+                  qualifiers={{ guiLabel: " " }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_E"
+                  qualifiers={{ guiLabel: " " }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="CELL_F"
+                  qualifiers={{ guiLabel: " " }}
+                />
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="SPACEGROUP"
+                  qualifiers={{ guiLabel: "Spacegroup" }}
+                />
+              </FieldRow>
+            )}
+
+            {/* Anomalous data (Friedel pairs) — Dataset 1 */}
+            <CCP4i2ContainerElement
+              {...props}
+              itemName=""
+              qualifiers={{ guiLabel: "Anomalous data (Friedel pairs)" }}
+              containerHint="BlockLevel"
+            >
+              <CCP4i2TaskElement
+                {...props}
+                itemName="NON_MTZ"
+                qualifiers={{
+                  guiLabel:
+                    "Input unmerged/merged SCA/XDS/SHELX format",
+                }}
+                onChange={onToggle(setNonMtz)}
+              />
+              {nonMtz ? (
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="F_SIGFanom_nonmtz"
+                  qualifiers={{ guiLabel: "Reflections" }}
+                />
+              ) : (
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="F_SIGFanom"
+                  qualifiers={{ guiLabel: "Reflections" }}
+                  onChange={handleF_SIGFanomChange}
+                />
+              )}
+              <ScatteringRow
+                props={props}
+                suffix=""
+                onWavelengthChange={handleWavelengthChange}
+              />
+            </CCP4i2ContainerElement>
+
+            {/* MAD Dataset 2 */}
+            <CCP4i2ContainerElement
+              {...props}
+              itemName=""
+              qualifiers={{
+                guiLabel: "Input anomalous data #2 (MAD)",
+              }}
+              containerHint="BlockLevel"
+            >
+              <CCP4i2TaskElement
+                {...props}
+                itemName="MAD2"
+                onChange={onToggle(setMad2)}
+              />
+              {mad2 && (
+                <>
+                  {nonMtz ? (
+                    <CCP4i2TaskElement
+                      {...props}
+                      itemName="F_SIGFanom2_nonmtz"
+                      qualifiers={{ guiLabel: "Reflections" }}
+                    />
+                  ) : (
+                    <CCP4i2TaskElement
+                      {...props}
+                      itemName="F_SIGFanom2"
+                      qualifiers={{ guiLabel: "Reflections" }}
+                    />
+                  )}
+                  <ScatteringRow props={props} suffix="2" />
+                </>
+              )}
+            </CCP4i2ContainerElement>
+
+            {/* MAD Dataset 3 */}
+            {mad2 && (
+              <CCP4i2ContainerElement
+                {...props}
+                itemName=""
+                qualifiers={{
+                  guiLabel: "Input anomalous data #3 (MAD)",
+                }}
+                containerHint="BlockLevel"
+              >
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MAD3"
+                  onChange={onToggle(setMad3)}
+                />
+                {mad3 && (
+                  <>
+                    {nonMtz ? (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom3_nonmtz"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    ) : (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom3"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    )}
+                    <ScatteringRow props={props} suffix="3" />
+                  </>
+                )}
+              </CCP4i2ContainerElement>
+            )}
+
+            {/* MAD Dataset 4 */}
+            {mad3 && (
+              <CCP4i2ContainerElement
+                {...props}
+                itemName=""
+                qualifiers={{
+                  guiLabel: "Input anomalous data #4 (MAD)",
+                }}
+                containerHint="BlockLevel"
+              >
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="MAD4"
+                  onChange={onToggle(setMad4)}
+                />
+                {mad4 && (
+                  <>
+                    {nonMtz ? (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom4_nonmtz"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    ) : (
+                      <CCP4i2TaskElement
+                        {...props}
+                        itemName="F_SIGFanom4"
+                        qualifiers={{ guiLabel: "Reflections" }}
+                      />
+                    )}
+                    <ScatteringRow props={props} suffix="4" />
+                  </>
+                )}
+              </CCP4i2ContainerElement>
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Native observations */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{
+              guiLabel: "Input native observations (Crystal #2)",
+            }}
+            containerHint="FolderLevel"
+            initiallyOpen={false}
+          >
             <CCP4i2TaskElement
               {...props}
-              itemName="SEQIN"
-              qualifiers={{
-                guiLabel: "Asymmetric unit content",
-                toolTip: "Sequence file defining the protein content",
-              }}
+              itemName="NATIVE"
+              onChange={onToggle(setNative)}
+            />
+            {native && (
+              <>
+                {nonMtz ? (
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="F_SIGFnative_nonmtz"
+                    qualifiers={{ guiLabel: "Reflections" }}
+                  />
+                ) : (
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="F_SIGFnative"
+                    qualifiers={{ guiLabel: "Reflections" }}
+                  />
+                )}
+                <CCP4i2TaskElement
+                  {...props}
+                  itemName="SUBSTR_ATOMS_NATIVE"
+                  qualifiers={{
+                    guiLabel:
+                      "Substructure atoms present in the native crystal",
+                  }}
+                />
+              </>
+            )}
+          </CCP4i2ContainerElement>
+
+          {/* Exclude free */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Exclude free" }}
+            containerHint="FolderLevel"
+          >
+            <CCP4i2TaskElement {...props} itemName="FREE" />
+            {freeVal === "existing" && (
+              <CCP4i2TaskElement {...props} itemName="FREERFLAG" />
+            )}
+            {freeVal === "new" && (
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 1,
+                }}
+              >
+                <Typography variant="body1">
+                  consisting of
+                </Typography>
+                <Box sx={{ width: "6rem" }}>
+                  <CCP4i2TaskElement
+                    {...props}
+                    itemName="FREE_RATIO"
+                    qualifiers={{ guiLabel: " " }}
+                  />
+                </Box>
+                <Typography variant="body1">
+                  % of reflections
+                </Typography>
+              </Box>
+            )}
+          </CCP4i2ContainerElement>
+        </CCP4i2Tab>
+
+        {/* ================================================================
+            TAB 2: IMPORTANT OPTIONS
+            ================================================================ */}
+        <CCP4i2Tab label="Important Options" key="important">
+          <FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="RESIDUES_MON"
+              qualifiers={{ guiLabel: "Residues/monomer" }}
             />
             <CCP4i2TaskElement
               {...props}
-              itemName="FREERFLAG"
+              itemName="MONOMERS_ASYM"
+              qualifiers={{ guiLabel: "NCS copies" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SOLVENT_CONTENT"
+              qualifiers={{ guiLabel: "Solvent Content" }}
+            />
+          </FieldRow>
+
+          <CCP4i2TaskElement
+            {...props}
+            itemName="EXPTYPE"
+            qualifiers={{ guiLabel: "Phasing method" }}
+            visibility={() => native || mad2}
+          />
+        </CCP4i2Tab>
+
+        {/* ================================================================
+            TAB 3: ADVANCED OPTIONS
+            ================================================================ */}
+        <CCP4i2Tab label="Advanced Options" key="advanced">
+          <Typography
+            variant="body2"
+            sx={{ fontStyle: "italic", mb: 1, pl: 1 }}
+          >
+            Note: empty input fields mean that internal program defaults
+            will be used.
+          </Typography>
+
+          {/* Substructure detection */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Substructure detection" }}
+            containerHint="FolderLevel"
+            visibility={() => showDetection}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_HIGH_RES_CUTOFF"
+              qualifiers={{ guiLabel: "High resolution cutoff" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_HIGH_RES_CUTOFF_CCHALF"
               qualifiers={{
-                guiLabel: "Free R flags",
-                toolTip: "Test set flags for cross-validation",
+                guiLabel:
+                  "Use CCanom1/2 based cutoff (if available)",
+              }}
+            />
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_NUM_TRIALS"
+                qualifiers={{ guiLabel: "Num. trials" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_THRESHOLD_STOP"
+                qualifiers={{ guiLabel: "CFOM threshold" }}
+              />
+            </FieldRow>
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_MIN_DIST_ATOMS"
+                qualifiers={{
+                  guiLabel: "Minimum distance between atoms",
+                }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="SUBSTRDET_MIN_DIST_SYMM_ATOMS"
+                qualifiers={{
+                  guiLabel: "Atoms in special positions allowed",
+                }}
+              />
+            </FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_NUM_THREADS"
+              qualifiers={{ guiLabel: "Number of CPU threads" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="KEYWORDS_SUBSTRDET"
+              qualifiers={{
+                guiLabel: "Custom program keywords (comma separated)",
               }}
             />
           </CCP4i2ContainerElement>
 
+          {/* Density modification and poly-Ala tracing with SHELXE */}
           <CCP4i2ContainerElement
             {...props}
             itemName=""
             qualifiers={{
-              guiLabel: "Parameters",
-              initiallyOpen: true,
+              guiLabel:
+                "Density modification and poly-Ala tracing with SHELXE",
             }}
             containerHint="FolderLevel"
+            visibility={() => showShelxCDE}
           >
-            {renderElements(parameterConfigs)}
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_DMCYC"
+                qualifiers={{
+                  guiLabel: "Number of density modif. cycles",
+                }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_BIGCYC"
+                qualifiers={{
+                  guiLabel: "Number of model building cycles",
+                }}
+              />
+            </FieldRow>
+            <FieldRow>
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_THRESHOLD_STOP"
+                qualifiers={{ guiLabel: "CC threshold" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="PHDMMB_THRESHOLD_HAND_STOP"
+                qualifiers={{
+                  guiLabel: "Other hand CC threshold",
+                }}
+              />
+            </FieldRow>
+            <CCP4i2TaskElement
+              {...props}
+              itemName="SUBSTRDET_THRESHOLD_WEAK"
+              qualifiers={{
+                guiLabel:
+                  "Use thorough building if CFOM from substr. detection is smaller than",
+              }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="ARGUMENTS_SHELXE"
+              qualifiers={{
+                guiLabel: "Custom program arguments (comma separated)",
+              }}
+            />
           </CCP4i2ContainerElement>
+
+          {/* Model building */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Model building" }}
+            containerHint="FolderLevel"
+            visibility={() => showModelBuilding}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="USE_COMB"
+              qualifiers={{
+                guiLabel:
+                  "Combine phase, model and density modif. information",
+              }}
+              onChange={onToggle(setUseComb)}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="MB_PROGRAM"
+              qualifiers={{ guiLabel: "Model building program" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="KEYWORDS_MB"
+              qualifiers={{
+                guiLabel: "Custom keywords for building program",
+              }}
+            />
+
+            <CCP4i2ContainerElement
+              {...props}
+              itemName=""
+              qualifiers={{ guiLabel: " " }}
+              containerHint="BlockLevel"
+            >
+              <CCP4i2TaskElement
+                {...props}
+                itemName="MBREF_BIGCYC"
+                qualifiers={{
+                  guiLabel: "Number of building cycles",
+                }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName="MBREF_EXCLUDE_FREE"
+                qualifiers={{
+                  guiLabel:
+                    "Exclude the free reflections in model building",
+                }}
+              />
+            </CCP4i2ContainerElement>
+          </CCP4i2ContainerElement>
+
+          {/* Final refinement */}
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{ guiLabel: "Final refinement" }}
+            containerHint="FolderLevel"
+            visibility={() => showRefine}
+          >
+            <CCP4i2TaskElement
+              {...props}
+              itemName="REF_PROGRAM"
+              qualifiers={{ guiLabel: "Refinement program" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="REF_CYCLES"
+              qualifiers={{ guiLabel: "Refinement cycles" }}
+            />
+            <CCP4i2TaskElement
+              {...props}
+              itemName="REF_EXCLUDE_FREE"
+              qualifiers={{ guiLabel: "Exclude free reflections" }}
+            />
+          </CCP4i2ContainerElement>
+
+          {/* Cleanup */}
+          <CCP4i2TaskElement
+            {...props}
+            itemName="CLEANUP"
+            qualifiers={{
+              guiLabel: "Remove all intermediate mtz files at the end?",
+            }}
+          />
         </CCP4i2Tab>
       </CCP4i2Tabs>
     </Paper>

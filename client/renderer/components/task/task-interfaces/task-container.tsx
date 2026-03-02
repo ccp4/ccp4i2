@@ -24,6 +24,7 @@ import PhaserEPLLGInterface from "./phaser_EP_LLG";
 import PhaserPipelineInterface from "./phaser_pipeline";
 import ParrotInterface from "./parrot";
 import SHELXInterface from "./shelx";
+import ShelxeMRInterface from "./shelxeMR";
 import CSymmatchInterface from "./csymmatch";
 import FreerFlagInterface from "./freerflag";
 import GesamtInterface from "./gesamt";
@@ -153,6 +154,8 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <SubstituteLigandInterface job={job} />;
       case "shelx":
         return <SHELXInterface job={job} />;
+      case "shelxeMR":
+        return <ShelxeMRInterface job={job} />;
       case "splitMtz":
         return <SplitMtzInterface job={job} />;
 
