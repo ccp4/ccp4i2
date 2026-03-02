@@ -2,10 +2,10 @@
 import {
   Box,
   Chip,
+  Divider,
   FormControl,
   InputLabel,
   MenuItem,
-  Paper,
   Select,
   Stack,
   Table,
@@ -28,18 +28,6 @@ interface MtzHeaderSummaryProps {
   autoDetectedColumn?: string | null;
 }
 
-const cellParamLabels = ["a", "b", "c", "\u03B1", "\u03B2", "\u03B3"] as const;
-const cellParamUnits = ["\u00C5", "\u00C5", "\u00C5", "\u00B0", "\u00B0", "\u00B0"] as const;
-
-function formatCell(cell: NonNullable<MtzHeader["cell"]>) {
-  const values = [cell.a, cell.b, cell.c, cell.alpha, cell.beta, cell.gamma];
-  return values.map((v, i) => ({
-    label: cellParamLabels[i],
-    value: v.toFixed(2),
-    unit: cellParamUnits[i],
-  }));
-}
-
 const columnTypeNames: Record<string, string> = {
   H: "Index",
   J: "Intensity",
@@ -60,6 +48,26 @@ const columnTypeNames: Record<string, string> = {
   Y: "M/ISYM",
 };
 
+/** Compact display of a cell parameter: italic label, monospace value, small unit */
+function CellParam({ label, value, unit }: { label: string; value: string; unit: string }) {
+  return (
+    <Box sx={{ display: "inline-flex", alignItems: "baseline", mr: 2, mb: 0.25 }}>
+      <Typography
+        component="span"
+        sx={{ fontStyle: "italic", fontWeight: 600, fontSize: "0.85rem", mr: 0.5, color: "text.secondary" }}
+      >
+        {label}
+      </Typography>
+      <Typography component="span" sx={{ fontFamily: "monospace", fontSize: "0.9rem" }}>
+        {value}
+      </Typography>
+      <Typography component="span" sx={{ color: "text.disabled", fontSize: "0.7rem", ml: 0.25 }}>
+        {unit}
+      </Typography>
+    </Box>
+  );
+}
+
 export const MtzHeaderSummary: React.FC<MtzHeaderSummaryProps> = ({
   header,
   onColorColumnChange,
@@ -70,25 +78,54 @@ export const MtzHeaderSummary: React.FC<MtzHeaderSummaryProps> = ({
   const colorableTypes = new Set(["J", "F", "E", "D", "Q", "R", "K", "G", "W"]);
   const colorColumns = header.columns.filter((c) => colorableTypes.has(c.type));
 
+  // Format resolution string
+  const resolutionStr = header.resolution
+    ? `${header.resolution[0].toFixed(1)}\u2009\u2013\u2009${header.resolution[1].toFixed(2)}\u2009\u00C5`
+    : null;
+
+  // Datasets with wavelength
+  const datasetsWithWavelength = header.datasets.filter(
+    (ds) => ds.wavelength !== undefined && ds.wavelength > 0
+  );
+
+  // Distinct wavelengths
+  const wavelengths = [...new Set(datasetsWithWavelength.map((ds) => ds.wavelength!))];
+
   return (
-    <Stack spacing={2} sx={{ height: "100%", overflowY: "auto" }}>
-      {/* Title */}
+    <Stack spacing={1.5} sx={{ height: "100%", overflowY: "auto" }}>
+      {/* Provenance / title */}
       {header.title && (
-        <Typography variant="body2" color="text.secondary" sx={{ fontStyle: "italic" }}>
+        <Typography variant="body2" color="text.secondary" sx={{ fontStyle: "italic", lineHeight: 1.3 }}>
           {header.title}
         </Typography>
       )}
 
-      {/* Key stats */}
-      <Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>
-        {header.spaceGroup && (
-          <Chip
-            label={`${header.spaceGroup}${header.spaceGroupNumber ? ` (#${header.spaceGroupNumber})` : ""}`}
-            size="small"
-            color="primary"
-            variant="outlined"
-          />
-        )}
+      {/* Space group — prominent */}
+      {header.spaceGroup && (
+        <Box>
+          <Typography
+            sx={{
+              fontFamily: "monospace",
+              fontSize: "1.1rem",
+              fontWeight: 600,
+              letterSpacing: "0.02em",
+            }}
+          >
+            {header.spaceGroup}
+            {header.spaceGroupNumber ? (
+              <Typography
+                component="span"
+                sx={{ color: "text.secondary", fontWeight: 400, fontSize: "0.85rem", ml: 0.75 }}
+              >
+                #{header.spaceGroupNumber}
+              </Typography>
+            ) : null}
+          </Typography>
+        </Box>
+      )}
+
+      {/* Key stats in a compact row */}
+      <Stack direction="row" spacing={0.75} flexWrap="wrap" useFlexGap alignItems="center">
         <Chip
           label={`${header.nReflections.toLocaleString()} reflections`}
           size="small"
@@ -98,97 +135,90 @@ export const MtzHeaderSummary: React.FC<MtzHeaderSummaryProps> = ({
           label={header.isMerged ? "Merged" : "Unmerged"}
           size="small"
           variant="outlined"
+          color={header.isMerged ? "default" : "info"}
         />
-        {header.resolution && (
+        {!header.isMerged && header.nBatches > 0 && (
           <Chip
-            label={`${header.resolution[0].toFixed(1)} - ${header.resolution[1].toFixed(2)} \u00C5`}
+            label={`${header.nBatches} batches`}
+            size="small"
+            variant="outlined"
+          />
+        )}
+        {resolutionStr && (
+          <Chip label={resolutionStr} size="small" variant="outlined" />
+        )}
+        {wavelengths.length === 1 && (
+          <Chip
+            label={`\u03BB\u2009${wavelengths[0].toFixed(4)}\u2009\u00C5`}
             size="small"
             variant="outlined"
           />
         )}
       </Stack>
 
-      {/* Unit Cell - compact 3-column layout */}
+      <Divider />
+
+      {/* Unit cell — compact inline layout */}
       {header.cell && (
-        <Paper variant="outlined" sx={{ p: 1.5 }}>
-          <Typography variant="subtitle2" gutterBottom>
+        <Box>
+          <Typography variant="caption" color="text.secondary" sx={{ mb: 0.5, display: "block" }}>
             Unit Cell
           </Typography>
-          <Table size="small" padding="none">
-            <TableBody>
-              <TableRow sx={{ "& td": { borderBottom: "none", py: 0.25 } }}>
-                {formatCell(header.cell).slice(0, 3).map(({ label, value, unit }) => (
-                  <TableCell key={label} sx={{ px: 0.5 }}>
-                    <Typography component="span" sx={{ fontWeight: 500, fontStyle: "italic", mr: 0.5 }}>
-                      {label}
-                    </Typography>
-                    <Typography component="span" sx={{ fontFamily: "monospace" }}>
-                      {value}
-                    </Typography>
-                    <Typography component="span" sx={{ color: "text.secondary", ml: 0.25, fontSize: "0.8rem" }}>
-                      {unit}
-                    </Typography>
-                  </TableCell>
-                ))}
-              </TableRow>
-              <TableRow sx={{ "& td": { borderBottom: "none", py: 0.25 } }}>
-                {formatCell(header.cell).slice(3, 6).map(({ label, value, unit }) => (
-                  <TableCell key={label} sx={{ px: 0.5 }}>
-                    <Typography component="span" sx={{ fontWeight: 500, fontStyle: "italic", mr: 0.5 }}>
-                      {label}
-                    </Typography>
-                    <Typography component="span" sx={{ fontFamily: "monospace" }}>
-                      {value}
-                    </Typography>
-                    <Typography component="span" sx={{ color: "text.secondary", ml: 0.25, fontSize: "0.8rem" }}>
-                      {unit}
-                    </Typography>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableBody>
-          </Table>
-        </Paper>
+          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+            <CellParam label="a" value={header.cell.a.toFixed(2)} unit={"\u00C5"} />
+            <CellParam label="b" value={header.cell.b.toFixed(2)} unit={"\u00C5"} />
+            <CellParam label="c" value={header.cell.c.toFixed(2)} unit={"\u00C5"} />
+          </Box>
+          <Box sx={{ display: "flex", flexWrap: "wrap" }}>
+            <CellParam label={"\u03B1"} value={header.cell.alpha.toFixed(2)} unit={"\u00B0"} />
+            <CellParam label={"\u03B2"} value={header.cell.beta.toFixed(2)} unit={"\u00B0"} />
+            <CellParam label={"\u03B3"} value={header.cell.gamma.toFixed(2)} unit={"\u00B0"} />
+          </Box>
+        </Box>
       )}
 
-      {/* Datasets */}
-      {header.datasets.length > 0 && (
-        <Accordion defaultExpanded={header.datasets.length <= 2} disableGutters>
-          <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography variant="subtitle2">
-              Datasets ({header.datasets.length})
-            </Typography>
-          </AccordionSummary>
-          <AccordionDetails sx={{ p: 0 }}>
-            <Table size="small" padding="none">
-              <TableBody>
-                {header.datasets.map((ds) => {
-                  const name = ds.datasetName || ds.crystalName || `Dataset ${ds.id}`;
-                  const parts: string[] = [];
-                  if (ds.crystalName && ds.crystalName !== name) parts.push(ds.crystalName);
-                  if (ds.wavelength !== undefined && ds.wavelength > 0)
-                    parts.push(`\u03BB ${ds.wavelength.toFixed(4)}\u00C5`);
-                  return (
-                    <TableRow key={ds.id}>
-                      <TableCell sx={{ py: 0.25, px: 1, fontWeight: 500, fontSize: "0.8rem" }}>
-                        {name}
-                      </TableCell>
-                      <TableCell sx={{ py: 0.25, px: 1, color: "text.secondary", fontSize: "0.75rem" }}>
-                        {parts.join(" \u00B7 ")}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
-              </TableBody>
-            </Table>
-          </AccordionDetails>
-        </Accordion>
+      {/* Datasets — shown if more than one or if multi-wavelength */}
+      {header.datasets.length > 0 && (wavelengths.length > 1 || header.datasets.length > 1) && (
+        <>
+          <Divider />
+          <Accordion defaultExpanded={header.datasets.length <= 3} disableGutters elevation={0}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ minHeight: 0, px: 0, "& .MuiAccordionSummary-content": { my: 0.5 } }}>
+              <Typography variant="caption" color="text.secondary">
+                Datasets ({header.datasets.length})
+              </Typography>
+            </AccordionSummary>
+            <AccordionDetails sx={{ p: 0 }}>
+              <Table size="small" padding="none">
+                <TableBody>
+                  {header.datasets.map((ds) => {
+                    const name = ds.datasetName || ds.crystalName || `Dataset ${ds.id}`;
+                    const parts: string[] = [];
+                    if (ds.crystalName && ds.crystalName !== name) parts.push(ds.crystalName);
+                    if (ds.wavelength !== undefined && ds.wavelength > 0)
+                      parts.push(`\u03BB\u2009${ds.wavelength.toFixed(4)}\u2009\u00C5`);
+                    return (
+                      <TableRow key={ds.id}>
+                        <TableCell sx={{ py: 0.25, px: 0.5, fontWeight: 500, fontSize: "0.8rem" }}>
+                          {name}
+                        </TableCell>
+                        <TableCell sx={{ py: 0.25, px: 0.5, color: "text.secondary", fontSize: "0.75rem" }}>
+                          {parts.join(" \u00B7 ")}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
+                </TableBody>
+              </Table>
+            </AccordionDetails>
+          </Accordion>
+        </>
       )}
 
       {/* Columns */}
-      <Accordion disableGutters>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography variant="subtitle2">
+      <Divider />
+      <Accordion disableGutters elevation={0}>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ minHeight: 0, px: 0, "& .MuiAccordionSummary-content": { my: 0.5 } }}>
+          <Typography variant="caption" color="text.secondary">
             Columns ({header.columns.length})
           </Typography>
         </AccordionSummary>
@@ -197,20 +227,20 @@ export const MtzHeaderSummary: React.FC<MtzHeaderSummaryProps> = ({
             <TableBody>
               {header.columns.map((col) => (
                 <TableRow key={col.label} hover>
-                  <TableCell sx={{ fontFamily: "monospace", fontWeight: 500, py: 0.5 }}>
+                  <TableCell sx={{ fontFamily: "monospace", fontWeight: 500, py: 0.25, fontSize: "0.8rem" }}>
                     {col.label}
                   </TableCell>
-                  <TableCell sx={{ py: 0.5 }}>
+                  <TableCell sx={{ py: 0.25 }}>
                     <Chip
                       label={col.type}
                       size="small"
                       variant="outlined"
-                      sx={{ height: 20, fontSize: "0.7rem" }}
+                      sx={{ height: 18, fontSize: "0.65rem" }}
                       title={columnTypeNames[col.type] || col.type}
                     />
                   </TableCell>
                   <TableCell
-                    sx={{ py: 0.5, color: "text.secondary", fontSize: "0.75rem" }}
+                    sx={{ py: 0.25, color: "text.secondary", fontSize: "0.7rem" }}
                   >
                     {columnTypeNames[col.type] || ""}
                   </TableCell>
@@ -223,7 +253,8 @@ export const MtzHeaderSummary: React.FC<MtzHeaderSummaryProps> = ({
 
       {/* Color column selector */}
       {colorColumns.length > 0 && onColorColumnChange && (
-        <Box sx={{ pt: 1 }}>
+        <>
+          <Divider />
           <FormControl size="small" fullWidth>
             <InputLabel>Color by</InputLabel>
             <Select
@@ -249,7 +280,7 @@ export const MtzHeaderSummary: React.FC<MtzHeaderSummaryProps> = ({
               ))}
             </Select>
           </FormControl>
-        </Box>
+        </>
       )}
     </Stack>
   );

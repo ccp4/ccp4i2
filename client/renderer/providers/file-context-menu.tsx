@@ -384,7 +384,7 @@ export const FileMenu: React.FC = () => {
       if (file) {
         setContentSpecification({
           url: `/api/proxy/ccp4i2/files/${file.id}/download/`,
-          title: `${file.name} - MTZ Header`,
+          title: file.name,
           language: "mtz",
         });
         setFileMenuAnchorEl(null);
