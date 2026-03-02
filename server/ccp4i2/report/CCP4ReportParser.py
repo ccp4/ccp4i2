@@ -1800,6 +1800,25 @@ class BaseTable(ReportClass):
 # JavaScript-Enhances Table class
 
 
+def _set_cell_content(cell_element, content):
+    """Set table cell content, preserving inline HTML if present.
+
+    If content contains valid XML/HTML markup (e.g. <i>, <b>, <br/>),
+    it is embedded as child elements. Otherwise it is set as plain text,
+    letting ElementTree handle entity encoding automatically.
+    """
+    if not content:
+        cell_element.text = content or ""
+        return
+    try:
+        parsed = etree.fromstring('<_w>' + content + '</_w>')
+        cell_element.text = parsed.text
+        for child in parsed:
+            cell_element.append(child)
+    except etree.ParseError:
+        cell_element.text = content
+
+
 class Table(BaseTable):
 
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
@@ -1843,7 +1862,7 @@ class Table(BaseTable):
                     if i >= 0 and i < len(
                             self.colTips) and self.colTips[i] is not None:
                         th.set('title', self.colTips[i])
-                    th.text = self.coltitle[i] if self.coltitle[i] else ""
+                    _set_cell_content(th, self.coltitle[i] if self.coltitle[i] else "")
                     if span > 1:
                         th.set('colspan', str(span))
                     headtr.append(th)
@@ -1857,7 +1876,7 @@ class Table(BaseTable):
                         if i >= 0 and i < len(
                                 self.colTips) and self.colTips[i] is not None:
                             td.set('title', self.colTips[i])
-                        td.text = str(col[i])
+                        _set_cell_content(td, str(col[i]))
                         tr.append(td)
                     tbody.append(tr)
             table.append(tbody)
@@ -1870,7 +1889,7 @@ class Table(BaseTable):
                 tbody.append(tr)
                 th = etree.Element('th')
                 if self.coltitle[i] is not None:
-                    th.text = str(self.coltitle[i])
+                    _set_cell_content(th, str(self.coltitle[i]))
                 if i >= 0 and i < len(
                         self.colTips) and self.colTips[i] is not None:
                     th.set('title', self.colTips[i])
@@ -1878,14 +1897,14 @@ class Table(BaseTable):
                 if hassubhead:
                     th1 = etree.Element('th')
                     if self.colsubtitle[i] is not None:
-                        th1.text = self.colsubtitle[i]
+                        _set_cell_content(th1, self.colsubtitle[i])
                     tr.append(th1)
                 for j in range(len(self.coldata[i])):
                     td = etree.Element('td')
                     if i >= 0 and i < len(
                             self.colTips) and self.colTips[i] is not None:
                         td.set('title', self.colTips[i])
-                    td.text = str(self.coldata[i][j])
+                    _set_cell_content(td, str(self.coldata[i][j]))
                     tr.append(td)
             table.append(tbody)
             if hasattr(self, "class_") and self.class_ is not None:
