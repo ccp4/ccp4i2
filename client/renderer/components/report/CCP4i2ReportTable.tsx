@@ -206,6 +206,7 @@ export const CCP4i2ReportTable: React.FC<CCP4i2ReportElementProps> = (
                     color: "text.primary",
                     borderBottom: 2,
                     borderColor: "primary.main",
+                    whiteSpace: "pre-line",
                     py: 1.5,
                     px: 2,
                   },

@@ -754,9 +754,9 @@ class ctruncate_report(Report):
                         for x in rmllist:
                             rmltab.append(x.findall('TwinFraction')[0].text)
                         table.addData(title='Operator',data=optab)
-                        table.addData(title='Rtwin</br>score',data=rtwintab)
-                        table.addData(title='H-test</br>Twin Fraction',data=rhtab)
-                        table.addData(title='ML-Britton</br>Twin Fraction',data=rmltab)
+                        table.addData(title='Rtwin\nscore',data=rtwintab)
+                        table.addData(title='H-test\nTwin Fraction',data=rhtab)
+                        table.addData(title='ML-Britton\nTwin Fraction',data=rmltab)
                 else:
                     fold.append("<p>"+twinblock.findall("Comment[@id='TwinOps']")[0].text+"</p>")
 
@@ -794,8 +794,6 @@ class ctruncate_report(Report):
                 ptab = []
                 for x in mlist:
                     y = x.findall("[@id]")[0].attrib["id"]
-                    y = y.replace("<", "&lt;");
-                    y = y.replace(">", "&gt;");
                     optab.append(y)
                     vtab.append(x.findall("value")[0].text)
                     ptab.append(x.findall("twinned")[0].text)
@@ -803,7 +801,7 @@ class ctruncate_report(Report):
                 table.addData(title='Operator',data=optab)
                 table.addData(title='Value',data=vtab)
                 table.addData(title='Untwinned',data=utab)
-                table.addData(title='Perfect</br>twin',data=ptab)
+                table.addData(title='Perfect\ntwin',data=ptab)
                 momlist = twinblock.findall("CCP4Table[@id='acentricMoments']")
                 for thisgraph in momlist:
                     graph = aDiv.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
@@ -818,8 +816,6 @@ class ctruncate_report(Report):
                     ptab = []
                     for x in mlist:
                         y = x.findall("[@id]")[0].attrib["id"]
-                        y = y.replace("<", "&lt;");
-                        y = y.replace(">", "&gt;");
                         optab.append(y)
                         vtab.append(x.findall("value")[0].text)
                         ptab.append(x.findall("twinned")[0].text)
@@ -827,7 +823,7 @@ class ctruncate_report(Report):
                     table.addData(title='Operator',data=optab)
                     table.addData(title='Value',data=vtab)
                     table.addData(title='Untwinned',data=utab)
-                    table.addData(title='Perfect</br>twin',data=ptab)
+                    table.addData(title='Perfect\ntwin',data=ptab)
                     momlist = twinblock.findall("CCP4Table[@id='centricMoments']")
                     for thisgraph in momlist:
                         graph = bDiv.addFlotGraph( xmlnode=thisgraph, title=thisgraph.get("title") )
@@ -922,8 +918,6 @@ class ctruncate_report(Report):
                 ptab = []
                 for x,dn in zip(mlist,dnames):
                     y = x.findall("[@id]")[0].attrib["id"]
-                    y = y.replace("<", "&lt;");
-                    y = y.replace(">", "&gt;");
                     optab.append(y)
                     vtab.append(x.findall("value")[0].text)
                     ptab.append(x.findall("twinned")[0].text)
@@ -934,7 +928,7 @@ class ctruncate_report(Report):
                 table.addData(title='Operator',data=optab)
                 table.addData(title='Value',data=vtab)
                 table.addData(title='Untwinned',data=utab)
-                table.addData(title='Perfect</br>twin',data=ptab)
+                table.addData(title='Perfect\ntwin',data=ptab)
 
     # . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
     def addToTable(self, taglist, nodetag, table):
