@@ -308,6 +308,10 @@ function render(
       lines.push(`${label} = ${fmtTooltip(hoveredPoint.intensity)}`);
     }
 
+    if (hoveredPoint.multiplicity !== undefined && hoveredPoint.multiplicity > 1) {
+      lines.push(`mult = ${hoveredPoint.multiplicity}`);
+    }
+
     if (hoveredPoint.isASU === false) {
       lines.push("(symmetry)");
     }

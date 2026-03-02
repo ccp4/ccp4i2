@@ -19,6 +19,7 @@ import {
   getFixedAxisRange,
   getSectionAxes,
   expandReflectionsBySymmetry,
+  unreduceByISYM,
   type SectionPlane,
 } from "../../lib/reciprocal-lattice";
 import { spaceGroups } from "../../spacegroups";
@@ -94,13 +95,24 @@ export const MtzPreview: React.FC<MtzPreviewProps> = ({ data }) => {
     return sg?.transformations ?? null;
   }, [header.spaceGroupNumber]);
 
-  // Expand reflections by symmetry (ASU → full reciprocal sphere)
-  // Skip for unmerged data — observations are already in the full sphere
+  // For unmerged data with ISYM, first un-reduce observations to their
+  // measured positions, then expand by symmetry.  This shows the actual
+  // experimental coverage: gaps after expansion = truly unobserved data.
+  // For merged data, expand directly from the ASU.
   const expandedReflections = useMemo(() => {
-    if (!header.isMerged) return reflectionData.reflections;
-    if (!symops || symops.length <= 1) return reflectionData.reflections;
-    return expandReflectionsBySymmetry(reflectionData.reflections, symops);
-  }, [reflectionData.reflections, symops, header.isMerged]);
+    let refs = reflectionData.reflections;
+
+    // Un-reduce unmerged observations using M/ISYM + SYMM records
+    const headerSymops = header.symmetryOperators;
+    if (!header.isMerged && headerSymops.length > 0 &&
+        refs.some(r => r.isym !== undefined)) {
+      refs = unreduceByISYM(refs, headerSymops);
+    }
+
+    // Expand by symmetry (merged: ASU → sphere; unmerged: measured → sphere)
+    if (!symops || symops.length <= 1) return refs;
+    return expandReflectionsBySymmetry(refs, symops);
+  }, [reflectionData.reflections, symops, header.isMerged, header.symmetryOperators]);
 
   const sectionMap = useMemo(() => {
     if (!sectionBasis) return new Map();

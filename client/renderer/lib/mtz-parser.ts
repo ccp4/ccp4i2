@@ -93,13 +93,15 @@ export interface MtzHeader {
   isMerged: boolean;
   /** Missing value marker from VALM record (NaN if not specified) */
   missingValue: number;
+  /** Symmetry operators from SYMM records (e.g. ["X,Y,Z", "-X,Y,-Z"]) */
+  symmetryOperators: string[];
 }
 
 /**
  * Reflection data extracted from an MTZ file
  */
 export interface MtzReflectionData {
-  reflections: { h: number; k: number; l: number; intensity?: number }[];
+  reflections: { h: number; k: number; l: number; intensity?: number; isym?: number }[];
   hRange: [number, number];
   kRange: [number, number];
   lRange: [number, number];
@@ -178,6 +180,7 @@ function parseHeaderRecords(headerText: string): MtzHeader {
     datasets: [],
     isMerged: true,
     missingValue: NaN,
+    symmetryOperators: [],
   };
 
   // Split into 80-character records
@@ -250,7 +253,8 @@ function parseHeaderRecords(headerText: string): MtzHeader {
         break;
 
       case "SYMM":
-        // Symmetry operators - skip for now
+        // Symmetry operator string, e.g. "X,  Y,  Z" or "-Y, X-Y, Z+2/3"
+        header.symmetryOperators.push(args.replace(/\s+/g, ""));
         break;
 
       case "RESO":
@@ -567,6 +571,9 @@ export function parseMtzReflections(
     }
   }
 
+  // Find M/ISYM column (type "Y") for unmerged data
+  const isymIdx = header.columns.findIndex((c) => c.type === "Y");
+
   const dataStart = 80; // Reflection data starts at byte 80 (20 words × 4 bytes)
   const rowBytes = header.nColumns * 4;
   const nReflections = header.nReflections;
@@ -579,7 +586,7 @@ export function parseMtzReflections(
     );
   }
 
-  const reflections: { h: number; k: number; l: number; intensity?: number }[] = [];
+  const reflections: { h: number; k: number; l: number; intensity?: number; isym?: number }[] = [];
   let hMin = Infinity, hMax = -Infinity;
   let kMin = Infinity, kMax = -Infinity;
   let lMin = Infinity, lMax = -Infinity;
@@ -618,7 +625,16 @@ export function parseMtzReflections(
       }
     }
 
-    reflections.push({ h, k, l, intensity });
+    // Read M/ISYM for unmerged data
+    let isym: number | undefined;
+    if (isymIdx >= 0) {
+      const isymRaw = readFloat32(view, rowStart + isymIdx * 4, swapBytes);
+      if (!isMissing(isymRaw)) {
+        isym = Math.round(isymRaw);
+      }
+    }
+
+    reflections.push({ h, k, l, intensity, isym });
 
     if (h < hMin) hMin = h;
     if (h > hMax) hMax = h;

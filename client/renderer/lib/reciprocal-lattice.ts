@@ -28,6 +28,8 @@ export interface SectionPoint {
   intensity?: number;
   /** True if this reflection is from the asymmetric unit (not symmetry-expanded) */
   isASU?: boolean;
+  /** Number of raw observations at this position (meaningful for unmerged data) */
+  multiplicity?: number;
 }
 
 /**
@@ -195,7 +197,7 @@ export function computeSectionBasis(
  * of the reciprocal lattice — distance from origin = 1/d.
  */
 export function indexReflectionsBySection(
-  reflections: { h: number; k: number; l: number; intensity?: number; isASU?: boolean }[],
+  reflections: { h: number; k: number; l: number; intensity?: number; isASU?: boolean; multiplicity?: number }[],
   plane: SectionPlane,
   basis: SectionBasis
 ): Map<number, SectionPoint[]> {
@@ -217,6 +219,7 @@ export function indexReflectionsBySection(
       l: ref.l,
       intensity: ref.intensity,
       isASU: ref.isASU,
+      multiplicity: ref.multiplicity,
     };
 
     const existing = map.get(fixedVal);
@@ -314,6 +317,117 @@ function parseSymopRotation(symop: string): Mat3 {
 }
 
 /**
+ * Invert a 3×3 integer matrix with determinant ±1.
+ *
+ * For crystallographic rotation matrices (integer entries, |det| = 1),
+ * the inverse is simply the adjugate scaled by the sign of the determinant.
+ */
+function invertMat3(m: Mat3): Mat3 {
+  const [[a, b, c], [d, e, f], [g, h, i]] = m;
+
+  const det = a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+  const s = det > 0 ? 1 : -1;
+
+  return [
+    [s * (e * i - f * h), s * (c * h - b * i), s * (b * f - c * e)],
+    [s * (f * g - d * i), s * (a * i - c * g), s * (c * d - a * f)],
+    [s * (d * h - e * g), s * (b * g - a * h), s * (a * e - b * d)],
+  ];
+}
+
+/**
+ * "Un-reduce" unmerged observations using their M/ISYM values.
+ *
+ * Each unmerged observation was measured at some position in reciprocal space,
+ * then reduced to the ASU by applying a symmetry operator (recorded in the
+ * M/ISYM column).  This function inverts that reduction so we can plot each
+ * observation at its *original measured* position.
+ *
+ * CCP4 convention: ISYM identifies the operator S that maps observed → ASU:
+ *   h_asu = S(h_observed)  where S acts as R^T in reciprocal space.
+ * To recover measured positions: h_observed = (R^T)^{-1} * h_asu.
+ *
+ * ISYM encoding:
+ *   odd  → I(+), symop index = ceil(isym/2)
+ *   even → I(−), symop index = isym/2       (Friedel mate was also applied)
+ *
+ * The symop indices are 1-based into the SYMM records from the MTZ header.
+ *
+ * @param reflections - ASU reflections with Miller indices and ISYM values
+ * @param symops - Symmetry operator strings from SYMM records (order matters!)
+ * @returns Reflections at their measured positions in reciprocal space
+ */
+export function unreduceByISYM(
+  reflections: { h: number; k: number; l: number; intensity?: number; isym?: number }[],
+  symops: string[]
+): { h: number; k: number; l: number; intensity?: number; isASU?: boolean; multiplicity?: number }[] {
+  // Parse all symop rotation matrices (R^T, transposed for reciprocal space)
+  // and pre-compute their inverses.
+  // CCP4 M/ISYM convention: S maps observed → ASU, so we need S^{-1} = (R^T)^{-1}
+  // to recover the measured position from the ASU.
+  const recipMatrices = symops.map(parseSymopRotation);
+  const inverses = recipMatrices.map(invertMat3);
+
+  // Track multiplicity at each measured position
+  const indexMap = new Map<string, number>();
+  const result: { h: number; k: number; l: number; intensity?: number; isASU?: boolean; multiplicity: number }[] = [];
+
+  function addOrCount(h: number, k: number, l: number, intensity: number | undefined, isASU: boolean) {
+    const key = `${h},${k},${l}`;
+    const existing = indexMap.get(key);
+    if (existing !== undefined) {
+      result[existing].multiplicity++;
+    } else {
+      indexMap.set(key, result.length);
+      result.push({ h, k, l, intensity, isASU, multiplicity: 1 });
+    }
+  }
+
+  for (const ref of reflections) {
+    if (ref.isym === undefined || ref.isym < 1) {
+      // No ISYM — treat as identity, keep in ASU
+      addOrCount(ref.h, ref.k, ref.l, ref.intensity, true);
+      continue;
+    }
+
+    // M/ISYM column stores packed value: batch * 256 + ISYM
+    // Extract ISYM from the low byte
+    const isym = ref.isym & 0xFF;
+    if (isym < 1) {
+      addOrCount(ref.h, ref.k, ref.l, ref.intensity, true);
+      continue;
+    }
+    const isFriedel = isym % 2 === 0;
+    const symIdx = isFriedel ? isym / 2 - 1 : (isym - 1) / 2; // 0-based
+
+    if (symIdx < 0 || symIdx >= inverses.length) {
+      // Out-of-range symop — keep as-is
+      addOrCount(ref.h, ref.k, ref.l, ref.intensity, true);
+      continue;
+    }
+
+    const Sinv = inverses[symIdx];
+    const isIdentity = symIdx === 0 && !isFriedel;
+
+    // h_meas = S^{-1} * h_asu  (invert the reduction operator)
+    let hp = Math.round(Sinv[0][0] * ref.h + Sinv[0][1] * ref.k + Sinv[0][2] * ref.l);
+    let kp = Math.round(Sinv[1][0] * ref.h + Sinv[1][1] * ref.k + Sinv[1][2] * ref.l);
+    let lp = Math.round(Sinv[2][0] * ref.h + Sinv[2][1] * ref.k + Sinv[2][2] * ref.l);
+
+    // If Friedel mate was applied during reduction, negate
+    if (isFriedel) {
+      hp = -hp;
+      kp = -kp;
+      lp = -lp;
+    }
+
+    addOrCount(hp, kp, lp, ref.intensity, isIdentity);
+  }
+
+  return result;
+}
+
+/**
  * Expand reflections from the asymmetric unit to the full reciprocal sphere
  * by applying all space group symmetry operators plus Friedel's law.
  *
@@ -324,18 +438,29 @@ function parseSymopRotation(symop: string): Mat3 {
 export function expandReflectionsBySymmetry(
   reflections: { h: number; k: number; l: number; intensity?: number }[],
   symops: string[]
-): { h: number; k: number; l: number; intensity?: number; isASU?: boolean }[] {
+): { h: number; k: number; l: number; intensity?: number; isASU?: boolean; multiplicity?: number }[] {
   // Pre-parse all rotation matrices
   const matrices = symops.map(parseSymopRotation);
 
-  const seen = new Set<string>();
-  const result: { h: number; k: number; l: number; intensity?: number; isASU?: boolean }[] = [];
+  // Map from "h,k,l" key to index in result array — allows multiplicity tracking
+  const indexMap = new Map<string, number>();
+  const result: { h: number; k: number; l: number; intensity?: number; isASU?: boolean; multiplicity: number }[] = [];
 
-  function addIfNew(h: number, k: number, l: number, intensity: number | undefined, isASU: boolean) {
+  function addOrCount(h: number, k: number, l: number, intensity: number | undefined, isASU: boolean) {
     const key = `${h},${k},${l}`;
-    if (!seen.has(key)) {
-      seen.add(key);
-      result.push({ h, k, l, intensity, isASU });
+    const existing = indexMap.get(key);
+    if (existing !== undefined) {
+      result[existing].multiplicity++;
+      // Promote to "measured" (blue) if ANY contribution is from the identity
+      // operator.  This handles the case where a Friedel expansion mate lands
+      // on a position before the identity copy of a different measured
+      // reflection reaches it (order-dependent insertion).
+      if (isASU && !result[existing].isASU) {
+        result[existing].isASU = true;
+      }
+    } else {
+      indexMap.set(key, result.length);
+      result.push({ h, k, l, intensity, isASU, multiplicity: 1 });
     }
   }
 
@@ -349,9 +474,9 @@ export function expandReflectionsBySymmetry(
       const kp = Math.round(RT[1][0] * ref.h + RT[1][1] * ref.k + RT[1][2] * ref.l);
       const lp = Math.round(RT[2][0] * ref.h + RT[2][1] * ref.k + RT[2][2] * ref.l);
 
-      addIfNew(hp, kp, lp, ref.intensity, isIdentity);
+      addOrCount(hp, kp, lp, ref.intensity, isIdentity);
       // Friedel mate
-      addIfNew(-hp, -kp, -lp, ref.intensity, false);
+      addOrCount(-hp, -kp, -lp, ref.intensity, false);
     }
   }
 
