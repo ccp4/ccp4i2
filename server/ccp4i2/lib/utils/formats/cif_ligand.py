@@ -119,6 +119,112 @@ def _create_summary_from_row(row: Dict[str, str]) -> Dict[str, Optional[Any]]:
     return summary
 
 
+def extract_monomer_atoms_bonds(cif_file_path: str) -> Dict[str, Any]:
+    """
+    Extract non-hydrogen atom names and bond connectivity from a CIF dictionary.
+
+    Works with both CCP4 monomer library files and custom AceDRG dictionaries.
+    Returns data for the first (or only) comp block found.
+
+    Returns:
+        Dict with "atoms" (list of atom ID strings) and
+        "bonds" (list of {"atom1", "atom2", "type"} dicts).
+    """
+    try:
+        doc = gemmi.cif.read_file(cif_file_path)
+    except Exception:
+        return {"atoms": [], "bonds": []}
+
+    # Find the comp block — try comp_* blocks, fall back to last block
+    block = None
+    for b in doc:
+        if b.name.startswith("comp_") and b.name != "comp_list":
+            block = b
+            break
+    if block is None and len(doc) > 0:
+        block = doc[-1]
+    if block is None:
+        return {"atoms": [], "bonds": []}
+
+    return _extract_atoms_bonds_from_block(block)
+
+
+def extract_all_monomers_atoms_bonds(cif_file_path: str) -> Dict[str, Dict[str, Any]]:
+    """
+    Extract non-hydrogen atom names and bond connectivity for ALL monomers
+    in a CIF dictionary file.
+
+    A dictionary file may contain multiple monomer definitions (comp_* blocks).
+    This function returns a dict keyed by monomer code, where each value
+    contains the atoms and bonds for that monomer.
+
+    Returns:
+        Dict mapping monomer code -> {"atoms": [...], "bonds": [...]}.
+        If a comp_list block is present, the code is taken from there;
+        otherwise it is derived from the block name (comp_CODE -> CODE).
+    """
+    try:
+        doc = gemmi.cif.read_file(cif_file_path)
+    except Exception:
+        return {}
+
+    monomers: Dict[str, Dict[str, Any]] = {}
+
+    for block in doc:
+        if block.name == "comp_list":
+            continue
+        if block.name.startswith("comp_"):
+            code = block.name[len("comp_"):]
+            result = _extract_atoms_bonds_from_block(block)
+            if result["atoms"]:  # Only include monomers with actual atom data
+                monomers[code] = result
+
+    # If no comp_* blocks found, try the last block as a fallback
+    if not monomers and len(doc) > 0:
+        block = doc[-1]
+        if block.name != "comp_list":
+            result = _extract_atoms_bonds_from_block(block)
+            if result["atoms"]:
+                # Use block name as code, or "UNK" as last resort
+                code = block.name.replace("comp_", "") if block.name.startswith("comp_") else block.name
+                monomers[code] = result
+
+    return monomers
+
+
+def _extract_atoms_bonds_from_block(block: gemmi.cif.Block) -> Dict[str, Any]:
+    """Extract non-hydrogen atoms and bonds from a single CIF comp block."""
+    try:
+        comp = gemmi.make_chemcomp_from_block(block)
+    except Exception:
+        return {"atoms": [], "bonds": []}
+
+    # Non-hydrogen atoms
+    atoms = [a.id for a in comp.atoms if a.el.name != "H"]
+    atom_set = set(atoms)
+
+    # Bonds between non-hydrogen atoms
+    bond_type_map = {
+        "Single": "single",
+        "Double": "double",
+        "Triple": "triple",
+        "Aromatic": "aromatic",
+        "Deloc": "deloc",
+        "Metal": "metal",
+    }
+    bonds = []
+    for b in comp.rt.bonds:
+        a1, a2 = b.id1.atom, b.id2.atom
+        if a1 in atom_set and a2 in atom_set:
+            bonds.append({
+                "atom1": a1,
+                "atom2": a2,
+                "type": bond_type_map.get(b.type.name, b.type.name),
+            })
+
+    return {"atoms": atoms, "bonds": bonds}
+
+
 def _create_empty_summary() -> Dict[str, Optional[Any]]:
     """Create an empty summary dictionary with the expected structure."""
     return {

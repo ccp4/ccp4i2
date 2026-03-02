@@ -81,7 +81,7 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       }
     }
     return props.qualifiers;
-  }, [item]);
+  }, [item, props.qualifiers]);
 
   const interfaceElement = useMemo(() => {
     // Cast to ItemClass for type checking - unknown classes fall through to default
@@ -336,7 +336,7 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
           </Typography>
         );
     }
-  }, [item]);
+  }, [item, qualifiers]);
 
   return isVisible ? <>{interfaceElement}</> : null;
 };

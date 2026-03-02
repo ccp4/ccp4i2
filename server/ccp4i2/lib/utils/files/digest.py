@@ -21,7 +21,7 @@ from ..containers.find_objects import find_objects
 from ..containers.get_container import get_job_container
 from ..containers.json_encoder import CCP4i2JsonEncoder
 from ..plugins.plugin_context import get_plugin_with_context
-from ..formats.cif_ligand import parse_cif_ligand_summary
+from ..formats.cif_ligand import parse_cif_ligand_summary, extract_monomer_atoms_bonds, extract_all_monomers_atoms_bonds
 from ..parameters.value_dict import value_dict_for_object
 from ....db import models
 from ...parse import identify_data_type
@@ -449,8 +449,14 @@ def digest_cdictdata_file_object(file_object: CPdbDataFile):
             "reason": "Not a CDictDataFile object",
             "digest": {},
         }
-    content_dict = parse_cif_ligand_summary(file_object.fullPath.__str__())
-    return content_dict
+    file_path = file_object.fullPath.__str__()
+    content_dict = parse_cif_ligand_summary(file_path)
+    # Extract atoms/bonds for ALL monomers in the dictionary file
+    monomers = extract_all_monomers_atoms_bonds(file_path)
+    return {
+        "ligands": content_dict,
+        "monomers": monomers,
+    }
 
 
 def digest_cmtzdatafile_file_object(file_object):

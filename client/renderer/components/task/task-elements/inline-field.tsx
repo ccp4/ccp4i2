@@ -8,6 +8,8 @@ interface InlineFieldProps {
   hint?: React.ReactNode;
   /** Width of the widget container (default "8rem") */
   width?: string;
+  /** Fixed width for the label — use to align labels in a column */
+  labelWidth?: string;
   /** Additional content rendered after the hint (e.g. a second widget) */
   after?: React.ReactNode;
   /** Override sx on the outer flex container */
@@ -30,6 +32,7 @@ export const InlineField: React.FC<PropsWithChildren<InlineFieldProps>> = ({
   label,
   hint,
   width = "8rem",
+  labelWidth,
   after,
   sx,
   children,
@@ -43,7 +46,14 @@ export const InlineField: React.FC<PropsWithChildren<InlineFieldProps>> = ({
       ...sx,
     }}
   >
-    {label && <Typography variant="body1">{label}</Typography>}
+    {label && (
+      <Typography
+        variant="body1"
+        sx={labelWidth ? { width: labelWidth, flexShrink: 0 } : undefined}
+      >
+        {label}
+      </Typography>
+    )}
     <Box sx={{ width }}>{children}</Box>
     {hint &&
       (typeof hint === "string" ? (

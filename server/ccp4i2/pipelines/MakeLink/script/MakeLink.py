@@ -403,6 +403,8 @@ class MakeLink(CPluginScript):
 
         print("Creating link instruction")
         instruct = self.createLinkInstruction()
+        if instruct == CPluginScript.FAILED:
+            return CPluginScript.FAILED
         print(instruct)
         self.createLinkInstructionFile(instruct)
         print("Written link instruction file to: ",self.container.outputData.INSTRUCTION_FILE.fullPath.__str__())

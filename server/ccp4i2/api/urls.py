@@ -34,6 +34,7 @@ _api_patterns = [
     path("version/", views.version_info, name="version_info"),
     path("task_tree/", views.task_tree, name="task_tree"),
     path("active_jobs/", views.active_jobs, name="active_jobs"),
+    path("monomer-info/<str:code>/", views.monomer_info, name="monomer_info"),
 ]
 
 # Admin endpoints require users app (cloud deployment only)

@@ -234,6 +234,11 @@ export const CSimpleAutocompleteElement: React.FC<
 
   const getOptionLabel = useCallback(
     (option: OptionValue): string => {
+      // Empty/unset values don't need a label lookup
+      if (option === "" || option === null || option === undefined) {
+        return "";
+      }
+
       const index = enumerators.indexOf(option);
       const label = labels[index];
 
