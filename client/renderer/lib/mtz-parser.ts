@@ -13,7 +13,7 @@
  * - Bytes 4-7: 32-bit integer header offset (or -1 for 64-bit offset)
  * - Bytes 8-11: Machine stamp (byte order encoding)
  * - Bytes 12-19: 64-bit header offset (if 32-bit offset is -1)
- * - Byte 20+: Reflection data
+ * - Byte 80+: Reflection data (20-word preamble × 4 bytes = 80)
  * - Header offset+: ASCII header records (80 chars each)
  *
  * Machine stamp encoding (byte 8, high nibble):
@@ -91,6 +91,20 @@ export interface MtzHeader {
   datasets: MtzDataset[];
   /** Whether data is merged (nBatches === 0) */
   isMerged: boolean;
+  /** Missing value marker from VALM record (NaN if not specified) */
+  missingValue: number;
+}
+
+/**
+ * Reflection data extracted from an MTZ file
+ */
+export interface MtzReflectionData {
+  reflections: { h: number; k: number; l: number; intensity?: number }[];
+  hRange: [number, number];
+  kRange: [number, number];
+  lRange: [number, number];
+  intensityRange?: [number, number];
+  intensityLabel?: string;
 }
 
 /**
@@ -163,6 +177,7 @@ function parseHeaderRecords(headerText: string): MtzHeader {
     columns: [],
     datasets: [],
     isMerged: true,
+    missingValue: NaN,
   };
 
   // Split into 80-character records
@@ -250,7 +265,14 @@ function parseHeaderRecords(headerText: string): MtzHeader {
         break;
 
       case "VALM":
-        // Missing value marker - skip
+        // Missing value marker (MNF)
+        const valmStr = args.trim().toUpperCase();
+        if (valmStr === "NAN" || valmStr === "NAN(QUIET)") {
+          header.missingValue = NaN;
+        } else {
+          const val = parseFloat(args);
+          if (!isNaN(val)) header.missingValue = val;
+        }
         break;
 
       case "COLUMN":
@@ -353,17 +375,13 @@ function parseHeaderRecords(headerText: string): MtzHeader {
 }
 
 /**
- * Parse an MTZ file and extract header information.
- *
- * This is a pure TypeScript implementation that doesn't require
- * any WASM modules (coot/gemmi). It handles both big-endian and
- * little-endian MTZ files.
- *
- * @param data - The MTZ file as an ArrayBuffer
- * @returns Parsed MTZ header information
- * @throws MtzParseError if the file is not a valid MTZ file
+ * Internal: validate MTZ magic number and extract byte-order and header offset info.
  */
-export function parseMtzHeader(data: ArrayBuffer): MtzHeader {
+function getMtzFileInfo(data: ArrayBuffer): {
+  view: DataView;
+  swapBytes: boolean;
+  headerByteOffset: number;
+} {
   if (data.byteLength < 20) {
     throw new MtzParseError("File too small to be an MTZ file");
   }
@@ -393,9 +411,6 @@ export function parseMtzHeader(data: ArrayBuffer): MtzHeader {
   const headerOffset32 = readInt32(view, 4, swapBytes);
 
   if (headerOffset32 === -1) {
-    // 64-bit offset at bytes 12-19
-    // For simplicity, assume files aren't that large and use lower 32 bits
-    // (JavaScript numbers can safely represent integers up to 2^53)
     const low = readInt32(view, 12, swapBytes);
     const high = readInt32(view, 16, swapBytes);
     headerOffset = (high * 0x100000000) + (low >>> 0);
@@ -404,8 +419,6 @@ export function parseMtzHeader(data: ArrayBuffer): MtzHeader {
   }
 
   // Header offset is in "words" (4-byte units), 1-indexed (Fortran convention)
-  // The header offset value N means header starts at word N, which is byte (N-1)*4
-  // because Fortran arrays are 1-indexed
   const headerByteOffset = (headerOffset - 1) * 4;
 
   if (headerByteOffset >= data.byteLength || headerByteOffset < 20) {
@@ -414,6 +427,23 @@ export function parseMtzHeader(data: ArrayBuffer): MtzHeader {
       `in file of ${data.byteLength} bytes`
     );
   }
+
+  return { view, swapBytes, headerByteOffset };
+}
+
+/**
+ * Parse an MTZ file and extract header information.
+ *
+ * This is a pure TypeScript implementation that doesn't require
+ * any WASM modules (coot/gemmi). It handles both big-endian and
+ * little-endian MTZ files.
+ *
+ * @param data - The MTZ file as an ArrayBuffer
+ * @returns Parsed MTZ header information
+ * @throws MtzParseError if the file is not a valid MTZ file
+ */
+export function parseMtzHeader(data: ArrayBuffer): MtzHeader {
+  const { headerByteOffset } = getMtzFileInfo(data);
 
   // Read header as ASCII text
   const headerBytes = new Uint8Array(data, headerByteOffset);
@@ -475,4 +505,136 @@ export function getColumnsWithDatasets(header: MtzHeader): Array<{
     dataset: datasetNames.get(col.datasetId) || "",
     groupIndex: idx,
   }));
+}
+
+/**
+ * Parse reflection data from an MTZ file, extracting h, k, l indices
+ * and optionally an intensity/amplitude column.
+ *
+ * Reflection data starts at byte 20 in the file. Each reflection row
+ * contains nColumns float32 values. We only read the H, K, L columns
+ * (type "H") and an optional intensity column for efficiency.
+ *
+ * @param data - The MTZ file as an ArrayBuffer
+ * @param header - Previously parsed header (from parseMtzHeader)
+ * @param intensityColumn - Optional column label for intensity coloring
+ * @returns Extracted reflection data with h,k,l indices and ranges
+ */
+export function parseMtzReflections(
+  data: ArrayBuffer,
+  header: MtzHeader,
+  intensityColumn?: string
+): MtzReflectionData {
+  const { view, swapBytes } = getMtzFileInfo(data);
+
+  // Find H, K, L column indices (type "H", always first 3 of this type)
+  const hklIndices: number[] = [];
+  for (let i = 0; i < header.columns.length; i++) {
+    if (header.columns[i].type === "H") {
+      hklIndices.push(i);
+    }
+  }
+  if (hklIndices.length < 3) {
+    throw new MtzParseError(
+      `Expected at least 3 H-type columns (Miller indices), found ${hklIndices.length}`
+    );
+  }
+  const hIdx = hklIndices[0];
+  const kIdx = hklIndices[1];
+  const lIdx = hklIndices[2];
+
+  // Find optional intensity column
+  let intensityIdx = -1;
+  let intensityLabel: string | undefined;
+  if (intensityColumn) {
+    const idx = header.columns.findIndex((c) => c.label === intensityColumn);
+    if (idx >= 0) {
+      intensityIdx = idx;
+      intensityLabel = intensityColumn;
+    }
+  }
+  // Auto-detect: find the best column for coloring, in priority order:
+  // J (mean intensity), F (mean amplitude), K (anom intensity), G (anom amplitude), E (normalised F)
+  if (intensityIdx < 0) {
+    const priorities = ["J", "F", "K", "G", "E"];
+    for (const type of priorities) {
+      const idx = header.columns.findIndex((c) => c.type === type);
+      if (idx >= 0) {
+        intensityIdx = idx;
+        intensityLabel = header.columns[idx].label;
+        break;
+      }
+    }
+  }
+
+  const dataStart = 80; // Reflection data starts at byte 80 (20 words × 4 bytes)
+  const rowBytes = header.nColumns * 4;
+  const nReflections = header.nReflections;
+
+  // Validate data extent
+  const dataEnd = dataStart + nReflections * rowBytes;
+  if (dataEnd > data.byteLength) {
+    throw new MtzParseError(
+      `Reflection data extends beyond file: needs ${dataEnd} bytes, file is ${data.byteLength}`
+    );
+  }
+
+  const reflections: { h: number; k: number; l: number; intensity?: number }[] = [];
+  let hMin = Infinity, hMax = -Infinity;
+  let kMin = Infinity, kMax = -Infinity;
+  let lMin = Infinity, lMax = -Infinity;
+  let intMin = Infinity, intMax = -Infinity;
+
+  // Missing value check: uses VALM from header (NaN or a specific sentinel value)
+  const mnf = header.missingValue;
+  const isMissing = isNaN(mnf)
+    ? (v: number) => isNaN(v)
+    : (v: number) => isNaN(v) || v === mnf;
+
+  for (let i = 0; i < nReflections; i++) {
+    const rowStart = dataStart + i * rowBytes;
+
+    const hRaw = readFloat32(view, rowStart + hIdx * 4, swapBytes);
+    const kRaw = readFloat32(view, rowStart + kIdx * 4, swapBytes);
+    const lRaw = readFloat32(view, rowStart + lIdx * 4, swapBytes);
+
+    // Skip reflections with missing H, K, or L
+    if (isMissing(hRaw) || isMissing(kRaw) || isMissing(lRaw)) {
+      continue;
+    }
+
+    const h = Math.round(hRaw);
+    const k = Math.round(kRaw);
+    const l = Math.round(lRaw);
+
+    // Read intensity column; undefined if missing
+    let intensity: number | undefined;
+    if (intensityIdx >= 0) {
+      const val = readFloat32(view, rowStart + intensityIdx * 4, swapBytes);
+      if (!isMissing(val)) {
+        intensity = val;
+        if (val < intMin) intMin = val;
+        if (val > intMax) intMax = val;
+      }
+    }
+
+    reflections.push({ h, k, l, intensity });
+
+    if (h < hMin) hMin = h;
+    if (h > hMax) hMax = h;
+    if (k < kMin) kMin = k;
+    if (k > kMax) kMax = k;
+    if (l < lMin) lMin = l;
+    if (l > lMax) lMax = l;
+  }
+
+  return {
+    reflections,
+    hRange: reflections.length > 0 ? [hMin, hMax] : [0, 0],
+    kRange: reflections.length > 0 ? [kMin, kMax] : [0, 0],
+    lRange: reflections.length > 0 ? [lMin, lMax] : [0, 0],
+    intensityRange:
+      intensityIdx >= 0 && intMin <= intMax ? [intMin, intMax] : undefined,
+    intensityLabel,
+  };
 }

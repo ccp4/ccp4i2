@@ -65,6 +65,12 @@ export const FileMenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
+/** Check if a file type represents an MTZ file (including unmerged variants) */
+function isMtzFileType(type: string): boolean {
+  return type.startsWith("application/CCP4-mtz") ||
+    type.startsWith("application/CCP4-unmerged");
+}
+
 export const FileMenu: React.FC = () => {
   const { fileMenuAnchorEl, setFileMenuAnchorEl, file } = useFileMenu();
   const { projectId } = useCCP4i2Window();
@@ -208,7 +214,7 @@ export const FileMenu: React.FC = () => {
         let language = "text";
         let url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
 
-        if (file.type.startsWith("application/CCP4-mtz")) {
+        if (isMtzFileType(file.type)) {
           language = "mtz";
         } else if (file.type === "application/CCP4-image") {
           language = "image";
@@ -417,9 +423,11 @@ export const FileMenu: React.FC = () => {
         <MenuItem key="Download" onClick={handleDownloadFile}>
           <Download sx={{ mr: 1 }} /> Download
         </MenuItem>
-        <MenuItem key="Preview" onClick={handlePreviewFile}>
-          <Preview sx={{ mr: 1 }} /> Preview
-        </MenuItem>
+        {(!file || !isMtzFileType(file.type)) && (
+          <MenuItem key="Preview" onClick={handlePreviewFile}>
+            <Preview sx={{ mr: 1 }} /> Preview
+          </MenuItem>
+        )}
         <MenuItem key="Terminal" onClick={handlePreviewFileInTerminal}>
           <Terminal sx={{ mr: 1 }} /> Terminal
         </MenuItem>
@@ -457,14 +465,14 @@ export const FileMenu: React.FC = () => {
               <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Moorhen
             </MenuItem>
           )}
-        {file && file.type.startsWith("application/CCP4-mtz") && (
+        {file && isMtzFileType(file.type) && (
           <MenuItem key="ViewHKL" onClick={handlePreviewFileInViewHKL}>
             <Preview sx={{ mr: 1 }} /> ViewHKL
           </MenuItem>
         )}
-        {file && file.type.startsWith("application/CCP4-mtz") && (
+        {file && isMtzFileType(file.type) && (
           <MenuItem key="MtzHeader" onClick={handlePreviewMtzHeader}>
-            <TableChart sx={{ mr: 1 }} /> MTZ Header
+            <TableChart sx={{ mr: 1 }} /> MTZ Preview
           </MenuItem>
         )}
         {file && file.type === "application/CCP4-image" && (

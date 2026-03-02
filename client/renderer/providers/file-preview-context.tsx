@@ -1,6 +1,5 @@
 import {
   PropsWithChildren,
-  useCallback,
   useContext,
   useEffect,
   useMemo,
@@ -22,7 +21,7 @@ import { prettifyXml } from "../utils";
 import { createContext } from "react";
 import $ from "jquery";
 import { CifTableStack } from "../components/cif-table-stack";
-import { parseMtzHeader } from "../lib/mtz-parser";
+import { MtzPreview } from "../components/mtz-preview";
 import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
 import { MolBlockView } from "../components/campaigns/molblock-view";
@@ -68,36 +67,8 @@ const FilePreviewDialog: React.FC = () => {
   const { contentSpecification, setContentSpecification } =
     useFilePreviewContext();
   const [previewContent, setPreviewContent] = useState<string | null>("");
+  const [mtzData, setMtzData] = useState<ArrayBuffer | null>(null);
   const { mode } = useTheme();
-
-  // Parse MTZ header using pure TypeScript parser (no WASM dependency)
-  const handleMtzPreview = useCallback(
-    async (fileContent: ArrayBuffer) => {
-      try {
-        const header = parseMtzHeader(fileContent);
-        // Format header info for preview display
-        const previewData = {
-          title: header.title,
-          nColumns: header.nColumns,
-          nReflections: header.nReflections,
-          spaceGroup: header.spaceGroup,
-          cell: header.cell,
-          resolution: header.resolution,
-          isMerged: header.isMerged,
-          columns: header.columns.map(c => ({
-            label: c.label,
-            type: c.type,
-          })),
-          datasets: header.datasets,
-        };
-        setPreviewContent(JSON.stringify(previewData, null, 2));
-      } catch (error) {
-        console.error("Failed to parse MTZ file:", error);
-        setPreviewContent(JSON.stringify({ error: String(error) }, null, 2));
-      }
-    },
-    []
-  );
 
   const compactCifPreview = (parsed: Record<string, any>): string => {
     const compact: Record<string, any> = {};
@@ -184,7 +155,7 @@ const FilePreviewDialog: React.FC = () => {
             const fileText = enc.decode(fileContent);
             setPreviewContent(fileText);
           } else if (contentSpecification.language === "mtz") {
-            handleMtzPreview(fileContent);
+            setMtzData(fileContent);
           } else if (contentSpecification.language === "cif") {
             handleCifPreview(fileContent);
           } else if (contentSpecification.language === "csv") {
@@ -200,7 +171,7 @@ const FilePreviewDialog: React.FC = () => {
       };
       asyncFunc();
     }
-  }, [contentSpecification, handleMtzPreview]);
+  }, [contentSpecification]);
 
   const handleDownload = () => {
     if (!contentSpecification?.url) return;
@@ -219,8 +190,6 @@ const FilePreviewDialog: React.FC = () => {
         return "cif";
       case "csv":
         return "csv";
-      case "mtz":
-        return "json";
       default:
         return "text";
     }
@@ -233,6 +202,7 @@ const FilePreviewDialog: React.FC = () => {
       open={Boolean(contentSpecification)}
       onClose={() => {
         setContentSpecification(null);
+        setMtzData(null);
       }}
     >
       <DialogTitle>{contentSpecification?.title}</DialogTitle>
@@ -264,6 +234,8 @@ const FilePreviewDialog: React.FC = () => {
           <CsvTable csvText={previewContent || ""} />
         ) : contentSpecification?.language === "clustalw" ? (
           <AlignmentViewer alignment={previewContent || ""} />
+        ) : contentSpecification?.language === "mtz" && mtzData ? (
+          <MtzPreview data={mtzData} />
         ) : (
           <Editor
             width="100%"
