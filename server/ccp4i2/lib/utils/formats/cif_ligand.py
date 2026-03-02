@@ -1,5 +1,8 @@
+import logging
 import gemmi
 from typing import List, Dict, Optional, Any
+
+logger = logging.getLogger(__name__)
 
 
 def parse_cif_ligand_summary(cif_file_path: str) -> List[Dict[str, Optional[Any]]]:
@@ -223,6 +226,28 @@ def _extract_atoms_bonds_from_block(block: gemmi.cif.Block) -> Dict[str, Any]:
             })
 
     return {"atoms": atoms, "bonds": bonds}
+
+
+def generate_all_molblocks(cif_file_path: str) -> Dict[str, str]:
+    """
+    Generate 2D MolBlock strings for all monomers in a CIF dictionary file.
+
+    Uses the cifFileToMolBlocks function which tries SMILES-first conversion,
+    falling back to atom coordinate extraction for each monomer block.
+
+    Returns:
+        Dict mapping monomer code -> MolBlock V2000 string.
+        Monomers that fail conversion are omitted.
+    """
+    try:
+        from ....wrappers.acedrgNew.script.cifToMolBlock import cifFileToMolBlocks
+        return cifFileToMolBlocks(cif_file_path)
+    except ImportError as e:
+        logger.warning("Cannot generate molblocks (missing dependency): %s", e)
+        return {}
+    except Exception as e:
+        logger.warning("Failed to generate molblocks for %s: %s", cif_file_path, e)
+        return {}
 
 
 def _create_empty_summary() -> Dict[str, Optional[Any]]:

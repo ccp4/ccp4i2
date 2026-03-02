@@ -161,11 +161,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   const timeCapsuleRef = useRef(null);
   const loadedFileSource = useRef<FileSource | null>(null);
 
-  // Ligand dictionary file ID for 2D structure display
+  // Ligand dictionary file ID for 2D structure display (first dict file found)
   const [ligandDictFileId, setLigandDictFileId] = useState<number | null>(null);
   const [ligandName, setLigandName] = useState<string | null>(null);
-  // Store loaded dictionary content so we can add it to molecules
-  const loadedDictContent = useRef<string | null>(null);
+  // Store ALL loaded dictionary contents so we can add them to molecules
+  const loadedDictContents = useRef<string[]>([]);
 
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
@@ -237,7 +237,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     // Reset ligand info
     setLigandDictFileId(null);
     setLigandName(null);
-    loadedDictContent.current = null;
+    loadedDictContents.current = [];
     // Reset representation state to default
     setVisibleRepresentations(["CRs"]);
     hasInitializedReps.current = false;
@@ -303,25 +303,29 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       `${f.name} (type=${f.type})`
     ));
 
-    // STEP 1: Load ligand dictionary FIRST (before coordinates)
-    // This ensures coot understands ligand geometry when parsing coordinates
-    // Check all files (including imported) for dictionary
-    const ligandDictFile = files.find(
+    // STEP 1: Load ALL ligand dictionaries FIRST (before coordinates)
+    // This ensures coot understands ligand geometry when parsing coordinates.
+    // A dictionary file may contain multiple monomers — read_dictionary_string
+    // loads all of them into coot's global store.
+    const ligandDictFiles = files.filter(
       (f: { type: string }) => f.type === "application/refmac-dictionary"
     );
-    if (ligandDictFile) {
-      console.log("[fetchJobFiles] Loading ligand dictionary FIRST:", ligandDictFile.name);
-      const dictUrl = `/api/proxy/ccp4i2/files/${ligandDictFile.id}/download/`;
-      await fetchDict(dictUrl);
-      // Store file ID for 2D display
-      setLigandDictFileId(ligandDictFile.id);
-      // Extract ligand name from filename (e.g., "LIG.cif" -> "LIG")
-      const name = ligandDictFile.name?.replace(/\.cif$/i, "") ||
-                   ligandDictFile.annotation ||
+    if (ligandDictFiles.length > 0) {
+      loadedDictContents.current = [];
+      for (const dictFile of ligandDictFiles) {
+        console.log("[fetchJobFiles] Loading ligand dictionary:", dictFile.name);
+        const dictUrl = `/api/proxy/ccp4i2/files/${dictFile.id}/download/`;
+        await fetchDict(dictUrl);
+      }
+      // Use the first dictionary file for 2D display in the control panel
+      const firstDict = ligandDictFiles[0];
+      setLigandDictFileId(firstDict.id);
+      const name = firstDict.name?.replace(/\.cif$/i, "") ||
+                   firstDict.annotation ||
                    "Ligand";
       setLigandName(name);
     } else {
-      loadedDictContent.current = null;
+      loadedDictContents.current = [];
       setLigandDictFileId(null);
       setLigandName(null);
     }
@@ -384,7 +388,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       );
       console.log("[fetchDict] Loaded dictionary globally");
       // Store content so we can add it to molecules later
-      loadedDictContent.current = fileContent;
+      loadedDictContents.current.push(fileContent);
       return fileContent;
     } catch (err) {
       console.error("[fetchDict] Failed to load dictionary:", err);
@@ -409,15 +413,17 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       }
       newMolecule.uniqueId = url;
 
-      // Add dictionary to molecule if we have one loaded
-      // This ensures the molecule understands ligand geometry
-      if (loadedDictContent.current) {
+      // Add all loaded dictionaries to molecule
+      // This ensures the molecule understands geometry for all monomers
+      for (const dictContent of loadedDictContents.current) {
         try {
-          await newMolecule.addDict(loadedDictContent.current);
-          console.log("[fetchMolecule] Added dictionary to molecule");
+          await newMolecule.addDict(dictContent);
         } catch (err) {
           console.warn("[fetchMolecule] Failed to add dictionary:", err);
         }
+      }
+      if (loadedDictContents.current.length > 0) {
+        console.log(`[fetchMolecule] Added ${loadedDictContents.current.length} dictionar${loadedDictContents.current.length === 1 ? 'y' : 'ies'} to molecule`);
       }
 
       // Try ribbon representation first (better for protein overview)

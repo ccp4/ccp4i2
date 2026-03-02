@@ -219,8 +219,8 @@ export const FileMenu: React.FC = () => {
         } else if (file.type === "application/CCP4-image") {
           language = "image";
         } else if (file.type === "application/refmac-dictionary") {
-          language = "molblock";
-          url = `/api/proxy/ccp4i2/files/${file.id}/molblock/`;
+          language = "dict-preview";
+          url = `/api/proxy/ccp4i2/files/${file.id}/digest/`;
         } else if (file.type === "chemical/x-mdl-molfile") {
           language = "molblock-raw";
         }

@@ -14,6 +14,11 @@ import {
   DialogTitle,
   DialogActions,
   Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  Typography,
 } from "@mui/material";
 import { apiArrayBuffer, apiJson } from "../api-fetch";
 import { Editor } from "@monaco-editor/react";
@@ -26,6 +31,12 @@ import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
 import { MolBlockView } from "../components/campaigns/molblock-view";
 import { useTheme } from "../theme/theme-provider";
+
+interface DictDigest {
+  ligands: Array<{ id: string; name: string | null; group: string | null }>;
+  monomers: Record<string, { atoms: string[]; bonds: any[] }>;
+  molblocks: Record<string, string>;
+}
 
 export interface EditorContentSpecification {
   url: string;
@@ -68,6 +79,7 @@ const FilePreviewDialog: React.FC = () => {
     useFilePreviewContext();
   const [previewContent, setPreviewContent] = useState<string | null>("");
   const [mtzData, setMtzData] = useState<ArrayBuffer | null>(null);
+  const [dictDigest, setDictDigest] = useState<DictDigest | null>(null);
   const { mode } = useTheme();
 
   const compactCifPreview = (parsed: Record<string, any>): string => {
@@ -145,6 +157,22 @@ const FilePreviewDialog: React.FC = () => {
           return;
         }
 
+        // Dictionary preview: fetch digest with molblocks for all monomers
+        if (contentSpecification.language === "dict-preview") {
+          try {
+            const response = await apiJson<{
+              success: boolean;
+              data: DictDigest;
+            }>(contentSpecification.url);
+            const data = response.data ?? (response as any);
+            setDictDigest(data);
+          } catch (error) {
+            console.error("Failed to fetch dictionary digest:", error);
+            setDictDigest(null);
+          }
+          return;
+        }
+
         {
           const fileContent = await apiArrayBuffer(contentSpecification.url);
           var enc = new TextDecoder("utf-8");
@@ -203,6 +231,7 @@ const FilePreviewDialog: React.FC = () => {
       onClose={() => {
         setContentSpecification(null);
         setMtzData(null);
+        setDictDigest(null);
       }}
     >
       <DialogTitle>{contentSpecification?.title}</DialogTitle>
@@ -219,6 +248,14 @@ const FilePreviewDialog: React.FC = () => {
               <CircularProgress />
             )}
           </Box>
+        ) : contentSpecification?.language === "dict-preview" ? (
+          dictDigest ? (
+            <DictPreview digest={dictDigest} />
+          ) : (
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
+              <CircularProgress />
+            </Box>
+          )
         ) : contentSpecification?.language === "molblock" ||
           contentSpecification?.language === "molblock-raw" ? (
           <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
@@ -257,6 +294,61 @@ const FilePreviewDialog: React.FC = () => {
         </Button>
       </DialogActions>
     </Dialog>
+  );
+};
+
+/** Inline component for dictionary preview with monomer selector */
+const DictPreview: React.FC<{ digest: DictDigest }> = ({ digest }) => {
+  const codes = Object.keys(digest.molblocks);
+  const [selectedCode, setSelectedCode] = useState(codes[0] ?? "");
+
+  // Find the ligand metadata for the selected monomer
+  const selectedLigand = digest.ligands.find((l) => l.id === selectedCode);
+  const selectedMolblock = digest.molblocks[selectedCode];
+
+  if (codes.length === 0) {
+    return (
+      <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: 200 }}>
+        <Typography color="text.secondary">No structures available</Typography>
+      </Box>
+    );
+  }
+
+  return (
+    <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 2 }}>
+      {codes.length > 1 && (
+        <FormControl size="small" sx={{ minWidth: 250 }}>
+          <InputLabel>Monomer</InputLabel>
+          <Select
+            value={selectedCode}
+            label="Monomer"
+            onChange={(e) => setSelectedCode(e.target.value)}
+          >
+            {codes.map((code) => {
+              const ligand = digest.ligands.find((l) => l.id === code);
+              const label = ligand?.name ? `${code} \u2013 ${ligand.name}` : code;
+              return (
+                <MenuItem key={code} value={code}>
+                  {label}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      )}
+      {selectedMolblock ? (
+        <MolBlockView
+          molblock={selectedMolblock}
+          name={selectedLigand?.name ?? selectedCode}
+          width={500}
+          height={400}
+        />
+      ) : (
+        <Typography color="text.secondary">
+          No structure available for {selectedCode}
+        </Typography>
+      )}
+    </Box>
   );
 };
 

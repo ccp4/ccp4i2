@@ -210,6 +210,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
   const fetchDict = useCallback(async (url: string) => {
     if (!commandCentre.current) return;
     const fileContent = await apiText(url);
+    // Load all monomers in the dictionary into coot's global store
     await commandCentre.current.cootCommand(
       {
         returnType: "status",
@@ -219,34 +220,57 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
       },
       false
     );
-    const instanceName = "LIG";
-    const result = (await commandCentre.current.cootCommand(
-      {
-        returnType: "status",
-        command: "get_monomer_and_position_at",
-        commandArgs: [instanceName, -999999, ...getOrigin().map((coord: number) => -coord)],
-      },
-      true
-    )) as moorhen.WorkerResponse<number>;
-    if (result.data.result.status === "Completed") {
-      const newMolecule = new MoorhenMolecule(
-        commandCentre as RefObject<moorhen.CommandCentre>,
-        store as any,
-        monomerLibraryPath
-      );
-      newMolecule.uniqueId = url;
-      newMolecule.molNo = result.data.result.result;
-      newMolecule.name = instanceName;
-      newMolecule.setBackgroundColour(backgroundColor);
-      newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
-      newMolecule.coordsFormat = "mmcif";
-      await Promise.all([
-        newMolecule.fetchDefaultColourRules(),
-        newMolecule.addDict(fileContent),
-      ]);
-      newMolecule.centreAndAlignViewOn("/*/*/*/*", false, 100);
-      await newMolecule.fetchIfDirtyAndDraw("ligands");
-      dispatch(addMolecule(newMolecule));
+    // Extract monomer codes from the CIF content (data_comp_XXX blocks, excluding comp_list)
+    const monomerCodes: string[] = [];
+    const blockPattern = /^data_comp_(\S+)/gm;
+    let match;
+    while ((match = blockPattern.exec(fileContent)) !== null) {
+      const code = match[1];
+      if (code !== "list") {
+        monomerCodes.push(code);
+      }
+    }
+    // Fallback: if no comp_ blocks found, try the legacy block name pattern
+    if (monomerCodes.length === 0) {
+      const legacyPattern = /^data_(\S+)/gm;
+      while ((match = legacyPattern.exec(fileContent)) !== null) {
+        monomerCodes.push(match[1]);
+      }
+    }
+    const originCoords = getOrigin().map((coord: number) => -coord);
+    let centredFirst = false;
+    for (const code of monomerCodes) {
+      const result = (await commandCentre.current.cootCommand(
+        {
+          returnType: "status",
+          command: "get_monomer_and_position_at",
+          commandArgs: [code, -999999, ...originCoords],
+        },
+        true
+      )) as moorhen.WorkerResponse<number>;
+      if (result.data.result.status === "Completed") {
+        const newMolecule = new MoorhenMolecule(
+          commandCentre as RefObject<moorhen.CommandCentre>,
+          store as any,
+          monomerLibraryPath
+        );
+        newMolecule.uniqueId = `${url}#${code}`;
+        newMolecule.molNo = result.data.result.result;
+        newMolecule.name = code;
+        newMolecule.setBackgroundColour(backgroundColor);
+        newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
+        newMolecule.coordsFormat = "mmcif";
+        await Promise.all([
+          newMolecule.fetchDefaultColourRules(),
+          newMolecule.addDict(fileContent),
+        ]);
+        if (!centredFirst) {
+          newMolecule.centreAndAlignViewOn("/*/*/*/*", false, 100);
+          centredFirst = true;
+        }
+        await newMolecule.fetchIfDirtyAndDraw("ligands");
+        dispatch(addMolecule(newMolecule));
+      }
     }
   }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, getOrigin, dispatch]);
 

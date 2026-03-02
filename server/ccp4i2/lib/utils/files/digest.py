@@ -21,7 +21,7 @@ from ..containers.find_objects import find_objects
 from ..containers.get_container import get_job_container
 from ..containers.json_encoder import CCP4i2JsonEncoder
 from ..plugins.plugin_context import get_plugin_with_context
-from ..formats.cif_ligand import parse_cif_ligand_summary, extract_monomer_atoms_bonds, extract_all_monomers_atoms_bonds
+from ..formats.cif_ligand import parse_cif_ligand_summary, extract_monomer_atoms_bonds, extract_all_monomers_atoms_bonds, generate_all_molblocks
 from ..parameters.value_dict import value_dict_for_object
 from ....db import models
 from ...parse import identify_data_type
@@ -453,9 +453,16 @@ def digest_cdictdata_file_object(file_object: CPdbDataFile):
     content_dict = parse_cif_ligand_summary(file_path)
     # Extract atoms/bonds for ALL monomers in the dictionary file
     monomers = extract_all_monomers_atoms_bonds(file_path)
+    # Generate 2D molblocks for all monomers (best-effort, won't break digest on failure)
+    try:
+        molblocks = generate_all_molblocks(file_path)
+    except Exception as e:
+        logger.warning("Failed to generate molblocks for %s: %s", file_path, e)
+        molblocks = {}
     return {
         "ligands": content_dict,
         "monomers": monomers,
+        "molblocks": molblocks,
     }
 
 
