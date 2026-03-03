@@ -3146,7 +3146,17 @@ class CReportView(QtWidgets.QStackedWidget):
                 reportFile = PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='REPORT')
                 from pimple.graphUtils import extractGraphData
                 graphData = extractGraphData([reportFile],str(args['ccp4_data_id']),args['ccp4_data_current_index'])
-                print(graphData)
+                from qtgui import CCP4FileBrowser
+                self.fileBrowser = CCP4FileBrowser.CFileDialog(self, title='Save graph plot data as JSON',
+                                                       filters=['JSON file (*.json)'], defaultSuffix='json',
+                                                       fileMode=QtWidgets.QFileDialog.AnyFile)
+                @QtCore.Slot(str,str)
+                def downloadGraphCsvFile(graphData,fileName):
+                    import json
+                    with open(fileName,"w+") as f:
+                        f.write(json.dumps(graphData))
+                self.fileBrowser.selectFile.connect(functools.partial(downloadGraphCsvFile, graphData))
+                self.fileBrowser.show()
 
             elif 'action' in args and args['action'] == "WebGL":
                 from report.CCP4ReportParser import WEBGLSOURCES, MTZToB64Map
