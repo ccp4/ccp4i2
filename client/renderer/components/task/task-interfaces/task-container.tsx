@@ -35,11 +35,11 @@ import { useJob } from "../../../utils";
 import AcornInterface from "./acorn";
 import AMPLEInterface from "./ample";
 import ArcimboldoInterface from "./arcimboldo";
+import MakeLinkInterface from "./MakeLink";
 
 // Auto-generated interfaces from legacy GUI files
 import GeneratedAcedrgLinkInterface from "./generated/AcedrgLink";
 import GeneratedAlternativeImportXIA2Interface from "./generated/AlternativeImportXIA2";
-import GeneratedMakeLinkInterface from "./generated/MakeLink";
 import GeneratedMakeProjectsAndDoLigandPipelineInterface from "./generated/MakeProjectsAndDoLigandPipeline";
 import GeneratedPrepareDepositInterface from "./generated/PrepareDeposit";
 import GeneratedProvideAlignmentInterface from "./generated/ProvideAlignment";
@@ -163,14 +163,14 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <AcornInterface job={job} />;
       case "AMPLE":
         return <AMPLEInterface job={job} />;
+      case "MakeLink":
+        return <MakeLinkInterface job={job} />;
 
       // Auto-generated interfaces from legacy GUI files
       case "AcedrgLink":
         return <GeneratedAcedrgLinkInterface job={job} />;
       case "AlternativeImportXIA2":
         return <GeneratedAlternativeImportXIA2Interface job={job} />;
-      case "MakeLink":
-        return <GeneratedMakeLinkInterface job={job} />;
       case "MakeProjectsAndDoLigandPipeline":
         return <GeneratedMakeProjectsAndDoLigandPipelineInterface job={job} />;
       case "PrepareDeposit":

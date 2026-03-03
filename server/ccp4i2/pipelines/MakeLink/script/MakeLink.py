@@ -460,6 +460,7 @@ class MakeLink(CPluginScript):
     def processOutputFiles(self):
         #Create (dummy) PROGRAMXML
         import shutil
+        from pathlib import Path
 
         from lxml import etree
 
@@ -478,11 +479,13 @@ class MakeLink(CPluginScript):
             self.container.outputData.UNL_PDB = AcedrgLinkPlugin.container.outputData.UNL_PDB.fullPath.__str__()
             self.container.outputData.UNL_CIF = AcedrgLinkPlugin.container.outputData.UNL_CIF.fullPath.__str__()
             
-            #Catenate output XMLs
-            pluginXMLStructure = CCP4Utils.openFileToEtree(AcedrgLinkPlugin.makeFileName("PROGRAMXML"))
-            cycleElement = etree.SubElement(pluginXMLStructure,"Cycle")
-            cycleElement.text = str(iPlugin)
-            pipelineXMLStructure.append(pluginXMLStructure)
+            #Catenate output XMLs (AcedrgLink may not produce PROGRAMXML)
+            programXmlPath = AcedrgLinkPlugin.makeFileName("PROGRAMXML")
+            if Path(programXmlPath).exists():
+                pluginXMLStructure = CCP4Utils.openFileToEtree(programXmlPath)
+                cycleElement = etree.SubElement(pluginXMLStructure,"Cycle")
+                cycleElement.text = str(iPlugin)
+                pipelineXMLStructure.append(pluginXMLStructure)
         
         with open(self.makeFileName("PROGRAMXML"),"w") as pipelineXMLFile:
             CCP4Utils.writeXML(pipelineXMLFile,etree.tostring(pipelineXMLStructure))

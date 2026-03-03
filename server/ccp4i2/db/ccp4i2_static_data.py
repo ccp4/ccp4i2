@@ -84,6 +84,7 @@ FILETYPES_TEXT = [
     "application/postscript",
     "application/EBI-validation-xml",
     "chemical/x-cif",
+    "text/plain",
 ]
 FILETYPES_CLASS = [
     "DataFile",
@@ -124,6 +125,7 @@ FILETYPES_CLASS = [
     "PostscriptDataFile",
     "EBIValidationXMLDataFile",
     "MmcifReflDataFile",
+    "TextDataFile",
 ]
 MINIMTZFILETYPES = [10, 11, 12, 13]
 FILE_ROLE_OUT = 0
@@ -180,6 +182,7 @@ FILETYPELIST = [
     (35, "application/postscript", "Postscript file"),
     (36, "application/EBI-validation-xml", "Validation XML"),
     (37, "chemical/x-cif", "mmCif reflection data"),
+    (38, "text/plain", "Plain text file"),
 ]
 
 KEYTYPELIST = [

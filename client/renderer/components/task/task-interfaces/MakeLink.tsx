@@ -1,13 +1,13 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { LinearProgress, Paper } from "@mui/material";
-import { CCP4i2TaskInterfaceProps } from "../task-container";
-import { CCP4i2TaskElement } from "../../task-elements/task-element";
-import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
-import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
-import { InlineField } from "../../task-elements/inline-field";
-import { useJob } from "../../../../utils";
-import { useBoolToggle } from "../../task-elements/shared-hooks";
-import { apiJson } from "../../../../api-fetch";
+import { CCP4i2TaskInterfaceProps } from "./task-container";
+import { CCP4i2TaskElement } from "../task-elements/task-element";
+import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
+import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
+import { InlineField } from "../task-elements/inline-field";
+import { useJob } from "../../../utils";
+import { useBoolToggle } from "../task-elements/shared-hooks";
+import { apiJson } from "../../../api-fetch";
 
 // Layout constants
 const LABEL_WIDTH = "14rem";
