@@ -83,15 +83,20 @@ class Phil2CData:
         "uuid": CString,         # UUID string
     }
 
-    def __init__(self, phil_scope, exclude_scopes=None):
+    def __init__(self, phil_scope, exclude_scopes=None, max_expert_level=None):
         """
         Args:
             phil_scope: A libtbx.phil scope object (the master_phil).
             exclude_scopes: List of dotted PHIL paths to skip entirely
                 (e.g., I/O scopes handled by shims).
+            max_expert_level: If set, skip definitions and scopes with
+                expert_level > this value. PHIL convention:
+                0 = user-facing, 1+ = increasingly expert/internal.
+                None means include all levels (no filtering).
         """
         self.phil_scope = phil_scope
         self.exclude_scopes = set(exclude_scopes or [])
+        self.max_expert_level = max_expert_level
 
     def convert(self, root_name="controlParameters"):
         """Convert the full PHIL scope to a CContainer hierarchy.

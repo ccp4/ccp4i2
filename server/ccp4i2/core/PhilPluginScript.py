@@ -99,11 +99,32 @@ class PhilPluginScript(CPluginScript):
             )
             phil_container = converter.convert(root_name="controlParameters")
 
+            existing_cp = self.container.controlParameters
+
+            # Add expert level meta-parameter for controlling visibility
+            # and serialization filtering. Matches PHIL convention:
+            # 0 = basic user-facing, higher = increasingly expert.
+            from ccp4i2.core.base_object.fundamental_types import CInt
+            from ccp4i2.core.base_object.base_classes import ValueState
+            expert_level = CInt()
+            expert_level._skip_validation = True
+            expert_level._name = "PHIL_EXPERT_LEVEL"
+            expert_level.set_qualifier("guiLabel", "Expert level")
+            expert_level.set_qualifier("toolTip",
+                "Controls which PHIL parameters are visible and written "
+                "to working.phil. 0 = basic, higher = more expert.")
+            expert_level.set_qualifier("min", 0)
+            expert_level.set_qualifier("max", 10)
+            expert_level.value = 0
+            if hasattr(expert_level, "_value_states"):
+                expert_level._value_states["value"] = ValueState.DEFAULT
+            expert_level._skip_validation = False
+            setattr(existing_cp, "PHIL_EXPERT_LEVEL", expert_level)
+
             # Merge children into existing controlParameters.
             # We must detach children from the temporary Phil2CData root first,
             # otherwise _setup_hierarchy_for_value sees they already have a parent
             # and won't re-parent them to the real controlParameters.
-            existing_cp = self.container.controlParameters
             for child in list(phil_container.children()):
                 child_name = child.objectName()
                 # Don't overwrite existing parameters from .def.xml
@@ -161,20 +182,56 @@ class PhilPluginScript(CPluginScript):
     def extract_phil_parameters(self):
         """Walk controlParameters extracting user-set values with their PHIL paths.
 
+        Respects PHIL_EXPERT_LEVEL: only parameters whose expertLevel
+        qualifier is at or below the selected level are serialized.
+        This prevents high-level internal/expert defaults from leaking
+        into working.phil when the user hasn't intentionally set them.
+
         Returns:
             list of (phil_dotted_path, value_string) tuples
         """
+        # Read the user-selected expert level
+        try:
+            max_level = self.container.controlParameters.PHIL_EXPERT_LEVEL.get()
+            if max_level is None:
+                max_level = 0
+        except (AttributeError, Exception):
+            max_level = 0
+
         result = []
-        self._extract_from_container(self.container.controlParameters, result)
+        self._extract_from_container(self.container.controlParameters, result,
+                                     max_level)
         return result
 
-    def _extract_from_container(self, container, result):
-        """Recursively extract set parameters from a container."""
+    def _extract_from_container(self, container, result, max_level=0):
+        """Recursively extract set parameters from a container.
+
+        Args:
+            container: CContainer to walk.
+            result: List to append (phil_path, value_str) tuples to.
+            max_level: Maximum expert level to serialize. Parameters with
+                expertLevel > max_level are skipped.
+        """
         for name in container.dataOrder():
+            # Skip the meta-parameter itself — not a PHIL parameter
+            if name == "PHIL_EXPERT_LEVEL":
+                continue
+
             obj = getattr(container, name)
             if isinstance(obj, CContainer):
-                self._extract_from_container(obj, result)
+                # Check scope-level expert level
+                scope_level = (obj.get_qualifier("expertLevel")
+                               if hasattr(obj, "get_qualifier") else None)
+                if scope_level is not None and scope_level > max_level:
+                    continue
+                self._extract_from_container(obj, result, max_level)
             elif obj.isSet(allowDefault=False):
+                # Check definition-level expert level
+                param_level = (obj.get_qualifier("expertLevel")
+                               if hasattr(obj, "get_qualifier") else None)
+                if param_level is not None and param_level > max_level:
+                    continue
+
                 # Only extract parameters the user explicitly changed (not defaults)
                 # Use stored philPath qualifier if available, else reverse the __ mapping
                 phil_path = obj.get_qualifier("philPath")

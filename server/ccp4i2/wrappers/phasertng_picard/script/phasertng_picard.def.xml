@@ -32,6 +32,16 @@
           </qualifiers>
         </subItem>
       </content>
+      <content id="FIXED">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Fixed model (refine and continue)</guiLabel>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>True</mustExist>
+          <toolTip>Coordinates already placed by a previous MR run. When set, PhaserTNG Riker refines this model and searches for additional components.</toolTip>
+          <requiredSubType>4,3,2,1,0</requiredSubType>
+        </qualifiers>
+      </content>
       <content id="ASUIN">
         <className>CAsuDataFile</className>
         <qualifiers>

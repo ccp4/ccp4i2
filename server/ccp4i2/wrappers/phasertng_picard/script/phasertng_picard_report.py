@@ -27,6 +27,15 @@ class phasertng_picard_report(Report):
     USEPROGRAMXML = False
     WATCHED_FILE = "phasertng_picard/best.1.dag.cards"
 
+    @staticmethod
+    def _find_db_dir(fileroot):
+        """Find the phasertng database subdirectory (picard or riker)."""
+        for name in ("phasertng_picard", "phasertng_riker"):
+            candidate = Path(fileroot, name)
+            if candidate.is_dir():
+                return candidate
+        return None
+
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         Report.__init__(
             self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw
@@ -35,8 +44,8 @@ class phasertng_picard_report(Report):
         if jobStatus in ["Running", "Running remotely"]:
             self.append("<p><b>The job is currently running.</b></p>")
 
-        db_dir = Path(jobInfo.get("fileroot", ""), "phasertng_picard")
-        if not db_dir.is_dir():
+        db_dir = self._find_db_dir(jobInfo.get("fileroot", ""))
+        if db_dir is None:
             self.append("<p>No output directory found.</p>")
             return
 

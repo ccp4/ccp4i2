@@ -16,6 +16,7 @@ import { ErrorInfo } from "./error-info";
 import { MyExpandMore } from "../../expand-more";
 import { ExpandMore } from "@mui/icons-material";
 import { FIELD_SPACING } from "./field-sizes";
+import { useExpertLevel } from "./expert-level-context";
 
 interface CCP4i2ContainerElementProps extends CCP4i2TaskElementProps {
   initiallyOpen?: boolean;
@@ -74,6 +75,7 @@ export const CCP4i2ContainerElement: React.FC<
   const { useTaskItem, getValidationColor } = useJob(job.id);
   const { item } = useTaskItem(itemName);
   const [open, setOpen] = useState(initiallyOpen);
+  const maxExpertLevel = useExpertLevel();
 
   const inferredVisibility = useMemo(() => {
     if (!visibility) return true;
@@ -122,6 +124,14 @@ export const CCP4i2ContainerElement: React.FC<
           const childObjectPath = `${item._objectPath}.${childName}`;
           const { item: childItem } = useTaskItem(childObjectPath);
 
+          // Expert level filtering: hide children above the threshold
+          if (maxExpertLevel !== undefined) {
+            const childLevel = childItem?._qualifiers?.expertLevel;
+            if (childLevel !== undefined && childLevel !== null && childLevel > maxExpertLevel) {
+              return null;
+            }
+          }
+
           return (
             <CCP4i2TaskElement
               key={childObjectPath}
@@ -134,7 +144,7 @@ export const CCP4i2ContainerElement: React.FC<
         })}
       </Box>
     ) : null;
-  }, [item, elementSx, childNames, useTaskItem, props]);
+  }, [item, elementSx, childNames, useTaskItem, props, maxExpertLevel]);
 
   // Generate content for row layout (RowLevel - fields side-by-side)
   const rowContent = useMemo(() => {
@@ -144,6 +154,14 @@ export const CCP4i2ContainerElement: React.FC<
           const childObjectPath = `${item._objectPath}.${childName}`;
           const { item: childItem } = useTaskItem(childObjectPath);
 
+          // Expert level filtering: hide children above the threshold
+          if (maxExpertLevel !== undefined) {
+            const childLevel = childItem?._qualifiers?.expertLevel;
+            if (childLevel !== undefined && childLevel !== null && childLevel > maxExpertLevel) {
+              return null;
+            }
+          }
+
           return (
             <CCP4i2TaskElement
               key={childObjectPath}
@@ -156,7 +174,7 @@ export const CCP4i2ContainerElement: React.FC<
         })}
       </Box>
     ) : null;
-  }, [item, elementSx, childNames, useTaskItem, props]);
+  }, [item, elementSx, childNames, useTaskItem, props, maxExpertLevel]);
 
   const columnChildren = useMemo(() => {
     if (children) {

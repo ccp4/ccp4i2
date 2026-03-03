@@ -950,10 +950,12 @@ TASKS = {
         reportPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil_report:phaser_phil_report",
     ),
     "phasertng_picard": Task(
-        title="PhaserTNG Picard - Molecular Replacement",
-        description="Automated molecular replacement using the PhaserTNG Picard protocol. "
-                    "Explores space groups, translational NCS, cell contents, and error estimations.",
-        shortTitle="PhaserTNG Picard",
+        title="PhaserTNG - Molecular Replacement",
+        description="Automated molecular replacement using PhaserTNG. "
+                    "Runs Picard to explore space groups, translational NCS, cell contents, "
+                    "and error estimations. Optionally provide a fixed model to run Riker "
+                    "for refinement and search for additional components.",
+        shortTitle="PhaserTNG MR",
         pluginPath="ccp4i2.wrappers.phasertng_picard.script.phasertng_picard:phasertng_picard",
         defXmlPath="wrappers/phasertng_picard/script/phasertng_picard.def.xml",
         reportPath="ccp4i2.wrappers.phasertng_picard.script.phasertng_picard_report:phasertng_picard_report",
