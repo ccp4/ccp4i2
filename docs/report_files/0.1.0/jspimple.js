@@ -119,6 +119,7 @@ function CCP4GraphPlot(graphDivName_in,showInput){
 
     this.currentStoredGraph = -1;
     this.haveLaunchButton = false;
+    this.haveDownloadButton = false;
 
     // FIXME - This could be in the XML.
     var useLocalStorage = true;
@@ -139,9 +140,15 @@ function CCP4GraphPlot(graphDivName_in,showInput){
     this.launchDataIDParam = null;
     this.launchJobIdParam =  null;
     this.dataID = "";
+    this.downloadable = false;
 
     var pimpMain = document.createElement("div");
     var graphDivOuter = document.getElementById(graphDivName_in)
+
+    if(graphDivOuter.getAttribute("data-downloadable")==="True"){
+        this.downloadable = true;
+    }
+
     if(!graphDivOuter){
         //console.log("Element "+graphDivName_in+" does not exist");
         this.graphDivName = null;
@@ -275,6 +282,11 @@ function CCP4GraphPlot(graphDivName_in,showInput){
     h = (parentHeight-40)+"px";
     dummy.setAttribute("style","width:"+w+";"+"height:"+h+";")
     pimpMain.setAttribute("style","width:"+w+";"+"height:"+h+"; clear:both;")
+
+    this.downloadDiv = document.createElement("div");
+    this.downloadDiv.setAttribute("id","theDownloadButtonDiv");
+    this.downloadDiv.setAttribute("style","float:left; position:relative; width:13%;");
+    graphDivOuter.appendChild(this.downloadDiv)
 
 }
 
@@ -1986,6 +1998,22 @@ CCP4GraphPlot.prototype.plot = function() {
     var customYTicks = this.currentGraph.customYTicks;
 
     var self = this;
+
+    if(this.downloadable){
+        if(!this.haveDownloadButton){
+            this.haveDownloadButton = true;
+            var downloadLaunchButton = document.createElement("button");
+            downloadLaunchButton.innerHTML = "Download"
+            this.downloadDiv.appendChild(downloadLaunchButton);
+            downloadLaunchButton.onclick = function(){
+                var downloadLaunchParams = {};
+                downloadLaunchParams["action"] = "downloadGraphCsv";
+                downloadLaunchParams["ccp4_data_id"] = self.dataID;
+                downloadLaunchParams["ccp4_data_current_index"] = self.graphs.indexOf(self.currentGraph);
+                buttonBridge.clicked(JSON.stringify(downloadLaunchParams));
+            }
+        }
+    }
 
     if(!this.haveLaunchButton){
         this.haveLaunchButton = true;

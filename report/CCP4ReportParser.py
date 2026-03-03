@@ -2718,6 +2718,7 @@ class DrawnDiv(Container):
         self.data_renderer = kw.get('renderer', 'None')
         self.data_require = kw.get('require', 'None')
         self.data_initially_drawn = kw.get('initiallyDrawn', False)
+        self.downloadable = kw.get('downloadable', False)
         
     def as_etree(self):
         rootDiv = etree.Element('div')
@@ -2734,6 +2735,7 @@ class DrawnDiv(Container):
         rootDiv.set('data-width',self.width)
         rootDiv.set('data-widget-type','CCP4i2DrawnDiv')
         rootDiv.set('data-is-urls',str(self.data_is_urls))
+        rootDiv.set('data-downloadable',str(self.downloadable))
         rootDiv.set('id', self.id)
 
         if self.data_require is not None: rootDiv.set('data-require',self.data_require)
@@ -3256,6 +3258,12 @@ class FlotGraph(Graph):
           ele.set('exe','loggraph')
           if kw.get('withLaunch',True):
             self.launch = Launch(ele,jobInfo=jobInfo,ccp4_data_id='data_'+self.internalId)
+        self.downloadable  = False
+
+        downloadable = kw.get('downloadable',False)
+
+        if downloadable:
+            self.downloadable = True
 
     def as_etree(self):
         self.makeTableText()
@@ -3292,15 +3300,15 @@ class FlotGraph(Graph):
             if self.flot_id :
             
                 if self.outputXml:
-                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_url(), data_is_urls=True, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn), id=self.flot_id )
+                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_url(), data_is_urls=True, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn), id=self.flot_id, downloadable=self.downloadable )
                 else:
-                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_id(), data_is_urls=False, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn), id=self.flot_id )
+                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_id(), data_is_urls=False, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn), id=self.flot_id, downloadable=self.downloadable )
             else :
 
                 if self.outputXml:
-                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_url(), data_is_urls=True, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn))
+                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_url(), data_is_urls=True, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn), downloadable=self.downloadable)
                 else:
-                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_id(), data_is_urls=False, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn))
+                    drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = self.data_id(), data_is_urls=False, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn=str(self.initiallyDrawn), downloadable=self.downloadable)
             
 
             #print etree.tostring(drawnDiv.as_etree(), pretty_print=True)
@@ -3321,8 +3329,7 @@ class FlotGraph(Graph):
                 root.extend(h)
             else:
                 root.append(h)
-        
-        
+
         return root
 
     def as_data_etree(self):

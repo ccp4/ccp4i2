@@ -3142,6 +3142,12 @@ class CReportView(QtWidgets.QStackedWidget):
                 d = CCP4Widgets.CEditFileLabel(parent=self,fileId=args.get('dbFileId',None))
                 d.accepted.connect(self.labelEdited.emit)
 
+            elif 'action' in args and args['action'] == "downloadGraphCsv":
+                reportFile = PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='REPORT')
+                from pimple.graphUtils import extractGraphData
+                graphData = extractGraphData([reportFile],str(args['ccp4_data_id']),args['ccp4_data_current_index'])
+                print(graphData)
+
             elif 'action' in args and args['action'] == "WebGL":
                 from report.CCP4ReportParser import WEBGLSOURCES, MTZToB64Map
                 htmlBase = args['htmlBase']
