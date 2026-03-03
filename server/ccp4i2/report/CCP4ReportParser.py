@@ -687,6 +687,9 @@ class Container(ReportClass):
         return self.addObjectOfClass(
             CopyUrlToClipboard, text=text, label=label, **kw)
 
+    def addDAGGraph(self, xrtnode=None, xmlnode=None, jobInfo=None, **kw):
+        return self.addObjectOfClass(DAGGraph, xrtnode, xmlnode, jobInfo, **kw)
+
     def addResults(self, xrtnode=None, xmlnode=None, jobInfo=None, **kw):
         return self.addObjectOfClass(Results, xrtnode, xmlnode, jobInfo, **kw)
 
@@ -3322,6 +3325,30 @@ class Picture:
         launchNode.set('label', 'View in Coot')
         # launchNode.set('cootScript',self.cootScript)
         self.launchList.append(Launch(xrtnode=launchNode, jobInfo=jobInfo))
+
+
+class DAGGraph(Container):
+    """Report element for rendering a directed acyclic graph using Cytoscape.
+
+    The elements JSON string contains Cytoscape-compatible node/edge data:
+        [{"data": {"id": "n0", "label": "Step"}, "group": "nodes"}, ...]
+
+    The frontend CCP4i2ReportDAG component reads this and renders an
+    interactive network visualization.
+    """
+
+    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+        super().__init__(xrtnode=xrtnode, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
+        self.title = kw.get('title', '')
+        self.elements = kw.get('elements', '[]')
+        self.layout = kw.get('layout', 'dagre')
+
+    def as_data_etree(self):
+        root = super().as_data_etree()
+        root.set('title', self.title)
+        root.set('layout', self.layout)
+        root.text = self.elements
+        return root
 
 
 class GenericReport(Report):

@@ -36,6 +36,7 @@ import AcornInterface from "./acorn";
 import AMPLEInterface from "./ample";
 import ArcimboldoInterface from "./arcimboldo";
 import MakeLinkInterface from "./MakeLink";
+import PhasertngPicardInterface from "./phasertng_picard";
 
 // Auto-generated interfaces from legacy GUI files
 import GeneratedAcedrgLinkInterface from "./generated/AcedrgLink";
@@ -165,6 +166,8 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
         return <AMPLEInterface job={job} />;
       case "MakeLink":
         return <MakeLinkInterface job={job} />;
+      case "phasertng_picard":
+        return <PhasertngPicardInterface job={job} />;
 
       // Auto-generated interfaces from legacy GUI files
       case "AcedrgLink":

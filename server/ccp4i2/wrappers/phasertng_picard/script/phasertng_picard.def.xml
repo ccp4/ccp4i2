@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<ccp4i2>
+  <ccp4i2_header>
+    <function>DEF</function>
+    <pluginName>phasertng_picard</pluginName>
+  </ccp4i2_header>
+  <ccp4i2_body id="phasertng_picard">
+
+    <container id="inputData">
+      <content id="HKLIN">
+        <className>CObsDataFile</className>
+        <qualifiers>
+          <guiLabel>Reflection data</guiLabel>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+          <toolTip>Input MTZ file containing reflection data for molecular replacement</toolTip>
+        </qualifiers>
+      </content>
+      <content id="XYZIN">
+        <className>CList</className>
+        <qualifiers>
+          <guiLabel>Search models</guiLabel>
+          <listMinLength>1</listMinLength>
+        </qualifiers>
+        <subItem>
+          <className>CPdbDataFile</className>
+          <qualifiers>
+            <allowUndefined>True</allowUndefined>
+            <mustExist>True</mustExist>
+            <toolTip>PDB/mmCIF file containing a search model for molecular replacement</toolTip>
+            <requiredSubType>4,3,2,1,0</requiredSubType>
+          </qualifiers>
+        </subItem>
+      </content>
+      <content id="ASUIN">
+        <className>CAsuDataFile</className>
+        <qualifiers>
+          <guiLabel>ASU content</guiLabel>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>Asymmetric unit composition - sequences and copy numbers</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DICT">
+        <className>CDictDataFile</className>
+        <qualifiers>
+          <guiLabel>Cluster compound dictionary</guiLabel>
+          <allowUndefined>True</allowUndefined>
+          <toolTip>CIF dictionary for cluster compounds (e.g., heavy atom clusters)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DAGIN">
+        <className>CPhaserTngDagFile</className>
+        <qualifiers>
+          <guiLabel>Previous solution DAG</guiLabel>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>True</mustExist>
+          <toolTip>DAG file from a previous PhaserTNG Picard run for fixed-model molecular replacement</toolTip>
+        </qualifiers>
+      </content>
+    </container>
+
+    <container id="outputData">
+      <content id="XYZOUT">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Output coordinates</guiLabel>
+          <default><subType>1</subType></default>
+        </qualifiers>
+      </content>
+      <content id="HKLOUT">
+        <className>CMtzDataFile</className>
+        <qualifiers>
+          <guiLabel>Output reflections</guiLabel>
+        </qualifiers>
+      </content>
+      <content id="FPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <guiLabel>Density map coefficients</guiLabel>
+          <default><subType>1</subType><contentFlag>1</contentFlag></default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="DIFFPHIOUT">
+        <className>CMapCoeffsDataFile</className>
+        <qualifiers>
+          <guiLabel>Difference map coefficients</guiLabel>
+          <default><subType>2</subType><contentFlag>1</contentFlag></default>
+          <saveToDb>True</saveToDb>
+        </qualifiers>
+      </content>
+      <content id="DAGOUT">
+        <className>CPhaserTngDagFile</className>
+        <qualifiers>
+          <guiLabel>Solution DAG</guiLabel>
+        </qualifiers>
+      </content>
+    </container>
+
+    <!-- controlParameters is intentionally empty.
+         It gets populated at runtime from phasertng.picard's master_phil
+         via PhilPluginScript._merge_phil_parameters(). -->
+    <container id="controlParameters">
+    </container>
+
+  </ccp4i2_body>
+</ccp4i2>

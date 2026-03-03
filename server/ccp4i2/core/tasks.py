@@ -949,6 +949,17 @@ TASKS = {
         defXmlPath="wrappers/phaser_phil/script/phaser_phil.def.xml",
         reportPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil_report:phaser_phil_report",
     ),
+    "phasertng_picard": Task(
+        title="PhaserTNG Picard - Molecular Replacement",
+        description="Automated molecular replacement using the PhaserTNG Picard protocol. "
+                    "Explores space groups, translational NCS, cell contents, and error estimations.",
+        shortTitle="PhaserTNG Picard",
+        pluginPath="ccp4i2.wrappers.phasertng_picard.script.phasertng_picard:phasertng_picard",
+        defXmlPath="wrappers/phasertng_picard/script/phasertng_picard.def.xml",
+        reportPath="ccp4i2.wrappers.phasertng_picard.script.phasertng_picard_report:phasertng_picard_report",
+        runningReport=True,
+        watchedFile="phasertng_picard/best.1.dag.cards",
+    ),
     "phaser_pipeline": Task(
         title="Expert Mode Molecular Replacement - PHASER",
         description="Advanced MR options followed by refinement and rebuilding (Phaser, Refmac5, Coot)",
@@ -1304,6 +1315,7 @@ _TASK_TREE = [
         "Molecular Replacement",
         [
             "mrbump_basic",
+            "phasertng_picard",
             "phaser_simple",
             "phaser_pipeline",
             "molrep_pipe",

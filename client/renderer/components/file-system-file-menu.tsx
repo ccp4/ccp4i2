@@ -186,6 +186,8 @@ export const FileSystemFileMenu: React.FC<FileSystemFileMenuProps> = ({
             "dict",
             "mol",
             "mtz",
+            "phil",
+            "cards",
           ].includes(menuNode?.name?.split(".").at(-1) || "") && (
             <MenuItem onClick={handlePreview}>
               <Preview />

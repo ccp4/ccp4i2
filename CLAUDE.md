@@ -58,6 +58,44 @@ source ../ccp4-20251105/bin/ccp4.setup-sh
 
 All Python commands below should use `ccp4-python` instead of `python`.
 
+### Inspecting PHIL-based Tool Parameters
+
+When wrapping a PHIL-based tool (Phenix, PhaserTNG, DIALS, etc.), inspect its `master_phil` to understand parameter names, types, and multiplicity:
+
+```bash
+source ../ccp4-20251105/bin/ccp4.setup-sh
+
+# Dump the full PHIL tree
+ccp4-python -c "from my_tool import master_phil; master_phil.show()"
+
+# For tools needing custom PHIL types (e.g., PhaserTNG):
+ccp4-python -c "
+from phasertng.programs import picard
+from iotbx.cli_parser import CCTBXParser
+parser = CCTBXParser(program_class=picard.Program, logger=None, parse_phil=False)
+parser.master_phil.show()
+"
+
+# Check if a parameter is repeatable (.multiple = True):
+ccp4-python -c "
+from phasertng.programs import picard
+from iotbx.cli_parser import CCTBXParser
+parser = CCTBXParser(program_class=picard.Program, logger=None, parse_phil=False)
+for obj in parser.master_phil.all_definitions():
+    if 'xyzin' in obj.path:
+        print(f'{obj.path}  type={obj.object.type}  multiple={obj.object.multiple}')
+"
+
+# Show a scope with full attributes (multiple, expert_level, type, constraints):
+ccp4-python -c "
+...
+scope = parser.master_phil.get('picard')
+scope.show(attributes_level=2)
+"
+```
+
+Parameters with `.multiple = True` need `CList` + `PdbFileListShim` in the wrapper, not a single file type. See `wrappers/PHIL_TASK_GUIDE.md` for the full guide.
+
 ## Running
 
 ### Django Mode

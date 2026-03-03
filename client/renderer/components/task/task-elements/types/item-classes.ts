@@ -51,7 +51,8 @@ export type FileItemClass =
   | "CRefmacKeywordFile"
   | "CMol2DataFile"
   | "CMapDataFile"
-  | "CUnmergedMtzDataFile";
+  | "CUnmergedMtzDataFile"
+  | "CPhaserTngDagFile";
 
 /**
  * MTZ-related file types
@@ -158,6 +159,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CMol2DataFile",
     "CMapDataFile",
     "CUnmergedMtzDataFile",
+    "CPhaserTngDagFile",
     // MTZ types
     "CObsDataFile",
     "CMapCoeffsDataFile",
@@ -228,6 +230,7 @@ export const ITEM_CLASS_COMPONENT_MAP = {
 
   CMapDataFile: "CSimpleDataFileElement",
   CUnmergedMtzDataFile: "CSimpleDataFileElement",
+  CPhaserTngDagFile: "CSimpleDataFileElement",
 
   // MTZ types -> CMiniMtzDataFileElement
   CObsDataFile: "CMiniMtzDataFileElement",

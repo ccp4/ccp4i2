@@ -85,6 +85,7 @@ FILETYPES_TEXT = [
     "application/EBI-validation-xml",
     "chemical/x-cif",
     "text/plain",
+    "application/phasertng-dag",
 ]
 FILETYPES_CLASS = [
     "DataFile",
@@ -126,6 +127,7 @@ FILETYPES_CLASS = [
     "EBIValidationXMLDataFile",
     "MmcifReflDataFile",
     "TextDataFile",
+    "PhaserTngDagFile",
 ]
 MINIMTZFILETYPES = [10, 11, 12, 13]
 FILE_ROLE_OUT = 0
@@ -183,6 +185,7 @@ FILETYPELIST = [
     (36, "application/EBI-validation-xml", "Validation XML"),
     (37, "chemical/x-cif", "mmCif reflection data"),
     (38, "text/plain", "Plain text file"),
+    (39, "application/phasertng-dag", "PhaserTNG DAG file"),
 ]
 
 KEYTYPELIST = [
