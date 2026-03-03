@@ -110,6 +110,9 @@ class phasertng_picard(PhilPluginScript):
         Returns:
             Path to a PDB file in work_dir, or the original path if no
             conversion or selection is needed.
+
+        Raises:
+            RuntimeError: if conversion or selection extraction fails.
         """
         if file_obj is None or not file_obj.isSet():
             return None
@@ -129,8 +132,9 @@ class phasertng_picard(PhilPluginScript):
             file_obj.loadFile()
             rc = file_obj.getSelectedAtomsPdbFile(pdb_path)
             if rc != 0:
-                logger.warning("getSelectedAtomsPdbFile failed for %s", src)
-                return src
+                raise RuntimeError(
+                    f"Failed to extract selected atoms from {src}"
+                )
             logger.info("Wrote selected atoms: %s → %s", src, pdb_path)
         else:
             # CIF with no selection — convert with gemmi
@@ -150,6 +154,7 @@ class phasertng_picard(PhilPluginScript):
         """
         from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 
+        error = CErrorReport()
         work_dir = str(self.getWorkDirectory())
         path_map = {}
 
@@ -157,23 +162,39 @@ class phasertng_picard(PhilPluginScript):
         for i, item in enumerate(self.container.inputData.XYZIN):
             src = str(item.getFullPath()) if item and item.isSet() else None
             if src:
-                prepared = self._prepare_model(item, f"XYZIN_{i}", work_dir)
-                if prepared and prepared != src:
-                    path_map[src] = prepared
+                try:
+                    prepared = self._prepare_model(item, f"XYZIN_{i}", work_dir)
+                    if prepared and prepared != src:
+                        path_map[src] = prepared
+                except Exception as e:
+                    error.append(
+                        klass=self.__class__.__name__, code=201,
+                        details=f"Failed to prepare search model {src}: {e}",
+                        name="processInputFiles", severity=4,
+                    )
+                    return error
 
         # FIXED (riker mode) is a single CPdbDataFile
         try:
             fixed = self.container.inputData.FIXED
             if fixed is not None and fixed.isSet():
                 src = str(fixed.getFullPath())
-                prepared = self._prepare_model(fixed, "FIXED", work_dir)
-                if prepared and prepared != src:
-                    path_map[src] = prepared
+                try:
+                    prepared = self._prepare_model(fixed, "FIXED", work_dir)
+                    if prepared and prepared != src:
+                        path_map[src] = prepared
+                except Exception as e:
+                    error.append(
+                        klass=self.__class__.__name__, code=201,
+                        details=f"Failed to prepare fixed model {src}: {e}",
+                        name="processInputFiles", severity=4,
+                    )
+                    return error
         except AttributeError:
             pass
 
         self._model_path_map = path_map
-        return CErrorReport()
+        return error
 
     def _use_riker(self):
         """Return True if the user has provided a fixed model (FIXED input)."""
@@ -279,6 +300,10 @@ class phasertng_picard(PhilPluginScript):
             logger.info("Dispatching to phasertng.picard")
 
         if master_phil is None:
+            self.appendErrorReport(
+                203,
+                "Cannot import PhaserTNG master_phil — is phasertng installed?",
+            )
             phil_path = os.path.join(str(self.getWorkDirectory()), "working.phil")
             with open(phil_path, "w") as f:
                 f.write("")
@@ -374,6 +399,28 @@ class phasertng_picard(PhilPluginScript):
                 return candidate
         return os.path.join(work_dir, "phasertng_picard")
 
+    def _extract_log_errors(self, max_lines=50):
+        """Scan the PhaserTNG log file for error/failure lines.
+
+        Returns a summary string suitable for inclusion in an error report,
+        or None if no notable errors found.
+        """
+        try:
+            log_text = self.logFileText()
+        except Exception:
+            return None
+        if not log_text:
+            return None
+
+        markers = ("Sorry:", "Error:", "FATAL", "No solution",
+                   "failed", "Traceback (most recent call last)")
+        hits = []
+        for line in log_text.splitlines()[-max_lines:]:
+            stripped = line.strip()
+            if any(m in stripped for m in markers):
+                hits.append(stripped)
+        return "\n".join(hits) if hits else None
+
     def processOutputFiles(self):
         """Harvest phasertng output files into outputData.
 
@@ -422,7 +469,11 @@ class phasertng_picard(PhilPluginScript):
                 break
 
         if not out.XYZOUT.isSet():
-            logger.warning("No MR solution coordinates found — pipeline may have failed")
+            detail = "No MR solution coordinates found (best.*.coordinates.pdb)"
+            log_errors = self._extract_log_errors()
+            if log_errors:
+                detail += f"\n\nPhaserTNG log:\n{log_errors}"
+            self.appendErrorReport(201, detail)
             return PhilPluginScript.FAILED
 
         # Look for output MTZ (in reflections_and_models subdirectory or work dir)
@@ -492,15 +543,25 @@ class phasertng_picard(PhilPluginScript):
                 capture_output=True, text=True, timeout=300,
             )
             if result.returncode != 0:
-                logger.warning("servalcat sigmaa failed (rc=%d): %s",
-                               result.returncode, result.stderr)
+                self.appendErrorReport(
+                    202,
+                    f"servalcat sigmaa failed (rc={result.returncode}): "
+                    f"{result.stderr[:500]}",
+                    severity=2,  # WARNING — non-fatal
+                )
                 return
         except (subprocess.TimeoutExpired, FileNotFoundError) as e:
-            logger.warning("servalcat sigmaa not available or timed out: %s", e)
+            self.appendErrorReport(
+                202, f"servalcat sigmaa not available or timed out: {e}",
+                severity=2,
+            )
             return
 
         if not os.path.exists(sigmaa_mtz):
-            logger.warning("servalcat sigmaa produced no output MTZ")
+            self.appendErrorReport(
+                202, "servalcat sigmaa produced no output MTZ",
+                severity=2,
+            )
             return
 
         # Split the combined MTZ into individual map coefficient files
