@@ -37,15 +37,15 @@ const getProjectsDir = () => {
 
 // Compute projectRoot based on dev vs packaged mode
 // This is NOT user-configurable - it's always derived from the app location
-// In dev: parent of client/ directory (the ccp4i2 repo root where qticons/, svgicons/ exist)
-// In packaged: resources/ccp4i2 (bundled modules and icons)
+// In dev: parent of client/ directory (the ccp4i2 repo root)
+// In packaged: empty string (ccp4i2 is pip-installed in ccp4-python, no local project root)
 export const getProjectRoot = () => {
   if (isDev) {
     // In dev mode, client is at ccp4i2/client, so parent is projectRoot
     return path.resolve(process.cwd(), "..");
   }
-  // In packaged mode, bundled ccp4i2 is in resources
-  return path.join((process as any).resourcesPath as string, "ccp4i2");
+  // In packaged mode, ccp4i2 is pip-installed — no bundled resources
+  return "";
 };
 
 // Get a sensible default for CCP4Dir by checking common locations

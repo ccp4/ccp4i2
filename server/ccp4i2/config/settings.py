@@ -245,14 +245,14 @@ STATICFILES_STORAGE = (
     "django.contrib.staticfiles.storage.StaticFilesStorage"  # Use default storage
 )
 
-# CCP4I2_ROOT is set by Electron app (packaged: Resources/ccp4i2, dev: project root)
-# Fall back to calculating from BASE_DIR for standalone Django usage
+# CCP4I2_ROOT: location of the ccp4i2 package (for finding wrappers, pipelines, etc.)
+# Defaults to BASE_DIR (the ccp4i2/ package directory) which is correct for all
+# deployment modes: pip-installed, Electron, Docker, Azure.
+# Environment variable override is available for tests or special configurations.
 CCP4I2_ROOT_ENV = os.environ.get("CCP4I2_ROOT")
 if CCP4I2_ROOT_ENV:
     CCP4I2_ROOT = Path(CCP4I2_ROOT_ENV)
 else:
-    # Standalone Django / Docker: BASE_DIR is ccp4i2/ directory containing qticons/svgicons
-    # BASE_DIR = Path(__file__).parent.parent = server/ccp4i2 (where icons are located)
     CCP4I2_ROOT = BASE_DIR
 
 # Note: Static files (icons, report assets) are now served by Next.js from public/

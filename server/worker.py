@@ -168,7 +168,7 @@ def process_job(job_data, receiver=None, msg=None):
             # Update job status based on analysis result
             if result.get("status") == "completed":
                 # update_job_status(job_uuid, "FINISHED")
-                # I think that succesfully completed jobs are already marked as FINISHED by manage.py run_job
+                # Successfully completed jobs are already marked as FINISHED by the run_job command
                 return True
             elif result.get("status") == "failed":
                 update_job_status(job_uuid, "FAILED")
@@ -242,7 +242,7 @@ def run_ccp4_analysis(parameters):
         return {"status": "failed", "error": error_msg}
 
     # Prepare command arguments
-    cmd = [ccp4_python, "/usr/src/app/manage.py", "run_job", "-ju", job_uuid]
+    cmd = [ccp4_python, "-m", "django", "run_job", "-ju", job_uuid]
 
     logger.info("Executing command: %s", " ".join(cmd))
 
@@ -385,7 +385,7 @@ def process_project_import(parameters):
         # Run import command
         cmd = [
             ccp4_python,
-            "/usr/src/app/manage.py",
+            "-m", "django",
             "import_ccp4_project_zip",
             local_path,
         ]
@@ -464,7 +464,7 @@ def process_unmerged_data(parameters):
         # This would involve:
         # 1. Finding the job's directory
         # 2. Moving the file there
-        # 3. Updating job parameters via manage.py command
+        # 3. Updating job parameters via management command
 
         update_staged_upload_status(upload_id, "completed")
 
@@ -644,7 +644,7 @@ def update_staged_upload_status(upload_id, status, error_message=None):
     # Use a simple management command to update status
     cmd = [
         ccp4_python,
-        "/usr/src/app/manage.py",
+        "-m", "django",
         "update_staged_upload",
         "--upload-id", upload_id,
         "--status", status,
@@ -695,7 +695,7 @@ def update_job_status(job_uuid, status, result=None):
     # Prepare command arguments for set_job_status management command
     cmd = [
         ccp4_python,
-        "/usr/src/app/manage.py",
+        "-m", "django",
         "set_job_status",
         "-ju",
         job_uuid,
@@ -834,7 +834,7 @@ def cleanup_stale_jobs(stale_threshold_hours=2):
 
     cmd = [
         ccp4_python,
-        "/usr/src/app/manage.py",
+        "-m", "django",
         "cleanup_stale_jobs",
         "--hours", str(stale_threshold_hours),
     ]

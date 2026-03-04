@@ -1,22 +1,7 @@
 """
-ASGI config for ccp4i2 project.
+Backward-compatible ASGI entry point.
 
-It exposes the ASGI callable as a module-level variable named ``application``.
-
-For more information on this file, see
-https://docs.djangoproject.com/en/3.1/howto/deployment/asgi/
+Docker and legacy scripts reference ``asgi:application`` from the server/ directory.
+The canonical location is now ``ccp4i2.config.asgi``.
 """
-
-import os
-
-# Initialize CCP4 DLL paths for Windows (if needed)
-try:
-    import ccp4dll
-except ImportError:
-    pass
-
-from django.core.asgi import get_asgi_application
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "ccp4i2.config.settings")
-
-application = get_asgi_application()
+from ccp4i2.config.asgi import application  # noqa: F401

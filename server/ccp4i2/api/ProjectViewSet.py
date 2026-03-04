@@ -805,7 +805,7 @@ class ProjectViewSet(ModelViewSet):
                 process = subprocess.Popen(
                     [
                         "ccp4-python",
-                        "manage.py",
+                        "-m", "django",
                         "export_project",
                         "-pi",
                         str(the_project.id),

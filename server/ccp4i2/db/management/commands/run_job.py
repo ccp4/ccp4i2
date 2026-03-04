@@ -80,7 +80,7 @@ class Command(BaseCommand):
                 process = subprocess.Popen(
                     [
                         ccp4_python_program,
-                        "manage.py",
+                        "-m", "django",
                         "run_job",
                         "-ju",
                         f"{str(the_job.uuid)}",
