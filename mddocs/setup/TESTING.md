@@ -2,24 +2,23 @@
 
 ## Running i2run Tests
 
-### Using the Test Dispatcher
+### Using the Test Runner
 
 The `run_test.sh` script sets up the environment and runs pytest with proper configuration.
 
 #### Run all tests in a file:
 ```bash
-./run_test.sh server/ccp4i2/tests/i2run/test_i2run.py
+./run_test.sh tests/i2run/test_parrot.py -v
 ```
 
 #### Run a specific test:
 ```bash
-./run_test.sh server/ccp4i2/tests/i2run/test_i2run.py test_case1
+./run_test.sh tests/i2run/test_refmac.py::test_8xfm_basic -v
 ```
 
-#### Run tests from other directories:
+#### Run tests in parallel:
 ```bash
-./run_test.sh tests/test_prosmart_refmac_inheritance.py
-./run_test.sh tests/test_hash_collision_fix.py
+./run_test.sh tests/i2run/ -n 4
 ```
 
 ### Manual pytest Invocation
@@ -27,63 +26,74 @@ The `run_test.sh` script sets up the environment and runs pytest with proper con
 If you prefer to run pytest directly, set up the environment first:
 
 ```bash
+source /path/to/ccp4-20251105/bin/ccp4.setup-sh
 export CCP4I2_ROOT=$(pwd)
-export PYTHONPATH=$(pwd):$(pwd)/server:$PYTHONPATH
-export DJANGO_SETTINGS_MODULE=ccp4i2.settings
+export DJANGO_SETTINGS_MODULE=ccp4i2.config.test_settings
 
 # Then run pytest
-python -m pytest server/ccp4i2/tests/i2run/test_i2run.py -v -s
-python -m pytest server/ccp4i2/tests/i2run/test_i2run.py::TestI2Run::test_case1 -v -s
+ccp4-python -m pytest tests/i2run/test_parrot.py -v -s
 ```
+
+### Test Output Location
+
+Test projects are created in `~/.cache/ccp4i2-tests/` with timestamped names:
+```
+~/.cache/ccp4i2-tests/
+├── 20251204_113645_968f_refmac_test_8xfm_basic/   # Failed test (preserved)
+├── 20251204_114012_a2b3_parrot_test_parrot/       # Passed test (cleaned up)
+└── ...
+```
+
+- **Passed tests**: Automatically cleaned up
+- **Failed tests**: Preserved for debugging
+- **Cleanup**: `rm -rf ~/.cache/ccp4i2-tests/*`
 
 ### Available Test Suites
 
-- **i2run tests**: `server/ccp4i2/tests/i2run/test_i2run.py`
-  - `test_shlex` - Test argument parsing
-  - `test_case1` - Test aimless_pipe
-  - `test_case2` - Test aimless_pipe with reference
-  - `test_case3` - Test complex pipeline
-
+- **i2run tests**: `tests/i2run/` - Integration tests that run crystallographic tasks
 - **Inheritance tests**: `tests/test_prosmart_refmac_inheritance.py`
-  - Verifies DEF XML inheritance works correctly
-  - Tests that NCYCLES is inherited from refmac_i2
-
 - **Hash collision fix**: `tests/test_hash_collision_fix.py`
-  - Verifies CInt/CFloat objects with same value work correctly
-  - Tests identity-based hashing
 
-### Example: Testing prosmart_refmac with NCYCLES
+### Test Categories
 
-To verify the hash collision fix works for prosmart_refmac:
-
-```bash
-# Test the inheritance mechanism
-./run_test.sh tests/test_prosmart_refmac_inheritance.py
-
-# Test the hash collision fix
-./run_test.sh tests/test_hash_collision_fix.py
-```
+| Test | Description | Duration |
+|------|-------------|----------|
+| `test_parrot.py` | Density modification | ~3s |
+| `test_sheetbend.py` | Model rebuilding | ~3s |
+| `test_coordinate_selector.py` | Coordinate selection | ~1s |
+| `test_servalcat.py` | Refinement pipeline | ~7s |
+| `test_refmac.py` | Refmac refinement | ~10s |
+| Full suite | All i2run tests | ~40min |
 
 ### Environment Variables
 
-- `CCP4I2_ROOT`: Project root directory (required)
-- `PYTHONPATH`: Must include project root and server directory
-- `DJANGO_SETTINGS_MODULE`: Django settings (for i2run tests)
+- `CCP4I2_ROOT`: Project root directory (set by `run_test.sh`)
+- `DJANGO_SETTINGS_MODULE`: Django settings (set by `run_test.sh` to `ccp4i2.config.test_settings`)
 - `DEBUG_MERGE`: Set to `1` to enable debug output for container merging
+
+### Compounds App Tests
+
+The compounds app has its own Django settings:
+
+```bash
+cd server
+source /path/to/ccp4-20251105/bin/ccp4.setup-sh
+PYTHONPATH="$PWD:$PWD/../apps" DJANGO_SETTINGS_MODULE=compounds.settings \
+  ccp4-python -m pytest ../apps/compounds/assays/tests/test_aggregation.py -v
+```
 
 ### Troubleshooting
 
 If tests fail with import errors:
-1. Ensure virtual environment is activated: `source .venv/bin/activate`
-2. Check CCP4I2_ROOT is set: `echo $CCP4I2_ROOT`
-3. Verify PYTHONPATH includes server: `echo $PYTHONPATH`
+1. Ensure CCP4 environment is sourced: `source /path/to/ccp4-20251105/bin/ccp4.setup-sh`
+2. Ensure ccp4i2 is pip-installed: `cd server && ccp4-python -m pip install -e .`
+3. Check CCP4I2_ROOT is set: `echo $CCP4I2_ROOT`
 
 If Django tests fail:
 1. Ensure DJANGO_SETTINGS_MODULE is set
 2. Check database migrations are up to date
-3. Verify test database can be created
 
-If i2run tests fail with "NOT NULL constraint failed: ccp4i2_job.title":
-- This has been fixed in `server/ccp4i2/lib/utils/jobs/create.py`
-- Jobs now fallback to using `taskName` if plugin doesn't define TASKTITLE
-- All jobs will have a valid title set
+If `fixture 'django_db_blocker' not found`:
+```bash
+ccp4-python -m pip install pytest-django pytest-xdist
+```
