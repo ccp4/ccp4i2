@@ -3941,6 +3941,8 @@ class CPluginScript(CData):
         if cls is None:
             cls = self.__class__
 
+        details = str(details)
+
         # Determine severity
         # If severity not explicitly provided, use ERROR for exceptions, WARNING otherwise
         if severity is None:

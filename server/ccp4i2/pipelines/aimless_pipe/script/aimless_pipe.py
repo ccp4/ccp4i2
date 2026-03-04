@@ -272,8 +272,8 @@ class aimless_pipe(CPluginScript):
         except Exception as e:
             # failed in Aimless
             print("Aimless error")
-            self.appendErrorReport(CPluginScript,39,str(e))
-            self.fatalError = [202, 'Aimless failed', status]
+            self.appendErrorReport(code=39, details=str(e), cls=CPluginScript)
+            self.fatalError = [202, 'Aimless failed', CPluginScript.FAILED]
             self.process_finish(CPluginScript.FAILED)
             return
 
@@ -524,12 +524,12 @@ class aimless_pipe(CPluginScript):
       xmlroot.append (pointlessxml)
 
       try:
-          aimlessxml = CCP4Utils.openFileToEtree(self.aimless.makeFileName( 'PROGRAMXML' ) )
+          aimlessxml = CCP4Utils.openFileToEtree(self.aimless.makeFileName( 'PROGRAMXML' ) ) if self.aimless is not None else lxml_etree.Element('AIMLESS')
       except:
           aimlessxml = lxml_etree.Element('AIMLESS')
 
       haveaimless = False
-      if hasattr(self,"aimless"):  # True if self.aimless exists
+      if hasattr(self,"aimless") and self.aimless is not None:  # True if self.aimless exists
           # Add ONLYMERGE flag if no scaling, for report
           if self.aimless.container.controlParameters.SCALING_PROTOCOL == 'ONLYMERGE':
               eom = lxml_etree.Element('ONLYMERGE')

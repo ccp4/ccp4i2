@@ -430,7 +430,7 @@ class prosmart_refmac(CPluginScript):
         except Exception as e:
           print('Exception in prosmart_refmac.cootFinished:')
           print(traceback.format_exc(), flush=True)
-          self.appendErrorReport(CPluginScript,39,str(e))
+          self.appendErrorReport(code=39, details=str(e), cls=CPluginScript)
 
     def postCootRefmacFinished(self, refmacJob, statusDict={}):
         self.handleXmlChanged(refmacJob.makeFileName(format='PROGRAMXML'))

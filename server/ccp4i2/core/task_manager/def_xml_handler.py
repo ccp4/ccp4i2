@@ -261,6 +261,10 @@ class DefXmlParser:
                 # empty CLists, so set_input_by_context cannot populate them
                 # from a previous job's outputs.
                 min_length = obj.get_qualifier('listMinLength')
+                if min_length and min_length != 'None':
+                    min_length = int(min_length)
+                else:
+                    min_length = None
                 if min_length and min_length >= 1:
                     for _ in range(min_length):
                         try:
