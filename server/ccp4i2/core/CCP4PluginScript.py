@@ -1603,7 +1603,6 @@ class CPluginScript(CData):
                     stdout=stdout_file,
                     stderr=stderr_file,
                     text=True,
-                    timeout=300,  # 5 minute timeout
                     env=env
                 )
 
@@ -1643,7 +1642,7 @@ class CPluginScript(CData):
             error.append(
                 klass=self.__class__.__name__,
                 code=103,
-                details=f"Process {self.TASKCOMMAND} timed out after 300 seconds"
+                details=f"Process {self.TASKCOMMAND} timed out"
             )
         except Exception as e:
             error.append(
