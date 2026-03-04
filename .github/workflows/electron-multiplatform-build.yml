@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - django
+      - electron-no-bundle-python
   pull_request:
     branches:
       - django

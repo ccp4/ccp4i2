@@ -120,7 +120,7 @@ export const installIpcHandlers = (
       status: "Success",
       cwd: isDev
         ? path.join(process.cwd(), "..", "server")
-        : path.join(process.resourcesPath, "server"),
+        : "", // In packaged mode, ccp4i2 is pip-installed — no server directory on disk
     };
   };
 
@@ -356,6 +356,16 @@ export const installIpcHandlers = (
   });
 
   ipcMain.on("install-requirements", (event, _config) => {
+    // In packaged mode, dependencies are managed by the CCP4 installation (pip install)
+    if (!isDev) {
+      event.sender.send("message-from-main", {
+        message: "install-requirements-progress",
+        status: "failed",
+        output: "Dependencies are managed by the CCP4 installation. Please reinstall or update CCP4.",
+      });
+      return;
+    }
+
     const projectRoot = store.get("projectRoot") || "";
     const CCP4Dir = store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
@@ -369,10 +379,8 @@ export const installIpcHandlers = (
       return;
     }
 
-    // Path to requirements.txt - use same logic as Django server
-    const serverPath = isDev
-      ? path.join(process.cwd(), "..", "server")
-      : path.join((process as any).resourcesPath, "server");
+    // In dev mode, install from pyproject.toml
+    const serverPath = path.join(process.cwd(), "..", "server");
     const requirementsPath = path.join(serverPath, "requirements.txt");
 
     // Spawn pip install process

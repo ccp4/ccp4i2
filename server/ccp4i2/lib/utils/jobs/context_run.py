@@ -195,22 +195,19 @@ def run_job_azure(job):
         }
 
 
-def _find_python_interpreter(project_root: pathlib.Path) -> tuple:
+def _find_python_interpreter() -> tuple:
     """
     Find the appropriate Python interpreter for job execution.
 
     Priority:
     1. ccp4-python (if available on PATH after sourcing ccp4.setup-sh)
-    2. .venv/bin/python (development virtual environment)
-    3. .venv.py311/bin/python (alternative naming convention)
-
-    Args:
-        project_root: Path to the project root directory
+    2. sys.executable (the interpreter running this Django process)
 
     Returns:
         tuple: (interpreter_path: str, interpreter_name: str) or (None, None) if not found
     """
     import shutil
+    import sys
 
     # Priority 1: ccp4-python on PATH (preferred for CCP4 environment)
     ccp4_python = shutil.which("ccp4-python")
@@ -218,17 +215,10 @@ def _find_python_interpreter(project_root: pathlib.Path) -> tuple:
         logger.info("Found ccp4-python on PATH: %s", ccp4_python)
         return ccp4_python, "ccp4-python"
 
-    # Priority 2: Project virtual environment
-    venv_python = project_root / ".venv" / "bin" / "python"
-    if venv_python.exists():
-        logger.info("Found .venv Python: %s", venv_python)
-        return str(venv_python), ".venv/bin/python"
-
-    # Priority 3: Alternative venv naming
-    venv_python = project_root / ".venv.py311" / "bin" / "python"
-    if venv_python.exists():
-        logger.info("Found .venv.py311 Python: %s", venv_python)
-        return str(venv_python), ".venv.py311/bin/python"
+    # Priority 2: The interpreter running this process (guaranteed to have Django)
+    if sys.executable:
+        logger.info("Using current interpreter: %s", sys.executable)
+        return sys.executable, "sys.executable"
 
     return None, None
 
@@ -272,13 +262,8 @@ def run_job_local(job, synchronous=False):
     )
 
     try:
-        # Path: context_run.py -> jobs -> utils -> lib -> ccp4i2 -> server -> manage.py
-        server_dir = pathlib.Path(__file__).parent.parent.parent.parent.parent
-        manage_py = str(server_dir / "manage.py")
-        project_root = server_dir.parent
-
         # Find appropriate Python interpreter
-        python_interpreter, interpreter_name = _find_python_interpreter(project_root)
+        python_interpreter, interpreter_name = _find_python_interpreter()
 
         if python_interpreter is None:
             error_msg = (
@@ -312,7 +297,7 @@ def run_job_local(job, synchronous=False):
             result = subprocess.run(
                 [
                     python_interpreter,
-                    manage_py,
+                    "-m", "django",
                     "run_job",
                     "-ju",
                     str(job.uuid),
@@ -346,9 +331,10 @@ def run_job_local(job, synchronous=False):
             # Use crash-safe wrapper script to catch segfaults and mark jobs FAILED.
             # Without this, a C extension crash kills the Python process and the job
             # stays stuck in "running" state with no way to detect the failure.
+            # Path: context_run.py -> jobs -> utils -> lib -> ccp4i2 -> scripts/
             wrapper_script = str(
-                pathlib.Path(__file__).parent.parent.parent.parent.parent
-                / "run_job_safe.sh"
+                pathlib.Path(__file__).parent.parent.parent.parent
+                / "scripts" / "run_job_safe.sh"
             )
 
             subprocess.Popen(
@@ -356,7 +342,6 @@ def run_job_local(job, synchronous=False):
                     "/bin/bash",
                     wrapper_script,
                     python_interpreter,
-                    manage_py,
                     str(job.uuid),
                 ],
                 start_new_session=True,

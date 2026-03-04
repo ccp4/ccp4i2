@@ -1,21 +1,21 @@
 # Development Environment Setup
 
-This guide walks through setting up a development environment for ccp4i2-django with full CCP4 integration.
+This guide walks through setting up a development environment for CCP4i2 with full CCP4 integration.
 
 ## Prerequisites
 
-- **CCP4 Suite 2024/2025** - Download from [CCP4 Downloads](https://ccp4serv6.rc-harwell.ac.uk/10/)
+- **CCP4 Development Build** - Download from [CCP4 Development Builds](https://ccp4serv6.rc-harwell.ac.uk/10/downloads/packages/)
 - **Node.js 18+** and **npm 9+** - For the Electron client (download from [nodejs.org](https://nodejs.org/))
 - **Git** for version control
 - **macOS, Linux, or WSL** (Unix-like environment)
 
 ## Quick Start (Recommended)
 
-The simplest approach uses `ccp4-python` directly, which includes all crystallographic libraries.
+CCP4i2 is installed as a pip package into `ccp4-python`, which already includes all crystallographic libraries.
 
 ### Step 1: Install CCP4
 
-Download and install CCP4 from https://ccp4serv6.rc-harwell.ac.uk/10/
+Download a development build from https://ccp4serv6.rc-harwell.ac.uk/10/downloads/packages/
 
 Common installation locations:
 - **macOS**: `/Applications/ccp4-20251105` or `~/Developer/ccp4-20251105`
@@ -26,7 +26,6 @@ Common installation locations:
 ```bash
 git clone https://github.com/ccp4/ccp4i2.git
 cd ccp4i2
-git checkout ccp4i2-django
 ```
 
 ### Step 3: Source CCP4 Environment
@@ -40,32 +39,26 @@ which ccp4-python
 ccp4-python --version  # Should show Python 3.11.x
 ```
 
-### Step 4: Replace CCP4's ccp4i2 with This Branch
+### Step 4: Install ccp4i2 into ccp4-python
 
-CCP4 ships with its own version of ccp4i2 in site-packages. To use this development branch instead:
+CCP4i2 is defined as a pip-installable package in `server/pyproject.toml`. Install it in editable mode so your source changes are immediately reflected:
 
 ```bash
-# First, remove CCP4's bundled ccp4i2
-CCP4_SITE=$(ccp4-python -c "import site; print(site.getsitepackages()[0])")
-rm -rf "$CCP4_SITE/ccp4i2"
-
-# Install this branch in editable mode with Django dependencies
-ccp4-python -m pip install -e ".[django]"
-
-# Or install everything (Django + test dependencies)
-ccp4-python -m pip install -e ".[full]"
-
-# Note: pip may show an error about "checking for conflicts" - this is a known
-# issue with some CCP4 packages and can be ignored if the install succeeds.
+cd server
+ccp4-python -m pip install -e .
+cd ..
 ```
 
-This replaces CCP4's bundled ccp4i2 with a link to your development checkout, so changes you make are immediately reflected. It also installs/upgrades Django and related packages (djangorestframework, django-cors-headers, django-filter, whitenoise, uvicorn).
+This installs ccp4i2 and its dependencies (Django, djangorestframework, uvicorn, etc.) into `ccp4-python`'s site-packages. If CCP4 ships with an older bundled ccp4i2, the editable install takes precedence.
 
-**To revert to CCP4's original version**: Re-install CCP4 or copy the ccp4i2 directory from a fresh CCP4 installation.
+> **Note**: pip may show warnings about dependency conflicts with existing CCP4 packages — these can generally be ignored if the install succeeds.
 
 ### Step 5: Verify Setup
 
 ```bash
+# Test ccp4i2 is importable
+ccp4-python -c "import ccp4i2; print('ccp4i2 OK')"
+
 # Test Django
 ccp4-python -c "import django; print(f'Django {django.__version__}')"
 
@@ -73,39 +66,13 @@ ccp4-python -c "import django; print(f'Django {django.__version__}')"
 ccp4-python -c "import clipper; import phaser; print('CCP4 libraries OK')"
 ```
 
-### Step 6: Install Test Dependencies
-
-The test suite requires additional pytest plugins:
-
-```bash
-ccp4-python -m pip install pytest-django pytest-xdist
-```
-
-Or install all test dependencies at once:
-```bash
-ccp4-python -m pip install -e ".[test]"
-```
-
-**Note:** If you installed ccp4i2 before `pytest-xdist` was added to `pyproject.toml`, pip may not install it automatically on subsequent `pip install -e ".[test]"` runs because pip caches the dependency list. To fix this, either:
-
-1. Install the missing packages explicitly:
-   ```bash
-   ccp4-python -m pip install pytest-django pytest-xdist
-   ```
-
-2. Or force pip to re-evaluate dependencies:
-   ```bash
-   ccp4-python -m pip install -e ".[test]" --force-reinstall --no-deps
-   ccp4-python -m pip install -e ".[test]"
-   ```
-
-### Step 7: Run Tests
+### Step 6: Run Tests
 
 ```bash
 # Run a quick test
 ./run_test.sh tests/i2run/test_parrot.py -v
 
-# Run multiple tests in parallel (requires pytest-xdist)
+# Run multiple tests in parallel (requires pytest-xdist, installed by pip)
 ./run_test.sh tests/i2run/ -n 4
 ```
 
@@ -149,66 +116,76 @@ i2 export project <project_id>  # Export project
 i2 import <zipfile>             # Import legacy CCP4 project
 ```
 
-### Examples
-
-```bash
-# Create a project and run a task
-i2 projects create toxd
-i2 run parrot --hklin toxd.mtz --xyzin toxd.pdb
-
-# List jobs and view a report
-i2 jobs toxd
-i2 report 42
-```
-
 ### Django Management Commands
 
-For advanced usage, Django management commands are also available:
+For advanced usage, Django management commands are available via `python -m django`:
 
 ```bash
+# From anywhere (with DJANGO_SETTINGS_MODULE set)
+ccp4-python -m django <command> [options]
+
+# Or from the server/ directory
 cd server
 ccp4-python manage.py <command> [options]
 ```
 
-Commands include: `i2run`, `list_projects`, `list_jobs`, `create_job`, `run_job`, `tree_job`, `export_job`, `import_ccp4_project_zip`, and more. Run `ccp4-python manage.py --help` for the full list.
+Commands include: `i2run`, `list_projects`, `list_jobs`, `create_job`, `run_job`, `tree_job`, `export_job`, `import_ccp4_project_zip`, and more. Run `ccp4-python -m django --help` for the full list.
 
 ---
 
 ## Running the Electron Client
 
-The Electron client provides a modern GUI for CCP4i2 with a React frontend and Django backend.
+The Electron client provides a modern desktop GUI for CCP4i2 with a React frontend and Django backend.
 
 ### Prerequisites
 
 - **Node.js 18+** and **npm 9+** (check with `node --version` and `npm --version`)
 - **CCP4 with ccp4-python** installed and accessible
-- **ccp4i2 installed** with Django dependencies (Step 4: `ccp4-python -m pip install -e ".[django]"`)
+- **ccp4i2 pip-installed** into ccp4-python (Step 4 above)
+
+### How it Works
+
+The Electron app:
+- Detects your CCP4 installation automatically
+- Uses `ccp4-python` to run Django migrations and start the Uvicorn ASGI server
+- Loads the ASGI app via the module path `ccp4i2.config.asgi:application` — no Python source code is bundled in the Electron app
 
 ### CCP4 Detection
 
-The client automatically detects your CCP4 installation. In development mode, it searches:
-
+In development mode, the client searches:
 1. **Sibling directories** - Scans `../` for `ccp4-*` folders (e.g., `../ccp4-20251105`)
 2. **Standard locations** - `/Applications/ccp4-9` (macOS), `C:\CCP4\ccp4-9` (Windows), `/opt/ccp4` (Linux)
 
-The first directory containing `bin/ccp4-python` is used. Newer versions are preferred (sorted by name descending).
+The first directory containing `bin/ccp4-python` is used. Newer versions are preferred.
 
-**Note**: You do NOT need to source `ccp4.setup-sh` before running the client - the Electron app sets up the CCP4 environment internally.
+**Note**: You do NOT need to source `ccp4.setup-sh` before running the client — the Electron app sets up the CCP4 environment internally.
 
 ### Running in Development Mode
 
 ```bash
 cd client
-rm -rf node_modules  # Clean install (first time or after package.json changes)
 npm install
 npm run start:electron
 ```
 
 This will:
-1. Install npm dependencies
-2. Build the Electron main process
-3. Start Next.js development server
-4. Launch the Electron window
+1. Build the Electron main process
+2. Start Next.js development server
+3. Launch the Electron window
+4. Start Django/Uvicorn via `ccp4-python`
+
+### Building a Packaged App
+
+```bash
+cd client
+npm run package-mac        # macOS .dmg
+npm run package-win        # Windows .exe
+npm run package-linux-x64  # Linux .AppImage
+```
+
+Packaged apps are written to `client/release/`.
+
+**Important**: The packaged app requires `ccp4i2` to be pip-installed in the target machine's CCP4 installation. Without it, the Django backend will fail to start with `ModuleNotFoundError: No module named 'ccp4i2'`.
 
 ### Configuration
 
@@ -232,69 +209,18 @@ Default configuration runs without authentication. See `.env.local.auth-example`
 
 ---
 
-## Alternative: Virtual Environment with Symlinks
-
-For development requiring packages not in CCP4, you can create a Python virtual environment and symlink CCP4 modules into it.
-
-### When to Use This Approach
-
-- You need specific package versions different from CCP4
-- You're developing features that require additional Python packages
-- You want isolation from CCP4's Python environment
-
-### Setup Steps
-
-1. **Create virtual environment using CCP4's Python**:
-   ```bash
-   CCP4_PYTHON="/path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
-   $CCP4_PYTHON -m venv .venv
-   source .venv/bin/activate
-   ```
-
-2. **Install requirements**:
-   ```bash
-   pip install -r requirements.txt
-   pip install "numpy<2"  # CCP4 modules require NumPy 1.x
-   ```
-
-3. **Symlink CCP4 modules**:
-   ```bash
-   CCP4_SITE="/path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
-   VENV_SITE=".venv/lib/python3.11/site-packages"
-
-   # Core modules
-   ln -sf $CCP4_SITE/{clipper.py,_clipper.so,ccp4mg,pyrvapi.so,pyrvapi_ext} $VENV_SITE/
-
-   # Crystallography
-   ln -sf $CCP4_SITE/{phaser,mrbump,rdkit,iris_validation,chem_data} $VENV_SITE/
-
-   # CCTBX suite (for MolProbity validation)
-   ln -sf $CCP4_SITE/{cctbx,mmtbx,iotbx,scitbx,libtbx,smtbx,boost_adaptbx} $VENV_SITE/
-
-   # CCTBX build environment
-   mkdir -p .venv/share
-   ln -sf /path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/
-   ```
-
-4. **Verify**:
-   ```bash
-   python -c "import clipper; import phaser; print('OK')"
-   ```
-
----
-
 ## Environment Configuration
 
 ### Environment Variables
 
-After pip installation (`ccp4-python -m pip install -e ".[django]"`), PYTHONPATH is handled automatically. The key environment variables are:
+After pip installation (`ccp4-python -m pip install -e .`), Python module discovery is handled automatically. The key environment variables are:
 
 ```bash
-export CCP4I2_ROOT=/path/to/ccp4i2           # For resource files (qticons, data, etc.)
+export CCP4I2_ROOT=/path/to/ccp4i2           # For resource files (set by run_test.sh)
 export DJANGO_SETTINGS_MODULE=ccp4i2.config.settings  # Or test_settings for tests
 ```
 
-The test runner (`run_test.sh`) sets these automatically.
+The test runner (`run_test.sh`) and the Electron app set these automatically.
 
 ### Optional .env File
 
@@ -355,20 +281,75 @@ Test projects are created in `~/.cache/ccp4i2-tests/` with timestamped names:
 
 ---
 
+## Alternative: Virtual Environment with Symlinks
+
+For development requiring packages not in CCP4, you can create a Python virtual environment and symlink CCP4 modules into it.
+
+### When to Use This Approach
+
+- You need specific package versions different from CCP4
+- You're developing features that require additional Python packages
+- You want isolation from CCP4's Python environment
+
+### Setup Steps
+
+1. **Create virtual environment using CCP4's Python**:
+   ```bash
+   CCP4_PYTHON="/path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11"
+   $CCP4_PYTHON -m venv .venv
+   source .venv/bin/activate
+   ```
+
+2. **Install ccp4i2**:
+   ```bash
+   cd server
+   pip install -e .
+   pip install "numpy<2"  # CCP4 modules require NumPy 1.x
+   cd ..
+   ```
+
+3. **Symlink CCP4 modules**:
+   ```bash
+   CCP4_SITE="/path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages"
+   VENV_SITE=".venv/lib/python3.11/site-packages"
+
+   # Core modules
+   ln -sf $CCP4_SITE/{clipper.py,_clipper.so,ccp4mg,pyrvapi.so,pyrvapi_ext} $VENV_SITE/
+
+   # Crystallography
+   ln -sf $CCP4_SITE/{phaser,mrbump,rdkit,iris_validation,chem_data} $VENV_SITE/
+
+   # CCTBX suite (for MolProbity validation)
+   ln -sf $CCP4_SITE/{cctbx,mmtbx,iotbx,scitbx,libtbx,smtbx,boost_adaptbx} $VENV_SITE/
+
+   # CCTBX build environment
+   mkdir -p .venv/share
+   ln -sf /path/to/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/share/cctbx .venv/share/
+   ```
+
+4. **Verify**:
+   ```bash
+   python -c "import clipper; import phaser; print('OK')"
+   ```
+
+---
+
 ## Troubleshooting
+
+### ModuleNotFoundError: No module named 'ccp4i2'
+
+ccp4i2 needs to be pip-installed into ccp4-python:
+```bash
+cd server
+ccp4-python -m pip install -e .
+```
 
 ### ModuleNotFoundError: No module named 'corsheaders'
 
-Install missing Django packages:
+This is installed automatically by `pip install -e .`. If missing, reinstall:
 ```bash
-ccp4-python -m pip install django-cors-headers django-filter djangorestframework whitenoise
-```
-
-### No module named 'uvicorn' (Electron client)
-
-The Electron client uses uvicorn as the ASGI server:
-```bash
-ccp4-python -m pip install uvicorn==0.20.0
+cd server
+ccp4-python -m pip install -e .
 ```
 
 ### Electron client can't find CCP4
@@ -381,6 +362,15 @@ ls ../ccp4-*/bin/ccp4-python  # Should show your CCP4 installation
 
 If CCP4 is elsewhere, you can configure the path in the client's config page on first launch.
 
+### Electron app starts but Django fails
+
+Ensure ccp4i2 is pip-installed into the CCP4 installation that Electron detects:
+```bash
+source /path/to/ccp4-20251105/bin/ccp4.setup-sh
+cd server
+ccp4-python -m pip install -e .
+```
+
 ### npm install fails
 
 Ensure you have Node.js 18+ and npm 9+:
@@ -389,13 +379,11 @@ node --version  # Should be v18.x or higher
 npm --version   # Should be 9.x or higher
 ```
 
-If using an older version, update Node.js from [nodejs.org](https://nodejs.org/).
-
 ### NumPy Version Conflicts
 
 CCP4 modules require NumPy 1.x:
 ```bash
-pip install "numpy<2"
+ccp4-python -m pip install "numpy<2"
 ```
 
 ### Coot Python 2 Not Found
@@ -416,50 +404,11 @@ ln -s /Applications/ccp4-9/coot_py2 /path/to/ccp4-20251105/coot_py2
 ln -s /opt/ccp4-9/coot_py2 /path/to/ccp4-20251105/coot_py2
 ```
 
-Verify the symlink works:
-```bash
-/path/to/ccp4-20251105/bin/coot --version
-# Should show: 0.9.8.x with python 2.7.x embedded
-```
-
-**Note**: The modern Coot 1.x (`coot-1`) uses Python 3 and is available in recent CCP4 builds, but many CCP4i2 wrappers still require the Python 2 version.
-
-### SHELXE Not Found
-
-SHELXE may not be included in recent CCP4 distributions. If you see errors like:
-
-```
-shelxe: command not found
-```
-
-Copy `shelxe` from an older CCP4 installation:
-
-```bash
-# macOS example
-cp /Applications/ccp4-9/bin/shelxe /path/to/ccp4-20251105/bin/
-
-# Linux example
-cp /opt/ccp4-9/bin/shelxe /path/to/ccp4-20251105/bin/
-```
-
-Verify it works:
-```bash
-shelxe --version
-```
-
 ### Segmentation Fault on Import
 
 Python version mismatch. Ensure you're using Python 3.11 matching CCP4:
 ```bash
 ccp4-python --version  # Must be 3.11.x
-```
-
-### libtbx.env FileNotFoundError
-
-Missing CCTBX share directory symlink:
-```bash
-mkdir -p .venv/share
-ln -sf /path/to/ccp4/share/cctbx .venv/share/
 ```
 
 ### Django Database Errors
@@ -471,14 +420,9 @@ export DJANGO_SETTINGS_MODULE=ccp4i2.config.test_settings
 
 ### fixture 'django_db_blocker' not found
 
-This error means `pytest-django` is not installed:
+This error means `pytest-django` is not installed. It should be installed automatically by `pip install -e .`, but can be installed explicitly:
 ```bash
 ccp4-python -m pip install pytest-django pytest-xdist
-```
-
-Or install all test dependencies:
-```bash
-ccp4-python -m pip install -e ".[test]"
 ```
 
 ---
@@ -511,7 +455,6 @@ After setup:
    ```
 
 2. **Read the architecture docs**:
-   - [Migration Strategy](../MIGRATION_STRATEGY.md)
    - [Quick Reference](../QUICK_REFERENCE.md)
 
 3. **Frontend development** (if working on the UI):
