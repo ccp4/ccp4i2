@@ -450,6 +450,11 @@ class ParamsXmlHandler:
 
         # Special handling for CList: elements with class names indicate list items
         if isinstance(cdata_container, CList):
+            # Clear any pre-existing items (e.g. placeholders created by
+            # def_xml_handler from listMinLength) so they aren't duplicated
+            # when the saved items are appended below.
+            cdata_container.clear()
+
             # For CList, child elements are tagged with the item's class name (CCP4i2 convention)
             # e.g., <CImportUnmerged> for items in CImportUnmergedList
             # We create new items and populate them from the XML

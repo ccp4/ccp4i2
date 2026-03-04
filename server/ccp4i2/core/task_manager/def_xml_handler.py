@@ -256,6 +256,18 @@ class DefXmlParser:
                             'qualifiers': sub_qualifiers
                         })
 
+                # Pre-populate CLists that have listMinLength >= 1.
+                # Without this, find_all_files() cannot discover items inside
+                # empty CLists, so set_input_by_context cannot populate them
+                # from a previous job's outputs.
+                min_length = obj.get_qualifier('listMinLength')
+                if min_length and min_length >= 1:
+                    for _ in range(min_length):
+                        try:
+                            obj.addItem()
+                        except (ValueError, Exception):
+                            break
+
             # Add to parent - setattr will trigger hierarchy setup via __setattr__
             setattr(parent, content_id, obj)
 
@@ -280,7 +292,7 @@ class DefXmlParser:
                     result[tag] = [item.strip() for item in text.split(",")]
                 else:
                     result[tag] = [text.strip()]
-            elif tag in ("min", "max", "default") and self._is_number(text):
+            elif tag in ("min", "max", "default", "listMinLength", "listMaxLength") and self._is_number(text):
                 result[tag] = self._parse_number(text)
             else:
                 result[tag] = text
@@ -370,9 +382,13 @@ class DefXmlParser:
         self, qualifiers: Dict[str, Any], content: ET.Element  # noqa: ARG002
     ) -> CList:
         """Create a CList object with proper item type."""
-        # CList is already imported, just create an instance
-        # qualifiers and content may be used in future for subItem type hints
-        return CList()
+        obj = CList()
+        # Skip validation during .def.xml parsing
+        if hasattr(obj, '_skip_validation'):
+            obj._skip_validation = True
+        # Apply qualifiers (listMinLength, guiLabel, fromPreviousJob, etc.)
+        self._apply_qualifiers(obj, qualifiers, "CList")
+        return obj
 
     def _apply_qualifiers(
         self, obj: CData, qualifiers: Dict[str, Any], class_name: str
