@@ -40,7 +40,7 @@ function JobByIdPageContent() {
 
   return (
     <ClientStoreProvider>
-      <MoorhenLoader fileIds={fileIds} viewParam={viewParam} />
+      <MoorhenLoader fileIds={fileIds} viewParam={viewParam} jobId={job?.id ?? null} />
     </ClientStoreProvider>
   );
 }

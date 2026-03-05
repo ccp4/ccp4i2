@@ -27,6 +27,7 @@ import {
   MoreVert,
   Visibility,
   VisibilityOff,
+  Science as ScienceIcon,
 } from "@mui/icons-material";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { CopyViewLinkButton } from "./copy-view-link-button";
@@ -46,6 +47,8 @@ interface MoorhenControlPanelProps {
   molecules: moorhen.Molecule[];
   maps: moorhen.Map[];
   onMapContourLevelChange: (molNo: number, level: number) => void;
+  onRunServalcat?: (mol: moorhen.Molecule) => Promise<void>;
+  servalcatStatus?: string | null;
 }
 
 export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
@@ -54,6 +57,8 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
   molecules,
   maps,
   onMapContourLevelChange,
+  onRunServalcat,
+  servalcatStatus,
 }) => {
   const { customColors } = useTheme();
   const dispatch = useDispatch();
@@ -168,6 +173,12 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
     if (menuState.mol) setPushMol(menuState.mol);
     handleMenuClose();
   }, [menuState.mol, handleMenuClose]);
+  const handleServalcat = useCallback(() => {
+    if (menuState.mol && onRunServalcat) {
+      onRunServalcat(menuState.mol);
+    }
+    handleMenuClose();
+  }, [menuState.mol, onRunServalcat, handleMenuClose]);
 
   if (!cootInitialized) {
     return (
@@ -389,6 +400,12 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
             <MenuItem onClick={handlePush}>
               <Typography variant="body2">Push to CCP4i2</Typography>
             </MenuItem>
+            {onRunServalcat && (
+              <MenuItem onClick={handleServalcat} disabled={!!servalcatStatus}>
+                <ScienceIcon sx={{ fontSize: 16, mr: 1 }} />
+                <Typography variant="body2">Run Servalcat</Typography>
+              </MenuItem>
+            )}
           </Menu>
 
           {/* Push to CCP4i2 Dialog */}
@@ -406,6 +423,25 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
               />
             )}
           </Dialog>
+
+          {/* Servalcat status */}
+          {servalcatStatus && (
+            <Typography
+              variant="caption"
+              sx={{
+                px: 1,
+                py: 0.5,
+                fontSize: "0.65rem",
+                color: servalcatStatus.startsWith("Failed")
+                  ? "error.main"
+                  : "text.secondary",
+                borderTop: `1px solid ${customColors.ui.mediumGray}`,
+                backgroundColor: "rgba(0,0,0,0.02)",
+              }}
+            >
+              {servalcatStatus}
+            </Typography>
+          )}
         </Box>
       )}
 

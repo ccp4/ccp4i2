@@ -29,7 +29,7 @@ import { moorhen } from "moorhen/types/moorhen";
 import { useDispatch, useSelector, useStore } from "react-redux";
 import { webGL } from "moorhen/types/mgWebGL";
 import { MoorhenControlPanel } from "./moorhen-control-panel";
-import { apiGet, apiText, apiArrayBuffer } from "../../api-fetch";
+import { apiGet, apiText, apiArrayBuffer, apiPost, apiUpload } from "../../api-fetch";
 import { useTheme } from "../../theme/theme-provider";
 import { useMoorhenViewState } from "../../hooks/use-moorhen-view-state";
 import {
@@ -43,9 +43,10 @@ import {
 export interface MoorhenWrapperProps {
   fileIds?: number[];
   viewParam?: string | null;
+  jobId?: number | null;
 }
 
-const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) => {
+const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId }) => {
   const capabilities = useMoorhenCapabilities();
   const [isSafari] = useState(() => isSafariBrowser());
   const [safariOverride, setSafariOverride] = useState(false);
@@ -317,6 +318,66 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     [dispatch, maps]
   );
 
+  // Run servalcat refinement using the current job as context
+  const [servalcatStatus, setServalcatStatus] = useState<string | null>(null);
+  const handleRunServalcat = useCallback(
+    async (mol: moorhen.Molecule) => {
+      if (!jobId) {
+        setServalcatStatus("No source job — open from a job to use refinement");
+        return;
+      }
+      try {
+        setServalcatStatus("Creating servalcat job...");
+
+        // Look up the job's UUID and project
+        const jobInfo = await apiGet(`jobs/${jobId}`);
+        if (!jobInfo?.uuid || !jobInfo?.project) {
+          setServalcatStatus("Could not retrieve job information");
+          return;
+        }
+
+        // Create servalcat_pipe job with context_job_uuid for auto-population
+        const createResult = await apiPost(
+          `projects/${jobInfo.project}/create_task/`,
+          {
+            task_name: "servalcat_pipe",
+            title: `Servalcat refinement of ${mol.name}`,
+            context_job_uuid: jobInfo.uuid,
+          }
+        );
+        const newJobId = createResult?.data?.new_job?.id;
+        if (!newJobId) {
+          setServalcatStatus("Failed to create servalcat job");
+          return;
+        }
+
+        // Upload Moorhen coordinates as XYZIN
+        setServalcatStatus("Uploading coordinates...");
+        const pdbText = await mol.getAtoms("pdb");
+        const coordBlob = new Blob([pdbText], { type: "chemical/x-pdb" });
+        const coordFile = new File([coordBlob], `${mol.name || "coords"}.pdb`);
+        const formData = new FormData();
+        formData.append("file", coordFile);
+        formData.append("objectPath", "servalcat_pipe.inputData.XYZIN");
+        await apiUpload(`jobs/${newJobId}/upload_file_param/`, formData);
+
+        // Run the job
+        setServalcatStatus("Running servalcat refinement...");
+        await apiPost(`jobs/${newJobId}/run/`, {});
+
+        setServalcatStatus("Servalcat refinement submitted");
+        // Clear status after a few seconds
+        setTimeout(() => setServalcatStatus(null), 4000);
+      } catch (err) {
+        console.error("Failed to run servalcat:", err);
+        setServalcatStatus(
+          `Failed: ${err instanceof Error ? err.message : "Unknown error"}`
+        );
+      }
+    },
+    [jobId]
+  );
+
   // Custom side panel containing our control panel
   const extraSidePanels: Record<string, MoorhenPanel> = useMemo(() => ({
     ccp4i2Controls: {
@@ -329,10 +390,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
           molecules={molecules}
           maps={maps}
           onMapContourLevelChange={handleMapContourLevelChange}
+          onRunServalcat={jobId ? handleRunServalcat : undefined}
+          servalcatStatus={servalcatStatus}
         />
       ),
     },
-  }), [fetchFile, getViewUrl, molecules, maps, handleMapContourLevelChange]);
+  }), [fetchFile, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus]);
 
   const collectedProps = useMemo(() => ({
     glRef,
