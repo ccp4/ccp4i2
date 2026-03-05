@@ -79,7 +79,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   );
 
   // Chain composition from XYZIN digest (for ProSMART/libg section visibility)
-  const { item: XYZINItem, value: XYZINValue } = useTaskItem("XYZIN");
+  const { item: XYZINItem, value: XYZINValue } = useTaskItem("container.inputData.XYZIN");
   const xyzinDigestPath =
     XYZINValue?.dbFileId && XYZINItem?._objectPath
       ? XYZINItem._objectPath

@@ -67,7 +67,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: hdInitToggle } = useTaskItem("HD_INIT_TOGGLE");
 
   // Chain composition from XYZIN digest (for ProSMART section visibility)
-  const { item: XYZINItem, value: XYZINValue } = useTaskItem("XYZIN");
+  const { item: XYZINItem, value: XYZINValue } = useTaskItem("container.inputData.XYZIN");
   const xyzinDigestPath =
     XYZINValue?.dbFileId && XYZINItem?._objectPath
       ? XYZINItem._objectPath
