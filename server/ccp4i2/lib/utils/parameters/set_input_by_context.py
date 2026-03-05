@@ -87,14 +87,20 @@ def set_input_by_context_job(
     # Use modern find_all_files() to get all file objects in inputData
     # Then filter for those with fromPreviousJob=True qualifier
     all_input_files = input_data.find_all_files()
+    logger.info(
+        "find_all_files() returned %d files: %s",
+        len(all_input_files),
+        [f"{f._name}({type(f).__name__})" for f in all_input_files]
+    )
     dobj_list = [
         f for f in all_input_files
         if f.qualifiers("fromPreviousJob")
     ]
 
-    logger.debug(
-        "Found %d input files with fromPreviousJob=True",
-        len(dobj_list)
+    logger.info(
+        "Found %d input files with fromPreviousJob=True: %s",
+        len(dobj_list),
+        [f._name for f in dobj_list]
     )
 
     dobj: CDataFile
@@ -125,6 +131,10 @@ def set_input_by_context_job(
             projectId=str(the_job.project.uuid),
         )
 
+        logger.info(
+            "File search for %s returned %d result(s)",
+            dobj._name, len(file_id_list)
+        )
         if len(file_id_list) > 0:
             the_file = models.File.objects.get(uuid=file_id_list[0])
             dobj.set(

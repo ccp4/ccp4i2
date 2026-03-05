@@ -60,7 +60,7 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
         qualifiers={{ guiLabel: "Main inputs" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement {...taskProps} itemName="XYZIN" />
+        <CCP4i2TaskElement {...taskProps} itemName="container.inputData.XYZIN" />
 
         {/* X-ray merged inputs */}
         {isXtal && isMerged && (
