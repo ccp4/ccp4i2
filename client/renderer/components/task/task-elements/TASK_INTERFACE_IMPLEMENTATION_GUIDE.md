@@ -1080,6 +1080,24 @@ After implementing CBoolean-driven visibility, always test:
 
 The most common failure mode is one-way toggling, where only one direction works.
 
+### 11. Qualify `itemName` in Pipelines That Embed Other Wrappers
+
+When a pipeline's `.def.xml` includes multiple wrapper definitions (via `<file>` elements), each embedded wrapper contributes its own `inputData` container with its own parameters. If two wrappers define a parameter with the **same terminal name** (e.g. both have `XYZIN` in their `inputData`), a bare `itemName="XYZIN"` is ambiguous — the digest lookup may resolve to the wrong element.
+
+**Always use the fully qualified path** when the parameter name could collide:
+
+```tsx
+// BAD — ambiguous when pipeline embeds metalCoord (which also has XYZIN)
+<CCP4i2TaskElement {...taskProps} itemName="XYZIN" />
+
+// GOOD — explicitly targets the pipeline's own inputData.XYZIN
+<CCP4i2TaskElement {...taskProps} itemName="container.inputData.XYZIN" />
+```
+
+**Real example**: `servalcat_pipe` includes both `servalcat.def.xml` and `metalCoord.def.xml`. Both define `XYZIN` in their `inputData`. Using bare `"XYZIN"` caused the GUI to render the metalCoord wrapper's XYZIN (which was not auto-populated from the context job) instead of the pipeline's own XYZIN.
+
+**How to spot this**: If an input field renders but doesn't auto-populate from the previous job, check whether the pipeline embeds another wrapper that defines a parameter with the same name. Use the browser dev tools network tab to inspect the digest request — the `objectPath` in the response reveals which element was actually resolved.
+
 ---
 
 ## Complete Worked Example — ModelCraft

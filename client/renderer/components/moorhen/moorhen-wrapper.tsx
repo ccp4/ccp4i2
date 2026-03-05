@@ -7,6 +7,7 @@ import {
   setContourLevel,
   setTheme,
   setBackgroundColor,
+  setRequestDrawScene,
   MoorhenContainer,
   MoorhenMolecule,
   MoorhenMap,
@@ -76,6 +77,12 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
   const timeCapsuleRef = useRef(null);
   const cootInitialized = useSelector(
     (state: moorhen.State) => state.generalStates.cootInitialized
+  );
+  const molecules = useSelector(
+    (state: moorhen.State) => state.molecules.moleculeList
+  );
+  const maps = useSelector(
+    (state: moorhen.State) => (state as unknown as { maps: moorhen.Map[] }).maps || []
   );
   const store = useStore();
 
@@ -295,14 +302,37 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam }) =
     }
   }, [fetchMolecule, fetchMap, fetchDict]);
 
+  // Handle map contour level changes from the control panel slider
+  const handleMapContourLevelChange = useCallback(
+    (molNo: number, level: number) => {
+      dispatch(setContourLevel({ molNo, contourLevel: level } as any));
+      const map = maps.find((m) => m.molNo === molNo);
+      if (map) {
+        map.drawMapContour().catch((err) => {
+          console.error("Failed to redraw map contour:", err);
+        });
+      }
+      dispatch(setRequestDrawScene(true));
+    },
+    [dispatch, maps]
+  );
+
   // Custom side panel containing our control panel
   const extraSidePanels: Record<string, MoorhenPanel> = useMemo(() => ({
     ccp4i2Controls: {
       icon: "MatSymSettings",
       label: "CCP4i2",
-      panelContent: <MoorhenControlPanel onFileSelect={fetchFile} getViewUrl={getViewUrl} />,
+      panelContent: (
+        <MoorhenControlPanel
+          onFileSelect={fetchFile}
+          getViewUrl={getViewUrl}
+          molecules={molecules}
+          maps={maps}
+          onMapContourLevelChange={handleMapContourLevelChange}
+        />
+      ),
     },
-  }), [fetchFile, getViewUrl]);
+  }), [fetchFile, getViewUrl, molecules, maps, handleMapContourLevelChange]);
 
   const collectedProps = useMemo(() => ({
     glRef,
