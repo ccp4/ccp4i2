@@ -1,142 +1,203 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import $ from "jquery";
-//@ts-ignore
-import CytoscapeComponent from "react-cytoscapejs";
-import Cytoscape from "cytoscape";
-import COSEBilkent from "cytoscape-cose-bilkent";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, CircularProgress } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
 
-Cytoscape.use(COSEBilkent);
-
-/** Color palette for different pipeline step types. */
-const STEP_COLORS: Record<string, { bg: string; bgDark: string }> = {
-  // Data preparation
-  WALK_DIRECTORY: { bg: "#e8f5e9", bgDark: "#1b5e20" },
-  MTZ_FILE_READER: { bg: "#e8f5e9", bgDark: "#1b5e20" },
-  DATA_PREPARATION: { bg: "#e8f5e9", bgDark: "#1b5e20" },
-  BIOLOGICAL_UNIT_BUILDER: { bg: "#e8f5e9", bgDark: "#1b5e20" },
-  // Analysis
-  ANISOTROPY_CORRECTION: { bg: "#fff3e0", bgDark: "#e65100" },
-  SPACE_GROUP_ANALYSIS: { bg: "#fff3e0", bgDark: "#e65100" },
-  TNCS_COMMENSURATE_MODULATION_ANALYSIS: { bg: "#fff3e0", bgDark: "#e65100" },
-  TNCS_CORRECTION_REFINEMENT: { bg: "#fff3e0", bgDark: "#e65100" },
-  TWIN_TEST: { bg: "#fff3e0", bgDark: "#e65100" },
-  CELL_CONTENT_ANALYSIS: { bg: "#fff3e0", bgDark: "#e65100" },
-  CELL_CONTENT_SCALING: { bg: "#fff3e0", bgDark: "#e65100" },
-  // Search
-  ENSEMBLE_SINGLE_MODEL: { bg: "#e3f2fd", bgDark: "#0d47a1" },
-  FIND_COMPONENTS: { bg: "#e3f2fd", bgDark: "#0d47a1" },
-  FAST_ROTATION_FUNCTION: { bg: "#e1f5fe", bgDark: "#01579b" },
-  FAST_ROTATION_FUNCTION_RESCORE: { bg: "#e1f5fe", bgDark: "#01579b" },
-  GYRE_REFINEMENT: { bg: "#e1f5fe", bgDark: "#01579b" },
-  FAST_TRANSLATION_FUNCTION: { bg: "#e8eaf6", bgDark: "#1a237e" },
-  FAST_TRANSLATION_FUNCTION_RESCORE: { bg: "#e8eaf6", bgDark: "#1a237e" },
-  // Evaluation
-  POSE_SCORING: { bg: "#f3e5f5", bgDark: "#4a148c" },
-  PACKING: { bg: "#f3e5f5", bgDark: "#4a148c" },
-  PERMUTATION_FOR_SEARCH: { bg: "#f3e5f5", bgDark: "#4a148c" },
-  // Refinement & scoring
-  RIGID_BODY_REFINEMENT: { bg: "#fce4ec", bgDark: "#880e4f" },
-  MOVING: { bg: "#fce4ec", bgDark: "#880e4f" },
-  RIGID_BODY_MAPS_FOR_INTENSITIES: { bg: "#fce4ec", bgDark: "#880e4f" },
-  XRAY_COORDINATE_REFINEMENT: { bg: "#fce4ec", bgDark: "#880e4f" },
-  TRANSLATION_FUNCTION_ZSCORE_EQUIVALENT: { bg: "#fff9c4", bgDark: "#f57f17" },
-  "R-FACTOR_CALCULATION": { bg: "#fff9c4", bgDark: "#f57f17" },
-  // Utility
-  EFFECTIVE_AMPLITUDES: { bg: "#f5f5f5", bgDark: "#424242" },
-  JOIN_NODES: { bg: "#f5f5f5", bgDark: "#424242" },
-  SPAN_SPACE: { bg: "#f5f5f5", bgDark: "#424242" },
+/** Dark-mode colour swaps for Airlie's named/hex node colours. */
+const DARK_COLOR_SWAPS: Record<string, string> = {
+  green: "#4caf50",
+  gold: "#ffd54f",
+  grey: "#9e9e9e",
+  darkkhaki: "#bdb76b",
+  orange: "#ff9800",
+  skyblue: "#4fc3f7",
+  // R-factor gradient — lighten for dark backgrounds
+  "#0000ff": "#4444ff",
+  "#2b00d5": "#5533ff",
+  "#5500aa": "#7733cc",
+  "#800080": "#aa44aa",
+  "#aa0055": "#cc4477",
+  "#d5002a": "#ee3355",
+  "#ff0000": "#ff4444",
 };
 
-const DEFAULT_COLOR = { bg: "#f5f5f5", bgDark: "#616161" };
+interface VisNode {
+  id: number | string;
+  label: string;
+  color: string | { background: string; border: string };
+  shape: string;
+  value?: number;
+  borderWidth?: number;
+}
+
+interface VisEdge {
+  from: number | string;
+  to: number | string;
+}
+
+interface VisData {
+  nodes: VisNode[];
+  edges: VisEdge[];
+}
 
 export const CCP4i2ReportDAG: React.FC<CCP4i2ReportElementProps> = ({
   item,
 }) => {
   const theme = useTheme();
   const isDark = theme.palette.mode === "dark";
+  const containerRef = useRef<HTMLDivElement>(null);
+  const networkRef = useRef<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const { elements, title } = useMemo(() => {
+  const { graphData, title, isLegacy } = useMemo(() => {
     const titleAttr = $(item).attr("title") || "Pipeline DAG";
-    // The JSON is embedded as text content of the XML element
-    const jsonText = $(item).text().trim();
-    let parsed: any[] = [];
-    try {
-      parsed = JSON.parse(jsonText);
-    } catch {
-      // Fall back to empty
+    const text = $(item).text().trim();
+
+    // DOT strings from old Viz.js format
+    if (text.startsWith("digraph")) {
+      return { graphData: null, title: titleAttr, isLegacy: true };
     }
-    return { elements: parsed, title: titleAttr };
+
+    // Try parsing as vis-network JSON
+    try {
+      const parsed = JSON.parse(text) as VisData;
+      if (parsed.nodes && parsed.edges) {
+        return { graphData: parsed, title: titleAttr, isLegacy: false };
+      }
+    } catch {
+      // Not JSON
+    }
+
+    // Old Cytoscape JSON format
+    if (text.startsWith("[") || text.startsWith("{")) {
+      return { graphData: null, title: titleAttr, isLegacy: true };
+    }
+
+    return { graphData: null, title: titleAttr, isLegacy: false };
   }, [item]);
 
-  const cytoscapeStyles = useMemo(
-    () => [
-      {
-        selector: "node",
-        style: {
-          label: "data(label)",
-          "text-wrap": "wrap" as const,
-          "text-max-width": 160,
-          "font-size": 9,
-          shape: "round-rectangle" as const,
-          width: 180,
-          height: 36,
-          "text-valign": "center" as const,
-          "text-halign": "center" as const,
-          "background-color": isDark ? "#424242" : "#f5f5f5",
-          "border-width": 1,
-          "border-color": isDark ? "#757575" : "#bdbdbd",
-          color: isDark ? "#ffffff" : "#000000",
-        },
-      },
-      // Generate per-step-type selectors for coloring
-      ...Object.entries(STEP_COLORS).map(([tag, colors]) => ({
-        selector: `node[tag = "${tag}"]`,
-        style: {
-          "background-color": isDark ? colors.bgDark : colors.bg,
-          "border-color": isDark ? "#757575" : "#9e9e9e",
-        },
-      })),
-      // Container/grouping nodes (Picard, Space_Groups, etc.)
-      {
-        selector: "node[?info]",
-        style: {
-          "font-weight": "bold" as const,
-          "border-width": 2,
-        },
-      },
-      {
-        selector: "edge",
-        style: {
-          width: 1.5,
-          "curve-style": "bezier" as const,
-          "line-color": isDark ? "#616161" : "#bdbdbd",
-          "target-arrow-shape": "triangle" as const,
-          "target-arrow-color": isDark ? "#616161" : "#bdbdbd",
-          "arrow-scale": 0.8,
-        },
-      },
-    ],
-    [isDark]
-  );
+  // Apply dark mode colour swaps
+  const themedData = useMemo(() => {
+    if (!graphData) return null;
+    if (!isDark) return graphData;
 
-  const layoutOptions = useMemo(
-    () => ({
-      name: "breadthfirst",
-      animate: false,
-      directed: true,
-      spacingFactor: 0.7,
-      fit: true,
-      padding: 20,
-    }),
-    []
-  );
+    return {
+      ...graphData,
+      nodes: graphData.nodes.map((node) => {
+        let color: any;
+        if (typeof node.color === "string") {
+          color = DARK_COLOR_SWAPS[node.color] || node.color;
+        } else {
+          // Legacy {background, border} format
+          color = node.color;
+        }
+        return {
+          ...node,
+          color,
+          font: { color: "#e0e0e0" },
+        };
+      }),
+    };
+  }, [graphData, isDark]);
 
-  if (elements.length === 0) {
-    return null;
+  // Initialize vis-network
+  useEffect(() => {
+    if (!themedData || !containerRef.current) return;
+
+    let destroyed = false;
+
+    (async () => {
+      try {
+        const { Network } = await import("vis-network/standalone");
+
+        if (destroyed || !containerRef.current) return;
+
+        // Options matching Airlie's runTree.py pyvis_display_method (basic)
+        const options = {
+          layout: {
+            hierarchical: {
+              enabled: true,
+              sortMethod: "hubsize" as const,
+              direction: "UD" as const,
+              levelSeparation: 115,
+              nodeSpacing: 120,
+              blockShifting: true,
+              edgeMinimization: true,
+              parentCentralization: true,
+              shakeTowards: "roots" as const,
+            },
+          },
+          nodes: {
+            font: {
+              size: 31,
+              face: "Helvetica, Arial, sans-serif",
+              color: isDark ? "#e0e0e0" : "#000000",
+            },
+            scaling: {
+              min: 10,
+              max: 60,
+              label: { enabled: true, min: 14, max: 31 },
+            },
+          },
+          edges: {
+            arrows: { to: { enabled: true } },
+            color: { inherit: true },
+            smooth: false,
+          },
+          physics: {
+            enabled: false,
+          },
+          interaction: {
+            dragNodes: false,
+            zoomView: true,
+            dragView: true,
+          },
+        };
+
+        const network = new Network(
+          containerRef.current,
+          { nodes: themedData.nodes, edges: themedData.edges },
+          options
+        );
+
+        networkRef.current = network;
+        network.once("afterDrawing", () => {
+          if (!destroyed) {
+            setLoading(false);
+            network.fit({ animation: false });
+          }
+        });
+      } catch (err: any) {
+        if (!destroyed) {
+          setError(err.message || "Failed to render graph");
+          setLoading(false);
+        }
+      }
+    })();
+
+    return () => {
+      destroyed = true;
+      if (networkRef.current) {
+        networkRef.current.destroy();
+        networkRef.current = null;
+      }
+    };
+  }, [themedData, isDark]);
+
+  if (isLegacy) {
+    return (
+      <Box sx={{ my: 1 }}>
+        <Typography variant="body2" color="text.secondary">
+          Legacy DAG format — regenerate the report to see the updated
+          visualization.
+        </Typography>
+      </Box>
+    );
   }
+
+  if (!graphData) return null;
 
   return (
     <Box sx={{ my: 1 }}>
@@ -149,20 +210,39 @@ export const CCP4i2ReportDAG: React.FC<CCP4i2ReportElementProps> = ({
           borderColor: "divider",
           borderRadius: 1,
           overflow: "hidden",
+          height: "700px",
+          position: "relative",
         }}
       >
-        <CytoscapeComponent
-          elements={elements}
-          stylesheet={cytoscapeStyles}
-          style={{
-            width: "100%",
-            height: "500px",
-          }}
-          layout={layoutOptions}
-          userZoomingEnabled={true}
-          userPanningEnabled={true}
-          boxSelectionEnabled={false}
-        />
+        {loading && (
+          <Box
+            sx={{
+              position: "absolute",
+              inset: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 1,
+            }}
+          >
+            <CircularProgress size={20} />
+            <Typography variant="body2" sx={{ ml: 1 }}>
+              Loading graph…
+            </Typography>
+          </Box>
+        )}
+        {error ? (
+          <Box sx={{ p: 2 }}>
+            <Typography color="error" variant="body2">
+              Error rendering graph: {error}
+            </Typography>
+          </Box>
+        ) : (
+          <div
+            ref={containerRef}
+            style={{ width: "100%", height: "100%" }}
+          />
+        )}
       </Box>
     </Box>
   );

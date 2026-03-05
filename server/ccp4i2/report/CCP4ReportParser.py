@@ -3328,13 +3328,12 @@ class Picture:
 
 
 class DAGGraph(Container):
-    """Report element for rendering a directed acyclic graph using Cytoscape.
+    """Report element for rendering a directed acyclic graph.
 
-    The elements JSON string contains Cytoscape-compatible node/edge data:
-        [{"data": {"id": "n0", "label": "Step"}, "group": "nodes"}, ...]
-
-    The frontend CCP4i2ReportDAG component reads this and renders an
-    interactive network visualization.
+    The elements string contains vis-network JSON ({nodes, edges})
+    built from PhaserTNG dag.html solution pathway files.
+    The frontend CCP4i2ReportDAG component renders it using
+    vis-network with a hierarchical layout matching pyvis.
     """
 
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):

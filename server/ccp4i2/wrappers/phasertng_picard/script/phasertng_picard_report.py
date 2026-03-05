@@ -4,21 +4,60 @@ phasertng_picard report — builds a CCP4i2 report from PhaserTNG Picard output.
 Picard writes structured text files rather than JSON:
   - result.cards: key-value metadata (resolution, spacegroup, R-factor, etc.)
   - best.N.dag.cards: solution blocks separated by '===='
-  - graph_report.xml: nested XML representing the pipeline DAG
+  - *.dag.html: per-node pathway files with parent/child identifiers and Z-scores
 
 This report follows the ModelCraft pattern (USEPROGRAMXML=False, RUNNING=True)
-and adds a Cytoscape DAG visualization for the pipeline flow.
+and adds a vis-network solution pathway tree matching Airlie McCoy's pyvis output.
 """
 
 import json
 import logging
 import re
-import xml.etree.ElementTree as ET
 from pathlib import Path
 
 from ccp4i2.report.CCP4ReportParser import Report
 
 logger = logging.getLogger(__name__)
+
+
+def _dag_node_colour(tag, rfactor=0.0):
+    """Return a colour string matching runTree.py's tag-prefix colour scheme."""
+    t = tag.lower()
+    if t.startswith(("root", "find")):
+        return "green"
+    elif t.startswith("join"):
+        return "gold"
+    elif t.startswith("put"):
+        return "grey"
+    elif t.startswith("fuse"):
+        return "darkkhaki"
+    elif t.startswith(("rfac", "xref")):
+        if rfactor is not None and rfactor > 0:
+            if rfactor > 45:
+                return "#ff0000"
+            if rfactor > 40:
+                return "#d5002a"
+            if rfactor > 35:
+                return "#aa0055"
+            if rfactor > 31:
+                return "#800080"
+            if rfactor > 27:
+                return "#5500aa"
+            if rfactor > 24:
+                return "#2b00d5"
+            return "#0000ff"
+        return "skyblue"
+    return "orange"
+
+
+def _dag_node_shape(tag):
+    """Return a vis-network shape matching runTree.py's tag-prefix mapping."""
+    t = tag.lower()
+    if t.startswith("find") or t.startswith("fuse"):
+        return "square"
+    elif t.startswith("join"):
+        return "triangle"
+    return "dot"
 
 
 class phasertng_picard_report(Report):
@@ -52,7 +91,7 @@ class phasertng_picard_report(Report):
         # Parse output files
         result = self._parse_result_cards(db_dir)
         solutions = self._parse_dag_cards(db_dir)
-        dag_elements = self._parse_graph_report(db_dir)
+        dag_dot = self._parse_dag_html_tree(db_dir)
 
         # Build report sections
         if result or solutions:
@@ -68,14 +107,14 @@ class phasertng_picard_report(Report):
             )
             self._add_solutions_table(solutions, parent=solFold)
 
-        if dag_elements:
+        if dag_dot:
             dagFold = self.addFold(
-                label="Pipeline DAG", initiallyOpen=False, brief="DAG"
+                label="Solution Pathway", initiallyOpen=True, brief="Pathway"
             )
             dagFold.addDAGGraph(
-                title="PhaserTNG Picard Pipeline",
-                elements=json.dumps(dag_elements),
-                layout="dagre",
+                title="PhaserTNG Solution Pathway",
+                elements=dag_dot,
+                layout="hierarchical",
             )
 
         if result:
@@ -185,76 +224,100 @@ class phasertng_picard_report(Report):
 
         return solutions
 
-    def _parse_graph_report(self, db_dir):
-        """Parse graph_report.xml into Cytoscape-compatible elements.
+    def _parse_dag_html_tree(self, db_dir):
+        """Walk db_dir for *.dag.html files and build a solution pathway tree.
 
-        Returns a list of {data: {id, label, ...}, group: "nodes"/"edges"} dicts.
+        Matches runTree.py / inner_voyager_pyvis: each dag.html has a 5-line
+        HTML-comment header encoding parent→child pathway relationships,
+        Z-scores, and R-factors.
+
+        Returns a JSON string with {nodes: [...], edges: [...]},
+        or empty string if no dag.html files found.
         """
-        xml_path = db_dir / "graph_report.xml"
-        if not xml_path.exists():
-            return []
+        dag_files = list(db_dir.rglob("*.dag.html"))
+        if not dag_files:
+            return ""
 
-        try:
-            tree = ET.parse(str(xml_path))
-        except ET.ParseError:
-            logger.warning("Could not parse graph_report.xml")
-            return []
+        nodes_dict = {}   # identifier (str or int 0) -> node dict
+        edges_set = set()  # (from_id, to_id) tuples for dedup
 
-        root = tree.getroot()
-        elements = []
-        node_counter = [0]
+        def _make_label(tag, str_id):
+            """Build label like 'rfac-28' from tag and zero-padded id string."""
+            short = str(int(str_id))[:3]
+            return "{}-{}".format(tag, short)
 
-        def walk(elem, parent_id=None):
-            node_id = f"n{node_counter[0]}"
-            node_counter[0] += 1
+        for dag_file in dag_files:
+            try:
+                with open(dag_file, "r", encoding="utf-8", errors="replace") as f:
+                    lines = [f.readline() for _ in range(5)]
+            except OSError:
+                continue
 
-            # Clean up tag name for display
-            tag = elem.tag.replace("_", " ").title()
-            # Extract info attribute or text for label details
-            info = elem.get("info", "")
-            text = (elem.text or "").strip()
+            if len(lines) < 5 or not lines[0].strip():
+                continue
 
-            # Parse dag size from text like "0000000017-frf Dag size=529"
-            dag_size = ""
-            step_id = ""
-            if text:
-                m = re.match(r"(\d+-\w+)\s+Dag size=(\d+)", text)
-                if m:
-                    step_id = m.group(1)
-                    dag_size = m.group(2)
+            try:
+                # Line 0: <!-- identifier tag -->
+                w0 = lines[0].split()
+                uid_id = w0[1]          # keep as string e.g. "0000000073"
+                uid_tag = w0[2]
 
-            label = tag
-            if info:
-                label = f"{tag}\n{info}"
+                # Line 1: <!-- identifier tag --> or <!-- --- -->
+                w1 = lines[1].split()
+                if w1[1] == "---":
+                    pid_id = 0           # root is int 0
+                    pid_tag = "root"
+                else:
+                    pid_id = w1[1]       # keep as string
+                    pid_tag = w1[2]
 
-            node_data = {"id": node_id, "label": label, "tag": elem.tag}
-            if step_id:
-                node_data["stepId"] = step_id
-            if dag_size:
-                node_data["dagSize"] = dag_size
-            if info:
-                node_data["info"] = info
+                # Line 4: <!-- tracker_id zscore rfactor -->
+                w4 = lines[4].split()
+                zscore = float(w4[1])
+                rfactor = float(w4[2])
+            except (IndexError, ValueError):
+                continue
 
-            elements.append({"data": node_data, "group": "nodes"})
+            # Ensure root node exists
+            if 0 not in nodes_dict:
+                nodes_dict[0] = {
+                    "id": 0,
+                    "label": db_dir.name or "root",
+                    "color": "green",
+                    "shape": "dot",
+                    "value": 20,
+                }
 
-            if parent_id is not None:
-                elements.append({
-                    "data": {
-                        "id": f"e{parent_id}-{node_id}",
-                        "source": parent_id,
-                        "target": node_id,
-                    },
-                    "group": "edges",
-                })
+            # Size from Z-score (matching runTree.py)
+            size = 20 * max(1, zscore) if zscore > 0 else 20
 
-            # Skip Loop_Information nodes' children (they are metadata, not steps)
-            for child in elem:
-                if child.tag == "Loop_Information":
-                    continue
-                walk(child, parent_id=node_id)
+            # Add parent node if not already present
+            if pid_id != 0 and pid_id not in nodes_dict:
+                nodes_dict[pid_id] = {
+                    "id": pid_id,
+                    "label": _make_label(pid_tag, pid_id),
+                    "color": _dag_node_colour(pid_tag),
+                    "shape": _dag_node_shape(pid_tag),
+                    "value": 20,
+                }
 
-        walk(root)
-        return elements
+            # Add/update current node (later files may refine the same node)
+            nodes_dict[uid_id] = {
+                "id": uid_id,
+                "label": _make_label(uid_tag, uid_id),
+                "color": _dag_node_colour(uid_tag, rfactor),
+                "shape": _dag_node_shape(uid_tag),
+                "value": size,
+            }
+
+            edges_set.add((pid_id, uid_id))
+
+        if not nodes_dict:
+            return ""
+
+        nodes = list(nodes_dict.values())
+        edges = [{"from": f, "to": t} for f, t in edges_set]
+        return json.dumps({"nodes": nodes, "edges": edges})
 
     # ------------------------------------------------------------------
     # Report sections

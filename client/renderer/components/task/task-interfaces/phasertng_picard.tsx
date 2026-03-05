@@ -84,7 +84,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2TaskElement itemName="DAGIN" {...props} />
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
-        <CCP4i2Tab key="keywords" label="Keywords">
+        <CCP4i2Tab key="keywords" label="Options">
           <Box
             sx={{
               mx: 2,
