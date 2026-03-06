@@ -65,3 +65,20 @@ class ProvideAsuContents(CPluginScript):
       shutil.move(self.makeFileName('PROGRAMXML')+'_tmp', self.makeFileName('PROGRAMXML'))
 
       return CPluginScript.SUCCEEDED
+
+    def processOutputFiles(self):
+      parts = []
+      for seqObj in self.container.inputData.ASU_CONTENT:
+          copies = int(seqObj.nCopies) if seqObj.nCopies else 1
+          name = str(seqObj.name) if seqObj.name else 'unknown'
+          ptype = str(seqObj.polymerType) if seqObj.polymerType else 'PROTEIN'
+          seq = str(seqObj.sequence).replace(' ', '').replace('\n', '') if seqObj.sequence else ''
+          resCount = len(seq)
+          if copies > 1:
+              parts.append('{0}x {1} ({2}, {3} res)'.format(copies, name, ptype.lower(), resCount))
+          else:
+              parts.append('{0} ({1}, {2} res)'.format(name, ptype.lower(), resCount))
+      if parts:
+          self.container.outputData.ASUCONTENTFILE.annotation = ', '.join(parts)
+      from ccp4i2.core.CCP4ErrorHandling import CErrorReport
+      return CErrorReport()
