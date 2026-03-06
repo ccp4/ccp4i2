@@ -113,7 +113,8 @@
             "shelxeMR",
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
-            "coot1"
+            "coot1",
+            "nucleofind"
         ],
         "model_data_utility": [
             "csymmatch",
@@ -1269,6 +1270,17 @@
                 "class": "pipelines.nautilus_build_refine.script.nautilus_build_refine_reportnautilus_build_refine_report",
                 "clsModule": "pipelines.nautilus_build_refine.script.nautilus_build_refine_report",
                 "clsName": "nautilus_build_refine_report",
+                "modes": [
+                    "Running"
+                ]
+            }
+        },
+        "nucleofind": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.nucleofind.script.nucleofind_reportnucleofind_report",
+                "clsModule": "wrappers.nucleofind.script.nucleofind_report",
+                "clsName": "nucleofind_report",
                 "modes": [
                     "Running"
                 ]
@@ -3261,6 +3273,19 @@
                 "subTasks": []
             }
         },
+        "nucleofind": {
+            "0.1": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "jordan.dialpuri@york.ac.uk",
+                "TASKTITLE": null,
+                "class": "wrappers.nucleofind.script.nucleofind_wrappernucleofind",
+                "clsModule": "wrappers.nucleofind.script.nucleofind_wrapper",
+                "clsName": "nucleofind",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "pairef": {
             "1.1": {
                 "DESCRIPTION": null,
@@ -4189,6 +4214,7 @@
         "mrparse": "qticons/mrparse.png",
         "mtzutils": "qticons/ccp4.png",
         "nautilus_build_refine": "qticons/nautilus_build_refine.png",
+        "nucleofind": "qticons/nucleofind.png",
         "pairef": "qticons/pairef.png",
         "parrot": "qticons/parrot.png",
         "pdb_redo_api": "qticons/pdb_redo_api.png",
@@ -5877,6 +5903,20 @@
                 "clsName": "nautilus_build_refine_gui",
                 "shortTitle": "Autobuild RNA - NAUTILUS",
                 "taskName": "nautilus_build_refine",
+                "taskVersion": 0.1
+            }
+        },
+        "nucleofind": {
+            "0.0.0": {
+                "DESCRIPTION": "Use NucleoFind to predict the regions of nucleic acid phosphates, sugars and base in an electron density map or Coulomb potential map.",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Predict regions of nucleic acids with NucleoFind",
+                "class": "wrappers.nucleofind.script.nucleofind_guiNucleoFindGUI",
+                "clsModule": "wrappers.nucleofind.script.nucleofind_gui",
+                "clsName": "NucleoFindGUI",
+                "shortTitle": "NucleoFind",
+                "taskName": "nucleofind",
                 "taskVersion": 0.1
             }
         },

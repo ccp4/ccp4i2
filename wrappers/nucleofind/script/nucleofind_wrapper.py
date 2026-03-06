@@ -28,12 +28,20 @@ class nucleofind(CPluginScript):
         self.appendCommandLine(["-i", self.hklin])
         self.appendCommandLine(["-o", "nucleofind"])
         self.appendCommandLine(["-m", "core"])
-        self.appendCommandLine(["-silent"])
+        self.appendCommandLine(["-n", self.container.controlParameters.THREADS])
+        self.appendCommandLine(["--overlap", self.container.controlParameters.OVERLAP])
+
+        if self.container.controlParameters.SYMMETRY.isSet():
+            self.appendCommandLine(["--use-symmetry"])
+            
+        if self.container.controlParameters.RESOLUTION.isSet():
+            self.appendCommandLine(["--resolution", self.container.controlParameters.RESOLUTION])
+          
         if self.container.inputData.FWT_PHWT.isSet() :
           # f, p = self.columns
-          print(f"{self.columns}")
-          self.appendCommandLine(["-amplitude", "FWT_PHWT_F"])
-          self.appendCommandLine(["-phase", "FWT_PHWT_PHI"])
+          print(f"{self.columns}")  
+          self.appendCommandLine(["--amplitude", "FWT_PHWT_F"])
+          self.appendCommandLine(["--phase", "FWT_PHWT_PHI"])
 
         return CPluginScript.SUCCEEDED
       

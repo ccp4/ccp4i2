@@ -28,8 +28,8 @@ class NucleoFindGUI(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'nucleofind'
   TASKVERSION = 0.1
   TASKMODULE='model_building'
-  TASKTITLE='Predict nucleic acid positions - NucleoFind'
-  DESCRIPTION='Use NucleoFind to predict the positions of nucleic acid phosphates, sugars and base in an electron density map.'
+  TASKTITLE='Predict regions of nucleic acids with NucleoFind'
+  DESCRIPTION='Use NucleoFind to predict the regions of nucleic acid phosphates, sugars and base in an electron density map or Coulomb potential map.'
   SHORTTASKTITLE='NucleoFind'
 
   def __init__(self,parent):
@@ -45,12 +45,24 @@ class NucleoFindGUI(CCP4TaskWidget.CTaskWidget):
     self.createLine( [ 'widget', 'FWT_PHWT' ] )
     self.closeSubFrame()
     
+    self.createLine( [ 'subtitle', 'Options', ""] )
+    self.openSubFrame( frame=[True] )
+    self.createLine( [ "label", "Use", "widget", "THREADS", "label", "CPU threads"])
+    self.closeSubFrame()
+    
+    
     self.createLine( [ 'subtitle', 'Advanced Options', ""] )
     self.openSubFrame( frame=[True] )
     self.createLine( [ "label", "Truncate reflections up to", "widget", "RESOLUTION", "label", "Å resolution"])
-    self.createLine( [ "label", "Predict over entire unit cell", "widget", "SYMMETRY"])
-    self.createLine( [ "label", "Overlap predicted boxes by ", "widget", "OVERLAP", "label", "grid points"])
-    self.createLine( [ "label", "Use GPU Acceleration", "widget", "GPU"])
-    self.createLine( [ "label", "Use", "widget", "THREADS", "label", "CPU threads"])
+    self.createLine( [ "widget", "SYMMETRY", "label", "Predict over entire unit cell"])
+    self.createLine( [ "label", "Overlap predicted boxes by ", "widget", "OVERLAP", "label", "grid points. Lowering this may increase prediction accuracy but will increase runtime."])
+    # self.createLine( [ "label", "Use GPU Acceleration", "widget", "GPU"])
+    self.closeSubFrame()
+    
+    self.createLine( [ 'subtitle', 'Uncertainty Options', ""] )
+    self.openSubFrame( frame=[True] )
+    # self.createLine( [ "label", "Uncertainity can be measured for a NucleoFind prediction either by looking at the raw probabilistic output from the deep learning model, or by computing a variance over multilpe predictions of each grid point."])
+    self.createLine( [ "widget", "RAW", "label", "Use raw values",])
+    self.createLine( [ "widget", "VARIANCE", "label", "Calculate and output variance maps"])
     
     self.closeSubFrame()
