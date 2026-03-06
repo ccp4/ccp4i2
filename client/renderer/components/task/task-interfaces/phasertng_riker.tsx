@@ -57,7 +57,18 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2ContainerElement
             {...props}
             itemName=""
-            qualifiers={{ guiLabel: "Search models" }}
+            qualifiers={{ guiLabel: "Fixed model" }}
+            containerHint="FolderLevel"
+          >
+            <CCP4i2TaskElement itemName="FIXED" {...props} />
+          </CCP4i2ContainerElement>
+          <CCP4i2ContainerElement
+            {...props}
+            itemName=""
+            qualifiers={{
+              guiLabel: "Additional search models",
+              initiallyOpen: false,
+            }}
             containerHint="FolderLevel"
           >
             <CCP4i2TaskElement itemName="XYZIN" {...props} />
@@ -70,6 +81,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             containerHint="FolderLevel"
           >
             <CCP4i2TaskElement itemName="DICT" {...props} />
+            <CCP4i2TaskElement itemName="DAGIN" {...props} />
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
         <CCP4i2Tab key="keywords" label="Options">
@@ -101,7 +113,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             <CCP4i2ContainerElement
               {...props}
               itemName="controlParameters"
-              qualifiers={{ guiLabel: "PhaserTNG Parameters" }}
+              qualifiers={{ guiLabel: "PhaserTNG Riker Parameters" }}
               excludeItems={["PHIL_EXPERT_LEVEL"]}
             />
           </ExpertLevelContext.Provider>

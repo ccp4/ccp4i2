@@ -1,14 +1,18 @@
 """
-phasertng_picard - CCP4i2 wrapper for PhaserTNG Picard molecular replacement.
+phasertng_riker - CCP4i2 wrapper for PhaserTNG Riker (refine and continue).
 
-Picard is the master MR solution protocol. It explores space groups,
-translational NCS, cell contents, and error estimations for search models.
+Riker takes coordinates already placed by a previous MR run (the FIXED input),
+refines them, and optionally searches for additional components using extra
+search models (XYZIN).
 
 This wrapper uses PhilPluginScript for native PHIL support:
 - inputData/outputData use CCP4i2 rich file types (from .def.xml)
-- controlParameters are populated at runtime from picard's master_phil
+- controlParameters are populated at runtime from riker's master_phil
 - At execution time, shims convert rich types to PHIL values and
   master_phil.fetch() assembles a validated working.phil
+
+Note: riker.control.xref_software is forced to 'refmac' because CCP4 does
+not bundle Phenix.
 """
 
 import os
@@ -19,30 +23,30 @@ import logging
 from ccp4i2.core.PhilPluginScript import PhilPluginScript
 from ccp4i2.utils.phil_shims import (
     MtzFileShim,
+    PdbFileShim,
     PdbFileListShim,
     AsuContentShim,
     DictFileShim,
+    DagFileShim,
 )
 
 logger = logging.getLogger(__name__)
 
 
-class phasertng_picard(PhilPluginScript):
-    TASKNAME = "phasertng_picard"
-    TASKCOMMAND = "phasertng.picard"
-    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft", "phasertng_riker"]
+class phasertng_riker(PhilPluginScript):
+    TASKNAME = "phasertng_riker"
+    TASKCOMMAND = "phasertng.riker"
+    WHATNEXT = ["prosmart_refmac", "coot_rebuild", "modelcraft"]
 
     # PHIL scopes excluded from the GUI.
-    #
-    # Two categories:
-    # 1. Shim-handled — file I/O paths handled by CCP4i2 rich types + shims.
-    # 2. Forced/internal — scopes that CCP4i2 manages directly or pipeline
-    #    bookkeeping with no expert_level marking in PHIL.
     PHIL_EXCLUDE_SCOPES = [
-        # picard shortcut inputs (handled by shims)
-        "picard.hklin",
-        "picard.seqin",
-        "picard.xyzin",
+        # riker shortcut inputs (handled by shims)
+        "riker.hklin",
+        "riker.fixed",
+        "riker.xyzin",
+        "riker.seqin",
+        # Refinement software choice (forced to refmac in CCP4)
+        "riker.control.xref_software",
         # phasertng-level file inputs (also handled by shims)
         "phasertng.hklin",
         "phasertng.labin",
@@ -51,6 +55,8 @@ class phasertng_picard(PhilPluginScript):
         "phasertng.cluster_compound.filename",
         "phasertng.trace.filename",
         "phasertng.file_discovery",
+        # DAG input (handled by DagFileShim)
+        "phasertng.put_solution.dag.filename",
         # Pipeline bookkeeping — no expert_level in PHIL, not user params
         "phasertng.dag",
         "phasertng.notifications",
@@ -115,7 +121,23 @@ class phasertng_picard(PhilPluginScript):
         work_dir = str(self.getWorkDirectory())
         path_map = {}
 
-        # XYZIN is a CList of CPdbDataFile
+        # FIXED (required) — the pre-placed model to refine
+        fixed = self.container.inputData.FIXED
+        if fixed is not None and fixed.isSet():
+            src = str(fixed.getFullPath())
+            try:
+                prepared = self._prepare_model(fixed, "FIXED", work_dir)
+                if prepared and prepared != src:
+                    path_map[src] = prepared
+            except Exception as e:
+                error.append(
+                    klass=self.__class__.__name__, code=201,
+                    details=f"Failed to prepare fixed model {src}: {e}",
+                    name="processInputFiles", severity=4,
+                )
+                return error
+
+        # XYZIN — optional additional search models
         for i, item in enumerate(self.container.inputData.XYZIN):
             src = str(item.getFullPath()) if item and item.isSet() else None
             if src:
@@ -135,52 +157,57 @@ class phasertng_picard(PhilPluginScript):
         return error
 
     def get_master_phil(self):
-        """Import picard's master_phil at runtime via CCTBXParser."""
+        """Import riker's master_phil at runtime via CCTBXParser."""
         try:
-            from phasertng.programs import picard
+            from phasertng.programs import riker
             from iotbx.cli_parser import CCTBXParser
 
             parser = CCTBXParser(
-                program_class=picard.Program,
+                program_class=riker.Program,
                 logger=None,
                 parse_phil=False,
             )
             return parser.master_phil
         except ImportError as e:
-            logger.warning("Cannot import phasertng: %s", e)
+            logger.warning("Cannot import phasertng riker: %s", e)
             return None
 
     def get_shim_definitions(self):
-        """Return shims for picard mode."""
+        """Return shims for riker mode."""
         return [
-            MtzFileShim("HKLIN", "picard.hklin"),
-            PdbFileListShim("XYZIN", "picard.xyzin"),
-            AsuContentShim("ASUIN", "picard.seqin"),
+            MtzFileShim("HKLIN", "riker.hklin"),
+            PdbFileShim("FIXED", "riker.fixed"),
+            PdbFileListShim("XYZIN", "riker.xyzin"),
+            AsuContentShim("ASUIN", "riker.seqin"),
             DictFileShim("DICT", "phasertng.cluster_compound.filename"),
+            DagFileShim("DAGIN", "phasertng.put_solution.dag.filename"),
         ]
 
     def get_command_target(self):
-        """Return the phasertng.picard entry point."""
-        cmd = shutil.which("phasertng.picard")
+        """Return the phasertng.riker entry point."""
+        cmd = shutil.which("phasertng.riker")
         if cmd:
             return cmd
         try:
-            from phasertng.command_line import picard
-            return picard.__file__
+            from phasertng.command_line import riker
+            return riker.__file__
         except ImportError:
-            return "phasertng.picard"
+            return "phasertng.riker"
 
     def build_working_phil(self):
-        """Assemble working.phil using picard's master_phil."""
+        """Assemble working.phil using riker's master_phil.
+
+        Injects riker.control.xref_software=refmac (CCP4 does not bundle Phenix).
+        """
         from libtbx.phil import parse
 
         master_phil = self.get_master_phil()
-        logger.info("Dispatching to phasertng.picard")
+        logger.info("Dispatching to phasertng.riker")
 
         if master_phil is None:
             self.appendErrorReport(
                 203,
-                "Cannot import PhaserTNG master_phil — is phasertng installed?",
+                "Cannot import PhaserTNG riker master_phil — is phasertng installed?",
             )
             phil_path = os.path.join(str(self.getWorkDirectory()), "working.phil")
             with open(phil_path, "w") as f:
@@ -203,13 +230,13 @@ class phasertng_picard(PhilPluginScript):
                 for name, val in user_params
             ]
 
+        # Force refmac as refinement software (CCP4 does not bundle Phenix)
+        user_params.append(("riker.control.xref_software", "refmac"))
+
         # Build PHIL string
-        if user_params:
-            user_lines = [f"{name}={val}" for name, val in user_params]
-            user_phil = parse("\n".join(user_lines))
-            working_phil = master_phil.fetch(sources=[user_phil])
-        else:
-            working_phil = master_phil
+        user_lines = [f"{name}={val}" for name, val in user_params]
+        user_phil = parse("\n".join(user_lines))
+        working_phil = master_phil.fetch(sources=[user_phil])
 
         # Write to working.phil in job directory
         phil_path = os.path.join(work_dir, "working.phil")
@@ -225,13 +252,13 @@ class phasertng_picard(PhilPluginScript):
         """Build working.phil and construct the command line."""
         phil_path = self.build_working_phil()
 
-        cmd = shutil.which("phasertng.picard")
+        cmd = shutil.which("phasertng.riker")
         if cmd:
             self.TASKCOMMAND = cmd
             self.appendCommandLine([phil_path])
         else:
             self.TASKCOMMAND = "ccp4-python"
-            self.appendCommandLine(["-m", "phasertng.command_line.picard", phil_path])
+            self.appendCommandLine(["-m", "phasertng.command_line.riker", phil_path])
 
         return PhilPluginScript.SUCCEEDED
 
@@ -244,8 +271,8 @@ class phasertng_picard(PhilPluginScript):
         return dest
 
     def _get_db_dir(self, work_dir):
-        """Return the phasertng_picard database subdirectory."""
-        return os.path.join(work_dir, "phasertng_picard")
+        """Return the phasertng_riker database subdirectory."""
+        return os.path.join(work_dir, "phasertng_riker")
 
     def _extract_log_errors(self, max_lines=50):
         """Scan the PhaserTNG log file for error/failure lines."""
@@ -268,7 +295,7 @@ class phasertng_picard(PhilPluginScript):
     def processOutputFiles(self):
         """Harvest phasertng output files into outputData.
 
-        Picard writes output to phasertng_picard/ subdirectory. The best
+        Riker writes output to phasertng_riker/ subdirectory. The best
         solution files are: best.1.coordinates.pdb, best.1.dag.cards.
 
         Only best.*.coordinates.pdb is accepted as solution output —
@@ -290,7 +317,7 @@ class phasertng_picard(PhilPluginScript):
                 try:
                     dest = self._elevate_to_job_dir(matches[0])
                     out.XYZOUT.setFullPath(dest)
-                    out.XYZOUT.annotation = "Positioned coordinates from molecular replacement"
+                    out.XYZOUT.annotation = "Refined coordinates from molecular replacement"
                     logger.info("Set XYZOUT to %s", dest)
                 except Exception as e:
                     logger.debug("Could not set XYZOUT: %s", e)
@@ -321,6 +348,18 @@ class phasertng_picard(PhilPluginScript):
                 except Exception as e:
                     logger.debug("Could not set HKLOUT: %s", e)
                 break
+
+        # Look for best DAG cards file (for chaining into subsequent runs)
+        dag_pattern = os.path.join(db_dir, "best.*.dag.cards")
+        dag_files = sorted(glob.glob(dag_pattern))
+        if dag_files:
+            try:
+                dest = self._elevate_to_job_dir(dag_files[0])
+                out.DAGOUT.setFullPath(dest)
+                out.DAGOUT.annotation = "Solution state for incremental MR"
+                logger.info("Set DAGOUT to %s", dest)
+            except Exception as e:
+                logger.debug("Could not set DAGOUT: %s", e)
 
         # Generate sigma-A weighted map coefficients from the MR solution
         self._run_sigmaa(work_dir, out)

@@ -21,6 +21,8 @@ Usage:
 
 import os
 import logging
+from functools import reduce
+from math import gcd
 
 logger = logging.getLogger(__name__)
 
@@ -180,13 +182,26 @@ class AsuContentShim(PhilShim):
         if seq_list is None:
             return result
 
+        # Collect nCopies for GCD normalization (Paul Bond's approach).
+        # If stoichiometry is A2B4, GCD=2, so we write A×1 and B×2.
+        copies = []
+        for seq_obj in seq_list:
+            n = getattr(seq_obj, 'nCopies', None)
+            try:
+                n = int(n) if n is not None else 0
+            except (ValueError, TypeError):
+                n = 0
+            copies.append(max(1, n))
+
+        divisor = reduce(gcd, copies) if copies else 1
+
         # Write sequences to FASTA file
         fasta_path = os.path.join(work_directory, "sequences.fasta")
         sequences_written = 0
 
         try:
-            with open(fasta_path, "w") as f:
-                for seq_obj in seq_list:
+            with open(fasta_path, "w", encoding="utf-8") as f:
+                for seq_obj, n_copies in zip(seq_list, copies):
                     # Extract sequence string
                     sequence = seq_obj.sequence
                     if hasattr(sequence, 'value'):
@@ -200,7 +215,7 @@ class AsuContentShim(PhilShim):
                     if not sequence:
                         continue
 
-                    # Extract name
+                    # Extract name and polymer type
                     name = getattr(seq_obj, 'name', None)
                     if name is not None and hasattr(name, 'value'):
                         name = str(name.value)
@@ -209,13 +224,25 @@ class AsuContentShim(PhilShim):
                     else:
                         name = f"sequence_{sequences_written + 1}"
 
-                    # Write FASTA entry
-                    f.write(f">{name}\n")
-                    # Wrap at 80 characters
-                    for i in range(0, len(sequence), 80):
-                        f.write(sequence[i:i + 80] + "\n")
+                    poly_type = getattr(seq_obj, 'polymerType', None)
+                    if poly_type is not None and hasattr(poly_type, 'value'):
+                        poly_type = str(poly_type.value)
+                    elif poly_type is not None:
+                        poly_type = str(poly_type)
+                    else:
+                        poly_type = "PROTEIN"
 
-                    sequences_written += 1
+                    # Write nCopies/GCD entries for this sequence
+                    normalized = n_copies // divisor
+                    for copy_idx in range(normalized):
+                        if normalized > 1:
+                            f.write(f">*{poly_type}* {name} - Copy {copy_idx + 1}\n")
+                        else:
+                            f.write(f">*{poly_type}* {name}\n")
+                        for i in range(0, len(sequence), 80):
+                            f.write(sequence[i:i + 80] + "\n")
+
+                    sequences_written += normalized
 
         except Exception as e:
             logger.error("Error writing FASTA file: %s", e)

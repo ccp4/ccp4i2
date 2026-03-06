@@ -2,9 +2,9 @@
 <ccp4i2>
   <ccp4i2_header>
     <function>DEF</function>
-    <pluginName>phasertng_picard</pluginName>
+    <pluginName>phasertng_riker</pluginName>
   </ccp4i2_header>
-  <ccp4i2_body id="phasertng_picard">
+  <ccp4i2_body id="phasertng_riker">
 
     <container id="inputData">
       <content id="HKLIN">
@@ -14,14 +14,25 @@
           <allowUndefined>False</allowUndefined>
           <mustExist>True</mustExist>
           <fromPreviousJob>True</fromPreviousJob>
-          <toolTip>Input MTZ file containing reflection data for molecular replacement</toolTip>
+          <toolTip>Input MTZ file containing reflection data</toolTip>
+        </qualifiers>
+      </content>
+      <content id="FIXED">
+        <className>CPdbDataFile</className>
+        <qualifiers>
+          <guiLabel>Fixed model to refine</guiLabel>
+          <allowUndefined>False</allowUndefined>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <toolTip>Coordinates already placed by a previous MR run. Riker refines this model and optionally searches for additional components.</toolTip>
+          <requiredSubType>4,3,2,1,0</requiredSubType>
         </qualifiers>
       </content>
       <content id="XYZIN">
         <className>CList</className>
         <qualifiers>
-          <guiLabel>Search models</guiLabel>
-          <listMinLength>1</listMinLength>
+          <guiLabel>Additional search models</guiLabel>
+          <listMinLength>0</listMinLength>
           <fromPreviousJob>True</fromPreviousJob>
         </qualifiers>
         <subItem>
@@ -30,7 +41,7 @@
             <allowUndefined>True</allowUndefined>
             <mustExist>True</mustExist>
             <fromPreviousJob>True</fromPreviousJob>
-            <toolTip>PDB/mmCIF file containing a search model for molecular replacement</toolTip>
+            <toolTip>PDB/mmCIF file containing an additional search model</toolTip>
             <requiredSubType>4,3,2,1,0</requiredSubType>
           </qualifiers>
         </subItem>
@@ -51,6 +62,16 @@
           <allowUndefined>True</allowUndefined>
           <fromPreviousJob>True</fromPreviousJob>
           <toolTip>CIF dictionary for cluster compounds (e.g., heavy atom clusters)</toolTip>
+        </qualifiers>
+      </content>
+      <content id="DAGIN">
+        <className>CPhaserTngDagFile</className>
+        <qualifiers>
+          <guiLabel>Previous solution DAG</guiLabel>
+          <allowUndefined>True</allowUndefined>
+          <mustExist>True</mustExist>
+          <fromPreviousJob>True</fromPreviousJob>
+          <toolTip>DAG file from a previous PhaserTNG run for incremental molecular replacement</toolTip>
         </qualifiers>
       </content>
     </container>
@@ -94,7 +115,7 @@
     </container>
 
     <!-- controlParameters is intentionally empty.
-         It gets populated at runtime from phasertng.picard's master_phil
+         It gets populated at runtime from phasertng.riker's master_phil
          via PhilPluginScript._merge_phil_parameters(). -->
     <container id="controlParameters">
     </container>

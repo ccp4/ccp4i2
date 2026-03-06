@@ -950,17 +950,28 @@ TASKS = {
         reportPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil_report:phaser_phil_report",
     ),
     "phasertng_picard": Task(
-        title="PhaserTNG - Molecular Replacement",
-        description="Automated molecular replacement using PhaserTNG. "
-                    "Runs Picard to explore space groups, translational NCS, cell contents, "
-                    "and error estimations. Optionally provide a fixed model to run Riker "
-                    "for refinement and search for additional components.",
-        shortTitle="PhaserTNG MR",
+        title="PhaserTNG Picard - Molecular Replacement",
+        description="Automated molecular replacement using PhaserTNG Picard. "
+                    "Explores space groups, translational NCS, cell contents, "
+                    "and error estimations for search models.",
+        shortTitle="PhaserTNG Picard",
         pluginPath="ccp4i2.wrappers.phasertng_picard.script.phasertng_picard:phasertng_picard",
         defXmlPath="wrappers/phasertng_picard/script/phasertng_picard.def.xml",
         reportPath="ccp4i2.wrappers.phasertng_picard.script.phasertng_picard_report:phasertng_picard_report",
         runningReport=True,
         watchedFile="phasertng_picard/best.1.dag.cards",
+    ),
+    "phasertng_riker": Task(
+        title="PhaserTNG Riker - Refine and Continue MR",
+        description="Refine a previously placed molecular replacement model using "
+                    "PhaserTNG Riker. Takes coordinates from a previous MR run, refines "
+                    "them, and optionally searches for additional components.",
+        shortTitle="PhaserTNG Riker",
+        pluginPath="ccp4i2.wrappers.phasertng_riker.script.phasertng_riker:phasertng_riker",
+        defXmlPath="wrappers/phasertng_riker/script/phasertng_riker.def.xml",
+        reportPath="ccp4i2.wrappers.phasertng_riker.script.phasertng_riker_report:phasertng_riker_report",
+        runningReport=True,
+        watchedFile="phasertng_riker/best.1.dag.cards",
     ),
     "phaser_pipeline": Task(
         title="Expert Mode Molecular Replacement - PHASER",
@@ -1318,6 +1329,7 @@ _TASK_TREE = [
         [
             "mrbump_basic",
             "phasertng_picard",
+            "phasertng_riker",
             "phaser_simple",
             "phaser_pipeline",
             "molrep_pipe",
