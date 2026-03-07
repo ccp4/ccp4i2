@@ -26,6 +26,7 @@ import { CPdbEnsembleItemElement } from "./cpdbensembleitem";
 import { CSMILESStringElement } from "./csmilesstring";
 import { CAsuContentSeqListElement } from "./casucontentseqlist";
 import {
+  CAtomRefmacSelectionListElement,
   COccRefmacSelectionListElement,
   COccRelationRefmacListElement,
 } from "./coccupancygroups";
@@ -247,6 +248,14 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CAsuContentSeqList":
         return (
           <CAsuContentSeqListElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
+        );
+      case "CAtomRefmacSelectionList":
+        return (
+          <CAtomRefmacSelectionListElement
             key={the_uuid}
             {...props}
             qualifiers={qualifiers}

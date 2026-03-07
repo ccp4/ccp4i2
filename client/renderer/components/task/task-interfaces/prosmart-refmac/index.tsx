@@ -141,6 +141,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         <CCP4i2Tab label="Parameterisation" key="parameterisation">
           <ParameterisationTab
             {...props}
+            refinementMode={refinementMode}
             solventMaskType={solventMaskType}
             solventAdvanced={solventAdvanced}
             tlsMode={tlsMode}

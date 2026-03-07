@@ -702,13 +702,15 @@ class CAtomRefmacSelectionGroups(CAtomRefmacSelectionGroupsStub):
 class CAtomRefmacSelectionList(CAtomRefmacSelectionListStub):
     """
     A list with all items of one CData sub-class
-    
+
     Extends CAtomRefmacSelectionListStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        """Initialize CAtomRefmacSelectionList with subItem qualifier."""
+        super().__init__(parent=parent, name=name, **kwargs)
+        self.set_qualifier('subItem', {'class': CAtomRefmacSelection, 'qualifiers': {}})
 
 
 class CAtomRefmacSelectionOccupancy(CAtomRefmacSelectionOccupancyStub):
@@ -982,25 +984,29 @@ class CMonomer(CMonomerStub):
 class COccRefmacSelectionList(COccRefmacSelectionListStub):
     """
     A list with all items of one CData sub-class
-    
+
     Extends COccRefmacSelectionListStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        """Initialize COccRefmacSelectionList with subItem qualifier."""
+        super().__init__(parent=parent, name=name, **kwargs)
+        self.set_qualifier('subItem', {'class': CAtomRefmacSelectionOccupancy, 'qualifiers': {}})
 
 
 class COccRelationRefmacList(COccRelationRefmacListStub):
     """
     A list with all items of one CData sub-class
-    
+
     Extends COccRelationRefmacListStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def __init__(self, parent=None, name=None, **kwargs):
+        """Initialize COccRelationRefmacList with subItem qualifier."""
+        super().__init__(parent=parent, name=name, **kwargs)
+        self.set_qualifier('subItem', {'class': CAtomRefmacSelectionGroups, 'qualifiers': {}})
 
 
 # Try to import BioPython - it's optional but provides enhanced functionality

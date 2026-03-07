@@ -77,6 +77,7 @@ export type ListItemClass =
   | "CEnsembleList"
   | "CRunBatchRangeList"
   | "CAsuContentSeqList"
+  | "CAtomRefmacSelectionList"
   | "COccRefmacSelectionList"
   | "COccRelationRefmacList";
 
@@ -176,6 +177,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CEnsembleList",
     "CRunBatchRangeList",
     "CAsuContentSeqList",
+    "CAtomRefmacSelectionList",
     "COccRefmacSelectionList",
     "COccRelationRefmacList",
     // Container types
@@ -246,6 +248,7 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   CEnsembleList: "CListElement",
   CRunBatchRangeList: "CListElement",
   CAsuContentSeqList: "CAsuContentSeqListElement",
+  CAtomRefmacSelectionList: "CAtomRefmacSelectionListElement",
   COccRefmacSelectionList: "COccRefmacSelectionListElement",
   COccRelationRefmacList: "COccRelationRefmacListElement",
 

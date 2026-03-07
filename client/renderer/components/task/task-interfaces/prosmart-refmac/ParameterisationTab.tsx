@@ -8,6 +8,7 @@ import { InlineField } from "../../task-elements/inline-field";
 import { isTruthy } from "../../task-elements/shared-hooks";
 
 interface ParameterisationTabProps extends CCP4i2TaskInterfaceProps {
+  refinementMode: string;
   solventMaskType: string;
   solventAdvanced: any;
   tlsMode: string;
@@ -19,10 +20,17 @@ interface ParameterisationTabProps extends CCP4i2TaskInterfaceProps {
   occupancyIncomplete: any;
 }
 
+const NotAvailableMessage = () => (
+  <Typography variant="body2" sx={{ fontStyle: "italic" }}>
+    Not available in Rigid Body mode.
+  </Typography>
+);
+
 export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
   props
 ) => {
   const {
+    refinementMode,
     solventMaskType,
     solventAdvanced,
     tlsMode,
@@ -35,6 +43,8 @@ export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
     ...taskProps
   } = props;
 
+  const isRigidBody = refinementMode === "RIGID";
+
   return (
     <>
       {/* B-factors */}
@@ -44,17 +54,21 @@ export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
         qualifiers={{ guiLabel: "B-factors" }}
         containerHint="FolderLevel"
       >
-        <InlineField
-          label="Refine"
-          width="16rem"
-          after={<Typography variant="body1">B-factors</Typography>}
-        >
-          <CCP4i2TaskElement
-            {...taskProps}
-            itemName="B_REFINEMENT_MODE"
-            qualifiers={{ guiLabel: " " }}
-          />
-        </InlineField>
+        {isRigidBody ? (
+          <NotAvailableMessage />
+        ) : (
+          <InlineField
+            label="Refine"
+            width="16rem"
+            after={<Typography variant="body1">B-factors</Typography>}
+          >
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="B_REFINEMENT_MODE"
+              qualifiers={{ guiLabel: " " }}
+            />
+          </InlineField>
+        )}
       </CCP4i2ContainerElement>
 
       {/* Scaling */}
@@ -131,65 +145,86 @@ export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
         </CCP4i2ContainerElement>
       </CCP4i2ContainerElement>
 
-      {/* TLS */}
+      {/* Translation-Libration-Screw (TLS) */}
       <CCP4i2ContainerElement
         {...taskProps}
         itemName=""
-        qualifiers={{ guiLabel: "Translation libration screw (TLS)" }}
+        qualifiers={{ guiLabel: "Translation-Libration-Screw (TLS)" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="TLSMODE"
-          qualifiers={{ guiLabel: "TLS parameters:" }}
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="NTLSCYCLES"
-          qualifiers={{ guiLabel: "Number of TLS cycles:" }}
-          visibility={() => tlsMode !== "NONE"}
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="TLSIN"
-          qualifiers={{ guiLabel: "TLS group definitions:" }}
-          visibility={() => tlsMode === "FILE"}
-        />
+        {isRigidBody ? (
+          <NotAvailableMessage />
+        ) : (
+          <>
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="TLSMODE"
+              qualifiers={{ guiLabel: "TLS parameters:" }}
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="NTLSCYCLES"
+              qualifiers={{ guiLabel: "Number of TLS cycles:" }}
+              visibility={() => tlsMode !== "NONE"}
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="TLSIN"
+              qualifiers={{ guiLabel: "TLS group definitions:" }}
+              visibility={() => tlsMode === "FILE"}
+            />
 
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            gap: 1,
-            flexWrap: "wrap",
-          }}
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 1,
+                flexWrap: "wrap",
+              }}
+            >
+              <CCP4i2TaskElement
+                {...taskProps}
+                itemName="BFACSETUSE"
+                qualifiers={{ guiLabel: "Reset all B-factors at start" }}
+                sx={{ width: "auto" }}
+              />
+              <Box sx={{ width: "8rem" }}>
+                <CCP4i2TaskElement
+                  {...taskProps}
+                  itemName="BFACSET"
+                  qualifiers={{ guiLabel: "to fixed value:" }}
+                  visibility={() => isTruthy(bfacSetUse)}
+                />
+              </Box>
+            </Box>
+
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="TLSOUT_ADDU"
+              qualifiers={{
+                guiLabel:
+                  "Add TLS contribution to output B-factors (only for analysis and deposition)",
+              }}
+              visibility={() => tlsMode !== "NONE"}
+            />
+          </>
+        )}
+      </CCP4i2ContainerElement>
+
+      {/* Rigid body groups — only in Rigid Body mode */}
+      {isRigidBody && (
+        <CCP4i2ContainerElement
+          {...taskProps}
+          itemName=""
+          qualifiers={{ guiLabel: "Rigid body groups" }}
+          containerHint="FolderLevel"
         >
           <CCP4i2TaskElement
             {...taskProps}
-            itemName="BFACSETUSE"
-            qualifiers={{ guiLabel: "Reset all B-factors at start" }}
-            sx={{ width: "auto" }}
+            itemName="RIGID_BODY_SELECTION"
           />
-          <Box sx={{ width: "8rem" }}>
-            <CCP4i2TaskElement
-              {...taskProps}
-              itemName="BFACSET"
-              qualifiers={{ guiLabel: "to fixed value:" }}
-              visibility={() => isTruthy(bfacSetUse)}
-            />
-          </Box>
-        </Box>
-
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="TLSOUT_ADDU"
-          qualifiers={{
-            guiLabel:
-              "Add TLS contribution to output B-factors (only for analysis and deposition)",
-          }}
-          visibility={() => tlsMode !== "NONE"}
-        />
-      </CCP4i2ContainerElement>
+        </CCP4i2ContainerElement>
+      )}
 
       {/* Weights */}
       <CCP4i2ContainerElement
@@ -217,65 +252,71 @@ export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
         />
       </CCP4i2ContainerElement>
 
-      {/* Conformer and occupancy refinement */}
+      {/* Conformer groups and occupancy refinement */}
       <CCP4i2ContainerElement
         {...taskProps}
         itemName=""
-        qualifiers={{ guiLabel: "Conformer and occupancy refinement" }}
+        qualifiers={{ guiLabel: "Conformer groups and occupancy refinement" }}
         containerHint="FolderLevel"
       >
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="OCCUPANCY_REFINEMENT"
-          qualifiers={{ guiLabel: "Refine conformer occupancies" }}
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="OCCUPANCY_GROUPS"
-          qualifiers={{ guiLabel: "Specify partial occupancy groups" }}
-          visibility={() => isTruthy(occupancyRefinement)}
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="OCCUPANCY_SELECTION"
-          visibility={() =>
-            isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
-          }
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="OCCUPANCY_COMPLETE"
-          qualifiers={{ guiLabel: "Complete groups (sum to 1.0)" }}
-          visibility={() =>
-            isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
-          }
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="OCCUPANCY_COMPLETE_TABLE"
-          visibility={() =>
-            isTruthy(occupancyRefinement) &&
-            isTruthy(occupancyGroups) &&
-            isTruthy(occupancyComplete)
-          }
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="OCCUPANCY_INCOMPLETE"
-          qualifiers={{ guiLabel: "Incomplete groups (sum to < 1.0)" }}
-          visibility={() =>
-            isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
-          }
-        />
-        <CCP4i2TaskElement
-          {...taskProps}
-          itemName="OCCUPANCY_INCOMPLETE_TABLE"
-          visibility={() =>
-            isTruthy(occupancyRefinement) &&
-            isTruthy(occupancyGroups) &&
-            isTruthy(occupancyIncomplete)
-          }
-        />
+        {isRigidBody ? (
+          <NotAvailableMessage />
+        ) : (
+          <>
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="OCCUPANCY_REFINEMENT"
+              qualifiers={{ guiLabel: "Refine conformer occupancies" }}
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="OCCUPANCY_GROUPS"
+              qualifiers={{ guiLabel: "Specify partial occupancy groups" }}
+              visibility={() => isTruthy(occupancyRefinement)}
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="OCCUPANCY_SELECTION"
+              visibility={() =>
+                isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
+              }
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="OCCUPANCY_COMPLETE"
+              qualifiers={{ guiLabel: "Complete groups (sum to 1.0)" }}
+              visibility={() =>
+                isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
+              }
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="OCCUPANCY_COMPLETE_TABLE"
+              visibility={() =>
+                isTruthy(occupancyRefinement) &&
+                isTruthy(occupancyGroups) &&
+                isTruthy(occupancyComplete)
+              }
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="OCCUPANCY_INCOMPLETE"
+              qualifiers={{ guiLabel: "Incomplete groups (sum to < 1.0)" }}
+              visibility={() =>
+                isTruthy(occupancyRefinement) && isTruthy(occupancyGroups)
+              }
+            />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="OCCUPANCY_INCOMPLETE_TABLE"
+              visibility={() =>
+                isTruthy(occupancyRefinement) &&
+                isTruthy(occupancyGroups) &&
+                isTruthy(occupancyIncomplete)
+              }
+            />
+          </>
+        )}
       </CCP4i2ContainerElement>
     </>
   );

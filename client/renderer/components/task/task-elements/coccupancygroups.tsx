@@ -1,9 +1,12 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
   Box,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
   IconButton,
-  Stack,
   Table,
   TableBody,
   TableCell,
@@ -15,7 +18,7 @@ import {
   Typography,
 } from "@mui/material";
 import { Add, Delete } from "@mui/icons-material";
-import { CCP4i2TaskElementProps } from "./task-element";
+import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob, valueOfItem } from "../../../utils";
 
 // ============================================================
@@ -58,7 +61,7 @@ const updateObjectPath = (element: any, newIndex: number): any => {
 };
 
 // ============================================================
-// Inline cell editor
+// Inline cell editor (used by COccRefmacSelectionListElement)
 // ============================================================
 
 interface InlineCellProps {
@@ -325,6 +328,232 @@ export const COccRefmacSelectionListElement: React.FC<
           Add Group
         </Button>
       </Box>
+    </Box>
+  );
+};
+
+// ============================================================
+// COccRelationRefmacListElement
+//
+// Renders COccRelationRefmacList as a simple table:
+// | Group IDs (space separated) | [delete] |
+// ============================================================
+
+// ============================================================
+// CAtomRefmacSelectionListElement
+//
+// Renders CAtomRefmacSelectionList as a summary table for rigid
+// body groups.  Clicking a row opens a modal where each field is
+// a standard CCP4i2TaskElement (edits persist immediately).
+// Closing the modal calls mutateContainer() to rebuild the SWR
+// lookup, so values survive tab switches.
+// ============================================================
+
+export const CAtomRefmacSelectionListElement: React.FC<
+  CCP4i2TaskElementProps
+> = (props) => {
+  const { itemName, job, onChange } = props;
+
+  const { useTaskItem, setParameter, mutateContainer } = useJob(job.id);
+  const { item, update: updateList } = useTaskItem(itemName);
+
+  const isEditable = job.status === 1;
+  const rows: any[] = item?._value ?? [];
+
+  // --- dialog state ---
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const selectedObjectPathRef = useRef<string | null>(null);
+
+  const handleOpenDialog = useCallback(
+    (index: number) => {
+      if (!item?._value?.[index]) return;
+      selectedObjectPathRef.current = item._value[index]._objectPath;
+      setIsDialogOpen(true);
+    },
+    [item?._value]
+  );
+
+  const handleCloseDialog = useCallback(() => {
+    setIsDialogOpen(false);
+    selectedObjectPathRef.current = null;
+    mutateContainer();
+    onChange?.(item);
+  }, [mutateContainer, onChange, item]);
+
+  // --- add / delete ---
+  const handleAddRow = useCallback(async () => {
+    if (!validateListOperation(item, job) || !updateList) return;
+    const taskElement = JSON.parse(JSON.stringify(item._subItem));
+    const newIndex = item._value.length;
+    taskElement._objectPath = taskElement._objectPath.replace(
+      "[?]",
+      `[${newIndex}]`
+    );
+    for (const key in taskElement._value) {
+      taskElement._value[key]._objectPath = taskElement._value[
+        key
+      ]._objectPath.replace("[?]", `[${newIndex}]`);
+    }
+    const listValue = Array.isArray(valueOfItem(item))
+      ? valueOfItem(item)
+      : [];
+    listValue.push(valueOfItem(taskElement));
+    await updateList(listValue);
+  }, [item, job, updateList]);
+
+  // Auto-open newly added row
+  const prevLengthRef = useRef(rows.length);
+  useEffect(() => {
+    if (rows.length > prevLengthRef.current) {
+      handleOpenDialog(rows.length - 1);
+    }
+    prevLengthRef.current = rows.length;
+  }, [rows.length, handleOpenDialog]);
+
+  const handleDeleteRow = useCallback(
+    async (index: number) => {
+      if (!validateListOperation(item, job)) return;
+      const array = item._value;
+      if (index > -1 && index < array.length) {
+        array.splice(index, 1);
+        const result: any = await setParameter({
+          object_path: item._objectPath,
+          value: valueOfItem(item),
+        });
+        if (result?.success && result.data?.updated_item && onChange) {
+          await onChange(result.data.updated_item);
+        }
+      }
+    },
+    [item, job, setParameter, onChange]
+  );
+
+  if (!item) return null;
+
+  return (
+    <Box sx={{ mt: 1 }}>
+      <TableContainer>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ fontWeight: "bold", width: "5rem" }}>
+                Group ID
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", width: "6rem" }}>
+                Chain
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", width: "6rem" }}>
+                From residue
+              </TableCell>
+              <TableCell sx={{ fontWeight: "bold", width: "6rem" }}>
+                To residue
+              </TableCell>
+              <TableCell sx={{ width: "3rem" }} />
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {rows.map((row: any, index: number) => {
+              const v = row._value || {};
+              return (
+                <TableRow
+                  key={row._objectPath || index}
+                  hover
+                  sx={{ cursor: isEditable ? "pointer" : "default" }}
+                  onClick={() => isEditable && handleOpenDialog(index)}
+                >
+                  <TableCell sx={{ py: 0.5 }}>
+                    {v.groupId?._value ?? ""}
+                  </TableCell>
+                  <TableCell sx={{ py: 0.5 }}>
+                    {v.chainId?._value ?? ""}
+                  </TableCell>
+                  <TableCell sx={{ py: 0.5 }}>
+                    {v.firstRes?._value ?? ""}
+                  </TableCell>
+                  <TableCell sx={{ py: 0.5 }}>
+                    {v.lastRes?._value ?? ""}
+                  </TableCell>
+                  <TableCell sx={{ py: 0.5 }}>
+                    <Tooltip title="Delete row">
+                      <span>
+                        <IconButton
+                          size="small"
+                          color="error"
+                          disabled={!isEditable}
+                          onClick={(ev) => {
+                            ev.stopPropagation();
+                            handleDeleteRow(index);
+                          }}
+                        >
+                          <Delete fontSize="small" />
+                        </IconButton>
+                      </span>
+                    </Tooltip>
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
+      </TableContainer>
+
+      {rows.length === 0 && (
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontStyle: "italic", mt: 1, ml: 1 }}
+        >
+          No rigid body groups defined.
+        </Typography>
+      )}
+
+      <Box sx={{ mt: 1 }}>
+        <Button
+          variant="outlined"
+          size="small"
+          startIcon={<Add />}
+          onClick={handleAddRow}
+          disabled={!isEditable}
+        >
+          Add Group
+        </Button>
+      </Box>
+
+      {/* Edit dialog */}
+      <Dialog open={isDialogOpen} onClose={handleCloseDialog} maxWidth="xs" fullWidth>
+        <DialogTitle>Edit Rigid Body Group</DialogTitle>
+        <DialogContent>
+          {isDialogOpen && selectedObjectPathRef.current && (
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2, pt: 1 }}>
+              <CCP4i2TaskElement
+                {...props}
+                itemName={`${selectedObjectPathRef.current}.groupId`}
+                qualifiers={{ guiLabel: "Group ID" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName={`${selectedObjectPathRef.current}.chainId`}
+                qualifiers={{ guiLabel: "Chain" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName={`${selectedObjectPathRef.current}.firstRes`}
+                qualifiers={{ guiLabel: "From residue" }}
+              />
+              <CCP4i2TaskElement
+                {...props}
+                itemName={`${selectedObjectPathRef.current}.lastRes`}
+                qualifiers={{ guiLabel: "To residue" }}
+              />
+            </Box>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog} variant="contained">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 };
