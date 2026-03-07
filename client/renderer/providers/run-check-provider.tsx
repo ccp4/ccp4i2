@@ -128,6 +128,32 @@ export const RunCheckProvider: React.FC<RunCheckProviderProps> = ({
   );
 };
 
+/**
+ * Converts a raw object path like
+ *   "prosmart_refmac.container.controlParameters.RIGID_BODY_SELECTION[2].chainId"
+ * into a user-friendly label like
+ *   "RIGID_BODY_SELECTION[2]"
+ *
+ * Strips the task name, "container", and section prefix (inputData/controlParameters/outputData),
+ * then drops the trailing field name (the message already describes the field).
+ * If only one segment remains, it is returned as-is.
+ */
+const formatErrorPath = (path: string): string => {
+  const parts = path.split(".");
+
+  // Drop known infrastructure prefixes
+  const skip = new Set(["container", "inputData", "controlParameters", "outputData"]);
+  const meaningful = parts.filter((p, i) => {
+    if (i === 0) return false; // task name
+    return !skip.has(p);
+  });
+
+  if (meaningful.length <= 1) return meaningful[0] || path;
+
+  // Drop the last segment (the field name — the message covers it)
+  return meaningful.slice(0, -1).join(" → ");
+};
+
 interface ErrorAwareRunDialogProps {
   runTaskRequested: number | null;
   handleConfirm: () => void;
@@ -205,13 +231,27 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
       <DialogContent>
         <DialogTitle>Confirm Task Execution</DialogTitle>
         {seriousIssues && Object.keys(seriousIssues).length > 0 && (
-          <pre style={{ color: "red" }}>
-            {Object.entries(seriousIssues).map(([key, issueSet], index) =>
+          <div style={{ color: "red", margin: "0.5rem 0" }}>
+            {Object.entries(seriousIssues).map(([key, issueSet]) =>
               issueSet.messages.map((issue, issueIndex) => (
-                <div key={`${key}_${issueIndex}`}>{key}: {issue}</div>
+                <div
+                  key={`${key}_${issueIndex}`}
+                  style={{
+                    padding: "0.35rem 0.75rem",
+                    margin: "0.25rem 0",
+                    borderLeft: "3px solid red",
+                    fontSize: "0.9rem",
+                  }}
+                >
+                  <span style={{ fontWeight: 500 }}>
+                    {formatErrorPath(key)}
+                  </span>
+                  {": "}
+                  {issue}
+                </div>
               ))
             )}
-          </pre>
+          </div>
         )}
         <DialogActions>
           {extraDialogActions &&

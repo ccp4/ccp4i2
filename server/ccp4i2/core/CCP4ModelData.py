@@ -677,14 +677,39 @@ class CAsuDataFile(CAsuDataFileStub):
 
 class CAtomRefmacSelection(CAtomRefmacSelectionStub):
     """
-    A residue range selection for rigid body groups
-    
-    Extends CAtomRefmacSelectionStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    A residue range selection for rigid body groups.
+
+    Extends CAtomRefmacSelectionStub with validation that all four fields
+    (groupId, chainId, firstRes, lastRes) are meaningfully defined.
     """
 
-    # Add your methods here
-    pass
+    def validity(self):
+        """Validate that all rigid body group fields are defined."""
+        from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR
+
+        report = CErrorReport()
+        base_path = self.object_path() if hasattr(self, 'object_path') else ''
+
+        required_fields = [
+            ('groupId', 'Group ID'),
+            ('chainId', 'Chain'),
+            ('firstRes', 'From residue'),
+            ('lastRes', 'To residue'),
+        ]
+
+        for field_name, label in required_fields:
+            field = getattr(self, field_name, None)
+            if field is None or not hasattr(field, 'isSet') or not field.isSet():
+                field_path = f"{base_path}.{field_name}" if base_path else field_name
+                report.append(
+                    klass=self.__class__.__name__,
+                    code=2,
+                    details=f'{label} is not defined',
+                    name=field_path,
+                    severity=SEVERITY_ERROR
+                )
+
+        return report
 
 
 class CAtomRefmacSelectionGroups(CAtomRefmacSelectionGroupsStub):
