@@ -338,8 +338,12 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
                       size="small"
                       onClick={() => {
                         if (isVisible) {
+                          mol.representations?.forEach((r: any) => r.hide());
                           dispatch(hideMolecule(mol as any));
                         } else {
+                          mol.representations?.forEach((r: any) => {
+                            if (r.interfaceOption?.visible) r.show();
+                          });
                           dispatch(showMolecule(mol as any));
                         }
                         dispatch(setRequestDrawScene(true));

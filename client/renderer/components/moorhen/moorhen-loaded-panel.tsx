@@ -193,6 +193,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (menuState.item) {
       if (type === "Molecule") {
         const molecule = menuState.item as moorhen.Molecule;
+        (molecule as any).representations?.forEach((r: any) => r.hide());
         dispatch(hideMolecule(molecule as any));
         dispatch(setRequestDrawScene(true));
       } else {
@@ -209,6 +210,9 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (menuState.item) {
       if (type === "Molecule") {
         const molecule = menuState.item as moorhen.Molecule;
+        (molecule as any).representations?.forEach((r: any) => {
+          if (r.interfaceOption?.visible) r.show();
+        });
         dispatch(showMolecule(molecule as any));
         dispatch(setRequestDrawScene(true));
       } else {
@@ -255,6 +259,7 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     if (isVisible(item)) {
       if (type === "Molecule") {
         const molecule = item as moorhen.Molecule;
+        (molecule as any).representations?.forEach((r: any) => r.hide());
         dispatch(hideMolecule(molecule as any));
       } else {
         const map = item as moorhen.Map;
@@ -263,12 +268,16 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     } else {
       if (type === "Molecule") {
         const molecule = item as moorhen.Molecule;
+        (molecule as any).representations?.forEach((r: any) => {
+          if (r.interfaceOption?.visible) r.show();
+        });
         dispatch(showMolecule(molecule as any));
       } else {
         const map = item as moorhen.Map;
         dispatch(showMap(map as any));
       }
     }
+    dispatch(setRequestDrawScene(true));
   };
 
   const isVisible = (item: ContentItem) => {

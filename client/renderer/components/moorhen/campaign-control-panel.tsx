@@ -654,8 +654,12 @@ export const CampaignControlPanel: React.FC<CampaignControlPanelProps> = ({
                           size="small"
                           onClick={() => {
                             if (isVisible) {
+                              (mol as any).representations?.forEach((r: any) => r.hide());
                               dispatch(hideMolecule(mol as any));
                             } else {
+                              (mol as any).representations?.forEach((r: any) => {
+                                if (r.interfaceOption?.visible) r.show();
+                              });
                               dispatch(showMolecule(mol as any));
                             }
                             dispatch(setRequestDrawScene(true));

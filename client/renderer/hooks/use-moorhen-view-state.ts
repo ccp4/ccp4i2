@@ -133,6 +133,7 @@ export function useMoorhenViewState({
           const fileId = extractFileIdFromUniqueId(mol.uniqueId || "");
           if (fileId !== null && viewState.m[fileId]) {
             if (!viewState.m[fileId].v) {
+              (mol as any).representations?.forEach((r: any) => r.hide());
               dispatch(hideMolecule(mol));
             }
           }
