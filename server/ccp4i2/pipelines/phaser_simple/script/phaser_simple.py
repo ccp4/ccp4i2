@@ -85,6 +85,7 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
                 ensemble.label.set('KnownStructure')
                 elements = ensemble.pdbItemList
                 while len(elements) > 1: elements.remove(elements[-1])
+                while len(elements) < 1: elements.append(elements.makeItem())
                 pdbItem = elements[-1]
                 pdbItem.structure.set(self.container.inputData.XYZIN_FIXED)
                 if self.container.inputData.FIXED_ID_RMS == 'ID':
