@@ -142,7 +142,7 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
   const handleUniprotFastaFetch = useCallback(async () => {
     if (identifier) {
       setMessage(`Fetching FASTA file for ${identifier.toUpperCase()}`);
-      const data = await apiText(`uniprot/${identifier.toUpperCase()}.fasta`);
+      const data = await apiText(`/api/proxy/uniprot/uniprotkb/${identifier.toUpperCase()}.fasta`);
       setMessage(`Fetched FASTA file for ${identifier.toUpperCase()}`);
       const content = new Blob([data], {
         type: "text/plain",

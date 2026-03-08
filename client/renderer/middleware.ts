@@ -22,6 +22,7 @@ import type { NextRequest } from "next/server";
 const AUTH_EXEMPT_PATHS = [
   "/api/health", // Health check for Azure Container Apps probes
   "/api/auth/", // Auth session API (cookie management)
+  "/api/proxy/uniprot/", // UniProt REST API proxy (public data)
   "/auth/login", // Login page that triggers MSAL
   "/auth/callback", // MSAL redirect callback (completes auth flow)
   "/auth/teams-start", // Teams auth start (redirects to Azure AD)

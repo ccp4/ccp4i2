@@ -3,8 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 /**
  * UniProt Proxy Route
  *
- * Proxies requests to UniProt API to avoid CORS issues.
- * /api/proxy/uniprot/* -> https://www.uniprot.org/*
+ * Proxies requests to UniProt REST API to avoid CORS issues.
+ * /api/proxy/uniprot/* -> https://rest.uniprot.org/*
+ *
+ * Uses rest.uniprot.org (the REST API) rather than www.uniprot.org (the website).
+ * Follows redirects (UniProt redirects mnemonic IDs like CDK2_HUMAN to accession IDs).
  */
 
 export async function GET(
@@ -15,12 +18,13 @@ export async function GET(
   const uniprotPath = path ? path.join("/") : "";
   const searchParams = req.nextUrl.searchParams.toString();
   const queryString = searchParams ? `?${searchParams}` : "";
-  const targetUrl = `https://www.uniprot.org/${uniprotPath}${queryString}`;
+  const targetUrl = `https://rest.uniprot.org/${uniprotPath}${queryString}`;
 
   console.log("[UNIPROT PROXY] Forwarding to:", targetUrl);
 
   try {
-    const res = await fetch(targetUrl);
+    // follow redirects (UniProt redirects mnemonic IDs to accession IDs)
+    const res = await fetch(targetUrl, { redirect: "follow" });
     if (!res.ok) {
       return NextResponse.json(
         { error: "Failed to fetch from UniProt" },

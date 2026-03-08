@@ -1,29 +1,38 @@
-import { LinearProgress, Paper, Stack, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useCallback } from "react";
+import { apiText } from "../../../api-fetch";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, fetchDigest } = useJob(job.id);
+  const { useTaskItem } = useJob(job.id);
 
   const { forceUpdate: forceSetSEQUENCETEXT } = useTaskItem("SEQUENCETEXT");
-  const { item: SEQINItem } = useTaskItem("SEQIN");
 
-  // Handle SEQIN file change - explicitly fetch digest and populate SEQUENCETEXT
-  const handleSeqInChange = useCallback(async () => {
-    if (!SEQINItem?._objectPath) return;
+  // Handle SEQIN file change - read raw file content and populate SEQUENCETEXT
+  // Matches Qt behavior: open file, read content, set SEQUENCETEXT
+  const handleSeqInChange = useCallback(
+    async (updatedItem: any) => {
+      // dbFileId is a CData object with nested _value, not a plain string
+      const dbFileId =
+        updatedItem?._value?.dbFileId?._value?.trim() ||
+        updatedItem?.dbFileId;
+      if (!dbFileId) return;
 
-    const digestData = await fetchDigest(SEQINItem._objectPath);
-    if (!digestData?.sequence) return;
-
-    // Build the formatted sequence text
-    const newSequence = `>${digestData.identifier || ""}\n${digestData.sequence}`.replace("*", "");
-    await forceSetSEQUENCETEXT(newSequence);
-  }, [SEQINItem?._objectPath, fetchDigest, forceSetSEQUENCETEXT]);
+      try {
+        const content = await apiText(`files/${dbFileId}/download_by_uuid`);
+        if (content) {
+          await forceSetSEQUENCETEXT(content);
+        }
+      } catch (error) {
+        console.error("Error reading sequence file:", error);
+      }
+    },
+    [forceSetSEQUENCETEXT]
+  );
 
   return (
     <CCP4i2Tabs {...props}>
@@ -38,7 +47,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2TaskElement
             {...props}
             itemName="SEQUENCETEXT"
-            qualifiers={{ guiLabel: "Sequence", guiMode: "multiLine" }}
+            qualifiers={{ guiLabel: "Sequence" }}
             sx={{ minWidth: "100%", minHeight: "10rem" }}
           />
 
@@ -52,7 +61,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           <CCP4i2TaskElement
             {...props}
             itemName="XYZIN"
-            qualifiers={{ guiLabel: "MTZFile (for Matthews volumne calc)" }}
+            qualifiers={{ guiLabel: "Coordinate file (for extracting sequence or Matthews calc)" }}
           />
         </CCP4i2ContainerElement>
       </CCP4i2Tab>
