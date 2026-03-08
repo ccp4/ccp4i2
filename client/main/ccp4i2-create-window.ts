@@ -26,6 +26,14 @@ export const createWindow = async (
   newWindow.webContents.on("did-finish-load", () => {
     newWindow.webContents.setZoomLevel(store.get("zoomLevel"));
   });
+  // Relay find-in-page results back to renderer
+  newWindow.webContents.on("found-in-page", (_event, result) => {
+    newWindow.webContents.send("message-from-main", {
+      message: "found-in-page",
+      activeMatchOrdinal: result.activeMatchOrdinal,
+      matches: result.matches,
+    });
+  });
   setTimeout(() => newWindow?.loadURL(url), 1500);
   return newWindow;
 };

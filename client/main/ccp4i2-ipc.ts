@@ -272,6 +272,21 @@ export const installIpcHandlers = (
     });
   });
 
+  // Find-in-page: relay to focused window's webContents
+  ipcMain.on("find-in-page", (event, data) => {
+    const win = BrowserWindow.getFocusedWindow();
+    if (!win) return;
+    const { text, forward = true, findNext = false } = data;
+    if (!text) return;
+    win.webContents.findInPage(text, { forward, findNext });
+  });
+
+  ipcMain.on("stop-find-in-page", (event, _data) => {
+    const win = BrowserWindow.getFocusedWindow();
+    if (!win) return;
+    win.webContents.stopFindInPage("clearSelection");
+  });
+
   ipcMain.on("zoom-in", (event, data) => {
     console.log("Zooming in", data);
     BrowserWindow.getAllWindows().forEach((win) => {

@@ -54,6 +54,26 @@ export function addNewWindowMenuItem(NEXT_PORT: number, DJANGO_PORT: number) {
     );
   }
 
+  // Find the Edit menu and add Find item
+  const editMenu = menu.items.find((item) => item.label === "Edit");
+  if (editMenu && editMenu.submenu) {
+    editMenu.submenu.append(new MenuItem({ type: "separator" }));
+    editMenu.submenu.append(
+      new MenuItem({
+        label: "Find",
+        accelerator: "CmdOrCtrl+F",
+        click: () => {
+          const win = BrowserWindow.getFocusedWindow();
+          if (win) {
+            win.webContents.send("message-from-main", {
+              message: "toggle-find-in-page",
+            });
+          }
+        },
+      })
+    );
+  }
+
   // Find the View menu and add theme toggle
   const viewMenu = menu.items.find((item) => item.label === "View");
   if (viewMenu && viewMenu.submenu) {

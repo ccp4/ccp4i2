@@ -1,6 +1,7 @@
 "use client";
 import { PropsWithChildren } from "react";
 import { DeleteDialogProvider } from "../../providers/delete-dialog";
+import { FindInPageProvider } from "../../providers/find-in-page-provider";
 import { RecentlyStartedJobsProvider } from "../../providers/recently-started-jobs-context";
 import { CCP4i2App } from "../../providers/ccp4i2-app";
 import RequireAuth from "../../components/require-auth";
@@ -17,21 +18,25 @@ const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true";
 export default function CCP4i2Layout(props: PropsWithChildren) {
   if (REQUIRE_AUTH) {
     return (
-      <RecentlyStartedJobsProvider>
-        <DeleteDialogProvider>
-          <RequireAuth>
-            <CCP4i2App>{props.children}</CCP4i2App>
-          </RequireAuth>
-        </DeleteDialogProvider>
-      </RecentlyStartedJobsProvider>
+      <FindInPageProvider>
+        <RecentlyStartedJobsProvider>
+          <DeleteDialogProvider>
+            <RequireAuth>
+              <CCP4i2App>{props.children}</CCP4i2App>
+            </RequireAuth>
+          </DeleteDialogProvider>
+        </RecentlyStartedJobsProvider>
+      </FindInPageProvider>
     );
   }
 
   return (
-    <RecentlyStartedJobsProvider>
-      <DeleteDialogProvider>
-        <CCP4i2App>{props.children}</CCP4i2App>
-      </DeleteDialogProvider>
-    </RecentlyStartedJobsProvider>
+    <FindInPageProvider>
+      <RecentlyStartedJobsProvider>
+        <DeleteDialogProvider>
+          <CCP4i2App>{props.children}</CCP4i2App>
+        </DeleteDialogProvider>
+      </RecentlyStartedJobsProvider>
+    </FindInPageProvider>
   );
 }
