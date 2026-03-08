@@ -221,12 +221,16 @@ class Parser:
         if starts_with_slash:
             self.advance()  # consume initial '/'
             # Next token is model number (or * or identifier)
-            selector.model = self._parse_value()
+            # An immediate slash means empty model field (all models)
+            if self.current_token().type != TokenType.SLASH:
+                selector.model = self._parse_value()
 
             # Now we expect more fields separated by /
             if self.current_token().type == TokenType.SLASH:
                 self.advance()
-                selector.chain = self._parse_value()
+                # Empty chain field (e.g. /1//10) means all chains
+                if self.current_token().type not in (TokenType.SLASH, TokenType.EOF):
+                    selector.chain = self._parse_value()
 
                 if self.current_token().type == TokenType.SLASH:
                     self.advance()
@@ -300,13 +304,23 @@ class Parser:
         return ','.join(values)
 
     def _parse_residue(self, selector: CIDSelector):
-        """Parse residue specification: seqNo(resName).insCode"""
+        """Parse residue specification: seqNo(resName).insCode
+
+        An empty residue field (e.g. ``A/`` or ``/1/A/``) is valid and
+        means "all residues", so we return without setting any fields.
+        """
         # Sequence number or residue name in parentheses
         if self.current_token().type == TokenType.LPAREN:
             # (resName)
             self.advance()
             selector.res_name = self._parse_value()
             self.expect(TokenType.RPAREN)
+        elif self.current_token().type in (TokenType.EOF, TokenType.SLASH,
+                                           TokenType.AND, TokenType.OR,
+                                           TokenType.NOT, TokenType.RPAREN,
+                                           TokenType.RBRACE):
+            # Empty residue field — select all residues
+            return
         else:
             # seqNo
             selector.seq_no = self._parse_value()
@@ -323,7 +337,14 @@ class Parser:
                 selector.ins_code = self._parse_value()
 
     def _parse_atom(self, selector: CIDSelector):
-        """Parse atom specification: atomName[chemElem]:altLoc"""
+        """Parse atom specification: atomName[chemElem]:altLoc
+
+        An empty atom field (e.g. ``A/10/``) means "all atoms".
+        """
+        if self.current_token().type in (TokenType.EOF, TokenType.AND,
+                                         TokenType.OR, TokenType.NOT,
+                                         TokenType.RPAREN, TokenType.RBRACE):
+            return
         selector.atom_name = self._parse_value()
 
         # Optional [chemElem]
