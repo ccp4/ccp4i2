@@ -2010,36 +2010,33 @@ class CPdbDataFile(CPdbDataFileStub):
             >>> if pdb_file.isMMCIF():
             ...     print("File is in mmCIF format")
         """
-        # First, try quick check based on file extension
-        # Note: We can trust .cif/.mmcif extensions, but NOT .pdb extensions
-        # (legacy wrappers may copy mmCIF files to .pdb paths)
+        # Check file extension and content to determine format.
+        # We cannot trust the extension alone — a .cif file may contain
+        # garbage (e.g. a failed download).  Always verify content.
         full_path = self.getFullPath()
         if full_path:
             from pathlib import Path
             suffix = Path(full_path).suffix.lower()
-            if suffix in ['.cif', '.mmcif']:
-                return True
-            # Don't quick-fail on .pdb - it might actually be mmCIF content
-            # Fall through to content checking below
+            has_cif_extension = suffix in ['.cif', '.mmcif']
 
-        # Quick file content check (before trying to load with gemmi)
-        # This is faster and avoids triggering loadFile() which might fail
-        if full_path:
-            from pathlib import Path
+            # Quick file content check
             if Path(full_path).exists():
                 try:
-                    # Quick check: read first line to see if it starts with mmCIF markers
                     with open(full_path, 'r') as f:
                         first_line = f.readline().strip()
                         # mmCIF files start with "data_" or have "loop_" structures early on
                         if first_line.startswith('data_'):
                             return True
-                        # Also check second line for loop_ (some mmCIF files have comments first)
                         second_line = f.readline().strip()
                         if second_line.startswith('data_') or first_line.startswith('loop_') or second_line.startswith('loop_'):
                             return True
                 except Exception:
                     pass  # If we can't read, fall through to other checks
+
+            # If extension says CIF but content doesn't confirm, don't trust it
+            # (file may be corrupt or a failed download)
+            if has_cif_extension:
+                return False
 
         # If file content is already loaded (from previous loadFile call), check it
         # Note: We check this AFTER the quick file peek to avoid triggering loadFile()
@@ -2431,18 +2428,17 @@ class CSeqAlignDataFile(CSeqAlignDataFileStub):
 
         Returns:
             tuple: (format_name, id_list) where format_name is the detected format
-                   and id_list is list of sequence IDs in the alignment
+                   string (e.g. 'clustal', 'fasta') and id_list is list of
+                   sequence IDs in the alignment.
         """
-        from ccp4i2.core.base_object.error_reporting import CErrorReport
         import os
 
-        err = CErrorReport()
         idList = []
 
         fileName = self.__str__()
         if not os.path.exists(fileName):
-            err.append(self.__class__, 204, fileName, stack=False)
-            return err, idList
+            object.__setattr__(self, 'format', 'unknown')
+            return 'unknown', idList
 
         # Try common alignment formats with BioPython
         formats_to_try = ['clustal', 'fasta', 'phylip', 'stockholm']
@@ -2456,16 +2452,15 @@ class CSeqAlignDataFile(CSeqAlignDataFileStub):
                 for record in alignments:
                     try:
                         idList.append(record.id)
-                    except:
-                        err.append(self.__class__, 205, fileName, stack=False)
-                return err, idList
-            except:
+                    except Exception:
+                        pass
+                return fmt, idList
+            except Exception:
                 continue
 
         # If no format worked, mark as unknown
         object.__setattr__(self, 'format', 'unknown')
-        err.append(self.__class__, 204, fileName, stack=False)
-        return err, idList
+        return 'unknown', idList
 
     def convertFormat(self, toFormat, fileName, reorder=None):
         """
@@ -2493,14 +2488,18 @@ class CSeqAlignDataFile(CSeqAlignDataFileStub):
             self.identifyFile()
 
         if not hasattr(self, 'format') or self.format == 'unknown':
-            return CErrorReport(self.__class__, 250, self.__str__() + ' to ' + str(fileName), stack=False)
+            err = CErrorReport()
+            err.append(self.__class__, 250, self.__str__() + ' to ' + str(fileName))
+            return err
 
         # Try reading the input file
         try:
             import Bio.AlignIO
             alignments = Bio.AlignIO.read(self.__str__(), self.format)
         except Exception as e:
-            return CErrorReport(self.__class__, 202, f"{self.__str__()}: {str(e)}", stack=False)
+            err = CErrorReport()
+            err.append(self.__class__, 202, f"{self.__str__()}: {str(e)}")
+            return err
 
         # Apply reordering if specified
         if reorder == 'reverse':
@@ -2522,15 +2521,19 @@ class CSeqAlignDataFile(CSeqAlignDataFileStub):
         try:
             if os.path.exists(fileName):
                 os.remove(fileName)
-        except:
-            return CErrorReport(self.__class__, 251, fileName)
+        except Exception:
+            err = CErrorReport()
+            err.append(self.__class__, 251, fileName)
+            return err
 
         # Write output in requested format
         try:
             with open(fileName, "w") as out:
                 Bio.AlignIO.write(alignments, out, toFormat)
         except Exception as e:
-            return CErrorReport(self.__class__, 252, f"{fileName}: {str(e)}", stack=False)
+            err = CErrorReport()
+            err.append(self.__class__, 252, f"{fileName}: {str(e)}")
+            return err
 
         return CErrorReport()
 

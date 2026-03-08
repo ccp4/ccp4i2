@@ -50,6 +50,42 @@ class chainsaw(CPluginScript):
           shutil.copyfile(self.container.inputData.ALIGNIN.__str__(), self.inputAlignmentFileName)
           return CPluginScript.SUCCEEDED
 
+    def process(self):
+        """Override process to scan for chainsaw-specific error messages on failure.
+
+        The base process() returns FAILED before postProcessCheck() is reached
+        when the program exits with non-zero status, so we scan log and stderr
+        here to surface chainsaw's diagnostic messages in the error report.
+        """
+        result = super().process()
+
+        if result == self.FAILED:
+            # Scan both log and stderr for chainsaw error messages
+            texts_to_scan = []
+            try:
+                texts_to_scan.append(self.logFileText())
+            except Exception:
+                pass
+            try:
+                stderr_path = self.makeFileName('STDERR')
+                if os.path.exists(str(stderr_path)):
+                    with open(str(stderr_path), 'r') as f:
+                        texts_to_scan.append(f.read())
+            except Exception:
+                pass
+
+            combined = '\n'.join(texts_to_scan)
+            if 'having trouble' in combined.lower():
+                error_lines = [
+                    line.strip() for line in combined.split('\n')
+                    if 'CHAINSAW' in line or 'having trouble' in line.lower()
+                    or 'Check target sequence' in line
+                ]
+                error_msg = ' '.join(error_lines) if error_lines else 'Chainsaw failed - check alignment file'
+                self.appendErrorReport(201, error_msg)
+
+        return result
+
     def processOutputFiles(self):
       if self.cryst1card is not None:
           import os

@@ -271,6 +271,8 @@ def digest_file_object(file_object: CDataFile):
     # Use CMtzDataFileStub for isinstance check because subclasses inherit from stubs
     if isinstance(file_object, CMtzDataFileStub):
         return digest_cmtzdatafile_file_object(file_object)
+    if isinstance(file_object, CCP4ModelData.CSeqAlignDataFile):
+        return digest_cseqaligndata_file_object(file_object)
     if isinstance(file_object, CCP4ModelData.CSeqDataFile):
         return digest_cseqdata_file_object(file_object)
     if isinstance(file_object, (CCP4ModelData.CDictDataFile, CDictDataFile)):
@@ -339,6 +341,37 @@ def digest_cseqdata_file_object(file_object: CPdbDataFile):
         return {
             "status": "Failed",
             "reason": f"Failed digesting CSeqDataFile {err}",
+            "digest": {},
+        }
+
+
+def digest_cseqaligndata_file_object(file_object):
+    """
+    Digest a CSeqAlignDataFile to provide sequence identifiers.
+
+    Uses identifyFile() to detect the alignment format and extract
+    the list of sequence IDs, which can be used to populate TARGETINDEX
+    enumerators in task interfaces (chainsaw, sculptor).
+
+    Returns a dict with:
+    - format: Detected alignment format (clustal, fasta, phylip, stockholm)
+    - identifiers: List of sequence ID strings from the alignment
+    """
+    if not isinstance(file_object, CCP4ModelData.CSeqAlignDataFile):
+        return {"status": "Failed", "reason": "Not a CSeqAlignDataFile object", "digest": {}}
+    if not file_object.isSet():
+        return {"status": "Failed", "reason": "File object is not set", "digest": {}}
+    try:
+        fmt, id_list = file_object.identifyFile()
+        return {
+            "format": fmt,
+            "identifiers": id_list,
+        }
+    except Exception as err:
+        logger.exception("Error digesting CSeqAlignDataFile %s", file_object, exc_info=err)
+        return {
+            "status": "Failed",
+            "reason": f"Failed digesting CSeqAlignDataFile: {err}",
             "digest": {},
         }
 
