@@ -155,17 +155,12 @@ class phaser_MR(CPluginScript):
 
     def parseEnsembles(self, inputObject):
         inputData = self.container.inputData
+        self._inputWasMMCIF = False
         if True:
             for i, ensemble in enumerate(inputData.ENSEMBLES):
                 for j, pdbItem in enumerate(ensemble.pdbItemList):
                     #Get selected subset of atoms if appropriate
                     atomsFile = str(pdbItem.structure)
-                    #MN added following to force the selection of coordinates to make
-                    #sure that the file used is a PDB (as output from getSelectedAtomsPdbFile(atomsFile)
-                    #HJ reverted 25/04/19 as it does not work with multi-model PDB files
-                    #if not pdbItem.structure.isSelectionSet():
-                    #   pdbItem.structure.selection.text="*"
-                    #End MN edit
                     if pdbItem.structure.isSelectionSet():
                         try:
                             atomsFile = os.path.join(self.workDirectory,'selectedAtomModel_'+str(i)+'_'+str(j)+'.pdb')
@@ -173,6 +168,13 @@ class phaser_MR(CPluginScript):
                         except:
                             self.appendErrorReport(107,'Issue with getSelected')
                             return CPluginScript.FAILED
+                    else:
+                        # Phaser only accepts PDB format — convert mmCIF inputs
+                        pdbItem.structure.loadFile()
+                        if pdbItem.structure.isMMCIF():
+                            self._inputWasMMCIF = True
+                            atomsFile = os.path.join(self.workDirectory,'ensemble_'+str(i)+'_'+str(j)+'.pdb')
+                            pdbItem.structure.convertFormat('pdb', atomsFile)
                     # CARD ON is selected by unSet pdbItem.identity_to_target and pdbItem.rms_to_target  
                     if not pdbItem.identity_to_target.isSet() and not pdbItem.rms_to_target.isSet():
                         # Check for special remark

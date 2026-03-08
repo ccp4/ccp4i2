@@ -86,8 +86,9 @@ class phaser_pipeline(CPluginScript):
         self.renameFile(tmpFilename,finalFilename)
 
     def phaserFinished(self, finishStatus):
-        # If phaser subjob failed, propagate the failure status
+        # If phaser subjob failed, propagate the failure status and child errors
         if finishStatus == CPluginScript.FAILED:
+            self.errorReport.extend(self.phaserPlugin.getErrorReport())
             self.reportStatus(CPluginScript.FAILED)
             return
 

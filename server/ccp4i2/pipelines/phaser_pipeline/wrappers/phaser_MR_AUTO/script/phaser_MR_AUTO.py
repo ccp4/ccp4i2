@@ -215,6 +215,13 @@ class phaser_MR_AUTO(phaser_MR.phaser_MR):
         for i in range(1,num_sol+1):
             xyzout = os.path.join(self.getWorkDirectory(), "PHASER."+str(i)+".pdb")
             if os.path.exists(xyzout):
+                # If input was mmCIF, convert Phaser's PDB output back to mmCIF
+                if getattr(self, '_inputWasMMCIF', False):
+                    import gemmi
+                    xyzout_cif = os.path.join(self.getWorkDirectory(), "PHASER."+str(i)+".cif")
+                    structure = gemmi.read_structure(xyzout)
+                    structure.make_mmcif_document().write_file(xyzout_cif)
+                    xyzout = xyzout_cif
                 self.container.outputData.XYZOUT.append(self.container.outputData.XYZOUT.makeItem())
                 self.container.outputData.XYZOUT[-1].setFullPath(xyzout)
                 self.container.outputData.XYZOUT[-1].annotation.set('Positioned coordinates for solution '+str(i))

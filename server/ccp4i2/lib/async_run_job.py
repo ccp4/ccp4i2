@@ -21,6 +21,11 @@ from ccp4i2.core.tasks import get_plugin_class
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
+class _ProcessFailedError(Exception):
+    """Raised when process() returns FAILED (not an unexpected exception)."""
+    pass
+
+
 async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] = None):
     """
     Modern async job execution with automatic database tracking.
@@ -135,13 +140,20 @@ async def run_job_async(job_uuid: uuid.UUID, project_uuid: Optional[uuid.UUID] =
                 # that don't throw exceptions but return FAILED status
                 if result == plugin.FAILED:
                     logger.error(f"Job {job.number} - process() returned FAILED")
-                    # Error should already be in errorReport, so just write diagnostic and fail
+                    # Error should already be in errorReport, so write diagnostic now
+                    # and re-raise directly (don't fall through to the except block
+                    # which would overwrite the real errors with a generic code 999)
                     await write_diagnostic_xml(plugin, job.directory)
                     await db_handler.update_job_status(job.uuid, models.Job.Status.FAILED)
-                    raise Exception(f"Job failed during process() - see diagnostic.xml for details")
+                    raise _ProcessFailedError(f"Job failed during process() - see diagnostic.xml for details")
+
+            except _ProcessFailedError:
+                # process() returned FAILED — real errors are already in errorReport.
+                # Re-raise without adding a generic code 999 entry.
+                raise
 
             except Exception as proc_exc:
-                # Capture Python exceptions into the error report
+                # Capture unexpected Python exceptions into the error report
                 # This ensures they appear in diagnostic.xml, not just cplusplus_stdout.txt
                 import traceback
                 tb_str = ''.join(traceback.format_exception(type(proc_exc), proc_exc, proc_exc.__traceback__))
