@@ -114,20 +114,24 @@ class phaser_pipeline(CPluginScript):
         XYZIN_TOUSE = self.container.outputData.XYZOUT[0]
 
         if self.phaserPlugin.container.outputData.dataReindexed:
-            self.runPointless()
+            rv = self.runPointless()
+            if rv == CPluginScript.FAILED: return
             F_SIGF_TOUSE = self.container.outputData.F_SIGF_OUT
             FREERFLAG_TOUSE = self.container.outputData.FREERFLAG_OUT
 
         if self.container.inputData.XYZIN_TARGET.isSet():
-            self.runCsymmatch()
+            rv = self.runCsymmatch()
+            if rv == CPluginScript.FAILED: return
             XYZIN_TOUSE = self.container.outputData.XYZOUT_CSYMMATCH
 
         if self.container.inputData.RUNSHEETBEND:
-            self.runSheetbend(F_SIGF=F_SIGF_TOUSE, FREERFLAG=FREERFLAG_TOUSE, XYZIN=XYZIN_TOUSE)
+            rv = self.runSheetbend(F_SIGF=F_SIGF_TOUSE, FREERFLAG=FREERFLAG_TOUSE, XYZIN=XYZIN_TOUSE)
+            if rv == CPluginScript.FAILED: return
             XYZIN_TOUSE = self.container.outputData.XYZOUT_SHEETBEND
 
         if self.container.inputData.RUNREFMAC:
-            self.runRefmac(F_SIGF=F_SIGF_TOUSE, FREERFLAG=FREERFLAG_TOUSE, XYZIN=XYZIN_TOUSE)
+            rv = self.runRefmac(F_SIGF=F_SIGF_TOUSE, FREERFLAG=FREERFLAG_TOUSE, XYZIN=XYZIN_TOUSE)
+            if rv == CPluginScript.FAILED: return
 
         self.reportStatus(CPluginScript.SUCCEEDED)
 
@@ -161,6 +165,7 @@ class phaser_pipeline(CPluginScript):
         except Exception as e:
             self.appendErrorReport(205, 'Exception in pointless_reindexToMatch: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
     def runCsymmatch(self):
@@ -181,6 +186,7 @@ class phaser_pipeline(CPluginScript):
         except Exception as e:
             self.appendErrorReport(206, 'Exception in csymmatch: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
     def runSheetbend(self, F_SIGF=None, FREERFLAG=None, XYZIN=None):
@@ -199,6 +205,7 @@ class phaser_pipeline(CPluginScript):
         except Exception as e:
             self.appendErrorReport(204,'sheetbend: ' + str(e))
             self.reportStatus(CPluginScript.FAILED)
+            return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
     def runRefmac(self,F_SIGF=None,FREERFLAG=None,XYZIN=None):
