@@ -26,7 +26,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           {...props}
           qualifiers={{
             guiLabel:
-              "Get initial phases from refining the starting model (uncheck to specify starting phases, e.g. from experimental phasing)",
+              "Calculate initial phases by refining the starting model (uncheck to specify starting phases, e.g. from experimental phasing)",
           }}
         />
         {USE_MODEL_PHASES === false && (
@@ -58,10 +58,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       <CCP4i2ContainerElement
         {...props}
         itemName=""
-        qualifiers={{ guiLabel: "Starting model" }}
+        qualifiers={{ guiLabel: "Starting model (optional)" }}
         containerHint="FolderLevel"
       >
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
+        <Typography variant="caption" color="text.secondary" sx={{ pl: 1 }}>
+          If a starting model is provided it will always be used, regardless of
+          the phase source. Clear this field for a fully de novo build.
+        </Typography>
       </CCP4i2ContainerElement>
 
       {/* Options */}

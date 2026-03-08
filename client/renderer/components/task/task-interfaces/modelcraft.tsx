@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
@@ -10,24 +10,9 @@ import { InlineField } from "../task-elements/inline-field";
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem } = useJob(job.id);
-  const { value: XYZIN, forceUpdate: forceSetXYZIN } = useTaskItem("XYZIN");
   const { forceUpdate: forceSetCYCLES } = useTaskItem("CYCLES");
 
   const useModelPhases = useBoolToggle(useTaskItem, "USE_MODEL_PHASES");
-
-  // Custom onChange: also clears XYZIN when unchecking
-  const handleUSE_MODEL_PHASES = useCallback(
-    async (new_USE_MODEL_PHASES: any) => {
-      const newValue = isTruthy(new_USE_MODEL_PHASES._value);
-      // Call the standard toggle handler for state sync
-      await useModelPhases.onChange(new_USE_MODEL_PHASES);
-      // Clear XYZIN if unchecking and a model file is loaded
-      if (!newValue && XYZIN?.dbFileId) {
-        forceSetXYZIN({});
-      }
-    },
-    [XYZIN, forceSetXYZIN, useModelPhases.onChange]
-  );
 
   const handleBASIC = useCallback(
     async (updatedItem: any) => {
@@ -52,9 +37,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           {...props}
           qualifiers={{
             guiLabel:
-              "Get initial phases from refining the starting model (uncheck to specify starting phases, e.g. from experimental phasing)",
+              "Calculate initial phases by refining the starting model (uncheck to specify starting phases, e.g. from experimental phasing)",
           }}
-          onChange={handleUSE_MODEL_PHASES}
         />
         {!useModelPhases.value && (
           <>
@@ -85,10 +69,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       <CCP4i2ContainerElement
         {...props}
         itemName=""
-        qualifiers={{ guiLabel: "Starting model" }}
+        qualifiers={{ guiLabel: "Starting model (optional)" }}
         containerHint="FolderLevel"
       >
         <CCP4i2TaskElement itemName="XYZIN" {...props} />
+        <Typography variant="caption" color="text.secondary" sx={{ pl: 1 }}>
+          If a starting model is provided it will always be used, regardless of
+          the phase source. Clear this field for a fully de novo build.
+        </Typography>
       </CCP4i2ContainerElement>
 
       {/* Options */}
