@@ -73,6 +73,9 @@ class phaser_pipeline(CPluginScript):
             else:
                 self.reportStatus(rv)
                 return CPluginScript.FAILED
+        # Check if a downstream step (pointless/csymmatch/sheetbend/refmac) failed
+        if self._status == CPluginScript.FAILED:
+            return CPluginScript.FAILED
         return CPluginScript.SUCCEEDED
 
     def phaserXMLUpdated(self, newXML):
@@ -253,8 +256,17 @@ class phaser_pipeline(CPluginScript):
 
     def harvestFile(self, pluginOutputItem, pipelineOutputItem):
         import shutil
+        from pathlib import Path
         try:
-            shutil.copyfile(str(pluginOutputItem.fullPath), str(pipelineOutputItem.fullPath))
+            srcPath = str(pluginOutputItem.fullPath)
+            dstPath = str(pipelineOutputItem.fullPath)
+            # Match destination extension to source when formats differ
+            srcSuffix = Path(srcPath).suffix.lower()
+            dstSuffix = Path(dstPath).suffix.lower()
+            if srcSuffix != dstSuffix and srcSuffix in ['.pdb', '.cif', '.mmcif']:
+                dstPath = str(Path(dstPath).with_suffix(srcSuffix))
+                pipelineOutputItem.setFullPath(dstPath)
+            shutil.copyfile(srcPath, dstPath)
             pipelineOutputItem.annotation.set(pluginOutputItem.annotation)
             pipelineOutputItem.contentFlag.set(pluginOutputItem.contentFlag)
             pipelineOutputItem.subType.set(pluginOutputItem.subType)
