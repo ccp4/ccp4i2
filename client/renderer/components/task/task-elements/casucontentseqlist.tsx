@@ -120,14 +120,14 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
     await updateList(listValue);
   }, [item, updateList]);
 
-  // When the list grows, open the newly added item
+  // When the list grows by exactly one item (user clicked "Add"), open the new item.
+  // Skip when growing by more than one (bulk load from file) to avoid unwanted dialog.
   useEffect(() => {
     const currentLength = item?._value?.length ?? 0;
     if (
       previousListLength !== undefined &&
-      currentLength > previousListLength
+      currentLength === previousListLength + 1
     ) {
-      // Open the newly added item (last in list)
       const newIndex = currentLength - 1;
       handleOpenDialog(newIndex);
     }

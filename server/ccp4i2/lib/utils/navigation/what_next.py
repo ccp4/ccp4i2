@@ -18,6 +18,7 @@ def get_what_next(job: models.Job):
                     "title": get_task_title(taskName),
                 }
                 for taskName in the_job_plugin.WHATNEXT
+                if isinstance(taskName, str)
             ],
         }
     else:

@@ -423,6 +423,7 @@ def digest_casudatafile_file_object(file_object: CAsuDataFile):
                     "polymerType": polymer_type,
                     "nCopies": n_copies,
                     "sequenceLength": len(sequence_str),
+                    "sequence": sequence_str,
                     "sequencePreview": sequence_str[:50] + "..." if len(sequence_str) > 50 else sequence_str,
                     "description": description,
                     "selected": selected,
