@@ -18,20 +18,20 @@ class csymmatch(CPluginScript):
       import os
       if inp.XYZIN_QUERY.isSelectionSet():
         xyzin_query_file = os.path.join(self.getWorkDirectory(),'XYZIN_QUERY_sel.pdb')
-        self.container.inputData.XYZIN_QUERY.loadFile()
-        if self.container.inputData.XYZIN_QUERY.isMMCIF():
+        inp.XYZIN_QUERY.loadFile()
+        if inp.XYZIN_QUERY.isMMCIF():
             xyzin_query_file = str(pathlib.Path(xyzin_query_file).with_suffix('.cif'))
             out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
         inp.XYZIN_QUERY.getSelectedAtomsPdbFile(xyzin_query_file)
       else:
         xyzin_query_file = inp.XYZIN_QUERY.fullPath.__str__()
-        self.container.inputData.XYZIN_QUERY.loadFile()
-        if self.container.inputData.XYZIN_QUERY.isMMCIF():
+        inp.XYZIN_QUERY.loadFile()
+        if inp.XYZIN_QUERY.isMMCIF():
             out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
       if inp.XYZIN_TARGET.isSelectionSet():
         xyzin_target_file = os.path.join(self.getWorkDirectory(),'XYZIN_TARGET_sel.pdb')
-        self.container.inputData.XYZIN_TARGET.loadFile()
-        if self.container.inputData.XYZIN_TARGET.isMMCIF():
+        inp.XYZIN_TARGET.loadFile()
+        if inp.XYZIN_TARGET.isMMCIF():
             xyzin_target_file = str(pathlib.Path(xyzin_target_file).with_suffix('.cif'))
         inp.XYZIN_TARGET.getSelectedAtomsPdbFile(xyzin_target_file)
       else:
@@ -47,7 +47,7 @@ class csymmatch(CPluginScript):
 
     def processOutputFiles(self):
         logName = self.makeFileName('LOG')
-        
+
         from lxml import etree
         xmlRoot = etree.Element('Csymmatch')
         segmentNode = None
@@ -76,7 +76,7 @@ class csymmatch(CPluginScript):
                     if segmentNode is not None:
                         scoreNode = etree.SubElement(segmentNode,'Score')
                         scoreNode.text = line.strip().split(':')[1]
-    
+
         with open(self.makeFileName('PROGRAMXML'),'w') as xmlFile:
             xmlString = etree.tostring(xmlRoot, pretty_print=True)
             CCP4Utils.writeXML(xmlFile,xmlString)
