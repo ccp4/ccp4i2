@@ -489,7 +489,7 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
           console.error("Error updating selection:", error);
         }
       }
-    }, 500);
+    }, 1500);
 
     return () => clearTimeout(timeoutId);
   }, [localSelectionText, isTyping, manualEdit, updateSelectionString, mutateContainer, job.status, selectionString]);
