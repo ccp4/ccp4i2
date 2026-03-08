@@ -49,6 +49,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     mutateParams_xml,
     validation,
     diagnostic_xml,
+    mutateDiagnosticXml,
     def_xml,
     container,
   } = useJob(jobid);
@@ -77,6 +78,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
   }, [job, jobFromTree]);
 
   const previousJob = usePrevious(job);
+  const previousStatus = usePrevious(currentStatus);
   const { jobTabValue: tabValue, setJobTabValue: setTabValue } = useJobTab();
 
   // State for editable params XML (only used for pending jobs)
@@ -177,6 +179,17 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     };
     asyncFunc();
   }, [job, setJobId, currentStatus]);
+
+  // Invalidate diagnostic_xml cache when job transitions to a terminal state
+  // so that the Diagnostics tab shows fresh data immediately
+  useEffect(() => {
+    if (previousStatus === undefined || currentStatus === undefined) return;
+    const wasActive = [2, 3, 7].includes(previousStatus);
+    const isTerminal = [4, 5, 6].includes(currentStatus);
+    if (wasActive && isTerminal) {
+      mutateDiagnosticXml();
+    }
+  }, [currentStatus, previousStatus, mutateDiagnosticXml]);
 
   //Here a useEffect that will clear processedErrors and extraDialogActions when job changes
   useEffect(() => {
