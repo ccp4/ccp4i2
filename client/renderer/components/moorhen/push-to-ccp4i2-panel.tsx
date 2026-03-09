@@ -12,7 +12,7 @@ import {
 import React, { useCallback, useState, useEffect } from "react";
 import { CreateTaskResponse } from "../../utils";
 import { usePopcorn } from "../../providers/popcorn-provider";
-import { ItemMetadata } from "./item-metadata-utils";
+import { ItemMetadata, fetchItemMetadata } from "./item-metadata-utils";
 
 interface PushToCCP4i2Props {
   project?: ProjectInfo;
@@ -48,22 +48,34 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
   >(project);
   const { setMessage } = usePopcorn();
 
-  // Set initial project based on itemMetadata.projectName if available
+  // If no itemMetadata provided, fetch it from the item
+  const [fetchedMetadata, setFetchedMetadata] = useState<ItemMetadata | undefined>(undefined);
+  useEffect(() => {
+    if (!itemMetadata && item) {
+      fetchItemMetadata(item).then((metadata) => {
+        if (metadata) setFetchedMetadata(metadata);
+      });
+    }
+  }, [itemMetadata, item]);
+
+  const effectiveMetadata = itemMetadata || fetchedMetadata;
+
+  // Set initial project based on metadata.projectName if available
   useEffect(() => {
     if (
-      itemMetadata &&
-      itemMetadata.projectName &&
+      effectiveMetadata &&
+      effectiveMetadata.projectName &&
       Array.isArray(projects) &&
       projects.length > 0
     ) {
       const matchedProject = projects.find(
-        (proj) => proj.name === itemMetadata.projectName
+        (proj) => proj.name === effectiveMetadata.projectName
       );
       if (matchedProject && selectedProject?.id !== matchedProject.id) {
         setSelectedProject(matchedProject);
       }
     }
-  }, [itemMetadata, projects]);
+  }, [effectiveMetadata, projects]);
 
   const { data: jobs, mutate: mutateJobs } = api.get<JobInfo[]>(
     `projects/${selectedProject?.id}/jobs/`
@@ -166,8 +178,8 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
         Push to CCP4i2
       </Typography>
 
-      {/* Show nicely formatted metadata if provided */}
-      {itemMetadata && (
+      {/* Show nicely formatted metadata if provided or fetched */}
+      {effectiveMetadata && (
         <Box
           sx={{
             mb: 2,
@@ -181,31 +193,31 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
             File to push was fetched from CCP4i2 with the following metadata:
           </Typography>
           <Typography variant="body2">
-            <strong>File ID:</strong> {itemMetadata.fileId}
+            <strong>File ID:</strong> {effectiveMetadata.fileId}
           </Typography>
-          {itemMetadata.projectName && (
+          {effectiveMetadata.projectName && (
             <Typography variant="body2">
-              <strong>Project:</strong> {itemMetadata.projectName}
+              <strong>Project:</strong> {effectiveMetadata.projectName}
             </Typography>
           )}
-          {itemMetadata.jobNumber && (
+          {effectiveMetadata.jobNumber && (
             <Typography variant="body2">
-              <strong>Job Number:</strong> {itemMetadata.jobNumber}
+              <strong>Job Number:</strong> {effectiveMetadata.jobNumber}
             </Typography>
           )}
-          {itemMetadata.fileAnnotation && (
+          {effectiveMetadata.fileAnnotation && (
             <Typography variant="body2">
-              <strong>Annotation:</strong> {itemMetadata.fileAnnotation}
+              <strong>Annotation:</strong> {effectiveMetadata.fileAnnotation}
             </Typography>
           )}
-          {itemMetadata.isLoading && (
+          {effectiveMetadata.isLoading && (
             <Typography variant="body2" color="text.secondary">
               Loading metadata...
             </Typography>
           )}
-          {itemMetadata.error && (
+          {effectiveMetadata.error && (
             <Typography variant="body2" color="error">
-              Error: {itemMetadata.error}
+              Error: {effectiveMetadata.error}
             </Typography>
           )}
         </Box>
