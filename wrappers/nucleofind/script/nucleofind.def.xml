@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='ASCII'?>
+<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
+    <ccp4i2_header>
+        <function>DEF</function>
+        <comment></comment>
+        <creationTime>12:00 05/Mar/26</creationTime>
+        <userId>jordandialpuri</userId>
+        <ccp4iVersion>0.0.1</ccp4iVersion>
+        <jobId/>
+        <project></project>
+        <pluginName>nucleofind</pluginName>
+        <pluginVersion></pluginVersion>
+        <pluginTitle>Predict Nucleic Acid Features</pluginTitle>
+        <jobNumber></jobNumber>
+    </ccp4i2_header>
+    <ccp4i2_body id="nucleofind">
+
+        <container id="inputData">
+            <content id="FWT_PHWT">
+                <className>CMapCoeffsDataFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <requiredSubType>1</requiredSubType>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <allowUndefined>False</allowUndefined>
+                </qualifiers>
+            </content>
+        </container>
+
+        <container id="outputData">
+
+            <content id="PHOSPHATE_MAP">
+                <className>CMapDataFile</className>
+            </content>
+            <content id="SUGAR_MAP">
+                <className>CMapDataFile</className>
+            </content>
+            <content id="BASE_MAP">
+                <className>CMapDataFile</className>
+            </content>
+        </container>
+
+
+        <container id="controlParameters">
+
+            <content id="SYMMETRY">
+                <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
+            </content>
+
+            <content id="OVERLAP">
+                <className>CString</className>
+                <qualifiers>
+                    <default>64</default>
+                    <enumerators>128,64,32,16,8</enumerators>
+                    <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers> 
+
+            </content>            
+
+            <content id="GPU">
+                <className>CBoolean</className>
+            </content>
+
+            <content id="THREADS">
+                <className>CInt</className>
+                <qualifiers>
+                    <default>4</default>
+                </qualifiers>
+            </content>
+
+            <content id="RESOLUTION">
+                <className>CInt</className>
+            </content>
+
+            <content id="RAW">
+                <className>CBoolean</className>
+            </content>
+
+            <content id="VARIANCE">
+                <className>CBoolean</className>
+            </content>
+
+        </container>
+
+    </ccp4i2_body>
+</ccp4:ccp4i2>
