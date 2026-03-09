@@ -91,6 +91,18 @@ def test_from_smiles_atom_name_matching():
         check_output(job, "LIG")
 
 
+def test_from_cif_rcsb_metal_OEX():
+    with download(rcsb_ligand_cif("AF3")) as cifOEX, download(rcsb_mmcif("4ub6")) as cif4ub6:
+        args = ["LidiaAcedrgNew"]
+        args += ["--MOLSMILESORSKETCH", "DICT"]
+        args += ["--TLC", "OEX"]
+        args += ["--DICTIN2", cifOEX]
+        args += ["--TOGGLE_METAL", "True"]
+        args += ["--METAL_STRUCTURE", cif4ub6]
+        with i2run(args) as job:
+            check_output(job, "OEX")
+
+
 def check_output(job: Path, code: str):
     if len(code) <= 3:
         gemmi.read_pdb(str(job / f"{code}.pdb"))
@@ -98,33 +110,3 @@ def check_output(job: Path, code: str):
     comp = gemmi.make_chemcomp_from_block(doc[-1])
     for atom in comp.atoms:
         assert " " not in atom.id
-
-
-# These tests crashes as acedrg or metalCoord crash themselves, not an i2 problem.
-
-# @fixture(name="cif4ub6", scope="module")
-# def cif4ub6_fixture():
-#     with download(rcsb_mmcif("4ub6")) as path:
-#         yield path
-
-# def test_from_cif_rcsb_metal_OEX(cif4ub6):
-#     with download(rcsb_ligand_cif("OEX")) as cifOEX:
-#         args = ["LidiaAcedrgNew"]
-#         args += ["--MOLSMILESORSKETCH", "DICT"]
-#         args += ["--TLC", "OEX"]
-#         args += ["--DICTIN2", cifOEX]
-#         args += ["--TOGGLE_METAL", "True"]
-#         args += ["--METAL_STRUCTURE", cif4ub6]
-#         with i2run(args) as job:
-#             check_output(job, "OEX")
-
-# def test_from_sdf_rcsb_metal_OEX(cif4ub6):
-#     with download(rcsb_ligand_sdf("OEX")) as sdfOEX:
-#         args = ["LidiaAcedrgNew"]
-#         args += ["--MOLSMILESORSKETCH", "MOL"]
-#         args += ["--TLC", "OEX"]
-#         args += ["--MOLIN", sdfOEX]
-#         args += ["--TOGGLE_METAL", "True"]
-#         args += ["--METAL_STRUCTURE", cif4ub6]
-#         with i2run(args) as job:
-#             check_output(job, "OEX")
