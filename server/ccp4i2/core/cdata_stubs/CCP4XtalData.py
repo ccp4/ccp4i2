@@ -340,6 +340,7 @@ class CColumnGroupListStub(CList):
         "guiLabel": 'mmCIF reflection data',
         "mimeTypeName": 'chemical/x-cif',
         "toolTip": 'A reflection file in mmCIF format',
+        "fileExtensions": ['cif'],
         "fileContentClassName": 'CMmcifReflData',
         "helpFile": 'data_files#mmCIF',
     },
