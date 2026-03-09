@@ -39,3 +39,4 @@ class nucleofind(CPluginScript):
         os.rename(phosphate, str(self.container.outputData.PHOSPHATE))
         os.rename(sugar, str(self.container.outputData.SUGAR))
         os.rename(base, str(self.container.outputData.BASE))
+        return CPluginScript.SUCCEEDED
