@@ -3274,13 +3274,13 @@
             }
         },
         "nucleofind": {
-            "0.1": {
+            "null": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "jordan.dialpuri@york.ac.uk",
                 "TASKTITLE": null,
-                "class": "wrappers.nucleofind.script.nucleofind_wrappernucleofind",
-                "clsModule": "wrappers.nucleofind.script.nucleofind_wrapper",
+                "class": "wrappers.nucleofind.script.nucleofindnucleofind",
+                "clsModule": "wrappers.nucleofind.script.nucleofind",
                 "clsName": "nucleofind",
                 "internal": false,
                 "subTasks": []
@@ -5917,7 +5917,7 @@
                 "clsName": "NucleoFindGUI",
                 "shortTitle": "NucleoFind",
                 "taskName": "nucleofind",
-                "taskVersion": 0.1
+                "taskVersion": "0.0.0"
             }
         },
         "pairef": {

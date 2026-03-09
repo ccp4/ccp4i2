@@ -2,48 +2,46 @@
 <ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">
     <ccp4i2_header>
         <function>DEF</function>
-        <comment></comment>
-        <creationTime>12:00 05/Mar/26</creationTime>
-        <userId>jordandialpuri</userId>
-        <ccp4iVersion>0.0.1</ccp4iVersion>
-        <jobId/>
-        <project></project>
         <pluginName>nucleofind</pluginName>
-        <pluginVersion></pluginVersion>
-        <pluginTitle>Predict Nucleic Acid Features</pluginTitle>
-        <jobNumber></jobNumber>
     </ccp4i2_header>
     <ccp4i2_body id="nucleofind">
 
         <container id="inputData">
-            <content id="FWT_PHWT">
+            <content id="FPHIIN">
                 <className>CMapCoeffsDataFile</className>
                 <qualifiers>
+                    <allowUndefined>False</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
                     <mustExist>True</mustExist>
                     <requiredSubType>1</requiredSubType>
-                    <fromPreviousJob>True</fromPreviousJob>
-                    <allowUndefined>False</allowUndefined>
                 </qualifiers>
             </content>
         </container>
 
         <container id="outputData">
-
-            <content id="PHOSPHATE_MAP">
+            <content id="PHOSPHATE">
                 <className>CMapDataFile</className>
+                <qualifiers>
+                    <annotation>NucleoFind Predicted Phosphate Map</annotation>
+                </qualifiers>
             </content>
-            <content id="SUGAR_MAP">
+            <content id="SUGAR">
                 <className>CMapDataFile</className>
+                <qualifiers>
+                    <annotation>NucleoFind Predicted Sugar Map</annotation>
+                </qualifiers>
             </content>
-            <content id="BASE_MAP">
+            <content id="BASE">
                 <className>CMapDataFile</className>
+                <qualifiers>
+                    <annotation>NucleoFind Predicted Base Map</annotation>
+                </qualifiers>
             </content>
         </container>
 
-
         <container id="controlParameters">
 
-            <content id="SYMMETRY">
+            <content id="FULL_CELL">
                 <className>CBoolean</className>
                 <qualifiers>
                     <default>True</default>
@@ -56,31 +54,40 @@
                     <default>64</default>
                     <enumerators>128,64,32,16,8</enumerators>
                     <onlyEnumerators>True</onlyEnumerators>
-                </qualifiers> 
-
-            </content>            
+                </qualifiers>
+            </content>
 
             <content id="GPU">
                 <className>CBoolean</className>
+                <qualifiers>
+                    <default>True</default>
+                </qualifiers>
             </content>
 
             <content id="THREADS">
                 <className>CInt</className>
                 <qualifiers>
-                    <default>4</default>
+                    <allowUndefined>False</allowUndefined>
+                    <default>1</default>
+                    <min>1</min>
                 </qualifiers>
             </content>
 
             <content id="RESOLUTION">
-                <className>CInt</className>
+                <className>CFloat</className>
+                <qualifiers>
+                    <min>0.0</min>
+                </qualifiers>
             </content>
 
-            <content id="RAW">
-                <className>CBoolean</className>
-            </content>
-
-            <content id="VARIANCE">
-                <className>CBoolean</className>
+            <content id="OUTPUT_TYPE">
+                <className>CString</className>
+                <qualifiers>
+                    <default>DEFAULT</default>
+                    <enumerators>DEFAULT,RAW,VARIANCE</enumerators>
+                    <menuText>Default,Raw values (no argmax),Variance of repeat predictions</menuText>
+                    <onlyEnumerators>True</onlyEnumerators>
+                </qualifiers>
             </content>
 
         </container>
