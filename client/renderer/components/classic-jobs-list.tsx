@@ -6,7 +6,20 @@ import React, {
   createContext,
   useContext,
 } from "react";
-import { Button, Chip, Skeleton, Stack, Typography } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  Chip,
+  IconButton,
+  List,
+  ListItem,
+  Paper,
+  Skeleton,
+  Stack,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import {
   RichTreeView,
   TreeItem2Content,
@@ -19,7 +32,7 @@ import {
   TreeItem2Root,
   useTreeItem2,
 } from "@mui/x-tree-view";
-import { Menu as MenuIcon } from "@mui/icons-material";
+import { Clear, Delete, Menu as MenuIcon } from "@mui/icons-material";
 import { useDraggable } from "@dnd-kit/core";
 import { useRouter } from "next/navigation";
 
@@ -36,6 +49,8 @@ import { useCCP4i2Window } from "../app-context";
 import { JobWithChildren, useJobMenu } from "../providers/job-context-menu";
 import { useFileMenu } from "../providers/file-context-menu";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
+import { useDeleteDialog } from "../providers/delete-dialog";
+import { useSet } from "../hooks";
 
 // =============================================================================
 // Types
@@ -81,11 +96,15 @@ const TIME_DISPLAY_STYLE = { fontSize: "75%" };
 interface JobTreeContextValue {
   jobsByUuid: Map<string, JobTreeNode>;
   filesByUuid: Map<string, DjangoFile>;
+  selectedJobIds: Set<number>;
+  toggleJobSelection: (jobId: number) => void;
 }
 
 const JobTreeContext = createContext<JobTreeContextValue>({
   jobsByUuid: new Map(),
   filesByUuid: new Map(),
+  selectedJobIds: new Set(),
+  toggleJobSelection: () => {},
 });
 
 // =============================================================================
@@ -133,7 +152,7 @@ const useJobTree = (projectId: number) => {
   // This handles the race condition where DB status hasn't updated yet
   const pollInterval = (jobsActive || hasRecentlyStarted) ? ACTIVE_POLL_INTERVAL : IDLE_POLL_INTERVAL;
 
-  const { data, isLoading, error } = api.get_endpoint<JobTreeResponse>(
+  const { data, isLoading, error, mutate } = api.get_endpoint<JobTreeResponse>(
     endpointFetch,
     pollInterval
   );
@@ -153,6 +172,7 @@ const useJobTree = (projectId: number) => {
     totalFiles: data?.total_files ?? 0,
     isLoading,
     error,
+    mutate,
     jobsActive: jobsActive || hasRecentlyStarted, // Include recently started in active state
   };
 };
@@ -283,12 +303,38 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
 }) => {
   const [selectedItems, setSelectedItems] = useState<string | null>(null);
   const navigate = useRouter();
+  const api = useApi();
+  const deleteDialog = useDeleteDialog();
+
+  // Multi-select state for bulk operations
+  const selectedJobIds = useSet<number>();
+
+  const toggleJobSelection = useCallback(
+    (jobId: number) => {
+      if (selectedJobIds.has(jobId)) {
+        selectedJobIds.delete(jobId);
+      } else {
+        selectedJobIds.add(jobId);
+      }
+    },
+    [selectedJobIds]
+  );
 
   // Single consolidated API call
-  const { jobTree, isLoading } = useJobTree(projectId);
+  const { jobTree, isLoading, mutate: mutateJobTree } = useJobTree(projectId);
 
   // Build lookup maps for tree items
   const lookups = useJobTreeLookups(jobTree);
+
+  // Context value including selection state
+  const contextValue = useMemo<JobTreeContextValue>(
+    () => ({
+      ...lookups,
+      selectedJobIds,
+      toggleJobSelection,
+    }),
+    [lookups, selectedJobIds, toggleJobSelection]
+  );
 
   // Transform to tree view format
   const treeViewItems = useTreeViewItems(jobTree);
@@ -322,6 +368,66 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     [handleSelectedItemsChange]
   );
 
+  // Bulk delete handler
+  const handleBulkDelete = useCallback(async () => {
+    const jobIds = Array.from(selectedJobIds);
+    if (jobIds.length === 0) return;
+
+    try {
+      const response: any = await api.post("jobs/bulk_dependent_jobs/", {
+        job_ids: jobIds,
+      });
+      const { additional_dependents, total_to_delete, has_active_dependents } =
+        response.data;
+
+      // Filter to top-level dependents for display
+      const topLevelDependents = (additional_dependents || []).filter(
+        (job: Job) => job.parent === null
+      );
+
+      if (deleteDialog) {
+        deleteDialog({
+          type: "show",
+          what: `${jobIds.length} selected job${jobIds.length !== 1 ? "s" : ""}`,
+          onDelete: async () => {
+            await api.post("jobs/bulk_delete/", { job_ids: jobIds });
+            mutateJobTree();
+            selectedJobIds.clear();
+          },
+          onCancel: () => {},
+          children:
+            topLevelDependents.length > 0
+              ? [
+                  <Paper
+                    key="dependentJobs"
+                    sx={{ maxHeight: "10rem", overflowY: "auto" }}
+                  >
+                    <Typography variant="body2" sx={{ mb: 1 }}>
+                      The following {topLevelDependents.length} dependent job
+                      {topLevelDependents.length !== 1 ? "s" : ""} would also be
+                      deleted:
+                    </Typography>
+                    <List dense>
+                      {topLevelDependents.map((dependentJob: Job) => (
+                        <ListItem key={dependentJob.uuid}>
+                          <Toolbar>
+                            <CCP4i2JobAvatar job={dependentJob} />
+                            {`${dependentJob.number}: ${dependentJob.title}`}
+                          </Toolbar>
+                        </ListItem>
+                      ))}
+                    </List>
+                  </Paper>,
+                ]
+              : undefined,
+          deleteDisabled: has_active_dependents,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to fetch bulk dependencies:", error);
+    }
+  }, [selectedJobIds, api, deleteDialog, mutateJobTree]);
+
   if (isLoading) {
     return <Skeleton variant="rectangular" width="100%" height={200} />;
   }
@@ -331,7 +437,41 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   }
 
   return (
-    <JobTreeContext.Provider value={lookups}>
+    <JobTreeContext.Provider value={contextValue}>
+      {selectedJobIds.size > 0 && (
+        <Paper
+          elevation={2}
+          sx={{ p: 1, mb: 1, bgcolor: "action.selected" }}
+        >
+          <Stack direction="row" alignItems="center" spacing={1}>
+            <Tooltip title="Clear selection">
+              <IconButton
+                onClick={() => selectedJobIds.clear()}
+                size="small"
+              >
+                <Clear fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Typography
+              color="primary.main"
+              variant="subtitle2"
+              sx={{ fontWeight: 600, flexGrow: 1 }}
+            >
+              {selectedJobIds.size} job
+              {selectedJobIds.size !== 1 ? "s" : ""} selected
+            </Typography>
+            <Tooltip title="Delete selected jobs">
+              <IconButton
+                onClick={handleBulkDelete}
+                size="small"
+                color="error"
+              >
+                <Delete fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </Stack>
+        </Paper>
+      )}
       <RichTreeView
         items={treeViewItems}
         isItemEditable={() => true}
@@ -353,6 +493,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
 const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
   function CustomTreeItem({ id, itemId, label, disabled, children }, ref) {
     const { job, file, isJob, timestamp } = useTreeItemData(itemId);
+    const { selectedJobIds, toggleJobSelection } = useContext(JobTreeContext);
 
     const { setJobMenuAnchorEl, setJob } = useJobMenu();
     const { setFileMenuAnchorEl, setFile } = useFileMenu();
@@ -537,6 +678,19 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
           >
             <TreeItem2Icon status={status} />
           </TreeItem2IconContainer>
+
+          {job && !job.number.includes(".") && (
+            <Checkbox
+              size="small"
+              checked={selectedJobIds.has(job.id)}
+              onChange={(e) => {
+                e.stopPropagation();
+                toggleJobSelection(job.id);
+              }}
+              onClick={(e) => e.stopPropagation()}
+              sx={{ p: 0.5 }}
+            />
+          )}
 
           <Stack
             direction="row"

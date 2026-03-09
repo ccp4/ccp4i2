@@ -59,6 +59,8 @@ from ..lib.utils.jobs.i2run import i2run_for_job
 from ..lib.utils.jobs.preview import preview_job
 from ..lib.utils.navigation.dependencies import (
     delete_job_and_dependents,
+    delete_multiple_jobs_and_dependents,
+    find_bulk_dependent_jobs,
     find_dependent_jobs,
 )
 from ..lib.utils.navigation.what_next import get_what_next
@@ -719,6 +721,63 @@ class JobViewSet(ModelViewSet):
         except (ValueError, models.Job.DoesNotExist) as err:
             logging.exception("Failed to retrieve job with id %s", pk, exc_info=err)
             return api_error(str(err), status=404)
+
+    @action(
+        detail=False,
+        methods=["post"],
+    )
+    def bulk_dependent_jobs(self, request):
+        """
+        For a list of job IDs, return the union of all their dependents
+        that aren't in the selection (jobs that would additionally be deleted).
+
+        POST /api/jobs/bulk_dependent_jobs/
+        Body: {"job_ids": [1, 2, 3]}
+        """
+        job_ids = request.data.get("job_ids", [])
+        if not job_ids:
+            return api_error("No job IDs provided", status=400)
+
+        try:
+            bulk_info = find_bulk_dependent_jobs(job_ids)
+            return api_success({
+                "selected_jobs": serializers.JobSerializer(
+                    bulk_info["selected_jobs"], many=True
+                ).data,
+                "additional_dependents": serializers.JobSerializer(
+                    bulk_info["additional_dependents"], many=True
+                ).data,
+                "total_to_delete": len(bulk_info["all_jobs_to_delete"]),
+                "has_active_dependents": bulk_info["has_active_dependents"],
+            })
+        except Exception as err:
+            logger.exception("Error computing bulk dependencies")
+            return api_error(str(err), status=500)
+
+    @action(
+        detail=False,
+        methods=["post"],
+    )
+    def bulk_delete(self, request):
+        """
+        Delete multiple jobs and all their dependents.
+
+        POST /api/jobs/bulk_delete/
+        Body: {"job_ids": [1, 2, 3]}
+        """
+        job_ids = request.data.get("job_ids", [])
+        if not job_ids:
+            return api_error("No job IDs provided", status=400)
+
+        try:
+            jobs_before = models.Job.objects.count()
+            delete_multiple_jobs_and_dependents(job_ids)
+            jobs_after = models.Job.objects.count()
+            deleted_count = jobs_before - jobs_after
+            return api_success({"deleted": True, "count": deleted_count})
+        except Exception as err:
+            logger.exception("Error during bulk delete")
+            return api_error(str(err), status=500)
 
     @action(
         detail=True,

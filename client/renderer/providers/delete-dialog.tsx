@@ -70,7 +70,7 @@ export function DeleteDialogProvider(props: DeleteDialogProviderProps) {
           </Button>
           <Button
             key="Delete"
-            disabled={props.deleteDisabled}
+            disabled={state.deleteDisabled}
             variant="contained"
             onClick={handleDelete}
           >

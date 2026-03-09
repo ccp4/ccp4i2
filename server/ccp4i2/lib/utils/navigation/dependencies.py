@@ -104,3 +104,67 @@ def delete_job_and_dependents(the_job: models.Job):
     logger.info("Deleted %s files", files_after - files_before)
     logger.info("Deleted %s file_uses", file_uses_after - file_uses_before)
     logger.info("Deleted %s jobs", file_imports_after - file_imports_before)
+
+
+def find_bulk_dependent_jobs(job_ids: List[int]) -> dict:
+    """For a list of job IDs, find the union of all their dependent jobs,
+    excluding jobs already in the selection.
+
+    Returns a dict with:
+      - selected_jobs: Job objects for the given IDs
+      - additional_dependents: dependent jobs NOT in the selection
+      - all_jobs_to_delete: union of selected + additional dependents
+      - has_active_dependents: True if any additional dependent is running/queued
+    """
+    selected_jobs = list(models.Job.objects.filter(id__in=job_ids))
+    selected_id_set = set(job_ids)
+
+    all_dependents = set()
+    for job in selected_jobs:
+        deps = find_dependent_jobs(job)
+        all_dependents.update(deps)
+
+    additional_dependents = sorted(
+        [j for j in all_dependents if j.id not in selected_id_set],
+        key=version_sort_key,
+    )
+
+    ACTIVE_STATUSES = {
+        models.Job.Status.QUEUED,
+        models.Job.Status.RUNNING,
+        models.Job.Status.RUNNING_REMOTELY,
+    }
+    has_active_dependents = any(
+        j.status in ACTIVE_STATUSES for j in additional_dependents
+    )
+
+    return {
+        "selected_jobs": selected_jobs,
+        "additional_dependents": additional_dependents,
+        "all_jobs_to_delete": selected_jobs + additional_dependents,
+        "has_active_dependents": has_active_dependents,
+    }
+
+
+def delete_multiple_jobs_and_dependents(job_ids: List[int]):
+    """Delete multiple jobs and all their dependents.
+
+    Uses find_bulk_dependent_jobs to get the complete set, then deletes
+    each job and its dependents leaf-first. Tracks already-deleted jobs
+    to avoid double-deletion when dependency graphs overlap.
+    """
+    bulk_info = find_bulk_dependent_jobs(job_ids)
+    all_to_delete = sorted(
+        bulk_info["all_jobs_to_delete"], key=version_sort_key, reverse=True
+    )
+
+    deleted_ids = set()
+    for job in all_to_delete:
+        if job.id not in deleted_ids:
+            try:
+                job.refresh_from_db()
+            except models.Job.DoesNotExist:
+                deleted_ids.add(job.id)
+                continue
+            find_dependent_jobs(job, leaf_action=delete_job_and_dir)
+            deleted_ids.add(job.id)
