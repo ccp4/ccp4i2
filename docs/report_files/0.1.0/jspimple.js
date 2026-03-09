@@ -2007,7 +2007,7 @@ CCP4GraphPlot.prototype.plot = function() {
             this.downloadDiv.appendChild(downloadLaunchButton);
             downloadLaunchButton.onclick = function(){
                 var downloadLaunchParams = {};
-                downloadLaunchParams["action"] = "downloadGraphCsv";
+                downloadLaunchParams["action"] = "downloadGraphJSON";
                 downloadLaunchParams["ccp4_data_id"] = self.dataID;
                 downloadLaunchParams["ccp4_data_current_index"] = self.graphs.indexOf(self.currentGraph);
                 buttonBridge.clicked(JSON.stringify(downloadLaunchParams));
