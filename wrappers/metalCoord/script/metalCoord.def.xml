@@ -95,6 +95,7 @@
            <toolTip>A threshold to select atoms is (r1 + r2)*(1 + d) where r1 and r2 are covalent radii. Range: 0-1. Default: 0.5</toolTip>
            <min>0</min>
            <max>1</max>
+           <default>0.5</default>
         </qualifiers>
       </content>
       <content id="PROCRUSTES_DISTANCE_THRESHOLD">
@@ -104,6 +105,7 @@
            <toolTip>Range: 0-1. Default: 0.3</toolTip>
            <min>0</min>
            <max>1</max>
+           <default>0.3</default>
         </qualifiers>
       </content>
       <content id="IDEAL_ANGLES">
