@@ -342,7 +342,7 @@ class prosmart_refmac_report(Report):
 
     def addProgressGraph(self, parent, xmlnode,internalId="SummaryGraph",tag="RefmacInProgress"):
         if len(self.xmlnode.findall(tag))>0:
-            progressGraph = parent.addFlotGraph(title="Running refmac",select=tag+"/Cycle",style="height:250px; width:400px;float:left;border:0px;",outputXml=self.outputXml,internalId=internalId,downloadable=True)
+            progressGraph = parent.addFlotGraph(title="Running refmac",select=tag+"/Cycle",style="height:250px; width:400px;float:left;border:0px;",outputXml=self.outputXml,internalId=internalId)
             progressGraph.addData(title="Cycle",    select="number")
             progressGraph.addData(title="R_Factor", select="r_factor")
             progressGraph.addData(title="R_Free",  select="r_free")
