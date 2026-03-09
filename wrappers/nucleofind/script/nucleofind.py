@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from core.CCP4PluginScript import CPluginScript
 
@@ -32,11 +33,12 @@ class nucleofind(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        directory = self.getWorkDirectory()
-        phosphate = os.path.join(directory, "nucleofind-phosphate.map")
-        sugar = os.path.join(directory, "nucleofind-sugar.map")
-        base = os.path.join(directory, "nucleofind-base.map")
-        os.rename(phosphate, str(self.container.outputData.PHOSPHATE))
-        os.rename(sugar, str(self.container.outputData.SUGAR))
-        os.rename(base, str(self.container.outputData.BASE))
+        out = self.container.outputData
+        directory = Path(self.getWorkDirectory())
+        os.rename(directory / "nucleofind-phosphate.map", str(out.PHOSPHATE))
+        os.rename(directory / "nucleofind-sugar.map", str(out.SUGAR))
+        os.rename(directory / "nucleofind-base.map", str(out.BASE))
+        out.PHOSPHATE.annotation.set("NucleoFind Predicted Phosphate Map")
+        out.SUGAR.annotation.set("NucleoFind Predicted Sugar Map")
+        out.BASE.annotation.set("NucleoFind Predicted Base Map")
         return CPluginScript.SUCCEEDED
