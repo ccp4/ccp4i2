@@ -1,10 +1,31 @@
 import importlib
 import logging
 import traceback
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from enum import Enum
 from functools import cache
 
 from .. import I2_TOP
+
+
+class TaskCategory(str, Enum):
+    """Categories for organizing tasks in the task tree UI."""
+    DATA_ENTRY = "data_entry"
+    DATA_PROCESSING = "data_processing"
+    DATA_REDUCTION = "data_reduction"
+    ALPHA_FOLD = "alpha_fold"
+    EXPT_PHASING = "expt_phasing"
+    BIOINFORMATICS = "bioinformatics"
+    MOLECULAR_REPLACEMENT = "molecular_replacement"
+    DENSITY_MODIFICATION = "density_modification"
+    MODEL_BUILDING = "model_building"
+    REFINEMENT = "refinement"
+    LIGANDS = "ligands"
+    VALIDATION = "validation"
+    EXPORT = "export"
+    EXPT_DATA_UTILITY = "expt_data_utility"
+    MODEL_DATA_UTILITY = "model_data_utility"
+    DEVELOPER_TOOLS = "developer_tools"
 
 
 @dataclass
@@ -18,6 +39,7 @@ class Task:
     reportPath: str = None
     runningReport: bool = False
     watchedFile: str = None
+    categories: list[TaskCategory] = field(default_factory=list)
 
 
 TASKS = {
@@ -30,6 +52,7 @@ TASKS = {
         defXmlPath="wrappers/AMPLE/script/AMPLE.def.xml",
         reportPath="ccp4i2.wrappers.AMPLE.script.AMPLE_report:AMPLE_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "AUSPEX": Task(
         title="Graphical diagnostics by AUSPEX plots",
@@ -37,6 +60,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.AUSPEX.script.auspex_wrapper:AUSPEX",
         defXmlPath="wrappers/AUSPEX/script/AUSPEX.def.xml",
         reportPath="ccp4i2.wrappers.AUSPEX.script.AUSPEX_report:AUSPEX_report",
+        categories=[TaskCategory.DATA_REDUCTION],
     ),
     "AcedrgLink": Task(
         title="AceDRG in link generation mode",
@@ -44,6 +68,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.AcedrgLink.script.AcedrgLink:AcedrgLink",
         defXmlPath="wrappers/AcedrgLink/script/AcedrgLink.def.xml",
         reportPath="ccp4i2.wrappers.AcedrgLink.script.AcedrgLink_report:AcedrgLink_report",
+        categories=[TaskCategory.LIGANDS],
     ),
     "AlternativeImportXIA2": Task(
         title="Import Xia2 results",
@@ -53,6 +78,7 @@ TASKS = {
         defXmlPath="wrappers/AlternativeImportXIA2/script/AlternativeImportXIA2.def.xml",
         reportPath="ccp4i2.wrappers.AlternativeImportXIA2.script.AlternativeImportXIA2_report:AlternativeImportXIA2_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "Lidia": Task(
         description="Sketch a ligand",
@@ -66,6 +92,7 @@ TASKS = {
         defXmlPath="pipelines/LidiaAcedrgNew/script/LidiaAcedrgNew.def.xml",
         reportPath="ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report:LidiaAcedrgNew_report",
         runningReport=True,
+        categories=[TaskCategory.LIGANDS],
     ),
     "MakeLink": Task(
         title="Make Covalent Link - AceDRG",
@@ -74,6 +101,7 @@ TASKS = {
         pluginPath="ccp4i2.pipelines.MakeLink.script.MakeLink:MakeLink",
         defXmlPath="pipelines/MakeLink/script/MakeLink.def.xml",
         reportPath="ccp4i2.pipelines.MakeLink.script.MakeLink_report:MakeLink_report",
+        categories=[TaskCategory.LIGANDS],
     ),
     "MakeMonster": Task(
         title="Export monster mtz",
@@ -81,6 +109,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.MakeMonster.script.MakeMonster:MakeMonster",
         defXmlPath="wrappers/MakeMonster/script/MakeMonster.def.xml",
         reportPath="ccp4i2.wrappers.MakeMonster.script.MakeMonster_report:MakeMonster_report",
+        categories=[TaskCategory.DEVELOPER_TOOLS],
     ),
     "MakeProjectsAndDoLigandPipeline": Task(
         title="Make projects and do ligand pipeline",
@@ -91,6 +120,7 @@ TASKS = {
         defXmlPath="pipelines/MakeProjectsAndDoLigandPipeline/script/MakeProjectsAndDoLigandPipeline.def.xml",
         reportPath="ccp4i2.pipelines.MakeProjectsAndDoLigandPipeline.script.MakeProjectsAndDoLigandPipeline_report:MakeProjectsAndDoLigandPipeline_report",
         runningReport=True,
+        categories=[TaskCategory.DEVELOPER_TOOLS],
     ),
     "Platonyzer": Task(
         pluginPath="ccp4i2.wrappers.Platonyzer.script.Platonyzer:Platonyzer",
@@ -103,6 +133,7 @@ TASKS = {
         defXmlPath="pipelines/PrepareDeposit/script/PrepareDeposit.def.xml",
         reportPath="ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report:PrepareDeposit_report",
         runningReport=True,
+        categories=[TaskCategory.EXPORT],
     ),
     "ProvideAlignment": Task(
         title="Import an alignment",
@@ -111,6 +142,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment:ProvideAlignment",
         defXmlPath="wrappers/ProvideAlignment/script/ProvideAlignment.def.xml",
         reportPath="ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment_report:ProvideAlignment_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "ProvideAsuContents": Task(
         title="Define AU contents",
@@ -118,6 +150,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents:ProvideAsuContents",
         defXmlPath="wrappers/ProvideAsuContents/script/ProvideAsuContents.def.xml",
         reportPath="ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report:ProvideAsuContents_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "ProvideSequence": Task(
         title="Import sequence(s)",
@@ -125,6 +158,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ProvideSequence.script.ProvideSequence:ProvideSequence",
         defXmlPath="wrappers/ProvideSequence/script/ProvideSequence.def.xml",
         reportPath="ccp4i2.wrappers.ProvideSequence.script.ProvideSequence_report:ProvideSequence_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "ProvideTLS": Task(
         title="Import and/or edit TLS set definitions",
@@ -133,6 +167,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ProvideTLS.script.ProvideTLS:ProvideTLS",
         defXmlPath="wrappers/ProvideTLS/script/ProvideTLS.def.xml",
         reportPath="ccp4i2.wrappers.ProvideTLS.script.ProvideTLS_report:ProvideTLS_report",
+        categories=[TaskCategory.REFINEMENT],
     ),
     "SIMBAD": Task(
         title="Sequence Free Molecular Replacement - SIMBAD",
@@ -143,6 +178,7 @@ TASKS = {
         defXmlPath="wrappers/SIMBAD/script/SIMBAD.def.xml",
         reportPath="ccp4i2.wrappers.SIMBAD.script.SIMBAD_report:SIMBAD_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "ShelxCD": Task(
         title="Find HA sites - SHELXC/D",
@@ -152,6 +188,7 @@ TASKS = {
         defXmlPath="wrappers/ShelxCDE/script/ShelxCD.def.xml",
         reportPath="ccp4i2.wrappers.ShelxCDE.script.ShelxCD_report:ShelxCD_report",
         runningReport=True,
+        categories=[TaskCategory.EXPT_PHASING],
     ),
     "SubstituteLigand": Task(
         title="Automated solution of isomorphous ligand complex",
@@ -161,6 +198,7 @@ TASKS = {
         defXmlPath="pipelines/SubstituteLigand/script/SubstituteLigand.def.xml",
         reportPath="ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report:SubstituteLigand_report",
         runningReport=True,
+        categories=[TaskCategory.LIGANDS],
     ),
     "SubtractNative": Task(
         title="Subtract a defied fraction of an atom map from an input map",
@@ -170,6 +208,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.SubtractNative.script.SubtractNative:SubtractNative",
         defXmlPath="wrappers/SubtractNative/script/SubtractNative.def.xml",
         reportPath="ccp4i2.wrappers.SubtractNative.script.SubtractNative_report:SubtractNative_report",
+        categories=[TaskCategory.REFINEMENT],
     ),
     "TestObsConversions": Task(
         title="Test CCP4i2 observed data interconversions",
@@ -178,6 +217,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.TestObsConversions.script.TestObsConversions:TestObsConversions",
         defXmlPath="wrappers/TestObsConversions/script/TestObsConversions.def.xml",
         reportPath="ccp4i2.wrappers.TestObsConversions.script.TestObsConversions_report:TestObsConversions_report",
+        categories=[TaskCategory.DEVELOPER_TOOLS],
     ),
     "acedrg": Task(
         description="Sketch a ligand",
@@ -198,6 +238,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.acorn.script.acorn:acorn",
         defXmlPath="wrappers/acorn/script/acorn.def.xml",
         reportPath="ccp4i2.wrappers.acorn.script.acorn_report:acorn_report",
+        categories=[TaskCategory.DENSITY_MODIFICATION],
     ),
     "add_fractional_coords": Task(
         title="Add Fractional Coordinates",
@@ -207,6 +248,7 @@ TASKS = {
         defXmlPath="wrappers/add_fractional_coords/script/add_fractional_coords.def.xml",
         reportPath="ccp4i2.wrappers.add_fractional_coords.script.add_fractional_coords_report:add_fractional_coords_report",
         runningReport=True,
+        categories=[TaskCategory.MODEL_DATA_UTILITY],
     ),
     "adding_stats_to_mmcif_i2": Task(
         title="Prepare and validate files for deposition",
@@ -217,6 +259,7 @@ TASKS = {
         defXmlPath="wrappers/adding_stats_to_mmcif_i2/script/adding_stats_to_mmcif_i2.def.xml",
         reportPath="ccp4i2.wrappers.adding_stats_to_mmcif_i2.script.adding_stats_to_mmcif_i2_report:adding_stats_to_mmcif_i2_report",
         runningReport=True,
+        categories=[TaskCategory.EXPORT],
     ),
     "aimless": Task(
         title="Scale and merge dataset (AIMLESS)",
@@ -231,6 +274,7 @@ TASKS = {
         pluginPath="ccp4i2.pipelines.aimless_pipe.script.aimless_pipe:aimless_pipe",
         defXmlPath="pipelines/aimless_pipe/script/aimless_pipe.def.xml",
         reportPath="ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report:aimless_pipe_report",
+        categories=[TaskCategory.DATA_REDUCTION],
     ),
     "arcimboldo": Task(
         title="Ab initio phasing and chain tracing - ARCIMBOLDO (LITE, BORGES, SHREDDER)",
@@ -242,6 +286,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.arcimboldo.script.arcimboldo_report:arcimboldo_report",
         runningReport=True,
         watchedFile="program.xml",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "areaimol": Task(
         title="Solvent accessible surface - AREAIMOL",
@@ -250,6 +295,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.areaimol.areaimol:areaimol",
         defXmlPath="wrappers/areaimol/areaimol.def.xml",
         reportPath="ccp4i2.wrappers.areaimol.areaimol_report:areaimol_report",
+        categories=[TaskCategory.MODEL_DATA_UTILITY],
     ),
     "arp_warp_classic": Task(
         title="ARP/wARP",
@@ -259,6 +305,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.arp_warp_classic.script.arp_warp_classic_report:arp_warp_classic_report",
         runningReport=True,
         watchedFile="report/task.tsk",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "baverage": Task(
         title="Average B over main and side chain atoms",
@@ -272,6 +319,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.buster.script.buster:buster",
         defXmlPath="wrappers/buster/script/buster.def.xml",
         reportPath="ccp4i2.wrappers.buster.script.buster_report:buster_report",
+        categories=[TaskCategory.REFINEMENT],
     ),
     "cad_copy_column": Task(
         title="Copy an MTZ column between files",
@@ -286,6 +334,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model:ccp4mg_edit_model",
         defXmlPath="wrappers/ccp4mg_edit_model/script/ccp4mg_edit_model.def.xml",
         reportPath="ccp4i2.wrappers.ccp4mg_edit_model.script.ccp4mg_edit_model_report:ccp4mg_edit_model_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "ccp4mg_edit_nomrbump": Task(
         title="Interactive selection of MR model components - CCP4mg",
@@ -295,6 +344,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump:ccp4mg_edit_nomrbump",
         defXmlPath="wrappers/ccp4mg_edit_nomrbump/script/ccp4mg_edit_nomrbump.def.xml",
         reportPath="ccp4i2.wrappers.ccp4mg_edit_nomrbump.script.ccp4mg_edit_nomrbump_report:ccp4mg_edit_no_mrbump_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "ccp4mg_general": Task(
         title="Molecular graphics visualization and figure creation - CCP4MG",
@@ -304,6 +354,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ccp4mg_general.script.ccp4mg_general:ccp4mg_general",
         defXmlPath="wrappers/ccp4mg_general/script/ccp4mg_general.def.xml",
         reportPath="ccp4i2.wrappers.ccp4mg_general.script.ccp4mg_general_report:ccp4mg_general_report",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "chainsaw": Task(
         title="Truncate search model - CHAINSAW",
@@ -312,6 +363,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.chainsaw.script.chainsaw:chainsaw",
         defXmlPath="wrappers/chainsaw/script/chainsaw.def.xml",
         reportPath="ccp4i2.wrappers.chainsaw.script.chainsaw_report:chainsaw_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "chltofom": Task(
         title="Convert HL phase to and from Phi/Fom",
@@ -320,6 +372,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.chltofom.script.chltofom:chltofom",
         defXmlPath="wrappers/chltofom/script/chltofom.def.xml",
         reportPath="ccp4i2.wrappers.chltofom.script.chltofom_report:chltofom_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "cif2mtz": Task(
         title="Import merged mmCIF X-ray data",
@@ -327,6 +380,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.cif2mtz.script.cif2mtz:cif2mtz",
         defXmlPath="wrappers/cif2mtz/script/cif2mtz.def.xml",
         reportPath="ccp4i2.wrappers.cif2mtz.script.cif2mtz_report:cif2mtz_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "clustalw": Task(
         title="Align sequences - CLUSTALW",
@@ -335,6 +389,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.clustalw.script.clustalw:clustalw",
         defXmlPath="wrappers/clustalw/script/clustalw.def.xml",
         reportPath="ccp4i2.wrappers.clustalw.script.clustalw_report:clustalw_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "cmapcoeff": Task(
         title="Calculate unusual map coefficients",
@@ -344,6 +399,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.cmapcoeff.script.cmapcoeff:cmapcoeff",
         defXmlPath="wrappers/cmapcoeff/script/cmapcoeff.def.xml",
         reportPath="ccp4i2.wrappers.cmapcoeff.script.cmapcoeff_report:cmapcoeff_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "comit": Task(
         title="Calculate omit map to reduce model bias after molecular replacement or for validation",
@@ -353,6 +409,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.comit.comit:comit",
         defXmlPath="wrappers/comit/comit.def.xml",
         reportPath="ccp4i2.wrappers.comit.comit_report:comit_report",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "convert2mtz": Task(
         title="Convert merged reflection file to MTZ",
@@ -367,6 +424,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coordinate_selector.script.coordinate_selector:coordinate_selector",
         defXmlPath="wrappers/coordinate_selector/script/coordinate_selector.def.xml",
         reportPath="ccp4i2.wrappers.coordinate_selector.script.coordinate_selector_report:coordinate_selector_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "coot1": Task(
         title="Coot 1",
@@ -375,12 +433,14 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coot1.script.coot1:coot1",
         defXmlPath="wrappers/coot1/script/coot1.def.xml",
         reportPath="ccp4i2.wrappers.coot1.script.coot1_report:coot1_report",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "coot_find_ligand": Task(
         title="Find ligand with Coot API",
         pluginPath="ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand:coot_find_ligand",
         defXmlPath="wrappers/coot_find_ligand/script/coot_find_ligand.def.xml",
         reportPath="ccp4i2.wrappers.coot_find_ligand.script.coot_find_ligand_report:coot_find_ligand_report",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "coot_find_waters": Task(
         title="Find waters - COOT",
@@ -388,6 +448,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coot_find_waters.script.coot_find_waters:coot_find_waters",
         defXmlPath="wrappers/coot_find_waters/script/coot_find_waters.def.xml",
         reportPath="ccp4i2.wrappers.coot_find_waters.script.coot_find_waters_report:coot_find_waters_report",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "coot_rebuild": Task(
         title="Model building - COOT 0.9",
@@ -397,6 +458,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coot_rebuild.script.coot_rebuild:coot_rebuild",
         defXmlPath="wrappers/coot_rebuild/script/coot_rebuild.def.xml",
         reportPath="ccp4i2.wrappers.coot_rebuild.script.coot_rebuild_report:coot_rebuild_report",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "coot_rsr_morph": Task(
         title="Real space refinement morphing with coot",
@@ -404,6 +466,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph:coot_rsr_morph",
         defXmlPath="wrappers/coot_rsr_morph/script/coot_rsr_morph.def.xml",
         reportPath="ccp4i2.wrappers.coot_rsr_morph.script.coot_rsr_morph_report:coot_rsr_morph_report",
+        categories=[TaskCategory.REFINEMENT],
     ),
     "coot_script_lines": Task(
         title="Scripted model building - COOT",
@@ -412,6 +475,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.coot_script_lines.script.coot_script_lines:coot_script_lines",
         defXmlPath="wrappers/coot_script_lines/script/coot_script_lines.def.xml",
         reportPath="ccp4i2.wrappers.coot_script_lines.script.coot_script_lines_report:coot_script_lines_report",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "cpatterson": Task(
         title="Calculate Patterson map",
@@ -420,6 +484,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.cpatterson.script.cpatterson:cpatterson",
         defXmlPath="wrappers/cpatterson/script/cpatterson.def.xml",
         reportPath="ccp4i2.wrappers.cpatterson.script.cpatterson_report:cpatterson_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "cphasematch": Task(
         title="Match and analyse phases to reference set",
@@ -427,6 +492,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.cphasematch.script.cphasematch:cphasematch",
         defXmlPath="wrappers/cphasematch/script/cphasematch.def.xml",
         reportPath="ccp4i2.wrappers.cphasematch.script.cphasematch_report:cphasematch_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "crank2": Task(
         title="Automated structure solution - CRANK2 phasing and building",
@@ -437,6 +503,7 @@ TASKS = {
         reportPath="ccp4i2.pipelines.crank2.script.crank2_report:crank2_report",
         runningReport=True,
         watchedFile="i2.xml",
+        categories=[TaskCategory.EXPT_PHASING],
     ),
     "crank2_comb_phdmmb": Task(
         title="Model building",
@@ -529,6 +596,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.csymmatch.script.csymmatch:csymmatch",
         defXmlPath="wrappers/csymmatch/script/csymmatch.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.script.phaser_pipeline_report:csymmatch_report",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "ctruncate": Task(
         title="Convert intensities to amplitudes",
@@ -537,6 +605,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.ctruncate.script.ctruncate:ctruncate",
         defXmlPath="wrappers/ctruncate/script/ctruncate.def.xml",
         reportPath="ccp4i2.wrappers.ctruncate.script.ctruncate_report:ctruncate_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "density_calculator": Task(
         title="Density Calculator",
@@ -545,12 +614,14 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.density_calculator.script.density_calculator:density_calculator",
         defXmlPath="wrappers/density_calculator/script/density_calculator.def.xml",
         reportPath="ccp4i2.wrappers.density_calculator.script.density_calculator_report:density_calculator_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "dials_image": Task(
         title="DIALS Image Viewer",
         pluginPath="ccp4i2.wrappers.dials_image.script.dials_image:dials_image",
         defXmlPath="wrappers/dials_image/script/dials_image.def.xml",
         reportPath="ccp4i2.wrappers.dials_image.script.dials_image_report:dials_image_report",
+        categories=[TaskCategory.DATA_PROCESSING],
     ),
     "dials_rlattice": Task(
         title="DIALS Reciprocal Lattice Viewer",
@@ -558,6 +629,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.dials_rlattice.script.dials_rlattice:dials_rlattice",
         defXmlPath="wrappers/dials_rlattice/script/dials_rlattice.def.xml",
         reportPath="ccp4i2.wrappers.dials_rlattice.script.dials_rlattice_report:dials_rlattice_report",
+        categories=[TaskCategory.DATA_PROCESSING],
     ),
     "dr_mr_modelbuild_pipeline": Task(
         title="Data Reduction, MR, Model build pipeline",
@@ -567,6 +639,7 @@ TASKS = {
         defXmlPath="pipelines/dr_mr_modelbuild_pipeline/script/dr_mr_modelbuild_pipeline.def.xml",
         reportPath="ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report:dr_mr_modelbuild_pipeline_report",
         runningReport=True,
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "dui": Task(
         title="Integrate images with DIALS",
@@ -575,6 +648,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.dui.script.dui:dui",
         defXmlPath="wrappers/dui/script/dui.def.xml",
         reportPath="ccp4i2.wrappers.dui.script.dui_report:dui_report",
+        categories=[TaskCategory.DATA_PROCESSING],
     ),
     "editbfac": Task(
         title="Process Predicted Models",
@@ -583,6 +657,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.editbfac.script.editbfac:editbfac",
         defXmlPath="wrappers/editbfac/script/editbfac.def.xml",
         reportPath="ccp4i2.wrappers.editbfac.script.editbfac_report:editbfac_report",
+        categories=[TaskCategory.ALPHA_FOLD],
     ),
     "edstats": Task(
         title="Analyse agreement between model and density - EDSTATS",
@@ -591,6 +666,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.edstats.script.edstats:edstats",
         defXmlPath="wrappers/edstats/script/edstats.def.xml",
         reportPath="ccp4i2.wrappers.edstats.script.edstats_report:edstats_report",
+        categories=[TaskCategory.VALIDATION],
     ),
     "fft": Task(
         title="Export map",
@@ -604,6 +680,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.findmyseq.script.findmyseq:findmyseq",
         defXmlPath="wrappers/findmyseq/script/findmyseq.def.xml",
         reportPath="ccp4i2.wrappers.findmyseq.script.findmyseq_report:findmyseq_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "freerflag": Task(
         title="Generate a Free R set",
@@ -611,6 +688,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.freerflag.script.freerflag:freerflag",
         defXmlPath="wrappers/freerflag/script/freerflag.def.xml",
         reportPath="ccp4i2.wrappers.freerflag.script.freerflag_report:freerflag_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "gesamt": Task(
         title="Structural alignment - Gesamt",
@@ -619,6 +697,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.gesamt.script.gesamt:gesamt",
         defXmlPath="wrappers/gesamt/script/gesamt.def.xml",
         reportPath="ccp4i2.wrappers.gesamt.script.gesamt_report:gesamt_report",
+        categories=[TaskCategory.MODEL_DATA_UTILITY],
     ),
     "hklin2cif": Task(
         description="Convert hklin file (+/- scaled unmerged data) creates as aprt of adding_stats_to_mmcif pipeline",
@@ -633,6 +712,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.i2Dimple.script.i2Dimple:i2Dimple",
         defXmlPath="wrappers/i2Dimple/script/i2Dimple.def.xml",
         reportPath="ccp4i2.wrappers.i2Dimple.script.i2Dimple_report:i2Dimple_report",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "imosflm": Task(
         title="Integrate images with Mosflm",
@@ -640,6 +720,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.imosflm.script.imosflm:imosflm",
         defXmlPath="wrappers/imosflm/script/imosflm.def.xml",
         reportPath="ccp4i2.wrappers.imosflm.script.imosflm_report:imosflm_report",
+        categories=[TaskCategory.DATA_PROCESSING],
     ),
     "import_merged": Task(
         title="Import merged reflection data",
@@ -649,6 +730,7 @@ TASKS = {
         defXmlPath="pipelines/import_merged/script/import_merged.def.xml",
         reportPath="ccp4i2.pipelines.import_merged.script.import_merged_report:import_merged_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "import_mosflm": Task(
         title="Import iMosflm X-ray data",
@@ -657,6 +739,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.import_mosflm.script.import_mosflm:import_mosflm",
         defXmlPath="wrappers/import_mosflm/script/import_mosflm.def.xml",
         reportPath="ccp4i2.wrappers.import_mosflm.script.import_mosflm_report:import_mosflm_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "import_serial": Task(
         title="Import Serial",
@@ -665,6 +748,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.import_serial.script.import_serial:import_serial",
         defXmlPath="wrappers/import_serial/script/import_serial.def.xml",
         reportPath="ccp4i2.wrappers.import_serial.script.import_serial_report:import_serial_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "import_serial_pipe": Task(
         title="Import Serial Pipeline",
@@ -672,6 +756,7 @@ TASKS = {
         shortTitle="Import Serial Data",
         pluginPath="ccp4i2.pipelines.import_serial_pipe.script.import_serial_pipe:import_serial_pipe",
         defXmlPath="pipelines/import_serial_pipe/script/import_serial_pipe.def.xml",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "import_xia2": Task(
         title="Import XIA2 results",
@@ -679,6 +764,7 @@ TASKS = {
         defXmlPath="pipelines/import_xia2/script/import_xia2.def.xml",
         reportPath="ccp4i2.pipelines.import_xia2.script.import_xia2_report:import_xia2_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "lorestr_i2": Task(
         title="Low Resolution Refinement Pipeline (LORESTR)",
@@ -689,9 +775,11 @@ TASKS = {
         defXmlPath="wrappers/lorestr_i2/script/lorestr_i2.def.xml",
         reportPath="ccp4i2.wrappers.lorestr_i2.script.lorestr_i2_report:lorestr_i2_report",
         runningReport=True,
+        categories=[TaskCategory.REFINEMENT],
     ),
     "matthews": Task(
         defXmlPath="wrappers/matthews/script/matthews.def.xml",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "mergeMtz": Task(
         title="Merge experimental data objects to MTZ",
@@ -701,6 +789,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.mergeMtz.script.mergeMtz:mergeMtz",
         defXmlPath="wrappers/mergeMtz/script/mergeMtz.def.xml",
         reportPath="ccp4i2.wrappers.mergeMtz.script.mergeMtz_report:mergeMtz_report",
+        categories=[TaskCategory.EXPORT],
     ),
     "metalCoord": Task(
         title="MetalCoord",
@@ -710,12 +799,14 @@ TASKS = {
         defXmlPath="wrappers/metalCoord/script/metalCoord.def.xml",
         reportPath="ccp4i2.wrappers.metalCoord.script.metalCoord_report:metalCoord_report",
         runningReport=True,
+        categories=[TaskCategory.VALIDATION],
     ),
     "modelASUCheck": Task(
         autogenerated=True,
         pluginPath="ccp4i2.wrappers.modelASUCheck.script.modelASUCheck:modelASUCheck",
         defXmlPath="wrappers/modelASUCheck/script/modelASUCheck.def.xml",
         reportPath="ccp4i2.wrappers.modelASUCheck.script.modelASUCheck_report:modelASUCheck_report",
+        categories=[TaskCategory.VALIDATION],
     ),
     "modelcraft": Task(
         title="Autobuild with ModelCraft, Buccaneer and Nautilus",
@@ -726,6 +817,7 @@ TASKS = {
         reportPath="ccp4i2.pipelines.phaser_ep.script.phaser_EP_report:modelcraft_report",
         runningReport=True,
         watchedFile="modelcraft/modelcraft.json",
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "molrep_den": Task(
         title="Molecular replacement with electron density - MOLREP",
@@ -734,6 +826,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.molrep_den.script.molrep_den:molrep_den",
         defXmlPath="wrappers/molrep_den/script/molrep_den.def.xml",
         reportPath="ccp4i2.wrappers.molrep_den.script.molrep_den_report:molrep_den_report",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "molrep_mr": Task(
         title="Molecular Replacement and refinement- MOLREP",
@@ -751,6 +844,7 @@ TASKS = {
         defXmlPath="pipelines/molrep_pipe/script/molrep_pipe.def.xml",
         reportPath="ccp4i2.pipelines.molrep_pipe.script.molrep_pipe_report:molrep_pipe_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "molrep_selfrot": Task(
         title="Calculate self rotation function",
@@ -758,6 +852,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.molrep_selfrot.script.molrep_selfrot:molrep_selfrot",
         defXmlPath="wrappers/molrep_selfrot/script/molrep_selfrot.def.xml",
         reportPath="ccp4i2.wrappers.molrep_selfrot.script.molrep_selfrot_report:molrep_selfrot_report",
+        categories=[TaskCategory.DATA_REDUCTION],
     ),
     "morda_i2": Task(
         title="Automated molecular replacement - MORDA",
@@ -769,6 +864,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.morda_i2.script.morda_i2_report:morda_i2_report",
         runningReport=True,
         watchedFile="program.xml",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "mosflm": Task(
         title="Integrate images - MOSFLM",
@@ -778,6 +874,7 @@ TASKS = {
         defXmlPath="wrappers/mosflm/script/mosflm.def.xml",
         reportPath="ccp4i2.wrappers.mosflm.script.mosflm_report:mosflm_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_PROCESSING],
     ),
     "mrbump_basic": Task(
         title="Automated structure solution - MrBUMP",
@@ -786,6 +883,7 @@ TASKS = {
         defXmlPath="wrappers/mrbump_basic/script/mrbump_basic.def.xml",
         reportPath="ccp4i2.wrappers.mrbump_basic.script.mrbump_basic_report:mrbump_basic_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "mrbump_model_prep": Task(
         title="MrBUMP model preparation",
@@ -800,11 +898,13 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.mrparse.script.mrparse_wrapper:mrparse",
         defXmlPath="wrappers/mrparse/script/mrparse.def.xml",
         reportPath="ccp4i2.wrappers.mrparse.script.mrparse_report:mrparse_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "mrparse_simple": Task(
         pluginPath="ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_wrapper:mrparse_simple",
         defXmlPath="pipelines/dr_mr_modelbuild_pipeline/wrappers/mrparse_simple/script/mrparse_simple.def.xml",
         reportPath="ccp4i2.pipelines.dr_mr_modelbuild_pipeline.wrappers.mrparse_simple.script.mrparse_simple_report:mrparse_simple_report",
+        categories=[TaskCategory.DEVELOPER_TOOLS],
     ),
     "mtzheader": Task(
         title="Read MTZ header",
@@ -815,6 +915,7 @@ TASKS = {
         title="Add or delete MTZ columns",
         pluginPath="ccp4i2.wrappers.mtzutils.script.mtzutils:mtzutils",
         defXmlPath="wrappers/mtzutils/script/mtzutils.def.xml",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "pairef": Task(
         title="Pairef",
@@ -824,6 +925,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.pairef.pairef_report:pairef_report",
         runningReport=True,
         watchedFile="pairef_project/PAIREF_project.html",
+        categories=[TaskCategory.REFINEMENT],
     ),
     "parrot": Task(
         title="Density modification - PARROT",
@@ -832,6 +934,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.parrot.script.parrot:parrot",
         defXmlPath="wrappers/parrot/script/parrot.def.xml",
         reportPath="ccp4i2.wrappers.parrot.script.parrot_report:parrot_report",
+        categories=[TaskCategory.DENSITY_MODIFICATION],
     ),
     "pdb_extract_wrapper": Task(
         description="Run pdb_extract",
@@ -847,6 +950,7 @@ TASKS = {
         defXmlPath="wrappers/pdb_redo_api/script/pdb_redo_api.def.xml",
         reportPath="ccp4i2.wrappers.pdb_redo_api.script.pdb_redo_api_report:pdb_redo_api_report",
         runningReport=True,
+        categories=[TaskCategory.REFINEMENT],
     ),
     "pdbset_ui": Task(
         title="Scripted structure edits - Pdbset",
@@ -855,6 +959,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.pdbset_ui.script.pdbset_ui:pdbset_ui",
         defXmlPath="wrappers/pdbset_ui/script/pdbset_ui.def.xml",
         reportPath="ccp4i2.wrappers.pdbset_ui.script.pdbset_ui_report:pdbset_ui_report",
+        categories=[TaskCategory.MODEL_DATA_UTILITY],
     ),
     "pdbview_edit": Task(
         title="Edit PDB/CIF files by hand",
@@ -864,6 +969,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.pdbview_edit.script.pdbview_edit:pdbview_edit",
         defXmlPath="wrappers/pdbview_edit/script/pdbview_edit.def.xml",
         reportPath="ccp4i2.wrappers.pdbview_edit.script.pdbview_edit_report:pdbview_edit_report",
+        categories=[TaskCategory.MODEL_DATA_UTILITY],
     ),
     "phaser_EP": Task(
         title="SAD phasing - PHASER",
@@ -872,6 +978,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_ep/script/phaser_EP.def.xml",
         reportPath="ccp4i2.pipelines.phaser_ep.script.phaser_EP_report:phaser_EP_report",
         runningReport=True,
+        categories=[TaskCategory.EXPT_PHASING],
     ),
     "phaser_EP_AUTO": Task(
         title="SAD phasing from heavy atom sites - PHASER",
@@ -880,6 +987,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_EP_AUTO/script/phaser_EP_AUTO.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_AUTO.script.phaser_EP_AUTO_report:phaser_EP_AUTO_report",
         runningReport=True,
+        categories=[TaskCategory.EXPT_PHASING],
     ),
     "phaser_EP_LLG": Task(
         title="Anomalous map from coordinates - PHASER",
@@ -888,6 +996,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/wrappers/phaser_EP_LLG/script/phaser_EP_LLG.def.xml",
         reportPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_EP_LLG.script.phaser_EP_LLG_report:phaser_EP_LLG_report",
         runningReport=True,
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "phaser_MR": Task(
         pluginPath="ccp4i2.pipelines.phaser_pipeline.wrappers.phaser_MR.script.phaser_MR:phaser_MR",
@@ -941,6 +1050,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler:phaser_ensembler",
         defXmlPath="wrappers/phaser_ensembler/script/phaser_ensembler.def.xml",
         reportPath="ccp4i2.wrappers.phaser_ensembler.script.phaser_ensembler_report:phaser_ensembler_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "phaser_phil": Task(
         title="Phaser auto generated GUI",
@@ -948,6 +1058,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil:phaser_phil",
         defXmlPath="wrappers/phaser_phil/script/phaser_phil.def.xml",
         reportPath="ccp4i2.wrappers.phaser_phil.script.phaser_phil_report:phaser_phil_report",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "phasertng_picard": Task(
         title="PhaserTNG Picard - Molecular Replacement",
@@ -960,6 +1071,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.phasertng_picard.script.phasertng_picard_report:phasertng_picard_report",
         runningReport=True,
         watchedFile="phasertng_picard/best.1.dag.cards",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "phasertng_riker": Task(
         title="PhaserTNG Riker - Refine and Continue MR",
@@ -972,6 +1084,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.phasertng_riker.script.phasertng_riker_report:phasertng_riker_report",
         runningReport=True,
         watchedFile="phasertng_riker/best.1.dag.cards",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "phaser_pipeline": Task(
         title="Expert Mode Molecular Replacement - PHASER",
@@ -981,6 +1094,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_pipeline/script/phaser_pipeline.def.xml",
         reportPath="ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_pipeline_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "phaser_rnp_pipeline": Task(
         title="Rigid body refinement - PHASER",
@@ -990,6 +1104,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_rnp_pipeline/script/phaser_rnp_pipeline.def.xml",
         reportPath="ccp4i2.pipelines.phaser_rnp_pipeline.script.phaser_rnp_pipeline_report:phaser_rnp_pipeline_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "phaser_simple": Task(
         title="Basic Molecular Replacement - PHASER",
@@ -999,6 +1114,7 @@ TASKS = {
         defXmlPath="pipelines/phaser_simple/script/phaser_simple.def.xml",
         reportPath="ccp4i2.pipelines.phaser_simple.script.phaser_simple_report:phaser_simple_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "phaser_singleMR": Task(
         title="Single Atom Molecular Replacement",
@@ -1007,6 +1123,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.phaser_singleMR.phaser_singleMR:phaser_singleMR",
         defXmlPath="wrappers/phaser_singleMR/phaser_singleMR.def.xml",
         reportPath="ccp4i2.wrappers.phaser_singleMR.phaser_singleMR_report:phaser_singleMR_report",
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "pisa": Task(
         defXmlPath="pipelines/pisapipe/wrappers/pisa_list/script/pisa.def.xml",
@@ -1037,6 +1154,7 @@ TASKS = {
         defXmlPath="pipelines/pisapipe/script/pisapipe.def.xml",
         reportPath="ccp4i2.pipelines.pisapipe.script.pisapipe_report:pisapipe_report",
         runningReport=True,
+        categories=[TaskCategory.VALIDATION],
     ),
     "pointless": Task(
         title="Analyse unmerged dataset (POINTLESS)",
@@ -1051,6 +1169,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch:pointless_reindexToMatch",
         defXmlPath="wrappers/pointless_reindexToMatch/script/pointless_reindexToMatch.def.xml",
         reportPath="ccp4i2.wrappers.pointless_reindexToMatch.script.pointless_reindexToMatch_report:pointless_reindexToMatch_report",
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "privateer": Task(
         title="Validation of carbohydrate structures - Privateer",
@@ -1060,12 +1179,14 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.privateer.script.privateer_wrapper:privateer",
         defXmlPath="wrappers/privateer/script/privateer.def.xml",
         reportPath="ccp4i2.wrappers.privateer.script.privateer_report:privateer_report",
+        categories=[TaskCategory.VALIDATION],
     ),
     "prosmart": Task(
         title="ProSMART - Restraint generation and structural comparison",
         pluginPath="ccp4i2.wrappers.prosmart.script.prosmart:prosmart",
         defXmlPath="wrappers/prosmart/script/prosmart.def.xml",
         reportPath="ccp4i2.wrappers.prosmart.script.prosmart_report:prosmart_report",
+        categories=[TaskCategory.REFINEMENT],
     ),
     "prosmart_refmac": Task(
         title="Refinement - Refmacat/Refmac5",
@@ -1075,6 +1196,7 @@ TASKS = {
         defXmlPath="pipelines/prosmart_refmac/script/prosmart_refmac.def.xml",
         reportPath="ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac_report:prosmart_refmac_report",
         runningReport=True,
+        categories=[TaskCategory.REFINEMENT],
     ),
     "pyphaser_mr": Task(
         title="MR using Phaser (pythonic)",
@@ -1082,6 +1204,7 @@ TASKS = {
         defXmlPath="wrappers/pyphaser_mr/script/pyphaser_mr.def.xml",
         reportPath="ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr_report:pyphaser_mr_report",
         runningReport=True,
+        categories=[TaskCategory.MOLECULAR_REPLACEMENT],
     ),
     "qtpisa": Task(
         title="Interface and quaternary structure analysis - PISA",
@@ -1091,6 +1214,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.qtpisa.script.qtpisa:qtpisa",
         defXmlPath="wrappers/qtpisa/script/qtpisa.def.xml",
         reportPath="ccp4i2.wrappers.qtpisa.script.qtpisa_report:qtpisa_report",
+        categories=[TaskCategory.VALIDATION],
     ),
     "refmac": Task(
         title="Refinement (Refmac5)",
@@ -1098,6 +1222,7 @@ TASKS = {
         defXmlPath="wrappers/refmac/script/refmac.def.xml",
         reportPath="ccp4i2.pipelines.PrepareDeposit.script.PrepareDeposit_report:refmac_report",
         runningReport=True,
+        categories=[TaskCategory.REFINEMENT],
     ),
     "scaleit": Task(
         title="Compare two or more datasets",
@@ -1106,6 +1231,7 @@ TASKS = {
         defXmlPath="wrappers/scaleit/script/scaleit.def.xml",
         reportPath="ccp4i2.wrappers.scaleit.script.scaleit_report:scaleit_report",
         runningReport=True,
+        categories=[TaskCategory.EXPT_DATA_UTILITY],
     ),
     "scalepack2mtz": Task(
         title="Convert scalepack merged reflection file to MTZ",
@@ -1119,6 +1245,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.sculptor.script.sculptor:sculptor",
         defXmlPath="wrappers/sculptor/script/sculptor.def.xml",
         reportPath="ccp4i2.wrappers.sculptor.script.sculptor_report:sculptor_report",
+        categories=[TaskCategory.BIOINFORMATICS],
     ),
     "servalcat": Task(
         title="Refinement (servalcat)",
@@ -1135,6 +1262,7 @@ TASKS = {
         defXmlPath="pipelines/servalcat_pipe/script/servalcat_pipe.def.xml",
         reportPath="ccp4i2.pipelines.servalcat_pipe.script.servalcat_pipe_report:servalcat_pipe_report",
         runningReport=True,
+        categories=[TaskCategory.REFINEMENT],
     ),
     "sheetbend": Task(
         title="Fast preliminary refinement of atomic model coordinates or temperature factors, including at low resolution",
@@ -1144,6 +1272,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.sheetbend.script.sheetbend:sheetbend",
         defXmlPath="wrappers/sheetbend/script/sheetbend.def.xml",
         reportPath="ccp4i2.pipelines.dr_mr_modelbuild_pipeline.script.dr_mr_modelbuild_pipeline_report:sheetbend_report",
+        categories=[TaskCategory.REFINEMENT],
     ),
     "shelx": Task(
         title="Automated structure solution - SHELXC/D/E phasing and building",
@@ -1154,6 +1283,7 @@ TASKS = {
         reportPath="ccp4i2.pipelines.shelx.script.shelx_report:shelx_report",
         runningReport=True,
         watchedFile="i2.xml",
+        categories=[TaskCategory.EXPT_PHASING],
     ),
     "shelxeMR": Task(
         title="Model building from Molecular Replacement solution using Shelxe",
@@ -1163,6 +1293,7 @@ TASKS = {
         defXmlPath="wrappers/shelxeMR/script/shelxeMR.def.xml",
         reportPath="ccp4i2.wrappers.shelxeMR.script.shelxeMR_report:shelxeMR_report",
         runningReport=True,
+        categories=[TaskCategory.MODEL_BUILDING],
     ),
     "slicendice": Task(
         title="SliceNDice - Auto model processing and MR",
@@ -1171,6 +1302,7 @@ TASKS = {
         defXmlPath="wrappers/slicendice/script/slicendice.def.xml",
         reportPath="ccp4i2.wrappers.slicendice.script.slicendice_report:slicendice_report",
         runningReport=True,
+        categories=[TaskCategory.ALPHA_FOLD],
     ),
     "splitMtz": Task(
         title="Import and Split MTZ into experimental data objects",
@@ -1179,6 +1311,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.splitMtz.script.splitMtz:splitMtz",
         defXmlPath="wrappers/splitMtz/script/splitMtz.def.xml",
         reportPath="ccp4i2.wrappers.splitMtz.script.splitMtz_report:splitMtz_report",
+        categories=[TaskCategory.DATA_ENTRY],
     ),
     "tableone": Task(
         title="Generate Table One",
@@ -1186,6 +1319,7 @@ TASKS = {
         shortTitle="Table One",
         pluginPath="ccp4i2.pipelines.tableone.script.tableone:tableone",
         defXmlPath="pipelines/tableone/script/tableone.def.xml",
+        categories=[TaskCategory.EXPORT],
     ),
     "validate_protein": Task(
         title="Multimetric model validation - Iris",
@@ -1195,6 +1329,7 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.validate_protein.script.validate_protein:validate_protein",
         defXmlPath="wrappers/validate_protein/script/validate_protein.def.xml",
         reportPath="ccp4i2.wrappers.validate_protein.script.validate_protein_report:validate_protein_report",
+        categories=[TaskCategory.VALIDATION],
     ),
     "x2mtz": Task(
         pluginPath="ccp4i2.wrappers.x2mtz.script.x2mtz:x2mtz",
@@ -1219,6 +1354,7 @@ TASKS = {
         defXmlPath="wrappers/xia2_dials/script/xia2_dials.def.xml",
         reportPath="ccp4i2.wrappers.xia2_dials.script.xia2_dials_report:xia2_dials_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_PROCESSING],
     ),
     "xia2_integration": Task(
         title="Integration in XIA2",
@@ -1234,6 +1370,7 @@ TASKS = {
         defXmlPath="wrappers/xia2_multiplex/script/xia2_multiplex.def.xml",
         reportPath="ccp4i2.wrappers.xia2_multiplex.script.xia2_multiplex_report:xia2_multiplex_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_REDUCTION],
     ),
     "xia2_pointless": Task(
         title="Pointless in XIA2",
@@ -1254,6 +1391,7 @@ TASKS = {
         defXmlPath="wrappers/xia2_ssx_reduce/script/xia2_ssx_reduce.def.xml",
         reportPath="ccp4i2.wrappers.xia2_ssx_reduce.script.xia2_ssx_reduce_report:xia2_ssx_reduce_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_REDUCTION],
     ),
     "xia2_xds": Task(
         title="Automated integration of images with XDS using xia2",
@@ -1263,6 +1401,7 @@ TASKS = {
         defXmlPath="wrappers/xia2_xds/script/xia2_xds.def.xml",
         reportPath="ccp4i2.wrappers.xia2_xds.script.xia2_xds_report:xia2_xds_report",
         runningReport=True,
+        categories=[TaskCategory.DATA_PROCESSING],
     ),
     "zanuda": Task(
         title="Zanuda",
@@ -1273,153 +1412,56 @@ TASKS = {
         reportPath="ccp4i2.wrappers.zanuda.script.zanuda_report:zanuda_report",
         runningReport=True,
         watchedFile="log.txt",
+        categories=[TaskCategory.REFINEMENT],
     ),
 }
 
 
-_TASK_TREE = [
-    (
-        "data_entry",
-        "Import merged data, AU contents, alignments or coordinates",
-        [
-            "import_merged",
-            "ProvideAsuContents",
-            "ProvideSequence",
-            "ProvideAlignment",
-            "AlternativeImportXIA2",
-            "coordinate_selector",
-            "import_serial",
-            "import_serial_pipe",
-            "splitMtz",
-        ],
-    ),
-    (
-        "data_processing",
-        "Integrate X-ray images",
-        ["xia2_dials", "xia2_xds", "imosflm", "dials_image", "dials_rlattice", "dui"],
-    ),
-    (
-        "data_reduction",
-        "X-ray data reduction and analysis",
-        ["aimless_pipe", "molrep_selfrot", "AUSPEX", "xia2_ssx_reduce"],
-    ),
-    ("alpha_fold", "AlphaFold and RoseTTAFold Utilities", ["editbfac", "slicendice"]),
-    (
-        "expt_phasing",
-        "Experimental phasing",
-        ["crank2", "shelx", "phaser_EP_AUTO", "phaser_EP"],
-    ),
-    (
-        "bioinformatics",
-        "Bioinformatics including model preparation for Molecular Replacement",
-        [
-            "ccp4mg_edit_model",
-            "ccp4mg_edit_nomrbump",
-            "chainsaw",
-            "sculptor",
-            "phaser_ensembler",
-            "clustalw",
-            "findmyseq",
-            "mrparse",
-        ],
-    ),
-    (
-        "molecular_replacement",
-        "Molecular Replacement",
-        [
-            "mrbump_basic",
-            "phasertng_picard",
-            "phasertng_riker",
-            "phaser_simple",
-            "phaser_pipeline",
-            "molrep_pipe",
-            "molrep_den",
-            "csymmatch",
-            "phaser_rnp_pipeline",
-            "AMPLE",
-            "SIMBAD",
-            "arcimboldo",
-            "comit",
-            "i2Dimple",
-            "morda_i2",
-            "phaser_singleMR",
-        ],
-    ),
-    ("density_modification", "Density modification", ["acorn", "parrot"]),
-    (
-        "model_building",
-        "Model building and Graphics",
-        [
-            "modelcraft",
-            "coot_rebuild",
-            "coot_script_lines",
-            "coot_find_waters",
-            "arp_warp_classic",
-            "shelxeMR",
-            "dr_mr_modelbuild_pipeline",
-            "ccp4mg_general",
-            "coot_find_ligand",
-        ],
-    ),
-    (
-        "refinement",
-        "Refinement",
-        [
-            "servalcat_pipe",
-            "prosmart_refmac",
-            "ProvideTLS",
-            "SubtractNative",
-            "buster",
-            "coot_rsr_morph",
-            "lorestr_i2",
-            "pairef",
-            "pdb_redo_api",
-            "refmac",
-            "sheetbend",
-            "zanuda",
-        ],
-    ),
-    ("ligands", "Ligands", ["LidiaAcedrgNew", "MakeLink", "SubstituteLigand"]),
-    (
-        "validation",
-        "Validation and analysis",
-        ["validate_protein", "edstats", "privateer", "qtpisa"],
-    ),
-    (
-        "export",
-        "Export and Deposition",
-        ["PrepareDeposit", "adding_stats_to_mmcif_i2", "mergeMtz"],
-    ),
-    (
-        "expt_data_utility",
-        "Reflection data tools",
-        [
-            "pointless_reindexToMatch",
-            "phaser_EP_LLG",
-            "chltofom",
-            "cphasematch",
-            "ctruncate",
-            "scaleit",
-            "density_calculator",
-            "freerflag",
-        ],
-    ),
-    (
-        "model_data_utility",
-        "Coordinate data tools",
-        ["gesamt", "add_fractional_coords", "pdbset_ui", "pdbview_edit", "areaimol"],
-    ),
-    (
-        "developer_tools",
-        "Developer tools",
-        [
-            "MakeMonster",
-            "MakeProjectsAndDoLigandPipeline",
-            "TestObsConversions",
-            "mrparse_simple",
-        ],
-    ),
+_CATEGORIES: list[tuple[TaskCategory, str]] = [
+    (TaskCategory.DATA_ENTRY, "Import merged data, AU contents, alignments or coordinates"),
+    (TaskCategory.DATA_PROCESSING, "Integrate X-ray images"),
+    (TaskCategory.DATA_REDUCTION, "X-ray data reduction and analysis"),
+    (TaskCategory.ALPHA_FOLD, "AlphaFold and RoseTTAFold Utilities"),
+    (TaskCategory.EXPT_PHASING, "Experimental phasing"),
+    (TaskCategory.BIOINFORMATICS, "Bioinformatics including model preparation for Molecular Replacement"),
+    (TaskCategory.MOLECULAR_REPLACEMENT, "Molecular Replacement"),
+    (TaskCategory.DENSITY_MODIFICATION, "Density modification"),
+    (TaskCategory.MODEL_BUILDING, "Model building and Graphics"),
+    (TaskCategory.REFINEMENT, "Refinement"),
+    (TaskCategory.LIGANDS, "Ligands"),
+    (TaskCategory.VALIDATION, "Validation and analysis"),
+    (TaskCategory.EXPORT, "Export and Deposition"),
+    (TaskCategory.EXPT_DATA_UTILITY, "Reflection data tools"),
+    (TaskCategory.MODEL_DATA_UTILITY, "Coordinate data tools"),
+    (TaskCategory.DEVELOPER_TOOLS, "Developer tools"),
 ]
+
+
+def _build_task_tree() -> list[tuple[str, str, list[str]]]:
+    """Build task tree by grouping TASKS entries by their categories.
+
+    Tasks appear in TASKS dict insertion order within each category.
+    Tasks with multiple categories appear in each relevant category.
+    Tasks with no categories appear in an "Uncategorized" section.
+    """
+    category_tasks: dict[TaskCategory, list[str]] = {cat: [] for cat, _ in _CATEGORIES}
+    uncategorized: list[str] = []
+    for task_name, task in TASKS.items():
+        if task.categories:
+            for cat in task.categories:
+                if cat in category_tasks:
+                    category_tasks[cat].append(task_name)
+        else:
+            uncategorized.append(task_name)
+
+    tree = [
+        (cat.value, desc, category_tasks[cat])
+        for cat, desc in _CATEGORIES
+        if category_tasks[cat]
+    ]
+    if uncategorized:
+        tree.append(("uncategorized", "Uncategorized", uncategorized))
+    return tree
 
 
 _TASK_LOOKUP = {key: {
@@ -1462,9 +1504,10 @@ def get_task_title(task_name: str):
     return task.title if task else None
 
 
+@cache
 def get_task_tree():
     return {
-        "tree": _TASK_TREE,
+        "tree": _build_task_tree(),
         "lookup": _TASK_LOOKUP,
     }
 

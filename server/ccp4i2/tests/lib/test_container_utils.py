@@ -97,8 +97,24 @@ class CCP4i2TestCase(TestCase):
 
     def test_get_task_tree(self):
         result = get_task_tree()
-        self.assertEqual(len(result["lookup"].items()), 135)
+        self.assertEqual(len(result["lookup"]), 163)
+        # 16 named categories + 1 "Uncategorized"
         self.assertEqual(len(result["tree"]), 17)
+
+        # Structural checks
+        all_tree_tasks = []
+        for category_key, description, task_names in result["tree"]:
+            self.assertIsInstance(category_key, str)
+            self.assertIsInstance(description, str)
+            self.assertTrue(len(task_names) > 0, f"Empty category: {category_key}")
+            for task_name in task_names:
+                self.assertIn(task_name, result["lookup"])
+            all_tree_tasks.extend(task_names)
+
+        # Every task in TASKS must appear in the tree somewhere
+        from ccp4i2.core.tasks import TASKS
+        for task_name in TASKS:
+            self.assertIn(task_name, all_tree_tasks, f"Task '{task_name}' missing from tree")
 
     def test_get_report_job_info(self):
         job = Job.objects.get(project__name="refmac_gamma_test_0", number="1")
