@@ -2606,6 +2606,7 @@ class FlotGraphGroup(Container):
         elif 'help' in kw:
             self.help = Help(ref=kw['help'])
     
+        self.downloadable = kw.get('downloadable',False)
     
     def as_etree(self):
         root = etree.Element('root')
@@ -2625,6 +2626,8 @@ class FlotGraphGroup(Container):
                         graphObjList.append(grandChild)
         #print 'GraphGroup.as_etree graphObjList',graphObjList
         if len(graphObjList)==0: return root
+
+        downloadable = self.downloadable
             
         dataList = ",".join(['data_'+graphObj.internalId for graphObj in graphObjList])
         for graphObj in graphObjList:
@@ -2635,7 +2638,8 @@ class FlotGraphGroup(Container):
                 param.set('value','data_'+graphObj.internalId)
                 self.launch.appendDataId('data_'+graphObj.id)
             root.append(graphObj.data_as_etree())
-            
+            if graphObj.downloadable:
+                downloadable = True
         
         styleDict = {'height':'250px', 'width':'250px','margin':'0px','padding':'0px','display':'inline-block','border':'1px solid black','margin-top':'1px'}
         if self.style is not None:
@@ -2665,7 +2669,7 @@ class FlotGraphGroup(Container):
             styleDict['border'] = '0px solid white'
             
             styleStr = ';'.join([key + ':'+styleDict[key] for key in styleDict]) + ';'
-            drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = dataList, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn='True')
+            drawnDiv = DrawnDiv(style = styleStr, height=styleDict['height'], width=styleDict['width'], data = dataList, renderer='CCP4i2Widgets.CCP4FlotRenderer', require='CCP4i2Widgets', initiallyDrawn='True',downloadable=downloadable)
             #print etree.tostring(drawnDiv.as_etree(), pretty_print=True)
             surroundingDiv.append(drawnDiv.as_etree())
 
@@ -3258,12 +3262,8 @@ class FlotGraph(Graph):
           ele.set('exe','loggraph')
           if kw.get('withLaunch',True):
             self.launch = Launch(ele,jobInfo=jobInfo,ccp4_data_id='data_'+self.internalId)
-        self.downloadable  = False
 
-        downloadable = kw.get('downloadable',False)
-
-        if downloadable:
-            self.downloadable = True
+        self.downloadable = kw.get('downloadable',False)
 
     def as_etree(self):
         self.makeTableText()
