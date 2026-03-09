@@ -108,6 +108,7 @@ class metalCoord_report(Report):
                     table.addData(title="Symmetry?", select='base/ligandAtomSymmetry')
                     table.addData(title="Distance (&Aring;)", select='base/distance')
                     table.addData(title="St. dev. (&Aring;)", select='base/std')
+                    table.addData(title="Distance in input model (&Aring;)", select='base/distance_model')
 
                 for entry in symmClass.findall(".//pdb"):
                     n_options = len(entry.findall("std"))
@@ -127,6 +128,7 @@ class metalCoord_report(Report):
                     table.addData(title="Symmetry?", select='pdb/ligandAtomSymmetry')
                     table.addData(title="Distance (&Aring;)", select='pdb/distance')
                     table.addData(title="St. dev. (&Aring;)", select='pdb/std')
+                    table.addData(title="Distance in input model (&Aring;)", select='pdb/distance_model')
 
                 headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
                 headerDiv.append("Ideal angles")
@@ -156,5 +158,6 @@ class metalCoord_report(Report):
                     table.addData(title="Symmetry?", select='angles/ligand2AtomSymmetry')
                     table.addData(title="Angle (&deg;)", select='angles/angle')
                     table.addData(title="St. dev. (&deg;)", select='angles/std')
+                    table.addData(title="Angle in input model (&deg;)", select='angles/angle_model')
 
         self.addDiv(style="clear:both;")
