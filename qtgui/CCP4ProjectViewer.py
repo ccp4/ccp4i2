@@ -3151,11 +3151,11 @@ class CReportView(QtWidgets.QStackedWidget):
                                                        filters=['JSON file (*.json)'], defaultSuffix='json',
                                                        fileMode=QtWidgets.QFileDialog.AnyFile)
                 @QtCore.Slot(str,str)
-                def downloadGraphCsvFile(graphData,fileName):
+                def downloadGraphJSONFile(graphData,fileName):
                     import json
                     with open(fileName,"w+") as f:
                         f.write(json.dumps(graphData))
-                self.fileBrowser.selectFile.connect(functools.partial(downloadGraphCsvFile, graphData))
+                self.fileBrowser.selectFile.connect(functools.partial(downloadGraphJSONFile, graphData))
                 self.fileBrowser.show()
 
             elif 'action' in args and args['action'] == "WebGL":
