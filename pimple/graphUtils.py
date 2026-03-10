@@ -107,13 +107,20 @@ def addCCP4ReportFile(fname,select=None):
                 print("This may not be a table file, in which case there is no problem.")
     return graphList
 
-def extractGraphData(file_names,select,theGraphTotal):
+def extractGraphData(file_names,select,theGraphTotal,file_format="json"):
     all_graphs = []
     for f in file_names:
         graphs = addCCP4ReportFile(f,select=select)
         for g in graphs:
-            newG = parseGraphData(g)
-            all_graphs.extend(newG)
+            if file_format == "text_table":
+                headers_el = g.xpath("headers")
+                data_el = g.xpath("data")
+                if len(headers_el)>0 and len(data_el)>0:
+                    newG = headers_el[0].text + "\n" + data_el[0].text
+                    all_graphs.append(newG)
+            else: #json
+                newG = parseGraphData(g)
+                all_graphs.extend(newG)
 
     if theGraphTotal is not None and theGraphTotal<len(all_graphs):
         return [all_graphs[theGraphTotal]]

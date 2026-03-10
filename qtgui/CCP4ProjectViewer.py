@@ -34,6 +34,7 @@ import functools
 import math
 import base64
 import tempfile
+import re
 from lxml import etree
 
 from PySide2 import QtGui, QtWidgets, QtCore, QtWebEngineWidgets, QtWebChannel
@@ -3145,18 +3146,32 @@ class CReportView(QtWidgets.QStackedWidget):
             elif 'action' in args and args['action'] == "downloadGraphJSON":
                 reportFile = PROJECTSMANAGER().makeFileName(jobId=self.openJob.jobId,mode='REPORT')
                 from pimple.graphUtils import extractGraphData
-                graphData = extractGraphData([reportFile],str(args['ccp4_data_id']),args['ccp4_data_current_index'])
-                from qtgui import CCP4FileBrowser
-                self.fileBrowser = CCP4FileBrowser.CFileDialog(self, title='Save graph plot data as JSON',
-                                                       filters=['JSON file (*.json)'], defaultSuffix='json',
-                                                       fileMode=QtWidgets.QFileDialog.AnyFile)
-                @QtCore.Slot(str,str)
-                def downloadGraphJSONFile(graphData,fileName):
-                    import json
-                    with open(fileName,"w+") as f:
-                        f.write(json.dumps(graphData,indent=4))
-                self.fileBrowser.selectFile.connect(functools.partial(downloadGraphJSONFile, graphData))
-                self.fileBrowser.show()
+
+                fileBrowser = QtWidgets.QFileDialog()
+                fileBrowser.setWindowTitle("Save graph plot data")
+                fileBrowser.setOption(QtWidgets.QFileDialog.DontUseNativeDialog)
+                fileBrowser.setFileMode(QtWidgets.QFileDialog.AnyFile)
+                fileBrowser.setDefaultSuffix("json")
+                fileBrowser.setNameFilters(['JSON file (*.json)','Plain text table(*.table)'])
+                fileBrowser.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
+                @QtCore.Slot(str)
+                def changeSuffix(fileFilter):
+                    selectedExt = re.search('\((.+?)\)',fileFilter).group(1).replace('*','')
+                    fileBrowser.setDefaultSuffix(selectedExt)
+                fileBrowser.filterSelected.connect(changeSuffix)
+                if fileBrowser.exec_():
+                    if len(fileBrowser.selectedFiles()) > 0:
+                        fileName = fileBrowser.selectedFiles()[0]
+                        if fileBrowser.defaultSuffix() == "table" or fileName.endswith(".table"):
+                            graphData = extractGraphData([reportFile],str(args['ccp4_data_id']),args['ccp4_data_current_index'],file_format="text_table")
+                            with open(fileName,"w+") as f:
+                                for d in graphData:
+                                    f.write(d)
+                        elif fileBrowser.defaultSuffix() == "json" or fileName.endswith(".json"):
+                            graphData = extractGraphData([reportFile],str(args['ccp4_data_id']),args['ccp4_data_current_index'])
+                            import json
+                            with open(fileName,"w+") as f:
+                                f.write(json.dumps(graphData,indent=4))
 
             elif 'action' in args and args['action'] == "WebGL":
                 from report.CCP4ReportParser import WEBGLSOURCES, MTZToB64Map
