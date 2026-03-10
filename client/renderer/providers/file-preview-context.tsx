@@ -21,11 +21,10 @@ import {
   Typography,
 } from "@mui/material";
 import { apiArrayBuffer, apiJson } from "../api-fetch";
-import { Editor } from "@monaco-editor/react";
+import { Editor, type BeforeMount } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
 import { createContext } from "react";
 import $ from "jquery";
-import { CifTableStack } from "../components/cif-table-stack";
 import { MtzPreview } from "../components/mtz-preview";
 import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
@@ -215,13 +214,45 @@ const FilePreviewDialog: React.FC = () => {
       case "xml":
         return "xml";
       case "cif":
-        return "cif";
+        return "mmcif";
       case "csv":
         return "csv";
       default:
         return "text";
     }
   }, [contentSpecification]);
+
+  const handleEditorBeforeMount: BeforeMount = (monaco) => {
+    // Register mmCIF language if not already registered
+    if (
+      !monaco.languages
+        .getLanguages()
+        .some((lang: { id: string }) => lang.id === "mmcif")
+    ) {
+      monaco.languages.register({ id: "mmcif" });
+      monaco.languages.setMonarchTokensProvider("mmcif", {
+        tokenizer: {
+          root: [
+            [/#.*$/, "comment"],
+            [/^data_\S+/, "keyword"],
+            [/^loop_/, "keyword"],
+            [/^save_\S*/, "keyword"],
+            [/_[\w.[\]]+/, "type"],
+            [/;/, { token: "string", next: "@multilineString" }],
+            [/'[^']*'/, "string"],
+            [/"[^"]*"/, "string"],
+            [/[+-]?\d+\.\d*([eE][+-]?\d+)?/, "number.float"],
+            [/[+-]?\d+([eE][+-]?\d+)?/, "number"],
+            [/[?.](?=\s|$)/, "constant"],
+          ],
+          multilineString: [
+            [/^;/, { token: "string", next: "@pop" }],
+            [/.*/, "string"],
+          ],
+        },
+      });
+    }
+  };
 
   return (
     <Dialog
@@ -265,8 +296,6 @@ const FilePreviewDialog: React.FC = () => {
               <CircularProgress />
             )}
           </Box>
-        ) : contentSpecification?.language === "cif" ? (
-          <CifTableStack cifText={previewContent || ""} />
         ) : contentSpecification?.language === "csv" ? (
           <CsvTable csvText={previewContent || ""} />
         ) : contentSpecification?.language === "clustalw" ? (
@@ -280,6 +309,8 @@ const FilePreviewDialog: React.FC = () => {
             value={previewContent || ""}
             language={monacoLanguage}
             theme={mode === "dark" ? "vs-dark" : "light"}
+            beforeMount={handleEditorBeforeMount}
+            options={{ readOnly: true, wordWrap: "on" }}
           />
         )}
       </DialogContent>

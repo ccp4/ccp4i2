@@ -56,6 +56,7 @@ def sequenceAlignment(xyzinPath, asuin):
         matched_model_chains.append(chain.name)
         alignment = etree.SubElement(xml, "Alignment")
         etree.SubElement(alignment, "ChainID").text = chain.name
+        etree.SubElement(alignment, "seq_length").text = str(len(seq))
         etree.SubElement(alignment, "match_count").text = str(result.match_count)
         etree.SubElement(alignment, "identity").text = str(result.calculate_identity())
         etree.SubElement(alignment, "identity_1").text = str(result.calculate_identity(1))

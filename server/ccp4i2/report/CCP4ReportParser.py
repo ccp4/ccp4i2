@@ -1955,6 +1955,13 @@ class Progress(ReportClass):
         if 'max' in kw:
             self.max = kw['max']
 
+    def as_data_etree(self):
+        root = super().as_data_etree()
+        root.set('value', str(self.value))
+        root.set('max', str(self.max))
+        root.set('label', str(self.label))
+        return root
+
     def data_as_xml(self, fileName=None):
         dataAsEtree = etree.Element('span')
         dataAsEtree.text = self.label

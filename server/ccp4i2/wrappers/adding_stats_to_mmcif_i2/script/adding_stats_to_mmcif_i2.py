@@ -162,45 +162,60 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                 if scaling_job:
                     result["scaling_job_id"] = scaling_job.id
 
-                    # Look for XMLOUT from scaling job (aimless statistics)
-                    xmlout_files = File.objects.filter(
-                        job=scaling_job, job_param_name="XMLOUT"
+                    # Prefer CIFSTATSOUT (mmCIF statistics) over
+                    # AIMLESSXML (legacy XML) when both are available.
+                    cifstats_files = File.objects.filter(
+                        job=scaling_job, job_param_name="CIFSTATSOUT"
                     )
-                    if xmlout_files.exists():
-                        xmlout = xmlout_files.first()
-                        xmlout_path = Path(scaling_job.directory) / xmlout.name
-                        if xmlout_path.exists():
-                            tree = ET.parse(str(xmlout_path))
-                            root = tree.getroot()
-                            has_aimless = (
-                                root.findall(".//AIMLESS")
-                                or root.findall(".//AIMLESS_PIPE")
-                            )
-                            if has_aimless:
-                                result["files"]["AIMLESSXML"] = str(xmlout.uuid)
-                                result["params"]["USEAIMLESSXML"] = True
-                            else:
-                                result["warnings"].append(
-                                    "Scaling job XML does not contain "
-                                    "AIMLESS statistics"
-                                )
-                    else:
-                        # Fallback: try program.xml on disk
-                        program_xml_path = (
-                            Path(scaling_job.directory) / "program.xml"
+                    if cifstats_files.exists():
+                        result["files"]["CIFSTATSOUT"] = str(
+                            cifstats_files.first().uuid
                         )
-                        if program_xml_path.exists():
-                            tree = ET.parse(str(program_xml_path))
-                            root = tree.getroot()
-                            has_aimless = (
-                                root.findall(".//AIMLESS")
-                                or root.findall(".//AIMLESS_PIPE")
+                        result["params"]["USEAIMLESSXML"] = True
+
+                    # Fall back to XMLOUT / program.xml for older jobs
+                    if "CIFSTATSOUT" not in result["files"]:
+                        xmlout_files = File.objects.filter(
+                            job=scaling_job, job_param_name="XMLOUT"
+                        )
+                        if xmlout_files.exists():
+                            xmlout = xmlout_files.first()
+                            xmlout_path = (
+                                Path(scaling_job.directory) / xmlout.name
                             )
-                            if has_aimless and root.tag != "IMPORT_MERGED":
-                                result["paths"]["AIMLESSXML"] = str(
-                                    program_xml_path
+                            if xmlout_path.exists():
+                                tree = ET.parse(str(xmlout_path))
+                                root = tree.getroot()
+                                has_aimless = (
+                                    root.findall(".//AIMLESS")
+                                    or root.findall(".//AIMLESS_PIPE")
                                 )
-                                result["params"]["USEAIMLESSXML"] = True
+                                if has_aimless:
+                                    result["files"]["AIMLESSXML"] = str(
+                                        xmlout.uuid
+                                    )
+                                    result["params"]["USEAIMLESSXML"] = True
+                                else:
+                                    result["warnings"].append(
+                                        "Scaling job XML does not contain "
+                                        "AIMLESS statistics"
+                                    )
+                        else:
+                            program_xml_path = (
+                                Path(scaling_job.directory) / "program.xml"
+                            )
+                            if program_xml_path.exists():
+                                tree = ET.parse(str(program_xml_path))
+                                root = tree.getroot()
+                                has_aimless = (
+                                    root.findall(".//AIMLESS")
+                                    or root.findall(".//AIMLESS_PIPE")
+                                )
+                                if has_aimless and root.tag != "IMPORT_MERGED":
+                                    result["paths"]["AIMLESSXML"] = str(
+                                        program_xml_path
+                                    )
+                                    result["params"]["USEAIMLESSXML"] = True
 
                     # Look for UNMERGEDOUT — stored as UNMERGEDOUT[0],
                     # UNMERGEDOUT[1], etc. for multi-wavelength datasets
@@ -237,6 +252,39 @@ class adding_stats_to_mmcif_i2(CPluginScript):
             self.getWorkDirectory(), "Sequences.fasta")
         self.container.inputData.ASUCONTENT.writeFasta(self.fastaFilePath)
 
+        # Ensure the input mmCIF has entity_poly_seq records.
+        # Refinement programs (servalcat, refmac) often output minimal mmCIF
+        # lacking this category, which causes adding_stats_to_mmcif to fail.
+        # We surgically add entity_poly_seq to a copy of the original file,
+        # preserving all existing categories (_refine, _reflns, etc.).
+        import gemmi
+        xyzin_path = str(self.container.inputData.XYZIN.fullPath)
+        doc = gemmi.cif.read(xyzin_path)
+        block = doc[0]
+        if len(block.find_loop('_entity_poly_seq.entity_id')) == 0:
+            st = gemmi.read_structure(xyzin_path)
+            st.setup_entities()
+            st.assign_subchains()
+            # setup_entities() may leave full_sequence empty for minimal
+            # mmCIF files; derive it from chain polymer residues.
+            for ent in st.entities:
+                if ent.entity_type == gemmi.EntityType.Polymer \
+                        and len(ent.full_sequence) == 0:
+                    for chain in st[0]:
+                        poly = chain.get_polymer()
+                        if poly and chain.name == ent.name:
+                            ent.full_sequence = [res.name for res in poly]
+                            break
+            loop = block.init_loop('_entity_poly_seq.',
+                                   ['entity_id', 'num', 'mon_id'])
+            for ent in st.entities:
+                if ent.entity_type == gemmi.EntityType.Polymer:
+                    for i, mon in enumerate(ent.full_sequence):
+                        loop.add_row([ent.name, str(i + 1), mon])
+        self.enrichedMmcifPath = os.path.join(
+            self.getWorkDirectory(), "enriched_model.cif")
+        doc.write_file(self.enrichedMmcifPath)
+
         self.coordinatesToUse = self.container.inputData.XYZIN
         return CPluginScript.SUCCEEDED
 
@@ -245,41 +293,66 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         if rv is not None:
             return rv
 
+        # Shim for Biopython >= 1.82 which removed Bio.SubsMat.
+        # adding_stats_to_mmcif imports it at module level but never calls it.
+        import sys
+        if 'Bio.SubsMat' not in sys.modules:
+            try:
+                from Bio.SubsMat import MatrixInfo  # noqa: F401
+            except (ImportError, ModuleNotFoundError):
+                import types
+                subsmat = types.ModuleType('Bio.SubsMat')
+                matinfo = types.ModuleType('Bio.SubsMat.MatrixInfo')
+                subsmat.MatrixInfo = matinfo
+                sys.modules['Bio.SubsMat'] = subsmat
+                sys.modules['Bio.SubsMat.MatrixInfo'] = matinfo
+
         from adding_stats_to_mmcif.__main__ import run_process
 
-        #print("Imported adding_stats_to_mmcif")
+        output_mmcif = str(self.container.outputData.MMCIFOUT.fullPath)
+
+        # Prefer CIFSTATSOUT (mmCIF statistics) over AIMLESSXML (legacy XML).
+        # The mmCIF path uses AddToMmcif which is a clean category-level merge,
+        # avoiding the fragile XML parsing and fix_resolution_limits code.
+        cifstats_path = None
+        aimless_xml_file = ''
+
         if self.container.controlParameters.USEAIMLESSXML:
-            aimless_xml_file = str(
-                self.container.inputData.AIMLESSXML.fullPath)
-        else:
-            aimless_xml_file = ''
-        #print("aimless_xml_file is", aimless_xml_file)
-        if aimless_xml_file != '':
+            if hasattr(self.container.inputData, 'CIFSTATSOUT') \
+                    and self.container.inputData.CIFSTATSOUT.isSet():
+                cifstats_path = str(
+                    self.container.inputData.CIFSTATSOUT.fullPath)
+                print(f'Using mmCIF statistics: {cifstats_path}')
+            elif self.container.inputData.AIMLESSXML.isSet():
+                aimless_xml_file = str(
+                    self.container.inputData.AIMLESSXML.fullPath)
+
+        if aimless_xml_file:
             with open(aimless_xml_file, "r") as aimlessXMLFile:
                 aimlessXML = etree.fromstring(aimlessXMLFile.read())
                 try:
                     lastAimlessNode = aimlessXML.xpath('.//AIMLESS_PIPE')[-1]
-                except IndexError as err:
+                except IndexError:
                     try:
                         lastAimlessNode = aimlessXML.xpath('.//AIMLESS')[-1]
-                    except IndexError as err:
+                    except IndexError:
                         self.appendErrorReport(203, aimless_xml_file)
                         return CPluginScript.FAILED
                 self.xmlroot.append(lastAimlessNode)
-            # Here create a re-rooted aimless XML file incase the aimless_pipe or aimless modules
-            # was nested...this should maybe be nahdled in adding_stats_to_mmcif core code.
-            if aimlessXML.tag != 'AIMLESS' and aimlessXML.tag != 'AIMLESS':
+            # Re-root aimless XML in case the node was nested
+            if aimlessXML.tag != 'AIMLESS' and aimlessXML.tag != 'AIMLESS_PIPE':
                 aimless_xml_file = os.path.join(
                     self.workDirectory, 'TempAimlessXML.xml')
                 with open(aimless_xml_file, 'wb') as tempAimlessXML:
                     tempAimlessXML.write(etree.tostring(lastAimlessNode))
 
-        output_mmcif = str(self.container.outputData.MMCIFOUT.fullPath)
-
-        processArgs = {"input_mmcif": str(self.container.inputData.XYZIN.fullPath),
+        processArgs = {"input_mmcif": self.enrichedMmcifPath,
                        "output_mmcif": output_mmcif,
-                       "fasta_file": self.fastaFilePath,
-                       "xml_file": aimless_xml_file}
+                       "fasta_file": self.fastaFilePath}
+        if cifstats_path:
+            processArgs["input_mmcif_to_get_data_from"] = cifstats_path
+        elif aimless_xml_file:
+            processArgs["xml_file"] = aimless_xml_file
         try:
             worked = run_process(**processArgs)
         except Exception as e:
@@ -293,8 +366,31 @@ class adding_stats_to_mmcif_i2(CPluginScript):
             self.appendErrorReport(204, "Failed in adding_stats_to_mmcif")
             return CPluginScript.FAILED
 
-        with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
-            CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot))
+        # When using the mmCIF stats path, AddToMmcif does a generic
+        # category merge but skips _exptl, resolution-limit consistency,
+        # and pdbx_ls_cross_valid_method that the XML path provides.
+        # The validation server needs all three, so apply them here.
+        if cifstats_path:
+            self._patch_mmcif_for_validation(output_mmcif)
+
+        # Run sequence validation: check coordinate chains match ASU contents
+        try:
+            from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import (
+                sequenceAlignment,
+            )
+            seq_xml = sequenceAlignment(
+                str(self.container.inputData.XYZIN.fullPath),
+                self.container.inputData.ASUCONTENT,
+            )
+            self.xmlroot.append(seq_xml)
+        except Exception as e:
+            print(f'Sequence alignment check failed (non-fatal): {e}')
+            import traceback
+            traceback.print_exc()
+
+        # Write program.xml now so the running report can show sequence
+        # alignment results while waiting for OneDep validation.
+        self.flushXml()
 
         if self.container.controlParameters.SENDTOVALIDATIONSERVER:
             self.performOnedepValidation()
@@ -414,6 +510,45 @@ except Exception as err:
             print('gemmi mtz2cif did not produce output CIF')
             return CPluginScript.FAILED
 
+    def flushXml(self):
+        """Write current xmlroot to program.xml."""
+        with open(self.makeFileName('PROGRAMXML'), 'w') as f:
+            CCP4Utils.writeXML(f, etree.tostring(self.xmlroot, pretty_print=True))
+
+    def _patch_mmcif_for_validation(self, output_mmcif):
+        """Add categories the mmCIF stats path omits but the server needs.
+
+        The legacy XML path calls addExptlToCif(), fix_resolution_cross_val(),
+        and fix_resolution_limits(). The mmCIF path (AddToMmcif) skips them.
+        We call the same functions from the adding_stats_to_mmcif package.
+        """
+        from adding_stats_to_mmcif.cif_handling import mmcifHandling
+        from adding_stats_to_mmcif.add_data_from_aimless_xml import (
+            fix_resolution_cross_val,
+            fix_resolution_limits,
+        )
+
+        pc = mmcifHandling()
+        pc.parse_mmcif(fileName=output_mmcif)
+
+        # _exptl.method = 'X-RAY DIFFRACTION'
+        pc.addExptlToCif()
+
+        # _refine.pdbx_ls_cross_valid_method = 'FREE R-VALUE'
+        try:
+            fix_resolution_cross_val(pc)
+        except Exception as e:
+            print(f'fix_resolution_cross_val skipped: {e}')
+
+        # Consistency between _refine and _reflns resolution limits
+        try:
+            fix_resolution_limits(pc)
+        except Exception as e:
+            print(f'fix_resolution_limits skipped: {e}')
+
+        pc.writeCif(fileName=output_mmcif)
+        print('Patched output mmCIF with _exptl and _refine fixes')
+
     def display_status(self, sD, exitOnError=True):
         if 'onedep_error_flag' in sD and sD['onedep_error_flag']:
             print("OneDep error: %s\n" % sD['onedep_status_text'])
@@ -482,9 +617,7 @@ except Exception as err:
             with open(output_xml_file_name, "r") as validationXMLFile:
                 validationXML = etree.fromstring(validationXMLFile.read())
                 self.xmlroot.append(validationXML)
-                with open(self.makeFileName('PROGRAMXML'), 'w') as thisXMLFile:
-                    CCP4Utils.writeXML(thisXMLFile, etree.tostring(
-                        self.xmlroot, pretty_print=True))
+                self.flushXml()
 
             if output_svg_file_name:
                 ret = val.getOutputByType(

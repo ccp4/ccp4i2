@@ -5,6 +5,7 @@ import xml.etree.ElementTree as etree
 from ccp4i2.report.CCP4ReportParser import Report
 from ccp4i2.wrappers.aimless.script.aimless_report import aimless_report
 from ccp4i2.wrappers.refmac.script import refmac_report
+from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck_report import modelASUCheck_report
 
 
 class adding_stats_to_mmcif_i2_report(Report):
@@ -23,6 +24,7 @@ class adding_stats_to_mmcif_i2_report(Report):
 
     def runningText(self, parent=None) :
         if parent is None: parent = self
+        self.addSequenceAlignmentReport(parent)
         parent.append ( "<p><b>Files sent to the Validation server. Updates will be shown here once validation report ready...</b></p>" )
 
     def addDefaultReport(self, parent=None):
@@ -37,6 +39,9 @@ class adding_stats_to_mmcif_i2_report(Report):
             refmacReport = refmac_report.refmac_report(xmlnode=refmacReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
             refmacReport.addSummary(parent=parent, withTables=False)
         clearingDiv = parent.addDiv(style="clear:both;")
+
+        # Sequence alignment validation
+        self.addSequenceAlignmentReport(parent)
 
         clearingDiv = parent.addDiv(style="clear:both;")
         scaledUnmergedFold = parent.addFold(label="Scaled unmerged", initiallyOpen=True)
@@ -89,6 +94,18 @@ class adding_stats_to_mmcif_i2_report(Report):
                     table.addData(title = s['label'], data = [s['value'], s['pc_abs'], s['pc_rel']])
         else:
             statisticsFold.append ( "<p>No validation XML downloaded...</p>" )
+
+    def addSequenceAlignmentReport(self, parent):
+        """Add sequence alignment summary with progress bars and collapsed detail."""
+        if not self.xmlnode.findall('.//SequenceAlignment/Alignment') \
+                and not self.xmlnode.findall('.//SequenceAlignment/NonAlignedModelChains/Alignment'):
+            return
+        seqFold = parent.addFold(
+            label='Sequence alignment', brief='Seq. Align.',
+            initiallyOpen=True)
+        seqReport = modelASUCheck_report(self.xmlnode, jobStatus='nooutput')
+        seqReport.addAlignSummary(self.xmlnode, parent=seqFold)
+        seqReport.addAlignReport(self.xmlnode, initiallyOpen=False, parent=seqFold)
 
     def pc_to_px(self, percentile):
       return 179.0+3.0*float(percentile)

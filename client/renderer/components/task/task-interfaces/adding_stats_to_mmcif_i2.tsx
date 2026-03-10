@@ -192,9 +192,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           itemName="USEAIMLESSXML"
           {...props}
           qualifiers={{
-            guiLabel: "Add statistics from Aimless",
+            guiLabel: "Add scaling statistics",
             toolTip:
-              "If you didn't run data reduction in CCP4i2 you won't have this",
+              "Uses mmCIF statistics if available, falls back to Aimless XML",
           }}
         />
         <CCP4i2TaskElement
@@ -233,6 +233,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           qualifiers={{ toolTip: "Input reflections" }}
         />
         <CCP4i2TaskElement itemName="SCALEDUNMERGED" {...props} />
+        <CCP4i2TaskElement itemName="CIFSTATSOUT" {...props} qualifiers={{ guiLabel: "Scaling statistics (mmCIF)", toolTip: "Preferred over XML when available" }} />
         <CCP4i2TaskElement itemName="AIMLESSXML" {...props} />
         <CCP4i2TaskElement itemName="REFMACINPUTPARAMSXML" {...props} />
         <CCP4i2TaskElement
