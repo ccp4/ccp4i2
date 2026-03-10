@@ -21,7 +21,7 @@ import {
   Typography,
 } from "@mui/material";
 import { apiArrayBuffer, apiJson } from "../api-fetch";
-import { Editor, type BeforeMount } from "@monaco-editor/react";
+import { Editor, loader } from "@monaco-editor/react";
 import { prettifyXml } from "../utils";
 import { createContext } from "react";
 import $ from "jquery";
@@ -30,6 +30,71 @@ import { CsvTable } from "../components/csv-table";
 import { AlignmentViewer } from "../components/alignment-viewer";
 import { MolBlockView } from "../components/campaigns/molblock-view";
 import { useTheme } from "../theme/theme-provider";
+
+// Register mmCIF language and themes with Monaco at module load time.
+// This runs once before any Editor component mounts.
+loader.init().then((monaco) => {
+  if (monaco.languages.getLanguages().some((l: { id: string }) => l.id === "mmcif")) return;
+
+  monaco.languages.register({ id: "mmcif" });
+  monaco.languages.setMonarchTokensProvider("mmcif", {
+    tokenizer: {
+      root: [
+        [/#.*$/, "comment"],
+        [/^data_\S+/, "keyword.data"],
+        [/^loop_/, "keyword.loop"],
+        [/^save_\S*/, "keyword.save"],
+        [/_[\w.\[\]]+/, "tag"],
+        [/'[^']*'/, "string"],
+        [/"[^"]*"/, "string"],
+        [/^;/, { token: "string.multiline", next: "@multilineString" }],
+        [/[+-]?\d+\.\d*([eE][+-]?\d+)?/, "number.float"],
+        [/[+-]?\d+([eE][+-]?\d+)?/, "number"],
+        [/[?.](?=\s|$)/, "keyword.missing"],
+      ],
+      multilineString: [
+        [/^;/, { token: "string.multiline", next: "@pop" }],
+        [/.*/, "string.multiline"],
+      ],
+    },
+  });
+
+  monaco.editor.defineTheme("mmcif-light", {
+    base: "vs",
+    inherit: true,
+    rules: [
+      { token: "keyword.data", foreground: "8B0000", fontStyle: "bold" },
+      { token: "keyword.loop", foreground: "8B0000", fontStyle: "bold" },
+      { token: "keyword.save", foreground: "8B0000", fontStyle: "bold" },
+      { token: "keyword.missing", foreground: "999999" },
+      { token: "tag", foreground: "0055AA", fontStyle: "bold" },
+      { token: "string", foreground: "A31515" },
+      { token: "string.multiline", foreground: "A31515" },
+      { token: "number", foreground: "098658" },
+      { token: "number.float", foreground: "098658" },
+      { token: "comment", foreground: "808080", fontStyle: "italic" },
+    ],
+    colors: {},
+  });
+
+  monaco.editor.defineTheme("mmcif-dark", {
+    base: "vs-dark",
+    inherit: true,
+    rules: [
+      { token: "keyword.data", foreground: "FF6B6B", fontStyle: "bold" },
+      { token: "keyword.loop", foreground: "FF6B6B", fontStyle: "bold" },
+      { token: "keyword.save", foreground: "FF6B6B", fontStyle: "bold" },
+      { token: "keyword.missing", foreground: "808080" },
+      { token: "tag", foreground: "6BB5FF", fontStyle: "bold" },
+      { token: "string", foreground: "CE9178" },
+      { token: "string.multiline", foreground: "CE9178" },
+      { token: "number", foreground: "B5CEA8" },
+      { token: "number.float", foreground: "B5CEA8" },
+      { token: "comment", foreground: "6A9955", fontStyle: "italic" },
+    ],
+    colors: {},
+  });
+});
 
 interface DictDigest {
   ligands: Array<{ id: string; name: string | null; group: string | null }>;
@@ -222,76 +287,6 @@ const FilePreviewDialog: React.FC = () => {
     }
   }, [contentSpecification]);
 
-  const handleEditorBeforeMount: BeforeMount = (monaco) => {
-    // Register mmCIF language if not already registered
-    if (
-      !monaco.languages
-        .getLanguages()
-        .some((lang: { id: string }) => lang.id === "mmcif")
-    ) {
-      monaco.languages.register({ id: "mmcif" });
-      monaco.languages.setMonarchTokensProvider("mmcif", {
-        tokenizer: {
-          root: [
-            [/#.*$/, "comment"],
-            [/^data_\S+/, "keyword.data"],
-            [/^loop_/, "keyword.loop"],
-            [/^save_\S*/, "keyword.save"],
-            [/_[\w.[\]]+/, "tag"],
-            [/'[^']*'/, "string"],
-            [/"[^"]*"/, "string"],
-            [/^;/, { token: "string.multiline", next: "@multilineString" }],
-            [/[+-]?\d+\.\d*([eE][+-]?\d+)?/, "number.float"],
-            [/[+-]?\d+([eE][+-]?\d+)?/, "number"],
-            [/[?.](?=\s|$)/, "keyword.missing"],
-          ],
-          multilineString: [
-            [/^;/, { token: "string.multiline", next: "@pop" }],
-            [/.*/, "string.multiline"],
-          ],
-        },
-      });
-
-      // Light theme with strong contrast for mmCIF tokens
-      monaco.editor.defineTheme("mmcif-light", {
-        base: "vs",
-        inherit: true,
-        rules: [
-          { token: "keyword.data", foreground: "8B0000", fontStyle: "bold" },
-          { token: "keyword.loop", foreground: "8B0000", fontStyle: "bold" },
-          { token: "keyword.save", foreground: "8B0000", fontStyle: "bold" },
-          { token: "keyword.missing", foreground: "999999" },
-          { token: "tag", foreground: "0055AA", fontStyle: "bold" },
-          { token: "string", foreground: "A31515" },
-          { token: "string.multiline", foreground: "A31515" },
-          { token: "number", foreground: "098658" },
-          { token: "number.float", foreground: "098658" },
-          { token: "comment", foreground: "808080", fontStyle: "italic" },
-        ],
-        colors: {},
-      });
-
-      // Dark theme counterpart
-      monaco.editor.defineTheme("mmcif-dark", {
-        base: "vs-dark",
-        inherit: true,
-        rules: [
-          { token: "keyword.data", foreground: "FF6B6B", fontStyle: "bold" },
-          { token: "keyword.loop", foreground: "FF6B6B", fontStyle: "bold" },
-          { token: "keyword.save", foreground: "FF6B6B", fontStyle: "bold" },
-          { token: "keyword.missing", foreground: "808080" },
-          { token: "tag", foreground: "6BB5FF", fontStyle: "bold" },
-          { token: "string", foreground: "CE9178" },
-          { token: "string.multiline", foreground: "CE9178" },
-          { token: "number", foreground: "B5CEA8" },
-          { token: "number.float", foreground: "B5CEA8" },
-          { token: "comment", foreground: "6A9955", fontStyle: "italic" },
-        ],
-        colors: {},
-      });
-    }
-  };
-
   return (
     <Dialog
       fullWidth
@@ -351,7 +346,6 @@ const FilePreviewDialog: React.FC = () => {
                 ? mode === "dark" ? "mmcif-dark" : "mmcif-light"
                 : mode === "dark" ? "vs-dark" : "light"
             }
-            beforeMount={handleEditorBeforeMount}
             options={{ readOnly: true, wordWrap: "on" }}
           />
         )}
