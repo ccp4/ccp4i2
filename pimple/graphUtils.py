@@ -6,16 +6,6 @@ from lxml import etree
 import numpy
 
 def parseGraphData(tree):
-
-    def fixNan(arr):
-       newArr = []
-       for v in arr:
-           if numpy.isnan(v):
-               newArr.append(None)
-           else:
-               newArr.append(v)
-       return newArr
-
     t = tree
     #print(etree.tostring(t,pretty_print=True))
     ttitle = t.attrib.get('title','').strip()
@@ -58,9 +48,10 @@ def parseGraphData(tree):
             ycol = plot.attrib.get("ycol",None)
             if xcol is not None and ycol is not None:
                 x_idx, y_idx = (int(xcol)-1,int(ycol)-1)
-                print(array2[y_idx].tolist())
-                x_data = fixNan(array2[x_idx].tolist())
-                y_data = fixNan(array2[y_idx].tolist())
+                x_data = array2[x_idx].tolist()
+                y_data = array2[y_idx].tolist()
+                x_data = [x if not numpy.isnan(x) else None for x in x_data]
+                y_data = [y if not numpy.isnan(y) else None for y in y_data]
                 thePlot = {"x_data":x_data,"y_data":y_data}
                 if(len(headers)==len(array2)):
                     thePlot["x_header"] = headers[x_idx]
