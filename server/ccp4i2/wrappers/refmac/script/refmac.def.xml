@@ -603,6 +603,14 @@ For manual specification, see the help page.</toolTip>
                     <default>False</default>
                 </qualifiers>
             </content>
+            <content id="TLSTEXT">
+                <className>CString</className>
+                <qualifiers>
+                    <guiMode>multiLine</guiMode>
+                    <default></default>
+                    <toolTip>TLS group definitions in standard TLS file format. Used when TLS mode is not "file".</toolTip>
+                </qualifiers>
+            </content>
             <content id="B_REFINEMENT_MODE">
                 <className>CString</className>
                 <qualifiers>

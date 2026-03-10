@@ -9,10 +9,17 @@
             <content id="TLSTEXT">
                 <className>CString</className>
                 <qualifiers>
+                    <guiMode>multiLine</guiMode>
                     <default>
 TLS From REFMAC
 RANGE  'A   0.' 'A 999.' ALL
                     </default>
+                </qualifiers>
+            </content>
+            <content id="TLSGROUPS">
+                <className>CTLSRangeList</className>
+                <qualifiers>
+                    <listMinLength>0</listMinLength>
                 </qualifiers>
             </content>
         </container>
@@ -31,6 +38,17 @@ RANGE  'A   0.' 'A 999.' ALL
                     <mustExist>True</mustExist>
                     <allowUndefined>True</allowUndefined>
                     <fromPreviousJob>False</fromPreviousJob>
+                </qualifiers>
+            </content>
+        </container>
+        <container id="guiParameters">
+            <content id="EDIT_MODE">
+                <className>CString</className>
+                <qualifiers>
+                    <onlyEnumerators>True</onlyEnumerators>
+                    <enumerators>table,text</enumerators>
+                    <menuText>Structured table,Free text</menuText>
+                    <default>table</default>
                 </qualifiers>
             </content>
         </container>

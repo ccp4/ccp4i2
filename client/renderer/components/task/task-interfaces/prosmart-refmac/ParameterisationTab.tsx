@@ -173,6 +173,12 @@ export const ParameterisationTab: React.FC<ParameterisationTabProps> = (
               qualifiers={{ guiLabel: "TLS group definitions:" }}
               visibility={() => tlsMode === "FILE"}
             />
+            <CCP4i2TaskElement
+              {...taskProps}
+              itemName="TLSTEXT"
+              qualifiers={{ guiLabel: "TLS group definitions:" }}
+              visibility={() => tlsMode !== "FILE" && tlsMode !== "NONE"}
+            />
 
             <Box
               sx={{

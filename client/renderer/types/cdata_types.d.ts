@@ -611,6 +611,14 @@ export interface CSuperposePerformance extends CPerformanceIndicator {
   nResidues: CInt;
 }
 type CTLSDataFile = CDataFile;
+export interface CTLSRange {
+  groupId: CInt;
+  chainId: COneWord;
+  firstRes: CInt;
+  lastRes: CInt;
+  selection: CString;
+}
+export type CTLSRangeList = CTLSRange[];
 export interface CTestObsConversionsPerformance extends CPerformanceIndicator {
   columnLabelsString: CString;
 }

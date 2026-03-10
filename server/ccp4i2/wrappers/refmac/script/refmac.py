@@ -339,6 +339,15 @@ class refmac(CPluginScript):
            if self.container.controlParameters.TLSMODE.isSet() and str(self.container.controlParameters.TLSMODE) == 'FILE':
                if self.container.inputData.TLSIN.isSet():
                    self.appendCommandLine(['TLSIN',self.container.inputData.TLSIN.fullPath])
+           elif self.container.controlParameters.TLSMODE.isSet() and str(self.container.controlParameters.TLSMODE) != 'NONE':
+               # If TLSTEXT is provided (e.g. in AUTO mode), write it to a temp file
+               if self.container.controlParameters.TLSTEXT.isSet():
+                   tls_text = str(self.container.controlParameters.TLSTEXT).strip()
+                   if tls_text:
+                       tls_path = os.path.join(self.getWorkDirectory(), 'TLSIN_FROM_TEXT.tls')
+                       with open(tls_path, 'w') as f:
+                           f.write(tls_text)
+                       self.appendCommandLine(['TLSIN', tls_path])
         self.appendCommandLine(['XYZOUT',self.container.outputData.XYZOUT.fullPath])
         self.appendCommandLine(['HKLOUT',self.hklout])
                 #self.appendCommandLine(['LIBOUT',self.libout])
