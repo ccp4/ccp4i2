@@ -541,60 +541,49 @@ except Exception as err:
             model_cats = set()
             for item in model_block:
                 if item.pair is not None:
-                    tag = item.pair[0]  # e.g. '_entry.id'
-                    model_cats.add(tag.split('.')[0])
+                    model_cats.add(item.pair[0].split('.')[0])
                 elif item.loop is not None:
                     for tag in item.loop.tags:
                         model_cats.add(tag.split('.')[0])
 
-            # Read and filter the stats file
+            # Read the stats file and build a new one, keeping only
+            # categories that are NOT already in the model.
             stats_doc = gemmi.cif.read(cifstats_path)
             stats_block = stats_doc[0]
 
-            # Collect items to remove (categories the model already has)
-            items_to_remove = []
-            for idx, item in enumerate(stats_block):
-                if item.pair is not None:
-                    cat = item.pair[0].split('.')[0]
-                    if cat in model_cats:
-                        items_to_remove.append(idx)
-                elif item.loop is not None:
-                    cats = set(t.split('.')[0] for t in item.loop.tags)
-                    if cats & model_cats:
-                        items_to_remove.append(idx)
-
-            if not items_to_remove:
-                print('DataStatistics: no overlapping categories to strip')
-                return cifstats_path
-
-            # gemmi blocks don't support item deletion, so rebuild
-            # the file as text, skipping the duplicate categories.
-            stripped_cats = set()
-            for idx in items_to_remove:
-                item = stats_block.item(idx)
-                if item.pair is not None:
-                    stripped_cats.add(item.pair[0].split('.')[0])
-                elif item.loop is not None:
-                    for tag in item.loop.tags:
-                        stripped_cats.add(tag.split('.')[0])
-
-            print(f'Stripping duplicate categories from DataStatistics: '
-                  f'{sorted(stripped_cats)}')
-
-            # Write a new stats file keeping only non-duplicate items
             out_path = os.path.join(
                 self.getWorkDirectory(), 'DataStatistics_stripped.cif')
             out_doc = gemmi.cif.Document()
             out_block = out_doc.add_new_block(stats_block.name)
-            for idx, item in enumerate(stats_block):
-                if idx not in items_to_remove:
-                    if item.pair is not None:
+
+            stripped_cats = set()
+            kept_cats = set()
+            for item in stats_block:
+                if item.pair is not None:
+                    cat = item.pair[0].split('.')[0]
+                    if cat in model_cats:
+                        stripped_cats.add(cat)
+                    else:
+                        kept_cats.add(cat)
                         out_block.set_pair(item.pair[0], item.pair[1])
-                    elif item.loop is not None:
+                elif item.loop is not None:
+                    cats = set(t.split('.')[0] for t in item.loop.tags)
+                    if cats & model_cats:
+                        stripped_cats |= (cats & model_cats)
+                    else:
+                        kept_cats |= cats
                         loop = out_block.init_loop(
                             '', list(item.loop.tags))
                         for row in item.loop:
-                            loop.add_row([row[i] for i in range(len(row))])
+                            loop.add_row(list(row))
+
+            if not stripped_cats:
+                print('DataStatistics: no overlapping categories to strip')
+                return cifstats_path
+
+            print(f'Stripping duplicate categories from DataStatistics: '
+                  f'{sorted(stripped_cats)}')
+            print(f'Keeping statistics categories: {sorted(kept_cats)}')
             out_doc.write_file(out_path)
             return out_path
         except Exception as e:
