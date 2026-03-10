@@ -350,6 +350,14 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                        "output_mmcif": output_mmcif,
                        "fasta_file": self.fastaFilePath}
         if cifstats_path:
+            # The DataStatistics.cif entry_id comes from the dataset/
+            # crystal name in the processing MTZ and may differ from
+            # the model's entry_id.  AddToMmcif merges by appending
+            # rows, so mismatched ids create duplicate rows in _entry,
+            # _cell, _symmetry etc. which crashes MolProbity.
+            # Harmonise ids before merging.
+            cifstats_path = self._harmonise_cifstats_entry_id(
+                cifstats_path, self.enrichedMmcifPath)
             processArgs["input_mmcif_to_get_data_from"] = cifstats_path
         elif aimless_xml_file:
             processArgs["xml_file"] = aimless_xml_file
@@ -514,6 +522,67 @@ except Exception as err:
         """Write current xmlroot to program.xml."""
         with open(self.makeFileName('PROGRAMXML'), 'w') as f:
             CCP4Utils.writeXML(f, etree.tostring(self.xmlroot, pretty_print=True))
+
+    def _harmonise_cifstats_entry_id(self, cifstats_path, model_path):
+        """Rewrite DataStatistics.cif so its entry_id matches the model.
+
+        The stats file's entry_id comes from the dataset or crystal
+        name in the processing MTZ (could be anything — "New", "NATIVE",
+        "xtal1", etc.).  AddToMmcif merges categories by appending rows,
+        so if the ids differ every category that keys on entry_id gets
+        duplicate rows, which crashes MolProbity/EDS.
+
+        Both ids are read dynamically via gemmi; nothing is hardcoded.
+        Returns the path to the (possibly rewritten) stats file.
+        """
+        import re
+        try:
+            import gemmi
+            doc = gemmi.cif.read(model_path)
+            model_id = doc[0].find_value('_entry.id')
+            if not model_id:
+                return cifstats_path
+            model_id = model_id.strip().strip("'").strip('"')
+        except Exception as e:
+            print(f'Could not read model entry_id: {e}')
+            return cifstats_path
+
+        try:
+            with open(cifstats_path, 'r') as f:
+                stats_text = f.read()
+
+            # Find the stats entry_id
+            doc_stats = gemmi.cif.read(cifstats_path)
+            stats_id = doc_stats[0].find_value('_entry.id')
+            if not stats_id:
+                return cifstats_path
+            stats_id = stats_id.strip().strip("'").strip('"')
+
+            if stats_id == model_id:
+                return cifstats_path  # already matches
+
+            print(f'Harmonising DataStatistics entry_id: '
+                  f'{stats_id!r} -> {model_id!r}')
+
+            # Replace all occurrences of the old entry_id with the model's.
+            # The stats file uses it as data block name and as values
+            # in _entry.id, _cell.entry_id, _symmetry.entry_id, etc.
+            harmonised_path = os.path.join(
+                self.getWorkDirectory(), 'DataStatistics_harmonised.cif')
+            stats_text = stats_text.replace(
+                f'data_{stats_id}', f'data_{model_id}')
+            # Replace bare token occurrences (entry_id values)
+            # Use word-boundary-aware replacement
+            stats_text = re.sub(
+                rf'(?<!\w){re.escape(stats_id)}(?!\w)',
+                model_id,
+                stats_text)
+            with open(harmonised_path, 'w') as f:
+                f.write(stats_text)
+            return harmonised_path
+        except Exception as e:
+            print(f'Failed to harmonise cifstats entry_id: {e}')
+            return cifstats_path
 
     def _patch_mmcif_for_validation(self, output_mmcif):
         """Add categories the mmCIF stats path omits but the server needs.
