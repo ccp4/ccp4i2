@@ -353,6 +353,7 @@ class adding_stats_to_mmcif_i2(CPluginScript):
             # Strip categories from DataStatistics.cif that the model
             # already has (_entry, _cell, _symmetry).  AddToMmcif
             # appends rows, so duplicates crash MolProbity/EDS.
+            cifstats_original = cifstats_path
             cifstats_path = self._prepare_cifstats_for_merge(
                 cifstats_path, self.enrichedMmcifPath)
             processArgs["input_mmcif_to_get_data_from"] = cifstats_path
@@ -377,6 +378,16 @@ class adding_stats_to_mmcif_i2(CPluginScript):
         # whether a clean (unpatched) mmCIF validates successfully.
         # if cifstats_path:
         #     self._patch_mmcif_for_validation(output_mmcif)
+
+        # When using CIF stats (no Aimless XML), store the statistics
+        # as XML so the report can render a data reduction table.
+        if cifstats_path:
+            try:
+                stats_xml = self._cifstats_to_xml(cifstats_original)
+                if stats_xml is not None:
+                    self.xmlroot.append(stats_xml)
+            except Exception as e:
+                print(f'CIF stats to XML conversion failed (non-fatal): {e}')
 
         # Run sequence validation: check coordinate chains match ASU contents
         try:
@@ -519,6 +530,99 @@ except Exception as err:
         """Write current xmlroot to program.xml."""
         with open(self.makeFileName('PROGRAMXML'), 'w') as f:
             CCP4Utils.writeXML(f, etree.tostring(self.xmlroot, pretty_print=True))
+
+    def _cifstats_to_xml(self, cifstats_path):
+        """Convert mmCIF statistics to XML for the report.
+
+        Reads _reflns (overall) and _reflns_shell (inner/outer shells)
+        from the original DataStatistics.cif and builds a <CifStats>
+        XML element that the report can render as a table.
+        """
+        import gemmi
+        doc = gemmi.cif.read(cifstats_path)
+        block = doc[0]
+
+        # Mapping: display label -> (_reflns tag, _reflns_shell tag)
+        stats_map = [
+            ('Low resolution limit',
+             '_reflns.d_resolution_low',
+             '_reflns_shell.d_res_low'),
+            ('High resolution limit',
+             '_reflns.d_resolution_high',
+             '_reflns_shell.d_res_high'),
+            ('Rmerge (all I+ and I-)',
+             '_reflns.pdbx_Rmerge_I_all',
+             '_reflns_shell.Rmerge_I_all'),
+            ('Rmeas (all I+ & I-)',
+             '_reflns.pdbx_Rrim_I_all',
+             '_reflns_shell.pdbx_Rrim_I_all'),
+            ('Rpim (all I+ & I-)',
+             '_reflns.pdbx_Rpim_I_all',
+             '_reflns_shell.pdbx_Rpim_I_all'),
+            ('Number of observations',
+             '_reflns.pdbx_number_measured_all',
+             '_reflns_shell.number_measured_all'),
+            ('Number unique',
+             '_reflns.number_obs',
+             '_reflns_shell.number_unique_all'),
+            ('Mean((I)/sd(I))',
+             '_reflns.pdbx_netI_over_sigmaI',
+             '_reflns_shell.pdbx_netI_over_sigmaI_all'),
+            ('Half-set correlation CC(1/2)',
+             '_reflns.pdbx_CC_half',
+             '_reflns_shell.pdbx_CC_half'),
+            ('Completeness %',
+             '_reflns.percent_possible_obs',
+             '_reflns_shell.percent_possible_all'),
+            ('Multiplicity',
+             '_reflns.pdbx_redundancy',
+             '_reflns_shell.pdbx_redundancy'),
+            ('Anomalous completeness %',
+             '_reflns.pdbx_percent_possible_anomalous',
+             '_reflns_shell.pdbx_percent_possible_anomalous'),
+            ('Anomalous multiplicity',
+             '_reflns.pdbx_redundancy_anomalous',
+             '_reflns_shell.pdbx_redundancy_anomalous'),
+            ('Anomalous CC(1/2)',
+             '_reflns.pdbx_CC_half_anomalous',
+             '_reflns_shell.pdbx_CC_half_anomalous'),
+        ]
+
+        # Find the shell loop for inner/outer values
+        shell_loop = None
+        for item in block:
+            if item.loop is not None:
+                tags = list(item.loop.tags)
+                if any('_reflns_shell' in t for t in tags):
+                    shell_loop = item.loop
+                    break
+
+        root = etree.Element('CifStats')
+        for label, reflns_tag, shell_tag in stats_map:
+            overall = block.find_value(reflns_tag)
+            if not overall or overall == '?':
+                continue
+            stat_el = etree.SubElement(root, 'Stat')
+            stat_el.set('label', label)
+            stat_el.set('overall', overall)
+
+            if shell_loop is not None:
+                # Find column index for this shell tag
+                shell_tags = list(shell_loop.tags)
+                if shell_tag in shell_tags:
+                    ci = shell_tags.index(shell_tag)
+                    nrows = shell_loop.length()
+                    stat_el.set('inner', shell_loop[0, ci])
+                    stat_el.set('outer', shell_loop[nrows - 1, ci])
+
+        # Wilson B (overall only, no shell data)
+        wilson = block.find_value('_reflns.B_iso_Wilson_estimate')
+        if wilson and wilson != '?':
+            stat_el = etree.SubElement(root, 'Stat')
+            stat_el.set('label', 'Wilson B estimate')
+            stat_el.set('overall', wilson)
+
+        return root
 
     def _prepare_cifstats_for_merge(self, cifstats_path, model_path):
         """Strip categories from DataStatistics.cif that the model already has.
