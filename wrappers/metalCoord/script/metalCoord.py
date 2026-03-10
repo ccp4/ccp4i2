@@ -4,9 +4,9 @@ Martin Maly, MRC-LMB
 
 import os
 import json
-import numpy
 import gemmi
 import xml.etree.ElementTree as ET
+from math import degrees
 from core.CCP4PluginScript import CPluginScript
 from core.CCP4ErrorHandling import SEVERITY_WARNING
 from core import CCP4Utils
@@ -64,18 +64,6 @@ class metalCoord(CPluginScript):
             return atom_pos
 
     @staticmethod
-    def _calc_angle_deg(pos1, pos2, pos3):
-        v1 = numpy.array([pos1.x - pos2.x, pos1.y - pos2.y, pos1.z - pos2.z])
-        v2 = numpy.array([pos3.x - pos2.x, pos3.y - pos2.y, pos3.z - pos2.z])
-        n1 = numpy.linalg.norm(v1)
-        n2 = numpy.linalg.norm(v2)
-        if n1 == 0.0 or n2 == 0.0:
-            return None
-        c = numpy.dot(v1, v2) / (n1 * n2)
-        c = numpy.clip(c, -1.0, 1.0)
-        return numpy.degrees(numpy.arccos(c))
-
-    @staticmethod
     def _repeat_for_multiple_ideal_values(model_value, ideal_values):
         if isinstance(ideal_values, (list, tuple)) and len(ideal_values) > 1:
             return [model_value for _ in ideal_values]
@@ -131,7 +119,7 @@ class metalCoord(CPluginScript):
                             ref_pos=metal_atom.pos,
                             atom_pos=ligand2_atom.pos,
                             symmetry=ligand2_site.get('symmetry', 0))
-                        angle_model = self._calc_angle_deg(ligand1_pos, metal_atom.pos, ligand2_pos)
+                        angle_model = degrees(gemmi.calculate_angle(ligand1_pos, metal_atom.pos, ligand2_pos))
                         angle_entry['angle_model'] = None if angle_model is None else round(angle_model, 2)
                     angle_entry['angle_model'] = self._repeat_for_multiple_ideal_values(
                         model_value=angle_entry.get('angle_model'),
