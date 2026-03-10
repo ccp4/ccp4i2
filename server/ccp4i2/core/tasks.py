@@ -1436,12 +1436,60 @@ _CATEGORIES: list[tuple[TaskCategory, str]] = [
     (TaskCategory.DEVELOPER_TOOLS, "Developer tools"),
 ]
 
+# Preferred tasks per category, in display order.  These appear first;
+# remaining tasks in the category are appended alphabetically by title.
+_CATEGORY_PREFERRED: dict[TaskCategory, list[str]] = {
+    TaskCategory.DATA_ENTRY: [
+        "import_merged", "ProvideAsuContents", "ProvideSequence",
+    ],
+    TaskCategory.DATA_PROCESSING: [
+        "xia2_dials", "xia2_xds",
+    ],
+    TaskCategory.DATA_REDUCTION: [
+        "aimless_pipe",
+    ],
+    TaskCategory.EXPT_PHASING: [
+        "crank2",
+    ],
+    TaskCategory.BIOINFORMATICS: [
+        "ccp4mg_edit_model", "chainsaw", "mrparse",
+    ],
+    TaskCategory.MOLECULAR_REPLACEMENT: [
+        "mrbump_basic", "phasertng_picard", "phaser_simple", "phaser_pipeline",
+    ],
+    TaskCategory.DENSITY_MODIFICATION: [
+        "acorn", "parrot",
+    ],
+    TaskCategory.MODEL_BUILDING: [
+        "modelcraft", "coot_rebuild",
+    ],
+    TaskCategory.REFINEMENT: [
+        "servalcat_pipe", "prosmart_refmac",
+    ],
+    TaskCategory.LIGANDS: [
+        "LidiaAcedrgNew", "MakeLink", "SubstituteLigand",
+    ],
+    TaskCategory.VALIDATION: [
+        "validate_protein",
+    ],
+    TaskCategory.EXPORT: [
+        "PrepareDeposit",
+    ],
+    TaskCategory.EXPT_DATA_UTILITY: [
+        "pointless_reindexToMatch",
+    ],
+    TaskCategory.MODEL_DATA_UTILITY: [
+        "gesamt",
+    ],
+}
+
 
 def _build_task_tree() -> list[tuple[str, str, list[str]]]:
     """Build task tree by grouping TASKS entries by their categories.
 
-    Tasks appear in TASKS dict insertion order within each category.
-    Tasks with multiple categories appear in each relevant category.
+    Within each category, preferred tasks (from _CATEGORY_PREFERRED) appear
+    first in the specified order.  Remaining tasks are appended alphabetically
+    by title.  Tasks with multiple categories appear in each relevant category.
     Tasks with no categories appear in an "Uncategorized" section.
     """
     category_tasks: dict[TaskCategory, list[str]] = {cat: [] for cat, _ in _CATEGORIES}
@@ -1454,12 +1502,23 @@ def _build_task_tree() -> list[tuple[str, str, list[str]]]:
         else:
             uncategorized.append(task_name)
 
+    def _sort_category(cat: TaskCategory, tasks: list[str]) -> list[str]:
+        preferred = _CATEGORY_PREFERRED.get(cat, [])
+        preferred_set = set(preferred)
+        # Preferred tasks first (in specified order), skip any not found
+        ordered = [t for t in preferred if t in set(tasks)]
+        # Remaining tasks alphabetically by title (falling back to task name)
+        rest = [t for t in tasks if t not in preferred_set]
+        rest.sort(key=lambda t: (TASKS[t].title or t).casefold())
+        return ordered + rest
+
     tree = [
-        (cat.value, desc, category_tasks[cat])
+        (cat.value, desc, _sort_category(cat, category_tasks[cat]))
         for cat, desc in _CATEGORIES
         if category_tasks[cat]
     ]
     if uncategorized:
+        uncategorized.sort(key=lambda t: (TASKS[t].title or t).casefold())
         tree.append(("uncategorized", "Uncategorized", uncategorized))
     return tree
 
