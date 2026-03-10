@@ -27,6 +27,7 @@ classifiers = [
 requires-python = ">=3.9"
 dependencies = [
     "autopep8",
+    "biopython>=1.80",     # used by adding_stats_to_mmcif (sequence alignment)
     "django-cors-headers",
     "django-filter",
     "djangorestframework",
@@ -47,7 +48,7 @@ dependencies = [
 # - adding_stats_to_mmcif
 # - ample
 # - asgiref
-# - biopython
+# - biopython (now in [project] dependencies)
 # - ccp4mg
 # - ccp4srs
 # - chardet

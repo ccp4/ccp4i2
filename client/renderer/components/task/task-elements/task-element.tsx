@@ -168,6 +168,8 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CMapDataFile":
       case "CUnmergedMtzDataFile":
       case "CPhaserTngDagFile":
+      case "CMmcifDataFile":
+      case "CMmcifReflDataFile":
         return (
           <CSimpleDataFileElement
             key={the_uuid}

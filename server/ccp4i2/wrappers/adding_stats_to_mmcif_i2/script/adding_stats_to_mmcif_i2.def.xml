@@ -98,10 +98,19 @@
                         If not provided, auto TLS refinement can still be performed (see the "Options" tab).</toolTip>
                 </qualifiers>
             </content>
+            <content id="CIFSTATSOUT">
+                <className>CMmcifDataFile</className>
+                <qualifiers>
+                    <allowUndefined>True</allowUndefined>
+                    <mustExist>True</mustExist>
+                    <guiLabel>Scaling statistics (mmCIF)</guiLabel>
+                    <toolTip>Scaling statistics in mmCIF format from aimless_pipe. Preferred over XML.</toolTip>
+                </qualifiers>
+            </content>
             <content id="AIMLESSXML">
                 <className>CXmlDataFile</className>
                 <qualifiers>
-                    <allowUndefined>False</allowUndefined>
+                    <allowUndefined>True</allowUndefined>
                     <mustExist>True</mustExist>
                 </qualifiers>
             </content>

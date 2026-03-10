@@ -6,7 +6,48 @@ class modelASUCheck_report(Report):
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
         super(). __init__(xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
-        self.addAlignReport(xmlnode, initiallyOpen=True)
+        if jobStatus is not None and jobStatus.lower() == 'nooutput':
+            return
+        self.addAlignSummary(xmlnode, parent=self)
+        self.addAlignReport(xmlnode, initiallyOpen=False, parent=self)
+
+    def addAlignSummary(self, xml, parent=None):
+        """Add compact progress bar summary of sequence alignments."""
+        if parent is None:
+            parent = self
+        alignNodes = xml.findall('.//SequenceAlignment/Alignment')
+        nonMatchedNodes = xml.findall(
+            './/SequenceAlignment/NonAlignedModelChains/Alignment')
+        if not alignNodes and not nonMatchedNodes:
+            return
+        summaryFold = parent.addFold(
+            label='Sequence alignment summary', brief='Summary',
+            initiallyOpen=True)
+        for node in alignNodes:
+            chain = node.findtext('ChainID', '')
+            identity = node.findtext('identity', '')
+            try:
+                matches = int(node.findtext('match_count', '0'))
+            except (ValueError, TypeError):
+                matches = 0
+            try:
+                seq_len = int(node.findtext('seq_length', '0'))
+            except (ValueError, TypeError):
+                seq_len = 0
+            lbl = f'Chain {chain}'
+            if identity:
+                lbl += f' ({identity}% id)'
+            summaryFold.addProgress(
+                value=matches,
+                max=seq_len if seq_len > 0 else matches,
+                label=lbl,
+            )
+        if nonMatchedNodes:
+            chains = sorted(set(
+                n.findtext('ChainID', '?') for n in nonMatchedNodes))
+            summaryFold.append(
+                '<p style="color:orange;">Unmatched model chains: '
+                + ', '.join(chains) + '</p>')
 
     def addAlignReport(self, xml, initiallyOpen=False, parent=None):
         if parent is None:
@@ -17,7 +58,7 @@ class modelASUCheck_report(Report):
 
         if len(xmlNodes) > 0 or len(nonMatchedXmlNodes)>0:
             parent.addDiv(style="clear:both;")
-            fold = parent.addFold(label='Sequence alignment information', brief='Seq. Align. Info.', initiallyOpen=initiallyOpen)
+            fold = parent.addFold(label='Sequence alignment detail', brief='Alignment Detail', initiallyOpen=initiallyOpen)
             lineLength = 60
             for alignNode in xmlNodes:
                 chainID = alignNode.findall("ChainID")[0].text
