@@ -185,6 +185,8 @@ class metalCoord(CPluginScript):
         try:
             if isinstance(outputJsonStats, list) and len(outputJsonStats) > 0:
                 self._add_model_geometry_to_json(outputJsonStats)
+                with open(self.outputJsonPath, "w", encoding="utf-8") as outputJsonFile:
+                    json.dump(outputJsonStats, outputJsonFile, indent=4)
         except Exception as e:
             print(f"Warning: Failed to add model geometry to JSON stats: {e}")
 
