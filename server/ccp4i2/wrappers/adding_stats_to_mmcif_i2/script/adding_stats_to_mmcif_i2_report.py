@@ -34,6 +34,8 @@ class adding_stats_to_mmcif_i2_report(Report):
             aimlessreport = aimless_report(aimlessNodes[-1], jobStatus='nooutput',jobNumber=self.jobNumber)
             aimlessFold = parent.addFold(label="Data reduction statistics", initiallyOpen=True)
             aimlessreport.addAimlessSummary(parent=aimlessFold)
+        elif len(self.xmlnode.findall('.//CifStats')) > 0:
+            self.addCifStatsTable(parent)
         if len(self.xmlnode.findall("REFMAC")) > 0:
             refmacReportNode0 = self.xmlnode.findall("REFMAC")[0]
             refmacReport = refmac_report.refmac_report(xmlnode=refmacReportNode0, jobStatus='nooutput', jobInfo=self.jobInfo)
@@ -94,6 +96,27 @@ class adding_stats_to_mmcif_i2_report(Report):
                     table.addData(title = s['label'], data = [s['value'], s['pc_abs'], s['pc_rel']])
         else:
             statisticsFold.append ( "<p>No validation XML downloaded...</p>" )
+
+    def addCifStatsTable(self, parent):
+        """Render data reduction statistics from CIF stats (no Aimless XML)."""
+        cifStatsNode = self.xmlnode.findall('.//CifStats')[0]
+        stats = cifStatsNode.findall('Stat')
+        if not stats:
+            return
+        statsFold = parent.addFold(
+            label="Data reduction statistics", initiallyOpen=True)
+        statsFold.append("Summary of data reduction statistics from mmCIF")
+
+        table = statsFold.addTable(select="CifStats", transpose=True,
+                                   style="line-height:100%; font-size:100%;",
+                                   downloadable=True, class_="center")
+        table.addData(title="", data=["Overall", "Inner shell", "Outer shell"])
+        for stat in stats:
+            label = stat.get('label', '')
+            overall = stat.get('overall', '')
+            inner = stat.get('inner', '')
+            outer = stat.get('outer', '')
+            table.addData(title=label, data=[overall, inner, outer])
 
     def addSequenceAlignmentReport(self, parent):
         """Add sequence alignment summary with progress bars and collapsed detail."""
