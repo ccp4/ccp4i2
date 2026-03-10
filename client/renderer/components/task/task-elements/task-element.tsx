@@ -30,6 +30,7 @@ import {
   COccRefmacSelectionListElement,
   COccRelationRefmacListElement,
 } from "./coccupancygroups";
+import { CTLSRangeListElement } from "./ctlsranges";
 import { useInferredVisibility } from "./hooks/useInferredVisibility";
 import type { ItemClass } from "./types/item-classes";
 
@@ -274,6 +275,14 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "COccRelationRefmacList":
         return (
           <COccRelationRefmacListElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
+        );
+      case "CTLSRangeList":
+        return (
+          <CTLSRangeListElement
             key={the_uuid}
             {...props}
             qualifiers={qualifiers}

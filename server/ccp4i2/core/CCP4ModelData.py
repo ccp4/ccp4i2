@@ -7,7 +7,7 @@ This file is safe to edit - add your implementation code here.
 
 from typing import Optional
 
-from ccp4i2.core.cdata_stubs.CCP4ModelData import CAsuContentStub, CAsuContentSeqStub, CAsuContentSeqListStub, CAsuDataFileStub, CAtomRefmacSelectionStub, CAtomRefmacSelectionGroupsStub, CAtomRefmacSelectionListStub, CAtomRefmacSelectionOccupancyStub, CAtomSelectionStub, CBlastDataStub, CBlastDataFileStub, CBlastItemStub, CChemCompStub, CDictDataStub, CDictDataFileStub, CElementStub, CEnsembleStub, CEnsembleListStub, CEnsemblePdbDataFileStub, CHhpredDataStub, CHhpredDataFileStub, CHhpredItemStub, CMDLMolDataFileStub, CMol2DataFileStub, CMonomerStub, COccRefmacSelectionListStub, COccRelationRefmacListStub, CPdbDataStub, CPdbDataFileStub, CPdbDataFileListStub, CPdbEnsembleItemStub, CResidueRangeStub, CResidueRangeListStub, CSeqAlignDataFileStub, CSeqDataFileStub, CSeqDataFileListStub, CSequenceStub, CSequenceAlignmentStub, CSequenceMetaStub, CSequenceStringStub, CTLSDataFileStub
+from ccp4i2.core.cdata_stubs.CCP4ModelData import CAsuContentStub, CAsuContentSeqStub, CAsuContentSeqListStub, CAsuDataFileStub, CAtomRefmacSelectionStub, CAtomRefmacSelectionGroupsStub, CAtomRefmacSelectionListStub, CAtomRefmacSelectionOccupancyStub, CAtomSelectionStub, CBlastDataStub, CBlastDataFileStub, CBlastItemStub, CChemCompStub, CDictDataStub, CDictDataFileStub, CElementStub, CEnsembleStub, CEnsembleListStub, CEnsemblePdbDataFileStub, CHhpredDataStub, CHhpredDataFileStub, CHhpredItemStub, CMDLMolDataFileStub, CMol2DataFileStub, CMonomerStub, COccRefmacSelectionListStub, COccRelationRefmacListStub, CPdbDataStub, CPdbDataFileStub, CPdbDataFileListStub, CPdbEnsembleItemStub, CResidueRangeStub, CResidueRangeListStub, CSeqAlignDataFileStub, CSeqDataFileStub, CSeqDataFileListStub, CSequenceStub, CSequenceAlignmentStub, CSequenceMetaStub, CSequenceStringStub, CTLSDataFileStub, CTLSRangeStub, CTLSRangeListStub
 
 
 class CAsuContent(CAsuContentStub):
@@ -2885,11 +2885,24 @@ class CSequenceString(CSequenceStringStub):
 class CTLSDataFile(CTLSDataFileStub):
     """
     A refmac TLS file
-    
+
     Extends CTLSDataFileStub with implementation-specific methods.
     Add file I/O, validation, and business logic here.
     """
 
     # Add your methods here
     pass
+
+
+class CTLSRange(CTLSRangeStub):
+    """A single TLS range definition with groupId, chain, residue range, and selection."""
+    pass
+
+
+class CTLSRangeList(CTLSRangeListStub):
+    """A list of CTLSRange items defining TLS groups."""
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+        self.set_qualifier('subItem', {'class': CTLSRange, 'qualifiers': {}})
 

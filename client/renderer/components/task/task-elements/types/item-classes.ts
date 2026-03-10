@@ -81,7 +81,8 @@ export type ListItemClass =
   | "CAsuContentSeqList"
   | "CAtomRefmacSelectionList"
   | "COccRefmacSelectionList"
-  | "COccRelationRefmacList";
+  | "COccRelationRefmacList"
+  | "CTLSRangeList";
 
 /**
  * Container/composite types
@@ -184,6 +185,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
     "CAtomRefmacSelectionList",
     "COccRefmacSelectionList",
     "COccRelationRefmacList",
+    "CTLSRangeList",
     // Container types
     "CContainer",
     "CSpaceGroupCell",
@@ -257,6 +259,7 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   CAtomRefmacSelectionList: "CAtomRefmacSelectionListElement",
   COccRefmacSelectionList: "COccRefmacSelectionListElement",
   COccRelationRefmacList: "COccRelationRefmacListElement",
+  CTLSRangeList: "CTLSRangeListElement",
 
   // Container types
   CContainer: "CCP4i2ContainerElement",

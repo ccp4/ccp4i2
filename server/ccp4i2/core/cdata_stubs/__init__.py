@@ -15,7 +15,7 @@ from .CCP4Data import COneWordStub, CJobTitleStub, CJobStatusStub, CCollectionSt
 from .CCP4File import CProjectIdStub, CVersionStub, CMmcifDataStub, CExePathStub, CProjectNameStub, CFileFunctionStub, CExportedFileStub, CExportedFileListStub, CExePathListStub, CSearchPathStub, CSearchPathListStub, CFilePathStub, CI2XmlHeaderStub, CXmgrDataFileStub, CTextDataFileStub, CDataReflFileStub, CPostscriptDataFileStub, CYmlFileStub, CXmlDataFileStub, CMmcifDataFileStub, CPDFDataFileStub, CSceneDataFileStub, CI2XmlDataFileStub, CEBIValidationXMLDataFileStub
 from .CCP4ImportedJobManager import CImportedJobDataListStub, CImportedJobDataStub, CImportedJobDefinitionStub
 from .CCP4MathsData import CMatrix33Stub, CXyzBoxStub, CAngleStub, CXyzStub, CEulerRotationStub, CTransformationStub
-from .CCP4ModelData import CSeqDataFileListStub, CAsuDataFileStub, CAtomRefmacSelectionListStub, CAtomRefmacSelectionOccupancyStub, CResidueRangeListStub, CTLSDataFileStub, CSequenceStringStub, CHhpredDataFileStub, CElementStub, CSequenceStub, CSequenceAlignmentStub, CBlastDataFileStub, CDictDataStub, CMonomerStub, CBlastItemStub, CAtomRefmacSelectionGroupsStub, COccRelationRefmacListStub, CDictDataFileStub, CEnsembleStub, CResidueRangeStub, CAtomSelectionStub, CBlastDataStub, CHhpredDataStub, CPdbDataFileListStub, CMol2DataFileStub, COccRefmacSelectionListStub, CSequenceMetaStub, CSeqDataFileStub, CSeqAlignDataFileStub, CHhpredItemStub, CEnsembleListStub, CPdbDataStub, CAtomRefmacSelectionStub, CChemCompStub, CMDLMolDataFileStub, CAsuContentSeqListStub, CAsuContentSeqStub, CPdbDataFileStub, CAsuContentStub, CEnsemblePdbDataFileStub, CPdbEnsembleItemStub
+from .CCP4ModelData import CSeqDataFileListStub, CAsuDataFileStub, CAtomRefmacSelectionListStub, CAtomRefmacSelectionOccupancyStub, CResidueRangeListStub, CTLSDataFileStub, CTLSRangeStub, CTLSRangeListStub, CSequenceStringStub, CHhpredDataFileStub, CElementStub, CSequenceStub, CSequenceAlignmentStub, CBlastDataFileStub, CDictDataStub, CMonomerStub, CBlastItemStub, CAtomRefmacSelectionGroupsStub, COccRelationRefmacListStub, CDictDataFileStub, CEnsembleStub, CResidueRangeStub, CAtomSelectionStub, CBlastDataStub, CHhpredDataStub, CPdbDataFileListStub, CMol2DataFileStub, COccRefmacSelectionListStub, CSequenceMetaStub, CSeqDataFileStub, CSeqAlignDataFileStub, CHhpredItemStub, CEnsembleListStub, CPdbDataStub, CAtomRefmacSelectionStub, CChemCompStub, CMDLMolDataFileStub, CAsuContentSeqListStub, CAsuContentSeqStub, CPdbDataFileStub, CAsuContentStub, CEnsemblePdbDataFileStub, CPdbEnsembleItemStub
 from .CCP4PerformanceData import CPerformanceIndicatorStub, CDataReductionPerformanceStub, CPairefPerformanceStub, CDataReductionCCPerformanceStub, CServalcatPerformanceStub, CExpPhasPerformanceStub, CAtomCountPerformanceStub, CModelBuildPerformanceStub, CRefinementPerformanceStub, CSuperposePerformanceStub, CPhaseErrorPerformanceStub, CTestObsConversionsPerformanceStub
 from .CCP4Preferences import CPreferencesStub
 from .CCP4RefmacData import CRefmacRestraintsDataFileStub, CRefmacRigidGroupSegmentStub, CRefmacAnomalousAtomStub, CRefmacRigidGroupListStub, CRefmacRigidGroupItemStub
@@ -100,6 +100,8 @@ __all__ = [
     "CAtomRefmacSelectionOccupancyStub",
     "CResidueRangeListStub",
     "CTLSDataFileStub",
+    "CTLSRangeStub",
+    "CTLSRangeListStub",
     "CSequenceStringStub",
     "CHhpredDataFileStub",
     "CElementStub",

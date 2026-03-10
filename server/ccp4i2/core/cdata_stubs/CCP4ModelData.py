@@ -584,6 +584,137 @@ class CTLSDataFileStub(CDataFile):
 
 
 @cdata_class(
+    attributes={
+        "groupId": attribute(AttributeType.INT),
+        "chainId": attribute(AttributeType.CUSTOM, custom_class="COneWordStub"),
+        "firstRes": attribute(AttributeType.INT),
+        "lastRes": attribute(AttributeType.INT),
+        "selection": attribute(AttributeType.STRING),
+    },
+    error_codes={
+        "0": {
+            "severity": 0,
+            "description": "OK"
+        },
+        "1": {
+            "severity": 1,
+            "description": "Data has undefined value"
+        },
+        "2": {
+            "severity": 3,
+            "description": "Data has undefined value"
+        },
+        "3": {
+            "severity": 2,
+            "description": "Missing data"
+        },
+        "4": {
+            "description": "Missing data"
+        },
+        "5": {
+            "description": "Attempting to set data of wrong type"
+        },
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    qualifiers_definition={
+        "allowUndefined": {'type': 'bool'},
+        "default": {'type': 'dict'},
+        "toolTip": {'type': 'str'},
+        "guiLabel": {'type': 'str'},
+        "guiDefinition": {'type': 'dict'},
+        "helpFile": {'type': 'str'},
+        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
+    },
+    contents_order=['groupId', 'chainId', 'firstRes', 'lastRes', 'selection'],
+    content_qualifiers={
+        "selection": {'default': 'ALL'},
+    },
+)
+class CTLSRangeStub(CData):
+    """
+    A single TLS range definition (one RANGE line within a TLS group).
+
+    Each range belongs to a TLS group identified by groupId.
+    Ranges sharing the same groupId form a single TLS group.
+    """
+
+    groupId: Optional[CInt] = None
+    chainId: Optional[COneWordStub] = None
+    firstRes: Optional[CInt] = None
+    lastRes: Optional[CInt] = None
+    selection: Optional[CString] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+
+
+@cdata_class(
+    error_codes={
+        "101": {
+            "description": "List shorter than required minimum length"
+        },
+        "102": {
+            "description": "List longer than required maximum length"
+        },
+        "103": {
+            "description": "Consecutive values in list fail comparison test"
+        },
+        "104": {
+            "description": "Attempting to add object of wrong type"
+        },
+        "105": {
+            "description": "Attempting to add object of correct type but wrong qualifiers"
+        },
+        "106": {
+            "description": "Attempting to add data which does not satisfy the qualifiers for a list item"
+        },
+        "107": {
+            "description": "Deleting item will reduce list below minimum length"
+        },
+        "108": {
+            "description": "Adding item will extend list beyond maximum length"
+        },
+        "109": {
+            "description": "Invalid item class"
+        },
+        "110": {
+            "description": "etree (XML) list item of wrong type"
+        },
+        "112": {
+            "description": "No list item object set for list"
+        }
+    },
+    qualifiers={
+        "listMinLength": 0,
+    },
+    qualifiers_order=['listMinLength', 'listMaxLength', 'listCompare'],
+    qualifiers_definition={
+        "default": {'type': 'list'},
+        "listMaxLength": {'type': 'int', 'description': 'Inclusive maximum length of list'},
+        "listMinLength": {'type': 'int', 'description': 'Inclusive minimum length of list'},
+        "listCompare": {'type': 'int', 'description': 'If has value 1/-1 consecutive items in list must be greater/less than preceeding item.'},
+    },
+)
+class CTLSRangeListStub(CList):
+    """A list of CTLSRange items defining TLS groups."""
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        super().__init__(parent=parent, name=name, **kwargs)
+
+
+@cdata_class(
     error_codes={
         "401": {
             "description": "Non-alphabet character removed from sequence",
