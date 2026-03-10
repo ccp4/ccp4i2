@@ -366,12 +366,12 @@ class adding_stats_to_mmcif_i2(CPluginScript):
             self.appendErrorReport(204, "Failed in adding_stats_to_mmcif")
             return CPluginScript.FAILED
 
-        # When using the mmCIF stats path, AddToMmcif does a generic
-        # category merge but skips _exptl, resolution-limit consistency,
-        # and pdbx_ls_cross_valid_method that the XML path provides.
-        # The validation server needs all three, so apply them here.
-        if cifstats_path:
-            self._patch_mmcif_for_validation(output_mmcif)
+        # DISABLED: The post-processing patch was rewriting _refine through
+        # a dict round-trip which may corrupt the mmCIF and prevent the
+        # validation server from computing R-factors.  Disabled to test
+        # whether a clean (unpatched) mmCIF validates successfully.
+        # if cifstats_path:
+        #     self._patch_mmcif_for_validation(output_mmcif)
 
         # Run sequence validation: check coordinate chains match ASU contents
         try:
