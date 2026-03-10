@@ -234,22 +234,60 @@ const FilePreviewDialog: React.FC = () => {
         tokenizer: {
           root: [
             [/#.*$/, "comment"],
-            [/^data_\S+/, "keyword"],
-            [/^loop_/, "keyword"],
-            [/^save_\S*/, "keyword"],
-            [/_[\w.[\]]+/, "type"],
-            [/;/, { token: "string", next: "@multilineString" }],
+            [/^data_\S+/, "keyword.data"],
+            [/^loop_/, "keyword.loop"],
+            [/^save_\S*/, "keyword.save"],
+            [/_[\w.[\]]+/, "tag"],
             [/'[^']*'/, "string"],
             [/"[^"]*"/, "string"],
+            [/^;/, { token: "string.multiline", next: "@multilineString" }],
             [/[+-]?\d+\.\d*([eE][+-]?\d+)?/, "number.float"],
             [/[+-]?\d+([eE][+-]?\d+)?/, "number"],
-            [/[?.](?=\s|$)/, "constant"],
+            [/[?.](?=\s|$)/, "keyword.missing"],
           ],
           multilineString: [
-            [/^;/, { token: "string", next: "@pop" }],
-            [/.*/, "string"],
+            [/^;/, { token: "string.multiline", next: "@pop" }],
+            [/.*/, "string.multiline"],
           ],
         },
+      });
+
+      // Light theme with strong contrast for mmCIF tokens
+      monaco.editor.defineTheme("mmcif-light", {
+        base: "vs",
+        inherit: true,
+        rules: [
+          { token: "keyword.data", foreground: "8B0000", fontStyle: "bold" },
+          { token: "keyword.loop", foreground: "8B0000", fontStyle: "bold" },
+          { token: "keyword.save", foreground: "8B0000", fontStyle: "bold" },
+          { token: "keyword.missing", foreground: "999999" },
+          { token: "tag", foreground: "0055AA", fontStyle: "bold" },
+          { token: "string", foreground: "A31515" },
+          { token: "string.multiline", foreground: "A31515" },
+          { token: "number", foreground: "098658" },
+          { token: "number.float", foreground: "098658" },
+          { token: "comment", foreground: "808080", fontStyle: "italic" },
+        ],
+        colors: {},
+      });
+
+      // Dark theme counterpart
+      monaco.editor.defineTheme("mmcif-dark", {
+        base: "vs-dark",
+        inherit: true,
+        rules: [
+          { token: "keyword.data", foreground: "FF6B6B", fontStyle: "bold" },
+          { token: "keyword.loop", foreground: "FF6B6B", fontStyle: "bold" },
+          { token: "keyword.save", foreground: "FF6B6B", fontStyle: "bold" },
+          { token: "keyword.missing", foreground: "808080" },
+          { token: "tag", foreground: "6BB5FF", fontStyle: "bold" },
+          { token: "string", foreground: "CE9178" },
+          { token: "string.multiline", foreground: "CE9178" },
+          { token: "number", foreground: "B5CEA8" },
+          { token: "number.float", foreground: "B5CEA8" },
+          { token: "comment", foreground: "6A9955", fontStyle: "italic" },
+        ],
+        colors: {},
       });
     }
   };
@@ -308,7 +346,11 @@ const FilePreviewDialog: React.FC = () => {
             height="calc(100vh - 20rem)"
             value={previewContent || ""}
             language={monacoLanguage}
-            theme={mode === "dark" ? "vs-dark" : "light"}
+            theme={
+              monacoLanguage === "mmcif"
+                ? mode === "dark" ? "mmcif-dark" : "mmcif-light"
+                : mode === "dark" ? "vs-dark" : "light"
+            }
             beforeMount={handleEditorBeforeMount}
             options={{ readOnly: true, wordWrap: "on" }}
           />
