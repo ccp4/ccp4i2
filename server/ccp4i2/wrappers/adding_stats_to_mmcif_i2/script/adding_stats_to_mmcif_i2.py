@@ -350,13 +350,10 @@ class adding_stats_to_mmcif_i2(CPluginScript):
                        "output_mmcif": output_mmcif,
                        "fasta_file": self.fastaFilePath}
         if cifstats_path:
-            # The DataStatistics.cif entry_id comes from the dataset/
-            # crystal name in the processing MTZ and may differ from
-            # the model's entry_id.  AddToMmcif merges by appending
-            # rows, so mismatched ids create duplicate rows in _entry,
-            # _cell, _symmetry etc. which crashes MolProbity.
-            # Harmonise ids before merging.
-            cifstats_path = self._harmonise_cifstats_entry_id(
+            # Strip categories from DataStatistics.cif that the model
+            # already has (_entry, _cell, _symmetry).  AddToMmcif
+            # appends rows, so duplicates crash MolProbity/EDS.
+            cifstats_path = self._prepare_cifstats_for_merge(
                 cifstats_path, self.enrichedMmcifPath)
             processArgs["input_mmcif_to_get_data_from"] = cifstats_path
         elif aimless_xml_file:
@@ -523,65 +520,87 @@ except Exception as err:
         with open(self.makeFileName('PROGRAMXML'), 'w') as f:
             CCP4Utils.writeXML(f, etree.tostring(self.xmlroot, pretty_print=True))
 
-    def _harmonise_cifstats_entry_id(self, cifstats_path, model_path):
-        """Rewrite DataStatistics.cif so its entry_id matches the model.
+    def _prepare_cifstats_for_merge(self, cifstats_path, model_path):
+        """Strip categories from DataStatistics.cif that the model already has.
 
-        The stats file's entry_id comes from the dataset or crystal
-        name in the processing MTZ (could be anything — "New", "NATIVE",
-        "xtal1", etc.).  AddToMmcif merges categories by appending rows,
-        so if the ids differ every category that keys on entry_id gets
-        duplicate rows, which crashes MolProbity/EDS.
+        AddToMmcif merges by appending rows from the stats file into
+        the model.  Categories like _entry, _cell, _symmetry already
+        exist in the model, so appending them creates duplicate rows
+        which crashes MolProbity/EDS.
 
-        Both ids are read dynamically via gemmi; nothing is hardcoded.
-        Returns the path to the (possibly rewritten) stats file.
+        We keep only the statistics categories (_reflns, _reflns_shell,
+        _diffrn_radiation_wavelength) and drop everything the model
+        already provides.  Returns the path to the cleaned stats file.
         """
-        import re
         try:
             import gemmi
-            doc = gemmi.cif.read(model_path)
-            model_id = doc[0].find_value('_entry.id')
-            if not model_id:
+
+            # Identify categories already present in the model
+            model_doc = gemmi.cif.read(model_path)
+            model_block = model_doc[0]
+            model_cats = set()
+            for item in model_block:
+                if item.pair is not None:
+                    tag = item.pair[0]  # e.g. '_entry.id'
+                    model_cats.add(tag.split('.')[0])
+                elif item.loop is not None:
+                    for tag in item.loop.tags:
+                        model_cats.add(tag.split('.')[0])
+
+            # Read and filter the stats file
+            stats_doc = gemmi.cif.read(cifstats_path)
+            stats_block = stats_doc[0]
+
+            # Collect items to remove (categories the model already has)
+            items_to_remove = []
+            for idx, item in enumerate(stats_block):
+                if item.pair is not None:
+                    cat = item.pair[0].split('.')[0]
+                    if cat in model_cats:
+                        items_to_remove.append(idx)
+                elif item.loop is not None:
+                    cats = set(t.split('.')[0] for t in item.loop.tags)
+                    if cats & model_cats:
+                        items_to_remove.append(idx)
+
+            if not items_to_remove:
+                print('DataStatistics: no overlapping categories to strip')
                 return cifstats_path
-            model_id = model_id.strip().strip("'").strip('"')
+
+            # gemmi blocks don't support item deletion, so rebuild
+            # the file as text, skipping the duplicate categories.
+            stripped_cats = set()
+            for idx in items_to_remove:
+                item = stats_block.item(idx)
+                if item.pair is not None:
+                    stripped_cats.add(item.pair[0].split('.')[0])
+                elif item.loop is not None:
+                    for tag in item.loop.tags:
+                        stripped_cats.add(tag.split('.')[0])
+
+            print(f'Stripping duplicate categories from DataStatistics: '
+                  f'{sorted(stripped_cats)}')
+
+            # Write a new stats file keeping only non-duplicate items
+            out_path = os.path.join(
+                self.getWorkDirectory(), 'DataStatistics_stripped.cif')
+            out_doc = gemmi.cif.Document()
+            out_block = out_doc.add_new_block(stats_block.name)
+            for idx, item in enumerate(stats_block):
+                if idx not in items_to_remove:
+                    if item.pair is not None:
+                        out_block.set_pair(item.pair[0], item.pair[1])
+                    elif item.loop is not None:
+                        loop = out_block.init_loop(
+                            '', list(item.loop.tags))
+                        for row in item.loop:
+                            loop.add_row([row[i] for i in range(len(row))])
+            out_doc.write_file(out_path)
+            return out_path
         except Exception as e:
-            print(f'Could not read model entry_id: {e}')
-            return cifstats_path
-
-        try:
-            with open(cifstats_path, 'r') as f:
-                stats_text = f.read()
-
-            # Find the stats entry_id
-            doc_stats = gemmi.cif.read(cifstats_path)
-            stats_id = doc_stats[0].find_value('_entry.id')
-            if not stats_id:
-                return cifstats_path
-            stats_id = stats_id.strip().strip("'").strip('"')
-
-            if stats_id == model_id:
-                return cifstats_path  # already matches
-
-            print(f'Harmonising DataStatistics entry_id: '
-                  f'{stats_id!r} -> {model_id!r}')
-
-            # Replace all occurrences of the old entry_id with the model's.
-            # The stats file uses it as data block name and as values
-            # in _entry.id, _cell.entry_id, _symmetry.entry_id, etc.
-            harmonised_path = os.path.join(
-                self.getWorkDirectory(), 'DataStatistics_harmonised.cif')
-            stats_text = stats_text.replace(
-                f'data_{stats_id}', f'data_{model_id}')
-            # Replace bare token occurrences (entry_id values)
-            # Use word-boundary-aware replacement
-            stats_text = re.sub(
-                rf'(?<!\w){re.escape(stats_id)}(?!\w)',
-                model_id,
-                stats_text)
-            with open(harmonised_path, 'w') as f:
-                f.write(stats_text)
-            return harmonised_path
-        except Exception as e:
-            print(f'Failed to harmonise cifstats entry_id: {e}')
+            print(f'Failed to prepare cifstats for merge: {e}')
+            import traceback
+            traceback.print_exc()
             return cifstats_path
 
     def _patch_mmcif_for_validation(self, output_mmcif):
