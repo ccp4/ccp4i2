@@ -574,8 +574,10 @@ except Exception as err:
                         kept_cats |= cats
                         loop = out_block.init_loop(
                             '', list(item.loop.tags))
-                        for row in item.loop:
-                            loop.add_row(list(row))
+                        ncols = item.loop.width()
+                        for ri in range(item.loop.length()):
+                            loop.add_row([item.loop.val(ri, ci)
+                                          for ci in range(ncols)])
 
             if not stripped_cats:
                 print('DataStatistics: no overlapping categories to strip')
