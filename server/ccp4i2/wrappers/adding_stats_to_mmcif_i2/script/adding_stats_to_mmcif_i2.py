@@ -576,7 +576,7 @@ except Exception as err:
                             '', list(item.loop.tags))
                         ncols = item.loop.width()
                         for ri in range(item.loop.length()):
-                            loop.add_row([item.loop.val(ri, ci)
+                            loop.add_row([item.loop[ri, ci]
                                           for ci in range(ncols)])
 
             if not stripped_cats:
