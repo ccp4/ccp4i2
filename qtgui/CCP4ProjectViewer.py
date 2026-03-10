@@ -3154,7 +3154,7 @@ class CReportView(QtWidgets.QStackedWidget):
                 def downloadGraphJSONFile(graphData,fileName):
                     import json
                     with open(fileName,"w+") as f:
-                        f.write(json.dumps(graphData))
+                        f.write(json.dumps(graphData,indent=4))
                 self.fileBrowser.selectFile.connect(functools.partial(downloadGraphJSONFile, graphData))
                 self.fileBrowser.show()
 
