@@ -3152,7 +3152,7 @@ class CReportView(QtWidgets.QStackedWidget):
                 fileBrowser.setOption(QtWidgets.QFileDialog.DontUseNativeDialog)
                 fileBrowser.setFileMode(QtWidgets.QFileDialog.AnyFile)
                 fileBrowser.setDefaultSuffix("json")
-                fileBrowser.setNameFilters(['JSON file (*.json)','Plain text table(*.table)'])
+                fileBrowser.setNameFilters(['JSON file (*.json)','CSV file (*.csv)','Plain text table(*.table)'])
                 fileBrowser.setAcceptMode(QtWidgets.QFileDialog.AcceptSave)
                 @QtCore.Slot(str)
                 def changeSuffix(fileFilter):
@@ -3167,6 +3167,33 @@ class CReportView(QtWidgets.QStackedWidget):
                             with open(fileName,"w+") as f:
                                 for d in graphData:
                                     f.write(d)
+                        elif fileBrowser.defaultSuffix() == "csv" or fileName.endswith(".csv"):
+                            graphData = extractGraphData([reportFile],str(args['ccp4_data_id']),args['ccp4_data_current_index'],file_format="csv")
+                            lines = []
+                            for d in graphData:
+                                for d2 in d:
+                                    t = "%s,%s\n" % (d2["x_header"],d2["y_header"])
+                                    for x,y in zip(d2["x_data"],d2["y_data"]):
+                                        if x is not None and y is not None:
+                                            t += "%f,%f\n" % (x,y)
+                                        elif x is not None:
+                                            t += "%f,-\n" % (x)
+                                        elif y is not None:
+                                            t += "-,%f\n" % (y)
+                                        else:
+                                            t += "-,-\n"
+                                    lines.append(t)
+                            if len(lines)==1:
+                                with open(fileName,"w+") as f:
+                                    f.write(t[0])
+                            else:
+                                fileRoot, suffix = os.path.splitext(fileName)
+                                graphNum = 1
+                                for l in lines:
+                                    newFileName = fileRoot + "-" + str(graphNum) + suffix
+                                    with open(newFileName,"w+") as f:
+                                        f.write(l)
+                                    graphNum += 1
                         elif fileBrowser.defaultSuffix() == "json" or fileName.endswith(".json"):
                             graphData = extractGraphData([reportFile],str(args['ccp4_data_id']),args['ccp4_data_current_index'])
                             import json

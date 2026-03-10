@@ -118,7 +118,7 @@ def extractGraphData(file_names,select,theGraphTotal,file_format="json"):
                 if len(headers_el)>0 and len(data_el)>0:
                     newG = headers_el[0].text + "\n" + data_el[0].text
                     all_graphs.append(newG)
-            else: #json
+            else: #json,csv
                 newG = parseGraphData(g)
                 all_graphs.extend(newG)
 
