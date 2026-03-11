@@ -18,7 +18,7 @@ class CmetalCoord_gui(CCP4TaskWidget.CTaskWidget):
         self.createLine(['tip', 'Atomic model', 'widget', 'XYZIN'])
         self.createLine(['label', 'Monomer code', 'widget', 'LIGAND_CODE'])
         self.openSubFrame(frame=[True], title='Advanced parameters')
-        self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>A threshold d to select atoms is (r<sub>1</sub> + r<sub>2</sub>)*(1 + d) where r<sub>1</sub> and r<sub>2</sub> are covalent radii.</i>', 'stretch', 'widget', 'DISTANCE_THRESHOLD'])
+        self.createLine( [ 'label', 'Distance threshold: (range 0-1)<br/><i>Use atoms within a distance of (r<sub>metal</sub> + r<sub>atom</sub>)×(1 + threshold) Å from the metal site. r denotes the atomic radius.</i>', 'stretch', 'widget', 'DISTANCE_THRESHOLD'])
 
         self.createLine( [ 'label', 'Maximum coordination number:', 'stretch', 'widget', 'MAXIMUM_COORDINATION_NUMBER'])
         for i in [2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,24]:
