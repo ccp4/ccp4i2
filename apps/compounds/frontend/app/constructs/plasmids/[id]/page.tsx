@@ -199,7 +199,8 @@ export default function PlasmidDetailPage({ params }: PageProps) {
               <Box sx={{ display: 'flex', gap: 1 }}>
                 {plasmid.genbank_file_url && (
                   <Button
-                    variant="outlined"
+                    variant="contained"
+                    size="large"
                     startIcon={<Download />}
                     onClick={async () => {
                       const url = await getAuthenticatedDownloadUrl(plasmid.genbank_file_url!);
@@ -233,6 +234,38 @@ export default function PlasmidDetailPage({ params }: PageProps) {
             <Grid container spacing={3}>
               <Grid size={{ xs: 12, md: 6 }}>
                 <InfoRow label="Project" value={plasmid.project_name} />
+                <InfoRow
+                  label="GenBank File"
+                  value={
+                    plasmid.genbank_file_url ? (
+                      <Box
+                        component="a"
+                        onClick={async (e: React.MouseEvent) => {
+                          e.preventDefault();
+                          const url = await getAuthenticatedDownloadUrl(plasmid.genbank_file_url!);
+                          window.open(url, '_blank');
+                        }}
+                        href="#"
+                        sx={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: 0.5,
+                          color: 'primary.main',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                          '&:hover': { textDecoration: 'underline' },
+                        }}
+                      >
+                        <Download fontSize="small" />
+                        {plasmid.genbank_file?.split('/').pop() || 'Download'}
+                      </Box>
+                    ) : (
+                      <Typography color="text.secondary" component="span">
+                        No file attached
+                      </Typography>
+                    )
+                  }
+                />
                 <InfoRow
                   label="Parent Plasmid"
                   value={

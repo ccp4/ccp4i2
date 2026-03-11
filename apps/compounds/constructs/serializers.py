@@ -420,8 +420,13 @@ class PlasmidDetailSerializer(serializers.ModelSerializer):
     cassette_uses = CassetteUseDetailSerializer(many=True, read_only=True)
     sequencing_results = SequencingResultSerializer(many=True, read_only=True)
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
-    # Use protected URL for genbank file instead of direct storage URL
-    genbank_file = ProtectedFileField(url_name='plasmid-genbank', model_field='id', url_kwarg='plasmid_id')
+    # genbank_file: original file path (for filename display)
+    genbank_file = serializers.FileField(read_only=True)
+    # genbank_file_url: protected download URL
+    genbank_file_url = ProtectedFileField(
+        url_name='plasmid-genbank', model_field='id', url_kwarg='plasmid_id',
+        source='genbank_file',
+    )
 
     class Meta:
         model = Plasmid
@@ -429,7 +434,7 @@ class PlasmidDetailSerializer(serializers.ModelSerializer):
             'id', 'ncn_id', 'formatted_id', 'name',
             'project', 'project_name',
             'parent', 'parent_formatted_id',
-            'genbank_file',
+            'genbank_file', 'genbank_file_url',
             'cassette_uses', 'sequencing_results',
             'created_at', 'updated_at', 'created_by', 'created_by_email',
         ]
