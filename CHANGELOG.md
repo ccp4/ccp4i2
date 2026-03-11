@@ -1,10 +1,11 @@
 # CCP4i2 Changelog
 
-## [2.6.0] - 2026-03-09
+## [2.6.0] - 2026-03-11
 
 - New AREAIMOL task
 - Remove PDB/mmCIF input for AceDRG
 - AceDRG metal option only visible for CIF input format
+- Reporting input distances and angles in MetalCoord task
 
 ## [2.5.2] - 2026-02-06
 
