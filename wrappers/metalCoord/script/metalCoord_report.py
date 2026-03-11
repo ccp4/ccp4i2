@@ -43,7 +43,8 @@ class metalCoord_report(Report):
             atomAddress = entry.findall(nodePrefix + "chain")[0].text + "/" + \
                 entry.findall(nodePrefix + "residue")[0].text + " " + \
                 entry.findall(nodePrefix + "sequence")[0].text
-            if entry.findall(nodePrefix + "icode")[0].text == ".":
+            icode = entry.findall(nodePrefix + "icode")[0].text
+            if icode == ".":
                 icode = ""
             if icode: atomAddress += "." + icode
             if entry.findall(nodePrefix + "name"):
