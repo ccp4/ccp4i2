@@ -1,3 +1,11 @@
+/**
+ * Task interface lookup and container component.
+ *
+ * Maps task names to their custom React interface components.
+ * Tasks not listed here fall back to GenericInterface.
+ *
+ * See also: lib/task-registry.ts for category/ordering in the task chooser.
+ */
 import { useMemo } from "react";
 import { useCCP4i2Window } from "../../../app-context";
 import { Job } from "../../../types/models";
@@ -123,6 +131,134 @@ export interface CCP4i2TaskInterfaceProps {
   job: Job;
 }
 
+/**
+ * Custom task interface components, keyed by task name.
+ * Tasks not listed here will render with GenericInterface.
+ *
+ * To add a new custom interface:
+ *   1. Create the component file in this directory
+ *   2. Import it above
+ *   3. Add one line to this record: "task_name": TaskNameInterface,
+ */
+const TASK_INTERFACES: Record<
+  string,
+  React.ComponentType<CCP4i2TaskInterfaceProps>
+> = {
+  AcedrgLink: AcedrgLinkInterface,
+  acorn: AcornInterface,
+  add_fractional_coords: AddFractionalCoordsInterface,
+  adding_stats_to_mmcif_i2: AddingStatsToMmcifI2Interface,
+  aimless_pipe: AimlessPipeInterface,
+  AlternativeImportXIA2: AlternativeImportXIA2Interface,
+  AMPLE: AMPLEInterface,
+  arcimboldo: ArcimboldoInterface,
+  arp_warp_classic: ArpWarpClassicInterface,
+  AUSPEX: AuspexInterface,
+  buccaneer_build_refine_mr: BuccaneerBuildRefineMrInterface,
+  buster: BusterInterface,
+  ccp4mg_edit_model: Ccp4mgEditModelInterface,
+  ccp4mg_edit_nomrbump: Ccp4mgEditNomrbumpInterface,
+  ccp4mg_general: Ccp4mgGeneralInterface,
+  chainsaw: ChainsawInterface,
+  chltofom: ChltofomInterface,
+  cif2mtz: Cif2mtzInterface,
+  clustalw: ClustalwInterface,
+  cmapcoeff: CmapcoeffInterface,
+  comit: ComitInterface,
+  coot1: Coot1Interface,
+  coot_rebuild: CootRebuildInterface,
+  coot_rsr_morph: CootRsrMorphInterface,
+  coordinate_selector: CoordinateSelectorInterface,
+  cpatterson: CpattersonInterface,
+  crank2: Crank2Interface,
+  csymmatch: CSymmatchInterface,
+  ctruncate: CtruncateInterface,
+  density_calculator: DensityCalculatorInterface,
+  dials_image: DialsImageInterface,
+  dials_rlattice: DialsRlatticeInterface,
+  dr_mr_modelbuild_pipeline: DrMrModelbuildPipelineInterface,
+  dui: DuiInterface,
+  editbfac: EditbfacInterface,
+  edstats: EdstatsInterface,
+  findmyseq: FindmyseqInterface,
+  freerflag: FreerFlagInterface,
+  gesamt: GesamtInterface,
+  i2Dimple: I2DimpleInterface,
+  imosflm: ImosflmInterface,
+  import_merged: ImportMergedInterface,
+  import_mosflm: ImportMosflmInterface,
+  import_serial: ImportSerialInterface,
+  import_serial_pipe: ImportSerialPipeInterface,
+  import_xia2: ImportXia2Interface,
+  LidiaAcedrgNew: LidiaAcedrgNewInterface,
+  lorestr_i2: LorestrI2Interface,
+  MakeLink: MakeLinkInterface,
+  MakeMonster: MakeMonsterInterface,
+  MakeProjectsAndDoLigandPipeline: MakeProjectsAndDoLigandPipelineInterface,
+  matthews: MatthewsInterface,
+  mergeMtz: MergeMtzInterface,
+  metalCoord: MetalCoordInterface,
+  modelASUCheck: ModelASUCheckInterface,
+  modelcraft: ModelcraftInterface,
+  molrep_den: MolrepDenInterface,
+  molrep_pipe: MolrepPipeInterface,
+  molrep_selfrot: MolrepSelfrot,
+  morda_i2: MordaI2Interface,
+  mosflm: MosflmInterface,
+  mrbump_basic: MrBumpBasicInterface,
+  mrparse: MrparseInterface,
+  mtzutils: MtzutilsInterface,
+  nautilus_build_refine: NautilusBuildRefineInterface,
+  newProject_fromMerged: NewProjectFromMergedInterface,
+  pairef: PairefInterface,
+  parrot: ParrotInterface,
+  pdb_redo_api: PdbRedoApiInterface,
+  pdbset_ui: PdbsetUiInterface,
+  pdbview_edit: PdbviewEditInterface,
+  phaser_ensembler: PhaserEnsemblerInterface,
+  phaser_EP: PhaserEPInterface,
+  phaser_EP_LLG: PhaserEPLLGInterface,
+  phaser_mr: PhaserMrInterface,
+  phaser_phil: PhaserPhilInterface,
+  phaser_pipeline: PhaserPipelineInterface,
+  phaser_rnp_pipeline: PhaserRNPPipeline,
+  phaser_simple: PhaserSimpleInterface,
+  phaser_singleMR: PhaserSingleMRInterface,
+  phasertng_picard: PhasertngPicardInterface,
+  pisapipe: PisapipeInterface,
+  pointless_reindexToMatch: PointlessReindexToMatchInterface,
+  PrepareDeposit: PrepareDepositInterface,
+  privateer: PrivateerInterface,
+  prosmart: ProsmartInterface,
+  prosmart_refmac: ProsmartRefmacInterface,
+  ProvideAlignment: ProvideAlignmentInterface,
+  ProvideAsuContents: ProvideAsuContentsInterface,
+  ProvideSequence: ProvideSequenceInterface,
+  ProvideTLS: ProvideTLSInterface,
+  pyphaser_mr: PyphaserMrInterface,
+  qtpisa: QtpisaInterface,
+  scaleit: ScaleitInterface,
+  sculptor: SculptorInterface,
+  servalcat_pipe: ServalcatPipeInterface,
+  sheetbend: SheetbendInterface,
+  ShelxCD: ShelxCDInterface,
+  shelx: SHELXInterface,
+  shelxeMR: ShelxeMRInterface,
+  SIMBAD: SIMBADInterface,
+  slicendice: SlicendiceInterface,
+  splitMtz: SplitMtzInterface,
+  SubstituteLigand: SubstituteLigandInterface,
+  SubtractNative: SubtractNativeInterface,
+  tableone: TableoneInterface,
+  TestObsConversions: TestObsConversionsInterface,
+  unique: UniqueInterface,
+  validate_protein: ValidateProteinInterface,
+  xia2_dials: Xia2DialsInterface,
+  xia2_multiplex: Xia2MultiplexInterface,
+  xia2_ssx_reduce: Xia2SsxReduceInterface,
+  zanuda: ZanudaInterface,
+};
+
 export interface TaskContainerProps {
   jobId?: number;
 }
@@ -134,239 +270,9 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
   const { job, container } = useJob(jobId);
 
   const taskInterface = useMemo(() => {
-    switch (job?.task_name) {
-      case null:
-        return <LinearProgress />;
-      case "AcedrgLink":
-        return <AcedrgLinkInterface job={job} />;
-      case "acorn":
-        return <AcornInterface job={job} />;
-      case "add_fractional_coords":
-        return <AddFractionalCoordsInterface job={job} />;
-      case "adding_stats_to_mmcif_i2":
-        return <AddingStatsToMmcifI2Interface job={job} />;
-      case "aimless_pipe":
-        return <AimlessPipeInterface job={job} />;
-      case "AlternativeImportXIA2":
-        return <AlternativeImportXIA2Interface job={job} />;
-      case "AMPLE":
-        return <AMPLEInterface job={job} />;
-      case "arcimboldo":
-        return <ArcimboldoInterface job={job} />;
-      case "arp_warp_classic":
-        return <ArpWarpClassicInterface job={job} />;
-      case "AUSPEX":
-        return <AuspexInterface job={job} />;
-      case "buccaneer_build_refine_mr":
-        return <BuccaneerBuildRefineMrInterface job={job} />;
-      case "buster":
-        return <BusterInterface job={job} />;
-      case "ccp4mg_edit_model":
-        return <Ccp4mgEditModelInterface job={job} />;
-      case "ccp4mg_edit_nomrbump":
-        return <Ccp4mgEditNomrbumpInterface job={job} />;
-      case "ccp4mg_general":
-        return <Ccp4mgGeneralInterface job={job} />;
-      case "chainsaw":
-        return <ChainsawInterface job={job} />;
-      case "chltofom":
-        return <ChltofomInterface job={job} />;
-      case "cif2mtz":
-        return <Cif2mtzInterface job={job} />;
-      case "clustalw":
-        return <ClustalwInterface job={job} />;
-      case "cmapcoeff":
-        return <CmapcoeffInterface job={job} />;
-      case "comit":
-        return <ComitInterface job={job} />;
-      case "coot1":
-        return <Coot1Interface job={job} />;
-      case "coot_rebuild":
-        return <CootRebuildInterface job={job} />;
-      case "coot_rsr_morph":
-        return <CootRsrMorphInterface job={job} />;
-      case "coordinate_selector":
-        return <CoordinateSelectorInterface job={job} />;
-      case "cpatterson":
-        return <CpattersonInterface job={job} />;
-      case "crank2":
-        return <Crank2Interface job={job} />;
-      case "csymmatch":
-        return <CSymmatchInterface job={job} />;
-      case "ctruncate":
-        return <CtruncateInterface job={job} />;
-      case "density_calculator":
-        return <DensityCalculatorInterface job={job} />;
-      case "dials_image":
-        return <DialsImageInterface job={job} />;
-      case "dials_rlattice":
-        return <DialsRlatticeInterface job={job} />;
-      case "dr_mr_modelbuild_pipeline":
-        return <DrMrModelbuildPipelineInterface job={job} />;
-      case "dui":
-        return <DuiInterface job={job} />;
-      case "editbfac":
-        return <EditbfacInterface job={job} />;
-      case "edstats":
-        return <EdstatsInterface job={job} />;
-      case "findmyseq":
-        return <FindmyseqInterface job={job} />;
-      case "freerflag":
-        return <FreerFlagInterface job={job} />;
-      case "gesamt":
-        return <GesamtInterface job={job} />;
-      case "i2Dimple":
-        return <I2DimpleInterface job={job} />;
-      case "imosflm":
-        return <ImosflmInterface job={job} />;
-      case "import_merged":
-        return <ImportMergedInterface job={job} />;
-      case "import_mosflm":
-        return <ImportMosflmInterface job={job} />;
-      case "import_serial":
-        return <ImportSerialInterface job={job} />;
-      case "import_serial_pipe":
-        return <ImportSerialPipeInterface job={job} />;
-      case "import_xia2":
-        return <ImportXia2Interface job={job} />;
-      case "LidiaAcedrgNew":
-        return <LidiaAcedrgNewInterface job={job} />;
-      case "lorestr_i2":
-        return <LorestrI2Interface job={job} />;
-      case "MakeLink":
-        return <MakeLinkInterface job={job} />;
-      case "MakeMonster":
-        return <MakeMonsterInterface job={job} />;
-      case "MakeProjectsAndDoLigandPipeline":
-        return <MakeProjectsAndDoLigandPipelineInterface job={job} />;
-      case "matthews":
-        return <MatthewsInterface job={job} />;
-      case "mergeMtz":
-        return <MergeMtzInterface job={job} />;
-      case "metalCoord":
-        return <MetalCoordInterface job={job} />;
-      case "modelASUCheck":
-        return <ModelASUCheckInterface job={job} />;
-      case "modelcraft":
-        return <ModelcraftInterface job={job} />;
-      case "molrep_den":
-        return <MolrepDenInterface job={job} />;
-      case "molrep_pipe":
-        return <MolrepPipeInterface job={job} />;
-      case "molrep_selfrot":
-        return <MolrepSelfrot job={job} />;
-      case "morda_i2":
-        return <MordaI2Interface job={job} />;
-      case "mosflm":
-        return <MosflmInterface job={job} />;
-      case "mrbump_basic":
-        return <MrBumpBasicInterface job={job} />;
-      case "mrparse":
-        return <MrparseInterface job={job} />;
-      case "mtzutils":
-        return <MtzutilsInterface job={job} />;
-      case "nautilus_build_refine":
-        return <NautilusBuildRefineInterface job={job} />;
-      case "newProject_fromMerged":
-        return <NewProjectFromMergedInterface job={job} />;
-      case "pairef":
-        return <PairefInterface job={job} />;
-      case "parrot":
-        return <ParrotInterface job={job} />;
-      case "pdb_redo_api":
-        return <PdbRedoApiInterface job={job} />;
-      case "pdbset_ui":
-        return <PdbsetUiInterface job={job} />;
-      case "pdbview_edit":
-        return <PdbviewEditInterface job={job} />;
-      case "phaser_ensembler":
-        return <PhaserEnsemblerInterface job={job} />;
-      case "phaser_EP":
-        return <PhaserEPInterface job={job} />;
-      case "phaser_EP_LLG":
-        return <PhaserEPLLGInterface job={job} />;
-      case "phaser_mr":
-        return <PhaserMrInterface job={job} />;
-      case "phaser_phil":
-        return <PhaserPhilInterface job={job} />;
-      case "phaser_pipeline":
-        return <PhaserPipelineInterface job={job} />;
-      case "phaser_rnp_pipeline":
-        return <PhaserRNPPipeline job={job} />;
-      case "phaser_simple":
-        return <PhaserSimpleInterface job={job} />;
-      case "phaser_singleMR":
-        return <PhaserSingleMRInterface job={job} />;
-      case "phasertng_picard":
-        return <PhasertngPicardInterface job={job} />;
-      case "pisapipe":
-        return <PisapipeInterface job={job} />;
-      case "pointless_reindexToMatch":
-        return <PointlessReindexToMatchInterface job={job} />;
-      case "PrepareDeposit":
-        return <PrepareDepositInterface job={job} />;
-      case "privateer":
-        return <PrivateerInterface job={job} />;
-      case "prosmart":
-        return <ProsmartInterface job={job} />;
-      case "prosmart_refmac":
-        return <ProsmartRefmacInterface job={job} />;
-      case "ProvideAlignment":
-        return <ProvideAlignmentInterface job={job} />;
-      case "ProvideAsuContents":
-        return <ProvideAsuContentsInterface job={job} />;
-      case "ProvideSequence":
-        return <ProvideSequenceInterface job={job} />;
-      case "ProvideTLS":
-        return <ProvideTLSInterface job={job} />;
-      case "pyphaser_mr":
-        return <PyphaserMrInterface job={job} />;
-      case "qtpisa":
-        return <QtpisaInterface job={job} />;
-      case "scaleit":
-        return <ScaleitInterface job={job} />;
-      case "sculptor":
-        return <SculptorInterface job={job} />;
-      case "servalcat_pipe":
-        return <ServalcatPipeInterface job={job} />;
-      case "sheetbend":
-        return <SheetbendInterface job={job} />;
-      case "ShelxCD":
-        return <ShelxCDInterface job={job} />;
-      case "shelx":
-        return <SHELXInterface job={job} />;
-      case "shelxeMR":
-        return <ShelxeMRInterface job={job} />;
-      case "SIMBAD":
-        return <SIMBADInterface job={job} />;
-      case "slicendice":
-        return <SlicendiceInterface job={job} />;
-      case "splitMtz":
-        return <SplitMtzInterface job={job} />;
-      case "SubstituteLigand":
-        return <SubstituteLigandInterface job={job} />;
-      case "SubtractNative":
-        return <SubtractNativeInterface job={job} />;
-      case "tableone":
-        return <TableoneInterface job={job} />;
-      case "TestObsConversions":
-        return <TestObsConversionsInterface job={job} />;
-      case "unique":
-        return <UniqueInterface job={job} />;
-      case "validate_protein":
-        return <ValidateProteinInterface job={job} />;
-      case "xia2_dials":
-        return <Xia2DialsInterface job={job} />;
-      case "xia2_multiplex":
-        return <Xia2MultiplexInterface job={job} />;
-      case "xia2_ssx_reduce":
-        return <Xia2SsxReduceInterface job={job} />;
-      case "zanuda":
-        return <ZanudaInterface job={job} />;
-
-      default:
-        return job && <GenericInterface job={job} />;
-    }
+    if (!job) return <LinearProgress />;
+    const Component = TASK_INTERFACES[job.task_name] ?? GenericInterface;
+    return <Component job={job} />;
   }, [job, container]);
 
   if (!jobId) return <LinearProgress />;

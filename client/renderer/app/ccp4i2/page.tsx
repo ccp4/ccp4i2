@@ -32,8 +32,8 @@ export default function ProjectsPage() {
         }}
       >
         <Stack spacing={2} sx={{ flex: 1, overflow: "hidden" }}>
-          {task_tree?.task_tree?.tree && (
-            <Badge badgeContent={task_tree.task_tree.tree.length} color="primary">
+          {task_tree?.task_tree?.lookup && (
+            <Badge badgeContent={Object.keys(task_tree.task_tree.lookup).length} color="primary">
               {" "}
               Tasks available
             </Badge>

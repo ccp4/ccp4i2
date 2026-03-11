@@ -18,10 +18,11 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useApi } from "../../api";
 import { MyExpandMore } from "../expand-more";
 import { moduleCategoryIconSrc } from "../../lib/icons";
+import { buildTaskTree, TaskTreeEntry } from "../../lib/task-registry";
 
 interface TaskTree {
   lookup: any;
-  tree: any[];
+  tree: TaskTreeEntry[];
 }
 interface CCP4i2TaskTreeProps {
   onTaskSelect?: (taskName: string) => void;
@@ -45,13 +46,14 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
   const [searchText, setSearchText] = useState<string | null>(null);
   const { data: taskTreeResult } = api.get<any>(`task_tree/`);
 
-  // Handle new API response format: {success: true, data: {task_tree: {...}}}
-  const taskTree = taskTreeResult?.success
-    ? taskTreeResult?.data?.task_tree
-    : taskTreeResult?.task_tree; // Fallback for legacy format
-
-  useEffect(() => {
-    console.log("taskTreeResult", taskTreeResult);
+  // The server provides a flat lookup of task metadata.
+  // Categories and ordering are defined client-side in task-registry.ts.
+  const taskTree = useMemo<TaskTree | undefined>(() => {
+    const raw = taskTreeResult?.success
+      ? taskTreeResult?.data?.task_tree
+      : taskTreeResult?.task_tree;
+    if (!raw?.lookup) return undefined;
+    return { lookup: raw.lookup, tree: buildTaskTree(raw.lookup) };
   }, [taskTreeResult]);
 
   return (
