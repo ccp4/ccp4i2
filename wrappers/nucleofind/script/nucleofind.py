@@ -19,11 +19,11 @@ class nucleofind(CPluginScript):
         self.appendCommandLine(["--output", "."])
         self.appendCommandLine(["--model", "core"])
         self.appendCommandLine(["--nthreads", par.THREADS])
-        if par.GPU.isSet():
+        if par.GPU:
             self.appendCommandLine("--gpu")
         self.appendCommandLine(["--overlap", par.OVERLAP])
-        if par.FULL_CELL.isSet():
-            self.appendCommandLine("--use-symmetry")
+        if par.FULL_CELL:
+            self.appendCommandLine("--use-unit-cell")
         if par.RESOLUTION.isSet():
             self.appendCommandLine(["--resolution", par.RESOLUTION])
         if par.OUTPUT_TYPE == "RAW":
