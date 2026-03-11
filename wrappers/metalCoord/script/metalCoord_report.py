@@ -43,7 +43,8 @@ class metalCoord_report(Report):
             atomAddress = entry.findall(nodePrefix + "chain")[0].text + "/" + \
                 entry.findall(nodePrefix + "residue")[0].text + " " + \
                 entry.findall(nodePrefix + "sequence")[0].text
-            if entry.findall(nodePrefix + "icode")[0].text == ".":
+            icode = entry.findall(nodePrefix + "icode")[0].text
+            if icode == ".":
                 icode = ""
             if icode: atomAddress += "." + icode
             if entry.findall(nodePrefix + "name"):
@@ -108,6 +109,7 @@ class metalCoord_report(Report):
                     table.addData(title="Symmetry?", select='base/ligandAtomSymmetry')
                     table.addData(title="Distance (&Aring;)", select='base/distance')
                     table.addData(title="St. dev. (&Aring;)", select='base/std')
+                    table.addData(title="Distance in input model (&Aring;)", select='base/distance_model')
 
                 for entry in symmClass.findall(".//pdb"):
                     n_options = len(entry.findall("std"))
@@ -127,6 +129,7 @@ class metalCoord_report(Report):
                     table.addData(title="Symmetry?", select='pdb/ligandAtomSymmetry')
                     table.addData(title="Distance (&Aring;)", select='pdb/distance')
                     table.addData(title="St. dev. (&Aring;)", select='pdb/std')
+                    table.addData(title="Distance in input model (&Aring;)", select='pdb/distance_model')
 
                 headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
                 headerDiv.append("Ideal angles")
@@ -156,5 +159,6 @@ class metalCoord_report(Report):
                     table.addData(title="Symmetry?", select='angles/ligand2AtomSymmetry')
                     table.addData(title="Angle (&deg;)", select='angles/angle')
                     table.addData(title="St. dev. (&deg;)", select='angles/std')
+                    table.addData(title="Angle in input model (&deg;)", select='angles/angle_model')
 
         self.addDiv(style="clear:both;")
