@@ -34,10 +34,13 @@ class nucleofind(CPluginScript):
 
     def processOutputFiles(self):
         out = self.container.outputData
+        par = self.container.controlParameters
         directory = Path(self.getWorkDirectory())
-        os.rename(directory / "nucleofind-phosphate.map", str(out.PHOSPHATE))
-        os.rename(directory / "nucleofind-sugar.map", str(out.SUGAR))
-        os.rename(directory / "nucleofind-base.map", str(out.BASE))
+        ext_map = {"RAW": ".raw.map", "VARIANCE": ".variance.map"}
+        ext = ext_map.get(par.OUTPUT_TYPE, ".map")
+        os.rename(directory / f"nucleofind-phosphate{ext}", str(out.PHOSPHATE))
+        os.rename(directory / f"nucleofind-sugar{ext}", str(out.SUGAR))
+        os.rename(directory / f"nucleofind-base{ext}", str(out.BASE))
         out.PHOSPHATE.annotation.set("NucleoFind Predicted Phosphate Map")
         out.SUGAR.annotation.set("NucleoFind Predicted Sugar Map")
         out.BASE.annotation.set("NucleoFind Predicted Base Map")
