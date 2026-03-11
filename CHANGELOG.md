@@ -2,7 +2,8 @@
 
 ## [2.6.0] - 2026-03-11
 
-- New AREAIMOL task
+- New NucleoFind task for predicting locations of nucleic acid features in maps
+- New AREAIMOL task for calculating solvent accessible surface area
 - Remove PDB/mmCIF input for AceDRG
 - AceDRG metal option only visible for CIF input format
 - Reporting input distances and angles in MetalCoord task
