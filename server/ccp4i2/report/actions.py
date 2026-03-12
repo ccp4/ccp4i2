@@ -95,7 +95,7 @@ class Download:
     counter = 0
 
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
-        Launch.counter += 1
+        Download.counter += 1
         self.id = kw.get('id', None)
         self.jobId = jobInfo.get('jobid', None)
         self.dataName = None
@@ -113,7 +113,7 @@ class LaunchTask:
     counter = 0
 
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
-        Launch.counter += 1
+        LaunchTask.counter += 1
         self.id = kw.get('id', None)
         self.jobId = jobInfo.get('jobid', None)
         if xrtnode is not None:

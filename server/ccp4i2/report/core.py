@@ -10,7 +10,7 @@ import logging
 import os
 import xml.etree.ElementTree as etree
 
-from ccp4i2.core.CCP4ErrorHandling import SEVERITY_OK, SEVERITY_WARNING, CErrorReport, CException
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2 import I2_TOP
 
 # Import error handling (lazy to avoid circular imports)
@@ -286,8 +286,7 @@ class Container(ReportClass):
         1: {
             'severity': SEVERITY_WARNING, 'description': 'Failed to interpret xrt node tag'}, 2: {
             'description': 'Can not create IfContainer instance without xrtnode argument (it should not be used in Python mode)'}, 3: {
-                'description': 'Can not create Loop instance without xrtnode argument (it should not be used in Python mode)'}, 4: {
-                    'description': 'Unable to create RTF file - unable to import PyQt4'}}
+                'description': 'Can not create Loop instance without xrtnode argument (it should not be used in Python mode)'}}
 
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
         super(
@@ -627,18 +626,6 @@ class Container(ReportClass):
         ele = etree.fromstring(text)
         return ele
 
-    def scriptErrorReport(self):
-        from ccp4i2.core import CCP4ErrorHandling, CCP4File
-        if self._scriptErrorReport is None:
-            self._scriptErrorReport = CCP4ErrorHandling.CErrorReport()
-            root = self.jobInfo.get('fileroot', None)
-            print('scriptErrorReport root', root)
-            if root is not None:
-                filePath = os.path.join(root, 'diagnostic.xml')
-                if os.path.exists(filePath):
-                    i2xml = CCP4File.CI2XmlDataFile(filePath)
-                    self._scriptErrorReport.setEtree(i2xml.getBodyEtree())
-        return self._scriptErrorReport
 
 
 # If class - container for conditional content
@@ -737,8 +724,7 @@ class Report(Container):
     USEPROGRAMXML = True
     SEPARATEDATA = False
     elementCount = 1
-    ERROR_CODES = {0: {'severity': SEVERITY_OK, 'description': 'OK'},
-                   101: {'description': 'Import xrt file does not exist'},
+    ERROR_CODES = {101: {'description': 'Import xrt file does not exist'},
                    102: {'description': 'Failed to read import xrt file'},
                    103: {'description': 'Failed to find insert xrt element in program file'},
                    104: {'description': 'Failed to find insert element in imported xrt file'},
@@ -838,21 +824,6 @@ class Report(Container):
                 insertEle.getparent().remove(insertEle)
         return xrtnode
 
-    def containsPictures(self):
-        if self.pictureQueue is None:
-            self.pictureQueue = self.getPictures()
-        if len(self.pictureQueue) == 0:
-            return False
-        else:
-            return True
-
-    def makeMgPicture(self):
-        if self._makeMgPicture is None:
-            import CCP4MakeMgPicture
-            self._makeMgPicture = CCP4MakeMgPicture.CMakeMgPicture(
-                jobInfo=self.jobInfo)
-        return self._makeMgPicture
-
     def standardisePythonReport(self):
         from ccp4i2.report.metadata import Title, JobDetails, JobLogFiles, ReferenceGroup, Reference
         from ccp4i2.report.io_data import InputData, OutputData
@@ -940,15 +911,15 @@ class Report(Container):
                                 textNode = wN.findall("text")[0]
                                 typeNode = wN.findall("type")[0]
                                 if typeNode.text == "ERROR":
-                                    clearDiv = logFileDiv.addDiv(
+                                    logFileDiv.addDiv(
                                         style="color:red;")
                                     logFileDiv.append(
                                         "<pre>" + textNode.text + "</pre>")
                                 elif typeNode.text == "WARNING":
-                                    clearDiv = logFileDiv.addDiv()
+                                    logFileDiv.addDiv()
                                     logFileDiv.append(
                                         "<pre>" + textNode.text + "</pre>")
                                 elif typeNode.text == "ATTENTION":
-                                    clearDiv = logFileDiv.addDiv()
+                                    logFileDiv.addDiv()
                                     logFileDiv.append(
                                         "<pre>" + textNode.text + "</pre>")

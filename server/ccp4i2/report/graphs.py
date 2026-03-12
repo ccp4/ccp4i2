@@ -21,19 +21,13 @@ class PictureGroup(Container):
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
         super(
             PictureGroup,
-            self).__int__(
+            self).__init__(
             xrtnode=xrtnode,
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
         self.help = None
         self.launch = None
-        Container.__init__(
-            self,
-            xrtnode=xrtnode,
-            xmlnode=xmlnode,
-            jobInfo=jobInfo,
-            **kw)
 
 
 class GraphGroup(Container):
@@ -81,9 +75,8 @@ class FlotGraphGroup(Container):
         self.launch = None
         self.launchOnly = False
 
-        self.launch = None
-        ele = etree.Element('launch')
         if kw.get('launcher', None) is not None:
+            ele = etree.Element('launch')
             from ccp4i2.report.actions import Launch
             self.launchOnly = True
             ele.set('label', kw['launcher'])
@@ -219,7 +212,7 @@ class Graph(ReportClass):
         1: {
             'description': 'Plot definition text unreadable. Maybe invalid XML?'}, 2: {
             'description': 'Plot definition file unreadable. Maybe invalid XML?'}, 3: {
-                'description': 'Unable to create RTF file - unable to import PyQt4 '}}
+                'description': 'Unable to create RTF file'}}
 
     def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
         super(
@@ -331,7 +324,7 @@ class Graph(ReportClass):
         if xmlnode is None:
             xmlnode = self.xmlnode
         if select is not None:
-            xmlnode = xmlnode.findall0(select)
+            xmlnode = xmlnode.findall(select)
         self.pimpleData = etree.Element('pimple_data')
         if usePlotly:
             self.pimpleData.set('usePlotly', 'True')
@@ -405,9 +398,6 @@ class Graph(ReportClass):
                 except BaseException:
                     raise CException(self.__class__, 1, str(kw['plotFile']))
             if kw.get('plot', None) is not None:
-                print(kw['plot'])
-
-
                 if hasattr(kw['plot'], "decode"):
                     text = re.sub('<xrt:', '<', kw['plot'].decode())
                 else:
@@ -496,9 +486,6 @@ class Graph(ReportClass):
 
         return ccp4_data
 
-
-
-# Graph class
 
 
 class FlotGraph(Graph):

@@ -78,10 +78,6 @@ class Text(ReportClass):
             for node in nodes:
                 self.text += node.text
 
-    def as_data_etree(self):
-        root = super().as_data_etree()
-        return root
-
 
 
 class Pre(Text):
@@ -140,7 +136,6 @@ class Generic(ReportClass):
                             '<' + defaultTag + '>' + text + '</' + defaultTag + '>')
                 except BaseException:
                     raise
-                    raise CException(self.__class__, 1, str(text))
 
         if xrtnode is not None:
             try:
@@ -193,7 +188,6 @@ class BaseTable(ReportClass):
             if xmlnode is not None:
                 if kw.get('select', None) is not None:
                     self.xmldata = []
-                    tableEleList = []
                     for p in kw['select'].split("|"):
                         self.xmldata.extend(xmlnode.findall(p.strip()))
                 elif kw.get('selectNodes', None) is not None:

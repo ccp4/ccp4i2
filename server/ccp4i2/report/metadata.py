@@ -5,7 +5,6 @@ Title, JobDetails, JobLogFiles, Reference, ReferenceGroup, GenericReport.
 """
 
 import re
-import xml.etree.ElementTree as etree
 
 from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2 import I2_TOP
