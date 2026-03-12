@@ -1,0 +1,5691 @@
+<MakeLink><acedrg_link><LogText>=====================================================================
+|                     Main reference                                |
+| "AceDRG: a stereochemical description generator for ligands"      |
+| Fei Long, Robert A. Nicholls, Paul Emsley, Saulius Grazulis,      |
+| Andrius Merkys, Antanas Vaitkusb and Garib N. Murshudov,(2017)    |
+| Acta Crystallogr. D73, 112-122                                    |
+=====================================================================
+=====================================================================
+| ACEDRG version:     249                                           |
+| ACEDRG database:  12                                              |
+| RDKit version:  2019.09.1                                         |
+| refmac5:         5.8.0352                                         |
+=====================================================================
+=====================================================================
+| Your job is to generate full descriptions for two monomers, their |
+| modifications, and a link between them.                           |
+=====================================================================
+workMode :  61
+Instructions for build a link are  
+Link will happen between 
+Atom : NZ in Residue LYS 
+ and 
+Atom : C4A in Residue PLP 
+The suggested bonds linking two residues are: 
+Bond between atom NZ in residue 1 and atom C4A in residue 2 
+Bond order is DOUBLE 
+Two input cif files are : 
+/Applications/ccp4-8.0/lib/data/monomers/l/LYS.cif for comp 1 and 
+/Applications/ccp4-8.0/lib/data/monomers/p/PLP.cif for comp 2
+The following atoms are deleted.
+In residue PLPm1: 
+Atom O4A 
+Number of links to be processed  1
+/Applications/ccp4-8.0/lib/data/monomers/l/LYS.cif
+Block  data_comp_list
+It contains  1  loops 
+Number of keys in the loop is  7
+Number of values in the loop is  7
+For list entry  LYS, it has the following properties 
+id : LYS 
+three_letter_code : LYS 
+name : LYSINE 
+group : peptide 
+number_atoms_all : 25 
+number_atoms_nh : 10 
+desc_level : . 
+Block  data_comp_LYS
+It contains  9  loops 
+['_chem_comp_atom.comp_id']
+['_chem_comp_atom.atom_id']
+['_chem_comp_atom.type_symbol']
+['_chem_comp_atom.type_energy']
+['_chem_comp_atom.charge']
+['_chem_comp_atom.x']
+['_chem_comp_atom.y']
+['_chem_comp_atom.z']
+['LYS', 'N', 'N', 'NT3', '1', '38.134', '40.603', '-3.577']
+['LYS', 'CA', 'C', 'CH1', '0', '39.079', '39.656', '-4.250']
+['LYS', 'C', 'C', 'C', '0', '38.446', '39.121', '-5.542']
+['LYS', 'O', 'O', 'O', '0', '37.236', '39.206', '-5.758']
+['LYS', 'CB', 'C', 'CH2', '0', '39.474', '38.516', '-3.303']
+['LYS', 'CG', 'C', 'CH2', '0', '38.326', '37.709', '-2.705']
+['LYS', 'CD', 'C', 'CH2', '0', '38.793', '36.584', '-1.805']
+['LYS', 'CE', 'C', 'CH2', '0', '37.658', '35.737', '-1.267']
+['LYS', 'NZ', 'N', 'NT3', '1', '36.721', '36.512', '-0.417']
+['LYS', 'OXT', 'O', 'OC', '-1', '39.143', '38.584', '-6.404']
+['LYS', 'H', 'H', 'H', '0', '38.459', '40.795', '-2.640']
+['LYS', 'H2', 'H', 'H', '0', '37.251', '40.226', '-3.535']
+['LYS', 'H3', 'H', 'H', '0', '38.102', '41.424', '-4.074']
+['LYS', 'HA', 'H', 'H', '0', '39.892', '40.158', '-4.490']
+['LYS', 'HB3', 'H', 'H', '0', '39.997', '38.898', '-2.567']
+['LYS', 'HB2', 'H', 'H', '0', '40.059', '37.901', '-3.792']
+['LYS', 'HG3', 'H', 'H', '0', '37.789', '37.330', '-3.432']
+['LYS', 'HG2', 'H', 'H', '0', '37.751', '38.313', '-2.189']
+['LYS', 'HD3', 'H', 'H', '0', '39.290', '36.966', '-1.049']
+['LYS', 'HD2', 'H', 'H', '0', '39.407', '36.008', '-2.307']
+['LYS', 'HE3', 'H', 'H', '0', '38.025', '35.001', '-0.740']
+['LYS', 'HE2', 'H', 'H', '0', '37.160', '35.351', '-2.012']
+['LYS', 'HZ1', 'H', 'H', '0', '37.148', '37.219', '-0.039']
+['LYS', 'HZ2', 'H', 'H', '0', '36.394', '35.982', '0.242']
+['LYS', 'HZ3', 'H', 'H', '0', '36.030', '36.817', '-0.920']
+Number of keys in the loop is  8
+Number of values in the loop is  200
+atoms
+['comp_id', 'atom_id', 'type_symbol', 'type_energy', 'charge', 'x', 'y', 'z']
+-----------------
+comp_id   :   LYS 
+atom_id   :   N 
+type_symbol   :   N 
+type_energy   :   NT3 
+charge   :   1 
+x   :   38.134 
+y   :   40.603 
+z   :   -3.577 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CA 
+type_symbol   :   C 
+type_energy   :   CH1 
+charge   :   0 
+x   :   39.079 
+y   :   39.656 
+z   :   -4.250 
+-----------------
+comp_id   :   LYS 
+atom_id   :   C 
+type_symbol   :   C 
+type_energy   :   C 
+charge   :   0 
+x   :   38.446 
+y   :   39.121 
+z   :   -5.542 
+-----------------
+comp_id   :   LYS 
+atom_id   :   O 
+type_symbol   :   O 
+type_energy   :   O 
+charge   :   0 
+x   :   37.236 
+y   :   39.206 
+z   :   -5.758 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CB 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   39.474 
+y   :   38.516 
+z   :   -3.303 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CG 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   38.326 
+y   :   37.709 
+z   :   -2.705 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CD 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   38.793 
+y   :   36.584 
+z   :   -1.805 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CE 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   37.658 
+y   :   35.737 
+z   :   -1.267 
+-----------------
+comp_id   :   LYS 
+atom_id   :   NZ 
+type_symbol   :   N 
+type_energy   :   NT3 
+charge   :   1 
+x   :   36.721 
+y   :   36.512 
+z   :   -0.417 
+-----------------
+comp_id   :   LYS 
+atom_id   :   OXT 
+type_symbol   :   O 
+type_energy   :   OC 
+charge   :   -1 
+x   :   39.143 
+y   :   38.584 
+z   :   -6.404 
+-----------------
+comp_id   :   LYS 
+atom_id   :   H 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   38.459 
+y   :   40.795 
+z   :   -2.640 
+-----------------
+comp_id   :   LYS 
+atom_id   :   H2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   37.251 
+y   :   40.226 
+z   :   -3.535 
+-----------------
+comp_id   :   LYS 
+atom_id   :   H3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   38.102 
+y   :   41.424 
+z   :   -4.074 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HA 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   39.892 
+y   :   40.158 
+z   :   -4.490 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HB3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   39.997 
+y   :   38.898 
+z   :   -2.567 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HB2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   40.059 
+y   :   37.901 
+z   :   -3.792 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HG3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   37.789 
+y   :   37.330 
+z   :   -3.432 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HG2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   37.751 
+y   :   38.313 
+z   :   -2.189 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HD3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   39.290 
+y   :   36.966 
+z   :   -1.049 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HD2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   39.407 
+y   :   36.008 
+z   :   -2.307 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HE3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   38.025 
+y   :   35.001 
+z   :   -0.740 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HE2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   37.160 
+y   :   35.351 
+z   :   -2.012 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HZ1 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   37.148 
+y   :   37.219 
+z   :   -0.039 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HZ2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   36.394 
+y   :   35.982 
+z   :   0.242 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HZ3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   36.030 
+y   :   36.817 
+z   :   -0.920 
+Number of atoms is 25 
+['_chem_comp_tree.comp_id']
+['_chem_comp_tree.atom_id']
+['_chem_comp_tree.atom_back']
+['_chem_comp_tree.atom_forward']
+['_chem_comp_tree.connect_type']
+['LYS', 'N', 'n/a', 'CA', 'START']
+['LYS', 'H', 'N', '.', '.']
+['LYS', 'H2', 'N', '.', '.']
+['LYS', 'H3', 'N', '.', '.']
+['LYS', 'CA', 'N', 'C', '.']
+['LYS', 'HA', 'CA', '.', '.']
+['LYS', 'CB', 'CA', 'CG', '.']
+['LYS', 'HB3', 'CB', '.', '.']
+['LYS', 'HB2', 'CB', '.', '.']
+['LYS', 'CG', 'CB', 'CD', '.']
+['LYS', 'HG3', 'CG', '.', '.']
+['LYS', 'HG2', 'CG', '.', '.']
+['LYS', 'CD', 'CG', 'CE', '.']
+['LYS', 'HD3', 'CD', '.', '.']
+['LYS', 'HD2', 'CD', '.', '.']
+['LYS', 'CE', 'CD', 'NZ', '.']
+['LYS', 'HE3', 'CE', '.', '.']
+['LYS', 'HE2', 'CE', '.', '.']
+['LYS', 'NZ', 'CE', 'HZ3', '.']
+['LYS', 'HZ1', 'NZ', '.', '.']
+['LYS', 'HZ2', 'NZ', '.', '.']
+['LYS', 'HZ3', 'NZ', '.', '.']
+['LYS', 'C', 'CA', '.', 'END']
+['LYS', 'O', 'C', '.', '.']
+['LYS', 'OXT', 'C', '.', '.']
+Number of keys in the loop is  5
+Number of values in the loop is  125
+trees
+['comp_id', 'atom_id', 'atom_back', 'atom_forward', 'connect_type']
+-----------------
+comp_id   :   LYS 
+atom_id   :   N 
+atom_back   :   n/a 
+atom_forward   :   CA 
+connect_type   :   START 
+-----------------
+comp_id   :   LYS 
+atom_id   :   H 
+atom_back   :   N 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   H2 
+atom_back   :   N 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   H3 
+atom_back   :   N 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CA 
+atom_back   :   N 
+atom_forward   :   C 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HA 
+atom_back   :   CA 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CB 
+atom_back   :   CA 
+atom_forward   :   CG 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HB3 
+atom_back   :   CB 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HB2 
+atom_back   :   CB 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CG 
+atom_back   :   CB 
+atom_forward   :   CD 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HG3 
+atom_back   :   CG 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HG2 
+atom_back   :   CG 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CD 
+atom_back   :   CG 
+atom_forward   :   CE 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HD3 
+atom_back   :   CD 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HD2 
+atom_back   :   CD 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   CE 
+atom_back   :   CD 
+atom_forward   :   NZ 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HE3 
+atom_back   :   CE 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HE2 
+atom_back   :   CE 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   NZ 
+atom_back   :   CE 
+atom_forward   :   HZ3 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HZ1 
+atom_back   :   NZ 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HZ2 
+atom_back   :   NZ 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   HZ3 
+atom_back   :   NZ 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   C 
+atom_back   :   CA 
+atom_forward   :   . 
+connect_type   :   END 
+-----------------
+comp_id   :   LYS 
+atom_id   :   O 
+atom_back   :   C 
+atom_forward   :   . 
+connect_type   :   . 
+-----------------
+comp_id   :   LYS 
+atom_id   :   OXT 
+atom_back   :   C 
+atom_forward   :   . 
+connect_type   :   . 
+Number of trees is 25 
+['_chem_comp_bond.comp_id']
+['_chem_comp_bond.atom_id_1']
+['_chem_comp_bond.atom_id_2']
+['_chem_comp_bond.type']
+['_chem_comp_bond.aromatic']
+['_chem_comp_bond.value_dist_nucleus']
+['_chem_comp_bond.value_dist_nucleus_esd']
+['_chem_comp_bond.value_dist']
+['_chem_comp_bond.value_dist_esd']
+['LYS', 'N', 'CA', 'SINGLE', 'n', '1.488', '0.0100', '1.488', '0.0100']
+['LYS', 'CA', 'C', 'SINGLE', 'n', '1.533', '0.0100', '1.533', '0.0100']
+['LYS', 'CA', 'CB', 'SINGLE', 'n', '1.532', '0.0100', '1.532', '0.0100']
+['LYS', 'C', 'O', 'DOUBLE', 'n', '1.247', '0.0187', '1.247', '0.0187']
+['LYS', 'C', 'OXT', 'SINGLE', 'n', '1.247', '0.0187', '1.247', '0.0187']
+['LYS', 'CB', 'CG', 'SINGLE', 'n', '1.523', '0.0114', '1.523', '0.0114']
+['LYS', 'CG', 'CD', 'SINGLE', 'n', '1.514', '0.0200', '1.514', '0.0200']
+['LYS', 'CD', 'CE', 'SINGLE', 'n', '1.514', '0.0111', '1.514', '0.0111']
+['LYS', 'CE', 'NZ', 'SINGLE', 'n', '1.482', '0.0123', '1.482', '0.0123']
+['LYS', 'N', 'H', 'SINGLE', 'n', '1.036', '0.0160', '0.911', '0.0200']
+['LYS', 'N', 'H2', 'SINGLE', 'n', '1.036', '0.0160', '0.911', '0.0200']
+['LYS', 'N', 'H3', 'SINGLE', 'n', '1.036', '0.0160', '0.911', '0.0200']
+['LYS', 'CA', 'HA', 'SINGLE', 'n', '1.089', '0.0100', '0.985', '0.0200']
+['LYS', 'CB', 'HB3', 'SINGLE', 'n', '1.089', '0.0100', '0.980', '0.0160']
+['LYS', 'CB', 'HB2', 'SINGLE', 'n', '1.089', '0.0100', '0.980', '0.0160']
+['LYS', 'CG', 'HG3', 'SINGLE', 'n', '1.089', '0.0100', '0.981', '0.0163']
+['LYS', 'CG', 'HG2', 'SINGLE', 'n', '1.089', '0.0100', '0.981', '0.0163']
+['LYS', 'CD', 'HD3', 'SINGLE', 'n', '1.089', '0.0100', '0.981', '0.0160']
+['LYS', 'CD', 'HD2', 'SINGLE', 'n', '1.089', '0.0100', '0.981', '0.0160']
+['LYS', 'CE', 'HE3', 'SINGLE', 'n', '1.089', '0.0100', '0.976', '0.0165']
+['LYS', 'CE', 'HE2', 'SINGLE', 'n', '1.089', '0.0100', '0.976', '0.0165']
+['LYS', 'NZ', 'HZ1', 'SINGLE', 'n', '1.036', '0.0160', '0.907', '0.0200']
+['LYS', 'NZ', 'HZ2', 'SINGLE', 'n', '1.036', '0.0160', '0.907', '0.0200']
+['LYS', 'NZ', 'HZ3', 'SINGLE', 'n', '1.036', '0.0160', '0.907', '0.0200']
+Number of keys in the loop is  9
+Number of values in the loop is  216
+bonds
+['comp_id', 'atom_id_1', 'atom_id_2', 'type', 'aromatic', 'value_dist_nucleus', 'value_dist_nucleus_esd', 'value_dist', 'value_dist_esd']
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   N 
+atom_id_2   :   CA 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.488 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.488 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   C 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.533 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.533 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   CB 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.532 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.532 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   C 
+atom_id_2   :   O 
+type   :   DOUBLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.247 
+value_dist_nucleus_esd   :   0.0187 
+value_dist   :   1.247 
+value_dist_esd   :   0.0187 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   C 
+atom_id_2   :   OXT 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.247 
+value_dist_nucleus_esd   :   0.0187 
+value_dist   :   1.247 
+value_dist_esd   :   0.0187 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CB 
+atom_id_2   :   CG 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.523 
+value_dist_nucleus_esd   :   0.0114 
+value_dist   :   1.523 
+value_dist_esd   :   0.0114 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   CD 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.514 
+value_dist_nucleus_esd   :   0.0200 
+value_dist   :   1.514 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   CE 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.514 
+value_dist_nucleus_esd   :   0.0111 
+value_dist   :   1.514 
+value_dist_esd   :   0.0111 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   NZ 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.482 
+value_dist_nucleus_esd   :   0.0123 
+value_dist   :   1.482 
+value_dist_esd   :   0.0123 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   N 
+atom_id_2   :   H 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.911 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   N 
+atom_id_2   :   H2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.911 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   N 
+atom_id_2   :   H3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.911 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   HA 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.985 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CB 
+atom_id_2   :   HB3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.980 
+value_dist_esd   :   0.0160 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CB 
+atom_id_2   :   HB2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.980 
+value_dist_esd   :   0.0160 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   HG3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.981 
+value_dist_esd   :   0.0163 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   HG2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.981 
+value_dist_esd   :   0.0163 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   HD3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.981 
+value_dist_esd   :   0.0160 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   HD2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.981 
+value_dist_esd   :   0.0160 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   HE3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.976 
+value_dist_esd   :   0.0165 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   HE2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.976 
+value_dist_esd   :   0.0165 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   NZ 
+atom_id_2   :   HZ1 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.907 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   NZ 
+atom_id_2   :   HZ2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.907 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   NZ 
+atom_id_2   :   HZ3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.907 
+value_dist_esd   :   0.0200 
+Number of bonds is 24 
+['_chem_comp_angle.comp_id']
+['_chem_comp_angle.atom_id_1']
+['_chem_comp_angle.atom_id_2']
+['_chem_comp_angle.atom_id_3']
+['_chem_comp_angle.value_angle']
+['_chem_comp_angle.value_angle_esd']
+['LYS', 'CA', 'N', 'H', '110.062', '1.93']
+['LYS', 'CA', 'N', 'H2', '110.062', '1.93']
+['LYS', 'CA', 'N', 'H3', '110.062', '1.93']
+['LYS', 'H', 'N', 'H2', '109.028', '2.41']
+['LYS', 'H', 'N', 'H3', '109.028', '2.41']
+['LYS', 'H2', 'N', 'H3', '109.028', '2.41']
+['LYS', 'N', 'CA', 'C', '109.241', '1.50']
+['LYS', 'N', 'CA', 'CB', '110.374', '1.62']
+['LYS', 'N', 'CA', 'HA', '108.487', '1.50']
+['LYS', 'C', 'CA', 'CB', '111.037', '2.40']
+['LYS', 'C', 'CA', 'HA', '108.824', '1.50']
+['LYS', 'CB', 'CA', 'HA', '108.967', '1.50']
+['LYS', 'CA', 'C', 'O', '117.124', '1.50']
+['LYS', 'CA', 'C', 'OXT', '117.124', '1.50']
+['LYS', 'O', 'C', 'OXT', '125.752', '1.50']
+['LYS', 'CA', 'CB', 'CG', '115.311', '1.56']
+['LYS', 'CA', 'CB', 'HB3', '108.549', '1.50']
+['LYS', 'CA', 'CB', 'HB2', '108.549', '1.50']
+['LYS', 'CG', 'CB', 'HB3', '108.650', '1.50']
+['LYS', 'CG', 'CB', 'HB2', '108.650', '1.50']
+['LYS', 'HB3', 'CB', 'HB2', '107.844', '1.50']
+['LYS', 'CB', 'CG', 'CD', '113.328', '2.00']
+['LYS', 'CB', 'CG', 'HG3', '108.601', '1.50']
+['LYS', 'CB', 'CG', 'HG2', '108.601', '1.50']
+['LYS', 'CD', 'CG', 'HG3', '108.806', '1.50']
+['LYS', 'CD', 'CG', 'HG2', '108.806', '1.50']
+['LYS', 'HG3', 'CG', 'HG2', '107.646', '1.50']
+['LYS', 'CG', 'CD', 'CE', '113.073', '1.98']
+['LYS', 'CG', 'CD', 'HD3', '109.041', '1.50']
+['LYS', 'CG', 'CD', 'HD2', '109.041', '1.50']
+['LYS', 'CE', 'CD', 'HD3', '108.889', '1.50']
+['LYS', 'CE', 'CD', 'HD2', '108.889', '1.50']
+['LYS', 'HD3', 'CD', 'HD2', '107.927', '1.57']
+['LYS', 'CD', 'CE', 'NZ', '111.734', '1.84']
+['LYS', 'CD', 'CE', 'HE3', '109.576', '1.50']
+['LYS', 'CD', 'CE', 'HE2', '109.576', '1.50']
+['LYS', 'NZ', 'CE', 'HE3', '108.989', '1.50']
+['LYS', 'NZ', 'CE', 'HE2', '108.989', '1.50']
+['LYS', 'HE3', 'CE', 'HE2', '108.067', '1.50']
+['LYS', 'CE', 'NZ', 'HZ1', '109.775', '1.81']
+['LYS', 'CE', 'NZ', 'HZ2', '109.775', '1.81']
+['LYS', 'CE', 'NZ', 'HZ3', '109.775', '1.81']
+['LYS', 'HZ1', 'NZ', 'HZ2', '109.021', '2.83']
+['LYS', 'HZ1', 'NZ', 'HZ3', '109.021', '2.83']
+['LYS', 'HZ2', 'NZ', 'HZ3', '109.021', '2.83']
+Number of keys in the loop is  6
+Number of values in the loop is  270
+angles
+['comp_id', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'value_angle', 'value_angle_esd']
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   N 
+atom_id_3   :   H 
+value_angle   :   110.062 
+value_angle_esd   :   1.93 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   N 
+atom_id_3   :   H2 
+value_angle   :   110.062 
+value_angle_esd   :   1.93 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   N 
+atom_id_3   :   H3 
+value_angle   :   110.062 
+value_angle_esd   :   1.93 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   H 
+atom_id_2   :   N 
+atom_id_3   :   H2 
+value_angle   :   109.028 
+value_angle_esd   :   2.41 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   H 
+atom_id_2   :   N 
+atom_id_3   :   H3 
+value_angle   :   109.028 
+value_angle_esd   :   2.41 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   H2 
+atom_id_2   :   N 
+atom_id_3   :   H3 
+value_angle   :   109.028 
+value_angle_esd   :   2.41 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   N 
+atom_id_2   :   CA 
+atom_id_3   :   C 
+value_angle   :   109.241 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   N 
+atom_id_2   :   CA 
+atom_id_3   :   CB 
+value_angle   :   110.374 
+value_angle_esd   :   1.62 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   N 
+atom_id_2   :   CA 
+atom_id_3   :   HA 
+value_angle   :   108.487 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   C 
+atom_id_2   :   CA 
+atom_id_3   :   CB 
+value_angle   :   111.037 
+value_angle_esd   :   2.40 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   C 
+atom_id_2   :   CA 
+atom_id_3   :   HA 
+value_angle   :   108.824 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CB 
+atom_id_2   :   CA 
+atom_id_3   :   HA 
+value_angle   :   108.967 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   C 
+atom_id_3   :   O 
+value_angle   :   117.124 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   C 
+atom_id_3   :   OXT 
+value_angle   :   117.124 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   O 
+atom_id_2   :   C 
+atom_id_3   :   OXT 
+value_angle   :   125.752 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   CB 
+atom_id_3   :   CG 
+value_angle   :   115.311 
+value_angle_esd   :   1.56 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   CB 
+atom_id_3   :   HB3 
+value_angle   :   108.549 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CA 
+atom_id_2   :   CB 
+atom_id_3   :   HB2 
+value_angle   :   108.549 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   CB 
+atom_id_3   :   HB3 
+value_angle   :   108.650 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   CB 
+atom_id_3   :   HB2 
+value_angle   :   108.650 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   HB3 
+atom_id_2   :   CB 
+atom_id_3   :   HB2 
+value_angle   :   107.844 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CB 
+atom_id_2   :   CG 
+atom_id_3   :   CD 
+value_angle   :   113.328 
+value_angle_esd   :   2.00 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CB 
+atom_id_2   :   CG 
+atom_id_3   :   HG3 
+value_angle   :   108.601 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CB 
+atom_id_2   :   CG 
+atom_id_3   :   HG2 
+value_angle   :   108.601 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   CG 
+atom_id_3   :   HG3 
+value_angle   :   108.806 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   CG 
+atom_id_3   :   HG2 
+value_angle   :   108.806 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   HG3 
+atom_id_2   :   CG 
+atom_id_3   :   HG2 
+value_angle   :   107.646 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   CD 
+atom_id_3   :   CE 
+value_angle   :   113.073 
+value_angle_esd   :   1.98 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   CD 
+atom_id_3   :   HD3 
+value_angle   :   109.041 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CG 
+atom_id_2   :   CD 
+atom_id_3   :   HD2 
+value_angle   :   109.041 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   CD 
+atom_id_3   :   HD3 
+value_angle   :   108.889 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   CD 
+atom_id_3   :   HD2 
+value_angle   :   108.889 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   HD3 
+atom_id_2   :   CD 
+atom_id_3   :   HD2 
+value_angle   :   107.927 
+value_angle_esd   :   1.57 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   CE 
+atom_id_3   :   NZ 
+value_angle   :   111.734 
+value_angle_esd   :   1.84 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   CE 
+atom_id_3   :   HE3 
+value_angle   :   109.576 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CD 
+atom_id_2   :   CE 
+atom_id_3   :   HE2 
+value_angle   :   109.576 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   NZ 
+atom_id_2   :   CE 
+atom_id_3   :   HE3 
+value_angle   :   108.989 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   NZ 
+atom_id_2   :   CE 
+atom_id_3   :   HE2 
+value_angle   :   108.989 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   HE3 
+atom_id_2   :   CE 
+atom_id_3   :   HE2 
+value_angle   :   108.067 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   NZ 
+atom_id_3   :   HZ1 
+value_angle   :   109.775 
+value_angle_esd   :   1.81 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   NZ 
+atom_id_3   :   HZ2 
+value_angle   :   109.775 
+value_angle_esd   :   1.81 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   CE 
+atom_id_2   :   NZ 
+atom_id_3   :   HZ3 
+value_angle   :   109.775 
+value_angle_esd   :   1.81 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   HZ1 
+atom_id_2   :   NZ 
+atom_id_3   :   HZ2 
+value_angle   :   109.021 
+value_angle_esd   :   2.83 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   HZ1 
+atom_id_2   :   NZ 
+atom_id_3   :   HZ3 
+value_angle   :   109.021 
+value_angle_esd   :   2.83 
+-----------------
+comp_id   :   LYS 
+atom_id_1   :   HZ2 
+atom_id_2   :   NZ 
+atom_id_3   :   HZ3 
+value_angle   :   109.021 
+value_angle_esd   :   2.83 
+Number of angles is 45 
+['_chem_comp_tor.comp_id']
+['_chem_comp_tor.id']
+['_chem_comp_tor.atom_id_1']
+['_chem_comp_tor.atom_id_2']
+['_chem_comp_tor.atom_id_3']
+['_chem_comp_tor.atom_id_4']
+['_chem_comp_tor.value_angle']
+['_chem_comp_tor.value_angle_esd']
+['_chem_comp_tor.period']
+['LYS', 'chi1', 'N', 'CA', 'CB', 'CG', '60.000', '10.0', '3']
+['LYS', 'chi2', 'CA', 'CB', 'CG', 'CD', '180.000', '10.0', '3']
+['LYS', 'chi3', 'CB', 'CG', 'CD', 'CE', '180.000', '10.0', '3']
+['LYS', 'chi4', 'CG', 'CD', 'CE', 'NZ', '-60.000', '10.0', '3']
+['LYS', 'hh1', 'CD', 'CE', 'NZ', 'HZ3', '180.000', '10.0', '3']
+['LYS', 'sp3_sp3_1', 'C', 'CA', 'N', 'H', '180.000', '10.0', '3']
+['LYS', 'sp2_sp3_1', 'O', 'C', 'CA', 'N', '0.000', '10.0', '6']
+Number of keys in the loop is  9
+Number of values in the loop is  63
+tors
+['comp_id', 'id', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'atom_id_4', 'value_angle', 'value_angle_esd', 'period']
+-----------------
+comp_id   :   LYS 
+id   :   chi1 
+atom_id_1   :   N 
+atom_id_2   :   CA 
+atom_id_3   :   CB 
+atom_id_4   :   CG 
+value_angle   :   60.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   LYS 
+id   :   chi2 
+atom_id_1   :   CA 
+atom_id_2   :   CB 
+atom_id_3   :   CG 
+atom_id_4   :   CD 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   LYS 
+id   :   chi3 
+atom_id_1   :   CB 
+atom_id_2   :   CG 
+atom_id_3   :   CD 
+atom_id_4   :   CE 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   LYS 
+id   :   chi4 
+atom_id_1   :   CG 
+atom_id_2   :   CD 
+atom_id_3   :   CE 
+atom_id_4   :   NZ 
+value_angle   :   -60.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   LYS 
+id   :   hh1 
+atom_id_1   :   CD 
+atom_id_2   :   CE 
+atom_id_3   :   NZ 
+atom_id_4   :   HZ3 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   LYS 
+id   :   sp3_sp3_1 
+atom_id_1   :   C 
+atom_id_2   :   CA 
+atom_id_3   :   N 
+atom_id_4   :   H 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   LYS 
+id   :   sp2_sp3_1 
+atom_id_1   :   O 
+atom_id_2   :   C 
+atom_id_3   :   CA 
+atom_id_4   :   N 
+value_angle   :   0.000 
+value_angle_esd   :   10.0 
+period   :   6 
+Number of tors is 7 
+['_chem_comp_chir.comp_id']
+['_chem_comp_chir.id']
+['_chem_comp_chir.atom_id_centre']
+['_chem_comp_chir.atom_id_1']
+['_chem_comp_chir.atom_id_2']
+['_chem_comp_chir.atom_id_3']
+['_chem_comp_chir.volume_sign']
+['LYS', 'chir_1', 'CA', 'N', 'C', 'CB', 'positive']
+Number of keys in the loop is  7
+Number of values in the loop is  7
+chirs
+['comp_id', 'id', 'atom_id_centre', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'volume_sign']
+-----------------
+comp_id   :   LYS 
+id   :   chir_1 
+atom_id_centre   :   CA 
+atom_id_1   :   N 
+atom_id_2   :   C 
+atom_id_3   :   CB 
+volume_sign   :   positive 
+Number of chirs is 1 
+['_chem_comp_plane_atom.comp_id']
+['_chem_comp_plane_atom.plane_id']
+['_chem_comp_plane_atom.atom_id']
+['_chem_comp_plane_atom.dist_esd']
+['LYS', 'plan-1', 'C', '0.020']
+['LYS', 'plan-1', 'CA', '0.020']
+['LYS', 'plan-1', 'O', '0.020']
+['LYS', 'plan-1', 'OXT', '0.020']
+Number of keys in the loop is  4
+Number of values in the loop is  16
+plane_atoms
+['comp_id', 'plane_id', 'atom_id', 'dist_esd']
+-----------------
+comp_id   :   LYS 
+plane_id   :   plan-1 
+atom_id   :   C 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   LYS 
+plane_id   :   plan-1 
+atom_id   :   CA 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   LYS 
+plane_id   :   plan-1 
+atom_id   :   O 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   LYS 
+plane_id   :   plan-1 
+atom_id   :   OXT 
+dist_esd   :   0.020 
+Number of plane_atoms is 4 
+['_pdbx_chem_comp_descriptor.comp_id']
+['_pdbx_chem_comp_descriptor.type']
+['_pdbx_chem_comp_descriptor.program']
+['_pdbx_chem_comp_descriptor.program_version']
+['_pdbx_chem_comp_descriptor.descriptor']
+['LYS', 'SMILES', 'ACDLabs', '10.04', 'O=C(O)C(N)CCCC[NH3+]']
+['LYS', 'SMILES_CANONICAL', 'CACTVS', '3.341', 'N[C@@H](CCCC[NH3+])C(O)=O']
+['LYS', 'SMILES', 'CACTVS', '3.341', 'N[CH](CCCC[NH3+])C(O)=O']
+['LYS', 'SMILES_CANONICAL', '"OpenEye OEToolkits"', '1.5.0', 'C(CC[NH3+])C[C@@H](C(=O)O)N']
+['LYS', 'SMILES', '"OpenEye OEToolkits"', '1.5.0', 'C(CC[NH3+])CC(C(=O)O)N']
+['LYS', 'InChI', 'InChI', '1.03', 'InChI=1S/C6H14N2O2/c7-4-2-1-3-5(8)6(9)10/h5H,1-4,7-8H2,(H,9,10)/p+1/t5-/m0/s1']
+['LYS', 'InChIKey', 'InChI', '1.03', 'KDXKERNSBIXSRK-YFKPBYRVSA-O']
+Number of keys in the loop is  5
+Number of values in the loop is  35
+comp_descriptors
+['comp_id', 'type', 'program', 'program_version', 'descriptor']
+-----------------
+comp_id   :   LYS 
+type   :   SMILES 
+program   :   ACDLabs 
+program_version   :   10.04 
+descriptor   :   O=C(O)C(N)CCCC[NH3+] 
+-----------------
+comp_id   :   LYS 
+type   :   SMILES_CANONICAL 
+program   :   CACTVS 
+program_version   :   3.341 
+descriptor   :   N[C@@H](CCCC[NH3+])C(O)=O 
+-----------------
+comp_id   :   LYS 
+type   :   SMILES 
+program   :   CACTVS 
+program_version   :   3.341 
+descriptor   :   N[CH](CCCC[NH3+])C(O)=O 
+-----------------
+comp_id   :   LYS 
+type   :   SMILES_CANONICAL 
+program   :   "OpenEye OEToolkits" 
+program_version   :   1.5.0 
+descriptor   :   C(CC[NH3+])C[C@@H](C(=O)O)N 
+-----------------
+comp_id   :   LYS 
+type   :   SMILES 
+program   :   "OpenEye OEToolkits" 
+program_version   :   1.5.0 
+descriptor   :   C(CC[NH3+])CC(C(=O)O)N 
+-----------------
+comp_id   :   LYS 
+type   :   InChI 
+program   :   InChI 
+program_version   :   1.03 
+descriptor   :   InChI=1S/C6H14N2O2/c7-4-2-1-3-5(8)6(9)10/h5H,1-4,7-8H2,(H,9,10)/p+1/t5-/m0/s1 
+-----------------
+comp_id   :   LYS 
+type   :   InChIKey 
+program   :   InChI 
+program_version   :   1.03 
+descriptor   :   KDXKERNSBIXSRK-YFKPBYRVSA-O 
+Number of comp_descriptors is 7 
+['_pdbx_chem_comp_description_generator.comp_id']
+['_pdbx_chem_comp_description_generator.program_name']
+['_pdbx_chem_comp_description_generator.program_version']
+['_pdbx_chem_comp_description_generator.descriptor']
+['LYS', 'acedrg', '243', '"dictionary generator"']
+['LYS', 'acedrg_database', '11', '"data source"']
+['LYS', 'rdkit', '2017.03.2', '"Chemoinformatics tool"']
+['LYS', 'refmac5', '5.8.0238', '"optimization tool"']
+Number of keys in the loop is  4
+Number of values in the loop is  16
+comps
+['comp_id', 'program_name', 'program_version', 'descriptor']
+-----------------
+comp_id   :   LYS 
+program_name   :   acedrg 
+program_version   :   243 
+descriptor   :   "dictionary generator" 
+-----------------
+comp_id   :   LYS 
+program_name   :   acedrg_database 
+program_version   :   11 
+descriptor   :   "data source" 
+-----------------
+comp_id   :   LYS 
+program_name   :   rdkit 
+program_version   :   2017.03.2 
+descriptor   :   "Chemoinformatics tool" 
+-----------------
+comp_id   :   LYS 
+program_name   :   refmac5 
+program_version   :   5.8.0238 
+descriptor   :   "optimization tool" 
+Number of comps is 4 
+['lists', 'comps', 'mods', 'links', 'instructs']
+['LYS']
+dict_keys(['LYS'])
+Comp 1  LYS  contains 
+25  atoms.
+24  bonds.
+1  chiral centres.
+Number of H atoms in residue LYS is 15 
+/Applications/ccp4-8.0/lib/data/monomers/p/PLP.cif
+Block  data_comp_list
+It contains  1  loops 
+Number of keys in the loop is  7
+Number of values in the loop is  7
+For list entry  PLP, it has the following properties 
+id : PLP 
+three_letter_code : PLP 
+name : "PYRIDOXAL-5'-PHOSPHATE" 
+group : NON-POLYMER 
+number_atoms_all : 24 
+number_atoms_nh : 16 
+desc_level : . 
+Block  data_comp_PLP
+It contains  8  loops 
+['_chem_comp_atom.comp_id']
+['_chem_comp_atom.atom_id']
+['_chem_comp_atom.type_symbol']
+['_chem_comp_atom.type_energy']
+['_chem_comp_atom.charge']
+['_chem_comp_atom.x']
+['_chem_comp_atom.y']
+['_chem_comp_atom.z']
+['PLP', 'N1', 'N', 'NRD6', '0', '-14.349', '14.133', '-7.922']
+['PLP', 'C2', 'C', 'CR6', '0', '-13.036', '14.180', '-7.687']
+['PLP', 'C2A', 'C', 'CH3', '0', '-12.425', '15.509', '-7.369']
+['PLP', 'C3', 'C', 'CR6', '0', '-12.261', '13.000', '-7.741']
+['PLP', 'O3', 'O', 'OH1', '0', '-10.904', '13.013', '-7.504']
+['PLP', 'C4', 'C', 'CR6', '0', '-12.891', '11.771', '-8.047']
+['PLP', 'C4A', 'C', 'C1', '0', '-12.092', '10.543', '-8.105']
+['PLP', 'O4A', 'O', 'O', '0', '-11.093', '10.379', '-8.767']
+['PLP', 'C5', 'C', 'CR6', '0', '-14.279', '11.764', '-8.290']
+['PLP', 'C6', 'C', 'CR16', '0', '-14.950', '12.958', '-8.215']
+['PLP', 'C5A', 'C', 'CH2', '0', '-15.027', '10.500', '-8.621']
+['PLP', 'O4P', 'O', 'O2', '0', '-15.090', '9.616', '-7.458']
+['PLP', 'P', 'P', 'P', '0', '-15.802', '8.170', '-7.537']
+['PLP', 'O1P', 'O', 'O', '0', '-14.929', '7.329', '-8.450']
+['PLP', 'O2P', 'O', 'OP', '-1', '-15.838', '7.649', '-6.113']
+['PLP', 'O3P', 'O', 'OP', '-1', '-17.184', '8.420', '-8.109']
+['PLP', 'H2A1', 'H', 'H', '0', '-11.473', '15.414', '-7.212']
+['PLP', 'H2A2', 'H', 'H', '0', '-12.846', '15.874', '-6.573']
+['PLP', 'H2A3', 'H', 'H', '0', '-12.568', '16.115', '-8.113']
+['PLP', 'HO3', 'H', 'H', '0', '-10.588', '12.646', '-6.792']
+['PLP', 'H4A', 'H', 'H', '0', '-12.388', '9.814', '-7.573']
+['PLP', 'H6', 'H', 'H', '0', '-15.872', '12.966', '-8.373']
+['PLP', 'H5A1', 'H', 'H', '0', '-14.580', '10.029', '-9.357']
+['PLP', 'H5A2', 'H', 'H', '0', '-15.942', '10.714', '-8.906']
+Number of keys in the loop is  8
+Number of values in the loop is  192
+atoms
+['comp_id', 'atom_id', 'type_symbol', 'type_energy', 'charge', 'x', 'y', 'z']
+-----------------
+comp_id   :   PLP 
+atom_id   :   N1 
+type_symbol   :   N 
+type_energy   :   NRD6 
+charge   :   0 
+x   :   -14.349 
+y   :   14.133 
+z   :   -7.922 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C2 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   -13.036 
+y   :   14.180 
+z   :   -7.687 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C2A 
+type_symbol   :   C 
+type_energy   :   CH3 
+charge   :   0 
+x   :   -12.425 
+y   :   15.509 
+z   :   -7.369 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C3 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   -12.261 
+y   :   13.000 
+z   :   -7.741 
+-----------------
+comp_id   :   PLP 
+atom_id   :   O3 
+type_symbol   :   O 
+type_energy   :   OH1 
+charge   :   0 
+x   :   -10.904 
+y   :   13.013 
+z   :   -7.504 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C4 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   -12.891 
+y   :   11.771 
+z   :   -8.047 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C4A 
+type_symbol   :   C 
+type_energy   :   C1 
+charge   :   0 
+x   :   -12.092 
+y   :   10.543 
+z   :   -8.105 
+-----------------
+comp_id   :   PLP 
+atom_id   :   O4A 
+type_symbol   :   O 
+type_energy   :   O 
+charge   :   0 
+x   :   -11.093 
+y   :   10.379 
+z   :   -8.767 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C5 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   -14.279 
+y   :   11.764 
+z   :   -8.290 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C6 
+type_symbol   :   C 
+type_energy   :   CR16 
+charge   :   0 
+x   :   -14.950 
+y   :   12.958 
+z   :   -8.215 
+-----------------
+comp_id   :   PLP 
+atom_id   :   C5A 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   -15.027 
+y   :   10.500 
+z   :   -8.621 
+-----------------
+comp_id   :   PLP 
+atom_id   :   O4P 
+type_symbol   :   O 
+type_energy   :   O2 
+charge   :   0 
+x   :   -15.090 
+y   :   9.616 
+z   :   -7.458 
+-----------------
+comp_id   :   PLP 
+atom_id   :   P 
+type_symbol   :   P 
+type_energy   :   P 
+charge   :   0 
+x   :   -15.802 
+y   :   8.170 
+z   :   -7.537 
+-----------------
+comp_id   :   PLP 
+atom_id   :   O1P 
+type_symbol   :   O 
+type_energy   :   O 
+charge   :   0 
+x   :   -14.929 
+y   :   7.329 
+z   :   -8.450 
+-----------------
+comp_id   :   PLP 
+atom_id   :   O2P 
+type_symbol   :   O 
+type_energy   :   OP 
+charge   :   -1 
+x   :   -15.838 
+y   :   7.649 
+z   :   -6.113 
+-----------------
+comp_id   :   PLP 
+atom_id   :   O3P 
+type_symbol   :   O 
+type_energy   :   OP 
+charge   :   -1 
+x   :   -17.184 
+y   :   8.420 
+z   :   -8.109 
+-----------------
+comp_id   :   PLP 
+atom_id   :   H2A1 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -11.473 
+y   :   15.414 
+z   :   -7.212 
+-----------------
+comp_id   :   PLP 
+atom_id   :   H2A2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -12.846 
+y   :   15.874 
+z   :   -6.573 
+-----------------
+comp_id   :   PLP 
+atom_id   :   H2A3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -12.568 
+y   :   16.115 
+z   :   -8.113 
+-----------------
+comp_id   :   PLP 
+atom_id   :   HO3 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -10.588 
+y   :   12.646 
+z   :   -6.792 
+-----------------
+comp_id   :   PLP 
+atom_id   :   H4A 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -12.388 
+y   :   9.814 
+z   :   -7.573 
+-----------------
+comp_id   :   PLP 
+atom_id   :   H6 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -15.872 
+y   :   12.966 
+z   :   -8.373 
+-----------------
+comp_id   :   PLP 
+atom_id   :   H5A1 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -14.580 
+y   :   10.029 
+z   :   -9.357 
+-----------------
+comp_id   :   PLP 
+atom_id   :   H5A2 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   -15.942 
+y   :   10.714 
+z   :   -8.906 
+Number of atoms is 24 
+['_chem_comp_bond.comp_id']
+['_chem_comp_bond.atom_id_1']
+['_chem_comp_bond.atom_id_2']
+['_chem_comp_bond.type']
+['_chem_comp_bond.aromatic']
+['_chem_comp_bond.value_dist_nucleus']
+['_chem_comp_bond.value_dist_nucleus_esd']
+['_chem_comp_bond.value_dist']
+['_chem_comp_bond.value_dist_esd']
+['PLP', 'N1', 'C2', 'DOUBLE', 'y', '1.330', '0.0101', '1.330', '0.0101']
+['PLP', 'N1', 'C6', 'SINGLE', 'y', '1.349', '0.0100', '1.349', '0.0100']
+['PLP', 'C2', 'C2A', 'SINGLE', 'n', '1.494', '0.0100', '1.494', '0.0100']
+['PLP', 'C2', 'C3', 'SINGLE', 'y', '1.400', '0.0136', '1.400', '0.0136']
+['PLP', 'C3', 'O3', 'SINGLE', 'n', '1.374', '0.0155', '1.374', '0.0155']
+['PLP', 'C3', 'C4', 'DOUBLE', 'y', '1.409', '0.0100', '1.409', '0.0100']
+['PLP', 'C4', 'C4A', 'SINGLE', 'n', '1.464', '0.0111', '1.464', '0.0111']
+['PLP', 'C4', 'C5', 'SINGLE', 'y', '1.403', '0.0100', '1.403', '0.0100']
+['PLP', 'C4A', 'O4A', 'DOUBLE', 'n', '1.210', '0.0148', '1.210', '0.0148']
+['PLP', 'C5', 'C6', 'DOUBLE', 'y', '1.368', '0.0100', '1.368', '0.0100']
+['PLP', 'C5', 'C5A', 'SINGLE', 'n', '1.503', '0.0100', '1.503', '0.0100']
+['PLP', 'C5A', 'O4P', 'SINGLE', 'n', '1.462', '0.0104', '1.462', '0.0104']
+['PLP', 'O4P', 'P', 'SINGLE', 'n', '1.614', '0.0178', '1.614', '0.0178']
+['PLP', 'P', 'O1P', 'DOUBLE', 'n', '1.517', '0.0192', '1.517', '0.0192']
+['PLP', 'P', 'O2P', 'SINGLE', 'n', '1.517', '0.0192', '1.517', '0.0192']
+['PLP', 'P', 'O3P', 'SINGLE', 'n', '1.517', '0.0192', '1.517', '0.0192']
+['PLP', 'C2A', 'H2A1', 'SINGLE', 'n', '1.089', '0.0100', '0.971', '0.0138']
+['PLP', 'C2A', 'H2A2', 'SINGLE', 'n', '1.089', '0.0100', '0.971', '0.0138']
+['PLP', 'C2A', 'H2A3', 'SINGLE', 'n', '1.089', '0.0100', '0.971', '0.0138']
+['PLP', 'O3', 'HO3', 'SINGLE', 'n', '0.966', '0.0059', '0.861', '0.0200']
+['PLP', 'C4A', 'H4A', 'SINGLE', 'n', '1.082', '0.0130', '0.949', '0.0200']
+['PLP', 'C6', 'H6', 'SINGLE', 'n', '1.082', '0.0130', '0.935', '0.0200']
+['PLP', 'C5A', 'H5A1', 'SINGLE', 'n', '1.089', '0.0100', '0.982', '0.0107']
+['PLP', 'C5A', 'H5A2', 'SINGLE', 'n', '1.089', '0.0100', '0.982', '0.0107']
+Number of keys in the loop is  9
+Number of values in the loop is  216
+bonds
+['comp_id', 'atom_id_1', 'atom_id_2', 'type', 'aromatic', 'value_dist_nucleus', 'value_dist_nucleus_esd', 'value_dist', 'value_dist_esd']
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+type   :   DOUBLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.330 
+value_dist_nucleus_esd   :   0.0101 
+value_dist   :   1.330 
+value_dist_esd   :   0.0101 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   N1 
+atom_id_2   :   C6 
+type   :   SINGLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.349 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.349 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   C2A 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.494 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.494 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   C3 
+type   :   SINGLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.400 
+value_dist_nucleus_esd   :   0.0136 
+value_dist   :   1.400 
+value_dist_esd   :   0.0136 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C3 
+atom_id_2   :   O3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.374 
+value_dist_nucleus_esd   :   0.0155 
+value_dist   :   1.374 
+value_dist_esd   :   0.0155 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C3 
+atom_id_2   :   C4 
+type   :   DOUBLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.409 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.409 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4 
+atom_id_2   :   C4A 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.464 
+value_dist_nucleus_esd   :   0.0111 
+value_dist   :   1.464 
+value_dist_esd   :   0.0111 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4 
+atom_id_2   :   C5 
+type   :   SINGLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.403 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.403 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4A 
+atom_id_2   :   O4A 
+type   :   DOUBLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.210 
+value_dist_nucleus_esd   :   0.0148 
+value_dist   :   1.210 
+value_dist_esd   :   0.0148 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+type   :   DOUBLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.368 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.368 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5 
+atom_id_2   :   C5A 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.503 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.503 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5A 
+atom_id_2   :   O4P 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.462 
+value_dist_nucleus_esd   :   0.0104 
+value_dist   :   1.462 
+value_dist_esd   :   0.0104 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O4P 
+atom_id_2   :   P 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.614 
+value_dist_nucleus_esd   :   0.0178 
+value_dist   :   1.614 
+value_dist_esd   :   0.0178 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   P 
+atom_id_2   :   O1P 
+type   :   DOUBLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.517 
+value_dist_nucleus_esd   :   0.0192 
+value_dist   :   1.517 
+value_dist_esd   :   0.0192 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   P 
+atom_id_2   :   O2P 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.517 
+value_dist_nucleus_esd   :   0.0192 
+value_dist   :   1.517 
+value_dist_esd   :   0.0192 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   P 
+atom_id_2   :   O3P 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.517 
+value_dist_nucleus_esd   :   0.0192 
+value_dist   :   1.517 
+value_dist_esd   :   0.0192 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2A 
+atom_id_2   :   H2A1 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.971 
+value_dist_esd   :   0.0138 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2A 
+atom_id_2   :   H2A2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.971 
+value_dist_esd   :   0.0138 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2A 
+atom_id_2   :   H2A3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.971 
+value_dist_esd   :   0.0138 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O3 
+atom_id_2   :   HO3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   0.966 
+value_dist_nucleus_esd   :   0.0059 
+value_dist   :   0.861 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4A 
+atom_id_2   :   H4A 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.082 
+value_dist_nucleus_esd   :   0.0130 
+value_dist   :   0.949 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C6 
+atom_id_2   :   H6 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.082 
+value_dist_nucleus_esd   :   0.0130 
+value_dist   :   0.935 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5A 
+atom_id_2   :   H5A1 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.982 
+value_dist_esd   :   0.0107 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5A 
+atom_id_2   :   H5A2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.982 
+value_dist_esd   :   0.0107 
+Number of bonds is 24 
+['_chem_comp_angle.comp_id']
+['_chem_comp_angle.atom_id_1']
+['_chem_comp_angle.atom_id_2']
+['_chem_comp_angle.atom_id_3']
+['_chem_comp_angle.value_angle']
+['_chem_comp_angle.value_angle_esd']
+['PLP', 'C2', 'N1', 'C6', '119.423', '1.60']
+['PLP', 'N1', 'C2', 'C2A', '119.020', '1.50']
+['PLP', 'N1', 'C2', 'C3', '120.363', '1.50']
+['PLP', 'C2A', 'C2', 'C3', '120.617', '1.50']
+['PLP', 'C2', 'C2A', 'H2A1', '109.484', '1.50']
+['PLP', 'C2', 'C2A', 'H2A2', '109.484', '1.50']
+['PLP', 'C2', 'C2A', 'H2A3', '109.484', '1.50']
+['PLP', 'H2A1', 'C2A', 'H2A2', '109.339', '1.66']
+['PLP', 'H2A1', 'C2A', 'H2A3', '109.339', '1.66']
+['PLP', 'H2A2', 'C2A', 'H2A3', '109.339', '1.66']
+['PLP', 'C2', 'C3', 'O3', '120.185', '3.00']
+['PLP', 'C2', 'C3', 'C4', '119.630', '1.50']
+['PLP', 'O3', 'C3', 'C4', '120.185', '3.00']
+['PLP', 'C3', 'O3', 'HO3', '120.000', '3.00']
+['PLP', 'C3', 'C4', 'C4A', '119.703', '1.50']
+['PLP', 'C3', 'C4', 'C5', '118.922', '1.50']
+['PLP', 'C4A', 'C4', 'C5', '121.375', '2.22']
+['PLP', 'C4', 'C4A', 'O4A', '125.762', '1.85']
+['PLP', 'C4', 'C4A', 'H4A', '116.796', '1.55']
+['PLP', 'O4A', 'C4A', 'H4A', '117.442', '1.69']
+['PLP', 'C4', 'C5', 'C6', '118.395', '1.50']
+['PLP', 'C4', 'C5', 'C5A', '121.689', '1.50']
+['PLP', 'C6', 'C5', 'C5A', '119.916', '1.59']
+['PLP', 'N1', 'C6', 'C5', '123.267', '1.50']
+['PLP', 'N1', 'C6', 'H6', '118.102', '1.50']
+['PLP', 'C5', 'C6', 'H6', '118.631', '1.50']
+['PLP', 'C5', 'C5A', 'O4P', '110.538', '2.24']
+['PLP', 'C5', 'C5A', 'H5A1', '109.800', '1.50']
+['PLP', 'C5', 'C5A', 'H5A2', '109.800', '1.50']
+['PLP', 'O4P', 'C5A', 'H5A1', '108.933', '1.90']
+['PLP', 'O4P', 'C5A', 'H5A2', '108.933', '1.90']
+['PLP', 'H5A1', 'C5A', 'H5A2', '108.248', '1.50']
+['PLP', 'C5A', 'O4P', 'P', '121.496', '2.55']
+['PLP', 'O4P', 'P', 'O1P', '105.808', '2.07']
+['PLP', 'O4P', 'P', 'O2P', '105.808', '2.07']
+['PLP', 'O4P', 'P', 'O3P', '105.808', '2.07']
+['PLP', 'O1P', 'P', 'O2P', '112.864', '1.69']
+['PLP', 'O1P', 'P', 'O3P', '112.864', '1.69']
+['PLP', 'O2P', 'P', 'O3P', '112.864', '1.69']
+Number of keys in the loop is  6
+Number of values in the loop is  234
+angles
+['comp_id', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'value_angle', 'value_angle_esd']
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   N1 
+atom_id_3   :   C6 
+value_angle   :   119.423 
+value_angle_esd   :   1.60 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+atom_id_3   :   C2A 
+value_angle   :   119.020 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+atom_id_3   :   C3 
+value_angle   :   120.363 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2A 
+atom_id_2   :   C2 
+atom_id_3   :   C3 
+value_angle   :   120.617 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   C2A 
+atom_id_3   :   H2A1 
+value_angle   :   109.484 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   C2A 
+atom_id_3   :   H2A2 
+value_angle   :   109.484 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   C2A 
+atom_id_3   :   H2A3 
+value_angle   :   109.484 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   H2A1 
+atom_id_2   :   C2A 
+atom_id_3   :   H2A2 
+value_angle   :   109.339 
+value_angle_esd   :   1.66 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   H2A1 
+atom_id_2   :   C2A 
+atom_id_3   :   H2A3 
+value_angle   :   109.339 
+value_angle_esd   :   1.66 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   H2A2 
+atom_id_2   :   C2A 
+atom_id_3   :   H2A3 
+value_angle   :   109.339 
+value_angle_esd   :   1.66 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   C3 
+atom_id_3   :   O3 
+value_angle   :   120.185 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C2 
+atom_id_2   :   C3 
+atom_id_3   :   C4 
+value_angle   :   119.630 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O3 
+atom_id_2   :   C3 
+atom_id_3   :   C4 
+value_angle   :   120.185 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C3 
+atom_id_2   :   O3 
+atom_id_3   :   HO3 
+value_angle   :   120.000 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C3 
+atom_id_2   :   C4 
+atom_id_3   :   C4A 
+value_angle   :   119.703 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C3 
+atom_id_2   :   C4 
+atom_id_3   :   C5 
+value_angle   :   118.922 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4A 
+atom_id_2   :   C4 
+atom_id_3   :   C5 
+value_angle   :   121.375 
+value_angle_esd   :   2.22 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4 
+atom_id_2   :   C4A 
+atom_id_3   :   O4A 
+value_angle   :   125.762 
+value_angle_esd   :   1.85 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4 
+atom_id_2   :   C4A 
+atom_id_3   :   H4A 
+value_angle   :   116.796 
+value_angle_esd   :   1.55 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O4A 
+atom_id_2   :   C4A 
+atom_id_3   :   H4A 
+value_angle   :   117.442 
+value_angle_esd   :   1.69 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4 
+atom_id_2   :   C5 
+atom_id_3   :   C6 
+value_angle   :   118.395 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C4 
+atom_id_2   :   C5 
+atom_id_3   :   C5A 
+value_angle   :   121.689 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C6 
+atom_id_2   :   C5 
+atom_id_3   :   C5A 
+value_angle   :   119.916 
+value_angle_esd   :   1.59 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   N1 
+atom_id_2   :   C6 
+atom_id_3   :   C5 
+value_angle   :   123.267 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   N1 
+atom_id_2   :   C6 
+atom_id_3   :   H6 
+value_angle   :   118.102 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+atom_id_3   :   H6 
+value_angle   :   118.631 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5 
+atom_id_2   :   C5A 
+atom_id_3   :   O4P 
+value_angle   :   110.538 
+value_angle_esd   :   2.24 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5 
+atom_id_2   :   C5A 
+atom_id_3   :   H5A1 
+value_angle   :   109.800 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5 
+atom_id_2   :   C5A 
+atom_id_3   :   H5A2 
+value_angle   :   109.800 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O4P 
+atom_id_2   :   C5A 
+atom_id_3   :   H5A1 
+value_angle   :   108.933 
+value_angle_esd   :   1.90 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O4P 
+atom_id_2   :   C5A 
+atom_id_3   :   H5A2 
+value_angle   :   108.933 
+value_angle_esd   :   1.90 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   H5A1 
+atom_id_2   :   C5A 
+atom_id_3   :   H5A2 
+value_angle   :   108.248 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   C5A 
+atom_id_2   :   O4P 
+atom_id_3   :   P 
+value_angle   :   121.496 
+value_angle_esd   :   2.55 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O4P 
+atom_id_2   :   P 
+atom_id_3   :   O1P 
+value_angle   :   105.808 
+value_angle_esd   :   2.07 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O4P 
+atom_id_2   :   P 
+atom_id_3   :   O2P 
+value_angle   :   105.808 
+value_angle_esd   :   2.07 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O4P 
+atom_id_2   :   P 
+atom_id_3   :   O3P 
+value_angle   :   105.808 
+value_angle_esd   :   2.07 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O1P 
+atom_id_2   :   P 
+atom_id_3   :   O2P 
+value_angle   :   112.864 
+value_angle_esd   :   1.69 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O1P 
+atom_id_2   :   P 
+atom_id_3   :   O3P 
+value_angle   :   112.864 
+value_angle_esd   :   1.69 
+-----------------
+comp_id   :   PLP 
+atom_id_1   :   O2P 
+atom_id_2   :   P 
+atom_id_3   :   O3P 
+value_angle   :   112.864 
+value_angle_esd   :   1.69 
+Number of angles is 39 
+['_chem_comp_tor.comp_id']
+['_chem_comp_tor.id']
+['_chem_comp_tor.atom_id_1']
+['_chem_comp_tor.atom_id_2']
+['_chem_comp_tor.atom_id_3']
+['_chem_comp_tor.atom_id_4']
+['_chem_comp_tor.value_angle']
+['_chem_comp_tor.value_angle_esd']
+['_chem_comp_tor.period']
+['PLP', 'const_sp2_sp2_2', 'C2A', 'C2', 'N1', 'C6', '180.000', '5.0', '2']
+['PLP', 'const_19', 'C5', 'C6', 'N1', 'C2', '0.000', '10.0', '2']
+['PLP', 'sp3_sp3_1', 'C5', 'C5A', 'O4P', 'P', '180.000', '10.0', '3']
+['PLP', 'sp3_sp3_6', 'C5A', 'O4P', 'P', 'O1P', '60.000', '10.0', '3']
+['PLP', 'sp2_sp3_1', 'N1', 'C2', 'C2A', 'H2A1', '150.000', '10.0', '6']
+['PLP', 'const_sp2_sp2_6', 'C2A', 'C2', 'C3', 'O3', '0.000', '5.0', '2']
+['PLP', 'sp2_sp2_1', 'C2', 'C3', 'O3', 'HO3', '180.000', '5.0', '2']
+['PLP', 'const_10', 'O3', 'C3', 'C4', 'C4A', '0.000', '10.0', '2']
+['PLP', 'sp2_sp2_3', 'C3', 'C4', 'C4A', 'O4A', '180.000', '5.0', '2']
+['PLP', 'const_14', 'C4A', 'C4', 'C5', 'C5A', '0.000', '10.0', '2']
+['PLP', 'sp2_sp3_8', 'C4', 'C5', 'C5A', 'O4P', '-90.000', '10.0', '6']
+['PLP', 'const_17', 'C5A', 'C5', 'C6', 'N1', '180.000', '10.0', '2']
+Number of keys in the loop is  9
+Number of values in the loop is  108
+tors
+['comp_id', 'id', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'atom_id_4', 'value_angle', 'value_angle_esd', 'period']
+-----------------
+comp_id   :   PLP 
+id   :   const_sp2_sp2_2 
+atom_id_1   :   C2A 
+atom_id_2   :   C2 
+atom_id_3   :   N1 
+atom_id_4   :   C6 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   PLP 
+id   :   const_19 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+atom_id_3   :   N1 
+atom_id_4   :   C2 
+value_angle   :   0.000 
+value_angle_esd   :   10.0 
+period   :   2 
+-----------------
+comp_id   :   PLP 
+id   :   sp3_sp3_1 
+atom_id_1   :   C5 
+atom_id_2   :   C5A 
+atom_id_3   :   O4P 
+atom_id_4   :   P 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   PLP 
+id   :   sp3_sp3_6 
+atom_id_1   :   C5A 
+atom_id_2   :   O4P 
+atom_id_3   :   P 
+atom_id_4   :   O1P 
+value_angle   :   60.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   PLP 
+id   :   sp2_sp3_1 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+atom_id_3   :   C2A 
+atom_id_4   :   H2A1 
+value_angle   :   150.000 
+value_angle_esd   :   10.0 
+period   :   6 
+-----------------
+comp_id   :   PLP 
+id   :   const_sp2_sp2_6 
+atom_id_1   :   C2A 
+atom_id_2   :   C2 
+atom_id_3   :   C3 
+atom_id_4   :   O3 
+value_angle   :   0.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   PLP 
+id   :   sp2_sp2_1 
+atom_id_1   :   C2 
+atom_id_2   :   C3 
+atom_id_3   :   O3 
+atom_id_4   :   HO3 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   PLP 
+id   :   const_10 
+atom_id_1   :   O3 
+atom_id_2   :   C3 
+atom_id_3   :   C4 
+atom_id_4   :   C4A 
+value_angle   :   0.000 
+value_angle_esd   :   10.0 
+period   :   2 
+-----------------
+comp_id   :   PLP 
+id   :   sp2_sp2_3 
+atom_id_1   :   C3 
+atom_id_2   :   C4 
+atom_id_3   :   C4A 
+atom_id_4   :   O4A 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   PLP 
+id   :   const_14 
+atom_id_1   :   C4A 
+atom_id_2   :   C4 
+atom_id_3   :   C5 
+atom_id_4   :   C5A 
+value_angle   :   0.000 
+value_angle_esd   :   10.0 
+period   :   2 
+-----------------
+comp_id   :   PLP 
+id   :   sp2_sp3_8 
+atom_id_1   :   C4 
+atom_id_2   :   C5 
+atom_id_3   :   C5A 
+atom_id_4   :   O4P 
+value_angle   :   -90.000 
+value_angle_esd   :   10.0 
+period   :   6 
+-----------------
+comp_id   :   PLP 
+id   :   const_17 
+atom_id_1   :   C5A 
+atom_id_2   :   C5 
+atom_id_3   :   C6 
+atom_id_4   :   N1 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   2 
+Number of tors is 12 
+['_chem_comp_chir.comp_id']
+['_chem_comp_chir.id']
+['_chem_comp_chir.atom_id_centre']
+['_chem_comp_chir.atom_id_1']
+['_chem_comp_chir.atom_id_2']
+['_chem_comp_chir.atom_id_3']
+['_chem_comp_chir.volume_sign']
+['PLP', 'chir_1', 'P', 'O4P', 'O2P', 'O3P', 'both']
+Number of keys in the loop is  7
+Number of values in the loop is  7
+chirs
+['comp_id', 'id', 'atom_id_centre', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'volume_sign']
+-----------------
+comp_id   :   PLP 
+id   :   chir_1 
+atom_id_centre   :   P 
+atom_id_1   :   O4P 
+atom_id_2   :   O2P 
+atom_id_3   :   O3P 
+volume_sign   :   both 
+Number of chirs is 1 
+['_chem_comp_plane_atom.comp_id']
+['_chem_comp_plane_atom.plane_id']
+['_chem_comp_plane_atom.atom_id']
+['_chem_comp_plane_atom.dist_esd']
+['PLP', 'plan-1', 'C2', '0.020']
+['PLP', 'plan-1', 'C2A', '0.020']
+['PLP', 'plan-1', 'C3', '0.020']
+['PLP', 'plan-1', 'C4', '0.020']
+['PLP', 'plan-1', 'C4A', '0.020']
+['PLP', 'plan-1', 'C5', '0.020']
+['PLP', 'plan-1', 'C5A', '0.020']
+['PLP', 'plan-1', 'C6', '0.020']
+['PLP', 'plan-1', 'H6', '0.020']
+['PLP', 'plan-1', 'N1', '0.020']
+['PLP', 'plan-1', 'O3', '0.020']
+['PLP', 'plan-2', 'C4', '0.020']
+['PLP', 'plan-2', 'C4A', '0.020']
+['PLP', 'plan-2', 'H4A', '0.020']
+['PLP', 'plan-2', 'O4A', '0.020']
+Number of keys in the loop is  4
+Number of values in the loop is  60
+plane_atoms
+['comp_id', 'plane_id', 'atom_id', 'dist_esd']
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C2 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C2A 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C3 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C4 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C4A 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C5 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C5A 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   C6 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   H6 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   N1 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-1 
+atom_id   :   O3 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-2 
+atom_id   :   C4 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-2 
+atom_id   :   C4A 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-2 
+atom_id   :   H4A 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   PLP 
+plane_id   :   plan-2 
+atom_id   :   O4A 
+dist_esd   :   0.020 
+Number of plane_atoms is 15 
+['_pdbx_chem_comp_descriptor.comp_id']
+['_pdbx_chem_comp_descriptor.type']
+['_pdbx_chem_comp_descriptor.program']
+['_pdbx_chem_comp_descriptor.program_version']
+['_pdbx_chem_comp_descriptor.descriptor']
+['PLP', 'SMILES', 'ACDLabs', '10.04', 'O=P(O)(O)OCc1cnc(c(O)c1C=O)C']
+['PLP', 'SMILES_CANONICAL', 'CACTVS', '3.341', 'Cc1ncc(CO[P](O)(O)=O)c(C=O)c1O']
+['PLP', 'SMILES', 'CACTVS', '3.341', 'Cc1ncc(CO[P](O)(O)=O)c(C=O)c1O']
+['PLP', 'SMILES_CANONICAL', '"OpenEye OEToolkits"', '1.5.0', 'Cc1c(c(c(cn1)COP(=O)(O)O)C=O)O']
+['PLP', 'SMILES', '"OpenEye OEToolkits"', '1.5.0', 'Cc1c(c(c(cn1)COP(=O)(O)O)C=O)O']
+['PLP', 'InChI', 'InChI', '1.03', 'InChI=1S/C8H10NO6P/c1-5-8(11)7(3-10)6(2-9-5)4-15-16(12,13)14/h2-3,11H,4H2,1H3,(H2,12,13,14)']
+['PLP', 'InChIKey', 'InChI', '1.03', 'NGVDGCNFYWLIFO-UHFFFAOYSA-N']
+Number of keys in the loop is  5
+Number of values in the loop is  35
+comp_descriptors
+['comp_id', 'type', 'program', 'program_version', 'descriptor']
+-----------------
+comp_id   :   PLP 
+type   :   SMILES 
+program   :   ACDLabs 
+program_version   :   10.04 
+descriptor   :   O=P(O)(O)OCc1cnc(c(O)c1C=O)C 
+-----------------
+comp_id   :   PLP 
+type   :   SMILES_CANONICAL 
+program   :   CACTVS 
+program_version   :   3.341 
+descriptor   :   Cc1ncc(CO[P](O)(O)=O)c(C=O)c1O 
+-----------------
+comp_id   :   PLP 
+type   :   SMILES 
+program   :   CACTVS 
+program_version   :   3.341 
+descriptor   :   Cc1ncc(CO[P](O)(O)=O)c(C=O)c1O 
+-----------------
+comp_id   :   PLP 
+type   :   SMILES_CANONICAL 
+program   :   "OpenEye OEToolkits" 
+program_version   :   1.5.0 
+descriptor   :   Cc1c(c(c(cn1)COP(=O)(O)O)C=O)O 
+-----------------
+comp_id   :   PLP 
+type   :   SMILES 
+program   :   "OpenEye OEToolkits" 
+program_version   :   1.5.0 
+descriptor   :   Cc1c(c(c(cn1)COP(=O)(O)O)C=O)O 
+-----------------
+comp_id   :   PLP 
+type   :   InChI 
+program   :   InChI 
+program_version   :   1.03 
+descriptor   :   InChI=1S/C8H10NO6P/c1-5-8(11)7(3-10)6(2-9-5)4-15-16(12,13)14/h2-3,11H,4H2,1H3,(H2,12,13,14) 
+-----------------
+comp_id   :   PLP 
+type   :   InChIKey 
+program   :   InChI 
+program_version   :   1.03 
+descriptor   :   NGVDGCNFYWLIFO-UHFFFAOYSA-N 
+Number of comp_descriptors is 7 
+['_pdbx_chem_comp_description_generator.comp_id']
+['_pdbx_chem_comp_description_generator.program_name']
+['_pdbx_chem_comp_description_generator.program_version']
+['_pdbx_chem_comp_description_generator.descriptor']
+['PLP', 'acedrg', '243', '"dictionary generator"']
+['PLP', 'acedrg_database', '11', '"data source"']
+['PLP', 'rdkit', '2017.03.2', '"Chemoinformatics tool"']
+['PLP', 'refmac5', '5.8.0238', '"optimization tool"']
+Number of keys in the loop is  4
+Number of values in the loop is  16
+comps
+['comp_id', 'program_name', 'program_version', 'descriptor']
+-----------------
+comp_id   :   PLP 
+program_name   :   acedrg 
+program_version   :   243 
+descriptor   :   "dictionary generator" 
+-----------------
+comp_id   :   PLP 
+program_name   :   acedrg_database 
+program_version   :   11 
+descriptor   :   "data source" 
+-----------------
+comp_id   :   PLP 
+program_name   :   rdkit 
+program_version   :   2017.03.2 
+descriptor   :   "Chemoinformatics tool" 
+-----------------
+comp_id   :   PLP 
+program_name   :   refmac5 
+program_version   :   5.8.0238 
+descriptor   :   "optimization tool" 
+Number of comps is 4 
+['lists', 'comps', 'mods', 'links', 'instructs']
+['PLP']
+dict_keys(['PLP'])
+Comp 2  PLP  contains 
+24  atoms.
+24  bonds.
+1  chiral centres.
+##################################################################
+#                                                                #
+#  Build a combo-ligand combining both monomers via the link     #
+#                                                                #
+##################################################################
+For residue  LYS
+For residue  LYS
+Number of deleted atoms according to the instruction file is  0
+Number of connected atoms for N atom 4
+Charges in atom NZ is set to 0 
+center atom:  NZ
+connected atoms 4
+Number of bonds  5
+tMode  1
+The linked atom NZ in residue LYS 
+It appears in the following bonds now 
+Bond between CE and NZ of order SINGLE 
+Bond between NZ and HZ1 of order SINGLE 
+Bond between NZ and HZ2 of order SINGLE 
+Bond between NZ and HZ3 of order SINGLE 
+Bond between NZ and C4A of order DOUBLE 
+total Valence is  6
+atom  N
+Default Valence is  3
+Allowed order is  3
+H atom  HZ1
+H atom  HZ2
+H atom  HZ3
+3 H atom will be deleted 
+NZ connects 3 H atom 
+The following H atom is deleted 
+Atom  HZ3
+Atom  HZ2
+Atom  HZ1
+['comp_id', 'atom_id', 'type_symbol', 'type_energy', 'charge', 'x', 'y', 'z']
+['comp_id', 'atom_id', 'type_symbol', 'type_energy', 'charge', 'x', 'y', 'z']
+['comp_id', 'atom_id', 'type_symbol', 'type_energy', 'charge', 'x', 'y', 'z']
+After atom deleting procedure, the following atoms are deleted :
+Atom  HZ1
+Atom  HZ2
+Atom  HZ3
+Number of total atoms is  25
+Number of remained atoms is  22
+Those atoms are :
+Atom  N
+Atom  CA
+Atom  C
+Atom  O
+Atom  CB
+Atom  CG
+Atom  CD
+Atom  CE
+Atom  NZ
+Atom  OXT
+Atom  H
+Atom  H2
+Atom  H3
+Atom  HA
+Atom  HB3
+Atom  HB2
+Atom  HG3
+Atom  HG2
+Atom  HD3
+Atom  HD2
+Atom  HE3
+Atom  HE2
+ changed bonds   0
+Number of remained bonds :  21
+They are : 
+Bond between atom N and CA 
+Bond-order is SINGLE 
+Bond between atom CA and C 
+Bond-order is SINGLE 
+Bond between atom CA and CB 
+Bond-order is SINGLE 
+Bond between atom C and O 
+Bond-order is DOUBLE 
+Bond between atom C and OXT 
+Bond-order is SINGLE 
+Bond between atom CB and CG 
+Bond-order is SINGLE 
+Bond between atom CG and CD 
+Bond-order is SINGLE 
+Bond between atom CD and CE 
+Bond-order is SINGLE 
+Bond between atom CE and NZ 
+Bond-order is SINGLE 
+Bond between atom N and H 
+Bond-order is SINGLE 
+Bond between atom N and H2 
+Bond-order is SINGLE 
+Bond between atom N and H3 
+Bond-order is SINGLE 
+Bond between atom CA and HA 
+Bond-order is SINGLE 
+Bond between atom CB and HB3 
+Bond-order is SINGLE 
+Bond between atom CB and HB2 
+Bond-order is SINGLE 
+Bond between atom CG and HG3 
+Bond-order is SINGLE 
+Bond between atom CG and HG2 
+Bond-order is SINGLE 
+Bond between atom CD and HD3 
+Bond-order is SINGLE 
+Bond between atom CD and HD2 
+Bond-order is SINGLE 
+Bond between atom CE and HE3 
+Bond-order is SINGLE 
+Bond between atom CE and HE2 
+Bond-order is SINGLE 
+Number of deleted bonds :  3
+They are : 
+Bond between atom NZ and HZ1 
+Bond-order is SINGLE 
+Bond between atom NZ and HZ2 
+Bond-order is SINGLE 
+Bond between atom NZ and HZ3 
+Bond-order is SINGLE 
+Number of remained Angles :  39
+They are : 
+Angle formed by atoms CA, N and H 
+Angle formed by atoms CA, N and H2 
+Angle formed by atoms CA, N and H3 
+Angle formed by atoms H, N and H2 
+Angle formed by atoms H, N and H3 
+Angle formed by atoms H2, N and H3 
+Angle formed by atoms N, CA and C 
+Angle formed by atoms N, CA and CB 
+Angle formed by atoms N, CA and HA 
+Angle formed by atoms C, CA and CB 
+Angle formed by atoms C, CA and HA 
+Angle formed by atoms CB, CA and HA 
+Angle formed by atoms CA, C and O 
+Angle formed by atoms CA, C and OXT 
+Angle formed by atoms O, C and OXT 
+Angle formed by atoms CA, CB and CG 
+Angle formed by atoms CA, CB and HB3 
+Angle formed by atoms CA, CB and HB2 
+Angle formed by atoms CG, CB and HB3 
+Angle formed by atoms CG, CB and HB2 
+Angle formed by atoms HB3, CB and HB2 
+Angle formed by atoms CB, CG and CD 
+Angle formed by atoms CB, CG and HG3 
+Angle formed by atoms CB, CG and HG2 
+Angle formed by atoms CD, CG and HG3 
+Angle formed by atoms CD, CG and HG2 
+Angle formed by atoms HG3, CG and HG2 
+Angle formed by atoms CG, CD and CE 
+Angle formed by atoms CG, CD and HD3 
+Angle formed by atoms CG, CD and HD2 
+Angle formed by atoms CE, CD and HD3 
+Angle formed by atoms CE, CD and HD2 
+Angle formed by atoms HD3, CD and HD2 
+Angle formed by atoms CD, CE and NZ 
+Angle formed by atoms CD, CE and HE3 
+Angle formed by atoms CD, CE and HE2 
+Angle formed by atoms NZ, CE and HE3 
+Angle formed by atoms NZ, CE and HE2 
+Angle formed by atoms HE3, CE and HE2 
+Number of deleted angles  6
+They are : 
+Angle formed by atoms CE, NZ and HZ1 
+Angle formed by atoms CE, NZ and HZ2 
+Angle formed by atoms CE, NZ and HZ3 
+Angle formed by atoms HZ1, NZ and HZ2 
+Angle formed by atoms HZ1, NZ and HZ3 
+Angle formed by atoms HZ2, NZ and HZ3 
+For residue  PLP
+Number of deleted atoms according to the instruction file is  1
+center atom:  C4A
+connected atoms 2
+Number of bonds  3
+tMode  1
+The linked atom C4A in residue PLP 
+It appears in the following bonds now 
+Bond between C4 and C4A of order SINGLE 
+Bond between C4A and H4A of order SINGLE 
+Bond between NZ and C4A of order DOUBLE 
+total Valence is  4
+atom  C
+Default Valence is  4
+Allowed order is  4
+['comp_id', 'atom_id', 'type_symbol', 'type_energy', 'charge', 'x', 'y', 'z']
+After atom deleting procedure, the following atoms are deleted :
+Atom  O4A
+Number of total atoms is  24
+Number of remained atoms is  23
+Those atoms are :
+Atom  N1
+Atom  C2
+Atom  C2A
+Atom  C3
+Atom  O3
+Atom  C4
+Atom  C4A
+Atom  C5
+Atom  C6
+Atom  C5A
+Atom  O4P
+Atom  P
+Atom  O1P
+Atom  O2P
+Atom  O3P
+Atom  H2A1
+Atom  H2A2
+Atom  H2A3
+Atom  HO3
+Atom  H4A
+Atom  H6
+Atom  H5A1
+Atom  H5A2
+ changed bonds   0
+Number of remained bonds :  23
+They are : 
+Bond between atom N1 and C2 
+Bond-order is DOUBLE 
+Bond between atom N1 and C6 
+Bond-order is SINGLE 
+Bond between atom C2 and C2A 
+Bond-order is SINGLE 
+Bond between atom C2 and C3 
+Bond-order is SINGLE 
+Bond between atom C3 and O3 
+Bond-order is SINGLE 
+Bond between atom C3 and C4 
+Bond-order is DOUBLE 
+Bond between atom C4 and C4A 
+Bond-order is SINGLE 
+Bond between atom C4 and C5 
+Bond-order is SINGLE 
+Bond between atom C5 and C6 
+Bond-order is DOUBLE 
+Bond between atom C5 and C5A 
+Bond-order is SINGLE 
+Bond between atom C5A and O4P 
+Bond-order is SINGLE 
+Bond between atom O4P and P 
+Bond-order is SINGLE 
+Bond between atom P and O1P 
+Bond-order is DOUBLE 
+Bond between atom P and O2P 
+Bond-order is SINGLE 
+Bond between atom P and O3P 
+Bond-order is SINGLE 
+Bond between atom C2A and H2A1 
+Bond-order is SINGLE 
+Bond between atom C2A and H2A2 
+Bond-order is SINGLE 
+Bond between atom C2A and H2A3 
+Bond-order is SINGLE 
+Bond between atom O3 and HO3 
+Bond-order is SINGLE 
+Bond between atom C4A and H4A 
+Bond-order is SINGLE 
+Bond between atom C6 and H6 
+Bond-order is SINGLE 
+Bond between atom C5A and H5A1 
+Bond-order is SINGLE 
+Bond between atom C5A and H5A2 
+Bond-order is SINGLE 
+Number of deleted bonds :  1
+They are : 
+Bond between atom C4A and O4A 
+Bond-order is DOUBLE 
+Number of remained Angles :  37
+They are : 
+Angle formed by atoms C2, N1 and C6 
+Angle formed by atoms N1, C2 and C2A 
+Angle formed by atoms N1, C2 and C3 
+Angle formed by atoms C2A, C2 and C3 
+Angle formed by atoms C2, C2A and H2A1 
+Angle formed by atoms C2, C2A and H2A2 
+Angle formed by atoms C2, C2A and H2A3 
+Angle formed by atoms H2A1, C2A and H2A2 
+Angle formed by atoms H2A1, C2A and H2A3 
+Angle formed by atoms H2A2, C2A and H2A3 
+Angle formed by atoms C2, C3 and O3 
+Angle formed by atoms C2, C3 and C4 
+Angle formed by atoms O3, C3 and C4 
+Angle formed by atoms C3, O3 and HO3 
+Angle formed by atoms C3, C4 and C4A 
+Angle formed by atoms C3, C4 and C5 
+Angle formed by atoms C4A, C4 and C5 
+Angle formed by atoms C4, C4A and H4A 
+Angle formed by atoms C4, C5 and C6 
+Angle formed by atoms C4, C5 and C5A 
+Angle formed by atoms C6, C5 and C5A 
+Angle formed by atoms N1, C6 and C5 
+Angle formed by atoms N1, C6 and H6 
+Angle formed by atoms C5, C6 and H6 
+Angle formed by atoms C5, C5A and O4P 
+Angle formed by atoms C5, C5A and H5A1 
+Angle formed by atoms C5, C5A and H5A2 
+Angle formed by atoms O4P, C5A and H5A1 
+Angle formed by atoms O4P, C5A and H5A2 
+Angle formed by atoms H5A1, C5A and H5A2 
+Angle formed by atoms C5A, O4P and P 
+Angle formed by atoms O4P, P and O1P 
+Angle formed by atoms O4P, P and O2P 
+Angle formed by atoms O4P, P and O3P 
+Angle formed by atoms O1P, P and O2P 
+Angle formed by atoms O1P, P and O3P 
+Angle formed by atoms O2P, P and O3P 
+Number of deleted angles  2
+They are : 
+Angle formed by atoms C4, C4A and O4A 
+Angle formed by atoms O4A, C4A and H4A 
+The name of combo-ligand : LYS-PLP 
+bond  LYS-PLP
+atom 1 alias  N9
+atom 2 alias  C29
+Number of atoms in the combo-ligand is  45
+They are : 
+N         N1        N
+CA        C2        C
+C         C3        C
+O         O4        O
+CB        C5        C
+CG        C6        C
+CD        C7        C
+CE        C8        C
+NZ        N9        N
+OXT       O10       O
+H         H11       H
+H2        H12       H
+H3        H13       H
+HA        H14       H
+HB3       H15       H
+HB2       H16       H
+HG3       H17       H
+HG2       H18       H
+HD3       H19       H
+HD2       H20       H
+HE3       H21       H
+HE2       H22       H
+N1        N23       N
+C2        C24       C
+C2A       C25       C
+C3        C26       C
+O3        O27       O
+C4        C28       C
+C4A       C29       C
+C5        C30       C
+C6        C31       C
+C5A       C32       C
+O4P       O33       O
+P         P34       P
+O1P       O35       O
+O2P       O36       O
+O3P       O37       O
+H2A1      H38       H
+H2A2      H39       H
+H2A3      H40       H
+HO3       H41       H
+H4A       H42       H
+H6        H43       H
+H5A1      H44       H
+H5A2      H45       H
+N1        C2        (N        CA)       SINGLE
+
+C2        C3        (CA       C)        SINGLE
+
+C2        C5        (CA       CB)       SINGLE
+
+C3        O4        (C        O)        DOUBLE
+
+C3        O10       (C        OXT)      SINGLE
+
+C5        C6        (CB       CG)       SINGLE
+
+C6        C7        (CG       CD)       SINGLE
+
+C7        C8        (CD       CE)       SINGLE
+
+C8        N9        (CE       NZ)       SINGLE
+
+N1        H11       (N        H)        SINGLE
+
+N1        H12       (N        H2)       SINGLE
+
+N1        H13       (N        H3)       SINGLE
+
+C2        H14       (CA       HA)       SINGLE
+
+C5        H15       (CB       HB3)      SINGLE
+
+C5        H16       (CB       HB2)      SINGLE
+
+C6        H17       (CG       HG3)      SINGLE
+
+C6        H18       (CG       HG2)      SINGLE
+
+C7        H19       (CD       HD3)      SINGLE
+
+C7        H20       (CD       HD2)      SINGLE
+
+C8        H21       (CE       HE3)      SINGLE
+
+C8        H22       (CE       HE2)      SINGLE
+
+N23       C24       (N1       C2)       DOUBLE
+
+N23       C31       (N1       C6)       SINGLE
+
+C24       C25       (C2       C2A)      SINGLE
+
+C24       C26       (C2       C3)       SINGLE
+
+C26       O27       (C3       O3)       SINGLE
+
+C26       C28       (C3       C4)       DOUBLE
+
+C28       C29       (C4       C4A)      SINGLE
+
+C28       C30       (C4       C5)       SINGLE
+
+C30       C31       (C5       C6)       DOUBLE
+
+C30       C32       (C5       C5A)      SINGLE
+
+C32       O33       (C5A      O4P)      SINGLE
+
+O33       P34       (O4P      P)        SINGLE
+
+P34       O35       (P        O1P)      DOUBLE
+
+P34       O36       (P        O2P)      SINGLE
+
+P34       O37       (P        O3P)      SINGLE
+
+C25       H38       (C2A      H2A1)     SINGLE
+
+C25       H39       (C2A      H2A2)     SINGLE
+
+C25       H40       (C2A      H2A3)     SINGLE
+
+O27       H41       (O3       HO3)      SINGLE
+
+C29       H42       (C4A      H4A)      SINGLE
+
+C31       H43       (C6       H6)       SINGLE
+
+C32       H44       (C5A      H5A1)     SINGLE
+
+C32       H45       (C5A      H5A2)     SINGLE
+
+N9        C29       (NZ       C4A)      DOUBLE
+
+atom  N1
+Number of bonds  45
+bond between atom  N1  and atom   C2
+a bond found 
+bond between atom  N1  and atom   H11
+a bond found 
+bond between atom  N1  and atom   H12
+a bond found 
+bond between atom  N1  and atom   H13
+a bond found 
+Number of bonds found  4
+atom  N1 charge  1  equiv bond-order  3
+atom  C2
+Number of bonds  45
+bond between atom  N1  and atom   C2
+a bond found 
+bond between atom  C2  and atom   C3
+a bond found 
+bond between atom  C2  and atom   C5
+a bond found 
+bond between atom  C2  and atom   H14
+a bond found 
+Number of bonds found  4
+atom  C2 charge  0  equiv bond-order  4
+atom  C3
+Number of bonds  45
+bond between atom  C2  and atom   C3
+a bond found 
+bond between atom  C3  and atom   O4
+a bond found 
+bond between atom  C3  and atom   O10
+a bond found 
+Number of bonds found  3
+atom  C3 charge  0  equiv bond-order  4
+atom  O4
+Number of bonds  45
+bond between atom  C3  and atom   O4
+a bond found 
+Number of bonds found  1
+atom  O4 charge  0  equiv bond-order  2
+atom  C5
+Number of bonds  45
+bond between atom  C2  and atom   C5
+a bond found 
+bond between atom  C5  and atom   C6
+a bond found 
+bond between atom  C5  and atom   H15
+a bond found 
+bond between atom  C5  and atom   H16
+a bond found 
+Number of bonds found  4
+atom  C5 charge  0  equiv bond-order  4
+atom  C6
+Number of bonds  45
+bond between atom  C5  and atom   C6
+a bond found 
+bond between atom  C6  and atom   C7
+a bond found 
+bond between atom  C6  and atom   H17
+a bond found 
+bond between atom  C6  and atom   H18
+a bond found 
+Number of bonds found  4
+atom  C6 charge  0  equiv bond-order  4
+atom  C7
+Number of bonds  45
+bond between atom  C6  and atom   C7
+a bond found 
+bond between atom  C7  and atom   C8
+a bond found 
+bond between atom  C7  and atom   H19
+a bond found 
+bond between atom  C7  and atom   H20
+a bond found 
+Number of bonds found  4
+atom  C7 charge  0  equiv bond-order  4
+atom  C8
+Number of bonds  45
+bond between atom  C7  and atom   C8
+a bond found 
+bond between atom  C8  and atom   N9
+a bond found 
+bond between atom  C8  and atom   H21
+a bond found 
+bond between atom  C8  and atom   H22
+a bond found 
+Number of bonds found  4
+atom  C8 charge  0  equiv bond-order  4
+atom  N9
+Number of bonds  45
+bond between atom  C8  and atom   N9
+a bond found 
+bond between atom  N9  and atom   C29
+a bond found 
+Number of bonds found  2
+atom  N9 charge  0  equiv bond-order  3
+atom  O10
+Number of bonds  45
+bond between atom  C3  and atom   O10
+a bond found 
+Number of bonds found  1
+atom  O10 charge  -1  equiv bond-order  2
+atom  H11
+Number of bonds  45
+bond between atom  N1  and atom   H11
+a bond found 
+Number of bonds found  1
+atom  H11 charge  0  equiv bond-order  1
+atom  H12
+Number of bonds  45
+bond between atom  N1  and atom   H12
+a bond found 
+Number of bonds found  1
+atom  H12 charge  0  equiv bond-order  1
+atom  H13
+Number of bonds  45
+bond between atom  N1  and atom   H13
+a bond found 
+Number of bonds found  1
+atom  H13 charge  0  equiv bond-order  1
+atom  H14
+Number of bonds  45
+bond between atom  C2  and atom   H14
+a bond found 
+Number of bonds found  1
+atom  H14 charge  0  equiv bond-order  1
+atom  H15
+Number of bonds  45
+bond between atom  C5  and atom   H15
+a bond found 
+Number of bonds found  1
+atom  H15 charge  0  equiv bond-order  1
+atom  H16
+Number of bonds  45
+bond between atom  C5  and atom   H16
+a bond found 
+Number of bonds found  1
+atom  H16 charge  0  equiv bond-order  1
+atom  H17
+Number of bonds  45
+bond between atom  C6  and atom   H17
+a bond found 
+Number of bonds found  1
+atom  H17 charge  0  equiv bond-order  1
+atom  H18
+Number of bonds  45
+bond between atom  C6  and atom   H18
+a bond found 
+Number of bonds found  1
+atom  H18 charge  0  equiv bond-order  1
+atom  H19
+Number of bonds  45
+bond between atom  C7  and atom   H19
+a bond found 
+Number of bonds found  1
+atom  H19 charge  0  equiv bond-order  1
+atom  H20
+Number of bonds  45
+bond between atom  C7  and atom   H20
+a bond found 
+Number of bonds found  1
+atom  H20 charge  0  equiv bond-order  1
+atom  H21
+Number of bonds  45
+bond between atom  C8  and atom   H21
+a bond found 
+Number of bonds found  1
+atom  H21 charge  0  equiv bond-order  1
+atom  H22
+Number of bonds  45
+bond between atom  C8  and atom   H22
+a bond found 
+Number of bonds found  1
+atom  H22 charge  0  equiv bond-order  1
+atom  N23
+Number of bonds  45
+bond between atom  N23  and atom   C24
+a bond found 
+bond between atom  N23  and atom   C31
+a bond found 
+Number of bonds found  2
+atom  N23 charge  0  equiv bond-order  3
+atom  C24
+Number of bonds  45
+bond between atom  N23  and atom   C24
+a bond found 
+bond between atom  C24  and atom   C25
+a bond found 
+bond between atom  C24  and atom   C26
+a bond found 
+Number of bonds found  3
+atom  C24 charge  0  equiv bond-order  4
+atom  C25
+Number of bonds  45
+bond between atom  C24  and atom   C25
+a bond found 
+bond between atom  C25  and atom   H38
+a bond found 
+bond between atom  C25  and atom   H39
+a bond found 
+bond between atom  C25  and atom   H40
+a bond found 
+Number of bonds found  4
+atom  C25 charge  0  equiv bond-order  4
+atom  C26
+Number of bonds  45
+bond between atom  C24  and atom   C26
+a bond found 
+bond between atom  C26  and atom   O27
+a bond found 
+bond between atom  C26  and atom   C28
+a bond found 
+Number of bonds found  3
+atom  C26 charge  0  equiv bond-order  4
+atom  O27
+Number of bonds  45
+bond between atom  C26  and atom   O27
+a bond found 
+bond between atom  O27  and atom   H41
+a bond found 
+Number of bonds found  2
+atom  O27 charge  0  equiv bond-order  2
+atom  C28
+Number of bonds  45
+bond between atom  C26  and atom   C28
+a bond found 
+bond between atom  C28  and atom   C29
+a bond found 
+bond between atom  C28  and atom   C30
+a bond found 
+Number of bonds found  3
+atom  C28 charge  0  equiv bond-order  4
+atom  C29
+Number of bonds  45
+bond between atom  C28  and atom   C29
+a bond found 
+bond between atom  C29  and atom   H42
+a bond found 
+bond between atom  N9  and atom   C29
+a bond found 
+Number of bonds found  3
+atom  C29 charge  0  equiv bond-order  4
+atom  C30
+Number of bonds  45
+bond between atom  C28  and atom   C30
+a bond found 
+bond between atom  C30  and atom   C31
+a bond found 
+bond between atom  C30  and atom   C32
+a bond found 
+Number of bonds found  3
+atom  C30 charge  0  equiv bond-order  4
+atom  C31
+Number of bonds  45
+bond between atom  N23  and atom   C31
+a bond found 
+bond between atom  C30  and atom   C31
+a bond found 
+bond between atom  C31  and atom   H43
+a bond found 
+Number of bonds found  3
+atom  C31 charge  0  equiv bond-order  4
+atom  C32
+Number of bonds  45
+bond between atom  C30  and atom   C32
+a bond found 
+bond between atom  C32  and atom   O33
+a bond found 
+bond between atom  C32  and atom   H44
+a bond found 
+bond between atom  C32  and atom   H45
+a bond found 
+Number of bonds found  4
+atom  C32 charge  0  equiv bond-order  4
+atom  O33
+Number of bonds  45
+bond between atom  C32  and atom   O33
+a bond found 
+bond between atom  O33  and atom   P34
+a bond found 
+Number of bonds found  2
+atom  O33 charge  0  equiv bond-order  2
+atom  P34
+Number of bonds  45
+bond between atom  O33  and atom   P34
+a bond found 
+bond between atom  P34  and atom   O35
+a bond found 
+bond between atom  P34  and atom   O36
+a bond found 
+bond between atom  P34  and atom   O37
+a bond found 
+Number of bonds found  4
+atom  P34 charge  0  equiv bond-order  5
+atom  O35
+Number of bonds  45
+bond between atom  P34  and atom   O35
+a bond found 
+Number of bonds found  1
+atom  O35 charge  0  equiv bond-order  2
+atom  O36
+Number of bonds  45
+bond between atom  P34  and atom   O36
+a bond found 
+Number of bonds found  1
+atom  O36 charge  -1  equiv bond-order  2
+atom  O37
+Number of bonds  45
+bond between atom  P34  and atom   O37
+a bond found 
+Number of bonds found  1
+atom  O37 charge  -1  equiv bond-order  2
+atom  H38
+Number of bonds  45
+bond between atom  C25  and atom   H38
+a bond found 
+Number of bonds found  1
+atom  H38 charge  0  equiv bond-order  1
+atom  H39
+Number of bonds  45
+bond between atom  C25  and atom   H39
+a bond found 
+Number of bonds found  1
+atom  H39 charge  0  equiv bond-order  1
+atom  H40
+Number of bonds  45
+bond between atom  C25  and atom   H40
+a bond found 
+Number of bonds found  1
+atom  H40 charge  0  equiv bond-order  1
+atom  H41
+Number of bonds  45
+bond between atom  O27  and atom   H41
+a bond found 
+Number of bonds found  1
+atom  H41 charge  0  equiv bond-order  1
+atom  H42
+Number of bonds  45
+bond between atom  C29  and atom   H42
+a bond found 
+Number of bonds found  1
+atom  H42 charge  0  equiv bond-order  1
+atom  H43
+Number of bonds  45
+bond between atom  C31  and atom   H43
+a bond found 
+Number of bonds found  1
+atom  H43 charge  0  equiv bond-order  1
+atom  H44
+Number of bonds  45
+bond between atom  C32  and atom   H44
+a bond found 
+Number of bonds found  1
+atom  H44 charge  0  equiv bond-order  1
+atom  H45
+Number of bonds  45
+bond between atom  C32  and atom   H45
+a bond found 
+Number of bonds found  1
+atom  H45 charge  0  equiv bond-order  1
+The cif file of the combo-ligand for input  /Users/nicholls/CCP4I2_PROJECTS/makelink_test0/CCP4_JOBS/job_1/job_1/LYS-PLP_TMP/LYS-PLP_comboIn.cif
+/Users/nicholls/CCP4I2_PROJECTS/makelink_test0/CCP4_JOBS/job_1/job_1/LYS-PLP_TMP/UNL_for_link.cif
+Block  data_comp_list
+It contains  1  loops 
+Number of keys in the loop is  7
+Number of values in the loop is  7
+For list entry  UNL, it has the following properties 
+id : UNL 
+three_letter_code : UNL 
+name : "'.           '" 
+group : non-polymer 
+number_atoms_all : 45 
+number_atoms_nh : 25 
+desc_level : . 
+Block  data_comp_UNL
+It contains  7  loops 
+['_chem_comp_atom.comp_id']
+['_chem_comp_atom.atom_id']
+['_chem_comp_atom.type_symbol']
+['_chem_comp_atom.type_energy']
+['_chem_comp_atom.charge']
+['_chem_comp_atom.x']
+['_chem_comp_atom.y']
+['_chem_comp_atom.z']
+['UNL', 'N1', 'N', 'NT3', '1', '15.783', '25.052', '-2.641']
+['UNL', 'C2', 'C', 'CH1', '0', '15.486', '26.505', '-2.757']
+['UNL', 'C3', 'C', 'C', '0', '16.437', '27.288', '-1.833']
+['UNL', 'O4', 'O', 'O', '0', '15.944', '28.228', '-1.170']
+['UNL', 'C5', 'C', 'CH2', '0', '15.599', '26.951', '-4.222']
+['UNL', 'C6', 'C', 'CH2', '0', '14.276', '27.070', '-4.970']
+['UNL', 'C7', 'C', 'CH2', '0', '13.605', '25.734', '-5.269']
+['UNL', 'C8', 'C', 'CH2', '0', '12.380', '25.865', '-6.167']
+['UNL', 'N9', 'N', 'N', '0', '11.997', '24.565', '-6.723']
+['UNL', 'O10', 'O', 'OC', '-1', '17.635', '26.929', '-1.811']
+['UNL', 'N23', 'N', 'NRD6', '0', '8.164', '21.309', '-7.114']
+['UNL', 'C24', 'C', 'CR6', '0', '9.394', '21.072', '-7.564']
+['UNL', 'C25', 'C', 'CH3', '0', '9.753', '19.668', '-7.939']
+['UNL', 'C26', 'C', 'CR6', '0', '10.335', '22.115', '-7.686']
+['UNL', 'O27', 'O', 'OH1', '0', '11.568', '21.793', '-8.153']
+['UNL', 'C28', 'C', 'CR6', '0', '9.982', '23.424', '-7.330']
+['UNL', 'C29', 'C', 'C1', '0', '10.965', '24.501', '-7.459']
+['UNL', 'C30', 'C', 'CR6', '0', '8.674', '23.659', '-6.854']
+['UNL', 'C31', 'C', 'CR16', '0', '7.810', '22.565', '-6.767']
+['UNL', 'C32', 'C', 'CH2', '0', '8.234', '25.044', '-6.456']
+['UNL', 'O33', 'O', 'O2', '0', '6.855', '25.156', '-5.979']
+['UNL', 'P34', 'P', 'P', '0', '6.239', '26.568', '-5.478']
+['UNL', 'O35', 'O', 'O', '0', '4.765', '26.303', '-5.213']
+['UNL', 'O36', 'O', 'OP', '-1', '6.470', '27.547', '-6.618']
+['UNL', 'O37', 'O', 'OP', '-1', '7.011', '26.931', '-4.219']
+['UNL', 'H11', 'H', 'H', '0', '15.254', '24.583', '-3.200']
+['UNL', 'H12', 'H', 'H', '0', '15.631', '24.774', '-1.796']
+['UNL', 'H13', 'H', 'H', '0', '16.645', '24.889', '-2.850']
+['UNL', 'H14', 'H', 'H', '0', '14.556', '26.655', '-2.449']
+['UNL', 'H15', 'H', 'H', '0', '16.166', '26.309', '-4.700']
+['UNL', 'H16', 'H', 'H', '0', '16.048', '27.823', '-4.256']
+['UNL', 'H17', 'H', 'H', '0', '14.439', '27.540', '-5.817']
+['UNL', 'H18', 'H', 'H', '0', '13.664', '27.622', '-4.436']
+['UNL', 'H19', 'H', 'H', '0', '13.330', '25.317', '-4.424']
+['UNL', 'H20', 'H', 'H', '0', '14.254', '25.139', '-5.705']
+['UNL', 'H21', 'H', 'H', '0', '12.578', '26.487', '-6.899']
+['UNL', 'H22', 'H', 'H', '0', '11.634', '26.230', '-5.647']
+['UNL', 'H38', 'H', 'H', '0', '10.532', '19.385', '-7.438']
+['UNL', 'H39', 'H', 'H', '0', '9.953', '19.624', '-8.886']
+['UNL', 'H40', 'H', 'H', '0', '9.017', '19.067', '-7.744']
+['UNL', 'H41', 'H', 'H', '0', '12.216', '22.956', '-7.481']
+['UNL', 'H42', 'H', 'H', '0', '10.830', '25.173', '-8.114']
+['UNL', 'H43', 'H', 'H', '0', '6.936', '22.699', '-6.454']
+['UNL', 'H44', 'H', 'H', '0', '8.323', '25.652', '-7.227']
+['UNL', 'H45', 'H', 'H', '0', '8.817', '25.380', '-5.735']
+Number of keys in the loop is  8
+Number of values in the loop is  360
+atoms
+['comp_id', 'atom_id', 'type_symbol', 'type_energy', 'charge', 'x', 'y', 'z']
+-----------------
+comp_id   :   UNL 
+atom_id   :   N1 
+type_symbol   :   N 
+type_energy   :   NT3 
+charge   :   1 
+x   :   15.783 
+y   :   25.052 
+z   :   -2.641 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C2 
+type_symbol   :   C 
+type_energy   :   CH1 
+charge   :   0 
+x   :   15.486 
+y   :   26.505 
+z   :   -2.757 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C3 
+type_symbol   :   C 
+type_energy   :   C 
+charge   :   0 
+x   :   16.437 
+y   :   27.288 
+z   :   -1.833 
+-----------------
+comp_id   :   UNL 
+atom_id   :   O4 
+type_symbol   :   O 
+type_energy   :   O 
+charge   :   0 
+x   :   15.944 
+y   :   28.228 
+z   :   -1.170 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C5 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   15.599 
+y   :   26.951 
+z   :   -4.222 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C6 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   14.276 
+y   :   27.070 
+z   :   -4.970 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C7 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   13.605 
+y   :   25.734 
+z   :   -5.269 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C8 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   12.380 
+y   :   25.865 
+z   :   -6.167 
+-----------------
+comp_id   :   UNL 
+atom_id   :   N9 
+type_symbol   :   N 
+type_energy   :   N 
+charge   :   0 
+x   :   11.997 
+y   :   24.565 
+z   :   -6.723 
+-----------------
+comp_id   :   UNL 
+atom_id   :   O10 
+type_symbol   :   O 
+type_energy   :   OC 
+charge   :   -1 
+x   :   17.635 
+y   :   26.929 
+z   :   -1.811 
+-----------------
+comp_id   :   UNL 
+atom_id   :   N23 
+type_symbol   :   N 
+type_energy   :   NRD6 
+charge   :   0 
+x   :   8.164 
+y   :   21.309 
+z   :   -7.114 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C24 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   9.394 
+y   :   21.072 
+z   :   -7.564 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C25 
+type_symbol   :   C 
+type_energy   :   CH3 
+charge   :   0 
+x   :   9.753 
+y   :   19.668 
+z   :   -7.939 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C26 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   10.335 
+y   :   22.115 
+z   :   -7.686 
+-----------------
+comp_id   :   UNL 
+atom_id   :   O27 
+type_symbol   :   O 
+type_energy   :   OH1 
+charge   :   0 
+x   :   11.568 
+y   :   21.793 
+z   :   -8.153 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C28 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   9.982 
+y   :   23.424 
+z   :   -7.330 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C29 
+type_symbol   :   C 
+type_energy   :   C1 
+charge   :   0 
+x   :   10.965 
+y   :   24.501 
+z   :   -7.459 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C30 
+type_symbol   :   C 
+type_energy   :   CR6 
+charge   :   0 
+x   :   8.674 
+y   :   23.659 
+z   :   -6.854 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C31 
+type_symbol   :   C 
+type_energy   :   CR16 
+charge   :   0 
+x   :   7.810 
+y   :   22.565 
+z   :   -6.767 
+-----------------
+comp_id   :   UNL 
+atom_id   :   C32 
+type_symbol   :   C 
+type_energy   :   CH2 
+charge   :   0 
+x   :   8.234 
+y   :   25.044 
+z   :   -6.456 
+-----------------
+comp_id   :   UNL 
+atom_id   :   O33 
+type_symbol   :   O 
+type_energy   :   O2 
+charge   :   0 
+x   :   6.855 
+y   :   25.156 
+z   :   -5.979 
+-----------------
+comp_id   :   UNL 
+atom_id   :   P34 
+type_symbol   :   P 
+type_energy   :   P 
+charge   :   0 
+x   :   6.239 
+y   :   26.568 
+z   :   -5.478 
+-----------------
+comp_id   :   UNL 
+atom_id   :   O35 
+type_symbol   :   O 
+type_energy   :   O 
+charge   :   0 
+x   :   4.765 
+y   :   26.303 
+z   :   -5.213 
+-----------------
+comp_id   :   UNL 
+atom_id   :   O36 
+type_symbol   :   O 
+type_energy   :   OP 
+charge   :   -1 
+x   :   6.470 
+y   :   27.547 
+z   :   -6.618 
+-----------------
+comp_id   :   UNL 
+atom_id   :   O37 
+type_symbol   :   O 
+type_energy   :   OP 
+charge   :   -1 
+x   :   7.011 
+y   :   26.931 
+z   :   -4.219 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H11 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   15.254 
+y   :   24.583 
+z   :   -3.200 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H12 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   15.631 
+y   :   24.774 
+z   :   -1.796 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H13 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   16.645 
+y   :   24.889 
+z   :   -2.850 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H14 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   14.556 
+y   :   26.655 
+z   :   -2.449 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H15 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   16.166 
+y   :   26.309 
+z   :   -4.700 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H16 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   16.048 
+y   :   27.823 
+z   :   -4.256 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H17 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   14.439 
+y   :   27.540 
+z   :   -5.817 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H18 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   13.664 
+y   :   27.622 
+z   :   -4.436 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H19 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   13.330 
+y   :   25.317 
+z   :   -4.424 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H20 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   14.254 
+y   :   25.139 
+z   :   -5.705 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H21 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   12.578 
+y   :   26.487 
+z   :   -6.899 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H22 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   11.634 
+y   :   26.230 
+z   :   -5.647 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H38 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   10.532 
+y   :   19.385 
+z   :   -7.438 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H39 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   9.953 
+y   :   19.624 
+z   :   -8.886 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H40 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   9.017 
+y   :   19.067 
+z   :   -7.744 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H41 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   12.216 
+y   :   22.956 
+z   :   -7.481 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H42 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   10.830 
+y   :   25.173 
+z   :   -8.114 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H43 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   6.936 
+y   :   22.699 
+z   :   -6.454 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H44 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   8.323 
+y   :   25.652 
+z   :   -7.227 
+-----------------
+comp_id   :   UNL 
+atom_id   :   H45 
+type_symbol   :   H 
+type_energy   :   H 
+charge   :   0 
+x   :   8.817 
+y   :   25.380 
+z   :   -5.735 
+Number of atoms is 45 
+['_chem_comp_bond.comp_id']
+['_chem_comp_bond.atom_id_1']
+['_chem_comp_bond.atom_id_2']
+['_chem_comp_bond.type']
+['_chem_comp_bond.aromatic']
+['_chem_comp_bond.value_dist_nucleus']
+['_chem_comp_bond.value_dist_nucleus_esd']
+['_chem_comp_bond.value_dist']
+['_chem_comp_bond.value_dist_esd']
+['UNL', 'N1', 'C2', 'SINGLE', 'n', '1.487', '0.0100', '1.487', '0.0100']
+['UNL', 'C2', 'C3', 'SINGLE', 'n', '1.538', '0.0113', '1.538', '0.0113']
+['UNL', 'C2', 'C5', 'SINGLE', 'n', '1.533', '0.0100', '1.533', '0.0100']
+['UNL', 'C3', 'O4', 'DOUBLE', 'n', '1.251', '0.0183', '1.251', '0.0183']
+['UNL', 'C3', 'O10', 'SINGLE', 'n', '1.251', '0.0183', '1.251', '0.0183']
+['UNL', 'C5', 'C6', 'SINGLE', 'n', '1.523', '0.0189', '1.523', '0.0189']
+['UNL', 'C6', 'C7', 'SINGLE', 'n', '1.525', '0.0102', '1.525', '0.0102']
+['UNL', 'C7', 'C8', 'SINGLE', 'n', '1.524', '0.0136', '1.524', '0.0136']
+['UNL', 'C8', 'N9', 'SINGLE', 'n', '1.464', '0.0100', '1.464', '0.0100']
+['UNL', 'N23', 'C24', 'DOUBLE', 'y', '1.328', '0.0100', '1.328', '0.0100']
+['UNL', 'N23', 'C31', 'SINGLE', 'y', '1.348', '0.0100', '1.348', '0.0100']
+['UNL', 'C24', 'C25', 'SINGLE', 'n', '1.496', '0.0100', '1.496', '0.0100']
+['UNL', 'C24', 'C26', 'SINGLE', 'y', '1.405', '0.0100', '1.405', '0.0100']
+['UNL', 'C26', 'O27', 'SINGLE', 'n', '1.355', '0.0122', '1.355', '0.0122']
+['UNL', 'C26', 'C28', 'DOUBLE', 'y', '1.396', '0.0100', '1.396', '0.0100']
+['UNL', 'C28', 'C29', 'SINGLE', 'n', '1.463', '0.0100', '1.463', '0.0100']
+['UNL', 'C28', 'C30', 'SINGLE', 'y', '1.405', '0.0100', '1.405', '0.0100']
+['UNL', 'C30', 'C31', 'DOUBLE', 'y', '1.384', '0.0145', '1.384', '0.0145']
+['UNL', 'C30', 'C32', 'SINGLE', 'n', '1.503', '0.0100', '1.503', '0.0100']
+['UNL', 'C32', 'O33', 'SINGLE', 'n', '1.462', '0.0100', '1.462', '0.0100']
+['UNL', 'O33', 'P34', 'SINGLE', 'n', '1.620', '0.0143', '1.620', '0.0143']
+['UNL', 'P34', 'O35', 'DOUBLE', 'n', '1.521', '0.0200', '1.521', '0.0200']
+['UNL', 'P34', 'O36', 'SINGLE', 'n', '1.521', '0.0200', '1.521', '0.0200']
+['UNL', 'P34', 'O37', 'SINGLE', 'n', '1.521', '0.0200', '1.521', '0.0200']
+['UNL', 'N9', 'C29', 'DOUBLE', 'n', '1.269', '0.0164', '1.269', '0.0164']
+['UNL', 'N1', 'H11', 'SINGLE', 'n', '1.036', '0.0160', '0.902', '0.0102']
+['UNL', 'N1', 'H12', 'SINGLE', 'n', '1.036', '0.0160', '0.902', '0.0102']
+['UNL', 'N1', 'H13', 'SINGLE', 'n', '1.036', '0.0160', '0.902', '0.0102']
+['UNL', 'C2', 'H14', 'SINGLE', 'n', '1.089', '0.0100', '0.991', '0.0200']
+['UNL', 'C5', 'H15', 'SINGLE', 'n', '1.089', '0.0100', '0.981', '0.0141']
+['UNL', 'C5', 'H16', 'SINGLE', 'n', '1.089', '0.0100', '0.981', '0.0141']
+['UNL', 'C6', 'H17', 'SINGLE', 'n', '1.089', '0.0100', '0.982', '0.0163']
+['UNL', 'C6', 'H18', 'SINGLE', 'n', '1.089', '0.0100', '0.982', '0.0163']
+['UNL', 'C7', 'H19', 'SINGLE', 'n', '1.089', '0.0100', '0.982', '0.0161']
+['UNL', 'C7', 'H20', 'SINGLE', 'n', '1.089', '0.0100', '0.982', '0.0161']
+['UNL', 'C8', 'H21', 'SINGLE', 'n', '1.089', '0.0100', '0.980', '0.0107']
+['UNL', 'C8', 'H22', 'SINGLE', 'n', '1.089', '0.0100', '0.980', '0.0107']
+['UNL', 'C25', 'H38', 'SINGLE', 'n', '1.089', '0.0100', '0.969', '0.0191']
+['UNL', 'C25', 'H39', 'SINGLE', 'n', '1.089', '0.0100', '0.969', '0.0191']
+['UNL', 'C25', 'H40', 'SINGLE', 'n', '1.089', '0.0100', '0.969', '0.0191']
+['UNL', 'O27', 'H41', 'SINGLE', 'n', '0.966', '0.0059', '0.858', '0.0200']
+['UNL', 'C29', 'H42', 'SINGLE', 'n', '1.082', '0.0130', '0.947', '0.0182']
+['UNL', 'C31', 'H43', 'SINGLE', 'n', '1.082', '0.0130', '0.940', '0.0200']
+['UNL', 'C32', 'H44', 'SINGLE', 'n', '1.089', '0.0100', '0.986', '0.0200']
+['UNL', 'C32', 'H45', 'SINGLE', 'n', '1.089', '0.0100', '0.986', '0.0200']
+Number of keys in the loop is  9
+Number of values in the loop is  405
+bonds
+['comp_id', 'atom_id_1', 'atom_id_2', 'type', 'aromatic', 'value_dist_nucleus', 'value_dist_nucleus_esd', 'value_dist', 'value_dist_esd']
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.487 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.487 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   C3 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.538 
+value_dist_nucleus_esd   :   0.0113 
+value_dist   :   1.538 
+value_dist_esd   :   0.0113 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   C5 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.533 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.533 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C3 
+atom_id_2   :   O4 
+type   :   DOUBLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.251 
+value_dist_nucleus_esd   :   0.0183 
+value_dist   :   1.251 
+value_dist_esd   :   0.0183 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C3 
+atom_id_2   :   O10 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.251 
+value_dist_nucleus_esd   :   0.0183 
+value_dist   :   1.251 
+value_dist_esd   :   0.0183 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.523 
+value_dist_nucleus_esd   :   0.0189 
+value_dist   :   1.523 
+value_dist_esd   :   0.0189 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   C7 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.525 
+value_dist_nucleus_esd   :   0.0102 
+value_dist   :   1.525 
+value_dist_esd   :   0.0102 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   C8 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.524 
+value_dist_nucleus_esd   :   0.0136 
+value_dist   :   1.524 
+value_dist_esd   :   0.0136 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C8 
+atom_id_2   :   N9 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.464 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.464 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N23 
+atom_id_2   :   C24 
+type   :   DOUBLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.328 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.328 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N23 
+atom_id_2   :   C31 
+type   :   SINGLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.348 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.348 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   C25 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.496 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.496 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   C26 
+type   :   SINGLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.405 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.405 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C26 
+atom_id_2   :   O27 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.355 
+value_dist_nucleus_esd   :   0.0122 
+value_dist   :   1.355 
+value_dist_esd   :   0.0122 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C26 
+atom_id_2   :   C28 
+type   :   DOUBLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.396 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.396 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C28 
+atom_id_2   :   C29 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.463 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.463 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C28 
+atom_id_2   :   C30 
+type   :   SINGLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.405 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.405 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C30 
+atom_id_2   :   C31 
+type   :   DOUBLE 
+aromatic   :   y 
+value_dist_nucleus   :   1.384 
+value_dist_nucleus_esd   :   0.0145 
+value_dist   :   1.384 
+value_dist_esd   :   0.0145 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C30 
+atom_id_2   :   C32 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.503 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.503 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C32 
+atom_id_2   :   O33 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.462 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   1.462 
+value_dist_esd   :   0.0100 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O33 
+atom_id_2   :   P34 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.620 
+value_dist_nucleus_esd   :   0.0143 
+value_dist   :   1.620 
+value_dist_esd   :   0.0143 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   P34 
+atom_id_2   :   O35 
+type   :   DOUBLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.521 
+value_dist_nucleus_esd   :   0.0200 
+value_dist   :   1.521 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   P34 
+atom_id_2   :   O36 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.521 
+value_dist_nucleus_esd   :   0.0200 
+value_dist   :   1.521 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   P34 
+atom_id_2   :   O37 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.521 
+value_dist_nucleus_esd   :   0.0200 
+value_dist   :   1.521 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N9 
+atom_id_2   :   C29 
+type   :   DOUBLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.269 
+value_dist_nucleus_esd   :   0.0164 
+value_dist   :   1.269 
+value_dist_esd   :   0.0164 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N1 
+atom_id_2   :   H11 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.902 
+value_dist_esd   :   0.0102 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N1 
+atom_id_2   :   H12 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.902 
+value_dist_esd   :   0.0102 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N1 
+atom_id_2   :   H13 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.036 
+value_dist_nucleus_esd   :   0.0160 
+value_dist   :   0.902 
+value_dist_esd   :   0.0102 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   H14 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.991 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C5 
+atom_id_2   :   H15 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.981 
+value_dist_esd   :   0.0141 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C5 
+atom_id_2   :   H16 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.981 
+value_dist_esd   :   0.0141 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   H17 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.982 
+value_dist_esd   :   0.0163 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   H18 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.982 
+value_dist_esd   :   0.0163 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   H19 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.982 
+value_dist_esd   :   0.0161 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   H20 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.982 
+value_dist_esd   :   0.0161 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C8 
+atom_id_2   :   H21 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.980 
+value_dist_esd   :   0.0107 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C8 
+atom_id_2   :   H22 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.980 
+value_dist_esd   :   0.0107 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C25 
+atom_id_2   :   H38 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.969 
+value_dist_esd   :   0.0191 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C25 
+atom_id_2   :   H39 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.969 
+value_dist_esd   :   0.0191 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C25 
+atom_id_2   :   H40 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.969 
+value_dist_esd   :   0.0191 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O27 
+atom_id_2   :   H41 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   0.966 
+value_dist_nucleus_esd   :   0.0059 
+value_dist   :   0.858 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C29 
+atom_id_2   :   H42 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.082 
+value_dist_nucleus_esd   :   0.0130 
+value_dist   :   0.947 
+value_dist_esd   :   0.0182 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C31 
+atom_id_2   :   H43 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.082 
+value_dist_nucleus_esd   :   0.0130 
+value_dist   :   0.940 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C32 
+atom_id_2   :   H44 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.986 
+value_dist_esd   :   0.0200 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C32 
+atom_id_2   :   H45 
+type   :   SINGLE 
+aromatic   :   n 
+value_dist_nucleus   :   1.089 
+value_dist_nucleus_esd   :   0.0100 
+value_dist   :   0.986 
+value_dist_esd   :   0.0200 
+Number of bonds is 45 
+['_chem_comp_angle.comp_id']
+['_chem_comp_angle.atom_id_1']
+['_chem_comp_angle.atom_id_2']
+['_chem_comp_angle.atom_id_3']
+['_chem_comp_angle.value_angle']
+['_chem_comp_angle.value_angle_esd']
+['UNL', 'C2', 'N1', 'H11', '109.990', '3.00']
+['UNL', 'C2', 'N1', 'H12', '109.990', '3.00']
+['UNL', 'C2', 'N1', 'H13', '109.990', '3.00']
+['UNL', 'H11', 'N1', 'H12', '109.032', '3.00']
+['UNL', 'H11', 'N1', 'H13', '109.032', '3.00']
+['UNL', 'H12', 'N1', 'H13', '109.032', '3.00']
+['UNL', 'N1', 'C2', 'C3', '109.258', '1.50']
+['UNL', 'N1', 'C2', 'C5', '110.440', '2.46']
+['UNL', 'N1', 'C2', 'H14', '108.387', '1.58']
+['UNL', 'C3', 'C2', 'C5', '111.059', '3.00']
+['UNL', 'C3', 'C2', 'H14', '108.774', '1.79']
+['UNL', 'C5', 'C2', 'H14', '109.080', '2.33']
+['UNL', 'C2', 'C3', 'O4', '117.148', '1.60']
+['UNL', 'C2', 'C3', 'O10', '117.148', '1.60']
+['UNL', 'O4', 'C3', 'O10', '125.704', '1.50']
+['UNL', 'C2', 'C5', 'C6', '115.148', '2.35']
+['UNL', 'C2', 'C5', 'H15', '108.677', '1.74']
+['UNL', 'C2', 'C5', 'H16', '108.677', '1.74']
+['UNL', 'C6', 'C5', 'H15', '108.413', '1.50']
+['UNL', 'C6', 'C5', 'H16', '108.413', '1.50']
+['UNL', 'H15', 'C5', 'H16', '107.655', '1.50']
+['UNL', 'C5', 'C6', 'C7', '113.403', '3.00']
+['UNL', 'C5', 'C6', 'H17', '108.381', '1.50']
+['UNL', 'C5', 'C6', 'H18', '108.381', '1.50']
+['UNL', 'C7', 'C6', 'H17', '108.819', '1.50']
+['UNL', 'C7', 'C6', 'H18', '108.819', '1.50']
+['UNL', 'H17', 'C6', 'H18', '107.566', '1.82']
+['UNL', 'C6', 'C7', 'C8', '113.139', '1.50']
+['UNL', 'C6', 'C7', 'H19', '108.993', '1.92']
+['UNL', 'C6', 'C7', 'H20', '108.993', '1.92']
+['UNL', 'C8', 'C7', 'H19', '108.554', '3.00']
+['UNL', 'C8', 'C7', 'H20', '108.554', '3.00']
+['UNL', 'H19', 'C7', 'H20', '107.958', '2.23']
+['UNL', 'C7', 'C8', 'N9', '110.882', '1.50']
+['UNL', 'C7', 'C8', 'H21', '109.346', '1.50']
+['UNL', 'C7', 'C8', 'H22', '109.346', '1.50']
+['UNL', 'N9', 'C8', 'H21', '109.417', '1.50']
+['UNL', 'N9', 'C8', 'H22', '109.417', '1.50']
+['UNL', 'H21', 'C8', 'H22', '108.186', '3.00']
+['UNL', 'C8', 'N9', 'C29', '118.355', '1.81']
+['UNL', 'C24', 'N23', 'C31', '119.323', '3.00']
+['UNL', 'N23', 'C24', 'C25', '118.333', '1.50']
+['UNL', 'N23', 'C24', 'C26', '121.340', '1.50']
+['UNL', 'C25', 'C24', 'C26', '120.327', '1.50']
+['UNL', 'C24', 'C25', 'H38', '109.858', '2.49']
+['UNL', 'C24', 'C25', 'H39', '109.858', '2.49']
+['UNL', 'C24', 'C25', 'H40', '109.858', '2.49']
+['UNL', 'H38', 'C25', 'H39', '109.327', '3.00']
+['UNL', 'H38', 'C25', 'H40', '109.327', '3.00']
+['UNL', 'H39', 'C25', 'H40', '109.327', '3.00']
+['UNL', 'C24', 'C26', 'O27', '117.285', '2.74']
+['UNL', 'C24', 'C26', 'C28', '119.947', '1.50']
+['UNL', 'O27', 'C26', 'C28', '122.768', '1.50']
+['UNL', 'C26', 'O27', 'H41', '108.013', '3.00']
+['UNL', 'C26', 'C28', 'C29', '120.168', '1.50']
+['UNL', 'C26', 'C28', 'C30', '117.711', '1.50']
+['UNL', 'C29', 'C28', 'C30', '122.120', '1.50']
+['UNL', 'C28', 'C29', 'N9', '122.167', '2.29']
+['UNL', 'C28', 'C29', 'H42', '119.178', '1.50']
+['UNL', 'N9', 'C29', 'H42', '118.654', '1.50']
+['UNL', 'C28', 'C30', 'C31', '118.117', '1.50']
+['UNL', 'C28', 'C30', 'C32', '121.703', '1.63']
+['UNL', 'C31', 'C30', 'C32', '120.180', '2.42']
+['UNL', 'N23', 'C31', 'C30', '123.562', '1.78']
+['UNL', 'N23', 'C31', 'H43', '117.812', '1.50']
+['UNL', 'C30', 'C31', 'H43', '118.626', '1.50']
+['UNL', 'C30', 'C32', 'O33', '110.300', '3.00']
+['UNL', 'C30', 'C32', 'H44', '109.826', '1.50']
+['UNL', 'C30', 'C32', 'H45', '109.826', '1.50']
+['UNL', 'O33', 'C32', 'H44', '108.466', '3.00']
+['UNL', 'O33', 'C32', 'H45', '108.466', '3.00']
+['UNL', 'H44', 'C32', 'H45', '108.241', '1.50']
+['UNL', 'C32', 'O33', 'P34', '121.760', '3.00']
+['UNL', 'O33', 'P34', 'O35', '105.737', '3.00']
+['UNL', 'O33', 'P34', 'O36', '105.737', '3.00']
+['UNL', 'O33', 'P34', 'O37', '105.737', '3.00']
+['UNL', 'O35', 'P34', 'O36', '112.951', '3.00']
+['UNL', 'O35', 'P34', 'O37', '112.951', '3.00']
+['UNL', 'O36', 'P34', 'O37', '112.951', '3.00']
+Number of keys in the loop is  6
+Number of values in the loop is  474
+angles
+['comp_id', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'value_angle', 'value_angle_esd']
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   N1 
+atom_id_3   :   H11 
+value_angle   :   109.990 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   N1 
+atom_id_3   :   H12 
+value_angle   :   109.990 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   N1 
+atom_id_3   :   H13 
+value_angle   :   109.990 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H11 
+atom_id_2   :   N1 
+atom_id_3   :   H12 
+value_angle   :   109.032 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H11 
+atom_id_2   :   N1 
+atom_id_3   :   H13 
+value_angle   :   109.032 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H12 
+atom_id_2   :   N1 
+atom_id_3   :   H13 
+value_angle   :   109.032 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+atom_id_3   :   C3 
+value_angle   :   109.258 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+atom_id_3   :   C5 
+value_angle   :   110.440 
+value_angle_esd   :   2.46 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+atom_id_3   :   H14 
+value_angle   :   108.387 
+value_angle_esd   :   1.58 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C3 
+atom_id_2   :   C2 
+atom_id_3   :   C5 
+value_angle   :   111.059 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C3 
+atom_id_2   :   C2 
+atom_id_3   :   H14 
+value_angle   :   108.774 
+value_angle_esd   :   1.79 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C5 
+atom_id_2   :   C2 
+atom_id_3   :   H14 
+value_angle   :   109.080 
+value_angle_esd   :   2.33 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   C3 
+atom_id_3   :   O4 
+value_angle   :   117.148 
+value_angle_esd   :   1.60 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   C3 
+atom_id_3   :   O10 
+value_angle   :   117.148 
+value_angle_esd   :   1.60 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O4 
+atom_id_2   :   C3 
+atom_id_3   :   O10 
+value_angle   :   125.704 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   C5 
+atom_id_3   :   C6 
+value_angle   :   115.148 
+value_angle_esd   :   2.35 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   C5 
+atom_id_3   :   H15 
+value_angle   :   108.677 
+value_angle_esd   :   1.74 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C2 
+atom_id_2   :   C5 
+atom_id_3   :   H16 
+value_angle   :   108.677 
+value_angle_esd   :   1.74 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   C5 
+atom_id_3   :   H15 
+value_angle   :   108.413 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   C5 
+atom_id_3   :   H16 
+value_angle   :   108.413 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H15 
+atom_id_2   :   C5 
+atom_id_3   :   H16 
+value_angle   :   107.655 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+atom_id_3   :   C7 
+value_angle   :   113.403 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+atom_id_3   :   H17 
+value_angle   :   108.381 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+atom_id_3   :   H18 
+value_angle   :   108.381 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   C6 
+atom_id_3   :   H17 
+value_angle   :   108.819 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   C6 
+atom_id_3   :   H18 
+value_angle   :   108.819 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H17 
+atom_id_2   :   C6 
+atom_id_3   :   H18 
+value_angle   :   107.566 
+value_angle_esd   :   1.82 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   C7 
+atom_id_3   :   C8 
+value_angle   :   113.139 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   C7 
+atom_id_3   :   H19 
+value_angle   :   108.993 
+value_angle_esd   :   1.92 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C6 
+atom_id_2   :   C7 
+atom_id_3   :   H20 
+value_angle   :   108.993 
+value_angle_esd   :   1.92 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C8 
+atom_id_2   :   C7 
+atom_id_3   :   H19 
+value_angle   :   108.554 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C8 
+atom_id_2   :   C7 
+atom_id_3   :   H20 
+value_angle   :   108.554 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H19 
+atom_id_2   :   C7 
+atom_id_3   :   H20 
+value_angle   :   107.958 
+value_angle_esd   :   2.23 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   C8 
+atom_id_3   :   N9 
+value_angle   :   110.882 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   C8 
+atom_id_3   :   H21 
+value_angle   :   109.346 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C7 
+atom_id_2   :   C8 
+atom_id_3   :   H22 
+value_angle   :   109.346 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N9 
+atom_id_2   :   C8 
+atom_id_3   :   H21 
+value_angle   :   109.417 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N9 
+atom_id_2   :   C8 
+atom_id_3   :   H22 
+value_angle   :   109.417 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H21 
+atom_id_2   :   C8 
+atom_id_3   :   H22 
+value_angle   :   108.186 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C8 
+atom_id_2   :   N9 
+atom_id_3   :   C29 
+value_angle   :   118.355 
+value_angle_esd   :   1.81 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   N23 
+atom_id_3   :   C31 
+value_angle   :   119.323 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N23 
+atom_id_2   :   C24 
+atom_id_3   :   C25 
+value_angle   :   118.333 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N23 
+atom_id_2   :   C24 
+atom_id_3   :   C26 
+value_angle   :   121.340 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C25 
+atom_id_2   :   C24 
+atom_id_3   :   C26 
+value_angle   :   120.327 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   C25 
+atom_id_3   :   H38 
+value_angle   :   109.858 
+value_angle_esd   :   2.49 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   C25 
+atom_id_3   :   H39 
+value_angle   :   109.858 
+value_angle_esd   :   2.49 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   C25 
+atom_id_3   :   H40 
+value_angle   :   109.858 
+value_angle_esd   :   2.49 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H38 
+atom_id_2   :   C25 
+atom_id_3   :   H39 
+value_angle   :   109.327 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H38 
+atom_id_2   :   C25 
+atom_id_3   :   H40 
+value_angle   :   109.327 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H39 
+atom_id_2   :   C25 
+atom_id_3   :   H40 
+value_angle   :   109.327 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   C26 
+atom_id_3   :   O27 
+value_angle   :   117.285 
+value_angle_esd   :   2.74 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C24 
+atom_id_2   :   C26 
+atom_id_3   :   C28 
+value_angle   :   119.947 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O27 
+atom_id_2   :   C26 
+atom_id_3   :   C28 
+value_angle   :   122.768 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C26 
+atom_id_2   :   O27 
+atom_id_3   :   H41 
+value_angle   :   108.013 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C26 
+atom_id_2   :   C28 
+atom_id_3   :   C29 
+value_angle   :   120.168 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C26 
+atom_id_2   :   C28 
+atom_id_3   :   C30 
+value_angle   :   117.711 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C29 
+atom_id_2   :   C28 
+atom_id_3   :   C30 
+value_angle   :   122.120 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C28 
+atom_id_2   :   C29 
+atom_id_3   :   N9 
+value_angle   :   122.167 
+value_angle_esd   :   2.29 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C28 
+atom_id_2   :   C29 
+atom_id_3   :   H42 
+value_angle   :   119.178 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N9 
+atom_id_2   :   C29 
+atom_id_3   :   H42 
+value_angle   :   118.654 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C28 
+atom_id_2   :   C30 
+atom_id_3   :   C31 
+value_angle   :   118.117 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C28 
+atom_id_2   :   C30 
+atom_id_3   :   C32 
+value_angle   :   121.703 
+value_angle_esd   :   1.63 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C31 
+atom_id_2   :   C30 
+atom_id_3   :   C32 
+value_angle   :   120.180 
+value_angle_esd   :   2.42 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N23 
+atom_id_2   :   C31 
+atom_id_3   :   C30 
+value_angle   :   123.562 
+value_angle_esd   :   1.78 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   N23 
+atom_id_2   :   C31 
+atom_id_3   :   H43 
+value_angle   :   117.812 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C30 
+atom_id_2   :   C31 
+atom_id_3   :   H43 
+value_angle   :   118.626 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C30 
+atom_id_2   :   C32 
+atom_id_3   :   O33 
+value_angle   :   110.300 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C30 
+atom_id_2   :   C32 
+atom_id_3   :   H44 
+value_angle   :   109.826 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C30 
+atom_id_2   :   C32 
+atom_id_3   :   H45 
+value_angle   :   109.826 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O33 
+atom_id_2   :   C32 
+atom_id_3   :   H44 
+value_angle   :   108.466 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O33 
+atom_id_2   :   C32 
+atom_id_3   :   H45 
+value_angle   :   108.466 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   H44 
+atom_id_2   :   C32 
+atom_id_3   :   H45 
+value_angle   :   108.241 
+value_angle_esd   :   1.50 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   C32 
+atom_id_2   :   O33 
+atom_id_3   :   P34 
+value_angle   :   121.760 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O33 
+atom_id_2   :   P34 
+atom_id_3   :   O35 
+value_angle   :   105.737 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O33 
+atom_id_2   :   P34 
+atom_id_3   :   O36 
+value_angle   :   105.737 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O33 
+atom_id_2   :   P34 
+atom_id_3   :   O37 
+value_angle   :   105.737 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O35 
+atom_id_2   :   P34 
+atom_id_3   :   O36 
+value_angle   :   112.951 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O35 
+atom_id_2   :   P34 
+atom_id_3   :   O37 
+value_angle   :   112.951 
+value_angle_esd   :   3.00 
+-----------------
+comp_id   :   UNL 
+atom_id_1   :   O36 
+atom_id_2   :   P34 
+atom_id_3   :   O37 
+value_angle   :   112.951 
+value_angle_esd   :   3.00 
+Number of angles is 79 
+['_chem_comp_tor.comp_id']
+['_chem_comp_tor.id']
+['_chem_comp_tor.atom_id_1']
+['_chem_comp_tor.atom_id_2']
+['_chem_comp_tor.atom_id_3']
+['_chem_comp_tor.atom_id_4']
+['_chem_comp_tor.value_angle']
+['_chem_comp_tor.value_angle_esd']
+['_chem_comp_tor.period']
+['UNL', 'sp3_sp3_1', 'C3', 'C2', 'N1', 'H11', '180.000', '10.0', '3']
+['UNL', 'const_sp2_sp2_2', 'C25', 'C24', 'N23', 'C31', '180.000', '5.0', '2']
+['UNL', 'const_19', 'C30', 'C31', 'N23', 'C24', '0.000', '5.0', '2']
+['UNL', 'sp2_sp3_10', 'N23', 'C24', 'C25', 'H38', '150.000', '10.0', '6']
+['UNL', 'const_sp2_sp2_6', 'C25', 'C24', 'C26', 'O27', '0.000', '5.0', '2']
+['UNL', 'sp2_sp2_1', 'C24', 'C26', 'O27', 'H41', '180.000', '5.0', '2']
+['UNL', 'const_10', 'O27', 'C26', 'C28', 'C29', '0.000', '5.0', '2']
+['UNL', 'sp2_sp2_3', 'C26', 'C28', 'C29', 'N9', '180.000', '5.0', '2']
+['UNL', 'const_14', 'C29', 'C28', 'C30', 'C32', '0.000', '5.0', '2']
+['UNL', 'const_17', 'C32', 'C30', 'C31', 'N23', '180.000', '5.0', '2']
+['UNL', 'sp2_sp3_17', 'C28', 'C30', 'C32', 'O33', '-90.000', '10.0', '6']
+['UNL', 'sp3_sp3_46', 'C30', 'C32', 'O33', 'P34', '180.000', '10.0', '3']
+['UNL', 'sp2_sp3_1', 'O4', 'C3', 'C2', 'N1', '0.000', '10.0', '6']
+['UNL', 'sp3_sp3_10', 'N1', 'C2', 'C5', 'C6', '180.000', '10.0', '3']
+['UNL', 'sp3_sp3_51', 'C32', 'O33', 'P34', 'O35', '60.000', '10.0', '3']
+['UNL', 'sp3_sp3_19', 'C2', 'C5', 'C6', 'C7', '180.000', '10.0', '3']
+['UNL', 'sp3_sp3_28', 'C5', 'C6', 'C7', 'C8', '180.000', '10.0', '3']
+['UNL', 'sp3_sp3_37', 'C6', 'C7', 'C8', 'N9', '180.000', '10.0', '3']
+['UNL', 'sp2_sp3_8', 'C29', 'N9', 'C8', 'C7', '120.000', '10.0', '6']
+['UNL', 'sp2_sp2_7', 'C28', 'C29', 'N9', 'C8', '180.000', '5.0', '2']
+Number of keys in the loop is  9
+Number of values in the loop is  180
+tors
+['comp_id', 'id', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'atom_id_4', 'value_angle', 'value_angle_esd', 'period']
+-----------------
+comp_id   :   UNL 
+id   :   sp3_sp3_1 
+atom_id_1   :   C3 
+atom_id_2   :   C2 
+atom_id_3   :   N1 
+atom_id_4   :   H11 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   UNL 
+id   :   const_sp2_sp2_2 
+atom_id_1   :   C25 
+atom_id_2   :   C24 
+atom_id_3   :   N23 
+atom_id_4   :   C31 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   const_19 
+atom_id_1   :   C30 
+atom_id_2   :   C31 
+atom_id_3   :   N23 
+atom_id_4   :   C24 
+value_angle   :   0.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   sp2_sp3_10 
+atom_id_1   :   N23 
+atom_id_2   :   C24 
+atom_id_3   :   C25 
+atom_id_4   :   H38 
+value_angle   :   150.000 
+value_angle_esd   :   10.0 
+period   :   6 
+-----------------
+comp_id   :   UNL 
+id   :   const_sp2_sp2_6 
+atom_id_1   :   C25 
+atom_id_2   :   C24 
+atom_id_3   :   C26 
+atom_id_4   :   O27 
+value_angle   :   0.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   sp2_sp2_1 
+atom_id_1   :   C24 
+atom_id_2   :   C26 
+atom_id_3   :   O27 
+atom_id_4   :   H41 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   const_10 
+atom_id_1   :   O27 
+atom_id_2   :   C26 
+atom_id_3   :   C28 
+atom_id_4   :   C29 
+value_angle   :   0.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   sp2_sp2_3 
+atom_id_1   :   C26 
+atom_id_2   :   C28 
+atom_id_3   :   C29 
+atom_id_4   :   N9 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   const_14 
+atom_id_1   :   C29 
+atom_id_2   :   C28 
+atom_id_3   :   C30 
+atom_id_4   :   C32 
+value_angle   :   0.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   const_17 
+atom_id_1   :   C32 
+atom_id_2   :   C30 
+atom_id_3   :   C31 
+atom_id_4   :   N23 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+-----------------
+comp_id   :   UNL 
+id   :   sp2_sp3_17 
+atom_id_1   :   C28 
+atom_id_2   :   C30 
+atom_id_3   :   C32 
+atom_id_4   :   O33 
+value_angle   :   -90.000 
+value_angle_esd   :   10.0 
+period   :   6 
+-----------------
+comp_id   :   UNL 
+id   :   sp3_sp3_46 
+atom_id_1   :   C30 
+atom_id_2   :   C32 
+atom_id_3   :   O33 
+atom_id_4   :   P34 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   UNL 
+id   :   sp2_sp3_1 
+atom_id_1   :   O4 
+atom_id_2   :   C3 
+atom_id_3   :   C2 
+atom_id_4   :   N1 
+value_angle   :   0.000 
+value_angle_esd   :   10.0 
+period   :   6 
+-----------------
+comp_id   :   UNL 
+id   :   sp3_sp3_10 
+atom_id_1   :   N1 
+atom_id_2   :   C2 
+atom_id_3   :   C5 
+atom_id_4   :   C6 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   UNL 
+id   :   sp3_sp3_51 
+atom_id_1   :   C32 
+atom_id_2   :   O33 
+atom_id_3   :   P34 
+atom_id_4   :   O35 
+value_angle   :   60.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   UNL 
+id   :   sp3_sp3_19 
+atom_id_1   :   C2 
+atom_id_2   :   C5 
+atom_id_3   :   C6 
+atom_id_4   :   C7 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   UNL 
+id   :   sp3_sp3_28 
+atom_id_1   :   C5 
+atom_id_2   :   C6 
+atom_id_3   :   C7 
+atom_id_4   :   C8 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   UNL 
+id   :   sp3_sp3_37 
+atom_id_1   :   C6 
+atom_id_2   :   C7 
+atom_id_3   :   C8 
+atom_id_4   :   N9 
+value_angle   :   180.000 
+value_angle_esd   :   10.0 
+period   :   3 
+-----------------
+comp_id   :   UNL 
+id   :   sp2_sp3_8 
+atom_id_1   :   C29 
+atom_id_2   :   N9 
+atom_id_3   :   C8 
+atom_id_4   :   C7 
+value_angle   :   120.000 
+value_angle_esd   :   10.0 
+period   :   6 
+-----------------
+comp_id   :   UNL 
+id   :   sp2_sp2_7 
+atom_id_1   :   C28 
+atom_id_2   :   C29 
+atom_id_3   :   N9 
+atom_id_4   :   C8 
+value_angle   :   180.000 
+value_angle_esd   :   5.0 
+period   :   2 
+Number of tors is 20 
+['_chem_comp_chir.comp_id']
+['_chem_comp_chir.id']
+['_chem_comp_chir.atom_id_centre']
+['_chem_comp_chir.atom_id_1']
+['_chem_comp_chir.atom_id_2']
+['_chem_comp_chir.atom_id_3']
+['_chem_comp_chir.volume_sign']
+['UNL', 'chir_1', 'C2', 'N1', 'C3', 'C5', 'negative']
+['UNL', 'chir_2', 'P34', 'O33', 'O36', 'O37', 'both']
+Number of keys in the loop is  7
+Number of values in the loop is  14
+chirs
+['comp_id', 'id', 'atom_id_centre', 'atom_id_1', 'atom_id_2', 'atom_id_3', 'volume_sign']
+-----------------
+comp_id   :   UNL 
+id   :   chir_1 
+atom_id_centre   :   C2 
+atom_id_1   :   N1 
+atom_id_2   :   C3 
+atom_id_3   :   C5 
+volume_sign   :   negative 
+-----------------
+comp_id   :   UNL 
+id   :   chir_2 
+atom_id_centre   :   P34 
+atom_id_1   :   O33 
+atom_id_2   :   O36 
+atom_id_3   :   O37 
+volume_sign   :   both 
+Number of chirs is 2 
+['_chem_comp_plane_atom.comp_id']
+['_chem_comp_plane_atom.plane_id']
+['_chem_comp_plane_atom.atom_id']
+['_chem_comp_plane_atom.dist_esd']
+['UNL', 'plan-1', 'C24', '0.020']
+['UNL', 'plan-1', 'C25', '0.020']
+['UNL', 'plan-1', 'C26', '0.020']
+['UNL', 'plan-1', 'C28', '0.020']
+['UNL', 'plan-1', 'C29', '0.020']
+['UNL', 'plan-1', 'C30', '0.020']
+['UNL', 'plan-1', 'C31', '0.020']
+['UNL', 'plan-1', 'C32', '0.020']
+['UNL', 'plan-1', 'H43', '0.020']
+['UNL', 'plan-1', 'N23', '0.020']
+['UNL', 'plan-1', 'O27', '0.020']
+['UNL', 'plan-2', 'C2', '0.020']
+['UNL', 'plan-2', 'C3', '0.020']
+['UNL', 'plan-2', 'O10', '0.020']
+['UNL', 'plan-2', 'O4', '0.020']
+['UNL', 'plan-3', 'C28', '0.020']
+['UNL', 'plan-3', 'C29', '0.020']
+['UNL', 'plan-3', 'H42', '0.020']
+['UNL', 'plan-3', 'N9', '0.020']
+Number of keys in the loop is  4
+Number of values in the loop is  76
+plane_atoms
+['comp_id', 'plane_id', 'atom_id', 'dist_esd']
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C24 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C25 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C26 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C28 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C29 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C30 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C31 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   C32 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   H43 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   N23 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-1 
+atom_id   :   O27 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-2 
+atom_id   :   C2 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-2 
+atom_id   :   C3 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-2 
+atom_id   :   O10 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-2 
+atom_id   :   O4 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-3 
+atom_id   :   C28 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-3 
+atom_id   :   C29 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-3 
+atom_id   :   H42 
+dist_esd   :   0.020 
+-----------------
+comp_id   :   UNL 
+plane_id   :   plan-3 
+atom_id   :   N9 
+dist_esd   :   0.020 
+Number of plane_atoms is 19 
+['_pdbx_chem_comp_description_generator.comp_id']
+['_pdbx_chem_comp_description_generator.program_name']
+['_pdbx_chem_comp_description_generator.program_version']
+['_pdbx_chem_comp_description_generator.descriptor']
+['UNL', 'acedrg', '249', '"dictionary generator"']
+['UNL', 'acedrg_database', '12', '"data source"']
+['UNL', 'rdkit', '2019.09.1', '"Chemoinformatics tool"']
+['UNL', 'refmac5', '5.8.0352', '"optimization tool"']
+Number of keys in the loop is  4
+Number of values in the loop is  16
+comps
+['comp_id', 'program_name', 'program_version', 'descriptor']
+-----------------
+comp_id   :   UNL 
+program_name   :   acedrg 
+program_version   :   249 
+descriptor   :   "dictionary generator" 
+-----------------
+comp_id   :   UNL 
+program_name   :   acedrg_database 
+program_version   :   12 
+descriptor   :   "data source" 
+-----------------
+comp_id   :   UNL 
+program_name   :   rdkit 
+program_version   :   2019.09.1 
+descriptor   :   "Chemoinformatics tool" 
+-----------------
+comp_id   :   UNL 
+program_name   :   refmac5 
+program_version   :   5.8.0352 
+descriptor   :   "optimization tool" 
+Number of comps is 4 
+output comboLigand name  LYS-PLP
+Multple  colum format :
+
+
+
+N1
+C2
+C3
+O4
+C5
+C6
+C7
+C8
+N9
+O10
+N23
+C24
+C25
+C26
+O27
+C28
+C29
+C30
+C31
+C32
+O33
+P34
+O35
+O36
+O37
+H11
+H12
+H13
+H14
+H15
+H16
+H17
+H18
+H19
+H20
+H21
+H22
+H38
+H39
+H40
+H41
+H42
+H43
+H44
+H45
+atom serial number (mol format)   1 , its new id  N1
+Charge  1
+atom serial number (mol format)   10 , its new id  O10
+Charge  -1
+atom serial number (mol format)   24 , its new id  O36
+Charge  -1
+atom serial number (mol format)   25 , its new id  O37
+Charge  -1
+##################################################################
+##################################################################
+#                                                                #
+#     Get information for all modifications and the link         #
+#                                                                #
+##################################################################
+Number of Link bonds  1
+They are :
+Bond between atom NZ in residue 1 and atom C4A in residue 2
+Number of Link angles  3
+They are :
+Angle between atom CE in residue 1, atom  NZ in residue 1 and atom C4A in residue 2 
+Angle between atom C4 in residue 2, atom  C4A in residue 2 and atom NZ in residue 1 
+Angle between atom NZ in residue 1, atom  C4A in residue 2 and atom H4A in residue 2 
+Number of Link Torsions  1
+They are :
+Torsion between atom C4 in residue 2, atom C4A in residue 2, atom NZ in residue 1, and atom CE in residue 1 
+dist_esd  5.0
+Number of Link chirals  0
+They are :
+Number of Link planes  1
+Plane plan-3 contains 4 atoms. They are: 
+Plane plan-3, atom  C4 in residue 2, dist_esd  0.020 
+Plane plan-3, atom  C4A in residue 2, dist_esd  0.020 
+Plane plan-3, atom  H4A in residue 2, dist_esd  0.020 
+Plane plan-3, atom  NZ in residue 1, dist_esd  0.020 
+Num of mod atoms in residue 1 is 1 
+Num of add atoms in residue 1 is 0 
+Num of deleted atoms in residue 1 is 3 
+Num of mod atoms in residue 2 is 0 
+Num of add atoms in residue 2 is 0 
+Num of deleted atoms in residue 2 is 1 
+Number of changed bonds in residue 1 is 20 
+Number of added bonds in residue 1 is 0 
+Number of deleted bonds in residue 1 is 3 
+Number of changed bonds in residue 2 is 21 
+Number of added bonds in residue 2 is 0 
+Number of deleted bonds in residue 2 is 1 
+Number of changed angles in residue 1 is 39 
+Number of added angles in residue 1 is 0 
+Number of deleted angles in residue 1 is 6 
+Number of changed angles in residue 2 is 37 
+Number of added angles in residue 2 is 0 
+Number of deleted angles in residue 2 is 2 
+Number of changed tors in residue 1 is 2 
+Number of added tors in residue 1 is 0 
+Number of deleted tors in residue 1 is 1 
+Number of changed tors in residue 2 is 0 
+Number of added tors in residue 2 is 0 
+Number of deleted tors in residue 2 is 1 
+A chiral center 
+atom CA in residue 1 
+atom N in residue 1 
+atom C in residue 1 
+atom CB in residue 1 
+A chiral center 
+atom P in residue 2 
+atom O4P in residue 2 
+atom O2P in residue 2 
+atom O3P in residue 2 
+Number of changed chirs in residue 1 is 0 
+Number of added chirs in residue 1 is 0 
+Number of deleted chirs in residue 1 is 0 
+Number of changed chirs in residue 2 is 0 
+Number of added chirs in residue 2 is 0 
+Number of deleted chirs in residue 2 is 0 
+For plane  plan-1
+atom C2 in residue 2 
+atom C2A in residue 2 
+atom C3 in residue 2 
+atom C4 in residue 2 
+atom C4A in residue 2 
+atom C5 in residue 2 
+atom C6 in residue 2 
+atom C5A in residue 2 
+atom H6 in residue 2 
+atom N1 in residue 2 
+atom O3 in residue 2 
+Atoms in tPl : 
+C2
+C2A
+C3
+C4
+C4A
+C5
+C6
+C5A
+H6
+N1
+O3
+Atoms in aPl : 
+C2
+C2A
+C3
+C4
+C4A
+C5
+C5A
+C6
+H6
+N1
+O3
+For plane  plan-2
+atom CA in residue 1 
+atom C in residue 1 
+atom OXT in residue 1 
+atom O in residue 1 
+Atoms in tPl : 
+CA
+C
+OXT
+O
+Atoms in aPl : 
+C
+CA
+O
+OXT
+For plane  plan-3
+atom C4 in residue 2 
+atom C4A in residue 2 
+atom H4A in residue 2 
+atom NZ in residue 1 
+For residue 1 : 
+Number of deleted planes  0
+Number of added planes  0
+
+For residue 2 : 
+Number of deleted planes  1
+They are : 
+----------- A plane -------------
+plan-2    C4  
+plan-2    C4A  
+plan-2    H4A  
+plan-2    O4A  
+------------------ -------------
+Number of added planes  0
+##################################################################
+#                                                                #
+#          Output all information to the file                    #
+#                                                                #
+##################################################################
+Ligand 1 group id peptide 
+Ligand 2 group id NON-POLYMER 
+#                          Job done                              #
+##################################################################
+JOB TITLE SECTION (PROCESSMANAGER)
+AceDRG in link generation mode
+Make Covalent Link - AceDRG
+</LogText><Cycle>0</Cycle></acedrg_link></MakeLink>

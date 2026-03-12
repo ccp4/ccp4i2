@@ -1,0 +1,113 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+  "jobtitle": "import_merged",
+  "creationtime": 1646652904.252909,
+  "projectname": "shelxSAD_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "a1c4d24e-9e0a-11ec-a93f-08002705bc84",
+  "descendentjobs": [
+    [
+      "be8f9e86-9e0a-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "be8f9e87-9e0a-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "be8f9e88-9e0a-11ec-a93f-08002705bc84",
+      [
+        "bf7d6d78-9e0a-11ec-a93f-08002705bc84",
+        "bf7d6d7a-9e0a-11ec-a93f-08002705bc84",
+        "c532c1dc-9e0a-11ec-a93f-08002705bc84"
+      ]
+    ],
+    [
+      "bf7d6d78-9e0a-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "bf7d6d7a-9e0a-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "c532c1dc-9e0a-11ec-a93f-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1646652968.627159,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "merged_intensities_Xe_1.mtz",
+      "annotation": "Reflection data loaded from merged_intensities_Xe.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "a1c4d24e-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "bd6c5418-9e0a-11ec-a93f-08002705bc84",
+      "baseName": "merged_intensities_Xe_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "1_shelxsad_test_1_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "a1c4d24e-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "c7fa15e8-9e0a-11ec-a93f-08002705bc84",
+      "baseName": "1_shelxsad_test_1_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_shelxsad_test_1_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "a1c4d24e-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "c7fa15e9-9e0a-11ec-a93f-08002705bc84",
+      "baseName": "1_shelxsad_test_1_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_IMPORTED_FILES/merged_intensities_Xe_1.mtz",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "",
+    "OBSOUT": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_1/1_shelxsad_test_1_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_1/1_shelxsad_test_1_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "shelxSAD_test_1",
+    "has_program_xml": true
+  }
+}

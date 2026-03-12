@@ -1,0 +1,118 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+  "jobtitle": "import_merged",
+  "creationtime": 1686753062.540719,
+  "projectname": "phaser_expert_tncs_test_3",
+  "fileroot": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "16abd4a4-0ac0-11ee-8cc9-8c8590af7452",
+  "descendentjobs": [
+    [
+      "334e1162-0ac0-11ee-99c9-8c8590af7452",
+      []
+    ],
+    [
+      "33cdafe4-0ac0-11ee-99c9-8c8590af7452",
+      []
+    ],
+    [
+      "3480e014-0ac0-11ee-99c9-8c8590af7452",
+      [
+        "3486664c-0ac0-11ee-99c9-8c8590af7452",
+        "351b3dee-0ac0-11ee-99c9-8c8590af7452",
+        "361b19bc-0ac0-11ee-99c9-8c8590af7452",
+        "3b51fd10-0ac0-11ee-99c9-8c8590af7452"
+      ]
+    ],
+    [
+      "3486664c-0ac0-11ee-99c9-8c8590af7452",
+      []
+    ],
+    [
+      "351b3dee-0ac0-11ee-99c9-8c8590af7452",
+      []
+    ],
+    [
+      "361b19bc-0ac0-11ee-99c9-8c8590af7452",
+      []
+    ],
+    [
+      "3b51fd10-0ac0-11ee-99c9-8c8590af7452",
+      []
+    ]
+  ],
+  "finishtime": 1686753126.321099,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "3bbz_1_1_1.mtz",
+      "annotation": "Reflection data loaded from 3bbz_1_1.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "16abd4a4-0ac0-11ee-8cc9-8c8590af7452",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "31dbd864-0ac0-11ee-8cc9-8c8590af7452",
+      "baseName": "3bbz_1_1_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "1_phaser_expert_tncs_test_3_obsout_import_merged.mtz",
+      "annotation": "Reflections from 3bbz_1_1_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "16abd4a4-0ac0-11ee-8cc9-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "3caf80ce-0ac0-11ee-99c9-8c8590af7452",
+      "baseName": "1_phaser_expert_tncs_test_3_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_phaser_expert_tncs_test_3_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:2.10A;Cell:24.0,55.5,60.0,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "16abd4a4-0ac0-11ee-8cc9-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "3cafadc4-0ac0-11ee-99c9-8c8590af7452",
+      "baseName": "1_phaser_expert_tncs_test_3_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_IMPORTED_FILES/3bbz_1_1_1.mtz",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "",
+    "OBSOUT": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/1_phaser_expert_tncs_test_3_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/1_phaser_expert_tncs_test_3_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "phaser_expert_tncs_test_3",
+    "has_program_xml": true
+  }
+}

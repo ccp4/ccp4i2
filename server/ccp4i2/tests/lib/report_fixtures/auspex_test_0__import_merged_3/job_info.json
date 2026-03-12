@@ -1,0 +1,129 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "3",
+  "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+  "jobtitle": "import_merged",
+  "creationtime": 1627473963.14,
+  "projectname": "auspex_test_0",
+  "fileroot": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/",
+  "tasktitle": "import_merged",
+  "jobid": "2e0c4b42-ef9c-11eb-82cf-08002705bc84",
+  "descendentjobs": [
+    [
+      "7b7d066e-ef9c-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "7f7c626f-ef9c-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "80bc60a2-ef9c-11eb-82cf-08002705bc84",
+      [
+        "80bc60a3-ef9c-11eb-82cf-08002705bc84",
+        "8170af45-ef9c-11eb-82cf-08002705bc84",
+        "a0769de0-ef9c-11eb-82cf-08002705bc84"
+      ]
+    ],
+    [
+      "80bc60a3-ef9c-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "8170af45-ef9c-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "a0769de0-ef9c-11eb-82cf-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1627474166.34,
+  "inputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "4puc-sf_1.cif",
+      "annotation": "Reflection data imported from 4puc-sf.cif by job 3",
+      "jobparamname": "HKLIN",
+      "jobid": "2e0c4b42-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "7b07d704-ef9c-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "4puc-sf_1.cif",
+      "annotation": "Reflection data imported from 4puc-sf.cif by job 3",
+      "jobparamname": "HKLIN",
+      "jobid": "2e0c4b42-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "7b07d704-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "4puc-sf_1.cif",
+      "relpath": "CCP4_JOBS/job_3",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "3_auspex_test_0_obsout_import_merged.mtz",
+      "annotation": "",
+      "jobparamname": "OBSOUT",
+      "jobid": "2e0c4b42-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "a726ffc4-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "3_auspex_test_0_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_3"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "3_auspex_test_0_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:2.00A;Cell:66.5,112.2,150.1,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "2e0c4b42-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "a726ffc5-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "3_auspex_test_0_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_3"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/auspex_test_0/CCP4_IMPORTED_FILES/4puc-sf_1.cif",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/3_auspex_test_0_hklout_import_merged.mtz",
+    "OBSOUT": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/3_auspex_test_0_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/3_auspex_test_0_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "3",
+    "job_status": "Finished",
+    "project_name": "auspex_test_0",
+    "has_program_xml": true
+  }
+}

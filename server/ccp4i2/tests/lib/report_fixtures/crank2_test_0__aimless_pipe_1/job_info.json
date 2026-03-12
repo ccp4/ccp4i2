@@ -1,0 +1,165 @@
+{
+  "status": "Finished",
+  "taskname": "aimless_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+  "jobtitle": "aimless_pipe",
+  "creationtime": 1627464315.27,
+  "projectname": "crank2_test_0",
+  "fileroot": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "aimless_pipe",
+  "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+  "descendentjobs": [
+    [
+      "cea9304a-ef85-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "cea9304c-ef85-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "d750eb48-ef85-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "d89e7b78-ef85-11eb-82cf-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1627464371.24,
+  "inputfiles": [
+    {
+      "filetypeid": 6,
+      "filename": "gamma_Xe_mosflm_1.mtz",
+      "annotation": "Unmerged reflections loaded from gamma_Xe_mosflm.mtz by job 1",
+      "jobparamname": "UNMERGEDFILES",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-unmerged-experimental",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "UnmergedDataFile",
+      "fileId": "ce1e9d04-ef85-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 6,
+      "filename": "gamma_Xe_mosflm_1.mtz",
+      "annotation": "Unmerged reflections loaded from gamma_Xe_mosflm.mtz by job 1",
+      "jobparamname": "file",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-unmerged-experimental",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "UnmergedDataFile",
+      "fileId": "ce1e9d04-ef85-11eb-82cf-08002705bc84",
+      "baseName": "gamma_Xe_mosflm_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/GaAda/Ga1",
+      "jobparamname": "HKLOUT",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "d89e7b79-ef85-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_0-observed_data.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "annotation": "Mean intensities for twin refinement",
+      "jobparamname": "IMEANOUT",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "d89e7b7a-ef85-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREERFLAG.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREEROUT",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "d89e7b7b-ef85-11eb-82cf-08002705bc84",
+      "baseName": "FREERFLAG.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 14,
+      "filename": "1_crank2_test_0_xmlout_aimless_pipe.xml",
+      "annotation": "",
+      "jobparamname": "XMLOUT",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "Dummy",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "",
+      "fileId": "d89e7b7c-ef85-11eb-82cf-08002705bc84",
+      "baseName": "1_crank2_test_0_xmlout_aimless_pipe.xml",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 6,
+      "filename": "HKLOUT_unmerged.mtz",
+      "annotation": "Scaled unmerged data: Ga1",
+      "jobparamname": "UNMERGEDOUT",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-unmerged-experimental",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "UnmergedDataFile",
+      "fileId": "d89e7b7d-ef85-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_unmerged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "FREERFLAG": "",
+    "FREEROUT": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_1/FREERFLAG.mtz",
+    "XMLOUT": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_1/1_crank2_test_0_xmlout_aimless_pipe.xml",
+    "CIFSTATSOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless_pipe",
+    "report_class": "aimless_pipe_report",
+    "report_module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "crank2_test_0",
+    "has_program_xml": true
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "status": "Finished",
+  "taskname": "MakeLink",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "d3eb43a6-461c-11ed-9da8-3e9301522065",
+  "jobtitle": "MakeLink",
+  "creationtime": 1665132520.164407,
+  "projectname": "makelink_test0",
+  "fileroot": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/",
+  "tasktitle": "MakeLink",
+  "jobid": "d7304980-461c-11ed-9da8-3e9301522065",
+  "descendentjobs": [
+    [
+      "5e67c6e2-461f-11ed-9f85-3e9301522065",
+      []
+    ]
+  ],
+  "finishtime": 1665133627.815731,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "XYZIN-coordinates.pdb",
+      "annotation": "Atomic model imported from model_with_PLP.pdb by job 1",
+      "jobparamname": "XYZIN",
+      "jobid": "d7304980-461c-11ed-9da8-3e9301522065",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "d3eb43a6-461c-11ed-9da8-3e9301522065",
+      "jobnumber": "1",
+      "projectname": "makelink_test0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "5da9b224-461f-11ed-9da8-3e9301522065",
+      "baseName": "XYZIN-coordinates.pdb",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 0,
+      "filename": "link_instruction.txt",
+      "annotation": "AceDRG instruction file",
+      "jobparamname": "INSTRUCTION_FILE",
+      "jobid": "d7304980-461c-11ed-9da8-3e9301522065",
+      "pathflag": 1,
+      "filetype": "Unknown",
+      "projectid": "d3eb43a6-461c-11ed-9da8-3e9301522065",
+      "jobnumber": "1",
+      "projectname": "makelink_test0",
+      "filetypeclass": "DataFile",
+      "fileId": "6b661f1a-461f-11ed-9f85-3e9301522065",
+      "baseName": "link_instruction.txt",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 8,
+      "filename": "LYS-PLP_link.cif",
+      "annotation": "Link dictionary: LYS(NZ) - PLP(C4A)",
+      "jobparamname": "CIF_OUT",
+      "jobid": "d7304980-461c-11ed-9da8-3e9301522065",
+      "pathflag": 1,
+      "filetype": "application/refmac-dictionary",
+      "projectid": "d3eb43a6-461c-11ed-9da8-3e9301522065",
+      "jobnumber": "1",
+      "projectname": "makelink_test0",
+      "filetypeclass": "DictDataFile",
+      "fileId": "6b6643f0-461f-11ed-9f85-3e9301522065",
+      "baseName": "LYS-PLP_link.cif",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "ModelWithLinks.pdb",
+      "annotation": "Model with links applied",
+      "jobparamname": "XYZOUT",
+      "jobid": "d7304980-461c-11ed-9da8-3e9301522065",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "d3eb43a6-461c-11ed-9da8-3e9301522065",
+      "jobnumber": "1",
+      "projectname": "makelink_test0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "6b666362-461f-11ed-9f85-3e9301522065",
+      "baseName": "ModelWithLinks.pdb",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "DICT_1": "",
+    "DICT_2": "",
+    "XYZIN": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/XYZIN-coordinates.pdb",
+    "INSTRUCTION_FILE": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/link_instruction.txt",
+    "CIF_OUT": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/LYS-PLP_link.cif",
+    "XYZOUT": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/ModelWithLinks.pdb"
+  },
+  "_fixture_meta": {
+    "task_name": "MakeLink",
+    "report_class": "MakeLink_report",
+    "report_module": "ccp4i2.pipelines.MakeLink.script.MakeLink_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "makelink_test0",
+    "has_program_xml": true
+  }
+}

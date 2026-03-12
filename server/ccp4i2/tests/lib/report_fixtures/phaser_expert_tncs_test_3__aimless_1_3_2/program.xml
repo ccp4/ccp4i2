@@ -1,0 +1,777 @@
+<AIMLESS version="0.7.9" RunTime="Wed Jun 14 15:31:53 2023">
+<ReflectionData>
+   <ResolutionHigh>2.10</ResolutionHigh>
+   <NumberReflections>4897</NumberReflections>
+   <NumberObservations>4897</NumberObservations>
+   <NumberParts>4897</NumberParts>
+   <NumberLattices>0</NumberLattices>
+   <NumberBatches>1</NumberBatches>
+   <NumberDatasets>1</NumberDatasets>
+   <Dataset  name="P1/crystal/dataset">
+      <Wavelength>1.000000</Wavelength>
+      <Run> <number>   1 </number>
+      <BatchRange>       1       1</BatchRange>
+      <BatchOffset>0</BatchOffset>
+      <FileStream>HKLIN</FileStream>
+      </Run>
+   </Dataset>
+</ReflectionData>
+<ReflectionFile stream="HKLIN" name="/Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_1/MTZUNMERGEDOUT.mtz">
+<cell>
+ <a>  23.992</a> <b>  55.485</b> <c>  60.019</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma>  90.000</gamma>
+</cell>
+<SpacegroupName>P 21 21 21</SpacegroupName>
+</ReflectionFile>
+<RotationalOverlap>
+   <EnoughOverlap>False</EnoughOverlap>
+   <AverageOverlap>0.00</AverageOverlap>
+   <Overlapthreshold>0.05</Overlapthreshold>
+   <AllowedGap>2.00</AllowedGap>
+   <MinimumOverlap>0.00</MinimumOverlap>
+</RotationalOverlap>
+<OnlyMerge/>
+<CCP4Table title="Normal probability plot">
+<headers separator=" ">
+ X Y
+</headers>
+<plot>
+<title>Normal probability plot</title>
+<xrange min=" -4.0000" max="  4.0000"/>
+<yrange min=" -5.0000" max="  5.0000"/>
+<fixaspectratio>true</fixaspectratio>
+<xlabel>Delta(expected)</xlabel>
+<ylabel>Delta(observed)</ylabel>
+<showlegend>true</showlegend>
+<legendposition x="   0.600" y="   0.000"/>
+<line x1="  -4.0000" x2="   4.0000" y1="  -4.0000" y2="   4.0000" linestyle="-" linecolour="black"/>
+<line x1="  -4.0000" x2="   4.0000" y1="   0.0000" y2="   0.0000" linestyle="-" linecolour="black"/>
+<line x1="   0.0000" x2="   0.0000" y1="  -5.0000" y2="   5.0000" linestyle="-" linecolour="black"/>
+</plot>
+
+</CCP4Table>
+<CCP4Table title="Anomalous differences">
+<headers separator=" ">
+ X Y
+</headers>
+<plot>
+<title>Anomalous differences</title>
+<xrange min=" -4.0000" max="  4.0000"/>
+<yrange min=" -5.0000" max="  5.0000"/>
+<fixaspectratio>true</fixaspectratio>
+<xlabel>Delta(expected)</xlabel>
+<ylabel>Delta(observed)</ylabel>
+<showlegend>true</showlegend>
+<legendposition x="   0.600" y="   0.000"/>
+<line x1="  -4.0000" x2="   4.0000" y1="  -4.0000" y2="   4.0000" linestyle="-" linecolour="black"/>
+<line x1="  -4.0000" x2="   4.0000" y1="   0.0000" y2="   0.0000" linestyle="-" linecolour="black"/>
+<line x1="   0.0000" x2="   0.0000" y1="  -5.0000" y2="   5.0000" linestyle="-" linecolour="black"/>
+</plot>
+
+</CCP4Table>
+
+<OutlierControl>
+<Main ><SDrej>  6</SDrej><SDrej2>  6</SDrej2><Reject2policy>KEEP</Reject2policy>
+</Main>
+
+<EmaxTest><EmaxAcentric>  10.00</EmaxAcentric><EmaxCentric>  13.94</EmaxCentric>
+</EmaxTest>
+<OutlierWeightType>variance weights</OutlierWeightType>
+</OutlierControl>
+<BatchGroupMessage>Analysis by Batch is in groups of batches, group width    1.00 degrees,   1 batches/group</BatchGroupMessage>
+<BatchGroupWidth>1.00</BatchGroupWidth>
+<BatchGroupNumber>1</BatchGroupNumber>
+
+<CCP4Table groupID="Graph" id="Graph-ScalesVsRotationRange" title=" === Scales v rotation range, dataset">
+<plot>
+<title>Mn(k) &amp; 0k (theta=0) v. batch</title>
+<description>Mn(k) (red) is the mean scale over the whole resolution range for each Batch. 0k is the scale at the lowest resolution, ie excluding the relative B-factor
+</description>
+<xrange min="1" max="1"/>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  4" ycol="  6" >
+<linestyle>-</linestyle>
+<colour>blue</colour>
+</plotline>
+
+<plotline xcol="  4" ycol="  5" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>Relative Bfactor &amp; Decay v. batch</title>
+<description>The relative B-factor is largely a radiation damage correction. Negative values below perhaps -10 may indicate sever radiation damage. Bdecay is a straight-line fit to the B-factors
+</description>
+<xrange min="1" max="1"/>
+<xintegral>true</xintegral>
+<plotline xcol="  4" ycol="  9" >
+<linestyle>-</linestyle>
+<colour>blue</colour>
+</plotline>
+
+<plotline xcol="  4" ycol="  8" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+    N  Run    Phi    Batch     Mn(k)        0k      Number   Bfactor    Bdecay
+</headers>
+<data>
+    1    1    0.00       1     1.0000     1.0000      4897    0.0000    0.0000
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-StatsVsBatch" title=" Analysis against all Batches for all runs, dataset">
+<plot>
+<title>Rmerge v Batch for all runs</title>
+<description>Increase of Rmerge towards the end of a run probably indicates radiation damage. The red line is smoothed over adjacent batches
+</description>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol="  6" >
+<linestyle>-</linestyle>
+<colour>blue</colour>
+</plotline>
+
+<plotline xcol="  2" ycol=" 15" >
+<markeredgewidth> 0.0</markeredgewidth>
+<linestyle>-</linestyle>
+<linesize>  2</linesize>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>Filtered Mean(Chi^2)(&lt;5sd) v Batch</title>
+<description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol=" 14" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Batch</title>
+<description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol=" 14" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+
+<plotline xcol="  2" ycol=" 13" >
+<linestyle>-</linestyle>
+<colour>blue</colour>
+</plotline>
+</plot>
+<plot>
+<title>Cumulative %completeness &amp; Anom%cmpl v Batch</title>
+<description>In conjunction with radiation damage indicators, cumulative completeness may indicate a suitable point for cutting back poor data. The blue line is the completeness of anomalous differences
+</description>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol="  9" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+
+<plotline xcol="  2" ycol=" 10" >
+<linestyle>-</linestyle>
+<colour>blue</colour>
+</plotline>
+</plot>
+<plot>
+<title>Maximum resolution limit, I/sigma &gt; 1.0</title>
+<description>The resolution limit estimate is the point at which I/sig(I) falls below 1.0, red line smoothed over adjacent batches. A sharp increase probably indicates radiation damage
+</description>
+<yrange min="2" max="2.5"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol=" 11" >
+<linestyle>-</linestyle>
+<colour>blue</colour>
+</plotline>
+
+<plotline xcol="  2" ycol=" 16" >
+<markeredgewidth> 0.0</markeredgewidth>
+<linestyle>-</linestyle>
+<linesize>  2</linesize>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>Imean &amp; RMS Scatter</title>
+<description>Major deviations may indicate bad images</description>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+<colour>blue</colour>
+</plotline>
+
+<plotline xcol="  2" ycol="  3" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>Imean/RMS scatter</title>
+<description>Major deviations may indicate bad images</description>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol="  5" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>Number of rejects</title>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol="  8" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>Cumulative multiplicity</title>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  2" ycol=" 12" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+    N   Batch    Mn(I)   RMSdev  I/rms  Rmerge    Number  Nrej Cm%poss  AnoCmp MaxRes CMlplc   Chi^2  Chi^2c SmRmerge SmMaxRes
+
+</headers>
+<data>
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-CChalf" title=" Correlations CC(1/2) within dataset, dataset">
+<plot>
+<title> CC(1/2) v resolution, max resolution 0.00, anom 0.00</title>
+<description>Resolution estimate: Insufficient data to determine resolution limit
+Anomalous resolution: Insufficient data to determine resolution limit
+</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol="  9" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  7" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title> RMS anomalous correlation ratio </title>
+<description>RMS correlation ratio &gt; 1.0 indicates significant anomalous differences</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol="  6" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title> Rsplit </title>
+<description>Rsplit is the R-factor equivalent of CC(1/2), but less useful</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol="  9" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid CCanom    Nanom   RCRanom   CC1/2   NCC1/2  CC1/2v   Rsplit
+</headers>
+<data>
+  1  0.0063  12.60   -           0      -       -           0    -        -   
+  2  0.0189   7.27   -           0      -       -           0    -        -   
+  3  0.0315   5.64   -           0      -       -           0    -        -   
+  4  0.0441   4.76   -           0      -       -           0    -        -   
+  5  0.0567   4.20   -           0      -       -           0    -        -   
+  6  0.0693   3.80   -           0      -       -           0    -        -   
+  7  0.0819   3.49   -           0      -       -           0    -        -   
+  8  0.0945   3.25   -           0      -       -           0    -        -   
+  9  0.1071   3.06   -           0      -       -           0    -        -   
+ 10  0.1197   2.89   -           0      -       -           0    -        -   
+ 11  0.1323   2.75   -           0      -       -           0    -        -   
+ 12  0.1449   2.63   -           0      -       -           0    -        -   
+ 13  0.1575   2.52   -           0      -       -           0    -        -   
+ 14  0.1701   2.42   -           0      -       -           0    -        -   
+ 15  0.1826   2.34   -           0      -       -           0    -        -   
+ 16  0.1952   2.26   -           0      -       -           0    -        -   
+ 17  0.2078   2.19   -           0      -       -           0    -        -   
+ 18  0.2204   2.13   -           0      -       -           0    -        -   
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-Anisotropy" title=" Anisotropy analysis of CC(1/2) and I/sd, dataset">
+<plot>
+<title> Anisotropic CC(1/2) v resolution</title>
+<description>CC(1/2) in cones along principle directions. Estimated maximum resolution limits, a*:  0.00, b*:  0.00, c*:  0.00
+</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol="  6" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  5" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title> Anisotropic Mn(I/sd) v resolution</title>
+<description>Mn(I/sd) in cones along principle directions</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="55.5729"/>
+
+<plotline xcol="  2" ycol="  9" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  8" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  7" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title> Projected CC(1/2) v resolution</title>
+<description>CC(1/2) projected on principle directions</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol=" 12" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 11" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 10" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid    CC:a*   CC:b*   CC:c*  I/sd:a*  I/sd:b*  I/sd:c*    CCp1    CCp2    CCp3
+</headers>
+<data>
+  1  0.0063  12.60     -       -       -       40.88    40.88    40.88    -       -       -   
+  2  0.0189   7.27     -       -       -       34.02    24.51    30.52    -       -       -   
+  3  0.0315   5.64     -       -       -       26.73    19.21    47.34    -       -       -   
+  4  0.0441   4.76     -       -       -       24.86    19.04    55.57    -       -       -   
+  5  0.0567   4.20     -       -       -         -      20.05    47.09    -       -       -   
+  6  0.0693   3.80     -       -       -       17.30    20.31    31.83    -       -       -   
+  7  0.0819   3.49     -       -       -         -      20.96    27.45    -       -       -   
+  8  0.0945   3.25     -       -       -       19.21    29.41    24.64    -       -       -   
+  9  0.1071   3.06     -       -       -         -      24.43    16.08    -       -       -   
+ 10  0.1197   2.89     -       -       -        7.58    17.20    19.52    -       -       -   
+ 11  0.1323   2.75     -       -       -         -      16.23    10.93    -       -       -   
+ 12  0.1449   2.63     -       -       -        3.59    12.13    10.06    -       -       -   
+ 13  0.1575   2.52     -       -       -        6.36    16.99    10.39    -       -       -   
+ 14  0.1701   2.42     -       -       -         -      21.02     6.54    -       -       -   
+ 15  0.1826   2.34     -       -       -        3.68     8.10     7.87    -       -       -   
+ 16  0.1952   2.26     -       -       -        5.45    12.32     6.95    -       -       -   
+ 17  0.2078   2.19     -       -       -        1.23    10.65     5.11    -       -       -   
+ 18  0.2204   2.13     -       -       -        3.63     8.33     4.21    -       -       -   
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-CumulativeCC(1/2)" title=" Cumulative CC(1/2) in resolution ranges vs. Batch">
+<plot>
+<title>Cumulative CC(1/2)</title>
+<description>Cumulative CC(1/2) in coarse resolution ranges</description>
+<xrange min="1" max="1"/>
+<yrange min="0" max="None"/>
+<xintegral>true</xintegral>
+<plotline xcol="  4" ycol="  7" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  4" ycol="  6" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  4" ycol="  5" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  4" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+    N  Run   Batch 4.70-3.32 3.32-2.71 2.71-2.35 2.35-2.10
+</headers>
+<data>
+    1    1       1       -         -         -         -  
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-StatsVsResolution" title=" Analysis against resolution, dataset">
+<plot>
+<title>I/sigma, Mean Mn(I)/sd(Mn(I))</title>
+<description>I/sigma = I/RMS = I/(rms scatter before merging). Mean(I/sd) after averaging, ~= signal/noise</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="47.2849"/>
+
+<plotline xcol="  2" ycol=" 14" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 13" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title>Filtered Mean(Chi^2)(&lt;5sd) v Resolution</title>
+<description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  2" ycol=" 17" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Resolution</title>
+<description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  2" ycol=" 17" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 16" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title>Rmerge, Rfull, Rmeas, Rpim v Resolution</title>
+<description>Rmerge, classic R-factor; Rmeas, multiplicity-weighted R; Rpim, precision-indicating R</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol="  8" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  7" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  5" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title>Average I, RMSdeviation and Sd</title>
+<description>RMSdev is RMS scatter, sd is average corrected sig(I) estimate</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="784.797"/>
+<yrange min="0" max="14.7926" rightaxis="true"/>
+
+<plotline xcol="  2" ycol=" 12" rightaxis="true" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 11" rightaxis="true" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 10" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title>Fractional bias</title>
+<description>FrcBias = Mean( Mn(If) - Ip )/Mean( Mn(I) ), where If is a full if present, else the partials with the smallest number of parts
+</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol=" 15" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid   Rmrg  Rfull   Rcum  Rmeas   Rpim    Nmeas      AvI  RMSdev    sd  I/RMS Mn(I/sd)  FrcBias  Chi^2 Chi^2c
+
+</headers>
+<data>
+  1  0.0063  12.60   -      -      -      -      -           0      773      -     14     -      40.9     -       -      -  
+  2  0.0189   7.27   -      -      -      -      -           0      412      -      9     -      37.7     -       -      -  
+  3  0.0315   5.64   -      -      -      -      -           0      272      -      7     -      32.8     -       -      -  
+  4  0.0441   4.76   -      -      -      -      -           0      608      -     11     -      47.3     -       -      -  
+  5  0.0567   4.20   -      -      -      -      -           0      785      -     13     -      46.3     -       -      -  
+  6  0.0693   3.80   -      -      -      -      -           0      639      -     13     -      42.7     -       -      -  
+  7  0.0819   3.49   -      -      -      -      -           0      719      -     14     -      41.4     -       -      -  
+  8  0.0945   3.25   -      -      -      -      -           0      454      -     13     -      31.4     -       -      -  
+  9  0.1071   3.06   -      -      -      -      -           0      344      -     11     -      28.4     -       -      -  
+ 10  0.1197   2.89   -      -      -      -      -           0      265      -     11     -      22.6     -       -      -  
+ 11  0.1323   2.75   -      -      -      -      -           0      208      -     10     -      18.9     -       -      -  
+ 12  0.1449   2.63   -      -      -      -      -           0      199      -     11     -      17.6     -       -      -  
+ 13  0.1575   2.52   -      -      -      -      -           0      186      -     12     -      15.4     -       -      -  
+ 14  0.1701   2.42   -      -      -      -      -           0      179      -     11     -      15.4     -       -      -  
+ 15  0.1826   2.34   -      -      -      -      -           0      157      -     13     -      13.4     -       -      -  
+ 16  0.1952   2.26   -      -      -      -      -           0      147      -     13     -      12.0     -       -      -  
+ 17  0.2078   2.19   -      -      -      -      -           0      155      -     12     -      12.3     -       -      -  
+ 18  0.2204   2.13   -      -      -      -      -           0      128      -     15     -       9.9     -       -      -  
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-StatsAllVsResolution" title=" Analysis against resolution, with &amp; without anomalous (Ov), dataset">
+<plot>
+<title>Rmerge, Rmeas, Rpim v Resolution</title>
+<description>within I+/I- sets, and over all data (Ov values)</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol=" 11" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 10" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  9" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  8" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  5" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid    Rmrg  RmrgOv    Rcum  RcumOv   Rmeas RmeasOv    Rpim  RpimOv    Nmeas
+</headers>
+<data>
+  1  0.0063  12.60    -       -       -       -       -       -       -       -           0
+  2  0.0189   7.27    -       -       -       -       -       -       -       -           0
+  3  0.0315   5.64    -       -       -       -       -       -       -       -           0
+  4  0.0441   4.76    -       -       -       -       -       -       -       -           0
+  5  0.0567   4.20    -       -       -       -       -       -       -       -           0
+  6  0.0693   3.80    -       -       -       -       -       -       -       -           0
+  7  0.0819   3.49    -       -       -       -       -       -       -       -           0
+  8  0.0945   3.25    -       -       -       -       -       -       -       -           0
+  9  0.1071   3.06    -       -       -       -       -       -       -       -           0
+ 10  0.1197   2.89    -       -       -       -       -       -       -       -           0
+ 11  0.1323   2.75    -       -       -       -       -       -       -       -           0
+ 12  0.1449   2.63    -       -       -       -       -       -       -       -           0
+ 13  0.1575   2.52    -       -       -       -       -       -       -       -           0
+ 14  0.1701   2.42    -       -       -       -       -       -       -       -           0
+ 15  0.1826   2.34    -       -       -       -       -       -       -       -           0
+ 16  0.1952   2.26    -       -       -       -       -       -       -       -           0
+ 17  0.2078   2.19    -       -       -       -       -       -       -       -           0
+ 18  0.2204   2.13    -       -       -       -       -       -       -       -           0
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-StatsVsIntensity" title=" Analysis against intensity, dataset">
+<plot>
+<title>Rmerge v Intensity</title>
+<description>The important values are in the top bin:  Rmerge:   0.000 Rmeas:   0.000 Rpim:   0.000</description>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  5" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  1" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+      Imax   Rmrg   Rcum  Rmeas   Rpim    Nmeas      AvI  RMSdev    sd  I/RMS Mn(I/sd)  FrcBias
+</headers>
+<data>
+        13   -      -      -      -           0       13      -     10     -       2.0     -   
+        63   -      -      -      -           0       63      -      9     -       9.1     -   
+       113   -      -      -      -           0      113      -     10     -      15.2     -   
+       170   -      -      -      -           0      170      -     10     -      22.3     -   
+       239   -      -      -      -           0      239      -     10     -      29.2     -   
+       316   -      -      -      -           0      316      -     12     -      33.7     -   
+       423   -      -      -      -           0      423      -     11     -      45.4     -   
+       554   -      -      -      -           0      554      -     13     -      51.7     -   
+       768   -      -      -      -           0      768      -     16     -      60.2     -   
+      1843   -      -      -      -           0     1843      -     27     -      78.3     -   
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="Graph-CompletenessVsResolution" title=" Completeness &amp; multiplicity v. resolution, dataset">
+<plot>
+<title>Completeness v Resolution </title>
+<description>%poss, completeness in shell; C%poss, cumulative completeness. 
+Anomalous completeness (AnomCmpl) is the percentage of possible anomalous differences measured. 
+AnomFrc is the % of measured acentric reflections for which an anomalous difference has been measured
+</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  2" ycol=" 11" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol=" 10" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  8" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  7" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<plot>
+<title>Multiplicity v Resolution</title>
+<description>Total multiplicity and anomalous multiplicity</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0" max="0.226735"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol=" 12" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  9" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid    Nmeas     Nref    Ncent  %poss C%poss Mlplct   AnoCmp AnoFrc AnoMlt
+</headers>
+<data>
+  1  0.0063  12.60       76       76       43   91.1   91.1    1.0       -      -      - 
+  2  0.0189   7.27      126      126       48   96.9   94.8    1.0       -      -      - 
+  3  0.0315   5.64      164      164       52   95.5   95.1    1.0       -      -      - 
+  4  0.0441   4.76      181      181       55   93.2   94.4    1.0       -      -      - 
+  5  0.0567   4.20      204      204       50   96.9   95.1    1.0       -      -      - 
+  6  0.0693   3.80      227      227       52   95.4   95.2    1.0       -      -      - 
+  7  0.0819   3.49      236      236       50   96.2   95.4    1.0       -      -      - 
+  8  0.0945   3.25      268      268       52   99.2   96.1    1.0       -      -      - 
+  9  0.1071   3.06      285      285       62   98.0   96.4    1.0       -      -      - 
+ 10  0.1197   2.89      297      297       52   98.2   96.7    1.0       -      -      - 
+ 11  0.1323   2.75      311      311       58  100.0   97.1    1.0       -      -      - 
+ 12  0.1449   2.63      328      328       56   96.5   97.0    1.0       -      -      - 
+ 13  0.1575   2.52      340      340       56   99.8   97.3    1.0       -      -      - 
+ 14  0.1701   2.42      338      338       56   97.6   97.4    1.0       -      -      - 
+ 15  0.1826   2.34      368      368       54   99.0   97.5    1.0       -      -      - 
+ 16  0.1952   2.26      374      374       55   99.4   97.7    1.0       -      -      - 
+ 17  0.2078   2.19      371      371       54   97.5   97.7    1.0       -      -      - 
+ 18  0.2204   2.13      403      403       60   99.7   97.8    1.0       -      -      - 
+</data>
+</CCP4Table>
+<AnomalousStatus>The anomalous signal appears to be weak so anomalous flag was left OFF</AnomalousStatus>
+<Result>
+   <Dataset  name="P1/crystal/dataset">
+   <ResolutionLow><Overall>   40.74</Overall><Inner>   40.74</Inner><Outer>    2.16</Outer></ResolutionLow>
+   <ResolutionHigh><Overall>    2.10</Overall><Inner>    8.91</Inner><Outer>    2.10</Outer></ResolutionHigh>
+   <Rmerge><Overall>   0.000</Overall><Inner>   0.000</Inner><Outer>   0.000</Outer></Rmerge>
+   <RmergeOverall><Overall>   0.000</Overall><Inner>   0.000</Inner><Outer>   0.000</Outer></RmergeOverall>
+   <Rmeas><Overall>   0.000</Overall><Inner>   0.000</Inner><Outer>   0.000</Outer></Rmeas>
+   <RmeasOverall><Overall>   0.000</Overall><Inner>   0.000</Inner><Outer>   0.000</Outer></RmeasOverall>
+   <Rpim><Overall>   0.000</Overall><Inner>   0.000</Inner><Outer>   0.000</Outer></Rpim>
+   <RpimOverall><Overall>   0.000</Overall><Inner>   0.000</Inner><Outer>   0.000</Outer></RpimOverall>
+   <RmergeTopI>   0.000</RmergeTopI>
+   <NumberObservations><Overall>     4897</Overall><Inner>       76</Inner><Outer>      403</Outer></NumberObservations>
+   <NumberReflections><Overall>     4897</Overall><Inner>       76</Inner><Outer>      403</Outer></NumberReflections>
+   <MeanIoverSD><Overall>   23.3</Overall><Inner>   40.9</Inner><Outer>    9.9</Outer></MeanIoverSD>
+   <CChalf><Overall> 0.000</Overall><Inner> 0.000</Inner><Outer> 0.000</Outer></CChalf>
+   <Completeness><Overall>  97.8</Overall><Inner>  91.1</Inner><Outer>  99.7</Outer></Completeness>
+   <Multiplicity><Overall>     1.0</Overall><Inner>     1.0</Inner><Outer>     1.0</Outer></Multiplicity>
+   <MeanChiSq><Overall>  0.00</Overall><Inner>  0.00</Inner><Outer>  0.00</Outer></MeanChiSq>
+   <AnomalousCompleteness><Overall>   0.0</Overall><Inner>   0.0</Inner><Outer>   0.0</Outer></AnomalousCompleteness>
+   <AnomalousMultiplicity><Overall>     0.0</Overall><Inner>     0.0</Inner><Outer>     0.0</Outer></AnomalousMultiplicity>
+   <AnomalousCChalf><Overall>   0.000</Overall><Inner>   0.000</Inner><Outer>   0.000</Outer></AnomalousCChalf>
+   <AnomalousNPslope>   0.000</AnomalousNPslope>
+   <AnomalousLimitEstimate type="CCanom"><Direction>Overall</Direction><Threshold> 0.10</Threshold><MaximumResolution> 0.00</MaximumResolution>
+<Message>insufficient data</Message></AnomalousLimitEstimate>
+   <ResolutionLimitEstimate type="CChalf"><Direction>Overall</Direction><Threshold> 0.20</Threshold><MaximumResolution> 0.00</MaximumResolution>
+<Message>insufficient data</Message></ResolutionLimitEstimate>
+   <ResolutionLimitEstimate type="I/sd"><Direction>Overall</Direction><Threshold> 1.00</Threshold><MaximumResolution> 2.10</MaximumResolution>
+<Message> == maximum resolution</Message></ResolutionLimitEstimate>
+   <ResolutionLimitEstimate type="I/sd gt 2"><Direction>Overall</Direction><Threshold> 2.00</Threshold><MaximumResolution> 2.10</MaximumResolution>
+<Message> == maximum resolution</Message></ResolutionLimitEstimate>
+   <cell>
+ <a>  23.992</a> <b>  55.485</b> <c>  60.019</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma>  90.000</gamma>
+</cell>
+   <SpacegroupName>P 21 21 21</SpacegroupName>
+   <Mosaicity>  0.00</Mosaicity>
+   <MinimumSDcorrectionFulls>  1.00</MinimumSDcorrectionFulls>
+   <MaximumSDcorrectionFulls>  1.00</MaximumSDcorrectionFulls>
+   <MinimumSDcorrectionPartials>  0.00</MinimumSDcorrectionPartials>
+   <MaximumSDcorrectionPartials>  0.00</MaximumSDcorrectionPartials>
+   </Dataset>
+</Result>
+<OutputFiles>
+<OutputType>MERGED</OutputType>
+<SCAOutputType>NONE</SCAOutputType>
+<MTZmergedfilename>/Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_2/HKLOUT.mtz</MTZmergedfilename>
+<MTZunmergedfilename>/Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_2/HKLOUT_unmerged.mtz
+</MTZunmergedfilename>
+<SCAmergedfilename>/Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_2/HKLOUT.sca</SCAmergedfilename>
+<SCAunmergedfilename>/Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_2/HKLOUT_unmerged.sca
+</SCAunmergedfilename>
+<SplitMerged>True</SplitMerged>
+<SplitUnmerged>True</SplitUnmerged>
+<OriginalHKL>False</OriginalHKL>
+</OutputFiles>
+</AIMLESS>

@@ -1,0 +1,64 @@
+{
+  "status": "Finished",
+  "taskname": "freerflag",
+  "taskversion": "1.0",
+  "jobnumber": "3",
+  "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+  "jobtitle": "freerflag",
+  "creationtime": 1627464619.93,
+  "projectname": "crank2_test_0",
+  "fileroot": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_3/",
+  "tasktitle": "freerflag",
+  "jobid": "6d0f3d1a-ef86-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627464636.46,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/GaAda/Ga1",
+      "jobparamname": "F_SIGF",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "d89e7b79-ef85-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 10,
+      "filename": "3_crank2_test_0_freerout_freerflag.mtz",
+      "annotation": "New set of freeR flags",
+      "jobparamname": "FREEROUT",
+      "jobid": "6d0f3d1a-ef86-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "76e97544-ef86-11eb-82cf-08002705bc84",
+      "baseName": "3_crank2_test_0_freerout_freerflag.mtz",
+      "relpath": "CCP4_JOBS/job_3"
+    }
+  ],
+  "filenames": {
+    "F_SIGF": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_1/HKLOUT_0-observed_data.mtz",
+    "FREERFLAG": "",
+    "FREEROUT": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_3/3_crank2_test_0_freerout_freerflag.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "freerflag",
+    "report_class": "freerflag_report",
+    "report_module": "ccp4i2.wrappers.freerflag.script.freerflag_report",
+    "job_number": "3",
+    "job_status": "Finished",
+    "project_name": "crank2_test_0",
+    "has_program_xml": true
+  }
+}

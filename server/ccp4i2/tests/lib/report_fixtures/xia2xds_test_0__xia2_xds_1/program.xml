@@ -1,0 +1,246 @@
+<Xia2Xds>
+  <Xia2Txt><![CDATA[Environment configuration...
+Python => /home/kyle/CCP4-71-151021-emt/ccp4-7.1/libexec/python2.7
+CCTBX => /home/kyle/CCP4-71-151021-emt/ccp4-7.1/lib/py2/site-packages
+CCP4 => /home/kyle/CCP4-71-151021-emt/ccp4-7.1
+CCP4_SCR => /tmp/tmpPY1L4t
+Starting directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+Working directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+Free space:        57.35 GB
+Host: kyle-VirtualBox
+Contact: xia2.support@gmail.com
+XIA2 0.6.475-g7ac7bb6b-dials-2.2
+DIALS 2.2.10-g6dafd9427-release
+CCP4 7.1.017
+Command line: xia2 /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/xia2_xds.phil image="/home/kyle/Downloads/th_8_2/th_8_2_0001.cbf:1:20"
+Project directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+-------------------- Spotfinding SWEEP1 --------------------
+4619 spots found on 20 images (max 435 / bin)
+*                  *
+*                  *
+*                  *
+*                  *
+*                 **
+**** ** **** * *****
+************** *****
+********************
+********************
+********************
+1      image      20
+------------------- Autoindexing SWEEP1 --------------------
+All possible indexing solutions:
+tP  57.75  57.75 149.90  90.00  90.00  90.00
+oC  81.60  81.70 149.90  90.00  90.00  90.00
+oP  57.70  57.80 149.90  90.00  90.00  90.00
+mC  81.60  81.70 149.90  90.00  90.00  90.00
+mP  57.70  57.80 149.90  90.00  90.00  90.00
+aP  57.70  57.80 149.90  90.00  90.00  90.00
+Indexing solution:
+tP  57.78  57.78 150.01  90.00  90.00  90.00
+-------------------- Integrating SWEEP1 --------------------
+Processed batches 1 to 20
+Standard Deviation in pixel range: 0.56 0.56
+Integration status per image:
+oooooooooooooooooooo
+"o" => good        "%" => ok        "!" => bad rmsd
+"O" => overloaded  "#" => many bad  "." => weak
+"@" => abandoned
+Maximum relative deviation in cell: 0.000
+Mosaic spread: 0.069 < 0.069 < 0.069
+-------------------- Integrating SWEEP1 --------------------
+Processed batches 1 to 20
+Standard Deviation in pixel range: 0.56 0.56
+Integration status per image:
+oooooooooooooooooooo
+"o" => good        "%" => ok        "!" => bad rmsd
+"O" => overloaded  "#" => many bad  "." => weak
+"@" => abandoned
+Maximum relative deviation in cell: 0.000
+Mosaic spread: 0.049 < 0.049 < 0.049
+-------------------- Preparing DEFAULT ---------------------
+--------------------- Scaling DEFAULT ----------------------
+Resolution for sweep NATIVE/SWEEP1: 1.23 (cc_half > 0.3)
+--------------------- Scaling DEFAULT ----------------------
+Likely spacegroups:
+P 41 21 2
+P 43 21 2
+Reindexing to first spacegroup setting: P 41 21 2 (h,k,l)
+Overall twinning score: 2.09
+Your data do not appear twinned
+Project: AUTOMATIC
+Crystal: DEFAULT
+Sequence: 
+Wavelength name: NATIVE
+Wavelength 0.97625
+Sweeps:
+SWEEP SWEEP1 [WAVELENGTH NATIVE]
+TEMPLATE th_8_2_####.cbf
+DIRECTORY /home/kyle/Downloads/th_8_2
+IMAGES (USER) 1 to 20
+MTZ file: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DEFAULT/NATIVE/SWEEP1/integrate/INTEGRATE_reindex.mtz
+For AUTOMATIC/DEFAULT/NATIVE                 Overall    Low     High
+High resolution limit                           1.23    3.34    1.23
+Low resolution limit                           37.81   37.83    1.25
+Completeness                                   15.2    19.3     3.1
+Multiplicity                                    1.1     1.0     1.0
+I/sigma                                         5.4    19.3     0.6
+Rmerge(I)                                     0.063   0.020   0.346
+Rmerge(I+/-)                                  0.057   0.021   0.000
+Rmeas(I)                                      0.088   0.029   0.489
+Rmeas(I+/-)                                   0.080   0.030   0.000
+Rpim(I)                                       0.062   0.020   0.346
+Rpim(I+/-)                                    0.056   0.021   0.000
+CC half                                       0.998   0.999   0.688
+Wilson B factor                              10.580
+Anomalous completeness                          0.3     0.1     0.1
+Anomalous multiplicity                          1.0     1.0     1.0
+Anomalous correlation                         0.000   0.000   0.000
+Anomalous slope                               0.988
+dF/F                                          0.136
+dI/s(dI)                                      0.651
+Total observations                            11946     820     116
+Total unique                                  11335     789     112
+Assuming spacegroup: P 41 21 2
+Other likely alternatives are:
+P 43 21 2
+Unit cell:
+ 57.780  57.780 150.030
+ 90.000  90.000  90.000
+mtz format:
+Scaled reflections: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_free.mtz
+mtz_unmerged format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz
+sca format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled.sca
+sca_unmerged format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.sca
+hkl format:
+]]></Xia2Txt>
+  <Xia2Txt><![CDATA[Environment configuration...
+Python => /home/kyle/CCP4-71-151021-emt/ccp4-7.1/libexec/python2.7
+CCTBX => /home/kyle/CCP4-71-151021-emt/ccp4-7.1/lib/py2/site-packages
+CCP4 => /home/kyle/CCP4-71-151021-emt/ccp4-7.1
+CCP4_SCR => /tmp/tmpPY1L4t
+Starting directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+Working directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+Free space:        57.35 GB
+Host: kyle-VirtualBox
+Contact: xia2.support@gmail.com
+XIA2 0.6.475-g7ac7bb6b-dials-2.2
+DIALS 2.2.10-g6dafd9427-release
+CCP4 7.1.017
+Command line: xia2 /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/xia2_xds.phil image="/home/kyle/Downloads/th_8_2/th_8_2_0001.cbf:1:20"
+Project directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+-------------------- Spotfinding SWEEP1 --------------------
+4619 spots found on 20 images (max 435 / bin)
+*                  *
+*                  *
+*                  *
+*                  *
+*                 **
+**** ** **** * *****
+************** *****
+********************
+********************
+********************
+1      image      20
+------------------- Autoindexing SWEEP1 --------------------
+All possible indexing solutions:
+tP  57.75  57.75 149.90  90.00  90.00  90.00
+oC  81.60  81.70 149.90  90.00  90.00  90.00
+oP  57.70  57.80 149.90  90.00  90.00  90.00
+mC  81.60  81.70 149.90  90.00  90.00  90.00
+mP  57.70  57.80 149.90  90.00  90.00  90.00
+aP  57.70  57.80 149.90  90.00  90.00  90.00
+Indexing solution:
+tP  57.78  57.78 150.01  90.00  90.00  90.00
+-------------------- Integrating SWEEP1 --------------------
+Processed batches 1 to 20
+Standard Deviation in pixel range: 0.56 0.56
+Integration status per image:
+oooooooooooooooooooo
+"o" => good        "%" => ok        "!" => bad rmsd
+"O" => overloaded  "#" => many bad  "." => weak
+"@" => abandoned
+Maximum relative deviation in cell: 0.000
+Mosaic spread: 0.069 < 0.069 < 0.069
+-------------------- Integrating SWEEP1 --------------------
+Processed batches 1 to 20
+Standard Deviation in pixel range: 0.56 0.56
+Integration status per image:
+oooooooooooooooooooo
+"o" => good        "%" => ok        "!" => bad rmsd
+"O" => overloaded  "#" => many bad  "." => weak
+"@" => abandoned
+Maximum relative deviation in cell: 0.000
+Mosaic spread: 0.049 < 0.049 < 0.049
+-------------------- Preparing DEFAULT ---------------------
+--------------------- Scaling DEFAULT ----------------------
+Resolution for sweep NATIVE/SWEEP1: 1.23 (cc_half > 0.3)
+--------------------- Scaling DEFAULT ----------------------
+Likely spacegroups:
+P 41 21 2
+P 43 21 2
+Reindexing to first spacegroup setting: P 41 21 2 (h,k,l)
+Overall twinning score: 2.09
+Your data do not appear twinned
+Project: AUTOMATIC
+Crystal: DEFAULT
+Sequence: 
+Wavelength name: NATIVE
+Wavelength 0.97625
+Sweeps:
+SWEEP SWEEP1 [WAVELENGTH NATIVE]
+TEMPLATE th_8_2_####.cbf
+DIRECTORY /home/kyle/Downloads/th_8_2
+IMAGES (USER) 1 to 20
+MTZ file: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DEFAULT/NATIVE/SWEEP1/integrate/INTEGRATE_reindex.mtz
+For AUTOMATIC/DEFAULT/NATIVE                 Overall    Low     High
+High resolution limit                           1.23    3.34    1.23
+Low resolution limit                           37.81   37.83    1.25
+Completeness                                   15.2    19.3     3.1
+Multiplicity                                    1.1     1.0     1.0
+I/sigma                                         5.4    19.3     0.6
+Rmerge(I)                                     0.063   0.020   0.346
+Rmerge(I+/-)                                  0.057   0.021   0.000
+Rmeas(I)                                      0.088   0.029   0.489
+Rmeas(I+/-)                                   0.080   0.030   0.000
+Rpim(I)                                       0.062   0.020   0.346
+Rpim(I+/-)                                    0.056   0.021   0.000
+CC half                                       0.998   0.999   0.688
+Wilson B factor                              10.580
+Anomalous completeness                          0.3     0.1     0.1
+Anomalous multiplicity                          1.0     1.0     1.0
+Anomalous correlation                         0.000   0.000   0.000
+Anomalous slope                               0.988
+dF/F                                          0.136
+dI/s(dI)                                      0.651
+Total observations                            11946     820     116
+Total unique                                  11335     789     112
+Assuming spacegroup: P 41 21 2
+Other likely alternatives are:
+P 43 21 2
+Unit cell:
+ 57.780  57.780 150.030
+ 90.000  90.000  90.000
+mtz format:
+Scaled reflections: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_free.mtz
+mtz_unmerged format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz
+sca format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled.sca
+sca_unmerged format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.sca
+hkl format:
+Processing took 00h 01m 58s
+XIA2 used... ccp4, dials, pointless, xds, xia2
+Here are the appropriate citations (BIBTeX in xia2-citations.bib.)
+Evans, P. (2006) Acta Cryst. D62, 72-82.
+Kabsch, W. (2010) Acta Cryst. D66, 125-132.
+Winn, M. D. et al. (2011) Acta Cryst. D67, 235-242.
+Winter, G. (2010) J. Appl. Cryst. 43, 186-190.
+Winter, G. et al. (2018) Acta Cryst. D74, 85-97.
+Status: normal termination
+]]></Xia2Txt>
+  <Xia2CrystalName><![CDATA[DEFAULT]]></Xia2CrystalName>
+</Xia2Xds>

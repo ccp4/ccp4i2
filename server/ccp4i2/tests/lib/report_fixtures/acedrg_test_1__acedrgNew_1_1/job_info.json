@@ -1,0 +1,72 @@
+{
+  "status": "Finished",
+  "taskname": "acedrgNew",
+  "taskversion": "1.0",
+  "jobnumber": "1.1",
+  "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+  "jobtitle": "acedrgNew",
+  "creationtime": 1717747578.114226,
+  "projectname": "acedrg_test_1",
+  "fileroot": "<PROJECTS_DIR>/acedrg_test_1/CCP4_JOBS/job_1/job_1/",
+  "tasktitle": "acedrgNew",
+  "jobid": "d1940dfa-24a4-11ef-aaff-2f2a8a2e5bb4",
+  "descendentjobs": [],
+  "finishtime": 1717747610.845191,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 8,
+      "filename": "AcedrgOut_patched.cif",
+      "annotation": "Dictionary for ligand PCA",
+      "jobparamname": "DICTOUT",
+      "jobid": "d1940dfa-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "pathflag": 1,
+      "filetype": "application/refmac-dictionary",
+      "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "jobnumber": "1.1",
+      "projectname": "acedrg_test_1",
+      "filetypeclass": "DictDataFile",
+      "fileId": "e515a2bc-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "baseName": "AcedrgOut_patched.cif",
+      "relpath": "CCP4_JOBS/job_1/job_1"
+    },
+    {
+      "filetypeid": 22,
+      "filename": "MOLOUT.mol",
+      "annotation": "MOL file from RDKIT",
+      "jobparamname": "MOLOUT",
+      "jobid": "d1940dfa-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "pathflag": 1,
+      "filetype": "chemical/x-mdl-molfile",
+      "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "jobnumber": "1.1",
+      "projectname": "acedrg_test_1",
+      "filetypeclass": "MDLMolDataFile",
+      "fileId": "e515a2bd-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "baseName": "MOLOUT.mol",
+      "relpath": "CCP4_JOBS/job_1/job_1"
+    }
+  ],
+  "filenames": {
+    "DICTIN2": "",
+    "DICTIN": "",
+    "SMILESFILEIN": "",
+    "MOLIN": "<PROJECTS_DIR>/acedrg_test_1/CCP4_IMPORTED_FILES/ChEBI_46195_1.mol",
+    "MOL2IN": "",
+    "METAL_STRUCTURE": "",
+    "DICTOUT": "<PROJECTS_DIR>/acedrg_test_1/CCP4_JOBS/job_1/job_1/AcedrgOut_patched.cif",
+    "DICTOUT_RDKIT": "",
+    "XYZOUT": "",
+    "XYZOUT_RDKIT": "",
+    "MOLOUT": "<PROJECTS_DIR>/acedrg_test_1/CCP4_JOBS/job_1/job_1/MOLOUT.mol"
+  },
+  "_fixture_meta": {
+    "task_name": "acedrgNew",
+    "report_class": "acedrgNew_report",
+    "report_module": "ccp4i2.wrappers.acedrgNew.script.acedrgNew_report",
+    "job_number": "1.1",
+    "job_status": "Finished",
+    "project_name": "acedrg_test_1",
+    "has_program_xml": true
+  }
+}

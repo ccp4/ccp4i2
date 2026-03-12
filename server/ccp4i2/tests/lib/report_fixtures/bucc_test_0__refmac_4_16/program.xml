@@ -1,0 +1,213 @@
+<!-- refmac output -->
+<REFMAC>
+Error <err_level>          0 </err_level> <br/>
+Message <err_message> normal termination </err_message> <br/>
+Job <job> refmac </job> <br/>
+ <Overall_stats>
+ <n_cycle>      6 </n_cycle> <br/>
+ <ml_esu>     0.1177 </ml_esu> <br/>
+ <n_reflections_all>        12181 </n_reflections_all> <br/>
+ <n_reflections_free>          554 </n_reflections_free> <br/>
+ <data_completeness>     97.409 </data_completeness> <br/>
+ <resolution_low>     34.023 </resolution_low> <br/>
+ <resolution_high>      1.792 </resolution_high> <br/>
+ <r2_weighted_factor_work>      0.412 </r2_weighted_factor_work> <br/>
+ <r2_weighted_factor_free>      0.340 </r2_weighted_factor_free> <br/>
+ <stats_vs_cycle>
+ <new_cycle>
+  <cycle>       0 </cycle>  <r_factor>      0.364 </r_factor>  <r_free>      0.368 </r_free>  <fscAver>     0.7740 </fscAver>  <fscAverFree>     0.7618 </fscAverFree>  <rmsBOND>     0.0114 </rmsBOND>  <rmsANGLE>      1.979 </rmsANGLE>  <rmsCHIRAL>      0.088 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       1 </cycle>  <r_factor>      0.318 </r_factor>  <r_free>      0.339 </r_free>  <fscAver>     0.8344 </fscAver>  <fscAverFree>     0.8152 </fscAverFree>  <rmsBOND>     0.0114 </rmsBOND>  <rmsANGLE>      1.309 </rmsANGLE>  <rmsCHIRAL>      0.074 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       2 </cycle>  <r_factor>      0.300 </r_factor>  <r_free>      0.327 </r_free>  <fscAver>     0.8569 </fscAver>  <fscAverFree>     0.8353 </fscAverFree>  <rmsBOND>     0.0082 </rmsBOND>  <rmsANGLE>      1.363 </rmsANGLE>  <rmsCHIRAL>      0.083 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       3 </cycle>  <r_factor>      0.291 </r_factor>  <r_free>      0.320 </r_free>  <fscAver>     0.8675 </fscAver>  <fscAverFree>     0.8449 </fscAverFree>  <rmsBOND>     0.0075 </rmsBOND>  <rmsANGLE>      1.447 </rmsANGLE>  <rmsCHIRAL>      0.091 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       4 </cycle>  <r_factor>      0.284 </r_factor>  <r_free>      0.313 </r_free>  <fscAver>     0.8732 </fscAver>  <fscAverFree>     0.8501 </fscAverFree>  <rmsBOND>     0.0073 </rmsBOND>  <rmsANGLE>      1.477 </rmsANGLE>  <rmsCHIRAL>      0.095 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       5 </cycle>  <r_factor>      0.280 </r_factor>  <r_free>      0.310 </r_free>  <fscAver>     0.8768 </fscAver>  <fscAverFree>     0.8537 </fscAverFree>  <rmsBOND>     0.0072 </rmsBOND>  <rmsANGLE>      1.520 </rmsANGLE>  <rmsCHIRAL>      0.098 </rmsCHIRAL> <br/>
+</new_cycle>
+</stats_vs_cycle>
+ <bvalue_stats>
+ <overall>
+ <all>
+  <number>        980 </number>  <average>    20.4488 </average>  <sigma>     8.6153 </sigma> <br/>
+</all>
+ <main_chain>
+  <number>        500 </number>  <average>    18.6422 </average>  <sigma>     7.1302 </sigma> <br/>
+</main_chain>
+ <side_chain>
+  <number>        480 </number>  <average>    22.3306 </average>  <sigma>     9.5729 </sigma> <br/>
+</side_chain>
+</overall>
+ <chain_by_chain>
+ <new_chain>
+ <chain_name> AAA </chain_name> <br/>
+ <all>
+  <number>        980 </number>  <average>    20.4488 </average>  <sigma>     8.6153 </sigma> <br/>
+</all>
+ <main_chain>
+  <number>        500 </number>  <average>    18.6422 </average>  <sigma>     7.1302 </sigma> <br/>
+</main_chain>
+ <side_chain>
+  <number>        480 </number>  <average>    22.3306 </average>  <sigma>     9.5729 </sigma> <br/>
+</side_chain>
+</new_chain>
+</chain_by_chain>
+</bvalue_stats>
+</Overall_stats>
+ <solvent_info>
+ <params_rfree>
+  <vdw_probe_radius>     1.2000 </vdw_probe_radius>  <ion_probe_radius>     0.8000 </ion_probe_radius>  <shrinkage_radius>     0.8000 </shrinkage_radius> <br/>
+</params_rfree>
+ <params_rfactor>
+  <vdw_probe_radius>     1.2000 </vdw_probe_radius>  <ion_probe_radius>     0.8000 </ion_probe_radius>  <shrinkage_radius>     0.8000 </shrinkage_radius> <br/>
+</params_rfactor>
+</solvent_info>
+ <twin_info>
+ <ntwin_domain>     1 </ntwin_domain> <br/>
+</twin_info>
+ <input_pdb_file> /home/kyle/CCP4I2_PROJECTS/bucc_test_0/CCP4_JOBS/job_4/job_16/XYZOUT.pdb </input_pdb_file> <br/>
+ <solution_file> /home/kyle/CCP4I2_PROJECTS/bucc_test_0/CCP4_JOBS/job_4/job_16/XYZOUT.pdb </solution_file> <br/>
+ <input_mtz_file> /home/kyle/CCP4I2_PROJECTS/bucc_test_0/CCP4_JOBS/job_4/job_16/hklin.mtz </input_mtz_file> <br/>
+ <input_labin> LABIN FP=F SIGFP=SIGF FREE=FREER </input_labin> <br/>
+ <mtz_file> /home/kyle/CCP4I2_PROJECTS/bucc_test_0/CCP4_JOBS/job_4/job_16/hklout.mtz </mtz_file> <br/>
+<Cycle><number>1</number><WeightUsed>5.98271452E-02</WeightUsed><rmsBonds>0.011</rmsBonds><rmsBondsx10>0.11</rmsBondsx10><r_factor>0.3642</r_factor><r_free>0.3678</r_free></Cycle><Cycle><number>2</number><WeightUsed>9.69099477E-02</WeightUsed><rmsBonds>0.011</rmsBonds><rmsBondsx10>0.11</rmsBondsx10><r_factor>0.3178</r_factor><r_free>0.3391</r_free></Cycle><Cycle><number>3</number><WeightUsed>0.12341259</WeightUsed><rmsBonds>0.008</rmsBonds><rmsBondsx10>0.08</rmsBondsx10><r_factor>0.2997</r_factor><r_free>0.3265</r_free></Cycle><Cycle><number>4</number><WeightUsed>0.13334589</WeightUsed><rmsBonds>0.008</rmsBonds><rmsBondsx10>0.08</rmsBondsx10><r_factor>0.2906</r_factor><r_free>0.3203</r_free></Cycle><Cycle><number>5</number><WeightUsed>0.14016606</WeightUsed><rmsBonds>0.007</rmsBonds><rmsBondsx10>0.07</rmsBondsx10><r_factor>0.2839</r_factor><r_free>0.3134</r_free><rmsBonds>0.007</rmsBonds><rmsBondsx10>0.07</rmsBondsx10><r_factor>0.2800</r_factor><r_free>0.3098</r_free></Cycle><ModelComposition><Chain id="A"/></ModelComposition><SmartieGraphs><CCP4ApplicationOutput><CCP4Table title="Cycle    1. Rfactor analysis, F distribution v resln"><data>0.008 150.0 88.57 233.1 248.9 0.36 0.47 5.0 354.5 351.7 0.12 0.1
+0.024 266.0 100.0 183.2 203.4 0.4 0.42 20.0 183.8 182.3 0.33 0.34
+0.039 338.0 99.71 277.4 288.8 0.29 0.32 8.0 160.2 219.8 0.44 0.41
+0.055 399.0 99.28 314.8 285.2 0.26 0.29 14.0 335.4 247.8 0.36 0.34
+0.07 433.0 99.34 260.8 221.7 0.33 0.34 22.0 280.1 233.4 0.33 0.34
+0.086 480.0 99.41 238.6 194.0 0.34 0.34 23.0 284.8 223.6 0.29 0.28
+0.101 511.0 99.44 183.0 158.3 0.36 0.35 26.0 176.0 145.4 0.44 0.42
+0.117 536.0 99.12 156.0 141.3 0.37 0.36 25.0 146.6 139.5 0.41 0.37
+0.132 592.0 99.36 138.2 126.7 0.4 0.36 29.0 112.2 97.3 0.34 0.34
+0.148 612.0 98.31 120.4 111.7 0.39 0.36 29.0 106.2 124.5 0.41 0.36
+0.164 617.0 98.35 111.0 100.2 0.41 0.38 37.0 125.7 118.8 0.34 0.33
+0.179 675.0 99.29 103.4 91.1 0.41 0.38 27.0 101.7 82.2 0.52 0.5
+0.195 691.0 97.15 95.6 85.2 0.4 0.37 25.0 104.2 88.9 0.27 0.26
+0.21 711.0 99.74 90.2 78.1 0.4 0.37 46.0 94.2 76.2 0.41 0.38
+0.226 727.0 95.74 82.9 71.4 0.4 0.37 37.0 99.9 79.0 0.39 0.37
+0.241 757.0 98.99 75.5 64.0 0.39 0.37 31.0 74.4 58.2 0.48 0.46
+0.257 761.0 95.25 68.2 57.8 0.4 0.38 41.0 64.0 62.7 0.42 0.37
+0.272 787.0 97.31 58.5 49.9 0.38 0.36 46.0 56.5 51.9 0.39 0.37
+0.288 799.0 93.36 48.5 45.1 0.41 0.38 31.0 46.2 44.0 0.42 0.4
+0.303 785.0 92.32 42.3 39.7 0.42 0.39 32.0 43.6 38.3 0.34 0.33
+</data><headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers><plot><title>Cycle    1. &lt;Rfactor&gt; v. resln</title><plotline xcol="1" ycol="6"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot><plot><title>Cycle    1. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title><plotline xcol="1" ycol="4"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/></plot><plot><title>Cycle    1. % observed v. resln</title><plotline xcol="1" ycol="3"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle    1. FSC and  Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln"><data>0.008 77.0 0.762 73.0 0.664 150.0 0.715 0.859 0.9367 0.8519 0.8564 0.6046
+0.0235 179.0 0.657 87.0 0.566 266.0 0.627 0.899 0.7672 0.797 0.6567 0.6895
+0.0391 251.0 0.772 87.0 0.74 338.0 0.764 0.93 0.7741 0.8833 0.7721 0.7846
+0.0546 307.0 0.787 92.0 0.742 399.0 0.777 0.946 0.8631 0.891 0.6514 0.8092
+0.0702 344.0 0.695 89.0 0.603 433.0 0.676 0.959 0.8395 0.8325 0.7293 0.7449
+0.0858 390.0 0.73 90.0 0.634 480.0 0.712 0.987 0.8796 0.8382 0.8239 0.7181
+0.1013 425.0 0.73 86.0 0.587 511.0 0.706 1.002 0.7953 0.8213 0.6464 0.6572
+0.1169 455.0 0.76 81.0 0.666 536.0 0.746 0.978 0.7624 0.8282 0.1754 0.5941
+0.1324 499.0 0.774 93.0 0.66 592.0 0.756 0.942 0.7733 0.8247 0.634 0.5532
+0.148 525.0 0.716 87.0 0.607 612.0 0.7 0.89 0.8041 0.7953 0.5867 0.5503
+0.1635 531.0 0.66 86.0 0.57 617.0 0.647 0.857 0.8127 0.7492 0.6138 0.4891
+0.1791 591.0 0.597 84.0 0.585 675.0 0.595 0.838 0.6437 0.7317 0.3185 0.5537
+0.1946 602.0 0.606 89.0 0.544 691.0 0.598 0.855 0.8107 0.7323 0.7852 0.5592
+0.2102 629.0 0.633 82.0 0.51 711.0 0.619 0.884 0.7044 0.7433 0.3686 0.5456
+0.2257 635.0 0.593 92.0 0.528 727.0 0.584 0.866 0.7594 0.7261 0.5307 0.5555
+0.2413 677.0 0.557 80.0 0.493 757.0 0.55 0.846 0.6444 0.6965 0.4085 0.5495
+0.2568 678.0 0.6 83.0 0.511 761.0 0.59 0.861 0.7036 0.7158 0.5178 0.5187
+0.2724 708.0 0.656 79.0 0.534 787.0 0.643 0.865 0.7335 0.7561 0.4087 0.5624
+0.2879 722.0 0.675 77.0 0.59 799.0 0.667 0.829 0.7262 0.7571 0.325 0.5132
+0.3035 708.0 0.754 77.0 0.598 785.0 0.739 0.794 0.821 0.7812 0.683 0.4618
+</data><headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1 FSCfree FSCwork CorrFoFcFree CorrFoFcWork
+</headers><plot><title>Cycle    1. M(Fom) v. resln</title><plotline xcol="1" ycol="3"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="8"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle    5. Rfactor analysis, F distribution v resln"><data>0.008 150.0 88.57 227.0 252.0 0.37 0.49 5.0 345.1 338.5 0.13 0.11
+0.024 266.0 100.0 178.4 198.0 0.35 0.37 20.0 179.0 178.8 0.29 0.3
+0.039 338.0 99.71 270.1 286.6 0.24 0.27 8.0 155.9 225.2 0.44 0.45
+0.055 399.0 99.28 306.5 285.1 0.22 0.24 14.0 326.6 261.9 0.24 0.23
+0.07 433.0 99.34 254.0 221.0 0.27 0.28 22.0 272.7 237.3 0.24 0.26
+0.086 480.0 99.41 232.3 193.0 0.28 0.29 23.0 277.3 234.8 0.23 0.22
+0.101 511.0 99.44 178.1 159.1 0.3 0.29 26.0 171.4 157.8 0.39 0.39
+0.117 536.0 99.12 151.8 139.6 0.3 0.29 25.0 142.7 127.2 0.38 0.36
+0.132 592.0 99.36 134.5 125.1 0.28 0.26 29.0 109.3 97.6 0.35 0.33
+0.148 612.0 98.31 117.2 111.2 0.29 0.27 29.0 103.4 123.4 0.34 0.32
+0.164 617.0 98.35 108.1 100.6 0.32 0.29 37.0 122.4 112.7 0.29 0.29
+0.179 675.0 99.29 100.7 93.2 0.32 0.3 27.0 99.0 91.6 0.42 0.37
+0.195 691.0 97.15 93.0 84.6 0.31 0.29 25.0 101.4 89.5 0.35 0.33
+0.21 711.0 99.74 87.8 78.8 0.29 0.28 46.0 91.7 79.6 0.3 0.28
+0.226 727.0 95.74 80.8 73.1 0.3 0.27 37.0 97.3 83.9 0.35 0.33
+0.241 757.0 98.99 73.5 67.2 0.3 0.27 31.0 72.4 65.5 0.39 0.35
+0.257 761.0 95.25 66.4 61.6 0.27 0.25 41.0 62.3 64.3 0.3 0.26
+0.272 787.0 97.31 56.9 53.8 0.26 0.23 46.0 55.0 57.1 0.43 0.38
+0.288 799.0 93.36 47.3 48.6 0.27 0.24 31.0 45.0 45.3 0.28 0.26
+0.303 785.0 92.32 41.2 44.3 0.24 0.22 32.0 42.4 47.3 0.31 0.29
+</data><headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers><plot><title>Cycle    5. &lt;Rfactor&gt; v. resln</title><plotline xcol="1" ycol="6"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot><plot><title>Cycle    5. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title><plotline xcol="1" ycol="4"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/></plot><plot><title>Cycle    5. % observed v. resln</title><plotline xcol="1" ycol="3"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle    5. FSC and  Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln"><data>0.008 77.0 0.843 73.0 0.758 150.0 0.802 0.875 0.957 0.8787 0.9042 0.5769
+0.0235 179.0 0.785 87.0 0.672 266.0 0.748 0.921 0.8515 0.8767 0.7461 0.7717
+0.0391 251.0 0.863 87.0 0.815 338.0 0.851 0.956 0.886 0.9359 0.8886 0.852
+0.0546 307.0 0.879 92.0 0.832 399.0 0.868 0.986 0.9396 0.9392 0.883 0.8725
+0.0702 344.0 0.804 89.0 0.699 433.0 0.783 1.009 0.9228 0.9054 0.8755 0.8347
+0.0858 390.0 0.796 90.0 0.709 480.0 0.78 1.009 0.9251 0.8968 0.9162 0.8183
+0.1013 425.0 0.766 86.0 0.624 511.0 0.742 1.004 0.8276 0.8703 0.6676 0.7834
+0.1169 455.0 0.795 81.0 0.696 536.0 0.78 0.994 0.7836 0.8784 0.4283 0.747
+0.1324 499.0 0.816 93.0 0.687 592.0 0.796 0.981 0.8219 0.8987 0.6942 0.7827
+0.148 525.0 0.808 87.0 0.713 612.0 0.795 0.963 0.8873 0.887 0.7693 0.7554
+0.1635 531.0 0.773 86.0 0.663 617.0 0.758 0.931 0.8819 0.8629 0.7043 0.7146
+0.1791 591.0 0.695 84.0 0.676 675.0 0.693 0.888 0.7838 0.8294 0.5114 0.722
+0.1946 602.0 0.693 89.0 0.613 691.0 0.683 0.903 0.825 0.8291 0.6282 0.7446
+0.2102 629.0 0.729 82.0 0.644 711.0 0.719 0.939 0.8377 0.8476 0.6826 0.7441
+0.2257 635.0 0.709 92.0 0.615 727.0 0.697 0.921 0.8496 0.8462 0.6233 0.7628
+0.2413 677.0 0.699 80.0 0.589 757.0 0.687 0.896 0.7924 0.8337 0.6053 0.7405
+0.2568 678.0 0.726 83.0 0.64 761.0 0.716 0.899 0.8419 0.8547 0.748 0.7793
+0.2724 708.0 0.754 79.0 0.675 787.0 0.746 0.894 0.809 0.8719 0.4491 0.8096
+0.2879 722.0 0.783 77.0 0.702 799.0 0.775 0.864 0.8725 0.8841 0.8042 0.8134
+0.3035 708.0 0.874 77.0 0.807 785.0 0.867 0.834 0.9028 0.9249 0.7137 0.8548
+</data><headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1 FSCfree FSCwork CorrFoFcFree CorrFoFcWork
+</headers><plot><title>Cycle    5. M(Fom) v. resln</title><plotline xcol="1" ycol="3"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="8"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle    6. Rfactor analysis, F distribution v resln"><data>0.008 150.0 88.57 225.5 251.9 0.37 0.49 5.0 342.9 339.6 0.13 0.12
+0.024 266.0 100.0 177.3 197.8 0.35 0.37 20.0 177.8 180.6 0.29 0.3
+0.039 338.0 99.71 268.4 286.3 0.24 0.27 8.0 154.9 224.6 0.45 0.46
+0.055 399.0 99.28 304.5 283.7 0.21 0.23 14.0 324.5 263.5 0.23 0.22
+0.07 433.0 99.34 252.3 220.6 0.26 0.27 22.0 270.9 237.4 0.24 0.26
+0.086 480.0 99.41 230.8 192.5 0.28 0.29 23.0 275.5 235.1 0.22 0.21
+0.101 511.0 99.44 177.0 158.2 0.3 0.29 26.0 170.3 157.4 0.39 0.4
+0.117 536.0 99.12 150.9 138.8 0.29 0.28 25.0 141.8 126.3 0.38 0.36
+0.132 592.0 99.36 133.6 124.0 0.27 0.25 29.0 108.6 97.9 0.35 0.33
+0.148 612.0 98.31 116.5 110.9 0.28 0.26 29.0 102.7 120.6 0.34 0.31
+0.164 617.0 98.35 107.4 100.2 0.31 0.29 37.0 121.6 111.4 0.28 0.29
+0.179 675.0 99.29 100.0 92.8 0.32 0.3 27.0 98.3 91.7 0.42 0.36
+0.195 691.0 97.15 92.4 84.2 0.31 0.29 25.0 100.8 89.6 0.36 0.34
+0.21 711.0 99.74 87.2 78.3 0.29 0.27 46.0 91.1 79.2 0.3 0.27
+0.226 727.0 95.74 80.2 72.6 0.3 0.27 37.0 96.7 83.4 0.34 0.32
+0.241 757.0 98.99 73.1 67.1 0.3 0.27 31.0 72.0 65.8 0.38 0.34
+0.257 761.0 95.25 65.9 61.3 0.27 0.25 41.0 61.9 63.9 0.3 0.26
+0.272 787.0 97.31 56.5 53.7 0.25 0.23 46.0 54.6 57.1 0.43 0.38
+0.288 799.0 93.36 47.0 48.4 0.26 0.23 31.0 44.7 45.2 0.28 0.26
+0.303 785.0 92.32 41.0 44.3 0.24 0.22 32.0 42.2 47.3 0.3 0.28
+</data><headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers><plot><title>Cycle    6. &lt;Rfactor&gt; v. resln</title><plotline xcol="1" ycol="6"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot><plot><title>Cycle    6. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title><plotline xcol="1" ycol="4"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/></plot><plot><title>Cycle    6. % observed v. resln</title><plotline xcol="1" ycol="3"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle    6. FSC and  Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln"><data>0.008 77.0 0.851 73.0 0.767 150.0 0.81 0.875 0.9584 0.8839 0.9007 0.5867
+0.0235 179.0 0.803 87.0 0.684 266.0 0.764 0.921 0.8673 0.8845 0.7548 0.7792
+0.0391 251.0 0.876 87.0 0.823 338.0 0.863 0.956 0.8967 0.9415 0.8819 0.8591
+0.0546 307.0 0.891 92.0 0.849 399.0 0.881 0.986 0.9471 0.9436 0.8999 0.8757
+0.0702 344.0 0.818 89.0 0.713 433.0 0.797 1.009 0.9288 0.9127 0.8773 0.8407
+0.0858 390.0 0.806 90.0 0.724 480.0 0.791 1.009 0.9296 0.9023 0.9222 0.8244
+0.1013 425.0 0.769 86.0 0.621 511.0 0.744 1.004 0.83 0.8733 0.6791 0.7891
+0.1169 455.0 0.796 81.0 0.696 536.0 0.781 0.994 0.7859 0.8794 0.451 0.7507
+0.1324 499.0 0.816 93.0 0.683 592.0 0.795 0.981 0.8223 0.9003 0.6883 0.7902
+0.148 525.0 0.815 87.0 0.724 612.0 0.802 0.963 0.8897 0.892 0.7737 0.7663
+0.1635 531.0 0.78 86.0 0.667 617.0 0.765 0.931 0.8866 0.8683 0.7078 0.7229
+0.1791 591.0 0.699 84.0 0.683 675.0 0.697 0.888 0.7912 0.8327 0.5284 0.7265
+0.1946 602.0 0.698 89.0 0.619 691.0 0.688 0.903 0.8225 0.8333 0.6048 0.7514
+0.2102 629.0 0.738 82.0 0.654 711.0 0.728 0.939 0.844 0.8534 0.6886 0.7499
+0.2257 635.0 0.716 92.0 0.619 727.0 0.704 0.921 0.8535 0.8514 0.628 0.7686
+0.2413 677.0 0.704 80.0 0.593 757.0 0.692 0.896 0.799 0.8375 0.6198 0.7467
+0.2568 678.0 0.728 83.0 0.64 761.0 0.718 0.899 0.8437 0.8571 0.7493 0.7833
+0.2724 708.0 0.756 79.0 0.68 787.0 0.748 0.894 0.809 0.8739 0.4423 0.8133
+0.2879 722.0 0.784 77.0 0.713 799.0 0.777 0.864 0.8727 0.8855 0.8048 0.8169
+0.3035 708.0 0.874 77.0 0.804 785.0 0.867 0.834 0.9034 0.9259 0.7217 0.8597
+</data><headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1 FSCfree FSCwork CorrFoFcFree CorrFoFcWork
+</headers><plot><title>Cycle    6. M(Fom) v. resln</title><plotline xcol="1" ycol="3"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="8"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Rfactor analysis, stats vs cycle"><data>0.0 0.3642 0.3678 0.66 60020.0 2852.9 0.0114 0.997 1.979 1.235 0.088
+1.0 0.3178 0.3391 0.711 58368.0 2811.8 0.0114 0.954 1.309 0.749 0.074
+2.0 0.2997 0.3265 0.736 57641.0 2797.9 0.0082 0.664 1.363 0.784 0.083
+3.0 0.2906 0.3203 0.75 57122.0 2782.8 0.0075 0.607 1.447 0.829 0.091
+4.0 0.2839 0.3134 0.757 56877.0 2771.3 0.0073 0.586 1.477 0.84 0.095
+5.0 0.28 0.3098 0.762 56662.0 2762.1 0.0072 0.579 1.52 0.859 0.098
+</data><headers separator=" ">Ncyc Rfact Rfree FOM -LL -LLfree rmsBOND zBOND rmsANGL zANGL rmsCHIRAL
+</headers><plot><title>&lt;Rfactor&gt; vs cycle</title><plotline xcol="1" ycol="2"/><plotline xcol="1" ycol="3"/></plot><plot><title>FOM vs cycle</title><plotline xcol="1" ycol="4"/></plot><plot><title>-LL vs cycle</title><plotline xcol="1" ycol="5"/></plot><plot><title>-LLfree vs cycle</title><plotline xcol="1" ycol="6"/></plot><plot><title>Geometry vs cycle</title><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="8"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/><plotline xcol="1" ycol="11"/></plot></CCP4Table></CCP4ApplicationOutput></SmartieGraphs></REFMAC>

@@ -1,0 +1,271 @@
+{
+  "status": "Finished",
+  "taskname": "SubstituteLigand",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+  "jobtitle": "SubstituteLigand",
+  "creationtime": 1594563150.28,
+  "projectname": "SubstituteLigandPdbIn_test_0",
+  "fileroot": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "SubstituteLigand",
+  "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+  "descendentjobs": [
+    [
+      "b97f42c6-c449-11ea-a15f-3417eba0e4fd",
+      [
+        "b97f42c7-c449-11ea-a15f-3417eba0e4fd"
+      ]
+    ],
+    [
+      "b97f42c7-c449-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "147ef082-c44a-11ea-a15f-3417eba0e4fd",
+      [
+        "147ef083-c44a-11ea-a15f-3417eba0e4fd",
+        "160e0e5b-c44a-11ea-a15f-3417eba0e4fd",
+        "1f4a6984-c44a-11ea-a15f-3417eba0e4fd",
+        "2701172a-c44a-11ea-a15f-3417eba0e4fd"
+      ]
+    ],
+    [
+      "147ef083-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "160e0e5b-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "1f4a6984-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "2701172a-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "2701172d-c44a-11ea-a15f-3417eba0e4fd",
+      [
+        "2701172e-c44a-11ea-a15f-3417eba0e4fd",
+        "28b0da7f-c44a-11ea-a15f-3417eba0e4fd",
+        "2f5d8f40-c44a-11ea-a15f-3417eba0e4fd",
+        "346e2196-c44a-11ea-a15f-3417eba0e4fd"
+      ]
+    ],
+    [
+      "2701172e-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "28b0da7f-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "2f5d8f40-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "346e2196-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "346e2199-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "5f4fc93f-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ]
+  ],
+  "finishtime": 1594563431.71,
+  "inputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "4hg7_1.pdb",
+      "annotation": "Atomic model imported from 4hg7.pdb by job 1",
+      "jobparamname": "XYZIN",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 2,
+      "filetype": "chemical/x-pdb",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "b8e5e2c2-c449-11ea-a15f-3417eba0e4fd",
+      "relpath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 6,
+      "filename": "mdm2_unmerged_1.mtz",
+      "annotation": "Unmerged reflections imported from mdm2_unmerged.mtz by job 1",
+      "jobparamname": "UNMERGEDFILES",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 2,
+      "filetype": "application/CCP4-unmerged-experimental",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "UnmergedDataFile",
+      "fileId": "b8e5e2c4-c449-11ea-a15f-3417eba0e4fd",
+      "relpath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "4hg7_1.pdb",
+      "annotation": "Atomic model imported from 4hg7.pdb by job 1",
+      "jobparamname": "XYZIN",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 2,
+      "filetype": "chemical/x-pdb",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "b8e5e2c2-c449-11ea-a15f-3417eba0e4fd",
+      "baseName": "4hg7_1.pdb",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 6,
+      "filename": "mdm2_unmerged_1.mtz",
+      "annotation": "Unmerged reflections imported from mdm2_unmerged.mtz by job 1",
+      "jobparamname": "file",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 2,
+      "filetype": "application/CCP4-unmerged-experimental",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "UnmergedDataFile",
+      "fileId": "b8e5e2c4-c449-11ea-a15f-3417eba0e4fd",
+      "baseName": "mdm2_unmerged_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "F_SIGF_OUT.mtz",
+      "annotation": "/C1/D1",
+      "jobparamname": "F_SIGF_OUT",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "60abc165-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "F_SIGF_OUT.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREERFLAG_OUT.mtz",
+      "annotation": "FreeR - Spg:P 65 2 2;Resln:1.47A;Cell:71.5,71.5,104.3,90.0,90.0,120.0",
+      "jobparamname": "FREERFLAG_OUT",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "60abc166-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "FREERFLAG_OUT.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 8,
+      "filename": "DICTOUT.cif",
+      "annotation": "Dictionary for ligand DRG",
+      "jobparamname": "DICTOUT",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/refmac-dictionary",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "DictDataFile",
+      "fileId": "60abc167-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "DICTOUT.cif",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 13,
+      "filename": "DIFFPHIOUT.mtz",
+      "annotation": "",
+      "jobparamname": "DIFFPHIOUT",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "60abc168-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "DIFFPHIOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 13,
+      "filename": "FPHIOUT.mtz",
+      "annotation": "",
+      "jobparamname": "FPHIOUT",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "60abc169-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "FPHIOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "XYZOUT.pdb",
+      "annotation": "output.pdb",
+      "jobparamname": "XYZOUT",
+      "jobid": "b8e5e2c1-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "60abc16a-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "XYZOUT.pdb",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "XYZIN": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_IMPORTED_FILES/4hg7_1.pdb",
+    "F_SIGF_IN": "",
+    "FREERFLAG_IN": "",
+    "MOLIN": "",
+    "DICTIN": "",
+    "F_SIGF_OUT": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/F_SIGF_OUT.mtz",
+    "FREERFLAG_OUT": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/FREERFLAG_OUT.mtz",
+    "DICTOUT": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/DICTOUT.cif",
+    "DIFFPHIOUT": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/DIFFPHIOUT.mtz",
+    "FPHIOUT": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/FPHIOUT.mtz",
+    "ANOMFPHIOUT": "",
+    "XYZOUT": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/XYZOUT.pdb"
+  },
+  "_fixture_meta": {
+    "task_name": "SubstituteLigand",
+    "report_class": "SubstituteLigand_report",
+    "report_module": "ccp4i2.pipelines.SubstituteLigand.script.SubstituteLigand_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "SubstituteLigandPdbIn_test_0",
+    "has_program_xml": true
+  }
+}

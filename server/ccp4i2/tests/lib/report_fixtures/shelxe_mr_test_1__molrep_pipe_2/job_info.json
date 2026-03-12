@@ -1,0 +1,183 @@
+{
+  "status": "Finished",
+  "taskname": "molrep_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "2",
+  "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+  "jobtitle": "molrep_pipe",
+  "creationtime": 1686755206.265807,
+  "projectname": "shelxe_mr_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/",
+  "tasktitle": "molrep_pipe",
+  "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+  "descendentjobs": [
+    [
+      "1f4f103a-0ac5-11ee-a52c-8c8590af7452",
+      []
+    ],
+    [
+      "280761b4-0ac5-11ee-a52c-8c8590af7452",
+      []
+    ],
+    [
+      "29724f96-0ac5-11ee-a52c-8c8590af7452",
+      []
+    ]
+  ],
+  "finishtime": 1686755269.96835,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_shelxe_mr_test_1_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1_1",
+      "jobparamname": "F_SIGF",
+      "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "0b6e25ec-0ac5-11ee-b05f-8c8590af7452",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_shelxe_mr_test_1_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREERFLAG",
+      "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "0b6e6386-0ac5-11ee-b05f-8c8590af7452",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "XYZIN-coordinates.pdb",
+      "annotation": "Atomic model imported from 2a7b_1.pdb by job 2",
+      "jobparamname": "XYZIN",
+      "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "1e232a98-0ac5-11ee-82e5-8c8590af7452",
+      "baseName": "XYZIN-coordinates.pdb",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "2_shelxe_mr_test_1_xyzout_molrep_pipe.pdb",
+      "annotation": "Atomic model after restrained refinement",
+      "jobparamname": "XYZOUT",
+      "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "3a648f3a-0ac5-11ee-a52c-8c8590af7452",
+      "baseName": "2_shelxe_mr_test_1_xyzout_molrep_pipe.pdb",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "2_shelxe_mr_test_1_xyzout_sheetbend_molrep_pipe.pdb",
+      "annotation": "Atomic model after shift field refinement",
+      "jobparamname": "XYZOUT_SHEETBEND",
+      "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "3a65247c-0ac5-11ee-a52c-8c8590af7452",
+      "baseName": "2_shelxe_mr_test_1_xyzout_sheetbend_molrep_pipe.pdb",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "2_shelxe_mr_test_1_xyzout_molrep_molrep_pipe.pdb",
+      "annotation": "Atomic model from molecular replacement",
+      "jobparamname": "XYZOUT_MOLREP",
+      "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "3a6584bc-0ac5-11ee-a52c-8c8590af7452",
+      "baseName": "2_shelxe_mr_test_1_xyzout_molrep_molrep_pipe.pdb",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 13,
+      "filename": "2_shelxe_mr_test_1_diffphiout_molrep_pipe.mtz",
+      "annotation": "Weighted difference map from restrained refinement",
+      "jobparamname": "DIFFPHIOUT",
+      "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "3a65d872-0ac5-11ee-a52c-8c8590af7452",
+      "baseName": "2_shelxe_mr_test_1_diffphiout_molrep_pipe.mtz",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 13,
+      "filename": "2_shelxe_mr_test_1_fphiout_molrep_pipe.mtz",
+      "annotation": "Weighted map from restrained refinement",
+      "jobparamname": "FPHIOUT",
+      "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "3a662598-0ac5-11ee-a52c-8c8590af7452",
+      "baseName": "2_shelxe_mr_test_1_fphiout_molrep_pipe.mtz",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "filenames": {
+    "F_SIGF": "",
+    "F_PHI_MAP": "",
+    "ASUIN": "",
+    "XYZIN": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/XYZIN-coordinates.pdb",
+    "SEQIN_2": "",
+    "XYZIN_2": "",
+    "XYZIN_FIX": "",
+    "FREERFLAG": "",
+    "XYZOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/2_shelxe_mr_test_1_xyzout_molrep_pipe.pdb",
+    "XMLOUT": "",
+    "XYZOUT_SHEETBEND": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/2_shelxe_mr_test_1_xyzout_sheetbend_molrep_pipe.pdb",
+    "XYZOUT_MOLREP": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/2_shelxe_mr_test_1_xyzout_molrep_molrep_pipe.pdb",
+    "DIFFPHIOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/2_shelxe_mr_test_1_diffphiout_molrep_pipe.mtz",
+    "FPHIOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/2_shelxe_mr_test_1_fphiout_molrep_pipe.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "molrep_pipe",
+    "report_class": "molrep_pipe_report",
+    "report_module": "ccp4i2.pipelines.molrep_pipe.script.molrep_pipe_report",
+    "job_number": "2",
+    "job_status": "Finished",
+    "project_name": "shelxe_mr_test_1",
+    "has_program_xml": true
+  }
+}

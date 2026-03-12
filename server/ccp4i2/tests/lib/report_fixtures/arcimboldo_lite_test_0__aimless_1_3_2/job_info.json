@@ -1,0 +1,71 @@
+{
+  "status": "Finished",
+  "taskname": "aimless",
+  "taskversion": "1.0",
+  "jobnumber": "1.3.2",
+  "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+  "jobtitle": "aimless",
+  "creationtime": 1686758225.073897,
+  "projectname": "arcimboldo_lite_test_0",
+  "fileroot": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_1/job_3/job_2/",
+  "tasktitle": "aimless",
+  "jobid": "1bc7dd64-0acc-11ee-bf21-8c8590af7452",
+  "descendentjobs": [],
+  "finishtime": 1686758225.629837,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 4,
+      "filename": "HKLOUT.mtz",
+      "annotation": "",
+      "jobparamname": "MTZMERGEDOUT",
+      "jobid": "1bc7dd64-0acc-11ee-bf21-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz",
+      "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+      "jobnumber": "1.3.2",
+      "projectname": "arcimboldo_lite_test_0",
+      "filetypeclass": "MtzDataFile",
+      "fileId": "1c1c036c-0acc-11ee-bf21-8c8590af7452",
+      "baseName": "HKLOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    },
+    {
+      "filetypeid": 14,
+      "filename": "SCALES.scales",
+      "annotation": "",
+      "jobparamname": "SCALES",
+      "jobid": "1bc7dd64-0acc-11ee-bf21-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "Dummy",
+      "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+      "jobnumber": "1.3.2",
+      "projectname": "arcimboldo_lite_test_0",
+      "filetypeclass": "",
+      "fileId": "1c1c68f2-0acc-11ee-bf21-8c8590af7452",
+      "baseName": "SCALES.scales",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    }
+  ],
+  "filenames": {
+    "UNMERGEDFILE": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_1/job_3/job_1/MTZUNMERGEDOUT.mtz",
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "XMLOUT": "",
+    "SCALES": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_1/job_3/job_2/SCALES.scales",
+    "ROGUES": "",
+    "NORMPLOT": "",
+    "ANOMPLOT": "",
+    "CORRELPLOT": "",
+    "ROGUEPLOT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless",
+    "report_class": "aimless_report",
+    "report_module": "ccp4i2.wrappers.aimless.script.aimless_report",
+    "job_number": "1.3.2",
+    "job_status": "Finished",
+    "project_name": "arcimboldo_lite_test_0",
+    "has_program_xml": true
+  }
+}

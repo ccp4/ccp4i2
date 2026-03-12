@@ -1,0 +1,80 @@
+{
+  "status": "Finished",
+  "taskname": "aimless_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "3.3",
+  "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+  "jobtitle": "aimless_pipe",
+  "creationtime": 1627474101.87,
+  "projectname": "auspex_test_0",
+  "fileroot": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/job_3/",
+  "tasktitle": "aimless_pipe",
+  "jobid": "80bc60a2-ef9c-11eb-82cf-08002705bc84",
+  "descendentjobs": [
+    [
+      "80bc60a3-ef9c-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "8170af45-ef9c-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "a0769de0-ef9c-11eb-82cf-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1627474166.32,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/4puc/ds1",
+      "jobparamname": "HKLOUT",
+      "jobid": "80bc60a2-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3.3",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "a726ffc2-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_0-observed_data.mtz",
+      "relpath": "CCP4_JOBS/job_3/job_3"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "annotation": "Mean intensities for twin refinement",
+      "jobparamname": "IMEANOUT",
+      "jobid": "80bc60a2-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3.3",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "a726ffc3-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "relpath": "CCP4_JOBS/job_3/job_3"
+    }
+  ],
+  "filenames": {
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "FREERFLAG": "",
+    "FREEROUT": "",
+    "XMLOUT": "",
+    "CIFSTATSOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless_pipe",
+    "report_class": "aimless_pipe_report",
+    "report_module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report",
+    "job_number": "3.3",
+    "job_status": "Finished",
+    "project_name": "auspex_test_0",
+    "has_program_xml": true
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "status": "Finished",
+  "taskname": "ProvideAsuContents",
+  "taskversion": "1.0",
+  "jobnumber": "3",
+  "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+  "jobtitle": "ProvideAsuContents",
+  "creationtime": 1646653029.270973,
+  "projectname": "shelxSAD_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_3/",
+  "tasktitle": "ProvideAsuContents",
+  "jobid": "ec490a24-9e0a-11ec-a93f-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1646653031.668617,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_shelxsad_test_1_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "HKLIN",
+      "jobid": "a1c4d24e-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "c7fa15e8-9e0a-11ec-a93f-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 29,
+      "filename": "ASUCONTENTFILE.asu.xml",
+      "annotation": "",
+      "jobparamname": "ASUCONTENTFILE",
+      "jobid": "ec490a24-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-asu-content",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "AsuDataFile",
+      "fileId": "edb6bc1c-9e0a-11ec-a93f-08002705bc84",
+      "baseName": "ASUCONTENTFILE.asu.xml",
+      "relpath": "CCP4_JOBS/job_3"
+    }
+  ],
+  "filenames": {
+    "ASUCONTENTIN": "",
+    "HKLIN": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_1/1_shelxsad_test_1_obsout_import_merged.mtz",
+    "ASUCONTENTFILE": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_3/ASUCONTENTFILE.asu.xml"
+  },
+  "_fixture_meta": {
+    "task_name": "ProvideAsuContents",
+    "report_class": "ProvideAsuContents_report",
+    "report_module": "ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report",
+    "job_number": "3",
+    "job_status": "Finished",
+    "project_name": "shelxSAD_test_1",
+    "has_program_xml": true
+  }
+}

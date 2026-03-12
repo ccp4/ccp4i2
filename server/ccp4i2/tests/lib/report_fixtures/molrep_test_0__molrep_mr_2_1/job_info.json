@@ -1,0 +1,54 @@
+{
+  "status": "Finished",
+  "taskname": "molrep_mr",
+  "taskversion": "1.0",
+  "jobnumber": "2.1",
+  "projectid": "3a700d0a-ef98-11eb-82cf-08002705bc84",
+  "jobtitle": "molrep_mr",
+  "creationtime": 1627472405.92,
+  "projectname": "molrep_test_0",
+  "fileroot": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_2/job_1/",
+  "tasktitle": "molrep_mr",
+  "jobid": "8ddf89de-ef98-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627472422.91,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "XYZOUT.pdb",
+      "annotation": "Model from molrep MR",
+      "jobparamname": "XYZOUT",
+      "jobid": "8ddf89de-ef98-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "3a700d0a-ef98-11eb-82cf-08002705bc84",
+      "jobnumber": "2.1",
+      "projectname": "molrep_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "97ffc046-ef98-11eb-82cf-08002705bc84",
+      "baseName": "XYZOUT.pdb",
+      "relpath": "CCP4_JOBS/job_2/job_1"
+    }
+  ],
+  "filenames": {
+    "F_SIGF": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_1/HKLOUT_0-observed_data.mtz",
+    "F_PHI_MAP": "",
+    "ASUIN": "",
+    "XYZIN": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_2/XYZIN-coordinates.pdb",
+    "SEQIN_2": "",
+    "XYZIN_2": "",
+    "XYZIN_FIX": "",
+    "XYZOUT": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_2/job_1/XYZOUT.pdb",
+    "XMLOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "molrep_mr",
+    "report_class": "molrep_mr_report",
+    "report_module": "ccp4i2.wrappers.molrep_mr.script.molrep_mr_report",
+    "job_number": "2.1",
+    "job_status": "Finished",
+    "project_name": "molrep_test_0",
+    "has_program_xml": true
+  }
+}

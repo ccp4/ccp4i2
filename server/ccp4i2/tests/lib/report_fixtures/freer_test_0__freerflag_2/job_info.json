@@ -1,0 +1,79 @@
+{
+  "status": "Finished",
+  "taskname": "freerflag",
+  "taskversion": "1.0",
+  "jobnumber": "2",
+  "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+  "jobtitle": "freerflag",
+  "creationtime": 1627472015.38,
+  "projectname": "freer_test_0",
+  "fileroot": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_2/",
+  "tasktitle": "freerflag",
+  "jobid": "a517adf8-ef97-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627472042.08,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_freer_test_0_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "F_SIGF",
+      "jobid": "49de53d8-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "freer_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "9991ee96-ef97-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_freer_test_0_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREERFLAG",
+      "jobid": "49de53d8-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "freer_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "9991ee97-ef97-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 10,
+      "filename": "2_freer_test_0_freerout_freerflag.mtz",
+      "annotation": "New set of freeR flags",
+      "jobparamname": "FREEROUT",
+      "jobid": "a517adf8-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "freer_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "b500de42-ef97-11eb-82cf-08002705bc84",
+      "baseName": "2_freer_test_0_freerout_freerflag.mtz",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "filenames": {
+    "F_SIGF": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/1_freer_test_0_obsout_import_merged.mtz",
+    "FREERFLAG": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/1_freer_test_0_freeout_import_merged.mtz",
+    "FREEROUT": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_2/2_freer_test_0_freerout_freerflag.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "freerflag",
+    "report_class": "freerflag_report",
+    "report_module": "ccp4i2.wrappers.freerflag.script.freerflag_report",
+    "job_number": "2",
+    "job_status": "Finished",
+    "project_name": "freer_test_0",
+    "has_program_xml": true
+  }
+}

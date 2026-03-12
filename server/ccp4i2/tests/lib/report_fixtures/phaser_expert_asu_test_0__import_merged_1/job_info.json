@@ -1,0 +1,129 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "58707c3a-c443-11ea-a15f-3417eba0e4fd",
+  "jobtitle": "import_merged",
+  "creationtime": 1594560411.45,
+  "projectname": "phaser_expert_asu_test_0",
+  "fileroot": "<PROJECTS_DIR>/phaser_expert_asu_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "58707c3b-c443-11ea-a15f-3417eba0e4fd",
+  "descendentjobs": [
+    [
+      "591142d2-c443-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "591142d3-c443-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "591142d4-c443-11ea-a15f-3417eba0e4fd",
+      [
+        "591142d5-c443-11ea-a15f-3417eba0e4fd",
+        "591142d7-c443-11ea-a15f-3417eba0e4fd",
+        "5a19cc14-c443-11ea-a15f-3417eba0e4fd"
+      ]
+    ],
+    [
+      "591142d5-c443-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "591142d7-c443-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "5a19cc14-c443-11ea-a15f-3417eba0e4fd",
+      []
+    ]
+  ],
+  "finishtime": 1594560417.83,
+  "inputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "beta_blip_P3221_1.mtz",
+      "annotation": "Reflection data imported from beta_blip_P3221.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "58707c3b-c443-11ea-a15f-3417eba0e4fd",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "58707c3a-c443-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_asu_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "58707c3c-c443-11ea-a15f-3417eba0e4fd",
+      "relpath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "beta_blip_P3221_1.mtz",
+      "annotation": "Reflection data imported from beta_blip_P3221.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "58707c3b-c443-11ea-a15f-3417eba0e4fd",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "58707c3a-c443-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_asu_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "58707c3c-c443-11ea-a15f-3417eba0e4fd",
+      "baseName": "beta_blip_P3221_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "OBSOUT.mtz",
+      "annotation": "Reflections from beta_blip_P3221_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "58707c3b-c443-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "58707c3a-c443-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_asu_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "5c3d032f-c443-11ea-a15f-3417eba0e4fd",
+      "baseName": "OBSOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREEOUT.mtz",
+      "annotation": "FreeR - Spg:P 32 2 1;Resln:3.00A;Cell:75.1,75.1,133.3,90.0,90.0,120.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "58707c3b-c443-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "58707c3a-c443-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_asu_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "5c3d0330-c443-11ea-a15f-3417eba0e4fd",
+      "baseName": "FREEOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/phaser_expert_asu_test_0/CCP4_IMPORTED_FILES/beta_blip_P3221_1.mtz",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "",
+    "OBSOUT": "<PROJECTS_DIR>/phaser_expert_asu_test_0/CCP4_JOBS/job_1/OBSOUT.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/phaser_expert_asu_test_0/CCP4_JOBS/job_1/FREEOUT.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "phaser_expert_asu_test_0",
+    "has_program_xml": true
+  }
+}

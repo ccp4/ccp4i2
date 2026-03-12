@@ -1,0 +1,281 @@
+<CCP4i2Reporti2Dimple_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="i2Dimple" title2="14:15 12-Jul-2020" />
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportFold class="" style="" label="Refmac progress" initiallyOpen="True" brief="Refmac progress">
+    <CCP4i2ReportDiv class="" style="float:left;width:300px;">
+      <CCP4i2ReportText class="" style="font-size:125%">Initial and final values</CCP4i2ReportText>
+      <CCP4i2ReportTable class="" style="float:right;" transpose="True">
+        <table class="transpose">
+          <tbody>
+            <tr>
+              <th>Parameter</th>
+              <td>Initial</td>
+              <td>Final</td>
+            </tr>
+            <tr>
+              <th>R-value</th>
+              <td>0.2247</td>
+              <td>0.2085</td>
+            </tr>
+            <tr>
+              <th>R-free</th>
+              <td>0.2316</td>
+              <td>0.2319</td>
+            </tr>
+            <tr>
+              <th>rmsBOND</th>
+              <td>0.0162</td>
+              <td>0.0149</td>
+            </tr>
+            <tr>
+              <th>rmsANGLE</th>
+              <td>1.657</td>
+              <td>1.881</td>
+            </tr>
+            <tr>
+              <th>rmsCHIRAL</th>
+              <td>0.105</td>
+              <td>0.092</td>
+            </tr>
+          </tbody>
+        </table>
+      </CCP4i2ReportTable>
+    </CCP4i2ReportDiv>
+    <CCP4i2ReportFlotGraph class="" style="width:400px;border:0px;float:left;">
+      <ns0:ccp4_data title="Refmac progress" id="data_FlotGraph_0" style="display:none;">
+        <headers>Cyle R_Factor R_Free rmsBOND rmsANGLE rmsCHIRAL </headers>
+        <data>1 0.2247 0.2316 0.0162 1.657 0.105 
+2 0.2201 0.2316 0.0155 1.678 0.108 
+3 0.2186 0.2327 0.016 1.714 0.11 
+4 0.2179 0.2335 0.0162 1.738 0.112 
+5 0.2177 0.2341 0.0157 1.736 0.111 
+6 0.2114 0.2289 0.0171 1.96 0.126 
+7 0.2094 0.2295 0.015 1.784 0.1 
+8 0.2087 0.2299 0.0151 1.816 0.097 
+9 0.2086 0.2304 0.0151 1.84 0.095 
+10 0.2085 0.2309 0.015 1.856 0.094 
+11 0.2085 0.2312 0.015 1.867 0.093 
+12 0.2085 0.2314 0.015 1.874 0.093 
+13 0.2085 0.2319 0.0149 1.88 0.093 
+14 0.2085 0.2319 0.0149 1.881 0.092 
+</data>
+        <plot>
+          <title>R-factors and geometry VS cycle</title>
+          <plottype>xy</plottype>
+          <xintegral>true</xintegral>
+          <xlabel>Cycle</xlabel>
+          <ylabel>R-factors</ylabel>
+          <plotline xcol="1" ycol="2">
+            <label>R-factor</label>
+            <colour>blue</colour>
+          </plotline>
+          <plotline xcol="1" ycol="3">
+            <label>Free-R</label>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="1" ycol="4" rightaxis="true">
+            <label>rmsBOND</label>
+            <colour>red</colour>
+          </plotline>
+          <yrange rightaxis="false" min="0.1" max="0.6" />
+          <yrange rightaxis="true" min="0.0" max="0.05" />
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportDiv class="" style="clear:both;" />
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Blobs found" initiallyOpen="True" brief="Blobs found">
+    <CCP4i2ReportDiv class="" style="float:left;width:300px;">
+      <CCP4i2ReportText class="" style="font-size:125%">Blobs found:</CCP4i2ReportText>
+      <CCP4i2ReportTable class="" style="float:right;" transpose="False">
+        <table>
+          <thead>
+            <tr>
+              <th>Score</th>
+              <th>X</th>
+              <th>Y</th>
+              <th>Z</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>176.9</td>
+              <td>-31.04</td>
+              <td>15.93</td>
+              <td>-17.37</td>
+            </tr>
+            <tr>
+              <td>155.6</td>
+              <td>-0.08</td>
+              <td>13.67</td>
+              <td>-9.15</td>
+            </tr>
+            <tr>
+              <td>149.2</td>
+              <td>-4.79</td>
+              <td>5.47</td>
+              <td>-9.38</td>
+            </tr>
+            <tr>
+              <td>146.8</td>
+              <td>-35.67</td>
+              <td>19.93</td>
+              <td>-9.74</td>
+            </tr>
+            <tr>
+              <td>135.2</td>
+              <td>-8.9</td>
+              <td>29.0</td>
+              <td>-11.98</td>
+            </tr>
+            <tr>
+              <td>102.7</td>
+              <td>-7.98</td>
+              <td>3.4</td>
+              <td>-5.2</td>
+            </tr>
+            <tr>
+              <td>93.89</td>
+              <td>-32.46</td>
+              <td>26.34</td>
+              <td>-19.73</td>
+            </tr>
+            <tr>
+              <td>85.67</td>
+              <td>-20.29</td>
+              <td>17.75</td>
+              <td>3.95</td>
+            </tr>
+            <tr>
+              <td>72.17</td>
+              <td>-34.32</td>
+              <td>21.61</td>
+              <td>-18.08</td>
+            </tr>
+            <tr>
+              <td>71.0</td>
+              <td>1.61</td>
+              <td>-5.68</td>
+              <td>4.31</td>
+            </tr>
+            <tr>
+              <td>62.82</td>
+              <td>-29.4</td>
+              <td>9.51</td>
+              <td>-2.58</td>
+            </tr>
+            <tr>
+              <td>61.48</td>
+              <td>5.9</td>
+              <td>4.84</td>
+              <td>-3.49</td>
+            </tr>
+            <tr>
+              <td>60.61</td>
+              <td>-7.76</td>
+              <td>10.88</td>
+              <td>-3.49</td>
+            </tr>
+            <tr>
+              <td>57.26</td>
+              <td>-33.39</td>
+              <td>3.12</td>
+              <td>-5.47</td>
+            </tr>
+            <tr>
+              <td>51.85</td>
+              <td>-27.75</td>
+              <td>10.11</td>
+              <td>-17.81</td>
+            </tr>
+            <tr>
+              <td>51.39</td>
+              <td>-21.72</td>
+              <td>9.85</td>
+              <td>-18.05</td>
+            </tr>
+            <tr>
+              <td>51.06</td>
+              <td>7.19</td>
+              <td>12.51</td>
+              <td>-18.16</td>
+            </tr>
+          </tbody>
+        </table>
+      </CCP4i2ReportTable>
+    </CCP4i2ReportDiv>
+    <CCP4i2ReportFlotGraph class="" style="width:400px;border:0px;float:left;">
+      <ns0:ccp4_data title="Blob score distribution" id="data_FlotGraph_1" style="display:none;">
+        <headers>Rank Score </headers>
+        <data>0 176.9 
+1 155.6 
+2 149.2 
+3 146.8 
+4 135.2 
+5 102.7 
+6 93.89 
+7 85.67 
+8 72.17 
+9 71.0 
+10 62.82 
+11 61.48 
+12 60.61 
+13 57.26 
+14 51.85 
+15 51.39 
+16 51.06 
+</data>
+        <plot>
+          <title>Score versus rank</title>
+          <plottype>xy</plottype>
+          <xintegral>true</xintegral>
+          <xlabel>Rank</xlabel>
+          <ylabel>score</ylabel>
+          <plotline xcol="1" ycol="2">
+            <label>Score</label>
+            <colour>blue</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportDiv class="" style="clear:both;" />
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Summary" initiallyOpen="True" brief="Summary">
+    <CCP4i2ReportPre class="" style="">     ### Dimple v2.6.1. Problems and suggestions: ccp4.github.io/dimple ###
+MTZ (1.5A)            P 65 2 2     (71.51, 71.51, 104.29,  90, 90, 120.00)
+selected_xyzin.pdb    P 65 2 2     (71.45, 71.45, 104.20,  90, 90, 120.00)
+  1 rwcontents       0.1s  12 x 11kDa (+ 2kDa het) in 461nm3, 64% solvent
+  2 pointless        1.5s  resol. 1.47 A   #refl: 27533
+    [h,k,l]    CC: 0.813    cell diff: 0.1A
+Rigid-body refinement with resolution 3.5 A, 10 cycles. 1.0 waters/aa.
+  3 refmac5 rigid    3.4s  10/10   R  0.2114  -&gt;  0.2098
+No MR for R &lt; 0.45.
+Free-R flags from the input file, column FREERFLAG_FREER.
+Restrained refinement, 4+8 cycles.
+  4 refmac5 jelly   18.4s   4/4   R/Rfree  0.2247/0.2316  -&gt;  0.2177/0.2341
+    RMS:   bond 0.016 -&gt; 0.016   angle 1.66 -&gt; 1.74   chiral 0.10 -&gt; 0.11
+  5 refmac5 restr   38.5s   8/8   R/Rfree  0.2114/0.2289  -&gt;  0.2085/0.2319
+    RMS:   bond 0.017 -&gt; 0.015   angle 1.96 -&gt; 1.88   chiral 0.13 -&gt; 0.09
+  6 find-blobs       0.5s  Blob scores: 177 156 149 147 135 103 94 86
+To see it in Coot run /tmp/CCP4I2_PROJECTSh6EK9v/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/job_4/coot.sh
+</CCP4i2ReportPre>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_5f4fc93c-c44a-11ea-a15f-3417eba0e4fd" />
+      <div id="input_file_5f4fc93d-c44a-11ea-a15f-3417eba0e4fd" />
+      <div id="input_file_5f4fc93e-c44a-11ea-a15f-3417eba0e4fd" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="14:15 12-Jul-2020" finishtime="14:17 12-Jul-2020" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="14:15 12-Jul-2020" finishtime="14:17 12-Jul-2020" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="" />
+  </CCP4i2ReportFold>
+</CCP4i2Reporti2Dimple_report>

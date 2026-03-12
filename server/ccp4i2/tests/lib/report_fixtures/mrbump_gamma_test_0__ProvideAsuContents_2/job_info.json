@@ -1,0 +1,64 @@
+{
+  "status": "Finished",
+  "taskname": "ProvideAsuContents",
+  "taskversion": "1.0",
+  "jobnumber": "2",
+  "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+  "jobtitle": "ProvideAsuContents",
+  "creationtime": 1628086163.17,
+  "projectname": "mrbump_gamma_test_0",
+  "fileroot": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_2/",
+  "tasktitle": "ProvideAsuContents",
+  "jobid": "91b2c950-f52d-11eb-a394-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1628086193.02,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_mrbump_gamma_test_0_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "HKLIN",
+      "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "7d8f7da8-f52d-11eb-a394-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 29,
+      "filename": "2_mrbump_gamma_test_0_asucontentfile_provideasucontents.asu.xml",
+      "annotation": "",
+      "jobparamname": "ASUCONTENTFILE",
+      "jobid": "91b2c950-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-asu-content",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "AsuDataFile",
+      "fileId": "a37e0b72-f52d-11eb-a394-08002705bc84",
+      "baseName": "2_mrbump_gamma_test_0_asucontentfile_provideasucontents.asu.xml",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "filenames": {
+    "ASUCONTENTIN": "",
+    "HKLIN": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/1_mrbump_gamma_test_0_obsout_import_merged.mtz",
+    "ASUCONTENTFILE": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_2/2_mrbump_gamma_test_0_asucontentfile_provideasucontents.asu.xml"
+  },
+  "_fixture_meta": {
+    "task_name": "ProvideAsuContents",
+    "report_class": "ProvideAsuContents_report",
+    "report_module": "ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report",
+    "job_number": "2",
+    "job_status": "Finished",
+    "project_name": "mrbump_gamma_test_0",
+    "has_program_xml": true
+  }
+}

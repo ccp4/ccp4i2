@@ -1,0 +1,64 @@
+{
+  "status": "Finished",
+  "taskname": "ProvideAsuContents",
+  "taskversion": "1.0",
+  "jobnumber": "4",
+  "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+  "jobtitle": "ProvideAsuContents",
+  "creationtime": 1627476651.26,
+  "projectname": "single_atom_test_0",
+  "fileroot": "<PROJECTS_DIR>/single_atom_test_0/CCP4_JOBS/job_4/",
+  "tasktitle": "ProvideAsuContents",
+  "jobid": "704bcf04-efa2-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627476652.13,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_single_atom_test_0_obsout_import_merged.mtz",
+      "annotation": "",
+      "jobparamname": "HKLIN",
+      "jobid": "19cabd1c-efa1-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "single_atom_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "30baf981-efa1-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 29,
+      "filename": "ASUCONTENTFILE.asu.xml",
+      "annotation": "",
+      "jobparamname": "ASUCONTENTFILE",
+      "jobid": "704bcf04-efa2-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-asu-content",
+      "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "single_atom_test_0",
+      "filetypeclass": "AsuDataFile",
+      "fileId": "70cfcf98-efa2-11eb-82cf-08002705bc84",
+      "baseName": "ASUCONTENTFILE.asu.xml",
+      "relpath": "CCP4_JOBS/job_4"
+    }
+  ],
+  "filenames": {
+    "ASUCONTENTIN": "",
+    "HKLIN": "<PROJECTS_DIR>/single_atom_test_0/CCP4_JOBS/job_1/1_single_atom_test_0_obsout_import_merged.mtz",
+    "ASUCONTENTFILE": "<PROJECTS_DIR>/single_atom_test_0/CCP4_JOBS/job_4/ASUCONTENTFILE.asu.xml"
+  },
+  "_fixture_meta": {
+    "task_name": "ProvideAsuContents",
+    "report_class": "ProvideAsuContents_report",
+    "report_module": "ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report",
+    "job_number": "4",
+    "job_status": "Finished",
+    "project_name": "single_atom_test_0",
+    "has_program_xml": true
+  }
+}

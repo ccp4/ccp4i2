@@ -1,0 +1,112 @@
+{
+  "status": "Finished",
+  "taskname": "shelxeMR",
+  "taskversion": "1.0",
+  "jobnumber": "3",
+  "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+  "jobtitle": "shelxeMR",
+  "creationtime": 1686755310.53981,
+  "projectname": "shelxe_mr_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_3/",
+  "tasktitle": "shelxeMR",
+  "jobid": "52955bf2-0ac5-11ee-82e5-8c8590af7452",
+  "descendentjobs": [],
+  "finishtime": 1686755745.180332,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_shelxe_mr_test_1_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1_1",
+      "jobparamname": "F_SIGF",
+      "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "0b6e25ec-0ac5-11ee-b05f-8c8590af7452",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_shelxe_mr_test_1_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREERFLAG",
+      "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "0b6e6386-0ac5-11ee-b05f-8c8590af7452",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "2_shelxe_mr_test_1_xyzout_molrep_pipe.pdb",
+      "annotation": "Atomic model after restrained refinement",
+      "jobparamname": "XYZIN",
+      "jobid": "146e6f80-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "3a648f3a-0ac5-11ee-a52c-8c8590af7452",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "shelxrun.pdb",
+      "annotation": "Co-ordinate file for model built by Shelxe",
+      "jobparamname": "XYZOUT",
+      "jobid": "52955bf2-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "3",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "55a557c4-0ac6-11ee-ae2b-8c8590af7452",
+      "baseName": "shelxrun.pdb",
+      "relpath": "CCP4_JOBS/job_3"
+    },
+    {
+      "filetypeid": 13,
+      "filename": "3_shelxe_mr_test_1_fphiout_shelxemr.mtz",
+      "annotation": "",
+      "jobparamname": "FPHIOUT",
+      "jobid": "52955bf2-0ac5-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "3",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "55a5d6f4-0ac6-11ee-ae2b-8c8590af7452",
+      "baseName": "3_shelxe_mr_test_1_fphiout_shelxemr.mtz",
+      "relpath": "CCP4_JOBS/job_3"
+    }
+  ],
+  "filenames": {
+    "F_SIGF": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/1_shelxe_mr_test_1_obsout_import_merged.mtz",
+    "FREERFLAG": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/1_shelxe_mr_test_1_freeout_import_merged.mtz",
+    "XYZIN": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/2_shelxe_mr_test_1_xyzout_molrep_pipe.pdb",
+    "XYZOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_3/shelxrun.pdb",
+    "FPHIOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_3/3_shelxe_mr_test_1_fphiout_shelxemr.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "shelxeMR",
+    "report_class": "shelxeMR_report",
+    "report_module": "ccp4i2.wrappers.shelxeMR.script.shelxeMR_report",
+    "job_number": "3",
+    "job_status": "Finished",
+    "project_name": "shelxe_mr_test_1",
+    "has_program_xml": true
+  }
+}

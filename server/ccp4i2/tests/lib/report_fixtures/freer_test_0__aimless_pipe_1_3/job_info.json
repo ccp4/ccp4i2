@@ -1,0 +1,80 @@
+{
+  "status": "Finished",
+  "taskname": "aimless_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "1.3",
+  "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+  "jobtitle": "aimless_pipe",
+  "creationtime": 1627471983.32,
+  "projectname": "freer_test_0",
+  "fileroot": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/job_3/",
+  "tasktitle": "aimless_pipe",
+  "jobid": "91b81308-ef97-11eb-82cf-08002705bc84",
+  "descendentjobs": [
+    [
+      "91b81309-ef97-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "91b8130b-ef97-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "984c3c60-ef97-11eb-82cf-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1627471996.05,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/X/ds1",
+      "jobparamname": "HKLOUT",
+      "jobid": "91b81308-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1.3",
+      "projectname": "freer_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "9991ee94-ef97-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_0-observed_data.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "annotation": "Mean intensities for twin refinement",
+      "jobparamname": "IMEANOUT",
+      "jobid": "91b81308-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1.3",
+      "projectname": "freer_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "9991ee95-ef97-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3"
+    }
+  ],
+  "filenames": {
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "FREERFLAG": "",
+    "FREEROUT": "",
+    "XMLOUT": "",
+    "CIFSTATSOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless_pipe",
+    "report_class": "aimless_pipe_report",
+    "report_module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report",
+    "job_number": "1.3",
+    "job_status": "Finished",
+    "project_name": "freer_test_0",
+    "has_program_xml": true
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "status": "Finished",
+  "taskname": "ProvideAsuContents",
+  "taskversion": "1.0",
+  "jobnumber": "2",
+  "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+  "jobtitle": "ProvideAsuContents",
+  "creationtime": 1686753135.593618,
+  "projectname": "phaser_expert_tncs_test_3",
+  "fileroot": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_2/",
+  "tasktitle": "ProvideAsuContents",
+  "jobid": "4236dd3a-0ac0-11ee-8cc9-8c8590af7452",
+  "descendentjobs": [],
+  "finishtime": 1686753228.095446,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_phaser_expert_tncs_test_3_obsout_import_merged.mtz",
+      "annotation": "Reflections from 3bbz_1_1_1",
+      "jobparamname": "HKLIN",
+      "jobid": "16abd4a4-0ac0-11ee-8cc9-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "3caf80ce-0ac0-11ee-99c9-8c8590af7452",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 29,
+      "filename": "2_phaser_expert_tncs_test_3_asucontentfile_provideasucontents.asu.xml",
+      "annotation": "",
+      "jobparamname": "ASUCONTENTFILE",
+      "jobid": "4236dd3a-0ac0-11ee-8cc9-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-asu-content",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "2",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "AsuDataFile",
+      "fileId": "79592c00-0ac0-11ee-bcc6-8c8590af7452",
+      "baseName": "2_phaser_expert_tncs_test_3_asucontentfile_provideasucontents.asu.xml",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "filenames": {
+    "ASUCONTENTIN": "",
+    "HKLIN": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/1_phaser_expert_tncs_test_3_obsout_import_merged.mtz",
+    "ASUCONTENTFILE": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_2/2_phaser_expert_tncs_test_3_asucontentfile_provideasucontents.asu.xml"
+  },
+  "_fixture_meta": {
+    "task_name": "ProvideAsuContents",
+    "report_class": "ProvideAsuContents_report",
+    "report_module": "ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report",
+    "job_number": "2",
+    "job_status": "Finished",
+    "project_name": "phaser_expert_tncs_test_3",
+    "has_program_xml": true
+  }
+}

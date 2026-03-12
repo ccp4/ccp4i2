@@ -1,0 +1,84 @@
+{
+  "status": "Finished",
+  "taskname": "aimless_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "1.2",
+  "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+  "jobtitle": "aimless_pipe",
+  "creationtime": 1594563303.94,
+  "projectname": "SubstituteLigandPdbIn_test_0",
+  "fileroot": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/job_2/",
+  "tasktitle": "aimless_pipe",
+  "jobid": "147ef082-c44a-11ea-a15f-3417eba0e4fd",
+  "descendentjobs": [
+    [
+      "147ef083-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "160e0e5b-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "1f4a6984-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "2701172a-c44a-11ea-a15f-3417eba0e4fd",
+      []
+    ]
+  ],
+  "finishtime": 1594563335.68,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/C1/D1",
+      "jobparamname": "HKLOUT",
+      "jobid": "147ef082-c44a-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1.2",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "2701172b-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "HKLOUT_0-observed_data.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_2"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREERFLAG.mtz",
+      "annotation": "FreeR - Spg:P 65 2 2;Resln:1.25A;Cell:71.5,71.5,104.3,90.0,90.0,120.0",
+      "jobparamname": "FREEROUT",
+      "jobid": "147ef082-c44a-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1.2",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "2701172c-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "FREERFLAG.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_2"
+    }
+  ],
+  "filenames": {
+    "HKLIN_REF": "",
+    "XYZIN_REF": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_IMPORTED_FILES/4hg7_1.pdb",
+    "FREERFLAG": "",
+    "FREEROUT": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/job_2/FREERFLAG.mtz",
+    "XMLOUT": "",
+    "CIFSTATSOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless_pipe",
+    "report_class": "aimless_pipe_report",
+    "report_module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report",
+    "job_number": "1.2",
+    "job_status": "Finished",
+    "project_name": "SubstituteLigandPdbIn_test_0",
+    "has_program_xml": true
+  }
+}

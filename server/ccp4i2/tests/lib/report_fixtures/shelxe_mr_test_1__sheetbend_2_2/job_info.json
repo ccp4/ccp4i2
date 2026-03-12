@@ -1,0 +1,49 @@
+{
+  "status": "Finished",
+  "taskname": "sheetbend",
+  "taskversion": "1.0",
+  "jobnumber": "2.2",
+  "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+  "jobtitle": "sheetbend",
+  "creationtime": 1686755239.144881,
+  "projectname": "shelxe_mr_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/job_2/",
+  "tasktitle": "sheetbend",
+  "jobid": "280761b4-0ac5-11ee-a52c-8c8590af7452",
+  "descendentjobs": [],
+  "finishtime": 1686755240.809634,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "XYZOUT.pdb",
+      "annotation": "",
+      "jobparamname": "XYZOUT",
+      "jobid": "280761b4-0ac5-11ee-a52c-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "2.2",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "2905030a-0ac5-11ee-a52c-8c8590af7452",
+      "baseName": "XYZOUT.pdb",
+      "relpath": "CCP4_JOBS/job_2/job_2"
+    }
+  ],
+  "filenames": {
+    "XYZIN": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/job_1/XYZOUT.pdb",
+    "F_SIGF": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/1_shelxe_mr_test_1_obsout_import_merged.mtz",
+    "FREERFLAG": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/1_shelxe_mr_test_1_freeout_import_merged.mtz",
+    "XYZOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_2/job_2/XYZOUT.pdb"
+  },
+  "_fixture_meta": {
+    "task_name": "sheetbend",
+    "report_class": "sheetbend_report",
+    "report_module": "ccp4i2.wrappers.sheetbend.script.sheetbend_report",
+    "job_number": "2.2",
+    "job_status": "Finished",
+    "project_name": "shelxe_mr_test_1",
+    "has_program_xml": true
+  }
+}

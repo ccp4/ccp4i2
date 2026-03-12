@@ -1,0 +1,1017 @@
+<?xml version='1.0' encoding='utf-8'?>
+<process>crank<inp>
+    <model typ="substr">
+      <attr_set_by_crank>['xname']</attr_set_by_crank>
+      <xname>xtl1</xname>
+      <solvent_content>0.417</solvent_content>
+      <monomers_asym>1</monomers_asym>
+      <residues_mon>134</residues_mon>
+      <exp_num_atoms>2</exp_num_atoms>
+      <atomtype>XE<fp>-0.88</fp>
+        <fpp>1.14</fpp>
+        <d_name>lrem</d_name>
+        <guessed_dtype>None</guessed_dtype>
+      </atomtype>
+      <atomtype>XE<fp>-0.88</fp>
+        <fpp>1.14</fpp>
+        <d_name>ds1</d_name>
+        <guessed_dtype>None</guessed_dtype>
+      </atomtype>
+    </model>
+    <sequence typ="protein">
+      <attr_set_by_crank>['xname', 'seq_monomers']</attr_set_by_crank>
+      <xname>xtl1</xname>
+      <solvent_content>0.417</solvent_content>
+      <seq_monomers>1</seq_monomers>
+      <file typ="fasta">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/SEQIN.fasta</file>
+    </sequence>
+    <fsigf typ="average">
+      <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>ds1</dname>
+      <xname>xtl1</xname>
+      <custom>['lrem']</custom>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+      <i>I</i>
+      <sigi>SIGI</sigi>
+    </fsigf>
+    <fsigf typ="plus">
+      <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>ds1</dname>
+      <xname>xtl1</xname>
+      <custom>['lrem']</custom>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+      <i>Iplus</i>
+      <sigi>SIGIplus</sigi>
+    </fsigf>
+    <fsigf typ="minus">
+      <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>ds1</dname>
+      <xname>xtl1</xname>
+      <custom>['lrem']</custom>
+      <wavel>1.54179</wavel>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+      <i>Iminus</i>
+      <sigi>SIGIminus</sigi>
+    </fsigf>
+    <fsigf typ="fa">
+      <attr_set_by_crank>['xname', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>ds1</dname>
+      <xname>xtl1</xname>
+      <spgr>P212121</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="hkl">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.hkl</file>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/convert/f2mtz.mtz</file>
+      <f>FA</f>
+      <sigf>SIGFA</sigf>
+      <alpha>ALPHA</alpha>
+    </fsigf>
+  </inp>
+  <out>
+    <fsigf typ="average">
+      <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>ds1</dname>
+      <xname>xtl1</xname>
+      <custom>['lrem']</custom>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+      <i>I</i>
+      <sigi>SIGI</sigi>
+    </fsigf>
+  </out>
+  <process>mbref<param_set_by_crank>['target']</param_set_by_crank>
+    <param>
+      <bigcyc>2</bigcyc>
+      <target>SAD</target>
+    </param>
+    <inp>
+      <exclude typ="freeR">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_1/sftools_free.mtz</file>
+        <free>FREER</free>
+      </exclude>
+      <model typ="substr">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <solvent_content>0.417</solvent_content>
+        <monomers_asym>1</monomers_asym>
+        <residues_mon>134</residues_mon>
+        <exp_num_atoms>2</exp_num_atoms>
+        <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.res</file>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_3/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+        <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX_fa.res</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <model typ="partial+substr">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.pdb</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <model typ="partial+substr">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/pdbset/PDBSET.pdb</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <model typ="partial+substr">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/heavy.pdb</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <model typ="partial+substr">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <model typ="substr">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/heavy.pdb</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <model typ="substr">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/pdbcur/PDBCUR.pdb</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <model typ="partial">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <xname>xtl1</xname>
+        <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/part.pdb</file>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>lrem</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+        <atomtype>XE<fp>-0.88</fp>
+          <fpp>1.14</fpp>
+          <d_name>ds1</d_name>
+          <guessed_dtype>None</guessed_dtype>
+        </atomtype>
+      </model>
+      <mapcoef typ="best">
+        <attr_set_by_crank>['xname']</attr_set_by_crank>
+        <file typ="phs">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.phs</file>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/convert/f2mtz_1.mtz</file>
+        <f>FB</f>
+        <ph>PHIB</ph>
+        <fom>FOM</fom>
+      </mapcoef>
+      <fsigf typ="average">
+        <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>ds1</dname>
+        <xname>xtl1</xname>
+        <custom>['lrem']</custom>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+        <i>I</i>
+        <sigi>SIGI</sigi>
+      </fsigf>
+      <fsigf typ="plus">
+        <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>ds1</dname>
+        <xname>xtl1</xname>
+        <custom>['lrem']</custom>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+        <i>Iplus</i>
+        <sigi>SIGIplus</sigi>
+      </fsigf>
+      <fsigf typ="minus">
+        <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>ds1</dname>
+        <xname>xtl1</xname>
+        <custom>['lrem']</custom>
+        <wavel>1.54179</wavel>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+        <i>Iminus</i>
+        <sigi>SIGIminus</sigi>
+      </fsigf>
+      <fsigf typ="fa">
+        <attr_set_by_crank>['xname', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>ds1</dname>
+        <xname>xtl1</xname>
+        <spgr>P212121</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="hkl">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.hkl</file>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/convert/f2mtz.mtz</file>
+        <f>FA</f>
+        <sigf>SIGFA</sigf>
+        <alpha>ALPHA</alpha>
+      </fsigf>
+    </inp>
+    <process>ref<param_set_by_crank>['target']</param_set_by_crank>
+      <param>
+        <target>SAD</target>
+      </param>
+      <inp>
+        <model typ="substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <solvent_content>0.417</solvent_content>
+          <monomers_asym>1</monomers_asym>
+          <residues_mon>134</residues_mon>
+          <exp_num_atoms>2</exp_num_atoms>
+          <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.res</file>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_3/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+          <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX_fa.res</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/pdbset/PDBSET.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/heavy.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/heavy.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/pdbcur/PDBCUR.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/part.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <mapcoef typ="best">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <file typ="phs">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.phs</file>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/convert/f2mtz_1.mtz</file>
+          <f>FB</f>
+          <ph>PHIB</ph>
+          <fom>FOM</fom>
+        </mapcoef>
+        <fsigf typ="average">
+          <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <custom>['lrem']</custom>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+          <i>I</i>
+          <sigi>SIGI</sigi>
+        </fsigf>
+        <fsigf typ="plus">
+          <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <custom>['lrem']</custom>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+          <i>Iplus</i>
+          <sigi>SIGIplus</sigi>
+        </fsigf>
+        <fsigf typ="minus">
+          <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <custom>['lrem']</custom>
+          <wavel>1.54179</wavel>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+          <i>Iminus</i>
+          <sigi>SIGIminus</sigi>
+        </fsigf>
+        <fsigf typ="fa">
+          <attr_set_by_crank>['xname', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <spgr>P212121</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="hkl">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.hkl</file>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/convert/f2mtz.mtz</file>
+          <f>FA</f>
+          <sigf>SIGFA</sigf>
+          <alpha>ALPHA</alpha>
+        </fsigf>
+      </inp>
+      <program>refmac<inp>
+          <model typ="substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <solvent_content>0.417</solvent_content>
+            <monomers_asym>1</monomers_asym>
+            <residues_mon>134</residues_mon>
+            <exp_num_atoms>2</exp_num_atoms>
+            <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.res</file>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_3/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+            <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX_fa.res</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/pdbset/PDBSET.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/heavy.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/heavy.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/pdbcur/PDBCUR.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/part.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <mapcoef typ="best">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <file typ="phs">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.phs</file>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/convert/f2mtz_1.mtz</file>
+            <f>FB</f>
+            <ph>PHIB</ph>
+            <fom>FOM</fom>
+          </mapcoef>
+          <fsigf typ="average">
+            <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <custom>['lrem']</custom>
+            <spgr>P 21 21 21</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+            <i>I</i>
+            <sigi>SIGI</sigi>
+          </fsigf>
+          <fsigf typ="plus">
+            <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <custom>['lrem']</custom>
+            <spgr>P 21 21 21</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+            <i>Iplus</i>
+            <sigi>SIGIplus</sigi>
+          </fsigf>
+          <fsigf typ="minus">
+            <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <custom>['lrem']</custom>
+            <wavel>1.54179</wavel>
+            <spgr>P 21 21 21</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+            <i>Iminus</i>
+            <sigi>SIGIminus</sigi>
+          </fsigf>
+          <fsigf typ="fa">
+            <attr_set_by_crank>['xname', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <spgr>P212121</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="hkl">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.hkl</file>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/convert/f2mtz.mtz</file>
+            <f>FA</f>
+            <sigf>SIGFA</sigf>
+            <alpha>ALPHA</alpha>
+          </fsigf>
+        </inp>
+      </program>
+    </process>
+    <process>mb<inp>
+        <model typ="substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <solvent_content>0.417</solvent_content>
+          <monomers_asym>1</monomers_asym>
+          <residues_mon>134</residues_mon>
+          <exp_num_atoms>2</exp_num_atoms>
+          <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.res</file>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_3/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+          <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX_fa.res</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/pdbset/PDBSET.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/heavy.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial+substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/heavy.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="substr">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/pdbcur/PDBCUR.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <model typ="partial">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <xname>xtl1</xname>
+          <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/part.pdb</file>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>lrem</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+          <atomtype>XE<fp>-0.88</fp>
+            <fpp>1.14</fpp>
+            <d_name>ds1</d_name>
+            <guessed_dtype>None</guessed_dtype>
+          </atomtype>
+        </model>
+        <mapcoef typ="best">
+          <attr_set_by_crank>['xname']</attr_set_by_crank>
+          <file typ="phs">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.phs</file>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/convert/f2mtz_1.mtz</file>
+          <f>FB</f>
+          <ph>PHIB</ph>
+          <fom>FOM</fom>
+        </mapcoef>
+        <fsigf typ="average">
+          <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <custom>['lrem']</custom>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+          <i>I</i>
+          <sigi>SIGI</sigi>
+        </fsigf>
+        <fsigf typ="plus">
+          <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <custom>['lrem']</custom>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+          <i>Iplus</i>
+          <sigi>SIGIplus</sigi>
+        </fsigf>
+        <fsigf typ="minus">
+          <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <custom>['lrem']</custom>
+          <wavel>1.54179</wavel>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+          <i>Iminus</i>
+          <sigi>SIGIminus</sigi>
+        </fsigf>
+        <fsigf typ="fa">
+          <attr_set_by_crank>['xname', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>ds1</dname>
+          <xname>xtl1</xname>
+          <spgr>P212121</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="hkl">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.hkl</file>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/convert/f2mtz.mtz</file>
+          <f>FA</f>
+          <sigf>SIGFA</sigf>
+          <alpha>ALPHA</alpha>
+        </fsigf>
+      </inp>
+      <program>buccaneer<inp>
+          <model typ="substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <solvent_content>0.417</solvent_content>
+            <monomers_asym>1</monomers_asym>
+            <residues_mon>134</residues_mon>
+            <exp_num_atoms>2</exp_num_atoms>
+            <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.res</file>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_3/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+            <file typ="res">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX_fa.res</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/pdbset/PDBSET.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/heavy.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial+substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/fixsubstrpdb/pdbcur/PDBCUR.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/heavy.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="substr">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/pdbcur/PDBCUR.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <model typ="partial">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <xname>xtl1</xname>
+            <file typ="pdb">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/sepsubstrprot/part.pdb</file>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>lrem</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+            <atomtype>XE<fp>-0.88</fp>
+              <fpp>1.14</fpp>
+              <d_name>ds1</d_name>
+              <guessed_dtype>None</guessed_dtype>
+            </atomtype>
+          </model>
+          <mapcoef typ="best">
+            <attr_set_by_crank>['xname']</attr_set_by_crank>
+            <file typ="phs">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/hand1/SHELX.phs</file>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_4/convert/f2mtz_1.mtz</file>
+            <f>FB</f>
+            <ph>PHIB</ph>
+            <fom>FOM</fom>
+          </mapcoef>
+          <fsigf typ="average">
+            <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <custom>['lrem']</custom>
+            <spgr>P 21 21 21</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+            <i>I</i>
+            <sigi>SIGI</sigi>
+          </fsigf>
+          <fsigf typ="plus">
+            <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <custom>['lrem']</custom>
+            <spgr>P 21 21 21</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+            <i>Iplus</i>
+            <sigi>SIGIplus</sigi>
+          </fsigf>
+          <fsigf typ="minus">
+            <attr_set_by_crank>['xname', 'custom', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <custom>['lrem']</custom>
+            <wavel>1.54179</wavel>
+            <spgr>P 21 21 21</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/sftools/1_shelxsad_test_1_obsout_import_merged_sft0_Isft1.mtz</file>
+            <i>Iminus</i>
+            <sigi>SIGIminus</sigi>
+          </fsigf>
+          <fsigf typ="fa">
+            <attr_set_by_crank>['xname', 'spgr', 'cell']</attr_set_by_crank>
+            <dname>ds1</dname>
+            <xname>xtl1</xname>
+            <spgr>P212121</spgr>
+            <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+            <file typ="hkl">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/SHELX_fa.hkl</file>
+            <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/shelxSAD_test_1/CCP4_JOBS/job_2/job_2/convert/f2mtz.mtz</file>
+            <f>FA</f>
+            <sigf>SIGFA</sigf>
+            <alpha>ALPHA</alpha>
+          </fsigf>
+        </inp>
+      </program>
+    </process>
+  </process>
+</process>

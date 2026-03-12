@@ -1,0 +1,49 @@
+{
+  "status": "Finished",
+  "taskname": "cif2mtz",
+  "taskversion": "1.0",
+  "jobnumber": "3.1",
+  "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+  "jobtitle": "cif2mtz",
+  "creationtime": 1627474093.05,
+  "projectname": "auspex_test_0",
+  "fileroot": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/job_1/",
+  "tasktitle": "cif2mtz",
+  "jobid": "7b7d066e-ef9c-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627474099.77,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 10,
+      "filename": "FREEOUT.mtz",
+      "annotation": "Free R set from 4puc-sf_1",
+      "jobparamname": "FREEOUT",
+      "jobid": "7b7d066e-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3.1",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "7f7c626e-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "FREEOUT.mtz",
+      "relpath": "CCP4_JOBS/job_3/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/auspex_test_0/CCP4_IMPORTED_FILES/4puc-sf_1.cif",
+    "HKLOUT": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/3_auspex_test_0_hklout_import_merged.mtz",
+    "OBSOUT": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/3_auspex_test_0_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/job_1/FREEOUT.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "cif2mtz",
+    "report_class": "cif2mtz_report",
+    "report_module": "ccp4i2.wrappers.cif2mtz.script.cif2mtz_report",
+    "job_number": "3.1",
+    "job_status": "Finished",
+    "project_name": "auspex_test_0",
+    "has_program_xml": false
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "status": "Finished",
+  "taskname": "crank2",
+  "taskversion": "1.0",
+  "jobnumber": "4",
+  "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+  "jobtitle": "crank2",
+  "creationtime": 1627464658.81,
+  "projectname": "crank2_test_0",
+  "fileroot": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_4/",
+  "tasktitle": "crank2",
+  "jobid": "843b58a2-ef86-11eb-82cf-08002705bc84",
+  "descendentjobs": [
+    [
+      "a732e8f2-ef86-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "a833db9e-ef86-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "aa0871e7-ef86-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "b4721a09-ef86-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "ce060fb2-ef86-11eb-82cf-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1627464851.5,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/GaAda/Ga1",
+      "jobparamname": "F_SIGFanom",
+      "jobid": "b77768ce-ef85-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "d89e7b79-ef85-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 29,
+      "filename": "2_crank2_test_0_asucontentfile_provideasucontents.asu.xml",
+      "annotation": "",
+      "jobparamname": "SEQIN",
+      "jobid": "4bc7502a-ef86-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-asu-content",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "AsuDataFile",
+      "fileId": "645e4bfc-ef86-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 13,
+      "filename": "FPHOUT.mtz",
+      "annotation": "\"Best\" electron density map coefficients",
+      "jobparamname": "FPHOUT",
+      "jobid": "843b58a2-ef86-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "f70906ee-ef86-11eb-82cf-08002705bc84",
+      "baseName": "FPHOUT.mtz",
+      "relpath": "CCP4_JOBS/job_4"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "REFMAC5.pdb",
+      "annotation": "Anomalous substructure coordinates",
+      "jobparamname": "XYZOUT_SUBSTR",
+      "jobid": "843b58a2-ef86-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "f70906ef-ef86-11eb-82cf-08002705bc84",
+      "baseName": "REFMAC5.pdb",
+      "relpath": "CCP4_JOBS/job_4"
+    },
+    {
+      "filetypeid": 12,
+      "filename": "FPHOUT_HL.mtz",
+      "annotation": "\"Best\" phases",
+      "jobparamname": "FPHOUT_HL",
+      "jobid": "843b58a2-ef86-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-phases",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "PhsDataFile",
+      "fileId": "f70906f0-ef86-11eb-82cf-08002705bc84",
+      "baseName": "FPHOUT_HL.mtz",
+      "relpath": "CCP4_JOBS/job_4"
+    },
+    {
+      "filetypeid": 13,
+      "filename": "FPHOUT_DIFFANOM.mtz",
+      "annotation": "Anomalous gradient LLG (difference) map",
+      "jobparamname": "FPHOUT_DIFFANOM",
+      "jobid": "843b58a2-ef86-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "6514018c-ef85-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "crank2_test_0",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "f70906f1-ef86-11eb-82cf-08002705bc84",
+      "baseName": "FPHOUT_DIFFANOM.mtz",
+      "relpath": "CCP4_JOBS/job_4"
+    }
+  ],
+  "filenames": {
+    "F_SIGFanom": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_1/HKLOUT_0-observed_data.mtz",
+    "F_SIGFanom2": "",
+    "F_SIGFanom3": "",
+    "F_SIGFanom4": "",
+    "F_SIGFanom_nonmtz": "",
+    "F_SIGFanom2_nonmtz": "",
+    "F_SIGFanom3_nonmtz": "",
+    "F_SIGFanom4_nonmtz": "",
+    "F_SIGFnative": "",
+    "F_SIGFnative_nonmtz": "",
+    "SEQIN": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_2/2_crank2_test_0_asucontentfile_provideasucontents.asu.xml",
+    "XYZIN": "",
+    "XYZIN_SUB": "",
+    "FPHIN_HL": "",
+    "FREERFLAG": "",
+    "XYZOUT": "",
+    "FPHOUT": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_4/FPHOUT.mtz",
+    "FPHOUT_2FOFC": "",
+    "XYZOUT_SUBSTR": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_4/REFMAC5.pdb",
+    "FPHOUT_HL": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_4/FPHOUT_HL.mtz",
+    "FPHOUT_DIFF": "",
+    "FPHOUT_DIFFANOM": "<PROJECTS_DIR>/crank2_test_0/CCP4_JOBS/job_4/FPHOUT_DIFFANOM.mtz",
+    "XYZOUT_HAND2": "",
+    "FPHOUT_HAND2": "",
+    "FPHOUT_HL_HAND2": "",
+    "F_SIGFanom_OUT": "",
+    "F_SIGFanom_OUT2": "",
+    "F_SIGFanom_OUT3": "",
+    "F_SIGFanom_OUT4": "",
+    "F_SIGF_OUT": "",
+    "FREEROUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "crank2",
+    "report_class": "crank2_report",
+    "report_module": "ccp4i2.pipelines.crank2.script.crank2_report",
+    "job_number": "4",
+    "job_status": "Finished",
+    "project_name": "crank2_test_0",
+    "has_program_xml": true
+  }
+}

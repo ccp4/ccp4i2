@@ -1,0 +1,49 @@
+{
+  "status": "Finished",
+  "taskname": "sheetbend",
+  "taskversion": "1.0",
+  "jobnumber": "3.2",
+  "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+  "jobtitle": "sheetbend",
+  "creationtime": 1686753403.792751,
+  "projectname": "phaser_expert_tncs_test_3",
+  "fileroot": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_2/",
+  "tasktitle": "sheetbend",
+  "jobid": "e212df84-0ac0-11ee-a8cf-8c8590af7452",
+  "descendentjobs": [],
+  "finishtime": 1686753406.117358,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "XYZOUT.pdb",
+      "annotation": "",
+      "jobparamname": "XYZOUT",
+      "jobid": "e212df84-0ac0-11ee-a8cf-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "3.2",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "e3752b2a-0ac0-11ee-a8cf-8c8590af7452",
+      "baseName": "XYZOUT.pdb",
+      "relpath": "CCP4_JOBS/job_3/job_2"
+    }
+  ],
+  "filenames": {
+    "XYZIN": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/PHASER.1.pdb",
+    "F_SIGF": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/1_phaser_expert_tncs_test_3_obsout_import_merged.mtz",
+    "FREERFLAG": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/1_phaser_expert_tncs_test_3_freeout_import_merged.mtz",
+    "XYZOUT": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_2/XYZOUT.pdb"
+  },
+  "_fixture_meta": {
+    "task_name": "sheetbend",
+    "report_class": "sheetbend_report",
+    "report_module": "ccp4i2.wrappers.sheetbend.script.sheetbend_report",
+    "job_number": "3.2",
+    "job_status": "Finished",
+    "project_name": "phaser_expert_tncs_test_3",
+    "has_program_xml": true
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "status": "Finished",
+  "taskname": "aimless_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "1.3",
+  "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+  "jobtitle": "aimless_pipe",
+  "creationtime": 1686755179.379525,
+  "projectname": "shelxe_mr_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/job_3/",
+  "tasktitle": "aimless_pipe",
+  "jobid": "0467e2ce-0ac5-11ee-b05f-8c8590af7452",
+  "descendentjobs": [
+    [
+      "047366ee-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "05556a1c-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "06a5482e-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "097890e2-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ]
+  ],
+  "finishtime": 1686755190.326765,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/xtl1/ds1",
+      "jobparamname": "HKLOUT",
+      "jobid": "0467e2ce-0ac5-11ee-b05f-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1.3",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "0aedaae8-0ac5-11ee-b05f-8c8590af7452",
+      "baseName": "HKLOUT_0-observed_data.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "annotation": "Mean intensities for twin refinement",
+      "jobparamname": "IMEANOUT",
+      "jobid": "0467e2ce-0ac5-11ee-b05f-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1.3",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "0aede08a-0ac5-11ee-b05f-8c8590af7452",
+      "baseName": "HKLOUT_0-observed_data_asIMEAN.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3"
+    }
+  ],
+  "filenames": {
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "FREERFLAG": "",
+    "FREEROUT": "",
+    "XMLOUT": "",
+    "CIFSTATSOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless_pipe",
+    "report_class": "aimless_pipe_report",
+    "report_module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report",
+    "job_number": "1.3",
+    "job_status": "Finished",
+    "project_name": "shelxe_mr_test_1",
+    "has_program_xml": true
+  }
+}

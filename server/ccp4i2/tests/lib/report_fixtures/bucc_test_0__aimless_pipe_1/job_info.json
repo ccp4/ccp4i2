@@ -1,0 +1,67 @@
+{
+  "status": "File holder",
+  "taskname": "aimless_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "86c2ef98-ef88-11eb-82cf-08002705bc84",
+  "jobtitle": "aimless_pipe",
+  "creationtime": 1627470926.09,
+  "projectname": "bucc_test_0",
+  "fileroot": "<PROJECTS_DIR>/bucc_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "aimless_pipe",
+  "jobid": "1bd3a5bc-ef95-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627470983.92,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/GaAda/GaXe1",
+      "jobparamname": "HKLOUT",
+      "jobid": "1bd3a5bc-ef95-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "86c2ef98-ef88-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "bucc_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "3e2139c3-ef95-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT_0-observed_data.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREERFLAG.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREEROUT",
+      "jobid": "1bd3a5bc-ef95-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "86c2ef98-ef88-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "bucc_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "3e2139c5-ef95-11eb-82cf-08002705bc84",
+      "baseName": "FREERFLAG.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "FREERFLAG": "",
+    "FREEROUT": "",
+    "XMLOUT": "",
+    "CIFSTATSOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless_pipe",
+    "report_class": "aimless_pipe_report",
+    "report_module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report",
+    "job_number": "1",
+    "job_status": "File holder",
+    "project_name": "bucc_test_0",
+    "has_program_xml": false
+  }
+}

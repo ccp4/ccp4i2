@@ -1,0 +1,107 @@
+<PHASER_ANALYSIS name="P1/crystal/dataset">
+  <CCP4Table groupID="Graph" id="2ndmoment" title=" Weighted second moments after tNCS (best) refinement">
+    <plot>
+      <title>Weighted second moments vs resolution (acentric only)</title>
+      <plotline xcol="1" ycol="2"/>
+      <plotline xcol="1" ycol="3"/>
+      <plotline xcol="1" ycol="4"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+    <headers>
+1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+    <data>
+0.0132 2.00952 1.50952 3.36796 
+0.0383 2.01154 1.51154 2.31451 
+0.0634 2.00356 1.50356 1.80561 
+0.0885 2.00482 1.50482 1.94263 
+0.1137 2.01163 1.51163 1.93848 
+0.1388 2.03713 1.53713 1.84115 
+0.1639 2.06395 1.56395 2.07795 
+0.1890 2.06999 1.56999 2.04649 
+0.2142 2.0725 1.5725 1.86259 
+</data>
+  </CCP4Table>
+  <CCP4Table groupID="Graph" id="informationcontent" title=" Information content of data">
+    <plot>
+      <title>Info (bits) per reflection vs resolution</title>
+      <plotline xcol="1" ycol="2"/>
+      <plotline xcol="1" ycol="3"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+    <headers>
+1/d^2 Selected All
+</headers>
+    <data>
+0.0132 4.91369 4.91369
+0.0383 4.70024 4.70024
+0.0634 4.93719 4.93719
+0.0885 4.54158 4.54158
+0.1137 3.9079 3.9079
+0.1388 3.4039 3.4039
+0.1639 3.21088 3.21088
+0.1890 2.87471 2.87471
+0.2142 2.66273 2.66273
+</data>
+  </CCP4Table>
+  <Analysis>
+    <InformationContent>
+      <Text>   Estimate of information depends on:
+      accuracy of experimental sigmas
+      accuracy of anisotropy and tNCS parameters
+      status of twinning (which reduces information)
+
+   Estimated total information = 17867.2 bits, or 12384.6 nats in 4896 reflections
+      average of 3.64934 bits per reflection
+   Number of reflections exceeding information threshold:
+      0.01 bit:  4896
+      0.05 bit:  4888
+      0.1  bit:  4869
+      0.5  bit:  4649
+      1    bit:  4382
+      2    bits: 3817</Text>
+      <TotalBits>17867.2</TotalBits>
+      <Nreflections>4896</Nreflections>
+      <Averagebits>3.64934</Averagebits>
+    </InformationContent>
+    <Resolution>
+      <ResolutionAll>2.10</ResolutionAll>
+      <NResolutionAll>4896</NResolutionAll>
+      <SelectedResolution>2.10</SelectedResolution>
+      <NSelectedResolution>4893</NSelectedResolution>
+    </Resolution>
+    <tNCS tNCS="True">
+      <NonOriginPatterson>
+        <PeakHeight>44.2</PeakHeight>
+        <Vector>-0.0051 0.3986 0.5019</Vector>
+        <Angle>-0.1867 -0.6087 0.6648</Angle>
+      </NonOriginPatterson>
+      <DvalueRange>0.9913 0.9447</DvalueRange>
+    </tNCS>
+    <Twinning>
+      <CentricMoments>
+        <Theoretical>3.00</Theoretical>
+        <TheoreticalTwin>2.00</TheoreticalTwin>
+        <Observed>2.43</Observed>
+      </CentricMoments>
+      <AcentricMoments>
+        <Theoretical>2.00</Theoretical>
+        <TheoreticalTwin>1.50</TheoreticalTwin>
+        <Observed>2.08</Observed>
+        <SDobserved>0.114</SDobserved>
+      </AcentricMoments>
+      <Pvalues>1  1</Pvalues>
+    </Twinning>
+    <Anisotropy>
+      <deltaB>7.879</deltaB>
+      <Eigenvalues> 5.220 -2.560 -2.659</Eigenvalues>
+      <Eigenvectors>   0.0000   -0.0000   1.0000   0.0000   1.0000   0.0000   1.0000   -0.0000   -0.0000</Eigenvectors>
+    </Anisotropy>
+  </Analysis>
+  <ResolutionEstimate type="informationcontent">
+    <Threshold>  0.10</Threshold>
+    <Columns>1/d^2 Selected</Columns>
+    <ResolutionLimitEstimate>  2.10</ResolutionLimitEstimate>
+    <Message>== maximum resolution</Message>
+  </ResolutionEstimate>
+</PHASER_ANALYSIS>

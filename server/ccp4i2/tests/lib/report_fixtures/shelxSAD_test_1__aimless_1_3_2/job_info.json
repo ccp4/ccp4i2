@@ -1,0 +1,71 @@
+{
+  "status": "Finished",
+  "taskname": "aimless",
+  "taskversion": "1.0",
+  "jobnumber": "1.3.2",
+  "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+  "jobtitle": "aimless",
+  "creationtime": 1646652955.893368,
+  "projectname": "shelxSAD_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_1/job_3/job_2/",
+  "tasktitle": "aimless",
+  "jobid": "bf7d6d7a-9e0a-11ec-a93f-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1646652957.330115,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 4,
+      "filename": "HKLOUT.mtz",
+      "annotation": "",
+      "jobparamname": "MTZMERGEDOUT",
+      "jobid": "bf7d6d7a-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "1.3.2",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "MtzDataFile",
+      "fileId": "c166e60a-9e0a-11ec-a93f-08002705bc84",
+      "baseName": "HKLOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    },
+    {
+      "filetypeid": 14,
+      "filename": "SCALES.scales",
+      "annotation": "",
+      "jobparamname": "SCALES",
+      "jobid": "bf7d6d7a-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "Dummy",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "1.3.2",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "",
+      "fileId": "c166e60b-9e0a-11ec-a93f-08002705bc84",
+      "baseName": "SCALES.scales",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    }
+  ],
+  "filenames": {
+    "UNMERGEDFILE": "",
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "XMLOUT": "",
+    "SCALES": "",
+    "ROGUES": "",
+    "NORMPLOT": "",
+    "ANOMPLOT": "",
+    "CORRELPLOT": "",
+    "ROGUEPLOT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless",
+    "report_class": "aimless_report",
+    "report_module": "ccp4i2.wrappers.aimless.script.aimless_report",
+    "job_number": "1.3.2",
+    "job_status": "Finished",
+    "project_name": "shelxSAD_test_1",
+    "has_program_xml": true
+  }
+}

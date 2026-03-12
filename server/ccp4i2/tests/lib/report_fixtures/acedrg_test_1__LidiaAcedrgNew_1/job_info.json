@@ -1,0 +1,89 @@
+{
+  "status": "Finished",
+  "taskname": "LidiaAcedrgNew",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+  "jobtitle": "LidiaAcedrgNew",
+  "creationtime": 1717747549.692503,
+  "projectname": "acedrg_test_1",
+  "fileroot": "<PROJECTS_DIR>/acedrg_test_1/CCP4_JOBS/job_1/",
+  "tasktitle": "LidiaAcedrgNew",
+  "jobid": "c0a34e70-24a4-11ef-aaff-2f2a8a2e5bb4",
+  "descendentjobs": [
+    [
+      "d1940dfa-24a4-11ef-aaff-2f2a8a2e5bb4",
+      []
+    ]
+  ],
+  "finishtime": 1717747610.990274,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 22,
+      "filename": "ChEBI_46195_1.mol",
+      "annotation": "Mol file loaded from ChEBI_46195.mol by job 1",
+      "jobparamname": "MOLIN",
+      "jobid": "c0a34e70-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "pathflag": 2,
+      "filetype": "chemical/x-mdl-molfile",
+      "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "jobnumber": "1",
+      "projectname": "acedrg_test_1",
+      "filetypeclass": "MDLMolDataFile",
+      "fileId": "d0ee0a86-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "baseName": "ChEBI_46195_1.mol",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 22,
+      "filename": "PCA_RDKIT.mol",
+      "annotation": "MOL file from RDKIT",
+      "jobparamname": "MOLOUT_LIST",
+      "jobid": "c0a34e70-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "pathflag": 1,
+      "filetype": "chemical/x-mdl-molfile",
+      "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "jobnumber": "1",
+      "projectname": "acedrg_test_1",
+      "filetypeclass": "MDLMolDataFile",
+      "fileId": "e515a2be-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "baseName": "PCA_RDKIT.mol",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 8,
+      "filename": "PCA.cif",
+      "annotation": "Dictionary for ligand PCA",
+      "jobparamname": "DICTOUT_LIST",
+      "jobid": "c0a34e70-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "pathflag": 1,
+      "filetype": "application/refmac-dictionary",
+      "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "jobnumber": "1",
+      "projectname": "acedrg_test_1",
+      "filetypeclass": "DictDataFile",
+      "fileId": "e515a2bf-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "baseName": "PCA.cif",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "DICTIN2": "",
+    "DICTIN": "",
+    "SMILESFILEIN": "",
+    "MOLIN": "<PROJECTS_DIR>/acedrg_test_1/CCP4_IMPORTED_FILES/ChEBI_46195_1.mol",
+    "MOL2IN": "",
+    "METAL_STRUCTURE": ""
+  },
+  "_fixture_meta": {
+    "task_name": "LidiaAcedrgNew",
+    "report_class": "LidiaAcedrgNew_report",
+    "report_module": "ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "acedrg_test_1",
+    "has_program_xml": true
+  }
+}

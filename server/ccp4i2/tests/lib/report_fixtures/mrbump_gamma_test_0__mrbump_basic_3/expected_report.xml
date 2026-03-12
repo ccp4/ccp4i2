@@ -1,0 +1,50 @@
+<CCP4i2Reportmrbump_basic_report class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="mrbump_basic" title2="14:10 04-Aug-2021" />
+  <CCP4i2ReportResults class="" style="">
+    <CCP4i2ReportGeneric class="" style="">
+      <p>MrBUMP is a pipeline to trial many search models in molecular replacement.                      It will find and prepare possible search models based on a sequence alignment                      between your target sequence and that of known structures in the PDB (using                      Phmmer by default). It then goes on to run molecular replacement (MR) on the                      best of these. Post MR it refine each resulting solution and do some initial                      model building to assess the likely success or otherwise of the molecular                      replacement search.</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFold class="" style="" label="search model preparation" initiallyOpen="True" brief="search model preparation">
+      <CCP4i2ReportGeneric class="" style="">
+        <p>These are the search models that have been found and prepared for use in Molecular Replacement.<br />
+        </p>
+      </CCP4i2ReportGeneric>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Models will be listed shortly..</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFold class="" style="" label="detailed results for molecular replacement and refinement" initiallyOpen="True" brief="detailed results for molecular replacement and refinement">
+      <CCP4i2ReportGeneric class="" style="">
+        <p>Model names have the following format: PDB ID_chain/domain ID_Search Source_MR preparation method_sequence ID_residue range in target                       Each model is used in Phaser to do molecular replacement.                       The resulting MR solution is then refined with Refmac (Final R, Final R)<br />
+        </p>
+      </CCP4i2ReportGeneric>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Molecular replacement results will appear here soon...</p>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportResults>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+      <div id="input_file_7d8f7da8-f52d-11eb-a394-08002705bc84" />
+      <div id="input_file_7d8f7da9-f52d-11eb-a394-08002705bc84" />
+      <div id="input_file_a37e0b72-f52d-11eb-a394-08002705bc84" />
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_0fa1f4b2-f52e-11eb-a394-08002705bc84" />
+      <div id="input_file_0fa1f4b3-f52e-11eb-a394-08002705bc84" />
+      <div id="input_file_0fa1f4b4-f52e-11eb-a394-08002705bc84" />
+      <div id="input_file_0fa1f4b5-f52e-11eb-a394-08002705bc84" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="14:10 04-Aug-2021" finishtime="14:12 04-Aug-2021" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="14:10 04-Aug-2021" finishtime="14:12 04-Aug-2021" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="">
+      <CCP4i2ReportReference class="" style="" articleTitle="MrBUMP: an automated pipeline for molecular replacement" source="Acta Crystallographica Section D 2008;64(1):119-124" authorList="['R. M.  Keegan and M. D.  Winn']" />
+    </CCP4i2ReportReferenceGroup>
+  </CCP4i2ReportFold>
+</CCP4i2Reportmrbump_basic_report>

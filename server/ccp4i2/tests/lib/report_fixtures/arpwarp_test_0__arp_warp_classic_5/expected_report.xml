@@ -1,0 +1,149 @@
+<CCP4i2Reportarp_warp_classic_report class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="arp_warp_classic" title2="13:27 13-Aug-2021" />
+  <CCP4i2ReportGeneric class="" style="">
+    <style type="text/css">div.rvapi-after-fold {width: 100px; height: 5px; border-spacing: 0px; padding-right: 0px; padding-top: 0px;}</style>
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportGeneric class="" style="">
+    <style type="text/css">small {font: 12px Arial, sans-serif; margin-top: 44px; background-color: rgb(145,203,219); padding: 5px;}</style>
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportGeneric class="" style="">
+    <style type="text/css">table.rvapi-page {padding-left: 9px; padding-bottom: 8px; border-spacing: 0px; padding-right: 0px; padding-top: 0px;}</style>
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportGeneric class="" style="">
+    <style type="text/css">td.rvapi-column-left {text-align: left; vertical-align: top; width: 200px; border-spacing: 0px; padding-right: 0px; padding-top: 0px;}</style>
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportGeneric class="" style="">
+    <style type="text/css">td.rvapi-column-right {text-align: right; vertical-align: top; width: 425px; border-spacing: 0px; padding-right: 0px; padding-top: 0px;}</style>
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportGeneric class="" style="">
+    <style type="text/css">td.rvapi-column-single {text-align: left; vertical-align: top; width: 625px; border-spacing: 0px; padding-right: 0px; padding-top: 0px;}</style>
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportFold class="" style="" label="Results" initiallyOpen="True" brief="Results">
+    <CCP4i2ReportGeneric class="" style="">
+      <div class="rvapi-after-fold" />
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <table class="rvapi-page">
+        <tbody>
+          <tr>
+            <td class="rvapi-column-left">
+              <p>Summary</p>
+              <div data-data="./tables_as_xml_files/insert_pyrvapi_table_01.xml" data-initially-drawn="True" data-is-urls="True" data-renderer="CCP4i2Widgets.CCP4i2HTMLChunk" data-require="CCP4i2Widgets" data-widget-type="CCP4i2DrawnDiv" id="div_pyrvapi_table_01" />
+            </td>
+            <td class="rvapi-column-right">
+              <div data-app-font-size="12px" data-data="div_data_tables_as_xml_files_insert_loggraph_010" data-initially-drawn="True" data-is-urls="False" data-renderer="CCP4i2Widgets.CCP4FlotRenderer" data-require="CCP4i2Widgets" data-widget-type="CCP4i2DrawnDiv" id="div_loggraph_010" style="height:310px;width:400px;display:inline-block;" />
+              <ccp4_data nsmap="{'ccp4': 'http://www.ccp4.ac.uk/ccp4ns'}" id="div_data_tables_as_xml_files_insert_loggraph_010" type="application/xml" style="display:none" title="Refinements">
+                <headers>x R-cryst R-free</headers>
+                <data>0 0.3098 0.385
+1 0.2997 0.359
+2 0.2575 0.322
+3 0.234 0.322
+4 0.238 0.298
+5 0.2286 0.296
+6 0.2136 0.282
+7 0.2177 0.284
+8 0.2097 0.283
+9 0.2024 0.274
+10 0.2121 0.273
+11 0.208 0.264
+12 0.1997 0.267
+13 0.285 0.324
+14 0.2645 0.285</data>
+                <plot>
+                  <title>R-factors</title>
+                  <plottype>xy</plottype>
+                  <xlabel>Refinement cycle</xlabel>
+                  <ylabel>R</ylabel>
+                  <xintegral>false</xintegral>
+                  <yintegral>false</yintegral>
+                  <xrange max="14" min="0" />
+                  <yrange min="-0.02" rightaxis="false" />
+                  <plotline xcol="1" ycol="2">
+                    <linestyle>-</linestyle>
+                    <symbolsize>2</symbolsize>
+                  </plotline>
+                  <plotline xcol="1" ycol="3">
+                    <linestyle>-</linestyle>
+                    <symbolsize>2</symbolsize>
+                  </plotline>
+                </plot>
+              </ccp4_data>
+              <div data-app-font-size="12px" data-data="div_data_tables_as_xml_files_insert_loggraph_011" data-initially-drawn="True" data-is-urls="False" data-renderer="CCP4i2Widgets.CCP4FlotRenderer" data-require="CCP4i2Widgets" data-widget-type="CCP4i2DrawnDiv" id="div_loggraph_011" style="height:310px;width:400px;display:inline-block;" />
+              <ccp4_data nsmap="{'ccp4': 'http://www.ccp4.ac.uk/ccp4ns'}" id="div_data_tables_as_xml_files_insert_loggraph_011" type="application/xml" style="display:none" title="Building">
+                <headers>x in&amp;nbsp;model in&amp;nbsp;longest&amp;nbsp;chain</headers>
+                <data>1 96 27
+2 112 32
+3 113 51
+4 115 51
+5 115 65
+6 115 64
+7 114 63
+8 114 63
+9 114 51
+10 118 69
+11 117 67
+12 118 118
+13 118 118
+14 117 67
+15 118 118
+16 118 118
+17 118 118
+18 118 118
+19 118 118
+20 118 118
+21 118 118
+22 118 118
+23 118 118
+24 118 118
+25 117 100</data>
+                <plot>
+                  <title>Residues built</title>
+                  <plottype>xy</plottype>
+                  <xlabel>Building round</xlabel>
+                  <ylabel>Residues</ylabel>
+                  <xintegral>false</xintegral>
+                  <yintegral>false</yintegral>
+                  <xrange max="25" min="1" />
+                  <yrange min="0" rightaxis="false" />
+                  <plotline xcol="1" ycol="2">
+                    <linestyle>-</linestyle>
+                    <symbolsize>2</symbolsize>
+                  </plotline>
+                  <plotline xcol="1" ycol="3">
+                    <linestyle>-</linestyle>
+                    <symbolsize>2</symbolsize>
+                  </plotline>
+                </plot>
+              </ccp4_data>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+      <div id="input_file_ccf5a53a-fbb2-11eb-8130-08002705bc84" />
+      <div id="input_file_ccf5a53b-fbb2-11eb-8130-08002705bc84" />
+      <div id="input_file_d00ba5d2-fbb4-11eb-8130-08002705bc84" />
+      <div id="input_file_fe503e2c-fbb2-11eb-8130-08002705bc84" />
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_7af62fee-fc3b-11eb-88bb-08002705bc84" />
+      <div id="input_file_7af62fef-fc3b-11eb-88bb-08002705bc84" />
+      <div id="input_file_7af62ff0-fc3b-11eb-88bb-08002705bc84" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="13:27 13-Aug-2021" finishtime="13:36 13-Aug-2021" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="13:27 13-Aug-2021" finishtime="13:36 13-Aug-2021" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="">
+      <CCP4i2ReportReference class="" style="" articleTitle="ARP/wARP and molecular replacement" source="Acta Crystallographica Section D 2001;57(10):1445-1450" authorList="['A.  Perrakis, M.  Harkiolaki, K. S.  Wilson and V. S.  Lamzin']" />
+    </CCP4i2ReportReferenceGroup>
+  </CCP4i2ReportFold>
+</CCP4i2Reportarp_warp_classic_report>

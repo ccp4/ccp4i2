@@ -1,0 +1,160 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+  "jobtitle": "import_merged",
+  "creationtime": 1628086094.93,
+  "projectname": "mrbump_gamma_test_0",
+  "fileroot": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+  "descendentjobs": [
+    [
+      "762ac28c-f52d-11eb-a394-08002705bc84",
+      []
+    ],
+    [
+      "762ac28d-f52d-11eb-a394-08002705bc84",
+      []
+    ],
+    [
+      "762ac28e-f52d-11eb-a394-08002705bc84",
+      [
+        "762ac28f-f52d-11eb-a394-08002705bc84",
+        "76e17eab-f52d-11eb-a394-08002705bc84",
+        "7c621858-f52d-11eb-a394-08002705bc84"
+      ]
+    ],
+    [
+      "762ac28f-f52d-11eb-a394-08002705bc84",
+      []
+    ],
+    [
+      "76e17eab-f52d-11eb-a394-08002705bc84",
+      []
+    ],
+    [
+      "7c621858-f52d-11eb-a394-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1628086129.4,
+  "inputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "merged_intensities_Xe_1.mtz",
+      "annotation": "Reflection data loaded from merged_intensities_Xe.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "75ed7c38-f52d-11eb-a394-08002705bc84",
+      "relpath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREERFLAG-freeRflag.mtz",
+      "annotation": "Free R set imported from freeR.mtz by job 1",
+      "jobparamname": "FREERFLAG",
+      "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "75ed7c3a-f52d-11eb-a394-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "merged_intensities_Xe_1.mtz",
+      "annotation": "Reflection data loaded from merged_intensities_Xe.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "75ed7c38-f52d-11eb-a394-08002705bc84",
+      "baseName": "merged_intensities_Xe_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREERFLAG-freeRflag.mtz",
+      "annotation": "Free R set imported from freeR.mtz by job 1",
+      "jobparamname": "FREERFLAG",
+      "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "75ed7c3a-f52d-11eb-a394-08002705bc84",
+      "baseName": "FREERFLAG-freeRflag.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "1_mrbump_gamma_test_0_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "7d8f7da8-f52d-11eb-a394-08002705bc84",
+      "baseName": "1_mrbump_gamma_test_0_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_mrbump_gamma_test_0_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "690710e2-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "7d8f7da9-f52d-11eb-a394-08002705bc84",
+      "baseName": "1_mrbump_gamma_test_0_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_IMPORTED_FILES/merged_intensities_Xe_1.mtz",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/FREERFLAG-freeRflag.mtz",
+    "HKLOUT": "",
+    "OBSOUT": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/1_mrbump_gamma_test_0_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/1_mrbump_gamma_test_0_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "mrbump_gamma_test_0",
+    "has_program_xml": true
+  }
+}

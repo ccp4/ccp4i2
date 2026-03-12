@@ -1,0 +1,64 @@
+{
+  "status": "Finished",
+  "taskname": "aimless_pipe",
+  "taskversion": "1.0",
+  "jobnumber": "1.3",
+  "projectid": "33843fa8-c44b-11ea-a15f-3417eba0e4fd",
+  "jobtitle": "aimless_pipe",
+  "creationtime": 1594563786.9,
+  "projectname": "import_merged_test_0",
+  "fileroot": "<PROJECTS_DIR>/import_merged_test_0/CCP4_JOBS/job_1/job_3/",
+  "tasktitle": "aimless_pipe",
+  "jobid": "3413d282-c44b-11ea-a15f-3417eba0e4fd",
+  "descendentjobs": [
+    [
+      "3413d283-c44b-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "3413d285-c44b-11ea-a15f-3417eba0e4fd",
+      []
+    ],
+    [
+      "3532808c-c44b-11ea-a15f-3417eba0e4fd",
+      []
+    ]
+  ],
+  "finishtime": 1594563790.65,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "HKLOUT_0-observed_data.mtz",
+      "annotation": "/xtl1/ds1",
+      "jobparamname": "HKLOUT",
+      "jobid": "3413d282-c44b-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "33843fa8-c44b-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1.3",
+      "projectname": "import_merged_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "36a40646-c44b-11ea-a15f-3417eba0e4fd",
+      "baseName": "HKLOUT_0-observed_data.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3"
+    }
+  ],
+  "filenames": {
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "FREERFLAG": "",
+    "FREEROUT": "",
+    "XMLOUT": "",
+    "CIFSTATSOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless_pipe",
+    "report_class": "aimless_pipe_report",
+    "report_module": "ccp4i2.pipelines.aimless_pipe.script.aimless_pipe_report",
+    "job_number": "1.3",
+    "job_status": "Finished",
+    "project_name": "import_merged_test_0",
+    "has_program_xml": true
+  }
+}

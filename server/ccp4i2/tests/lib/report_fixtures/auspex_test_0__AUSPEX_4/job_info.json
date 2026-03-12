@@ -1,0 +1,94 @@
+{
+  "status": "Finished",
+  "taskname": "AUSPEX",
+  "taskversion": "1.0",
+  "jobnumber": "4",
+  "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+  "jobtitle": "AUSPEX",
+  "creationtime": 1627474184.33,
+  "projectname": "auspex_test_0",
+  "fileroot": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_4/",
+  "tasktitle": "AUSPEX",
+  "jobid": "b1e26f50-ef9c-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627474199.79,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "3_auspex_test_0_obsout_import_merged.mtz",
+      "annotation": "",
+      "jobparamname": "F_SIGF",
+      "jobid": "2e0c4b42-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "a726ffc4-ef9c-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_JOBS/job_3"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 24,
+      "filename": "F_plot.png",
+      "annotation": "AUSPEX IMG",
+      "jobparamname": "IM_OUT.0",
+      "jobid": "b1e26f50-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-image",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "ImageFile",
+      "fileId": "bb1a29fa-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "F_plot.png",
+      "relpath": "CCP4_JOBS/job_4"
+    },
+    {
+      "filetypeid": 24,
+      "filename": "SigF_plot.png",
+      "annotation": "AUSPEX IMG",
+      "jobparamname": "IM_OUT.1",
+      "jobid": "b1e26f50-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-image",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "ImageFile",
+      "fileId": "bb1a29fb-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "SigF_plot.png",
+      "relpath": "CCP4_JOBS/job_4"
+    },
+    {
+      "filetypeid": 24,
+      "filename": "FSigF_plot.png",
+      "annotation": "AUSPEX IMG",
+      "jobparamname": "IM_OUT.2",
+      "jobid": "b1e26f50-ef9c-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-image",
+      "projectid": "25f962e2-ef9b-11eb-82cf-08002705bc84",
+      "jobnumber": "4",
+      "projectname": "auspex_test_0",
+      "filetypeclass": "ImageFile",
+      "fileId": "bb1a29fc-ef9c-11eb-82cf-08002705bc84",
+      "baseName": "FSigF_plot.png",
+      "relpath": "CCP4_JOBS/job_4"
+    }
+  ],
+  "filenames": {
+    "F_SIGF": "<PROJECTS_DIR>/auspex_test_0/CCP4_JOBS/job_3/3_auspex_test_0_obsout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "AUSPEX",
+    "report_class": "AUSPEX_report",
+    "report_module": "ccp4i2.wrappers.AUSPEX.script.AUSPEX_report",
+    "job_number": "4",
+    "job_status": "Finished",
+    "project_name": "auspex_test_0",
+    "has_program_xml": false
+  }
+}

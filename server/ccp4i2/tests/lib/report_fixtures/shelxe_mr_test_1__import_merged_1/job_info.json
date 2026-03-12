@@ -1,0 +1,118 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+  "jobtitle": "import_merged",
+  "creationtime": 1686755122.98673,
+  "projectname": "shelxe_mr_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+  "descendentjobs": [
+    [
+      "034eee1e-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "03ca9686-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "0467e2ce-0ac5-11ee-b05f-8c8590af7452",
+      [
+        "047366ee-0ac5-11ee-b05f-8c8590af7452",
+        "05556a1c-0ac5-11ee-b05f-8c8590af7452",
+        "06a5482e-0ac5-11ee-b05f-8c8590af7452",
+        "097890e2-0ac5-11ee-b05f-8c8590af7452"
+      ]
+    ],
+    [
+      "047366ee-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "05556a1c-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "06a5482e-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ],
+    [
+      "097890e2-0ac5-11ee-b05f-8c8590af7452",
+      []
+    ]
+  ],
+  "finishtime": 1686755191.168701,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "merged_intensities_Xe_1_1.mtz",
+      "annotation": "Reflection data loaded from merged_intensities_Xe_1.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "0263be80-0ac5-11ee-82e5-8c8590af7452",
+      "baseName": "merged_intensities_Xe_1_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "1_shelxe_mr_test_1_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "0b6e25ec-0ac5-11ee-b05f-8c8590af7452",
+      "baseName": "1_shelxe_mr_test_1_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_shelxe_mr_test_1_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "e2cafcf0-0ac4-11ee-82e5-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "db6f443e-0ac4-11ee-82e5-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "shelxe_mr_test_1",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "0b6e6386-0ac5-11ee-b05f-8c8590af7452",
+      "baseName": "1_shelxe_mr_test_1_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_IMPORTED_FILES/merged_intensities_Xe_1_1.mtz",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "",
+    "OBSOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/1_shelxe_mr_test_1_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/shelxe_mr_test_1/CCP4_JOBS/job_1/1_shelxe_mr_test_1_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "shelxe_mr_test_1",
+    "has_program_xml": true
+  }
+}

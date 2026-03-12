@@ -1,0 +1,480 @@
+<CCP4i2Reportprosmart_refmac_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="prosmart_refmac" title2="09:08 07-Oct-2022" />
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportFold class="" style="" label="Refinement" initiallyOpen="True" brief="Refinement">
+    <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="5">
+        <CCP4i2ReportDiv class="" style="height:250px; width:100%; margin-top:2px;">
+          <CCP4i2ReportDiv class="" style="height:225px; width:100%; overflow:auto;">
+            <CCP4i2ReportTable class="" style="width:100%;" transpose="False">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Statistic</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Resolution</td>
+                    <td>92.02-1.77</td>
+                  </tr>
+                  <tr>
+                    <td>No. reflections all/free</td>
+                    <td>       106094 /         5558 </td>
+                  </tr>
+                  <tr>
+                    <td>R-factor/R-free</td>
+                    <td>      0.171 /      0.174 </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i>RMS Deviations</i>
+                    </td>
+                    <td> </td>
+                  </tr>
+                  <tr>
+                    <td>Bonds</td>
+                    <td>     0.0158 </td>
+                  </tr>
+                  <tr>
+                    <td>Angles</td>
+                    <td>      1.772 </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i>Chain B-factors</i>
+                    </td>
+                    <td>
+                      <i>mean B (#atoms)</i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> A </td>
+                    <td>31.9(       6094 )</td>
+                  </tr>
+                  <tr>
+                    <td> A </td>
+                    <td>22.8(          1 )</td>
+                  </tr>
+                  <tr>
+                    <td> A </td>
+                    <td>45.8(        406 )</td>
+                  </tr>
+                  <tr>
+                    <td> A </td>
+                    <td>21.4(         22 )</td>
+                  </tr>
+                </tbody>
+              </table>
+            </CCP4i2ReportTable>
+          </CCP4i2ReportDiv>
+        </CCP4i2ReportDiv>
+      </CCP4i2ReportGridItem>
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="7">
+        <CCP4i2ReportFlotGraph class="" style="height:250px; width:100%;">
+          <ns0:ccp4_data title="Running refmac" id="data_SummaryGraph" style="display:none;">
+            <headers>Cycle R_Factor R_Free rmsBonds </headers>
+            <data>- - - 0.021 
+- - - 0.016 
+</data>
+            <plot>
+              <title>Running refmac R-factors</title>
+              <plottype>xy</plottype>
+              <yrange rightaxis="false" />
+              <xlabel>Cycle</xlabel>
+              <xintegral>true</xintegral>
+              <ylabel>R-factor</ylabel>
+              <rylabel>Geometry</rylabel>
+              <plotline xcol="1" ycol="2" rightaxis="false" colour="blue" />
+              <plotline xcol="1" ycol="3" rightaxis="false" colour="green" />
+              <yrange rightaxis="true" />
+              <plotline xcol="1" ycol="4" rightaxis="true" colour="red" />
+            </plot>
+          </ns0:ccp4_data>
+        </CCP4i2ReportFlotGraph>
+      </CCP4i2ReportGridItem>
+    </CCP4i2ReportGridContainer>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportPre class="" style="font-size:125%;">Current weight applied to X-ray term is 0.673334479</CCP4i2ReportPre>
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportFold class="" style="" label="Per cycle statistics" initiallyOpen="False" brief="Per cycle">
+    <CCP4i2ReportDiv class="" style="float:left;">
+      <CCP4i2ReportText class="" style="">Full atom refinement - XYZ, B (Occ)</CCP4i2ReportText>
+      <CCP4i2ReportTable class="" style="" transpose="False">
+        <table>
+          <thead>
+            <tr>
+              <th />
+              <th>Cycle</th>
+              <th>R-factor</th>
+              <th>R-free</th>
+              <th colspan="3">RMSD (bond/angle/chiral)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Start</td>
+              <td>0</td>
+              <td>0.179</td>
+              <td>0.175</td>
+              <td>0.0208</td>
+              <td>1.854</td>
+              <td>0.126</td>
+            </tr>
+            <tr>
+              <td>End</td>
+              <td>1</td>
+              <td>0.171</td>
+              <td>0.174</td>
+              <td>0.0158</td>
+              <td>1.772</td>
+              <td>0.089</td>
+            </tr>
+          </tbody>
+        </table>
+      </CCP4i2ReportTable>
+    </CCP4i2ReportDiv>
+    <CCP4i2ReportDiv class="" style="clear:both;" />
+    <CCP4i2ReportFold class="" style="" label="All cycles" initiallyOpen="False" brief="All cycles">
+      <CCP4i2ReportTable class="" style="" transpose="False">
+        <table>
+          <thead>
+            <tr>
+              <th>Cycle</th>
+              <th>R-factor</th>
+              <th>R-free</th>
+              <th colspan="3">RMSD (bond/angle/chiral)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>0</td>
+              <td>0.179</td>
+              <td>0.175</td>
+              <td>0.0208</td>
+              <td>1.854</td>
+              <td>0.126</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>0.171</td>
+              <td>0.174</td>
+              <td>0.0158</td>
+              <td>1.772</td>
+              <td>0.089</td>
+            </tr>
+          </tbody>
+        </table>
+      </CCP4i2ReportTable>
+    </CCP4i2ReportFold>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Outliers identified by Refmac" initiallyOpen="False" brief="Outliers">
+    <CCP4i2ReportGeneric class="" style="">
+      <span style="font-size:110%">No outliers observed </span>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Other plots from log file" initiallyOpen="False" brief="Other">
+    <CCP4i2ReportObjectGallery class="" style="float:left;width:800px;">
+      <CCP4i2ReportFlotGraph class="" style="width:410px;height:290px;">
+        <ns0:ccp4_data title="Cycle    1. Rfactor analysis, F distribution v resln" id="data_SmartiePlot0" style="display:none;">
+          <headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers>
+          <data>0.008 1287.0 100.0 671.6 710.3 0.19 0.21 85.0 676.8 715.8 0.17 0.18
+0.024 2213.0 100.0 470.9 522.0 0.2 0.21 91.0 476.5 528.5 0.18 0.19
+0.04 2793.0 100.0 580.7 615.7 0.14 0.15 147.0 586.5 621.5 0.13 0.14
+0.056 3226.0 100.0 621.2 615.2 0.12 0.13 184.0 640.9 634.8 0.11 0.12
+0.072 3652.0 99.97 540.3 499.1 0.15 0.16 189.0 554.7 509.0 0.15 0.15
+0.088 3977.0 99.98 447.6 389.3 0.2 0.2 253.0 438.5 382.8 0.2 0.2
+0.104 4373.0 100.0 354.9 315.6 0.21 0.2 201.0 352.2 314.6 0.18 0.18
+0.12 4670.0 100.0 280.6 265.2 0.19 0.18 209.0 277.2 261.6 0.2 0.19
+0.136 4926.0 100.0 227.9 224.3 0.17 0.16 272.0 227.9 224.8 0.16 0.15
+0.152 5216.0 100.0 196.2 196.9 0.17 0.16 305.0 180.2 186.5 0.18 0.17
+0.168 5424.0 100.0 168.1 169.2 0.17 0.16 312.0 153.4 155.5 0.19 0.17
+0.184 5672.0 99.93 151.0 151.2 0.17 0.15 336.0 154.8 154.1 0.18 0.16
+0.2 5928.0 100.0 136.7 134.6 0.18 0.16 333.0 135.4 135.4 0.18 0.16
+0.216 6146.0 100.0 118.8 116.7 0.18 0.16 349.0 110.9 111.3 0.19 0.17
+0.232 6354.0 99.97 103.3 101.4 0.19 0.18 358.0 104.7 102.6 0.18 0.17
+0.248 6588.0 100.0 88.4 86.6 0.2 0.19 361.0 93.1 93.0 0.2 0.18
+0.264 6776.0 100.0 74.1 74.2 0.21 0.21 364.0 74.8 77.0 0.22 0.21
+0.28 6944.0 100.0 62.4 63.5 0.24 0.23 379.0 62.4 63.6 0.25 0.24
+0.296 7217.0 100.0 53.6 54.7 0.25 0.25 407.0 52.4 53.3 0.24 0.25
+0.312 7156.0 97.89 46.9 47.4 0.28 0.29 423.0 46.4 47.1 0.29 0.3
+</data>
+          <plot>
+            <title>Cycle    1. &lt;Rfactor&gt; v. resln</title>
+            <plotline xcol="1" ycol="6" />
+            <plotline xcol="1" ycol="7" />
+            <plotline xcol="1" ycol="11" />
+            <plotline xcol="1" ycol="12" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+          <plot>
+            <title>Cycle    1. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title>
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+            <plotline xcol="1" ycol="9" />
+            <plotline xcol="1" ycol="10" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+          <plot>
+            <title>Cycle    1. % observed v. resln</title>
+            <plotline xcol="1" ycol="3" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:410px;height:290px;">
+        <ns0:ccp4_data title="Cycle    1. FSC and  Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln" id="data_SmartiePlot1" style="display:none;">
+          <headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1 FSCfree FSCwork CorrFoFcFree CorrFoFcWork
+</headers>
+          <data>0.0081 860.0 0.936 427.0 0.849 1287.0 0.907 1.0 0.9853 0.98 0.9539 0.9278
+0.0241 1777.0 0.924 436.0 0.825 2213.0 0.905 1.0 0.9851 0.983 0.9471 0.9336
+0.0401 2347.0 0.957 446.0 0.898 2793.0 0.948 1.0 0.9915 0.9905 0.9611 0.9591
+0.0561 2786.0 0.955 440.0 0.894 3226.0 0.946 1.0 0.9918 0.9906 0.9646 0.9602
+0.0721 3218.0 0.936 434.0 0.852 3652.0 0.926 1.008 0.9898 0.9877 0.9576 0.947
+0.0881 3537.0 0.898 440.0 0.787 3977.0 0.885 1.095 0.9832 0.9823 0.9376 0.9319
+0.104 3938.0 0.896 435.0 0.811 4373.0 0.887 1.079 0.9861 0.9788 0.9473 0.9167
+0.12 4224.0 0.898 446.0 0.789 4670.0 0.888 1.029 0.9796 0.9799 0.9259 0.924
+0.136 4494.0 0.915 432.0 0.823 4926.0 0.907 1.0 0.9819 0.9819 0.9216 0.9308
+0.152 4778.0 0.92 438.0 0.832 5216.0 0.913 1.0 0.98 0.9825 0.9284 0.9318
+0.168 4984.0 0.914 438.0 0.812 5422.0 0.906 0.992 0.9797 0.9822 0.9221 0.9336
+0.184 5249.0 0.901 423.0 0.794 5672.0 0.893 0.986 0.9824 0.9822 0.9363 0.9324
+0.2 5489.0 0.903 439.0 0.846 5928.0 0.899 0.997 0.9807 0.9807 0.925 0.9242
+0.216 5701.0 0.908 445.0 0.826 6146.0 0.902 0.994 0.9771 0.9796 0.8875 0.9178
+0.2319 5929.0 0.894 425.0 0.813 6354.0 0.889 0.975 0.9786 0.9769 0.9235 0.9045
+0.2479 6149.0 0.879 439.0 0.799 6588.0 0.874 0.958 0.9758 0.9737 0.8799 0.8869
+0.2639 6341.0 0.865 435.0 0.782 6776.0 0.86 0.902 0.9695 0.9712 0.8507 0.8709
+0.2799 6518.0 0.832 426.0 0.764 6944.0 0.828 0.85 0.9645 0.9661 0.8418 0.8462
+0.2959 6769.0 0.82 448.0 0.769 7217.0 0.816 0.815 0.9615 0.9611 0.7998 0.8273
+0.3119 6730.0 0.766 426.0 0.701 7156.0 0.762 0.771 0.9457 0.9499 0.7243 0.7793
+</data>
+          <plot>
+            <title>Cycle    1. M(Fom) v. resln</title>
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="5" />
+            <plotline xcol="1" ycol="7" />
+            <plotline xcol="1" ycol="8" />
+            <plotline xcol="1" ycol="9" />
+            <plotline xcol="1" ycol="10" />
+            <plotline xcol="1" ycol="11" />
+            <plotline xcol="1" ycol="12" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:410px;height:290px;">
+        <ns0:ccp4_data title="Cycle    2. Rfactor analysis, F distribution v resln" id="data_SmartiePlot2" style="display:none;">
+          <headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers>
+          <data>0.008 1287.0 100.0 673.2 708.7 0.18 0.21 85.0 678.5 715.5 0.17 0.18
+0.024 2213.0 100.0 472.0 519.0 0.19 0.2 91.0 477.7 529.5 0.19 0.19
+0.04 2793.0 100.0 582.1 615.1 0.13 0.14 147.0 588.0 621.4 0.13 0.14
+0.056 3226.0 100.0 622.7 621.8 0.12 0.13 184.0 642.4 641.3 0.11 0.12
+0.072 3652.0 99.97 541.6 505.4 0.15 0.15 189.0 556.0 514.8 0.15 0.15
+0.088 3977.0 99.98 448.7 392.5 0.2 0.2 253.0 439.6 385.0 0.21 0.21
+0.104 4373.0 100.0 355.7 318.1 0.2 0.2 201.0 353.1 316.8 0.18 0.18
+0.12 4670.0 100.0 281.3 266.8 0.18 0.17 209.0 277.8 262.4 0.2 0.19
+0.136 4926.0 100.0 228.4 224.5 0.16 0.15 272.0 228.5 225.6 0.16 0.15
+0.152 5216.0 100.0 196.7 197.1 0.16 0.14 305.0 180.6 188.1 0.18 0.16
+0.168 5424.0 100.0 168.5 169.8 0.16 0.14 312.0 153.7 155.6 0.18 0.16
+0.184 5672.0 99.93 151.4 151.6 0.16 0.14 336.0 155.2 154.8 0.17 0.15
+0.2 5928.0 100.0 137.0 135.0 0.16 0.15 333.0 135.8 136.4 0.17 0.16
+0.216 6146.0 100.0 119.1 117.2 0.17 0.15 349.0 111.2 111.5 0.18 0.17
+0.232 6354.0 99.97 103.6 101.9 0.18 0.17 358.0 104.9 103.4 0.19 0.17
+0.248 6588.0 100.0 88.6 87.0 0.19 0.18 361.0 93.3 93.9 0.19 0.18
+0.264 6776.0 100.0 74.2 74.5 0.21 0.2 364.0 75.0 76.3 0.22 0.21
+0.28 6944.0 100.0 62.5 64.0 0.23 0.23 379.0 62.5 63.8 0.26 0.25
+0.296 7217.0 100.0 53.8 55.0 0.25 0.25 407.0 52.5 53.7 0.26 0.26
+0.312 7156.0 97.89 47.0 47.6 0.28 0.29 423.0 46.5 47.6 0.29 0.3
+</data>
+          <plot>
+            <title>Cycle    2. &lt;Rfactor&gt; v. resln</title>
+            <plotline xcol="1" ycol="6" />
+            <plotline xcol="1" ycol="7" />
+            <plotline xcol="1" ycol="11" />
+            <plotline xcol="1" ycol="12" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+          <plot>
+            <title>Cycle    2. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title>
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+            <plotline xcol="1" ycol="9" />
+            <plotline xcol="1" ycol="10" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+          <plot>
+            <title>Cycle    2. % observed v. resln</title>
+            <plotline xcol="1" ycol="3" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:410px;height:290px;">
+        <ns0:ccp4_data title="Cycle    2. FSC and  Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln" id="data_SmartiePlot3" style="display:none;">
+          <headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1 FSCfree FSCwork CorrFoFcFree CorrFoFcWork
+</headers>
+          <data>0.0081 860.0 0.936 427.0 0.844 1287.0 0.906 1.0 0.9848 0.9801 0.9525 0.9277
+0.0241 1777.0 0.927 436.0 0.83 2213.0 0.908 1.0 0.9856 0.9844 0.9479 0.9385
+0.0401 2347.0 0.96 446.0 0.899 2793.0 0.951 1.0 0.9916 0.9919 0.9609 0.9643
+0.0561 2786.0 0.956 440.0 0.901 3226.0 0.949 1.0 0.9921 0.9916 0.9647 0.9638
+0.0721 3218.0 0.938 434.0 0.856 3652.0 0.929 1.009 0.9895 0.9886 0.9557 0.9507
+0.0881 3537.0 0.92 440.0 0.816 3977.0 0.909 1.102 0.9825 0.9828 0.9343 0.9333
+0.104 3938.0 0.919 435.0 0.844 4373.0 0.911 1.089 0.9859 0.9802 0.9466 0.9215
+0.12 4224.0 0.908 446.0 0.801 4670.0 0.898 1.04 0.9795 0.9815 0.9245 0.9295
+0.136 4494.0 0.914 432.0 0.83 4926.0 0.907 1.0 0.9826 0.9843 0.924 0.9402
+0.152 4778.0 0.92 438.0 0.829 5216.0 0.913 1.0 0.9807 0.9856 0.9308 0.9439
+0.168 4984.0 0.921 438.0 0.82 5422.0 0.912 0.992 0.9815 0.9854 0.9289 0.946
+0.184 5249.0 0.906 423.0 0.805 5672.0 0.899 0.986 0.9834 0.985 0.9398 0.9432
+0.2 5489.0 0.906 439.0 0.848 5928.0 0.901 0.997 0.9814 0.9837 0.9289 0.9361
+0.216 5701.0 0.912 445.0 0.829 6146.0 0.906 0.994 0.9783 0.9831 0.8924 0.9315
+0.2319 5929.0 0.891 425.0 0.807 6354.0 0.886 0.975 0.9778 0.9796 0.9208 0.9154
+0.2479 6149.0 0.883 439.0 0.804 6588.0 0.878 0.959 0.976 0.9765 0.8792 0.899
+0.2639 6341.0 0.874 435.0 0.792 6776.0 0.869 0.909 0.9695 0.9733 0.8534 0.8797
+0.2799 6518.0 0.837 426.0 0.771 6944.0 0.833 0.85 0.9629 0.9672 0.8346 0.8501
+0.2959 6769.0 0.819 448.0 0.765 7217.0 0.816 0.815 0.9591 0.9618 0.7851 0.8307
+0.3119 6730.0 0.776 426.0 0.718 7156.0 0.773 0.771 0.9477 0.9508 0.7235 0.782
+</data>
+          <plot>
+            <title>Cycle    2. M(Fom) v. resln</title>
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="5" />
+            <plotline xcol="1" ycol="7" />
+            <plotline xcol="1" ycol="8" />
+            <plotline xcol="1" ycol="9" />
+            <plotline xcol="1" ycol="10" />
+            <plotline xcol="1" ycol="11" />
+            <plotline xcol="1" ycol="12" />
+            <xscale>oneoversqrt</xscale>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:410px;height:290px;">
+        <ns0:ccp4_data title="Rfactor analysis, stats vs cycle" id="data_SmartiePlot4" style="display:none;">
+          <headers separator=" ">Ncyc Rfact Rfree FOM -LL -LLfree rmsBOND zBOND rmsANGL zANGL rmsCHIRAL
+</headers>
+          <data>0.0 0.1794 0.1746 0.877 495061.0 27208.8 0.0208 1.683 1.854 1.15 0.126
+1.0 0.1709 0.1739 0.883 490688.0 27166.4 0.0158 1.309 1.772 1.078 0.089
+</data>
+          <plot>
+            <title>&lt;Rfactor&gt; vs cycle</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+          </plot>
+          <plot>
+            <title>FOM vs cycle</title>
+            <plotline xcol="1" ycol="4" />
+          </plot>
+          <plot>
+            <title>-LL vs cycle</title>
+            <plotline xcol="1" ycol="5" />
+          </plot>
+          <plot>
+            <title>-LLfree vs cycle</title>
+            <plotline xcol="1" ycol="6" />
+          </plot>
+          <plot>
+            <title>Geometry vs cycle</title>
+            <plotline xcol="1" ycol="7" />
+            <plotline xcol="1" ycol="8" />
+            <plotline xcol="1" ycol="9" />
+            <plotline xcol="1" ycol="10" />
+            <plotline xcol="1" ycol="11" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+    </CCP4i2ReportObjectGallery>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportFold class="" style="" label="Warnings" initiallyOpen="False" brief="Warnings">
+    <CCP4i2ReportDiv class="" style="border:0px solid blue; overflow:auto;">
+      <CCP4i2ReportDiv class="" style="border:0px solid black; position: relative; float: left;">
+        <CCP4i2ReportGeneric class="" style="">
+          <h4>/Users/nicholls/CCP4I2_PROJECTS/makelink_test0/CCP4_JOBS/job_2/job_1/log.txt</h4>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  WARNING : residue: PLP              1007  chain:A4_</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:CG   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:CD   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:NE   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:CZ   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:NH1  ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:NH2  ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:CG   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:CD   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:NE   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:CZ   ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:NH1  ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportDiv class="" style="" />
+        <CCP4i2ReportGeneric class="" style="">
+          <pre>  ATTENTION: atom:NH2  ARG                56  A1_  is missing in the structure</pre>
+        </CCP4i2ReportGeneric>
+      </CCP4i2ReportDiv>
+    </CCP4i2ReportDiv>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+      <div id="input_file_6b666362-461f-11ed-9f85-3e9301522065" />
+      <div id="input_file_6b6643f0-461f-11ed-9f85-3e9301522065" />
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_833e5084-4620-11ed-9da8-3e9301522065" />
+      <div id="input_file_8344af38-4620-11ed-9da8-3e9301522065" />
+      <div id="input_file_96b7e4a4-4620-11ed-bc78-3e9301522065" />
+      <div id="input_file_96b80574-4620-11ed-bc78-3e9301522065" />
+      <div id="input_file_96b8248c-4620-11ed-bc78-3e9301522065" />
+      <div id="input_file_96b842e6-4620-11ed-bc78-3e9301522065" />
+      <div id="input_file_96b8908e-4620-11ed-bc78-3e9301522065" />
+      <div id="input_file_96b8e8e0-4620-11ed-bc78-3e9301522065" />
+      <div id="input_file_96b9067c-4620-11ed-bc78-3e9301522065" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="09:08 07-Oct-2022" finishtime="09:15 07-Oct-2022" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="09:08 07-Oct-2022" finishtime="09:15 07-Oct-2022" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="" />
+  </CCP4i2ReportFold>
+</CCP4i2Reportprosmart_refmac_report>

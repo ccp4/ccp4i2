@@ -1,0 +1,49 @@
+{
+  "status": "Finished",
+  "taskname": "AcedrgLink",
+  "taskversion": "1.0",
+  "jobnumber": "1.1",
+  "projectid": "d3eb43a6-461c-11ed-9da8-3e9301522065",
+  "jobtitle": "AcedrgLink",
+  "creationtime": 1665133606.009645,
+  "projectname": "makelink_test0",
+  "fileroot": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/job_1/",
+  "tasktitle": "AcedrgLink",
+  "jobid": "5e67c6e2-461f-11ed-9f85-3e9301522065",
+  "descendentjobs": [],
+  "finishtime": 1665133627.755572,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 8,
+      "filename": "LYS-PLP_link.cif",
+      "annotation": "Link dictionary: LYS(NZ) - PLP(C4A)",
+      "jobparamname": "CIF_OUT",
+      "jobid": "5e67c6e2-461f-11ed-9f85-3e9301522065",
+      "pathflag": 1,
+      "filetype": "application/refmac-dictionary",
+      "projectid": "d3eb43a6-461c-11ed-9da8-3e9301522065",
+      "jobnumber": "1.1",
+      "projectname": "makelink_test0",
+      "filetypeclass": "DictDataFile",
+      "fileId": "6b5ce580-461f-11ed-9f85-3e9301522065",
+      "baseName": "LYS-PLP_link.cif",
+      "relpath": "CCP4_JOBS/job_1/job_1"
+    }
+  ],
+  "filenames": {
+    "INSTRUCTION_FILE": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/link_instruction.txt",
+    "CIF_OUT": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/job_1/LYS-PLP_link.cif",
+    "UNL_PDB": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/job_1/LYS-PLP_TMP/UNL_for_link.pdb",
+    "UNL_CIF": "<PROJECTS_DIR>/makelink_test0/CCP4_JOBS/job_1/job_1/LYS-PLP_TMP/UNL_for_link.cif"
+  },
+  "_fixture_meta": {
+    "task_name": "AcedrgLink",
+    "report_class": "AcedrgLink_report",
+    "report_module": "ccp4i2.wrappers.AcedrgLink.script.AcedrgLink_report",
+    "job_number": "1.1",
+    "job_status": "Finished",
+    "project_name": "makelink_test0",
+    "has_program_xml": true
+  }
+}

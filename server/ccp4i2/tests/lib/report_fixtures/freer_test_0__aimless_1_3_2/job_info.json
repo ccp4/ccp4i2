@@ -1,0 +1,71 @@
+{
+  "status": "Finished",
+  "taskname": "aimless",
+  "taskversion": "1.0",
+  "jobnumber": "1.3.2",
+  "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+  "jobtitle": "aimless",
+  "creationtime": 1627471983.91,
+  "projectname": "freer_test_0",
+  "fileroot": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/job_3/job_2/",
+  "tasktitle": "aimless",
+  "jobid": "91b8130b-ef97-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627471984.38,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 4,
+      "filename": "HKLOUT.mtz",
+      "annotation": "",
+      "jobparamname": "MTZMERGEDOUT",
+      "jobid": "91b8130b-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1.3.2",
+      "projectname": "freer_test_0",
+      "filetypeclass": "MtzDataFile",
+      "fileId": "929c87b6-ef97-11eb-82cf-08002705bc84",
+      "baseName": "HKLOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    },
+    {
+      "filetypeid": 14,
+      "filename": "SCALES.scales",
+      "annotation": "",
+      "jobparamname": "SCALES",
+      "jobid": "91b8130b-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "Dummy",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1.3.2",
+      "projectname": "freer_test_0",
+      "filetypeclass": "",
+      "fileId": "929c87b7-ef97-11eb-82cf-08002705bc84",
+      "baseName": "SCALES.scales",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    }
+  ],
+  "filenames": {
+    "UNMERGEDFILE": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/job_3/job_1/MTZUNMERGEDOUT.mtz",
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "XMLOUT": "",
+    "SCALES": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/job_3/job_2/SCALES.scales",
+    "ROGUES": "",
+    "NORMPLOT": "",
+    "ANOMPLOT": "",
+    "CORRELPLOT": "",
+    "ROGUEPLOT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless",
+    "report_class": "aimless_report",
+    "report_module": "ccp4i2.wrappers.aimless.script.aimless_report",
+    "job_number": "1.3.2",
+    "job_status": "Finished",
+    "project_name": "freer_test_0",
+    "has_program_xml": true
+  }
+}

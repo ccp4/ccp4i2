@@ -1,0 +1,88 @@
+{
+  "status": "Finished",
+  "taskname": "LidiaAcedrgNew",
+  "taskversion": "1.0",
+  "jobnumber": "1.1",
+  "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+  "jobtitle": "LidiaAcedrgNew",
+  "creationtime": 1594563151.18,
+  "projectname": "SubstituteLigandPdbIn_test_0",
+  "fileroot": "<PROJECTS_DIR>/SubstituteLigandPdbIn_test_0/CCP4_JOBS/job_1/job_1/",
+  "tasktitle": "LidiaAcedrgNew",
+  "jobid": "b97f42c6-c449-11ea-a15f-3417eba0e4fd",
+  "descendentjobs": [
+    [
+      "b97f42c7-c449-11ea-a15f-3417eba0e4fd",
+      []
+    ]
+  ],
+  "finishtime": 1594563303.89,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 22,
+      "filename": "DRG_RDKIT.mol",
+      "annotation": "MOL file from RDKIT",
+      "jobparamname": "MOLOUT_LIST",
+      "jobid": "b97f42c6-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "chemical/x-mdl-molfile",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1.1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "MDLMolDataFile",
+      "fileId": "147ef07f-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "DRG_RDKIT.mol",
+      "relpath": "CCP4_JOBS/job_1/job_1"
+    },
+    {
+      "filetypeid": 8,
+      "filename": "DRG.cif",
+      "annotation": "Dictionary for ligand DRG",
+      "jobparamname": "DICTOUT_LIST",
+      "jobid": "b97f42c6-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/refmac-dictionary",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1.1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "DictDataFile",
+      "fileId": "147ef080-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "DRG.cif",
+      "relpath": "CCP4_JOBS/job_1/job_1"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "DRG.pdb",
+      "annotation": "Coordinates for ligand DRG",
+      "jobparamname": "XYZOUT_LIST",
+      "jobid": "b97f42c6-c449-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "b8e5e2c0-c449-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1.1",
+      "projectname": "SubstituteLigandPdbIn_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "147ef081-c44a-11ea-a15f-3417eba0e4fd",
+      "baseName": "DRG.pdb",
+      "relpath": "CCP4_JOBS/job_1/job_1"
+    }
+  ],
+  "filenames": {
+    "DICTIN2": "",
+    "DICTIN": "",
+    "SMILESFILEIN": "",
+    "MOLIN": "",
+    "MOL2IN": "",
+    "METAL_STRUCTURE": ""
+  },
+  "_fixture_meta": {
+    "task_name": "LidiaAcedrgNew",
+    "report_class": "LidiaAcedrgNew_report",
+    "report_module": "ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report",
+    "job_number": "1.1",
+    "job_status": "Finished",
+    "project_name": "SubstituteLigandPdbIn_test_0",
+    "has_program_xml": true
+  }
+}

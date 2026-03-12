@@ -1,0 +1,192 @@
+{
+  "status": "Finished",
+  "taskname": "shelx",
+  "taskversion": "1.0",
+  "jobnumber": "2",
+  "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+  "jobtitle": "shelx",
+  "creationtime": 1646652989.101312,
+  "projectname": "shelxSAD_test_1",
+  "fileroot": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_2/",
+  "tasktitle": "shelx",
+  "jobid": "d457c02c-9e0a-11ec-a93f-08002705bc84",
+  "descendentjobs": [
+    [
+      "07fe2380-9e0b-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "07fe2381-9e0b-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "0b1ff110-9e0b-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "0ccbf1a9-9e0b-11ec-a93f-08002705bc84",
+      []
+    ],
+    [
+      "4d9a2a24-9e0b-11ec-a93f-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1646653326.480953,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_shelxsad_test_1_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "F_SIGFanom",
+      "jobid": "a1c4d24e-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "c7fa15e8-9e0a-11ec-a93f-08002705bc84",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 29,
+      "filename": "ASUCONTENTFILE.asu.xml",
+      "annotation": "",
+      "jobparamname": "SEQIN",
+      "jobid": "ec490a24-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-asu-content",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "3",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "AsuDataFile",
+      "fileId": "edb6bc1c-9e0a-11ec-a93f-08002705bc84",
+      "relpath": "CCP4_JOBS/job_3"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "n_part.pdb",
+      "annotation": "Model coordinates",
+      "jobparamname": "XYZOUT",
+      "jobid": "d457c02c-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "9cf2fb72-9e0b-11ec-a93f-08002705bc84",
+      "baseName": "n_part.pdb",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 13,
+      "filename": "FPHOUT_2FOFC.mtz",
+      "annotation": "2mFo-DFc weighted density map coef.",
+      "jobparamname": "FPHOUT_2FOFC",
+      "jobid": "d457c02c-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-map",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "MapCoeffsDataFile",
+      "fileId": "9cf2fb73-9e0b-11ec-a93f-08002705bc84",
+      "baseName": "FPHOUT_2FOFC.mtz",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "n_PDBCUR.pdb",
+      "annotation": "Anomalous substructure coordinates",
+      "jobparamname": "XYZOUT_SUBSTR",
+      "jobid": "d457c02c-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "9cf2fb74-9e0b-11ec-a93f-08002705bc84",
+      "baseName": "n_PDBCUR.pdb",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 12,
+      "filename": "FPHOUT_HL.mtz",
+      "annotation": "\"Best\" phases",
+      "jobparamname": "FPHOUT_HL",
+      "jobid": "d457c02c-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-phases",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "PhsDataFile",
+      "fileId": "9cf2fb75-9e0b-11ec-a93f-08002705bc84",
+      "baseName": "FPHOUT_HL.mtz",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "FREEROUT.mtz",
+      "annotation": "",
+      "jobparamname": "FREEROUT",
+      "jobid": "d457c02c-9e0a-11ec-a93f-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "980f5148-9e0a-11ec-a93f-08002705bc84",
+      "jobnumber": "2",
+      "projectname": "shelxSAD_test_1",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "9cf2fb76-9e0b-11ec-a93f-08002705bc84",
+      "baseName": "FREEROUT.mtz",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "filenames": {
+    "F_SIGFanom": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_1/1_shelxsad_test_1_obsout_import_merged.mtz",
+    "F_SIGFanom2": "",
+    "F_SIGFanom3": "",
+    "F_SIGFanom4": "",
+    "F_SIGFanom_nonmtz": "",
+    "F_SIGFanom2_nonmtz": "",
+    "F_SIGFanom3_nonmtz": "",
+    "F_SIGFanom4_nonmtz": "",
+    "F_SIGFnative": "",
+    "F_SIGFnative_nonmtz": "",
+    "SEQIN": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_3/ASUCONTENTFILE.asu.xml",
+    "XYZIN": "",
+    "XYZIN_SUB": "",
+    "FPHIN_HL": "",
+    "FREERFLAG": "",
+    "XYZOUT": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_2/n_part.pdb",
+    "FPHOUT": "",
+    "FPHOUT_2FOFC": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_2/FPHOUT_2FOFC.mtz",
+    "XYZOUT_SUBSTR": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_2/n_PDBCUR.pdb",
+    "FPHOUT_HL": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_2/FPHOUT_HL.mtz",
+    "FPHOUT_DIFF": "",
+    "FPHOUT_DIFFANOM": "",
+    "XYZOUT_HAND2": "",
+    "FPHOUT_HAND2": "",
+    "FPHOUT_HL_HAND2": "",
+    "F_SIGFanom_OUT": "",
+    "F_SIGFanom_OUT2": "",
+    "F_SIGFanom_OUT3": "",
+    "F_SIGFanom_OUT4": "",
+    "F_SIGF_OUT": "",
+    "FREEROUT": "<PROJECTS_DIR>/shelxSAD_test_1/CCP4_JOBS/job_2/FREEROUT.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "shelx",
+    "report_class": "shelx_report",
+    "report_module": "ccp4i2.pipelines.shelx.script.shelx_report",
+    "job_number": "2",
+    "job_status": "Finished",
+    "project_name": "shelxSAD_test_1",
+    "has_program_xml": true
+  }
+}

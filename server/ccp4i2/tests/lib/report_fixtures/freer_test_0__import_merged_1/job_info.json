@@ -1,0 +1,129 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+  "jobtitle": "import_merged",
+  "creationtime": 1627471862.33,
+  "projectname": "freer_test_0",
+  "fileroot": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "49de53d8-ef97-11eb-82cf-08002705bc84",
+  "descendentjobs": [
+    [
+      "91b81306-ef97-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "91b81307-ef97-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "91b81308-ef97-11eb-82cf-08002705bc84",
+      [
+        "91b81309-ef97-11eb-82cf-08002705bc84",
+        "91b8130b-ef97-11eb-82cf-08002705bc84",
+        "984c3c60-ef97-11eb-82cf-08002705bc84"
+      ]
+    ],
+    [
+      "91b81309-ef97-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "91b8130b-ef97-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "984c3c60-ef97-11eb-82cf-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1627471996.07,
+  "inputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "merged_intensities_Xe_1.mtz",
+      "annotation": "Reflection data loaded from merged_intensities_Xe.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "49de53d8-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "freer_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "91139b00-ef97-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "merged_intensities_Xe_1.mtz",
+      "annotation": "Reflection data loaded from merged_intensities_Xe.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "49de53d8-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "freer_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "91139b00-ef97-11eb-82cf-08002705bc84",
+      "baseName": "merged_intensities_Xe_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "1_freer_test_0_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "49de53d8-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "freer_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "9991ee96-ef97-11eb-82cf-08002705bc84",
+      "baseName": "1_freer_test_0_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_freer_test_0_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "49de53d8-ef97-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "4325d8ea-ef97-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "freer_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "9991ee97-ef97-11eb-82cf-08002705bc84",
+      "baseName": "1_freer_test_0_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/freer_test_0/CCP4_IMPORTED_FILES/merged_intensities_Xe_1.mtz",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "",
+    "OBSOUT": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/1_freer_test_0_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/freer_test_0/CCP4_JOBS/job_1/1_freer_test_0_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "freer_test_0",
+    "has_program_xml": true
+  }
+}

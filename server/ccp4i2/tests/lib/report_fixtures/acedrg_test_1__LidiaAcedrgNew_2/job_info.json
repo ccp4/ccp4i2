@@ -1,0 +1,72 @@
+{
+  "status": "Finished",
+  "taskname": "LidiaAcedrgNew",
+  "taskversion": "1.0",
+  "jobnumber": "2",
+  "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+  "jobtitle": "LidiaAcedrgNew",
+  "creationtime": 1717747605.750981,
+  "projectname": "acedrg_test_1",
+  "fileroot": "<PROJECTS_DIR>/acedrg_test_1/CCP4_JOBS/job_2/",
+  "tasktitle": "LidiaAcedrgNew",
+  "jobid": "e20d0678-24a4-11ef-aaff-2f2a8a2e5bb4",
+  "descendentjobs": [
+    [
+      "ee1e75f0-24a4-11ef-aaff-2f2a8a2e5bb4",
+      []
+    ]
+  ],
+  "finishtime": 1717747688.220987,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 22,
+      "filename": "HCA_RDKIT.mol",
+      "annotation": "MOL file from RDKIT",
+      "jobparamname": "MOLOUT_LIST",
+      "jobid": "e20d0678-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "pathflag": 1,
+      "filetype": "chemical/x-mdl-molfile",
+      "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "jobnumber": "2",
+      "projectname": "acedrg_test_1",
+      "filetypeclass": "MDLMolDataFile",
+      "fileId": "132a85ac-24a5-11ef-aaff-2f2a8a2e5bb4",
+      "baseName": "HCA_RDKIT.mol",
+      "relpath": "CCP4_JOBS/job_2"
+    },
+    {
+      "filetypeid": 8,
+      "filename": "HCA.cif",
+      "annotation": "Dictionary for ligand HCA",
+      "jobparamname": "DICTOUT_LIST",
+      "jobid": "e20d0678-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "pathflag": 1,
+      "filetype": "application/refmac-dictionary",
+      "projectid": "bc461f60-24a4-11ef-aaff-2f2a8a2e5bb4",
+      "jobnumber": "2",
+      "projectname": "acedrg_test_1",
+      "filetypeclass": "DictDataFile",
+      "fileId": "132a85ad-24a5-11ef-aaff-2f2a8a2e5bb4",
+      "baseName": "HCA.cif",
+      "relpath": "CCP4_JOBS/job_2"
+    }
+  ],
+  "filenames": {
+    "DICTIN2": "",
+    "DICTIN": "",
+    "SMILESFILEIN": "",
+    "MOLIN": "",
+    "MOL2IN": "",
+    "METAL_STRUCTURE": ""
+  },
+  "_fixture_meta": {
+    "task_name": "LidiaAcedrgNew",
+    "report_class": "LidiaAcedrgNew_report",
+    "report_module": "ccp4i2.pipelines.LidiaAcedrgNew.script.LidiaAcedrgNew_report",
+    "job_number": "2",
+    "job_status": "Finished",
+    "project_name": "acedrg_test_1",
+    "has_program_xml": true
+  }
+}

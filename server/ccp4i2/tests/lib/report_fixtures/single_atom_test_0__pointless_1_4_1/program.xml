@@ -1,0 +1,465 @@
+<POINTLESS version="1.12.10" RunTime="Wed Jul 28 13:41:42 2021">
+<SquaredFs>false</SquaredFs>
+<ReflectionFile stream="HKLIN" name="/home/kyle/CCP4I2_PROJECTS/single_atom_test_0/CCP4_JOBS/job_1/1_single_atom_test_0_obsout_import_merged.mtz">
+<FileType>MTZ</FileType>
+<cell>
+ <a>  19.465</a> <b>  21.432</b> <c>  29.523</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma>  90.000</gamma>
+</cell>
+<MergedData>True</MergedData>
+<SpacegroupName> P 21 21 21</SpacegroupName>
+</ReflectionFile>
+<ReflectionData>
+   <NumberReflections>10675</NumberReflections>
+   <NumberObservations>10675</NumberObservations>
+   <NumberParts>10675</NumberParts>
+   <ResolutionHigh>    0.86</ResolutionHigh>
+   <NumberLattices>0</NumberLattices>
+   <NumberBatches>1</NumberBatches>
+   <NumberDatasets>1</NumberDatasets>
+   <Dataset  name="single_atom_test_0/njw/ds1">
+<cell>
+ <a>  19.465</a> <b>  21.432</b> <c>  29.523</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma>  90.000</gamma>
+</cell>
+<Deviation>0.000000</Deviation>
+      <Wavelength>0.00000</Wavelength>
+      <Run>
+      <number>1</number>
+      <Datasetname>single_atom_test_0/njw/ds1</Datasetname>
+      <BatchRange>1 1</BatchRange>
+      <BatchOffset>0</BatchOffset>
+      <PhiRange>0 0</PhiRange>
+      <FileStream>HKLIN</FileStream>
+      <Used>true</Used>
+      </Run>
+   </Dataset>
+</ReflectionData>
+
+<CCP4Table groupID="Graph" id="Resolution estimate from Pointless" title="Mn(I/sigI) and CC(1/2) [in P1] vs. resolution">
+<plot>
+<title>Resolution estimate 1.07A</title>
+<description>Plot of data strength vs. resolution, and cutoffs to keep only strong data for analysis
+CC(1/2) [in P1] (threshold  0.60), or &lt;I/sigma(I)&gt; (threshold   6.00)
+High resolution limit reset to 1.07   using Mn(I/sigmaI) cutoff 
+</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0.0125028" max="1.33686"/>
+<yrange min="0" max="1"/>
+<yrange min="0" max="12" rightaxis="true"/>
+
+<plotline xcol="  2" ycol="  7" rightaxis="true" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  6" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid CC(1/2)   N_CC   CCfit  Mn(I/sigI)      N (I/sigI)/10
+</headers>
+<data>
+  1  0.0346   5.38    -         -    -          99.34     25       9.934
+  2  0.0787   3.56    -         -    -          82.92     32       8.292
+  3  0.1229   2.85    -         -    -          59.32     77       5.932
+  4  0.1670   2.45    -         -    -          51.95    112       5.195
+  5  0.2112   2.18    -         -    -          42.91    113       4.291
+  6  0.2553   1.98    -         -    -          35.85    115       3.585
+  7  0.2994   1.83    -         -    -          34.60    151       3.460
+  8  0.3436   1.71    -         -    -          32.81    176       3.281
+  9  0.3877   1.61    -         -    -          26.49    201       2.649
+ 10  0.4319   1.52    -         -    -          21.72    219       2.172
+ 11  0.4760   1.45    -         -    -          20.11    230       2.011
+ 12  0.5202   1.39    -         -    -          16.75    246       1.675
+ 13  0.5643   1.33    -         -    -          15.24    253       1.524
+ 14  0.6085   1.28    -         -    -          12.95    267       1.295
+ 15  0.6526   1.24    -         -    -          11.93    284       1.193
+ 16  0.6968   1.20    -         -    -          10.95    288       1.095
+ 17  0.7409   1.16    -         -    -          10.32    307       1.032
+ 18  0.7850   1.13    -         -    -           8.73    311       0.873
+ 19  0.8292   1.10    -         -    -           7.75    330       0.775
+ 20  0.8733   1.07    -         -    -           7.28    338       0.728
+ 21  0.9175   1.04    -         -    -           5.92    337       0.592
+ 22  0.9616   1.02    -         -    -           5.07    344       0.507
+ 23  1.0058   1.00    -         -    -           4.67    366       0.467
+ 24  1.0499   0.98    -         -    -           4.15    368       0.415
+ 25  1.0941   0.96    -         -    -           3.56    385       0.356
+ 26  1.1382   0.94    -         -    -           3.38    371       0.338
+ 27  1.1823   0.92    -         -    -           3.14    404       0.314
+ 28  1.2265   0.90    -         -    -           2.69    391       0.269
+ 29  1.2706   0.89    -         -    -           2.30    391       0.230
+ 30  1.3148   0.87    -         -    -           2.04    291       0.204
+</data>
+</CCP4Table>
+<CutoffMessage>High resolution limit reset to 1.07   using Mn(I/sigmaI) cutoff </CutoffMessage>
+<ResolutionUsed> <ResolutionHigh>1.070</ResolutionHigh></ResolutionUsed> 
+<IovSigCutoff>6.000</IovSigCutoff>
+<ResolutionHighIovsigI>1.07</ResolutionHighIovsigI>
+<CCHalfCutoff>0.600</CCHalfCutoff>
+ 
+
+<CCP4Table groupID="Graph" id="L-test" title="L-test for twinning, twin fraction 0.000">
+<plot>
+<title>Cumulative distribution of |L|, estimated fraction 0.000</title>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  4" >
+<symbolsize>  0</symbolsize>
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  3" >
+<symbolsize>  0</symbolsize>
+<linestyle>-</linestyle>
+<colour>green</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+<colour>black</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+      |L|       N(|L|)  Untwinned    Twinned
+</headers>
+<data>
+     0.0000     0.0000     0.0000     0.0000
+     0.0500     0.0454     0.0500     0.0749
+     0.1000     0.0911     0.1000     0.1495
+     0.1500     0.1376     0.1500     0.2233
+     0.2000     0.1851     0.2000     0.2960
+     0.2500     0.2309     0.2500     0.3672
+     0.3000     0.2780     0.3000     0.4365
+     0.3500     0.3254     0.3500     0.5036
+     0.4000     0.3732     0.4000     0.5680
+     0.4500     0.4196     0.4500     0.6294
+     0.5000     0.4695     0.5000     0.6875
+     0.5500     0.5201     0.5500     0.7418
+     0.6000     0.5688     0.6000     0.7920
+     0.6500     0.6192     0.6500     0.8377
+     0.7000     0.6722     0.7000     0.8785
+     0.7500     0.7244     0.7500     0.9141
+     0.8000     0.7791     0.8000     0.9440
+     0.8500     0.8381     0.8500     0.9679
+     0.9000     0.8974     0.9000     0.9855
+     0.9500     0.9572     0.9500     0.9963
+     1.0000     1.0000     1.0000     1.0000
+</data>
+</CCP4Table>
+
+<LatticeSymmetry>
+   <LatticegroupName>P 2 2 2</LatticegroupName>
+   <cell>
+ <a>  19.465</a> <b>  21.432</b> <c>  29.523</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma>  90.000</gamma>
+</cell>
+   <CellDelta>    0.00</CellDelta>
+
+</LatticeSymmetry>
+<ElementScores>
+   <Element>
+   <number>  1 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  1 </RotationOrder> <Axis> 0 0 0 </Axis>
+<SymmetryElementString>identity</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  2 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 0 0 1 </Axis>
+<SymmetryElementString>2-fold l ( 0 0 1) {-h,-k,l}</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  3 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 0 1 0 </Axis>
+<SymmetryElementString>2-fold k ( 0 1 0) {-h,k,-l}</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  4 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 1 0 0 </Axis>
+<SymmetryElementString>2-fold h ( 1 0 0) {h,-k,-l}</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+</ElementScores>
+<LaueGroupScoreList>
+   <LaueGroupScore Accept="Original">
+   <LaueGroupScoreAccept>Original</LaueGroupScoreAccept>
+   <LaueGroupScoreString>=</LaueGroupScoreString>
+   <number> 1</number> <LaueGroupName>   P m m m</LaueGroupName>
+   <LatticeType>oP</LatticeType>
+   <LaueGroupScoreStars> ***</LaueGroupScoreStars>
+   <Likelihood>    1.000</Likelihood>   <NetZCC>  3.98</NetZCC><ZCC_plus>  3.98</ZCC_plus><ZCC_minus>  0.00</ZCC_minus>
+<CC>  1.00 </CC><R>  0.00 </R><CellDelta>  0.0</CellDelta>
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+   <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   </LaueGroupScore>
+</LaueGroupScoreList>
+
+<CCP4Table groupID="Graph" id="AxialReflections-a" title="Axial reflections, axis a (lattice frame) screw axis 2(1)">
+<plot>
+<title>I/sigI vs. index, axis a, screw axis 2(1)</title>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  5" >
+<linestyle>-</linestyle>
+<colour>black</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  4" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>I vs. index, axis a, screw axis 2(1)</title>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+   Index          I       sigI    I/sigI   I'/sigI
+</headers>
+<data>
+       3          4          3      1.35      0.00
+       4       1232         12    103.98    103.96
+       5         13          3      4.79      0.00
+       6         92          5     17.99     17.94
+       7          0          4      0.02      0.00
+       8        647         15     43.73     43.73
+       9          3          3      1.00      0.00
+      10        751         15     50.67     50.66
+      11          2          3      0.52      0.00
+      12       1172         35     33.44     33.44
+      13          3          3      0.95      0.00
+      14        641         40     16.15     16.15
+      15          1          3      0.48      0.00
+      16        433         51      8.44      8.44
+      17          1          4      0.22      0.00
+      18          4          5      0.85      0.82
+      19          7          5      1.44      1.12
+      20         71         12      6.10      6.08
+      21          3          4      0.66      0.20
+      22         18          7      2.57      2.57
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="AxialReflections-b" title="Axial reflections, axis b (lattice frame) screw axis 2(1)">
+<plot>
+<title>I/sigI vs. index, axis b, screw axis 2(1)</title>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  5" >
+<linestyle>-</linestyle>
+<colour>black</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  4" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>I vs. index, axis b, screw axis 2(1)</title>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+   Index          I       sigI    I/sigI   I'/sigI
+</headers>
+<data>
+       3          1          3      0.36      0.00
+       4         90          5     16.47     16.45
+       5          5          3      1.56      0.00
+       6       6290         31    202.20    202.20
+       7          2          3      0.76      0.00
+       8       6805         42    161.71    161.71
+       9          1          3      0.19      0.00
+      10         28          4      6.91      6.90
+      11          0          3      0.01      0.00
+      12        582         12     46.63     46.63
+      13         -1          3     -0.19      0.00
+      14        174          9     18.72     18.72
+      15         -4          3     -1.48      0.00
+      16          6          3      2.09      2.08
+      17          2          3      0.73      0.00
+      18        117         13      8.74      8.73
+      19          5          3      1.75      0.24
+      20         89          9      9.41      9.40
+      21         -1          4     -0.38      0.00
+      22          4          3      1.28      1.25
+      23          6          3      1.81      1.77
+      24          3          3      1.07      1.02
+</data>
+</CCP4Table>
+
+<CCP4Table groupID="Graph" id="AxialReflections-c" title="Axial reflections, axis c (lattice frame) screw axis 2(1)">
+<plot>
+<title>I/sigI vs. index, axis c, screw axis 2(1)</title>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  5" >
+<linestyle>-</linestyle>
+<colour>black</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  4" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>I vs. index, axis c, screw axis 2(1)</title>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+   Index          I       sigI    I/sigI   I'/sigI
+</headers>
+<data>
+       4        395          9     43.22     43.20
+       5         10          3      3.62      0.00
+       6       5148       1103      4.67      4.67
+       7          4          3      1.45      0.00
+       8        306          9     34.47     34.45
+       9          3          3      1.17      0.00
+      10        235          9     26.35     26.33
+      11          4          3      1.46      0.00
+      12        159          8     19.13     19.11
+      13          4          3      1.51      0.00
+      14        211          7     28.59     28.58
+      15          1          3      0.45      0.00
+      16        107          6     18.87     18.86
+      17          3          3      0.85      0.11
+      18          6          3      2.23      2.20
+      19          1          4      0.23      0.00
+      20        139          7     20.45     20.45
+      21          1          3      0.34      0.00
+      22          3          3      1.01      0.99
+      23          3          3      0.92      0.67
+      24         33          4      9.04      9.00
+      25          5          3      1.89      1.53
+      26         15          3      5.11      5.06
+      27          3          3      1.03      0.49
+      28         58          8      7.30      7.29
+      29          2          3      0.71      0.00
+      30        138         54      2.57      2.57
+      31         -0          3     -0.06      0.00
+      32          2          3      0.62      0.59
+      33          3          3      1.12      1.10
+      34         -1          3     -0.23      0.00
+</data>
+</CCP4Table>
+<ZoneScoreList>
+   <ZoneLaueGroup name="P m m m">
+   <Zone>
+   <Number> 1</Number><ZoneType>screw axis 2(1) [a]    </ZoneType><Nobs>      20</Nobs><PeakHeight>   0.991</PeakHeight><SDPkHt>  
+   0.222</SDPkHt><Prob>   0.942</Prob><Condition>h00: h=2n</Condition>
+   <ZoneScoreStars>***</ZoneScoreStars>
+   </Zone>
+   <Zone>
+   <Number> 2</Number><ZoneType>screw axis 2(1) [b]    </ZoneType><Nobs>      22</Nobs><PeakHeight>   0.992</PeakHeight><SDPkHt>  
+   0.229</SDPkHt><Prob>   0.939</Prob><Condition>0k0: k=2n</Condition>
+   <ZoneScoreStars>***</ZoneScoreStars>
+   </Zone>
+   <Zone>
+   <Number> 3</Number><ZoneType>screw axis 2(1) [c]    </ZoneType><Nobs>      31</Nobs><PeakHeight>   0.966</PeakHeight><SDPkHt>  
+   0.202</SDPkHt><Prob>   0.947</Prob><Condition>00l: l=2n</Condition>
+   <ZoneScoreStars>***</ZoneScoreStars>
+   </Zone>
+   </ZoneLaueGroup>
+</ZoneScoreList>
+
+<SpacegroupList>
+   
+<Spacegroup>
+   <SpacegroupName>    P 21 21 21</SpacegroupName><SGnumber> 19</SGnumber>   <TotalProb>  0.837</TotalProb><SysAbsProb>  0.837</SysAbsProb>   
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+      <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <Condition> h00: h=2n, 0k0: k=2n, 00l: l=2n </Condition>   <ZoneNumbers>1,2,3</ZoneNumbers>
+   </Spacegroup>
+   
+<Spacegroup>
+   <SpacegroupName>     P 21 2 21</SpacegroupName><SGnumber> 18</SGnumber>   <TotalProb>  0.055</TotalProb><SysAbsProb>  0.055</SysAbsProb>   
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+      <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <Condition> h00: h=2n, 00l: l=2n </Condition>   <ZoneNumbers>1,3</ZoneNumbers>
+   </Spacegroup>
+   
+<Spacegroup>
+   <SpacegroupName>     P 2 21 21</SpacegroupName><SGnumber> 18</SGnumber>   <TotalProb>  0.052</TotalProb><SysAbsProb>  0.052</SysAbsProb>   
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+      <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <Condition> 0k0: k=2n, 00l: l=2n </Condition>   <ZoneNumbers>2,3</ZoneNumbers>
+   </Spacegroup>
+   
+<Spacegroup>
+   <SpacegroupName>     P 21 21 2</SpacegroupName><SGnumber> 18</SGnumber>   <TotalProb>  0.047</TotalProb><SysAbsProb>  0.047</SysAbsProb>   
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+      <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <Condition> h00: h=2n, 0k0: k=2n </Condition>   <ZoneNumbers>1,2</ZoneNumbers>
+   </Spacegroup>
+</SpacegroupList>
+<SolutionMessage>Choosing specified space group P 21 21 21
+ with reindex operator [h,k,l]</SolutionMessage>
+
+<BestSolutionType>space group</BestSolutionType>
+
+<BestSolution Type="spacegroup">
+   <GroupName>P 21 21 21</GroupName>
+   <SGnumber>19</SGnumber>
+   <CCP4_SGnumber>19</CCP4_SGnumber>
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+   <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <LGProb>   1.000</LGProb>
+   <SysAbsProb>   0.837</SysAbsProb>
+   <Confidence>    1.000</Confidence>
+   <LGconfidence>   1.000</LGconfidence>
+   <TotalProb>  0.837</TotalProb>
+</BestSolution>
+<BestCell><cell>
+ <a>  19.465</a> <b>  21.432</b> <c>  29.523</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma>  90.000</gamma>
+</cell>
+</BestCell>
+</POINTLESS>

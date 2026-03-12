@@ -1,0 +1,48 @@
+{
+  "status": "Finished",
+  "taskname": "ProvideAsuContents",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "57eacf56-c446-11ea-a15f-3417eba0e4fd",
+  "jobtitle": "ProvideAsuContents",
+  "creationtime": 1594561699.09,
+  "projectname": "ProvideAsuContents_test_0",
+  "fileroot": "<PROJECTS_DIR>/ProvideAsuContents_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "ProvideAsuContents",
+  "jobid": "57eacf57-c446-11ea-a15f-3417eba0e4fd",
+  "descendentjobs": [],
+  "finishtime": 1594561699.81,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 29,
+      "filename": "ASUCONTENTFILE.asu.xml",
+      "annotation": "",
+      "jobparamname": "ASUCONTENTFILE",
+      "jobid": "57eacf57-c446-11ea-a15f-3417eba0e4fd",
+      "pathflag": 1,
+      "filetype": "application/CCP4-asu-content",
+      "projectid": "57eacf56-c446-11ea-a15f-3417eba0e4fd",
+      "jobnumber": "1",
+      "projectname": "ProvideAsuContents_test_0",
+      "filetypeclass": "AsuDataFile",
+      "fileId": "5866ea8c-c446-11ea-a15f-3417eba0e4fd",
+      "baseName": "ASUCONTENTFILE.asu.xml",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "ASUCONTENTIN": "",
+    "HKLIN": "",
+    "ASUCONTENTFILE": "<PROJECTS_DIR>/ProvideAsuContents_test_0/CCP4_JOBS/job_1/ASUCONTENTFILE.asu.xml"
+  },
+  "_fixture_meta": {
+    "task_name": "ProvideAsuContents",
+    "report_class": "ProvideAsuContents_report",
+    "report_module": "ccp4i2.wrappers.ProvideAsuContents.script.ProvideAsuContents_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "ProvideAsuContents_test_0",
+    "has_program_xml": true
+  }
+}

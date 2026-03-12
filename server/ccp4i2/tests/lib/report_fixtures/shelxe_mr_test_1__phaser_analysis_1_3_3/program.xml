@@ -1,0 +1,130 @@
+<PHASER_ANALYSIS name="P1/xtl1/ds1">
+  <CCP4Table groupID="Graph" id="2ndmoment" title=" Weighted second moments after Anisotropy Correction">
+    <plot>
+      <title>Weighted second moments vs resolution (acentric only)</title>
+      <plotline xcol="1" ycol="2"/>
+      <plotline xcol="1" ycol="3"/>
+      <plotline xcol="1" ycol="4"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+    <headers>
+1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+    <data>
+0.0073 2.00054 1.50054 1.83062 
+0.0203 2.00085 1.50085 2.09922 
+0.0332 2.00075 1.50075 2.20668 
+0.0461 2.0006 1.5006 2.00696 
+0.0591 2.00062 1.50062 1.86393 
+0.0720 2.00068 1.50068 1.95708 
+0.0849 2.00072 1.50072 2.07417 
+0.0979 2.00087 1.50087 2.04056 
+0.1108 2.00109 1.50109 1.87891 
+0.1237 2.00129 1.50129 1.85452 
+0.1367 2.00161 1.50161 1.90418 
+0.1496 2.00211 1.50211 2.01226 
+0.1625 2.00228 1.50228 1.85008 
+0.1755 2.0028 1.5028 1.90724 
+0.1884 2.00328 1.50328 2.04339 
+0.2013 2.0039 1.5039 1.95395 
+0.2143 2.00452 1.50452 1.83789 
+0.2272 2.00619 1.50619 2.04109 
+0.2401 2.00813 1.50813 1.95282 
+0.2531 2.01106 1.51106 1.96247 
+0.2660 2.01651 1.51651 2.12028 
+0.2789 2.0245 1.5245 2.06484 
+0.2919 2.04109 1.54109 2.03756 
+0.3048 2.06732 1.56732 2.02426 
+</data>
+  </CCP4Table>
+  <CCP4Table groupID="Graph" id="informationcontent" title=" Information content of data">
+    <plot>
+      <title>Info (bits) per reflection vs resolution</title>
+      <plotline xcol="1" ycol="2"/>
+      <plotline xcol="1" ycol="3"/>
+      <xscale>oneoversqrt</xscale>
+    </plot>
+    <headers>
+1/d^2 Selected All
+</headers>
+    <data>
+0.0073 5.44812 5.27378
+0.0203 5.0496 5.0496
+0.0332 5.2816 5.2816
+0.0461 5.57993 5.57993
+0.0591 5.45973 5.45973
+0.0720 5.32693 5.32693
+0.0849 5.24399 5.24399
+0.0979 4.92579 4.92579
+0.1108 4.59602 4.59602
+0.1237 4.42237 4.42237
+0.1367 4.21681 4.21681
+0.1496 4.06402 4.06402
+0.1625 3.93292 3.93292
+0.1755 3.8073 3.8073
+0.1884 3.69529 3.69529
+0.2013 3.54973 3.54973
+0.2143 3.41873 3.41873
+0.2272 3.21491 3.21491
+0.2401 2.99397 2.99397
+0.2531 2.81011 2.81011
+0.2660 2.55983 2.55983
+0.2789 2.29708 2.29708
+0.2919 1.9794 1.9794
+0.3048 1.69468 1.69468
+</data>
+  </CCP4Table>
+  <Analysis>
+    <InformationContent>
+      <Text>   Estimate of information depends on:
+      accuracy of experimental sigmas
+      accuracy of anisotropy and tNCS parameters
+      status of twinning (which reduces information)
+
+   Estimated total information = 44510.9 bits, or 30852.6 nats in 12178 reflections
+      average of 3.65503 bits per reflection
+   Number of reflections exceeding information threshold:
+      0.01 bit:  12178
+      0.05 bit:  12178
+      0.1  bit:  12178
+      0.5  bit:  12151
+      1    bit:  11871
+      2    bits: 10229</Text>
+      <TotalBits>44510.9</TotalBits>
+      <Nreflections>12178</Nreflections>
+      <Averagebits>3.65503</Averagebits>
+    </InformationContent>
+    <Resolution>
+      <ResolutionAll>1.79</ResolutionAll>
+      <NResolutionAll>12182</NResolutionAll>
+      <SelectedResolution>1.79</SelectedResolution>
+      <NSelectedResolution>12178</NSelectedResolution>
+    </Resolution>
+    <tNCS tNCS="False"/>
+    <Twinning>
+      <CentricMoments>
+        <Theoretical>3.00</Theoretical>
+        <TheoreticalTwin>2.00</TheoreticalTwin>
+        <Observed>2.80</Observed>
+      </CentricMoments>
+      <AcentricMoments>
+        <Theoretical>2.00</Theoretical>
+        <TheoreticalTwin>1.50</TheoreticalTwin>
+        <Observed>1.95</Observed>
+        <SDobserved>0.057</SDobserved>
+      </AcentricMoments>
+      <Pvalues>0.186  1</Pvalues>
+    </Twinning>
+    <Anisotropy>
+      <deltaB>3.724</deltaB>
+      <Eigenvalues> 1.846 0.031 -1.877</Eigenvalues>
+      <Eigenvectors>   1.0000   0.0000   0.0000   -0.0000   -0.0000   1.0000   -0.0000   1.0000   0.0000</Eigenvectors>
+    </Anisotropy>
+  </Analysis>
+  <ResolutionEstimate type="informationcontent">
+    <Threshold>  0.10</Threshold>
+    <Columns>1/d^2 Selected</Columns>
+    <ResolutionLimitEstimate>  1.79</ResolutionLimitEstimate>
+    <Message>== maximum resolution</Message>
+  </ResolutionEstimate>
+</PHASER_ANALYSIS>

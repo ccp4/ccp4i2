@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='utf-8'?>
+<process>crank<inp>
+    <model typ="substr">
+      <attr_set_by_crank>['xname']</attr_set_by_crank>
+      <xname>GaAda</xname>
+      <atomtype>XE<fp>-0.793</fp>
+        <fpp>7.3568</fpp>
+        <d_name>Ga1</d_name>
+        <guessed_dtype>None</guessed_dtype>
+      </atomtype>
+    </model>
+    <sequence typ="protein">
+      <attr_set_by_crank>['xname', 'solvent_content', 'monomers_asym', 'seq_monomers', 'residues_mon']</attr_set_by_crank>
+      <xname>GaAda</xname>
+      <solvent_content>0.417</solvent_content>
+      <monomers_asym>1</monomers_asym>
+      <seq_monomers>1</seq_monomers>
+      <residues_mon>134</residues_mon>
+      <file typ="fasta">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/SEQIN.fasta</file>
+    </sequence>
+    <fsigf typ="average">
+      <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>Ga1</dname>
+      <xname>GaAda</xname>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+      <i>I</i>
+      <sigi>SIGI</sigi>
+    </fsigf>
+    <fsigf typ="plus">
+      <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>Ga1</dname>
+      <xname>GaAda</xname>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+      <i>Iplus</i>
+      <sigi>SIGIplus</sigi>
+    </fsigf>
+    <fsigf typ="minus">
+      <attr_set_by_crank>['xname', 'dname', 'wavel', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>Ga1</dname>
+      <xname>GaAda</xname>
+      <wavel>1.54179</wavel>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+      <i>Iminus</i>
+      <sigi>SIGIminus</sigi>
+    </fsigf>
+    <fsigf typ="minus">
+      <attr_set_by_crank>['xname', 'dname', 'wavel', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>Ga1</dname>
+      <xname>GaAda</xname>
+      <wavel>1.54179</wavel>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+      <f>F-</f>
+      <sigf>SIGF-</sigf>
+      <i>Iminus</i>
+      <sigi>SIGIminus</sigi>
+    </fsigf>
+    <fsigf typ="plus">
+      <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>Ga1</dname>
+      <xname>GaAda</xname>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+      <f>F+</f>
+      <sigf>SIGF+</sigf>
+      <i>Iplus</i>
+      <sigi>SIGIplus</sigi>
+    </fsigf>
+    <fsigf typ="average">
+      <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>Ga1</dname>
+      <xname>GaAda</xname>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+      <f>F</f>
+      <sigf>SIGF</sigf>
+      <i>I</i>
+      <sigi>SIGI</sigi>
+    </fsigf>
+  </inp>
+  <out>
+    <fsigf typ="average">
+      <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+      <dname>Ga1</dname>
+      <xname>GaAda</xname>
+      <spgr>P 21 21 21</spgr>
+      <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+      <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+      <i>I</i>
+      <sigi>SIGI</sigi>
+    </fsigf>
+  </out>
+  <process>faest<param_set_by_crank>['target']</param_set_by_crank>
+    <param>
+      <target>SAD</target>
+    </param>
+    <inp>
+      <fsigf typ="average">
+        <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>Ga1</dname>
+        <xname>GaAda</xname>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+        <i>I</i>
+        <sigi>SIGI</sigi>
+      </fsigf>
+      <fsigf typ="plus">
+        <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>Ga1</dname>
+        <xname>GaAda</xname>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+        <i>Iplus</i>
+        <sigi>SIGIplus</sigi>
+      </fsigf>
+      <fsigf typ="minus">
+        <attr_set_by_crank>['xname', 'dname', 'wavel', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>Ga1</dname>
+        <xname>GaAda</xname>
+        <wavel>1.54179</wavel>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+        <i>Iminus</i>
+        <sigi>SIGIminus</sigi>
+      </fsigf>
+      <fsigf typ="minus">
+        <attr_set_by_crank>['xname', 'dname', 'wavel', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>Ga1</dname>
+        <xname>GaAda</xname>
+        <wavel>1.54179</wavel>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+        <f>F-</f>
+        <sigf>SIGF-</sigf>
+        <i>Iminus</i>
+        <sigi>SIGIminus</sigi>
+      </fsigf>
+      <fsigf typ="plus">
+        <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>Ga1</dname>
+        <xname>GaAda</xname>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+        <f>F+</f>
+        <sigf>SIGF+</sigf>
+        <i>Iplus</i>
+        <sigi>SIGIplus</sigi>
+      </fsigf>
+      <fsigf typ="average">
+        <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+        <dname>Ga1</dname>
+        <xname>GaAda</xname>
+        <spgr>P 21 21 21</spgr>
+        <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+        <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+        <f>F</f>
+        <sigf>SIGF</sigf>
+        <i>I</i>
+        <sigi>SIGI</sigi>
+      </fsigf>
+    </inp>
+    <program>shelxc<inp>
+        <fsigf typ="average">
+          <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>Ga1</dname>
+          <xname>GaAda</xname>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+          <i>I</i>
+          <sigi>SIGI</sigi>
+        </fsigf>
+        <fsigf typ="plus">
+          <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>Ga1</dname>
+          <xname>GaAda</xname>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+          <i>Iplus</i>
+          <sigi>SIGIplus</sigi>
+        </fsigf>
+        <fsigf typ="minus">
+          <attr_set_by_crank>['xname', 'dname', 'wavel', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>Ga1</dname>
+          <xname>GaAda</xname>
+          <wavel>1.54179</wavel>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/sftools/HKLOUT_0-observed_data_sft0_Isft1.mtz</file>
+          <i>Iminus</i>
+          <sigi>SIGIminus</sigi>
+        </fsigf>
+        <fsigf typ="minus">
+          <attr_set_by_crank>['xname', 'dname', 'wavel', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>Ga1</dname>
+          <xname>GaAda</xname>
+          <wavel>1.54179</wavel>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+          <f>F-</f>
+          <sigf>SIGF-</sigf>
+          <i>Iminus</i>
+          <sigi>SIGIminus</sigi>
+        </fsigf>
+        <fsigf typ="plus">
+          <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>Ga1</dname>
+          <xname>GaAda</xname>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+          <f>F+</f>
+          <sigf>SIGF+</sigf>
+          <i>Iplus</i>
+          <sigi>SIGIplus</sigi>
+        </fsigf>
+        <fsigf typ="average">
+          <attr_set_by_crank>['xname', 'dname', 'spgr', 'cell']</attr_set_by_crank>
+          <dname>Ga1</dname>
+          <xname>GaAda</xname>
+          <spgr>P 21 21 21</spgr>
+          <cell>[34.15, 54.81, 68.0, 90.0, 90.0, 90.0]</cell>
+          <file typ="mtz">/home/kyle/CCP4I2_PROJECTS/crank2_test_0/CCP4_JOBS/job_4/truncate/HKLOUT_0-observed_data_sft0_Isft1_TRU1.mtz</file>
+          <f>F</f>
+          <sigf>SIGF</sigf>
+          <i>I</i>
+          <sigi>SIGI</sigi>
+        </fsigf>
+      </inp>
+    </program>
+  </process>
+</process>

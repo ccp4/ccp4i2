@@ -1,0 +1,78 @@
+{
+  "status": "Finished",
+  "taskname": "xia2_xds",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "37409f10-31af-11ec-bc06-08002705bc84",
+  "jobtitle": "xia2_xds",
+  "creationtime": 1634738920.18,
+  "projectname": "xia2xds_test_0",
+  "fileroot": "<PROJECTS_DIR>/xia2xds_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "xia2_xds",
+  "jobid": "39e1e7ba-31af-11ec-bc06-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1634739120.35,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 6,
+      "filename": "AUTOMATIC_DEFAULT_NATIVE_SWEEP1_INTEGRATE.mtz",
+      "annotation": "Unmerged reflections from XDS integration of AUTOMATIC_DEFAULT_NATIVE_SWEEP1_",
+      "jobparamname": "UNMERGEDOUT",
+      "jobid": "39e1e7ba-31af-11ec-bc06-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-unmerged-experimental",
+      "projectid": "37409f10-31af-11ec-bc06-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "xia2xds_test_0",
+      "filetypeclass": "UnmergedDataFile",
+      "fileId": "b12fad02-31af-11ec-bc06-08002705bc84",
+      "baseName": "AUTOMATIC_DEFAULT_NATIVE_SWEEP1_INTEGRATE.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "AUTOMATIC_DEFAULT_obs.mtz",
+      "annotation": "Reflections: NATIVE from XDS integration of AUTOMATIC_DEFAULT_",
+      "jobparamname": "HKLOUT",
+      "jobid": "39e1e7ba-31af-11ec-bc06-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "37409f10-31af-11ec-bc06-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "xia2xds_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "b12fad03-31af-11ec-bc06-08002705bc84",
+      "baseName": "AUTOMATIC_DEFAULT_obs.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "AUTOMATIC_DEFAULT_freer.mtz",
+      "annotation": "FreeR from XDS integration of AUTOMATIC_DEFAULT_",
+      "jobparamname": "FREEROUT",
+      "jobid": "39e1e7ba-31af-11ec-bc06-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "37409f10-31af-11ec-bc06-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "xia2xds_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "b12fad04-31af-11ec-bc06-08002705bc84",
+      "baseName": "AUTOMATIC_DEFAULT_freer.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "IMAGE_DIRECTORY": ""
+  },
+  "_fixture_meta": {
+    "task_name": "xia2_xds",
+    "report_class": "xia2_xds_report",
+    "report_module": "ccp4i2.wrappers.xia2_xds.script.xia2_xds_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "xia2xds_test_0",
+    "has_program_xml": true
+  }
+}

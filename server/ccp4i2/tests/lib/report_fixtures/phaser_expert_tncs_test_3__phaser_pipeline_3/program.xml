@@ -1,0 +1,1577 @@
+<PhaserPipeline>
+  <PhaserMrResults>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Cell Content Analysis">
+      <data>1.0 0.740313
+2.0 0.00236581
+</data>
+      <headers separator=" ">N*Composition Probability
+</headers>
+      <plot>
+        <title>N*Composition vs Probability</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Intensity distribution for Data">
+      <data>0.0 0.0 0.0 0.0135135 0.0 0.0598456
+0.04 0.0392106 0.0030343 0.0765766 0.158519 0.252896
+0.08 0.0768837 0.0115132 0.15444 0.222703 0.351351
+0.12 0.11308 0.0245815 0.209781 0.270966 0.418919
+0.16 0.147856 0.0414833 0.262548 0.310843 0.455598
+0.2 0.181269 0.0615519 0.303732 0.345279 0.482625
+0.24 0.213372 0.0842006 0.34556 0.375794 0.521236
+0.28 0.244216 0.108914 0.382239 0.403299 0.546332
+0.32 0.273851 0.13524 0.415058 0.428392 0.563707
+0.36 0.302324 0.162786 0.439511 0.451494 0.581081
+0.4 0.32968 0.191208 0.462033 0.472911 0.594595
+0.44 0.355964 0.220208 0.480051 0.492878 0.606178
+0.48 0.381217 0.24953 0.498713 0.511578 0.623552
+0.52 0.405479 0.278952 0.514801 0.529158 0.637066
+0.56 0.428791 0.308287 0.528958 0.54574 0.648649
+0.6 0.451188 0.337373 0.547619 0.561422 0.664093
+0.64 0.472708 0.366075 0.560489 0.576289 0.671815
+0.68 0.493383 0.394281 0.579151 0.590413 0.679537
+0.72 0.513248 0.421896 0.59009 0.603856 0.69112
+0.76 0.532334 0.448846 0.608752 0.616672 0.698842
+0.8 0.550671 0.475069 0.621622 0.628907 0.710425
+0.84 0.56829 0.500518 0.637066 0.640603 0.718147
+0.88 0.585217 0.525156 0.653153 0.651798 0.725869
+0.92 0.601481 0.548959 0.658945 0.662525 0.733591
+0.96 0.617107 0.571908 0.671815 0.672813 0.739382
+1.0 0.632121 0.593994 0.678893 0.682689 0.745174
+1.04 0.646545 0.615215 0.693694 0.692179 0.747104
+1.08 0.660404 0.635573 0.70399 0.701302 0.750965
+1.12 0.67372 0.655074 0.711068 0.710082 0.756757
+1.16 0.686514 0.673732 0.719434 0.718534 0.760618
+1.2 0.698806 0.691559 0.725225 0.726678 0.76834
+1.24 0.710616 0.708574 0.732304 0.734529 0.774131
+1.28 0.721963 0.724795 0.738095 0.742101 0.779923
+1.32 0.732865 0.740245 0.741313 0.749408 0.789575
+1.36 0.743339 0.754946 0.748391 0.756463 0.793436
+1.4 0.753403 0.768922 0.756113 0.763276 0.803089
+1.44 0.763072 0.782197 0.765766 0.769861 0.805019
+1.48 0.772362 0.794797 0.77027 0.776226 0.80695
+1.52 0.781288 0.806747 0.777992 0.782381 0.814672
+1.56 0.789864 0.818072 0.783784 0.788335 0.816602
+1.6 0.798103 0.828799 0.791506 0.794097 0.816602
+1.64 0.80602 0.838951 0.801158 0.799674 0.822394
+1.68 0.813626 0.848554 0.80888 0.805076 0.826255
+1.72 0.820934 0.857633 0.815315 0.810307 0.828185
+1.76 0.827955 0.866211 0.817889 0.815376 0.832046
+1.8 0.834701 0.874311 0.823037 0.820287 0.839768
+1.84 0.841183 0.881957 0.827542 0.825049 0.84749
+1.88 0.84741 0.889169 0.831403 0.829666 0.853282
+1.92 0.853393 0.895971 0.841699 0.834143 0.857143
+1.96 0.859142 0.902382 0.846847 0.838487 0.861004
+2.0 0.864665 0.908422 0.852638 0.842701 0.861004
+</data>
+      <headers separator=" ">Z ACent_theor ACent_twin ACent_obser Cent_theor Cent_obser
+</headers>
+      <plot>
+        <title>Cumulative intensity distribution (acentric and centric)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+        <plotline xcol="1" ycol="6"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Weighted second moments for Data">
+      <data>0.0132 2.00068 1.50068 3.9672
+0.0383 2.00046 1.50046 3.1651
+0.0634 2.00039 1.50039 2.66235
+0.0885 2.00076 1.50076 2.98764
+0.1137 2.00142 1.50142 2.90139
+0.1388 2.00288 1.50288 2.66979
+0.1639 2.0039 1.5039 3.21723
+0.189 2.00751 1.50751 3.05565
+0.2142 2.01025 1.51025 2.7435
+</data>
+      <headers separator=" ">1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+      <plot>
+        <title>Weighted second moments vs resolution (acentric only)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Intensity distribution after Anisotropy Correction">
+      <data>0.0 0.0 0.0 0.0135135 0.0 0.0598456
+0.04 0.0392106 0.0030343 0.0752896 0.158519 0.250965
+0.08 0.0768837 0.0115132 0.153153 0.222703 0.355212
+0.12 0.11308 0.0245815 0.211068 0.270966 0.399614
+0.16 0.147856 0.0414833 0.264479 0.310843 0.449807
+0.2 0.181269 0.0615519 0.300515 0.345279 0.482625
+0.24 0.213372 0.0842006 0.339768 0.375794 0.511583
+0.28 0.244216 0.108914 0.382239 0.403299 0.542471
+0.32 0.273851 0.13524 0.410553 0.428392 0.555985
+0.36 0.302324 0.162786 0.43565 0.451494 0.57722
+0.4 0.32968 0.191208 0.458816 0.472911 0.592664
+0.44 0.355964 0.220208 0.474903 0.492878 0.606178
+0.48 0.381217 0.24953 0.493565 0.511578 0.623552
+0.52 0.405479 0.278952 0.509653 0.529158 0.638996
+0.56 0.428791 0.308287 0.523166 0.54574 0.644788
+0.6 0.451188 0.337373 0.542471 0.561422 0.656371
+0.64 0.472708 0.366075 0.557272 0.576289 0.664093
+0.68 0.493383 0.394281 0.577864 0.590413 0.679537
+0.72 0.513248 0.421896 0.594595 0.603856 0.685328
+0.76 0.532334 0.448846 0.609395 0.616672 0.696911
+0.8 0.550671 0.475069 0.621622 0.628907 0.702703
+0.84 0.56829 0.500518 0.631918 0.640603 0.710425
+0.88 0.585217 0.525156 0.646718 0.651798 0.723938
+0.92 0.601481 0.548959 0.658945 0.662525 0.733591
+0.96 0.617107 0.571908 0.672458 0.672813 0.739382
+1.0 0.632121 0.593994 0.685328 0.682689 0.743243
+1.04 0.646545 0.615215 0.696268 0.692179 0.750965
+1.08 0.660404 0.635573 0.702059 0.701302 0.752896
+1.12 0.67372 0.655074 0.711068 0.710082 0.758687
+1.16 0.686514 0.673732 0.722008 0.718534 0.762548
+1.2 0.698806 0.691559 0.729086 0.726678 0.766409
+1.24 0.710616 0.708574 0.735521 0.734529 0.77027
+1.28 0.721963 0.724795 0.740669 0.742101 0.776062
+1.32 0.732865 0.740245 0.748391 0.749408 0.781853
+1.36 0.743339 0.754946 0.75547 0.756463 0.781853
+1.4 0.753403 0.768922 0.760618 0.763276 0.783784
+1.44 0.763072 0.782197 0.768983 0.769861 0.789575
+1.48 0.772362 0.794797 0.778636 0.776226 0.793436
+1.52 0.781288 0.806747 0.785714 0.782381 0.805019
+1.56 0.789864 0.818072 0.792149 0.788335 0.810811
+1.6 0.798103 0.828799 0.797297 0.794097 0.812741
+1.64 0.80602 0.838951 0.799871 0.799674 0.818533
+1.68 0.813626 0.848554 0.805019 0.805076 0.826255
+1.72 0.820934 0.857633 0.80695 0.810307 0.828185
+1.76 0.827955 0.866211 0.814028 0.815376 0.833977
+1.8 0.834701 0.874311 0.823681 0.820287 0.837838
+1.84 0.841183 0.881957 0.828185 0.825049 0.837838
+1.88 0.84741 0.889169 0.833977 0.829666 0.841699
+1.92 0.853393 0.895971 0.839125 0.834143 0.841699
+1.96 0.859142 0.902382 0.842986 0.838487 0.84556
+2.0 0.864665 0.908422 0.846203 0.842701 0.853282
+</data>
+      <headers separator=" ">Z ACent_theor ACent_twin ACent_obser Cent_theor Cent_obser
+</headers>
+      <plot>
+        <title>Cumulative intensity distribution (acentric and centric)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+        <plotline xcol="1" ycol="6"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Weighted second moments after Anisotropy Correction">
+      <data>0.0132 2.00066 1.50066 3.8697
+0.0383 2.00043 1.50043 3.20654
+0.0634 2.00037 1.50037 2.65074
+0.0885 2.0007 1.5007 2.84801
+0.1137 2.00128 1.50128 2.84152
+0.1388 2.00269 1.50269 2.627
+0.1639 2.00366 1.50366 2.98098
+0.189 2.00669 1.50669 2.85595
+0.2142 2.00944 1.50944 2.64407
+</data>
+      <headers separator=" ">1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+      <plot>
+        <title>Weighted second moments vs resolution (acentric only)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <PhaserWarnings/>
+  <CurrentActivity>
+    <label>Generating Statistics</label>
+    <max>125</max>
+    <value>125</value>
+  </CurrentActivity>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Rotation Function Component #1 (Ensemble_1)">
+      <data>1.0 75.58 8.67
+2.0 40.97 6.72
+</data>
+      <headers separator=" ">Number LLG Z-Score
+</headers>
+      <plot>
+        <title>RF Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+      <plot>
+        <title>RF Number vs Z-Score</title>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Translation Function Component #1 (Ensemble_1)">
+      <data>1.0 69.23 7.1
+2.0 28.75 6.44
+3.0 28.34 6.78
+4.0 11.85 5.95
+</data>
+      <headers separator=" ">Number LLG Z-Score
+</headers>
+      <plot>
+        <title>TF Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+      <plot>
+        <title>TF Number vs Z-Score</title>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Refinement After Placing Component #1 (Ensemble_1  2.44A)">
+      <data>1.0 128.04 69.23 61.32 61.99
+2.0 112.43 28.75 62.3 63.7
+3.0 118.31 28.34 61.01 61.91
+4.0 89.81 11.85 62.0 62.4
+</data>
+      <headers separator=" ">Number final-LLG initial-LLG final-R initial-R
+</headers>
+      <plot>
+        <title>Solution Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+      <plot>
+        <title>Solution Number vs R-value</title>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Translation Function Component #2 (Ensemble_1)">
+      <data>1.0 1035.73 32.46
+2.0 20.54 20.74
+</data>
+      <headers separator=" ">Number LLG Z-Score
+</headers>
+      <plot>
+        <title>TF Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+      <plot>
+        <title>TF Number vs Z-Score</title>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Refinement After Placing Component #2 (Ensemble_1  2.44A)">
+      <data>1.0 1046.34 1035.73 40.84 41.08
+</data>
+      <headers separator=" ">Number final-LLG initial-LLG final-R initial-R
+</headers>
+      <plot>
+        <title>Solution Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+      <plot>
+        <title>Solution Number vs R-value</title>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Refinement After Placing Component #2 (Ensemble_1  2.10A)">
+      <data>1.0 1670.88 1582.12 40.84 40.78
+</data>
+      <headers separator=" ">Number final-LLG initial-LLG final-R initial-R
+</headers>
+      <plot>
+        <title>Solution Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+      <plot>
+        <title>Solution Number vs R-value</title>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Refinement After Placing Component #2 (Ensemble_1  2.10A)">
+      <data>1.0 1670.88 1670.88 40.84 40.84
+</data>
+      <headers separator=" ">Number final-LLG initial-LLG final-R initial-R
+</headers>
+      <plot>
+        <title>Solution Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+      <plot>
+        <title>Solution Number vs R-value</title>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <PhaserMrSolutions>
+    <solutionsFound>True</solutionsFound>
+    <Solutions>
+      <Solution>
+        <ISOL>1</ISOL>
+        <SPG>P 21 21 21</SPG>
+        <EQUIV>0</EQUIV>
+        <HALL> P 2ac 2ab</HALL>
+        <KEEP>True</KEEP>
+        <LLG>1670.883099027143</LLG>
+        <NUM>1</NUM>
+        <ORIG_LLG>1670.8832499996524</ORIG_LLG>
+        <ORIG_NUM>1</ORIG_NUM>
+        <ORIG_R>40.838287278259315</ORIG_R>
+        <PAK>0.0</PAK>
+        <R>40.839538281745966</R>
+        <TF>1035.727377161554</TF>
+        <TFZ>30.724283549068012</TFZ>
+        <TFZeq>30.724283549068012</TFZeq>
+        <COMPONENT>
+          <modlid>Ensemble_1</modlid>
+        </COMPONENT>
+        <COMPONENT>
+          <modlid>Ensemble_1</modlid>
+        </COMPONENT>
+      </Solution>
+    </Solutions>
+  </PhaserMrSolutions>
+  <PhaserCurrentBestSolution>
+    <Solution>
+      <Component>
+        <Name>Ensemble_1</Name>
+        <RFZ>8.7</RFZ>
+        <TFZ>7.1</TFZ>
+        <PAK>0</PAK>
+        <LLG>128</LLG>
+        <refTFZ>8.9</refTFZ>
+        <overallLLG>-</overallLLG>
+      </Component>
+      <Component>
+        <Name>Ensemble_1</Name>
+        <RFZ>=</RFZ>
+        <TFZ>32.5</TFZ>
+        <PAK>0</PAK>
+        <LLG>1046</LLG>
+        <refTFZ>30.7</refTFZ>
+        <overallLLG>1671</overallLLG>
+      </Component>
+      <spaceGroup>P 21 21 21</spaceGroup>
+      <Annotation> RFZ=8.7 TFZ=7.1 PAK=0 LLG=128 TFZ==8.9 RF++ TFZ=32.5 PAK=0 LLG=1046 TFZ==26.9 LLG=1671 TFZ==30.7 PAK=0 LLG=1671 TFZ==30.7</Annotation>
+    </Solution>
+  </PhaserCurrentBestSolution>
+  <PhaserWarnings>
+    <Warning>Patterson Pathology in NMOL analysis, possible coiled coil or other regular structure, view Patterson (TNCS PATT MAPS ON)</Warning>
+  </PhaserWarnings>
+  <Summary>*********************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Steps:
+**    Cell Content Analysis
+**    Anisotropy correction
+**    Translational NCS correction
+**    Rotation Function
+**    Translation Function
+**    Packing
+**    Refinement
+**    Final Refinement (if data higher resolution than search resolution)
+** Number of search ensembles = 2
+** Search Method: FAST
+** Input Search Order:
+**    #1   Ensemble_1  
+**    #2   Ensemble_1  
+** Automatic (best predicted) search order WILL be used
+
+CPU Time: 0 days 0 hrs 0 mins 0.04 secs (      0.04 secs)
+Finished: Wed Jun 14 15:36:27 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                         2.8.3 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 21 21 21 ( P 2ac 2ab)
+   Space-Group Number: 19
+   Unit Cell:   23.99   55.48   60.02   90.00   90.00   90.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies:  7701
+   Resolution for Matthews calculation:  2.10
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       7701       2.59  52.58      1.000       &lt;== most probable
+   2       15403      1.30  5.15       0.004     
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.2252
+   Most probable MW of protein in asu for resolution = 8976.39
+
+CPU Time: 0 days 0 hrs 0 mins 1.46 secs (      1.46 secs)
+Finished: Wed Jun 14 15:36:28 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: ANISOTROPY CORRECTION                                         2.8.3 ***
+******************************************************************************************
+
+   Refined Anisotropy Parameters
+   -----------------------------
+   Principal components of anisotropic part of B affecting observed amplitudes:
+     eigenB (A^2)     direction cosines (orthogonal coordinates)
+         5.215              0.0000  -0.0000   1.0000
+        -2.566              0.0000   1.0000   0.0000
+        -2.649              1.0000  -0.0000  -0.0000
+   Anisotropic deltaB (i.e. range of principal components):   7.864
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4893)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 2.71 secs (      2.71 secs)
+Finished: Wed Jun 14 15:36:29 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: TRANSLATIONAL NON-CRYSTALLOGRAPHIC SYMMETRY                   2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4894)
+
+&lt;B&gt;&lt;FONT COLOR="#FF8800"&gt;
+------------------------------------------------------------------------------------------
+Warning: Patterson Pathology in NMOL analysis, possible coiled coil or other regular
+structure, view Patterson (TNCS PATT MAPS ON)
+------------------------------------------------------------------------------------------
+&lt;/FONT&gt;&lt;/B&gt;
+
+--------
+TWINNING
+--------
+
+   tNCS/Twin Detection Table
+   -------------------------
+                                 -Second Moments-             --P-values--
+                                 Centric Acentric       untwinned  twin frac &lt; 5%
+   Theoretical for untwinned      3.00    2.00    
+     including measurement error  3.00    2.00    
+   Theoretical for perfect twin   2.00    1.50    
+   Initial (data as input)        4.59    2.99+/-0.113  1          1         
+   After Anisotropy Correction    4.42    2.94+/-0.113  1          1         
+   After Anisotropy and tNCS         ---n/a---
+
+   P-value &lt; 0.01 for &lt; 5% twinned is considered worth investigating
+   Resolution for Twin Analysis (85% I/SIGI &gt; 3):  2.81A (HiRes= 2.10A)
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4893)
+
+CPU Time: 0 days 0 hrs 0 mins 3.79 secs (      3.79 secs)
+Finished: Wed Jun 14 15:36:30 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Z-score test for definite solution is ON
+** Z-score test for stopping search is OFF
+** Deep search is ON
+
+CPU Time: 0 days 0 hrs 0 mins 3.80 secs (      3.80 secs)
+Finished: Wed Jun 14 15:36:30 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+   Composition Table
+   -----------------
+   Total Scattering = 24760
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   Ensemble_1                         48.22%              48.22%
+
+** Composition not increased
+CPU Time: 0 days 0 hrs 0 mins 3.80 secs (      3.80 secs)
+Finished: Wed Jun 14 15:36:30 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: EXPERIMENTAL ERROR CORRECTION PREPARATION                     2.8.3 ***
+******************************************************************************************
+
+   Data have been provided as raw intensities
+
+CPU Time: 0 days 0 hrs 0 mins 4.42 secs (      4.42 secs)
+Finished: Wed Jun 14 15:36:30 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: EXPECTED LLG OF ENSEMBLES                                     2.8.3 ***
+******************************************************************************************
+
+   Resolution of Data (Selected):    2.100 (2.1001)
+   Number of Reflections (Selected): 4897 (4893)
+   eLLG Target: 225
+
+-----------------
+POLY-ALANINE ELLG
+-----------------
+
+   Resolution = 2.1001
+   Default RMSD = 0.1 0.2 0.4 0.8 1.6 3.2
+   Minimum solvent = 20%
+      Maximum number of polyalanine residues = 87 (-full-)
+   Alanine residues for eLLG target = 34
+
+   Table of Alanine Residues for eLLG Target
+   -----------------------------------------
+                  ---RMSD--- 
+   eLLG-target |  0.10  0.20  0.40  0.80  1.60  3.20 
+           225 |    34    36    44    85 -full--full-
+           196 |    32    33    41    79 -full--full-
+           169 |    29    31    38    73 -full--full-
+           144 |    27    29    35    68 -full--full-
+           121 |    25    26    32    62 -full--full-
+           100 |    22    24    29    56 -full--full-
+            81 |    20    21    26    51 -full--full-
+            64 |    18    19    23    45 -full--full-
+            49 |    16    16    20    39 -full--full-
+            36 |    13    14    17    34 -full--full-
+            25 |    11    12    14    28 -full--full-
+            16 |     9     9    11    22    77 -full-
+             9 |     6     7     8    17    58 -full-
+             4 |     4     4     5    11    38 -full-
+             1 |     2     2     2     5    19 -full-
+
+--------------
+MONOMERIC ELLG
+--------------
+
+   Expected LLG (eLLG)
+   -------------------
+   eLLG: eLLG of ensemble alone
+       eLLG   RMSD frac-scat  Ensemble
+      308.3  0.410   0.48221  Ensemble_1
+
+   Resolution for eLLG target
+   --------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso  Ensemble
+         2.443  Ensemble_1
+
+   Resolution for eLLG target: data collection
+   -------------------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225) with perfect data
+     eLLG-reso  Ensemble
+         2.489  Ensemble_1
+
+   eLLG indicates that placement of a single copy of ensemble "Ensemble_1" should be easy
+
+   Expected LLG (eLLG): Chains
+   ---------------------------
+   eLLG: eLLG of chain alone
+       eLLG   RMSD frac-scat chain  Ensemble
+      308.3  0.410   0.48221  " A"  Ensemble_1
+
+   Resolution for eLLG target: Chains
+   ----------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso chain  Ensemble
+         2.443  " A"  Ensemble_1
+
+--------------------
+HOMO-OLIGOMERIC ELLG
+--------------------
+
+   Number of copies for eLLG target
+   --------------------------------
+   eLLG-target   RMSD frac-scat-known frac-scat   num-copies  Ensemble
+           225  0.410         0.00000   0.48221            1  Ensemble_1
+
+CPU Time: 0 days 0 hrs 0 mins 5.02 secs (      5.02 secs)
+Finished: Wed Jun 14 15:36:30 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Search Order (next search *) (placed +):
+**    #1   Ensemble_1 *
+**    #2   Ensemble_1  
+
+CPU Time: 0 days 0 hrs 0 mins 5.02 secs (      5.02 secs)
+Finished: Wed Jun 14 15:36:30 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                       2.8.3 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit lowered by expected LLG =  2.44
+
+   Rotation Function Table: Ensemble_1
+   -----------------------------------
+   (Z-scores from Fast Rotation Function)
+   #SET        Top    (Z)      Second    (Z)       Third    (Z)
+   1         75.58   8.67       40.97   6.72         ---    ---
+
+   Select by Percentage of Top value: 75%
+   Top RF = 75.576
+   Purge RF mean = -78.403
+   Number of sets stored before final selection = 1
+   Number of solutions stored before final selection = 2
+   Number of sets stored (deleted) after final selection = 1 (0)
+   Number of solutions stored (deleted) after final selection = 2 (0)
+   Percent used for purge = 60.000%
+      Includes deep search down percent = 15%
+      Number of solutions stored above (below) deep threshold = 2 (0)
+
+   Rotation Function Final Selection Table
+   ---------------------------------------
+   Rotation list length by SET
+   SET#  Start Final Deleted Set (*)   Deep: Start Final Deleted Set (*)
+      1  2     2           -                 2     2           -
+   ALL   2     2                             2     2    
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 11.39 secs (     11.39 secs)
+Finished: Wed Jun 14 15:36:33 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                    2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.44  40.74 (3142)
+
+------------------------
+ALTERNATIVE SPACE GROUPS
+------------------------
+
+   Space Group(s) to be tested:
+     P 21 21 21
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 1
+----------------------------
+
+   This TF set has 2 trial orientations
+
+   New Top Packing Fast Translation Function FSS = 168.76 (TFZ=7.1) at Trial #1
+   New Top (ML) Translation Function LLG = 69.23 (TFZ=7.1) at Trial #1
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1       69.2  7.10       28.7  6.44       28.3  6.78 P 21 21 21 Ensemble   
+     1   2          -     -          -     -          -     - P 21 21 21 Ensemble   
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   LLG will be used for purge, not FSS
+   Top TF  = 69.23
+   Top TFZ = 7.10
+   Mean TF = -198.45
+   Percent used for purge = 75%
+   Cutoff for acceptance = 2.3
+      TFZ used for final selection = 8
+         Number of solutions over TF final cutoff  = 4
+         Number of solutions over TFZ final cutoff = 0
+         Number of solutions over TF &amp; TFZ cutoff  = 0
+   Number of solutions stored before final selection = 4
+   Number of solutions stored (deleted) after final selection = 4 (0)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 13.51 secs (     13.51 secs)
+Finished: Wed Jun 14 15:36:34 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.3 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm TF-SET  ROT TFpk#        TF    TFZ    SpaceGroup 
+   1    Top1  0      --       1     1    1         69.23  7.10  P 21 21 21 
+   2    2     0      --       1     1    2         28.75  6.44  P 21 21 21 
+   3    3     0      --       1     1    3         28.34  6.78  P 21 21 21 
+   4    4     0      --       1     1    4         11.85  5.95  P 21 21 21 
+
+   4 accepted of 4 solutions
+      4 pack of 4 accepted solutions
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 13.57 secs (     13.57 secs)
+Finished: Wed Jun 14 15:36:34 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.44  40.74 (3142)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 128.04
+   Top LLG (packs) = 128.04
+   Mean LLG = -42.5116
+   Percent used for purge = 75%
+      Cutoff for acceptance = 85.4
+   Number used for purge  = 50
+      Cutoff for acceptance = 89.8
+   All Z-scores over 8 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 89.8
+   Number of solutions stored before purge = 4
+   Number of solutions stored (deleted) after purge = 4 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1            69.2 62.0  7.1        128.0 61.3  8.9   P 21 21 21   1.061
+   2    ---   3            28.3 61.9  6.8        118.3 61.0  8.3   P 21 21 21   1.038
+   3    ---   2            28.7 63.7  7.1        112.4 62.3  8.0   P 21 21 21   1.171
+   4    ---   4            11.9 62.4  6.0         89.8 62.0  n/a   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (4 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   Ensemble_1           1   0.410   +0.000/+0.000    ( 0.410/ 0.410 )
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.mtz
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 17.34 secs (     17.34 secs)
+Finished: Wed Jun 14 15:36:35 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Current is Best Solution (first search)
+** Current solution has 1 component
+** New Best LLG = 128.0 (resolution = 2.44)
+** Best Component so far = Ensemble_1 
+
+CPU Time: 0 days 0 hrs 0 mins 17.34 secs (     17.34 secs)
+Finished: Wed Jun 14 15:36:35 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Solution stored for possible reversion if next search fails
+** Number of solutions = 4
+** Solution TOP LLG = 128.0
+** Solution TOP TFZ = 8.9
+
+CPU Time: 0 days 0 hrs 0 mins 17.35 secs (     17.35 secs)
+Finished: Wed Jun 14 15:36:35 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Search: Next component
+** Search Order (next search *) (placed +):
+**    #1   Ensemble_1 +
+**    #2   Ensemble_1 *
+
+CPU Time: 0 days 0 hrs 0 mins 17.35 secs (     17.35 secs)
+Finished: Wed Jun 14 15:36:35 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Search: Rotation function list generated from results of first search
+
+   SOLU SPAC P 21 21 21
+   SOLU 6DIM ENSE Ensemble_1 EULER  293.5  179.6  112.9 FRAC -2.00 -0.11  0.50 BFAC  6.14 #TFZ==8.9
+   #TRIAL   Euler1 Euler2 Euler3    Ensemble Unique
+        1    334.8    0.5  204.7  Ensemble_1 YES
+        2    263.2  179.5   83.2  Ensemble_1 NO 
+        3    279.4    0.4  260.3  Ensemble_1 NO 
+
+CPU Time: 0 days 0 hrs 0 mins 17.35 secs (     17.35 secs)
+Finished: Wed Jun 14 15:36:35 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                    2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.44  40.74 (3142)
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 1
+----------------------------
+
+   This set has one trial orientation
+
+   New Top Packing Fast Translation Function FSS = 1950.32 (TFZ=32.5) at Trial #1
+   New Top (ML) Translation Function LLG = 1035.73 (TFZ=32.5) at Trial #1
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1     1035.7 32.46       20.5 20.74          -     - P 21 21 21 Ensemble   
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   LLG will be used for purge, not FSS
+   Top TF  = 1035.73
+   Top TFZ = 32.46
+   Mean TF = -1435.98
+   Percent used for purge = 75%
+   Cutoff for acceptance = 417.8
+      TFZ used for final selection = 16.2321
+         Number of solutions over TF final cutoff  = 1
+         Number of solutions over TFZ final cutoff = 2
+         Number of solutions over TF &amp; TFZ cutoff  = 1
+   Number of solutions stored before final selection = 2
+   Number of solutions stored (deleted) after final selection = 2 (0)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 18.95 secs (     18.95 secs)
+Finished: Wed Jun 14 15:36:36 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.3 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm TF-SET  ROT TFpk#        TF    TFZ    SpaceGroup 
+   1    Top1  0      --       1     1    1       1035.73 32.46  P 21 21 21 
+   2    ---   31.46  --       1     1    2         20.54 20.74  P 21 21 21 
+
+   1 accepted of 2 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 18.99 secs (     18.99 secs)
+Finished: Wed Jun 14 15:36:36 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Search: Only parameters of last component will be refined
+
+CPU Time: 0 days 0 hrs 0 mins 18.99 secs (     18.99 secs)
+Finished: Wed Jun 14 15:36:36 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.44  40.74 (3142)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 1046.34
+   Top LLG (packs) = 1046.34
+   Mean LLG = -1380.33
+   Percent used for purge = 75%
+      Cutoff for acceptance = 439.7
+   Number used for purge  = 50
+      Cutoff for acceptance = 1046.3
+   Overall cutoff for acceptance (excluding high TFZ) = 1046.3
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          1035.7 41.1 32.5       1046.3 40.8 26.9   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   Ensemble_1           1   0.410   +0.000/+0.000    ( 0.410/ 0.410 )
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.mtz
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 20.64 secs (     20.64 secs)
+Finished: Wed Jun 14 15:36:38 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Current is best for this component
+** New best solution has 2 components
+** New best solution LLG = 1046.3 (resolution = 2.44)
+** New best solution component = Ensemble_1
+
+CPU Time: 0 days 0 hrs 0 mins 20.64 secs (     20.64 secs)
+Finished: Wed Jun 14 15:36:38 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** There was only 1 possible ensemble for this component
+** End of possible ensembles for this component
+
+CPU Time: 0 days 0 hrs 0 mins 20.64 secs (     20.64 secs)
+Finished: Wed Jun 14 15:36:38 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Definite solutions found
+** New best solution has 2 components
+** New best solution overall
+** New best solution LLG = 1046.3
+** New best solution TFZ = 26.9
+
+CPU Time: 0 days 0 hrs 0 mins 20.64 secs (     20.64 secs)
+Finished: Wed Jun 14 15:36:38 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Solutions will be refined to highest resolution
+**    Resolution for refinement: 2.1001
+** Protocol for MR refinement is DEFAULT
+** VRMS (variances) of ensemble(s) WILL be refined
+
+CPU Time: 0 days 0 hrs 0 mins 20.92 secs (     20.92 secs)
+Finished: Wed Jun 14 15:36:38 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4893)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 1670.88
+   Top LLG (packs) = 1670.88
+   Mean LLG = -2447.58
+   Percent used for purge = 75%
+      Cutoff for acceptance = 641.3
+   Number used for purge  = 50
+      Cutoff for acceptance = 1670.9
+   Overall cutoff for acceptance (excluding high TFZ) = 1670.9
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          1582.1 40.8 26.9       1670.9 40.8 30.7   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   Ensemble_1           1   0.410   -0.019/-0.019    ( 0.386/ 0.386 )
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.mtz
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 24.23 secs (     24.23 secs)
+Finished: Wed Jun 14 15:36:41 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Refinement may have introduced clashes
+** Packing will be checked
+
+CPU Time: 0 days 0 hrs 0 mins 24.23 secs (     24.23 secs)
+Finished: Wed Jun 14 15:36:41 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.3 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm  SpaceGroup  Annotation                                                   
+   1    Top1  0      --    P 21 21 21  ... TFZ=32.5 PAK=0 LLG=1046 TFZ==26.9 LLG=1671 TFZ==30.7 PAK=0
+
+   1 accepted of 1 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 24.29 secs (     24.29 secs)
+Finished: Wed Jun 14 15:36:41 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4893)
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 1670.88
+   Top LLG (packs) = 1670.88
+   Mean LLG = -2447.56
+   Percent used for purge = 75%
+      Cutoff for acceptance = 641.3
+   Number used for purge  = 50
+      Cutoff for acceptance = 1670.9
+   Overall cutoff for acceptance (excluding high TFZ) = 1670.9
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1          1670.9 40.8 n/a        1670.9 40.8 30.7   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   Ensemble_1           1   0.410   -0.019/-0.019    ( 0.386/ 0.386 )
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.mtz
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 27.33 secs (     27.33 secs)
+Finished: Wed Jun 14 15:36:42 2023
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+   $TEXT:MR Result: $$ Baubles Markup $$
+
+** SINGLE solution
+
+** Solution written to SOL file: 
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.sol
+
+** Solution written to PDB file: 
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.pdb
+** Solution written to MTZ file: 
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_1/PHASER.1.mtz
+   Solution annotation (history):
+   SOLU SET  RFZ=8.7 TFZ=7.1 PAK=0 LLG=128 TFZ==8.9 RF++ TFZ=32.5 PAK=0 LLG=1046 TFZ==26.9 LLG=1671 TFZ==30.7 PAK=0
+    LLG=1671 TFZ==30.7
+   SOLU SPAC P 21 21 21
+   SOLU 6DIM ENSE Ensemble_1 EULER  318.3  179.6  137.8 FRAC -2.00 -0.11  0.50 BFAC  1.61 #TFZ==8.9
+   SOLU 6DIM ENSE Ensemble_1 EULER   70.6    0.2  289.4 FRAC -1.50 -0.00  0.00 BFAC  1.23 #TFZ==30.7
+   SOLU ENSEMBLE Ensemble_1 VRMS DELTA -0.0188 #RMSD  0.41 #VRMS  0.39
+
+   $$
+CPU Time: 0 days 0 hrs 0 mins 27.36 secs (     27.36 secs)
+Finished: Wed Jun 14 15:36:42 2023
+
+&lt;B&gt;&lt;FONT COLOR="#FF8800"&gt;
+--------
+WARNINGS
+--------
+
+$TEXT:Warning: $$ Baubles Markup $$
+------------------------------------------------------------------------------------------
+Warning: Patterson Pathology in NMOL analysis, possible coiled coil or other regular
+structure, view Patterson (TNCS PATT MAPS ON)
+------------------------------------------------------------------------------------------
+$$
+
+
+CPU Time: 0 days 0 hrs 0 mins 27.37 secs (     27.37 secs)
+Finished: Wed Jun 14 15:36:42 2023
+
+
+</Summary>
+</PhaserMrResults>
+  <SheetbendResult>
+ <Title/>
+ <Cycles>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>1</Number>
+   <Resolution>6.000000</Resolution>
+   <Radius>24.000000</Radius>
+   <Rwork>0.471963</Rwork>
+   <Rfree>0.583498</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>252</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>2</Number>
+   <Resolution>5.727273</Resolution>
+   <Radius>22.909090</Radius>
+   <Rwork>0.473426</Rwork>
+   <Rfree>1.250576</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>289</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>3</Number>
+   <Resolution>5.454545</Resolution>
+   <Radius>21.818182</Radius>
+   <Rwork>0.440619</Rwork>
+   <Rfree>0.965886</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>334</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>4</Number>
+   <Resolution>5.181818</Resolution>
+   <Radius>20.727272</Radius>
+   <Rwork>0.447732</Rwork>
+   <Rfree>0.441452</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>384</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>5</Number>
+   <Resolution>4.909091</Resolution>
+   <Radius>19.636364</Radius>
+   <Rwork>0.442505</Rwork>
+   <Rfree>0.258954</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>445</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>6</Number>
+   <Resolution>4.636364</Resolution>
+   <Radius>18.545454</Radius>
+   <Rwork>0.436688</Rwork>
+   <Rfree>0.304499</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>525</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>7</Number>
+   <Resolution>4.363636</Resolution>
+   <Radius>17.454546</Radius>
+   <Rwork>0.420296</Rwork>
+   <Rfree>0.329777</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>622</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>8</Number>
+   <Resolution>4.090909</Resolution>
+   <Radius>16.363636</Radius>
+   <Rwork>0.410444</Rwork>
+   <Rfree>0.474600</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>743</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>9</Number>
+   <Resolution>3.818182</Resolution>
+   <Radius>15.272727</Radius>
+   <Rwork>0.399021</Rwork>
+   <Rfree>0.403476</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>908</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>10</Number>
+   <Resolution>3.545455</Resolution>
+   <Radius>14.181818</Radius>
+   <Rwork>0.397523</Rwork>
+   <Rfree>0.362955</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>1118</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>11</Number>
+   <Resolution>3.272727</Resolution>
+   <Radius>13.090909</Radius>
+   <Rwork>0.389199</Rwork>
+   <Rfree>0.438547</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>1413</NumberOfReflectionsP1>
+  </Cycle>
+  <Cycle>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>12</Number>
+   <Resolution>3.000000</Resolution>
+   <Radius>12.000000</Radius>
+   <Rwork>0.426291</Rwork>
+   <Rfree>0.403189</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>1803</NumberOfReflectionsP1>
+  </Cycle>
+ </Cycles>
+ <Final>
+   <RegularizeNumber>1</RegularizeNumber>
+   <Number>12</Number>
+   <Resolution>3.000000</Resolution>
+   <Radius>12.000000</Radius>
+   <Rwork>0.426291</Rwork>
+   <Rfree>0.403189</Rfree>
+   <NumberOfReflections>5042</NumberOfReflections>
+   <NumberOfReflectionsP1>1803</NumberOfReflectionsP1>
+ </Final>
+</SheetbendResult>
+  <REFMAC>
+Error <err_level>          0 </err_level> <br/>
+Message <err_message> normal termination </err_message> <br/>
+Job <job> refmac </job> <br/>
+ <Overall_stats>
+ <n_cycle>     11 </n_cycle> <br/>
+ <ml_esu>     0.2537 </ml_esu> <br/>
+ <n_reflections_all>         4897 </n_reflections_all> <br/>
+ <n_reflections_free>          281 </n_reflections_free> <br/>
+ <data_completeness>     97.143 </data_completeness> <br/>
+ <resolution_low>     40.776 </resolution_low> <br/>
+ <resolution_high>      2.100 </resolution_high> <br/>
+ <r2_weighted_factor_work>      0.380 </r2_weighted_factor_work> <br/>
+ <r2_weighted_factor_free>      0.395 </r2_weighted_factor_free> <br/>
+ <stats_vs_cycle>
+ <new_cycle>
+  <cycle>       0 </cycle>  <r_factor>      0.380 </r_factor>  <r_free>      0.385 </r_free>  <fscAver>     0.9017 </fscAver>  <fscAverFree>     0.9131 </fscAverFree>  <rmsBOND>     0.0413 </rmsBOND>  <rmsANGLE>      2.461 </rmsANGLE>  <rmsCHIRAL>      0.196 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       1 </cycle>  <r_factor>      0.377 </r_factor>  <r_free>      0.378 </r_free>  <fscAver>     0.9053 </fscAver>  <fscAverFree>     0.9168 </fscAverFree>  <rmsBOND>     0.0143 </rmsBOND>  <rmsANGLE>      1.986 </rmsANGLE>  <rmsCHIRAL>      0.081 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       2 </cycle>  <r_factor>      0.373 </r_factor>  <r_free>      0.376 </r_free>  <fscAver>     0.9086 </fscAver>  <fscAverFree>     0.9188 </fscAverFree>  <rmsBOND>     0.0100 </rmsBOND>  <rmsANGLE>      1.679 </rmsANGLE>  <rmsCHIRAL>      0.068 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       3 </cycle>  <r_factor>      0.372 </r_factor>  <r_free>      0.377 </r_free>  <fscAver>     0.9096 </fscAver>  <fscAverFree>     0.9187 </fscAverFree>  <rmsBOND>     0.0081 </rmsBOND>  <rmsANGLE>      1.497 </rmsANGLE>  <rmsCHIRAL>      0.062 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       4 </cycle>  <r_factor>      0.370 </r_factor>  <r_free>      0.378 </r_free>  <fscAver>     0.9106 </fscAver>  <fscAverFree>     0.9187 </fscAverFree>  <rmsBOND>     0.0071 </rmsBOND>  <rmsANGLE>      1.387 </rmsANGLE>  <rmsCHIRAL>      0.059 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       5 </cycle>  <r_factor>      0.369 </r_factor>  <r_free>      0.380 </r_free>  <fscAver>     0.9112 </fscAver>  <fscAverFree>     0.9180 </fscAverFree>  <rmsBOND>     0.0065 </rmsBOND>  <rmsANGLE>      1.317 </rmsANGLE>  <rmsCHIRAL>      0.057 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       6 </cycle>  <r_factor>      0.368 </r_factor>  <r_free>      0.380 </r_free>  <fscAver>     0.9119 </fscAver>  <fscAverFree>     0.9167 </fscAverFree>  <rmsBOND>     0.0062 </rmsBOND>  <rmsANGLE>      1.272 </rmsANGLE>  <rmsCHIRAL>      0.056 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       7 </cycle>  <r_factor>      0.367 </r_factor>  <r_free>      0.382 </r_free>  <fscAver>     0.9123 </fscAver>  <fscAverFree>     0.9156 </fscAverFree>  <rmsBOND>     0.0060 </rmsBOND>  <rmsANGLE>      1.242 </rmsANGLE>  <rmsCHIRAL>      0.055 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       8 </cycle>  <r_factor>      0.366 </r_factor>  <r_free>      0.383 </r_free>  <fscAver>     0.9124 </fscAver>  <fscAverFree>     0.9145 </fscAverFree>  <rmsBOND>     0.0059 </rmsBOND>  <rmsANGLE>      1.227 </rmsANGLE>  <rmsCHIRAL>      0.055 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>       9 </cycle>  <r_factor>      0.365 </r_factor>  <r_free>      0.383 </r_free>  <fscAver>     0.9129 </fscAver>  <fscAverFree>     0.9142 </fscAverFree>  <rmsBOND>     0.0064 </rmsBOND>  <rmsANGLE>      1.254 </rmsANGLE>  <rmsCHIRAL>      0.057 </rmsCHIRAL> <br/>
+</new_cycle>
+ <new_cycle>
+  <cycle>      10 </cycle>  <r_factor>      0.364 </r_factor>  <r_free>      0.384 </r_free>  <fscAver>     0.9134 </fscAver>  <fscAverFree>     0.9139 </fscAverFree>  <rmsBOND>     0.0070 </rmsBOND>  <rmsANGLE>      1.292 </rmsANGLE>  <rmsCHIRAL>      0.059 </rmsCHIRAL> <br/>
+</new_cycle>
+</stats_vs_cycle>
+ <bvalue_stats>
+ <overall>
+ <all>
+  <number>       1132 </number>  <average>    10.8925 </average>  <sigma>     3.6555 </sigma> <br/>
+</all>
+ <main_chain>
+  <number>        396 </number>  <average>    10.4931 </average>  <sigma>     3.5937 </sigma> <br/>
+</main_chain>
+ <side_chain>
+  <number>        736 </number>  <average>    11.1074 </average>  <sigma>     3.6704 </sigma> <br/>
+</side_chain>
+</overall>
+ <chain_by_chain>
+ <new_chain>
+ <chain_name> A </chain_name> <br/>
+ <all>
+  <number>        566 </number>  <average>    10.8948 </average>  <sigma>     3.7202 </sigma> <br/>
+</all>
+ <main_chain>
+  <number>        198 </number>  <average>    10.5289 </average>  <sigma>     3.7651 </sigma> <br/>
+</main_chain>
+ <side_chain>
+  <number>        368 </number>  <average>    11.0916 </average>  <sigma>     3.6808 </sigma> <br/>
+</side_chain>
+</new_chain>
+ <new_chain>
+ <chain_name> B </chain_name> <br/>
+ <all>
+  <number>        566 </number>  <average>    10.8902 </average>  <sigma>     3.5896 </sigma> <br/>
+</all>
+ <main_chain>
+  <number>        198 </number>  <average>    10.4573 </average>  <sigma>     3.4134 </sigma> <br/>
+</main_chain>
+ <side_chain>
+  <number>        368 </number>  <average>    11.1231 </average>  <sigma>     3.6598 </sigma> <br/>
+</side_chain>
+</new_chain>
+</chain_by_chain>
+</bvalue_stats>
+</Overall_stats>
+ <solvent_info>
+ <params_rfree>
+  <vdw_probe_radius>     1.2000 </vdw_probe_radius>  <ion_probe_radius>     0.8000 </ion_probe_radius>  <shrinkage_radius>     0.8000 </shrinkage_radius> <br/>
+</params_rfree>
+ <params_rfactor>
+  <vdw_probe_radius>     1.2000 </vdw_probe_radius>  <ion_probe_radius>     0.8000 </ion_probe_radius>  <shrinkage_radius>     0.8000 </shrinkage_radius> <br/>
+</params_rfactor>
+</solvent_info>
+ <twin_info>
+ <ntwin_domain>     1 </ntwin_domain> <br/>
+</twin_info>
+ <input_pdb_file> /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_3/XYZOUT.pdb </input_pdb_file> <br/>
+ <solution_file> /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_3/XYZOUT.pdb </solution_file> <br/>
+ <input_mtz_file> /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_3/hklin.mtz </input_mtz_file> <br/>
+ <input_labin> LABIN FP=F SIGFP=SIGF FREE=FREER </input_labin> <br/>
+ <mtz_file> /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_3/job_3/hklout.mtz </mtz_file> <br/>
+<Cycle><number>0</number><WeightUsed>1.90828145E-02</WeightUsed><rmsBonds>0.041</rmsBonds><rmsBondsx10>0.41000000000000003</rmsBondsx10><r_factor>0.3800</r_factor><r_free>0.3846</r_free></Cycle><Cycle><number>1</number><WeightUsed>2.02752706E-02</WeightUsed><rmsBonds>0.014</rmsBonds><rmsBondsx10>0.14</rmsBondsx10><r_factor>0.3771</r_factor><r_free>0.3779</r_free></Cycle><Cycle><number>2</number><WeightUsed>2.05635186E-02</WeightUsed><rmsBonds>0.010</rmsBonds><rmsBondsx10>0.1</rmsBondsx10><r_factor>0.3730</r_factor><r_free>0.3759</r_free></Cycle><Cycle><number>3</number><WeightUsed>2.02034041E-02</WeightUsed><rmsBonds>0.008</rmsBonds><rmsBondsx10>0.08</rmsBondsx10><r_factor>0.3715</r_factor><r_free>0.3769</r_free></Cycle><Cycle><number>4</number><WeightUsed>2.01061405E-02</WeightUsed><rmsBonds>0.007</rmsBonds><rmsBondsx10>0.07</rmsBondsx10><r_factor>0.3701</r_factor><r_free>0.3781</r_free></Cycle><Cycle><number>5</number><WeightUsed>1.99447311E-02</WeightUsed><rmsBonds>0.006</rmsBonds><rmsBondsx10>0.06</rmsBondsx10><r_factor>0.3689</r_factor><r_free>0.3796</r_free></Cycle><Cycle><number>6</number><WeightUsed>1.97171159E-02</WeightUsed><rmsBonds>0.006</rmsBonds><rmsBondsx10>0.06</rmsBondsx10><r_factor>0.3677</r_factor><r_free>0.3798</r_free></Cycle><Cycle><number>7</number><WeightUsed>1.97655670E-02</WeightUsed><rmsBonds>0.006</rmsBonds><rmsBondsx10>0.06</rmsBondsx10><r_factor>0.3667</r_factor><r_free>0.3817</r_free></Cycle><Cycle><number>8</number><WeightUsed>2.56444737E-02</WeightUsed><rmsBonds>0.006</rmsBonds><rmsBondsx10>0.06</rmsBondsx10><r_factor>0.3661</r_factor><r_free>0.3831</r_free></Cycle><Cycle><number>9</number><WeightUsed>3.29353511E-02</WeightUsed><rmsBonds>0.006</rmsBonds><rmsBondsx10>0.06</rmsBondsx10><r_factor>0.3649</r_factor><r_free>0.3834</r_free></Cycle><Cycle><number>10</number><rmsBonds>0.007</rmsBonds><rmsBondsx10>0.07</rmsBondsx10><r_factor>0.3640</r_factor><r_free>0.3838</r_free></Cycle><ModelComposition><Chain id="A"/><Chain id="B"/></ModelComposition><SmartieGraphs><CCP4ApplicationOutput><CCP4Table title="Cycle    1. Rfactor analysis, F distribution v resln"><data>0.006 65.0 86.08 189.4 181.3 0.48 0.49 3.0 154.4 131.9 0.38 0.37
+0.018 106.0 95.0 172.8 149.3 0.35 0.36 8.0 107.2 91.2 0.38 0.3
+0.029 127.0 92.52 132.6 152.0 0.46 0.41 9.0 133.8 115.7 0.61 0.59
+0.04 143.0 95.65 173.6 184.4 0.4 0.37 11.0 175.7 169.2 0.54 0.5
+0.051 180.0 94.92 220.1 202.1 0.27 0.25 7.0 186.9 232.2 0.52 0.43
+0.063 160.0 89.55 229.5 201.9 0.35 0.33 20.0 283.9 255.7 0.33 0.28
+0.074 202.0 100.0 217.1 189.6 0.35 0.33 14.0 175.3 146.5 0.35 0.35
+0.085 210.0 93.72 194.6 155.0 0.37 0.35 14.0 318.6 204.3 0.42 0.45
+0.097 230.0 100.0 165.5 135.1 0.41 0.38 17.0 174.6 140.8 0.29 0.28
+0.108 240.0 96.47 159.6 134.3 0.41 0.38 6.0 148.4 126.2 0.37 0.37
+0.119 262.0 97.83 132.9 110.8 0.39 0.34 9.0 202.1 116.7 0.42 0.45
+0.131 261.0 100.0 123.7 107.7 0.37 0.31 13.0 136.6 117.4 0.35 0.35
+0.142 270.0 95.33 116.4 106.9 0.39 0.35 16.0 113.0 123.0 0.31 0.27
+0.153 283.0 99.67 114.1 105.6 0.4 0.33 17.0 87.6 91.8 0.36 0.27
+0.165 288.0 99.67 115.2 105.0 0.4 0.34 15.0 115.4 110.1 0.34 0.32
+0.176 310.0 95.35 100.7 92.1 0.42 0.37 18.0 151.5 126.4 0.37 0.37
+0.187 318.0 100.0 108.4 98.6 0.38 0.32 21.0 122.7 117.8 0.36 0.35
+0.198 299.0 99.38 98.7 91.1 0.37 0.32 20.0 102.5 103.9 0.41 0.38
+0.21 322.0 96.07 101.7 86.9 0.38 0.33 20.0 111.3 88.2 0.37 0.32
+0.221 340.0 100.0 100.7 84.4 0.38 0.33 23.0 86.9 61.9 0.46 0.38
+</data><headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers><plot><title>Cycle    1. &lt;Rfactor&gt; v. resln</title><plotline xcol="1" ycol="6"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot><plot><title>Cycle    1. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title><plotline xcol="1" ycol="4"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/></plot><plot><title>Cycle    1. % observed v. resln</title><plotline xcol="1" ycol="3"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle    1. FSC and  Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln"><data>0.0063 27.0 0.639 38.0 0.478 65.0 0.545 0.868 0.9511 0.8211 0.9389 0.7014
+0.0176 59.0 0.592 47.0 0.361 106.0 0.489 0.891 0.8859 0.9182 0.6973 0.8832
+0.0289 84.0 0.481 43.0 0.445 127.0 0.469 0.907 0.8434 0.879 0.4469 0.727
+0.0402 101.0 0.582 42.0 0.392 143.0 0.526 0.92 0.8222 0.9047 0.5949 0.7831
+0.0515 132.0 0.639 48.0 0.508 180.0 0.604 0.931 0.881 0.9406 0.7177 0.8566
+0.0628 126.0 0.625 34.0 0.473 160.0 0.593 0.937 0.9452 0.919 0.8111 0.8066
+0.0741 158.0 0.612 44.0 0.555 202.0 0.599 0.941 0.8962 0.9166 0.8275 0.7994
+0.0854 166.0 0.566 44.0 0.383 210.0 0.528 0.944 0.9594 0.9168 0.9181 0.8131
+0.0967 179.0 0.501 51.0 0.496 230.0 0.5 0.944 0.9376 0.8765 0.8889 0.7209
+0.108 192.0 0.543 48.0 0.478 240.0 0.53 0.935 0.888 0.8703 0.6137 0.67
+0.1193 214.0 0.503 48.0 0.464 262.0 0.496 0.926 0.961 0.8884 0.8675 0.7284
+0.1306 210.0 0.548 51.0 0.473 261.0 0.533 0.918 0.8826 0.9147 0.5272 0.7861
+0.1419 224.0 0.556 46.0 0.495 270.0 0.545 0.917 0.9681 0.9059 0.8801 0.7545
+0.1532 234.0 0.578 49.0 0.535 283.0 0.57 0.918 0.9158 0.8938 0.912 0.732
+0.1645 244.0 0.6 44.0 0.552 288.0 0.592 0.918 0.9311 0.903 0.7219 0.7587
+0.1759 260.0 0.571 50.0 0.476 310.0 0.556 0.92 0.9291 0.892 0.5753 0.7322
+0.1872 268.0 0.638 50.0 0.567 318.0 0.627 0.923 0.918 0.9023 0.7366 0.7352
+0.1985 253.0 0.618 46.0 0.501 299.0 0.6 0.926 0.9103 0.9099 0.7111 0.7587
+0.2098 274.0 0.605 48.0 0.488 322.0 0.587 0.929 0.9252 0.9054 0.712 0.7693
+0.2211 293.0 0.61 47.0 0.528 340.0 0.599 0.932 0.8618 0.9113 0.7136 0.7726
+</data><headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1 FSCfree FSCwork CorrFoFcFree CorrFoFcWork
+</headers><plot><title>Cycle    1. M(Fom) v. resln</title><plotline xcol="1" ycol="3"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="8"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle   11. Rfactor analysis, F distribution v resln"><data>0.006 65.0 86.08 190.7 172.9 0.47 0.49 3.0 155.5 133.8 0.34 0.34
+0.018 106.0 95.0 174.0 154.1 0.35 0.35 8.0 108.0 86.3 0.34 0.26
+0.029 127.0 92.52 133.5 155.7 0.48 0.43 9.0 134.7 128.0 0.54 0.54
+0.04 143.0 95.65 174.8 185.9 0.4 0.36 11.0 176.9 180.5 0.54 0.5
+0.051 180.0 94.92 221.6 194.9 0.3 0.28 7.0 188.2 230.9 0.59 0.46
+0.063 160.0 89.55 231.1 207.9 0.35 0.32 20.0 285.9 262.9 0.32 0.26
+0.074 202.0 100.0 218.6 194.6 0.36 0.33 14.0 176.5 159.5 0.36 0.37
+0.085 210.0 93.72 196.0 159.4 0.37 0.35 14.0 320.9 209.8 0.44 0.45
+0.097 230.0 100.0 166.7 135.7 0.4 0.38 17.0 175.8 132.2 0.3 0.27
+0.108 240.0 96.47 160.7 132.3 0.41 0.38 6.0 149.4 128.3 0.35 0.41
+0.119 262.0 97.83 133.8 112.4 0.38 0.34 9.0 203.5 107.7 0.47 0.48
+0.131 261.0 100.0 124.6 113.3 0.36 0.31 13.0 137.5 128.2 0.34 0.34
+0.142 270.0 95.33 117.2 108.3 0.36 0.32 16.0 113.8 117.4 0.3 0.26
+0.153 283.0 99.67 114.9 106.3 0.36 0.3 17.0 88.2 92.3 0.52 0.41
+0.165 288.0 99.67 116.0 108.2 0.35 0.29 15.0 116.2 115.8 0.28 0.24
+0.176 310.0 95.35 101.4 96.0 0.37 0.32 18.0 152.5 121.0 0.37 0.38
+0.187 318.0 100.0 109.2 100.5 0.34 0.28 21.0 123.6 124.0 0.34 0.34
+0.198 299.0 99.38 99.4 91.1 0.33 0.29 20.0 103.2 104.1 0.33 0.31
+0.21 322.0 96.07 102.4 92.8 0.32 0.26 20.0 112.0 85.8 0.42 0.4
+0.221 340.0 100.0 101.4 88.2 0.34 0.28 23.0 87.5 74.8 0.38 0.28
+</data><headers separator=" ">M(4SSQ/LL) NR_used %_obs M(Fo_used) M(Fc_used) Rf_used WR_used NR_free M(Fo_free) M(Fc_free) Rf_free WR_free
+</headers><plot><title>Cycle   11. &lt;Rfactor&gt; v. resln</title><plotline xcol="1" ycol="6"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot><plot><title>Cycle   11. &lt;Fobs&gt; and &lt;Fc&gt; v. resln</title><plotline xcol="1" ycol="4"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/></plot><plot><title>Cycle   11. % observed v. resln</title><plotline xcol="1" ycol="3"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Cycle   11. FSC and  Fom(&lt;cos(DelPhi)&gt;-acentric, centric, overall v resln"><data>0.0063 27.0 0.63 38.0 0.449 65.0 0.524 0.868 0.9688 0.8272 0.9398 0.7203
+0.0176 59.0 0.598 47.0 0.377 106.0 0.5 0.89 0.8798 0.9121 0.7238 0.8833
+0.0289 84.0 0.489 43.0 0.429 127.0 0.468 0.906 0.8975 0.8803 0.585 0.7205
+0.0402 101.0 0.588 42.0 0.397 143.0 0.532 0.918 0.83 0.911 0.6152 0.7822
+0.0515 132.0 0.632 48.0 0.481 180.0 0.592 0.93 0.8576 0.9336 0.6492 0.8319
+0.0628 126.0 0.625 34.0 0.495 160.0 0.597 0.93 0.9428 0.9238 0.8054 0.8196
+0.0741 158.0 0.61 44.0 0.542 202.0 0.595 0.926 0.9163 0.9123 0.8477 0.7865
+0.0854 166.0 0.552 44.0 0.386 210.0 0.517 0.922 0.9413 0.9133 0.8777 0.805
+0.0967 179.0 0.482 51.0 0.454 230.0 0.476 0.918 0.9322 0.8762 0.8776 0.7275
+0.108 192.0 0.517 48.0 0.433 240.0 0.5 0.911 0.9037 0.8684 0.7188 0.6865
+0.1193 214.0 0.491 48.0 0.437 262.0 0.482 0.905 0.9548 0.901 0.8052 0.7702
+0.1306 210.0 0.531 51.0 0.464 261.0 0.518 0.9 0.9213 0.9116 0.565 0.7867
+0.1419 224.0 0.546 46.0 0.498 270.0 0.538 0.902 0.9514 0.9161 0.8384 0.7836
+0.1532 234.0 0.56 49.0 0.517 283.0 0.553 0.905 0.8517 0.9101 0.7766 0.7906
+0.1645 244.0 0.586 44.0 0.6 288.0 0.589 0.908 0.9562 0.9264 0.8371 0.827
+0.1759 260.0 0.568 50.0 0.496 310.0 0.557 0.913 0.9066 0.9221 0.4753 0.811
+0.1872 268.0 0.63 50.0 0.585 318.0 0.623 0.919 0.9268 0.9252 0.7476 0.8011
+0.1985 253.0 0.616 46.0 0.484 299.0 0.595 0.924 0.931 0.9268 0.7563 0.814
+0.2098 274.0 0.618 48.0 0.493 322.0 0.599 0.93 0.9101 0.939 0.6101 0.8583
+0.2211 293.0 0.627 47.0 0.543 340.0 0.615 0.935 0.8826 0.9316 0.672 0.8342
+</data><headers separator=" ">&lt;4SSQ/LL&gt; NREFa FOMa NREFc FOMc NREFall FOMall SigmaA_Fc1 FSCfree FSCwork CorrFoFcFree CorrFoFcWork
+</headers><plot><title>Cycle   11. M(Fom) v. resln</title><plotline xcol="1" ycol="3"/><plotline xcol="1" ycol="5"/><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="8"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/><plotline xcol="1" ycol="11"/><plotline xcol="1" ycol="12"/></plot></CCP4Table></CCP4ApplicationOutput><CCP4ApplicationOutput><CCP4Table title="Rfactor analysis, stats vs cycle"><data>0.0 0.38 0.3846 0.562 25276.0 1553.7 0.0413 3.689 2.461 1.506 0.196
+1.0 0.3771 0.3779 0.567 25149.0 1549.5 0.0143 1.179 1.986 1.193 0.081
+2.0 0.373 0.3759 0.568 25070.0 1549.0 0.01 0.791 1.679 1.0 0.068
+3.0 0.3715 0.3769 0.564 25072.0 1551.3 0.0081 0.636 1.497 0.886 0.062
+4.0 0.3701 0.3781 0.564 25066.0 1553.3 0.0071 0.557 1.387 0.816 0.059
+5.0 0.3689 0.3796 0.562 25103.0 1557.6 0.0065 0.512 1.317 0.771 0.057
+6.0 0.3677 0.3798 0.561 25089.0 1558.7 0.0062 0.486 1.272 0.741 0.056
+7.0 0.3667 0.3817 0.56 25075.0 1559.4 0.006 0.471 1.242 0.721 0.055
+8.0 0.3661 0.3831 0.559 25074.0 1560.6 0.0059 0.458 1.227 0.71 0.055
+9.0 0.3649 0.3834 0.557 25066.0 1561.6 0.0064 0.494 1.254 0.725 0.057
+10.0 0.364 0.3838 0.556 25061.0 1562.2 0.007 0.535 1.292 0.748 0.059
+</data><headers separator=" ">Ncyc Rfact Rfree FOM -LL -LLfree rmsBOND zBOND rmsANGL zANGL rmsCHIRAL
+</headers><plot><title>&lt;Rfactor&gt; vs cycle</title><plotline xcol="1" ycol="2"/><plotline xcol="1" ycol="3"/></plot><plot><title>FOM vs cycle</title><plotline xcol="1" ycol="4"/></plot><plot><title>-LL vs cycle</title><plotline xcol="1" ycol="5"/></plot><plot><title>-LLfree vs cycle</title><plotline xcol="1" ycol="6"/></plot><plot><title>Geometry vs cycle</title><plotline xcol="1" ycol="7"/><plotline xcol="1" ycol="8"/><plotline xcol="1" ycol="9"/><plotline xcol="1" ycol="10"/><plotline xcol="1" ycol="11"/></plot></CCP4Table></CCP4ApplicationOutput></SmartieGraphs></REFMAC>
+</PhaserPipeline>

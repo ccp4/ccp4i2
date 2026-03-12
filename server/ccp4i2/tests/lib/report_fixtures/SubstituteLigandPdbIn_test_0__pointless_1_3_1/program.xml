@@ -1,0 +1,230 @@
+<POINTLESS version="1.12.1" RunTime="Sun Jul 12 15:15:35 2020">
+<XYZREF>
+/tmp/CCP4I2_PROJECTSh6EK9v/SubstituteLigandPdbIn_test_0/CCP4_IMPORTED_FILES/4hg7_1.pdb
+</XYZREF>
+<XYZREFspacegroup>P 65 2 2</XYZREFspacegroup>
+<ReflectionFile stream="XYZIN" name="/tmp/CCP4I2_PROJECTSh6EK9v/SubstituteLigandPdbIn_test_0/CCP4_IMPORTED_FILES/4hg7_1.pdb">
+<FileType>XYZIN file</FileType>
+<cell>
+ <a>  71.450</a> <b>  71.450</b> <c> 104.204</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+<MergedData>True</MergedData>
+<SpacegroupName> P 65 2 2</SpacegroupName>
+</ReflectionFile>
+<ReflectionFile stream="HKLIN" name="/tmp/CCP4I2_PROJECTSh6EK9v/SubstituteLigandPdbIn_test_0/CCP4_IMPORTED_FILES/mdm2_unmerged_1.mtz">
+<FileType>MTZ</FileType>
+<cell>
+ <a>  71.512</a> <b>  71.512</b> <c> 104.293</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+<MergedData>False</MergedData>
+<SpacegroupName> P 6 2 2</SpacegroupName>
+</ReflectionFile>
+<AlternativeIndexResolution>1.52</AlternativeIndexResolution>
+
+<CCP4Table groupID="Graph" id="Reference CC from Pointless" title="CC to reference file vs. resolution">
+<plot>
+<title>CC for each alternative, resolution used to 1.52A</title>
+<xscale>oneoversqrt</xscale>
+<xrange min="0.000260714" max="0.645508"/>
+<yrange min="0" max="1"/>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid      1 
+</headers>
+<data>
+  1  0.0110   9.53   0.282
+  2  0.0325   5.55   0.786
+  3  0.0540   4.30   0.842
+  4  0.0755   3.64   0.885
+  5  0.0970   3.21   0.853
+  6  0.1186   2.90   0.850
+  7  0.1401   2.67   0.828
+  8  0.1616   2.49   0.824
+  9  0.1831   2.34   0.826
+ 10  0.2046   2.21   0.811
+ 11  0.2261   2.10   0.827
+ 12  0.2476   2.01   0.799
+ 13  0.2691   1.93   0.784
+ 14  0.2906   1.85   0.767
+ 15  0.3121   1.79   0.740
+ 16  0.3336   1.73   0.697
+ 17  0.3551   1.68   0.608
+ 18  0.3767   1.63   0.510
+ 19  0.3982   1.58   0.440
+ 20  0.4197   1.54   0.366
+ 21  0.4412   1.51   0.332
+ 22  0.4627   1.47   0.250
+ 23  0.4842   1.44   0.161
+ 24  0.5057   1.41   0.021
+ 25  0.5272   1.38   0.111
+ 26  0.5487   1.35   0.023
+ 27  0.5702   1.32   0.193
+ 28  0.5917   1.30  -0.181
+ 29  0.6132   1.28   0.129
+ 30  0.6348   1.26  -0.517
+</data>
+</CCP4Table>
+<AlternativeIndexing>[h,k,l]</AlternativeIndexing>
+<ReflectionData>
+   <NumberReflections>33965</NumberReflections>
+   <NumberObservations>99328</NumberObservations>
+   <NumberParts>99328</NumberParts>
+   <ResolutionHigh>    1.24</ResolutionHigh>
+   <NumberLattices>0</NumberLattices>
+   <NumberBatches>60</NumberBatches>
+   <NumberDatasets>1</NumberDatasets>
+   <Dataset  name="SubstituteLigandPdbIn_test_0/C1/D1">
+<cell>
+ <a>  71.512</a> <b>  71.512</b> <c> 104.293</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+<Deviation>0.000000</Deviation>
+      <Wavelength>0.87260</Wavelength>
+      <Run>
+      <number>1</number>
+      <Datasetname>SubstituteLigandPdbIn_test_0/C1/D1</Datasetname>
+      <BatchRange>1 60</BatchRange>
+      <BatchOffset>0</BatchOffset>
+      <PhiRange>80 110</PhiRange>
+      <FileStream>HKLIN</FileStream>
+      <Used>true</Used>
+      </Run>
+   </Dataset>
+</ReflectionData>
+
+<CCP4Table groupID="Graph" id="Resolution estimate from Pointless" title="Mn(I/sigI) and CC(1/2) [in P1] vs. resolution">
+<plot>
+<title>Resolution estimate 2.25A</title>
+<description>Plot of data strength vs. resolution, and cutoffs to keep only strong data for analysis
+CC(1/2) [in P1] (threshold  0.60), or &lt;I/sigma(I)&gt; (threshold   6.00)
+High resolution limit reset to 2.25   using CC(1/2) cutoff (in P1)
+</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0.00026097" max="0.645508"/>
+<yrange min="0" max="1"/>
+<yrange min="0" max="12" rightaxis="true"/>
+
+<plotline xcol="  2" ycol="  7" rightaxis="true" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  6" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid CC(1/2)   N_CC   CCfit  Mn(I/sigI)      N (I/sigI)/10
+</headers>
+<data>
+  1  0.0110   9.53   0.955    211   0.909      148.53    501      14.853
+  2  0.0325   5.55   0.935    399   0.889       96.97   1228       9.697
+  3  0.0540   4.30   0.862    431   0.866      103.37   1655      10.337
+  4  0.0755   3.64   0.772    177   0.838       70.28    893       7.028
+  5  0.0970   3.21   0.775    416   0.806       43.70   2481       4.370
+  6  0.1186   2.90   0.779    406   0.770       28.34   2913       2.834
+  7  0.1401   2.67   0.731    277   0.729       21.75   2429       2.175
+  8  0.1616   2.49   0.719    325   0.684       17.74   3464       1.774
+  9  0.1831   2.34   0.608    274   0.634       14.17   3626       1.417
+ 10  0.2046   2.21   0.576    172   0.582       10.93   3022       1.093
+ 11  0.2261   2.10   0.536    137   0.528        9.13   3108       0.913
+ 12  0.2476   2.01   0.421    120   0.474        6.94   4214       0.694
+ 13  0.2691   1.93   0.438     46   0.419        5.51   1825       0.551
+ 14  0.2906   1.85   0.430     54   0.367        4.23   3769       0.423
+ 15  0.3121   1.79   0.404     26   0.318        3.53   4242       0.353
+ 16  0.3336   1.73   0.158      9   0.272        3.00   3125       0.300
+ 17  0.3551   1.68    -         -    -           2.48   4220       0.248
+ 18  0.3767   1.63    -         -    -           2.04   3942       0.204
+ 19  0.3982   1.58    -         -    -           1.89   3177       0.189
+ 20  0.4197   1.54    -         -    -           1.76   2505       0.176
+ 21  0.4412   1.51    -         -    -           1.71   1963       0.171
+ 22  0.4627   1.47    -         -    -           1.59   1610       0.159
+ 23  0.4842   1.44    -         -    -           1.49   1238       0.149
+ 24  0.5057   1.41    -         -    -           1.30    943       0.130
+ 25  0.5272   1.38    -         -    -           1.28    767       0.128
+ 26  0.5487   1.35    -         -    -           0.94    454       0.094
+ 27  0.5702   1.32    -         -    -           0.50    214       0.050
+ 28  0.5917   1.30    -         -    -           0.20     49       0.020
+ 29  0.6132   1.28    -         -    -           0.16     28       0.016
+ 30  0.6348   1.26    -         -    -           0.16      5       0.016
+</data>
+</CCP4Table>
+<CutoffMessage>High resolution limit reset to 2.25   using CC(1/2) cutoff (in P1)</CutoffMessage>
+<ResolutionUsed> <ResolutionHigh>2.251</ResolutionHigh></ResolutionUsed> 
+<IovSigCutoff>6.000</IovSigCutoff>
+<ResolutionHighIovsigI>2.01</ResolutionHighIovsigI>
+<CCHalfCutoff>0.600</CCHalfCutoff>
+<ResolutionHighCCHalf>2.25</ResolutionHighCCHalf>
+ 
+
+<CCP4Table groupID="Graph" id="L-test" title="L-test for twinning, twin fraction 0.009">
+<plot>
+<title>Cumulative distribution of |L|, estimated fraction 0.009</title>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  4" >
+<symbolsize>  0</symbolsize>
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  3" >
+<symbolsize>  0</symbolsize>
+<linestyle>-</linestyle>
+<colour>green</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+<colour>black</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+      |L|       N(|L|)  Untwinned    Twinned
+</headers>
+<data>
+     0.0000     0.0000     0.0000     0.0000
+     0.0500     0.0517     0.0500     0.0749
+     0.1000     0.1036     0.1000     0.1495
+     0.1500     0.1537     0.1500     0.2233
+     0.2000     0.2047     0.2000     0.2960
+     0.2500     0.2542     0.2500     0.3672
+     0.3000     0.3044     0.3000     0.4365
+     0.3500     0.3547     0.3500     0.5036
+     0.4000     0.4051     0.4000     0.5680
+     0.4500     0.4567     0.4500     0.6294
+     0.5000     0.5072     0.5000     0.6875
+     0.5500     0.5580     0.5500     0.7418
+     0.6000     0.6091     0.6000     0.7920
+     0.6500     0.6604     0.6500     0.8377
+     0.7000     0.7111     0.7000     0.8785
+     0.7500     0.7629     0.7500     0.9141
+     0.8000     0.8138     0.8000     0.9440
+     0.8500     0.8641     0.8500     0.9679
+     0.9000     0.9139     0.9000     0.9855
+     0.9500     0.9620     0.9500     0.9963
+     1.0000     1.0000     1.0000     1.0000
+</data>
+</CCP4Table>
+<BestCell><cell>
+ <a>  71.512</a> <b>  71.512</b> <c> 104.293</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+</BestCell>
+<CopyMessage>Copying unmerged data to output file in space group P 65 2 2</CopyMessage>
+<ReindexOperator>[h,k,l]</ReindexOperator>
+<ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+<HKLOUT>MTZUNMERGEDOUT.mtz</HKLOUT>
+</POINTLESS>

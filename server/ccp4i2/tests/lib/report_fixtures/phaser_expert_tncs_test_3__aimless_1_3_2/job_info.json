@@ -1,0 +1,71 @@
+{
+  "status": "Finished",
+  "taskname": "aimless",
+  "taskversion": "1.0",
+  "jobnumber": "1.3.2",
+  "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+  "jobtitle": "aimless",
+  "creationtime": 1686753113.602341,
+  "projectname": "phaser_expert_tncs_test_3",
+  "fileroot": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_2/",
+  "tasktitle": "aimless",
+  "jobid": "351b3dee-0ac0-11ee-99c9-8c8590af7452",
+  "descendentjobs": [],
+  "finishtime": 1686753113.864709,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 4,
+      "filename": "HKLOUT.mtz",
+      "annotation": "",
+      "jobparamname": "MTZMERGEDOUT",
+      "jobid": "351b3dee-0ac0-11ee-99c9-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "1.3.2",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "MtzDataFile",
+      "fileId": "3542c9cc-0ac0-11ee-99c9-8c8590af7452",
+      "baseName": "HKLOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    },
+    {
+      "filetypeid": 14,
+      "filename": "SCALES.scales",
+      "annotation": "",
+      "jobparamname": "SCALES",
+      "jobid": "351b3dee-0ac0-11ee-99c9-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "Dummy",
+      "projectid": "03ca4014-0ac0-11ee-8cc9-8c8590af7452",
+      "jobnumber": "1.3.2",
+      "projectname": "phaser_expert_tncs_test_3",
+      "filetypeclass": "",
+      "fileId": "3542fa78-0ac0-11ee-99c9-8c8590af7452",
+      "baseName": "SCALES.scales",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    }
+  ],
+  "filenames": {
+    "UNMERGEDFILE": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_1/MTZUNMERGEDOUT.mtz",
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "XMLOUT": "",
+    "SCALES": "<PROJECTS_DIR>/phaser_expert_tncs_test_3/CCP4_JOBS/job_1/job_3/job_2/SCALES.scales",
+    "ROGUES": "",
+    "NORMPLOT": "",
+    "ANOMPLOT": "",
+    "CORRELPLOT": "",
+    "ROGUEPLOT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless",
+    "report_class": "aimless_report",
+    "report_module": "ccp4i2.wrappers.aimless.script.aimless_report",
+    "job_number": "1.3.2",
+    "job_status": "Finished",
+    "project_name": "phaser_expert_tncs_test_3",
+    "has_program_xml": true
+  }
+}

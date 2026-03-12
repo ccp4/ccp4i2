@@ -1,0 +1,121 @@
+{
+  "status": "Unsatisfactory",
+  "taskname": "phaser_simple",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "99f87566-c776-11ea-a7ab-dca9047ffd14",
+  "jobtitle": "phaser_simple",
+  "creationtime": 1594912279.61,
+  "projectname": "phaser_simple_no_solution_test_0",
+  "fileroot": "<PROJECTS_DIR>/phaser_simple_no_solution_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "phaser_simple",
+  "jobid": "9a3eb0c2-c776-11ea-b7f0-dca9047ffd14",
+  "descendentjobs": [
+    [
+      "9bd8d1a8-c776-11ea-a837-dca9047ffd14",
+      []
+    ]
+  ],
+  "finishtime": 1594912316.17,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "merged_intensities_Xe_1.mtz",
+      "annotation": "Reflections imported from merged_intensities_Xe.mtz by job 1",
+      "jobparamname": "F_SIGF",
+      "jobid": "9a3eb0c2-c776-11ea-b7f0-dca9047ffd14",
+      "pathflag": 2,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "99f87566-c776-11ea-a7ab-dca9047ffd14",
+      "jobnumber": "1",
+      "projectname": "phaser_simple_no_solution_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "9a96151c-c776-11ea-8e3c-dca9047ffd14",
+      "relpath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "rnase_model_1.pdb",
+      "annotation": "Search imported from rnase_model.pdb by job 1",
+      "jobparamname": "XYZIN",
+      "jobid": "9a3eb0c2-c776-11ea-b7f0-dca9047ffd14",
+      "pathflag": 2,
+      "filetype": "chemical/x-pdb",
+      "projectid": "99f87566-c776-11ea-a7ab-dca9047ffd14",
+      "jobnumber": "1",
+      "projectname": "phaser_simple_no_solution_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "9a9d523a-c776-11ea-a5c7-dca9047ffd14",
+      "relpath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "merged_intensities_Xe_1.mtz",
+      "annotation": "Reflections imported from merged_intensities_Xe.mtz by job 1",
+      "jobparamname": "F_SIGF",
+      "jobid": "9a3eb0c2-c776-11ea-b7f0-dca9047ffd14",
+      "pathflag": 2,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "99f87566-c776-11ea-a7ab-dca9047ffd14",
+      "jobnumber": "1",
+      "projectname": "phaser_simple_no_solution_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "9a96151c-c776-11ea-8e3c-dca9047ffd14",
+      "baseName": "merged_intensities_Xe_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 2,
+      "filename": "rnase_model_1.pdb",
+      "annotation": "Search imported from rnase_model.pdb by job 1",
+      "jobparamname": "XYZIN",
+      "jobid": "9a3eb0c2-c776-11ea-b7f0-dca9047ffd14",
+      "pathflag": 2,
+      "filetype": "chemical/x-pdb",
+      "projectid": "99f87566-c776-11ea-a7ab-dca9047ffd14",
+      "jobnumber": "1",
+      "projectname": "phaser_simple_no_solution_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "9a9d523a-c776-11ea-a5c7-dca9047ffd14",
+      "baseName": "rnase_model_1.pdb",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "filenames": {
+    "F_SIGF": "<PROJECTS_DIR>/phaser_simple_no_solution_test_0/CCP4_IMPORTED_FILES/merged_intensities_Xe_1.mtz",
+    "I_SIGI": "",
+    "FPHI": "",
+    "ABCD": "",
+    "ASUFILE": "",
+    "SOLIN": "",
+    "RFILEIN": "",
+    "FREERFLAG": "",
+    "XYZIN_TARGET": "",
+    "XYZIN": "<PROJECTS_DIR>/phaser_simple_no_solution_test_0/CCP4_IMPORTED_FILES/rnase_model_1.pdb",
+    "XYZIN_FIXED": "",
+    "XMLOUT": "",
+    "SOLOUT": "",
+    "RFILEOUT": "",
+    "F_SIGF_OUT": "",
+    "FREERFLAG_OUT": "",
+    "XYZOUT_COOT": "",
+    "XYZOUT_CSYMMATCH": "",
+    "XYZOUT_SHEETBEND": "",
+    "XYZOUT_REFMAC": "",
+    "DIFMAPOUT_REFMAC": "",
+    "MAPOUT_REFMAC": ""
+  },
+  "_fixture_meta": {
+    "task_name": "phaser_simple",
+    "report_class": "phaser_simple_report",
+    "report_module": "ccp4i2.pipelines.phaser_simple.script.phaser_simple_report",
+    "job_number": "1",
+    "job_status": "Unsatisfactory",
+    "project_name": "phaser_simple_no_solution_test_0",
+    "has_program_xml": true
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "status": "Finished",
+  "taskname": "arcimboldo",
+  "taskversion": "1.0",
+  "jobnumber": "2",
+  "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+  "jobtitle": "arcimboldo",
+  "creationtime": 1686758959.563303,
+  "projectname": "arcimboldo_lite_test_0",
+  "fileroot": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_2/",
+  "tasktitle": "arcimboldo",
+  "jobid": "d1921e6a-0acd-11ee-9613-8c8590af7452",
+  "descendentjobs": [],
+  "finishtime": 1686759181.628288,
+  "inputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_arcimboldo_lite_test_0_obsout_import_merged.mtz",
+      "annotation": "Reflections from hklin_1",
+      "jobparamname": "F_SIGF",
+      "jobid": "0e8ef18c-0acc-11ee-9613-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "arcimboldo_lite_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "29c6f8a0-0acc-11ee-bf21-8c8590af7452",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "outputfiles": [],
+  "filenames": {
+    "CONFIG_FILE": "",
+    "F_SIGF": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_1/1_arcimboldo_lite_test_0_obsout_import_merged.mtz",
+    "PDB_LITE": "",
+    "LITE_FIXED": "",
+    "BORGES_CUSTOM": "",
+    "PDB_SHREDDER": "",
+    "XMLOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "arcimboldo",
+    "report_class": "arcimboldo_report",
+    "report_module": "ccp4i2.wrappers.arcimboldo.script.arcimboldo_report",
+    "job_number": "2",
+    "job_status": "Finished",
+    "project_name": "arcimboldo_lite_test_0",
+    "has_program_xml": true
+  }
+}

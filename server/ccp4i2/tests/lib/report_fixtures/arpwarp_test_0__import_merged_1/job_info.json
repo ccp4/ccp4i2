@@ -1,0 +1,67 @@
+{
+  "status": "File holder",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "ad5ffe76-fbb2-11eb-8130-08002705bc84",
+  "jobtitle": "import_merged",
+  "creationtime": 1628803046.56,
+  "projectname": "arpwarp_test_0",
+  "fileroot": "<PROJECTS_DIR>/arpwarp_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "b17fbaaa-fbb2-11eb-8130-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1628803092.66,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 11,
+      "filename": "1_arpwarp_test_0_obsout_import_merged.mtz",
+      "annotation": "Reflections from merged_intensities_Xe_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "b17fbaaa-fbb2-11eb-8130-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "ad5ffe76-fbb2-11eb-8130-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "arpwarp_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "ccf5a53a-fbb2-11eb-8130-08002705bc84",
+      "baseName": "1_arpwarp_test_0_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_arpwarp_test_0_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:1.79A;Cell:34.2,54.8,68.0,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "b17fbaaa-fbb2-11eb-8130-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "ad5ffe76-fbb2-11eb-8130-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "arpwarp_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "ccf5a53b-fbb2-11eb-8130-08002705bc84",
+      "baseName": "1_arpwarp_test_0_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "",
+    "OBSOUT": "",
+    "FREEOUT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "File holder",
+    "project_name": "arpwarp_test_0",
+    "has_program_xml": false
+  }
+}

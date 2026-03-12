@@ -1,0 +1,49 @@
+{
+  "status": "Finished",
+  "taskname": "sheetbend",
+  "taskversion": "1.0",
+  "jobnumber": "2.2",
+  "projectid": "3a700d0a-ef98-11eb-82cf-08002705bc84",
+  "jobtitle": "sheetbend",
+  "creationtime": 1627472422.93,
+  "projectname": "molrep_test_0",
+  "fileroot": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_2/job_2/",
+  "tasktitle": "sheetbend",
+  "jobid": "97ffc047-ef98-11eb-82cf-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1627472424.72,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 2,
+      "filename": "XYZOUT.pdb",
+      "annotation": "",
+      "jobparamname": "XYZOUT",
+      "jobid": "97ffc047-ef98-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "chemical/x-pdb",
+      "projectid": "3a700d0a-ef98-11eb-82cf-08002705bc84",
+      "jobnumber": "2.2",
+      "projectname": "molrep_test_0",
+      "filetypeclass": "PdbDataFile",
+      "fileId": "9913df80-ef98-11eb-82cf-08002705bc84",
+      "baseName": "XYZOUT.pdb",
+      "relpath": "CCP4_JOBS/job_2/job_2"
+    }
+  ],
+  "filenames": {
+    "XYZIN": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_2/job_1/XYZOUT.pdb",
+    "F_SIGF": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_1/HKLOUT_0-observed_data.mtz",
+    "FREERFLAG": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_1/FREERFLAG.mtz",
+    "XYZOUT": "<PROJECTS_DIR>/molrep_test_0/CCP4_JOBS/job_2/job_2/XYZOUT.pdb"
+  },
+  "_fixture_meta": {
+    "task_name": "sheetbend",
+    "report_class": "sheetbend_report",
+    "report_module": "ccp4i2.wrappers.sheetbend.script.sheetbend_report",
+    "job_number": "2.2",
+    "job_status": "Finished",
+    "project_name": "molrep_test_0",
+    "has_program_xml": true
+  }
+}

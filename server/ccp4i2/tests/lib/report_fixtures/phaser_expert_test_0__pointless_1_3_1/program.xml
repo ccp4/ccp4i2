@@ -1,0 +1,368 @@
+<POINTLESS version="1.12.1" RunTime="Sun Jul 12 15:17:14 2020">
+<SquaredFs>true</SquaredFs>
+<ReflectionFile stream="HKLIN" name="/tmp/CCP4I2_PROJECTSh6EK9v/phaser_expert_test_0/CCP4_JOBS/job_1/OBSOUT.mtz">
+<FileType>MTZ</FileType>
+<cell>
+ <a>  75.110</a> <b>  75.110</b> <c> 133.310</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+<MergedData>True</MergedData>
+<SpacegroupName> P 32 2 1</SpacegroupName>
+</ReflectionFile>
+<ReflectionData>
+   <NumberReflections>8830</NumberReflections>
+   <NumberObservations>8830</NumberObservations>
+   <NumberParts>8830</NumberParts>
+   <ResolutionHigh>    3.00</ResolutionHigh>
+   <NumberLattices>0</NumberLattices>
+   <NumberBatches>1</NumberBatches>
+   <NumberDatasets>1</NumberDatasets>
+   <Dataset  name="P1/HKL_base/HKL_base">
+<cell>
+ <a>  75.110</a> <b>  75.110</b> <c> 133.310</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+<Deviation>0.000000</Deviation>
+      <Wavelength>9.99900</Wavelength>
+      <Run>
+      <number>1</number>
+      <Datasetname>P1/HKL_base/HKL_base</Datasetname>
+      <BatchRange>1 1</BatchRange>
+      <BatchOffset>0</BatchOffset>
+      <PhiRange>0 0</PhiRange>
+      <FileStream>HKLIN</FileStream>
+      <Used>true</Used>
+      </Run>
+   </Dataset>
+</ReflectionData>
+
+<CCP4Table groupID="Graph" id="Resolution estimate from Pointless" title="Mn(I/sigI) and CC(1/2) [in P1] vs. resolution">
+<plot>
+<title>Resolution estimate 3.00A</title>
+<description>Plot of data strength vs. resolution, and cutoffs to keep only strong data for analysis
+CC(1/2) [in P1] (threshold  0.60), or &lt;I/sigma(I)&gt; (threshold   6.00)
+Complete resolution range kept, data are strong to the edge
+</description>
+<xscale>oneoversqrt</xscale>
+<xrange min="0.0044792" max="0.110841"/>
+<yrange min="0" max="1"/>
+<yrange min="0" max="19.3114" rightaxis="true"/>
+
+<plotline xcol="  2" ycol="  7" rightaxis="true" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  6" >
+<linestyle>-</linestyle>
+</plotline>
+
+<plotline xcol="  2" ycol="  4" >
+<linestyle>-</linestyle>
+</plotline>
+</plot>
+<headers separator=" ">
+  N  1/d^2    Dmid CC(1/2)   N_CC   CCfit  Mn(I/sigI)      N (I/sigI)/10
+</headers>
+<data>
+  1  0.0111   9.48    -         -    -          32.49    298       3.249
+  2  0.0244   6.40    -         -    -          27.56    527       2.756
+  3  0.0377   5.15    -         -    -          26.14    698       2.614
+  4  0.0510   4.43    -         -    -          22.46    819       2.246
+  5  0.0643   3.94    -         -    -          18.20    573       1.820
+  6  0.0776   3.59    -         -    -          13.23    486       1.323
+  7  0.0909   3.32    -         -    -           9.05    946       0.905
+  8  0.1042   3.10    -         -    -           6.44   1219       0.644
+</data>
+</CCP4Table>
+<CutoffMessage>Complete resolution range kept, data are strong to the edge</CutoffMessage>
+<ResolutionUsed> <ResolutionHigh>3.004</ResolutionHigh></ResolutionUsed> 
+<IovSigCutoff>6.000</IovSigCutoff>
+<ResolutionHighIovsigI>3.00</ResolutionHighIovsigI>
+<CCHalfCutoff>0.600</CCHalfCutoff>
+ 
+
+<CCP4Table groupID="Graph" id="L-test" title="L-test for twinning, twin fraction 0.000">
+<plot>
+<title>Cumulative distribution of |L|, estimated fraction 0.000</title>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  4" >
+<symbolsize>  0</symbolsize>
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  3" >
+<symbolsize>  0</symbolsize>
+<linestyle>-</linestyle>
+<colour>green</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+<colour>black</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+      |L|       N(|L|)  Untwinned    Twinned
+</headers>
+<data>
+     0.0000     0.0000     0.0000     0.0000
+     0.0500     0.0470     0.0500     0.0749
+     0.1000     0.0925     0.1000     0.1495
+     0.1500     0.1352     0.1500     0.2233
+     0.2000     0.1806     0.2000     0.2960
+     0.2500     0.2277     0.2500     0.3672
+     0.3000     0.2749     0.3000     0.4365
+     0.3500     0.3221     0.3500     0.5036
+     0.4000     0.3684     0.4000     0.5680
+     0.4500     0.4158     0.4500     0.6294
+     0.5000     0.4624     0.5000     0.6875
+     0.5500     0.5109     0.5500     0.7418
+     0.6000     0.5601     0.6000     0.7920
+     0.6500     0.6080     0.6500     0.8377
+     0.7000     0.6560     0.7000     0.8785
+     0.7500     0.7055     0.7500     0.9141
+     0.8000     0.7560     0.8000     0.9440
+     0.8500     0.8075     0.8500     0.9679
+     0.9000     0.8585     0.9000     0.9855
+     0.9500     0.9123     0.9500     0.9963
+     1.0000     1.0000     1.0000     1.0000
+</data>
+</CCP4Table>
+
+<LatticeSymmetry>
+   <LatticegroupName>P 6 2 2</LatticegroupName>
+   <cell>
+ <a>  75.110</a> <b>  75.110</b> <c> 133.310</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+   <CellDelta>    0.00</CellDelta>
+   <LatticeReindex>[h,k,l]</LatticeReindex>
+
+</LatticeSymmetry>
+<ElementScores>
+   <Element>
+   <number>  1 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  1 </RotationOrder> <Axis> 0 0 0 </Axis>
+<SymmetryElementString>identity</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  2 </number>
+   <Likelihood>    0.045</Likelihood>
+   <ZCC>   1.39 </ZCC> <CC>   0.14 </CC> <NCC>    3469 </NCC> <R>  1.021 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 0 0 1 </Axis>
+<SymmetryElementString>2-fold l ( 0 0 1) {-h,-k,l}</SymmetryElementString>
+   <ElementScoreStars>     </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  3 </number>
+   <Likelihood>    0.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   0.00 </CC> <NCC>       0 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 0 1 0 </Axis>
+<SymmetryElementString>2-fold k ( 0 1 0) {-h,h+k,-l}</SymmetryElementString>
+   <ElementScoreStars>     </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  4 </number>
+   <Likelihood>    0.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   0.00 </CC> <NCC>       0 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 1 0 0 </Axis>
+<SymmetryElementString>2-fold h ( 1 0 0) {h+k,-k,-l}</SymmetryElementString>
+   <ElementScoreStars>     </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  5 </number>
+   <Likelihood>    0.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   0.00 </CC> <NCC>       0 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 1-1 0 </Axis>
+<SymmetryElementString>2-fold   ( 1-1 0) {-k,-h,-l}</SymmetryElementString>
+   <ElementScoreStars>     </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  6 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 2-1 0 </Axis>
+<SymmetryElementString>2-fold   ( 2-1 0) {h,-h-k,-l}</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  7 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis>-1 2 0 </Axis>
+<SymmetryElementString>2-fold   (-1 2 0) {-h-k,k,-l}</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  8 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  2 </RotationOrder> <Axis> 1 1 0 </Axis>
+<SymmetryElementString>2-fold   ( 1 1 0) {k,h,-l}</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number>  9 </number>
+   <Likelihood>    1.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   1.00 </CC> <NCC>       4 </NCC> <R>  0.000 </R>
+   <RotationOrder>  3 </RotationOrder> <Axis> 0 0 1 </Axis>
+<SymmetryElementString>3-fold l ( 0 0 1) {k,-h-k,l}{-h-k,h,l}</SymmetryElementString>
+   <ElementScoreStars> --- </ElementScoreStars>
+   </Element>
+   <Element>
+   <number> 10 </number>
+   <Likelihood>    0.000</Likelihood>
+   <ZCC>   0.00 </ZCC> <CC>   0.00 </CC> <NCC>       0 </NCC> <R>  0.000 </R>
+   <RotationOrder>  6 </RotationOrder> <Axis> 0 0 1 </Axis>
+<SymmetryElementString>6-fold l ( 0 0 1) {h+k,-h,l}{-k,h+k,l}</SymmetryElementString>
+   <ElementScoreStars>     </ElementScoreStars>
+   </Element>
+</ElementScores>
+<LaueGroupScoreList>
+   <LaueGroupScore Accept="Original">
+   <LaueGroupScoreAccept>Original</LaueGroupScoreAccept>
+   <LaueGroupScoreString>=</LaueGroupScoreString>
+   <number> 1</number> <LaueGroupName>  P -3 m 1</LaueGroupName>
+   <LatticeType>hP</LatticeType>
+   <LaueGroupScoreStars> ***</LaueGroupScoreStars>
+   <Likelihood>    0.955</Likelihood>   <NetZCC>  2.86</NetZCC><ZCC_plus>  4.25</ZCC_plus><ZCC_minus>  1.39</ZCC_minus>
+<CC>  1.00 </CC><R>  0.00 </R><CellDelta>  0.0</CellDelta>
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+   <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   </LaueGroupScore>
+   <LaueGroupScore Accept="NotAccepted">
+   <LaueGroupScoreAccept>NotAccepted</LaueGroupScoreAccept>
+   <LaueGroupScoreString> </LaueGroupScoreString>
+   <number> 2</number> <LaueGroupName> P 6/m m m</LaueGroupName>
+   <LatticeType>hP</LatticeType>
+   <LaueGroupScoreStars>    </LaueGroupScoreStars>
+   <Likelihood>    0.045</Likelihood>   <NetZCC>  1.41</NetZCC><ZCC_plus>  1.41</ZCC_plus><ZCC_minus>  0.00</ZCC_minus>
+<CC>  0.14 </CC><R>  1.02 </R><CellDelta>  0.0</CellDelta>
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+   <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   </LaueGroupScore>
+</LaueGroupScoreList>
+
+<CCP4Table groupID="Graph" id="AxialReflections-c" title="Axial reflections, axis c (lattice frame) screw axis 3(1)">
+<plot>
+<title>I/sigI vs. index, axis c, screw axis 3(1)</title>
+<yrange min="0" max="None"/>
+
+<plotline xcol="  1" ycol="  5" >
+<linestyle>-</linestyle>
+<colour>black</colour>
+</plotline>
+
+<plotline xcol="  1" ycol="  4" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<plot>
+<title>I vs. index, axis c, screw axis 3(1)</title>
+
+<plotline xcol="  1" ycol="  2" >
+<linestyle>-</linestyle>
+<colour>red</colour>
+</plotline>
+</plot>
+<headers separator=" ">
+   Index          I       sigI    I/sigI   I'/sigI
+</headers>
+<data>
+       9          5          4      1.14      1.14
+      21          7          3      2.47      2.47
+      30         36          2     14.88     14.88
+      39          4          3      1.14      1.14
+      42          9          2      3.79      3.79
+</data>
+</CCP4Table>
+<ZoneScoreList>
+   <ZoneLaueGroup name="P -3 m 1">
+   <Zone>
+   <Number> 1</Number><ZoneType>screw axis 3(1) [c]    </ZoneType><Nobs>       0</Nobs><PeakHeight>   0.000</PeakHeight><SDPkHt>  
+   0.000</SDPkHt><Prob>   0.000</Prob><Condition>00l: l=3n</Condition>
+   <MissingData/>
+   </Zone>
+   </ZoneLaueGroup>
+</ZoneScoreList>
+<SystematiczoneWarning class="warningmessage">
+
+WARNING! one or more zones have data systematically missing, see reflection list,   thus we cannot determine if the reflections are truly
+systematically absent
+
+
+</SystematiczoneWarning>
+
+<SpacegroupList>
+   
+<Spacegroup>
+   <SpacegroupName>      P 31 2 1</SpacegroupName><SGnumber>152</SGnumber>   <TotalProb>  0.952</TotalProb><SysAbsProb>  0.997</SysAbsProb>   
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+      <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <Condition> 00l: l=3n </Condition>   <ZoneNumbers>1</ZoneNumbers>
+   </Spacegroup>
+   
+<Spacegroup>
+   <SpacegroupName>      P 32 2 1</SpacegroupName><SGnumber>154</SGnumber>   <TotalProb>  0.952</TotalProb><SysAbsProb>  0.997</SysAbsProb>   
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+      <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <Condition> 00l: l=3n </Condition>   <ZoneNumbers>1</ZoneNumbers>
+   </Spacegroup>
+</SpacegroupList>
+<SolutionMessage>Selecting space group P 32 2 1
+ as solutions are enantiomorphic and it matches the input file</SolutionMessage>
+<SolutionWarning class="warningmessage">
+WARNING: You will have to resolve the enantiomorphic ambiguity later</SolutionWarning>
+
+<BestSolutionType>space group</BestSolutionType>
+
+<BestSolution Type="spacegroup">
+   <GroupName>P 32 2 1</GroupName>
+   <SGnumber>154</SGnumber>
+   <CCP4_SGnumber>154</CCP4_SGnumber>
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+   <ReindexMatrix>      1      0      0
+                        0      1      0
+                        0      0      1
+    </ReindexMatrix>
+   <LGProb>   0.955</LGProb>
+   <SysAbsProb>   0.997</SysAbsProb>
+   <Confidence>    0.951</Confidence>
+   <LGconfidence>   0.932</LGconfidence>
+   <TotalProb>  0.952</TotalProb>
+</BestSolution>
+<NumberPossibleReindexing>2</NumberPossibleReindexing>
+<PossibleReindexing>
+   <ReindexOperator>[h,k,l]</ReindexOperator>
+   <CellDiff>0.00</CellDiff>
+   <DifferentCell>false</DifferentCell>
+</PossibleReindexing>
+<PossibleReindexing>
+   <ReindexOperator>[-h,-k,l]</ReindexOperator>
+   <CellDiff>0.00</CellDiff>
+   <DifferentCell>false</DifferentCell>
+</PossibleReindexing>
+<BestCell><cell>
+ <a>  75.110</a> <b>  75.110</b> <c> 133.310</c>
+ <alpha>  90.000</alpha> <beta>  90.000</beta> <gamma> 120.000</gamma>
+</cell>
+</BestCell>
+</POINTLESS>

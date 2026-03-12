@@ -1,0 +1,71 @@
+{
+  "status": "Finished",
+  "taskname": "aimless",
+  "taskversion": "1.0",
+  "jobnumber": "1.3.2",
+  "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+  "jobtitle": "aimless",
+  "creationtime": 1628086118.2,
+  "projectname": "mrbump_gamma_test_0",
+  "fileroot": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/job_3/job_2/",
+  "tasktitle": "aimless",
+  "jobid": "76e17eab-f52d-11eb-a394-08002705bc84",
+  "descendentjobs": [],
+  "finishtime": 1628086118.62,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 4,
+      "filename": "HKLOUT.mtz",
+      "annotation": "",
+      "jobparamname": "MTZMERGEDOUT",
+      "jobid": "76e17eab-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1.3.2",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "MtzDataFile",
+      "fileId": "76e17eac-f52d-11eb-a394-08002705bc84",
+      "baseName": "HKLOUT.mtz",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    },
+    {
+      "filetypeid": 14,
+      "filename": "SCALES.scales",
+      "annotation": "",
+      "jobparamname": "SCALES",
+      "jobid": "76e17eab-f52d-11eb-a394-08002705bc84",
+      "pathflag": 1,
+      "filetype": "Dummy",
+      "projectid": "5c6e953a-f52d-11eb-a394-08002705bc84",
+      "jobnumber": "1.3.2",
+      "projectname": "mrbump_gamma_test_0",
+      "filetypeclass": "",
+      "fileId": "76e17ead-f52d-11eb-a394-08002705bc84",
+      "baseName": "SCALES.scales",
+      "relpath": "CCP4_JOBS/job_1/job_3/job_2"
+    }
+  ],
+  "filenames": {
+    "UNMERGEDFILE": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/job_3/job_1/MTZUNMERGEDOUT.mtz",
+    "HKLIN_REF": "",
+    "XYZIN_REF": "",
+    "XMLOUT": "",
+    "SCALES": "<PROJECTS_DIR>/mrbump_gamma_test_0/CCP4_JOBS/job_1/job_3/job_2/SCALES.scales",
+    "ROGUES": "",
+    "NORMPLOT": "",
+    "ANOMPLOT": "",
+    "CORRELPLOT": "",
+    "ROGUEPLOT": ""
+  },
+  "_fixture_meta": {
+    "task_name": "aimless",
+    "report_class": "aimless_report",
+    "report_module": "ccp4i2.wrappers.aimless.script.aimless_report",
+    "job_number": "1.3.2",
+    "job_status": "Finished",
+    "project_name": "mrbump_gamma_test_0",
+    "has_program_xml": true
+  }
+}

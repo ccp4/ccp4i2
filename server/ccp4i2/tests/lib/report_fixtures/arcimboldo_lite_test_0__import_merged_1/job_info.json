@@ -1,0 +1,118 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+  "jobtitle": "import_merged",
+  "creationtime": 1686758202.889893,
+  "projectname": "arcimboldo_lite_test_0",
+  "fileroot": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "0e8ef18c-0acc-11ee-9613-8c8590af7452",
+  "descendentjobs": [
+    [
+      "19ec3e7c-0acc-11ee-bf21-8c8590af7452",
+      []
+    ],
+    [
+      "1a6a5172-0acc-11ee-bf21-8c8590af7452",
+      []
+    ],
+    [
+      "1aff06d2-0acc-11ee-bf21-8c8590af7452",
+      [
+        "1b07f918-0acc-11ee-bf21-8c8590af7452",
+        "1bc7dd64-0acc-11ee-bf21-8c8590af7452",
+        "1ce4f786-0acc-11ee-bf21-8c8590af7452",
+        "28526e8c-0acc-11ee-bf21-8c8590af7452"
+      ]
+    ],
+    [
+      "1b07f918-0acc-11ee-bf21-8c8590af7452",
+      []
+    ],
+    [
+      "1bc7dd64-0acc-11ee-bf21-8c8590af7452",
+      []
+    ],
+    [
+      "1ce4f786-0acc-11ee-bf21-8c8590af7452",
+      []
+    ],
+    [
+      "28526e8c-0acc-11ee-bf21-8c8590af7452",
+      []
+    ]
+  ],
+  "finishtime": 1686758248.559286,
+  "inputfiles": [],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "hklin_1.mtz",
+      "annotation": "Reflection data loaded from hklin.mtz by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "0e8ef18c-0acc-11ee-9613-8c8590af7452",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "arcimboldo_lite_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "192e750e-0acc-11ee-9613-8c8590af7452",
+      "baseName": "hklin_1.mtz",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "1_arcimboldo_lite_test_0_obsout_import_merged.mtz",
+      "annotation": "Reflections from hklin_1",
+      "jobparamname": "OBSOUT",
+      "jobid": "0e8ef18c-0acc-11ee-9613-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "arcimboldo_lite_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "29c6f8a0-0acc-11ee-bf21-8c8590af7452",
+      "baseName": "1_arcimboldo_lite_test_0_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_arcimboldo_lite_test_0_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 42 21 2;Resln:1.70A;Cell:35.4,35.4,104.2,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "0e8ef18c-0acc-11ee-9613-8c8590af7452",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "09b81f58-0acc-11ee-9613-8c8590af7452",
+      "jobnumber": "1",
+      "projectname": "arcimboldo_lite_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "29c724ce-0acc-11ee-bf21-8c8590af7452",
+      "baseName": "1_arcimboldo_lite_test_0_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_IMPORTED_FILES/hklin_1.mtz",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "",
+    "OBSOUT": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_1/1_arcimboldo_lite_test_0_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/arcimboldo_lite_test_0/CCP4_JOBS/job_1/1_arcimboldo_lite_test_0_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "arcimboldo_lite_test_0",
+    "has_program_xml": true
+  }
+}

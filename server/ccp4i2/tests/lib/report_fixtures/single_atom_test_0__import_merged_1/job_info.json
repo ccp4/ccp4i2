@@ -1,0 +1,133 @@
+{
+  "status": "Finished",
+  "taskname": "import_merged",
+  "taskversion": "1.0",
+  "jobnumber": "1",
+  "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+  "jobtitle": "import_merged",
+  "creationtime": 1627476076.64,
+  "projectname": "single_atom_test_0",
+  "fileroot": "<PROJECTS_DIR>/single_atom_test_0/CCP4_JOBS/job_1/",
+  "tasktitle": "import_merged",
+  "jobid": "19cabd1c-efa1-11eb-82cf-08002705bc84",
+  "descendentjobs": [
+    [
+      "28d392d4-efa1-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "28d392d6-efa1-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "28d392d7-efa1-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "28d392d8-efa1-11eb-82cf-08002705bc84",
+      [
+        "28d392d9-efa1-11eb-82cf-08002705bc84",
+        "29ab8efb-efa1-11eb-82cf-08002705bc84",
+        "30baf97e-efa1-11eb-82cf-08002705bc84"
+      ]
+    ],
+    [
+      "28d392d9-efa1-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "29ab8efb-efa1-11eb-82cf-08002705bc84",
+      []
+    ],
+    [
+      "30baf97e-efa1-11eb-82cf-08002705bc84",
+      []
+    ]
+  ],
+  "finishtime": 1627476116.82,
+  "inputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "3njw-sf_1.cif",
+      "annotation": "Reflection data loaded from 3njw-sf.cif by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "19cabd1c-efa1-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "single_atom_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "28108a0a-efa1-11eb-82cf-08002705bc84",
+      "relpath": "CCP4_IMPORTED_FILES"
+    }
+  ],
+  "outputfiles": [
+    {
+      "filetypeid": 25,
+      "filename": "3njw-sf_1.cif",
+      "annotation": "Reflection data loaded from 3njw-sf.cif by job 1",
+      "jobparamname": "HKLIN",
+      "jobid": "19cabd1c-efa1-11eb-82cf-08002705bc84",
+      "pathflag": 2,
+      "filetype": "application/CCP4-generic-reflections",
+      "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "single_atom_test_0",
+      "filetypeclass": "GenericReflDataFile",
+      "fileId": "28108a0a-efa1-11eb-82cf-08002705bc84",
+      "baseName": "3njw-sf_1.cif",
+      "relpath": "CCP4_JOBS/job_1",
+      "relPath": "CCP4_IMPORTED_FILES"
+    },
+    {
+      "filetypeid": 11,
+      "filename": "1_single_atom_test_0_obsout_import_merged.mtz",
+      "annotation": "",
+      "jobparamname": "OBSOUT",
+      "jobid": "19cabd1c-efa1-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-observed",
+      "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "single_atom_test_0",
+      "filetypeclass": "ObsDataFile",
+      "fileId": "30baf981-efa1-11eb-82cf-08002705bc84",
+      "baseName": "1_single_atom_test_0_obsout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    },
+    {
+      "filetypeid": 10,
+      "filename": "1_single_atom_test_0_freeout_import_merged.mtz",
+      "annotation": "FreeR - Spg:P 21 21 21;Resln:0.86A;Cell:19.5,21.4,29.5,90.0,90.0,90.0",
+      "jobparamname": "FREEOUT",
+      "jobid": "19cabd1c-efa1-11eb-82cf-08002705bc84",
+      "pathflag": 1,
+      "filetype": "application/CCP4-mtz-freerflag",
+      "projectid": "7471be94-ef9e-11eb-82cf-08002705bc84",
+      "jobnumber": "1",
+      "projectname": "single_atom_test_0",
+      "filetypeclass": "FreeRDataFile",
+      "fileId": "30baf982-efa1-11eb-82cf-08002705bc84",
+      "baseName": "1_single_atom_test_0_freeout_import_merged.mtz",
+      "relpath": "CCP4_JOBS/job_1"
+    }
+  ],
+  "filenames": {
+    "HKLIN": "<PROJECTS_DIR>/single_atom_test_0/CCP4_IMPORTED_FILES/3njw-sf_1.cif",
+    "HKLIN_OBS": "",
+    "FREERFLAG": "",
+    "HKLOUT": "<PROJECTS_DIR>/single_atom_test_0/CCP4_JOBS/job_1/1_single_atom_test_0_hklout_import_merged.mtz",
+    "OBSOUT": "<PROJECTS_DIR>/single_atom_test_0/CCP4_JOBS/job_1/1_single_atom_test_0_obsout_import_merged.mtz",
+    "FREEOUT": "<PROJECTS_DIR>/single_atom_test_0/CCP4_JOBS/job_1/1_single_atom_test_0_freeout_import_merged.mtz"
+  },
+  "_fixture_meta": {
+    "task_name": "import_merged",
+    "report_class": "import_merged_report",
+    "report_module": "ccp4i2.pipelines.import_merged.script.import_merged_report",
+    "job_number": "1",
+    "job_status": "Finished",
+    "project_name": "single_atom_test_0",
+    "has_program_xml": true
+  }
+}

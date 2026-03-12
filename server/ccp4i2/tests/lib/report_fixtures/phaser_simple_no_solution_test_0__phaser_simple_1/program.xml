@@ -1,0 +1,1298 @@
+<PhaserPipeline>
+  <PhaserMrResults>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Cell Content Analysis">
+      <data>1.0 0.949712
+</data>
+      <headers separator=" ">N*Composition Probability
+</headers>
+      <plot>
+        <title>N*Composition vs Probability</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Intensity distribution for Data">
+      <data>0.0 0.0 0.0 0.00243902 0.0 0.0231481
+0.04 0.0392106 0.0030343 0.0268293 0.158519 0.157407
+0.08 0.0768837 0.0115132 0.0536585 0.222703 0.199074
+0.12 0.11308 0.0245815 0.0804878 0.270966 0.24537
+0.16 0.147856 0.0414833 0.129268 0.310843 0.282407
+0.2 0.181269 0.0615519 0.165854 0.345279 0.314815
+0.24 0.213372 0.0842006 0.207317 0.375794 0.347222
+0.28 0.244216 0.108914 0.246341 0.403299 0.37037
+0.32 0.273851 0.13524 0.265854 0.428392 0.393519
+0.36 0.302324 0.162786 0.285366 0.451494 0.430556
+0.4 0.32968 0.191208 0.314634 0.472911 0.467593
+0.44 0.355964 0.220208 0.336585 0.492878 0.481481
+0.48 0.381217 0.24953 0.356098 0.511578 0.513889
+0.52 0.405479 0.278952 0.390244 0.529158 0.527778
+0.56 0.428791 0.308287 0.409756 0.54574 0.537037
+0.6 0.451188 0.337373 0.421951 0.561422 0.555556
+0.64 0.472708 0.366075 0.45122 0.576289 0.574074
+0.68 0.493383 0.394281 0.482927 0.590413 0.592593
+0.72 0.513248 0.421896 0.507317 0.603856 0.601852
+0.76 0.532334 0.448846 0.529268 0.616672 0.615741
+0.8 0.550671 0.475069 0.55122 0.628907 0.62037
+0.84 0.56829 0.500518 0.573171 0.640603 0.643519
+0.88 0.585217 0.525156 0.580488 0.651798 0.648148
+0.92 0.601481 0.548959 0.595122 0.662525 0.657407
+0.96 0.617107 0.571908 0.617073 0.672813 0.657407
+1.0 0.632121 0.593994 0.62439 0.682689 0.680556
+1.04 0.646545 0.615215 0.639024 0.692179 0.685185
+1.08 0.660404 0.635573 0.656098 0.701302 0.694444
+1.12 0.67372 0.655074 0.660976 0.710082 0.703704
+1.16 0.686514 0.673732 0.673171 0.718534 0.712963
+1.2 0.698806 0.691559 0.680488 0.726678 0.722222
+1.24 0.710616 0.708574 0.702439 0.734529 0.731481
+1.28 0.721963 0.724795 0.709756 0.742101 0.731481
+1.32 0.732865 0.740245 0.717073 0.749408 0.74537
+1.36 0.743339 0.754946 0.726829 0.756463 0.74537
+1.4 0.753403 0.768922 0.743902 0.763276 0.75463
+1.44 0.763072 0.782197 0.75122 0.769861 0.759259
+1.48 0.772362 0.794797 0.758537 0.776226 0.768519
+1.52 0.781288 0.806747 0.77561 0.782381 0.768519
+1.56 0.789864 0.818072 0.792683 0.788335 0.773148
+1.6 0.798103 0.828799 0.804878 0.794097 0.782407
+1.64 0.80602 0.838951 0.809756 0.799674 0.791667
+1.68 0.813626 0.848554 0.819512 0.805076 0.810185
+1.72 0.820934 0.857633 0.82439 0.810307 0.819444
+1.76 0.827955 0.866211 0.834146 0.815376 0.828704
+1.8 0.834701 0.874311 0.841463 0.820287 0.828704
+1.84 0.841183 0.881957 0.846341 0.825049 0.833333
+1.88 0.84741 0.889169 0.853659 0.829666 0.833333
+1.92 0.853393 0.895971 0.858537 0.834143 0.833333
+1.96 0.859142 0.902382 0.860976 0.838487 0.842593
+2.0 0.864665 0.908422 0.863415 0.842701 0.842593
+</data>
+      <headers separator=" ">Z ACent_theor ACent_twin ACent_obser Cent_theor Cent_obser
+</headers>
+      <plot>
+        <title>Cumulative intensity distribution (acentric and centric)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+        <plotline xcol="1" ycol="6"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Weighted second moments for Data">
+      <data>0.0041 2.00248 1.50248 2.82668
+0.0106 2.0009 1.5009 1.54421
+0.0172 2.00136 1.50136 1.96979
+0.0237 2.00169 1.50169 2.13235
+0.0302 2.00163 1.50163 2.50571
+0.0367 2.0012 1.5012 2.00735
+</data>
+      <headers separator=" ">1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+      <plot>
+        <title>Weighted second moments vs resolution (acentric only)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Intensity distribution after Anisotropy Correction">
+      <data>0.0 0.0 0.0 0.00243902 0.0 0.0231481
+0.04 0.0392106 0.0030343 0.0268293 0.158519 0.148148
+0.08 0.0768837 0.0115132 0.0536585 0.222703 0.199074
+0.12 0.11308 0.0245815 0.0804878 0.270966 0.240741
+0.16 0.147856 0.0414833 0.131707 0.310843 0.282407
+0.2 0.181269 0.0615519 0.163415 0.345279 0.319444
+0.24 0.213372 0.0842006 0.202439 0.375794 0.337963
+0.28 0.244216 0.108914 0.239024 0.403299 0.37037
+0.32 0.273851 0.13524 0.268293 0.428392 0.398148
+0.36 0.302324 0.162786 0.287805 0.451494 0.430556
+0.4 0.32968 0.191208 0.307317 0.472911 0.453704
+0.44 0.355964 0.220208 0.336585 0.492878 0.49537
+0.48 0.381217 0.24953 0.353659 0.511578 0.513889
+0.52 0.405479 0.278952 0.395122 0.529158 0.527778
+0.56 0.428791 0.308287 0.409756 0.54574 0.555556
+0.6 0.451188 0.337373 0.419512 0.561422 0.555556
+0.64 0.472708 0.366075 0.443902 0.576289 0.564815
+0.68 0.493383 0.394281 0.47561 0.590413 0.574074
+0.72 0.513248 0.421896 0.497561 0.603856 0.601852
+0.76 0.532334 0.448846 0.521951 0.616672 0.606481
+0.8 0.550671 0.475069 0.553659 0.628907 0.62037
+0.84 0.56829 0.500518 0.573171 0.640603 0.638889
+0.88 0.585217 0.525156 0.582927 0.651798 0.643519
+0.92 0.601481 0.548959 0.604878 0.662525 0.652778
+0.96 0.617107 0.571908 0.609756 0.672813 0.662037
+1.0 0.632121 0.593994 0.62439 0.682689 0.671296
+1.04 0.646545 0.615215 0.646341 0.692179 0.685185
+1.08 0.660404 0.635573 0.656098 0.701302 0.699074
+1.12 0.67372 0.655074 0.665854 0.710082 0.703704
+1.16 0.686514 0.673732 0.673171 0.718534 0.712963
+1.2 0.698806 0.691559 0.680488 0.726678 0.722222
+1.24 0.710616 0.708574 0.687805 0.734529 0.722222
+1.28 0.721963 0.724795 0.7 0.742101 0.731481
+1.32 0.732865 0.740245 0.714634 0.749408 0.74537
+1.36 0.743339 0.754946 0.731707 0.756463 0.74537
+1.4 0.753403 0.768922 0.739024 0.763276 0.75
+1.44 0.763072 0.782197 0.746341 0.769861 0.759259
+1.48 0.772362 0.794797 0.753659 0.776226 0.768519
+1.52 0.781288 0.806747 0.763415 0.782381 0.773148
+1.56 0.789864 0.818072 0.780488 0.788335 0.777778
+1.6 0.798103 0.828799 0.797561 0.794097 0.791667
+1.64 0.80602 0.838951 0.809756 0.799674 0.791667
+1.68 0.813626 0.848554 0.819512 0.805076 0.819444
+1.72 0.820934 0.857633 0.831707 0.810307 0.819444
+1.76 0.827955 0.866211 0.834146 0.815376 0.828704
+1.8 0.834701 0.874311 0.841463 0.820287 0.828704
+1.84 0.841183 0.881957 0.843902 0.825049 0.828704
+1.88 0.84741 0.889169 0.846341 0.829666 0.833333
+1.92 0.853393 0.895971 0.853659 0.834143 0.833333
+1.96 0.859142 0.902382 0.856098 0.838487 0.837963
+2.0 0.864665 0.908422 0.858537 0.842701 0.842593
+</data>
+      <headers separator=" ">Z ACent_theor ACent_twin ACent_obser Cent_theor Cent_obser
+</headers>
+      <plot>
+        <title>Cumulative intensity distribution (acentric and centric)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+        <plotline xcol="1" ycol="5"/>
+        <plotline xcol="1" ycol="6"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Weighted second moments after Anisotropy Correction">
+      <data>0.0041 2.00227 1.50227 2.57796
+0.0106 2.0009 1.5009 1.54629
+0.0172 2.00134 1.50134 1.92726
+0.0237 2.00172 1.50172 2.15783
+0.0302 2.00169 1.50169 2.56771
+0.0367 2.00123 1.50123 2.01825
+</data>
+      <headers separator=" ">1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+      <plot>
+        <title>Weighted second moments vs resolution (acentric only)</title>
+        <plotline xcol="1" ycol="2"/>
+        <plotline xcol="1" ycol="3"/>
+        <plotline xcol="1" ycol="4"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <PhaserWarnings/>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Cell Content Analysis">
+      <data>1.0 0.00445377
+</data>
+      <headers separator=" ">N*Composition Probability
+</headers>
+      <plot>
+        <title>N*Composition vs Probability</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Cell Content Analysis">
+      <data>1.0 0.00445377
+</data>
+      <headers separator=" ">N*Composition Probability
+</headers>
+      <plot>
+        <title>N*Composition vs Probability</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Cell Content Analysis">
+      <data>1.0 0.00445377
+</data>
+      <headers separator=" ">N*Composition Probability
+</headers>
+      <plot>
+        <title>N*Composition vs Probability</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CurrentActivity>
+    <label>Packing analysis</label>
+    <max>52</max>
+    <value>53</value>
+  </CurrentActivity>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Rotation Function Component #1 (SearchModel)">
+      <data>1.0 -11.76 3.85
+2.0 -20.28 3.34
+3.0 -22.16 3.23
+4.0 -22.47 3.21
+5.0 -23.29 3.16
+6.0 -23.81 3.13
+7.0 -23.84 3.13
+8.0 -24.24 3.1
+9.0 -24.56 3.09
+10.0 -25.69 3.02
+11.0 -26.08 2.99
+12.0 -26.35 2.98
+13.0 -27.79 2.89
+14.0 -27.8 2.89
+15.0 -28.21 2.87
+16.0 -28.4 2.85
+17.0 -28.49 2.85
+18.0 -28.55 2.85
+19.0 -28.84 2.83
+20.0 -29.45 2.79
+21.0 -29.71 2.78
+22.0 -29.73 2.78
+23.0 -30.31 2.74
+24.0 -30.54 2.73
+25.0 -30.63 2.72
+26.0 -30.68 2.72
+27.0 -30.92 2.7
+28.0 -31.01 2.7
+29.0 -31.59 2.66
+30.0 -31.73 2.66
+31.0 -32.05 2.64
+32.0 -32.54 2.61
+33.0 -33.39 2.56
+34.0 -33.53 2.55
+35.0 -33.98 2.52
+36.0 -34.08 2.51
+37.0 -34.09 2.51
+38.0 -34.19 2.51
+39.0 -34.66 2.48
+40.0 -34.9 2.47
+41.0 -35.67 2.42
+42.0 -35.67 2.42
+43.0 -35.67 2.42
+44.0 -35.8 2.41
+45.0 -36.35 2.38
+46.0 -36.42 2.37
+47.0 -36.7 2.36
+48.0 -37.06 2.34
+49.0 -37.13 2.33
+50.0 -37.22 2.33
+</data>
+      <headers separator=" ">Number LLG Z-Score
+</headers>
+      <plot>
+        <title>RF Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+      <plot>
+        <title>RF Number vs Z-Score</title>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Cell Content Analysis">
+      <data>1.0 0.00445377
+</data>
+      <headers separator=" ">N*Composition Probability
+</headers>
+      <plot>
+        <title>N*Composition vs Probability</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <CCP4ApplicationOutput>
+    <CCP4Table title="Translation Function Component #1 (SearchModel)">
+      <data>1.0 -354.18 3.47
+2.0 -357.42 3.82
+3.0 -360.55 3.74
+4.0 -361.6 3.59
+5.0 -362.11 3.61
+6.0 -363.32 3.49
+7.0 -363.41 3.86
+8.0 -363.58 3.85
+9.0 -364.54 3.57
+10.0 -365.74 4.75
+11.0 -366.17 3.41
+12.0 -367.91 3.5
+13.0 -368.38 4.23
+14.0 -368.56 3.79
+15.0 -369.62 4.0
+16.0 -371.08 3.77
+17.0 -372.66 3.87
+18.0 -373.22 3.3
+19.0 -373.43 3.72
+20.0 -374.27 3.77
+21.0 -374.3 3.74
+22.0 -374.33 3.94
+23.0 -374.82 3.36
+24.0 -374.85 4.01
+25.0 -375.45 3.75
+26.0 -376.12 3.57
+27.0 -377.01 3.77
+28.0 -377.06 3.82
+29.0 -377.61 4.25
+30.0 -378.25 4.02
+31.0 -378.27 4.03
+32.0 -378.34 3.72
+33.0 -379.4 4.46
+34.0 -380.15 3.27
+35.0 -381.32 3.04
+36.0 -381.53 3.44
+37.0 -381.88 4.02
+38.0 -382.04 3.62
+39.0 -382.25 3.1
+40.0 -382.34 3.15
+41.0 -382.36 4.47
+42.0 -382.43 4.17
+43.0 -382.45 2.95
+44.0 -382.9 4.16
+45.0 -382.94 3.98
+46.0 -383.82 3.82
+47.0 -383.93 3.55
+48.0 -384.23 3.5
+49.0 -384.34 3.87
+50.0 -384.34 3.82
+51.0 -384.49 3.76
+52.0 -385.14 3.2
+53.0 -385.33 3.86
+54.0 -385.94 3.29
+55.0 -386.06 3.45
+56.0 -386.34 2.98
+57.0 -386.92 3.28
+58.0 -387.41 3.81
+59.0 -387.44 2.82
+60.0 -387.61 4.29
+61.0 -387.94 3.22
+62.0 -387.98 3.53
+63.0 -388.1 3.43
+64.0 -388.21 3.27
+65.0 -388.32 3.31
+66.0 -388.41 3.34
+67.0 -388.44 3.66
+68.0 -388.47 3.27
+69.0 -388.6 3.24
+70.0 -388.77 4.33
+71.0 -389.01 4.18
+72.0 -389.69 3.68
+73.0 -389.95 3.55
+74.0 -390.41 3.76
+75.0 -390.44 3.99
+76.0 -390.5 3.4
+77.0 -390.81 3.48
+78.0 -390.91 3.39
+79.0 -391.02 3.48
+80.0 -391.05 3.56
+81.0 -391.13 3.33
+82.0 -391.27 3.34
+83.0 -391.78 3.68
+84.0 -392.02 3.48
+85.0 -392.21 4.01
+86.0 -392.75 4.57
+87.0 -393.09 3.6
+88.0 -394.17 3.21
+89.0 -394.23 3.6
+90.0 -394.54 3.4
+91.0 -394.58 3.43
+92.0 -394.68 3.61
+93.0 -394.75 3.21
+94.0 -394.91 3.37
+95.0 -395.26 3.96
+96.0 -395.26 3.5
+97.0 -395.29 3.78
+98.0 -395.41 4.03
+99.0 -395.57 3.31
+100.0 -395.65 3.77
+101.0 -395.76 3.13
+102.0 -396.19 3.37
+103.0 -396.28 3.66
+104.0 -396.29 3.71
+105.0 -396.38 3.09
+106.0 -396.55 3.55
+107.0 -396.89 3.38
+108.0 -396.92 3.74
+109.0 -396.94 3.56
+110.0 -397.16 3.27
+111.0 -397.44 3.62
+112.0 -397.6 3.89
+113.0 -397.7 3.98
+114.0 -397.94 3.34
+115.0 -398.14 3.32
+116.0 -398.22 3.38
+117.0 -398.32 3.24
+118.0 -398.36 3.18
+119.0 -398.48 4.34
+120.0 -398.55 3.6
+121.0 -398.62 3.62
+122.0 -398.74 3.48
+123.0 -399.08 3.65
+124.0 -399.13 3.75
+125.0 -399.25 3.66
+126.0 -399.72 3.91
+127.0 -399.79 3.24
+128.0 -400.07 3.47
+129.0 -400.17 3.19
+130.0 -400.38 3.94
+131.0 -400.38 4.19
+132.0 -400.45 3.22
+133.0 -400.61 3.36
+134.0 -400.74 3.99
+135.0 -400.75 4.23
+136.0 -401.28 3.43
+137.0 -401.31 3.71
+138.0 -401.39 3.06
+139.0 -401.52 3.6
+140.0 -401.89 3.61
+141.0 -402.17 3.59
+142.0 -402.41 3.26
+143.0 -402.71 3.92
+144.0 -402.9 3.24
+145.0 -403.08 3.22
+146.0 -403.11 3.31
+147.0 -403.64 3.35
+148.0 -403.71 3.25
+149.0 -403.73 3.3
+150.0 -403.92 3.43
+151.0 -404.0 4.09
+152.0 -404.11 3.5
+153.0 -404.16 3.98
+154.0 -404.37 3.27
+155.0 -404.52 3.54
+156.0 -404.63 3.17
+157.0 -404.68 3.62
+158.0 -405.38 3.95
+159.0 -405.42 3.35
+160.0 -405.76 3.14
+161.0 -406.29 3.29
+162.0 -406.43 3.89
+163.0 -406.49 3.82
+164.0 -407.21 3.76
+165.0 -407.33 3.44
+166.0 -407.39 3.57
+167.0 -407.62 4.21
+168.0 -407.86 3.44
+169.0 -408.09 3.61
+170.0 -408.09 3.17
+171.0 -408.32 3.38
+172.0 -408.47 3.81
+173.0 -408.67 2.79
+174.0 -408.8 2.95
+175.0 -409.08 3.47
+176.0 -409.34 4.07
+177.0 -409.34 3.79
+178.0 -409.64 3.35
+179.0 -409.93 3.16
+180.0 -410.0 3.55
+181.0 -410.12 3.2
+182.0 -410.15 3.5
+183.0 -410.34 3.5
+184.0 -410.35 3.8
+185.0 -410.43 3.87
+186.0 -410.54 3.68
+187.0 -410.54 3.16
+188.0 -410.62 2.86
+189.0 -410.88 3.11
+190.0 -410.93 3.77
+191.0 -410.98 3.35
+192.0 -411.0 3.21
+193.0 -411.02 3.45
+194.0 -411.08 3.24
+195.0 -411.11 3.53
+196.0 -411.12 3.38
+197.0 -411.16 3.48
+198.0 -411.29 2.87
+199.0 -411.49 3.37
+200.0 -411.71 2.98
+201.0 -411.74 3.84
+202.0 -411.85 3.05
+203.0 -412.17 3.28
+204.0 -412.21 3.59
+205.0 -412.33 3.15
+206.0 -412.44 3.81
+207.0 -412.58 3.1
+208.0 -412.63 3.51
+209.0 -412.64 3.8
+</data>
+      <headers separator=" ">Number LLG Z-Score
+</headers>
+      <plot>
+        <title>TF Number vs LL-gain</title>
+        <plotline xcol="1" ycol="2"/>
+      </plot>
+      <plot>
+        <title>TF Number vs Z-Score</title>
+        <plotline xcol="1" ycol="3"/>
+      </plot>
+    </CCP4Table>
+  </CCP4ApplicationOutput>
+  <PhaserMrSolutions>
+    <solutionsFound>False</solutionsFound>
+    <Solutions/>
+  </PhaserMrSolutions>
+  <PhaserAdvisories>
+    <Advisory>
+eLLG indicates that placement of a single copy of ensemble "SearchModel" could be difficult</Advisory>
+  </PhaserAdvisories>
+  <PhaserAdvisories>
+    <Advisory>The top solution from a FTF did not pack</Advisory>
+  </PhaserAdvisories>
+  <PhaserAdvisories>
+    <Advisory>The top solution from a TF rescoring did not pack</Advisory>
+  </PhaserAdvisories>
+  <PhaserWarnings>
+    <Warning>Total search request exceeds scattering specified in composition. Composition increased to resolve the discrepancy.</Warning>
+  </PhaserWarnings>
+  <Summary>*********************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Steps:
+**    Cell Content Analysis
+**    Anisotropy correction
+**    Translational NCS correction
+**    Rotation Function
+**    Translation Function
+**    Packing
+**    Refinement
+**    Final Refinement (if data higher resolution than search resolution)
+** Number of search ensembles = 1
+** Search Method: FAST
+** Input Search Order:
+**    #1   SearchModel  
+** Automatic (best predicted) search order WILL be used
+
+CPU Time: 0 days 0 hrs 0 mins 0.08 secs (      0.08 secs)
+Finished: Thu Jul 16 16:11:27 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                         2.8.3 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 21 21 21 ( P 2ac 2ab)
+   Space-Group Number: 19
+   Unit Cell:   34.15   54.81   68.00   90.00   90.00   90.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies: 14102
+   Resolution for Matthews calculation:  5.00
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       14102      2.26  45.49      1.000       &lt;== most probable
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.27337
+   Most probable MW of protein in asu for resolution = 13996.8
+
+CPU Time: 0 days 0 hrs 0 mins 1.25 secs (      1.25 secs)
+Finished: Thu Jul 16 16:11:28 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: ANISOTROPY CORRECTION                                         2.8.3 ***
+******************************************************************************************
+
+   Refined Anisotropy Parameters
+   -----------------------------
+   Principal components of anisotropic part of B affecting observed amplitudes:
+     eigenB (A^2)     direction cosines (orthogonal coordinates)
+         5.974              0.0000   1.0000   0.0000
+        -0.999              1.0000  -0.0000   0.0000
+        -4.976             -0.0000  -0.0000   1.0000
+   Anisotropic deltaB (i.e. range of principal components):  10.950
+
+   Resolution of All Data (Number):        5.00  34.00 (629)
+   Resolution of Selected Data (Number):   5.00  34.00 (626)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 1.37 secs (      1.37 secs)
+Finished: Thu Jul 16 16:11:28 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: TRANSLATIONAL NON-CRYSTALLOGRAPHIC SYMMETRY                   2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        5.00  34.00 (629)
+   Resolution of Selected Data (Number):   5.00  34.00 (626)
+
+--------
+TWINNING
+--------
+
+   tNCS/Twin Detection Table
+   -------------------------
+                                 -Second Moments-             --P-values--
+                                 Centric Acentric       untwinned  twin frac &lt; 5%
+   Theoretical for untwinned      3.00    2.00    
+     including measurement error  3.00    2.00    
+   Theoretical for perfect twin   2.00    1.50    
+   Initial (data as input)        2.38    2.02+/-0.221  1          1         
+   After Anisotropy Correction    2.37    2.01+/-0.221  1          1         
+   After Anisotropy and tNCS         ---n/a---
+
+   P-value &lt; 0.01 for &lt; 5% twinned is considered worth investigating
+   Resolution for Twin Analysis (85% I/SIGI &gt; 3):  5.00A (HiRes= 5.00A)
+
+   Resolution of All Data (Number):        5.00  34.00 (629)
+   Resolution of Selected Data (Number):   5.00  34.00 (626)
+
+CPU Time: 0 days 0 hrs 0 mins 1.46 secs (      1.46 secs)
+Finished: Thu Jul 16 16:11:28 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Z-score test for definite solution is ON
+** Z-score test for stopping search is OFF
+** Deep search is ON
+
+CPU Time: 0 days 0 hrs 0 mins 1.46 secs (      1.46 secs)
+Finished: Thu Jul 16 16:11:28 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+   Composition Table
+   -----------------
+   Total Scattering = 45985
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   SearchModel                       147.41%             147.41%
+
+&lt;B&gt;&lt;FONT COLOR="#FF8800"&gt;
+------------------------------------------------------------------------------------------
+Warning: Total search request exceeds scattering specified in composition. Composition
+increased to resolve the discrepancy.
+------------------------------------------------------------------------------------------
+&lt;/FONT&gt;&lt;/B&gt;
+
+** Composition increased
+       from 45985
+         to 68472
+
+   Composition Table
+   -----------------
+   Total Scattering = 68472
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   SearchModel                        99.00%              99.00%
+
+CPU Time: 0 days 0 hrs 0 mins 1.46 secs (      1.46 secs)
+Finished: Thu Jul 16 16:11:28 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                         2.8.3 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 21 21 21 ( P 2ac 2ab)
+   Space-Group Number: 19
+   Unit Cell:   34.15   54.81   68.00   90.00   90.00   90.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies: 20999
+   Resolution for Matthews calculation:  5.00
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       20999      1.52  18.83      1.000       &lt;== most probable
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.27337
+   Most probable MW of protein in asu for resolution = 13996.8
+
+CPU Time: 0 days 0 hrs 0 mins 1.58 secs (      1.58 secs)
+Finished: Thu Jul 16 16:11:29 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: EXPERIMENTAL ERROR CORRECTION PREPARATION                     2.8.3 ***
+******************************************************************************************
+
+   Data have been provided as raw intensities
+
+CPU Time: 0 days 0 hrs 0 mins 1.63 secs (      1.63 secs)
+Finished: Thu Jul 16 16:11:29 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: EXPECTED LLG OF ENSEMBLES                                     2.8.3 ***
+******************************************************************************************
+
+   Resolution of Data (Selected):    5.001 (5.00088)
+   Number of Reflections (Selected): 629 (626)
+   eLLG Target: 225
+
+-----------------
+POLY-ALANINE ELLG
+-----------------
+
+   Resolution = 5.00088
+   Default RMSD = 0.1 0.2 0.4 0.8 1.6 3.2
+   Minimum solvent = 20%
+      Maximum number of polyalanine residues = 242 (-full-)
+   Alanine residues for eLLG target = 0
+
+   Table of Alanine Residues for eLLG Target
+   -----------------------------------------
+                  ---RMSD--- 
+   eLLG-target |  0.10  0.20  0.40  0.80  1.60  3.20 
+           225 | -full--full--full--full--full--full-
+           196 | -full--full--full--full--full--full-
+           169 | -full--full--full--full--full--full-
+           144 | -full--full--full--full--full--full-
+           121 |   225   227   238 -full--full--full-
+           100 |   204   207   216 -full--full--full-
+            81 |   184   186   194   231 -full--full-
+            64 |   163   165   173   205 -full--full-
+            49 |   143   144   151   179 -full--full-
+            36 |   122   124   129   154 -full--full-
+            25 |   102   103   108   128   241 -full-
+            16 |    81    82    86   102   193 -full-
+             9 |    61    62    64    77   145 -full-
+             4 |    40    41    43    51    96 -full-
+             1 |    20    20    21    25    48 -full-
+
+--------------
+MONOMERIC ELLG
+--------------
+
+   Expected LLG (eLLG)
+   -------------------
+   eLLG: eLLG of ensemble alone
+       eLLG   RMSD frac-scat  Ensemble
+      183.4  0.473   0.99000  SearchModel
+
+   Resolution for eLLG target
+   --------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso  Ensemble
+   &gt; 5.00(all)  SearchModel
+
+   Resolution for eLLG target: data collection
+   -------------------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225) with perfect data
+     eLLG-reso  Ensemble
+         4.742  SearchModel
+
+&lt;B&gt;&lt;FONT COLOR="#0077FF"&gt;
+------------------------------------------------------------------------------------------
+Advisory: 
+eLLG indicates that placement of a single copy of ensemble "SearchModel" could be
+difficult
+------------------------------------------------------------------------------------------
+&lt;/FONT&gt;&lt;/B&gt;
+
+   Expected LLG (eLLG): Chains
+   ---------------------------
+   eLLG: eLLG of chain alone
+       eLLG   RMSD frac-scat chain  Ensemble
+       45.8  0.473   0.49464  " A"  SearchModel
+       45.9  0.473   0.49536  " B"  SearchModel
+
+   Resolution for eLLG target: Chains
+   ----------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso chain  Ensemble
+   &gt; 5.00(all)  " A"  SearchModel
+   &gt; 5.00(all)  " B"  SearchModel
+
+--------------------
+HOMO-OLIGOMERIC ELLG
+--------------------
+
+   Number of copies for eLLG target
+   --------------------------------
+   eLLG-target   RMSD frac-scat-known frac-scat   num-copies  Ensemble
+           225  0.473         0.00000   0.99000            1  SearchModel
+
+CPU Time: 0 days 0 hrs 0 mins 1.83 secs (      1.83 secs)
+Finished: Thu Jul 16 16:11:29 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Search Order (next search *) (placed +):
+**    #1   SearchModel *
+
+CPU Time: 0 days 0 hrs 0 mins 1.83 secs (      1.83 secs)
+Finished: Thu Jul 16 16:11:29 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                       2.8.3 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit unaltered by expected LLG
+
+   Rotation Function Table: SearchModel
+   ------------------------------------
+   (Z-scores from Fast Rotation Function)
+   #SET        Top    (Z)      Second    (Z)       Third    (Z)
+   1        -11.76   3.85      -20.28   3.34      -22.16   3.23
+
+   Select by Percentage of Top value: 75%
+   Top RF = -11.756
+   Purge RF mean = -75.992
+   Number of sets stored before final selection = 1
+   Number of solutions stored before final selection = 50
+   Number of sets stored (deleted) after final selection = 1 (0)
+   Number of solutions stored (deleted) after final selection = 50 (0)
+   Percent used for purge = 60.000%
+      Includes deep search down percent = 15%
+      Number of solutions stored above (below) deep threshold = 14 (36)
+
+   Rotation Function Final Selection Table
+   ---------------------------------------
+   Rotation list length by SET
+   SET#  Start Final Deleted Set (*)   Deep: Start Final Deleted Set (*)
+      1  14    14          -                 50    50          -
+   ALL   14    14                            50    50   
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 9.78 secs (      9.78 secs)
+Finished: Thu Jul 16 16:11:35 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                    2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        5.00  34.00 (629)
+   Resolution of Selected Data (Number):   5.00  34.00 (626)
+
+------------------------
+ALTERNATIVE SPACE GROUPS
+------------------------
+
+   Space Group(s) to be tested:
+     P 21 21 21
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 1
+----------------------------
+
+   This TF set has 50 trial orientations
+
+      14 trial orientations in initial search
+      36 trial orientations in deep search
+
+   New Top Packing Fast Translation Function FSS = -60.01 (TFZ=3.5) at Trial #1
+   New Top (ML) Translation Function LLG = -387.44 (TFZ=2.8) at Trial #1
+   New Top Packing Fast Translation Function FSS = -39.90 (TFZ=3.9) at Trial #2
+   New Top (ML) Translation Function LLG = -362.11 (TFZ=3.6) at Trial #2
+   New Top Packing Fast Translation Function FSS = -15.17 (TFZ=4.8) at Trial #8
+   New Top (ML) Translation Function LLG = -360.55 (TFZ=3.7) at Trial #8
+   New Top (ML) Translation Function LLG = -354.18 (TFZ=3.5) at Trial #10
+-------------------------
+DEEP TRANSLATION FUNCTION
+-------------------------
+
+   Best TFZ is NOT over Z-score cutoff for definite solution (8.00)
+   Search deep in trial orientation list
+
+---------------------------------
+DEEP TRANSLATION FUNCTION #1 OF 1
+---------------------------------
+
+   36 trial orientations in deep search
+
+&lt;B&gt;&lt;FONT COLOR="#0077FF"&gt;
+------------------------------------------------------------------------------------------
+Advisory: The top solution from a FTF did not pack
+------------------------------------------------------------------------------------------
+&lt;/FONT&gt;&lt;/B&gt;
+
+&lt;B&gt;&lt;FONT COLOR="#0077FF"&gt;
+------------------------------------------------------------------------------------------
+Advisory: The top solution from a TF rescoring did not pack
+------------------------------------------------------------------------------------------
+&lt;/FONT&gt;&lt;/B&gt;
+
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1     -387.4  2.82     -388.3  3.31     -398.4  3.18 P 21 21 21 SearchMo   
+     1   2     -362.1  3.61     -366.2  3.41     -374.3  3.94 P 21 21 21 SearchMo   
+     1   3     -414.1  3.01     -415.1  3.57     -426.0  3.15 P 21 21 21 SearchMo   
+     1   4     -388.6  3.24     -390.4  3.99     -397.7  3.98 P 21 21 21 SearchMo   
+     1   5     -408.1  3.17     -412.9  3.22     -415.2  3.20 P 21 21 21 SearchMo   
+     1   6     -382.5  2.95     -401.4  3.06     -409.9  3.16 P 21 21 21 SearchMo   
+     1   7     -364.5  3.57     -369.6  4.00     -381.3  3.04 P 21 21 21 SearchMo   
+     1   8     -360.5  3.74     -363.4  3.86     -365.7  4.75 P 21 21 21 SearchMo   
+     1   9     -372.7  3.87     -374.9  4.01     -382.4  4.17 P 21 21 21 SearchMo   
+     1  10     -354.2  3.47     -400.4  3.94     -400.5  3.22 P 21 21 21 SearchMo   
+     1  11     -363.6  3.85     -383.8  3.82     -385.9  3.29 P 21 21 21 SearchMo   
+     1  12     -411.0  3.21     -411.1  3.24     -416.5  3.34 P 21 21 21 SearchMo   
+     1  13     -375.5  3.75     -378.3  4.03     -397.9  3.34 P 21 21 21 SearchMo   
+     1  14     -374.8  3.36     -391.0  3.56     -391.3  3.34 P 21 21 21 SearchMo   
+     1  15*         -     -          -     -          -     - P 21 21 21 SearchMo   
+     1  16*    -371.1  3.77     -382.2  3.10     -388.0  3.53 P 21 21 21 SearchMo   
+     1  17*    -387.9  3.22     -394.5  3.40     -396.3  3.71 P 21 21 21 SearchMo   
+     1  18*    -379.4  4.46     -399.8  3.24     -405.4  3.35 P 21 21 21 SearchMo   
+     1  19*    -376.1  3.57     -384.5  3.76     -388.8  4.33 P 21 21 21 SearchMo   
+     1  20*    -367.9  3.50     -373.2  3.30     -380.2  3.27 P 21 21 21 SearchMo   
+     1  21*    -377.6  4.25     -396.2  3.37     -403.1  3.31 P 21 21 21 SearchMo   
+     1  22*    -368.6  3.79     -382.0  3.62     -385.3  3.86 P 21 21 21 SearchMo   
+     1  23*    -388.4  3.66     -396.3  3.66     -418.9  3.47 P 21 21 21 SearchMo   
+     1  24*    -392.2  4.01     -410.0  3.55     -432.2  3.91 P 21 21 21 SearchMo   
+     1  25*    -414.3  3.87     -424.7  3.57     -429.0  3.81 P 21 21 21 SearchMo   
+     1  26*    -382.9  4.16     -423.3  3.61     -426.9  4.41 P 21 21 21 SearchMo   
+     1  27*    -433.0  3.40     -436.2  3.58          -     - P 21 21 21 SearchMo   
+     1  28*    -361.6  3.59     -404.0  4.09     -408.1  3.61 P 21 21 21 SearchMo   
+     1  29*    -378.3  3.72     -419.7  3.59     -425.9  3.47 P 21 21 21 SearchMo   
+     1  30*    -394.2  3.60     -395.4  4.03     -420.2  3.47 P 21 21 21 SearchMo   
+     1  31*    -401.9  3.61     -411.5  3.37     -420.4  4.09 P 21 21 21 SearchMo   
+     1  32*    -368.4  4.23     -374.3  3.74          -     - P 21 21 21 SearchMo   
+     1  33*    -396.9  3.38     -400.6  3.36     -411.7  3.84 P 21 21 21 SearchMo   
+     1  34*    -377.1  3.82     -390.0  3.55     -397.2  3.27 P 21 21 21 SearchMo   
+     1  35*    -397.6  3.89     -435.8  3.51          -     - P 21 21 21 SearchMo   
+     1  36*    -374.3  3.77     -394.6  3.43     -398.5  4.34 P 21 21 21 SearchMo   
+     1  37*    -395.3  3.78     -427.1  3.80     -435.3  3.69 P 21 21 21 SearchMo   
+     1  38*    -396.9  3.56     -415.1  3.56     -421.3  3.98 P 21 21 21 SearchMo   
+     1  39*    -363.3  3.49     -384.3  3.82     -385.1  3.20 P 21 21 21 SearchMo   
+     1  40*    -388.1  3.43     -390.4  3.76     -400.7  3.99 P 21 21 21 SearchMo   
+     1  41*         -     -          -     -          -     - P 21 21 21 SearchMo   
+     1  42*    -440.3  3.98     -456.4  3.65     -463.3  3.55 P 21 21 21 SearchMo   
+     1  43*    -412.9  4.22     -422.8  3.53     -423.7  3.74 P 21 21 21 SearchMo   
+     1  44*    -381.5  3.44     -384.3  3.87     -388.4  3.34 P 21 21 21 SearchMo   
+     1  45*    -390.9  3.39     -398.6  3.60     -404.7  3.62 P 21 21 21 SearchMo   
+     1  46*    -357.4  3.82     -399.1  3.75          -     - P 21 21 21 SearchMo   
+     1  47*    -378.3  4.02     -399.7  3.91     -400.4  4.19 P 21 21 21 SearchMo   
+     1  48*    -417.3  3.70     -418.8  3.92     -455.3  3.53 P 21 21 21 SearchMo   
+     1  49*    -416.5  4.21     -434.9  3.86          -     - P 21 21 21 SearchMo   
+     1  50*    -382.4  4.47     -387.6  4.29     -394.9  3.37 P 21 21 21 SearchMo   
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   LLG will be used for purge, not FSS
+   Top TF  = -354.18
+   Top TFZ = 4.75
+   Mean TF = -588.52
+   Percent used for purge = 75%
+   Cutoff for acceptance = -412.8
+      TFZ used for final selection = 8
+         Number of solutions over TF final cutoff  = 209
+         Number of solutions over TFZ final cutoff = 0
+         Number of solutions over TF &amp; TFZ cutoff  = 0
+   Number of solutions stored before final selection = 385
+   Number of solutions stored (deleted) after final selection = 209 (176)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 20.14 secs (     20.14 secs)
+Finished: Thu Jul 16 16:11:46 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.3 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm TF-SET  ROT TFpk#        TF    TFZ    SpaceGroup 
+   1    ---  &gt;10.42  --       1    10    1       -354.18  3.47  P 21 21 21 
+   2    ---  &gt;10.42  --       1    46    1       -357.42  3.82  P 21 21 21 
+   3    ---  &gt;10.42  --       1     8    1       -360.55  3.74  P 21 21 21 
+   4    ---  &gt;10.42  --       1    28    1       -361.60  3.59  P 21 21 21 
+   5    ---  &gt;10.42  --       1     2    1       -362.11  3.61  P 21 21 21 
+   6    ---  &gt;10.42  --       1    39    1       -363.32  3.49  P 21 21 21 
+   7    ---  &gt;10.42  --       1     8    2       -363.41  3.86  P 21 21 21 
+   8    ---  &gt;10.42  --       1    11    1       -363.58  3.85  P 21 21 21 
+   9    ---  &gt;10.42  --       1     7    1       -364.54  3.57  P 21 21 21 
+   10   ---  &gt;10.42  --       1     8    3       -365.74  4.75  P 21 21 21 
+   11   ---  &gt;10.42  --       1     2    2       -366.17  3.41  P 21 21 21 
+   12   ---  &gt;10.42  --       1    20    1       -367.91  3.50  P 21 21 21 
+   13   ---  &gt;10.42  --       1    32    1       -368.38  4.23  P 21 21 21 
+   14   ---  &gt;10.42  --       1    22    1       -368.56  3.79  P 21 21 21 
+   15   ---  &gt;10.42  --       1     7    2       -369.62  4.00  P 21 21 21 
+   16   ---  &gt;10.42  --       1    16    1       -371.08  3.77  P 21 21 21 
+   17   ---  &gt;10.42  --       1     9    1       -372.66  3.87  P 21 21 21 
+   18   ---  &gt;10.42  --       1    20    2       -373.22  3.30  P 21 21 21 
+   19   ---  &gt;10.42  --       1     8    4       -373.43  3.72  P 21 21 21 
+   20   ---  &gt;10.42  --       1    36    1       -374.27  3.77  P 21 21 21 
+   21   ---  &gt;10.42  --       1    32    2       -374.30  3.74  P 21 21 21 
+   22   ---  &gt;10.42  --       1     2    3       -374.33  3.94  P 21 21 21 
+   23   ---  &gt;10.42  --       1    14    1       -374.82  3.36  P 21 21 21 
+   24   ---  &gt;10.42  --       1     9    2       -374.85  4.01  P 21 21 21 
+   25   ---  &gt;10.42  --       1    13    1       -375.45  3.75  P 21 21 21 
+   26   ---  &gt;10.42  --       1    19    1       -376.12  3.57  P 21 21 21 
+   27   ---  &gt;10.42  --       1     8    5       -377.01  3.77  P 21 21 21 
+   28   ---  &gt;10.42  --       1    34    1       -377.06  3.82  P 21 21 21 
+   29   ---  &gt;10.42  --       1    21    1       -377.61  4.25  P 21 21 21 
+   30   ---  &gt;10.42  --       1    47    1       -378.25  4.02  P 21 21 21 
+   31   ---  &gt;10.42  --       1    13    2       -378.27  4.03  P 21 21 21 
+   32   ---  &gt;10.42  --       1    29    1       -378.34  3.72  P 21 21 21 
+   33   ---  &gt;10.42  --       1    18    1       -379.40  4.46  P 21 21 21 
+   34   ---  &gt;10.42  --       1    20    3       -380.15  3.27  P 21 21 21 
+   35   ---  &gt;10.42  --       1     7    3       -381.32  3.04  P 21 21 21 
+   36   ---  &gt;10.42  --       1    44    1       -381.53  3.44  P 21 21 21 
+   37   ---  &gt;10.42  --       1     8    6       -381.88  4.02  P 21 21 21 
+   38   ---  &gt;10.42  --       1    22    2       -382.04  3.62  P 21 21 21 
+   39   ---  &gt;10.42  --       1    16    2       -382.25  3.10  P 21 21 21 
+   40   ---  &gt;10.42  --       1    20    4       -382.34  3.15  P 21 21 21 
+   41   ---  &gt;10.42  --       1    50    1       -382.36  4.47  P 21 21 21 
+   42   ---  &gt;10.42  --       1     9    3       -382.43  4.17  P 21 21 21 
+   43   ---  &gt;10.42  --       1     6    1       -382.45  2.95  P 21 21 21 
+   44   ---  &gt;10.42  --       1    26    1       -382.90  4.16  P 21 21 21 
+   45   ---  &gt;10.42  --       1    20    5       -382.94  3.98  P 21 21 21 
+   46   ---  &gt;10.42  --       1    11    2       -383.82  3.82  P 21 21 21 
+   47   ---  &gt;10.42  --       1     9    4       -383.93  3.55  P 21 21 21 
+   48   ---  &gt;10.42  --       1     8    7       -384.23  3.50  P 21 21 21 
+   49   ---  &gt;10.42  --       1    44    2       -384.34  3.87  P 21 21 21 
+   50   ---  &gt;10.42  --       1    39    2       -384.34  3.82  P 21 21 21 
+   51   ---  &gt;10.42  --       1    19    2       -384.49  3.76  P 21 21 21 
+   52   ---  &gt;10.42  --       1    39    3       -385.14  3.20  P 21 21 21 
+   53   ---  &gt;10.42  --       1    22    3       -385.33  3.86  P 21 21 21 
+   54   ---  &gt;10.42  --       1    11    3       -385.94  3.29  P 21 21 21 
+   55   ---  &gt;10.42  --       1     2    4       -386.06  3.45  P 21 21 21 
+   56   ---  &gt;10.42  --       1     2    5       -386.34  2.98  P 21 21 21 
+   57   ---  &gt;10.42  --       1     2    6       -386.92  3.28  P 21 21 21 
+   58   ---  &gt;10.42  --       1    39    4       -387.41  3.81  P 21 21 21 
+   59   ---  &gt;10.42  --       1     1    1       -387.44  2.82  P 21 21 21 
+   60   ---  &gt;10.42  --       1    50    2       -387.61  4.29  P 21 21 21 
+   61   ---  &gt;10.42  --       1    17    1       -387.94  3.22  P 21 21 21 
+   62   ---  &gt;10.42  --       1    16    3       -387.98  3.53  P 21 21 21 
+   63   ---  &gt;10.42  --       1    40    1       -388.10  3.43  P 21 21 21 
+   64   ---  &gt;10.42  --       1     2    7       -388.21  3.27  P 21 21 21 
+   65   ---  &gt;10.42  --       1     1    2       -388.32  3.31  P 21 21 21 
+   66   ---  &gt;10.42  --       1    44    3       -388.41  3.34  P 21 21 21 
+   67   ---  &gt;10.42  --       1    23    1       -388.44  3.66  P 21 21 21 
+   68   ---  &gt;10.42  --       1    20    6       -388.47  3.27  P 21 21 21 
+   69   ---  &gt;10.42  --       1     4    1       -388.60  3.24  P 21 21 21 
+   70   ---  &gt;10.42  --       1    19    3       -388.77  4.33  P 21 21 21 
+   71   ---  &gt;10.42  --       1     8    8       -389.01  4.18  P 21 21 21 
+   72   ---  &gt;10.42  --       1    19    4       -389.69  3.68  P 21 21 21 
+   73   ---  &gt;10.42  --       1    34    2       -389.95  3.55  P 21 21 21 
+   74   ---  &gt;10.42  --       1    40    2       -390.41  3.76  P 21 21 21 
+   75   ---  &gt;10.42  --       1     4    2       -390.44  3.99  P 21 21 21 
+   76   ---  &gt;10.42  --       1    39    5       -390.50  3.40  P 21 21 21 
+   77   ---  &gt;10.42  --       1    19    5       -390.81  3.48  P 21 21 21 
+   78   ---  &gt;10.42  --       1    45    1       -390.91  3.39  P 21 21 21 
+   79   ---  &gt;10.42  --       1    39    6       -391.02  3.48  P 21 21 21 
+   80   ---  &gt;10.42  --       1    14    2       -391.05  3.56  P 21 21 21 
+   81   ---  &gt;10.42  --       1    16    4       -391.13  3.33  P 21 21 21 
+   82   ---  &gt;10.42  --       1    14    3       -391.27  3.34  P 21 21 21 
+   83   ---  &gt;10.42  --       1     2    8       -391.78  3.68  P 21 21 21 
+   84   ---  &gt;10.42  --       1    11    4       -392.02  3.48  P 21 21 21 
+   85   ---  &gt;10.42  --       1    24    1       -392.21  4.01  P 21 21 21 
+   86   ---  &gt;10.42  --       1    22    4       -392.75  4.57  P 21 21 21 
+   87   ---  &gt;10.42  --       1    16    5       -393.09  3.60  P 21 21 21 
+   88   ---  &gt;10.42  --       1     7    4       -394.17  3.21  P 21 21 21 
+   89   ---  &gt;10.42  --       1    30    1       -394.23  3.60  P 21 21 21 
+   90   ---  &gt;10.42  --       1    17    2       -394.54  3.40  P 21 21 21 
+   91   ---  &gt;10.42  --       1    36    2       -394.58  3.43  P 21 21 21 
+   92   ---  &gt;10.42  --       1    44    4       -394.68  3.61  P 21 21 21 
+   93   ---  &gt;10.42  --       1    22    5       -394.75  3.21  P 21 21 21 
+   94   ---  &gt;10.42  --       1    50    3       -394.91  3.37  P 21 21 21 
+   95   ---  &gt;10.42  --       1    22    6       -395.26  3.96  P 21 21 21 
+   96   ---  &gt;10.42  --       1    20    7       -395.26  3.50  P 21 21 21 
+   97   ---  &gt;10.42  --       1    37    1       -395.29  3.78  P 21 21 21 
+   98   ---  &gt;10.42  --       1    30    2       -395.41  4.03  P 21 21 21 
+   99   ---  &gt;10.42  --       1    20    8       -395.57  3.31  P 21 21 21 
+   100  ---  &gt;10.42  --       1    39    7       -395.65  3.77  P 21 21 21 
+   101  ---  &gt;10.42  --       1    20    9       -395.76  3.13  P 21 21 21 
+   102  ---  &gt;10.42  --       1    21    2       -396.19  3.37  P 21 21 21 
+   103  ---  &gt;10.42  --       1    23    2       -396.28  3.66  P 21 21 21 
+   104  ---  &gt;10.42  --       1    17    3       -396.29  3.71  P 21 21 21 
+   105  ---  &gt;10.42  --       1    16    6       -396.38  3.09  P 21 21 21 
+   106  ---  &gt;10.42  --       1    17    4       -396.55  3.55  P 21 21 21 
+   107  ---  &gt;10.42  --       1    33    1       -396.89  3.38  P 21 21 21 
+   108  ---  &gt;10.42  --       1     2    9       -396.92  3.74  P 21 21 21 
+   109  ---  &gt;10.42  --       1    38    1       -396.94  3.56  P 21 21 21 
+   110  ---  &gt;10.42  --       1    34    3       -397.16  3.27  P 21 21 21 
+   111  ---  &gt;10.42  --       1     9    5       -397.44  3.62  P 21 21 21 
+   112  ---  &gt;10.42  --       1    35    1       -397.60  3.89  P 21 21 21 
+   113  ---  &gt;10.42  --       1     4    3       -397.70  3.98  P 21 21 21 
+   114  ---  &gt;10.42  --       1    13    3       -397.94  3.34  P 21 21 21 
+   115  ---  &gt;10.42  --       1    11    5       -398.14  3.32  P 21 21 21 
+   116  ---  &gt;10.42  --       1     7    5       -398.22  3.38  P 21 21 21 
+   117  ---  &gt;10.42  --       1    20   10       -398.32  3.24  P 21 21 21 
+   118  ---  &gt;10.42  --       1     1    3       -398.36  3.18  P 21 21 21 
+   119  ---  &gt;10.42  --       1    36    3       -398.48  4.34  P 21 21 21 
+   120  ---  &gt;10.42  --       1    45    2       -398.55  3.60  P 21 21 21 
+   121  ---  &gt;10.42  --       1    13    4       -398.62  3.62  P 21 21 21 
+   122  ---  &gt;10.42  --       1    14    4       -398.74  3.48  P 21 21 21 
+   123  ---  &gt;10.42  --       1    39    8       -399.08  3.65  P 21 21 21 
+   124  ---  &gt;10.42  --       1    46    2       -399.13  3.75  P 21 21 21 
+   125  ---  &gt;10.42  --       1     8    9       -399.25  3.66  P 21 21 21 
+   126  ---  &gt;10.42  --       1    47    2       -399.72  3.91  P 21 21 21 
+   127  ---  &gt;10.42  --       1    18    2       -399.79  3.24  P 21 21 21 
+   128  ---  &gt;10.42  --       1    16    7       -400.07  3.47  P 21 21 21 
+   129  ---  &gt;10.42  --       1    17    5       -400.17  3.19  P 21 21 21 
+   130  ---  &gt;10.42  --       1    10    2       -400.38  3.94  P 21 21 21 
+   131  ---  &gt;10.42  --       1    47    3       -400.38  4.19  P 21 21 21 
+   132  ---  &gt;10.42  --       1    10    3       -400.45  3.22  P 21 21 21 
+   133  ---  &gt;10.42  --       1    33    2       -400.61  3.36  P 21 21 21 
+   134  ---  &gt;10.42  --       1    40    3       -400.74  3.99  P 21 21 21 
+   135  ---  &gt;10.42  --       1    22    7       -400.75  4.23  P 21 21 21 
+   136  ---  &gt;10.42  --       1    14    5       -401.28  3.43  P 21 21 21 
+   137  ---  &gt;10.42  --       1    50    4       -401.31  3.71  P 21 21 21 
+   138  ---  &gt;10.42  --       1     6    2       -401.39  3.06  P 21 21 21 
+   139  ---  &gt;10.42  --       1     4    4       -401.52  3.60  P 21 21 21 
+   140  ---  &gt;10.42  --       1    31    1       -401.89  3.61  P 21 21 21 
+   141  ---  &gt;10.42  --       1     7    6       -402.17  3.59  P 21 21 21 
+   142  ---  &gt;10.42  --       1    22    8       -402.41  3.26  P 21 21 21 
+   143  ---  &gt;10.42  --       1     2   10       -402.71  3.92  P 21 21 21 
+   144  ---  &gt;10.42  --       1     1    4       -402.90  3.24  P 21 21 21 
+   145  ---  &gt;10.42  --       1     7    7       -403.08  3.22  P 21 21 21 
+   146  ---  &gt;10.42  --       1    21    3       -403.11  3.31  P 21 21 21 
+   147  ---  &gt;10.42  --       1    34    4       -403.64  3.35  P 21 21 21 
+   148  ---  &gt;10.42  --       1    13    5       -403.71  3.25  P 21 21 21 
+   149  ---  &gt;10.42  --       1    20   11       -403.73  3.30  P 21 21 21 
+   150  ---  &gt;10.42  --       1    14    6       -403.92  3.43  P 21 21 21 
+   151  ---  &gt;10.42  --       1    28    2       -404.00  4.09  P 21 21 21 
+   152  ---  &gt;10.42  --       1    14    7       -404.11  3.50  P 21 21 21 
+   153  ---  &gt;10.42  --       1    17    6       -404.16  3.98  P 21 21 21 
+   154  ---  &gt;10.42  --       1    16    8       -404.37  3.27  P 21 21 21 
+   155  ---  &gt;10.42  --       1    19    6       -404.52  3.54  P 21 21 21 
+   156  ---  &gt;10.42  --       1     7    8       -404.63  3.17  P 21 21 21 
+   157  ---  &gt;10.42  --       1    45    3       -404.68  3.62  P 21 21 21 
+   158  ---  &gt;10.42  --       1    47    4       -405.38  3.95  P 21 21 21 
+   159  ---  &gt;10.42  --       1    18    3       -405.42  3.35  P 21 21 21 
+   160  ---  &gt;10.42  --       1     2   11       -405.76  3.14  P 21 21 21 
+   161  ---  &gt;10.42  --       1     2   12       -406.29  3.29  P 21 21 21 
+   162  ---  &gt;10.42  --       1    14    8       -406.43  3.89  P 21 21 21 
+   163  ---  &gt;10.42  --       1    22    9       -406.49  3.82  P 21 21 21 
+   164  ---  &gt;10.42  --       1    17    7       -407.21  3.76  P 21 21 21 
+   165  ---  &gt;10.42  --       1    44    5       -407.33  3.44  P 21 21 21 
+   166  ---  &gt;10.42  --       1    14    9       -407.39  3.57  P 21 21 21 
+   167  ---  &gt;10.42  --       1    19    7       -407.62  4.21  P 21 21 21 
+   168  ---  &gt;10.42  --       1    16    9       -407.86  3.44  P 21 21 21 
+   169  ---  &gt;10.42  --       1    28    3       -408.09  3.61  P 21 21 21 
+   170  ---  &gt;10.42  --       1     5    1       -408.09  3.17  P 21 21 21 
+   171  ---  &gt;10.42  --       1    39    9       -408.32  3.38  P 21 21 21 
+   172  ---  &gt;10.42  --       1     2   13       -408.47  3.81  P 21 21 21 
+   173  ---  &gt;10.42  --       1     1    5       -408.67  2.79  P 21 21 21 
+   174  ---  &gt;10.42  --       1     7    9       -408.80  2.95  P 21 21 21 
+   175  ---  &gt;10.42  --       1     2   14       -409.08  3.47  P 21 21 21 
+   176  ---  &gt;10.42  --       1    39   10       -409.34  4.07  P 21 21 21 
+   177  ---  &gt;10.42  --       1    16   10       -409.34  3.79  P 21 21 21 
+   178  ---  &gt;10.42  --       1    44    6       -409.64  3.35  P 21 21 21 
+   179  ---  &gt;10.42  --       1     6    3       -409.93  3.16  P 21 21 21 
+   180  ---  &gt;10.42  --       1    24    2       -410.00  3.55  P 21 21 21 
+   181  ---  &gt;10.42  --       1     4    5       -410.12  3.20  P 21 21 21 
+   182  ---  &gt;10.42  --       1    21    4       -410.15  3.50  P 21 21 21 
+   183  ---  &gt;10.42  --       1     6    4       -410.34  3.50  P 21 21 21 
+   184  ---  &gt;10.42  --       1    39   11       -410.35  3.80  P 21 21 21 
+   185  ---  &gt;10.42  --       1    47    5       -410.43  3.87  P 21 21 21 
+   186  ---  &gt;10.42  --       1    10    4       -410.54  3.68  P 21 21 21 
+   187  ---  &gt;10.42  --       1     7   10       -410.54  3.16  P 21 21 21 
+   188  ---  &gt;10.42  --       1     6    5       -410.62  2.86  P 21 21 21 
+   189  ---  &gt;10.42  --       1     6    6       -410.88  3.11  P 21 21 21 
+   190  ---  &gt;10.42  --       1    34    5       -410.93  3.77  P 21 21 21 
+   191  ---  &gt;10.42  --       1     6    7       -410.98  3.35  P 21 21 21 
+   192  ---  &gt;10.42  --       1    12    1       -411.00  3.21  P 21 21 21 
+   193  ---  &gt;10.42  --       1     4    6       -411.02  3.45  P 21 21 21 
+   194  ---  &gt;10.42  --       1    12    2       -411.08  3.24  P 21 21 21 
+   195  ---  &gt;10.42  --       1    18    4       -411.11  3.53  P 21 21 21 
+   196  ---  &gt;10.42  --       1    21    5       -411.12  3.38  P 21 21 21 
+   197  ---  &gt;10.42  --       1    16   11       -411.16  3.48  P 21 21 21 
+   198  ---  &gt;10.42  --       1     2   15       -411.29  2.87  P 21 21 21 
+   199  ---  &gt;10.42  --       1    31    2       -411.49  3.37  P 21 21 21 
+   200  ---  &gt;10.42  --       1     7   11       -411.71  2.98  P 21 21 21 
+   201  ---  &gt;10.42  --       1    33    3       -411.74  3.84  P 21 21 21 
+   202  ---  &gt;10.42  --       1    16   12       -411.85  3.05  P 21 21 21 
+   203  ---  &gt;10.42  --       1    16   13       -412.17  3.28  P 21 21 21 
+   204  ---  &gt;10.42  --       1    44    7       -412.21  3.59  P 21 21 21 
+   205  ---  &gt;10.42  --       1     2   16       -412.33  3.15  P 21 21 21 
+   206  ---  &gt;10.42  --       1     9    6       -412.44  3.81  P 21 21 21 
+   207  ---  &gt;10.42  --       1     2   17       -412.58  3.10  P 21 21 21 
+   208  ---  &gt;10.42  --       1    17    8       -412.63  3.51  P 21 21 21 
+   209  ---  &gt;10.42  --       1    19    8       -412.64  3.80  P 21 21 21 
+
+   0 accepted of 209 solutions
+      0 pack of 0 accepted solutions
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 35.00 secs (     35.00 secs)
+Finished: Thu Jul 16 16:11:56 2020
+
+</Summary>
+  <Summary>******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+   $TEXT:MR Result: $$ Baubles Markup $$
+
+** Sorry - No solution
+   You may find a solution with a different search or selection strategy
+
+   $$
+CPU Time: 0 days 0 hrs 0 mins 35.00 secs (     35.00 secs)
+Finished: Thu Jul 16 16:11:56 2020
+
+&lt;B&gt;&lt;FONT COLOR="##0077FF"&gt;
+--------
+ADVISORY
+--------
+
+$TEXT:Advisory: $$ Baubles Markup $$
+
+
+eLLG indicates that placement of a single copy of ensemble "SearchModel" could be
+difficult
+
+The top solution from a FTF did not pack
+
+The top solution from a TF rescoring did not pack
+
+$$
+&lt;B&gt;&lt;FONT COLOR="#FF8800"&gt;
+--------
+WARNINGS
+--------
+
+$TEXT:Warning: $$ Baubles Markup $$
+------------------------------------------------------------------------------------------
+Warning: Total search request exceeds scattering specified in composition. Composition
+increased to resolve the discrepancy.
+------------------------------------------------------------------------------------------
+$$
+
+
+CPU Time: 0 days 0 hrs 0 mins 35.00 secs (     35.00 secs)
+Finished: Thu Jul 16 16:11:56 2020
+
+
+</Summary>
+</PhaserMrResults>
+</PhaserPipeline>
