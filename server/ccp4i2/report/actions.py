@@ -20,12 +20,12 @@ class Help:
     """Help button linking to documentation.
 
     Resolves ``$CCP4I2/`` paths to the actual CCP4I2 directory.
-    Used via ``Container.addHelp()`` or inline in XRT templates.
+    Used via ``Container.addHelp()`` or inline in reports.
     """
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
+        config: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -33,8 +33,8 @@ class Help:
         if jobInfo is None:
             jobInfo = {}
         self.id: str | None = kw.get('id', None)
-        if xrtnode is not None:
-            self.ref: str | None = xrtnode.get('ref', None)
+        if config is not None:
+            self.ref: str | None = config.get('ref', None)
         else:
             self.ref = kw.get('ref', None)
         if self.ref is not None and self.ref[0] == '$':
@@ -49,8 +49,8 @@ class Help:
             else:
                 self.ref = re.sub(
                     r'\$CCP4I2', CCP4Utils.getCCP4I2Dir(), self.ref)
-        if xrtnode is not None:
-            self.label: str = xrtnode.get(
+        if config is not None:
+            self.label: str = config.get(
                 'label',
                 'About this ' +
                 kw.get(
@@ -70,7 +70,7 @@ class Launch:
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
+        config: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -87,12 +87,12 @@ class Launch:
         self.ccp4_data_id: list[str] = []
         self.sceneFile: str | None = None
 
-        if xrtnode is not None:
-            self.exe = xrtnode.get('exe', None)
-            self.label = xrtnode.get('label', None)
-            if xrtnode.get('ccp4_data_id', None) is not None:
-                self.ccp4_data_id.append(xrtnode.get('ccp4_data_id'))
-            self.sceneFile = xrtnode.get('sceneFile', None)
+        if config is not None:
+            self.exe = config.get('exe', None)
+            self.label = config.get('label', None)
+            if config.get('ccp4_data_id', None) is not None:
+                self.ccp4_data_id.append(config.get('ccp4_data_id'))
+            self.sceneFile = config.get('sceneFile', None)
         self.exe = kw.get('exe', self.exe)
         self.label = kw.get('label', self.label)
         if kw.get('ccp4_data_id', None) is not None:
@@ -134,7 +134,7 @@ class Download:
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
+        config: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -147,9 +147,9 @@ class Download:
         self.dataName: str | None = None
         self.label: str | None = None
 
-        if xrtnode is not None:
-            self.dataName = xrtnode.get('dataName', None)
-            self.label = xrtnode.get('label', None)
+        if config is not None:
+            self.dataName = config.get('dataName', None)
+            self.label = config.get('label', None)
         self.dataName = kw.get('dataName', self.dataName)
         self.label = kw.get('label', self.label)
 
@@ -164,7 +164,7 @@ class LaunchTask:
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
+        config: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -174,10 +174,13 @@ class LaunchTask:
         LaunchTask.counter += 1
         self.id: str | None = kw.get('id', None)
         self.jobId: str | None = jobInfo.get('jobid', None)
-        if xrtnode is not None:
-            self.taskName: str | None = xrtnode.get('taskName', None)
-            self.label: str | None = xrtnode.get('label', None)
-            self.ccp4_data_id: str | None = xrtnode.get('ccp4_data_id', ccp4_data_id)
+        self.taskName: str | None = None
+        self.label: str | None = None
+        self.ccp4_data_id: str | None = None
+        if config is not None:
+            self.taskName = config.get('taskName', None)
+            self.label = config.get('label', None)
+            self.ccp4_data_id = config.get('ccp4_data_id', None)
 
         self.taskName = kw.get('taskName', self.taskName)
         self.label = kw.get('label', self.label)

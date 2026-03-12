@@ -4,7 +4,7 @@ CCP4i2 Report Parser — backward-compatibility shim.
 This module previously contained all report element classes (~2950 lines).
 It has been split into focused sub-modules:
 
-    core.py      — ReportClass, Container, IfContainer, Loop, Report, utilities
+    core.py      — ReportClass, Container, Report, utilities
     elements.py  — Text, Pre, Table, Fold, Div, Generic, Progress, etc.
     graphs.py    — Graph, FlotGraph, GraphGroup, PictureGroup, ObjectGallery, etc.
     pictures.py  — Picture
@@ -22,15 +22,10 @@ from ccp4i2.report.core import (  # noqa: F401
     CURRENT_CSS_VERSION,
     CCP4NS,
     XHTMLNS,
-    XRTNS,
     Container,
-    IfContainer,
-    Loop,
     Report,
     ReportClass,
-    applySelect,
     findChildren,
-    getChildObject,
     htmlBase,
     toBoolean,
 )

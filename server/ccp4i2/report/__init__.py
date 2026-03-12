@@ -26,7 +26,7 @@ Example:
     class MyReport(Report):
         TASKNAME = "mytask"
 
-        def __init__(self, xmlnode=None, jobInfo={}, **kw):
+        def __init__(self, xmlnode=None, jobInfo=None, **kw):
             super().__init__(xmlnode=xmlnode, jobInfo=jobInfo, **kw)
 
             # Create a two-column layout
@@ -49,7 +49,6 @@ from ccp4i2.report.core import (
     Container,
     ReportClass,
     CCP4NS,
-    XRTNS,
 )
 
 # Element classes
@@ -156,7 +155,6 @@ __all__ = [
     'GenericElement',
     'GenericReport',
     'CCP4NS',
-    'XRTNS',
     # Modern base classes
     'ReportElement',
     'ReportContainer',

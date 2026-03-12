@@ -255,7 +255,6 @@ class ReportContainer(ReportElement):
 
     def __init__(
         self,
-        xrtnode: Optional[ET.Element] = None,
         xmlnode: Optional[ET.Element] = None,
         jobInfo: Optional[Dict[str, Any]] = None,
         **kwargs
@@ -264,15 +263,13 @@ class ReportContainer(ReportElement):
         Initialize a container element.
 
         Args:
-            xrtnode: XRT template node (for legacy compatibility)
-            xmlnode: XML data node (for legacy compatibility)
+            xmlnode: XML data node
             jobInfo: Job information dictionary
             **kwargs: Additional arguments passed to ReportElement
         """
         super().__init__(**kwargs)
 
         self.children: List[ReportElement] = []
-        self.xrtnode = xrtnode
         self.xmlnode = xmlnode
         self.jobInfo = jobInfo or {}
 
@@ -354,14 +351,14 @@ class ElementRegistry:
     Registry for report element types.
 
     This enables plugin extensions and provides a factory method
-    for creating elements from XRT tags.
+    for creating elements by tag name.
 
     Usage:
         # Register an element type
         ElementRegistry.register('mytag', MyElementClass)
 
-        # Create an element from an XRT tag
-        element = ElementRegistry.create('mytag', xrtnode, xmlnode, jobInfo)
+        # Create an element from a tag
+        element = ElementRegistry.create('mytag', xmlnode=xmlnode, jobInfo=jobInfo)
     """
 
     _elements: Dict[str, Type[ReportElement]] = {}
@@ -370,10 +367,10 @@ class ElementRegistry:
     @classmethod
     def register(cls, tag: str, element_class: Type[ReportElement]):
         """
-        Register an element class for an XRT tag.
+        Register an element class for a tag.
 
         Args:
-            tag: XRT tag name (without namespace)
+            tag: Tag name
             element_class: Class to instantiate for this tag
         """
         cls._elements[tag] = element_class
@@ -385,10 +382,10 @@ class ElementRegistry:
         Register a factory function for creating elements.
 
         The factory should have signature:
-            factory(xrtnode, xmlnode, jobInfo) -> ReportElement
+            factory(xmlnode, jobInfo) -> ReportElement
 
         Args:
-            tag: XRT tag name (without namespace)
+            tag: Tag name
             factory: Factory function
         """
         cls._factories[tag] = factory
@@ -397,16 +394,14 @@ class ElementRegistry:
     def create(
         cls,
         tag: str,
-        xrtnode: Optional[ET.Element] = None,
         xmlnode: Optional[ET.Element] = None,
         jobInfo: Optional[Dict[str, Any]] = None
     ) -> Optional[ReportElement]:
         """
-        Create an element from an XRT tag.
+        Create an element by tag name.
 
         Args:
-            tag: XRT tag name (without namespace)
-            xrtnode: XRT template node
+            tag: Tag name
             xmlnode: XML data node
             jobInfo: Job information dictionary
 
@@ -415,12 +410,11 @@ class ElementRegistry:
         """
         # Check for factory first
         if tag in cls._factories:
-            return cls._factories[tag](xrtnode, xmlnode, jobInfo)
+            return cls._factories[tag](xmlnode, jobInfo)
 
         # Then check for element class
         if tag in cls._elements:
             return cls._elements[tag](
-                xrtnode=xrtnode,
                 xmlnode=xmlnode,
                 jobInfo=jobInfo
             )

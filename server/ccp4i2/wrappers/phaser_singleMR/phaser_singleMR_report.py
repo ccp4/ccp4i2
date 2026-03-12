@@ -1,14 +1,18 @@
-import os
-import xml.etree.ElementTree as etree
+import logging
+import re
 
 from ccp4i2.report import Report
+
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class phaser_singleMR_report(Report):
     TASKNAME = 'phaser_singleMR'
     RUNNING = False
 
-    def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
+    def __init__(self, xmlnode=None, jobInfo=None, jobStatus=None, **kw):
+        if jobInfo is None:
+            jobInfo = {}
         Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
         if jobStatus is None or jobStatus.lower() == 'nooutput':
             return
@@ -20,67 +24,83 @@ class phaser_singleMR_report(Report):
         self.addResults()
         parent.append("<p>Results for Phaser Single Atom MR Run</p>")
         bda = self.xmlnode.findall('.//SubJob_000/RunDate')[0].text
+        parent.append("<p>" + bda + "</p>")
+        # KeyText from smartie may be wrapped in <pre> tags; strip them
+        # and use addPre which creates a proper CCP4i2ReportPre element.
         bestCC = self.xmlnode.findall('.//SubJob_000/KeyText_003')[0].text
-        parent.append("<p>"+bda+"</p>")
-        parent.append(bestCC)
+        bestCC = re.sub(r'^\s*<pre>\s*', '', bestCC, flags=re.IGNORECASE)
+        bestCC = re.sub(r'\s*</pre>\s*$', '', bestCC, flags=re.IGNORECASE)
+        parent.addPre(text=bestCC)
         parent.append("<p>Note : the best available solution was selected for I2</p>")
-        self.AddGraphsfromXRT(parent)
+        self._add_graphs(parent)
 
-    def AddGraphsfromXRT(self, parent):
-        graph_height = 300
-        graph_width = 500
-        colour_time = ['gold', 'lightblue', 'red', 'green', 'purple', 'teal', 'blue']
-        graph = parent.addFlotGraph(title="Phaser Results", label="testlabel",
-                                    style="height:%dpx; width:%dpx; float:left; border:0px;"%(graph_height, graph_width), 
-                                    outputXml=self.outputXml, internalId="PhaserGraphs")
-        # The xrt file contains graph info (note, this needs to be correctly set in a format specific to the ccp4).
-        loadf = etree.parse(os.path.join(self.jobInfo['fileroot'], "program.xrt"))
-        if not loadf:
-            print("Failed to load xrt file in phaser_singleMR_reports : Report will be missing")
+    def _add_graphs(self, parent):
+        """Build graphs from GraphTable elements embedded in program.xml.
+
+        The wrapper's _convert_log() embeds graph metadata (column titles,
+        plot configs, axis scaling) directly in program.xml alongside the
+        data, so no separate file is needed.
+        """
+        graph_tables = self.xmlnode.findall('.//GraphTable')
+        if not graph_tables:
             return
-        rootconf = loadf.getroot()
-        graphinfo = rootconf.findall(".//xrt:results/xrt:section/xrt:graph/xrt:table", namespaces={"xrt" : "http://www.ccp4.ac.uk/xrt"})
+
+        colours = ['gold', 'lightblue', 'red', 'green', 'purple', 'teal', 'blue']
+        graph = parent.addFlotGraph(
+            title="Phaser Results",
+            label="testlabel",
+            style="height:300px; width:500px; float:left; border:0px;",
+            outputXml=self.outputXml,
+            internalId="PhaserGraphs",
+        )
+
         colcount = 0
-        for xrt_inf in graphinfo:
+        for table_info in graph_tables:
             p = graph.addPlotObject()
-            gr_title = xrt_inf.get("title")
-            p.append('title', gr_title)
+            p.append('title', table_info.get("title"))
             p.append('plottype', 'xy')
             p.append('xintegral', 'true')
-            gr_path = xrt_inf.get("select")  # This is the xml path to the actual data
-            gr_path = ".//"+gr_path.lstrip("/Job/")
-            dcols = xrt_inf.findall("xrt:data", namespaces={"xrt" : "http://www.ccp4.ac.uk/xrt"})
-            xml_data = self.xmlnode.findall(gr_path)[0].text
-            data_vec = xml_data.split()
-            dsets = xrt_inf.findall("xrt:plot", namespaces={"xrt" : "http://www.ccp4.ac.uk/xrt"})
+
+            # Get data from the sibling element referenced by data_ref.
+            # ET doesn't support parent traversal, so search from root.
+            data_ref = table_info.get("data_ref")
+            data_nodes = self.xmlnode.findall(f".//{data_ref}")
+            if not data_nodes or not data_nodes[0].text:
+                continue
+            data_vec = data_nodes[0].text.split()
+
+            dcols = table_info.findall("Column")
+            plots = table_info.findall("Plot")
+
+            # Determine which y-columns go on left vs right axis
             yleft = []
             firstset = True
-            for dset in dsets:
-                # The first group of plotlines goes on the left y-axis, all else on the right.
-                lineset = dset.findall("plotline")
-                for line in lineset:
+            for plot in plots:
+                for _line in plot.findall("PlotLine"):
                     yleft.append(firstset)
                 firstset = False
-            for i in range(0, len(dcols)): # Loop over columns in graph (i=0 is the x-axis, the rest y)
+
+            for i, dcol in enumerate(dcols):
                 invec = data_vec[i::len(dcols)]
-                colname = dcols[i].get("title")
+                colname = dcol.get("title")
                 graph.addData(title=colname, data=list(map(float, invec)))
                 if i > 0:
                     if i == 1:
                         p.append('ylabel', colname)
                         p.append('xlabel', dcols[0].get("title"))
+                    right = 'false'
                     try:
-                        if yleft[i-1]:
-                            l = p.append('plotline', xcol=colcount+1, ycol=colcount+i+1, rightaxis='false') # ycol doesn't reset in base classes, hence the counter....
-                        else:
-                            l = p.append('plotline', xcol=colcount+1, ycol=colcount+i+1, rightaxis='true')
+                        right = 'false' if yleft[i - 1] else 'true'
                     except IndexError:
-                        l = p.append('plotline', xcol=colcount+1, ycol=colcount+i+1, rightaxis='false')
-                        print("PROBLEM: Graphs for singleMR: Issue deciding if y-axis on left or right. Check xml & xrt files.")
-                    l.append('label', dcols[i].get("title"))
-                    if i < len(colour_time):
-                        l.append('colour', colour_time[i-1])
-                    else:
-                        print("Warning : out of graph colours, increase vector in phaser_singleMR") # Really shouldn't happen, but just in case.
-                        l.append('colour', 'black')
+                        pass
+                    line = p.append(
+                        'plotline',
+                        xcol=colcount + 1,
+                        ycol=colcount + i + 1,
+                        rightaxis=right,
+                    )
+                    line.append('label', colname)
+                    colour = colours[i - 1] if i <= len(colours) else 'black'
+                    line.append('colour', colour)
+
             colcount += len(dcols)

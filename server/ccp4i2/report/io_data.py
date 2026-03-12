@@ -20,7 +20,6 @@ class IODataList(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,

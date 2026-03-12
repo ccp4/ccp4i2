@@ -14,11 +14,7 @@ from io import StringIO
 from typing import Any
 
 from ccp4i2.core.CCP4ErrorHandling import CException
-from ccp4i2.report.core import (
-    ReportClass, Container,
-    XRTNS, CCP4NS,
-    applySelect,
-)
+from ccp4i2.report.core import ReportClass, Container, CCP4NS
 from ccp4i2.report.elements import BaseTable, Plot
 
 
@@ -27,17 +23,13 @@ class PictureGroup(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            PictureGroup,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(PictureGroup, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -50,17 +42,13 @@ class GraphGroup(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            GraphGroup,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(GraphGroup, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -75,14 +63,7 @@ class GraphGroup(Container):
         else:
             self.launch = None
 
-        if xrtnode is not None:
-            from ccp4i2.report.actions import Help
-            help = xrtnode.find(XRTNS + 'help')
-            if help is not None:
-                self.help = Help(help, mode='graph')
-                if xrtnode is not None:
-                    xrtnode.remove(help)
-        elif 'help' in kw:
+        if 'help' in kw:
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
@@ -96,17 +77,13 @@ class FlotGraphGroup(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            FlotGraphGroup,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(FlotGraphGroup, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -123,14 +100,7 @@ class FlotGraphGroup(Container):
             if kw.get('withLaunch', True):
                 self.launch = Launch(ele, jobInfo=jobInfo)
 
-        if xrtnode is not None:
-            from ccp4i2.report.actions import Help
-            help = xrtnode.find(XRTNS + 'help')
-            if help is not None:
-                self.help = Help(help, mode='graph')
-                if xrtnode is not None:
-                    xrtnode.remove(help)
-        elif 'help' in kw:
+        if 'help' in kw:
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
@@ -147,17 +117,13 @@ class DrawnDiv(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            DrawnDiv,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(DrawnDiv, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -166,14 +132,7 @@ class DrawnDiv(Container):
         self.id: str = kw.get('id', 'drawnDiv_' + str(DrawnDiv.drawnDivCount))
         self.data_is_urls: bool = kw.get('data_is_urls', False)
 
-        if xrtnode is not None:
-            from ccp4i2.report.actions import Help
-            help = xrtnode.find(XRTNS + 'help')
-            if help is not None:
-                self.help = Help(help, mode='gallery')
-                if xrtnode is not None:
-                    xrtnode.remove(help)
-        elif 'help' in kw:
+        if 'help' in kw:
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
@@ -194,17 +153,13 @@ class ObjectGallery(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            ObjectGallery,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(ObjectGallery, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -212,14 +167,7 @@ class ObjectGallery(Container):
         ObjectGallery.galleryCount += 1
         self.id: str = kw.get('id', 'gallery_' + str(ObjectGallery.galleryCount))
 
-        if xrtnode is not None:
-            from ccp4i2.report.actions import Help
-            help = xrtnode.find(XRTNS + 'help')
-            if help is not None:
-                self.help = Help(help, mode='gallery')
-                if xrtnode is not None:
-                    xrtnode.remove(help)
-        elif 'help' in kw:
+        if 'help' in kw:
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
@@ -238,17 +186,13 @@ class GraphLineChooser(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            GraphLineChooser,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(GraphLineChooser, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -257,14 +201,7 @@ class GraphLineChooser(Container):
         self.id: str = kw.get('id', 'graphLineChooser_' +
                          str(GraphLineChooser.graphLineChooserCount))
 
-        if xrtnode is not None:
-            from ccp4i2.report.actions import Help
-            help = xrtnode.find(XRTNS + 'help')
-            if help is not None:
-                self.help = Help(help, mode='gallery')
-                if xrtnode is not None:
-                    xrtnode.remove(help)
-        elif 'help' in kw:
+        if 'help' in kw:
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
@@ -281,7 +218,6 @@ class GraphLineChooser(Container):
 class Graph(ReportClass):
     """Data graph with column data, plot definitions, and optional pimple data.
 
-    Supports both XRT-driven (from XML templates) and programmatic construction.
     Data columns are added via ``addData()``, plots via ``addPlot()`` or
     ``addPlotObject()``. The ``data_as_etree()`` method builds the CCP4
     data element consumed by the frontend charting component.
@@ -296,17 +232,13 @@ class Graph(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            Graph,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(Graph, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -315,34 +247,13 @@ class Graph(ReportClass):
         self.coldata: list[list] = []
         self.coltitle: list[str | None] = []
         self.plots: list[etree.Element | Plot] = []
-        self.title: str | None = None
+        self.title: str | None = kw.get('title', None)
         self.tableText: str = ''
         self.headerText: str = ''
         self.launch = None
         self.headerSeparator: str | None = None
         self.pimpleData: etree.Element | None = None
         self.outputCsv: bool = kw.get('outputCsv', True)
-
-        # Find title
-        if xrtnode is not None:
-            if xrtnode.find(XRTNS + 'title') is not None:
-                if xrtnode.find(
-                        XRTNS + 'title').get('select') is not None and xmlnode is not None:
-                    xmlEleList = xmlnode.findall(
-                        xrtnode.find(XRTNS + 'title').get('select'))
-                    if len(xmlEleList) > 0:
-                        if isinstance(xmlEleList[0], str):
-                            self.title = xmlEleList[0]
-                        else:
-                            self.title = xmlEleList[0].text
-                    else:
-                        self.title = None
-                else:
-                    self.title = xrtnode.find('title').text
-            else:
-                self.title = xrtnode.get('title', None)
-        elif 'title' in kw:
-            self.title = kw['title']
 
         if kw.get('launcher', None) is not None:
             from ccp4i2.report.actions import Launch
@@ -355,22 +266,14 @@ class Graph(ReportClass):
                 ccp4_data_id='data_' +
                 self.internalId)
 
-        if xrtnode is not None:
-            from ccp4i2.report.actions import Help
-            help = xrtnode.find(XRTNS + 'help')
-        else:
-            help = kw.get('help', None)
+        help = kw.get('help', None)
         if help is not None:
             from ccp4i2.report.actions import Help
             self.help = Help(help, mode='graph')
         else:
             self.help = None
 
-        if xrtnode is not None:
-            if xrtnode.get("select") is not None and xmlnode is not None:
-                # Make list of selected xml nodes
-                self.xmldata = xmlnode.findall(xrtnode.get("select"))
-        elif 'select' in kw and xmlnode is not None:
+        if 'select' in kw and xmlnode is not None:
             self.xmldata: list[etree.Element] = []
             for p in kw['select'].split("|"):
                 self.xmldata.extend(xmlnode.findall(p.strip()))
@@ -381,32 +284,6 @@ class Graph(ReportClass):
             self.xmldata = []
             if xmlnode is not None:
                 self.xmldata.append(xmlnode)
-
-         # assemble column data
-        if xrtnode is not None:
-            for node in xrtnode:
-                if node.tag == XRTNS + "data":
-                    self.addData(
-                        xmldata=self.xmldata,
-                        title=node.get('title'),
-                        select=node.get('select'),
-                        expr=node.get('expr'))
-            # Handle table as a block in the xml file
-                elif node.tag == XRTNS + "table":
-                    self.addTable(
-                        xmldata=self.xmldata,
-                        select=node.get('select'),
-                        headers=node.find(
-                            XRTNS + 'headers'))
-
-        # get plot definitions
-        if xrtnode is not None:
-            for node in xrtnode:
-                if node.tag == XRTNS + "plot":
-                    self.addPlot(
-                        xrtnode=node,
-                        xmlnode=xmlnode,
-                        select=node.get('select'))
 
     def addPimpleData(
         self,
@@ -483,39 +360,35 @@ class Graph(ReportClass):
 
     def addPlot(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         **kw: Any,
     ) -> None:
-        """Add a plot definition from XRT, file, or text."""
+        """Add a plot definition from file, text, or XML select."""
         if xmlnode is None:
             if len(self.xmldata) > 0:
                 xmlnode = self.xmldata[0]
-        if xrtnode is None:
-            if kw.get('plotFile', None):
-                from ccp4i2.core import CCP4Utils
-                try:
-                    text = CCP4Utils.readFile(kw['plotFile'])
 
-                    text = re.sub('<xrt:', '<', text)
-                    text = re.sub('</xrt:', '</', text)
-                    xrtnode = etree.fromstring(text)
-                except BaseException:
-                    raise CException(self.__class__, 1, str(kw['plotFile']))
-            if kw.get('plot', None) is not None:
-                if hasattr(kw['plot'], "decode"):
-                    text = re.sub('<xrt:', '<', kw['plot'].decode())
-                else:
-                    text = re.sub('<xrt:', '<', kw['plot'])
+        plot_node = None
+        if kw.get('plotFile', None):
+            from ccp4i2.core import CCP4Utils
+            try:
+                text = CCP4Utils.readFile(kw['plotFile'])
+                text = re.sub('<xrt:', '<', text)
                 text = re.sub('</xrt:', '</', text)
-                xrtnode = etree.fromstring(text)
+                plot_node = etree.fromstring(text)
+            except BaseException:
+                raise CException(self.__class__, 1, str(kw['plotFile']))
+        if kw.get('plot', None) is not None:
+            if hasattr(kw['plot'], "decode"):
+                text = re.sub('<xrt:', '<', kw['plot'].decode())
+            else:
+                text = re.sub('<xrt:', '<', kw['plot'])
+            text = re.sub('</xrt:', '</', text)
+            plot_node = etree.fromstring(text)
 
-        if xrtnode is not None and kw.get('select', None) is None:
-            # Just copy plot directives from xrt - substitute info for any
-            # 'select' attribute
-            xrtnode.tag = 'plot'
-            xrtnode = applySelect(xrtnode, xmlnode)
-            self.plots.append(xrtnode)
+        if plot_node is not None and kw.get('select', None) is None:
+            plot_node.tag = 'plot'
+            self.plots.append(plot_node)
         elif xmlnode is not None and kw.get('select', None) is not None:
             # Copy plot directives from xml
             plotEleList = xmlnode.findall(kw['select'])
@@ -601,17 +474,13 @@ class FlotGraph(Graph):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            FlotGraph,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(FlotGraph, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -655,14 +524,13 @@ class DAGGraph(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super().__init__(xrtnode=xrtnode, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
+        super().__init__(xmlnode=xmlnode, jobInfo=jobInfo, **kw)
         self.title: str = kw.get('title', '')
         self.elements: str = kw.get('elements', '[]')
         self.layout: str = kw.get('layout', 'dagre')

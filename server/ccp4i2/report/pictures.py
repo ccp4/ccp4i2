@@ -11,18 +11,13 @@ import xml.etree.ElementTree as etree
 from typing import Any
 
 from ccp4i2.core.CCP4ErrorHandling import CException
-from ccp4i2.report.core import (
-    ReportClass, Container,
-    XRTNS,
-    applySelect,
-)
 
 
 class Picture:
     """Scene visualization element for CCP4mg/Moorhen.
 
     When a ``sceneFile`` is provided, it is used directly without copying.
-    When building a scene from scratch (via xrtnode or ``scene`` param),
+    When building a scene from scratch (via ``scene`` param),
     a new scene file is created with a deterministic name based on label.
     """
 
@@ -38,7 +33,6 @@ class Picture:
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -59,9 +53,7 @@ class Picture:
         bodyEle.append(sceneEle)
 
         sceneRoot: etree.Element | None = None
-        if xrtnode is not None:
-            sceneRoot = xrtnode
-        elif kw.get('scene', None) is not None:
+        if kw.get('scene', None) is not None:
             try:
                 sceneRoot = etree.fromstring(kw['scene'], etree.XMLParser(encoding='utf-8'))
             except BaseException:
@@ -83,11 +75,10 @@ class Picture:
                     raise CException(self.__class__, 102, fileName)
 
         if sceneRoot is None:
-            raise CException(self.__class__, 104, fileName)
+            raise CException(self.__class__, 104, str(kw))
 
         for child in sceneRoot:
             sceneEle.append(copy.deepcopy(child))
-            bodyEle = applySelect(bodyEle, xmlnode, jobInfo)
 
         from ccp4i2.core import CCP4File
 
@@ -99,8 +90,6 @@ class Picture:
             # Use label if available, otherwise use a counter per job
             job_id = jobInfo.get('jobid', 'unknown')
             label = kw.get('label', None)
-            if xrtnode is not None:
-                label = xrtnode.get('label', label)
 
             if label:
                 # Create filename from label (sanitize for filesystem)
@@ -128,10 +117,7 @@ class Picture:
             self.picDefFile.header.jobNumber.set(jobInfo.get('jobnumber', None))
             self.picDefFile.saveFile(bodyEtree=bodyEle, useLXML=False)
 
-        if xrtnode is not None:
-            self.label: str | None = xrtnode.get('label', None)
-        else:
-            self.label = kw.get('label', None)
+        self.label: str | None = kw.get('label', None)
 
         launchNode = etree.Element('launch')
         launchNode.set('exe', 'CCP4mg')
@@ -143,4 +129,4 @@ class Picture:
         launchNode = etree.Element('launch')
         launchNode.set('exe', 'Coot')
         launchNode.set('label', 'View in Coot')
-        self.launchList.append(Launch(xrtnode=launchNode, jobInfo=jobInfo))
+        self.launchList.append(Launch(launchNode, jobInfo=jobInfo))

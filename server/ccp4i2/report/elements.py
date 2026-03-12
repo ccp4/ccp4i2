@@ -12,11 +12,7 @@ from io import StringIO
 from typing import Any, Callable
 
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING, CErrorReport, CException
-from ccp4i2.report.core import (
-    ReportClass, Container,
-    XRTNS,
-    applySelect,
-)
+from ccp4i2.report.core import ReportClass, Container
 
 
 class Results(Container):
@@ -33,26 +29,18 @@ class Fold(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            Fold,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(Fold, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
-        if xrtnode is not None:
-            self.label: str = xrtnode.get('label', 'Show details')
-            self.brief: str | None = xrtnode.get('brief', None)
-        else:
-            self.label = kw.get('label', 'Fold')
-            self.brief = kw.get('brief', None)
+        self.label: str = kw.get('label', 'Fold')
+        self.brief: str | None = kw.get('brief', None)
         self.initiallyOpen: bool = kw.get('initiallyOpen', False)
 
     def as_data_etree(self) -> etree.Element:
@@ -72,34 +60,19 @@ class Text(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            Text,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(Text, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
         self.text: str = ''
         self.tail: str = ''
-        if xrtnode is not None:
-            if xrtnode.text is not None:
-                self.text = xrtnode.text
-            if xrtnode.tail is not None:
-                self.tail = xrtnode.tail
-            if xrtnode.get('select') is not None and xmlnode is not None:
-                self.text = ''
-                nodes = xmlnode.findall(xrtnode.get('select'))
-                for node in nodes:
-                    if node.text is not None:
-                        self.text += node.text
-        elif kw.get('text', None) is not None:
+        if kw.get('text', None) is not None:
             self.text = kw['text']
         elif kw.get('select', None) is not None and xmlnode is not None:
             nodes = xmlnode.findall(kw['select'])
@@ -130,29 +103,24 @@ class Copy(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         **kw: Any,
     ) -> None:
-        super(Copy, self).__init__(xrtnode=xrtnode, xmlnode=xmlnode, **kw)
+        super(Copy, self).__init__(xmlnode=xmlnode, **kw)
         self.text: str = ""
         self.root: etree.Element = etree.Element('root')
-        if xmlnode is not None:
-            if xrtnode is not None:
-                self.root.extend(xmlnode.findall(xrtnode.get("select")))
-            elif kw.get('select', False):
-                self.root.extend(xmlnode.findall(kw.get('select', False)))
+        if xmlnode is not None and kw.get('select', False):
+            self.root.extend(xmlnode.findall(kw.get('select', False)))
 
 
 class Generic(ReportClass):
-    """Generic HTML element, parsed from a text string or XRT node."""
+    """Generic HTML element, parsed from a text string."""
 
     ERROR_CODES: dict = {1: {'description': 'Can not interpret text'}, 2: {
         'description': 'Error substituting values into generic item'}}
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         text: str | None = None,
@@ -166,26 +134,23 @@ class Generic(ReportClass):
         self.class_: str | None = kw.get('class_', None)
         self.xmltree: etree.Element | None = None
 
-        if xrtnode is None and text is not None:
+        parsed = None
+        if text is not None:
             try:
-                xrtnode = etree.fromstring(text.encode('utf-8'))
+                parsed = etree.fromstring(text.encode('utf-8'))
             except BaseException:
                 try:
                     if isinstance(text, bytes):
-                        xrtnode = etree.fromstring(
+                        parsed = etree.fromstring(
                             '<' + defaultTag + '>' + text.encode('utf-8') + '</' + defaultTag + '>')
                     else:
-                        xrtnode = etree.fromstring(
+                        parsed = etree.fromstring(
                             '<' + defaultTag + '>' + text + '</' + defaultTag + '>')
                 except BaseException:
                     raise
 
-        if xrtnode is not None:
-            try:
-                self.xmltree = applySelect(xrtnode, xmlnode, jobInfo)
-            except BaseException:
-                if text is not None:
-                    self.errReport.append(self.__class__, 2, str(text))
+        if parsed is not None:
+            self.xmltree = parsed
 
     def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
@@ -204,14 +169,13 @@ class BaseTable(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(BaseTable, self).__init__(xrtnode=xrtnode, xmlnode=xmlnode, **kw)
+        super(BaseTable, self).__init__(xmlnode=xmlnode, **kw)
         BaseTable.tableCount += 1
         self.id: str = kw.get('id', 'table_' + str(BaseTable.tableCount))
         self.coldata: list[list] = []
@@ -231,45 +195,20 @@ class BaseTable(ReportClass):
                     jobInfo=jobInfo, dataName=self.id + '_' + self.title)
             else:
                 self.download = Download(jobInfo=jobInfo, dataName=self.id)
-        if xrtnode is not None:
-            self.excludeIfDataMissing: bool = xrtnode.get(
-                'excludeIfDataMissing', False)
-            if xmlnode is not None:
-                self.xmldata = xmlnode.findall(xrtnode.get("select"))
-            self.transpose: bool = (xrtnode.get("transpose") is not None)
-            if xrtnode.get("help") is not None:
-                from ccp4i2.report.actions import Help
-                self.help = Help(ref=xrtnode.get("help"))
-        else:
-            self.excludeIfDataMissing = kw.get('excludeIfDataMissing', False)
-            if xmlnode is not None:
-                if kw.get('select', None) is not None:
-                    self.xmldata = []
-                    for p in kw['select'].split("|"):
-                        self.xmldata.extend(xmlnode.findall(p.strip()))
-                elif kw.get('selectNodes', None) is not None:
-                    self.xmldata = kw['selectNodes']
-                else:
-                    self.xmldata = [xmlnode]
-            self.transpose = kw.get('transpose', False)
-            if kw.get('help', None) is not None:
-                from ccp4i2.report.actions import Help
-                self.help = Help(ref=kw['help'])
-        # assemble column data
-
-        if xrtnode is not None:
-            for col in xrtnode:
-                if col.tag == XRTNS + "data":
-                    colttl1 = col.get("title")
-                    colttl2 = col.get("subtitle")
-                    colexpr = col.get("expr")
-                    colsel = col.get("select")
-                    self.addData(
-                        xmldata=self.xmldata,
-                        title=colttl1,
-                        subtitle=colttl2,
-                        expr=colexpr,
-                        select=colsel)
+        self.excludeIfDataMissing = kw.get('excludeIfDataMissing', False)
+        if xmlnode is not None:
+            if kw.get('select', None) is not None:
+                self.xmldata = []
+                for p in kw['select'].split("|"):
+                    self.xmldata.extend(xmlnode.findall(p.strip()))
+            elif kw.get('selectNodes', None) is not None:
+                self.xmldata = kw['selectNodes']
+            else:
+                self.xmldata = [xmlnode]
+        self.transpose = kw.get('transpose', False)
+        if kw.get('help', None) is not None:
+            from ccp4i2.report.actions import Help
+            self.help = Help(ref=kw['help'])
 
     def addData(
         self,
@@ -356,7 +295,6 @@ class Table(BaseTable):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -364,7 +302,7 @@ class Table(BaseTable):
         if jobInfo is None:
             jobInfo = {}
         super(Table, self).__init__(
-            xrtnode=xrtnode, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
+            xmlnode=xmlnode, jobInfo=jobInfo, **kw)
 
     def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
@@ -459,17 +397,13 @@ class Div(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            Div,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(Div, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -482,17 +416,13 @@ class Progress(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            Progress,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(Progress, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)

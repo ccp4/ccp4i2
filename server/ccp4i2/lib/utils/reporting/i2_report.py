@@ -465,7 +465,6 @@ def generate_job_report(job: Job) -> ET.Element:
             standardise=standardise,
             jobStatus=status,
             jobNumber=job.number,
-            xrtnode=None,
             projectId=str(job.project.uuid).replace("-", ""),
         )
 

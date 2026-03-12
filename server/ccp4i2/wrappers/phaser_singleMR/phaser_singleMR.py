@@ -129,152 +129,108 @@ class phaser_singleMR(CPluginScript):
     def parseLogfile(self):
         logfile = self.makeFileName("LOG")
         smin = smartie.parselog(logfile)
-        xmltree, xrttree = _convert_log(smin)
+        xmltree = _convert_log(smin)
         xmltree.write(str(self.workDirectory / "program.xml"))
-        with (self.workDirectory / "program.xrt").open("w") as xrto:
-            xrto.write((ET.tostring(xrttree.getroot()).decode()).replace("ns0", "xrt"))
 
 
 def _convert_log(logfile):
-    job_tag = "Job"
-    job_path = "/Job"
-    xrtns = "{http://www.ccp4.ac.uk/xrt}%s"
+    """Convert smartie-parsed Phaser log into a single program.xml tree.
 
-    xrttree = ET.ElementTree(ET.Element("report"))
-    e0 = xrttree.getroot()
-    e0 = ET.SubElement(e0, xrtns % "results")
+    The XML embeds both data values and graph metadata so that the report
+    class can build graphs without needing a separate XRT file.
 
-    xmltree = ET.ElementTree(ET.Element(job_tag))
-    f0 = xmltree.getroot()
+    Structure per SubJob::
 
-    e1 = ET.SubElement(e0, xrtns % "title", select=job_path + "/Title")
+        <SubJob_000>
+            <RunDate>...</RunDate>
+            <KeyText_001>...</KeyText_001>
+            <Table_001>1.0 2.0 3.0 ...</Table_001>
+            <GraphTable title="My Table" data_ref="Table_001" ncols="3">
+                <Column title="Resolution"/>
+                <Column title="R-factor"/>
+                <Plot title="R vs Res">
+                    <PlotLine xcol="1" ycol="2" colour="auto"/>
+                </Plot>
+            </GraphTable>
+        </SubJob_000>
+    """
+    root = ET.Element("Job")
 
-    f1 = ET.SubElement(f0, "Title")
-    f1.text = None
+    ET.SubElement(root, "Title")
 
     for ip in range(logfile.nprograms()):
         program = logfile.program(ip)
         program_tag = f"SubJob_{ip:03d}"
-        program_path = job_path + "/" + program_tag
+
+        subjob = ET.SubElement(root, program_tag)
 
         all_attributes = program.attributes()
 
-        progname = ""
-        if "name" in all_attributes:
-            progname = program.get_attribute("name")
-
-        elif "termination_name" in all_attributes:
-            progname = program.get_attribute("termination_name")
-
-        progtitle = "Run"
-        if progname:
-            progtitle += f" of {progname}"
-
-        rundate = ""
         if "rundate" in all_attributes:
-            rundate = program.get_attribute("rundate")
-            progtitle += f" on {rundate}"
+            el = ET.SubElement(subjob, "RunDate")
+            el.text = program.get_attribute("rundate")
 
-        runtime = ""
         if "runtime" in all_attributes:
-            runtime = program.get_attribute("runtime")
-            progtitle += f" at {runtime}"
+            el = ET.SubElement(subjob, "RunTime")
+            el.text = program.get_attribute("runtime")
 
-        e1 = ET.SubElement(e0, xrtns % "section", title=progtitle)
-
-        f1 = ET.SubElement(f0, program_tag)
-
-        attributes = program.attributes()
-        if "name" in attributes:
-            e1.attrib["progname"] = program.get_attribute("name")
-
-        if "rundate" in attributes:
-            info_tag = "RunDate"
-            e1.attrib["rundate"] = program_path + "/" + info_tag
-            f2 = ET.SubElement(f1, info_tag)
-            f2.text = program.get_attribute("rundate")
-
-        if "runtime" in attributes:
-            info_tag = "RunTime"
-            e1.attrib["runtime"] = program_path + "/" + info_tag
-            f2 = ET.SubElement(f1, info_tag)
-            f2.text = program.get_attribute("runtime")
-
-        e2 = None
         for ik in range(program.nkeytexts()):
             keytext = program.keytext(ik)
             keytext_tag = f"KeyText_{ik + 1:03d}"
-            keytext_path = program_path + "/" + keytext_tag
+            el = ET.SubElement(subjob, keytext_tag)
+            el.text = "\n" + keytext.message().strip() + "\n"
 
-            e2 = ET.SubElement(e1, xrtns % "keytext")
-            e2.attrib["folded"] = "false"
-            e2.attrib["name"] = keytext.name()
-            e2.attrib["select"] = keytext_path
+        for it in range(program.ntables()):
+            table = program.table(it)
+            table_tag = f"Table_{it + 1:03d}"
 
-            f2 = ET.SubElement(f1, keytext_tag)
-            f2.text = "\n" + keytext.message().strip() + "\n"
+            # Store the raw data
+            data_el = ET.SubElement(subjob, table_tag)
+            data_el.text = table.data().rstrip() + "\n"
 
-        for xrt_table_tag in ("graph", "table"):
-            jt = 0
-            e1a = e1
+            # Store graph metadata alongside
+            graph_el = ET.SubElement(
+                subjob, "GraphTable",
+                title=table.title().strip(),
+                data_ref=table_tag,
+                ncols=str(table.ncolumns()),
+            )
 
-            if xrt_table_tag == "graph" and program.ntables() > 0:
-                e1a = ET.SubElement(e1, xrtns % "graph")
+            for ic in range(table.ncolumns()):
+                column = table.table_column(ic)
+                ET.SubElement(graph_el, "Column", title=column.title())
 
-            for it in range(program.ntables()):
-                jt += 1
-                table = program.table(it)
-                table_tag = f"Table_{jt:03d}"
-                table_path = program_path + "/" + table_tag
+            for ig in range(table.ngraphs()):
+                graph = table.table_graph(ig)
+                columns = graph.columns()
 
-                e2 = ET.SubElement(e1a, xrtns % "table", select=table_path)
-                e2.attrib["type"] = "plain"
-                e2.attrib["title"] = table.title().strip()
-                if xrt_table_tag == "table":
-                    e2.attrib["folded"] = "true"
+                plot_attrib = {"title": graph.title().strip()}
 
-                for ic in range(table.ncolumns()):
-                    column = table.table_column(ic)
+                scaling = graph.scaling()
+                if scaling == "N":
+                    plot_attrib["ymin"] = "0"
+                elif scaling and scaling != "A":
+                    xrange, sep, yrange = scaling.partition("x")
+                    if sep == "x":
+                        xmin, sep, xmax = xrange.partition("|")
+                        if sep == "|":
+                            plot_attrib["xmin"] = xmin.strip()
+                            plot_attrib["xmax"] = xmax.strip()
+                        ymin, sep, ymax = yrange.partition("|")
+                        if sep == "|":
+                            plot_attrib["ymin"] = ymin.strip()
+                            plot_attrib["ymax"] = ymax.strip()
 
-                    e3 = ET.SubElement(e2, xrtns % "data", title=column.title())
+                plot_el = ET.SubElement(graph_el, "Plot", **plot_attrib)
 
-                if xrt_table_tag == "graph":
-                    f2 = ET.SubElement(f1, table_tag)
-                    f2.text = table.data().rstrip() + "\n"
+                for column in columns[1:]:
+                    ET.SubElement(
+                        plot_el, "PlotLine",
+                        xcol=str(columns[0]),
+                        ycol=str(column),
+                        colour="auto",
+                    )
 
-                    for ig in range(table.ngraphs()):
-                        graph = table.table_graph(ig)
-                        columns = graph.columns()
+    ET.SubElement(root, "Files")
 
-                        e3 = ET.SubElement(e2, xrtns % "plot")
-                        e3.attrib["title"] = graph.title().strip()
-
-                        for column in columns[1:]:
-                            ET.SubElement(
-                                e3,
-                                "plotline",
-                                xcol=str(columns[0]),
-                                ycol=str(column),
-                                colour="auto",
-                            )
-
-                        scaling = graph.scaling()
-                        if scaling == "N":
-                            e3.attrib["ymin"] = "0"
-
-                        elif scaling and scaling != "A":
-                            xrange, sep, yrange = scaling.partition("x")
-                            if sep == "x":
-                                xmin, sep, xmax = xrange.partition("|")
-                                if sep == "|":
-                                    e3.attrib["xmin"] = xmin.strip()
-                                    e3.attrib["xmax"] = xmax.strip()
-
-                                ymin, sep, ymax = yrange.partition("|")
-                                if sep == "|":
-                                    e3.attrib["ymin"] = ymin.strip()
-                                    e3.attrib["ymax"] = ymax.strip()
-
-    ET.SubElement(f0, "Files")
-
-    return xmltree, xrttree
+    return ET.ElementTree(root)

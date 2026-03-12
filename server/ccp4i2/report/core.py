@@ -9,7 +9,6 @@ Report (top-level), and supporting utilities.
 from __future__ import annotations
 
 import logging
-import os
 import xml.etree.ElementTree as etree
 from typing import Any, TYPE_CHECKING
 
@@ -33,7 +32,6 @@ def _get_diagnostics() -> Any:
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
-XRTNS: str = "{http://www.ccp4.ac.uk/xrt}"
 CCP4NS: str = "http://www.ccp4.ac.uk/ccp4ns"
 XHTMLNS: str = "{http://www.w3.org/1999/xhtml}"
 CURRENT_CSS_VERSION: str = '0.1.0'
@@ -58,77 +56,6 @@ def toBoolean(text: str) -> bool:
         return bool(text)
 
 
-def getChildObject(
-    child: etree.Element,
-    xmlnode: etree.Element | None,
-    jobInfo: dict[str, Any] | None = None,
-    report: Report | None = None,
-) -> ReportClass | None:
-    """Create the appropriate report element from an XRT child node.
-
-    Uses lazy imports to avoid circular dependencies between sub-modules.
-    """
-    if jobInfo is None:
-        jobInfo = {}
-    # Lazy imports to avoid circular dependencies
-    from ccp4i2.report.elements import (
-        Text, Copy, Generic, Fold, Results, Status,
-        BaseTable, Table,
-    )
-    from ccp4i2.report.graphs import Graph, GraphGroup
-    from ccp4i2.report.graphs import ObjectGallery
-    from ccp4i2.report.pictures import Picture
-    from ccp4i2.report.io_data import InputData, OutputData, ImportedFiles
-    from ccp4i2.report.metadata import Title, JobDetails, JobLogFiles
-    from ccp4i2.report.actions import Launch
-
-    if child.tag == XRTNS + "table":
-        obj = Table(child, xmlnode)
-    elif child.tag == XRTNS + "graphgroup":
-        obj = GraphGroup(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "graph":
-        obj = Graph(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "objectgallery":
-        obj = ObjectGallery(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "results":
-        obj = Results(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "fold":
-        obj = Fold(child, xmlnode)
-    elif child.tag == XRTNS + "text":
-        obj = Text(child, xmlnode)
-    elif child.tag == XRTNS + "status":
-        obj = Status(child, xmlnode)
-    elif child.tag == XRTNS + "if":
-        obj = IfContainer(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "ifnot":
-        obj = IfContainer(child, xmlnode, jobInfo, False)
-    elif child.tag == XRTNS + "loop":
-        obj = Loop(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "copy":
-        obj = Copy(child, xmlnode)
-    elif child.tag == XRTNS + "inputdata":
-        obj = InputData(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "outputdata":
-        obj = OutputData(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "importedfiles":
-        obj = ImportedFiles(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "title":
-        obj = Title(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "jobdetails":
-        obj = JobDetails(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "logfiles":
-        obj = JobLogFiles(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "picture":
-        obj = Picture(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "launch":
-        obj = Launch(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "comment":
-        obj = None
-    else:
-        obj = Generic(child, xmlnode)
-    return obj
-
-
 def findChildren(obj: Any, cls: type, id: str | None = None) -> list:
     """Recursively find all children of a given class."""
     retList: list = []
@@ -140,48 +67,6 @@ def findChildren(obj: Any, cls: type, id: str | None = None) -> list:
         elif isinstance(child, Container):
             retList.extend(findChildren(child, cls, id))
     return retList
-
-
-def applySelect(
-    xrtnode: etree.Element,
-    xmlnode: etree.Element | None,
-    jobInfo: dict[str, Any] | None = None,
-) -> etree.Element:
-    """Substitute ``select`` and ``database`` attributes in XRT nodes.
-
-    Walks the XRT tree, replacing attribute references with values
-    from the XML output or job info dictionary.
-    """
-    if jobInfo is None:
-        jobInfo = {}
-    if xrtnode.get('select') is not None:
-        if xmlnode is not None:
-            values = xmlnode.findall(xrtnode.get('select'))
-            if len(values) > 0:
-                xrtnode.text = str(values[0].text)
-            else:
-                xrtnode.text = 'NO DATA AVAILABLE'
-        del xrtnode.attrib['select']
-    elif xrtnode.get('database') is not None:
-        pathList = xrtnode.get('database').split('/')
-        while pathList.count('') > 0:
-            pathList.remove('')
-        data = jobInfo.get(pathList[0], {})
-        for path in pathList[1:]:
-            data = data.get(path, {})
-        if not isinstance(data, dict):
-            if isinstance(data, list):
-                # I think the length should always be greater than 0, but a
-                # Keith refmac job in 09/02/2022 created a situation where it
-                # was not.
-                if len(data) > 0:
-                    xrtnode.text = str(data[0])
-            else:
-                xrtnode.text = str(data)
-        del xrtnode.attrib['database']
-    for child in xrtnode:
-        applySelect(child, xmlnode, jobInfo)
-    return xrtnode
 
 
 class ReportClass(object):
@@ -302,25 +187,17 @@ class Container(ReportClass):
     """
 
     tag: str = 'container'
-    ERROR_CODES: dict = {
-        1: {
-            'severity': SEVERITY_WARNING, 'description': 'Failed to interpret xrt node tag'}, 2: {
-            'description': 'Can not create IfContainer instance without xrtnode argument (it should not be used in Python mode)'}, 3: {
-                'description': 'Can not create Loop instance without xrtnode argument (it should not be used in Python mode)'}}
+    ERROR_CODES: dict = {}
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> None:
         if jobInfo is None:
             jobInfo = {}
-        super(
-            Container,
-            self).__init__(
-            xrtnode=xrtnode,
+        super(Container, self).__init__(
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -329,39 +206,10 @@ class Container(ReportClass):
         self.children: list[ReportClass] = []
         self.jobInfo: dict[str, Any] = {}
         self.jobInfo.update(jobInfo)
-        self.xrtnode = xrtnode
         self.xmlnode = xmlnode
-        self.text: str = ''
-        self.tail: str = ''
+        self.text: str = kw.get('text', '') or ''
+        self.tail: str = kw.get('tail', '') or ''
         self._scriptErrorReport = None
-        if xrtnode is not None:
-            self.interpretXrt(xrtnode=xrtnode)
-
-    def interpretXrt(self, xrtnode: etree.Element | None = None) -> None:
-        """Parse XRT template node and create child report elements."""
-        if xrtnode is not None:
-            if xrtnode.tag in [XRTNS + 'remove', 'remove']:
-                self.tag = XRTNS + 'remove'
-            else:
-                self.tag = XHTMLNS + 'root'
-                # Initialising 'ifContainer' may skip initialising children if
-                # the tag is changed to dummy
-                for child in xrtnode:
-                    obj = getChildObject(child, self.xmlnode, self.jobInfo)
-                    if obj is None:
-                        self.errReport.append(
-                            self.__class__, 1, str(child.tag))
-                    else:
-                        self.children.append(obj)
-            self.text = xrtnode.text
-            self.tail = xrtnode.tail
-        else:
-            self.text = kw.get('text', None)
-            self.tail = kw.get('tail', None)
-        if self.text is None:
-            self.text = ''
-        if self.tail is None:
-            self.tail = ''
 
     def append(self, child: ReportClass | str) -> None:
         """Append a child element. Strings are wrapped in Generic."""
@@ -387,20 +235,16 @@ class Container(ReportClass):
     def addObjectOfClass(
         self,
         classOfObject: type,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
     ) -> Any:
         """Create an instance of classOfObject and append it as a child."""
-        if xrtnode is None:
-            xrtnode = self.xrtnode
         if xmlnode is None:
             xmlnode = self.xmlnode
         if jobInfo is None:
             jobInfo = self.jobInfo
         obj = classOfObject(
-            xrtnode=xrtnode,
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             parent=self,
@@ -408,105 +252,98 @@ class Container(ReportClass):
         self.children.append(obj)
         return obj
 
-    def addText(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addText(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add plain text to the report."""
         from ccp4i2.report.elements import Text
-        return self.addObjectOfClass(Text, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Text, xmlnode, jobInfo, **kw)
 
-    def addPre(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addPre(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a preformatted text block."""
         from ccp4i2.report.elements import Pre
-        return self.addObjectOfClass(Pre, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Pre, xmlnode, jobInfo, **kw)
 
-    def addFetchPre(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addFetchPre(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a preformatted text block (fetched from file)."""
         from ccp4i2.report.elements import FetchPre
-        return self.addObjectOfClass(FetchPre, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(FetchPre, xmlnode, jobInfo, **kw)
 
-    def addGraph(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addGraph(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a data graph."""
         from ccp4i2.report.graphs import Graph
-        return self.addObjectOfClass(Graph, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Graph, xmlnode, jobInfo, **kw)
 
-    def addProgress(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addProgress(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a progress bar."""
         from ccp4i2.report.elements import Progress
-        return self.addObjectOfClass(Progress, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Progress, xmlnode, jobInfo, **kw)
 
-    def addFlotGraph(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addFlotGraph(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a Flot/Plotly graph."""
         from ccp4i2.report.graphs import FlotGraph
-        return self.addObjectOfClass(
-            FlotGraph, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(FlotGraph, xmlnode, jobInfo, **kw)
 
-    def addGraphGroup(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addGraphGroup(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a group of graphs."""
         from ccp4i2.report.graphs import GraphGroup
-        return self.addObjectOfClass(
-            GraphGroup, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(GraphGroup, xmlnode, jobInfo, **kw)
 
-    def addFlotGraphGroup(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addFlotGraphGroup(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a group of Flot graphs."""
         from ccp4i2.report.graphs import FlotGraphGroup
-        return self.addObjectOfClass(
-            FlotGraphGroup, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(FlotGraphGroup, xmlnode, jobInfo, **kw)
 
-    def addDrawnDiv(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addDrawnDiv(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a JavaScript-rendered div."""
         from ccp4i2.report.graphs import DrawnDiv
-        return self.addObjectOfClass(DrawnDiv, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(DrawnDiv, xmlnode, jobInfo, **kw)
 
-    def addObjectGallery(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addObjectGallery(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add an object gallery."""
         from ccp4i2.report.graphs import ObjectGallery
-        return self.addObjectOfClass(
-            ObjectGallery, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(ObjectGallery, xmlnode, jobInfo, **kw)
 
-    def addGraphLineChooser(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addGraphLineChooser(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a graph line chooser (table + graph)."""
         from ccp4i2.report.graphs import GraphLineChooser
-        return self.addObjectOfClass(
-            GraphLineChooser, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(GraphLineChooser, xmlnode, jobInfo, **kw)
 
-    def addPictureGroup(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addPictureGroup(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a group of pictures."""
         from ccp4i2.report.graphs import PictureGroup
-        return self.addObjectOfClass(
-            PictureGroup, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(PictureGroup, xmlnode, jobInfo, **kw)
 
-    def addDiv(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addDiv(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a div container."""
         from ccp4i2.report.elements import Div
-        return self.addObjectOfClass(Div, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Div, xmlnode, jobInfo, **kw)
 
-    def addTable(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addTable(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a data table."""
         from ccp4i2.report.elements import Table
-        return self.addObjectOfClass(Table, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Table, xmlnode, jobInfo, **kw)
 
-    def addPicture(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addPicture(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a picture/scene visualization."""
         from ccp4i2.report.pictures import Picture
-        return self.addObjectOfClass(Picture, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Picture, xmlnode, jobInfo, **kw)
 
-    def addTitle(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addTitle(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a job title element."""
         from ccp4i2.report.metadata import Title
-        return self.addObjectOfClass(Title, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Title, xmlnode, jobInfo, **kw)
 
-    def addLaunch(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addLaunch(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a viewer launch button."""
         from ccp4i2.report.actions import Launch
-        return self.addObjectOfClass(Launch, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Launch, xmlnode, jobInfo, **kw)
 
-    def addDownload(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addDownload(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a download button."""
         from ccp4i2.report.actions import Download
-        return self.addObjectOfClass(Download, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Download, xmlnode, jobInfo, **kw)
 
     def addCopyToClipboard(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         text: str = "",
@@ -520,7 +357,6 @@ class Container(ReportClass):
 
     def addCopyUrlToClipboard(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         text: str = "",
@@ -532,30 +368,30 @@ class Container(ReportClass):
         return self.addObjectOfClass(
             CopyUrlToClipboard, text=text, label=label, **kw)
 
-    def addDAGGraph(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addDAGGraph(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a directed acyclic graph visualization."""
         from ccp4i2.report.graphs import DAGGraph
-        return self.addObjectOfClass(DAGGraph, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(DAGGraph, xmlnode, jobInfo, **kw)
 
-    def addResults(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addResults(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a results container."""
         from ccp4i2.report.elements import Results
-        return self.addObjectOfClass(Results, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Results, xmlnode, jobInfo, **kw)
 
-    def addFold(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addFold(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a collapsible fold section."""
         from ccp4i2.report.elements import Fold
-        return self.addObjectOfClass(Fold, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Fold, xmlnode, jobInfo, **kw)
 
-    def addCopy(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addCopy(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a copy element (copies XML content into the report)."""
         from ccp4i2.report.elements import Copy
-        return self.addObjectOfClass(Copy, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Copy, xmlnode, jobInfo, **kw)
 
-    def addHelp(self, xrtnode: etree.Element | None = None, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+    def addHelp(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a help button."""
         from ccp4i2.report.actions import Help
-        return self.addObjectOfClass(Help, xrtnode, xmlnode, jobInfo, **kw)
+        return self.addObjectOfClass(Help, xmlnode, jobInfo, **kw)
 
     # Modern grid layout methods
 
@@ -648,7 +484,7 @@ class Container(ReportClass):
         for child in self.children:
             if isinstance(child, Picture):
                 rv.append(child.picDefFile.__str__())
-            elif isinstance(child, (Container, Loop)):
+            elif isinstance(child, Container):
                 rv.extend(child.getPictures())
         return rv
 
@@ -676,113 +512,11 @@ class Container(ReportClass):
         return ele
 
 
-
-class IfContainer(Container):
-    """Conditional container — includes children only if a boolean XPath test passes."""
-
-    def __init__(
-        self,
-        xrtnode: etree.Element | None = None,
-        xmlnode: etree.Element | None = None,
-        jobInfo: dict[str, Any] | None = None,
-        target: bool = True,
-        **kw: Any,
-    ) -> None:
-        if jobInfo is None:
-            jobInfo = {}
-        if xrtnode is None:
-            raise CException(self.__class__, 2)
-        if xmlnode is not None and len(
-                xmlnode.findall(xrtnode.get("select"))) != 1:
-            # Failed to find the 'if' parameter in the output so do not put
-            # anything in report
-            Container.__init__(
-                self,
-                etree.Element(
-                    XRTNS +
-                    "remove"),
-                xmlnode,
-                jobInfo,
-                **kw)
-            return
-        try:
-            value = toBoolean(xmlnode.findall(xrtnode.get("select"))[0].text)
-        except BaseException:
-            Container.__init__(
-                self,
-                etree.Element(
-                    XRTNS +
-                    "remove"),
-                xmlnode,
-                jobInfo,
-                **kw)
-            return
-        if value == target:
-            Container.__init__(self, xrtnode, xmlnode, jobInfo)
-        else:
-            Container.__init__(
-                self,
-                etree.Element(
-                    XRTNS +
-                    "remove"),
-                xmlnode,
-                jobInfo,
-                **kw)
-
-
-class Loop(ReportClass):
-    """Loop element — repeats child templates for each selected XML node."""
-
-    def __init__(
-        self,
-        xrtnode: etree.Element | None = None,
-        xmlnode: etree.Element | None = None,
-        jobInfo: dict[str, Any] | None = None,
-        **kw: Any,
-    ) -> None:
-        if jobInfo is None:
-            jobInfo = {}
-        super(
-            Loop,
-            self).__init__(
-            xrtnode=xrtnode,
-            xmlnode=xmlnode,
-            jobInfo=jobInfo,
-            **kw)
-        if xrtnode is None:
-            raise CException(self.__class__, 3)
-        import copy
-        self.children: list[ReportClass] = []
-        self.text: str | None = xrtnode.text
-        self.tail: str | None = xrtnode.tail
-        selectStr = xrtnode.get('select')
-        if selectStr is not None and xmlnode is not None:
-            selectedNodes = xmlnode.findall(selectStr)
-            for node in selectedNodes:
-                for child in xrtnode:
-                    childCopy = copy.deepcopy(child)
-                    obj = getChildObject(childCopy, node, jobInfo)
-                    if obj is not None:
-                        self.children.append(obj)
-
-    def getPictures(self) -> list[str]:
-        """Recursively collect all picture file paths from children."""
-        from ccp4i2.report.pictures import Picture
-        rv: list[str] = []
-        for child in self.children:
-            if isinstance(child, Picture):
-                rv.append(child.picDefFile.__str__())
-            elif isinstance(child, (Container, Loop)):
-                rv.extend(child.getPictures())
-        return rv
-
-
 class Report(Container):
     """Top-level report container.
 
-    Handles XRT template loading, XML file insertion, and report
-    standardization (adding Title, InputData, OutputData, JobDetails,
-    references).
+    Handles report standardization (adding Title, InputData, OutputData,
+    JobDetails, references).
     """
 
     TASKNAME: str = ''
@@ -792,18 +526,13 @@ class Report(Container):
     USEPROGRAMXML: bool = True
     SEPARATEDATA: bool = False
     elementCount: int = 1
-    ERROR_CODES: dict = {101: {'description': 'Import xrt file does not exist'},
-                   102: {'description': 'Failed to read import xrt file'},
-                   103: {'description': 'Failed to find insert xrt element in program file'},
-                   104: {'description': 'Failed to find insert element in imported xrt file'},
-                   105: {'description': 'Failed loading job info for jobId'},
+    ERROR_CODES: dict = {105: {'description': 'Failed loading job info for jobId'},
                    106: {'description': 'Failed loading XML file'},
                    107: {'description': 'Failed creating csv file'},
                    108: {'description': 'Failed creating xml data file'}, }
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -812,7 +541,6 @@ class Report(Container):
             jobInfo = {}
         Container.__init__(
             self,
-            xrtnode=xrtnode,
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
@@ -846,62 +574,10 @@ class Report(Container):
                 self.errReport.append(
                     self.__class__, 106, 'Reading file: ' + str(kw['xmlFile']) + '\n' + str(e))
                 return
-        if xrtnode is not None:
-            xrtnode = self.removeComments(xrtnode)
-            if xmlnode is not None:
-                xrtnode = self.makeInserts(xrtnode, xmlnode)
-            if self.standardise and str(xrtnode.tag) == 'report':
-                xrtnode = self.standardiseXrtReport(xrtnode)
-            Container.interpretXrt(self, xrtnode=xrtnode)
 
     def getJobFolder(self) -> str | None:
         """Return the job's file root directory."""
         return self.jobInfo.get('fileroot')
-
-    def removeComments(self, xrtnode: etree.Element) -> etree.Element:
-        """Remove XRT comment elements from the template."""
-        for ele in xrtnode.iterfind('.//' + XRTNS + 'comment'):
-            ele.getparent().remove(ele)
-        return xrtnode
-
-    def makeInserts(self, xrtnode: etree.Element, xmlnode: etree.Element) -> etree.Element:
-        """Process ``insertXrt`` elements, inlining content from files or XML."""
-        for insertEle in xrtnode.iterfind('.//' + XRTNS + 'insertXrt'):
-            ele = None
-            if insertEle.get('filename') is not None:
-                from ccp4i2.core import CCP4Utils
-                fileName = insertEle.get('filename')
-                if fileName[0:8] == '$CCP4I2/':
-                    fileName = os.path.join(
-                        CCP4Utils.getCCP4I2Dir(), fileName[8:])
-                if not os.path.exists(fileName):
-                    self.errReport.append(self.__class__, 101, fileName)
-                else:
-                    try:
-                        ele = etree.fromstring(open(fileName).read(), etree.XMLParser(encoding='utf-8'))
-                    except BaseException:
-                        self.errReport.append(self.__class__, 102, fileName)
-                    else:
-                        # Look for sub-element of the inserted file
-                        if insertEle.get('select') is not None:
-                            path = insertEle.get('select')
-                            ele0 = ele.find(path)
-                            if ele0 is None:
-                                self.errReport.append(
-                                    self.__class__, 104, 'file: ' + str(fileName) + ' findall: ' + str(path))
-                            else:
-                                ele = ele0
-            # This is looking in the program output for xrt - dubious.
-            elif insertEle.get('select') is not None:
-                path = insertEle.get('select')
-                ele = xmlnode.find(path)
-                if ele is None:
-                    self.errReport.append(self.__class__, 103, path)
-            if ele is not None:
-                for child in ele.getchildren():
-                    insertEle.addnext(child)
-                insertEle.getparent().remove(insertEle)
-        return xrtnode
 
     def standardisePythonReport(self) -> None:
         """Add standard sections (Title, I/O data, references, JobDetails) to a Python-built report."""
@@ -930,19 +606,6 @@ class Report(Container):
             self.children.insert(-1, fold)
         else:
             self.children.append(fold)
-
-    def standardiseXrtReport(self, report: etree.Element) -> etree.Element:
-        """Ensure an XRT report template has inputdata, outputdata, and jobdetails sections."""
-        if report.find(XRTNS + 'inputdata') is None:
-            inEle = etree.Element(XRTNS + 'inputdata')
-            report.append(inEle)
-        if report.find(XRTNS + 'outputdata') is None:
-            outEle = etree.Element(XRTNS + 'outputdata')
-            report.append(outEle)
-        if report.find(XRTNS + 'jobdetails') is None:
-            jobEle = etree.Element(XRTNS + 'jobdetails')
-            report.append(jobEle)
-        return report
 
     def as_data_etree(self) -> etree.Element:
         if self.standardise:

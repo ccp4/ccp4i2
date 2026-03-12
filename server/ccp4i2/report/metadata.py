@@ -22,7 +22,6 @@ class Title(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -65,7 +64,6 @@ class JobDetails(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -103,7 +101,6 @@ class JobLogFiles(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -159,7 +156,6 @@ class Reference(ReportClass):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -168,10 +164,7 @@ class Reference(ReportClass):
         if jobInfo is None:
             jobInfo = {}
         self.id: str | None = kw.get('id', None)
-        if xrtnode is not None:
-            data = xrtnode
-        else:
-            data = kw
+        data = kw
         self.href: str | None = data.get('href', None)
         self.authorList: list[str] = data.get('authorList', [])
         if data.get('author', None) is not None:
@@ -202,7 +195,6 @@ class ReferenceGroup(Container):
 
     def __init__(
         self,
-        xrtnode: etree.Element | None = None,
         xmlnode: etree.Element | None = None,
         jobInfo: dict[str, Any] | None = None,
         **kw: Any,
@@ -211,7 +203,6 @@ class ReferenceGroup(Container):
             jobInfo = {}
         Container.__init__(
             self,
-            xrtnode=xrtnode,
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)

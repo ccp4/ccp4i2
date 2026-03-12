@@ -196,7 +196,6 @@ def test_report_fixture(fixture_name: str, fixture_dir: Path, request: pytest.Fi
             standardise=standardise,
             jobStatus=meta["job_status"],
             jobNumber=meta["job_number"],
-            xrtnode=None,
             projectId=job_info.get("projectid", ""),
         )
         report_etree = report.as_data_etree()

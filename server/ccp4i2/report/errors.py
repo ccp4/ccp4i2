@@ -318,8 +318,6 @@ class ReportErrorCodes:
     # XML-related errors
     XML_PARSE_ERROR = "XML_PARSE_ERROR"
     XML_GENERATION_ERROR = "XML_GENERATION_ERROR"
-    XRT_NOT_FOUND = "XRT_NOT_FOUND"
-
     # Job-related errors
     JOB_NOT_FOUND = "JOB_NOT_FOUND"
     JOB_INFO_ERROR = "JOB_INFO_ERROR"
