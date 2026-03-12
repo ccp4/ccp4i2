@@ -85,7 +85,6 @@ def getChildObject(child, xmlnode, jobInfo={}, report=None):
     from ccp4i2.report.pictures import Picture
     from ccp4i2.report.io_data import InputData, OutputData, ImportedFiles
     from ccp4i2.report.metadata import Title, JobDetails, JobLogFiles
-    from ccp4i2.report.elements import DrillDown
     from ccp4i2.report.actions import Launch
 
     if child.tag == XRTNS + "table":
@@ -128,8 +127,6 @@ def getChildObject(child, xmlnode, jobInfo={}, report=None):
         obj = Picture(child, xmlnode, jobInfo)
     elif child.tag == XRTNS + "launch":
         obj = Launch(child, xmlnode, jobInfo)
-    elif child.tag == XRTNS + "drilldown":
-        obj = DrillDown(jobInfo)
     elif child.tag == XRTNS + "comment":
         obj = None
     else:

@@ -46,7 +46,6 @@ from ccp4i2.report.elements import (  # noqa: F401
     BaseTable,
     Copy,
     Div,
-    DrillDown,
     FetchPre,
     Fold,
     Generic,

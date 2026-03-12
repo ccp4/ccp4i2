@@ -20,44 +20,6 @@ class Results(Container):
     pass
 
 
-class DrillDown(ReportClass):
-
-    def __init__(self, jobInfo, **kw):
-        super(DrillDown, self).__init__(**kw)
-        self.jobInfo = jobInfo
-
-    def getSubJobs(self, jobDir):
-        import glob
-        import os
-
-        from ccp4i2.core import CCP4File
-        if jobDir is None:
-            return []
-        globDirs = glob.glob(os.path.join(jobDir, 'job_*'))
-
-        def sortSubJobsKey(inp):
-            return int(inp.split('_')[-1])
-        sortedDirs = sorted(globDirs, key=sortSubJobsKey)
-        retSubJobs = []
-        for path in sortedDirs:
-            subJobs = self.getSubJobs(path)
-            parsFile = glob.glob(os.path.join(path, '*.params.xml'))
-            if len(parsFile) > 0:
-                # Get taskName from file
-                f = CCP4File.CI2XmlDataFile(fullPath=parsFile[0])
-                pluginName = str(f.header.get('pluginName'))
-                jobId = int(f.header.get('jobId'))
-            else:
-                pluginName = None
-                jobId = None
-            reportFile = parsFile[0][0:-10] + 'report.html'
-
-            retSubJobs.append([os.path.split(path)[-1].split('_')
-                              [-1], jobId, pluginName, reportFile, subJobs])
-
-        return retSubJobs
-
-
 def foldTitleLine(label, initiallyOpen, brief=None):
     root = etree.Element('root')
     anchor = etree.Element('a')
