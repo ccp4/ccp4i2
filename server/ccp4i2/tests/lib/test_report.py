@@ -11,29 +11,29 @@ from ...lib.utils.reporting.i2_report import (
 )
 from ...lib.utils.jobs.get_container import get_job_container
 from ...db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
-
-
 from ...db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
+
+# Resolve __file__ so that .parent chains work regardless of cwd
+_THIS_FILE = Path(__file__).resolve()
+# server/ccp4i2/tests/lib/  →  5 parents  →  server/../ (project root level)
+_PROJECT_ROOT = _THIS_FILE.parent.parent.parent.parent.parent
+_TEST_ZIPS_DIR = _PROJECT_ROOT.parent / "test101" / "ProjectZips"
 
 
 @override_settings(
-    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent.parent.parent.parent
-    / "CCP4I2_TEST_PROJECT_DIRECTORY"
+    CCP4I2_PROJECTS_DIR=_PROJECT_ROOT / "CCP4I2_TEST_PROJECT_DIRECTORY"
 )
 class CCP4i2TestCase(TestCase):
     def setUp(self):
-        Path(settings.CCP4I2_PROJECTS_DIR).mkdir()
+        Path(settings.CCP4I2_PROJECTS_DIR).mkdir(exist_ok=True)
         import_ccp4_project_zip(
-            Path(__file__).parent.parent.parent.parent.parent.parent
-            / "test101"
-            / "ProjectZips"
-            / "refmac_gamma_test_0.ccp4_project.zip",
+            _TEST_ZIPS_DIR / "refmac_gamma_test_0.ccp4_project.zip",
             relocate_path=(settings.CCP4I2_PROJECTS_DIR),
         )
         return super().setUp()
 
     def tearDown(self):
-        rmtree(settings.CCP4I2_PROJECTS_DIR)
+        rmtree(settings.CCP4I2_PROJECTS_DIR, ignore_errors=True)
         return super().tearDown()
 
     def test_status_labels(self):

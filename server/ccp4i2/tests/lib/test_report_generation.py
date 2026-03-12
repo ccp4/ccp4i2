@@ -20,16 +20,17 @@ from ccp4i2.lib.utils.reporting.i2_report import (
     simple_failed_report,
 )
 
+# Resolve __file__ so that .parent chains work regardless of cwd
+_THIS_FILE = Path(__file__).resolve()
+# server/ccp4i2/tests/lib/  →  5 parents  →  server/../ (project root level)
+_PROJECT_ROOT = _THIS_FILE.parent.parent.parent.parent.parent
 
 # Path to test project zips
-TEST_ZIPS_DIR = (
-    Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"
-)
+TEST_ZIPS_DIR = _PROJECT_ROOT.parent / "test101" / "ProjectZips"
 
 
 @override_settings(
-    CCP4I2_PROJECTS_DIR=Path(__file__).parent.parent.parent.parent.parent
-    / "CCP4I2_TEST_PROJECT_DIRECTORY"
+    CCP4I2_PROJECTS_DIR=_PROJECT_ROOT / "CCP4I2_TEST_PROJECT_DIRECTORY"
 )
 class ReportGenerationTests(TestCase):
     """Test report generation with pre-existing job data."""
