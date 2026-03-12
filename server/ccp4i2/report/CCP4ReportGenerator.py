@@ -48,6 +48,7 @@ def getReportJobInfo(jobId=None, projectName=None, jobNumber=None):
     )
 
     jobInfo['jobid'] = jobId
+    projectId = jobInfo['projectid']
     jobInfo['tasktitle'] = get_task_title(jobInfo['taskname'])
     jobInfo['fileroot'] = CCP4Modules.PROJECTSMANAGER().makeFileName(
         jobId=jobId, mode='ROOT'
@@ -106,7 +107,7 @@ def getReportJobInfo(jobId=None, projectName=None, jobNumber=None):
     # Try to get params container if database handler supports it
     try:
         container = db.getParamsContainer(jobId=jobId)
-    except (AttributeError, NotImplementedError, Exception):
+    except Exception:
         # Database handler doesn't support getParamsContainer or job not found
         pass
     else:
