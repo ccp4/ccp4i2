@@ -1,0 +1,1259 @@
+<CCP4i2Reportphaser_MR_AUTO_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="phaser_MR_AUTO" title2="14:36 14-Jun-2023" />
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportGeneric class="" style="">
+    <br />
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportText class="" style="color:orange;">NMOL (2) set by analysis. If structure solution fails consider other tNCS</CCP4i2ReportText>
+  <CCP4i2ReportGeneric class="" style="">
+    <br />
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportGeneric class="" style="">
+    <br />
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportText class="" style="color:red;">Patterson Pathology in NMOL analysis, possible coiled coil or other regular structure, view Patterson (TNCS PATT MAPS ON)</CCP4i2ReportText>
+  <CCP4i2ReportGeneric class="" style="">
+    <br />
+  </CCP4i2ReportGeneric>
+  <CCP4i2ReportFold class="" style="" label="Elements and scores of current solution" initiallyOpen="True" brief="Current soln.">
+    <CCP4i2ReportText class="" style="">Current best solution has spacegroup P 21 21 21</CCP4i2ReportText>
+    <CCP4i2ReportTable class="" style="" transpose="False">
+      <table>
+        <thead>
+          <tr>
+            <th title="Stored in xml column Component/Name">Ensemble name</th>
+            <th title="Stored in xml column Component/RFZ">Rot Func Z-score</th>
+            <th title="Stored in xml column Component/TFZ">Trans Func Z-score</th>
+            <th title="Stored in xml column Component/refTFZ">Refined TFZ-equiv</th>
+            <th title="Stored in xml column Component/PAK">Packing clashes</th>
+            <th title="Stored in xml column Component/LLG">Log likelihood gain</th>
+            <th title="Stored in xml column Component/overallLLG">Overall LLG</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td title="Stored in xml column Component/Name">Ensemble_1</td>
+            <td title="Stored in xml column Component/Name">7.4</td>
+            <td title="Stored in xml column Component/Name">14.9</td>
+            <td title="Stored in xml column Component/Name">-</td>
+            <td title="Stored in xml column Component/Name">0</td>
+            <td title="Stored in xml column Component/Name">506</td>
+            <td title="Stored in xml column Component/Name">766</td>
+          </tr>
+          <tr>
+            <td title="Stored in xml column Component/RFZ">Ensemble_1</td>
+            <td title="Stored in xml column Component/RFZ">None</td>
+            <td title="Stored in xml column Component/RFZ">None</td>
+            <td title="Stored in xml column Component/RFZ">None</td>
+            <td title="Stored in xml column Component/RFZ">None</td>
+            <td title="Stored in xml column Component/RFZ">None</td>
+            <td title="Stored in xml column Component/RFZ">None</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Comparison of solutions" initiallyOpen="True" brief="All solns">
+    <CCP4i2ReportText class="" style="">Unique solution found :-)</CCP4i2ReportText>
+    <CCP4i2ReportTable class="" style="width:600px;" transpose="False">
+      <table>
+        <thead>
+          <tr>
+            <th>Space group</th>
+            <th>Trans. Z-score</th>
+            <th>Refined Trans. Z-score</th>
+            <th>Initial LLG</th>
+            <th>Refined LLG</th>
+            <th>Initial Rfactor</th>
+            <th>Refined Rfactor</th>
+            <th>Clashes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>P 21 21 21</td>
+            <td>15.05</td>
+            <td>0.00</td>
+            <td>766.42</td>
+            <td>766.37</td>
+            <td>40.44</td>
+            <td>40.45</td>
+            <td>0.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Analysis of composition and data" initiallyOpen="False" brief="Comp/data">
+    <CCP4i2ReportFold class="" style="" label="....Search ensembles and spacegroups" initiallyOpen="False" brief="....Search ensembles and spacegroups">
+      <CCP4i2ReportPre class="" style="">*********************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Steps:
+**    Cell Content Analysis
+**    Anisotropy correction
+**    Translational NCS correction
+**    Rotation Function
+**    Translation Function
+**    Packing
+**    Refinement
+**    Final Refinement (if data higher resolution than search resolution)
+** Number of search ensembles = 2
+** Search Method: FAST
+** Input Search Order:
+**    #1   Ensemble_1  
+**    #2   Ensemble_1  
+** Automatic (best predicted) search order WILL be used
+
+CPU Time: 0 days 0 hrs 0 mins 0.05 secs (      0.05 secs)
+Finished: Wed Jun 14 15:36:31 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Cell content analysis" initiallyOpen="False" brief="....Cell content analysis">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: CELL CONTENT ANALYSIS                                         2.8.3 ***
+******************************************************************************************
+
+   Space-Group Name (Hall Symbol): P 21 21 21 ( P 2ac 2ab)
+   Space-Group Number: 19
+   Unit Cell:   23.99   55.48   60.02   90.00   90.00   90.00
+
+   Composition is of type: PROTEIN
+   MW to which Matthews applies:  7701
+   Resolution for Matthews calculation:  2.10
+
+   Z       MW         VM    % solvent  rel. freq.
+   1       7701       2.59  52.58      1.000       &lt;== most probable
+   2       15403      1.30  5.15       0.004     
+
+   Z is the number of multiples of the total composition
+   In most cases the most probable Z value should be 1
+   If it is not 1, you may need to consider other compositions
+
+
+   Most probable VM for resolution = 2.2252
+   Most probable MW of protein in asu for resolution = 8976.39
+
+CPU Time: 0 days 0 hrs 0 mins 1.19 secs (      1.19 secs)
+Finished: Wed Jun 14 15:36:33 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Anisotropy correction" initiallyOpen="False" brief="....Anisotropy correction">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: ANISOTROPY CORRECTION                                         2.8.3 ***
+******************************************************************************************
+
+   Refined Anisotropy Parameters
+   -----------------------------
+   Principal components of anisotropic part of B affecting observed amplitudes:
+     eigenB (A^2)     direction cosines (orthogonal coordinates)
+         5.215              0.0000  -0.0000   1.0000
+        -2.566              0.0000   1.0000   0.0000
+        -2.649              1.0000  -0.0000  -0.0000
+   Anisotropic deltaB (i.e. range of principal components):   7.864
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4893)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 2.72 secs (      2.72 secs)
+Finished: Wed Jun 14 15:36:34 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Translational non-crystallographic symmetry" initiallyOpen="False" brief="....Translational non-crystallographic symmetry">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: TRANSLATIONAL NON-CRYSTALLOGRAPHIC SYMMETRY                   2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4894)
+
+&lt;B&gt;&lt;FONT COLOR="#FF8800"&gt;
+------------------------------------------------------------------------------------------
+Warning: Patterson Pathology in NMOL analysis, possible coiled coil or other regular
+structure, view Patterson (TNCS PATT MAPS ON)
+------------------------------------------------------------------------------------------
+&lt;/FONT&gt;&lt;/B&gt;
+
+&lt;B&gt;&lt;FONT COLOR="#0077FF"&gt;
+------------------------------------------------------------------------------------------
+Advisory: NMOL (2) set by analysis. If structure solution fails consider other tNCS
+------------------------------------------------------------------------------------------
+&lt;/FONT&gt;&lt;/B&gt;
+
+   Translational NCS Refinement
+   ----------------------------
+   Test rotation #3
+      Final angle  : -0.3440 -0.8927  0.6515
+      Final vector : -0.0046  0.3986  0.5017
+      tNCS D-values by resolution (low-high) : 0.9910 0.9468
+
+--------
+TWINNING
+--------
+
+   tNCS/Twin Detection Table
+   -------------------------
+                                 -Second Moments-             --P-values--
+                                 Centric Acentric       untwinned  twin frac &lt; 5%
+   Theoretical for untwinned      3.00    2.00    
+     including measurement error  3.00    2.00    
+   Theoretical for perfect twin   2.00    1.50    
+   Initial (data as input)        4.59    2.99+/-0.113  1          1         
+   After Anisotropy Correction    4.42    2.94+/-0.113  1          1         
+   After Anisotropy and tNCS      2.44    2.08+/-0.114  1          1         
+
+   P-value &lt; 0.01 for &lt; 5% twinned is considered worth investigating
+   Resolution for Twin Analysis (85% I/SIGI &gt; 3):  2.81A (HiRes= 2.10A)
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4897)
+   Translational NCS:
+      Vector = -0.0046  0.3986  0.5017
+      Rotation = -0.3440 -0.8927  0.6515
+      D values (lores-hires)=  0.9910- 0.9468
+
+CPU Time: 0 days 0 hrs 0 mins 17.66 secs (     17.66 secs)
+Finished: Wed Jun 14 15:36:43 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Composition table" initiallyOpen="False" brief="....Composition table">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+   Composition Table
+   -----------------
+   Total Scattering = 24760
+   Search occupancy factor = 1 (default)
+   Ensemble                       Frac.Scat. (Search Frac.Scat.) 
+   Ensemble_1                         48.22%              48.22%
+
+** Composition not increased
+CPU Time: 0 days 0 hrs 0 mins 17.66 secs (     17.66 secs)
+Finished: Wed Jun 14 15:36:43 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="COM file for this run" initiallyOpen="False" brief="COM file" />
+  <CCP4i2ReportFold class="" style="" label="Search strategy employed by PHASER" initiallyOpen="False" brief="Search tree">
+    <CCP4i2ReportFold class="" style="" label="....AUTOMATED MOLECULAR REPLACEMENT" initiallyOpen="False" brief="....AUTOMATED MOLECULAR REPLACEMENT">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Z-score test for definite solution is ON
+** Z-score test for stopping search is OFF
+** Deep search is ON
+
+CPU Time: 0 days 0 hrs 0 mins 17.66 secs (     17.66 secs)
+Finished: Wed Jun 14 15:36:43 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....AUTOMATED MOLECULAR REPLACEMENT" initiallyOpen="False" brief="....AUTOMATED MOLECULAR REPLACEMENT">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+   TNCS Checks
+   -----------
+   Number of copies per TNCS set = 2
+
+   TNCS search components
+   ----------------------
+      Ensemble             | input | search: sets   number
+      Ensemble_1               2               1      2     
+
+CPU Time: 0 days 0 hrs 0 mins 17.66 secs (     17.66 secs)
+Finished: Wed Jun 14 15:36:43 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Experimental error correction preparation" initiallyOpen="False" brief="....Experimental error correction preparation">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: EXPERIMENTAL ERROR CORRECTION PREPARATION                     2.8.3 ***
+******************************************************************************************
+
+   Data have been provided as raw intensities
+
+CPU Time: 0 days 0 hrs 0 mins 18.79 secs (     18.79 secs)
+Finished: Wed Jun 14 15:36:43 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Expected llg of ensembles" initiallyOpen="False" brief="....Expected llg of ensembles">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: EXPECTED LLG OF ENSEMBLES                                     2.8.3 ***
+******************************************************************************************
+
+   Resolution of Data (Selected):    2.100 (2.1001)
+   Number of Reflections (Selected): 4897 (4897)
+   eLLG Target: 225
+
+-----------------
+POLY-ALANINE ELLG
+-----------------
+
+   Resolution = 2.1001
+   Default RMSD = 0.1 0.2 0.4 0.8 1.6 3.2
+   Minimum solvent = 20%
+      Maximum number of polyalanine residues = 87 (-full-)
+   Alanine residues for eLLG target = 35
+
+   Table of Alanine Residues for eLLG Target
+   -----------------------------------------
+                  ---RMSD--- 
+   eLLG-target |  0.10  0.20  0.40  0.80  1.60  3.20 
+           225 |    35    36    45    86 -full--full-
+           196 |    32    34    42    80 -full--full-
+           169 |    30    32    39    74 -full--full-
+           144 |    28    29    36    68 -full--full-
+           121 |    25    27    33    63 -full--full-
+           100 |    23    24    30    57 -full--full-
+            81 |    21    22    27    51 -full--full-
+            64 |    18    19    24    45 -full--full-
+            49 |    16    17    21    40 -full--full-
+            36 |    14    14    18    34 -full--full-
+            25 |    11    12    15    28 -full--full-
+            16 |     9     9    12    22    78 -full-
+             9 |     7     7     9    17    58 -full-
+             4 |     4     4     6    11    39 -full-
+             1 |     2     2     3     5    19 -full-
+
+--------------
+MONOMERIC ELLG
+--------------
+
+   Expected LLG (eLLG)
+   -------------------
+   eLLG: eLLG of ensemble alone
+       eLLG   RMSD frac-scat  Ensemble
+      298.9  0.410   0.48221  Ensemble_1
+
+   Resolution for eLLG target
+   --------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso  Ensemble
+         2.417  Ensemble_1
+
+   Resolution for eLLG target: data collection
+   -------------------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225) with perfect data
+     eLLG-reso  Ensemble
+         2.489  Ensemble_1
+
+   eLLG indicates that placement of a single copy of ensemble "Ensemble_1" should be easy
+
+   Expected LLG (eLLG): Chains
+   ---------------------------
+   eLLG: eLLG of chain alone
+       eLLG   RMSD frac-scat chain  Ensemble
+      298.9  0.410   0.48221  " A"  Ensemble_1
+
+   Resolution for eLLG target: Chains
+   ----------------------------------
+   eLLG-reso: Resolution to achieve target eLLG (225)
+     eLLG-reso chain  Ensemble
+         2.417  " A"  Ensemble_1
+
+--------------------
+HOMO-OLIGOMERIC ELLG
+--------------------
+
+   Number of copies for eLLG target
+   --------------------------------
+   eLLG-target   RMSD frac-scat-known frac-scat   num-copies  Ensemble
+           225  0.410         0.00000   0.48221            1  Ensemble_1
+
+CPU Time: 0 days 0 hrs 0 mins 19.70 secs (     19.70 secs)
+Finished: Wed Jun 14 15:36:45 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....AUTOMATED MOLECULAR REPLACEMENT" initiallyOpen="False" brief="....AUTOMATED MOLECULAR REPLACEMENT">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Search Order (next search *) (placed +):
+**    #1  Ensemble_1, Ensemble_1 *
+
+CPU Time: 0 days 0 hrs 0 mins 19.70 secs (     19.70 secs)
+Finished: Wed Jun 14 15:36:45 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Molecular replacement rotation function: top rf = 86.730" initiallyOpen="False" brief="....Molecular replacement rotation function: top rf = 86.730">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT ROTATION FUNCTION                       2.8.3 ***
+******************************************************************************************
+
+   High resolution limit unaltered by RMS of ensemble
+   High resolution limit lowered by expected LLG =  2.42
+
+   Rotation Function Table: Ensemble_1
+   -----------------------------------
+   (Z-scores from Fast Rotation Function)
+   #SET        Top    (Z)      Second    (Z)       Third    (Z)
+   1         86.73   7.86       65.85   7.40       52.25   7.11
+
+   Select by Percentage of Top value: 75%
+   Top RF = 86.730
+   Purge RF mean = -272.580
+   Number of sets stored before final selection = 1
+   Number of solutions stored before final selection = 7
+   Number of sets stored (deleted) after final selection = 1 (0)
+   Number of solutions stored (deleted) after final selection = 7 (0)
+   Percent used for purge = 60.000%
+      Includes deep search down percent = 15%
+      Number of solutions stored above (below) deep threshold = 5 (2)
+
+   Rotation Function Final Selection Table
+   ---------------------------------------
+   Rotation list length by SET
+   SET#  Start Final Deleted Set (*)   Deep: Start Final Deleted Set (*)
+      1  5     5           -                 7     7           -
+   ALL   5     5                             7     7    
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 27.67 secs (     27.67 secs)
+Finished: Wed Jun 14 15:36:49 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Molecular replacement translation function: top tfz = 15.05" initiallyOpen="False" brief="....Molecular replacement translation function: top tfz = 15.05">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT TRANSLATION FUNCTION                    2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.42  40.74 (3236)
+   Translational NCS:
+      Vector = -0.0046  0.3986  0.5017
+      Rotation = -0.3440 -0.8927  0.6515
+      D values (lores-hires)=  0.9910- 0.9468
+
+------------------------
+ALTERNATIVE SPACE GROUPS
+------------------------
+
+   Space Group(s) to be tested:
+     P 21 21 21
+
+----------------------------
+TRANSLATION FUNCTION #1 OF 1
+----------------------------
+
+   This TF set has 7 trial orientations
+
+      5 trial orientations in initial search
+      2 trial orientations in deep search
+
+   New Top Packing Fast Translation Function FSS = 894.36 (TFZ=14.7) at Trial #1
+   New Top (ML) Translation Function LLG = 232.36 (TFZ=14.7) at Trial #1
+-------------------------
+DEEP TRANSLATION FUNCTION
+-------------------------
+
+   Best TFZ is over Z-score cutoff for definite solution (8.00)
+   Do NOT search deep in trial orientation list
+
+   Translation Function Table
+   --------------------------
+   SET ROT*deep   Top   (Z)     Second   (Z)      Third   (Z) SpaceGroup  Ensemble
+     1   1      232.4 14.73          -     -          -     - P 21 21 21 Ensemble   
+     1   2      140.0 14.87          -     -          -     - P 21 21 21 Ensemble   
+     1   3       84.9 13.47          -     -          -     - P 21 21 21 Ensemble   
+     1   4       95.3 15.05          -     -          -     - P 21 21 21 Ensemble   
+     1   5     -598.9  9.35          -     -          -     - P 21 21 21 Ensemble   
+   --- ---
+
+---------------
+FINAL SELECTION
+---------------
+
+   LLG will be used for purge, not FSS
+   Top TF  = 232.36
+   Top TFZ = 15.05
+   Mean TF = -1368.21
+   Percent used for purge = 75%
+   Cutoff for acceptance = -167.8
+      TFZ used for final selection = 8
+         Number of solutions over TF final cutoff  = 4
+         Number of solutions over TFZ final cutoff = 5
+         Number of solutions over TF &amp; TFZ cutoff  = 4
+   Number of solutions stored before final selection = 5
+   Number of solutions stored (deleted) after final selection = 5 (0)
+
+------------
+OUTPUT FILES
+------------
+
+   No files output
+
+CPU Time: 0 days 0 hrs 0 mins 31.47 secs (     31.47 secs)
+Finished: Wed Jun 14 15:36:50 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Molecular replacement packing analysis: 5 accepted of 5 solutions" initiallyOpen="False" brief="....Molecular replacement packing analysis: 5 accepted of 5 solutions">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.3 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm TF-SET  ROT TFpk#        TF    TFZ    SpaceGroup 
+   1    Top1  0      --       1     1    1        232.36 14.73  P 21 21 21 
+   2    2     0      --       1     2    1        140.03 14.87  P 21 21 21 
+   3    3     0      --       1     4    1         95.31 15.05  P 21 21 21 
+   4    4     0      --       1     3    1         84.87 13.47  P 21 21 21 
+   5    5     0.749  --       1     5    1       -598.87  9.35  P 21 21 21 
+
+   5 accepted of 5 solutions
+      5 pack of 5 accepted solutions
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 31.66 secs (     31.66 secs)
+Finished: Wed Jun 14 15:36:50 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Molecular replacement refinement and phasing: top llg (all) = 505.802" initiallyOpen="False" brief="....Molecular replacement refinement and phasing: top llg (all) = 505.802">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.42  40.74 (3236)
+   Translational NCS:
+      Vector = -0.0046  0.3986  0.5017
+      Rotation = -0.3440 -0.8927  0.6515
+      D values (lores-hires)=  0.9910- 0.9468
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 505.802
+   Top LLG (packs) = 505.802
+   Mean LLG = -1368.21
+   Percent used for purge = 75%
+      Cutoff for acceptance = 37.3
+   Number used for purge  = 50
+      Cutoff for acceptance = 505.1
+   All Z-scores over 8 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 505.1
+   Number of solutions stored before purge = 5
+   Number of solutions stored (deleted) after purge = 5 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   2           105.2 44.1 15.1        505.8 40.6  n/a   P 21 21 21    n/a 
+   ---  1     3            59.2 44.7 15.1        505.7 40.6  n/a   P 21 21 21    n/a 
+   ---  1     5          -654.2 51.2 14.9        505.6 40.6  n/a   P 21 21 21    n/a 
+   ---  1     4            49.0 44.5 13.5        505.3 40.6  n/a   P 21 21 21    n/a 
+   ---  1     1           203.2 43.5 14.7        505.1 40.6  n/a   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (5 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   Ensemble_1           1   0.410   +0.000/+0.000    ( 0.410/ 0.410 )
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.mtz
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 34.96 secs (     34.96 secs)
+Finished: Wed Jun 14 15:36:52 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....*  (first search) * New Best LLG = 505.8 (resolution = 2.42) * Best Component so far = Ensemble_1  " initiallyOpen="False" brief="....*  (first search) * New Best LLG = 505.8 (resolution = 2.42) * Best Component so far = Ensemble_1  ">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Current is Best Solution (first search)
+** Current solution has 2 components
+** New Best LLG = 505.8 (resolution = 2.42)
+** Best Component so far = Ensemble_1 
+
+CPU Time: 0 days 0 hrs 0 mins 34.96 secs (     34.96 secs)
+Finished: Wed Jun 14 15:36:52 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....AUTOMATED MOLECULAR REPLACEMENT" initiallyOpen="False" brief="....AUTOMATED MOLECULAR REPLACEMENT">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Solutions will be refined to highest resolution
+**    Resolution for refinement: 2.1001
+** Protocol for MR refinement is DEFAULT
+** VRMS (variances) of ensemble(s) WILL be refined
+
+CPU Time: 0 days 0 hrs 0 mins 35.38 secs (     35.38 secs)
+Finished: Wed Jun 14 15:36:53 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Molecular replacement refinement and phasing: top llg (all) = 766.422" initiallyOpen="False" brief="....Molecular replacement refinement and phasing: top llg (all) = 766.422">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4897)
+   Translational NCS:
+      Vector = -0.0046  0.3986  0.5017
+      Rotation = -0.3440 -0.8927  0.6515
+      D values (lores-hires)=  0.9910- 0.9468
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 766.422
+   Top LLG (packs) = 766.422
+   Mean LLG = -1368.21
+   Percent used for purge = 75%
+      Cutoff for acceptance = 232.8
+   Number used for purge  = 50
+      Cutoff for acceptance = 766.4
+   All Z-scores over 8 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 766.4
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1           746.3 40.5 15.1        766.4 40.4  n/a   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   Ensemble_1           1   0.410   -0.031/-0.031    ( 0.369/ 0.369 )
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.mtz
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 37.91 secs (     37.91 secs)
+Finished: Wed Jun 14 15:36:54 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....AUTOMATED MOLECULAR REPLACEMENT" initiallyOpen="False" brief="....AUTOMATED MOLECULAR REPLACEMENT">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+** Refinement may have introduced clashes
+** Packing will be checked
+
+CPU Time: 0 days 0 hrs 0 mins 37.91 secs (     37.91 secs)
+Finished: Wed Jun 14 15:36:54 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Molecular replacement packing analysis: 1 accepted of 1 solutions" initiallyOpen="False" brief="....Molecular replacement packing analysis: 1 accepted of 1 solutions">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT PACKING ANALYSIS                        2.8.3 ***
+******************************************************************************************
+
+   Packing Table
+   -------------
+   Solutions accepted if pairwise clashes less than 10 % of trace atoms
+   #in  #out Clash-% Symm  SpaceGroup  Annotation                                                   
+   1    Top1  0      --    P 21 21 21  RFZ=7.4 TFZ=14.9 +TNCS PAK=0 LLG=506 LLG=766 PAK=0           
+
+   1 accepted of 1 solutions
+      1 packs of 1 accepted solution
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 38.00 secs (     38.00 secs)
+Finished: Wed Jun 14 15:36:54 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....Molecular replacement refinement and phasing: top llg (all) = 766.366" initiallyOpen="False" brief="....Molecular replacement refinement and phasing: top llg (all) = 766.366">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: MOLECULAR REPLACEMENT REFINEMENT AND PHASING                  2.8.3 ***
+******************************************************************************************
+
+   Resolution of All Data (Number):        2.10  40.74 (4897)
+   Resolution of Selected Data (Number):   2.10  40.74 (4897)
+   Translational NCS:
+      Vector = -0.0046  0.3986  0.5017
+      Rotation = -0.3440 -0.8927  0.6515
+      D values (lores-hires)=  0.9910- 0.9468
+
+---------------
+PURGE SELECTION
+---------------
+
+   Purge solutions according to highest LLG from Refinement
+   --------------------------------------------------------
+   Top LLG (all) = 766.366
+   Top LLG (packs) = 766.366
+   Mean LLG = -1368.21
+   Percent used for purge = 75%
+      Cutoff for acceptance = 232.7
+   Number used for purge  = 50
+      Cutoff for acceptance = 766.4
+   All Z-scores over 8 retained
+      Number high TFZ retained = 0
+   Overall cutoff for acceptance (excluding high TFZ) = 766.4
+   Number of solutions stored before purge = 1
+   Number of solutions stored (deleted) after purge = 1 (0)
+
+-------
+RESULTS
+-------
+
+   Refinement Table (Sorted)
+   -------------------------
+   Refinement to full resolution
+   #out =#out #in =T (Start LLG Rval TFZ) (Refined LLG Rval TFZ==) SpaceGroup  Cntrst
+   Top1 ---   1           766.4 40.4 n/a         766.4 40.4  n/a   P 21 21 21    n/a 
+
+   Refinement Table (Variance Ranges)
+   ----------------------------------
+   Range of delta-VRMS and VRMS given over current solution list (1 solution(s))
+   Ensemble        Model#   RMS   Delta-VRMS min/max  (VRMS min/max)
+   Ensemble_1           1   0.410   -0.031/-0.031    ( 0.369/ 0.369 )
+
+------------
+OUTPUT FILES
+------------
+
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.pdb
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.mtz
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.sol
+
+CPU Time: 0 days 0 hrs 0 mins 39.54 secs (     39.54 secs)
+Finished: Wed Jun 14 15:36:55 2023
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+    <CCP4i2ReportFold class="" style="" label="....AUTOMATED MOLECULAR REPLACEMENT" initiallyOpen="False" brief="....AUTOMATED MOLECULAR REPLACEMENT">
+      <CCP4i2ReportPre class="" style="">******************************************************************************************
+*** Phaser Module: AUTOMATED MOLECULAR REPLACEMENT                               2.8.3 ***
+******************************************************************************************
+
+   $TEXT:MR Result: $$ Baubles Markup $$
+
+** SINGLE solution
+
+** Solution written to SOL file: 
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.sol
+
+** Solution written to PDB file: 
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.pdb
+** Solution written to MTZ file: 
+   /Users/stuart/CCP4I2_PROJECTS/phaser_expert_tncs_test_3/CCP4_JOBS/job_4/job_1/PHASER.1.mtz
+   Solution annotation (history):
+   SOLU SET  RFZ=7.4 TFZ=14.9 +TNCS PAK=0 LLG=506 LLG=766 PAK=0 LLG=766
+   SOLU SPAC P 21 21 21
+   SOLU 6DIM ENSE Ensemble_1 EULER  308.0  179.9  128.0 FRAC -2.00  0.00  0.50 BFAC  2.53
+   SOLU 6DIM ENSE Ensemble_1 EULER   40.5    0.6  318.9 FRAC -2.50  0.11  0.00 BFAC  2.53
+   SOLU ENSEMBLE Ensemble_1 VRMS DELTA -0.0315 #RMSD  0.41 #VRMS  0.37
+
+   $$
+CPU Time: 0 days 0 hrs 0 mins 39.58 secs (     39.58 secs)
+Finished: Wed Jun 14 15:36:55 2023
+
+&lt;B&gt;&lt;FONT COLOR="##0077FF"&gt;
+--------
+ADVISORY
+--------
+
+$TEXT:Advisory: $$ Baubles Markup $$
+
+NMOL (2) set by analysis. If structure solution fails consider other tNCS
+
+$$
+&lt;B&gt;&lt;FONT COLOR="#FF8800"&gt;
+--------
+WARNINGS
+--------
+
+$TEXT:Warning: $$ Baubles Markup $$
+------------------------------------------------------------------------------------------
+Warning: Patterson Pathology in NMOL analysis, possible coiled coil or other regular
+structure, view Patterson (TNCS PATT MAPS ON)
+------------------------------------------------------------------------------------------
+$$
+
+
+CPU Time: 0 days 0 hrs 0 mins 39.58 secs (     39.58 secs)
+Finished: Wed Jun 14 15:36:55 2023
+
+
+</CCP4i2ReportPre>
+    </CCP4i2ReportFold>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Plots from PHASER output" initiallyOpen="True" brief="Plots from PHASER output">
+    <CCP4i2ReportObjectGallery class="" style="float:left;width:820px;">
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Cell Content Analysis" id="data_SmartiePlot0" style="display:none;">
+          <headers separator=" ">N*Composition Probability
+</headers>
+          <data>1.0 0.740313
+2.0 0.00236581
+</data>
+          <plot>
+            <title>N*Composition vs Probability</title>
+            <plotline xcol="1" ycol="2" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Intensity distribution for Data" id="data_SmartiePlot1" style="display:none;">
+          <headers separator=" ">Z ACent_theor ACent_twin ACent_obser Cent_theor Cent_obser
+</headers>
+          <data>0.0 0.0 0.0 0.0135135 0.0 0.0598456
+0.04 0.0392106 0.0030343 0.0765766 0.158519 0.252896
+0.08 0.0768837 0.0115132 0.15444 0.222703 0.351351
+0.12 0.11308 0.0245815 0.209781 0.270966 0.418919
+0.16 0.147856 0.0414833 0.262548 0.310843 0.455598
+0.2 0.181269 0.0615519 0.303732 0.345279 0.482625
+0.24 0.213372 0.0842006 0.34556 0.375794 0.521236
+0.28 0.244216 0.108914 0.382239 0.403299 0.546332
+0.32 0.273851 0.13524 0.415058 0.428392 0.563707
+0.36 0.302324 0.162786 0.439511 0.451494 0.581081
+0.4 0.32968 0.191208 0.462033 0.472911 0.594595
+0.44 0.355964 0.220208 0.480051 0.492878 0.606178
+0.48 0.381217 0.24953 0.498713 0.511578 0.623552
+0.52 0.405479 0.278952 0.514801 0.529158 0.637066
+0.56 0.428791 0.308287 0.528958 0.54574 0.648649
+0.6 0.451188 0.337373 0.547619 0.561422 0.664093
+0.64 0.472708 0.366075 0.560489 0.576289 0.671815
+0.68 0.493383 0.394281 0.579151 0.590413 0.679537
+0.72 0.513248 0.421896 0.59009 0.603856 0.69112
+0.76 0.532334 0.448846 0.608752 0.616672 0.698842
+0.8 0.550671 0.475069 0.621622 0.628907 0.710425
+0.84 0.56829 0.500518 0.637066 0.640603 0.718147
+0.88 0.585217 0.525156 0.653153 0.651798 0.725869
+0.92 0.601481 0.548959 0.658945 0.662525 0.733591
+0.96 0.617107 0.571908 0.671815 0.672813 0.739382
+1.0 0.632121 0.593994 0.678893 0.682689 0.745174
+1.04 0.646545 0.615215 0.693694 0.692179 0.747104
+1.08 0.660404 0.635573 0.70399 0.701302 0.750965
+1.12 0.67372 0.655074 0.711068 0.710082 0.756757
+1.16 0.686514 0.673732 0.719434 0.718534 0.760618
+1.2 0.698806 0.691559 0.725225 0.726678 0.76834
+1.24 0.710616 0.708574 0.732304 0.734529 0.774131
+1.28 0.721963 0.724795 0.738095 0.742101 0.779923
+1.32 0.732865 0.740245 0.741313 0.749408 0.789575
+1.36 0.743339 0.754946 0.748391 0.756463 0.793436
+1.4 0.753403 0.768922 0.756113 0.763276 0.803089
+1.44 0.763072 0.782197 0.765766 0.769861 0.805019
+1.48 0.772362 0.794797 0.77027 0.776226 0.80695
+1.52 0.781288 0.806747 0.777992 0.782381 0.814672
+1.56 0.789864 0.818072 0.783784 0.788335 0.816602
+1.6 0.798103 0.828799 0.791506 0.794097 0.816602
+1.64 0.80602 0.838951 0.801158 0.799674 0.822394
+1.68 0.813626 0.848554 0.80888 0.805076 0.826255
+1.72 0.820934 0.857633 0.815315 0.810307 0.828185
+1.76 0.827955 0.866211 0.817889 0.815376 0.832046
+1.8 0.834701 0.874311 0.823037 0.820287 0.839768
+1.84 0.841183 0.881957 0.827542 0.825049 0.84749
+1.88 0.84741 0.889169 0.831403 0.829666 0.853282
+1.92 0.853393 0.895971 0.841699 0.834143 0.857143
+1.96 0.859142 0.902382 0.846847 0.838487 0.861004
+2.0 0.864665 0.908422 0.852638 0.842701 0.861004
+</data>
+          <plot>
+            <title>Cumulative intensity distribution (acentric and centric)</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+            <plotline xcol="1" ycol="6" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Weighted second moments for Data" id="data_SmartiePlot2" style="display:none;">
+          <headers separator=" ">1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+          <data>0.0132 2.00068 1.50068 3.9672
+0.0383 2.00046 1.50046 3.1651
+0.0634 2.00039 1.50039 2.66235
+0.0885 2.00076 1.50076 2.98764
+0.1137 2.00142 1.50142 2.90139
+0.1388 2.00288 1.50288 2.66979
+0.1639 2.0039 1.5039 3.21723
+0.189 2.00751 1.50751 3.05565
+0.2142 2.01025 1.51025 2.7435
+</data>
+          <plot>
+            <title>Weighted second moments vs resolution (acentric only)</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="4" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Intensity distribution after Anisotropy Correction" id="data_SmartiePlot3" style="display:none;">
+          <headers separator=" ">Z ACent_theor ACent_twin ACent_obser Cent_theor Cent_obser
+</headers>
+          <data>0.0 0.0 0.0 0.0135135 0.0 0.0598456
+0.04 0.0392106 0.0030343 0.0752896 0.158519 0.250965
+0.08 0.0768837 0.0115132 0.153153 0.222703 0.355212
+0.12 0.11308 0.0245815 0.211068 0.270966 0.399614
+0.16 0.147856 0.0414833 0.264479 0.310843 0.449807
+0.2 0.181269 0.0615519 0.300515 0.345279 0.482625
+0.24 0.213372 0.0842006 0.339768 0.375794 0.511583
+0.28 0.244216 0.108914 0.382239 0.403299 0.542471
+0.32 0.273851 0.13524 0.410553 0.428392 0.555985
+0.36 0.302324 0.162786 0.43565 0.451494 0.57722
+0.4 0.32968 0.191208 0.458816 0.472911 0.592664
+0.44 0.355964 0.220208 0.474903 0.492878 0.606178
+0.48 0.381217 0.24953 0.493565 0.511578 0.623552
+0.52 0.405479 0.278952 0.509653 0.529158 0.638996
+0.56 0.428791 0.308287 0.523166 0.54574 0.644788
+0.6 0.451188 0.337373 0.542471 0.561422 0.656371
+0.64 0.472708 0.366075 0.557272 0.576289 0.664093
+0.68 0.493383 0.394281 0.577864 0.590413 0.679537
+0.72 0.513248 0.421896 0.594595 0.603856 0.685328
+0.76 0.532334 0.448846 0.609395 0.616672 0.696911
+0.8 0.550671 0.475069 0.621622 0.628907 0.702703
+0.84 0.56829 0.500518 0.631918 0.640603 0.710425
+0.88 0.585217 0.525156 0.646718 0.651798 0.723938
+0.92 0.601481 0.548959 0.658945 0.662525 0.733591
+0.96 0.617107 0.571908 0.672458 0.672813 0.739382
+1.0 0.632121 0.593994 0.685328 0.682689 0.743243
+1.04 0.646545 0.615215 0.696268 0.692179 0.750965
+1.08 0.660404 0.635573 0.702059 0.701302 0.752896
+1.12 0.67372 0.655074 0.711068 0.710082 0.758687
+1.16 0.686514 0.673732 0.722008 0.718534 0.762548
+1.2 0.698806 0.691559 0.729086 0.726678 0.766409
+1.24 0.710616 0.708574 0.735521 0.734529 0.77027
+1.28 0.721963 0.724795 0.740669 0.742101 0.776062
+1.32 0.732865 0.740245 0.748391 0.749408 0.781853
+1.36 0.743339 0.754946 0.75547 0.756463 0.781853
+1.4 0.753403 0.768922 0.760618 0.763276 0.783784
+1.44 0.763072 0.782197 0.768983 0.769861 0.789575
+1.48 0.772362 0.794797 0.778636 0.776226 0.793436
+1.52 0.781288 0.806747 0.785714 0.782381 0.805019
+1.56 0.789864 0.818072 0.792149 0.788335 0.810811
+1.6 0.798103 0.828799 0.797297 0.794097 0.812741
+1.64 0.80602 0.838951 0.799871 0.799674 0.818533
+1.68 0.813626 0.848554 0.805019 0.805076 0.826255
+1.72 0.820934 0.857633 0.80695 0.810307 0.828185
+1.76 0.827955 0.866211 0.814028 0.815376 0.833977
+1.8 0.834701 0.874311 0.823681 0.820287 0.837838
+1.84 0.841183 0.881957 0.828185 0.825049 0.837838
+1.88 0.84741 0.889169 0.833977 0.829666 0.841699
+1.92 0.853393 0.895971 0.839125 0.834143 0.841699
+1.96 0.859142 0.902382 0.842986 0.838487 0.84556
+2.0 0.864665 0.908422 0.846203 0.842701 0.853282
+</data>
+          <plot>
+            <title>Cumulative intensity distribution (acentric and centric)</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+            <plotline xcol="1" ycol="6" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Weighted second moments after Anisotropy Correction" id="data_SmartiePlot4" style="display:none;">
+          <headers separator=" ">1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+          <data>0.0132 2.00066 1.50066 3.8697
+0.0383 2.00043 1.50043 3.20654
+0.0634 2.00037 1.50037 2.65074
+0.0885 2.0007 1.5007 2.84801
+0.1137 2.00128 1.50128 2.84152
+0.1388 2.00269 1.50269 2.627
+0.1639 2.00366 1.50366 2.98098
+0.189 2.00669 1.50669 2.85595
+0.2142 2.00944 1.50944 2.64407
+</data>
+          <plot>
+            <title>Weighted second moments vs resolution (acentric only)</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="4" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Intensity distribution after tNCS (best) refinement" id="data_SmartiePlot5" style="display:none;">
+          <headers separator=" ">Z ACent_theor ACent_twin ACent_obser Cent_theor Cent_obser
+</headers>
+          <data>0.0 0.0 0.0 0.0135135 0.0 0.0598456
+0.04 0.0392106 0.0030343 0.03861 0.158519 0.177606
+0.08 0.0768837 0.0115132 0.0630631 0.222703 0.225869
+0.12 0.11308 0.0245815 0.0971686 0.270966 0.27027
+0.16 0.147856 0.0414833 0.12677 0.310843 0.30695
+0.2 0.181269 0.0615519 0.157658 0.345279 0.34749
+0.24 0.213372 0.0842006 0.192407 0.375794 0.382239
+0.28 0.244216 0.108914 0.226512 0.403299 0.415058
+0.32 0.273851 0.13524 0.252252 0.428392 0.434363
+0.36 0.302324 0.162786 0.284427 0.451494 0.447876
+0.4 0.32968 0.191208 0.312741 0.472911 0.484556
+0.44 0.355964 0.220208 0.346203 0.492878 0.498069
+0.48 0.381217 0.24953 0.375804 0.511578 0.528958
+0.52 0.405479 0.278952 0.408623 0.529158 0.546332
+0.56 0.428791 0.308287 0.433719 0.54574 0.550193
+0.6 0.451188 0.337373 0.454311 0.561422 0.567568
+0.64 0.472708 0.366075 0.479408 0.576289 0.57529
+0.68 0.493383 0.394281 0.495495 0.590413 0.586873
+0.72 0.513248 0.421896 0.520592 0.603856 0.600386
+0.76 0.532334 0.448846 0.539897 0.616672 0.611969
+0.8 0.550671 0.475069 0.55148 0.628907 0.627413
+0.84 0.56829 0.500518 0.571429 0.640603 0.642857
+0.88 0.585217 0.525156 0.587516 0.651798 0.666023
+0.92 0.601481 0.548959 0.599743 0.662525 0.671815
+0.96 0.617107 0.571908 0.61583 0.672813 0.685328
+1.0 0.632121 0.593994 0.62677 0.682689 0.689189
+1.04 0.646545 0.615215 0.645431 0.692179 0.696911
+1.08 0.660404 0.635573 0.664093 0.701302 0.716216
+1.12 0.67372 0.655074 0.68018 0.710082 0.722008
+1.16 0.686514 0.673732 0.690476 0.718534 0.727799
+1.2 0.698806 0.691559 0.702059 0.726678 0.735521
+1.24 0.710616 0.708574 0.715573 0.734529 0.745174
+1.28 0.721963 0.724795 0.721364 0.742101 0.750965
+1.32 0.732865 0.740245 0.737452 0.749408 0.756757
+1.36 0.743339 0.754946 0.749035 0.756463 0.76834
+1.4 0.753403 0.768922 0.759331 0.763276 0.776062
+1.44 0.763072 0.782197 0.76834 0.769861 0.783784
+1.48 0.772362 0.794797 0.780566 0.776226 0.789575
+1.52 0.781288 0.806747 0.788932 0.782381 0.793436
+1.56 0.789864 0.818072 0.798584 0.788335 0.80888
+1.6 0.798103 0.828799 0.803732 0.794097 0.812741
+1.64 0.80602 0.838951 0.812098 0.799674 0.818533
+1.68 0.813626 0.848554 0.820463 0.805076 0.822394
+1.72 0.820934 0.857633 0.824968 0.810307 0.835907
+1.76 0.827955 0.866211 0.83462 0.815376 0.843629
+1.8 0.834701 0.874311 0.838481 0.820287 0.84749
+1.84 0.841183 0.881957 0.846203 0.825049 0.855212
+1.88 0.84741 0.889169 0.853282 0.829666 0.855212
+1.92 0.853393 0.895971 0.857786 0.834143 0.855212
+1.96 0.859142 0.902382 0.862934 0.838487 0.861004
+2.0 0.864665 0.908422 0.867439 0.842701 0.872587
+</data>
+          <plot>
+            <title>Cumulative intensity distribution (acentric and centric)</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+            <plotline xcol="1" ycol="6" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Weighted second moments after tNCS (best) refinement" id="data_SmartiePlot6" style="display:none;">
+          <headers separator=" ">1/d^2 ACent_theor ACent_twin ACent_obser
+</headers>
+          <data>0.0132 2.00899 1.50899 3.35059
+0.0383 2.01185 1.51185 2.31878
+0.0634 2.00362 1.50362 1.80698
+0.0885 2.00485 1.50485 1.9446
+0.1137 2.01163 1.51163 1.93721
+0.1388 2.03722 1.53722 1.84147
+0.1639 2.0627 1.5627 2.06883
+0.189 2.07062 1.57062 2.05177
+0.2142 2.07307 1.57307 1.86651
+</data>
+          <plot>
+            <title>Weighted second moments vs resolution (acentric only)</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+            <plotline xcol="1" ycol="4" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Rotation Function Component #1 (Ensemble_1)" id="data_SmartiePlot7" style="display:none;">
+          <headers separator=" ">Number LLG Z-Score
+</headers>
+          <data>1.0 86.73 7.86
+2.0 65.85 7.4
+3.0 52.25 7.11
+4.0 51.32 7.09
+5.0 10.44 6.19
+6.0 -30.38 5.3
+7.0 -43.78 5.0
+</data>
+          <plot>
+            <title>RF Number vs LL-gain</title>
+            <plotline xcol="1" ycol="2" />
+          </plot>
+          <plot>
+            <title>RF Number vs Z-Score</title>
+            <plotline xcol="1" ycol="3" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Translation Function Component #1 (Ensemble_1)" id="data_SmartiePlot8" style="display:none;">
+          <headers separator=" ">Number LLG Z-Score
+</headers>
+          <data>1.0 232.36 14.73
+2.0 140.03 14.87
+3.0 95.31 15.05
+4.0 84.87 13.47
+5.0 -598.87 9.35
+</data>
+          <plot>
+            <title>TF Number vs LL-gain</title>
+            <plotline xcol="1" ycol="2" />
+          </plot>
+          <plot>
+            <title>TF Number vs Z-Score</title>
+            <plotline xcol="1" ycol="3" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Refinement After Placing Component #2 (Ensemble_1  2.42A)" id="data_SmartiePlot9" style="display:none;">
+          <headers separator=" ">Number final-LLG initial-LLG final-R initial-R
+</headers>
+          <data>1.0 505.11 203.15 40.62 43.45
+2.0 505.8 105.19 40.62 44.07
+3.0 505.72 59.18 40.61 44.66
+4.0 505.28 48.97 40.62 44.54
+5.0 505.59 -654.18 40.62 51.21
+</data>
+          <plot>
+            <title>Solution Number vs LL-gain</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+          </plot>
+          <plot>
+            <title>Solution Number vs R-value</title>
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Refinement After Placing Component #2 (Ensemble_1  2.10A)" id="data_SmartiePlot10" style="display:none;">
+          <headers separator=" ">Number final-LLG initial-LLG final-R initial-R
+</headers>
+          <data>1.0 766.42 746.27 40.44 40.46
+</data>
+          <plot>
+            <title>Solution Number vs LL-gain</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+          </plot>
+          <plot>
+            <title>Solution Number vs R-value</title>
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="width:500px;">
+        <ns0:ccp4_data title="Refinement After Placing Component #2 (Ensemble_1  2.10A)" id="data_SmartiePlot11" style="display:none;">
+          <headers separator=" ">Number final-LLG initial-LLG final-R initial-R
+</headers>
+          <data>1.0 766.37 766.42 40.45 40.44
+</data>
+          <plot>
+            <title>Solution Number vs LL-gain</title>
+            <plotline xcol="1" ycol="2" />
+            <plotline xcol="1" ycol="3" />
+          </plot>
+          <plot>
+            <title>Solution Number vs R-value</title>
+            <plotline xcol="1" ycol="4" />
+            <plotline xcol="1" ycol="5" />
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+    </CCP4i2ReportObjectGallery>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_e94b5d58-0ac0-11ee-9a2d-8c8590af7452" />
+      <div id="input_file_e94ba9a2-0ac0-11ee-9a2d-8c8590af7452" />
+      <div id="input_file_e94c29fe-0ac0-11ee-9a2d-8c8590af7452" />
+      <div id="input_file_e94c781e-0ac0-11ee-9a2d-8c8590af7452" />
+      <div id="input_file_e94cdb7e-0ac0-11ee-9a2d-8c8590af7452" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="14:36 14-Jun-2023" finishtime="14:36 14-Jun-2023" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="14:36 14-Jun-2023" finishtime="14:36 14-Jun-2023" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="">
+      <CCP4i2ReportReference class="" style="" articleTitle="Phaser crystallographic software." articleLink="http://scripts.iucr.org/cgi-bin/paper?he5368" source="J Appl Crystallogr. 2007 Aug 1;40(Pt 4):658-674. Epub 2007 Jul 13." authorList="['McCoy AJ', 'Grosse-Kunstleve RW', 'Adams PD', 'Winn MD', 'Storoni LC', 'Read RJ']" />
+    </CCP4i2ReportReferenceGroup>
+  </CCP4i2ReportFold>
+</CCP4i2Reportphaser_MR_AUTO_report>

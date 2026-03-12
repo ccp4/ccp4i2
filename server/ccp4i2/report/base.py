@@ -31,7 +31,7 @@ from ccp4i2.core.base_object.hierarchy_system import HierarchicalObject
 from ccp4i2.report.errors import DiagnosticCollector, ReportDiagnostic, DiagnosticLevel
 
 if TYPE_CHECKING:
-    from ccp4i2.report.CCP4ReportParser import Report
+    from ccp4i2.report.core import Report
 
 logger = logging.getLogger(f"ccp4i2:{__name__}")
 
@@ -285,7 +285,7 @@ class ReportContainer(ReportElement):
         """
         if isinstance(child, str):
             # Create a generic text element for strings
-            from ccp4i2.report.CCP4ReportParser import Generic
+            from ccp4i2.report.elements import Generic
             child = Generic(xmlnode=self.xmlnode, text=child)
 
         self.children.append(child)
@@ -297,7 +297,7 @@ class ReportContainer(ReportElement):
     def insert(self, index: int, child: 'ReportElement'):
         """Insert a child element at the specified index."""
         if isinstance(child, str):
-            from ccp4i2.report.CCP4ReportParser import Generic
+            from ccp4i2.report.elements import Generic
             child = Generic(xmlnode=self.xmlnode, text=child)
 
         self.children.insert(index, child)

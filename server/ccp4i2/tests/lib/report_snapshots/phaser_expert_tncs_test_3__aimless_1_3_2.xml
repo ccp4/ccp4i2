@@ -1,0 +1,1586 @@
+<CCP4i2Reportaimless_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="aimless" title2="14:31 14-Jun-2023" />
+  <CCP4i2ReportText class="" style="font-size: 150%;">AIMLESS</CCP4i2ReportText>
+  <CCP4i2ReportGenericElement class="" style="">
+    <p>
+      <a href="/database/?getProjectJobFile?projectId=03ca40140ac011ee8cc98c8590af7452?fileName=log.txt?jobNumber=1?subJobNumber=2">Show log file</a>
+    </p>
+  </CCP4i2ReportGenericElement>
+  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+    <CCP4i2ReportText class="" style="font-weight:bold; font-size:120%;">Key statistics for Dataset: P1/crystal/dataset</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <div style="margin-left: 40px;">Unit cell:   23.992  55.485  60.019  90.000  90.000  90.000, wavelength 1.000000Å<br />
+        <span style="color:Blue;font-size:100%;">Estimates of resolution: input resolution     2.10Å, estimate undetermined from CC(1/2), insufficient data,  2.10Å from I/σ &gt; 1.00</span>
+        <br /> Rmeas: overall    0.000, inner bin    0.000<br />In outer bin: Mean(I/σI)    9.9    CC(1/2)  0.000<br />Overall filtered Mean(chi^2):   0.00<br />No anomalous data present<br />
+      </div>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <span style="margin-left: 20px;">Number of rejected outliers: 0 (&gt;   6σ); between Friedel pairs: 0 (&gt; σ); too large: 0 (E &gt;  10.00)</span>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <span style="color: blue">
+        <br />NOTE: no scaling was done, just merging</span>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportDiv class="" style="color: red;margin-left: 40px;">
+      <CCP4i2ReportGeneric class="" style="">
+        <p>Note: inner shell completeness:   91.1%<br />Warning: low inner shell completeness may indicate that overloaded strong observations have been lost</p>
+      </CCP4i2ReportGeneric>
+    </CCP4i2ReportDiv>
+    <CCP4i2ReportDiv class="" style="margin-left: 20px;">
+      <CCP4i2ReportGeneric class="" style="">
+        <p>
+          <span style="color:Black; font-size:120%">SD correction information:<br />
+          </span>SD correction parameters were not refined</p>
+      </CCP4i2ReportGeneric>
+    </CCP4i2ReportDiv>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; margin:0px; padding:10px 0px 10px 0px;">
+    <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Resolution estimates</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Estimates of limits from CC(1/2) (threshold0.0) <br />and Mn(I/sd) (threshold 1.00)</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportTable class="center" style="" transpose="True">
+          <table class="center transpose">
+            <tbody>
+              <tr>
+                <th />
+                <td>CC(1/2)</td>
+                <td>Mn(I/sd)</td>
+              </tr>
+              <tr>
+                <th>Overall</th>
+                <td>-</td>
+                <td> 2.10*</td>
+              </tr>
+            </tbody>
+          </table>
+        </CCP4i2ReportTable>
+        <CCP4i2ReportGeneric class="" style="">
+          <p>entries with insufficient data for an estimate are marked '-'<br />estimates extending to the maximum resolution marked '*'</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Dataset:P1/crystal/dataset</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportTable class="center" style="" transpose="True">
+          <table class="center transpose">
+            <tbody>
+              <tr>
+                <th>Unit cell: a,b,c</th>
+                <td>  23.992</td>
+                <td>  55.485</td>
+                <td>  60.019</td>
+              </tr>
+              <tr>
+                <th>  alpha,beta,gamma</th>
+                <td>  90.000</td>
+                <td>  90.000</td>
+                <td>  90.000</td>
+              </tr>
+              <tr>
+                <th>Mosaicity</th>
+                <td>  0.00</td>
+                <td />
+                <td />
+              </tr>
+              <tr>
+                <th>Number of reflections</th>
+                <td>     4897</td>
+                <td />
+                <td />
+              </tr>
+              <tr>
+                <th>Number of observations</th>
+                <td>     4897</td>
+                <td />
+                <td />
+              </tr>
+              <tr>
+                <th>Number of rejected outliers</th>
+                <td />
+                <td />
+                <td />
+              </tr>
+              <tr>
+                <th>Number of Emax rejects</th>
+                <td />
+                <td />
+                <td />
+              </tr>
+            </tbody>
+          </table>
+        </CCP4i2ReportTable>
+      </CCP4i2ReportGridItem>
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportDiv class="" style="clear:both;font-weight:bold; font-size:130%;margin:0px;padding:0px;">
+          <CCP4i2ReportGeneric class="" style="">
+            <p>Data internal consistency statistics</p>
+          </CCP4i2ReportGeneric>
+        </CCP4i2ReportDiv>
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Summary of merging statistics for dataset <br />P1/crystal/dataset</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportTable class="center" style="line-height:100%; font-size:100%;" transpose="True">
+          <table class="center transpose">
+            <tbody>
+              <tr>
+                <th />
+                <td>Overall</td>
+                <td>Inner</td>
+                <td>Outer</td>
+              </tr>
+              <tr>
+                <th title="">Low resolution limit</th>
+                <td title="">   40.74</td>
+                <td title="">   40.74</td>
+                <td title="">    2.16</td>
+              </tr>
+              <tr>
+                <th title="">High resolution limit</th>
+                <td title="">    2.10</td>
+                <td title="">    8.91</td>
+                <td title="">    2.10</td>
+              </tr>
+              <tr>
+                <th title="">Rmerge(within I+/I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmerge(all I+ and I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmeas (within I+/I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmeas (all I+ &amp; I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rpim (within I+/I-)</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rpim (all I+ &amp; I-)</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmerge in top intensity bin*</th>
+                <td title="">   0.000</td>
+                <td title="" />
+                <td title="" />
+              </tr>
+              <tr>
+                <th title="">Number of observations</th>
+                <td title="">     4897</td>
+                <td title="">       76</td>
+                <td title="">      403</td>
+              </tr>
+              <tr>
+                <th title="">Number unique</th>
+                <td title="">     4897</td>
+                <td title="">       76</td>
+                <td title="">      403</td>
+              </tr>
+              <tr>
+                <th title="">Mean((I)/sd(I))</th>
+                <td title="">   23.3</td>
+                <td title="">   40.9</td>
+                <td title="">    9.9</td>
+              </tr>
+              <tr>
+                <th title="">Half-set correlation CC(1/2)</th>
+                <td title=""> 0.000</td>
+                <td title=""> 0.000</td>
+                <td title=""> 0.000</td>
+              </tr>
+              <tr>
+                <th title="">Completeness %</th>
+                <td title="">  97.8</td>
+                <td title="">  91.1</td>
+                <td title="">  99.7</td>
+              </tr>
+              <tr>
+                <th title="">Multiplicity</th>
+                <td title="">     1.0</td>
+                <td title="">     1.0</td>
+                <td title="">     1.0</td>
+              </tr>
+              <tr>
+                <th title="">Filtered Mean(chi^2)</th>
+                <td title="">  0.00</td>
+                <td title="">  0.00</td>
+                <td title="">  0.00</td>
+              </tr>
+              <tr>
+                <th title="">Low resolution limit</th>
+                <td title="">   40.74</td>
+                <td title="">   40.74</td>
+                <td title="">    2.16</td>
+              </tr>
+              <tr>
+                <th title="">High resolution limit</th>
+                <td title="">    2.10</td>
+                <td title="">    8.91</td>
+                <td title="">    2.10</td>
+              </tr>
+              <tr>
+                <th title="">Rmerge(within I+/I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmerge(all I+ and I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmeas (within I+/I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmeas (all I+ &amp; I-)*</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rpim (within I+/I-)</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rpim (all I+ &amp; I-)</th>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+                <td title="">   0.000</td>
+              </tr>
+              <tr>
+                <th title="">Rmerge in top intensity bin*</th>
+                <td title="">   0.000</td>
+                <td title="" />
+                <td title="" />
+              </tr>
+              <tr>
+                <th title="">Number of observations</th>
+                <td title="">     4897</td>
+                <td title="">       76</td>
+                <td title="">      403</td>
+              </tr>
+              <tr>
+                <th title="">Number unique</th>
+                <td title="">     4897</td>
+                <td title="">       76</td>
+                <td title="">      403</td>
+              </tr>
+              <tr>
+                <th title="">Mean((I)/sd(I))</th>
+                <td title="">   23.3</td>
+                <td title="">   40.9</td>
+                <td title="">    9.9</td>
+              </tr>
+              <tr>
+                <th title="">Half-set correlation CC(1/2)</th>
+                <td title=""> 0.000</td>
+                <td title=""> 0.000</td>
+                <td title=""> 0.000</td>
+              </tr>
+              <tr>
+                <th title="">Completeness %</th>
+                <td title="">  97.8</td>
+                <td title="">  91.1</td>
+                <td title="">  99.7</td>
+              </tr>
+              <tr>
+                <th title="">Multiplicity</th>
+                <td title="">     1.0</td>
+                <td title="">     1.0</td>
+                <td title="">     1.0</td>
+              </tr>
+              <tr>
+                <th title="">Filtered Mean(chi^2)</th>
+                <td title="">  0.00</td>
+                <td title="">  0.00</td>
+                <td title="">  0.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </CCP4i2ReportTable>
+        <CCP4i2ReportGeneric class="" style="">
+          <p>The anomalous signal appears to be weak so anomalous flag was left OFF</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Note: statistics marked '*' apply to unaveraged data, others to the merged data</p>
+        </CCP4i2ReportGeneric>
+      </CCP4i2ReportGridItem>
+    </CCP4i2ReportGridContainer>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;">
+    <CCP4i2ReportDiv class="" style="width:100%; border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+      <CCP4i2ReportGeneric class="" style="">
+        <br />
+      </CCP4i2ReportGeneric>
+      <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
+        <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+          <CCP4i2ReportText class="" style="font-size:130%;font-weight:bold;">Analysis as a function of resolution</CCP4i2ReportText>
+          <CCP4i2ReportGeneric class="" style="">
+            <br />
+          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">Plot of CC(1/2) vs. resolution may indicate a suitable resolution cutoff, and indicate presence of an anomalous signal</CCP4i2ReportText>
+          <CCP4i2ReportGeneric class="" style="">
+            <br />
+          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">(but check anisotropy)</CCP4i2ReportText>
+          <CCP4i2ReportGeneric class="" style="">
+            <br />
+          </CCP4i2ReportGeneric>
+          <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
+            <CCP4i2ReportFlotGraph class="" style="">
+              <ns0:ccp4_data title=" Correlations CC(1/2) within dataset, dataset" id="data_FlotGraph_0" style="display:none;">
+                <headers separator=" ">
+  N  1/d^2    Dmid CCanom    Nanom   RCRanom   CC1/2   NCC1/2  CC1/2v   Rsplit
+</headers>
+                <data>
+  1  0.0063  12.60   -           0      -       -           0    -        -   
+  2  0.0189   7.27   -           0      -       -           0    -        -   
+  3  0.0315   5.64   -           0      -       -           0    -        -   
+  4  0.0441   4.76   -           0      -       -           0    -        -   
+  5  0.0567   4.20   -           0      -       -           0    -        -   
+  6  0.0693   3.80   -           0      -       -           0    -        -   
+  7  0.0819   3.49   -           0      -       -           0    -        -   
+  8  0.0945   3.25   -           0      -       -           0    -        -   
+  9  0.1071   3.06   -           0      -       -           0    -        -   
+ 10  0.1197   2.89   -           0      -       -           0    -        -   
+ 11  0.1323   2.75   -           0      -       -           0    -        -   
+ 12  0.1449   2.63   -           0      -       -           0    -        -   
+ 13  0.1575   2.52   -           0      -       -           0    -        -   
+ 14  0.1701   2.42   -           0      -       -           0    -        -   
+ 15  0.1826   2.34   -           0      -       -           0    -        -   
+ 16  0.1952   2.26   -           0      -       -           0    -        -   
+ 17  0.2078   2.19   -           0      -       -           0    -        -   
+ 18  0.2204   2.13   -           0      -       -           0    -        -   
+</data>
+                <plot>
+                  <title> CC(1/2) v resolution, max resolution 0.00, anom 0.00</title>
+                  <description>Resolution estimate: Insufficient data to determine resolution limit
+Anomalous resolution: Insufficient data to determine resolution limit
+</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="1" />
+                  <plotline xcol="  2" ycol="  9">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  7">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  4">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title> RMS anomalous correlation ratio </title>
+                  <description>RMS correlation ratio &gt; 1.0 indicates significant anomalous differences</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="1" />
+                  <plotline xcol="  2" ycol="  6">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title> Rsplit </title>
+                  <description>Rsplit is the R-factor equivalent of CC(1/2), but less useful</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="1" />
+                  <plotline xcol="  2" ycol="  9">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+              </ns0:ccp4_data>
+            </CCP4i2ReportFlotGraph>
+            <CCP4i2ReportFlotGraph class="" style="">
+              <ns0:ccp4_data title=" Analysis against resolution, dataset" id="data_FlotGraph_1" style="display:none;">
+                <headers separator=" ">
+  N  1/d^2    Dmid   Rmrg  Rfull   Rcum  Rmeas   Rpim    Nmeas      AvI  RMSdev    sd  I/RMS Mn(I/sd)  FrcBias  Chi^2 Chi^2c
+
+</headers>
+                <data>
+  1  0.0063  12.60   -      -      -      -      -           0      773      -     14     -      40.9     -       -      -  
+  2  0.0189   7.27   -      -      -      -      -           0      412      -      9     -      37.7     -       -      -  
+  3  0.0315   5.64   -      -      -      -      -           0      272      -      7     -      32.8     -       -      -  
+  4  0.0441   4.76   -      -      -      -      -           0      608      -     11     -      47.3     -       -      -  
+  5  0.0567   4.20   -      -      -      -      -           0      785      -     13     -      46.3     -       -      -  
+  6  0.0693   3.80   -      -      -      -      -           0      639      -     13     -      42.7     -       -      -  
+  7  0.0819   3.49   -      -      -      -      -           0      719      -     14     -      41.4     -       -      -  
+  8  0.0945   3.25   -      -      -      -      -           0      454      -     13     -      31.4     -       -      -  
+  9  0.1071   3.06   -      -      -      -      -           0      344      -     11     -      28.4     -       -      -  
+ 10  0.1197   2.89   -      -      -      -      -           0      265      -     11     -      22.6     -       -      -  
+ 11  0.1323   2.75   -      -      -      -      -           0      208      -     10     -      18.9     -       -      -  
+ 12  0.1449   2.63   -      -      -      -      -           0      199      -     11     -      17.6     -       -      -  
+ 13  0.1575   2.52   -      -      -      -      -           0      186      -     12     -      15.4     -       -      -  
+ 14  0.1701   2.42   -      -      -      -      -           0      179      -     11     -      15.4     -       -      -  
+ 15  0.1826   2.34   -      -      -      -      -           0      157      -     13     -      13.4     -       -      -  
+ 16  0.1952   2.26   -      -      -      -      -           0      147      -     13     -      12.0     -       -      -  
+ 17  0.2078   2.19   -      -      -      -      -           0      155      -     12     -      12.3     -       -      -  
+ 18  0.2204   2.13   -      -      -      -      -           0      128      -     15     -       9.9     -       -      -  
+</data>
+                <plot>
+                  <title>I/sigma, Mean Mn(I)/sd(Mn(I))</title>
+                  <description>I/sigma = I/RMS = I/(rms scatter before merging). Mean(I/sd) after averaging, ~= signal/noise</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="47.2849" />
+                  <plotline xcol="  2" ycol=" 14">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 13">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Filtered Mean(Chi^2)(&lt;5sd) v Resolution</title>
+                  <description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="None" />
+                  <plotline xcol="  2" ycol=" 17">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Resolution</title>
+                  <description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="None" />
+                  <plotline xcol="  2" ycol=" 17">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 16">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Rmerge, Rfull, Rmeas, Rpim v Resolution</title>
+                  <description>Rmerge, classic R-factor; Rmeas, multiplicity-weighted R; Rpim, precision-indicating R</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="1" />
+                  <plotline xcol="  2" ycol="  8">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  7">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  5">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  4">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Average I, RMSdeviation and Sd</title>
+                  <description>RMSdev is RMS scatter, sd is average corrected sig(I) estimate</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="784.797" />
+                  <yrange min="0" max="14.7926" rightaxis="true" />
+                  <plotline xcol="  2" ycol=" 12" rightaxis="true">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 11" rightaxis="true">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 10">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Fractional bias</title>
+                  <description>FrcBias = Mean( Mn(If) - Ip )/Mean( Mn(I) ), where If is a full if present, else the partials with the smallest number of parts
+</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="1" />
+                  <plotline xcol="  2" ycol=" 15">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+              </ns0:ccp4_data>
+            </CCP4i2ReportFlotGraph>
+            <CCP4i2ReportFlotGraph class="" style="">
+              <ns0:ccp4_data title=" Anisotropy analysis of CC(1/2) and I/sd, dataset" id="data_FlotGraph_2" style="display:none;">
+                <headers separator=" ">
+  N  1/d^2    Dmid    CC:a*   CC:b*   CC:c*  I/sd:a*  I/sd:b*  I/sd:c*    CCp1    CCp2    CCp3
+</headers>
+                <data>
+  1  0.0063  12.60     -       -       -       40.88    40.88    40.88    -       -       -   
+  2  0.0189   7.27     -       -       -       34.02    24.51    30.52    -       -       -   
+  3  0.0315   5.64     -       -       -       26.73    19.21    47.34    -       -       -   
+  4  0.0441   4.76     -       -       -       24.86    19.04    55.57    -       -       -   
+  5  0.0567   4.20     -       -       -         -      20.05    47.09    -       -       -   
+  6  0.0693   3.80     -       -       -       17.30    20.31    31.83    -       -       -   
+  7  0.0819   3.49     -       -       -         -      20.96    27.45    -       -       -   
+  8  0.0945   3.25     -       -       -       19.21    29.41    24.64    -       -       -   
+  9  0.1071   3.06     -       -       -         -      24.43    16.08    -       -       -   
+ 10  0.1197   2.89     -       -       -        7.58    17.20    19.52    -       -       -   
+ 11  0.1323   2.75     -       -       -         -      16.23    10.93    -       -       -   
+ 12  0.1449   2.63     -       -       -        3.59    12.13    10.06    -       -       -   
+ 13  0.1575   2.52     -       -       -        6.36    16.99    10.39    -       -       -   
+ 14  0.1701   2.42     -       -       -         -      21.02     6.54    -       -       -   
+ 15  0.1826   2.34     -       -       -        3.68     8.10     7.87    -       -       -   
+ 16  0.1952   2.26     -       -       -        5.45    12.32     6.95    -       -       -   
+ 17  0.2078   2.19     -       -       -        1.23    10.65     5.11    -       -       -   
+ 18  0.2204   2.13     -       -       -        3.63     8.33     4.21    -       -       -   
+</data>
+                <plot>
+                  <title> Anisotropic CC(1/2) v resolution</title>
+                  <description>CC(1/2) in cones along principle directions. Estimated maximum resolution limits, a*:  0.00, b*:  0.00, c*:  0.00
+</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="1" />
+                  <plotline xcol="  2" ycol="  6">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  5">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  4">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title> Anisotropic Mn(I/sd) v resolution</title>
+                  <description>Mn(I/sd) in cones along principle directions</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="55.5729" />
+                  <plotline xcol="  2" ycol="  9">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  8">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  7">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title> Projected CC(1/2) v resolution</title>
+                  <description>CC(1/2) projected on principle directions</description>
+                  <xscale>oneoversqrt</xscale>
+                  <xrange min="0" max="0.226735" />
+                  <yrange min="0" max="1" />
+                  <plotline xcol="  2" ycol=" 12">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 11">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 10">
+                    <linestyle>-</linestyle>
+                  </plotline>
+                </plot>
+              </ns0:ccp4_data>
+            </CCP4i2ReportFlotGraph>
+          </CCP4i2ReportFlotGraphGroup>
+        </CCP4i2ReportGridItem>
+        <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+          <CCP4i2ReportText class="" style="font-size:130%;font-weight:bold;">Analysis as a function of batch</CCP4i2ReportText>
+          <CCP4i2ReportGeneric class="" style="">
+            <br />
+          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;">Analyses against Batch may show radiation damage, and which parts of the data should be removed</CCP4i2ReportText>
+          <CCP4i2ReportGeneric class="" style="">
+            <br />
+          </CCP4i2ReportGeneric>
+          <CCP4i2ReportText class="" style="font-size:100%;font-style:italic;"> (but consider completeness)</CCP4i2ReportText>
+          <CCP4i2ReportGeneric class="" style="">
+            <br />
+          </CCP4i2ReportGeneric>
+          <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
+            <CCP4i2ReportFlotGraph class="" style="">
+              <ns0:ccp4_data title=" Analysis against all Batches for all runs, dataset" id="data_FlotGraph_3" style="display:none;">
+                <headers separator=" ">
+    N   Batch    Mn(I)   RMSdev  I/rms  Rmerge    Number  Nrej Cm%poss  AnoCmp MaxRes CMlplc   Chi^2  Chi^2c SmRmerge SmMaxRes
+
+</headers>
+                <data>
+</data>
+                <plot>
+                  <title>Rmerge v Batch for all runs</title>
+                  <description>Increase of Rmerge towards the end of a run probably indicates radiation damage. The red line is smoothed over adjacent batches
+</description>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol="  6">
+                    <linestyle>-</linestyle>
+                    <colour>blue</colour>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 15">
+                    <markeredgewidth> 0.0</markeredgewidth>
+                    <linestyle>-</linestyle>
+                    <linesize>  2</linesize>
+                    <colour>red</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Filtered Mean(Chi^2)(&lt;5sd) v Batch</title>
+                  <description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol=" 14">
+                    <linestyle>-</linestyle>
+                    <colour>red</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Batch</title>
+                  <description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol=" 14">
+                    <linestyle>-</linestyle>
+                    <colour>red</colour>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 13">
+                    <linestyle>-</linestyle>
+                    <colour>blue</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Cumulative %completeness &amp; Anom%cmpl v Batch</title>
+                  <description>In conjunction with radiation damage indicators, cumulative completeness may indicate a suitable point for cutting back poor data. The blue line is the completeness of anomalous differences
+</description>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol="  9">
+                    <linestyle>-</linestyle>
+                    <colour>red</colour>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 10">
+                    <linestyle>-</linestyle>
+                    <colour>blue</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Maximum resolution limit, I/sigma &gt; 1.0</title>
+                  <description>The resolution limit estimate is the point at which I/sig(I) falls below 1.0, red line smoothed over adjacent batches. A sharp increase probably indicates radiation damage
+</description>
+                  <yrange min="2" max="2.5" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol=" 11">
+                    <linestyle>-</linestyle>
+                    <colour>blue</colour>
+                  </plotline>
+                  <plotline xcol="  2" ycol=" 16">
+                    <markeredgewidth> 0.0</markeredgewidth>
+                    <linestyle>-</linestyle>
+                    <linesize>  2</linesize>
+                    <colour>red</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Imean &amp; RMS Scatter</title>
+                  <description>Major deviations may indicate bad images</description>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol="  4">
+                    <linestyle>-</linestyle>
+                    <colour>blue</colour>
+                  </plotline>
+                  <plotline xcol="  2" ycol="  3">
+                    <linestyle>-</linestyle>
+                    <colour>red</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Imean/RMS scatter</title>
+                  <description>Major deviations may indicate bad images</description>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol="  5">
+                    <linestyle>-</linestyle>
+                    <colour>red</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Number of rejects</title>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol="  8">
+                    <linestyle>-</linestyle>
+                    <colour>red</colour>
+                  </plotline>
+                </plot>
+                <plot>
+                  <title>Cumulative multiplicity</title>
+                  <yrange min="0" max="None" />
+                  <xintegral>true</xintegral>
+                  <plotline xcol="  2" ycol=" 12">
+                    <linestyle>-</linestyle>
+                    <colour>red</colour>
+                  </plotline>
+                </plot>
+              </ns0:ccp4_data>
+            </CCP4i2ReportFlotGraph>
+          </CCP4i2ReportFlotGraphGroup>
+        </CCP4i2ReportGridItem>
+      </CCP4i2ReportGridContainer>
+    </CCP4i2ReportDiv>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;">
+    <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportText class="" style="font-weight:bold; font-size:130%;">Other merging statistics graphs</CCP4i2ReportText>
+        <CCP4i2ReportGeneric class="" style="">
+          <br />
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportFlotGraphGroup class="" style="width:300px;  height:270px;">
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Completeness &amp; multiplicity v. resolution, dataset" id="data_FlotGraph_4" style="display:none;">
+              <headers separator=" ">
+  N  1/d^2    Dmid    Nmeas     Nref    Ncent  %poss C%poss Mlplct   AnoCmp AnoFrc AnoMlt
+</headers>
+              <data>
+  1  0.0063  12.60       76       76       43   91.1   91.1    1.0       -      -      - 
+  2  0.0189   7.27      126      126       48   96.9   94.8    1.0       -      -      - 
+  3  0.0315   5.64      164      164       52   95.5   95.1    1.0       -      -      - 
+  4  0.0441   4.76      181      181       55   93.2   94.4    1.0       -      -      - 
+  5  0.0567   4.20      204      204       50   96.9   95.1    1.0       -      -      - 
+  6  0.0693   3.80      227      227       52   95.4   95.2    1.0       -      -      - 
+  7  0.0819   3.49      236      236       50   96.2   95.4    1.0       -      -      - 
+  8  0.0945   3.25      268      268       52   99.2   96.1    1.0       -      -      - 
+  9  0.1071   3.06      285      285       62   98.0   96.4    1.0       -      -      - 
+ 10  0.1197   2.89      297      297       52   98.2   96.7    1.0       -      -      - 
+ 11  0.1323   2.75      311      311       58  100.0   97.1    1.0       -      -      - 
+ 12  0.1449   2.63      328      328       56   96.5   97.0    1.0       -      -      - 
+ 13  0.1575   2.52      340      340       56   99.8   97.3    1.0       -      -      - 
+ 14  0.1701   2.42      338      338       56   97.6   97.4    1.0       -      -      - 
+ 15  0.1826   2.34      368      368       54   99.0   97.5    1.0       -      -      - 
+ 16  0.1952   2.26      374      374       55   99.4   97.7    1.0       -      -      - 
+ 17  0.2078   2.19      371      371       54   97.5   97.7    1.0       -      -      - 
+ 18  0.2204   2.13      403      403       60   99.7   97.8    1.0       -      -      - 
+</data>
+              <plot>
+                <title>Completeness v Resolution </title>
+                <description>%poss, completeness in shell; C%poss, cumulative completeness. 
+Anomalous completeness (AnomCmpl) is the percentage of possible anomalous differences measured. 
+AnomFrc is the % of measured acentric reflections for which an anomalous difference has been measured
+</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="None" />
+                <plotline xcol="  2" ycol=" 11">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 10">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  8">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  7">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Multiplicity v Resolution</title>
+                <description>Total multiplicity and anomalous multiplicity</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol=" 12">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  9">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" === Scales v rotation range, dataset" id="data_FlotGraph_5" style="display:none;">
+              <headers separator=" ">
+    N  Run    Phi    Batch     Mn(k)        0k      Number   Bfactor    Bdecay
+</headers>
+              <data>
+    1    1    0.00       1     1.0000     1.0000      4897    0.0000    0.0000
+</data>
+              <plot>
+                <title>Mn(k) &amp; 0k (theta=0) v. batch</title>
+                <description>Mn(k) (red) is the mean scale over the whole resolution range for each Batch. 0k is the scale at the lowest resolution, ie excluding the relative B-factor
+</description>
+                <xrange min="1" max="1" />
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  4" ycol="  6">
+                  <linestyle>-</linestyle>
+                  <colour>blue</colour>
+                </plotline>
+                <plotline xcol="  4" ycol="  5">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Relative Bfactor &amp; Decay v. batch</title>
+                <description>The relative B-factor is largely a radiation damage correction. Negative values below perhaps -10 may indicate sever radiation damage. Bdecay is a straight-line fit to the B-factors
+</description>
+                <xrange min="1" max="1" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  4" ycol="  9">
+                  <linestyle>-</linestyle>
+                  <colour>blue</colour>
+                </plotline>
+                <plotline xcol="  4" ycol="  8">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Analysis against all Batches for all runs, dataset" id="data_FlotGraph_6" style="display:none;">
+              <headers separator=" ">
+    N   Batch    Mn(I)   RMSdev  I/rms  Rmerge    Number  Nrej Cm%poss  AnoCmp MaxRes CMlplc   Chi^2  Chi^2c SmRmerge SmMaxRes
+
+</headers>
+              <data>
+</data>
+              <plot>
+                <title>Rmerge v Batch for all runs</title>
+                <description>Increase of Rmerge towards the end of a run probably indicates radiation damage. The red line is smoothed over adjacent batches
+</description>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol="  6">
+                  <linestyle>-</linestyle>
+                  <colour>blue</colour>
+                </plotline>
+                <plotline xcol="  2" ycol=" 15">
+                  <markeredgewidth> 0.0</markeredgewidth>
+                  <linestyle>-</linestyle>
+                  <linesize>  2</linesize>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Filtered Mean(Chi^2)(&lt;5sd) v Batch</title>
+                <description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol=" 14">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Batch</title>
+                <description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol=" 14">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+                <plotline xcol="  2" ycol=" 13">
+                  <linestyle>-</linestyle>
+                  <colour>blue</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Cumulative %completeness &amp; Anom%cmpl v Batch</title>
+                <description>In conjunction with radiation damage indicators, cumulative completeness may indicate a suitable point for cutting back poor data. The blue line is the completeness of anomalous differences
+</description>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol="  9">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+                <plotline xcol="  2" ycol=" 10">
+                  <linestyle>-</linestyle>
+                  <colour>blue</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Maximum resolution limit, I/sigma &gt; 1.0</title>
+                <description>The resolution limit estimate is the point at which I/sig(I) falls below 1.0, red line smoothed over adjacent batches. A sharp increase probably indicates radiation damage
+</description>
+                <yrange min="2" max="2.5" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol=" 11">
+                  <linestyle>-</linestyle>
+                  <colour>blue</colour>
+                </plotline>
+                <plotline xcol="  2" ycol=" 16">
+                  <markeredgewidth> 0.0</markeredgewidth>
+                  <linestyle>-</linestyle>
+                  <linesize>  2</linesize>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Imean &amp; RMS Scatter</title>
+                <description>Major deviations may indicate bad images</description>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol="  4">
+                  <linestyle>-</linestyle>
+                  <colour>blue</colour>
+                </plotline>
+                <plotline xcol="  2" ycol="  3">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Imean/RMS scatter</title>
+                <description>Major deviations may indicate bad images</description>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol="  5">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Number of rejects</title>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol="  8">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Cumulative multiplicity</title>
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  2" ycol=" 12">
+                  <linestyle>-</linestyle>
+                  <colour>red</colour>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Correlations CC(1/2) within dataset, dataset" id="data_FlotGraph_7" style="display:none;">
+              <headers separator=" ">
+  N  1/d^2    Dmid CCanom    Nanom   RCRanom   CC1/2   NCC1/2  CC1/2v   Rsplit
+</headers>
+              <data>
+  1  0.0063  12.60   -           0      -       -           0    -        -   
+  2  0.0189   7.27   -           0      -       -           0    -        -   
+  3  0.0315   5.64   -           0      -       -           0    -        -   
+  4  0.0441   4.76   -           0      -       -           0    -        -   
+  5  0.0567   4.20   -           0      -       -           0    -        -   
+  6  0.0693   3.80   -           0      -       -           0    -        -   
+  7  0.0819   3.49   -           0      -       -           0    -        -   
+  8  0.0945   3.25   -           0      -       -           0    -        -   
+  9  0.1071   3.06   -           0      -       -           0    -        -   
+ 10  0.1197   2.89   -           0      -       -           0    -        -   
+ 11  0.1323   2.75   -           0      -       -           0    -        -   
+ 12  0.1449   2.63   -           0      -       -           0    -        -   
+ 13  0.1575   2.52   -           0      -       -           0    -        -   
+ 14  0.1701   2.42   -           0      -       -           0    -        -   
+ 15  0.1826   2.34   -           0      -       -           0    -        -   
+ 16  0.1952   2.26   -           0      -       -           0    -        -   
+ 17  0.2078   2.19   -           0      -       -           0    -        -   
+ 18  0.2204   2.13   -           0      -       -           0    -        -   
+</data>
+              <plot>
+                <title> CC(1/2) v resolution, max resolution 0.00, anom 0.00</title>
+                <description>Resolution estimate: Insufficient data to determine resolution limit
+Anomalous resolution: Insufficient data to determine resolution limit
+</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol="  9">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  7">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  4">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title> RMS anomalous correlation ratio </title>
+                <description>RMS correlation ratio &gt; 1.0 indicates significant anomalous differences</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol="  6">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title> Rsplit </title>
+                <description>Rsplit is the R-factor equivalent of CC(1/2), but less useful</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol="  9">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Anisotropy analysis of CC(1/2) and I/sd, dataset" id="data_FlotGraph_8" style="display:none;">
+              <headers separator=" ">
+  N  1/d^2    Dmid    CC:a*   CC:b*   CC:c*  I/sd:a*  I/sd:b*  I/sd:c*    CCp1    CCp2    CCp3
+</headers>
+              <data>
+  1  0.0063  12.60     -       -       -       40.88    40.88    40.88    -       -       -   
+  2  0.0189   7.27     -       -       -       34.02    24.51    30.52    -       -       -   
+  3  0.0315   5.64     -       -       -       26.73    19.21    47.34    -       -       -   
+  4  0.0441   4.76     -       -       -       24.86    19.04    55.57    -       -       -   
+  5  0.0567   4.20     -       -       -         -      20.05    47.09    -       -       -   
+  6  0.0693   3.80     -       -       -       17.30    20.31    31.83    -       -       -   
+  7  0.0819   3.49     -       -       -         -      20.96    27.45    -       -       -   
+  8  0.0945   3.25     -       -       -       19.21    29.41    24.64    -       -       -   
+  9  0.1071   3.06     -       -       -         -      24.43    16.08    -       -       -   
+ 10  0.1197   2.89     -       -       -        7.58    17.20    19.52    -       -       -   
+ 11  0.1323   2.75     -       -       -         -      16.23    10.93    -       -       -   
+ 12  0.1449   2.63     -       -       -        3.59    12.13    10.06    -       -       -   
+ 13  0.1575   2.52     -       -       -        6.36    16.99    10.39    -       -       -   
+ 14  0.1701   2.42     -       -       -         -      21.02     6.54    -       -       -   
+ 15  0.1826   2.34     -       -       -        3.68     8.10     7.87    -       -       -   
+ 16  0.1952   2.26     -       -       -        5.45    12.32     6.95    -       -       -   
+ 17  0.2078   2.19     -       -       -        1.23    10.65     5.11    -       -       -   
+ 18  0.2204   2.13     -       -       -        3.63     8.33     4.21    -       -       -   
+</data>
+              <plot>
+                <title> Anisotropic CC(1/2) v resolution</title>
+                <description>CC(1/2) in cones along principle directions. Estimated maximum resolution limits, a*:  0.00, b*:  0.00, c*:  0.00
+</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol="  6">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  5">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  4">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title> Anisotropic Mn(I/sd) v resolution</title>
+                <description>Mn(I/sd) in cones along principle directions</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="55.5729" />
+                <plotline xcol="  2" ycol="  9">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  8">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  7">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title> Projected CC(1/2) v resolution</title>
+                <description>CC(1/2) projected on principle directions</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol=" 12">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 11">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 10">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Cumulative CC(1/2) in resolution ranges vs. Batch" id="data_FlotGraph_9" style="display:none;">
+              <headers separator=" ">
+    N  Run   Batch 4.70-3.32 3.32-2.71 2.71-2.35 2.35-2.10
+</headers>
+              <data>
+    1    1       1       -         -         -         -  
+</data>
+              <plot>
+                <title>Cumulative CC(1/2)</title>
+                <description>Cumulative CC(1/2) in coarse resolution ranges</description>
+                <xrange min="1" max="1" />
+                <yrange min="0" max="None" />
+                <xintegral>true</xintegral>
+                <plotline xcol="  4" ycol="  7">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  4" ycol="  6">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  4" ycol="  5">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  4" ycol="  4">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Analysis against resolution, dataset" id="data_FlotGraph_10" style="display:none;">
+              <headers separator=" ">
+  N  1/d^2    Dmid   Rmrg  Rfull   Rcum  Rmeas   Rpim    Nmeas      AvI  RMSdev    sd  I/RMS Mn(I/sd)  FrcBias  Chi^2 Chi^2c
+
+</headers>
+              <data>
+  1  0.0063  12.60   -      -      -      -      -           0      773      -     14     -      40.9     -       -      -  
+  2  0.0189   7.27   -      -      -      -      -           0      412      -      9     -      37.7     -       -      -  
+  3  0.0315   5.64   -      -      -      -      -           0      272      -      7     -      32.8     -       -      -  
+  4  0.0441   4.76   -      -      -      -      -           0      608      -     11     -      47.3     -       -      -  
+  5  0.0567   4.20   -      -      -      -      -           0      785      -     13     -      46.3     -       -      -  
+  6  0.0693   3.80   -      -      -      -      -           0      639      -     13     -      42.7     -       -      -  
+  7  0.0819   3.49   -      -      -      -      -           0      719      -     14     -      41.4     -       -      -  
+  8  0.0945   3.25   -      -      -      -      -           0      454      -     13     -      31.4     -       -      -  
+  9  0.1071   3.06   -      -      -      -      -           0      344      -     11     -      28.4     -       -      -  
+ 10  0.1197   2.89   -      -      -      -      -           0      265      -     11     -      22.6     -       -      -  
+ 11  0.1323   2.75   -      -      -      -      -           0      208      -     10     -      18.9     -       -      -  
+ 12  0.1449   2.63   -      -      -      -      -           0      199      -     11     -      17.6     -       -      -  
+ 13  0.1575   2.52   -      -      -      -      -           0      186      -     12     -      15.4     -       -      -  
+ 14  0.1701   2.42   -      -      -      -      -           0      179      -     11     -      15.4     -       -      -  
+ 15  0.1826   2.34   -      -      -      -      -           0      157      -     13     -      13.4     -       -      -  
+ 16  0.1952   2.26   -      -      -      -      -           0      147      -     13     -      12.0     -       -      -  
+ 17  0.2078   2.19   -      -      -      -      -           0      155      -     12     -      12.3     -       -      -  
+ 18  0.2204   2.13   -      -      -      -      -           0      128      -     15     -       9.9     -       -      -  
+</data>
+              <plot>
+                <title>I/sigma, Mean Mn(I)/sd(Mn(I))</title>
+                <description>I/sigma = I/RMS = I/(rms scatter before merging). Mean(I/sd) after averaging, ~= signal/noise</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="47.2849" />
+                <plotline xcol="  2" ycol=" 14">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 13">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Filtered Mean(Chi^2)(&lt;5sd) v Resolution</title>
+                <description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="None" />
+                <plotline xcol="  2" ycol=" 17">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Resolution</title>
+                <description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="None" />
+                <plotline xcol="  2" ycol=" 17">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 16">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Rmerge, Rfull, Rmeas, Rpim v Resolution</title>
+                <description>Rmerge, classic R-factor; Rmeas, multiplicity-weighted R; Rpim, precision-indicating R</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol="  8">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  7">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  5">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  4">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Average I, RMSdeviation and Sd</title>
+                <description>RMSdev is RMS scatter, sd is average corrected sig(I) estimate</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="784.797" />
+                <yrange min="0" max="14.7926" rightaxis="true" />
+                <plotline xcol="  2" ycol=" 12" rightaxis="true">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 11" rightaxis="true">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 10">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+              <plot>
+                <title>Fractional bias</title>
+                <description>FrcBias = Mean( Mn(If) - Ip )/Mean( Mn(I) ), where If is a full if present, else the partials with the smallest number of parts
+</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol=" 15">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Analysis against resolution, with &amp; without anomalous (Ov), dataset" id="data_FlotGraph_11" style="display:none;">
+              <headers separator=" ">
+  N  1/d^2    Dmid    Rmrg  RmrgOv    Rcum  RcumOv   Rmeas RmeasOv    Rpim  RpimOv    Nmeas
+</headers>
+              <data>
+  1  0.0063  12.60    -       -       -       -       -       -       -       -           0
+  2  0.0189   7.27    -       -       -       -       -       -       -       -           0
+  3  0.0315   5.64    -       -       -       -       -       -       -       -           0
+  4  0.0441   4.76    -       -       -       -       -       -       -       -           0
+  5  0.0567   4.20    -       -       -       -       -       -       -       -           0
+  6  0.0693   3.80    -       -       -       -       -       -       -       -           0
+  7  0.0819   3.49    -       -       -       -       -       -       -       -           0
+  8  0.0945   3.25    -       -       -       -       -       -       -       -           0
+  9  0.1071   3.06    -       -       -       -       -       -       -       -           0
+ 10  0.1197   2.89    -       -       -       -       -       -       -       -           0
+ 11  0.1323   2.75    -       -       -       -       -       -       -       -           0
+ 12  0.1449   2.63    -       -       -       -       -       -       -       -           0
+ 13  0.1575   2.52    -       -       -       -       -       -       -       -           0
+ 14  0.1701   2.42    -       -       -       -       -       -       -       -           0
+ 15  0.1826   2.34    -       -       -       -       -       -       -       -           0
+ 16  0.1952   2.26    -       -       -       -       -       -       -       -           0
+ 17  0.2078   2.19    -       -       -       -       -       -       -       -           0
+ 18  0.2204   2.13    -       -       -       -       -       -       -       -           0
+</data>
+              <plot>
+                <title>Rmerge, Rmeas, Rpim v Resolution</title>
+                <description>within I+/I- sets, and over all data (Ov values)</description>
+                <xscale>oneoversqrt</xscale>
+                <xrange min="0" max="0.226735" />
+                <yrange min="0" max="1" />
+                <plotline xcol="  2" ycol=" 11">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol=" 10">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  9">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  8">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  5">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  2" ycol="  4">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+          <CCP4i2ReportFlotGraph class="" style="">
+            <ns0:ccp4_data title=" Analysis against intensity, dataset" id="data_FlotGraph_12" style="display:none;">
+              <headers separator=" ">
+      Imax   Rmrg   Rcum  Rmeas   Rpim    Nmeas      AvI  RMSdev    sd  I/RMS Mn(I/sd)  FrcBias
+</headers>
+              <data>
+        13   -      -      -      -           0       13      -     10     -       2.0     -   
+        63   -      -      -      -           0       63      -      9     -       9.1     -   
+       113   -      -      -      -           0      113      -     10     -      15.2     -   
+       170   -      -      -      -           0      170      -     10     -      22.3     -   
+       239   -      -      -      -           0      239      -     10     -      29.2     -   
+       316   -      -      -      -           0      316      -     12     -      33.7     -   
+       423   -      -      -      -           0      423      -     11     -      45.4     -   
+       554   -      -      -      -           0      554      -     13     -      51.7     -   
+       768   -      -      -      -           0      768      -     16     -      60.2     -   
+      1843   -      -      -      -           0     1843      -     27     -      78.3     -   
+</data>
+              <plot>
+                <title>Rmerge v Intensity</title>
+                <description>The important values are in the top bin:  Rmerge:   0.000 Rmeas:   0.000 Rpim:   0.000</description>
+                <yrange min="0" max="None" />
+                <plotline xcol="  1" ycol="  5">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  1" ycol="  4">
+                  <linestyle>-</linestyle>
+                </plotline>
+                <plotline xcol="  1" ycol="  2">
+                  <linestyle>-</linestyle>
+                </plotline>
+              </plot>
+            </ns0:ccp4_data>
+          </CCP4i2ReportFlotGraph>
+        </CCP4i2ReportFlotGraphGroup>
+      </CCP4i2ReportGridItem>
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Scatter plots etc</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportGeneric class="" style="">
+          <br />
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportFlotGraph class="" style="" launcher="Normal probability">
+          <ns0:ccp4_data id="data_FlotGraph_13" style="display:none;" title="Normal probability plot">
+            <headers separator=" ">
+ X Y
+</headers>
+            <plot>
+              <title>Normal probability plot</title>
+              <xrange min=" -4.0000" max="  4.0000" />
+              <yrange min=" -5.0000" max="  5.0000" />
+              <fixaspectratio>true</fixaspectratio>
+              <xlabel>Delta(expected)</xlabel>
+              <ylabel>Delta(observed)</ylabel>
+              <showlegend>true</showlegend>
+              <legendposition x="   0.600" y="   0.000" />
+              <line x1="  -4.0000" x2="   4.0000" y1="  -4.0000" y2="   4.0000" linestyle="-" linecolour="black" />
+              <line x1="  -4.0000" x2="   4.0000" y1="   0.0000" y2="   0.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="   0.0000" y1="  -5.0000" y2="   5.0000" linestyle="-" linecolour="black" />
+            </plot>
+          </ns0:ccp4_data>
+        </CCP4i2ReportFlotGraph>
+        <CCP4i2ReportFlotGraph class="" style="" launcher="Anomalous Q-Q plot">
+          <ns0:ccp4_data id="data_FlotGraph_14" style="display:none;" title="Anomalous differences">
+            <headers separator=" ">
+ X Y
+</headers>
+            <plot>
+              <title>Anomalous differences</title>
+              <xrange min=" -4.0000" max="  4.0000" />
+              <yrange min=" -5.0000" max="  5.0000" />
+              <fixaspectratio>true</fixaspectratio>
+              <xlabel>Delta(expected)</xlabel>
+              <ylabel>Delta(observed)</ylabel>
+              <showlegend>true</showlegend>
+              <legendposition x="   0.600" y="   0.000" />
+              <line x1="  -4.0000" x2="   4.0000" y1="  -4.0000" y2="   4.0000" linestyle="-" linecolour="black" />
+              <line x1="  -4.0000" x2="   4.0000" y1="   0.0000" y2="   0.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="   0.0000" y1="  -5.0000" y2="   5.0000" linestyle="-" linecolour="black" />
+            </plot>
+          </ns0:ccp4_data>
+        </CCP4i2ReportFlotGraph>
+        <CCP4i2ReportGenericElement class="" style="">
+          <p>
+            <a href="/database/?getProjectJobFile?projectId=03ca40140ac011ee8cc98c8590af7452?fileName=ROGUES.log?jobNumber=1?subJobNumber=2">Show list of outliers</a>
+          </p>
+        </CCP4i2ReportGenericElement>
+      </CCP4i2ReportGridItem>
+    </CCP4i2ReportGridContainer>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportDiv class="" style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:10px 0px 10px 0px;">
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Summary of input reflection data</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="" style="" transpose="False">
+      <table>
+        <thead>
+          <tr>
+            <th>Max resolution</th>
+            <th>Nreflections</th>
+            <th>NObservations</th>
+            <th>Nparts</th>
+            <th>Nbatches</th>
+            <th>Ndatasets</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2.10</td>
+            <td>4897</td>
+            <td>4897</td>
+            <td>4897</td>
+            <td>1</td>
+            <td>1</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportTable class="" style="" transpose="False">
+      <table>
+        <thead>
+          <tr>
+            <th>DatasetName</th>
+            <th>RunNumber</th>
+            <th>Batch range</th>
+            <th>Excluded batches</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>P1/crystal/dataset</td>
+            <td>   1 </td>
+            <td>       1       1</td>
+            <td>None</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportDiv class="" style="">
+    <CCP4i2ReportText class="" style="font-size: 150%;">Analysis of sd(I)</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Error estimates sd(I) are analysed as functions of intensity (and resolution and batch),<br />as sigma(delta(I)/sd(I)), where delta(I) = Ihl-&lt;Ih&gt;, and as reduced chi^2 (goodness of fit), ([delta(I)/sd(I)]^2)/(n-m)</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>SD correction parameters were not refined</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportDiv class="" style="width:48%; margin:0px; padding:0px;display:inline-block;">
+      <CCP4i2ReportGeneric class="" style="">
+        <p>Analysis against resolution</p>
+      </CCP4i2ReportGeneric>
+      <CCP4i2ReportFlotGraph class="" style="width:300px;  height:270px;">
+        <ns0:ccp4_data id="data_FlotGraph_15" style="display:none;" title=" Analysis against resolution, dataset">
+          <headers separator=" ">
+  N  1/d^2    Dmid   Rmrg  Rfull   Rcum  Rmeas   Rpim    Nmeas      AvI  RMSdev    sd  I/RMS Mn(I/sd)  FrcBias  Chi^2 Chi^2c
+
+</headers>
+          <data>
+  1  0.0063  12.60   -      -      -      -      -           0      773      -     14     -      40.9     -       -      -  
+  2  0.0189   7.27   -      -      -      -      -           0      412      -      9     -      37.7     -       -      -  
+  3  0.0315   5.64   -      -      -      -      -           0      272      -      7     -      32.8     -       -      -  
+  4  0.0441   4.76   -      -      -      -      -           0      608      -     11     -      47.3     -       -      -  
+  5  0.0567   4.20   -      -      -      -      -           0      785      -     13     -      46.3     -       -      -  
+  6  0.0693   3.80   -      -      -      -      -           0      639      -     13     -      42.7     -       -      -  
+  7  0.0819   3.49   -      -      -      -      -           0      719      -     14     -      41.4     -       -      -  
+  8  0.0945   3.25   -      -      -      -      -           0      454      -     13     -      31.4     -       -      -  
+  9  0.1071   3.06   -      -      -      -      -           0      344      -     11     -      28.4     -       -      -  
+ 10  0.1197   2.89   -      -      -      -      -           0      265      -     11     -      22.6     -       -      -  
+ 11  0.1323   2.75   -      -      -      -      -           0      208      -     10     -      18.9     -       -      -  
+ 12  0.1449   2.63   -      -      -      -      -           0      199      -     11     -      17.6     -       -      -  
+ 13  0.1575   2.52   -      -      -      -      -           0      186      -     12     -      15.4     -       -      -  
+ 14  0.1701   2.42   -      -      -      -      -           0      179      -     11     -      15.4     -       -      -  
+ 15  0.1826   2.34   -      -      -      -      -           0      157      -     13     -      13.4     -       -      -  
+ 16  0.1952   2.26   -      -      -      -      -           0      147      -     13     -      12.0     -       -      -  
+ 17  0.2078   2.19   -      -      -      -      -           0      155      -     12     -      12.3     -       -      -  
+ 18  0.2204   2.13   -      -      -      -      -           0      128      -     15     -       9.9     -       -      -  
+</data>
+          <plot>
+            <title>Filtered Mean(Chi^2)(&lt;5sd) v Resolution</title>
+            <description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+            <xscale>oneoversqrt</xscale>
+            <xrange min="0" max="0.226735" />
+            <yrange min="0" max="None" />
+            <plotline xcol="  2" ycol=" 17">
+              <linestyle>-</linestyle>
+            </plotline>
+          </plot>
+          <plot>
+            <title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Resolution</title>
+            <description>Goodness of fit Mean(chi^2) should be close to 1.0</description>
+            <xscale>oneoversqrt</xscale>
+            <xrange min="0" max="0.226735" />
+            <yrange min="0" max="None" />
+            <plotline xcol="  2" ycol=" 17">
+              <linestyle>-</linestyle>
+            </plotline>
+            <plotline xcol="  2" ycol=" 16">
+              <linestyle>-</linestyle>
+            </plotline>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+    </CCP4i2ReportDiv>
+    <CCP4i2ReportDiv class="" style="width:48%; margin:0px; padding:0px;display:inline-block;">
+      <CCP4i2ReportGeneric class="" style="">
+        <p>Analysis against batch</p>
+      </CCP4i2ReportGeneric>
+      <CCP4i2ReportFlotGraph class="" style="width:300px;  height:270px;">
+        <ns0:ccp4_data id="data_FlotGraph_16" style="display:none;" title=" Analysis against all Batches for all runs, dataset">
+          <headers separator=" ">
+    N   Batch    Mn(I)   RMSdev  I/rms  Rmerge    Number  Nrej Cm%poss  AnoCmp MaxRes CMlplc   Chi^2  Chi^2c SmRmerge SmMaxRes
+
+</headers>
+          <data>
+</data>
+          <plot>
+            <title>Filtered Mean(Chi^2)(&lt;5sd) v Batch</title>
+            <description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+            <yrange min="0" max="None" />
+            <xintegral>true</xintegral>
+            <plotline xcol="  2" ycol=" 14">
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+          </plot>
+          <plot>
+            <title>Mean(Chi^2), Mean(Chi^2)(&lt;5sd) v Batch</title>
+            <description>Goodness of fit Mean(chi^2) should be ~1.0 over all ranges</description>
+            <yrange min="0" max="None" />
+            <xintegral>true</xintegral>
+            <plotline xcol="  2" ycol=" 14">
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+            <plotline xcol="  2" ycol=" 13">
+              <linestyle>-</linestyle>
+              <colour>blue</colour>
+            </plotline>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+    </CCP4i2ReportDiv>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_3542c9cc-0ac0-11ee-99c9-8c8590af7452" />
+      <div id="input_file_3542fa78-0ac0-11ee-99c9-8c8590af7452" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="14:31 14-Jun-2023" finishtime="14:31 14-Jun-2023" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="14:31 14-Jun-2023" finishtime="14:31 14-Jun-2023" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="" />
+  </CCP4i2ReportFold>
+</CCP4i2Reportaimless_report>

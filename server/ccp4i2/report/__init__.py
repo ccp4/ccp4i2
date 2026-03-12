@@ -43,39 +43,57 @@ Example:
             self.append(grid)
 """
 
-# Re-export main classes from CCP4ReportParser for backward compatibility
-from ccp4i2.report.CCP4ReportParser import (
+# Core classes and utilities
+from ccp4i2.report.core import (
     Report,
     Container,
+    ReportClass,
+    PARSER,
+    CCP4NS,
+    XRTNS,
+)
+
+# Element classes
+from ccp4i2.report.elements import (
     Fold,
     Results,
     Text,
     Pre,
     Table,
+    Div,
+    Progress,
+    Generic,
+    GenericElement,
+)
+
+# Graph classes
+from ccp4i2.report.graphs import (
     Graph,
     FlotGraph,
     GraphGroup,
     FlotGraphGroup,
-    Picture,
     PictureGroup,
     ObjectGallery,
+    DrawnDiv,
+)
+
+# Picture classes
+from ccp4i2.report.pictures import Picture
+
+# I/O data classes
+from ccp4i2.report.io_data import (
+    InputData,
+    OutputData,
+    ImportedFiles,
+)
+
+# Metadata classes
+from ccp4i2.report.metadata import (
     Title,
     JobDetails,
     Reference,
     ReferenceGroup,
-    InputData,
-    OutputData,
-    ImportedFiles,
-    Div,
-    DrawnDiv,
-    Progress,
-    Generic,
-    GenericElement,
     GenericReport,
-    # Utilities
-    PARSER,
-    CCP4NS,
-    XRTNS,
 )
 
 # New modern base classes

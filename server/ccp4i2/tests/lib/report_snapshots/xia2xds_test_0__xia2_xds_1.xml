@@ -1,0 +1,225 @@
+<CCP4i2Reportxia2_xds_report class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="xia2_xds" title2="14:08 20-Oct-2021" />
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportFold class="" style="" label="xia2 report" initiallyOpen="True" brief="xia2 report">
+    <CCP4i2ReportGeneric class="" style="">
+      <span style="font-size:110%">Click on the following link to display the xia2.html report </span>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <a href="/database/?getProjectJobFile?projectId=37409f10-31af-11ec-bc06-08002705bc84?fileName=xia2.html?jobNumber=1">Open Results</a>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="xia2 Text" initiallyOpen="False" brief="xia2 Text">
+    <CCP4i2ReportPre class="" style="">Environment configuration...
+Python =&gt; /home/kyle/CCP4-71-151021-emt/ccp4-7.1/libexec/python2.7
+CCTBX =&gt; /home/kyle/CCP4-71-151021-emt/ccp4-7.1/lib/py2/site-packages
+CCP4 =&gt; /home/kyle/CCP4-71-151021-emt/ccp4-7.1
+CCP4_SCR =&gt; /tmp/tmpPY1L4t
+Starting directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+Working directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+Free space:        57.35 GB
+Host: kyle-VirtualBox
+Contact: xia2.support@gmail.com
+XIA2 0.6.475-g7ac7bb6b-dials-2.2
+DIALS 2.2.10-g6dafd9427-release
+CCP4 7.1.017
+Command line: xia2 /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/xia2_xds.phil image="/home/kyle/Downloads/th_8_2/th_8_2_0001.cbf:1:20"
+Project directory: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1
+-------------------- Spotfinding SWEEP1 --------------------
+4619 spots found on 20 images (max 435 / bin)
+*                  *
+*                  *
+*                  *
+*                  *
+*                 **
+**** ** **** * *****
+************** *****
+********************
+********************
+********************
+1      image      20
+------------------- Autoindexing SWEEP1 --------------------
+All possible indexing solutions:
+tP  57.75  57.75 149.90  90.00  90.00  90.00
+oC  81.60  81.70 149.90  90.00  90.00  90.00
+oP  57.70  57.80 149.90  90.00  90.00  90.00
+mC  81.60  81.70 149.90  90.00  90.00  90.00
+mP  57.70  57.80 149.90  90.00  90.00  90.00
+aP  57.70  57.80 149.90  90.00  90.00  90.00
+Indexing solution:
+tP  57.78  57.78 150.01  90.00  90.00  90.00
+-------------------- Integrating SWEEP1 --------------------
+Processed batches 1 to 20
+Standard Deviation in pixel range: 0.56 0.56
+Integration status per image:
+oooooooooooooooooooo
+"o" =&gt; good        "%" =&gt; ok        "!" =&gt; bad rmsd
+"O" =&gt; overloaded  "#" =&gt; many bad  "." =&gt; weak
+"@" =&gt; abandoned
+Maximum relative deviation in cell: 0.000
+Mosaic spread: 0.069 &lt; 0.069 &lt; 0.069
+-------------------- Integrating SWEEP1 --------------------
+Processed batches 1 to 20
+Standard Deviation in pixel range: 0.56 0.56
+Integration status per image:
+oooooooooooooooooooo
+"o" =&gt; good        "%" =&gt; ok        "!" =&gt; bad rmsd
+"O" =&gt; overloaded  "#" =&gt; many bad  "." =&gt; weak
+"@" =&gt; abandoned
+Maximum relative deviation in cell: 0.000
+Mosaic spread: 0.049 &lt; 0.049 &lt; 0.049
+-------------------- Preparing DEFAULT ---------------------
+--------------------- Scaling DEFAULT ----------------------
+Resolution for sweep NATIVE/SWEEP1: 1.23 (cc_half &gt; 0.3)
+--------------------- Scaling DEFAULT ----------------------
+Likely spacegroups:
+P 41 21 2
+P 43 21 2
+Reindexing to first spacegroup setting: P 41 21 2 (h,k,l)
+Overall twinning score: 2.09
+Your data do not appear twinned
+Project: AUTOMATIC
+Crystal: DEFAULT
+Sequence: 
+Wavelength name: NATIVE
+Wavelength 0.97625
+Sweeps:
+SWEEP SWEEP1 [WAVELENGTH NATIVE]
+TEMPLATE th_8_2_####.cbf
+DIRECTORY /home/kyle/Downloads/th_8_2
+IMAGES (USER) 1 to 20
+MTZ file: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DEFAULT/NATIVE/SWEEP1/integrate/INTEGRATE_reindex.mtz
+For AUTOMATIC/DEFAULT/NATIVE                 Overall    Low     High
+High resolution limit                           1.23    3.34    1.23
+Low resolution limit                           37.81   37.83    1.25
+Completeness                                   15.2    19.3     3.1
+Multiplicity                                    1.1     1.0     1.0
+I/sigma                                         5.4    19.3     0.6
+Rmerge(I)                                     0.063   0.020   0.346
+Rmerge(I+/-)                                  0.057   0.021   0.000
+Rmeas(I)                                      0.088   0.029   0.489
+Rmeas(I+/-)                                   0.080   0.030   0.000
+Rpim(I)                                       0.062   0.020   0.346
+Rpim(I+/-)                                    0.056   0.021   0.000
+CC half                                       0.998   0.999   0.688
+Wilson B factor                              10.580
+Anomalous completeness                          0.3     0.1     0.1
+Anomalous multiplicity                          1.0     1.0     1.0
+Anomalous correlation                         0.000   0.000   0.000
+Anomalous slope                               0.988
+dF/F                                          0.136
+dI/s(dI)                                      0.651
+Total observations                            11946     820     116
+Total unique                                  11335     789     112
+Assuming spacegroup: P 41 21 2
+Other likely alternatives are:
+P 43 21 2
+Unit cell:
+ 57.780  57.780 150.030
+ 90.000  90.000  90.000
+mtz format:
+Scaled reflections: /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_free.mtz
+mtz_unmerged format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.mtz
+sca format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled.sca
+sca_unmerged format:
+Scaled reflections (NATIVE): /home/kyle/CCP4I2_PROJECTS/xia2xds_test_0/CCP4_JOBS/job_1/DataFiles/AUTOMATIC_DEFAULT_scaled_unmerged.sca
+hkl format:
+</CCP4i2ReportPre>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="xia2 summary" initiallyOpen="True" brief="xia2 summary">
+    <CCP4i2ReportTable class="" style="" transpose="True">
+      <table class="transpose">
+        <tbody>
+          <tr>
+            <th>Run name</th>
+            <td>AUTOMATIC/ DEFAULT/ NATIVE</td>
+          </tr>
+          <tr>
+            <th>Probable space groups</th>
+            <td>P 41 21 2, P 43 21 2</td>
+          </tr>
+          <tr>
+            <th>Unit cell</th>
+            <td>57.78, 57.78, 150.03<br />90.00, 90.00, 90.00</td>
+          </tr>
+          <tr>
+            <th>High res.</th>
+            <td>1.23 (1.23)</td>
+          </tr>
+          <tr>
+            <th>Low res.</th>
+            <td>37.81 (1.25)</td>
+          </tr>
+          <tr>
+            <th>Completeness</th>
+            <td>15.2 (3.1)</td>
+          </tr>
+          <tr>
+            <th>Multiplicity</th>
+            <td>1.1 (1.0)</td>
+          </tr>
+          <tr>
+            <th>I/sigI</th>
+            <td>5.42 (0.59)</td>
+          </tr>
+          <tr>
+            <th>Rmeas (I)</th>
+            <td>0.088 (0.489)</td>
+          </tr>
+          <tr>
+            <th>Rmeas (I+/-)</th>
+            <td>0.080 (0.000)</td>
+          </tr>
+          <tr>
+            <th>Rpim (I)</th>
+            <td>0.062 (0.346)</td>
+          </tr>
+          <tr>
+            <th>Rpim (I+/-)</th>
+            <td>0.056 (0.000)</td>
+          </tr>
+          <tr>
+            <th>CC½</th>
+            <td>0.998 (0.688)</td>
+          </tr>
+          <tr>
+            <th>Anom. Compl.</th>
+            <td>0.3 (0.1)</td>
+          </tr>
+          <tr>
+            <th>Anom. Mult.</th>
+            <td>1.0 (1.0)</td>
+          </tr>
+          <tr>
+            <th>#Obs</th>
+            <td>11946 (116)</td>
+          </tr>
+          <tr>
+            <th>#Unique</th>
+            <td>11335 (112)</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_b12fad02-31af-11ec-bc06-08002705bc84" />
+      <div id="input_file_b12fad03-31af-11ec-bc06-08002705bc84" />
+      <div id="input_file_b12fad04-31af-11ec-bc06-08002705bc84" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="14:08 20-Oct-2021" finishtime="14:12 20-Oct-2021" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="14:08 20-Oct-2021" finishtime="14:12 20-Oct-2021" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="" />
+  </CCP4i2ReportFold>
+</CCP4i2Reportxia2_xds_report>

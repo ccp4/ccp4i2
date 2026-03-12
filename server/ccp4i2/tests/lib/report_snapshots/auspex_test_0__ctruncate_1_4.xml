@@ -1,0 +1,1663 @@
+<CCP4i2Reportctruncate_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="ctruncate" title2="12:04 28-Jul-2021" />
+  <CCP4i2ReportDiv class="" style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+    <CCP4i2ReportText class="" style="">No structure factor data has been created</CCP4i2ReportText>
+    <CCP4i2ReportGenericElement class="" style="">
+      <p>
+        <a href="&lt;PROJECTS_DIR&gt;/auspex_test_0/CCP4_JOBS/job_1/job_4/./log.txt">Show log file</a>
+      </p>
+    </CCP4i2ReportGenericElement>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportDiv class="" style="border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;">
+    <CCP4i2ReportText class="" style="font-size: 180%;text-align:left">Summary</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <font size="+2" color="green">✔ 
+Completeness test shows good data.
+</font>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <font size="+2" color="red">✗ Warning: Severe deviation from Wilson plot, 4.8% of bins deviate, please look at it</font>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <font size="+2" color="green"> ✔ No evidence of possible translational non-crystallographic symmetry</font>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <font size="+2" color="green">✔ No evidence of twinning</font>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <font size="+2" color="orange">● Warning: Some anisotropy detected. This may have an effect on statistics.</font>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <font size="+2" color="red">✗ Warning: Possible ice rings found.</font>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <font size="+2" color="orange">● 
+  Some anomalous signal at intermediate resolution.  Low resolution signal missing.
+  </font>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportDiv>
+  <CCP4i2ReportFold class="" style="" label="Details of reflection data" initiallyOpen="True" brief="InputData">
+    <CCP4i2ReportText class="" style="font-size:130%;text-align:center">Summary of input reflection data</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <br />
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>File:</b> /home/kyle/CCP4I2_PROJECTS/auspex_test_0/CCP4_JOBS/job_1/job_2/HKLOUT.mtz </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Crystal/Dataset:</b> /GaAda/Ga1</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Cell:</b> 34.15, 54.81, 68.00, 90.00, 90.00, 90.00</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Spacegroup:</b> P 21 21 21</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Reflection data summary:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Data type</th>
+            <th>Min resolution</th>
+            <th>Max resolution</th>
+            <th>Nreflections</th>
+            <th>NObservations</th>
+            <th>NCentric</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>I_sigI</td>
+            <td>34.000</td>
+            <td>1.792</td>
+            <td>12182</td>
+            <td>12182</td>
+            <td>1758</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Maximum indices in reflection data:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Direction</th>
+            <th>Index (file)</th>
+            <th>Max Resolution (file)</th>
+            <th>Index (P1)</th>
+            <th>Max Resolution (P1)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>h</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>k</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+          </tr>
+          <tr>
+            <td>l</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Data quality" initiallyOpen="False" brief="Quality">
+    <CCP4i2ReportText class="" style="font-size:130%;">Data quality</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Resolution range statistics:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Statistic</th>
+            <th>Min Resolution</th>
+            <th>Max Resolution</th>
+            <th>Percentage refln</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Untitled</td>
+            <td>34.00</td>
+            <td>1.79</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+          <tr>
+            <td>Completeness I/sigmaI &gt; 15.00</td>
+            <td>34.00</td>
+            <td>3.22</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+          <tr>
+            <td>Completeness I/sigmaI &gt; 10.00</td>
+            <td>34.00</td>
+            <td>2.94</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+          <tr>
+            <td>Completeness I/sigmaI &gt; 5.00</td>
+            <td>34.00</td>
+            <td>2.34</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+          <tr>
+            <td>Completeness I/sigmaI &gt; 3.00</td>
+            <td>34.00</td>
+            <td>2.14</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+          <tr>
+            <td>Completeness I/sigmaI &gt; 2.00</td>
+            <td>34.00</td>
+            <td>2.02</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+          <tr>
+            <td>Completeness I/sigmaI &gt; 1.50</td>
+            <td>34.00</td>
+            <td>1.91</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+          <tr>
+            <td>Completeness I/sigmaI &gt; 1.00</td>
+            <td>34.00</td>
+            <td>1.88</td>
+            <td>[&lt;Element 'percentage' at 0xADDR&gt;]</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The Completeness max and min resolution indicte the resolution extremes where obs/sig(obs) &gt; N accounts for more than 85 % of observations.
+   
+The Completeness with I/sigma above 3 indicates a strong signal, 
+here it is from 34.00 to 2.14A.
+(The CC1/2 on unmerged intensities gives, perhaps, the best estimate of the useable data.)
+  <ul>
+            <li> This will be used in the analysis of the data. </li>
+          </ul>
+        </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Completeness and R-standard plots</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFlotGraph class="" style="">
+      <ns0:ccp4_data title="intensity completeness vs resolution" id="data_FlotGraph_0" style="display:none;">
+        <headers separator=" ">
+ 1/resol^2 completeness I/sigI&gt;15 I/sigI&gt;10 I/sigI&gt;5 I/sigI&gt;3 I/sigI&gt;2 I/sigI&gt;1 I/sigI&gt;1 Rstandard
+ </headers>
+        <data>
+    0.0200 0.972  0.867 0.917 0.938 0.948 0.955 0.956 0.957 0.000
+    0.0442 0.999  0.957 0.973 0.987 0.992 0.994 0.997 0.999 0.000
+    0.0634 0.995  0.936 0.954 0.975 0.984 0.989 0.989 0.993 0.000
+    0.0801 0.995  0.901 0.934 0.969 0.977 0.986 0.988 0.988 0.000
+    0.0954 1.000  0.854 0.908 0.953 0.964 0.975 0.985 0.990 0.000
+    0.1098 0.997  0.813 0.879 0.940 0.963 0.973 0.978 0.983 0.000
+    0.1232 0.990  0.717 0.810 0.912 0.947 0.961 0.970 0.973 0.000
+    0.1359 0.998  0.686 0.771 0.883 0.920 0.950 0.963 0.975 0.000
+    0.1483 0.985  0.604 0.733 0.860 0.901 0.941 0.954 0.968 0.000
+    0.1602 0.998  0.625 0.739 0.873 0.925 0.940 0.959 0.973 0.000
+    0.1716 0.978  0.536 0.680 0.814 0.877 0.900 0.918 0.942 0.000
+    0.1826 1.000  0.527 0.681 0.851 0.897 0.944 0.959 0.980 0.000
+    0.1935 0.970  0.455 0.631 0.790 0.874 0.909 0.916 0.932 0.000
+    0.2039 0.993  0.469 0.599 0.783 0.875 0.932 0.949 0.969 0.000
+    0.2142 0.999  0.426 0.596 0.813 0.898 0.933 0.944 0.963 0.000
+    0.2243 0.949  0.337 0.500 0.689 0.796 0.835 0.861 0.895 0.001
+    0.2340 0.990  0.354 0.533 0.729 0.825 0.880 0.895 0.932 0.001
+    0.2437 0.995  0.256 0.441 0.663 0.789 0.862 0.892 0.926 0.001
+    0.2532 0.940  0.195 0.369 0.641 0.746 0.813 0.850 0.888 0.001
+    0.2624 0.982  0.177 0.330 0.593 0.710 0.799 0.856 0.893 0.001
+    0.2716 0.986  0.100 0.260 0.537 0.715 0.810 0.862 0.912 0.002
+    0.2807 0.943  0.093 0.234 0.484 0.647 0.740 0.785 0.857 0.002
+    0.2894 0.937  0.041 0.169 0.384 0.544 0.660 0.734 0.790 0.003
+    0.2982 0.969  0.044 0.111 0.342 0.549 0.661 0.720 0.828 0.003
+    0.3069 0.886  0.015 0.068 0.304 0.462 0.570 0.648 0.738 0.004
+</data>
+        <plot>
+          <title>Resolution plots for completeness at various I/sigmaI levels</title>
+          <xscale>oneoversqrt</xscale>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="8">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>yellow</colour>
+          </plotline>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="7">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>blue</colour>
+          </plotline>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="6">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>pink</colour>
+          </plotline>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="5">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>brown</colour>
+          </plotline>
+          <plotline xcol="1" ycol="4">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="3">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="  2">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+        <plot>
+          <title>Resolution plots for completeness and Rstandard</title>
+          <xscale>oneoversqrt</xscale>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="9">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="  2">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The completeness at various resolution limit plots gives the completeness after applying a I/sigI cutoff.  The profiles give an indication of the quality of the data.  The Rstandard plot (&lt;sigF&gt;/ &lt;F&gt;) gives an alternative indicator.  Strongly recorded resolution bins would typically have values below 0.1
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Low Resolution Completeness</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Resolution</th>
+            <th>Completeness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>inf - 9.87</td>
+            <td>0.84  [59.0 : 70.1]</td>
+          </tr>
+          <tr>
+            <td>9.67 - 7.66</td>
+            <td>1.00  [78.2 : 78.2]</td>
+          </tr>
+          <tr>
+            <td>7.63 - 6.60</td>
+            <td>1.00  [82.0 : 82.0]</td>
+          </tr>
+          <tr>
+            <td>6.60 - 5.95</td>
+            <td>1.00  [86.5 : 86.5]</td>
+          </tr>
+          <tr>
+            <td>5.94 - 5.47</td>
+            <td>1.00  [84.2 : 84.2]</td>
+          </tr>
+          <tr>
+            <td>5.47 - 5.15</td>
+            <td>1.00  [87.0 : 87.0]</td>
+          </tr>
+          <tr>
+            <td>5.14 - 4.85</td>
+            <td>1.00  [86.8 : 86.8]</td>
+          </tr>
+          <tr>
+            <td>4.85 - 4.65</td>
+            <td>0.99  [86.0 : 86.5]</td>
+          </tr>
+          <tr>
+            <td>4.65 - 4.45</td>
+            <td>1.00  [87.2 : 87.2]</td>
+          </tr>
+          <tr>
+            <td>4.45 - 4.29</td>
+            <td>0.98  [87.9 : 90.0]</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+Low completeness at low resolution can lead to map distortions and other difficulties.  This often arises through experimental effects such as incorrectly alligned crystal, poorly positioned backstop, or over exposure.
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Wilson scaling:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">Estimate of overall wilson B-factor: 16.77 A^(-2)</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">Estimate wilson scale factor: 1.21</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The isotropic Wilson temperature estimate (B-value) is an approximation to the fall-off of scattering with resolution.  This should be correlated with the refined atomic B-values.  This averages out any anisotropy in the experimental observations.  This approximation will be misleading for strongly anisotropic data.
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFlotGraph class="" style="">
+      <ns0:ccp4_data title="Wilson plot" id="data_FlotGraph_1" style="display:none;">
+        <headers separator=" ">
+ 1/resol^2 ln(I/I_th) Reference_prot
+</headers>
+        <data>
+ 0.0180   -1.0856   -0.6208
+ 0.0389   -0.4005   -0.4542
+ 0.0555   -0.0632   -0.1280
+ 0.0701   -0.3049   -0.2629
+ 0.0834   -0.3360   -0.4425
+ 0.0958   -0.6899   -0.6952
+ 0.1076   -0.9721   -0.9262
+ 0.1187   -1.2116   -1.1233
+ 0.1294   -1.2391   -1.2915
+ 0.1397   -1.4206   -1.4002
+ 0.1498   -1.4914   -1.4862
+ 0.1595   -1.5958   -1.5703
+ 0.1689   -1.6170   -1.6284
+ 0.1781   -1.6472   -1.6667
+ 0.1871   -1.7280   -1.7046
+ 0.1960   -1.7062   -1.7379
+ 0.2046   -1.8191   -1.7913
+ 0.2131   -1.8527   -1.8564
+ 0.2215   -1.8331   -1.9200
+ 0.2298   -1.9537   -1.9798
+ 0.2378   -1.9868   -2.0825
+ 0.2457   -2.1610   -2.1693
+ 0.2537   -2.1748   -2.2749
+ 0.2617   -2.2330   -2.3876
+ 0.2690   -2.4457   -2.5024
+ 0.2769   -2.5302   -2.6171
+ 0.2844   -2.7057   -2.7147
+ 0.2921   -2.8617   -2.8302
+ 0.2995   -2.9878   -2.9274
+ 0.3069   -3.0164   -3.0286
+</data>
+        <plot>
+          <title>Wilson B estimate, 16.77</title>
+          <xscale>oneoversqrt</xscale>
+          <plotline xcol="1" ycol="3">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="  2">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The wilson plot shows the fall off of the mean intensity with resolution.   This is then used calculate an absolute scale and temperature factor for a set of observed intensities, using the theory of A C Wilson.  The reference_plot is based upon an analysis of high resolution datasets in the PDB (BEST or RNA equivalent), which takes into account the none random distribution of atoms within the crystal.  Some deviation from the reference plot is to be expected, however, significant deviation may indicate problems, such as ice rings, detector issues, or missprocessed.
+ </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+Popov and Bourenkov, Acta D (2003) D59, 1145
+ </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Check for bad rings:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Possible bad resolution rings found, consisting of 4.8% of bins. Data in these may be of lower quality.</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Resolution</th>
+            <th>Imean</th>
+            <th>Z-score</th>
+            <th>Completeness</th>
+            <th>Ave. Completeness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> 6.73</td>
+            <td>  29578.84</td>
+            <td>-32.72</td>
+            <td>1.00</td>
+            <td>0.99</td>
+          </tr>
+          <tr>
+            <td> 4.87</td>
+            <td>  92055.73</td>
+            <td>7.10</td>
+            <td>0.99</td>
+            <td>0.98</td>
+          </tr>
+          <tr>
+            <td> 3.91</td>
+            <td>  62211.96</td>
+            <td>-14.69</td>
+            <td>1.00</td>
+            <td>0.99</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+ The outlier rings table shows data Z-scores and completeness for problem resolution bins in comparison with the Wilson B-factor fit. Large z-scores and low completeness at give a strong hint to the presence of problems. It may be required to exclude these resolution ranges.
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Anomalous" initiallyOpen="False" brief="Anomalous">
+    <CCP4i2ReportText class="" style="font-size:130%;">Anomalous signal</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Anomalous signal statistics:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Statistic</th>
+            <th>Min Resolution</th>
+            <th>Max Resolution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Signal to Noise Ratio</td>
+            <td>6.86</td>
+            <td>2.99</td>
+          </tr>
+          <tr>
+            <td>Measurability Limit</td>
+            <td>6.86</td>
+            <td>2.39</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+  Some anomalous signal at intermediate resolution.  Low resolution signal missing.
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+  These calculations are performed using scaled and merged data.  More accurate estimates of the limit of the anomalous signal
+  can be obtained using scaled and unmerged data in the half dataset correlation calculation of aimless. 
+
+ The measurability is defined as the fraction of the anomalous differences for which the signal to noise for deltaI,
+  I(+) and I(-) are all &gt; 3. The resolution limits are derived from I/sigI of 1.2 for the signal to noise, and measurability above 5% For well processed data having more than 5% of the measured data satisfying this criteria is a good
+   indicator, particularly when combined with a significate mean signal to noise of the anomalous difference in a
+  resolution shell.
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFlotGraph class="" style="">
+      <ns0:ccp4_data title="intensity anomalous analysis plots" id="data_FlotGraph_2" style="display:none;">
+        <headers separator=" ">
+ 1/resol^2 Mn(dI/sigdI)) Mn(dI/I) measurability 
+ </headers>
+        <data>
+  0.02 2.33 0.07 0.23
+  0.05 1.50 0.04 0.16
+  0.06 1.51 0.05 0.14
+  0.08 1.42 0.05 0.14
+  0.10 1.39 0.06 0.12
+  0.11 1.34 0.07 0.12
+  0.13 1.26 0.08 0.12
+  0.14 1.21 0.09 0.08
+  0.15 1.07 0.08 0.06
+  0.16 1.03 0.09 0.04
+  0.17 1.06 0.10 0.06
+  0.19 0.95 0.10 0.04
+  0.20 0.98 0.11 0.05
+  0.21 0.99 0.12 0.04
+  0.22 1.00 0.12 0.04
+  0.23 0.84 0.12 0.02
+  0.24 0.78 0.12 0.02
+  0.25 0.82 0.15 0.02
+  0.26 0.78 0.15 0.02
+  0.27 0.76 0.18 0.03
+  0.28 0.72 0.20 0.01
+  0.29 0.68 0.23 0.01
+  0.30 0.65 0.25 0.00
+  0.31 0.61 0.27 0.01
+</data>
+        <plot>
+          <title>Resolution plots for anomalous scattering indicators</title>
+          <xscale>oneoversqrt</xscale>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="4">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="3">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="  2">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="tNCS" initiallyOpen="False" brief="tNCS">
+    <CCP4i2ReportText class="" style="font-size:130%;">tNCS</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+No translational NCS detected.
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+ The analysis uses the peak heights in the patterson map that are further than 14 A (approx. 4 Ca-Ca) from the origin.  The presence of a large off origin peak (above 20%) and/or a very low Q-score, below 1.0, is a string indicator of the presence of tNCS.  An intermidiate Q-score, between 5.0 and 1.0, may indicate weak tNCS or be the result of cross vector of a large scatterer such as a cluster or heavy metal.
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">Reference: P. Zwarts CCP4 Newsletter 42</font>
+      </p>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Anisotropy analysis" initiallyOpen="True" brief="Anisotropy">
+    <CCP4i2ReportText class="" style="font-size:130%;">Anisotropy Analysis</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+Little or no anisotropy detected. 
+The presence of anisotropy may indicate that the crystal is poorly ordered along one of the axes.
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>ML Anisotropy matrices:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportGeneric class="" style="">
+          <p>
+            <p>
+              <b>Anisotropy B matrix:</b>
+            </p>17.082285  0.000000  0.000000  <br />  0.000000  14.284117  0.000000  <br />  0.000000  0.000000  16.258556</p>
+        </CCP4i2ReportGeneric>
+      </CCP4i2ReportGridItem>
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportGeneric class="" style="">
+          <p>
+            <p>
+              <b>Anisotropy U matrix:</b>
+            </p>0.432699  0.000000  0.000000  <br />  0.000000  0.361821  0.000000  <br />  0.000000  0.000000  0.411834</p>
+        </CCP4i2ReportGeneric>
+      </CCP4i2ReportGridItem>
+    </CCP4i2ReportGridContainer>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Eigenvalues and Eigenvectors of anisotropy matrix</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Eigenvalue</th>
+            <th>Eigenvector</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>  0.4118</td>
+            <td>  0.000000 0.000000 1.000000</td>
+          </tr>
+          <tr>
+            <td>  0.4327</td>
+            <td>  1.000000 0.000000 0.000000</td>
+          </tr>
+          <tr>
+            <td>  0.3618</td>
+            <td>  0.000000 1.000000 0.000000</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Directional plots:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFlotGraph class="" style="">
+      <ns0:ccp4_data title="Intensities Anisotropy Analysis" id="data_FlotGraph_3" style="display:none;">
+        <headers separator=" ">
+ 1/resol^2 Mn(I(d1)) Mn(I(d2)) Mn(I(d3)) Mn(I(ov) Mn(I/sd(d1)) Mn(I/sd(d2)) Mn(I/sd(d3)) Mn(I/sd(ov)) N(d1) N(d2) N(d3) N 
+ </headers>
+        <data>
+ 0.0337 49654.65 66642.75 66329.42 68123.52    41.74    34.28    36.32    41.17   1232.0   1128.0   1200.0   8184.0
+ 0.0739 55493.17 77516.36 63846.83 71116.93    43.57    33.00    36.94    41.56   1216.0   1088.0   1240.0   8280.0
+ 0.1056 29374.35 34966.99 30555.06 33187.86    32.27    25.40    27.92    30.77   1200.0   1104.0   1152.0   8312.0
+ 0.1334 18588.04 14630.18 20666.56 19532.48    27.11    17.50    24.42    24.36   1176.0   1040.0   1208.0   8208.0
+ 0.1586 13122.95 11871.61 14114.33 13976.27    22.67    15.42    19.38    20.20   1216.0   1000.0   1208.0   8192.0
+ 0.1822  9274.68 10160.89 12211.58 10936.69    17.67    13.82    17.76    16.90   1168.0   1112.0   1200.0   8280.0
+ 0.2044  7020.04  7958.00  9560.55  9151.10    14.43    12.17    14.67    15.12   1184.0    936.0   1184.0   8192.0
+ 0.2255  7638.68  7722.63  8462.17  7626.67    13.59    11.03    12.78    12.72   1136.0    888.0   1152.0   8040.0
+ 0.2456  6225.56  5451.61  5805.17  5809.34    11.27     8.99     9.10    10.25   1264.0    952.0   1136.0   8088.0
+ 0.2650  3962.22  4612.21  4428.19  4357.07     7.80     7.80     7.35     8.08   1168.0    856.0   1200.0   8136.0
+ 0.2839  2836.32  2830.59  3251.06  2913.99     6.03     5.50     6.19     6.05   1168.0    880.0   1056.0   7848.0
+ 0.3021  1918.89  1649.51  2489.27  2052.29     4.25     3.69     4.73     4.42   1080.0    704.0   1088.0   7696.0
+</data>
+        <plot>
+          <title>Directional plots for mean(I)</title>
+          <xscale>oneoversqrt</xscale>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="5">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>yellow</colour>
+          </plotline>
+          <plotline xcol="1" ycol="4">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="3">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="  2">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+        <plot>
+          <title>Directorional plots for mean(I)/mean(Sigma)</title>
+          <xscale>oneoversqrt</xscale>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="9">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>yellow</colour>
+          </plotline>
+          <plotline xcol="1" ycol="8">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="7">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="6">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+        <plot>
+          <title>Directorional plots for number of reflections</title>
+          <xscale>oneoversqrt</xscale>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="13">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>yellow</colour>
+          </plotline>
+          <plotline xcol="1" ycol="12">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="11">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="10">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The directional plots are along the directions of the moments of the anisotropy temperature matrix.  These are ordered such that d1 has maximum alignment with a*, d2 with b*, etc.
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <p>
+          <b>Anisotropic correction:</b>
+        </p>0.015918  -0.000000  -0.000000  <br />  -0.000000  -0.020235  0.000000  <br />  -0.000000  0.000000  0.004317</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>This will be used in the remaining statistics calculations.</p>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Ice Rings" initiallyOpen="True" brief="Ice Rings">
+    <CCP4i2ReportText class="" style="font-size:130%;">Ice Rings</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Possible ice rings found. Data in these may be of lower quality.</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Ice rings will be ignored in the truncate procedure.</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="margin: 0 auto;border:1px solid orange;" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Resolution</th>
+            <th>Ice Ring</th>
+            <th>Imean</th>
+            <th>Z-score</th>
+            <th>Completeness</th>
+            <th>Ave. Completeness</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td> 6.73</td>
+            <td>  yes  </td>
+            <td>  29578.84</td>
+            <td>-32.72</td>
+            <td>1.00</td>
+            <td>0.99</td>
+          </tr>
+          <tr>
+            <td> 4.87</td>
+            <td>  yes  </td>
+            <td>  92055.73</td>
+            <td>7.10</td>
+            <td>0.99</td>
+            <td>0.98</td>
+          </tr>
+          <tr>
+            <td> 3.91</td>
+            <td>  yes  </td>
+            <td>  62211.96</td>
+            <td>-14.69</td>
+            <td>1.00</td>
+            <td>0.99</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+ The ice rings table shows data Z-scores and completeness for ice ring sensitive resolutions in comparison with neighbouring ice-ring insensitive resolutions. Large z-scores and low completeness at give a strong hint to the presence of ice rings. It may be required to exclude these resolution ranges.
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportFold class="" style="" label="Twinning statistics" initiallyOpen="False" brief="Twinning">
+    <CCP4i2ReportText class="" style="font-size:130%;">Twinning statistics</CCP4i2ReportText>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+NO Twinning detected
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Global twinning estimates:</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+ These tests rely on the fact that it is highly improbably that very weak or very strong reflections will coincide, therefore, the tails for the distribution of twinned datasets will be less pronounced
+ </font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportTable class="center" style="" transpose="False">
+      <table class="center">
+        <thead>
+          <tr>
+            <th>Test</th>
+            <th>Twinnned?</th>
+            <th>Score</th>
+            <th>alpha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>L-test</td>
+            <td>No</td>
+            <td>0.487593</td>
+            <td>[&lt;Element 'TwinFraction' at 0xADDR&gt;]</td>
+          </tr>
+        </tbody>
+      </table>
+    </CCP4i2ReportTable>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>Relation between L statistics and twinning fraction:
+  Twinning fraction = 0.000  L statistics = 0.500:
+  Twinning fraction = 0.100  L statistics = 0.440:
+  Twinning fraction = 0.500  L statistics = 0.375:</p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>Twinning plots based on global statistics</b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <i>L-test</i>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFlotGraph class="" style="">
+      <ns0:ccp4_data title="L-test for twinning" id="data_FlotGraph_4" style="display:none;">
+        <headers separator=" ">
+ |L| N(L) Untwinned Twinned 
+ </headers>
+        <data>
+ 0.0000 0.0000 0.0000 0.0000
+ 0.0500 0.0513 0.0500 0.0749
+ 0.1000 0.1034 0.1000 0.1495
+ 0.1500 0.1542 0.1500 0.2233
+ 0.2000 0.2064 0.2000 0.2960
+ 0.2500 0.2579 0.2500 0.3672
+ 0.3000 0.3094 0.3000 0.4365
+ 0.3500 0.3609 0.3500 0.5036
+ 0.4000 0.4119 0.4000 0.5680
+ 0.4500 0.4631 0.4500 0.6294
+ 0.5000 0.5141 0.5000 0.6875
+ 0.5500 0.5654 0.5500 0.7418
+ 0.6000 0.6164 0.6000 0.7920
+ 0.6500 0.6679 0.6500 0.8377
+ 0.7000 0.7192 0.7000 0.8785
+ 0.7500 0.7700 0.7500 0.9141
+ 0.8000 0.8211 0.8000 0.9440
+ 0.8500 0.8698 0.8500 0.9679
+ 0.9000 0.9182 0.9000 0.9855
+ 0.9500 0.9642 0.9500 0.9963
+ 1.0000 1.0000 1.0000 1.0000
+</data>
+        <plot>
+          <title>cumulative distribution function for |L|, twin fraction of 0.04</title>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="4">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="3">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>green</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="  2">
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The Cumulative |L| plot for acentric data, where L = (I1-I2)/(I1+I2). This depends on the local difference in intensities.  The difference operators used link to the neighbouring reflections taking into account possible tNCS operators.  Note that this estimate is not as reliable as obtained via the H-test or ML Britton test if twin laws are available.  However, it is less prone to the effects of anisotropy than the H-test.
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+Reference: Padilla, Yeates. A statistic for local intensity differences: robustness to anisotropy and pseudo-centering and utility for detecting twinning. Acta Cryst. D59, 1124-30, 2003
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <i>N(Z) plot</i>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportFlotGraph class="" style="">
+      <ns0:ccp4_data title="Cumulative intensity distribution" id="data_FlotGraph_5" style="display:none;">
+        <headers separator=" ">
+ Z Acent_theor Acent_twin Acent_obser Cent_theor Cent_obser 
+ </headers>
+        <data>
+      0.0000 0.0000 0.0000 0.0099 0.00000.0441
+      0.0400 0.0392 0.0030 0.0321 0.15850.1359
+      0.0800 0.0769 0.0115 0.0634 0.22270.1894
+      0.1200 0.1131 0.0246 0.0937 0.27100.2347
+      0.1600 0.1479 0.0415 0.1296 0.31080.2740
+      0.2000 0.1813 0.0616 0.1642 0.34530.3155
+      0.2400 0.2134 0.0842 0.2001 0.37580.3526
+      0.2800 0.2442 0.1089 0.2317 0.40330.3793
+      0.3200 0.2739 0.1352 0.2629 0.42840.4083
+      0.3600 0.3023 0.1628 0.2910 0.45150.4380
+      0.4000 0.3297 0.1912 0.3171 0.47290.4596
+      0.4400 0.3560 0.2202 0.3441 0.49290.4737
+      0.4800 0.3812 0.2495 0.3711 0.51160.4955
+      0.5200 0.4055 0.2790 0.3955 0.52920.5170
+      0.5600 0.4288 0.3083 0.4183 0.54570.5366
+      0.6000 0.4512 0.3374 0.4408 0.56140.5550
+      0.6400 0.4727 0.3661 0.4625 0.57630.5689
+      0.6800 0.4934 0.3943 0.4850 0.59040.5857
+      0.7200 0.5132 0.4219 0.5052 0.60390.6036
+      0.7600 0.5323 0.4488 0.5263 0.61670.6156
+      0.8000 0.5507 0.4751 0.5451 0.62890.6283
+      0.8400 0.5683 0.5005 0.5619 0.64060.6404
+      0.8800 0.5852 0.5252 0.5816 0.65180.6520
+      0.9200 0.6015 0.5490 0.5982 0.66250.6589
+      0.9600 0.6171 0.5719 0.6143 0.67280.6709
+      1.0000 0.6321 0.5940 0.6285 0.68270.6824
+      1.0400 0.6465 0.6152 0.6445 0.69220.6858
+      1.0800 0.6604 0.6356 0.6575 0.70130.6942
+      1.1200 0.6737 0.6551 0.6712 0.71010.7039
+      1.1600 0.6865 0.6737 0.6856 0.71850.7116
+      1.2000 0.6988 0.6916 0.6991 0.72670.7195
+      1.2400 0.7106 0.7086 0.7098 0.73450.7292
+      1.2800 0.7220 0.7248 0.7223 0.74210.7355
+      1.3200 0.7329 0.7402 0.7343 0.74940.7438
+      1.3600 0.7433 0.7549 0.7450 0.75650.7481
+      1.4000 0.7534 0.7689 0.7559 0.76330.7556
+      1.4400 0.7631 0.7822 0.7638 0.76990.7608
+      1.4800 0.7724 0.7948 0.7740 0.77620.7695
+      1.5200 0.7813 0.8067 0.7840 0.78240.7750
+      1.5600 0.7899 0.8181 0.7940 0.78830.7793
+      1.6000 0.7981 0.8288 0.8022 0.79410.7890
+      1.6400 0.8060 0.8390 0.8113 0.79970.7947
+      1.6800 0.8136 0.8486 0.8186 0.80510.7984
+      1.7200 0.8209 0.8576 0.8269 0.81030.8021
+      1.7600 0.8280 0.8662 0.8337 0.81540.8067
+      1.8000 0.8347 0.8743 0.8396 0.82030.8146
+      1.8400 0.8412 0.8820 0.8474 0.82500.8200
+      1.8800 0.8474 0.8892 0.8549 0.82970.8234
+      1.9200 0.8534 0.8960 0.8605 0.83410.8321
+      1.9600 0.8591 0.9024 0.8651 0.83850.8356
+      2.0000 0.8647 0.9084 0.8707 0.84270.8400
+</data>
+        <plot>
+          <title>Cumulative intensity distribution (Acentric and centric)</title>
+          <yrange min="0" max="None" />
+          <plotline xcol="1" ycol="6">
+            <symbolsize>  2</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="5">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>red</colour>
+          </plotline>
+          <plotline xcol="1" ycol="4">
+            <symbolsize>  2</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+          <plotline xcol="1" ycol="3">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>blue</colour>
+          </plotline>
+          <plotline xcol="  1" ycol="2">
+            <symbolsize>  0</symbolsize>
+            <linestyle>-</linestyle>
+            <colour>black</colour>
+          </plotline>
+        </plot>
+      </ns0:ccp4_data>
+    </CCP4i2ReportFlotGraph>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The culmulative intensity, N(Z), plot is diagnostic for both twinning and tNCS.  For twinned data there are fewer weak reflections, therefore, N(Z) is sigmoidal for twinned data.  However, if both twinning and tNCS are present, the effects may cancel each out. Therefore the results of the L-test and patterson test should be consulted
+</font>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <b>
+          <i>Wilson ratios and moments plot</i>
+        </b>
+      </p>
+    </CCP4i2ReportGeneric>
+    <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Acentric reflections</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportTable class="center" style="" transpose="False">
+          <table class="center">
+            <thead>
+              <tr>
+                <th>Operator</th>
+                <th>Value</th>
+                <th>Untwinned</th>
+                <th>Perfect
+twin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>&lt;I^2&gt;/&lt;I&gt;^2</td>
+                <td> 1.990</td>
+                <td> 2.000 </td>
+                <td> 1.500 </td>
+              </tr>
+              <tr>
+                <td>&lt;I^3&gt;/&lt;I&gt;^3</td>
+                <td> 5.988</td>
+                <td> 6.000 </td>
+                <td> 3.000 </td>
+              </tr>
+              <tr>
+                <td>&lt;I^4&gt;/&lt;I&gt;^4</td>
+                <td>23.823</td>
+                <td>24.000 </td>
+                <td> 7.500 </td>
+              </tr>
+            </tbody>
+          </table>
+        </CCP4i2ReportTable>
+        <CCP4i2ReportFlotGraph class="" style="">
+          <ns0:ccp4_data title="intensity moments vs resolution" id="data_FlotGraph_6" style="display:none;">
+            <headers separator=" ">
+ 1/resol^2 &lt;I^2&gt; &lt;I^3&gt; &lt;I^4&gt;
+ </headers>
+            <data>
+  0.0289 2.2748  8.2191 38.4001
+  0.0590 1.9714  5.7519 21.2249
+  0.0814 2.0234  6.2996 26.1559
+  0.1007 2.0502  6.4785 26.8043
+  0.1181 1.9129  5.4797 20.9310
+  0.1341 1.8672  4.9457 16.6991
+  0.1493 1.9860  5.8037 21.5820
+  0.1637 1.8614  5.0123 17.0892
+  0.1774 2.0470  6.2778 24.6138
+  0.1906 2.0558  7.0581 35.0714
+  0.2035 1.9195  5.2840 18.4808
+  0.2157 1.8124  4.6892 15.6042
+  0.2279 2.0329  6.2912 25.3955
+  0.2395 1.8943  5.1163 17.3405
+  0.2510 1.8763  5.0512 17.0950
+  0.2623 2.1002  6.6129 26.3106
+  0.2732 1.9197  5.6381 22.0775
+  0.2840 2.0260  6.1297 23.9983
+  0.2948 2.0425  6.5183 29.4740
+  0.3054 1.9094  5.3328 19.3715
+</data>
+            <plot>
+              <title>Intensity second moment &lt;|I^2|&gt;: 1.99</title>
+              <xscale>oneoversqrt</xscale>
+              <yrange min="0" max="None" />
+              <plotline xcol="1" ycol="2">
+                <symbolsize>  0</symbolsize>
+                <linestyle>-</linestyle>
+                <colour>red</colour>
+              </plotline>
+              <line x1="   0.0000" x2="  0.3154" y1="   2.0000" y2="   2.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   1.5000" y2="   1.5000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   1.9896" y2="   1.9896" linestyle="-" linecolour="red" />
+            </plot>
+            <plot>
+              <title>Intensity third moment &lt;|I^3|&gt;: 5.99</title>
+              <xscale>oneoversqrt</xscale>
+              <yrange min="0" max="None" />
+              <plotline xcol="1" ycol="3">
+                <symbolsize>  0</symbolsize>
+                <linestyle>-</linestyle>
+                <colour>red</colour>
+              </plotline>
+              <line x1="   0.0000" x2="  0.3154" y1="   6.0000" y2="   6.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   3.0000" y2="   3.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   5.9880" y2="   5.9880" linestyle="-" linecolour="red" />
+            </plot>
+            <plot>
+              <title>Intensity fourth moment &lt;|I^4|&gt;: 23.82</title>
+              <xscale>oneoversqrt</xscale>
+              <yrange min="0" max="None" />
+              <plotline xcol="1" ycol="4">
+                <symbolsize>  0</symbolsize>
+                <linestyle>-</linestyle>
+                <colour>red</colour>
+              </plotline>
+              <line x1="   0.0000" x2="  0.3154" y1="  24.0000" y2="  24.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   7.5000" y2="   7.5000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="  23.8233" y2="  23.8233" linestyle="-" linecolour="red" />
+            </plot>
+          </ns0:ccp4_data>
+        </CCP4i2ReportFlotGraph>
+      </CCP4i2ReportGridItem>
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="6">
+        <CCP4i2ReportGeneric class="" style="">
+          <p>Centric reflections</p>
+        </CCP4i2ReportGeneric>
+        <CCP4i2ReportTable class="center" style="" transpose="False">
+          <table class="center">
+            <thead>
+              <tr>
+                <th>Operator</th>
+                <th>Value</th>
+                <th>Untwinned</th>
+                <th>Perfect
+twin</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>&lt;I^2&gt;/&lt;I&gt;^2</td>
+                <td> 2.745</td>
+                <td> 3.000 </td>
+                <td> 2.000 </td>
+              </tr>
+              <tr>
+                <td>&lt;I^3&gt;/&lt;I&gt;^3</td>
+                <td>11.653</td>
+                <td>15.000 </td>
+                <td> 6.000 </td>
+              </tr>
+              <tr>
+                <td>&lt;I^4&gt;/&lt;I&gt;^4</td>
+                <td>64.002</td>
+                <td>105.000 </td>
+                <td>24.000 </td>
+              </tr>
+            </tbody>
+          </table>
+        </CCP4i2ReportTable>
+        <CCP4i2ReportFlotGraph class="" style="">
+          <ns0:ccp4_data title="intensity moments vs resolution" id="data_FlotGraph_7" style="display:none;">
+            <headers separator=" ">
+ 1/resol^2 &lt;I^2&gt; &lt;I^3&gt; &lt;I^4&gt;
+ </headers>
+            <data>
+  0.0119 2.5569  10.1982 55.4978
+  0.0294 2.4148  8.9992 44.5330
+  0.0470 2.3755  8.2776 36.0563
+  0.0645 3.2505  18.8655 144.1070
+  0.0821 2.5056  9.4599 43.5454
+  0.0995 3.3748  18.1621 122.5285
+  0.1170 2.8823  13.2416 75.5705
+  0.1347 2.9516  12.7804 66.8492
+  0.1528 2.5248  8.9240 36.0804
+  0.1705 2.6434  10.0324 46.2179
+  0.1884 2.8509  11.5456 55.6662
+  0.2065 2.6035  9.9242 47.5294
+  0.2248 3.4479  20.7594 160.8748
+  0.2433 2.8326  10.9960 49.8136
+  0.2619 2.3678  8.3066 36.8814
+  0.2811 2.3919  8.3990 35.4894
+  0.3005 3.1692  19.9982 185.2477
+</data>
+            <plot>
+              <title>Intensity second moment &lt;|I^2|&gt;: 2.75</title>
+              <xscale>oneoversqrt</xscale>
+              <yrange min="0" max="None" />
+              <plotline xcol="1" ycol="2">
+                <symbolsize>  0</symbolsize>
+                <linestyle>-</linestyle>
+                <colour>red</colour>
+              </plotline>
+              <line x1="   0.0000" x2="  0.3154" y1="   3.0000" y2="   3.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   2.0000" y2="   2.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   2.7455" y2="   2.7455" linestyle="-" linecolour="red" />
+            </plot>
+            <plot>
+              <title>Intensity third moment &lt;|I^3|&gt;: 11.65</title>
+              <xscale>oneoversqrt</xscale>
+              <yrange min="0" max="None" />
+              <plotline xcol="1" ycol="3">
+                <symbolsize>  0</symbolsize>
+                <linestyle>-</linestyle>
+                <colour>red</colour>
+              </plotline>
+              <line x1="   0.0000" x2="  0.3154" y1="  15.0000" y2="  15.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="   6.0000" y2="   6.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="  11.6526" y2="  11.6526" linestyle="-" linecolour="red" />
+            </plot>
+            <plot>
+              <title>Intensity fourth moment &lt;|I^4|&gt;: 64.00</title>
+              <xscale>oneoversqrt</xscale>
+              <yrange min="0" max="None" />
+              <plotline xcol="1" ycol="4">
+                <symbolsize>  0</symbolsize>
+                <linestyle>-</linestyle>
+                <colour>red</colour>
+              </plotline>
+              <line x1="   0.0000" x2="  0.3154" y1=" 105.0000" y2=" 105.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="  24.0000" y2="  24.0000" linestyle="-" linecolour="black" />
+              <line x1="   0.0000" x2="  0.3154" y1="  64.0015" y2="  64.0015" linestyle="-" linecolour="red" />
+            </plot>
+          </ns0:ccp4_data>
+        </CCP4i2ReportFlotGraph>
+      </CCP4i2ReportGridItem>
+    </CCP4i2ReportGridContainer>
+    <CCP4i2ReportGeneric class="" style="">
+      <p>
+        <font color="black">
+The acentric moments plot can also give an indication of the quality of the high resolution data.  Large deviations often indicate bias in the data.
+  </font>
+      </p>
+    </CCP4i2ReportGeneric>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportDiv class="" style="" />
+  <CCP4i2ReportFold class="" style="" label="Graphs" initiallyOpen="False" brief="Graphs">
+    <CCP4i2ReportFlotGraphGroup class="" style="width:500px;  height:400px;">
+      <CCP4i2ReportFlotGraph class="" style="">
+        <ns0:ccp4_data title="intensity completeness vs resolution" id="data_FlotGraph_8" style="display:none;">
+          <headers separator=" ">
+ 1/resol^2 completeness I/sigI&gt;15 I/sigI&gt;10 I/sigI&gt;5 I/sigI&gt;3 I/sigI&gt;2 I/sigI&gt;1 I/sigI&gt;1 Rstandard
+ </headers>
+          <data>
+    0.0200 0.972  0.867 0.917 0.938 0.948 0.955 0.956 0.957 0.000
+    0.0442 0.999  0.957 0.973 0.987 0.992 0.994 0.997 0.999 0.000
+    0.0634 0.995  0.936 0.954 0.975 0.984 0.989 0.989 0.993 0.000
+    0.0801 0.995  0.901 0.934 0.969 0.977 0.986 0.988 0.988 0.000
+    0.0954 1.000  0.854 0.908 0.953 0.964 0.975 0.985 0.990 0.000
+    0.1098 0.997  0.813 0.879 0.940 0.963 0.973 0.978 0.983 0.000
+    0.1232 0.990  0.717 0.810 0.912 0.947 0.961 0.970 0.973 0.000
+    0.1359 0.998  0.686 0.771 0.883 0.920 0.950 0.963 0.975 0.000
+    0.1483 0.985  0.604 0.733 0.860 0.901 0.941 0.954 0.968 0.000
+    0.1602 0.998  0.625 0.739 0.873 0.925 0.940 0.959 0.973 0.000
+    0.1716 0.978  0.536 0.680 0.814 0.877 0.900 0.918 0.942 0.000
+    0.1826 1.000  0.527 0.681 0.851 0.897 0.944 0.959 0.980 0.000
+    0.1935 0.970  0.455 0.631 0.790 0.874 0.909 0.916 0.932 0.000
+    0.2039 0.993  0.469 0.599 0.783 0.875 0.932 0.949 0.969 0.000
+    0.2142 0.999  0.426 0.596 0.813 0.898 0.933 0.944 0.963 0.000
+    0.2243 0.949  0.337 0.500 0.689 0.796 0.835 0.861 0.895 0.001
+    0.2340 0.990  0.354 0.533 0.729 0.825 0.880 0.895 0.932 0.001
+    0.2437 0.995  0.256 0.441 0.663 0.789 0.862 0.892 0.926 0.001
+    0.2532 0.940  0.195 0.369 0.641 0.746 0.813 0.850 0.888 0.001
+    0.2624 0.982  0.177 0.330 0.593 0.710 0.799 0.856 0.893 0.001
+    0.2716 0.986  0.100 0.260 0.537 0.715 0.810 0.862 0.912 0.002
+    0.2807 0.943  0.093 0.234 0.484 0.647 0.740 0.785 0.857 0.002
+    0.2894 0.937  0.041 0.169 0.384 0.544 0.660 0.734 0.790 0.003
+    0.2982 0.969  0.044 0.111 0.342 0.549 0.661 0.720 0.828 0.003
+    0.3069 0.886  0.015 0.068 0.304 0.462 0.570 0.648 0.738 0.004
+</data>
+          <plot>
+            <title>Resolution plots for completeness at various I/sigmaI levels</title>
+            <xscale>oneoversqrt</xscale>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="8">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>yellow</colour>
+            </plotline>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="7">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>blue</colour>
+            </plotline>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="6">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>pink</colour>
+            </plotline>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="5">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>brown</colour>
+            </plotline>
+            <plotline xcol="1" ycol="4">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+            <plotline xcol="1" ycol="3">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>green</colour>
+            </plotline>
+            <plotline xcol="  1" ycol="  2">
+              <linestyle>-</linestyle>
+              <colour>black</colour>
+            </plotline>
+          </plot>
+          <plot>
+            <title>Resolution plots for completeness and Rstandard</title>
+            <xscale>oneoversqrt</xscale>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="9">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+            <plotline xcol="  1" ycol="  2">
+              <linestyle>-</linestyle>
+              <colour>black</colour>
+            </plotline>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="">
+        <ns0:ccp4_data title="Wilson plot" id="data_FlotGraph_9" style="display:none;">
+          <headers separator=" ">
+ 1/resol^2 ln(I/I_th) Reference_prot
+</headers>
+          <data>
+ 0.0180   -1.0856   -0.6208
+ 0.0389   -0.4005   -0.4542
+ 0.0555   -0.0632   -0.1280
+ 0.0701   -0.3049   -0.2629
+ 0.0834   -0.3360   -0.4425
+ 0.0958   -0.6899   -0.6952
+ 0.1076   -0.9721   -0.9262
+ 0.1187   -1.2116   -1.1233
+ 0.1294   -1.2391   -1.2915
+ 0.1397   -1.4206   -1.4002
+ 0.1498   -1.4914   -1.4862
+ 0.1595   -1.5958   -1.5703
+ 0.1689   -1.6170   -1.6284
+ 0.1781   -1.6472   -1.6667
+ 0.1871   -1.7280   -1.7046
+ 0.1960   -1.7062   -1.7379
+ 0.2046   -1.8191   -1.7913
+ 0.2131   -1.8527   -1.8564
+ 0.2215   -1.8331   -1.9200
+ 0.2298   -1.9537   -1.9798
+ 0.2378   -1.9868   -2.0825
+ 0.2457   -2.1610   -2.1693
+ 0.2537   -2.1748   -2.2749
+ 0.2617   -2.2330   -2.3876
+ 0.2690   -2.4457   -2.5024
+ 0.2769   -2.5302   -2.6171
+ 0.2844   -2.7057   -2.7147
+ 0.2921   -2.8617   -2.8302
+ 0.2995   -2.9878   -2.9274
+ 0.3069   -3.0164   -3.0286
+</data>
+          <plot>
+            <title>Wilson B estimate, 16.77</title>
+            <xscale>oneoversqrt</xscale>
+            <plotline xcol="1" ycol="3">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>green</colour>
+            </plotline>
+            <plotline xcol="  1" ycol="  2">
+              <linestyle>-</linestyle>
+              <colour>black</colour>
+            </plotline>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="">
+        <ns0:ccp4_data title="intensity anomalous analysis plots" id="data_FlotGraph_10" style="display:none;">
+          <headers separator=" ">
+ 1/resol^2 Mn(dI/sigdI)) Mn(dI/I) measurability 
+ </headers>
+          <data>
+  0.02 2.33 0.07 0.23
+  0.05 1.50 0.04 0.16
+  0.06 1.51 0.05 0.14
+  0.08 1.42 0.05 0.14
+  0.10 1.39 0.06 0.12
+  0.11 1.34 0.07 0.12
+  0.13 1.26 0.08 0.12
+  0.14 1.21 0.09 0.08
+  0.15 1.07 0.08 0.06
+  0.16 1.03 0.09 0.04
+  0.17 1.06 0.10 0.06
+  0.19 0.95 0.10 0.04
+  0.20 0.98 0.11 0.05
+  0.21 0.99 0.12 0.04
+  0.22 1.00 0.12 0.04
+  0.23 0.84 0.12 0.02
+  0.24 0.78 0.12 0.02
+  0.25 0.82 0.15 0.02
+  0.26 0.78 0.15 0.02
+  0.27 0.76 0.18 0.03
+  0.28 0.72 0.20 0.01
+  0.29 0.68 0.23 0.01
+  0.30 0.65 0.25 0.00
+  0.31 0.61 0.27 0.01
+</data>
+          <plot>
+            <title>Resolution plots for anomalous scattering indicators</title>
+            <xscale>oneoversqrt</xscale>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="4">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+            <plotline xcol="1" ycol="3">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>green</colour>
+            </plotline>
+            <plotline xcol="  1" ycol="  2">
+              <linestyle>-</linestyle>
+              <colour>black</colour>
+            </plotline>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+      <CCP4i2ReportFlotGraph class="" style="">
+        <ns0:ccp4_data title="Intensities Anisotropy Analysis" id="data_FlotGraph_11" style="display:none;">
+          <headers separator=" ">
+ 1/resol^2 Mn(I(d1)) Mn(I(d2)) Mn(I(d3)) Mn(I(ov) Mn(I/sd(d1)) Mn(I/sd(d2)) Mn(I/sd(d3)) Mn(I/sd(ov)) N(d1) N(d2) N(d3) N 
+ </headers>
+          <data>
+ 0.0337 49654.65 66642.75 66329.42 68123.52    41.74    34.28    36.32    41.17   1232.0   1128.0   1200.0   8184.0
+ 0.0739 55493.17 77516.36 63846.83 71116.93    43.57    33.00    36.94    41.56   1216.0   1088.0   1240.0   8280.0
+ 0.1056 29374.35 34966.99 30555.06 33187.86    32.27    25.40    27.92    30.77   1200.0   1104.0   1152.0   8312.0
+ 0.1334 18588.04 14630.18 20666.56 19532.48    27.11    17.50    24.42    24.36   1176.0   1040.0   1208.0   8208.0
+ 0.1586 13122.95 11871.61 14114.33 13976.27    22.67    15.42    19.38    20.20   1216.0   1000.0   1208.0   8192.0
+ 0.1822  9274.68 10160.89 12211.58 10936.69    17.67    13.82    17.76    16.90   1168.0   1112.0   1200.0   8280.0
+ 0.2044  7020.04  7958.00  9560.55  9151.10    14.43    12.17    14.67    15.12   1184.0    936.0   1184.0   8192.0
+ 0.2255  7638.68  7722.63  8462.17  7626.67    13.59    11.03    12.78    12.72   1136.0    888.0   1152.0   8040.0
+ 0.2456  6225.56  5451.61  5805.17  5809.34    11.27     8.99     9.10    10.25   1264.0    952.0   1136.0   8088.0
+ 0.2650  3962.22  4612.21  4428.19  4357.07     7.80     7.80     7.35     8.08   1168.0    856.0   1200.0   8136.0
+ 0.2839  2836.32  2830.59  3251.06  2913.99     6.03     5.50     6.19     6.05   1168.0    880.0   1056.0   7848.0
+ 0.3021  1918.89  1649.51  2489.27  2052.29     4.25     3.69     4.73     4.42   1080.0    704.0   1088.0   7696.0
+</data>
+          <plot>
+            <title>Directional plots for mean(I)</title>
+            <xscale>oneoversqrt</xscale>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="5">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>yellow</colour>
+            </plotline>
+            <plotline xcol="1" ycol="4">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+            <plotline xcol="1" ycol="3">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>green</colour>
+            </plotline>
+            <plotline xcol="  1" ycol="  2">
+              <linestyle>-</linestyle>
+              <colour>black</colour>
+            </plotline>
+          </plot>
+          <plot>
+            <title>Directorional plots for mean(I)/mean(Sigma)</title>
+            <xscale>oneoversqrt</xscale>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="9">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>yellow</colour>
+            </plotline>
+            <plotline xcol="1" ycol="8">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+            <plotline xcol="1" ycol="7">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>green</colour>
+            </plotline>
+            <plotline xcol="  1" ycol="6">
+              <linestyle>-</linestyle>
+              <colour>black</colour>
+            </plotline>
+          </plot>
+          <plot>
+            <title>Directorional plots for number of reflections</title>
+            <xscale>oneoversqrt</xscale>
+            <yrange min="0" max="None" />
+            <plotline xcol="1" ycol="13">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>yellow</colour>
+            </plotline>
+            <plotline xcol="1" ycol="12">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>red</colour>
+            </plotline>
+            <plotline xcol="1" ycol="11">
+              <symbolsize>  0</symbolsize>
+              <linestyle>-</linestyle>
+              <colour>green</colour>
+            </plotline>
+            <plotline xcol="  1" ycol="10">
+              <linestyle>-</linestyle>
+              <colour>black</colour>
+            </plotline>
+          </plot>
+        </ns0:ccp4_data>
+      </CCP4i2ReportFlotGraph>
+    </CCP4i2ReportFlotGraphGroup>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="12:04 28-Jul-2021" finishtime="12:04 28-Jul-2021" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="12:04 28-Jul-2021" finishtime="12:04 28-Jul-2021" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="" />
+  </CCP4i2ReportFold>
+</CCP4i2Reportctruncate_report>

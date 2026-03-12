@@ -44,7 +44,7 @@ from enum import Enum
 
 # Import from CCP4ReportParser to get all the addXxx methods (addDiv, addTable, etc.)
 # This ensures GridItem can be used as a drop-in container replacement
-from ccp4i2.report.CCP4ReportParser import Container
+from ccp4i2.report.core import Container
 
 
 class GridDirection(Enum):

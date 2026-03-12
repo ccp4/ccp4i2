@@ -1,0 +1,360 @@
+<CCP4i2Reportrefmac_report xmlns:ns0="http://www.ccp4.ac.uk/ccp4ns" class="" style="">
+  <CCP4i2ReportTitle class="" style="" title1="refmac" title2="11:40 28-Jul-2021" />
+  <CCP4i2ReportDiv class="" style="clear:both;" />
+  <CCP4i2ReportFold class="" style="" label="Summary of refinement" initiallyOpen="True" brief="Summary">
+    <CCP4i2ReportGridContainer class="" style="" container="true" spacing="2" direction="row" justifyContent="flex-start" alignItems="stretch" wrap="wrap">
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="5">
+        <CCP4i2ReportDiv class="" style="height:250px; width:100%; margin-top:2px;">
+          <CCP4i2ReportDiv class="" style="height:225px; width:100%; overflow:auto;">
+            <CCP4i2ReportTable class="" style="width:100%;" transpose="False">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Statistic</th>
+                    <th>Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Resolution</td>
+                    <td>26.65-1.81</td>
+                  </tr>
+                  <tr>
+                    <td>No. reflections all/free</td>
+                    <td>        11908 /          552 </td>
+                  </tr>
+                  <tr>
+                    <td>R-factor/R-free</td>
+                    <td>      0.236 /      0.273 </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i>RMS Deviations</i>
+                    </td>
+                    <td> </td>
+                  </tr>
+                  <tr>
+                    <td>Bonds</td>
+                    <td>     0.0106 </td>
+                  </tr>
+                  <tr>
+                    <td>Angles</td>
+                    <td>      1.661 </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <i>Chain B-factors</i>
+                    </td>
+                    <td>
+                      <i>mean B (#atoms)</i>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td> AAA </td>
+                    <td>19.6(       1835 )</td>
+                  </tr>
+                </tbody>
+              </table>
+            </CCP4i2ReportTable>
+          </CCP4i2ReportDiv>
+        </CCP4i2ReportDiv>
+      </CCP4i2ReportGridItem>
+      <CCP4i2ReportGridItem class="" style="" item="true" xs="12" md="7">
+        <CCP4i2ReportFlotGraph class="" style="height:250px; width:100%;">
+          <ns0:ccp4_data title="Refinement results" id="data_FlotGraph_0" style="display:none;">
+            <headers>Cycle R-free R-factor rmsBONDx100 rmsANGLE </headers>
+            <data>0 0.34 0.295 3.05 2.381 
+1 0.312 0.265 1.0999999999999999 1.806 
+2 0.297 0.254 1.06 1.734 
+3 0.289 0.247 1.04 1.703 
+4 0.283 0.243 1.05 1.695 
+5 0.281 0.241 1.05 1.688 
+6 0.28 0.239 1.05 1.682 
+7 0.278 0.238 1.05 1.675 
+8 0.277 0.238 1.05 1.67 
+9 0.276 0.237 1.05 1.667 
+10 0.276 0.237 1.06 1.665 
+11 0.275 0.237 1.06 1.664 
+12 0.275 0.236 1.06 1.663 
+13 0.275 0.236 1.06 1.662 
+14 0.274 0.236 1.06 1.662 
+15 0.274 0.236 1.06 1.663 
+16 0.274 0.236 1.06 1.663 
+17 0.274 0.236 1.06 1.662 
+18 0.274 0.236 1.06 1.662 
+19 0.273 0.236 1.06 1.662 
+20 0.273 0.236 1.06 1.661 
+</data>
+            <plot>
+              <title>Refmac R-factors</title>
+              <plottype>xy</plottype>
+              <yrange rightaxis="false" />
+              <xlabel>Cycle</xlabel>
+              <ylabel>R-factor</ylabel>
+              <rylabel>Geometry</rylabel>
+              <xintegral>true</xintegral>
+              <plotline xcol="1" ycol="2" rightaxis="false" colour="blue" />
+              <plotline xcol="1" ycol="3" rightaxis="false" colour="green" />
+              <yrange rightaxis="true" />
+              <plotline xcol="1" ycol="4" rightaxis="true" colour="red" />
+              <plotline xcol="1" ycol="5" rightaxis="true" colour="purple" />
+            </plot>
+          </ns0:ccp4_data>
+        </CCP4i2ReportFlotGraph>
+      </CCP4i2ReportGridItem>
+    </CCP4i2ReportGridContainer>
+    <CCP4i2ReportDiv class="" style="clear:both;" />
+    <CCP4i2ReportFold class="" style="" label="Per cycle statistics" initiallyOpen="False" brief="Per cycle">
+      <CCP4i2ReportDiv class="" style="float:left;">
+        <CCP4i2ReportText class="" style="">Full atom refinement - XYZ, B (Occ)</CCP4i2ReportText>
+        <CCP4i2ReportTable class="" style="" transpose="False">
+          <table>
+            <thead>
+              <tr>
+                <th />
+                <th>Cycle</th>
+                <th>R-factor</th>
+                <th>R-free</th>
+                <th colspan="3">RMSD (bond/angle/chiral)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Start</td>
+                <td>0</td>
+                <td>0.295</td>
+                <td>0.34</td>
+                <td>0.0305</td>
+                <td>2.381</td>
+                <td>0.14</td>
+              </tr>
+              <tr>
+                <td>End</td>
+                <td>20</td>
+                <td>0.236</td>
+                <td>0.273</td>
+                <td>0.0106</td>
+                <td>1.661</td>
+                <td>0.061</td>
+              </tr>
+            </tbody>
+          </table>
+        </CCP4i2ReportTable>
+      </CCP4i2ReportDiv>
+      <CCP4i2ReportDiv class="" style="clear:both;" />
+      <CCP4i2ReportFold class="" style="" label="All cycles" initiallyOpen="False" brief="All cycles">
+        <CCP4i2ReportTable class="" style="" transpose="False">
+          <table>
+            <thead>
+              <tr>
+                <th>Cycle</th>
+                <th>R-factor</th>
+                <th>R-free</th>
+                <th colspan="3">RMSD (bond/angle/chiral)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>0</td>
+                <td>0.295</td>
+                <td>0.34</td>
+                <td>0.0305</td>
+                <td>2.381</td>
+                <td>0.14</td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>0.265</td>
+                <td>0.312</td>
+                <td>0.011</td>
+                <td>1.806</td>
+                <td>0.07</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>0.254</td>
+                <td>0.297</td>
+                <td>0.0106</td>
+                <td>1.734</td>
+                <td>0.068</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>0.247</td>
+                <td>0.289</td>
+                <td>0.0104</td>
+                <td>1.703</td>
+                <td>0.064</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>0.243</td>
+                <td>0.283</td>
+                <td>0.0105</td>
+                <td>1.695</td>
+                <td>0.063</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>0.241</td>
+                <td>0.281</td>
+                <td>0.0105</td>
+                <td>1.688</td>
+                <td>0.062</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>0.239</td>
+                <td>0.28</td>
+                <td>0.0105</td>
+                <td>1.682</td>
+                <td>0.061</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>0.238</td>
+                <td>0.278</td>
+                <td>0.0105</td>
+                <td>1.675</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>0.238</td>
+                <td>0.277</td>
+                <td>0.0105</td>
+                <td>1.67</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>0.237</td>
+                <td>0.276</td>
+                <td>0.0105</td>
+                <td>1.667</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>10</td>
+                <td>0.237</td>
+                <td>0.276</td>
+                <td>0.0106</td>
+                <td>1.665</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>0.237</td>
+                <td>0.275</td>
+                <td>0.0106</td>
+                <td>1.664</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>12</td>
+                <td>0.236</td>
+                <td>0.275</td>
+                <td>0.0106</td>
+                <td>1.663</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>13</td>
+                <td>0.236</td>
+                <td>0.275</td>
+                <td>0.0106</td>
+                <td>1.662</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>14</td>
+                <td>0.236</td>
+                <td>0.274</td>
+                <td>0.0106</td>
+                <td>1.662</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>15</td>
+                <td>0.236</td>
+                <td>0.274</td>
+                <td>0.0106</td>
+                <td>1.663</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>16</td>
+                <td>0.236</td>
+                <td>0.274</td>
+                <td>0.0106</td>
+                <td>1.663</td>
+                <td>0.06</td>
+              </tr>
+              <tr>
+                <td>17</td>
+                <td>0.236</td>
+                <td>0.274</td>
+                <td>0.0106</td>
+                <td>1.662</td>
+                <td>0.061</td>
+              </tr>
+              <tr>
+                <td>18</td>
+                <td>0.236</td>
+                <td>0.274</td>
+                <td>0.0106</td>
+                <td>1.662</td>
+                <td>0.061</td>
+              </tr>
+              <tr>
+                <td>19</td>
+                <td>0.236</td>
+                <td>0.273</td>
+                <td>0.0106</td>
+                <td>1.662</td>
+                <td>0.061</td>
+              </tr>
+              <tr>
+                <td>20</td>
+                <td>0.236</td>
+                <td>0.273</td>
+                <td>0.0106</td>
+                <td>1.661</td>
+                <td>0.061</td>
+              </tr>
+            </tbody>
+          </table>
+        </CCP4i2ReportTable>
+      </CCP4i2ReportFold>
+    </CCP4i2ReportFold>
+  </CCP4i2ReportFold>
+  <CCP4i2ReportInputData class="" style="">
+    <root>
+      <h5>Input Data</h5>
+    </root>
+  </CCP4i2ReportInputData>
+  <CCP4i2ReportOutputData class="" style="">
+    <root>
+      <h5>Output Data</h5>
+      <div id="input_file_b065b096-ef98-11eb-82cf-08002705bc84" />
+      <div id="input_file_b065b097-ef98-11eb-82cf-08002705bc84" />
+      <div id="input_file_b065b098-ef98-11eb-82cf-08002705bc84" />
+      <div id="input_file_b065b099-ef98-11eb-82cf-08002705bc84" />
+      <div id="input_file_b065b09a-ef98-11eb-82cf-08002705bc84" />
+      <div id="input_file_b065b09b-ef98-11eb-82cf-08002705bc84" />
+    </root>
+  </CCP4i2ReportOutputData>
+  <CCP4i2ReportJobDetails class="" style="" creationtime="11:40 28-Jul-2021" finishtime="11:41 28-Jul-2021" status="Finished" />
+  <CCP4i2ReportJobLogFiles class="" style="" creationtime="11:40 28-Jul-2021" finishtime="11:41 28-Jul-2021" status="Finished" />
+  <CCP4i2ReportFold class="" style="" label="Bibliographic references" initiallyOpen="False" brief="Biblio">
+    <CCP4i2ReportReferenceGroup class="" style="">
+      <CCP4i2ReportReference class="" style="" articleTitle="Overview of refinement procedures within REFMAC5: utilizing data from different sources" source="Acta Crystallographica Section D 2018;74(3):" authorList="['O.  Kovalevskiy, R. A.  Nicholls, F.  Long, A.  Carlon and G. N.  Murshudov']" />
+      <CCP4i2ReportReference class="" style="" articleTitle="REFMAC5 for the refinement of macromolecular crystal structures." articleLink="http://www.ncbi.nlm.nih.gov/pubmed/21460454" source="Acta Crystallogr D Biol Crystallogr. 2011 Apr;67(Pt 4):355-67. doi:" authorList="['Murshudov GN', 'Skubak P', 'Lebedev AA', 'Pannu NS', 'Steiner RA', 'Nicholls RA', 'Winn MD', 'Long F', 'Vagin AA']" />
+      <CCP4i2ReportReference class="" style="" articleTitle="Refinement of macromolecular structures by the maximum-likelihood method." source="Acta Crystallogr D Biol Crystallogr. 1997 May 1;53(Pt 3):240-55." authorList="['Murshudov GN', 'Vagin AA', 'Dodson EJ']" />
+      <CCP4i2ReportReference class="" style="" articleTitle="Low-resolution refinement tools in REFMAC5." source="Acta Crystallogr D Biol Crystallogr. 2012 Apr;68(Pt 4):404-17. doi:" authorList="['Nicholls RA', 'Long F', 'Murshudov GN']" />
+      <CCP4i2ReportReference class="" style="" articleTitle="REFMAC5 dictionary: organization of prior chemical knowledge and guidelines for" source="Acta Crystallogr D Biol Crystallogr. 2004 Dec;60(Pt 12 Pt 1):2184-95. Epub 2004" authorList="['Vagin AA', 'Steiner RA', 'Lebedev AA', 'Potterton L', 'McNicholas S', 'Long F', 'Murshudov GN']" />
+      <CCP4i2ReportReference class="" style="" articleTitle="Efficient anisotropic refinement of macromolecular structures using FFT." source="Acta Crystallogr D Biol Crystallogr. 1999 Jan;55(Pt 1):247-55. Epub 1999 Jan 1." authorList="['Murshudov GN', 'Vagin AA', 'Lebedev A', 'Wilson KS', 'Dodson EJ']" />
+      <CCP4i2ReportReference class="" style="" articleTitle="Macromolecular TLS refinement in REFMAC at moderate resolutions." source="Methods Enzymol. 2003;374:300-21." authorList="['Winn MD', 'Murshudov GN', 'Papiz MZ']" />
+    </CCP4i2ReportReferenceGroup>
+  </CCP4i2ReportFold>
+</CCP4i2Reportrefmac_report>
