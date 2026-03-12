@@ -1,5 +1,6 @@
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import {
+  Autocomplete,
   Box,
   Button,
   Card,
@@ -9,15 +10,24 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  DialogTitle,
   IconButton,
   Stack,
+  TextField,
   Tooltip,
   Typography,
 } from "@mui/material";
 import { useApi } from "../../../api";
 import { useJob, usePrevious, valueOfItem } from "../../../utils";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Add, Delete, Science } from "@mui/icons-material";
+import { Add, Delete, Download, Science } from "@mui/icons-material";
+import { apiFetch, apiText } from "../../../api-fetch";
+import { usePopcorn } from "../../../providers/popcorn-provider";
+import {
+  parseMultiChainFasta,
+  deduplicateChains,
+  ChainSequenceInfo,
+} from "./mmcif-sequence-parser";
 
 /** Get abbreviated polymer type label */
 const getPolymerTypeLabel = (type: string): string => {
@@ -57,15 +67,58 @@ const formatSequencePreview = (sequence: string, maxLength = 60): string => {
   return seq.substring(0, maxLength) + "…";
 };
 
+/** PDB import sources */
+const PDB_SOURCES = [
+  { value: "ebi", label: "PDBe (EBI)" },
+  { value: "rcsb", label: "RCSB PDB" },
+] as const;
+
+type PdbSource = (typeof PDB_SOURCES)[number]["value"];
+
+/**
+ * Parse PDBe molecules API response into ChainSequenceInfo[].
+ */
+function parsePdbeMolecules(data: any, pdbId: string): ChainSequenceInfo[] {
+  const entities = data[pdbId.toLowerCase()];
+  if (!Array.isArray(entities)) return [];
+  const chains: ChainSequenceInfo[] = [];
+  for (const entity of entities) {
+    if (!entity.sequence || entity.molecule_type === "water" || entity.molecule_type === "bound") continue;
+    const polymerType = entity.molecule_type?.includes("polypeptide") ? "PROTEIN"
+      : entity.molecule_type?.includes("polyribonucleotide") && !entity.molecule_type?.includes("deoxy") ? "RNA"
+      : entity.molecule_type?.includes("polydeoxyribonucleotide") ? "DNA"
+      : "OTHER" as const;
+    const chainIds: string[] = entity.in_chains || [];
+    const moleculeName = Array.isArray(entity.molecule_name) ? entity.molecule_name[0] : entity.molecule_name || "";
+    for (const chainId of chainIds) {
+      chains.push({
+        chainId,
+        sequence: entity.sequence,
+        polymerType,
+        length: entity.sequence.length,
+        description: moleculeName,
+      });
+    }
+  }
+  return chains;
+}
+
 export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
   props
 ) => {
   const api = useApi();
   const { itemName, job } = props;
+  const { setMessage } = usePopcorn();
 
   // Use separate state for dialog open vs which item is selected
   // This prevents re-renders from closing the dialog
   const [isDialogOpen, setIsDialogOpen] = useState(false);
+
+  // Import from PDB state
+  const [importDialogOpen, setImportDialogOpen] = useState(false);
+  const [importSource, setImportSource] = useState<PdbSource>("ebi");
+  const [importPdbId, setImportPdbId] = useState("");
+  const [importInFlight, setImportInFlight] = useState(false);
 
   // Store the object path when we open, so it doesn't change during editing
   const selectedObjectPathRef = useRef<string | null>(null);
@@ -151,6 +204,57 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
     [item, setParameter, props.onChange]
   );
 
+  /**
+   * Import all polymer chains from a PDB entry as ASU content sequences.
+   * Fetches chain data from PDBe or RCSB, then bulk-populates the sequence list.
+   */
+  const handleImportFromPdb = useCallback(async () => {
+    if (!importPdbId.trim() || !updateList) return;
+    const id = importPdbId.trim().toLowerCase();
+    setImportInFlight(true);
+    try {
+      setMessage(`Fetching composition for ${id.toUpperCase()}...`);
+      let chains: ChainSequenceInfo[];
+
+      if (importSource === "ebi") {
+        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/molecules/${id}`;
+        const result = await apiFetch(url);
+        const data = await result.json();
+        chains = parsePdbeMolecules(data, id);
+      } else {
+        const fastaUrl = `https://www.rcsb.org/fasta/entry/${id.toUpperCase()}`;
+        const fastaText = await apiText(fastaUrl);
+        chains = parseMultiChainFasta(fastaText);
+      }
+
+      if (chains.length === 0) {
+        setMessage(`No polymer chains found in ${id.toUpperCase()}`);
+        return;
+      }
+
+      // Deduplicate identical chains (e.g. CDK2 chains A,C → nCopies=2)
+      const seqList = deduplicateChains(chains);
+
+      await updateList(seqList);
+      await mutateContainer();
+      if (props.onChange) {
+        props.onChange(item);
+      }
+      const uniqueCount = seqList.length;
+      const totalChains = chains.length;
+      const msg = uniqueCount === totalChains
+        ? `Imported ${totalChains} chain(s) from ${id.toUpperCase()}`
+        : `Imported ${totalChains} chains as ${uniqueCount} unique sequence(s) from ${id.toUpperCase()}`;
+      setMessage(msg);
+      setImportDialogOpen(false);
+      setImportPdbId("");
+    } catch (err: any) {
+      setMessage(err.message || `Failed to fetch ${id.toUpperCase()}`);
+    } finally {
+      setImportInFlight(false);
+    }
+  }, [importPdbId, importSource, updateList, mutateContainer, item, props.onChange, setMessage]);
+
   useEffect(() => {
     console.debug("CAsuContentSeqListElement mounted");
     return () => {
@@ -163,7 +267,7 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
   return (
     item && (
       <>
-        {/* Header with add button - only show when there are sequences */}
+        {/* Header with add/import buttons - only show when there are sequences */}
         {hasSequences && (
           <Stack
             direction="row"
@@ -174,16 +278,28 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
             <Typography variant="body2" color="text.secondary">
               Click a card to edit sequence details
             </Typography>
-            <Button
-              variant="contained"
-              size="small"
-              startIcon={<Add />}
-              onClick={async () => {
-                await extendListItem();
-              }}
-            >
-              Add Sequence
-            </Button>
+            <Stack direction="row" spacing={1}>
+              {job.status === 1 && (
+                <Button
+                  variant="outlined"
+                  size="small"
+                  startIcon={<Download />}
+                  onClick={() => setImportDialogOpen(true)}
+                >
+                  Import from PDB
+                </Button>
+              )}
+              <Button
+                variant="contained"
+                size="small"
+                startIcon={<Add />}
+                onClick={async () => {
+                  await extendListItem();
+                }}
+              >
+                Add Sequence
+              </Button>
+            </Stack>
           </Stack>
         )}
 
@@ -319,17 +435,27 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
             <Typography variant="body2" color="text.secondary" gutterBottom>
               No sequences defined yet
             </Typography>
-            <Button
-              variant="outlined"
-              size="small"
-              startIcon={<Add />}
-              onClick={async () => {
-                await extendListItem();
-              }}
-              sx={{ mt: 1 }}
-            >
-              Add First Sequence
-            </Button>
+            <Stack direction="row" spacing={1} justifyContent="center" sx={{ mt: 1 }}>
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<Download />}
+                onClick={() => setImportDialogOpen(true)}
+                disabled={job.status !== 1}
+              >
+                Import from PDB
+              </Button>
+              <Button
+                variant="outlined"
+                size="small"
+                startIcon={<Add />}
+                onClick={async () => {
+                  await extendListItem();
+                }}
+              >
+                Add Manually
+              </Button>
+            </Stack>
           </Box>
         )}
 
@@ -360,6 +486,60 @@ export const CAsuContentSeqListElement: React.FC<CCP4i2TaskElementProps> = (
           <DialogActions>
             <Button onClick={handleCloseDialog} variant="contained">
               OK
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/* Import from PDB dialog */}
+        <Dialog
+          open={importDialogOpen}
+          onClose={() => setImportDialogOpen(false)}
+          maxWidth="sm"
+          fullWidth
+        >
+          <DialogTitle>Import sequences from PDB entry</DialogTitle>
+          <DialogContent>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+              Fetch all polymer chains from a PDB entry and add them as ASU content sequences.
+              This will replace any existing sequences.
+            </Typography>
+            <Stack spacing={2} sx={{ mt: 1 }}>
+              <Autocomplete
+                value={PDB_SOURCES.find((s) => s.value === importSource) || PDB_SOURCES[0]}
+                onChange={(_, newValue) => {
+                  if (newValue) setImportSource(newValue.value);
+                }}
+                options={[...PDB_SOURCES]}
+                getOptionLabel={(option) => option.label}
+                renderInput={(params) => (
+                  <TextField {...params} label="Source" size="small" />
+                )}
+                disableClearable
+              />
+              <TextField
+                label="PDB ID"
+                placeholder="e.g. 1jst"
+                value={importPdbId}
+                onChange={(e) => setImportPdbId(e.target.value)}
+                size="small"
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && importPdbId.trim() && !importInFlight) {
+                    handleImportFromPdb();
+                  }
+                }}
+              />
+            </Stack>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setImportDialogOpen(false)} disabled={importInFlight}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleImportFromPdb}
+              disabled={!importPdbId.trim() || importInFlight}
+              variant="contained"
+            >
+              {importInFlight ? "Importing..." : "Import"}
             </Button>
           </DialogActions>
         </Dialog>

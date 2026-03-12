@@ -5600,7 +5600,7 @@ class CPhiFomColumnGroupStub(CProgramColumnGroupStub):
         "toolTip": 'Electron density map coefficients: F,Phi',
         "correctColumns": ['FP', 'FQP'],
         "columnGroupClassList": ["<class 'ccp4i2.data_scan.CCP4XtalData.CMapColumnGroup'>"],
-        "downloadModes": ['Uppsala-EDS'],
+        "downloadModes": ['PDB-REDO'],
         "helpFile": 'data_files#MapCoeffs',
     },
     qualifiers_order=[

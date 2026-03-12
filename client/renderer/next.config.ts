@@ -10,6 +10,7 @@ const csp = {
   imgSrc: "'self' data: blob: https://*.blob.core.windows.net",
   connectSrc:
     "'self' https://www.ebi.ac.uk https://www.uniprot.org https://pubmed.ncbi.nlm.nih.gov https://raw.githubusercontent.com/MonomerLibrary/monomers/master/ " +
+    "https://files.rcsb.org https://www.rcsb.org https://alphafold.ebi.ac.uk https://pdb-redo.eu " +
     "https://login.microsoftonline.com https://graph.microsoft.com https://*.microsoftonline.com https://*.microsoft.com " +
     "https://graph.windows.net https://management.azure.com " +
     "https://res.cdn.office.net " + // Teams SDK validDomains fetch

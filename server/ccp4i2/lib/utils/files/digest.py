@@ -300,6 +300,28 @@ def digest_other_file_object(file_object: CDataFile):
         }
 
 
+def _extract_chain_sequences(gemmi_structure):
+    """Extract per-chain polymer sequences from a gemmi Structure.
+
+    Returns a dict mapping chain ID to one-letter sequence string,
+    for protein and nucleic acid polymer chains only.
+    """
+    import gemmi
+
+    sequences = {}
+    if len(gemmi_structure) == 0:
+        return sequences
+
+    model = gemmi_structure[0]
+    for chain in model:
+        polymer = chain.get_polymer()
+        if polymer and len(polymer) > 0:
+            seq = gemmi.one_letter_code(polymer)
+            if seq:
+                sequences[chain.name] = seq
+    return sequences
+
+
 def digest_cpdbdata_file_object(file_object: CPdbDataFile):
     content_dict = {}
     if not isinstance(file_object, CCP4ModelData.CPdbDataFile):
@@ -314,6 +336,10 @@ def digest_cpdbdata_file_object(file_object: CPdbDataFile):
         # If value_dict returns None, return empty dict
         if content_dict is None:
             content_dict = {}
+        # Add per-chain polymer sequences for use by sequence extraction UI
+        gemmi_struct = getattr(contents, '_gemmi_structure', None)
+        if gemmi_struct is not None:
+            content_dict['sequences'] = _extract_chain_sequences(gemmi_struct)
         return content_dict
     except Exception as err:
         logger.exception("Error digesting file %s", file_object, exc_info=err)

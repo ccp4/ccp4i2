@@ -3067,7 +3067,7 @@ class CSequenceMetaStub(CData):
         "tooltip": 'Sequence in any of the common formats (pir,fasta..)',
         "fileExtensions": ['seq', 'pir', 'fasta'],
         "fileContentClassName": 'CSequence',
-        "downloadModes": ['uniprotFasta'],
+        "downloadModes": ['uniprotFasta', 'ebiPdb', 'rcsbPdb'],
         "helpFile": 'model_data#sequences',
     },
     qualifiers_order=[
