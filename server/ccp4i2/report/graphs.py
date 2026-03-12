@@ -2,11 +2,16 @@
 Graph and chart report elements.
 
 Graph, FlotGraph, GraphGroup, FlotGraphGroup, GraphLineChooser, DAGGraph.
+
+These elements render data as interactive charts in the report frontend.
 """
+
+from __future__ import annotations
 
 import re
 import xml.etree.ElementTree as etree
 from io import StringIO
+from typing import Any
 
 from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2.report.core import (
@@ -18,7 +23,17 @@ from ccp4i2.report.elements import BaseTable, Plot
 
 
 class PictureGroup(Container):
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    """Container for a group of Picture elements."""
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             PictureGroup,
             self).__init__(
@@ -31,7 +46,17 @@ class PictureGroup(Container):
 
 
 class GraphGroup(Container):
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    """Container for a group of Graph elements with optional loggraph launcher."""
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             GraphGroup,
             self).__init__(
@@ -63,7 +88,21 @@ class GraphGroup(Container):
 
 
 class FlotGraphGroup(Container):
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    """Container for a group of FlotGraph elements.
+
+    Supports a ``launcher`` kwarg to open all graphs in loggraph,
+    and ``withLaunch=False`` to suppress the launch button.
+    """
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             FlotGraphGroup,
             self).__init__(
@@ -73,7 +112,7 @@ class FlotGraphGroup(Container):
             **kw)
         self.help = None
         self.launch = None
-        self.launchOnly = False
+        self.launchOnly: bool = False
 
         if kw.get('launcher', None) is not None:
             ele = etree.Element('launch')
@@ -98,9 +137,23 @@ class FlotGraphGroup(Container):
 
 
 class DrawnDiv(Container):
-    drawnDivCount = 0
+    """A container whose content is rendered by a JavaScript renderer.
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    Used for custom visualizations (e.g. Ramachandran plots) that require
+    client-side drawing with a specified ``renderer`` and ``data``.
+    """
+
+    drawnDivCount: int = 0
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             DrawnDiv,
             self).__init__(
@@ -110,8 +163,8 @@ class DrawnDiv(Container):
             **kw)
         self.help = None
         DrawnDiv.drawnDivCount += 1
-        self.id = kw.get('id', 'drawnDiv_' + str(DrawnDiv.drawnDivCount))
-        self.data_is_urls = kw.get('data_is_urls', False)
+        self.id: str = kw.get('id', 'drawnDiv_' + str(DrawnDiv.drawnDivCount))
+        self.data_is_urls: bool = kw.get('data_is_urls', False)
 
         if xrtnode is not None:
             from ccp4i2.report.actions import Help
@@ -124,20 +177,30 @@ class DrawnDiv(Container):
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
-        self.height = kw.get('height', '250px')
-        self.width = kw.get('width', '250px')
-        self.style = kw.get('style', 'margin:0px;padding:0px;display:inline-block;') + \
+        self.height: str = kw.get('height', '250px')
+        self.width: str = kw.get('width', '250px')
+        self.style: str = kw.get('style', 'margin:0px;padding:0px;display:inline-block;') + \
             'height:' + self.height + ';width:' + self.width + ';'
-        self.data_data = kw.get('data', 'None')
-        self.data_renderer = kw.get('renderer', 'None')
-        self.data_require = kw.get('require', 'None')
-        self.data_initially_drawn = kw.get('initiallyDrawn', False)
+        self.data_data: str = kw.get('data', 'None')
+        self.data_renderer: str = kw.get('renderer', 'None')
+        self.data_require: str = kw.get('require', 'None')
+        self.data_initially_drawn: bool = kw.get('initiallyDrawn', False)
 
 
 class ObjectGallery(Container):
-    galleryCount = 0
+    """Gallery container showing selectable objects (e.g. molecules) with a sidebar table."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    galleryCount: int = 0
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             ObjectGallery,
             self).__init__(
@@ -147,7 +210,7 @@ class ObjectGallery(Container):
             **kw)
         self.help = None
         ObjectGallery.galleryCount += 1
-        self.id = kw.get('id', 'gallery_' + str(ObjectGallery.galleryCount))
+        self.id: str = kw.get('id', 'gallery_' + str(ObjectGallery.galleryCount))
 
         if xrtnode is not None:
             from ccp4i2.report.actions import Help
@@ -160,18 +223,28 @@ class ObjectGallery(Container):
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
-        self.tableWidth = kw.get('tableWidth', '7em')
-        self.contentWidth = kw.get('contentWidth', '250px')
-        self.height = kw.get('height', '250px')
-        self.style = kw.get(
+        self.tableWidth: str = kw.get('tableWidth', '7em')
+        self.contentWidth: str = kw.get('contentWidth', '250px')
+        self.height: str = kw.get('height', '250px')
+        self.style: str = kw.get(
             'style',
             'padding:0px;overflow:auto;display:inline-block;margin:1px;')
 
 
 class GraphLineChooser(Container):
-    graphLineChooserCount = 0
+    """Side-by-side table + graph where selecting a table row highlights a graph line."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    graphLineChooserCount: int = 0
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             GraphLineChooser,
             self).__init__(
@@ -181,7 +254,7 @@ class GraphLineChooser(Container):
             **kw)
         self.help = None
         GraphLineChooser.graphLineChooserCount += 1
-        self.id = kw.get('id', 'graphLineChooser_' +
+        self.id: str = kw.get('id', 'graphLineChooser_' +
                          str(GraphLineChooser.graphLineChooserCount))
 
         if xrtnode is not None:
@@ -195,26 +268,41 @@ class GraphLineChooser(Container):
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
-        self.height = kw.get('height', '250px')
-        self.tableWidth = kw.get('tableWidth', '200px')
-        self.contentWidth = kw.get('contentWidth', '200px')
+        self.height: str = kw.get('height', '250px')
+        self.tableWidth: str = kw.get('tableWidth', '200px')
+        self.contentWidth: str = kw.get('contentWidth', '200px')
         if 'px' in self.tableWidth and 'px' in self.contentWidth:
             totalWidth = str(
                 int(self.tableWidth[:-2]) + int(self.contentWidth[:-2])) + 'px'
-        self.style = kw.get('style', 'margin:0px;padding:0px;display:inline-block;') + \
+        self.style: str = kw.get('style', 'margin:0px;padding:0px;display:inline-block;') + \
             'height:' + self.height + '; width:' + totalWidth + ';'
 
 
 class Graph(ReportClass):
+    """Data graph with column data, plot definitions, and optional pimple data.
 
-    tableCount = 0
-    ERROR_CODES = {
+    Supports both XRT-driven (from XML templates) and programmatic construction.
+    Data columns are added via ``addData()``, plots via ``addPlot()`` or
+    ``addPlotObject()``. The ``data_as_etree()`` method builds the CCP4
+    data element consumed by the frontend charting component.
+    """
+
+    tableCount: int = 0
+    ERROR_CODES: dict = {
         1: {
             'description': 'Plot definition text unreadable. Maybe invalid XML?'}, 2: {
             'description': 'Plot definition file unreadable. Maybe invalid XML?'}, 3: {
                 'description': 'Unable to create RTF file'}}
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             Graph,
             self).__init__(
@@ -222,18 +310,18 @@ class Graph(ReportClass):
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
-        self.id = kw.get('id', 'graph_' + str(BaseTable.tableCount))
+        self.id: str = kw.get('id', 'graph_' + str(BaseTable.tableCount))
         BaseTable.tableCount += 1
-        self.coldata = []
-        self.coltitle = []
-        self.plots = []
-        self.title = None
-        self.tableText = ''
-        self.headerText = ''
+        self.coldata: list[list] = []
+        self.coltitle: list[str | None] = []
+        self.plots: list[etree.Element | Plot] = []
+        self.title: str | None = None
+        self.tableText: str = ''
+        self.headerText: str = ''
         self.launch = None
-        self.headerSeparator = None
-        self.pimpleData = None
-        self.outputCsv = kw.get('outputCsv', True)
+        self.headerSeparator: str | None = None
+        self.pimpleData: etree.Element | None = None
+        self.outputCsv: bool = kw.get('outputCsv', True)
 
         # Find title
         if xrtnode is not None:
@@ -280,10 +368,10 @@ class Graph(ReportClass):
 
         if xrtnode is not None:
             if xrtnode.get("select") is not None and xmlnode is not None:
-                # Make list of selectd xml nodes
+                # Make list of selected xml nodes
                 self.xmldata = xmlnode.findall(xrtnode.get("select"))
         elif 'select' in kw and xmlnode is not None:
-            self.xmldata = []
+            self.xmldata: list[etree.Element] = []
             for p in kw['select'].split("|"):
                 self.xmldata.extend(xmlnode.findall(p.strip()))
         elif 'selectNodes' in kw and xmlnode is not None:
@@ -320,7 +408,13 @@ class Graph(ReportClass):
                         xmlnode=xmlnode,
                         select=node.get('select'))
 
-    def addPimpleData(self, xmlnode=None, select=None, usePlotly=False):
+    def addPimpleData(
+        self,
+        xmlnode: etree.Element | None = None,
+        select: str | None = None,
+        usePlotly: bool = False,
+    ) -> None:
+        """Add pimple (matplotlib) data from XML."""
         if xmlnode is None:
             xmlnode = self.xmlnode
         if select is not None:
@@ -337,13 +431,17 @@ class Graph(ReportClass):
             self.pimpleData.set(attr, xmlnode.get(attr))
 
     def addData(
-            self,
-            xmldata=None,
-            title=None,
-            select=None,
-            expr=None,
-            data=[]):
-        colvals = []
+        self,
+        xmldata: list[etree.Element] | None = None,
+        title: str | None = None,
+        select: str | None = None,
+        expr: str | None = None,
+        data: list | None = None,
+    ) -> None:
+        """Add a column of data to the graph."""
+        if data is None:
+            data = []
+        colvals: list = []
         if len(data) > 0:
             colvals.extend(data)
         elif select:
@@ -365,7 +463,8 @@ class Graph(ReportClass):
         self.coldata.append(colvals)
         self.coltitle.append(title)
 
-    def addTable(self, xmlnode=None, **kw):
+    def addTable(self, xmlnode: etree.Element | None = None, **kw: Any) -> None:
+        """Add table data from XML (headers + data block)."""
         if xmlnode is None:
             if len(self.xmldata) > 0:
                 xmlnode = self.xmldata[0]
@@ -382,7 +481,13 @@ class Graph(ReportClass):
                 self.headerText = headersEleList[0].text
                 self.headerSeparator = headersEleList[0].get('separator', None)
 
-    def addPlot(self, xrtnode=None, xmlnode=None, **kw):
+    def addPlot(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        **kw: Any,
+    ) -> None:
+        """Add a plot definition from XRT, file, or text."""
         if xmlnode is None:
             if len(self.xmldata) > 0:
                 xmlnode = self.xmldata[0]
@@ -406,7 +511,7 @@ class Graph(ReportClass):
                 xrtnode = etree.fromstring(text)
 
         if xrtnode is not None and kw.get('select', None) is None:
-            # Just copy plot directives from xrt - substitute infor any
+            # Just copy plot directives from xrt - substitute info for any
             # 'select' attribute
             xrtnode.tag = 'plot'
             xrtnode = applySelect(xrtnode, xmlnode)
@@ -418,12 +523,14 @@ class Graph(ReportClass):
                 plotEle.tag = 'plot'
                 self.plots.append(plotEle)
 
-    def addPlotObject(self):
+    def addPlotObject(self) -> Plot:
+        """Create and add an empty Plot element, returning it for configuration."""
         plot = Plot()
         self.plots.append(plot)
         return plot
 
-    def makeTableText(self):
+    def makeTableText(self) -> None:
+        """Convert column data arrays into a single text block for CCP4 data format."""
         # pad data arrays to a uniform length
         if len(self.coldata) > 0:
             maxlen = max([len(data) for data in self.coldata])
@@ -446,7 +553,8 @@ class Graph(ReportClass):
         self.coldata = []
         self.coltitle = []
 
-    def data_as_etree(self):
+    def data_as_etree(self) -> etree.Element:
+        """Build the CCP4 data element tree for the frontend charting component."""
         eleTree = etree.parse(
             StringIO(
                 '<ccp4:ccp4_data xmlns:ccp4="' +
@@ -489,8 +597,17 @@ class Graph(ReportClass):
 
 
 class FlotGraph(Graph):
+    """Graph variant with Flot/Plotly rendering and optional external launcher."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             FlotGraph,
             self).__init__(
@@ -498,12 +615,12 @@ class FlotGraph(Graph):
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
-        self.initiallyDrawn = kw.get('initiallyDrawn', True)
+        self.initiallyDrawn: bool = kw.get('initiallyDrawn', True)
 
         self.launch = None
-        self.launchOnly = False
-        self.launcherLabel = None
-        self.flot_id = kw.get('internalId', None)
+        self.launchOnly: bool = False
+        self.launcherLabel: str | None = None
+        self.flot_id: str | None = kw.get('internalId', None)
         ele = etree.Element('launch')
         if kw.get('launcher', None) is not None:
             from ccp4i2.report.actions import Launch
@@ -518,7 +635,7 @@ class FlotGraph(Graph):
                     ccp4_data_id='data_' +
                     self.internalId)
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         self.makeTableText()
         root = super().as_data_etree()
         # Add launcher attribute if this graph should be launched in a separate window
@@ -529,21 +646,28 @@ class FlotGraph(Graph):
 
 
 class DAGGraph(Container):
-    """Report element for rendering a directed acyclic graph.
+    """Directed acyclic graph visualization (e.g. PhaserTNG solution pathways).
 
-    The elements string contains vis-network JSON ({nodes, edges})
-    built from PhaserTNG dag.html solution pathway files.
-    The frontend CCP4i2ReportDAG component renders it using
-    vis-network with a hierarchical layout matching pyvis.
+    The ``elements`` string contains vis-network JSON ({nodes, edges}).
+    The frontend ``CCP4i2ReportDAG`` component renders it using
+    vis-network with a hierarchical layout.
     """
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super().__init__(xrtnode=xrtnode, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
-        self.title = kw.get('title', '')
-        self.elements = kw.get('elements', '[]')
-        self.layout = kw.get('layout', 'dagre')
+        self.title: str = kw.get('title', '')
+        self.elements: str = kw.get('elements', '[]')
+        self.layout: str = kw.get('layout', 'dagre')
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
         root.set('title', self.title)
         root.set('layout', self.layout)

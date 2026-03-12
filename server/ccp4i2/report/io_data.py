@@ -2,27 +2,42 @@
 Input/Output data report elements.
 
 IODataList, InputData, OutputData, ImportedFiles.
+
+These elements list job input/output files in the report. The frontend
+fetches full file metadata client-side; these elements only provide file UUIDs.
 """
 
+from __future__ import annotations
+
 import xml.etree.ElementTree as etree
+from typing import Any
 
 from ccp4i2.report.core import ReportClass
 
 
 class IODataList(ReportClass):
+    """Base class for input/output/imported file lists."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
         super().__init__()
-        self.jobInfo = {}
+        if jobInfo is None:
+            jobInfo = {}
+        self.jobInfo: dict[str, Any] = {}
         self.jobInfo.update(jobInfo)
 
-    def _file_ids_for_role(self, role):
+    def _file_ids_for_role(self, role: str) -> list[str]:
         """Return list of file IDs for the given role."""
         if role not in self.jobInfo:
             return []
         return [str(fi['fileId']) for fi in self.jobInfo[role]]
 
-    def _build_data_etree(self, title, roles):
+    def _build_data_etree(self, title: str, roles: list[str]) -> etree.Element:
         """Build minimal as_data_etree with just file IDs and title.
 
         The frontend (CCP4i2ReportInputOutputData) only needs:
@@ -45,18 +60,21 @@ class IODataList(ReportClass):
 
 
 class InputData(IODataList):
+    """Input files list for the report."""
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         return self._build_data_etree('Input Data', ['inputfiles', 'importedfiles'])
 
 
 class OutputData(IODataList):
+    """Output files list for the report."""
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         return self._build_data_etree('Output Data', ['outputfiles'])
 
 
 class ImportedFiles(IODataList):
+    """Imported files list for the report."""
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         return self._build_data_etree('Imported Files', ['importedfiles'])

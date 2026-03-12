@@ -2,10 +2,14 @@
 Report element classes.
 
 Text, tables, folds, and other basic report building blocks.
+These are the most commonly used elements in task report scripts.
 """
+
+from __future__ import annotations
 
 import xml.etree.ElementTree as etree
 from io import StringIO
+from typing import Any, Callable
 
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2.report.core import (
@@ -16,12 +20,26 @@ from ccp4i2.report.core import (
 
 
 class Results(Container):
-    """Results container - uses Container.as_data_etree() for data path."""
+    """Results container — uses Container.as_data_etree() for data path."""
     pass
 
 
 class Fold(Container):
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    """Collapsible section in the report.
+
+    Wraps child elements in an expandable/collapsible fold with a label.
+    The ``brief`` attribute provides a short label for the fold tab bar.
+    """
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             Fold,
             self).__init__(
@@ -30,14 +48,14 @@ class Fold(Container):
             jobInfo=jobInfo,
             **kw)
         if xrtnode is not None:
-            self.label = xrtnode.get('label', 'Show details')
-            self.brief = xrtnode.get('brief', None)
+            self.label: str = xrtnode.get('label', 'Show details')
+            self.brief: str | None = xrtnode.get('brief', None)
         else:
             self.label = kw.get('label', 'Fold')
             self.brief = kw.get('brief', None)
-        self.initiallyOpen = kw.get('initiallyOpen', False)
+        self.initiallyOpen: bool = kw.get('initiallyOpen', False)
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         if self.brief is None or len(self.brief) == 0:
             self.brief = self.label
         root = super().as_data_etree()
@@ -48,9 +66,19 @@ class Fold(Container):
 
 
 class Text(ReportClass):
-    tag = 'span'
+    """Inline text element, optionally populated from XML via ``select``."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    tag: str = 'span'
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             Text,
             self).__init__(
@@ -58,8 +86,8 @@ class Text(ReportClass):
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
-        self.text = ''
-        self.tail = ''
+        self.text: str = ''
+        self.tail: str = ''
         if xrtnode is not None:
             if xrtnode.text is not None:
                 self.text = xrtnode.text
@@ -81,23 +109,34 @@ class Text(ReportClass):
 
 
 class Pre(Text):
-    tag = 'pre'
+    """Preformatted text block."""
+
+    tag: str = 'pre'
 
 
 class FetchPre(Text):
-    tag = 'pre'
+    """Preformatted text block (fetched from file)."""
+
+    tag: str = 'pre'
 
 
 class Status(Container):
-    """Status container - uses Container.as_data_etree() for data path."""
+    """Status container — uses Container.as_data_etree() for data path."""
     pass
 
 
 class Copy(ReportClass):
-    def __init__(self, xrtnode=None, xmlnode=None, **kw):
+    """Copies XML content from the program output into the report."""
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        **kw: Any,
+    ) -> None:
         super(Copy, self).__init__(xrtnode=xrtnode, xmlnode=xmlnode, **kw)
-        self.text = ""
-        self.root = etree.Element('root')
+        self.text: str = ""
+        self.root: etree.Element = etree.Element('root')
         if xmlnode is not None:
             if xrtnode is not None:
                 self.root.extend(xmlnode.findall(xrtnode.get("select")))
@@ -106,22 +145,26 @@ class Copy(ReportClass):
 
 
 class Generic(ReportClass):
+    """Generic HTML element, parsed from a text string or XRT node."""
 
-    ERROR_CODES = {1: {'description': 'Can not interpret text'}, 2: {
+    ERROR_CODES: dict = {1: {'description': 'Can not interpret text'}, 2: {
         'description': 'Error substituting values into generic item'}}
 
     def __init__(
-            self,
-            xrtnode=None,
-            xmlnode=None,
-            jobInfo={},
-            text=None,
-            defaultTag='p',
-            **kw):
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        text: str | None = None,
+        defaultTag: str = 'p',
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super().__init__()
-        self.id = kw.get('id', None)
-        self.class_ = kw.get('class_', None)
-        self.xmltree = None
+        self.id: str | None = kw.get('id', None)
+        self.class_: str | None = kw.get('class_', None)
+        self.xmltree: etree.Element | None = None
 
         if xrtnode is None and text is not None:
             try:
@@ -144,28 +187,42 @@ class Generic(ReportClass):
                 if text is not None:
                     self.errReport.append(self.__class__, 2, str(text))
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
         root.append(self.xmltree)
         return root
 
 
 class BaseTable(ReportClass):
-    tableCount = 0
+    """Base class for data tables with column-oriented storage.
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    Columns are added via ``addData()`` with XML xpath selectors or
+    explicit data lists. Supports transposed layout and column tooltips.
+    """
+
+    tableCount: int = 0
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(BaseTable, self).__init__(xrtnode=xrtnode, xmlnode=xmlnode, **kw)
         BaseTable.tableCount += 1
-        self.id = kw.get('id', 'table_' + str(BaseTable.tableCount))
-        self.coldata = []
-        self.coltitle = []
-        self.colsubtitle = []
-        self.colTips = []
-        self.xmldata = []
+        self.id: str = kw.get('id', 'table_' + str(BaseTable.tableCount))
+        self.coldata: list[list] = []
+        self.coltitle: list[str | None] = []
+        self.colsubtitle: list[str | None] = []
+        self.colTips: list[str | None] = []
+        self.xmldata: list[etree.Element] = []
         self.help = None
         self.download = None
-        self.outputCsv = kw.get('outputCsv', True)
-        downloadable = kw.get('downloadable', False)
+        self.outputCsv: bool = kw.get('outputCsv', True)
+        downloadable: bool = kw.get('downloadable', False)
 
         if downloadable:
             from ccp4i2.report.actions import Download
@@ -175,11 +232,11 @@ class BaseTable(ReportClass):
             else:
                 self.download = Download(jobInfo=jobInfo, dataName=self.id)
         if xrtnode is not None:
-            self.excludeIfDataMissing = xrtnode.get(
+            self.excludeIfDataMissing: bool = xrtnode.get(
                 'excludeIfDataMissing', False)
             if xmlnode is not None:
                 self.xmldata = xmlnode.findall(xrtnode.get("select"))
-            self.transpose = (xrtnode.get("transpose") is not None)
+            self.transpose: bool = (xrtnode.get("transpose") is not None)
             if xrtnode.get("help") is not None:
                 from ccp4i2.report.actions import Help
                 self.help = Help(ref=xrtnode.get("help"))
@@ -215,20 +272,24 @@ class BaseTable(ReportClass):
                         select=colsel)
 
     def addData(
-            self,
-            xmldata=None,
-            title=None,
-            subtitle=None,
-            expr=None,
-            function=None,
-            select=None,
-            data=[],
-            tip=None):
+        self,
+        xmldata: list[etree.Element] | None = None,
+        title: str | None = None,
+        subtitle: str | None = None,
+        expr: str | None = None,
+        function: Callable | None = None,
+        select: str | None = None,
+        data: list | None = None,
+        tip: str | None = None,
+    ) -> None:
+        """Add a column of data to the table."""
+        if data is None:
+            data = []
         if tip is not None:
             self.colTips.append(tip)
         else:
             self.colTips += [None]
-        colvals = []
+        colvals: list = []
         if xmldata is not None:
             if not isinstance(xmldata, list):
                 xmldata = [xmldata]
@@ -267,7 +328,7 @@ class BaseTable(ReportClass):
 # JavaScript-Enhanced Table class
 
 
-def _set_cell_content(cell_element, content):
+def _set_cell_content(cell_element: etree.Element, content: str) -> None:
     """Set table cell content, preserving inline HTML if present.
 
     If content contains valid XML/HTML markup (e.g. <i>, <b>, <br/>),
@@ -287,20 +348,33 @@ def _set_cell_content(cell_element, content):
 
 
 class Table(BaseTable):
+    """HTML table rendered from column data.
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    Supports both normal and transposed layouts. The ``data_as_etree()``
+    method builds the ``<table>`` element with ``<thead>``/``<tbody>``.
+    """
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(Table, self).__init__(
             xrtnode=xrtnode, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
         root.set('transpose', 'True' if self.transpose else 'False')
         for child in self.data_as_etree().findall('.//table'):
             root.append(child)
         return root
 
-    def data_as_etree(self, fileName=None):
-
+    def data_as_etree(self, fileName: str | None = None) -> etree.Element:
+        """Build the HTML table element tree from column data."""
         hassubhead = sum([x is not None for x in self.colsubtitle]) > 0
         eleTree = etree.parse(StringIO('<script></script>'))
         ccp4_data = eleTree.getroot()
@@ -379,9 +453,19 @@ class Table(BaseTable):
 
 
 class Div(Container):
-    tag = 'div'
+    """Generic ``<div>`` container."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    tag: str = 'div'
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             Div,
             self).__init__(
@@ -392,9 +476,19 @@ class Div(Container):
 
 
 class Progress(ReportClass):
-    tag = 'progress'
+    """Progress bar element (0–max, default 0–100)."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    tag: str = 'progress'
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         super(
             Progress,
             self).__init__(
@@ -402,17 +496,17 @@ class Progress(ReportClass):
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
-        self.value = 0
-        self.label = kw.get('label', '')
-        self.outputXml = kw.get('outputXml', False)
-        self.initiallyDrawn = kw.get('initiallyDrawn', True)
+        self.value: int | float = 0
+        self.label: str = kw.get('label', '')
+        self.outputXml: bool = kw.get('outputXml', False)
+        self.initiallyDrawn: bool = kw.get('initiallyDrawn', True)
         if 'value' in kw:
             self.value = kw['value']
-        self.max = 100
+        self.max: int | float = 100
         if 'max' in kw:
             self.max = kw['max']
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
         root.set('value', str(self.value))
         root.set('max', str(self.max))
@@ -422,31 +516,40 @@ class Progress(ReportClass):
 
 
 class GenericElement(ReportClass):
-    def __init__(self, tag=None, text=None, **kw):
-        super().__init__()
-        self.tag = tag
-        self.id = kw.get('id', None)
-        self.class_ = kw.get('class_', None)
-        self.text = text
-        self.attributes = kw
-        self.children = []
+    """Programmatically-built HTML element with children.
 
-    def append(self, name, text=None, **kw):
+    Unlike ``Generic`` (which parses a text string), ``GenericElement``
+    builds an element tree via ``append()`` and ``set()`` calls.
+    """
+
+    def __init__(self, tag: str | None = None, text: str | None = None, **kw: Any) -> None:
+        super().__init__()
+        self.tag: str | None = tag
+        self.id: str | None = kw.get('id', None)
+        self.class_: str | None = kw.get('class_', None)
+        self.text: str | None = text
+        self.attributes: dict[str, Any] = kw
+        self.children: list[GenericElement] = []
+
+    def append(self, name: str | GenericElement, text: str | None = None, **kw: Any) -> GenericElement:
+        """Append a child element (by tag name or GenericElement instance)."""
         if isinstance(name, GenericElement):
             self.children.append(name)
         else:
             self.children.append(GenericElement(name, text, **kw))
         return self.children[-1]
 
-    def set(self, key, value):
+    def set(self, key: str, value: Any) -> None:
+        """Set an attribute on this element."""
         self.attributes[key] = value
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
         root.append(self.as_etree())
         return root
 
-    def as_etree(self):
+    def as_etree(self) -> etree.Element:
+        """Convert to a plain ``etree.Element`` tree."""
         ele = etree.Element(self.tag)
         if self.id is not None:
             ele.set('id', self.id)
@@ -461,7 +564,8 @@ class GenericElement(ReportClass):
         return ele
 
 
-def parse_from_unicode(unicode_str):
+def parse_from_unicode(unicode_str: str) -> Any:
+    """Parse a unicode string as XML using lxml with UTF-8 encoding."""
     from lxml import etree as lxml_etree
     utf8_parser = lxml_etree.XMLParser(encoding='utf-8')
     s = unicode_str.encode('utf-8')
@@ -469,8 +573,9 @@ def parse_from_unicode(unicode_str):
 
 
 class Plot(GenericElement):
+    """Plot definition element, validated against the CCP4 schema."""
 
-    ERROR_CODES = {
+    ERROR_CODES: dict = {
         101: {
             'severity': SEVERITY_WARNING,
             'description': 'Failed loading Plot schema'},
@@ -478,10 +583,11 @@ class Plot(GenericElement):
             'description': 'Failed validation'},
     }
 
-    def __init__(self, text=None, **kw):
+    def __init__(self, text: str | None = None, **kw: Any) -> None:
         GenericElement.__init__(self, tag='plot', text=text, **kw)
 
-    def validate(self):
+    def validate(self) -> CErrorReport:
+        """Validate this plot against the CCP4ApplicationOutput XSD schema."""
         import os
 
         from lxml import etree as lxml_etree
@@ -513,6 +619,6 @@ class Plot(GenericElement):
         else:
             return CErrorReport()
 
-    def as_etree(self):
+    def as_etree(self) -> etree.Element:
         tree = GenericElement.as_etree(self)
         return tree

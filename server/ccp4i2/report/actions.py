@@ -2,19 +2,39 @@
 Report action elements.
 
 Help, Launch, CopyToClipboard, CopyUrlToClipboard, Download, LaunchTask.
+
+These elements represent interactive actions that appear in reports —
+buttons for launching viewers, downloading data, or copying information.
 """
+
+from __future__ import annotations
 
 import os
 import re
 import sys
 import xml.etree.ElementTree as etree
+from typing import Any
 
 
 class Help:
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
-        self.id = kw.get('id', None)
+    """Help button linking to documentation.
+
+    Resolves ``$CCP4I2/`` paths to the actual CCP4I2 directory.
+    Used via ``Container.addHelp()`` or inline in XRT templates.
+    """
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
+        self.id: str | None = kw.get('id', None)
         if xrtnode is not None:
-            self.ref = xrtnode.get('ref', None)
+            self.ref: str | None = xrtnode.get('ref', None)
         else:
             self.ref = kw.get('ref', None)
         if self.ref is not None and self.ref[0] == '$':
@@ -30,7 +50,7 @@ class Help:
                 self.ref = re.sub(
                     r'\$CCP4I2', CCP4Utils.getCCP4I2Dir(), self.ref)
         if xrtnode is not None:
-            self.label = xrtnode.get(
+            self.label: str = xrtnode.get(
                 'label',
                 'About this ' +
                 kw.get(
@@ -41,19 +61,31 @@ class Help:
 
 
 class Launch:
+    """Launch button for external viewers (CCP4mg, Coot, loggraph).
 
-    counter = 0
+    Tracks scene files and CCP4 data IDs for the viewer to open.
+    """
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    counter: int = 0
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
 
         Launch.counter += 1
-        self.id = kw.get('id', None)
-        self.jobId = jobInfo.get('jobid', None)
-        self.exe = None
-        self.label = None
+        self.id: str | None = kw.get('id', None)
+        self.jobId: str | None = jobInfo.get('jobid', None)
+        self.exe: str | None = None
+        self.label: str | None = None
         # This is a list - could be more than one graph
-        self.ccp4_data_id = []
-        self.sceneFile = None
+        self.ccp4_data_id: list[str] = []
+        self.sceneFile: str | None = None
 
         if xrtnode is not None:
             self.exe = xrtnode.get('exe', None)
@@ -71,35 +103,49 @@ class Launch:
         if self.sceneFile is not None:
             self.sceneFile = './' + os.path.split(self.sceneFile)[-1]
 
-    def appendDataId(self, ccp4_data_id=None):
+    def appendDataId(self, ccp4_data_id: str | None = None) -> None:
+        """Append a data ID if not already present."""
         if self.ccp4_data_id.count(ccp4_data_id) == 0:
             self.ccp4_data_id.append(ccp4_data_id)
 
 
 class CopyToClipboard:
-    def __init__(self, text="", label="Copy to clipboard", **kw):
+    """Button to copy text to the clipboard."""
+
+    def __init__(self, text: str = "", label: str = "Copy to clipboard", **kw: Any) -> None:
         self.text = text
         self.label = label
 
 
 class CopyUrlToClipboard:
-    def __init__(self, text="", label="Copy to clipboard", **kw):
+    """Button to copy a job URL to the clipboard."""
+
+    def __init__(self, text: str = "", label: str = "Copy to clipboard", **kw: Any) -> None:
         self.text = text
         self.label = label
-        self.projectId = kw.get("projectId")
-        self.jobnumber = kw.get("jobnumber")
+        self.projectId: str | None = kw.get("projectId")
+        self.jobnumber: int | None = kw.get("jobnumber")
 
 
 class Download:
+    """Download button for report data files."""
 
-    counter = 0
+    counter: int = 0
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         Download.counter += 1
-        self.id = kw.get('id', None)
-        self.jobId = jobInfo.get('jobid', None)
-        self.dataName = None
-        self.label = None
+        self.id: str | None = kw.get('id', None)
+        self.jobId: str | None = jobInfo.get('jobid', None)
+        self.dataName: str | None = None
+        self.label: str | None = None
 
         if xrtnode is not None:
             self.dataName = xrtnode.get('dataName', None)
@@ -109,17 +155,29 @@ class Download:
 
 
 class LaunchTask:
+    """Button to launch a follow-on task from the report.
 
-    counter = 0
+    Note: Currently unused — no callers exist in the codebase.
+    """
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    counter: int = 0
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         LaunchTask.counter += 1
-        self.id = kw.get('id', None)
-        self.jobId = jobInfo.get('jobid', None)
+        self.id: str | None = kw.get('id', None)
+        self.jobId: str | None = jobInfo.get('jobid', None)
         if xrtnode is not None:
-            self.taskName = xrtnode.get('taskName', None)
-            self.label = xrtnode.get('label', None)
-            self.ccp4_data_id = xrtnode.get('ccp4_data_id', ccp4_data_id)
+            self.taskName: str | None = xrtnode.get('taskName', None)
+            self.label: str | None = xrtnode.get('label', None)
+            self.ccp4_data_id: str | None = xrtnode.get('ccp4_data_id', ccp4_data_id)
 
         self.taskName = kw.get('taskName', self.taskName)
         self.label = kw.get('label', self.label)

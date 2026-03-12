@@ -2,9 +2,15 @@
 Report metadata elements.
 
 Title, JobDetails, JobLogFiles, Reference, ReferenceGroup, GenericReport.
+
+These elements display job metadata (times, status, references) in reports.
 """
 
+from __future__ import annotations
+
 import re
+import xml.etree.ElementTree as etree
+from typing import Any
 
 from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2 import I2_TOP
@@ -12,26 +18,36 @@ from ccp4i2.report.core import ReportClass, Container, Report
 
 
 class Title(ReportClass):
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    """Job title bar showing job number, task name, user title, and timestamp."""
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
         super().__init__()
+        if jobInfo is None:
+            jobInfo = {}
         import time
 
-        self.title0 = 'Job ' + \
+        self.title0: str = 'Job ' + \
             str(jobInfo['jobnumber']) + ': ' + jobInfo['tasktitle']
         if jobInfo.get(
                 'jobtitle',
                 None) is not None and len(
                 jobInfo['jobtitle']) > 0:
-            self.title1 = jobInfo['jobtitle']
+            self.title1: str | None = jobInfo['jobtitle']
         else:
             self.title1 = None
 
-        self.title2 = time.strftime(
+        self.title2: str = time.strftime(
             '%H:%M %d-%b-%Y',
             time.localtime(
                 jobInfo['creationtime']))
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
         title1 = getattr(self, 'title1', '')
         if title1 is None:
@@ -45,14 +61,24 @@ class Title(ReportClass):
 
 
 class JobDetails(ReportClass):
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    """Job details section showing creation/finish times and status."""
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
         super().__init__()
-        self.id = kw.get('id', None)
-        self.class_ = kw.get('class_', None)
-        self.jobInfo = {}
+        if jobInfo is None:
+            jobInfo = {}
+        self.id: str | None = kw.get('id', None)
+        self.class_: str | None = kw.get('class_', None)
+        self.jobInfo: dict[str, Any] = {}
         self.jobInfo.update(jobInfo)
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         import time
         root = super().as_data_etree()
         root.set(
@@ -73,14 +99,24 @@ class JobDetails(ReportClass):
 
 
 class JobLogFiles(ReportClass):
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    """Job log files section showing creation/finish times and status."""
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
         super().__init__()
-        self.id = kw.get('id', None)
-        self.class_ = kw.get('class_', None)
-        self.jobInfo = {}
+        if jobInfo is None:
+            jobInfo = {}
+        self.id: str | None = kw.get('id', None)
+        self.class_: str | None = kw.get('class_', None)
+        self.jobInfo: dict[str, Any] = {}
         self.jobInfo.update(jobInfo)
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         import time
         root = super().as_data_etree()
         root.set(
@@ -101,31 +137,50 @@ class JobLogFiles(ReportClass):
 
 
 class GenericReport(Report):
-    def __init__(self, xmlnode=None, jobInfo={}, **kw):
-        Report. __init__(self, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
+    """Fallback report for tasks without a custom report class."""
+
+    def __init__(
+        self,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
+        Report.__init__(self, xmlnode=xmlnode, jobInfo=jobInfo, **kw)
         title = jobInfo.get('tasktitle', '')
         self.addText(text=title)
 
 
 class Reference(ReportClass):
-    ERROR_CODES = {}
+    """A single bibliographic reference (article title, authors, source, link)."""
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    ERROR_CODES: dict = {}
+
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
         super().__init__()
-        self.id = kw.get('id', None)
+        if jobInfo is None:
+            jobInfo = {}
+        self.id: str | None = kw.get('id', None)
         if xrtnode is not None:
             data = xrtnode
         else:
             data = kw
-        self.href = data.get('href', None)
-        self.authorList = data.get('authorList', [])
+        self.href: str | None = data.get('href', None)
+        self.authorList: list[str] = data.get('authorList', [])
         if data.get('author', None) is not None:
             self.authorList.append(data.get('author', None))
-        self.source = data.get('source', None)
-        self.articleTitle = data.get('articleTitle', None)
-        self.articleLink = data.get('articleLink', None)
+        self.source: str | None = data.get('source', None)
+        self.articleTitle: str | None = data.get('articleTitle', None)
+        self.articleLink: str | None = data.get('articleLink', None)
 
-    def as_data_etree(self):
+    def as_data_etree(self) -> etree.Element:
         root = super().as_data_etree()
         if self.articleTitle is not None:
             root.set('articleTitle', self.articleTitle)
@@ -139,23 +194,34 @@ class Reference(ReportClass):
 
 
 class ReferenceGroup(Container):
-    ERROR_CODES = {
+    """Group of bibliographic references, loadable from MedLine files."""
+
+    ERROR_CODES: dict = {
         100: {
             'description': 'Failed attempting to load MedLine file - file not found'}}
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         Container.__init__(
             self,
             xrtnode=xrtnode,
             xmlnode=xmlnode,
             jobInfo=jobInfo,
             **kw)
-        self.label = 'References'
-        self.tag = 'div'
-        self._class = 'bibreference_group'
-        self.taskName = kw.get('taskName', None)
+        self.label: str = 'References'
+        self.tag: str = 'div'
+        self._class: str = 'bibreference_group'
+        self.taskName: str | None = kw.get('taskName', None)
 
-    def loadFromMedLine(self, taskName):
+    def loadFromMedLine(self, taskName: str) -> None:
+        """Parse a MedLine-format file and populate references."""
         path = I2_TOP / "references" / f"{taskName}.medline.txt"
         if not path.exists():
             self.errReport.append(

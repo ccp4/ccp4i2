@@ -1,11 +1,14 @@
 """
 Picture and visual report elements.
 
-Picture, PictureGroup, ObjectGallery, DrawnDiv.
+Picture — wraps a CCP4mg/Moorhen scene for inline 3D visualization.
 """
+
+from __future__ import annotations
 
 import os
 import xml.etree.ElementTree as etree
+from typing import Any
 
 from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2.report.core import (
@@ -16,15 +19,14 @@ from ccp4i2.report.core import (
 
 
 class Picture:
-    """
-    Picture element for CCP4mg/Moorhen scene visualization.
+    """Scene visualization element for CCP4mg/Moorhen.
 
-    When a sceneFile is provided, it is used directly without copying.
-    When building a scene from scratch (via xrtnode or scene param),
+    When a ``sceneFile`` is provided, it is used directly without copying.
+    When building a scene from scratch (via xrtnode or ``scene`` param),
     a new scene file is created with a deterministic name based on label.
     """
 
-    ERROR_CODES = {
+    ERROR_CODES: dict = {
         101: {
             'description': 'Error reading picture definition'}, 102: {
             'description': 'Error parsing xml from scene file'}, 103: {
@@ -32,23 +34,31 @@ class Picture:
                     'description': 'No scene description provided'}}
 
     # Class-level counter for generating unique scene file names within a session
-    _scene_counter = {}
+    _scene_counter: dict[str, int] = {}
 
-    def __init__(self, xrtnode=None, xmlnode=None, jobInfo={}, **kw):
+    def __init__(
+        self,
+        xrtnode: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
         import copy
         from ccp4i2.report.actions import Launch
-        self.id = kw.get('id', None)
-        self.class_ = kw.get('class_', None)
-        self.launchList = []
+        self.id: str | None = kw.get('id', None)
+        self.class_: str | None = kw.get('class_', None)
+        self.launchList: list[Launch] = []
 
         # Track whether we're using an externally-provided scene file
-        external_scene_file = None
+        external_scene_file: str | None = None
 
         bodyEle = etree.Element('ccp4i2_body')
         sceneEle = etree.Element('scene')
         bodyEle.append(sceneEle)
 
-        sceneRoot = None
+        sceneRoot: etree.Element | None = None
         if xrtnode is not None:
             sceneRoot = xrtnode
         elif kw.get('scene', None) is not None:
@@ -119,7 +129,7 @@ class Picture:
             self.picDefFile.saveFile(bodyEtree=bodyEle, useLXML=False)
 
         if xrtnode is not None:
-            self.label = xrtnode.get('label', None)
+            self.label: str | None = xrtnode.get('label', None)
         else:
             self.label = kw.get('label', None)
 
