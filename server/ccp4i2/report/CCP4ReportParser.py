@@ -21,9 +21,6 @@ continue to work unchanged.
 from ccp4i2.report.core import (  # noqa: F401
     CURRENT_CSS_VERSION,
     CCP4NS,
-    DOCTYPE,
-    I2XmlParser,
-    PARSER,
     XHTMLNS,
     XRTNS,
     Container,
@@ -33,11 +30,8 @@ from ccp4i2.report.core import (  # noqa: F401
     ReportClass,
     applySelect,
     findChildren,
-    findallEval,
     getChildObject,
     htmlBase,
-    saveToFile,
-    testPathExists,
     toBoolean,
 )
 
@@ -57,8 +51,6 @@ from ccp4i2.report.elements import (  # noqa: F401
     Status,
     Table,
     Text,
-    foldLinkLine,
-    foldTitleLine,
     parse_from_unicode,
     _set_cell_content,
 )

@@ -7,57 +7,17 @@ Text, tables, folds, and other basic report building blocks.
 import xml.etree.ElementTree as etree
 from io import StringIO
 
-from ccp4i2.core.CCP4ErrorHandling import SEVERITY_OK, SEVERITY_WARNING, CErrorReport, CException
+from ccp4i2.core.CCP4ErrorHandling import SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2.report.core import (
-    ReportClass, Container, Report,
-    XRTNS, XHTMLNS, CCP4NS,
-    applySelect, findallEval,
+    ReportClass, Container,
+    XRTNS,
+    applySelect,
 )
 
 
 class Results(Container):
     """Results container - uses Container.as_data_etree() for data path."""
     pass
-
-
-def foldTitleLine(label, initiallyOpen, brief=None):
-    root = etree.Element('root')
-    anchor = etree.Element('a')
-    anchor.set('name', label)
-    root.append(anchor)
-    span = etree.Element('span')
-    span.set('class', 'folder')
-    if brief is not None:
-        span.set('title', brief)
-    span.set('onclick', "toggleview(this)")
-    if initiallyOpen:
-        span.text = u"\u25BC" + " " + label
-    else:
-        span.text = u"\u25B6" + " " + label
-    root.append(span)
-    div = etree.Element('div')
-    if initiallyOpen:
-        div.set('class', 'hidesection displayed')
-    else:
-        div.set('class', 'hidesection hidden')
-    root.append(div)
-    return root
-
-
-def foldLinkLine(label, href, id):
-    root = etree.Element('root')
-    span = etree.Element('span')
-    span.set('class', 'folder')
-    span.set('onclick', "togglesubjob(this)")
-    span.text = 'Show ' + label
-    root.append(span)
-    div = etree.Element('div')
-    div.set('id', id)
-    div.set('class', 'subjob')
-    root.append(div)
-    return root
-
-# Fold class - container for a hidden report within a report
 
 
 class Fold(Container):
@@ -122,50 +82,6 @@ class Text(ReportClass):
         root = super().as_data_etree()
         return root
 
-    def data_as_xml(self, fileName=None):
-        # Tag as dummy so parent container will strip the tags
-
-        if self.text is not None:
-            root = etree.Element("div")
-        else:
-            root = etree.Element(self.tag)
-
-        if self.style is not None:
-            root.set('style', self.style)
-        if self.class_ is not None:
-            root.set('class', self.class_)
-        try:
-            if self.text is not None:
-                # This is a hack to deal with libxml2 crash with "some" strings
-                # on macOS. SJM 01/09/2023
-                ts = self.text.split("\n")
-                for t in ts:
-                    el = etree.Element(self.tag)
-                    if self.style is None:
-                        el.set(
-                            'style', "line-height: normal; margin: 0px 0px 0px 0px;")
-                    el.text = t
-                    root.append(el)
-        except BaseException:
-            print('Failed creating XML for:', self.text)
-        try:
-            if self.tail is not None:
-                root.tail = self.tail
-        except BaseException:
-            print('Failed creating XML for:', self.tail)
-
-        if fileName is not None:
-            with open(fileName, 'w') as outputFile:
-                outputFile.write(etree.tostring(root).decode())
-
-        return root
-
-    def getText(self):
-        if len(self.text) == 0 or len(
-                self.tail) == 0 or self.text[-1] == ' ' or self.tail[0] == ' ':
-            return self.text + self.tail
-        else:
-            return self.text + ' ' + self.tail
 
 
 class Pre(Text):
@@ -174,21 +90,6 @@ class Pre(Text):
 
 class FetchPre(Text):
     tag = 'pre'
-
-    def data_as_xml(self, fileName=None):
-        dataXml = Text.data_as_xml(self, fileName)
-        if (hasattr(dataXml, "findall")):
-            pres = dataXml.findall("pre")
-            if len(pres) > 0:
-                thePre = pres[0]
-                theClass = thePre.get("class")
-                if not theClass:
-                    thePre.set("class", "urlfetchtag")
-                else:
-                    thePre.set("class", theClass + " urlfetchtag")
-        return dataXml
-
-# Status class
 
 
 class Status(Container):
@@ -367,74 +268,9 @@ class BaseTable(ReportClass):
             self.coltitle.append(title)
             self.colsubtitle.append(subtitle)
 
-    def data_as_csv(self, fileName=None):
-        import csv
-        if len(self.coldata) == 0:
-            return CErrorReport()
-        try:
-            f = open(fileName, 'w', newline='')
-        except BaseException:
-            return CErrorReport(Report, 107, str(fileName))
-        try:
-            writer = csv.writer(f)
-            if self.transpose:
-                iRow = 0
-                for row in self.coldata:
-                    if len(self.coltitle) > 0:
-                        if iRow < len(self.coltitle):
-                            outputRow = [self.coltitle[iRow]] + row
-                        else:
-                            outputRow = [" "] + row
-                    else:
-                        outputRow = row
-                    writer.writerow(outputRow)
-                    iRow += 1
-            else:
-                if len(self.coltitle) > 0:
-                    writer.writerow(self.coltitle)
-                nc = len(self.coldata)
-                nr = len(self.coldata[0])
-                for n in range(nr):
-                    row = []
-                    for col in self.coldata:
-                        row.append(col[n])
-                    writer.writerow(row)
-        except BaseException:
-            return CErrorReport(Report, 107, str(fileName))
-        try:
-            f.close()
-        except BaseException:
-            return CErrorReport(Report, 107, str(fileName))
-        return CErrorReport()
 
-    def data_as_xml(self, fileName=None):
-        import csv
-        if len(self.coldata) == 0:
-            return CErrorReport()
-        try:
-            f = open(fileName, 'wb')
-        except BaseException:
-            return CErrorReport(Report, 107, str(fileName))
-        try:
-            dataAsEtree = self.data_as_etree()
-            # As it comes out here, the data tag is in ccp4 namespace (i.e.
-            # ccp4_data:data)
-            rootNode = etree.Element('CCP4ApplicationOutput')
-            for childTable in dataAsEtree:
-                childTable.tag = 'CCP4Table'
-                rootNode.append(childTable)
-            dataAsText = etree.tostring(rootNode)
-            f.write(dataAsText)
-        except BaseException:
-            print('Failed to select data')
-            return CErrorReport(Report, 107, str(fileName))
-        try:
-            f.close()
-        except BaseException:
-            return CErrorReport(Report, 107, str(fileName))
-        return CErrorReport()
 
-# JavaScript-Enhances Table class
+# JavaScript-Enhanced Table class
 
 
 def _set_cell_content(cell_element, content):
@@ -589,20 +425,6 @@ class Progress(ReportClass):
         root.set('label', str(self.label))
         return root
 
-    def data_as_xml(self, fileName=None):
-        dataAsEtree = etree.Element('span')
-        dataAsEtree.text = self.label
-        dataAsEtree.append(
-            etree.Element(
-                'progress', value=str(
-                    self.value), max=str(
-                    self.max), style=self.style))
-        rootNode = etree.Element('CCP4ApplicationOutput')
-        rootNode.append(dataAsEtree)
-        dataAsText = etree.tostring(rootNode)
-        with open(fileName, 'wb') as f:
-            f.write(dataAsText)
-        return CErrorReport()
 
 
 class GenericElement(ReportClass):

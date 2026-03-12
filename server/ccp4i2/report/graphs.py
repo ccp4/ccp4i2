@@ -8,9 +8,9 @@ import re
 import xml.etree.ElementTree as etree
 from io import StringIO
 
-from ccp4i2.core.CCP4ErrorHandling import SEVERITY_OK, SEVERITY_WARNING, CErrorReport, CException
+from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2.report.core import (
-    ReportClass, Container, Report,
+    ReportClass, Container,
     XRTNS, CCP4NS,
     applySelect,
 )
@@ -102,12 +102,6 @@ class FlotGraphGroup(Container):
             from ccp4i2.report.actions import Help
             self.help = Help(ref=kw['help'])
 
-    def data_as_xmls(self, fileRoot=None):
-        # Beware children could include Loop or other non-Graph elements
-        graphObjList = []
-        for child in self.children:
-            if isinstance(child, FlotGraph):
-                graphObjList.append(child)
 
 
 class DrawnDiv(Container):
@@ -502,99 +496,7 @@ class Graph(ReportClass):
 
         return ccp4_data
 
-    def getListOfRows(self):
-        rowdatalist = []
-        if len(self.coldata) > 0:
-            rowdatalist = self.coldata
-        elif len(self.tableText) > 0:
-            for row in self.tableText.split('\n'):
-                rowdata = []
-                for item in row.split():
-                    rowdata.append(item)
-                if len(rowdata) > 0:
-                    rowdatalist.append(rowdata)
-        elif self.pimpleData is not None:
-            dataEleList = self.pimpleData.findall('./data')
-            if len(dataEleList) > 0:
-                for row in dataEleList[0].text.split('\n'):
-                    rowdata = []
-                    for item in row.split():
-                        rowdata.append(item)
-                    if len(rowdata) > 0:
-                        rowdatalist.append(rowdata)
-            # Do we have some column headers - should be space separated words
-            headerEleList = self.pimpleData.findall('./headers')
-            if len(headerEleList) > 0:
-                separator = headerEleList[0].get('separator', ' ')
-                headerList = headerEleList[0].text.split(separator)
-                if len(rowdatalist) > 0 and len(
-                        rowdatalist[0]) == len(headerList):
-                    rowdatalist.insert(0, headerList)
-        return rowdatalist
 
-    def data_as_rtf(self, document=None):
-        """
-        RTF table export functionality - DEPRECATED.
-
-        This method previously used Qt (PySide2) for RTF table generation.
-        RTF export is no longer supported in the Qt-free version.
-        Use data_as_csv() for data export instead.
-        """
-        import logging
-        logger = logging.getLogger(f"ccp4i2:{__name__}")
-        logger.warning(
-            "data_as_rtf() is deprecated - RTF export requires Qt which is no longer available")
-        return None
-
-    def data_as_csv(self, fileName=None):
-        rowList = self.getListOfRows()
-        if len(rowList) == 0:
-            return CErrorReport(Report, 107, fileName)
-        import csv
-        try:
-            f = open(fileName, 'wb')
-        except BaseException:
-            return CErrorReport(Report, 107, fileName)
-        try:
-            writer = csv.writer(f)
-            if len(self.coltitle) > 0:
-                writer.writerow(self.coltitle)
-            for row in rowList:
-                writer.writerow(row)
-        except Exception as e:
-            return CErrorReport(Report, 107, fileName)
-        try:
-            f.close()
-        except BaseException:
-            return CErrorReport(Report, 107, fileName)
-
-        return CErrorReport()
-
-    def data_as_xml(self, fileName=None):
-        rowList = self.getListOfRows()
-        if len(rowList) == 0:
-            return CErrorReport(Report, 108, fileName)
-        try:
-            f = open(fileName, 'wb')
-        except BaseException:
-            return CErrorReport(Report, 108, fileName)
-        try:
-            dataAsEtree = self.data_as_etree()
-            # As it comes out here, the data tag is in ccp4 namespace (i.e.
-            # ccp4_data:data)
-            dataAsEtree.tag = 'CCP4Table'
-            rootNode = etree.Element('CCP4ApplicationOutput')
-            rootNode.append(dataAsEtree)
-            dataAsText = etree.tostring(rootNode)
-            f.write(dataAsText)
-        except Exception as e:
-            return CErrorReport(Report, 108, fileName)
-        try:
-            f.close()
-        except BaseException:
-            return CErrorReport(Report, 108, fileName)
-
-        return CErrorReport()
 
 # Graph class
 

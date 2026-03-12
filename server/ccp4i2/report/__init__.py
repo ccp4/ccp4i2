@@ -48,7 +48,6 @@ from ccp4i2.report.core import (
     Report,
     Container,
     ReportClass,
-    PARSER,
     CCP4NS,
     XRTNS,
 )
@@ -156,7 +155,6 @@ __all__ = [
     'Generic',
     'GenericElement',
     'GenericReport',
-    'PARSER',
     'CCP4NS',
     'XRTNS',
     # Modern base classes

@@ -1,7 +1,7 @@
 import sys
 import xml.etree.ElementTree as etree
 
-from ccp4i2.report import Report, PARSER
+from ccp4i2.report import Report
 
 
 class refmac_report(Report):

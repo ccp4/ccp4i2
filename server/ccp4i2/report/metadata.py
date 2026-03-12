@@ -71,15 +71,6 @@ class JobDetails(ReportClass):
         root.set('status', self.jobInfo.get('status', 'Unknown'))
         return root
 
-    def makeRow(self, key, value):
-        tr = etree.Element('tr')
-        th = etree.Element('th')
-        th.text = str(key)
-        tr.append(th)
-        td = etree.Element('td')
-        td.text = str(value)
-        tr.append(td)
-        return tr
 
 
 class JobLogFiles(ReportClass):
@@ -108,15 +99,6 @@ class JobLogFiles(ReportClass):
         root.set('status', self.jobInfo.get('status', 'Unknown'))
         return root
 
-    def makeRow(self, key, value):
-        tr = etree.Element('tr')
-        th = etree.Element('th')
-        th.text = str(key)
-        tr.append(th)
-        td = etree.Element('td')
-        td.text = str(value)
-        tr.append(td)
-        return tr
 
 
 class GenericReport(Report):

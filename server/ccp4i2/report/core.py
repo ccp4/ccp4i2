@@ -8,12 +8,7 @@ Report (top-level), and supporting utilities.
 
 import logging
 import os
-import re
-import sys
 import xml.etree.ElementTree as etree
-from io import StringIO
-
-from lxml import html as lxml_html
 
 from ccp4i2.core.CCP4ErrorHandling import SEVERITY_OK, SEVERITY_WARNING, CErrorReport, CException
 from ccp4i2 import I2_TOP
@@ -34,13 +29,6 @@ logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 XRTNS = "{http://www.ccp4.ac.uk/xrt}"
 CCP4NS = "http://www.ccp4.ac.uk/ccp4ns"
-# From http://www.w3.org/QA/2002/04/valid-dtd-list.html
-DOCTYPE = '''<?xml version="1.0"?>
-    <!DOCTYPE html>
-    <html xmlns:xsi="http://www.w3.org/1999/xhtml"></html>
-    '''
-# DOCTYPE = '''<?xml version="1.0" encoding="utf-8"?>\n<!DOCTYPE html>'''
-
 XHTMLNS = "{http://www.w3.org/1999/xhtml}"
 CURRENT_CSS_VERSION = '0.1.0'
 
@@ -53,17 +41,6 @@ def htmlBase():
     Path: /report_files/{version}/
     """
     return '/report_files/' + CURRENT_CSS_VERSION
-
-
-# htmlDoc function removed - HTML generation no longer used
-# The data path uses as_data_etree() which returns XML for frontend rendering
-
-
-def testPathExists(self, relPath):
-    return True
-
-
-# getLastestMinorVersion removed - CSS version management no longer needed
 
 
 def toBoolean(text):
@@ -178,44 +155,6 @@ def applySelect(xrtnode, xmlnode, jobInfo={}):
     for child in xrtnode:
         applySelect(child, xmlnode, jobInfo)
     return xrtnode
-
-
-def saveToFile(tree, fileName):
-    text = etree.tostring(tree, xml_declaration=True)
-    f = open(fileName, 'w')
-    f.write(text)
-    f.close()
-
-
-def findallEval(srcexpr, xmlnode):
-    """Evaluate a python expression containing findall elements deliminated by {}. The findall expressions are evaluated and return strings which are substituted into the expression. The expression is evaluated and the result returned."""
-    tgtexpr = ""
-    for i in range(srcexpr.count('{')):
-        i0 = srcexpr.find('{')
-        if i0 < 0:
-            break
-        i1 = srcexpr.find('}', i0)
-        if i1 < 0:
-            break
-        tgtexpr += srcexpr[:i0]
-        xp = srcexpr[i0 + 1:i1]
-        nodes = xmlnode.findall(xp)
-        tgtexpr += '"""'
-        for node in nodes:
-            tgtexpr += node.text
-        tgtexpr += '"""'
-        srcexpr = srcexpr[i1 + 1:]
-    tgtexpr += srcexpr
-    return eval(tgtexpr)
-
-
-def PARSER():
-    I2XmlParser.insts = etree.XMLParser(encoding='utf-8')
-    return I2XmlParser.insts
-
-
-class I2XmlParser:
-    insts = None
 
 
 class ReportClass(object):
@@ -674,20 +613,6 @@ class Container(ReportClass):
                 root.append(child.as_data_etree())
         return root
 
-    def graph_data_as_rtf(self, fileName=None):
-        """
-        RTF/ODF export functionality - DEPRECATED.
-
-        This method previously used Qt (PySide2) for RTF document generation.
-        RTF export is no longer supported in the Qt-free version.
-        Use data_as_csv() for data export instead.
-        """
-        import logging
-        logger = logging.getLogger(f"ccp4i2:{__name__}")
-        logger.warning(
-            "graph_data_as_rtf() is deprecated - RTF export requires Qt which is no longer available")
-        return None
-
     def errorReport(self):
         err = CException()
         err.extend(self.errReport)
@@ -854,7 +779,7 @@ class Report(Container):
         if xmlnode is None and 'xmlFile' in kw:
             try:
                 text = open(kw['xmlFile']).read()
-                self.xmlnode = etree.fromstring(text, PARSER())
+                self.xmlnode = etree.fromstring(text, etree.XMLParser(encoding='utf-8'))
             except Exception as e:
                 self.errReport.append(
                     self.__class__, 106, 'Reading file: ' + str(kw['xmlFile']) + '\n' + str(e))
@@ -888,7 +813,7 @@ class Report(Container):
                     self.errReport.append(self.__class__, 101, fileName)
                 else:
                     try:
-                        ele = etree.fromstring(open(fileName).read(), PARSER())
+                        ele = etree.fromstring(open(fileName).read(), etree.XMLParser(encoding='utf-8'))
                     except BaseException:
                         self.errReport.append(self.__class__, 102, fileName)
                     else:

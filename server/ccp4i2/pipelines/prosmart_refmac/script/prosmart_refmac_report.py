@@ -2,7 +2,7 @@ import sys
 import traceback
 import xml.etree.ElementTree as etree
 
-from ccp4i2.report import Report, PARSER
+from ccp4i2.report import Report
 from ccp4i2.wrappers.modelASUCheck.script import modelASUCheck_report
 from ccp4i2.wrappers.refmac.script import refmac_report
 from ccp4i2.wrappers.validate_protein.script import validate_protein_report

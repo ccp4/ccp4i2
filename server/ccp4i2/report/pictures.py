@@ -11,7 +11,7 @@ from ccp4i2.core.CCP4ErrorHandling import CException
 from ccp4i2.report.core import (
     ReportClass, Container,
     XRTNS,
-    applySelect, PARSER,
+    applySelect,
 )
 
 
@@ -53,7 +53,7 @@ class Picture:
             sceneRoot = xrtnode
         elif kw.get('scene', None) is not None:
             try:
-                sceneRoot = etree.fromstring(kw['scene'], PARSER())
+                sceneRoot = etree.fromstring(kw['scene'], etree.XMLParser(encoding='utf-8'))
             except BaseException:
                 raise CException(self.__class__, 103, kw['scene'])
         elif kw.get('sceneFile', None) is not None:
@@ -66,7 +66,7 @@ class Picture:
             else:
                 try:
                     sceneRoot = etree.fromstring(
-                        open(fileName).read(), PARSER())
+                        open(fileName).read(), etree.XMLParser(encoding='utf-8'))
                     # Remember that we have an external scene file - no need to copy
                     external_scene_file = fileName
                 except BaseException:
