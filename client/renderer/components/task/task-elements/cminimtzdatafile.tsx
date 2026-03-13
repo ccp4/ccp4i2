@@ -1,4 +1,5 @@
 import { Stack } from "@mui/material";
+import { PropsWithChildren } from "react";
 import { CDataFileElement } from "./cdatafile";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useMemo } from "react";
@@ -15,10 +16,10 @@ const MTZ_SIBLING_CLASSES = [
   "CMtzDataFile",
 ];
 
-export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
+export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskElementProps>> = (
   props
 ) => {
-  const { job, itemName, onChange, visibility } = props;
+  const { job, itemName, onChange, visibility, children } = props;
   const { useTaskItem, useFileDigest, uploadFileParam, container } = useJob(job.id);
   const { mutateJobs, mutateFiles } = useProject(job.project);
   const { item, value } = useTaskItem(itemName);
@@ -184,7 +185,9 @@ export const CMiniMtzDataFileElement: React.FC<CCP4i2TaskElementProps> = (
         {...props}
         infoContent={infoContent}
         setFiles={setFiles}
-      />
+      >
+        {children}
+      </CDataFileElement>
     </Stack>
   );
 };

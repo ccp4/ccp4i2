@@ -3669,11 +3669,26 @@ class CPluginScript(CData):
                         else:
                             obj_list[file_index].contentFlag = outputContentFlags[obj_index]
 
-                # Add to outfiles for splitMtz: [path, input_columns, output_columns]
-                # Input and output columns are the same
-                outfiles.append([output_path, col_string, col_string])
+                # Determine output column names: use type-specific canonical
+                # names from CONTENT_SIGNATURE_LIST when available, so that
+                # program-specific names (e.g. FWT,PHWT) are relabelled to
+                # the CCP4i2 standard (e.g. F,PHI).
+                out_col_string = col_string
+                item_obj = obj_list[file_index]
+                if (outputContentFlags
+                        and obj_index < len(outputContentFlags)
+                        and hasattr(item_obj.__class__, 'CONTENT_SIGNATURE_LIST')):
+                    cf = outputContentFlags[obj_index]
+                    sig_list = item_obj.__class__.CONTENT_SIGNATURE_LIST
+                    if cf is not None and 1 <= cf <= len(sig_list):
+                        canonical = sig_list[cf - 1]  # 1-indexed
+                        input_cols = [c.strip() for c in col_string.split(',')]
+                        if len(canonical) == len(input_cols):
+                            out_col_string = ','.join(canonical)
 
-                logger.debug(f'[DEBUG splitHkloutList]   {obj_name}[{file_index}] -> {output_path} (columns: {col_string})')
+                outfiles.append([output_path, col_string, out_col_string])
+
+                logger.debug(f'[DEBUG splitHkloutList]   {obj_name}[{file_index}] -> {output_path} (columns: {col_string} -> {out_col_string})')
 
             # Call splitMtz to split this input file
             if outfiles:

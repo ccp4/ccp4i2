@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Checkbox,
-  CircularProgress,
   FormControlLabel,
   FormGroup,
   Stack,
@@ -14,8 +13,10 @@ import { Add as AddIcon } from "@mui/icons-material";
 import { CSimpleDataFileElement } from "./csimpledatafile";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { useJob, useProjectFiles } from "../../../utils";
-import { useRouter } from "next/navigation";
+import { useApi } from "../../../api";
+import { useJob, useProject, useProjectFiles } from "../../../utils";
+import { File as DjangoFile, Project } from "../../../types/models";
+import { InlineTaskModal } from "./inline-task-modal";
 
 /**
  * Sequence entry from the CAsuDataFile digest
@@ -48,20 +49,22 @@ interface CAsuDataFileDigest {
  * as checkboxes. Users can select/deselect individual sequences, which updates
  * the selection CDict on the file object.
  *
- * If no CAsuDataFiles exist in the project, shows a "Create ASU Content" button
- * that creates and runs a ProvideAsuContents job, then auto-selects the output.
+ * If no file is selected, shows a "Create ASU Content" button that opens an
+ * inline modal to configure and run ProvideAsuContents, then auto-selects the output.
  */
 export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   props
 ) => {
   const { job, itemName, qualifiers } = props;
-  const router = useRouter();
-  const { useTaskItem, useFileDigest, setParameter, mutateContainer, createPeerTask } = useJob(job.id);
+  const api = useApi();
+  const { useTaskItem, useFileDigest, setParameter, fileItemToParameterArg, mutateContainer } = useJob(job.id);
   const { item, value } = useTaskItem(itemName);
   const { files: projectFiles } = useProjectFiles(job.project);
+  const { jobs: projectJobs } = useProject(job.project);
+  const { data: projects } = api.get<Project[]>("projects");
 
-  // State for create action
-  const [isCreating, setIsCreating] = useState(false);
+  // State for inline task modal
+  const [modalOpen, setModalOpen] = useState(false);
 
   // Check if there are any existing CAsuDataFiles in the project
   const existingAsuFiles = useMemo(() => {
@@ -108,12 +111,9 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
       }));
 
       // Update the selection CDict on the backend
-      // The selection is stored at item._objectPath.selection[sequenceName]
       const selectionPath = `${item._objectPath}.selection`;
 
       try {
-        // We need to update the CDict - use a special format that the backend understands
-        // The CDict stores key-value pairs, so we send the full updated selection
         const updatedSelections = {
           ...localSelections,
           [sequenceName]: checked,
@@ -146,30 +146,33 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   }, [hasSequences, localSelections]);
 
   /**
-   * Handle creating a new ASU content file.
-   * Creates a ProvideAsuContents job, runs it synchronously, and auto-selects the output.
+   * Handle the output file from the inline ProvideAsuContents task.
+   * Auto-selects it in this widget via setParameter.
    */
-  const handleCreateAsuContent = useCallback(async () => {
-    if (isCreating || job.status !== 1) return;
+  const handleOutputFileReady = useCallback(
+    async (outputFile: DjangoFile) => {
+      if (!item?._objectPath || !projectJobs) return;
 
-    setIsCreating(true);
-    try {
-      // 1. Create the ProvideAsuContents job
-      const createdJob = await createPeerTask("ProvideAsuContents");
-      if (!createdJob) {
-        console.error("Failed to create ProvideAsuContents job");
-        return;
+      try {
+        const paramArg = fileItemToParameterArg(
+          outputFile,
+          item._objectPath,
+          projectJobs,
+          projects || []
+        );
+
+        const result = await setParameter(paramArg);
+        if (result?.success) {
+          props.onChange?.(result.data?.updated_item);
+        }
+
+        await Promise.all([mutateContainer(), mutateDigest()]);
+      } catch (error) {
+        console.error("Error auto-selecting output file:", error);
       }
-
-      // 2. Navigate to the new job so user can configure it
-      router.push(`/ccp4i2/project/${job.project}/job/${createdJob.id}`);
-
-    } catch (error) {
-      console.error("Error creating ASU content:", error);
-    } finally {
-      setIsCreating(false);
-    }
-  }, [isCreating, job.status, job.project, createPeerTask, router]);
+    },
+    [item?._objectPath, projectJobs, projects, fileItemToParameterArg, setParameter, props.onChange, mutateContainer, mutateDigest]
+  );
 
   // Override qualifiers to enable selectionMode display
   const overriddenQualifiers = useMemo(() => {
@@ -191,89 +194,100 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   const shouldForceExpand = forceExpanded || (!hasFile && existingAsuFiles.length === 0);
 
   return (
-    <CSimpleDataFileElement {...props} forceExpanded={shouldForceExpand}>
-      {/* Create ASU Content action - shown when no file selected */}
-      {!hasFile && job.status === 1 && (
-        <Box sx={{ mb: hasSequences ? 2 : 0 }}>
-          <Stack direction="row" spacing={1} alignItems="center">
-            <Tooltip title="Create a new ASU content file by launching the ProvideAsuContents task">
-              <Button
-                variant="outlined"
-                size="small"
-                startIcon={isCreating ? <CircularProgress size={16} /> : <AddIcon />}
-                onClick={handleCreateAsuContent}
-                disabled={isCreating}
-                sx={{ textTransform: "none" }}
-              >
-                {isCreating ? "Creating..." : "Create ASU Content"}
-              </Button>
-            </Tooltip>
-            {existingAsuFiles.length === 0 && (
-              <Typography variant="caption" color="text.secondary">
-                No ASU content files in project
-              </Typography>
-            )}
-          </Stack>
-        </Box>
-      )}
+    <>
+      <CSimpleDataFileElement {...props} forceExpanded={shouldForceExpand}>
+        {/* Create ASU Content action - shown when no file selected */}
+        {!hasFile && job.status === 1 && (
+          <Box sx={{ mb: hasSequences ? 2 : 0 }}>
+            <Stack direction="row" spacing={1} alignItems="center">
+              <Tooltip title="Create a new ASU content file using the ProvideAsuContents task">
+                <Button
+                  variant="outlined"
+                  size="small"
+                  startIcon={<AddIcon />}
+                  onClick={() => setModalOpen(true)}
+                  sx={{ textTransform: "none" }}
+                >
+                  Create ASU Content
+                </Button>
+              </Tooltip>
+              {existingAsuFiles.length === 0 && (
+                <Typography variant="caption" color="text.secondary">
+                  No ASU content files in project
+                </Typography>
+              )}
+            </Stack>
+          </Box>
+        )}
 
-      {/* Sequence selection checkboxes - shown when file is selected */}
-      {hasSequences && overriddenQualifiers.selectionMode !== undefined && (
-        <Stack spacing={1} sx={{ mt: 1 }}>
-          <Typography variant="subtitle2" color="text.secondary">
-            Sequence Selection
-          </Typography>
-          <FormGroup>
-            {fileDigest?.sequences?.map((seq) => (
-              <FormControlLabel
-                key={seq.index}
-                control={
-                  <Checkbox
-                    checked={localSelections[seq.name] ?? seq.selected}
-                    onChange={(e) =>
-                      handleSelectionChange(seq.name, e.target.checked)
-                    }
-                    disabled={job.status !== 1}
-                    size="small"
-                  />
-                }
-                label={
-                  <Stack direction="row" spacing={1} alignItems="center">
-                    <Typography variant="body2" fontWeight="medium">
-                      {seq.name}
-                    </Typography>
-                    <Chip
-                      label={seq.polymerType}
+        {/* Sequence selection checkboxes - shown when file is selected */}
+        {hasSequences && overriddenQualifiers.selectionMode !== undefined && (
+          <Stack spacing={1} sx={{ mt: 1 }}>
+            <Typography variant="subtitle2" color="text.secondary">
+              Sequence Selection
+            </Typography>
+            <FormGroup>
+              {fileDigest?.sequences?.map((seq) => (
+                <FormControlLabel
+                  key={seq.index}
+                  control={
+                    <Checkbox
+                      checked={localSelections[seq.name] ?? seq.selected}
+                      onChange={(e) =>
+                        handleSelectionChange(seq.name, e.target.checked)
+                      }
+                      disabled={job.status !== 1}
                       size="small"
-                      variant="outlined"
-                      sx={{ height: 20, fontSize: "0.7rem" }}
                     />
-                    <Typography variant="caption" color="text.secondary">
-                      {seq.nCopies} {seq.nCopies === 1 ? "copy" : "copies"} |{" "}
-                      {seq.sequenceLength} residues
-                    </Typography>
-                    {seq.description && (
-                      <Typography
-                        variant="caption"
-                        color="text.secondary"
-                        sx={{
-                          maxWidth: 200,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          whiteSpace: "nowrap",
-                        }}
-                      >
-                        - {seq.description}
+                  }
+                  label={
+                    <Stack direction="row" spacing={1} alignItems="center">
+                      <Typography variant="body2" fontWeight="medium">
+                        {seq.name}
                       </Typography>
-                    )}
-                  </Stack>
-                }
-                sx={{ ml: 0 }}
-              />
-            ))}
-          </FormGroup>
-        </Stack>
-      )}
-    </CSimpleDataFileElement>
+                      <Chip
+                        label={seq.polymerType}
+                        size="small"
+                        variant="outlined"
+                        sx={{ height: 20, fontSize: "0.7rem" }}
+                      />
+                      <Typography variant="caption" color="text.secondary">
+                        {seq.nCopies} {seq.nCopies === 1 ? "copy" : "copies"} |{" "}
+                        {seq.sequenceLength} residues
+                      </Typography>
+                      {seq.description && (
+                        <Typography
+                          variant="caption"
+                          color="text.secondary"
+                          sx={{
+                            maxWidth: 200,
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          - {seq.description}
+                        </Typography>
+                      )}
+                    </Stack>
+                  }
+                  sx={{ ml: 0 }}
+                />
+              ))}
+            </FormGroup>
+          </Stack>
+        )}
+      </CSimpleDataFileElement>
+
+      {/* Inline modal for creating ProvideAsuContents */}
+      <InlineTaskModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        taskName="ProvideAsuContents"
+        parentJob={job}
+        onOutputFileReady={handleOutputFileReady}
+        title="Create ASU Contents"
+      />
+    </>
   );
 };

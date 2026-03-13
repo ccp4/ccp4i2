@@ -7,6 +7,7 @@ import { useJob } from "../../../utils";
 import { CFloatElement } from "./cfloat";
 import { CPdbDataFileElement } from "./cpdbdatafile";
 import { CAsuDataFileElement } from "./casudatafile";
+import { CFreeRDataFileElement } from "./cfreerfile";
 import { CMiniMtzDataFileElement } from "./cminimtzdatafile";
 import { CBooleanElement } from "./cboolean";
 import { CListElement } from "./clist";
@@ -209,10 +210,10 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
         );
       case "CFreeRDataFile":
         return (
-          <CMiniMtzDataFileElement
+          <CFreeRDataFileElement
             key={the_uuid}
             {...props}
-            qualifiers={{ ...qualifiers, downloadModes: ["ebiSFs"] }}
+            qualifiers={qualifiers}
           />
         );
 

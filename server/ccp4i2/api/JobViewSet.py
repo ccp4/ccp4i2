@@ -1575,6 +1575,9 @@ class JobViewSet(ModelViewSet):
             error_tree = getEtree(err)
             ET.indent(error_tree, " ")
             return api_error(ET.tostring(error_tree).decode("utf-8"), status=400)
+        except Exception as err:
+            logger.exception("upload_file_param failed: %s", err)
+            return api_error(str(err), status=400)
 
     @action(
         detail=True,

@@ -127,21 +127,28 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
       if (job && item) {
         setMessage(`Uploading file ${fileName} for ${item._objectPath}`);
 
-        // Use centralized uploadFileParam with local cache patching
-        const uploadResult = await uploadFileParam({
-          objectPath: item._objectPath,
-          file: fileBlob,
-          fileName,
-        });
+        try {
+          // Use centralized uploadFileParam with local cache patching
+          const uploadResult = await uploadFileParam({
+            objectPath: item._objectPath,
+            file: fileBlob,
+            fileName,
+          });
 
-        setMessage(`File ${fileName} uploaded for ${item._objectPath}`);
-        if (uploadResult?.success && uploadResult.data?.updated_item) {
-          if (onChange) {
-            onChange(uploadResult.data.updated_item);
+          setMessage(`File ${fileName} uploaded for ${item._objectPath}`);
+          if (uploadResult?.success && uploadResult.data?.updated_item) {
+            if (onChange) {
+              onChange(uploadResult.data.updated_item);
+            }
+            // Additional mutations not handled by uploadFileParam
+            mutateJobs();
+            mutateFiles();
           }
-          // Additional mutations not handled by uploadFileParam
-          mutateJobs();
-          mutateFiles();
+        } catch (err: any) {
+          setMessage(
+            err.message || `Failed to upload ${fileName}`,
+            "error"
+          );
         }
       }
     },
@@ -191,23 +198,28 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
 
   const handleEbiSFsFetch = useCallback(async () => {
     if (identifier) {
-      const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/files/${identifier.toLowerCase()}`;
-      const result = await apiFetch(url);
-      const data = await result.json();
-      if (data && data[identifier.toLowerCase()]) {
-        const file = data[identifier.toLowerCase()];
-        let fetchURL = file.PDB.downloads
-          .filter((item: any) => item.label === "Structure Factors")
-          .at(0).url;
-        setMessage(`Fetching file from ${fetchURL}`);
-        const content = await apiBlob(fetchURL);
-        setMessage(`Fetched file from ${fetchURL}`);
-        uploadFile(content, fetchURL.split("/").at(-1));
-        onClose();
-      } else {
-        const errorText = await result.text();
-        setMessage(errorText);
-        console.log("FetchFileForParam handleFetch result", result);
+      try {
+        const url = `https://www.ebi.ac.uk/pdbe/api/pdb/entry/files/${identifier.toLowerCase()}`;
+        const result = await apiFetch(url);
+        const data = await result.json();
+        if (data && data[identifier.toLowerCase()]) {
+          const file = data[identifier.toLowerCase()];
+          let fetchURL = file.PDB.downloads
+            .filter((item: any) => item.label === "Structure Factors")
+            .at(0).url;
+          setMessage(`Fetching file from ${fetchURL}`);
+          const content = await apiBlob(fetchURL);
+          setMessage(`Fetched file from ${fetchURL}`);
+          uploadFile(content, fetchURL.split("/").at(-1));
+          onClose();
+        } else {
+          const errorText = await result.text();
+          setMessage(errorText);
+          console.log("FetchFileForParam handleFetch result", result);
+        }
+      } catch (err: any) {
+        setMessage(err.message || "Unknown error", "error");
+        console.log("FetchFileForParam handleEbiSFsFetch error", err);
       }
     }
   }, [identifier, uploadFile, onClose, setMessage]);

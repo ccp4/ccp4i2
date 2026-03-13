@@ -172,7 +172,17 @@ export async function apiFetch(
     const response = await coreFetch(url, options, config);
 
     if (!response.ok) {
-      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      // Try to extract the error message from the response body
+      let errorMessage = `HTTP ${response.status}: ${response.statusText}`;
+      try {
+        const errorData = await response.json();
+        if (errorData?.error) {
+          errorMessage = errorData.error;
+        }
+      } catch {
+        // Response body wasn't JSON — use the default message
+      }
+      throw new Error(errorMessage);
     }
 
     return response;

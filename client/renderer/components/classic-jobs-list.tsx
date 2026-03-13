@@ -32,7 +32,7 @@ import {
   TreeItem2Root,
   useTreeItem2,
 } from "@mui/x-tree-view";
-import { Clear, Delete, Menu as MenuIcon } from "@mui/icons-material";
+import { CheckBoxOutlined, Clear, Delete, Menu as MenuIcon } from "@mui/icons-material";
 import { useDraggable } from "@dnd-kit/core";
 import { useRouter } from "next/navigation";
 
@@ -96,6 +96,7 @@ const TIME_DISPLAY_STYLE = { fontSize: "75%" };
 interface JobTreeContextValue {
   jobsByUuid: Map<string, JobTreeNode>;
   filesByUuid: Map<string, DjangoFile>;
+  selectMode: boolean;
   selectedJobIds: Set<number>;
   toggleJobSelection: (jobId: number) => void;
 }
@@ -103,6 +104,7 @@ interface JobTreeContextValue {
 const JobTreeContext = createContext<JobTreeContextValue>({
   jobsByUuid: new Map(),
   filesByUuid: new Map(),
+  selectMode: false,
   selectedJobIds: new Set(),
   toggleJobSelection: () => {},
 });
@@ -306,8 +308,14 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   const api = useApi();
   const deleteDialog = useDeleteDialog();
 
-  // Multi-select state for bulk operations
+  // Multi-select mode for bulk delete
+  const [selectMode, setSelectMode] = useState(false);
   const selectedJobIds = useSet<number>();
+
+  const exitSelectMode = useCallback(() => {
+    setSelectMode(false);
+    selectedJobIds.clear();
+  }, [selectedJobIds]);
 
   const toggleJobSelection = useCallback(
     (jobId: number) => {
@@ -330,10 +338,11 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   const contextValue = useMemo<JobTreeContextValue>(
     () => ({
       ...lookups,
+      selectMode,
       selectedJobIds,
       toggleJobSelection,
     }),
-    [lookups, selectedJobIds, toggleJobSelection]
+    [lookups, selectMode, selectedJobIds, toggleJobSelection]
   );
 
   // Transform to tree view format
@@ -345,13 +354,22 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     (event: React.SyntheticEvent, ids: string | null) => {
       if (!ids) return;
 
+      // In select mode, clicking a top-level job toggles its selection
+      if (selectMode) {
+        const job = lookups.jobsByUuid.get(ids);
+        if (job && !job.number.includes(".")) {
+          toggleJobSelection(job.id);
+        }
+        return;
+      }
+
       const job = lookups.jobsByUuid.get(ids);
       if (job) {
         navigate.push(`/ccp4i2/project/${job.project}/job/${job.id}`);
       }
       setSelectedItems(ids);
     },
-    [lookups.jobsByUuid, navigate]
+    [lookups.jobsByUuid, navigate, selectMode, toggleJobSelection]
   );
 
   const handleTreeSelection = useCallback(
@@ -392,7 +410,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
           onDelete: async () => {
             await api.post("jobs/bulk_delete/", { job_ids: jobIds });
             mutateJobTree();
-            selectedJobIds.clear();
+            exitSelectMode();
           },
           onCancel: () => {},
           children:
@@ -438,39 +456,53 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
 
   return (
     <JobTreeContext.Provider value={contextValue}>
-      {selectedJobIds.size > 0 && (
+      {selectMode ? (
         <Paper
           elevation={2}
           sx={{ p: 1, mb: 1, bgcolor: "action.selected" }}
         >
           <Stack direction="row" alignItems="center" spacing={1}>
-            <Tooltip title="Clear selection">
-              <IconButton
-                onClick={() => selectedJobIds.clear()}
-                size="small"
-              >
-                <Clear fontSize="small" />
-              </IconButton>
-            </Tooltip>
+            <Button
+              size="small"
+              onClick={exitSelectMode}
+              startIcon={<Clear fontSize="small" />}
+            >
+              Cancel
+            </Button>
             <Typography
               color="primary.main"
               variant="subtitle2"
               sx={{ fontWeight: 600, flexGrow: 1 }}
             >
-              {selectedJobIds.size} job
-              {selectedJobIds.size !== 1 ? "s" : ""} selected
+              {selectedJobIds.size > 0
+                ? `${selectedJobIds.size} job${selectedJobIds.size !== 1 ? "s" : ""} selected`
+                : "Select jobs to delete"}
             </Typography>
             <Tooltip title="Delete selected jobs">
-              <IconButton
-                onClick={handleBulkDelete}
-                size="small"
-                color="error"
-              >
-                <Delete fontSize="small" />
-              </IconButton>
+              <span>
+                <IconButton
+                  onClick={handleBulkDelete}
+                  size="small"
+                  color="error"
+                  disabled={selectedJobIds.size === 0}
+                >
+                  <Delete fontSize="small" />
+                </IconButton>
+              </span>
             </Tooltip>
           </Stack>
         </Paper>
+      ) : (
+        <Stack direction="row" justifyContent="flex-end" sx={{ mb: 0.5 }}>
+          <Tooltip title="Select jobs to delete">
+            <IconButton
+              size="small"
+              onClick={() => setSelectMode(true)}
+            >
+              <CheckBoxOutlined fontSize="small" />
+            </IconButton>
+          </Tooltip>
+        </Stack>
       )}
       <RichTreeView
         items={treeViewItems}
@@ -493,7 +525,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
 const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
   function CustomTreeItem({ id, itemId, label, disabled, children }, ref) {
     const { job, file, isJob, timestamp } = useTreeItemData(itemId);
-    const { selectedJobIds, toggleJobSelection } = useContext(JobTreeContext);
+    const { selectMode, selectedJobIds, toggleJobSelection } = useContext(JobTreeContext);
 
     const { setJobMenuAnchorEl, setJob } = useJobMenu();
     const { setFileMenuAnchorEl, setFile } = useFileMenu();
@@ -679,7 +711,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
             <TreeItem2Icon status={status} />
           </TreeItem2IconContainer>
 
-          {job && !job.number.includes(".") && (
+          {selectMode && job && !job.number.includes(".") && (
             <Checkbox
               size="small"
               checked={selectedJobIds.has(job.id)}

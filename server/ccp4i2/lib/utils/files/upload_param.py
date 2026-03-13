@@ -716,17 +716,55 @@ def gemmi_convert_to_mtz(dobj: CMtzDataFile, downloaded_file_path: pathlib.Path)
     block = gemmi.as_refln_blocks(document)[0]
     converter = gemmi.CifToMtz()
     returned_mtz = converter.convert_block_to_mtz(block)
-    # print(returned_mtz.column_labels())
+
+    # Drop invalid free-R columns (e.g. all values identical from CIF
+    # status columns where every reflection is 'o' with no free set).
+    _drop_invalid_freer_columns(returned_mtz)
+
     dest = downloaded_file_path.with_suffix(".mtz")
     deduped_dest = available_file_name_based_on(dest)
     returned_mtz.write_to_file(str(deduped_dest))
-    # print("dest", deduped_dest)
     analysis = find_column_selections(dobj, deduped_dest)
-    # print(analysis)
-    # FOr now assume that there is at least one matching column group and take the first
+    if not analysis["options"]:
+        raise ValueError(
+            f"No suitable columns found for {type(dobj).__name__} "
+            f"in converted CIF file. The deposited file may not contain "
+            f"the required data (e.g. no valid free-R set)."
+        )
     selected_columns = analysis["options"][0]["columnPath"]
     print("selected_columns", selected_columns)
     return deduped_dest, selected_columns
+
+
+def _drop_invalid_freer_columns(mtz: "gemmi.Mtz"):
+    """Remove free-R flag columns where all values are identical.
+
+    Deposited CIF files sometimes contain ``_refln.status`` with every
+    reflection set to ``o`` (observed) and no ``f`` (free) entries.
+    gemmi converts this to a ``FreeR_flag`` column that is all-1, which is
+    useless and causes downstream tools (e.g. modelcraft) to fail with
+    "0.0% of reflections are in the free set".
+
+    We detect such columns here and remove them so they are never offered
+    as a column selection.
+    """
+    import numpy as np
+
+    freer_col_indices = []
+    for i, col in enumerate(mtz.columns):
+        if col.type == "I" and "free" in col.label.lower():
+            freer_col_indices.append(i)
+
+    for idx in reversed(freer_col_indices):
+        col = mtz.columns[idx]
+        data = np.array(col, copy=False)
+        valid = data[~np.isnan(data)]
+        if len(valid) == 0 or len(np.unique(valid)) <= 1:
+            logger.warning(
+                "Dropping invalid free-R column '%s' (all values identical)",
+                col.label,
+            )
+            mtz.remove_column(idx)
 
 
 def find_column_selections(data_object: CMtzDataFile, deduped_dest: pathlib.Path):
