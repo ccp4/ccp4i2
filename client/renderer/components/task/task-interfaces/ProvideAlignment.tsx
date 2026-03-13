@@ -21,7 +21,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         containerHint="FolderLevel"
       >
         <InlineField label="Paste or read alignment, or extract from HHPred or Blast search">
-          <CCP4i2TaskElement itemName="PASTEORREAD" {...props} qualifiers={{ guiLabel: " " }} />
+          <CCP4i2TaskElement itemName="PASTEORREAD" {...props} qualifiers={{ guiLabel: " " }} sx={{ minWidth: 320 }} />
         </InlineField>
 
         {PASTEORREAD === "ALIGNIN" && (
