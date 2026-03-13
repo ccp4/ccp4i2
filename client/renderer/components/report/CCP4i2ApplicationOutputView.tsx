@@ -180,6 +180,77 @@ export const CCP4i2ApplicationOutputView: React.FC<
     setExportMenuAnchor(null);
   };
 
+  const handleExportJSON = () => {
+    if (!table) return;
+
+    const plots = table.allPlots;
+    const parsedBlocks = table.parsedDataBlocks;
+    const headers = table.allHeaders;
+    if (!plots || !parsedBlocks || !headers || headers.length === 0) return;
+
+    const decodedHeaders = headers.map(h => decodeHTMLEntities(h));
+
+    // Helper to apply x-axis transform so exported values are human-meaningful
+    const transformX = (value: number, plot: Plot): number => {
+      if (plot.xscale === "oneoversqrt" && value > 0) {
+        return 1 / Math.sqrt(value);
+      }
+      return value;
+    };
+
+    // Build per-plot structured data
+    const jsonPlots = plots.map(plot => {
+      const plotlines = Array.isArray(plot.plotline)
+        ? plot.plotline
+        : plot.plotline ? [plot.plotline] : [];
+
+      const datasets = plotlines.map(pl => {
+        let dataAsGrid: any[][] = [];
+        if (pl.dataid && parsedBlocks[pl.dataid]) {
+          dataAsGrid = parsedBlocks[pl.dataid];
+        } else if (parsedBlocks["_"]) {
+          dataAsGrid = parsedBlocks["_"];
+        }
+
+        const xIdx = parseInt(`${pl.xcol}`) - 1;
+        const yIdx = parseInt(`${pl.ycol}`) - 1;
+        const rawLabel = decodedHeaders[yIdx];
+
+        const data = dataAsGrid
+          .filter(row => Array.isArray(row) && row.length > 0)
+          .map(row => {
+            const rawX = parseFloat(row[xIdx]);
+            const rawY = parseFloat(row[yIdx]);
+            return {
+              x: isNaN(rawX) ? null : transformX(rawX, plot),
+              y: isNaN(rawY) ? null : rawY,
+            };
+          });
+
+        return { label: rawLabel || `Column ${pl.ycol}`, data };
+      });
+
+      return {
+        title: plot.title || null,
+        xlabel: plot.xscale === "oneoversqrt"
+          ? (plot.xlabel ? `${plot.xlabel} (transformed from 1/d²)` : "Resolution (Å)")
+          : (plot.xlabel || null),
+        ylabel: plot.ylabel || null,
+        datasets,
+      };
+    });
+
+    const result = {
+      title: table.title || null,
+      plots: jsonPlots,
+    };
+
+    const jsonStr = JSON.stringify(result, null, 2);
+    const blob = new Blob([jsonStr], { type: "application/json;charset=utf-8;" });
+    downloadBlob(blob, `${selectedPlot?.title || table.title || "data"}.json`);
+    setExportMenuAnchor(null);
+  };
+
   const handleExportCSV = () => {
     if (!table || !selectedPlot) return;
 
@@ -441,6 +512,7 @@ export const CCP4i2ApplicationOutputView: React.FC<
         <MenuItem onClick={handleExportPNG}>Export Chart as PNG</MenuItem>
         <MenuItem onClick={handleExportSVG}>Export Chart as SVG (raster embedded)</MenuItem>
         <MenuItem onClick={handleExportPDF}>Export as PDF (Chart + Data Table)</MenuItem>
+        <MenuItem onClick={handleExportJSON}>Export Data as JSON</MenuItem>
         <MenuItem onClick={handleExportCSV}>Export Data as CSV</MenuItem>
         <MenuItem onClick={handleExportExcel}>Export Data as Excel</MenuItem>
       </Menu>
