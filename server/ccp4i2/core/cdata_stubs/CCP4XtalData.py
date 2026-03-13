@@ -342,6 +342,7 @@ class CColumnGroupListStub(CList):
         "toolTip": 'A reflection file in mmCIF format',
         "fileExtensions": ['cif'],
         "fileContentClassName": 'CMmcifReflData',
+        "downloadModes": ['ebiSFs'],
         "helpFile": 'data_files#mmCIF',
     },
     qualifiers_order=[
