@@ -223,6 +223,8 @@ export const FileMenu: React.FC = () => {
           url = `/api/proxy/ccp4i2/files/${file.id}/digest/`;
         } else if (file.type === "chemical/x-mdl-molfile") {
           language = "molblock-raw";
+        } else if (file.type === "application/CCP4-seqalign") {
+          language = "clustalw";
         }
 
         setContentSpecification({ url, title: file.name, language });
