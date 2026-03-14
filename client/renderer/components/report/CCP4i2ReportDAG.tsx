@@ -151,7 +151,7 @@ export const CCP4i2ReportDAG: React.FC<CCP4i2ReportElementProps> = ({
           },
           interaction: {
             dragNodes: false,
-            zoomView: true,
+            zoomView: false,
             dragView: true,
           },
         };
@@ -210,7 +210,7 @@ export const CCP4i2ReportDAG: React.FC<CCP4i2ReportElementProps> = ({
           borderColor: "divider",
           borderRadius: 1,
           overflow: "hidden",
-          height: "700px",
+          height: "350px",
           position: "relative",
         }}
       >
