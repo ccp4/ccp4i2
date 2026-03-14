@@ -92,6 +92,12 @@ export const AlignmentViewer: React.FC<AlignmentViewerProps> = ({
   const [highlightInput, setHighlightInput] = useState("");
   const [showHighlightPanel, setShowHighlightPanel] = useState(false);
   const alignmentContainerRef = useRef<HTMLDivElement>(null);
+  const [hoveredResidue, setHoveredResidue] = useState<{
+    name: string;
+    residue: string;
+    seqPos: number | null;
+    alignPos: number;
+  } | null>(null);
 
   const { sequences, sequenceNames, clustalConservation, sequenceBlocks } =
     useMemo(() => {
@@ -660,8 +666,45 @@ export const AlignmentViewer: React.FC<AlignmentViewerProps> = ({
           </AccordionDetails>
         </Accordion>
       )}
+      {/* Residue info bar */}
+      <Box
+        sx={{
+          height: "24px",
+          mb: 0.5,
+          px: 1,
+          display: "flex",
+          alignItems: "center",
+          fontFamily: "Courier, monospace",
+          fontSize: "12px",
+          backgroundColor: hoveredResidue ? "#e3f2fd" : "#f5f5f5",
+          border: "1px solid",
+          borderColor: hoveredResidue ? "#90caf9" : "#ddd",
+          borderRadius: 0.5,
+          transition: "background-color 0.1s, border-color 0.1s",
+          color: "#333",
+        }}
+      >
+        {hoveredResidue ? (
+          <>
+            <b>{hoveredResidue.name}</b>
+            <Box component="span" sx={{ mx: 1, color: "#999" }}>|</Box>
+            Residue: <b style={{ marginLeft: 4 }}>{hoveredResidue.residue}</b>
+            <Box component="span" sx={{ mx: 1, color: "#999" }}>|</Box>
+            {hoveredResidue.seqPos !== null ? (
+              <>Sequence position: <b style={{ marginLeft: 4 }}>{hoveredResidue.seqPos}</b></>
+            ) : (
+              <span style={{ color: "#999" }}>gap</span>
+            )}
+            <Box component="span" sx={{ mx: 1, color: "#999" }}>|</Box>
+            Alignment column: <b style={{ marginLeft: 4 }}>{hoveredResidue.alignPos}</b>
+          </>
+        ) : (
+          <span style={{ color: "#999" }}>Hover over a residue to see details</span>
+        )}
+      </Box>
       <Box
         ref={alignmentContainerRef}
+        onMouseLeave={() => setHoveredResidue(null)}
         sx={{
           border: "1px solid #ddd",
           borderRadius: 1,
@@ -806,13 +849,24 @@ export const AlignmentViewer: React.FC<AlignmentViewerProps> = ({
                     {seqData.sequence.split("").map((residue, pos) => {
                       // Calculate the actual sequence position for this residue
                       const alignmentPos = block.blockStart + pos - 1; // 0-based alignment position
-                      const sequencePos = sequences[seqIndex]
-                        .slice(0, alignmentPos + 1)
-                        .replace(/[-.\s]/g, "").length;
+                      const isGap = residue === "-" || residue === "." || residue === " ";
+                      const sequencePos = isGap
+                        ? null
+                        : sequences[seqIndex]
+                            .slice(0, alignmentPos + 1)
+                            .replace(/[-.\s]/g, "").length;
 
                       return (
                         <Box
                           key={pos}
+                          onMouseEnter={() =>
+                            setHoveredResidue({
+                              name: seqData.name,
+                              residue,
+                              seqPos: sequencePos,
+                              alignPos: block.blockStart + pos,
+                            })
+                          }
                           sx={{
                             width: "12px", // Increased from 10px to 12px
                             height: "16px", // Increased from 14px to 16px
@@ -834,15 +888,6 @@ export const AlignmentViewer: React.FC<AlignmentViewerProps> = ({
                               zIndex: 3,
                             },
                           }}
-                          title={`${seqData.name} - Alignment pos: ${
-                            block.blockStart + pos
-                          }, Residue: ${residue}, Seq pos: ${
-                            residue === "-" ||
-                            residue === "." ||
-                            residue === " "
-                              ? "gap"
-                              : sequencePos
-                          }`}
                         >
                           {residue}
                         </Box>
