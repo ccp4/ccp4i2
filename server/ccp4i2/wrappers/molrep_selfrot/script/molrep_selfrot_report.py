@@ -40,6 +40,31 @@ class molrep_selfrot_report(Report):
             parent.addText(text = 'Conclusion of search for translational symmetry:',style='font-size:120%;')
             parent.addText(xmlnode=pattersonNode, select='INFO',style='font-size:120%;')
 
+            # Surface pseudo-translation warning with vector details
+            for pstNode in pattersonNode.findall('PseudoTranslation'):
+                parent.append(
+                    '<div style="background:#fff3cd; border:1px solid #ffc107; '
+                    'border-radius:4px; padding:8px 12px; margin:8px 0;">'
+                    '<b>Pseudo-translation detected</b></div>'
+                )
+                vectors = pstNode.findall('TranslationVector')
+                if vectors:
+                    vecHtml = '<table style="margin:4px 0; border-collapse:collapse;">'
+                    vecHtml += '<tr><th style="padding:2px 8px; text-align:left;">Vector</th>'
+                    vecHtml += '<th style="padding:2px 8px;">X</th>'
+                    vecHtml += '<th style="padding:2px 8px;">Y</th>'
+                    vecHtml += '<th style="padding:2px 8px;">Z</th></tr>'
+                    for i, vec in enumerate(vectors, 1):
+                        xf = vec.findtext('Xfrac', '?')
+                        yf = vec.findtext('Yfrac', '?')
+                        zf = vec.findtext('Zfrac', '?')
+                        vecHtml += (f'<tr><td style="padding:2px 8px;">{i}</td>'
+                                    f'<td style="padding:2px 8px; text-align:right;">{xf}</td>'
+                                    f'<td style="padding:2px 8px; text-align:right;">{yf}</td>'
+                                    f'<td style="padding:2px 8px; text-align:right;">{zf}</td></tr>')
+                    vecHtml += '</table>'
+                    parent.append(vecHtml)
+
             #Provide list of self Patterson peaks as a table
             parent.append('<br/>')
             pattersonFold=parent.addFold(label='Self Patterson peaks',initiallyOpen=False,style='font-size:110%;')

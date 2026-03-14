@@ -85,6 +85,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
         nearStructureFactorBlock = False
         inStructureFactorBlock = False
         inPattersonBlock = False
+        inPseudoTranslationBlock = False
         structureFactorNode = None
         pattersonNode = None
 
@@ -138,6 +139,7 @@ class molrep_selfrot(molrep_mr.molrep_mr):
             elif strippedLine.startswith('--- Patterson ---'):
                 try:
                     inPattersonBlock = True
+                    inPseudoTranslationBlock = False
                     pattersonNode = etree.SubElement(self.xmlnode, 'Patterson')
                 except Exception as e:
                     self.appendErrorReport(209, f'Failed to create Patterson element: {str(e)}')
@@ -146,8 +148,36 @@ class molrep_selfrot(molrep_mr.molrep_mr):
             elif inPattersonBlock:
                 try:
                     splitLine = strippedLine.split()
-                    if strippedLine.startswith('INFO'):
-                        self.subElementOfTypeWithText(pattersonNode, 'INFO', strippedLine.split(':')[1])
+                    if strippedLine.startswith('INFO') and 'pseudo-translation' in strippedLine:
+                        self.subElementOfTypeWithText(pattersonNode, 'INFO', strippedLine.split(':', 1)[1].strip())
+                        inPseudoTranslationBlock = True
+                        pseudoTransNode = etree.SubElement(pattersonNode, 'PseudoTranslation')
+                    elif inPseudoTranslationBlock:
+                        if strippedLine.startswith('INFO'):
+                            # Second INFO line (e.g. "use keyword: PST") ends the block
+                            inPseudoTranslationBlock = False
+                            inPattersonBlock = False
+                        elif 'Patterson peak' in strippedLine and 'P/sig' in strippedLine:
+                            # e.g. "Origin Patterson peak: P,P/sig :  83.460  24.803"
+                            # or   "1 Patterson peak     : p,P/sig :  12.181   3.620"
+                            parts = strippedLine.split(':')
+                            label = parts[0].strip()
+                            values = parts[-1].strip().split()
+                            peakNode = etree.SubElement(pseudoTransNode, 'PseudoTransPeak')
+                            self.subElementOfTypeWithText(peakNode, 'Label', label)
+                            if len(values) >= 2:
+                                self.subElementOfTypeWithText(peakNode, 'Density', values[0])
+                                self.subElementOfTypeWithText(peakNode, 'Density_sigma', values[1])
+                        elif 'trans.vector /frac/' in strippedLine:
+                            # e.g. "trans.vector /frac/:  0.102  0.500  0.000"
+                            values = strippedLine.split(':')[-1].strip().split()
+                            if len(values) >= 3:
+                                vecNode = etree.SubElement(pseudoTransNode, 'TranslationVector')
+                                self.subElementOfTypeWithText(vecNode, 'Xfrac', values[0])
+                                self.subElementOfTypeWithText(vecNode, 'Yfrac', values[1])
+                                self.subElementOfTypeWithText(vecNode, 'Zfrac', values[2])
+                    elif strippedLine.startswith('INFO'):
+                        self.subElementOfTypeWithText(pattersonNode, 'INFO', strippedLine.split(':', 1)[1].strip())
                         inPattersonBlock = False
                     elif strippedLine.startswith('Number of peaks :'):
                         self.subElementOfTypeWithText(pattersonNode, 'NPeaks', strippedLine.split(':')[1])
