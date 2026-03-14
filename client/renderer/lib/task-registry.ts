@@ -1,10 +1,18 @@
 /**
  * Client-side task category registry.
  *
- * This file is the single source of truth for how tasks are organised into
- * categories in the task-chooser UI.  The server provides a flat lookup of
- * task metadata (title, description, etc.) via the `task_tree` API; this
- * registry layers the categorisation on top.
+ * This file is the **single source of truth** for which tasks are exposed in
+ * the task-chooser UI, which folder each task lives in, and the preferred
+ * ordering within each folder.
+ *
+ * The structure mirrors the Qt GUI's task tree as defined by MODULE_ORDER,
+ * MODULE_TITLES and per-task TASKMODULE attributes on the main branch
+ * (see task_menu_structure.json for the reference extraction).
+ *
+ * The server provides a flat lookup of task metadata (title, description,
+ * etc.) via the `task_tree` API; this registry layers the categorisation on
+ * top.  Tasks listed here but absent from the server lookup are silently
+ * dropped (e.g. plugins not installed).
  *
  * ## Adding a new task to an existing category
  *   Add its task name to the relevant `tasks` array below.
@@ -17,6 +25,7 @@
  * ## Related files
  *   - `lib/icons.ts` — category icon mapping
  *   - `task-interfaces/task-container.tsx` — task name → custom React component
+ *   - `task_menu_structure.json` — reference extraction from Qt main branch
  */
 
 // ── Category definition ────────────────────────────────────────────
@@ -39,6 +48,9 @@ export interface TaskCategory {
 }
 
 // ── Registry ────────────────────────────────────────────────────────
+//
+// Aligned with Qt GUI main-branch task tree.  Tasks marked [django-only]
+// in comments are exposed here but have no Qt GUI equivalent.
 
 export const TASK_CATEGORIES: TaskCategory[] = [
   {
@@ -50,14 +62,8 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "ProvideAsuContents",
       "ProvideSequence",
       "ProvideAlignment",
-      "AlternativeImportXIA2",
-      "cif2mtz",
       "coordinate_selector",
-      "import_mosflm",
-      "import_serial",
-      "import_serial_pipe",
-      "import_xia2",
-      "splitMtz",
+      "AlternativeImportXIA2",
     ],
   },
   {
@@ -67,11 +73,6 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "xia2_dials",
       "xia2_xds",
-      "imosflm",
-      "mosflm",
-      "dials_image",
-      "dials_rlattice",
-      "dui",
     ],
   },
   {
@@ -80,39 +81,55 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     preferred: ["aimless_pipe"],
     tasks: [
       "aimless_pipe",
-      "AUSPEX",
+      "freerflag",
+      "matthews",
       "molrep_selfrot",
-      "xia2_multiplex",
       "xia2_ssx_reduce",
+    ],
+  },
+  {
+    id: "bigpipes",
+    description: "Data to complete structure solution including ligand fitting",
+    preferred: ["SubstituteLigand", "dr_mr_modelbuild_pipeline"],
+    tasks: [
+      "SubstituteLigand",
+      "dr_mr_modelbuild_pipeline",
     ],
   },
   {
     id: "alpha_fold",
     description: "AlphaFold and RoseTTAFold Utilities",
-    preferred: [],
-    tasks: ["editbfac", "slicendice"],
+    preferred: ["ccp4mg_edit_model", "mrparse", "editbfac"],
+    tasks: [
+      "ccp4mg_edit_model",
+      "mrparse",
+      "editbfac",
+      "arcimboldo",
+    ],
   },
   {
     id: "expt_phasing",
     description: "Experimental phasing",
     preferred: ["crank2"],
-    tasks: ["crank2", "shelx", "ShelxCD", "phaser_EP_AUTO", "phaser_EP"],
+    tasks: [
+      "crank2",
+      "shelx",
+      "phaser_EP_AUTO",
+      "phaser_EP",
+    ],
   },
   {
     id: "bioinformatics",
     description:
       "Bioinformatics including model preparation for Molecular Replacement",
-    preferred: ["ccp4mg_edit_model", "chainsaw", "mrparse"],
+    preferred: ["ccp4mg_edit_model", "chainsaw"],
     tasks: [
       "ccp4mg_edit_model",
       "ccp4mg_edit_nomrbump",
       "chainsaw",
-      "clustalw",
-      "findmyseq",
-      "matthews",
-      "mrparse",
-      "phaser_ensembler",
       "sculptor",
+      "phaser_ensembler",
+      "clustalw",
     ],
   },
   {
@@ -120,36 +137,31 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     description: "Molecular Replacement",
     preferred: [
       "mrbump_basic",
-      "phasertng_picard",
       "phaser_simple",
       "phaser_pipeline",
     ],
     tasks: [
       "mrbump_basic",
-      "phasertng_picard",
-      "phasertng_riker",
       "phaser_simple",
       "phaser_pipeline",
-      "phaser_phil",
-      "phaser_rnp_pipeline",
-      "phaser_singleMR",
-      "pyphaser_mr",
       "molrep_pipe",
       "molrep_den",
       "csymmatch",
+      "parrot",
+      "phaser_rnp_pipeline",
       "AMPLE",
       "SIMBAD",
-      "arcimboldo",
+      "morda_i2",
       "comit",
       "i2Dimple",
-      "morda_i2",
+      "arcimboldo",
     ],
   },
   {
     id: "density_modification",
     description: "Density modification",
-    preferred: ["acorn", "parrot"],
-    tasks: ["acorn", "parrot"],
+    preferred: [],
+    tasks: [],
   },
   {
     id: "model_building",
@@ -158,10 +170,8 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "modelcraft",
       "coot_rebuild",
-      "coot1",
       "coot_script_lines",
       "coot_find_waters",
-      "coot_find_ligand",
       "arp_warp_classic",
       "shelxeMR",
       "dr_mr_modelbuild_pipeline",
@@ -175,24 +185,25 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "servalcat_pipe",
       "prosmart_refmac",
-      "refmac",
-      "prosmart",
-      "ProvideTLS",
-      "SubtractNative",
-      "buster",
+      "phaser_rnp_pipeline",
+      "metalCoord",
       "coot_rsr_morph",
-      "lorestr_i2",
-      "pairef",
       "pdb_redo_api",
       "sheetbend",
+      "SubtractNative",
+      "lorestr_i2",
       "zanuda",
     ],
   },
   {
     id: "ligands",
     description: "Ligands",
-    preferred: ["LidiaAcedrgNew", "MakeLink", "SubstituteLigand"],
-    tasks: ["LidiaAcedrgNew", "MakeLink", "SubstituteLigand", "AcedrgLink"],
+    preferred: ["LidiaAcedrgNew", "SubstituteLigand", "MakeLink"],
+    tasks: [
+      "LidiaAcedrgNew",
+      "SubstituteLigand",
+      "MakeLink",
+    ],
   },
   {
     id: "validation",
@@ -201,9 +212,6 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "validate_protein",
       "edstats",
-      "metalCoord",
-      "modelASUCheck",
-      "pisapipe",
       "privateer",
       "qtpisa",
     ],
@@ -216,7 +224,6 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "PrepareDeposit",
       "adding_stats_to_mmcif_i2",
       "mergeMtz",
-      "tableone",
     ],
   },
   {
@@ -226,27 +233,28 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "pointless_reindexToMatch",
       "phaser_EP_LLG",
-      "chltofom",
       "cmapcoeff",
-      "cpatterson",
+      "chltofom",
       "cphasematch",
       "ctruncate",
-      "density_calculator",
-      "freerflag",
-      "mtzutils",
+      "splitMtz",
       "scaleit",
+      "cpatterson",
+      "density_calculator",
     ],
   },
   {
     id: "model_data_utility",
     description: "Coordinate data tools",
-    preferred: ["gesamt"],
+    preferred: ["csymmatch", "gesamt"],
     tasks: [
+      "csymmatch",
       "gesamt",
-      "add_fractional_coords",
-      "areaimol",
-      "pdbset_ui",
+      "coordinate_selector",
+      "qtpisa",
       "pdbview_edit",
+      "editbfac",
+      "add_fractional_coords",
     ],
   },
   {
@@ -255,9 +263,8 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     preferred: [],
     tasks: [
       "MakeMonster",
-      "MakeProjectsAndDoLigandPipeline",
       "TestObsConversions",
-      "mrparse_simple",
+      "MakeProjectsAndDoLigandPipeline",
     ],
   },
 ];

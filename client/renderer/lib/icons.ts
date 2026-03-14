@@ -3,6 +3,7 @@ export const MODULE_ICON_NAMES: Record<string, string> = {
   data_entry: "import_merged",
   data_processing: "xia2_dials",
   data_reduction: "aimless_pipe",
+  bigpipes: "dr_mr_modelbuild_pipeline",
   alpha_fold: "mrparse",
   expt_phasing: "crank2",
   bioinformatics: "chainsaw",
