@@ -8,12 +8,11 @@ import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
 
 /**
- * Task interface component for Phaser Experimental Phasing (EP).
+ * Task interface for Phaser EP AUTO — SAD phasing from heavy atom sites.
  *
- * Provides functionality for:
- * - Heavy atom location using various methods (search, manual input, partial model)
- * - Phase calculation and density modification
- * - Integration with Parrot and ModelCraft for automated building
+ * Handles:
+ * - Heavy atom substructure input (coordinates, partial model, or map)
+ * - Scattering content specification (ASU file or molecular weights)
  * - Automatic wavelength detection from reflection files
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
@@ -25,7 +24,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
   const { value: PARTIALMODELORMAP_value } = useTaskItem("PARTIALMODELORMAP");
   const { value: COMP_BY_value } = useTaskItem("COMP_BY");
-  const { value: RUNMODELCRAFT_value } = useTaskItem("RUNMODELCRAFT");
 
   // Handle F_SIGF file change - extract wavelength from digest
   const handleF_SIGFChange = useCallback(async () => {
@@ -43,10 +41,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     isPartialModel: () => PARTIALMODELORMAP_value === "MODEL",
     isPartialMap: () => PARTIALMODELORMAP_value === "MAP",
     isNoPartial: () => PARTIALMODELORMAP_value === "NONE",
-    isSearch: () => PARTIALMODELORMAP_value === "SEARCH",
     showASUFile: () => COMP_BY_value === "ASU",
     showMolecularWeights: () => COMP_BY_value === "MW",
-    hasModelCraft: () => RUNMODELCRAFT_value === true,
   };
 
   return (
@@ -71,15 +67,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               }}
               onChange={handleF_SIGFChange}
             />
-
-            <CCP4i2TaskElement
-              {...props}
-              itemName="FREERFLAG"
-              qualifiers={{
-                guiLabel: "Free R flags",
-                toolTip: "Test set flags for cross-validation",
-              }}
-            />
           </CCP4i2ContainerElement>
 
           <CCP4i2ContainerElement
@@ -97,7 +84,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               qualifiers={{
                 guiLabel: "How to provide heavy atoms",
                 toolTip:
-                  "Choose whether to search for heavy atoms, provide coordinates, or use a partial model",
+                  "Choose whether to provide heavy atom coordinates, a partial model, or map coefficients",
               }}
             />
 
@@ -132,46 +119,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               }}
               visibility={visibility.isPartialMap}
             />
-          </CCP4i2ContainerElement>
-
-          <CCP4i2ContainerElement
-            {...props}
-            itemName=""
-            qualifiers={{
-              guiLabel: "Heavy atom search",
-              initiallyOpen: true,
-            }}
-            containerHint="FolderLevel"
-            visibility={visibility.isSearch}
-          >
-            <CCP4i2TaskElement
-              {...props}
-              itemName="SFAC"
-              qualifiers={{
-                guiLabel: "Atom type to find",
-                toolTip: "Element symbol for the heavy atom (e.g. SE, S, BR)",
-              }}
-            />
-
-            <FieldRow>
-              <CCP4i2TaskElement
-                {...props}
-                itemName="FIND"
-                qualifiers={{
-                  guiLabel: "Number to find",
-                  toolTip: "Number of heavy atom sites to search for",
-                }}
-              />
-
-              <CCP4i2TaskElement
-                {...props}
-                itemName="NTRY"
-                qualifiers={{
-                  guiLabel: "SHELXD trials",
-                  toolTip: "Number of SHELXD trials for heavy atom search",
-                }}
-              />
-            </FieldRow>
           </CCP4i2ContainerElement>
 
           <CCP4i2ContainerElement
@@ -284,44 +231,14 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                   "Additional element types to search for during heavy atom completion",
               }}
             />
-          </CCP4i2ContainerElement>
-
-          <CCP4i2ContainerElement
-            {...props}
-            itemName=""
-            qualifiers={{
-              guiLabel: "Extra steps",
-              initiallyOpen: true,
-            }}
-            containerHint="FolderLevel"
-          >
-            <FieldRow>
-              <CCP4i2TaskElement
-                {...props}
-                itemName="RUNPARROT"
-                qualifiers={{
-                  guiLabel: "Run Parrot",
-                  toolTip: "Run Parrot density modification",
-                }}
-              />
-              <CCP4i2TaskElement
-                {...props}
-                itemName="RUNMODELCRAFT"
-                qualifiers={{
-                  guiLabel: "Run ModelCraft",
-                  toolTip: "Run automated model building with ModelCraft",
-                }}
-              />
-            </FieldRow>
 
             <CCP4i2TaskElement
               {...props}
-              itemName="MODELCRAFT_ITERATIONS"
+              itemName="HAND"
               qualifiers={{
-                guiLabel: "ModelCraft cycles",
-                toolTip: "Number of ModelCraft iterations",
+                guiLabel: "Heavy atom hand",
+                toolTip: "Which hand of the heavy atom substructure to use",
               }}
-              visibility={visibility.hasModelCraft}
             />
           </CCP4i2ContainerElement>
 

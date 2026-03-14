@@ -86,6 +86,7 @@ import PdbsetUiInterface from "./pdbset_ui";
 import PdbviewEditInterface from "./pdbview_edit";
 import PhaserEnsemblerInterface from "./phaser_ensembler";
 import PhaserEPInterface from "./phaser_EP";
+import PhaserEPAUTOInterface from "./phaser_EP_AUTO";
 import PhaserEPLLGInterface from "./phaser_EP_LLG";
 import PhaserMrInterface from "./phaser_mr";
 import PhaserPhilInterface from "./phaser_phil";
@@ -217,6 +218,7 @@ const TASK_INTERFACES: Record<
   pdbview_edit: PdbviewEditInterface,
   phaser_ensembler: PhaserEnsemblerInterface,
   phaser_EP: PhaserEPInterface,
+  phaser_EP_AUTO: PhaserEPAUTOInterface,
   phaser_EP_LLG: PhaserEPLLGInterface,
   phaser_mr: PhaserMrInterface,
   phaser_phil: PhaserPhilInterface,
