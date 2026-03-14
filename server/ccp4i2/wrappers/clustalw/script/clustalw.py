@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 import shutil
@@ -7,6 +8,8 @@ from lxml import etree
 
 from ccp4i2.core import CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
+
+logger = logging.getLogger(f"ccp4i2:{__name__}")
 
 
 class clustalw(CPluginScript):
@@ -59,44 +62,70 @@ class clustalw(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
+        # Read each output file individually so partial results are preserved
         try:
-            with open(self.dndFilepath,'r') as aFile:
+            with open(self.dndFilepath, 'r') as aFile:
                 aNode = etree.SubElement(self.xmlroot, 'Dendogram')
                 aNode.text = aFile.read()
-            with open(self.statsFilepath,'r') as aFile:
+        except Exception:
+            logger.warning("Could not read dendrogram file: %s", self.dndFilepath)
+
+        try:
+            with open(self.statsFilepath, 'r') as aFile:
                 aNode = etree.SubElement(self.xmlroot, 'Statistics')
                 aNode.text = aFile.read()
-            with open(self.container.outputData.ALIGNMENTOUT.__str__(),'r') as aFile:
+        except Exception:
+            logger.warning("Could not read statistics file: %s", self.statsFilepath)
+
+        try:
+            with open(self.container.outputData.ALIGNMENTOUT.__str__(), 'r') as aFile:
                 aNode = etree.SubElement(self.xmlroot, 'Alignment')
                 aNode.text = aFile.read()
-            with open (self.makeFileName('LOG'),'r') as logFile:
+        except Exception:
+            logger.warning("Could not read alignment output file")
+
+        try:
+            with open(self.makeFileName('LOG'), 'r') as logFile:
                 lines = logFile.readlines()
+                # Extract sequence names in input order
+                seqListNode = etree.SubElement(self.xmlroot, 'SequenceList')
+                for line in lines:
+                    if line.startswith('Sequence ') and ':' in line:
+                        # e.g. "Sequence 1: sp|Q01094|E2F1_HUMAN   437 aa"
+                        parts = line.split(':', 1)
+                        if len(parts) == 2:
+                            name = parts[1].strip().split()[0]
+                            seqNode = etree.SubElement(seqListNode, 'Sequence')
+                            seqNode.text = name
                 bestPair = None
                 bestScore = -99999
                 for line in lines:
                     if line.startswith('Sequences ('):
                         tokens = line.split()
-                        pairwiseScoreNode = etree.SubElement(self.xmlroot,'PairwiseScore')
-                        scoreNode = etree.SubElement(pairwiseScoreNode,'Score')
+                        pairwiseScoreNode = etree.SubElement(self.xmlroot, 'PairwiseScore')
+                        scoreNode = etree.SubElement(pairwiseScoreNode, 'Score')
                         scoreNode.text = tokens[-1]
                         for iPartner in range(2):
-                            partnerNode = etree.SubElement(pairwiseScoreNode,'Partner')
+                            partnerNode = etree.SubElement(pairwiseScoreNode, 'Partner')
                             partnerNode.text = tokens[1][1:-1].split(':')[iPartner]
-                        if int(scoreNode.text)>bestScore:
+                        if int(scoreNode.text) > bestScore:
                             bestScore = int(scoreNode.text)
                             bestPair = tokens[1][1:-1].split(':')
                 if bestPair is not None:
-                    bestPairNode = etree.SubElement(self.xmlroot,'BestPair')
-                    scoreNode = etree.SubElement(bestPairNode,'Score')
+                    bestPairNode = etree.SubElement(self.xmlroot, 'BestPair')
+                    scoreNode = etree.SubElement(bestPairNode, 'Score')
                     scoreNode.text = str(bestScore)
                     for iPartner in range(2):
-                        partnerNode = etree.SubElement(bestPairNode,'Partner')
+                        partnerNode = etree.SubElement(bestPairNode, 'Partner')
                         partnerNode.text = bestPair[iPartner]
+        except Exception:
+            logger.warning("Could not parse log file", exc_info=True)
 
-        
-            with open (self.makeFileName('PROGRAMXML'),'w') as programXML:
-                CCP4Utils.writeXML(programXML,etree.tostring(self.xmlroot,pretty_print=True))
-        except:
+        try:
+            with open(self.makeFileName('PROGRAMXML'), 'w') as programXML:
+                CCP4Utils.writeXML(programXML, etree.tostring(self.xmlroot, pretty_print=True))
+        except Exception:
+            logger.error("Could not write program XML", exc_info=True)
             return CPluginScript.FAILED
 
         anno = 'Alignment: '
