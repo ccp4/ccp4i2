@@ -257,7 +257,7 @@ class CXyzBoxStub(CData):
         "max": {'description': 'The inclusive maximum value'},
         "min": {'description': 'The inclusive minimum value'},
         "enumerators": {'type': 'list', 'description': 'A Python list of allowed or recommended values - see onlyEnumerators'},
-        "menuText": {'type': 'list', 'listItemType': "<class 'str'>", 'description': 'A Python list of strings, matching items in enumerators list, to appear on GUI menu'},
+        "menuText": {'type': 'list', 'listItemType': str, 'description': 'A Python list of strings, matching items in enumerators list, to appear on GUI menu'},
         "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
     },
 )
