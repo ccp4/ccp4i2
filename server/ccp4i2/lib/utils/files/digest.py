@@ -316,7 +316,7 @@ def _extract_chain_sequences(gemmi_structure):
     for chain in model:
         polymer = chain.get_polymer()
         if polymer and len(polymer) > 0:
-            seq = gemmi.one_letter_code(polymer)
+            seq = gemmi.one_letter_code([res.name for res in polymer])
             if seq:
                 sequences[chain.name] = seq
     return sequences

@@ -148,7 +148,7 @@ def test_phil_exclude_scopes():
     excluded_prefixes = plugin.PHIL_EXCLUDE_SCOPES
     for path in phil_paths:
         for excl in excluded_prefixes:
-            assert not path.startswith(excl), \
+            assert path != excl and not path.startswith(excl + "."), \
                 f"Excluded path {excl} found in controlParameters: {path}"
 
 

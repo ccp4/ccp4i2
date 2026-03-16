@@ -96,7 +96,7 @@ async def import_input_files_async(job, plugin, db_handler):
             logger.info(f"[DEBUG import_input_files_async] inputData children: {input_data_children}")
 
         logger.info(f"Saving updated parameters to {input_params_file}")
-        error = await sync_to_async(plugin.saveDataToXml)(str(input_params_file))
+        error = await sync_to_async(plugin.saveDataToXml)(str(input_params_file), exclude_unset=False)
         if error and hasattr(error, 'hasError') and error.hasError():
             logger.error(f"Failed to save parameters: {error}")
         else:

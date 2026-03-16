@@ -20,7 +20,7 @@ class FileImportSerializer(ModelSerializer):
 class ProjectTagSerializer(ModelSerializer):
     class Meta:
         model = models.ProjectTag
-        fields = ['id', 'text']
+        fields = ['id', 'text', 'parent', 'projects']
 
     def validate(self, attrs):
         """Validate unique constraint on text and parent combination."""

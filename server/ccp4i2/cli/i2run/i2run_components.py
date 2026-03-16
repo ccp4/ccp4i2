@@ -388,6 +388,11 @@ class PluginPopulator:
         if isinstance(target, CCP4Data.CList):
             logger.warning(f"Handling CList {type(target).__name__} with {len(values)} values")
 
+            # Remove any unset default items before adding new ones
+            # CList definitions often create one empty item on init
+            while len(target) > 0 and not target[-1].isSet():
+                target.pop()
+
             for val in values:
                 # Create a new item for the list
                 new_item = target.makeItem()

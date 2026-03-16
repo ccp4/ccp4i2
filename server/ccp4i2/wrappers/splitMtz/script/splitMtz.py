@@ -84,11 +84,14 @@ class splitMtz(CPluginScript):
         # Include both COLUMNGROUPLIST items and USERCOLUMNGROUP (if selected)
         groups_to_process = list(inp.COLUMNGROUPLIST)
 
-        # Also check USERCOLUMNGROUP if it's set and selected
+        # Also check USERCOLUMNGROUP if it's set and has columns
         if hasattr(inp, 'USERCOLUMNGROUP'):
             user_group = inp.USERCOLUMNGROUP
             # Check if it has any content (columnList with items)
             if hasattr(user_group, 'columnList') and len(list(user_group.columnList)) > 0:
+                # USERCOLUMNGROUP with columns is implicitly selected
+                if hasattr(user_group, 'selected'):
+                    user_group.selected = True
                 groups_to_process.append(user_group)
 
         # Process each selected column group
