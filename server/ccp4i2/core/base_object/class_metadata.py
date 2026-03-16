@@ -38,10 +38,16 @@ class AttributeDefinition:
 
 @dataclass
 class ClassMetadata:
-    """Complete metadata for a CData class."""
+    """Complete metadata for a CData class.
+
+    Note: Qualifier values are stored on the class as _qualifiers_template,
+    NOT in this metadata object. This metadata holds structural information
+    (attributes, ordering, error codes) that doesn't change per-instance.
+    The ``qualifiers`` property provides read access to the owning class's
+    ``_qualifiers_template`` for backwards compatibility.
+    """
 
     attributes: Dict[str, AttributeDefinition] = field(default_factory=dict)
-    qualifiers: Dict[str, Any] = field(default_factory=dict)
     error_codes: Dict[int, str] = field(default_factory=dict)
     docstring: Optional[str] = None
     file_extensions: Optional[List[str]] = None
@@ -49,8 +55,15 @@ class ClassMetadata:
     gui_label: Optional[str] = None
     contents_order: Optional[List[str]] = None
     qualifiers_order: Optional[List[str]] = None
-    qualifiers_definition: Optional[Dict[str, Any]] = None
     content_qualifiers: Optional[Dict[str, Dict[str, Any]]] = None  # Per-field qualifiers
+    _owner_class: Optional[Type] = field(default=None, repr=False)
+
+    @property
+    def qualifiers(self) -> Optional[Dict[str, Any]]:
+        """Read-through to the owning class's _qualifiers_template."""
+        if self._owner_class is not None:
+            return getattr(self._owner_class, '_qualifiers_template', None)
+        return None
 
 
 # Global registry of class metadata
@@ -92,16 +105,23 @@ def cdata_class(
 ):
     """Class decorator to add metadata to CData classes.
 
+    Qualifier system:
+        Qualifiers (constraints, defaults, display hints) are stored as a single
+        class-level template dict (cls._qualifiers_template). At instance creation,
+        CData.__init__ copies this to self._qualifiers, which is the sole runtime
+        source of truth. No other copies are made.
+
     Args:
         attributes: Dictionary of attribute name -> AttributeDefinition
-        qualifiers: Dictionary of class qualifiers
+        qualifiers: Dictionary of class qualifiers (stored as _qualifiers_template)
         error_codes: Dictionary of error code -> message
         file_extensions: List of supported file extensions
         mime_type: MIME type for file classes
         gui_label: Label for GUI display
         contents_order: List specifying display order of attributes in UI
         qualifiers_order: List specifying display order of qualifiers
-        qualifiers_definition: Dictionary of qualifier type definitions
+        qualifiers_definition: Deprecated, ignored. Qualifier types are inferred
+            from the template values.
         content_qualifiers: Per-field qualifiers for child attributes (from CONTENTS)
 
     Example:
@@ -109,8 +129,8 @@ def cdata_class(
             attributes={
                 'project': attribute(AttributeType.CUSTOM, custom_class="CProjectId"),
                 'baseName': attribute(AttributeType.CUSTOM, custom_class="CFilePath"),
-                'size': attribute(AttributeType.INT, default=0, min_value=0)
             },
+            qualifiers={'min': None, 'max': None, 'default': 50},
             file_extensions=['dat', 'txt'],
             mime_type='text/plain'
         )
@@ -120,10 +140,9 @@ def cdata_class(
     """
 
     def decorator(cls: Type) -> Type:
-        # Create metadata object
+        # Create metadata object (structural info only, no qualifier values)
         metadata = ClassMetadata(
             attributes=attributes or {},
-            qualifiers=qualifiers or {},
             error_codes=error_codes or {},
             docstring=cls.__doc__,
             file_extensions=file_extensions,
@@ -131,24 +150,22 @@ def cdata_class(
             gui_label=gui_label,
             contents_order=contents_order,
             qualifiers_order=qualifiers_order,
-            qualifiers_definition=qualifiers_definition,
             content_qualifiers=content_qualifiers,
         )
 
         # Store in global registry
         _CLASS_METADATA_REGISTRY[cls.__name__] = metadata
 
-        # Store as class attribute for easy access
+        # Store structural metadata as class attribute (with back-reference)
+        metadata._owner_class = cls
         cls._metadata = metadata
 
-        # ALSO set direct class attributes for backward compatibility with CData.__init__
-        # Use _class_* naming to avoid shadowing instance methods like qualifiers()
+        # Single canonical source for qualifier default values.
+        # CData.__init__ copies this to self._qualifiers per-instance.
         if qualifiers:
-            cls._class_qualifiers = qualifiers
-        if qualifiers_order:
-            cls.qualifiers_order = qualifiers_order
-        if qualifiers_definition:
-            cls.qualifiers_definition = qualifiers_definition
+            cls._qualifiers_template = qualifiers
+
+        # Other class-level attributes
         if contents_order:
             cls.CONTENT_ORDER = contents_order
         if error_codes:
@@ -190,14 +207,11 @@ class MetadataAttributeFactory:
     def create_attribute(
         cls, name: str, attr_def: AttributeDefinition, parent_obj
     ) -> Any:
-        """Create an attribute object from definition, sourcing qualifiers from class-level metadata."""
+        """Create an attribute object from definition, sourcing qualifiers from class-level template."""
         from .base_classes import ValueState
 
-        # Get class-level qualifiers from parent_obj's class metadata
-        qualifiers = {}
-        meta = getattr(parent_obj.__class__, '_metadata', None)
-        if meta and hasattr(meta, 'qualifiers') and meta.qualifiers:
-            qualifiers = meta.qualifiers
+        # Get class-level qualifiers from the single canonical source
+        qualifiers = getattr(parent_obj.__class__, '_qualifiers_template', {})
 
         # Helper to get qualifier value, fallback to attribute definition
         def q(key, default=None):
