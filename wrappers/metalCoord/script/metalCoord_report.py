@@ -87,9 +87,11 @@ class metalCoord_report(Report):
                 if j == 0: initiallyOpen=True
                 else: initiallyOpen=False
                 label = ""
-                if len(symmClass.findall(".//class")) > 0:
-                    if symmClass.findall(".//class")[0].text:
-                        label = symmClass.findall(".//class")[0].text + " coordination class"
+                class_nodes = symmClass.findall(".//class")
+                if class_nodes:
+                    class_text = class_nodes[0].text
+                    if class_text:
+                        label = class_text + " coordination class"
                 classFold = indentDiv.addFold(
                     label=label,
                     initiallyOpen=initiallyOpen)
