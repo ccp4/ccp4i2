@@ -163,8 +163,8 @@ class CJobTitleStub(CString):
         "default": {'type': 'int'},
         "max": {'type': 'int', 'description': 'The inclusive minimum allowed value'},
         "min": {'type': 'int', 'description': 'The inclusive maximum allowed value'},
-        "enumerators": {'type': 'list', 'listItemType': "<class 'int'>", 'description': 'A Python list of allowed or recommended values - see onlyEnumerators'},
-        "menuText": {'type': 'list', 'listItemType': "<class 'str'>", 'description': 'A Python list of strings, matching items in enumerators list, to appear on GUI menu'},
+        "enumerators": {'type': 'list', 'listItemType': int, 'description': 'A Python list of allowed or recommended values - see onlyEnumerators'},
+        "menuText": {'type': 'list', 'listItemType': str, 'description': 'A Python list of strings, matching items in enumerators list, to appear on GUI menu'},
         "onlyEnumerators": {'type': 'bool', 'description': 'If this is true then the enumerators are obligatory - otherwise they are treated as recommended values'},
     },
 )
