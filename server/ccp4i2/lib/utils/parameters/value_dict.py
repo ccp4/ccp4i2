@@ -184,7 +184,6 @@ def handle_cdata(ccp4i2_object):
         try:
             skip_attrs = {
                 'destroyed', 'parent_changed', 'child_added', 'child_removed',
-                'qualifiers_order', 'qualifiers_definition'
             }
             for attr_name, attr_value in ccp4i2_object.__dict__.items():
                 # Skip private attributes, signals, and metadata

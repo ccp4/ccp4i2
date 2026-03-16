@@ -38,17 +38,10 @@ class CCP4i2JsonEncoder(json.JSONEncoder):
 
     def default(self, o):
         if isinstance(o, CData):
+            # self._qualifiers is the single source of truth for qualifier values.
+            # It is copied from cls._qualifiers_template at init time and may be
+            # mutated per-instance by .def.xml parsing, PHIL, or set_qualifier().
             qualifiers = {}
-            # Safely get qualifiers from all possible sources
-            # 1. Legacy QUALIFIERS class attribute (old style)
-            if hasattr(type(o), 'QUALIFIERS'):
-                qualifiers.update(type(o).QUALIFIERS)
-            # 2. New metadata system: _class_qualifiers (@cdata_class)
-            if hasattr(type(o), '_class_qualifiers'):
-                class_quals = type(o)._class_qualifiers
-                if isinstance(class_quals, dict):
-                    qualifiers.update(class_quals)
-            # 3. Instance-level _qualifiers (copied from class or overridden)
             if hasattr(o, '_qualifiers') and o._qualifiers:
                 qualifiers.update(o._qualifiers)
             # Filter out NotImplemented values

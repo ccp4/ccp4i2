@@ -52,36 +52,18 @@ class CData(HierarchicalObject):
         # NEW: Apply metadata-driven attribute creation
         self._apply_metadata_attributes()
 
-        # --- Per-instance metadata copying and override ---
-        # Copy class-level metadata to instance for override flexibility
+        # --- Per-instance qualifier setup ---
+        # Walk the MRO to merge _qualifiers_template from all ancestors.
+        # Parent qualifiers are applied first, child qualifiers override.
+        # This is the sole runtime source of truth for qualifiers.
         cls = self.__class__
-        # Qualifiers - store in _qualifiers (private) to leave qualifiers() method free for legacy API
-        if hasattr(cls, '_class_qualifiers'):
-            class_qualifiers = getattr(cls, '_class_qualifiers')
-            logger.debug("%s._class_qualifiers type: %s, value: %s", cls.__name__, type(class_qualifiers), class_qualifiers)
+        self._qualifiers = {}
+        for ancestor in reversed(cls.__mro__):
+            template = ancestor.__dict__.get('_qualifiers_template')
+            if template is not None:
+                self._qualifiers.update(template)
 
-            # Handle case where qualifiers is a dict-like object
-            if isinstance(class_qualifiers, dict):
-                self._qualifiers = dict(class_qualifiers)
-            elif hasattr(class_qualifiers, 'items') and callable(getattr(class_qualifiers, 'items', None)):
-                try:
-                    self._qualifiers = dict(class_qualifiers.items())
-                except (AttributeError, TypeError) as e:
-                    logger.error("Error calling .items() on _class_qualifiers for %s: %s (type: %s)", cls.__name__, e, type(class_qualifiers))
-                    self._qualifiers = {}
-            else:
-                # Not a dict and doesn't have .items() - set to empty dict
-                logger.warning("Class-level _class_qualifiers for %s is not dict-like: %s, setting to empty dict", cls.__name__, type(class_qualifiers))
-                self._qualifiers = {}
-        else:
-            self._qualifiers = {}
-        # Qualifiers order
-        if hasattr(cls, 'qualifiers_order'):
-            self.qualifiers_order = list(getattr(cls, 'qualifiers_order'))
-        # Qualifiers definition
-        if hasattr(cls, 'qualifiers_definition'):
-            self.qualifiers_definition = dict(getattr(cls, 'qualifiers_definition'))
-        # CONTENT_ORDER
+        # CONTENT_ORDER - copy from class if defined
         if hasattr(cls, 'CONTENT_ORDER'):
             self.CONTENT_ORDER = list(getattr(cls, 'CONTENT_ORDER'))
         # For CList: subitem
@@ -89,7 +71,7 @@ class CData(HierarchicalObject):
             self.subItem = getattr(cls, 'subItem')
 
         # Allow overrides via kwargs
-        for meta_key in ['qualifiers', 'qualifiers_order', 'qualifiers_definition', 'CONTENT_ORDER', 'subitem']:
+        for meta_key in ['qualifiers', 'CONTENT_ORDER', 'subitem']:
             if meta_key in kwargs:
                 # Set qualifiers directly as a dict to avoid wrapping as CData
                 if meta_key == 'qualifiers' and isinstance(kwargs[meta_key], dict):
@@ -1249,7 +1231,7 @@ class CData(HierarchicalObject):
             return
 
         # Special handling for metadata attributes: assign directly if dict or list
-        if name in ["qualifiers", "qualifiers_order", "qualifiers_definition", "CONTENT_ORDER", "subitem"]:
+        if name in ["qualifiers", "CONTENT_ORDER", "subitem"]:
             if isinstance(value, (dict, list)):
                 object.__setattr__(self, name, value)
                 return
