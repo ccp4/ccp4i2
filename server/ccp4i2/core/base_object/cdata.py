@@ -1216,232 +1216,216 @@ class CData(HierarchicalObject):
                     if not item._name:
                         item._name = f"{key}[{i}]"
 
-    def __setattr__(self, name: str, value: Any):
-        """Override setattr to handle smart assignment and hierarchical relationships."""
+    # ------------------------------------------------------------------
+    # Smart assignment helpers (called from __setattr__)
+    # ------------------------------------------------------------------
 
-        # Allow setting internal attributes normally during initialization
-        # Note: 'name' is NOT in this list - it's a regular CData attribute that uses smart assignment
-        # HierarchicalObject's hierarchical name is stored separately in '_name'
+    def _assign_dict(self, name: str, value: dict, existing_attr) -> bool:
+        """Handle ``self.x = {…}`` — populate a CData from a dict.
+
+        Returns True if the assignment was handled.
+        """
+        if existing_attr is None:
+            new_obj = CData(name=name)
+            new_obj._smart_assign_from_dict(value)
+            self._setup_hierarchy_for_value(name, new_obj)
+            super().__setattr__(name, new_obj)
+        elif isinstance(existing_attr, CData):
+            existing_attr._smart_assign_from_dict(value)
+            self._mark_set(name)
+        else:
+            return False
+        return True
+
+    def _assign_cdata(self, name: str, value, existing_attr) -> bool:
+        """Handle ``self.x = <CData>`` when *existing_attr* is also CData.
+
+        Skips the assignment when the source is entirely unset (prevents
+        copying defaults).  Detects CPluginScript reassignment so that a
+        fresh plugin replaces the old one rather than updating in-place.
+
+        Returns True if the assignment was handled (caller should return).
+        """
+        # Skip if source has no set values at all
+        if hasattr(value, 'isSet') and not value.isSet():
+            if not value._has_any_set_children():
+                return True  # nothing to assign — handled by doing nothing
+
+        # Plugin reassignment: replace rather than update in-place
+        if id(existing_attr) != id(value):
+            try:
+                from ccp4i2.core.CCP4PluginScript import CPluginScript
+                if isinstance(existing_attr, CPluginScript) and isinstance(value, CPluginScript):
+                    return False  # fall through to default assignment
+            except ImportError:
+                pass
+
+        existing_attr._smart_assign_from_cdata(value)
+        self._mark_set(name)
+        return True
+
+    def _assign_path_string(self, name: str, value: str, existing_attr) -> bool:
+        """Handle ``self.HKLIN = "/path/to/file.mtz"`` on a CDataFile."""
+        if (
+            isinstance(value, str)
+            and hasattr(existing_attr, 'setFullPath')
+            and callable(existing_attr.setFullPath)
+        ):
+            existing_attr.setFullPath(value)
+            self._mark_set(name)
+            return True
+        return False
+
+    def _assign_list(self, name: str, value: list, existing_attr) -> bool:
+        """Handle ``self.x = [...]`` when *existing_attr* is a CList."""
+        if (
+            existing_attr is not None
+            and hasattr(existing_attr, 'set')
+            and hasattr(existing_attr, '_items')
+        ):
+            existing_attr.set(value)
+            self._mark_set(name)
+            return True
+        return False
+
+    def _assign_primitive(self, name: str, value, existing_attr) -> bool:
+        """Handle ``self.NCYCLES = 25`` where NCYCLES is a CInt (or similar).
+
+        Performs type checking and string-to-native conversion for each
+        fundamental type.  Returns True if the assignment was handled.
+        """
+        if not isinstance(value, (int, float, str, bool)):
+            return False
+        if not hasattr(existing_attr, 'value'):
+            return False
+
+        from .fundamental_types import CInt, CFloat, CBoolean
+        try:
+            from .fundamental_types import CString
+        except ImportError:
+            CString = None
+
+        converted = self._coerce_primitive(value, existing_attr,
+                                           CInt, CFloat, CBoolean, CString)
+        if converted is not None:
+            existing_attr.value = converted
+            self._mark_set(name)
+            return True
+        return False
+
+    @staticmethod
+    def _coerce_primitive(value, target, CInt, CFloat, CBoolean, CString):
+        """Return *value* coerced to *target*'s type, or None if incompatible."""
+        if isinstance(target, CInt):
+            if isinstance(value, int):
+                return value
+            if isinstance(value, str):
+                try:
+                    return int(value)
+                except (ValueError, TypeError):
+                    return None
+        elif isinstance(target, CFloat):
+            if isinstance(value, (int, float)):
+                return value
+            if isinstance(value, str):
+                try:
+                    return float(value)
+                except (ValueError, TypeError):
+                    return None
+        elif isinstance(target, CBoolean):
+            if isinstance(value, bool):
+                return value
+            if isinstance(value, str):
+                low = value.lower()
+                if low in ('true', 'yes', '1'):
+                    return True
+                if low in ('false', 'no', '0'):
+                    return False
+        elif CString is not None and isinstance(target, CString) and isinstance(value, str):
+            return value
+        return None
+
+    def _mark_set(self, name: str):
+        """Mark *name* as explicitly set in the value-state tracker."""
+        if hasattr(self, '_value_states'):
+            self._value_states[name] = ValueState.EXPLICITLY_SET
+
+    # ------------------------------------------------------------------
+    # __setattr__
+    # ------------------------------------------------------------------
+
+    def __setattr__(self, name: str, value: Any):
+        """Override setattr to handle smart assignment and hierarchical relationships.
+
+        Assignment is dispatched to helper methods based on the types of *value*
+        and the existing attribute.  The dispatch order is:
+
+        1. Internal/private attrs → ``super().__setattr__``
+        2. Metadata attrs (qualifiers, CONTENT_ORDER, subitem) → direct store
+        3. dict → ``_assign_dict``
+        4. CData → CData → ``_assign_cdata``
+        5. str → CDataFile → ``_assign_path_string``
+        6. list → CList → ``_assign_list``
+        7. primitive → value-type CData → ``_assign_primitive``
+        8. Fallthrough: store in hierarchy (CData) or ``__dict__`` (other)
+        """
+
+        # 1. Internal / pre-init attributes
         if (
             name.startswith("_")
-            or name in ["parent", "children", "signals"]
+            or name in ("parent", "children", "signals")
             or not hasattr(self, "_hierarchy_initialized")
         ):
             super().__setattr__(name, value)
             return
 
-        # Special handling for metadata attributes: assign directly if dict or list
-        if name in ["qualifiers", "CONTENT_ORDER", "subitem"]:
+        # 2. Metadata attributes — store directly as plain dicts/lists
+        if name in ("qualifiers", "CONTENT_ORDER", "subitem"):
             if isinstance(value, (dict, list)):
                 object.__setattr__(self, name, value)
                 return
 
-        # Handle smart assignment patterns
-        # Since HierarchicalObject uses _name (not name), there's no collision with CData 'name' attributes
         existing_attr = getattr(self, name, None)
 
-        # DEBUG: Print all contentFlag assignments
-        if name == 'contentFlag':
-            import traceback
-            logger.debug(
-                "[SETATTR] %s.%s = %s (type: %s)\n  existing: %s (type: %s)\n  Stack: %s",
-                self.__class__.__name__, name, value, type(value).__name__,
-                existing_attr, type(existing_attr).__name__,
-                ''.join(traceback.format_stack()[-4:-1])
-            )
-
+        # 3–7. Smart assignment dispatch
         if isinstance(value, dict):
-            # Dictionary assignment: update object attributes from dictionary
-            if existing_attr is None:
-                # Create new CData object and populate from dict
-                new_obj = CData(name=name)
-                new_obj._smart_assign_from_dict(value)
-                self._setup_hierarchy_for_value(name, new_obj)
-                super().__setattr__(name, new_obj)
+            if self._assign_dict(name, value, existing_attr):
                 return
-            elif isinstance(existing_attr, CData):
-                # Update existing CData object from dictionary
-                existing_attr._smart_assign_from_dict(value)
-                # Mark as explicitly set since we're assigning new values
-                if hasattr(self, "_value_states"):
-                    self._value_states[name] = ValueState.EXPLICITLY_SET
-                return  # Don't replace the object, just update it
 
         elif isinstance(value, CData) and isinstance(existing_attr, CData):
-            # CData to CData assignment: use smart assignment logic
-            # Only perform assignment if the source value is actually set
-            # This prevents copying unset/default values which would mark them as explicitly set
-            #
-            # For container objects (like CRefinementPerformance), we need to check if ANY
-            # child attribute is set, not just the parent's isSet() which checks the 'value'
-            # attribute. The _has_any_set_children() helper handles this case.
-            if hasattr(value, 'isSet') and not value.isSet():
-                # Parent's isSet() returns False - but check if any children are set
-                if not value._has_any_set_children():
-                    # Source value is not set AND no children are set - skip the assignment
-                    # This prevents legacy code like: obj.FRAC = source.FREER_FRACTION
-                    # from marking FRAC as set when FREER_FRACTION is just a default
+            if self._assign_cdata(name, value, existing_attr):
+                return
+
+        elif existing_attr is not None:
+            if self._assign_path_string(name, value, existing_attr):
+                return
+            if isinstance(value, list) and self._assign_list(name, value, existing_attr):
+                return
+            if isinstance(existing_attr, CData) and existing_attr._is_value_type():
+                if self._assign_primitive(name, value, existing_attr):
                     return
 
-            # IMPORTANT: Detect plugin reassignment (different instances)
-            # When SubstituteLigand does: self.aimlessPlugin = self.makePluginObject('aimless_pipe')
-            # twice, we want to REPLACE the reference, not update the old instance in-place.
-            # Otherwise the old instance's state (_childJobCounter=5) gets preserved.
-            #
-            # Check if both are CPluginScript instances (or subclasses) using isinstance().
-            # Use deferred import to avoid circular dependency since CCP4PluginScript imports from base_object.
-            is_plugin_reassignment = False
-            if id(existing_attr) != id(value):
-                try:
-                    from ccp4i2.core.CCP4PluginScript import CPluginScript
-                    is_plugin_reassignment = isinstance(existing_attr, CPluginScript) and isinstance(value, CPluginScript)
-                except ImportError:
-                    # CPluginScript not yet loaded, fall back to smart assignment
-                    pass
-
-            if is_plugin_reassignment:
-                # Different plugin instances - bypass smart assignment and replace the reference
-                # Fall through to normal assignment logic below
-                pass
-            else:
-                # Same instance or non-plugin objects - use smart assignment
-                existing_attr._smart_assign_from_cdata(value)
-                # Mark as explicitly set since we're assigning a new value
-                if hasattr(self, "_value_states"):
-                    self._value_states[name] = ValueState.EXPLICITLY_SET
-                return  # Don't replace the object, just update it
-
-        elif (
-            hasattr(existing_attr, 'setFullPath')
-            and callable(getattr(existing_attr, 'setFullPath'))
-            and isinstance(value, str)
-        ):
-            # Special case: Assigning a string path to an existing CDataFile
-            # e.g., task.container.inputData.HKLIN = "/path/to/file.mtz"
-            # Use duck typing to avoid circular import
-            existing_attr.setFullPath(value)
-            # Mark as explicitly set
-            if hasattr(self, "_value_states"):
-                self._value_states[name] = ValueState.EXPLICITLY_SET
-            return  # Don't replace the object, just update its path
-
-        elif (
-            isinstance(value, list)
-            and existing_attr is not None
-            and hasattr(existing_attr, 'set')
-            and hasattr(existing_attr, '_items')  # Duck-type check for CList
-        ):
-            # Special case: Assigning a list to an existing CList
-            # e.g., columnGroup.columnList = [dict1, dict2, ...]
-            # Use CList.set() to properly handle dict-to-object conversion via subItem
-            existing_attr.set(value)
-            # Mark as explicitly set
-            if hasattr(self, "_value_states"):
-                self._value_states[name] = ValueState.EXPLICITLY_SET
-            return  # Don't replace the object, just update its items
-
-        elif (
-            existing_attr is not None and isinstance(existing_attr, CData)
-            and existing_attr._is_value_type()
-        ):
-            if name in ['contentFlag', 'subType']:  # DEBUG
-                logger.debug("Branch: Value type smart assign for %s", name)  # DEBUG
-            # Primitive value assignment to existing CData value type
-            # e.g., ctrl.NCYCLES = 25 where ctrl.NCYCLES is a CInt
-            if isinstance(value, (int, float, str, bool)):
-                # Check type compatibility and perform conversions if needed
-                type_compatible = False
-                converted_value = value
-                if hasattr(existing_attr, "value"):
-                    # Import types locally to avoid circular import
-                    from .fundamental_types import CInt, CFloat, CBoolean
-                    try:
-                        from .fundamental_types import CString
-                    except ImportError:
-                        CString = None
-
-                    # Handle CInt: accept int or string convertible to int
-                    if isinstance(existing_attr, CInt):
-                        if isinstance(value, int):
-                            type_compatible = True
-                        elif isinstance(value, str):
-                            # Legacy code often uses str(int_value) - convert back
-                            try:
-                                converted_value = int(value)
-                                type_compatible = True
-                            except (ValueError, TypeError):
-                                pass
-
-                    # Handle CFloat: accept float, int, or string convertible to float
-                    elif isinstance(existing_attr, CFloat):
-                        if isinstance(value, (int, float)):
-                            type_compatible = True
-                        elif isinstance(value, str):
-                            try:
-                                converted_value = float(value)
-                                type_compatible = True
-                            except (ValueError, TypeError):
-                                pass
-
-                    # Handle CBoolean: accept bool or string convertible to bool
-                    elif isinstance(existing_attr, CBoolean):
-                        if isinstance(value, bool):
-                            type_compatible = True
-                        elif isinstance(value, str):
-                            # Handle common boolean string representations
-                            if value.lower() in ('true', 'yes', '1'):
-                                converted_value = True
-                                type_compatible = True
-                            elif value.lower() in ('false', 'no', '0'):
-                                converted_value = False
-                                type_compatible = True
-
-                    # Handle CString: always accept strings
-                    elif CString is not None and isinstance(existing_attr, CString) and isinstance(value, str):
-                        type_compatible = True
-
-                if type_compatible:
-                    # Update the value attribute of the existing CData object
-                    if name in ['contentFlag', 'subType']:  # DEBUG
-                        logger.debug("[SMART ASSIGN] Updating %s.value = %s, keeping %s", name, converted_value, type(existing_attr).__name__)  # DEBUG
-                    existing_attr.value = converted_value
-                    # Mark as explicitly set (no longer needed with delegation, but keeping for non-CData attributes)
-                    if hasattr(self, "_value_states"):
-                        self._value_states[name] = ValueState.EXPLICITLY_SET
-                    return  # Don't replace the object, just update its value
-
-        # For new attributes or non-smart assignment, handle hierarchy
+        # 8. Fallthrough: new attribute or unhandled type
         self._setup_hierarchy_for_value(name, value)
 
-        # IMPORTANT: CData children are stored ONLY in hierarchy (via set_parent),
-        # NOT in __dict__. This keeps hierarchy as the single source of truth.
-        # The __getattribute__ override provides O(1) access via _children_by_name.
-        # Non-CData values (primitives, lists of primitives) are stored in __dict__.
         if isinstance(value, CData):
-            # CData children: already added to hierarchy via _setup_hierarchy_for_value
-            # Don't store in __dict__ - __getattribute__ will find it via _children_by_name
-            pass
+            pass  # stored in hierarchy only — __getattribute__ resolves via _children_by_name
         else:
-            # Non-CData values: store normally in __dict__
             super().__setattr__(name, value)
 
-        # Track that this value has been explicitly set (unless it's internal)
-        # IMPORTANT: Don't mark 'value' attribute here for types with @property setters
-        # (CInt, CFloat, CBoolean) because those setters handle state tracking themselves.
-        # This prevents parameters without defaults from being incorrectly marked as EXPLICITLY_SET
-        # during .def.xml loading and container merging operations.
-        # However, DO track for CString which doesn't use a @property setter.
+        # Track value state (skip for CInt/CFloat/CBoolean .value — their
+        # property setters handle state tracking themselves)
         from .fundamental_types import CInt, CFloat, CBoolean
-        has_value_property = isinstance(self, (CInt, CFloat, CBoolean))
-        skip_value_tracking = (name == "value" and has_value_property)
+        if (
+            name == "value" and isinstance(self, (CInt, CFloat, CBoolean))
+        ):
+            return
 
-        # Exclusion list for value state tracking
-        # Note: 'name' is NOT excluded - HierarchicalObject uses _name, so no collision
-        exclusion_list = ["parent", "children", "signals"]
-
-        if (hasattr(self, "_value_states") and not name.startswith("_")
-            and name not in exclusion_list
-            and not skip_value_tracking):
+        if (
+            hasattr(self, "_value_states")
+            and not name.startswith("_")
+            and name not in ("parent", "children", "signals")
+        ):
             self._value_states[name] = ValueState.EXPLICITLY_SET
 
     def __getattr__(self, name: str):
