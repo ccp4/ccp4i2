@@ -1509,16 +1509,25 @@ class CMtzData(CMtzDataStub):
 
         # Fallback: use wavelengths attribute if set
         if hasattr(self, 'wavelengths') and self.wavelengths is not None:
-            if hasattr(self.wavelengths, 'value'):
-                wl_list = self.wavelengths.value
-            else:
-                wl_list = self.wavelengths
-
-            # Handle both list and single value
-            if isinstance(wl_list, (list, tuple)):
-                return list(wl_list)
-            else:
-                return [wl_list] if wl_list else []
+            # Iterate over the CList to extract values, converting each to float
+            result = []
+            try:
+                for item in self.wavelengths:
+                    try:
+                        val = float(str(item))
+                        if val > 0.0:
+                            result.append(val)
+                    except (ValueError, TypeError):
+                        continue
+            except TypeError:
+                # wavelengths is not iterable (single value)
+                try:
+                    val = float(str(self.wavelengths))
+                    if val > 0.0:
+                        result.append(val)
+                except (ValueError, TypeError):
+                    pass
+            return result
 
         # Final fallback: return empty list
         return []
