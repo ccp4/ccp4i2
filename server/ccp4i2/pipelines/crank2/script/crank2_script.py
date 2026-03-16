@@ -553,6 +553,72 @@ class crank2(CPluginScript):
 
     return {"error": "Could not parse crossec output for {}".format(atom_type)}
 
+  def estimate_num_substructure(self, atom_type):
+    """Estimate the number of anomalous scatterers from the sequence.
+
+    Mirrors the logic in crank2's model.GuessNumSubstrAtomsFromSeq():
+      SE  -> count Met (M) + Sec (U)
+      S   -> count Met (M) + Cys (C)
+      I/BR -> seq_length / 20  (minimum 2)
+      other -> seq_length / 200 (minimum 2)
+    The per-monomer count is multiplied by MONOMERS_ASYM if set.
+
+    Args:
+        atom_type: Element symbol (e.g. "SE", "S", "Xe")
+
+    Returns:
+        dict with "estimate" (int), or "error" string on failure.
+    """
+    inp = self.container.inputData
+    if not inp.SEQIN.isSet():
+      return {"error": "No sequence file set"}
+
+    # Load file content if needed
+    if not hasattr(inp.SEQIN, 'fileContent') or inp.SEQIN.fileContent is None:
+      try:
+        inp.SEQIN.loadFile()
+      except Exception as e:
+        return {"error": "Could not load sequence file: {}".format(e)}
+
+    fc = inp.SEQIN.fileContent
+    if fc is None or not hasattr(fc, 'seqList') or fc.seqList is None:
+      return {"error": "Sequence file has no content"}
+
+    # Concatenate all protein sequences
+    seq_str = ''
+    for seq_obj in fc.seqList:
+      if not hasattr(seq_obj, 'sequence'):
+        continue
+      s = str(seq_obj.sequence.value if hasattr(seq_obj.sequence, 'value') else seq_obj.sequence)
+      seq_str += s
+
+    if not seq_str:
+      return {"error": "Sequence file contains no residues"}
+
+    at = atom_type.upper().strip()
+    upper_seq = seq_str.upper()
+    if at == 'SE':
+      count = upper_seq.count('M') + upper_seq.count('U')
+    elif at == 'S':
+      count = upper_seq.count('M') + upper_seq.count('C')
+    elif at in ('I', 'BR'):
+      count = max(int(len(upper_seq) / 20), 2)
+    else:
+      count = max(int(len(upper_seq) / 200), 2)
+
+    # Multiply by NCS copies
+    monomers_asym = 1
+    if inp.MONOMERS_ASYM.isSet():
+      try:
+        monomers_asym = int(inp.MONOMERS_ASYM)
+      except (ValueError, TypeError):
+        pass
+    if monomers_asym < 1:
+      monomers_asym = 1
+
+    estimate = count * monomers_asym
+    return {"estimate": estimate}
+
   def setProgramVersion(self):
     with open(os.path.join(crank2_path,'VERSION')) as f:
       return f.read()

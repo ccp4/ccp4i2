@@ -71,7 +71,7 @@ function checkStartEnd(
 const ScatteringRow: React.FC<{
   props: CCP4i2TaskInterfaceProps;
   suffix: string;
-  onWavelengthChange?: () => void;
+  onWavelengthChange?: (item: any) => void;
 }> = ({ props, suffix, onWavelengthChange }) => (
   <Box
     sx={{
@@ -132,7 +132,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { value: endPipeline } = useTaskItem("END_PIPELINE");
 
   const { value: atomType } = useTaskItem("ATOM_TYPE");
-  useTaskItem("NUMBER_SUBSTRUCTURE");
+  const { forceUpdate: forceUpdateNUM_SUBSTR } = useTaskItem("NUMBER_SUBSTRUCTURE");
   useTaskItem("SUBSTRDET_NUM_DSUL");
   useTaskItem("XYZIN");
   useTaskItem("XYZIN_SUB");
@@ -193,7 +193,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // --- Important Options ---
   useTaskItem("RESIDUES_MON");
-  useTaskItem("MONOMERS_ASYM");
+  const { value: monomersAsym } = useTaskItem("MONOMERS_ASYM");
   useTaskItem("SOLVENT_CONTENT");
   const { value: exptype } = useTaskItem("EXPTYPE");
 
@@ -344,13 +344,45 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     ]
   );
 
+  /** Estimate NUMBER_SUBSTRUCTURE (and NUM_DSUL for S) from sequence + atom type */
+  const estimateSubstructure = useCallback(
+    async (at?: string) => {
+      const a = at ?? (atomType as string);
+      if (!a || !job || job.status !== 1) return;
+      const result = await callPluginMethod("estimate_num_substructure", {
+        atom_type: String(a),
+      });
+      if (result && result.estimate !== undefined) {
+        await forceUpdateNUM_SUBSTR(result.estimate);
+      }
+    },
+    [atomType, callPluginMethod, forceUpdateNUM_SUBSTR, job?.id, job?.status]
+  );
+
   const handleAtomTypeChange = useCallback(
-    () => computeScatteringFactors(),
-    [computeScatteringFactors]
+    (item: any) => {
+      const at = item?._value ? String(item._value) : undefined;
+      computeScatteringFactors(at);
+      estimateSubstructure(at);
+    },
+    [computeScatteringFactors, estimateSubstructure]
+  );
+
+  const handleSeqinChange = useCallback(
+    () => estimateSubstructure(),
+    [estimateSubstructure]
+  );
+
+  const handleMonomersAsymChange = useCallback(
+    () => estimateSubstructure(),
+    [estimateSubstructure]
   );
 
   const handleWavelengthChange = useCallback(
-    () => computeScatteringFactors(),
+    (item: any) => {
+      const wl = item?._value ? Number(item._value) : undefined;
+      computeScatteringFactors(undefined, wl);
+    },
     [computeScatteringFactors]
   );
 
@@ -454,7 +486,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               onChange={inputSequence.onChange}
             />
             {inputSequence.value && (
-              <CCP4i2TaskElement {...props} itemName="SEQIN" />
+              <CCP4i2TaskElement {...props} itemName="SEQIN" onChange={handleSeqinChange} />
             )}
             {!inputSequence.value && (
               <CCP4i2TaskElement
@@ -806,6 +838,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                 {...props}
                 itemName="MONOMERS_ASYM"
                 qualifiers={{ guiLabel: "NCS copies" }}
+                onChange={handleMonomersAsymChange}
               />
               <CCP4i2TaskElement
                 {...props}
