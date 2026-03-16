@@ -640,7 +640,7 @@ class refmac(CPluginScript):
 
         self.appendCommandScript(labin)
         self.appendCommandScript('END')
-    
+
         return CPluginScript.SUCCEEDED
 
     def setProgramVersion(self):

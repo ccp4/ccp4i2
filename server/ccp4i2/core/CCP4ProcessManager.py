@@ -463,7 +463,13 @@ class CProcessManager:
             qprocess = pm.getJobData(pid, attribute='qprocess')
         """
         if pid not in self.processInfo:
-            return None
+            # Fall through to async process manager for processes started
+            # via _startProcessAsync (e.g., ASYNCHRONOUS wrappers)
+            try:
+                from ccp4i2.core.async_process_manager import ASYNC_PROCESSMANAGER
+                return ASYNC_PROCESSMANAGER().getJobData(pid, attribute)
+            except Exception:
+                return None
 
         info = self.processInfo[pid]
 

@@ -602,6 +602,17 @@ class CDataFile(CData):
         if relpath_value:
             relpath_str = str(relpath_value).strip()
             if relpath_str:
+                # If relPath is an absolute path, join directly with baseName.
+                # This handles external files (e.g., image sequences) that are
+                # referenced in-place rather than copied to the project.
+                if Path(relpath_str).is_absolute():
+                    if basename_value:
+                        full_path = Path(relpath_str) / str(basename_value)
+                        logger.debug("Constructed path from absolute relPath + baseName: %s", full_path)
+                        return str(full_path)
+                    else:
+                        return relpath_str
+
                 # Handle environment variable expansion in relPath
                 # Patterns like "$CCP4/path/to/file" or "$CCP4I2_ROOT/demo_data/file"
                 # should expand the environment variable and construct the full path

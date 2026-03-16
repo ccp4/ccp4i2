@@ -337,7 +337,8 @@ def digest_cpdbdata_file_object(file_object: CPdbDataFile):
         if content_dict is None:
             content_dict = {}
         # Add per-chain polymer sequences for use by sequence extraction UI
-        gemmi_struct = getattr(contents, '_gemmi_structure', None)
+        # _gemmi_structure is stored on the file_object, not the contents
+        gemmi_struct = getattr(file_object, '_gemmi_structure', None)
         if gemmi_struct is not None:
             content_dict['sequences'] = _extract_chain_sequences(gemmi_struct)
         return content_dict

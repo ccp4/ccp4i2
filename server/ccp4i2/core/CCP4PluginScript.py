@@ -3927,12 +3927,15 @@ class CPluginScript(CData):
         """
         Get the process ID for this plugin instance.
 
-        In synchronous execution, this is just the Python object ID.
-        In async execution with Qt, this would be the QProcess pid.
+        For async processes (_startProcessAsync), returns the pid assigned
+        by the async process manager.  For synchronous execution, returns
+        the Python object ID as a fallback.
 
         Returns:
             Process identifier (int)
         """
+        if hasattr(self, '_runningProcessId') and self._runningProcessId is not None:
+            return self._runningProcessId
         return id(self)
 
     def appendErrorReport(self, code=0, details='', name=None, label=None, cls=None,

@@ -52,6 +52,16 @@ async def import_input_files_async(job, plugin, db_handler):
 
     for file_obj in input_files:
         try:
+            # Skip image files that are part of an image sequence (e.g., xia2 IMAGE_FILE).
+            # These must NOT be copied to CCP4_IMPORTED_FILES because xia2 needs all
+            # frames in the original directory, not just the single named file.
+            parent = file_obj.parent() if callable(getattr(file_obj, 'parent', None)) else getattr(file_obj, '_parent', None)
+            if parent is not None:
+                parent_class_name = type(parent).__name__
+                if 'ImageSelection' in parent_class_name:
+                    logger.info(f"Skipping import for image sequence file {file_obj.objectName()} (parent: {parent_class_name})")
+                    continue
+
             # Check if file already has database ID (previously registered)
             if hasattr(file_obj, 'dbFileId'):
                 db_file_id_obj = file_obj.dbFileId
