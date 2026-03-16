@@ -11,7 +11,18 @@ class edstats(CPluginScript):
     PURGESEARCHLIST =  [[ 'fft%*/MAPOUT.map', 1 ] ]
 
     def processInputFiles(self):
+      import os
       from ccp4i2.core import CCP4XtalData
+
+      # edstats only accepts PDB format — convert mmCIF if necessary
+      self._pdbFilePath = None
+      xyzin = self.container.inputData.XYZIN
+      src = str(xyzin.fullPath)
+      if src.lower().endswith(('.cif', '.mmcif')):
+          import gemmi
+          self._pdbFilePath = os.path.join(self.getWorkDirectory(), 'XYZIN.pdb')
+          st = gemmi.read_structure(src)
+          st.write_pdb(self._pdbFilePath)
 
       self.cfftPlugin1 = self.makeCfftPlugin1 ( )
       error = self.cfftPlugin1.process ( )
@@ -316,7 +327,8 @@ class edstats(CPluginScript):
       edstatsOut = os.path.join ( self.path_wrk, 'edstats.out' )
 
 
-      self.appendCommandLine([ 'XYZIN', self.container.inputData.XYZIN.fullPath ])
+      xyzin_path = self._pdbFilePath or self.container.inputData.XYZIN.fullPath
+      self.appendCommandLine([ 'XYZIN', xyzin_path ])
 
       # INPUT DATA
       self.appendCommandLine([ 'MAPIN1', self.container.inputData.MAPIN1.fullPath ])
