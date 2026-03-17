@@ -1,0 +1,1800 @@
+
+CCP4I2_ROOT: /Users/nmemn/Developer/ccp4i2/server
+DJANGO_SETTINGS_MODULE: ccp4i2.config.test_settings
+Python: /Users/nmemn/Developer/ccp4-20251105/bin/ccp4-python
+
+Running: pytest ccp4i2/tests/i2run/ -n 8
+
+============================= test session starts ==============================
+platform darwin -- Python 3.11.11, pytest-8.4.2, pluggy-1.6.0 -- /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+cachedir: .pytest_cache
+django: version: 5.2.9, settings: ccp4i2.config.test_settings (from env)
+rootdir: /Users/nmemn/Developer/ccp4i2/server/ccp4i2/tests/i2run
+configfile: pytest.ini
+plugins: mock-1.13.0, xdist-3.8.0, dials-data-2.4.127, django-4.11.1, asyncio-1.3.0, forked-1.5.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+created: 8/8 workers
+8 workers [107 items]
+
+scheduling tests via LoadScheduling
+
+ccp4i2/tests/i2run/test_acedrg.py::test_from_mol 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_mol2 
+ccp4i2/tests/i2run/test_arcimboldo.py::test_arcimboldo 
+ccp4i2/tests/i2run/test_aimless.py::test_gamma 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_monomer_library 
+ccp4i2/tests/i2run/test_areaimol.py::test_compare_5a3h_and_8a3h 
+ccp4i2/tests/i2run/test_crank2.py::test_crank2 
+ccp4i2/tests/i2run/test_auspex.py::test_auspex 
+[gw4] [  0%] SKIPPED ccp4i2/tests/i2run/test_arcimboldo.py::test_arcimboldo 
+ccp4i2/tests/i2run/test_areaimol.py::test_5a3h 
+[gw3] [  1%] PASSED ccp4i2/tests/i2run/test_aimless.py::test_gamma 
+ccp4i2/tests/i2run/test_aimless.py::test_mdm2 
+[gw6] [  2%] PASSED ccp4i2/tests/i2run/test_auspex.py::test_auspex 
+ccp4i2/tests/i2run/test_comit.py::test_comit 
+[gw4] [  3%] PASSED ccp4i2/tests/i2run/test_areaimol.py::test_5a3h 
+[gw6] [  4%] PASSED ccp4i2/tests/i2run/test_comit.py::test_comit 
+ccp4i2/tests/i2run/test_areaimol.py::test_5a3h_imol 
+ccp4i2/tests/i2run/test_coordinate_selector.py::test_8xfm 
+[gw6] [  5%] PASSED ccp4i2/tests/i2run/test_coordinate_selector.py::test_8xfm 
+ccp4i2/tests/i2run/test_find_ligand.py::test_8xfm 
+[gw6] [  6%] SKIPPED ccp4i2/tests/i2run/test_find_ligand.py::test_8xfm 
+ccp4i2/tests/i2run/test_find_waters.py::test_8xfm 
+[gw5] [  7%] PASSED ccp4i2/tests/i2run/test_areaimol.py::test_compare_5a3h_and_8a3h 
+ccp4i2/tests/i2run/test_arpwarp.py::test_arpwarp 
+[gw5] [  8%] SKIPPED ccp4i2/tests/i2run/test_arpwarp.py::test_arpwarp 
+ccp4i2/tests/i2run/test_asu_contents.py::test_beta_blip 
+[gw4] [  9%] PASSED ccp4i2/tests/i2run/test_areaimol.py::test_5a3h_imol 
+ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pdb 
+[gw6] [ 10%] PASSED ccp4i2/tests/i2run/test_find_waters.py::test_8xfm 
+ccp4i2/tests/i2run/test_freerflag.py::test_freerflag 
+[gw5] [ 11%] PASSED ccp4i2/tests/i2run/test_asu_contents.py::test_beta_blip 
+ccp4i2/tests/i2run/test_import_merged.py::test_2ceu_cif 
+[gw6] [ 12%] PASSED ccp4i2/tests/i2run/test_freerflag.py::test_freerflag 
+ccp4i2/tests/i2run/test_metalcoord.py::test_metalcoord 
+[gw5] [ 13%] PASSED ccp4i2/tests/i2run/test_import_merged.py::test_2ceu_cif 
+ccp4i2/tests/i2run/test_import_merged.py::test_gamma_mtz 
+[gw4] [ 14%] PASSED ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pdb 
+ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_cif 
+[gw0] [ 14%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_monomer_library 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb 
+[gw4] [ 15%] PASSED ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_cif 
+[gw5] [ 16%] PASSED ccp4i2/tests/i2run/test_import_merged.py::test_gamma_mtz 
+ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pae 
+[gw4] [ 17%] SKIPPED ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pae 
+ccp4i2/tests/i2run/test_editbfac.py::test_robetta 
+ccp4i2/tests/i2run/test_make_link.py::test_6ndn 
+[gw6] [ 18%] PASSED ccp4i2/tests/i2run/test_metalcoord.py::test_metalcoord 
+ccp4i2/tests/i2run/test_model_asu_check.py::test_8xfm 
+[gw3] [ 19%] PASSED ccp4i2/tests/i2run/test_aimless.py::test_mdm2 
+ccp4i2/tests/i2run/test_ample.py::test_8xfm 
+[gw3] [ 20%] PASSED ccp4i2/tests/i2run/test_ample.py::test_8xfm 
+ccp4i2/tests/i2run/test_phaser_ep.py::test_phaser_ep 
+[gw6] [ 21%] PASSED ccp4i2/tests/i2run/test_model_asu_check.py::test_8xfm 
+ccp4i2/tests/i2run/test_modelcraft.py::test_8xfm 
+[gw4] [ 22%] PASSED ccp4i2/tests/i2run/test_editbfac.py::test_robetta 
+ccp4i2/tests/i2run/test_modelcraft.py::test_gamma_ep 
+[gw3] [ 23%] PASSED ccp4i2/tests/i2run/test_phaser_ep.py::test_phaser_ep 
+ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_default 
+[gw2] [ 24%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_mol2 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles_atom_name_matching 
+[gw1] [ 25%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_mol 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_sdf 
+[gw0] [ 26%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb_metal_af3 
+[gw5] [ 27%] PASSED ccp4i2/tests/i2run/test_make_link.py::test_6ndn 
+ccp4i2/tests/i2run/test_mrparse.py::test_mrparse 
+[gw5] [ 28%] PASSED ccp4i2/tests/i2run/test_mrparse.py::test_mrparse 
+ccp4i2/tests/i2run/test_pairef.py::test_pairef 
+[gw0] [ 28%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb_metal_af3 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_sheetbend 
+[gw3] [ 29%] PASSED ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_default 
+ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_asu 
+[gw2] [ 30%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles_atom_name_matching 
+ccp4i2/tests/i2run/test_acorn.py::test_acorn 
+[gw0] [ 31%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_sheetbend 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma 
+[gw1] [ 32%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_sdf 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles 
+[gw2] [ 33%] PASSED ccp4i2/tests/i2run/test_acorn.py::test_acorn 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_json_serialization 
+[gw2] [ 34%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_json_serialization 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_extract_no_user_changes 
+[gw2] [ 35%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_extract_no_user_changes 
+ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_as_xml_method 
+[gw2] [ 36%] PASSED ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_as_xml_method 
+ccp4i2/tests/i2run/test_refmac.py::test_8xfm 
+[gw2] [ 37%] SKIPPED ccp4i2/tests/i2run/test_refmac.py::test_8xfm 
+ccp4i2/tests/i2run/test_refmac.py::test_8xfm_basic 
+[gw3] [ 38%] PASSED ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_asu 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_no_solution 
+[gw3] [ 39%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_no_solution 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_instantiation 
+[gw3] [ 40%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_instantiation 
+ccp4i2/tests/i2run/test_refmac.py::test_gamma_basic 
+[gw2] [ 41%] PASSED ccp4i2/tests/i2run/test_refmac.py::test_8xfm_basic 
+ccp4i2/tests/i2run/test_refmac.py::test_gamma 
+[gw2] [ 42%] SKIPPED ccp4i2/tests/i2run/test_refmac.py::test_gamma 
+ccp4i2/tests/i2run/test_report_generation.py::test_pointless_report_generation 
+[gw2] [ 42%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_pointless_report_generation 
+ccp4i2/tests/i2run/test_report_generation.py::test_import_merged_report_generation 
+[gw0] [ 43%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_phil_exclude_scopes 
+[gw0] [ 44%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_phil_exclude_scopes 
+[gw7] [ 45%] PASSED ccp4i2/tests/i2run/test_crank2.py::test_crank2 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_i2run_gamma 
+ccp4i2/tests/i2run/test_csymmatch.py::test_8xfm 
+[gw2] [ 46%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_import_merged_report_generation 
+ccp4i2/tests/i2run/test_report_generation.py::test_report_for_nonexistent_task 
+[gw2] [ 47%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_report_for_nonexistent_task 
+ccp4i2/tests/i2run/test_rsr_morph.py::test_8xfm 
+[gw7] [ 48%] PASSED ccp4i2/tests/i2run/test_csymmatch.py::test_8xfm 
+ccp4i2/tests/i2run/test_dimple.py::test_dimple 
+[gw3] [ 49%] PASSED ccp4i2/tests/i2run/test_refmac.py::test_gamma_basic 
+ccp4i2/tests/i2run/test_report_generation.py::test_refmac_report_generation 
+[gw2] [ 50%] PASSED ccp4i2/tests/i2run/test_rsr_morph.py::test_8xfm 
+ccp4i2/tests/i2run/test_scaleit.py::test_gamma_native_vs_xe 
+[gw7] [ 51%] PASSED ccp4i2/tests/i2run/test_dimple.py::test_dimple 
+ccp4i2/tests/i2run/test_servalcat.py::test_8xfm_basic 
+[gw3] [ 52%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_refmac_report_generation 
+ccp4i2/tests/i2run/test_servalcat.py::test_1gyu_unmerged_basic 
+[gw2] [ 53%] PASSED ccp4i2/tests/i2run/test_scaleit.py::test_gamma_native_vs_xe 
+[gw5] [ 54%] PASSED ccp4i2/tests/i2run/test_pairef.py::test_pairef 
+ccp4i2/tests/i2run/test_servalcat.py::test_7beq_electron_basic 
+ccp4i2/tests/i2run/test_parrot.py::test_parrot 
+[gw1] [ 55%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles 
+ccp4i2/tests/i2run/test_plugin_validation.py::test_bare_prosmart_refmac_validation 
+[gw1] [ 56%] PASSED ccp4i2/tests/i2run/test_plugin_validation.py::test_bare_prosmart_refmac_validation 
+ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_method 
+[gw1] [ 57%] PASSED ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_method 
+ccp4i2/tests/i2run/test_shelx.py::test_gamma_siras 
+[gw5] [ 57%] PASSED ccp4i2/tests/i2run/test_parrot.py::test_parrot 
+ccp4i2/tests/i2run/test_shelx.py::test_gamma_sad 
+[gw3] [ 58%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_1gyu_unmerged_basic 
+[gw7] [ 59%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_8xfm_basic 
+ccp4i2/tests/i2run/test_sheetbend.py::test_8xfm 
+ccp4i2/tests/i2run/test_servalcat.py::test_7prg_neutron_basic 
+[gw2] [ 60%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_7beq_electron_basic 
+ccp4i2/tests/i2run/test_shelx.py::test_substrdet 
+[gw3] [ 61%] PASSED ccp4i2/tests/i2run/test_sheetbend.py::test_8xfm 
+ccp4i2/tests/i2run/test_single_atom_mr.py::test_single_atom_mr 
+[gw0] [ 62%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_i2run_gamma 
+ccp4i2/tests/i2run/test_report_generation.py::test_csymmatch_report_generation 
+[gw0] [ 63%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_csymmatch_report_generation 
+ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_no_ligand 
+[gw4] [ 64%] PASSED ccp4i2/tests/i2run/test_modelcraft.py::test_gamma_ep 
+ccp4i2/tests/i2run/test_molrep.py::test_molrep 
+[gw2] [ 65%] PASSED ccp4i2/tests/i2run/test_shelx.py::test_substrdet 
+[gw6] [ 66%] PASSED ccp4i2/tests/i2run/test_modelcraft.py::test_8xfm 
+ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_user_column_group 
+ccp4i2/tests/i2run/test_phaser_rnp_pipeline.py::test_phaser_rnp_pipeline_chain_selections 
+[gw2] [ 67%] PASSED ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_user_column_group 
+ccp4i2/tests/i2run/test_subtract_native.py::test_8xfm 
+[gw2] [ 68%] PASSED ccp4i2/tests/i2run/test_subtract_native.py::test_8xfm 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_fasta-8xfm-read_fasta] 
+[gw2] [ 69%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_fasta-8xfm-read_fasta] 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_mmcif-1gyu-read_structure] 
+[gw2] [ 70%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_mmcif-1gyu-read_structure] 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_pdb-6ndn-read_structure] 
+[gw2] [ 71%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_pdb-6ndn-read_structure] 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_sfcif-2ceu-read] 
+[gw2] [ 71%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_sfcif-2ceu-read] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_cif-A1LU6-read] 
+[gw2] [ 72%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_cif-A1LU6-read] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_sdf-A1LU6-read_sdf] 
+[gw2] [ 73%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_sdf-A1LU6-read_sdf] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_mmcif-4dl8-read_structure] 
+[gw2] [ 74%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_mmcif-4dl8-read_structure] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_pdb-8rk1-read_structure] 
+[gw7] [ 75%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_7prg_neutron_basic 
+ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_column_group_list 
+[gw7] [ 76%] PASSED ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_column_group_list 
+ccp4i2/tests/i2run/test_urls.py::test_url[redo_mtz-8xfm-read_mtz_file] 
+[gw4] [ 77%] PASSED ccp4i2/tests/i2run/test_molrep.py::test_molrep 
+[gw2] [ 78%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_pdb-8rk1-read_structure] 
+ccp4i2/tests/i2run/test_mrbump.py::test_mrbump 
+[gw7] [ 79%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[redo_mtz-8xfm-read_mtz_file] 
+ccp4i2/tests/i2run/test_urls.py::test_url[redo_cif-8xfm-read_structure] 
+ccp4i2/tests/i2run/test_validate.py::test_7beq_basic 
+[gw2] [ 80%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[redo_cif-8xfm-read_structure] 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_basic 
+[gw7] [ 81%] PASSED ccp4i2/tests/i2run/test_validate.py::test_7beq_basic 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_basic 
+[gw6] [ 82%] PASSED ccp4i2/tests/i2run/test_phaser_rnp_pipeline.py::test_phaser_rnp_pipeline_chain_selections 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_basic 
+[gw3] [ 83%] PASSED ccp4i2/tests/i2run/test_single_atom_mr.py::test_single_atom_mr 
+ccp4i2/tests/i2run/test_split_mtz.py::test_4iid_phi_fom 
+[gw3] [ 84%] PASSED ccp4i2/tests/i2run/test_split_mtz.py::test_4iid_phi_fom 
+ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_file 
+[gw7] [ 85%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_basic 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_with_molprobity 
+[gw6] [ 85%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_basic 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_with_molprobity 
+[gw0] [ 86%] PASSED ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_no_ligand 
+ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_with_smiles 
+[gw7] [ 87%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_with_molprobity 
+ccp4i2/tests/i2run/test_xia2.py::test_xia2_xds_file 
+[gw6] [ 88%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_with_molprobity 
+[gw2] [ 89%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_basic 
+ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_with_molprobity 
+[gw4] [ 90%] PASSED ccp4i2/tests/i2run/test_mrbump.py::test_mrbump 
+ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_basic 
+[gw4] [ 91%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_basic 
+[gw2] [ 92%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_with_molprobity 
+[gw0] [ 93%] PASSED ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_with_smiles 
+[gw5] [ 94%] PASSED ccp4i2/tests/i2run/test_shelx.py::test_gamma_sad 
+ccp4i2/tests/i2run/test_simple_pipeline.py::test_simple_signal_chain 
+[gw5] [ 95%] PASSED ccp4i2/tests/i2run/test_simple_pipeline.py::test_simple_signal_chain 
+[gw7] [ 96%] FAILED ccp4i2/tests/i2run/test_xia2.py::test_xia2_xds_file 
+[gw1] [ 97%] PASSED ccp4i2/tests/i2run/test_shelx.py::test_gamma_siras 
+ccp4i2/tests/i2run/test_shelxe_mr.py::test_gamma 
+[gw1] [ 98%] PASSED ccp4i2/tests/i2run/test_shelxe_mr.py::test_gamma 
+[gw3] [ 99%] PASSED ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_file 
+ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_directory 
+[gw3] [100%] PASSED ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_directory nanobind: leaked 7 instances!
+ - leaked instance 0x107e35d88 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xb30108800 of type "gemmi.Structure"
+ - leaked instance 0xb33c01500 of type "gemmi.Mtz"
+ - leaked instance 0xb3010b400 of type "gemmi.Structure"
+ - leaked instance 0x107e28558 of type "gemmi.PdbWriteOptions"
+ - leaked instance 0x107e35da8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0x107e35dc8 of type "gemmi.MmcifOutputGroups"
+nanobind: leaked 10 types!
+ - leaked type "gemmi.Batch"
+ - leaked type "AxisOrder"
+ - leaked type "gemmi.Mtz"
+ - leaked type "gemmi.PdbWriteOptions"
+ - leaked type "gemmi.Structure"
+ - leaked type "gemmi.iterator"
+ - leaked type "gemmi.iterator"
+ - leaked type "gemmi.MmcifOutputGroups"
+ - leaked type "gemmi.Dataset"
+ - leaked type "gemmi.Column"
+ - ... skipped remainder
+nanobind: leaked 324 functions!
+ - leaked function "assign_best_sequences"
+ - leaked function ""
+ - leaked function "resolution_low"
+ - leaked function "clone"
+ - leaked function "get_value_on_grid"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "ensure_asu"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "standardize_crystal_frame"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "ensure_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "switch_to_original_hkl"
+ - leaked function ""
+ - leaked function "get_size_for_hkl"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "rfree_column"
+ - leaked function ""
+ - leaked function "get_f_phi_on_grid"
+ - leaked function ""
+ - leaked function "write_minimal_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_waters"
+ - leaked function ""
+ - leaked function "__getstate__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_headers"
+ - leaked function "write_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "sort"
+ - leaked function "make_1_d2_array"
+ - leaked function "copy_column"
+ - leaked function ""
+ - leaked function "store_deuterium_as_fraction"
+ - leaked function "rename_chain"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_to_bytes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__setitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "merge_chain_parts"
+ - leaked function "switch_to_asu_hkl"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "update_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_pdb_string"
+ - leaked function "add_column"
+ - leaked function "expand_ncs"
+ - leaked function "transform_to_assembly"
+ - leaked function "add_model"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function "set_data"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "dataset"
+ - leaked function "replace_column"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_or_add_model"
+ - leaked function ""
+ - leaked function "shorten_chain_names"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "reindex"
+ - leaked function "get_f_phi"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "row_as_dict"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function "get_value_sigma"
+ - leaked function "make_minimal_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_subchains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_conect"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "resolution_high"
+ - leaked function "clear_sequences"
+ - leaked function "make_pdb_headers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "is_integer"
+ - leaked function "assign_het_flags"
+ - leaked function "__init__"
+ - leaked function "remove_empty_chains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "count"
+ - leaked function ""
+ - leaked function "remove_ligands_and_waters"
+ - leaked function "columns_with_type"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_connection"
+ - leaked function "transform_f_phi_to_map"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_serial_numbers"
+ - leaked function "__next__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "set_logging"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_dataset"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_entity"
+ - leaked function "write_to_file"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "filtered"
+ - leaked function ""
+ - leaked function "renumber_models"
+ - leaked function ""
+ - leaked function "column_labels"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getitem__"
+ - leaked function "get_float"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "data_fits_into"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_fractional_box"
+ - leaked function "setup_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_entity_types"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "set_cell_for_all"
+ - leaked function "remove_alternative_conformations"
+ - leaked function "__setstate__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "shorten_ccd_codes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_cell"
+ - leaked function ""
+ - leaked function "rename_residues"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_entity_ids"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_document"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_label_seq_id"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_hydrogens"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function "expand_to_p1"
+ - leaked function "make_d_array"
+ - leaked function "setup_cell_images"
+ - leaked function "__next__"
+ - leaked function "column_with_label"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "clear_conect"
+ - leaked function "make_miller_array"
+ - leaked function "calculate_box"
+ - leaked function ""
+ - leaked function "deduplicate_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function "remove_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_spacegroup"
+ - leaked function "get_entity_of"
+ - leaked function "update_reso"
+ - leaked function "__delitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_connection_by_cra"
+ - leaked function ""
+ - leaked function "get_int"
+ - leaked function "restore_full_ccd_codes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function ""
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.htmlnanobind: leaked 13 instances!
+ - leaked instance 0x10bec5d88 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0x10bec5da8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xaf536de00 of type "gemmi.Mtz"
+ - leaked instance 0xaf7e12800 of type "gemmi.Structure"
+ - leaked instance 0xaf7dfcc00 of type "gemmi.Structure"
+ - leaked instance 0xaf8234400 of type "gemmi.Structure"
+ - leaked instance 0xaf66eb000 of type "gemmi.Structure"
+ - leaked instance 0xaf8579c00 of type "gemmi.Structure"
+ - leaked instance 0xaf5b84c00 of type "gemmi.Structure"
+ - leaked instance 0x10bec5dc8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xaf7a6cc00 of type "gemmi.Structure"
+ - leaked instance 0xaf536f000 of type "gemmi.Mtz"
+ - leaked instance 0x10beb4558 of type "gemmi.PdbWriteOptions"
+nanobind: leaked 8 types!
+ - leaked type "gemmi.Batch"
+ - leaked type "AxisOrder"
+ - leaked type "gemmi.Mtz"
+ - leaked type "gemmi.PdbWriteOptions"
+ - leaked type "gemmi.Structure"
+ - leaked type "gemmi.MmcifOutputGroups"
+ - leaked type "gemmi.Dataset"
+ - leaked type "gemmi.Column"
+nanobind: leaked 320 functions!
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "renumber_models"
+ - leaked function ""
+ - leaked function "reindex"
+ - leaked function ""
+ - leaked function "standardize_crystal_frame"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__array__"
+ - leaked function "find_connection_by_cra"
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function "write_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_box"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "transform_to_assembly"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__setitem__"
+ - leaked function "get_value_sigma"
+ - leaked function ""
+ - leaked function "get_value_on_grid"
+ - leaked function "store_deuterium_as_fraction"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_miller_array"
+ - leaked function "__getitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "switch_to_asu_hkl"
+ - leaked function ""
+ - leaked function "assign_het_flags"
+ - leaked function "remove_column"
+ - leaked function ""
+ - leaked function "find_connection"
+ - leaked function "get_entity"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_minimal_pdb"
+ - leaked function "update_reso"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_entity_ids"
+ - leaked function ""
+ - leaked function "write_to_bytes"
+ - leaked function "__repr__"
+ - leaked function "__setstate__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_cell"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "set_data"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_document"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function "make_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getitem__"
+ - leaked function "assign_subchains"
+ - leaked function "column_with_label"
+ - leaked function ""
+ - leaked function "make_d_array"
+ - leaked function "add_conect"
+ - leaked function ""
+ - leaked function "filtered"
+ - leaked function "rfree_column"
+ - leaked function "merge_chain_parts"
+ - leaked function "row_as_dict"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "switch_to_original_hkl"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function "__repr__"
+ - leaked function "dataset"
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function "add_entity_types"
+ - leaked function "update_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "expand_to_p1"
+ - leaked function "remove_waters"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "rename_residues"
+ - leaked function ""
+ - leaked function "data_fits_into"
+ - leaked function ""
+ - leaked function "remove_hydrogens"
+ - leaked function ""
+ - leaked function "clear_conect"
+ - leaked function "make_1_d2_array"
+ - leaked function "sort"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "setup_cell_images"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_empty_chains"
+ - leaked function "make_pdb_string"
+ - leaked function "make_minimal_pdb"
+ - leaked function "get_f_phi"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "shorten_chain_names"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getstate__"
+ - leaked function "__delitem__"
+ - leaked function "get_float"
+ - leaked function "add_dataset"
+ - leaked function "clear_sequences"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_pdb_headers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "columns_with_type"
+ - leaked function ""
+ - leaked function "get_entity_of"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "is_integer"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "restore_full_ccd_codes"
+ - leaked function ""
+ - leaked function "copy_column"
+ - leaked function "column_labels"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "expand_ncs"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function "assign_label_seq_id"
+ - leaked function ""
+ - leaked function "rename_chain"
+ - leaked function "setup_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_fractional_box"
+ - leaked function ""
+ - leaked function "find_spacegroup"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function "remove_ligands_and_waters"
+ - leaked function "assign_best_sequences"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "replace_column"
+ - leaked function "get_size_for_hkl"
+ - leaked function "ensure_asu"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "resolution_high"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_column"
+ - leaked function "add_model"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_f_phi_on_grid"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "deduplicate_entities"
+ - leaked function "set_cell_for_all"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "ensure_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_to_file"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function "remove_alternative_conformations"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_or_add_model"
+ - leaked function "count"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_serial_numbers"
+ - leaked function "resolution_low"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_int"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "transform_f_phi_to_map"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_headers"
+ - leaked function "shorten_ccd_codes"
+ - leaked function ""
+ - leaked function "set_logging"
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.htmlnanobind: leaked 19 instances!
+ - leaked instance 0x10a2cddc8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xba78a0c00 of type "gemmi.Structure"
+ - leaked instance 0xba7ab6000 of type "gemmi.Structure"
+ - leaked instance 0xbab8a4600 of type "gemmi.Mtz"
+ - leaked instance 0xba7ab5c00 of type "gemmi.Structure"
+ - leaked instance 0x10a2cdd88 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xba7647400 of type "gemmi.Structure"
+ - leaked instance 0xba7644400 of type "gemmi.Structure"
+ - leaked instance 0x10a2bc558 of type "gemmi.PdbWriteOptions"
+ - leaked instance 0xba61aa000 of type "gemmi.Structure"
+ - leaked instance 0x10a2cdda8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xba7646000 of type "gemmi.Structure"
+ - leaked instance 0xba7647800 of type "gemmi.Structure"
+ - leaked instance 0xba7458000 of type "gemmi.Structure"
+ - leaked instance 0xbabc2c900 of type "gemmi.Mtz"
+ - leaked instance 0xba745a400 of type "gemmi.Structure"
+ - leaked instance 0xba78a0400 of type "gemmi.Structure"
+ - leaked instance 0xba7747300 of type "gemmi.Mtz"
+ - leaked instance 0xba74e2000 of type "gemmi.Structure"
+nanobind: leaked 9 types!
+ - leaked type "gemmi.Batch"
+ - leaked type "AxisOrder"
+ - leaked type "gemmi.Mtz"
+ - leaked type "gemmi.PdbWriteOptions"
+ - leaked type "gemmi.Structure"
+ - leaked type "gemmi.iterator"
+ - leaked type "gemmi.MmcifOutputGroups"
+ - leaked type "gemmi.Dataset"
+ - leaked type "gemmi.Column"
+nanobind: leaked 322 functions!
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_empty_chains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "update_mmcif_block"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function "assign_best_sequences"
+ - leaked function ""
+ - leaked function "write_to_file"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_block"
+ - leaked function "__repr__"
+ - leaked function "is_integer"
+ - leaked function ""
+ - leaked function "dataset"
+ - leaked function "make_mmcif_document"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "rename_residues"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "column_labels"
+ - leaked function ""
+ - leaked function "get_entity"
+ - leaked function "expand_to_p1"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "expand_ncs"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_conect"
+ - leaked function ""
+ - leaked function "rfree_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "switch_to_original_hkl"
+ - leaked function ""
+ - leaked function "ensure_asu"
+ - leaked function ""
+ - leaked function "calculate_box"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_model"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_connection_by_cra"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "renumber_models"
+ - leaked function ""
+ - leaked function "restore_full_ccd_codes"
+ - leaked function "setup_cell_images"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "data_fits_into"
+ - leaked function ""
+ - leaked function "merge_chain_parts"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_value_sigma"
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_d_array"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_miller_array"
+ - leaked function "shorten_chain_names"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getstate__"
+ - leaked function "transform_f_phi_to_map"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_to_bytes"
+ - leaked function "get_cell"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "deduplicate_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_headers"
+ - leaked function ""
+ - leaked function "reindex"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_spacegroup"
+ - leaked function ""
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "set_cell_for_all"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_label_seq_id"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_pdb_headers"
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function "switch_to_asu_hkl"
+ - leaked function ""
+ - leaked function "__next__"
+ - leaked function "make_1_d2_array"
+ - leaked function "assign_het_flags"
+ - leaked function "add_entity_ids"
+ - leaked function "assign_serial_numbers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_f_phi"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_hydrogens"
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_value_on_grid"
+ - leaked function "get_int"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__delitem__"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "copy_column"
+ - leaked function ""
+ - leaked function "resolution_high"
+ - leaked function "clear_sequences"
+ - leaked function "store_deuterium_as_fraction"
+ - leaked function ""
+ - leaked function "rename_chain"
+ - leaked function "__getitem__"
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "shorten_ccd_codes"
+ - leaked function "clear_conect"
+ - leaked function "add_entity_types"
+ - leaked function "get_f_phi_on_grid"
+ - leaked function "get_entity_of"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function "assign_subchains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "set_logging"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__setstate__"
+ - leaked function "row_as_dict"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "set_data"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getitem__"
+ - leaked function ""
+ - leaked function "get_float"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_minimal_pdb"
+ - leaked function "get_size_for_hkl"
+ - leaked function "replace_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "__setitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_fractional_box"
+ - leaked function "setup_entities"
+ - leaked function ""
+ - leaked function "remove_waters"
+ - leaked function "count"
+ - leaked function "add_column"
+ - leaked function "filtered"
+ - leaked function "columns_with_type"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_alternative_conformations"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function "find_or_add_model"
+ - leaked function ""
+ - leaked function "make_pdb_string"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "standardize_crystal_frame"
+ - leaked function "ensure_entities"
+ - leaked function "remove_ligands_and_waters"
+ - leaked function ""
+ - leaked function "transform_to_assembly"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "resolution_low"
+ - leaked function ""
+ - leaked function "add_dataset"
+ - leaked function ""
+ - leaked function "column_with_label"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_minimal_pdb"
+ - leaked function ""
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_connection"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "sort"
+ - leaked function ""
+ - leaked function "update_reso"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.html
+================================================================================
+Test Cache Cleanup
+================================================================================
+Test projects are stored in: /Users/nmemn/.cache/ccp4i2-tests
+(17 project dirs, 356.9 MB)
+
+To clean up all test projects:
+  rm -rf /Users/nmemn/.cache/ccp4i2-tests/*
+
+To clean up projects from a specific date (e.g., today 2024-12-04):
+  rm -rf /Users/nmemn/.cache/ccp4i2-tests/20241204_*
+
+To see failed tests (preserved for debugging):
+  ls -la /Users/nmemn/.cache/ccp4i2-tests/
+================================================================================
+
+
+
+=================================== FAILURES ===================================
+______________________________ test_xia2_xds_file ______________________________
+[gw7] darwin -- Python 3.11.11 /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+ccp4i2/tests/i2run/test_xia2.py:58: in test_xia2_xds_file
+    run_test_from_image_file("xia2_xds", image_dir)
+ccp4i2/tests/i2run/test_xia2.py:27: in run_test_from_image_file
+    run_test(args)
+ccp4i2/tests/i2run/test_xia2.py:37: in run_test
+    with i2run(args) as job:
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+ccp4i2/tests/i2run/utils.py:238: in i2run
+    assert len(errors) == 0, f"Error reports found in diagnostic.xml:\n" + "\n".join(error_details)
+           ^^^^^^^^^^^^^^^^
+E   AssertionError: Error reports found in diagnostic.xml:
+E     - None: Process xia2 exited with code 1
+----------------------------- Captured stdout call -----------------------------
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+217ae2f9d7ab4aed923d52e48276363d
+
+================================================================================
+VALIDITY CHECK
+================================================================================
+WARNING in CDataFile 'xia2_xds.container.xds__index.xds__index__xparm': Optional input file not set: xia2_xds.container.xds__index.xds__index__xparm (code 103)
+WARNING in CDataFile 'xia2_xds.container.xds__index.xds__index__xparm_ub': Optional input file not set: xia2_xds.container.xds__index.xds__index__xparm_ub (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: xia2_xds.container.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: xia2_xds.container.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: xia2_xds.container.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: xia2_xds.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xds.xds__backstop_mask': Optional input file not set: xia2_xds.container.controlParameters.xds.xds__backstop_mask (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xds.xds__hdf5_plugin': Optional input file not set: xia2_xds.container.controlParameters.xds.xds__hdf5_plugin (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xds.xds__index.xds__index__xparm': Optional input file not set: xia2_xds.container.controlParameters.xds.xds__index.xds__index__xparm (code 103)
+WARNING in CDataFile 'xia2_xds.container.controlParameters.xds.xds__index.xds__index__xparm_ub': Optional input file not set: xia2_xds.container.controlParameters.xds.xds__index.xds__index__xparm_ub (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: xia2_xds.container.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: xia2_xds.container.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: xia2_xds.container.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: xia2_xds.container.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__input.xia2__settings__input__json': Optional input file not set: xia2_xds.container.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'xia2_xds.container.inputData.IMAGE_DIRECTORY': Optional input file not set: xia2_xds.container.inputData.IMAGE_DIRECTORY (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: xia2_xds.container.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: xia2_xds.container.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__json': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: xia2_xds.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'xia2_xds.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: xia2_xds.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'xia2_xds.container.xds.xds__hdf5_plugin': Optional input file not set: xia2_xds.container.xds.xds__hdf5_plugin (code 103)
+WARNING in CDataFile 'xia2_xds.container.xds.xds__index.xds__index__xparm_ub': Optional input file not set: xia2_xds.container.xds.xds__index.xds__index__xparm_ub (code 103)
+WARNING in CDataFile 'xia2_xds.container.xds.xds__index.xds__index__xparm': Optional input file not set: xia2_xds.container.xds.xds__index.xds__index__xparm (code 103)
+WARNING in CDataFile 'xia2_xds.container.xds.xds__backstop_mask': Optional input file not set: xia2_xds.container.xds.xds__backstop_mask (code 103)
+================================================================================
+
+================================================================================
+INPUT DATA CHECK
+================================================================================
+✓ All input files valid
+================================================================================
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Error setting default value Auto for CInt: invalid literal for int() with base 10: 'Auto'
+Job 12 status changed from 1 to 3
+✅ Exported params to: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1/params.xml
+✅ Exported params to: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1/params.xml
+✅ Exported params to: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1/params.xml
+
+============================================================
+Command: /Users/nmemn/Developer/ccp4-20251105/bin/xia2 /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1/xia2_xds.phil image="/var/folders/rs/tvbbnl3s0l152zqd4513v3d80000gp/T/tmpo_rh_cd4/th_8_2_0001.cbf:1:20"
+Working directory: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1
+Log file: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1/log.txt
+Stderr file: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1/stderr.txt
+Environment CBIN: /Users/nmemn/Developer/ccp4-20251105/bin
+Environment CCP4: /Users/nmemn/Developer/ccp4-20251105
+Environment CLIB: /Users/nmemn/Developer/ccp4-20251105/lib
+============================================================
+
+✅ Exported params to: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1/xia2_xds.params.xml
+Job 12 status changed from 3 to 5
+=== Job directory contents: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file/CCP4_JOBS/job_1 ===
+  input_params.xml.2
+  diagnostic.xml
+  LogFiles
+  params.xml
+  xia2-error.txt
+  xia2-working.phil
+  xia2-diff.phil
+  xia2_xds.phil
+  DEFAULT
+  xia2.txt
+  input_params.xml.1
+  log.txt
+  automatic.xinfo
+  stderr.txt
+  DataFiles
+  program.xml
+  input_params.xml
+  xia2-debug.txt
+  xia2_xds.params.xml
+Note: 51 warning(s) in diagnostic.xml (non-fatal)
+------------------------------ Captured log call -------------------------------
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__fast_axis -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__fast_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__slow_axis -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__slow_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__parallax_correction -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__parallax_correction
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__id -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__id
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__type -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__type
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__gain -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__gain
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__name -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__name
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__pedestal -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__pedestal
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__pixel_size -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__pixel_size
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__image_size -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__image_size
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__trusted_range -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__trusted_range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__thickness -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__thickness
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__material -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__material
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__panel__origin -> --container.xia2__settings__input__geometry__detector__panel.xia2__settings__input__geometry__detector__panel__origin
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__merging_statistics__source -> --container.xia2__settings__merging_statistics.xia2__settings__merging_statistics__source
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__merging_statistics__use_internal_variance -> --container.xia2__settings__merging_statistics.xia2__settings__merging_statistics__use_internal_variance
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__merging_statistics__eliminate_sys_absent -> --container.xia2__settings__merging_statistics.xia2__settings__merging_statistics__eliminate_sys_absent
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__merging_statistics__n_bins -> --container.xia2__settings__merging_statistics.xia2__settings__merging_statistics__n_bins
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__index__xparm -> --container.xds__index.xds__index__xparm
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__index__refine -> --container.xds__index.xds__index__refine
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__index__max_wedge_size -> --container.xds__index.xds__index__max_wedge_size
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__index__xparm_ub -> --container.xds__index.xds__index__xparm_ub
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__index__debug -> --container.xds__index.xds__index__debug
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__index__max_wedge_size_degrees -> --container.xds__index.xds__index__max_wedge_size_degrees
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__sweep__id -> --container.xia2__settings__sweep.xia2__settings__sweep__id
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__sweep__range -> --container.xia2__settings__sweep.xia2__settings__sweep__range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__sweep__exclude -> --container.xia2__settings__sweep.xia2__settings__sweep__exclude
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multiprocessing__mode -> --container.xia2__settings__multiprocessing.xia2__settings__multiprocessing__mode
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multiprocessing__qsub_command -> --container.xia2__settings__multiprocessing.xia2__settings__multiprocessing__qsub_command
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multiprocessing__njob -> --container.xia2__settings__multiprocessing.xia2__settings__multiprocessing__njob
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multiprocessing__type -> --container.xia2__settings__multiprocessing.xia2__settings__multiprocessing__type
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multiprocessing__nproc -> --container.xia2__settings__multiprocessing.xia2__settings__multiprocessing__nproc
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__reintegrate_correct_lattice -> --container.xia2__settings.xia2__settings__reintegrate_correct_lattice
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__xds_check_cell_deviation -> --container.xia2__settings.xia2__settings__xds_check_cell_deviation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__show_template -> --container.xia2__settings.xia2__settings__show_template
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__pipeline -> --container.xia2__settings.xia2__settings__pipeline
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multi_crystal -> --container.xia2__settings.xia2__settings__multi_crystal
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__small_molecule_bfactor -> --container.xia2__settings.xia2__settings__small_molecule_bfactor
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__project -> --container.xia2__settings.xia2__settings__project
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__unify_setting -> --container.xia2__settings.xia2__settings__unify_setting
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__read_all_image_headers -> --container.xia2__settings.xia2__settings__read_all_image_headers
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__use_brehm_diederichs -> --container.xia2__settings.xia2__settings__use_brehm_diederichs
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__indexer -> --container.xia2__settings.xia2__settings__indexer
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scaler -> --container.xia2__settings.xia2__settings__scaler
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__lattice_rejection_threshold -> --container.xia2__settings.xia2__settings__lattice_rejection_threshold
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__refiner -> --container.xia2__settings.xia2__settings__refiner
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__integrater -> --container.xia2__settings.xia2__settings__integrater
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multi_sweep_indexing -> --container.xia2__settings.xia2__settings__multi_sweep_indexing
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__multi_sweep_refinement -> --container.xia2__settings.xia2__settings__multi_sweep_refinement
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__chemical_formula -> --container.xia2__settings.xia2__settings__chemical_formula
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__xds_cell_deviation -> --container.xia2__settings.xia2__settings__xds_cell_deviation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__unit_cell -> --container.xia2__settings.xia2__settings__unit_cell
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__trust_beam_centre -> --container.xia2__settings.xia2__settings__trust_beam_centre
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__untrusted_rectangle_indexing -> --container.xia2__settings.xia2__settings__untrusted_rectangle_indexing
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__detector_distance -> --container.xia2__settings.xia2__settings__detector_distance
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__wavelength_tolerance -> --container.xia2__settings.xia2__settings__wavelength_tolerance
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__failover -> --container.xia2__settings.xia2__settings__failover
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__small_molecule -> --container.xia2__settings.xia2__settings__small_molecule
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__interactive -> --container.xia2__settings.xia2__settings__interactive
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__crystal -> --container.xia2__settings.xia2__settings__crystal
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__remove_blanks -> --container.xia2__settings.xia2__settings__remove_blanks
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__verbose -> --container.xia2__settings.xia2__settings__verbose
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__space_group -> --container.xia2__settings.xia2__settings__space_group
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__lattice_rejection -> --container.xia2__settings.xia2__settings__lattice_rejection
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__integrate_p1 -> --container.xia2__settings.xia2__settings__integrate_p1
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__goniometer__rotation_axis -> --container.xia2__settings__input__tolerance__goniometer.xia2__settings__input__tolerance__goniometer__rotation_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__goniometer__setting_rotation -> --container.xia2__settings__input__tolerance__goniometer.xia2__settings__input__tolerance__goniometer__setting_rotation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__goniometer__fixed_rotation -> --container.xia2__settings__input__tolerance__goniometer.xia2__settings__input__tolerance__goniometer__fixed_rotation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__name -> --container.xia2__settings__input__geometry__detector__hierarchy.xia2__settings__input__geometry__detector__hierarchy__name
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__slow_axis -> --container.xia2__settings__input__geometry__detector__hierarchy.xia2__settings__input__geometry__detector__hierarchy__slow_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__fast_axis -> --container.xia2__settings__input__geometry__detector__hierarchy.xia2__settings__input__geometry__detector__hierarchy__fast_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__origin -> --container.xia2__settings__input__geometry__detector__hierarchy.xia2__settings__input__geometry__detector__hierarchy__origin
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__defpix__value_range_for_trusted_detector_pixels -> --container.xds__defpix.xds__defpix__value_range_for_trusted_detector_pixels
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__integration__profile_fitting -> --container.xia2__settings__integration.xia2__settings__integration__profile_fitting
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__integration__exclude_ice_regions -> --container.xia2__settings__integration.xia2__settings__integration__exclude_ice_regions
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__symmetry__chirality -> --container.xia2__settings__symmetry.xia2__settings__symmetry__chirality
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__symmetry__program -> --container.xia2__settings__symmetry.xia2__settings__symmetry__program
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__output__mmcif__pdb_version -> --container.xia2__settings__output__mmcif.xia2__settings__output__mmcif__pdb_version
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__binning_method -> --container.xia2__settings__resolution.xia2__settings__resolution__binning_method
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__keep_all_reflections -> --container.xia2__settings__resolution.xia2__settings__resolution__keep_all_reflections
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__d_max -> --container.xia2__settings__resolution.xia2__settings__resolution__d_max
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__completeness -> --container.xia2__settings__resolution.xia2__settings__resolution__completeness
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__rmerge -> --container.xia2__settings__resolution.xia2__settings__resolution__rmerge
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__cc_half -> --container.xia2__settings__resolution.xia2__settings__resolution__cc_half
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__cc_half_significance_level -> --container.xia2__settings__resolution.xia2__settings__resolution__cc_half_significance_level
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__reflections_per_bin -> --container.xia2__settings__resolution.xia2__settings__resolution__reflections_per_bin
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__reference -> --container.xia2__settings__resolution.xia2__settings__resolution__reference
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__anomalous -> --container.xia2__settings__resolution.xia2__settings__resolution__anomalous
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__emax -> --container.xia2__settings__resolution.xia2__settings__resolution__emax
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__isigma -> --container.xia2__settings__resolution.xia2__settings__resolution__isigma
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__nbins -> --container.xia2__settings__resolution.xia2__settings__resolution__nbins
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__labels -> --container.xia2__settings__resolution.xia2__settings__resolution__labels
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__space_group -> --container.xia2__settings__resolution.xia2__settings__resolution__space_group
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__misigma -> --container.xia2__settings__resolution.xia2__settings__resolution__misigma
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__d_min -> --container.xia2__settings__resolution.xia2__settings__resolution__d_min
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__cc_ref -> --container.xia2__settings__resolution.xia2__settings__resolution__cc_ref
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__cc_half_method -> --container.xia2__settings__resolution.xia2__settings__resolution__cc_half_method
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__cc_half_fit -> --container.xia2__settings__resolution.xia2__settings__resolution__cc_half_fit
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__resolution__i_mean_over_sigma_mean -> --container.xia2__settings__resolution.xia2__settings__resolution__i_mean_over_sigma_mean
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__aimless__brotation__spacing -> --container.ccp4__aimless__brotation.ccp4__aimless__brotation__spacing
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__range__width -> --container.xia2__settings__report__range.xia2__settings__report__range__width
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__range__max -> --container.xia2__settings__report__range.xia2__settings__report__range__max
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__range__min -> --container.xia2__settings__report__range.xia2__settings__report__range__min
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__xds__geometry_x -> --container.xia2__settings__xds.xia2__settings__xds__geometry_x
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__xds__geometry_y -> --container.xia2__settings__xds.xia2__settings__xds__geometry_y
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__aimless__secondary__frame -> --container.ccp4__aimless__secondary.ccp4__aimless__secondary__frame
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__aimless__secondary__lmax -> --container.ccp4__aimless__secondary.ccp4__aimless__secondary__lmax
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__correct__refine -> --container.xds__correct.xds__correct__refine
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__correct__air -> --container.xds__correct.xds__correct__air
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__xscale__min_isigma -> --container.xds__xscale.xds__xscale__min_isigma
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__xscale__zero_dose -> --container.xds__xscale.xds__xscale__zero_dose
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__type -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__type
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__direction -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__direction
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__wavelength -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__wavelength
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__divergence -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__divergence
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__probe -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__probe
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__sigma_divergence -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__sigma_divergence
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__polarization_normal -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__polarization_normal
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__polarization_fraction -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__polarization_fraction
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__transmission -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__transmission
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__flux -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__flux
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__wavelength_range -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__wavelength_range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__beam__sample_to_source_distance -> --container.xia2__settings__input__geometry__beam.xia2__settings__input__geometry__beam__sample_to_source_distance
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__d_min -> --container.xia2__settings__report.xia2__settings__report__d_min
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__resolution_bins -> --container.xia2__settings__report.xia2__settings__report__resolution_bins
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__use_internal_variance -> --container.xia2__settings__report.xia2__settings__report__use_internal_variance
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__d_max -> --container.xia2__settings__report.xia2__settings__report__d_max
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__anomalous -> --container.xia2__settings__report.xia2__settings__report__anomalous
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__eliminate_sys_absent -> --container.xia2__settings__report.xia2__settings__report__eliminate_sys_absent
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__cc_half_significance_level -> --container.xia2__settings__report.xia2__settings__report__cc_half_significance_level
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__cc_half_method -> --container.xia2__settings__report.xia2__settings__report__cc_half_method
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__chef_min_completeness -> --container.xia2__settings__report.xia2__settings__report__chef_min_completeness
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__xtriage_analysis -> --container.xia2__settings__report.xia2__settings__report__xtriage_analysis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__include_radiation_damage -> --container.xia2__settings__report.xia2__settings__report__include_radiation_damage
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__developmental__continue_from_previous_job -> --container.xia2__settings__developmental.xia2__settings__developmental__continue_from_previous_job
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__developmental__use_dials_spotfinder -> --container.xia2__settings__developmental.xia2__settings__developmental__use_dials_spotfinder
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__developmental__detector_id -> --container.xia2__settings__developmental.xia2__settings__developmental__detector_id
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__developmental__pointless_tolerance -> --container.xia2__settings__developmental.xia2__settings__developmental__pointless_tolerance
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__dose__remove_gaps -> --container.xia2__settings__report__dose.xia2__settings__report__dose__remove_gaps
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__batch__id -> --container.xia2__settings__report__batch.xia2__settings__report__batch__id
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__batch__range -> --container.xia2__settings__report__batch.xia2__settings__report__batch__range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__truncate__program -> --container.ccp4__truncate.ccp4__truncate__program
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__convert_stills_to_sequences -> --container.xia2__settings__input__geometry.xia2__settings__input__geometry__convert_stills_to_sequences
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__convert_sequences_to_stills -> --container.xia2__settings__input__geometry.xia2__settings__input__geometry__convert_sequences_to_stills
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__axis -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__angles -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__angles
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__names -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__names
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__scan_axis -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__scan_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__axes -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__axes
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__fixed_rotation -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__fixed_rotation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__setting_rotation -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__setting_rotation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__goniometer__invert_rotation_axis -> --container.xia2__settings__input__geometry__goniometer.xia2__settings__input__geometry__goniometer__invert_rotation_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__reference_experiment_file -> --container.xia2__settings__scale.xia2__settings__scale__reference_experiment_file
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__directory -> --container.xia2__settings__scale.xia2__settings__scale__directory
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__free_total -> --container.xia2__settings__scale.xia2__settings__scale__free_total
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__reference_reflection_file -> --container.xia2__settings__scale.xia2__settings__scale__reference_reflection_file
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__free_fraction -> --container.xia2__settings__scale.xia2__settings__scale__free_fraction
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__model -> --container.xia2__settings__scale.xia2__settings__scale__model
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__freer_file -> --container.xia2__settings__scale.xia2__settings__scale__freer_file
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__scales -> --container.xia2__settings__scale.xia2__settings__scale__scales
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__scale__two_theta_refine -> --container.xia2__settings__scale.xia2__settings__scale__two_theta_refine
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__dose__batch__range -> --container.xia2__settings__report__dose__batch.xia2__settings__report__dose__batch__range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__dose__batch__dose_start -> --container.xia2__settings__report__dose__batch.xia2__settings__report__dose__batch__dose_start
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__report__dose__batch__dose_step -> --container.xia2__settings__report__dose__batch.xia2__settings__report__dose__batch__dose_step
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --general__check_image_files_readable -> --container.general.general__check_image_files_readable
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --general__check_for_saturated_pixels -> --container.general.general__check_for_saturated_pixels
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__init__fix_scale -> --container.xds__init.xds__init__fix_scale
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__json -> --container.xia2__settings__input.xia2__settings__input__json
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__atom -> --container.xia2__settings__input.xia2__settings__input__atom
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__anomalous -> --container.xia2__settings__input.xia2__settings__input__anomalous
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__reverse_phi -> --container.xia2__settings__input.xia2__settings__input__reverse_phi
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__gain -> --container.xia2__settings__input.xia2__settings__input__gain
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__min_images -> --container.xia2__settings__input.xia2__settings__input__min_images
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__working_directory -> --container.xia2__settings__input.xia2__settings__input__working_directory
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__xinfo -> --container.xia2__settings__input.xia2__settings__input__xinfo
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__min_oscillation_range -> --container.xia2__settings__input.xia2__settings__input__min_oscillation_range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__reference_geometry -> --container.xia2__settings__input.xia2__settings__input__reference_geometry
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__aimless__intensities -> --container.ccp4__aimless.ccp4__aimless__intensities
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__aimless__surface_link -> --container.ccp4__aimless.ccp4__aimless__surface_link
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__aimless__surface_tie -> --container.ccp4__aimless.ccp4__aimless__surface_tie
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__scan__oscillation -> --container.xia2__settings__input__tolerance__scan.xia2__settings__input__tolerance__scan__oscillation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__backstop_mask -> --container.xds.xds__backstop_mask
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__z_min -> --container.xds.xds__z_min
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__delphi_small -> --container.xds.xds__delphi_small
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__untrusted_ellipse -> --container.xds.xds__untrusted_ellipse
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__delphi -> --container.xds.xds__delphi
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__untrusted_rectangle -> --container.xds.xds__untrusted_rectangle
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__hdf5_plugin -> --container.xds.xds__hdf5_plugin
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__trusted_region -> --container.xds.xds__trusted_region
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__profile_grid_size -> --container.xds.xds__profile_grid_size
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__keep_outliers -> --container.xds.xds__keep_outliers
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__detector__fast_axis -> --container.xia2__settings__input__tolerance__detector.xia2__settings__input__tolerance__detector__fast_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__detector__origin -> --container.xia2__settings__input__tolerance__detector.xia2__settings__input__tolerance__detector__origin
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__detector__slow_axis -> --container.xia2__settings__input__tolerance__detector.xia2__settings__input__tolerance__detector__slow_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__mosflm_beam_centre -> --container.xia2__settings__input__geometry__detector.xia2__settings__input__geometry__detector__mosflm_beam_centre
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__fast_slow_beam_centre -> --container.xia2__settings__input__geometry__detector.xia2__settings__input__geometry__detector__fast_slow_beam_centre
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__slow_fast_beam_centre -> --container.xia2__settings__input__geometry__detector.xia2__settings__input__geometry__detector__slow_fast_beam_centre
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__distance -> --container.xia2__settings__input__geometry__detector.xia2__settings__input__geometry__detector__distance
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__colspot__minimum_pixels_per_spot -> --container.xds__colspot.xds__colspot__minimum_pixels_per_spot
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__refine -> --container.xds__integrate.xds__integrate__refine
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__fix_scale -> --container.xds__integrate.xds__integrate__fix_scale
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__refine_final -> --container.xds__integrate.xds__integrate__refine_final
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__reflecting_range -> --container.xds__integrate.xds__integrate__reflecting_range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__delphi -> --container.xds__integrate.xds__integrate__delphi
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__reflecting_range_esd -> --container.xds__integrate.xds__integrate__reflecting_range_esd
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__beam_divergence -> --container.xds__integrate.xds__integrate__beam_divergence
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__beam_divergence_esd -> --container.xds__integrate.xds__integrate__beam_divergence_esd
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__integrate__reintegrate -> --container.xds__integrate.xds__integrate__reintegrate
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__beam__wavelength -> --container.xia2__settings__input__tolerance__beam.xia2__settings__input__tolerance__beam__wavelength
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__beam__direction -> --container.xia2__settings__input__tolerance__beam.xia2__settings__input__tolerance__beam__direction
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__beam__polarization_fraction -> --container.xia2__settings__input__tolerance__beam.xia2__settings__input__tolerance__beam__polarization_fraction
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__tolerance__beam__polarization_normal -> --container.xia2__settings__input__tolerance__beam.xia2__settings__input__tolerance__beam__polarization_normal
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__group__id -> --container.xia2__settings__input__geometry__detector__hierarchy__group.xia2__settings__input__geometry__detector__hierarchy__group__id
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__group__origin -> --container.xia2__settings__input__geometry__detector__hierarchy__group.xia2__settings__input__geometry__detector__hierarchy__group__origin
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__group__fast_axis -> --container.xia2__settings__input__geometry__detector__hierarchy__group.xia2__settings__input__geometry__detector__hierarchy__group__fast_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__group__slow_axis -> --container.xia2__settings__input__geometry__detector__hierarchy__group.xia2__settings__input__geometry__detector__hierarchy__group__slow_axis
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__group__name -> --container.xia2__settings__input__geometry__detector__hierarchy__group.xia2__settings__input__geometry__detector__hierarchy__group__name
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__detector__hierarchy__group__panel -> --container.xia2__settings__input__geometry__detector__hierarchy__group.xia2__settings__input__geometry__detector__hierarchy__group__panel
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__aimless__rotation__spacing -> --container.ccp4__aimless__rotation.ccp4__aimless__rotation__spacing
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__merge2cbf__merge_n_images -> --container.xds__merge2cbf.xds__merge2cbf__merge_n_images
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__merge2cbf__data_range -> --container.xds__merge2cbf.xds__merge2cbf__data_range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xds__merge2cbf__moving_average -> --container.xds__merge2cbf.xds__merge2cbf__moving_average
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__scan__image_range -> --container.xia2__settings__input__geometry__scan.xia2__settings__input__geometry__scan__image_range
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__scan__batch_offset -> --container.xia2__settings__input__geometry__scan.xia2__settings__input__geometry__scan__batch_offset
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__scan__oscillation -> --container.xia2__settings__input__geometry__scan.xia2__settings__input__geometry__scan__oscillation
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__geometry__scan__extrapolate_scan -> --container.xia2__settings__input__geometry__scan.xia2__settings__input__geometry__scan__extrapolate_scan
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --ccp4__reindex__program -> --container.ccp4__reindex.ccp4__reindex__program
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__format__dynamic_shadowing -> --container.xia2__settings__input__format.xia2__settings__input__format__dynamic_shadowing
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:298 Added alias: --xia2__settings__input__format__multi_panel -> --container.xia2__settings__input__format.xia2__settings__input__format__multi_panel
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:389 Handling CList CXia2ImageSelectionList with 1 values
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:399 Created list item: CXia2ImageSelection, setting value: ['imageFile/baseName=th_8_2_0001.cbf', 'imageFile/relPath=/var/folders/rs/tvbbnl3s0l152zqd4513v3d80000gp/T/tmpo_rh_cd4', 'imageStart=1', 'imageEnd=20']
+WARNING  ccp4i2.cli.i2run.i2run_components:i2run_components.py:409 Appended item to list, list now has 1 items
+WARNING  ccp4i2:ccp4i2.lib.async_run_job:async_run_job.py:82 Validity check has warnings/errors (continuing): WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xds__index.xds__index__xparm_ub': Optional input file not set: Automated integration of images with XDS using xia2.container.xds__index.xds__index__xparm_ub (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xds__index.xds__index__xparm': Optional input file not set: Automated integration of images with XDS using xia2.container.xds__index.xds__index__xparm (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xds.xds__hdf5_plugin': Optional input file not set: Automated integration of images with XDS using xia2.container.xds.xds__hdf5_plugin (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xds.xds__index.xds__index__xparm_ub': Optional input file not set: Automated integration of images with XDS using xia2.container.xds.xds__index.xds__index__xparm_ub (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xds.xds__index.xds__index__xparm': Optional input file not set: Automated integration of images with XDS using xia2.container.xds.xds__index.xds__index__xparm (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xds.xds__backstop_mask': Optional input file not set: Automated integration of images with XDS using xia2.container.xds.xds__backstop_mask (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__backstop_mask': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__backstop_mask (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__index.xds__index__xparm': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__index.xds__index__xparm (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__index.xds__index__xparm_ub': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__index.xds__index__xparm_ub (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__hdf5_plugin': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xds.xds__hdf5_plugin (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: Automated integration of images with XDS using xia2.container.controlParameters.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__json': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.inputData.IMAGE_DIRECTORY': Optional input file not set: Automated integration of images with XDS using xia2.container.inputData.IMAGE_DIRECTORY (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_x (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__xds.xia2__settings__xds__geometry_y (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__working_directory (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__json': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__json (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__reference_geometry (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__input.xia2__settings__input__xinfo (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_reflection_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__reference_experiment_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings.xia2__settings__scale.xia2__settings__scale__freer_file (code 103)
+WARNING in CDataFile 'Automated integration of images with XDS using xia2.container.xia2__settings__resolution.xia2__settings__resolution__reference': Optional input file not set: Automated integration of images with XDS using xia2.container.xia2__settings__resolution.xia2__settings__resolution__reference (code 103)
+ERROR    ccp4i2:ccp4i2.lib.async_run_job:async_run_job.py:142 Job 1 - process() returned FAILED
+ERROR    ccp4i2:ccp4i2.lib.async_run_job:async_run_job.py:223 Job 1 failed: Job failed during process() - see diagnostic.xml for details
+Traceback (most recent call last):
+  File "/Users/nmemn/Developer/ccp4i2/server/ccp4i2/lib/async_run_job.py", line 148, in run_job_async
+    raise _ProcessFailedError(f"Job failed during process() - see diagnostic.xml for details")
+ccp4i2.lib.async_run_job._ProcessFailedError: Job failed during process() - see diagnostic.xml for details
+ERROR    ccp4i2:ccp4i2.cli.i2run.CCP4i2RunnerDjango:CCP4i2RunnerDjango.py:322 Job 217ae2f9d7ab4aed923d52e48276363d execution failed: Job failed during process() - see diagnostic.xml for details
+WARNING  root:i2run.py:59 i2run execute() returned: ('217ae2f9d7ab4aed923d52e48276363d', 1)Test Settings Loaded:
+  Database: :memory:
+  Projects: /Users/nmemn/.ccp4i2_test/test_projects
+status: ready
+
+--------------------------- Captured stdout teardown ---------------------------
+Test failed - preserving project directory: /Users/nmemn/.cache/ccp4i2-tests/20260317_143422_6395_xia2_test_xia2_xds_file
+=============================== warnings summary ===============================
+test_dimple.py::test_dimple
+test_substitute_ligand.py::test_substitute_ligand_no_ligand
+test_substitute_ligand.py::test_substitute_ligand_with_smiles
+  /Users/nmemn/Developer/ccp4i2/server/ccp4i2/wrappers/i2Dimple/script/i2Dimple.py:78: DeprecationWarning: The SafeConfigParser class has been renamed to ConfigParser in Python 3.2. This alias will be removed in Python 3.12. Use ConfigParser directly instead.
+    configParser = configparser.SafeConfigParser()
+
+test_validate.py::test_8rk1_pdb_basic
+test_validate.py::test_8rk1_cif_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/fromnumeric.py:3504: RuntimeWarning: Mean of empty slice.
+    return _methods._mean(a, axis=axis, dtype=dtype,
+
+test_validate.py::test_8rk1_pdb_basic
+test_validate.py::test_8rk1_cif_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:129: RuntimeWarning: invalid value encountered in scalar divide
+    ret = ret.dtype.type(ret / rcount)
+
+test_validate.py::test_8rk1_pdb_basic
+test_validate.py::test_8rk1_cif_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+
+test_validate.py::test_8rk1_pdb_basic
+test_validate.py::test_8rk1_cif_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:163: RuntimeWarning: invalid value encountered in divide
+    arrmean = um.true_divide(arrmean, div, out=arrmean,
+
+test_validate.py::test_8rk1_pdb_basic
+test_validate.py::test_8rk1_cif_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide
+    ret = ret.dtype.type(ret / rcount)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+FAILED ccp4i2/tests/i2run/test_xia2.py::test_xia2_xds_file - AssertionError: ...
+====== 1 failed, 100 passed, 7 skipped, 23 warnings in 723.43s (0:12:03) =======

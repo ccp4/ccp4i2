@@ -1,0 +1,382 @@
+
+CCP4I2_ROOT: /Users/nmemn/Developer/ccp4i2/server
+DJANGO_SETTINGS_MODULE: ccp4i2.config.test_settings
+Python: /Users/nmemn/Developer/ccp4-20251105/bin/ccp4-python
+
+Running: pytest ccp4i2/tests/api/ -n 8
+
+============================= test session starts ==============================
+platform darwin -- Python 3.11.11, pytest-8.4.2, pluggy-1.6.0 -- /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+cachedir: .pytest_cache
+django: version: 5.2.9, settings: ccp4i2.config.test_settings (from env)
+rootdir: /Users/nmemn/Developer/ccp4i2/server/ccp4i2/tests/api
+configfile: pytest.ini
+plugins: mock-1.13.0, xdist-3.8.0, dials-data-2.4.127, django-4.11.1, asyncio-1.3.0, forked-1.5.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+created: 8/8 workers
+8 workers [150 items]
+
+scheduling tests via LoadScheduling
+
+ccp4i2/tests/api/test_servalcat_async_run.py::TestServalcatAsyncRun::test_metalCoord_allowUndefined_is_set_before_validation 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_project_upload 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_set_file_null 
+ccp4i2/tests/api/test_ep_pipelines_api.py::TestCrank2API::test_gamma_dmfull 
+ccp4i2/tests/api/test_data_reduction_api.py::TestFreeRFlagAPI::test_generate_freer 
+ccp4i2/tests/api/test_data_reduction_api.py::TestAimlessPipeAPI::test_gamma 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_clone_jobs 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_project_tags 
+[gw1] [  0%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_project_tags 
+[gw3] [  1%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_project_upload 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_clone 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_mmcif_file_upload 
+[gw0] [  2%] PASSED ccp4i2/tests/api/test_servalcat_async_run.py::TestServalcatAsyncRun::test_metalCoord_allowUndefined_is_set_before_validation 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_import_test_dbxml 
+[gw0] [  2%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_import_test_dbxml 
+[gw3] [  3%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_mmcif_file_upload 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_projects 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_digest_file 
+[gw7] [  4%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_clone_jobs 
+[gw2] [  4%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_set_file_null 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_glean_job_files 
+[gw0] [  5%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_projects 
+[gw1] [  6%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_clone 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_preview_file 
+[gw2] [  6%] SKIPPED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_preview_file 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_file_upload 
+[gw3] [  7%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_digest_file 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_project_files 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_set_simple_parameter 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_upload_to_ProvideAsuContent 
+[gw5] [  8%] PASSED ccp4i2/tests/api/test_data_reduction_api.py::TestFreeRFlagAPI::test_generate_freer 
+[gw7] [  8%] SKIPPED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_glean_job_files 
+ccp4i2/tests/api/test_ep_pipelines_api.py::TestShelxAPI::test_substructure_determination 
+[gw0] [  9%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_project_files 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_get_file_by_job_context 
+[gw3] [ 10%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_upload_to_ProvideAsuContent 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_reflection_cif 
+[gw2] [ 10%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_file_upload 
+ccp4i2/tests/api/test_model_building_api.py::TestModelcraftAPI::test_gamma_ep 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_pdb_item_file_upload 
+[gw2] [ 11%] SKIPPED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_pdb_item_file_upload 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_object_method 
+[gw1] [ 12%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_set_simple_parameter 
+ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_set_file 
+[gw7] [ 12%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_get_file_by_job_context 
+[gw0] [ 13%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_reflection_cif 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_find_descendent_jobs 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_coordinate_cif 
+[gw2] [ 14%] SKIPPED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_object_method 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_what_next 
+[gw1] [ 14%] PASSED ccp4i2/tests/api/test_api.py::TestCCP4i2API::test_set_file 
+ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_basic 
+[gw7] [ 15%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_find_descendent_jobs 
+ccp4i2/tests/api/test_mr_pipelines_api.py::TestDimpleAPI::test_gamma 
+[gw0] [ 16%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_coordinate_cif 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_ligand_cif 
+[gw2] [ 16%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_what_next 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_digest_cdata 
+[gw0] [ 17%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_ligand_cif 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_i2run_for_job 
+[gw2] [ 18%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_digest_cdata 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_digest_cdictdatafile 
+[gw0] [ 18%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_i2run_for_job 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_export_job_refmac_file 
+[gw2] [ 19%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_digest_cdictdatafile 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_mtz_file 
+[gw0] [ 20%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_export_job_refmac_file 
+ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_export_job_file 
+[gw2] [ 20%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_detect_mtz_file 
+[gw4] [ 21%] PASSED ccp4i2/tests/api/test_data_reduction_api.py::TestAimlessPipeAPI::test_gamma 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_invalid_path 
+ccp4i2/tests/api/test_data_reduction_api.py::TestAimlessPipeAPI::test_mdm2 
+[gw0] [ 22%] PASSED ccp4i2/tests/api/test_job_utils.py::TestJobUtils::test_export_job_file 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_multiple_sequential 
+[gw2] [ 22%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_invalid_path 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_invalid_job_id 
+[gw2] [ 23%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_invalid_job_id 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_missing_required_fields 
+[gw2] [ 24%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_missing_required_fields 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_database_sync 
+[gw0] [ 24%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_multiple_sequential 
+[gw2] [ 25%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_database_sync 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_null_value 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag 
+[gw2] [ 26%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_with_parent 
+[gw0] [ 26%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_null_value 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_type_coercion 
+[gw2] [ 27%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_with_parent 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_with_projects 
+[gw2] [ 28%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_with_projects 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_duplicate_project_tag_fails 
+[gw0] [ 28%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_type_coercion 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_with_skip_first 
+[gw2] [ 29%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_duplicate_project_tag_fails 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_missing_text_fails 
+[gw0] [ 30%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_with_skip_first 
+[gw2] [ 30%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_missing_text_fails 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_get_single_project_tag 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_empty_text_fails 
+[gw0] [ 31%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_get_single_project_tag 
+[gw2] [ 32%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_empty_text_fails 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_add_tag_to_project 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_too_long_text_fails 
+[gw0] [ 32%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_add_tag_to_project 
+[gw2] [ 33%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_create_project_tag_too_long_text_fails 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_get_project_tags_endpoint 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_get_project_tags 
+[gw0] [ 34%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_get_project_tags_endpoint 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_remove_tag_from_project 
+[gw2] [ 34%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_get_project_tags 
+ccp4i2/tests/api/test_refinement_api.py::TestProsmartRefmacAPI::test_gamma_basic 
+[gw0] [ 35%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_remove_tag_from_project 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_add_nonexistent_tag_to_project_fails 
+[gw0] [ 36%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_add_nonexistent_tag_to_project_fails 
+ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_add_tag_without_tag_id_fails 
+[gw0] [ 36%] PASSED ccp4i2/tests/api/test_project_tag_api.py::TestProjectTagAPI::test_add_tag_without_tag_id_fails 
+ccp4i2/tests/api/test_refinement_api.py::TestServalcatAPI::test_electron_diffraction 
+[gw1] [ 37%] PASSED ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_basic 
+ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_with_sheetbend 
+[gw0] [ 38%] PASSED ccp4i2/tests/api/test_refinement_api.py::TestServalcatAPI::test_electron_diffraction 
+ccp4i2/tests/api/test_refinement_api.py::TestSheetbendAPI::test_8xfm 
+[gw7] [ 38%] PASSED ccp4i2/tests/api/test_mr_pipelines_api.py::TestDimpleAPI::test_gamma 
+ccp4i2/tests/api/test_mr_pipelines_api.py::TestMrBumpAPI::test_gamma 
+[gw0] [ 39%] PASSED ccp4i2/tests/api/test_refinement_api.py::TestSheetbendAPI::test_8xfm 
+ccp4i2/tests/api/test_substitute_ligand_api.py::TestSubstituteLigandAPI::test_no_ligand 
+[gw4] [ 40%] PASSED ccp4i2/tests/api/test_data_reduction_api.py::TestAimlessPipeAPI::test_mdm2 
+ccp4i2/tests/api/test_data_reduction_api.py::TestImportMergedAPI::test_gamma_mtz 
+[gw2] [ 40%] PASSED ccp4i2/tests/api/test_refinement_api.py::TestProsmartRefmacAPI::test_gamma_basic 
+ccp4i2/tests/api/test_refinement_api.py::TestProsmartRefmacAPI::test_8xfm_basic 
+[gw1] [ 41%] PASSED ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_with_sheetbend 
+ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_full 
+[gw5] [ 42%] PASSED ccp4i2/tests/api/test_ep_pipelines_api.py::TestShelxAPI::test_substructure_determination 
+ccp4i2/tests/api/test_ep_pipelines_api.py::TestShelxAPI::test_gamma_sad 
+[gw4] [ 42%] PASSED ccp4i2/tests/api/test_data_reduction_api.py::TestImportMergedAPI::test_gamma_mtz 
+ccp4i2/tests/api/test_data_reduction_api.py::TestImportMergedAPI::test_from_sf_cif 
+[gw4] [ 43%] PASSED ccp4i2/tests/api/test_data_reduction_api.py::TestImportMergedAPI::test_from_sf_cif 
+ccp4i2/tests/api/test_utilities_api.py::TestAcedrgAPI::test_from_monomer_library 
+[gw2] [ 44%] PASSED ccp4i2/tests/api/test_refinement_api.py::TestProsmartRefmacAPI::test_8xfm_basic 
+ccp4i2/tests/api/test_refinement_api.py::TestServalcatAPI::test_8xfm_basic 
+[gw2] [ 44%] PASSED ccp4i2/tests/api/test_refinement_api.py::TestServalcatAPI::test_8xfm_basic 
+ccp4i2/tests/api/test_utilities_api.py::TestAuspexAPI::test_gamma 
+[gw1] [ 45%] PASSED ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_gamma_full 
+ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_no_solution 
+[gw4] [ 46%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestAcedrgAPI::test_from_monomer_library 
+ccp4i2/tests/api/test_utilities_api.py::TestValidateProteinAPI::test_7beq_basic 
+[gw2] [ 46%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestAuspexAPI::test_gamma 
+ccp4i2/tests/api/test_utilities_api.py::TestCsymmatchAPI::test_8xfm 
+[gw2] [ 47%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestCsymmatchAPI::test_8xfm 
+ccp4i2/tests/api/test_utilities_api.py::TestCootRsrMorphAPI::test_8xfm 
+[gw1] [ 48%] PASSED ccp4i2/tests/api/test_mr_pipelines_api.py::TestPhaserSimpleAPI::test_no_solution 
+ccp4i2/tests/api/test_mr_pipelines_api.py::TestMolrepPipeAPI::test_gamma 
+[gw4] [ 48%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestValidateProteinAPI::test_7beq_basic 
+ccp4i2/tests/api/test_utilities_api.py::TestCoordinateSelectorAPI::test_8xfm 
+[gw2] [ 49%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestCootRsrMorphAPI::test_8xfm 
+ccp4i2/tests/api/test_utilities_api.py::TestMrparseAPI::test_gamma 
+[gw1] [ 50%] PASSED ccp4i2/tests/api/test_mr_pipelines_api.py::TestMolrepPipeAPI::test_gamma 
+ccp4i2/tests/api/test_utilities_api.py::TestProvideAsuContentsAPI::test_beta_blip 
+[gw1] [ 50%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestProvideAsuContentsAPI::test_beta_blip 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_list 
+[gw1] [ 51%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_list 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_download 
+[gw1] [ 52%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_download 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_download_by_uuid 
+[gw1] [ 52%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_download_by_uuid 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_digest 
+[gw1] [ 53%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_digest 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_digest_by_uuid 
+[gw1] [ 54%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_digest_by_uuid 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_preview 
+[gw1] [ 54%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_preview 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_list 
+[gw1] [ 55%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_list 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_retrieve 
+[gw2] [ 56%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestMrparseAPI::test_gamma 
+[gw1] [ 56%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_retrieve 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_clone 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_retrieve 
+[gw2] [ 57%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_retrieve 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_by_uuid 
+[gw1] [ 58%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_clone 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_params_xml 
+[gw2] [ 58%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestFileViewSet::test_file_by_uuid 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_report_xml 
+[gw1] [ 59%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_params_xml 
+[gw6] [ 60%] PASSED ccp4i2/tests/api/test_ep_pipelines_api.py::TestCrank2API::test_gamma_dmfull 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_diagnostic_xml 
+ccp4i2/tests/api/test_ep_pipelines_api.py::TestPhaserEPAPI::test_gamma 
+[gw4] [ 60%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestCoordinateSelectorAPI::test_8xfm 
+ccp4i2/tests/api/test_utilities_api.py::TestCootFindWatersAPI::test_8xfm 
+[gw2] [ 61%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_report_xml 
+[gw1] [ 62%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_diagnostic_xml 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_container 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_def_xml 
+[gw1] [ 62%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_def_xml 
+[gw2] [ 63%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_container 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_dependent_jobs 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_i2run_command 
+[gw1] [ 64%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_dependent_jobs 
+[gw2] [ 64%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_i2run_command 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_files 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_what_next 
+[gw1] [ 65%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_files 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_set_parameter_simple 
+[gw2] [ 66%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_what_next 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_set_parameter_file 
+[gw1] [ 66%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_set_parameter_simple 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_upload_file_param 
+[gw4] [ 67%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestCootFindWatersAPI::test_8xfm 
+[gw2] [ 68%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_set_parameter_file 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_digest 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_validation 
+[gw1] [ 68%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_upload_file_param 
+[gw2] [ 69%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_digest 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_digest_param_file 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_export_job_file_menu 
+[gw4] [ 70%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_validation 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_run 
+[gw4] [ 70%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_run 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_delete 
+[gw1] [ 71%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_digest_param_file 
+[gw2] [ 72%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_export_job_file_menu 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_run_local 
+[gw1] [ 72%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_run_local 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_retrieve 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_preview 
+[gw2] [ 73%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_preview 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_file_uses 
+[gw0] [ 74%] PASSED ccp4i2/tests/api/test_substitute_ligand_api.py::TestSubstituteLigandAPI::test_no_ligand 
+ccp4i2/tests/api/test_substitute_ligand_api.py::TestSubstituteLigandAPI::test_with_smiles 
+[gw4] [ 74%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestJobViewSet::test_job_delete 
+[gw1] [ 75%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_retrieve 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_list 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_files 
+[gw2] [ 76%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_file_uses 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_jobs 
+[gw1] [ 76%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_files 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_tags_post 
+[gw4] [ 77%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_list 
+[gw2] [ 78%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_jobs 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_tags_get 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_remove_tag 
+[gw1] [ 78%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_tags_post 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_directory 
+[gw4] [ 79%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_tags_get 
+[gw2] [ 80%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_remove_tag 
+[gw1] [ 80%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_directory 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_file 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_create_task 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_preview_file 
+[gw2] [ 81%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_preview_file 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_delete 
+[gw2] [ 82%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_delete 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_import 
+[gw2] [ 82%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_import 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestSimpleViewSets::test_project_tag_list 
+[gw2] [ 83%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestSimpleViewSets::test_project_tag_list 
+[gw1] [ 84%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_create_task 
+[gw4] [ 84%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_file 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestSimpleViewSets::test_project_tag_create 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_export 
+[gw1] [ 85%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_export 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectExportViewSet::test_project_export_download 
+[gw1] [ 86%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectExportViewSet::test_project_export_download 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectExportViewSet::test_project_export_delete 
+[gw1] [ 86%] SKIPPED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectExportViewSet::test_project_export_delete 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_exports 
+[gw2] [ 87%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestSimpleViewSets::test_project_tag_create 
+[gw4] [ 88%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectViewSet::test_project_exports 
+ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectExportViewSet::test_project_export_list 
+[gw2] [ 88%] PASSED ccp4i2/tests/api/test_viewsets_comprehensive.py::TestProjectExportViewSet::test_project_export_list 
+[gw6] [ 89%] PASSED ccp4i2/tests/api/test_ep_pipelines_api.py::TestPhaserEPAPI::test_gamma 
+ccp4i2/tests/api/test_job_execution_via_api.py::TestJobExecutionViaAPI::test_configure_and_run_prosmart_refmac_via_api 
+[gw6] [ 90%] PASSED ccp4i2/tests/api/test_job_execution_via_api.py::TestJobExecutionViaAPI::test_configure_and_run_prosmart_refmac_via_api 
+ccp4i2/tests/api/test_job_execution_via_api.py::TestJobExecutionViaAPI::test_parameter_setting_preserves_through_reload 
+[gw6] [ 90%] PASSED ccp4i2/tests/api/test_job_execution_via_api.py::TestJobExecutionViaAPI::test_parameter_setting_preserves_through_reload 
+[gw3] [ 91%] PASSED ccp4i2/tests/api/test_model_building_api.py::TestModelcraftAPI::test_gamma_ep 
+ccp4i2/tests/api/test_model_building_api.py::TestModelcraftAPI::test_8xfm 
+[gw3] [ 92%] SKIPPED ccp4i2/tests/api/test_model_building_api.py::TestModelcraftAPI::test_8xfm 
+ccp4i2/tests/api/test_model_building_api.py::TestParrotAPI::test_gamma 
+[gw3] [ 92%] PASSED ccp4i2/tests/api/test_model_building_api.py::TestParrotAPI::test_gamma 
+ccp4i2/tests/api/test_model_building_api.py::TestShelxeMRAPI::test_gamma 
+[gw7] [ 93%] PASSED ccp4i2/tests/api/test_mr_pipelines_api.py::TestMrBumpAPI::test_gamma 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_simple_integer 
+[gw7] [ 94%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_simple_integer 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_boolean 
+[gw7] [ 94%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_boolean 
+ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_string 
+[gw7] [ 95%] PASSED ccp4i2/tests/api/test_parameter_setting_api.py::TestParameterSettingAPI::test_set_parameter_string 
+[gw0] [ 96%] PASSED ccp4i2/tests/api/test_substitute_ligand_api.py::TestSubstituteLigandAPI::test_with_smiles 
+ccp4i2/tests/api/test_utilities_api.py::TestAcedrgAPI::test_from_smiles 
+[gw3] [ 96%] PASSED ccp4i2/tests/api/test_model_building_api.py::TestShelxeMRAPI::test_gamma 
+ccp4i2/tests/api/test_model_building_api.py::TestAcornAPI::test_gamma 
+[gw3] [ 97%] PASSED ccp4i2/tests/api/test_model_building_api.py::TestAcornAPI::test_gamma 
+[gw0] [ 98%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestAcedrgAPI::test_from_smiles 
+ccp4i2/tests/api/test_utilities_api.py::TestAcedrgAPI::test_from_cif_rcsb 
+[gw0] [ 98%] PASSED ccp4i2/tests/api/test_utilities_api.py::TestAcedrgAPI::test_from_cif_rcsb 
+[gw5] [ 99%] PASSED ccp4i2/tests/api/test_ep_pipelines_api.py::TestShelxAPI::test_gamma_sad 
+ccp4i2/tests/api/test_ep_pipelines_api.py::TestShelxAPI::test_gamma_siras 
+[gw5] [100%] PASSED ccp4i2/tests/api/test_ep_pipelines_api.py::TestShelxAPI::test_gamma_siras Test Settings Loaded:
+  Database: :memory:
+  Projects: /Users/nmemn/.ccp4i2_test/test_projects
+status: ready
+
+================================================================================
+Test Cache Cleanup
+================================================================================
+Test projects are stored in: /Users/nmemn/.cache/ccp4i2-tests
+(16 project dirs, 356.9 MB)
+
+To clean up all test projects:
+  rm -rf /Users/nmemn/.cache/ccp4i2-tests/*
+
+To clean up projects from a specific date (e.g., today 2024-12-04):
+  rm -rf /Users/nmemn/.cache/ccp4i2-tests/20241204_*
+
+To see failed tests (preserved for debugging):
+  ls -la /Users/nmemn/.cache/ccp4i2-tests/
+================================================================================
+
+
+
+=============================== warnings summary ===============================
+test_api.py: 3 warnings
+test_data_reduction_api.py: 6 warnings
+test_mr_pipelines_api.py: 16 warnings
+test_refinement_api.py: 15 warnings
+test_ep_pipelines_api.py: 13 warnings
+test_utilities_api.py: 11 warnings
+test_viewsets_comprehensive.py: 1 warning
+test_substitute_ligand_api.py: 4 warnings
+test_job_execution_via_api.py: 2 warnings
+test_model_building_api.py: 12 warnings
+  /Users/nmemn/Developer/ccp4i2/server/ccp4i2/lib/utils/parameters/set_parameter.py:110: DeprecationWarning: find_object_by_path() is deprecated. Use container.find_by_path() instead.
+    object_element = find_object_by_path(the_container, object_path)
+
+test_ep_pipelines_api.py::TestShelxAPI::test_substructure_determination
+test_ep_pipelines_api.py::TestCrank2API::test_gamma_dmfull
+test_ep_pipelines_api.py::TestPhaserEPAPI::test_gamma
+test_model_building_api.py::TestModelcraftAPI::test_gamma_ep
+test_model_building_api.py::TestParrotAPI::test_gamma
+test_mr_pipelines_api.py::TestMrBumpAPI::test_gamma
+test_ep_pipelines_api.py::TestShelxAPI::test_gamma_sad
+test_ep_pipelines_api.py::TestShelxAPI::test_gamma_siras
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/Bio/SeqIO/FastaIO.py:203: BiopythonDeprecationWarning: Previously, the FASTA parser silently ignored comments at the beginning of the FASTA file (before the first sequence).
+  
+  Nowadays, the FASTA file format is usually understood not to have any such comments, and most software packages do not allow them. Therefore, the use of comments at the beginning of a FASTA file is now deprecated in Biopython.
+  
+  In a future Biopython release, this deprecation warning will be replaced by a ValueError. To avoid this, there are three options:
+  
+  (1) Modify your FASTA file to remove such comments at the beginning of the file.
+  
+  (2) Use SeqIO.parse with the 'fasta-pearson' format instead of 'fasta'. This format is consistent with the FASTA format defined by William Pearson's FASTA aligner software. Thie format allows for comments before the first sequence; lines starting with the ';' character anywhere in the file are also regarded as comment lines and are ignored.
+  
+  (3) Use the 'fasta-blast' format. This format regards any lines starting with '!', '#', or ';' as comment lines. The 'fasta-blast' format may be safer than the 'fasta-pearson' format, as it explicitly indicates which lines are comments. 
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========== 135 passed, 15 skipped, 91 warnings in 681.05s (0:11:21) ===========
+
+Test projects are stored in: ~/.cache/ccp4i2-tests/
+To clean up: rm -rf ~/.cache/ccp4i2-tests/*
