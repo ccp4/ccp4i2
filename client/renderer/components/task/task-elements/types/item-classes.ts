@@ -207,74 +207,7 @@ export function isKnownItemClass(className: string): className is ItemClass {
 }
 
 /**
- * Mapping of item classes to their corresponding React component element type.
- * This helps document which component handles which class.
+ * The authoritative class→component registry now lives in task-element.tsx
+ * (COMPONENT_REGISTRY).  This file defines only the ItemClass types used
+ * for compile-time safety across the codebase.
  */
-export const ITEM_CLASS_COMPONENT_MAP = {
-  // Simple types -> CSimpleElement
-  CInt: "CIntElement",
-  CFloat: "CFloatElement",
-  CCellLength: "CFloatElement",
-  CCellAngle: "CFloatElement",
-  CWavelength: "CFloatElement",
-  CString: "CStringElement",
-  CSequenceString: "CStringElement",
-  CSMILESString: "CSMILESStringElement",
-  CFilePath: "CStringElement",
-  COneWord: "CStringElement",
-  CCrystalName: "CStringElement",
-  CRangeSelection: "CStringElement",
-  CDatasetName: "CStringElement",
-  CAtomSelection: "CAtomSelectionElement",
-  CBoolean: "CBooleanElement",
-
-  // File types -> CSimpleDataFileElement
-  CPdbDataFile: "CPdbDataFileElement",
-  CAsuDataFile: "CAsuDataFileElement",
-  CImportUnmerged: "CImportUnmergedElement",
-  CDictDataFile: "CSimpleDataFileElement",
-  CTLSDataFile: "CSimpleDataFileElement",
-  // ... (truncated for brevity - maps all file types)
-
-  CMapDataFile: "CSimpleDataFileElement",
-  CUnmergedMtzDataFile: "CSimpleDataFileElement",
-  CPhaserTngDagFile: "CSimpleDataFileElement",
-  CMmcifDataFile: "CSimpleDataFileElement",
-  CMmcifReflDataFile: "CSimpleDataFileElement",
-
-  // MTZ types -> CMiniMtzDataFileElement
-  CObsDataFile: "CMiniMtzDataFileElement",
-  CMapCoeffsDataFile: "CMiniMtzDataFileElement",
-  CMiniMtzDataFile: "CMiniMtzDataFileElement",
-  CMtzDataFile: "CMiniMtzDataFileElement",
-  CFreeRDataFile: "CMiniMtzDataFileElement",
-
-  // List types -> CListElement
-  CList: "CListElement",
-  CColumnGroupList: "CListElement",
-  CAltSpaceGroupList: "CListElement",
-  CEnsembleList: "CListElement",
-  CRunBatchRangeList: "CListElement",
-  CAsuContentSeqList: "CAsuContentSeqListElement",
-  CAtomRefmacSelectionList: "CAtomRefmacSelectionListElement",
-  COccRefmacSelectionList: "COccRefmacSelectionListElement",
-  COccRelationRefmacList: "COccRelationRefmacListElement",
-  CTLSRangeList: "CTLSRangeListElement",
-
-  // Container types
-  CContainer: "CCP4i2ContainerElement",
-  CSpaceGroupCell: "CCP4i2ContainerElement",
-  CCell: "CCellElement",
-  CEnsemble: "CEnsembleElement",
-
-  // Space group types
-  CSpaceGroup: "CAltSpaceGroupElement",
-  CAltSpaceGroup: "CAltSpaceGroupElement",
-
-  // Specialized types
-  CReindexOperator: "CReindexOperatorElement",
-  CColumnGroup: "CColumnGroupElement",
-  CRunBatchRange: "CRunBatchRangeElement",
-} as const;
-
-export type ItemClassComponentMap = typeof ITEM_CLASS_COMPONENT_MAP;

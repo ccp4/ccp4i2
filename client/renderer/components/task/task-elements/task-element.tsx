@@ -49,16 +49,132 @@ export interface CCP4i2TaskElementProps extends PropsWithChildren {
 }
 
 /**
- * CCP4i2TaskElement is a React functional component that renders different types of task elements
- * based on the provided item properties. It uses various hooks and memoization to optimize performance.
- *
- * @param {CCP4i2TaskElementProps} props - The properties passed to the component.
- * @param {Object} props.job - The job object associated with the task element.
- * @param {string} props.itemName - The name of the item to be rendered.
- * @param {boolean | (() => boolean)} [props.visibility] - The visibility of the task element, which can be a boolean or a function returning a boolean.
- * @param {Object} [props.qualifiers] - Additional qualifiers to override the default qualifiers of the item.
- *
- * @returns {JSX.Element} The rendered task element based on the item class.
+ * Registry entry: a React component and optional qualifier overrides.
+ * When extraQualifiers is set, it is merged on top of the resolved qualifiers.
+ */
+interface RegistryEntry {
+  component: React.FC<any>;
+  extraQualifiers?: Record<string, any>;
+}
+
+/**
+ * Maps every known ItemClass to its rendering component (and optional extra
+ * qualifiers).  Adding a new item type is a one-liner here — no switch/case
+ * needed.
+ */
+const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
+  // Simple value types
+  CInt: { component: CIntElement },
+  CFloat: { component: CFloatElement },
+  CCellLength: { component: CFloatElement },
+  CCellAngle: { component: CFloatElement },
+  CWavelength: { component: CFloatElement },
+  CString: { component: CStringElement },
+  CSequenceString: { component: CStringElement },
+  CFilePath: { component: CStringElement },
+  COneWord: { component: CStringElement },
+  CCrystalName: { component: CStringElement },
+  CRangeSelection: { component: CStringElement },
+  CDatasetName: { component: CStringElement },
+  CAtomSelection: { component: CAtomSelectionElement },
+  CSMILESString: { component: CSMILESStringElement },
+  CBoolean: { component: CBooleanElement },
+
+  // File types → CSimpleDataFileElement
+  CPdbDataFile: { component: CPdbDataFileElement },
+  CImportUnmerged: { component: CImportUnmergedElement },
+  CAsuDataFile: { component: CAsuDataFileElement },
+  CDictDataFile: { component: CSimpleDataFileElement },
+  CTLSDataFile: { component: CSimpleDataFileElement },
+  CPhaserSolDataFile: { component: CSimpleDataFileElement },
+  CPhaserRFileDataFile: { component: CSimpleDataFileElement },
+  CRefmacRestraintsDataFile: { component: CSimpleDataFileElement },
+  CSeqDataFile: { component: CSimpleDataFileElement },
+  CSeqAlignDataFile: { component: CSimpleDataFileElement },
+  CHhpredDataFile: { component: CSimpleDataFileElement },
+  CBlastDataFile: { component: CSimpleDataFileElement },
+  CDataFile: { component: CSimpleDataFileElement },
+  CUnmergedDataFile: { component: CSimpleDataFileElement },
+  CCootHistoryDataFile: { component: CSimpleDataFileElement },
+  CDialsJsonFile: { component: CSimpleDataFileElement },
+  CDialsPickleFile: { component: CSimpleDataFileElement },
+  CMDLMolDataFile: { component: CSimpleDataFileElement },
+  CRefmacKeywordFile: { component: CSimpleDataFileElement },
+  CMol2DataFile: { component: CSimpleDataFileElement },
+  CMapDataFile: { component: CSimpleDataFileElement },
+  CUnmergedMtzDataFile: { component: CSimpleDataFileElement },
+  CPhaserTngDagFile: { component: CSimpleDataFileElement },
+  CMmcifDataFile: { component: CSimpleDataFileElement },
+  CMmcifReflDataFile: { component: CSimpleDataFileElement },
+  // CGenericReflDataFile was duplicated in the old switch (first match won → CSimpleDataFileElement)
+  CGenericReflDataFile: { component: CSimpleDataFileElement },
+
+  // MTZ reflection file types
+  CObsDataFile: { component: CMiniMtzDataFileElement },
+  CMapCoeffsDataFile: { component: CMiniMtzDataFileElement },
+  CXmlDataFile: { component: CMiniMtzDataFileElement },
+  CPhsDataFile: { component: CMiniMtzDataFileElement },
+  CMiniMtzDataFile: {
+    component: CMiniMtzDataFileElement,
+    extraQualifiers: {
+      mimeTypeName: [
+        "application/CCP4-mtz",
+        "application/CCP4-mtz-observed",
+        "application/CCP4-mtz-mini",
+        "application/CCP4-mtz-phases",
+        "application/CCP4-mtz-freerflag",
+      ],
+    },
+  },
+  CMtzDataFile: {
+    component: CMiniMtzDataFileElement,
+    extraQualifiers: {
+      mimeTypeName: [
+        "application/CCP4-mtz",
+        "application/CCP4-mtz-observed",
+        "application/CCP4-mtz-mini",
+        "application/CCP4-mtz-phases",
+        "application/CCP4-mtz-freerflag",
+      ],
+    },
+  },
+  CFreeRDataFile: { component: CFreeRDataFileElement },
+
+  // List / collection types
+  CList: { component: CListElement },
+  CImportUnmergedList: { component: CListElement },
+  CAltSpaceGroupList: { component: CListElement },
+  CColumnGroupList: { component: CListElement },
+  CEnsembleList: { component: CListElement },
+  CRunBatchRangeList: { component: CListElement },
+  CAsuContentSeqList: { component: CAsuContentSeqListElement },
+  CAtomRefmacSelectionList: { component: CAtomRefmacSelectionListElement },
+  COccRefmacSelectionList: { component: COccRefmacSelectionListElement },
+  COccRelationRefmacList: { component: COccRelationRefmacListElement },
+  CTLSRangeList: { component: CTLSRangeListElement },
+
+  // Container / composite types
+  CSpaceGroupCell: { component: CCP4i2ContainerElement },
+  CContainer: { component: CCP4i2ContainerElement },
+  CCell: { component: CCellElement },
+  CEnsemble: { component: CEnsembleElement },
+  CFloatRange: { component: CRangeElement },
+  CAsuContentSeq: { component: CAsuContentSeqElement },
+  CPdbEnsembleItem: { component: CPdbEnsembleItemElement },
+
+  // Space group types
+  CSpaceGroup: { component: CAltSpaceGroupElement },
+  CAltSpaceGroup: { component: CAltSpaceGroupElement },
+
+  // Specialized types
+  CReindexOperator: { component: CReindexOperatorElement },
+  CColumnGroup: { component: CColumnGroupElement },
+  CRunBatchRange: { component: CRunBatchRangeElement },
+};
+
+/**
+ * CCP4i2TaskElement renders the appropriate widget for a given task parameter
+ * based on its item class, looked up in COMPONENT_REGISTRY.
  */
 export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   const { job } = props;
@@ -88,284 +204,23 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   }, [item, props.qualifiers]);
 
   const interfaceElement = useMemo(() => {
-    // Cast to ItemClass for type checking - unknown classes fall through to default
     const itemClass = item?._class as ItemClass | undefined;
+    const entry = itemClass ? COMPONENT_REGISTRY[itemClass] : undefined;
 
-    switch (itemClass) {
-      case "CInt":
-        return (
-          <CIntElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CFloat":
-      case "CCellLength":
-      case "CCellAngle":
-      case "CWavelength":
-        return (
-          <CFloatElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CString":
-      case "CSequenceString":
-      case "CFilePath":
-      case "COneWord":
-      case "CCrystalName":
-      case "CRangeSelection":
-      case "CDatasetName":
-        return (
-          <CStringElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CAtomSelection":
-        return (
-          <CAtomSelectionElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CSMILESString":
-        return (
-          <CSMILESStringElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CBoolean":
-        return (
-          <CBooleanElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CPdbDataFile":
-        return (
-          <CPdbDataFileElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CImportUnmerged":
-        return (
-          <CImportUnmergedElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CAsuDataFile":
-        return (
-          <CAsuDataFileElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CDictDataFile":
-      case "CTLSDataFile":
-      case "CPhaserSolDataFile":
-      case "CPhaserRFileDataFile":
-      case "CRefmacRestraintsDataFile":
-      case "CSeqDataFile":
-      case "CSeqAlignDataFile":
-      case "CHhpredDataFile":
-      case "CBlastDataFile":
-      case "CDataFile":
-      case "CUnmergedDataFile":
-      case "CCootHistoryDataFile":
-      case "CGenericReflDataFile":
-      case "CDialsJsonFile":
-      case "CDialsPickleFile":
-      case "CMDLMolDataFile":
-      case "CRefmacKeywordFile":
-      case "CMol2DataFile":
-      case "CMapDataFile":
-      case "CUnmergedMtzDataFile":
-      case "CPhaserTngDagFile":
-      case "CMmcifDataFile":
-      case "CMmcifReflDataFile":
-        return (
-          <CSimpleDataFileElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CObsDataFile":
-      case "CMapCoeffsDataFile":
-      case "CXmlDataFile":
-      case "CPhsDataFile":
-        return (
-          <CMiniMtzDataFileElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CMiniMtzDataFile":
-      case "CMtzDataFile":
-        return (
-          <CMiniMtzDataFileElement
-            key={the_uuid}
-            {...props}
-            qualifiers={{
-              ...qualifiers,
-              mimeTypeName: [
-                "application/CCP4-mtz",
-                "application/CCP4-mtz-observed",
-                "application/CCP4-mtz-mini",
-                "application/CCP4-mtz-phases",
-                "application/CCP4-mtz-freerflag",
-              ],
-            }}
-          />
-        );
-      case "CFreeRDataFile":
-        return (
-          <CFreeRDataFileElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-
-      case "CGenericReflDataFile":
-        return (
-          <CMiniMtzDataFileElement
-            key={the_uuid}
-            {...props}
-            qualifiers={{
-              ...qualifiers,
-              mimeTypeNames: [
-                "application/CCP4-generic-reflections",
-                "CCP4-mtz-observed",
-              ],
-            }}
-          />
-        );
-
-      case "CList":
-      case "CImportUnmergedList":
-      case "CAltSpaceGroupList":
-      case "CColumnGroupList":
-      case "CEnsembleList":
-      case "CRunBatchRangeList":
-        return (
-          <CListElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CRunBatchRange":
-        return (
-          <CRunBatchRangeElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CAsuContentSeqList":
-        return (
-          <CAsuContentSeqListElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CAtomRefmacSelectionList":
-        return (
-          <CAtomRefmacSelectionListElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "COccRefmacSelectionList":
-        return (
-          <COccRefmacSelectionListElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "COccRelationRefmacList":
-        return (
-          <COccRelationRefmacListElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CTLSRangeList":
-        return (
-          <CTLSRangeListElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CEnsemble":
-        return (
-          <CEnsembleElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CFloatRange":
-        return (
-          <CRangeElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CAsuContentSeq":
-        return (
-          <CAsuContentSeqElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CPdbEnsembleItem":
-        return (
-          <CPdbEnsembleItemElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CSpaceGroupCell":
-      case "CContainer":
-        return (
-          <CCP4i2ContainerElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CReindexOperator":
-        return (
-          <CReindexOperatorElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CCell":
-        return (
-          <CCellElement key={the_uuid} {...props} qualifiers={qualifiers} />
-        );
-      case "CSpaceGroup":
-      case "CAltSpaceGroup":
-        return (
-          <CAltSpaceGroupElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      case "CColumnGroup":
-        return (
-          <CColumnGroupElement
-            key={the_uuid}
-            {...props}
-            qualifiers={qualifiers}
-          />
-        );
-      default:
-        return (
-          <Typography key={the_uuid}>
-            {item ? item._class : "No item"}
-          </Typography>
-        );
+    if (!entry) {
+      return (
+        <Typography key={the_uuid}>
+          {item ? item._class : "No item"}
+        </Typography>
+      );
     }
+
+    const Component = entry.component;
+    const mergedQualifiers = entry.extraQualifiers
+      ? { ...qualifiers, ...entry.extraQualifiers }
+      : qualifiers;
+
+    return <Component key={the_uuid} {...props} qualifiers={mergedQualifiers} />;
   }, [item, qualifiers]);
 
   return isVisible ? <>{interfaceElement}</> : null;
