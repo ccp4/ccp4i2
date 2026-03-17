@@ -19,7 +19,7 @@ os.environ["CCP4I2_PROJECTS_DIR"] = str(TEST_PROJECTS_DIR)
 # Initialize Django
 django.setup()
 
-from .urls import pdbe_fasta, pdbe_pdb, redo_cif, redo_mtz, rcsb_mmcif
+from .urls import pdbe_fasta, pdbe_pdb, redo_cif, redo_mtz, rcsb_mmcif, uniprot_fasta
 from .utils import download
 
 
@@ -294,4 +294,16 @@ def pdb1h1s():
 @fixture(scope="session")
 def mtz1h1s():
     with download(redo_mtz("1h1s")) as path:
+        yield path
+
+
+@fixture(scope="session")
+def fasta_cdk2():
+    with download(uniprot_fasta("CDK2_HUMAN")) as path:
+        yield path
+
+
+@fixture(scope="session")
+def fasta_cdk6():
+    with download(uniprot_fasta("CDK6_HUMAN")) as path:
         yield path

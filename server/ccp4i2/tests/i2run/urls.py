@@ -1,6 +1,7 @@
 _PDBE = "https://www.ebi.ac.uk/pdbe"
 _RCSB = "https://files.rcsb.org"
 _REDO = "https://pdb-redo.eu/db"
+_UNIPROT = "https://rest.uniprot.org"
 
 
 def pdbe_fasta(code: str):
@@ -41,3 +42,7 @@ def redo_cif(code: str):
 
 def redo_mtz(code: str):
     return f"{_REDO}/{code}/{code}_final.mtz"
+
+
+def uniprot_fasta(entry: str):
+    return f"{_UNIPROT}/uniprotkb/{entry}.fasta"

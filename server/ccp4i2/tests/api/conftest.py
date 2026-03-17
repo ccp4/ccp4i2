@@ -58,7 +58,7 @@ def _bypass_permissions_globally():
 _bypass_permissions_globally()
 
 # Import URL helpers from i2run
-from ccp4i2.tests.i2run.urls import pdbe_fasta, pdbe_mmcif, pdbe_pdb, redo_cif, redo_mtz, rcsb_mmcif
+from ccp4i2.tests.i2run.urls import pdbe_fasta, pdbe_mmcif, pdbe_pdb, redo_cif, redo_mtz, rcsb_mmcif, uniprot_fasta
 from ccp4i2.tests.i2run.utils import download
 
 
@@ -548,4 +548,25 @@ def pdb1h1s():
 def mtz1h1s():
     """Download 1h1s MTZ from PDB-REDO."""
     with download(redo_mtz("1h1s")) as path:
+        yield path
+
+
+@pytest.fixture(scope="session")
+def pdb6ndn():
+    """Download 6ndn PDB from PDBe."""
+    with download(pdbe_pdb("6ndn")) as path:
+        yield path
+
+
+@pytest.fixture(scope="session")
+def fasta_cdk2():
+    """Download CDK2_HUMAN FASTA from UniProt."""
+    with download(uniprot_fasta("CDK2_HUMAN")) as path:
+        yield path
+
+
+@pytest.fixture(scope="session")
+def fasta_cdk6():
+    """Download CDK6_HUMAN FASTA from UniProt."""
+    with download(uniprot_fasta("CDK6_HUMAN")) as path:
         yield path
