@@ -29,7 +29,8 @@ Guide for writing new tests:
 | i2run disabled     | 4     |
 | API tested         | 51    |
 | API disabled       | 1     |
-| No tests at all    | 23    |
+| Deprecated         | 1     |
+| No tests at all    | 22    |
 | Full coverage      | 42    |
 
 
@@ -154,7 +155,6 @@ Guide for writing new tests:
 
 | Task                 | i2run | API | i2run test file            | API test file                |
 |----------------------|-------|-----|----------------------------|------------------------------|
-| PrepareDeposit       | -     | -   |                            |                              |
 | adding_stats_to_mmcif_i2 | -  | -   |                            |                              |
 | mergeMtz             | -     | -   |                            |                              |
 
@@ -182,7 +182,9 @@ Guide for writing new tests:
 | add_fractional_coords| -     | -   |                            |                              |
 
 
-## Interactive GUI Tasks (Not Testable)
+## Excluded from Testing
+
+### Interactive GUI Tasks (Not Testable)
 
 These tasks launch interactive graphical programs (CCP4MG, Coot, QtPISA, etc.)
 and cannot be tested via i2run or the API.
@@ -196,6 +198,12 @@ and cannot be tested via i2run or the API.
 | pdbview_edit         | Coordinate Data Tools  |
 | qtpisa               | Validation             |
 
+### Deprecated Tasks
+
+| Task                 | Replacement              | Notes                              |
+|----------------------|--------------------------|------------------------------------|
+| PrepareDeposit       | adding_stats_to_mmcif_i2 | Moved to Uncategorized in task-chooser with "do not use" warning |
+
 
 ## Known issues
 
@@ -204,7 +212,7 @@ and cannot be tested via i2run or the API.
 | zanuda | both | Skipped | zanuda's internal refmac5 fails to parse 8xfm mmCIF model |
 | ctruncate | i2run | Skipped | KeywordExtractor bug: `get_merged_metadata` is None for ctruncate's container |
 
-## Tasks still without tests (23 remaining)
+## Tasks still without tests (22 remaining)
 
 | Priority | Task                      | Category               | Notes                            |
 |----------|---------------------------|------------------------|----------------------------------|
@@ -221,7 +229,6 @@ and cannot be tested via i2run or the API.
 | LOW      | phaser_ensembler          | Bioinformatics         |                                  |
 | LOW      | SIMBAD                    | Molecular Replacement  | Large search — slow              |
 | LOW      | morda_i2                  | Molecular Replacement  |                                  |
-| LOW      | PrepareDeposit            | Export                 |                                  |
 | LOW      | adding_stats_to_mmcif_i2  | Export                 |                                  |
 | LOW      | mergeMtz                  | Export                 |                                  |
 | LOW      | phaser_EP_LLG             | Refl. Data Tools       |                                  |

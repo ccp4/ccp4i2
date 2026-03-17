@@ -219,9 +219,8 @@ export const TASK_CATEGORIES: TaskCategory[] = [
   {
     id: "export",
     description: "Export and Deposition",
-    preferred: ["PrepareDeposit"],
+    preferred: ["adding_stats_to_mmcif_i2"],
     tasks: [
-      "PrepareDeposit",
       "adding_stats_to_mmcif_i2",
       "mergeMtz",
     ],
@@ -268,6 +267,15 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     ],
   },
 ];
+
+// ── Deprecated tasks ─────────────────────────────────────────────────
+//
+// Tasks listed here will show a prominent warning in the task-chooser card.
+// They remain available (via Uncategorized) but are discouraged.
+
+export const DEPRECATED_TASKS: Record<string, string> = {
+  PrepareDeposit: "Superseded by adding_stats_to_mmcif_i2 — do not use",
+};
 
 // ── Tree builder ────────────────────────────────────────────────────
 
