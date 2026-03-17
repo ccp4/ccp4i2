@@ -24,12 +24,13 @@ Guide for writing new tests:
 | Metric             | Count |
 |--------------------|-------|
 | GUI-visible tasks  | 63    |
-| i2run tested       | 45    |
+| Interactive (N/A)  | 6     |
+| i2run tested       | 46    |
 | i2run disabled     | 4     |
-| API tested         | 50    |
+| API tested         | 51    |
 | API disabled       | 1     |
-| No tests at all    | 11    |
-| Full coverage      | 41    |
+| No tests at all    | 23    |
+| Full coverage      | 42    |
 
 
 ## Data Entry
@@ -57,7 +58,7 @@ Guide for writing new tests:
 | aimless_pipe         | Y     | Y   | test_aimless.py            | test_data_reduction_api.py   |
 | freerflag            | Y     | Y   | test_freerflag.py          | test_data_reduction_api.py   |
 | matthews             | -     | -   |                            |                              |
-| molrep_selfrot       | -     | -   |                            |                              |
+| molrep_selfrot       | Y     | Y   | test_molrep_selfrot.py     | test_new_coverage_api.py     |
 | xia2_ssx_reduce      | -     | -   |                            |                              |
 
 ## Big Pipelines
@@ -71,7 +72,6 @@ Guide for writing new tests:
 
 | Task                 | i2run | API | i2run test file            | API test file                     |
 |----------------------|-------|-----|----------------------------|-----------------------------------|
-| ccp4mg_edit_model    | N/A   | N/A |                            | Interactive GUI program            |
 | mrparse              | Y     | Y   | test_mrparse.py            | test_utilities_api.py             |
 | editbfac             | Y     | Y   | test_editbfac.py           | test_additional_pipelines_api.py  |
 | arcimboldo           | Y     | -   | test_arcimboldo.py         |                                   |
@@ -89,7 +89,6 @@ Guide for writing new tests:
 
 | Task                 | i2run | API | i2run test file            | API test file                |
 |----------------------|-------|-----|----------------------------|------------------------------|
-| ccp4mg_edit_nomrbump | N/A   | N/A |                            | Interactive GUI program       |
 | chainsaw             | -     | -   |                            |                              |
 | sculptor             | -     | -   |                            |                              |
 | phaser_ensembler     | -     | -   |                            |                              |
@@ -117,12 +116,10 @@ Guide for writing new tests:
 | Task                 | i2run | API | i2run test file            | API test file                |
 |----------------------|-------|-----|----------------------------|------------------------------|
 | modelcraft           | Y     | Y   | test_modelcraft.py         | test_model_building_api.py   |
-| coot_rebuild         | N/A   | N/A |                            | Interactive GUI program       |
 | coot_script_lines    | -     | -   |                            |                              |
 | coot_find_waters     | Y     | Y   | test_find_waters.py        | test_utilities_api.py        |
 | arp_warp_classic     | Y     | -   | test_arpwarp.py            |                              |
 | shelxeMR             | Y     | Y   | test_shelxe_mr.py          | test_model_building_api.py   |
-| ccp4mg_general       | N/A   | N/A |                            | Interactive GUI program       |
 
 ## Refinement
 
@@ -152,7 +149,6 @@ Guide for writing new tests:
 | validate_protein     | Y     | Y   | test_validate.py           | test_utilities_api.py        |
 | edstats              | Y     | Y   | test_edstats_wrapper.py    | test_new_coverage_api.py     |
 | privateer            | Y     | Y   | test_privateer.py          | test_new_coverage_api.py     |
-| qtpisa               | N/A   | N/A |                            | Interactive GUI program       |
 
 ## Export
 
@@ -183,8 +179,22 @@ Guide for writing new tests:
 |----------------------|-------|-----|----------------------------|------------------------------|
 | csymmatch            | Y     | Y   | test_csymmatch.py          | test_utilities_api.py        |
 | gesamt               | Y     | Y   | test_gesamt.py             | test_new_coverage_api.py     |
-| pdbview_edit         | N/A   | N/A |                            | Interactive GUI program       |
 | add_fractional_coords| -     | -   |                            |                              |
+
+
+## Interactive GUI Tasks (Not Testable)
+
+These tasks launch interactive graphical programs (CCP4MG, Coot, QtPISA, etc.)
+and cannot be tested via i2run or the API.
+
+| Task                 | Category               |
+|----------------------|------------------------|
+| ccp4mg_edit_model    | AlphaFold Utilities    |
+| ccp4mg_edit_nomrbump | Bioinformatics         |
+| ccp4mg_general       | Model Building         |
+| coot_rebuild         | Model Building         |
+| pdbview_edit         | Coordinate Data Tools  |
+| qtpisa               | Validation             |
 
 
 ## Known issues
@@ -194,29 +204,23 @@ Guide for writing new tests:
 | zanuda | both | Skipped | zanuda's internal refmac5 fails to parse 8xfm mmCIF model |
 | ctruncate | i2run | Skipped | KeywordExtractor bug: `get_merged_metadata` is None for ctruncate's container |
 
-## Tasks still without tests (11 remaining)
+## Tasks still without tests (23 remaining)
 
 | Priority | Task                      | Category               | Notes                            |
 |----------|---------------------------|------------------------|----------------------------------|
 | HIGH     | chainsaw                  | Bioinformatics         | Needs alignment file input       |
 | HIGH     | pdb_redo_api              | Refinement             | External API dependency          |
 | MED      | matthews                  | Data Reduction         | No Python wrapper (def.xml only) |
-| MED      | molrep_selfrot            | Data Reduction         | Self-rotation function plot      |
 | MED      | molrep_den                | Molecular Replacement  | Density-based MR                 |
-| N/A      | coot_rebuild              | Model Building         | Interactive GUI — not testable   |
 | MED      | coot_script_lines         | Model Building         | Requires Coot binary             |
-| N/A      | qtpisa                    | Validation             | Interactive GUI — not testable   |
 | LOW      | ProvideSequence           | Data Entry             | Simple data entry                |
 | LOW      | ProvideAlignment          | Data Entry             | Simple data entry                |
 | LOW      | AlternativeImportXIA2     | Data Entry             |                                  |
 | LOW      | xia2_ssx_reduce           | Data Reduction         | Needs SSX data                   |
-| N/A      | ccp4mg_edit_model         | AlphaFold / Bioinf.    | Interactive GUI — not testable   |
-| N/A      | ccp4mg_edit_nomrbump      | Bioinformatics         | Interactive GUI — not testable   |
 | LOW      | sculptor                  | Bioinformatics         |                                  |
 | LOW      | phaser_ensembler          | Bioinformatics         |                                  |
 | LOW      | SIMBAD                    | Molecular Replacement  | Large search — slow              |
 | LOW      | morda_i2                  | Molecular Replacement  |                                  |
-| N/A      | ccp4mg_general            | Model Building         | Interactive GUI — not testable   |
 | LOW      | PrepareDeposit            | Export                 |                                  |
 | LOW      | adding_stats_to_mmcif_i2  | Export                 |                                  |
 | LOW      | mergeMtz                  | Export                 |                                  |
@@ -226,5 +230,4 @@ Guide for writing new tests:
 | LOW      | cphasematch               | Refl. Data Tools       |                                  |
 | LOW      | cpatterson                | Refl. Data Tools       |                                  |
 | LOW      | density_calculator        | Refl. Data Tools       |                                  |
-| N/A      | pdbview_edit              | Coord. Data Tools      | Interactive GUI — not testable   |
 | LOW      | add_fractional_coords     | Coord. Data Tools      |                                  |

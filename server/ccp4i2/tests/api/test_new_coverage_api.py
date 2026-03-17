@@ -11,6 +11,7 @@ These tests are inferred from wrapper .def.xml and Python code:
 - MakeLink: Covalent link definition for ligands
 - clustalw: Multiple sequence alignment
 - phaser_EP_AUTO: Automated experimental phasing with Phaser
+- molrep_selfrot: Self-rotation function analysis
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -308,3 +309,39 @@ class TestPhaserEPAutoAPI(APITestBase):
         assert len(pdb_files) >= 1, f"No Phaser PDB output: {list(job_dir.iterdir())}"
         mtz_files = list(job_dir.glob("*.mtz"))
         assert len(mtz_files) >= 1, f"No MTZ output: {list(job_dir.iterdir())}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestMolrepSelfrotAPI(APITestBase):
+    """API tests for molrep_selfrot self-rotation function."""
+
+    task_name = "molrep_selfrot"
+    timeout = 120
+
+    def test_1h1s(self, mtz1h1s):
+        """Test self-rotation function with 1h1s reflection data."""
+        self.create_project("test_molrep_selfrot")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz1h1s,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+
+        self.run_and_wait()
+
+        # Check PostScript output
+        job_dir = self.get_job_directory()
+        ps_files = list(job_dir.glob("*.ps"))
+        assert len(ps_files) >= 1, f"No PS output: {list(job_dir.iterdir())}"
+
+        # Check Patterson peaks in program.xml
+        xml = self.read_program_xml()
+        peaks = xml.findall(".//Patterson/Peak")
+        assert len(peaks) >= 10, f"Expected >= 10 Patterson peaks, got {len(peaks)}"
+
+        # Verify peak structure
+        first_peak = peaks[0]
+        for field in ("No", "Xfrac", "Yfrac", "Zfrac", "Dens", "Dens_sigma"):
+            elem = first_peak.find(field)
+            assert elem is not None, f"Missing '{field}' in Patterson peak"
