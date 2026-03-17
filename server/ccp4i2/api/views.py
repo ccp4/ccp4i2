@@ -35,50 +35,60 @@ def task_tree(request):
 @api_view(["GET"])
 def active_jobs(request):
     """
-    Returns a list of all running jobs in the ccp4i2 job queue.
+    Returns a list of all running/queued jobs in the ccp4i2 job queue.
+
+    Includes jobs that are RUNNING locally, RUNNING_REMOTELY on Azure workers,
+    or QUEUED waiting for a worker to pick them up.
     """
-    running_jobs = models.Job.objects.filter(status=models.Job.Status.RUNNING)
+    active_statuses = [
+        models.Job.Status.RUNNING,
+        models.Job.Status.RUNNING_REMOTELY,
+        models.Job.Status.QUEUED,
+    ]
+    running_jobs = models.Job.objects.filter(status__in=active_statuses)
     active_jobs_list = []
     for job in running_jobs:
         pid = job.process_id
-        try:
-            proc = psutil.Process(pid)
+        cpu_percent = None
+        mem_usage = None
 
-            def get_total_cpu_percent(process):
-                try:
-                    # Initialize measurement
-                    process.cpu_percent(interval=None)
-                    children = process.children(recursive=True)
-                    for child in children:
-                        child.cpu_percent(interval=None)
-                    # Wait for interval and measure again
-                    total_cpu = process.cpu_percent(interval=0.5)
-                    for child in children:
-                        total_cpu += get_total_cpu_percent(child)
-                    return total_cpu
-                except (psutil.NoSuchProcess, psutil.AccessDenied):
-                    return 0.0
+        # Try to get process metrics if we have a local PID
+        if pid:
+            try:
+                proc = psutil.Process(pid)
 
-            cpu_percent = get_total_cpu_percent(proc)
+                def get_total_cpu_percent(process):
+                    try:
+                        process.cpu_percent(interval=None)
+                        children = process.children(recursive=True)
+                        for child in children:
+                            child.cpu_percent(interval=None)
+                        total_cpu = process.cpu_percent(interval=0.5)
+                        for child in children:
+                            total_cpu += get_total_cpu_percent(child)
+                        return total_cpu
+                    except (psutil.NoSuchProcess, psutil.AccessDenied):
+                        return 0.0
 
-            mem_info = proc.memory_info()
-            mem_usage = mem_info.rss  # Resident Set Size in bytes
-            active_jobs_list.append(
-                {
-                    "project": job.project.name,
-                    "job_id": job.pk,
-                    "job_task_name": job.task_name,
-                    "job_uuid": job.uuid,
-                    "job_number": job.number,
-                    "pid": pid,
-                    "cpu_percent": cpu_percent,
-                    "memory_usage_bytes": mem_usage,
-                }
-            )
-        except (psutil.NoSuchProcess, psutil.AccessDenied):
-            active_jobs_list.append(
-                {"pid": pid, "error": "Process not found or access denied"}
-            )
+                cpu_percent = get_total_cpu_percent(proc)
+                mem_info = proc.memory_info()
+                mem_usage = mem_info.rss
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                pass
+
+        active_jobs_list.append(
+            {
+                "project": job.project.name,
+                "job_id": job.pk,
+                "job_task_name": job.task_name,
+                "job_uuid": job.uuid,
+                "job_number": job.number,
+                "status": job.get_status_display(),
+                "pid": pid,
+                "cpu_percent": cpu_percent,
+                "memory_usage_bytes": mem_usage,
+            }
+        )
     return JsonResponse({"success": True, "data": {"active_jobs": active_jobs_list}})
 
 

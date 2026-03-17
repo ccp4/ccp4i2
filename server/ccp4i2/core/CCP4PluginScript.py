@@ -2645,6 +2645,15 @@ class CPluginScript(CData):
         "Get the absolute working directory path as string."
         return str(self.workDirectory)
 
+    def getCommand(self, command: str) -> str:
+        """Return the path to an executable command.
+
+        In legacy Qt CCP4i2 this looked up user preferences for custom
+        executable paths.  The Django backend has no such preference store,
+        so we simply return the bare command name (assumes it is on PATH).
+        """
+        return command
+
     def testForInterrupt(self) -> bool:
         """Test if user has requested pipeline interruption.
 

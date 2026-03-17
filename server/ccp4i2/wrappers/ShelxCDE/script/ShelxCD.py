@@ -1,6 +1,6 @@
 import os
 
-from lxml import etree
+import xml.etree.ElementTree as etree
 
 from ccp4i2.core import CCP4Modules, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
@@ -225,14 +225,14 @@ class ShelxCD(CPluginScript):
         
         #Simple float parameters
         for parameterName in ['RIPW','ASCA','DSCA']:
-            if parameterName in self.container.controlParameters.contents():
+            if parameterName in self.container.controlParameters.dataOrder():
                 parameter = getattr(self.container.controlParameters, parameterName)
                 if parameter.isSet():
                     inputText += (parameterName+' %8.2f\n'%(float(parameter)))
                               
         #Float range parameters
         for parameterName in ['MIND','SHEL']:
-            if parameterName in self.container.controlParameters.contents():
+            if parameterName in self.container.controlParameters.dataOrder():
                 parameter = getattr(self.container.controlParameters, parameterName)
                 if parameter.isSet():
                     inputText += (parameterName+' %8.2f %8.2f\n'%(float(parameter.start), float(parameter.end )))
@@ -325,7 +325,7 @@ class ShelxCD(CPluginScript):
                 elif e2TableLine >= 0:
                     if len(tokens) == 0: e2TableLine = -1
                     else:
-                        datasetNodes = shelxcNode.xpath('//Dataset')
+                        datasetNodes = shelxcNode.findall('.//Dataset')
                         if e2TableLine < len(datasetNodes):
                             self.subElementOfTypeWithText(datasetNodes[e2TableLine],'eSquaredMinus1',tokens[1])
                             e2TableLine += 1
@@ -360,7 +360,8 @@ class ShelxCD(CPluginScript):
     def flushXML(self):
         tmpFileName = self.makeFileName('PROGRAMXML') + '_tmp'
         with open(tmpFileName,'w') as xmlFile:
-            CCP4Utils.writeXML(xmlFile,etree.tostring(self.xmlroot, pretty_print=True))
+            etree.indent(self.xmlroot)
+            CCP4Utils.writeXML(xmlFile,etree.tostring(self.xmlroot))
         #This is attempt to fix error overwriting exisiting file on Windows
         PROGRAMXML = self.makeFileName('PROGRAMXML')
         #print 'flushXML',PROGRAMXML
@@ -523,7 +524,7 @@ OUTPUT frac
 
     def scrapeShelxdLog(self, xmlroot):
         if True:
-            oldShelxdNodes = xmlroot.xpath('Shelxd')
+            oldShelxdNodes = xmlroot.findall('Shelxd')
             for oldShelxNode in oldShelxdNodes:
                 xmlroot.remove(oldShelxNode)
             shelxdNode = etree.SubElement(xmlroot,'Shelxd')
@@ -552,7 +553,7 @@ OUTPUT frac
                 with open(lstPath,'r') as lstFile:
                     lstText = lstFile.read()
                     lstNode = etree.SubElement(shelxdNode,'LstText')
-                    lstNode.text=etree.CDATA(lstText)
+                    lstNode.text=lstText
             return CPluginScript.SUCCEEDED
         else:
             self.appendErrorReport(207,self.getWorkDirectory())
@@ -561,7 +562,7 @@ OUTPUT frac
 
     def scrapeShelxeLog(self, xmlroot):
         try:
-            oldShelxeNodes = xmlroot.xpath('Shelxe')
+            oldShelxeNodes = xmlroot.findall('Shelxe')
             for oldShelxNode in oldShelxeNodes:
                 xmlroot.remove(oldShelxNode)
             shelxeNode = etree.SubElement(xmlroot,'Shelxe')
@@ -598,7 +599,7 @@ OUTPUT frac
                     with open(lstPath,'r') as lstFile:
                         lstText = lstFile.read()
                         lstNode = etree.SubElement(shelxeNode,'LstText')
-                        lstNode.text=etree.CDATA(lstText)
+                        lstNode.text=lstText
             return CPluginScript.SUCCEEDED
         except:
             self.appendErrorReport(208,self.getWorkDirectory())
@@ -742,10 +743,10 @@ OUTPUT pdb
         self.txtOutputFiles()
 
         unsortedList = []
-        tries = self.xmlroot.xpath('//Try')
+        tries = self.xmlroot.findall('.//Try')
         for aTry in tries:
-            if len(aTry.xpath('CFOM')) > 0 and len(aTry.xpath('CCAll'))>0:
-                unsortedList.append({'CFOM':float(aTry.xpath('CFOM')[-1].text), 'CC':float(aTry.xpath('CCAll')[-1].text)})
+            if len(aTry.findall('CFOM')) > 0 and len(aTry.findall('CCAll'))>0:
+                unsortedList.append({'CFOM':float(aTry.findall('CFOM')[-1].text), 'CC':float(aTry.findall('CCAll')[-1].text)})
         if len(unsortedList) > 0:
             sortedList = sorted(unsortedList, key=lambda aTry: aTry['CFOM'])
             self.container.outputData.PERFORMANCE.CFOM.set(sortedList[-1]['CFOM'])

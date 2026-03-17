@@ -2617,6 +2617,17 @@ class CSpaceGroup(CSpaceGroupStub):
         # can be added here if needed
         return str(value).strip()
 
+    def number(self) -> int:
+        """Return the ITC space group number for the stored space group name.
+
+        Uses gemmi to look up the number from the Hermann-Mauguin symbol.
+        """
+        import gemmi
+        sg = gemmi.find_spacegroup_by_name(str(self))
+        if sg is None:
+            raise ValueError(f"Unknown space group: '{self}'")
+        return sg.number
+
 
 class CSpaceGroupCell(CSpaceGroupCellStub):
     """

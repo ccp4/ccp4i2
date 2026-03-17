@@ -1922,3 +1922,70 @@ class JobViewSet(ModelViewSet):
             return error_response
         print(f"Returning file response: {file_response}")
         return file_response
+
+    @action(
+        detail=True,
+        methods=["post"],
+        serializer_class=serializers.JobSerializer,
+    )
+    def cancel(self, request, pk=None):
+        """
+        Cancel a running or queued job.
+
+        Works in both local and Azure deployment contexts:
+        - Local: Kills the process tree via its stored PID
+        - Azure/remote: Sets job status to INTERRUPTED in the database
+
+        Args:
+            request (Request): HTTP request object
+            pk (int): Primary key of the job to cancel
+
+        Returns:
+            Response: Updated job data or error
+
+        Example:
+            POST /api/jobs/123/cancel/
+        """
+        try:
+            job = models.Job.objects.get(id=pk)
+        except models.Job.DoesNotExist:
+            return api_error(f"Job {pk} not found", status=404)
+
+        cancellable = {
+            models.Job.Status.RUNNING,
+            models.Job.Status.RUNNING_REMOTELY,
+            models.Job.Status.QUEUED,
+        }
+        if job.status not in cancellable:
+            return api_error(
+                f"Job is not running or queued (status: {job.get_status_display()})",
+                status=400,
+            )
+
+        # Attempt to kill the local process if we have a PID
+        if job.process_id:
+            try:
+                import psutil
+
+                proc = psutil.Process(job.process_id)
+                # Kill entire process tree (the job may have spawned children)
+                children = proc.children(recursive=True)
+                for child in children:
+                    child.kill()
+                proc.kill()
+                logger.info("Killed process tree for job %s (pid %s)", pk, job.process_id)
+            except psutil.NoSuchProcess:
+                logger.info("Process %s already exited for job %s", job.process_id, pk)
+            except psutil.AccessDenied:
+                logger.warning("Access denied killing process %s for job %s", job.process_id, pk)
+            except Exception as e:
+                logger.warning("Error killing process for job %s: %s", pk, e)
+
+        # Mark job as interrupted regardless — for Azure workers this is the
+        # primary cancellation mechanism (worker will see the status on next check)
+        job.status = models.Job.Status.INTERRUPTED
+        job.save()
+
+        logger.info("Cancelled job %s", pk)
+        serializer = serializers.JobSerializer(job)
+        return Response(serializer.data)
