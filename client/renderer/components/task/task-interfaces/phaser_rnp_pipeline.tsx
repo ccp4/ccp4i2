@@ -138,15 +138,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
             <CCP4i2TaskElement
               {...props}
-              itemName="XYZIN_PARENT"
-              qualifiers={{
-                guiLabel: "Parent coordinates",
-                toolTip: "Coordinates to be fragmented for rigid body search",
-              }}
-            />
-
-            <CCP4i2TaskElement
-              {...props}
               itemName="FREERFLAG"
               qualifiers={{
                 guiLabel: "Free R flags",

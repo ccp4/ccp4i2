@@ -477,7 +477,8 @@ export function useApi() {
       methodName: string,
       kwargs: Record<string, any> = {},
       deps: any[] = [],
-      enabled: boolean = true
+      enabled: boolean = true,
+      args: any[] = [],
     ): SWRResponse<T> {
       // Build a cache key that includes all dependencies
       const swrKey = enabled && jobId
@@ -488,6 +489,7 @@ export function useApi() {
         return apiPost<T>(url, {
           object_path: objectPath,
           method_name: methodName,
+          args,
           kwargs,
         });
       };

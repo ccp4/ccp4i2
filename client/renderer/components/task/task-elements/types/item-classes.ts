@@ -225,7 +225,7 @@ export const ITEM_CLASS_COMPONENT_MAP = {
   CCrystalName: "CStringElement",
   CRangeSelection: "CStringElement",
   CDatasetName: "CStringElement",
-  CAtomSelection: "CStringElement",
+  CAtomSelection: "CAtomSelectionElement",
   CBoolean: "CBooleanElement",
 
   // File types -> CSimpleDataFileElement

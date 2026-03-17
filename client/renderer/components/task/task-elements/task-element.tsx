@@ -32,6 +32,7 @@ import {
   COccRelationRefmacListElement,
 } from "./coccupancygroups";
 import { CTLSRangeListElement } from "./ctlsranges";
+import { CAtomSelectionElement } from "./catomselection";
 import { useInferredVisibility } from "./hooks/useInferredVisibility";
 import type { ItemClass } from "./types/item-classes";
 
@@ -109,9 +110,16 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
       case "CCrystalName":
       case "CRangeSelection":
       case "CDatasetName":
-      case "CAtomSelection":
         return (
           <CStringElement key={the_uuid} {...props} qualifiers={qualifiers} />
+        );
+      case "CAtomSelection":
+        return (
+          <CAtomSelectionElement
+            key={the_uuid}
+            {...props}
+            qualifiers={qualifiers}
+          />
         );
       case "CSMILESString":
         return (
