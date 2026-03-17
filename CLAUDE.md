@@ -130,6 +130,9 @@ Run tests with proper CCP4 environment configuration:
 
 # Run tests matching a pattern
 ./run_test.sh -k "test_aimless"
+
+# Run i2run tests in parallel (recommended — most are single-threaded crystallography)
+./run_test.sh tests/i2run/ -n 8
 ```
 
 The `run_test.sh` script sets up the required environment variables and paths.

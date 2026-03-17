@@ -12,6 +12,32 @@ from ccp4i2.core.base_object.error_reporting import CErrorReport
 from ccp4i2.core.cdata_stubs.CCP4XtalData import CAltSpaceGroupStub, CAltSpaceGroupListStub, CAnomalousColumnGroupStub, CAnomalousIntensityColumnGroupStub, CAnomalousScatteringElementStub, CAsuComponentStub, CAsuComponentListStub, CCellStub, CCellAngleStub, CCellLengthStub, CColumnGroupStub, CColumnGroupItemStub, CColumnGroupListStub, CColumnTypeStub, CColumnTypeListStub, CCrystalNameStub, CDatasetStub, CDatasetListStub, CDatasetNameStub, CDialsJsonFileStub, CDialsPickleFileStub, CExperimentalDataTypeStub, CFPairColumnGroupStub, CFSigFColumnGroupStub, CFormFactorStub, CFreeRColumnGroupStub, CFreeRDataFileStub, CGenericReflDataFileStub, CHLColumnGroupStub, CIPairColumnGroupStub, CISigIColumnGroupStub, CImageFileStub, CImageFileListStub, CImosflmXmlDataFileStub, CImportUnmergedStub, CImportUnmergedListStub, CMapCoeffsDataFileStub, CMapColumnGroupStub, CMapDataFileStub, CMergeMiniMtzStub, CMergeMiniMtzListStub, CMiniMtzDataFileStub, CMiniMtzDataFileListStub, CMmcifReflDataStub, CMmcifReflDataFileStub, CMtzColumnStub, CMtzColumnGroupStub, CMtzColumnGroupTypeStub, CMtzDataStub, CMtzDataFileStub, CMtzDatasetStub, CObsDataFileStub, CPhaserRFileDataFileStub, CPhaserSolDataFileStub, CPhiFomColumnGroupStub, CPhsDataFileStub, CPhaserTngDagFileStub, CProgramColumnGroupStub, CProgramColumnGroup0Stub, CRefmacKeywordFileStub, CReindexOperatorStub, CResolutionRangeStub, CRunBatchRangeStub, CRunBatchRangeListStub, CShelxFADataFileStub, CShelxLabelStub, CSpaceGroupStub, CSpaceGroupCellStub, CUnmergedDataContentStub, CUnmergedDataFileStub, CUnmergedDataFileListStub, CUnmergedMtzDataFileStub, CWavelengthStub, CXia2ImageSelectionStub, CXia2ImageSelectionListStub
 
 
+class _ColumnInfo:
+    """Lightweight wrapper around an MTZ column label and type.
+
+    Supports the access patterns used across the codebase:
+    - ``str(col)``             → label string
+    - ``col.columnLabel``      → label string
+    - ``col.columnType``       → MTZ column type character (e.g. 'F', 'Q', 'P')
+    - ``col.get('columnLabel')`` → label string (dict-like access)
+    """
+
+    __slots__ = ('columnLabel', 'columnType')
+
+    def __init__(self, label: str, col_type: str = ''):
+        self.columnLabel = str(label)
+        self.columnType = str(col_type)
+
+    def get(self, key, default=None):
+        return getattr(self, key, default)
+
+    def __str__(self):
+        return self.columnLabel
+
+    def __repr__(self):
+        return f"_ColumnInfo({self.columnLabel!r}, {self.columnType!r})"
+
+
 def _compact_batch_ranges(numbers: list) -> str:
     """
     Convert a list of batch numbers to compact range notation.
@@ -1534,39 +1560,45 @@ class CMtzData(CMtzDataStub):
 
     def getListOfColumns(self):
         """
-        Get list of column labels from MTZ file.
+        Get list of column descriptors from MTZ file.
 
-        Legacy API compatibility method for TestObsConversions and other plugins.
-        Returns list of column label strings.
+        Returns objects that support the access patterns used across the codebase:
+        - ``str(column)``              → label string
+        - ``column.columnLabel``        → label string
+        - ``column.get('columnLabel')`` → label string (dict-like access)
+        - ``column.columnType``         → MTZ column type character
 
         Returns:
-            list: List of column labels (strings)
-
-        Example:
-            >>> columns = mtz_data.getListOfColumns()
-            >>> print(columns)  # ['H', 'K', 'L', 'F', 'SIGF', ...]
+            list: List of _ColumnInfo objects (excluding H, K, L index columns)
         """
+        raw = self._getRawColumnList()
+        # Exclude HKL index columns — callers expect only data columns
+        return [c for c in raw if c.columnLabel not in ('H', 'K', 'L')]
+
+    def _getRawColumnList(self):
+        """Return _ColumnInfo objects for ALL columns including H, K, L."""
         # First try to use stored gemmi Mtz object (most reliable)
         if hasattr(self, '_gemmi_mtz') and self._gemmi_mtz is not None:
             try:
-                return [col.label for col in self._gemmi_mtz.columns]
+                return [_ColumnInfo(col.label, col.type) for col in self._gemmi_mtz.columns]
             except Exception:
                 pass
 
         # Fallback: use listOfColumns attribute if set
         if hasattr(self, 'listOfColumns') and self.listOfColumns is not None:
-            # Handle CList or list of CMtzColumn objects
             columns = []
             col_list = self.listOfColumns.value if hasattr(self.listOfColumns, 'value') else self.listOfColumns
 
             if isinstance(col_list, (list, tuple)):
                 for col in col_list:
                     if hasattr(col, 'columnLabel'):
-                        # CMtzColumn object
                         label = col.columnLabel.value if hasattr(col.columnLabel, 'value') else col.columnLabel
-                        columns.append(str(label))
+                        col_type = ''
+                        if hasattr(col, 'columnType'):
+                            col_type = col.columnType.value if hasattr(col.columnType, 'value') else col.columnType
+                        columns.append(_ColumnInfo(str(label), str(col_type)))
                     elif isinstance(col, str):
-                        columns.append(col)
+                        columns.append(_ColumnInfo(col))
                 return columns
 
         # Final fallback: return empty list

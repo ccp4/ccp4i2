@@ -756,8 +756,8 @@ class CAtomSelection(CAtomSelectionStub):
     Add file I/O, validation, and business logic here.
     """
 
-    # Add your methods here
-    pass
+    def __str__(self):
+        return str(self.text)
 
 
 class CBlastData(CBlastDataStub):
@@ -1859,6 +1859,28 @@ class CPdbDataFile(CPdbDataFileStub):
         result = len(stripped) > 0
         pass  # DEBUG: print(f"DEBUG isSelectionSet: text_value='{text_value}', stripped='{stripped}', result={result}", file=sys.stderr)
         return result
+
+    def atomCount(self, selection_string: str) -> int:
+        """Return the number of atoms matching a selection string.
+
+        Loads the coordinate file (if not already loaded) and evaluates
+        the selection against the gemmi structure.
+
+        Args:
+            selection_string: mmdb-style CID selection (e.g. "A/", "/*/*/*/*")
+
+        Returns:
+            Number of selected atoms, or -1 if the file is not available
+            or the selection is invalid.
+        """
+        try:
+            content = self.fileContent
+            if content is None:
+                return -1
+            n_atoms, _ = content.interpretSelection(selection_string)
+            return n_atoms
+        except Exception:
+            return -1
 
     def _introspect_content_flag(self) -> Optional[int]:
         """Auto-detect contentFlag by determining if file is PDB or mmCIF format.

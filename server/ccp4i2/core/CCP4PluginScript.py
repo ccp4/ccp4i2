@@ -3261,6 +3261,76 @@ class CPluginScript(CData):
             traceback.print_exc()
             return self.FAILED
 
+    def joinMtz(self, outfile, infiles):
+        """
+        Merge columns from one or more MTZ files into a single output MTZ.
+
+        Reimplementation of the legacy cmtzjoin-based method using gemmi.
+
+        Args:
+            outfile: Path to the output merged MTZ file.
+            infiles: List of tuples, either:
+                - (filepath, column_labels_out)  — 2-tuple form
+                - (filepath, column_labels_in, column_labels_out) — 3-tuple form
+                Column labels are comma-separated strings (e.g. "F,SIGF").
+
+        Returns:
+            CPluginScript.SUCCEEDED on success, CPluginScript.FAILED on error.
+        """
+        import gemmi
+        import numpy as np
+
+        try:
+            # Read the first input to establish cell and spacegroup
+            first_path = infiles[0][0]
+            ref_mtz = gemmi.read_mtz_file(str(first_path))
+
+            mtz_out = gemmi.Mtz()
+            mtz_out.spacegroup = ref_mtz.spacegroup
+            mtz_out.cell = ref_mtz.cell
+            mtz_out.add_dataset('merged')
+            mtz_out.add_column('H', 'H')
+            mtz_out.add_column('K', 'H')
+            mtz_out.add_column('L', 'H')
+
+            # Collect HKL from reference and all data columns
+            hkl_array = ref_mtz.make_miller_array()
+            data_columns = []
+
+            for entry in infiles:
+                if len(entry) == 2:
+                    filepath, colout = entry
+                    colin = colout
+                elif len(entry) == 3:
+                    filepath, colin, colout = entry
+                else:
+                    continue
+
+                mtz_in = gemmi.read_mtz_file(str(filepath))
+                in_labels = [l.strip() for l in colin.split(',')]
+                out_labels = [l.strip() for l in colout.split(',')]
+
+                for in_label, out_label in zip(in_labels, out_labels):
+                    col = mtz_in.column_with_label(in_label)
+                    if col is None:
+                        print(f"[joinMtz] Warning: column '{in_label}' not found in {filepath}")
+                        continue
+                    mtz_out.add_column(out_label, col.type)
+                    data_columns.append(np.array(col))
+
+            # Build output data array: [H, K, L, ...columns...]
+            data = np.column_stack([hkl_array] + data_columns)
+            mtz_out.set_data(data.astype(np.float32))
+            mtz_out.write_to_file(str(outfile))
+
+            return self.SUCCEEDED
+
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
+            print(f"[joinMtz] Failed: {e}")
+            return self.FAILED
+
     def splitHklout(
         self,
         miniMtzsOut: list,

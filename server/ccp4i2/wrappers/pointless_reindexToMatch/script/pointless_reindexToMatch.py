@@ -73,19 +73,21 @@ class pointless_reindexToMatch(CPluginScript):
             print('\n\n\n\n F_SIGF',self.container.inputData.F_SIGF)
             print('\n\n\n\n fileContent',self.container.inputData.F_SIGF.fileContent)
             print('\n\n\n\n colList',colList)
-            fSigFLabelList = [str(column.get('columnLabel')) for column in colList]
+            fSigFLabelList = [str(column) for column in colList]
             self.fSigFLabelsString = ','.join(fSigFLabelList)
             fileList = []
             fileList += [(str(self.container.inputData.F_SIGF.fullPath), self.fSigFLabelsString, self.fSigFLabelsString)]
             if self.container.inputData.FREERFLAG.isSet():
                 colList = self.container.inputData.FREERFLAG.fileContent.getListOfColumns()
-                freeRFlagLabelList = [str(column.columnLabel) for column in colList]
+                freeRFlagLabelList = [str(column) for column in colList]
                 self.freeRFlagLabelsString = ','.join(freeRFlagLabelList)
                 fileList += [(str(self.container.inputData.FREERFLAG.fullPath), self.freeRFlagLabelsString, self.freeRFlagLabelsString)]
             mergedFilename = os.path.join(self.workDirectory,'MergedToReindex.mtz')
             rv = self.joinMtz(mergedFilename, fileList)
             return rv
-        except:
+        except Exception:
+            import traceback
+            traceback.print_exc()
             self.appendErrorReport(201,'Pointless_reindexToMatch: processInputFiles: exception in process')
             return CPluginScript.FAILED
 
@@ -172,7 +174,7 @@ class pointless_reindexToMatch(CPluginScript):
         print("FSO", self.container.outputData.F_SIGF_OUT)
 
 
-        error = self.splitHklout(outputFilesList,outputColumnsList,infile = reindexedFilename)
+        error = self.splitHklout(outputFilesList,outputColumnsList,inFile = reindexedFilename)
         if error.maxSeverity()>CCP4ErrorHandling.SEVERITY_WARNING:
             self.appendErrorReport(202,'Pointless_reindexToMatch: error in splitting file')
             return CPluginScript.FAILED

@@ -41,6 +41,7 @@ class TokenType(Enum):
     BACKBONE = auto()        # backbone - backbone atoms only
     SIDECHAIN = auto()       # sidechain - sidechain atoms only
     HETERO = auto()          # hetero/hetatm - HETATM records
+    ALL = auto()             # all - every atom
 
     # Values
     IDENTIFIER = auto()      # Chain IDs, residue names, atom names, etc.
@@ -83,6 +84,7 @@ class Tokenizer:
         'sidechain': TokenType.SIDECHAIN,
         'hetero': TokenType.HETERO,
         'hetatm': TokenType.HETERO,      # alias for hetero
+        'all': TokenType.ALL,
     }
 
     def __init__(self, input_string: str):

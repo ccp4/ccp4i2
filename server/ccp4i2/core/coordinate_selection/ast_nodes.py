@@ -20,6 +20,7 @@ class CategoryType(Enum):
     BACKBONE = auto()     # backbone atoms only
     SIDECHAIN = auto()    # sidechain atoms only
     HETERO = auto()       # HETATM records
+    ALL = auto()          # all atoms
 
 
 @dataclass

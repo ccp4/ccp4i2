@@ -160,7 +160,9 @@ class SelectionEvaluator:
 
                     # Check if residue matches category (for residue-level categories)
                     residue_matches = False
-                    if category == CategoryType.PROTEIN:
+                    if category == CategoryType.ALL:
+                        residue_matches = True
+                    elif category == CategoryType.PROTEIN:
                         residue_matches = is_protein
                     elif category == CategoryType.NUCLEIC:
                         residue_matches = is_nucleic

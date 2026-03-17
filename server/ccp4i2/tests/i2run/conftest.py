@@ -19,7 +19,7 @@ os.environ["CCP4I2_PROJECTS_DIR"] = str(TEST_PROJECTS_DIR)
 # Initialize Django
 django.setup()
 
-from .urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
+from .urls import pdbe_fasta, pdbe_pdb, redo_cif, redo_mtz, rcsb_mmcif
 from .utils import download
 
 
@@ -282,4 +282,16 @@ def mtz7beq():
 @fixture(scope="session")
 def seq8xfm():
     with download(pdbe_fasta("8xfm")) as path:
+        yield path
+
+
+@fixture(scope="session")
+def pdb1h1s():
+    with download(pdbe_pdb("1h1s")) as path:
+        yield path
+
+
+@fixture(scope="session")
+def mtz1h1s():
+    with download(redo_mtz("1h1s")) as path:
         yield path

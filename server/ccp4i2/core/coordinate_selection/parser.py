@@ -31,6 +31,7 @@ CATEGORY_TOKEN_MAP = {
     TokenType.BACKBONE: CategoryType.BACKBONE,
     TokenType.SIDECHAIN: CategoryType.SIDECHAIN,
     TokenType.HETERO: CategoryType.HETERO,
+    TokenType.ALL: CategoryType.ALL,
 }
 
 
@@ -385,6 +386,8 @@ def parse_selection(selection_string: str) -> SelectionNode:
         >>> ast = parse_selection("{A/ or B/} and {(ALA)}")
         >>> ast = parse_selection("not (HOH)")
     """
+    if not selection_string or not selection_string.strip():
+        return CategorySelector(CategoryType.ALL)
     tokens = tokenize(selection_string)
     parser = Parser(tokens)
     return parser.parse()
