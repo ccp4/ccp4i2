@@ -58,7 +58,7 @@ def _bypass_permissions_globally():
 _bypass_permissions_globally()
 
 # Import URL helpers from i2run
-from ccp4i2.tests.i2run.urls import pdbe_fasta, redo_cif, redo_mtz, rcsb_mmcif
+from ccp4i2.tests.i2run.urls import pdbe_fasta, pdbe_mmcif, pdbe_pdb, redo_cif, redo_mtz, rcsb_mmcif
 from ccp4i2.tests.i2run.utils import download
 
 
@@ -471,4 +471,81 @@ def cif7beq():
 def mtz7beq():
     """Download 7beq MTZ from PDB-REDO."""
     with download(redo_mtz("7beq")) as path:
+        yield path
+
+
+# === Additional demo data fixtures ===
+
+@pytest.fixture(scope="session")
+def beta_blip_mtz(demo_data_dir):
+    """Path to beta_blip merged MTZ."""
+    path = demo_data_dir / 'beta_blip' / 'beta_blip_P3221.mtz'
+    if not path.exists():
+        pytest.skip(f"Demo data not found: {path}")
+    return str(path)
+
+
+@pytest.fixture(scope="session")
+def beta_pdb(demo_data_dir):
+    """Path to beta PDB model."""
+    path = demo_data_dir / 'beta_blip' / 'beta.pdb'
+    if not path.exists():
+        pytest.skip(f"Demo data not found: {path}")
+    return str(path)
+
+
+@pytest.fixture(scope="session")
+def blip_pdb(demo_data_dir):
+    """Path to blip PDB model."""
+    path = demo_data_dir / 'beta_blip' / 'blip.pdb'
+    if not path.exists():
+        pytest.skip(f"Demo data not found: {path}")
+    return str(path)
+
+
+@pytest.fixture(scope="session")
+def gamma_initial_phases_mtz(demo_data_dir):
+    """Path to gamma initial phases MTZ."""
+    path = demo_data_dir / 'gamma' / 'initial_phases.mtz'
+    if not path.exists():
+        pytest.skip(f"Demo data not found: {path}")
+    return str(path)
+
+
+@pytest.fixture(scope="session")
+def glyco_4iid_mtz(demo_data_dir):
+    """Path to glyco 4iid MTZ."""
+    path = demo_data_dir / 'glyco' / '4iid.mtz'
+    if not path.exists():
+        pytest.skip(f"Demo data not found: {path}")
+    return str(path)
+
+
+@pytest.fixture(scope="session")
+def glyco_4iid_pdb(demo_data_dir):
+    """Path to glyco 4iid PDB."""
+    path = demo_data_dir / 'glyco' / '4iid.pdb'
+    if not path.exists():
+        pytest.skip(f"Demo data not found: {path}")
+    return str(path)
+
+
+@pytest.fixture(scope="session")
+def cif4dl8():
+    """Download 4dl8 mmCIF from PDBe."""
+    with download(pdbe_mmcif("4dl8")) as path:
+        yield path
+
+
+@pytest.fixture(scope="session")
+def pdb1h1s():
+    """Download 1h1s PDB from PDBe."""
+    with download(pdbe_pdb("1h1s")) as path:
+        yield path
+
+
+@pytest.fixture(scope="session")
+def mtz1h1s():
+    """Download 1h1s MTZ from PDB-REDO."""
+    with download(redo_mtz("1h1s")) as path:
         yield path

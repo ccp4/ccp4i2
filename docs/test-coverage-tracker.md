@@ -6,7 +6,9 @@ Coverage of GUI-visible tasks (from `client/renderer/lib/task-registry.ts`).
 Tasks appearing in multiple categories are listed once, under their primary
 category.  "Developer tools" and "Uncategorized" tasks are excluded.
 
-Guide for writing new tests: [docs/writing-i2run-tests.md](writing-i2run-tests.md)
+Guide for writing new tests:
+- [docs/writing-i2run-tests.md](writing-i2run-tests.md)
+- [docs/writing-api-tests.md](writing-api-tests.md)
 
 ## Legend
 
@@ -21,11 +23,12 @@ Guide for writing new tests: [docs/writing-i2run-tests.md](writing-i2run-tests.m
 | Metric             | Count |
 |--------------------|-------|
 | GUI-visible tasks  | 63    |
-| i2run tested       | 35    |
-| i2run disabled     | 2     |
-| API tested         | 25    |
-| No tests at all    | 24    |
-| Full coverage      | 22    |
+| i2run tested       | 43    |
+| i2run disabled     | 4     |
+| API tested         | 47    |
+| API disabled       | 1     |
+| No tests at all    | 18    |
+| Full coverage      | 38    |
 
 
 ## Data Entry
@@ -65,12 +68,12 @@ Guide for writing new tests: [docs/writing-i2run-tests.md](writing-i2run-tests.m
 
 ## AlphaFold Utilities
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| ccp4mg_edit_model    | -     | -   |                            |                              |
-| mrparse              | Y     | Y   | test_mrparse.py            | test_utilities_api.py        |
-| editbfac             | Y     | -   | test_editbfac.py           |                              |
-| arcimboldo           | Y     | -   | test_arcimboldo.py         |                              |
+| Task                 | i2run | API | i2run test file            | API test file                     |
+|----------------------|-------|-----|----------------------------|-----------------------------------|
+| ccp4mg_edit_model    | -     | -   |                            |                                   |
+| mrparse              | Y     | Y   | test_mrparse.py            | test_utilities_api.py             |
+| editbfac             | Y     | Y   | test_editbfac.py           | test_additional_pipelines_api.py  |
+| arcimboldo           | Y     | -   | test_arcimboldo.py         |                                   |
 
 ## Experimental Phasing
 
@@ -93,20 +96,20 @@ Guide for writing new tests: [docs/writing-i2run-tests.md](writing-i2run-tests.m
 
 ## Molecular Replacement
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| mrbump_basic         | Y     | Y   | test_mrbump.py             | test_mr_pipelines_api.py     |
-| phaser_simple        | Y     | Y   | test_phaser_simple.py      | test_mr_pipelines_api.py     |
-| phaser_pipeline      | Y     | -   | test_phaser_expert.py      |                              |
-| molrep_pipe          | Y     | Y   | test_molrep.py             | test_mr_pipelines_api.py     |
-| molrep_den           | -     | -   |                            |                              |
-| parrot               | Y     | Y   | test_parrot.py             | test_model_building_api.py   |
-| phaser_rnp_pipeline  | Y     | -   | test_phaser_rnp_pipeline.py|                              |
-| AMPLE                | Y     | -   | test_ample.py              |                              |
-| SIMBAD               | -     | -   |                            |                              |
-| morda_i2             | -     | -   |                            |                              |
-| comit                | Y     | -   | test_comit.py              |                              |
-| i2Dimple             | Y     | Y   | test_dimple.py             | test_mr_pipelines_api.py     |
+| Task                 | i2run | API | i2run test file             | API test file                    |
+|----------------------|-------|-----|-----------------------------|----------------------------------|
+| mrbump_basic         | Y     | Y   | test_mrbump.py              | test_mr_pipelines_api.py         |
+| phaser_simple        | Y     | Y   | test_phaser_simple.py       | test_mr_pipelines_api.py         |
+| phaser_pipeline      | Y     | Y   | test_phaser_expert.py       | test_additional_pipelines_api.py |
+| molrep_pipe          | Y     | Y   | test_molrep.py              | test_mr_pipelines_api.py         |
+| molrep_den           | -     | -   |                             |                                  |
+| parrot               | Y     | Y   | test_parrot.py              | test_model_building_api.py       |
+| phaser_rnp_pipeline  | Y     | Y   | test_phaser_rnp_pipeline.py | test_additional_pipelines_api.py |
+| AMPLE                | Y     | -   | test_ample.py               |                                  |
+| SIMBAD               | -     | -   |                             |                                  |
+| morda_i2             | -     | -   |                             |                                  |
+| comit                | Y     | Y   | test_comit.py               | test_additional_pipelines_api.py |
+| i2Dimple             | Y     | Y   | test_dimple.py              | test_mr_pipelines_api.py         |
 
 ## Model Building
 
@@ -122,17 +125,17 @@ Guide for writing new tests: [docs/writing-i2run-tests.md](writing-i2run-tests.m
 
 ## Refinement
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| servalcat_pipe       | Y     | Y   | test_servalcat.py          | test_refinement_api.py       |
-| prosmart_refmac      | Y     | Y   | test_refmac.py             | test_refinement_api.py       |
-| metalCoord           | Y     | -   | test_metalcoord.py         |                              |
-| coot_rsr_morph       | Y     | Y   | test_rsr_morph.py          | test_utilities_api.py        |
-| pdb_redo_api         | -     | -   |                            |                              |
-| sheetbend            | Y     | Y   | test_sheetbend.py          | test_refinement_api.py       |
-| SubtractNative       | Y     | -   | test_subtract_native.py    |                              |
-| lorestr_i2           | D     | -   | test_lorestr.py (disabled) |                              |
-| zanuda               | -     | -   |                            |                              |
+| Task                 | i2run | API | i2run test file            | API test file                     |
+|----------------------|-------|-----|----------------------------|-----------------------------------|
+| servalcat_pipe       | Y     | Y   | test_servalcat.py          | test_refinement_api.py            |
+| prosmart_refmac      | Y     | Y   | test_refmac.py             | test_refinement_api.py            |
+| metalCoord           | Y     | Y   | test_metalcoord.py         | test_additional_pipelines_api.py  |
+| coot_rsr_morph       | Y     | Y   | test_rsr_morph.py          | test_utilities_api.py             |
+| pdb_redo_api         | -     | -   |                            |                                   |
+| sheetbend            | Y     | Y   | test_sheetbend.py          | test_refinement_api.py            |
+| SubtractNative       | Y     | Y   | test_subtract_native.py    | test_additional_pipelines_api.py  |
+| lorestr_i2           | D     | -   | test_lorestr.py (disabled) |                                   |
+| zanuda               | D     | D   | test_zanuda.py (skipped)   | test_new_coverage_api.py (skipped)|
 
 ## Ligands
 
@@ -146,8 +149,8 @@ Guide for writing new tests: [docs/writing-i2run-tests.md](writing-i2run-tests.m
 | Task                 | i2run | API | i2run test file            | API test file                |
 |----------------------|-------|-----|----------------------------|------------------------------|
 | validate_protein     | Y     | Y   | test_validate.py           | test_utilities_api.py        |
-| edstats              | -     | -   |                            |                              |
-| privateer            | -     | -   |                            |                              |
+| edstats              | Y     | Y   | test_edstats_wrapper.py    | test_new_coverage_api.py     |
+| privateer            | Y     | Y   | test_privateer.py          | test_new_coverage_api.py     |
 | qtpisa               | -     | -   |                            |                              |
 
 ## Export
@@ -160,50 +163,50 @@ Guide for writing new tests: [docs/writing-i2run-tests.md](writing-i2run-tests.m
 
 ## Reflection Data Tools
 
-| Task                      | i2run | API | i2run test file            | API test file                |
-|---------------------------|-------|-----|----------------------------|------------------------------|
-| pointless_reindexToMatch  | -     | -   |                            |                              |
-| phaser_EP_LLG             | -     | -   |                            |                              |
-| cmapcoeff                 | -     | -   |                            |                              |
-| chltofom                  | -     | -   |                            |                              |
-| cphasematch               | -     | -   |                            |                              |
-| ctruncate                 | -     | -   |                            |                              |
-| splitMtz                  | Y     | -   | test_split_mtz.py          |                              |
-| scaleit                   | Y     | -   | test_scaleit.py            |                              |
-| cpatterson                | -     | -   |                            |                              |
-| density_calculator        | -     | -   |                            |                              |
+| Task                      | i2run | API | i2run test file            | API test file                     |
+|---------------------------|-------|-----|----------------------------|-----------------------------------|
+| pointless_reindexToMatch  | Y     | Y   | test_pointless_reindex.py  | test_new_coverage_api.py          |
+| phaser_EP_LLG             | -     | -   |                            |                                   |
+| cmapcoeff                 | -     | -   |                            |                                   |
+| chltofom                  | -     | -   |                            |                                   |
+| cphasematch               | -     | -   |                            |                                   |
+| ctruncate                 | D     | Y   | test_ctruncate.py (skipped)| test_new_coverage_api.py          |
+| splitMtz                  | Y     | Y   | test_split_mtz.py          | test_additional_pipelines_api.py  |
+| scaleit                   | Y     | Y   | test_scaleit.py            | test_additional_pipelines_api.py  |
+| cpatterson                | -     | -   |                            |                                   |
+| density_calculator        | -     | -   |                            |                                   |
 
 ## Coordinate Data Tools
 
 | Task                 | i2run | API | i2run test file            | API test file                |
 |----------------------|-------|-----|----------------------------|------------------------------|
 | csymmatch            | Y     | Y   | test_csymmatch.py          | test_utilities_api.py        |
-| gesamt               | -     | -   |                            |                              |
+| gesamt               | Y     | Y   | test_gesamt.py             | test_new_coverage_api.py     |
 | pdbview_edit         | -     | -   |                            |                              |
 | add_fractional_coords| -     | -   |                            |                              |
 
 
-## Tasks with no test coverage (priority list)
+## Known issues
 
-These 24 tasks have neither i2run nor API tests:
+| Task | Suite | Issue | Notes |
+|------|-------|-------|-------|
+| zanuda | both | Skipped | zanuda's internal refmac5 fails to parse 8xfm mmCIF model |
+| ctruncate | i2run | Skipped | KeywordExtractor bug: `get_merged_metadata` is None for ctruncate's container |
+| gesamt | both | Partial | Wrapper bug: `CTransformation` missing `.rotation.alpha` path in `processOutputFiles()`. Binary runs fine, XYZOUT.cif produced, but program.xml not written. |
+
+## Tasks still without tests (18 remaining)
 
 | Priority | Task                      | Category               | Notes                            |
 |----------|---------------------------|------------------------|----------------------------------|
-| HIGH     | chainsaw                  | Bioinformatics         | Widely used MR prep tool         |
+| HIGH     | chainsaw                  | Bioinformatics         | Needs alignment file input       |
 | HIGH     | phaser_EP_AUTO            | Experimental Phasing   | Key EP pipeline                  |
-| HIGH     | zanuda                    | Refinement             |                                  |
 | HIGH     | pdb_redo_api              | Refinement             | External API dependency          |
-| HIGH     | edstats                   | Validation             |                                  |
-| HIGH     | privateer                 | Validation             |                                  |
-| MED      | matthews                  | Data Reduction         | Simple calculation               |
-| MED      | molrep_selfrot            | Data Reduction         |                                  |
-| MED      | molrep_den                | Molecular Replacement  |                                  |
+| MED      | matthews                  | Data Reduction         | No Python wrapper (def.xml only) |
+| MED      | molrep_selfrot            | Data Reduction         | Self-rotation function plot      |
+| MED      | molrep_den                | Molecular Replacement  | Density-based MR                 |
 | MED      | coot_rebuild              | Model Building         | Requires Coot binary             |
 | MED      | coot_script_lines         | Model Building         | Requires Coot binary             |
-| MED      | qtpisa                    | Validation             |                                  |
-| MED      | pointless_reindexToMatch  | Refl. Data Tools       | Tested indirectly via phaser_rnp |
-| MED      | ctruncate                 | Refl. Data Tools       |                                  |
-| MED      | gesamt                    | Coord. Data Tools      |                                  |
+| MED      | qtpisa                    | Validation             | Asynchronous; needs QtPISA       |
 | LOW      | ProvideSequence           | Data Entry             | Simple data entry                |
 | LOW      | ProvideAlignment          | Data Entry             | Simple data entry                |
 | LOW      | AlternativeImportXIA2     | Data Entry             |                                  |

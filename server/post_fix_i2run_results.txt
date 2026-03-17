@@ -1,0 +1,1476 @@
+Sourcing CCP4 from: /Users/nmemn/Developer/ccp4i2/../ccp4-20251105
+
+CCP4I2_ROOT: /Users/nmemn/Developer/ccp4i2/server
+DJANGO_SETTINGS_MODULE: ccp4i2.config.test_settings
+Python: /Users/nmemn/Developer/ccp4-20251105/bin/ccp4-python
+
+Running: pytest ccp4i2/tests/i2run/ -n 8 -v
+
+============================= test session starts ==============================
+platform darwin -- Python 3.11.11, pytest-8.4.2, pluggy-1.6.0 -- /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+cachedir: .pytest_cache
+django: version: 5.2.9, settings: ccp4i2.config.test_settings (from env)
+rootdir: /Users/nmemn/Developer/ccp4i2/server/ccp4i2/tests/i2run
+configfile: pytest.ini
+plugins: mock-1.13.0, xdist-3.8.0, dials-data-2.4.127, django-4.11.1, asyncio-1.3.0, forked-1.5.0
+asyncio: mode=Mode.STRICT, debug=False, asyncio_default_fixture_loop_scope=None, asyncio_default_test_loop_scope=function
+created: 8/8 workers
+8 workers [113 items]
+
+scheduling tests via LoadScheduling
+
+ccp4i2/tests/i2run/test_acedrg.py::test_from_mol 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_mol2 
+ccp4i2/tests/i2run/test_areaimol.py::test_compare_5a3h_and_8a3h 
+ccp4i2/tests/i2run/test_arcimboldo.py::test_arcimboldo 
+[gw4] [  0%] SKIPPED ccp4i2/tests/i2run/test_arcimboldo.py::test_arcimboldo 
+ccp4i2/tests/i2run/test_areaimol.py::test_5a3h 
+ccp4i2/tests/i2run/test_aimless.py::test_gamma 
+ccp4i2/tests/i2run/test_auspex.py::test_auspex 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_monomer_library 
+ccp4i2/tests/i2run/test_crank2.py::test_crank2 
+[gw4] [  1%] PASSED ccp4i2/tests/i2run/test_areaimol.py::test_5a3h 
+ccp4i2/tests/i2run/test_areaimol.py::test_5a3h_imol 
+[gw5] [  2%] PASSED ccp4i2/tests/i2run/test_areaimol.py::test_compare_5a3h_and_8a3h 
+ccp4i2/tests/i2run/test_arpwarp.py::test_arpwarp 
+[gw5] [  3%] SKIPPED ccp4i2/tests/i2run/test_arpwarp.py::test_arpwarp 
+ccp4i2/tests/i2run/test_asu_contents.py::test_beta_blip 
+[gw4] [  4%] PASSED ccp4i2/tests/i2run/test_areaimol.py::test_5a3h_imol 
+ccp4i2/tests/i2run/test_dimple.py::test_dimple 
+[gw5] [  5%] PASSED ccp4i2/tests/i2run/test_asu_contents.py::test_beta_blip 
+ccp4i2/tests/i2run/test_editbfac.py::test_robetta 
+[gw3] [  6%] PASSED ccp4i2/tests/i2run/test_aimless.py::test_gamma 
+ccp4i2/tests/i2run/test_aimless.py::test_mdm2 
+[gw6] [  7%] PASSED ccp4i2/tests/i2run/test_auspex.py::test_auspex 
+ccp4i2/tests/i2run/test_comit.py::test_comit 
+[gw6] [  7%] PASSED ccp4i2/tests/i2run/test_comit.py::test_comit 
+ccp4i2/tests/i2run/test_coordinate_selector.py::test_8xfm 
+[gw6] [  8%] PASSED ccp4i2/tests/i2run/test_coordinate_selector.py::test_8xfm 
+[gw5] [  9%] PASSED ccp4i2/tests/i2run/test_editbfac.py::test_robetta 
+ccp4i2/tests/i2run/test_freerflag.py::test_freerflag 
+ccp4i2/tests/i2run/test_edstats_wrapper.py::test_8xfm 
+[gw6] [ 10%] PASSED ccp4i2/tests/i2run/test_freerflag.py::test_freerflag 
+ccp4i2/tests/i2run/test_gesamt.py::test_self_superposition 
+[gw6] [ 11%] PASSED ccp4i2/tests/i2run/test_gesamt.py::test_self_superposition 
+ccp4i2/tests/i2run/test_import_merged.py::test_2ceu_cif 
+[gw6] [ 12%] PASSED ccp4i2/tests/i2run/test_import_merged.py::test_2ceu_cif 
+ccp4i2/tests/i2run/test_import_merged.py::test_gamma_mtz 
+[gw6] [ 13%] PASSED ccp4i2/tests/i2run/test_import_merged.py::test_gamma_mtz 
+ccp4i2/tests/i2run/test_make_link.py::test_6ndn 
+[gw0] [ 14%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_monomer_library 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb 
+[gw5] [ 15%] PASSED ccp4i2/tests/i2run/test_edstats_wrapper.py::test_8xfm 
+ccp4i2/tests/i2run/test_find_ligand.py::test_8xfm 
+[gw5] [ 15%] SKIPPED ccp4i2/tests/i2run/test_find_ligand.py::test_8xfm 
+ccp4i2/tests/i2run/test_find_waters.py::test_8xfm 
+[gw5] [ 16%] PASSED ccp4i2/tests/i2run/test_find_waters.py::test_8xfm 
+ccp4i2/tests/i2run/test_modelcraft.py::test_8xfm 
+[gw4] [ 17%] PASSED ccp4i2/tests/i2run/test_dimple.py::test_dimple 
+ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pdb 
+[gw3] [ 18%] PASSED ccp4i2/tests/i2run/test_aimless.py::test_mdm2 
+ccp4i2/tests/i2run/test_ample.py::test_8xfm 
+[gw2] [ 19%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_mol2 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles_atom_name_matching 
+[gw5] [ 20%] ERROR ccp4i2/tests/i2run/test_modelcraft.py::test_8xfm 
+ccp4i2/tests/i2run/test_modelcraft.py::test_gamma_ep 
+[gw3] [ 21%] PASSED ccp4i2/tests/i2run/test_ample.py::test_8xfm 
+ccp4i2/tests/i2run/test_mrbump.py::test_mrbump 
+[gw1] [ 22%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_mol 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_sdf 
+[gw4] [ 23%] PASSED ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pdb 
+ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_cif 
+[gw4] [ 23%] PASSED ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_cif 
+ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pae 
+[gw4] [ 24%] SKIPPED ccp4i2/tests/i2run/test_editbfac.py::test_alphafold_pae 
+ccp4i2/tests/i2run/test_parrot.py::test_parrot 
+[gw4] [ 25%] PASSED ccp4i2/tests/i2run/test_parrot.py::test_parrot 
+ccp4i2/tests/i2run/test_phaser_ep.py::test_phaser_ep 
+[gw4] [ 26%] PASSED ccp4i2/tests/i2run/test_phaser_ep.py::test_phaser_ep 
+ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_default 
+[gw2] [ 27%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles_atom_name_matching 
+ccp4i2/tests/i2run/test_acorn.py::test_acorn 
+[gw6] [ 28%] PASSED ccp4i2/tests/i2run/test_make_link.py::test_6ndn 
+[gw2] [ 29%] PASSED ccp4i2/tests/i2run/test_acorn.py::test_acorn 
+ccp4i2/tests/i2run/test_metalcoord.py::test_metalcoord 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_sheetbend 
+[gw1] [ 30%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_sdf 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles 
+[gw7] [ 30%] PASSED ccp4i2/tests/i2run/test_crank2.py::test_crank2 
+ccp4i2/tests/i2run/test_csymmatch.py::test_8xfm 
+[gw7] [ 31%] PASSED ccp4i2/tests/i2run/test_csymmatch.py::test_8xfm 
+ccp4i2/tests/i2run/test_ctruncate.py::test_gamma_intensities 
+[gw7] [ 32%] SKIPPED ccp4i2/tests/i2run/test_ctruncate.py::test_gamma_intensities 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_json_serialization 
+[gw6] [ 33%] PASSED ccp4i2/tests/i2run/test_metalcoord.py::test_metalcoord 
+[gw7] [ 34%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_json_serialization 
+ccp4i2/tests/i2run/test_model_asu_check.py::test_8xfm 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_extract_no_user_changes 
+[gw7] [ 35%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_extract_no_user_changes 
+ccp4i2/tests/i2run/test_plugin_validation.py::test_bare_prosmart_refmac_validation 
+[gw6] [ 36%] PASSED ccp4i2/tests/i2run/test_model_asu_check.py::test_8xfm 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_phil_exclude_scopes 
+[gw6] [ 37%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_phil_exclude_scopes 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_i2run_gamma 
+[gw7] [ 38%] PASSED ccp4i2/tests/i2run/test_plugin_validation.py::test_bare_prosmart_refmac_validation 
+ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_method 
+[gw7] [ 38%] PASSED ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_method 
+ccp4i2/tests/i2run/test_privateer.py::test_glyco_4iid 
+[gw0] [ 39%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb 
+ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb_metal_af3 
+[gw2] [ 40%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_sheetbend 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma 
+[gw7] [ 41%] PASSED ccp4i2/tests/i2run/test_privateer.py::test_glyco_4iid 
+ccp4i2/tests/i2run/test_refmac.py::test_8xfm 
+[gw7] [ 42%] SKIPPED ccp4i2/tests/i2run/test_refmac.py::test_8xfm 
+ccp4i2/tests/i2run/test_report_generation.py::test_refmac_report_generation 
+[gw4] [ 43%] PASSED ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_default 
+ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_asu 
+[gw0] [ 44%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_cif_rcsb_metal_af3 
+ccp4i2/tests/i2run/test_refmac.py::test_8xfm_basic 
+[gw7] [ 45%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_refmac_report_generation 
+ccp4i2/tests/i2run/test_report_generation.py::test_pointless_report_generation 
+[gw7] [ 46%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_pointless_report_generation 
+ccp4i2/tests/i2run/test_report_generation.py::test_import_merged_report_generation 
+[gw7] [ 46%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_import_merged_report_generation 
+ccp4i2/tests/i2run/test_report_generation.py::test_report_for_nonexistent_task 
+[gw7] [ 47%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_report_for_nonexistent_task 
+ccp4i2/tests/i2run/test_report_generation.py::test_csymmatch_report_generation 
+[gw7] [ 48%] PASSED ccp4i2/tests/i2run/test_report_generation.py::test_csymmatch_report_generation 
+ccp4i2/tests/i2run/test_rsr_morph.py::test_8xfm 
+[gw4] [ 49%] PASSED ccp4i2/tests/i2run/test_phaser_expert.py::test_beta_blip_asu 
+ccp4i2/tests/i2run/test_phaser_rnp_pipeline.py::test_phaser_rnp_pipeline_chain_selections 
+[gw2] [ 50%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma 
+ccp4i2/tests/i2run/test_refmac.py::test_gamma_basic 
+[gw6] [ 51%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_i2run_gamma 
+ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_as_xml_method 
+[gw0] [ 52%] PASSED ccp4i2/tests/i2run/test_refmac.py::test_8xfm_basic 
+ccp4i2/tests/i2run/test_refmac.py::test_gamma 
+[gw0] [ 53%] SKIPPED ccp4i2/tests/i2run/test_refmac.py::test_gamma 
+ccp4i2/tests/i2run/test_servalcat.py::test_1gyu_unmerged_basic 
+[gw6] [ 53%] PASSED ccp4i2/tests/i2run/test_plugin_validation.py::test_plugin_validity_as_xml_method 
+ccp4i2/tests/i2run/test_pointless_reindex.py::test_reindex_to_coords 
+[gw6] [ 54%] PASSED ccp4i2/tests/i2run/test_pointless_reindex.py::test_reindex_to_coords 
+ccp4i2/tests/i2run/test_servalcat.py::test_7prg_neutron_basic 
+[gw3] [ 55%] PASSED ccp4i2/tests/i2run/test_mrbump.py::test_mrbump 
+ccp4i2/tests/i2run/test_mrparse.py::test_mrparse 
+[gw7] [ 56%] PASSED ccp4i2/tests/i2run/test_rsr_morph.py::test_8xfm 
+ccp4i2/tests/i2run/test_scaleit.py::test_gamma_native_vs_xe 
+[gw0] [ 57%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_1gyu_unmerged_basic 
+ccp4i2/tests/i2run/test_servalcat.py::test_7beq_electron_basic 
+[gw7] [ 58%] PASSED ccp4i2/tests/i2run/test_scaleit.py::test_gamma_native_vs_xe 
+ccp4i2/tests/i2run/test_shelx.py::test_substrdet 
+[gw3] [ 59%] PASSED ccp4i2/tests/i2run/test_mrparse.py::test_mrparse 
+ccp4i2/tests/i2run/test_pairef.py::test_pairef 
+[gw1] [ 60%] PASSED ccp4i2/tests/i2run/test_acedrg.py::test_from_smiles 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_no_solution 
+[gw2] [ 61%] PASSED ccp4i2/tests/i2run/test_refmac.py::test_gamma_basic 
+[gw0] [ 61%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_7beq_electron_basic 
+ccp4i2/tests/i2run/test_servalcat.py::test_8xfm_basic 
+ccp4i2/tests/i2run/test_shelx.py::test_gamma_sad 
+[gw1] [ 62%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_no_solution 
+ccp4i2/tests/i2run/test_phasertng_picard.py::test_instantiation 
+[gw1] [ 63%] PASSED ccp4i2/tests/i2run/test_phasertng_picard.py::test_instantiation 
+ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_column_group_list 
+[gw1] [ 64%] PASSED ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_column_group_list 
+[gw2] [ 65%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_8xfm_basic 
+ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_user_column_group 
+ccp4i2/tests/i2run/test_simple_pipeline.py::test_simple_signal_chain 
+[gw1] [ 66%] PASSED ccp4i2/tests/i2run/test_split_mtz.py::test_gamma_abcd_user_column_group 
+ccp4i2/tests/i2run/test_split_mtz.py::test_4iid_phi_fom 
+[gw1] [ 67%] PASSED ccp4i2/tests/i2run/test_split_mtz.py::test_4iid_phi_fom 
+ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_with_smiles 
+[gw4] [ 68%] PASSED ccp4i2/tests/i2run/test_phaser_rnp_pipeline.py::test_phaser_rnp_pipeline_chain_selections 
+ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_basic 
+[gw5] [ 69%] PASSED ccp4i2/tests/i2run/test_modelcraft.py::test_gamma_ep 
+ccp4i2/tests/i2run/test_molrep.py::test_molrep 
+[gw2] [ 69%] PASSED ccp4i2/tests/i2run/test_simple_pipeline.py::test_simple_signal_chain 
+ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_no_ligand 
+[gw4] [ 70%] PASSED ccp4i2/tests/i2run/test_phaser_simple.py::test_gamma_basic 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_fasta-8xfm-read_fasta] 
+[gw4] [ 71%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_fasta-8xfm-read_fasta] 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_sfcif-2ceu-read] 
+[gw4] [ 72%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_sfcif-2ceu-read] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_cif-A1LU6-read] 
+[gw4] [ 73%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_cif-A1LU6-read] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_sdf-A1LU6-read_sdf] 
+[gw4] [ 74%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_ligand_sdf-A1LU6-read_sdf] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_mmcif-4dl8-read_structure] 
+[gw4] [ 75%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_mmcif-4dl8-read_structure] 
+ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_pdb-8rk1-read_structure] 
+[gw4] [ 76%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[rcsb_pdb-8rk1-read_structure] 
+ccp4i2/tests/i2run/test_urls.py::test_url[redo_cif-8xfm-read_structure] 
+[gw4] [ 76%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[redo_cif-8xfm-read_structure] 
+ccp4i2/tests/i2run/test_urls.py::test_url[redo_mtz-8xfm-read_mtz_file] 
+[gw7] [ 77%] PASSED ccp4i2/tests/i2run/test_shelx.py::test_substrdet 
+[gw4] [ 78%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[redo_mtz-8xfm-read_mtz_file] 
+ccp4i2/tests/i2run/test_shelx.py::test_gamma_siras 
+ccp4i2/tests/i2run/test_validate.py::test_7beq_basic 
+[gw6] [ 79%] PASSED ccp4i2/tests/i2run/test_servalcat.py::test_7prg_neutron_basic 
+ccp4i2/tests/i2run/test_sheetbend.py::test_8xfm 
+[gw6] [ 80%] PASSED ccp4i2/tests/i2run/test_sheetbend.py::test_8xfm 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_basic 
+[gw5] [ 81%] PASSED ccp4i2/tests/i2run/test_molrep.py::test_molrep 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_mmcif-1gyu-read_structure] 
+[gw5] [ 82%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_mmcif-1gyu-read_structure] 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_with_molprobity 
+[gw4] [ 83%] PASSED ccp4i2/tests/i2run/test_validate.py::test_7beq_basic 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_basic 
+[gw5] [ 84%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_with_molprobity 
+ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_with_molprobity 
+[gw3] [ 84%] PASSED ccp4i2/tests/i2run/test_pairef.py::test_pairef 
+ccp4i2/tests/i2run/test_shelxe_mr.py::test_gamma 
+[gw5] [ 85%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_with_molprobity 
+ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_directory 
+[gw2] [ 86%] PASSED ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_no_ligand 
+ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_pdb-6ndn-read_structure] 
+[gw2] [ 87%] PASSED ccp4i2/tests/i2run/test_urls.py::test_url[pdbe_pdb-6ndn-read_structure] 
+[gw4] [ 88%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_cif_basic 
+ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_file 
+[gw6] [ 89%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8rk1_pdb_basic 
+ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_with_molprobity 
+[gw3] [ 90%] PASSED ccp4i2/tests/i2run/test_shelxe_mr.py::test_gamma 
+ccp4i2/tests/i2run/test_xia2.py::test_xia2_xds_file 
+[gw1] [ 91%] PASSED ccp4i2/tests/i2run/test_substitute_ligand.py::test_substitute_ligand_with_smiles 
+ccp4i2/tests/i2run/test_subtract_native.py::test_8xfm 
+[gw1] [ 92%] PASSED ccp4i2/tests/i2run/test_subtract_native.py::test_8xfm 
+[gw6] [ 92%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_with_molprobity 
+[gw5] [ 93%] ERROR ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_directory 
+ccp4i2/tests/i2run/test_zanuda.py::test_8xfm 
+[gw5] [ 94%] SKIPPED ccp4i2/tests/i2run/test_zanuda.py::test_8xfm 
+[gw0] [ 95%] PASSED ccp4i2/tests/i2run/test_shelx.py::test_gamma_sad 
+ccp4i2/tests/i2run/test_single_atom_mr.py::test_single_atom_mr 
+[gw0] [ 96%] PASSED ccp4i2/tests/i2run/test_single_atom_mr.py::test_single_atom_mr 
+[gw7] [ 97%] PASSED ccp4i2/tests/i2run/test_shelx.py::test_gamma_siras 
+ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_basic 
+[gw7] [ 98%] PASSED ccp4i2/tests/i2run/test_validate.py::test_8ola_8olf_basic 
+[gw4] [ 99%] ERROR ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_file 
+[gw3] [100%] ERROR ccp4i2/tests/i2run/test_xia2.py::test_xia2_xds_file nanobind: leaked 19 instances!
+ - leaked instance 0xb40cd2000 of type "gemmi.Structure"
+ - leaked instance 0xb40cd1000 of type "gemmi.Structure"
+ - leaked instance 0xb40cd3c00 of type "gemmi.Structure"
+ - leaked instance 0xb40cd3800 of type "gemmi.Structure"
+ - leaked instance 0x109f89da8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xb3eeb9400 of type "gemmi.Structure"
+ - leaked instance 0xb460da700 of type "gemmi.Mtz"
+ - leaked instance 0xb40cd1c00 of type "gemmi.Structure"
+ - leaked instance 0xb40cd2400 of type "gemmi.Structure"
+ - leaked instance 0x109f89d88 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xb40cd3000 of type "gemmi.Structure"
+ - leaked instance 0xb40cd2800 of type "gemmi.Structure"
+ - leaked instance 0xb40cd2c00 of type "gemmi.Structure"
+ - leaked instance 0x109f89d68 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xb40cd1800 of type "gemmi.Structure"
+ - leaked instance 0xb3eeb9c00 of type "gemmi.Structure"
+ - leaked instance 0x109f7c588 of type "gemmi.PdbWriteOptions"
+ - leaked instance 0xb460d8900 of type "gemmi.Mtz"
+ - leaked instance 0xb460db600 of type "gemmi.Mtz"
+nanobind: leaked 9 types!
+ - leaked type "gemmi.Batch"
+ - leaked type "AxisOrder"
+ - leaked type "gemmi.Mtz"
+ - leaked type "gemmi.PdbWriteOptions"
+ - leaked type "gemmi.Structure"
+ - leaked type "gemmi.iterator"
+ - leaked type "gemmi.MmcifOutputGroups"
+ - leaked type "gemmi.Dataset"
+ - leaked type "gemmi.Column"
+nanobind: leaked 322 functions!
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "dataset"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "rename_chain"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getitem__"
+ - leaked function "set_cell_for_all"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "replace_column"
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function "remove_empty_chains"
+ - leaked function "make_d_array"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "shorten_ccd_codes"
+ - leaked function ""
+ - leaked function "clear_sequences"
+ - leaked function "__getstate__"
+ - leaked function "make_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_ligands_and_waters"
+ - leaked function "ensure_asu"
+ - leaked function "__array__"
+ - leaked function "switch_to_original_hkl"
+ - leaked function "resolution_low"
+ - leaked function ""
+ - leaked function "resolution_high"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "update_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_f_phi"
+ - leaked function "remove_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "renumber_models"
+ - leaked function "__getitem__"
+ - leaked function "write_minimal_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_minimal_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "filtered"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_entity_types"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_int"
+ - leaked function ""
+ - leaked function "count"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "expand_to_p1"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_to_bytes"
+ - leaked function "get_value_sigma"
+ - leaked function "__init__"
+ - leaked function "get_float"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_pdb_string"
+ - leaked function ""
+ - leaked function "row_as_dict"
+ - leaked function ""
+ - leaked function "shorten_chain_names"
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "reindex"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_subchains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_serial_numbers"
+ - leaked function "write_to_file"
+ - leaked function "transform_f_phi_to_map"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_or_add_model"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "ensure_entities"
+ - leaked function ""
+ - leaked function "make_miller_array"
+ - leaked function "rename_residues"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "assign_label_seq_id"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_1_d2_array"
+ - leaked function "merge_chain_parts"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_best_sequences"
+ - leaked function "make_mmcif_document"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function "set_logging"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "clear_conect"
+ - leaked function ""
+ - leaked function "find_connection"
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_connection_by_cra"
+ - leaked function ""
+ - leaked function "remove_alternative_conformations"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_model"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__delitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_entity_ids"
+ - leaked function ""
+ - leaked function "setup_entities"
+ - leaked function "__repr__"
+ - leaked function "find_spacegroup"
+ - leaked function ""
+ - leaked function "make_mmcif_headers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_waters"
+ - leaked function "add_dataset"
+ - leaked function "rfree_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "data_fits_into"
+ - leaked function "is_integer"
+ - leaked function "transform_to_assembly"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "column_with_label"
+ - leaked function "get_size_for_hkl"
+ - leaked function "sort"
+ - leaked function "expand_ncs"
+ - leaked function ""
+ - leaked function "__setstate__"
+ - leaked function ""
+ - leaked function "restore_full_ccd_codes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__array__"
+ - leaked function "set_data"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_entity_of"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__setitem__"
+ - leaked function "switch_to_asu_hkl"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "standardize_crystal_frame"
+ - leaked function ""
+ - leaked function "calculate_fractional_box"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "clone"
+ - leaked function "add_conect"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "get_f_phi_on_grid"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_value_on_grid"
+ - leaked function "add_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_entity"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_pdb_headers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "column_labels"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_het_flags"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__next__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "store_deuterium_as_fraction"
+ - leaked function ""
+ - leaked function "get_cell"
+ - leaked function ""
+ - leaked function "deduplicate_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "update_reso"
+ - leaked function ""
+ - leaked function "columns_with_type"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_hydrogens"
+ - leaked function "setup_cell_images"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_box"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "copy_column"
+ - leaked function ""
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.htmlnanobind: leaked 13 instances!
+ - leaked instance 0x10a7b5d68 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xa61c90c00 of type "gemmi.Structure"
+ - leaked instance 0xa620ef000 of type "gemmi.Structure"
+ - leaked instance 0x10a7b5d88 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0x10a7b5da8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xa62118400 of type "gemmi.Structure"
+ - leaked instance 0xa62bc3800 of type "gemmi.Structure"
+ - leaked instance 0xa6285d400 of type "gemmi.Structure"
+ - leaked instance 0xa64991500 of type "gemmi.Mtz"
+ - leaked instance 0xa62126800 of type "gemmi.Structure"
+ - leaked instance 0xa62bc3c00 of type "gemmi.Structure"
+ - leaked instance 0xa64990c00 of type "gemmi.Mtz"
+ - leaked instance 0x10a7a4588 of type "gemmi.PdbWriteOptions"
+nanobind: leaked 9 types!
+ - leaked type "gemmi.Batch"
+ - leaked type "AxisOrder"
+ - leaked type "gemmi.Mtz"
+ - leaked type "gemmi.PdbWriteOptions"
+ - leaked type "gemmi.Structure"
+ - leaked type "gemmi.iterator"
+ - leaked type "gemmi.MmcifOutputGroups"
+ - leaked type "gemmi.Dataset"
+ - leaked type "gemmi.Column"
+nanobind: leaked 322 functions!
+ - leaked function ""
+ - leaked function "set_logging"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__setstate__"
+ - leaked function ""
+ - leaked function "add_entity_types"
+ - leaked function "expand_to_p1"
+ - leaked function ""
+ - leaked function "switch_to_original_hkl"
+ - leaked function "clear_conect"
+ - leaked function ""
+ - leaked function "resolution_low"
+ - leaked function "__getitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "reindex"
+ - leaked function "make_1_d2_array"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_alternative_conformations"
+ - leaked function "get_size_for_hkl"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "__setitem__"
+ - leaked function "shorten_chain_names"
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function "dataset"
+ - leaked function "write_to_file"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function "standardize_crystal_frame"
+ - leaked function ""
+ - leaked function "restore_full_ccd_codes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_column"
+ - leaked function "__len__"
+ - leaked function "find_connection"
+ - leaked function "set_cell_for_all"
+ - leaked function "column_with_label"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_dataset"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function "row_as_dict"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "replace_column"
+ - leaked function ""
+ - leaked function "remove_empty_chains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "update_mmcif_block"
+ - leaked function ""
+ - leaked function "assign_het_flags"
+ - leaked function "rename_residues"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_minimal_pdb"
+ - leaked function ""
+ - leaked function "column_labels"
+ - leaked function ""
+ - leaked function "rename_chain"
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "renumber_models"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_f_phi_on_grid"
+ - leaked function ""
+ - leaked function "transform_to_assembly"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function "find_spacegroup"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_best_sequences"
+ - leaked function "make_mmcif_document"
+ - leaked function "ensure_entities"
+ - leaked function ""
+ - leaked function "filtered"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_fractional_box"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_model"
+ - leaked function "set_data"
+ - leaked function "deduplicate_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "merge_chain_parts"
+ - leaked function ""
+ - leaked function "calculate_box"
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_int"
+ - leaked function "remove_waters"
+ - leaked function "assign_serial_numbers"
+ - leaked function ""
+ - leaked function "assign_label_seq_id"
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_pdb_headers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_entity_of"
+ - leaked function ""
+ - leaked function "resolution_high"
+ - leaked function "make_pdb_string"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "sort"
+ - leaked function "data_fits_into"
+ - leaked function "transform_f_phi_to_map"
+ - leaked function "__delitem__"
+ - leaked function ""
+ - leaked function "is_integer"
+ - leaked function ""
+ - leaked function "get_entity"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_or_add_model"
+ - leaked function "__array__"
+ - leaked function "find_connection_by_cra"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getstate__"
+ - leaked function "__getitem__"
+ - leaked function "remove_ligands_and_waters"
+ - leaked function ""
+ - leaked function "add_conect"
+ - leaked function "add_entity_ids"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "shorten_ccd_codes"
+ - leaked function "write_to_bytes"
+ - leaked function "store_deuterium_as_fraction"
+ - leaked function "make_minimal_pdb"
+ - leaked function ""
+ - leaked function "get_f_phi"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_hydrogens"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "expand_ncs"
+ - leaked function ""
+ - leaked function "ensure_asu"
+ - leaked function "rfree_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_cell"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "switch_to_asu_hkl"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_value_on_grid"
+ - leaked function "get_float"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__next__"
+ - leaked function ""
+ - leaked function "count"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_pdb"
+ - leaked function ""
+ - leaked function "make_mmcif_headers"
+ - leaked function ""
+ - leaked function "setup_cell_images"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_d_array"
+ - leaked function "make_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "assign_subchains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "setup_entities"
+ - leaked function ""
+ - leaked function "copy_column"
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "columns_with_type"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "update_reso"
+ - leaked function "get_value_sigma"
+ - leaked function "clear_sequences"
+ - leaked function "remove_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_miller_array"
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.htmlnanobind: leaked 7 instances!
+ - leaked instance 0x10aa19d68 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0xcb64f9800 of type "gemmi.Mtz"
+ - leaked instance 0x10aa19da8 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0x10aa19d88 of type "gemmi.MmcifOutputGroups"
+ - leaked instance 0x10aa08588 of type "gemmi.PdbWriteOptions"
+ - leaked instance 0xcb84a8c00 of type "gemmi.Structure"
+ - leaked instance 0xcb84a8800 of type "gemmi.Structure"
+nanobind: leaked 8 types!
+ - leaked type "gemmi.Batch"
+ - leaked type "AxisOrder"
+ - leaked type "gemmi.Mtz"
+ - leaked type "gemmi.PdbWriteOptions"
+ - leaked type "gemmi.Structure"
+ - leaked type "gemmi.MmcifOutputGroups"
+ - leaked type "gemmi.Dataset"
+ - leaked type "gemmi.Column"
+nanobind: leaked 320 functions!
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function "make_pdb_string"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_connection_by_cra"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "deduplicate_entities"
+ - leaked function "__setstate__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__getitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "set_cell_for_all"
+ - leaked function ""
+ - leaked function "replace_column"
+ - leaked function "clone"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_value_sigma"
+ - leaked function "assign_subchains"
+ - leaked function "get_f_phi_on_grid"
+ - leaked function "store_deuterium_as_fraction"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "standardize_crystal_frame"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_miller_array"
+ - leaked function "add_column"
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_fractional_box"
+ - leaked function ""
+ - leaked function "make_1_d2_array"
+ - leaked function ""
+ - leaked function "column_labels"
+ - leaked function ""
+ - leaked function "assign_serial_numbers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_cell"
+ - leaked function ""
+ - leaked function "assign_het_flags"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_alternative_conformations"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "switch_to_asu_hkl"
+ - leaked function ""
+ - leaked function "column_with_label"
+ - leaked function "expand_to_p1"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_mmcif_document"
+ - leaked function "resolution_high"
+ - leaked function "get_f_phi"
+ - leaked function ""
+ - leaked function "get_value_on_grid"
+ - leaked function "update_mmcif_block"
+ - leaked function ""
+ - leaked function "__setitem__"
+ - leaked function ""
+ - leaked function "clear_conect"
+ - leaked function "write_to_file"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "calculate_box"
+ - leaked function ""
+ - leaked function "add_model"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "expand_ncs"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "merge_chain_parts"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "setup_cell_images"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "__getitem__"
+ - leaked function "make_minimal_pdb"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "renumber_models"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "switch_to_original_hkl"
+ - leaked function "remove_hydrogens"
+ - leaked function ""
+ - leaked function "add_entity_ids"
+ - leaked function "columns_with_type"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__init__"
+ - leaked function "__init__"
+ - leaked function "__delitem__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "add_conect"
+ - leaked function "__init__"
+ - leaked function "add_dataset"
+ - leaked function "set_data"
+ - leaked function ""
+ - leaked function "clone"
+ - leaked function "make_mmcif_block"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_size_for_hkl"
+ - leaked function "__array__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_to_bytes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_waters"
+ - leaked function "make_mmcif_headers"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "restore_full_ccd_codes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_or_add_model"
+ - leaked function "rfree_column"
+ - leaked function ""
+ - leaked function "get_int"
+ - leaked function ""
+ - leaked function "ensure_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "make_d_array"
+ - leaked function "shorten_chain_names"
+ - leaked function ""
+ - leaked function "ensure_asu"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "count"
+ - leaked function ""
+ - leaked function "__getstate__"
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "data_fits_into"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_ligands_and_waters"
+ - leaked function "update_reso"
+ - leaked function ""
+ - leaked function "write_pdb"
+ - leaked function "rename_residues"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "set_logging"
+ - leaked function "__init__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "write_minimal_pdb"
+ - leaked function "get_float"
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "remove_column"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "filtered"
+ - leaked function "dataset"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "row_as_dict"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "sort"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "transform_to_assembly"
+ - leaked function "clear_sequences"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "get_entity"
+ - leaked function "get_entity_of"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__iter__"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "reindex"
+ - leaked function ""
+ - leaked function "assign_label_seq_id"
+ - leaked function "find_spacegroup"
+ - leaked function ""
+ - leaked function ""
+ - leaked function "shorten_ccd_codes"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "__repr__"
+ - leaked function "__len__"
+ - leaked function ""
+ - leaked function "make_pdb_headers"
+ - leaked function "rename_chain"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "transform_f_phi_to_map"
+ - leaked function "assign_best_sequences"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "find_connection"
+ - leaked function ""
+ - leaked function "add_entity_types"
+ - leaked function ""
+ - leaked function "copy_column"
+ - leaked function "remove_empty_chains"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "setup_entities"
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function ""
+ - leaked function "resolution_low"
+ - leaked function "is_integer"
+ - leaked function ""
+nanobind: this is likely caused by a reference counting issue in the binding code.
+See https://nanobind.readthedocs.io/en/latest/refleaks.htmlTest Settings Loaded:
+  Database: :memory:
+  Projects: /Users/nmemn/.ccp4i2_test/test_projects
+status: ready
+
+================================================================================
+Test Cache Cleanup
+================================================================================
+Test projects are stored in: /Users/nmemn/.cache/ccp4i2-tests
+(32 project dirs, 432.2 MB)
+
+To clean up all test projects:
+  rm -rf /Users/nmemn/.cache/ccp4i2-tests/*
+
+To clean up projects from a specific date (e.g., today 2024-12-04):
+  rm -rf /Users/nmemn/.cache/ccp4i2-tests/20241204_*
+
+To see failed tests (preserved for debugging):
+  ls -la /Users/nmemn/.cache/ccp4i2-tests/
+================================================================================
+
+
+
+==================================== ERRORS ====================================
+_________________________ ERROR at setup of test_8xfm __________________________
+[gw5] darwin -- Python 3.11.11 /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py:1348: in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:1303: in request
+    self._send_request(method, url, body, headers, encode_chunked)
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:1349: in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:1298: in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:1058: in _send_output
+    self.send(msg)
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:996: in send
+    self.connect()
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:1475: in connect
+    self.sock = self._context.wrap_socket(self.sock,
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:517: in wrap_socket
+    return self.sslsocket_class._create(
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1104: in _create
+    self.do_handshake()
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1382: in do_handshake
+    self._sslobj.do_handshake()
+E   ssl.SSLZeroReturnError: TLS/SSL connection has been closed (EOF) (_ssl.c:1006)
+
+During handling of the above exception, another exception occurred:
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/pytest_asyncio/plugin.py:728: in pytest_fixture_setup
+    return (yield)
+            ^^^^^
+ccp4i2/tests/i2run/conftest.py:284: in seq8xfm
+    with download(pdbe_fasta("8xfm")) as path:
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+ccp4i2/tests/i2run/utils.py:37: in download
+    with urlopen(url, timeout=30) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py:216: in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py:519: in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py:536: in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py:496: in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py:1391: in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/urllib/request.py:1351: in do_open
+    raise URLError(err)
+E   urllib.error.URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:1006)>
+_________________ ERROR at setup of test_xia2_dials_directory __________________
+[gw5] darwin -- Python 3.11.11 /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+ccp4i2/tests/i2run/test_xia2.py:13: in image_dir_fixture
+    with download(url) as tarPath:
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+ccp4i2/tests/i2run/utils.py:42: in download
+    while chunk := response.read(1_000_000):
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:473: in read
+    s = self.fp.read(amt)
+        ^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py:718: in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1314: in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1166: in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TimeoutError: The read operation timed out
+____________________ ERROR at setup of test_xia2_dials_file ____________________
+[gw4] darwin -- Python 3.11.11 /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+ccp4i2/tests/i2run/test_xia2.py:13: in image_dir_fixture
+    with download(url) as tarPath:
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+ccp4i2/tests/i2run/utils.py:42: in download
+    while chunk := response.read(1_000_000):
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:473: in read
+    s = self.fp.read(amt)
+        ^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py:718: in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1314: in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1166: in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TimeoutError: The read operation timed out
+_____________________ ERROR at setup of test_xia2_xds_file _____________________
+[gw3] darwin -- Python 3.11.11 /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/bin/python3.11
+ccp4i2/tests/i2run/test_xia2.py:13: in image_dir_fixture
+    with download(url) as tarPath:
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/contextlib.py:137: in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+ccp4i2/tests/i2run/utils.py:42: in download
+    while chunk := response.read(1_000_000):
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/http/client.py:473: in read
+    s = self.fp.read(amt)
+        ^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/socket.py:718: in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1314: in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+../../ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/ssl.py:1166: in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   TimeoutError: The read operation timed out
+=============================== warnings summary ===============================
+test_dimple.py::test_dimple
+test_substitute_ligand.py::test_substitute_ligand_no_ligand
+test_substitute_ligand.py::test_substitute_ligand_with_smiles
+  /Users/nmemn/Developer/ccp4i2/server/ccp4i2/wrappers/i2Dimple/script/i2Dimple.py:78: DeprecationWarning: The SafeConfigParser class has been renamed to ConfigParser in Python 3.2. This alias will be removed in Python 3.12. Use ConfigParser directly instead.
+    configParser = configparser.SafeConfigParser()
+
+test_validate.py::test_8rk1_pdb_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/fromnumeric.py:3504: RuntimeWarning: Mean of empty slice.
+    return _methods._mean(a, axis=axis, dtype=dtype,
+
+test_validate.py::test_8rk1_pdb_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:129: RuntimeWarning: invalid value encountered in scalar divide
+    ret = ret.dtype.type(ret / rcount)
+
+test_validate.py::test_8rk1_pdb_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:206: RuntimeWarning: Degrees of freedom <= 0 for slice
+    ret = _var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+
+test_validate.py::test_8rk1_pdb_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:163: RuntimeWarning: invalid value encountered in divide
+    arrmean = um.true_divide(arrmean, div, out=arrmean,
+
+test_validate.py::test_8rk1_pdb_with_molprobity
+test_validate.py::test_8rk1_cif_basic
+test_validate.py::test_8ola_8olf_with_molprobity
+  /Users/nmemn/Developer/ccp4-20251105/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/numpy/core/_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide
+    ret = ret.dtype.type(ret / rcount)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ============================
+ERROR ccp4i2/tests/i2run/test_modelcraft.py::test_8xfm - urllib.error.URLError: <urlopen error TLS/SSL connection has been closed (EOF) (_ssl.c:1006)>
+ERROR ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_directory - TimeoutError: The read operation timed out
+ERROR ccp4i2/tests/i2run/test_xia2.py::test_xia2_dials_file - TimeoutError: The read operation timed out
+ERROR ccp4i2/tests/i2run/test_xia2.py::test_xia2_xds_file - TimeoutError: The read operation timed out
+====== 101 passed, 9 skipped, 18 warnings, 4 errors in 977.69s (0:16:17) =======
