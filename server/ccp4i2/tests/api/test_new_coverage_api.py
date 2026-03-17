@@ -69,9 +69,12 @@ class TestGesamtAPI(APITestBase):
 
         self.run_and_wait()
 
-        # Check output coordinates (program.xml not checked due to wrapper bug
-        # in CTransformation — gesamt process completes but processOutputFiles fails)
+        # Check output coordinates and program.xml
         self.assert_file_exists("XYZOUT.cif")
+        xml = self.read_program_xml()
+        t = xml.find(".//Transformation")
+        if t is not None:
+            assert float(t.get("rms", "1")) < 0.1
 
 
 @pytest.mark.usefixtures("file_based_db")

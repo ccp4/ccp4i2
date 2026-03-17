@@ -192,7 +192,6 @@ Guide for writing new tests:
 |------|-------|-------|-------|
 | zanuda | both | Skipped | zanuda's internal refmac5 fails to parse 8xfm mmCIF model |
 | ctruncate | i2run | Skipped | KeywordExtractor bug: `get_merged_metadata` is None for ctruncate's container |
-| gesamt | both | Partial | Wrapper bug: `CTransformation` missing `.rotation.alpha` path in `processOutputFiles()`. Binary runs fine, XYZOUT.cif produced, but program.xml not written. |
 
 ## Tasks still without tests (18 remaining)
 

@@ -45,11 +45,35 @@ class CMatrix33(CMatrix33Stub):
 class CTransformation(CTransformationStub):
     """
     Extends CTransformationStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+
+    Provides flat access to rotation angles (alpha, beta, gamma) and
+    translation components (x, y, z) for backward compatibility with
+    wrappers that expect direct attribute access (e.g. gesamt).
     """
 
-    # Add your methods here
-    pass
+    @property
+    def alpha(self):
+        return self.rotation.alpha
+
+    @property
+    def beta(self):
+        return self.rotation.beta
+
+    @property
+    def gamma(self):
+        return self.rotation.gamma
+
+    @property
+    def x(self):
+        return self.translation.x
+
+    @property
+    def y(self):
+        return self.translation.y
+
+    @property
+    def z(self):
+        return self.translation.z
 
 
 class CXyz(CXyzStub):
