@@ -25,13 +25,14 @@ Guide for writing new tests:
 |--------------------|-------|
 | GUI-visible tasks  | 63    |
 | Interactive (N/A)  | 6     |
-| i2run tested       | 46    |
-| i2run disabled     | 4     |
-| API tested         | 51    |
+| i2run tested       | 48    |
+| i2run disabled     | 3     |
+| API tested         | 53    |
 | API disabled       | 1     |
 | Deprecated         | 1     |
-| No tests at all    | 22    |
-| Full coverage      | 42    |
+| Not installed      | 1     |
+| No tests at all    | 20    |
+| Full coverage      | 44    |
 
 
 ## Data Entry
@@ -108,7 +109,6 @@ Guide for writing new tests:
 | phaser_rnp_pipeline  | Y     | Y   | test_phaser_rnp_pipeline.py | test_additional_pipelines_api.py |
 | AMPLE                | Y     | -   | test_ample.py               |                                  |
 | SIMBAD               | -     | -   |                             |                                  |
-| morda_i2             | -     | -   |                             |                                  |
 | comit                | Y     | Y   | test_comit.py               | test_additional_pipelines_api.py |
 | i2Dimple             | Y     | Y   | test_dimple.py              | test_mr_pipelines_api.py         |
 
@@ -133,7 +133,7 @@ Guide for writing new tests:
 | pdb_redo_api         | -     | -   |                            |                                   |
 | sheetbend            | Y     | Y   | test_sheetbend.py          | test_refinement_api.py            |
 | SubtractNative       | Y     | Y   | test_subtract_native.py    | test_additional_pipelines_api.py  |
-| lorestr_i2           | D     | -   | test_lorestr.py (disabled) |                                   |
+| lorestr_i2           | Y     | Y   | test_lorestr.py            | test_new_coverage_api.py          |
 | zanuda               | D     | D   | test_zanuda.py (skipped)   | test_new_coverage_api.py (skipped)|
 
 ## Ligands
@@ -165,7 +165,7 @@ Guide for writing new tests:
 | pointless_reindexToMatch  | Y     | Y   | test_pointless_reindex.py  | test_new_coverage_api.py          |
 | phaser_EP_LLG             | -     | -   |                            |                                   |
 | cmapcoeff                 | -     | -   |                            |                                   |
-| chltofom                  | -     | -   |                            |                                   |
+| chltofom                  | Y     | Y   | test_chltofom.py           | test_new_coverage_api.py          |
 | cphasematch               | -     | -   |                            |                                   |
 | ctruncate                 | D     | Y   | test_ctruncate.py (skipped)| test_new_coverage_api.py          |
 | splitMtz                  | Y     | Y   | test_split_mtz.py          | test_additional_pipelines_api.py  |
@@ -198,6 +198,12 @@ and cannot be tested via i2run or the API.
 | pdbview_edit         | Coordinate Data Tools  |
 | qtpisa               | Validation             |
 
+### Not Installed
+
+| Task                 | Category               | Notes                              |
+|----------------------|------------------------|------------------------------------|
+| morda_i2             | Molecular Replacement  | MoRDa not distributed with CCP4   |
+
 ### Deprecated Tasks
 
 | Task                 | Replacement              | Notes                              |
@@ -212,7 +218,7 @@ and cannot be tested via i2run or the API.
 | zanuda | both | Skipped | zanuda's internal refmac5 fails to parse 8xfm mmCIF model |
 | ctruncate | i2run | Skipped | KeywordExtractor bug: `get_merged_metadata` is None for ctruncate's container |
 
-## Tasks still without tests (22 remaining)
+## Tasks still without tests (20 remaining)
 
 | Priority | Task                      | Category               | Notes                            |
 |----------|---------------------------|------------------------|----------------------------------|
@@ -228,12 +234,10 @@ and cannot be tested via i2run or the API.
 | LOW      | sculptor                  | Bioinformatics         |                                  |
 | LOW      | phaser_ensembler          | Bioinformatics         |                                  |
 | LOW      | SIMBAD                    | Molecular Replacement  | Large search — slow              |
-| LOW      | morda_i2                  | Molecular Replacement  |                                  |
 | LOW      | adding_stats_to_mmcif_i2  | Export                 |                                  |
 | LOW      | mergeMtz                  | Export                 |                                  |
 | LOW      | phaser_EP_LLG             | Refl. Data Tools       |                                  |
 | LOW      | cmapcoeff                 | Refl. Data Tools       |                                  |
-| LOW      | chltofom                  | Refl. Data Tools       |                                  |
 | LOW      | cphasematch               | Refl. Data Tools       |                                  |
 | LOW      | cpatterson                | Refl. Data Tools       |                                  |
 | LOW      | density_calculator        | Refl. Data Tools       |                                  |

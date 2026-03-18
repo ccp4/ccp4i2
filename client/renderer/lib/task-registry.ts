@@ -151,7 +151,6 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "phaser_rnp_pipeline",
       "AMPLE",
       "SIMBAD",
-      "morda_i2",
       "comit",
       "i2Dimple",
       "arcimboldo",

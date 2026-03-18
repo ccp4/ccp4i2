@@ -12,6 +12,8 @@ These tests are inferred from wrapper .def.xml and Python code:
 - clustalw: Multiple sequence alignment
 - phaser_EP_AUTO: Automated experimental phasing with Phaser
 - molrep_selfrot: Self-rotation function analysis
+- lorestr_i2: Low-resolution structure refinement
+- chltofom: HL coefficients to PHI/FOM conversion
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -345,3 +347,64 @@ class TestMolrepSelfrotAPI(APITestBase):
         for field in ("No", "Xfrac", "Yfrac", "Zfrac", "Dens", "Dens_sigma"):
             elem = first_peak.find(field)
             assert elem is not None, f"Missing '{field}' in Patterson peak"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestLorestrAPI(APITestBase):
+    """API tests for lorestr_i2 low-resolution refinement."""
+
+    task_name = "lorestr_i2"
+    timeout = 600
+
+    def test_1h1s(self, pdb1h1s, mtz1h1s):
+        """Test lorestr with 1h1s structure (no auto homologue fetch)."""
+        self.create_project("test_lorestr")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", pdb1h1s)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz1h1s,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", mtz1h1s,
+            column_labels="/*/*/[FREE]"
+        )
+        self.set_param("controlParameters.AUTO", "none")
+        self.set_param("controlParameters.CPU", 1)
+
+        self.run_and_wait()
+
+        # Check refined model and map coefficients
+        self.assert_file_exists("XYZOUT.pdb")
+        job_dir = self.get_job_directory()
+        mtz_files = list(job_dir.glob("*.mtz"))
+        assert len(mtz_files) >= 1, f"No MTZ output: {list(job_dir.iterdir())}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestChltofomAPI(APITestBase):
+    """API tests for chltofom HL to PHI/FOM conversion."""
+
+    task_name = "chltofom"
+    timeout = 60
+
+    def test_hl_to_phifom(self):
+        """Test HL to PHI/FOM conversion with gamma initial phases."""
+        self.create_project("test_chltofom")
+        self.create_job()
+
+        from ccp4i2.tests.i2run.utils import demoData
+        self.upload_file("inputData.HKLIN", demoData("gamma", "initial_phases.mtz"))
+
+        self.run_and_wait()
+
+        # Check output MTZ exists with PHI/FOM columns
+        import gemmi
+        job_dir = self.get_job_directory()
+        hklout = job_dir / "HKLOUT.mtz"
+        assert hklout.exists(), f"No HKLOUT: {list(job_dir.iterdir())}"
+        mtz = gemmi.read_mtz_file(str(hklout))
+        labels = [c.label for c in mtz.columns]
+        assert "PHI" in labels, f"No PHI column: {labels}"
+        assert "FOM" in labels, f"No FOM column: {labels}"

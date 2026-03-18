@@ -93,7 +93,7 @@ class lorestr_i2(CPluginScript):
 # Output
         self.appendCommandLine(['-xyzout', self.container.outputData.XYZOUT.fullPath])
         self.appendCommandLine(['-hklout', self.hklout])
-        self.appendCommandLine(['-o', self.workDirectory + '/lorestrOutput'])
+        self.appendCommandLine(['-o', os.path.join(self.workDirectory, 'lorestrOutput')])
 
 # Parameters
         self.appendCommandLine(['-xml', str(self.makeFileName('PROGRAMXML'))]) # ccp4i2 compatibility
