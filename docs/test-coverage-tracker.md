@@ -1,6 +1,6 @@
 # CCP4i2 Test Coverage Tracker
 
-Last updated: 2026-03-17
+Last updated: 2026-03-18
 
 Coverage of GUI-visible tasks (from `client/renderer/lib/task-registry.ts`).
 Tasks appearing in multiple categories are listed once, under their primary
@@ -19,167 +19,176 @@ Guide for writing new tests:
 | N/A    | Not testable (interactive GUI)   |
 | -      | No test                          |
 
+### mmCIF column (coordinate input compatibility)
+
+| Symbol | Meaning                                                        |
+|--------|----------------------------------------------------------------|
+| Y      | Wrapper is mmCIF-safe (preserves format or handles correctly)  |
+| P      | PDB-only — auto-converts mmCIF→PDB (safe for ≤3-char codes)   |
+| !      | PDB-only — broken for mmCIF (will fail or corrupt long codes)  |
+| ·      | No coordinate input (MTZ/sequence only)                        |
+
 ## Summary
 
 | Metric             | Count |
 |--------------------|-------|
 | GUI-visible tasks  | 63    |
 | Interactive (N/A)  | 6     |
-| i2run tested       | 48    |
-| i2run disabled     | 3     |
-| API tested         | 53    |
-| API disabled       | 1     |
+| i2run tested       | 49    |
+| i2run disabled     | 2     |
+| API tested         | 54    |
+| API disabled       | 0     |
 | Deprecated         | 1     |
 | Not installed      | 1     |
 | No tests at all    | 20    |
-| Full coverage      | 44    |
+| Full coverage      | 45    |
 
 
 ## Data Entry
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| import_merged        | Y     | Y   | test_import_merged.py      | test_data_reduction_api.py   |
-| ProvideAsuContents   | Y     | Y   | test_asu_contents.py       | test_utilities_api.py        |
-| ProvideSequence      | -     | -   |                            |                              |
-| ProvideAlignment     | -     | -   |                            |                              |
-| coordinate_selector  | Y     | Y   | test_coordinate_selector.py| test_utilities_api.py        |
-| AlternativeImportXIA2| -     | -   |                            |                              |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| import_merged        | Y     | Y   | ·     | test_import_merged.py      | test_data_reduction_api.py   |
+| ProvideAsuContents   | Y     | Y   | ·     | test_asu_contents.py       | test_utilities_api.py        |
+| ProvideSequence      | -     | -   | ·     |                            |                              |
+| ProvideAlignment     | -     | -   | ·     |                            |                              |
+| coordinate_selector  | Y     | Y   | Y     | test_coordinate_selector.py| test_utilities_api.py        |
+| AlternativeImportXIA2| -     | -   | ·     |                            |                              |
 
 ## Data Processing
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| xia2_dials           | Y     | -   | test_xia2.py               |                              |
-| xia2_xds             | Y     | -   | test_xia2.py               |                              |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| xia2_dials           | Y     | -   | ·     | test_xia2.py               |                              |
+| xia2_xds             | Y     | -   | ·     | test_xia2.py               |                              |
 
 ## Data Reduction
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| aimless_pipe         | Y     | Y   | test_aimless.py            | test_data_reduction_api.py   |
-| freerflag            | Y     | Y   | test_freerflag.py          | test_data_reduction_api.py   |
-| matthews             | -     | -   |                            |                              |
-| molrep_selfrot       | Y     | Y   | test_molrep_selfrot.py     | test_new_coverage_api.py     |
-| xia2_ssx_reduce      | -     | -   |                            |                              |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| aimless_pipe         | Y     | Y   | ·     | test_aimless.py            | test_data_reduction_api.py   |
+| freerflag            | Y     | Y   | ·     | test_freerflag.py          | test_data_reduction_api.py   |
+| matthews             | -     | -   | ·     |                            |                              |
+| molrep_selfrot       | Y     | Y   | P     | test_molrep_selfrot.py     | test_new_coverage_api.py     |
+| xia2_ssx_reduce      | -     | -   | ·     |                            |                              |
 
 ## Big Pipelines
 
-| Task                      | i2run | API | i2run test file              | API test file                   |
-|---------------------------|-------|-----|------------------------------|---------------------------------|
-| SubstituteLigand          | Y     | Y   | test_substitute_ligand.py    | test_substitute_ligand_api.py   |
-| dr_mr_modelbuild_pipeline | D     | -   | test_drmrmb.py (disabled)    |                                 |
+| Task                      | i2run | API | mmCIF | i2run test file              | API test file                   |
+|---------------------------|-------|-----|-------|------------------------------|---------------------------------|
+| SubstituteLigand          | Y     | Y   | P     | test_substitute_ligand.py    | test_substitute_ligand_api.py   |
+| dr_mr_modelbuild_pipeline | D     | -   | P     | test_drmrmb.py (disabled)    |                                 |
 
 ## AlphaFold Utilities
 
-| Task                 | i2run | API | i2run test file            | API test file                     |
-|----------------------|-------|-----|----------------------------|-----------------------------------|
-| mrparse              | Y     | Y   | test_mrparse.py            | test_utilities_api.py             |
-| editbfac             | Y     | Y   | test_editbfac.py           | test_additional_pipelines_api.py  |
-| arcimboldo           | Y     | -   | test_arcimboldo.py         |                                   |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                     |
+|----------------------|-------|-----|-------|----------------------------|-----------------------------------|
+| mrparse              | Y     | Y   | ·     | test_mrparse.py            | test_utilities_api.py             |
+| editbfac             | Y     | Y   | P     | test_editbfac.py           | test_additional_pipelines_api.py  |
+| arcimboldo           | Y     | -   | ·     | test_arcimboldo.py         |                                   |
 
 ## Experimental Phasing
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| crank2               | Y     | Y   | test_crank2.py             | test_ep_pipelines_api.py     |
-| shelx                | Y     | Y   | test_shelx.py              | test_ep_pipelines_api.py     |
-| phaser_EP_AUTO       | Y     | Y   | test_phaser_ep_auto.py     | test_new_coverage_api.py     |
-| phaser_EP            | Y     | Y   | test_phaser_ep.py          | test_ep_pipelines_api.py     |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| crank2               | Y     | Y   | Y     | test_crank2.py             | test_ep_pipelines_api.py     |
+| shelx                | Y     | Y   | ·     | test_shelx.py              | test_ep_pipelines_api.py     |
+| phaser_EP_AUTO       | Y     | Y   | P     | test_phaser_ep_auto.py     | test_new_coverage_api.py     |
+| phaser_EP            | Y     | Y   | P     | test_phaser_ep.py          | test_ep_pipelines_api.py     |
 
 ## Bioinformatics
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| chainsaw             | -     | -   |                            |                              |
-| sculptor             | -     | -   |                            |                              |
-| phaser_ensembler     | -     | -   |                            |                              |
-| clustalw             | Y     | Y   | test_clustalw.py           | test_new_coverage_api.py     |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| chainsaw             | -     | -   | !     |                            |                              |
+| sculptor             | -     | -   | Y     |                            |                              |
+| phaser_ensembler     | -     | -   | P     |                            |                              |
+| clustalw             | Y     | Y   | ·     | test_clustalw.py           | test_new_coverage_api.py     |
 
 ## Molecular Replacement
 
-| Task                 | i2run | API | i2run test file             | API test file                    |
-|----------------------|-------|-----|-----------------------------|----------------------------------|
-| mrbump_basic         | Y     | Y   | test_mrbump.py              | test_mr_pipelines_api.py         |
-| phaser_simple        | Y     | Y   | test_phaser_simple.py       | test_mr_pipelines_api.py         |
-| phaser_pipeline      | Y     | Y   | test_phaser_expert.py       | test_additional_pipelines_api.py |
-| molrep_pipe          | Y     | Y   | test_molrep.py              | test_mr_pipelines_api.py         |
-| molrep_den           | -     | -   |                             |                                  |
-| parrot               | Y     | Y   | test_parrot.py              | test_model_building_api.py       |
-| phaser_rnp_pipeline  | Y     | Y   | test_phaser_rnp_pipeline.py | test_additional_pipelines_api.py |
-| AMPLE                | Y     | -   | test_ample.py               |                                  |
-| SIMBAD               | -     | -   |                             |                                  |
-| comit                | Y     | Y   | test_comit.py               | test_additional_pipelines_api.py |
-| i2Dimple             | Y     | Y   | test_dimple.py              | test_mr_pipelines_api.py         |
+| Task                 | i2run | API | mmCIF | i2run test file             | API test file                    |
+|----------------------|-------|-----|-------|-----------------------------|----------------------------------|
+| mrbump_basic         | Y     | Y   | P     | test_mrbump.py              | test_mr_pipelines_api.py         |
+| phaser_simple        | Y     | Y   | P     | test_phaser_simple.py       | test_mr_pipelines_api.py         |
+| phaser_pipeline      | Y     | Y   | P     | test_phaser_expert.py       | test_additional_pipelines_api.py |
+| molrep_pipe          | Y     | Y   | P     | test_molrep.py              | test_mr_pipelines_api.py         |
+| molrep_den           | -     | -   | P     |                             |                                  |
+| parrot               | Y     | Y   | Y     | test_parrot.py              | test_model_building_api.py       |
+| phaser_rnp_pipeline  | Y     | Y   | P     | test_phaser_rnp_pipeline.py | test_additional_pipelines_api.py |
+| AMPLE                | Y     | -   | P     | test_ample.py               |                                  |
+| SIMBAD               | -     | -   | P     |                             |                                  |
+| comit                | Y     | Y   | ·     | test_comit.py               | test_additional_pipelines_api.py |
+| i2Dimple             | Y     | Y   | P     | test_dimple.py              | test_mr_pipelines_api.py         |
 
 ## Model Building
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| modelcraft           | Y     | Y   | test_modelcraft.py         | test_model_building_api.py   |
-| coot_script_lines    | -     | -   |                            |                              |
-| coot_find_waters     | Y     | Y   | test_find_waters.py        | test_utilities_api.py        |
-| arp_warp_classic     | Y     | -   | test_arpwarp.py            |                              |
-| shelxeMR             | Y     | Y   | test_shelxe_mr.py          | test_model_building_api.py   |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| modelcraft           | Y     | Y   | P     | test_modelcraft.py         | test_model_building_api.py   |
+| coot_script_lines    | -     | -   | Y     |                            |                              |
+| coot_find_waters     | Y     | Y   | Y     | test_find_waters.py        | test_utilities_api.py        |
+| arp_warp_classic     | Y     | -   | P     | test_arpwarp.py            |                              |
+| shelxeMR             | Y     | Y   | !     | test_shelxe_mr.py          | test_model_building_api.py   |
 
 ## Refinement
 
-| Task                 | i2run | API | i2run test file            | API test file                     |
-|----------------------|-------|-----|----------------------------|-----------------------------------|
-| servalcat_pipe       | Y     | Y   | test_servalcat.py          | test_refinement_api.py            |
-| prosmart_refmac      | Y     | Y   | test_refmac.py             | test_refinement_api.py            |
-| metalCoord           | Y     | Y   | test_metalcoord.py         | test_additional_pipelines_api.py  |
-| coot_rsr_morph       | Y     | Y   | test_rsr_morph.py          | test_utilities_api.py             |
-| pdb_redo_api         | -     | -   |                            |                                   |
-| sheetbend            | Y     | Y   | test_sheetbend.py          | test_refinement_api.py            |
-| SubtractNative       | Y     | Y   | test_subtract_native.py    | test_additional_pipelines_api.py  |
-| lorestr_i2           | Y     | Y   | test_lorestr.py            | test_new_coverage_api.py          |
-| zanuda               | D     | D   | test_zanuda.py (skipped)   | test_new_coverage_api.py (skipped)|
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                     |
+|----------------------|-------|-----|-------|----------------------------|-----------------------------------|
+| servalcat_pipe       | Y     | Y   | Y     | test_servalcat.py          | test_refinement_api.py            |
+| prosmart_refmac      | Y     | Y   | P     | test_refmac.py             | test_refinement_api.py            |
+| metalCoord           | Y     | Y   | Y     | test_metalcoord.py         | test_additional_pipelines_api.py  |
+| coot_rsr_morph       | Y     | Y   | Y     | test_rsr_morph.py          | test_utilities_api.py             |
+| pdb_redo_api         | -     | -   | Y     |                            |                                   |
+| sheetbend            | Y     | Y   | Y     | test_sheetbend.py          | test_refinement_api.py            |
+| SubtractNative       | Y     | Y   | ·     | test_subtract_native.py    | test_additional_pipelines_api.py  |
+| lorestr_i2           | Y     | Y   | Y     | test_lorestr.py            | test_new_coverage_api.py          |
+| zanuda               | Y     | Y   | P     | test_zanuda.py             | test_new_coverage_api.py          |
 
 ## Ligands
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| LidiaAcedrgNew       | Y     | Y   | test_acedrg.py             | test_utilities_api.py        |
-| MakeLink             | Y     | Y   | test_make_link.py          | test_new_coverage_api.py     |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| LidiaAcedrgNew       | Y     | Y   | ·     | test_acedrg.py             | test_utilities_api.py        |
+| MakeLink             | Y     | Y   | ·     | test_make_link.py          | test_new_coverage_api.py     |
 
 ## Validation
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| validate_protein     | Y     | Y   | test_validate.py           | test_utilities_api.py        |
-| edstats              | Y     | Y   | test_edstats_wrapper.py    | test_new_coverage_api.py     |
-| privateer            | Y     | Y   | test_privateer.py          | test_new_coverage_api.py     |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| validate_protein     | Y     | Y   | Y     | test_validate.py           | test_utilities_api.py        |
+| edstats              | Y     | Y   | P     | test_edstats_wrapper.py    | test_new_coverage_api.py     |
+| privateer            | Y     | Y   | Y     | test_privateer.py          | test_new_coverage_api.py     |
 
 ## Export
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| adding_stats_to_mmcif_i2 | -  | -   |                            |                              |
-| mergeMtz             | -     | -   |                            |                              |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| adding_stats_to_mmcif_i2 | -  | -   | ·     |                            |                              |
+| mergeMtz             | -     | -   | ·     |                            |                              |
 
 ## Reflection Data Tools
 
-| Task                      | i2run | API | i2run test file            | API test file                     |
-|---------------------------|-------|-----|----------------------------|-----------------------------------|
-| pointless_reindexToMatch  | Y     | Y   | test_pointless_reindex.py  | test_new_coverage_api.py          |
-| phaser_EP_LLG             | -     | -   |                            |                                   |
-| cmapcoeff                 | -     | -   |                            |                                   |
-| chltofom                  | Y     | Y   | test_chltofom.py           | test_new_coverage_api.py          |
-| cphasematch               | -     | -   |                            |                                   |
-| ctruncate                 | D     | Y   | test_ctruncate.py (skipped)| test_new_coverage_api.py          |
-| splitMtz                  | Y     | Y   | test_split_mtz.py          | test_additional_pipelines_api.py  |
-| scaleit                   | Y     | Y   | test_scaleit.py            | test_additional_pipelines_api.py  |
-| cpatterson                | -     | -   |                            |                                   |
-| density_calculator        | -     | -   |                            |                                   |
+| Task                      | i2run | API | mmCIF | i2run test file            | API test file                     |
+|---------------------------|-------|-----|-------|----------------------------|-----------------------------------|
+| pointless_reindexToMatch  | Y     | Y   | ·     | test_pointless_reindex.py  | test_new_coverage_api.py          |
+| phaser_EP_LLG             | -     | -   | ·     |                            |                                   |
+| cmapcoeff                 | -     | -   | ·     |                            |                                   |
+| chltofom                  | Y     | Y   | ·     | test_chltofom.py           | test_new_coverage_api.py          |
+| cphasematch               | -     | -   | ·     |                            |                                   |
+| ctruncate                 | D     | Y   | ·     | test_ctruncate.py (skipped)| test_new_coverage_api.py          |
+| splitMtz                  | Y     | Y   | ·     | test_split_mtz.py          | test_additional_pipelines_api.py  |
+| scaleit                   | Y     | Y   | ·     | test_scaleit.py            | test_additional_pipelines_api.py  |
+| cpatterson                | -     | -   | ·     |                            |                                   |
+| density_calculator        | -     | -   | Y     |                            |                                   |
 
 ## Coordinate Data Tools
 
-| Task                 | i2run | API | i2run test file            | API test file                |
-|----------------------|-------|-----|----------------------------|------------------------------|
-| csymmatch            | Y     | Y   | test_csymmatch.py          | test_utilities_api.py        |
-| gesamt               | Y     | Y   | test_gesamt.py             | test_new_coverage_api.py     |
-| add_fractional_coords| -     | -   |                            |                              |
+| Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
+|----------------------|-------|-----|-------|----------------------------|------------------------------|
+| csymmatch            | Y     | Y   | Y     | test_csymmatch.py          | test_utilities_api.py        |
+| gesamt               | Y     | Y   | P     | test_gesamt.py             | test_new_coverage_api.py     |
+| add_fractional_coords| -     | -   | Y     |                            |                              |
 
 
 ## Excluded from Testing
@@ -215,8 +224,16 @@ and cannot be tested via i2run or the API.
 
 | Task | Suite | Issue | Notes |
 |------|-------|-------|-------|
-| zanuda | both | Skipped | zanuda's internal refmac5 fails to parse 8xfm mmCIF model |
 | ctruncate | i2run | Skipped | KeywordExtractor bug: `get_merged_metadata` is None for ctruncate's container |
+
+## mmCIF Compatibility Summary
+
+| Status | Count | Tasks |
+|--------|-------|-------|
+| Y (mmCIF-safe) | 16 | coordinate_selector, crank2, parrot, coot_find_waters, coot_script_lines, servalcat_pipe, metalCoord, coot_rsr_morph, pdb_redo_api, sheetbend, lorestr_i2, validate_protein, privateer, sculptor, csymmatch, density_calculator, add_fractional_coords |
+| P (auto-converts) | 19 | molrep_selfrot, SubstituteLigand, dr_mr_modelbuild_pipeline, editbfac, phaser_EP_AUTO, phaser_EP, phaser_ensembler, mrbump_basic, phaser_simple, phaser_pipeline, molrep_pipe, molrep_den, phaser_rnp_pipeline, AMPLE, SIMBAD, i2Dimple, modelcraft, arp_warp_classic, prosmart_refmac, zanuda, edstats, gesamt |
+| ! (broken) | 2 | chainsaw, shelxeMR |
+| · (no coords) | 26 | (MTZ/sequence/ligand-only tasks) |
 
 ## Tasks still without tests (20 remaining)
 

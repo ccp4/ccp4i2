@@ -12,8 +12,19 @@ class zanuda(CPluginScript):
     PERFORMANCECLASS = "CRefinementPerformance"
 
     def processInputFiles(self):
-        self.xyzin = os.path.join(self.getWorkDirectory(), "model.xyz")
-        self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.xyzin)
+        # Zanuda's internal pipeline (ZnTrimmed, ZnEqualised, etc.) parses
+        # PDB-format lines directly, so we must always provide PDB input.
+        # Read input (any format) via gemmi and write as PDB.
+        import gemmi
+        self.xyzin = os.path.join(self.getWorkDirectory(), "model.pdb")
+        inputPath = str(self.container.inputData.XYZIN.fullPath)
+        if self.container.inputData.XYZIN.isSelectionSet():
+            # Apply selection first (writes in source format), then convert
+            tmpPath = os.path.join(self.getWorkDirectory(), "model_selected.tmp")
+            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(tmpPath)
+            inputPath = tmpPath
+        st = gemmi.read_structure(inputPath)
+        st.write_pdb(self.xyzin)
         miniMtzs = [["F_SIGF", CObsDataFile.CONTENT_FLAG_FMEAN], "FREERFLAG"]
         self.hklin, _, errorReport = self.makeHklin0(miniMtzs)
         return errorReport
@@ -32,7 +43,7 @@ class zanuda(CPluginScript):
         out.XYZOUT.fullPath = self.workDirectory / "zanuda.pdb"
         files = ["FPHIOUT", "DIFFPHIOUT"]
         columns = ["FWT,PHWT", "DELFWT,PHDELWT"]
-        error = self.splitHklout(files, columns, self.workDirectory / "zanuda.mtz")
+        error = self.splitHklout(files, columns, inFile=self.workDirectory / "zanuda.mtz")
         if error.maxSeverity() > SEVERITY_WARNING:
             return error
         log = self.workDirectory / "log.txt"

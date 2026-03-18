@@ -1,17 +1,21 @@
-import pytest
-from .utils import i2run
 import gemmi
+from .utils import i2run
 
 
-@pytest.mark.skip(reason="Zanuda's internal refmac5 fails to parse 8xfm mmCIF model")
-def test_8xfm(cif8xfm, mtz8xfm):
-    """Test zanuda space group validation with 8xfm."""
+def test_zanuda_8xfm(cif8xfm, mtz8xfm):
+    """Test zanuda space group validation with 8xfm mmCIF input."""
     args = ["zanuda"]
+    args += ["--XYZIN", f"fullPath={cif8xfm}"]
     args += ["--F_SIGF", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
     args += ["--FREERFLAG", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
-    args += ["--XYZIN", cif8xfm]
 
     with i2run(args) as job:
-        gemmi.read_structure(str(job / "XYZOUT.cif"))
-        gemmi.read_mtz_file(str(job / "FPHIOUT.mtz"))
-        gemmi.read_mtz_file(str(job / "DIFFPHIOUT.mtz"))
+        # Zanuda writes output as zanuda.pdb / zanuda.mtz (not XYZOUT)
+        xyzout = job / "zanuda.pdb"
+        assert xyzout.exists(), f"No zanuda.pdb: {list(job.iterdir())}"
+        gemmi.read_pdb(str(xyzout))
+
+        # Check split map coefficients
+        for name in ["FPHIOUT", "DIFFPHIOUT"]:
+            mtz_file = job / f"{name}.mtz"
+            assert mtz_file.exists(), f"No {name}: {list(job.iterdir())}"

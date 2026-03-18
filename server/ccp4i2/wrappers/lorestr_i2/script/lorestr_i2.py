@@ -33,12 +33,19 @@ class lorestr_i2(CPluginScript):
         obsType = getattr(CCP4XtalData.CObsDataFile, obsTypeRoot+obsPairOrMean)
         dataObjects += [['F_SIGF',obsType]] # ,obsType
 
-        #Apply coordinate selection if set
+        # Write coordinate file to work directory (format-preserving: PDB→PDB, mmCIF→mmCIF).
+        # Uses getSelectedAtomsFile which applies atom selection if set, then
+        # normalize via gemmi read/write to fix mmCIF inconsistencies
+        # (e.g. label_seq_id mismatches in aniso records from PDB-REDO).
         import os
-        self.inputCoordPath = os.path.normpath(self.container.inputData.XYZIN.fullPath.__str__())
-        if self.container.inputData.XYZIN.isSelectionSet():
-            self.inputCoordPath = os.path.normpath(os.path.join(self.getWorkDirectory(),'selected.pdb'))
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.inputCoordPath)
+        import gemmi
+        self.inputCoordPath = self.container.inputData.XYZIN.getSelectedAtomsFile(
+            'input_model', self.getWorkDirectory())
+        st = gemmi.read_structure(self.inputCoordPath)
+        if self.inputCoordPath.endswith('.cif'):
+            st.make_mmcif_document().write_file(self.inputCoordPath)
+        else:
+            st.write_pdb(self.inputCoordPath)
 
         #Include FreeRflag if called for
         if self.container.inputData.FREERFLAG.isSet():

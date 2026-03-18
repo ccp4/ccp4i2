@@ -2132,6 +2132,31 @@ class CPdbDataFile(CPdbDataFileStub):
             traceback.print_exc()
             return 1
 
+    def getSelectedAtomsFile(self, baseName, workDirectory):
+        """
+        Format-preserving atom selection: writes selected atoms (or the full
+        file when no selection is set) to *workDirectory*, keeping the input
+        format (PDB or mmCIF).
+
+        The output filename is ``baseName.pdb`` or ``baseName.cif`` depending
+        on the source format detected by :meth:`isMMCIF`.
+
+        Args:
+            baseName:      Stem of the output file (no extension).
+            workDirectory: Directory in which to write the output.
+
+        Returns:
+            str: Absolute path to the written file.
+        """
+        import os
+        ext = '.cif' if self.isMMCIF() else '.pdb'
+        outPath = os.path.join(str(workDirectory), baseName + ext)
+        rc = self.getSelectedAtomsPdbFile(outPath)
+        if rc != 0:
+            raise RuntimeError(
+                f"getSelectedAtomsFile failed (rc={rc}) writing {outPath}")
+        return outPath
+
     def convertFormat(self, toFormat, fileName):
         """
         Convert PDB/mmCIF file to specified format and write to fileName.

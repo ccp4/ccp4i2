@@ -35,7 +35,6 @@ class TestZanudaAPI(APITestBase):
     task_name = "zanuda"
     timeout = 300
 
-    @pytest.mark.skip(reason="Zanuda's internal refmac5 fails to parse 8xfm mmCIF model")
     def test_8xfm(self, cif8xfm, mtz8xfm):
         """Test zanuda with 8xfm refined structure."""
         self.create_project("test_zanuda")
@@ -53,8 +52,8 @@ class TestZanudaAPI(APITestBase):
 
         self.run_and_wait()
 
-        # Zanuda produces a refined model and map coefficients
-        self.assert_file_exists("XYZOUT.cif")
+        # Zanuda writes output as zanuda.pdb (not XYZOUT)
+        self.assert_file_exists("zanuda.pdb")
         self.assert_file_exists("FPHIOUT.mtz")
         self.assert_file_exists("DIFFPHIOUT.mtz")
 
