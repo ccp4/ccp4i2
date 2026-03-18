@@ -11,7 +11,15 @@ import { CFreeRDataFileElement } from "./cfreerfile";
 import { CMiniMtzDataFileElement } from "./cminimtzdatafile";
 import { CBooleanElement } from "./cboolean";
 import { CListElement } from "./clist";
-import { CCP4i2ContainerElement } from "./ccontainer";
+// Lazy import to break circular dependency: ccontainer.tsx imports task-element.tsx
+let _CCP4i2ContainerElement: React.FC<any> | null = null;
+const getLazyContainerElement = (): React.FC<any> => {
+  if (!_CCP4i2ContainerElement) {
+    _CCP4i2ContainerElement =
+      require("./ccontainer").CCP4i2ContainerElement;
+  }
+  return _CCP4i2ContainerElement!;
+};
 import { CImportUnmergedElement } from "./cimportunmerged";
 import { CCellElement } from "./ccell";
 import { CEnsembleElement } from "./censemble";
@@ -153,9 +161,9 @@ const COMPONENT_REGISTRY: Record<string, RegistryEntry> = {
   COccRelationRefmacList: { component: COccRelationRefmacListElement },
   CTLSRangeList: { component: CTLSRangeListElement },
 
-  // Container / composite types
-  CSpaceGroupCell: { component: CCP4i2ContainerElement },
-  CContainer: { component: CCP4i2ContainerElement },
+  // Container / composite types (use lazy getter to break circular dependency)
+  CSpaceGroupCell: { get component() { return getLazyContainerElement(); } },
+  CContainer: { get component() { return getLazyContainerElement(); } },
   CCell: { component: CCellElement },
   CEnsemble: { component: CEnsembleElement },
   CFloatRange: { component: CRangeElement },
