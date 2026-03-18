@@ -1076,13 +1076,6 @@ TASKS = {
         reportPath="ccp4i2.pipelines.prosmart_refmac.script.prosmart_refmac_report:prosmart_refmac_report",
         runningReport=True,
     ),
-    "pyphaser_mr": Task(
-        title="MR using Phaser (pythonic)",
-        pluginPath="ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr:pyphaser_mr",
-        defXmlPath="wrappers/pyphaser_mr/script/pyphaser_mr.def.xml",
-        reportPath="ccp4i2.wrappers.pyphaser_mr.script.pyphaser_mr_report:pyphaser_mr_report",
-        runningReport=True,
-    ),
     "qtpisa": Task(
         title="Interface and quaternary structure analysis - PISA",
         description="Interface and assembly analysis (qtpisa)",

@@ -105,7 +105,6 @@ import ProvideAlignmentInterface from "./ProvideAlignment";
 import ProvideAsuContentsInterface from "./ProvideAsuContents";
 import ProvideSequenceInterface from "./ProvideSequence";
 import ProvideTLSInterface from "./ProvideTLS";
-import PyphaserMrInterface from "./pyphaser_mr";
 import QtpisaInterface from "./qtpisa";
 import ScaleitInterface from "./scaleit";
 import SculptorInterface from "./sculptor";
@@ -237,7 +236,6 @@ const TASK_INTERFACES: Record<
   ProvideAsuContents: ProvideAsuContentsInterface,
   ProvideSequence: ProvideSequenceInterface,
   ProvideTLS: ProvideTLSInterface,
-  pyphaser_mr: PyphaserMrInterface,
   qtpisa: QtpisaInterface,
   scaleit: ScaleitInterface,
   sculptor: SculptorInterface,

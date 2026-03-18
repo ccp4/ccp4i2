@@ -524,7 +524,6 @@ MISSING_TASKS = {
     'phaser_mr': 'tasks/phaser_mr/CTaskPhaser_mr.py',
     'phaser_singleMR': 'wrappers/phaser_singleMR/script/CTaskPhaserSingleMR.py',
     'prosmart': 'wrappers/prosmart/script/CTaskProsmart.py',
-    'pyphaser_mr': 'wrappers/pyphaser_mr/script/CTaskPyphaser_mr.py',
     'scaleit': 'wrappers/scaleit/script/CTaskscaleit.py',
     'sculptor': 'wrappers/sculptor/script/CTaskSculptor.py',
     'slicendice': 'wrappers/slicendice/script/Cslicendice.py',
