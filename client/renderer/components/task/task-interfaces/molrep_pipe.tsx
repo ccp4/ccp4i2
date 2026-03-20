@@ -22,8 +22,8 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   );
 
   // --- Input data items ---
-  const { item: F_SIGFItem } = useTaskItem("F_SIGF");
-  const { value: freeRFlag } = useTaskItem("FREERFLAG");
+  const { item: F_SIGFItem } = useTaskItem("inputData.F_SIGF");
+  const { value: freeRFlag } = useTaskItem("inputData.FREERFLAG");
 
   // Free R flag validation warning
   useFreeRWarning({
@@ -67,13 +67,13 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
           >
             <CCP4i2TaskElement
               {...props}
-              itemName="F_SIGF"
+              itemName="inputData.F_SIGF"
               qualifiers={{ guiLabel: "Reflections" }}
               onChange={handleF_SIGFChange}
             />
             <CCP4i2TaskElement
               {...props}
-              itemName="FREERFLAG"
+              itemName="inputData.FREERFLAG"
               qualifiers={{ guiLabel: "Free R set" }}
             />
           </CCP4i2ContainerElement>
