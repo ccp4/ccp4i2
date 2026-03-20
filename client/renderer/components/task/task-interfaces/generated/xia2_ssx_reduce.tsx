@@ -30,7 +30,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               />
             </InlineField>
             <CCP4i2TaskElement itemName="SEARCH_ROOT_DIR" {...props} />
-            <CCP4i2TaskElement itemName="DIALS_INTEGRATED" {...props} />
+            <CCP4i2TaskElement itemName="inputData.DIALS_INTEGRATED" {...props} />
           </CCP4i2ContainerElement>
 
           <CCP4i2ContainerElement
