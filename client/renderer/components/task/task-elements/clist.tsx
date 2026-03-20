@@ -5,7 +5,6 @@ import {
   CardContent,
   CardHeader,
   Collapse,
-  Grid2,
   IconButton,
   Stack,
   Tooltip,
@@ -45,11 +44,6 @@ const DEFAULT_VALUES = {
   CInt: 0,
   CFloat: 0.0,
   CString: "",
-} as const;
-
-const GRID_SIZES = {
-  ELEMENT: { xs: 11 },
-  DELETE_BUTTON: { xs: 1 },
 } as const;
 
 // Custom hooks
@@ -391,13 +385,19 @@ export const CListElement: React.FC<CListElementProps> = ({
   );
 
   const renderListItem = (content: any, index: number) => (
-    <Grid2
+    <Stack
       key={content._objectPath || `item-${index}`}
-      container
-      spacing={1}
-      sx={{ mb: 1, alignItems: "center" }}
+      direction="row"
+      alignItems="flex-start"
+      sx={{
+        mb: 1,
+        border: 1,
+        borderColor: "divider",
+        borderRadius: 1,
+        p: 1,
+      }}
     >
-      <Grid2 size={GRID_SIZES.ELEMENT}>
+      <Box sx={{ flex: 1, minWidth: 0 }}>
         <CCP4i2TaskElement
           {...restProps}
           itemName={content._objectPath}
@@ -405,31 +405,29 @@ export const CListElement: React.FC<CListElementProps> = ({
           qualifiers={qualifiers}
           onChange={onChange}
         />
-      </Grid2>
+      </Box>
 
-      <Grid2 size={GRID_SIZES.DELETE_BUTTON}>
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Tooltip title={`Delete item ${index + 1}`} placement="left">
-            <span>
-              <IconButton
-                disabled={!isEditable}
-                onClick={() => handleDeleteItem(content)}
-                size="small"
-                color="error"
-                aria-label={`Delete item ${index + 1}`}
-                sx={{
-                  "&:hover": {
-                    backgroundColor: "error.lighter",
-                  },
-                }}
-              >
-                <Delete />
-              </IconButton>
-            </span>
-          </Tooltip>
-        </Box>
-      </Grid2>
-    </Grid2>
+      <Tooltip title={`Delete item ${index + 1}`} placement="left">
+        <span>
+          <IconButton
+            disabled={!isEditable}
+            onClick={() => handleDeleteItem(content)}
+            size="small"
+            color="error"
+            aria-label={`Delete item ${index + 1}`}
+            sx={{
+              ml: 0.5,
+              flexShrink: 0,
+              "&:hover": {
+                backgroundColor: "error.lighter",
+              },
+            }}
+          >
+            <Delete />
+          </IconButton>
+        </span>
+      </Tooltip>
+    </Stack>
   );
 
   const renderListContent = () => (
