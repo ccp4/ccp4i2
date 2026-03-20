@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import {
   Button,
   Divider,
@@ -30,7 +29,6 @@ interface ExportResult {
 }
 
 export default function FileMenu() {
-  const router = useRouter();
   const api = useApi();
   const { projectId } = useCCP4i2Window();
   const { data: projects, mutate: mutateProjects } =
@@ -104,7 +102,7 @@ export default function FileMenu() {
           key="Manage"
           onClick={() => {
             handleClose();
-            router.push("/ccp4i2");
+            window.open("/ccp4i2");
           }}
         >
           <ListItemIcon>
@@ -116,7 +114,7 @@ export default function FileMenu() {
           key="Add"
           onClick={() => {
             handleClose();
-            router.push("/ccp4i2/new-project");
+            window.open("/ccp4i2/new-project");
           }}
         >
           <ListItemIcon>
@@ -165,7 +163,7 @@ export default function FileMenu() {
                     .then(() => {
                       mutateProjects();
                     });
-                  router.push(`/ccp4i2/project/${project.id}`);
+                  window.open(`/ccp4i2/project/${project.id}`);
                 }}
               >
                 {project.name} - {`${new Date(project.last_access)}`}
