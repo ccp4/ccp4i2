@@ -1,11 +1,14 @@
 """
-Import legacy CCP4i2 data directly from a SQLite database file.
+Import and validate legacy CCP4i2 data from a SQLite database file.
 
 This module reads the legacy CCP4i2 SQLite database (e.g. ~/.CCP4I2/db/database.sqlite)
-as ground truth and imports all data into the Django schema. Unlike the JSON fixture
-importer, this reads the SQLite directly via Python's sqlite3 module.
+as ground truth and can either validate or import the data into the Django schema.
 
-Functions here are usable both from the management command and from API endpoints.
+Classes:
+    SQLiteValidator - Validate the legacy database against the filesystem
+    SQLiteImporter  - Import all data into Django models
+
+Both are usable from management commands and API endpoints.
 """
 
 import logging
@@ -65,6 +68,456 @@ def convert_timestamp(epoch_float):
 def dict_factory(cursor, row):
     """sqlite3 row factory that returns dicts with lowercase keys."""
     return {col[0].lower(): row[i] for i, col in enumerate(cursor.description)}
+
+
+class SQLiteValidator:
+    """Validate a legacy CCP4i2 SQLite database against the filesystem.
+
+    Checks that project directories, job directories, output files, and
+    imported files all exist on disk. Also checks for referential integrity
+    (orphan jobs, files pointing to missing jobs, etc.) and data quality
+    (empty task names, null timestamps, invalid UUIDs).
+
+    This is a read-only operation — it never writes to Django or the SQLite.
+    """
+
+    def __init__(self, db_path, remap_dirs=None, verbose=False, log_fn=None):
+        self.db_path = Path(db_path)
+        self.remap_dirs = remap_dirs
+        self.verbose = verbose
+        self.log_fn = log_fn or (lambda msg: logger.info(msg))
+
+    def remap_directory(self, directory):
+        if not directory or not self.remap_dirs:
+            return directory
+        from_path, to_path = self.remap_dirs
+        if directory.startswith(from_path):
+            return directory.replace(from_path, to_path, 1)
+        return directory
+
+    def run(self):
+        """Execute all validations. Returns a structured report dict."""
+        if not self.db_path.exists():
+            raise FileNotFoundError(f"Database not found: {self.db_path}")
+
+        conn = sqlite3.connect(str(self.db_path))
+        conn.row_factory = dict_factory
+        cur = conn.cursor()
+
+        report = {
+            "source": str(self.db_path),
+            "counts": self._table_counts(cur),
+            "projects": self._validate_projects(cur),
+            "jobs": self._validate_jobs(cur),
+            "files": self._validate_files(cur),
+            "imported_files": self._validate_imported_files(cur),
+            "integrity": self._validate_integrity(cur),
+            "data_quality": self._validate_data_quality(cur),
+        }
+
+        conn.close()
+
+        # Compute a top-level summary
+        report["summary"] = self._summarise(report)
+        return report
+
+    # ------------------------------------------------------------------
+    # Table counts
+    # ------------------------------------------------------------------
+
+    def _table_counts(self, cur):
+        counts = {}
+        for table in [
+            "Projects", "Jobs", "Files", "FileUses", "ImportFiles",
+            "ExportFiles", "XData", "JobKeyValues", "JobKeyCharValues",
+            "Tags", "ProjectTags", "Comments", "ProjectComments",
+            "ServerJobs", "FileTypes", "KeyTypes", "FileRoles",
+            "ProjectExports", "ProjectImports",
+        ]:
+            try:
+                cur.execute(f"SELECT COUNT(*) as cnt FROM [{table}]")
+                counts[table] = cur.fetchone()["cnt"]
+            except sqlite3.OperationalError:
+                counts[table] = None  # table missing
+        return counts
+
+    # ------------------------------------------------------------------
+    # Project validation
+    # ------------------------------------------------------------------
+
+    def _validate_projects(self, cur):
+        cur.execute(
+            "SELECT ProjectID, ProjectName, ProjectDirectory FROM Projects"
+        )
+        results = {"total": 0, "dir_exists": 0, "dir_missing": [], "dir_empty": []}
+        for row in cur.fetchall():
+            results["total"] += 1
+            directory = self.remap_directory(row["projectdirectory"] or "")
+            if not directory:
+                results["dir_empty"].append(row["projectname"])
+                continue
+            p = Path(directory)
+            if p.is_dir():
+                results["dir_exists"] += 1
+            else:
+                results["dir_missing"].append({
+                    "project": row["projectname"],
+                    "directory": directory,
+                })
+
+        self._log_section("Projects", results["total"],
+                          results["dir_exists"], results["dir_missing"])
+        return results
+
+    # ------------------------------------------------------------------
+    # Job validation
+    # ------------------------------------------------------------------
+
+    def _validate_jobs(self, cur):
+        # Build project directory lookup
+        cur.execute("SELECT ProjectID, ProjectDirectory FROM Projects")
+        project_dirs = {}
+        for row in cur.fetchall():
+            d = self.remap_directory(row["projectdirectory"] or "")
+            project_dirs[row["projectid"]] = d
+
+        cur.execute(
+            "SELECT JobID, JobNumber, ProjectID, ParentJobID, Status, TaskName "
+            "FROM Jobs"
+        )
+        results = {
+            "total": 0, "dir_exists": 0,
+            "dir_missing": [], "dir_missing_count": 0,
+            "project_missing": 0,
+        }
+        for row in cur.fetchall():
+            results["total"] += 1
+            proj_dir = project_dirs.get(row["projectid"])
+            if not proj_dir:
+                results["project_missing"] += 1
+                continue
+
+            # Build job directory: project_dir/CCP4_JOBS/job_N/job_M/...
+            number = row["jobnumber"]
+            path_elements = [f"job_{e}" for e in number.split(".")]
+            job_dir = Path(proj_dir) / "CCP4_JOBS" / Path(*path_elements)
+
+            if job_dir.is_dir():
+                results["dir_exists"] += 1
+            else:
+                results["dir_missing_count"] += 1
+                # Only include first 50 in detail to keep response manageable
+                if len(results["dir_missing"]) < 50:
+                    results["dir_missing"].append({
+                        "job_number": number,
+                        "task_name": row["taskname"],
+                        "expected_dir": str(job_dir),
+                    })
+
+        self._log_section("Jobs", results["total"],
+                          results["dir_exists"], results["dir_missing"],
+                          missing_count=results["dir_missing_count"])
+        return results
+
+    # ------------------------------------------------------------------
+    # File validation
+    # ------------------------------------------------------------------
+
+    def _validate_files(self, cur):
+        # Build project dir + job number lookups
+        cur.execute("SELECT ProjectID, ProjectDirectory FROM Projects")
+        project_dirs = {}
+        for row in cur.fetchall():
+            project_dirs[row["projectid"]] = self.remap_directory(
+                row["projectdirectory"] or ""
+            )
+
+        cur.execute("SELECT JobID, JobNumber, ProjectID FROM Jobs")
+        job_info = {}
+        for row in cur.fetchall():
+            job_info[row["jobid"]] = {
+                "number": row["jobnumber"],
+                "project_id": row["projectid"],
+            }
+
+        cur.execute(
+            "SELECT FileID, Filename, JobID, PathFlag FROM Files"
+        )
+        results = {
+            "total": 0, "exists": 0,
+            "missing": [], "missing_count": 0,
+            "orphan_job": 0,
+        }
+        for row in cur.fetchall():
+            results["total"] += 1
+            job_id = row["jobid"]
+            ji = job_info.get(job_id)
+            if not ji:
+                results["orphan_job"] += 1
+                continue
+
+            proj_dir = project_dirs.get(ji["project_id"], "")
+            if not proj_dir:
+                continue
+
+            pathflag = row["pathflag"]
+            filename = row["filename"] or ""
+            if pathflag == 2:
+                # Import directory
+                file_path = Path(proj_dir) / "CCP4_IMPORTED_FILES" / filename
+            else:
+                # Job directory
+                path_elements = [f"job_{e}" for e in ji["number"].split(".")]
+                file_path = Path(proj_dir) / "CCP4_JOBS" / Path(*path_elements) / filename
+
+            if file_path.is_file():
+                results["exists"] += 1
+            else:
+                results["missing_count"] += 1
+                if len(results["missing"]) < 50:
+                    results["missing"].append({
+                        "filename": filename,
+                        "expected_path": str(file_path),
+                    })
+
+        self._log_section("Files", results["total"],
+                          results["exists"], results["missing"],
+                          missing_count=results["missing_count"])
+        return results
+
+    # ------------------------------------------------------------------
+    # Imported file validation (source files)
+    # ------------------------------------------------------------------
+
+    def _validate_imported_files(self, cur):
+        cur.execute(
+            "SELECT ImportId, FileID, SourceFilename FROM ImportFiles"
+        )
+        results = {
+            "total": 0, "source_exists": 0,
+            "source_missing": [], "source_missing_count": 0,
+        }
+        for row in cur.fetchall():
+            results["total"] += 1
+            src = row["sourcefilename"] or ""
+            if not src:
+                continue
+            src = self.remap_directory(src)
+            if Path(src).is_file():
+                results["source_exists"] += 1
+            else:
+                results["source_missing_count"] += 1
+                if len(results["source_missing"]) < 50:
+                    results["source_missing"].append(src)
+
+        self._log_section("ImportFiles (source)", results["total"],
+                          results["source_exists"], results["source_missing"],
+                          missing_count=results["source_missing_count"])
+        return results
+
+    # ------------------------------------------------------------------
+    # Referential integrity
+    # ------------------------------------------------------------------
+
+    def _validate_integrity(self, cur):
+        issues = []
+
+        # Jobs referencing non-existent projects
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Jobs j "
+            "LEFT JOIN Projects p ON j.ProjectID = p.ProjectID "
+            "WHERE p.ProjectID IS NULL"
+        )
+        orphan_jobs = cur.fetchone()["cnt"]
+        if orphan_jobs:
+            issues.append(f"{orphan_jobs} jobs reference non-existent projects")
+
+        # Jobs referencing non-existent parent jobs
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Jobs j "
+            "LEFT JOIN Jobs p ON j.ParentJobID = p.JobID "
+            "WHERE j.ParentJobID IS NOT NULL AND p.JobID IS NULL"
+        )
+        orphan_parents = cur.fetchone()["cnt"]
+        if orphan_parents:
+            issues.append(f"{orphan_parents} jobs reference non-existent parent jobs")
+
+        # Files referencing non-existent jobs
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Files f "
+            "LEFT JOIN Jobs j ON f.JobID = j.JobID "
+            "WHERE f.JobID IS NOT NULL AND j.JobID IS NULL"
+        )
+        orphan_files = cur.fetchone()["cnt"]
+        if orphan_files:
+            issues.append(f"{orphan_files} files reference non-existent jobs")
+
+        # FileUses referencing non-existent files or jobs
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM FileUses fu "
+            "LEFT JOIN Files f ON fu.FileID = f.FileID "
+            "WHERE f.FileID IS NULL"
+        )
+        orphan_fileuses_file = cur.fetchone()["cnt"]
+        if orphan_fileuses_file:
+            issues.append(f"{orphan_fileuses_file} file uses reference non-existent files")
+
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM FileUses fu "
+            "LEFT JOIN Jobs j ON fu.JobID = j.JobID "
+            "WHERE j.JobID IS NULL"
+        )
+        orphan_fileuses_job = cur.fetchone()["cnt"]
+        if orphan_fileuses_job:
+            issues.append(f"{orphan_fileuses_job} file uses reference non-existent jobs")
+
+        # ImportFiles referencing non-existent files
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM ImportFiles i "
+            "LEFT JOIN Files f ON i.FileID = f.FileID "
+            "WHERE f.FileID IS NULL"
+        )
+        orphan_imports = cur.fetchone()["cnt"]
+        if orphan_imports:
+            issues.append(f"{orphan_imports} import records reference non-existent files")
+
+        # Duplicate job numbers within a project
+        cur.execute(
+            "SELECT ProjectID, JobNumber, COUNT(*) as cnt "
+            "FROM Jobs GROUP BY ProjectID, JobNumber HAVING cnt > 1"
+        )
+        dupes = cur.fetchall()
+        if dupes:
+            issues.append(f"{len(dupes)} duplicate job numbers within projects")
+
+        self.log_fn(f"  Integrity: {'OK' if not issues else f'{len(issues)} issues'}")
+        for issue in issues:
+            self.log_fn(f"    - {issue}")
+
+        return {"ok": len(issues) == 0, "issues": issues}
+
+    # ------------------------------------------------------------------
+    # Data quality
+    # ------------------------------------------------------------------
+
+    def _validate_data_quality(self, cur):
+        issues = []
+
+        # Invalid UUIDs (not 32 hex chars)
+        for table, col in [
+            ("Projects", "ProjectID"), ("Jobs", "JobID"), ("Files", "FileID"),
+        ]:
+            cur.execute(
+                f"SELECT COUNT(*) as cnt FROM [{table}] "
+                f"WHERE length([{col}]) != 32"
+            )
+            bad = cur.fetchone()["cnt"]
+            if bad:
+                issues.append(f"{bad} rows in {table} have non-standard UUID length")
+
+        # Jobs with empty task names
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Jobs "
+            "WHERE TaskName IS NULL OR TaskName = ''"
+        )
+        empty_tasks = cur.fetchone()["cnt"]
+        if empty_tasks:
+            issues.append(f"{empty_tasks} jobs have empty task names")
+
+        # Projects with NULL creation time
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Projects WHERE ProjectCreated IS NULL"
+        )
+        null_ts = cur.fetchone()["cnt"]
+        if null_ts:
+            issues.append(f"{null_ts} projects have NULL creation time")
+
+        # Jobs with NULL creation time
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Jobs WHERE CreationTime IS NULL"
+        )
+        null_job_ts = cur.fetchone()["cnt"]
+        if null_job_ts:
+            issues.append(f"{null_job_ts} jobs have NULL creation time")
+
+        # Jobs with unknown status values
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Jobs "
+            "WHERE Status NOT IN (0,1,2,3,4,5,6,7,8,9,10)"
+        )
+        bad_status = cur.fetchone()["cnt"]
+        if bad_status:
+            issues.append(f"{bad_status} jobs have unrecognised status values")
+
+        # Files with unknown file type IDs (not in FileTypes table)
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Files f "
+            "LEFT JOIN FileTypes ft ON f.FiletypeID = ft.FileTypeID "
+            "WHERE ft.FileTypeID IS NULL"
+        )
+        unknown_ft = cur.fetchone()["cnt"]
+        if unknown_ft:
+            issues.append(f"{unknown_ft} files reference unknown file types")
+
+        # Projects with empty directories
+        cur.execute(
+            "SELECT COUNT(*) as cnt FROM Projects "
+            "WHERE ProjectDirectory IS NULL OR ProjectDirectory = ''"
+        )
+        empty_dirs = cur.fetchone()["cnt"]
+        if empty_dirs:
+            issues.append(f"{empty_dirs} projects have empty directories")
+
+        self.log_fn(f"  Data quality: {'OK' if not issues else f'{len(issues)} issues'}")
+        for issue in issues:
+            self.log_fn(f"    - {issue}")
+
+        return {"ok": len(issues) == 0, "issues": issues}
+
+    # ------------------------------------------------------------------
+    # Helpers
+    # ------------------------------------------------------------------
+
+    def _log_section(self, label, total, found, missing_list,
+                     missing_count=None):
+        actual_missing = missing_count if missing_count is not None else len(missing_list)
+        self.log_fn(
+            f"  {label}: {total} total, {found} found on disk, "
+            f"{actual_missing} missing"
+        )
+        if self.verbose:
+            for item in missing_list[:20]:
+                if isinstance(item, dict):
+                    self.log_fn(f"    MISSING: {item}")
+                else:
+                    self.log_fn(f"    MISSING: {item}")
+
+    def _summarise(self, report):
+        projects = report["projects"]
+        jobs = report["jobs"]
+        files = report["files"]
+        imports = report["imported_files"]
+        integrity = report["integrity"]
+        quality = report["data_quality"]
+
+        all_ok = (
+            not projects["dir_missing"]
+            and not projects["dir_empty"]
+            and jobs["dir_missing_count"] == 0
+            and files["missing_count"] == 0
+            and integrity["ok"]
+            and quality["ok"]
+        )
+
+        return {
+            "ok": all_ok,
+            "projects_on_disk": f"{projects['dir_exists']}/{projects['total']}",
+            "jobs_on_disk": f"{jobs['dir_exists']}/{jobs['total']}",
+            "files_on_disk": f"{files['exists']}/{files['total']}",
+            "import_sources_on_disk": f"{imports['source_exists']}/{imports['total']}",
+            "integrity_issues": len(integrity["issues"]),
+            "data_quality_issues": len(quality["issues"]),
+        }
 
 
 class SQLiteImporter:

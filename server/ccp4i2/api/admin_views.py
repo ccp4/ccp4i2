@@ -197,6 +197,71 @@ def import_sqlite(request):
             Path(temp_path).unlink(missing_ok=True)
 
 
+@api_view(['POST'])
+@permission_classes([IsPlatformAdmin])
+def validate_sqlite(request):
+    """
+    Validate a legacy CCP4i2 SQLite database against the filesystem.
+
+    Checks that project directories, job directories, files, and imported
+    file sources all exist on disk. Also checks referential integrity and
+    data quality. Read-only — does not modify any database.
+
+    Accepts multipart form data with:
+    - sqlite_db: SQLite database file upload
+
+    Or JSON body with:
+    - db_path: Server-side path to SQLite database
+
+    Optional:
+    - remap_from / remap_to: Remap directory prefixes before checking
+    """
+    from ccp4i2.db.import_sqlite import SQLiteValidator
+
+    db_file = request.FILES.get('sqlite_db')
+    db_path = request.data.get('db_path', '').strip()
+    remap_from = request.data.get('remap_from', '').strip()
+    remap_to = request.data.get('remap_to', '').strip()
+
+    if not db_file and not db_path:
+        return Response(
+            {'error': 'Must provide sqlite_db file upload or db_path'},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    remap_dirs = (remap_from, remap_to) if remap_from and remap_to else None
+    temp_path = None
+
+    try:
+        if db_file:
+            with tempfile.NamedTemporaryFile(suffix='.sqlite', delete=False) as tmp:
+                for chunk in db_file.chunks():
+                    tmp.write(chunk)
+                temp_path = tmp.name
+            actual_path = temp_path
+        else:
+            actual_path = Path(db_path).expanduser()
+
+        validator = SQLiteValidator(
+            db_path=actual_path,
+            remap_dirs=remap_dirs,
+        )
+        report = validator.run()
+        return Response(report)
+
+    except FileNotFoundError as e:
+        return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        logger.exception("Error in validate_sqlite")
+        return Response(
+            {'error': f'Unexpected error: {e}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+    finally:
+        if temp_path:
+            Path(temp_path).unlink(missing_ok=True)
+
+
 @api_view(['GET'])
 @permission_classes([IsPlatformAdmin])
 def ccp4i2_import_status(request):
