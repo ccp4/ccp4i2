@@ -361,6 +361,38 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     if (!hasValidationError) setIsManuallyExpanded((prev) => !prev);
   }, [hasValidationError]);
 
+  // Native HTML5 drag and drop for filesystem files
+  const [nativeDragOver, setNativeDragOver] = useState(false);
+
+  const handleNativeDragOver = useCallback(
+    (e: React.DragEvent) => {
+      // Only handle if it contains files (filesystem drop) and not an internal @dnd-kit drag
+      if (e.dataTransfer.types.includes("Files") && !active && !isDisabled) {
+        e.preventDefault();
+        e.stopPropagation();
+        setNativeDragOver(true);
+      }
+    },
+    [active, isDisabled]
+  );
+
+  const handleNativeDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setNativeDragOver(false);
+  }, []);
+
+  const handleNativeDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      e.stopPropagation();
+      setNativeDragOver(false);
+      if (e.dataTransfer.files?.length > 0 && setFiles && !isDisabled) {
+        setFiles(e.dataTransfer.files);
+      }
+    },
+    [setFiles, isDisabled]
+  );
+
   const getOptionLabel = useCallback(
     (option: CCP4i2File) => {
       const fileJob = projectJobs?.find((job) => job.id === option.job);
@@ -381,14 +413,19 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   return (
     <Box
       ref={setNodeRef}
+      onDragOver={handleNativeDragOver}
+      onDragLeave={handleNativeDragLeave}
+      onDrop={handleNativeDrop}
       sx={{
         mx: FIELD_SPACING.marginLeft,
         my: 0,
-        bgcolor: isOver
-          ? isValidDrop
-            ? "success.light"
-            : "error.light"
-          : "transparent",
+        bgcolor: nativeDragOver
+          ? "success.light"
+          : isOver
+            ? isValidDrop
+              ? "success.light"
+              : "error.light"
+            : "transparent",
         borderRadius: 1,
         transition: "background-color 0.2s",
       }}
