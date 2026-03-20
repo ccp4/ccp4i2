@@ -120,22 +120,30 @@ npm run dev
 
 ### Tests
 
-Run tests with proper CCP4 environment configuration:
+Run tests with proper CCP4 environment configuration. All commands run from the `server/` directory:
 ```bash
-# Run all tests
+cd server
+
+# Run all i2run tests (default)
 ./run_test.sh
 
 # Run a specific test file
-./run_test.sh tests/i2run/test_substitute_ligand.py
+./run_test.sh ccp4i2/tests/i2run/test_substitute_ligand.py -v
+
+# Run a specific test function
+./run_test.sh ccp4i2/tests/i2run/test_servalcat.py::test_servalcat_basic -v
 
 # Run tests matching a pattern
-./run_test.sh -k "test_aimless"
+./run_test.sh ccp4i2/tests/i2run/ -k "test_aimless"
 
 # Run i2run tests in parallel (recommended — most are single-threaded crystallography)
-./run_test.sh tests/i2run/ -n 8
+./run_test.sh ccp4i2/tests/i2run/ -n 8
+
+# Run all API tests
+./run_test.sh ccp4i2/tests/api/ -v
 ```
 
-The `run_test.sh` script sets up the required environment variables and paths.
+The `run_test.sh` script auto-discovers CCP4, sets up environment variables, and runs pytest via `ccp4-python`. Test projects are stored in `~/.cache/ccp4i2-tests/` — failed tests preserve their directories for debugging.
 
 ### Compounds App Tests
 
