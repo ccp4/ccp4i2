@@ -7,6 +7,7 @@ import React, {
   useContext,
 } from "react";
 import {
+  Box,
   Button,
   Checkbox,
   Chip,
@@ -566,12 +567,14 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
           </Stack>
         </Paper>
       ) : (
-        <Stack direction="row" justifyContent="flex-end" alignItems="center" sx={{ mb: 0.5 }}>
-          <ElaborateSearch
-            searchValue={filterText}
-            setSearchValue={setFilterText}
-            placeholder="Filter jobs…"
-          />
+        <Stack direction="row" alignItems="center" sx={{ mb: 0.5 }}>
+          <Box sx={{ flexGrow: 1, "& .MuiInputBase-input": { width: "100% !important" } }}>
+            <ElaborateSearch
+              searchValue={filterText}
+              setSearchValue={setFilterText}
+              placeholder="Filter jobs…"
+            />
+          </Box>
           <Tooltip title="Select jobs to delete">
             <IconButton
               size="small"
