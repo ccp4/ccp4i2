@@ -20,6 +20,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import { ElaborateSearch } from "../components/General/SearchObjects";
 import {
   RichTreeView,
   TreeItem2Content,
@@ -206,12 +207,55 @@ const useJobTreeLookups = (jobTree: JobTreeNode[] | undefined) => {
 };
 
 /**
+ * Check if a job node matches the search text.
+ * Matches against job title, task_name, job number, and finish time.
+ */
+const jobMatchesFilter = (node: JobTreeNode, searchUpper: string): boolean => {
+  if (node.title?.toUpperCase().includes(searchUpper)) return true;
+  if (node.task_name?.toUpperCase().includes(searchUpper)) return true;
+  if (node.number?.toUpperCase().includes(searchUpper)) return true;
+  if (
+    node.finish_time &&
+    new Date(node.finish_time).getFullYear() > 1970 &&
+    new Date(node.finish_time).toLocaleString().toUpperCase().includes(searchUpper)
+  )
+    return true;
+  return false;
+};
+
+/**
+ * Recursively filter a job tree, keeping nodes that match or have matching descendants.
+ */
+const filterJobTree = (
+  nodes: JobTreeNode[],
+  searchUpper: string
+): JobTreeNode[] => {
+  return nodes.reduce<JobTreeNode[]>((acc, node) => {
+    const filteredChildren = filterJobTree(node.children, searchUpper);
+    if (jobMatchesFilter(node, searchUpper) || filteredChildren.length > 0) {
+      acc.push({ ...node, children: filteredChildren });
+    }
+    return acc;
+  }, []);
+};
+
+/**
  * Transform job tree to format expected by RichTreeView.
  * Merges files into children array for each job.
+ * Optionally filters by search text.
  */
-const useTreeViewItems = (jobTree: JobTreeNode[] | undefined): TreeViewItem[] => {
+const useTreeViewItems = (
+  jobTree: JobTreeNode[] | undefined,
+  filterText: string | null
+): TreeViewItem[] => {
   return useMemo(() => {
     if (!jobTree) return [];
+
+    // Apply filter first if search text is provided
+    const filtered =
+      filterText && filterText.trim().length > 0
+        ? filterJobTree(jobTree, filterText.trim().toUpperCase())
+        : jobTree;
 
     const transformNode = (node: JobTreeNode): TreeViewItem => {
       // Combine child jobs and files into children array
@@ -226,8 +270,8 @@ const useTreeViewItems = (jobTree: JobTreeNode[] | undefined): TreeViewItem[] =>
       };
     };
 
-    return jobTree.map(transformNode);
-  }, [jobTree]);
+    return filtered.map(transformNode);
+  }, [jobTree, filterText]);
 };
 
 const useItemLabel = () => {
@@ -308,6 +352,9 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   const api = useApi();
   const deleteDialog = useDeleteDialog();
 
+  // Search/filter
+  const [filterText, setFilterText] = useState<string | null>(null);
+
   // Multi-select mode for bulk delete
   const [selectMode, setSelectMode] = useState(false);
   const selectedJobIds = useSet<number>();
@@ -345,8 +392,8 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     [lookups, selectMode, selectedJobIds, toggleJobSelection]
   );
 
-  // Transform to tree view format
-  const treeViewItems = useTreeViewItems(jobTree);
+  // Transform to tree view format (with optional filtering)
+  const treeViewItems = useTreeViewItems(jobTree, filterText);
 
   const getItemLabel = useItemLabel();
 
@@ -450,7 +497,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
     return <Skeleton variant="rectangular" width="100%" height={200} />;
   }
 
-  if (!treeViewItems.length) {
+  if (!jobTree?.length) {
     return null;
   }
 
@@ -493,7 +540,12 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
           </Stack>
         </Paper>
       ) : (
-        <Stack direction="row" justifyContent="flex-end" sx={{ mb: 0.5 }}>
+        <Stack direction="row" justifyContent="flex-end" alignItems="center" sx={{ mb: 0.5 }}>
+          <ElaborateSearch
+            searchValue={filterText}
+            setSearchValue={setFilterText}
+            placeholder="Filter jobs…"
+          />
           <Tooltip title="Select jobs to delete">
             <IconButton
               size="small"
