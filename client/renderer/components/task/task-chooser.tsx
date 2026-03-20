@@ -156,7 +156,7 @@ const CCP4i2TaskTreeFolder: React.FC<CCP4i2TaskTreeFolderProps> = ({
           />
         }
         title={category[1]}
-        subheader={category[0]}
+        subheader={null}
         action={
           <MyExpandMore
             expand={tasksExpanded}
@@ -285,7 +285,6 @@ const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({
             sx={{ mb: 1, fontSize: "0.7rem" }}
           />
         )}
-        <p>{`${taskName}`}</p>
         <p>{`${task.DESCRIPTION || ""}`}</p>
       </CardContent>
     </Card>
