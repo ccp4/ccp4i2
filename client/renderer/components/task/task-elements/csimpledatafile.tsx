@@ -1,4 +1,4 @@
-import { CDataFileElement } from "./cdatafile";
+import { CDataFileElement, IconMenuItem } from "./cdatafile";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { readFilePromise, useJob, useProject } from "../../../utils";
@@ -6,6 +6,7 @@ import { readFilePromise, useJob, useProject } from "../../../utils";
 interface CSimpleDataFileElementProps extends CCP4i2TaskElementProps {
   hasValidationError?: boolean;
   forceExpanded?: boolean;
+  iconMenuItems?: IconMenuItem[];
 }
 
 export const CSimpleDataFileElement: React.FC<CSimpleDataFileElementProps> = (

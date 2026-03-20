@@ -13,8 +13,13 @@ import {
   AutocompleteChangeReason,
   Avatar,
   Box,
+  Divider,
   IconButton,
   LinearProgress,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
   Stack,
   TextField,
   Tooltip,
@@ -22,7 +27,11 @@ import {
 import {
   Menu as MenuIcon,
   ChevronRight as ChevronRightIcon,
-  Clear,
+  ContentCopy,
+  ContentPaste,
+  DeleteOutline,
+  HelpOutline,
+  Preview,
   Storage as StorageIcon,
 } from "@mui/icons-material";
 import { useDndContext, useDroppable } from "@dnd-kit/core";
@@ -70,6 +79,18 @@ const canConvertToRequired = (
   return requiredFlags.some((required) => convertibleTo.includes(required));
 };
 
+/** Extra menu items injected by subtype widgets (e.g. CPdbDataFile "Select atoms") */
+export interface IconMenuItem {
+  label: string;
+  icon?: ReactNode;
+  onClick: () => void;
+  disabled?: boolean;
+  /** Render a divider before this item */
+  divider?: boolean;
+  checkable?: boolean;
+  checked?: boolean;
+}
+
 // Types
 export interface CCP4i2DataFileElementProps
   extends CCP4i2TaskElementProps,
@@ -80,6 +101,8 @@ export interface CCP4i2DataFileElementProps
   onChange?: (updatedItem: any) => void;
   hasValidationError?: boolean;
   forceExpanded?: boolean;
+  /** Additional icon-menu items from subtype widgets (inserted before separator) */
+  iconMenuItems?: IconMenuItem[];
 }
 
 /** Get a friendly file type label */
@@ -106,6 +129,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   qualifiers: propsQualifiers,
   hasValidationError: overrideValidationError,
   forceExpanded = false,
+  iconMenuItems,
 }) => {
   const api = useApi();
   const {
@@ -132,6 +156,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const [value, setValue] = useState<CCP4i2File>(nullFile);
   const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
   const [browseDialogOpen, setBrowseDialogOpen] = useState(false);
+  const [iconMenuAnchorEl, setIconMenuAnchorEl] = useState<HTMLElement | null>(null);
 
   // Computed values
   const qualifiers = useMemo(
@@ -208,7 +233,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const hasError = borderColor === "error.light";
   const computedValidationError = hasError;
   const hasValidationError = overrideValidationError ?? computedValidationError;
-  const hasChildren = React.Children.count(children) > 0;
+  const hasChildren = React.Children.toArray(children).length > 0;
   const isExpanded = hasValidationError || isManuallyExpanded || forceExpanded;
 
   const guiLabel =
@@ -352,14 +377,6 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     [setFileMenuAnchorEl, setFile, value]
   );
 
-  const handleClear = useCallback(
-    (event: React.MouseEvent) => {
-      event.stopPropagation();
-      handleFileSelect(event as unknown as SyntheticEvent, nullFile, "clear");
-    },
-    [handleFileSelect]
-  );
-
   const handleBrowseFileSelect = useCallback(
     (file: CCP4i2File) => {
       // Use the same path as the autocomplete selection
@@ -375,6 +392,20 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const handleToggle = useCallback(() => {
     if (!hasValidationError) setIsManuallyExpanded((prev) => !prev);
   }, [hasValidationError]);
+
+  // Icon context menu (classic ccp4i2 right-click menu on the type icon)
+  const handleIconContextMenu = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      event.preventDefault();
+      event.stopPropagation();
+      setIconMenuAnchorEl(event.currentTarget);
+    },
+    []
+  );
+
+  const handleIconMenuClose = useCallback(() => {
+    setIconMenuAnchorEl(null);
+  }, []);
 
   // Native HTML5 drag and drop for filesystem files
   const [nativeDragOver, setNativeDragOver] = useState(false);
@@ -447,16 +478,18 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     >
       {/* Main row */}
       <Stack direction="row" alignItems="center">
-        {/* File type icon */}
+        {/* File type icon — right-click opens classic context menu */}
         <Avatar
           src={`/qticons/${item?._class?.slice(1)}.png`}
           alt={item?._class || "File type"}
+          onContextMenu={handleIconContextMenu}
           sx={{
             width: 32,
             height: 32,
             mr: 1,
             flexShrink: 0,
             bgcolor: hasFile ? "primary.light" : "action.hover",
+            cursor: "context-menu",
           }}
         />
 
@@ -534,18 +567,6 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
                   <MenuIcon fontSize="small" />
                 </IconButton>
               </Tooltip>
-              {!isDisabled && (
-                <Tooltip title="Clear selection">
-                  <IconButton
-                    size="small"
-                    onClick={handleClear}
-                    aria-label="Clear file selection"
-                    color="default"
-                  >
-                    <Clear fontSize="small" />
-                  </IconButton>
-                </Tooltip>
-              )}
             </>
           )}
 
@@ -612,6 +633,94 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
         requiredContentFlag={fileConfig.requiredContentFlag}
         fileTypeLabel={fileTypeLabel}
       />
+
+      {/* Classic icon context menu */}
+      <Menu
+        open={Boolean(iconMenuAnchorEl)}
+        anchorEl={iconMenuAnchorEl}
+        onClose={handleIconMenuClose}
+      >
+        {!isDisabled && (
+          <MenuItem
+            onClick={(e) => {
+              handleIconMenuClose();
+              handleFileSelect(e, nullFile, "clear");
+            }}
+          >
+            <ListItemIcon><DeleteOutline fontSize="small" /></ListItemIcon>
+            <ListItemText>Clear</ListItemText>
+          </MenuItem>
+        )}
+        {hasFile && (
+          <MenuItem onClick={(e) => {
+            handleIconMenuClose();
+            // Reuse the existing file-options menu (View, Download, Coot, etc.)
+            setFileMenuAnchorEl(e.currentTarget);
+            setFile(value);
+          }}>
+            <ListItemIcon><Preview fontSize="small" /></ListItemIcon>
+            <ListItemText>View</ListItemText>
+          </MenuItem>
+        )}
+        {/* Subtype-specific items (e.g. "Select atoms" from CPdbDataFile) */}
+        {iconMenuItems?.map((extra, idx) => [
+          extra.divider && <Divider key={`div-${idx}`} />,
+          <MenuItem
+            key={idx}
+            onClick={() => {
+              handleIconMenuClose();
+              extra.onClick();
+            }}
+            disabled={extra.disabled}
+          >
+            {extra.icon && <ListItemIcon>{extra.icon}</ListItemIcon>}
+            <ListItemText>{extra.label}</ListItemText>
+            {extra.checkable && extra.checked && (
+              <ChevronRightIcon fontSize="small" sx={{ ml: 1, transform: "rotate(90deg)" }} />
+            )}
+          </MenuItem>,
+        ])}
+        <Divider />
+        {hasFile && (
+          <MenuItem
+            onClick={() => {
+              handleIconMenuClose();
+              if (value && value !== nullFile) {
+                navigator.clipboard.writeText(
+                  `${value.annotation} [${value.uuid}]`
+                );
+              }
+            }}
+          >
+            <ListItemIcon><ContentCopy fontSize="small" /></ListItemIcon>
+            <ListItemText>Copy</ListItemText>
+          </MenuItem>
+        )}
+        {!isDisabled && (
+          <MenuItem
+            disabled
+            onClick={handleIconMenuClose}
+          >
+            <ListItemIcon><ContentPaste fontSize="small" /></ListItemIcon>
+            <ListItemText>Paste</ListItemText>
+          </MenuItem>
+        )}
+        {qualifiers?.helpFile && (
+          <MenuItem
+            onClick={() => {
+              handleIconMenuClose();
+              window.open(
+                `https://www.ccp4.ac.uk/html/${qualifiers.helpFile}.html`,
+                "_blank",
+                "noopener,noreferrer"
+              );
+            }}
+          >
+            <ListItemIcon><HelpOutline fontSize="small" /></ListItemIcon>
+            <ListItemText>Help</ListItemText>
+          </MenuItem>
+        )}
+      </Menu>
     </Box>
   );
 };

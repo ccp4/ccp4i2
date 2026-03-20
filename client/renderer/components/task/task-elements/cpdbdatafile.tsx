@@ -14,10 +14,12 @@ import {
 } from "@mui/material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import SelectAllIcon from "@mui/icons-material/SelectAll";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useJob } from "../../../utils";
 import { CSimpleDataFileElement } from "./csimpledatafile";
+import { IconMenuItem } from "./cdatafile";
 
 /**
  * Chain info from CPdbDataComposition
@@ -549,15 +551,32 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   }, [item, qualifiers]);
 
   // Should show selection builder?
-  const showSelectionBuilder = true && hasContent;
+  // Only offer atom selection when ifAtomSelection is explicitly enabled in the
+  // task .def.xml qualifiers (matching ccp4i2-classic behaviour).
+  const showSelectionBuilder = overriddenQualifiers.ifAtomSelection && hasContent;
 
-  // Force expanded if selection is set
-  const forceExpanded = !!selectionString && selectionString.length > 0;
+  // Force expanded if selection is set and atom selection is enabled
+  const forceExpanded = overriddenQualifiers.ifAtomSelection && !!selectionString && selectionString.length > 0;
+
+  // Build icon context menu items for "Select atoms" (classic ccp4i2 behaviour)
+  const iconMenuItems = useMemo((): IconMenuItem[] => {
+    if (!overriddenQualifiers.ifAtomSelection) return [];
+    return [
+      {
+        label: "Select atoms",
+        icon: <SelectAllIcon fontSize="small" />,
+        onClick: () => setIsBuilderExpanded((prev) => !prev),
+        divider: true,
+        checkable: true,
+        checked: isBuilderExpanded,
+      },
+    ];
+  }, [overriddenQualifiers.ifAtomSelection, isBuilderExpanded]);
 
   if (!inferredVisibility) return null;
 
   return (
-    <CSimpleDataFileElement {...props} forceExpanded={forceExpanded}>
+    <CSimpleDataFileElement {...props} forceExpanded={forceExpanded} iconMenuItems={iconMenuItems}>
       {showSelectionBuilder && (
         <Stack spacing={1} sx={{ mt: 1 }}>
           {/* Selection Builder Header */}
