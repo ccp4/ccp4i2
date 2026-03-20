@@ -124,6 +124,79 @@ def import_legacy_ccp4i2(request):
     return Response(results)
 
 
+@api_view(['POST'])
+@permission_classes([IsPlatformAdmin])
+def import_sqlite(request):
+    """
+    Import legacy CCP4i2 data from a SQLite database file.
+
+    Accepts multipart form data with:
+    - sqlite_db: SQLite database file upload
+    - dry_run: If true, validate without loading (optional)
+    - remap_from: Directory path to remap from (optional)
+    - remap_to: Directory path to remap to (optional)
+
+    Or JSON body with:
+    - db_path: Server-side path to SQLite database (e.g. ~/.CCP4I2/db/database.sqlite)
+    - dry_run, remap_from, remap_to as above
+    """
+    from ccp4i2.db.import_sqlite import SQLiteImporter
+
+    db_file = request.FILES.get('sqlite_db')
+    db_path = request.data.get('db_path', '').strip()
+    dry_run = str(request.data.get('dry_run', 'false')).lower() == 'true'
+    remap_from = request.data.get('remap_from', '').strip()
+    remap_to = request.data.get('remap_to', '').strip()
+
+    if not db_file and not db_path:
+        return Response(
+            {'error': 'Must provide sqlite_db file upload or db_path'},
+            status=status.HTTP_400_BAD_REQUEST,
+        )
+
+    remap_dirs = (remap_from, remap_to) if remap_from and remap_to else None
+    temp_path = None
+
+    try:
+        if db_file:
+            with tempfile.NamedTemporaryFile(suffix='.sqlite', delete=False) as tmp:
+                for chunk in db_file.chunks():
+                    tmp.write(chunk)
+                temp_path = tmp.name
+            actual_path = temp_path
+        else:
+            actual_path = Path(db_path).expanduser()
+
+        importer = SQLiteImporter(
+            db_path=actual_path,
+            remap_dirs=remap_dirs,
+            dry_run=dry_run,
+            continue_on_error=True,
+        )
+        result = importer.run()
+
+        if not dry_run and not result['errors']:
+            logger.info(
+                f"SQLite import by {getattr(request.user, 'email', 'local')}: "
+                f"{result['stats']}"
+            )
+
+        resp_status = status.HTTP_400_BAD_REQUEST if result['errors'] else status.HTTP_200_OK
+        return Response(result, status=resp_status)
+
+    except FileNotFoundError as e:
+        return Response({'error': str(e)}, status=status.HTTP_404_NOT_FOUND)
+    except Exception as e:
+        logger.exception("Error in import_sqlite")
+        return Response(
+            {'error': f'Unexpected error: {e}'},
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+        )
+    finally:
+        if temp_path:
+            Path(temp_path).unlink(missing_ok=True)
+
+
 @api_view(['GET'])
 @permission_classes([IsPlatformAdmin])
 def ccp4i2_import_status(request):

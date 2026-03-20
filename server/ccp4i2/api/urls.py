@@ -40,9 +40,10 @@ _api_patterns = [
 # Admin endpoints require users app (cloud deployment only)
 if "users" in settings.INSTALLED_APPS:
     try:
-        from .admin_views import import_legacy_ccp4i2, ccp4i2_import_status
+        from .admin_views import import_legacy_ccp4i2, import_sqlite, ccp4i2_import_status
         _api_patterns += [
             path("admin/import-legacy/", import_legacy_ccp4i2, name="import-legacy-ccp4i2"),
+            path("admin/import-sqlite/", import_sqlite, name="import-sqlite"),
             path("admin/import-status/", ccp4i2_import_status, name="ccp4i2-import-status"),
         ]
     except ImportError as e:
