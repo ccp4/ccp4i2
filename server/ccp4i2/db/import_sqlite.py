@@ -206,8 +206,7 @@ class SQLiteValidator:
                 results["dir_exists"] += 1
             else:
                 results["dir_missing_count"] += 1
-                # Only include first 50 in detail to keep response manageable
-                if len(results["dir_missing"]) < 50:
+                if self.verbose or len(results["dir_missing"]) < 50:
                     results["dir_missing"].append({
                         "job_number": number,
                         "task_name": row["taskname"],
@@ -274,7 +273,7 @@ class SQLiteValidator:
                 results["exists"] += 1
             else:
                 results["missing_count"] += 1
-                if len(results["missing"]) < 50:
+                if self.verbose or len(results["missing"]) < 50:
                     results["missing"].append({
                         "filename": filename,
                         "expected_path": str(file_path),
@@ -307,7 +306,7 @@ class SQLiteValidator:
                 results["source_exists"] += 1
             else:
                 results["source_missing_count"] += 1
-                if len(results["source_missing"]) < 50:
+                if self.verbose or len(results["source_missing"]) < 50:
                     results["source_missing"].append(src)
 
         self._log_section("ImportFiles (source)", results["total"],
@@ -486,9 +485,10 @@ class SQLiteValidator:
             f"{actual_missing} missing"
         )
         if self.verbose:
-            for item in missing_list[:20]:
+            for item in missing_list:
                 if isinstance(item, dict):
-                    self.log_fn(f"    MISSING: {item}")
+                    detail = item.get("expected_path") or item.get("expected_dir") or item.get("directory") or str(item)
+                    self.log_fn(f"    MISSING: {detail}")
                 else:
                     self.log_fn(f"    MISSING: {item}")
 
