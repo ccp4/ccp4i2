@@ -88,7 +88,6 @@ const IDLE_POLL_INTERVAL = 30000;
 /** Job statuses that indicate active work: Queued (2), Running (3), Running remotely (7) */
 const ACTIVE_JOB_STATUSES = [2, 3, 7];
 
-const TREE_ITEM_BORDER_STYLE = { border: "1px solid #999" };
 const TIME_DISPLAY_STYLE = { fontSize: "75%" };
 
 // =============================================================================
@@ -314,9 +313,9 @@ const useTreeItemData = (itemId: string): TreeItemData => {
       displayLabel = `${job.number}: ${title}`;
       timestamp =
         job.finish_time && new Date(job.finish_time).getFullYear() > 1970
-          ? `Finished ${new Date(job.finish_time).toLocaleString()}`
-          : job.creation_time
-            ? `Modified ${new Date(job.creation_time).toLocaleString()}`
+          ? `Finished ${formatFriendlyDate(job.finish_time)}`
+          : ACTIVE_JOB_STATUSES.includes(job.status) && job.creation_time
+            ? `Started ${formatFriendlyDate(job.creation_time)}`
             : undefined;
     } else if (file) {
       displayLabel =
@@ -339,8 +338,36 @@ const useTreeItemData = (itemId: string): TreeItemData => {
 // Utility functions
 // =============================================================================
 
-const shouldShowTreeItemBorder = (job?: JobTreeNode): boolean => {
-  return Boolean(job && !job.number.includes("."));
+/**
+ * Format a date string as a friendly relative/short form:
+ * - Today: "14:32"
+ * - Yesterday: "Yesterday 14:32"
+ * - This year: "12 Mar 14:32"
+ * - Older: "12 Mar 2024"
+ */
+const formatFriendlyDate = (isoString: string): string => {
+  const date = new Date(isoString);
+  const now = new Date();
+  const time = date.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+
+  const isToday =
+    date.getDate() === now.getDate() &&
+    date.getMonth() === now.getMonth() &&
+    date.getFullYear() === now.getFullYear();
+  if (isToday) return time;
+
+  const yesterday = new Date(now);
+  yesterday.setDate(yesterday.getDate() - 1);
+  const isYesterday =
+    date.getDate() === yesterday.getDate() &&
+    date.getMonth() === yesterday.getMonth() &&
+    date.getFullYear() === yesterday.getFullYear();
+  if (isYesterday) return `Yesterday ${time}`;
+
+  const dayMonth = date.toLocaleDateString(undefined, { day: "numeric", month: "short" });
+  if (date.getFullYear() === now.getFullYear()) return `${dayMonth} ${time}`;
+
+  return `${dayMonth} ${date.getFullYear()}`;
 };
 
 const formatFloatValue = (value: number): string => {
@@ -773,7 +800,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
     return (
       <TreeItem2Root
         {...getRootProps()}
-        sx={shouldShowTreeItemBorder(job) ? TREE_ITEM_BORDER_STYLE : undefined}
+        sx={undefined}
       >
         <TreeItem2Content
           {...getContentProps()}
