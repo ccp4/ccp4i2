@@ -97,6 +97,7 @@ const TIME_DISPLAY_STYLE = { fontSize: "75%" };
 interface JobTreeContextValue {
   jobsByUuid: Map<string, JobTreeNode>;
   filesByUuid: Map<string, DjangoFile>;
+  taskShortTitles: Map<string, string>;
   selectMode: boolean;
   selectedJobIds: Set<number>;
   toggleJobSelection: (jobId: number) => void;
@@ -105,6 +106,7 @@ interface JobTreeContextValue {
 const JobTreeContext = createContext<JobTreeContextValue>({
   jobsByUuid: new Map(),
   filesByUuid: new Map(),
+  taskShortTitles: new Map(),
   selectMode: false,
   selectedJobIds: new Set(),
   toggleJobSelection: () => {},
@@ -274,24 +276,27 @@ const useTreeViewItems = (
   }, [jobTree, filterText]);
 };
 
-const useItemLabel = () => {
+const useItemLabel = (taskShortTitles: Map<string, string>) => {
   return useCallback((jobOrFile: TreeViewItem | DjangoFile): string => {
     const isJob = "parent" in jobOrFile;
 
     if (isJob) {
       const job = jobOrFile as TreeViewItem;
-      return `${job.number}: ${job.title}`;
+      const title = job.title?.trim()
+        ? job.title
+        : taskShortTitles.get(job.task_name) || job.task_name;
+      return `${job.number}: ${title}`;
     }
 
     const file = jobOrFile as DjangoFile;
     return file.annotation.trim().length > 0
       ? file.annotation
       : file.job_param_name;
-  }, []);
+  }, [taskShortTitles]);
 };
 
 const useTreeItemData = (itemId: string): TreeItemData => {
-  const { jobsByUuid, filesByUuid } = useContext(JobTreeContext);
+  const { jobsByUuid, filesByUuid, taskShortTitles } = useContext(JobTreeContext);
 
   return useMemo(() => {
     const job = jobsByUuid.get(itemId);
@@ -302,7 +307,10 @@ const useTreeItemData = (itemId: string): TreeItemData => {
     let timestamp: string | undefined;
 
     if (job) {
-      displayLabel = `${job.number}: ${job.title}`;
+      const title = job.title?.trim()
+        ? job.title
+        : taskShortTitles.get(job.task_name) || job.task_name;
+      displayLabel = `${job.number}: ${title}`;
       timestamp =
         job.finish_time && new Date(job.finish_time).getFullYear() > 1970
           ? `Finished ${new Date(job.finish_time).toLocaleString()}`
@@ -378,6 +386,23 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   // Single consolidated API call
   const { jobTree, isLoading, mutate: mutateJobTree } = useJobTree(projectId);
 
+  // Fetch task tree for shortTitle fallback (SWR deduplicates if already fetched)
+  const { data: taskTreeResult } = api.get<any>(`task_tree/`);
+  const taskShortTitles = useMemo(() => {
+    const map = new Map<string, string>();
+    const raw = taskTreeResult?.success
+      ? taskTreeResult?.data?.task_tree
+      : taskTreeResult?.task_tree;
+    if (raw?.lookup) {
+      for (const [taskName, meta] of Object.entries<any>(raw.lookup)) {
+        if (meta?.shortTitle) {
+          map.set(taskName, meta.shortTitle);
+        }
+      }
+    }
+    return map;
+  }, [taskTreeResult]);
+
   // Build lookup maps for tree items
   const lookups = useJobTreeLookups(jobTree);
 
@@ -385,17 +410,18 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   const contextValue = useMemo<JobTreeContextValue>(
     () => ({
       ...lookups,
+      taskShortTitles,
       selectMode,
       selectedJobIds,
       toggleJobSelection,
     }),
-    [lookups, selectMode, selectedJobIds, toggleJobSelection]
+    [lookups, taskShortTitles, selectMode, selectedJobIds, toggleJobSelection]
   );
 
   // Transform to tree view format (with optional filtering)
   const treeViewItems = useTreeViewItems(jobTree, filterText);
 
-  const getItemLabel = useItemLabel();
+  const getItemLabel = useItemLabel(taskShortTitles);
 
   const handleSelectedItemsChange = useCallback(
     (event: React.SyntheticEvent, ids: string | null) => {
