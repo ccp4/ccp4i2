@@ -734,6 +734,19 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
       return null;
     };
 
+    const labelStyle = useMemo(() => {
+      if (!isJob) {
+        // Files: smaller font, italic
+        return { fontSize: "0.8rem", fontStyle: "italic", fontWeight: 400 };
+      }
+      if (job && !job.number.includes(".")) {
+        // Top-level jobs: bold
+        return { fontWeight: 700 };
+      }
+      // Subjobs: smaller, non-bold
+      return { fontSize: "0.85rem", fontWeight: 400 };
+    }, [isJob, job]);
+
     const renderContent = () => {
       if (status.editing) {
         return <TreeItem2LabelInput {...getLabelInputProps()} />;
@@ -741,7 +754,7 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
 
       return (
         <Stack direction="column" sx={{ flexGrow: 1 }}>
-          <TreeItem2Label {...getLabelProps()} />
+          <TreeItem2Label {...getLabelProps()} sx={labelStyle} />
           {timestamp && (
             <Typography
               variant="body2"
