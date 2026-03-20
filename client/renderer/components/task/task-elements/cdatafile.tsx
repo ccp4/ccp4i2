@@ -23,6 +23,7 @@ import {
   Menu as MenuIcon,
   ChevronRight as ChevronRightIcon,
   Clear,
+  Storage as StorageIcon,
 } from "@mui/icons-material";
 import { useDndContext, useDroppable } from "@dnd-kit/core";
 
@@ -37,6 +38,7 @@ import { InputFileFetch } from "./input-file-fetch";
 import { InputFileUpload } from "./input-file-upload";
 import { FIELD_SPACING } from "./field-sizes";
 import { ExpandableSection } from "./expandable-section";
+import { BrowseProjectFilesDialog } from "./browse-project-files-dialog";
 
 /**
  * Content flag conversion capability mapping.
@@ -129,6 +131,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const { mutate: mutateContent } = useFileContent(`${item?._objectPath}`);
   const [value, setValue] = useState<CCP4i2File>(nullFile);
   const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
+  const [browseDialogOpen, setBrowseDialogOpen] = useState(false);
 
   // Computed values
   const qualifiers = useMemo(
@@ -357,6 +360,18 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     [handleFileSelect]
   );
 
+  const handleBrowseFileSelect = useCallback(
+    (file: CCP4i2File) => {
+      // Use the same path as the autocomplete selection
+      handleFileSelect(
+        {} as React.SyntheticEvent,
+        file,
+        "selectOption"
+      );
+    },
+    [handleFileSelect]
+  );
+
   const handleToggle = useCallback(() => {
     if (!hasValidationError) setIsManuallyExpanded((prev) => !prev);
   }, [hasValidationError]);
@@ -484,6 +499,19 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
             />
           )}
 
+          {canUpload && (
+            <Tooltip title="Browse files from other projects">
+              <IconButton
+                size="small"
+                onClick={() => setBrowseDialogOpen(true)}
+                disabled={isDisabled}
+                aria-label="Browse project files"
+              >
+                <StorageIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          )}
+
           {canFetch && (
             <InputFileFetch
               sx={{ minWidth: "auto" }}
@@ -574,6 +602,16 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
           {children}
         </ExpandableSection>
       )}
+
+      {/* Browse files from other projects dialog */}
+      <BrowseProjectFilesDialog
+        open={browseDialogOpen}
+        onClose={() => setBrowseDialogOpen(false)}
+        onFileSelect={handleBrowseFileSelect}
+        allowedTypes={fileConfig.allowedTypes}
+        requiredContentFlag={fileConfig.requiredContentFlag}
+        fileTypeLabel={fileTypeLabel}
+      />
     </Box>
   );
 };
