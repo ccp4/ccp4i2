@@ -224,9 +224,11 @@ export const CListElement: React.FC<CListElementProps> = ({
   // Card styling with validation color
   const cardSx = useMemo(
     () => ({
-      mx: 2,
-      border: 2,
+      mx: 1,
+      border: 1,
       borderColor: validationBorderColor,
+      borderRadius: 2,
+      boxShadow: "none",
       "&:hover": {
         borderColor:
           validationBorderColor === "divider"
@@ -389,13 +391,7 @@ export const CListElement: React.FC<CListElementProps> = ({
       key={content._objectPath || `item-${index}`}
       direction="row"
       alignItems="flex-start"
-      sx={{
-        mb: 1,
-        border: 1,
-        borderColor: "divider",
-        borderRadius: 1,
-        p: 1,
-      }}
+      spacing={0.5}
     >
       <Box sx={{ flex: 1, minWidth: 0 }}>
         <CCP4i2TaskElement
@@ -416,11 +412,8 @@ export const CListElement: React.FC<CListElementProps> = ({
             color="error"
             aria-label={`Delete item ${index + 1}`}
             sx={{
-              ml: 0.5,
+              mt: 0.5,
               flexShrink: 0,
-              "&:hover": {
-                backgroundColor: "error.lighter",
-              },
             }}
           >
             <Delete />
@@ -470,7 +463,7 @@ export const CListElement: React.FC<CListElementProps> = ({
         action={renderListActions()}
       />
 
-      <CardContent sx={{ pt: 1 }}>{renderListContent()}</CardContent>
+      <CardContent sx={{ pt: 0.5, pb: 1, px: 1, "&:last-child": { pb: 1 } }}>{renderListContent()}</CardContent>
     </Card>
   );
 };

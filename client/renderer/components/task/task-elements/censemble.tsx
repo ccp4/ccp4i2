@@ -1,8 +1,9 @@
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob } from "../../../utils";
-import { Grid2, Paper } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import { useMemo } from "react";
 import { useInferredVisibility } from "./hooks/useInferredVisibility";
+import { FieldRow } from "./field-row";
 
 export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   const { job, itemName } = props;
@@ -54,53 +55,54 @@ export const CEnsembleElement: React.FC<CCP4i2TaskElementProps> = (props) => {
     [pdbItemListItem?._qualifiers]
   );
 
+  const validationColor = getValidationColor(item);
+
   if (!isVisible) return null;
 
-  // Grid2 controls width - base widgets are full-width and fill their grid cells
   return (
-    <Paper
+    <Box
       sx={{
-        border: "3px solid",
-        borderColor: getValidationColor(item),
-        pt: 2,
+        borderLeft: "3px solid",
+        borderColor: validationColor,
+        borderRadius: 1,
+        bgcolor: "action.hover",
+        py: 1,
+        pl: 1,
       }}
     >
       {item && (
-        <Grid2 container rowSpacing={0}>
-          <Grid2 key="number" size={{ xs: 4 }}>
+        <Stack spacing={0.5}>
+          {/* Ensemble metadata: copies, label, use — in a compact row */}
+          <FieldRow equalWidth={false} size="sm" sx={{ alignItems: "center" }}>
             <CCP4i2TaskElement
               {...props}
               sx={{ my: 0, py: 0 }}
               itemName={numberPath}
               qualifiers={numberQualifiers}
             />
-          </Grid2>
-          <Grid2 key="label" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
               sx={{ my: 0, py: 0 }}
               itemName={labelPath}
               qualifiers={labelQualifiers}
             />
-          </Grid2>
-          <Grid2 key="use" size={{ xs: 4 }}>
             <CCP4i2TaskElement
               {...props}
               sx={{ my: 0, py: 0 }}
               itemName={usePath}
               qualifiers={useQualifiers}
             />
-          </Grid2>
-        </Grid2>
+          </FieldRow>
+
+          {/* PDB list */}
+          <CCP4i2TaskElement
+            {...props}
+            sx={{ my: 0, py: 0 }}
+            itemName={pdbItemListPath}
+            qualifiers={pdbItemListQualifiers}
+          />
+        </Stack>
       )}
-      {item && (
-        <CCP4i2TaskElement
-          {...props}
-          sx={{ my: 0, py: 0 }}
-          itemName={pdbItemListPath}
-          qualifiers={pdbItemListQualifiers}
-        />
-      )}
-    </Paper>
+    </Box>
   );
 };

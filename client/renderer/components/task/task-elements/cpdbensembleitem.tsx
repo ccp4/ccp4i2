@@ -21,10 +21,11 @@ export const CPdbEnsembleItemElement: React.FC<CCP4i2TaskElementProps> = (
   return isVisible && item ? (
     <Box
       sx={{
-        border: "3px solid",
+        borderLeft: hasValidationError ? "3px solid" : "2px solid",
         borderColor: itemValidationColor,
-        borderRadius: "0.5rem",
-        p: 0.5,
+        borderRadius: 0.5,
+        pl: 1,
+        py: 0.5,
       }}
     >
       <CSimpleDataFileElement
@@ -35,8 +36,7 @@ export const CPdbEnsembleItemElement: React.FC<CCP4i2TaskElementProps> = (
         }}
         forceExpanded={hasValidationError}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
-          {/* FieldRow with size="sm" constrains each field to ~12rem */}
+        <Box sx={{ display: "flex", flexDirection: "column", gap: 0.5 }}>
           <FieldRow equalWidth={false} size="sm">
             <CCP4i2TaskElement
               {...props}
