@@ -12,6 +12,10 @@ These tests verify the API workflow for:
 - scaleit: Derivative vs native scaling
 - matthews: Matthews coefficient estimation
 - AUSPEX: Data quality analysis plots
+- mergeMtz: Mini-MTZ merging
+- cmapcoeff: Anomalous/difference map coefficients
+- cphasematch: Phase comparison
+- phaser_EP_LLG: Phaser EP LLG anomalous map
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs via API digest endpoints.
@@ -389,3 +393,108 @@ class TestAuspexAPI(APITestBase):
 
         for plot in ["F", "FSigF", "I", "ISigI", "SigF", "SigI"]:
             self.assert_file_exists(f"{plot}_plot.png")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestMergeMtzAPI(APITestBase):
+    """API tests for mergeMtz mini-MTZ merging."""
+
+    task_name = "mergeMtz"
+    timeout = 60
+
+    @pytest.mark.skip(reason="CMiniMtzDataFile in list items not yet settable via set_param or upload_file")
+    def test_gamma_phases(self):
+        """Test merging a mini-MTZ file."""
+        from ccp4i2.tests.i2run.utils import demoData
+        self.create_project("test_merge_mtz")
+        self.create_job()
+
+        # MINIMTZINLIST items contain fileName (CMiniMtzDataFile) - set path directly
+        self.set_param("inputData.MINIMTZINLIST", [
+            {"fileName": demoData("gamma", "initial_phases.mtz")}
+        ])
+
+        self.run_and_wait()
+
+        self.validate_mtz("HKLOUT.mtz")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestCmapcoeffAPI(APITestBase):
+    """API tests for cmapcoeff anomalous map coefficients."""
+
+    task_name = "cmapcoeff"
+    timeout = 120
+
+    @pytest.mark.skip(reason="cmapcoeff binary crashes (SIGABRT) — pre-existing CCP4 issue")
+    def test_gamma_anomalous(self, gamma_mtz, gamma_phases_mtz):
+        """Test anomalous map coefficient calculation."""
+        self.create_project("test_cmapcoeff")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF1", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file_with_columns(
+            "inputData.ABCD1", gamma_phases_mtz,
+            column_labels="/*/*/[HLA,HLB,HLC,HLD]"
+        )
+
+        self.run_and_wait()
+
+        self.validate_mtz("FPHIOUT.mtz")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestCphasematchAPI(APITestBase):
+    """API tests for cphasematch phase comparison."""
+
+    task_name = "cphasematch"
+    timeout = 120
+
+    def test_gamma_phase_comparison(self, gamma_mtz, gamma_phases_mtz):
+        """Test phase comparison between two sets of phases."""
+        self.create_project("test_cphasematch")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file_with_columns(
+            "inputData.ABCD1", gamma_phases_mtz,
+            column_labels="/*/*/[HLA,HLB,HLC,HLD]"
+        )
+        self.upload_file_with_columns(
+            "inputData.ABCD2", gamma_phases_mtz,
+            column_labels="/*/*/[HLA,HLB,HLC,HLD]"
+        )
+
+        self.run_and_wait()
+
+        self.assert_file_exists("ABCDOUT.mtz")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPhaserEpLlgAPI(APITestBase):
+    """API tests for phaser_EP_LLG anomalous map."""
+
+    task_name = "phaser_EP_LLG"
+    timeout = 300
+
+    def test_gamma_xe(self, gamma_mtz, gamma_heavy_atoms_pdb):
+        """Test phaser EP LLG with Xe heavy atom coordinates."""
+        self.create_project("test_phaser_ep_llg")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file("inputData.XYZIN_HA", gamma_heavy_atoms_pdb)
+
+        # EP_LLG may not converge with this data but should produce output
+        self.run_and_wait(expect_success=False)
+
+        self.assert_file_exists("diagnostic.xml")

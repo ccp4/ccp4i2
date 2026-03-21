@@ -15,6 +15,9 @@ These tests verify the API workflow for:
 - SubtractNative: Native subtraction map
 - editbfac: AlphaFold B-factor editing
 - density_calculator: Model density map calculation
+- pdbset_ui: PDB manipulation with keywords
+- add_fractional_coords: Add fractional coordinates to model
+- modelASUCheck: Model-sequence alignment check
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -586,3 +589,65 @@ class TestDensityCalculatorAPI(APITestBase):
         self.run_and_wait()
 
         self.assert_file_exists("MAPOUT.map")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPdbsetUiAPI(APITestBase):
+    """API tests for pdbset_ui PDB manipulation."""
+
+    task_name = "pdbset_ui"
+    timeout = 60
+
+    def test_gamma_model(self, gamma_model_pdb):
+        """Test pdbset with a simple CHAIN keyword."""
+        self.create_project("test_pdbset_ui")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", gamma_model_pdb)
+        self.set_param("controlParameters.EXTRA_PDBSET_KEYWORDS", "CHAIN A")
+
+        self.run_and_wait()
+
+        self.validate_pdb("XYZOUT.pdb")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestAddFractionalCoordsAPI(APITestBase):
+    """API tests for add_fractional_coords."""
+
+    task_name = "add_fractional_coords"
+    timeout = 60
+
+    def test_gamma_model(self, gamma_model_pdb):
+        """Test adding fractional coordinates to gamma model."""
+        self.create_project("test_add_fractional_coords")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", gamma_model_pdb)
+
+        self.run_and_wait()
+
+        self.assert_file_exists("XYZOUT.cif")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestModelASUCheckAPI(APITestBase):
+    """API tests for modelASUCheck model-sequence alignment."""
+
+    task_name = "modelASUCheck"
+    timeout = 120
+
+    def test_gamma(self, gamma_model_pdb, gamma_asu_xml):
+        """Test model-sequence alignment check with gamma data."""
+        self.create_project("test_model_asu_check")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", gamma_model_pdb)
+        self.upload_file("inputData.ASUIN", gamma_asu_xml)
+
+        self.run_and_wait()
+
+        # Check alignment results in program.xml
+        xml = self.read_program_xml()
+        alignments = xml.findall(".//SequenceAlignment/Alignment")
+        assert len(alignments) >= 1

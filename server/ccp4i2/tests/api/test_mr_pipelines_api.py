@@ -9,6 +9,11 @@ These tests verify the API workflow for:
 - molrep_selfrot: Self-rotation function analysis
 - phaser_pipeline: Expert Phaser MR with multiple ensembles
 - phaser_rnp_pipeline: Phaser MR with chain selections
+- chainsaw: Model editing with alignment
+- sculptor: Model trimming with alignment
+- phaser_ensembler: Ensemble superposition
+- findmyseq: Sequence identification from map
+- molrep_den: Molrep density/Patterson-mode MR
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -368,3 +373,135 @@ class TestPhaserRnpPipelineAPI(APITestBase):
         job_dir = self.get_job_directory()
         phaser_outputs = list(job_dir.glob("PHASER.*"))
         assert len(phaser_outputs) >= 1, f"No Phaser output found in {job_dir}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestChainsawAPI(APITestBase):
+    """API tests for chainsaw model editing."""
+
+    task_name = "chainsaw"
+    timeout = 120
+
+    def test_gamma(self, gamma_model_pdb, demo_data_dir):
+        """Test chainsaw with self-alignment."""
+        alignment = demo_data_dir / "gamma" / "gamma_self_alignment.fas"
+        if not alignment.exists():
+            pytest.skip(f"Alignment file not found: {alignment}")
+
+        self.create_project("test_chainsaw")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", gamma_model_pdb)
+        self.upload_file("inputData.ALIGNIN", str(alignment))
+
+        self.run_and_wait()
+
+        self.validate_pdb("XYZOUT.pdb")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestSculptorAPI(APITestBase):
+    """API tests for sculptor model trimming."""
+
+    task_name = "sculptor"
+    timeout = 120
+
+    def test_gamma(self, gamma_model_pdb, demo_data_dir):
+        """Test sculptor with gamma FASTA alignment."""
+        aln_path = demo_data_dir / "gamma" / "gamma_self_alignment.fas"
+        if not aln_path.exists():
+            pytest.skip(f"Alignment file not found: {aln_path}")
+
+        self.create_project("test_sculptor")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", gamma_model_pdb)
+        self.set_param("inputData.ALIGNMENTORSEQUENCEIN", "ALIGNMENT")
+        self.upload_file("inputData.ALIGNIN", str(aln_path))
+        self.set_param("controlParameters.TARGETINDEX", 0)
+
+        self.run_and_wait()
+
+        # sculptor outputs a list of PDB files
+        job_dir = self.get_job_directory()
+        pdb_files = list(job_dir.glob("*.pdb"))
+        assert len(pdb_files) > 0, f"No PDB output: {list(job_dir.iterdir())}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPhaserEnsemblerAPI(APITestBase):
+    """API tests for phaser_ensembler ensemble superposition."""
+
+    task_name = "phaser_ensembler"
+    timeout = 120
+
+    def test_gamma_two_models(self, gamma_model_pdb):
+        """Test phaser.ensembler with two copies of gamma model."""
+        self.create_project("test_phaser_ensembler")
+        self.create_job()
+
+        # XYZIN_LIST is a CList of CPdbDataFile
+        self.set_param("inputData.XYZIN_LIST", [{}, {}])
+        self.upload_file("inputData.XYZIN_LIST[0]", gamma_model_pdb)
+        self.upload_file("inputData.XYZIN_LIST[1]", gamma_model_pdb)
+
+        self.run_and_wait()
+
+        job_dir = self.get_job_directory()
+        pdb_files = list(job_dir.glob("*.pdb"))
+        assert len(pdb_files) > 0, f"No PDB output: {list(job_dir.iterdir())}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestFindmyseqAPI(APITestBase):
+    """API tests for findmyseq sequence identification."""
+
+    task_name = "findmyseq"
+    timeout = 300
+
+    def test_8xfm(self, cif8xfm, mtz8xfm):
+        """Test findmyseq with 8xfm data."""
+        self.create_project("test_findmyseq")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", cif8xfm)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz8xfm,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FPHI", mtz8xfm,
+            column_labels="/*/*/[FWT,PHWT]"
+        )
+
+        self.run_and_wait()
+
+        self.assert_file_exists("SEQOUT.fasta")
+        content = self.read_output_file("SEQOUT.fasta")
+        assert len(content) > 0, "Empty sequence output"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestMolrepDenAPI(APITestBase):
+    """API tests for molrep_den density-mode MR."""
+
+    task_name = "molrep_den"
+    timeout = 300
+
+    @pytest.mark.skip(reason="Needs a different model from the map — self-search fails in molrep")
+    def test_8xfm_density(self, cif8xfm, mtz8xfm):
+        """Test molrep density search with 8xfm data."""
+        self.create_project("test_molrep_den")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_PHI_MAP", mtz8xfm,
+            column_labels="/*/*/[FWT,PHWT]"
+        )
+        self.upload_file("inputData.XYZIN", cif8xfm)
+
+        self.run_and_wait()
+
+        # Molrep density search may not find a solution (XYZOUT not always
+        # produced) but should complete and write program.xml
+        self.assert_file_exists("program.xml")

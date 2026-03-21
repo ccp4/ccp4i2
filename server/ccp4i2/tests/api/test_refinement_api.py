@@ -8,6 +8,8 @@ These tests verify the API workflow for:
 - zanuda: Space group validation / refinement
 - lorestr_i2: Low-resolution structure refinement
 - metalCoord: Metal coordination restraint generation
+- ProvideTLS: TLS group generation from coordinates
+- pairef: Paired refinement resolution cutoff
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -314,3 +316,54 @@ class TestMetalCoordAPI(APITestBase):
         job_dir = self.get_job_directory()
         af3_files = list(job_dir.glob("AF3_restraints*"))
         assert len(af3_files) >= 3, f"Expected AF3 restraint files, found: {[f.name for f in af3_files]}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestProvideTlsAPI(APITestBase):
+    """API tests for ProvideTLS TLS group generation."""
+
+    task_name = "ProvideTLS"
+    timeout = 60
+
+    def test_auto_from_coords(self, gamma_model_pdb):
+        """Test generating TLS groups from coordinates."""
+        self.create_project("test_provide_tls")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", gamma_model_pdb)
+
+        self.run_and_wait()
+
+        tls_path = self.assert_file_exists("TLSFILE.tls")
+        content = tls_path.read_text()
+        assert "TLS" in content, "TLS file has no TLS keyword"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPairefAPI(APITestBase):
+    """API tests for pairef paired refinement."""
+
+    task_name = "pairef"
+    timeout = 600
+
+    def test_8xfm(self, cif8xfm, mtz8xfm):
+        """Test paired refinement with 8xfm data."""
+        self.create_project("test_pairef")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz8xfm,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", mtz8xfm,
+            column_labels="/*/*/[FREE]"
+        )
+        self.upload_file("inputData.XYZIN", cif8xfm)
+        self.set_param("inputParameters.INIRES", 3.0)
+
+        self.run_and_wait()
+
+        # Check cutoff result
+        cutoff_path = self.assert_file_exists("pairef_project/PAIREF_cutoff.txt")
+        assert float(cutoff_path.read_text()) == 2.95
