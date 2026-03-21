@@ -743,8 +743,12 @@ TASKS = {
         runningReport=True,
     ),
     "matthews": Task(
+        title="Estimate AU content",
+        description="Estimate number of molecules in the asymmetric unit and solvent content (Matthews coefficient)",
         shortTitle="Matthews",
+        pluginPath="ccp4i2.wrappers.matthews.script.matthews:matthews",
         defXmlPath="wrappers/matthews/script/matthews.def.xml",
+        reportPath="ccp4i2.wrappers.matthews.script.matthews_report:matthews_report",
     ),
     "mergeMtz": Task(
         title="Merge experimental data objects to MTZ",

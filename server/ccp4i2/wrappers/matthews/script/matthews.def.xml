@@ -11,42 +11,39 @@
         <qualifiers>
           <mustExist>True</mustExist>
           <allowUndefined>False</allowUndefined>
-	      <fromPreviousJob>True</fromPreviousJob>
+          <fromPreviousJob>True</fromPreviousJob>
         </qualifiers>
       </content>
       <content id="ASUIN">
         <className>CAsuDataFile</className>
         <qualifiers>
           <mustExist>True</mustExist>
-	      <fromPreviousJob>True</fromPreviousJob>
-	      <selectionMode>2</selectionMode>
+          <allowUndefined>True</allowUndefined>
+          <fromPreviousJob>True</fromPreviousJob>
+          <selectionMode>2</selectionMode>
         </qualifiers>
-      </content>
-      <content id="ASU_COMPONENTS">
-        <className>CAsuComponentList</className>
-	    <qualifiers>
-	      <guiLabel>Contents of the biological unit</guiLabel>
-	    </qualifiers>
       </content>
       <content id="MOLWT">
         <className>CFloat</className>
         <qualifiers>
-	      <min>0.0</min>
-	   </qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <min>0.0</min>
+        </qualifiers>
       </content>
       <content id="NRES">
         <className>CInt</className>
         <qualifiers>
-	      <min>0.0</min>
-	    </qualifiers>
+          <allowUndefined>True</allowUndefined>
+          <min>0</min>
+        </qualifiers>
       </content>
       <content id="MODE">
-	    <className>CString</className>
-	    <qualifiers>
-	      <onlyEnumerators>True</onlyEnumerators>
-	      <enumerators>asu_components,nres,molwt</enumerators>
-	      <default>sequence</default>
-	    </qualifiers>
+        <className>CString</className>
+        <qualifiers>
+          <onlyEnumerators>True</onlyEnumerators>
+          <enumerators>asu_components,nres,molwt</enumerators>
+          <default>asu_components</default>
+        </qualifiers>
       </content>
     </container>
   </ccp4i2_body>

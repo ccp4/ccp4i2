@@ -34,8 +34,8 @@ Guide for writing new tests:
 |--------------------|-------|
 | GUI-visible tasks  | 81    |
 | Interactive (N/A)  | 10    |
-| i2run tested       | 64    |
-| i2run disabled     | 8     |
+| i2run tested       | 65    |
+| i2run disabled     | 7     |
 | API tested         | 54    |
 | API disabled       | 0     |
 | Deprecated         | 1     |
@@ -74,7 +74,7 @@ Guide for writing new tests:
 |----------------------|-------|-----|-------|----------------------------|------------------------------|
 | aimless_pipe         | Y     | Y   | ·     | test_aimless.py            | test_data_reduction_api.py   |
 | freerflag            | Y     | Y   | ·     | test_freerflag.py          | test_data_reduction_api.py   |
-| matthews             | D     | -   | ·     | test_matthews.py           |                              |
+| matthews             | Y     | -   | ·     | test_matthews.py           |                              |
 | molrep_selfrot       | Y     | Y   | P     | test_molrep_selfrot.py     | test_new_coverage_api.py     |
 | AUSPEX               | Y     | -   | ·     | test_auspex.py             |                              |
 | xia2_ssx_reduce      | D     | -   | ·     | test_xia2_ssx_reduce.py    |                              |
@@ -255,7 +255,6 @@ and cannot be tested via i2run or the API.
 | Task | Suite | Issue | Notes |
 |------|-------|-------|-------|
 | ctruncate | i2run | Skipped | KeywordExtractor bug: `get_merged_metadata` is None for ctruncate's container |
-| matthews | i2run | Skipped | No Python wrapper script (def.xml only); needs investigation |
 | adding_stats_to_mmcif_i2 | i2run | Skipped | Requires prior refinement job in same project (complex setup) |
 | pdb_redo_api | i2run | Skipped | Requires external PDB-REDO web service |
 
