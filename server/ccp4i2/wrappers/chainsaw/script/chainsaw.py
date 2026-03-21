@@ -25,6 +25,13 @@ class chainsaw(CPluginScript):
       self.appendCommandScript('END')
 
     def processInputFiles(self):
+        # chainsaw only handles PDB format — convert mmCIF if needed
+        self.container.inputData.XYZIN.loadFile()
+        if self.container.inputData.XYZIN.isMMCIF():
+            pdb_path = os.path.join(self.getWorkDirectory(), 'XYZIN_converted.pdb')
+            self.container.inputData.XYZIN.convertFormat('pdb', pdb_path)
+            self.container.inputData.XYZIN.setFullPath(pdb_path)
+
         self.cryst1card = None
         with open(str(self.container.inputData.XYZIN.fullPath),'r') as inputFile:
             lines = inputFile.readlines()

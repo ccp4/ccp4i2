@@ -108,7 +108,7 @@ Guide for writing new tests:
 
 | Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
 |----------------------|-------|-----|-------|----------------------------|------------------------------|
-| chainsaw             | Y     | -   | !     | test_chainsaw.py           |                              |
+| chainsaw             | Y     | -   | P     | test_chainsaw.py           |                              |
 | sculptor             | Y     | -   | Y     | test_sculptor.py           |                              |
 | phaser_ensembler     | Y     | -   | P     | test_phaser_ensembler.py   |                              |
 | clustalw             | Y     | Y   | ·     | test_clustalw.py           | test_utilities_api.py        |
@@ -148,7 +148,7 @@ Guide for writing new tests:
 | coot_script_lines    | D     | -   | Y     | test_coot_script_lines.py  |                              |
 | coot_find_waters     | Y     | Y   | Y     | test_find_waters.py        | test_utilities_api.py        |
 | arp_warp_classic     | Y     | -   | P     | test_arpwarp.py            |                              |
-| shelxeMR             | Y     | Y   | !     | test_shelxe_mr.py          | test_model_building_api.py   |
+| shelxeMR             | Y     | Y   | P     | test_shelxe_mr.py          | test_model_building_api.py   |
 
 ## Refinement
 
@@ -263,8 +263,8 @@ and cannot be tested via i2run or the API.
 | Status | Count | Tasks |
 |--------|-------|-------|
 | Y (mmCIF-safe) | 19 | coordinate_selector, crank2, parrot, coot_find_waters, coot_script_lines, servalcat_pipe, metalCoord, coot_rsr_morph, pdb_redo_api, sheetbend, lorestr_i2, validate_protein, privateer, sculptor, csymmatch, density_calculator, add_fractional_coords, gesamt, modelcraft |
-| P (auto-converts) | 17 | molrep_selfrot, SubstituteLigand, dr_mr_modelbuild_pipeline, editbfac, phaser_EP_AUTO, phaser_EP, phaser_ensembler, mrbump_basic, phaser_simple, phaser_pipeline, molrep_pipe, molrep_den, phaser_rnp_pipeline, AMPLE, SIMBAD, i2Dimple, arp_warp_classic, prosmart_refmac, zanuda, edstats |
-| ! (broken) | 2 | chainsaw, shelxeMR |
+| P (auto-converts) | 19 | molrep_selfrot, SubstituteLigand, dr_mr_modelbuild_pipeline, editbfac, phaser_EP_AUTO, phaser_EP, phaser_ensembler, mrbump_basic, phaser_simple, phaser_pipeline, molrep_pipe, molrep_den, phaser_rnp_pipeline, AMPLE, SIMBAD, i2Dimple, arp_warp_classic, prosmart_refmac, zanuda, edstats, chainsaw, shelxeMR |
+| ! (broken) | 0 | (none) |
 | · (no coords) | 26 | (MTZ/sequence/ligand-only tasks) |
 
 ## Remaining gaps (no i2run test possible)

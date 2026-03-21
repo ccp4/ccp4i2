@@ -45,6 +45,12 @@ class shelxeMR(CPluginScript):
         self.hklin, _, error = self.makeHklin0(cols)
         if error.maxSeverity() > CCP4ErrorHandling.SEVERITY_WARNING:
             return CPluginScript.FAILED
+        # shelxe only handles PDB format — convert mmCIF if needed
+        self.container.inputData.XYZIN.loadFile()
+        if self.container.inputData.XYZIN.isMMCIF():
+            pdb_path = os.path.join(self.getWorkDirectory(), 'XYZIN_converted.pdb')
+            self.container.inputData.XYZIN.convertFormat('pdb', pdb_path)
+            self.container.inputData.XYZIN.setFullPath(pdb_path)
         # Rename the .pdb file to .pda
         pdb_fullpath = self.container.inputData.XYZIN.fullPath.__str__()
         print("Using mtz file ", self.hklin)
