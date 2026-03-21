@@ -29,8 +29,8 @@ class modelcraft(CPluginScript):
         self.seqin = os.path.join(self.getWorkDirectory(), "contents.json")
         self.writeContentsJson()
         if self.container.inputData.XYZIN.isSet():
-            self.model = os.path.join(self.getWorkDirectory(), "model.xyz")
-            self.container.inputData.XYZIN.getSelectedAtomsPdbFile(self.model)
+            self.model = self.container.inputData.XYZIN.getSelectedAtomsFile(
+                "model", self.getWorkDirectory())
         return CPluginScript.SUCCEEDED
 
     def writeContentsJson(self):

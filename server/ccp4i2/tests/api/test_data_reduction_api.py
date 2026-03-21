@@ -76,6 +76,28 @@ class TestAimlessPipeAPI(APITestBase):
         rmeas = float(xml.find(".//Rmeas/Overall").text)
         assert rmeas == approx(0.068, rel=0.1)
 
+    def test_mdm2_mmcif_reference(self, mdm2_unmerged_mtz, mdm2_model_cif):
+        """Test aimless_pipe with mmCIF coordinate reference for space group."""
+        self.create_project("test_aimless_mdm2_mmcif_ref")
+        self.create_job()
+
+        self.add_list_item("inputData.UNMERGEDFILES")
+        self.upload_file("inputData.UNMERGEDFILES[0].file", mdm2_unmerged_mtz)
+        self.upload_file("inputData.XYZIN_REF", mdm2_model_cif)
+
+        self.set_param("controlParameters.MODE", "MATCH")
+        self.set_param("controlParameters.REFERENCE_DATASET", "XYZ")
+
+        self.run_and_wait()
+
+        # Validate outputs
+        self.assert_valid_mtz_output("FREEROUT")
+        digest = self.assert_valid_mtz_output("HKLOUT[0]")
+
+        # Space group should match the 4hg7 reference (deposited as P 65 2 2)
+        assert digest.get('spaceGroup') == "P 65 2 2"
+        assert digest.get('highRes') == approx(1.25, rel=0.05)
+
 
 @pytest.mark.usefixtures("file_based_db")
 class TestImportMergedAPI(APITestBase):

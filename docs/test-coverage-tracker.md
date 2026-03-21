@@ -72,7 +72,7 @@ Guide for writing new tests:
 
 | Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
 |----------------------|-------|-----|-------|----------------------------|------------------------------|
-| aimless_pipe         | Y     | Y   | ·     | test_aimless.py            | test_data_reduction_api.py   |
+| aimless_pipe         | Y     | Y   | Y     | test_aimless.py            | test_data_reduction_api.py   |
 | freerflag            | Y     | Y   | ·     | test_freerflag.py          | test_data_reduction_api.py   |
 | matthews             | Y     | -   | ·     | test_matthews.py           |                              |
 | molrep_selfrot       | Y     | Y   | P     | test_molrep_selfrot.py     | test_new_coverage_api.py     |
@@ -143,7 +143,7 @@ Guide for writing new tests:
 
 | Task                 | i2run | API | mmCIF | i2run test file            | API test file                |
 |----------------------|-------|-----|-------|----------------------------|------------------------------|
-| modelcraft           | Y     | Y   | P     | test_modelcraft.py         | test_model_building_api.py   |
+| modelcraft           | Y     | Y   | Y     | test_modelcraft.py         | test_model_building_api.py   |
 | coot1                | N/A   | N/A | Y     |                            |                              |
 | coot_script_lines    | D     | -   | Y     | test_coot_script_lines.py  |                              |
 | coot_find_waters     | Y     | Y   | Y     | test_find_waters.py        | test_utilities_api.py        |
@@ -210,7 +210,7 @@ Guide for writing new tests:
 | Task                 | i2run | API | mmCIF | i2run test file               | API test file                |
 |----------------------|-------|-----|-------|-------------------------------|------------------------------|
 | csymmatch            | Y     | Y   | Y     | test_csymmatch.py             | test_utilities_api.py        |
-| gesamt               | Y     | Y   | P     | test_gesamt.py                | test_new_coverage_api.py     |
+| gesamt               | Y     | Y   | Y     | test_gesamt.py                | test_new_coverage_api.py     |
 | pdbset_ui            | Y     | -   | P     | test_pdbset_ui.py             |                              |
 | add_fractional_coords| Y     | -   | Y     | test_add_fractional_coords.py |                              |
 
@@ -262,8 +262,8 @@ and cannot be tested via i2run or the API.
 
 | Status | Count | Tasks |
 |--------|-------|-------|
-| Y (mmCIF-safe) | 16 | coordinate_selector, crank2, parrot, coot_find_waters, coot_script_lines, servalcat_pipe, metalCoord, coot_rsr_morph, pdb_redo_api, sheetbend, lorestr_i2, validate_protein, privateer, sculptor, csymmatch, density_calculator, add_fractional_coords |
-| P (auto-converts) | 19 | molrep_selfrot, SubstituteLigand, dr_mr_modelbuild_pipeline, editbfac, phaser_EP_AUTO, phaser_EP, phaser_ensembler, mrbump_basic, phaser_simple, phaser_pipeline, molrep_pipe, molrep_den, phaser_rnp_pipeline, AMPLE, SIMBAD, i2Dimple, modelcraft, arp_warp_classic, prosmart_refmac, zanuda, edstats, gesamt |
+| Y (mmCIF-safe) | 19 | coordinate_selector, crank2, parrot, coot_find_waters, coot_script_lines, servalcat_pipe, metalCoord, coot_rsr_morph, pdb_redo_api, sheetbend, lorestr_i2, validate_protein, privateer, sculptor, csymmatch, density_calculator, add_fractional_coords, gesamt, modelcraft |
+| P (auto-converts) | 17 | molrep_selfrot, SubstituteLigand, dr_mr_modelbuild_pipeline, editbfac, phaser_EP_AUTO, phaser_EP, phaser_ensembler, mrbump_basic, phaser_simple, phaser_pipeline, molrep_pipe, molrep_den, phaser_rnp_pipeline, AMPLE, SIMBAD, i2Dimple, arp_warp_classic, prosmart_refmac, zanuda, edstats |
 | ! (broken) | 2 | chainsaw, shelxeMR |
 | · (no coords) | 26 | (MTZ/sequence/ligand-only tasks) |
 

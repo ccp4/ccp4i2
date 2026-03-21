@@ -38,24 +38,20 @@ class gesamt(CPluginScript):
 
       elif inp.XYZIN_TARGET.fullPath.isSet():
           if inp.XYZIN_TARGET.isSelectionSet():
-              xyzin_target_file = os.path.join(self.getWorkDirectory(),"XYZIN_TARGET_sel.pdb")
-              self.container.inputData.XYZIN_TARGET.getSelectedAtomsPdbFile(xyzin_target_file)
+              xyzin_target_file = inp.XYZIN_TARGET.getSelectedAtomsFile(
+                  "XYZIN_TARGET_sel", self.getWorkDirectory())
           else:
               xyzin_target_file = str( inp.XYZIN_TARGET.fullPath )
           self.appendCommandLine( [ xyzin_target_file ] )
 
+      self.container.inputData.XYZIN_QUERY.loadFile()
+      if inp.XYZIN_QUERY.isMMCIF():
+          out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
       if inp.XYZIN_QUERY.isSelectionSet():
-          xyzin_query_file = os.path.join(self.getWorkDirectory(),"XYZIN_QUERY_sel.pdb")
-          self.container.inputData.XYZIN_QUERY.loadFile()
-          if self.container.inputData.XYZIN_QUERY.isMMCIF():
-            xyzin_query_file = str(pathlib.Path(xyzin_query_file).with_suffix('.cif'))
-            out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
-          self.container.inputData.XYZIN_QUERY.getSelectedAtomsPdbFile(xyzin_query_file)
+          xyzin_query_file = inp.XYZIN_QUERY.getSelectedAtomsFile(
+              "XYZIN_QUERY_sel", self.getWorkDirectory())
       else:
           xyzin_query_file = str( inp.XYZIN_QUERY.fullPath )
-          self.container.inputData.XYZIN_QUERY.loadFile()
-          if self.container.inputData.XYZIN_QUERY.isMMCIF():
-            out.XYZOUT.setFullPath(str(pathlib.Path(out.XYZOUT.fullPath.__str__()).with_suffix('.cif')))
 
       self.appendCommandLine( [ xyzin_query_file ] )
 
