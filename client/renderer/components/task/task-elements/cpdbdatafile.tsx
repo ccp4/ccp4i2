@@ -555,8 +555,8 @@ export const CPdbDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   // task .def.xml qualifiers (matching ccp4i2-classic behaviour).
   const showSelectionBuilder = overriddenQualifiers.ifAtomSelection && hasContent;
 
-  // Force expanded if selection is set and atom selection is enabled
-  const forceExpanded = overriddenQualifiers.ifAtomSelection && !!selectionString && selectionString.length > 0;
+  // Force expanded if selection is set, atom selection is enabled, or builder is open
+  const forceExpanded = overriddenQualifiers.ifAtomSelection && (isBuilderExpanded || (!!selectionString && selectionString.length > 0));
 
   // Build icon context menu items for "Select atoms" (classic ccp4i2 behaviour)
   const iconMenuItems = useMemo((): IconMenuItem[] => {
