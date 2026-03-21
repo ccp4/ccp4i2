@@ -96,6 +96,7 @@ const TIME_DISPLAY_STYLE = { fontSize: "75%" };
 
 interface JobTreeContextValue {
   jobsByUuid: Map<string, JobTreeNode>;
+  jobsById: Map<number, JobTreeNode>;
   filesByUuid: Map<string, DjangoFile>;
   taskShortTitles: Map<string, string>;
   selectMode: boolean;
@@ -105,6 +106,7 @@ interface JobTreeContextValue {
 
 const JobTreeContext = createContext<JobTreeContextValue>({
   jobsByUuid: new Map(),
+  jobsById: new Map(),
   filesByUuid: new Map(),
   taskShortTitles: new Map(),
   selectMode: false,
@@ -189,22 +191,24 @@ const useJobTree = (projectId: number) => {
 const useJobTreeLookups = (jobTree: JobTreeNode[] | undefined) => {
   return useMemo(() => {
     const jobsByUuid = new Map<string, JobTreeNode>();
+    const jobsById = new Map<number, JobTreeNode>();
     const filesByUuid = new Map<string, DjangoFile>();
 
     if (!jobTree) {
-      return { jobsByUuid, filesByUuid };
+      return { jobsByUuid, jobsById, filesByUuid };
     }
 
     // Recursively index all jobs and files
     const indexNode = (node: JobTreeNode) => {
       jobsByUuid.set(node.uuid, node);
+      jobsById.set(node.id, node);
       node.files.forEach((file) => filesByUuid.set(file.uuid, file));
       node.children.forEach(indexNode);
     };
 
     jobTree.forEach(indexNode);
 
-    return { jobsByUuid, filesByUuid };
+    return { jobsByUuid, jobsById, filesByUuid };
   }, [jobTree]);
 };
 
@@ -638,11 +642,40 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
     const { setJobMenuAnchorEl, setJob } = useJobMenu();
     const { setFileMenuAnchorEl, setFile } = useFileMenu();
 
-    // Drag and drop setup
+    // @dnd-kit drag — used for jobs only (context setting)
     const { attributes, listeners, setNodeRef } = useDraggable({
       id: job ? `job_${itemId}` : `file_${itemId}`,
       data: { job, file },
+      disabled: !!file, // Disable @dnd-kit for files — they use native HTML5 drag
     });
+
+    // Native HTML5 drag for files — enables OS drag-out to Finder/Explorer
+    const handleFileDragStart = useCallback(
+      (e: React.DragEvent) => {
+        if (!file) return;
+
+        // Set ccp4i2 file reference for within-window drops
+        const ref = {
+          ccp4i2_file: true,
+          uuid: file.uuid,
+          id: file.id,
+          name: file.name,
+          type: file.type,
+          sub_type: file.sub_type,
+          content: file.content,
+          annotation: file.annotation,
+          job: file.job,
+          job_param_name: file.job_param_name,
+        };
+        e.dataTransfer.setData("application/ccp4i2-file", JSON.stringify(ref));
+        e.dataTransfer.effectAllowed = "copy";
+
+        // Write to clipboard for cross-window paste
+        navigator.clipboard.writeText(JSON.stringify(ref)).catch(() => {});
+
+      },
+      [file]
+    );
 
     // Tree item hooks
     const {
@@ -749,12 +782,16 @@ const CustomTreeItem = forwardRef<HTMLLIElement, TreeItem2Props>(
 
       if (file) {
         return (
-          <FileAvatar
-            file={file}
-            ref={setNodeRef}
-            {...listeners}
-            {...attributes}
-          />
+          <div
+            draggable
+            onDragStart={handleFileDragStart}
+            style={{ display: "inline-flex", cursor: "grab" }}
+          >
+            <FileAvatar
+              file={file}
+              sx={{ pointerEvents: "none" }}
+            />
+          </div>
         );
       }
 

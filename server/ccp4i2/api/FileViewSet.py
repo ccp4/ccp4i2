@@ -181,6 +181,19 @@ class FileViewSet(ModelViewSet):
         methods=["get"],
         serializer_class=serializers.FileSerializer,
     )
+    def file_path(self, request, pk=None):
+        """Return the absolute filesystem path for a file (Electron desktop only)."""
+        try:
+            the_file = models.File.objects.get(id=pk)
+            return api_success({"path": str(the_file.path)})
+        except models.File.DoesNotExist:
+            return api_error("File not found", status=404)
+
+    @action(
+        detail=True,
+        methods=["get"],
+        serializer_class=serializers.FileSerializer,
+    )
     def molblock(self, request, pk=None):
         """
         Convert a ligand dictionary CIF file to MolBlock format.

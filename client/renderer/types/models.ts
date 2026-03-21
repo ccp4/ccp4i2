@@ -125,7 +125,8 @@ export class File {
     public content: number,
     public annotation: string,
     public job: number,
-    public job_param_name: string
+    public job_param_name: string,
+    public path?: string,
   ) {}
 }
 export class FileExport {

@@ -11,6 +11,9 @@ import {
 } from "react";
 import { doDownload, useApi } from "../api";
 import {
+  Divider,
+  ListItemIcon,
+  ListItemText,
   Menu,
   MenuItem,
   Popper,
@@ -19,7 +22,7 @@ import {
   ClickAwayListener,
   Box,
 } from "@mui/material";
-import { Download, Preview, Terminal, Edit, Image as ImageIcon, Science } from "@mui/icons-material";
+import { ContentCopy, Download, SaveAlt, Preview, Terminal, Edit, Image as ImageIcon, Science } from "@mui/icons-material";
 import { useFilePreviewContext } from "./file-preview-context";
 import { File as DjangoFile } from "../types/models";
 import { useRouter } from "next/navigation";
@@ -27,11 +30,22 @@ import { CCP4i2MoorhenIcon } from "../components/General/CCP4i2Icons";
 import { useCCP4i2Window } from "../app-context";
 import { TableChart } from "@mui/icons-material";
 
+export interface FileMenuExtraItem {
+  key: string;
+  label: string;
+  icon?: React.ReactNode;
+  onClick: () => void;
+  disabled?: boolean;
+  divider?: boolean;
+}
+
 interface FileMenuContextProps {
   fileMenuAnchorEl: HTMLElement | null;
   setFileMenuAnchorEl: (element: HTMLElement | null) => void;
   file: DjangoFile | null;
   setFile: (file: DjangoFile | null) => void;
+  extraMenuItems: FileMenuExtraItem[];
+  setExtraMenuItems: (items: FileMenuExtraItem[]) => void;
 }
 
 export const FileMenuContext = createContext<FileMenuContextProps>({
@@ -39,6 +53,8 @@ export const FileMenuContext = createContext<FileMenuContextProps>({
   setFileMenuAnchorEl: () => {},
   file: null,
   setFile: () => {},
+  extraMenuItems: [],
+  setExtraMenuItems: () => {},
 });
 
 export const FileMenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
@@ -46,6 +62,7 @@ export const FileMenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
     null
   );
   const [file, setFile] = useState<DjangoFile | null>(null);
+  const [extraMenuItems, setExtraMenuItems] = useState<FileMenuExtraItem[]>([]);
 
   const contextValue = useMemo(
     () => ({
@@ -53,8 +70,10 @@ export const FileMenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
       setFileMenuAnchorEl,
       file,
       setFile,
+      extraMenuItems,
+      setExtraMenuItems,
     }),
-    [fileMenuAnchorEl, file]
+    [fileMenuAnchorEl, file, extraMenuItems]
   );
 
   return (
@@ -72,7 +91,7 @@ function isMtzFileType(type: string): boolean {
 }
 
 export const FileMenu: React.FC = () => {
-  const { fileMenuAnchorEl, setFileMenuAnchorEl, file } = useFileMenu();
+  const { fileMenuAnchorEl, setFileMenuAnchorEl, file, extraMenuItems, setExtraMenuItems } = useFileMenu();
   const { projectId } = useCCP4i2Window();
   const api = useApi();
   const { setContentSpecification } = useFilePreviewContext();
@@ -205,6 +224,45 @@ export const FileMenu: React.FC = () => {
       }
     },
     [file, api, setFileMenuAnchorEl]
+  );
+
+  /** Save file to user-chosen location via native dialog (Electron only). */
+  const handleSaveFileAs = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      if (file?.path && window.electronAPI) {
+        window.electronAPI.sendMessage("save-file-as", {
+          filePath: file.path,
+          fileName: file.name,
+        });
+      }
+      setFileMenuAnchorEl(null);
+    },
+    [file, setFileMenuAnchorEl]
+  );
+
+  /** Copy file reference to clipboard as JSON (for cross-window paste). */
+  const handleCopyReference = useCallback(
+    async (ev: SyntheticEvent) => {
+      ev.stopPropagation();
+      if (file) {
+        const ref = {
+          ccp4i2_file: true,
+          uuid: file.uuid,
+          id: file.id,
+          name: file.name,
+          type: file.type,
+          sub_type: file.sub_type,
+          content: file.content,
+          annotation: file.annotation,
+          job: file.job,
+          job_param_name: file.job_param_name,
+        };
+        await navigator.clipboard.writeText(JSON.stringify(ref));
+        setFileMenuAnchorEl(null);
+      }
+    },
+    [file, setFileMenuAnchorEl]
   );
 
   const handlePreviewFile = useCallback(
@@ -420,10 +478,34 @@ export const FileMenu: React.FC = () => {
       <Menu
         open={Boolean(fileMenuAnchorEl)}
         anchorEl={fileMenuAnchorEl}
-        onClose={() => setFileMenuAnchorEl(null)}
+        onClose={() => { setFileMenuAnchorEl(null); setExtraMenuItems([]); }}
       >
-        <MenuItem key="Download" onClick={handleDownloadFile}>
-          <Download sx={{ mr: 1 }} /> Download
+        {/* Context-specific items injected by the caller (e.g. Clear, Paste, subtype items) */}
+        {extraMenuItems.length > 0 && [
+          ...extraMenuItems.map((extra) => [
+            extra.divider && <Divider key={`div-${extra.key}`} />,
+            <MenuItem
+              key={extra.key}
+              onClick={() => { setFileMenuAnchorEl(null); setExtraMenuItems([]); extra.onClick(); }}
+              disabled={extra.disabled}
+            >
+              {extra.icon && <ListItemIcon>{extra.icon}</ListItemIcon>}
+              <ListItemText>{extra.label}</ListItemText>
+            </MenuItem>,
+          ]),
+          <Divider key="extra-divider" />,
+        ]}
+        {file?.path && typeof window !== "undefined" && window.electronAPI ? (
+          <MenuItem key="SaveAs" onClick={handleSaveFileAs}>
+            <SaveAlt sx={{ mr: 1 }} /> Save to...
+          </MenuItem>
+        ) : (
+          <MenuItem key="Download" onClick={handleDownloadFile}>
+            <Download sx={{ mr: 1 }} /> Download
+          </MenuItem>
+        )}
+        <MenuItem key="CopyRef" onClick={handleCopyReference}>
+          <ContentCopy sx={{ mr: 1 }} /> Copy reference
         </MenuItem>
         {(!file || !isMtzFileType(file.type)) && (
           <MenuItem key="Preview" onClick={handlePreviewFile}>

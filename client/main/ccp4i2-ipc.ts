@@ -287,6 +287,29 @@ export const installIpcHandlers = (
     win.webContents.stopFindInPage("clearSelection");
   });
 
+  // Save file to user-chosen location via native save dialog.
+  // Used by "Save to..." context menu items for file export.
+  ipcMain.on("save-file-as", async (event, data) => {
+    const { filePath, fileName } = data;
+    if (!filePath || !fs.existsSync(filePath)) {
+      console.error("save-file-as: source not found:", filePath);
+      return;
+    }
+    const win = BrowserWindow.getFocusedWindow();
+    if (!win) return;
+
+    const result = await dialog.showSaveDialog(win, {
+      defaultPath: fileName,
+    });
+    if (!result.canceled && result.filePath) {
+      try {
+        fs.copyFileSync(filePath, result.filePath);
+      } catch (err) {
+        console.error("save-file-as: copy failed:", err);
+      }
+    }
+  });
+
   ipcMain.on("zoom-in", (event, data) => {
     console.log("Zooming in", data);
     BrowserWindow.getAllWindows().forEach((win) => {

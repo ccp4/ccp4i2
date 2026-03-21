@@ -1,7 +1,6 @@
-import { Avatar } from "@mui/material";
+import { Avatar, AvatarProps } from "@mui/material";
 import { File } from "../types/models";
 import { fileTypeMapping } from "./files-table";
-import { useDraggable } from "@dnd-kit/core";
 import { forwardRef } from "react";
 import { useTheme } from "../theme/theme-provider";
 
@@ -11,7 +10,11 @@ export const fileTypeIcon = (type: string) => {
     : "ccp4";
 };
 
-export const FileAvatar = forwardRef<HTMLDivElement, { file: File }>(
+interface FileAvatarProps extends Omit<AvatarProps, "src"> {
+  file: File;
+}
+
+export const FileAvatar = forwardRef<HTMLDivElement, FileAvatarProps>(
   ({ file, ...props }, ref) => {
     const { customColors } = useTheme();
     return (
@@ -28,6 +31,7 @@ export const FileAvatar = forwardRef<HTMLDivElement, { file: File }>(
           "&:hover": {
             boxShadow: "0 0 0 3px rgba(25, 118, 210, 0.5)",
           },
+          ...props.sx,
         }}
         src={`/qticons/${fileTypeIcon(file.type)}.png`}
       />

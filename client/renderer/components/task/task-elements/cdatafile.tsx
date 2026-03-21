@@ -30,18 +30,20 @@ import {
   ContentCopy,
   ContentPaste,
   DeleteOutline,
+  Download,
   HelpOutline,
   Preview,
+  SaveAlt,
   Storage as StorageIcon,
 } from "@mui/icons-material";
 import { useDndContext, useDroppable } from "@dnd-kit/core";
 
-import { useApi } from "../../../api";
+import { doDownload, useApi } from "../../../api";
 import { useJob, useProject, useProjectFiles } from "../../../utils";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { File as CCP4i2File, nullFile, Project } from "../../../types/models";
 import { useTaskInterface } from "../../../providers/task-provider";
-import { useFileMenu } from "../../../providers/file-context-menu";
+import { FileMenuExtraItem, useFileMenu } from "../../../providers/file-context-menu";
 import { ErrorTrigger } from "./error-info";
 import { InputFileFetch } from "./input-file-fetch";
 import { InputFileUpload } from "./input-file-upload";
@@ -144,7 +146,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
 
   const { item } = useTaskItem(itemName);
   const { inFlight, setInFlight } = useTaskInterface();
-  const { setFileMenuAnchorEl, setFile } = useFileMenu();
+  const { setFileMenuAnchorEl, setFile, setExtraMenuItems } = useFileMenu();
 
   // Data and state
   // Use polling for files so task widgets see newly created output files
@@ -156,7 +158,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const [value, setValue] = useState<CCP4i2File>(nullFile);
   const [isManuallyExpanded, setIsManuallyExpanded] = useState(false);
   const [browseDialogOpen, setBrowseDialogOpen] = useState(false);
-  const [iconMenuAnchorEl, setIconMenuAnchorEl] = useState<HTMLElement | null>(null);
+  // iconMenuAnchorEl removed — avatar now opens the shared FileMenu
 
   // Computed values
   const qualifiers = useMemo(
@@ -245,11 +247,40 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   const isVisible =
     typeof visibility === "function" ? visibility() : visibility !== false;
 
-  // Drag and drop
+  // Drag and drop — drop target (only for pending job inputs)
   const { isOver, setNodeRef } = useDroppable({
     id: `job_${job.uuid}_${itemName}`,
     data: { job, item },
   });
+
+  const fileIsSet = value && value !== nullFile;
+
+  // Native HTML5 drag for the file icon — enables OS drag-out and within-window drops
+  const handleFileDragStart = useCallback(
+    (e: React.DragEvent) => {
+      if (!fileIsSet || !value) return;
+
+      const ref = {
+        ccp4i2_file: true,
+        uuid: value.uuid,
+        id: value.id,
+        name: value.name,
+        type: value.type,
+        sub_type: value.sub_type,
+        content: value.content,
+        annotation: value.annotation,
+        job: value.job,
+        job_param_name: value.job_param_name,
+      };
+      e.dataTransfer.setData("application/ccp4i2-file", JSON.stringify(ref));
+      e.dataTransfer.effectAllowed = "copy";
+
+      // Write to clipboard for cross-window paste
+      navigator.clipboard.writeText(JSON.stringify(ref)).catch(() => {});
+
+    },
+    [fileIsSet, value, projectJobs]
+  );
   const { active } = useDndContext();
   const isValidDrop =
     active?.data?.current?.file &&
@@ -393,27 +424,91 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     if (!hasValidationError) setIsManuallyExpanded((prev) => !prev);
   }, [hasValidationError]);
 
-  // Icon context menu (classic ccp4i2 right-click menu on the type icon)
+  // Open the shared file context menu with cdatafile-specific extra items
   const handleIconContextMenu = useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
       event.stopPropagation();
-      setIconMenuAnchorEl(event.currentTarget);
-    },
-    []
-  );
 
-  const handleIconMenuClose = useCallback(() => {
-    setIconMenuAnchorEl(null);
-  }, []);
+      // Build extra items specific to this cdatafile widget
+      const extras: FileMenuExtraItem[] = [];
+
+      if (!isDisabled) {
+        extras.push({
+          key: "clear",
+          label: "Clear",
+          icon: <DeleteOutline fontSize="small" />,
+          onClick: () => handleFileSelect({} as React.SyntheticEvent, nullFile, "clear"),
+        });
+      }
+
+      // Subtype-specific items (e.g. "Select atoms")
+      if (iconMenuItems) {
+        for (const extra of iconMenuItems) {
+          if (extra.divider) {
+            extras.push({ key: `div-${extra.label}`, label: "", onClick: () => {}, divider: true });
+          }
+          extras.push({
+            key: extra.label,
+            label: extra.label,
+            icon: extra.icon,
+            onClick: extra.onClick,
+            disabled: extra.disabled,
+          });
+        }
+      }
+
+      // Paste
+      if (!isDisabled) {
+        extras.push({
+          key: "paste",
+          label: "Paste",
+          icon: <ContentPaste fontSize="small" />,
+          onClick: async () => {
+            try {
+              const text = await navigator.clipboard.readText();
+              const parsed = JSON.parse(text);
+              if (parsed?.ccp4i2_file && parsed.uuid && item?._objectPath && projectJobs && projects) {
+                const fileRef = { ...parsed, exports: [], fileimport: -1, file_uses: [] } as CCP4i2File;
+                const arg = fileItemToParameterArg(fileRef, item._objectPath, projectJobs, projects);
+                setInFlight(true);
+                await setParameter(arg);
+                await mutateContainer();
+                setInFlight(false);
+              }
+            } catch { /* ignore invalid clipboard */ }
+          },
+        });
+      }
+
+      // Help
+      if (qualifiers?.helpFile) {
+        extras.push({
+          key: "help",
+          label: "Help",
+          icon: <HelpOutline fontSize="small" />,
+          onClick: () => window.open(`https://www.ccp4.ac.uk/html/${qualifiers.helpFile}.html`, "_blank", "noopener,noreferrer"),
+        });
+      }
+
+      setExtraMenuItems(extras);
+      setFile(hasFile ? value : null);
+      setFileMenuAnchorEl(event.currentTarget);
+    },
+    [isDisabled, hasFile, value, iconMenuItems, qualifiers, item, projectJobs, projects,
+     handleFileSelect, fileItemToParameterArg, setParameter, mutateContainer, setInFlight,
+     setExtraMenuItems, setFile, setFileMenuAnchorEl]
+  );
 
   // Native HTML5 drag and drop for filesystem files
   const [nativeDragOver, setNativeDragOver] = useState(false);
 
   const handleNativeDragOver = useCallback(
     (e: React.DragEvent) => {
-      // Only handle if it contains files (filesystem drop) and not an internal @dnd-kit drag
-      if (e.dataTransfer.types.includes("Files") && !active && !isDisabled) {
+      // Handle filesystem files or ccp4i2 file references, but not internal @dnd-kit drags
+      const hasCcp4i2File = e.dataTransfer.types.includes("application/ccp4i2-file");
+      const hasFiles = e.dataTransfer.types.includes("Files");
+      if ((hasCcp4i2File || hasFiles) && !active && !isDisabled) {
         e.preventDefault();
         e.stopPropagation();
         setNativeDragOver(true);
@@ -428,15 +523,41 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   }, []);
 
   const handleNativeDrop = useCallback(
-    (e: React.DragEvent) => {
+    async (e: React.DragEvent) => {
       e.preventDefault();
       e.stopPropagation();
       setNativeDragOver(false);
+
+      // Handle ccp4i2 file reference drop (from another file element)
+      const ccp4i2Data = e.dataTransfer.getData("application/ccp4i2-file");
+      if (ccp4i2Data && !isDisabled && item?._objectPath && projectJobs && projects) {
+        try {
+          const parsed = JSON.parse(ccp4i2Data);
+          if (parsed?.ccp4i2_file && parsed.uuid) {
+            const fileRef = {
+              ...parsed,
+              exports: [],
+              fileimport: -1,
+              file_uses: [],
+            } as CCP4i2File;
+            const arg = fileItemToParameterArg(fileRef, item._objectPath, projectJobs, projects);
+            setInFlight(true);
+            await setParameter(arg);
+            await mutateContainer();
+            setInFlight(false);
+            return;
+          }
+        } catch {
+          // Invalid JSON — fall through to filesystem drop
+        }
+      }
+
+      // Handle filesystem file drop
       if (e.dataTransfer.files?.length > 0 && setFiles && !isDisabled) {
         setFiles(e.dataTransfer.files);
       }
     },
-    [setFiles, isDisabled]
+    [setFiles, isDisabled, item, projectJobs, projects, fileItemToParameterArg, setParameter, mutateContainer, setInFlight]
   );
 
   const getOptionLabel = useCallback(
@@ -478,8 +599,10 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
     >
       {/* Main row */}
       <Stack direction="row" alignItems="center">
-        {/* File type icon — right-click opens classic context menu */}
+        {/* File type icon — native HTML5 draggable + right-click context menu */}
         <Avatar
+          draggable={!!hasFile}
+          onDragStart={handleFileDragStart}
           src={`/qticons/${item?._class?.slice(1)}.png`}
           alt={item?._class || "File type"}
           onContextMenu={handleIconContextMenu}
@@ -489,7 +612,11 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
             mr: 1,
             flexShrink: 0,
             bgcolor: hasFile ? "primary.light" : "action.hover",
-            cursor: "context-menu",
+            cursor: hasFile ? "grab" : "context-menu",
+            transition: "box-shadow 0.2s ease",
+            "&:hover": hasFile
+              ? { boxShadow: "0 0 0 3px rgba(25, 118, 210, 0.5)" }
+              : {},
           }}
         />
 
@@ -634,93 +761,8 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
         fileTypeLabel={fileTypeLabel}
       />
 
-      {/* Classic icon context menu */}
-      <Menu
-        open={Boolean(iconMenuAnchorEl)}
-        anchorEl={iconMenuAnchorEl}
-        onClose={handleIconMenuClose}
-      >
-        {!isDisabled && (
-          <MenuItem
-            onClick={(e) => {
-              handleIconMenuClose();
-              handleFileSelect(e, nullFile, "clear");
-            }}
-          >
-            <ListItemIcon><DeleteOutline fontSize="small" /></ListItemIcon>
-            <ListItemText>Clear</ListItemText>
-          </MenuItem>
-        )}
-        {hasFile && (
-          <MenuItem onClick={(e) => {
-            handleIconMenuClose();
-            // Reuse the existing file-options menu (View, Download, Coot, etc.)
-            setFileMenuAnchorEl(e.currentTarget);
-            setFile(value);
-          }}>
-            <ListItemIcon><Preview fontSize="small" /></ListItemIcon>
-            <ListItemText>View</ListItemText>
-          </MenuItem>
-        )}
-        {/* Subtype-specific items (e.g. "Select atoms" from CPdbDataFile) */}
-        {iconMenuItems?.map((extra, idx) => [
-          extra.divider && <Divider key={`div-${idx}`} />,
-          <MenuItem
-            key={idx}
-            onClick={() => {
-              handleIconMenuClose();
-              extra.onClick();
-            }}
-            disabled={extra.disabled}
-          >
-            {extra.icon && <ListItemIcon>{extra.icon}</ListItemIcon>}
-            <ListItemText>{extra.label}</ListItemText>
-            {extra.checkable && extra.checked && (
-              <ChevronRightIcon fontSize="small" sx={{ ml: 1, transform: "rotate(90deg)" }} />
-            )}
-          </MenuItem>,
-        ])}
-        <Divider />
-        {hasFile && (
-          <MenuItem
-            onClick={() => {
-              handleIconMenuClose();
-              if (value && value !== nullFile) {
-                navigator.clipboard.writeText(
-                  `${value.annotation} [${value.uuid}]`
-                );
-              }
-            }}
-          >
-            <ListItemIcon><ContentCopy fontSize="small" /></ListItemIcon>
-            <ListItemText>Copy</ListItemText>
-          </MenuItem>
-        )}
-        {!isDisabled && (
-          <MenuItem
-            disabled
-            onClick={handleIconMenuClose}
-          >
-            <ListItemIcon><ContentPaste fontSize="small" /></ListItemIcon>
-            <ListItemText>Paste</ListItemText>
-          </MenuItem>
-        )}
-        {qualifiers?.helpFile && (
-          <MenuItem
-            onClick={() => {
-              handleIconMenuClose();
-              window.open(
-                `https://www.ccp4.ac.uk/html/${qualifiers.helpFile}.html`,
-                "_blank",
-                "noopener,noreferrer"
-              );
-            }}
-          >
-            <ListItemIcon><HelpOutline fontSize="small" /></ListItemIcon>
-            <ListItemText>Help</ListItemText>
-          </MenuItem>
-        )}
-      </Menu>
+      {/* File context menu is now the shared FileMenu from file-context-menu.tsx */}
+      {/* Extra items (Clear, Copy, Paste, Help, subtype items) are injected via setExtraMenuItems */}
     </Box>
   );
 };

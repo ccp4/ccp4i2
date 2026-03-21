@@ -128,9 +128,17 @@ class ProjectSerializer(ModelSerializer):
 
 
 class FileSerializer(ModelSerializer):
+    path = SerializerMethodField()
+
     class Meta:
         model = models.File
         fields = "__all__"
+
+    def get_path(self, obj):
+        try:
+            return str(obj.path)
+        except Exception:
+            return None
 
 
 class JobSerializer(ModelSerializer):

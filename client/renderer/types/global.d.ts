@@ -12,6 +12,7 @@ declare global {
         callback: (event: Electron.IpcRendererEvent, ...args: any[]) => void
       ) => typeof ipcRenderer.off;
       sendMessage: (channel: string, ...args: any[]) => typeof ipcRenderer.send;
+      sendSync: (channel: string, ...args: any[]) => any;
     };
   }
 }

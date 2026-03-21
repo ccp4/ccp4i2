@@ -95,6 +95,36 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
       onDragStart={({ active }) => {
         console.log("Drag start", active);
         setActiveDragItem(active.data.current as File | Job);
+
+        // Write reference to system clipboard for cross-window paste
+        const data = active.data.current;
+        if (data?.file) {
+          const file = data.file as File;
+          const ref = {
+            ccp4i2_file: true,
+            uuid: file.uuid,
+            id: file.id,
+            name: file.name,
+            type: file.type,
+            sub_type: file.sub_type,
+            content: file.content,
+            annotation: file.annotation,
+            job: file.job,
+            job_param_name: file.job_param_name,
+          };
+          navigator.clipboard.writeText(JSON.stringify(ref)).catch(() => {});
+        } else if (data?.job) {
+          const dragJob = data.job as Job;
+          const ref = {
+            ccp4i2_job: true,
+            id: dragJob.id,
+            uuid: dragJob.uuid,
+            task_name: dragJob.task_name,
+            title: dragJob.title,
+            number: dragJob.number,
+          };
+          navigator.clipboard.writeText(JSON.stringify(ref)).catch(() => {});
+        }
       }}
     >
       {props.children}
