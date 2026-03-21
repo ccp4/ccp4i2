@@ -70,12 +70,6 @@ class TestJobUtils:
             new_job = result.data
             assert new_job.task_name == old_job.task_name
 
-    def test_glean_job_files(self):
-        # SKIP: This test was for the legacy sync glean_job_files() function
-        # The new async version is tested in tests/test_async_db_handler.py
-        # and tests/test_async_plugin_with_database.py
-        pytest.skip("Legacy glean_job_files() removed - use AsyncDatabaseHandler instead")
-
     def test_get_file_by_job_context(self):
         old_job = models.Job.objects.get(
             project__name="refmac_gamma_test_0", number="1"

@@ -61,14 +61,48 @@ class TestModelcraftAPI(APITestBase):
                 results = json.load(f)
                 assert results["final"]["r_free"] < 0.35
 
-    def test_8xfm(self, cif8xfm, mtz8xfm, seq8xfm):
-        """Test Modelcraft from structure + data."""
-        pytest.skip(
-            "ASUIN is a required input for modelcraft. "
-            "Cannot upload sequence to ASUIN.seqFile via parameter API - "
-            "ASUIN must be a complete ASU XML file. "
-            "Use ProvideAsuContents task to create ASUIN from sequence first."
+    def test_8xfm(self, cif8xfm, mtz8xfm, seq8xfm, tmp_path):
+        """Test Modelcraft from structure + data (model phases)."""
+        # Build ASU XML from the downloaded FASTA sequence
+        with open(seq8xfm) as f:
+            lines = f.read().strip().split('\n')
+        sequence = ''.join(line for line in lines if not line.startswith('>'))
+
+        asu_xml = tmp_path / "8xfm.asu.xml"
+        asu_xml.write_text(
+            '<?xml version="1.0" encoding="ASCII"?>\n'
+            '<ccp4:ccp4i2 xmlns:ccp4="http://www.ccp4.ac.uk/ccp4ns">\n'
+            '  <ccp4i2_header><function>ASUCONTENT</function></ccp4i2_header>\n'
+            '  <ccp4i2_body><seqList><CAsuContentSeq>\n'
+            f'    <sequence>{sequence}</sequence>\n'
+            '    <nCopies>1</nCopies>\n'
+            '    <polymerType>PROTEIN</polymerType>\n'
+            '    <name>8xfm</name>\n'
+            '  </CAsuContentSeq></seqList></ccp4i2_body>\n'
+            '</ccp4:ccp4i2>\n'
         )
+
+        self.create_project("test_modelcraft_8xfm")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz8xfm,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", mtz8xfm,
+            column_labels="/*/*/[FREE]"
+        )
+        self.upload_file("inputData.XYZIN", cif8xfm)
+        self.upload_file("inputData.ASUIN", str(asu_xml))
+
+        self.set_param("controlParameters.USE_MODEL_PHASES", True)
+        self.set_param("controlParameters.CYCLES", 1)
+        self.set_param("controlParameters.BASIC", True)
+
+        self.run_and_wait()
+
+        self.assert_file_exists("XYZOUT.cif")
 
 
 @pytest.mark.usefixtures("file_based_db")
