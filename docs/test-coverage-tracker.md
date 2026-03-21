@@ -202,8 +202,8 @@ Guide for writing new tests:
 | ctruncate                 | D     | Y   | ·     | test_ctruncate.py (skipped)| test_data_reduction_api.py        |
 | splitMtz                  | Y     | Y   | ·     | test_split_mtz.py          | test_data_reduction_api.py        |
 | scaleit                   | Y     | Y   | ·     | test_scaleit.py            | test_data_reduction_api.py        |
-| cpatterson                | Y     | -   | ·     | test_cpatterson.py         |                                   |
-| density_calculator        | Y     | -   | Y     | test_density_calculator.py |                                   |
+| cpatterson                | Y     | Y   | ·     | test_cpatterson.py         | test_structure_analysis_api.py    |
+| density_calculator        | Y     | Y   | Y     | test_density_calculator.py | test_utilities_api.py             |
 
 ## Coordinate Data Tools
 

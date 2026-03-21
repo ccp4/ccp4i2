@@ -14,6 +14,7 @@ These tests verify the API workflow for:
 - comit: Omit map calculation
 - SubtractNative: Native subtraction map
 - editbfac: AlphaFold B-factor editing
+- density_calculator: Model density map calculation
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -565,3 +566,23 @@ class TestEditbfacAPI(APITestBase):
 
                 self.assert_file_exists("converted_model.pdb")
                 self.assert_file_exists("converted_model_chainA1.pdb")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestDensityCalculatorAPI(APITestBase):
+    """API tests for density_calculator model density map."""
+
+    task_name = "density_calculator"
+    timeout = 60
+
+    def test_gamma_model(self, gamma_model_pdb):
+        """Test density calculation from gamma model coordinates."""
+        self.create_project("test_density_calculator")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", gamma_model_pdb)
+        self.set_param("controlParameters.D_MIN", 2.0)
+
+        self.run_and_wait()
+
+        self.assert_file_exists("MAPOUT.map")

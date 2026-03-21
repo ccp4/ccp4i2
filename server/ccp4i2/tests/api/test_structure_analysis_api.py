@@ -5,6 +5,7 @@ These tests verify the API workflow for:
 - gesamt: Structure superposition
 - privateer: Glycan validation
 - edstats: Electron density statistics
+- cpatterson: Patterson map calculation
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -102,3 +103,25 @@ class TestEdstatsAPI(APITestBase):
 
         # Edstats produces per-residue density statistics XML
         self.assert_file_exists("program.xml")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestCpattersonAPI(APITestBase):
+    """API tests for cpatterson Patterson map calculation."""
+
+    task_name = "cpatterson"
+    timeout = 120
+
+    def test_gamma(self, gamma_mtz):
+        """Test Patterson map from gamma anomalous intensities."""
+        self.create_project("test_cpatterson")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+
+        self.run_and_wait()
+
+        self.assert_file_exists("MAPOUT.map")

@@ -35,7 +35,7 @@ class density_calculator(CPluginScript):
         elif params.BLUR_MODE == "custom":
             dencalc.blur = params.BLUR
         dencalc.cutoff = params.CUTOFF
-        use_mott_bethe = params.FORM_FACTOR == "xray" and params.MOTT_BETHE
+        use_mott_bethe = params.FORM_FACTOR == "xray" and bool(params.MOTT_BETHE)
         if use_mott_bethe:
             dencalc.addends.subtract_z()
         dencalc.set_grid_cell_and_spacegroup(structure)
