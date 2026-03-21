@@ -10,6 +10,8 @@ These tests verify the API workflow for:
 - chltofom: HL coefficients to PHI/FOM conversion
 - splitMtz: MTZ column splitting
 - scaleit: Derivative vs native scaling
+- matthews: Matthews coefficient estimation
+- AUSPEX: Data quality analysis plots
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs via API digest endpoints.
@@ -20,7 +22,7 @@ import pytest
 pytestmark = pytest.mark.pipeline
 from pytest import approx
 
-from .base import APITestBase, download, URLs
+from .base import APITestBase
 
 
 @pytest.mark.usefixtures("file_based_db")
@@ -339,3 +341,51 @@ class TestScaleitAPI(APITestBase):
         nderiv = xml.find(".//SCALEITLOG/Nderivatives")
         assert nderiv is not None, "Nderivatives missing from program.xml"
         assert int(nderiv.text) == 1
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestMatthewsAPI(APITestBase):
+    """API tests for matthews coefficient estimation."""
+
+    task_name = "matthews"
+    timeout = 60
+
+    def test_gamma_nres(self, gamma_mtz):
+        """Test Matthews coefficient from number of residues."""
+        self.create_project("test_matthews_nres")
+        self.create_job()
+
+        self.upload_file("inputData.HKLIN", gamma_mtz)
+        self.set_param("inputData.MODE", "nres")
+        self.set_param("inputData.NRES", 120)
+
+        self.run_and_wait()
+
+        xml = self.read_program_xml()
+        compositions = xml.findall(".//matthewsCompositions/composition")
+        assert len(compositions) > 0, "No matthews compositions in output"
+
+        summary = xml.find(".//summary")
+        assert summary is not None, "No summary element"
+        solvent = float(summary.find("solventContent").text)
+        assert 20 < solvent < 90, f"Unreasonable solvent content: {solvent}%"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestAuspexAPI(APITestBase):
+    """API tests for AUSPEX data quality analysis."""
+
+    task_name = "AUSPEX"
+    timeout = 120
+
+    def test_gamma(self, gamma_mtz):
+        """Test AUSPEX with gamma anomalous intensities."""
+        self.create_project("test_auspex")
+        self.create_job()
+
+        self.upload_file("inputData.F_SIGF", gamma_mtz)
+
+        self.run_and_wait()
+
+        for plot in ["F", "FSigF", "I", "ISigI", "SigF", "SigI"]:
+            self.assert_file_exists(f"{plot}_plot.png")

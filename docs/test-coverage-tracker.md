@@ -74,9 +74,9 @@ Guide for writing new tests:
 |----------------------|-------|-----|-------|----------------------------|------------------------------|
 | aimless_pipe         | Y     | Y   | Y     | test_aimless.py            | test_data_reduction_api.py   |
 | freerflag            | Y     | Y   | ·     | test_freerflag.py          | test_data_reduction_api.py   |
-| matthews             | Y     | -   | ·     | test_matthews.py           |                              |
+| matthews             | Y     | Y   | ·     | test_matthews.py           | test_data_reduction_api.py   |
 | molrep_selfrot       | Y     | Y   | P     | test_molrep_selfrot.py     | test_mr_pipelines_api.py     |
-| AUSPEX               | Y     | -   | ·     | test_auspex.py             |                              |
+| AUSPEX               | Y     | Y   | ·     | test_auspex.py             | test_data_reduction_api.py   |
 | xia2_ssx_reduce      | D     | -   | ·     | test_xia2_ssx_reduce.py    |                              |
 
 ## Big Pipelines

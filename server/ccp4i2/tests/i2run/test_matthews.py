@@ -5,9 +5,9 @@ from .utils import demoData, i2run
 def test_gamma_from_nres():
     """Test matthews coefficient estimation using number of residues."""
     args = ["matthews"]
-    args += ["--HKLIN", demoData("gamma", "gamma_native.mtz")]
+    args += ["--HKLIN", demoData("gamma", "merged_intensities_Xe.mtz")]
     args += ["--MODE", "nres"]
-    args += ["--NRES", "230"]
+    args += ["--NRES", "120"]
     with i2run(args) as job:
         tree = ET.parse(job / "program.xml")
         compositions = tree.findall(".//matthewsCompositions/composition")
@@ -23,9 +23,9 @@ def test_gamma_from_nres():
 def test_gamma_from_molwt():
     """Test matthews coefficient estimation using molecular weight."""
     args = ["matthews"]
-    args += ["--HKLIN", demoData("gamma", "gamma_native.mtz")]
+    args += ["--HKLIN", demoData("gamma", "merged_intensities_Xe.mtz")]
     args += ["--MODE", "molwt"]
-    args += ["--MOLWT", "25000"]
+    args += ["--MOLWT", "13500"]
     with i2run(args) as job:
         tree = ET.parse(job / "program.xml")
         compositions = tree.findall(".//matthewsCompositions/composition")
