@@ -165,6 +165,34 @@ class CAsuContentSeq(CAsuContentSeqStub):
 
         return '\n'.join(lines)
 
+    def autoSetPolymerType(self):
+        """
+        Infer polymer type (PROTEIN, DNA, or RNA) from the sequence content
+        and set the polymerType attribute accordingly.
+        """
+        sequence = self.sequence
+        if hasattr(sequence, 'value'):
+            seq = str(sequence.value)
+        else:
+            seq = str(sequence)
+
+        seq = seq.replace(' ', '').replace('\n', '').replace('\t', '').replace('-', '').replace('.', '').upper()
+
+        if not seq:
+            self.polymerType.set('PROTEIN')
+            return
+
+        # Check if it looks like a nucleic acid (>80% ACGTU characters)
+        na_chars = set('ACGTUN')
+        na_count = sum(1 for c in seq if c in na_chars)
+        if na_count / len(seq) > 0.8:
+            if 'U' in seq and 'T' not in seq:
+                self.polymerType.set('RNA')
+            else:
+                self.polymerType.set('DNA')
+        else:
+            self.polymerType.set('PROTEIN')
+
     def numberOfResidues(self, countMulti=False):
         """
         Calculate the number of residues in the sequence.

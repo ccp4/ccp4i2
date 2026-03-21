@@ -50,8 +50,8 @@ Guide for writing new tests:
 |----------------------|-------|-----|-------|--------------------------------|------------------------------|
 | import_merged        | Y     | Y   | ·     | test_import_merged.py          | test_data_reduction_api.py   |
 | ProvideAsuContents   | Y     | Y   | ·     | test_asu_contents.py           | test_utilities_api.py        |
-| ProvideSequence      | Y     | -   | ·     | test_provide_sequence.py       |                              |
-| ProvideAlignment     | Y     | -   | ·     | test_provide_alignment.py      |                              |
+| ProvideSequence      | Y     | Y   | ·     | test_provide_sequence.py       | test_utilities_api.py        |
+| ProvideAlignment     | Y     | Y   | ·     | test_provide_alignment.py      | test_utilities_api.py        |
 | coordinate_selector  | Y     | Y   | Y     | test_coordinate_selector.py    | test_utilities_api.py        |
 | AlternativeImportXIA2| D     | -   | ·     | test_alternative_import_xia2.py|                              |
 | import_serial_pipe   | D     | -   | ·     | test_import_serial_pipe.py     |                              |

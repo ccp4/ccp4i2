@@ -330,3 +330,80 @@ class TestProvideAsuContentsAPI(APITestBase):
 
         # Check output XML
         self.assert_file_exists("ASUCONTENTFILE.asu.xml")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestProvideSequenceAPI(APITestBase):
+    """API tests for ProvideSequence sequence input."""
+
+    task_name = "ProvideSequence"
+    timeout = 60
+
+    _GAMMA_FASTA = (
+        ">gamma_chymotrypsinogen\n"
+        "MKYLLPTAAAGLLLLAAQPAMAMTQKIIMKDGLPSDSKLIQFEWNNPDQ"
+        "FQKDRISCGQVSIPNNGDCIYGDIAFKAGAWEALFNAAGATFESAERRQ"
+        "ADKEGCYREATTCLPLFTIFCNAFMPQIHGAVEGYHWDKYGGMCDDRYC"
+        "GTIMGGMYAGGCQAVKSAAADATFNIKNIFESRKIDGLMSQMMCGAAYPF"
+        "YVKDGENRCCQAANFYKSGAVILTHPGSEPNLTYWKF\n"
+    )
+
+    def test_freetext_sequence(self):
+        """Test ProvideSequence with pasted FASTA sequence text."""
+        self.create_project("test_provide_sequence")
+        self.create_job()
+
+        self.set_param("controlParameters.SEQUENCETEXT", self._GAMMA_FASTA)
+
+        self.run_and_wait()
+
+        # Validate ASU content output
+        asu_path = self.assert_file_exists("CASUCONTENTOUT.asu.xml")
+        import xml.etree.ElementTree as ET
+        tree = ET.parse(asu_path)
+        seqs = tree.findall(".//sequence")
+        assert len(seqs) >= 1, "No sequences found in ASU output"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestProvideAlignmentAPI(APITestBase):
+    """API tests for ProvideAlignment alignment input."""
+
+    task_name = "ProvideAlignment"
+    timeout = 60
+
+    def test_paste_pir_alignment(self):
+        """Test ProvideAlignment with pasted PIR-format alignment."""
+        pir_text = (
+            ">P1;target\n"
+            "target sequence\n"
+            "MKYLLPTAAAGLLLLAAQPAMA*\n"
+            ">P1;template\n"
+            "template sequence\n"
+            "MKYLLPTAAAGLLLLAAQPAMA*\n"
+        )
+        self.create_project("test_provide_alignment_paste")
+        self.create_job()
+
+        self.set_param("controlParameters.PASTEORREAD", "PASTE")
+        self.set_param("controlParameters.SEQUENCETEXT", pir_text)
+
+        self.run_and_wait()
+
+        self.assert_file_exists("ALIGNMENTFILE.aln")
+
+    def test_read_pir_file(self, demo_data_dir):
+        """Test ProvideAlignment by reading gamma PIR file."""
+        pir_path = demo_data_dir / "gamma" / "gamma.pir"
+        if not pir_path.exists():
+            pytest.skip(f"PIR file not found: {pir_path}")
+
+        self.create_project("test_provide_alignment_file")
+        self.create_job()
+
+        self.set_param("controlParameters.PASTEORREAD", "ALIGNIN")
+        self.upload_file("inputData.ALIGNIN", str(pir_path))
+
+        self.run_and_wait()
+
+        self.assert_file_exists("ALIGNMENTFILE.aln")

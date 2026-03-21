@@ -64,11 +64,9 @@ class ProvideSequence(CPluginScript):
         if len(self.container.outputData.SEQUENCEFILE_LIST) == 0:
             return CPluginScript.SUCCEEDED
         try:
-            self.container.outputData.CASUCONTENTOUT.loadFile()
             for iFile, sequenceFile in enumerate(self.container.outputData.SEQUENCEFILE_LIST):
                 sequenceFile.loadFile()
-                if iFile > 0:
-                    self.container.outputData.CASUCONTENTOUT.fileContent.seqList.append(CCP4ModelData.CAsuContentSeq())
+                self.container.outputData.CASUCONTENTOUT.fileContent.seqList.append(CCP4ModelData.CAsuContentSeq())
                 entry = self.container.outputData.CASUCONTENTOUT.fileContent.seqList[-1]
                 entry.nCopies.set(1)
                 entry.sequence.set(sequenceFile.fileContent.sequence)

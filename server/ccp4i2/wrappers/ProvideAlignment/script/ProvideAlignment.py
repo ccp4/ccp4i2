@@ -1,3 +1,5 @@
+import os
+import tempfile
 from io import StringIO
 
 from ccp4i2.core import CCP4Utils
@@ -19,10 +21,19 @@ class ProvideAlignment(CPluginScript):
         mode = str(self.container.controlParameters.PASTEORREAD)
 
         if mode in ['ALIGNIN','PASTE']:
-          alignment, format, commentary = importAlignment(self.container.inputData.ALIGNIN.__str__())
+          if mode == 'PASTE':
+            tempFile = tempfile.NamedTemporaryFile(suffix='.txt', delete=False)
+            tempFile.file.write(str(self.container.controlParameters.SEQUENCETEXT).encode('utf-8'))
+            tempFile.close()
+            inputPath = tempFile.name
+          else:
+            inputPath = str(self.container.inputData.ALIGNIN)
+          alignment, format, commentary = importAlignment(inputPath)
+          if mode == 'PASTE' and os.path.exists(inputPath):
+            os.unlink(inputPath)
           commentary = commentary.getvalue()
           if alignment is None:
-            self.appendErrorReport(202,self.container.inputData.ALIGNIN.__str__())
+            self.appendErrorReport(202, inputPath)
             status =  CPluginScript.FAILED
           else:
             outputString = StringIO()

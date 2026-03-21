@@ -4,10 +4,12 @@ from .utils import demoData, i2run
 def test_paste_pir_alignment():
     """Test ProvideAlignment with pasted PIR-format alignment."""
     pir_text = (
-        ">P1;target\\n"
-        "MKYLLPTAAAGLLLLAAQPAMA*\\n"
-        ">P1;template\\n"
-        "MKYLLPTAAAGLLLLAAQPAMA*\\n"
+        ">P1;target\n"
+        "target sequence\n"
+        "MKYLLPTAAAGLLLLAAQPAMA*\n"
+        ">P1;template\n"
+        "template sequence\n"
+        "MKYLLPTAAAGLLLLAAQPAMA*\n"
     )
     args = ["ProvideAlignment"]
     args += ["--PASTEORREAD", "PASTE"]
