@@ -1,9 +1,10 @@
-import React from "react";
-import { Box, Typography } from "@mui/material";
+import React, { useMemo } from "react";
+import { Box, Chip, Typography } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2TaskElement } from "../../task-elements/task-element";
 import { CCP4i2ContainerElement } from "../../task-elements/ccontainer";
 import { FieldRow } from "../../task-elements/field-row";
+import { useJob } from "../../../../utils";
 
 interface InputDataTabProps extends CCP4i2TaskInterfaceProps {
   mode: string;
@@ -18,8 +19,50 @@ interface InputDataTabProps extends CCP4i2TaskInterfaceProps {
   };
 }
 
+/**
+ * Hook to compute the maximum resolution across all files in the UNMERGEDFILES list.
+ * Reads highRes from each list item's file digest (CUnmergedDataContent.highRes).
+ */
+const useMaxResolution = (jobId: number) => {
+  const { useTaskItem, useFileDigest } = useJob(jobId);
+  const { item: listItem } = useTaskItem("UNMERGEDFILES");
+  const listItems: any[] = listItem?._value || [];
+
+  // Build file object paths for all list items that have a file uploaded
+  const filePaths = useMemo(() => {
+    return listItems
+      .map((entry: any) => {
+        const fileValue = entry?.file;
+        if (!fileValue?.dbFileId) return "";
+        // Construct the objectPath for the file within this list entry
+        return entry?._objectPath ? `${entry._objectPath}.file` : "";
+      })
+      .filter(Boolean);
+  }, [listItems]);
+
+  // Fetch digest for first file (most common case is single file)
+  const { data: digest0 } = useFileDigest(filePaths[0] || "");
+  const { data: digest1 } = useFileDigest(filePaths[1] || "");
+  const { data: digest2 } = useFileDigest(filePaths[2] || "");
+
+  return useMemo(() => {
+    const digests = [digest0, digest1, digest2].filter(Boolean);
+    if (digests.length === 0) return null;
+
+    let best: number | null = null;
+    for (const d of digests) {
+      const hr = d?.highRes ?? d?.resolutionRange?.high;
+      if (typeof hr === "number" && hr > 0) {
+        if (best === null || hr < best) best = hr;
+      }
+    }
+    return best;
+  }, [digest0, digest1, digest2]);
+};
+
 export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
   const { mode, referenceDataset, vis, ...taskProps } = props;
+  const maxResolution = useMaxResolution(props.job.id);
 
   return (
     <>
@@ -34,11 +77,26 @@ export const InputDataTab: React.FC<InputDataTabProps> = (props) => {
       </CCP4i2ContainerElement>
 
       {/* Resolution */}
-      <CCP4i2TaskElement
-        itemName="RESOLUTION_RANGE"
-        {...taskProps}
-        qualifiers={{ guiLabel: "Resolution range (Å)" }}
-      />
+      <FieldRow>
+        <CCP4i2TaskElement
+          itemName="RESOLUTION_RANGE"
+          {...taskProps}
+          qualifiers={{ guiLabel: "Resolution range (Å)" }}
+        />
+        {maxResolution != null && (
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1, ml: 2 }}>
+            <Typography variant="body2" color="text.secondary">
+              Maximum resolution in files
+            </Typography>
+            <Chip
+              label={`${maxResolution.toFixed(2)}Å`}
+              size="small"
+              variant="outlined"
+              color="primary"
+            />
+          </Box>
+        )}
+      </FieldRow>
       <CCP4i2TaskElement
         itemName="POINTLESS_USE_RESOLUTION_RANGE"
         {...taskProps}
