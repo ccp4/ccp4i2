@@ -64,6 +64,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "ProvideAlignment",
       "coordinate_selector",
       "AlternativeImportXIA2",
+      "import_serial_pipe",
     ],
   },
   {
@@ -73,6 +74,11 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "xia2_dials",
       "xia2_xds",
+      "xia2_multiplex",
+      "imosflm",
+      "dials_image",
+      "dials_rlattice",
+      "dui",
     ],
   },
   {
@@ -84,6 +90,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "freerflag",
       "matthews",
       "molrep_selfrot",
+      "AUSPEX",
       "xia2_ssx_reduce",
     ],
   },
@@ -105,6 +112,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "mrparse",
       "editbfac",
       "arcimboldo",
+      "slicendice",
     ],
   },
   {
@@ -130,6 +138,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "sculptor",
       "phaser_ensembler",
       "clustalw",
+      "findmyseq",
     ],
   },
   {
@@ -151,6 +160,8 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "phaser_rnp_pipeline",
       "AMPLE",
       "SIMBAD",
+      "morda_i2",
+      "phaser_singleMR",
       "comit",
       "i2Dimple",
       "arcimboldo",
@@ -159,8 +170,11 @@ export const TASK_CATEGORIES: TaskCategory[] = [
   {
     id: "density_modification",
     description: "Density modification",
-    preferred: [],
-    tasks: [],
+    preferred: ["acorn"],
+    tasks: [
+      "acorn",
+      "parrot",
+    ],
   },
   {
     id: "model_building",
@@ -169,6 +183,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "modelcraft",
       "coot_rebuild",
+      "coot1",
       "coot_script_lines",
       "coot_find_waters",
       "arp_warp_classic",
@@ -184,13 +199,16 @@ export const TASK_CATEGORIES: TaskCategory[] = [
     tasks: [
       "servalcat_pipe",
       "prosmart_refmac",
+      "buster",
       "phaser_rnp_pipeline",
       "metalCoord",
+      "ProvideTLS",
       "coot_rsr_morph",
       "pdb_redo_api",
       "sheetbend",
       "SubtractNative",
       "lorestr_i2",
+      "pairef",
       "zanuda",
     ],
   },
@@ -212,6 +230,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "validate_protein",
       "edstats",
       "privateer",
+      "modelASUCheck",
       "qtpisa",
     ],
   },
@@ -251,6 +270,7 @@ export const TASK_CATEGORIES: TaskCategory[] = [
       "coordinate_selector",
       "qtpisa",
       "pdbview_edit",
+      "pdbset_ui",
       "editbfac",
       "add_fractional_coords",
     ],
