@@ -5,6 +5,9 @@ These tests verify the API workflow for:
 - prosmart_refmac: ProSMART + Refmac refinement
 - servalcat_pipe: Servalcat refinement pipeline
 - sheetbend: Sheetbend coordinate optimization
+- zanuda: Space group validation / refinement
+- lorestr_i2: Low-resolution structure refinement
+- metalCoord: Metal coordination restraint generation
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -219,3 +222,95 @@ class TestSheetbendAPI(APITestBase):
         xml = self.read_program_xml()
         # Sheetbend output format may vary - check file exists
         assert xml is not None
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestZanudaAPI(APITestBase):
+    """API tests for zanuda space group validation."""
+
+    task_name = "zanuda"
+    timeout = 300
+
+    def test_8xfm(self, cif8xfm, mtz8xfm):
+        """Test zanuda with 8xfm refined structure."""
+        self.create_project("test_zanuda")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz8xfm,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", mtz8xfm,
+            column_labels="/*/*/[FREE]"
+        )
+        self.upload_file("inputData.XYZIN", cif8xfm)
+
+        self.run_and_wait()
+
+        # Zanuda writes output as zanuda.pdb (not XYZOUT)
+        self.assert_file_exists("zanuda.pdb")
+        self.assert_file_exists("FPHIOUT.mtz")
+        self.assert_file_exists("DIFFPHIOUT.mtz")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestLorestrAPI(APITestBase):
+    """API tests for lorestr_i2 low-resolution refinement."""
+
+    task_name = "lorestr_i2"
+    timeout = 600
+
+    def test_1h1s(self, pdb1h1s, mtz1h1s):
+        """Test lorestr with 1h1s structure (no auto homologue fetch)."""
+        self.create_project("test_lorestr")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", pdb1h1s)
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz1h1s,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file_with_columns(
+            "inputData.FREERFLAG", mtz1h1s,
+            column_labels="/*/*/[FREE]"
+        )
+        self.set_param("controlParameters.AUTO", "none")
+        self.set_param("controlParameters.CPU", 1)
+
+        self.run_and_wait()
+
+        # Check refined model and map coefficients
+        self.assert_file_exists("XYZOUT.pdb")
+        job_dir = self.get_job_directory()
+        mtz_files = list(job_dir.glob("*.mtz"))
+        assert len(mtz_files) >= 1, f"No MTZ output: {list(job_dir.iterdir())}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestMetalCoordAPI(APITestBase):
+    """API tests for metalCoord restraint generation."""
+
+    task_name = "metalCoord"
+    timeout = 120
+
+    def test_4dl8(self, cif4dl8):
+        """Test metalCoord with 4dl8 (AlF3 complex)."""
+        self.create_project("test_metalcoord")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", cif4dl8)
+        self.set_param("inputData.LIGAND_CODE", "AF3")
+        self.set_param("controlParameters.KEEP_LINKS", True)
+        self.set_param("controlParameters.MAXIMUM_COORDINATION_NUMBER", 5)
+        self.set_param("coordination.COORD05", "trigonal-bipyramid")
+        self.set_param("controlParameters.MINIMUM_SAMPLE_SIZE", 10)
+        self.set_param("controlParameters.DISTANCE_THRESHOLD", 0.45)
+        self.set_param("controlParameters.PROCRUSTES_DISTANCE_THRESHOLD", 0.2)
+
+        self.run_and_wait()
+
+        # Check for restraint output files
+        job_dir = self.get_job_directory()
+        af3_files = list(job_dir.glob("AF3_restraints*"))
+        assert len(af3_files) >= 3, f"Expected AF3 restraint files, found: {[f.name for f in af3_files]}"

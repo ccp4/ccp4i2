@@ -5,6 +5,7 @@ These tests verify the API workflow for:
 - shelx: SHELX phasing pipeline
 - crank2: Crank2 automated SAD/MAD phasing
 - phaser_EP: Phaser experimental phasing
+- phaser_EP_AUTO: Automated experimental phasing with Phaser
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -204,3 +205,38 @@ class TestPhaserEPAPI(APITestBase):
         model = gemmi.read_structure(str(self.get_job_directory() / "PHASER.1.pdb"))[0]
         occs = [cra.atom.occ for cra in model.all()]
         assert sum(occ > 0.11 for occ in occs) == 3
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPhaserEPAutoAPI(APITestBase):
+    """API tests for phaser_EP_AUTO automated experimental phasing."""
+
+    task_name = "phaser_EP_AUTO"
+    timeout = 300
+
+    def test_gamma_xe(self, gamma_mtz, gamma_heavy_atoms_pdb, gamma_asu_xml):
+        """Test phaser_EP_AUTO with gamma Xe anomalous data."""
+        self.create_project("test_phaser_ep_auto")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file("inputData.XYZIN_HA", gamma_heavy_atoms_pdb)
+        self.upload_file("inputData.ASUFILE", gamma_asu_xml)
+
+        self.set_param("inputData.COMP_BY", "ASU")
+        self.set_param("inputData.PARTIALMODELORMAP", "NONE")
+        self.set_param("inputData.WAVELENGTH", 1.542)
+        self.set_param("inputData.LLGC_CYCLES", 20)
+        self.set_param("inputData.ELEMENTS", "Xe")
+
+        self.run_and_wait()
+
+        # Check output PDB and MTZ files
+        job_dir = self.get_job_directory()
+        pdb_files = list(job_dir.glob("PHASER*.pdb"))
+        assert len(pdb_files) >= 1, f"No Phaser PDB output: {list(job_dir.iterdir())}"
+        mtz_files = list(job_dir.glob("*.mtz"))
+        assert len(mtz_files) >= 1, f"No MTZ output: {list(job_dir.iterdir())}"

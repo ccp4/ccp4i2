@@ -6,6 +6,9 @@ These tests verify the API workflow for:
 - molrep_pipe: Molrep MR pipeline
 - i2Dimple: Dimple pipeline
 - mrbump_basic: MrBUMP automated MR
+- molrep_selfrot: Self-rotation function analysis
+- phaser_pipeline: Expert Phaser MR with multiple ensembles
+- phaser_rnp_pipeline: Phaser MR with chain selections
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
@@ -238,3 +241,130 @@ class TestMrBumpAPI(APITestBase):
                     except (ValueError, IndexError):
                         pass
             assert best_rfree < 0.35
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestMolrepSelfrotAPI(APITestBase):
+    """API tests for molrep_selfrot self-rotation function."""
+
+    task_name = "molrep_selfrot"
+    timeout = 120
+
+    def test_1h1s(self, mtz1h1s):
+        """Test self-rotation function with 1h1s reflection data."""
+        self.create_project("test_molrep_selfrot")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz1h1s,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+
+        self.run_and_wait()
+
+        # Check PostScript output
+        job_dir = self.get_job_directory()
+        ps_files = list(job_dir.glob("*.ps"))
+        assert len(ps_files) >= 1, f"No PS output: {list(job_dir.iterdir())}"
+
+        # Check Patterson peaks in program.xml
+        xml = self.read_program_xml()
+        peaks = xml.findall(".//Patterson/Peak")
+        assert len(peaks) >= 10, f"Expected >= 10 Patterson peaks, got {len(peaks)}"
+
+        # Verify peak structure
+        first_peak = peaks[0]
+        for field in ("No", "Xfrac", "Yfrac", "Zfrac", "Dens", "Dens_sigma"):
+            elem = first_peak.find(field)
+            assert elem is not None, f"Missing '{field}' in Patterson peak"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPhaserPipelineAPI(APITestBase):
+    """API tests for phaser_pipeline expert MR."""
+
+    task_name = "phaser_pipeline"
+    timeout = 600
+
+    def test_beta_blip(self, beta_blip_mtz, beta_pdb, blip_pdb):
+        """Test phaser_pipeline with beta+blip two-ensemble MR."""
+        self.create_project("test_phaser_pipeline")
+        self.create_job()
+
+        # Upload F/SIGF data with correct column names for beta_blip MTZ
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", beta_blip_mtz,
+            column_labels="/*/*/[Fobs,Sigma]"
+        )
+
+        # Set F or I mode
+        self.set_param("inputData.F_OR_I", "F")
+        self.set_param("inputData.COMP_BY", "DEFAULT")
+
+        # Add two ensembles with correct nested structure
+        # ENSEMBLES is a CEnsembleList: each item has use, pdbItemList
+        self.set_param("inputData.ENSEMBLES", [{}, {}])
+        self.set_param("inputData.ENSEMBLES[0].use", True)
+        self.set_param("inputData.ENSEMBLES[0].pdbItemList", [{}])
+        self.set_param("inputData.ENSEMBLES[0].pdbItemList[0].identity_to_target", 0.9)
+        self.upload_file("inputData.ENSEMBLES[0].pdbItemList[0].structure", beta_pdb)
+
+        self.set_param("inputData.ENSEMBLES[1].use", True)
+        self.set_param("inputData.ENSEMBLES[1].pdbItemList", [{}])
+        self.set_param("inputData.ENSEMBLES[1].pdbItemList[0].identity_to_target", 0.9)
+        self.upload_file("inputData.ENSEMBLES[1].pdbItemList[0].structure", blip_pdb)
+
+        # Disable post-processing for speed
+        self.set_param("inputData.RUNREFMAC", False)
+        self.set_param("inputData.RUNSHEETBEND", False)
+
+        self.run_and_wait()
+
+        # Check for Phaser output
+        job_dir = self.get_job_directory()
+        phaser_pdbs = list(job_dir.glob("PHASER.*.pdb")) + list(job_dir.glob("PHASER.*.cif"))
+        assert len(phaser_pdbs) >= 1, f"No Phaser output found in {job_dir}"
+
+        # Check LLG
+        xml = self.read_program_xml()
+        llgs = [float(e.text) for e in xml.findall(".//Solution/LLG")]
+        if llgs:
+            assert max(llgs) > 1000
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPhaserRnpPipelineAPI(APITestBase):
+    """API tests for phaser_rnp_pipeline MR with chain selections."""
+
+    task_name = "phaser_rnp_pipeline"
+    timeout = 600
+
+    def test_1h1s_chain_selections(self, pdb1h1s, mtz1h1s):
+        """Test phaser_rnp_pipeline with chain selections from 1h1s."""
+        self.create_project("test_phaser_rnp")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz1h1s,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file("inputData.XYZIN_PARENT", pdb1h1s)
+
+        # Add chain selections
+        self.set_param("inputData.SELECTIONS", [
+            {"text": "A/"},
+            {"text": "B/"},
+            {"text": "C/"},
+            {"text": "D/"},
+        ])
+
+        # Disable post-processing for speed
+        self.set_param("inputData.RUNREFMAC", False)
+        self.set_param("inputData.RUNSHEETBEND", False)
+
+        self.run_and_wait()
+
+        # Check for Phaser output
+        job_dir = self.get_job_directory()
+        phaser_outputs = list(job_dir.glob("PHASER.*"))
+        assert len(phaser_outputs) >= 1, f"No Phaser output found in {job_dir}"

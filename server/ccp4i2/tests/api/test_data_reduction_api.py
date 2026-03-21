@@ -5,6 +5,11 @@ These tests verify the API workflow for:
 - aimless_pipe: Data scaling and merging
 - import_merged: Import merged reflections
 - freerflag: Generate free R flags
+- ctruncate: Intensity truncation to amplitudes
+- pointless_reindexToMatch: Reindex reflections to match reference
+- chltofom: HL coefficients to PHI/FOM conversion
+- splitMtz: MTZ column splitting
+- scaleit: Derivative vs native scaling
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs via API digest endpoints.
@@ -15,7 +20,7 @@ import pytest
 pytestmark = pytest.mark.pipeline
 from pytest import approx
 
-from .base import APITestBase
+from .base import APITestBase, download, URLs
 
 
 @pytest.mark.usefixtures("file_based_db")
@@ -183,3 +188,154 @@ class TestFreeRFlagAPI(APITestBase):
         # For detailed FreeR flag distribution, would need to read file directly
         # or have the server compute it in the digest
         assert digest.get('spaceGroup') is not None
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestCtruncateAPI(APITestBase):
+    """API tests for ctruncate intensity truncation."""
+
+    task_name = "ctruncate"
+    timeout = 120
+
+    def test_gamma_intensities(self, gamma_mtz, demo_data_dir):
+        """Test ctruncate with gamma anomalous intensities."""
+        # gamma_mtz has Iplus/SIGIplus/Iminus/SIGIminus
+        gamma_seq = demo_data_dir / "gamma" / "gamma.pir"
+        if not gamma_seq.exists():
+            pytest.skip(f"Sequence file not found: {gamma_seq}")
+
+        self.create_project("test_ctruncate")
+        self.create_job()
+
+        self.upload_file("inputData.OBSIN", gamma_mtz)
+        self.upload_file("inputData.SEQIN", str(gamma_seq))
+
+        self.run_and_wait()
+
+        # Check for truncated output
+        self.assert_file_exists("program.xml")
+        # ctruncate produces OBSOUT mini-MTZ with amplitudes
+        job_dir = self.get_job_directory()
+        mtz_files = list(job_dir.glob("*.mtz"))
+        assert len(mtz_files) >= 1, f"No MTZ output from ctruncate: {job_dir}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestPointlessReindexAPI(APITestBase):
+    """API tests for pointless_reindexToMatch."""
+
+    task_name = "pointless_reindexToMatch"
+    timeout = 120
+
+    def test_reindex_to_coords(self, gamma_mtz, gamma_model_pdb):
+        """Test reindexing gamma data to match coordinate reference."""
+        self.create_project("test_pointless_reindex")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", gamma_mtz,
+            column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"
+        )
+        self.upload_file("inputData.XYZIN_REF", gamma_model_pdb)
+        self.set_param("controlParameters.REFERENCE", "XYZIN_REF")
+
+        self.run_and_wait()
+
+        # Check reindexed output
+        job_dir = self.get_job_directory()
+        mtz_files = list(job_dir.glob("*.mtz"))
+        assert len(mtz_files) >= 1, f"No MTZ output from pointless: {job_dir}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestChltofomAPI(APITestBase):
+    """API tests for chltofom HL to PHI/FOM conversion."""
+
+    task_name = "chltofom"
+    timeout = 60
+
+    def test_hl_to_phifom(self):
+        """Test HL to PHI/FOM conversion with gamma initial phases."""
+        self.create_project("test_chltofom")
+        self.create_job()
+
+        from ccp4i2.tests.i2run.utils import demoData
+        self.upload_file("inputData.HKLIN", demoData("gamma", "initial_phases.mtz"))
+
+        self.run_and_wait()
+
+        # Check output MTZ exists with PHI/FOM columns
+        import gemmi
+        job_dir = self.get_job_directory()
+        hklout = job_dir / "HKLOUT.mtz"
+        assert hklout.exists(), f"No HKLOUT: {list(job_dir.iterdir())}"
+        mtz = gemmi.read_mtz_file(str(hklout))
+        labels = [c.label for c in mtz.columns]
+        assert "PHI" in labels, f"No PHI column: {labels}"
+        assert "FOM" in labels, f"No FOM column: {labels}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestSplitMtzAPI(APITestBase):
+    """API tests for splitMtz column splitting."""
+
+    task_name = "splitMtz"
+    timeout = 60
+
+    def test_gamma_abcd(self, gamma_initial_phases_mtz):
+        """Test splitting ABCD columns from gamma initial phases."""
+        self.create_project("test_split_mtz_abcd")
+        self.create_job()
+
+        self.upload_file("inputData.HKLIN", gamma_initial_phases_mtz)
+
+        # Set up column group via set_param with structured data
+        self.set_param("inputData.USERCOLUMNGROUP", {
+            "columnGroupType": "Phs",
+            "contentFlag": 1,
+            "dataset": "ds1",
+        })
+        # Set the column list entries
+        columns = [
+            {"columnLabel": "HLA", "columnType": "A", "dataset": "ds1"},
+            {"columnLabel": "HLB", "columnType": "A", "dataset": "ds1"},
+            {"columnLabel": "HLC", "columnType": "A", "dataset": "ds1"},
+            {"columnLabel": "HLD", "columnType": "A", "dataset": "ds1"},
+        ]
+        self.set_param("inputData.USERCOLUMNGROUP.columnList", columns)
+
+        self.run_and_wait()
+
+        # Check output MTZ exists
+        job_dir = self.get_job_directory()
+        output_files = list(job_dir.glob("*.mtz"))
+        assert len(output_files) >= 1, f"No MTZ output files found in {job_dir}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestScaleitAPI(APITestBase):
+    """API tests for scaleit derivative scaling."""
+
+    task_name = "scaleit"
+    timeout = 120
+
+    def test_gamma_native_vs_xe(self, gamma_native_mtz, gamma_mtz):
+        """Test scaling Xe derivative against native."""
+        self.create_project("test_scaleit")
+        self.create_job()
+
+        # Create list with two empty items, then upload to each
+        self.set_param("inputData.MERGEDFILES", [{}, {}])
+        self.upload_file("inputData.MERGEDFILES[0]", gamma_native_mtz)
+        self.upload_file("inputData.MERGEDFILES[1]", gamma_mtz)
+
+        self.run_and_wait()
+
+        # Validate output
+        self.validate_mtz("hklout.mtz")
+
+        # Check program.xml for scaleit results
+        xml = self.read_program_xml()
+        nderiv = xml.find(".//SCALEITLOG/Nderivatives")
+        assert nderiv is not None, "Nderivatives missing from program.xml"
+        assert int(nderiv.text) == 1

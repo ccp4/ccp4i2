@@ -9,15 +9,23 @@ These tests verify the API workflow for:
 - coordinate_selector: Atom selection
 - coot_find_waters: Water finding
 - coot_rsr_morph: Real-space refinement morphing
+- MakeLink: Covalent link definition for ligands
+- clustalw: Multiple sequence alignment
+- comit: Omit map calculation
+- SubtractNative: Native subtraction map
+- editbfac: AlphaFold B-factor editing
 
 Each test creates a project, creates a job, uploads input files,
 runs the job, and validates outputs.
 """
+import json
 import os
 import pytest
 
 # Mark all tests in this module as pipeline tests (slow, run actual jobs)
 pytestmark = pytest.mark.pipeline
+
+from gemmi import cif
 
 from .base import APITestBase, download, URLs
 
@@ -407,3 +415,153 @@ class TestProvideAlignmentAPI(APITestBase):
         self.run_and_wait()
 
         self.assert_file_exists("ALIGNMENTFILE.aln")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestMakeLinkAPI(APITestBase):
+    """API tests for MakeLink covalent link definition."""
+
+    task_name = "MakeLink"
+    timeout = 120
+
+    def test_lys_plp_link(self, pdb6ndn):
+        """Test MakeLink: define LYS-PLP covalent link in 6ndn."""
+        self.create_project("test_makelink")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", pdb6ndn)
+
+        # Residue and atom names for the link
+        self.set_param("inputData.RES_NAME_1_TLC", "LYS")
+        self.set_param("inputData.RES_NAME_2_TLC", "PLP")
+        self.set_param("inputData.ATOM_NAME_1_TLC", "NZ")
+        self.set_param("inputData.ATOM_NAME_2_TLC", "C4A")
+        self.set_param("inputData.ATOM_NAME_1", "NZ")
+        self.set_param("inputData.ATOM_NAME_2", "C4A")
+
+        # Delete atom on ligand side and set bond order
+        self.set_param("inputData.TOGGLE_DELETE_2", True)
+        self.set_param("inputData.DELETE_2", "O4A")
+        self.set_param("controlParameters.BOND_ORDER", "DOUBLE")
+        self.set_param("controlParameters.TOGGLE_LINK", True)
+
+        # MakeLink may emit warnings for empty optional fields
+        self.run_and_wait(expect_success=False)
+
+        # Validate CIF output contains expected blocks
+        job_dir = self.get_job_directory()
+        cif_file = job_dir / "LYS-PLP_link.cif"
+        assert cif_file.exists(), f"Link CIF not produced: {list(job_dir.iterdir())}"
+        doc = cif.read(str(cif_file))
+        for name in ("mod_LYSm1", "mod_PLPm1", "link_LYS-PLP"):
+            assert name in doc, f"Missing block '{name}' in CIF"
+
+        # Check PDB output with applied links
+        pdb_file = job_dir / "ModelWithLinks.pdb"
+        assert pdb_file.exists(), f"PDB with links not produced: {list(job_dir.iterdir())}"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestClustalwAPI(APITestBase):
+    """API tests for clustalw multiple sequence alignment."""
+
+    task_name = "clustalw"
+    timeout = 60
+
+    def test_cdk2_cdk6_alignment(self, fasta_cdk2, fasta_cdk6):
+        """Test clustalw alignment of CDK2 and CDK6."""
+        self.create_project("test_clustalw")
+        self.create_job()
+
+        self.set_param("inputData.SEQUENCELISTORALIGNMENT", "SEQUENCELIST")
+
+        # Upload two sequences as list items
+        self.set_param("inputData.SEQIN", [{}, {}])
+        self.upload_file("inputData.SEQIN[0]", fasta_cdk2)
+        self.upload_file("inputData.SEQIN[1]", fasta_cdk6)
+
+        self.run_and_wait()
+
+        # Check alignment output and program XML
+        job_dir = self.get_job_directory()
+        aln_files = list(job_dir.glob("*.aln"))
+        assert len(aln_files) >= 1, f"No alignment output: {list(job_dir.iterdir())}"
+
+        xml = self.read_program_xml()
+        scores = xml.findall(".//PairwiseScore")
+        assert len(scores) >= 1, "No pairwise scores in program.xml"
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestComitAPI(APITestBase):
+    """API tests for comit omit map calculation."""
+
+    task_name = "comit"
+    timeout = 120
+
+    def test_8xfm(self, mtz8xfm):
+        """Test comit with 8xfm data."""
+        self.create_project("test_comit")
+        self.create_job()
+
+        self.upload_file_with_columns(
+            "inputData.F_SIGF", mtz8xfm,
+            column_labels="/*/*/[FP,SIGFP]"
+        )
+        self.upload_file_with_columns(
+            "inputData.F_PHI_IN", mtz8xfm,
+            column_labels="/*/*/[FWT,PHWT]"
+        )
+
+        self.run_and_wait()
+
+        self.validate_mtz("F_PHI_OUT.mtz")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestSubtractNativeAPI(APITestBase):
+    """API tests for SubtractNative map calculation."""
+
+    task_name = "SubtractNative"
+    timeout = 120
+
+    def test_8xfm(self, cif8xfm, mtz8xfm):
+        """Test native subtraction with 8xfm data."""
+        self.create_project("test_subtract_native")
+        self.create_job()
+
+        self.upload_file("inputData.XYZIN", cif8xfm)
+        self.upload_file_with_columns(
+            "inputData.MAPIN", mtz8xfm,
+            column_labels="/*/*/[FWT,PHWT]"
+        )
+
+        self.run_and_wait()
+
+        self.assert_file_exists("MAPOUT.map")
+
+
+@pytest.mark.usefixtures("file_based_db")
+class TestEditbfacAPI(APITestBase):
+    """API tests for editbfac B-factor editing."""
+
+    task_name = "editbfac"
+    timeout = 120
+
+    def test_alphafold_pdb(self):
+        """Test editbfac with AlphaFold model."""
+        # Use AlphaFold API to get the dynamic PDB URL (like the i2run test)
+        api_url = "https://alphafold.ebi.ac.uk/api/prediction/Q8W3K0"
+        with download(api_url) as api_path:
+            with open(api_path, encoding="utf-8") as f:
+                info = json.load(f)[0]
+            with download(info["pdbUrl"]) as pdb_path:
+                self.create_project("test_editbfac")
+                self.create_job()
+
+                self.upload_file("inputData.XYZIN", pdb_path)
+
+                self.run_and_wait()
+
+                self.assert_file_exists("converted_model.pdb")
+                self.assert_file_exists("converted_model_chainA1.pdb")
