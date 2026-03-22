@@ -36,6 +36,8 @@ def test_substitute_ligand_no_ligand():
         rfrees = [float(e.text) for e in xml.iter("r_free")]
         assert rworks[-1] < 0.23
         assert rfrees[-1] < 0.25
+        # Check aimless_pipe sub-job wrote PERFORMANCE indicators to params.xml
+        _check_aimless_pipe_performance(job / "job_1")
 
 
 @pytest.mark.order("first")
@@ -64,3 +66,20 @@ def test_substitute_ligand_with_smiles():
         rfrees = [float(e.text) for e in xml.iter("r_free")]
         assert rworks[-1] < 0.23
         assert rfrees[-1] < 0.25
+        # Check aimless_pipe sub-job wrote PERFORMANCE indicators to params.xml
+        _check_aimless_pipe_performance(job / "job_1")
+
+
+def _check_aimless_pipe_performance(aimless_pipe_dir):
+    """Verify aimless_pipe wrote non-zero PERFORMANCE KPIs to its params.xml."""
+    params = aimless_pipe_dir / "aimless_pipe.params.xml"
+    assert params.exists(), f"aimless_pipe.params.xml not found at {params}"
+    tree = ET.parse(params)
+    perf = tree.find('.//outputData/PERFORMANCE')
+    assert perf is not None, "No PERFORMANCE element in aimless_pipe params.xml"
+    high_res = perf.find('highResLimit')
+    assert high_res is not None and high_res.text, "highResLimit missing from PERFORMANCE"
+    assert float(high_res.text) > 0, f"highResLimit is zero: {high_res.text}"
+    r_meas = perf.find('rMeas')
+    assert r_meas is not None and r_meas.text, "rMeas missing from PERFORMANCE"
+    assert float(r_meas.text) > 0, f"rMeas is zero: {r_meas.text}"

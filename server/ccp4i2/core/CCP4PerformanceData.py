@@ -14,11 +14,41 @@ from ccp4i2.core.cdata_stubs.CCP4PerformanceData import CAtomCountPerformanceStu
 class CPerformanceIndicator(CPerformanceIndicatorStub):
     """
     Extends CPerformanceIndicatorStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+
+    Overrides isSet() so that a performance indicator is considered "set"
+    when any of its KPI children (beyond the inherited 'value' and
+    'annotation' fields) have been explicitly set.  This ensures
+    exclude_unset serialization preserves PERFORMANCE elements that
+    contain real metrics like highResLimit, rMeas, RFactor, etc.
     """
 
-    # Add your methods here
-    pass
+    # Fields inherited from CPerformanceIndicatorStub that are structural,
+    # not KPI values — skip these when deciding if the indicator is "set".
+    _STRUCTURAL_FIELDS = frozenset(('value', 'annotation'))
+
+    def isSet(self, field_name=None, allowUndefined=False,
+              allowDefault=False, allSet=False):
+        # When checking the 'value' field or the object as a whole,
+        # a performance indicator is "set" if any KPI child is set.
+        # (getEtree calls isSet('value', ...) which would otherwise
+        # only check the inherited CFloat 'value' attribute.)
+        if field_name is None or field_name == 'value':
+            from ccp4i2.core.base_object.cdata import CData
+            for child in self.children():
+                if not isinstance(child, CData):
+                    continue
+                name = child.objectName() if hasattr(child, 'objectName') else None
+                if name in self._STRUCTURAL_FIELDS:
+                    continue
+                if child.isSet(allowDefault=allowDefault,
+                               allowUndefined=allowUndefined):
+                    return True
+            return False
+
+        # For any other specific field, delegate to base
+        return super().isSet(field_name=field_name,
+                             allowUndefined=allowUndefined,
+                             allowDefault=allowDefault, allSet=allSet)
 
 
 class CAtomCountPerformance(CAtomCountPerformanceStub, CPerformanceIndicator):
