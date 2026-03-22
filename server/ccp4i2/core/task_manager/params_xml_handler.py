@@ -32,16 +32,19 @@ class ParamsXmlHandler:
         self.namespace_prefix = "ccp4"
 
     def export_params_xml(
-        self, task: CData, output_path: str, user_id: str = None, exclude_unset: bool = True
+        self, task: CData, output_path: str, user_id: str = None,
+        exclude_unset: bool = True, job_metadata: dict = None,
     ) -> bool:
         """
-        Export explicitly set parameters from a task hierarchy to a .params.xml file.
+        Export parameters from a task hierarchy to a .params.xml file.
 
         Args:
             task: The root task object (from .def.xml parsing)
             output_path: Path where to save the .params.xml file
             user_id: User ID for the header (defaults to current user)
             exclude_unset: If True, only export explicitly set parameters (default: True)
+            job_metadata: Optional dict with DB job info to enrich the header.
+                Keys: projectName, projectId, jobNumber, jobId, pluginName
 
         Returns:
             bool: True if successful, False otherwise
@@ -53,6 +56,7 @@ class ParamsXmlHandler:
 
             # Create header
             header = ET.SubElement(root, "ccp4i2_header")
+            meta = job_metadata or {}
 
             # Add header information
             ET.SubElement(header, "function").text = "PARAMS"
@@ -63,13 +67,21 @@ class ParamsXmlHandler:
             ET.SubElement(header, "creationTime").text = datetime.now().strftime(
                 "%H:%M %d/%b/%y"
             )
-            ET.SubElement(header, "pluginName").text = getattr(
-                task, "name", "unknown_task"
+            from ccp4i2 import __version__ as ccp4i2_version
+            ET.SubElement(header, "ccp4iVersion").text = ccp4i2_version
+            ET.SubElement(header, "pluginName").text = meta.get(
+                "pluginName", getattr(task, "name", "unknown_task")
             )
+            import platform
+            ET.SubElement(header, "OS").text = platform.system()
+            # Include DB job context when available
+            for key in ("projectName", "projectId", "jobNumber", "jobId"):
+                if key in meta:
+                    ET.SubElement(header, key).text = str(meta[key])
 
             # Create body - the container's CHILDREN go directly into ccp4i2_body
             # (not wrapped in a <container> element, per original CCP4i2 format)
-            container = task.getEtree(excludeUnset=True)
+            container = task.getEtree(excludeUnset=exclude_unset)
             body = ET.Element('ccp4i2_body')
             # Append each child of the container directly to body (unwrap the container)
             for child in container:

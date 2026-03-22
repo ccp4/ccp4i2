@@ -72,8 +72,8 @@ def test_substitute_ligand_with_smiles():
 
 def _check_aimless_pipe_performance(aimless_pipe_dir):
     """Verify aimless_pipe wrote non-zero PERFORMANCE KPIs to its params.xml."""
-    params = aimless_pipe_dir / "aimless_pipe.params.xml"
-    assert params.exists(), f"aimless_pipe.params.xml not found at {params}"
+    params = aimless_pipe_dir / "params.xml"
+    assert params.exists(), f"params.xml not found at {params}"
     tree = ET.parse(params)
     perf = tree.find('.//outputData/PERFORMANCE')
     assert perf is not None, "No PERFORMANCE element in aimless_pipe params.xml"

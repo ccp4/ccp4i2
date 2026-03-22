@@ -980,14 +980,12 @@ class AsyncDatabaseHandler:
                     logger.info(f"Gleaned {kpis_gleaned} performance indicators")
                     logger.debug(f"[DEBUG track_job] Gleaned {kpis_gleaned} performance indicators")
 
-                    # Save params.xml with updated dbFileId values
-                    if len(files_gleaned) > 0:
-                        logger.debug(f"[DEBUG track_job] Saving params.xml after gleaning...")
-                        from ..lib.utils.parameters.save_params import save_params_for_job
-                        job = await sync_to_async(models.Job.objects.get)(uuid=job_uuid)
-                        await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
-                        logger.info(f"Saved params.xml with gleaned file IDs")
-                        logger.debug(f"[DEBUG track_job] Saved params.xml with {len(files_gleaned)} file IDs")
+                    # Save params.xml with gleaned dbFileId values and KPIs
+                    logger.debug(f"[DEBUG track_job] Saving params.xml after gleaning...")
+                    from ..lib.utils.parameters.save_params import save_params_for_job
+                    job = await sync_to_async(models.Job.objects.get)(uuid=job_uuid)
+                    await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
+                    logger.info(f"Saved params.xml ({len(files_gleaned)} files, {kpis_gleaned} KPIs)")
                 else:
                     logger.debug(f"[DEBUG track_job] No output container found!")
             else:
@@ -1074,10 +1072,9 @@ class AsyncDatabaseHandler:
                         kpis_gleaned = await self.glean_performance_indicators(job.uuid, output_container)
                         logger.info(f"Subjob {job.number}: Gleaned {kpis_gleaned} performance indicators")
 
-                        # Save params.xml with updated dbFileId values
-                        if len(files_gleaned) > 0:
-                            from ..lib.utils.parameters.save_params import save_params_for_job
-                            await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
+                        # Save params.xml with gleaned dbFileId values and KPIs
+                        from ..lib.utils.parameters.save_params import save_params_for_job
+                        await sync_to_async(save_params_for_job)(plugin, job, mode="PARAMS")
 
                 return status
 

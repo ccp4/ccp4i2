@@ -555,10 +555,22 @@ class CPluginScript(CData):
 
         error = CErrorReport()
         try:
+            # Build job metadata from DB context (if available)
+            job_metadata = {"pluginName": self.TASKNAME or "unknown_task"}
+            if getattr(self, '_dbJobId', None) is not None:
+                job_metadata["jobId"] = str(self._dbJobId)
+            if getattr(self, '_dbJobNumber', None) is not None:
+                job_metadata["jobNumber"] = str(self._dbJobNumber)
+            if getattr(self, '_dbProjectId', None) is not None:
+                job_metadata["projectId"] = str(self._dbProjectId)
+            if getattr(self, '_dbProjectName', None) is not None:
+                job_metadata["projectName"] = str(self._dbProjectName)
+
             # Use ParamsXmlHandler to export params
             logger.info(f"Calling _params_handler.export_params_xml...")
             success = self._params_handler.export_params_xml(
-                self.container, fileName, exclude_unset=exclude_unset)
+                self.container, fileName, exclude_unset=exclude_unset,
+                job_metadata=job_metadata)
             logger.info(f"export_params_xml returned: {success}")
 
             if not success:
@@ -595,8 +607,9 @@ class CPluginScript(CData):
             CErrorReport indicating success or failure
         """
         if fileName is None:
-            # Use TASKNAME (not self.name which may contain spaces/special chars from job title)
-            fileName = str(self.workDirectory / f"{self.TASKNAME}.params.xml")
+            # Write to params.xml — the canonical post-execution params file
+            # that get_container, get_plugin, and reports all read.
+            fileName = str(self.workDirectory / "params.xml")
         return self.saveDataToXml(fileName, exclude_unset=exclude_unset)
 
     # =========================================================================
@@ -2007,7 +2020,7 @@ class CPluginScript(CData):
 
         logger.debug(f"[reportStatus] Called with status: {status} (SUCCEEDED={self.SUCCEEDED}, FAILED={self.FAILED})")
 
-        # Save params
+        # Save params.xml with the final container state (including output data)
         self.saveParams()
 
         # Report final status to database
