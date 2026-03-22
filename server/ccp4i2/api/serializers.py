@@ -17,6 +17,13 @@ class FileImportSerializer(ModelSerializer):
         fields = "__all__"
 
 
+class ProjectTagListSerializer(ModelSerializer):
+    """Lightweight tag serializer for embedding in project lists (no reverse projects)."""
+    class Meta:
+        model = models.ProjectTag
+        fields = ['id', 'text', 'parent']
+
+
 class ProjectTagSerializer(ModelSerializer):
     class Meta:
         model = models.ProjectTag
@@ -47,7 +54,7 @@ class ProjectListSerializer(ModelSerializer):
     Tags use simplified serializer (id, text only) to avoid N+1 queries.
     """
 
-    tags = ProjectTagSerializer(many=True, read_only=True)
+    tags = ProjectTagListSerializer(many=True, read_only=True)
 
     class Meta:
         model = models.Project
