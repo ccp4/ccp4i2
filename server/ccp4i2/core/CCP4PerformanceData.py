@@ -7,7 +7,7 @@ This file is safe to edit - add your implementation code here.
 
 from typing import Optional, Any
 
-from ccp4i2.core.cdata_stubs.CCP4PerformanceData import CAtomCountPerformanceStub, CDataReductionCCPerformanceStub, CDataReductionPerformanceStub, CExpPhasPerformanceStub, CModelBuildPerformanceStub, CPairefPerformanceStub, CPerformanceIndicatorStub, CPhaseErrorPerformanceStub, CRefinementPerformanceStub, CServalcatPerformanceStub, CSuperposePerformanceStub, CTestObsConversionsPerformanceStub
+from ccp4i2.core.cdata_stubs.CCP4PerformanceData import CAtomCountPerformanceStub, CDataReductionCCPerformanceStub, CDataReductionPerformanceStub, CDataReductionRefinementPerformanceStub, CExpPhasPerformanceStub, CModelBuildPerformanceStub, CPairefPerformanceStub, CPerformanceIndicatorStub, CPhaseErrorPerformanceStub, CRefinementPerformanceStub, CServalcatPerformanceStub, CSuperposePerformanceStub, CTestObsConversionsPerformanceStub
 
 
 # Define CPerformanceIndicator FIRST since other classes inherit from it
@@ -60,6 +60,19 @@ class CDataReductionPerformance(CDataReductionPerformanceStub, CPerformanceIndic
     """
 
     # Add your methods here
+    pass
+
+
+class CDataReductionRefinementPerformance(CDataReductionRefinementPerformanceStub, CPerformanceIndicator):
+    """
+    Composite performance indicator for pipelines spanning data reduction
+    and refinement (e.g. dr_mr_modelbuild, substitute_ligand).
+
+    Inherits from:
+    - CDataReductionRefinementPerformanceStub: Metadata and structure
+    - CPerformanceIndicator: Shared full-fat methods
+    """
+
     pass
 
 

@@ -26,6 +26,7 @@ class SubstituteLigand(CPluginScript):
     """
 
     TASKNAME = 'SubstituteLigand'
+    PERFORMANCECLASS = 'CDataReductionRefinementPerformance'
     WHATNEXT = ['coot_rebuild']
 
     ERROR_CODES = {
@@ -794,6 +795,27 @@ class SubstituteLigand(CPluginScript):
                 # If no ligand, harvest coordinates from servalcat
                 if self._ligandMode == 'NONE' and os.path.isfile(str(sOut.XYZOUT.fullPath)):
                     self._harvestFile(sOut.XYZOUT, self.container.outputData.XYZOUT)
+
+            # Harvest performance indicators
+            perf = self.container.outputData.PERFORMANCE
+            # Data reduction KPIs from aimless_pipe
+            if self.aimlessPlugin is not None:
+                drPerf = getattr(self.aimlessPlugin.container.outputData, 'PERFORMANCE', None)
+                if drPerf is not None:
+                    if hasattr(drPerf, 'spaceGroup') and drPerf.spaceGroup.isSet():
+                        perf.spaceGroup.set(drPerf.spaceGroup)
+                    if hasattr(drPerf, 'highResLimit') and drPerf.highResLimit.isSet():
+                        perf.highResLimit.set(drPerf.highResLimit)
+                    if hasattr(drPerf, 'rMeas') and drPerf.rMeas.isSet():
+                        perf.rMeas.set(drPerf.rMeas)
+            # Refinement KPIs from servalcat
+            if self.servalcatPlugin is not None:
+                sPerf = getattr(self.servalcatPlugin.container.outputData, 'PERFORMANCEINDICATOR', None)
+                if sPerf is not None:
+                    if hasattr(sPerf, 'RFactor') and sPerf.RFactor.isSet():
+                        perf.RFactor.set(sPerf.RFactor)
+                    if hasattr(sPerf, 'RFree') and sPerf.RFree.isSet():
+                        perf.RFree.set(sPerf.RFree)
 
             # Update XML with model composition
             self._updateModelComposition()

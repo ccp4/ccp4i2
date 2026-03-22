@@ -848,10 +848,14 @@ class AsyncDatabaseHandler:
             return False
 
         # Collect KPIs by traversing the container
+        # Check both attribute names: newer wrappers use PERFORMANCEINDICATOR,
+        # legacy wrappers use PERFORMANCE
         kpis = []
-        perf = getattr(container, 'PERFORMANCEINDICATOR', None)
-        if perf is not None and is_performance_indicator(perf):
-            kpis.append(perf)
+        for attr_name in ('PERFORMANCEINDICATOR', 'PERFORMANCE'):
+            perf = getattr(container, attr_name, None)
+            if perf is not None and is_performance_indicator(perf):
+                kpis.append(perf)
+                break
 
         for kpi in kpis:
             try:

@@ -864,6 +864,95 @@ class CSuperposePerformanceStub(CPerformanceIndicatorStub):
 
 @cdata_class(
     attributes={
+        "spaceGroup": attribute(AttributeType.CUSTOM, custom_class="CSpaceGroupStub"),
+        "highResLimit": attribute(AttributeType.FLOAT),
+        "rMeas": attribute(AttributeType.FLOAT),
+        "RFactor": attribute(AttributeType.FLOAT),
+        "RFree": attribute(AttributeType.FLOAT),
+    },
+    error_codes={
+        "300": {
+            "description": "Passed",
+            "severity": 0
+        },
+        "301": {
+            "description": "Data value not set"
+        },
+        "302": {
+            "description": "Performance indicator value difference greater than tolereance"
+        },
+        "303": {
+            "description": "Performance indicator value different"
+        },
+        "304": {
+            "description": "Performance indicator value difference greater than tolereance - but improved",
+            "severity": 2
+        },
+        "305": {
+            "description": "Performance indicator not used",
+            "severity": 0
+        }
+    },
+    qualifiers={
+        "allowUndefined": True,
+        "guiDefinition": {},
+        "saveToDb": False,
+    },
+    qualifiers_order=[
+        'allowUndefined',
+        'default',
+        'toolTip',
+        'guiLabel',
+        'guiDefinition',
+        'helpFile',
+        'saveToDb'],
+    qualifiers_definition={
+        "allowUndefined": {'type': 'bool'},
+        "default": {'type': 'dict'},
+        "toolTip": {'type': 'str'},
+        "guiLabel": {'type': 'str'},
+        "guiDefinition": {'type': 'dict'},
+        "helpFile": {'type': 'str'},
+        "saveToDb": {'type': 'bool', 'description': 'Save this data in the database'},
+    },
+    contents_order=[
+        'spaceGroup',
+        'highResLimit',
+        'rMeas',
+        'RFactor',
+        'RFree'],
+    content_qualifiers={
+        "highResLimit": {'min': 0.0},
+        "RFactor": {'min': 0.0},
+        "RFree": {'min': 0.0},
+    },
+)
+class CDataReductionRefinementPerformanceStub(CPerformanceIndicatorStub):
+    """
+    Composite performance indicator for pipelines that span data reduction
+    and refinement (e.g. dr_mr_modelbuild, substitute_ligand).
+    """
+
+    spaceGroup: Optional[CSpaceGroupStub] = None
+    highResLimit: Optional[CFloat] = None
+    rMeas: Optional[CFloat] = None
+    RFactor: Optional[CFloat] = None
+    RFree: Optional[CFloat] = None
+
+    def __init__(self, parent=None, name=None, **kwargs):
+        """
+        Initialize CDataReductionRefinementPerformanceStub.
+
+        Args:
+            parent: Parent object in hierarchy
+            name: Object name
+            **kwargs: Additional keyword arguments
+        """
+        super().__init__(parent=parent, name=name, **kwargs)
+
+
+@cdata_class(
+    attributes={
         "phaseError": attribute(AttributeType.FLOAT),
         "weightedPhaseError": attribute(AttributeType.FLOAT),
         "reflectionCorrelation": attribute(AttributeType.FLOAT),

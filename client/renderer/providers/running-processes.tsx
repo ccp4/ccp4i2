@@ -78,7 +78,7 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
       e.stopPropagation(); // Don't trigger row click
       setCancellingJobs((prev) => new Set(prev).add(jobId));
       try {
-        await apiPost(`jobs/${jobId}/cancel/`);
+        await apiPost(`jobs/${jobId}/cancel/`, {});
         mutateActiveJobs(); // Refresh the list
       } catch (err) {
         console.error("Failed to cancel job:", err);

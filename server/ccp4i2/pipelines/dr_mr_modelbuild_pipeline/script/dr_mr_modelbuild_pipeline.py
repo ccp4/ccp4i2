@@ -21,7 +21,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class dr_mr_modelbuild_pipeline(CPluginScript):
 
     TASKNAME = 'dr_mr_modelbuild_pipeline'
-    PERFORMANCECLASS = 'CRefinementPerformance'
+    PERFORMANCECLASS = 'CDataReductionRefinementPerformance'
     WHATNEXT = []
     ERROR_CODES = { 301 : { 'description' : 'Error reading program xml output from first molrep run' },
                     302 : { 'description' : 'No Laue results in program xml output from first molrep run' },
@@ -138,6 +138,21 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         if self.container.controlParameters.MERGED_OR_UNMERGED.__str__() == 'UNMERGED':
             pluginRoot = CCP4Utils.openFileToEtree(self.aimlessPlugin.makeFileName('PROGRAMXML'))
             self.xmlroot.append(pluginRoot)
+
+        # Harvest data reduction KPIs from aimless_pipe
+        try:
+            drPerf = getattr(self.aimlessPlugin.container.outputData, 'PERFORMANCE', None)
+            if drPerf is not None:
+                perf = self.container.outputData.PERFORMANCE
+                if hasattr(drPerf, 'spaceGroup') and drPerf.spaceGroup.isSet():
+                    perf.spaceGroup.set(drPerf.spaceGroup)
+                if hasattr(drPerf, 'highResLimit') and drPerf.highResLimit.isSet():
+                    perf.highResLimit.set(drPerf.highResLimit)
+                if hasattr(drPerf, 'rMeas') and drPerf.rMeas.isSet():
+                    perf.rMeas.set(drPerf.rMeas)
+        except Exception:
+            pass
+
         self.flushXML()
 
         if self.container.inputData.XYZINORMRBUMP.__str__() == 'MRBUMP':
