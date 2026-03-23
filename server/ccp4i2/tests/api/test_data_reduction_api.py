@@ -317,6 +317,56 @@ class TestSplitMtzAPI(APITestBase):
         output_files = list(job_dir.glob("*.mtz"))
         assert len(output_files) >= 1, f"No MTZ output files found in {job_dir}"
 
+    def test_auto_detect_gamma_phases(self, gamma_initial_phases_mtz):
+        """Test auto-detect mode: no column groups specified, should detect all."""
+        self.create_project("test_split_mtz_auto")
+        self.create_job()
+
+        self.upload_file("inputData.HKLIN", gamma_initial_phases_mtz)
+
+        # Don't set any COLUMNGROUPLIST or USERCOLUMNGROUP — triggers auto-detect
+        self.run_and_wait()
+
+        # Check output MTZ files were created
+        job_dir = self.get_job_directory()
+        output_files = list(job_dir.glob("*.mtz"))
+        # Filter out input file
+        output_files = [f for f in output_files if f.name != "HKLIN.mtz"]
+        assert len(output_files) >= 1, f"No output MTZ files: {list(job_dir.iterdir())}"
+
+        # Verify at least one is valid
+        import gemmi
+        for mtz_file in output_files:
+            mtz = gemmi.read_mtz_file(str(mtz_file))
+            assert mtz.nreflections > 0, f"{mtz_file.name} has no reflections"
+
+    def test_auto_detect_redo(self):
+        """Test auto-detect with PDB-REDO MTZ (multi-column: obs, FreeR, phases, map coeffs)."""
+        from .base import download, URLs
+
+        with download(URLs.redo_mtz("1cbs")) as mtz_path:
+            self.create_project("test_split_mtz_redo")
+            self.create_job()
+
+            self.upload_file("inputData.HKLIN", mtz_path)
+
+            self.run_and_wait()
+
+            # PDB-REDO should produce multiple output files
+            job_dir = self.get_job_directory()
+            output_files = [f for f in job_dir.glob("*.mtz") if f.name != "HKLIN.mtz"]
+            assert len(output_files) >= 2, (
+                f"Expected multiple output MTZs from PDB-REDO file, got {len(output_files)}: "
+                f"{[f.name for f in output_files]}"
+            )
+
+            # Verify each is valid
+            import gemmi
+            for mtz_file in output_files:
+                mtz = gemmi.read_mtz_file(str(mtz_file))
+                assert mtz.nreflections > 0, f"{mtz_file.name} has no reflections"
+                print(f"  {mtz_file.name}: {[c.label for c in mtz.columns if c.label not in ('H','K','L')]}")
+
 
 @pytest.mark.usefixtures("file_based_db")
 class TestScaleitAPI(APITestBase):

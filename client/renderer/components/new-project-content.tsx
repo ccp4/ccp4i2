@@ -4,6 +4,7 @@ import path from "path";
 import { useRouter } from "next/navigation";
 import {
   Button,
+  CircularProgress,
   Container,
   Stack,
   TextField,
@@ -13,8 +14,15 @@ import {
 } from "@mui/material";
 import { Folder } from "@mui/icons-material";
 import { useApi } from "../api";
+import { apiPost } from "../api-fetch";
 import { Project } from "../types/models";
 import EditTags from "./edit-tags";
+import {
+  DroppedFile,
+  FileDropZone,
+  TASK_FOR_TYPE,
+  PARAM_FOR_TYPE,
+} from "./file-drop-zone";
 
 export const NewProjectContent: React.FC = () => {
   const api = useApi();
@@ -28,6 +36,8 @@ export const NewProjectContent: React.FC = () => {
   const [electronAPIAvailable, setElectronAPIAvailable] =
     useState<boolean>(false);
   const [tags, setTags] = useState<number[]>([]);
+  const [droppedFiles, setDroppedFiles] = useState<DroppedFile[]>([]);
+  const [isCreating, setIsCreating] = useState(false);
   const { data: projects } = api.get<Project[]>("projects");
 
   useEffect(() => {
@@ -64,18 +74,71 @@ export const NewProjectContent: React.FC = () => {
     return result;
   }, [ccp4i2ProjectDirectory, name]);
 
-  function createProject() {
-    const formData = new FormData();
-    formData.append("name", name);
-    formData.append("directory", customDirectory ? directory : "__default__");
+  async function createProject() {
+    setIsCreating(true);
     try {
-      api.post<Project>("projects", formData).then((project) => {
-        router.push(`/ccp4i2/project/${project.id}`);
-      });
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("directory", customDirectory ? directory : "__default__");
+      const project = await api.post<Project>("projects", formData);
+
+      // If files were dropped, create import jobs sequentially
+      const importableFiles = droppedFiles.filter(
+        (df) => TASK_FOR_TYPE[df.detectedType] !== null
+      );
+
+      for (const df of importableFiles) {
+        try {
+          await createImportJob(project.id, df);
+          // Small delay between jobs to avoid DB contention (SQLite)
+          if (importableFiles.length > 1) {
+            await new Promise((r) => setTimeout(r, 500));
+          }
+        } catch (err) {
+          console.error(`Error importing ${df.file.name}:`, err);
+        }
+      }
+
+      router.push(`/ccp4i2/project/${project.id}`);
     } catch (err) {
       console.error("Error creating project:", err);
       alert("Error creating project: " + err);
+      setIsCreating(false);
     }
+  }
+
+  async function createImportJob(projectId: number, df: DroppedFile) {
+    const taskName = TASK_FOR_TYPE[df.detectedType];
+    const paramPath = PARAM_FOR_TYPE[df.detectedType];
+    if (!taskName || !paramPath) return;
+
+    // 1. Create the job
+    const result = await apiPost<any>(`projects/${projectId}/create_task/`, {
+      task_name: taskName,
+      title: `Import ${df.file.name}`,
+    });
+    if (!result?.success || !result.data?.new_job) {
+      throw new Error(`Failed to create ${taskName} job`);
+    }
+    const jobId = result.data.new_job.id;
+
+    // 2. Upload the file
+    // For sequences, we read the text content and set it as a parameter
+    if (df.detectedType === "sequence") {
+      const text = await df.file.text();
+      await apiPost(`jobs/${jobId}/set_parameter/`, {
+        object_path: `${taskName}.container.${paramPath}`,
+        value: text,
+      });
+    } else {
+      const uploadForm = new FormData();
+      uploadForm.append("file", df.file, df.file.name);
+      uploadForm.append("objectPath", `${taskName}.container.${paramPath}`);
+      await apiPost(`jobs/${jobId}/upload_file_param/`, uploadForm);
+    }
+
+    // 3. Run the job (fire-and-forget)
+    await apiPost(`jobs/${jobId}/run/`, {});
   }
 
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {
@@ -176,16 +239,32 @@ export const NewProjectContent: React.FC = () => {
         </Stack>
 
         <EditTags tags={tags} onChange={setTags} />
+
+        <FileDropZone files={droppedFiles} onChange={setDroppedFiles} />
+
         <Stack direction="row" spacing={2} justifyContent="flex-end">
-          <Button variant="outlined" onClick={() => router.push("/ccp4i2")}>
+          <Button
+            variant="outlined"
+            onClick={() => router.push("/ccp4i2")}
+            disabled={isCreating}
+          >
             Cancel
           </Button>
           <Button
             variant="contained"
             onClick={createProject}
-            disabled={nameError.length > 0 || directoryError.length > 0}
+            disabled={
+              nameError.length > 0 || directoryError.length > 0 || isCreating
+            }
+            startIcon={isCreating ? <CircularProgress size={16} /> : undefined}
           >
-            Create
+            {isCreating
+              ? droppedFiles.length > 0
+                ? "Creating & importing..."
+                : "Creating..."
+              : droppedFiles.length > 0
+                ? `Create & import ${droppedFiles.length} file${droppedFiles.length > 1 ? "s" : ""}`
+                : "Create"}
           </Button>
         </Stack>
       </Stack>

@@ -94,16 +94,24 @@ class splitMtz(CPluginScript):
                     user_group.selected = True
                 groups_to_process.append(user_group)
 
+        # Auto-detect mode: if no explicit column groups provided, detect all
+        # recognizable column groups from the input MTZ file
+        has_selected = any(
+            self._is_selected(group) for group in groups_to_process
+        )
+        if not has_selected:
+            print('No column groups specified - auto-detecting all column groups')
+            groups_to_process = self._auto_detect_column_groups(input_mtz)
+            if not groups_to_process:
+                self.appendErrorReport(200, 'No recognizable column groups found in MTZ file')
+                self.reportStatus(CPluginScript.FAILED)
+                return CPluginScript.FAILED
+            print('Auto-detected ' + str(len(groups_to_process)) + ' column group(s)')
+
         # Process each selected column group
         for idx, group in enumerate(groups_to_process):
-            # Check if this group is selected
-            selected = group.selected
-            if hasattr(selected, 'value'):
-                selected = selected.value
-            if hasattr(selected, '__bool__'):
-                selected = bool(selected)
-
-            if not selected:
+            # Check if this group is selected (skip check for auto-detected groups)
+            if not self._is_selected(group):
                 continue
 
             # Get column group type and corresponding output class
@@ -139,6 +147,53 @@ class splitMtz(CPluginScript):
         print('Successfully created ' + str(files_created) + ' output file(s)')
         self.reportStatus(CPluginScript.SUCCEEDED)
         return CPluginScript.SUCCEEDED
+
+    @staticmethod
+    def _is_selected(group):
+        """Check if a column group is selected for processing."""
+        selected = group.selected
+        if hasattr(selected, 'value'):
+            selected = selected.value
+        if hasattr(selected, '__bool__'):
+            selected = bool(selected)
+        return selected
+
+    def _auto_detect_column_groups(self, input_mtz):
+        """
+        Auto-detect all recognizable column groups from an MTZ file.
+
+        Loads the MTZ, calls getColumnGroups() to pattern-match all known
+        signatures (Obs, FreeR, Phs, MapCoeffs), and returns them all
+        marked as selected.
+        """
+        from ccp4i2.core.CCP4XtalData import CMtzDataFile
+
+        mtz_data = CMtzDataFile()
+        mtz_data.setFullPath(input_mtz)
+        mtz_data.loadFile()
+        contents = mtz_data.getFileContent()
+
+        if contents is None:
+            return []
+
+        column_groups = contents.getColumnGroups()
+        if not column_groups:
+            return []
+
+        # Mark all groups as selected
+        for group in column_groups:
+            if hasattr(group, 'selected'):
+                group.selected = True
+
+        # Log what we found
+        for group in column_groups:
+            group_type = group.columnGroupType
+            if hasattr(group_type, 'value'):
+                group_type = group_type.value
+            labels = self._extract_column_labels(group)
+            print('  Found: ' + str(group_type) + ' [' + ','.join(labels) + ']')
+
+        return column_groups
 
     def _extract_column_labels(self, group):
         """Extract column labels from a column group."""
