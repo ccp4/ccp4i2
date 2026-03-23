@@ -28,8 +28,7 @@ class ProvideAlignment_report(Report):
         table.addData(title='Identifier',select='Identifier')
         
         for aliNode in self.xmlnode.findall('.//Alignment'):
-            parent.addText(text="Alignment in clustal format:")
-            parent.addPre(text=aliNode.text)
+            parent.addAlignment(text=aliNode.text)
 
         for aliNode in self.xmlnode.findall('.//Commentary'):
             commentFold = parent.addFold(label="Conversion commentary", initiallyOpen=False)

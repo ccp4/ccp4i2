@@ -16,6 +16,7 @@ import { CCP4i2ReportText } from "./CCP4i2ReportText";
 import { CCP4i2ReportReference } from "./CCP4i2ReportReference";
 import { CCP4i2ReportObjectGallery } from "./CCP4i2ReportObjectGallery";
 import { CCP4i2ReportDAG } from "./CCP4i2ReportDAG";
+import { CCP4i2ReportAlignment } from "./CCP4i2ReportAlignment";
 import { CCP4i2ApplicationOutputView } from "./CCP4i2ApplicationOutputView";
 import { CCP4i2ReportJobDetails } from "./CCP4i2ReportJobDetails";
 import { CCP4i2ReportVerdict } from "./CCP4i2ReportVerdict";
@@ -88,6 +89,15 @@ export const CCP4i2ReportElement: React.FC<CCP4i2ReportElementProps> = ({
       } else if (["CCP4i2ReportPre"].includes(tagName)) {
         return (
           <CCP4i2ReportPre
+            key={`${iItem}`}
+            iItem={iItem}
+            item={item}
+            job={job}
+          />
+        );
+      } else if (["CCP4i2ReportAlignment"].includes(tagName)) {
+        return (
+          <CCP4i2ReportAlignment
             key={`${iItem}`}
             iItem={iItem}
             item={item}

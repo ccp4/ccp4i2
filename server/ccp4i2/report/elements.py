@@ -87,6 +87,16 @@ class Pre(Text):
     tag: str = 'pre'
 
 
+class Alignment(Text):
+    """Sequence alignment viewer element.
+
+    Displays ClustalW-format alignment text in an interactive viewer
+    with colour-coded residues, conservation bars, and hover tooltips.
+    """
+
+    tag: str = 'alignment'
+
+
 class FetchPre(Text):
     """Preformatted text block (fetched from file)."""
 

@@ -262,6 +262,11 @@ class Container(ReportClass):
         from ccp4i2.report.elements import Pre
         return self.addObjectOfClass(Pre, xmlnode, jobInfo, **kw)
 
+    def addAlignment(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
+        """Add a sequence alignment viewer (ClustalW format)."""
+        from ccp4i2.report.elements import Alignment
+        return self.addObjectOfClass(Alignment, xmlnode, jobInfo, **kw)
+
     def addFetchPre(self, xmlnode: etree.Element | None = None, jobInfo: dict[str, Any] | None = None, **kw: Any) -> Any:
         """Add a preformatted text block (fetched from file)."""
         from ccp4i2.report.elements import FetchPre

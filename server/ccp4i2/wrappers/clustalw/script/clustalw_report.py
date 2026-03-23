@@ -203,7 +203,7 @@ class clustalw_report(Report):
         # --- Alignment ---
         for alignmentNode in self.xmlnode.findall('Alignment'):
             fold = parent.addFold(label='Sequence Alignment', initiallyOpen=True)
-            fold.addPre(text=alignmentNode.text)
+            fold.addAlignment(text=alignmentNode.text)
 
         # --- Statistics ---
         for node in self.xmlnode.findall('Statistics'):

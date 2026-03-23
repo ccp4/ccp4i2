@@ -39,7 +39,7 @@ export default function EditMenu() {
           </ListItemIcon>
           <ListItemText>Find</ListItemText>
           <Typography variant="body2" color="textSecondary">
-            ({navigator?.platform?.includes("Mac") ? "\u2318" : "Ctrl+"}F)
+            ({typeof navigator !== "undefined" && navigator?.platform?.includes("Mac") ? "\u2318" : "Ctrl+"}F)
           </Typography>
         </MenuItem>
         <MenuItem onClick={handleClose}>

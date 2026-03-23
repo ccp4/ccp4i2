@@ -8,9 +8,6 @@ import {
   Switch,
   FormControlLabel,
   TextField,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
   Alert,
   Button,
 } from "@mui/material";
@@ -521,15 +518,13 @@ export const AlignmentViewer: React.FC<AlignmentViewerProps> = ({
       </Box>
       {/* Highlight Panel */}
       {showHighlightPanel && (
-        <Accordion expanded sx={{ mb: 1 }}>
-          {" "}
-          {/* Reduced from mb: 2 to mb: 1 */}
-          <AccordionSummary>
+        <Box sx={{ mb: 1, border: "1px solid", borderColor: "divider", borderRadius: 1, overflow: "hidden" }}>
+          <Box sx={{ px: 2, py: 1, backgroundColor: "action.hover" }}>
             <Typography variant="subtitle2">
               Sequence Region Highlighting
             </Typography>
-          </AccordionSummary>
-          <AccordionDetails>
+          </Box>
+          <Box sx={{ p: 2 }}>
             <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
               <Box>
                 <Typography variant="body2" sx={{ mb: 1 }}>
@@ -663,8 +658,8 @@ export const AlignmentViewer: React.FC<AlignmentViewerProps> = ({
                 </Box>
               )}
             </Box>
-          </AccordionDetails>
-        </Accordion>
+          </Box>
+        </Box>
       )}
       {/* Residue info bar */}
       <Box

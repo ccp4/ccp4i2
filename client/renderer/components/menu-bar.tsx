@@ -119,8 +119,12 @@ export default function MenuBar() {
     } else console.log("window.electron is not available");
   }, []);
 
-  // Show Home button only in web deployments (not Electron)
-  const showHomeButton = !isElectron();
+  // Show Home button only in web deployments (not Electron).
+  // Deferred to useEffect to avoid SSR/client hydration mismatch.
+  const [showHomeButton, setShowHomeButton] = useState(false);
+  useEffect(() => {
+    setShowHomeButton(!isElectron());
+  }, []);
 
   const handleHome = () => {
     router.push("/");

@@ -32,6 +32,7 @@ from ccp4i2.report.core import (  # noqa: F401
 
 # Element classes
 from ccp4i2.report.elements import (  # noqa: F401
+    Alignment,
     BaseTable,
     Copy,
     Div,
