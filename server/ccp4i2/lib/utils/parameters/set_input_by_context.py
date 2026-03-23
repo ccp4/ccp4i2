@@ -4,6 +4,7 @@ from typing import Optional, Any, Union, List
 
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.cdata_file import CDataFile
+from ccp4i2.core.base_object.fundamental_types import CList
 
 from ccp4i2.db import models
 from ..plugins.get_plugin import get_job_plugin
@@ -42,6 +43,123 @@ def _normalize_int_qualifier(value) -> Union[int, List[int], None]:
         return int(value)
     except (ValueError, TypeError):
         return None
+
+
+def _populate_file_from_context(dobj: CDataFile, context_job_id: str, the_job):
+    """Populate a single CDataFile from context job outputs."""
+    sub_type = dobj.qualifiers("requiredSubType")
+    content_flag = dobj.qualifiers("requiredContentFlag")
+    sub_type = _normalize_int_qualifier(sub_type)
+    content_flag = _normalize_int_qualifier(content_flag)
+
+    logger.info(
+        "Looking for file to populate %s: mimeType=%s, subType=%s, contentFlag=%s",
+        dobj.objectPath(), dobj.qualifiers("mimeTypeName"), sub_type, content_flag
+    )
+
+    file_id_list = get_file_by_job_context(
+        contextJobId=context_job_id,
+        fileType=dobj.qualifiers("mimeTypeName"),
+        subType=sub_type,
+        contentFlag=content_flag,
+        projectId=str(the_job.project.uuid),
+    )
+
+    logger.info(
+        "File search for %s returned %d result(s)",
+        dobj._name, len(file_id_list)
+    )
+    if len(file_id_list) > 0:
+        _set_file_from_db(dobj, file_id_list[0], the_job)
+
+
+def _set_file_from_db(dobj: CDataFile, file_uuid: str, the_job):
+    """Set a CDataFile's value from a database File record."""
+    the_file = models.File.objects.get(uuid=file_uuid)
+    dobj.set(
+        {
+            "baseName": str(the_file.name),
+            "relPath": str(the_file.rel_path),
+            "project": str(the_job.project.uuid).replace("-", ""),
+            "annotation": str(the_file.annotation),
+            "dbFileId": str(the_file.uuid).replace("-", ""),
+            "contentFlag": the_file.content,
+            "subType": the_file.sub_type,
+        }
+    )
+    dobj.loadFile()
+    dobj.setContentFlag()
+
+
+def _populate_file_lists_from_context(input_data, context_job_id: str, the_job):
+    """Find empty CList objects with file subItems and populate from context.
+
+    When a CList like DICT_LIST starts empty, find_all_files() discovers nothing
+    inside it. This function finds such lists, queries for matching files from
+    the context job, and creates new list items for each match.
+    """
+    for child in input_data.children():
+        if not isinstance(child, CList):
+            continue
+        # Already populated (items found by find_all_files were handled above)
+        if len(child) > 0:
+            continue
+
+        sub_item_def = child.get_qualifier('subItem')
+        if not sub_item_def or not isinstance(sub_item_def, dict):
+            continue
+
+        item_class = sub_item_def.get('class')
+        item_qualifiers = sub_item_def.get('qualifiers', {})
+        if not item_class or not issubclass(item_class, CDataFile):
+            continue
+
+        # Check fromPreviousJob on either the subItem or the CList itself
+        has_from_previous = (
+            item_qualifiers.get('fromPreviousJob')
+            or child.get_qualifier('fromPreviousJob')
+        )
+        if not has_from_previous:
+            continue
+
+        # Get mimeTypeName from subItem qualifiers, or fall back to the
+        # class-level QUALIFIERS (e.g. CPdbDataFile has 'chemical/x-pdb')
+        mime_type = item_qualifiers.get('mimeTypeName')
+        if not mime_type:
+            class_quals = getattr(item_class, 'QUALIFIERS', {})
+            mime_type = class_quals.get('mimeTypeName')
+        if not mime_type:
+            continue
+
+        sub_type = _normalize_int_qualifier(
+            item_qualifiers.get('requiredSubType')
+        )
+        content_flag = _normalize_int_qualifier(
+            item_qualifiers.get('requiredContentFlag')
+        )
+
+        logger.info(
+            "Looking for files to populate list %s: mimeType=%s, subType=%s, contentFlag=%s",
+            child.objectName(), mime_type, sub_type, content_flag
+        )
+
+        file_id_list = get_file_by_job_context(
+            contextJobId=context_job_id,
+            fileType=mime_type,
+            subType=sub_type,
+            contentFlag=content_flag,
+            projectId=str(the_job.project.uuid),
+        )
+
+        logger.info(
+            "File search for list %s returned %d result(s)",
+            child.objectName(), len(file_id_list)
+        )
+
+        for file_uuid in file_id_list:
+            new_item = child.makeItem()
+            child.append(new_item)
+            _set_file_from_db(new_item, file_uuid, the_job)
 
 
 def set_input_by_context_job(
@@ -109,49 +227,14 @@ def set_input_by_context_job(
             dobj.unSet()
             continue
 
-        # Parse qualifiers - they may be comma-separated strings representing lists
-        sub_type = dobj.qualifiers("requiredSubType")
-        content_flag = dobj.qualifiers("requiredContentFlag")
+        _populate_file_from_context(dobj, context_job_id, the_job)
 
-        # Normalize qualifiers to int or list of ints
-        # These may come as: list (from def_xml_handler), comma-separated string, single int/string, or None
-        sub_type = _normalize_int_qualifier(sub_type)
-        content_flag = _normalize_int_qualifier(content_flag)
-
-        logger.info(
-            "Looking for file to populate %s: mimeType=%s, subType=%s, contentFlag=%s",
-            dobj.objectPath(), dobj.qualifiers("mimeTypeName"), sub_type, content_flag
-        )
-
-        file_id_list = get_file_by_job_context(
-            contextJobId=context_job_id,
-            fileType=dobj.qualifiers("mimeTypeName"),
-            subType=sub_type,
-            contentFlag=content_flag,
-            projectId=str(the_job.project.uuid),
-        )
-
-        logger.info(
-            "File search for %s returned %d result(s)",
-            dobj._name, len(file_id_list)
-        )
-        if len(file_id_list) > 0:
-            the_file = models.File.objects.get(uuid=file_id_list[0])
-            dobj.set(
-                {
-                    "baseName": str(the_file.name),
-                    "relPath": str(the_file.rel_path),
-                    "project": str(the_job.project.uuid).replace("-", ""),
-                    "annotation": str(the_file.annotation),
-                    "dbFileId": str(the_file.uuid).replace("-", ""),
-                    "contentFlag": the_file.content,  # DB uses 'content', CDataFile uses 'contentFlag'
-                    "subType": the_file.sub_type,
-                }
-            )
-            dobj.loadFile()
-            # Auto-detect content flag from file (base CDataFile.setContentFlag
-            # handles the case where contentFlag is None or not applicable)
-            dobj.setContentFlag()
+    # Handle CList objects whose subItem is a CDataFile with fromPreviousJob=True.
+    # When a CList (e.g. DICT_LIST) starts empty, find_all_files() finds nothing
+    # inside it because there are no items to traverse. We need to find such lists,
+    # query for matching files from the context job, and populate them.
+    if context_job_id is not None:
+        _populate_file_lists_from_context(input_data, context_job_id, the_job)
 
     # Only save params if requested (caller may handle saving themselves)
     if save_params:
