@@ -22,6 +22,7 @@ import {
   FileDropZone,
   TASK_FOR_TYPE,
   PARAM_FOR_TYPE,
+  AUTO_RUN_FOR_TYPE,
 } from "./file-drop-zone";
 
 export const NewProjectContent: React.FC = () => {
@@ -132,22 +133,53 @@ export const NewProjectContent: React.FC = () => {
     const jobId = result.data.new_job.id;
 
     // 2. Upload the file
-    // For sequences, we read the text content and set it as a parameter
     if (df.detectedType === "sequence") {
+      // Sequences: read text content and set as parameter
       const text = await df.file.text();
       await apiPost(`jobs/${jobId}/set_parameter/`, {
         object_path: `${taskName}.container.${paramPath}`,
         value: text,
       });
+    } else if (df.detectedType === "unmerged") {
+      // Unmerged data: add list item, then upload to the list slot
+      await apiPost(`jobs/${jobId}/set_parameter/`, {
+        object_path: `${taskName}.container.${paramPath}`,
+        value: [{}],
+      });
+      const uploadForm = new FormData();
+      uploadForm.append("file", df.file, df.file.name);
+      uploadForm.append(
+        "objectPath",
+        `${taskName}.container.${paramPath}[0].file`
+      );
+      await apiPost(`jobs/${jobId}/upload_file_param/`, uploadForm);
+    } else if (df.detectedType === "ligand") {
+      // Ligands: upload file and set the mode selector
+      const ext = df.file.name.toLowerCase().split(".").pop();
+      const mode = ext === "mol2" ? "MOL2" : "MOL";
+      const actualParam =
+        ext === "mol2" ? "inputData.MOL2IN" : "inputData.MOLIN";
+      await apiPost(`jobs/${jobId}/set_parameter/`, {
+        object_path: `${taskName}.container.inputData.MOLSMILESORSKETCH`,
+        value: mode,
+      });
+      const uploadForm = new FormData();
+      uploadForm.append("file", df.file, df.file.name);
+      uploadForm.append("objectPath", `${taskName}.container.${actualParam}`);
+      await apiPost(`jobs/${jobId}/upload_file_param/`, uploadForm);
     } else {
+      // Standard file upload
       const uploadForm = new FormData();
       uploadForm.append("file", df.file, df.file.name);
       uploadForm.append("objectPath", `${taskName}.container.${paramPath}`);
       await apiPost(`jobs/${jobId}/upload_file_param/`, uploadForm);
     }
 
-    // 3. Run the job (fire-and-forget)
-    await apiPost(`jobs/${jobId}/run/`, {});
+    // 3. Only auto-run simple import jobs; leave data reduction jobs
+    //    for the user to review parameters before running
+    if (AUTO_RUN_FOR_TYPE[df.detectedType]) {
+      await apiPost(`jobs/${jobId}/run/`, {});
+    }
   }
 
   function handleNameChange(event: ChangeEvent<HTMLInputElement>) {

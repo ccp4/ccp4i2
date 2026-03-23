@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import {
   Box,
   Chip,
+  CircularProgress,
   IconButton,
   Paper,
   Stack,
@@ -13,17 +14,23 @@ import {
   CloudUpload as UploadIcon,
   Clear as ClearIcon,
 } from "@mui/icons-material";
+import { parseMtzFile } from "../lib/mtz-parser";
 
 /**
- * File type detection based on extension.
- * Returns the task name to run for importing this file type.
+ * Detected file types and their import handling.
+ *
+ * Types with autoRun=true are simple imports that run immediately.
+ * Types with autoRun=false create the job with data loaded but leave
+ * it for the user to review parameters before running.
  */
 export type DetectedFileType =
-  | "reflections"    // .mtz -> splitMtz
-  | "coordinates"    // .pdb, .ent -> coordinate_selector
-  | "mmcif_coords"   // .cif (coordinates) -> coordinate_selector
-  | "sequence"       // .fasta, .fa, .seq, .pir -> ProvideSequence
-  | "alignment"      // .aln, .clw, .sto -> ProvideAlignment
+  | "reflections"       // merged .mtz -> splitMtz (auto-run)
+  | "unmerged"          // unmerged .mtz, .sca, .hkl, .refl -> aimless_pipe (no auto-run)
+  | "coordinates"       // .pdb, .ent -> coordinate_selector (auto-run)
+  | "mmcif_coords"      // .cif (coordinates) -> coordinate_selector (auto-run)
+  | "sequence"          // .fasta, .fa, .seq, .pir -> ProvideSequence (auto-run)
+  | "alignment"         // .aln, .clw, .sto -> ProvideAlignment (auto-run)
+  | "ligand"            // .smi, .mol, .mol2 -> LidiaAcedrgNew (auto-run)
   | "unknown";
 
 export interface DroppedFile {
@@ -31,8 +38,75 @@ export interface DroppedFile {
   detectedType: DetectedFileType;
 }
 
+/** Map detected file type to the task that will import it */
+export const TASK_FOR_TYPE: Record<DetectedFileType, string | null> = {
+  reflections: "splitMtz",
+  unmerged: "aimless_pipe",
+  coordinates: "coordinate_selector",
+  mmcif_coords: "coordinate_selector",
+  sequence: "ProvideSequence",
+  alignment: "ProvideAlignment",
+  ligand: "LidiaAcedrgNew",
+  unknown: null,
+};
+
+/** Map detected file type to the input parameter path for file upload */
+export const PARAM_FOR_TYPE: Record<DetectedFileType, string | null> = {
+  reflections: "inputData.HKLIN",
+  unmerged: "inputData.UNMERGEDFILES",
+  coordinates: "inputData.XYZIN",
+  mmcif_coords: "inputData.XYZIN",
+  sequence: "controlParameters.SEQUENCETEXT",
+  alignment: "inputData.ALIGNIN",
+  ligand: "inputData.MOLIN",
+  unknown: null,
+};
+
+/** Whether the job should auto-run after creation */
+export const AUTO_RUN_FOR_TYPE: Record<DetectedFileType, boolean> = {
+  reflections: true,
+  unmerged: false,   // User may need to set reference, space group, etc.
+  coordinates: true,
+  mmcif_coords: true,
+  sequence: true,
+  alignment: true,
+  ligand: true,
+  unknown: false,
+};
+
+const TYPE_LABELS: Record<DetectedFileType, string> = {
+  reflections: "Reflections (merged)",
+  unmerged: "Unmerged data",
+  coordinates: "Coordinates",
+  mmcif_coords: "Coordinates (mmCIF)",
+  sequence: "Sequence",
+  alignment: "Alignment",
+  ligand: "Ligand",
+  unknown: "Unknown",
+};
+
+const TYPE_COLORS: Record<
+  DetectedFileType,
+  "primary" | "secondary" | "success" | "warning" | "error" | "info" | "default"
+> = {
+  reflections: "primary",
+  unmerged: "warning",
+  coordinates: "success",
+  mmcif_coords: "success",
+  sequence: "info",
+  alignment: "secondary",
+  ligand: "secondary",
+  unknown: "default",
+};
+
+/** Extensions that are unambiguously unmerged data */
+const UNMERGED_EXTENSIONS: Record<string, boolean> = {
+  ".sca": true,
+  ".hkl": true,
+  ".refl": true,
+};
+
 const EXTENSION_MAP: Record<string, DetectedFileType> = {
-  ".mtz": "reflections",
   ".pdb": "coordinates",
   ".ent": "coordinates",
   ".fasta": "sequence",
@@ -45,63 +119,48 @@ const EXTENSION_MAP: Record<string, DetectedFileType> = {
   ".stk": "alignment",
   ".phylip": "alignment",
   ".phy": "alignment",
+  ".smi": "ligand",
+  ".mol": "ligand",
+  ".mol2": "ligand",
 };
 
-/** Map detected file type to the task that will import it */
-export const TASK_FOR_TYPE: Record<DetectedFileType, string | null> = {
-  reflections: "splitMtz",
-  coordinates: "coordinate_selector",
-  mmcif_coords: "coordinate_selector",
-  sequence: "ProvideSequence",
-  alignment: "ProvideAlignment",
-  unknown: null,
-};
-
-/** Map detected file type to the input parameter path for file upload */
-export const PARAM_FOR_TYPE: Record<DetectedFileType, string | null> = {
-  reflections: "inputData.HKLIN",
-  coordinates: "inputData.XYZIN",
-  mmcif_coords: "inputData.XYZIN",
-  sequence: "controlParameters.SEQUENCETEXT",
-  alignment: "inputData.ALIGNIN",
-  unknown: null,
-};
-
-const TYPE_LABELS: Record<DetectedFileType, string> = {
-  reflections: "Reflections (MTZ)",
-  coordinates: "Coordinates",
-  mmcif_coords: "Coordinates (mmCIF)",
-  sequence: "Sequence",
-  alignment: "Alignment",
-  unknown: "Unknown",
-};
-
-const TYPE_COLORS: Record<DetectedFileType, "primary" | "secondary" | "success" | "warning" | "error" | "info" | "default"> = {
-  reflections: "primary",
-  coordinates: "success",
-  mmcif_coords: "success",
-  sequence: "info",
-  alignment: "secondary",
-  unknown: "default",
-};
-
-function detectFileType(file: File): DetectedFileType {
+/**
+ * Detect file type from extension alone (synchronous, for non-MTZ files).
+ * MTZ files need async sniffing — see detectFileTypeAsync.
+ */
+function detectFileTypeSync(file: File): DetectedFileType {
   const name = file.name.toLowerCase();
   const ext = "." + name.split(".").pop();
 
-  // Direct extension match
-  if (ext in EXTENSION_MAP) {
-    return EXTENSION_MAP[ext];
-  }
+  if (ext in UNMERGED_EXTENSIONS) return "unmerged";
+  if (ext in EXTENSION_MAP) return EXTENSION_MAP[ext];
 
-  // .cif is ambiguous: could be coordinates or reflections
-  // Default to coordinates (more common for drag-and-drop)
-  if (ext === ".cif" || ext === ".mmcif") {
-    return "mmcif_coords";
-  }
+  // .cif is ambiguous — default to coordinates
+  if (ext === ".cif" || ext === ".mmcif") return "mmcif_coords";
+
+  // .mtz needs header sniffing — mark as reflections initially,
+  // will be refined asynchronously
+  if (ext === ".mtz") return "reflections";
 
   return "unknown";
 }
+
+/**
+ * For MTZ files, read the header to determine merged vs unmerged.
+ * Returns the refined type, or the original type for non-MTZ files.
+ */
+async function sniffMtzFile(file: File): Promise<DetectedFileType> {
+  try {
+    const header = await parseMtzFile(file);
+    return header.isMerged ? "reflections" : "unmerged";
+  } catch {
+    // If parsing fails, assume merged
+    return "reflections";
+  }
+}
+
+const ACCEPTED_EXTENSIONS =
+  ".mtz,.pdb,.ent,.cif,.mmcif,.fasta,.fa,.seq,.pir,.aln,.clw,.sto,.sca,.hkl,.refl,.smi,.mol,.mol2";
 
 interface FileDropZoneProps {
   files: DroppedFile[];
@@ -113,39 +172,60 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
   onChange,
 }) => {
   const [isDragOver, setIsDragOver] = useState(false);
+  const [isSniffing, setIsSniffing] = useState(false);
+
+  const addFiles = useCallback(
+    async (fileList: FileList | File[]) => {
+      const rawFiles = Array.from(fileList);
+
+      // Initial sync classification
+      const newFiles: DroppedFile[] = rawFiles.map((file) => ({
+        file,
+        detectedType: detectFileTypeSync(file),
+      }));
+
+      // Immediately show files with sync-detected types
+      const updatedFiles = [...files, ...newFiles];
+      onChange(updatedFiles);
+
+      // Async sniff MTZ files to distinguish merged/unmerged
+      const mtzIndices = newFiles
+        .map((df, i) => (df.file.name.toLowerCase().endsWith(".mtz") ? i : -1))
+        .filter((i) => i >= 0);
+
+      if (mtzIndices.length > 0) {
+        setIsSniffing(true);
+        const refined = [...updatedFiles];
+        for (const localIdx of mtzIndices) {
+          const globalIdx = files.length + localIdx;
+          const refinedType = await sniffMtzFile(refined[globalIdx].file);
+          refined[globalIdx] = {
+            ...refined[globalIdx],
+            detectedType: refinedType,
+          };
+        }
+        onChange(refined);
+        setIsSniffing(false);
+      }
+    },
+    [files, onChange]
+  );
 
   const handleDrop = useCallback(
     (e: React.DragEvent) => {
       e.preventDefault();
       setIsDragOver(false);
-      const droppedFiles = e.dataTransfer.files;
-      if (!droppedFiles) return;
-
-      const newFiles: DroppedFile[] = Array.from(droppedFiles).map((file) => ({
-        file,
-        detectedType: detectFileType(file),
-      }));
-
-      onChange([...files, ...newFiles]);
+      if (e.dataTransfer.files) addFiles(e.dataTransfer.files);
     },
-    [files, onChange]
+    [addFiles]
   );
 
   const handleFileInput = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
-      const selectedFiles = e.target.files;
-      if (!selectedFiles) return;
-
-      const newFiles: DroppedFile[] = Array.from(selectedFiles).map((file) => ({
-        file,
-        detectedType: detectFileType(file),
-      }));
-
-      onChange([...files, ...newFiles]);
-      // Reset the input so the same file can be selected again
+      if (e.target.files) addFiles(e.target.files);
       e.target.value = "";
     },
-    [files, onChange]
+    [addFiles]
   );
 
   const removeFile = useCallback(
@@ -154,6 +234,16 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
     },
     [files, onChange]
   );
+
+  const openFilePicker = () => {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.multiple = true;
+    input.accept = ACCEPTED_EXTENSIONS;
+    input.onchange = (e) =>
+      handleFileInput(e as unknown as React.ChangeEvent<HTMLInputElement>);
+    input.click();
+  };
 
   return (
     <Stack spacing={1}>
@@ -177,15 +267,7 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
         }}
         onDragLeave={() => setIsDragOver(false)}
         onDrop={handleDrop}
-        onClick={() => {
-          const input = document.createElement("input");
-          input.type = "file";
-          input.multiple = true;
-          input.accept = ".mtz,.pdb,.ent,.cif,.mmcif,.fasta,.fa,.seq,.pir,.aln,.clw,.sto";
-          input.onchange = (e) =>
-            handleFileInput(e as unknown as React.ChangeEvent<HTMLInputElement>);
-          input.click();
-        }}
+        onClick={openFilePicker}
       >
         {files.length === 0 ? (
           <Stack spacing={1} alignItems="center">
@@ -194,7 +276,7 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
               Drop files here to import after project creation
             </Typography>
             <Typography variant="caption" color="text.secondary">
-              MTZ, PDB, CIF, FASTA, sequence alignments
+              MTZ, PDB, CIF, FASTA, alignments, SCA, ligands (SMI/MOL)
             </Typography>
           </Stack>
         ) : (
@@ -218,6 +300,10 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
                   <Typography variant="body2" noWrap sx={{ maxWidth: 300 }}>
                     {df.file.name}
                   </Typography>
+                  {isSniffing &&
+                    df.file.name.toLowerCase().endsWith(".mtz") && (
+                      <CircularProgress size={12} />
+                    )}
                 </Box>
                 <IconButton
                   size="small"
@@ -234,18 +320,7 @@ export const FileDropZone: React.FC<FileDropZoneProps> = ({
               variant="caption"
               color="text.secondary"
               sx={{ cursor: "pointer", mt: 0.5 }}
-              onClick={() => {
-                const input = document.createElement("input");
-                input.type = "file";
-                input.multiple = true;
-                input.accept =
-                  ".mtz,.pdb,.ent,.cif,.mmcif,.fasta,.fa,.seq,.pir,.aln,.clw,.sto";
-                input.onchange = (e) =>
-                  handleFileInput(
-                    e as unknown as React.ChangeEvent<HTMLInputElement>
-                  );
-                input.click();
-              }}
+              onClick={openFilePicker}
             >
               + Drop or click to add more files
             </Typography>
