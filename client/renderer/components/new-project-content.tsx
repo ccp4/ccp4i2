@@ -82,6 +82,15 @@ export const NewProjectContent: React.FC = () => {
       formData.append("directory", customDirectory ? directory : "__default__");
       const project = await api.post<Project>("projects", formData);
 
+      // Apply tags to the new project
+      for (const tagId of tags) {
+        try {
+          await apiPost(`projects/${project.id}/tags/`, { tag_id: tagId });
+        } catch (err) {
+          console.error(`Error applying tag ${tagId}:`, err);
+        }
+      }
+
       // If files were dropped, create import jobs sequentially
       const importableFiles = droppedFiles.filter(
         (df) => TASK_FOR_TYPE[df.detectedType] !== null
