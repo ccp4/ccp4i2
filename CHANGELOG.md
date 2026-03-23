@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.6.1] - 2026-03-23
+
+- Symmetry operators shown in MetalCoord report
+
 ## [2.6.0] - 2026-03-11
 
 - New NucleoFind task for predicting locations of nucleic acid features in maps

@@ -57,11 +57,21 @@ class metalCoord_report(Report):
             return atomAddress
 
         def makeSymmetry(entry, node="ligand"):
-            atomSymmetry = entry.findall(node + "/symmetry")[0].text
-            if int(atomSymmetry) == 0:
-                return "-"
-            else:
+            operator_nodes = entry.findall(node + "/operator")
+            if operator_nodes and operator_nodes[0].text:
+                atomSymmetryOperator = operator_nodes[0].text
+                if str(atomSymmetryOperator) == "x,y,z":
+                    return "-"
+                return str(atomSymmetryOperator)
+
+            symmetry_nodes = entry.findall(node + "/symmetry")
+            if symmetry_nodes and symmetry_nodes[0].text:
+                atomSymmetry = symmetry_nodes[0].text
+                if int(atomSymmetry) == 0:
+                    return "-"
                 return str(atomSymmetry)
+
+            return "-"
 
         for site in self.xmlnode.findall(".//site"):
             metalAddress = makeAddress(site, node="")
@@ -77,20 +87,23 @@ class metalCoord_report(Report):
                 if j == 0: initiallyOpen=True
                 else: initiallyOpen=False
                 label = ""
-                if len(symmClass.findall(".//class")) > 0:
-                    if symmClass.findall(".//class")[0].text:
-                        label = symmClass.findall(".//class")[0].text + " coordination class"
+                class_nodes = symmClass.findall(".//class")
+                if class_nodes:
+                    class_text = class_nodes[0].text
+                    if class_text:
+                        label = class_text + " coordination class"
                 classFold = indentDiv.addFold(
                     label=label,
                     initiallyOpen=initiallyOpen)
                 table = classFold.addTable(xmlnode=symmClass)
                 table.addData(title="Procrustes distance", select='procrustes')
                 table.addData(title="Coordination number", select='coordination')
+                table.addData(title="Descriptor", select='descriptor')
                 table.addData(title="No. reference structures", select='count')
                 table.addData(title="Note", select='description')
 
                 headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
-                headerDiv.append("Ideal distances")
+                headerDiv.append("Distances")
                 for entry in symmClass.findall(".//base"):
                     n_options = len(entry.findall("std"))
                     for l in range(n_options):
@@ -106,10 +119,10 @@ class metalCoord_report(Report):
                     table = classFold.addTable(xmlnode=symmClass)
                     table.addData(title="Metal site", select='base/metalAtomAddress')
                     table.addData(title="Atom", select='base/ligandAtomAddress')
-                    table.addData(title="Symmetry?", select='base/ligandAtomSymmetry')
-                    table.addData(title="Distance (&Aring;)", select='base/distance')
-                    table.addData(title="St. dev. (&Aring;)", select='base/std')
+                    table.addData(title="Symmetry operator", select='base/ligandAtomSymmetry')
                     table.addData(title="Distance in input model (&Aring;)", select='base/distance_model')
+                    table.addData(title="Reference distance (&Aring;)", select='base/distance')
+                    table.addData(title="St. dev. (&Aring;)", select='base/std')
 
                 for entry in symmClass.findall(".//pdb"):
                     n_options = len(entry.findall("std"))
@@ -126,13 +139,13 @@ class metalCoord_report(Report):
                     table = classFold.addTable(xmlnode=symmClass)
                     table.addData(title="Metal site", select='pdb/metalAtomAddress')
                     table.addData(title="Atom", select='pdb/ligandAtomAddress')
-                    table.addData(title="Symmetry?", select='pdb/ligandAtomSymmetry')
-                    table.addData(title="Distance (&Aring;)", select='pdb/distance')
-                    table.addData(title="St. dev. (&Aring;)", select='pdb/std')
+                    table.addData(title="Symmetry operator", select='pdb/ligandAtomSymmetry')
                     table.addData(title="Distance in input model (&Aring;)", select='pdb/distance_model')
+                    table.addData(title="Reference distance (&Aring;)", select='pdb/distance')
+                    table.addData(title="St. dev. (&Aring;)", select='pdb/std')
 
                 headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
-                headerDiv.append("Ideal angles")
+                headerDiv.append("Angles")
                 for entry in symmClass.findall(".//angles"):
                     n_options = len(entry.findall("std"))
                     for l in range(n_options):
@@ -153,12 +166,12 @@ class metalCoord_report(Report):
                 if symmClass.findall(".//angles"):
                     table = classFold.addTable(xmlnode=symmClass)
                     table.addData(title="Atom", select='angles/ligand1AtomAddress')
-                    table.addData(title="Symmetry?", select='angles/ligand1AtomSymmetry')
+                    table.addData(title="Symmetry operator", select='angles/ligand1AtomSymmetry')
                     table.addData(title="Metal site", select='angles/metalAtomAddress')
                     table.addData(title="Atom", select='angles/ligand2AtomAddress')
-                    table.addData(title="Symmetry?", select='angles/ligand2AtomSymmetry')
-                    table.addData(title="Angle (&deg;)", select='angles/angle')
-                    table.addData(title="St. dev. (&deg;)", select='angles/std')
+                    table.addData(title="Symmetry operator", select='angles/ligand2AtomSymmetry')
                     table.addData(title="Angle in input model (&deg;)", select='angles/angle_model')
+                    table.addData(title="Reference angle (&deg;)", select='angles/angle')
+                    table.addData(title="St. dev. (&deg;)", select='angles/std')
 
         self.addDiv(style="clear:both;")
