@@ -125,6 +125,8 @@ class metalCoord_report(Report):
                     table.addData(title="Reference distance (&Aring;)", select='base/distance')
                     table.addData(title="St. dev. (&Aring;)", select='base/std')
                     table.addData(title="Distance in input model (&Aring;)", select='base/distance_model')
+                    table.addData(title="Reference distance (&Aring;)", select='base/distance')
+                    table.addData(title="St. dev. (&Aring;)", select='base/std')
 
                 for entry in symmClass.findall(".//pdb"):
                     n_options = len(entry.findall("std"))
@@ -146,6 +148,8 @@ class metalCoord_report(Report):
                     table.addData(title="Reference distance (&Aring;)", select='pdb/distance')
                     table.addData(title="St. dev. (&Aring;)", select='pdb/std')
                     table.addData(title="Distance in input model (&Aring;)", select='pdb/distance_model')
+                    table.addData(title="Reference distance (&Aring;)", select='pdb/distance')
+                    table.addData(title="St. dev. (&Aring;)", select='pdb/std')
 
                 headerDiv = classFold.addDiv(style='font-size:110%;font-weight:bold;')
                 headerDiv.append("Angles")
@@ -177,5 +181,7 @@ class metalCoord_report(Report):
                     table.addData(title="Reference angle (&deg;)", select='angles/angle')
                     table.addData(title="St. dev. (&deg;)", select='angles/std')
                     table.addData(title="Angle in input model (&deg;)", select='angles/angle_model')
+                    table.addData(title="Reference angle (&deg;)", select='angles/angle')
+                    table.addData(title="St. dev. (&deg;)", select='angles/std')
 
         self.addDiv(style="clear:both;")
