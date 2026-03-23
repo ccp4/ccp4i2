@@ -104,7 +104,7 @@ COPY Docker/azure-uksouth/docs/*.md ./renderer/public/docs/
 # Add path aliases to tsconfig.json for @/ imports used by compounds
 # The ccp4i2 client uses relative imports, but compounds uses @/ aliases
 RUN apk add --no-cache jq && \
-    jq '.compilerOptions += {"baseUrl": ".", "paths": {"@/*": ["./*"]}}' \
+    jq '.compilerOptions += {"baseUrl": ".", "paths": {"@/*": ["./*"]}, "ignoreDeprecations": "6.0"}' \
     ./renderer/tsconfig.json > ./renderer/tsconfig.new.json && \
     mv ./renderer/tsconfig.new.json ./renderer/tsconfig.json
 
