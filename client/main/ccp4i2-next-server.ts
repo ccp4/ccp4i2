@@ -124,12 +124,12 @@ export const startNextServer = async (
     connectSrc:
       "'self' https://www.ebi.ac.uk https://www.uniprot.org https://pubmed.ncbi.nlm.nih.gov https://raw.githubusercontent.com/MonomerLibrary/monomers/master/ " +
       "https://login.microsoftonline.com https://graph.microsoft.com https://*.microsoftonline.com https://*.microsoft.com " +
-      "https://graph.windows.net https://management.azure.com " +
+      "https://graph.windows.net https://management.azure.com https://cdn.jsdelivr.net " +
       (process.env.API_BASE_URL || process.env.NEXT_PUBLIC_API_BASE_URL || ""),
     styleSrc:
       "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.googleapis.com/css2",
     fontSrc:
-      "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.gstatic.com",
+      "'self' https://cdn.jsdelivr.net 'unsafe-inline' https://fonts.gstatic.com data:",
     scriptSrc: "'self' https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'",
     workerSrc: "'self' blob:",
     frameSrc:
