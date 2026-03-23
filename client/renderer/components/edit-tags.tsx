@@ -21,8 +21,10 @@ export default function EditTags(props: {
   onChange: (tags: number[]) => void;
 }) {
   const api = useApi();
-  const { data: allTags = [] } = api.get<ProjectTag[]>("projecttags/");
+  const { data: allTags = [], mutate: mutateAllTags } =
+    api.get<ProjectTag[]>("projecttags/");
   const [inputValue, setInputValue] = useState("");
+  const [isCreating, setIsCreating] = useState(false);
 
   // Convert available tags to options
   const availableOptions: TagOption[] = React.useMemo(
@@ -41,20 +43,34 @@ export default function EditTags(props: {
   );
 
   const handleChange = useCallback(
-    (
+    async (
       _event: React.SyntheticEvent,
-      newValue: TagOption[],
+      _newValue: TagOption[],
       reason: string,
       details?: any
     ) => {
       if (reason === "selectOption" && details?.option) {
         const added = details.option as TagOption;
-        if (added.id && !props.tags.includes(added.id)) {
+
+        if (added.isNew) {
+          // Create the tag via API, then add its ID
+          setIsCreating(true);
+          try {
+            const newTag = await api.post<ProjectTag>("projecttags/", {
+              text: added.text.trim(),
+              parent: null,
+              projects: [],
+            });
+            mutateAllTags();
+            props.onChange([...props.tags, newTag.id]);
+          } catch (err) {
+            console.error("Failed to create tag:", err);
+          } finally {
+            setIsCreating(false);
+          }
+        } else if (added.id && !props.tags.includes(added.id)) {
           props.onChange([...props.tags, added.id]);
         }
-        // Note: creating new tags inline is not supported here — tags must
-        // exist before they can be applied to a new project. New tags can
-        // be created from the project settings page after creation.
       } else if (reason === "removeOption" && details?.option) {
         const removed = details.option as TagOption;
         if (removed.id) {
@@ -62,17 +78,59 @@ export default function EditTags(props: {
         }
       }
     },
-    [props.tags, props.onChange]
+    [props.tags, props.onChange, api, mutateAllTags]
   );
 
   const filterOptions = useCallback(
-    (options: TagOption[], { inputValue }: any) =>
-      options.filter(
+    (options: TagOption[], { inputValue }: any) => {
+      const trimmed = inputValue.trim();
+      const inputLower = trimmed.toLowerCase();
+
+      const filtered = options.filter(
         (option) =>
           !selectedTags.some((s) => s.id === option.id) &&
-          option.text.toLowerCase().includes(inputValue.toLowerCase())
-      ),
-    [selectedTags]
+          option.text.toLowerCase().includes(inputLower)
+      );
+
+      // Offer to create a new tag if the input doesn't match any existing
+      // tag (case-insensitive, whitespace-trimmed)
+      if (trimmed) {
+        const exactMatch =
+          allTags.some(
+            (t) => t.text.trim().toLowerCase() === inputLower
+          ) ||
+          selectedTags.some(
+            (s) => s.text.trim().toLowerCase() === inputLower
+          );
+
+        if (!exactMatch) {
+          filtered.push({ text: trimmed, isNew: true });
+        }
+      }
+
+      return filtered;
+    },
+    [selectedTags, allTags]
+  );
+
+  const renderOption = (renderProps: any, option: TagOption) => (
+    <Box
+      component="li"
+      {...renderProps}
+      sx={
+        option.isNew
+          ? {
+              borderTop: "1px solid",
+              borderColor: "divider",
+              color: "primary.main",
+              fontWeight: 500,
+            }
+          : undefined
+      }
+    >
+      {option.isNew && <AddIcon sx={{ mr: 1, fontSize: 16 }} />}
+      {option.isNew ? `Create "${option.text}"` : option.text}
+    </Box>
   );
 
   return (
@@ -86,6 +144,7 @@ export default function EditTags(props: {
       filterOptions={filterOptions}
       getOptionLabel={(option) => option.text}
       isOptionEqualToValue={(a, b) => a.id === b.id}
+      renderOption={renderOption}
       renderTags={(value, getTagProps) =>
         value.map((option, index) => (
           <Chip
@@ -96,6 +155,8 @@ export default function EditTags(props: {
           />
         ))
       }
+      loading={isCreating}
+      disabled={isCreating}
       selectOnFocus
       clearOnBlur
       handleHomeEndKeys
