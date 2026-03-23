@@ -125,7 +125,9 @@ export const NewProjectContent: React.FC = () => {
     // 1. Create the job
     const result = await apiPost<any>(`projects/${projectId}/create_task/`, {
       task_name: taskName,
-      title: `Import ${df.file.name}`,
+      title: df.detectedType === "unmerged"
+        ? `Merge ${df.file.name}`
+        : `Import ${df.file.name}`,
     });
     if (!result?.success || !result.data?.new_job) {
       throw new Error(`Failed to create ${taskName} job`);
