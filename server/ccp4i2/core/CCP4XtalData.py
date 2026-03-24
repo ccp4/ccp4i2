@@ -12,6 +12,103 @@ from ccp4i2.core.base_object.error_reporting import CErrorReport
 from ccp4i2.core.cdata_stubs.CCP4XtalData import CAltSpaceGroupStub, CAltSpaceGroupListStub, CAnomalousColumnGroupStub, CAnomalousIntensityColumnGroupStub, CAnomalousScatteringElementStub, CAsuComponentStub, CAsuComponentListStub, CCellStub, CCellAngleStub, CCellLengthStub, CColumnGroupStub, CColumnGroupItemStub, CColumnGroupListStub, CColumnTypeStub, CColumnTypeListStub, CCrystalNameStub, CDatasetStub, CDatasetListStub, CDatasetNameStub, CDialsJsonFileStub, CDialsPickleFileStub, CExperimentalDataTypeStub, CFPairColumnGroupStub, CFSigFColumnGroupStub, CFormFactorStub, CFreeRColumnGroupStub, CFreeRDataFileStub, CGenericReflDataFileStub, CHLColumnGroupStub, CIPairColumnGroupStub, CISigIColumnGroupStub, CImageFileStub, CImageFileListStub, CImosflmXmlDataFileStub, CImportUnmergedStub, CImportUnmergedListStub, CMapCoeffsDataFileStub, CMapColumnGroupStub, CMapDataFileStub, CMergeMiniMtzStub, CMergeMiniMtzListStub, CMiniMtzDataFileStub, CMiniMtzDataFileListStub, CMmcifReflDataStub, CMmcifReflDataFileStub, CMtzColumnStub, CMtzColumnGroupStub, CMtzColumnGroupTypeStub, CMtzDataStub, CMtzDataFileStub, CMtzDatasetStub, CObsDataFileStub, CPhaserRFileDataFileStub, CPhaserSolDataFileStub, CPhiFomColumnGroupStub, CPhsDataFileStub, CPhaserTngDagFileStub, CProgramColumnGroupStub, CProgramColumnGroup0Stub, CRefmacKeywordFileStub, CReindexOperatorStub, CResolutionRangeStub, CRunBatchRangeStub, CRunBatchRangeListStub, CShelxFADataFileStub, CShelxLabelStub, CSpaceGroupStub, CSpaceGroupCellStub, CUnmergedDataContentStub, CUnmergedDataFileStub, CUnmergedDataFileListStub, CUnmergedMtzDataFileStub, CWavelengthStub, CXia2ImageSelectionStub, CXia2ImageSelectionListStub
 
 
+def cells_are_compatible(params1, params2, tolerance=1.0):
+    """Compare two unit cells using Clipper's reciprocal-space algorithm.
+
+    Two cells disagree if the difference in their orthogonalisation matrices
+    is sufficient to map a reflection from one cell onto a different reflection
+    in the other cell at the given tolerance (resolution in Angstroms).
+
+    This implements the Clipper Cell::equals() algorithm which considers
+    reciprocal space vectors and finds the resolution at which reflections
+    would be mis-indexed by more than 0.5 reciprocal lattice units.
+
+    Known limitation — alternative indexing:
+        This test compares cell *dimensions* in reciprocal space but cannot
+        detect when two datasets have been indexed on different settings of
+        the same lattice (e.g. b and c swapped in orthorhombic with b ≈ c).
+        In such cases the cells appear metrically identical yet reflections
+        are associated with the wrong indices.  Detecting this requires
+        comparison of the actual reflection data — pointless (CCP4) or
+        dials.reindex can identify and correct alternative settings.  A
+        future enhancement could call one of these tools as a pre-flight
+        check when sameCrystalAs is declared.
+
+    Used by:
+        - CMtzData.clipperSameCell()  — content-level cell comparison
+        - makeHklin()                 — MTZ merge cell compatibility check
+        - CPluginScript._checkSameCrystalAs() — runTimeValidity enforcement
+
+    Args:
+        params1: Tuple of (a, b, c, alpha, beta, gamma) for cell 1
+        params2: Tuple of (a, b, c, alpha, beta, gamma) for cell 2
+        tolerance: Resolution tolerance in Angstroms (default 1.0).
+                  Cells are compatible if mis-indexing doesn't occur
+                  until resolution coarser than this value (larger d).
+
+    Returns:
+        dict with keys:
+            'validity': bool - True if cells are compatible at tolerance
+            'tolerance': float - the resolution tolerance value
+            'difference': float - critical d-spacing where mis-indexing
+                          starts (Å); large value means cells are similar
+            'maximumResolution1': float - max resolution for cell1
+            'maximumResolution2': float - max resolution for cell2
+    """
+    import math
+    import numpy as np
+
+    a1, b1, c1, alpha1, beta1, gamma1 = [float(x) for x in params1]
+    a2, b2, c2, alpha2, beta2, gamma2 = [float(x) for x in params2]
+
+    def build_orth_matrix(a, b, c, alpha_deg, beta_deg, gamma_deg):
+        alpha = math.radians(alpha_deg)
+        beta = math.radians(beta_deg)
+        gamma = math.radians(gamma_deg)
+        cos_alpha = math.cos(alpha)
+        cos_beta = math.cos(beta)
+        cos_gamma = math.cos(gamma)
+        sin_gamma = math.sin(gamma)
+        volume = a * b * c * math.sqrt(
+            1 - cos_alpha**2 - cos_beta**2 - cos_gamma**2
+            + 2 * cos_alpha * cos_beta * cos_gamma
+        )
+        return np.array([
+            [a, b * cos_gamma, c * cos_beta],
+            [0, b * sin_gamma, c * (cos_alpha - cos_beta * cos_gamma) / sin_gamma],
+            [0, 0, volume / (a * b * sin_gamma)]
+        ])
+
+    orth1 = build_orth_matrix(a1, b1, c1, alpha1, beta1, gamma1)
+    orth2 = build_orth_matrix(a2, b2, c2, alpha2, beta2, gamma2)
+
+    # Find the resolution at which a reflection would be mis-indexed
+    # by 0.5 reciprocal lattice units or more.  Test along a*, b*, c*.
+    max_resolution = 1000.0
+    orth1_inv = np.linalg.inv(orth1).T
+    orth2_inv = np.linalg.inv(orth2).T
+
+    for axis in [(1, 0, 0), (0, 1, 0), (0, 0, 1)]:
+        hkl = np.array(axis)
+        s1 = orth1_inv @ hkl
+        s2 = orth2_inv @ hkl
+        diff = np.linalg.norm(s1 - s2)
+        if diff > 1e-10:
+            critical_res = 0.5 / (diff * np.linalg.norm(hkl))
+            max_resolution = min(max_resolution, critical_res)
+
+    max_res1 = min(a1, b1, c1) / 2.0
+    max_res2 = min(a2, b2, c2) / 2.0
+
+    return {
+        'validity': max_resolution >= tolerance,
+        'tolerance': tolerance,
+        'difference': max_resolution,
+        'maximumResolution1': max_res1,
+        'maximumResolution2': max_res2
+    }
+
+
 class _ColumnInfo:
     """Lightweight wrapper around an MTZ column label and type.
 
@@ -1731,38 +1828,18 @@ class CMtzData(CMtzDataStub):
         """
         Compare unit cells using Clipper's reciprocal space algorithm.
 
-        Two cells disagree if the difference in their orthogonalisation matrices
-        is sufficient to map a reflection from one cell onto a different reflection
-        in the other cell at the given tolerance (resolution in Angstroms).
-
-        This implements the Clipper Cell::equals() algorithm which considers
-        reciprocal space vectors and finds the resolution at which reflections
-        would be mis-indexed by more than 0.5 reciprocal lattice units.
+        Delegates to the module-level :func:`cells_are_compatible` function.
 
         Args:
             other_content: Another CMtzData or CUnmergedDataContent instance
             tolerance: Resolution tolerance in Angstroms (default 1.0)
-                      Cells are compatible if mis-indexing doesn't occur
-                      until resolution coarser than this value (larger d).
-                      A larger tolerance is more permissive — use ~5 Å for
-                      native/derivative pairs that may differ by tenths of Å.
 
         Returns:
-            dict with keys:
-                'validity': bool - True if cells are compatible at tolerance
-                'tolerance': float - the resolution tolerance value
-                'difference': float - critical d-spacing where mis-indexing
-                              starts (Å); large value means cells are similar
-                'maximumResolution1': float - max resolution for cell1
-                'maximumResolution2': float - max resolution for cell2
+            dict — see :func:`cells_are_compatible` for keys.
         """
-        import numpy as np
-
-        # Use default tolerance if None (Clipper default is 1.0 Angstrom)
         if tolerance is None:
             tolerance = 1.0
 
-        # Get cell parameters
         cell1 = self.cell
         cell2 = other_content.cell
 
@@ -1775,97 +1852,9 @@ class CMtzData(CMtzDataStub):
                 'maximumResolution2': 0.0
             }
 
-        # Build orthogonalization matrices for both cells
-        # Orthogonalization matrix converts fractional to Cartesian coordinates
-        def build_orth_matrix(cell):
-            """Build orthogonalization matrix from cell parameters."""
-            import math
-            a, b, c = float(cell.a), float(cell.b), float(cell.c)
-            alpha = math.radians(float(cell.alpha))
-            beta = math.radians(float(cell.beta))
-            gamma = math.radians(float(cell.gamma))
-
-            # Volume calculation
-            cos_alpha = math.cos(alpha)
-            cos_beta = math.cos(beta)
-            cos_gamma = math.cos(gamma)
-            sin_gamma = math.sin(gamma)
-
-            volume = a * b * c * math.sqrt(
-                1 - cos_alpha**2 - cos_beta**2 - cos_gamma**2
-                + 2 * cos_alpha * cos_beta * cos_gamma
-            )
-
-            # Orthogonalization matrix (fractional to Cartesian)
-            orth = np.array([
-                [a, b * cos_gamma, c * cos_beta],
-                [0, b * sin_gamma, c * (cos_alpha - cos_beta * cos_gamma) / sin_gamma],
-                [0, 0, volume / (a * b * sin_gamma)]
-            ])
-            return orth
-
-        orth1 = build_orth_matrix(cell1)
-        orth2 = build_orth_matrix(cell2)
-
-        # Calculate the difference matrix
-        diff_matrix = orth1 - orth2
-
-        # Find the resolution at which a reflection would be mis-indexed
-        # by 0.5 reciprocal lattice units or more
-        #
-        # We test reflections along the crystallographic axes (h00, 0k0, 00l)
-        # at increasing resolution until we find where the difference exceeds
-        # 0.5 reciprocal lattice units
-
-        max_resolution = 1000.0  # Start with very high resolution (small d)
-        axes = [(1, 0, 0), (0, 1, 0), (0, 0, 1)]  # Test along a*, b*, c*
-
-        for axis in axes:
-            h, k, l = axis
-            # Compute reciprocal space vector for this reflection
-            hkl = np.array([h, k, l])
-
-            # Transform to Cartesian reciprocal space
-            # (reciprocal of orth matrix)
-            orth1_inv = np.linalg.inv(orth1).T
-            orth2_inv = np.linalg.inv(orth2).T
-
-            # Reciprocal space vectors
-            s1 = orth1_inv @ hkl
-            s2 = orth2_inv @ hkl
-
-            # Difference in reciprocal space (in Å⁻¹)
-            diff = np.linalg.norm(s1 - s2)
-
-            # Resolution of this reflection
-            d_spacing = 1.0 / np.linalg.norm(s1)
-
-            # At what resolution would this axis cause 0.5 r.l.u. mis-indexing?
-            # diff * d = 0.5 / |hkl|
-            # So critical resolution = 0.5 / (diff * |hkl|)
-            if diff > 1e-10:  # Avoid division by zero
-                critical_res = 0.5 / (diff * np.linalg.norm(hkl))
-                max_resolution = min(max_resolution, critical_res)
-
-        # Calculate maximum resolutions based on cell dimensions
-        a1, b1, c1 = float(cell1.a), float(cell1.b), float(cell1.c)
-        a2, b2, c2 = float(cell2.a), float(cell2.b), float(cell2.c)
-        max_res1 = min(a1, b1, c1) / 2.0
-        max_res2 = min(a2, b2, c2) / 2.0
-
-        # Cells are compatible if mis-indexing doesn't occur until
-        # resolution coarser than (larger than) tolerance.
-        # max_resolution is the critical d-spacing: a large value means
-        # the cells are very similar (mis-indexing only at very low resolution).
-        validity = max_resolution >= tolerance
-
-        return {
-            'validity': validity,
-            'tolerance': tolerance,
-            'difference': max_resolution,  # Resolution where mis-indexing starts
-            'maximumResolution1': max_res1,
-            'maximumResolution2': max_res2
-        }
+        params1 = (cell1.a, cell1.b, cell1.c, cell1.alpha, cell1.beta, cell1.gamma)
+        params2 = (cell2.a, cell2.b, cell2.c, cell2.alpha, cell2.beta, cell2.gamma)
+        return cells_are_compatible(params1, params2, tolerance=tolerance)
 
     def matthewsCoeff(self, seqDataFile=None, nRes=None, molWt=None, polymerMode=""):
         """

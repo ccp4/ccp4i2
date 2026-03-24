@@ -1014,14 +1014,105 @@ class CPluginScript(CData):
 
         Called by process() immediately before execution, and by the
         run-confirmation endpoint.  The base implementation delegates to
-        validity(); plugins may override this to add heavier checks
-        (e.g. monomer dictionary coverage) that would be too expensive
-        to run on every parameter-editing poll.
+        validity() and then checks sameCrystalAs constraints (which
+        require file I/O to read unit cells).
+
+        Plugins may override this to add heavier checks (e.g. monomer
+        dictionary coverage).  Overrides **must** call super().
 
         Returns:
             CErrorReport containing all validation errors/warnings
         """
-        return self.validity()
+        error = self.validity()
+        self._checkSameCrystalAs(error)
+        return error
+
+    def _checkSameCrystalAs(self, error: CErrorReport) -> None:
+        """Enforce sameCrystalAs constraints declared in def.xml.
+
+        Uses _find_datafile_descendants to walk all input file objects
+        (including items inside CLists and nested containers) looking
+        for the sameCrystalAs qualifier.  When both the object and its
+        named partner are set, loads the file contents and compares
+        unit cells using the Clipper reciprocal-space algorithm.
+
+        Only appends a blocking error when both partners are defined
+        but their cells are incompatible — an unset partner is silently
+        skipped so that optional files don't block submission.
+        """
+        if not hasattr(self, 'container') or self.container is None:
+            return
+        input_data = getattr(self.container, 'inputData', None)
+        if input_data is None:
+            input_data = self.container.find('inputData')
+        if input_data is None:
+            return
+
+        # Build a name→object lookup for all input file objects
+        all_files = self._find_datafile_descendants(input_data)
+        files_by_name = {name: obj for name, obj in all_files}
+
+        # Track pairs already checked (avoid checking A→B and B→A)
+        checked_pairs = set()
+
+        for child_name, child in all_files:
+            partner_name = child.get_qualifier('sameCrystalAs') if hasattr(child, 'get_qualifier') else None
+            if not partner_name:
+                continue
+
+            # Deduplicate symmetric pairs
+            pair_key = tuple(sorted([child_name, partner_name]))
+            if pair_key in checked_pairs:
+                continue
+            checked_pairs.add(pair_key)
+
+            # Both files must be set — skip if either is absent
+            if not (hasattr(child, 'isSet') and child.isSet()):
+                continue
+            partner = files_by_name.get(partner_name)
+            if partner is None:
+                # Fall back to container-level find for nested paths
+                partner = self.container.find(f'inputData.{partner_name}')
+            if partner is None or not (hasattr(partner, 'isSet') and partner.isSet()):
+                continue
+
+            # Load file contents and compare cells
+            try:
+                content = child.getFileContent()
+                partner_content = partner.getFileContent()
+                if content is None or partner_content is None:
+                    continue
+                if not hasattr(content, 'clipperSameCell'):
+                    continue
+
+                tolerance = child.get_qualifier('sameCrystalLevel') or 1.0
+                result = content.clipperSameCell(partner_content, tolerance=tolerance)
+
+                if not result['validity']:
+                    def _cell_str(c):
+                        try:
+                            cell = c.cell
+                            return (f"({cell.a}, {cell.b}, {cell.c}, "
+                                    f"{cell.alpha}, {cell.beta}, {cell.gamma})")
+                        except Exception:
+                            return "(unknown)"
+
+                    error.append(
+                        klass=self.TASKNAME if hasattr(self, 'TASKNAME') else self.__class__.__name__,
+                        code=210,
+                        details=(
+                            f'Incompatible unit cells between {child_name} '
+                            f'{_cell_str(content)} and {partner_name} '
+                            f'{_cell_str(partner_content)}'
+                        ),
+                        name=child.object_path() if hasattr(child, 'object_path') else child_name,
+                        severity=SEVERITY_ERROR,
+                    )
+            except Exception as e:
+                logger.debug(
+                    "sameCrystalAs check failed for %s vs %s: %s",
+                    child_name, partner_name, e,
+                )
 
     def validity_as_xml(self):
         """

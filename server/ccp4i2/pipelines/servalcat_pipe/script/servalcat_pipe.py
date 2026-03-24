@@ -430,6 +430,10 @@ class servalcat_pipe(CPluginScript):
             stopMonitor()
 
             if status == CPluginScript.FAILED:
+                # Propagate the sub-plugin's detailed errors (e.g. cell
+                # mismatch from makeHklin) so they appear in diagnostic.xml
+                if plugin.errorReport:
+                    self.errorReport.extend(plugin.errorReport)
                 self.appendErrorReport(105, 'Servalcat refinement failed')
                 error.append(self.__class__.__name__, 105,
                             'Servalcat refinement failed', 'servalcat', 4)

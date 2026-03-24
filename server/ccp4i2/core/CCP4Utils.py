@@ -354,9 +354,10 @@ def merge_mtz_files(
                 f"{input_path} has {in_mtz.spacegroup.hm}"
             )
 
-        # Check cell parameters (allow small differences)
-        cell_diff = sum(abs(a - b) for a, b in zip(in_mtz.cell.parameters, out_mtz.cell.parameters))
-        if cell_diff > 0.1:  # Tolerance for cell parameter differences
+        # Check cell compatibility using Clipper's reciprocal-space algorithm
+        from ccp4i2.core.CCP4XtalData import cells_are_compatible
+        cell_result = cells_are_compatible(out_mtz.cell.parameters, in_mtz.cell.parameters)
+        if not cell_result['validity']:
             raise MtzMergeError(
                 f"Incompatible unit cells: {first_path} has {out_mtz.cell.parameters}, "
                 f"{input_path} has {in_mtz.cell.parameters}"
