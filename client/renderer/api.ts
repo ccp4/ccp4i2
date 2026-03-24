@@ -124,31 +124,29 @@ function parseValidationXml(data: { xml: string } | null): ValidationErrors {
   if (!data?.xml) return {};
 
   const validationXml = $.parseXML(data.xml);
-  const objectPaths = $(validationXml).find("objectPath").toArray();
+  const errorReports = $(validationXml).find("errorReport").toArray();
   const results: ValidationErrors = {};
 
-  objectPaths.forEach((errorObjectNode: HTMLElement) => {
-    const objectPath = errorObjectNode.textContent?.trim();
+  errorReports.forEach((errorNode: HTMLElement) => {
+    const objectPath =
+      $(errorNode).find("objectPath").get(0)?.textContent?.trim();
     if (!objectPath) return;
 
     if (!results[objectPath]) {
       results[objectPath] = { messages: [], maxSeverity: 0 };
     }
 
-    const errorNode = $(errorObjectNode).parent();
-    if (errorNode) {
-      const severity = $(errorNode).find("severity").get(0)?.textContent;
-      if (severity?.includes("WARNING") && results[objectPath].maxSeverity < 1) {
-        results[objectPath].maxSeverity = 1;
-      }
-      if (severity?.includes("ERROR") && results[objectPath].maxSeverity < 2) {
-        results[objectPath].maxSeverity = 2;
-      }
+    const severity = $(errorNode).find("severity").get(0)?.textContent;
+    if (severity?.includes("WARNING") && results[objectPath].maxSeverity < 1) {
+      results[objectPath].maxSeverity = 1;
+    }
+    if (severity?.includes("ERROR") && results[objectPath].maxSeverity < 2) {
+      results[objectPath].maxSeverity = 2;
+    }
 
-      const description = $(errorNode).find("description").get(0)?.textContent;
-      if (description && !results[objectPath].messages.includes(description)) {
-        results[objectPath].messages.push(description);
-      }
+    const description = $(errorNode).find("description").get(0)?.textContent;
+    if (description && !results[objectPath].messages.includes(description)) {
+      results[objectPath].messages.push(description);
     }
   });
 
@@ -365,7 +363,7 @@ export function useApi() {
     /**
      * Fetch validation endpoint, transform to error map
      */
-    get_validation(ef: EndpointFetch) {
+    get_validation(ef: EndpointFetch | null) {
       return useSWR<ValidationErrors>(getEndpointKey(ef), validationFetcher, {
         revalidateOnFocus: false,
       });

@@ -73,6 +73,24 @@ class servalcat_pipe(CPluginScript):
             )
         return super(servalcat_pipe, self).validity()
 
+    def runTimeValidity(self):
+        """Pre-flight validation including monomer dictionary coverage."""
+        error = super(servalcat_pipe, self).runTimeValidity()
+        if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+            return error
+        xyzin = self.container.inputData.XYZIN
+        if xyzin.isSet():
+            xyzin_path = str(xyzin.fullPath)
+            dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
+                          if d.isSet()]
+            saved = self.errorReport
+            self.errorReport = CErrorReport()
+            self.checkMonomeCoverage(xyzin_path, dict_paths)
+            if self.errorReport:
+                error.extend(self.errorReport)
+            self.errorReport = saved
+        return error
+
     # =========================================================================
     # Main pipeline orchestration
     # =========================================================================
@@ -88,15 +106,6 @@ class servalcat_pipe(CPluginScript):
         Phase 6: Validation and analysis (optional)
         """
         error = CErrorReport()
-
-        # =================================================================
-        # Pre-flight: check monomer dictionary coverage at atom level
-        # =================================================================
-        xyzin_path = str(self.container.inputData.XYZIN.fullPath)
-        dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
-                      if d.isSet()]
-        if self.checkMonomeCoverage(xyzin_path, dict_paths) != CPluginScript.SUCCEEDED:
-            return CPluginScript.FAILED
 
         # =================================================================
         # Phase 1: ProSMART protein restraints

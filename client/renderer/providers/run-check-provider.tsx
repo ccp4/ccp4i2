@@ -17,6 +17,7 @@ import {
 import { Button } from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useCCP4i2Window } from "../app-context";
+import { useApi } from "../api";
 import { useJob } from "../utils";
 import { Job } from "../types/models";
 
@@ -169,9 +170,23 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
   const { jobId } = useCCP4i2Window();
   const { validation } = useJob(jobId);
 
-  // ...inside ErrorAwareRunDialog...
-  const receivedErrors: CCP4i2ErrorReport | null =
-    processedErrors || validation || {};
+  // Fetch heavier run-time validation (monomer coverage etc.) only
+  // when the run dialog is actually open.
+  const api = useApi();
+  const { data: runTimeValidation } = api.get_validation(
+    runTaskRequested !== null
+      ? { type: "jobs", id: jobId, endpoint: "run_time_validation" }
+      : null
+  );
+
+  // Merge all validation sources: run-time validation (monomer coverage etc.),
+  // processedErrors (from hooks like useFreeRWarning), and cheap polling validation.
+  // All sources are combined so nothing is lost to short-circuit evaluation.
+  const receivedErrors: CCP4i2ErrorReport = {
+    ...(validation || {}),
+    ...(processedErrors || {}),
+    ...(runTimeValidation || {}),
+  };
 
   const seriousIssues: CCP4i2ErrorReport | null = receivedErrors
     ? Object.fromEntries(
@@ -193,12 +208,17 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
     ? Object.keys(seriousIssues).length > 0
     : false;
 
+  // Auto-submit only after run-time validation has loaded and found no issues.
+  // runTimeValidation is undefined while the fetch is in flight.
+  const runTimeValidationLoaded = runTaskRequested !== null && runTimeValidation !== undefined;
+
   useEffect(() => {
     if (autoSubmitTimer.current) {
       clearTimeout(autoSubmitTimer.current);
-      autoSubmitTimer.current;
+      autoSubmitTimer.current = null;
     }
     if (
+      runTimeValidationLoaded &&
       !hasSeriousIssues &&
       runTaskRequested !== null &&
       jobId !== null &&
@@ -214,7 +234,7 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
         autoSubmitTimer.current = null;
       }
     };
-  }, [seriousIssues, runTaskRequested, jobId]);
+  }, [seriousIssues, runTaskRequested, jobId, runTimeValidationLoaded]);
 
   return (
     <Dialog

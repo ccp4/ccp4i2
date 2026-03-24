@@ -110,3 +110,50 @@ def validate_job(job: models.Job) -> Result[ET.Element]:
                 "error_message": str(err)
             }
         )
+
+
+def validate_job_run_time(job: models.Job) -> Result[ET.Element]:
+    """
+    Run-time validation including heavier pre-flight checks.
+
+    Like validate_job() but calls runTimeValidity_as_xml() which
+    includes plugin-specific checks (e.g. monomer dictionary coverage)
+    that are too expensive for polling during parameter editing.
+
+    Args:
+        job: Job model instance to validate
+
+    Returns:
+        Result containing XML error report element
+    """
+    plugin_result = get_plugin_with_context(job)
+    if not plugin_result.success:
+        return Result.fail(
+            f"Failed to load plugin: {plugin_result.error}",
+            details=plugin_result.error_details
+        )
+
+    plugin = plugin_result.data
+
+    try:
+        error_tree = plugin.runTimeValidity_as_xml()
+
+        error_reports = error_tree.findall('.//errorReport')
+        logger.info(
+            "Run-time validated job %s (task: %s): found %d reports",
+            job.uuid, job.task_name, len(error_reports)
+        )
+
+        return Result.ok(error_tree)
+
+    except Exception as err:
+        logger.exception("Failed run-time validation for job %s", job.uuid)
+        return Result.fail(
+            f"Run-time validation failed: {str(err)}",
+            details={
+                "job_id": str(job.uuid),
+                "task_name": job.task_name,
+                "error_type": type(err).__name__,
+                "error_message": str(err)
+            }
+        )

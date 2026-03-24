@@ -6,6 +6,7 @@ import traceback
 from xml.etree import ElementTree as ET
 
 from ccp4i2.core import CCP4ErrorHandling, CCP4Modules, CCP4Utils, CCP4XtalData
+from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 from .json2xml import json2xml
@@ -33,6 +34,24 @@ class servalcat(CPluginScript):
         super(servalcat, self).__init__(*args, **kwargs)
         self.xmlroot = ET.Element('SERVALCAT')
         self.xmlLength = 0
+
+    def runTimeValidity(self):
+        """Pre-flight validation including monomer dictionary coverage."""
+        error = super(servalcat, self).runTimeValidity()
+        if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+            return error
+        xyzin = self.container.inputData.XYZIN
+        if xyzin.isSet():
+            xyzin_path = str(xyzin.fullPath)
+            dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
+                          if d.isSet()]
+            saved = self.errorReport
+            self.errorReport = CErrorReport()
+            self.checkMonomeCoverage(xyzin_path, dict_paths)
+            if self.errorReport:
+                error.extend(self.errorReport)
+            self.errorReport = saved
+        return error
 
     def xmlAddRoot(self, xmlText, xmlFilePath=None, xmlRootName=None):
         if xmlRootName:
@@ -62,13 +81,6 @@ class servalcat(CPluginScript):
         # Create DICT by merging dictionaries in DICT_LIST
         self.joinDicts(self.container.outputData.DICT,
                        self.container.inputData.DICT_LIST)
-
-        # Pre-flight: check that dictionaries cover all residues at atom level
-        dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
-                      if d.isSet()]
-        rv = self.checkMonomeCoverage(self.inputCoordPath, dict_paths)
-        if rv != CPluginScript.SUCCEEDED:
-            return CPluginScript.FAILED
 
         # Prepare merged HKL input for X-ray mode
         if str(self.container.controlParameters.DATA_METHOD) == 'xtal':

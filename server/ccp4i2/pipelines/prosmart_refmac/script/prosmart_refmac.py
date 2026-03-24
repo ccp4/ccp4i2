@@ -7,6 +7,7 @@ from lxml import etree
 from rdkit import Chem
 
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
+from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.core.mgimports import mmdb2
 from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
@@ -41,20 +42,30 @@ class prosmart_refmac(CPluginScript):
         self.xmlroot = etree.Element("RefmacOptimiseWeight")
         self.xmlroot2 = etree.Element("RefmacOptimiseWeight")
 
+    def runTimeValidity(self):
+        """Pre-flight validation including monomer dictionary coverage."""
+        error = super(prosmart_refmac, self).runTimeValidity()
+        if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+            return error
+        xyzin = self.container.inputData.XYZIN
+        if xyzin.isSet():
+            xyzin_path = str(xyzin.fullPath)
+            dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
+                          if d.isSet()]
+            saved = self.errorReport
+            self.errorReport = CErrorReport()
+            self.checkMonomeCoverage(xyzin_path, dict_paths)
+            if self.errorReport:
+                error.extend(self.errorReport)
+            self.errorReport = saved
+        return error
+
     def startProcess(self):
         """
         Main pipeline execution - runs ProSMART, Platonyzer, then Refmac.
 
         Each phase uses try/except with proper CErrorReport logging including traceback.
         """
-        # Pre-flight: check monomer dictionary coverage at atom level
-        xyzin_path = str(self.container.inputData.XYZIN.fullPath)
-        dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
-                      if d.isSet()]
-        if self.checkMonomeCoverage(xyzin_path, dict_paths) != CPluginScript.SUCCEEDED:
-            self.reportStatus(CPluginScript.FAILED)
-            return CPluginScript.FAILED
-
         # Phase 1: ProSMART protein restraints (optional)
         try:
             self.executeProsmartProtein()

@@ -1382,6 +1382,52 @@ class JobViewSet(ModelViewSet):
 
     @action(
         detail=True,
+        methods=["get"],
+        url_path="run_time_validation",
+        serializer_class=serializers.JobSerializer,
+    )
+    def run_time_validation(self, request, pk=None):
+        """
+        Run-time validation including heavier pre-flight checks.
+
+        Like validation/ but also runs expensive checks that plugins
+        define in runTimeValidity() (e.g. monomer dictionary coverage).
+        Called by the run-confirmation dialog, not on every parameter edit.
+
+        Example:
+            GET /api/jobs/123/run_time_validation/
+        """
+        try:
+            the_job = models.Job.objects.get(id=pk)
+
+            from ..lib.utils.jobs.validate import validate_job_run_time
+
+            result = validate_job_run_time(the_job)
+
+            if result.success:
+                error_etree = result.data
+                stack_elements = error_etree.findall(".//stack")
+                for stack_element in stack_elements:
+                    parent = error_etree.find(f".//*[stack='{stack_element}']/..")
+                    if parent is not None:
+                        parent.remove(stack_element)
+
+                ET.indent(error_etree, " ")
+                return api_success({"xml": ET.tostring(error_etree).decode("utf-8")})
+            else:
+                return api_error(result.error, status=400, details=result.error_details)
+
+        except models.Job.DoesNotExist as err:
+            logger.exception("Failed to retrieve job with id %s", pk, exc_info=err)
+            return api_error(f"Job not found: {str(err)}", status=404)
+        except Exception as err:
+            logger.exception(
+                "Unexpected error in run-time validation for job %s", pk, exc_info=err
+            )
+            return api_error(f"Unexpected error: {str(err)}", status=500)
+
+    @action(
+        detail=True,
         methods=["post"],
         serializer_class=serializers.JobSerializer,
     )

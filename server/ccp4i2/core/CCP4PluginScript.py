@@ -631,11 +631,11 @@ class CPluginScript(CData):
         Returns:
             Status code (SUCCEEDED, FAILED, or RUNNING)
         """
-        # Validate input data using validity() which allows plugins to adjust
-        # qualifiers for embedded wrappers before checkInputData() runs
-        # (e.g., servalcat_pipe sets allowUndefined on metalCoordWrapper.inputData.XYZIN)
+        # Validate input data using runTimeValidity() which includes both the
+        # cheap container checks (validity()) and any heavier pre-flight checks
+        # that plugins may define (e.g. monomer dictionary coverage).
         try:
-            error = self.validity()
+            error = self.runTimeValidity()
             if error:
                 self.errorReport.extend(error)
                 if error.maxSeverity() >= 4:  # ERROR level
@@ -643,14 +643,14 @@ class CPluginScript(CData):
                     self.reportStatus(self.FAILED)
                     return self.FAILED
         except Exception as e:
-            # Catch Python exceptions in validity() and add to error report
+            # Catch Python exceptions in runTimeValidity() and add to error report
             import traceback
             tb_str = ''.join(traceback.format_exception(type(e), e, e.__traceback__))
             self.errorReport.append(
                 klass=self.__class__.__name__,
                 code=998,
-                details=f'Python exception in validity(): {type(e).__name__}: {str(e)}\n\n{tb_str}',
-                name='validity',
+                details=f'Python exception in runTimeValidity(): {type(e).__name__}: {str(e)}\n\n{tb_str}',
+                name='runTimeValidity',
                 severity=4  # ERROR
             )
             self.reportStatus(self.FAILED)
@@ -1002,6 +1002,21 @@ class CPluginScript(CData):
 
         return error
 
+    def runTimeValidity(self) -> CErrorReport:
+        """
+        Pre-flight validation run once before job execution.
+
+        Called by process() immediately before execution, and by the
+        run-confirmation endpoint.  The base implementation delegates to
+        validity(); plugins may override this to add heavier checks
+        (e.g. monomer dictionary coverage) that would be too expensive
+        to run on every parameter-editing poll.
+
+        Returns:
+            CErrorReport containing all validation errors/warnings
+        """
+        return self.validity()
+
     def validity_as_xml(self):
         """
         Validate the plugin's container and return an XML Element.
@@ -1019,15 +1034,15 @@ class CPluginScript(CData):
             >>> error_xml = plugin.validity_as_xml()
             >>> xml_str = ET.tostring(error_xml, encoding='unicode')
         """
+        return self._error_report_to_xml(self.validity())
+
+    def _error_report_to_xml(self, error_report):
+        """Convert a CErrorReport to an XML Element tree."""
         from xml.etree import ElementTree as ET
         from ccp4i2.core import CCP4ErrorHandling
 
-        error_report = self.validity()
-
-        # Convert CErrorReport to XML
         element = ET.Element("errorReportList")
 
-        # Mapping from severity codes to text
         SEVERITY_TEXT = {
             CCP4ErrorHandling.SEVERITY_OK: "OK",
             CCP4ErrorHandling.SEVERITY_UNDEFINED: "UNDEFINED",
@@ -1058,7 +1073,6 @@ class CPluginScript(CData):
                 e.text = SEVERITY_TEXT.get(severity, f"UNKNOWN({severity})")
                 ele.append(e)
 
-                # Add objectPath from 'name' field (which contains the object path)
                 if item.get("name"):
                     e = ET.Element("objectPath")
                     e.text = item["name"]
@@ -1070,6 +1084,18 @@ class CPluginScript(CData):
 
         ET.indent(element, " ")
         return element
+
+    def runTimeValidity_as_xml(self):
+        """
+        Run runTimeValidity() and return the result as XML.
+
+        Used by the run-confirmation endpoint to get pre-flight
+        validation including heavier checks.
+
+        Returns:
+            xml.etree.ElementTree.Element: Root element 'errorReportList'
+        """
+        return self._error_report_to_xml(self.runTimeValidity())
 
     def checkOutputData(self) -> CErrorReport:
         """
@@ -2448,9 +2474,11 @@ class CPluginScript(CData):
                                  f"molecule): {', '.join(sorted(collision_codes))}")
 
         detail = '\n'.join(lines)
+        task_name = getattr(self, 'TASKNAME', self.__class__.__name__)
         self.appendErrorReport(
             350,
             f"Monomer coverage check failed:\n{detail}",
+            name=f"{task_name}.container",
             severity=SEVERITY_ERROR,
         )
         return self.FAILED
@@ -4195,5 +4223,6 @@ class CPluginScript(CData):
             klass=cls.__name__,
             code=code,
             details=details,
+            name=name,
             severity=severity
         )

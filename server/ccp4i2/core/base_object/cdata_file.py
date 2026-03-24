@@ -1498,16 +1498,8 @@ class CDataFile(CData):
                 name=obj_path,
                 severity=SEVERITY_ERROR
             )
-        elif allow_undefined is True and not has_path:
-            # Optional file not set - add WARNING to draw user's attention in GUI
-            obj_path = self.object_path()
-            report.append(
-                klass=self.__class__.__name__,
-                code=103,
-                details=f'Optional input file not set: {obj_path}',
-                name=obj_path,
-                severity=SEVERITY_WARNING
-            )
+        # Note: optional files (allowUndefined=True) that are not set
+        # are silently accepted — no warning needed for the expected default.
 
         # Check mustExist
         # If mustExist=True and path is set, file must exist

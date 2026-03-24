@@ -3,6 +3,7 @@ import pathlib
 from lxml import etree
 
 from ccp4i2.core import CCP4ErrorHandling, CCP4Modules
+from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -17,7 +18,25 @@ class refmac(CPluginScript):
                     203:  {'description': 'New library created', 'severity':CCP4ErrorHandling.SEVERITY_WARNING},
                     204:  {'description': 'Program completed without generating XMLOUT.' },
                     }
-    
+
+    def runTimeValidity(self):
+        """Pre-flight validation including monomer dictionary coverage."""
+        error = super(refmac, self).runTimeValidity()
+        if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+            return error
+        xyzin = self.container.inputData.XYZIN
+        if xyzin.isSet():
+            xyzin_path = str(xyzin.fullPath)
+            dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
+                          if d.isSet()]
+            saved = self.errorReport
+            self.errorReport = CErrorReport()
+            self.checkMonomeCoverage(xyzin_path, dict_paths)
+            if self.errorReport:
+                error.extend(self.errorReport)
+            self.errorReport = saved
+        return error
+
     def __init__(self,*args, **kwargs):
         super().__init__(*args, **kwargs)
         self.xmlroot = etree.Element('REFMAC')
@@ -106,13 +125,6 @@ class refmac(CPluginScript):
 
         #Create DICT by merging dictionaries in DICT_LIST
         rv = self.joinDicts(self.container.outputData.DICT, self.container.inputData.DICT_LIST)
-
-        # Pre-flight: check that dictionaries cover all residues at atom level
-        dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
-                      if d.isSet()]
-        rv = self.checkMonomeCoverage(self.inputCoordPath, dict_paths)
-        if rv != CPluginScript.SUCCEEDED:
-            return CPluginScript.FAILED
 
         #Include FreeRflag if called for
         if self.container.inputData.FREERFLAG.isSet():
