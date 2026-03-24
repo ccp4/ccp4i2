@@ -1,10 +1,11 @@
 """
 Report action elements.
 
-Help, Launch, CopyToClipboard, CopyUrlToClipboard, Download, LaunchTask.
+Help, Launch, CopyToClipboard, CopyUrlToClipboard, Download, LaunchTask, FileLink.
 
 These elements represent interactive actions that appear in reports —
-buttons for launching viewers, downloading data, or copying information.
+buttons for launching viewers, downloading data, copying information,
+or linking to files in the job directory.
 """
 
 from __future__ import annotations
@@ -185,3 +186,64 @@ class LaunchTask:
         self.taskName = kw.get('taskName', self.taskName)
         self.label = kw.get('label', self.label)
         self.ccp4_data_id = kw.get('ccp4_data_id', self.ccp4_data_id)
+
+
+class FileLink:
+    """Clickable link to a file in the job directory hierarchy.
+
+    Used by reports to offer inspection of log files, HTML reports, etc.
+    The frontend renders this as a button that either opens the file in
+    the Monaco preview dialog (text/log files) or in a new browser tab
+    (HTML reports).
+
+    Attributes:
+        label: Display text for the link (e.g. "Show Pointless logfile")
+        relativePath: Path relative to the job directory (e.g. "job_1/log.txt")
+        fileType: "text" for Monaco preview, "html" for browser tab
+        projectId: Project integer PK (for constructing project_file URL)
+        jobId: Job UUID string
+    """
+
+    counter: int = 0
+
+    def __init__(
+        self,
+        config: etree.Element | None = None,
+        xmlnode: etree.Element | None = None,
+        jobInfo: dict[str, Any] | None = None,
+        **kw: Any,
+    ) -> None:
+        if jobInfo is None:
+            jobInfo = {}
+        FileLink.counter += 1
+        self.id: str | None = kw.get('id', None)
+        self.internalId: str = kw.get(
+            'internalId', f'FileLink_{FileLink.counter}')
+        self.label: str | None = kw.get('label', None)
+        self.relativePath: str | None = kw.get('relativePath', None)
+        self.fileType: str = kw.get('fileType', 'text')
+        self.projectId: str | None = kw.get('projectId', None)
+        self.jobId: str | None = jobInfo.get('jobid', None)
+
+        if config is not None:
+            self.label = config.get('label', self.label)
+            self.relativePath = config.get('relativePath', self.relativePath)
+            self.fileType = config.get('fileType', self.fileType)
+            self.projectId = config.get('projectId', self.projectId)
+
+    def as_data_etree(self) -> etree.Element:
+        """Serialise to XML for the React frontend."""
+        root = etree.Element(
+            'CCP4i2ReportFileLink',
+            key=self.internalId,
+        )
+        if self.label is not None:
+            root.set('label', self.label)
+        if self.relativePath is not None:
+            root.set('relativePath', self.relativePath)
+        root.set('fileType', self.fileType)
+        if self.projectId is not None:
+            root.set('projectId', str(self.projectId))
+        if self.jobId is not None:
+            root.set('jobId', str(self.jobId))
+        return root

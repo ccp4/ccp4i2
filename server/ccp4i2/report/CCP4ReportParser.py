@@ -92,6 +92,7 @@ from ccp4i2.report.actions import (  # noqa: F401
     CopyToClipboard,
     CopyUrlToClipboard,
     Download,
+    FileLink,
     Help,
     Launch,
     LaunchTask,

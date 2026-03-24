@@ -1,79 +1,53 @@
 
 import os
 
-from ccp4i2.report.CCP4ReportParser import GenericElement
+from ccp4i2.report.actions import FileLink
 
 
 # - - - - - - - - - - - - - - - - -
 def displayFile(fileroot, parent, filenames, text, projectid=None, jobNumber=None):
-  ''' display message with link to open file
+  '''Display a FileLink for the first matching file.
+
   fileroot   root of file names, None if not set
   parent     where to put it
   filenames  list of possible names
   text       to display
   '''
-  p = GenericElement('p')
-  filefound = False
-  fnames = filenames
-
-  print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%")
-  print(fileroot, parent, filenames, text, projectid, jobNumber)
-  print("%%%%%%%")
-  
-  if fileroot == None:
+  if fileroot is None:
       fileroot = ""
-  
-  if fileroot != None:
-    # prpend fileroot on list
-    #print 'fileroot', fileroot
-    fnames = []
-    for filename in filenames:
-      os.path.isfile(fileroot+filename)
-      filefound = True
-      break
 
-  if filefound:
-    if len(filename.split('/')) > 1:
-        subJobNumber = filename.split('/')[0][4:]
-        try:
-          if "." in jobNumber:
-            jobNumber = jobNumber.split(".")[0]
-          href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename.split('/')[1]+"?jobNumber="+jobNumber+"?subJobNumber="+subJobNumber
-        except Exception as err:
-          href = "about:blank"
-    else:
-        href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename+"?jobNumber="+jobnumber
-    p.append(GenericElement('a',text,href=href))
-    parent.append(p)
+  for filename in filenames:
+    if os.path.isfile(fileroot + filename):
+      parent.addFileLink(
+          label=text.strip(),
+          relativePath=filename,
+          fileType='text',
+      )
+      break
 
 # - - - - - - - - - - - - - - - - -
 def displayFileList(fileroot, parent, items, box=True, projectid=None, jobNumber=None):
-  ''' display message with link to open file
+  '''Display FileLink buttons for each file that exists.
+
   fileroot   root of file names, None if not set
   parent     where to put it
   items      list of [filename, text]
   '''
-
-  fileDiv = parent.addDiv(style="width:80%;display:flex")
-
-  if fileroot == None:
+  if fileroot is None:
       fileroot = ""
+
+  linkDiv = parent.addDiv(style="width:80%;display:flex;gap:8px;flex-wrap:wrap")
 
   for item in items:
     filename = item[0]
     text = item[1]
 
-    if os.path.isfile(fileroot+filename):
-      nextDiv = fileDiv.addDiv(
-        style="width:25%;border: 2px solid blue; text-align:center; margin:3px; padding:6px;display:inline-block;")
-      p = GenericElement('p')
-      if len(filename.split('/')) > 1:
-          subJobNumber = filename.split('/')[0][4:]
-          href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename.split('/')[1]+"?jobNumber="+jobNumber+"?subJobNumber="+subJobNumber
-      else:
-          href = "/database/?getProjectJobFile?projectId="+projectid+"?fileName="+filename+"?jobNumber="+jobnumber
-      p.append(GenericElement('a',text,href=href))
-      nextDiv.append(p)
+    if os.path.isfile(fileroot + filename):
+      linkDiv.addFileLink(
+          label=text.strip(),
+          relativePath=filename,
+          fileType='text',
+      )
 
 # - - - - - - - - - - - - - - - - -
 def colourText(text, colour, fontsize=None, fontstyle=None, style=None):

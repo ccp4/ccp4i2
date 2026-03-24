@@ -59,8 +59,6 @@ class xia2_ssx_reduce_report(Report):
         xia2SsxReduceErrorNode = None
         if len(self.xmlnode.findall("Xia2SsxReduceError"))>0:
             xia2SsxReduceErrorNode = self.xmlnode.findall("Xia2SsxReduceError")[0]
-        projectid = self.jobInfo.get("projectid", None)
-        jobNumber = self.jobInfo.get("jobnumber", None)
         xia2SsxReduceHtml = os.path.normpath(
             os.path.join(self.jobInfo["fileroot"], "LogFiles", "dials.merge.html") # MM
         )
@@ -70,21 +68,13 @@ class xia2_ssx_reduce_report(Report):
         if os.path.exists(xia2SsxReduceHtml):
             create_I2Html(xia2SsxReduceHtml, xia2SsxReduceI2Html)
         if os.path.exists(xia2SsxReduceI2Html):
-            xia2SsxReduceUrl = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName=dials.merge-i2.html?jobNumber="
-                + jobNumber
-            )
             xia2SsxReduceHtmlFold = parent.addFold(
                 label="xia2.ssx_reduce report", initiallyOpen=True
             )
-            xia2SsxReduceHtmlFold.append(
-                '<span style="font-size:110%">Click on the '
-                "following link to display the dials.merge.html report </span>"
-            )
-            xia2SsxReduceHtmlFold.append(
-                '<a href="{0}">Open Results</a>'.format(xia2SsxReduceUrl)
+            xia2SsxReduceHtmlFold.addFileLink(
+                label='Open dials.merge.html report',
+                relativePath='dials.merge-i2.html',
+                fileType='html',
             )
 
         # Link to dials.cosym.html or dials.cosym.0.html if exists
@@ -105,21 +95,13 @@ class xia2_ssx_reduce_report(Report):
             )
             create_I2Html(DialsCosymHtml, DialsCosymI2Html)
             if os.path.exists(DialsCosymI2Html):
-                DialsCosymUrl = (
-                    "/database/?getProjectJobFile?projectId="
-                    + projectid
-                    + "?fileName=dials.cosym-i2.html?jobNumber="
-                    + jobNumber
-                )
                 DialsCosymHtmlFold = parent.addFold(
                     label="dials.cosym report", initiallyOpen=True
                 )
-                DialsCosymHtmlFold.append(
-                    '<span style="font-size:110%">Click on the '
-                    "following link to display the dials.cosym.html report </span>"
-                )
-                DialsCosymHtmlFold.append(
-                    '<a href="{0}">Open Results</a>'.format(DialsCosymUrl)
+                DialsCosymHtmlFold.addFileLink(
+                    label='Open dials.cosym.html report',
+                    relativePath='dials.cosym-i2.html',
+                    fileType='html',
                 )
 
         # When error occured
@@ -179,7 +161,6 @@ class xia2_ssx_reduce_report(Report):
 
         # dials.cosym_reindex log
         DialsCosymLogNodeParent = self.xmlnode.findall("DialsCosymLog")
-        print(str(DialsCosymLogNodeParent))
         if DialsCosymLogNodeParent != []:
             DialsCosymLogNode = self.xmlnode.findall("DialsCosymLog")[0]
             if DialsCosymLogNode is not None:

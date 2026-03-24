@@ -31,22 +31,22 @@ class dui_report(Report):
         else:
             useDialsDir = os.path.join(self.jobInfo['fileroot'], "dui_files")
         self.ReadDuiFileListFromJson(useDialsDir)
-        projectid = self.jobInfo.get("projectid", None)
         for mfile in self.DUI_Outputlist:
             # mfile[0] is the mtz file path, [1] the html report.
             rfilepath = mfile[1].get('report') # is the dict.
-            jobNumber = os.path.basename(os.path.dirname(rfilepath))[4:]
-            rfileurl = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName="+os.path.basename(rfilepath)+"?jobNumber="
-                + jobNumber
-            )
+            # Build relative path from job directory to the report file
+            try:
+                relPath = os.path.relpath(rfilepath, self.jobInfo['fileroot'])
+            except (ValueError, TypeError):
+                relPath = os.path.basename(rfilepath)
             xia2HtmlFold.append('<br></br>')
             xia2HtmlFold.append('<span style="font-size:100%">Report for the integration stage of '
                                     + '<b>' + os.path.split(mfile[0])[1] + '</b>' + '</span>')
-            xia2HtmlFold.append('<br></br>')
-            xia2HtmlFold.append('<a href="{0}">Open Results</a>'.format(rfileurl))
+            xia2HtmlFold.addFileLink(
+                label='Open Results',
+                relativePath=relPath,
+                fileType='html',
+            )
 
     def ReadDuiFileListFromJson(self, useDialsDir=None):
         if not useDialsDir:

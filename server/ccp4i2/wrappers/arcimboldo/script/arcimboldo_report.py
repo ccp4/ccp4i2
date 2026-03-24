@@ -63,18 +63,14 @@ class arcimboldo_report ( Report ) :
 						htmlText += '<p style=\"color:green\"><b>It seems you have a good solution! (Final CC: {0}%)</b></p>'.format(finalcc)
 			except:
 				pass
-		if os.path.exists(resultsHtml):
-			projectid = self.jobInfo.get("projectid", None)
-			jobNumber = self.jobInfo.get("jobnumber", None)
-
-			arcimboldourl = "/database/?getProjectJobFile?projectId=" + projectid + "?fileName="+os.path.basename(resultsHtml)+"?jobNumber=" + jobNumber
-			htmlText += '<p><b>Click on the following link to display the arcimboldo report in a browser: '
-			if status == 'running':
-				htmlText += '<a href="{0}">ARCIMBOLDO results</a> (Last modified: {1}) </b></p>'.format(resultsHtml, time.ctime(os.path.getmtime(resultsHtml)))
-			else:
-				htmlText += '<a href="{0}">ARCIMBOLDO results</a> (Last modified: {1}) </b></p>'.format(arcimboldourl, time.ctime(os.path.getmtime(resultsHtml)))
 		htmlText += '</div>'
 		parent.append(htmlText)
+		if os.path.exists(resultsHtml):
+			parent.addFileLink(
+				label='ARCIMBOLDO results (Last modified: {0})'.format(time.ctime(os.path.getmtime(resultsHtml))),
+				relativePath=os.path.basename(resultsHtml),
+				fileType='html',
+			)
 
 	def summaryReport(self, parent=None):
 		if parent is None:

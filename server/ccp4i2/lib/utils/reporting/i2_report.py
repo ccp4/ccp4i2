@@ -121,6 +121,7 @@ def _get_basic_job_info(job: Job) -> Dict[str, Any]:
         "fileroot": str(job.directory) + "/",
         "tasktitle": job.task_name,
         "jobid": str(job.uuid),
+        "project_pk": job.project.pk,
         "descendentjobs": _get_descendent_jobs(job),
     }
     # finishtime is required by CCP4ReportParser (JobDetails, JobLogFiles classes)
@@ -268,7 +269,7 @@ def _get_output_filenames(container: CContainer) -> Dict[str, Any]:
         return {
             key: _get_filename(container.outputData.find(key))
             for key in container.outputData.dataOrder()
-            if isinstance(container.outputData.find(key), CCP4File.CDataFile)
+            if isinstance(container.outputData.find(key), (CCP4File.CDataFile, CList))
         }
     return {}
 
@@ -387,8 +388,10 @@ def generate_job_report(job: Job) -> ET.Element:
     # Step 3: Find program output XML
     xml_path = _find_xml_file(job_directory, watch_file)
 
-    # If no XML found and no watched file, we can't generate a report
-    if xml_path is None and watch_file is None:
+    # If no XML found and no watched file, check whether the report even
+    # needs program XML.  Tasks like AUSPEX set USEPROGRAMXML = False.
+    uses_program_xml = getattr(report_class, 'USEPROGRAMXML', True)
+    if xml_path is None and watch_file is None and uses_program_xml:
         searched_files = ", ".join(XML_FILE_SEARCH_ORDER)
         logger.warning(
             "No program XML found in %s. Searched: %s", job_directory, searched_files

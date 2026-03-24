@@ -16,36 +16,27 @@ class privateer_report(Report):
   def __init__(self,xmlnode=None,jobInfo={},**kw):
     Report. __init__(self,xmlnode=xmlnode,jobInfo=jobInfo,cssVersion=self.CSS_VERSION,**kw)
 
-    projectid = self.jobInfo.get("projectid", None)
-    jobNumber = self.jobInfo.get("jobnumber", None)
-
-    imageFile = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName=pyranose_pseudorotational.svg?jobNumber="
-                + jobNumber
-            )
-    
     imageFileSrc = os.path.join(CCP4Utils.getCCP4I2Dir(), 'wrappers/privateer/script/pyranose_pseudorotational.svg' )
     imageFileJob = os.path.join(jobInfo['fileroot'],"pyranose_pseudorotational.svg")
     shutil.copyfile(imageFileSrc,imageFileJob)
 
-    background_pyranoses = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName=mercator_pyranoses.png?jobNumber="
-                + jobNumber
-            )
+    # Read the SVG content for inline embedding in the report
+    with open(imageFileJob, 'r') as f:
+        imageFileSvg = f.read()
+
     background_pyranosesSrc = os.path.join(CCP4Utils.getCCP4I2Dir(), 'wrappers/privateer/script/mercator_pyranoses.png' )
     background_pyranosesJob = os.path.join(jobInfo['fileroot'], 'mercator_pyranoses.png' )
     shutil.copyfile(background_pyranosesSrc,background_pyranosesJob)
+
+    # Background image referenced as a relative path for the FlotGraph renderer
+    background_pyranoses = 'mercator_pyranoses.png'
 
     results = self.addResults()
     results.append('The Cremer-Pople analysis (Cremer and Pople, 1975, JACS 97:1354-58) is used to determine sugar ring conformation. Below is a 2D plot of the conformational'+\
             ' parameters (Q, Phi, Theta for pyranoses; Q and Theta for furanoses) along with a depiction of the conformational sphere for pyranoses:')
 
 
-    htmlCode = '<img src="' + imageFile + '" alt="Diagram" style="width:250px; height:250px; margin-top:20px; margin-right: 30px; float:left;" />'
+    htmlCode = '<div style="width:250px; height:250px; margin-top:20px; margin-right: 30px; float:left;">' + imageFileSvg + '</div>'
     results.append(htmlCode)
 
     # What follows is an attempt to support a "traffic lights" representation system.

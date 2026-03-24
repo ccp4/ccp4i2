@@ -63,8 +63,11 @@ class prosmart_refmac_report(Report):
         if len(xmlNodes)>0:
             clearingDiv = self.addDiv(style="clear:both;")
             prosmartFold = self.addFold(label='Prosmart results',brief='Prosmart')
-            prosmartFold.append('<span style="font-size:110%">HTML Results will be displayed in browser </span>')
-            prosmartFold.append('<a href="job_1/ProSMART_Results.html">Open Results</a>')
+            prosmartFold.addFileLink(
+                label='Open ProSMART Results',
+                relativePath='job_1/ProSMART_Results.html',
+                fileType='html',
+            )
 
         #ERRORLINES if any
         errorLineNodes = xmlnode.findall('.//ErrorLine')

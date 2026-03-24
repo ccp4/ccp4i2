@@ -60,24 +60,13 @@ class xia2_multiplex_report(Report):
             new_html.writelines(new_lines)
 
         if os.path.exists(xia2MultiplexI2Html):
-            projectid = self.jobInfo.get("projectid", None)
-            jobNumber = self.jobInfo.get("jobnumber", None)
-
-            xia2MultiplexUrl = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName=xia2.multiplex-i2.html?jobNumber="
-                + jobNumber
-            )
             xia2MultiplexHtmlFold = parent.addFold(
                 label="xia2.multiplex report", initiallyOpen=True
             )
-            xia2MultiplexHtmlFold.append(
-                '<span style="font-size:110%">Click on the '
-                "following link to display the xia2.multiplex.html report </span>"
-            )
-            xia2MultiplexHtmlFold.append(
-                '<a href="{0}">Open Results</a>'.format(xia2MultiplexUrl)
+            xia2MultiplexHtmlFold.addFileLink(
+                label='Open xia2.multiplex.html report',
+                relativePath='xia2.multiplex-i2.html',
+                fileType='html',
             )
         if xia2MultiplexErrorNode is not None:
             parent.addText(

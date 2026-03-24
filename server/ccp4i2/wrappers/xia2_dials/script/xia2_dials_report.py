@@ -41,21 +41,12 @@ class xia2_dials_report(Report):
         xia2TxtNode = self.xmlnode.findall("Xia2Txt")[0]
         xia2html = os.path.normpath(os.path.join(self.jobInfo["fileroot"], "xia2.html"))
         if os.path.exists(xia2html):
-            projectid = self.jobInfo.get("projectid", None)
-            jobNumber = self.jobInfo.get("jobnumber", None)
-
-            xia2url = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName=xia2.html?jobNumber="
-                + jobNumber
-            )
             xia2HtmlFold = parent.addFold(label="xia2 report", initiallyOpen=True)
-            xia2HtmlFold.append(
-                '<span style="font-size:110%">Click on the '
-                "following link to display the xia2.html report </span>"
+            xia2HtmlFold.addFileLink(
+                label='Open xia2.html report',
+                relativePath='xia2.html',
+                fileType='html',
             )
-            xia2HtmlFold.append('<a href="{0}">Open Results</a>'.format(xia2url))
         if len(self.xmlnode.findall("Xia2Error"))>0:
             xia2ErrorNode = self.xmlnode.findall("Xia2Error")[0]
             parent.addText(

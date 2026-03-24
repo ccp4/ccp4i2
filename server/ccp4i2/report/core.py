@@ -347,6 +347,26 @@ class Container(ReportClass):
         from ccp4i2.report.actions import Download
         return self.addObjectOfClass(Download, xmlnode, jobInfo, **kw)
 
+    def addFileLink(self, label: str, relativePath: str, fileType: str = 'text', **kw: Any) -> Any:
+        """Add a clickable link to a file in the job directory.
+
+        Args:
+            label: Display text (e.g. "Show Pointless logfile")
+            relativePath: Path relative to job dir (e.g. "job_1/log.txt")
+            fileType: "text" for Monaco preview, "html" for browser tab
+        """
+        from ccp4i2.report.actions import FileLink
+        obj = FileLink(
+            jobInfo=self.jobInfo,
+            label=label,
+            relativePath=relativePath,
+            fileType=fileType,
+            projectId=kw.get('projectId', self.jobInfo.get('project_pk')),
+            **{k: v for k, v in kw.items() if k != 'projectId'},
+        )
+        self.children.append(obj)
+        return obj
+
     def addCopyToClipboard(
         self,
         xmlnode: etree.Element | None = None,

@@ -21,59 +21,38 @@ class AUSPEX_report(Report):
     def defaultReport(self, parent=None):
         if parent is None:
             parent = self
-        print(self.jobInfo)
-        for fname in self.jobInfo['filenames']['IM_OUT']:
-            print(fname)
         results = self.addResults()
+        fileroot = self.jobInfo.get('fileroot', '')
 
-        def imgToUrl(img):
-            projectid = self.jobInfo.get("projectid", None)
-            jobNumber = self.jobInfo.get("jobnumber", None)
+        # Map of plot filenames to their display labels
+        plot_labels = [
+            ("I_plot.png", "Plot of intensities against resolution"),
+            ("SigI_plot.png", "Plot of sigma (intensity) against resolution"),
+            ("ISigI_plot.png", "Plot of intensity / sigma against resolution"),
+            ("F_plot.png", "Plot of amplitudes against resolution"),
+            ("SigF_plot.png", "Plot of sigma (intensity) against resolution"),
+            ("FSigF_plot.png", "Plot of amplitude / sigma against resolution"),
+            ("score.png", "Plot of icefinder score and intensities vs resolution"),
+            ("intensities.png", "Plots for intensities"),
+            ("amplitudes.png", "Plots for amplitudes"),
+        ]
 
-            imgUrl = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName="+img+"?jobNumber="
-                + jobNumber
+        im_out = self.jobInfo.get('filenames', {}).get('IM_OUT', [])
+
+        found_any = False
+        for plot_name, label in plot_labels:
+            for img in im_out:
+                if not img or os.path.basename(img) != plot_name:
+                    continue
+                # Convert absolute path to relative (to job directory)
+                rel_path = os.path.relpath(img, fileroot) if fileroot else img
+                found_any = True
+                results.addFileLink(
+                    label=label,
+                    relativePath=rel_path,
+                    fileType='image',
                 )
-            return imgUrl
 
-        inst = "<h2>AUSPEX Plots</h2>"
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "I_plot.png":
-                inst += "<h3>Plot of intensities against resolution:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "SigI_plot.png":
-                inst += "<h3>Plot of sigma (intensity) against resolution:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "ISigI_plot.png":
-                inst += "<h3>Plot of intensity / sigma against resolution:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "F_plot.png":
-                inst += "<h3>Plot of amplitudes against resolution.</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:            
-            if os.path.basename(img) == "SigF_plot.png":
-                inst += "<h3>Plot of sigma (intensity) against resolution:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "FSigF_plot.png":
-                inst += "<h3>Plot of amplitude / sigma against resolution:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "score.png":
-                inst += "<h3>Plot of icefinder score and intensities vs resolution:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "intensities.png":
-                inst += "<h3>Plots for intensities:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        for img in self.jobInfo['filenames']['IM_OUT']:
-            if os.path.basename(img) == "amplitudes.png":
-                inst += "<h3>Plots for amplitudes:</h3>"
-                inst += "<img width=\"650px\" src=\"%s\"></img>"%(imgToUrl(img))
-        parent.append(inst)
+        if not found_any:
+            results.append("<p>No AUSPEX plot files found</p>")
 

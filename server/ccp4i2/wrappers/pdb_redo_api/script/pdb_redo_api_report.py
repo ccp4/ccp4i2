@@ -14,24 +14,21 @@ class pdb_redo_api_report(Report):
         )
 
         if jobStatus in ["Finished"]:
-            projectid = self.jobInfo.get("projectid", None)
-            jobNumber = self.jobInfo.get("jobnumber", None)
             jobId = self.jobInfo.get("jobid", None)
 
         #FIXME - Need to copy test-page.html into job directory.
 
             jobDirectory = CCP4Modules.PROJECTSMANAGER().jobDirectory(jobId = jobId)
-            shutil.copyfile(os.path.join(os.path.dirname(__file__),"test-page.html"),os.path.join(jobDirectory,self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html"))
+            resultsDir = self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text
+            shutil.copyfile(os.path.join(os.path.dirname(__file__),"test-page.html"),os.path.join(jobDirectory,resultsDir,"test-page.html"))
 
-            pdbredourl = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName="+os.path.join(self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"test-page.html")+"?jobNumber="
-                + jobNumber
-            )
-
-            iframe_style = "display: block;background: #000; margin: 10px; border: none;height: 100vh; width: 95vw;"
-            self.append('<iframe style="{1}" src="{0}"></iframe>'.format(pdbredourl,iframe_style))
+            testPagePath = os.path.join(jobDirectory, resultsDir, "test-page.html")
+            if os.path.isfile(testPagePath):
+                self.addFileLink(
+                    label='Open PDB-REDO Results',
+                    relativePath=os.path.join(resultsDir, "test-page.html"),
+                    fileType='html',
+                )
 
         self.addDiv(style="clear:both;")
         if jobStatus in ["Running", "Running remotely"]:
@@ -41,16 +38,6 @@ class pdb_redo_api_report(Report):
             else:
                 self.append("<p><b>PDB-REDO job is currently running. Results will appear here when the job finishes.</b></p>")
             return
-
-        htmlText = ""
-        projectid = self.jobInfo.get("projectid", None)
-        jobNumber = self.jobInfo.get("jobnumber", None)
-        
-        whatCheckFinalResultsHtml = os.path.normpath(os.path.join(self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"wf","index.html"))
-        watchCheckFinalUrl = "/database/?getProjectJobFile?projectId=" + projectid + "?fileName="+whatCheckFinalResultsHtml+"?jobNumber=" + jobNumber
-
-        whatCheckOriginalResultsHtml = os.path.normpath(os.path.join(self.xmlnode.findall('PDB_REDO_RESULTS_DIR')[0].text,"wo","index.html"))
-        watchCheckOriginalUrl = "/database/?getProjectJobFile?projectId=" + projectid + "?fileName="+whatCheckOriginalResultsHtml+"?jobNumber=" + jobNumber
 
         clearDiv = self.addDiv(style="width:100%;border-width: 1px; border-color: black; clear:both; margin:0px; padding:0px;")
 

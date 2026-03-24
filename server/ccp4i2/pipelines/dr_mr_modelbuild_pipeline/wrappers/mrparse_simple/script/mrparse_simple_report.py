@@ -25,24 +25,14 @@ class mrparse_simple_report(Report):
         parent.append("<p>Finished running MrParse</p>")
         basepath = self.jobInfo['fileroot']
         mrparse_rep = os.path.join(basepath, "mrparse_0", 'mrparse.html')
-        if os.path.exists(mrparse_rep):
-            projectid = self.jobInfo.get("projectid", None)
-            jobNumber = self.jobInfo.get("jobnumber", None)
-
-            mrparseurl = (
-                "/database/?getProjectJobFile?projectId="
-                + projectid
-                + "?fileName=mrparse_0/mrparse.html?jobNumber="
-                + jobNumber
-            )
 
         ResultsI2Folder = parent.addFold(label='MrParse Reports', initiallyOpen=True)
-        ResultsI2Folder.append('<br></br>')
-        ResultsI2Folder.append('<span style="font-size:110%">Click on the '
-                                    'following link to display the'
-                                    'browser report for the MrParse job '
-                                    '</span>')
-        ResultsI2Folder.append('<br></br>')
-        #ResultsI2Folder.append('<a href="{0}">Open Results</a>'.format(mrparseurl))
-        ResultsI2Folder.append('<a href="{0}">Open Results</a>'.format(mrparse_rep))
+        if os.path.exists(mrparse_rep):
+            ResultsI2Folder.addFileLink(
+                label='Open MrParse Results',
+                relativePath='mrparse_0/mrparse.html',
+                fileType='html',
+            )
+        else:
+            ResultsI2Folder.append('<p>MrParse report not found</p>')
         return

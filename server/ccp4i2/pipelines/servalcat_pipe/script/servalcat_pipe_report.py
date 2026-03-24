@@ -89,18 +89,18 @@ class servalcat_pipe_report(Report):
         possibleProsmartFile1 = os.path.normpath(os.path.join(self.jobInfo["fileroot"], "job_1", "ProSMART_Results.html"))
         possibleProsmartFile2 = os.path.normpath(os.path.join(self.jobInfo["fileroot"], "job_2", "ProSMART_Results.html"))
         if os.path.isfile(possibleProsmartFile1):
-            projectid = self.jobInfo.get("projectid", None)
-            jobNumber = self.jobInfo.get("jobnumber", None)
-            possibleProsmartFile1i2Html = \
-                "/database/?getProjectJobFile?projectId=" + projectid + "?fileName=ProSMART_Results.html?jobNumber=" + jobNumber + ".1"
             prosmartFold = self.addFold(label='ProSMART results', initiallyOpen=True, brief='Prosmart')
-            prosmartFold.append('<span style="font-size:110%">HTML Results will be displayed in browser. </span>')
-            prosmartFold.append(f'<a href="{possibleProsmartFile1i2Html}">Open Results</a>')
+            prosmartFold.addFileLink(
+                label='Open ProSMART Results',
+                relativePath='job_1/ProSMART_Results.html',
+                fileType='html',
+            )
             if os.path.isfile(possibleProsmartFile2):
-                possibleProsmartFile1i2Html = \
-                    "/database/?getProjectJobFile?projectId=" + projectid + "?fileName=ProSMART_Results.html?jobNumber=" + jobNumber + ".2"
-                prosmartFold.append('<br /><span style="font-size:110%">HTML Results will be displayed in browser. </span>')
-                prosmartFold.append(f'<a href="{possibleProsmartFile1i2Html}">Open Results</a>')
+                prosmartFold.addFileLink(
+                    label='Open ProSMART Results (2)',
+                    relativePath='job_2/ProSMART_Results.html',
+                    fileType='html',
+                )
             clearingDiv = self.addDiv(style="clear:both;")
 
         if servalcatReportNode0 is not None and not self.jobStatus.lower().count('running'): # Report when job is finished
