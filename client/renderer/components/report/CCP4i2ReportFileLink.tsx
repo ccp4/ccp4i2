@@ -46,6 +46,10 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
     };
   }, [props.item]);
 
+  // For images, fetch via authenticated apiBlob and create a local blob URL.
+  // This avoids <img src> making unauthenticated browser requests.
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+
   const fileUrl = useMemo(() => {
     if (!projectId || !relativePath) return null;
     // Job files live under CCP4_JOBS/job_N/ inside the project directory.
@@ -90,9 +94,6 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
     }
   }, [fileUrl, fileType, relativePath, label, blobUrl, setContentSpecification]);
 
-  // For images, fetch via authenticated apiBlob and create a local blob URL.
-  // This avoids <img src> making unauthenticated browser requests.
-  const [blobUrl, setBlobUrl] = useState<string | null>(null);
   useEffect(() => {
     if (fileType !== "image" || !fileUrl) return;
     let revoked = false;
