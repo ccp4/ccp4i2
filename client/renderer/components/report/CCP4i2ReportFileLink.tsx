@@ -1,9 +1,10 @@
-import { useMemo, useCallback } from "react";
+import { useMemo, useCallback, useEffect, useState } from "react";
 import $ from "jquery";
 import { Box, Button, Typography } from "@mui/material";
 import { Description, OpenInNew } from "@mui/icons-material";
 import { CCP4i2ReportElementProps } from "./CCP4i2ReportElement";
 import { useFilePreviewContext } from "../../providers/file-preview-context";
+import { apiBlob } from "../../api-fetch";
 
 /**
  * Detect Monaco language from a filename extension.
@@ -88,6 +89,21 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
     }
   }, [fileUrl, fileType, relativePath, label, setContentSpecification]);
 
+  // For images, fetch via authenticated apiBlob and create a local blob URL.
+  // This avoids <img src> making unauthenticated browser requests.
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
+  useEffect(() => {
+    if (fileType !== "image" || !fileUrl) return;
+    let revoked = false;
+    apiBlob(fileUrl).then((blob) => {
+      if (!revoked) setBlobUrl(URL.createObjectURL(blob));
+    }).catch(() => {});
+    return () => {
+      revoked = true;
+      setBlobUrl((prev) => { if (prev) URL.revokeObjectURL(prev); return null; });
+    };
+  }, [fileUrl, fileType]);
+
   if (!fileUrl) return null;
 
   // Images render inline in the report
@@ -99,20 +115,24 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
             {label}
           </Typography>
         )}
-        <img
-          src={fileUrl}
-          alt={label}
-          onClick={handleClick}
-          style={{
-            maxWidth: "100%",
-            maxHeight: "500px",
-            objectFit: "contain",
-            cursor: "pointer",
-            border: "1px solid #e0e0e0",
-            borderRadius: "4px",
-          }}
-          title="Click to enlarge"
-        />
+        {blobUrl ? (
+          <img
+            src={blobUrl}
+            alt={label}
+            onClick={handleClick}
+            style={{
+              maxWidth: "100%",
+              maxHeight: "500px",
+              objectFit: "contain",
+              cursor: "pointer",
+              border: "1px solid #e0e0e0",
+              borderRadius: "4px",
+            }}
+            title="Click to enlarge"
+          />
+        ) : (
+          <Typography variant="body2" color="text.secondary">Loading image…</Typography>
+        )}
       </Box>
     );
   }
