@@ -9,7 +9,7 @@ from typing import Optional
 from pathlib import Path
 
 from ccp4i2.db.models import Job
-from ccp4i2.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
+from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
 from .get_plugin import get_job_plugin
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 from ccp4i2.lib.response import Result
@@ -68,7 +68,7 @@ def get_plugin_with_context(
                 "Creating dbHandler for job %s (project: %s)",
                 job.uuid, job.project.uuid
             )
-            dbHandler = CCP4i2DjangoDbHandler()
+            dbHandler = AsyncDatabaseHandler(project_uuid=job.project.uuid)
 
         # Get plugin instance (automatically loads params.xml or input_params.xml)
         logger.debug(

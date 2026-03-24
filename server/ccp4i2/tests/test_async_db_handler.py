@@ -124,31 +124,24 @@ class TestAsyncDatabaseHandlerDesign:
                 # Verify update_job_status was called for RUNNING
                 assert mock_update.call_count >= 1
 
-    def test_comparison_with_legacy_handler(self):
-        """
-        Document the API differences between old and new handlers.
-
-        This test serves as living documentation of the improvements.
-        """
-        # Legacy handler uses camelCase
-        from ccp4i2.db.ccp4i2_django_db_handler import CCP4i2DjangoDbHandler
-        legacy = CCP4i2DjangoDbHandler()
-
-        assert hasattr(legacy, 'createJob')  # camelCase
-        assert hasattr(legacy, 'updateJobStatus')  # camelCase
-
-        # New handler uses snake_case
+    def test_async_handler_api(self):
+        """Verify AsyncDatabaseHandler exposes both modern and legacy APIs."""
         from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
-        modern = AsyncDatabaseHandler(uuid.uuid4())
+        handler = AsyncDatabaseHandler(uuid.uuid4())
 
-        assert hasattr(modern, 'create_job')  # snake_case
-        assert hasattr(modern, 'update_job_status')  # snake_case
-        assert hasattr(modern, 'track_job')  # New feature: context manager!
+        # Modern snake_case API
+        assert hasattr(handler, 'create_job')
+        assert hasattr(handler, 'update_job_status')
+        assert hasattr(handler, 'track_job')
+        assert hasattr(handler, 'register_output_file')
+        assert hasattr(handler, 'register_input_file')
+        assert hasattr(handler, 'glean_job_files')
 
-        # New handler has additional capabilities
-        assert hasattr(modern, 'register_output_file')
-        assert hasattr(modern, 'register_input_file')
-        assert hasattr(modern, 'glean_job_files')
+        # Legacy camelCase wrappers (used by CPluginScript)
+        assert hasattr(handler, 'createSubJob')
+        assert hasattr(handler, 'updateJobStatus')
+        assert hasattr(handler, 'getProjectDirectory')
+        assert hasattr(handler, 'get_file_path_sync')
 
     def test_job_number_generation_logic(self):
         """
