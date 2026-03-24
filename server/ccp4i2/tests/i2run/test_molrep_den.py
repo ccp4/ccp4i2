@@ -1,15 +1,16 @@
 import gemmi
-from .utils import demoData, i2run
+from .urls import redo_mtz
+from .utils import demoData, download, i2run
 
 
-def test_gamma_patterson():
-    """Test molrep density-mode (Patterson) search with gamma data."""
-    args = ["molrep_den"]
-    args += ["--F_SIGF", demoData("gamma", "gamma_native.mtz")]
-    args += ["--XYZIN", demoData("gamma", "gamma_model.pdb")]
-    args += ["--PERFORM", "pat"]
-    with i2run(args) as job:
-        xyzout = job / "XYZOUT.pdb"
-        assert xyzout.exists(), f"No XYZOUT: {list(job.iterdir())}"
-        st = gemmi.read_structure(str(xyzout))
-        assert len(st[0]) > 0
+def test_gamma_density():
+    """Test molrep density-mode search with PDB-REDO map coefficients."""
+    with download(redo_mtz("1gyv")) as redo:
+        args = ["molrep_den"]
+        args += ["--F_PHI_MAP", f"fullPath={redo}", "columnLabels=/*/*/[FWT,PHWT]"]
+        args += ["--XYZIN", demoData("gamma", "gamma_model.pdb")]
+        with i2run(args) as job:
+            xyzout = job / "XYZOUT.pdb"
+            assert xyzout.exists(), f"No XYZOUT: {list(job.iterdir())}"
+            st = gemmi.read_structure(str(xyzout))
+            assert len(st[0]) > 0
