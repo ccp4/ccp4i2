@@ -63,7 +63,6 @@ def test_8xfm(cif8xfm, mtz8xfm):
         args += ["--F_SIGF", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FP,SIGFP]"]
         args += ["--FREERFLAG", f"fullPath={mtz8xfm}", "columnLabels=/*/*/[FREE]"]
         args += ["--REFERENCE_MODEL", f"{cif2AC3}"]
-        args += ["--CPU", "12"]   # 
         with i2run(args) as job:
             # assert hasLongLigandName(job / "CIFFILE.pdb")
             _check_output(job)
