@@ -5,7 +5,6 @@ import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import { useFreeRWarning } from "../../../providers/run-check-provider";
 import { InlineField } from "../task-elements/inline-field";
 
 /**
@@ -17,22 +16,10 @@ import { InlineField } from "../task-elements/inline-field";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, fetchDigest, createPeerTask, validation } = useJob(
-    job.id
-  );
+  const { useTaskItem, fetchDigest } = useJob(job.id);
 
   // --- Input data items ---
   const { item: F_SIGFItem } = useTaskItem("inputData.F_SIGF");
-  const { value: freeRFlag } = useTaskItem("inputData.FREERFLAG");
-
-  // Free R flag validation warning
-  useFreeRWarning({
-    job,
-    taskName: "molrep_pipe",
-    freeRFlag,
-    validation,
-    createPeerTask,
-  });
 
   // --- Values for conditional visibility ---
   const { value: sgOptions } = useTaskItem("controlParameters.SG_OPTIONS");

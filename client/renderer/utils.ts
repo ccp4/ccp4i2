@@ -10,7 +10,6 @@ import {
   Project,
   File as DjangoFile,
 } from "./types/models";
-import { useRunCheck } from "./providers/run-check-provider";
 import { apiJson, apiPost, apiText } from "./api-fetch";
 import { useIsJobEffectivelyActive } from "./providers/recently-started-jobs-context";
 import { patchContainer } from "./utils/container-patch";
@@ -931,23 +930,12 @@ export const useJob = (jobId: number | null | undefined): JobData => {
       endpoint: "params_xml",
     });
 
-  const { processedErrors, setProcessedErrors } = useRunCheck();
-
   // Get mutateValidation from useSWR
   const { data: validation, mutate: mutateValidation } = api.get_validation({
     type: "jobs",
     id: jobId,
     endpoint: "validation",
   });
-
-  // Decorate mutateValidation so it always resets processed errors
-  const mutateValidationWithProcessedErrors = useCallback(
-    async (...args: any[]) => {
-      setProcessedErrors(null);
-      return mutateValidation(...args);
-    },
-    [mutateValidation, setProcessedErrors]
-  );
 
   // Only fetch diagnostic_xml for jobs that have run (status > 1)
   // Status 1 = PENDING, Status > 1 = has run or is running
@@ -995,8 +983,6 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             `jobs/${job.id}/set_parameter`,
             setParameterArg
           );
-          setProcessedErrors(null);
-
           // Patch the container cache locally instead of full refetch.
           // Note: SWR's mutate with function updater + revalidate:false may not
           // reliably trigger re-renders in all subscriber components. Task interfaces
@@ -1020,7 +1006,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       });
     },
-    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors, mutateContainer]
+    [job, mutateValidation, mutateParams_xml, api, mutateContainer]
   );
 
   const setParameterNoMutate = useCallback(
@@ -1100,8 +1086,6 @@ export const useJob = (jobId: number | null | undefined): JobData => {
             formData
           );
 
-          setProcessedErrors(null);
-
           // Patch the container cache locally, then revalidate for re-render
           if (result.success && result.data?.updated_item) {
             await mutateContainer(
@@ -1128,7 +1112,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
         }
       }) as Promise<UploadFileParamResponse | undefined>;
     },
-    [job, mutateValidation, mutateParams_xml, api, setProcessedErrors, mutateContainer]
+    [job, mutateValidation, mutateParams_xml, api, mutateContainer]
   );
 
   const useTaskItem = useMemo(() => {
@@ -1421,19 +1405,16 @@ export const useJob = (jobId: number | null | undefined): JobData => {
 
   const getValidationColor = useMemo(() => {
     return (item: any): string => {
-      const fieldErrors = extractValidationErrors(
-        item,
-        processedErrors || validation || {}
-      );
+      const fieldErrors = extractValidationErrors(item, validation || {});
       return determineValidationColor(fieldErrors);
     };
-  }, [processedErrors, validation]);
+  }, [validation]);
 
   const getErrors = useMemo(() => {
     return (item: any): ValidationError[] => {
-      return extractValidationErrors(item, processedErrors || validation || {});
+      return extractValidationErrors(item, validation || {});
     };
-  }, [processedErrors, validation]);
+  }, [validation]);
 
   const fileItemToParameterArg = useCallback(
     (
@@ -1513,7 +1494,7 @@ export const useJob = (jobId: number | null | undefined): JobData => {
     params_xml,
     mutateParams_xml,
     validation,
-    mutateValidation: mutateValidationWithProcessedErrors, // use the decorated version
+    mutateValidation,
     diagnostic_xml,
     mutateDiagnosticXml,
     def_xml,

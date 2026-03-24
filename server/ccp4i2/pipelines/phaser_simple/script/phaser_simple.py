@@ -46,6 +46,19 @@ class phaser_simple(phaser_pipeline.phaser_pipeline):
                 severity=err.get('severity', 0)
             )
 
+        # When COMP_BY is ASU, ASUFILE is required
+        comp_by = getattr(self.container.inputData, 'COMP_BY', None)
+        asufile = getattr(self.container.inputData, 'ASUFILE', None)
+        if comp_by is not None and str(comp_by) == 'ASU':
+            if asufile is not None and not asufile.isSet():
+                filtered.append(
+                    klass='phaser_simple', code=200,
+                    details='ASU content file is required when specifying '
+                            'scattering content by ASU file',
+                    name='phaser_simple.container.inputData.ASUFILE',
+                    severity=CCP4ErrorHandling.SEVERITY_ERROR,
+                )
+
         return filtered
 
     def createEnsembleElements(self):

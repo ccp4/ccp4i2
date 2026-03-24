@@ -22,7 +22,6 @@ import {
   KeyboardArrowUp,
 } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
-import { useRunCheck } from "../providers/run-check-provider";
 import { useJob } from "../utils";
 import { Job } from "../types/models";
 import { useCCP4i2Window } from "../app-context";

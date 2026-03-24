@@ -3,7 +3,6 @@ import { Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
 import { useJob } from "../../../../utils";
-import { useFreeRWarning } from "../../../../providers/run-check-provider";
 import { isTruthy } from "../../task-elements/shared-hooks";
 import { InputDataTab } from "./InputDataTab";
 import { ParameterisationTab } from "./ParameterisationTab";
@@ -14,22 +13,11 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const {
     useTaskItem,
-    createPeerTask,
-    validation,
     useFileDigest,
   } = useJob(job.id);
 
   // --- Reflection data ---
   const { item: HKLINItem, value: HKLINValue } = useTaskItem("HKLIN");
-  const { value: freeRFlag } = useTaskItem("FREERFLAG");
-
-  useFreeRWarning({
-    job,
-    taskName: "servalcat_pipe",
-    freeRFlag,
-    validation,
-    createPeerTask,
-  });
 
   // --- Values for visibility conditions ---
   const { value: dataMethod } = useTaskItem("DATA_METHOD");

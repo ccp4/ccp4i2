@@ -42,6 +42,17 @@ class prosmart_refmac(CPluginScript):
         self.xmlroot = etree.Element("RefmacOptimiseWeight")
         self.xmlroot2 = etree.Element("RefmacOptimiseWeight")
 
+    def validity(self):
+        error = super(prosmart_refmac, self).validity()
+        if not self.container.inputData.FREERFLAG.isSet():
+            error.append(
+                klass=self.TASKNAME, code=200,
+                details='Free R flag is strongly recommended for refinement',
+                name=f'{self.TASKNAME}.container.inputData.FREERFLAG',
+                severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+        return error
+
     def runTimeValidity(self):
         """Pre-flight validation including monomer dictionary coverage."""
         error = super(prosmart_refmac, self).runTimeValidity()

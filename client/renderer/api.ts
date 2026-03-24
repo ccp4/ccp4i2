@@ -137,11 +137,13 @@ function parseValidationXml(data: { xml: string } | null): ValidationErrors {
     }
 
     const severity = $(errorNode).find("severity").get(0)?.textContent;
-    if (severity?.includes("WARNING") && results[objectPath].maxSeverity < 1) {
-      results[objectPath].maxSeverity = 1;
-    }
-    if (severity?.includes("ERROR") && results[objectPath].maxSeverity < 2) {
+    if (severity === "ERROR" && results[objectPath].maxSeverity < 2) {
       results[objectPath].maxSeverity = 2;
+    } else if (
+      (severity === "WARNING" || severity === "UNDEFINED_ERROR") &&
+      results[objectPath].maxSeverity < 1
+    ) {
+      results[objectPath].maxSeverity = 1;
     }
 
     const description = $(errorNode).find("description").get(0)?.textContent;

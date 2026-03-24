@@ -257,3 +257,27 @@ class CCP4i2DjangoDbHandler:
         except Exception as err:
             logger.debug(f"Could not get project directory for {projectId}: {err}")
             return None
+
+    def get_file_path_sync(self, file_uuid):
+        """Get the full filesystem path for a file by its UUID.
+
+        Args:
+            file_uuid: uuid.UUID of the file record
+
+        Returns:
+            str: Absolute path to the file, or None if not found / doesn't exist
+        """
+        from pathlib import Path
+        try:
+            file_record = models.File.objects.get(uuid=file_uuid)
+            if not file_record.path:
+                return None
+            file_path = Path(file_record.path)
+            if not file_path.exists():
+                return None
+            return str(file_record.path)
+        except models.File.DoesNotExist:
+            return None
+        except Exception as e:
+            logger.debug(f"get_file_path_sync error: {e}")
+            return None

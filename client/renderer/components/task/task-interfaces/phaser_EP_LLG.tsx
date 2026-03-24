@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useMemo } from "react";
+import React, { useCallback, useMemo } from "react";
 import { Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "./task-container";
 import { CCP4i2TaskElement } from "../task-elements/task-element";
 import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useJob } from "../../../utils";
-import { useRunCheck } from "../../../providers/run-check-provider";
 
 /**
  * Task interface component for Phaser Experimental Phasing LLG (Log-Likelihood Gain) calculation.
@@ -19,11 +18,10 @@ import { useRunCheck } from "../../../providers/run-check-provider";
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, fetchDigest, validation } = useJob(job.id);
+  const { useTaskItem, fetchDigest } = useJob(job.id);
 
   // Get task items for file handling and parameter updates
   const { item: F_SIGFItem } = useTaskItem("F_SIGF");
-  const { value: XYZIN_PARTIALValue } = useTaskItem("XYZIN_PARTIAL");
   const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
 
   // Handle F_SIGF file change - extract wavelength from digest
@@ -46,8 +44,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     [useTaskItem]
   );
 
-  const { processedErrors, setProcessedErrors } = useRunCheck();
-
   // Visibility conditions (stable references)
   const visibility = useMemo(
     () => ({
@@ -58,33 +54,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     }),
     [taskValues]
   );
-
-  // Effect for error processing when XYZIN_PARTIAL changes
-  useEffect(() => {
-    if (!setProcessedErrors) return;
-
-    const errorKey = "phaser_EP_LLG.inputData.XYZIN_PARTIAL";
-    const hasError =
-      processedErrors && Object.keys(processedErrors).includes(errorKey);
-
-    if (XYZIN_PARTIALValue?.contentFlag === 2) {
-      // Add error if not already present
-      if (!hasError) {
-        setProcessedErrors({
-          ...validation,
-          [errorKey]: {
-            messages: ["Phaser apps can only work with PDB format"],
-            maxSeverity: 2,
-          },
-        });
-      }
-    } else if (hasError) {
-      // Remove error if it exists but shouldn't
-      const newErrors = { ...processedErrors };
-      delete newErrors[errorKey];
-      setProcessedErrors(newErrors);
-    }
-  }, [XYZIN_PARTIALValue?.contentFlag, validation, setProcessedErrors]);
 
   // Element configurations (stable reference)
   const elementConfigs = useMemo(

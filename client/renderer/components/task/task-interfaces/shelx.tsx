@@ -6,10 +6,6 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { FieldRow } from "../task-elements/field-row";
 import { useJob } from "../../../utils";
-import {
-  useRunCheck,
-  useSequenceWarning,
-} from "../../../providers/run-check-provider";
 
 const isTruthy = (val: any): boolean =>
   val === true || val === "True" || val === "true";
@@ -97,9 +93,8 @@ const ScatteringRow: React.FC<{
  */
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, callPluginMethod, fetchDigest, validation, createPeerTask } =
+  const { useTaskItem, callPluginMethod, fetchDigest } =
     useJob(job.id);
-  const { setProcessedErrors } = useRunCheck();
 
   // =========================================================================
   // useTaskItem hooks — all at top level (React rules)
@@ -235,36 +230,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     if (updates.length > 0) Promise.all(updates).catch(console.error);
     initDone.current = true;
   }, [job?.status, shelxcdeVal, useCombVal, shelxSeparVal, mbProgram]);
-
-  // =========================================================================
-  // Sequence warning
-  // =========================================================================
-  const { value: SEQIN } = useTaskItem("SEQIN");
-  useSequenceWarning({
-    job,
-    taskName: "shelx",
-    sequence: SEQIN,
-    validation,
-    createPeerTask,
-  });
-
-  // =========================================================================
-  // ATOM_TYPE validation
-  // =========================================================================
-  useEffect(() => {
-    if (!setProcessedErrors || !ATOM_TYPEItem?._objectPath) return;
-    if (!atomType || String(atomType).trim() === "") {
-      setProcessedErrors({
-        ...(validation || {}),
-        [ATOM_TYPEItem._objectPath]: {
-          maxSeverity: 2,
-          messages: ["ATOM_TYPE is required"],
-        },
-      });
-    } else {
-      setProcessedErrors(null);
-    }
-  }, [validation, setProcessedErrors, ATOM_TYPEItem?._objectPath, atomType]);
 
   // =========================================================================
   // Local toggle state (CBoolean pattern — immediate UI)

@@ -579,13 +579,18 @@ class CDataFile(CData):
 
             if db_file_id:
                 db_handler = self._get_db_handler()
+                # If no handler from parent chain (e.g. CList items), try ad-hoc
+                if not db_handler:
+                    plugin = self._find_plugin_parent()
+                    project_id = getattr(plugin, '_dbProjectId', None) if plugin else None
+                    if project_id:
+                        db_handler = self._create_adhoc_db_handler(project_id)
                 if db_handler:
                     try:
                         import uuid
                         file_uuid = uuid.UUID(str(db_file_id))
                         path = db_handler.get_file_path_sync(file_uuid)
                         if path:
-                            logger.debug(f"Retrieved path from database via dbFileId: {path}")
                             return path
                     except Exception as e:
                         logger.debug(f"Failed to retrieve path from database: {e}")
@@ -905,10 +910,18 @@ class CDataFile(CData):
             if hasattr(self, 'baseName'):
                 if hasattr(self.baseName, 'value'):
                     # baseName is a CData wrapper - check its value
-                    return self.baseName.value is not None and self.baseName.value != ""
+                    if self.baseName.value is not None and self.baseName.value != "":
+                        return True
                 else:
                     # baseName is a plain value
-                    return self.baseName is not None and self.baseName != ""
+                    if self.baseName is not None and self.baseName != "":
+                        return True
+            # Also check dbFileId — at validation time baseName may not be
+            # resolved yet, but dbFileId being set means a file is assigned.
+            if hasattr(self, 'dbFileId') and self.dbFileId is not None:
+                db_val = getattr(self.dbFileId, 'value', self.dbFileId)
+                if db_val is not None and db_val != "":
+                    return True
             # Fallback to legacy file_path
             if hasattr(self, 'file_path') and self.file_path is not None:
                 return self.file_path != ""

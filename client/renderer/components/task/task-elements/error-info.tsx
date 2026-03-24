@@ -350,8 +350,6 @@ const SimpleCard = memo<{
 SimpleCard.displayName = "SimpleCard";
 
 // Main error trigger component
-// Note: Not using memo() here because this component depends on processedErrors
-// from context (via useJob -> useRunCheck), which wouldn't trigger re-renders
 // if we memoized based only on props.
 export const ErrorTrigger: React.FC<ErrorTriggerProps> = ({ item, job }) => {
   const { setErrorInfoAnchor, setErrorInfoItem } = useTaskInterface();

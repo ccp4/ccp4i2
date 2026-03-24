@@ -3,7 +3,6 @@ import { Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
 import { useJob } from "../../../../utils";
-import { useFreeRWarning } from "../../../../providers/run-check-provider";
 import { InputDataTab } from "./InputDataTab";
 import { ParameterisationTab } from "./ParameterisationTab";
 import { RestraintsTab } from "./RestraintsTab";
@@ -12,20 +11,11 @@ import { AdvancedTab } from "./AdvancedTab";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
-  const { useTaskItem, fetchDigest, createPeerTask, validation, useFileDigest } =
+  const { useTaskItem, fetchDigest, useFileDigest } =
     useJob(job.id);
 
   // --- F_SIGF onChange: extract wavelength, set anomalous/twinning flags ---
   const { item: F_SIGFItem, value: F_SIGFValue } = useTaskItem("F_SIGF");
-  const { value: freeRFlag } = useTaskItem("FREERFLAG");
-
-  useFreeRWarning({
-    job,
-    taskName: "prosmart_refmac",
-    freeRFlag,
-    validation,
-    createPeerTask,
-  });
 
   const { forceUpdate: forceUpdateWAVELENGTH } = useTaskItem("WAVELENGTH");
   const { forceUpdate: forceUpdateUSEANOMALOUS } = useTaskItem("USEANOMALOUS");

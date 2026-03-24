@@ -4,7 +4,7 @@ import subprocess
 
 from lxml import etree
 
-from ccp4i2.core import CCP4Utils
+from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
@@ -19,6 +19,17 @@ class molrep_pipe(CPluginScript):
                         [ 'molrep_mr%*/molrep_mtz.cif' , 1 ],
                         [ 'molrep_mr%*/molrep.doc.txt' , 5 ]
                         ]
+
+    def validity(self):
+        error = super(molrep_pipe, self).validity()
+        if not self.container.inputData.FREERFLAG.isSet():
+            error.append(
+                klass=self.TASKNAME, code=200,
+                details='Free R flag is strongly recommended for refinement',
+                name=f'{self.TASKNAME}.container.inputData.FREERFLAG',
+                severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+        return error
 
     def process(self):
       if str(self.container.controlParameters.SG_OPTIONS) == 'specify':

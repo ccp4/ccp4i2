@@ -16,7 +16,6 @@ import {
   ViewList,
 } from "@mui/icons-material";
 import { Editor } from "@monaco-editor/react";
-import { useRunCheck } from "../providers/run-check-provider";
 import { useJob } from "../utils";
 import { useApi } from "../api";
 import { Job } from "../types/models";
@@ -75,7 +74,6 @@ const cleanErrorMessage = (message: string): string => {
 export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
   const { customColors } = useTheme();
   const { mode } = useTheme();
-  const { processedErrors } = useRunCheck();
   const { validation } = useJob(job?.id);
   const { devMode } = useCCP4i2Window();
   const api = useApi();
@@ -93,8 +91,8 @@ export const ValidationViewer: React.FC<ValidationViewerProps> = ({ job }) => {
   });
 
   const compiledErrors = useMemo(() => {
-    return processedErrors || validation || {};
-  }, [processedErrors, validation]);
+    return validation || {};
+  }, [validation]);
 
   const processedData = useMemo((): SeverityGroup[] => {
     if (!compiledErrors || Object.keys(compiledErrors).length === 0) {

@@ -27,7 +27,6 @@ import Diagnostic from "../components/diagnostic";
 import { JobLogViewer } from "../components/job-log-viewer";
 import { TaskProvider } from "../providers/task-provider";
 import { ValidationViewer } from "../components/validation-viewer";
-import { useRunCheck } from "../providers/run-check-provider";
 import { useJobTab } from "../providers/job-tab-provider";
 import { useTheme } from "../theme/theme-provider";
 import { useIsJobEffectivelyActive } from "../providers/recently-started-jobs-context";
@@ -54,12 +53,6 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     container,
   } = useJob(jobid);
 
-  const {
-    setExtraDialogActions,
-    setProcessedErrors,
-    extraDialogActions,
-    processedErrors,
-  } = useRunCheck();
   const { mode } = useTheme();
 
   // Status from job_tree (shared SWR key, polled by ClassicJobsList every 3-30s).
@@ -190,13 +183,6 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
       mutateDiagnosticXml();
     }
   }, [currentStatus, previousStatus, mutateDiagnosticXml]);
-
-  //Here a useEffect that will clear processedErrors and extraDialogActions when job changes
-  useEffect(() => {
-    if (!setExtraDialogActions || !setProcessedErrors) return;
-    if (extraDialogActions) setExtraDialogActions(null);
-    if (processedErrors) setProcessedErrors(null);
-  }, [jobid, setExtraDialogActions, setProcessedErrors]);
 
   return !project || !jobs || !jobWithCurrentStatus ? (
     <LinearProgress />

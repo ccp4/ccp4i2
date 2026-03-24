@@ -51,6 +51,8 @@ export interface InlineTaskModalProps {
   onOutputFileReady: (file: DjangoFile) => void;
   /** Human-readable title for the dialog */
   title?: string;
+  /** Pre-created helper job — skips the creation step if provided */
+  helperJobOverride?: Job;
 }
 
 type ModalPhase = "creating" | "configuring" | "running" | "succeeded" | "failed";
@@ -62,6 +64,7 @@ export const InlineTaskModal: React.FC<InlineTaskModalProps> = ({
   parentJob,
   onOutputFileReady,
   title,
+  helperJobOverride,
 }) => {
   const api = useApi();
   const { createPeerTask } = useJob(parentJob.id);
@@ -81,7 +84,7 @@ export const InlineTaskModal: React.FC<InlineTaskModalProps> = ({
   const createPeerTaskRef = useRef(createPeerTask);
   createPeerTaskRef.current = createPeerTask;
 
-  // Create the helper job when the modal opens
+  // Create the helper job when the modal opens (or use pre-created one)
   useEffect(() => {
     if (!open) {
       // Reset state when closed
@@ -89,6 +92,13 @@ export const InlineTaskModal: React.FC<InlineTaskModalProps> = ({
       setHelperJob(null);
       setErrorMessage("");
       isCreatingRef.current = false;
+      return;
+    }
+
+    // If a pre-created job was provided, skip creation
+    if (helperJobOverride) {
+      setHelperJob(helperJobOverride);
+      setPhase("configuring");
       return;
     }
 
@@ -124,7 +134,7 @@ export const InlineTaskModal: React.FC<InlineTaskModalProps> = ({
     return () => {
       cancelled = true;
     };
-  }, [open, taskName]);
+  }, [open, taskName, helperJobOverride]);
 
   // Run the helper task synchronously
   const handleRun = useCallback(async () => {

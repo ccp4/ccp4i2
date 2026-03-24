@@ -71,7 +71,18 @@ class servalcat_pipe(CPluginScript):
             self.container.metalCoordWrapper.inputData.XYZIN.set_qualifier(
                 'allowUndefined', True
             )
-        return super(servalcat_pipe, self).validity()
+        error = super(servalcat_pipe, self).validity()
+
+        # Warn when Free R flag is not set (recommended but optional)
+        if not self.container.inputData.FREERFLAG.isSet():
+            error.append(
+                klass=self.TASKNAME, code=200,
+                details='Free R flag is strongly recommended for refinement',
+                name=f'{self.TASKNAME}.container.inputData.FREERFLAG',
+                severity=CCP4ErrorHandling.SEVERITY_WARNING,
+            )
+
+        return error
 
     def runTimeValidity(self):
         """Pre-flight validation including monomer dictionary coverage."""

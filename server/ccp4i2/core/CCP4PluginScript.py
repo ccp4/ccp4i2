@@ -994,11 +994,17 @@ class CPluginScript(CData):
 
         # Container validation recursively validates all children,
         # including CDataFile objects (allowUndefined, mustExist, contentFlag).
-        # No separate checkInputData() call needed - that would duplicate errors.
+        # Filter out outputData errors — outputs are set during execution,
+        # so validating them pre-run produces spurious errors (especially
+        # from cloned jobs that carry stale output file metadata).
         if hasattr(self, 'container') and self.container is not None:
             container_errors = self.container.validity()
             if container_errors:
-                error.extend(container_errors)
+                for err in container_errors.getErrors():
+                    name = err.get('name', '')
+                    if '.outputData.' in name:
+                        continue
+                    error._errors.append(err)
 
         return error
 
