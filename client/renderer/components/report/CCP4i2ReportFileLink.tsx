@@ -72,9 +72,10 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
       // HTML reports open in a new browser tab
       window.open(fileUrl, "_blank");
     } else if (fileType === "image") {
-      // Images can also be opened in the preview dialog at full size
+      // Use the already-fetched blob URL for the preview dialog too
+      if (!blobUrl) return;
       setContentSpecification({
-        url: fileUrl,
+        url: blobUrl,
         title: label,
         language: "image",
       });
@@ -87,7 +88,7 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
         language: languageFromFilename(filename),
       });
     }
-  }, [fileUrl, fileType, relativePath, label, setContentSpecification]);
+  }, [fileUrl, fileType, relativePath, label, blobUrl, setContentSpecification]);
 
   // For images, fetch via authenticated apiBlob and create a local blob URL.
   // This avoids <img src> making unauthenticated browser requests.
