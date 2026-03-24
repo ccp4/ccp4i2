@@ -42,6 +42,7 @@ logger = logging.getLogger(__name__)
         '302': {'description': 'Output object not found in container.outputData'},
         '303': {'description': 'Output object has no path set'},
         '304': {'description': 'Error splitting MTZ file'},
+        '350': {'description': 'Monomer dictionary does not cover all residues in coordinate file'},
     }
 )
 class CPluginScript(CData):
@@ -2325,6 +2326,134 @@ class CPluginScript(CData):
         except Exception as e:
             logger.error(f"Failed to merge dictionaries: {e}")
             return self.FAILED, 28
+
+    def checkMonomeCoverage(self, xyzin_path, dict_paths=None):
+        """Check that dictionaries cover all non-polymer residues at atom level.
+
+        Uses gemmi.prepare_topology — the same function refmac and servalcat
+        use internally — to verify that every non-hydrogen atom in every
+        non-polymer residue has a restraint definition.  User-provided
+        dictionaries are loaded first (and take priority over the standard
+        CCP4 monomer library), exactly mirroring refinement behaviour.
+
+        Args:
+            xyzin_path: Path to the coordinate file (PDB or mmCIF).
+            dict_paths: Optional list of user-dictionary file paths.
+                        If None, an empty list is used.
+
+        Returns:
+            SUCCEEDED if all atoms are covered, FAILED otherwise.
+            Issues are appended to this plugin's errorReport with code 350.
+        """
+        import gemmi
+        import io
+
+        if dict_paths is None:
+            dict_paths = []
+
+        monlib_dir = os.environ.get('CLIBD_MON', '')
+        if not monlib_dir:
+            ccp4 = os.environ.get('CCP4', '')
+            if ccp4:
+                monlib_dir = os.path.join(ccp4, 'lib', 'data', 'monomers')
+
+        # Read the structure
+        try:
+            st = gemmi.read_structure(str(xyzin_path))
+        except Exception as e:
+            logger.warning(f"checkMonomeCoverage: cannot read {xyzin_path}: {e}")
+            return self.SUCCEEDED  # Don't block on read failure; refinement itself will catch it
+
+        st.setup_entities()
+        if len(st) == 0 or len(st[0]) == 0:
+            return self.SUCCEEDED
+
+        # Collect all unique residue codes
+        all_codes = set()
+        for chain in st[0]:
+            for res in chain:
+                all_codes.add(res.name)
+
+        # Build MonLib: user dicts first (take priority), then standard library
+        ml = gemmi.MonLib()
+        ml.monomer_dir = monlib_dir
+
+        for p in dict_paths:
+            try:
+                ml.read_monomer_cif(str(p))
+            except Exception as e:
+                logger.warning(f"checkMonomeCoverage: cannot read user dict {p}: {e}")
+
+        remaining = [c for c in all_codes if c not in ml.monomers]
+        if remaining and monlib_dir:
+            ml.read_monomer_lib(monlib_dir, remaining, io.StringIO())
+
+        # Run prepare_topology — exactly what refinement will do
+        log = io.StringIO()
+        try:
+            topo = gemmi.prepare_topology(st, ml, warnings=log)
+        except Exception as e:
+            logger.warning(f"checkMonomeCoverage: prepare_topology failed: {e}")
+            return self.SUCCEEDED  # Don't block; let the refinement program report its own error
+
+        # Parse warnings for unrestrained atoms ("definition not found for ...")
+        # and collect missing-from-model atoms (dict defines them, structure lacks them)
+        unrestrained = []
+        for line in log.getvalue().splitlines():
+            if 'definition not found' in line:
+                unrestrained.append(line.replace('Warning: ', ''))
+
+        missing_from_model = topo.find_missing_atoms()
+
+        # Identify residues with no dictionary at all
+        no_dict = sorted(c for c in all_codes if c not in ml.monomers)
+
+        if not no_dict and not unrestrained:
+            return self.SUCCEEDED
+
+        # Build a readable report
+        lines = []
+        if no_dict:
+            lines.append(f"No dictionary at all for: {', '.join(no_dict)}")
+        if unrestrained:
+            # Group by residue for readability
+            by_residue = {}
+            for msg in unrestrained:
+                # Format: "definition not found for A/GOL 1/N1"
+                parts = msg.split('/')
+                if len(parts) >= 3:
+                    res_key = '/'.join(parts[:-1])  # "A/GOL 1" or similar
+                    atom_name = parts[-1]
+                    by_residue.setdefault(res_key, []).append(atom_name)
+                else:
+                    lines.append(msg)
+            for res_key, atoms in sorted(by_residue.items()):
+                lines.append(f"  {res_key}: atoms without restraints: {', '.join(atoms)}")
+
+            # Flag likely code collisions: if a residue has both unrestrained
+            # atoms AND atoms missing from the model, the dictionary almost
+            # certainly describes a different molecule
+            if missing_from_model:
+                collision_codes = set()
+                for missing_atom in missing_from_model:
+                    # missing_atom is str like "A/GOL 1/O3"
+                    missing_str = str(missing_atom)
+                    parts = missing_str.split('/')
+                    if len(parts) >= 2:
+                        res_key = '/'.join(parts[:-1])
+                        if res_key in by_residue:
+                            collision_codes.add(res_key)
+                if collision_codes:
+                    lines.append("Likely code collision (dictionary describes a different "
+                                 f"molecule): {', '.join(sorted(collision_codes))}")
+
+        detail = '\n'.join(lines)
+        self.appendErrorReport(
+            350,
+            f"Monomer coverage check failed:\n{detail}",
+            severity=SEVERITY_ERROR,
+        )
+        return self.FAILED
 
     # =========================================================================
     # Utility methods for backward compatibility with old API

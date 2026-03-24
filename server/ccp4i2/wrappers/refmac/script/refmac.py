@@ -106,7 +106,13 @@ class refmac(CPluginScript):
 
         #Create DICT by merging dictionaries in DICT_LIST
         rv = self.joinDicts(self.container.outputData.DICT, self.container.inputData.DICT_LIST)
-        #CPluginScript.joinDicts(self.container.inputData.DICT.fullPath.__str__(), self.container.inputData.DICT_LIST)
+
+        # Pre-flight: check that dictionaries cover all residues at atom level
+        dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
+                      if d.isSet()]
+        rv = self.checkMonomeCoverage(self.inputCoordPath, dict_paths)
+        if rv != CPluginScript.SUCCEEDED:
+            return CPluginScript.FAILED
 
         #Include FreeRflag if called for
         if self.container.inputData.FREERFLAG.isSet():

@@ -63,6 +63,13 @@ class servalcat(CPluginScript):
         self.joinDicts(self.container.outputData.DICT,
                        self.container.inputData.DICT_LIST)
 
+        # Pre-flight: check that dictionaries cover all residues at atom level
+        dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
+                      if d.isSet()]
+        rv = self.checkMonomeCoverage(self.inputCoordPath, dict_paths)
+        if rv != CPluginScript.SUCCEEDED:
+            return CPluginScript.FAILED
+
         # Prepare merged HKL input for X-ray mode
         if str(self.container.controlParameters.DATA_METHOD) == 'xtal':
             if str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged":

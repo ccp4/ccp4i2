@@ -90,6 +90,15 @@ class servalcat_pipe(CPluginScript):
         error = CErrorReport()
 
         # =================================================================
+        # Pre-flight: check monomer dictionary coverage at atom level
+        # =================================================================
+        xyzin_path = str(self.container.inputData.XYZIN.fullPath)
+        dict_paths = [str(d.fullPath) for d in self.container.inputData.DICT_LIST
+                      if d.isSet()]
+        if self.checkMonomeCoverage(xyzin_path, dict_paths) != CPluginScript.SUCCEEDED:
+            return CPluginScript.FAILED
+
+        # =================================================================
         # Phase 1: ProSMART protein restraints
         # =================================================================
         phase1_error = self._runProsmartProtein()
