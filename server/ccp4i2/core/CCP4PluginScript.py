@@ -240,7 +240,7 @@ class CPluginScript(CData):
         setDbData() to configure the plugin's database context.
 
         Args:
-            handler: Database handler instance (CCP4i2DjangoDbHandler)
+            handler: Database handler instance (AsyncDatabaseHandler)
             projectName: Project name string
             projectId: Project UUID (may have hyphens removed)
             jobNumber: Job number string (e.g., '1.2.3')
