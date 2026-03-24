@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls.static import static
-from django.urls import include, path
+from django.urls import include, path, re_path
 from rest_framework import routers
 
 from .ProjectExportViewSet import ProjectExportViewSet
@@ -27,8 +27,17 @@ router.register("fileuses", FileUseViewSet)
 router.register("jobs", JobViewSet)
 router.register("projectexports", ProjectExportViewSet)
 
+# Path-based file serving — registered outside the DRF router to avoid
+# format-suffix routing that would strip file extensions like .html/.css.
+_files_by_path_view = ProjectViewSet.as_view({"get": "files_by_path"})
+
 # Core API patterns (will be wrapped under /api/ccp4i2/ prefix)
 _api_patterns = [
+    re_path(
+        r"^projects/(?P<pk>[^/.]+)/files_by_path/(?P<file_path>.+)$",
+        _files_by_path_view,
+        name="project-files-by-path",
+    ),
     path("", include(router.urls)),
     path("health/", views.health_check, name="health_check"),
     path("version/", views.version_info, name="version_info"),

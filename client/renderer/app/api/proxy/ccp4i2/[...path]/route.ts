@@ -146,8 +146,10 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
   // Construct target URL - Django serves ccp4i2 API at /api/ccp4i2/
   let targetUrl = `${backendBaseUrl}api/ccp4i2/${path}`;
 
-  // Ensure trailing slash for Django REST Framework endpoints
-  if (!targetUrl.endsWith("/")) {
+  // Ensure trailing slash for Django REST Framework endpoints,
+  // but not for path-based file serving where the path IS the resource.
+  const isFilePath = path.includes("files_by_path/");
+  if (!isFilePath && !targetUrl.endsWith("/")) {
     targetUrl += "/";
   }
 

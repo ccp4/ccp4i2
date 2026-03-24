@@ -47,7 +47,6 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
 
   const fileUrl = useMemo(() => {
     if (!projectId || !relativePath) return null;
-    // The project_file endpoint serves arbitrary files from the project dir.
     // Job files live under CCP4_JOBS/job_N/ inside the project directory.
     // We use the job number from props.job to build the full project-relative path.
     const jobDirSegments = props.job.number
@@ -55,8 +54,15 @@ export const CCP4i2ReportFileLink: React.FC<CCP4i2ReportElementProps> = (
       .map((n: string) => `job_${n}`);
     const jobDirPath = `CCP4_JOBS/${jobDirSegments.join("/")}`;
     const fullPath = `${jobDirPath}/${relativePath}`;
+
+    if (fileType === "html") {
+      // Path-based URL so relative links in multi-page HTML reports (e.g. ProSMART)
+      // resolve correctly against the directory hierarchy.
+      return `/api/proxy/ccp4i2/projects/${projectId}/files_by_path/${fullPath}`;
+    }
+    // Query-parameter approach is fine for programmatic fetches (text, image).
     return `/api/proxy/ccp4i2/projects/${projectId}/project_file?path=${encodeURIComponent(fullPath)}`;
-  }, [projectId, relativePath, props.job]);
+  }, [projectId, relativePath, fileType, props.job]);
 
   const handleClick = useCallback(() => {
     if (!fileUrl) return;

@@ -640,6 +640,26 @@ class ProjectViewSet(ModelViewSet):
 
         return FileResponse(open(composite_path, "rb"), filename=composite_path.name)
 
+    # files_by_path is registered as a manual URL pattern in urls.py
+    # (not a DRF @action) to avoid format-suffix routing that strips file extensions.
+
+    def files_by_path(self, request, pk=None, file_path=None):
+        """Serve a file from the project directory using a path-based URL.
+
+        Unlike project_file (which uses a query parameter), this endpoint
+        encodes the file path in the URL itself.  This allows multi-page HTML
+        sites (e.g. ProSMART reports) to use relative links that the browser
+        resolves correctly against the directory hierarchy.
+        """
+        the_project = models.Project.objects.get(pk=pk)
+        file_path = file_path.rstrip("/")
+        composite_path: pathlib.Path = pathlib.Path(the_project.directory) / file_path
+        if pathlib.Path(the_project.directory) not in composite_path.resolve().parents:
+            raise Http404("Unacceptable file")
+        if not composite_path.exists():
+            raise Http404("File not found")
+        return FileResponse(open(composite_path, "rb"), filename=composite_path.name)
+
     @action(
         detail=True,
         methods=["post"],
