@@ -161,6 +161,64 @@ Key differences from main ccp4i2 tests:
 - Requires `apps/` directory on PYTHONPATH
 - Tests are located in `apps/compounds/` subdirectories
 
+## Task Validation: `validity()` and `runTimeValidity()`
+
+The server is the sole authority for job validation. The frontend displays what the server reports — there is no client-side validation logic.
+
+### Two-tier architecture
+
+| Method | When called | Speed requirement | Example checks |
+|--------|------------|-------------------|----------------|
+| `validity()` | Polled during parameter editing (`GET /validation/`) | Fast — no file I/O | Required files set, contentFlag match, cross-parameter logic |
+| `runTimeValidity()` | Once at submission (`GET /run_time_validation/`) and by `process()` | Can be expensive | Monomer dictionary coverage (reads files with gemmi) |
+
+The base `validity()` automatically checks `allowUndefined`, `mustExist`, `requiredContentFlag` on all container children, and filters out `outputData` errors (stale from cloned jobs).
+
+### Overriding `validity()` for task-specific checks
+
+```python
+def validity(self):
+    error = super(my_task, self).validity()
+
+    # Non-blocking advisory (orange in UI, Confirm stays enabled)
+    if not self.container.inputData.FREERFLAG.isSet():
+        error.append(klass=self.TASKNAME, code=200,
+            details='Free R flag is strongly recommended',
+            name=f'{self.TASKNAME}.container.inputData.FREERFLAG',
+            severity=CCP4ErrorHandling.SEVERITY_WARNING)
+
+    # Blocking error (red in UI, Confirm disabled)
+    if str(self.container.inputData.COMP_BY) == 'ASU':
+        if not self.container.inputData.ASUFILE.isSet():
+            error.append(klass=self.TASKNAME, code=201,
+                details='ASU file required when COMP_BY is ASU',
+                name=f'{self.TASKNAME}.container.inputData.ASUFILE',
+                severity=CCP4ErrorHandling.SEVERITY_ERROR)
+    return error
+```
+
+### Overriding `runTimeValidity()` for expensive pre-flight checks
+
+```python
+def runTimeValidity(self):
+    error = super(my_task, self).runTimeValidity()
+    if error.maxSeverity() >= CCP4ErrorHandling.SEVERITY_ERROR:
+        return error  # skip expensive checks if already failing
+    # ... expensive checks (e.g. checkMonomeCoverage) ...
+    return error
+```
+
+### Severity mapping
+
+| Backend constant | Value | Frontend | Run dialog |
+|-----------------|-------|----------|------------|
+| `SEVERITY_WARNING` | 2 | Orange indicator | Advisory, does not block |
+| `SEVERITY_ERROR` | 4 | Red indicator | Blocks Confirm button |
+
+### Error `name` field format
+
+Must be `{taskName}.container.{section}.{fieldName}` (e.g. `servalcat_pipe.container.inputData.FREERFLAG`) to enable field-level error display in the frontend. Check the def.xml to confirm which section (`inputData` or `controlParameters`) the field is in.
+
 ## Plugin Registry
 
 The plugin registry (`core/task_manager/plugin_registry.py`) provides lazy loading of task plugins:

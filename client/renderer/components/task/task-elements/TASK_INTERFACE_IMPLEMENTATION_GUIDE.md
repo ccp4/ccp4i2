@@ -1005,6 +1005,15 @@ This renders an MUI Autocomplete with `multiple` and chip tags. It reads a comma
 
 ---
 
+## Validation
+
+**All validation is server-side.** Task interfaces do NOT implement validation logic. The server's `validity()` and `runTimeValidity()` methods on the plugin class handle all checks — the frontend simply displays what the server returns via the `validation` field from `useJob()`.
+
+- **Do not** use `setProcessedErrors` or inject errors from task interface code
+- **Do not** create client-side validation hooks — add checks to the plugin's `validity()` override instead
+- Field-level validation colours are driven by the server's error report `objectPath` values
+- See `CLAUDE.md` § "Task Validation" for the full `validity()` / `runTimeValidity()` API
+
 ## Pitfalls and Hard-Won Lessons
 
 ### 1. CBoolean `__bool__` Trap (Server-Side)
