@@ -336,11 +336,20 @@ def digest_cpdbdata_file_object(file_object: CPdbDataFile):
         # If value_dict returns None, return empty dict
         if content_dict is None:
             content_dict = {}
-        # Add per-chain polymer sequences for use by sequence extraction UI
-        # _gemmi_structure is stored on the file_object, not the contents
-        gemmi_struct = getattr(file_object, '_gemmi_structure', None)
-        if gemmi_struct is not None:
-            content_dict['sequences'] = _extract_chain_sequences(gemmi_struct)
+
+        # Explicitly extract composition and sequences from the content object.
+        # These are @property accessors backed by underscore attributes (_composition,
+        # _gemmi_structure) which value_dict_for_object may miss if earlier strategies
+        # in handle_cdata populate the result before the known_content_props check.
+        if contents is not None:
+            composition = getattr(contents, 'composition', None)
+            if composition is not None and 'composition' not in content_dict:
+                content_dict['composition'] = value_dict_for_object(composition)
+
+            gemmi_struct = getattr(contents, '_gemmi_structure', None)
+            if gemmi_struct is not None and 'sequences' not in content_dict:
+                content_dict['sequences'] = _extract_chain_sequences(gemmi_struct)
+
         return content_dict
     except Exception as err:
         logger.exception("Error digesting file %s", file_object, exc_info=err)

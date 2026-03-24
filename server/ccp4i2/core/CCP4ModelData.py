@@ -1477,7 +1477,10 @@ class CPdbDataComposition:
                         first_resid = resid_str
                     last_resid = resid_str
 
-                    # Use gemmi's entity_type for proper classification
+                    # Use gemmi's entity_type for proper classification.
+                    # Many PDB files lack ENTITY records, causing gemmi to
+                    # report EntityType.Unknown for every residue. Fall back
+                    # to residue-name classification when that happens.
                     entity_type = residue.entity_type
 
                     if entity_type == gemmi.EntityType.Polymer:
@@ -1491,6 +1494,18 @@ class CPdbDataComposition:
                     elif entity_type == gemmi.EntityType.Water:
                         has_solvent = True
                         nres_solvent_chain += 1
+                    elif entity_type == gemmi.EntityType.Unknown:
+                        # No entity information — classify by residue name
+                        if res_name in AMINO_ACIDS:
+                            has_amino = True
+                        elif res_name in NUCLEIC_ACIDS:
+                            has_nucleic = True
+                        elif res_name in SOLVENTS or res_name in ('HOH', 'WAT'):
+                            has_solvent = True
+                            nres_solvent_chain += 1
+                        elif res_name in SACCHARIDES:
+                            has_saccharide = True
+                        # else: leave unclassified (ligands handled below)
                     elif entity_type == gemmi.EntityType.NonPolymer:
                         # This is a ligand/hetero compound
                         # Check if it's a single metal ion
@@ -1645,6 +1660,12 @@ class CPdbData(CPdbDataStub):
         try:
             # Read structure using gemmi (handles PDB and mmCIF automatically)
             structure = gemmi.read_structure(str(file_path))
+
+            # Infer entity information when the file lacks it (common for
+            # bare PDB files without ENTITY/SEQRES records).  This assigns
+            # EntityType.Polymer / .Water / .NonPolymer to every residue so
+            # that CPdbDataComposition can classify chains correctly.
+            structure.setup_entities()
 
             # Store gemmi Structure object for advanced queries
             # Use object.__setattr__ to bypass smart assignment
