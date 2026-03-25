@@ -1,4 +1,4 @@
-// Maps task category module names to their representative icon filename in /qticons/
+// Maps task category module names to their representative icon filename in /svgicons/
 export const MODULE_ICON_NAMES: Record<string, string> = {
   data_entry: "import_merged",
   data_processing: "xia2_dials",
@@ -23,4 +23,4 @@ export const MODULE_ICON_NAMES: Record<string, string> = {
 };
 
 export const moduleCategoryIconSrc = (moduleName: string): string =>
-  `/qticons/${MODULE_ICON_NAMES[moduleName] ?? "ccp4i2"}.png`;
+  `/svgicons/${MODULE_ICON_NAMES[moduleName] ?? "ccp4i2"}.svg`;

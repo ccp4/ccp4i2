@@ -139,11 +139,6 @@ export const RunningProcessesProvider: React.FC<PropsWithChildren> = (
                       <Avatar
                         src={`/svgicons/${process.job_task_name}.svg`}
                         alt={process.job_task_name}
-                        imgProps={{
-                          onError: (e: any) => {
-                            e.target.src = `/qticons/${process.job_task_name}.png`;
-                          },
-                        }}
                       >
                         {process.job_task_name?.[0]?.toUpperCase()}
                       </Avatar>{" "}

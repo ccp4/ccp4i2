@@ -86,11 +86,6 @@ export const CCP4i2WhatNext = () => {
               }}
               src={`/svgicons/${task.taskName}.svg`}
               alt={task.taskName}
-              imgProps={{
-                onError: (e: any) => {
-                  e.target.src = `/qticons/${task.taskName}.png`;
-                },
-              }}
             >
               {task.taskName?.[0]?.toUpperCase()}
             </Avatar>

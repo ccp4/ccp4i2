@@ -152,7 +152,7 @@ const CCP4i2TaskTreeFolder: React.FC<CCP4i2TaskTreeFolderProps> = ({
         avatar={
           <Avatar
             src={moduleCategoryIconSrc(category[0])}
-            alt="/qticons/ccp4i2.png"
+            alt="ccp4i2"
           />
         }
         title={category[1]}
@@ -250,15 +250,7 @@ const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({
         slotProps={{ title: { variant: "button", my: 0, py: 0 } }}
         title={
           <>
-            <Avatar
-              src={`/svgicons/${taskName}.svg`}
-              alt={taskName}
-              imgProps={{
-                onError: (e: any) => {
-                  e.target.src = `/qticons/${taskName}.png`;
-                },
-              }}
-            >
+            <Avatar src={`/svgicons/${taskName}.svg`} alt={taskName}>
               {taskName?.[0]?.toUpperCase()}
             </Avatar>
             {task.shortTitle || task.TASKTITLE || taskName}

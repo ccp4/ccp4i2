@@ -63,11 +63,6 @@ export const CCP4i2JobAvatar = forwardRef<HTMLDivElement, CCP4i2JobAvatarProps>(
         }}
         src={`/svgicons/${job.task_name}.svg`}
         alt={job.task_name}
-        imgProps={{
-          onError: (e: any) => {
-            e.target.src = `/qticons/${job.task_name}.png`;
-          },
-        }}
       >
         {job.task_name?.[0]?.toUpperCase()}
       </Avatar>

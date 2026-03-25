@@ -291,13 +291,7 @@ export function MemberProjectRow({
                     bgcolor: STATUS_COLORS[job.status] || "#AAA",
                   }}
                   src={`/svgicons/${job.task_name}.svg`}
-                  imgProps={{
-                    onError: (e: any) => {
-                      e.target.src = `/qticons/${job.task_name}.png`;
-                    },
-                  }}
                 >
-                  {/* Fallback to first letter if no icon */}
                   {job.task_name?.[0]?.toUpperCase()}
                 </Avatar>
                 <Typography variant="caption" sx={{ fontSize: "0.65rem" }}>

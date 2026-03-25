@@ -84,7 +84,7 @@ export const CCP4i2ReportFile: React.FC<CCP4i2ReportFileProps> = (props) => {
         }}
       >
         <Avatar
-          src={`/qticons/${fileTypeIcon}.png`}
+          src={`/svgicons/${fileTypeIcon}.svg`}
           sx={{ mr: 2, width: "2rem", height: "2rem" }}
         />
         <EditableTypography

@@ -603,7 +603,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
         <Avatar
           draggable={!!hasFile}
           onDragStart={handleFileDragStart}
-          src={`/qticons/${item?._class?.slice(1)}.png`}
+          src={`/svgicons/${item?._class?.slice(1)}.svg`}
           alt={item?._class || "File type"}
           onContextMenu={handleIconContextMenu}
           sx={{

@@ -549,11 +549,6 @@ function MemberProjectRow({
                     border: "1px solid rgba(0,0,0,0.1)",
                   }}
                   src={`/svgicons/${job.task_name}.svg`}
-                  imgProps={{
-                    onError: (e: React.SyntheticEvent<HTMLImageElement>) => {
-                      e.currentTarget.src = `/qticons/${job.task_name}.png`;
-                    },
-                  }}
                 >
                   {job.task_name?.[0]?.toUpperCase()}
                 </Avatar>

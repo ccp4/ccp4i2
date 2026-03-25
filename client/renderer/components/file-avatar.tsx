@@ -33,7 +33,7 @@ export const FileAvatar = forwardRef<HTMLDivElement, FileAvatarProps>(
           },
           ...props.sx,
         }}
-        src={`/qticons/${fileTypeIcon(file.type)}.png`}
+        src={`/svgicons/${fileTypeIcon(file.type)}.svg`}
       />
     );
   }
