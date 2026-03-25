@@ -35,13 +35,11 @@ if ALLOWED_HOSTS_ENV:
     ALLOWED_HOSTS = [
         host.strip() for host in ALLOWED_HOSTS_ENV.split(",") if host.strip()
     ]
-    print(f"Using ALLOWED_HOSTS from environment: {ALLOWED_HOSTS}")
 else:
     # Default hosts for development
     ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
     if DEBUG:
         ALLOWED_HOSTS.append("*")  # Allow all hosts in debug mode
-    print(f"Using default ALLOWED_HOSTS: {ALLOWED_HOSTS}")
 
 INSTALLED_APPS = [
     "corsheaders",
@@ -71,9 +69,9 @@ MIDDLEWARE = [
 #   - When false/unset: Auto-assigns dev_admin user for local/Electron development
 MIDDLEWARE.insert(0, "ccp4i2.middleware.azure_auth.AzureADAuthMiddleware")
 if os.environ.get("CCP4I2_REQUIRE_AUTH", "").lower() in ("true", "1", "yes"):
-    print("Azure AD authentication middleware ENABLED (auth required)")
+    pass  # Auth required — validates JWT tokens
 else:
-    print("Azure AD authentication middleware ENABLED (dev mode - no auth required)")
+    pass  # Dev mode — auto-assigns dev_admin user
 
 REST_FRAMEWORK = {
     "DEFAULT_FILTER_BACKENDS": ["django_filters.rest_framework.DjangoFilterBackend"]
@@ -89,20 +87,15 @@ if CORS_ALLOWED_ORIGINS_ENV:
         if origin.strip()
     ]
     CORS_ALLOW_ALL_ORIGINS = False
-    print(f"Using CORS_ALLOWED_ORIGINS from environment: {CORS_ALLOWED_ORIGINS}")
 else:
     # Default behavior for development
     NEXT_ADDRESS = os.environ.get("NEXT_ADDRESS", "http://localhost:3000")
     if DEBUG:
         CORS_ALLOWED_ORIGINS = [NEXT_ADDRESS]
         CORS_ALLOW_ALL_ORIGINS = True  # Allow all origins in debug mode
-        print(
-            f"Debug mode: CORS_ALLOWED_ORIGINS={CORS_ALLOWED_ORIGINS}, CORS_ALLOW_ALL_ORIGINS=True"
-        )
     else:
         CORS_ALLOWED_ORIGINS = [NEXT_ADDRESS]
         CORS_ALLOW_ALL_ORIGINS = False
-        print(f"Production mode: CORS_ALLOWED_ORIGINS={CORS_ALLOWED_ORIGINS}")
 
 ROOT_URLCONF = "ccp4i2.api.urls"
 
@@ -141,7 +134,6 @@ if DATABASE_URL:
                 "NAME": db_path,
             }
         }
-        print(f"Using SQLite database from DATABASE_URL: {db_path}")
     else:
         # PostgreSQL configuration
         # Parse query parameters from the URL
@@ -186,10 +178,6 @@ if DATABASE_URL:
 
         # Log connection details (hide password for security)
         masked_password = "*" * len(url.password) if url.password else "None"
-        print(
-            f"Using PostgreSQL database: {url.username}:{masked_password}@{url.hostname}:{url.port}/{url.path[1:]} "
-            f"with SSL mode: {sslmode}"
-        )
 
         # Log other options if they exist
         if len(db_options) > 2:  # More than just sslmode and connect_timeout
@@ -198,7 +186,6 @@ if DATABASE_URL:
                 for k, v in db_options.items()
                 if k not in ["sslmode", "connect_timeout"]
             }
-            print(f"Additional database options: {other_options}")
 
 else:
     # Default SQLite configuration
@@ -208,7 +195,6 @@ else:
             "NAME": os.environ.get("CCP4I2_DB_FILE", USER_DIR / "db.sqlite3"),
         }
     }
-    print(f"Using SQLite database: {DATABASES['default']['NAME']}")
 
 TIME_ZONE = "UTC"
 USE_TZ = True
@@ -272,7 +258,6 @@ def parse_size_value(value_str, default):
         # Handle simple numeric values
         return int(value_str)
     except (ValueError, IndexError):
-        print(f"Warning: Invalid size value '{value_str}', using default {default}")
         return default
 
 
@@ -286,9 +271,6 @@ FILE_UPLOAD_MAX_NUMBER_FILES = int(
     os.environ.get("FILE_UPLOAD_MAX_NUMBER_FILES", 10)
 )  # Default: 10 files
 
-print(
-    f"File upload settings: MAX_MEMORY_SIZE={FILE_UPLOAD_MAX_MEMORY_SIZE}, DATA_MAX_MEMORY_SIZE={DATA_UPLOAD_MAX_MEMORY_SIZE}, MAX_FILES={FILE_UPLOAD_MAX_NUMBER_FILES}"
-)
 
 # =============================================================================
 # Security Settings (Production)

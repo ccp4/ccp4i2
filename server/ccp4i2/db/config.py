@@ -7,5 +7,4 @@ class DbConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
 
     def ready(self):
-        print("status: ready")
         import ccp4i2.db.signals  # noqa

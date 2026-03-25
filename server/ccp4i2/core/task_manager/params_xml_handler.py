@@ -95,7 +95,6 @@ class ParamsXmlHandler:
             # Write to file with proper formatting
             self._write_formatted_xml(root, output_path)
 
-            print(f"✅ Exported params to: {output_path}")
             return True
 
         except Exception as e:
@@ -546,9 +545,7 @@ class ParamsXmlHandler:
 
             return False
 
-        except Exception as e:
-            param_name = param.objectName() if hasattr(param, 'objectName') else str(type(param).__name__)
-            print(f"Warning: Error importing value for {param_name}: {e}")
+        except Exception:
             return False
 
     def _import_structured_data(self, xml_elem: ET.Element, param: CData) -> bool:

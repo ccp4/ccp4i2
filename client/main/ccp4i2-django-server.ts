@@ -194,6 +194,7 @@ export async function startDjangoServer(
   // Use 2 workers for concurrent requests (no --reload, requires manual restart)
   const uvicornArgs = [
     "-m", "uvicorn", "ccp4i2.config.asgi:application", "--workers", "2",
+    "--log-level", "warning",  // Suppress per-request INFO access logs
   ];
 
   const pythonProcess = spawn(PYTHON_PATH, uvicornArgs, {
