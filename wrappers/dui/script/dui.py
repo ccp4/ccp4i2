@@ -1,7 +1,7 @@
-import glob
-import os
 import shutil
 from pathlib import Path
+
+import gemmi
 
 from core.CCP4PluginScript import CPluginScript
 
@@ -25,25 +25,15 @@ class dui(CPluginScript):
         return CPluginScript.SUCCEEDED
 
     def processOutputFiles(self):
-        # Wipe any mtz dumped in the base directory, i2 may pick up duplicates (DUI-19.10.1)
-        wipefiles = glob.glob(os.path.join(self.getWorkDirectory(), "*.mtz"))
-        for wipefile in wipefiles:
-            os.remove(wipefile)
-        # Add the unmerged data files.
-        # The file location was changed again... copy them over to where i2 expects them to be.
-        newlfiles = glob.glob(os.path.join(self.getWorkDirectory(), "dui_files", "*.mtz"))
-        for afile in newlfiles:
-            # Ensure file was created after this session of dui started to avoid duplicates (still safe - so keep)
-            shutil.copy(afile, self.getWorkDirectory()) # be aware dui happily blots over export files.
-        filelist = glob.glob(os.path.join(self.getWorkDirectory(), "*.mtz"))
-        outputUNMERGED = self.container.outputData.UNMERGEDMTZ
-        for afile in filelist:
-            outputUNMERGED.append(outputUNMERGED.makeItem())
-            outputUNMERGED[-1].setFullPath(afile)
-            outputUNMERGED[-1].annotation = os.path.basename(afile)
-        # Now copy the html reports to base dir as well
-        newrepfiles = glob.glob(os.path.join(self.getWorkDirectory(), "dui_files", "*.html"))
-        for afile in newrepfiles:
-            # Ensure file was created after this session of dui started to avoid duplicates (still safe - so keep)
-            shutil.copy(afile, self.getWorkDirectory())
+        out = self.container.outputData
+        nodes = Path(self.getWorkDirectory(), "run_dui2_nodes")
+        for path in nodes.glob("**/*.mtz"):
+            newName = "_".join(path.relative_to(nodes).parts)
+            newPath = Path(self.getWorkDirectory(), newName)
+            shutil.copy(path, newPath)
+            mtz = gemmi.read_mtz_file(str(path))
+            outList = out.UNMERGEDMTZ if len(mtz.batches) > 0 else out.MERGEDMTZ
+            outList.append(outList.makeItem())
+            outList[-1].setFullPath(str(newPath))
+            outList[-1].annotation = str(newName)
         return CPluginScript.SUCCEEDED
