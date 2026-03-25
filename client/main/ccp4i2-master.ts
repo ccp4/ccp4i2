@@ -165,11 +165,6 @@ app
       `http://localhost:${nextServerPort}/ccp4i2/config`,
       store
     );
-    console.log({
-      CCP4Dir: store.get("CCP4Dir"),
-      djangoServerPort,
-      nextServerPort,
-    });
   });
 
 app.on("window-all-closed", () => {

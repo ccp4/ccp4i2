@@ -18,7 +18,7 @@ export function ccp4_setup_sh(CCP4Dir) {
   process.env.CCP4I_TCLTK = path.join(CCP4, "bin");
 
   // Optional: set HTTP proxy (uncomment if needed)
-  process.env.HTTP_PROXY = "wwwblah.blah.ac.uk:xxxx/blah.blah";
+  // process.env.HTTP_PROXY = "wwwblah.blah.ac.uk:xxxx/blah.blah";
 
   // Gfortran-related variable
   process.env.GFORTRAN_UNBUFFERED_PRECONNECTED = "Y";
@@ -48,7 +48,6 @@ export function ccp4_setup_sh(CCP4Dir) {
     fs.mkdirSync(CCP4_SCR, { recursive: true });
   }
 
-  console.log(`CCP4_SCR directory set to: ${CCP4_SCR}`);
 
   // HARVESTHOME can be set if needed (uncomment if required)
   // process.env.HARVESTHOME = os.homedir();
@@ -79,11 +78,6 @@ export function ccp4_setup_sh(CCP4Dir) {
     process.env.SSL_CERT_FILE = path.join(CCP4, "etc", "ssl", "cacert.pem");
   }
 
-  // Traditional aliases (this is just for display; they can't be used directly in Node.js)
-  console.log(
-    "The following aliases are set in the shell environment (not usable in Node.js):"
-  );
-  console.log("ccp4, xtal, cbin, cetc, cincl, clib, clibd, cexam, chtml");
 
   // Clean up (in case older versions of CCP4 are sourced)
   delete process.env.DBCCP4I_TOP;
@@ -92,11 +86,6 @@ export function ccp4_setup_sh(CCP4Dir) {
   // This would require invoking a shell script from within Node.js if needed
   const arpwarpSetupPath = `${CCP4_MASTER}/arpwarp_setup.bash`;
   if (fs.existsSync(arpwarpSetupPath)) {
-    console.log(`Sourcing external setup file: ${arpwarpSetupPath}`);
-    // You can execute this script by invoking a shell command using child_process if needed
-  } else {
-    console.log(`External setup file not found: ${arpwarpSetupPath}`);
+    // ARP/wARP setup would need shell invocation via child_process if needed
   }
-
-  console.log("CCP4 environment setup complete!");
 }

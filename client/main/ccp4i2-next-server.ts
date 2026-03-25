@@ -17,24 +17,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
  * For files in report_files/, serves directly from the ASAR-aware fs.
  */
 const serveStaticWithAsar = (publicPath: string) => {
-  // Log once at setup time
-  console.log(`[serveStaticWithAsar] Initialized with publicPath: ${publicPath}`);
-  console.log(`[serveStaticWithAsar] publicPath exists: ${fs.existsSync(publicPath)}`);
-
-  // Check if report_files exists
-  const reportFilesPath = path.join(publicPath, "report_files", "0.1.0");
-  console.log(`[serveStaticWithAsar] report_files path: ${reportFilesPath}`);
-  console.log(`[serveStaticWithAsar] report_files exists: ${fs.existsSync(reportFilesPath)}`);
-
-  if (fs.existsSync(reportFilesPath)) {
-    try {
-      const files = fs.readdirSync(reportFilesPath);
-      console.log(`[serveStaticWithAsar] report_files contents: ${files.join(", ")}`);
-    } catch (e) {
-      console.log(`[serveStaticWithAsar] Error reading report_files: ${e}`);
-    }
-  }
-
   return (req: any, res: any, next: any) => {
     // Only handle specific static paths that might have issues
     const staticPaths = ["/report_files/", "/qticons/", "/svgicons/"];
@@ -45,11 +27,9 @@ const serveStaticWithAsar = (publicPath: string) => {
     }
 
     const filePath = path.join(publicPath, req.url.split("?")[0]);
-    console.log(`[serveStaticWithAsar] Requested: ${req.url} -> ${filePath}`);
 
     // Check if file exists (fs is ASAR-aware in Electron)
     const fileExists = fs.existsSync(filePath);
-    console.log(`[serveStaticWithAsar] File exists: ${fileExists}`);
 
     if (fileExists) {
       const stat = fs.statSync(filePath);
@@ -176,7 +156,6 @@ export const startNextServer = async (
 
   // Serve static files from public directory
   const publicPath = path.join(__dirname, "../renderer/public");
-  console.log(`[Next Server] Static files path: ${publicPath}`);
 
   // Use custom ASAR-aware middleware for specific paths
   server.use(serveStaticWithAsar(publicPath));

@@ -231,7 +231,10 @@ async function handleProxy(req: NextRequest, params: { path: string[] }) {
       headers: responseHeaders,
     });
   } catch (error: any) {
-    console.error("[CCP4I2 PROXY] Error:", error.message, "→", targetUrl);
+    // Only log unexpected errors, not connection-refused during startup
+    if (error.code !== "ECONNREFUSED") {
+      console.error("[CCP4I2 PROXY] Error:", error.message, "→", targetUrl);
+    }
     return NextResponse.json(
       { error: `Proxy error: ${error.message}`, targetUrl, code: error.code },
       { status: 500 }

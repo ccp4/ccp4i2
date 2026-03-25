@@ -106,7 +106,6 @@ export const installIpcHandlers = (
     config.venv_python = python_path;
     config.UVICORN_PORT = djangoServerPort;
     config.NEXT_PORT = nextServerPort;
-    console.log("get-config", config);
     return {
       message: "get-config",
       status: "Success",
@@ -183,7 +182,6 @@ export const installIpcHandlers = (
   // IPC communication to trigger file dialog to select parent directory for new projects
   // and set the CCP4I2_PROJECTS_DIR in the store
   ipcMain.on("check-file-exists", (event, data) => {
-    console.log("Checking for file-exists", data);
     event.reply("message-from-main", {
       message: "check-file-exists",
       path: data.path,
@@ -214,7 +212,6 @@ export const installIpcHandlers = (
 
   // IPC communication to trigger file dialog to start the uvicorn (django) server
   ipcMain.on("start-uvicorn", async (event, _data) => {
-    console.log("start-uvicorn");
     if (!djangoServerPort) return;
     if (!nextServerPort) return;
     const djangoServer = await startDjangoServer(
@@ -233,27 +230,18 @@ export const installIpcHandlers = (
   });
 
   // IPC communication to prompt reply with current config response
-  ipcMain.on("get-config", (event, data) => {
-    console.log("get-config", data);
-    const response = getConfigResponse();
-    console.log("get-config response", response);
-    event.reply("message-from-main", response);
+  ipcMain.on("get-config", (event, _data) => {
+    event.reply("message-from-main", getConfigResponse());
   });
 
   // IPC communication to prompt reply with current config response
-  ipcMain.on("get-cwd", (event, data) => {
-    console.log("get-cwd", data);
-    const response = getCwdResponse();
-    console.log("get-cwd response", response);
-    event.reply("message-from-main", response);
+  ipcMain.on("get-cwd", (event, _data) => {
+    event.reply("message-from-main", getCwdResponse());
   });
 
   // IPC communication to trigger file dialog to toggle the state of the developer mode
   ipcMain.on("toggle-dev-mode", (event, data) => {
     store.set("devMode", !store.get("devMode"));
-    const ccp4_python =
-      platform() === "win32" ? "ccp4-python.bat" : "ccp4-python";
-    console.log("ccp4_python", ccp4_python, store.get("devMode"));
     event.reply("message-from-main", getConfigResponse());
   });
 
@@ -264,7 +252,6 @@ export const installIpcHandlers = (
       return;
     }
     store.set("theme", data.theme);
-    console.log("Theme mode set to", data.theme);
     event.reply("message-from-main", {
       message: "set-theme-mode",
       status: "Success",
@@ -310,8 +297,7 @@ export const installIpcHandlers = (
     }
   });
 
-  ipcMain.on("zoom-in", (event, data) => {
-    console.log("Zooming in", data);
+  ipcMain.on("zoom-in", (event, _data) => {
     BrowserWindow.getAllWindows().forEach((win) => {
       const current = win.webContents.getZoomLevel();
       win.webContents.setZoomLevel(current + 1);
@@ -319,8 +305,7 @@ export const installIpcHandlers = (
     });
   });
 
-  ipcMain.on("zoom-out", (event, data) => {
-    console.log("Zooming out", data);
+  ipcMain.on("zoom-out", (event, _data) => {
     BrowserWindow.getAllWindows().forEach((win) => {
       const current = win.webContents.getZoomLevel();
       win.webContents.setZoomLevel(current - 1);
@@ -328,8 +313,7 @@ export const installIpcHandlers = (
     });
   });
 
-  ipcMain.on("zoom-reset", (event, data) => {
-    console.log("Zooming in", data);
+  ipcMain.on("zoom-reset", (event, _data) => {
     BrowserWindow.getAllWindows().forEach((win) => {
       win.webContents.setZoomLevel(0);
       store.set("zoomLevel", 0);
@@ -341,7 +325,6 @@ export const installIpcHandlers = (
     const CCP4Dir = store.get("CCP4Dir") || "";
     const pythonPath = findPython(CCP4Dir, projectRoot);
 
-    console.log("In check-requirements", pythonPath);
 
     // Validate that the executable exists before spawning
     if (!pythonPath) {
