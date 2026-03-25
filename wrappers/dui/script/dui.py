@@ -27,7 +27,7 @@ class dui(CPluginScript):
     def processOutputFiles(self):
         out = self.container.outputData
         nodes = Path(self.getWorkDirectory(), "run_dui2_nodes")
-        for path in nodes.glob("**/*.mtz"):
+        for path in sorted(nodes.glob("**/*.mtz")):
             newName = "_".join(path.relative_to(nodes).parts)
             newPath = Path(self.getWorkDirectory(), newName)
             shutil.copy(path, newPath)
