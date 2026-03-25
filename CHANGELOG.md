@@ -1,16 +1,13 @@
 # CCP4i2 Changelog
 
-## [2.6.1] - 2026-03-23
-
-- Symmetry operators shown in MetalCoord report
-
-## [2.6.0] - 2026-03-11
+## [2.6.0] - 2026-03-23
 
 - New NucleoFind task for predicting locations of nucleic acid features in maps
 - New AREAIMOL task for calculating solvent accessible surface area
 - Remove PDB/mmCIF input for AceDRG
 - AceDRG metal option only visible for CIF input format
 - Reporting input distances and angles in MetalCoord task
+- Symmetry operators shown in MetalCoord report
 
 ## [2.5.2] - 2026-02-06
 
