@@ -118,7 +118,6 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
         setEditedParamsXml(null);
         // Trigger a refresh of params_xml from server
         mutateParams_xml();
-        console.log("[JobView] XML saved successfully:", response.data?.message);
       } else {
         setXmlSaveError(response.error || "Failed to save XML");
       }
@@ -144,7 +143,6 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     if (!report_xml_json) return null;
     // Handle both wrapped response {success: true, data: {xml: ...}} and direct {xml: ...}
     const xmlString = report_xml_json.data?.xml || report_xml_json.xml;
-    console.log("[JobView] report_xml_json:", report_xml_json, "xmlString length:", xmlString?.length);
     if (!xmlString) return null;
     return $.parseXML(xmlString);
   }, [report_xml_json]);

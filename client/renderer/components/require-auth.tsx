@@ -28,14 +28,11 @@ async function tryTeamsSSO(clientId: string, tenantId: string): Promise<TeamsSSO
     const inTeams = await teamsSSO.isRunningInTeams();
 
     if (!inTeams) {
-      console.log("[Auth] In iframe but not in Teams context");
       return null;
     }
 
-    console.log("[Auth] Teams context detected, attempting SSO...");
     return await teamsSSO.attemptTeamsSSO(clientId, tenantId);
   } catch (error) {
-    console.log("[Auth] Teams SSO not available:", error);
     return null;
   }
 }
@@ -94,8 +91,6 @@ export default function RequireAuth({ children }: RequireAuthProps) {
     // If no accounts and not yet initialized, trigger login
     if (accounts.length === 0 && !hasInitialized.current) {
       hasInitialized.current = true;
-      console.log("[Auth] No accounts found, initiating login");
-
       // Use popup auth when running in an iframe (e.g., Teams) since redirects don't work
       if (isRunningInIframe()) {
         // Try Teams SSO first - this provides seamless auth for Teams users
@@ -105,28 +100,22 @@ export default function RequireAuth({ children }: RequireAuthProps) {
         tryTeamsSSO(clientId, tenantId)
           .then((ssoResult) => {
             if (ssoResult?.success && ssoResult.token) {
-              console.log("[Auth] Teams SSO successful, token obtained");
               return instance.ssoSilent({
                 scopes: ["openid", "profile"],
                 loginHint: undefined,
               }).catch(() => {
-                console.log("[Auth] SSO silent failed, falling back to popup");
                 return instance.loginPopup({ scopes: ["openid", "profile"] });
               });
             } else {
-              console.log("[Auth] Teams SSO not available, using popup login");
               return instance.loginPopup({ scopes: ["openid", "profile"] });
             }
           })
-          .then(() => {
-            console.log("[Auth] Login successful");
-          })
+          .then(() => {})
           .catch((error) => {
             console.error("[Auth] Login failed:", error);
           });
       } else {
         // Standard redirect flow for normal browser usage
-        console.log("[Auth] Running in browser, using redirect login");
         instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/auth/callback" });
       }
       return;
@@ -134,7 +123,6 @@ export default function RequireAuth({ children }: RequireAuthProps) {
 
     // User is authenticated
     if (accounts.length > 0) {
-      console.log("[Auth] User authenticated:", accounts[0].username);
       setIsInitializing(false);
     }
   }, [accounts, inProgress, instance]);

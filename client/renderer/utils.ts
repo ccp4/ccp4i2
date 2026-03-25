@@ -819,9 +819,6 @@ export const useJobDirectory = (
 
     // Only refresh if this is the same job (not a job switch) and it just finished
     if (wasActive && isNowIdle && activeJob.id === previousJob.id) {
-      console.log(
-        `[useJobDirectory] Job ${activeJob.id} finished (${previousJob.status} -> ${activeJob.status}), refreshing directory`
-      );
       mutateDirectory();
     }
   }, [activeJob, previousJob, mutateDirectory]);
@@ -876,7 +873,6 @@ class ParameterQueue {
       if (!item) break;
 
       try {
-        console.log(`Processing parameter operation ${item.id}`);
         const result = await item.operation();
         item.resolve(result);
       } catch (error) {
@@ -1025,8 +1021,6 @@ export const useJob = (jobId: number | null | undefined): JobData => {
       // Enqueue the operation to ensure sequential execution
       return parameterQueue.enqueue(async () => {
         try {
-          console.log("Executing setParameterNoMutate for:", objectPath);
-
           const result = await api.post<SetParameterResponse>(
             `jobs/${job.id}/set_parameter`,
             setParameterArg
@@ -1104,7 +1098,6 @@ export const useJob = (jobId: number | null | undefined): JobData => {
           const digestKey = `jobs/${job.id}/digest?object_path=${objectPath}`;
           await mutate(digestKey);
 
-          console.log("File uploaded successfully:", result);
           return result;
         } catch (error) {
           console.error("Error uploading file:", error);
@@ -1243,8 +1236,6 @@ export const useJob = (jobId: number | null | undefined): JobData => {
       }
 
       try {
-        console.log(`Creating ${taskName} task...`);
-
         const result = await api.post<CreateTaskResponse>(
           `projects/${job.project}/create_task/`,
           {

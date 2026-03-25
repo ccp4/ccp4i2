@@ -179,14 +179,12 @@ export default function AuthProvider({ children }: AuthProviderProps) {
 
         if (hasStoredTeamsToken && isRunningInIframe()) {
           // Running in Teams with stored token - set up refresher
-          console.log("[AUTH] Running in Teams context with stored token");
           setTeamsTokenRefresher(refreshTeamsToken);
           await setAuthSessionCookie();
         } else if (response && response.account) {
           // If we have authenticated accounts, ensure the session cookie is set
           // Note: The /auth/callback page handles redirect completion and cookie setting,
           // but we also set it here to ensure cookie exists for subsequent page loads
-          console.log("[AUTH] Login redirect completed");
           // Cookie is set by /auth/callback page, but ensure it's set here too
           await setAuthSessionCookie();
         } else if (pca.getAllAccounts().length > 0) {

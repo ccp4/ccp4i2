@@ -24,16 +24,7 @@ export const CopyViewLinkButton: React.FC<CopyViewLinkButtonProps> = ({
 
   const handleCopyViewLink = useCallback(async () => {
     try {
-      console.log("CopyViewLinkButton - Getting view URL...");
       const url = getViewUrl();
-      console.log("CopyViewLinkButton - URL to copy:", url);
-      console.log("CopyViewLinkButton - URL length:", url.length);
-      // Also log just the view parameter for debugging
-      const urlObj = new URL(url);
-      const viewParam = urlObj.searchParams.get("view");
-      console.log("CopyViewLinkButton - view param:", viewParam);
-      console.log("CopyViewLinkButton - view param length:", viewParam?.length);
-
       await navigator.clipboard.writeText(url);
       setMessage("View link copied to clipboard", "success");
     } catch (error) {

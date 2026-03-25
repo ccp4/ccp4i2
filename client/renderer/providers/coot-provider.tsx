@@ -16,7 +16,7 @@ export const CootProvider: React.FC<PropsWithChildren> = (props) => {
   // Log capability check on mount
   useEffect(() => {
     const capabilities = checkMoorhenCapabilities();
-    console.log(`[Moorhen] Browser capabilities:`, capabilities);
+    // Capability check performed on mount
 
     // Warn if capabilities are missing (but don't block - let it try)
     if (!capabilities.isSupported && !isElectron) {

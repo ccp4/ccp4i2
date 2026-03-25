@@ -55,7 +55,6 @@ export const ConfigContent: React.FC = () => {
         );
       };
     } else {
-      console.log("Electron API is not available - running in web mode");
     }
   }, []);
 
@@ -155,8 +154,6 @@ export const ConfigContent: React.FC = () => {
 
   const onLaunchBrowser = async () => {
     if (typeof window !== "undefined" && window?.electronAPI) {
-      console.log("Gonna send locate-ccp4");
-      console.log(window.electronAPI);
       window.electronAPI.sendMessage("locate-ccp4");
     } else {
       console.error("Electron API is not available");
@@ -165,8 +162,6 @@ export const ConfigContent: React.FC = () => {
 
   const onSelectProjectsDir = async () => {
     if (typeof window !== "undefined" && window.electronAPI) {
-      console.log("Gonna send locate-ccp4");
-      console.log(window.electronAPI);
       window.electronAPI.sendMessage("locate-ccp4i2-project-directory");
     } else {
       console.error("Electron API is not available");

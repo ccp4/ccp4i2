@@ -513,7 +513,6 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
 
   const handleFileSelect = useCallback(
     (file: DjangoFile) => {
-      console.log("File selected:", file);
       onFileSelect(file.id);
     },
     [onFileSelect]

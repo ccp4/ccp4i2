@@ -61,7 +61,6 @@ export const CCP4i2ReportGridContainer: React.FC<CCP4i2ReportGridProps> = ({
         | "baseline",
       wrap: $item.attr("wrap") !== "nowrap" ? "wrap" : "nowrap",
     };
-    console.log("[Grid] Container props:", props, "children:", $item.children().length);
     return props;
   }, [item]);
 
@@ -136,7 +135,6 @@ export const CCP4i2ReportGridItem: React.FC<CCP4i2ReportGridProps> = ({
       size.xs = 12;
     }
 
-    console.log("[Grid] Item size:", size, "children:", $item.children().length);
     return size;
   }, [item]);
 

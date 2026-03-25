@@ -186,11 +186,10 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
         } else {
           const errorText = await result.text();
           setMessage(errorText);
-          console.log("FetchFileForParam handleFetch result", result);
         }
       } catch (err: any) {
         setMessage(err.message || "Unknown error");
-        console.log("FetchFileForParam handleFetch error", err);
+        console.error("FetchFileForParam handleFetch error", err);
         return;
       }
     }
@@ -215,11 +214,10 @@ export const FetchFileForParam: React.FC<FetchFileForParamProps> = ({
         } else {
           const errorText = await result.text();
           setMessage(errorText);
-          console.log("FetchFileForParam handleFetch result", result);
         }
       } catch (err: any) {
         setMessage(err.message || "Unknown error", "error");
-        console.log("FetchFileForParam handleEbiSFsFetch error", err);
+        console.error("FetchFileForParam handleEbiSFsFetch error", err);
       }
     }
   }, [identifier, uploadFile, onClose, setMessage]);

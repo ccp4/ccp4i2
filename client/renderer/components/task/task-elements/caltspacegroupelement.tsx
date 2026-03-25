@@ -45,7 +45,6 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
       object_path: item._objectPath,
       value: value?.name,
     };
-    console.log(setParameterArg);
     try {
       const result: any = await setParameter(setParameterArg);
       if (result?.success && result.data?.updated_item && props.onChange) {

@@ -114,8 +114,6 @@ export function useMoorhenViewState({
 
   const applyViewState = useCallback(
     (viewState: MoorhenViewState) => {
-      console.log("Applying view state:", viewState);
-
       // Apply camera state
       dispatch(setOrigin(viewState.o));
       dispatch(setQuat(viewState.q));

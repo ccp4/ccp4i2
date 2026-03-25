@@ -76,7 +76,6 @@ export const RDKitProvider: React.FC<PropsWithChildren> = ({ children }) => {
             const module = await initRDKitModule(createArgs);
             setRdkitModule(module);
             setIsLoading(false);
-            console.log('RDKit module loaded successfully');
           } catch (err) {
             console.error('Failed to initialize RDKit:', err);
             setError('Failed to load RDKit module');

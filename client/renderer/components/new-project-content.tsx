@@ -59,7 +59,6 @@ export const NewProjectContent: React.FC = () => {
         }
       );
     } else {
-      console.log("window.electron is not available");
       setDirectoryExists(false); // Assume directory does not exist in web mode
     }
   }, []);

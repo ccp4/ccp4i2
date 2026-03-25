@@ -30,7 +30,6 @@ export default function AuthCallbackPage() {
         const response = await instance.handleRedirectPromise();
 
         if (response && response.account) {
-          console.log("[AUTH CALLBACK] Login successful:", response.account.username);
           setStatus("Setting up session...");
 
           // Set the auth session cookie
@@ -43,7 +42,6 @@ export default function AuthCallbackPage() {
           const returnUrl = sessionStorage.getItem("auth-return-url") || "/";
           sessionStorage.removeItem("auth-return-url");
 
-          console.log("[AUTH CALLBACK] Redirecting to:", returnUrl);
           setStatus("Redirecting...");
 
           // Small delay to ensure cookie is set
@@ -55,7 +53,6 @@ export default function AuthCallbackPage() {
           // Check if we already have accounts (e.g., from a previous session)
           const accounts = instance.getAllAccounts();
           if (accounts.length > 0) {
-            console.log("[AUTH CALLBACK] Existing session found");
             setStatus("Session found, setting up...");
 
             await fetch("/api/auth/session", {
@@ -68,7 +65,6 @@ export default function AuthCallbackPage() {
             window.location.replace(returnUrl);
           } else {
             // No response and no accounts - user needs to log in
-            console.log("[AUTH CALLBACK] No auth response, redirecting to login");
             setStatus("Please sign in...");
             setTimeout(() => {
               window.location.replace("/auth/login");

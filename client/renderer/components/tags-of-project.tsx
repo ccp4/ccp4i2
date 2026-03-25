@@ -76,18 +76,12 @@ export const TagsOfProject: React.FC<{
 
         // If it's a new tag, create it first
         if (tagOption.isNew || !tagId) {
-          console.log("Creating new tag:", {
-            text: tagOption.text,
-            parent: tagOption.parent || null,
-          });
-
           try {
             const newTag = await api.post<ProjectTag>("projecttags/", {
               text: tagOption.text,
               parent: tagOption.parent || null,
               projects: [], // Start with empty projects array
             });
-            console.log("New tag created:", newTag);
             tagId = newTag.id;
             // Refresh the all tags list
             mutateAllTags();
@@ -105,7 +99,6 @@ export const TagsOfProject: React.FC<{
                   tag.parent === (tagOption.parent || null)
               );
               if (existingTag) {
-                console.log("Found existing tag:", existingTag);
                 tagId = existingTag.id;
               } else {
                 throw createError;
@@ -117,7 +110,6 @@ export const TagsOfProject: React.FC<{
         }
 
         // Add the tag to the project
-        console.log("Adding tag to project:", { tag_id: tagId });
         await api.post(`projects/${projectId}/tags/`, {
           tag_id: tagId,
         });

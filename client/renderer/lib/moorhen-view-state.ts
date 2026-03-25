@@ -62,11 +62,9 @@ export function encodeViewState(state: MoorhenViewState): string {
   if (state.r && state.r.length > 0) compacted.r = state.r;
 
   const json = JSON.stringify(compacted);
-  console.log("encodeViewState - JSON to encode:", json);
 
   // Use base64url encoding (URL-safe: replace + with -, / with _, remove padding)
   const encoded = btoa(json).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-  console.log("encodeViewState - Encoded result:", encoded);
 
   return encoded;
 }
@@ -77,19 +75,13 @@ export function encodeViewState(state: MoorhenViewState): string {
  */
 export function decodeViewState(encoded: string): MoorhenViewState | null {
   try {
-    console.log("decodeViewState - Input (first 100 chars):", encoded.substring(0, 100));
-
     // Restore base64 padding and characters
     let base64 = encoded.replace(/-/g, "+").replace(/_/g, "/");
     while (base64.length % 4) base64 += "=";
 
-    console.log("decodeViewState - Restored base64 (first 100 chars):", base64.substring(0, 100));
-
     const json = atob(base64);
-    console.log("decodeViewState - Decoded JSON:", json);
 
     const parsed = JSON.parse(json);
-    console.log("decodeViewState - Parsed object:", parsed);
 
     // Validate required fields
     if (!Array.isArray(parsed.o) || parsed.o.length !== 3) {
@@ -115,7 +107,6 @@ export function decodeViewState(encoded: string): MoorhenViewState | null {
       return null;
     }
 
-    console.log("decodeViewState - Success, returning:", parsed);
     return parsed as MoorhenViewState;
   } catch (e) {
     console.error("decodeViewState - Exception:", e);
@@ -162,17 +153,6 @@ export function captureViewState(
     fogStart: number;
     fogEnd: number;
   }}).glRef;
-
-  // Debug logging
-  console.log("captureViewState - glRef:", {
-    origin: glRef?.origin,
-    quat: glRef?.quat,
-    zoom: glRef?.zoom,
-    fogStart: glRef?.fogStart,
-    fogEnd: glRef?.fogEnd,
-    clipStart: glRef?.clipStart,
-    clipEnd: glRef?.clipEnd,
-  });
 
   // Helper to check for array-like objects (includes Float32Array and other typed arrays)
   // Note: Array.isArray(Float32Array) returns false, so we check for length property

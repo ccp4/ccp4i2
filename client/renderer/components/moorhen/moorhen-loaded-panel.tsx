@@ -230,12 +230,10 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
         dispatch(removeMap(menuState.item as moorhen.Map));
         menuState.item.delete();
         dispatch(setRequestDrawScene(true));
-        console.log(`Delete map:`, menuState.item.name);
       } else {
         dispatch(removeMolecule(menuState.item as moorhen.Molecule));
         menuState.item.delete();
         dispatch(setRequestDrawScene(true));
-        console.log(`Delete ${type.toLowerCase()}:`, menuState.item.name);
       }
     }
     handleMenuClose();

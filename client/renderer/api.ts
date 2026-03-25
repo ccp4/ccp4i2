@@ -237,17 +237,10 @@ const validationFetcher = createXmlFetcher(parseValidationXml);
  * Accepts string key (e.g., "jobs/123/container")
  */
 async function wrappedJsonFetcher(key: string): Promise<any> {
-  console.log("[wrappedJsonFetcher] Fetching:", key);
   const response = await jsonFetcher<any>(key);
   // Check if this is a container endpoint by looking at the key
   const isContainer = key.endsWith("/container");
-  const result = parseContainerResponse(response, isContainer);
-  console.log("[wrappedJsonFetcher] Result for", key, ":", {
-    hasContainer: !!result?.container,
-    hasLookup: !!result?.lookup,
-    lookupKeys: result?.lookup ? Object.keys(result.lookup).length : 0,
-  });
-  return result;
+  return parseContainerResponse(response, isContainer);
 }
 
 /**
@@ -547,7 +540,7 @@ export const doDownloadWithProgress = (
   theURL: string,
   targetName: string,
   optionsIn?: any,
-  onProgress: (bytesRead: number) => void = (bytesRead) => console.log(bytesRead)
+  onProgress?: (bytesRead: number) => void
 ) => {
   const options = optionsIn ?? {};
 

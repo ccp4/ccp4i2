@@ -144,9 +144,6 @@ export class CCP4Table implements CCP4TableInterface {
         imagePath = imagePath.replace("/djangostatic/", "/");
       }
 
-      console.log(
-        `[ChartLib] Background image: original="${selectedPlot.background}", resolved="${imagePath}"`
-      );
       const img = new Image();
       img.src = imagePath;
       result.plugins.backgroundImage = {
@@ -1235,7 +1232,6 @@ const backgroundImagePlugin = {
         }
       } else {
         // Image not loaded yet, schedule a redraw
-        console.log("Background image not ready, scheduling redraw");
         setTimeout(() => {
           if (chart && chart.update) {
             chart.update("none");

@@ -21,7 +21,6 @@ export default function UtilMenu() {
     handleClose();
   };
   const handleRunningJobsClick = useCallback(async () => {
-    console.log(setJobsAndProcessesDialogOpen);
     setJobsAndProcessesDialogOpen(true);
     handleClose();
   }, [setJobsAndProcessesDialogOpen]);

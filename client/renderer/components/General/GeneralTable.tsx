@@ -384,7 +384,7 @@ export const GeneralTable = (props: GeneralTableProps) => {
               disabled={!filteredItems || filteredItems.length == 0}
               onClick={(ev) => {
                 const htmlText = dataAsHTMLTable();
-                console.log({ htmlText });
+
                 const wb = XLSX.read(htmlText, { type: "string" });
                 XLSX.writeFile(wb, "Download.xlsx");
               }}
@@ -405,7 +405,7 @@ export const GeneralTable = (props: GeneralTableProps) => {
               disabled={!filteredItems || filteredItems.length == 0}
               onClick={(ev) => {
                 const htmlText = dataAsHTMLTable();
-                console.log({ htmlText });
+
                 const wb = XLSX.read(htmlText, { type: "string" });
                 XLSX.writeFile(wb, "Download.csv");
               }}

@@ -135,7 +135,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   // View state hook for URL parameter support
   const { getViewUrl, initialRepresentations } = useMoorhenViewState({
     viewParam: viewParam ?? null,
-    onViewRestored: () => console.log("View state restored from URL"),
+    onViewRestored: () => {},
     representations: visibleRepresentations,
   });
 
@@ -293,15 +293,8 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     const files = await apiGet(`files/?job=${jobId}`);
     if (!files || !Array.isArray(files)) return;
 
-    console.log("[fetchJobFiles] All files with types:", files.map((f: any) =>
-      `${f.name} (type=${f.type}, dir=${f.directory})`
-    ));
-
     // Filter to only JOB_DIR files (directory=1), exclude imported files (directory=2)
     const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
-    console.log("[fetchJobFiles] JOB_DIR files:", jobOutputFiles.map((f: any) =>
-      `${f.name} (type=${f.type})`
-    ));
 
     // STEP 1: Load ALL ligand dictionaries FIRST (before coordinates)
     // This ensures coot understands ligand geometry when parsing coordinates.
@@ -313,7 +306,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     if (ligandDictFiles.length > 0) {
       loadedDictContents.current = [];
       for (const dictFile of ligandDictFiles) {
-        console.log("[fetchJobFiles] Loading ligand dictionary:", dictFile.name);
         const dictUrl = `/api/proxy/ccp4i2/files/${dictFile.id}/download/`;
         await fetchDict(dictUrl);
       }
@@ -338,16 +330,11 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         f.type === "chemical/x-cif" ||
         f.type === "chemical/x-mmcif"
     );
-    console.log("[fetchJobFiles] Coord files (PDB/CIF):", coordFiles.map((f: any) =>
-      `${f.name} (type=${f.type})`
-    ));
-
     // Prefer mmCIF (.cif) over PDB (.pdb) for coordinates
     const mmcifFile = coordFiles.find((f: { name: string }) =>
       f.name.toLowerCase().endsWith(".cif")
     );
     const coordFile = mmcifFile || coordFiles[0];
-    console.log("[fetchJobFiles] Selected coord file:", coordFile?.name);
 
     // Load the single best coordinate file
     if (coordFile) {
@@ -386,7 +373,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         },
         false
       );
-      console.log("[fetchDict] Loaded dictionary globally");
       // Store content so we can add it to molecules later
       loadedDictContents.current.push(fileContent);
       return fileContent;
@@ -422,16 +408,12 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
           console.warn("[fetchMolecule] Failed to add dictionary:", err);
         }
       }
-      if (loadedDictContents.current.length > 0) {
-        console.log(`[fetchMolecule] Added ${loadedDictContents.current.length} dictionar${loadedDictContents.current.length === 1 ? 'y' : 'ies'} to molecule`);
-      }
-
       // Try ribbon representation first (better for protein overview)
       // Fall back to CBs if ribbons fail (e.g., no protein backbone)
       try {
         await newMolecule.addRepresentation("CRs", "/*/*/*/*");
       } catch {
-        console.log("[fetchMolecule] Ribbons failed, falling back to CBs");
+        // Ribbons failed, fall back to CBs
         await newMolecule.addRepresentation("CBs", "/*/*/*/*");
       }
 
@@ -439,7 +421,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
       try {
         await newMolecule.addRepresentation("ligands", "/*/*/*/*");
       } catch {
-        console.log("[fetchMolecule] Ligands representation failed");
+        console.warn("[fetchMolecule] Ligands representation failed");
       }
 
       await newMolecule.centreOn("/*/*/*/*", false, true);
@@ -807,7 +789,7 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
   if (capabilities && !capabilities.isSupported && !isElectronEnv) {
     // Still attempt to render - the MoorhenErrorBoundary will catch failures
     // This allows browsers that have improved their support to work
-    console.log("[Moorhen] Browser capabilities limited, attempting to load anyway...");
+    // Browser capabilities limited - attempting to load anyway
   }
 
   return (

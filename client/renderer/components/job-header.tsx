@@ -51,7 +51,6 @@ export const JobHeader: React.FC<JobHeaderProps> = ({ job, mutateJobs }) => {
           mutateContainer();
         }
       });
-    console.log({ context_job_response: result });
   };
 
   if (!job) return <LinearProgress />;

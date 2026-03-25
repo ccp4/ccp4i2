@@ -40,10 +40,9 @@ export const JobCommentEditor: React.FC<{
       formData.append("comments", value);
 
       const response = await api.patch(`jobs/${jobId}`, formData);
-      console.log("Comments updated", response);
     } catch (error: any) {
       if (error?.name === "Canceled") {
-        console.log("Monaco operation was canceled; ignoring.");
+        console.warn("Monaco operation was canceled; ignoring.");
       } else {
         console.error("Error updating comments", error);
       }

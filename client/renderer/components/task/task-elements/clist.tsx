@@ -260,12 +260,6 @@ export const CListElement: React.FC<CListElementProps> = ({
       const newItemValue = createNewItemValue(updatedTaskElement, project);
       currentListValue.push(newItemValue);
 
-      console.log("Adding list item:", {
-        objectPath: updatedTaskElement._objectPath,
-        newValue: currentListValue,
-        newItemValue,
-      });
-
       // Set parameter
       const setParameterArg: SetParameterArg = {
         object_path: item._objectPath,
@@ -309,11 +303,6 @@ export const CListElement: React.FC<CListElementProps> = ({
 
         // Remove item at the found index
         currentListValue.splice(itemIndex, 1);
-
-        console.log("Deleting list item:", {
-          index: itemIndex,
-          remainingItems: currentListValue.length,
-        });
 
         // Set parameter with extracted values
         const setParameterArg: SetParameterArg = {

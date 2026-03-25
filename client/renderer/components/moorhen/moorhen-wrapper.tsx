@@ -56,7 +56,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   // View state hook for URL parameter support
   const { getViewUrl } = useMoorhenViewState({
     viewParam: viewParam ?? null,
-    onViewRestored: () => console.log("View state restored from URL"),
+    onViewRestored: () => {},
   });
   // Container ref for measuring available height below the AppBar
   const moorhenContainerRef = useRef<HTMLDivElement>(null);
@@ -151,7 +151,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       try {
         await newMolecule.addRepresentation("ligands", "/*/*/*/*");
       } catch {
-        console.log("[fetchMolecule] Ligands representation failed");
+        console.warn("[fetchMolecule] Ligands representation failed");
       }
 
       await newMolecule.centreOn("/*/*/*/*", false, true);
@@ -429,7 +429,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
   }
 
   if (capabilities && !capabilities.isSupported && !isElectronEnv) {
-    console.log("[Moorhen] Browser capabilities limited, attempting to load anyway...");
+    // Browser capabilities limited - attempting to load anyway
   }
 
   return (

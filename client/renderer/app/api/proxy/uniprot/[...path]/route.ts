@@ -20,8 +20,6 @@ export async function GET(
   const queryString = searchParams ? `?${searchParams}` : "";
   const targetUrl = `https://rest.uniprot.org/${uniprotPath}${queryString}`;
 
-  console.log("[UNIPROT PROXY] Forwarding to:", targetUrl);
-
   try {
     // follow redirects (UniProt redirects mnemonic IDs to accession IDs)
     const res = await fetch(targetUrl, { redirect: "follow" });

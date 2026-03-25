@@ -205,18 +205,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     error: Error | null;
   };
 
-  // Debug: log digest fetching status
-  useEffect(() => {
-    console.log("[import_merged] Digest status:", {
-      hasUploadedFile,
-      digestObjectPath,
-      HKLINValue,
-      HKLINDigest,
-      digestLoading,
-      digestError,
-    });
-  }, [hasUploadedFile, digestObjectPath, HKLINValue, HKLINDigest, digestLoading, digestError]);
-
   const { item: HKLIN_OBSItem } = useTaskItem("HKLIN_OBS");
   const { forceUpdate: forceUpdateSPACEGROUP } = useTaskItem("SPACEGROUP");
   const { forceUpdate: forceUpdateUNITCELL } = useTaskItem("UNITCELL");
@@ -259,35 +247,23 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       const hasObsGroups = validGroups.some((g) => g.columnGroupType === "Obs");
 
       if (hasObsGroups || !HKLINDigest.listOfColumns) {
-        console.log("[import_merged] Using pre-computed columnGroups:", {
-          raw: HKLINDigest.columnGroups,
-          filtered: validGroups,
-        });
         return validGroups;
       }
 
-      // Backend didn't find Obs groups - try computing ourselves
-      console.log("[import_merged] Backend columnGroups missing Obs, computing from listOfColumns");
     }
 
     // Compute from listOfColumns (either as primary source or fallback)
     if (HKLINDigest.listOfColumns) {
       const computed = groupColumnsByPattern(HKLINDigest.listOfColumns);
-      console.log("[import_merged] Computed columnGroups from listOfColumns:", {
-        listOfColumns: HKLINDigest.listOfColumns,
-        computedGroups: computed,
-      });
       return computed;
     }
 
-    console.log("[import_merged] No columnGroups or listOfColumns in digest");
     return [];
   }, [HKLINDigest]);
 
   // Filter observation groups (exclude FreeR, phases, etc.)
   const obsGroups = useMemo(() => {
     const obs = columnGroups.filter((g) => g.columnGroupType === "Obs");
-    console.log("[import_merged] Filtered obsGroups:", obs, "from columnGroups:", columnGroups.map(g => g.columnGroupType));
     return obs;
   }, [columnGroups]);
 
@@ -323,7 +299,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       const firstGroup = obsGroups[0];
-      console.log("[import_merged] Auto-selecting first observation group:", firstGroup);
 
       // Mark as auto-selected for this file
       setAutoSelectedObsForFile(HKLINValue?.dbFileId || null);
@@ -371,16 +346,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       return;
     }
 
-    console.log("[import_merged] Processing new digest:", HKLINDigest);
-    console.log("[import_merged] Update functions available:", {
-      forceUpdateSPACEGROUP: !!forceUpdateSPACEGROUP,
-      forceUpdateUNITCELL: !!forceUpdateUNITCELL,
-      forceUpdateWAVELENGTH: !!forceUpdateWAVELENGTH,
-      forceUpdateHKLIN_FORMAT: !!forceUpdateHKLIN_FORMAT,
-      forceUpdateCRYSTALNAME: !!forceUpdateCRYSTALNAME,
-      forceUpdateDATASETNAME: !!forceUpdateDATASETNAME,
-    });
-
     const processDigest = async () => {
       if (!HKLINDigest) return;
 
@@ -389,11 +354,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       // Update space group
       if (HKLINDigest.spaceGroup) {
         const cleanedSG = String(HKLINDigest.spaceGroup).replace(/\s+/g, "");
-        console.log("[import_merged] Setting spaceGroup to:", cleanedSG);
         if (forceUpdateSPACEGROUP) {
           try {
             const result = await forceUpdateSPACEGROUP(cleanedSG);
-            console.log("[import_merged] forceUpdateSPACEGROUP result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateSPACEGROUP error:", e);
@@ -405,11 +368,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       // Update wavelength
       if (HKLINDigest.wavelength) {
-        console.log("[import_merged] Setting wavelength to:", HKLINDigest.wavelength);
         if (forceUpdateWAVELENGTH) {
           try {
             const result = await forceUpdateWAVELENGTH(HKLINDigest.wavelength);
-            console.log("[import_merged] forceUpdateWAVELENGTH result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateWAVELENGTH error:", e);
@@ -419,11 +380,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       // Update format
       if (HKLINDigest.format) {
-        console.log("[import_merged] Setting format to:", HKLINDigest.format.toUpperCase());
         if (forceUpdateHKLIN_FORMAT) {
           try {
             const result = await forceUpdateHKLIN_FORMAT(HKLINDigest.format.toUpperCase());
-            console.log("[import_merged] forceUpdateHKLIN_FORMAT result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateHKLIN_FORMAT error:", e);
@@ -433,11 +392,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       // Update unit cell
       if (HKLINDigest.cell) {
-        console.log("[import_merged] Setting cell to:", HKLINDigest.cell);
         if (forceUpdateUNITCELL) {
           try {
             const result = await forceUpdateUNITCELL(HKLINDigest.cell);
-            console.log("[import_merged] forceUpdateUNITCELL result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateUNITCELL error:", e);
@@ -447,11 +404,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
       // Update crystal name and dataset name from digest
       if (HKLINDigest.crystalNames && HKLINDigest.crystalNames.length > 0 ) {
-        console.log("[import_merged] Setting crystalName to:", HKLINDigest.crystalNames);
         if (forceUpdateCRYSTALNAME) {
           try {
             const result = await forceUpdateCRYSTALNAME(HKLINDigest.crystalNames[0]);
-            console.log("[import_merged] forceUpdateCRYSTALNAME result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateCRYSTALNAME error:", e);
@@ -460,11 +415,9 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
       }
 
       if (HKLINDigest.datasets && HKLINDigest.datasets.length > 0 ) {
-        console.log("[import_merged] Setting datasetName to:", HKLINDigest.datasets[0]);
         if (forceUpdateDATASETNAME) {
           try {
             const result = await forceUpdateDATASETNAME(HKLINDigest.datasets[0]);
-            console.log("[import_merged] forceUpdateDATASETNAME result:", result);
             parametersChanged = parametersChanged || Boolean(result);
           } catch (e) {
             console.error("[import_merged] forceUpdateDATASETNAME error:", e);
@@ -477,7 +430,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
         await forceSetHASFREER(Boolean(HKLINDigest.hasFreeR && HKLINDigest.freerValid));
       }
 
-      console.log("[import_merged] parametersChanged:", parametersChanged);
       // forceUpdate calls patch the cache locally - no need for mutateContainer
       if (parametersChanged) {
         await mutateValidation();

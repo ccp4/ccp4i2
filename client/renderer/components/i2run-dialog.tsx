@@ -43,7 +43,6 @@ export const I2RunDialog: React.FC<I2RunDialogProps> = ({
         );
       };
     } else {
-      console.log("window.electron is not available");
     }
   }, []);
 

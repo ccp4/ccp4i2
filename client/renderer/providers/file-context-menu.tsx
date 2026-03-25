@@ -119,12 +119,6 @@ export const FileMenu: React.FC = () => {
       if (!file) return;
 
       try {
-        console.log("Annotation updated:", {
-          fileId: file.id,
-          fileName: file.name,
-          newAnnotation: value,
-        });
-
         await api.patch(`files/${file.id}`, {
           annotation: value,
         });

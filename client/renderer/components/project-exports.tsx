@@ -61,7 +61,6 @@ const findFileInDirectory = (container: any[], fileName: string): boolean => {
 
   for (const item of container) {
     // Check if current item matches the filename
-    console.log("Checking item:", item.name, fileName);
     if (item.name === fileName) {
       return true;
     }

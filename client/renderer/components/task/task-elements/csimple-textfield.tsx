@@ -232,8 +232,6 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
       if (type === INPUT_TYPES.INT) {
         if (typeof newValue === "string") {
           if (newValue.trim() === "") {
-            // Empty string - skip update (don't send invalid value to server)
-            console.log("Skipping empty string update for INT field");
             return;
           }
           if (/^\d+$/.test(newValue)) {
@@ -244,8 +242,6 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
       if (type === INPUT_TYPES.FLOAT) {
         if (typeof newValue === "string") {
           if (newValue.trim() === "") {
-            // Empty string - skip update (don't send invalid value to server)
-            console.log("Skipping empty string update for FLOAT field");
             return;
           }
           if (/^-?\d*\.?\d+$/.test(newValue)) {

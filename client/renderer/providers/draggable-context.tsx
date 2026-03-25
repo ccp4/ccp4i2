@@ -66,7 +66,6 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
   };
 
   const handleDragEnd = async (event: any) => {
-    console.log(event);
     if (event.active.data?.current?.job) {
       const context_job = event.active.data.current.job as Job;
       if (!event.over.data?.current?.job) return;
@@ -93,7 +92,6 @@ export const DraggableContext: React.FC<PropsWithChildren> = (props) => {
     <DndContext
       onDragEnd={handleDragEnd}
       onDragStart={({ active }) => {
-        console.log("Drag start", active);
         setActiveDragItem(active.data.current as File | Job);
 
         // Write reference to system clipboard for cross-window paste

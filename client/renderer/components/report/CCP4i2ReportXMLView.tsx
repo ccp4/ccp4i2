@@ -33,22 +33,12 @@ export const CCP4i2ReportXMLView = () => {
     isJobActive
   );
 
-  // Debug logging
+  // Log fetch errors only
   useEffect(() => {
-    if (job) {
-      console.log(`[Report] Fetching report for job ${job.id}, status=${job.status}`);
-    }
     if (fetchError) {
       console.error(`[Report] Fetch error for job ${job?.id}:`, fetchError);
     }
-    if (report_xml_json) {
-      // Handle both wrapped response {success: true, data: {xml: ...}} and direct {xml: ...}
-      const xmlString = report_xml_json.data?.xml || report_xml_json.xml;
-      console.log(`[Report] Received response for job ${job?.id}:`,
-        xmlString ? `${xmlString.length} chars` : 'no xml field',
-        report_xml_json);
-    }
-  }, [job, fetchError, report_xml_json]);
+  }, [job, fetchError]);
 
   const report_xml: XMLDocument | null = useMemo(() => {
     if (!report_xml_json) return null;
@@ -72,7 +62,6 @@ export const CCP4i2ReportXMLView = () => {
     const isNowInactive = ![2, 3, 7].includes(job.status);
 
     if (wasActive && isNowInactive) {
-      console.log(`[Report] Job ${job.id} finished (${oldJob.status} -> ${job.status}), refreshing report`);
       setMessage(`Job finished with status ${job.status}`);
       mutateReportXml(); // Force re-fetch
     }

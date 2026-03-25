@@ -158,7 +158,7 @@ export const CCP4i2ApplicationOutputView: React.FC<
           }
         }
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     };
     asyncEffect();

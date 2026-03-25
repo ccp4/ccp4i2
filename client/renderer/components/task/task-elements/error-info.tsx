@@ -446,17 +446,6 @@ export const ErrorPopper: React.FC<ErrorPopperProps> = memo(() => {
     [setErrorInfoAnchor, setErrorInfoItem]
   );
 
-  // Debug logging in development only
-  useEffect(() => {
-    if (process.env.NODE_ENV === "development") {
-      console.log("ErrorPopper state:", {
-        errorInfoItem: errorInfoItem?._objectPath,
-        hasAnchor: Boolean(errorInfoAnchor),
-        fieldErrors,
-      });
-    }
-  }, [errorInfoItem, errorInfoAnchor, fieldErrors]);
-
   if (!errorInfoItem || !errorInfoAnchor) {
     return null;
   }

@@ -21,19 +21,12 @@ export class MsalAuthProvider implements AuthenticationProvider {
     // Since portal shows Teams permission doesn't require admin consent,
     // we can try to get it directly for Graph API calls
     try {
-      console.log("Trying to acquire token with Teams permissions");
       const response = await this.msalInstance.acquireTokenSilent({
         scopes: ["User.Read", "Team.ReadBasic.All"],
         account: accounts[0],
       });
-      console.log("Successfully acquired token with Teams permissions");
       return response.accessToken;
     } catch (silentError) {
-      console.log(
-        "Silent token acquisition failed, trying interactive consent:",
-        silentError
-      );
-
       try {
         // Try interactive consent with Teams permissions using redirect
         await this.msalInstance.acquireTokenRedirect({
@@ -50,13 +43,11 @@ export class MsalAuthProvider implements AuthenticationProvider {
         );
 
         // Fallback to basic User.Read if Teams fails
-        console.log("Falling back to basic User.Read scope");
         try {
           const basicResponse = await this.msalInstance.acquireTokenSilent({
             scopes: ["User.Read"],
             account: accounts[0],
           });
-          console.log("Fallback to basic scope successful");
           return basicResponse.accessToken;
         } catch (basicError) {
           console.error("Even basic token acquisition failed:", basicError);
@@ -80,28 +71,15 @@ export class MsalAuthProvider implements AuthenticationProvider {
 
     try {
       // Try Teams permissions silently first
-      console.log("Attempting to acquire Teams permissions silently");
       const response = await this.msalInstance.acquireTokenSilent({
         scopes: ["User.Read", "Team.ReadBasic.All"],
         account: accounts[0],
       });
-      console.log(
-        "Successfully acquired token with Teams permissions silently"
-      );
       return response.accessToken;
     } catch (silentError) {
-      console.log("Silent Teams token acquisition failed, error details:", {
-        errorCode: silentError.errorCode,
-        errorMessage: silentError.errorMessage,
-        message: silentError.message,
-      });
-
       // Since admin consent is not required according to portal,
       // this should be a user consent issue that interactive login can resolve
       try {
-        console.log(
-          "Trying interactive consent for Teams permissions via redirect..."
-        );
         await this.msalInstance.acquireTokenRedirect({
           scopes: ["User.Read", "Team.ReadBasic.All"],
           prompt: "consent", // Force consent screen to ensure user grants Teams permission
@@ -171,15 +149,12 @@ export async function checkTeamsMembership(
   error?: string;
 }> {
   try {
-    console.log("=== TEAMS MEMBERSHIP CHECK STARTING ===");
-
     const authProvider = new MsalAuthProvider(msalInstance);
 
     // Try to get a Teams-capable token
     let accessToken: string;
     try {
       accessToken = await authProvider.getTeamsAccessToken();
-      console.log("Teams-capable token acquired successfully");
     } catch (tokenError) {
       console.warn("Teams token acquisition failed:", tokenError);
 
@@ -206,13 +181,10 @@ export async function checkTeamsMembership(
 
     const graphClient = Client.initWithMiddleware({ authProvider });
 
-    console.log("Graph client initialized, attempting to call /me/joinedTeams");
-
     // Try to get user's joined teams
     let teamsResponse;
     try {
       teamsResponse = await graphClient.api("/me/joinedTeams").get();
-      console.log("Raw Teams API response:", teamsResponse);
     } catch (apiError: any) {
       console.error("Teams API call failed:", apiError);
       console.error("API Error details:", {
@@ -235,12 +207,6 @@ export async function checkTeamsMembership(
     }
 
     const userTeams = teamsResponse.value || [];
-
-    console.log("=== TEAMS MEMBERSHIP DEBUG ===");
-    console.log("Teams API call successful!");
-    console.log("User's teams count:", userTeams.length);
-    console.log("User's teams:", userTeams);
-    console.log("Auth config:", config);
 
     // Check if user has any team membership (if configured)
     if (config.anyTeamMembership && userTeams.length > 0) {

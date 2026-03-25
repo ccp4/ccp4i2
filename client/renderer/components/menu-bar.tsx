@@ -116,7 +116,7 @@ export default function MenuBar() {
           }
         }
       );
-    } else console.log("window.electron is not available");
+    }
   }, []);
 
   // Show Home button only in web deployments (not Electron).

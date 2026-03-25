@@ -103,7 +103,6 @@ export async function isRunningInTeams(): Promise<boolean> {
     return !!(context && context.app && context.app.host);
   } catch (error) {
     // Teams SDK initialization failed or timed out - not running in Teams
-    console.log("[Teams SSO] Not in Teams context:", error);
     return false;
   }
 }
@@ -142,7 +141,6 @@ export async function getTeamsSSOToken(clientId: string): Promise<TeamsSSOResult
       silent: true,
     });
 
-    console.log("[Teams SSO] Successfully obtained SSO token");
     return {
       success: true,
       token,
@@ -264,8 +262,6 @@ export async function attemptTeamsSSO(
     };
   }
 
-  console.log("[Teams SSO] Running in Teams context, attempting SSO...");
-
   // Try to get SSO token silently
   const ssoResult = await getTeamsSSOToken(clientId);
 
@@ -275,7 +271,6 @@ export async function attemptTeamsSSO(
 
   // If consent is needed, trigger consent flow
   if (ssoResult.needsConsent) {
-    console.log("[Teams SSO] Consent required, triggering consent flow...");
     return triggerTeamsConsent(clientId, tenantId);
   }
 

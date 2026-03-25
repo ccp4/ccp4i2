@@ -97,7 +97,6 @@ export function setTeamsToken(token: string, expiresInSeconds: number = 3600): v
     }
   }
 
-  console.log("[AUTH-TOKEN] Teams token stored, expires in", expiresInSeconds, "seconds");
 }
 
 /**
@@ -116,7 +115,6 @@ export function loadTeamsToken(): boolean {
         teamsToken = storedToken;
         teamsTokenExpiresAt = expiresAt;
         isTeamsContext = true;
-        console.log("[AUTH-TOKEN] Loaded Teams token from sessionStorage");
         return true;
       } else {
         // Token expired, clear it

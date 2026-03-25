@@ -82,12 +82,10 @@ export const PushToCCP4i2Panel: React.FC<PushToCCP4i2Props> = ({
   );
 
   const handlePushToCCP4i2 = useCallback(async () => {
-    console.log({ molNo, item });
     // Implement your push logic here
     if (selectedProject && item) {
       try {
         setMessage("Pushing model coordinates to CCP4i2...", "info");
-        console.log("Pushing to CCP4i2:", selectedProject);
         const result = await api.post<CreateTaskResponse>(
           `projects/${selectedProject.id}/create_task/`,
           {

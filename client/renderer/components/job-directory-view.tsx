@@ -40,24 +40,19 @@ export const JobDirectoryView: React.FC<JobDirectoryViewProps> = ({
   }, []);
 
   const directoryData = useMemo(() => {
-    console.log("directory.container:", directory.container);
     if (!directory || !job || !directory.container) {
-      console.log("Missing directory, job, or container");
       return null;
     }
     let dirNode = directory.container.find(
       (item: any) => item.name === "CCP4_JOBS"
     );
     if (!dirNode) {
-      console.log("CCP4_JOBS directory not found");
       return [];
     }
     const jobNumberElements = job.number.split(".").reverse();
-    console.log("Job number elements:", jobNumberElements);
     let cumulativePath: string = dirNode.path;
     while (jobNumberElements.length > 0) {
       const jobNumber = jobNumberElements.pop();
-      console.log(`Looking for job_${jobNumber} in:`, dirNode);
       if (!dirNode.contents || !Array.isArray(dirNode.contents)) {
         console.error(`dirNode.contents is not an array:`, dirNode.contents);
         return [];
@@ -66,13 +61,11 @@ export const JobDirectoryView: React.FC<JobDirectoryViewProps> = ({
         (item: any) => item.name === `job_${jobNumber}`
       );
       cumulativePath += `/job_${jobNumber}`;
-      console.log({ cumulativePath, dirNode });
       if (!dirNode) {
         console.error(`job_${jobNumber} not found in ${cumulativePath}`);
         return null;
       }
       if (jobNumberElements.length === 0) {
-        console.log("Final dirNode.contents:", dirNode.contents);
         return dirNode.contents || [];
       }
     }

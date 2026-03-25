@@ -272,9 +272,6 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
           router.push(`/ccp4i2/project/${job.project}/job/${runResult.id}`);
         }
 
-        console.log(
-          `Created new job ${cloneResult.id} with suggested parameters`
-        );
       } catch (err: unknown) {
         console.error("Error creating patched task:", err);
         const error = err as Error;
@@ -325,14 +322,14 @@ export const CCP4i2ReportVerdict: React.FC<CCP4i2ReportElementProps> = ({
         // Check for parsing errors
         const parserError = xmlDoc.querySelector("parsererror");
         if (parserError) {
-          console.log("Failed to parse program.xml");
+          console.warn("Failed to parse program.xml");
           return;
         }
 
         // Find the Verdict node
         const verdictNode = xmlDoc.querySelector("Verdict");
         if (!verdictNode) {
-          console.log("No Verdict node found in program.xml");
+          console.warn("No Verdict node found in program.xml");
           return;
         }
 

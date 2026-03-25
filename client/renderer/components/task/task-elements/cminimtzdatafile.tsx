@@ -138,7 +138,6 @@ export const CMiniMtzDataFileElement: React.FC<PropsWithChildren<CCP4i2TaskEleme
           );
 
           if (freeRSibling) {
-            console.log("Uploading FreeR to sibling:", freeRSibling.objectPath, result.freeRSelection);
             await uploadFileParam({
               objectPath: freeRSibling.objectPath,
               file: fileBlob,

@@ -56,14 +56,12 @@ async function tryTeamsAuth(clientId: string, tenantId: string): Promise<{
       });
       return { success: true, token, stage: "sso-silent" };
     } catch (ssoError: any) {
-      console.log("[LOGIN] Silent SSO failed, trying Teams auth dialog:", ssoError?.message);
+      // Silent SSO failed, try Teams auth dialog
     }
 
     // Fall back to Teams authentication dialog (not a browser popup)
     // Teams requires the auth URL to start from our domain, then redirect to Azure AD
     const startUrl = `${window.location.origin}/auth/teams-start?client_id=${clientId}&tenant_id=${tenantId}`;
-
-    console.log("[LOGIN] Teams auth start URL:", startUrl);
 
     try {
       const result = await teamsModule.authentication.authenticate({
@@ -102,21 +100,15 @@ export default function LoginContent() {
   const [debugInfo, setDebugInfo] = useState<string | null>(null);
   const [isInIframe] = useState(() => isRunningInIframe());
 
-  console.log("[LOGIN] Component rendered, inProgress:", inProgress, "hasTriggered:", hasTriggeredLogin.current, "inIframe:", isInIframe);
-
   useEffect(() => {
-    console.log("[LOGIN] useEffect, inProgress:", inProgress);
-
     // Wait for MSAL to be ready
     if (inProgress !== InteractionStatus.None) {
-      console.log("[LOGIN] MSAL busy, waiting...");
       return;
     }
 
     // Check if we already have accounts (shouldn't be on login page)
     const accounts = instance.getAllAccounts();
     if (accounts.length > 0) {
-      console.log("[LOGIN] Already have accounts, setting cookie and redirecting");
       // User is already logged in, set cookie and redirect
       fetch("/api/auth/session", { method: "POST", credentials: "include" })
         .then(() => {
@@ -128,14 +120,12 @@ export default function LoginContent() {
 
     // Only trigger login once
     if (hasTriggeredLogin.current) {
-      console.log("[LOGIN] Already triggered login, skipping");
       return;
     }
     hasTriggeredLogin.current = true;
 
     // Get the return URL from query params (set by middleware)
     const returnUrl = searchParams?.get("returnUrl") || "/";
-    console.log("[LOGIN] Storing returnUrl:", returnUrl);
 
     // Store return URL in session storage for post-login redirect
     sessionStorage.setItem("auth-return-url", returnUrl);
@@ -143,7 +133,6 @@ export default function LoginContent() {
     // Handle authentication based on context
     if (isInIframe) {
       // Running in iframe (e.g., Teams) - redirects don't work
-      console.log("[LOGIN] Running in iframe, attempting Teams auth...");
       setStatusMessage("Detecting Teams environment...");
 
       const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
@@ -152,7 +141,6 @@ export default function LoginContent() {
       tryTeamsAuth(clientId, tenantId)
         .then((result) => {
           if (result.success && result.token) {
-            console.log("[LOGIN] Teams auth successful via:", result.stage);
             setStatusMessage("Authenticated, loading...");
 
             // Store the Teams token for API calls
@@ -194,7 +182,6 @@ export default function LoginContent() {
         });
     } else {
       // Normal browser - use redirect flow
-      console.log("[LOGIN] Running in browser, using redirect auth...");
       instance.loginRedirect({
         scopes: ["openid", "profile"],
         redirectUri: "/auth/callback",

@@ -120,9 +120,6 @@ export const RecentlyStartedJobsProvider: React.FC<
       jobNumber: string,
       jobTitle: string
     ) => {
-      console.log(
-        `[RecentlyStartedJobs] Marking job ${jobNumber} (${jobId}) as starting`
-      );
       setStartedJobs((prev) => {
         const next = new Map(prev);
         next.set(jobId, {
@@ -228,10 +225,6 @@ export const RecentlyStartedJobsProvider: React.FC<
                 jobTitle: info.jobTitle,
                 message: `Job ${info.jobNumber} "${info.jobTitle}" may not have started - check the server logs`,
               });
-            } else if (jobStarted) {
-              console.log(
-                `[RecentlyStartedJobs] Job ${info.jobNumber} successfully started (status: ${info.lastObservedStatus})`
-              );
             }
             // Don't add to next map - remove from tracking
           }

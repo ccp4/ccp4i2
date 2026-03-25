@@ -44,7 +44,6 @@ export const ImportProjectContent: React.FC = () => {
       api
         .post<any>("/projects/import_project/", formData)
         .then((response) => {
-          console.log("Files uploaded successfully:", response.data);
           setUploading(false);
           mutateProjects();
           router.push("/ccp4i2");

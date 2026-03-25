@@ -205,7 +205,7 @@ export const CCP4i2TaskElement: React.FC<CCP4i2TaskElementProps> = (props) => {
           : item._qualifiers;
         return overriddenQualifiers;
       } catch (err) {
-        console.log(`Error getting qualifiers on ${props.itemName}`);
+        console.warn(`Error getting qualifiers on ${props.itemName}`);
       }
     }
     return props.qualifiers;

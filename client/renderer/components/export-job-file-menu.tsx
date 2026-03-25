@@ -123,7 +123,6 @@ const doDownload = async (url: string, filename: string): Promise<void> => {
     document.body.removeChild(link);
     window.URL.revokeObjectURL(blobUrl);
 
-    console.log(`Download initiated for: ${downloadFilename}`);
   } catch (error) {
     console.error("Download failed:", error);
     throw new Error(
@@ -285,16 +284,7 @@ export const ExportJobMenu: React.FC<ExportJobMenuProps> = ({
     setDownloadingItems((prev) => new Set(prev).add(item.identifier));
 
     try {
-      console.log("Initiating download for:", {
-        identifier: item.identifier,
-        label: item.label,
-        mimetype: item.mimetype,
-        url: composite_path,
-      });
-
       await doDownload(composite_path, description);
-
-      console.log(`Successfully initiated download for: ${description}`);
     } catch (error) {
       console.error("Download failed:", error);
       setError(

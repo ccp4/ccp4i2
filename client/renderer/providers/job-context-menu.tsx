@@ -148,7 +148,6 @@ export const JobMenu: React.FC = () => {
         return result;
       }
     } catch (error) {
-      console.log(dependentJobs);
       console.error(error);
     }
     return [];
@@ -160,13 +159,6 @@ export const JobMenu: React.FC = () => {
       if (!job) return;
 
       try {
-        console.log("Job annotation updated:", {
-          jobId: job.id,
-          jobNumber: job.number,
-          jobTitle: job.title,
-          newAnnotation: value,
-        });
-
         const formData = new FormData();
         formData.append("title", value);
 
@@ -394,8 +386,7 @@ export const JobMenu: React.FC = () => {
           type: "show",
           what: `${job.number}: ${job.title}`,
           onDelete: async () => {
-            const deleteResult = await api.delete(`jobs/${job.id}`);
-            console.log(deleteResult);
+            await api.delete(`jobs/${job.id}`);
             mutateJobs();
             setJobMenuAnchorEl(null);
             setJob(null);

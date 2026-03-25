@@ -51,19 +51,14 @@ export default function FileMenu() {
     const newWindow = window.open("/ccp4i2");
     setAnchorEl(null);
     // Check if the window was successfully opened
-    if (newWindow) {
-      console.log("New window opened successfully!");
-    } else {
-      console.log(
-        "Failed to open new window. It might be blocked by a popup blocker."
-      );
+    if (!newWindow) {
+      console.warn("Failed to open new window. It might be blocked by a popup blocker.");
     }
   };
 
   const handleExportProject = () => {
     apiPost(`projects/${projectId}/export`, {})
       .then((result: ExportResult) => {
-        console.log("Export started:", result);
         setExportResult(result);
         setExportSuccessDialogOpen(true);
         handleClose();
@@ -78,12 +73,8 @@ export default function FileMenu() {
     const newWindow = window.open("/ccp4i2/import-project");
     setAnchorEl(null);
     // Check if the window was successfully opened
-    if (newWindow) {
-      console.log("New window opened successfully!");
-    } else {
-      console.log(
-        "Failed to open new window. It might be blocked by a popup blocker."
-      );
+    if (!newWindow) {
+      console.warn("Failed to open new window. It might be blocked by a popup blocker.");
     }
   };
 

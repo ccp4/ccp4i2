@@ -102,7 +102,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
   const setSEQUENCEFromSEQIN = useCallback(
     async (seqinDigestResponse: any, annotation: string) => {
       const seqinDigest = seqinDigestResponse?.data;
-      console.log("Setting SEQUENCE from SEQIN digest", seqinDigest);
       if (
         !setSequence ||
         !setName ||
@@ -113,14 +112,9 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         !seqinDigest ||
         job?.status != 1
       ) {
-        console.log(
-          "Cannot set SEQUENCE from SEQIN - missing data",
-          seqinDigest
-        );
         return;
       }
       if (seqinDigest?.moleculeType) {
-        console.log("Seqin digest was a sequence file");
         const { name, moleculeType, sequence } = seqinDigest || {};
         const sanitizedName = name.replace(/[^a-zA-Z0-9]/g, "_");
         await setPolymerType(moleculeType);
@@ -132,7 +126,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         // No need to call mutateContainer or clear intents
         props.onChange?.({ name, moleculeType, sequence });
       } else if (seqinDigest?.composition && seqinDigest?.sequences) {
-        console.log("Seqin digest was a coordinate file");
         const { composition, sequences } = seqinDigest;
 
         // Collect all polymer chains that have sequences
@@ -145,7 +138,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         );
 
         if (chainsWithSeq.length === 0) {
-          console.log("No polymer chains with sequences found in digest");
           return;
         }
 
@@ -177,7 +169,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
         }
       } else if (seqinDigest?.composition) {
         // Legacy fallback: composition but no sequences dict (shouldn't happen with updated server)
-        console.log("Seqin digest has composition but no sequences — using first peptide");
         const chainId = seqinDigest.composition.peptides?.[0];
         if (chainId) {
           await applyChainSequence(chainId, "PROTEIN", "", annotation);
@@ -351,10 +342,8 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
                   downloadModes: ["uniprotFasta", "ebiPdb", "rcsbPdb"],
                 }}
                 onChange={async (updatedItem: any) => {
-                  console.log("Fetch file for param", updatedItem);
                   const { dbFileId, annotation } = valueOfItem(updatedItem);
                   const digest = await apiGet(`files/${dbFileId}/digest_by_uuid`);
-                  console.log({ digest, annotation });
                   setSEQUENCEFromSEQIN(digest, annotation);
                 }}
                 suppressMutations={true}

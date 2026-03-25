@@ -31,7 +31,6 @@ export default function TeamsCallbackPage() {
         }
 
         if (idToken) {
-          console.log("[Teams Callback] Received id_token, notifying success");
           // Notify Teams of success
           const teams = await import("@microsoft/teams-js");
           await teams.app.initialize();

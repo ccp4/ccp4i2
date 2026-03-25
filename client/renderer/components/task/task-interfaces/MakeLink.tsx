@@ -46,15 +46,11 @@ function useMonomerInfo(resName: string | undefined): MonomerInfo {
 
     let cancelled = false;
     const code = resName.trim().toUpperCase();
-    console.log(`[MakeLink] Fetching monomer info for "${code}"...`);
-
     apiJson<{ success: boolean; data?: { atoms: string[]; bonds: MonomerBond[] } }>(
       `monomer-info/${code}`
     )
       .then((res) => {
-        console.log(`[MakeLink] Response for "${code}":`, res.success ? `${res.data?.atoms.length ?? 0} atoms, ${res.data?.bonds.length ?? 0} bonds` : "failed");
         if (!cancelled && res.success && res.data) {
-          console.log(`[MakeLink] Setting atoms for "${code}":`, res.data.atoms);
           setInfo({ atoms: res.data.atoms, bonds: res.data.bonds });
         }
       })
@@ -137,7 +133,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     const digest = await fetchDigest(dict1Item._objectPath);
     if (digest?.monomers && typeof digest.monomers === "object") {
       const codes = Object.keys(digest.monomers);
-      console.log(`[MakeLink] CIF digest for DICT_1: ${codes.length} monomer(s): ${codes.join(", ")}`);
       setDict1Monomers(digest.monomers);
       // Auto-select first code only if current value isn't already valid
       if (codes.length > 0 && resNameItem1CIF?._objectPath && !codes.includes(RES_NAME_1_CIF ?? "")) {
@@ -151,7 +146,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     const digest = await fetchDigest(dict2Item._objectPath);
     if (digest?.monomers && typeof digest.monomers === "object") {
       const codes = Object.keys(digest.monomers);
-      console.log(`[MakeLink] CIF digest for DICT_2: ${codes.length} monomer(s): ${codes.join(", ")}`);
       setDict2Monomers(digest.monomers);
       // Auto-select first code only if current value isn't already valid
       if (codes.length > 0 && resNameItem2CIF?._objectPath && !codes.includes(RES_NAME_2_CIF ?? "")) {
@@ -193,14 +187,12 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   useEffect(() => {
     if (mon1Atoms.length > 0 && atomItem1?._objectPath && !mon1Atoms.includes(currentAtom1 ?? "")) {
-      console.log(`[MakeLink] Auto-selecting first atom for mon1: "${mon1Atoms[0]}"`);
       setParameter({ object_path: atomItem1._objectPath, value: mon1Atoms[0] });
     }
   }, [mon1Atoms, currentAtom1, atomItem1?._objectPath, setParameter]);
 
   useEffect(() => {
     if (mon2Atoms.length > 0 && atomItem2?._objectPath && !mon2Atoms.includes(currentAtom2 ?? "")) {
-      console.log(`[MakeLink] Auto-selecting first atom for mon2: "${mon2Atoms[0]}"`);
       setParameter({ object_path: atomItem2._objectPath, value: mon2Atoms[0] });
     }
   }, [mon2Atoms, currentAtom2, atomItem2?._objectPath, setParameter]);
@@ -274,7 +266,6 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
 
   // Build qualifier overrides for monomer-dependent fields.
   // Always pass enumerators (even empty) to suppress the "tmp" placeholder from def.xml.
-  console.log(`[MakeLink] Rendering with mon1: ${mon1Atoms.length} atoms, ${mon1BondLabels.length} bonds; mon2: ${mon2Atoms.length} atoms, ${mon2BondLabels.length} bonds`);
   const mon1AtomQuals = { guiLabel: " ", enumerators: mon1Atoms };
   const mon2AtomQuals = { guiLabel: " ", enumerators: mon2Atoms };
   const mon1DeleteQuals = { guiLabel: "Atom to delete", enumerators: mon1Atoms };
