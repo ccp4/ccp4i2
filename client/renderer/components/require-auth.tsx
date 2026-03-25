@@ -3,6 +3,13 @@
 import { ReactNode, useEffect, useState, useRef } from "react";
 import { useMsal } from "@azure/msal-react";
 import { InteractionStatus } from "@azure/msal-browser";
+import {
+  Box,
+  Typography,
+  CircularProgress,
+  Button,
+  Alert,
+} from "@mui/material";
 
 // Teams SSO types for dynamic import
 type TeamsSSOResult = {
@@ -36,11 +43,6 @@ async function tryTeamsSSO(clientId: string, tenantId: string): Promise<TeamsSSO
     return null;
   }
 }
-import {
-  Box,
-  Typography,
-  CircularProgress,
-} from "@mui/material";
 
 /**
  * Detect if the app is running inside an iframe (e.g., Microsoft Teams)
@@ -78,9 +80,15 @@ interface RequireAuthProps {
 export default function RequireAuth({ children }: RequireAuthProps) {
   const { instance, accounts, inProgress } = useMsal();
   const [isInitializing, setIsInitializing] = useState(true);
+  const [authError, setAuthError] = useState<string | null>(null);
 
   // Prevent multiple login attempts
   const hasInitialized = useRef(false);
+
+  const attemptLogin = () => {
+    setAuthError(null);
+    hasInitialized.current = false;
+  };
 
   useEffect(() => {
     // Wait for MSAL to finish any in-progress operations
@@ -110,22 +118,53 @@ export default function RequireAuth({ children }: RequireAuthProps) {
               return instance.loginPopup({ scopes: ["openid", "profile"] });
             }
           })
-          .then(() => {})
           .catch((error) => {
             console.error("[Auth] Login failed:", error);
+            setAuthError(
+              error?.errorCode === "user_cancelled"
+                ? "Sign-in was cancelled. Please try again to use CCP4i2."
+                : "Sign-in failed. Please try again or contact your administrator."
+            );
           });
       } else {
         // Standard redirect flow for normal browser usage
-        instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/auth/callback" });
+        instance.loginRedirect({ scopes: ["openid", "profile"], redirectUri: "/auth/callback" })
+          .catch((error) => {
+            console.error("[Auth] Redirect failed:", error);
+            setAuthError("Unable to redirect to sign-in. Please refresh the page.");
+          });
       }
       return;
     }
 
     // User is authenticated
     if (accounts.length > 0) {
+      setAuthError(null);
       setIsInitializing(false);
     }
   }, [accounts, inProgress, instance]);
+
+  // Show error state with retry
+  if (authError) {
+    return (
+      <Box
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+        minHeight="100vh"
+        flexDirection="column"
+        gap={2}
+        px={3}
+      >
+        <Alert severity="error" sx={{ maxWidth: 480, width: "100%" }}>
+          {authError}
+        </Alert>
+        <Button variant="contained" onClick={attemptLogin}>
+          Try again
+        </Button>
+      </Box>
+    );
+  }
 
   // Show loading while MSAL is working or during initialization
   if (accounts.length === 0 || isInitializing) {

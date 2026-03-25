@@ -6,6 +6,7 @@ import { File, Job } from "../types/models";
 import { PopcornProvider, usePopcorn } from "./popcorn-provider";
 import { RunCheckProvider } from "./run-check-provider";
 import { useStalledJobWarnings } from "./recently-started-jobs-context";
+import { AuthErrorHandler } from "../components/auth-error-handler";
 
 /**
  * Component to display stalled job warnings via Popcorn.
@@ -63,6 +64,7 @@ export const CCP4i2App = (props: PropsWithChildren) => {
     <PopcornProvider>
       <CCP4i2Context.Provider value={contextValue}>
         <CssBaseline />
+        <AuthErrorHandler />
         <RunCheckProvider>
           <StalledJobWarningsHandler>
             {props.children}

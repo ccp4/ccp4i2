@@ -10,6 +10,29 @@
 
 import { getAccessToken } from "./utils/auth-token";
 
+// =============================================================================
+// Auth error event bus
+// =============================================================================
+
+/**
+ * Emitted when an API call receives a 401 or 403 response.
+ * UI components can listen to this to show re-auth prompts.
+ */
+export const AUTH_ERROR_EVENT = "ccp4i2:auth-error";
+
+export interface AuthErrorDetail {
+  status: 401 | 403;
+  url: string;
+  message: string;
+}
+
+/** Emit an auth error event (only in browser context) */
+function emitAuthError(detail: AuthErrorDetail): void {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent(AUTH_ERROR_EVENT, { detail }));
+  }
+}
+
 /**
  * Configuration for API requests
  */
@@ -182,6 +205,18 @@ export async function apiFetch(
       } catch {
         // Response body wasn't JSON — use the default message
       }
+
+      // Notify UI about auth failures so it can prompt re-authentication
+      if (response.status === 401 || response.status === 403) {
+        emitAuthError({
+          status: response.status as 401 | 403,
+          url,
+          message: response.status === 401
+            ? "Your session has expired. Please sign in again."
+            : "You don't have permission to access this resource.",
+        });
+      }
+
       throw new Error(errorMessage);
     }
 
