@@ -27,7 +27,7 @@ class density_calculator_gui(CTaskWidget):
     TASKVERSION = 0.1
     DESCRIPTION = "Calculate a map for a structure"
     MGDISPLAYFILES = ["XYZIN"]
-    WHATNEXT = ["coot_rebuild"]
+    WHATNEXT = ["coot_rebuild",'coot1']
 
     def __init__(self, parent):
         CTaskWidget.__init__(self, parent)

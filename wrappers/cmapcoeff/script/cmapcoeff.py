@@ -32,7 +32,7 @@ class cmapcoeff(CPluginScript):
     TASKNAME = 'cmapcoeff'
     TASKCOMMAND = 'cmapcoeff'
     TASKVERSION= 0.0
-    WHATNEXT = [ 'coot_rebuild' ]
+    WHATNEXT = [ 'coot_rebuild','coot1' ]
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles ( self ):

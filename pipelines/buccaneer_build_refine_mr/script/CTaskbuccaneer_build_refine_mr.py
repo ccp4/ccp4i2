@@ -30,9 +30,9 @@ from qtgui import CCP4Widgets
 def whatNext(jobId,childTaskName,childJobNumber,projectName):
   #print 'buccaneer_build_refine_mr.whatNext',projectName
   if childJobNumber is None:
-    return ['coot_rebuild','edstats','prosmart_refmac','modelcraft']
+    return ['coot_rebuild','coot1','edstats','prosmart_refmac','modelcraft']
   elif childTaskName == 'refmac':
-    return  ['coot_rebuild','edstats','prosmart_refmac','modelcraft']
+    return  ['coot_rebuild','coot1','edstats','prosmart_refmac','modelcraft']
   else:
     return [['prosmart_refmac','Refine this model before continuing']]
 
