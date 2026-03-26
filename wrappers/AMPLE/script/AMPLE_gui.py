@@ -44,7 +44,7 @@ class AMPLE_gui(CTaskWidget):
     TASKTITLE='Molecular Replacement with unconventional models - AMPLE'
     DESCRIPTION = '''This task is for running Molecular Replacement with unconventional models'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

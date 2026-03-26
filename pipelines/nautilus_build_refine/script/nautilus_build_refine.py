@@ -32,7 +32,7 @@ class nautilus_build_refine(CPluginScript):
     ERROR_CODES = { 201 : {'description' : 'Failed to analyse output files' } }
     PURGESEARCHLIST = [ ]
     RUNEXTERNALPROCESS = False
-    WHATNEXT = ['coot_rebuild','prosmart_refmac','nautilus_build_refine']
+    WHATNEXT = ['coot_rebuild','coot1','prosmart_refmac','nautilus_build_refine']
 
 
     def __init__(self, *args, **kws):

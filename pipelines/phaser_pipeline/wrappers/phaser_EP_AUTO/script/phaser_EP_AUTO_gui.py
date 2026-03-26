@@ -20,7 +20,7 @@ class phaser_EP_AUTO_gui(CTaskWidget):
     TASKMODULE='None'
     TASKTITLE='SAD phasing from heavy atom sites - PHASER'
     DESCRIPTION = '''Complete a heavy atom model and calculate phases'''
-    WHATNEXT=['coot_rebuild','parrot', ['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
+    WHATNEXT=['coot_rebuild','coot1','parrot', ['modelcraft','$CCP4I2/wrappers/modelcraft/script/experimental.params.xml']]
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

@@ -35,7 +35,7 @@ class prosmart_refmac(CPluginScript):
     TASKTITLE = 'Refine with Refmac & optional restraints from Prosmart & Platonyzer'
     TASKNAME = 'prosmart_refmac'
     TASKVERSION= 0.0
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4

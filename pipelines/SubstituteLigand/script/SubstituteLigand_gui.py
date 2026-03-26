@@ -19,7 +19,7 @@ class SubstituteLigand_gui(CTaskWidget):
     TASKMODULE=['ligands','bigpipes']
     TASKTITLE='Automated solution of isomorphous ligand complex'
     SHORTTASKTITLE='Isomorphous ligand solution'
-    WHATNEXT = ['prosmart_refmac','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','coot_rebuild','coot1']
     DESCRIPTION = '''A ligand workflow, starting from merged or unmerged reflections, SMILES, and an isomorphous parent structure'''
     RANK=1
 

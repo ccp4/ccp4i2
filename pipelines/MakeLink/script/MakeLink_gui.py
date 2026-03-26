@@ -34,7 +34,7 @@ class MakeLink_gui(CTaskWidget):
     TASKTITLE='Make Covalent Link - AceDRG'
     DESCRIPTION = '''Generate a link dictionary to describe a covalent bond between two monomers, allowing modification of the linked monomers'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild','prosmart_refmac']
+    WHATNEXT = ['coot_rebuild','coot1','prosmart_refmac']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)
