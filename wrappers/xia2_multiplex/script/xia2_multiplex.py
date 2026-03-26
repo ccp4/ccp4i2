@@ -24,7 +24,7 @@ class Cxia2_multiplex(CPluginScript):
     TASKNAME = "xia2_multiplex"
     TASKCOMMAND = "xia2.multiplex"
     if platform.system() == "Windows":
-        TASKCOMMAND = "xia2.multiplex.bat"
+        TASKCOMMAND = "xia2.multiplex.exe"
     TASKMODULE = "data_reduction"
     TASKVERSION = 0.0
     ERROR_CODES = {
