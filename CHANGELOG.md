@@ -9,6 +9,7 @@
 - Reporting input distances and angles in MetalCoord task
 - Symmetry operators shown in MetalCoord report
 - Added Coot 1 as a follow-on task
+- Fixes for DUI2 and support for continuing previous sessions
 
 ## [2.5.2] - 2026-02-06
 
