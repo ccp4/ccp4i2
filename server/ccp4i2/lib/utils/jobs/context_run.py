@@ -31,6 +31,7 @@ import json
 import logging
 import subprocess
 import pathlib
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -332,21 +333,36 @@ def run_job_local(job, synchronous=False):
             # Without this, a C extension crash kills the Python process and the job
             # stays stuck in "running" state with no way to detect the failure.
             # Path: context_run.py -> jobs -> utils -> lib -> ccp4i2 -> scripts/
-            wrapper_script = str(
-                pathlib.Path(__file__).parent.parent.parent.parent
-                / "scripts" / "run_job_safe.sh"
+            scripts_dir = (
+                pathlib.Path(__file__).parent.parent.parent.parent / "scripts"
             )
 
-            subprocess.Popen(
-                [
-                    "/bin/bash",
+            if sys.platform == "win32":
+                wrapper_script = str(scripts_dir / "run_job_safe.cmd")
+                popen_args = [
                     wrapper_script,
                     python_interpreter,
                     str(job.uuid),
-                ],
-                start_new_session=True,
-                env=env,
-            )
+                ]
+                # On Windows, CREATE_NEW_PROCESS_GROUP is the equivalent
+                # of start_new_session on Unix
+                subprocess.Popen(
+                    popen_args,
+                    creationflags=subprocess.CREATE_NEW_PROCESS_GROUP,
+                    env=env,
+                )
+            else:
+                wrapper_script = str(scripts_dir / "run_job_safe.sh")
+                subprocess.Popen(
+                    [
+                        "/bin/bash",
+                        wrapper_script,
+                        python_interpreter,
+                        str(job.uuid),
+                    ],
+                    start_new_session=True,
+                    env=env,
+                )
 
             logger.info(
                 "Started job %s (%s) via crash-safe wrapper using %s",
