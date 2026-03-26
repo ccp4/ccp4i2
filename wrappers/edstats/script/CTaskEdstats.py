@@ -36,7 +36,7 @@ class CTaskEdstats(CCP4TaskWidget.CTaskWidget):
   TASKTITLE='Analyse agreement between model and density - EDSTATS'
   SHORTTASKTITLE='EDSTATS'
   DESCRIPTION='Calculates real-space metrics for evaluating the agreement between model and density (Edstats, cfft)'
-  WHATNEXT = [ 'coot_rebuild' ]
+  WHATNEXT = [ 'coot_rebuild','coot1' ]
   RANK=1
   ERROR_CODES = {  200 : { 'description' : 'Model and map cell dimensions do not match' },
                     201 : { 'description' : 'Density map and difference density map cell dimensions do not match' },}

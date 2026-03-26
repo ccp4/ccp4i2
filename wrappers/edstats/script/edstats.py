@@ -40,7 +40,7 @@ class edstats(CPluginScript):
     TASKCOMMAND         = 'edstats'  # The command to execute, should be reachable
     DESCRIPTION         = 'Calculates real-space metrics for evaluating the agreement between model and density (Edstats)'
     TASKVERSION         = 0.1                   # Version of this plugin
-    WHATNEXT            = ['coot_rebuild']
+    WHATNEXT            = ['coot_rebuild','coot1']
     PURGESEARCHLIST =  [[ 'fft%*/MAPOUT.map', 1 ] ]
     MAINTAINER = 'jon.agirre@york.ac.uk'
 

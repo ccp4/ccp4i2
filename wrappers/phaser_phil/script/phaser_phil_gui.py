@@ -31,7 +31,7 @@ class phaser_phil_gui(CTaskWidget):
     TASKTITLE='Phaser auto generated GUI'
     DESCRIPTION = '''Phaser auto generated GUI'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

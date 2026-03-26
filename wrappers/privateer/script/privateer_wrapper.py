@@ -29,7 +29,7 @@ class privateer(CPluginScript):
     TASKMODULE          = 'validation' # Where this plugin will appear on the gui
     # TASKCOMMAND         = '/home/harold/Dev/privateer_master/build/executable/./privateer'  # The command to execute, should be reachable
     TASKCOMMAND         = 'privateer'  # The command to execute, should be reachable
-    WHATNEXT = [ 'coot_rebuild', 'prosmart_refmac' ]
+    WHATNEXT = [ 'coot_rebuild','coot1', 'prosmart_refmac' ]
     MAINTAINER = 'jon.agirre@york.ac.uk'
 
     def processInputFiles(self):

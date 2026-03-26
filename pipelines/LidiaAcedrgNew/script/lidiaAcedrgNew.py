@@ -14,7 +14,7 @@ class lidiaAcedrgNew(CPluginScript):
     TASKVERSION= 0.0                    # Version of this plugin
     ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.SEVERITY_WARNING },}
 

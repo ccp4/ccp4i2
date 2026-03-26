@@ -35,7 +35,7 @@ class Cdr_mr_modelbuild_pipeline(CCP4TaskWidget.CTaskWidget):
   TASKNAME = 'dr_mr_modelbuild_pipeline'
   TASKVERSION = 0.0
   TASKMODULE= ['model_building','bigpipes']
-  WHATNEXT = ['prosmart_refmac','coot_rebuild']
+  WHATNEXT = ['prosmart_refmac','coot_rebuild','coot1']
   TASKTITLE = 'Data Reduction, MR, Model build pipeline'
   SHORTTASKTITLE = 'Data Rection, MR, model building'
   DESCRIPTION='Data Reduction, MR, Model build pipeline'

@@ -1,6 +1,6 @@
 # CCP4i2 Changelog
 
-## [2.6.0] - 2026-03-23
+## [2.6.0] - 2026-03-26
 
 - New NucleoFind task for predicting locations of nucleic acid features in maps
 - New AREAIMOL task for calculating solvent accessible surface area
@@ -8,6 +8,7 @@
 - AceDRG metal option only visible for CIF input format
 - Reporting input distances and angles in MetalCoord task
 - Symmetry operators shown in MetalCoord report
+- Added Coot 1 as a follow-on task
 
 ## [2.5.2] - 2026-02-06
 
