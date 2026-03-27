@@ -11,10 +11,8 @@ from ccp4i2 import I2_TOP
 
 def test_servalcat_fw_available():
     """Check that servalcat fw is available in the environment."""
-    import subprocess
-    result = subprocess.run(
-        ['which', 'servalcat'], capture_output=True, text=True)
-    assert result.returncode == 0, (
+    import shutil
+    assert shutil.which('servalcat') is not None, (
         "servalcat not found in PATH. Source CCP4 environment.")
 
 
