@@ -9,7 +9,7 @@ from rdkit import Chem
 from ccp4i2.core import CCP4ErrorHandling, CCP4Utils
 from ccp4i2.core.CCP4ErrorHandling import CErrorReport
 from ccp4i2.core.CCP4PluginScript import CPluginScript
-from ccp4i2.core.mgimports import mmdb2
+# mmdb2 imported lazily below — only needed for optional molprobity SEGID sanitization
 from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
 
 
@@ -576,23 +576,16 @@ class prosmart_refmac(CPluginScript):
                        fileRoot, fileExt = os.path.splitext(coordPath)
                        sanitizedCoordPath = fileRoot + "+asPDB.pdb"
 
-                       # Use mmdb to sanitize the coordinate file
-                       mmdb2.InitMatType()
-                       m = mmdb2.Manager()
-                       m.SetFlag(mmdb2.MMDBF_IgnoreSegID)
-                       m.ReadCoorFile(coordPath)
-
-                       # Remove SEGIDs which can confuse molprobity if heterogeneous
-                       sel = m.NewSelection()
-                       m.SelectAtoms(sel, 0, "*", mmdb2.ANY_RES, "*", mmdb2.ANY_RES, "*", "*", "*", "*", "*", mmdb2.SKEY_OR)
-                       selindexp = mmdb2.intp()
-                       selAtoms = mmdb2.GetAtomSelIndex(m, sel, selindexp)
-                       nSelAtoms = selindexp.value()
-                       for i in range(nSelAtoms):
-                           at = mmdb2.getPCAtom(selAtoms, i)
-                           at.segID = b"    "
-                       m.FinishStructEdit()
-                       m.WritePDBASCII(sanitizedCoordPath)
+                       # Use gemmi to sanitize the coordinate file
+                       # Clear SEGID fields which can confuse molprobity if heterogeneous
+                       import gemmi
+                       st = gemmi.read_structure(coordPath)
+                       for model in st:
+                           for chain in model:
+                               for residue in chain:
+                                   for atom in residue:
+                                       atom.segment = "    "
+                       st.write_pdb(sanitizedCoordPath)
 
                        fileRoot = os.path.join(self.getWorkDirectory(), "molprobity")
                        molprobity.run(["input.pdb.file_name={}".format(sanitizedCoordPath),
