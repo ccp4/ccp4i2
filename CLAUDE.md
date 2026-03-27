@@ -120,30 +120,80 @@ npm run dev
 
 ### Tests
 
-Run tests with proper CCP4 environment configuration. All commands run from the `server/` directory:
-```bash
-cd server
+All commands run from the `server/` directory using `ccp4-python -m pytest` (cross-platform, works on Windows/Linux/macOS).
 
-# Run all i2run tests (default)
-./run_test.sh
+#### Test Layout
 
-# Run a specific test file
-./run_test.sh ccp4i2/tests/i2run/test_substitute_ligand.py -v
+Tests are organised by what they test and how fast they run:
 
-# Run a specific test function
-./run_test.sh ccp4i2/tests/i2run/test_servalcat.py::test_servalcat_basic -v
-
-# Run tests matching a pattern
-./run_test.sh ccp4i2/tests/i2run/ -k "test_aimless"
-
-# Run i2run tests in parallel (recommended — most are single-threaded crystallography)
-./run_test.sh ccp4i2/tests/i2run/ -n 8
-
-# Run all API tests
-./run_test.sh ccp4i2/tests/api/ -v
+```
+ccp4i2/tests/
+├── unit/                        # Fast (<30s total), no CCP4 binaries needed
+│   ├── containers/              # CContainer, CData, CList, CDataFile, types
+│   ├── mtz/                     # MTZ join/split/columns/conversions (needs gemmi)
+│   ├── pdb/                     # PDB/mmCIF loading
+│   ├── phil/                    # PHIL parameter system
+│   ├── converters/              # Data format converters
+│   ├── plugins/                 # Plugin infrastructure, def.xml, registry
+│   ├── validation/              # Validity checks, error reporting
+│   ├── serialization/           # JSON/XML encoding
+│   └── lib/                     # Utilities, reports, sequences, uploads
+├── async/                       # Async execution infrastructure
+├── db/                          # Database, project import/export
+├── api/
+│   ├── unit/                    # REST endpoint tests (Django test client)
+│   └── e2e/                     # End-to-end pipeline tests via REST API
+└── i2run/                       # End-to-end task tests via CLI
 ```
 
-The `run_test.sh` script auto-discovers CCP4, sets up environment variables, and runs pytest via `ccp4-python`. Test projects are stored in `~/.cache/ccp4i2-tests/` — failed tests preserve their directories for debugging.
+#### Running Tests
+
+```bash
+cd server
+source ../../ccp4-20251105/bin/ccp4.setup-sh
+
+# ── Fast unit tests (no CCP4 binaries, good for CI on all platforms) ──
+ccp4-python -m pytest ccp4i2/tests/unit/ -v
+
+# By subsystem
+ccp4-python -m pytest ccp4i2/tests/unit/mtz/ -v
+ccp4-python -m pytest ccp4i2/tests/unit/containers/ -v
+ccp4-python -m pytest ccp4i2/tests/unit/plugins/ -v
+
+# ── End-to-end task tests via CLI (slow, needs CCP4) ──
+ccp4-python -m pytest ccp4i2/tests/i2run/ -v
+ccp4-python -m pytest ccp4i2/tests/i2run/test_servalcat.py -v
+ccp4-python -m pytest ccp4i2/tests/i2run/test_servalcat.py::test_servalcat_basic -v
+ccp4-python -m pytest ccp4i2/tests/i2run/ -k "test_aimless"
+
+# ── End-to-end pipeline tests via API (slow, needs CCP4) ──
+ccp4-python -m pytest ccp4i2/tests/api/e2e/ -v
+
+# ── API unit tests ──
+ccp4-python -m pytest ccp4i2/tests/api/unit/ -v
+
+# ── Everything ──
+ccp4-python -m pytest ccp4i2/tests/ -v
+```
+
+#### Testing Philosophy
+
+| Layer | What it tests | Speed | CCP4 needed? | When to run |
+|-------|--------------|-------|-------------|-------------|
+| `unit/` | Core data classes, gemmi utilities, MTZ/PDB operations, PHIL, converters, plugin infrastructure, validation, serialization | Fast (~5s) | No (just ccp4-python) | Every commit, CI on all platforms |
+| `async/` | Async execution framework | Fast | No | With unit tests |
+| `db/` | Database operations, project import/export | Medium | No | When touching DB code |
+| `api/unit/` | REST endpoint behaviour | Fast | No | When touching API code |
+| `api/e2e/` | Full pipeline execution via REST API | Slow | Yes | Before release, after pipeline changes |
+| `i2run/` | Full task execution via CLI | Slow | Yes | Before release, after wrapper changes |
+
+**Key principles:**
+- Unit tests must not depend on CCP4 binaries — only `ccp4-python` (for gemmi etc.)
+- Unit tests must not depend on external data (test101, ProjectZips). Use `demo_data/` from the repo or `I2_TOP` for paths
+- E2e tests (i2run, api/e2e) download test data via session-scoped fixtures from PDBe/RCSB/PDB-REDO
+- All tests use `ccp4-python -m pytest` (not `run_test.sh`) for cross-platform consistency
+- Failed test directories are preserved in `~/.cache/ccp4i2-tests/` for debugging
+- Each test gets an isolated SQLite database and project directory
 
 ### Compounds App Tests
 
