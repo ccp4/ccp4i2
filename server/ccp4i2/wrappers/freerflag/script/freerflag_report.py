@@ -59,8 +59,9 @@ class freerflag_report(Report):
           highResD = freerxml.findall('ObservedDataResolution')[0].text
           highResF = freerxml.findall('FreeR_Resolution')[0].text
           cutfreerresolution = (freerxml.findall('CutFreerResolution')[0].text == 'True')
-          if cutfreerresolution:
-            frcut = freerxml.findall('FreerCutResolution')[0].text
+          freerCutResolution = freerxml.findall('FreerCutResolution')
+          if cutfreerresolution and len(freerCutResolution) > 0:
+            frcut = freerCutResolution[0].text
             message = 'Input FreeR data was cut to match the resolution'+\
                       ' of the data, '+frcut+' \xc5'
             parent.append(' <br/>')
