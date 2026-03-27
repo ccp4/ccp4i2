@@ -1524,6 +1524,10 @@ _TASK_LOOKUP = {key: {
 
 
 
+# Cache of import errors: task_name -> error message
+_import_errors: dict[str, str] = {}
+
+
 def _get_task_class(task_name: str, class_type: str):
     task = TASKS.get(task_name)
     if task is None:
@@ -1535,9 +1539,15 @@ def _get_task_class(task_name: str, class_type: str):
         return getattr(module, class_name)
     except Exception as e:
         logger = logging.getLogger(f"ccp4i2:{__name__}")
-        logger.error(f"Failed to import plugin {task_name}: {e}")
+        logger.error(f"Failed to import {class_type} for {task_name}: {e}")
         logger.error(f"Traceback:\n{traceback.format_exc()}")
+        _import_errors[task_name] = str(e)
         return None
+
+
+def get_import_error(task_name: str) -> str | None:
+    """Return the import error message for a task, or None if it loaded OK or wasn't attempted."""
+    return _import_errors.get(task_name)
 
 
 @cache

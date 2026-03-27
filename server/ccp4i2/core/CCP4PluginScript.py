@@ -17,7 +17,7 @@ from ccp4i2.core.base_object.base_classes import CData, CContainer
 from ccp4i2.core.base_object.error_reporting import CErrorReport, SEVERITY_ERROR, SEVERITY_WARNING
 from ccp4i2.core.task_manager.def_xml_handler import DefXmlParser
 from ccp4i2.core.task_manager.params_xml_handler import ParamsXmlHandler
-from ccp4i2.core.tasks import get_plugin_class, locate_def_xml
+from ccp4i2.core.tasks import get_plugin_class, get_import_error, locate_def_xml
 from ccp4i2.core.base_object.class_metadata import cdata_class
 
 # Module-level logger
@@ -2650,15 +2650,16 @@ class CPluginScript(CData):
         plugin_class = get_plugin_class(taskName)
 
         if plugin_class is None:
-            # If dummy=True, create a generic CPluginScript instead of failing
             if dummy_mode:
                 logger.debug(f"[makePluginObject] Plugin '{taskName}' not found, creating dummy CPluginScript")
                 plugin_class = CPluginScript
             else:
-                # Raise CException - this makes the error immediately visible
-                # rather than returning None and causing NoneType errors downstream
                 from ccp4i2.core.base_object.error_reporting import CException
-                error_msg = f"Plugin '{taskName}' not found in registry. Check that the plugin exists and all its dependencies can be imported."
+                import_err = get_import_error(taskName)
+                if import_err:
+                    error_msg = f"Plugin '{taskName}' is registered but failed to import: {import_err}"
+                else:
+                    error_msg = f"Plugin '{taskName}' not found in registry. This plugin either failed to load during registry generation or does not exist. Check core/tasks.py"
                 self.errorReport.append(
                     klass=self.__class__.__name__,
                     code=108,
