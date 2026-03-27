@@ -1,7 +1,10 @@
+from shutil import which
 import gemmi
+from pytest import mark
 from .utils import i2run
 
 
+@mark.skipif(which("zanuda") is None and which("zanuda.exe") is None, reason="zanuda not installed")
 def test_zanuda_8xfm(cif8xfm, mtz8xfm):
     """Test zanuda space group validation with 8xfm mmCIF input."""
     args = ["zanuda"]

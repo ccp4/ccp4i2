@@ -1,11 +1,14 @@
 import xml.etree.ElementTree as ET
+from shutil import which
 from gemmi import read_mtz_file, read_pdb
+from pytest import mark
 from .utils import demoData, i2run
 
 
 # TODO: Test long ligand names (e.g. 8xfm)
 
 
+@mark.skipif(which("shelxe") is None and which("shelxe.exe") is None, reason="SHELXE not installed")
 def test_gamma():
     args = ["shelxeMR"]
     args += ["--F_SIGF", demoData("gamma", "merged_intensities_Xe.mtz")]
