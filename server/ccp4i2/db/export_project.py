@@ -502,29 +502,34 @@ def _get_key_type_id(key_name: str) -> int:
 
 
 def _add_directory_to_zip(
-    zip_archive: zipfile.ZipFile, source_dir: Path, archive_dir: str
+    zip_archive: zipfile.ZipFile,
+    source_dir: Path,
+    archive_dir: str,
+    added_paths: set = None,
 ) -> None:
     """Recursively add directory contents to ZIP archive under the given archive_dir, ensuring all parent directories are present."""
+    if added_paths is None:
+        added_paths = set()
+
     # Ensure parent directories are added as empty entries
     parts = Path(archive_dir).parts
     for i in range(1, len(parts) + 1):
-        parent_dir = Path(*parts[:i])
-        zip_info = zipfile.ZipInfo(str(parent_dir) + "/")
-        # Only add if not already present
-        if zip_info.filename not in zip_archive.namelist():
-            zip_archive.writestr(zip_info, "")
+        parent_dir = str(Path(*parts[:i])) + "/"
+        if parent_dir not in added_paths:
+            zip_archive.writestr(zipfile.ZipInfo(parent_dir), "")
+            added_paths.add(parent_dir)
 
     for item in source_dir.rglob("*"):
         if item.is_file():
-            # Calculate relative path within the archive under archive_dir
-            relative_path = Path(archive_dir) / item.relative_to(source_dir)
-            zip_archive.write(item, str(relative_path))
+            relative_path = str(Path(archive_dir) / item.relative_to(source_dir))
+            if relative_path not in added_paths:
+                zip_archive.write(item, relative_path)
+                added_paths.add(relative_path)
         elif item.is_dir():
-            # Add empty directories under archive_dir
-            relative_path = Path(archive_dir) / item.relative_to(source_dir)
-            zip_info = zipfile.ZipInfo(str(relative_path) + "/")
-            if zip_info.filename not in zip_archive.namelist():
-                zip_archive.writestr(zip_info, "")
+            relative_path = str(Path(archive_dir) / item.relative_to(source_dir)) + "/"
+            if relative_path not in added_paths:
+                zip_archive.writestr(zipfile.ZipInfo(relative_path), "")
+                added_paths.add(relative_path)
 
 
 def _add_project_files_to_zip(
@@ -575,45 +580,38 @@ def _add_project_files_to_zip(
         "CCP4_PROJECT_FILES",
         "CCP4_TMP",
     ]
+    # Track all paths added to the archive to avoid duplicates
+    added_paths = set()
+
     # Special handling for CCP4_IMPORTED_FILES: only add empty placeholder directory
     imported_files_dir = project_dir / "CCP4_IMPORTED_FILES"
     if imported_files_dir.exists():
-        zip_info = zipfile.ZipInfo("CCP4_IMPORTED_FILES/")
-        if zip_info.filename not in zip_archive.namelist():
-            zip_archive.writestr(zip_info, "")
+        added_paths.add("CCP4_IMPORTED_FILES/")
+        zip_archive.writestr(zipfile.ZipInfo("CCP4_IMPORTED_FILES/"), "")
         # Do NOT add files from this directory here; files will be added individually below
 
     # Add standard directories
     for subdir_name in standard_dirs:
         subdir_path = project_dir / subdir_name
         if subdir_path.exists():
-            _add_directory_to_zip(zip_archive, subdir_path, subdir_name)
+            _add_directory_to_zip(zip_archive, subdir_path, subdir_name, added_paths)
 
     # Add selected job directories and file dependency job directories
     for job_dir in job_directories:
         relative_path = job_dir.relative_to(project_dir)
-        _add_directory_to_zip(zip_archive, job_dir, str(relative_path))
+        _add_directory_to_zip(zip_archive, job_dir, str(relative_path), added_paths)
 
     # Add individual files referenced by exported File objects using their path property
-    file_paths_added = set()  # Track to avoid duplicates
-
     for file_obj in exported_files:
         if file_obj.path:
             file_path = Path(file_obj.path)
-            if (
-                file_path.exists()
-                and file_path.is_file()
-                and file_path not in file_paths_added
-            ):
-                # Calculate relative path from project directory
+            if file_path.exists() and file_path.is_file():
                 try:
-                    relative_path = file_path.relative_to(project_dir)
-                    # Only add the file if it hasn't already been added at this relative path
-                    if str(relative_path) not in zip_archive.namelist():
-                        zip_archive.write(file_path, str(relative_path))
-                    file_paths_added.add(file_path)
+                    relative_path = str(file_path.relative_to(project_dir))
+                    if relative_path not in added_paths:
+                        zip_archive.write(file_path, relative_path)
+                        added_paths.add(relative_path)
                 except ValueError:
-                    # File is outside project directory, skip or handle as needed
                     logger.warning(
                         f"File {file_path} is outside project directory, skipping"
                     )
