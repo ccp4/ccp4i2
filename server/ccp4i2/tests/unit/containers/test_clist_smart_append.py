@@ -35,7 +35,6 @@ def test_clist_smart_append_string_to_file():
     print(f"✅ Item type: {type(item).__name__}")
     print(f"✅ Item has fullPath: {item.fullPath}")
 
-    return True
 
 
 def test_clist_append_file_object_directly():
@@ -53,20 +52,3 @@ def test_clist_append_file_object_directly():
     assert len(file_list) == 1
     assert file_list[0] is file_obj, "Direct file object append should preserve identity"
     assert file_list[0].fullPath == "/direct/path.mtz"
-
-    print("✅ Direct file object append still works")
-
-    return True
-
-
-if __name__ == "__main__":
-    try:
-        test_clist_smart_append_string_to_file()
-        test_clist_append_file_object_directly()
-        print("\n✅ SUCCESS: CList.append() smart type conversion working correctly")
-        sys.exit(0)
-    except Exception as e:
-        print(f"\n❌ FAILED: {e}")
-        import traceback
-        traceback.print_exc()
-        sys.exit(1)

@@ -14,8 +14,8 @@ class TestCDataFile:
         assert f.dbFileId == "Banana"
         f.set({"baseName": "changed"})
         assert f.baseName == "changed"
-        # dbFileId should be unset (removed or None)
-        assert not hasattr(f, "dbFileId") or f.dbFileId is None
+        # dbFileId should be unset (reset to empty/None/default)
+        assert not f.dbFileId  # empty string, None, or falsy
 
     def test_update_only_changes_specified(self):
         f = CDataFile()

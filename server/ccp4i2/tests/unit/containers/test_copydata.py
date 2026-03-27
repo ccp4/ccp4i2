@@ -1,68 +1,57 @@
 #!/usr/bin/env python3
-"""Test script to verify CContainer.copyData() works correctly"""
+"""Test that CContainer.copyData() works correctly."""
 from ccp4i2.core.base_object.ccontainer import CContainer
 from ccp4i2.core.base_object.fundamental_types import CInt, CString, CBoolean
 
-print("[TEST] Creating source container with data...")
-source = CContainer(name="source")
 
-# Use setattr to add items (this is what DefXmlParser does)
-source.count = CInt(42, name="count")
-source.count.set_parent(source)
-source._data_order.append("count")
+def _make_source_container():
+    """Create a source container with test data."""
+    source = CContainer(name="source")
 
-source.message = CString("hello", name="message")
-source.message.set_parent(source)
-source._data_order.append("message")
+    source.count = CInt(42, name="count")
+    source.count.set_parent(source)
+    source._data_order.append("count")
 
-source.flag = CBoolean(True, name="flag")
-source.flag.set_parent(source)
-source._data_order.append("flag")
+    source.message = CString("hello", name="message")
+    source.message.set_parent(source)
+    source._data_order.append("message")
 
-print(f"  Source container has {len(source.dataOrder())} items:")
-for item_name in source.dataOrder():
-    item = getattr(source, item_name)
-    print(f"    - {item_name}: {item.value} ({type(item).__name__})")
+    source.flag = CBoolean(True, name="flag")
+    source.flag.set_parent(source)
+    source._data_order.append("flag")
 
-print("\n[TEST] Creating destination container...")
-dest = CContainer(name="dest")
+    return source
 
-# Add one field with different value to test update
-dest.count = CInt(0, name="count")
-dest.count.set_parent(dest)
-dest._data_order.append("count")
-print(f"  Dest.count before copy: {dest.count.value}")
 
-print("\n[TEST] Calling dest.copyData(source)...")
-dest.copyData(source)
+def test_copydata_full():
+    """Test that copyData copies all fields from source to destination."""
+    source = _make_source_container()
 
-print(f"\n[TEST] Destination container now has {len(dest.dataOrder())} items:")
-for item_name in dest.dataOrder():
-    item = getattr(dest, item_name)
-    print(f"    - {item_name}: {item.value} ({type(item).__name__})")
+    dest = CContainer(name="dest")
+    dest.count = CInt(0, name="count")
+    dest.count.set_parent(dest)
+    dest._data_order.append("count")
 
-# Verify the copy worked
-print("\n[TEST] Verification:")
-print(f"  dest.count.value == 42: {dest.count.value == 42}")
-print(f"  dest.message.value == 'hello': {dest.message.value == 'hello'}")
-print(f"  dest.flag.value == True: {dest.flag.value == True}")
+    dest.copyData(source)
 
-# Test selective copy
-print("\n[TEST] Testing selective copy...")
-dest2 = CContainer(name="dest2")
-dest2.copyData(source, dataList=["count", "message"])
-print(f"  dest2 has {len(dest2.dataOrder())} items (should be 2):")
-for item_name in dest2.dataOrder():
-    item = getattr(dest2, item_name)
-    print(f"    - {item_name}: {item.value} ({type(item).__name__})")
+    assert dest.count.value == 42, f"Expected count=42, got {dest.count.value}"
+    assert dest.message.value == 'hello', f"Expected message='hello', got {dest.message.value}"
+    assert dest.flag.value is True, f"Expected flag=True, got {dest.flag.value}"
 
-# Check if flag exists as a child (should be False since we didn't copy it)
-# Check both 'name' attribute and objectName() method
-has_flag = any(
-    (hasattr(child, 'name') and child.name == 'flag') or
-    (hasattr(child, 'objectName') and child.objectName() == 'flag')
-    for child in dest2.children()
-)
-print(f"  dest2 has flag: {has_flag} (should be False)")
 
-print("\n[TEST] All tests passed!")
+def test_copydata_selective():
+    """Test that copyData with dataList only copies specified fields."""
+    source = _make_source_container()
+
+    dest = CContainer(name="dest2")
+    dest.copyData(source, dataList=["count", "message"])
+
+    assert len(dest.dataOrder()) == 2, \
+        f"Expected 2 items in dest, got {len(dest.dataOrder())}"
+
+    has_flag = any(
+        (hasattr(child, 'name') and child.name == 'flag') or
+        (hasattr(child, 'objectName') and child.objectName() == 'flag')
+        for child in dest.children()
+    )
+    assert not has_flag, "dest should NOT have 'flag' after selective copy"

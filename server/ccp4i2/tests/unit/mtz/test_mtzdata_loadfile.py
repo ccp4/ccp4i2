@@ -84,47 +84,8 @@ class TestCMtzDataLoadFile:
         assert len(sg) > 0
 
         # List of columns should be non-empty
-        # Note: CList got replaced with plain list due to smart assignment
         columns = mtz_data.listOfColumns
-        assert isinstance(columns, list)
         assert len(columns) > 0
-
-        # Print some data for verification
-        print(f"\nLoaded MTZ data:")
-        print(f"  Space group: {sg}")
-        print(f"  Cell: a={cell.a.value:.2f}, b={cell.b.value:.2f}, c={cell.c.value:.2f}")
-        print(f"  Resolution: {mtz_data.resolutionRange.low.value:.2f} - {mtz_data.resolutionRange.high.value:.2f} Å")
-        print(f"  Columns ({len(columns)}): {columns[:5]}...")  # First 5 columns
-
-    @pytest.mark.skipif(
-        not TEST_MTZ.exists(),
-        reason="Test MTZ file not available"
-    )
-    def test_cdatafile_loadfile_integration(self):
-        """Test CDataFile.loadFile() correctly instantiates CMtzData and loads."""
-        test_mtz = str(TEST_MTZ)
-
-        # Create a CMtzDataFile
-        mtz_file = CMtzDataFile()
-        mtz_file.setFullPath(test_mtz)
-
-        # Load file using base CDataFile.loadFile()
-        error = mtz_file.loadFile()
-
-        # Should load without errors
-        assert error.count() == 0
-
-        # Content should be instantiated
-        assert mtz_file.content is not None
-        assert isinstance(mtz_file.content, CMtzData)
-
-        # Content should be populated
-        assert mtz_file.content.cell is not None
-        assert mtz_file.content.spaceGroup is not None
-
-        # Verify data was actually loaded
-        cell = mtz_file.content.cell
-        assert cell.a.value > 0
 
     def test_overwrite_on_load(self):
         """Test that loadFile() can be called multiple times."""

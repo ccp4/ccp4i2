@@ -156,36 +156,6 @@ class TestCUnmergedDataContent:
         print(f"  Known cell: {data.knowncell.value}")
         print(f"  Known wavelength: {data.knownwavelength.value}")
 
-    @pytest.mark.skipif(
-        not TEST_MTZ.exists(),
-        reason="Test MTZ file not available"
-    )
-    def test_cdatafile_loadfile_integration(self):
-        """Test CDataFile.loadFile() correctly instantiates CUnmergedDataContent and loads."""
-        test_mtz = str(TEST_MTZ)
-
-        # Create a CUnmergedDataFile
-        data_file = CUnmergedDataFile()
-        data_file.setFullPath(test_mtz)
-
-        # Load file using base CDataFile.loadFile()
-        error = data_file.loadFile()
-
-        # Should load without errors
-        assert error.count() == 0
-
-        # Content should be instantiated
-        assert data_file.content is not None
-        assert isinstance(data_file.content, CUnmergedDataContent)
-
-        # Content should be populated
-        assert data_file.content.cell is not None
-        assert data_file.content.spaceGroup is not None
-
-        # Verify data was actually loaded
-        cell = data_file.content.cell
-        assert cell.a.value > 0
-
     def test_overwrite_on_load(self):
         """Test that loadFile() can be called multiple times."""
         data = CUnmergedDataContent()

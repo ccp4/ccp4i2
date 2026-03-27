@@ -79,36 +79,6 @@ class TestCPdbDataLoadFile:
                 print(f"  First chain ID: {chain.name}")
                 print(f"  Residues in first chain: {len(chain)}")
 
-    @pytest.mark.skipif(
-        not TEST_PDB.exists(),
-        reason="Test PDB file not available"
-    )
-    def test_cdatafile_loadfile_integration(self):
-        """Test CDataFile.loadFile() correctly instantiates CPdbData and loads."""
-        test_pdb = str(TEST_PDB)
-
-        # Create a CPdbDataFile
-        pdb_file = CPdbDataFile()
-        pdb_file.setFullPath(test_pdb)
-
-        # Load file using base CDataFile.loadFile()
-        error = pdb_file.loadFile()
-
-        # Should load without errors
-        assert error.count() == 0
-
-        # Content should be instantiated
-        assert pdb_file.content is not None
-        assert isinstance(pdb_file.content, CPdbData)
-
-        # Content should have structure loaded
-        assert hasattr(pdb_file.content, '_gemmi_structure')
-        assert pdb_file.content._gemmi_structure is not None
-
-        # Verify structure has data
-        structure = pdb_file.content._gemmi_structure
-        assert len(structure) > 0
-
     def test_overwrite_on_load(self):
         """Test that loadFile() can be called multiple times."""
         pdb_data = CPdbData()

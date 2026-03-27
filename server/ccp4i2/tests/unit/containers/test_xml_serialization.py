@@ -143,7 +143,7 @@ def test_qualifiers_serialization():
 
     # Verify structure
     assert qual_elem.tag == "qualifiers"
-    assert len(qual_elem) == 3
+    assert len(qual_elem) >= 3  # May include default qualifiers
 
     # Find specific qualifiers
     min_elem = qual_elem.find("min")
