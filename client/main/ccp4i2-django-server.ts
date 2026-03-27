@@ -215,7 +215,16 @@ export async function startDjangoServer(
 
   pythonProcess.stderr.on("data", (data) => {
     if (isDev) {
-      console.error(`🐍 Python Error: ${data}`);
+      // Uvicorn writes all access logs and Django warnings to stderr.
+      // Only label genuine errors (tracebacks, ERROR level) as errors;
+      // routine output uses console.log to avoid alarming users.
+      const text = String(data);
+      const isError = /\bERROR\b|Traceback|Exception/i.test(text);
+      if (isError) {
+        console.error(`🐍 Python Error: ${data}`);
+      } else {
+        console.log(`🐍 Python: ${data}`);
+      }
     } else {
       logStream?.write(`[STDERR] ${new Date().toISOString()}: ${data}`);
     }

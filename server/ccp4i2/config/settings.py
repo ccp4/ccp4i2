@@ -273,6 +273,25 @@ FILE_UPLOAD_MAX_NUMBER_FILES = int(
 
 
 # =============================================================================
+# Logging
+# =============================================================================
+# Suppress noisy django.request 404 warnings for API endpoints where
+# "not found" is a normal response (e.g., diagnostic_xml before a job finishes).
+# These appear as WARNING:django.request:Not Found: /api/... in the console
+# and confuse non-developer users.
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "loggers": {
+        "django.request": {
+            "level": "ERROR",
+        },
+    },
+}
+
+
+# =============================================================================
 # Security Settings (Production)
 # =============================================================================
 # These headers protect against common web vulnerabilities.

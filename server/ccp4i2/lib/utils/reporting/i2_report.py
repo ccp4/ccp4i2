@@ -393,7 +393,12 @@ def generate_job_report(job: Job) -> ET.Element:
     uses_program_xml = getattr(report_class, 'USEPROGRAMXML', True)
     if xml_path is None and watch_file is None and uses_program_xml:
         searched_files = ", ".join(XML_FILE_SEARCH_ORDER)
-        logger.warning(
+        # Use debug for running/queued jobs (program XML doesn't exist yet),
+        # warning only for terminal statuses where it should have been created.
+        active_statuses = {Job.Status.RUNNING, Job.Status.QUEUED, Job.Status.RUNNING_REMOTELY}
+        log_level = logging.DEBUG if Job.Status(job.status) in active_statuses else logging.WARNING
+        logger.log(
+            log_level,
             "No program XML found in %s. Searched: %s", job_directory, searched_files
         )
         return simple_failed_report(

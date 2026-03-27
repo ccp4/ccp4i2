@@ -27,9 +27,10 @@ export const CCP4i2ReportXMLView = () => {
   const currentStatus = jobFromTree?.status ?? job?.status;
   const isJobActive = useIsJobEffectivelyActive(jobId ?? undefined, currentStatus);
 
-  // Use centralized API hook for report XML fetching
+  // Don't fetch report_xml for pending jobs - no meaningful report exists yet
+  const shouldFetchReport = currentStatus !== undefined && currentStatus > 1;
   const { data: report_xml_json, error: fetchError, mutate: mutateReportXml } = api.jobReportXml(
-    job?.id,
+    shouldFetchReport ? job?.id : null,
     isJobActive
   );
 

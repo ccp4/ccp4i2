@@ -214,8 +214,26 @@ const SEVERITY_LEVELS = {
 } as const;
 
 const JOB_STATUS = {
+  UNKNOWN: 0,
   PENDING: 1,
+  QUEUED: 2,
+  RUNNING: 3,
+  INTERRUPTED: 4,
+  FAILED: 5,
+  FINISHED: 6,
+  RUNNING_REMOTELY: 7,
+  FILE_HOLDER: 8,
+  TO_DELETE: 9,
+  UNSATISFACTORY: 10,
 } as const;
+
+/** Statuses where a diagnostic.xml file is expected to exist */
+const HAS_DIAGNOSTIC_STATUSES = [
+  JOB_STATUS.FAILED,
+  JOB_STATUS.FINISHED,
+  JOB_STATUS.INTERRUPTED,
+  JOB_STATUS.UNSATISFACTORY,
+] as const;
 
 const FILE_DIRECTORIES = {
   JOB_OUTPUT: 1,
@@ -933,9 +951,10 @@ export const useJob = (jobId: number | null | undefined): JobData => {
     endpoint: "validation",
   });
 
-  // Only fetch diagnostic_xml for jobs that have run (status > 1)
-  // Status 1 = PENDING, Status > 1 = has run or is running
-  const shouldFetchDiagnostic = job?.status && job.status > JOB_STATUS.PENDING;
+  // Only fetch diagnostic_xml for terminal statuses where the file exists
+  const shouldFetchDiagnostic =
+    job?.status !== undefined &&
+    (HAS_DIAGNOSTIC_STATUSES as readonly number[]).includes(job.status);
   const { data: diagnostic_xml, mutate: mutateDiagnosticXml } =
     api.get_pretty_endpoint_xml(
       shouldFetchDiagnostic

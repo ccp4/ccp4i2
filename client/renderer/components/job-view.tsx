@@ -137,7 +137,12 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
 
   // This is for the raw XML editor view (tabValue == 2)
   // Uses same key as CCP4i2ReportXMLView so SWR deduplicates - keep polling logic consistent
-  const { data: report_xml_json } = api.jobReportXml(job?.id, isJobActive);
+  // Don't fetch report_xml for pending jobs - no meaningful report exists yet
+  const shouldFetchReport = currentStatus !== undefined && currentStatus > 1;
+  const { data: report_xml_json } = api.jobReportXml(
+    shouldFetchReport ? job?.id : null,
+    isJobActive
+  );
 
   const report_xml: XMLDocument | null = useMemo(() => {
     if (!report_xml_json) return null;
