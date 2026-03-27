@@ -41,7 +41,7 @@ def usage():
     print("from containing  /Users/stuart/CCP4I2_PROJECTS to instead contain /home/mcnicholas/CCP4I2_PROJECTS" )
 
 try:
-    opts, args = getopt.getopt(sys.argv[1:], "i:o:p:f:", ["inputRoot=","outputRoot","project=","dbFile="])
+    opts, args = getopt.getopt(sys.argv[1:], "i:o:p:f:", ["inputRoot=","outputRoot=","project=","dbFile="])
 except  getopt.GetoptError as err:
     print(str(err))
     print()
