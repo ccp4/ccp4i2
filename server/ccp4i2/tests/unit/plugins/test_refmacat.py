@@ -1,7 +1,7 @@
 from math import isclose
 from pathlib import Path
 from os import environ
-from ...wrappers.refmacat import refmacat
+from ccp4i2.wrappers.refmacat import refmacat
 
 
 def test_1rxf():

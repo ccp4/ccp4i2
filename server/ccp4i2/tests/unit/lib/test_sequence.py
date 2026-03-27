@@ -1,5 +1,5 @@
 import pytest
-from ...lib.sequence import code1, SequenceType, L_PEPTIDE, D_PEPTIDE, DNA, RNA
+from ccp4i2.lib.sequence import code1, SequenceType, L_PEPTIDE, D_PEPTIDE, DNA, RNA
 
 
 @pytest.mark.parametrize(

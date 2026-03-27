@@ -1,6 +1,6 @@
 """Tests for upload_param utilities, especially annotation building."""
 
-from ...lib.utils.files.upload_param import build_file_annotation
+from ccp4i2.lib.utils.files.upload_param import build_file_annotation
 
 
 class TestBuildFileAnnotation:

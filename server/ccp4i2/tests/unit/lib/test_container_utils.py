@@ -11,20 +11,20 @@ from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Data
 from ccp4i2.core import CCP4Container
 from ccp4i2.core.tasks import get_task_tree, locate_def_xml
-from ...db.models import Job, File
-from ...db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.db.models import Job, File
+from ccp4i2.db.import_i2xml import import_ccp4_project_zip
 
-from ...lib.utils.plugins.get_plugin import get_job_plugin
-from ...lib.utils.formats.mtz import mtz_as_dict
-from ...lib.utils.containers.remove_defaults import (
+from ccp4i2.lib.utils.plugins.get_plugin import get_job_plugin
+from ccp4i2.lib.utils.formats.mtz import mtz_as_dict
+from ccp4i2.lib.utils.containers.remove_defaults import (
     remove_container_default_values,
 )
-from ...lib.utils.containers.find_objects import find_objects
-from ...lib.utils.parameters.load_xml import load_nested_xml
-from ...lib.utils.jobs.clone import clone_job
-from ...lib.utils.jobs.create import create_job
-from ...lib.utils.reporting.i2_report import get_report_job_info
-from ...lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
+from ccp4i2.lib.utils.containers.find_objects import find_objects
+from ccp4i2.lib.utils.parameters.load_xml import load_nested_xml
+from ccp4i2.lib.utils.jobs.clone import clone_job
+from ccp4i2.lib.utils.jobs.create import create_job
+from ccp4i2.lib.utils.reporting.i2_report import get_report_job_info
+from ccp4i2.lib.utils.formats.gemmi_split_mtz import gemmi_split_mtz
 
 
 @override_settings(

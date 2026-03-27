@@ -3,15 +3,15 @@ from shutil import rmtree
 from django.test import TestCase, override_settings
 from django.conf import settings
 from xml.etree import ElementTree as ET
-from ...db.models import Job
-from ...db.import_i2xml import import_ccp4_project_zip
-from ...lib.utils.reporting.i2_report import (
+from ccp4i2.db.models import Job
+from ccp4i2.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.lib.utils.reporting.i2_report import (
     get_report_job_info,
     generate_job_report,
 )
-from ...lib.utils.jobs.get_container import get_job_container
-from ...db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
-from ...db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
+from ccp4i2.lib.utils.jobs.get_container import get_job_container
+from ccp4i2.db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
+from ccp4i2.db.ccp4i2_django_dbapi import CCP4i2DjangoDbApi
 
 # Resolve __file__ so that .parent chains work regardless of cwd
 _THIS_FILE = Path(__file__).resolve()

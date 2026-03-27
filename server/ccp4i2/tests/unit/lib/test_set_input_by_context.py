@@ -11,12 +11,12 @@ import logging
 from django.test import TestCase, override_settings
 from django.conf import settings
 
-from ...db.models import Job, File, Project
-from ...db.import_i2xml import import_i2xml_from_file
-from ...lib.utils.parameters.set_input_by_context import set_input_by_context_job
-from ...lib.utils.plugins.get_plugin import get_job_plugin
-from ...lib.utils.files.get_by_context import get_file_by_job_context
-from ...lib.async_create_job import create_job_async
+from ccp4i2.db.models import Job, File, Project
+from ccp4i2.db.import_i2xml import import_i2xml_from_file
+from ccp4i2.lib.utils.parameters.set_input_by_context import set_input_by_context_job
+from ccp4i2.lib.utils.plugins.get_plugin import get_job_plugin
+from ccp4i2.lib.utils.files.get_by_context import get_file_by_job_context
+from ccp4i2.lib.async_create_job import create_job_async
 from asgiref.sync import async_to_sync
 
 # Enable logging for debugging
@@ -46,7 +46,7 @@ class SetInputByContextTestCase(TestCase):
 
     def test_project_imported_correctly(self):
         """Verify test data was imported correctly."""
-        from ...db.models import FileType
+        from ccp4i2.db.models import FileType
 
         projects = list(Project.objects.all())
         self.assertEqual(len(projects), 1)
