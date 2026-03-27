@@ -132,7 +132,7 @@ def set_parameter(
         # - After processOutputFiles() - weeds out non-existent output files
         input_params_file = job.directory / "input_params.xml"
         logger.debug("Saving parameters to %s", input_params_file)
-        error = plugin.saveDataToXml(str(input_params_file))
+        error = plugin.saveDataToXml(str(input_params_file), exclude_unset=False)
         if error and hasattr(error, 'hasError') and error.hasError():
             logger.error("Failed to save parameters to %s: %s", input_params_file, error)
         else:
