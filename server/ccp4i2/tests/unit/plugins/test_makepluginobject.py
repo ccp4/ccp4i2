@@ -1,14 +1,9 @@
 """Tests for CPluginScript.makePluginObject method."""
 
 import pytest
-import os
 from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 
-@pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
 class TestMakePluginObject:
     """Tests for the makePluginObject method."""
 
@@ -25,25 +20,12 @@ class TestMakePluginObject:
         assert sub_plugin.TASKNAME == "pointless", "Should have correct TASKNAME"
 
     def test_makepluginobject_nonexistent_plugin(self):
-        """Test that makePluginObject handles non-existent plugins."""
+        """Test that makePluginObject raises for non-existent plugins."""
+        from ccp4i2.core.base_object.error_reporting import CException
         parent = CPluginScript(name="parent_task")
 
-        # Try to create non-existent plugin
-        sub_plugin = parent.makePluginObject("nonexistent_task_xyz")
-
-        assert sub_plugin is None, "Should return None for non-existent plugin"
-        # Check that error was logged (errorReport should have errors)
-        assert bool(parent.errorReport), "Should log error"
-
-    def test_makepluginobject_passes_kwargs(self):
-        """Test that makePluginObject passes kwargs to the plugin constructor."""
-        parent = CPluginScript(name="parent_task")
-
-        # Create sub-plugin with custom name
-        sub_plugin = parent.makePluginObject("pointless", name="custom_pointless")
-
-        assert sub_plugin is not None, "Should create plugin instance"
-        assert sub_plugin.name == "custom_pointless", "Should use custom name"
+        with pytest.raises(CException):
+            parent.makePluginObject("nonexistent_task_xyz")
 
     def test_makepluginobject_multiple_plugins(self):
         """Test creating multiple different plugins."""

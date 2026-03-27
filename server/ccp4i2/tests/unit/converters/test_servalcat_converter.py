@@ -6,6 +6,7 @@ intensity-to-amplitude conversions.
 """
 import pytest
 from pathlib import Path
+from ccp4i2 import I2_TOP
 
 
 def test_servalcat_fw_available():
@@ -24,7 +25,7 @@ def test_imean_to_fmean_conversion(tmp_path):
 
     # Use existing test data (IMEAN from gamma dataset)
     test_data = (
-        Path(__file__).parent.parent / 'demo_data' / 'gamma' /
+        I2_TOP / 'demo_data' / 'gamma' /
         'HKLOUT_unmerged.mtz')
 
     if not test_data.exists():
@@ -87,7 +88,7 @@ def test_monolithic_mtz_contains_all_columns(tmp_path):
 
     # Use IMEAN test data from gamma dataset
     test_data = (
-        Path(__file__).parent.parent / 'demo_data' / 'gamma' /
+        I2_TOP / 'demo_data' / 'gamma' /
         'HKLOUT_unmerged.mtz')
 
     if not test_data.exists():

@@ -22,9 +22,9 @@ Requires:
 """
 
 import pytest
-import os
 import numpy as np
 from pathlib import Path
+from ccp4i2 import I2_TOP
 
 
 def get_mtz_columns(mtz_path):
@@ -83,10 +83,6 @@ def check_phi_range(mtz_path):
     return np.all(valid), phi.min(), phi.max()
 
 
-@pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
 def test_hl_to_phifom_conversion(tmp_path):
     """
     Test HL → PHIFOM conversion.
@@ -97,12 +93,8 @@ def test_hl_to_phifom_conversion(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Load HL file (Hendrickson-Lattman coefficients)
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz")
     assert Path(input_file).exists(), f"Input file not found: {input_file}"
 
     # Create file object
@@ -165,10 +157,6 @@ def test_hl_to_phifom_conversion(tmp_path):
     print(f"✅ PHI values in valid range: min={phi_min:.1f}°, max={phi_max:.1f}°")
 
 
-@pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
 def test_phifom_to_hl_conversion(tmp_path):
     """
     Test PHIFOM → HL conversion.
@@ -178,12 +166,8 @@ def test_phifom_to_hl_conversion(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Step 1: Create PHIFOM file from HL
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz")
 
     hl_file = CPhsDataFile()
     hl_file.setFullPath(input_file)
@@ -233,10 +217,6 @@ def test_phifom_to_hl_conversion(tmp_path):
     print("✅ Output contains HL columns (HLA, HLB, HLC, HLD all type=A)")
 
 
-@pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
 def test_hl_phifom_roundtrip(tmp_path):
     """
     Test round-trip conversion: HL → PHIFOM → HL.
@@ -246,12 +226,8 @@ def test_hl_phifom_roundtrip(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Start with HL
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz")
 
     print("\n" + "=" * 60)
     print("Testing round-trip: HL → PHIFOM → HL")
@@ -320,10 +296,6 @@ def test_hl_phifom_roundtrip(tmp_path):
     print("\n✅ Round-trip conversion successful with reasonable correlation")
 
 
-@pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
 def test_hl_numerical_accuracy(tmp_path):
     """
     Test numerical accuracy of HL → PHIFOM conversion.
@@ -333,11 +305,7 @@ def test_hl_numerical_accuracy(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz")
 
     hl_file = CPhsDataFile()
     hl_file.setFullPath(input_file)

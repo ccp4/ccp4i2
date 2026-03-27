@@ -2,15 +2,10 @@
 Tests for lazy-loading plugin registry.
 """
 
-import os
 import pytest
 from ccp4i2.core.tasks import get_plugin_class
 
 
-@pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
 class TestPluginRegistry:
     """Tests for the lazy-loading plugin registry."""
 

@@ -21,12 +21,13 @@ Usage:
 
 import pytest
 from pathlib import Path
+from ccp4i2 import I2_TOP
 
 
 @pytest.fixture
 def demo_data_dir():
     """Path to demo data directory."""
-    return Path(__file__).parent.parent / "demo_data"
+    return I2_TOP / "demo_data"
 
 
 @pytest.fixture
@@ -118,8 +119,8 @@ class TestConverterAPICompatibility:
 
         # Test with BOTH converters using the SAME CODE
         converters = [
-            ('servalcat', 'core.conversions.servalcat_converter', 'ServalcatConverter'),
-            ('ctruncate', 'core.conversions.ctruncate_converter', 'CtruncateConverter'),
+            ('servalcat', 'ccp4i2.core.conversions.servalcat_converter', 'ServalcatConverter'),
+            ('ctruncate', 'ccp4i2.core.conversions.ctruncate_converter', 'CtruncateConverter'),
         ]
 
         results = {}

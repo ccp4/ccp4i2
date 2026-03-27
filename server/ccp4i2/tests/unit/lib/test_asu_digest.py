@@ -22,7 +22,8 @@ class TestCAsuDataFileDigest:
     @pytest.fixture
     def gamma_asu_file(self):
         """Path to gamma demo ASU file."""
-        asu_path = Path(__file__).parent.parent.parent.parent.parent / "demo_data" / "gamma" / "gamma.asu.xml"
+        from ccp4i2 import I2_TOP
+        asu_path = I2_TOP / "demo_data" / "gamma" / "gamma.asu.xml"
         if not asu_path.exists():
             pytest.skip(f"Demo data not found: {asu_path}")
         return str(asu_path)

@@ -25,6 +25,7 @@ import pytest
 import os
 import shutil
 from pathlib import Path
+from ccp4i2 import I2_TOP
 
 
 def get_mtz_columns(mtz_path):
@@ -48,10 +49,6 @@ def check_ccp4_available():
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_ccp4_available(),
     reason="CCP4 not available. Run: source /Applications/ccp4-*/bin/ccp4.setup-sh"
 )
@@ -64,12 +61,8 @@ def test_ipair_to_fpair_conversion(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CObsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Load IPAIR file (anomalous intensities)
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz")
     assert Path(input_file).exists(), f"Input file not found: {input_file}"
 
     # Create file object
@@ -109,10 +102,6 @@ def test_ipair_to_fpair_conversion(tmp_path):
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_ccp4_available(),
     reason="CCP4 not available. Run: source /Applications/ccp4-*/bin/ccp4.setup-sh"
 )
@@ -125,12 +114,8 @@ def test_ipair_to_imean_conversion(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CObsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Load IPAIR file (anomalous intensities)
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz")
     assert Path(input_file).exists(), f"Input file not found: {input_file}"
 
     # Create file object
@@ -169,10 +154,6 @@ def test_ipair_to_imean_conversion(tmp_path):
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_ccp4_available(),
     reason="CCP4 not available. Run: source /Applications/ccp4-*/bin/ccp4.setup-sh"
 )
@@ -185,12 +166,8 @@ def test_fpair_to_fmean_conversion(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CObsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Step 1: Create FPAIR file from IPAIR
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz")
 
     ipair_file = CObsDataFile()
     ipair_file.setFullPath(input_file)
@@ -232,10 +209,6 @@ def test_fpair_to_fmean_conversion(tmp_path):
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_ccp4_available(),
     reason="CCP4 not available. Run: source /Applications/ccp4-*/bin/ccp4.setup-sh"
 )
@@ -247,12 +220,8 @@ def test_conversion_chain_ipair_to_fmean(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CObsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Start with IPAIR
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz")
 
     print("\n" + "=" * 60)
     print("Testing conversion chain: IPAIR → IMEAN → FMEAN")

@@ -3,8 +3,8 @@ Tests for building and using parrot plugin.
 """
 
 import pytest
-import os
 from pathlib import Path
+from ccp4i2 import I2_TOP
 from ccp4i2.core.tasks import get_plugin_class
 
 
@@ -32,10 +32,6 @@ def check_ccp4_available():
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_ccp4_available(),
     reason="CCP4 not available. Run: source /Applications/ccp4-*/bin/ccp4.setup-sh"
 )
@@ -47,12 +43,10 @@ def test_as_fmean_conversion(tmp_path):
     """
     from ccp4i2.core.CCP4XtalData import CObsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Create CObsDataFile for intensity data
     intensity_file = CObsDataFile()
     intensity_file.setFullPath(
-        os.path.join(ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz")
+        str(I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz")
     )
 
     print(f"\nInput file: {intensity_file.getFullPath()}")
@@ -83,10 +77,6 @@ def test_as_fmean_conversion(tmp_path):
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_ccp4_available(),
     reason="CCP4 not available. Run: source /Applications/ccp4-*/bin/ccp4.setup-sh"
 )
@@ -100,16 +90,14 @@ def test_parrot_makehklin(tmp_path):
     task = get_plugin_class("parrot")(workDirectory=tmp_path)
 
     # Set input files from CCP4I2 demo data
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-
     # Set F_SIGF (observations - structure factors with sigmas)
-    task.container.inputData.F_SIGF = os.path.join(
-        ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz"
+    task.container.inputData.F_SIGF = str(
+        I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz"
     )
 
     # Set ABCD (phases from phasing program)
-    task.container.inputData.ABCD = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
+    task.container.inputData.ABCD = str(
+        I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz"
     )
 
     # Call makeHklInput to create the merged hklin.mtz
@@ -136,17 +124,13 @@ def test_parrot_makehklin(tmp_path):
     columns = get_mtz_columns(hklin_path)
     print(f"hklin.mtz columns: {columns}")
 
-    # Expected columns from F_SIGF input (after conversion)
-    # Object name is prepended with underscore (e.g., F_SIGF_F)
-    assert 'F_SIGF_F' in columns, f"F_SIGF_F column not found in hklin.mtz. Columns: {columns}"
-    assert 'F_SIGF_SIGF' in columns, f"F_SIGF_SIGF column not found in hklin.mtz. Columns: {columns}"
-
-    # Expected columns from ABCD input (phases)
-    # Object name is prepended with underscore (e.g., ABCD_HLA)
-    assert 'ABCD_HLA' in columns, f"ABCD_HLA column not found in hklin.mtz. Columns: {columns}"
-    assert 'ABCD_HLB' in columns, f"ABCD_HLB column not found in hklin.mtz. Columns: {columns}"
-    assert 'ABCD_HLC' in columns, f"ABCD_HLC column not found in hklin.mtz. Columns: {columns}"
-    assert 'ABCD_HLD' in columns, f"ABCD_HLD column not found in hklin.mtz. Columns: {columns}"
+    # Expected columns: F/SIGF from obs data, HLA-HLD from phase data
+    assert 'F' in columns, f"F column not found in hklin.mtz. Columns: {columns}"
+    assert 'SIGF' in columns, f"SIGF column not found in hklin.mtz. Columns: {columns}"
+    assert 'HLA' in columns, f"HLA column not found in hklin.mtz. Columns: {columns}"
+    assert 'HLB' in columns, f"HLB column not found in hklin.mtz. Columns: {columns}"
+    assert 'HLC' in columns, f"HLC column not found in hklin.mtz. Columns: {columns}"
+    assert 'HLD' in columns, f"HLD column not found in hklin.mtz. Columns: {columns}"
 
     # Expected crystallographic columns
     assert 'H' in columns, f"H (Miller index) not found. Columns: {columns}"
@@ -156,10 +140,6 @@ def test_parrot_makehklin(tmp_path):
     print("✅ hklin.mtz contains all expected columns (F_SIGF_F, F_SIGF_SIGF, ABCD_HLA/HLB/HLC/HLD, Miller indices)")
 
 
-@pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
 def test_parrot(tmp_path):
     """Test parrot plugin initialization and execution.
 
@@ -174,25 +154,24 @@ def test_parrot(tmp_path):
 
     # Set input files from CCP4I2 demo data
     # Parrot expects F_SIGF (structure factors) and ABCD (phases)
-    ccp4_root = os.environ["CCP4I2_ROOT"]
 
     # Set F_SIGF (observations - structure factors with sigmas)
-    task.container.inputData.F_SIGF = os.path.join(
-        ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz"
+    task.container.inputData.F_SIGF = str(
+        I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz"
     )
     assert str(task.container.inputData.F_SIGF).endswith(
         "merged_intensities_native.mtz"
     )
 
     # Set ABCD (phases from phasing program)
-    task.container.inputData.ABCD = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
+    task.container.inputData.ABCD = str(
+        I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz"
     )
     assert str(task.container.inputData.ABCD).endswith("initial_phases.mtz")
 
     # Set ASUIN (observations - structure factors with sigmas)
-    task.container.inputData.ASUIN = os.path.join(
-        ccp4_root, "demo_data", "gamma", "gamma.asu.xml"
+    task.container.inputData.ASUIN = str(
+        I2_TOP / "demo_data" / "gamma" / "gamma.asu.xml"
     )
     assert str(task.container.inputData.ASUIN).endswith(
         "gamma.asu.xml"

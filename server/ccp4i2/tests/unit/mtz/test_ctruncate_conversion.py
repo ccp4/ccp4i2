@@ -11,6 +11,7 @@ import pytest
 import os
 import shutil
 from pathlib import Path
+from ccp4i2 import I2_TOP
 from ccp4i2.core.tasks import get_plugin_class
 
 
@@ -37,10 +38,6 @@ def check_ccp4_available():
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_ccp4_available(),
     reason="CCP4 not available. Run: source /Applications/ccp4-*/bin/ccp4.setup-sh"
 )
@@ -55,8 +52,6 @@ def test_ctruncate_intensity_to_fmean(tmp_path):
         tmp_path: Pytest fixture providing a temporary directory
     """
     from ccp4i2.core.CCP4PluginScript import CPluginScript
-
-    ccp4_root = os.environ["CCP4I2_ROOT"]
 
     # Get ctruncate plugin class
     ctruncate_class = get_plugin_class('ctruncate')
@@ -74,9 +69,7 @@ def test_ctruncate_intensity_to_fmean(tmp_path):
     assert ctruncate_exe is not None, "ctruncate executable not found in PATH"
 
     # Set input file (intensity data)
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "merged_intensities_native.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "merged_intensities_native.mtz")
     assert Path(input_file).exists(), f"Input file not found: {input_file}"
 
     ctruncate.container.inputData.HKLIN.setFullPath(input_file)

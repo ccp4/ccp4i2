@@ -16,6 +16,7 @@ import os
 import shutil
 import numpy as np
 from pathlib import Path
+from ccp4i2 import I2_TOP
 
 
 def get_mtz_data(mtz_path, column_label):
@@ -140,10 +141,6 @@ def calculate_circular_correlation(angles1, angles2):
 
 
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_chltofom_available(),
     reason="CCP4 chltofom not available"
 )
@@ -157,10 +154,7 @@ def test_benchmark_hl_to_phifom_vs_chltofom(tmp_path):
     import subprocess
     from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz")
 
     print("\n" + "=" * 70)
     print("BENCHMARK: HL → PHIFOM Conversion")
@@ -284,10 +278,6 @@ def test_benchmark_hl_to_phifom_vs_chltofom(tmp_path):
            "HL→PHIFOM direction works correctly (see test_benchmark_hl_to_phifom_vs_chltofom)."
 )
 @pytest.mark.skipif(
-    'CCP4I2_ROOT' not in os.environ,
-    reason="CCP4I2_ROOT environment variable not set"
-)
-@pytest.mark.skipif(
     not check_chltofom_available(),
     reason="CCP4 chltofom not available"
 )
@@ -301,10 +291,7 @@ def test_benchmark_phifom_to_hl_vs_chltofom(tmp_path):
     import subprocess
     from ccp4i2.core.CCP4XtalData import CPhsDataFile
 
-    ccp4_root = os.environ["CCP4I2_ROOT"]
-    input_file = os.path.join(
-        ccp4_root, "demo_data", "gamma", "initial_phases.mtz"
-    )
+    input_file = str(I2_TOP / "demo_data" / "gamma" / "initial_phases.mtz")
 
     print("\n" + "=" * 70)
     print("BENCHMARK: PHIFOM → HL Conversion")
