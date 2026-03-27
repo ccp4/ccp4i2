@@ -195,7 +195,7 @@ class TestBuildWorkingPhil:
         plugin = MockPhilPlugin()
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            plugin._workDirectory = tmpdir
+            plugin.workDirectory = tmpdir
             phil_path = plugin.build_working_phil()
 
             assert os.path.exists(phil_path)
@@ -213,7 +213,7 @@ class TestBuildWorkingPhil:
         cp.refinement.refinement__resolution.value = 3.5
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            plugin._workDirectory = tmpdir
+            plugin.workDirectory = tmpdir
             phil_path = plugin.build_working_phil()
 
             with open(phil_path) as f:
@@ -226,7 +226,7 @@ class TestBuildWorkingPhil:
         plugin = MockPhilPlugin()
 
         with tempfile.TemporaryDirectory() as tmpdir:
-            plugin._workDirectory = tmpdir
+            plugin.workDirectory = tmpdir
             phil_path = plugin.build_working_phil()
 
             with open(phil_path) as f:
