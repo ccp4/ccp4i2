@@ -204,7 +204,7 @@ class CtruncateConverter:
             work_dir=ctruncate_dir
         )
 
-        print(f"✅ Ctruncate IPAIR → FPAIR conversion: {output_path}")
+        print(f"Ctruncate IPAIR -> FPAIR conversion: {output_path}")
         return output_path
 
     @staticmethod
@@ -241,7 +241,7 @@ class CtruncateConverter:
             work_dir=ctruncate_dir
         )
 
-        print(f"✅ Ctruncate IPAIR → IMEAN conversion: {output_path}")
+        print(f"Ctruncate IPAIR -> IMEAN conversion: {output_path}")
         return output_path
 
     @staticmethod
@@ -293,5 +293,5 @@ class CtruncateConverter:
             work_dir=ctruncate_dir
         )
 
-        print(f"✅ Ctruncate → FMEAN conversion: {output_path}")
+        print(f"Ctruncate -> FMEAN conversion: {output_path}")
         return output_path

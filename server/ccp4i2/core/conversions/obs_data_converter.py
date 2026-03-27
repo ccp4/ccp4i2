@@ -328,5 +328,5 @@ class ObsDataConverter:
         # Write output file
         mtz_out.write_to_file(str(output_path))
 
-        print(f"✅ FPAIR → FMEAN conversion completed: {output_path}")
+        print(f"FPAIR -> FMEAN conversion completed: {output_path}")
         return str(output_path)

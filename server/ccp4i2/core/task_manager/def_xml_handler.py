@@ -527,7 +527,7 @@ if __name__ == "__main__":
 
     try:
         result = parse_def_xml_file("/tmp/test_def.xml")
-        print("✅ DEF XML Parser created successfully!")
+        print("DEF XML Parser created successfully!")
         print(f"Root object: {result}")
         print(f"Has inputData: {hasattr(result, 'inputData')}")
         print(f"Has controlParameters: {hasattr(result, 'controlParameters')}")
@@ -542,7 +542,7 @@ if __name__ == "__main__":
                 print(f"ADD_WATERS is set: {ctrl.ADD_WATERS.isSet('value')}")
 
     except Exception as e:
-        print(f"❌ Error testing DEF XML parser: {e}")
+        print(f"ERROR: Error testing DEF XML parser: {e}")
         import traceback
 
         traceback.print_exc()

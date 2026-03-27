@@ -34,6 +34,14 @@ CCP4i2 provides an environment for crystallographic computing. This branch (ccp4
 | `tests/` | Test suite |
 | `Docker/` | Docker configuration for web/cloud deployment |
 
+## Windows Compatibility: No Unicode in print()
+
+**Do not use emoji or non-ASCII characters in Python `print()` statements** in runtime code (anything outside `tests/`). On Windows, Python's console output defaults to cp1252 encoding, which cannot encode emoji (e.g. `✅`, `❌`, `⚠️`). A `UnicodeEncodeError` from `print()` inside a `try/except Exception` block will be silently caught and can cause jobs to fail — this was the root cause of aimless_pipe failing on Windows while working on mac/linux.
+
+- `print()` — ASCII only (use `[OK]`, `ERROR:`, `WARNING:` etc.)
+- `logger.debug()` / `logger.info()` — emoji OK (log files use UTF-8)
+- Test files — emoji OK (controlled environment)
+
 ## Environment Detection
 
 The system automatically detects which backend to use:

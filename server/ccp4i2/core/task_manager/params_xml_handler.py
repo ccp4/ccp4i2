@@ -117,7 +117,7 @@ class ParamsXmlHandler:
         try:
             pass  # DEBUG: print(f"[DEBUG import_params_xml] UPDATED CODE - importing from: {params_xml_path}")
             if not Path(params_xml_path).exists():
-                print(f"❌ Params file not found: {params_xml_path}")
+                print(f"ERROR: Params file not found: {params_xml_path}")
                 return False
 
             # Parse the XML
@@ -151,7 +151,7 @@ class ParamsXmlHandler:
                             break
 
             if body is None:
-                print("❌ No ccp4i2_body, body, or container found in params XML")
+                print("ERROR: No ccp4i2_body, body, or container found in params XML")
                 logger.debug(f"[DEBUG] Searched in: {params_xml_path}")
                 return False
 

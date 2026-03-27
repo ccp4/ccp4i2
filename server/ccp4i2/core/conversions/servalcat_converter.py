@@ -242,7 +242,7 @@ class ServalcatConverter:
         ServalcatConverter._split_monolithic_mtz(
             monolithic_mtz, 'FPAIR', output_path, obs_file)
 
-        print(f"✅ Servalcat IPAIR → FPAIR conversion: {output_path}")
+        print(f"Servalcat IPAIR -> FPAIR conversion: {output_path}")
         return output_path
 
     @staticmethod
@@ -302,7 +302,7 @@ class ServalcatConverter:
         ServalcatConverter._split_monolithic_mtz(
             monolithic_mtz, 'IMEAN', output_path, obs_file)
 
-        print(f"✅ Servalcat IPAIR → IMEAN conversion: {output_path}")
+        print(f"Servalcat IPAIR -> IMEAN conversion: {output_path}")
         return output_path
 
     @staticmethod
@@ -379,5 +379,5 @@ class ServalcatConverter:
         ServalcatConverter._split_monolithic_mtz(
             monolithic_mtz, 'FMEAN', output_path, obs_file)
 
-        print(f"✅ Servalcat → FMEAN conversion: {output_path}")
+        print(f"Servalcat -> FMEAN conversion: {output_path}")
         return output_path

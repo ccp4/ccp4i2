@@ -1764,7 +1764,7 @@ class CPluginScript(CData):
                             print(f"STDERR:\n{stderr_content}")
 
             else:
-                print(f"✅ Process completed successfully (exit code 0)")
+                print(f"Process completed successfully (exit code 0)")
 
         except FileNotFoundError as e:
             error.append(
@@ -1971,7 +1971,7 @@ class CPluginScript(CData):
                 ifAsync=True
             )
 
-            print(f"✅ Process started asynchronously (PID: {self._runningProcessId})")
+            print(f"Process started asynchronously (PID: {self._runningProcessId})")
 
         except Exception as e:
             error.append(

@@ -370,14 +370,14 @@ class CProcessManager:
             info['status'] = 'finished' if result.returncode == 0 else 'failed'
             info['finishTime'] = time.time()
 
-            print(f"✅ Process completed successfully (exit code {result.returncode})")
+            print(f"Process completed successfully (exit code {result.returncode})")
 
         except subprocess.TimeoutExpired:
             info['exitCode'] = -1
             info['exitStatus'] = -1
             info['status'] = 'timeout'
             info['finishTime'] = time.time()
-            print(f"⏱️  Process timed out after {info['timeout']}ms")
+            print(f"Process timed out after {info['timeout']}ms")
 
         except Exception as e:
             info['exitCode'] = -1
@@ -387,7 +387,7 @@ class CProcessManager:
             info['errorReport'].append(
                 self.__class__.__name__, 106, f"Error starting process: {e}"
             )
-            print(f"❌ Process failed: {e}")
+            print(f"Process failed: {e}")
 
         finally:
             # Close file handles we explicitly opened (not subprocess.PIPE constants)

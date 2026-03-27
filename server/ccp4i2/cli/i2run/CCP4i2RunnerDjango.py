@@ -271,7 +271,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         if validity_error and validity_error.maxSeverity() >= Severity.WARNING:
             print(validity_error.report(severity_threshold=Severity.WARNING))
             if validity_error.maxSeverity() >= Severity.ERROR:
-                print("\n⚠️  Validity errors found (continuing anyway)")
+                print("\nWARNING: Validity errors found (continuing anyway)")
                 logger.warning(
                     "Job %s validity check has errors (non-blocking): %s",
                     self.jobId,
@@ -294,7 +294,7 @@ class CCP4i2RunnerDjango(CCP4i2RunnerBase):
         print("=" * 80)
 
         if input_error and input_error.maxSeverity() >= Severity.ERROR:
-            print("\n❌ INPUT DATA CHECK FAILED - Cannot execute job\n")
+            print("\nERROR: INPUT DATA CHECK FAILED - Cannot execute job\n")
             logger.error(
                 "Job %s validation failed: %s",
                 self.jobId,
