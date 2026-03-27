@@ -98,11 +98,10 @@ class ParamsXmlHandler:
             return True
 
         except Exception as e:
-            print(f"❌ Error exporting params XML: {e}")
-            import traceback
-
-            traceback.print_exc()
-            return False
+            import logging
+            logger = logging.getLogger(f"ccp4i2:{__name__}")
+            logger.error(f"Error exporting params XML to {output_path}: {e}", exc_info=True)
+            raise
 
     def import_params_xml(self, task: CData, params_xml_path: str) -> bool:
         """
