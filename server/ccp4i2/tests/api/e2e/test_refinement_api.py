@@ -19,7 +19,7 @@ import pytest
 # Mark all tests in this module as pipeline tests (slow, run actual jobs)
 pytestmark = pytest.mark.pipeline
 
-from .base import APITestBase
+from ..base import APITestBase
 
 
 @pytest.mark.usefixtures("file_based_db")
@@ -146,7 +146,7 @@ class TestServalcatAPI(APITestBase):
 
     def test_electron_diffraction(self, cif7beq, mtz7beq):
         """Test servalcat electron diffraction refinement."""
-        from .base import download, URLs
+        from ..base import download, URLs
 
         # Download reference structure for ProSMART
         with download(URLs.redo_cif("7ber")) as cif7ber:

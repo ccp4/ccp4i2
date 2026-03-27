@@ -12,20 +12,20 @@ from rest_framework.test import APIClient
 from ccp4i2.core import CCP4Container
 from ccp4i2.core.CCP4ModelData import CDictDataFile
 from ccp4i2.core.base_object.cdata_file import CDataFile
-from ...lib.utils.jobs.i2run import i2run_for_job
-from ...db.import_i2xml import import_ccp4_project_zip
-from ...db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
-from ...db import models
-from ...lib.utils.jobs.clone import clone_job
-from ...db.async_db_handler import AsyncDatabaseHandler
-from ...lib.utils.jobs.get_container import get_job_container
-from ...lib.utils.files.get_by_context import get_file_by_job_context
-from ...lib.utils.navigation.dependencies import find_dependent_jobs
-from ...lib.utils.navigation.what_next import get_what_next
-from ...lib.utils.helpers.object_method import object_method
-from ...lib.utils.files.detect_type import detect_file_type
-from ...lib.utils.files.export import export_job_file
-from ...lib.utils.files.digest import digest_file_object, digest_cdatafile_file_object
+from ccp4i2.lib.utils.jobs.i2run import i2run_for_job
+from ccp4i2.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.db.ccp4i2_django_projects_manager import CCP4i2DjangoProjectsManager
+from ccp4i2.db import models
+from ccp4i2.lib.utils.jobs.clone import clone_job
+from ccp4i2.db.async_db_handler import AsyncDatabaseHandler
+from ccp4i2.lib.utils.jobs.get_container import get_job_container
+from ccp4i2.lib.utils.files.get_by_context import get_file_by_job_context
+from ccp4i2.lib.utils.navigation.dependencies import find_dependent_jobs
+from ccp4i2.lib.utils.navigation.what_next import get_what_next
+from ccp4i2.lib.utils.helpers.object_method import object_method
+from ccp4i2.lib.utils.files.detect_type import detect_file_type
+from ccp4i2.lib.utils.files.export import export_job_file
+from ccp4i2.lib.utils.files.digest import digest_file_object, digest_cdatafile_file_object
 
 # Path to test data - these tests require pre-built project zips
 TEST_DATA_DIR = Path(__file__).parent.parent.parent.parent.parent.parent / "test101" / "ProjectZips"

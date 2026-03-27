@@ -21,8 +21,8 @@ import pytest
 # Mark all tests in this module as pipeline tests (slow, run actual jobs)
 pytestmark = pytest.mark.pipeline
 
-from ...core.tasks import get_plugin_class
-from ...db import models
+from ccp4i2.core.tasks import get_plugin_class
+from ccp4i2.db import models
 
 logger = logging.getLogger(f"ccp4i2::{__name__}")
 

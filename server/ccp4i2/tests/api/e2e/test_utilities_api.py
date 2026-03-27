@@ -31,7 +31,7 @@ pytestmark = pytest.mark.pipeline
 
 from gemmi import cif
 
-from .base import APITestBase, download, URLs
+from ..base import APITestBase, download, URLs
 
 
 @pytest.mark.usefixtures("file_based_db")

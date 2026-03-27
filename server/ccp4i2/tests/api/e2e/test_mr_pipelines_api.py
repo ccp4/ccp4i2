@@ -23,7 +23,7 @@ import pytest
 # Mark all tests in this module as pipeline tests (slow, run actual jobs)
 pytestmark = pytest.mark.pipeline
 
-from .base import APITestBase
+from ..base import APITestBase
 
 
 @pytest.mark.usefixtures("file_based_db")

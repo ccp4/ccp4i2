@@ -19,9 +19,9 @@ import pytest
 from pathlib import Path
 from rest_framework.test import APIClient
 
-from ...lib.utils.parameters.get_param import get_parameter
-from ...db.import_i2xml import import_ccp4_project_zip
-from ...db import models
+from ccp4i2.lib.utils.parameters.get_param import get_parameter
+from ccp4i2.db.import_i2xml import import_ccp4_project_zip
+from ccp4i2.db import models
 
 # Import demoData utility - same pattern as i2run tests
 from ccp4i2.tests.i2run.utils import demoData

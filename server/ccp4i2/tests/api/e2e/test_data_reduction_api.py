@@ -26,7 +26,7 @@ import pytest
 pytestmark = pytest.mark.pipeline
 from pytest import approx
 
-from .base import APITestBase
+from ..base import APITestBase
 
 
 @pytest.mark.usefixtures("file_based_db")
@@ -146,7 +146,7 @@ class TestImportMergedAPI(APITestBase):
 
     def test_from_sf_cif(self):
         """Test importing merged data from structure factor CIF."""
-        from .base import download, URLs
+        from ..base import download, URLs
 
         with download(URLs.pdbe_sfcif("2ceu")) as cif_path:
             self.create_project("test_import_merged_cif")
@@ -342,7 +342,7 @@ class TestSplitMtzAPI(APITestBase):
 
     def test_auto_detect_redo(self):
         """Test auto-detect with PDB-REDO MTZ (multi-column: obs, FreeR, phases, map coeffs)."""
-        from .base import download, URLs
+        from ..base import download, URLs
 
         with download(URLs.redo_mtz("1cbs")) as mtz_path:
             self.create_project("test_split_mtz_redo")
