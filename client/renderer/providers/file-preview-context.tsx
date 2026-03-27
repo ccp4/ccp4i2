@@ -33,7 +33,8 @@ import { useTheme } from "../theme/theme-provider";
 
 // Register mmCIF language and themes with Monaco at module load time.
 // This runs once before any Editor component mounts.
-loader.init().then((monaco) => {
+// Guard against SSR where window is not defined.
+if (typeof window !== "undefined") loader.init().then((monaco) => {
   if (monaco.languages.getLanguages().some((l: { id: string }) => l.id === "mmcif")) return;
 
   monaco.languages.register({ id: "mmcif" });

@@ -155,7 +155,7 @@ const ErrorAwareRunDialog: React.FC<ErrorAwareRunDialogProps> = ({
   } = useJob(jobId);
   const { jobs: projectJobs } = useProject(job?.project);
   const api = useApi();
-  const { data: projects } = api.get<Project[]>("projects");
+  const { data: projects } = api.get<Project[]>(runTaskRequested !== null ? "projects" : null);
 
   // Fetch heavier run-time validation (monomer coverage etc.) only
   // when the run dialog is actually open.
