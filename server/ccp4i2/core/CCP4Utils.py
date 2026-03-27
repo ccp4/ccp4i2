@@ -436,11 +436,6 @@ def merge_mtz_files(
     try:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         out_mtz.write_to_file(str(output_path))
-
-        # Explicitly sync file to disk to ensure MTZ history is fully written
-        # This prevents UnicodeDecodeError when servalcat/gemmi reads MTZ immediately after
-        with open(output_path, 'rb') as f:
-            os.fsync(f.fileno())
     except Exception as e:
         raise MtzMergeError(f"Failed to write output MTZ to {output_path}: {e}")
 
