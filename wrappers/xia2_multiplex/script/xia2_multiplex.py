@@ -12,7 +12,6 @@ import os, glob, shutil
 from lxml import etree
 from core import CCP4Container
 from core import CCP4XtalData
-import platform
 import json
 from math import sqrt
 from dxtbx.model.experiment_list import ExperimentList
@@ -22,9 +21,7 @@ class Cxia2_multiplex(CPluginScript):
 
     TASKTITLE = "Data set combination with xia2.multiplex"
     TASKNAME = "xia2_multiplex"
-    TASKCOMMAND = "xia2.multiplex"
-    if platform.system() == "Windows":
-        TASKCOMMAND = "xia2.multiplex.bat"
+    TASKCOMMAND = shutil.which("xia2.multiplex")
     TASKMODULE = "data_reduction"
     TASKVERSION = 0.0
     ERROR_CODES = {
