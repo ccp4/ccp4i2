@@ -37,7 +37,7 @@ def test_substitute_ligand_no_ligand():
         assert rworks[-1] < 0.23
         assert rfrees[-1] < 0.25
         # Check aimless_pipe sub-job wrote PERFORMANCE indicators to params.xml
-        _check_aimless_pipe_performance(job / "job_1")
+        _check_aimless_pipe_performance(job)
 
 
 @pytest.mark.order("first")
@@ -67,13 +67,26 @@ def test_substitute_ligand_with_smiles():
         assert rworks[-1] < 0.23
         assert rfrees[-1] < 0.25
         # Check aimless_pipe sub-job wrote PERFORMANCE indicators to params.xml
-        _check_aimless_pipe_performance(job / "job_1")
+        _check_aimless_pipe_performance(job)
 
 
-def _check_aimless_pipe_performance(aimless_pipe_dir):
+def _find_aimless_pipe_dir(job_dir):
+    """Find the aimless_pipe sub-job directory by checking params.xml pluginName."""
+    for sub in sorted(job_dir.iterdir()):
+        params = sub / "params.xml"
+        if params.exists():
+            tree = ET.parse(params)
+            plugin = tree.find('.//pluginName')
+            if plugin is not None and plugin.text == 'aimless_pipe':
+                return sub
+    return None
+
+
+def _check_aimless_pipe_performance(job_dir):
     """Verify aimless_pipe wrote non-zero PERFORMANCE KPIs to its params.xml."""
+    aimless_pipe_dir = _find_aimless_pipe_dir(job_dir)
+    assert aimless_pipe_dir is not None, f"No aimless_pipe sub-job found in {job_dir}"
     params = aimless_pipe_dir / "params.xml"
-    assert params.exists(), f"params.xml not found at {params}"
     tree = ET.parse(params)
     perf = tree.find('.//outputData/PERFORMANCE')
     assert perf is not None, "No PERFORMANCE element in aimless_pipe params.xml"

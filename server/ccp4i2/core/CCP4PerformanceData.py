@@ -50,6 +50,18 @@ class CPerformanceIndicator(CPerformanceIndicatorStub):
                              allowUndefined=allowUndefined,
                              allowDefault=allowDefault, allSet=allSet)
 
+    def _value_explicitly_set(self):
+        """Check if the inherited 'value' CFloat was explicitly set (not just default 0.0)."""
+        return super().isSet(field_name='value', allowDefault=False)
+
+    def getEtree(self, excludeUnset=False, allSet=False):
+        """Override to avoid writing default 0.0 as element text for multi-metric indicators."""
+        elem = super().getEtree(excludeUnset=excludeUnset, allSet=allSet)
+        # If 'value' was never explicitly set, remove the spurious 0.0 text
+        if not self._value_explicitly_set() and elem.text is not None:
+            elem.text = None
+        return elem
+
 
 class CAtomCountPerformance(CAtomCountPerformanceStub, CPerformanceIndicator):
     """

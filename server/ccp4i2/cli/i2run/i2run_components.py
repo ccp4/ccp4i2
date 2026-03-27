@@ -400,7 +400,7 @@ class PluginPopulator:
 
                 # Set the value on the new item (not on the CList itself)
                 if isinstance(new_item, CDataFile):
-                    PluginPopulator._handle_file_with_subvalues(new_item, values)
+                    PluginPopulator._handle_file_with_subvalues(new_item, val if isinstance(val, list) else [val])
                 else:
                     PluginPopulator._handle_single_value(new_item, val)
 

@@ -476,12 +476,12 @@ class TestCmapcoeffAPI(APITestBase):
     task_name = "cmapcoeff"
     timeout = 120
 
-    @pytest.mark.skip(reason="cmapcoeff binary crashes (SIGABRT) — pre-existing CCP4 issue")
     def test_gamma_anomalous(self, gamma_mtz, gamma_phases_mtz):
         """Test anomalous map coefficient calculation."""
         self.create_project("test_cmapcoeff")
         self.create_job()
 
+        self.set_param("controlParameters.MAPTYPE", "anom")
         self.upload_file_with_columns(
             "inputData.F_SIGF1", gamma_mtz,
             column_labels="/*/*/[Iplus,SIGIplus,Iminus,SIGIminus]"

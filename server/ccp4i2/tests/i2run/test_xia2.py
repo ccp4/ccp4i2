@@ -1,3 +1,4 @@
+from shutil import which
 from sys import platform
 from tarfile import open as taropen
 from tempfile import TemporaryDirectory
@@ -54,5 +55,6 @@ def test_xia2_dials_directory(image_dir):
 
 
 @mark.skipif(platform == "win32", reason="Not supported on Windows")
+@mark.skipif(which("xds_par") is None and which("xds") is None, reason="XDS not installed")
 def test_xia2_xds_file(image_dir):
     run_test_from_image_file("xia2_xds", image_dir)
