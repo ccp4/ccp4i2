@@ -28,11 +28,14 @@ export class ProjectTag {
     public projects: number[]
   ) {}
 }
+export type ProjectExportStatus = "pending" | "running" | "completed" | "failed";
+
 export class ProjectExport {
   constructor(
     public id: number,
     public project: Project | number,
     public time: string,
+    public status: ProjectExportStatus,
     public file_exists?: boolean
   ) {}
 }

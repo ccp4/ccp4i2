@@ -99,8 +99,22 @@ class ProjectTag(Model):
 
 
 class ProjectExport(Model):
+    STATUS_PENDING = "pending"
+    STATUS_RUNNING = "running"
+    STATUS_COMPLETED = "completed"
+    STATUS_FAILED = "failed"
+    STATUS_CHOICES = [
+        (STATUS_PENDING, "Pending"),
+        (STATUS_RUNNING, "Running"),
+        (STATUS_COMPLETED, "Completed"),
+        (STATUS_FAILED, "Failed"),
+    ]
+
     project = ForeignKey(Project, CASCADE, related_name="exports")
     time = DateTimeField(default=timezone.now)
+    status = CharField(
+        max_length=16, choices=STATUS_CHOICES, default=STATUS_PENDING
+    )
 
     @property
     def file_exists(self):
@@ -112,7 +126,7 @@ class ProjectExport(Model):
         timestamp = self.time.strftime("%Y%m%d_%H%M%S")
         export_file_name = f"{project_name}_export_{timestamp}.ccp4_project.zip"
         export_file_path = os.path.join(
-            self.project.directory, "CCP4_PROJECT_FILES", export_file_name
+            self.project.directory, "CCP4_EXPORT_FILES", export_file_name
         )
         return os.path.exists(export_file_path)
 

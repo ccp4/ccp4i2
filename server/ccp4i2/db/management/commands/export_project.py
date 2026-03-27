@@ -5,7 +5,7 @@ import platform
 from pathlib import Path
 from typing import Set
 from django.core.management.base import BaseCommand
-from ccp4i2.db.models import Project, Job
+from ccp4i2.db.models import Project, ProjectExport, Job
 from ccp4i2.db.export_project import export_project_to_zip
 
 
@@ -41,6 +41,11 @@ class Command(BaseCommand):
         parser.add_argument(
             "-d", "--detach", help="Run export in detached process", action="store_true"
         )
+        parser.add_argument(
+            "--export-id",
+            help="ProjectExport record ID (for status tracking)",
+            type=int,
+        )
 
     def handle(self, *args, **options):
         try:
@@ -61,10 +66,13 @@ class Command(BaseCommand):
 
         output_path = self.get_output_path(project, options)
 
+        export_record = self._get_export_record(options)
+
         if options["detach"]:
             self.run_detached_export(project, output_path, options.get("jobs"))
         else:
-            self.run_export(project, output_path, job_selection)
+            self.run_export(project, output_path, job_selection,
+                            export_record=export_record)
 
     def get_project(self, options):
         """Retrieve project based on provided options."""
@@ -176,13 +184,19 @@ class Command(BaseCommand):
 
         try:
             with open(log_path, "w", encoding="utf-8") as log_file:
-                process = subprocess.Popen(
-                    cmd_args,
-                    start_new_session=True,
+                popen_kwargs = dict(
                     stdout=log_file,
                     stderr=subprocess.STDOUT,
                     cwd=os.getcwd(),
                 )
+                if platform.system() == "Windows":
+                    popen_kwargs["creationflags"] = (
+                        subprocess.CREATE_NEW_PROCESS_GROUP
+                    )
+                else:
+                    popen_kwargs["start_new_session"] = True
+
+                process = subprocess.Popen(cmd_args, **popen_kwargs)
 
                 job_info = f" (Jobs: {job_selection_str})" if job_selection_str else ""
                 self.stdout.write(
@@ -199,8 +213,29 @@ class Command(BaseCommand):
                 self.style.ERROR(f"Failed to start detached export process: {e}")
             )
 
-    def run_export(self, project, output_path, job_selection: Set[str] = None):
+    def _get_export_record(self, options):
+        """Retrieve ProjectExport record if --export-id was provided."""
+        export_id = options.get("export_id")
+        if export_id is None:
+            return None
+        try:
+            return ProjectExport.objects.get(pk=export_id)
+        except ProjectExport.DoesNotExist:
+            self.stderr.write(
+                self.style.WARNING(f"ProjectExport id={export_id} not found")
+            )
+            return None
+
+    def _set_export_status(self, export_record, status):
+        """Update the status on a ProjectExport record (if present)."""
+        if export_record is not None:
+            export_record.status = status
+            export_record.save(update_fields=["status"])
+
+    def run_export(self, project, output_path, job_selection: Set[str] = None,
+                   export_record=None):
         """Run export in the current process."""
+        self._set_export_status(export_record, ProjectExport.STATUS_RUNNING)
         try:
             if job_selection:
                 job_info = (
@@ -226,6 +261,7 @@ class Command(BaseCommand):
             file_size = result_path.stat().st_size
             file_size_mb = file_size / (1024 * 1024)
 
+            self._set_export_status(export_record, ProjectExport.STATUS_COMPLETED)
             self.stdout.write(
                 self.style.SUCCESS(
                     f"Export completed successfully!\n"
@@ -235,6 +271,7 @@ class Command(BaseCommand):
             )
 
         except Exception as e:
+            self._set_export_status(export_record, ProjectExport.STATUS_FAILED)
             self.stderr.write(self.style.ERROR(f"Export failed: {e}"))
 
             # Clean up partial file if it exists

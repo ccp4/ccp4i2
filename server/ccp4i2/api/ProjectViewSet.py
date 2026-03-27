@@ -3,6 +3,7 @@ import json
 import logging
 import os
 import pathlib
+import platform
 import subprocess
 
 from asgiref.sync import async_to_sync
@@ -820,21 +821,37 @@ class ProjectViewSet(ModelViewSet):
         log_file_path = os.path.join(export_dir, log_file_name)
 
         # Start subprocess to run export_project management command in background
+        ccp4_python = "ccp4-python"
+        if platform.system() == "Windows":
+            ccp4_python += ".bat"
+
         try:
             with open(log_file_path, "w") as log_file:
+                # Platform-specific flags to detach the subprocess
+                popen_kwargs = dict(
+                    stdout=log_file,
+                    stderr=subprocess.STDOUT,
+                )
+                if platform.system() == "Windows":
+                    popen_kwargs["creationflags"] = (
+                        subprocess.CREATE_NEW_PROCESS_GROUP
+                    )
+                else:
+                    popen_kwargs["start_new_session"] = True
+
                 process = subprocess.Popen(
                     [
-                        "ccp4-python",
+                        ccp4_python,
                         "-m", "django",
                         "export_project",
                         "-pi",
                         str(the_project.id),
                         "-o",
                         export_file_path,
+                        "--export-id",
+                        str(project_export.id),
                     ],
-                    stdout=log_file,
-                    stderr=subprocess.STDOUT,
-                    start_new_session=True,
+                    **popen_kwargs,
                 )
 
             return JsonResponse(
@@ -846,6 +863,8 @@ class ProjectViewSet(ModelViewSet):
                 }
             )
         except Exception as e:
+            project_export.status = models.ProjectExport.STATUS_FAILED
+            project_export.save(update_fields=["status"])
             logger.exception(
                 "Failed to start export process for project %s",
                 the_project.id,

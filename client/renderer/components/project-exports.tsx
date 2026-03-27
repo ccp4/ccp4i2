@@ -14,7 +14,15 @@ import {
   LinearProgress,
   Button,
 } from "@mui/material";
-import { Download, Close, CheckCircle, Delete } from "@mui/icons-material";
+import {
+  Download,
+  Close,
+  CheckCircle,
+  Delete,
+  HourglassEmpty,
+  Sync,
+  Error as ErrorIcon,
+} from "@mui/icons-material";
 import { ProjectExport } from "../types/models";
 import { useCCP4i2Window } from "../app-context";
 import { useProject } from "../utils";
@@ -53,27 +61,40 @@ const formatTimestamp = (dateString: string): string => {
   return `${year}${month}${day}_${hours}${minutes}${seconds}`;
 };
 
-// Recursive function to search through hierarchical directory structure
-const findFileInDirectory = (container: any[], fileName: string): boolean => {
-  if (!container || !Array.isArray(container)) {
-    return false;
+// Status display helper
+const StatusIcon: React.FC<{ status: string }> = ({ status }) => {
+  switch (status) {
+    case "completed":
+      return (
+        <Tooltip title="Export completed">
+          <CheckCircle color="success" />
+        </Tooltip>
+      );
+    case "running":
+      return (
+        <Tooltip title="Export in progress">
+          <Sync color="info" sx={{ animation: "spin 2s linear infinite", "@keyframes spin": { "0%": { transform: "rotate(0deg)" }, "100%": { transform: "rotate(360deg)" } } }} />
+        </Tooltip>
+      );
+    case "pending":
+      return (
+        <Tooltip title="Export pending">
+          <HourglassEmpty color="action" />
+        </Tooltip>
+      );
+    case "failed":
+      return (
+        <Tooltip title="Export failed">
+          <ErrorIcon color="error" />
+        </Tooltip>
+      );
+    default:
+      return (
+        <Tooltip title="Unknown status">
+          <HourglassEmpty color="disabled" />
+        </Tooltip>
+      );
   }
-
-  for (const item of container) {
-    // Check if current item matches the filename
-    if (item.name === fileName) {
-      return true;
-    }
-
-    // If this item has contents, search recursively
-    if (item.contents && Array.isArray(item.contents)) {
-      if (findFileInDirectory(item.contents, fileName)) {
-        return true;
-      }
-    }
-  }
-
-  return false;
 };
 
 export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
@@ -85,13 +106,9 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
 
   const { project } = useProject(projectId);
 
-  // Use centralized API hook for directory fetching
-  const { data: directory, mutate: mutateDirectory } = api.projectDirectory(
-    project && open ? project.id : null,
-    open
-  );
+  // Poll exports when the dialog is open (includes status from server)
+  const [pollInterval, setPollInterval] = React.useState(3000);
 
-  // Only poll exports when the dialog is open
   const {
     data: exports,
     error,
@@ -99,20 +116,24 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
     mutate: mutateExports,
   } = api.get<ProjectExport[]>(
     open && projectId ? `projects/${projectId}/exports/` : null,
-    open ? 5000 : 0
+    open ? pollInterval : 0
   );
 
-  //console.log("Project exports:", exports);
+  // Poll faster while exports are in progress, slower once all settled
+  React.useEffect(() => {
+    const hasInProgress = exports?.some(
+      (e) => e.status === "pending" || e.status === "running"
+    );
+    setPollInterval(hasInProgress ? 3000 : 10000);
+  }, [exports]);
+
   // Force fresh data when dialog opens
   React.useEffect(() => {
     if (open && projectId) {
-      // Clear cache and force fresh fetch
+      setPollInterval(3000);
       mutateExports(undefined, { revalidate: true });
-      if (project) {
-        mutateDirectory(undefined, { revalidate: true });
-      }
     }
-  }, [open, projectId, project?.id, mutateExports, mutateDirectory]);
+  }, [open, projectId, mutateExports]);
 
   // State for delete confirmation dialog
   const [deleteDialogOpen, setDeleteDialogOpen] = React.useState(false);
@@ -184,23 +205,6 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
     return names;
   }, [exports, project]);
 
-  // Memoized function to check if files exist in the hierarchical directory structure
-  const fileExistence = React.useMemo(() => {
-    if (!directory?.container || !exports || !project) return {};
-
-    const existence: { [key: number]: boolean } = {};
-    exports.forEach((exportItem) => {
-      const inferredName = inferredNames[exportItem.id];
-      if (inferredName) {
-        existence[exportItem.id] = findFileInDirectory(
-          directory.container,
-          inferredName
-        );
-      }
-    });
-    return existence;
-  }, [directory?.container, exports, project, inferredNames]);
-
   return (
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle>
@@ -220,7 +224,7 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Exists</TableCell>
+                <TableCell>Status</TableCell>
                 <TableCell>File Name</TableCell>
                 <TableCell>Export Time</TableCell>
                 <TableCell>Actions</TableCell>
@@ -230,23 +234,20 @@ export const ProjectExportsDialog: React.FC<ProjectExportsDialogProps> = ({
               {exports.map((exportItem) => (
                 <TableRow key={exportItem.id}>
                   <TableCell>
-                    {fileExistence[exportItem.id] ? (
-                      <Tooltip title="File exists">
-                        <CheckCircle color="success" />
-                      </Tooltip>
-                    ) : (
-                      <Tooltip title="File missing">
-                        <Close color="error" />
-                      </Tooltip>
-                    )}
+                    <StatusIcon status={exportItem.status} />
                   </TableCell>
                   <TableCell>{inferredNames[exportItem.id]}</TableCell>
                   <TableCell>{formatDateTime(exportItem.time)}</TableCell>
                   <TableCell>
-                    <Tooltip title="Download export">
-                      <IconButton onClick={() => handleDownload(exportItem)}>
-                        <Download />
-                      </IconButton>
+                    <Tooltip title={exportItem.status === "completed" ? "Download export" : "Export not ready"}>
+                      <span>
+                        <IconButton
+                          onClick={() => handleDownload(exportItem)}
+                          disabled={exportItem.status !== "completed"}
+                        >
+                          <Download />
+                        </IconButton>
+                      </span>
                     </Tooltip>
                     <Tooltip title="Delete export">
                       <IconButton
