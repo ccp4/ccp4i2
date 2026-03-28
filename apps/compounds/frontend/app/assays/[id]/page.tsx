@@ -1,3 +1,15 @@
+/*
+ * Copyright (C) 2026 Newcastle University
+ *
+ * This file is part of CCP4i2.
+ *
+ * CCP4i2 is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * modified in accordance with the provisions of the license to address
+ * the requirements of UK law.
+ *
+ * See https://www.ccp4.ac.uk/ccp4license.php for details.
+ */
 'use client';
 
 import { use, useState, useCallback, useMemo } from 'react';
@@ -189,27 +201,26 @@ export default function AssayDetailPage({ params }: PageProps) {
       const response = await authFetch(assay.data_file);
       const buffer = await response.arrayBuffer();
 
-      // Parse with XLSX
-      const XLSX = await import('xlsx');
-      const workbook = XLSX.read(buffer, { type: 'array' });
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
+      // Parse with ExcelJS
+      const ExcelJS = (await import('exceljs')).default;
+      const wb = new ExcelJS.Workbook();
+      await wb.xlsx.load(buffer);
+      const worksheet = wb.worksheets[0];
 
       if (!worksheet) {
         throw new Error('No worksheet found');
       }
 
       // Get sheet as 2D array
-      const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
       const cells: (string | number | null)[][] = [];
 
-      for (let row = range.s.r; row <= range.e.r; row++) {
+      for (let row = 1; row <= worksheet.rowCount; row++) {
         const rowData: (string | number | null)[] = [];
-        for (let col = range.s.c; col <= range.e.c; col++) {
-          const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
-          const cell = worksheet[cellAddress];
-          if (cell) {
-            rowData.push(cell.v as string | number | null);
+        const wsRow = worksheet.getRow(row);
+        for (let col = 1; col <= worksheet.columnCount; col++) {
+          const cell = wsRow.getCell(col);
+          if (cell.value != null) {
+            rowData.push(cell.value as string | number);
           } else {
             rowData.push(null);
           }

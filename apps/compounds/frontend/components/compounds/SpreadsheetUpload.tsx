@@ -1,7 +1,19 @@
+/*
+ * Copyright (C) 2026 Newcastle University
+ *
+ * This file is part of CCP4i2.
+ *
+ * CCP4i2 is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * modified in accordance with the provisions of the license to address
+ * the requirements of UK law.
+ *
+ * See https://www.ccp4.ac.uk/ccp4license.php for details.
+ */
 'use client';
 
 import { useState, useCallback, useMemo } from 'react';
-import * as XLSX from 'xlsx';
+import ExcelJS from 'exceljs';
 import {
   Box,
   Paper,
@@ -62,6 +74,35 @@ interface SpreadsheetUploadProps {
   showColumnMapping?: boolean;
 }
 
+function parseCSV(text: string): string[][] {
+  const rows: string[][] = [];
+  let current = '';
+  let inQuotes = false;
+  let row: string[] = [];
+  for (let i = 0; i < text.length; i++) {
+    const ch = text[i];
+    if (inQuotes) {
+      if (ch === '"' && text[i + 1] === '"') { current += '"'; i++; }
+      else if (ch === '"') { inQuotes = false; }
+      else { current += ch; }
+    } else {
+      if (ch === '"') { inQuotes = true; }
+      else if (ch === ',') { row.push(current.trim()); current = ''; }
+      else if (ch === '\n' || (ch === '\r' && text[i + 1] === '\n')) {
+        row.push(current.trim()); current = '';
+        if (row.some(c => c !== '')) rows.push(row);
+        row = [];
+        if (ch === '\r') i++;
+      } else { current += ch; }
+    }
+  }
+  if (current || row.length > 0) {
+    row.push(current.trim());
+    if (row.some(c => c !== '')) rows.push(row);
+  }
+  return rows;
+}
+
 export function SpreadsheetUpload({
   onDataLoaded,
   onMappingComplete,
@@ -84,33 +125,66 @@ export function SpreadsheetUpload({
 
     try {
       const buffer = await file.arrayBuffer();
-      const workbook = XLSX.read(buffer, { type: 'array' });
+      let sheetNames: string[];
+      let targetSheet: string;
+      let headers: string[];
+      let jsonData: SpreadsheetRow[];
 
-      // Get sheet names
-      const sheetNames = workbook.SheetNames;
-      setSheets(sheetNames);
+      if (file.name.endsWith('.csv')) {
+        // Parse CSV as text
+        const text = new TextDecoder().decode(buffer);
+        const parsed = parseCSV(text);
+        if (parsed.length < 2) throw new Error('Spreadsheet appears to be empty');
+        sheetNames = ['Sheet1'];
+        targetSheet = 'Sheet1';
+        headers = parsed[0];
+        jsonData = parsed.slice(1).map(row => {
+          const obj: SpreadsheetRow = {};
+          headers.forEach((h, i) => { obj[h] = row[i] || null; });
+          return obj;
+        });
+      } else {
+        // Parse Excel with ExcelJS
+        const wb = new ExcelJS.Workbook();
+        await wb.xlsx.load(buffer);
 
-      // Use specified sheet or first sheet
-      const targetSheet = sheetName || sheetNames[0];
-      setSelectedSheet(targetSheet);
+        sheetNames = wb.worksheets.map(ws => ws.name);
+        targetSheet = sheetName || sheetNames[0];
+        const worksheet = wb.getWorksheet(targetSheet);
+        if (!worksheet) throw new Error(`Sheet "${targetSheet}" not found`);
 
-      const worksheet = workbook.Sheets[targetSheet];
-      if (!worksheet) {
-        throw new Error(`Sheet "${targetSheet}" not found`);
+        // Read header row
+        headers = [];
+        const headerRow = worksheet.getRow(1);
+        headerRow.eachCell({ includeEmpty: false }, (cell) => {
+          headers.push(String(cell.value ?? ''));
+        });
+
+        // Read data rows, converting all values to strings for consistency
+        jsonData = [];
+        for (let i = 2; i <= worksheet.rowCount; i++) {
+          const row = worksheet.getRow(i);
+          const obj: SpreadsheetRow = {};
+          let hasData = false;
+          headers.forEach((h, idx) => {
+            const cell = row.getCell(idx + 1);
+            if (cell.value != null) {
+              obj[h] = String(cell.value);
+              hasData = true;
+            } else {
+              obj[h] = null;
+            }
+          });
+          if (hasData) jsonData.push(obj);
+        }
       }
 
-      // Convert to JSON with header row
-      const jsonData = XLSX.utils.sheet_to_json<SpreadsheetRow>(worksheet, {
-        defval: null,
-        raw: false, // Convert all values to strings for consistency
-      });
+      setSheets(sheetNames);
+      setSelectedSheet(targetSheet);
 
       if (jsonData.length === 0) {
         throw new Error('Spreadsheet appears to be empty');
       }
-
-      // Extract headers from first row keys
-      const headers = Object.keys(jsonData[0]);
 
       const spreadsheetData: SpreadsheetData = {
         headers,

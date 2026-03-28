@@ -1,3 +1,15 @@
+/*
+ * Copyright (C) 2025-2026 Newcastle University
+ *
+ * This file is part of CCP4i2.
+ *
+ * CCP4i2 is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * modified in accordance with the provisions of the license to address
+ * the requirements of UK law.
+ *
+ * See https://www.ccp4.ac.uk/ccp4license.php for details.
+ */
 import { useEffect, useState, ReactNode, useMemo, useCallback } from "react";
 import {
   Box,
@@ -33,7 +45,7 @@ import {
   TableCellProps,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import * as XLSX from "xlsx";
+import ExcelJS from "exceljs";
 
 export interface GeneralTableColumn {
   title: string;
@@ -382,11 +394,38 @@ export const GeneralTable = (props: GeneralTableProps) => {
                 marginRight: "0.5rem",
               }}
               disabled={!filteredItems || filteredItems.length == 0}
-              onClick={(ev) => {
+              onClick={async (ev) => {
                 const htmlText = dataAsHTMLTable();
 
-                const wb = XLSX.read(htmlText, { type: "string" });
-                XLSX.writeFile(wb, "Download.xlsx");
+                // Parse HTML table and build ExcelJS workbook
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+                const table = doc.querySelector("table");
+                if (!table) return;
+
+                const wb = new ExcelJS.Workbook();
+                const ws = wb.addWorksheet("Sheet1");
+
+                table.querySelectorAll("tr").forEach((tr) => {
+                  const rowData: (string | null)[] = [];
+                  tr.querySelectorAll("th, td").forEach((cell) => {
+                    rowData.push(cell.textContent);
+                  });
+                  ws.addRow(rowData);
+                });
+
+                const buffer = await wb.xlsx.writeBuffer();
+                const blob = new Blob([buffer], {
+                  type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "Download.xlsx");
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode?.removeChild(link);
+                URL.revokeObjectURL(url);
               }}
             >
               <Download />
@@ -403,11 +442,36 @@ export const GeneralTable = (props: GeneralTableProps) => {
                 marginRight: "0.5rem",
               }}
               disabled={!filteredItems || filteredItems.length == 0}
-              onClick={(ev) => {
+              onClick={async (ev) => {
                 const htmlText = dataAsHTMLTable();
 
-                const wb = XLSX.read(htmlText, { type: "string" });
-                XLSX.writeFile(wb, "Download.csv");
+                // Parse HTML table and build ExcelJS workbook for CSV export
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(htmlText, "text/html");
+                const table = doc.querySelector("table");
+                if (!table) return;
+
+                const wb = new ExcelJS.Workbook();
+                const ws = wb.addWorksheet("Sheet1");
+
+                table.querySelectorAll("tr").forEach((tr) => {
+                  const rowData: (string | null)[] = [];
+                  tr.querySelectorAll("th, td").forEach((cell) => {
+                    rowData.push(cell.textContent);
+                  });
+                  ws.addRow(rowData);
+                });
+
+                const buffer = await wb.csv.writeBuffer();
+                const blob = new Blob([buffer], { type: "text/csv;charset=utf-8;" });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "Download.csv");
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode?.removeChild(link);
+                URL.revokeObjectURL(url);
               }}
             >
               <Download />
