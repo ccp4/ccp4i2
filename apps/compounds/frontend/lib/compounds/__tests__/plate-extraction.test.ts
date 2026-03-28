@@ -1,10 +1,23 @@
-import { describe, it, expect } from 'vitest';
+/*
+ * Copyright (C) 2026 Newcastle University
+ *
+ * This file is part of CCP4i2.
+ *
+ * CCP4i2 is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * modified in accordance with the provisions of the license to address
+ * the requirements of UK law.
+ *
+ * See https://www.ccp4.ac.uk/ccp4license.php for details.
+ */
+import { describe, it, expect, beforeAll } from 'vitest';
 import * as path from 'path';
 import {
   extractPlateData,
   excelColumnToIndex,
   indexToRowLetter,
   computeWellMap,
+  workbookToCellGrid,
 } from '../plate-extraction';
 import type { CellGrid, WellType } from '../plate-extraction';
 import type { PlateLayout } from '@/types/compounds/models';
@@ -311,27 +324,16 @@ describe('extractPlateData — HTRF_06032024_T1.xlsx', () => {
   // Section 3 starts at row 47 (header), plate rows at rows 49-64.
   let cells: CellGrid;
 
-  // Read the Excel fixture once
-  const XLSX = require(
-    path.resolve(__dirname, '../../../node_modules/xlsx')
-  );
-  const wb = XLSX.readFile(
-    path.resolve(__dirname, 'fixtures/HTRF_06032024_T1.xlsx')
-  );
-  const ws = wb.Sheets[wb.SheetNames[0]];
-  const range = XLSX.utils.decode_range(ws['!ref'] || 'A1');
+  // Read the Excel fixture once using the same parser as production code
+  const ExcelJS = require('exceljs');
 
-  // Build absolute-coordinate grid (the same way the fixed FileDropZone does)
-  cells = [];
-  for (let row = 0; row <= range.e.r; row++) {
-    const rowData: (string | number | null)[] = [];
-    for (let col = 0; col <= range.e.c; col++) {
-      const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
-      const cell = ws[cellAddress];
-      rowData.push(cell ? (cell.v as string | number | null) : null);
-    }
-    cells.push(rowData);
-  }
+  beforeAll(async () => {
+    const wb = new ExcelJS.Workbook();
+    await wb.xlsx.readFile(
+      path.resolve(__dirname, 'fixtures/HTRF_06032024_T1.xlsx')
+    );
+    cells = workbookToCellGrid(wb);
+  });
 
   // Layout matching the HTRF plate:
   //   - 384-well plate, section 3 (Ratio) starts at row 49 for plate row A

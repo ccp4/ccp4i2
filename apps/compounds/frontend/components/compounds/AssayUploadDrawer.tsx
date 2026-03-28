@@ -1,3 +1,15 @@
+/*
+ * Copyright (C) 2026 Newcastle University
+ *
+ * This file is part of CCP4i2.
+ *
+ * CCP4i2 is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * modified in accordance with the provisions of the license to address
+ * the requirements of UK law.
+ *
+ * See https://www.ccp4.ac.uk/ccp4license.php for details.
+ */
 'use client';
 
 import { useState, useCallback, useMemo, useEffect } from 'react';
@@ -43,7 +55,7 @@ import {
 } from '@mui/icons-material';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { PlateHeatMapDialog } from './PlateHeatMap';
-import { extractPlateData } from '@/lib/compounds/plate-extraction';
+import { extractPlateData, workbookToCellGrid } from '@/lib/compounds/plate-extraction';
 import type { ExtractedSeries } from '@/lib/compounds/plate-extraction';
 import type { PlateLayout } from '@/types/compounds/models';
 
@@ -624,37 +636,12 @@ function FileDropZone({ onFileSelected, selectedFile, spreadsheetGrid }: FileDro
     setError(null);
 
     try {
-      const XLSX = await import('xlsx');
+      const ExcelJS = (await import('exceljs')).default;
       const buffer = await file.arrayBuffer();
-      const workbook = XLSX.read(buffer, { type: 'array' });
+      const wb = new ExcelJS.Workbook();
+      await wb.xlsx.load(buffer);
 
-      const sheetName = workbook.SheetNames[0];
-      const worksheet = workbook.Sheets[sheetName];
-
-      if (!worksheet) {
-        throw new Error('No worksheet found');
-      }
-
-      // Get sheet as 2D array using absolute Excel coordinates.
-      // Always start from row 0, col 0 so that cells[r][c] maps directly
-      // to Excel row r, column c. This ensures spreadsheet_origin indexing
-      // works correctly regardless of the sheet's used range.
-      const range = XLSX.utils.decode_range(worksheet['!ref'] || 'A1');
-      const cells: (string | number | null)[][] = [];
-
-      for (let row = 0; row <= range.e.r; row++) {
-        const rowData: (string | number | null)[] = [];
-        for (let col = 0; col <= range.e.c; col++) {
-          const cellAddress = XLSX.utils.encode_cell({ r: row, c: col });
-          const cell = worksheet[cellAddress];
-          if (cell) {
-            rowData.push(cell.v as string | number | null);
-          } else {
-            rowData.push(null);
-          }
-        }
-        cells.push(rowData);
-      }
+      const cells = workbookToCellGrid(wb);
 
       const grid: SpreadsheetGrid = {
         cells,

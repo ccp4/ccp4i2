@@ -1,3 +1,15 @@
+/*
+ * Copyright (C) 2026 Newcastle University
+ *
+ * This file is part of CCP4i2.
+ *
+ * CCP4i2 is free software: you can redistribute it and/or modify it
+ * under the terms of the GNU Lesser General Public License version 3,
+ * modified in accordance with the provisions of the license to address
+ * the requirements of UK law.
+ *
+ * See https://www.ccp4.ac.uk/ccp4license.php for details.
+ */
 /**
  * Pure plate data extraction logic.
  *
@@ -27,6 +39,31 @@ export interface ExtractedSeries {
 }
 
 export type CellGrid = (string | number | null)[][];
+
+/**
+ * Parse an ExcelJS workbook into a CellGrid.
+ * cells[r][c] maps to Excel row r+1, column c+1 (ExcelJS is 1-indexed).
+ */
+export function workbookToCellGrid(
+  wb: import('exceljs').Workbook,
+  sheetIndex = 0
+): CellGrid {
+  const worksheet = wb.worksheets[sheetIndex];
+  if (!worksheet) {
+    throw new Error('No worksheet found');
+  }
+  const cells: CellGrid = [];
+  for (let row = 1; row <= worksheet.rowCount; row++) {
+    const rowData: (string | number | null)[] = [];
+    const wsRow = worksheet.getRow(row);
+    for (let col = 1; col <= worksheet.columnCount; col++) {
+      const cell = wsRow.getCell(col);
+      rowData.push(cell.value != null ? (cell.value as string | number) : null);
+    }
+    cells.push(rowData);
+  }
+  return cells;
+}
 
 const PLATE_DIMENSIONS: Record<PlateFormat, { rows: number; cols: number }> = {
   24: { rows: 4, cols: 6 },
