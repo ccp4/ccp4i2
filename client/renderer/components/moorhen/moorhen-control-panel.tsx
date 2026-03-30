@@ -43,6 +43,7 @@ import {
 } from "@mui/icons-material";
 import { CCP4i2HierarchyBrowser } from "./ccp4i2-hierarchy-browser";
 import { CopyViewLinkButton } from "./copy-view-link-button";
+import { PasteViewLinkField } from "./paste-view-link-field";
 import { PushToCCP4i2Panel } from "./push-to-ccp4i2-panel";
 import { useTheme } from "../../theme/theme-provider";
 
@@ -217,7 +218,7 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
         width: "100%",
       }}
     >
-      {/* View Link Button */}
+      {/* Copy / Paste View Link */}
       {getViewUrl && (
         <Box
           sx={{
@@ -226,7 +227,12 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
             backgroundColor: customColors.ui.lightGray,
           }}
         >
-          <CopyViewLinkButton getViewUrl={getViewUrl} disabled={!cootInitialized} />
+          <Stack direction="row" spacing={0.5} sx={{ alignItems: "center" }}>
+            <CopyViewLinkButton getViewUrl={getViewUrl} disabled={!cootInitialized} />
+            <Box sx={{ flex: 1 }}>
+              <PasteViewLinkField />
+            </Box>
+          </Stack>
         </Box>
       )}
 

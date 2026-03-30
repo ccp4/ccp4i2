@@ -685,11 +685,14 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
         });
         const newJobId = jobResponse.data.new_job.id;
 
-        // Step 3: Upload coordinates from Moorhen (may have been edited)
+        // Step 3: Upload coordinates from Moorhen (preserve original format)
         setMessage("Uploading coordinates...");
-        const pdbText = await mol.getAtoms("pdb");
-        const coordBlob = new Blob([pdbText], { type: "chemical/x-pdb" });
-        const coordFile = new File([coordBlob], `${mol.name || "coords"}.pdb`);
+        const coordText = await mol.getAtoms();
+        const ismmCIF = (mol as any).coordsFormat === "mmcif";
+        const mimeType = ismmCIF ? "chemical/x-cif" : "chemical/x-pdb";
+        const ext = ismmCIF ? ".cif" : ".pdb";
+        const coordBlob = new Blob([coordText], { type: mimeType });
+        const coordFile = new File([coordBlob], `${mol.name || "coords"}${ext}`);
         const coordFormData = new FormData();
         coordFormData.append("file", coordFile);
         coordFormData.append("objectPath", "servalcat_pipe.inputData.XYZIN");

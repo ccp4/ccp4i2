@@ -20,6 +20,7 @@ import {
   setTheme,
   setBackgroundColor,
   setRequestDrawScene,
+  showMolecule,
   MoorhenContainer,
   MoorhenMolecule,
   MoorhenMap,
@@ -168,6 +169,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
 
       await newMolecule.centreOn("/*/*/*/*", false, true);
       dispatch(addMolecule(newMolecule));
+      dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
     } catch (err) {
       console.warn(err);
       console.warn(`Cannot fetch PDB entry from ${url}, doing nothing...`);
@@ -290,6 +292,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         }
         await newMolecule.fetchIfDirtyAndDraw("ligands");
         dispatch(addMolecule(newMolecule));
+        dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
       }
     }
   }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, getOrigin, dispatch]);
@@ -363,11 +366,14 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
           return;
         }
 
-        // Upload Moorhen coordinates as XYZIN
+        // Upload Moorhen coordinates as XYZIN (preserve original format)
         setServalcatStatus("Uploading coordinates...");
-        const pdbText = await mol.getAtoms("pdb");
-        const coordBlob = new Blob([pdbText], { type: "chemical/x-pdb" });
-        const coordFile = new File([coordBlob], `${mol.name || "coords"}.pdb`);
+        const coordText = await mol.getAtoms();
+        const ismmCIF = (mol as any).coordsFormat === "mmcif";
+        const mimeType = ismmCIF ? "chemical/x-cif" : "chemical/x-pdb";
+        const ext = ismmCIF ? ".cif" : ".pdb";
+        const coordBlob = new Blob([coordText], { type: mimeType });
+        const coordFile = new File([coordBlob], `${mol.name || "coords"}${ext}`);
         const formData = new FormData();
         formData.append("file", coordFile);
         formData.append("objectPath", "servalcat_pipe.inputData.XYZIN");
