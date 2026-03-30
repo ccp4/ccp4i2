@@ -16,7 +16,7 @@ from ccp4i2.wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
 class prosmart_refmac(CPluginScript):
 
     TASKNAME = 'prosmart_refmac'
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
     ASYNCHRONOUS = True
     PERFORMANCECLASS = 'CRefinementPerformance'
     PURGESEARCHLIST =  [[ 'refmac%*/hklout.mtz', 0, "hklout" ], [ 'refmac%*/hklout.mtz', 7, "hklout" ], [ '*%*/ANOMFPHIOUT.mtz', 1, "ANOMFPHIOUT" ], [ '*%*/DIFANOMFPHIOUT.mtz', 1, "DIFANOMFPHIOUT" ]]

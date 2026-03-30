@@ -27,7 +27,7 @@ class SubstituteLigand(CPluginScript):
 
     TASKNAME = 'SubstituteLigand'
     PERFORMANCECLASS = 'CDataReductionRefinementPerformance'
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild', 'coot1']
 
     ERROR_CODES = {
         201: {'description': 'Failed in SubstituteLigand'},

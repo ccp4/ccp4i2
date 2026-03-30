@@ -9,7 +9,7 @@ from ccp4i2.core.CCP4XtalData import CMapCoeffsDataFile
 
 class density_calculator(CPluginScript):
     TASKNAME = "density_calculator"
-    WHATNEXT = ["coot_rebuild"]
+    WHATNEXT = ["coot_rebuild", "coot1"]
 
     def startProcess(self):
         xyzin = os.path.join(self.getWorkDirectory(), "xyzin.xyz")

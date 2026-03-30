@@ -14,7 +14,7 @@ LOGFILE_NAME = 'log.txt'
 
 class AMPLE(CPluginScript):
     TASKNAME = 'AMPLE'
-    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild']
+    WHATNEXT = ['prosmart_refmac', 'modelcraft', 'coot_rebuild', 'coot1']
     TASKCOMMAND = "ample"
 
     def makeCommandAndScript(self):

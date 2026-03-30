@@ -10,7 +10,7 @@ class modelcraft(CPluginScript):
     TASKNAME = "modelcraft"
     TASKCOMMAND = "modelcraft"
     PERFORMANCECLASS = "CRefinementPerformance"
-    WHATNEXT = ["coot_rebuild"]
+    WHATNEXT = ["coot_rebuild", "coot1"]
 
     def __init__(self, *args, **kws):
         super(modelcraft, self).__init__(*args, **kws)

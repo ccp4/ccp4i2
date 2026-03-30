@@ -25,7 +25,7 @@ class phaser_pipeline(CPluginScript):
         210: {'description': 'Exception in refmac'},
         211: {'description': 'Exception in harvestFile'},
     }
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
 
     def process(self):
         invalidFiles = self.checkInputData()

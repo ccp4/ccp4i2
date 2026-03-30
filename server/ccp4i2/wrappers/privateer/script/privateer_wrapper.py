@@ -5,7 +5,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class privateer(CPluginScript):
     TASKNAME = "privateer"
     TASKCOMMAND = 'privateer'
-    WHATNEXT = [ 'coot_rebuild', 'prosmart_refmac' ]
+    WHATNEXT = [ 'coot_rebuild', 'coot1', 'prosmart_refmac' ]
 
     def processInputFiles(self):
       from ccp4i2.core import CCP4XtalData

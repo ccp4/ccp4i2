@@ -11,7 +11,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class molrep_pipe(CPluginScript):
     TASKNAME = 'molrep_pipe'
     PERFORMANCECLASS = 'CRefinementPerformance'
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
     ERROR_CODES = { 301 : { 'description' : 'Error reading program xml output from first molrep run' },
                     302 : { 'description' : 'No Laue results in program xml output from first molrep run' }
                     }

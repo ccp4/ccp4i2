@@ -15,7 +15,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 class xia2_multiplex(CPluginScript):
 
     TASKNAME = "xia2_multiplex"
-    TASKCOMMAND = "xia2.multiplex"
+    TASKCOMMAND = shutil.which("xia2.multiplex")
     ERROR_CODES = {
         200: {"description": "Failed harvesting integrated data"},
         205: {"description": "Failed parsing xia2.json"},

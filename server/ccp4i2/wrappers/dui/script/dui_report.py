@@ -6,54 +6,10 @@ from ccp4i2.report import Report
 
 
 class dui_report(Report):
-
     TASKNAME = 'dui'
     USEPROGRAMXML = False
     SEPARATEDATA = True
 
     def __init__(self, xmlnode=None, jobInfo={}, jobStatus=None, **kw):
-        Report.__init__(self,xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus,**kw)
-        self.DUI_Outputlist = []
-        self.defaultReport()
-
-    def defaultReport(self, parent=None):
-        if parent is None:
-            parent = self
-        results = self.addResults()
-        xia2HtmlFold = parent.addFold(label='Integration Reports', initiallyOpen=True)
-        # Make sure we select the right directory for the dui_output folder
-        if self.jobInfo['inputfiles']:
-            annot = self.jobInfo['inputfiles'][0]['annotation'] # Assumes only one input file.
-            reresult = re.search(r'\(([^\)]*)', annot)
-            job_dloc = reresult.group(1)
-            useDialsDir = os.path.join(os.path.split(os.path.normpath(self.jobInfo['fileroot']))[0],
-                                       job_dloc, "dui_files")
-        else:
-            useDialsDir = os.path.join(self.jobInfo['fileroot'], "dui_files")
-        self.ReadDuiFileListFromJson(useDialsDir)
-        for mfile in self.DUI_Outputlist:
-            # mfile[0] is the mtz file path, [1] the html report.
-            rfilepath = mfile[1].get('report') # is the dict.
-            # Build relative path from job directory to the report file
-            try:
-                relPath = os.path.relpath(rfilepath, self.jobInfo['fileroot'])
-            except (ValueError, TypeError):
-                relPath = os.path.basename(rfilepath)
-            xia2HtmlFold.append('<br></br>')
-            xia2HtmlFold.append('<span style="font-size:100%">Report for the integration stage of '
-                                    + '<b>' + os.path.split(mfile[0])[1] + '</b>' + '</span>')
-            xia2HtmlFold.addFileLink(
-                label='Open Results',
-                relativePath=relPath,
-                fileType='html',
-            )
-
-    def ReadDuiFileListFromJson(self, useDialsDir=None):
-        if not useDialsDir:
-            return
-        jsonin = os.path.join(useDialsDir, 'manifest.json')
-        if not os.path.isfile(jsonin):
-            return
-        with open(jsonin, 'r') as fin:
-            jfin = json.load(fin)
-            self.DUI_Outputlist = jfin
+        super().__init__(xmlnode=xmlnode, jobInfo=jobInfo, jobStatus=jobStatus, **kw)
+        self.addResults()

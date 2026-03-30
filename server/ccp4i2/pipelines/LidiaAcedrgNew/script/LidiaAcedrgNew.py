@@ -10,7 +10,7 @@ from ccp4i2.core.CCP4PluginScript import CPluginScript
 
 class LidiaAcedrgNew(CPluginScript):
     TASKNAME = 'LidiaAcedrgNew'
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild', 'coot1']
     ERROR_CODES = {
         201: {'description': 'Expected output file not made', 'severity': CCP4ErrorHandling.SEVERITY_WARNING},
         202: {'description': 'Failed to create sub-plugin', 'severity': CCP4ErrorHandling.SEVERITY_ERROR},
@@ -124,6 +124,8 @@ class LidiaAcedrgNew(CPluginScript):
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
+            if self.container.controlParameters.TOGGLE_METAL:
+                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         try:
             acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
             acedrgPlugin.container.controlParameters.NOPROT.set(self.container.controlParameters.NOPROT)
@@ -132,8 +134,6 @@ class LidiaAcedrgNew(CPluginScript):
                 acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
             else:
                 acedrgPlugin.container.inputData.NRANDOM.set(0)
-            if self.container.controlParameters.TOGGLE_METAL:
-                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         except:
             exc_type, exc_value,exc_tb = sys.exc_info()[:3]
             sys.stdout.write(str(exc_type)+'\n')

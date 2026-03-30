@@ -20,7 +20,7 @@ class servalcat_pipe(CPluginScript):
 
     TASKNAME = 'servalcat_pipe'
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
-    WHATNEXT = ['servalcat_pipe', 'coot_rebuild', 'modelcraft']
+    WHATNEXT = ['servalcat_pipe', 'coot_rebuild', 'coot1', 'modelcraft']
     ASYNCHRONOUS = True
     PERFORMANCECLASS = 'CServalcatPerformance'
     PURGESEARCHLIST = [

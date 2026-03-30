@@ -60,7 +60,7 @@ class MRAUTOCallbackObject(phaser_MR.CallbackObject):
 class phaser_MR_AUTO(phaser_MR.phaser_MR):
 
     TASKNAME = 'phaser_MR_AUTO'
-    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild']
+    WHATNEXT = ['prosmart_refmac','modelcraft','coot_rebuild','coot1']
 
     ERROR_CODES = { 201 : { 'description' : 'Failed to find file' }, 202 : { 'description' : 'Failed to interpret searches from Ensemble list' },}
 

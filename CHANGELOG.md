@@ -1,9 +1,16 @@
 # CCP4i2 Changelog
 
-## [2.6.0] - 2026-02-26
+## [2.6.0] - 2026-03-26
 
-- New AREAIMOL task
+- New NucleoFind task for predicting locations of nucleic acid features in maps
+- New AREAIMOL task for calculating solvent accessible surface area
 - Remove PDB/mmCIF input for AceDRG
+- AceDRG metal option only visible for CIF input format
+- Reporting input distances and angles in MetalCoord task
+- Symmetry operators shown in MetalCoord report
+- Added Coot 1 as a follow-on task
+- Using shutil.which for xia2 multiplex command on Windows
+- Fixes for DUI2 and support for continuing previous sessions
 
 ## [2.5.2] - 2026-02-06
 

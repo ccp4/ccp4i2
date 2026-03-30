@@ -893,6 +893,16 @@ TASKS = {
         pluginPath="ccp4i2.wrappers.mtzutils.script.mtzutils:mtzutils",
         defXmlPath="wrappers/mtzutils/script/mtzutils.def.xml",
     ),
+    "nucleofind": Task(
+        title="Predict regions of nucleic acids with NucleoFind",
+        description="Use NucleoFind to predict the regions of nucleic acid phosphates, sugars and base in an electron density map or Coulomb potential map.",
+        shortTitle="NucleoFind",
+        pluginPath="ccp4i2.wrappers.nucleofind.nucleofind:nucleofind",
+        defXmlPath="wrappers/nucleofind/nucleofind.def.xml",
+        reportPath="ccp4i2.wrappers.nucleofind.nucleofind_report:nucleofind_report",
+        runningReport=True,
+        watchedFile="log_err.txt",
+    ),
     "pairef": Task(
         title="Pairef",
         description="Paired Refinement with Pairef",
