@@ -318,6 +318,139 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     }
   }, [fetchMolecule, fetchMap, fetchDict]);
 
+  /**
+   * Load all output files from a job into Moorhen.
+   *
+   * Dictionaries are loaded globally first so coot can parse ligand geometry
+   * in coordinates. After loading coordinates, dictionaries are re-associated
+   * with the specific molecule molNo (not the global -999999). This handles
+   * the "everything is called LIG/DRG" problem in fragment campaigns: each
+   * coordinate set gets its own dictionary association, so different ligand
+   * geometries with the same residue name coexist correctly.
+   */
+  const fetchJobFiles = useCallback(async (jobId: number) => {
+    if (!commandCentre.current) return;
+
+    const files = await apiGet(`files/?job=${jobId}`);
+    if (!files || !Array.isArray(files)) return;
+
+    // Only job output files (directory=1), not imported files (directory=2)
+    const jobOutputFiles = files.filter((f: { directory: number }) => f.directory === 1);
+
+    // STEP 1: Load all ligand dictionaries into coot's global store FIRST.
+    // This ensures coot understands ligand geometry when parsing coordinates.
+    const dictFiles = files.filter(
+      (f: { type: string }) => f.type === "application/refmac-dictionary"
+    );
+    const dictContents: string[] = [];
+    for (const dictFile of dictFiles) {
+      const dictUrl = `/api/proxy/ccp4i2/files/${dictFile.id}/download/`;
+      try {
+        const content = await apiText(dictUrl);
+        // Load globally so coordinate parsing works
+        await commandCentre.current.cootCommand(
+          {
+            returnType: "status",
+            command: "read_dictionary_string",
+            commandArgs: [content, -999999],
+            changesMolecules: [],
+          },
+          false
+        );
+        dictContents.push(content);
+      } catch (err) {
+        console.warn("[fetchJobFiles] Failed to load dictionary:", err);
+      }
+    }
+
+    // STEP 2: Load the best coordinate file (prefer mmCIF over PDB)
+    const coordFiles = jobOutputFiles.filter(
+      (f: { type: string }) =>
+        f.type === "chemical/x-pdb" ||
+        f.type === "chemical/x-cif" ||
+        f.type === "chemical/x-mmcif"
+    );
+    const mmcifFile = coordFiles.find((f: { name: string }) =>
+      f.name.toLowerCase().endsWith(".cif")
+    );
+    const coordFile = mmcifFile || coordFiles[0];
+
+    let loadedMolecule: moorhen.Molecule | null = null;
+    if (coordFile) {
+      const url = `/api/proxy/ccp4i2/files/${coordFile.id}/download/`;
+      const molName = coordFile.annotation || coordFile.job_param_name || coordFile.name || `job_${jobId}`;
+      const newMolecule = new MoorhenMolecule(
+        commandCentre as RefObject<moorhen.CommandCentre>,
+        store as any,
+        monomerLibraryPath
+      );
+      newMolecule.setBackgroundColour(backgroundColor);
+      newMolecule.defaultBondOptions.smoothness = defaultBondSmoothness;
+      try {
+        const pdbData = await apiText(url);
+        await newMolecule.loadToCootFromString(pdbData, molName);
+        if (newMolecule.molNo === -1) throw new Error("Cannot read coordinates");
+        newMolecule.uniqueId = url;
+
+        // STEP 2b: Re-associate dictionaries with THIS molecule's molNo.
+        // This overrides the global (-999999) association so that this
+        // coordinate set's ligands use the correct geometry even when
+        // other coordinate sets have ligands with the same residue name.
+        for (const dictContent of dictContents) {
+          await commandCentre.current!.cootCommand(
+            {
+              returnType: "status",
+              command: "read_dictionary_string",
+              commandArgs: [dictContent, newMolecule.molNo],
+              changesMolecules: [newMolecule.molNo],
+            },
+            false
+          );
+          await newMolecule.addDict(dictContent);
+        }
+
+        // Add representations — ribbon + ligands
+        try {
+          await newMolecule.addRepresentation("CRs", "/*/*/*/*");
+        } catch {
+          await newMolecule.addRepresentation("CBs", "/*/*/*/*");
+        }
+        try {
+          await newMolecule.addRepresentation("ligands", "/*/*/*/*");
+        } catch {
+          console.warn("[fetchJobFiles] Ligands representation failed");
+        }
+
+        dispatch(addMolecule(newMolecule));
+        dispatch(showMolecule({ molNo: newMolecule.molNo } as any));
+        loadedMolecule = newMolecule;
+      } catch (err) {
+        console.warn("[fetchJobFiles] Failed to load coordinates:", err);
+      }
+    }
+
+    // STEP 3: Load all maps
+    for (const file of jobOutputFiles) {
+      if (file.type === "application/CCP4-mtz-map") {
+        const url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
+        const mapName = file.name || file.job_param_name;
+        const mapSubType = file.sub_type || 1;
+        await fetchMap(url, mapName, mapSubType);
+      }
+    }
+
+    // STEP 4: If we loaded a molecule with dictionaries, redraw to pick up
+    // correct bond orders / ligand geometry from the per-molecule dict.
+    if (loadedMolecule && dictContents.length > 0) {
+      try {
+        await loadedMolecule.redraw();
+      } catch (err) {
+        console.warn("[fetchJobFiles] Redraw after dict association failed:", err);
+      }
+      dispatch(setRequestDrawScene(true));
+    }
+  }, [commandCentre, store, monomerLibraryPath, backgroundColor, defaultBondSmoothness, dispatch, fetchMap, getOrigin]);
+
   // Handle map contour level changes from the control panel slider
   const handleMapContourLevelChange = useCallback(
     (molNo: number, level: number) => {
@@ -404,6 +537,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
       panelContent: (
         <MoorhenControlPanel
           onFileSelect={fetchFile}
+          onJobLoad={fetchJobFiles}
           getViewUrl={getViewUrl}
           molecules={molecules}
           maps={maps}
@@ -413,7 +547,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
         />
       ),
     },
-  }), [fetchFile, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus]);
+  }), [fetchFile, fetchJobFiles, getViewUrl, molecules, maps, handleMapContourLevelChange, jobId, handleRunServalcat, servalcatStatus]);
 
   const collectedProps = useMemo(() => ({
     glRef,

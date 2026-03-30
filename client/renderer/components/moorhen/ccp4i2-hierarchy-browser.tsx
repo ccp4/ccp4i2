@@ -30,6 +30,7 @@ import {
   Link,
   TextField,
   InputAdornment,
+  Tooltip,
 } from "@mui/material";
 import {
   FolderOutlined,
@@ -40,6 +41,7 @@ import {
   Home,
   Search,
   Clear,
+  Input as InputIcon,
 } from "@mui/icons-material";
 import { useApi } from "../../api";
 import { Project, Job, File as DjangoFile } from "../../types/models";
@@ -48,6 +50,7 @@ import { useProjectJobs } from "../../utils";
 
 interface CCP4i2HierarchyBrowserProps {
   onFileSelect: (fileId: number) => Promise<void>;
+  onJobLoad?: (jobId: number) => Promise<void>;
 }
 
 interface HierarchyPanelProps {
@@ -212,10 +215,11 @@ const ProjectItem: React.FC<ProjectItemProps> = ({
 interface JobItemProps {
   job: Job;
   onSelect: (job: Job) => void;
+  onLoad?: (job: Job) => void;
   customColors: typeof import("../../theme/palette").lightCustomColors;
 }
 
-const JobItem: React.FC<JobItemProps> = ({ job, onSelect, customColors }) => {
+const JobItem: React.FC<JobItemProps> = ({ job, onSelect, onLoad, customColors }) => {
   const getStatusColor = (status: number) => {
     switch (status) {
       case 1:
@@ -294,6 +298,27 @@ const JobItem: React.FC<JobItemProps> = ({ job, onSelect, customColors }) => {
           }
           sx={{ my: 0 }}
         />
+        {onLoad && (
+          <Tooltip title="Load all job outputs into Moorhen" enterDelay={300}>
+            <IconButton
+              size="small"
+              onClick={(e) => {
+                e.stopPropagation();
+                onLoad(job);
+              }}
+              sx={{
+                p: 0.25,
+                mr: 0.5,
+                color: customColors.ui.lightBlue,
+                "&:hover": {
+                  backgroundColor: `${customColors.ui.lightBlue}20`,
+                },
+              }}
+            >
+              <InputIcon sx={{ fontSize: 18 }} />
+            </IconButton>
+          </Tooltip>
+        )}
         <ChevronRight color="action" fontSize="small" />
       </ListItemButton>
     </ListItem>
@@ -407,6 +432,7 @@ const REFRESH_INTERVALS = {
 
 export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
   onFileSelect,
+  onJobLoad,
 }) => {
   const { customColors } = useTheme();
   const api = useApi();
@@ -528,6 +554,13 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
       onFileSelect(file.id);
     },
     [onFileSelect]
+  );
+
+  const handleJobLoad = useCallback(
+    (job: Job) => {
+      onJobLoad?.(job.id);
+    },
+    [onJobLoad]
   );
 
   const handleBackToProjects = useCallback(() => {
@@ -710,6 +743,7 @@ export const CCP4i2HierarchyBrowser: React.FC<CCP4i2HierarchyBrowserProps> = ({
                   <JobItem
                     job={job}
                     onSelect={handleJobSelect}
+                    onLoad={onJobLoad ? handleJobLoad : undefined}
                     customColors={customColors}
                   />
                   {index < filteredJobs.length - 1 && (

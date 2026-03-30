@@ -56,6 +56,7 @@ const REP_DEFS = [
 
 interface MoorhenControlPanelProps {
   onFileSelect: (fileId: number) => Promise<void>;
+  onJobLoad?: (jobId: number) => Promise<void>;
   getViewUrl?: () => string;
   molecules: moorhen.Molecule[];
   maps: moorhen.Map[];
@@ -66,6 +67,7 @@ interface MoorhenControlPanelProps {
 
 export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
   onFileSelect,
+  onJobLoad,
   getViewUrl,
   molecules,
   maps,
@@ -246,7 +248,7 @@ export const MoorhenControlPanel: React.FC<MoorhenControlPanelProps> = ({
           flexDirection: "column",
         }}
       >
-        <CCP4i2HierarchyBrowser onFileSelect={onFileSelect} />
+        <CCP4i2HierarchyBrowser onFileSelect={onFileSelect} onJobLoad={onJobLoad} />
       </Box>
 
       {/* Molecules section */}
