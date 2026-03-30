@@ -47,6 +47,7 @@ import {
   fetchItemMetadata,
   ItemMetadata,
 } from "./item-metadata-utils"; // <-- Import utilities
+import { StructureInfoModal } from "./structure-info-modal";
 
 type ContentType = "Molecule" | "Map";
 type ContentItem = moorhen.Molecule | moorhen.Map;
@@ -81,6 +82,8 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     new Map()
   );
   const [pushDialogOpen, setPushDialogOpen] = useState(false);
+  const [infoDialogOpen, setInfoDialogOpen] = useState(false);
+  const [infoMolecule, setInfoMolecule] = useState<moorhen.Molecule | null>(null);
   const [faviconUrl, setFaviconUrl] = useState<string | undefined>(undefined);
 
   const dispatch = useDispatch();
@@ -397,6 +400,19 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
     return menuState.item;
   }, [menuState]);
   const molNo = itemToPush?.molNo;
+  const handleStructureInfo = () => {
+    if (menuState.item && type === "Molecule") {
+      setInfoMolecule(menuState.item as moorhen.Molecule);
+      setInfoDialogOpen(true);
+    }
+    handleMenuClose();
+  };
+
+  const handleInfoDialogClose = () => {
+    setInfoDialogOpen(false);
+    setInfoMolecule(null);
+  };
+
   const handlePushToCCP4i2 = () => {
     setPushDialogOpen(true);
     //handleMenuClose();
@@ -598,6 +614,12 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
           <Typography sx={{ mr: 1 }}>🗑️</Typography>
           Delete {type}
         </MenuItem>
+        {type === "Molecule" && (
+          <MenuItem onClick={handleStructureInfo}>
+            <Typography sx={{ mr: 1 }}>i</Typography>
+            Structure Info
+          </MenuItem>
+        )}
         <MenuItem onClick={handlePushToCCP4i2}>
           {faviconUrl ? (
             <img
@@ -631,6 +653,13 @@ export const MoorhenLoadedContent: React.FC<MoorhenLoadedContentProps> = ({
           onClose={handlePushDialogClose}
         />
       </Dialog>
+
+      {/* Structure Info Dialog */}
+      <StructureInfoModal
+        open={infoDialogOpen}
+        onClose={handleInfoDialogClose}
+        molecule={infoMolecule}
+      />
     </Box>
   );
 };
