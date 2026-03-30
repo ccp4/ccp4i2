@@ -906,6 +906,7 @@ function FileDropZone({ onFileSelected, selectedFile, spreadsheetGrid }: FileDro
         cells.push(rowData);
       }
 
+      const sheetName = worksheet.name ?? 'Sheet1';
       const grid: SpreadsheetGrid = {
         cells,
         fileName: file.name,
