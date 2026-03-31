@@ -19,7 +19,7 @@ import { AuthProvider as CompoundsAuthProvider } from "../lib/compounds/auth-con
 import { TeamsRoutePersistence } from "../components/teams-route-persistence";
 
 export const metadata = {
-  title: "ccp4i2",
+  title: "CCP4i2",
   description: "Software for Macromolecular X-Ray Crystallography",
 };
 
