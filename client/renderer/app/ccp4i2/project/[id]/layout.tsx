@@ -85,8 +85,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                   <Stack
                       spacing={2}
                       sx={{
-                        height: "calc(100vh - 4rem)",
-                        paddingTop: "1rem",
+                        height: "100svh",
                         width: "100%",
                       }}
                     >
