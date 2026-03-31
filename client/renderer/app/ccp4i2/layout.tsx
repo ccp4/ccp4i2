@@ -28,25 +28,17 @@ const REQUIRE_AUTH = process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true";
  * - CCP4i2 app shell (header, navigation)
  */
 export default function CCP4i2Layout(props: PropsWithChildren) {
-  if (REQUIRE_AUTH) {
-    return (
-      <FindInPageProvider>
-        <RecentlyStartedJobsProvider>
-          <DeleteDialogProvider>
-            <RequireAuth>
-              <CCP4i2App>{props.children}</CCP4i2App>
-            </RequireAuth>
-          </DeleteDialogProvider>
-        </RecentlyStartedJobsProvider>
-      </FindInPageProvider>
-    );
-  }
-
   return (
     <FindInPageProvider>
       <RecentlyStartedJobsProvider>
         <DeleteDialogProvider>
-          <CCP4i2App>{props.children}</CCP4i2App>
+          {REQUIRE_AUTH ? (
+            <RequireAuth>
+              <CCP4i2App>{props.children}</CCP4i2App>
+            </RequireAuth>
+          ) : (
+            <CCP4i2App>{props.children}</CCP4i2App>
+          )}
         </DeleteDialogProvider>
       </RecentlyStartedJobsProvider>
     </FindInPageProvider>
