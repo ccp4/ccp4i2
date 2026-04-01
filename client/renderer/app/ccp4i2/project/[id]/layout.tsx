@@ -23,7 +23,6 @@ import {
 } from "@mui/material";
 import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
 import { useCCP4i2Window } from "../../../../app-context";
-import { useApi } from "../../../../api";
 import { CCP4i2DirectoryViewer } from "../../../../components/directory-viewer";
 import { useProject } from "../../../../utils";
 import { ClassicJobList } from "../../../../components/classic-jobs-list";
@@ -42,7 +41,6 @@ export interface ProjectLayoutProps extends PropsWithChildren {
 
 export default function ProjectLayout(props: ProjectLayoutProps) {
   const { setProjectId, setJobPanelSize } = useCCP4i2Window();
-  const api = useApi();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md")); // Mobile: < 900px
 
