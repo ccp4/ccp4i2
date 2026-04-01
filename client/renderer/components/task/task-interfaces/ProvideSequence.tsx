@@ -17,12 +17,32 @@ import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useCallback } from "react";
 import { apiText, apiGet } from "../../../api-fetch";
+import { useApi } from "../../../api";
+import {
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
+  Paper, Typography, Alert,
+} from "@mui/material";
+
+interface SequencePreview {
+  id: string;
+  name: string;
+  description: string;
+  sequence: string;
+  length: number;
+}
+
+interface PreviewResult {
+  sequences: SequencePreview[];
+  format: string | null;
+  commentary: string;
+}
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
+  const api = useApi();
   const { useTaskItem } = useJob(job.id);
 
-  const { forceUpdate: forceSetSEQUENCETEXT } = useTaskItem("SEQUENCETEXT");
+  const { value: sequenceText, forceUpdate: forceSetSEQUENCETEXT } = useTaskItem("SEQUENCETEXT");
 
   // Handle XYZIN coordinate file change - digest file and populate SEQUENCETEXT
   const handleXyzInChange = useCallback(
@@ -70,23 +90,95 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
     [forceSetSEQUENCETEXT]
   );
 
+  // Preview: parse SEQUENCETEXT on the server and show what will be produced
+  const hasText = typeof sequenceText === "string" && sequenceText.trim().length > 0;
+  const { data: preview } = api.objectMethod<PreviewResult>(
+    job.id,
+    "ProvideSequence",
+    "previewSequences",
+    {},
+    [sequenceText],
+    hasText,
+  );
+  const previewData = (preview as any)?.data?.result as PreviewResult | undefined;
+
   return (
     <CCP4i2Tabs {...props}>
       <CCP4i2Tab label="Main inputs">
         <CCP4i2ContainerElement
           {...props}
           itemName=""
-          qualifiers={{ guiLabel: "Key files" }}
+          qualifiers={{ guiLabel: "Sequence" }}
           containerHint="FolderLevel"
           initiallyOpen={true}
         >
           <CCP4i2TaskElement
             {...props}
             itemName="SEQUENCETEXT"
-            qualifiers={{ guiLabel: "Sequence" }}
+            qualifiers={{ guiLabel: "Sequence text" }}
             sx={{ minWidth: "100%", minHeight: "10rem" }}
           />
 
+          {hasText && previewData && (
+            <>
+              {previewData.format && (
+                <Typography variant="body2" sx={{ mb: 1 }}>
+                  Detected format: <strong>{previewData.format}</strong>
+                </Typography>
+              )}
+
+              {previewData.sequences.length === 0 ? (
+                <Alert severity="warning" sx={{ mb: 1 }}>
+                  Could not parse any sequences from the text provided.
+                </Alert>
+              ) : (
+                <TableContainer component={Paper} variant="outlined" sx={{ mb: 1 }}>
+                  <Table size="small">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>#</TableCell>
+                        <TableCell>ID</TableCell>
+                        <TableCell>Description</TableCell>
+                        <TableCell align="right">Length</TableCell>
+                        <TableCell>Sequence</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {previewData.sequences.map((seq, i) => (
+                        <TableRow key={i}>
+                          <TableCell>{i + 1}</TableCell>
+                          <TableCell>{seq.id}</TableCell>
+                          <TableCell>{seq.description}</TableCell>
+                          <TableCell align="right">{seq.length}</TableCell>
+                          <TableCell
+                            sx={{
+                              fontFamily: "monospace",
+                              fontSize: "0.75rem",
+                              maxWidth: 300,
+                              overflow: "hidden",
+                              textOverflow: "ellipsis",
+                              whiteSpace: "nowrap",
+                            }}
+                          >
+                            {seq.sequence}
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              )}
+            </>
+          )}
+        </CCP4i2ContainerElement>
+
+        <CCP4i2ContainerElement
+          {...props}
+          itemName=""
+          qualifiers={{ guiLabel: "Input files" }}
+          containerHint="FolderLevel"
+          initiallyOpen={true}
+        >
           <CCP4i2TaskElement
             {...props}
             itemName="SEQIN"

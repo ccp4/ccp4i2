@@ -12,6 +12,51 @@ class ProvideSequence(CPluginScript):
 
     TASKNAME = 'ProvideSequence'
 
+    def previewSequences(self):
+        """Parse SEQUENCETEXT and return a preview of the interpreted sequences.
+
+        Called via the object_method endpoint so the frontend can show
+        a preview table before the job is run.
+        """
+        from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
+        import tempfile
+
+        text = str(self.container.controlParameters.SEQUENCETEXT)
+        if not text.strip():
+            return {"sequences": [], "format": None, "commentary": "No sequence text provided."}
+
+        tempFile = tempfile.NamedTemporaryFile(suffix='.txt', delete=False)
+        tempFile.file.write(text.encode('utf-8'))
+        tempFile.close()
+
+        try:
+            alignment, fmt, commentary = importAlignment(tempFile.name)
+        finally:
+            os.remove(tempFile.name)
+
+        if alignment is None:
+            return {
+                "sequences": [],
+                "format": None,
+                "commentary": commentary.getvalue(),
+            }
+
+        sequences = []
+        for seq in alignment:
+            sequences.append({
+                "id": seq.id,
+                "name": seq.name,
+                "description": seq.description,
+                "sequence": str(seq.seq),
+                "length": len(seq.seq),
+            })
+
+        return {
+            "sequences": sequences,
+            "format": fmt,
+            "commentary": commentary.getvalue(),
+        }
+
     def startProcess(self):
         from ccp4i2.wrappers.ProvideAlignment.script.ProvideAlignment import importAlignment
         

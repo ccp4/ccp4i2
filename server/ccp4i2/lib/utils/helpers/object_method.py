@@ -39,6 +39,14 @@ def object_method(
         kwargs = {}
 
     the_job_plugin = get_job_plugin(the_job)
+
+    # If the path is just the task name (no dots beyond the first segment),
+    # call the method on the plugin itself rather than a container element.
+    path_segments = object_path.split(".")
+    if len(path_segments) <= 1 and hasattr(the_job_plugin, method_name):
+        result = getattr(the_job_plugin, method_name)(*args, **kwargs)
+        return result
+
     base_element = the_job_plugin.container.find_by_path(object_path, skip_first=True)
     # Call the method with provided args/kwargs
     result = getattr(base_element, method_name)(*args, **kwargs)
