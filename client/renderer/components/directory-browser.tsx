@@ -58,16 +58,8 @@ export interface FileSystemItem {
 export interface DirectoryBrowserProps {
   directoryTree: any[];
   title?: string;
-  width?: string | number;
-  height?: string | number;
   fileFilter?: (item: FileSystemItem) => boolean;
-  showSearch?: boolean;
-  showFileSizes?: boolean;
   onItemClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
-  onItemDoubleClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
-  onItemRightClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
-  selectedItems?: Set<string>;
-  multiSelect?: boolean;
   searchTerm?: string;
   autoExpandedPaths?: Set<string>;
   isSearchActive?: boolean;
@@ -80,26 +72,14 @@ interface TreeNodeProps {
   onToggleExpand: (path: string) => void;
   searchTerm: string;
   fileFilter?: (item: FileSystemItem) => boolean;
-  showFileSizes: boolean;
   onItemClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
-  onItemDoubleClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
-  onItemRightClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
-  selectedItems?: Set<string>;
 }
 
 const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
   directoryTree,
   title = "Files",
-  width = "100%",
-  height = "100%",
   fileFilter,
-  showSearch = true,
-  showFileSizes = true,
   onItemClick,
-  onItemDoubleClick,
-  onItemRightClick,
-  selectedItems = new Set(),
-  multiSelect = false,
   searchTerm,
   autoExpandedPaths = new Set(),
   isSearchActive = false,
@@ -260,14 +240,9 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
     onToggleExpand,
     searchTerm,
     fileFilter,
-    showFileSizes,
     onItemClick,
-    onItemDoubleClick,
-    onItemRightClick,
-    selectedItems,
   }) => {
     const isExpanded = expandedNodes.has(item.path);
-    const isSelected = selectedItems?.has(item.path) || false;
     const hasChildren =
       item.type === "directory" && item.contents && item.contents.length > 0;
 
@@ -297,14 +272,12 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
 
     const handleDoubleClick = (event: React.MouseEvent) => {
       event.stopPropagation();
-      onItemDoubleClick?.(item, event);
     };
 
     const handleRightClick = (event: React.MouseEvent) => {
       event.preventDefault();
       event.stopPropagation();
       handleMenuOpen(item, event.currentTarget as HTMLElement);
-      onItemRightClick?.(item, event);
     };
 
     const handleMenuClick = (event: React.MouseEvent) => {
@@ -323,9 +296,9 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
             paddingLeft: `${level * 16}px`,
             paddingY: 0.5,
             cursor: "context-menu", // <-- Change cursor to indicate contextual menu
-            backgroundColor: isSelected ? "action.selected" : "transparent",
+            backgroundColor: "transparent",
             "&:hover": {
-              backgroundColor: isSelected ? "action.selected" : "action.hover",
+              backgroundColor: "action.hover",
               "& .menu-button": {
                 opacity: 1,
               },
@@ -392,8 +365,8 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
             sx={{
               fontFamily: item.type === "directory" ? "inherit" : "monospace",
               fontSize: "0.875rem",
-              color: isSelected ? "primary.main" : "text.primary",
-              fontWeight: isSelected ? "medium" : "normal",
+              color: "text.primary",
+              fontWeight: "normal",
               flex: 1,
               minWidth: 0,
               overflow: "hidden",
@@ -404,7 +377,7 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
             {highlightText(item.name, searchTerm)}
           </Typography>
 
-          {showFileSizes && item.type === "file" && item.size && (
+          {item.type === "file" && item.size && (
             <Typography
               variant="caption"
               sx={{
@@ -446,11 +419,7 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
                   onToggleExpand={onToggleExpand}
                   searchTerm={searchTerm ?? ""}
                   fileFilter={fileFilter}
-                  showFileSizes={showFileSizes}
                   onItemClick={onItemClick}
-                  onItemDoubleClick={onItemDoubleClick}
-                  onItemRightClick={onItemRightClick}
-                  selectedItems={selectedItems}
                 />
               ))}
             </Box>
@@ -552,14 +521,14 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
   return (
     <Paper
       sx={{
-        width,
+        width: "100%",
         display: "flex",
         flexDirection: "column",
         borderRadius: 0,
         borderRight: 1,
         borderColor: "divider",
         minWidth: 0,
-        flex: width === "100%" ? 1 : undefined,
+        flex: 1,
         height: "calc(100vh - 2rem)", // Use fixed height instead of maxHeight
         overflow: "hidden", // Keep this as hidden for the container
       }}
@@ -570,29 +539,27 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
         <Typography variant="h6" gutterBottom>
           {title}
         </Typography>
-        {showSearch && (
-          <TextField
-            size="small"
-            placeholder="Search files..."
-            value={searchTermState}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            fullWidth
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon fontSize="small" />
-                </InputAdornment>
-              ),
-              endAdornment: searchTermState && (
-                <InputAdornment position="end">
-                  <IconButton size="small" onClick={() => setSearchTerm("")}>
-                    <ClearIcon fontSize="small" />
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        )}
+        <TextField
+          size="small"
+          placeholder="Search files..."
+          value={searchTermState}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          fullWidth
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon fontSize="small" />
+              </InputAdornment>
+            ),
+            endAdornment: searchTermState && (
+              <InputAdornment position="end">
+                <IconButton size="small" onClick={() => setSearchTerm("")}>
+                  <ClearIcon fontSize="small" />
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
+        />
       </Box>
 
       <Box
@@ -613,11 +580,7 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
               onToggleExpand={handleToggleExpand}
               searchTerm={searchTerm || ""}
               fileFilter={fileFilter}
-              showFileSizes={showFileSizes}
               onItemClick={onItemClick}
-              onItemDoubleClick={onItemDoubleClick}
-              onItemRightClick={onItemRightClick}
-              selectedItems={selectedItems}
             />
           ))
         ) : (
