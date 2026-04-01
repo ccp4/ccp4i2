@@ -14,17 +14,16 @@ import React, {
   useState,
   useMemo,
   useCallback,
-  useContext,
   useEffect,
 } from "react";
 import {
   Box,
-  Paper,
   Typography,
   IconButton,
   Collapse,
   TextField,
   InputAdornment,
+  Stack,
 } from "@mui/material";
 import {
   ExpandMore as ExpandMoreIcon,
@@ -519,20 +518,7 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
   );
 
   return (
-    <Paper
-      sx={{
-        width: "100%",
-        display: "flex",
-        flexDirection: "column",
-        borderRadius: 0,
-        borderRight: 1,
-        borderColor: "divider",
-        minWidth: 0,
-        flex: 1,
-        height: "calc(100vh - 2rem)", // Use fixed height instead of maxHeight
-        overflow: "hidden", // Keep this as hidden for the container
-      }}
-    >
+    <Stack sx={{ flex: 1, "overflow": "hidden" }}>
       <Box
         sx={{ p: 2, borderBottom: 1, borderColor: "divider", flexShrink: 0 }}
       >
@@ -566,8 +552,9 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
         sx={{
           flex: 1, // This will take remaining space
           overflow: "auto", // This creates the scrollable area
+          scrollbarWidth: "thin",
           p: 1,
-          // Remove the maxHeight - it's not needed with flex: 1
+          pb: 4,
         }}
       >
         {searchFilteredTree.length > 0 ? (
@@ -593,7 +580,7 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
           </Typography>
         )}
       </Box>
-    </Paper>
+    </Stack>
   );
 };
 
