@@ -12,7 +12,7 @@
  * See https://www.ccp4.ac.uk/ccp4license.php for details.
  */
 // filepath: client/renderer/components/task/task-chooser.tsx
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import {
   Avatar,
   Card,
@@ -20,11 +20,9 @@ import {
   CardHeader,
   Chip,
   Collapse,
-  Grid2,
-  Paper,
-  Skeleton,
   Toolbar,
   Box,
+  Stack,
 } from "@mui/material";
 import { ElaborateSearch } from "../General/SearchObjects";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
@@ -70,12 +68,7 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
   }, [taskTreeResult]);
 
   return (
-    <Paper
-      sx={{
-        maxHeight: "calc(100vh - 10rem)",
-        overflowY: "auto",
-      }}
-    >
+    <Stack sx={{ height: "100%", overflow: "hidden" }}>
       <Toolbar>
         {taskTree?.lookup &&
           `Tasks (Currently numbering ${Object.keys(taskTree?.lookup).length})`}
@@ -84,7 +77,7 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
           setSearchValue={setSearchText}
         />
       </Toolbar>
-      <Paper>
+      <Box sx={{ flex: "auto", overflowY: "auto", p: 1, scrollbarWidth: "thin" }}>
         {taskTree?.tree?.map(
           (
             category: [name: string, title: string, taskNames: string[]],
@@ -96,8 +89,8 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
             />
           )
         )}
-      </Paper>
-    </Paper>
+      </Box>
+    </Stack>
   );
 };
 
