@@ -69,7 +69,7 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
 
   return (
     <Stack sx={{ height: "100%", overflow: "hidden" }}>
-      <Toolbar>
+      <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
         {taskTree?.lookup &&
           `Tasks (Currently numbering ${Object.keys(taskTree?.lookup).length})`}
         <ElaborateSearch
