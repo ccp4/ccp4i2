@@ -46,7 +46,6 @@ export const CCP4i2App = (props: PropsWithChildren) => {
   const [jobId, setJobId] = useState<number | null>(null);
   const [cootModule, setCootModule] = useState<any | null>(null);
   const [cootModuleError, setCootModuleError] = useState<Error | null>(null);
-  const [jobPanelSize, setJobPanelSize] = useState<number>(70);
   const [devMode, setDevMode] = useState<boolean>(true);
   const [activeDragItem, setActiveDragItem] = useState<Job | File | null>(null);
 
@@ -62,14 +61,12 @@ export const CCP4i2App = (props: PropsWithChildren) => {
       setCootModule,
       cootModuleError,
       setCootModuleError,
-      jobPanelSize,
-      setJobPanelSize,
       devMode,
       setDevMode,
       activeDragItem,
       setActiveDragItem,
     }),
-    [projectId, jobId, cootModule, cootModuleError, jobPanelSize, devMode, activeDragItem]
+    [projectId, jobId, cootModule, cootModuleError, devMode, activeDragItem]
   );
 
   return (

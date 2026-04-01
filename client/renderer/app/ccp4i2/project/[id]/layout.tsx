@@ -40,7 +40,7 @@ export interface ProjectLayoutProps extends PropsWithChildren {
 }
 
 export default function ProjectLayout(props: ProjectLayoutProps) {
-  const { setProjectId, setJobPanelSize } = useCCP4i2Window();
+  const { setProjectId } = useCCP4i2Window();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md")); // Mobile: < 900px
 
@@ -191,13 +191,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                               }}
                             />
                           </PanelResizeHandle>
-                          <Panel
-                            defaultSize={70}
-                            minSize={20}
-                            onResize={(size) =>
-                              setJobPanelSize && setJobPanelSize(size)
-                            }
-                          >
+                          <Panel defaultSize={70} minSize={20}>
                             {props.children}
                           </Panel>
                         </PanelGroup>
