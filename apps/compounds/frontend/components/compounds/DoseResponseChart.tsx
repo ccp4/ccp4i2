@@ -405,6 +405,283 @@ export function DoseResponseChart({
   );
 }
 
+// =============================================================================
+// Aggregated Dose-Response Chart (% Inhibition with Error Bars)
+// =============================================================================
+
+export interface NormalizedSeries {
+  concentrations: number[];
+  percentInhibition: number[];
+}
+
+/**
+ * Normalize a single data series to % inhibition using its fitted min/max.
+ * 0% = no inhibition (response at maxVal), 100% = full inhibition (response at minVal).
+ */
+export function normalizeToPercentInhibition(
+  responses: number[],
+  minVal: number,
+  maxVal: number
+): number[] {
+  const range = maxVal - minVal;
+  if (range === 0) return responses.map(() => 0);
+  return responses.map(r => 100 * (maxVal - r) / range);
+}
+
+/**
+ * Compute mean and standard deviation for an array of numbers
+ */
+function computeStats(values: number[]): { mean: number; sem: number; n: number } {
+  const n = values.length;
+  if (n === 0) return { mean: 0, sem: 0, n: 0 };
+  const mean = values.reduce((a, b) => a + b, 0) / n;
+  if (n === 1) return { mean, sem: 0, n: 1 };
+  const variance = values.reduce((sum, v) => sum + (v - mean) ** 2, 0) / (n - 1);
+  const stdev = Math.sqrt(variance);
+  return { mean, sem: stdev / Math.sqrt(n), n };
+}
+
+/**
+ * Chart.js plugin that draws vertical error bars on scatter points.
+ * Expects dataset.errorBars: { low: number; high: number }[] parallel to data.
+ */
+const errorBarPlugin = {
+  id: 'errorBars',
+  afterDatasetsDraw(chart: any) {
+    const { ctx } = chart;
+    chart.data.datasets.forEach((dataset: any, datasetIndex: number) => {
+      if (!dataset.errorBars) return;
+      const meta = chart.getDatasetMeta(datasetIndex);
+      if (meta.hidden) return;
+
+      ctx.save();
+      ctx.strokeStyle = dataset.errorBarColor || dataset.borderColor || 'rgba(0,0,0,0.5)';
+      ctx.lineWidth = 1.5;
+      const capWidth = 4;
+
+      meta.data.forEach((point: any, index: number) => {
+        const errorBar = dataset.errorBars[index];
+        if (!errorBar) return;
+
+        const yScale = chart.scales.y;
+        const yLow = yScale.getPixelForValue(errorBar.low);
+        const yHigh = yScale.getPixelForValue(errorBar.high);
+        const x = point.x;
+
+        // Vertical line
+        ctx.beginPath();
+        ctx.moveTo(x, yLow);
+        ctx.lineTo(x, yHigh);
+        ctx.stroke();
+
+        // Top cap
+        ctx.beginPath();
+        ctx.moveTo(x - capWidth, yHigh);
+        ctx.lineTo(x + capWidth, yHigh);
+        ctx.stroke();
+
+        // Bottom cap
+        ctx.beginPath();
+        ctx.moveTo(x - capWidth, yLow);
+        ctx.lineTo(x + capWidth, yLow);
+        ctx.stroke();
+      });
+
+      ctx.restore();
+    });
+  },
+};
+
+interface AggregatedDoseResponseChartProps {
+  /** All data series to aggregate (should share the same dilution series) */
+  seriesData: {
+    concentrations: number[];
+    responses: number[];
+    minVal: number;
+    maxVal: number;
+  }[];
+  unit?: string;
+  title?: string;
+  width?: number;
+  height?: number;
+}
+
+export function AggregatedDoseResponseChart({
+  seriesData,
+  unit = 'nM',
+  title,
+  width = 430,
+  height = 350,
+}: AggregatedDoseResponseChartProps) {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
+
+  const colors = useMemo(() => ({
+    meanPoint: isDarkMode ? 'rgba(100, 181, 246, 0.9)' : 'rgba(70, 130, 180, 0.8)',
+    meanPointBorder: isDarkMode ? 'rgba(100, 181, 246, 1)' : 'rgba(70, 130, 180, 1)',
+    errorBar: isDarkMode ? 'rgba(100, 181, 246, 0.6)' : 'rgba(70, 130, 180, 0.5)',
+    individualLine: isDarkMode ? 'rgba(255, 255, 255, 0.12)' : 'rgba(0, 0, 0, 0.08)',
+    textColor: theme.palette.text.primary,
+    secondaryText: theme.palette.text.secondary,
+    gridColor: isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)',
+  }), [isDarkMode, theme.palette]);
+
+  // Normalize all series and compute per-concentration stats
+  const { concentrations, stats, normalizedSeries } = useMemo(() => {
+    if (seriesData.length === 0) {
+      return { concentrations: [], stats: [], normalizedSeries: [] };
+    }
+
+    // Use concentrations from the first series (all should be the same)
+    const concs = seriesData[0].concentrations;
+
+    // Normalize each series
+    const normalized = seriesData.map(s =>
+      normalizeToPercentInhibition(s.responses, s.minVal, s.maxVal)
+    );
+
+    // Compute stats at each concentration
+    const perConcStats = concs.map((_, concIdx) => {
+      const values = normalized
+        .map(series => series[concIdx])
+        .filter(v => v !== undefined && !isNaN(v));
+      return computeStats(values);
+    });
+
+    return { concentrations: concs, stats: perConcStats, normalizedSeries: normalized };
+  }, [seriesData]);
+
+  const chartData = useMemo<ChartData<'scatter'>>(() => {
+    if (concentrations.length === 0) return { datasets: [] };
+
+    const meanPoints = concentrations
+      .map((conc, idx) => ({ x: conc, y: stats[idx].mean }))
+      .filter(p => p.x > 0);
+
+    const errorBars = concentrations
+      .map((conc, idx) => {
+        if (conc <= 0) return null;
+        const { mean, sem } = stats[idx];
+        return { low: mean - sem, high: mean + sem };
+      })
+      .filter(Boolean);
+
+    const datasets: ChartData<'scatter'>['datasets'] = [];
+
+    // Individual series as faint lines for context
+    normalizedSeries.forEach((series, seriesIdx) => {
+      const points = concentrations
+        .map((conc, idx) => ({ x: conc, y: series[idx] }))
+        .filter(p => p.x > 0 && !isNaN(p.y));
+
+      datasets.push({
+        type: 'line' as const,
+        label: seriesIdx === 0 ? 'Individual Series' : `_series_${seriesIdx}`,
+        data: points,
+        backgroundColor: 'transparent',
+        borderColor: colors.individualLine,
+        borderWidth: 1,
+        pointRadius: 0,
+        fill: false,
+      } as any);
+    });
+
+    // Mean points with error bars
+    datasets.push({
+      label: `Mean (n=${seriesData.length})`,
+      data: meanPoints,
+      backgroundColor: colors.meanPoint,
+      borderColor: colors.meanPointBorder,
+      pointRadius: 6,
+      pointHoverRadius: 8,
+      errorBars,
+      errorBarColor: colors.errorBar,
+    } as any);
+
+    return { datasets };
+  }, [concentrations, stats, normalizedSeries, seriesData.length, colors]);
+
+  const options = useMemo<ChartOptions<'scatter'>>(() => ({
+    responsive: true,
+    maintainAspectRatio: false,
+    animation: false,
+    plugins: {
+      legend: {
+        display: true,
+        position: 'bottom' as const,
+        labels: {
+          usePointStyle: true,
+          color: colors.textColor,
+          filter: (item) => !item.text?.startsWith('_'),
+        },
+      },
+      title: {
+        display: !!title,
+        text: title || '',
+        font: { size: 14 },
+        color: colors.textColor,
+      },
+      tooltip: {
+        callbacks: {
+          label: (context) => {
+            const point = context.raw as { x: number; y: number };
+            const idx = context.dataIndex;
+            const stat = stats[idx];
+            if (stat && stat.n > 1) {
+              return `[${point.x.toExponential(2)}]: ${point.y.toFixed(1)}% ± ${stat.sem.toFixed(1)}%`;
+            }
+            return `[${point.x.toExponential(2)}]: ${point.y.toFixed(1)}%`;
+          },
+        },
+      },
+    },
+    scales: {
+      x: {
+        type: 'logarithmic' as const,
+        title: {
+          display: true,
+          text: `Concentration (${unit})`,
+          color: colors.textColor,
+        },
+        ticks: {
+          color: colors.secondaryText,
+          callback: (value) => {
+            const num = Number(value);
+            if (num >= 1000) return `${num / 1000}k`;
+            if (num >= 1) return num.toString();
+            return num.toExponential(0);
+          },
+        },
+        grid: { color: colors.gridColor },
+      },
+      y: {
+        type: 'linear' as const,
+        title: {
+          display: true,
+          text: '% Inhibition',
+          color: colors.textColor,
+        },
+        ticks: { color: colors.secondaryText },
+        grid: { color: colors.gridColor },
+      },
+    },
+  }), [title, unit, colors, stats]);
+
+  if (concentrations.length === 0) {
+    return (
+      <Paper sx={{ p: 2, width, height, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Typography color="text.secondary">No data to aggregate</Typography>
+      </Paper>
+    );
+  }
+
+  return (
+    <Box sx={{ width, height }}>
+      <Scatter data={chartData} options={options} plugins={[errorBarPlugin]} />
+    </Box>
+  );
+}
+
 /**
  * Compact chart for table thumbnails
  */

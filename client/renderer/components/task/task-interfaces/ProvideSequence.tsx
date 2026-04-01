@@ -16,13 +16,37 @@ import { CCP4i2Tab, CCP4i2Tabs } from "../task-elements/tabs";
 import { useJob } from "../../../utils";
 import { CCP4i2ContainerElement } from "../task-elements/ccontainer";
 import { useCallback } from "react";
-import { apiText } from "../../../api-fetch";
+import { apiText, apiGet } from "../../../api-fetch";
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   const { job } = props;
   const { useTaskItem } = useJob(job.id);
 
   const { forceUpdate: forceSetSEQUENCETEXT } = useTaskItem("SEQUENCETEXT");
+
+  // Handle XYZIN coordinate file change - digest file and populate SEQUENCETEXT
+  const handleXyzInChange = useCallback(
+    async (updatedItem: any) => {
+      const dbFileId =
+        updatedItem?._value?.dbFileId?._value?.trim() ||
+        updatedItem?.dbFileId;
+      if (!dbFileId) return;
+
+      try {
+        const response = await apiGet(`files/${dbFileId}/digest_by_uuid`);
+        const sequences: Record<string, string> = response?.data?.sequences;
+        if (sequences && Object.keys(sequences).length > 0) {
+          const fastaText = Object.entries(sequences)
+            .map(([chainId, seq]) => `>${chainId}\n${seq}`)
+            .join("\n");
+          await forceSetSEQUENCETEXT(fastaText);
+        }
+      } catch (error) {
+        console.error("Error extracting sequences from coordinate file:", error);
+      }
+    },
+    [forceSetSEQUENCETEXT]
+  );
 
   // Handle SEQIN file change - read raw file content and populate SEQUENCETEXT
   // Matches Qt behavior: open file, read content, set SEQUENCETEXT
@@ -74,6 +98,7 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
             {...props}
             itemName="XYZIN"
             qualifiers={{ guiLabel: "Coordinate file (for extracting sequence or Matthews calc)" }}
+            onChange={handleXyzInChange}
           />
         </CCP4i2ContainerElement>
       </CCP4i2Tab>

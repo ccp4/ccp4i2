@@ -642,12 +642,12 @@ function FileDropZone({ onFileSelected, selectedFile, spreadsheetGrid }: FileDro
       await wb.xlsx.load(buffer);
 
       const cells = workbookToCellGrid(wb);
-      const sheetName = wb.worksheets[0]?.name ?? 'Sheet1';
+      const firstSheet = wb.worksheets[0];
 
       const grid: SpreadsheetGrid = {
         cells,
         fileName: file.name,
-        sheetName,
+        sheetName: firstSheet?.name || 'Sheet1',
       };
 
       onFileSelected(file, grid);

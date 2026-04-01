@@ -12,7 +12,7 @@
  */
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -32,11 +32,13 @@ import {
   IconButton,
   Alert,
   Paper,
+  ToggleButtonGroup,
+  ToggleButton,
 } from '@mui/material';
-import { Close, Medication, Science, OpenInNew, Image as ImageIcon } from '@mui/icons-material';
+import { Close, Medication, Science, OpenInNew, Image as ImageIcon, ViewList, BarChart } from '@mui/icons-material';
 import Link from 'next/link';
 import { MoleculeChip } from './MoleculeView';
-import { DoseResponseChart, DoseResponseThumb, FitParameters, DoseResponseData } from './DoseResponseChart';
+import { DoseResponseChart, DoseResponseThumb, AggregatedDoseResponseChart, FitParameters, DoseResponseData } from './DoseResponseChart';
 import { AuthenticatedImage } from './AuthenticatedImage';
 import { formatKpiValue, formatKpiUnit } from '@/lib/compounds/aggregation-api';
 
@@ -223,6 +225,7 @@ export function DataSeriesDetailModal({
   const [error, setError] = useState<string | null>(null);
   const [data, setData] = useState<DataSeriesResponse | null>(null);
   const [selectedSeries, setSelectedSeries] = useState<DataSeriesItem | null>(null);
+  const [viewMode, setViewMode] = useState<'individual' | 'aggregated'>('individual');
 
   useEffect(() => {
     if (!open || !compoundId || !protocolId) {
@@ -266,6 +269,30 @@ export function DataSeriesDetailModal({
 
   const displayCompoundName = data?.compound?.formatted_id || compoundName || 'Unknown Compound';
   const displayProtocolName = data?.protocol?.name || protocolName || 'Unknown Protocol';
+
+  // Build aggregated series data from valid series with dose-response data and fit params
+  const aggregatedSeriesData = useMemo(() => {
+    if (!data?.data_series) return [];
+    return data.data_series
+      .filter(series => {
+        if (series.analysis_status !== 'valid') return false;
+        const doseData = extractDoseResponseData(series);
+        const fitParams = extractFitParams(series.analysis);
+        return doseData && fitParams?.minVal != null && fitParams?.maxVal != null;
+      })
+      .map(series => {
+        const doseData = extractDoseResponseData(series)!;
+        const fitParams = extractFitParams(series.analysis)!;
+        return {
+          concentrations: doseData.concentrations,
+          responses: doseData.responses,
+          minVal: fitParams.minVal!,
+          maxVal: fitParams.maxVal!,
+        };
+      });
+  }, [data?.data_series]);
+
+  const aggregatedUnit = data?.data_series?.[0]?.dilution_series?.unit || 'nM';
 
   return (
     <Dialog
@@ -446,13 +473,42 @@ export function DataSeriesDetailModal({
               )}
             </Box>
 
-            {/* Right: Selected series chart or plot image */}
+            {/* Right: Chart panel with view toggle */}
             <Box sx={{ width: { xs: '100%', md: 450 }, flexShrink: 0 }}>
-              <Typography variant="subtitle2" gutterBottom>
-                {selectedSeries && getPlotImageUrl(selectedSeries) ? 'Plot' : 'Dose-Response Curve'}
-              </Typography>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', mb: 1 }}>
+                <Typography variant="subtitle2">
+                  {viewMode === 'aggregated'
+                    ? '% Inhibition (Aggregated)'
+                    : selectedSeries && getPlotImageUrl(selectedSeries)
+                    ? 'Plot'
+                    : 'Dose-Response Curve'}
+                </Typography>
+                {aggregatedSeriesData.length >= 2 && (
+                  <ToggleButtonGroup
+                    value={viewMode}
+                    exclusive
+                    onChange={(_, value) => value && setViewMode(value)}
+                    size="small"
+                  >
+                    <ToggleButton value="individual" aria-label="Individual series">
+                      <ViewList fontSize="small" />
+                    </ToggleButton>
+                    <ToggleButton value="aggregated" aria-label="Aggregated view">
+                      <BarChart fontSize="small" />
+                    </ToggleButton>
+                  </ToggleButtonGroup>
+                )}
+              </Box>
 
-              {selectedSeries ? (
+              {viewMode === 'aggregated' && aggregatedSeriesData.length >= 2 ? (
+                <AggregatedDoseResponseChart
+                  seriesData={aggregatedSeriesData}
+                  unit={aggregatedUnit}
+                  title={displayCompoundName}
+                  width={430}
+                  height={350}
+                />
+              ) : selectedSeries ? (
                 (() => {
                   const plotImageUrl = getPlotImageUrl(selectedSeries);
                   const doseData = extractDoseResponseData(selectedSeries);
