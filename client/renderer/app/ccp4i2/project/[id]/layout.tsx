@@ -94,7 +94,6 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                       {isMobile ? (
                         // Mobile: Tabbed interface
                         <Box sx={{ height: "calc(100vh - 10rem)" }}>
-                          <Paper sx={{ height: "100%" }}>
                             <Tabs
                               value={mobileTabValue}
                               onChange={handleMobileTabChange}
@@ -135,7 +134,6 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                                 </Box>
                               )}
                             </Box>
-                          </Paper>
                         </Box>
                       ) : (
                         // Desktop: Side-by-side panels
