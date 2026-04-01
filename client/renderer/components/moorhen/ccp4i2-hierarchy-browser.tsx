@@ -28,8 +28,6 @@ import {
   IconButton,
   Breadcrumbs,
   Link,
-  TextField,
-  InputAdornment,
   Tooltip,
 } from "@mui/material";
 import {
@@ -39,14 +37,13 @@ import {
   ChevronRight,
   ArrowBack,
   Home,
-  Search,
-  Clear,
   Input as InputIcon,
 } from "@mui/icons-material";
 import { useApi } from "../../api";
 import { Project, Job, File as DjangoFile } from "../../types/models";
 import { useTheme } from "../../theme/theme-provider";
 import { useProjectJobs } from "../../utils";
+import SearchField from "../search-field";
 
 interface CCP4i2HierarchyBrowserProps {
   onFileSelect: (fileId: number) => Promise<void>;
@@ -120,42 +117,11 @@ const HierarchyPanel: React.FC<HierarchyPanelProps> = ({
 
     {/* Compact Search Box */}
     <Box sx={{ p: 1, borderBottom: `1px solid ${customColors.ui.mediumGray}` }}>
-      <TextField
-        fullWidth
+      <SearchField
         size="small"
         placeholder={searchPlaceholder}
         value={searchValue}
-        onChange={(e) => onSearchChange(e.target.value)}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Search sx={{ fontSize: "1rem" }} color="action" />
-            </InputAdornment>
-          ),
-          endAdornment: searchValue && (
-            <InputAdornment position="end">
-              <IconButton
-                size="small"
-                onClick={() => onSearchChange("")}
-                edge="end"
-                sx={{ p: 0.25 }}
-              >
-                <Clear fontSize="small" />
-              </IconButton>
-            </InputAdornment>
-          ),
-          sx: {
-            fontSize: "0.875rem",
-            "& .MuiInputBase-input": {
-              py: 0.5,
-            },
-          },
-        }}
-        sx={{
-          "& .MuiOutlinedInput-root": {
-            backgroundColor: "white",
-          },
-        }}
+        onChange={onSearchChange}
       />
     </Box>
 

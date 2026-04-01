@@ -685,7 +685,11 @@ export default function ProjectsTable() {
                 Your Projects
               </Typography>
               <Stack direction="row" spacing={2} alignItems="center">
-                <SearchField what="projects" onDelay={setQuery} />
+                <SearchField
+                  value={query}
+                  onChange={setQuery}
+                  placeholder="Search projects..."
+                />
                 <ToggleButtonGroup
                   value={viewMode}
                   exclusive

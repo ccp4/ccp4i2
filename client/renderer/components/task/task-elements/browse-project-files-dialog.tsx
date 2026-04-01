@@ -28,8 +28,6 @@ import {
   IconButton,
   Breadcrumbs,
   Link,
-  TextField,
-  InputAdornment,
   Dialog,
   DialogTitle,
   DialogContent,
@@ -43,8 +41,6 @@ import {
   ChevronRight,
   ArrowBack,
   Home,
-  Search,
-  Clear,
   Close,
 } from "@mui/icons-material";
 import { useApi } from "../../../api";
@@ -55,6 +51,7 @@ import {
 } from "../../../types/models";
 import { useTheme } from "../../../theme/theme-provider";
 import { useProjectJobs } from "../../../utils";
+import SearchField from "../../search-field";
 
 // ---------------------------------------------------------------------------
 // Shared sub-components (compact list items identical to hierarchy browser)
@@ -319,38 +316,11 @@ const PanelHeader: React.FC<{
 
     {/* Search */}
     <Box sx={{ p: 1, borderBottom: `1px solid ${customColors.ui.mediumGray}` }}>
-      <TextField
-        fullWidth
+      <SearchField
         size="small"
         placeholder={searchPlaceholder}
         value={searchValue}
-        onChange={(e) => onSearchChange(e.target.value)}
-        InputProps={{
-          startAdornment: (
-            <InputAdornment position="start">
-              <Search sx={{ fontSize: "1rem" }} color="action" />
-            </InputAdornment>
-          ),
-          endAdornment: searchValue ? (
-            <InputAdornment position="end">
-              <IconButton
-                size="small"
-                onClick={() => onSearchChange("")}
-                edge="end"
-                sx={{ p: 0.25 }}
-              >
-                <Clear fontSize="small" />
-              </IconButton>
-            </InputAdornment>
-          ) : null,
-          sx: {
-            fontSize: "0.875rem",
-            "& .MuiInputBase-input": { py: 0.5 },
-          },
-        }}
-        sx={{
-          "& .MuiOutlinedInput-root": { backgroundColor: "white" },
-        }}
+        onChange={onSearchChange}
       />
     </Box>
 

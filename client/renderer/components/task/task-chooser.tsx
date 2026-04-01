@@ -23,8 +23,9 @@ import {
   Toolbar,
   Box,
   Stack,
+  Typography,
 } from "@mui/material";
-import { ElaborateSearch } from "../General/SearchObjects";
+import SearchField from "../search-field";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useApi } from "../../api";
 import { MyExpandMore } from "../expand-more";
@@ -69,14 +70,24 @@ export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
 
   return (
     <Stack sx={{ height: "100%", overflow: "hidden" }}>
-      <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
-        {taskTree?.lookup &&
-          `Tasks (Currently numbering ${Object.keys(taskTree?.lookup).length})`}
-        <ElaborateSearch
-          searchValue={searchText}
-          setSearchValue={setSearchText}
+      <Stack
+        direction="row"
+        alignItems="center"
+        spacing={2}
+        sx={{ p:2 }}
+      >
+        {taskTree?.lookup && (
+          <Typography>
+            Tasks&nbsp;({Object.keys(taskTree?.lookup).length})
+          </Typography>
+        )}
+        <SearchField
+          value={searchText ?? ""}
+          onChange={setSearchText}
+          placeholder="Search tasks..."
+          size="small"
         />
-      </Toolbar>
+      </Stack>
       <Box sx={{ flex: "auto", overflowY: "auto", p: 1, scrollbarWidth: "thin" }}>
         {taskTree?.tree?.map(
           (

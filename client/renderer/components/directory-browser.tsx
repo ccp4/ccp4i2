@@ -21,8 +21,6 @@ import {
   Typography,
   IconButton,
   Collapse,
-  TextField,
-  InputAdornment,
   Stack,
 } from "@mui/material";
 import {
@@ -31,11 +29,10 @@ import {
   Folder as FolderIcon,
   FolderOpen as FolderOpenIcon,
   InsertDriveFile as FileIcon,
-  Search as SearchIcon,
-  Clear as ClearIcon,
   MoreVert as MoreVertIcon,
 } from "@mui/icons-material";
 import { useFileSystemFileBrowser } from "../providers/file-system-file-browser-context";
+import SearchField from "./search-field";
 
 export interface FileSystemItem {
   path: string;
@@ -56,7 +53,6 @@ export interface FileSystemItem {
 
 export interface DirectoryBrowserProps {
   directoryTree: any[];
-  title?: string;
   fileFilter?: (item: FileSystemItem) => boolean;
   onItemClick?: (item: FileSystemItem, event: React.MouseEvent) => void;
   searchTerm?: string;
@@ -76,7 +72,6 @@ interface TreeNodeProps {
 
 const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
   directoryTree,
-  title = "Files",
   fileFilter,
   onItemClick,
   searchTerm,
@@ -519,35 +514,13 @@ const DirectoryBrowser: React.FC<DirectoryBrowserProps> = ({
 
   return (
     <Stack sx={{ flex: 1, "overflow": "hidden" }}>
-      <Box
-        sx={{ p: 2, borderBottom: 1, borderColor: "divider", flexShrink: 0 }}
-      >
-        <Typography variant="h6" gutterBottom>
-          {title}
-        </Typography>
-        <TextField
-          size="small"
-          placeholder="Search files..."
-          value={searchTermState}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          fullWidth
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon fontSize="small" />
-              </InputAdornment>
-            ),
-            endAdornment: searchTermState && (
-              <InputAdornment position="end">
-                <IconButton size="small" onClick={() => setSearchTerm("")}>
-                  <ClearIcon fontSize="small" />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-      </Box>
-
+      <SearchField
+        value={searchTermState}
+        onChange={setSearchTerm}
+        placeholder="Search files..."
+        size="small"
+        sx={{ px: 2, py: 1 }}
+      />
       <Box
         sx={{
           flex: 1, // This will take remaining space

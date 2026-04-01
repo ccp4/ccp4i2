@@ -22,16 +22,14 @@ import {
   TableRow,
   TableSortLabel,
   Paper,
-  TextField,
   Box,
   Typography,
   LinearProgress,
-  InputAdornment,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { Search as SearchIcon } from "@mui/icons-material";
 import { useVirtualizer } from "@tanstack/react-virtual";
+import SearchField from "./search-field";
 
 export interface Column<T> {
   key: string;
@@ -213,18 +211,11 @@ export function DataTable<T extends Record<string, any>>({
           {!title && <Box sx={{ flexGrow: 1 }} />}
           {headerAction}
           {hasSearchableColumns && (
-            <TextField
+            <SearchField
               size="small"
               placeholder="Search..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon fontSize="small" />
-                  </InputAdornment>
-                ),
-              }}
+              onChange={setSearchQuery}
               sx={{ minWidth: 200 }}
             />
           )}

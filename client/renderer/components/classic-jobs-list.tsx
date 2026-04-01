@@ -33,7 +33,7 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
-import { ElaborateSearch } from "../components/General/SearchObjects";
+import SearchField from "./search-field";
 import {
   RichTreeView,
   TreeItem2Content,
@@ -59,8 +59,7 @@ import {
 } from "../types/models";
 import { CCP4i2JobAvatar } from "./job-avatar";
 import { FileAvatar } from "./file-avatar";
-import { useCCP4i2Window } from "../app-context";
-import { JobWithChildren, useJobMenu } from "../providers/job-context-menu";
+import { useJobMenu } from "../providers/job-context-menu";
 import { useFileMenu } from "../providers/file-context-menu";
 import { useRecentlyStartedJobs } from "../providers/recently-started-jobs-context";
 import { useDeleteDialog } from "../providers/delete-dialog";
@@ -610,14 +609,13 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
           </Stack>
         </Paper>
       ) : (
-        <Stack direction="row" alignItems="center" sx={{ mb: 0.5 }}>
-          <Box sx={{ flexGrow: 1, "& .MuiInputBase-input": { width: "100% !important" } }}>
-            <ElaborateSearch
-              searchValue={filterText}
-              setSearchValue={setFilterText}
-              placeholder="Filter jobs…"
-            />
-          </Box>
+        <Stack direction="row" alignItems="center" spacing={2} sx={{ p: 2 }}>
+          <SearchField
+            value={filterText || ""}
+            onChange={setFilterText}
+            placeholder="Search jobs…"
+            size="small"
+          />
           <Tooltip title="Select jobs to delete">
             <IconButton
               size="small"
