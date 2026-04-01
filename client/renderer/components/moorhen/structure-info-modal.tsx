@@ -188,25 +188,13 @@ async function extractStructureInfo(molecule: moorhen.Molecule): Promise<Structu
     citationTitle: "", doi: "", pubmedId: "", authorJournal: "",
   };
 
-  // 1. fetchHeaderInfo() — coot-side extraction (title, cell, spacegroup, resolution)
+  // 1. fetchHeaderInfo() — coot-side extraction (title, compound)
   try {
     const header = await molecule.fetchHeaderInfo(false);
     if (header) {
       info.title = header.title || "";
-      info.spacegroup = header.spacegroup || "";
-      info.resolution = header.resolution ?? -1;
-      info.authorJournal = header.author_journal || "";
-      if (header.cell) {
-        info.cell = {
-          a: header.cell.a, b: header.cell.b, c: header.cell.c,
-          alpha: header.cell.alpha, beta: header.cell.beta, gamma: header.cell.gamma,
-        };
-      }
-      if (header.compound_lines?.length) {
-        // Use compound as fallback title if title is empty
-        if (!info.title) {
-          info.title = header.compound_lines.join(" ").trim();
-        }
+      if (header.compound_lines?.length && !info.title) {
+        info.title = header.compound_lines.join(" ").trim();
       }
     }
   } catch {

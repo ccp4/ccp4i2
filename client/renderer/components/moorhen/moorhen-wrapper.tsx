@@ -50,8 +50,8 @@ import {
   MoorhenErrorBoundary,
   useMoorhenCapabilities,
   isSafariBrowser,
-  SafariExperimentalWarning,
 } from "./moorhen-capability-check";
+import { usePopcorn } from "../../providers/popcorn-provider";
 
 export interface MoorhenWrapperProps {
   fileIds?: number[];
@@ -62,7 +62,7 @@ export interface MoorhenWrapperProps {
 const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, jobId }) => {
   const capabilities = useMoorhenCapabilities();
   const [isSafari] = useState(() => isSafariBrowser());
-  const [safariOverride, setSafariOverride] = useState(false);
+  const { setMessage } = usePopcorn();
   const dispatch = useDispatch();
   const theme = useTheme();
 
@@ -402,7 +402,7 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
               returnType: "status",
               command: "read_dictionary_string",
               commandArgs: [dictContent, newMolecule.molNo],
-              changesMolecules: [newMolecule.molNo],
+              changesMolecules: [newMolecule.molNo!],
             },
             false
           );
@@ -574,15 +574,16 @@ const MoorhenWrapper: React.FC<MoorhenWrapperProps> = ({ fileIds, viewParam, job
     }
   }, [fileIds, cootInitialized]);
 
-  // Show Safari warning - capabilities may look OK but WASM threading crashes
+  // Show Safari advisory as a non-blocking snackbar
   const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;
-  if (isSafari && !safariOverride && !isElectronEnv) {
-    return <SafariExperimentalWarning onProceed={() => setSafariOverride(true)} />;
-  }
-
-  if (capabilities && !capabilities.isSupported && !isElectronEnv) {
-    // Browser capabilities limited - attempting to load anyway
-  }
+  useEffect(() => {
+    if (isSafari && !isElectronEnv) {
+      setMessage(
+        "Safari may have compatibility issues with the Moorhen viewer. For the best experience, consider using Chrome, Edge, or Firefox.",
+        "warning"
+      );
+    }
+  }, [isSafari, isElectronEnv, setMessage]);
 
   return (
     <div ref={moorhenContainerRef}>

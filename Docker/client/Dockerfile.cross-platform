@@ -27,7 +27,7 @@ WORKDIR /app
 
 # Copy package files and local dependency tarballs (build context is repo root)
 COPY client/package*.json ./
-COPY client/moorhen-0.23.0-dev.tgz ./
+COPY client/moorhen-0.23.1-alpha.0.tgz ./
 
 # Remove Electron-specific packages and add markdown rendering packages for web-only build
 # This significantly reduces install time and avoids downloading ~300MB of Electron binaries
@@ -56,7 +56,7 @@ WORKDIR /app
 
 # Copy modified package.json and local dependency tarballs from package stage
 COPY --from=package /app/package.json ./
-COPY --from=package /app/moorhen-0.23.0-dev.tgz ./
+COPY --from=package /app/moorhen-0.23.1-alpha.0.tgz ./
 
 # Install git (required by some npm packages that reference git repos)
 RUN apk add --no-cache git
@@ -160,7 +160,7 @@ RUN apk add --no-cache git
 # Copy the modified package.json and local dependency tarballs from package stage (NOT builder)
 # This allows deps stage to be cached independently of source code changes
 COPY --from=package /app/package.json ./
-COPY --from=package /app/moorhen-0.23.0-dev.tgz ./
+COPY --from=package /app/moorhen-0.23.1-alpha.0.tgz ./
 
 # Install production dependencies only
 # Must run on target platform to get correct architecture-specific packages (SWC, etc.)

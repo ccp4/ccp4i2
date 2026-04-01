@@ -72,7 +72,6 @@ import {
   MoorhenErrorBoundary,
   useMoorhenCapabilities,
   isSafariBrowser,
-  SafariExperimentalWarning,
 } from "./moorhen-capability-check";
 
 type FileSource =
@@ -105,7 +104,6 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
 }) => {
   const capabilities = useMoorhenCapabilities();
   const [isSafari] = useState(() => isSafariBrowser());
-  const [safariOverride, setSafariOverride] = useState(false);
   const dispatch = useDispatch();
   const theme = useTheme();
   const campaignsApi = useCampaignsApi();
@@ -793,19 +791,16 @@ const CampaignMoorhenWrapper: React.FC<CampaignMoorhenWrapperProps> = ({
     setMoorhenDimensions,
   };
 
-  // Show Safari warning - capabilities may look OK but WASM threading crashes
+  // Show Safari advisory as a non-blocking snackbar
   const isElectronEnv = typeof window !== "undefined" && !!(window as any).electronAPI;
-  if (isSafari && !safariOverride && !isElectronEnv) {
-    return <SafariExperimentalWarning onProceed={() => setSafariOverride(true)} />;
-  }
-
-  // Show fallback if browser capabilities are missing and we're not in Electron
-  // But only after we've checked capabilities (undefined during SSR)
-  if (capabilities && !capabilities.isSupported && !isElectronEnv) {
-    // Still attempt to render - the MoorhenErrorBoundary will catch failures
-    // This allows browsers that have improved their support to work
-    // Browser capabilities limited - attempting to load anyway
-  }
+  useEffect(() => {
+    if (isSafari && !isElectronEnv) {
+      setMessage(
+        "Safari may have compatibility issues with the Moorhen viewer. For the best experience, consider using Chrome, Edge, or Firefox.",
+        "warning"
+      );
+    }
+  }, [isSafari, isElectronEnv, setMessage]);
 
   return (
     <div ref={moorhenContainerRef}>

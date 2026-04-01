@@ -28,7 +28,7 @@ WORKDIR /app
 
 # Copy package files and local dependency tarballs (build context is repo root)
 COPY client/package*.json ./
-COPY client/moorhen-0.23.0-dev.tgz ./
+COPY client/moorhen-0.23.1-alpha.0.tgz ./
 
 # Remove Electron-specific packages and add markdown rendering packages for web-only build
 # This significantly reduces install time and avoids downloading ~300MB of Electron binaries
@@ -125,7 +125,7 @@ RUN apk add --no-cache curl
 # Copy the built application and local dependency tarballs
 COPY --from=builder /app/renderer ./renderer
 COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/moorhen-0.23.0-dev.tgz ./
+COPY --from=builder /app/moorhen-0.23.1-alpha.0.tgz ./
 
 # Install production dependencies only
 # --mount=type=cache persists npm cache between builds
