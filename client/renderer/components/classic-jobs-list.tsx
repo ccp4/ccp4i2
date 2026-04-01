@@ -637,6 +637,7 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
         slots={{ item: CustomTreeItem }}
         onSelectedItemsChange={handleTreeSelection}
         selectedItems={selectedItems}
+        sx={{ flex: "auto", overflowY: "auto", scrollbarWidth: "thin" }}
       />
     </JobTreeContext.Provider>
   );

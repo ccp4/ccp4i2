@@ -135,27 +135,9 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                         </Box>
                       ) : (
                         // Desktop: Side-by-side panels
-                        <PanelGroup direction="horizontal">
+                        <PanelGroup direction="horizontal" style={{flex: "auto"}}>
                           <Panel defaultSize={30} minSize={20}>
-                            <Paper
-                              sx={{
-                                overflowY: "auto",
-                                height: "calc(100vh - 10rem)",
-                                // Theme-aware scrollbar styling
-                                scrollbarColor: `${theme.palette.action.disabled} transparent`,
-                                scrollbarWidth: "thin",
-                                "&::-webkit-scrollbar": {
-                                  width: 8,
-                                },
-                                "&::-webkit-scrollbar-track": {
-                                  background: "transparent",
-                                },
-                                "&::-webkit-scrollbar-thumb": {
-                                  backgroundColor: theme.palette.action.disabled,
-                                  borderRadius: 4,
-                                },
-                              }}
-                            >
+                            <Stack sx={{ height: "100%" }}>
                               <Tabs
                                 value={leftTabValue}
                                 onChange={handleLeftTabChange}
@@ -170,7 +152,7 @@ export default function ProjectLayout(props: ProjectLayoutProps) {
                               {leftTabValue === 1 && project && (
                                 <CCP4i2DirectoryViewer projectId={project.id} />
                               )}
-                            </Paper>
+                            </Stack>
                           </Panel>
                           <PanelResizeHandle
                             style={{
