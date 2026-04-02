@@ -203,8 +203,8 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
     <LinearProgress />
   ) : (
     <>
-      <ToolBar />
-      <Container>
+      <Stack sx={{ height: "100%" }}>
+        <ToolBar />
         <JobHeader job={jobWithCurrentStatus} mutateJobs={mutateJobs} />
         <Tabs value={tabValue} onChange={handleTabChange} variant="fullWidth">
           <Tab value={0} label="Task interface" />
@@ -225,25 +225,13 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           <Tab value={9} label="Directory" />
           <Tab value={10} label="Logs" />
         </Tabs>
-        {/* Scroll container with fixed height calc - TODO: make responsive to header height */}
         <Box
-          sx={(theme) => ({
-            height: "calc(100vh - 20rem)",
+          sx={{
+            flex: "auto",
             overflowY: "auto",
-            // Theme-aware scrollbar styling
-            scrollbarColor: `${theme.palette.action.disabled} transparent`,
             scrollbarWidth: "thin",
-            "&::-webkit-scrollbar": {
-              width: 8,
-            },
-            "&::-webkit-scrollbar-track": {
-              background: "transparent",
-            },
-            "&::-webkit-scrollbar-thumb": {
-              backgroundColor: theme.palette.action.disabled,
-              borderRadius: 4,
-            },
-          })}
+            pb: 4,
+          }}
         >
           {tabValue == 0 && (
             <TaskProvider>
@@ -352,7 +340,7 @@ export const JobView: React.FC<JobViewProps> = ({ jobid }) => {
           )}
         </Box>
         <JobMenu />
-      </Container>
+      </Stack>
     </>
   );
 };

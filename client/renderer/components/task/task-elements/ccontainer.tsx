@@ -223,7 +223,7 @@ export const CCP4i2ContainerElement: React.FC<
 
   if (containerHint === "FolderLevel") {
     return (
-      <Card sx={{ mx: 2 }}>
+      <Card sx={{ m: 2 }}>
         <CardHeader
           sx={{ py: 1 }}
           title={

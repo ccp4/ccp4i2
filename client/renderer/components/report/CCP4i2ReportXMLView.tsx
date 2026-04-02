@@ -120,16 +120,8 @@ export const CCP4i2ReportXMLView = () => {
     <Skeleton />
   ) : (
     <>
-      <Paper
-        sx={{
-          width: "100%",
-          height: "calc(100vh - 22rem)",
-          overflowY: "auto",
-        }}
-      >
-        {reportContent}
-        <CCP4i2WhatNext />
-      </Paper>
+      {reportContent}
+      <CCP4i2WhatNext />
     </>
   );
 };

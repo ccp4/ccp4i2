@@ -65,12 +65,7 @@ export const TaskProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   return (
     <TaskInterfaceContext.Provider value={contextValue}>
-      <Paper
-        key="interface"
-        sx={{ maxHeight: "calc(100vh - 22rem)", overflowY: "auto" }}
-      >
-        {children}{" "}
-      </Paper>
+      {children}
       <Popper
         open={inFlight}
         placement="bottom-end"
