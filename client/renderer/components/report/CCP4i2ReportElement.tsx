@@ -23,7 +23,6 @@ import { CCP4i2ReportFold } from "./CCP4i2ReportFold";
 import { CCP4i2ReportDiv } from "./CCP4i2ReportDiv";
 import { CCP4i2ReportPre } from "./CCP4i2ReportPre";
 import { CCP4i2ReportGeneric } from "./CCP4i2ReportGeneric";
-import { CCP4i2ReportTitle } from "./CCP4i2ReportTitle";
 import { CCP4i2ReportText } from "./CCP4i2ReportText";
 import { CCP4i2ReportReference } from "./CCP4i2ReportReference";
 import { CCP4i2ReportObjectGallery } from "./CCP4i2ReportObjectGallery";
@@ -204,14 +203,7 @@ export const CCP4i2ReportElement: React.FC<CCP4i2ReportElementProps> = ({
           />
         );
       } else if (["CCP4i2ReportTitle"].includes(tagName)) {
-        return (
-          <CCP4i2ReportTitle
-            iItem={iItem}
-            key={`${iItem}`}
-            item={item}
-            job={job}
-          />
-        );
+        return null;
       } else if (["CCP4i2ReportReference"].includes(tagName)) {
         return (
           <CCP4i2ReportReference
