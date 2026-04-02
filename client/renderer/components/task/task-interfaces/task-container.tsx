@@ -291,5 +291,5 @@ export const TaskContainer: React.FC<TaskContainerProps> = ({ jobId: propJobId }
   if (!container) return <LinearProgress />;
   if (!job) return <LinearProgress />;
 
-  return <>{taskInterface}</>;
+  return taskInterface;
 };
