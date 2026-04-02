@@ -128,7 +128,6 @@ export const JobLogViewer: React.FC<JobLogViewerProps> = ({ job, project }) => {
         <>
           <DirectoryBrowser
             directoryTree={directoryData || []}
-            title={`Job ${job.number} Files`}
             fileFilter={logFileFilter}
             onItemClick={handleFileSelect}
           />
