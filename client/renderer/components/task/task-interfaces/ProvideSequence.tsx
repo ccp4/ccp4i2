@@ -20,8 +20,9 @@ import { apiText, apiGet } from "../../../api-fetch";
 import { useApi } from "../../../api";
 import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow,
-  Paper, Typography, Alert,
+  Paper, Typography, Alert, Tooltip,
 } from "@mui/material";
+import { Warning as WarningIcon } from "@mui/icons-material";
 
 interface SequencePreview {
   id: string;
@@ -35,6 +36,17 @@ interface PreviewResult {
   sequences: SequencePreview[];
   format: string | null;
   commentary: string;
+}
+
+/** Return a list of warnings for a parsed sequence entry. */
+function sequenceWarnings(seq: SequencePreview): string[] {
+  const warnings: string[] = [];
+  if (!seq.id || seq.id === "<unknown id>")
+    warnings.push("No sequence identifier");
+  if (!seq.description || seq.description === "<unknown description>")
+    warnings.push("No description");
+  if (seq.length < 10) warnings.push(`Very short (${seq.length} residues)`);
+  return warnings;
 }
 
 const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
@@ -144,26 +156,40 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {previewData.sequences.map((seq, i) => (
-                        <TableRow key={i}>
-                          <TableCell>{i + 1}</TableCell>
-                          <TableCell>{seq.id}</TableCell>
-                          <TableCell>{seq.description}</TableCell>
-                          <TableCell align="right">{seq.length}</TableCell>
-                          <TableCell
-                            sx={{
-                              fontFamily: "monospace",
-                              fontSize: "0.75rem",
-                              maxWidth: 300,
-                              overflow: "hidden",
-                              textOverflow: "ellipsis",
-                              whiteSpace: "nowrap",
-                            }}
+                      {previewData.sequences.map((seq, i) => {
+                        const warnings = sequenceWarnings(seq);
+                        return (
+                          <TableRow
+                            key={i}
+                            sx={warnings.length > 0 ? { bgcolor: "warning.light", "& td": { color: "warning.contrastText" } } : undefined}
                           >
-                            {seq.sequence}
-                          </TableCell>
-                        </TableRow>
-                      ))}
+                            <TableCell>
+                              {warnings.length > 0 ? (
+                                <Tooltip title={warnings.join("; ")}>
+                                  <WarningIcon fontSize="small" color="warning" sx={{ verticalAlign: "middle" }} />
+                                </Tooltip>
+                              ) : (
+                                i + 1
+                              )}
+                            </TableCell>
+                            <TableCell>{seq.id}</TableCell>
+                            <TableCell>{seq.description}</TableCell>
+                            <TableCell align="right">{seq.length}</TableCell>
+                            <TableCell
+                              sx={{
+                                fontFamily: "monospace",
+                                fontSize: "0.75rem",
+                                maxWidth: 300,
+                                overflow: "hidden",
+                                textOverflow: "ellipsis",
+                                whiteSpace: "nowrap",
+                              }}
+                            >
+                              {seq.sequence}
+                            </TableCell>
+                          </TableRow>
+                        );
+                      })}
                     </TableBody>
                   </Table>
                 </TableContainer>
