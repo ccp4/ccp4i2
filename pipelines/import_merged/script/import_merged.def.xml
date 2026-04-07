@@ -167,6 +167,13 @@
           <toolTip>Do not or do extend imported FreeR flags</toolTip>
         </qualifiers>
       </content>
+      <content id="EXCLUDE_MISSING">
+        <className>CBoolean</className>
+        <qualifiers>
+          <default>False</default>
+          <toolTip>Exclude reflections with all items missing</toolTip>
+        </qualifiers>
+      </content>
       <content id="STARANISO_DATA">
         <className>CBoolean</className>
         <qualifiers>

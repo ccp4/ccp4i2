@@ -36,7 +36,8 @@ from  pipelines.import_merged.script.mtzimport import *
 class import_merged(CPluginScript):
 
     TASKNAME = 'import_merged'
-    MAINTAINER = 'liz.potterton@york.ac.uk'
+    ## MAINTAINER = 'liz.potterton@york.ac.uk'  # written by Liz
+    MAINTAINER = 'pre@mrc-lmb.cam.ac.uk'  # Phil Evans
     WHATNEXT = []
     ERROR_CODES = { 301 : { 'description' : 'No output file found after conversion program' },
                     302 : { 'description' : 'Output from conversion does not contain recognised reflection or FreeR set data' }
@@ -61,16 +62,15 @@ class import_merged(CPluginScript):
 
       self.x2mtz = None
       self.mmcifXML = None
-      self.resolutioncutoff = False
-      #print("IDRR", self.container.inputData.RESOLUTION_RANGE_SET)
-      if self.container.inputData.RESOLUTION_RANGE_SET:
-          self.resolutioncutoff = True
+      useimportMtz = True  #  always for mtz file
 
       if str(self.fformat) == 'mtz':
-          # MTZ file: if there is a resolution cutoff specified,
-          # cannot use x2mtz to run cmtzsplit
-          if not self.resolutioncutoff:
-              self.x2mtz = self.makePluginObject('x2mtz')
+          # MTZ file: now always use mtzimport.py script instead (4/4/2026)
+          #  of cmtzsplit in x2mtz
+          pass
+          ##if not useimportMtz:  
+          #  print(">> use x2mtz")
+          # self.x2mtz = self.makePluginObject('x2mtz')
       #elif str(self.fformat) == 'mmcif':
       #    pass
       # # self.x2mtz = self.makePluginObject('cif2mtz')  # not needed now
@@ -88,9 +88,9 @@ class import_merged(CPluginScript):
       self.importXML = None
       self.freeout = None
       if self.fformat == 'mtz':
-        if self.resolutioncutoff:
+        if useimportMtz:
             self.importXML = etree.Element('IMPORT_LOG')  # information about the import step
-            status = self.importmtz()
+            status = self.importmtz()  # Import the MTZ file
             self.makeReportXML(self.importXML)  # add initial stuff for XML into self.importXML
             self.process1(status)
             return  # Probably doesnt get here
@@ -564,8 +564,10 @@ class import_merged(CPluginScript):
     def importmtz(self):
         # Import an mtz file to a data file (OBSOUT) and
         #  (if present) a FreeR file, with optional resolution cutoffs
+        #  and optional removal of refecltions with all itmes missing
         # Uses Gemmi
 
+        print(">> importmtz")
         outputData = self.container.outputData
         filename = str(self.container.inputData.HKLIN)  # Input file
         outfile = str(outputData.OBSOUT)
@@ -593,10 +595,14 @@ class import_merged(CPluginScript):
         reducehkl = True  # for now
         resorange = self.makeResoRange()
 
+        excludemissing = False
+        if self.container.controlParameters.EXCLUDE_MISSING:
+            excludemissing = True
+        
         mtzimport = ImportMTZ(filename, outfile, freerfile,
                               obsColLabels, int(self.contentFlag),
                               freeRcolumnLabel,
-                              resorange)
+                              resorange, excludemissing)
 
         self.mtzXML = mtzimport.getXML()
         self.importXML.append(self.mtzXML)
