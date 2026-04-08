@@ -777,6 +777,17 @@ class pointless_report(Report):
       fold.append(text)
       self.Graphs(fold, select="LatticeCentering")
 
+      scoretable = self.xmlnode.findall('CentredLatticeScoreTable/LatticeScore')
+      if len(scoretable)>0:
+        fold.append("Mean(E^2) for absences in potential centred lattices, = 1.0 if not centred")
+        stable = fold.addTable(class_="center")
+        stable.addData(title='Lattice type',data=['Mean(E^2)absent'])
+        for lat in scoretable:
+          lt = lat.findall('LatticeType')[0].text
+          ls = lat.findall('E2absent')[0].text
+          print(lt, ls)
+          stable.addData(title=lt, data=[ls])
+          
   # - - - - - - - - - - - - - - - - -
   def ElementScores(self,parent=None, open1=False):
     if len(self.xmlnode.findall(".//BestSolutionType"))>0:

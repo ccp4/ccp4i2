@@ -178,7 +178,10 @@ class import_merged_report(Report):
       message = self.mtzreport()  # for X2MTZ block from Gemmi import
       #importDiv.append("<br/>")
       for line in message:
-        importDiv.addText(text=line)
+        if 'NOTE' in line:
+          importDiv.addText(text=line, style='color:darkorange')
+        else:
+          importDiv.addText(text=line)
         #importDiv.append("<br/>")
     elif fformat == 'mmcif':
       mmcifDiv = importDiv.addDiv(style="padding:5px;background-color:#CCEEFF;")
@@ -645,8 +648,11 @@ class import_merged_report(Report):
 
     # ctruncate
     if self.ctruncatereports != None:
-      self.ctruncatereports[0].keyText(summaryfold, phasertncs=self.phasertNCS)
-
+      if len(self.ctruncatereports) > 0:
+        self.ctruncatereports[0].keyText(summaryfold, phasertncs=self.phasertNCS)
+      else:
+        self.ctruncatereports = None
+        
     # . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .  . . . .
     # Main summary
     overallsummaryDiv = parent.addDiv(\
@@ -834,8 +840,12 @@ class import_merged_report(Report):
       if 'id' in rrp:
         attr = rrp['id']
         if attr == "cutresolution":  # just checking
-          resorange = self.formatresorange(rrpaths[1])
-          s += ", trimmed to " + resorange
+          # is maximum cut resolution higher than main one?
+          maxr = rrpaths[0].findall('max')[0].text
+          maxt = rrpaths[1].findall('max')[0].text
+          if (float(maxt) - float(maxr)) > 0.001:
+            resorange = self.formatresorange(rrpaths[1])
+            s += ", trimmed to " + resorange
     else:
       # Just file resolution
       resorange = self.formatresorange(rrpaths[0])
@@ -877,6 +887,34 @@ class import_merged_report(Report):
       text.append(s)
       nreflections = self.importxml.findall("X2MTZ/nrefoutput")[0].text
       text.append("Number of reflections output: " + nreflections)
+
+      nrefin = 0
+      nrefexcluded = 0
+      nr = self.importxml.findall("X2MTZ/nrefinput")
+      if len(nr) > 0:
+        nrefin = nr[0].text
+      nr = self.importxml.findall("X2MTZ/nrefexcluded")
+      if len(nr) > 0:
+        nrefexcluded = nr[0].text
+      if int(nrefin) > 0:
+        text.append("Number of reflections input: " + nrefin)
+        if int(nrefexcluded) > 0:
+          text.append("Number of reflections excluded as missing: " + nrefexcluded)
+      nr = self.importxml.findall("X2MTZ/nrefflagged")
+      if len(nr) > 0:
+        mess = 'NOTE: number of reflections flagged as all missing (not removed): ' + nr[0].text
+        text.append(mess)
+      nr = self.importxml.findall("X2MTZ/maxResolutionAccepted")
+      if len(nr) > 0:
+        resaccepted = nr[0].text
+        rr = self.importxml.findall('X2MTZ/ResolutionRange/max')
+        if len(rr)>0:
+          resmax = rr[0].text
+        # Report if larger than maximum resolution
+        if (float(resaccepted) - float(resmax)) > 0.002:
+          mess = 'NOTE: highest resolution for accepted (not flagged) reflections: ' + resaccepted
+          text.append(mess)
+        
       if len(self.importxml.findall("X2MTZ/freercolumnname"))>0:
         freercolumnname = self.importxml.findall("X2MTZ/freercolumnname")[0].text
         text.append("FreeR imported from column " + freercolumnname)
