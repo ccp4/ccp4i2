@@ -15,12 +15,10 @@
     </ccp4i2_header>
     <ccp4i2_body id="dui">
         <container id="inputData">
-            <content id="DUI_DIR">
-              <className>CDialsPickleFile</className>
+            <content id="DUI2_RUN_DATA">
+              <className>CString</className>
               <qualifiers>
-                <fromPreviousJob>True</fromPreviousJob>
-                <mustExist>False</mustExist>
-                <allowUndefined>True</allowUndefined>
+                 <onlyEnumerators>True</onlyEnumerators>
               </qualifiers>
             </content>
         </container>
@@ -38,15 +36,6 @@
                 <className>CList</className>
                 <subItem>
                     <className>CMtzDataFile</className>
-                    <qualifiers>
-                        <saveToDb>True</saveToDb>
-                    </qualifiers>
-                </subItem>
-            </content>
-            <content id="DUI_ODIR">
-                <className>CList</className>
-                <subItem>
-                    <className>CDialsPickleFile</className>
                     <qualifiers>
                         <saveToDb>True</saveToDb>
                     </qualifiers>
