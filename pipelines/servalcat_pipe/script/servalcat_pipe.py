@@ -761,6 +761,7 @@ class servalcat_pipe(CPluginScript):
         self.container.outputData.FPHIOUT.subType = servalcatJob.container.outputData.FPHIOUT.subType
         self.container.outputData.DIFFPHIOUT.annotation.set(servalcatJob.container.outputData.DIFFPHIOUT.annotation)
         self.container.outputData.DIFFPHIOUT.subType = servalcatJob.container.outputData.DIFFPHIOUT.subType
+        self.container.outputData.SERVALCAT_JSON.annotation.set(servalcatJob.container.outputData.SERVALCAT_JSON.annotation)
         if self.container.outputData.DICT.exists():
             self.container.outputData.DICT.annotation = 'Accumulated monomer dictionary'
         if servalcatJob.container.outputData.COOTSCRIPTOUT.exists():

@@ -231,7 +231,9 @@ class servalcat(CPluginScript):
         # Use output JSON from servalcat as the basis for output XML
         # Get stats from JSON, convert to XML, save and load to self.xmlroot
         rxml = None
-        jsonFilePath = str(os.path.join(self.getWorkDirectory(), "refined_stats.json"))
+        jsonFilePath = str(os.path.normpath(os.path.join(self.getWorkDirectory(), "refined_stats.json")))
+        self.container.outputData.SERVALCAT_JSON.setFullPath(jsonFilePath)
+        self.container.outputData.SERVALCAT_JSON.annotation.set('Servalcat statistics (JSON)')
         if os.path.isfile(jsonFilePath):
             with open(jsonFilePath, "r") as jsonFile:
                 jsonText = jsonFile.read()

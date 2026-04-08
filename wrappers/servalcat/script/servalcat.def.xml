@@ -226,6 +226,13 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
                   <saveToDb>True</saveToDb>
                </qualifiers>
             </content>
+            <content id="SERVALCAT_JSON">
+               <className>CDialsJsonFile</className>
+               <qualifiers>
+                  <saveToDb>True</saveToDb>
+                  <default><annotation>Servalcat statistics (JSON)</annotation></default>
+                  </qualifiers>
+            </content>
             <content id="PERFORMANCEINDICATOR">
                 <className>CServalcatPerformance</className>
             </content>

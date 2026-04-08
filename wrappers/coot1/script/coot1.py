@@ -48,10 +48,14 @@ class coot1(CPluginScript):
                     f"imap = coot.read_mtz('{path}', 'F', 'PHI', '', False, True)"
                 )
                 script.append("coot.set_map_colour(imap, 0.75, 0.9, 0.75)")
+        if inputData.SERVALCAT_JSON.isSet():
+            script.append("import coot_servalcat_outliers as so")
+            script.append(f"so.convert_outliers_json('{inputData.SERVALCAT_JSON.getFullPath()}')")
         scriptPath = Path(self.getWorkDirectory(), "coot_script.py")
         with scriptPath.open("w", encoding="utf-8") as stream:
             stream.write("\n".join(script))
         self.appendCommandLine(["--script", scriptPath])
+        self.appendCommandLine(["--show-ccp4i2-save-button"])
 
         return CPluginScript.SUCCEEDED
 
@@ -61,6 +65,7 @@ class coot1(CPluginScript):
         index = 0
         for pattern, contentFlag in [
             ("*.cif", CPdbDataFile.CONTENT_FLAG_MMCIF),
+            ("*.mmcif", CPdbDataFile.CONTENT_FLAG_MMCIF),
             ("*.pdb", CPdbDataFile.CONTENT_FLAG_PDB),
         ]:
             for path in workDir.glob(pattern):

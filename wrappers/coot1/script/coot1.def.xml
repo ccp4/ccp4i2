@@ -64,6 +64,15 @@
                     <fromPreviousJob>True</fromPreviousJob>
                 </qualifiers>
             </content>
+            <content id="SERVALCAT_JSON">
+                <className>CDialsJsonFile</className>
+                <qualifiers>
+                    <mustExist>True</mustExist>
+                    <allowUndefined>True</allowUndefined>
+                    <fromPreviousJob>True</fromPreviousJob>
+                    <toolTip>Input JSON file</toolTip>
+                </qualifiers>
+            </content>
         </container>
         <container id="outputData">
             <content id="XYZOUT">
