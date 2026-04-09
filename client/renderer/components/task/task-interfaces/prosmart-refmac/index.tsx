@@ -11,7 +11,6 @@
  * See https://www.ccp4.ac.uk/ccp4license.php for details.
  */
 import React, { useCallback } from "react";
-import { Paper } from "@mui/material";
 import { CCP4i2TaskInterfaceProps } from "../task-container";
 import { CCP4i2Tab, CCP4i2Tabs } from "../../task-elements/tabs";
 import { useJob } from "../../../../utils";
@@ -124,77 +123,75 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
   ]);
 
   return (
-    <Paper>
-      <CCP4i2Tabs>
-        {/* TAB 1: INPUT DATA */}
-        <CCP4i2Tab label="Input data" key="input">
-          <InputDataTab
-            {...props}
-            handleF_SIGFChange={handleF_SIGFChange}
-            refinementMode={refinementMode}
-            hydrUse={hydrUse}
-            addWaters={addWaters}
-            useAnomalous={useAnomalous}
-            F_SIGFItem={F_SIGFItem}
-          />
-        </CCP4i2Tab>
+    <CCP4i2Tabs>
+      {/* TAB 1: INPUT DATA */}
+      <CCP4i2Tab label="Input data" key="input">
+        <InputDataTab
+          {...props}
+          handleF_SIGFChange={handleF_SIGFChange}
+          refinementMode={refinementMode}
+          hydrUse={hydrUse}
+          addWaters={addWaters}
+          useAnomalous={useAnomalous}
+          F_SIGFItem={F_SIGFItem}
+        />
+      </CCP4i2Tab>
 
-        {/* TAB 2: PARAMETERISATION */}
-        <CCP4i2Tab label="Parameterisation" key="parameterisation">
-          <ParameterisationTab
-            {...props}
-            refinementMode={refinementMode}
-            solventMaskType={solventMaskType}
-            solventAdvanced={solventAdvanced}
-            tlsMode={tlsMode}
-            bfacSetUse={bfacSetUse}
-            weightOpt={weightOpt}
-            occupancyRefinement={occupancyRefinement}
-            occupancyGroups={occupancyGroups}
-            occupancyComplete={occupancyComplete}
-            occupancyIncomplete={occupancyIncomplete}
-          />
-        </CCP4i2Tab>
+      {/* TAB 2: PARAMETERISATION */}
+      <CCP4i2Tab label="Parameterisation" key="parameterisation">
+        <ParameterisationTab
+          {...props}
+          refinementMode={refinementMode}
+          solventMaskType={solventMaskType}
+          solventAdvanced={solventAdvanced}
+          tlsMode={tlsMode}
+          bfacSetUse={bfacSetUse}
+          weightOpt={weightOpt}
+          occupancyRefinement={occupancyRefinement}
+          occupancyGroups={occupancyGroups}
+          occupancyComplete={occupancyComplete}
+          occupancyIncomplete={occupancyIncomplete}
+        />
+      </CCP4i2Tab>
 
-        {/* TAB 3: RESTRAINTS */}
-        <CCP4i2Tab label="Restraints" key="restraints">
-          <RestraintsTab
-            {...props}
-            useNcs={useNcs}
-            useJelly={useJelly}
-            prosmartProteinToggle={prosmartProteinToggle}
-            prosmartProteinAdvanced={prosmartProteinAdvanced}
-            prosmartNucleicAcidToggle={prosmartNucleicAcidToggle}
-            prosmartNucleicAcidAdvanced={prosmartNucleicAcidAdvanced}
-            platonyzerToggle={platonyzerToggle}
-            hasProteinChains={hasProteinChains}
-            hasNucleotideChains={hasNucleotideChains}
-            xyzinComposition={xyzinComposition}
-          />
-        </CCP4i2Tab>
+      {/* TAB 3: RESTRAINTS */}
+      <CCP4i2Tab label="Restraints" key="restraints">
+        <RestraintsTab
+          {...props}
+          useNcs={useNcs}
+          useJelly={useJelly}
+          prosmartProteinToggle={prosmartProteinToggle}
+          prosmartProteinAdvanced={prosmartProteinAdvanced}
+          prosmartNucleicAcidToggle={prosmartNucleicAcidToggle}
+          prosmartNucleicAcidAdvanced={prosmartNucleicAcidAdvanced}
+          platonyzerToggle={platonyzerToggle}
+          hasProteinChains={hasProteinChains}
+          hasNucleotideChains={hasNucleotideChains}
+          xyzinComposition={xyzinComposition}
+        />
+      </CCP4i2Tab>
 
-        {/* TAB 4: OUTPUT */}
-        <CCP4i2Tab label="Output" key="output">
-          <OutputTab
-            {...props}
-            mapSharp={mapSharp}
-            mapSharpCustom={mapSharpCustom}
-          />
-        </CCP4i2Tab>
+      {/* TAB 4: OUTPUT */}
+      <CCP4i2Tab label="Output" key="output">
+        <OutputTab
+          {...props}
+          mapSharp={mapSharp}
+          mapSharpCustom={mapSharpCustom}
+        />
+      </CCP4i2Tab>
 
-        {/* TAB 5: ADVANCED */}
-        <CCP4i2Tab label="Advanced" key="advanced">
-          <AdvancedTab
-            {...props}
-            scatteringFactors={scatteringFactors}
-            hydrUse={hydrUse}
-            hdInitToggle={hdInitToggle}
-            bfacSetUse={bfacSetUse}
-            resCustom={resCustom}
-          />
-        </CCP4i2Tab>
-      </CCP4i2Tabs>
-    </Paper>
+      {/* TAB 5: ADVANCED */}
+      <CCP4i2Tab label="Advanced" key="advanced">
+        <AdvancedTab
+          {...props}
+          scatteringFactors={scatteringFactors}
+          hydrUse={hydrUse}
+          hdInitToggle={hdInitToggle}
+          bfacSetUse={bfacSetUse}
+          resCustom={resCustom}
+        />
+      </CCP4i2Tab>
+    </CCP4i2Tabs>
   );
 };
 
