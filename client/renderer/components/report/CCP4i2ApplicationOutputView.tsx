@@ -1,15 +1,3 @@
-/*
- * Copyright (C) 2025-2026 Newcastle University
- *
- * This file is part of CCP4i2.
- *
- * CCP4i2 is free software: you can redistribute it and/or modify it
- * under the terms of the GNU Lesser General Public License version 3,
- * modified in accordance with the provisions of the license to address
- * the requirements of UK law.
- *
- * See https://www.ccp4.ac.uk/ccp4license.php for details.
- */
 import { Editor } from "@monaco-editor/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CCP4Table, parseXML, Plot } from "./ChartLib";
@@ -328,22 +316,22 @@ export const CCP4i2ApplicationOutputView: React.FC<
 
     if (dataArray.length === 0) return;
 
-    const ExcelJS = (await import("exceljs")).default;
-    const workbook = new ExcelJS.Workbook();
-    const worksheet = workbook.addWorksheet("Data");
+    // const ExcelJS = (await import("exceljs")).default;
+    // const workbook = new ExcelJS.Workbook();
+    // const worksheet = workbook.addWorksheet("Data");
 
-    // Add header row
-    worksheet.addRow(decodedHeaders);
+    // // Add header row
+    // worksheet.addRow(decodedHeaders);
 
-    // Add data rows
-    dataArray.forEach((rowObj: any) => {
-      worksheet.addRow(decodedHeaders.map((h) => rowObj[h]));
-    });
+    // // Add data rows
+    // dataArray.forEach((rowObj: any) => {
+    //   worksheet.addRow(decodedHeaders.map((h) => rowObj[h]));
+    // });
 
-    const excelBuffer = await workbook.xlsx.writeBuffer();
-    const blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
-    downloadBlob(blob, `${selectedPlot.title || "data"}.xlsx`);
-    setExportMenuAnchor(null);
+    // const excelBuffer = await workbook.xlsx.writeBuffer();
+    // const blob = new Blob([excelBuffer], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+    // downloadBlob(blob, `${selectedPlot.title || "data"}.xlsx`);
+    // setExportMenuAnchor(null);
   };
 
   const handleExportPDF = () => {

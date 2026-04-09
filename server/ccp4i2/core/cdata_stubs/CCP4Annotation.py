@@ -1,13 +1,3 @@
-# Copyright (C) 2025-2026 University of York
-#
-# This file is part of CCP4i2.
-#
-# CCP4i2 is free software: you can redistribute it and/or modify it
-# under the terms of the GNU Lesser General Public License version 3,
-# modified in accordance with the provisions of the license to address
-# the requirements of UK law.
-#
-# See https://www.ccp4.ac.uk/ccp4license.php for details.
 """Auto-generated from CCP4i2 metadata. DO NOT EDIT.
 
 This is a stub file - extend classes in core/ to add methods.

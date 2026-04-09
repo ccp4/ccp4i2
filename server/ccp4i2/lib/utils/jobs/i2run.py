@@ -1,13 +1,3 @@
-# Copyright (C) 2025 University of York
-#
-# This file is part of CCP4i2.
-#
-# CCP4i2 is free software: you can redistribute it and/or modify it
-# under the terms of the GNU Lesser General Public License version 3,
-# modified in accordance with the provisions of the license to address
-# the requirements of UK law.
-#
-# See https://www.ccp4.ac.uk/ccp4license.php for details.
 from ccp4i2.core.CCP4Container import CContainer
 from ccp4i2.core.base_object.fundamental_types import CList
 from ccp4i2.core.base_object.cdata import CData
