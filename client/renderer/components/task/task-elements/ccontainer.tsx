@@ -11,21 +11,17 @@
  * See https://www.ccp4.ac.uk/ccp4license.php for details.
  */
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Box,
-  Card,
-  CardContent,
-  CardHeader,
-  Collapse,
   Divider,
-  Stack,
   SxProps,
   Typography,
 } from "@mui/material";
-import React, { PropsWithChildren, useMemo, useState } from "react";
+import React, { PropsWithChildren, useMemo } from "react";
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob } from "../../../utils";
-import { ErrorInfo } from "./error-info";
-import { MyExpandMore } from "../../expand-more";
 import { ExpandMore } from "@mui/icons-material";
 import { FIELD_SPACING } from "./field-sizes";
 import { useExpertLevel } from "./expert-level-context";
@@ -86,7 +82,6 @@ export const CCP4i2ContainerElement: React.FC<
 
   const { useTaskItem, getValidationColor } = useJob(job.id);
   const { item } = useTaskItem(itemName);
-  const [open, setOpen] = useState(initiallyOpen);
   const maxExpertLevel = useExpertLevel();
 
   const inferredVisibility = useMemo(() => {
@@ -223,35 +218,20 @@ export const CCP4i2ContainerElement: React.FC<
 
   if (containerHint === "FolderLevel") {
     return (
-      <Card sx={{ m: 2 }}>
-        <CardHeader
-          sx={{ py: 1 }}
-          title={
-            <Typography variant="subtitle2" sx={{ color: "primary.main", fontWeight: 700 }}>
-              {qualifiers?.guiLabel}
-            </Typography>
-          }
-          onClick={(ev) => {
-            ev.stopPropagation();
-            setOpen(!open);
-          }}
-          variant="lightGrey"
-          action={
-            <Stack direction="row">
-              <MyExpandMore expand={open} aria-expanded={open} aria-label="show more">
-                <ExpandMore sx={{ color: "text.primary" }} />
-              </MyExpandMore>
-              {item && <ErrorInfo {...props} />}
-            </Stack>
-          }
-        />
-        <CardContent sx={{ px: 0, pt: 0, "&:last-child": { pb: 1 } }}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            {columnContent}
-            {columnChildren}
-          </Collapse>
-        </CardContent>
-      </Card>
+      <Accordion disableGutters defaultExpanded={initiallyOpen}>
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          sx={{ backgroundColor: "#eee" }}
+        >
+          <Typography variant="subtitle2" sx={{ fontWeight: 500 }}>
+            {qualifiers?.guiLabel}
+          </Typography>
+        </AccordionSummary>
+        <AccordionDetails>
+          {columnContent}
+          {columnChildren}
+        </AccordionDetails>
+      </Accordion>
     );
   }
 
