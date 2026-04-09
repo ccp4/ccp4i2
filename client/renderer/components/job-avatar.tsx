@@ -81,19 +81,3 @@ export const CCP4i2JobAvatar = forwardRef<HTMLDivElement, CCP4i2JobAvatarProps>(
     );
   }
 );
-
-// Add global keyframes for the animation
-// Place this in your main CSS or a global style file:
-/*
-@keyframes avatarPulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(25,118,210,0.7);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(25,118,210,0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(25,118,210,0);
-  }
-}
-*/
