@@ -2,7 +2,7 @@
 
 ## [2.6.1] - 2026-04-09
 
-- Fixed Coot 1 path on Mac/Linux
+- Fixed Coot 1 path on Mac/Linux for 9.0.015
 
 ## [2.6.0] - 2026-03-26
 
