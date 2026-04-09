@@ -15,8 +15,6 @@
  *
  * Maps task names to their custom React interface components.
  * Tasks not listed here fall back to GenericInterface.
- *
- * See also: lib/task-registry.ts for category/ordering in the task chooser.
  */
 import { useMemo } from "react";
 import { useCCP4i2Window } from "../../../app-context";

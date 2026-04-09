@@ -16,7 +16,7 @@ import { CircularProgress } from "@mui/material";
 import { useApi } from "../../../../api";
 import { Job } from "../../../../types/models";
 import { useProject } from "../../../../utils";
-import { CCP4i2TaskTree } from "../../../../components/task/task-chooser";
+import { TaskChooser } from "../../../../components/task/task-chooser";
 import { useRouter } from "next/navigation";
 import { usePopcorn } from "../../../../providers/popcorn-provider";
 
@@ -60,7 +60,7 @@ export default function DashboardPage({
   );
 
   return project ? (
-    <CCP4i2TaskTree onTaskSelect={handleTaskSelect} />
+    <TaskChooser onTaskSelect={handleTaskSelect} />
   ) : (
     <CircularProgress variant="indeterminate" />
   );

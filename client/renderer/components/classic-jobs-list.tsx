@@ -430,21 +430,18 @@ export const ClassicJobList: React.FC<ClassicJobListProps> = ({
   const { jobTree, isLoading, mutate: mutateJobTree } = useJobTree(projectId);
 
   // Fetch task tree for shortTitle fallback (SWR deduplicates if already fetched)
-  const { data: taskTreeResult } = api.get<any>(`task_tree/`);
+  const { data: taskLookup } = api.get<any>(`task_lookup/`);
   const taskShortTitles = useMemo(() => {
     const map = new Map<string, string>();
-    const raw = taskTreeResult?.success
-      ? taskTreeResult?.data?.task_tree
-      : taskTreeResult?.task_tree;
-    if (raw?.lookup) {
-      for (const [taskName, meta] of Object.entries<any>(raw.lookup)) {
+    if (taskLookup) {
+      for (const [taskName, meta] of Object.entries<any>(taskLookup)) {
         if (meta?.shortTitle) {
           map.set(taskName, meta.shortTitle);
         }
       }
     }
     return map;
-  }, [taskTreeResult]);
+  }, [taskLookup]);
 
   // Build lookup maps for tree items
   const lookups = useJobTreeLookups(jobTree);

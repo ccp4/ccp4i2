@@ -20,7 +20,7 @@ from ccp4i2.core import CCP4PerformanceData
 from ccp4i2.core import CCP4ErrorHandling
 from ccp4i2.core import CCP4Data
 from ccp4i2.core import CCP4Container
-from ccp4i2.core.tasks import get_task_tree, locate_def_xml
+from ccp4i2.core.tasks import locate_def_xml
 from ccp4i2.db.models import Job, File
 from ccp4i2.db.import_i2xml import import_ccp4_project_zip
 
@@ -104,11 +104,6 @@ class CCP4i2TestCase(TestCase):
         def_etree = container.getEtree()
         # ET.indent(def_etree, " ")
         print(ET.tostring(def_etree).decode("utf-8"))
-
-    def test_get_task_tree(self):
-        result = get_task_tree()
-        self.assertEqual(len(result["lookup"].items()), 135)
-        self.assertEqual(len(result["tree"]), 17)
 
     def test_get_report_job_info(self):
         job = Job.objects.get(project__name="refmac_gamma_test_0", number="1")

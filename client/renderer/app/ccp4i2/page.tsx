@@ -22,7 +22,6 @@ export default function ProjectsPage() {
   const api = useApi();
   // Note: second param is refreshInterval, not timeout. Set to 0 to disable auto-refresh.
   const { data: projects } = api.get<Project[]>("projects");
-  const { data: task_tree } = api.get<any>(`task_tree/`);
 
   return (
     <Box
@@ -44,12 +43,6 @@ export default function ProjectsPage() {
         }}
       >
         <Stack spacing={2} sx={{ flex: 1, overflow: "hidden" }}>
-          {task_tree?.task_tree?.lookup && (
-            <Badge badgeContent={Object.keys(task_tree.task_tree.lookup).length} color="primary">
-              {" "}
-              Tasks available
-            </Badge>
-          )}
           <ProjectsToolbar />
           {projects ? (
             projects.length > 0 ? (

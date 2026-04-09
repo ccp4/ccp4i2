@@ -59,7 +59,6 @@ class ProjectViewSet(ModelViewSet):
         - directory: Retrieves the directory listing of a specific project.
         - project_file: Retrieves a specific file from the project's directory.
         - preview_file: Previews a specific file from the project's directory using a specified viewer.
-        - task_tree: Retrieves the task tree structure (not directly tied to a specific project).
         - create_task: Creates a new task (job) within a specific project.
 
     Attributes:

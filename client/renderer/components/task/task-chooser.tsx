@@ -11,281 +11,436 @@
  *
  * See https://www.ccp4.ac.uk/ccp4license.php for details.
  */
-// filepath: client/renderer/components/task/task-chooser.tsx
+
 import { useCallback, useMemo, useState } from "react";
 import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
   Avatar,
+  Box,
   Card,
   CardContent,
   CardHeader,
   Chip,
-  Collapse,
-  Toolbar,
-  Box,
   Stack,
   Typography,
 } from "@mui/material";
 import SearchField from "../search-field";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useApi } from "../../api";
-import { MyExpandMore } from "../expand-more";
-import { moduleCategoryIconSrc } from "../../lib/icons";
-import { buildTaskTree, DEPRECATED_TASKS, TaskTreeEntry } from "../../lib/task-registry";
 
-interface TaskTree {
-  lookup: any;
-  tree: TaskTreeEntry[];
-}
-interface CCP4i2TaskTreeProps {
-  onTaskSelect?: (taskName: string) => void;
-}
-interface CCP4i2TaskTreeFolderProps {
-  category: [name: string, title: string, taskNames: string[]];
-  searchText: string | null;
-  taskTree: TaskTree;
-  onTaskSelect?: (taskName: string) => void;
-}
-interface CCP4i2TaskCardProps {
-  taskName: string;
-  task: any;
-  onTaskSelect?: (taskName: string) => void;
+interface TaskCategory {
+  icon: string;
+  title: string;
+  tasks: string[];
 }
 
-export const CCP4i2TaskTree: React.FC<CCP4i2TaskTreeProps> = ({
-  onTaskSelect,
-}) => {
+const TASK_CATEGORIES: TaskCategory[] = [
+  {
+    icon: "data_entry",
+    title: "Import merged data, AU contents, alignments or coordinates",
+    tasks: [
+      "import_merged",
+      "ProvideAsuContents",
+      "ProvideSequence",
+      "ProvideAlignment",
+      "AlternativeImportXIA2",
+      "coordinate_selector",
+      "splitMtz",
+      "import_serial_pipe",
+    ],
+  },
+  {
+    icon: "data_processing",
+    title: "Integrate X-ray images",
+    tasks: [
+      "xia2_dials",
+      "xia2_xds",
+      "imosflm",
+      "dials_image",
+      "dials_rlattice",
+      "dui",
+    ],
+  },
+  {
+    icon: "data_reduction",
+    title: "X-ray data reduction and analysis",
+    tasks: [
+      "aimless_pipe",
+      "freerflag",
+      "matthews",
+      "molrep_selfrot",
+      "AUSPEX",
+      "xia2_multiplex",
+      "xia2_ssx_reduce",
+    ],
+  },
+  {
+    icon: "dr_mr_modelbuild_pipeline",
+    title: "Data to complete structure solution including ligand fitting",
+    tasks: ["SubstituteLigand", "dr_mr_modelbuild_pipeline"],
+  },
+  {
+    icon: "alpha_fold",
+    title: "AlphaFold and RoseTTAFold Utilities",
+    tasks: [
+      "ccp4mg_edit_model",
+      "mrparse",
+      "editbfac",
+      "arcimboldo",
+      "slicendice",
+    ],
+  },
+  {
+    icon: "expt_phasing",
+    title: "Experimental phasing",
+    tasks: ["crank2", "shelx", "phaser_EP"],
+  },
+  {
+    icon: "bioinformatics",
+    title:
+      "Bioinformatics including model preparation for Molecular Replacement",
+    tasks: [
+      "ccp4mg_edit_model",
+      "ccp4mg_edit_nomrbump",
+      "chainsaw",
+      "sculptor",
+      "phaser_ensembler",
+      "clustalw",
+      "findmyseq",
+      "mrparse",
+    ],
+  },
+  {
+    icon: "molecular_replacement",
+    title: "Molecular Replacement",
+    tasks: [
+      "mrbump_basic",
+      "phaser_simple",
+      "phaser_pipeline",
+      "molrep_pipe",
+      "csymmatch",
+      "AMPLE",
+      "SIMBAD",
+      "arcimboldo",
+      "comit",
+      "i2Dimple",
+      "morda_i2",
+      "phaser_singleMR",
+    ],
+  },
+  {
+    icon: "density_modification",
+    title: "Density modification",
+    tasks: ["acorn", "parrot"],
+  },
+  {
+    icon: "model_building",
+    title: "Model building and Graphics",
+    tasks: [
+      "modelcraft",
+      "coot_rebuild",
+      "coot_script_lines",
+      "coot_find_waters",
+      "arp_warp_classic",
+      "shelxeMR",
+      "dr_mr_modelbuild_pipeline",
+      "ccp4mg_general",
+      "coot1",
+      "nucleofind",
+    ],
+  },
+  {
+    icon: "refinement",
+    title: "Refinement",
+    tasks: [
+      "servalcat_pipe",
+      "prosmart_refmac",
+      "ProvideTLS",
+      "SubtractNative",
+      "buster",
+      "coot_rsr_morph",
+      "lorestr_i2",
+      "metalCoord",
+      "pairef",
+      "pdb_redo_api",
+      "sheetbend",
+      "zanuda",
+      "phaser_rnp_pipeline",
+    ],
+  },
+  {
+    icon: "ligands",
+    title: "Ligands",
+    tasks: ["LidiaAcedrgNew", "MakeLink", "SubstituteLigand"],
+  },
+  {
+    icon: "validation",
+    title: "Validation and analysis",
+    tasks: ["validate_protein", "edstats", "privateer", "qtpisa"],
+  },
+  {
+    icon: "export",
+    title: "Export and Deposition",
+    tasks: ["adding_stats_to_mmcif_i2", "mergeMtz"],
+  },
+  {
+    icon: "expt_data_utility",
+    title: "Reflection data tools",
+    tasks: [
+      "pointless_reindexToMatch",
+      "phaser_EP_LLG",
+      "cmapcoeff",
+      "chltofom",
+      "cphasematch",
+      "ctruncate",
+      "scaleit",
+      "cpatterson",
+      "density_calculator",
+      "freerflag",
+      "matthews",
+    ],
+  },
+  {
+    icon: "model_data_utility",
+    title: "Coordinate data tools",
+    tasks: [
+      "csymmatch",
+      "gesamt",
+      "coordinate_selector",
+      "add_fractional_coords",
+      "areaimol",
+      "editbfac",
+      "modelASUCheck",
+      "pdbset_ui",
+      "pdbview_edit",
+    ],
+  },
+];
+
+const DEPRECATED_TASKS: Record<string, string> = {
+  PrepareDeposit: "Superseded by adding_stats_to_mmcif_i2 — do not use",
+};
+
+interface TaskInfo {
+  TASKTITLE?: string;
+  DESCRIPTION?: string;
+  shortTitle?: string;
+  isAutogenerated: boolean;
+}
+
+type TaskLookup = Record<string, TaskInfo>;
+
+function uncategorisedCategory(lookup: TaskLookup): TaskCategory {
+  const assigned = new Set<string>();
+  TASK_CATEGORIES.forEach((category) => {
+    category.tasks.forEach((task) => assigned.add(task));
+  });
+  return {
+    icon: "ccp4i2",
+    title: "Uncategorised (for developer use only)",
+    tasks: Object.keys(lookup)
+      .filter((t) => !assigned.has(t))
+      .sort((a, b) => {
+        const titleA = (lookup[a]?.TASKTITLE ?? a).toLowerCase();
+        const titleB = (lookup[b]?.TASKTITLE ?? b).toLowerCase();
+        return titleA.localeCompare(titleB);
+      }),
+  };
+}
+
+export function TaskChooser(props: {
+  onTaskSelect: (taskName: string) => void;
+}) {
   const api = useApi();
-  const [searchText, setSearchText] = useState<string | null>(null);
-  const { data: taskTreeResult } = api.get<any>(`task_tree/`);
-
-  // The server provides a flat lookup of task metadata.
-  // Categories and ordering are defined client-side in task-registry.ts.
-  const taskTree = useMemo<TaskTree | undefined>(() => {
-    const raw = taskTreeResult?.success
-      ? taskTreeResult?.data?.task_tree
-      : taskTreeResult?.task_tree;
-    if (!raw?.lookup) return undefined;
-    return { lookup: raw.lookup, tree: buildTaskTree(raw.lookup) };
-  }, [taskTreeResult]);
+  const [searchText, setSearchText] = useState<string>("");
+  const { data: taskLookup } = api.get<TaskLookup>(`task_lookup/`);
 
   return (
-    <Stack sx={{ height: "100%", overflow: "hidden" }}>
-      <Stack
-        direction="row"
-        alignItems="center"
-        spacing={2}
-        sx={{ p:2 }}
-      >
-        {taskTree?.lookup && (
-          <Typography>
-            Tasks&nbsp;({Object.keys(taskTree?.lookup).length})
-          </Typography>
+    <Stack>
+      <Stack direction="row" alignItems="center" spacing={2} sx={{ p: 2 }}>
+        {taskLookup && (
+          <Typography>Tasks&nbsp;({Object.keys(taskLookup).length})</Typography>
         )}
         <SearchField
-          value={searchText ?? ""}
+          value={searchText}
           onChange={setSearchText}
           placeholder="Search tasks..."
           size="small"
         />
       </Stack>
-      <Box sx={{ flex: "auto", overflowY: "auto", p: 1, scrollbarWidth: "thin" }}>
-        {taskTree?.tree?.map(
-          (
-            category: [name: string, title: string, taskNames: string[]],
-            iCategory: number
-          ) => (
-            <CCP4i2TaskTreeFolder
-              key={`${iCategory}`}
-              {...{ category, taskTree, searchText, onTaskSelect }}
+      <Box
+        sx={{ flex: "auto", overflowY: "auto", p: 1, scrollbarWidth: "thin" }}
+      >
+        {taskLookup &&
+          (searchText.trim().length > 0 ? (
+            <FilteredTaskList
+              taskLookup={taskLookup}
+              searchText={searchText}
+              onTaskSelect={props.onTaskSelect}
             />
-          )
-        )}
+          ) : (
+            <TaskTree
+              taskLookup={taskLookup}
+              onTaskSelect={props.onTaskSelect}
+            />
+          ))}
       </Box>
     </Stack>
   );
-};
+}
 
-const CCP4i2TaskTreeFolder: React.FC<CCP4i2TaskTreeFolderProps> = ({
-  category,
-  searchText,
-  taskTree,
-  onTaskSelect,
-}) => {
-  const [tasksExpanded, setTasksExpanded] = useState<boolean>(false);
-
-  const filterFunc = useCallback(
-    (taskName: string) => {
-      if (searchText == null || searchText.trim().length == 0) return true;
-      if (!taskTree?.lookup) return false;
-      if (!Object.keys(taskTree?.lookup).includes(taskName)) return false;
-      const task = taskTree.lookup[taskName];
-      if (!task) return false;
-      return (
-        task?.TASKTITLE?.toUpperCase().includes(
-          searchText.toUpperCase()
-        ) ||
-        taskName
-          .toUpperCase()
-          .includes(searchText.toUpperCase()) ||
-        task?.DESCRIPTION?.toUpperCase().includes(
-          searchText.toUpperCase()
-        )
-      );
-    },
-    [taskTree, searchText]
-  );
-
+function FilteredTaskList(props: {
+  taskLookup: TaskLookup;
+  searchText: string;
+  onTaskSelect: (taskName: string) => void;
+}) {
   const filteredTasks = useMemo(() => {
-    if (!category || !taskTree) return [];
-    if (!searchText || searchText.trim().length == 0) return category[2];
-    return category[2].filter(filterFunc);
-  }, [searchText, taskTree, category]);
+    return Object.keys(props.taskLookup).filter((name) => {
+      const searchText = props.searchText.toUpperCase();
+      if (name.toUpperCase().includes(searchText)) return true;
+      const info = props.taskLookup[name];
+      return (
+        info.TASKTITLE?.toUpperCase().includes(searchText) ||
+        info.DESCRIPTION?.toUpperCase().includes(searchText)
+      );
+    });
+  }, [props.searchText, props.taskLookup]);
 
-  const searchActive = useMemo(() => {
-    return searchText != null && searchText.trim().length > 0;
-  }, [searchText]);
+  return (
+    <TaskCards
+      taskLookup={props.taskLookup}
+      taskNames={filteredTasks}
+      onTaskSelect={props.onTaskSelect}
+    />
+  );
+}
 
-  return filteredTasks && filteredTasks.length > 0 ? (
-    <Card
-      key={category[0]}
-      onClick={(ev) => {
-        ev.stopPropagation();
-        setTasksExpanded(!tasksExpanded);
-      }}
+function TaskTree(props: {
+  taskLookup: TaskLookup;
+  onTaskSelect: (taskName: string) => void;
+}) {
+  const uncategorised = useMemo(() => {
+    return uncategorisedCategory(props.taskLookup);
+  }, [props.taskLookup]);
+
+  return (
+    <>
+      {TASK_CATEGORIES.map((category, index) => (
+        <TaskTreeFolder
+          key={index}
+          category={category}
+          taskLookup={props.taskLookup}
+          onTaskSelect={props.onTaskSelect}
+        />
+      ))}
+      <TaskTreeFolder
+        category={uncategorised}
+        taskLookup={props.taskLookup}
+        onTaskSelect={props.onTaskSelect}
+      />
+    </>
+  );
+}
+
+function TaskTreeFolder(props: {
+  category: TaskCategory;
+  taskLookup: TaskLookup;
+  onTaskSelect: (taskName: string) => void;
+}) {
+  return (
+    <Accordion disableGutters>
+      <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+        <Stack direction="row" alignItems="center" spacing={2}>
+          <Avatar src={`/svgicons/${props.category.icon}.svg`} alt="" />
+          <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+            {props.category.title}
+          </Typography>
+        </Stack>
+      </AccordionSummary>
+      <AccordionDetails>
+        <TaskCards
+          taskLookup={props.taskLookup}
+          taskNames={props.category.tasks}
+          onTaskSelect={props.onTaskSelect}
+        />
+      </AccordionDetails>
+    </Accordion>
+  );
+}
+
+function TaskCards(props: {
+  taskLookup: TaskLookup;
+  taskNames: string[];
+  onTaskSelect: (taskName: string) => void;
+}) {
+  return (
+    <Box
       sx={{
-        mb: 1,
-        ":hover": { boxShadow: 4 },
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(min(280px, 100%), 1fr))",
+        gap: 2,
+        p: 1,
       }}
     >
-      <CardHeader
-        slotProps={{
-          title: { variant: "body2", my: 0, py: 0 },
-          subheader: { variant: "caption", my: 0, py: 0 },
-        }}
-        sx={{
-          py: 1,
-          "& .MuiCardHeader-action": { alignSelf: "center", margin: 0 },
-        }}
-        avatar={
-          <Avatar
-            src={moduleCategoryIconSrc(category[0])}
-            alt="ccp4i2"
-          />
-        }
-        title={category[1]}
-        subheader={null}
-        action={
-          <MyExpandMore
-            expand={tasksExpanded}
-            onClick={(ev) => {
-              ev.stopPropagation();
-              setTasksExpanded(!tasksExpanded);
-            }}
-            aria-expanded={tasksExpanded}
-            aria-label="Show subjobs"
-          >
-            <ExpandMoreIcon />
-          </MyExpandMore>
-        }
-      />
-      {(tasksExpanded || searchActive) && (
-        <CardContent sx={{ py: 1 }}>
-          <Collapse
-            in={tasksExpanded || searchActive}
-            timeout="auto"
-            unmountOnExit
-          >
-            <Box
-              sx={{
-                display: "grid",
-                // 4 cards per row on wide screens, falling back to 3, 2, 1
-                gridTemplateColumns:
-                  "repeat(auto-fill, minmax(min(280px, 100%), 1fr))",
-                gap: 2,
-                p: 1,
-              }}
-            >
-              {filteredTasks.map(
-                (taskName: string) =>
-                  Object.keys(taskTree.lookup).includes(taskName) && (
-                    <CCP4i2TaskCard
-                      key={taskName}
-                      taskName={taskName}
-                      task={taskTree.lookup[taskName]}
-                      onTaskSelect={onTaskSelect}
-                    />
-                  )
-              )}
-            </Box>
-          </Collapse>
-        </CardContent>
+      {props.taskNames.map(
+        (taskName: string) =>
+          Object.keys(props.taskLookup).includes(taskName) && (
+            <TaskCard
+              key={taskName}
+              taskName={taskName}
+              task={props.taskLookup[taskName]}
+              onTaskSelect={props.onTaskSelect}
+            />
+          ),
       )}
-    </Card>
-  ) : null;  // Don't render empty folders when filtering
-};
+    </Box>
+  );
+}
 
-const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({
-  taskName,
-  task,
-  onTaskSelect,
-}) => {
+function TaskCard(props: {
+  taskName: string;
+  task: any;
+  onTaskSelect: (taskName: string) => void;
+}) {
   const handleTaskSelect = useCallback(() => {
-    if (task && onTaskSelect) {
-      onTaskSelect(taskName);
+    if (props.task && props.onTaskSelect) {
+      props.onTaskSelect(props.taskName);
     }
-  }, [task, onTaskSelect]);
-
-  //useEffect(() => { console.log(task) }, [])
+  }, [props.task, props.onTaskSelect]);
   return (
     <Card
-      sx={(theme) => ({
+      sx={{
         minHeight: "14rem",
-        maxHeight: "24rem",
-        overflowY: "auto",
-        ":hover": { boxShadow: 24 },
         minWidth: "280px",
-        // Theme-aware scrollbar styling
-        scrollbarColor: `${theme.palette.action.disabled} transparent`,
-        scrollbarWidth: "thin",
-        "&::-webkit-scrollbar": {
-          width: "8px",
-        },
-        "&::-webkit-scrollbar-track": {
-          background: "transparent",
-        },
-        "&::-webkit-scrollbar-thumb": {
-          backgroundColor: theme.palette.action.disabled,
-          borderRadius: "4px",
-          "&:hover": {
-            backgroundColor: theme.palette.action.active,
-          },
-        },
-      })}
+        ":hover": { boxShadow: 24, cursor: "pointer" },
+      }}
       onClick={handleTaskSelect}
     >
       <CardHeader
         slotProps={{ title: { variant: "button", my: 0, py: 0 } }}
         title={
           <>
-            <Avatar src={`/svgicons/${taskName}.svg`} alt={taskName}>
-              {taskName?.[0]?.toUpperCase()}
+            <Avatar src={`/svgicons/${props.taskName}.svg`} alt="">
+              {props.taskName?.[0]?.toUpperCase()}
             </Avatar>
-            {task.shortTitle || task.TASKTITLE || taskName}
+            {props.task.shortTitle || props.task.TASKTITLE || props.taskName}
           </>
         }
-        subheader={task.TASKTITLE || taskName}
+        subheader={props.task.TASKTITLE || props.taskName}
       />
       <CardContent>
-        {DEPRECATED_TASKS[taskName] && (
+        {DEPRECATED_TASKS[props.taskName] && (
           <Chip
-            label={DEPRECATED_TASKS[taskName]}
+            label={DEPRECATED_TASKS[props.taskName]}
             size="small"
             color="error"
             variant="filled"
             sx={{ mb: 1, fontSize: "0.7rem" }}
           />
         )}
-        {task.isAutogenerated && (
+        {props.task.isAutogenerated && (
           <Chip
             label="Auto-generated Interface"
             size="small"
@@ -294,8 +449,8 @@ const CCP4i2TaskCard: React.FC<CCP4i2TaskCardProps> = ({
             sx={{ mb: 1, fontSize: "0.7rem" }}
           />
         )}
-        <p>{`${task.DESCRIPTION || ""}`}</p>
+        <p>{`${props.task.DESCRIPTION || ""}`}</p>
       </CardContent>
     </Card>
   );
-};
+}
