@@ -408,8 +408,6 @@ if [ "$BUILD_WEB" = true ]; then
           --image ccp4i2/web:latest \
           --file Docker/client/Dockerfile \
           --platform linux/amd64 \
-          --build-arg NEXT_PUBLIC_AAD_CLIENT_ID=${NEXT_PUBLIC_AAD_CLIENT_ID:-""} \
-          --build-arg NEXT_PUBLIC_AAD_TENANT_ID=${NEXT_PUBLIC_AAD_TENANT_ID:-""} \
           --build-arg NEXT_PUBLIC_REQUIRE_AUTH=${NEXT_PUBLIC_REQUIRE_AUTH:-"false"} \
           "$CONTEXT_URL"
 

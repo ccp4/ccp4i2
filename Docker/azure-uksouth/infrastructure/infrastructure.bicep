@@ -156,10 +156,6 @@ resource privateDnsZonePostgres 'Microsoft.Network/privateDnsZones@2020-06-01' =
   location: 'global'
 }
 
-resource privateDnsZoneServiceBus 'Microsoft.Network/privateDnsZones@2020-06-01' = {
-  name: 'privatelink.servicebus.windows.net'
-  location: 'global'
-}
 
 // Link Private DNS Zones to VNet
 resource privateDnsZoneStorageLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
@@ -222,30 +218,18 @@ resource privateDnsZonePostgresLink 'Microsoft.Network/privateDnsZones/virtualNe
   }
 }
 
-resource privateDnsZoneServiceBusLink 'Microsoft.Network/privateDnsZones/virtualNetworkLinks@2020-06-01' = {
-  name: 'servicebus-link'
-  parent: privateDnsZoneServiceBus
-  location: 'global'
-  properties: {
-    registrationEnabled: false
-    virtualNetwork: {
-      id: vnet.id
-    }
-  }
-}
 
 // Service Bus Namespace (integrated - previously required separate deployment)
 resource serviceBusNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
   name: serviceBusName
   location: location
   sku: {
-    name: 'Premium'
-    tier: 'Premium'
+    name: 'Standard'
+    tier: 'Standard'
   }
   properties: {
-    zoneRedundant: false
     minimumTlsVersion: '1.2'
-    publicNetworkAccess: 'Disabled'  // Use private endpoints for security
+    publicNetworkAccess: 'Enabled'  // Standard tier: SAS key auth, no private endpoints
   }
 }
 
@@ -652,39 +636,6 @@ resource postgresPrivateDnsZoneGroup 'Microsoft.Network/privateEndpoints/private
   }
 }
 
-resource serviceBusPrivateEndpoint 'Microsoft.Network/privateEndpoints@2023-05-01' = {
-  name: '${resourceSuffix}-servicebus-pe'
-  location: location
-  properties: {
-    subnet: {
-      id: '${vnet.id}/subnets/private-endpoints-subnet'
-    }
-    privateLinkServiceConnections: [
-      {
-        name: 'servicebus-connection'
-        properties: {
-          privateLinkServiceId: serviceBusNamespace.id
-          groupIds: ['namespace']
-        }
-      }
-    ]
-  }
-}
-
-resource serviceBusPrivateDnsZoneGroup 'Microsoft.Network/privateEndpoints/privateDnsZoneGroups@2023-05-01' = {
-  name: 'servicebus-dns-zone-group'
-  parent: serviceBusPrivateEndpoint
-  properties: {
-    privateDnsZoneConfigs: [
-      {
-        name: 'servicebus-config'
-        properties: {
-          privateDnsZoneId: privateDnsZoneServiceBus.id
-        }
-      }
-    ]
-  }
-}
 
 // Container Apps Environment
 resource containerAppsEnvironment 'Microsoft.App/managedEnvironments@2023-05-01' = {
