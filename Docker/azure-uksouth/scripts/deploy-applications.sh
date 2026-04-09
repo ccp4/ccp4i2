@@ -219,6 +219,7 @@ az deployment group create \
                ccp4Version="${CCP4_VERSION:-ccp4-20251105}" \
                storageAccountName="$STORAGE_ACCOUNT_NAME" \
                platformAdminEmails="${PLATFORM_ADMIN_EMAILS:-}" \
+               allowedAzureAdGroups="${ALLOWED_AZURE_AD_GROUPS:-}" \
                skipCcp4Storage=$SKIP_CCP4_STORAGE \
                customDomain="${CUSTOM_DOMAIN:-}" \
   --name $APP_DEPLOYMENT_NAME \

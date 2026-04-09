@@ -37,6 +37,9 @@ param aadTenantId string = '9c5012c9-b616-44c2-a917-66814fbe3e87'
 @description('Bootstrap platform admin emails (comma-separated)')
 param platformAdminEmails string = ''
 
+@description('Comma-separated Azure AD group IDs that are allowed to access the application. Leave empty to skip group-based authorization.')
+param allowedAzureAdGroups string = ''
+
 @description('Shared Container Apps Identity ID')
 param containerAppsIdentityId string
 
@@ -321,6 +324,10 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'PLATFORM_ADMIN_EMAILS'
               value: platformAdminEmails
+            }
+            {
+              name: 'ALLOWED_AZURE_AD_GROUPS'
+              value: allowedAzureAdGroups
             }
             // Azure Storage for staged uploads (large file uploads via SAS URL)
             {

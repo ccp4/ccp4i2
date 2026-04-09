@@ -50,7 +50,14 @@ resource vnet 'Microsoft.Network/virtualNetworks@2023-05-01' = {
         name: 'container-apps-subnet'
         properties: {
           addressPrefix: containerAppsSubnetAddressPrefix
-          // Delegation will be automatically added by Container Apps environment
+          delegations: [
+            {
+              name: 'Microsoft.App.environments'
+              properties: {
+                serviceName: 'Microsoft.App/environments'
+              }
+            }
+          ]
         }
       }
       {
