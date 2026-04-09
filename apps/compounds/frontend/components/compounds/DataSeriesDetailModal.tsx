@@ -189,14 +189,18 @@ function extractDoseResponseData(series: DataSeriesItem): DoseResponseData | nul
   const concentrations = series.dilution_series.concentrations;
   let responses = series.extracted_data;
   const unit = series.dilution_series.unit || 'nM';
+  let minControlResponse: number | null = null;
+  let maxControlResponse: number | null = null;
 
   // Detect format: if extracted_data has 2 more elements than concentrations,
   // it has embedded controls at first and last positions
   if (responses.length === concentrations.length + 2) {
+    minControlResponse = responses[0] ?? null;
+    maxControlResponse = responses[responses.length - 1] ?? null;
     responses = responses.slice(1, -1);
   }
 
-  return { concentrations, responses, unit };
+  return { concentrations, responses, unit, minControlResponse, maxControlResponse };
 }
 
 /**

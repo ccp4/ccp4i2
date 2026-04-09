@@ -98,6 +98,10 @@ export interface DoseResponseData {
   concentrations: number[];
   responses: number[];
   unit?: string;
+  /** Observed low-signal (min) control response value */
+  minControlResponse?: number | null;
+  /** Observed high-signal (max) control response value */
+  maxControlResponse?: number | null;
 }
 
 export interface FitParameters {
@@ -287,7 +291,9 @@ export function DoseResponseChart({
     return { datasets };
   }, [data, fit, skipPoints, colors]);
 
-  // Calculate y-axis bounds from both data points AND fitted asymptotes
+  // Calculate y-axis bounds from data points, fitted asymptotes, AND control values.
+  // Including controls ensures that flat/inactive data looks flat in the plot
+  // rather than being visually exaggerated by a poor fit's narrow range.
   const yAxisBounds = useMemo(() => {
     const { responses } = data;
     const validResponses = responses.filter(r => r !== undefined && r !== null) as number[];
@@ -305,6 +311,16 @@ export function DoseResponseChart({
     }
     if (fit?.maxVal != null && typeof fit.maxVal === 'number') {
       yMax = Math.max(yMax, fit.maxVal);
+    }
+
+    // Include observed control values so the axis reflects the full assay range
+    if (data.minControlResponse != null) {
+      yMin = Math.min(yMin, data.minControlResponse);
+      yMax = Math.max(yMax, data.minControlResponse);
+    }
+    if (data.maxControlResponse != null) {
+      yMin = Math.min(yMin, data.maxControlResponse);
+      yMax = Math.max(yMax, data.maxControlResponse);
     }
 
     // Add 5% padding for visual clarity
@@ -783,7 +799,8 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
     return { datasets };
   }, [data, fit, colors]);
 
-  // Calculate axis bounds from data AND fitted asymptotes
+  // Calculate axis bounds from data, fitted asymptotes, AND control values.
+  // Including controls ensures flat/inactive data looks flat in the thumbnail.
   const axisBounds = useMemo(() => {
     const { concentrations, responses } = data;
     const validConcs = concentrations.filter(c => c > 0);
@@ -798,6 +815,16 @@ export function DoseResponseThumb({ data, fit, size = 120 }: DoseResponseThumbPr
     }
     if (fit?.maxVal != null && typeof fit.maxVal === 'number') {
       yMax = Math.max(yMax, fit.maxVal);
+    }
+
+    // Include observed control values so the axis reflects the full assay range
+    if (data.minControlResponse != null) {
+      yMin = Math.min(yMin, data.minControlResponse);
+      yMax = Math.max(yMax, data.minControlResponse);
+    }
+    if (data.maxControlResponse != null) {
+      yMin = Math.min(yMin, data.maxControlResponse);
+      yMax = Math.max(yMax, data.maxControlResponse);
     }
 
     // Add 5% padding

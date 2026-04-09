@@ -244,14 +244,18 @@ export default function AssayDetailPage({ params }: PageProps) {
     const concentrations = row.dilution_series.concentrations;
     let responses = Array.isArray(row.extracted_data) ? row.extracted_data : [];
     const unit = row.dilution_series.unit || 'nM';
+    let minControlResponse: number | null = null;
+    let maxControlResponse: number | null = null;
 
     // Detect format: if extracted_data has 2 more elements than concentrations,
     // it has embedded controls at first and last positions
     if (responses.length === concentrations.length + 2) {
+      minControlResponse = responses[0] ?? null;
+      maxControlResponse = responses[responses.length - 1] ?? null;
       responses = responses.slice(1, -1);
     }
 
-    return { concentrations, responses, unit };
+    return { concentrations, responses, unit, minControlResponse, maxControlResponse };
   };
 
   // Check if this is a table_of_values assay
