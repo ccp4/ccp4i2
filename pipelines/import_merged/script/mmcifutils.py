@@ -296,7 +296,7 @@ class CifBlockInfo:
         return self.hklstatus.standardasu
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def ismerged(self):
-        return self.hklstatus.merged
+        return not self.unmerged
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     def nrefunique(self):
         # Number of unique reflections

@@ -30,7 +30,7 @@ class density_calculator(CPluginScript):
     TASKVERSION = 0.1
     MAINTAINER = "paul.bond@york.ac.uk"
     RUNEXTERNALPROCESS = False
-    WHATNEXT = ["coot_rebuild"]
+    WHATNEXT = ["coot_rebuild",'coot1']
 
     def startProcess(self, command=None, handler=None, **kw):
         xyzin = os.path.join(self.getWorkDirectory(), "xyzin.xyz")

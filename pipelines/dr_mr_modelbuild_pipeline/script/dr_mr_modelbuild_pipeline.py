@@ -689,7 +689,6 @@ class dr_mr_modelbuild_pipeline(CPluginScript):
         fphiinList.append(fphiinList.makeItem())
         fphiinList[-1].set(self.mapToUse)
         self.cootPlugin.container.inputData.DICT.set(self.dictToUse)
-        #coot_stepped_refine,coot_fit_residues,coot_script_lines
         self.cootPlugin.container.controlParameters.SCRIPT.set('''#Script to fit ligand into density
 monomerMolNo = get_monomer('DRG')
 add_ligand_clear_ligands()

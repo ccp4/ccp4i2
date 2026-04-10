@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 """
      CCP4ProjectsManager.py: CCP4 GUI Project
      Copyright (C) 2010 University of York
@@ -25,6 +23,7 @@ from __future__ import print_function
 
 # NB  load methods from ccp4mg and inconsistent with data types in the init
 
+import copy
 import os
 import re
 import sys
@@ -243,11 +242,6 @@ class CProjectsManager(CObject):
             pid = self._db.getProjectId(projectName=projectName)
         except:
             return 1  # project name not recognised
-        '''
-        # This is probably not appropriate here
-        userName = CCP4Utils.getUserId()
-        self._db.getProjectPermission(projectId=pid,userName=userName)
-        '''
         info = self._db.getProjectInfo(projectId=pid)
         if not os.path.exists(info['projectdirectory']):
             return 2 # Project directory not found
@@ -552,75 +546,6 @@ class CProjectsManager(CObject):
             print('PROJECTSMANAGER restore errrors:\n', errorReport.report())
         return errorReport
 
-    '''
-    def saveTaskToDb(self,taskName=None,saveData=None,controlFile=None,projectId=None):
-        # This saves the task gui parameters to a params.xml file and regisiters this as a job with the db
-        # taskName is name of task
-        # saveData is method that writes a control parameters to given file name (CTaskViewer.saveData)
-
-        jobId,projectName,jobNumber = self.newJob(taskName=taskName,projectId=projectId)
-        e = None
-        if controlFile is None:
-          try:
-            controlFile = self.makeFileName(jobId=jobId,mode='PARAMS')
-            print 'TaskViewer.saveTask',controlFile
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-            controlFile = self.makeFileName(jobId=jobId,mode='JOB_INPUT')
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-          except CErrorReport as e:
-            e.append(self.__class__,118)
-          except:
-            e = CErrorReport()
-            e.append(self.__class__,118)
-
-        if e is not None:
-          e.warningMessage()
-          return
-
-        import CCP4DbApi
-        self.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_FINISHED)
-    '''
-
-    '''
-      def runTask(self,jobId=None,taskName=None,saveData=None,controlFile=None,projectId=None):
-        # taskName is name of task
-        # saveData is method that writes a control parameters to given file name (CTaskViewer.saveData)
-
-        if jobId is None:
-          # Need to create new job in database
-          jobId,projectName,jobNumber = self.newJob(taskName=taskName,projectId=projectId)
-          jobInfo = { 'taskname' : taskName,
-                      'projectname' : projectName,
-                      'jobnumber' : jobNumber }
-        else:
-          jobInfo =  self._db.getJobInfo(jobId=jobId,mode=['taskname','jobnumber','projectname'])
-          taskName = jobInfo['taskname']
-          projectName = jobInfo['projectname']
-          jobNumber = jobInfo['jobnumber']
-
-        e = None
-        if controlFile is None:
-          #try:
-            controlFile = self.makeFileName(jobId=jobId,mode='JOB_INPUT',jobInfo=jobInfo)
-            print 'TaskViewer.runTask',controlFile
-        if saveData is not None:
-            saveData(fileName=controlFile,projectName=projectName,jobNumber=jobNumber)
-          #except CErrorReport as e:
-          #  e.append(self.__class__,118)
-          #except:
-          #  e = CErrorReport()
-          #  e.append(self.__class__,118)
-
-        if e is not None:
-          e.warningMessage()
-          return
-
-        # Update control file path in db and set status to queue the job
-        #self.updateJobControlFile(jobId=jobId,controlFile=controlFile)
-        import CCP4DbApi
-        self.updateJobStatus(jobId=jobId,status=CCP4DbApi.JOB_STATUS_QUEUED)
-    '''
-
     def newJob(self, taskName=None, jobTitle=None, projectId=None, jobNumber=None):
         #if jobTitle is None:
         #  import CCP4TaskManager
@@ -704,17 +629,6 @@ class CProjectsManager(CObject):
                     if os.path.exists(os.path.join(copyJobDir, name)):
                         shutil.move(os.path.join(copyJobDir, name), os.path.join(jobDir, name))
                         break
-                '''
-                if parFile is not None:
-                  from core import CCP4File
-                  fileObj = CCP4File.CI2XmlDataFile(fullPath=os.path.join(copyJobDir,name))
-                  fileObj.header.comment = 'Original '+fileObj.header.pluginName.__str__()+' task deleted but imported files saved'
-                  fileObj.header.pluginName = 'import_files'
-                  fileObj.header.pluginVersion.unSet()
-                  bodyEtree = fileObj.getBodyEtree()
-                  fileObj.setFullPath(os.path.join(jobDir,'params.xml'))
-                  fileObj.saveFile(bodyEtree=bodyEtree)
-                '''
                 try:
                     shutil.rmtree(copyJobDir)
                 except:
@@ -921,13 +835,6 @@ class CProjectsManager(CObject):
                 dobj = container.outputData.find(objectName)
                 #print 'setOutputData get',objectName,dobj.get(),dobj.isSet()
                 if isinstance(dobj,CCP4File.CDataFile) and (force or not dobj.isSet()):
-                    '''
-                    nameFromFileKey = dobj.qualifiers('nameFromFileKey')
-                    if nameFromFileKey is not None and container.find(nameFromFileKey) is not None:
-                        sourceObj =  container.find(nameFromFileKey)
-                        baseName = jobName + os.path.splitext(sourceObj.baseName.get())[0]
-                    else:
-                  '''
                     dobj.setOutputPath(jobName=jobName, projectId=projectId, relPath=relPath)
             except:
                 myErrorReport.append(self.__class__, 152, objectName)
@@ -950,8 +857,8 @@ class CProjectsManager(CObject):
         container.loadDataFromXml(filename)
         return container
 
-    def importFilePath(self, jobId=None, projectId=None, baseName=None, fileExtensions=None,
-                       use_CCP4_IMPORTED_FILES=True, importNumber=1, newFile=True, importId=None):
+    def importFilePath(self, projectId=None, baseName=None, fileExtensions=None, newFile=True, importId=None):
+        importNumber = 1
         # Get the file baseName from the sourcefilename saved in the import table
         if baseName is None and importId is not None:
             importInfo = self.db().getImportFileInfo(importId=importId, mode=['sourcefilename', 'importnumber'])
@@ -965,185 +872,147 @@ class CProjectsManager(CObject):
             base, ext = os.path.splitext(baseName)
             if not ext[1:] in fileExtensions:
                 baseName = base + '.' + fileExtensions[0]
-        if not use_CCP4_IMPORTED_FILES:
-            jobDir = self.db().jobDirectory(jobId=jobId)
-            filePath = os.path.join(jobDir,baseName)
-        else:
-            filePath = os.path.join(self.db().getProjectDirectory(projectId=projectId), 'CCP4_IMPORTED_FILES', baseName)
-            root,ext = os.path.splitext(filePath)
-            root = root + '_'
+        filePath = os.path.join(self.db().getProjectDirectory(projectId=projectId), 'CCP4_IMPORTED_FILES', baseName)
+        root,ext = os.path.splitext(filePath)
+        root = root + '_'
+        filePath = root + str(importNumber) + ext
+        if not newFile:
+            return filePath, importNumber
+        while os.path.exists(filePath):
+            importNumber += 1
             filePath = root + str(importNumber) + ext
-            if not newFile:
-                return filePath, importNumber
-            else:
-                while os.path.exists(filePath):
-                    importNumber += 1
-                    filePath = root + str(importNumber) + ext
-        #print 'PROJECTSMANAGER.importFilePath filePath',jobId,'projectId',projectId,use_CCP4_IMPORTED_FILES,filePath
         return filePath, importNumber
 
-    def alreadyImportedId(self, sourceFileName=None, projectId=None, contentFlag=None, sourceFileReference=None, fileType=None):
-        # is there already an imported file with same sourceFileName and same checksum?
-        # Return the matching importId OR the checksum for sourceFileName neded to create new import record
-        importList=self.db().getImportedFile(sourceFileName=sourceFileName, projectId=projectId, fileContent=contentFlag,
-                                             reference=sourceFileReference, fileType=fileType)
+    def alreadyImportedId(self, sourceFileName, projectId, contentFlag=None, sourceFileReference=None, fileType=None):
+        # Is there already an imported file with same checksum?
+        fileObj = CCP4File.CDataFile(fullPath=sourceFileName)
+        sourceChecksum = fileObj.checksum()
+        importList = self.db().getImportedFile(sourceChecksum, projectId, fileContent=contentFlag,
+                                               reference=sourceFileReference, fileType=fileType)
         if len(importList) == 0:
-            importId = None
-            checksum = None
-            dbFileId = None
-            annotation = None
-        else:
-            checksum = importList[0][2]
-            dbFileId = importList[0][1]
-            importId = importList[0][0]
-            annotation = importList[0][3]
-        sourceChecksum = None
-        if dbFileId is None or checksum is not None:
-            try:
-                fileObj = CCP4File.CDataFile(fullPath=sourceFileName)
-                sourceChecksum = fileObj.checksum()
-                # If checksums dont match cancel the importId
-                if checksum is not None and sourceChecksum != checksum:
-                    dbFileId = None
-                    importId = None
-            except:
-                pass
-        #print 'CProjectmaanger.alreadyImportedId',sourceFileName,dbFileId,checksum,sourceChecksum
-        return dbFileId, importId, sourceChecksum, annotation
+            return None, None, None
+        importId = importList[0][0]
+        dbFileId = importList[0][1]
+        annotation = importList[0][3]
+        return dbFileId, importId, annotation
 
-    def importFiles(self, jobId=None, container=None, projectId=None):
-        #print 'PROJECTSMANAGER.importFiles',jobId,repr(container),projectId
-        import copy
+    def importFiles(self, jobId=None, container=None):
+        print('PROJECTSMANAGER.importFiles', jobId, repr(container))
         from dbapi import CCP4DbApi
-        err= CErrorReport()
         if container is None:
-            try:
-                container = self.db().getParamsContainer(jobId=jobId)
-            except CException as e:
-                err.extend(e)
-            except Exception as e:
-                err.append(self.__class__, 161, 'Error loading container for job')
-        ifImportedFiles = False
+            container = self.db().getParamsContainer(jobId=jobId)
         projectId = self.db().getJobInfo(jobId=jobId, mode='projectId')
         for key in container.inputData.dataOrder():
-            obj0 = container.inputData.__getattr__(key)
-            objList, xmlText, keyValues = obj0.saveToDb()
-            #print 'PROJECTSMANAGER.importFiles',key,obj0,objList,xmlText
+            obj0 = getattr(container.inputData, key)
+            objList, _, _ = obj0.saveToDb()
             for obj in objList:
-                if not isinstance(obj, CCP4File.CDataFile):
-                    #print 'PROJECTSMANAGER.importFiles not file',obj,obj.objectName()
-                    pass
-                else:
-                    #print 'PROJECTSMANAGER.importFiles COPY',key,container.guiParameters.__getattr__('COPY_'+key,True)
-                    if obj.exists() and not obj.dbFileId.isSet() and obj.qualifiers('saveToDb') and not obj.qualifiers('isDirectory') \
-                                and (container.__getattr__('guiParameters', None) is None \
-                                     or container.guiParameters.__getattr__('COPY_' + key, True)):
-                        obj.blockSignals(True)
-                        #print 'PROJECTSMANAGER.importFiles',obj.objectName(),obj.__dict__.get('sourceFileName','NO sourceFileName'),obj
-                        if 'sourceFileName' in obj.__dict__ and obj.__dict__['sourceFileName'] is not None:
-                            # The file has already being imported (i.e. for CMiniMtzDataFile)
-                            sourceFileName = obj.__dict__['sourceFileName']
-                            #print 'PROJECTSMANAGER.importFiles previously imported from sourceFileName',sourceFileName
-                            sourceFileReference = obj.__dict__.get('sourceFileReference', None)
-                            sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
-                            targetObj = obj
-                            targetFile, importNumber=self.importFilePath(jobId=jobId, projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
-                                                                         fileExtensions=obj.qualifiers('fileExtensions'))
-                            #Has the monster-MTZ been imported before for a different set of columns
-                            dbFileId, importId, checksum, dbAnnotation = self.alreadyImportedId(sourceFileName=sourceFileName, projectId=projectId)
-                            if importId is not None:
-                                #it has been imported before so just use the same 'targetFile'
-                                targetFile, importNumber = self.importFilePath(projectId=projectId, importId=importId,
-                                                                               fileExtensions=obj.qualifiers('fileExtensions'), newFile=False)
-                                #print 'targetFile from importId',targetFile,importNumber
-                            else:
-                                targetFile, importNumber=self.importFilePath(jobId=jobId, projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
-                                                                             fileExtensions=obj.qualifiers('fileExtensions'))
+                if (
+                    isinstance(obj, CCP4File.CDataFile)
+                    and obj.exists()
+                    and not obj.dbFileId.isSet()
+                    and obj.qualifiers("saveToDb")
+                    and not obj.qualifiers("isDirectory")
+                    and (
+                        container.__getattr__("guiParameters", None) is None
+                        or container.guiParameters.__getattr__("COPY_" + key, True)
+                    )
+                ):
+                    obj.blockSignals(True)
+                    sourceFileName = obj.__dict__.get('sourceFileName', None)
+                    sourceFileReference = obj.__dict__.get('sourceFileReference', None)
+                    sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
+                    extensions = obj.qualifiers('fileExtensions')
+                    if sourceFileName is not None:
+                        baseName = os.path.split(sourceFileName)[-1]
+                        # The file has already being imported (i.e. for CMiniMtzDataFile)
+                        # print 'PROJECTSMANAGER.importFiles previously imported from sourceFileName',sourceFileName
+                        targetObj = obj
+                        targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=baseName,
+                                                                        fileExtensions=extensions)
+                        # Has the monster-MTZ been imported before for a different set of columns
+                        _, importId, _ = self.alreadyImportedId(sourceFileName=sourceFileName, projectId=projectId)
+                        if importId is not None:
+                            # it has been imported before so just use the same 'targetFile'
+                            targetFile, importNumber = self.importFilePath(projectId=projectId, importId=importId,
+                                                                            fileExtensions=extensions, newFile=False)
+                            # print 'targetFile from importId',targetFile,importNumber
                         else:
-                            # Test if user attempting to import an already imported file
-                            if ('sourceFileName' in obj.__dict__) == 'COPYDONE':
-                                sourceFileName = None
+                            targetFile, importNumber=self.importFilePath(projectId=projectId, baseName=baseName,
+                                                                            fileExtensions=extensions)
+                    else:
+                        # Test if user attempting to import an already imported file
+                        sourceFileName = str(obj)
+                        baseName = os.path.split(sourceFileName)[-1]
+                        mimeTypeName = obj.qualifiers('mimeTypeName')
+                        if mimeTypeName in CCP4DbApi.FILETYPES_TEXT:
+                            sourceFileType = CCP4DbApi.FILETYPES_TEXT.index(mimeTypeName)
+                        else:
+                            sourceFileType = None
+                        dbFileId, _, _ = self.alreadyImportedId(sourceFileName=sourceFileName,projectId=projectId,
+                                                                       sourceFileReference=sourceFileReference,fileType=sourceFileType)
+                        if dbFileId is None:
+                            targetFile,importNumber=self.importFilePath(projectId=projectId, baseName=baseName,
+                                                                        fileExtensions=extensions)
+                            value = {}
+                            if obj.contentFlag.isSet():
+                                value['contentFlag'] = int(obj.contentFlag)
+                            if obj.subType.isSet():
+                                value['subType'] = int(obj.subType)
+                            targetObj = obj.__class__(value=value, name=obj.objectName())
+                            if obj.__dict__.get('sourceFileAnnotation', None) is not None:
+                                targetObj.__dict__['sourceFileAnnotation'] = copy.deepcopy(obj.__dict__['sourceFileAnnotation'])
+                        else:
+                            # This external file is already in the database - update the obj with the appropriate data
+                            # and skip copying or creating an import file record
+                            # setDbFileId should force a dataChanged signal and an update to the widget
+                            # which will not then overwrite the data object with old values
+                            obj.setDbFileId(dbFileId)
+                            print('PROJECTSMANAGER.importFiles handling previous import', obj.get(), mimeTypeName, sourceFileType)
+                            sourceFileName = None
+                            sourceFileReference = None
+                            targetObj = None
+                    # print 'PROJECTSMANAGER.importFiles',sourceFileName,sourceFileReference,repr(targetObj)
+                    # Copy a sourceFileName to the CCP4_IMPORT_FILES directory
+                    if sourceFileName is not None and not os.path.exists(targetFile):
+                        print('Copying file', sourceFileName, 'to', targetFile)
+                        try:
+                            if obj.qualifiers('isDirectory'):
+                                shutil.copytree(sourceFileName, targetFile)
                             else:
-                                sourceFileName = obj.__str__()
-                            sourceFileReference = obj.__dict__.get('sourceFileReference', None)
-                            sourceFileAnnotation = obj.__dict__.get('sourceFileAnnotation', None)
-                            mimeTypeName = obj.qualifiers('mimeTypeName')
-                            if CCP4DbApi.FILETYPES_TEXT.count(mimeTypeName):
-                                sourceFileType = CCP4DbApi.FILETYPES_TEXT.index(mimeTypeName)
+                                shutil.copyfile(sourceFileName, targetFile)
+                            # Set the targetObj path now that the file exisits to get around validity failures
+                            if not targetObj.isSet():
+                                targetObj.setFullPath(targetFile)
+                        except:
+                            targetObj = None
+                    if targetObj is not None:
+                        # Set annotation on the imported targetObj and create an imported file record in the db
+                        # Beware downloaded file already has a more use annotatio set!
+                        if not targetObj.annotation.isSet():
+                            if sourceFileAnnotation is not None:
+                                targetObj.annotation = sourceFileAnnotation
                             else:
-                                sourceFileType = None
-                            dbFileId, importId, checksum, dbAnnotation = self.alreadyImportedId(sourceFileName=sourceFileName,projectId=projectId,
-                                                                                                sourceFileReference=sourceFileReference,fileType=sourceFileType)
-                            #print 'File has been previously imported?',sourceFileName,'previous file id',dbFileId,'checksum comparison',checksum
-                            if dbFileId is None:
-                                targetFile,importNumber=self.importFilePath(jobId=jobId, projectId=projectId, baseName=os.path.split(sourceFileName)[-1],
-                                                                            fileExtensions=obj.qualifiers('fileExtensions'))
-                                value = {}
-                                if obj.contentFlag.isSet():
-                                    value['contentFlag'] = int(obj.contentFlag)
-                                if obj.subType.isSet():
-                                    value['subType'] = int(obj.subType)
-                                targetObj = obj.__class__(value=value, name=obj.objectName())
-                                if obj.__dict__.get('sourceFileAnnotation', None) is not None:
-                                    targetObj.__dict__['sourceFileAnnotation'] = copy.deepcopy(obj.__dict__['sourceFileAnnotation'])
-                            else:
-                                # This external file is already in the database - update the obj with the appropriate data
-                                # and skip copying or creating an import file record
-                                # setDbFileId should force a dataChanged signal and an update to the widget
-                                # which will not then overwrite the data object with old values
-                                obj.setDbFileId(dbFileId)
-                                print('PROJECTSMANAGER.importFiles handling previous import', obj.get(), mimeTypeName, sourceFileType)
-                                sourceFileName = None
-                                sourceFileReference = None
-                                targetObj = None
-                        #print 'PROJECTSMANAGER.importFiles',sourceFileName,sourceFileReference,repr(targetObj)
-                        # Copy a sourceFileName to the CCP4_IMPORT_FILES directory
-                        if sourceFileName is not None and not os.path.exists(targetFile):
-                            print('Copying file', sourceFileName, 'to', targetFile)
-                            try:
-                                if obj.qualifiers('isDirectory'):
-                                    shutil.copytree(sourceFileName, targetFile)
+                                anno = obj.qualifiers('guiLabel')
+                                if anno is NotImplemented or anno is None:
+                                    anno = 'Imported'
                                 else:
-                                    shutil.copyfile(sourceFileName, targetFile)
-                                # Set the targetObj path now that the file exisits to get around validity failures
-                                if not targetObj.isSet():
-                                    targetObj.setFullPath(targetFile)
-                            except:
-                                err.append(self.__class__, 160, sourceFileName + ' to ' + targetFile)
-                                targetObj = None
-                        if targetObj is not None:
-                            # Set annotation on the imported targetObj and create an imported file record in the db
-                            # Beware downloaded file already has a more use annotatio set!
-                            if not targetObj.annotation.isSet():
-                                if sourceFileAnnotation is not None:
-                                    targetObj.annotation = sourceFileAnnotation
-                                else:
-                                    anno = obj.qualifiers('guiLabel')
-                                    if anno is NotImplemented or anno is None:
-                                        anno = 'Imported'
-                                    else:
-                                        anno = anno + ' imported'
-                                    targetObj.annotation = anno + ' from ' + os.path.split(sourceFileName)[1] + ' by job ' + \
-                                                                str(self.db().getJobInfo(jobId=jobId, mode='jobnumber'))
-                            #print 'PROJECTSMANAGER.importFiles targetObj sourceFileAnnotation',targetObj,targetObj.__dict__.get('sourceFileAnnotation',None)
-                            try:
-                                fileId = self.db().createFile(fileObject=targetObj, projectId=projectId, jobId=jobId, sourceFileName=sourceFileName,
-                                                              reference=sourceFileReference, importNumber=importNumber, sourceFileAnnotation=sourceFileAnnotation)
-                                print('Database recording file', targetObj.fullPath.__str__(), 'imported from', sourceFileName, 'file id:', fileId)
-                            except CException as e:
-                                err.extend(e)
-                            except Exception as e:
-                                #print 'PROJECTSMANAGER.importFiles',str(e)
-                                err.append(self.__class__, 161, sourceFileName)
-                            else:
-                                print('PROJECTSMANAGER.importFiles resetting path', obj.objectName(), targetFile)
-                                ifImportedFiles = True
-                                if targetObj != obj:
-                                    obj.setFullPath(targetFile)
-                                    obj.annotation = targetObj.annotation.__str__()
-                                obj.dbFileId = fileId
-                        obj.blockSignals(False)
-        return ifImportedFiles, err
+                                    anno += ' imported'
+                                targetObj.annotation = anno + ' from ' + os.path.split(sourceFileName)[1] + ' by job ' + \
+                                                            str(self.db().getJobInfo(jobId=jobId, mode='jobnumber'))
+                        # print 'PROJECTSMANAGER.importFiles targetObj sourceFileAnnotation',targetObj,targetObj.__dict__.get('sourceFileAnnotation',None)
+                        try:
+                            fileId = self.db().createFile(fileObject=targetObj, projectId=projectId, jobId=jobId, sourceFileName=sourceFileName,
+                                                            reference=sourceFileReference, importNumber=importNumber, sourceFileAnnotation=sourceFileAnnotation)
+                            print('Database recording file', str(targetObj.fullPath), 'imported from', sourceFileName, 'file id:', fileId)
+                        except:
+                            pass
+                        else:
+                            print('PROJECTSMANAGER.importFiles resetting path', obj.objectName(), targetFile)
+                            if targetObj != obj:
+                                obj.setFullPath(targetFile)
+                                obj.annotation = str(targetObj.annotation)
+                            obj.dbFileId = fileId
+                    obj.blockSignals(False)
 
     def getSceneFiles(self, jobId=None):
         scenefileList = glob.glob(os.path.join(self.jobDirectory(jobId=jobId), 'scene_*.scene.xml'))
@@ -1677,13 +1546,6 @@ class CPurgeProject(CObject):
 
     def purgeProject(self, severity=None, context='temporary'):
         from core.CCP4Modules import PROJECTSMANAGER
-        ''' # Concept of LastCleanupTime complicated by possibility of differnt severities of cleanup
-        if self.db is not None and self.projectId is not None:
-          lastCleanupTime = self.db.getProjectInfo(projectId=self.projectId,mode='lastcleanuptime')
-          import time
-          self.db.updateProject(projectId=self.projectId,key='LastCleanupTime',value=time.time())
-        else:
-          lastCleanupTime = None '''
         if severity is None:
             severity = CPurgeProject.CONTEXTLOOKUP.get(context)
         for jN, tN, iN, jS in self.topJobs(lastCleanupTime=None):
@@ -1698,23 +1560,22 @@ class CPurgeProject(CObject):
         # If search item does not have a third element then add one
         from core import CCP4TaskManager
         mySearchList = []
-        for idx in range(len(self.SEARCHLIST)):
+        for item in self.SEARCHLIST:
             try:
-                if self.SEARCHLIST[idx][1] in severity:
-                    if len(self.SEARCHLIST[idx]) == 2:
-                        mySearchList.append([self.SEARCHLIST[idx][0], self.SEARCHLIST[idx][1], None])
+                if item[1] in severity:
+                    if len(item) == 2:
+                        mySearchList.append([item[0], item[1], None])
                     else:
-                        mySearchList.append(self.SEARCHLIST[idx])
+                        mySearchList.append(item)
             except:
-                print('FAILED handling file purge search item', self.SEARCHLIST[idx])
+                print('FAILED handling file purge search item', item)
         taskList = CCP4TaskManager.TASKMANAGER().getTaskAttribute(taskName, 'PURGESEARCHLIST', script=True)
-        #print 'getTaskSearchList',taskName,taskList
         if taskList is not None:
-            for ii in range(len(taskList)):
-                if len(taskList[ii]) == 2:
-                    search = [taskList[ii][0] , taskList[ii][1], None]
+            for task in taskList:
+                if len(task) == 2:
+                    search = [task[0] , task[1], None]
                 else:
-                    search = taskList[ii]
+                    search = task
                 idx = self.searchListIndex(mySearchList, search[0])
                 if idx >= 0:
                     mySearchList[idx] = search
@@ -1928,28 +1789,3 @@ class testManager(unittest.TestCase):
             self.assertEqual(e[0]['code'] , 117, 'Wrong error code (not 117) creating project with same dir')
         except:
             self.fail('Failed with unknown reason attempting to create project with same dir')
-
-
-    '''
-    def test3(self):
-         self.pm.deleteProject('myproject')
-         p = self.pm.getProject('myproject')
-         self.assertTrue(p is None,'Error removing project')
-
-    def test4(self):
-        pname,relpath,pid = self.pm.interpretDirectory( os.path.join(self.testDir,'myproject') )
-        self.assertEqual(pname,'myproject','interpretDirectory did not find correct project')
-        self.assertEqual(relpath,'','interpretDirectory returns incorrect relPath')
-
-    def test5(self):
-        proj_list,alias_list = self.pm.getProjectsList()
-        self.assertEqual(proj_list,['anotherproject','myproject'],'getProjectsList returns wrong project list')
-        self.assertEqual(alias_list,['CCP4I2_TOP'],'getProjectsList returns wrong directories list')
-
-    def test6(self):
-        fileName = os.path.join(self.testDir,'projects.xml')
-        self.pm.save(fileName)
-        pm = CProjectsManager(name='TESTPROJECTMANAGER')
-        pm.restore(fileName)
-        self.assertEqual(len(pm.projects),2,'Failed in save/restore projects')
-    '''

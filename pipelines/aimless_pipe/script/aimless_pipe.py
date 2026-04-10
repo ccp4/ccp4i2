@@ -84,7 +84,9 @@ class aimless_pipe(CPluginScript):
           'ISIGLIMIT','CCHALFLIMIT','TOLERANCE','MODE','REFERENCE_DATASET','SET_SETTING',
           'CHOOSE_MODE','CHOOSE_SOLUTION_NO','CHOOSE_LAUEGROUP','CHOOSE_SPACEGROUP',
           'REINDEX_OPERATOR','CELL','WAVELENGTH','RUN_MODE','RUN_BATCHLIST',
-          'REMOVE_LATTICE_CENTERING','LATTICE_CENTERING','ALLOW_NONCHIRAL',
+          'REMOVE_LATTICE_CENTERING','LATTICE_CENTERING',
+          'KEEP_LATTICE_CENTERING','LATTICE_CENTERING_THRESHOLD',
+          'ALLOW_NONCHIRAL',
           'MMCIF_SELECTED_BLOCK'])
 
       
@@ -100,12 +102,9 @@ class aimless_pipe(CPluginScript):
         if status.get('finishStatus') == CPluginScript.FAILED:
             print("failed in Pointless", status)
             self.fatalError = [201, 'Pointless failed', status]
-            #         self.appendErrorReport(201, details='Pointless failed')
-            #         self.reportStatus(status)
-            if status.get('finishStatus') == CPluginScript.FAILED:
-                print("failed")
-                self.process_finish(CPluginScript.FAILED)
-                self.reportStatus(status)
+            print("failed")
+            self.process_finish(CPluginScript.FAILED)
+            self.reportStatus(status)
             return
 
         try:
@@ -629,7 +628,7 @@ class aimless_pipe(CPluginScript):
         outputfile = str(filePath)
 
         # Use 1st datasetname as blockname
-        if self.ndatasets == 1:
+        if getattr(self, "ndatasets", 1) == 1:
             blkname = self.container.inputData.UNMERGEDFILES[0].dataset
         else:
             blkname = self.container.inputData.UNMERGEDFILES[0].crystalName

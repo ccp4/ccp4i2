@@ -30,7 +30,7 @@ class i2Dimple_gui(CTaskWidget):
     SHORTTASKTITLE='DIMPLE'
     DESCRIPTION = '''This task uses the DIMPLE pipeline to generate maps for a new dataset, provided a possible starting model is available.  For simple cases of isomorphous data, the pipeline will use rigid body refinement in REFMAC to 'tweak' the starting model. Where unit cells are incompatible, it will attempt automated molecular replacement.'''
     MGDISPLAYFILES = ['XYZIN']
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
 
     def __init__(self,parent):
         CTaskWidget.__init__(self,parent)

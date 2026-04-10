@@ -107,7 +107,6 @@ file_to_preferences('template_key_bindings.py')
             except:
                 #an issue with the existence of files
                 pass
-        iMapNo = 1
         if self.container.inputData.FPHIIN_LIST.isSet():
             try:
                 iFile = 1
@@ -122,7 +121,6 @@ file_to_preferences('template_key_bindings.py')
                     else:
                         print('coot_rebuild.makeCommandAndScript FPHIIN does not exist:',FPHIIN.__str__())
                     iFile += 1
-                    iMapNo += 1
             except:
                 print(' Exception ')
                 #an issue with the existence of files
@@ -139,12 +137,11 @@ file_to_preferences('template_key_bindings.py')
                         script += ("  ccp4i2Interface.patchMoleculeName(DifMapHandle_"+str(iFile)+",filePath)\n")
 #Make anomolous difference maps white.
                         if DELFPHIIN.subType == 3:
-                            script += ("  set_map_colour("+str(iMapNo)+",0.75,0.9,0.75)\n")
+                            script += ("  set_map_colour(DifMapHandle_"+str(iFile)+",0.75,0.9,0.75)\n")
                         script += "except Exception as err:\n  print('Error {} loading difmap {}'.format(err, filePath))\n  pass\n"
                     else:
                         print('coot_rebuild.makeCommandAndScript FPHIIN does not exist:',DELFPHIIN.__str__())
                     iFile += 1
-                    iMapNo += 1
             except:
                 print(' Exception ')
                 #an issue with the existence of files
@@ -162,12 +159,11 @@ file_to_preferences('template_key_bindings.py')
                         script += ("  ccp4i2Interface.patchMoleculeName(DifMapHandle_"+str(iFile)+",filePath)\n")
 #Make anomolous difference maps white.
                         if DELFPHIIN.subType == 3:
-                            script += ("  set_map_colour("+str(iMapNo)+",0.75,0.9,0.75)\n")
+                            script += ("  set_map_colour(DifMapHandle_"+str(iFile)+",0.75,0.9,0.75)\n")
                         script += "except Exception as err:\n  print('Error {} loading difmap {}'.format(err, filePath))\n  pass\n"
                     else:
                         print('coot_rebuild.makeCommandAndScript FPHIIN does not exist:',DELFPHIIN.__str__())
                     iFile += 1
-                    iMapNo += 1
             except:
                 print(' Exception ')
                 #an issue with the existence of files
@@ -295,7 +291,7 @@ file_to_preferences('template_key_bindings.py')
                 os.rename(outputPDB, newPath)
                 xyzoutList[iFile].annotation = "Coot output file number"+str(iFile)
                 xyzoutList[iFile].subType = 1
-            #Here truncate the xyzoutList back to the numberof files that werew actually found
+            #Here truncate the xyzoutList back to the numberof files that were actually found
             xyzoutList = xyzoutList[0:len(outList)]
 
             #Ligand builder places output cifs in the coot-cif directory as prorg-out.cif
@@ -315,7 +311,7 @@ file_to_preferences('template_key_bindings.py')
                 elif 'prodrg' in fname: annotation='Coot/Prodrg created geometry for ligand'
                 else: annotation='Coot/Prodrg created geometry for ligand'
                 dictoutList[iFile].annotation = annotation
-            #Here truncate the dictoutList back to the numberof files that werew actually found
+            #Here truncate the dictoutList back to the numberof files that were actually found
             dictoutList = dictoutList[0:len(cifOutList)]
 
             # Create a trivial xml output file

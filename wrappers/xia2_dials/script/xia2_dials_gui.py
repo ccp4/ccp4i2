@@ -5,6 +5,8 @@
 #  Acknowledgements: based on code by Graeme Winter and Martin Noble.
 #
 
+import platform
+
 from PySide2 import QtGui, QtWidgets, QtCore
 
 from qtgui.CCP4TaskWidget import CTaskWidget
@@ -27,25 +29,34 @@ class xia2_dials_gui(CTaskWidget):
 
         # Input data
         self.openFolder(folderFunction="inputData")
-        self.createLine(
-            [
-                "tip",
-                "Provide either the parent directory of the "
-                "dataset(s), or pick one image from each",
-                "subtitle",
-                "Locate datasets",
-            ]
-        )
-        self.openSubFrame(frame=True)
-
-        self.createLine(
-            ["widget", "-title", "Choose one image from each dataset...", "IMAGE_FILE"]
-        )
-        self.createLine(
-            ["advice", "...Or let xia2 find datasets under a parent directory"]
-        )
-        self.createLine(["widget", "IMAGE_DIRECTORY"])
-        self.closeSubFrame()
+        # Python 3.9 xia2 only supports directories on Windows
+        # This check should be removed when a newer version of xia2 is available
+        if platform.system() == "Windows":
+            self.createLine(["subtitle", "Locate datasets"])
+            self.openSubFrame(frame=True)
+            self.createLine(["advice", "Let xia2 find datasets under a parent directory"])
+            self.createLine(["widget", "IMAGE_DIRECTORY"])
+            self.closeSubFrame()
+        else:
+            self.createLine(
+                [
+                    "tip",
+                    "Provide either the parent directory of the "
+                    "dataset(s), or pick one image from each",
+                    "subtitle",
+                    "Locate datasets",
+                ]
+            )
+            self.openSubFrame(frame=True)
+            self.createLine(
+                ["widget", "-title", "Choose one image from each dataset...", "IMAGE_FILE"]
+            )
+            self.connectDataChanged("IMAGE_FILE", self.handleImageFile)
+            self.createLine(
+                ["advice", "...Or let xia2 find datasets under a parent directory"]
+            )
+            self.createLine(["widget", "IMAGE_DIRECTORY"])
+            self.closeSubFrame()
 
         # Basic parameters
         self.createLine(
@@ -62,7 +73,6 @@ class xia2_dials_gui(CTaskWidget):
             drawFolder=self.drawAdvanced,
         )
 
-        self.connectDataChanged("IMAGE_FILE", self.handleImageFile)
         self.connectDataChanged("IMAGE_DIRECTORY", self.handleImageDirectory)
         self.connectDataChanged("dials__index__method", self.handleIndexMethod)
         self.handleImageFile()
@@ -88,7 +98,10 @@ class xia2_dials_gui(CTaskWidget):
             self.container.inputData.IMAGE_FILE.setQualifiers({"listMinLength": 0})
         else:
             self.container.inputData.IMAGE_FILE.setQualifiers({"listMinLength": 1})
-        self.getWidget("IMAGE_FILE").validate()
+        # Python 3.9 xia2 only supports directories on Windows
+        # This check should be removed when a newer version of xia2 is available
+        if platform.system() != "Windows":
+            self.getWidget("IMAGE_FILE").validate()
 
     @QtCore.Slot()
     def handleIndexMethod(self):

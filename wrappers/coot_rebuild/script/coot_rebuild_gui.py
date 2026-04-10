@@ -15,11 +15,11 @@ class Ccoot_rebuild(CTaskWidget):
   TASKNAME = 'coot_rebuild'
   TASKVERSION = 0.1
   TASKMODULE='model_building'
-  TASKTITLE='Model building - COOT'
+  TASKTITLE='Model building - COOT 0.9'
   SHORTTASKTITLE='COOT'
-  DESCRIPTION='Interactive building (Coot)'
+  DESCRIPTION='Interactive building (Coot 0.9)'
 
-  WHATNEXT = ['prosmart_refmac','coot_rebuild', 'modelcraft' ]
+  WHATNEXT = ['prosmart_refmac','coot_rebuild','coot1', 'modelcraft', 'servalcat_pipe' ]
 
   def drawContents(self):
     

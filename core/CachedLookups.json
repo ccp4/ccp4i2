@@ -65,6 +65,10 @@
             "acorn",
             "parrot"
         ],
+        "deprecated": [
+            "buccaneer_build_refine_mr",
+            "nautilus_build_refine"
+        ],
         "developer_tools": [
             "MakeMonster",
             "SyncToDjango",
@@ -76,9 +80,6 @@
         "export": [
             "adding_stats_to_mmcif_i2",
             "mergeMtz"
-        ],
-        "expt_data_util": [
-            "reindex_processed_data"
         ],
         "expt_data_utility": [
             "pointless_reindexToMatch",
@@ -110,18 +111,19 @@
             "coot_find_waters",
             "arp_warp_classic",
             "shelxeMR",
-            "buccaneer_build_refine_mr",
-            "nautilus_build_refine",
             "dr_mr_modelbuild_pipeline",
             "ccp4mg_general",
-            "coot_gtk3_rebuild"
+            "coot1",
+            "nucleofind"
         ],
         "model_data_utility": [
             "csymmatch",
             "gesamt",
             "coordinate_selector",
             "add_fractional_coords",
+            "areaimol",
             "editbfac",
+            "modelASUCheck",
             "pdbset_ui",
             "pdbview_edit"
         ],
@@ -150,6 +152,7 @@
             "buster",
             "coot_rsr_morph",
             "lorestr_i2",
+            "metalCoord",
             "pairef",
             "pdb_redo_api",
             "sheetbend",
@@ -164,6 +167,7 @@
             "ShelxCECompareHands",
             "cif2mtz",
             "convert2mtz",
+            "coot1",
             "fft",
             "import_serial",
             "libcheck",
@@ -197,10 +201,6 @@
             "mrbump_model_prep",
             "phaser_MR_RNP",
             "pisapipe",
-            "coot_fit_residues",
-            "coot_stepped_refine",
-            "reindex_minimtz",
-            "reindex_processed_data",
             "tableone",
             "uniqueify"
         ],
@@ -223,8 +223,7 @@
             "prosmart",
             "refmac",
             "servalcat",
-            "pdb_extract_wrapper",
-            "reindex_minimtz"
+            "pdb_extract_wrapper"
         ]
     },
     "performanceClasses": {
@@ -607,6 +606,15 @@
                 ]
             }
         },
+        "areaimol": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.areaimol.script.areaimol_reportareaimol_report",
+                "clsModule": "wrappers.areaimol.script.areaimol_report",
+                "clsName": "areaimol_report",
+                "modes": []
+            }
+        },
         "arp_warp_classic": {
             "0.0.0": {
                 "MAINTAINER": "andrey.lebedev@stfc.ac.uk",
@@ -737,30 +745,21 @@
                 "modes": []
             }
         },
+        "coot1": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.coot1.script.coot1_reportcoot1_report",
+                "clsModule": "wrappers.coot1.script.coot1_report",
+                "clsName": "coot1_report",
+                "modes": []
+            }
+        },
         "coot_find_waters": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_reportcoot_find_waters_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_report",
+                "class": "wrappers.coot_find_waters.script.coot_find_waters_reportcoot_find_waters_report",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters_report",
                 "clsName": "coot_find_waters_report",
-                "modes": []
-            }
-        },
-        "coot_fit_residues": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_reportcoot_fit_residues_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_report",
-                "clsName": "coot_fit_residues_report",
-                "modes": []
-            }
-        },
-        "coot_gtk3_rebuild": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_reportcoot_gtk3_rebuild_report",
-                "clsModule": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_report",
-                "clsName": "coot_gtk3_rebuild_report",
                 "modes": []
             }
         },
@@ -785,21 +784,10 @@
         "coot_script_lines": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_report",
+                "class": "wrappers.coot_script_lines.script.coot_script_lines_reportcoot_script_lines_report",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines_report",
                 "clsName": "coot_script_lines_report",
                 "modes": []
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_reportcoot_stepped_refine_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_report",
-                "clsName": "coot_stepped_refine_report",
-                "modes": [
-                    "Running"
-                ]
             }
         },
         "cpatterson": {
@@ -1167,6 +1155,15 @@
                 ]
             }
         },
+        "modelASUCheck": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.modelASUCheck.script.modelASUCheck_reportmodelASUCheck_report",
+                "clsModule": "wrappers.modelASUCheck.script.modelASUCheck_report",
+                "clsName": "modelASUCheck_report",
+                "modes": []
+            }
+        },
         "modelcraft": {
             "0.0.0": {
                 "MAINTAINER": "Nobody",
@@ -1273,6 +1270,17 @@
                 "class": "pipelines.nautilus_build_refine.script.nautilus_build_refine_reportnautilus_build_refine_report",
                 "clsModule": "pipelines.nautilus_build_refine.script.nautilus_build_refine_report",
                 "clsName": "nautilus_build_refine_report",
+                "modes": [
+                    "Running"
+                ]
+            }
+        },
+        "nucleofind": {
+            "0.0.0": {
+                "MAINTAINER": "Nobody",
+                "class": "wrappers.nucleofind.script.nucleofind_reportnucleofind_report",
+                "clsModule": "wrappers.nucleofind.script.nucleofind_report",
+                "clsName": "nucleofind_report",
                 "modes": [
                     "Running"
                 ]
@@ -1600,15 +1608,6 @@
                 "modes": [
                     "Running"
                 ]
-            }
-        },
-        "reindex_processed_data": {
-            "0.0.0": {
-                "MAINTAINER": "Nobody",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_reportreindex_processed_data_report",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_report",
-                "clsName": "reindex_processed_data_report",
-                "modes": []
             }
         },
         "scaleit": {
@@ -2234,6 +2233,19 @@
                 "subTasks": []
             }
         },
+        "areaimol": {
+            "null": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "Nobody",
+                "TASKTITLE": "Solvent accessible surface - Areaimol",
+                "class": "wrappers.areaimol.script.areaimolareaimol",
+                "clsModule": "wrappers.areaimol.script.areaimol",
+                "clsName": "areaimol",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "arp_warp_classic": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -2256,19 +2268,6 @@
                 "class": "wrappers.baverage.script.baveragebaverage",
                 "clsModule": "wrappers.baverage.script.baverage",
                 "clsName": "baverage",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "buccaneer_build_refine_mr": {
-            "202003271051": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "paul.bond@york.ac.uk",
-                "TASKTITLE": "Autobuild protein (Buccaneer pipeline)",
-                "class": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mrbuccaneer_build_refine_mr",
-                "clsModule": "pipelines.buccaneer_build_refine_mr.script.buccaneer_build_refine_mr",
-                "clsName": "buccaneer_build_refine_mr",
                 "internal": false,
                 "subTasks": []
             }
@@ -2455,41 +2454,28 @@
                 "subTasks": []
             }
         },
+        "coot1": {
+            "0.1": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "paul.bond@york.ac.uk",
+                "TASKTITLE": "Coot 1",
+                "class": "wrappers.coot1.script.coot1coot1",
+                "clsModule": "wrappers.coot1.script.coot1",
+                "clsName": "coot1",
+                "internal": false,
+                "subTasks": []
+            }
+        },
         "coot_find_waters": {
             "0.0": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
-                "TASKTITLE": "Find waters with coot",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waterscoot_find_waters",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters",
+                "TASKTITLE": "Find waters with Coot API",
+                "class": "wrappers.coot_find_waters.script.coot_find_waterscoot_find_waters",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters",
                 "clsName": "coot_find_waters",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_fit_residues": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Coot fit residues",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residuescoot_fit_residues",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues",
-                "clsName": "coot_fit_residues",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_gtk3_rebuild": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.noble@newcastle.ac.uk",
-                "TASKTITLE": "Rebuild model with coot - Gtk3",
-                "class": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuildcoot_gtk3_rebuild",
-                "clsModule": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild",
-                "clsName": "coot_gtk3_rebuild",
                 "internal": false,
                 "subTasks": []
             }
@@ -2512,7 +2498,7 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "stuart.mcnicholas@york.ac.uk",
-                "TASKTITLE": "Real space refinement morphing with coot",
+                "TASKTITLE": "Real space refinement morphing with Coot API",
                 "class": "wrappers.coot_rsr_morph.script.coot_rsr_morphcoot_rsr_morph",
                 "clsModule": "wrappers.coot_rsr_morph.script.coot_rsr_morph",
                 "clsName": "coot_rsr_morph",
@@ -2526,22 +2512,9 @@
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "Nobody",
                 "TASKTITLE": "Execute arbitrary script code within Coot",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines",
+                "class": "wrappers.coot_script_lines.script.coot_script_linescoot_script_lines",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines",
                 "clsName": "coot_script_lines",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "Coot stepped refinement",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refinecoot_stepped_refine",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine",
-                "clsName": "coot_stepped_refine",
                 "internal": false,
                 "subTasks": []
             }
@@ -3080,14 +3053,27 @@
             }
         },
         "metalCoord": {
-            "0.1": {
+            "0.2": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "martin.maly@soton.ac.uk",
+                "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
                 "TASKTITLE": null,
                 "class": "wrappers.metalCoord.script.metalCoordmetalCoord",
                 "clsModule": "wrappers.metalCoord.script.metalCoord",
                 "clsName": "metalCoord",
+                "internal": false,
+                "subTasks": []
+            }
+        },
+        "modelASUCheck": {
+            "0.1": {
+                "DESCRIPTION": null,
+                "INTERRUPTLABEL": null,
+                "MAINTAINER": "person@server.com",
+                "TASKTITLE": null,
+                "class": "wrappers.modelASUCheck.script.modelASUCheckmodelASUCheck",
+                "clsModule": "wrappers.modelASUCheck.script.modelASUCheck",
+                "clsName": "modelASUCheck",
                 "internal": false,
                 "subTasks": []
             }
@@ -3287,15 +3273,15 @@
                 "subTasks": []
             }
         },
-        "nautilus_build_refine": {
-            "0.1": {
+        "nucleofind": {
+            "null": {
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
-                "MAINTAINER": "kevin.cowtan@york.ac.uk",
-                "TASKTITLE": "Autobuild RNA/DNA (Nautilus pipeline)",
-                "class": "pipelines.nautilus_build_refine.script.nautilus_build_refinenautilus_build_refine",
-                "clsModule": "pipelines.nautilus_build_refine.script.nautilus_build_refine",
-                "clsName": "nautilus_build_refine",
+                "MAINTAINER": "jordan.dialpuri@york.ac.uk",
+                "TASKTITLE": null,
+                "class": "wrappers.nucleofind.script.nucleofindnucleofind",
+                "clsModule": "wrappers.nucleofind.script.nucleofind",
+                "clsName": "nucleofind",
                 "internal": false,
                 "subTasks": []
             }
@@ -3772,32 +3758,6 @@
                 "subTasks": []
             }
         },
-        "reindex_minimtz": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "reindex_minimtz",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtzreindex_minimtz",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz",
-                "clsName": "reindex_minimtz",
-                "internal": false,
-                "subTasks": []
-            }
-        },
-        "reindex_processed_data": {
-            "0.0": {
-                "DESCRIPTION": null,
-                "INTERRUPTLABEL": null,
-                "MAINTAINER": "Nobody",
-                "TASKTITLE": "reindex_processed_data",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_datareindex_processed_data",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data",
-                "clsName": "reindex_processed_data",
-                "internal": false,
-                "subTasks": []
-            }
-        },
         "scaleit": {
             "0.0": {
                 "DESCRIPTION": null,
@@ -3855,7 +3815,7 @@
                 "DESCRIPTION": null,
                 "INTERRUPTLABEL": null,
                 "MAINTAINER": "martin.maly@mrc-lmb.cam.ac.uk",
-                "TASKTITLE": "Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord",
+                "TASKTITLE": "Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)",
                 "class": "pipelines.servalcat_pipe.script.servalcat_pipeservalcat_pipe",
                 "clsModule": "pipelines.servalcat_pipe.script.servalcat_pipe",
                 "clsName": "servalcat_pipe",
@@ -4172,6 +4132,7 @@
         "aimless_pipe": "qticons/aimless_pipe.png",
         "alpha_fold": "qticons/alpha_fold.png",
         "arcimboldo": "qticons/arcimboldo.png",
+        "areaimol": "qticons/ccp4.png",
         "arp_warp_classic": "qticons/arp_warp_classic.png",
         "bigpipes": "qticons/ccp4.png",
         "bioinformatics": "qticons/bioinformatics.png",
@@ -4187,13 +4148,11 @@
         "cmapcoeff": "qticons/cmapcoeff.png",
         "comit": "qticons/ccp4.png",
         "coordinate_selector": "qticons/coordinate_selector.png",
+        "coot1": "qticons/coot1.png",
         "coot_find_waters": "qticons/coot_find_waters.png",
-        "coot_fit_residues": "qticons/ccp4.png",
-        "coot_gtk3_rebuild": "qticons/ccp4.png",
         "coot_rebuild": "qticons/coot_rebuild.png",
         "coot_rsr_morph": "qticons/coot_rsr_morph.png",
         "coot_script_lines": "qticons/coot_script_lines.png",
-        "coot_stepped_refine": "qticons/ccp4.png",
         "cpatterson": "qticons/cpatterson.png",
         "crank2": "qticons/crank2.png",
         "crank2_comb_phdmmb": "qticons/ccp4.png",
@@ -4238,6 +4197,8 @@
         "lorestr_i2": "qticons/lorestr_i2.png",
         "matthews": "qticons/matthews.png",
         "mergeMtz": "qticons/mergeMtz.png",
+        "metalCoord": "qticons/ccp4.png",
+        "modelASUCheck": "qticons/ccp4.png",
         "model_building": "qticons/model_building.png",
         "model_data_utility": "qticons/model_data_utility.png",
         "modelcraft": "qticons/modelcraft.png",
@@ -4253,6 +4214,7 @@
         "mrparse": "qticons/mrparse.png",
         "mtzutils": "qticons/ccp4.png",
         "nautilus_build_refine": "qticons/nautilus_build_refine.png",
+        "nucleofind": "qticons/nucleofind.png",
         "pairef": "qticons/pairef.png",
         "parrot": "qticons/parrot.png",
         "pdb_redo_api": "qticons/pdb_redo_api.png",
@@ -4278,8 +4240,6 @@
         "pyphaser_mr": "qticons/ccp4.png",
         "qtpisa": "qticons/qtpisa.png",
         "refinement": "qticons/refinement.png",
-        "reindex_minimtz": "qticons/ccp4.png",
-        "reindex_processed_data": "qticons/ccp4.png",
         "scaleit": "qticons/scaleit.png",
         "sculptor": "qticons/sculptor.png",
         "servalcat_pipe": "qticons/servalcat_pipe.png",
@@ -4994,6 +4954,20 @@
                 "taskVersion": 0.1
             }
         },
+        "areaimol": {
+            "0.0.0": {
+                "DESCRIPTION": "Solvent accessible surface calculation with AREAIMOL",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Solvent accessible surface - AREAIMOL",
+                "class": "wrappers.areaimol.script.CTaskareaimolCTaskAreaimolUI",
+                "clsModule": "wrappers.areaimol.script.CTaskareaimol",
+                "clsName": "CTaskAreaimolUI",
+                "shortTitle": "AREAIMOL",
+                "taskName": "areaimol",
+                "taskVersion": "0.0.0"
+            }
+        },
         "arp_warp_classic": {
             "0.0.0": {
                 "DESCRIPTION": "Build model (ARP/wARP classic)",
@@ -5176,54 +5150,40 @@
                 "taskVersion": 0.1
             }
         },
+        "coot1": {
+            "0.0.0": {
+                "DESCRIPTION": "Interactive model building with Coot 1",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Coot 1",
+                "class": "wrappers.coot1.script.coot1_guiCcoot1",
+                "clsModule": "wrappers.coot1.script.coot1_gui",
+                "clsName": "Ccoot1",
+                "shortTitle": "Coot 1",
+                "taskName": "coot1",
+                "taskVersion": "0.0.0"
+            }
+        },
         "coot_find_waters": {
             "0.0.0": {
                 "DESCRIPTION": "Find and filter waters based on electron density and contacts (non-interactive Coot)",
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Find waters - COOT",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_guiCcoot_find_waters",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_find_waters.script.coot_find_waters_gui",
+                "class": "wrappers.coot_find_waters.script.coot_find_waters_guiCcoot_find_waters",
+                "clsModule": "wrappers.coot_find_waters.script.coot_find_waters_gui",
                 "clsName": "Ccoot_find_waters",
                 "shortTitle": "Find waters - COOT",
                 "taskName": "coot_find_waters",
                 "taskVersion": 0.1
             }
         },
-        "coot_fit_residues": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Coot fit residues",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_guiCcoot_fit_residues",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_fit_residues.script.coot_fit_residues_gui",
-                "clsName": "Ccoot_fit_residues",
-                "shortTitle": "Coot fit residues",
-                "taskName": "coot_fit_residues",
-                "taskVersion": 0.1
-            }
-        },
-        "coot_gtk3_rebuild": {
-            "0.0.0": {
-                "DESCRIPTION": "Interactive building (Gtk3 Coot)",
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Model building - COOT Gtk3",
-                "class": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_guiCcoot_gtk3_rebuild",
-                "clsModule": "wrappers.coot_gtk3_rebuild.script.coot_gtk3_rebuild_gui",
-                "clsName": "Ccoot_gtk3_rebuild",
-                "shortTitle": "COOT-Gtk3",
-                "taskName": "coot_gtk3_rebuild",
-                "taskVersion": 0.1
-            }
-        },
         "coot_rebuild": {
             "0.0.0": {
-                "DESCRIPTION": "Interactive building (Coot)",
+                "DESCRIPTION": "Interactive building (Coot 0.9)",
                 "MAINTAINER": "Nobody",
                 "RANK": null,
-                "TASKTITLE": "Model building - COOT",
+                "TASKTITLE": "Model building - COOT 0.9",
                 "class": "wrappers.coot_rebuild.script.coot_rebuild_guiCcoot_rebuild",
                 "clsModule": "wrappers.coot_rebuild.script.coot_rebuild_gui",
                 "clsName": "Ccoot_rebuild",
@@ -5252,25 +5212,11 @@
                 "MAINTAINER": "Nobody",
                 "RANK": null,
                 "TASKTITLE": "Scripted model building - COOT",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_script_lines.script.coot_script_lines_gui",
+                "class": "wrappers.coot_script_lines.script.coot_script_lines_guiCcoot_script_lines",
+                "clsModule": "wrappers.coot_script_lines.script.coot_script_lines_gui",
                 "clsName": "Ccoot_script_lines",
                 "shortTitle": "Scripted COOT",
                 "taskName": "coot_script_lines",
-                "taskVersion": 0.1
-            }
-        },
-        "coot_stepped_refine": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Coot stepped refinement",
-                "class": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_guiCcoot_stepped_refine",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.coot_stepped_refine.script.coot_stepped_refine_gui",
-                "clsName": "Ccoot_stepped_refine",
-                "shortTitle": "Coot stepped refinement",
-                "taskName": "coot_stepped_refine",
                 "taskVersion": 0.1
             }
         },
@@ -5764,6 +5710,34 @@
                 "taskVersion": 0.1
             }
         },
+        "metalCoord": {
+            "0.0.0": {
+                "DESCRIPTION": "Generate restraints for metal-containing monomers",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "MetalCoord",
+                "class": "wrappers.metalCoord.script.metalCoord_guiCmetalCoord_gui",
+                "clsModule": "wrappers.metalCoord.script.metalCoord_gui",
+                "clsName": "CmetalCoord_gui",
+                "shortTitle": "MetalCoord",
+                "taskName": "metalCoord",
+                "taskVersion": 0.2
+            }
+        },
+        "modelASUCheck": {
+            "0.0.0": {
+                "DESCRIPTION": "Align sequences in model to those in AU contents to validate model.",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Check model against AU contents",
+                "class": "wrappers.modelASUCheck.script.modelASUCheck_guimodelASUCheck_gui",
+                "clsModule": "wrappers.modelASUCheck.script.modelASUCheck_gui",
+                "clsName": "modelASUCheck_gui",
+                "shortTitle": "Check model against AU contents",
+                "taskName": "modelASUCheck",
+                "taskVersion": 0.1
+            }
+        },
         "modelcraft": {
             "0.0.0": {
                 "DESCRIPTION": "Automated model building of protein, nucleic acid and water",
@@ -5930,6 +5904,20 @@
                 "shortTitle": "Autobuild RNA - NAUTILUS",
                 "taskName": "nautilus_build_refine",
                 "taskVersion": 0.1
+            }
+        },
+        "nucleofind": {
+            "0.0.0": {
+                "DESCRIPTION": "Use NucleoFind to predict the regions of nucleic acid phosphates, sugars and base in an electron density map or Coulomb potential map.",
+                "MAINTAINER": "Nobody",
+                "RANK": null,
+                "TASKTITLE": "Predict regions of nucleic acids with NucleoFind",
+                "class": "wrappers.nucleofind.script.nucleofind_guiNucleoFindGUI",
+                "clsModule": "wrappers.nucleofind.script.nucleofind_gui",
+                "clsName": "NucleoFindGUI",
+                "shortTitle": "NucleoFind",
+                "taskName": "nucleofind",
+                "taskVersion": "0.0.0"
             }
         },
         "pairef": {
@@ -6254,34 +6242,6 @@
                 "taskVersion": 0.1
             }
         },
-        "reindex_minimtz": {
-            "0.0.0": {
-                "DESCRIPTION": null,
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Reindex any miniMTZ",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz_guiCreindex_minimtz",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_minimtz.script.reindex_minimtz_gui",
-                "clsName": "Creindex_minimtz",
-                "shortTitle": "Reindex any miniMTZ",
-                "taskName": "reindex_minimtz",
-                "taskVersion": 0.0
-            }
-        },
-        "reindex_processed_data": {
-            "0.0.0": {
-                "DESCRIPTION": "Reindex processed data to correspond to a master dataset (Reindex)",
-                "MAINTAINER": "Nobody",
-                "RANK": null,
-                "TASKTITLE": "Reindex observed and FreeR data",
-                "class": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_guiCreindex_processed_data",
-                "clsModule": "pipelines.prosmart_refmac.wrappers.reindex_processed_data.script.reindex_processed_data_gui",
-                "clsName": "Creindex_processed_data",
-                "shortTitle": "Reindex observed and FreeR data",
-                "taskName": "reindex_processed_data",
-                "taskVersion": 0.0
-            }
-        },
         "scaleit": {
             "0.0.0": {
                 "DESCRIPTION": "Compare two or more datasets by running SCALEIT",
@@ -6312,7 +6272,7 @@
         },
         "servalcat_pipe": {
             "0.0.0": {
-                "DESCRIPTION": "Refinement against diffraction data or cryo-EM SPA map with optional restraints from ProSmart and/or MetalCoord",
+                "DESCRIPTION": "Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)",
                 "MAINTAINER": "Nobody",
                 "RANK": 1,
                 "TASKTITLE": "Refinement - Servalcat",

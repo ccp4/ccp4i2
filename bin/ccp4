@@ -19,14 +19,20 @@ export CCP4I2 CCP4I2_TOP PYTHONSTARTUP
 # LIBTBX_BUILD is used in cctbx to find libtbx_env file (pickle)
 if test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/cctbx; then
   LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.7/cctbx
+elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.11/site-packages/ccp4i2; then
+  LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.11/site-packages/ccp4i2
 elif test -d $CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2; then
   LIBTBX_BUILD=$CCP4/Frameworks/Python.framework/Versions/Current/lib/python3.9/site-packages/ccp4i2
 elif test -d $CCP4/lib/python3.7/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/python3.7/cctbx
+elif test -d $CCP4/lib/python3.11/cctbx; then
+  LIBTBX_BUILD=$CCP4/lib/python3.11/cctbx
 elif test -d $CCP4/lib/python3.9/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/python3.9/cctbx
 elif test -d $CCP4/lib/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/cctbx
+elif test -d $CCP4/lib/python3.11/site-packages/cctbx; then
+  LIBTBX_BUILD=$CCP4/lib/python3.11/site-packages/cctbx
 elif test -d $CCP4/lib/python3.9/site-packages/cctbx; then
   LIBTBX_BUILD=$CCP4/lib/python3.9/site-packages/cctbx
 else

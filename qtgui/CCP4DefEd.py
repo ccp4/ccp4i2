@@ -298,15 +298,6 @@ class CDefEd(QtWidgets.QMainWindow):
           slot = self.makeDataXml,
           enabled = 0
           )
-    '''
-    self.actionDefinitions['makeHtml'] = dict (
-          text = "Make Html class listing",
-          tip = "Make Html class listing",
-          slot = self.makeHtmlClassListing,
-          enabled = 0
-          )
-    '''
-    
     self.actionDefinitions['back'] = dict (
           text = "Back",
           tip = "Go back to previous page",
@@ -319,25 +310,7 @@ class CDefEd(QtWidgets.QMainWindow):
           slot = self.handleForward,
           enabled = 0
           )
-    
-    '''
-    self.actionDefinitions['find'] = dict (
-          text = "Find",
-          tip = "Find in file",
-          slot = self.openFind,
-          icon = 'search',
-          checkable = 1,
-          checked = self.isFindFrameOpen,
-          )
-    
-    
-    self.actionDefinitions['reload'] = dict (
-          text = "Reload",
-          tip = "Reload current page",
-          slot = self.reloadPage,
-          enabled = 1
-         )
-    '''
+
   def getActionDef(self,name,**info):
     return self.actionDefinitions.get(name,dict(text=name))
 

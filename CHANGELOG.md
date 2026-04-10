@@ -1,6 +1,105 @@
 # CCP4i2 Changelog
 
-## [2.2.4] - 2025-02-25
+## [2.6.0] - 2026-03-26
+
+- New NucleoFind task for predicting locations of nucleic acid features in maps
+- New AREAIMOL task for calculating solvent accessible surface area
+- Remove PDB/mmCIF input for AceDRG
+- AceDRG metal option only visible for CIF input format
+- Reporting input distances and angles in MetalCoord task
+- Symmetry operators shown in MetalCoord report
+- Added Coot 1 as a follow-on task
+- Using shutil.which for xia2 multiplex command on Windows
+- Fixes for DUI2 and support for continuing previous sessions
+
+## [2.5.2] - 2026-02-06
+
+- Xia2 DIALS only supports image directory on Windows
+- Testing AceDRG atom IDs do not contain spaces
+
+## [2.5.1] - 2026-02-05
+
+- Fix to spaces/quoting in AceDRG atom name matching
+
+## [2.5.0] - 2026-01-06
+
+- New task to check a model against AU contents
+- Standardised ModelCraft output file name
+- Twinning analysis in Servalcat report
+- Preserving ProSMART parameters when cloning Servalcat jobs
+- Stop the Refmac pipeline producing map files by default
+- Fix to Servalcat USE_WORK_IN_EST
+- Fix to user selected columns in split MTZ task
+- Changed coot_rsr_morph and coot_add_waters to use CHAPI
+
+## [2.4.3] - 2025-10-24
+
+- Improved checking/rebuilding of database and project-list XML files on startup
+
+## [2.4.2] - 2025-10-22
+
+- Capturing stderr for subjobs in Refmac, Servalcat and Lorestr pipelines
+- Reducing size of reports by fetching log files instead of embedding them
+- Fix for reflection CIF files containing both merged and unmerged data
+- New Pointless options to remove lattice centering reflections
+- Fix to Servalcat report type handling
+- Fixes to i2run testing
+
+## [2.4.1] - 2025-10-07
+
+- Fix Coot map coluring with multiple models
+- Fix for AceDRG atom name matching
+- Improved graphs in Servalcat report
+- Added checks before xmlnode append
+- Searching Python 3.11 paths for CCP4 10
+- PDB-REDO text change
+
+## [2.4.0] - 2025-07-15
+
+- Servalcat refinement against unmerged data
+- Servalcat option for van der Waals restraint weight
+- Updated Iris validation to work with v0.3.3
+- More graphs in the Servalcat report
+- More Servalcat i2 run tests
+- Fix for deprecated numpy.float
+- More AceDrg i2run tests
+- Support for 5-letter ligand codes in AceDRG make link
+- Fix for Coot 0.9 anomalous map colouring
+
+## [2.3.3] - 2025-05-29
+
+- Fix to Coot output files
+
+## [2.3.2] - 2025-05-22
+
+- Avoid re-importing files with the same checksum
+- Fix for the Coot RSR Morph task on Windows
+- Fixed collections.Iterable import
+- Changed some performance testing thresholds
+
+## [2.3.1] - 2025-05-17
+
+- Changed some performance testing thresholds
+- Removed unused CCP4I2Runner code
+- Removed deprecated collections imports
+
+## [2.3.0] - 2025-05-13
+
+- Added a Coot 1 task
+- Added a MetalCoord task
+- Added performance testing to the i2run tests
+- Fix to AUSPEX command line for Windows
+- Fix for ASU contents view with QtGui/QtWidgets changes
+
+## [2.2.6] - 2025-04-24
+
+- Fix for import merged from a CIF file with a non-standard ASU
+
+## [2.2.5] - 2025-04-23
+
+- Fix for missing useLXML arguments in getEtree
+
+## [2.2.4] - 2025-04-20
 
 - Fixed window maximising on Windows
 - ModelCraft used by default in the DR/MR/MB pipeline
@@ -11,6 +110,9 @@
 - Hiding nanobind leak warnings from Gemmi 0.7
 - Changing Buccaneer to ModelCraft in the Phaser EP task
 - Fixed MrParse report on Windows
+- Increased maximum Coot files saved from 10 to 250
+- Added an i2run script for Windows
+- Added more i2run tests to replace test101
 
 ## [2.2.3] - 2025-02-07
 

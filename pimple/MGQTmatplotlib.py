@@ -30,6 +30,7 @@ import glob
 import functools
 import traceback
 import copy
+from collections.abc import Callable
 
 from matplotlib.backends.qt_compat import QtCore, QtGui, QtWidgets
 from matplotlib.backends.backend_qt5agg import FigureCanvas
@@ -45,10 +46,6 @@ from lxml import etree
 
 from matplotlib.backends.backend_pdf import PdfPages
 
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
 
 numpy.seterr(invalid='ignore')
 

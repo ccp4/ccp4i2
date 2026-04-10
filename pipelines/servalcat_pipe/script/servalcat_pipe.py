@@ -24,6 +24,7 @@ from core import CCP4ErrorHandling
 from core import CCP4Utils
 from . import monitor_differences
 import os, sys, shutil
+import traceback
 import gemmi
 import numpy
 from operator import itemgetter
@@ -33,11 +34,11 @@ class servalcat_pipe(CPluginScript):
 
     TASKMODULE = 'refinement'
     SHORTTASKTITLE = 'Servalcat'
-    TASKTITLE = 'Refinement against diffraction data or SPA map & optional restraints from ProSMART & MetalCoord'
+    TASKTITLE = 'Refinement against diffraction data with optional restraints (ProSMART, MetalCoord)'
     TASKNAME = 'servalcat_pipe'  # Task name - same as class name
     MAINTAINER = 'martin.maly@mrc-lmb.cam.ac.uk'
     TASKVERSION= 0.1
-    WHATNEXT = ['servalcat_pipe','coot_rebuild','modelcraft']
+    WHATNEXT = ['servalcat_pipe','coot_rebuild','coot1','modelcraft']
     ASYNCHRONOUS = True
     TIMEOUT_PERIOD = 240
     MAXNJOBS = 4
@@ -177,7 +178,7 @@ class servalcat_pipe(CPluginScript):
                 self.container.outputData.METALCOORD_RESTRAINTS.annotation = 'Restraints for metal sites'
             if os.path.isfile(self.outputRestraintsMmcifPath) and stPath:
                 self.container.outputData.METALCOORD_XYZ.setFullPath(self.outputRestraintsMmcifPath)
-                self.container.outputData.METALCOORD_XYZ.annotation = 'Input structure with links from MetalCoord'
+                self.container.outputData.METALCOORD_XYZ.annotation = 'Structure model with links from MetalCoord (mmCIF format)'
 
     def executeMetalCoord(self, ligand_code):
         self.metalCoordPlugin = self.makePluginObject('metalCoord')
@@ -291,6 +292,8 @@ class servalcat_pipe(CPluginScript):
                     # else report error?
             else:
                 result.container.inputData.METALCOORD_RESTRAINTS=self.container.metalCoordPipeline.METALCOORD_RESTRAINTS
+
+        # Set parameters if there is prior ProSMART (for job cloning)
         if self.container.prosmartProtein.TOGGLE:
             result.container.controlParameters.PROSMART_PROTEIN_SGMN=self.container.prosmartProtein.SGMN
             result.container.controlParameters.PROSMART_PROTEIN_SGMX=self.container.prosmartProtein.SGMX
@@ -336,17 +339,21 @@ class servalcat_pipe(CPluginScript):
 
         if validate_iris or validate_baverage or validate_molprobity or validate_ramachandran:
             self.validate = self.makePluginObject('validate_protein')
-            self.validate.container.inputData.XYZIN_1.set(self.container.outputData.XYZOUT)
-            self.validate.container.inputData.XYZIN_2.set(self.container.inputData.XYZIN)
-            self.validate.container.inputData.NAME_1.set("Refined")
-            self.validate.container.inputData.NAME_2.set("Input")
-            if str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY":
-                self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
+            self.validate.container.inputData.XYZIN_2.set(self.container.outputData.CIFFILE)
+            self.validate.container.inputData.XYZIN_1.set(self.container.inputData.XYZIN)
+            self.validate.container.inputData.NAME_2.set("Refined")
+            self.validate.container.inputData.NAME_1.set("Input")
+            if (
+                str(self.container.controlParameters.SCATTERING_FACTORS) == "XRAY"
+                and str(self.container.controlParameters.MERGED_OR_UNMERGED) == "merged"
+            ):
                 self.validate.container.inputData.F_SIGF_2.set(self.container.inputData.HKLIN)
+                self.validate.container.inputData.F_SIGF_1.set(self.container.inputData.HKLIN)
             else:
-                self.validate.container.inputData.F_SIGF_1.set(None)
                 self.validate.container.inputData.F_SIGF_2.set(None)
+                self.validate.container.inputData.F_SIGF_1.set(None)
 
+            self.validate.container.controlParameters.TWO_DATASETS.set(True)
             self.validate.container.controlParameters.DO_IRIS.set(validate_iris)
             self.validate.container.controlParameters.DO_BFACT.set(validate_baverage)
             self.validate.container.controlParameters.DO_RAMA.set(validate_ramachandran)
@@ -436,20 +443,16 @@ class servalcat_pipe(CPluginScript):
             adp_low = []
             adp_high = []
             for model in st:
-                for chain in model:
-                    for residue in chain:
-                        for atom in residue:
-                            if atom.element != gemmi.Element('H') and atom.occ > 0:
-                                if atom.aniso.nonzero():
-                                    adp_atom = gemmi.calculate_b_est(atom)
-                                else:
-                                    adp_atom = atom.b_iso
-                                if adp_atom < adp_limit_low:
-                                    adp_low.append({"atom": str(model.get_cra(atom)),
-                                                    "adp": adp_atom})
-                                elif adp_atom > adp_limit_high:
-                                    adp_high.append({"atom": str(model.get_cra(atom)),
-                                                    "adp": adp_atom})
+                for cra in model.all():
+                    if not cra.atom.is_hydrogen and cra.atom.occ > 0:
+                        if cra.atom.aniso.nonzero():
+                            adp_atom = gemmi.calculate_b_est(cra.atom)
+                        else:
+                            adp_atom = cra.atom.b_iso
+                        if adp_atom < adp_limit_low:
+                            adp_low.append({"atom": str(cra), "adp": adp_atom})
+                        elif adp_atom > adp_limit_high:
+                            adp_high.append({"atom": str(cra), "adp": adp_atom})
             adp_low = sorted(adp_low, key=itemgetter('adp'))
             adp_high = sorted(adp_high, key=itemgetter('adp'), reverse=True)
 
@@ -545,18 +548,26 @@ class servalcat_pipe(CPluginScript):
             self.saveXml()
             print("ADP analysis done.")
         except Exception as e:
-            sys.stderr.write("ERROR: ADP analysis as not successful: " + str(e) + "\n")
+            sys.stderr.write(traceback.format_exc())
+            sys.stderr.write("ERROR: ADP analysis was not successful: " + str(e) + "\n")
 
     def coord_adp_dev_analysis(self, model1Path, model2Path):
         print("Monitoring of changes/shifts of coordinated and ADPs...")
         try:
-            coordDevMinReported = self.container.monitor.MIN_COORDDEV
-            ADPAbsDevMinReported = self.container.monitor.MIN_ADPDEV
+            coordDevMinReported = float(self.container.monitor.MIN_COORDDEV)
+            ADPAbsDevMinReported = float(self.container.monitor.MIN_ADPDEV)
             csvFileName = "report_coord_adp_dev.csv"
             csvFilePath = str(os.path.join(self.getWorkDirectory(), csvFileName))
             df = monitor_differences.main(
                 file1=model1Path, file2=model2Path, output=csvFilePath,
-                minCoordDev=float(coordDevMinReported), minAdpDev=float(ADPAbsDevMinReported))
+                minCoordDev=coordDevMinReported, minAdpDev=ADPAbsDevMinReported,
+                useHydrogens=False)
+            if df is None or df.empty or not all(col in df.columns for col in ["CoordDev", "ADPDev"]):
+                sys.stderr.write(
+                    "WARNING: No changes/shifts of coordinates and ADPs detected above given thresholds "
+                    f" ({coordDevMinReported} A, {ADPAbsDevMinReported} A^2). "
+                    f" No data reported in the output file {csvFileName}.\n")
+                return
             coordDevMean = df["CoordDev"].mean()
             ADPAbsDevMean = df["ADPDev"].mean()
             # Save csv in program.xml
@@ -582,8 +593,9 @@ class servalcat_pipe(CPluginScript):
             xmlTree = etree.fromstring(xmlText)
             self.xmlroot.append(xmlTree)
             self.saveXml()
-            print("Monitoring of changes/shifts of coordinates and ADPs...")
+            print("Monitoring of changes/shifts of coordinates and ADPs done.")
         except Exception as e:
+            sys.stderr.write(traceback.format_exc())
             sys.stderr.write("ERROR: Monitoring of changes/shifts of coordinates and ADPs was not successful: " + str(e) + "\n")
 
     @QtCore.Slot(dict)
@@ -681,15 +693,12 @@ class servalcat_pipe(CPluginScript):
             oldXml = etree.fromstring(aFile.read())
             aFile.close()
             nwaters = "unknown"
-            cootLogTxt = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()), "log.txt")
-            with open(cootLogTxt, 'r') as f:
-               for l in f:
-                   if l.startswith("INFO::") and "found" in l and "water fitting" in l:
-                      nwaters = l.strip()
-                      numsearch = [ x for x in nwaters.split() if x.isdigit() ]
-                      if len(numsearch)>0:
-                         nwaters = numsearch[0]
-                      break
+            cootLogXml = os.path.join(os.path.dirname(self.cootPlugin.container.outputData.XYZOUT.__str__()),"program.xml")
+            with open(cootLogXml, encoding='utf-8') as f:
+                watersXml = etree.fromstring(f.read())
+                nodes = watersXml.findall(".//WatersFound")
+                if len(nodes) > 0:
+                    nwaters = nodes[0].text
             postRefmacCoot = etree.Element("CootAddWaters")
             postRefmacCoot.text = "Coot added " + nwaters + " water molecules."
             oldXml.append(postRefmacCoot)
@@ -813,33 +822,6 @@ class servalcat_pipe(CPluginScript):
 
         self.appendErrorReport(40,str(self.TIMEOUT_PERIOD))
         self.reportStatus(CPluginScript.FAILED)
-
-def coefficientsToMap(coefficientsPath, mapPath=None, overSample=1.0):
-    import clipper
-    mtz_file = clipper.CCP4MTZfile()
-    hkl_info = clipper.HKL_info()
-    mtz_file.open_read (str(coefficientsPath))
-    mtz_file.import_hkl_info ( hkl_info )
-    fphidata = clipper.HKL_data_F_phi_float(hkl_info)
-    mtz_file.import_hkl_data( fphidata, str("/*/*/[F,PHI]") );
-    mtz_file.close_read()
-    #Clipper will sample the output map according to Fourier theory and hte nominal resolution
-    #for visualisation, it is generally nicer to make things a bit more finely sampled
-    fudgedResolution = hkl_info.resolution()
-    fudgedResolution.init(hkl_info.resolution().limit()/overSample)
-    mygrid=clipper.Grid_sampling ( hkl_info.spacegroup(), hkl_info.cell(), fudgedResolution )
-    mymap = clipper.Xmap_float(hkl_info.spacegroup(), hkl_info.cell(), mygrid )
-    mymap.fft_from_float(fphidata)
-
-    mapout = clipper.CCP4MAPfile()
-    if mapPath is None:
-        coefficientsRoot, extension = os.path.splitext(os.path.abspath(coefficientsPath))
-        mapPath = coefficientsRoot+".map"
-
-    mapout.open_write( mapPath )
-    mapout.export_xmap_float( mymap )
-    mapout.close_write()
-    return mapPath
 
 # Function called from gui to support exporting MTZ files
 def exportJobFile(jobId=None,mode=None,fileInfo={}):

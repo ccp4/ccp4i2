@@ -39,7 +39,7 @@ class arcimboldo(CPluginScript):
     TASKVERSION= 0.1
     WHATNEXT = [ 'prosmart_refmac' ]
     MAINTAINER = 'jtvcri@ibmb.csic.es'
-    PURGESEARCHLIST = [ 'hklin*.mtz',0 ]
+    PURGESEARCHLIST = [['hklin*.mtz', 0]]
     ASYNCHRONOUS = True
 
     def genHKL(self, hklin):

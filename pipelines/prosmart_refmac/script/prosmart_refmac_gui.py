@@ -39,7 +39,7 @@ def whatNext(jobId=None,childTaskName=None,childJobNumber=None,projectName=None)
     if jobStatus == 'Unsatisfactory':
         returnList = ['LidiaAcedrg', 'prosmart_refmac']
     else:
-        returnList = ['prosmart_refmac', 'coot_rebuild', 'modelcraft']
+        returnList = ['prosmart_refmac', 'coot_rebuild', 'coot1', 'modelcraft']
     return returnList
 
 class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
@@ -583,6 +583,8 @@ class Cprosmart_refmac(CCP4TaskWidget.CTaskWidget):
 
     #self.createLine( [ 'widget', 'OPTIMISE_WEIGHT', 'label', 'Execute multiple refinement runs in order to optimise X-ray/geometry weight' ] )
 
+    self.createLine( [ 'label', 'Optional list of sequences to align with model sequences for validation at end of refinement.' ] )
+    self.createLine( [ 'widget', 'ASUIN' ] )
     self.createLine( [ 'widget', 'REFMAC_CLEANUP', 'label', 'Clean up intermediate files at end of job' ] )
 
     self.createLine( [ 'widget', '-guiMode','multiLine','EXTRAREFMACKEYWORDS' ] )

@@ -808,15 +808,6 @@ For manual specification, see the help page.</toolTip>
                   <toolTip>Add waters and do a further 5 refinement cycles after main refinement job finishes.</toolTip>
               </qualifiers>
             </content>
-            <content id="REFPRO_COOT_REALSPACE_OPERATION">
-                  <className>CString</className>
-                  <qualifiers>
-                      <onlyEnumerators>True</onlyEnumerators>
-                      <enumerators>coot_stepped_refine,coot_fit_residues,coot_add_waters,none</enumerators>
-                      <menuText>stepped refine,fill and fit,add waters,nothing</menuText>
-                      <default>none</default>
-                  </qualifiers>
-            </content>
             <content id="REFPRO_USERAMA">
                   <className>CBoolean</className>
                   <qualifiers>

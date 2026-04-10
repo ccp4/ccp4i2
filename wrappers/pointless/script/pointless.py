@@ -29,7 +29,8 @@ class pointless(CPluginScript):
       ###self.appendCommandScript("XMLOUT %s" % str( self.makeFileName( 'PROGRAMXML' )))
       # XMLOUT on command line so that syntax errors go into it
       self.appendCommandLine(['XMLOUT',str( self.makeFileName( 'PROGRAMXML' ) )])
-
+      print(">>XMLOUT<<", str( self.makeFileName( 'PROGRAMXML' ) ))
+      
       for i in range(len(self.container.inputData.UNMERGEDFILES)):
         # Note: NAME, CIFBLOCK commands must preceed HKLIN
         # print(">>>HKLIN ", self.container.inputData.UNMERGEDFILES[i], file=logit)
@@ -167,6 +168,13 @@ class pointless(CPluginScript):
               if lattype != 'P':
                   self.appendCommandScript('lattice '+lattype)
 
+      if par.KEEP_LATTICE_CENTERING:
+          self.appendCommandScript('keeplattice')
+      else:
+          if not par.REMOVE_LATTICE_CENTERING:
+              if par.LATTICE_CENTERING_THRESHOLD:
+                  self.appendCommandScript('keeplattice '+ str(par.LATTICE_CENTERING_THRESHOLD))
+              
       if par.ALLOW_NONCHIRAL:
           self.appendCommandScript('CHIRALITY NONCHIRAL')
           

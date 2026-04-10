@@ -19,7 +19,7 @@ from __future__ import print_function
 
 import os
 import shutil
-
+import pathlib
 from core.CCP4PluginScript import CPluginScript
 from lxml import etree
 import core.CCP4Utils
@@ -118,13 +118,24 @@ class lorestr_i2(CPluginScript):
 
         print('Runtime call handleReadyReadStandardOutput\n\n')
 
-        if not hasattr(self,'logFileHandle'): self.logFileHandle = open(self.makeFileName('LOG'),'w')
+        if not hasattr(self,'logFileHandle'):
+            logFilePath = pathlib.Path(self.makeFileName('LOG'))
+            self.logFileHandle = logFilePath.open('w')
+        if not hasattr(self,'errFileHandle'):
+            logFilePath = pathlib.Path(self.makeFileName('LOG'))
+            errFilePath = logFilePath.with_stem(logFilePath.stem + "_err")
+            self.errFileHandle = errFilePath.open('w')
+
         if not hasattr(self,'logFileBuffer'): self.logFileBuffer = ''
         pid = self.getProcessId()
         qprocess = CCP4Modules.PROCESSMANAGER().getJobData(pid,attribute='qprocess')
         availableStdout = qprocess.readAllStandardOutput()
-        self.logFileHandle.write(availableStdout)
+        self.logFileHandle.write(availableStdout.data().decode("utf-8"))
         self.logFileHandle.flush()
+        availableStderr = qprocess.readAllStandardError()
+        self.errFileHandle.write(availableStderr.data().decode("utf-8"))
+        self.errFileHandle.flush()
+
 
         self.xmlroot = etree.Element("lorestr_i2")
         logText = etree.SubElement(self.xmlroot,"LogText")

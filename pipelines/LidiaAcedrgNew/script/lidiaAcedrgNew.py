@@ -1,21 +1,20 @@
-from __future__ import print_function
+import os
+import sys
 
-
-from core.CCP4PluginScript import CPluginScript
-from PySide2 import QtCore
-import os,glob,re,time,sys
-from core import CCP4XtalData
 from lxml import etree
-import math
-from core import CCP4Modules,CCP4Utils
+from PySide2 import QtCore
+
 from core import CCP4ErrorHandling
+from core import CCP4Utils
+from core.CCP4PluginScript import CPluginScript
+
 
 class lidiaAcedrgNew(CPluginScript):
     TASKNAME = 'LidiaAcedrgNew'            # Task name - should be same as class name
     TASKVERSION= 0.0                    # Version of this plugin
     ASYNCHRONOUS = False
     TIMEOUT_PERIOD = 9999999.9
-    WHATNEXT = ['coot_rebuild']
+    WHATNEXT = ['coot_rebuild','coot1']
     MAINTAINER = 'martin.noble@newcastle.ac.uk'
     ERROR_CODES = { 201 : {'description' : 'Expected output file not made', 'severity':CCP4ErrorHandling.SEVERITY_WARNING },}
 
@@ -53,9 +52,6 @@ class lidiaAcedrgNew(CPluginScript):
             self.finishWithStatus(result)
         elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'DICT':
             result = self.doAcedrg('DICT', self.container.inputData.DICTIN2)
-            self.finishWithStatus(result)
-        elif self.container.inputData.MOLSMILESORSKETCH.__str__() == 'PDBMMCIF':
-            result = self.doAcedrg('PDBMMCIF', self.container.inputData.PDBMMCIFIN)
             self.finishWithStatus(result)
 
     @QtCore.Slot(dict)
@@ -95,8 +91,8 @@ class lidiaAcedrgNew(CPluginScript):
             acedrgPlugin.container.inputData.SMILESIN = inputObject
         elif inputType == 'DICT':
             acedrgPlugin.container.inputData.DICTIN2 = inputObject
-        elif inputType == 'PDBMMCIF':
-            acedrgPlugin.container.inputData.PDBMMCIFIN = inputObject
+            if self.container.controlParameters.TOGGLE_METAL:
+                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         try:
             acedrgPlugin.container.inputData.TLC.set(self.container.inputData.TLC)
             acedrgPlugin.container.controlParameters.NOPROT.set(self.container.controlParameters.NOPROT)
@@ -105,8 +101,6 @@ class lidiaAcedrgNew(CPluginScript):
                 acedrgPlugin.container.inputData.NRANDOM.set(self.container.inputData.NRANDOM)
             else:
                 acedrgPlugin.container.inputData.NRANDOM.set(0)
-            if self.container.controlParameters.TOGGLE_METAL:
-                acedrgPlugin.container.inputData.METAL_STRUCTURE = self.container.inputData.METAL_STRUCTURE
         except:
             exc_type, exc_value,exc_tb = sys.exc_info()[:3]
             sys.stdout.write(str(exc_type)+'\n')
@@ -142,13 +136,12 @@ class lidiaAcedrgNew(CPluginScript):
         else:
             self.appendErrorReport(201, 'DICTOUT')
 
+        # No output PDB for 5-letter code monomers
         if os.path.isfile(acedrgPlugin.container.outputData.XYZOUT.fullPath.__str__()):
             out.XYZOUT_LIST.append(out.XYZOUT_LIST.makeItem())
             out.XYZOUT_LIST[-1].fullPath = os.path.normpath(os.path.join(self.getWorkDirectory(),self.container.inputData.TLC.__str__()+'.pdb'))
             shutil.copyfile(acedrgPlugin.container.outputData.XYZOUT.fullPath.__str__(), out.XYZOUT_LIST[-1].fullPath.__str__())
             out.XYZOUT_LIST[-1].annotation = acedrgPlugin.container.outputData.XYZOUT.annotation
-        else:
-            self.appendErrorReport(201,'XYZOUT')
 
         out.MOLOUT_LIST.append(out.MOLOUT_LIST.makeItem())
         out.MOLOUT_LIST[-1].fullPath = os.path.normpath(os.path.join(self.getWorkDirectory(),self.container.inputData.TLC.__str__()+'_RDKIT.mol'))

@@ -35,10 +35,7 @@ import time
 import glob
 import re
 from lxml import etree
-if sys.version_info >= (3,7):
-    from collections.abc import Callable
-else:
-    from collections import Callable
+from collections.abc import Callable
 import functools
 from PySide2 import QtWebEngine, QtWebEngineWidgets, QtGui, QtWidgets, QtCore
 from qtgui import CCP4WebView
@@ -704,7 +701,6 @@ class CToolBar(QtWidgets.QToolBar):
 
     toolBarPreferencesMapping = {
        "task_menu" : "SHOW_TASK_MENU_TOOLBUTTON",
-       "job_search" : "SHOW_JOB_SEARCH_TOOLBUTTON",
        "export_project" : "SHOW_EXPORT_PROJECT_TOOLBUTTON",
        "run" : "SHOW_RUN_TOOLBUTTON",
        "run_remote" : "SHOW_RUN_REMOTE_TOOLBUTTON",
@@ -803,38 +799,7 @@ class CToolBar(QtWidgets.QToolBar):
                 val = True
             else:
                 val = False
-            #FIXME - Aargh. There must be a nicer way.
-            #MN Trying to increase code compactness/readability
             getattr(CCP4Modules.PREFERENCES(), mapping).set(val)
-            #Replaces
-            '''
-            if mapping == "SHOW_TASK_MENU_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_TASK_MENU_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_JOB_SEARCH_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_JOB_SEARCH_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_EXPORT_PROJECT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_EXPORT_PROJECT_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_RUN_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_RUN_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_RUN_REMOTE_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_RUN_REMOTE_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_CLONE_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_CLONE_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_TASK_HELP_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_TASK_HELP_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_REFERENCES_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_REFERENCES_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_EXPORT_MTZ_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_EXPORT_MTZ_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_VIEW_COOT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_VIEW_COOT_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_VIEW_CCP4MG_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_VIEW_CCP4MG_TOOLBUTTON.set(val)
-            elif mapping == "SHOW_SHOW_LOG_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().SHOW_SHOW_LOG_TOOLBUTTON.set(val)
-            elif mapping == "NEW_PROJECT_TOOLBUTTON":
-                CCP4Modules.PREFERENCES().NEW_PROJECT_TOOLBUTTON.set(val)
-            '''
         listWidget.itemChanged.connect(setItemVisibilities)
         prefWidget.exec_()
 
@@ -1057,7 +1022,7 @@ class CMainWindow(QtWidgets.QMainWindow):
                                                        slot = functools.partial(self.handleProjectMenu, 'import_project'), enabled = 1, icon = 'import_arrow_new'))
         self.setActionDefinition('serverSetup',dict(text="Configure servers for 'remote' run jobs", tip = "Specify host and mechanism to run remote jobs",
                                                     slot = self.openServerSetup, checked = self.isServerSetupOpen))
-        self.setActionDefinition('pdb_redo_setup',dict(text="Set login tokens for PDB_REDO", tip = "This must be done at least once per year to enable PDB_REDO jobs to work",
+        self.setActionDefinition('pdb_redo_setup',dict(text="Set login tokens for PDB-REDO", tip = "This must be done at least once per year to enable PDB-REDO jobs to work",
                                                     slot = self.openConfigurePDBREDOTokens))
         self.setActionDefinition('redo_report',dict(text="Remake report", tip="Remake the task report",
                                                     slot=functools.partial(self.handleDeveloperTools, 'redo_report'),
@@ -1304,10 +1269,10 @@ class CMainWindow(QtWidgets.QMainWindow):
 
     def openConfigurePDBREDOTokens(self):
         dialog = QtWidgets.QDialog()
-        dialog.setWindowTitle("Generate PDB_REDO tokens")
+        dialog.setWindowTitle("Generate PDB-REDO tokens")
         layout = QtWidgets.QGridLayout()
         dialog.setLayout(layout)
-        layout.addWidget(QtWidgets.QLabel("Please enter your PDB-REDO web services token and secret required by the PDB_REDO task"),0,0,1,2)
+        layout.addWidget(QtWidgets.QLabel("Please enter your PDB-REDO web services token and secret required by the PDB-REDO task"),0,0,1,2)
         layout.addWidget(QtWidgets.QLabel("PDB-REDO token id:"))
         tokenIdEdit = QtWidgets.QLineEdit()
         layout.addWidget(tokenIdEdit,layout.rowCount()-1,1)
@@ -1323,7 +1288,7 @@ class CMainWindow(QtWidgets.QMainWindow):
             if len(tokenIdEdit.text()) > 0 and len(secretEdit.text()) > 0:
                     CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_ID.set(tokenIdEdit.text())
                     CCP4Modules.PREFERENCES().PDB_REDO_TOKEN_SECRET.set(secretEdit.text())
-                    QtWidgets.QMessageBox.information(self,'Successfully set PDB_REDO token','Successfully set PDB_REDO token<br/>You should now be able use the PDB_REDO task.'.format(payload.get('expires')),QtWidgets.QMessageBox.Ok)
+                    QtWidgets.QMessageBox.information(self,'Successfully set PDB-REDO token','Successfully set PDB-REDO token<br/>You should now be able use the PDB-REDO task.'.format(payload.get('expires')),QtWidgets.QMessageBox.Ok)
 
 
     def openServerSetup(self):

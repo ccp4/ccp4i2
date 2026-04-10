@@ -21,6 +21,15 @@
             </CI2XmlDataFile>
         </file>
         <container id="inputData">
+            <content id="ASUIN">
+              <className>CAsuDataFile</className>
+              <qualifiers>
+                <mustExist>True</mustExist>
+                <allowUndefined>True</allowUndefined>
+                <fromPreviousJob>False</fromPreviousJob>
+                <selectionMode>0</selectionMode>
+              </qualifiers>
+            </content>
            <content id="AMINOACID_CHAINS">
               <className>CList</className>
               <qualifiers>
@@ -459,7 +468,7 @@
             <content id="VALIDATE_IRIS">
                <className>CBoolean</className>
                <qualifiers>
-                  <default>False</default>
+                  <default>True</default>
                </qualifiers>
             </content>
             <content id="VALIDATE_BAVERAGE">

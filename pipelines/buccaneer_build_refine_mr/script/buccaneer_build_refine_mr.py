@@ -44,7 +44,7 @@ class buccaneer_build_refine_mr(CPluginScript):
     PERFORMANCECLASS = 'CModelBuildPerformance'
     MAINTAINER = 'paul.bond@york.ac.uk'
     RUNEXTERNALPROCESS = False
-    WHATNEXT = ['coot_rebuild', 'prosmart_refmac', 'buccaneer_build_refine_mr']
+    WHATNEXT = ['coot_rebuild','coot1', 'prosmart_refmac', 'buccaneer_build_refine_mr']
     PURGESEARCHLIST = [['buccaneer_mr%*/XYZOUT.*', 5, 'XYZOUT'],
                        ['refmac%*/ABCDOUT.mtz', 5, 'ABCDOUT'],
                        ['refmac%*/FPHIOUT.mtz', 5, 'FPHIOUT'],
