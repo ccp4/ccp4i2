@@ -31,6 +31,23 @@ WORKING_DIR="$(cd "$BICEP_DIR/../.." && pwd)"
 BUILD_SERVER=true
 BUILD_WEB=true
 BUILD_TARGET=""
+ENV_FILE="$BICEP_DIR/.env.deployment"
+
+# Parse --env flag from any position
+POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --env)
+            ENV_FILE="$BICEP_DIR/$2"
+            shift 2
+            ;;
+        *)
+            POSITIONAL_ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+set -- "${POSITIONAL_ARGS[@]}"
 
 if [ $# -gt 0 ]; then
     case "$1" in
@@ -46,6 +63,7 @@ if [ $# -gt 0 ]; then
             ;;
         *)
             echo -e "${RED}❌ Invalid argument. Use 'server', 'web', or no argument for both${NC}"
+            echo -e "${YELLOW}Usage: $0 [--env <env-file>] [server|web]${NC}"
             exit 1
             ;;
     esac
@@ -59,10 +77,11 @@ echo -e "${YELLOW}📁 Working directory: $WORKING_DIR${NC}"
 cd "$WORKING_DIR"
 
 # Load environment variables
-if [ -f "$BICEP_DIR/.env.deployment" ]; then
-    source "$BICEP_DIR/.env.deployment"
+if [ -f "$ENV_FILE" ]; then
+    echo -e "${YELLOW}📋 Using environment: $(basename $ENV_FILE)${NC}"
+    source "$ENV_FILE"
 else
-    echo -e "${RED}❌ .env.deployment not found${NC}"
+    echo -e "${RED}❌ $(basename $ENV_FILE) not found at $ENV_FILE${NC}"
     exit 1
 fi
 

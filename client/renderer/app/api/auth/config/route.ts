@@ -28,9 +28,16 @@ import { NextResponse } from "next/server";
  * - NEXT_PUBLIC_REQUIRE_AUTH: Whether auth is required ("true"/"false")
  */
 export async function GET() {
-  return NextResponse.json({
-    clientId: process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "",
-    tenantId: process.env.NEXT_PUBLIC_AAD_TENANT_ID || "",
-    requireAuth: process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true",
-  });
+  return NextResponse.json(
+    {
+      clientId: process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "",
+      tenantId: process.env.NEXT_PUBLIC_AAD_TENANT_ID || "",
+      requireAuth: process.env.NEXT_PUBLIC_REQUIRE_AUTH === "true",
+    },
+    {
+      headers: {
+        "Cache-Control": "public, max-age=3600, s-maxage=3600",
+      },
+    }
+  );
 }

@@ -9,11 +9,26 @@ export PATH="/opt/homebrew/bin:$PATH"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ENV_FILE="$SCRIPT_DIR/../.env.deployment"
 
+# Parse --env flag from any position
+POSITIONAL_ARGS=()
+for arg in "$@"; do
+    if [ "$PREV_WAS_ENV" = true ]; then
+        ENV_FILE="$SCRIPT_DIR/../$arg"
+        PREV_WAS_ENV=false
+    elif [ "$arg" = "--env" ]; then
+        PREV_WAS_ENV=true
+    else
+        POSITIONAL_ARGS+=("$arg")
+    fi
+done
+set -- "${POSITIONAL_ARGS[@]}"
+
 # Load environment variables
 if [ -f "$ENV_FILE" ]; then
+    echo -e "📋 Using environment: $(basename $ENV_FILE)"
     source "$ENV_FILE"
 else
-    echo "❌ .env.deployment not found at $ENV_FILE. Run deploy-infrastructure.sh first."
+    echo "❌ $(basename $ENV_FILE) not found at $ENV_FILE"
     exit 1
 fi
 

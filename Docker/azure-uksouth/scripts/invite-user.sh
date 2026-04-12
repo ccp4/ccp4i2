@@ -80,13 +80,21 @@ IS_MEMBER=$(az ad group member check --group "$DEMO_GROUP_ID" --member-id "$GUES
 if [ "$IS_MEMBER" = "true" ]; then
     echo -e "${GREEN}Already a member of ccp4i2-demo-users${NC}"
 else
-    az ad group member add --group "$DEMO_GROUP_ID" --member-id "$GUEST_OID" 2>&1
-    if [ $? -eq 0 ]; then
-        echo -e "${GREEN}Added to ccp4i2-demo-users group${NC}"
-    else
-        echo -e "${RED}Failed to add to group. You may need to wait a few minutes for the guest account to propagate, then retry.${NC}"
-        exit 1
-    fi
+    # Guest accounts can take a few seconds to propagate
+    local RETRIES=3
+    local DELAY=5
+    for i in $(seq 1 $RETRIES); do
+        az ad group member add --group "$DEMO_GROUP_ID" --member-id "$GUEST_OID" 2>&1 && break
+        if [ $i -lt $RETRIES ]; then
+            echo -e "${YELLOW}Waiting ${DELAY}s for guest account to propagate (attempt $i/$RETRIES)...${NC}"
+            sleep $DELAY
+        else
+            echo -e "${RED}Failed to add to group after $RETRIES attempts. Run manually:${NC}"
+            echo -e "  az ad group member add --group $DEMO_GROUP_ID --member-id $GUEST_OID"
+            exit 1
+        fi
+    done
+    echo -e "${GREEN}Added to ccp4i2-demo-users group${NC}"
 fi
 
 echo ""
