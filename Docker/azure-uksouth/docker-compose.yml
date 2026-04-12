@@ -16,8 +16,6 @@
 #   TIMESTAMP - Image tag timestamp
 #   CCP4_VERSION - CCP4 version for base image
 #   BASE_IMAGE_NAME - Base image name (default: ccp4i2/base-arpwarp)
-#   NEXT_PUBLIC_AAD_CLIENT_ID - Azure AD client ID for web auth
-#   NEXT_PUBLIC_AAD_TENANT_ID - Azure AD tenant ID for web auth
 #   NEXT_PUBLIC_REQUIRE_AUTH - Whether auth is required (true/false)
 #
 # Cross-platform build optimization:
@@ -33,8 +31,6 @@ services:
       platforms:
         - linux/amd64
       args:
-        NEXT_PUBLIC_AAD_CLIENT_ID: ${NEXT_PUBLIC_AAD_CLIENT_ID:-}
-        NEXT_PUBLIC_AAD_TENANT_ID: ${NEXT_PUBLIC_AAD_TENANT_ID:-}
         NEXT_PUBLIC_REQUIRE_AUTH: ${NEXT_PUBLIC_REQUIRE_AUTH:-false}
         NEXT_PUBLIC_BUILD_TIMESTAMP: ${NEXT_PUBLIC_BUILD_TIMESTAMP:-}
         NEXT_PUBLIC_GIT_COMMIT: ${NEXT_PUBLIC_GIT_COMMIT:-}

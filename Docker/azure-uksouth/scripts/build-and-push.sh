@@ -31,6 +31,23 @@ WORKING_DIR="$(cd "$BICEP_DIR/../.." && pwd)"
 BUILD_SERVER=true
 BUILD_WEB=true
 BUILD_TARGET=""
+ENV_FILE="$BICEP_DIR/.env.deployment"
+
+# Parse --env flag from any position
+POSITIONAL_ARGS=()
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --env)
+            ENV_FILE="$BICEP_DIR/$2"
+            shift 2
+            ;;
+        *)
+            POSITIONAL_ARGS+=("$1")
+            shift
+            ;;
+    esac
+done
+set -- "${POSITIONAL_ARGS[@]}"
 
 if [ $# -gt 0 ]; then
     case "$1" in
@@ -46,6 +63,7 @@ if [ $# -gt 0 ]; then
             ;;
         *)
             echo -e "${RED}❌ Invalid argument. Use 'server', 'web', or no argument for both${NC}"
+            echo -e "${YELLOW}Usage: $0 [--env <env-file>] [server|web]${NC}"
             exit 1
             ;;
     esac
@@ -59,10 +77,11 @@ echo -e "${YELLOW}📁 Working directory: $WORKING_DIR${NC}"
 cd "$WORKING_DIR"
 
 # Load environment variables
-if [ -f "$BICEP_DIR/.env.deployment" ]; then
-    source "$BICEP_DIR/.env.deployment"
+if [ -f "$ENV_FILE" ]; then
+    echo -e "${YELLOW}📋 Using environment: $(basename $ENV_FILE)${NC}"
+    source "$ENV_FILE"
 else
-    echo -e "${RED}❌ .env.deployment not found${NC}"
+    echo -e "${RED}❌ $(basename $ENV_FILE) not found at $ENV_FILE${NC}"
     exit 1
 fi
 
@@ -107,8 +126,6 @@ export ACR_LOGIN_SERVER
 export ACR_NAME
 export CCP4_VERSION="${CCP4_VERSION:-ccp4-20251105}"
 export BASE_IMAGE_NAME="${BASE_IMAGE_NAME:-ccp4i2/base-arpwarp}"
-export NEXT_PUBLIC_AAD_CLIENT_ID="${NEXT_PUBLIC_AAD_CLIENT_ID:-}"
-export NEXT_PUBLIC_AAD_TENANT_ID="${NEXT_PUBLIC_AAD_TENANT_ID:-}"
 export NEXT_PUBLIC_REQUIRE_AUTH="${NEXT_PUBLIC_REQUIRE_AUTH:-false}"
 export NEXT_PUBLIC_BUILD_TIMESTAMP="$TIMESTAMP"
 export NEXT_PUBLIC_GIT_COMMIT="$GIT_COMMIT"

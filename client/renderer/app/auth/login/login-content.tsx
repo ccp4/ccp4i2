@@ -5,6 +5,7 @@ import { useMsal } from "@azure/msal-react";
 import { InteractionStatus } from "@azure/msal-browser";
 import { useSearchParams } from "next/navigation";
 import { setTeamsToken, setTeamsTokenRefresher } from "../../../utils/auth-token";
+import { getAuthConfigSync } from "../../../utils/auth-config";
 
 /**
  * Detect if the app is running inside an iframe (e.g., Microsoft Teams)
@@ -135,8 +136,7 @@ export default function LoginContent() {
       // Running in iframe (e.g., Teams) - redirects don't work
       setStatusMessage("Detecting Teams environment...");
 
-      const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
-      const tenantId = process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
+      const { clientId, tenantId } = getAuthConfigSync();
 
       tryTeamsAuth(clientId, tenantId)
         .then((result) => {

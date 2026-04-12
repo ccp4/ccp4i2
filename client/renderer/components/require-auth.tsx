@@ -10,6 +10,7 @@ import {
   Button,
   Alert,
 } from "@mui/material";
+import { getAuthConfigSync } from "../utils/auth-config";
 
 // Teams SSO types for dynamic import
 type TeamsSSOResult = {
@@ -102,8 +103,7 @@ export default function RequireAuth({ children }: RequireAuthProps) {
       // Use popup auth when running in an iframe (e.g., Teams) since redirects don't work
       if (isRunningInIframe()) {
         // Try Teams SSO first - this provides seamless auth for Teams users
-        const clientId = process.env.NEXT_PUBLIC_AAD_CLIENT_ID || "";
-        const tenantId = process.env.NEXT_PUBLIC_AAD_TENANT_ID || "";
+        const { clientId, tenantId } = getAuthConfigSync();
 
         tryTeamsSSO(clientId, tenantId)
           .then((ssoResult) => {

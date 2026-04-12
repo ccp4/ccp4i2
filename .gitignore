@@ -37,6 +37,10 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+Docker/azure-uksouth/.env.deployment
+Docker/azure-uksouth/.env.demo
+Docker/azure-uksouth/.env.*
+!Docker/azure-uksouth/.env.deployment.template
 
 # Database
 *.sqlite3

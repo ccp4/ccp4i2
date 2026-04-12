@@ -8,7 +8,7 @@ param prefix string = 'ccp4i2-bicep'
 param keyVaultName string
 
 @description('Service Bus SKU')
-param sbSku string = 'Premium'
+param sbSku string = 'Standard'
 
 var sbNamespaceName = '${prefix}-servicebus'
 var sbQueueName = '${prefix}-jobs'
@@ -25,9 +25,8 @@ resource sbNamespace 'Microsoft.ServiceBus/namespaces@2024-01-01' = {
     tier: sbSku
   }
   properties: {
-    zoneRedundant: false
     minimumTlsVersion: '1.2'
-    publicNetworkAccess: 'Disabled' // Use private endpoints for security
+    publicNetworkAccess: 'Enabled'  // Standard tier: SAS key auth, no private endpoints
   }
 }
 
@@ -38,8 +37,8 @@ resource sbNetworkRuleSet 'Microsoft.ServiceBus/namespaces/networkRuleSets@2024-
   name: 'default'
   properties: {
     trustedServiceAccessEnabled: true  // Allow KEDA to read queue metrics for autoscaling
-    defaultAction: 'Deny'
-    publicNetworkAccess: 'Disabled'
+    defaultAction: 'Allow'
+    publicNetworkAccess: 'Enabled'
   }
 }
 
