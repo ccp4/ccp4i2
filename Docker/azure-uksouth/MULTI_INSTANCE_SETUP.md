@@ -258,6 +258,38 @@ Use the provided script to invite collaborators:
 
 This sends a B2B guest invitation and adds the user to the access control group. Users from any organisation (including non-Entra ID orgs like Google Workspace) can be invited — they'll authenticate via email one-time passcode.
 
+## 9. Managing Instances with Scripts
+
+The deployment scripts support an `--env` flag to target different instances:
+
+```bash
+# Main instance (default — no flag needed)
+./scripts/build-and-push.sh web
+./scripts/deploy-applications.sh server
+
+# Demo instance
+./scripts/build-and-push.sh --env .env.demo web
+./scripts/deploy-applications.sh --env .env.demo server
+```
+
+Without `--env`, scripts source `.env.deployment` (main instance). This ensures existing workflows are unaffected.
+
+## 10. Future: In-App User Management
+
+The `invite-user.sh` script manages B2B guest invitations from the command line. For a more accessible workflow, the CCP4i2 admin interface could be extended to manage guest users directly through the app.
+
+The Microsoft Graph REST API supports all the required operations:
+- `POST /invitations` — invite a user by email
+- `POST /groups/{id}/members/$ref` — add to the access control group
+- `GET /groups/{id}/members` — list current members
+- `DELETE /groups/{id}/members/{userId}/$ref` — remove access
+
+Implementation considerations:
+- The Django backend would need a **confidential client credential** (client secret or certificate) or **managed identity with Graph API permissions** to call the Graph API server-side
+- Access to user management should be restricted to platform admins (`PLATFORM_ADMIN_EMAILS`)
+- The admin interface at `/admin/` already exists — a "Manage Users" section could wrap these Graph API calls
+- This would allow instance administrators to invite and manage collaborators without CLI access
+
 ## Instance Isolation
 
 Each instance is fully isolated:
