@@ -1,20 +1,18 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useMemo } from "react";
 import {
   Box,
   Card,
   CardContent,
   CardHeader,
-  Collapse,
   IconButton,
   Stack,
   Tooltip,
   Typography,
 } from "@mui/material";
-import { Add, Delete, ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
+import { Add, Delete } from "@mui/icons-material";
 
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
 import { useJob, useProject, valueOfItem } from "../../../utils";
-import { MyExpandMore } from "../../expand-more";
 import { useCCP4i2Window } from "../../../app-context";
 import { Project } from "../../../types/models";
 import { ErrorTrigger } from "./error-info";
@@ -46,20 +44,6 @@ const DEFAULT_VALUES = {
   CString: "",
 } as const;
 
-// Custom hooks
-const useListState = (initiallyOpen = true) => {
-  const [expanded, setExpanded] = useState(initiallyOpen);
-
-  const toggleExpanded = useCallback(() => {
-    setExpanded((prev) => !prev);
-  }, []);
-
-  return {
-    expanded,
-    toggleExpanded,
-  };
-};
-
 const useGuiLabel = (item: any, qualifiers: any): string => {
   return useMemo(() => {
     return (
@@ -69,7 +53,6 @@ const useGuiLabel = (item: any, qualifiers: any): string => {
     );
   }, [item, qualifiers]);
 };
-
 
 const useValidationBorderColor = (
   itemName: string,
@@ -207,7 +190,6 @@ export const CListElement: React.FC<CListElementProps> = ({
   const { item } = useTaskItem(itemName);
 
   // Custom hooks
-  const { expanded, toggleExpanded } = useListState(initiallyOpen);
   const guiLabel = useGuiLabel(item, qualifiers);
   const isVisible = useInferredVisibility(visibility);
   const validationBorderColor = useValidationBorderColor(
@@ -271,7 +253,7 @@ export const CListElement: React.FC<CListElementProps> = ({
       )) as SetParameterResponse;
 
       if (result?.success && result.data?.updated_item && onChange) {
-        await onChange(result.data.updated_item);
+        onChange(result.data.updated_item);
       } else if (result && !result.success) {
         console.error("Failed to add list item:", result.error);
       }
@@ -315,7 +297,7 @@ export const CListElement: React.FC<CListElementProps> = ({
         )) as SetParameterResponse;
 
         if (result?.success && result.data?.updated_item && onChange) {
-          await onChange(result.data.updated_item);
+          onChange(result.data.updated_item);
         } else if (result && !result.success) {
           console.error("Failed to delete list item:", result.error);
         }
@@ -326,27 +308,9 @@ export const CListElement: React.FC<CListElementProps> = ({
     [item, job, setParameter, onChange]
   );
 
-  const handleExpandToggle = useCallback(
-    (event: React.MouseEvent) => {
-      event.stopPropagation();
-      toggleExpanded();
-    },
-    [toggleExpanded]
-  );
-
   // Render helpers
   const renderListActions = () => (
     <Stack direction="row" alignItems="center">
-      <MyExpandMore
-        sx={{ color: "primary.text" }}
-        expand={expanded}
-        onClick={handleExpandToggle}
-        aria-expanded={expanded}
-        aria-label={expanded ? "Collapse list" : "Expand list"}
-      >
-        <ExpandMoreIcon />
-      </MyExpandMore>
-
       <IconButton
         disabled={!isEditable}
         onClick={handleAddItem}
@@ -356,7 +320,6 @@ export const CListElement: React.FC<CListElementProps> = ({
       >
         <Add />
       </IconButton>
-
       <ErrorTrigger item={item} job={job} />
     </Stack>
   );
@@ -368,7 +331,6 @@ export const CListElement: React.FC<CListElementProps> = ({
       sx={{
         fontStyle: "italic",
         textAlign: "center",
-        py: 2,
       }}
     >
       No elements in this list
@@ -379,7 +341,7 @@ export const CListElement: React.FC<CListElementProps> = ({
     <Stack
       key={content._objectPath || `item-${index}`}
       direction="row"
-      alignItems="flex-start"
+      alignItems="center"
       spacing={0.5}
     >
       <Box sx={{ flex: 1, minWidth: 0 }}>
@@ -393,37 +355,29 @@ export const CListElement: React.FC<CListElementProps> = ({
       </Box>
 
       <Tooltip title={`Delete item ${index + 1}`} placement="left">
-        <span>
-          <IconButton
-            disabled={!isEditable}
-            onClick={() => handleDeleteItem(content)}
-            size="small"
-            color="error"
-            aria-label={`Delete item ${index + 1}`}
-            sx={{
-              mt: 0.5,
-              flexShrink: 0,
-            }}
-          >
-            <Delete />
-          </IconButton>
-        </span>
+        <IconButton
+          disabled={!isEditable}
+          onClick={() => handleDeleteItem(content)}
+          size="small"
+          color="error"
+          aria-label={`Delete item ${index + 1}`}
+        >
+          <Delete />
+        </IconButton>
       </Tooltip>
     </Stack>
   );
 
   const renderListContent = () => (
-    <Collapse in={expanded} timeout="auto" unmountOnExit>
-      {!hasItems ? (
-        renderEmptyState()
-      ) : (
-        <Stack spacing={1}>
-          {listItems.map((content: any, index: number) =>
-            renderListItem(content, index)
-          )}
-        </Stack>
-      )}
-    </Collapse>
+    !hasItems ? (
+      renderEmptyState()
+    ) : (
+      <Stack spacing={1}>
+        {listItems.map((content: any, index: number) =>
+          renderListItem(content, index)
+        )}
+      </Stack>
+    )
   );
 
   // Early return if not visible
@@ -434,25 +388,11 @@ export const CListElement: React.FC<CListElementProps> = ({
   return (
     <Card sx={cardSx}>
       <CardHeader
-        sx={{
-          backgroundColor: "background.paper", // Very light grey background
-          color: "text.primary", // Black text (uses theme's primary text color)
-          "& .MuiCardHeader-title": {
-            color: "text.primary", // Ensure title is black
-          },
-          "&:hover": {
-            backgroundColor: "background.paper", // Slightly darker on hover
-          },
-        }}
-        title={
-          <Typography variant="body2" component="div">
-            {guiLabel}
-          </Typography>
-        }
+        title={<Typography variant="body2">{guiLabel}</Typography>}
         action={renderListActions()}
       />
 
-      <CardContent sx={{ pt: 0.5, pb: 1, px: 1, "&:last-child": { pb: 1 } }}>{renderListContent()}</CardContent>
+      <CardContent>{renderListContent()}</CardContent>
     </Card>
   );
 };
