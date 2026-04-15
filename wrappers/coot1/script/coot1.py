@@ -50,6 +50,12 @@ class coot1(CPluginScript):
                     f"imap = coot.read_mtz('{path}', 'F', 'PHI', '', False, True)"
                 )
                 script.append("coot.set_map_colour(imap, 0.75, 0.9, 0.75)")
+
+        if inputData.INTERESTINGJSON.isSet():
+            print("I have an interesting bits JSON file.")
+            print(inputData.INTERESTINGJSON)
+            script.append('coot.read_interesting_places_json_file("{0}")'.format(inputData.INTERESTINGJSON))
+
         scriptPath = Path(self.getWorkDirectory(), "coot_script.py")
         with scriptPath.open("w", encoding="utf-8") as stream:
             stream.write("\n".join(script))
