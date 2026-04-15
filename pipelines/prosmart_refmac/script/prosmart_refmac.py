@@ -26,7 +26,7 @@ from core import CCP4ErrorHandling
 from core import CCP4Utils
 import os,sys,shutil
 import traceback
-import json
+from utils.program_xml_to_json import program_xml_to_json
 from wrappers.modelASUCheck.script.modelASUCheck import sequenceAlignment
 
 
@@ -771,8 +771,11 @@ class prosmart_refmac(CPluginScript):
         self.saveXml()
 
         self.container.outputData.INTERESTINGJSON.annotation.set('Interesting features for Coot1/Moorhen')
-        with open(self.container.outputData.INTERESTINGJSON.fullPath.__str__(),"w") as f:
-           f.write(json.dumps([{"a":23}]))
+        with open(self.makeFileName('PROGRAMXML')) as programXMLRead:
+            xmlText = programXMLRead.read()
+            json_string = program_xml_to_json(xmlText)
+            with open(self.container.outputData.INTERESTINGJSON.fullPath.__str__(),"w") as f:
+                f.write(json_string)
 
         print('done prosmart_refmac.finishUp'); sys.stdout.flush()
         self.reportStatus(CPluginScript.SUCCEEDED)
