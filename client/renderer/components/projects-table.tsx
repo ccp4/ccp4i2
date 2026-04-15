@@ -16,8 +16,6 @@ import {
   Theme,
   Tooltip,
   Typography,
-  ToggleButton,
-  ToggleButtonGroup,
 } from "@mui/material";
 import {
   Clear,
@@ -27,8 +25,6 @@ import {
   Schedule,
   Science,
   StarBorder,
-  ViewModule,
-  ViewList,
   Science as CampaignIcon,
 } from "@mui/icons-material";
 import { alpha } from "@mui/material/styles";
@@ -43,6 +39,7 @@ import { usePopcorn } from "../providers/popcorn-provider";
 import { DataTable, Column } from "./data-table";
 import { VirtualizedCardGrid } from "./virtualized-card-grid";
 import { ProjectTagChips } from "./project-tag-chips";
+import { ViewMode, ViewModeToggle } from "./view-mode-toggle";
 
 // Type for campaign info returned from API
 interface CampaignInfo {
@@ -262,15 +259,13 @@ const sxSelectedCard = {
   bgcolor: (theme: Theme) => alpha(theme.palette.primary.main, 0.08),
 };
 
-type ViewMode = "cards" | "table";
-
 export default function ProjectsTable() {
   const api = useApi();
   const router = useRouter();
   const { data: projects, mutate } = api.get<Project[]>("projects");
   const selectedIds = useSet<number>([]);
   const [query, setQuery] = useState("");
-  const [viewMode, setViewMode] = useState<ViewMode>("table");
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
   const deleteDialog = useDeleteDialog();
   const { setMessage } = usePopcorn();
 
@@ -677,25 +672,9 @@ export default function ProjectsTable() {
                   value={query}
                   onChange={setQuery}
                   placeholder="Search projects..."
-                />
-                <ToggleButtonGroup
-                  value={viewMode}
-                  exclusive
-                  onChange={(_, newView) => newView && setViewMode(newView)}
                   size="small"
-                  sx={{ height: 36 }}
-                >
-                  <ToggleButton value="cards" aria-label="card view">
-                    <Tooltip title="Card view">
-                      <ViewModule />
-                    </Tooltip>
-                  </ToggleButton>
-                  <ToggleButton value="table" aria-label="table view">
-                    <Tooltip title="Table view">
-                      <ViewList />
-                    </Tooltip>
-                  </ToggleButton>
-                </ToggleButtonGroup>
+                />
+                <ViewModeToggle mode={viewMode} onChange={setViewMode} />
               </Stack>
             </Box>
 

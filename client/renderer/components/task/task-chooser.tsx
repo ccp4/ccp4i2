@@ -10,12 +10,17 @@ import {
   CardContent,
   CardHeader,
   Chip,
+  List,
+  ListItemAvatar,
+  ListItemButton,
+  ListItemText,
   Stack,
   Typography,
 } from "@mui/material";
 import SearchField from "../search-field";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useApi } from "../../api";
+import { ViewMode, ViewModeToggle } from "../view-mode-toggle";
 
 interface TaskCategory {
   icon: string;
@@ -242,6 +247,7 @@ export function TaskChooser(props: {
 }) {
   const api = useApi();
   const [searchText, setSearchText] = useState<string>("");
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
   const { data: taskLookup } = api.get<TaskLookup>(`task_lookup/`);
 
   return (
@@ -256,6 +262,7 @@ export function TaskChooser(props: {
           placeholder="Search tasks..."
           size="small"
         />
+        <ViewModeToggle mode={viewMode} onChange={setViewMode} />
       </Stack>
       <Box
         sx={{ flex: "auto", overflowY: "auto", p: 1, scrollbarWidth: "thin" }}
@@ -265,11 +272,13 @@ export function TaskChooser(props: {
             <FilteredTaskList
               taskLookup={taskLookup}
               searchText={searchText}
+              viewMode={viewMode}
               onTaskSelect={props.onTaskSelect}
             />
           ) : (
             <TaskTree
               taskLookup={taskLookup}
+              viewMode={viewMode}
               onTaskSelect={props.onTaskSelect}
             />
           ))}
@@ -281,6 +290,7 @@ export function TaskChooser(props: {
 function FilteredTaskList(props: {
   taskLookup: TaskLookup;
   searchText: string;
+  viewMode: ViewMode;
   onTaskSelect: (taskName: string) => void;
 }) {
   const filteredTasks = useMemo(() => {
@@ -295,8 +305,14 @@ function FilteredTaskList(props: {
     });
   }, [props.searchText, props.taskLookup]);
 
-  return (
+  return props.viewMode === "cards" ? (
     <TaskCards
+      taskLookup={props.taskLookup}
+      taskNames={filteredTasks}
+      onTaskSelect={props.onTaskSelect}
+    />
+  ) : (
+    <TaskList
       taskLookup={props.taskLookup}
       taskNames={filteredTasks}
       onTaskSelect={props.onTaskSelect}
@@ -306,6 +322,7 @@ function FilteredTaskList(props: {
 
 function TaskTree(props: {
   taskLookup: TaskLookup;
+  viewMode: ViewMode;
   onTaskSelect: (taskName: string) => void;
 }) {
   const uncategorised = useMemo(() => {
@@ -319,12 +336,14 @@ function TaskTree(props: {
           key={index}
           category={category}
           taskLookup={props.taskLookup}
+          viewMode={props.viewMode}
           onTaskSelect={props.onTaskSelect}
         />
       ))}
       <TaskTreeFolder
         category={uncategorised}
         taskLookup={props.taskLookup}
+        viewMode={props.viewMode}
         onTaskSelect={props.onTaskSelect}
       />
     </>
@@ -334,6 +353,7 @@ function TaskTree(props: {
 function TaskTreeFolder(props: {
   category: TaskCategory;
   taskLookup: TaskLookup;
+  viewMode: ViewMode;
   onTaskSelect: (taskName: string) => void;
 }) {
   return (
@@ -347,13 +367,52 @@ function TaskTreeFolder(props: {
         </Stack>
       </AccordionSummary>
       <AccordionDetails>
-        <TaskCards
-          taskLookup={props.taskLookup}
-          taskNames={props.category.tasks}
-          onTaskSelect={props.onTaskSelect}
-        />
+        {props.viewMode === "cards" ? (
+          <TaskCards
+            taskLookup={props.taskLookup}
+            taskNames={props.category.tasks}
+            onTaskSelect={props.onTaskSelect}
+          />
+        ) : (
+          <TaskList
+            taskLookup={props.taskLookup}
+            taskNames={props.category.tasks}
+            onTaskSelect={props.onTaskSelect}
+          />
+        )}
       </AccordionDetails>
     </Accordion>
+  );
+}
+
+function TaskList(props: {
+  taskLookup: TaskLookup;
+  taskNames: string[];
+  onTaskSelect: (taskName: string) => void;
+}) {
+  return (
+    <List>
+      {props.taskNames.map((taskName: string) => {
+        if (!Object.keys(props.taskLookup).includes(taskName)) return null;
+        const info = props.taskLookup[taskName];
+        return (
+          Object.keys(props.taskLookup).includes(taskName) && (
+            <ListItemButton
+              key={taskName}
+              onClick={() => props.onTaskSelect(taskName)}
+            >
+              <ListItemAvatar>
+                <Avatar src={`/svgicons/${taskName}.svg`} alt="" />
+              </ListItemAvatar>
+              <ListItemText
+                primary={info.TASKTITLE || taskName}
+                secondary={info.DESCRIPTION || ""}
+              />
+            </ListItemButton>
+          )
+        );
+      })}
+    </List>
   );
 }
 
@@ -377,7 +436,7 @@ function TaskCards(props: {
             <TaskCard
               key={taskName}
               taskName={taskName}
-              task={props.taskLookup[taskName]}
+              taskInfo={props.taskLookup[taskName]}
               onTaskSelect={props.onTaskSelect}
             />
           ),
@@ -388,14 +447,14 @@ function TaskCards(props: {
 
 function TaskCard(props: {
   taskName: string;
-  task: any;
+  taskInfo: TaskInfo;
   onTaskSelect: (taskName: string) => void;
 }) {
   const handleTaskSelect = useCallback(() => {
-    if (props.task && props.onTaskSelect) {
+    if (props.taskInfo && props.onTaskSelect) {
       props.onTaskSelect(props.taskName);
     }
-  }, [props.task, props.onTaskSelect]);
+  }, [props.taskInfo, props.onTaskSelect]);
   return (
     <Card
       sx={{
@@ -412,10 +471,10 @@ function TaskCard(props: {
             <Avatar src={`/svgicons/${props.taskName}.svg`} alt="">
               {props.taskName?.[0]?.toUpperCase()}
             </Avatar>
-            {props.task.shortTitle || props.task.TASKTITLE || props.taskName}
+            {props.taskInfo.shortTitle || props.taskInfo.TASKTITLE || props.taskName}
           </>
         }
-        subheader={props.task.TASKTITLE || props.taskName}
+        subheader={props.taskInfo.TASKTITLE || props.taskName}
       />
       <CardContent>
         {DEPRECATED_TASKS[props.taskName] && (
@@ -427,7 +486,7 @@ function TaskCard(props: {
             sx={{ mb: 1, fontSize: "0.7rem" }}
           />
         )}
-        {props.task.isAutogenerated && (
+        {props.taskInfo.isAutogenerated && (
           <Chip
             label="Auto-generated Interface"
             size="small"
@@ -436,7 +495,7 @@ function TaskCard(props: {
             sx={{ mb: 1, fontSize: "0.7rem" }}
           />
         )}
-        <p>{`${props.task.DESCRIPTION || ""}`}</p>
+        <p>{`${props.taskInfo.DESCRIPTION || ""}`}</p>
       </CardContent>
     </Card>
   );
