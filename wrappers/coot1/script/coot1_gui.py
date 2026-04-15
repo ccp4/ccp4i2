@@ -19,3 +19,4 @@ class Ccoot1(CTaskWidget):
         self.createLine(["widget", "DELFPHIINANOM_LIST"])
         self.createLine(["subtitle", "Additional data"])
         self.createLine(["widget", "DICT"])
+        self.createLine(["widget", "INTERESTINGJSON"])

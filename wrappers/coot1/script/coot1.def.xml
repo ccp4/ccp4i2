@@ -6,6 +6,14 @@
     </ccp4i2_header>
     <ccp4i2_body id="coot1">
         <container id="inputData">
+            <content id="INTERESTINGJSON">
+                <className>CInterestingBitsJSONDataFile</className>
+                <qualifiers>
+                        <mustExist>False</mustExist>
+                        <allowUndefined>True</allowUndefined>
+                        <fromPreviousJob>True</fromPreviousJob>
+                </qualifiers>
+            </content>
             <content id="XYZIN_LIST">
                 <className>CList</className>
                 <subItem>
