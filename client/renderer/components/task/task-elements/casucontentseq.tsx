@@ -8,7 +8,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useJob, valueOfItem } from "../../../utils";
-import { ErrorInfo } from "./error-info";
 import { apiGet } from "../../../api-fetch";
 import { useCallback, useState } from "react";
 import { Science } from "@mui/icons-material";
@@ -249,7 +248,6 @@ export const CAsuContentSeqElement: React.FC<CCP4i2TaskElementProps> = (
                 </Typography>
               )}
             </Stack>
-            <ErrorInfo {...props} />
           </Stack>
         </Box>
 

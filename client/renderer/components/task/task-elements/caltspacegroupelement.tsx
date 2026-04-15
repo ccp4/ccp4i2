@@ -8,7 +8,6 @@ import {
   TextField,
 } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
-import { ErrorInfo } from "./error-info";
 import { useTaskInterface } from "../../../providers/task-provider";
 import { SpaceGroup, spaceGroups } from "../../../spacegroups";
 
@@ -65,7 +64,6 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
       <CardHeader
         title={qualifiers?.guiLabel}
         sx={{ borderColor: getValidationColor(item) }}
-        action={<ErrorInfo {...props} />}
       />
       <CardContent sx={{ my: 0, py: 0 }}>
         {item && (

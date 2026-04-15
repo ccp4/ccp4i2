@@ -1,4 +1,4 @@
-import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
+import { CCP4i2TaskElementProps } from "./task-element";
 import {
   Box,
   Card,
@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import { useJob } from "../../../utils";
-import { ErrorInfo } from "./error-info";
 import { useMemo } from "react";
 import TableChartIcon from "@mui/icons-material/TableChart";
 
@@ -150,7 +149,6 @@ export const CColumnGroupElement: React.FC<CCP4i2TaskElementProps> = (props) => 
             </Stack>
 
             <Stack direction="row" alignItems="center" spacing={1}>
-              <ErrorInfo {...props} />
               <FormControlLabel
                 control={
                   <Switch

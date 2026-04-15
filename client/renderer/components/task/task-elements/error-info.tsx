@@ -2,7 +2,6 @@ import React, {
   memo,
   SyntheticEvent,
   useCallback,
-  useEffect,
   useMemo,
   useState,
 } from "react";
@@ -14,7 +13,6 @@ import {
   CardHeader,
   ClickAwayListener,
   Collapse,
-  LinearProgress,
   Popper,
   Stack,
   Typography,
@@ -28,7 +26,6 @@ import {
   Error as ErrorIcon,
 } from "@mui/icons-material";
 
-import { CCP4i2TaskElementProps } from "./task-element";
 import { useJob, ValidationError, valueOfItem } from "../../../utils";
 import { useTaskInterface } from "../../../providers/task-provider";
 import { Job } from "../../../types/models";
@@ -513,16 +510,3 @@ export const ErrorPopper: React.FC<ErrorPopperProps> = memo(() => {
 });
 
 ErrorPopper.displayName = "ErrorPopper";
-
-// Simple loading component
-export const ErrorInfo: React.FC<CCP4i2TaskElementProps> = memo(() => (
-  <LinearProgress
-    variant="indeterminate"
-    sx={{
-      height: 2,
-      borderRadius: 1,
-    }}
-  />
-));
-
-ErrorInfo.displayName = "ErrorInfo";
