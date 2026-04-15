@@ -535,6 +535,11 @@
             "clsModule": "core.CCP4Data",
             "clsName": "CIntRange"
         },
+        "CInterestingBitsJSONDataFile": {
+            "class": "core.CCP4ModelDataCInterestingBitsJSONDataFile",
+            "clsModule": "core.CCP4ModelData",
+            "clsName": "CInterestingBitsJSONDataFile"
+        },
         "CJobStatus": {
             "class": "core.CCP4DataCJobStatus",
             "clsModule": "core.CCP4Data",
@@ -1205,6 +1210,7 @@
         "cimportunmerged": "CImportUnmerged",
         "cimportunmergedlist": "CImportUnmergedList",
         "cint": "CInt",
+        "cinterestingbitsjsondatafile": "CInterestingBitsJSONDataFile",
         "cintrange": "CIntRange",
         "cipaircolumngroup": "CIPairColumnGroup",
         "cisigicolumngroup": "CISigIColumnGroup",
@@ -1409,9 +1415,9 @@
             "clsName": "CCustomTaskParamListView"
         },
         "CData": {
-            "class": "qtgui.CCP4CustomTaskManagerGuiCMiniMtzRequiredContentWidget",
-            "clsModule": "qtgui.CCP4CustomTaskManagerGui",
-            "clsName": "CMiniMtzRequiredContentWidget"
+            "class": "qtgui.CCP4ModelWidgetsCEnsembleView",
+            "clsModule": "qtgui.CCP4ModelWidgets",
+            "clsName": "CEnsembleView"
         },
         "CDataFile": {
             "class": "qtgui.CCP4WidgetsCDataFileView",

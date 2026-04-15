@@ -3297,7 +3297,7 @@ class CJobStatus(CInt):
 
 class CI2DataType(CString):
     QUALIFIERS = {'enumerators' : ['CPdbDataFile', 'CSeqDataFile', 'CObsDataFile', 'CPhsDataFile', 'CMapCoeffsDataFile',
-                                    'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile'],
+                                    'CFreeRDataFile', 'CMtzDataFile', 'CDictDataFile', 'CDataFile', 'CInt', 'CFloat', 'CString', 'CRefmacKeywordFile', 'CInterestingBitsJSONDataFile'],
                   'menuText' : []}
 
     def __init__(self, value=[], qualifiers={}, parent=None, name=None, **kw):

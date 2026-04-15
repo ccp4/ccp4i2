@@ -86,7 +86,8 @@ FILETYPES_TEXT = ['Unknown', 'application/CCP4-seq', 'chemical/x-pdb', 'MultiPDB
                   'application/iMosflm-xml', 'application/CCP4-image', 'application/CCP4-generic-reflections', 'application/HHPred-alignments',
                   'application/Blast-alignments', 'chemical/x-pdb-ensemble', 'application/CCP4-asu-content', 'application/dials-jfile',
                   'application/dials-pfile', 'application/phaser-rfile', 'application/refmac-keywords',
-                  'application/x-pdf', 'application/postscript', 'application/EBI-validation-xml', 'chemical/x-cif' ]
+                  'application/x-pdf', 'application/postscript', 'application/EBI-validation-xml', 'chemical/x-cif',
+                  'application/json']
 FILETYPES_CLASS = ['DataFile', 'SeqDataFile', 'PdbDataFile', '', 'MtzDataFile', 'MtzDataFile',
                    'UnmergedDataFile', 'MapDataFile', 'DictDataFile', 'TLSDataFile',
                    'FreeRDataFile', 'ObsDataFile', 'PhsDataFile', 'MapCoeffsDataFile', '',
@@ -94,7 +95,7 @@ FILETYPES_CLASS = ['DataFile', 'SeqDataFile', 'PdbDataFile', '', 'MtzDataFile', 
                    'SceneDataFile', 'ShelxFADataFile', 'PhaserSolDataFile', 'MDLMolDataFile',
                    'ImosflmXmlDataFile', 'ImageFile', 'GenericReflDataFile', 'HhpredDataFile',
                    'BlastDataFile', 'EnsemblePdbDataFile', 'AsuDataFile', 'DialsJsonFile',
-                   'DialsPickleFile', 'PhaserRFileDataFile', 'RefmacKeywordFile', 'PDFDataFile', 'PostscriptDataFile', 'EBIValidationXMLDataFile', 'MmcifReflDataFile' ]
+                   'DialsPickleFile', 'PhaserRFileDataFile', 'RefmacKeywordFile', 'PDFDataFile', 'PostscriptDataFile', 'EBIValidationXMLDataFile', 'MmcifReflDataFile','InterestingBitsJSONDataFile' ]
 MINIMTZFILETYPES = [10, 11, 12, 13]
 FILE_ROLE_OUT = 0
 FILE_ROLE_IN = 1
@@ -144,6 +145,7 @@ FILETYPELIST = [ (0,'Unknown','File type unknown'),
                     (35,'application/postscript', 'Postscript file'),
                     (36,'application/EBI-validation-xml', 'Validation XML'),
                     (37,'chemical/x-cif', 'mmCif reflection data'),
+                    (38,'application/json', 'Interesting Bits JSON'),
                 ]
 
 KEYTYPELIST =  [ (0,'Unknown','Key type unknown'),

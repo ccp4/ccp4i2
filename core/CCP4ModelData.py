@@ -1044,6 +1044,15 @@ class CMDLMolDataFile(CCP4File.CDataFile):
                   'helpFile' : 'model_data#mol_file' }
 
 
+class CInterestingBitsJSONDataFile(CCP4File.CDataFile):
+    '''An interesting bits JSON file file'''
+
+    QUALIFIERS = {'fileLabel' : 'json', 'mimeTypeName' : 'application/json',
+                  'mimeTypeDescription' : 'Interesting bits JSON file', 'guiLabel' : 'Interesting bits JSON',
+                  'toolTip' : 'Interesting bits JSON file which can be used to highlight outliers, etc. in Coot1/Moorhen',
+                  'fileExtensions' : ['json'], 'fileContentClassName' : None,
+                  'helpFile' : 'model_data#interesting_bits_json_file' }
+
 class CMol2DataFile(CCP4File.CDataFile):
     '''A molecule definition file (MOL2)'''
 

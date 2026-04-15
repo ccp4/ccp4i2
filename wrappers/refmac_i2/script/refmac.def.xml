@@ -152,6 +152,12 @@ See the "Generate a Free R set" task in the "Data reduction" section.</toolTip>
             </content>
         </container>
         <container id="outputData">
+            <content id="INTERESTINGJSON">
+                <className>CInterestingBitsJSONDataFile</className>
+                <qualifiers>
+                    <saveToDb>True</saveToDb>
+                </qualifiers>
+            </content>
             <content id="XYZOUT">
                 <className>CPdbDataFile</className>
                 <qualifiers>
