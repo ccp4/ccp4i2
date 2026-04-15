@@ -2,6 +2,24 @@
 
 This guide covers deploying additional CCP4i2 instances that are fully isolated from the main production deployment. Each instance gets its own resource group, database, storage, and (optionally) its own Azure AD app registration.
 
+## Security Hardening (baked into Bicep)
+
+The infrastructure template applies these settings by default:
+
+| Setting | Value | Rationale |
+|---------|-------|-----------|
+| PostgreSQL `publicNetworkAccess` | `Disabled` | Private endpoint only; no public IPs can reach the DB |
+| Private storage `defaultAction` | `Deny` | Only VNet and trusted Azure services |
+| Public storage (CCP4 software) | Default Allow | Read-only CCP4 binaries, no user data |
+| Key Vault `publicNetworkAccess` | `Disabled` | Private endpoint only |
+| TLS minimum | `1.2` | On all storage, DB, Key Vault |
+| HTTPS enforcement | Enabled | Container Apps `allowInsecure: false` |
+| Log Analytics retention | 90 days | Supports security investigations |
+| Storage blob public access | `false` | No anonymous blob access |
+| Server ingress | Internal only | Not reachable from internet; behind web proxy |
+
+If an existing instance was deployed before these were added, apply them manually via `az` commands or re-run the infrastructure deployment (incremental).
+
 ## Prerequisites
 
 - Azure CLI (`az`) installed and logged in

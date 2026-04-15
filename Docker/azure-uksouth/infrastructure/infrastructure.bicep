@@ -441,7 +441,7 @@ resource serviceBusConnectionSecret 'Microsoft.KeyVault/vaults/secrets@2023-02-0
 
 // PostgreSQL Flexible Server - conditionally deployed
 // When skipPostgresDeployment is true, reference existing server instead of deploying
-resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview' = if (!skipPostgresDeployment) {
+resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2024-08-01' = if (!skipPostgresDeployment) {
   name: postgresServerName
   location: location
   sku: {
@@ -459,12 +459,14 @@ resource postgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-pr
       backupRetentionDays: 7
       geoRedundantBackup: 'Disabled'
     }
-    // Network configuration will be handled by private endpoint
+    network: {
+      publicNetworkAccess: 'Disabled'  // Private endpoint only — security hardening
+    }
   }
 }
 
 // Reference existing PostgreSQL server when skipping deployment
-resource existingPostgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2023-03-01-preview' existing = if (skipPostgresDeployment) {
+resource existingPostgresServer 'Microsoft.DBforPostgreSQL/flexibleServers@2024-08-01' existing = if (skipPostgresDeployment) {
   name: postgresServerName
 }
 
@@ -671,7 +673,7 @@ resource logAnalyticsWorkspace 'Microsoft.OperationalInsights/workspaces@2022-10
     sku: {
       name: 'PerGB2018'
     }
-    retentionInDays: 30
+    retentionInDays: 90  // 90 days for security investigation capability
   }
 }
 
