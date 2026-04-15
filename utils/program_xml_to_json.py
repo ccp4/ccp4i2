@@ -33,7 +33,9 @@ def program_xml_to_json(xmlText):
             resno_ins = el.attrib["seqnum"]
             resno,ins = split_resno_and_ins(resno_ins)
             item = {}
-            item["label"] = "Ramachandran Outlier"
+            item["label"] = "Ramachandran Outlier {0}/{1}".format(chain,resno)
+            if ins and len(ins)>0:
+                item["label"] += ".{0}".format(ins)
             item["position-type"] = "by-residue-spec"
             item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["triple-refinement-action","triple-refinement-with-rama-restraints-action"]
@@ -44,7 +46,9 @@ def program_xml_to_json(xmlText):
             resno_ins = el.attrib["seqnum"]
             resno,ins = split_resno_and_ins(resno_ins)
             item = {}
-            item["label"] = "Ramachandran Outlier"
+            item["label"] = "Ramachandran Outlier {0}/{1}".format(chain,resno)
+            if ins and len(ins)>0:
+                item["label"] += ".{0}".format(ins)
             item["position-type"] = "by-residue-spec"
             item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["triple-refinement-action","triple-refinement-with-rama-restraints-action"]
@@ -63,7 +67,9 @@ def program_xml_to_json(xmlText):
             resno_ins = el.attrib["seqnum"]
             resno,ins = split_resno_and_ins(resno_ins)
             item = {}
-            item["label"] = "Rotamer outlier"
+            item["label"] = "Rotamer outlier {0}/{1}".format(chain,resno)
+            if ins and len(ins)>0:
+                item["label"] += ".{0}".format(ins)
             item["position-type"] = "by-residue-spec"
             item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["auto-fit-rotamer-action"]
@@ -82,7 +88,9 @@ def program_xml_to_json(xmlText):
             resno_ins = el.attrib["seqnum"]
             resno,ins = split_resno_and_ins(resno_ins)
             item = {}
-            item["label"] = "Side chain flip"
+            item["label"] = "Side chain flip {0}/{1}".format(chain,resno)
+            if ins and len(ins)>0:
+                item["label"] += ".{0}".format(ins)
             item["position-type"] = "by-residue-spec"
             item["residue-spec"] = [chain,int(resno),ins]
             item["action"] = ["side-chain-flip-action"]
@@ -108,7 +116,15 @@ def program_xml_to_json(xmlText):
             atom_2 = second_atom[3]
             resno_2,ins_2 = split_resno_and_ins(resno_ins_2)
             item = {}
-            item["label"] = "Molprobity clash"
+            atom_1_label = "{0}/{1}".format(chain_1,resno_1)
+            if ins_1 and len(ins_1)>0:
+                atom_1_label += ".{0}".format(ins_1)
+            atom_1_label += "/{0}".format(atom_1)
+            atom_2_label = "{0}/{1}".format(chain_2,resno_2)
+            if ins_2 and len(ins_2)>0:
+                atom_2_label += ".{0}".format(ins_2)
+            atom_2_label += "/{0}".format(atom_2)
+            item["label"] = "Molprobity clash {0} - {1}".format(atom_1_label,atom_2_label)
             item["position-type"] = "by-atom-spec-pair"
             item["atom-1-spec"] = [chain_1,int(resno_1),ins_1,atom_1,""]
             item["atom-2-spec"] = [chain_2,int(resno_2),ins_2,atom_2,""]
