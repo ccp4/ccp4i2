@@ -1,5 +1,9 @@
 # CCP4i2 Changelog
 
+## [2.6.2] - 2026-04-16
+
+- Updated Servalcat 7beq electron test R-work threshold
+
 ## [2.6.1] - 2026-04-09
 
 - Fixed Coot 1 path on Mac/Linux for 9.0.015
