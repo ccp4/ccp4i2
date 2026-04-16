@@ -2,6 +2,7 @@
 
 ## [2.6.2] - 2026-04-16
 
+- Added a Lorestr test
 - Updated Servalcat 7beq electron test R-work threshold
 - Updated ModelCraft task title
 
