@@ -9,6 +9,8 @@ def coot1Command():
     ccp4 = Path(environ["CCP4"])
     if platform == "win32":
         return str(ccp4 / ".." / "WinCoot1" / "wincoot.bat")
+    if platform == "darwin":
+        return str(ccp4 / "libexec" / "coot-1")
     return str(ccp4 / "coot_py3" / "bin" / "coot-1")
 
 
