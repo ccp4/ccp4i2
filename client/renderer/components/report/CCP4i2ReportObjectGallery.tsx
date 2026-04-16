@@ -43,7 +43,6 @@ export const CCP4i2ReportObjectGallery: React.FC<CCP4i2ReportElementProps> = (
               childItems.map((childItem: any, iItem: number) => (
                 <ListItem
                   key={`${iItem}`}
-                  {...props}
                   sx={iItem === selected ? { border: "2px solid black" } : {}}
                   onClick={() => {
                     setSelected(iItem);
