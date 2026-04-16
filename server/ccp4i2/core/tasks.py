@@ -777,7 +777,7 @@ TASKS = {
         reportPath="ccp4i2.wrappers.modelASUCheck.script.modelASUCheck_report:modelASUCheck_report",
     ),
     "modelcraft": Task(
-        title="Autobuild with ModelCraft, Buccaneer and Nautilus",
+        title="Autobuild with ModelCraft, Buccaneer and NucleoFind",
         description="Automated model building of protein, nucleic acid and water",
         shortTitle="ModelCraft",
         pluginPath="ccp4i2.wrappers.modelcraft.script.modelcraft:modelcraft",
