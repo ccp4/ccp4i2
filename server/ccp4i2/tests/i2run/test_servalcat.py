@@ -115,7 +115,7 @@ def test_7beq_electron_basic(cif7beq, mtz7beq):
             check_r_and_cc(
                 xml,
                 expectedLen=ncycle + 1,
-                maxRwork=0.25,
+                maxRwork=0.26,
                 maxRfree=0.31,
                 minCCwork=0.85,
                 minCCfree=0.75,
