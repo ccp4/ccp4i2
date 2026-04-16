@@ -3,6 +3,7 @@
 ## [2.6.2] - 2026-04-16
 
 - Updated Servalcat 7beq electron test R-work threshold
+- Updated ModelCraft task title
 
 ## [2.6.1] - 2026-04-09
 
