@@ -74,6 +74,8 @@ interface GenericReflDigest {
   cell?: { a: number; b: number; c: number; alpha: number; beta: number; gamma: number };
   wavelength?: number;
   wavelengths?: number[];
+  highRes?: number;
+  lowRes?: number;
   datasets?: string[];
   crystalNames?: string[];
   listOfColumns?: MtzColumn[];
@@ -676,48 +678,51 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               qualifiers={{ guiLabel: "Reflections" }}
             />
 
-            {/* Metadata Card */}
-            <Card sx={{ mb: 2 }}>
-              <CardHeader title="Crystal Information" />
-              <CardContent>
-                <Grid2 container direction="row" sx={{ mb: 2 }} spacing={2}>
-                  <Grid2 size={{ xs: 6, md: 4 }}>
+            {/* Crystal information widgets - only shown when the input format does
+                not carry this metadata itself (MTZ/mmCIF embed it). */}
+            {HKLINDigest &&
+              !["MTZ", "MMCIF"].includes(HKLINDigest.format?.toUpperCase() || "") && (
+                <Card sx={{ mb: 2 }}>
+                  <CardHeader title="Crystal Information" />
+                  <CardContent>
+                    <Grid2 container direction="row" sx={{ mb: 2 }} spacing={2}>
+                      <Grid2 size={{ xs: 6, md: 4 }}>
+                        <CCP4i2TaskElement
+                          {...props}
+                          key="SPACEGROUP"
+                          itemName="SPACEGROUP"
+                          qualifiers={{ guiLabel: "Space group" }}
+                        />
+                      </Grid2>
+                      <Grid2 size={{ xs: 6, md: 8 }}>
+                        <CCP4i2TaskElement {...props} key="UNITCELL" itemName="UNITCELL" />
+                      </Grid2>
+                      <Grid2 size={{ xs: 12 }}>
+                        <FieldRow>
+                          <CCP4i2TaskElement
+                            {...props}
+                            key="CRYSTALNAME"
+                            itemName="CRYSTALNAME"
+                            qualifiers={{ guiLabel: "Crystal name" }}
+                          />
+                          <CCP4i2TaskElement
+                            {...props}
+                            key="DATASETNAME"
+                            itemName="DATASETNAME"
+                            qualifiers={{ guiLabel: "Dataset name" }}
+                          />
+                        </FieldRow>
+                      </Grid2>
+                    </Grid2>
                     <CCP4i2TaskElement
                       {...props}
-                      key="SPACEGROUP"
-                      itemName="SPACEGROUP"
-                      qualifiers={{ guiLabel: "Space group" }}
+                      key="WAVELENGTH"
+                      itemName="WAVELENGTH"
+                      qualifiers={{ guiLabel: "Wavelength" }}
                     />
-                  </Grid2>
-                  <Grid2 size={{ xs: 6, md: 8 }}>
-                    <CCP4i2TaskElement {...props} key="UNITCELL" itemName="UNITCELL" />
-                  </Grid2>
-                  <Grid2 size={{ xs: 12 }}>
-                    {/* FieldRow distributes children equally */}
-                    <FieldRow>
-                      <CCP4i2TaskElement
-                        {...props}
-                        key="CRYSTALNAME"
-                        itemName="CRYSTALNAME"
-                        qualifiers={{ guiLabel: "Crystal name" }}
-                      />
-                      <CCP4i2TaskElement
-                        {...props}
-                        key="DATASETNAME"
-                        itemName="DATASETNAME"
-                        qualifiers={{ guiLabel: "Dataset name" }}
-                      />
-                    </FieldRow>
-                  </Grid2>
-                </Grid2>
-                <CCP4i2TaskElement
-                  {...props}
-                  key="WAVELENGTH"
-                  itemName="WAVELENGTH"
-                  qualifiers={{ guiLabel: "Wavelength" }}
-                />
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              )}
 
             {/* Loading state while fetching digest */}
             {hasUploadedFile && digestLoading && (
@@ -781,8 +786,54 @@ const TaskInterface: React.FC<CCP4i2TaskInterfaceProps> = (props) => {
               </Card>
             )}
 
+            {/* Resolution range (with highest-resolution feedback from the digest) */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 2 }}>
+              <CCP4i2TaskElement
+                {...props}
+                key="RESOLUTION_RANGE"
+                itemName="RESOLUTION_RANGE"
+                qualifiers={{ guiLabel: "Select resolution range (Å)" }}
+              />
+              {HKLINDigest?.highRes !== undefined && (
+                <Typography variant="body2" color="text.secondary">
+                  Highest resolution in file {HKLINDigest.highRes.toFixed(2)}Å
+                </Typography>
+              )}
+            </Box>
+
+            {/* FreeR advisories (mirroring the legacy Qt interface) */}
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+              Any FreeR in the input data will be automatically read and completed
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+              If no FreeR is present, a new set will be generated, or an existing
+              FreeR set may be defined below
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 0.5 }}>
+              You can define a pre-existing FreeR set below to override a FreeR set
+              from the input data
+            </Typography>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 1.5 }}>
+              If a FreeR set is neither present in the input, nor given explicitly,
+              then one will be generated
+            </Typography>
+
             {/* FreeR input */}
             <CCP4i2TaskElement {...props} itemName="FREERFLAG" />
+
+            {/* FreeR fraction for generated sets */}
+            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mt: 1 }}>
+              <CCP4i2TaskElement
+                {...props}
+                key="FREER_FRACTION"
+                itemName="controlParameters.FREER_FRACTION"
+                qualifiers={{ guiLabel: "Fraction of reflections in generated freeR set" }}
+              />
+              <Typography variant="body2" color="text.secondary">
+                Default fraction is 0.05. Potential twinning operations will be taken
+                into account.
+              </Typography>
+            </Box>
           </CCP4i2ContainerElement>
         </CCP4i2Tab>
       </CCP4i2Tabs>

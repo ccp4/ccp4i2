@@ -1235,6 +1235,7 @@ class CMergeMiniMtzListStub(CList):
         "fileContentClassName": 'CUnmergedDataContent',
         "guiLabel": 'Unmerged reflections',
         "toolTip": 'Unmerged experimental data in any format',
+        "downloadModes": ['ebiSFs'],
         "helpFile": 'data_files#unmerged_data',
     },
     qualifiers_order=[
@@ -6415,6 +6416,11 @@ class CImportUnmergedStub(CData):
     """
     This is a pure data class stub. Extend it in core/CImportUnmerged.py
     to add methods and implementation-specific functionality.
+
+    TODO: add a selectedBlock (CString) field so that each list entry
+    can independently specify which mmCIF reflection block to use.
+    Currently the aimless_pipe pipeline uses a single container-level
+    MMCIF_SELECTED_BLOCK parameter, limiting mmCIF input to one file.
     """
 
     file: Optional[CUnmergedDataFileStub] = None

@@ -14,7 +14,7 @@ from ccp4i2.core.CCP4XtalData import CGenericReflDataFile, CMapDataFile, CMtzDat
 from ccp4i2.core.CCP4ModelData import CPdbDataFile, CDictDataFile, CAsuDataFile
 # Import stub class for isinstance checks - subclasses like CObsDataFile inherit from
 # stubs (CMtzDataFileStub) not implementations (CMtzDataFile)
-from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub
+from ccp4i2.core.cdata_stubs.CCP4XtalData import CMtzDataFileStub, CUnmergedDataFileStub
 # mmcifutils imported lazily in digest_cgenericrefldatafile_file_object to avoid
 # numpy dependency at module load time (numpy in py-packages may be incompatible)
 from ..containers.find_objects import find_objects
@@ -279,6 +279,18 @@ def digest_file_object(file_object: CDataFile):
         return digest_cdictdata_file_object(file_object)
     if isinstance(file_object, (CCP4ModelData.CAsuDataFile, CAsuDataFile)):
         return digest_casudatafile_file_object(file_object)
+    # CUnmergedDataFile can hold MTZ, mmCIF, SCA, XDS etc.  For mmCIF
+    # files, route through the generic refl digest to get rblock_infos.
+    # For MTZ, delegate to the MTZ digest.  Others fall through.
+    if isinstance(file_object, CUnmergedDataFileStub):
+        path = str(file_object.fullPath) if file_object.fullPath else ""
+        ext = path.rsplit(".", 1)[-1].lower() if path else ""
+        if ext in ("cif", "mmcif", "ent"):
+            generic_refl = CCP4XtalData.CGenericReflDataFile()
+            generic_refl.setFullPath(path)
+            return digest_cgenericrefldatafile_file_object(generic_refl)
+        if ext == "mtz":
+            return digest_cmtzdatafile_file_object(file_object)
     if type(file_object) is CCP4File.CDataFile:
         return digest_cdatafile_file_object(file_object)
     return digest_other_file_object(file_object)
@@ -290,6 +302,22 @@ def digest_other_file_object(file_object: CDataFile):
         file_object.setContentFlag()
         contents = file_object.getFileContent()
         content_dict = value_dict_for_object(contents)
+
+        # If this happens to be an mmCIF reflection file (eg a
+        # CUnmergedDataFile pointing at a .cif/.mmcif), enrich the
+        # digest with per-block info so UIs (aimless_pipe etc) can
+        # offer a block selector.
+        full_path = None
+        try:
+            full_path = str(file_object.fullPath) if file_object.fullPath else None
+        except Exception:
+            full_path = None
+        if full_path and full_path.lower().endswith((".cif", ".mmcif", ".ent")):
+            try:
+                content_dict["rblock_infos"] = _mmcif_block_infos(full_path)
+                content_dict["format"] = "mmcif"
+            except Exception as err:
+                logger.warning("Failed to scan mmcif blocks for %s: %s", full_path, err)
         return content_dict
     except Exception as err:
         logger.exception("Error digesting file %s", file_object, exc_info=err)
@@ -298,6 +326,41 @@ def digest_other_file_object(file_object: CDataFile):
             "reason": f"Failed digesting CDataFile {err}",
             "digest": {},
         }
+
+
+def _mmcif_block_infos(full_path: str):
+    """Scan every reflection block in an mmCIF file and return a list
+    of dicts describing it (cell, spacegroup, columns, FreeR status,
+    and a `suitableForMerging` flag identifying unmerged-intensity
+    blocks suitable as aimless input)."""
+    from ccp4i2.pipelines.import_merged.script import mmcifutils
+
+    mmcif = gemmi.cif.read_file(full_path)
+    rblocks = gemmi.as_refln_blocks(mmcif)
+    rblock_infos = []
+    for rb in rblocks:
+        blkinfo = mmcifutils.CifBlockInfo(rb)
+        block_dict = flatten_instance(blkinfo)
+
+        block_dict["hasFreeR"] = blkinfo.haveFreeR()
+        block_dict["freerValid"] = blkinfo.validFreeR() or False
+        block_dict["freerWarnings"] = blkinfo.freerWarning() or []
+
+        if hasattr(blkinfo, "labelsets") and blkinfo.labelsets:
+            block_dict["typeCodes"] = blkinfo.labelsets.getTypeCodes()
+            block_dict["columnSetsText"] = blkinfo.labelsets.columnsetstext()
+
+        suitable = False
+        if getattr(blkinfo, "unmerged", False):
+            try:
+                status, _msg = blkinfo.columnsOK(formerged=False)
+                suitable = status >= 0
+            except Exception:
+                suitable = False
+        block_dict["suitableForMerging"] = suitable
+
+        rblock_infos.append(block_dict)
+    return rblock_infos
 
 
 def _extract_chain_sequences(gemmi_structure):
@@ -584,27 +647,7 @@ def digest_cgenericrefldatafile_file_object(file_object: CGenericReflDataFile):
         content_dict["freerWarnings"] = []
 
         if file_object.getFormat() == "mmcif":
-            # Lazy import to avoid loading numpy at Django startup
-            from ccp4i2.pipelines.import_merged.script import mmcifutils
-            mmcif = gemmi.cif.read_file(file_object.fullPath.__str__())
-            rblocks = gemmi.as_refln_blocks(mmcif)
-            rblock_infos = []
-            for rb in rblocks:
-                blkinfo = mmcifutils.CifBlockInfo(rb)
-                block_dict = flatten_instance(blkinfo)
-
-                # Add explicit FreeR fields from CifBlockInfo
-                block_dict["hasFreeR"] = blkinfo.haveFreeR()
-                block_dict["freerValid"] = blkinfo.validFreeR() or False
-                block_dict["freerWarnings"] = blkinfo.freerWarning() or []
-
-                # Add labelsets type codes for content type detection
-                if hasattr(blkinfo, 'labelsets') and blkinfo.labelsets:
-                    block_dict["typeCodes"] = blkinfo.labelsets.getTypeCodes()
-                    block_dict["columnSetsText"] = blkinfo.labelsets.columnsetstext()
-
-                rblock_infos.append(block_dict)
-
+            rblock_infos = _mmcif_block_infos(file_object.fullPath.__str__())
             content_dict["rblock_infos"] = rblock_infos
 
             # Set summary FreeR info from first block with merged data

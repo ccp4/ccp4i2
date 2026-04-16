@@ -73,6 +73,41 @@ class aimless_pipe(CPluginScript):
                     CCP4ErrorHandling.SEVERITY_ERROR
                 )
 
+        if mode == 'MATCH' and ref_type == 'XYZ':
+            if not self.container.inputData.XYZIN_REF.isSet():
+                filtered.append(
+                    'CPdbDataFile',
+                    201,
+                    'Reference coordinate file must be set when '
+                    'mode is "Match to reference" and reference '
+                    'data type is "Coordinates"',
+                    'aimless_pipe.container.inputData.XYZIN_REF',
+                    CCP4ErrorHandling.SEVERITY_ERROR
+                )
+
+        # mmCIF files: only one input file is supported because the
+        # block selection (MMCIF_SELECTED_BLOCK) is a single scalar.
+        # TODO: extend or specialise CImportUnmerged to carry a
+        # per-entry selectedBlock so multiple mmCIF inputs can each
+        # specify their own block.
+        unmerged_list = self.container.inputData.UNMERGEDFILES
+        mmcif_count = 0
+        for entry in unmerged_list:
+            if hasattr(entry, 'file') and entry.file.isSet():
+                path = str(entry.file.fullPath) if entry.file.fullPath else ''
+                if path.lower().endswith(('.cif', '.mmcif')):
+                    mmcif_count += 1
+        if mmcif_count > 0 and len(unmerged_list) > 1:
+            filtered.append(
+                self.TASKNAME,
+                202,
+                'Only a single input file is supported when the '
+                'input is mmCIF format. Multiple mmCIF inputs '
+                'cannot each specify separate block selections.',
+                'aimless_pipe.container.inputData.UNMERGEDFILES',
+                CCP4ErrorHandling.SEVERITY_ERROR
+            )
+
         return filtered
 
     # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

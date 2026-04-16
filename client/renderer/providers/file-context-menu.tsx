@@ -84,10 +84,23 @@ export const FileMenuProvider: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-/** Check if a file type represents an MTZ file (including unmerged variants) */
-function isMtzFileType(type: string): boolean {
-  return type.startsWith("application/CCP4-mtz") ||
-    type.startsWith("application/CCP4-unmerged");
+/** Check if a file is actually an MTZ file.
+ *  For unmerged data (which can be MTZ, mmCIF, SCA, XDS, etc.) we
+ *  check the filename extension rather than just the mime type. */
+function isMtzFile(file: { type: string; name?: string }): boolean {
+  if (file.type.startsWith("application/CCP4-mtz")) return true;
+  if (file.type.startsWith("application/CCP4-unmerged")) {
+    const ext = (file.name || "").split(".").pop()?.toLowerCase() || "";
+    return ext === "mtz";
+  }
+  return false;
+}
+
+/** Check if a file is a text-previewable reflection format (mmCIF, SCA, XDS etc.) */
+function isTextReflectionFile(file: { type: string; name?: string }): boolean {
+  if (!file.type.startsWith("application/CCP4-unmerged")) return false;
+  const ext = (file.name || "").split(".").pop()?.toLowerCase() || "";
+  return ["cif", "mmcif", "ent", "hkl", "sca"].includes(ext);
 }
 
 export const FileMenu: React.FC = () => {
@@ -266,7 +279,7 @@ export const FileMenu: React.FC = () => {
         let language = "text";
         let url = `/api/proxy/ccp4i2/files/${file.id}/download/`;
 
-        if (isMtzFileType(file.type)) {
+        if (isMtzFile(file)) {
           language = "mtz";
         } else if (file.type === "application/CCP4-image") {
           language = "image";
@@ -501,7 +514,7 @@ export const FileMenu: React.FC = () => {
         <MenuItem key="CopyRef" onClick={handleCopyReference}>
           <ContentCopy sx={{ mr: 1 }} /> Copy reference
         </MenuItem>
-        {(!file || !isMtzFileType(file.type)) && (
+        {(!file || !isMtzFile(file)) && (
           <MenuItem key="Preview" onClick={handlePreviewFile}>
             <Preview sx={{ mr: 1 }} /> Preview
           </MenuItem>
@@ -543,12 +556,12 @@ export const FileMenu: React.FC = () => {
               <CCP4i2MoorhenIcon sx={{ mr: 1 }} /> Moorhen
             </MenuItem>
           )}
-        {file && isMtzFileType(file.type) && (
+        {file && isMtzFile(file) && (
           <MenuItem key="ViewHKL" onClick={handlePreviewFileInViewHKL}>
             <Preview sx={{ mr: 1 }} /> ViewHKL
           </MenuItem>
         )}
-        {file && isMtzFileType(file.type) && (
+        {file && isMtzFile(file) && (
           <MenuItem key="MtzHeader" onClick={handlePreviewMtzHeader}>
             <TableChart sx={{ mr: 1 }} /> MTZ Preview
           </MenuItem>
