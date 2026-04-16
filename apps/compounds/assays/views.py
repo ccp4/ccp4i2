@@ -279,13 +279,19 @@ class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
     def propagate_dilutions(self, request, pk=None):
         """
         Update all data series for assays using this protocol to use the protocol's
-        preferred dilution series.
+        preferred dilution series, then re-analyse affected assays.
 
-        This also deletes analysis results since re-analysis is required.
+        Deletes stale analysis results and re-runs curve fitting with the
+        corrected concentrations.
 
         ADMIN ONLY - dilution changes affect analysis validity.
 
-        Returns the count of updated data series and deleted analyses.
+        Optional body parameter:
+            reanalyse (bool): Whether to re-analyse after propagation.
+                              Defaults to true.
+
+        Returns the count of updated data series, deleted analyses, and
+        reanalysis summary.
         """
         from users.permissions import can_administer
 
@@ -345,12 +351,38 @@ class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
                 f"Deleted {analyses_count} analysis results."
             )
 
+        # Re-analyse affected assays with corrected concentrations
+        reanalyse = request.data.get('reanalyse', True)
+        reanalysis_summary = {'assays': 0, 'successful': 0, 'failed': 0}
+
+        if reanalyse:
+            affected_assay_ids = (
+                DataSeries.objects.filter(assay__protocol=protocol)
+                .values_list('assay_id', flat=True)
+                .distinct()
+            )
+            affected_assays = Assay.objects.filter(id__in=affected_assay_ids)
+            reanalysis_summary['assays'] = affected_assays.count()
+
+            for assay in affected_assays:
+                try:
+                    result = analyse_assay(assay)
+                    reanalysis_summary['successful'] += result['successful']
+                    reanalysis_summary['failed'] += result['failed']
+                except Exception as e:
+                    import logging
+                    logging.getLogger(__name__).exception(
+                        f"Reanalysis failed for assay {assay.id}: {e}"
+                    )
+                    reanalysis_summary['failed'] += assay.data_series.count()
+
         return Response({
             'status': 'success',
             'updated_series': series_count,
             'deleted_analyses': analyses_count,
             'dilution_series_id': str(protocol.preferred_dilutions.id),
             'dilution_series_name': str(protocol.preferred_dilutions),
+            'reanalysis': reanalysis_summary,
         })
 
 

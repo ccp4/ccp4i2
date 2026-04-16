@@ -77,6 +77,7 @@ export function ProtocolEditDialog({
   const [dilutionPropagateResult, setDilutionPropagateResult] = useState<{
     updated_series: number;
     deleted_analyses: number;
+    reanalysis: { assays: number; successful: number; failed: number };
   } | null>(null);
 
   // Form state
@@ -94,8 +95,8 @@ export function ProtocolEditDialog({
     protocol.preferred_dilutions || null
   );
   const [targetId, setTargetId] = useState<string | null>(protocol.target || null);
-  const [originalTargetId] = useState<string | null>(protocol.target || null);
-  const [originalDilutionsId] = useState<string | null>(protocol.preferred_dilutions || null);
+  const [originalTargetId, setOriginalTargetId] = useState<string | null>(protocol.target || null);
+  const [originalDilutionsId, setOriginalDilutionsId] = useState<string | null>(protocol.preferred_dilutions || null);
   const [comments, setComments] = useState(protocol.comments || '');
 
   // Fetch available fitting methods
@@ -123,7 +124,9 @@ export function ProtocolEditDialog({
     setFittingMethodId(protocol.fitting_method || null);
     setFittingParams(protocol.fitting_parameters || {});
     setPreferredDilutionsId(protocol.preferred_dilutions || null);
+    setOriginalDilutionsId(protocol.preferred_dilutions || null);
     setTargetId(protocol.target || null);
+    setOriginalTargetId(protocol.target || null);
     setComments(protocol.comments || '');
     setError(null);
     setPropagateResult(null);
@@ -219,6 +222,7 @@ export function ProtocolEditDialog({
       const result = await api.post<{
         updated_series: number;
         deleted_analyses: number;
+        reanalysis: { assays: number; successful: number; failed: number };
       }>(`protocols/${protocol.id}/propagate_dilutions/`, {});
       setDilutionPropagateResult(result);
     } catch (err) {
@@ -530,21 +534,26 @@ export function ProtocolEditDialog({
         </DialogTitle>
         <DialogContent>
           {dilutionPropagateResult ? (
-            <Alert severity="success" sx={{ mt: 1 }}>
-              Updated {dilutionPropagateResult.updated_series} data series.
-              {dilutionPropagateResult.deleted_analyses > 0 && (
-                <> Deleted {dilutionPropagateResult.deleted_analyses} analysis result{dilutionPropagateResult.deleted_analyses !== 1 ? 's' : ''}.</>
+            <>
+              <Alert severity="success" sx={{ mt: 1 }}>
+                Updated {dilutionPropagateResult.updated_series} data series and
+                re-analysed {dilutionPropagateResult.reanalysis.assays} assay{dilutionPropagateResult.reanalysis.assays !== 1 ? 's' : ''} ({dilutionPropagateResult.reanalysis.successful} series fitted successfully).
+              </Alert>
+              {dilutionPropagateResult.reanalysis.failed > 0 && (
+                <Alert severity="warning" sx={{ mt: 1 }}>
+                  {dilutionPropagateResult.reanalysis.failed} series failed to fit — review these in the assay view.
+                </Alert>
               )}
-            </Alert>
+            </>
           ) : (
             <>
               <Typography variant="body2" gutterBottom>
                 You changed the preferred dilution series for this protocol. Would you like to update
-                all data series in assays using this protocol?
+                all data series in assays using this protocol and re-analyse them?
               </Typography>
               <Alert severity="warning" sx={{ mt: 2 }}>
-                <strong>Warning:</strong> This will delete all existing analysis results for affected
-                data series. They will need to be re-analyzed with the new dilution series.
+                <strong>Warning:</strong> This will replace all existing analysis results for affected
+                data series with new fits using the corrected concentrations.
               </Alert>
               <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
                 New dilution series: <strong>{dilutionSeries?.find((ds) => ds.id === preferredDilutionsId)?.display_name || 'Selected series'}</strong>
@@ -577,7 +586,7 @@ export function ProtocolEditDialog({
                 disabled={dilutionPropagating}
                 startIcon={dilutionPropagating ? <CircularProgress size={16} /> : <Update />}
               >
-                {dilutionPropagating ? 'Updating...' : 'Yes, Update All'}
+                {dilutionPropagating ? 'Updating & Re-analysing...' : 'Yes, Update & Re-analyse'}
               </Button>
             </>
           )}
