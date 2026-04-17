@@ -158,10 +158,6 @@ const MmcifBlockSelector: React.FC<{ jobId: number }> = ({ jobId }) => {
     data: { format?: string; rblock_infos?: RBlockInfo[] } | null;
   };
 
-  console.log("[MmcifBlockSelector] firstFilePath:", firstFilePath,
-    "dbFileId:", firstFileValue?.dbFileId,
-    "digest:", digest ? { format: digest.format, hasRblocks: !!digest.rblock_infos, nBlocks: digest.rblock_infos?.length } : null);
-
   // Only show the block selector when the digest confirms mmCIF format
   const isMMCIF = digest?.format?.toLowerCase() === "mmcif";
   const blocks = digest?.rblock_infos || [];

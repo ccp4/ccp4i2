@@ -989,8 +989,13 @@ class CDataFile(CData):
             **kw: Additional keyword arguments passed to parent
         """
         if value is None:
-            # None argument: clear the file path
+            # None argument: clear the file path and all file identity
             self.setFullPath('')
+            if hasattr(self, 'dbFileId'):
+                if hasattr(self.dbFileId, 'value'):
+                    self.dbFileId.value = None
+                else:
+                    self.dbFileId = None
             self.unSet()
             # Allow subclasses to clear their specific metadata (e.g., selection in CAsuDataFile)
             self._clear_metadata()
