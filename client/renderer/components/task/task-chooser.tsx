@@ -250,7 +250,7 @@ export function TaskChooser(props: {
   const { data: taskLookup } = api.get<TaskLookup>("task_lookup/");
 
   return (
-    <Stack>
+    <Stack sx={{ height: "100%" }}>
       <Stack direction="row" alignItems="center" spacing={2} sx={{ p: 2 }}>
         {taskLookup && (
           <Typography>Tasks&nbsp;({Object.keys(taskLookup).length})</Typography>
