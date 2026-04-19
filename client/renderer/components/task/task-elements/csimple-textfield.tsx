@@ -5,137 +5,33 @@ import React, {
   useEffect,
   useMemo,
   useRef,
-  useState,
 } from "react";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 
 import { CCP4i2CSimpleElementProps } from "./csimple";
-import { useJob, SetParameterResponse } from "../../../utils";
 import { ErrorTrigger } from "./error-info";
-import { useTaskInterface } from "../../../providers/task-provider";
-import { usePopcorn } from "../../../providers/popcorn-provider";
 import {
   FULL_WIDTH_FIELD_STYLES,
   getFieldSizeStyles,
-  FieldSize,
 } from "./field-sizes";
 import { FieldWrapper } from "./field-wrapper";
+import {
+  useContainerField,
+  useSyncedLocalValue,
+} from "./hooks/useContainerField";
 
-// Types
 type InputValue = string | number | boolean;
 type InputType = "text" | "int" | "float" | "checkbox";
 
-interface ProcessedItem {
-  objectPath: string | null;
-  value: InputValue;
-  guiLabel: string;
-  isMultiLine: boolean;
-  tooltipText: string;
-}
-
-// Constants
 const DEBOUNCE_DELAY = 1000;
-const INPUT_TYPES = {
-  TEXT: "text",
-  INT: "int",
-  FLOAT: "float",
-  CHECKBOX: "checkbox",
-} as const;
-
-// Custom hooks
-const useProcessedItem = (
-  item: any,
-  qualifiers: any,
-  objectPath: string | null
-): ProcessedItem => {
-  return useMemo(() => {
-    const guiLabel =
-      qualifiers?.guiLabel || objectPath?.split(".").at(-1) || "";
-    const isMultiLine = qualifiers?.guiMode === "multiLine";
-    const tooltipText = qualifiers?.toolTip || objectPath || "";
-
-    return {
-      objectPath,
-      value: item?._value ?? "",
-      guiLabel,
-      isMultiLine,
-      tooltipText,
-    };
-  }, [item, qualifiers, objectPath]);
-};
-
-/**
- * Custom hook for form state with direct syncing.
- *
- * With local cache patching, we no longer need intent-based guards.
- * When a parameter is updated, the server returns the updated item and
- * we patch the SWR cache directly - no full refetch that could race
- * with local edits.
- */
-const useFormState = (initialValue: InputValue, type: InputType) => {
-  const [value, setValue] = useState<InputValue>(initialValue);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
-
-  // Sync with prop changes directly
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
-
-  // Cleanup debounce on unmount
-  useEffect(() => {
-    return () => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
-      }
-    };
-  }, []);
-
-  const setDebouncedValue = useCallback(
-    (newValue: InputValue, callback: (value: InputValue) => void) => {
-      if (debounceRef.current) {
-        clearTimeout(debounceRef.current);
-      }
-
-      debounceRef.current = setTimeout(() => {
-        callback(newValue);
-        debounceRef.current = null;
-      }, DEBOUNCE_DELAY);
-    },
-    []
-  );
-
-  return {
-    value,
-    setValue,
-    isSubmitting,
-    setIsSubmitting,
-    setDebouncedValue,
-  };
-};
-
-// Utility functions
-const parseValueByType = (inputValue: string, type: InputType): InputValue => {
-  switch (type) {
-    case INPUT_TYPES.INT:
-      // Only parse if it's a valid integer string
-      return /^\d+$/.test(inputValue) ? parseInt(inputValue, 10) : inputValue;
-    case INPUT_TYPES.FLOAT:
-      // Only parse if it's a valid float string
-      return /^-?\d*\.?\d*$/.test(inputValue) ? inputValue : inputValue;
-    case INPUT_TYPES.TEXT:
-    default:
-      return inputValue;
-  }
-};
 
 const isValueValid = (value: InputValue, type: InputType): boolean => {
-  if (type === INPUT_TYPES.INT) {
+  if (type === "int") {
     return typeof value === "string"
       ? /^\d+$/.test(value)
       : Number.isInteger(value);
   }
-  if (type === INPUT_TYPES.FLOAT) {
+  if (type === "float") {
     return typeof value === "string"
       ? /^-?\d*\.?\d*$/.test(value)
       : typeof value === "number" && !Number.isNaN(value);
@@ -143,7 +39,6 @@ const isValueValid = (value: InputValue, type: InputType): boolean => {
   return true;
 };
 
-// Main component
 export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
   itemName,
   job,
@@ -157,40 +52,38 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
   size: sizeProp,
 }) => {
   const inputRef = useRef<HTMLInputElement | null>(null);
+  const debounceRef = useRef<NodeJS.Timeout | null>(null);
 
   const {
-    useTaskItem,
-    getValidationColor,
-    setParameter,
-    setParameterNoMutate,
-  } = useJob(job.id);
-  const { item } = useTaskItem(itemName);
-  const { inFlight, setInFlight } = useTaskInterface();
-  const { setMessage } = usePopcorn();
+    item,
+    objectPath,
+    serverValue,
+    isVisible,
+    isDisabled,
+    validationColor,
+    commit,
+  } = useContainerField<InputValue>({
+    job,
+    itemName,
+    visibility,
+    disabled: disabledProp,
+    suppressMutations,
+    onChange,
+  });
 
-  // Process item data
-  const objectPath = useMemo(() => item?._objectPath || null, [item]);
-  const processedItem = useProcessedItem(item, qualifiers, objectPath);
+  const guiLabel =
+    qualifiers?.guiLabel || objectPath?.split(".").at(-1) || "";
+  const isMultiLine = qualifiers?.guiMode === "multiLine";
+  const tooltipText = qualifiers?.toolTip || objectPath || "";
 
-  // Form state with direct syncing (no intent system needed with local patching)
-  const { value, setValue, isSubmitting, setIsSubmitting, setDebouncedValue } =
-    useFormState(processedItem.value, type as InputType);
+  const [value, setValue] = useSyncedLocalValue<InputValue>(serverValue ?? "");
 
-  // Computed properties
-  const isVisible = useMemo(() => {
-    if (typeof visibility === "function") return visibility();
-    return visibility !== false;
-  }, [visibility]);
+  useEffect(() => {
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, []);
 
-  const isDisabled = useMemo(() => {
-    if (typeof disabledProp === "function") {
-      return disabledProp() || inFlight || isSubmitting || job.status !== 1;
-    }
-    return disabledProp || inFlight || isSubmitting || job.status !== 1;
-  }, [disabledProp, inFlight, isSubmitting, job.status]);
-
-  // Full-width by default - containers control the width
-  // Only use explicit sizeProp for legacy compatibility
   const calculatedSx = useMemo(
     () => ({
       ...(sizeProp ? getFieldSizeStyles(sizeProp) : FULL_WIDTH_FIELD_STYLES),
@@ -199,147 +92,77 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
     [sizeProp, sx]
   );
 
-  const validationColor = useMemo(
-    () => getValidationColor(item),
-    [getValidationColor, item]
+  const hasError =
+    validationColor === "error.light" ||
+    !isValueValid(value, type as InputType);
+
+  const slotProps = useMemo(
+    () => ({ inputLabel: { shrink: true, disableAnimation: true } }),
+    []
   );
 
-  const hasError = useMemo(
-    () =>
-      validationColor === "error.light" ||
-      !isValueValid(value, type as InputType),
-    [validationColor, value, type]
-  );
-
-  const slotProps = useMemo(() => ({
-    inputLabel: {
-      shrink: true,
-      disableAnimation: true,
-    },
-  }), []);
-
-  // Event handlers
-  const handleParameterUpdate = useCallback(
+  const handleCommit = useCallback(
     async (newValue: InputValue) => {
-      if (!objectPath) {
-        console.error("No object path available for parameter update");
-        return;
+      let parsed: InputValue = newValue;
+      if (type === "int" && typeof newValue === "string") {
+        if (newValue.trim() === "") return;
+        if (/^\d+$/.test(newValue)) parsed = parseInt(newValue, 10);
+      }
+      if (type === "float" && typeof newValue === "string") {
+        if (newValue.trim() === "") return;
+        if (/^-?\d*\.?\d+$/.test(newValue)) parsed = parseFloat(newValue);
       }
 
-      let parsedValue = newValue;
-
-      // Handle numeric types - empty strings can't be converted to numbers on the server
-      if (type === INPUT_TYPES.INT) {
-        if (typeof newValue === "string") {
-          if (newValue.trim() === "") {
-            return;
-          }
-          if (/^\d+$/.test(newValue)) {
-            parsedValue = parseInt(newValue, 10);
-          }
-        }
-      }
-      if (type === INPUT_TYPES.FLOAT) {
-        if (typeof newValue === "string") {
-          if (newValue.trim() === "") {
-            return;
-          }
-          if (/^-?\d*\.?\d+$/.test(newValue)) {
-            parsedValue = parseFloat(newValue);
-          }
-        }
-      }
-
-      const setParameterArg = {
-        object_path: objectPath,
-        value: parsedValue,
-      };
-
-      setInFlight(true);
-      setIsSubmitting(true);
-
-      try {
-        const updateFn = suppressMutations
-          ? setParameterNoMutate
-          : setParameter;
-        const result: SetParameterResponse | undefined =
-          await updateFn(setParameterArg);
-
-        if (result && !result.success) {
-          setMessage(`Unacceptable value provided: "${newValue}"`);
-          setValue(item?._value ?? ""); // Revert to original value
-        } else if (result?.success && result.data?.updated_item && onChange) {
-          await onChange(result.data.updated_item);
-        }
-      } catch (error) {
-        const errorMessage =
-          error instanceof Error ? error.message : String(error);
-        setMessage(`Error updating parameter: ${errorMessage}`);
-        console.error("Parameter update failed:", error);
-        setValue(item?._value ?? ""); // Revert to original value
-      } finally {
-        setInFlight(false);
-        setIsSubmitting(false);
+      const result = await commit(parsed);
+      if (result && !result.success) {
+        setValue(serverValue ?? "");
       }
     },
-    [
-      objectPath,
-      suppressMutations,
-      setParameterNoMutate,
-      setParameter,
-      setInFlight,
-      setIsSubmitting,
-      setMessage,
-      onChange,
-      item,
-      type,
-    ]
+    [commit, type, serverValue, setValue]
   );
 
   const handleChange = useCallback(
     (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      if (type === INPUT_TYPES.CHECKBOX) {
+      if (type === "checkbox") {
         const newValue = (event.target as HTMLInputElement).checked;
         setValue(newValue);
-        // Immediately update checkbox values
-        handleParameterUpdate(newValue);
-      } else {
-        const inputValue = event.target.value;
-        setValue(inputValue); // Always store as string while editing
-
-        // Debounce updates for text inputs
-        setDebouncedValue(inputValue, handleParameterUpdate);
+        handleCommit(newValue);
+        return;
       }
+
+      const inputValue = event.target.value;
+      setValue(inputValue);
+
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+      debounceRef.current = setTimeout(() => {
+        handleCommit(inputValue);
+        debounceRef.current = null;
+      }, DEBOUNCE_DELAY);
     },
-    [type, handleParameterUpdate, setDebouncedValue]
+    [type, handleCommit, setValue]
   );
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "Enter" && value !== item?._value) {
-        handleParameterUpdate(value);
+      if (event.key === "Enter" && value !== serverValue) {
+        handleCommit(value);
       }
     },
-    [value, item, handleParameterUpdate]
+    [value, serverValue, handleCommit]
   );
 
   const handleBlur = useCallback(() => {
-    if (value !== item?._value) {
-      handleParameterUpdate(value);
-    }
-  }, [value, item, handleParameterUpdate]);
+    if (value !== serverValue) handleCommit(value);
+  }, [value, serverValue, handleCommit]);
 
-  // Early return for invisible components
-  if (!isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
-  if (type === INPUT_TYPES.CHECKBOX) {
+  if (type === "checkbox") {
     return (
-      <FieldWrapper ariaLabel={`${processedItem.guiLabel} input`}>
+      <FieldWrapper ariaLabel={`${guiLabel} input`}>
         <FormControlLabel
           disabled={isDisabled}
-          title={processedItem.tooltipText}
+          title={tooltipText}
           control={
             <Checkbox
               inputRef={inputRef}
@@ -348,7 +171,7 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
               size="small"
             />
           }
-          label={processedItem.guiLabel}
+          label={guiLabel}
         />
         <ErrorTrigger item={item} job={job} />
       </FieldWrapper>
@@ -356,18 +179,18 @@ export const CSimpleTextFieldElement: React.FC<CCP4i2CSimpleElementProps> = ({
   }
 
   return (
-    <FieldWrapper ariaLabel={`${processedItem.guiLabel} input`}>
+    <FieldWrapper ariaLabel={`${guiLabel} input`}>
       <TextField
         inputRef={inputRef}
         disabled={isDisabled}
-        multiline={processedItem.isMultiLine}
+        multiline={isMultiLine}
         size="small"
         sx={calculatedSx}
         slotProps={slotProps}
         type="text"
         value={value}
-        label={processedItem.guiLabel}
-        title={processedItem.tooltipText}
+        label={guiLabel}
+        title={tooltipText}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         onBlur={handleBlur}
