@@ -1,5 +1,4 @@
-import { CCP4i2TaskElementProps } from "./task-element";
-import { useJob } from "../../../utils";
+import { useEffect, useState } from "react";
 import {
   Autocomplete,
   Card,
@@ -7,64 +6,58 @@ import {
   CardHeader,
   TextField,
 } from "@mui/material";
-import { useEffect, useMemo, useState } from "react";
-import { useTaskInterface } from "../../../providers/task-provider";
+
+import { CCP4i2TaskElementProps } from "./task-element";
 import { SpaceGroup, spaceGroups } from "../../../spacegroups";
+import { useTaskInterface } from "../../../providers/task-provider";
+import { useContainerField } from "./hooks/useContainerField";
 
 export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
   props
 ) => {
-  const { job, itemName, qualifiers } = props;
-  const { setParameter, useTaskItem, getValidationColor } = useJob(job.id);
-  const { item, value: stringValue } = useTaskItem(itemName);
-  const [value, setValue] = useState<SpaceGroup | undefined>(spaceGroups[0]);
-  const { inFlight, setInFlight } = useTaskInterface();
+  const { job, itemName, qualifiers, visibility, disabled, onChange } = props;
 
-  const inferredVisibility = useMemo(() => {
-    if (!props.visibility) return true;
-    if (typeof props?.visibility === "function") {
-      return props.visibility();
-    }
-    return props.visibility;
-  }, [props.visibility]);
+  const {
+    item,
+    serverValue,
+    isVisible,
+    isDisabled,
+    validationColor,
+    commit,
+  } = useContainerField<string>({
+    job,
+    itemName,
+    visibility,
+    disabled,
+    onChange,
+  });
+  const { inFlight } = useTaskInterface();
+
+  const [value, setValue] = useState<SpaceGroup | undefined>(spaceGroups[0]);
 
   useEffect(() => {
-    if (stringValue) {
-      const normalizedValue = stringValue.replace(/\s+/g, '');
-      setValue(spaceGroups.find((sg: SpaceGroup) =>
-        sg.name === stringValue || sg.name.replace(/\s+/g, '') === normalizedValue
-      ));
+    if (typeof serverValue === "string" && serverValue) {
+      const normalized = serverValue.replace(/\s+/g, "");
+      setValue(
+        spaceGroups.find(
+          (sg: SpaceGroup) =>
+            sg.name === serverValue ||
+            sg.name.replace(/\s+/g, "") === normalized
+        )
+      );
     }
-  }, [stringValue]);
+  }, [serverValue]);
 
   const handleInputChanged = async (arg: SpaceGroup) => {
     setValue(arg);
-    setInFlight(true);
-    const setParameterArg = {
-      object_path: item._objectPath,
-      value: value?.name,
-    };
-    try {
-      const result: any = await setParameter(setParameterArg);
-      if (result?.success && result.data?.updated_item && props.onChange) {
-        await props.onChange(result.data.updated_item);
-      }
-    } catch (err) {
-      alert(err);
-    }
-    setInFlight(false);
+    await commit(arg.name);
   };
-  return inferredVisibility ? (
-    <Card
-      sx={{
-        border: "3px solid",
-        borderColor: getValidationColor(item),
-      }}
-    >
-      <CardHeader
-        title={qualifiers?.guiLabel}
-        sx={{ borderColor: getValidationColor(item) }}
-      />
+
+  if (!isVisible) return null;
+
+  return (
+    <Card sx={{ border: "3px solid", borderColor: validationColor }}>
+      <CardHeader title={qualifiers?.guiLabel} sx={{ borderColor: validationColor }} />
       <CardContent sx={{ my: 0, py: 0 }}>
         {item && (
           <Autocomplete
@@ -73,7 +66,7 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
               backgroundColor: inFlight ? "#ffeebe" : "palette.common.white",
             }}
             id="autocomplete-spacegroup"
-            disabled={inFlight || job.status != 1}
+            disabled={isDisabled}
             multiple={false}
             options={spaceGroups}
             getOptionLabel={(option: SpaceGroup) => option.name}
@@ -81,12 +74,10 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
             value={value}
             style={{ minWidth: "15rem" }}
             onChange={(
-              event: React.SyntheticEvent<Element, Event>,
+              _event: React.SyntheticEvent<Element, Event>,
               newValue: SpaceGroup | null
             ) => {
-              if (newValue) {
-                handleInputChanged(newValue);
-              }
+              if (newValue) handleInputChanged(newValue);
             }}
             renderInput={(params: any) => (
               <TextField {...params} label="Space groups" />
@@ -95,5 +86,5 @@ export const CAltSpaceGroupElement: React.FC<CCP4i2TaskElementProps> = (
         )}
       </CardContent>
     </Card>
-  ) : null;
+  );
 };
