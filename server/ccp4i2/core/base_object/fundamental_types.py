@@ -1489,6 +1489,15 @@ class CList(CData):
         object.__setattr__(self, '_item_type', None)
         object.__setattr__(self, '_item_qualifiers', {})
 
+        # Seed the instance subItem qualifier from the class-body SUBITEM,
+        # if declared. Subclasses can use either this class-attribute form
+        # (preferred) or an explicit self.set_qualifier('subItem', ...) in
+        # their own __init__. The def.xml handler will overwrite either
+        # later if the <content> block includes a <subItem> element.
+        class_subitem = getattr(self.__class__, 'SUBITEM', None)
+        if class_subitem is not None and not self.get_qualifier('subItem'):
+            self.set_qualifier('subItem', class_subitem)
+
         # Register existing items as children
         for i, item in enumerate(self._items):
             if isinstance(item, CData):
@@ -1610,12 +1619,10 @@ class CList(CData):
             if v.maxSeverity() > SEVERITY_WARNING:
                 raise v
 
-        # Get subItem class for dict conversion
-        # First check instance qualifier, then fallback to SUBITEM class attribute
+        # Get subItem class. The instance qualifier is the single source of
+        # truth: CList.__init__ seeds it from the class-body SUBITEM if any,
+        # and the def.xml handler overwrites it when <subItem> is declared.
         sub_item_def = self.get_qualifier('subItem')
-        if not sub_item_def:
-            # Check for SUBITEM class attribute (legacy CCP4i2 pattern)
-            sub_item_def = getattr(self.__class__, 'SUBITEM', None)
         item_class = sub_item_def.get('class') if isinstance(sub_item_def, dict) else None
 
         # Clear current items

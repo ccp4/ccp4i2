@@ -114,3 +114,40 @@ def test_set_replaces_previous_contents():
         assert isinstance(item, CString)
     assert cl[0].value == "P 1"
     assert cl[1].value == "P 21 21 21"
+
+
+def test_class_subitem_is_autostamped_on_construction():
+    """A subclass declaring SUBITEM gets its subItem qualifier set without
+    having to call set_qualifier in __init__."""
+
+    class MyStringList(CList):
+        SUBITEM = {"class": CString, "qualifiers": {}}
+
+    cl = MyStringList(name="X")
+    sub = cl.get_qualifier("subItem")
+    assert sub is not None
+    assert sub["class"] is CString
+
+    # set() should then use it automatically — no explicit set_qualifier
+    cl.set(["a", "b"])
+    assert len(cl) == 2
+    for item in cl:
+        assert isinstance(item, CString)
+
+
+def test_instance_qualifier_wins_over_class_subitem():
+    """def.xml-style override path: an instance set_qualifier('subItem', ...)
+    after construction overwrites the class SUBITEM default."""
+    from ccp4i2.core.base_object.fundamental_types import CInt
+
+    class MyStringList(CList):
+        SUBITEM = {"class": CString, "qualifiers": {}}
+
+    cl = MyStringList(name="X")
+    # Simulate what def_xml_handler does when <subItem> is declared
+    cl.set_qualifier("subItem", {"class": CInt, "qualifiers": {}})
+
+    cl.set([1, 2])
+    assert len(cl) == 2
+    for item in cl:
+        assert isinstance(item, CInt)

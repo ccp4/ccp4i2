@@ -407,20 +407,12 @@ class CAsuContentSeq(CAsuContentSeqStub):
 
 
 class CAsuContentSeqList(CAsuContentSeqListStub):
-    """
-    A list with all items of one CData sub-class
+    """A list of CAsuContentSeq items; requires at least one entry."""
 
-    Extends CAsuContentSeqListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    SUBITEM = {'class': CAsuContentSeq, 'qualifiers': {}}
 
     def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize CAsuContentSeqList with subItem qualifier."""
         super().__init__(parent=parent, name=name, **kwargs)
-        # Set the subItem qualifier to specify what type of items this list contains
-        # subItem must be a dict with 'class' key pointing to the class
-        self.set_qualifier('subItem', {'class': CAsuContentSeq, 'qualifiers': {}})
-        # Require at least one entry for ASU content
         self.set_qualifier('listMinLength', 1)
 
     # Note: validity() is inherited from CList which handles:
@@ -753,17 +745,9 @@ class CAtomRefmacSelectionGroups(CAtomRefmacSelectionGroupsStub):
 
 
 class CAtomRefmacSelectionList(CAtomRefmacSelectionListStub):
-    """
-    A list with all items of one CData sub-class
+    """A list of CAtomRefmacSelection items."""
 
-    Extends CAtomRefmacSelectionListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize CAtomRefmacSelectionList with subItem qualifier."""
-        super().__init__(parent=parent, name=name, **kwargs)
-        self.set_qualifier('subItem', {'class': CAtomRefmacSelection, 'qualifiers': {}})
+    SUBITEM = {'class': CAtomRefmacSelection, 'qualifiers': {}}
 
 
 class CAtomRefmacSelectionOccupancy(CAtomRefmacSelectionOccupancyStub):
@@ -914,16 +898,7 @@ class CEnsembleList(CEnsembleListStub):
     Add file I/O, validation, and business logic here.
     """
 
-    def __init__(self, *args, **kwargs):
-        """Initialize CEnsembleList with CEnsemble as the subItem type."""
-        super().__init__(*args, **kwargs)
-
-        # Set the subItem qualifier to specify that this list contains CEnsemble objects
-        # This is required for makeItem() to create the correct type
-        self.set_qualifier('subItem', {
-            'class': CEnsemble,
-            'qualifiers': {}
-        })
+    SUBITEM = {'class': CEnsemble, 'qualifiers': {}}
 
     def makeItem(self, *args, **kwargs):
         """
@@ -2998,7 +2973,5 @@ class CTLSRange(CTLSRangeStub):
 class CTLSRangeList(CTLSRangeListStub):
     """A list of CTLSRange items defining TLS groups."""
 
-    def __init__(self, parent=None, name=None, **kwargs):
-        super().__init__(parent=parent, name=name, **kwargs)
-        self.set_qualifier('subItem', {'class': CTLSRange, 'qualifiers': {}})
+    SUBITEM = {'class': CTLSRange, 'qualifiers': {}}
 
