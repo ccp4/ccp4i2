@@ -1010,31 +1010,15 @@ class CMonomer(CMonomerStub):
 
 
 class COccRefmacSelectionList(COccRefmacSelectionListStub):
-    """
-    A list with all items of one CData sub-class
+    """A list of CAtomRefmacSelectionOccupancy items."""
 
-    Extends COccRefmacSelectionListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize COccRefmacSelectionList with subItem qualifier."""
-        super().__init__(parent=parent, name=name, **kwargs)
-        self.set_qualifier('subItem', {'class': CAtomRefmacSelectionOccupancy, 'qualifiers': {}})
+    SUBITEM = {'class': CAtomRefmacSelectionOccupancy, 'qualifiers': {}}
 
 
 class COccRelationRefmacList(COccRelationRefmacListStub):
-    """
-    A list with all items of one CData sub-class
+    """A list of CAtomRefmacSelectionGroups items."""
 
-    Extends COccRelationRefmacListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
-
-    def __init__(self, parent=None, name=None, **kwargs):
-        """Initialize COccRelationRefmacList with subItem qualifier."""
-        super().__init__(parent=parent, name=name, **kwargs)
-        self.set_qualifier('subItem', {'class': CAtomRefmacSelectionGroups, 'qualifiers': {}})
+    SUBITEM = {'class': CAtomRefmacSelectionGroups, 'qualifiers': {}}
 
 
 # Try to import BioPython - it's optional but provides enhanced functionality
