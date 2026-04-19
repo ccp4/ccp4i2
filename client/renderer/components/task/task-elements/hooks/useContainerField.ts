@@ -5,6 +5,7 @@ import {
   useJob,
   SetParameterArg,
   SetParameterResponse,
+  valueOfItem,
 } from "../../../../utils";
 import { useTaskInterface } from "../../../../providers/task-provider";
 import { usePopcorn } from "../../../../providers/popcorn-provider";
@@ -18,16 +19,40 @@ export interface UseContainerFieldOptions {
   onChange?: (updatedItem: any) => void | Promise<void>;
 }
 
+export interface CommitOptions {
+  /**
+   * Append to the item's objectPath before writing (e.g. ".selection" or
+   * ".selected"). Use when the write target is a child of the hook's item
+   * rather than the item itself.
+   */
+  subPath?: string;
+}
+
 export interface UseContainerFieldResult<V = any> {
   item: any;
   objectPath: string | null;
+  /**
+   * Raw server-side `_value` as it sits on the item. For primitives this is
+   * the actual value; for complex items (e.g. CDataFile) this is a nested
+   * object of `{ _value, _class, ... }` children. Prefer `unwrappedValue`
+   * when you want plain JS values.
+   */
   serverValue: V;
+  /**
+   * `_value` recursively unwrapped — nested `_value` children are flattened
+   * so a CDataFile becomes `{ dbFileId, baseName, ... }` rather than
+   * `{ dbFileId: {_value, _class}, baseName: {_value, _class}, ... }`.
+   */
+  unwrappedValue: any;
   isVisible: boolean;
   isDisabled: boolean;
   isSubmitting: boolean;
   validationColor: string | undefined;
   hasValidationError: boolean;
-  commit: (newValue: V) => Promise<SetParameterResponse | undefined>;
+  commit: (
+    newValue: any,
+    options?: CommitOptions
+  ) => Promise<SetParameterResponse | undefined>;
 }
 
 /**
@@ -63,6 +88,7 @@ export function useContainerField<V = any>(
   );
 
   const serverValue = item?._value as V;
+  const unwrappedValue = useMemo(() => valueOfItem(item), [item]);
 
   const isVisible = useMemo(() => {
     if (typeof visibility === "function") {
@@ -89,13 +115,19 @@ export function useContainerField<V = any>(
   const hasValidationError = validationColor === "error.light";
 
   const commit = useCallback(
-    async (newValue: V): Promise<SetParameterResponse | undefined> => {
+    async (
+      newValue: any,
+      options?: CommitOptions
+    ): Promise<SetParameterResponse | undefined> => {
       if (!objectPath) {
         console.error(`useContainerField: no objectPath for ${itemName}`);
         return undefined;
       }
 
-      const arg: SetParameterArg = { object_path: objectPath, value: newValue };
+      const writePath = options?.subPath
+        ? `${objectPath}${options.subPath}`
+        : objectPath;
+      const arg: SetParameterArg = { object_path: writePath, value: newValue };
       const updateFn = suppressMutations ? setParameterNoMutate : setParameter;
 
       setInFlight(true);
@@ -138,6 +170,7 @@ export function useContainerField<V = any>(
     item,
     objectPath,
     serverValue,
+    unwrappedValue,
     isVisible,
     isDisabled,
     isSubmitting,

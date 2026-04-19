@@ -17,6 +17,7 @@ import { useApi } from "../../../api";
 import { useJob, useProject, useProjectFiles } from "../../../utils";
 import { File as DjangoFile, Project } from "../../../types/models";
 import { InlineTaskModal } from "./inline-task-modal";
+import { useContainerField } from "./hooks/useContainerField";
 
 /**
  * Sequence entry from the CAsuDataFile digest
@@ -57,8 +58,14 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
 ) => {
   const { job, itemName, qualifiers } = props;
   const api = useApi();
-  const { useTaskItem, useFileDigest, setParameter, fileItemToParameterArg, mutateContainer } = useJob(job.id);
-  const { item, value } = useTaskItem(itemName);
+  const { useFileDigest, fileItemToParameterArg, mutateContainer } = useJob(job.id);
+  const { item, unwrappedValue: value, isVisible, commit } = useContainerField<any>({
+    job,
+    itemName,
+    visibility: props.visibility,
+    disabled: props.disabled,
+    onChange: props.onChange,
+  });
   const { files: projectFiles } = useProjectFiles(job.project);
   const { jobs: projectJobs } = useProject(job.project);
   const { data: projects } = api.get<Project[]>("projects");
@@ -110,32 +117,20 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
         [sequenceName]: checked,
       }));
 
-      // Update the selection CDict on the backend
-      const selectionPath = `${item._objectPath}.selection`;
+      const updatedSelections = {
+        ...localSelections,
+        [sequenceName]: checked,
+      };
 
-      try {
-        const updatedSelections = {
-          ...localSelections,
-          [sequenceName]: checked,
-        };
-
-        await setParameter({
-          object_path: selectionPath,
-          value: updatedSelections,
-        });
-
-        // Refresh data
-        await Promise.all([mutateContainer(), mutateDigest()]);
-      } catch (error) {
-        console.error("Error updating sequence selection:", error);
-        // Revert optimistic update on error
-        setLocalSelections((prev) => ({
-          ...prev,
-          [sequenceName]: !checked,
-        }));
+      const result = await commit(updatedSelections, { subPath: ".selection" });
+      if (result && !result.success) {
+        setLocalSelections((prev) => ({ ...prev, [sequenceName]: !checked }));
+        return;
       }
+
+      await Promise.all([mutateContainer(), mutateDigest()]);
     },
-    [item?._objectPath, job.status, localSelections, setParameter, mutateContainer, mutateDigest]
+    [item?._objectPath, job.status, localSelections, commit, mutateContainer, mutateDigest]
   );
 
   // Determine if we should force the panel expanded
@@ -153,25 +148,17 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     async (outputFile: DjangoFile) => {
       if (!item?._objectPath || !projectJobs) return;
 
-      try {
-        const paramArg = fileItemToParameterArg(
-          outputFile,
-          item._objectPath,
-          projectJobs,
-          projects || []
-        );
+      const paramArg = fileItemToParameterArg(
+        outputFile,
+        item._objectPath,
+        projectJobs,
+        projects || []
+      );
 
-        const result = await setParameter(paramArg);
-        if (result?.success) {
-          props.onChange?.(result.data?.updated_item);
-        }
-
-        await Promise.all([mutateContainer(), mutateDigest()]);
-      } catch (error) {
-        console.error("Error auto-selecting output file:", error);
-      }
+      await commit(paramArg.value);
+      await Promise.all([mutateContainer(), mutateDigest()]);
     },
-    [item?._objectPath, projectJobs, projects, fileItemToParameterArg, setParameter, props.onChange, mutateContainer, mutateDigest]
+    [item?._objectPath, projectJobs, projects, fileItemToParameterArg, commit, mutateContainer, mutateDigest]
   );
 
   // Override qualifiers to enable selectionMode display
@@ -179,16 +166,7 @@ export const CAsuDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     return { ...item?._qualifiers, ...qualifiers };
   }, [item, qualifiers]);
 
-  // Check visibility
-  const inferredVisibility = useMemo(() => {
-    if (!props.visibility) return true;
-    if (typeof props.visibility === "function") {
-      return props.visibility();
-    }
-    return props.visibility;
-  }, [props.visibility]);
-
-  if (!inferredVisibility) return null;
+  if (!isVisible) return null;
 
   // Determine if we should show the expanded panel (for create button when no files exist)
   const shouldForceExpand = forceExpanded || (!hasFile && existingAsuFiles.length === 0);
