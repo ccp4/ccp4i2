@@ -1631,6 +1631,23 @@ class CList(CData):
                 if hasattr(new_item, 'update'):
                     new_item.update(item)
                 item = new_item
+            elif (
+                item_class is not None
+                and not isinstance(item, CData)
+                and isinstance(item, (str, int, float, bool))
+            ):
+                # Plain primitive from the client — wrap it into the list's
+                # declared subItem type so children are proper CData
+                # instances (CString/CInt/CFloat/CBoolean) rather than bare
+                # Python values. Without this, bare primitives round-trip
+                # through the JSON encoder as raw strings, breaking the
+                # client-side lookup table (children have no _objectPath).
+                new_item = item_class(parent=None, name=None)
+                if hasattr(new_item, 'set') and callable(new_item.set):
+                    new_item.set(item)
+                elif hasattr(new_item, 'value'):
+                    new_item.value = item
+                item = new_item
             elif isinstance(item, CData):
                 # IMPORTANT: Deep-copy CData items to avoid re-parenting issues
                 # When copying from another CList, we must create new instances

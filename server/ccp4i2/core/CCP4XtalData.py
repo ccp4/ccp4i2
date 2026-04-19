@@ -190,14 +190,13 @@ class CAltSpaceGroup(CAltSpaceGroupStub):
 
 class CAltSpaceGroupList(CAltSpaceGroupListStub):
     """
-    A list with all items of one CData sub-class
-    
-    Extends CAltSpaceGroupListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
+    A list of alternative space-group symbols in the canonical ccp4i2
+    convention (CAltSpaceGroup / CSpaceGroup). Tasks that want plain
+    strings (e.g. their own native convention like "P212121") should use
+    a generic CList with a CString subItem rather than this class.
     """
 
-    # Add your methods here
-    pass
+    SUBITEM = {'class': CAltSpaceGroup}
 
 
 class CAnomalousColumnGroup(CAnomalousColumnGroupStub):
