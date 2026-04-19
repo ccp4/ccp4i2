@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useMemo } from "react";
 import {
   Box,
   Card,
@@ -12,392 +12,145 @@ import {
 import { Add, Delete } from "@mui/icons-material";
 
 import { CCP4i2TaskElement, CCP4i2TaskElementProps } from "./task-element";
-import { useJob, useProject, valueOfItem } from "../../../utils";
+import { useProject } from "../../../utils";
 import { useCCP4i2Window } from "../../../app-context";
-import { Project } from "../../../types/models";
 import { ErrorTrigger } from "./error-info";
-import { useInferredVisibility } from "./hooks/useInferredVisibility";
+import { useContainerList } from "./hooks/useContainerList";
 
-// Types
 interface CListElementProps extends CCP4i2TaskElementProps {
   initiallyOpen?: boolean;
 }
 
-interface SetParameterArg {
-  object_path: string;
-  value: any;
-}
-
-interface SetParameterResponse {
-  success: boolean;
-  data?: {
-    updated_item: any;
-  };
-  error?: string;
-}
-
-// Constants
-const DEFAULT_VALUES = {
-  CAltSpaceGroup: "P1",
-  CInt: 0,
-  CFloat: 0.0,
-  CString: "",
-} as const;
-
-const useGuiLabel = (item: any, qualifiers: any): string => {
-  return useMemo(() => {
-    return (
-      qualifiers?.guiLabel ||
-      item?._objectPath?.split(".").at(-1) ||
-      "Unnamed List"
-    );
-  }, [item, qualifiers]);
-};
-
-const useValidationBorderColor = (
-  itemName: string,
-  item: any,
-  getValidationColor: (item: any) => string
-): string => {
-  return useMemo(() => {
-    if (itemName && item) {
-      return getValidationColor(item);
-    }
-    return "divider"; // Default border color
-  }, [itemName, item, getValidationColor]);
-};
-
-// Utility functions
-
-/** Floor a numeric value to the item's min qualifier if defined. */
-const respectMin = (val: any, item: any): any => {
-  const min = item?._qualifiers?.min;
-  if (min !== undefined && typeof val === "number" && val < min) return min;
-  return val;
-};
-
-const createNewItemValue = (
-  taskElement: any,
-  project: Project | undefined
-): any => {
-  let newItemValue = valueOfItem(taskElement);
-
-  if (taskElement._baseClass === "CDataFile" && newItemValue && project) {
-    return {
-      ...newItemValue,
-      project: project.uuid.replace(/-/g, ""),
-      baseName: "UNDEFINED",
-    };
-  }
-
-  // For compound types with child objects, build defaults per-child
-  // respecting each child's min qualifier
-  if (
-    taskElement._value &&
-    typeof taskElement._value === "object" &&
-    !Array.isArray(taskElement._value)
-  ) {
-    const result: any = {};
-    for (const [key, child] of Object.entries(
-      taskElement._value as Record<string, any>
-    )) {
-      if (!child) {
-        result[key] = null;
-        continue;
-      }
-      const childDefault =
-        DEFAULT_VALUES[child._class as keyof typeof DEFAULT_VALUES] ??
-        DEFAULT_VALUES[child._baseClass as keyof typeof DEFAULT_VALUES];
-      const val =
-        childDefault !== undefined ? childDefault : valueOfItem(child);
-      result[key] = respectMin(val, child);
-    }
-    return result;
-  }
-
-  // Use lookup table for default values
-  const defaultValue =
-    DEFAULT_VALUES[taskElement._class as keyof typeof DEFAULT_VALUES] ||
-    DEFAULT_VALUES[taskElement._baseClass as keyof typeof DEFAULT_VALUES];
-
-  const result = defaultValue !== undefined ? defaultValue : newItemValue;
-  return respectMin(result, taskElement);
-};
-
-const updateObjectPath = (element: any, newIndex: number): any => {
-  if (!element) return element;
-
-  const updatedElement = { ...element };
-  updatedElement._objectPath = element._objectPath?.replace(
-    "[?]",
-    `[${newIndex}]`
-  );
-
-  // Update nested value elements if they exist
-  if (typeof updatedElement._value === "object" && updatedElement._value) {
-    updatedElement._value = Object.keys(updatedElement._value).reduce(
-      (acc, key) => {
-        const valueElement = updatedElement._value[key];
-        if (valueElement?._objectPath) {
-          acc[key] = {
-            ...valueElement,
-            _objectPath: valueElement._objectPath.replace(
-              "[?]",
-              `[${newIndex}]`
-            ),
-          };
-        } else {
-          acc[key] = valueElement;
-        }
-        return acc;
-      },
-      {} as any
-    );
-  }
-
-  return updatedElement;
-};
-
-const validateListOperation = (item: any, job: any): boolean => {
-  if (!item) {
-    console.error("List operation failed: No item provided");
-    return false;
-  }
-
-  if (job.status !== 1) {
-    console.warn("List operation blocked: Job is not in editable state");
-    return false;
-  }
-
-  return true;
-};
-
-// Main component
 export const CListElement: React.FC<CListElementProps> = ({
   itemName,
   job,
   qualifiers,
-  initiallyOpen = true,
   onChange,
   visibility,
   ...restProps
 }) => {
-  const { useTaskItem, setParameter, getValidationColor } = useJob(job.id);
   const { projectId } = useCCP4i2Window();
   const { project } = projectId
     ? useProject(projectId)
     : { project: undefined };
-  const { item } = useTaskItem(itemName);
 
-  // Custom hooks
-  const guiLabel = useGuiLabel(item, qualifiers);
-  const isVisible = useInferredVisibility(visibility);
-  const validationBorderColor = useValidationBorderColor(
-    itemName,
+  const {
     item,
-    getValidationColor
-  );
+    items,
+    isVisible,
+    isEditable,
+    validationColor,
+    addItem,
+    deleteAt,
+  } = useContainerList({
+    job,
+    itemName,
+    project,
+    visibility,
+    onChange,
+  });
 
-  // Computed values
-  const isEditable = useMemo(() => job.status === 1, [job.status]);
-  const listItems = useMemo(() => item?._value || [], [item]);
-  const hasItems = useMemo(() => listItems.length > 0, [listItems]);
+  const guiLabel =
+    qualifiers?.guiLabel ||
+    item?._objectPath?.split(".").at(-1) ||
+    "Unnamed List";
 
-  // Card styling with validation color
+  const borderColor = itemName && item ? validationColor : "divider";
+
   const cardSx = useMemo(
     () => ({
       mx: 1,
       border: 1,
-      borderColor: validationBorderColor,
+      borderColor,
       borderRadius: 2,
       boxShadow: "none",
       "&:hover": {
         borderColor:
-          validationBorderColor === "divider"
-            ? "primary.light"
-            : validationBorderColor,
+          borderColor === "divider" ? "primary.light" : borderColor,
       },
     }),
-    [validationBorderColor]
+    [borderColor]
   );
 
-  // Event handlers
-  const handleAddItem = useCallback(async () => {
-    if (!validateListOperation(item, job)) return;
-
-    try {
-      // Deep clone the sub-item template
-      const taskElement = JSON.parse(JSON.stringify(item._subItem));
-      const newIndex = listItems.length;
-
-      // Update object paths
-      const updatedTaskElement = updateObjectPath(taskElement, newIndex);
-
-      // Get current list value
-      const currentListValue = Array.isArray(valueOfItem(item))
-        ? [...valueOfItem(item)]
-        : [];
-
-      // Create new item value
-      const newItemValue = createNewItemValue(updatedTaskElement, project);
-      currentListValue.push(newItemValue);
-
-      // Set parameter
-      const setParameterArg: SetParameterArg = {
-        object_path: item._objectPath,
-        value: currentListValue,
-      };
-
-      const result = (await setParameter(
-        setParameterArg
-      )) as SetParameterResponse;
-
-      if (result?.success && result.data?.updated_item && onChange) {
-        onChange(result.data.updated_item);
-      } else if (result && !result.success) {
-        console.error("Failed to add list item:", result.error);
-      }
-    } catch (error) {
-      console.error("Error adding list item:", error);
-    }
-  }, [item, project, job, listItems.length, setParameter, onChange]);
-
-  const handleDeleteItem = useCallback(
-    async (deletedItem: any) => {
-      if (!validateListOperation(item, job)) return;
-
-      try {
-        // Find the index of the item to delete
-        const itemIndex = item._value.findIndex(
-          (arrayItem: any) => arrayItem === deletedItem
-        );
-
-        if (itemIndex === -1) {
-          console.warn("Item not found in array for deletion");
-          return;
-        }
-
-        // Get the current list values (not the full serialized objects)
-        // valueOfItem extracts just the _value content, stripping metadata
-        const currentListValue = Array.isArray(valueOfItem(item))
-          ? [...valueOfItem(item)]
-          : [];
-
-        // Remove item at the found index
-        currentListValue.splice(itemIndex, 1);
-
-        // Set parameter with extracted values
-        const setParameterArg: SetParameterArg = {
-          object_path: item._objectPath,
-          value: currentListValue,
-        };
-
-        const result = (await setParameter(
-          setParameterArg
-        )) as SetParameterResponse;
-
-        if (result?.success && result.data?.updated_item && onChange) {
-          onChange(result.data.updated_item);
-        } else if (result && !result.success) {
-          console.error("Failed to delete list item:", result.error);
-        }
-      } catch (error) {
-        console.error("Error deleting list item:", error);
-      }
-    },
-    [item, job, setParameter, onChange]
-  );
-
-  // Render helpers
-  const renderListActions = () => (
-    <Stack direction="row" alignItems="center">
-      <IconButton
-        disabled={!isEditable}
-        onClick={handleAddItem}
-        size="small"
-        sx={{ color: "primary.text" }}
-        aria-label="Add new item to list"
-      >
-        <Add />
-      </IconButton>
-      <ErrorTrigger item={item} job={job} />
-    </Stack>
-  );
-
-  const renderEmptyState = () => (
-    <Typography
-      variant="caption"
-      color="text.secondary"
-      sx={{
-        fontStyle: "italic",
-        textAlign: "center",
-      }}
-    >
-      No elements in this list
-    </Typography>
-  );
-
-  const renderListItem = (content: any, index: number) => (
-    <Stack
-      key={content._objectPath || `item-${index}`}
-      direction="row"
-      alignItems="center"
-      spacing={0.5}
-    >
-      <Box sx={{ flex: 1, minWidth: 0 }}>
-        <CCP4i2TaskElement
-          {...restProps}
-          itemName={content._objectPath}
-          job={job}
-          qualifiers={qualifiers}
-          onChange={onChange}
-        />
-      </Box>
-
-      <Tooltip title={`Delete item ${index + 1}`} placement="left">
-        <IconButton
-          disabled={!isEditable}
-          onClick={() => handleDeleteItem(content)}
-          size="small"
-          color="error"
-          aria-label={`Delete item ${index + 1}`}
-        >
-          <Delete />
-        </IconButton>
-      </Tooltip>
-    </Stack>
-  );
-
-  const renderListContent = () => (
-    !hasItems ? (
-      renderEmptyState()
-    ) : (
-      <Stack spacing={1}>
-        {listItems.map((content: any, index: number) =>
-          renderListItem(content, index)
-        )}
-      </Stack>
-    )
-  );
-
-  // Early return if not visible
-  if (!isVisible) {
-    return null;
-  }
+  if (!isVisible) return null;
 
   return (
     <Card sx={cardSx}>
       <CardHeader
         title={<Typography variant="body2">{guiLabel}</Typography>}
-        action={renderListActions()}
+        action={
+          <Stack direction="row" alignItems="center">
+            <IconButton
+              disabled={!isEditable}
+              onClick={() => addItem()}
+              size="small"
+              sx={{ color: "primary.text" }}
+              aria-label="Add new item to list"
+            >
+              <Add />
+            </IconButton>
+            <ErrorTrigger item={item} job={job} />
+          </Stack>
+        }
       />
-
-      <CardContent>{renderListContent()}</CardContent>
+      <CardContent>
+        {items.length === 0 ? (
+          <Typography
+            variant="caption"
+            color="text.secondary"
+            sx={{ fontStyle: "italic", textAlign: "center" }}
+          >
+            No elements in this list
+          </Typography>
+        ) : (
+          <Stack spacing={1}>
+            {items.map((content: any, index: number) => {
+              // During add/delete round-trips the cache may briefly expose
+              // raw values (string/null) before the server response is
+              // patched in.  Skip those rather than crashing; they'll be
+              // replaced on the next render.
+              const itemPath =
+                content && typeof content === "object"
+                  ? content._objectPath
+                  : null;
+              if (!itemPath) return null;
+              return (
+                <Stack
+                  key={itemPath}
+                  direction="row"
+                  alignItems="center"
+                  spacing={0.5}
+                >
+                  <Box sx={{ flex: 1, minWidth: 0 }}>
+                    <CCP4i2TaskElement
+                      {...restProps}
+                      itemName={itemPath}
+                      job={job}
+                      qualifiers={qualifiers}
+                      onChange={onChange}
+                    />
+                  </Box>
+                  <Tooltip title={`Delete item ${index + 1}`} placement="left">
+                    <IconButton
+                      disabled={!isEditable}
+                      onClick={() => deleteAt(index)}
+                      size="small"
+                      color="error"
+                      aria-label={`Delete item ${index + 1}`}
+                    >
+                      <Delete />
+                    </IconButton>
+                  </Tooltip>
+                </Stack>
+              );
+            })}
+          </Stack>
+        )}
+      </CardContent>
     </Card>
   );
 };
 
-// Set display name for debugging
 CListElement.displayName = "CListElement";
 
 export default CListElement;
