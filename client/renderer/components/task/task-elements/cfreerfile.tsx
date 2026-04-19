@@ -20,14 +20,21 @@ import { useApi } from "../../../api";
 import { useJob, useProject, useProjectFiles } from "../../../utils";
 import { File as DjangoFile, Project } from "../../../types/models";
 import { InlineTaskModal } from "./inline-task-modal";
+import { useContainerField } from "./hooks/useContainerField";
 
 export const CFreeRDataFileElement: React.FC<CCP4i2TaskElementProps> = (
   props
 ) => {
   const { job, itemName, qualifiers } = props;
   const api = useApi();
-  const { useTaskItem, setParameter, fileItemToParameterArg, mutateContainer } = useJob(job.id);
-  const { item, value } = useTaskItem(itemName);
+  const { fileItemToParameterArg, mutateContainer } = useJob(job.id);
+  const { item, unwrappedValue: value, commit } = useContainerField<any>({
+    job,
+    itemName,
+    visibility: props.visibility,
+    disabled: props.disabled,
+    onChange: props.onChange,
+  });
   const { files: projectFiles } = useProjectFiles(job.project);
   const { jobs: projectJobs } = useProject(job.project);
   const { data: projects } = api.get<Project[]>("projects");
@@ -52,25 +59,17 @@ export const CFreeRDataFileElement: React.FC<CCP4i2TaskElementProps> = (
     async (outputFile: DjangoFile) => {
       if (!item?._objectPath || !projectJobs) return;
 
-      try {
-        const paramArg = fileItemToParameterArg(
-          outputFile,
-          item._objectPath,
-          projectJobs,
-          projects || []
-        );
+      const paramArg = fileItemToParameterArg(
+        outputFile,
+        item._objectPath,
+        projectJobs,
+        projects || []
+      );
 
-        const result = await setParameter(paramArg);
-        if (result?.success) {
-          props.onChange?.(result.data?.updated_item);
-        }
-
-        await mutateContainer();
-      } catch (error) {
-        console.error("Error auto-selecting FreeR output file:", error);
-      }
+      await commit(paramArg.value);
+      await mutateContainer();
     },
-    [item?._objectPath, projectJobs, projects, fileItemToParameterArg, setParameter, props.onChange, mutateContainer]
+    [item?._objectPath, projectJobs, projects, fileItemToParameterArg, commit, mutateContainer]
   );
 
   return (

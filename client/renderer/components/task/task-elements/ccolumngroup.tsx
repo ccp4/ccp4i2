@@ -9,9 +9,9 @@ import {
   Switch,
   Typography,
 } from "@mui/material";
-import { useJob } from "../../../utils";
 import { useMemo } from "react";
 import TableChartIcon from "@mui/icons-material/TableChart";
+import { useContainerField } from "./hooks/useContainerField";
 
 // Color mapping for column group types
 const TYPE_COLORS: Record<string, "primary" | "secondary" | "success" | "warning" | "info"> = {
@@ -40,9 +40,13 @@ const TYPE_LABELS: Record<string, string> = {
  */
 export const CColumnGroupElement: React.FC<CCP4i2TaskElementProps> = (props) => {
   const { itemName, job } = props;
-  const { useTaskItem, getValidationColor, setParameter } = useJob(job.id);
-
-  const { item } = useTaskItem(itemName);
+  const { item, validationColor, commit } = useContainerField<any>({
+    job,
+    itemName,
+    visibility: props.visibility,
+    disabled: props.disabled,
+    onChange: props.onChange,
+  });
 
   // Extract values from the item
   const columnGroupType = useMemo(() => {
@@ -88,16 +92,11 @@ export const CColumnGroupElement: React.FC<CCP4i2TaskElementProps> = (props) => 
 
   const handleSelectionChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!item || !isEditable) return;
-
-    await setParameter({
-      object_path: `${item._objectPath}.selected`,
-      value: event.target.checked,
-    });
+    await commit(event.target.checked, { subPath: ".selected" });
   };
 
   const chipColor = TYPE_COLORS[columnGroupType] || "info";
   const typeLabel = TYPE_LABELS[columnGroupType] || columnGroupType;
-  const validationColor = getValidationColor(item);
 
   if (!item) {
     return <Typography color="text.secondary">Loading...</Typography>;
