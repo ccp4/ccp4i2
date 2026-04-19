@@ -42,7 +42,6 @@ import { doDownload, useApi } from "../../../api";
 import { useJob, useProject, useProjectFiles } from "../../../utils";
 import { CCP4i2TaskElementProps } from "./task-element";
 import { File as CCP4i2File, nullFile, Project } from "../../../types/models";
-import { useTaskInterface } from "../../../providers/task-provider";
 import { FileMenuExtraItem, useFileMenu } from "../../../providers/file-context-menu";
 import { ErrorTrigger } from "./error-info";
 import { InputFileFetch } from "./input-file-fetch";
@@ -50,6 +49,7 @@ import { InputFileUpload } from "./input-file-upload";
 import { FIELD_SPACING } from "./field-sizes";
 import { ExpandableSection } from "./expandable-section";
 import { BrowseProjectFilesDialog } from "./browse-project-files-dialog";
+import { useContainerField } from "./hooks/useContainerField";
 
 /**
  * Content flag conversion capability mapping.
@@ -135,17 +135,25 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
 }) => {
   const api = useApi();
   const {
-    useTaskItem,
-    setParameter,
-    getValidationColor,
     fileItemToParameterArg,
     mutateContainer,
     useFileDigest,
     useFileContent,
   } = useJob(job.id);
 
-  const { item } = useTaskItem(itemName);
-  const { inFlight, setInFlight } = useTaskInterface();
+  const {
+    item,
+    isDisabled,
+    isVisible,
+    validationColor,
+    commit,
+  } = useContainerField<any>({
+    job,
+    itemName,
+    visibility,
+    disabled: disabledProp,
+    onChange,
+  });
   const { setFileMenuAnchorEl, setFile, setExtraMenuItems } = useFileMenu();
 
   // Data and state
@@ -231,7 +239,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
       .sort((a, b) => compareJobNumbers(a.job, b.job));
   }, [projectFiles, projectJobs, fileConfig.allowedTypes, fileConfig.requiredContentFlag, compareJobNumbers]);
 
-  const borderColor = getValidationColor(item);
+  const borderColor = validationColor;
   const hasError = borderColor === "error.light";
   const computedValidationError = hasError;
   const hasValidationError = overrideValidationError ?? computedValidationError;
@@ -240,12 +248,6 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
 
   const guiLabel =
     qualifiers?.guiLabel || item?._objectPath?.split(".").at(-1) || "";
-  const isDisabled =
-    (typeof disabledProp === "function" ? disabledProp() : disabledProp) ||
-    inFlight ||
-    job.status !== 1;
-  const isVisible =
-    typeof visibility === "function" ? visibility() : visibility !== false;
 
   // Drag and drop — drop target (only for pending job inputs)
   const { isOver, setNodeRef } = useDroppable({
@@ -340,51 +342,38 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
   // Event handlers
   const handleFileSelect = useCallback(
     async (
-      event: SyntheticEvent,
+      _event: SyntheticEvent,
       selectedFile: CCP4i2File | null,
       reason: AutocompleteChangeReason
     ) => {
-      const objectPath = item?._objectPath;
-      if (!objectPath || !projects) return;
+      if (!item?._objectPath || !projects) return;
 
-      const parameterArg =
+      const writeValue =
         reason === "clear" || selectedFile === nullFile
-          ? { value: null, object_path: objectPath }
+          ? null
           : fileItemToParameterArg(
               selectedFile!,
-              objectPath,
+              item._objectPath,
               projectJobs || [],
               projects
-            );
+            ).value;
 
+      const previous = value;
       setValue(selectedFile || nullFile);
-      setInFlight(true);
 
-      try {
-        const result = await setParameter(parameterArg);
-        if (result?.success) {
-          const updatedItem = result.data?.updated_item ?? {
-            ...result.data,
-            _objectPath: objectPath,
-          };
-          onChange?.(updatedItem);
-        }
-      } catch (error) {
-        console.error("Error setting parameter:", error);
-        alert(`Error: ${error}`);
-      } finally {
-        setInFlight(false);
-        await Promise.all([mutateContainer(), mutateContent(), mutateDigest()]);
+      const result = await commit(writeValue);
+      if (result && !result.success) {
+        setValue(previous);
       }
+      await Promise.all([mutateContainer(), mutateContent(), mutateDigest()]);
     },
     [
       item?._objectPath,
       projects,
       projectJobs,
       fileItemToParameterArg,
-      setParameter,
-      onChange,
-      setInFlight,
+      commit,
+      value,
       mutateContainer,
       mutateContent,
       mutateDigest,
@@ -471,10 +460,8 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
               if (parsed?.ccp4i2_file && parsed.uuid && item?._objectPath && projectJobs && projects) {
                 const fileRef = { ...parsed, exports: [], fileimport: -1, file_uses: [] } as CCP4i2File;
                 const arg = fileItemToParameterArg(fileRef, item._objectPath, projectJobs, projects);
-                setInFlight(true);
-                await setParameter(arg);
+                await commit(arg.value);
                 await mutateContainer();
-                setInFlight(false);
               }
             } catch { /* ignore invalid clipboard */ }
           },
@@ -496,7 +483,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
       setFileMenuAnchorEl(event.currentTarget);
     },
     [isDisabled, hasFile, value, iconMenuItems, qualifiers, item, projectJobs, projects,
-     handleFileSelect, fileItemToParameterArg, setParameter, mutateContainer, setInFlight,
+     handleFileSelect, fileItemToParameterArg, commit, mutateContainer,
      setExtraMenuItems, setFile, setFileMenuAnchorEl]
   );
 
@@ -541,10 +528,8 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
               file_uses: [],
             } as CCP4i2File;
             const arg = fileItemToParameterArg(fileRef, item._objectPath, projectJobs, projects);
-            setInFlight(true);
-            await setParameter(arg);
+            await commit(arg.value);
             await mutateContainer();
-            setInFlight(false);
             return;
           }
         } catch {
@@ -557,7 +542,7 @@ export const CDataFileElement: React.FC<CCP4i2DataFileElementProps> = ({
         setFiles(e.dataTransfer.files);
       }
     },
-    [setFiles, isDisabled, item, projectJobs, projects, fileItemToParameterArg, setParameter, mutateContainer, setInFlight]
+    [setFiles, isDisabled, item, projectJobs, projects, fileItemToParameterArg, commit, mutateContainer]
   );
 
   const getOptionLabel = useCallback(
