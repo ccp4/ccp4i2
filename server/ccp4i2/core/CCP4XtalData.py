@@ -1128,28 +1128,15 @@ class CMergeMiniMtz(CMergeMiniMtzStub):
 
 
 class CMergeMiniMtzList(CMergeMiniMtzListStub):
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CMergeMiniMtzListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list of CMergeMiniMtz items."""
 
-    # Add your methods here
-    pass
-
+    SUBITEM = {'class': CMergeMiniMtz}
 
 
 class CMiniMtzDataFileList(CMiniMtzDataFileListStub):
-    """
-    A list with all items of one CData sub-class
-    
-    Extends CMiniMtzDataFileListStub with implementation-specific methods.
-    Add file I/O, validation, and business logic here.
-    """
+    """A list of CMiniMtzDataFile items."""
 
-    # Add your methods here
-    pass
+    SUBITEM = {'class': CMiniMtzDataFile}
 
 
 class CMmcifReflData(CMmcifReflDataStub):
