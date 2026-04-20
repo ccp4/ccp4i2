@@ -4,8 +4,13 @@ param containerAppsEnvironmentId string
 @description('Azure Container Registry login server')
 param acrLoginServer string
 
-@description('Azure Container Registry name')
+@description('Azure Container Registry name. Retained for deploy script compatibility and surfaced as a template output; container apps pull by login server + identity.')
+#disable-next-line no-unused-params
 param acrName string
+
+@description('Resource group that owns the ACR. Defaults to the deployment RG. Set to a different RG when consuming a shared ACR (e.g. ccp4i2-bicep-rg-uksouth). See docs/SHARED_ACR.md for the one-shot wiring (PE, DNS, AcrPull) that must exist before this deployment will succeed.')
+#disable-next-line no-unused-params
+param acrResourceGroup string = resourceGroup().name
 
 @description('PostgreSQL server FQDN - will resolve to private IP via private DNS zone')
 param postgresServerFqdn string
@@ -86,9 +91,10 @@ var ccp4VolumeMount = skipCcp4Storage ? [] : [
 ]
 
 // Existing resources
-resource containerRegistry 'Microsoft.ContainerRegistry/registries@2023-07-01' existing = {
-  name: acrName
-}
+// ACR is referenced only by login server + image path; pulls authenticate via the
+// container app's managed identity (AcrPull), so we don't need a bicep `existing`
+// declaration. acrResourceGroup is kept for future per-ACR resources (role
+// assignments, DNS zone groups) — see docs/SHARED_ACR.md.
 
 resource keyVault 'Microsoft.KeyVault/vaults@2023-02-01' existing = {
   name: keyVaultName
@@ -139,15 +145,10 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
       registries: [
         {
           server: acrLoginServer
-          username: acrName
-          passwordSecretRef: 'registry-password'
+          identity: containerAppsIdentityId
         }
       ]
       secrets: [
-        {
-          name: 'registry-password'
-          value: containerRegistry.listCredentials().passwords[0].value
-        }
         {
           name: 'db-password'
           keyVaultUrl: '${keyVault.properties.vaultUri}secrets/database-admin-password'
@@ -430,15 +431,10 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
       registries: [
         {
           server: acrLoginServer
-          username: acrName
-          passwordSecretRef: 'registry-password'
+          identity: containerAppsIdentityId
         }
       ]
       secrets: [
-        {
-          name: 'registry-password'
-          value: containerRegistry.listCredentials().passwords[0].value
-        }
         {
           name: 'db-password'
           keyVaultUrl: '${keyVault.properties.vaultUri}secrets/database-admin-password'
@@ -615,6 +611,12 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
 resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
   name: webAppName
   location: resourceGroup().location
+  identity: {
+    type: 'UserAssigned'
+    userAssignedIdentities: {
+      '${containerAppsIdentityId}': {}
+    }
+  }
   properties: {
     managedEnvironmentId: containerAppsEnvironmentId
     configuration: {
@@ -633,14 +635,7 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
       registries: [
         {
           server: acrLoginServer
-          username: acrName
-          passwordSecretRef: 'registry-password'
-        }
-      ]
-      secrets: [
-        {
-          name: 'registry-password'
-          value: containerRegistry.listCredentials().passwords[0].value
+          identity: containerAppsIdentityId
         }
       ]
     }

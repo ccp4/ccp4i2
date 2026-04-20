@@ -201,7 +201,7 @@ Note the outputs — you'll need ACR name, Key Vault name, etc. for the env file
 
 ## 5. Build and Push Images
 
-The frontend image is instance-agnostic (auth config is loaded at runtime). You can share images across instances.
+The frontend image is instance-agnostic (auth config is loaded at runtime). You can share images across instances. The **preferred pattern** for new instances is to consume an existing shared ACR (e.g. `ccp4acrukbwmx`) rather than provisioning and maintaining a per-instance ACR — see [docs/SHARED_ACR.md](docs/SHARED_ACR.md) for the cross-RG wiring (AcrPull role, private endpoint, DNS zone group). The instructions below describe the self-contained per-instance-ACR path, which is still useful for fully isolated instances.
 
 ```bash
 # Login to the instance's ACR

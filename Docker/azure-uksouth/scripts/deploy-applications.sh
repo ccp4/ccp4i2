@@ -225,7 +225,7 @@ az deployment group create \
                keyVaultName="$KEY_VAULT_NAME" \
                imageTagWeb="${IMAGE_TAG_WEB:-latest}" \
                imageTagServer="${IMAGE_TAG_SERVER:-latest}" \
-               prefix=ccp4i2-bicep \
+               prefix="${CONTAINER_APP_PREFIX:-ccp4i2-bicep}" \
                aadClientId="${NEXT_PUBLIC_AAD_CLIENT_ID:-}" \
                aadTenantId="${NEXT_PUBLIC_AAD_TENANT_ID:-}" \
                containerAppsIdentityId="$CONTAINER_APPS_IDENTITY_ID" \
