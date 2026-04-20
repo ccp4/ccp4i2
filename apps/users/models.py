@@ -155,3 +155,55 @@ def create_user_profile(sender, instance, created, **kwargs):
 def save_user_profile(sender, instance, **kwargs):
     """Ensure UserProfile exists and is saved."""
     UserProfile.objects.get_or_create(user=instance)
+
+
+class PendingInvite(models.Model):
+    """
+    A queued request to invite an external collaborator as a B2B guest.
+
+    Admins add entries via the admin UI; a privileged operator drains the
+    queue out-of-band by running Docker/azure-uksouth/scripts/invite-user.sh,
+    which calls Graph as a Newcastle staff user (bypassing the app-consent
+    restriction). Rows stay in the DB as an audit trail.
+    """
+
+    STATUS_PENDING = 'pending'
+    STATUS_SENT = 'sent'
+    STATUS_FAILED = 'failed'
+
+    STATUS_CHOICES = [
+        (STATUS_PENDING, 'Pending'),
+        (STATUS_SENT, 'Sent'),
+        (STATUS_FAILED, 'Failed'),
+    ]
+
+    email = models.EmailField(max_length=320)
+    note = models.CharField(max_length=255, blank=True)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default=STATUS_PENDING)
+    failure_reason = models.CharField(max_length=500, blank=True)
+
+    requested_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='invites_requested',
+    )
+    requested_at = models.DateTimeField(auto_now_add=True)
+
+    sent_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='invites_sent',
+    )
+    sent_at = models.DateTimeField(null=True, blank=True)
+    guest_object_id = models.CharField(max_length=64, blank=True)
+
+    class Meta:
+        ordering = ['-requested_at']
+        indexes = [models.Index(fields=['status', 'requested_at'])]
+
+    def __str__(self):
+        return f"{self.email} ({self.status})"

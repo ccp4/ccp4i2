@@ -37,9 +37,19 @@ import {
   Edit,
   MoreVert,
   Check,
+  MailOutline,
+  HourglassEmpty,
+  ErrorOutline,
 } from '@mui/icons-material';
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  TextField,
+} from '@mui/material';
 import Link from 'next/link';
-import { apiGet, apiPost } from '../../lib/users/api';
+import { apiDelete, apiGet, apiPost } from '../../lib/users/api';
 import { useTheme } from '../../theme/theme-provider';
 
 // Role types matching backend UserProfile.ROLE_CHOICES
@@ -77,6 +87,19 @@ interface User {
   first_name?: string;
   last_name?: string;
   profile?: UserProfile;
+}
+
+interface PendingInvite {
+  id: number;
+  email: string;
+  note: string;
+  status: 'pending' | 'sent' | 'failed';
+  failure_reason: string;
+  requested_by_email: string;
+  requested_at: string;
+  sent_by_email: string;
+  sent_at: string | null;
+  guest_object_id: string;
 }
 
 interface CurrentUser {
@@ -127,6 +150,11 @@ export default function AdminPage() {
   const [actionLoading, setActionLoading] = useState<number | null>(null);
   const [roleMenuAnchor, setRoleMenuAnchor] = useState<null | HTMLElement>(null);
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [invites, setInvites] = useState<PendingInvite[]>([]);
+  const [inviteDialogOpen, setInviteDialogOpen] = useState(false);
+  const [inviteEmail, setInviteEmail] = useState('');
+  const [inviteNote, setInviteNote] = useState('');
+  const [inviteSubmitting, setInviteSubmitting] = useState(false);
 
   const fetchCurrentUser = async (): Promise<CurrentUser | null> => {
     try {
@@ -148,6 +176,14 @@ export default function AdminPage() {
     }
   };
 
+  const fetchInvites = async (): Promise<PendingInvite[]> => {
+    try {
+      return await apiGet<PendingInvite[]>('pending-invites');
+    } catch {
+      return [];
+    }
+  };
+
   const loadData = async () => {
     setLoading(true);
     setError(null);
@@ -156,13 +192,43 @@ export default function AdminPage() {
       setCurrentUser(user);
 
       if (user?.is_admin) {
-        const userList = await fetchUsers();
+        const [userList, inviteList] = await Promise.all([
+          fetchUsers(),
+          fetchInvites(),
+        ]);
         setUsers(userList);
+        setInvites(inviteList);
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleQueueInvite = async () => {
+    const email = inviteEmail.trim();
+    if (!email) return;
+    setInviteSubmitting(true);
+    try {
+      await apiPost('pending-invites', { email, note: inviteNote.trim() });
+      setInviteEmail('');
+      setInviteNote('');
+      setInviteDialogOpen(false);
+      setInvites(await fetchInvites());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to queue invite');
+    } finally {
+      setInviteSubmitting(false);
+    }
+  };
+
+  const handleCancelInvite = async (inviteId: number) => {
+    try {
+      await apiDelete(`pending-invites/${inviteId}`);
+      setInvites(await fetchInvites());
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to cancel invite');
     }
   };
 
@@ -307,6 +373,98 @@ export default function AdminPage() {
         </Paper>
       )}
 
+      {/* Invite queue */}
+      {currentUser?.is_admin && (
+        <Paper sx={{ p: 3, mb: 3 }}>
+          <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 1 }}>
+            <Typography variant="h6">Invite Queue</Typography>
+            <Tooltip title="Refresh">
+              <IconButton onClick={loadData} size="small">
+                <Refresh fontSize="small" />
+              </IconButton>
+            </Tooltip>
+            <Button
+              sx={{ ml: 'auto' }}
+              variant="contained"
+              startIcon={<PersonAdd />}
+              onClick={() => setInviteDialogOpen(true)}
+            >
+              Invite User
+            </Button>
+          </Box>
+
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            Queue external collaborators here. A platform operator drains the queue
+            out-of-band via <code>invite-user.sh</code> (see operations docs) — the
+            deployed app is not permitted to send B2B invitations directly.
+          </Typography>
+
+          <TableContainer>
+            <Table size="small">
+              <TableHead>
+                <TableRow>
+                  <TableCell>Email</TableCell>
+                  <TableCell>Note</TableCell>
+                  <TableCell>Status</TableCell>
+                  <TableCell>Requested</TableCell>
+                  <TableCell>Sent</TableCell>
+                  <TableCell align="right">Actions</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {invites.map((inv) => {
+                  const statusChip = inv.status === 'pending' ? (
+                    <Chip icon={<HourglassEmpty fontSize="small" />} label="Pending" size="small" color="warning" />
+                  ) : inv.status === 'sent' ? (
+                    <Chip icon={<MailOutline fontSize="small" />} label="Sent" size="small" color="success" />
+                  ) : (
+                    <Tooltip title={inv.failure_reason || 'Failed'}>
+                      <Chip icon={<ErrorOutline fontSize="small" />} label="Failed" size="small" color="error" />
+                    </Tooltip>
+                  );
+                  return (
+                    <TableRow key={inv.id}>
+                      <TableCell>{inv.email}</TableCell>
+                      <TableCell>{inv.note}</TableCell>
+                      <TableCell>{statusChip}</TableCell>
+                      <TableCell>
+                        {new Date(inv.requested_at).toLocaleDateString()}
+                        {inv.requested_by_email && (
+                          <Typography variant="caption" display="block" color="text.secondary">
+                            by {inv.requested_by_email}
+                          </Typography>
+                        )}
+                      </TableCell>
+                      <TableCell>
+                        {inv.sent_at ? new Date(inv.sent_at).toLocaleDateString() : '—'}
+                      </TableCell>
+                      <TableCell align="right">
+                        {inv.status === 'pending' && (
+                          <Tooltip title="Cancel">
+                            <IconButton size="small" onClick={() => handleCancelInvite(inv.id)}>
+                              <PersonRemove fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+                {invites.length === 0 && (
+                  <TableRow>
+                    <TableCell colSpan={6} align="center">
+                      <Typography color="text.secondary" variant="body2">
+                        No invites queued
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Paper>
+      )}
+
       {/* User Management */}
       {currentUser?.is_admin ? (
         <Paper sx={{ p: 3 }}>
@@ -402,6 +560,48 @@ export default function AdminPage() {
           You need platform admin access to manage users. Contact an administrator if you need access.
         </Alert>
       )}
+
+      {/* Invite dialog */}
+      <Dialog open={inviteDialogOpen} onClose={() => setInviteDialogOpen(false)} maxWidth="sm" fullWidth>
+        <DialogTitle>Queue external invite</DialogTitle>
+        <DialogContent>
+          <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+            The invite is not sent immediately. It waits in the queue until a
+            platform operator drains it.
+          </Typography>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Email"
+            type="email"
+            fullWidth
+            value={inviteEmail}
+            onChange={(e) => setInviteEmail(e.target.value)}
+            disabled={inviteSubmitting}
+          />
+          <TextField
+            margin="dense"
+            label="Note (optional)"
+            fullWidth
+            value={inviteNote}
+            onChange={(e) => setInviteNote(e.target.value)}
+            placeholder="e.g. Jane Smith, Diamond Light Source, collaborator on target X"
+            disabled={inviteSubmitting}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setInviteDialogOpen(false)} disabled={inviteSubmitting}>
+            Cancel
+          </Button>
+          <Button
+            variant="contained"
+            onClick={handleQueueInvite}
+            disabled={inviteSubmitting || !inviteEmail.trim()}
+          >
+            {inviteSubmitting ? <CircularProgress size={20} /> : 'Queue invite'}
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Role change menu */}
       <Menu

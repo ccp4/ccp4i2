@@ -3,7 +3,7 @@
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-from .models import UserProfile
+from .models import PendingInvite, UserProfile
 from .permissions import is_platform_admin, get_user_role, get_operating_level
 
 User = get_user_model()
@@ -133,3 +133,38 @@ class CurrentUserSerializer(serializers.ModelSerializer):
         if request:
             return get_operating_level(request) == UserProfile.ROLE_ADMIN
         return False
+
+
+class PendingInviteSerializer(serializers.ModelSerializer):
+    """Serializer for PendingInvite entries."""
+
+    requested_by_email = serializers.SerializerMethodField()
+    sent_by_email = serializers.SerializerMethodField()
+
+    class Meta:
+        model = PendingInvite
+        fields = [
+            'id',
+            'email',
+            'note',
+            'status',
+            'failure_reason',
+            'requested_by',
+            'requested_by_email',
+            'requested_at',
+            'sent_by',
+            'sent_by_email',
+            'sent_at',
+            'guest_object_id',
+        ]
+        read_only_fields = [
+            'id', 'status', 'failure_reason',
+            'requested_by', 'requested_by_email', 'requested_at',
+            'sent_by', 'sent_by_email', 'sent_at', 'guest_object_id',
+        ]
+
+    def get_requested_by_email(self, obj):
+        return obj.requested_by.email if obj.requested_by else ''
+
+    def get_sent_by_email(self, obj):
+        return obj.sent_by.email if obj.sent_by else ''

@@ -1,6 +1,7 @@
 """API views for users app."""
 
 from django.contrib.auth import get_user_model
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -8,7 +9,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
 
-from .models import UserProfile
+from .models import PendingInvite, UserProfile
 from .permissions import (
     IsPlatformAdmin,
     is_platform_admin,
@@ -19,6 +20,7 @@ from .permissions import (
 )
 from .serializers import (
     CurrentUserSerializer,
+    PendingInviteSerializer,
     UserListSerializer,
     UserSerializer,
 )
@@ -198,6 +200,53 @@ class AdminListView(APIView):
 
         serializer = UserListSerializer(admins, many=True)
         return Response(serializer.data)
+
+
+class PendingInviteViewSet(ModelViewSet):
+    """
+    ViewSet for queued B2B invites.
+
+    Admins POST {email, note} to queue an invite, GET the list, DELETE a row
+    to cancel a pending invite. A privileged operator drains the queue by
+    running Docker/azure-uksouth/scripts/invite-user.sh, which also marks rows
+    as sent via the `mark_sent` action.
+    """
+
+    queryset = PendingInvite.objects.select_related('requested_by', 'sent_by').all()
+    serializer_class = PendingInviteSerializer
+    permission_classes = [IsPlatformAdmin]
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        status_filter = self.request.query_params.get('status')
+        if status_filter:
+            qs = qs.filter(status=status_filter)
+        return qs
+
+    def perform_create(self, serializer):
+        user = self.request.user if getattr(self.request, 'user', None) and self.request.user.is_authenticated else None
+        serializer.save(requested_by=user)
+
+    @action(detail=True, methods=['post'])
+    def mark_sent(self, request, pk=None):
+        """Mark an invite as sent (called by invite-user.sh after Graph succeeds)."""
+        invite = self.get_object()
+        invite.status = PendingInvite.STATUS_SENT
+        invite.sent_at = timezone.now()
+        invite.sent_by = request.user if getattr(request, 'user', None) and request.user.is_authenticated else None
+        invite.guest_object_id = request.data.get('guest_object_id', '')
+        invite.failure_reason = ''
+        invite.save()
+        return Response(PendingInviteSerializer(invite).data)
+
+    @action(detail=True, methods=['post'])
+    def mark_failed(self, request, pk=None):
+        """Mark an invite as failed with a reason (called by invite-user.sh)."""
+        invite = self.get_object()
+        invite.status = PendingInvite.STATUS_FAILED
+        invite.failure_reason = request.data.get('reason', '')[:500]
+        invite.save()
+        return Response(PendingInviteSerializer(invite).data)
 
 
 class OperatingLevelView(APIView):
