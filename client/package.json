@@ -33,7 +33,9 @@
     "package-win": "npm install && npm run build:electron && npm prune --omit=dev && npm install --no-save electron-builder@26.7.0 && electron-builder --win",
     "package-linux-x64": "npm install && npm run build:electron && npm prune --omit=dev && npm install --no-save electron-builder@26.7.0 && electron-builder --linux AppImage --x64",
     "package-linux-arm64": "npm install && npm run build:electron && npm prune --omit=dev && npm install --no-save electron-builder@26.7.0 && electron-builder --linux AppImage --arm64",
-    "package-linux-all": "npm install && npm run build:electron && npm prune --omit=dev && npm install --no-save electron-builder@26.7.0 && electron-builder --linux AppImage --x64 --arm64"
+    "package-linux-all": "npm install && npm run build:electron && npm prune --omit=dev && npm install --no-save electron-builder@26.7.0 && electron-builder --linux AppImage --x64 --arm64",
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "dependencies": {
     "@azure/msal-browser": "^4.24.1",
@@ -102,7 +104,8 @@
     "electron-builder": "latest",
     "install": "^0.13.0",
     "npm": "^11.3.0",
-    "vite": "latest"
+    "vite": "latest",
+    "vitest": "^2.1.9"
   },
   "asarUnpack": [
     "node_modules/next"

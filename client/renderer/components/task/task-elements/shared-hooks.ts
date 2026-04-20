@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
+import { useTaskInterface } from "./task-interface-context";
 
 /** Normalize CBoolean values - server may return boolean or string */
 export const isTruthy = (val: any): boolean =>
@@ -25,4 +26,29 @@ export function useBoolToggle(
     setValue(isTruthy(item._value));
   }, []);
   return { value, onChange };
+}
+
+/**
+ * Batch version of useBoolToggle. Must be called inside <TaskInterfaceProvider>.
+ *
+ * Pass a readonly tuple of item names — the length must be stable across renders
+ * (normal for a task interface, since names are literals). Returns a keyed record
+ * so callers can write `toggles.ACORN_BECUT.value` / `toggles.ACORN_BECUT.onChange`.
+ *
+ * Example:
+ *   const toggles = useTaskToggles([
+ *     "ACOPH_CUSTOM", "ACORN_BECUT", "ACORN_BRESOL",
+ *   ] as const);
+ */
+export function useTaskToggles<const Names extends readonly string[]>(
+  names: Names
+): { [K in Names[number]]: BoolToggle } {
+  const { useTaskItem } = useTaskInterface();
+  const result = {} as { [K in Names[number]]: BoolToggle };
+  for (const name of names) {
+    // Hook order is stable: `names` is a const tuple whose length must not change.
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    (result as any)[name] = useBoolToggle(useTaskItem, name);
+  }
+  return result;
 }
