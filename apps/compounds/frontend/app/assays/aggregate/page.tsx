@@ -73,6 +73,9 @@ function AggregationPageContent() {
   const initialIncludeProperties = propertiesParam
     ? propertiesParam.split(',').map((s) => s.trim()).filter((p): p is MolecularPropertyName => validProperties.includes(p as any))
     : undefined;
+  // Include identifiers defaults to true; explicit '0' disables it via URL.
+  const identifiersParam = searchParams?.get('identifiers');
+  const initialIncludeIdentifiers = identifiersParam === '0' ? false : true;
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -82,6 +85,7 @@ function AggregationPageContent() {
   const [currentGroupByBatch, setCurrentGroupByBatch] = useState<boolean>(initialGroupByBatch);
   const [currentIncludeTestedNoData, setCurrentIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData);
   const [currentIncludeProperties, setCurrentIncludeProperties] = useState<MolecularPropertyName[]>(initialIncludeProperties || []);
+  const [currentIncludeIdentifiers, setCurrentIncludeIdentifiers] = useState<boolean>(initialIncludeIdentifiers);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
   const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>(initialConcentrationDisplay || 'natural');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
@@ -129,6 +133,9 @@ function AggregationPageContent() {
     if (currentState.includeProperties.length > 0) {
       params.set('properties', currentState.includeProperties.join(','));
     }
+    if (currentState.includeIdentifiers === false) {
+      params.set('identifiers', '0');
+    }
 
     const url = `${window.location.origin}${window.location.pathname}${params.toString() ? '?' + params.toString() : ''}`;
     navigator.clipboard.writeText(url).then(() => {
@@ -152,6 +159,7 @@ function AggregationPageContent() {
         status: 'valid', // Default to valid status
         concentration_display: concentrationDisplay,
         include_properties: currentState.includeProperties,
+        include_identifiers: currentState.includeIdentifiers,
       });
       setSnackbarMessage(`Saved view to ${target.name}`);
       setSnackbarOpen(true);
@@ -163,7 +171,7 @@ function AggregationPageContent() {
   }, [currentState, concentrationDisplay]);
 
   // Update URL to persist query state for back navigation
-  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[], groupByBatch: boolean, includeTestedNoData: boolean, includeProperties: MolecularPropertyName[]) => {
+  const updateUrlState = useCallback((state: PredicateBuilderState, outputFormat: OutputFormat, aggregations: AggregationType[], groupByBatch: boolean, includeTestedNoData: boolean, includeProperties: MolecularPropertyName[], includeIdentifiers: boolean) => {
     const params = new URLSearchParams();
     if (state.targetNames.length > 0) {
       params.set('targets', state.targetNames.join(','));
@@ -197,6 +205,9 @@ function AggregationPageContent() {
     if (includeProperties.length > 0) {
       params.set('properties', includeProperties.join(','));
     }
+    if (includeIdentifiers === false) {
+      params.set('identifiers', '0');
+    }
 
     const queryString = params.toString();
     const newUrl = `${pathname}${queryString ? '?' + queryString : ''}`;
@@ -206,7 +217,7 @@ function AggregationPageContent() {
   // Update URL when concentration display changes (if we have data)
   useEffect(() => {
     if (data && currentState) {
-      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch, currentIncludeTestedNoData, currentIncludeProperties);
+      updateUrlState(currentState, currentState.outputFormat, currentAggregations, currentGroupByBatch, currentIncludeTestedNoData, currentIncludeProperties, currentIncludeIdentifiers);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [concentrationDisplay]);
@@ -217,7 +228,8 @@ function AggregationPageContent() {
     aggregations: AggregationType[],
     groupByBatch: boolean,
     includeTestedNoData: boolean,
-    includeProperties: MolecularPropertyName[]
+    includeProperties: MolecularPropertyName[],
+    includeIdentifiers: boolean
   ) => {
     // Increment request ID to track latest request
     const requestId = ++requestIdRef.current;
@@ -229,10 +241,11 @@ function AggregationPageContent() {
     setCurrentGroupByBatch(groupByBatch);
     setCurrentIncludeTestedNoData(includeTestedNoData);
     setCurrentIncludeProperties(includeProperties);
+    setCurrentIncludeIdentifiers(includeIdentifiers);
 
     // Update URL to persist state for back navigation
     if (currentState) {
-      updateUrlState(currentState, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties);
+      updateUrlState(currentState, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties, includeIdentifiers);
     }
 
     try {
@@ -245,6 +258,7 @@ function AggregationPageContent() {
         group_by_batch: groupByBatch,
         include_tested_no_data: includeTestedNoData,
         include_properties: includeProperties.length > 0 ? includeProperties : undefined,
+        include_identifiers: includeIdentifiers,
       });
 
       // Only update if this is still the latest request
@@ -338,6 +352,7 @@ function AggregationPageContent() {
         initialGroupByBatch={initialGroupByBatch}
         initialIncludeTestedNoData={initialIncludeTestedNoData}
         initialIncludeProperties={initialIncludeProperties}
+        initialIncludeIdentifiers={initialIncludeIdentifiers}
       />
 
       {error && (

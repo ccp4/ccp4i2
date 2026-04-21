@@ -113,6 +113,8 @@ export default function TargetDashboardPage({ params }: PageProps) {
           aggregations: savedView.aggregations,
           // Cast to MolecularPropertyName[] - backend validates the values
           include_properties: savedView.include_properties as any,
+          // Default to showing identifiers when the saved view predates the flag
+          include_identifiers: savedView.include_identifiers ?? true,
         });
         setAggregationData(result);
       } catch (err) {

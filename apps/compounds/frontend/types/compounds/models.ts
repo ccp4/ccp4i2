@@ -81,6 +81,8 @@ export interface SavedAggregationView {
   concentration_display?: ConcentrationDisplayMode;
   /** Molecular properties to include as columns */
   include_properties?: string[];
+  /** Whether to include compound identifiers (barcode, supplier_ref, aliases) */
+  include_identifiers?: boolean;
 }
 
 export interface Target {

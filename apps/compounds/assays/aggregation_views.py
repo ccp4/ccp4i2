@@ -123,6 +123,7 @@ class AggregationViewSet(viewsets.ViewSet):
         group_by_batch = request.data.get('group_by_batch', False)
         include_tested_no_data = request.data.get('include_tested_no_data', False)
         include_properties = request.data.get('include_properties', [])
+        include_identifiers = bool(request.data.get('include_identifiers', False))
 
         # Validate output format
         if output_format not in ('compact', 'medium', 'long'):
@@ -164,18 +165,21 @@ class AggregationViewSet(viewsets.ViewSet):
                     compound_queryset, protocol_ids, aggregations,
                     group_by_batch=group_by_batch,
                     include_properties=include_properties,
+                    include_identifiers=include_identifiers,
                 )
             elif output_format == 'medium':
                 result = aggregate_medium_from_compounds(
                     compound_queryset, protocol_ids, aggregations,
                     group_by_batch=group_by_batch,
                     include_properties=include_properties,
+                    include_identifiers=include_identifiers,
                 )
             else:
                 result = aggregate_long_from_compounds(
                     compound_queryset, protocol_ids, aggregations,
                     group_by_batch=group_by_batch,
                     include_properties=include_properties,
+                    include_identifiers=include_identifiers,
                 )
         else:
             # DataSeries-centric mode: only compounds with data for specified protocols
@@ -187,6 +191,7 @@ class AggregationViewSet(viewsets.ViewSet):
                     group_by_batch=group_by_batch,
                     include_tested_no_data=include_tested_no_data,
                     include_properties=include_properties,
+                    include_identifiers=include_identifiers,
                 )
             elif output_format == 'medium':
                 result = aggregate_medium(
@@ -194,6 +199,7 @@ class AggregationViewSet(viewsets.ViewSet):
                     group_by_batch=group_by_batch,
                     include_tested_no_data=include_tested_no_data,
                     include_properties=include_properties,
+                    include_identifiers=include_identifiers,
                 )
             else:
                 result = aggregate_long(
@@ -201,6 +207,7 @@ class AggregationViewSet(viewsets.ViewSet):
                     group_by_batch=group_by_batch,
                     include_tested_no_data=include_tested_no_data,
                     include_properties=include_properties,
+                    include_identifiers=include_identifiers,
                 )
 
         # Include RAG thresholds if properties were requested

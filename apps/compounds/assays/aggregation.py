@@ -174,6 +174,8 @@ def build_data_series_queryset(predicates: dict) -> QuerySet[DataSeries]:
         'compound',
         'compound__target',
         'compound__molecular_properties',  # Include molecular properties for aggregation
+        'compound__supplier',  # For barcode generation when include_identifiers=True
+        'compound__notebook_entry',  # For barcode generation when include_identifiers=True
         'batch',  # Include batch for batch-aware aggregation
         'assay',
         'assay__protocol',
@@ -284,12 +286,16 @@ def build_compound_queryset(predicates: dict) -> QuerySet[Compound]:
         queryset = Compound.objects.filter(id__in=compounds_filter).select_related(
             'target',
             'molecular_properties',
+            'supplier',
+            'notebook_entry',
         )
     elif targets:
         # No explicit compounds - use all compounds for the specified targets
         queryset = Compound.objects.filter(target_id__in=targets).select_related(
             'target',
             'molecular_properties',
+            'supplier',
+            'notebook_entry',
         )
     else:
         # Neither specified - shouldn't happen if should_use_compound_centric_mode is correct
@@ -437,6 +443,25 @@ def extract_kpi_with_unit(data_series: DataSeries) -> tuple[float | None, str | 
     return value, unit
 
 
+def _get_compound_identifiers(compound) -> dict:
+    """
+    Extract identifier metadata for a compound.
+
+    Returns a dict with:
+        - barcode: Compound.barcode (notebook entry label, or INITIALS-labbook-page)
+        - supplier_ref: Supplier catalog/reference number
+        - aliases: List of alternative identifiers
+    """
+    aliases = compound.aliases or []
+    if not isinstance(aliases, list):
+        aliases = []
+    return {
+        'barcode': compound.barcode,
+        'supplier_ref': compound.supplier_ref or None,
+        'aliases': aliases,
+    }
+
+
 def _get_molecular_properties(compound, include_properties: list[str]) -> dict:
     """
     Extract requested molecular properties from a compound.
@@ -482,6 +507,7 @@ def aggregate_compact_from_compounds(
     aggregations: list[str],
     group_by_batch: bool = False,
     include_properties: list[str] | None = None,
+    include_identifiers: bool = False,
 ) -> dict:
     """
     Aggregate data in compact format from a compound-centric queryset.
@@ -549,6 +575,8 @@ def aggregate_compact_from_compounds(
                         group_info[group_key]['properties'] = _get_molecular_properties(
                             compound, include_properties
                         )
+                    if include_identifiers:
+                        group_info[group_key]['identifiers'] = _get_compound_identifiers(compound)
             else:
                 for ds in data_series_list:
                     batch_id = str(ds.batch_id) if ds.batch_id else None
@@ -558,7 +586,7 @@ def aggregate_compact_from_compounds(
                     _process_data_series_for_compact(
                         ds, compound, group_key, group_info, group_protocol_values,
                         group_protocol_counts, protocol_units, group_by_batch,
-                        include_properties
+                        include_properties, include_identifiers,
                     )
         else:
             # Not grouping by batch - one row per compound
@@ -575,13 +603,15 @@ def aggregate_compact_from_compounds(
                     group_info[group_key]['properties'] = _get_molecular_properties(
                         compound, include_properties
                     )
+                if include_identifiers:
+                    group_info[group_key]['identifiers'] = _get_compound_identifiers(compound)
 
             # Process data series
             for ds in getattr(compound, 'filtered_data_series', []):
                 _process_data_series_for_compact(
                     ds, compound, group_key, group_info, group_protocol_values,
                     group_protocol_counts, protocol_units, group_by_batch,
-                    include_properties
+                    include_properties, include_identifiers,
                 )
 
     # Build protocol list with units
@@ -639,6 +669,7 @@ def aggregate_compact_from_compounds(
             'group_by_batch': group_by_batch,
             'include_tested_no_data': True,  # Always true in compound-centric mode
             'include_properties': include_properties or [],
+            'include_identifiers': include_identifiers,
         },
         'protocols': protocol_list,
         'data': data,
@@ -655,6 +686,7 @@ def _process_data_series_for_compact(
     protocol_units: dict,
     group_by_batch: bool,
     include_properties: list[str] | None,
+    include_identifiers: bool = False,
 ):
     """
     Process a single data series for compact aggregation.
@@ -694,6 +726,8 @@ def _process_data_series_for_compact(
             info['batch_number'] = ds.batch.batch_number if ds.batch else None
         if include_properties:
             info['properties'] = _get_molecular_properties(compound, include_properties)
+        if include_identifiers:
+            info['identifiers'] = _get_compound_identifiers(compound)
         group_info[group_key] = info
 
 
@@ -703,6 +737,7 @@ def aggregate_medium_from_compounds(
     aggregations: list[str],
     group_by_batch: bool = False,
     include_properties: list[str] | None = None,
+    include_identifiers: bool = False,
 ) -> dict:
     """
     Aggregate data in medium format from a compound-centric queryset.
@@ -772,6 +807,8 @@ def aggregate_medium_from_compounds(
                             group_data[key]['info']['properties'] = _get_molecular_properties(
                                 compound, include_properties
                             )
+                        if include_identifiers:
+                            group_data[key]['info']['identifiers'] = _get_compound_identifiers(compound)
             else:
                 for batch_id, ds_list in batches_with_data.items():
                     protocols_seen = set()
@@ -782,7 +819,7 @@ def aggregate_medium_from_compounds(
 
                         _process_data_series_for_medium(
                             ds, compound, key, group_data, group_by_batch,
-                            protocol_names, include_properties
+                            protocol_names, include_properties, include_identifiers,
                         )
 
                     # Add empty rows for protocols not seen
@@ -803,6 +840,8 @@ def aggregate_medium_from_compounds(
                                 group_data[key]['info']['properties'] = _get_molecular_properties(
                                     compound, include_properties
                                 )
+                            if include_identifiers:
+                                group_data[key]['info']['identifiers'] = _get_compound_identifiers(compound)
         else:
             # Not grouping by batch
             protocols_seen = set()
@@ -813,7 +852,7 @@ def aggregate_medium_from_compounds(
 
                 _process_data_series_for_medium(
                     ds, compound, key, group_data, group_by_batch,
-                    protocol_names, include_properties
+                    protocol_names, include_properties, include_identifiers,
                 )
 
             # Add empty rows for protocols not seen
@@ -832,6 +871,8 @@ def aggregate_medium_from_compounds(
                         group_data[key]['info']['properties'] = _get_molecular_properties(
                             compound, include_properties
                         )
+                    if include_identifiers:
+                        group_data[key]['info']['identifiers'] = _get_compound_identifiers(compound)
 
     # Build result rows
     data = []
@@ -872,6 +913,7 @@ def aggregate_medium_from_compounds(
             'group_by_batch': group_by_batch,
             'include_tested_no_data': True,
             'include_properties': include_properties or [],
+            'include_identifiers': include_identifiers,
         },
         'data': data,
     }
@@ -885,6 +927,7 @@ def _process_data_series_for_medium(
     group_by_batch: bool,
     protocol_names: dict,
     include_properties: list[str] | None,
+    include_identifiers: bool = False,
 ):
     """Process a single data series for medium aggregation."""
     protocol_id = str(ds.assay.protocol_id)
@@ -922,6 +965,8 @@ def _process_data_series_for_medium(
             info['batch_number'] = ds.batch.batch_number if ds.batch else None
         if include_properties:
             info['properties'] = _get_molecular_properties(compound, include_properties)
+        if include_identifiers:
+            info['identifiers'] = _get_compound_identifiers(compound)
         group_data[key]['info'] = info
 
 
@@ -931,6 +976,7 @@ def aggregate_long_from_compounds(
     aggregations: list[str],
     group_by_batch: bool = False,
     include_properties: list[str] | None = None,
+    include_identifiers: bool = False,
 ) -> dict:
     """
     Aggregate data in long format from a compound-centric queryset.
@@ -967,6 +1013,8 @@ def aggregate_long_from_compounds(
             }
             if include_properties:
                 no_data_entry['properties'] = _get_molecular_properties(compound, include_properties)
+            if include_identifiers:
+                no_data_entry['identifiers'] = _get_compound_identifiers(compound)
             compounds_without_data.append(no_data_entry)
         else:
             for ds in data_series_list:
@@ -992,6 +1040,8 @@ def aggregate_long_from_compounds(
                 }
                 if include_properties:
                     row['properties'] = _get_molecular_properties(compound, include_properties)
+                if include_identifiers:
+                    row['identifiers'] = _get_compound_identifiers(compound)
                 data.append(row)
 
     # Sort data by formatted_id, then batch_number, then protocol
@@ -1014,6 +1064,7 @@ def aggregate_long_from_compounds(
             'group_by_batch': group_by_batch,
             'include_tested_no_data': True,
             'include_properties': include_properties or [],
+            'include_identifiers': include_identifiers,
         },
         'data': data,
         'compounds_without_data': compounds_without_data,
@@ -1033,6 +1084,7 @@ def aggregate_compact(
     group_by_batch: bool = False,
     include_tested_no_data: bool = False,
     include_properties: list[str] | None = None,
+    include_identifiers: bool = False,
 ) -> dict:
     """
     Aggregate data series into compact format (one row per compound or compound/batch).
@@ -1115,6 +1167,8 @@ def aggregate_compact(
             # Include molecular properties if requested
             if include_properties:
                 info['properties'] = _get_molecular_properties(ds.compound, include_properties)
+            if include_identifiers:
+                info['identifiers'] = _get_compound_identifiers(ds.compound)
             group_info[group_key] = info
 
     # Fetch protocol info and include kpi_unit
@@ -1188,6 +1242,7 @@ def aggregate_compact(
             'group_by_batch': group_by_batch,
             'include_tested_no_data': include_tested_no_data,
             'include_properties': include_properties or [],
+            'include_identifiers': include_identifiers,
         },
         'protocols': protocol_list,
         'data': data,
@@ -1200,6 +1255,7 @@ def aggregate_medium(
     group_by_batch: bool = False,
     include_tested_no_data: bool = False,
     include_properties: list[str] | None = None,
+    include_identifiers: bool = False,
 ) -> dict:
     """
     Aggregate data series into medium format (one row per compound-protocol pair,
@@ -1276,6 +1332,8 @@ def aggregate_medium(
             # Include molecular properties if requested
             if include_properties:
                 info['properties'] = _get_molecular_properties(ds.compound, include_properties)
+            if include_identifiers:
+                info['identifiers'] = _get_compound_identifiers(ds.compound)
             group_protocol_data[key]['info'] = info
 
     # Build result rows
@@ -1323,6 +1381,7 @@ def aggregate_medium(
             'group_by_batch': group_by_batch,
             'include_tested_no_data': include_tested_no_data,
             'include_properties': include_properties or [],
+            'include_identifiers': include_identifiers,
         },
         'data': data,
     }
@@ -1334,6 +1393,7 @@ def aggregate_long(
     group_by_batch: bool = False,
     include_tested_no_data: bool = False,
     include_properties: list[str] | None = None,
+    include_identifiers: bool = False,
 ) -> dict:
     """
     Aggregate data series into long format (one row per measurement).
@@ -1394,6 +1454,9 @@ def aggregate_long(
         if include_properties and ds.compound:
             row['properties'] = _get_molecular_properties(ds.compound, include_properties)
 
+        if include_identifiers and ds.compound:
+            row['identifiers'] = _get_compound_identifiers(ds.compound)
+
         data.append(row)
 
         if ds.compound:
@@ -1415,6 +1478,7 @@ def aggregate_long(
             'group_by_batch': group_by_batch,
             'include_tested_no_data': include_tested_no_data,
             'include_properties': include_properties or [],
+            'include_identifiers': include_identifiers,
         },
         'data': data,
     }

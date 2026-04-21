@@ -231,6 +231,10 @@ class SavedAggregationViewSerializer(serializers.Serializer):
         required=False,
         default=list
     )
+    include_identifiers = serializers.BooleanField(
+        required=False,
+        default=True
+    )
 
 
 class TargetSerializer(serializers.ModelSerializer):

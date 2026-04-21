@@ -53,6 +53,8 @@ export interface PredicateBuilderState {
   includeTestedNoData: boolean;
   /** Molecular properties to include as columns */
   includeProperties: MolecularPropertyName[];
+  /** Whether to show the compound identifiers cell (barcode, supplier_ref, aliases) */
+  includeIdentifiers: boolean;
   /** Concentration display mode - managed by AggregationTable, included for saved views */
   concentrationDisplay?: ConcentrationDisplayMode;
 }
@@ -78,6 +80,8 @@ interface PredicateBuilderProps {
   initialIncludeTestedNoData?: boolean;
   /** Initial molecular properties to include (for URL sharing) */
   initialIncludeProperties?: MolecularPropertyName[];
+  /** Initial include-identifiers setting (for URL sharing). Defaults to true. */
+  initialIncludeIdentifiers?: boolean;
   /** Called when user clicks Run Query */
   onRunQuery: (
     predicates: Predicates,
@@ -85,7 +89,8 @@ interface PredicateBuilderProps {
     aggregations: AggregationType[],
     groupByBatch: boolean,
     includeTestedNoData: boolean,
-    includeProperties: MolecularPropertyName[]
+    includeProperties: MolecularPropertyName[],
+    includeIdentifiers: boolean
   ) => void;
   /** Called when state changes (for URL sharing) */
   onStateChange?: (state: PredicateBuilderState) => void;
@@ -206,6 +211,7 @@ export function PredicateBuilder({
   initialGroupByBatch,
   initialIncludeTestedNoData,
   initialIncludeProperties,
+  initialIncludeIdentifiers,
   onRunQuery,
   onStateChange,
   loading = false,
@@ -230,6 +236,9 @@ export function PredicateBuilder({
   const [groupByBatch, setGroupByBatch] = useState<boolean>(initialGroupByBatch || false);
   const [includeTestedNoData, setIncludeTestedNoData] = useState<boolean>(initialIncludeTestedNoData || false);
   const [includeProperties, setIncludeProperties] = useState<MolecularPropertyName[]>(initialIncludeProperties || []);
+  const [includeIdentifiers, setIncludeIdentifiers] = useState<boolean>(
+    initialIncludeIdentifiers === undefined ? true : initialIncludeIdentifiers
+  );
 
   // Track initialization state
   const [isInitialized, setIsInitialized] = useState(false);
@@ -291,9 +300,9 @@ export function PredicateBuilder({
   // Handle Run Query button click
   const handleRunQuery = useCallback(() => {
     if (canRunQuery) {
-      onRunQuery(buildPredicates(), outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties);
+      onRunQuery(buildPredicates(), outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties, includeIdentifiers);
     }
-  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties]);
+  }, [canRunQuery, onRunQuery, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties, includeIdentifiers]);
 
   // Load initial targets and protocols if URL params provided
   useEffect(() => {
@@ -354,9 +363,9 @@ export function PredicateBuilder({
       hasRunInitialQuery.current = true;
       const predicates = buildPredicates();
       // Use aggregations for compact/medium, ignore for long
-      onRunQuery(predicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties);
+      onRunQuery(predicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties, includeIdentifiers);
     }
-  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties, onRunQuery]);
+  }, [isInitialized, hasUrlParams, hasPredicates, buildPredicates, outputFormat, aggregations, groupByBatch, includeTestedNoData, includeProperties, includeIdentifiers, onRunQuery]);
 
   // Load target options when user types in autocomplete
   const handleTargetSearch = useCallback((search: string) => {
@@ -402,9 +411,10 @@ export function PredicateBuilder({
         groupByBatch,
         includeTestedNoData,
         includeProperties,
+        includeIdentifiers,
       });
     }
-  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, groupByBatch, includeTestedNoData, includeProperties, onStateChange]);
+  }, [selectedTargets, selectedProtocols, compoundSearch, outputFormat, aggregations, status, groupByBatch, includeTestedNoData, includeProperties, includeIdentifiers, onStateChange]);
 
   const handleAggregationChange = (agg: AggregationType) => {
     setAggregations((prev) =>
@@ -686,6 +696,22 @@ export function PredicateBuilder({
             sx={{ mr: 0.5, ml: 0 }}
           />
         ))}
+
+        <Box sx={{ flexGrow: 1 }} />
+
+        <FormControlLabel
+          control={
+            <Checkbox
+              checked={includeIdentifiers}
+              onChange={(e) => setIncludeIdentifiers(e.target.checked)}
+              size="small"
+              sx={{ py: 0 }}
+            />
+          }
+          label={<Typography variant="body2">Identifiers</Typography>}
+          title="Show compound barcode, supplier reference, and aliases"
+          sx={{ mr: 0, ml: 0 }}
+        />
       </Box>
     </Paper>
   );

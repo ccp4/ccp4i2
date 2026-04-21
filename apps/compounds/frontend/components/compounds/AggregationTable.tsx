@@ -44,6 +44,7 @@ import {
   getRagStatus,
   OutputFormat,
   CompactAggregationResponse,
+  CompoundIdentifiers,
 } from '@/types/compounds/aggregation';
 import { MoleculeChip, CompoundNameChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
@@ -66,9 +67,17 @@ function generateMediumCsv(
   aggregations: AggregationType[]
 ): string {
   const { data: rows } = data;
+  const includeIdentifiers = Boolean(data.meta.include_identifiers);
 
   // Build header row (include Unit column)
-  const headers = ['Compound ID', 'SMILES', 'Target', 'Protocol', 'Unit'];
+  const headers = [
+    'Compound ID',
+    'SMILES',
+    'Target',
+    ...(includeIdentifiers ? ['Barcode', 'Supplier Ref', 'Aliases'] : []),
+    'Protocol',
+    'Unit',
+  ];
   for (const agg of aggregations) {
     headers.push(agg.charAt(0).toUpperCase() + agg.slice(1));
   }
@@ -81,9 +90,22 @@ function generateMediumCsv(
       `"${row.formatted_id}"`,
       `"${row.smiles || ''}"`,
       `"${row.target_name || ''}"`,
+    ];
+
+    if (includeIdentifiers) {
+      const ids = row.identifiers;
+      const aliases = ids && Array.isArray(ids.aliases) ? ids.aliases.join('; ') : '';
+      values.push(
+        `"${ids?.barcode || ''}"`,
+        `"${ids?.supplier_ref || ''}"`,
+        `"${aliases}"`,
+      );
+    }
+
+    values.push(
       `"${row.protocol_name}"`,
       `"${row.kpi_unit ? formatKpiUnit(row.kpi_unit) : ''}"`,
-    ];
+    );
 
     for (const agg of aggregations) {
       const value = row[agg as keyof MediumRow];
@@ -127,6 +149,53 @@ const RAG_COLORS: Record<string, string> = {
   amber: '#ff9800',
   red: '#f44336',
 };
+
+/**
+ * Compact display of a compound's barcode, supplier reference, and aliases.
+ * Renders "-" when the identifiers record is present but has no content.
+ */
+function IdentifiersCell({ identifiers }: { identifiers?: CompoundIdentifiers | null }) {
+  if (!identifiers) {
+    return <Typography variant="caption" color="text.secondary">-</Typography>;
+  }
+  const { barcode, supplier_ref, aliases } = identifiers;
+  const hasAny = Boolean(barcode) || Boolean(supplier_ref) || (aliases && aliases.length > 0);
+  if (!hasAny) {
+    return <Typography variant="caption" color="text.secondary">-</Typography>;
+  }
+  return (
+    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25, minWidth: 0 }}>
+      {barcode && (
+        <Typography variant="caption" fontFamily="monospace" sx={{ lineHeight: 1.2, whiteSpace: 'nowrap' }}>
+          {barcode}
+        </Typography>
+      )}
+      {supplier_ref && (
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{ lineHeight: 1.2, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}
+          title={supplier_ref}
+        >
+          {supplier_ref}
+        </Typography>
+      )}
+      {aliases && aliases.length > 0 && (
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.25, mt: 0.25 }}>
+          {aliases.map((alias, i) => (
+            <Chip
+              key={`${alias}-${i}`}
+              label={alias}
+              size="small"
+              variant="outlined"
+              sx={{ height: 16, fontSize: '0.65rem', '& .MuiChip-label': { px: 0.5 } }}
+            />
+          ))}
+        </Box>
+      )}
+    </Box>
+  );
+}
 
 /** Format property value for display */
 function formatPropertyValue(value: number | string | null | undefined): string {
@@ -251,6 +320,7 @@ function CompactTable({
 
   // Extract property info from response
   const includeProperties = data.meta.include_properties || [];
+  const showIdentifiersColumn = Boolean(data.meta.include_identifiers);
   const propertyThresholds = (data as { property_thresholds?: MolecularPropertyThreshold[] }).property_thresholds || [];
 
   // Create a map for quick threshold lookup
@@ -390,7 +460,7 @@ function CompactTable({
 
   // Calculate expected table width for top scrollbar
   // Use measured scrollWidth if available, otherwise calculate from column count
-  const expectedTableWidth = 320 + protocols.length * aggregations.length * 100;
+  const expectedTableWidth = 320 + (showIdentifiersColumn ? 160 : 0) + protocols.length * aggregations.length * 100;
   const topScrollbarWidth = tableScrollWidth > 0 ? tableScrollWidth : expectedTableWidth;
 
   return (
@@ -506,6 +576,9 @@ function CompactTable({
                   </TableSortLabel>
                 </TableCell>
               )}
+              {showIdentifiersColumn && (
+                <TableCell sx={{ fontWeight: 600, width: 160 }}>Identifiers</TableCell>
+              )}
               <TableCell sx={{ fontWeight: 600, width: 100 }} sortDirection={orderBy === 'target' ? order : false}>
                 <TableSortLabel
                   active={orderBy === 'target'}
@@ -579,7 +652,7 @@ function CompactTable({
               rowVirtualizer.getVirtualItems()[0].start > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={3 + (showBatchColumn ? 1 : 0) + includeProperties.length + protocols.length * aggregations.length}
+                  colSpan={3 + (showBatchColumn ? 1 : 0) + (showIdentifiersColumn ? 1 : 0) + includeProperties.length + protocols.length * aggregations.length}
                   sx={{
                     height: rowVirtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -628,6 +701,11 @@ function CompactTable({
                       <Typography variant="body2" fontFamily="monospace">
                         {row.batch_number != null ? `/${row.batch_number}` : '-'}
                       </Typography>
+                    </TableCell>
+                  )}
+                  {showIdentifiersColumn && (
+                    <TableCell onClick={(e) => e.stopPropagation()}>
+                      <IdentifiersCell identifiers={row.identifiers} />
                     </TableCell>
                   )}
                   <TableCell>
@@ -792,6 +870,7 @@ function MediumTable({
 
   const rows = data.data as MediumRow[];
   const showBatchColumn = data.meta.group_by_batch;
+  const showIdentifiersColumn = Boolean(data.meta.include_identifiers);
 
   // Filter rows by search term
   const filteredRows = useMemo(() => {
@@ -903,6 +982,9 @@ function MediumTable({
                   </TableSortLabel>
                 </TableCell>
               )}
+              {showIdentifiersColumn && (
+                <TableCell sx={{ fontWeight: 600, width: 160 }}>Identifiers</TableCell>
+              )}
               <TableCell sx={{ fontWeight: 600, width: 100 }} sortDirection={orderBy === 'target' ? order : false}>
                 <TableSortLabel
                   active={orderBy === 'target'}
@@ -952,7 +1034,7 @@ function MediumTable({
               rowVirtualizer.getVirtualItems()[0].start > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={4 + (showBatchColumn ? 1 : 0) + aggregations.length}
+                  colSpan={4 + (showBatchColumn ? 1 : 0) + (showIdentifiersColumn ? 1 : 0) + aggregations.length}
                   sx={{
                     height: rowVirtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -1001,6 +1083,11 @@ function MediumTable({
                       <Typography variant="body2" fontFamily="monospace">
                         {row.batch_number != null ? `/${row.batch_number}` : '-'}
                       </Typography>
+                    </TableCell>
+                  )}
+                  {showIdentifiersColumn && (
+                    <TableCell onClick={(e) => e.stopPropagation()}>
+                      <IdentifiersCell identifiers={row.identifiers} />
                     </TableCell>
                   )}
                   <TableCell>
@@ -1141,6 +1228,7 @@ function LongTable({
   const rows = data.data as LongRow[];
   // Long format always includes batch info, but only show column if any row has batch data
   const showBatchColumn = rows.some(row => row.batch_number != null);
+  const showIdentifiersColumn = Boolean(data.meta.include_identifiers);
 
   // Filter rows by search term
   const filteredRows = useMemo(() => {
@@ -1230,6 +1318,9 @@ function LongTable({
                   </TableSortLabel>
                 </TableCell>
               )}
+              {showIdentifiersColumn && (
+                <TableCell sx={{ fontWeight: 600, width: 160 }}>Identifiers</TableCell>
+              )}
               <TableCell sx={{ fontWeight: 600, width: 100 }} sortDirection={orderBy === 'target' ? order : false}>
                 <TableSortLabel
                   active={orderBy === 'target'}
@@ -1283,7 +1374,7 @@ function LongTable({
               rowVirtualizer.getVirtualItems()[0].start > 0 && (
               <TableRow>
                 <TableCell
-                  colSpan={7 + (showBatchColumn ? 1 : 0)}
+                  colSpan={7 + (showBatchColumn ? 1 : 0) + (showIdentifiersColumn ? 1 : 0)}
                   sx={{
                     height: rowVirtualizer.getVirtualItems()[0].start,
                     padding: 0,
@@ -1338,6 +1429,11 @@ function LongTable({
                       <Typography variant="body2" fontFamily="monospace">
                         {row.batch_number != null ? `/${row.batch_number}` : '-'}
                       </Typography>
+                    </TableCell>
+                  )}
+                  {showIdentifiersColumn && (
+                    <TableCell onClick={(e) => e.stopPropagation()}>
+                      <IdentifiersCell identifiers={row.identifiers} />
                     </TableCell>
                   )}
                   <TableCell>
@@ -1709,15 +1805,22 @@ function PivotTable({
     setSelectedProtocol(null);
   };
 
-  // Build row definitions: properties first, then protocols
+  // Build row definitions: identifiers (optional), properties, then protocols
   // When geomean is selected, combine value ± stdev (n=count) in a single row
   type PivotRowDef =
+    | { type: 'identifiers' }
     | { type: 'property'; name: MolecularPropertyName; label: string }
     | { type: 'protocol'; protocol: ProtocolInfo }
     | { type: 'protocol-list'; protocol: ProtocolInfo };
 
+  const showIdentifiersRow = Boolean(data.meta.include_identifiers);
+
   const pivotRows = useMemo<PivotRowDef[]>(() => {
     const result: PivotRowDef[] = [];
+
+    if (showIdentifiersRow) {
+      result.push({ type: 'identifiers' });
+    }
 
     // Add property rows
     for (const propName of includeProperties) {
@@ -1741,7 +1844,7 @@ function PivotTable({
     }
 
     return result;
-  }, [includeProperties, protocols, hasGeomean, hasCount, hasList]);
+  }, [showIdentifiersRow, includeProperties, protocols, hasGeomean, hasCount, hasList]);
 
   return (
     <>
@@ -1848,6 +1951,34 @@ function PivotTable({
           </TableHead>
           <TableBody>
             {pivotRows.map((rowDef) => {
+              if (rowDef.type === 'identifiers') {
+                return (
+                  <TableRow key="identifiers">
+                    <TableCell
+                      sx={{
+                        position: 'sticky',
+                        left: 0,
+                        bgcolor: 'background.paper',
+                        zIndex: 2,
+                        fontWeight: 500,
+                        borderRight: 1,
+                        borderRightColor: 'divider',
+                      }}
+                    >
+                      <Typography variant="body2">Identifiers</Typography>
+                    </TableCell>
+                    {sortedRows.map((row) => (
+                      <TableCell
+                        key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
+                        align="center"
+                        sx={{ verticalAlign: 'top' }}
+                      >
+                        <IdentifiersCell identifiers={row.identifiers} />
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                );
+              }
               if (rowDef.type === 'property') {
                 const threshold = thresholdMap[rowDef.name];
                 const sortKey: PivotSortKey = `property_${rowDef.name}`;
@@ -2140,6 +2271,7 @@ function CardsView({
   const includeProperties = data.meta.include_properties || [];
   const propertyThresholds = data.property_thresholds || [];
   const showBatch = data.meta.group_by_batch;
+  const showIdentifiers = Boolean(data.meta.include_identifiers);
 
   // Check which aggregations are selected
   const hasGeomean = aggregations.includes('geomean');
@@ -2393,6 +2525,19 @@ function CardsView({
                 )}
               </Box>
             </Box>
+
+            {/* Identifiers (barcode / supplier ref / aliases) */}
+            {showIdentifiers && (
+              <Box
+                sx={{
+                  py: 1,
+                  borderTop: 1,
+                  borderColor: 'divider',
+                }}
+              >
+                <IdentifiersCell identifiers={row.identifiers} />
+              </Box>
+            )}
 
             {/* Molecular Properties (if any) */}
             {includeProperties.length > 0 && (

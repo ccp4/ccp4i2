@@ -87,6 +87,18 @@ export interface AggregationRequest {
   include_tested_no_data?: boolean;
   /** Molecular properties to include as columns in the aggregation table */
   include_properties?: MolecularPropertyName[];
+  /** When true, include compound identifiers (barcode, supplier_ref, aliases) in each row */
+  include_identifiers?: boolean;
+}
+
+/** Compound identifier metadata (barcode, supplier ref, aliases) */
+export interface CompoundIdentifiers {
+  /** Barcode string (notebook entry label or INITIALS-labbook-page) */
+  barcode: string | null;
+  /** Supplier's catalog/reference number */
+  supplier_ref: string | null;
+  /** Alternative names/identifiers */
+  aliases: string[];
 }
 
 /** Protocol info in response */
@@ -132,6 +144,8 @@ export interface AggregationMeta {
   include_tested_no_data?: boolean;
   /** Molecular properties included in this response */
   include_properties?: MolecularPropertyName[];
+  /** Whether this response includes compound identifiers (barcode/supplier_ref/aliases) */
+  include_identifiers?: boolean;
 }
 
 /** A single compound row in compact format */
@@ -148,6 +162,8 @@ export interface CompactRow {
   protocols: Record<string, ProtocolAggregation>;
   /** Molecular properties (only present when include_properties is specified) */
   properties?: MolecularPropertyValues;
+  /** Compound identifiers (only present when include_identifiers=true) */
+  identifiers?: CompoundIdentifiers;
 }
 
 /** Compact format response (one row per compound) */
@@ -190,6 +206,8 @@ export interface MediumRow {
   unassigned?: number;
   /** Molecular properties (only present when include_properties is specified) */
   properties?: MolecularPropertyValues;
+  /** Compound identifiers (only present when include_identifiers=true) */
+  identifiers?: CompoundIdentifiers;
 }
 
 /** Medium format response (one row per compound-protocol pair) */
@@ -222,6 +240,8 @@ export interface LongRow {
   status: AnalysisStatus | null;
   /** Molecular properties (only present when include_properties is specified) */
   properties?: MolecularPropertyValues;
+  /** Compound identifiers (only present when include_identifiers=true) */
+  identifiers?: CompoundIdentifiers;
 }
 
 /** Compound without data (for long format compound-centric mode) */
@@ -232,6 +252,8 @@ export interface CompoundWithoutData {
   target_name: string | null;
   /** Molecular properties (only present when include_properties is specified) */
   properties?: MolecularPropertyValues;
+  /** Compound identifiers (only present when include_identifiers=true) */
+  identifiers?: CompoundIdentifiers;
 }
 
 /** Long format response (one row per measurement) */

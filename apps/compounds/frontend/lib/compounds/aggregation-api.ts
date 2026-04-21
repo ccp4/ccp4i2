@@ -362,9 +362,13 @@ export function generateCompactCsv(
   aggregations: string[]
 ): string {
   const { protocols, data: rows } = data;
+  const includeIdentifiers = Boolean(data.meta.include_identifiers);
 
   // Build header row
   const headers = ['Compound ID', 'SMILES', 'Target'];
+  if (includeIdentifiers) {
+    headers.push('Barcode', 'Supplier Ref', 'Aliases');
+  }
 
   // Add columns for each protocol and aggregation (include unit for value-based aggs)
   for (const protocol of protocols) {
@@ -385,6 +389,16 @@ export function generateCompactCsv(
       `"${row.smiles || ''}"`,
       `"${row.target_name || ''}"`,
     ];
+
+    if (includeIdentifiers) {
+      const ids = row.identifiers || {};
+      const aliases = Array.isArray(ids.aliases) ? ids.aliases.join('; ') : '';
+      values.push(
+        `"${ids.barcode || ''}"`,
+        `"${ids.supplier_ref || ''}"`,
+        `"${aliases}"`,
+      );
+    }
 
     for (const protocol of protocols) {
       const protocolData = row.protocols[protocol.id] || {};
@@ -409,12 +423,14 @@ export function generateCompactCsv(
  */
 export function generateLongCsv(data: AggregationResponse): string {
   const { data: rows } = data;
+  const includeIdentifiers = Boolean(data.meta.include_identifiers);
 
   const headers = [
     'Compound ID',
     'Compound Name',
     'SMILES',
     'Target',
+    ...(includeIdentifiers ? ['Barcode', 'Supplier Ref', 'Aliases'] : []),
     'Protocol',
     'Assay Date',
     'KPI Value',
@@ -430,12 +446,25 @@ export function generateLongCsv(data: AggregationResponse): string {
       `"${row.compound_name || ''}"`,
       `"${row.smiles || ''}"`,
       `"${row.target_name || ''}"`,
+    ];
+
+    if (includeIdentifiers) {
+      const ids = row.identifiers || {};
+      const aliases = Array.isArray(ids.aliases) ? ids.aliases.join('; ') : '';
+      values.push(
+        `"${ids.barcode || ''}"`,
+        `"${ids.supplier_ref || ''}"`,
+        `"${aliases}"`,
+      );
+    }
+
+    values.push(
       `"${row.protocol_name || ''}"`,
       `"${row.assay_date || ''}"`,
       row.kpi_value !== null && row.kpi_value !== undefined ? String(row.kpi_value) : '',
       `"${row.kpi_unit ? formatKpiUnit(row.kpi_unit) : ''}"`,
       `"${row.status || ''}"`,
-    ];
+    );
 
     csvRows.push(values.join(','));
   }
