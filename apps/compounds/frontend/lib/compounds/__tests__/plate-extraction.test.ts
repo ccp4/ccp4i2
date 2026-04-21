@@ -427,6 +427,72 @@ describe('extractPlateData — HTRF_06032024_T1.xlsx', () => {
 });
 
 // ---------------------------------------------------------------------------
+// Integration: 1536-well plate with formula cells (plate_1536_formulas.xlsx)
+// ---------------------------------------------------------------------------
+//
+// User report: compound IDs extracted correctly but data/min/max reported
+// invalid. Cause: data cells are Excel formulas (=N18-B18 etc.), so ExcelJS
+// returns {formula, result} objects that fail typeof === 'number' checks.
+// workbookToCellGrid must unwrap formula results.
+
+describe('extractPlateData — plate_1536_formulas.xlsx (formula cells)', () => {
+  let cells: CellGrid;
+  const ExcelJS = require('exceljs');
+
+  beforeAll(async () => {
+    const wb = new ExcelJS.Workbook();
+    await wb.xlsx.readFile(
+      path.resolve(__dirname, 'fixtures/plate_1536_formulas.xlsx')
+    );
+    cells = workbookToCellGrid(wb);
+  });
+
+  // 1536-well plate, top-left at N52, single strip per row,
+  // [min(1), data(10), max(1)], compound name in adjacent column (Z).
+  const layout: PlateLayout = {
+    plate_format: 1536,
+    controls: {
+      placement: 'per_compound',
+      max: { columns: [], rows: [] },
+      min: { columns: [], rows: [] },
+    },
+    sample_region: {
+      start_column: 1,
+      end_column: 12,
+      start_row: 'A',
+      end_row: 'P',
+    },
+    dilution: { direction: 'horizontal', num_concentrations: 10 },
+    replicate: { count: 1, pattern: 'adjacent_rows' },
+    compound_source: { type: 'adjacent_column' },
+    strip_layout: {
+      strip_width: 12,
+      min_wells: 1,
+      data_wells: 10,
+      max_wells: 1,
+      strips_per_row: 1,
+    },
+    spreadsheet_origin: { column: 'N', row: 52 },
+  };
+
+  it('extracts compound names from column Z', () => {
+    const series = extractPlateData(cells, layout);
+    expect(series[0].compoundName).toBe('CPD-00000001');
+  });
+
+  it('extracts numeric data from formula cells (regression)', () => {
+    const series = extractPlateData(cells, layout);
+    const first = series[0];
+    expect(first.minControl).toBeCloseTo(10200, 0);
+    expect(first.maxControl).toBeCloseTo(-736, 0);
+    expect(first.dataValues).toHaveLength(12);
+    expect(first.dataValues[1]).toBeCloseTo(-209, 0);
+    expect(first.dataValues[10]).toBeCloseTo(9537, 0);
+    expect(first.hasIssues).toBe(false);
+  });
+});
+
+// ---------------------------------------------------------------------------
 // Unit: computeWellMap — well-type classification for SVG visualisation
 // ---------------------------------------------------------------------------
 

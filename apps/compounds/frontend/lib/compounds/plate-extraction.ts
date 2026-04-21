@@ -29,6 +29,30 @@ export interface ExtractedSeries {
 export type CellGrid = (string | number | null)[][];
 
 /**
+ * Unwrap an ExcelJS cell value into a plain string | number | null.
+ *
+ * ExcelJS returns rich objects for formula, hyperlink, richText, shared-formula,
+ * and error cells; those must be flattened to their scalar equivalent or
+ * downstream numeric checks (typeof === 'number') silently drop real data.
+ */
+function unwrapCellValue(v: unknown): string | number | null {
+  if (v == null) return null;
+  if (typeof v === 'number' || typeof v === 'string') return v;
+  if (typeof v === 'boolean') return v ? 1 : 0;
+  if (v instanceof Date) return v.toISOString();
+  if (typeof v === 'object') {
+    const o = v as Record<string, unknown>;
+    if ('result' in o) return unwrapCellValue(o.result);            // formula / sharedFormula
+    if ('richText' in o && Array.isArray(o.richText)) {
+      return (o.richText as { text?: string }[]).map(r => r.text ?? '').join('');
+    }
+    if ('text' in o) return unwrapCellValue(o.text);                // hyperlink
+    if ('error' in o) return null;                                  // #DIV/0! etc.
+  }
+  return null;
+}
+
+/**
  * Parse an ExcelJS workbook into a CellGrid.
  * cells[r][c] maps to Excel row r+1, column c+1 (ExcelJS is 1-indexed).
  */
@@ -45,8 +69,7 @@ export function workbookToCellGrid(
     const rowData: (string | number | null)[] = [];
     const wsRow = worksheet.getRow(row);
     for (let col = 1; col <= worksheet.columnCount; col++) {
-      const cell = wsRow.getCell(col);
-      rowData.push(cell.value != null ? (cell.value as string | number) : null);
+      rowData.push(unwrapCellValue(wsRow.getCell(col).value));
     }
     cells.push(rowData);
   }
