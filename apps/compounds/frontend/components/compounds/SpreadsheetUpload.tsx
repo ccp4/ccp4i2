@@ -172,7 +172,10 @@ export function SpreadsheetUpload({
           headers.forEach((h, idx) => {
             const cell = row.getCell(idx + 1);
             if (cell.value != null) {
-              obj[h] = String(cell.value);
+              // cell.text extracts display text for hyperlinks ({text, hyperlink}),
+              // rich text ({richText}), formula results, etc. String(cell.value)
+              // would yield "[object Object]" for these.
+              obj[h] = cell.text;
               hasData = true;
             } else {
               obj[h] = null;
@@ -217,26 +220,63 @@ export function SpreadsheetUpload({
 
       // Auto-map columns if field mappings provided
       if (fieldMappings.length > 0) {
+        const normalize = (s: string) =>
+          s
+            .toLowerCase()
+            .replace(/\([^)]*\)/g, '')
+            .replace(/[_\s/]+/g, ' ')
+            .trim();
+
+        const normHeaders = headers.map((h) => ({ orig: h, norm: normalize(h) }));
+        const fieldNormsFor = (f: FieldMapping) =>
+          [normalize(f.label), normalize(f.field)].filter((s) => s.length > 0);
+
         const autoMapping: Record<string, string> = {};
+        const usedColumns = new Set<string>();
+
+        // Pass 1: exact match against normalized label or field name.
         fieldMappings.forEach((field) => {
-          // Try exact match first
-          const exactMatch = headers.find(
-            (h) => h.toLowerCase() === field.field.toLowerCase()
+          const fieldNorms = fieldNormsFor(field);
+          const match = normHeaders.find(
+            (nh) => !usedColumns.has(nh.orig) && fieldNorms.includes(nh.norm)
           );
-          if (exactMatch) {
-            autoMapping[field.field] = exactMatch;
-            return;
-          }
-          // Try partial match
-          const partialMatch = headers.find(
-            (h) =>
-              h.toLowerCase().includes(field.field.toLowerCase()) ||
-              field.field.toLowerCase().includes(h.toLowerCase())
-          );
-          if (partialMatch) {
-            autoMapping[field.field] = partialMatch;
+          if (match) {
+            autoMapping[field.field] = match.orig;
+            usedColumns.add(match.orig);
           }
         });
+
+        // Pass 2: partial match, but only when exactly one unmapped field could
+        // claim the column. This prevents short/ambiguous headers like "Batch"
+        // from being silently assigned to "batch_amount" (or "batch_salt_code").
+        const partialMatches = (headerNorm: string, fieldNorms: string[]) =>
+          fieldNorms.some(
+            (fn) =>
+              fn.length > 0 &&
+              headerNorm.length > 0 &&
+              (headerNorm.includes(fn) || fn.includes(headerNorm))
+          );
+
+        fieldMappings.forEach((field) => {
+          if (autoMapping[field.field]) return;
+          const fieldNorms = fieldNormsFor(field);
+          const candidate = normHeaders.find((nh) => {
+            if (usedColumns.has(nh.orig)) return false;
+            if (!partialMatches(nh.norm, fieldNorms)) return false;
+            const competitors = fieldMappings.filter(
+              (other) =>
+                other.field !== field.field &&
+                !autoMapping[other.field] &&
+                partialMatches(nh.norm, fieldNormsFor(other))
+            );
+            return competitors.length === 0;
+          });
+          if (candidate) {
+            autoMapping[field.field] = candidate.orig;
+            usedColumns.add(candidate.orig);
+          }
+        });
+
         setColumnMapping(autoMapping);
       }
 
@@ -523,18 +563,39 @@ export function SpreadsheetUpload({
                 </TableRow>
               </TableHead>
               <TableBody>
-                {previewData?.rows.map((row, idx) => (
-                  <TableRow key={idx} hover>
-                    <TableCell sx={{ color: 'text.secondary' }}>{idx + 1}</TableCell>
-                    {previewData.headers.map((header) => (
-                      <TableCell key={header}>
-                        {row[header] !== null && row[header] !== undefined
-                          ? String(row[header])
-                          : '-'}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))}
+                {previewData?.rows.map((row, idx) => {
+                  const rowHyperlinks = previewData.hyperlinks?.[idx];
+                  return (
+                    <TableRow key={idx} hover>
+                      <TableCell sx={{ color: 'text.secondary' }}>{idx + 1}</TableCell>
+                      {previewData.headers.map((header) => {
+                        const value = row[header];
+                        const url = rowHyperlinks?.[header];
+                        if (value === null || value === undefined) {
+                          return <TableCell key={header}>-</TableCell>;
+                        }
+                        const display = String(value);
+                        return (
+                          <TableCell key={header}>
+                            {url ? (
+                              <a
+                                href={url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                title={url}
+                                style={{ color: 'inherit' }}
+                              >
+                                {display}
+                              </a>
+                            ) : (
+                              display
+                            )}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  );
+                })}
               </TableBody>
             </Table>
           </TableContainer>
