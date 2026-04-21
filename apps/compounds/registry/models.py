@@ -86,6 +86,98 @@ class Supplier(models.Model):
         return self.name
 
 
+class LabNotebookEntry(models.Model):
+    """
+    Represents one ELN page or one paper notebook page.
+
+    Many compounds may reference the same entry. This model supports both:
+    - ELN-style references (URL to OneNote, LabArchives, etc.)
+    - Paper notebook references (labbook_number + page_number)
+
+    The label property generates identifiers like 'KF001', 'KF022' from
+    supplier initials + sequence_number.
+    """
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    supplier = models.ForeignKey(
+        Supplier,
+        on_delete=models.PROTECT,
+        related_name='notebook_entries',
+        help_text="Supplier/chemist who owns this notebook entry"
+    )
+    sequence_number = models.IntegerField(
+        help_text="Per-supplier sequential index (e.g., 1 for KF001, 22 for KF022)"
+    )
+    title = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text='Page title, e.g., "SA157 Cyclic peptide synthesis and characterisation"'
+    )
+    date = models.DateField(
+        null=True,
+        blank=True,
+        help_text="Date of the notebook entry"
+    )
+
+    # ELN form
+    url = models.URLField(
+        max_length=2048,
+        blank=True,
+        help_text="Hyperlink to ELN page (OneNote, LabArchives, etc.)"
+    )
+
+    # Paper-notebook form (mirrors legacy Compound.labbook_number/page_number)
+    labbook_number = models.IntegerField(
+        null=True,
+        blank=True,
+        help_text="Lab notebook number (for paper notebooks)"
+    )
+    page_number = models.IntegerField(
+        null=True,
+        blank=True,
+        help_text="Page number in lab notebook (for paper notebooks)"
+    )
+
+    # Audit
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='created_notebook_entries'
+    )
+
+    class Meta:
+        unique_together = [('supplier', 'sequence_number')]
+        ordering = ['supplier', 'sequence_number']
+        verbose_name = 'Lab Notebook Entry'
+        verbose_name_plural = 'Lab Notebook Entries'
+
+    def __str__(self):
+        return self.label
+
+    @cached_property
+    def label(self):
+        """
+        Generate label like 'KF001', 'KF022'.
+
+        Uses supplier initials + zero-padded sequence number (3 digits).
+        Falls back to '#001' format if supplier has no initials.
+        """
+        if self.supplier and self.supplier.initials:
+            return f'{self.supplier.initials}{self.sequence_number:03d}'
+        return f'#{self.sequence_number:03d}'
+
+    def clean(self):
+        """Validate that ELN url and paper labbook fields are not both set."""
+        from django.core.exceptions import ValidationError
+        if self.url and (self.labbook_number or self.page_number):
+            raise ValidationError(
+                "Set either ELN url or paper labbook_number+page_number, not both"
+            )
+
+
 def _target_image_path(instance, filename):
     """Generate upload path for target branding images.
 
@@ -259,6 +351,27 @@ class Compound(models.Model):
         help_text="Compound number on page (if multiple)"
     )
 
+    # ELN-linked provenance (Phase 1)
+    notebook_entry = models.ForeignKey(
+        'LabNotebookEntry',
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name='compounds',
+        help_text="Lab notebook entry (ELN page or paper notebook page)"
+    )
+    helm_notation = models.CharField(
+        max_length=4096,
+        blank=True,
+        help_text="Optional HELM string. Phase 1: opaque text, no validation."
+    )
+    sequence_display = models.CharField(
+        max_length=512,
+        blank=True,
+        help_text="Human-readable sequence with modifications shown inline, e.g., "
+                  "'FAM-linker-MCDWDIYRFPNHHC(1,4-Xylene)-NH2'. Free text."
+    )
+
     # Audit
     registered_by = models.ForeignKey(
         User,
@@ -317,8 +430,16 @@ class Compound(models.Model):
 
     @cached_property
     def barcode(self):
-        """Generate barcode string from supplier initials and notebook reference."""
-        if self.supplier and self.supplier.initials:
+        """Generate barcode string from notebook entry or supplier initials.
+
+        Returns:
+            - notebook_entry.label (e.g., 'KF001') if notebook_entry is set
+            - 'INITIALS-labbook-page' format for legacy paper notebook references
+            - None if no provenance information is available
+        """
+        if self.notebook_entry:
+            return self.notebook_entry.label
+        if self.supplier and self.supplier.initials and self.labbook_number is not None:
             return f'{self.supplier.initials}-{self.labbook_number}-{self.page_number}'
         return None
 
@@ -371,6 +492,101 @@ class Compound(models.Model):
         # (requires compound to have a PK for the OneToOne relationship)
         if smiles_changed and self.smiles:
             MolecularProperties.calculate_for_compound(self)
+
+
+def _compound_document_path(instance, filename):
+    """Generate upload path for compound document files.
+
+    Path: compounds/registry/documents/NCL-XXXXXXXX/{uuid}_{filename}
+    """
+    compound_id = instance.compound.formatted_id
+    return f'compounds/registry/documents/{compound_id}/{instance.id}_{filename}'
+
+
+class CompoundDocument(models.Model):
+    """
+    Per-compound document attachment (chemdraw, QC report, spectrum, etc.).
+
+    Documents can be either:
+    - External URLs (e.g., links to SharePoint, cloud storage)
+    - Uploaded files
+
+    Exactly one of `url` or `file` should be set.
+
+    Note: This is distinct from BatchQCFile which is per-batch. CompoundDocument
+    is for compound-level documents like Chemdraw structure files that apply
+    to all batches of a compound.
+    """
+
+    KIND_CHOICES = [
+        ('chemdraw', 'Chemdraw structure'),
+        ('qc', 'QC report'),
+        ('spectrum', 'Spectrum / chromatogram'),
+        ('other', 'Other'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    compound = models.ForeignKey(
+        Compound,
+        on_delete=models.CASCADE,
+        related_name='documents'
+    )
+    kind = models.CharField(
+        max_length=16,
+        choices=KIND_CHOICES,
+        help_text="Type of document"
+    )
+    label = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Display text, e.g., 'CP1.cdxml'"
+    )
+
+    # Either url or file should be set, not both
+    url = models.URLField(
+        max_length=2048,
+        blank=True,
+        help_text="External URL to document (SharePoint, cloud storage, etc.)"
+    )
+    file = models.FileField(
+        upload_to=_compound_document_path,
+        max_length=255,
+        blank=True,
+        help_text="Uploaded document file"
+    )
+
+    # Audit
+    created_at = models.DateTimeField(auto_now_add=True)
+    created_by = models.ForeignKey(
+        User,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='created_compound_documents'
+    )
+
+    class Meta:
+        ordering = ['compound', 'kind', 'created_at']
+        verbose_name = 'Compound Document'
+        verbose_name_plural = 'Compound Documents'
+
+    def __str__(self):
+        return f'{self.compound.formatted_id} - {self.get_kind_display()}: {self.label or self.url or self.file.name}'
+
+    def clean(self):
+        """Validate that exactly one of url or file is set."""
+        from django.core.exceptions import ValidationError
+        has_url = bool(self.url)
+        has_file = bool(self.file)
+        if has_url == has_file:
+            raise ValidationError("Set exactly one of url or file, not both or neither")
+
+
+@receiver(post_delete, sender=CompoundDocument)
+def _compound_document_post_delete(sender, instance, **kwargs):
+    """Delete associated file when CompoundDocument is deleted."""
+    if instance.file:
+        delete_file_field(instance.file)
 
 
 def _batch_qc_path(instance, filename):
@@ -475,7 +691,20 @@ class BatchQCFile(models.Model):
     QC documentation for a batch (NMR, LCMS, HPLC, etc.).
 
     Each batch can have multiple QC files as evidence of purity/identity.
+    Documents can be either:
+    - External URLs (e.g., links to SharePoint, ELN, cloud storage)
+    - Uploaded files
+
+    Exactly one of `url` or `file` should be set.
     """
+
+    KIND_CHOICES = [
+        ('lcms', 'LC-MS'),
+        ('hrms', 'HR-MS'),
+        ('nmr', 'NMR'),
+        ('hplc', 'HPLC'),
+        ('other', 'Other'),
+    ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     batch = models.ForeignKey(
@@ -483,7 +712,30 @@ class BatchQCFile(models.Model):
         on_delete=models.CASCADE,
         related_name='qc_files'
     )
-    file = models.FileField(upload_to=_batch_qc_path, max_length=255)
+    kind = models.CharField(
+        max_length=16,
+        choices=KIND_CHOICES,
+        default='other',
+        help_text="Type of QC document"
+    )
+    label = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Display text, e.g., 'LCMS-001'"
+    )
+
+    # Either url or file should be set, not both
+    url = models.URLField(
+        max_length=2048,
+        blank=True,
+        help_text="External URL to QC document (SharePoint, ELN, cloud storage)"
+    )
+    file = models.FileField(
+        upload_to=_batch_qc_path,
+        max_length=255,
+        blank=True,
+        help_text="Uploaded QC file"
+    )
     original_filename = models.CharField(
         max_length=255,
         blank=True,

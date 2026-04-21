@@ -43,9 +43,11 @@ import {
   Download,
   Refresh,
   Inventory,
+  Description,
+  Science,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
-import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow } from '@/components/compounds/SpreadsheetUpload';
+import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow, SpreadsheetHyperlinks } from '@/components/compounds/SpreadsheetUpload';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
 import { useCompoundsApi, apiPost, apiGet } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
@@ -171,14 +173,65 @@ const COMPOUND_FIELD_MAPPINGS: FieldMapping[] = [
   { field: 'target', label: 'Target' },
   { field: 'stereo_comment', label: 'Stereochemistry' },
   { field: 'supplier', label: 'Supplier' },
-  { field: 'supplier_ref', label: 'Supplier Reference' },
+  { field: 'supplier_ref', label: 'Supplier Reference / Peptide ID' },
   { field: 'comments', label: 'Comments' },
   { field: 'labbook_number', label: 'Lab Notebook #' },
   { field: 'page_number', label: 'Page #' },
+  // ELN-linked fields (Phase 1)
+  { field: 'eln_reference', label: 'ELN Reference (e.g., KF001)' },
+  { field: 'helm_notation', label: 'HELM Notation' },
+  { field: 'sequence_display', label: 'Sequence' },
   // Batch fields (optional - used when auto-creating batches)
   { field: 'batch_amount', label: 'Batch Amount (mg)' },
   { field: 'batch_salt_code', label: 'Batch Salt Code' },
 ];
+
+/**
+ * Categorize column as compound document or batch QC based on heuristics.
+ * Returns 'compound' for structure files, 'batch' for QC/analysis files.
+ */
+function categorizeDocumentColumn(columnName: string): 'compound' | 'batch' {
+  const lower = columnName.toLowerCase();
+  // Compound documents: structure files (Chemdraw, etc.)
+  if (lower.includes('chemdraw') || lower.includes('cdx') || lower.includes('structure') ||
+      lower.includes('mol file') || lower.includes('.mol')) {
+    return 'compound';
+  }
+  // Batch QC documents: analysis/QC files
+  if (lower.includes('lcms') || lower.includes('lc-ms') || lower.includes('hrms') ||
+      lower.includes('hr-ms') || lower.includes('mass') || lower.includes('purity') ||
+      lower.includes('nmr') || lower.includes('spectrum') || lower.includes('spectra') ||
+      lower.includes('chromatogram') || lower.includes('hplc') || lower.includes('qc')) {
+    return 'batch';
+  }
+  // Default to compound (safer - user can reclassify)
+  return 'compound';
+}
+
+/**
+ * Infer compound document kind from column header name.
+ * Returns 'chemdraw' | 'other' for compound documents.
+ */
+function inferCompoundDocumentKind(columnName: string): 'chemdraw' | 'other' {
+  const lower = columnName.toLowerCase();
+  if (lower.includes('chemdraw') || lower.includes('cdx') || lower.includes('structure')) {
+    return 'chemdraw';
+  }
+  return 'other';
+}
+
+/**
+ * Infer batch QC file kind from column header name.
+ * Returns 'lcms' | 'hrms' | 'nmr' | 'hplc' | 'other'.
+ */
+function inferBatchQCKind(columnName: string): 'lcms' | 'hrms' | 'nmr' | 'hplc' | 'other' {
+  const lower = columnName.toLowerCase();
+  if (lower.includes('lcms') || lower.includes('lc-ms')) return 'lcms';
+  if (lower.includes('hrms') || lower.includes('hr-ms')) return 'hrms';
+  if (lower.includes('nmr')) return 'nmr';
+  if (lower.includes('hplc')) return 'hplc';
+  return 'other';
+}
 
 const STEPS = ['Upload File', 'Map Columns', 'Validate', 'Import'];
 
@@ -198,6 +251,12 @@ export default function ImportCompoundsPage() {
   const [importProgress, setImportProgress] = useState(0);
   const [importResults, setImportResults] = useState<ImportResult[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  // Document categorization: which hyperlinked columns go to compound vs batch
+  const [compoundDocColumns, setCompoundDocColumns] = useState<string[]>([]);
+  const [batchQCColumns, setBatchQCColumns] = useState<string[]>([]);
+  // All hyperlinked columns detected in the spreadsheet
+  const [allHyperlinkedColumns, setAllHyperlinkedColumns] = useState<string[]>([]);
 
   // Fetch targets and suppliers
   const { data: targetsData } = api.get<Target[]>('targets/');
@@ -224,6 +283,7 @@ export default function ImportCompoundsPage() {
         const errors: string[] = [];
         const warnings: string[] = [];
         const extractedData: Record<string, any> = {};
+        const rowHyperlinks = data.hyperlinks?.[idx] || {};
 
         // Extract SMILES (required)
         const smilesCol = mapping.smiles;
@@ -245,7 +305,26 @@ export default function ImportCompoundsPage() {
             } else {
               extractedData[field] = rawValue;
             }
+            // Extract hyperlink URL if present (for ELN reference)
+            const hyperlink = rowHyperlinks[column];
+            if (hyperlink) {
+              // Store the hyperlink URL with a _url suffix
+              extractedData[`${field}_url`] = hyperlink;
+            }
           }
+        }
+
+        // Collect all hyperlinked columns for document creation
+        // These are columns with URLs that aren't mapped to specific fields
+        const hyperlinkedColumns: Array<{ column: string; label: string; url: string }> = [];
+        for (const [column, url] of Object.entries(rowHyperlinks)) {
+          if (url && String(url).startsWith('http')) {
+            const displayText = row[column] ? String(row[column]).trim() : column;
+            hyperlinkedColumns.push({ column, label: displayText, url });
+          }
+        }
+        if (hyperlinkedColumns.length > 0) {
+          extractedData._hyperlinkedColumns = hyperlinkedColumns;
         }
 
         // Add default target/supplier if set
@@ -276,6 +355,52 @@ export default function ImportCompoundsPage() {
       });
 
       setValidationResults(results);
+
+      // Detect all unique hyperlinked columns across the spreadsheet
+      // Exclude columns that are already mapped to known fields
+      const knownMappedFields = new Set([
+        'smiles', 'target', 'supplier', 'stereo_comment', 'comments',
+        'labbook_number', 'page_number', 'helm_notation', 'sequence_display',
+        'batch_amount', 'batch_salt_code', 'supplier_ref', 'eln_reference'
+      ]);
+      const mappedColumns = new Set(
+        Object.entries(mapping)
+          .filter(([field]) => knownMappedFields.has(field))
+          .map(([, col]) => col)
+      );
+
+      const hyperlinkedColSet = new Set<string>();
+      data.hyperlinks?.forEach(rowHyperlinks => {
+        Object.keys(rowHyperlinks).forEach(col => {
+          if (!mappedColumns.has(col)) {
+            hyperlinkedColSet.add(col);
+          }
+        });
+      });
+      const detectedColumns = Array.from(hyperlinkedColSet);
+      setAllHyperlinkedColumns(detectedColumns);
+
+      // Auto-categorize using heuristics (only if not already set)
+      if (detectedColumns.length > 0) {
+        const newCompoundCols: string[] = [];
+        const newBatchCols: string[] = [];
+        detectedColumns.forEach(col => {
+          const category = categorizeDocumentColumn(col);
+          if (category === 'compound') {
+            newCompoundCols.push(col);
+          } else {
+            newBatchCols.push(col);
+          }
+        });
+        setCompoundDocColumns(newCompoundCols);
+        setBatchQCColumns(newBatchCols);
+
+        // Auto-enable batch creation if any batch QC columns detected
+        if (newBatchCols.length > 0) {
+          setAutoCreateBatches(true);
+        }
+      }
+
       setActiveStep(2);
 
       // Async duplicate check against existing compounds
@@ -430,15 +555,60 @@ export default function ImportCompoundsPage() {
           compoundData.page_number = parseInt(validation.data.page_number);
         }
 
+        // ELN-linked fields
+        if (validation.data.helm_notation) {
+          compoundData.helm_notation = validation.data.helm_notation;
+        }
+        if (validation.data.sequence_display) {
+          compoundData.sequence_display = validation.data.sequence_display;
+        }
+
+        // Handle ELN reference - lookup or create LabNotebookEntry
+        // The display text (e.g., "KF001") is in validation.data.eln_reference
+        // The hyperlink URL is in validation.data.eln_reference_url
+        if (validation.data.eln_reference) {
+          const elnRef = String(validation.data.eln_reference).trim();
+          const elnUrl = validation.data.eln_reference_url || '';
+          // Parse label like 'KF001' -> initials='KF', sequence=1
+          const match = elnRef.match(/^([A-Za-z]{1,4})(\d+)$/);
+          if (match && compoundData.supplier) {
+            const initials = match[1].toUpperCase();
+            const seqNum = parseInt(match[2], 10);
+            try {
+              // Check if notebook entry exists
+              const existingEntries = await apiGet<{ results: { id: string }[] }>(
+                `notebook-entries/?label=${encodeURIComponent(elnRef)}`
+              );
+              if (existingEntries.results && existingEntries.results.length > 0) {
+                compoundData.notebook_entry = existingEntries.results[0].id;
+              } else {
+                // Create new notebook entry with the ELN URL from the hyperlink
+                const newEntry = await apiPost<{ id: string }>(
+                  'notebook-entries/',
+                  {
+                    supplier: compoundData.supplier,
+                    sequence_number: seqNum,
+                    url: elnUrl,
+                  }
+                );
+                compoundData.notebook_entry = newEntry.id;
+              }
+            } catch {
+              // Ignore - notebook entry creation is optional
+            }
+          }
+        }
+
         // Submit compound to API
         const result = await apiPost<{ id: string; formatted_id: string }>(
           'compounds/',
           compoundData
         );
 
-        // Create batch if auto-create is enabled
+        // Create batch if auto-create is enabled (or if batch QC columns need it)
         let batchCreated = false;
         let batchNumber: number | undefined;
+        let batchId: string | undefined;
         let batchError: string | undefined;
 
         if (autoCreateBatches) {
@@ -466,8 +636,58 @@ export default function ImportCompoundsPage() {
             );
             batchCreated = true;
             batchNumber = batchResult.batch_number;
+            batchId = batchResult.id;
           } catch (batchErr) {
             batchError = String(batchErr) || 'Failed to create batch';
+          }
+        }
+
+        // Create documents for hyperlinked columns based on user categorization
+        if (validation.data._hyperlinkedColumns) {
+          const hyperlinkedCols = validation.data._hyperlinkedColumns as Array<{
+            column: string;
+            label: string;
+            url: string;
+          }>;
+          for (const doc of hyperlinkedCols) {
+            // Skip ELN reference column - it's handled separately
+            if (doc.column === columnMapping.eln_reference) continue;
+            // Skip SMILES and other non-document columns
+            const mappedField = Object.entries(columnMapping).find(([, col]) => col === doc.column);
+            if (mappedField && ['smiles', 'target', 'supplier', 'stereo_comment', 'comments',
+                               'labbook_number', 'page_number', 'helm_notation', 'sequence_display',
+                               'batch_amount', 'batch_salt_code', 'supplier_ref', 'eln_reference'].includes(mappedField[0])) {
+              continue;
+            }
+
+            // Check if this column is categorized as compound document
+            if (compoundDocColumns.includes(doc.column)) {
+              const kind = inferCompoundDocumentKind(doc.column);
+              try {
+                await apiPost('compound-documents/', {
+                  compound: result.id,
+                  kind,
+                  label: doc.label,
+                  url: doc.url,
+                });
+              } catch {
+                // Ignore document creation errors - not critical
+              }
+            }
+            // Check if this column is categorized as batch QC document
+            else if (batchQCColumns.includes(doc.column) && batchId) {
+              const kind = inferBatchQCKind(doc.column);
+              try {
+                await apiPost('batch-qc-files/', {
+                  batch: batchId,
+                  kind,
+                  label: doc.label,
+                  url: doc.url,
+                });
+              } catch {
+                // Ignore QC file creation errors - not critical
+              }
+            }
           }
         }
 
@@ -491,7 +711,7 @@ export default function ImportCompoundsPage() {
     }
 
     setImporting(false);
-  }, [validationResults, targets, suppliers, defaultTarget, defaultSupplier, autoCreateBatches]);
+  }, [validationResults, targets, suppliers, defaultTarget, defaultSupplier, autoCreateBatches, compoundDocColumns, batchQCColumns, columnMapping]);
 
   // Summary stats
   const validCount = useMemo(
@@ -622,15 +842,16 @@ export default function ImportCompoundsPage() {
 
           {/* Auto-create batches option */}
           <Alert
-            severity="info"
+            severity={batchQCColumns.length > 0 ? 'warning' : 'info'}
             icon={<Inventory />}
-            sx={{ mb: 3 }}
+            sx={{ mb: 2 }}
             action={
               <FormControlLabel
                 control={
                   <Checkbox
                     checked={autoCreateBatches}
                     onChange={(e) => setAutoCreateBatches(e.target.checked)}
+                    disabled={batchQCColumns.length > 0}
                   />
                 }
                 label=""
@@ -639,13 +860,105 @@ export default function ImportCompoundsPage() {
           >
             <Typography variant="body2" component="span">
               <strong>Auto-create batches</strong> for imported compounds.
-              {columnMapping.batch_amount || columnMapping.batch_salt_code ? (
+              {batchQCColumns.length > 0 ? (
+                <> <strong>Required</strong> — QC documents need a batch to attach to.</>
+              ) : columnMapping.batch_amount || columnMapping.batch_salt_code ? (
                 <> Batch data from spreadsheet columns will be used.</>
               ) : (
                 <> Batches will inherit supplier from compound.</>
               )}
             </Typography>
           </Alert>
+
+          {/* Document Categorization - only show if hyperlinked columns detected */}
+          {allHyperlinkedColumns.length > 0 && (
+            <Paper variant="outlined" sx={{ p: 2, mb: 3 }}>
+              <Typography variant="subtitle1" gutterBottom sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Description color="primary" />
+                Document Columns
+              </Typography>
+              <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                Hyperlinked columns are auto-categorized. Adjust as needed:
+                <strong> Structure files</strong> attach to compounds, <strong>QC files</strong> attach to batches.
+              </Typography>
+
+              <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                {/* Compound Documents */}
+                <Autocomplete
+                  multiple
+                  options={allHyperlinkedColumns}
+                  value={compoundDocColumns}
+                  onChange={(_, newValue) => {
+                    setCompoundDocColumns(newValue);
+                    // Remove from batch QC if added here
+                    setBatchQCColumns(prev => prev.filter(c => !newValue.includes(c)));
+                  }}
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip
+                        {...getTagProps({ index })}
+                        key={option}
+                        label={option}
+                        size="small"
+                        icon={<Science fontSize="small" />}
+                        color="primary"
+                        variant="outlined"
+                      />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Compound Documents (structure files)"
+                      size="small"
+                      placeholder="Add column..."
+                      helperText="Chemdraw, structure files"
+                    />
+                  )}
+                  sx={{ minWidth: 300, flex: 1 }}
+                />
+
+                {/* Batch QC Documents */}
+                <Autocomplete
+                  multiple
+                  options={allHyperlinkedColumns}
+                  value={batchQCColumns}
+                  onChange={(_, newValue) => {
+                    setBatchQCColumns(newValue);
+                    // Remove from compound docs if added here
+                    setCompoundDocColumns(prev => prev.filter(c => !newValue.includes(c)));
+                    // Auto-enable batch creation if QC docs selected
+                    if (newValue.length > 0) {
+                      setAutoCreateBatches(true);
+                    }
+                  }}
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip
+                        {...getTagProps({ index })}
+                        key={option}
+                        label={option}
+                        size="small"
+                        icon={<Inventory fontSize="small" />}
+                        color="secondary"
+                        variant="outlined"
+                      />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      label="Batch QC Documents (analysis files)"
+                      size="small"
+                      placeholder="Add column..."
+                      helperText="LCMS, HRMS, NMR, purity reports"
+                    />
+                  )}
+                  sx={{ minWidth: 300, flex: 1 }}
+                />
+              </Box>
+            </Paper>
+          )}
 
           {/* Summary */}
           <Box sx={{ display: 'flex', gap: 2, mb: 3, alignItems: 'center' }}>

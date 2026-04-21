@@ -25,7 +25,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 
 from compounds.assays.models import Assay, DataSeries, ProtocolDocument
-from compounds.registry.models import BatchQCFile, Target
+from compounds.registry.models import BatchQCFile, Target, CompoundDocument
 from compounds.constructs.models import Plasmid, CassetteUse, SequencingResult
 
 logger = logging.getLogger(__name__)
@@ -236,6 +236,27 @@ def serve_batch_qc_file(request, qc_file_id):
 
     # Use the original filename for Content-Disposition
     return _serve_file(qc_file.file, qc_file.filename)
+
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def serve_compound_document(request, document_id):
+    """
+    Serve a compound document file.
+
+    URL: /api/compounds/media/compound-documents/<document_id>/file/
+    """
+    try:
+        document = CompoundDocument.objects.get(id=document_id)
+    except CompoundDocument.DoesNotExist:
+        raise Http404("Compound document not found")
+
+    if not document.file:
+        raise Http404("Document record has no file (may be URL-only)")
+
+    # Use the label as filename if set, otherwise extract from path
+    filename = document.label if document.label else os.path.basename(document.file.name)
+    return _serve_file(document.file, filename)
 
 
 @api_view(['GET'])

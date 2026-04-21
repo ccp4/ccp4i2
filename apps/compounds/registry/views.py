@@ -25,7 +25,10 @@ from reversion.models import Version
 from compounds.formatting import format_compound_id, get_compound_pattern
 from users.permissions import IsContributorOrReadOnly, IsContributorCreateAdminUpdate, can_administer
 from .filters import CompoundSearchFilter
-from .models import Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate
+from .models import (
+    Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate,
+    LabNotebookEntry, CompoundDocument
+)
 
 logger = logging.getLogger(__name__)
 
@@ -50,6 +53,9 @@ from .serializers import (
     BatchQCFileSerializer,
     BatchQCFileCreateSerializer,
     CompoundTemplateSerializer,
+    LabNotebookEntrySerializer,
+    CompoundDocumentSerializer,
+    CompoundDocumentCreateSerializer,
 )
 
 
@@ -981,3 +987,78 @@ class CompoundTemplateViewSet(ReversionMixin, viewsets.ModelViewSet):
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     filterset_fields = ['target']
     search_fields = ['name']
+
+
+class LabNotebookEntryViewSet(ReversionMixin, viewsets.ModelViewSet):
+    """
+    CRUD operations for Lab Notebook Entries (ELN pages or paper notebook pages).
+
+    Supports:
+    - Filtering by supplier
+    - Search by label (e.g., 'KF001', 'KF022') or title
+    - Ordering by sequence_number or created_at
+    """
+    queryset = LabNotebookEntry.objects.select_related('supplier', 'created_by')
+    serializer_class = LabNotebookEntrySerializer
+    permission_classes = [IsContributorOrReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
+    filterset_fields = ['supplier']
+    search_fields = ['title', 'supplier__initials']
+    ordering_fields = ['sequence_number', 'created_at', 'date']
+    ordering = ['supplier', 'sequence_number']
+
+    def get_queryset(self):
+        """
+        Optionally filter by label pattern (e.g., 'KF001').
+
+        The 'label' query param searches for entries matching the pattern
+        by extracting supplier initials and sequence number.
+        """
+        queryset = super().get_queryset()
+
+        label = self.request.query_params.get('label')
+        if label:
+            # Try to parse label like 'KF001' -> supplier.initials='KF', sequence_number=1
+            import re
+            match = re.match(r'^([A-Za-z]{1,4})(\d+)$', label.strip())
+            if match:
+                initials = match.group(1).upper()
+                seq_num = int(match.group(2))
+                queryset = queryset.filter(
+                    supplier__initials__iexact=initials,
+                    sequence_number=seq_num
+                )
+            else:
+                # If not a valid label pattern, return empty queryset
+                queryset = queryset.none()
+
+        return queryset
+
+    @action(detail=True, methods=['get'])
+    def compounds(self, request, pk=None):
+        """List compounds linked to this notebook entry."""
+        entry = self.get_object()
+        compounds = entry.compounds.all()
+        serializer = CompoundListSerializer(compounds, many=True)
+        return Response(serializer.data)
+
+
+class CompoundDocumentViewSet(ReversionMixin, viewsets.ModelViewSet):
+    """
+    CRUD operations for Compound Documents (attachments like Chemdraw, QC reports).
+
+    Documents can be either external URLs or uploaded files.
+    """
+    queryset = CompoundDocument.objects.select_related('compound', 'created_by')
+    serializer_class = CompoundDocumentSerializer
+    permission_classes = [IsContributorOrReadOnly]
+    filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    filterset_fields = ['compound', 'kind']
+    ordering_fields = ['created_at', 'kind']
+    ordering = ['compound', 'kind', 'created_at']
+
+    def get_serializer_class(self):
+        """Use create serializer for POST (file upload), read serializer otherwise."""
+        if self.action == 'create':
+            return CompoundDocumentCreateSerializer
+        return CompoundDocumentSerializer

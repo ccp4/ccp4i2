@@ -26,6 +26,8 @@ export interface Column<T> {
   searchable?: boolean;
   render?: (value: any, row: T) => ReactNode;
   width?: string | number;
+  /** Hide this column on mobile viewports */
+  hiddenOnMobile?: boolean;
 }
 
 interface DataTableProps<T> {
@@ -42,6 +44,12 @@ interface DataTableProps<T> {
   estimateRowHeight?: number;
   /** Maximum height of the table container (default: 600) */
   maxHeight?: number;
+  /** Fill the available height of the container */
+  fillHeight?: boolean;
+  /** Action element to render in the header */
+  headerAction?: React.ReactNode;
+  /** Use comfortable row spacing */
+  comfortable?: boolean;
 }
 
 type Order = 'asc' | 'desc';

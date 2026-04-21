@@ -19,6 +19,7 @@ from compounds.media_views import (
     serve_assay_data_file,
     serve_protocol_document,
     serve_batch_qc_file,
+    serve_compound_document,
     serve_plasmid_genbank,
     serve_cassette_use_alignment,
     serve_sequencing_result,
@@ -32,6 +33,8 @@ from compounds.registry.views import (
     BatchViewSet,
     BatchQCFileViewSet,
     CompoundTemplateViewSet,
+    LabNotebookEntryViewSet,
+    CompoundDocumentViewSet,
 )
 from compounds.assays.views import (
     FittingMethodViewSet,
@@ -70,6 +73,8 @@ router.register(r'compounds', CompoundViewSet, basename='compound')
 router.register(r'batches', BatchViewSet, basename='batch')
 router.register(r'batch-qc-files', BatchQCFileViewSet, basename='batch-qc-file')
 router.register(r'compound-templates', CompoundTemplateViewSet, basename='compound-template')
+router.register(r'notebook-entries', LabNotebookEntryViewSet, basename='notebook-entry')
+router.register(r'compound-documents', CompoundDocumentViewSet, basename='compound-document')
 
 # Assay routes
 router.register(r'fitting-methods', FittingMethodViewSet, basename='fitting-method')
@@ -115,6 +120,7 @@ urlpatterns = [
     path('media/assays/<uuid:assay_id>/data_file/', serve_assay_data_file, name='assay-data-file'),
     path('media/protocol-documents/<uuid:document_id>/file/', serve_protocol_document, name='protocol-document-file'),
     path('media/batch-qc-files/<uuid:qc_file_id>/file/', serve_batch_qc_file, name='batch-qc-file'),
+    path('media/compound-documents/<uuid:document_id>/file/', serve_compound_document, name='compound-document'),
     path('media/plasmids/<uuid:plasmid_id>/genbank/', serve_plasmid_genbank, name='plasmid-genbank'),
     path('media/cassette-uses/<uuid:cassette_use_id>/alignment/', serve_cassette_use_alignment, name='cassette-use-alignment'),
     path('media/sequencing-results/<uuid:result_id>/file/', serve_sequencing_result, name='sequencing-result-file'),

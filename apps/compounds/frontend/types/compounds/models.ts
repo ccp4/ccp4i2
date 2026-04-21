@@ -148,6 +148,74 @@ export type StereoComment =
   | 'e_isomer'
   | 'z_isomer';
 
+// =============================================================================
+// ELN-Linked Registration Types (Phase 1)
+// =============================================================================
+
+/**
+ * Lab Notebook Entry - represents one ELN page or paper notebook page.
+ * Many compounds may reference the same entry.
+ */
+export interface LabNotebookEntry {
+  id: string;
+  /** Generated label like 'KF001', 'KF022' from supplier initials + sequence */
+  label: string;
+  supplier: string;
+  supplier_name?: string;
+  supplier_initials?: string;
+  /** Per-supplier sequential index (e.g., 1 for KF001, 22 for KF022) */
+  sequence_number: number;
+  /** Page title, e.g., "SA157 Cyclic peptide synthesis" */
+  title?: string;
+  /** Date of the notebook entry */
+  date?: string | null;
+  /** Hyperlink to ELN page (OneNote, LabArchives, SharePoint, etc.) */
+  url?: string;
+  /** Lab notebook number (for paper notebooks) */
+  labbook_number?: number | null;
+  /** Page number in lab notebook (for paper notebooks) */
+  page_number?: number | null;
+  /** Number of compounds linked to this entry */
+  compound_count?: number;
+  created_at: string;
+  created_by?: number | null;
+  created_by_email?: string;
+}
+
+/** Compact version for embedding in compound responses */
+export interface LabNotebookEntryCompact {
+  id: string;
+  label: string;
+  supplier: string;
+  supplier_name?: string;
+  title?: string;
+  url?: string;
+}
+
+/** Document kind for CompoundDocument */
+export type CompoundDocumentKind = 'chemdraw' | 'qc' | 'spectrum' | 'other';
+
+/**
+ * Per-compound document attachment (Chemdraw, QC report, spectrum, etc.).
+ * Documents can be either external URLs or uploaded files.
+ */
+export interface CompoundDocument {
+  id: string;
+  compound: string;
+  compound_formatted_id?: string;
+  kind: CompoundDocumentKind;
+  kind_display?: string;
+  /** Display text, e.g., 'CP1.cdxml' */
+  label?: string;
+  /** External URL (SharePoint, cloud storage, etc.) */
+  url?: string;
+  /** Protected URL to uploaded file */
+  file?: string | null;
+  created_at: string;
+  created_by?: number | null;
+  created_by_email?: string;
+}
+
 export interface Compound {
   id: string;
   reg_number: number;
@@ -176,6 +244,19 @@ export interface Compound {
   batch_count?: number;
   /** Alternative names/identifiers for this compound (supplier codes, abbreviations, etc.) */
   aliases?: string[];
+  // ELN-linked fields (Phase 1)
+  /** Lab notebook entry (ELN page or paper notebook page) */
+  notebook_entry?: string | null;
+  /** Full notebook entry details (when included in response) */
+  notebook_entry_detail?: LabNotebookEntryCompact | null;
+  /** Notebook entry label for list views (e.g., 'KF001') */
+  notebook_entry_label?: string | null;
+  /** HELM notation string */
+  helm_notation?: string;
+  /** Human-readable sequence with modifications, e.g., 'FAM-linker-MCDWDIYRFPNHHC-NH2' */
+  sequence_display?: string;
+  /** Compound documents (Chemdraw, QC, etc.) */
+  documents?: CompoundDocument[];
 }
 
 export interface Batch {
@@ -196,11 +277,22 @@ export interface Batch {
   qc_file_count?: number;
 }
 
+/** QC file kind for BatchQCFile */
+export type BatchQCFileKind = 'lcms' | 'hrms' | 'nmr' | 'hplc' | 'other';
+
 export interface BatchQCFile {
   id: string;
   batch: string;
   batch_display?: string;
-  file: string;
+  /** Type of QC document */
+  kind: BatchQCFileKind;
+  kind_display?: string;
+  /** Display text, e.g., 'LCMS-001' */
+  label?: string;
+  /** External URL to QC document (SharePoint, ELN, cloud storage) */
+  url?: string;
+  /** Protected URL to uploaded file (if file was uploaded) */
+  file?: string | null;
   filename: string | null;
   comments: string | null;
   uploaded_at: string | null;

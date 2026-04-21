@@ -37,9 +37,19 @@ export interface SpreadsheetRow {
   [key: string]: string | number | null;
 }
 
+/**
+ * Hyperlink data extracted from Excel cells.
+ * Maps column header -> hyperlink URL for each row.
+ */
+export interface SpreadsheetHyperlinks {
+  [key: string]: string | undefined;
+}
+
 export interface SpreadsheetData {
   headers: string[];
   rows: SpreadsheetRow[];
+  /** Hyperlinks extracted from Excel cells, indexed by row */
+  hyperlinks?: SpreadsheetHyperlinks[];
   fileName: string;
   sheetName: string;
   /** Original file object for upload */
@@ -117,6 +127,7 @@ export function SpreadsheetUpload({
       let targetSheet: string;
       let headers: string[];
       let jsonData: SpreadsheetRow[];
+      let hyperlinkData: SpreadsheetHyperlinks[] = [];
 
       if (file.name.endsWith('.csv')) {
         // Parse CSV as text
@@ -149,10 +160,13 @@ export function SpreadsheetUpload({
         });
 
         // Read data rows, converting all values to strings for consistency
+        // Also extract hyperlinks from cells (used for ELN references, document URLs)
         jsonData = [];
+        hyperlinkData = [];
         for (let i = 2; i <= worksheet.rowCount; i++) {
           const row = worksheet.getRow(i);
           const obj: SpreadsheetRow = {};
+          const rowHyperlinks: SpreadsheetHyperlinks = {};
           let hasData = false;
           headers.forEach((h, idx) => {
             const cell = row.getCell(idx + 1);
@@ -162,8 +176,21 @@ export function SpreadsheetUpload({
             } else {
               obj[h] = null;
             }
+            // Extract hyperlink if present
+            if (cell.hyperlink) {
+              // ExcelJS stores hyperlink in cell.hyperlink or cell.value.hyperlink
+              const hyperlink = typeof cell.hyperlink === 'string'
+                ? cell.hyperlink
+                : (cell.hyperlink as any)?.target || (cell.hyperlink as any)?.address;
+              if (hyperlink) {
+                rowHyperlinks[h] = hyperlink;
+              }
+            }
           });
-          if (hasData) jsonData.push(obj);
+          if (hasData) {
+            jsonData.push(obj);
+            hyperlinkData.push(rowHyperlinks);
+          }
         }
       }
 
@@ -174,9 +201,12 @@ export function SpreadsheetUpload({
         throw new Error('Spreadsheet appears to be empty');
       }
 
+      // For CSV files, hyperlinkData will be empty (no hyperlinks in CSV)
+      // For Excel files, hyperlinkData contains extracted hyperlinks per row
       const spreadsheetData: SpreadsheetData = {
         headers,
         rows: jsonData,
+        hyperlinks: hyperlinkData.length > 0 ? hyperlinkData : jsonData.map(() => ({})),
         fileName: file.name,
         sheetName: targetSheet,
         originalFile: file,

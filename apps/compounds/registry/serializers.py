@@ -13,7 +13,8 @@ from rest_framework import serializers
 from compounds.validators import validate_qc_file
 from .models import (
     Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate,
-    MolecularProperties, MolecularPropertyThreshold
+    MolecularProperties, MolecularPropertyThreshold,
+    LabNotebookEntry, CompoundDocument
 )
 
 
@@ -101,6 +102,90 @@ class SupplierSerializer(serializers.ModelSerializer):
     def get_batch_count(self, obj):
         """Count batches from this supplier."""
         return Batch.objects.filter(supplier=obj).count()
+
+
+class LabNotebookEntrySerializer(serializers.ModelSerializer):
+    """
+    Serializer for lab notebook entries (ELN pages or paper notebook pages).
+
+    The 'label' field is computed from supplier initials + sequence_number
+    (e.g., 'KF001', 'KF022').
+    """
+    label = serializers.CharField(read_only=True)
+    supplier_name = serializers.CharField(source='supplier.name', read_only=True)
+    supplier_initials = serializers.CharField(source='supplier.initials', read_only=True)
+    compound_count = serializers.IntegerField(source='compounds.count', read_only=True)
+    created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+
+    class Meta:
+        model = LabNotebookEntry
+        fields = [
+            'id', 'label',
+            'supplier', 'supplier_name', 'supplier_initials',
+            'sequence_number', 'title', 'date',
+            'url', 'labbook_number', 'page_number',
+            'compound_count',
+            'created_at', 'created_by', 'created_by_email',
+        ]
+        read_only_fields = ['label', 'created_at']
+
+
+class LabNotebookEntryCompactSerializer(serializers.ModelSerializer):
+    """Compact serializer for embedding in compound responses."""
+    label = serializers.CharField(read_only=True)
+    supplier_name = serializers.CharField(source='supplier.name', read_only=True)
+
+    class Meta:
+        model = LabNotebookEntry
+        fields = ['id', 'label', 'supplier', 'supplier_name', 'title', 'url']
+
+
+class CompoundDocumentSerializer(serializers.ModelSerializer):
+    """
+    Serializer for compound document attachments.
+
+    Documents can be either external URLs or uploaded files.
+    Use protected URL for file downloads.
+    """
+    kind_display = serializers.CharField(source='get_kind_display', read_only=True)
+    compound_formatted_id = serializers.CharField(
+        source='compound.formatted_id', read_only=True
+    )
+    file = ProtectedFileField(
+        url_name='compound-document',
+        model_field='id',
+        url_kwarg='document_id'
+    )
+    created_by_email = serializers.CharField(source='created_by.email', read_only=True)
+
+    class Meta:
+        model = CompoundDocument
+        fields = [
+            'id', 'compound', 'compound_formatted_id',
+            'kind', 'kind_display', 'label',
+            'url', 'file',
+            'created_at', 'created_by', 'created_by_email',
+        ]
+        read_only_fields = ['created_at']
+
+
+class CompoundDocumentCreateSerializer(serializers.ModelSerializer):
+    """Serializer for creating/uploading compound documents."""
+
+    class Meta:
+        model = CompoundDocument
+        fields = ['id', 'compound', 'kind', 'label', 'url', 'file']
+        read_only_fields = ['id']
+
+    def validate(self, attrs):
+        """Ensure exactly one of url or file is provided."""
+        has_url = bool(attrs.get('url'))
+        has_file = bool(attrs.get('file'))
+        if has_url == has_file:
+            raise serializers.ValidationError(
+                "Provide exactly one of 'url' or 'file', not both or neither."
+            )
+        return attrs
 
 
 class SavedAggregationViewSerializer(serializers.Serializer):
@@ -237,6 +322,8 @@ class CompoundListSerializer(serializers.ModelSerializer):
     supplier_name = serializers.CharField(source='supplier.name', read_only=True)
     # Use annotated field from queryset (avoids N+1), falls back to count for non-list views
     batch_count = serializers.SerializerMethodField()
+    # ELN-linked fields
+    notebook_entry_label = serializers.SerializerMethodField()
 
     class Meta:
         model = Compound
@@ -245,6 +332,8 @@ class CompoundListSerializer(serializers.ModelSerializer):
             'target', 'target_name',
             'smiles', 'molecular_weight', 'stereo_comment',
             'supplier', 'supplier_name', 'supplier_ref',
+            'notebook_entry', 'notebook_entry_label',
+            'sequence_display',
             'registered_at',
             'batch_count',
         ]
@@ -254,6 +343,12 @@ class CompoundListSerializer(serializers.ModelSerializer):
         if hasattr(obj, 'batch_count'):
             return obj.batch_count
         return obj.batches.count()
+
+    def get_notebook_entry_label(self, obj):
+        """Get the notebook entry label (e.g., 'KF001') if set."""
+        if obj.notebook_entry:
+            return obj.notebook_entry.label
+        return None
 
 
 class MolecularPropertiesSerializer(serializers.ModelSerializer):
@@ -283,6 +378,11 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
     )
     batch_count = serializers.IntegerField(source='batches.count', read_only=True)
     molecular_properties = MolecularPropertiesSerializer(read_only=True)
+    # ELN-linked fields
+    notebook_entry_detail = LabNotebookEntryCompactSerializer(
+        source='notebook_entry', read_only=True
+    )
+    documents = CompoundDocumentSerializer(many=True, read_only=True)
 
     class Meta:
         model = Compound
@@ -292,6 +392,11 @@ class CompoundDetailSerializer(serializers.ModelSerializer):
             'smiles', 'rdkit_smiles', 'inchi', 'molecular_weight', 'stereo_comment',
             'supplier', 'supplier_name', 'supplier_ref',
             'labbook_number', 'page_number', 'compound_number',
+            # ELN-linked fields
+            'notebook_entry', 'notebook_entry_detail',
+            'helm_notation', 'sequence_display',
+            'documents',
+            # Audit
             'registered_by', 'registered_by_email',
             'modified_by', 'modified_by_email',
             'legacy_registered_by',
@@ -315,6 +420,8 @@ class CompoundCreateSerializer(serializers.ModelSerializer):
             'target', 'smiles', 'stereo_comment',
             'supplier', 'supplier_ref',
             'labbook_number', 'page_number', 'compound_number',
+            # ELN-linked fields
+            'notebook_entry', 'helm_notation', 'sequence_display',
             'comments',
         ]
         read_only_fields = ['id', 'formatted_id']
@@ -419,27 +526,44 @@ class BatchSerializer(serializers.ModelSerializer):
 class BatchQCFileSerializer(serializers.ModelSerializer):
     """Serializer for reading batch QC files - returns protected download URLs."""
     filename = serializers.CharField(read_only=True)
+    kind_display = serializers.CharField(source='get_kind_display', read_only=True)
     # Use protected URL for file instead of direct storage URL
     file = ProtectedFileField(url_name='batch-qc-file', model_field='id', url_kwarg='qc_file_id')
 
     class Meta:
         model = BatchQCFile
-        fields = ['id', 'batch', 'file', 'filename', 'comments', 'uploaded_at']
+        fields = [
+            'id', 'batch',
+            'kind', 'kind_display', 'label',
+            'url', 'file', 'filename',
+            'comments', 'uploaded_at'
+        ]
         read_only_fields = ['uploaded_at']
 
 
 class BatchQCFileCreateSerializer(serializers.ModelSerializer):
-    """Serializer for creating/uploading batch QC files."""
+    """Serializer for creating/uploading batch QC files (file upload or URL)."""
 
     class Meta:
         model = BatchQCFile
-        fields = ['id', 'batch', 'file', 'comments']
+        fields = ['id', 'batch', 'kind', 'label', 'url', 'file', 'comments']
         read_only_fields = ['id']
 
     def validate_file(self, value):
         """Validate file extension and size."""
-        validate_qc_file(value)
+        if value:
+            validate_qc_file(value)
         return value
+
+    def validate(self, attrs):
+        """Ensure exactly one of url or file is provided."""
+        has_url = bool(attrs.get('url'))
+        has_file = bool(attrs.get('file'))
+        if has_url == has_file:
+            raise serializers.ValidationError(
+                "Provide exactly one of 'url' or 'file', not both or neither."
+            )
+        return attrs
 
 
 class CompoundTemplateSerializer(serializers.ModelSerializer):

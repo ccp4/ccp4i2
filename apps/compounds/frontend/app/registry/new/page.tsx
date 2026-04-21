@@ -77,6 +77,11 @@ interface CompoundFormData {
   labbook_number: number | null;
   page_number: number | null;
   compound_number: number | null;
+  // ELN-linked fields
+  eln_label: string;
+  eln_url: string;
+  helm_notation: string;
+  sequence_display: string;
 }
 
 const STEREO_OPTIONS = [
@@ -130,6 +135,11 @@ function NewCompoundPageContent() {
     labbook_number: null,
     page_number: null,
     compound_number: null,
+    // ELN-linked fields
+    eln_label: '',
+    eln_url: '',
+    helm_notation: '',
+    sequence_display: '',
   });
 
   const [submitting, setSubmitting] = useState(false);
@@ -273,6 +283,17 @@ function NewCompoundPageContent() {
     setJsmeInitialSmiles('');
   }, []);
 
+  // Helper to parse ELN label like 'KF001' into {initials, sequenceNumber}
+  const parseElnLabel = useCallback((label: string): { initials: string; sequenceNumber: number } | null => {
+    if (!label) return null;
+    const match = label.trim().match(/^([A-Za-z]{1,4})(\d+)$/);
+    if (!match) return null;
+    return {
+      initials: match[1].toUpperCase(),
+      sequenceNumber: parseInt(match[2], 10),
+    };
+  }, []);
+
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
@@ -284,6 +305,12 @@ function NewCompoundPageContent() {
     }
     if (!formData.smiles || formData.smiles.trim().length === 0) {
       setError('Please draw or enter a structure');
+      return;
+    }
+
+    // Validate ELN label format if provided
+    if (formData.eln_label.trim() && !parseElnLabel(formData.eln_label)) {
+      setError('Invalid ELN reference format. Use format like "KF001" (initials + number)');
       return;
     }
 
@@ -318,6 +345,47 @@ function NewCompoundPageContent() {
         submitData.compound_number = formData.compound_number;
       }
 
+      // Handle ELN notebook entry - look up or create by label
+      if (formData.eln_label.trim()) {
+        const parsed = parseElnLabel(formData.eln_label);
+        if (parsed) {
+          // Find supplier by initials
+          const supplier = suppliers.find(
+            s => s.initials?.toUpperCase() === parsed.initials
+          );
+          if (!supplier) {
+            throw new Error(`Unknown supplier initials: ${parsed.initials}. Please register the supplier first.`);
+          }
+
+          // Look up existing notebook entry or create new one
+          const notebookEntries = await apiGet<{ id: string; label: string }[]>(
+            `notebook-entries/?supplier=${supplier.id}&sequence_number=${parsed.sequenceNumber}`
+          );
+
+          let notebookEntryId: string;
+          if (notebookEntries.length > 0) {
+            notebookEntryId = notebookEntries[0].id;
+          } else {
+            // Create new notebook entry
+            const newEntry = await apiPost<{ id: string }>('notebook-entries/', {
+              supplier: supplier.id,
+              sequence_number: parsed.sequenceNumber,
+              url: formData.eln_url.trim() || undefined,
+            });
+            notebookEntryId = newEntry.id;
+          }
+          submitData.notebook_entry = notebookEntryId;
+        }
+      }
+
+      // Add HELM notation and sequence display
+      if (formData.helm_notation.trim()) {
+        submitData.helm_notation = formData.helm_notation.trim();
+      }
+      if (formData.sequence_display.trim()) {
+        submitData.sequence_display = formData.sequence_display.trim();
+      }
+
       const result = await apiPost<{ id: string; formatted_id: string }>(
         'compounds/',
         submitData
@@ -333,7 +401,7 @@ function NewCompoundPageContent() {
     } finally {
       setSubmitting(false);
     }
-  }, [formData, createBatch]);
+  }, [formData, createBatch, parseElnLabel, suppliers]);
 
   const handleRegisterAnother = useCallback(() => {
     setSuccess(null);
@@ -351,8 +419,13 @@ function NewCompoundPageContent() {
       labbook_number: formData.labbook_number, // Keep lab notebook info
       page_number: null,
       compound_number: null,
+      // Keep ELN label (same notebook entry) but clear other fields
+      eln_label: formData.eln_label,
+      eln_url: formData.eln_url,
+      helm_notation: '',
+      sequence_display: '',
     });
-  }, [formData.target, formData.supplier, formData.labbook_number]);
+  }, [formData.target, formData.supplier, formData.labbook_number, formData.eln_label, formData.eln_url]);
 
   const handleBatchCreated = useCallback((batch: Batch) => {
     setBatchCreated(batch);
@@ -744,7 +817,68 @@ function NewCompoundPageContent() {
 
               <Divider sx={{ my: 2 }} />
 
-              {/* Lab notebook info */}
+              {/* ELN Reference (for ELN-linked registrations) */}
+              <Typography variant="subtitle2" color="text.secondary" sx={{ mt: 1, mb: 0.5 }}>
+                ELN Reference (optional)
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid size={{ xs: 4 }}>
+                  <TextField
+                    label="ELN Label"
+                    value={formData.eln_label}
+                    onChange={(e) => handleFieldChange('eln_label', e.target.value)}
+                    margin="normal"
+                    fullWidth
+                    placeholder="e.g., KF001"
+                    helperText="Initials + number"
+                    inputProps={{ style: { fontFamily: 'monospace' } }}
+                  />
+                </Grid>
+                <Grid size={{ xs: 8 }}>
+                  <TextField
+                    label="ELN URL"
+                    value={formData.eln_url}
+                    onChange={(e) => handleFieldChange('eln_url', e.target.value)}
+                    margin="normal"
+                    fullWidth
+                    placeholder="https://eln.example.com/entry/..."
+                    type="url"
+                  />
+                </Grid>
+              </Grid>
+
+              {/* HELM/Sequence for peptides */}
+              <Typography variant="subtitle2" color="text.secondary" sx={{ mt: 2, mb: 0.5 }}>
+                Peptide/Sequence (optional)
+              </Typography>
+              <TextField
+                label="Sequence Display"
+                value={formData.sequence_display}
+                onChange={(e) => handleFieldChange('sequence_display', e.target.value)}
+                margin="normal"
+                fullWidth
+                placeholder="e.g., ACDEFGHIK"
+                helperText="Human-readable sequence string"
+              />
+              <TextField
+                label="HELM Notation"
+                value={formData.helm_notation}
+                onChange={(e) => handleFieldChange('helm_notation', e.target.value)}
+                margin="normal"
+                fullWidth
+                multiline
+                rows={2}
+                placeholder="e.g., PEPTIDE1{A.C.D.E.F}$$$$"
+                helperText="HELM polymer notation"
+                inputProps={{ style: { fontFamily: 'monospace' } }}
+              />
+
+              <Divider sx={{ my: 2 }} />
+
+              {/* Legacy Lab notebook info */}
+              <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 0.5 }}>
+                Paper Notebook (legacy)
+              </Typography>
               <Grid container spacing={2}>
                 <Grid size={{ xs: 4 }}>
                   <TextField

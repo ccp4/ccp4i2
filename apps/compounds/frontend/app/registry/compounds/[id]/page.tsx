@@ -16,7 +16,7 @@ import {
   AccordionSummary,
   AccordionDetails,
 } from '@mui/material';
-import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Edit, ExpandMore, Inventory, Medication, Science, TableChart } from '@mui/icons-material';
+import { Add, ChevronLeft, ChevronRight, ContentCopy, Check, Edit, ExpandMore, Inventory, Medication, Science, TableChart, Link as LinkIcon, Description, BiotechOutlined } from '@mui/icons-material';
 import Link from 'next/link';
 import { DetailPageLayout } from '@/components/compounds/DetailPageLayout';
 import { DataTable, Column } from '@/components/data-table';
@@ -303,7 +303,119 @@ export default function CompoundDetailPage({ params }: PageProps) {
           </Box>
         </Grid>
         <Grid size={{ xs: 12, md: 6 }}>
-          <Accordion defaultExpanded={false}>
+          {/* ELN/Sequence section - show if any ELN fields are populated */}
+          {(compound.notebook_entry_detail || compound.sequence_display || compound.helm_notation || (compound.documents && compound.documents.length > 0)) && (
+            <Accordion defaultExpanded={true} sx={{ mb: 2 }}>
+              <AccordionSummary expandIcon={<ExpandMore />}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                  <BiotechOutlined />
+                  <Typography variant="h6">ELN / Sequence</Typography>
+                </Box>
+              </AccordionSummary>
+              <AccordionDetails>
+                {/* ELN Reference */}
+                {compound.notebook_entry_detail && (
+                  <InfoRow
+                    label="ELN Reference"
+                    value={
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <Chip
+                          label={compound.notebook_entry_detail.label}
+                          size="small"
+                          color="primary"
+                          variant="outlined"
+                          sx={{ fontFamily: 'monospace', fontWeight: 600 }}
+                        />
+                        {compound.notebook_entry_detail.url && (
+                          <Tooltip title="Open in ELN">
+                            <IconButton
+                              size="small"
+                              component="a"
+                              href={compound.notebook_entry_detail.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              sx={{ p: 0.5 }}
+                            >
+                              <LinkIcon fontSize="small" />
+                            </IconButton>
+                          </Tooltip>
+                        )}
+                        {compound.notebook_entry_detail.title && (
+                          <Typography variant="body2" color="text.secondary">
+                            {compound.notebook_entry_detail.title}
+                          </Typography>
+                        )}
+                      </Box>
+                    }
+                  />
+                )}
+
+                {/* Sequence Display */}
+                {compound.sequence_display && (
+                  <InfoRow
+                    label="Sequence"
+                    value={
+                      <Typography
+                        fontFamily="monospace"
+                        fontSize="0.85rem"
+                        sx={{ wordBreak: 'break-all' }}
+                      >
+                        {compound.sequence_display}
+                      </Typography>
+                    }
+                  />
+                )}
+
+                {/* HELM Notation */}
+                {compound.helm_notation && (
+                  <InfoRow
+                    label="HELM"
+                    value={
+                      <Typography
+                        fontFamily="monospace"
+                        fontSize="0.75rem"
+                        sx={{ wordBreak: 'break-all', whiteSpace: 'pre-wrap' }}
+                      >
+                        {compound.helm_notation}
+                      </Typography>
+                    }
+                  />
+                )}
+
+                {/* Linked Documents */}
+                {compound.documents && compound.documents.length > 0 && (
+                  <Box sx={{ mt: 1 }}>
+                    <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 0.5 }}>
+                      Documents ({compound.documents.length})
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                      {compound.documents.map((doc) => (
+                        <Chip
+                          key={doc.id}
+                          icon={<Description fontSize="small" />}
+                          label={doc.label || doc.kind_display || doc.kind}
+                          size="small"
+                          variant="outlined"
+                          component={doc.url ? 'a' : 'span'}
+                          href={doc.url || undefined}
+                          target={doc.url ? '_blank' : undefined}
+                          rel={doc.url ? 'noopener noreferrer' : undefined}
+                          clickable={!!doc.url}
+                          sx={{
+                            ...(doc.url && {
+                              '&:hover': { bgcolor: 'action.hover' },
+                            }),
+                          }}
+                        />
+                      ))}
+                    </Box>
+                  </Box>
+                )}
+              </AccordionDetails>
+            </Accordion>
+          )}
+
+          <Accordion defaultExpanded={true}>
             <AccordionSummary expandIcon={<ExpandMore />}>
               <Typography variant="h6">Provenance & Metadata</Typography>
             </AccordionSummary>
