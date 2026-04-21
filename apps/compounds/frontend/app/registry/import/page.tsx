@@ -186,6 +186,7 @@ interface ImportResult {
   batch_created?: boolean;
   batch_number?: number;
   batch_error?: string;
+  warnings?: string[];
 }
 
 // Mapping of stereo_comment display labels and common supplier terms to internal keys.
@@ -770,40 +771,65 @@ export default function ImportCompoundsPage() {
           compoundData.sequence_display = validation.data.sequence_display;
         }
 
-        // Handle ELN reference - lookup or create LabNotebookEntry
-        // The display text (e.g., "KF001") is in validation.data.eln_reference
-        // The hyperlink URL is in validation.data.eln_reference_url
-        if (validation.data.eln_reference) {
+        // Handle ELN reference - lookup or create LabNotebookEntry.
+        // The display text (e.g., "KF001") is in validation.data.eln_reference;
+        // the hyperlink URL is in validation.data.eln_reference_url.
+        //
+        // LabNotebookEntry has unique_together (supplier, sequence_number). We
+        // parse the trailing integer as sequence_number and find-or-create by
+        // that + the supplier. The `label` property is computed, so filtering
+        // by ?label= on the server is a no-op — we must use the DB fields.
+        let elnWarning: string | undefined;
+        if (validation.data.eln_reference && compoundData.supplier) {
           const elnRef = String(validation.data.eln_reference).trim();
           const elnUrl = validation.data.eln_reference_url || '';
-          // Parse label like 'KF001' -> initials='KF', sequence=1
           const match = elnRef.match(/^([A-Za-z]{1,4})(\d+)$/);
-          if (match && compoundData.supplier) {
-            const initials = match[1].toUpperCase();
+          if (match) {
             const seqNum = parseInt(match[2], 10);
+            const findUrl =
+              `notebook-entries/?supplier=${encodeURIComponent(compoundData.supplier)}` +
+              `&sequence_number=${seqNum}`;
+            const readList = (raw: unknown): { id: string }[] => {
+              if (Array.isArray(raw)) return raw as { id: string }[];
+              if (raw && typeof raw === 'object' && 'results' in (raw as any)) {
+                return (raw as { results: { id: string }[] }).results || [];
+              }
+              return [];
+            };
             try {
-              // Check if notebook entry exists
-              const existingEntries = await apiGet<{ results: { id: string }[] }>(
-                `notebook-entries/?label=${encodeURIComponent(elnRef)}`
-              );
-              if (existingEntries.results && existingEntries.results.length > 0) {
-                compoundData.notebook_entry = existingEntries.results[0].id;
+              const existing = readList(await apiGet(findUrl));
+              if (existing.length > 0) {
+                compoundData.notebook_entry = existing[0].id;
               } else {
-                // Create new notebook entry with the ELN URL from the hyperlink
-                const newEntry = await apiPost<{ id: string }>(
-                  'notebook-entries/',
-                  {
+                try {
+                  const newEntry = await apiPost<{ id: string }>('notebook-entries/', {
                     supplier: compoundData.supplier,
                     sequence_number: seqNum,
                     url: elnUrl,
+                  });
+                  compoundData.notebook_entry = newEntry.id;
+                } catch (postErr) {
+                  // Lost a race with another concurrent create — re-fetch.
+                  const retry = readList(await apiGet(findUrl));
+                  if (retry.length > 0) {
+                    compoundData.notebook_entry = retry[0].id;
+                  } else {
+                    elnWarning = `ELN "${elnRef}" not attached: ${
+                      postErr instanceof Error ? postErr.message : 'create failed'
+                    }`;
                   }
-                );
-                compoundData.notebook_entry = newEntry.id;
+                }
               }
-            } catch {
-              // Ignore - notebook entry creation is optional
+            } catch (getErr) {
+              elnWarning = `ELN "${elnRef}" not attached: ${
+                getErr instanceof Error ? getErr.message : 'lookup failed'
+              }`;
             }
+          } else {
+            elnWarning = `ELN "${elnRef}" skipped: expected pattern like "KF001"`;
           }
+        } else if (validation.data.eln_reference && !compoundData.supplier) {
+          elnWarning = 'ELN reference not attached: no supplier on compound';
         }
 
         // Submit compound to API
@@ -905,6 +931,7 @@ export default function ImportCompoundsPage() {
           batch_created: batchCreated,
           batch_number: batchNumber,
           batch_error: batchError,
+          warnings: elnWarning ? [elnWarning] : undefined,
         });
       } catch (e) {
         results.push({
@@ -1437,9 +1464,21 @@ export default function ImportCompoundsPage() {
                           )}
                         </TableCell>
                         <TableCell>
-                          <Typography variant="caption" color="error">
-                            {result.error || ''}
-                          </Typography>
+                          {result.error && (
+                            <Typography variant="caption" color="error" sx={{ display: 'block' }}>
+                              {result.error}
+                            </Typography>
+                          )}
+                          {result.warnings?.map((w, i) => (
+                            <Typography
+                              key={i}
+                              variant="caption"
+                              color="warning.main"
+                              sx={{ display: 'block' }}
+                            >
+                              {w}
+                            </Typography>
+                          ))}
                         </TableCell>
                       </TableRow>
                     ))}
