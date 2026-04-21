@@ -259,6 +259,11 @@ AZURE_AD_CLIENT_ID=$DEMO_APP_CLIENT_ID
 ALLOWED_AZURE_AD_GROUPS=$GROUP_ID
 
 PLATFORM_ADMIN_EMAILS=$PLATFORM_ADMIN_EMAILS
+
+# Compound registration IDs — override per instance if the group wants a
+# distinct prefix (e.g. NCLP for Kawamura). Defaults match the main instance.
+# COMPOUND_ID_PREFIX=NCL
+# COMPOUND_ID_DIGITS=8
 EOF
 
 # ── 6. Deploy applications ──────────────────────────────────────────────

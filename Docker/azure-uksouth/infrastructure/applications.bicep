@@ -63,6 +63,12 @@ param storageAccountName string
 @description('Skip CCP4 storage mount if CCP4 is baked into container image')
 param skipCcp4Storage bool = false
 
+@description('Compound registration ID prefix (e.g. NCL for main, NCLP for Kawamura). Formatted output is always `<prefix>-<zero-padded-reg-number>`.')
+param compoundIdPrefix string = 'NCL'
+
+@description('Number of digits to zero-pad the compound registration number to.')
+param compoundIdDigits int = 8
+
 // - PostgreSQL is accessed via private endpoint (no public access)
 // - Key Vault is accessed via private endpoint (no public access)
 // - Storage Account is accessed via private endpoint (no public access)
@@ -340,6 +346,15 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'AZURE_CLIENT_ID'
               value: containerAppsIdentityClientId
+            }
+            // Compound ID formatting (per-instance: NCL for main, NCLP for Kawamura, etc.)
+            {
+              name: 'COMPOUND_ID_PREFIX'
+              value: compoundIdPrefix
+            }
+            {
+              name: 'COMPOUND_ID_DIGITS'
+              value: string(compoundIdDigits)
             }
           ]
           volumeMounts: concat(ccp4VolumeMount, [
