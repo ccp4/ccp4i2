@@ -42,7 +42,7 @@ import { PlateHeatMapDialog, WellCompoundMapping } from '@/components/compounds/
 import { AssayEditDialog } from '@/components/compounds/AssayEditDialog';
 import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
 import { QCPanel } from '@/components/compounds/QCPanel';
-import { useCompoundsApi, getAuthenticatedDownloadUrl, authFetch } from '@/lib/compounds/api';
+import { useCompoundsApi, openAuthenticatedDownload, authFetch } from '@/lib/compounds/api';
 import { formatKpiUnit } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
@@ -582,8 +582,7 @@ export default function AssayDetailPage({ params }: PageProps) {
                 <MuiLink
                   component="button"
                   onClick={async () => {
-                    const url = await getAuthenticatedDownloadUrl(assay.data_file!);
-                    window.open(url, '_blank');
+                    await openAuthenticatedDownload(assay.data_file!, assay.data_filename);
                   }}
                   sx={{ cursor: 'pointer' }}
                 >

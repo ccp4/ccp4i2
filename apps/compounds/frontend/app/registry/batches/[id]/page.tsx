@@ -40,7 +40,7 @@ import {
 import { DetailPageLayout } from '@/components/compounds/DetailPageLayout';
 import { DataTable, Column } from '@/components/data-table';
 import { BatchEditDialog } from '@/components/compounds/BatchEditDialog';
-import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { useCompoundsApi, apiUpload, openAuthenticatedDownload } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Batch, BatchQCFile, Compound, Target } from '@/types/compounds/models';
@@ -330,8 +330,7 @@ export default function BatchDetailPage({ params }: PageProps) {
                   size="small"
                   onClick={async (e) => {
                     e.stopPropagation();
-                    const url = await getAuthenticatedDownloadUrl(value);
-                    window.open(url, '_blank');
+                    await openAuthenticatedDownload(value, row.filename);
                   }}
                 >
                   <Download fontSize="small" />
@@ -342,8 +341,7 @@ export default function BatchDetailPage({ params }: PageProps) {
                   size="small"
                   onClick={async (e) => {
                     e.stopPropagation();
-                    const url = await getAuthenticatedDownloadUrl(value);
-                    window.open(url, '_blank');
+                    await openAuthenticatedDownload(value);
                   }}
                 >
                   <OpenInNew fontSize="small" />

@@ -34,7 +34,7 @@ import { PlatePreview } from '@/components/compounds/PlatePreview';
 import { PlateLayoutCreateDialog } from '@/components/compounds/PlateLayoutCreateDialog';
 import { AssayUploadDrawer } from '@/components/compounds/AssayUploadDrawer';
 import { ProtocolEditDialog } from '@/components/compounds/ProtocolEditDialog';
-import { useCompoundsApi, apiUpload, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { useCompoundsApi, apiUpload, openAuthenticatedDownload } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import { Protocol, Assay, ProtocolDocument, PlateLayoutRecord, ImportType } from '@/types/compounds/models';
@@ -378,8 +378,7 @@ function ProtocolDetailPageContent({ params }: PageProps) {
                   size="small"
                   onClick={async (e) => {
                     e.stopPropagation();
-                    const url = await getAuthenticatedDownloadUrl(value);
-                    window.open(url, '_blank');
+                    await openAuthenticatedDownload(value, row.filename);
                   }}
                 >
                   <Download fontSize="small" />
@@ -390,8 +389,7 @@ function ProtocolDetailPageContent({ params }: PageProps) {
                   size="small"
                   onClick={async (e) => {
                     e.stopPropagation();
-                    const url = await getAuthenticatedDownloadUrl(value);
-                    window.open(url, '_blank');
+                    await openAuthenticatedDownload(value);
                   }}
                 >
                   <OpenInNew fontSize="small" />

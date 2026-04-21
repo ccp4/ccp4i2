@@ -195,17 +195,38 @@ export async function apiUpload<T>(endpoint: string, formData: FormData): Promis
 }
 
 /**
- * Get an authenticated download URL.
- * Appends the access token as a query parameter for anchor-based downloads
- * where headers cannot be set.
+ * Fetch an authenticated file and open it in a new tab (or trigger a save
+ * dialog if `filename` is provided). The token travels in the Authorization
+ * header, never in the URL — this avoids 431 Request Header Too Large when
+ * the JWT's groups claim is bulky, and keeps the token out of browser history
+ * and proxy logs.
+ *
+ * Must be invoked from a user-gesture handler (onClick) so popup blockers
+ * allow `window.open`.
  */
-export async function getAuthenticatedDownloadUrl(url: string): Promise<string> {
-  const token = await getAccessToken();
-  if (!token) {
-    return url; // No auth needed in standalone mode
+export async function openAuthenticatedDownload(url: string, filename?: string | null): Promise<void> {
+  const res = await authFetch(url);
+  if (!res.ok) {
+    const errorText = await res.text().catch(() => 'Unknown error');
+    const error = new Error(`Download failed: ${res.status} ${errorText}`);
+    (error as any).status = res.status;
+    throw error;
   }
-  const separator = url.includes('?') ? '&' : '?';
-  return `${url}${separator}access_token=${encodeURIComponent(token)}`;
+  const blob = await res.blob();
+  const objectUrl = URL.createObjectURL(blob);
+
+  if (filename) {
+    const a = document.createElement('a');
+    a.href = objectUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  } else {
+    window.open(objectUrl, '_blank');
+  }
+
+  setTimeout(() => URL.revokeObjectURL(objectUrl), 60_000);
 }
 
 // =============================================================================

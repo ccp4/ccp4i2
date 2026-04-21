@@ -20,7 +20,7 @@ import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/data-table';
 import { SeqVizViewer } from '@/components/compounds/SeqVizViewer';
 import { ConfirmDialog } from '@/components/compounds/ConfirmDialog';
-import { useCompoundsApi, getAuthenticatedDownloadUrl } from '@/lib/compounds/api';
+import { useCompoundsApi, openAuthenticatedDownload } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
 import {
@@ -134,8 +134,7 @@ export default function PlasmidDetailPage({ params }: PageProps) {
               size="small"
               startIcon={<Download />}
               onClick={async () => {
-                const url = await getAuthenticatedDownloadUrl(row.file!);
-                window.open(url, '_blank');
+                await openAuthenticatedDownload(row.file!, row.filename);
               }}
               sx={{ minWidth: 'auto', p: 0.5 }}
             >
@@ -203,8 +202,10 @@ export default function PlasmidDetailPage({ params }: PageProps) {
                     size="large"
                     startIcon={<Download />}
                     onClick={async () => {
-                      const url = await getAuthenticatedDownloadUrl(plasmid.genbank_file_url!);
-                      window.open(url, '_blank');
+                      await openAuthenticatedDownload(
+                        plasmid.genbank_file_url!,
+                        plasmid.genbank_file?.split('/').pop(),
+                      );
                     }}
                   >
                     Download GenBank
@@ -242,8 +243,7 @@ export default function PlasmidDetailPage({ params }: PageProps) {
                         component="a"
                         onClick={async (e: React.MouseEvent) => {
                           e.preventDefault();
-                          const url = await getAuthenticatedDownloadUrl(plasmid.genbank_file_url!);
-                          window.open(url, '_blank');
+                          await openAuthenticatedDownload(plasmid.genbank_file_url!);
                         }}
                         href="#"
                         sx={{
