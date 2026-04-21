@@ -38,14 +38,19 @@ import {
   ArrowBack,
   ArrowForward,
   CheckCircle,
-  Error,
+  Error as ErrorIcon,
   Warning,
   Download,
   Refresh,
   Inventory,
   Description,
   Science,
+  Add,
 } from '@mui/icons-material';
+import Dialog from '@mui/material/Dialog';
+import DialogTitle from '@mui/material/DialogTitle';
+import DialogContent from '@mui/material/DialogContent';
+import DialogActions from '@mui/material/DialogActions';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { SpreadsheetUpload, SpreadsheetData, FieldMapping, SpreadsheetRow, SpreadsheetHyperlinks } from '@/components/compounds/SpreadsheetUpload';
 import { MoleculeChip } from '@/components/compounds/MoleculeView';
@@ -63,12 +68,114 @@ interface Supplier {
   initials: string | null;
 }
 
+interface MissingEntity {
+  type: 'supplier' | 'target';
+  name: string;
+}
+
+function guessInitials(name: string): string {
+  return name
+    .split(/[\s_-]+/)
+    .filter(Boolean)
+    .map((part) => part[0]?.toUpperCase() ?? '')
+    .join('')
+    .slice(0, 4);
+}
+
 interface ValidationResult {
   row: number;
   valid: boolean;
   errors: string[];
   warnings: string[];
   data: Record<string, any>;
+  missingEntities?: MissingEntity[];
+}
+
+function CreateMissingEntityDialog({
+  request,
+  onClose,
+  onCreated,
+}: {
+  request: MissingEntity | null;
+  onClose: () => void;
+  onCreated: (entity: { id: string; name: string }, type: 'supplier' | 'target') => void;
+}) {
+  const [name, setName] = useState('');
+  const [initials, setInitials] = useState('');
+  const [submitting, setSubmitting] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (request) {
+      setName(request.name);
+      setInitials(request.type === 'supplier' ? guessInitials(request.name) : '');
+      setErr(null);
+    }
+  }, [request]);
+
+  const type = request?.type;
+  const canSubmit = !!name.trim() && !submitting && (type !== 'supplier' || !!initials.trim());
+
+  const handleSubmit = async () => {
+    if (!request) return;
+    setSubmitting(true);
+    setErr(null);
+    try {
+      const endpoint = request.type === 'supplier' ? 'suppliers/' : 'targets/';
+      const payload: Record<string, any> =
+        request.type === 'supplier'
+          ? { name: name.trim(), initials: initials.trim() }
+          : { name: name.trim() };
+      const created = await apiPost<{ id: string; name: string }>(endpoint, payload);
+      onCreated(created, request.type);
+      onClose();
+    } catch (e) {
+      setErr(e instanceof Error ? e.message : 'Failed to create');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  return (
+    <Dialog open={!!request} onClose={submitting ? undefined : onClose} maxWidth="xs" fullWidth>
+      <DialogTitle>Create {type === 'target' ? 'target' : 'supplier'}</DialogTitle>
+      <DialogContent dividers>
+        {err && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {err}
+          </Alert>
+        )}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, pt: 1 }}>
+          <TextField
+            label="Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            fullWidth
+            size="small"
+            autoFocus
+          />
+          {type === 'supplier' && (
+            <TextField
+              label="Initials"
+              value={initials}
+              onChange={(e) => setInitials(e.target.value.toUpperCase().slice(0, 16))}
+              fullWidth
+              size="small"
+              helperText="Used to generate ELN labels (e.g. 'KF' → 'KF001')"
+            />
+          )}
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={onClose} disabled={submitting}>
+          Cancel
+        </Button>
+        <Button variant="contained" onClick={handleSubmit} disabled={!canSubmit}>
+          {submitting ? <CircularProgress size={16} /> : 'Create'}
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
 }
 
 interface ImportResult {
@@ -260,11 +367,14 @@ export default function ImportCompoundsPage() {
   const [allHyperlinkedColumns, setAllHyperlinkedColumns] = useState<string[]>([]);
 
   // Fetch targets and suppliers
-  const { data: targetsData } = api.get<Target[]>('targets/');
-  const { data: suppliersData } = api.get<Supplier[]>('suppliers/');
+  const { data: targetsData, mutate: mutateTargets } = api.get<Target[]>('targets/');
+  const { data: suppliersData, mutate: mutateSuppliers } = api.get<Supplier[]>('suppliers/');
 
   const targets = targetsData || [];
   const suppliers = suppliersData || [];
+
+  // Per-row "create missing thing" dialog request
+  const [createEntityRequest, setCreateEntityRequest] = useState<MissingEntity | null>(null);
 
   // If arrived with ?target=<id>, use it as the Default Target so rows that
   // don't name a target inherit it (e.g. coming from a target-filtered list).
@@ -293,6 +403,7 @@ export default function ImportCompoundsPage() {
       const results: ValidationResult[] = data.rows.map((row, idx) => {
         const errors: string[] = [];
         const warnings: string[] = [];
+        const missingEntities: MissingEntity[] = [];
         const extractedData: Record<string, any> = {};
         const rowHyperlinks = data.hyperlinks?.[idx] || {};
 
@@ -357,9 +468,22 @@ export default function ImportCompoundsPage() {
             (t) => t.id === targetValue || t.name.toLowerCase() === targetValue.toLowerCase()
           );
           if (!resolved) {
-            errors.push(
-              `Target "${targetValue}" does not exist — create it first or pick a Default Target above`
-            );
+            errors.push(`Target "${targetValue}" does not exist`);
+            missingEntities.push({ type: 'target', name: targetValue });
+          }
+        }
+
+        // Validate that supplier (if named) resolves to a known Supplier.
+        // Previously an unresolved name was silently dropped at submit time,
+        // which later silently skipped notebook-entry creation too.
+        if (extractedData.supplier) {
+          const supplierValue = String(extractedData.supplier);
+          const resolved = suppliers.find(
+            (s) => s.id === supplierValue || s.name.toLowerCase() === supplierValue.toLowerCase()
+          );
+          if (!resolved) {
+            errors.push(`Supplier "${supplierValue}" does not exist`);
+            missingEntities.push({ type: 'supplier', name: supplierValue });
           }
         }
 
@@ -374,6 +498,7 @@ export default function ImportCompoundsPage() {
           errors,
           warnings,
           data: extractedData,
+          missingEntities: missingEntities.length > 0 ? missingEntities : undefined,
         };
       });
 
@@ -429,7 +554,59 @@ export default function ImportCompoundsPage() {
       // Async duplicate check against existing compounds
       checkForDuplicates(results);
     },
-    [defaultTarget, defaultSupplier, targets]
+    [defaultTarget, defaultSupplier, targets, suppliers]
+  );
+
+  // Patch validation results in place after a missing supplier/target is
+  // created. We surgically strip the matching error + missingEntity and
+  // rewrite r.data to the new id so the later submit step resolves cleanly.
+  // Duplicate-check errors and warnings are preserved.
+  const handleEntityCreated = useCallback(
+    (entity: { id: string; name: string }, type: 'supplier' | 'target') => {
+      // Optimistically update the SWR cache so subsequent renders see it
+      if (type === 'supplier') {
+        mutateSuppliers(
+          (prev) => [...(prev || []), entity as Supplier],
+          { revalidate: false }
+        );
+      } else {
+        mutateTargets(
+          (prev) => [...(prev || []), entity as Target],
+          { revalidate: false }
+        );
+      }
+
+      const errorPattern =
+        type === 'target'
+          ? `Target "${entity.name}"`
+          : `Supplier "${entity.name}"`;
+      const nameLc = entity.name.toLowerCase();
+
+      setValidationResults((prev) =>
+        prev.map((r) => {
+          if (!r.missingEntities) return r;
+          const hit = r.missingEntities.find(
+            (me) => me.type === type && me.name.toLowerCase() === nameLc
+          );
+          if (!hit) return r;
+
+          const remaining = r.missingEntities.filter((me) => me !== hit);
+          const newErrors = r.errors.filter((e) => !e.startsWith(errorPattern));
+          const newData = { ...r.data };
+          if (type === 'target') newData.target = entity.id;
+          else newData.supplier = entity.id;
+
+          return {
+            ...r,
+            data: newData,
+            errors: newErrors,
+            valid: newErrors.length === 0,
+            missingEntities: remaining.length > 0 ? remaining : undefined,
+          };
+        })
+      );
+    },
+    [mutateSuppliers, mutateTargets]
   );
 
   // Check SMILES against existing compounds in the database
@@ -546,7 +723,10 @@ export default function ImportCompoundsPage() {
           compoundData.target = defaultTarget;
         }
 
-        // Map supplier name to ID
+        // Map supplier name to ID. A named-but-unresolved supplier is a
+        // hard error here (the validation step above should have caught it,
+        // but this guard prevents silently dropping the value if validation
+        // was bypassed or the suppliers cache is stale).
         if (validation.data.supplier) {
           const supplier = suppliers.find(
             (s) =>
@@ -555,6 +735,10 @@ export default function ImportCompoundsPage() {
           );
           if (supplier) {
             compoundData.supplier = supplier.id;
+          } else {
+            throw new Error(
+              `Supplier "${validation.data.supplier}" not found — create it before importing`
+            );
           }
         }
         if (!compoundData.supplier && defaultSupplier) {
@@ -983,7 +1167,7 @@ export default function ImportCompoundsPage() {
               variant="outlined"
             />
             <Chip
-              icon={<Error />}
+              icon={<ErrorIcon />}
               label={`${errorCount} with errors`}
               color="error"
               variant="outlined"
@@ -1022,7 +1206,7 @@ export default function ImportCompoundsPage() {
                       {result.valid ? (
                         <CheckCircle color="success" fontSize="small" />
                       ) : (
-                        <Error color="error" fontSize="small" />
+                        <ErrorIcon color="error" fontSize="small" />
                       )}
                     </TableCell>
                     <TableCell sx={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis' }}>
@@ -1044,7 +1228,7 @@ export default function ImportCompoundsPage() {
                           label={err}
                           size="small"
                           color="error"
-                          sx={{ mr: 0.5 }}
+                          sx={{ mr: 0.5, mb: 0.5 }}
                         />
                       ))}
                       {result.warnings.map((warn, i) => (
@@ -1053,8 +1237,20 @@ export default function ImportCompoundsPage() {
                           label={warn}
                           size="small"
                           color="warning"
-                          sx={{ mr: 0.5 }}
+                          sx={{ mr: 0.5, mb: 0.5 }}
                         />
+                      ))}
+                      {result.missingEntities?.map((me, i) => (
+                        <Button
+                          key={`me-${i}`}
+                          size="small"
+                          variant="outlined"
+                          startIcon={<Add fontSize="small" />}
+                          onClick={() => setCreateEntityRequest(me)}
+                          sx={{ mr: 0.5, mb: 0.5, textTransform: 'none' }}
+                        >
+                          Create {me.type} &quot;{me.name}&quot;
+                        </Button>
                       ))}
                     </TableCell>
                   </TableRow>
@@ -1128,7 +1324,7 @@ export default function ImportCompoundsPage() {
                 )}
                 {failedCount > 0 && (
                   <Chip
-                    icon={<Error />}
+                    icon={<ErrorIcon />}
                     label={`${failedCount} failed`}
                     color="error"
                     variant="outlined"
@@ -1159,7 +1355,7 @@ export default function ImportCompoundsPage() {
                           {result.success ? (
                             <CheckCircle color="success" fontSize="small" />
                           ) : (
-                            <Error color="error" fontSize="small" />
+                            <ErrorIcon color="error" fontSize="small" />
                           )}
                         </TableCell>
                         <TableCell>
@@ -1227,6 +1423,12 @@ export default function ImportCompoundsPage() {
           )}
         </Paper>
       )}
+
+      <CreateMissingEntityDialog
+        request={createEntityRequest}
+        onClose={() => setCreateEntityRequest(null)}
+        onCreated={handleEntityCreated}
+      />
     </Container>
   );
 }
