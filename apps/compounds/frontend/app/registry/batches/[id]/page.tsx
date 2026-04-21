@@ -263,12 +263,30 @@ export default function BatchDetailPage({ params }: PageProps) {
       label: 'File',
       sortable: true,
       searchable: true,
-      render: (value, row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Description fontSize="small" color="action" />
-          <Typography fontWeight={500}>{value || 'Unnamed file'}</Typography>
-        </Box>
-      ),
+      render: (value, row) => {
+        const display = value || row.label || (row.url ? 'External link' : 'Unnamed file');
+        return (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Description fontSize="small" color="action" />
+            {row.url && !row.file ? (
+              <Typography
+                component="a"
+                href={row.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                fontWeight={500}
+                sx={{ color: 'primary.main', textDecoration: 'underline', cursor: 'pointer' }}
+                title={row.url}
+              >
+                {display}
+              </Typography>
+            ) : (
+              <Typography fontWeight={500}>{display}</Typography>
+            )}
+          </Box>
+        );
+      },
     },
     {
       key: 'comments',
@@ -332,6 +350,19 @@ export default function BatchDetailPage({ params }: PageProps) {
                 </IconButton>
               </Tooltip>
             </>
+          )}
+          {!value && row.url && (
+            <Tooltip title="Open link in new tab">
+              <IconButton
+                size="small"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(row.url!, '_blank', 'noopener,noreferrer');
+                }}
+              >
+                <OpenInNew fontSize="small" />
+              </IconButton>
+            </Tooltip>
           )}
           <Tooltip title="Delete">
             <IconButton
