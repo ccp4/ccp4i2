@@ -14,7 +14,7 @@ import re
 
 import reversion
 from django.db import transaction
-from django.db.models import Count, Max
+from django.db.models import Count, Max, ProtectedError
 from django.db.models.functions import Coalesce, Greatest
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets, filters, status
@@ -149,6 +149,28 @@ class ReversionMixin:
                 reversion.set_user(self.request.user)
             reversion.set_comment(f"Deleted {model_name}: {identifier}")
             instance.delete()
+
+    def destroy(self, request, *args, **kwargs):
+        """Surface ProtectedError as a 400 with a useful message, instead
+        of the default 500 that DRF emits for unhandled DB exceptions."""
+        try:
+            return super().destroy(request, *args, **kwargs)
+        except ProtectedError as exc:
+            # exc.protected_objects is a set of related records. Summarise
+            # by model so the client can show "Cannot delete: 3 notebook
+            # entries reference this supplier".
+            counts = {}
+            for obj in exc.protected_objects:
+                label = obj._meta.verbose_name_plural
+                counts[label] = counts.get(label, 0) + 1
+            detail_parts = [f"{n} {name}" for name, n in sorted(counts.items())]
+            detail = (
+                f"Cannot delete: {', '.join(detail_parts)} still reference this record."
+            )
+            return Response(
+                {'error': 'protected', 'detail': detail, 'related_counts': counts},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
 
     @action(detail=True, methods=['get'])
     def history(self, request, pk=None):
@@ -1229,7 +1251,7 @@ class LabNotebookEntryViewSet(ReversionMixin, viewsets.ModelViewSet):
     serializer_class = LabNotebookEntrySerializer
     permission_classes = [IsContributorOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
-    filterset_fields = ['supplier']
+    filterset_fields = ['supplier', 'sequence_number']
     search_fields = ['title', 'supplier__initials']
     ordering_fields = ['sequence_number', 'created_at', 'date']
     ordering = ['supplier', 'sequence_number']

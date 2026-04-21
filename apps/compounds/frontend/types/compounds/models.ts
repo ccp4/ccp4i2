@@ -64,6 +64,7 @@ export interface Supplier {
   is_current_user?: boolean;
   compound_count?: number;
   batch_count?: number;
+  notebook_entry_count?: number;
 }
 
 /** Concentration display mode for KPI values */

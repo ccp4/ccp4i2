@@ -75,6 +75,9 @@ class SupplierSerializer(serializers.ModelSerializer):
     is_current_user = serializers.SerializerMethodField()
     compound_count = serializers.IntegerField(source='compounds.count', read_only=True)
     batch_count = serializers.SerializerMethodField()
+    notebook_entry_count = serializers.IntegerField(
+        source='notebook_entries.count', read_only=True
+    )
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
     modified_by_email = serializers.CharField(source='modified_by.email', read_only=True)
 
@@ -82,13 +85,13 @@ class SupplierSerializer(serializers.ModelSerializer):
         model = Supplier
         fields = [
             'id', 'name', 'initials', 'user', 'is_current_user',
-            'compound_count', 'batch_count',
+            'compound_count', 'batch_count', 'notebook_entry_count',
             'created_by', 'created_by_email',
             'modified_by', 'modified_by_email',
             'created_at', 'modified_at',
         ]
         read_only_fields = [
-            'is_current_user', 'compound_count', 'batch_count',
+            'is_current_user', 'compound_count', 'batch_count', 'notebook_entry_count',
             'created_at', 'modified_at',
         ]
 

@@ -97,7 +97,12 @@ export default function SupplierDetailPage() {
       mutate('/api/proxy/compounds/suppliers/');
       router.push(routes.registry.suppliers());
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to delete supplier');
+      // Server now returns a structured {error, detail, related_counts} body
+      // for protected deletes; pull out the detail string if present,
+      // otherwise fall back to the raw error message.
+      const raw = err instanceof Error ? err.message : 'Failed to delete supplier';
+      const match = raw.match(/"detail":"([^"]+)"/);
+      setError(match ? match[1] : raw);
       setDeleteDialogOpen(false);
     } finally {
       setDeleting(false);
@@ -135,7 +140,10 @@ export default function SupplierDetailPage() {
   const hasChanges = (name !== null && name !== supplier.name) ||
                      (initials !== null && initials !== (supplier.initials || ''));
 
-  const totalAssociations = (supplier.compound_count || 0) + (supplier.batch_count || 0);
+  const totalAssociations =
+    (supplier.compound_count || 0) +
+    (supplier.batch_count || 0) +
+    (supplier.notebook_entry_count || 0);
 
   return (
     <Container maxWidth="md" sx={{ py: 4 }}>
@@ -177,6 +185,8 @@ export default function SupplierDetailPage() {
             </Typography>
             <Typography color="text.secondary" variant="body2">
               {supplier.compound_count || 0} compounds, {supplier.batch_count || 0} batches
+              {(supplier.notebook_entry_count || 0) > 0 &&
+                `, ${supplier.notebook_entry_count} notebook ${supplier.notebook_entry_count === 1 ? 'entry' : 'entries'}`}
             </Typography>
           </Box>
         </Box>
@@ -247,7 +257,10 @@ export default function SupplierDetailPage() {
           </DialogContentText>
 
           {totalAssociations > 0 && (
-            <Alert severity="warning" sx={{ mt: 2 }}>
+            <Alert
+              severity={(supplier.notebook_entry_count || 0) > 0 ? 'error' : 'warning'}
+              sx={{ mt: 2 }}
+            >
               This supplier is associated with:
               <ul style={{ margin: '8px 0 0 0', paddingLeft: 20 }}>
                 {(supplier.compound_count || 0) > 0 && (
@@ -256,9 +269,23 @@ export default function SupplierDetailPage() {
                 {(supplier.batch_count || 0) > 0 && (
                   <li>{supplier.batch_count} batch(es)</li>
                 )}
+                {(supplier.notebook_entry_count || 0) > 0 && (
+                  <li>
+                    {supplier.notebook_entry_count} notebook{' '}
+                    {supplier.notebook_entry_count === 1 ? 'entry' : 'entries'}
+                  </li>
+                )}
               </ul>
               <Typography variant="body2" sx={{ mt: 1 }}>
-                These will have their supplier field cleared (set to empty), but the compounds and batches themselves will <strong>not</strong> be deleted.
+                Compounds and batches will have their supplier field cleared.
+                {(supplier.notebook_entry_count || 0) > 0 && (
+                  <>
+                    {' '}
+                    <strong>
+                      Notebook entries block deletion — remove or re-assign them first.
+                    </strong>
+                  </>
+                )}
               </Typography>
             </Alert>
           )}
