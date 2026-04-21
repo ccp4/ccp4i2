@@ -16,6 +16,7 @@ Model mapping from legacy:
 import uuid
 from pathlib import Path
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import Max
@@ -255,11 +256,16 @@ class Target(models.Model):
 
 
 def _next_reg_number():
-    """Generate next compound registration number."""
-    max_dict = Compound.objects.aggregate(Max('reg_number'))
-    highest = max_dict['reg_number__max']
-    # Start at 26000 if no compounds exist (preserving legacy numbering)
-    return (highest or 25999) + 1
+    """Generate next compound registration number.
+
+    Uses settings.COMPOUND_ID_START (default 1) as the first number when the
+    database has no compounds yet. Existing deployments that want to preserve
+    legacy numbering can set COMPOUND_ID_START=26000 via environment variable.
+    """
+    highest = Compound.objects.aggregate(Max('reg_number'))['reg_number__max']
+    if highest is None:
+        return getattr(settings, 'COMPOUND_ID_START', 1)
+    return highest + 1
 
 
 def _compound_svg_path(instance, filename):

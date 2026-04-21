@@ -84,6 +84,12 @@ else:
 PLATFORM_ADMIN_EMAILS = os.environ.get("PLATFORM_ADMIN_EMAILS", "").split(",")
 PLATFORM_ADMIN_EMAILS = [e.strip().lower() for e in PLATFORM_ADMIN_EMAILS if e.strip()]
 
+# Compound ID formatting configuration (per-instance)
+COMPOUND_ID_PREFIX = os.environ.get("COMPOUND_ID_PREFIX", "NCL")
+COMPOUND_ID_DIGITS = int(os.environ.get("COMPOUND_ID_DIGITS", "8"))
+COMPOUND_ID_START = int(os.environ.get("COMPOUND_ID_START", "1"))
+print(f"Compound ID format: {COMPOUND_ID_PREFIX}-{'0' * COMPOUND_ID_DIGITS} (fresh DB starts at {COMPOUND_ID_START})")
+
 print("Azure Extensions app enabled")
 print("Compounds app enabled (registry, assays, constructs)")
 if PLATFORM_ADMIN_EMAILS:

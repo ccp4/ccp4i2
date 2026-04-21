@@ -69,6 +69,9 @@ param compoundIdPrefix string = 'NCL'
 @description('Number of digits to zero-pad the compound registration number to.')
 param compoundIdDigits int = 8
 
+@description('First registration number assigned when the compounds database is empty. Defaults to 1; set to 26000 only to preserve legacy NCL numbering on the main instance.')
+param compoundIdStart int = 1
+
 // - PostgreSQL is accessed via private endpoint (no public access)
 // - Key Vault is accessed via private endpoint (no public access)
 // - Storage Account is accessed via private endpoint (no public access)
@@ -356,6 +359,10 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
               name: 'COMPOUND_ID_DIGITS'
               value: string(compoundIdDigits)
             }
+            {
+              name: 'COMPOUND_ID_START'
+              value: string(compoundIdStart)
+            }
           ]
           volumeMounts: concat(ccp4VolumeMount, [
             {
@@ -560,6 +567,19 @@ resource workerApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'AZURE_CLIENT_ID'
               value: containerAppsIdentityClientId
+            }
+            // Compound ID formatting - worker performs bulk imports and generates formatted_id / SVG paths
+            {
+              name: 'COMPOUND_ID_PREFIX'
+              value: compoundIdPrefix
+            }
+            {
+              name: 'COMPOUND_ID_DIGITS'
+              value: string(compoundIdDigits)
+            }
+            {
+              name: 'COMPOUND_ID_START'
+              value: string(compoundIdStart)
             }
           ]
           volumeMounts: concat(ccp4VolumeMount, [

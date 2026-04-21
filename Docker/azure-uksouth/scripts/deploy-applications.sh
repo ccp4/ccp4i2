@@ -237,6 +237,7 @@ az deployment group create \
                allowedAzureAdGroups="${ALLOWED_AZURE_AD_GROUPS:-}" \
                compoundIdPrefix="${COMPOUND_ID_PREFIX:-NCL}" \
                compoundIdDigits="${COMPOUND_ID_DIGITS:-8}" \
+               compoundIdStart="${COMPOUND_ID_START:-1}" \
                skipCcp4Storage=$SKIP_CCP4_STORAGE \
                customDomain="${CUSTOM_DOMAIN:-}" \
   --name $APP_DEPLOYMENT_NAME \

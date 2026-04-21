@@ -72,6 +72,9 @@ PLATFORM_ADMIN_EMAILS = [e.strip().lower() for e in PLATFORM_ADMIN_EMAILS if e.s
 COMPOUND_ID_PREFIX = os.environ.get("COMPOUND_ID_PREFIX", "NCL")
 # Number of digits to pad the registration number to (default: 8)
 COMPOUND_ID_DIGITS = int(os.environ.get("COMPOUND_ID_DIGITS", "8"))
+# Starting registration number for a fresh database (default: 1). Existing
+# deployments that need to preserve legacy numbering can set this to 26000.
+COMPOUND_ID_START = int(os.environ.get("COMPOUND_ID_START", "1"))
 
 print(f"Compounds app enabled (registry, assays, constructs)")
 print(f"  Dev user email: {DEV_USER_EMAIL}")

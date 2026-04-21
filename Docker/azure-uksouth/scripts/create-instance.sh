@@ -264,6 +264,8 @@ PLATFORM_ADMIN_EMAILS=$PLATFORM_ADMIN_EMAILS
 # distinct prefix (e.g. NCLP for Kawamura). Defaults match the main instance.
 # COMPOUND_ID_PREFIX=NCL
 # COMPOUND_ID_DIGITS=8
+# First reg number on a fresh DB (default: 1; 26000 only preserves legacy NCL).
+# COMPOUND_ID_START=1
 EOF
 
 # ── 6. Deploy applications ──────────────────────────────────────────────
