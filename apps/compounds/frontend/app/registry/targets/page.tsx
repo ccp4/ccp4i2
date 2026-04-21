@@ -12,6 +12,8 @@ import {
   ToggleButtonGroup,
   ToggleButton,
   Tooltip,
+  IconButton,
+  Snackbar,
 } from '@mui/material';
 import {
   Science,
@@ -22,12 +24,14 @@ import {
   ViewModule,
   Biotech,
   FiberNew,
+  DeleteForever,
 } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
 import { PageHeader } from '@/components/compounds/PageHeader';
 import { DataTable, Column } from '@/components/data-table';
 import { TargetCardGrid } from '@/components/compounds/TargetCardGrid';
 import { TargetCreateDialog } from '@/components/compounds/TargetCreateDialog';
+import { TargetDeletionDialog } from '@/components/compounds/TargetDeletionDialog';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { routes } from '@/lib/compounds/routes';
 import { Target } from '@/types/compounds/models';
@@ -39,14 +43,31 @@ export default function TargetsPage() {
   const router = useRouter();
   const { mutate } = useSWRConfig();
   const api = useCompoundsApi();
-  const { canContribute } = useAuth();
+  const { canContribute, canAdminister } = useAuth();
   const { data: targets, isLoading } = api.get<Target[]>('targets/');
   const [createDialogOpen, setCreateDialogOpen] = useState(false);
   const [viewMode, setViewMode] = useState<ViewMode>('table');
+  const [deleteTarget, setDeleteTarget] = useState<Target | null>(null);
+  const [snackbarMessage, setSnackbarMessage] = useState<string | null>(null);
 
   const handleTargetCreated = () => {
     // Invalidate the targets cache to refresh the list
     mutate('/api/proxy/compounds/targets/');
+  };
+
+  const handleDeletionComplete = (summary: string) => {
+    setSnackbarMessage(summary);
+    mutate('/api/proxy/compounds/targets/');
+    // Compound/template listings may include target names that are now stale.
+    mutate(
+      (key) =>
+        typeof key === 'string' &&
+        (key.includes('/compounds/') ||
+          key.includes('/compound-templates/') ||
+          key.includes('/hypotheses/')),
+      undefined,
+      { revalidate: true }
+    );
   };
 
   const handleViewModeChange = (_: React.MouseEvent<HTMLElement>, newMode: ViewMode | null) => {
@@ -126,6 +147,31 @@ export default function TargetsPage() {
       hiddenOnMobile: true,
       render: (value) =>
         value ? new Date(value).toLocaleDateString() : '-',
+    },
+    {
+      key: 'actions',
+      label: '',
+      width: 56,
+      render: (_value, row) => (
+        <Tooltip
+          title={canAdminister ? 'Delete target' : 'Admin operating level required'}
+          arrow
+        >
+          <span>
+            <IconButton
+              size="small"
+              color="error"
+              disabled={!canAdminister}
+              onClick={(e) => {
+                e.stopPropagation();
+                setDeleteTarget(row);
+              }}
+            >
+              <DeleteForever fontSize="small" />
+            </IconButton>
+          </span>
+        </Tooltip>
+      ),
     },
   ];
 
@@ -232,6 +278,20 @@ export default function TargetsPage() {
         open={createDialogOpen}
         onClose={() => setCreateDialogOpen(false)}
         onCreated={handleTargetCreated}
+      />
+
+      <TargetDeletionDialog
+        open={deleteTarget !== null}
+        target={deleteTarget}
+        onClose={() => setDeleteTarget(null)}
+        onDeleted={handleDeletionComplete}
+      />
+
+      <Snackbar
+        open={snackbarMessage !== null}
+        autoHideDuration={4000}
+        onClose={() => setSnackbarMessage(null)}
+        message={snackbarMessage ?? ''}
       />
     </Box>
   );

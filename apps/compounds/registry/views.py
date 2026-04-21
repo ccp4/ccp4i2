@@ -13,6 +13,7 @@ import logging
 import re
 
 import reversion
+from django.db import transaction
 from django.db.models import Count, Max
 from django.db.models.functions import Coalesce, Greatest
 from django_filters.rest_framework import DjangoFilterBackend
@@ -23,7 +24,13 @@ from rest_framework.response import Response
 from reversion.models import Version
 
 from compounds.formatting import format_compound_id, get_compound_pattern
-from users.permissions import IsContributorOrReadOnly, IsContributorCreateAdminUpdate, can_administer
+from users.permissions import (
+    IsContributorOrReadOnly,
+    IsContributorCreateAdminUpdate,
+    IsPlatformAdmin,
+    can_administer,
+    is_platform_admin,
+)
 from .filters import CompoundSearchFilter
 from .models import (
     Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate,
@@ -535,6 +542,226 @@ class TargetViewSet(ReversionMixin, viewsets.ModelViewSet):
             'success': True,
             'saved_view': target.saved_aggregation_view
         })
+
+    # ------------------------------------------------------------------
+    # Admin-only target deletion (see docs/TARGET_DELETION_PROPOSAL.md)
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def _target_descendant_ids(target):
+        """Return the set of target ids that descend from `target` via parent FK."""
+        descendants = set()
+        frontier = [target.id]
+        while frontier:
+            child_ids = list(
+                Target.objects.filter(parent_id__in=frontier).values_list('id', flat=True)
+            )
+            new_ids = [cid for cid in child_ids if cid not in descendants]
+            descendants.update(new_ids)
+            frontier = new_ids
+        return descendants
+
+    @action(detail=True, methods=['get'], url_path='deletion_preview',
+            permission_classes=[IsPlatformAdmin])
+    def deletion_preview(self, request, pk=None):
+        """
+        Return counts and sample data for the target deletion modal.
+
+        Covers both reassign-mode (direct FKs) and cascade-mode (second-order
+        impact: batches, QC files, compound documents, orphaned data series).
+        """
+        from compounds.assays.models import DataSeries
+
+        target = self.get_object()
+
+        compound_qs = target.compounds.all()
+        compound_ids = list(compound_qs.values_list('id', flat=True))
+
+        batch_count = Batch.objects.filter(compound_id__in=compound_ids).count()
+        batch_qc_file_count = BatchQCFile.objects.filter(
+            batch__compound_id__in=compound_ids
+        ).count()
+        compound_document_count = CompoundDocument.objects.filter(
+            compound_id__in=compound_ids
+        ).count()
+        # DataSeries.compound is SET_NULL; count how many would be orphaned.
+        assay_data_series_count = DataSeries.objects.filter(
+            compound_id__in=compound_ids
+        ).count()
+
+        sample_compounds = list(
+            compound_qs.order_by('reg_number').values_list('reg_number', flat=True)[:5]
+        )
+        sample_formatted = [format_compound_id(n) for n in sample_compounds]
+
+        reassignable = (
+            Target.objects.exclude(id=target.id)
+            .order_by('name')
+            .values('id', 'name')
+        )
+
+        return Response({
+            'target': {'id': str(target.id), 'name': target.name},
+            'compound_count': compound_qs.count(),
+            'template_count': target.templates.count(),
+            'hypothesis_count': target.hypotheses.count(),
+            'assay_count': target.assays.count(),
+            'protocol_count': target.protocols.count(),
+            'child_target_count': target.children.count(),
+            'cascade_impact': {
+                'batches': batch_count,
+                'batch_qc_files': batch_qc_file_count,
+                'compound_documents': compound_document_count,
+                'assay_data_series': assay_data_series_count,
+            },
+            'reassignable_targets': [
+                {'id': str(t['id']), 'name': t['name']} for t in reassignable
+            ],
+            'affected_sample': {
+                'compounds': sample_formatted,
+            },
+        })
+
+    @action(detail=True, methods=['post'], url_path='delete_with_reassign',
+            permission_classes=[IsPlatformAdmin])
+    def delete_with_reassign(self, request, pk=None):
+        """
+        Reassign all compounds in this target to another target, then delete.
+
+        Body: {"replacement_target_id": "<uuid>"}
+        """
+        replacement_id = request.data.get('replacement_target_id')
+        if not replacement_id:
+            return Response(
+                {'error': 'replacement_target_id is required'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        target = self.get_object()
+
+        if str(replacement_id) == str(target.id):
+            return Response(
+                {'error': 'Replacement target cannot be the same as the target being deleted'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        try:
+            with transaction.atomic():
+                locked_target = Target.objects.select_for_update().get(pk=target.pk)
+                try:
+                    replacement = Target.objects.select_for_update().get(pk=replacement_id)
+                except Target.DoesNotExist:
+                    return Response(
+                        {'error': 'Replacement target not found'},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
+                if replacement.id in self._target_descendant_ids(locked_target):
+                    return Response(
+                        {'error': 'Replacement target cannot be a descendant of the target being deleted'},
+                        status=status.HTTP_400_BAD_REQUEST,
+                    )
+
+                target_name = locked_target.name
+
+                with reversion.create_revision():
+                    compounds_reassigned = Compound.objects.filter(
+                        target=locked_target
+                    ).update(target=replacement)
+                    locked_target.delete()
+                    if request.user.is_authenticated:
+                        reversion.set_user(request.user)
+                    reversion.set_comment(
+                        f"Reassigned {compounds_reassigned} compounds from "
+                        f"'{target_name}' to '{replacement.name}' and deleted '{target_name}'"
+                    )
+
+                return Response({
+                    'compounds_reassigned': compounds_reassigned,
+                    'target_deleted': True,
+                    'replacement_target': {
+                        'id': str(replacement.id),
+                        'name': replacement.name,
+                    },
+                })
+        except Target.DoesNotExist:
+            return Response(
+                {'error': 'Target not found'},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+    @action(detail=True, methods=['post'], url_path='delete_with_cascade',
+            permission_classes=[IsPlatformAdmin])
+    def delete_with_cascade(self, request, pk=None):
+        """
+        Delete this target and every compound (and cascaded data) under it.
+
+        Body: {"confirmed_compound_count": N}
+        """
+        confirmed = request.data.get('confirmed_compound_count')
+        if confirmed is None or not isinstance(confirmed, int):
+            return Response(
+                {'error': 'confirmed_compound_count must be an integer'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        target = self.get_object()
+
+        try:
+            with transaction.atomic():
+                locked_target = Target.objects.select_for_update().get(pk=target.pk)
+                compound_qs = Compound.objects.filter(target=locked_target)
+                current_count = compound_qs.count()
+
+                if current_count != confirmed:
+                    return Response(
+                        {
+                            'error': 'compound count changed - reload the preview',
+                            'current_count': current_count,
+                            'confirmed_count': confirmed,
+                        },
+                        status=status.HTTP_409_CONFLICT,
+                    )
+
+                target_name = locked_target.name
+                compound_ids = list(compound_qs.values_list('id', flat=True))
+
+                batch_count = Batch.objects.filter(compound_id__in=compound_ids).count()
+                qc_file_count = BatchQCFile.objects.filter(
+                    batch__compound_id__in=compound_ids
+                ).count()
+                compound_document_count = CompoundDocument.objects.filter(
+                    compound_id__in=compound_ids
+                ).count()
+                files_removed = qc_file_count + compound_document_count
+
+                with reversion.create_revision():
+                    # Delete compounds one-by-one so Django emits post_delete
+                    # signals (QC / document files are cleaned up by those handlers).
+                    compounds_deleted = 0
+                    for compound in compound_qs.iterator():
+                        compound.delete()
+                        compounds_deleted += 1
+                    locked_target.delete()
+                    if request.user.is_authenticated:
+                        reversion.set_user(request.user)
+                    reversion.set_comment(
+                        f"Cascade-deleted target '{target_name}' with "
+                        f"{compounds_deleted} compounds, {batch_count} batches, "
+                        f"{files_removed} files"
+                    )
+
+                return Response({
+                    'compounds_deleted': compounds_deleted,
+                    'batches_deleted': batch_count,
+                    'files_removed': files_removed,
+                    'target_deleted': True,
+                })
+        except Target.DoesNotExist:
+            return Response(
+                {'error': 'Target not found'},
+                status=status.HTTP_404_NOT_FOUND,
+            )
 
 
 class CompoundViewSet(ReversionMixin, viewsets.ModelViewSet):
