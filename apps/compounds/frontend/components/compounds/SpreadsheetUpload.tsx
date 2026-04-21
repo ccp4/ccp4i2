@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
+import { useState, useCallback, useMemo, useRef } from 'react';
 import ExcelJS from 'exceljs';
 import {
   Box,
@@ -116,6 +116,7 @@ export function SpreadsheetUpload({
   const [columnMapping, setColumnMapping] = useState<Record<string, string>>({});
   const [sheets, setSheets] = useState<string[]>([]);
   const [selectedSheet, setSelectedSheet] = useState<string>('');
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const parseFile = useCallback(async (file: File, sheetName?: string) => {
     setLoading(true);
@@ -250,6 +251,8 @@ export function SpreadsheetUpload({
   const handleFileChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       const selectedFile = event.target.files?.[0];
+      // Reset so the same file can be picked again after an error.
+      event.target.value = '';
       if (!selectedFile) return;
 
       // Validate file type
@@ -335,8 +338,20 @@ export function SpreadsheetUpload({
       </Typography>
 
       {!data ? (
-        // File upload area
+        // File upload area. Using an explicit ref + onClick (rather than
+        // <Box component="label">) avoids a first-click-does-nothing symptom
+        // seen under Next.js hydration, where the implicit label↔input
+        // association isn't yet wired on the first render.
         <Box
+          role="button"
+          tabIndex={0}
+          onClick={() => inputRef.current?.click()}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              inputRef.current?.click();
+            }
+          }}
           sx={{
             border: '2px dashed',
             borderColor: error ? 'error.main' : 'divider',
@@ -347,9 +362,9 @@ export function SpreadsheetUpload({
             cursor: 'pointer',
             '&:hover': { borderColor: 'primary.main', bgcolor: 'grey.100' },
           }}
-          component="label"
         >
           <input
+            ref={inputRef}
             type="file"
             hidden
             accept=".xlsx,.xls,.csv"

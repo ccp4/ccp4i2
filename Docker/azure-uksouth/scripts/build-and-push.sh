@@ -185,23 +185,23 @@ fi
 
 echo -e "${GREEN}✅ Push completed${NC}"
 
-# Update .env.deployment with new tags
+# Update the selected env file with new tags (respects --env override)
 if [ "$BUILD_WEB" = true ]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/^IMAGE_TAG_WEB=.*/IMAGE_TAG_WEB=$TIMESTAMP/" "$BICEP_DIR/.env.deployment"
+        sed -i '' "s/^IMAGE_TAG_WEB=.*/IMAGE_TAG_WEB=$TIMESTAMP/" "$ENV_FILE"
     else
-        sed -i "s/^IMAGE_TAG_WEB=.*/IMAGE_TAG_WEB=$TIMESTAMP/" "$BICEP_DIR/.env.deployment"
+        sed -i "s/^IMAGE_TAG_WEB=.*/IMAGE_TAG_WEB=$TIMESTAMP/" "$ENV_FILE"
     fi
-    echo -e "${YELLOW}📝 Updated IMAGE_TAG_WEB: $TIMESTAMP${NC}"
+    echo -e "${YELLOW}📝 Updated IMAGE_TAG_WEB in $(basename $ENV_FILE): $TIMESTAMP${NC}"
 fi
 
 if [ "$BUILD_SERVER" = true ]; then
     if [[ "$OSTYPE" == "darwin"* ]]; then
-        sed -i '' "s/^IMAGE_TAG_SERVER=.*/IMAGE_TAG_SERVER=$TIMESTAMP/" "$BICEP_DIR/.env.deployment"
+        sed -i '' "s/^IMAGE_TAG_SERVER=.*/IMAGE_TAG_SERVER=$TIMESTAMP/" "$ENV_FILE"
     else
-        sed -i "s/^IMAGE_TAG_SERVER=.*/IMAGE_TAG_SERVER=$TIMESTAMP/" "$BICEP_DIR/.env.deployment"
+        sed -i "s/^IMAGE_TAG_SERVER=.*/IMAGE_TAG_SERVER=$TIMESTAMP/" "$ENV_FILE"
     fi
-    echo -e "${YELLOW}📝 Updated IMAGE_TAG_SERVER: $TIMESTAMP${NC}"
+    echo -e "${YELLOW}📝 Updated IMAGE_TAG_SERVER in $(basename $ENV_FILE): $TIMESTAMP${NC}"
 fi
 
 echo -e "${GREEN}✅ Images built and pushed successfully${NC}"

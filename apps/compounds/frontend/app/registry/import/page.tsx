@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback, useMemo } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, useCallback, useMemo, useEffect } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import {
   Container,
@@ -237,6 +237,7 @@ const STEPS = ['Upload File', 'Map Columns', 'Validate', 'Import'];
 
 export default function ImportCompoundsPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const api = useCompoundsApi();
 
   const [activeStep, setActiveStep] = useState(0);
@@ -264,6 +265,16 @@ export default function ImportCompoundsPage() {
 
   const targets = targetsData || [];
   const suppliers = suppliersData || [];
+
+  // If arrived with ?target=<id>, use it as the Default Target so rows that
+  // don't name a target inherit it (e.g. coming from a target-filtered list).
+  useEffect(() => {
+    const targetParam = searchParams?.get('target');
+    if (targetParam && targets.length && !defaultTarget) {
+      const match = targets.find((t) => t.id === targetParam);
+      if (match) setDefaultTarget(match.id);
+    }
+  }, [searchParams, targets, defaultTarget]);
 
   // Handle spreadsheet data loaded
   const handleDataLoaded = useCallback((data: SpreadsheetData) => {
@@ -335,9 +346,21 @@ export default function ImportCompoundsPage() {
           extractedData.supplier = defaultSupplier;
         }
 
-        // Validate target
+        // Validate that target (from row or default) resolves to a known Target.
+        // The import step silently drops unmapped values, so the server 400s
+        // with "target: This field is required"; surface it here instead.
         if (!extractedData.target) {
-          warnings.push('No target specified - will use default');
+          errors.push('No target specified — pick a Default Target above, or add a Target column');
+        } else {
+          const targetValue = String(extractedData.target);
+          const resolved = targets.find(
+            (t) => t.id === targetValue || t.name.toLowerCase() === targetValue.toLowerCase()
+          );
+          if (!resolved) {
+            errors.push(
+              `Target "${targetValue}" does not exist — create it first or pick a Default Target above`
+            );
+          }
         }
 
         // Basic SMILES validation (very simple check)
@@ -406,7 +429,7 @@ export default function ImportCompoundsPage() {
       // Async duplicate check against existing compounds
       checkForDuplicates(results);
     },
-    [defaultTarget, defaultSupplier]
+    [defaultTarget, defaultSupplier, targets]
   );
 
   // Check SMILES against existing compounds in the database
@@ -779,23 +802,14 @@ export default function ImportCompoundsPage() {
         </Stepper>
       </Paper>
 
-      {/* Step 0: Upload File */}
-      {activeStep === 0 && (
+      {/* Steps 0 + 1: single SpreadsheetUpload instance handles both upload
+          and column mapping. Mounting a different instance per step loses the
+          internal `data` state, making the user upload twice. */}
+      {(activeStep === 0 || activeStep === 1) && (
         <SpreadsheetUpload
-          title="Upload Compound Data"
+          title={activeStep === 0 ? 'Upload Compound Data' : 'Map Columns'}
           fieldMappings={COMPOUND_FIELD_MAPPINGS}
           onDataLoaded={handleDataLoaded}
-          onMappingComplete={handleMappingComplete}
-          showColumnMapping={true}
-          previewRows={5}
-        />
-      )}
-
-      {/* Step 1: Column Mapping (handled by SpreadsheetUpload) */}
-      {activeStep === 1 && spreadsheetData && (
-        <SpreadsheetUpload
-          title="Map Columns"
-          fieldMappings={COMPOUND_FIELD_MAPPINGS}
           onMappingComplete={handleMappingComplete}
           showColumnMapping={true}
           previewRows={10}

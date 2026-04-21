@@ -22,6 +22,7 @@ import {
   Add,
   FilterList,
   Apps,
+  Upload,
   Error as ErrorIcon,
 } from '@mui/icons-material';
 import { PageHeader } from '@/components/compounds/PageHeader';
@@ -217,6 +218,20 @@ function CompoundsPageContent() {
               >
                 All Apps
               </Button>
+
+              <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
+                <span>
+                  <Button
+                    component={Link}
+                    href={targetFilter ? `/registry/import?target=${targetFilter}` : '/registry/import'}
+                    variant="outlined"
+                    startIcon={<Upload />}
+                    disabled={!canContribute}
+                  >
+                    Bulk Import
+                  </Button>
+                </span>
+              </Tooltip>
 
               <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
                 <span>
