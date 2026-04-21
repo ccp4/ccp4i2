@@ -6,10 +6,15 @@ import { RDKitProvider } from "../providers/rdkit-provider";
 import { AuthProvider as CompoundsAuthProvider } from "../lib/compounds/auth-context";
 import { TeamsRoutePersistence } from "../components/teams-route-persistence";
 
-export const metadata = {
-  title: "CCP4i2",
-  description: "Software for Macromolecular X-Ray Crystallography",
-};
+// Per-instance title read at request time from INSTANCE_TITLE (server-only env
+// var — NEXT_PUBLIC_* would bake in at build). Lets a single Docker image serve
+// differently-branded deployments. Falls back to "CCP4i2".
+export async function generateMetadata() {
+  return {
+    title: process.env.INSTANCE_TITLE || "CCP4i2",
+    description: "Software for Macromolecular X-Ray Crystallography",
+  };
+}
 
 // Skip static prerendering of all pages. This works around a Next.js 15.5 bug
 // where prerendering fails with "Expected workUnitAsyncStorage to have a store"

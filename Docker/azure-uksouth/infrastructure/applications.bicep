@@ -72,6 +72,9 @@ param compoundIdDigits int = 8
 @description('First registration number assigned when the compounds database is empty. Defaults to 1; set to 26000 only to preserve legacy NCL numbering on the main instance.')
 param compoundIdStart int = 1
 
+@description('Per-instance browser tab title shown by the web frontend (e.g. "Kawamura CCP4i2"). Empty falls back to "CCP4i2".')
+param instanceTitle string = ''
+
 // - PostgreSQL is accessed via private endpoint (no public access)
 // - Key Vault is accessed via private endpoint (no public access)
 // - Storage Account is accessed via private endpoint (no public access)
@@ -708,6 +711,10 @@ resource webApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'REQUIRE_PROXY_AUTH'
               value: 'true'
+            }
+            {
+              name: 'INSTANCE_TITLE'
+              value: instanceTitle
             }
           ]
           volumeMounts: concat(ccp4VolumeMount, [

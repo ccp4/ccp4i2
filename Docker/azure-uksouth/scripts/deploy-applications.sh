@@ -240,6 +240,7 @@ az deployment group create \
                compoundIdStart="${COMPOUND_ID_START:-1}" \
                skipCcp4Storage=$SKIP_CCP4_STORAGE \
                customDomain="${CUSTOM_DOMAIN:-}" \
+               instanceTitle="${INSTANCE_TITLE:-}" \
   --name $APP_DEPLOYMENT_NAME \
   --mode Incremental
 
