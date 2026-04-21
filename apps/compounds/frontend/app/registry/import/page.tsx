@@ -1209,10 +1209,51 @@ export default function ImportCompoundsPage() {
                         <ErrorIcon color="error" fontSize="small" />
                       )}
                     </TableCell>
-                    <TableCell sx={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                      <Typography variant="caption" fontFamily="monospace">
-                        {result.data.smiles || '-'}
-                      </Typography>
+                    <TableCell sx={{ width: 220, maxWidth: 220 }}>
+                      {result.data.smiles ? (
+                        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', minWidth: 0 }}>
+                          <Box sx={{ flexShrink: 0 }}>
+                            <MoleculeChip smiles={result.data.smiles} size={56} />
+                          </Box>
+                          <Box sx={{ minWidth: 0 }}>
+                            {result.data.sequence_display && (
+                              <Typography
+                                variant="caption"
+                                fontFamily="monospace"
+                                fontWeight={600}
+                                title={result.data.sequence_display}
+                                sx={{
+                                  display: 'block',
+                                  whiteSpace: 'nowrap',
+                                  overflow: 'hidden',
+                                  textOverflow: 'ellipsis',
+                                }}
+                              >
+                                {result.data.sequence_display}
+                              </Typography>
+                            )}
+                            <Typography
+                              variant="caption"
+                              fontFamily="monospace"
+                              color={result.data.sequence_display ? 'text.secondary' : 'text.primary'}
+                              title={result.data.smiles}
+                              sx={{
+                                display: 'block',
+                                whiteSpace: 'nowrap',
+                                overflow: 'hidden',
+                                textOverflow: 'ellipsis',
+                              }}
+                            >
+                              {result.data.smiles}
+                            </Typography>
+                            <Typography variant="caption" color="text.secondary">
+                              SMILES · {result.data.smiles.length} chars
+                            </Typography>
+                          </Box>
+                        </Box>
+                      ) : (
+                        <Typography variant="caption">-</Typography>
+                      )}
                     </TableCell>
                     <TableCell>
                       {result.data.target || (
