@@ -941,10 +941,14 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
         # Idempotency: skip if an Assay for this (protocol, filename) already exists.
         # Pharmaron filenames encode vendor+assay+date, so filename is effectively
         # a natural key; re-running the same folder is a safe no-op.
+        # Query against Django's sanitized form (spaces -> underscores, etc.) since
+        # that's what lands in storage, not the original uploaded_file.name.
         if uploaded_file and not force:
+            from django.utils.text import get_valid_filename
+            sanitized_name = get_valid_filename(uploaded_file.name)
             existing = Assay.objects.filter(
                 protocol=protocol,
-                data_file__endswith=f"/{uploaded_file.name}",
+                data_file__endswith=f"/{sanitized_name}",
             ).first()
             if existing:
                 return Response({
