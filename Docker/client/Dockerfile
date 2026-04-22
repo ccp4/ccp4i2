@@ -79,6 +79,7 @@ COPY apps/compounds/frontend/lib/compounds/plate-extraction.ts ./renderer/lib/co
 COPY apps/compounds/frontend/lib/compounds/plateSeriesRanges.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/useAdaptiveTableHeight.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/useScrollDirection.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/protocol-colour.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 
 # Note: RDKit comes from @rdkit/rdkit npm package, JSME from client/assets/
