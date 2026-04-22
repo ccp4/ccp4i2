@@ -48,6 +48,23 @@ class TestParserDetection:
         assert parser is not None, f"No parser detected for {filepath.name}"
         assert isinstance(parser, Caco2PermeabilityParser)
 
+    @pytest.mark.parametrize('suffix', [
+        ' (1)',       # macOS duplicate
+        ' (2)',
+        ' copy',      # macOS "Duplicate" menu
+        ' copy 2',
+        '-v2',
+        '_final',
+    ])
+    def test_detect_tolerates_trailing_suffix(self, tmp_path, suffix):
+        """Filenames with macOS-style suffixes after the date should still match."""
+        filename = f'ADME-NCU-Caco-2 Permeability-20231219{suffix}.xlsx'
+        filepath = tmp_path / filename
+        filepath.touch()
+        parser = detect_parser(filepath)
+        assert parser is not None, f"No parser detected for {filename}"
+        assert isinstance(parser, Caco2PermeabilityParser)
+
 
 class TestLiverMicrosomeParser:
     """Tests for NCU Liver Microsome (LM) parser."""
