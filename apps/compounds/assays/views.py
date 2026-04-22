@@ -925,6 +925,7 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
             name=f"{parser.vendor} {parser.assay_type}",
             defaults={
                 'analysis_method': 'pharmaron_adme',
+                'import_type': 'pharmaron_adme',
                 'comments': f'Auto-created for {parser.vendor} {parser.assay_type} imports',
             }
         )
