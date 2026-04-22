@@ -76,6 +76,13 @@ UNIT_NORMALIZATION = {
     '10-6 cm/s': '1e-6 cm/s',
     '10-6cm/s': '1e-6 cm/s',
     'CM/S': 'cm/s',
+    # Dimensionless sentinel (explicit no-unit marker for ratios, etc.)
+    'Unitless': 'unitless',
+    'UNITLESS': 'unitless',
+    'unit-less': 'unitless',
+    'dimensionless': 'unitless',
+    'ratio': 'unitless',
+    '-': 'unitless',
 }
 
 
@@ -148,7 +155,34 @@ VALID_UNITS = {
     # Permeability units
     '1e-6 cm/s',    # Caco-2 Papp
     'cm/s',         # permeability
+    # Dimensionless sentinel: explicit "no unit applies" marker for ratios,
+    # fractions, Hill coefficients, efflux ratios, Fsp3, fold-shifts, etc.
+    # Distinct from a missing/unknown kpi_unit — which indicates that the
+    # unit was never captured and the row is not safely queryable.
+    'unitless',
 }
+
+# The explicit unit-less sentinel. Importers for dimensionless KPIs should
+# set `kpi_unit = UNITLESS` rather than None/"" so downstream code can
+# distinguish "deliberately dimensionless" from "unknown unit".
+UNITLESS = 'unitless'
+
+
+def is_unitless(unit) -> bool:
+    """
+    True if `unit` represents a genuinely-dimensionless KPI.
+
+    Accepts both the explicit UNITLESS sentinel (preferred) and None (kept
+    for backward compatibility with ADME parsers that historically wrote
+    None for efflux ratio and similar ratio KPIs). Empty string is treated
+    as *unknown*, not unitless, because that's the shape an un-set ToV
+    import used to leave behind.
+    """
+    if unit is None:
+        return True
+    if isinstance(unit, str) and unit.strip().lower() == UNITLESS:
+        return True
+    return False
 
 # Common invalid unit patterns with suggested corrections
 UNIT_SUGGESTIONS = {

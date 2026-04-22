@@ -85,10 +85,26 @@ export interface SavedAggregationView {
   include_identifiers?: boolean;
 }
 
+export type HydrationStatus = 'pending' | 'ok' | 'partial' | 'failed' | 'manual';
+
+export interface Gene {
+  id: string;
+  symbol: string;
+  hgnc_id: string;
+  name: string;
+  aliases: string[];
+  uniprot_ids: string[];
+  ensembl_gene_id: string;
+  hydration_status: HydrationStatus;
+  hydrated_at: string | null;
+  hydration_source: string;
+}
+
 export interface Target {
   id: string;
   name: string;
   parent: string | null;
+  genes?: Gene[];
   created_at: string;
   compound_count?: number;
   assay_count?: number;

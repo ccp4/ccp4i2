@@ -86,6 +86,13 @@ except ImportError:
 HGNC_REST_BASE = "https://rest.genenames.org"
 DEFAULT_TIMEOUT = 15
 
+# Frontend (Next.js) proxy prefix for compounds-app REST calls. The public
+# host exposes the web tier; authenticated requests to /api/proxy/compounds/<...>
+# are forwarded to the Django backend at /api/compounds/<...>. Hitting the
+# direct Django path through the public host returns the Next.js SPA shell
+# or redirects to /auth/login.
+COMPOUNDS_PROXY_PREFIX = "/api/proxy/compounds"
+
 
 # ---------------------------------------------------------------- #
 # env file parsing
@@ -209,6 +216,12 @@ def get_bearer_token(client_id: Optional[str]) -> str:
 
 
 def api_get(base_url: str, path: str, token: str) -> Any:
+    # NB: strip trailing slashes. The Next.js proxy appends one before
+    # forwarding to Django; if we send one too, Django responds 308 →
+    # redirect URL *without* trailing slash, and urllib silently drops
+    # the Authorization header on the redirect (security default), giving
+    # us an HTML login page on the second hop. See Docker/cli/i2remote.py.
+    path = path.rstrip("/")
     url = urljoin(base_url + "/", path.lstrip("/"))
     req = Request(
         url,
@@ -219,15 +232,20 @@ def api_get(base_url: str, path: str, token: str) -> Any:
     )
     try:
         with urlopen(req, timeout=DEFAULT_TIMEOUT) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+            return _decode_json(url, resp.status, resp.headers, resp.read())
     except HTTPError as exc:
-        body = exc.read().decode("utf-8", errors="replace")[:500]
-        raise SystemExit(f"GET {url} -> HTTP {exc.code}\n{body}")
+        body = exc.read().decode("utf-8", errors="replace")[:800]
+        raise SystemExit(
+            f"GET {url} -> HTTP {exc.code}\n"
+            f"Content-Type: {exc.headers.get('Content-Type')}\n"
+            f"Body (first 800 chars):\n{body}"
+        )
     except URLError as exc:
         raise SystemExit(f"GET {url} network error: {exc.reason}")
 
 
 def api_patch(base_url: str, path: str, token: str, body: dict) -> Any:
+    path = path.rstrip("/")  # see note in api_get
     url = urljoin(base_url + "/", path.lstrip("/"))
     data = json.dumps(body).encode("utf-8")
     req = Request(
@@ -242,12 +260,54 @@ def api_patch(base_url: str, path: str, token: str, body: dict) -> Any:
     )
     try:
         with urlopen(req, timeout=DEFAULT_TIMEOUT) as resp:
-            return json.loads(resp.read().decode("utf-8"))
+            return _decode_json(url, resp.status, resp.headers, resp.read())
     except HTTPError as exc:
-        body = exc.read().decode("utf-8", errors="replace")[:500]
-        raise SystemExit(f"PATCH {url} -> HTTP {exc.code}\n{body}")
+        body_text = exc.read().decode("utf-8", errors="replace")[:800]
+        raise SystemExit(
+            f"PATCH {url} -> HTTP {exc.code}\n"
+            f"Content-Type: {exc.headers.get('Content-Type')}\n"
+            f"Body (first 800 chars):\n{body_text}"
+        )
     except URLError as exc:
         raise SystemExit(f"PATCH {url} network error: {exc.reason}")
+
+
+def _decode_json(url, status, headers, raw_bytes):
+    """Decode a JSON response body, or raise with diagnostic context."""
+    body_text = raw_bytes.decode("utf-8", errors="replace")
+    content_type = headers.get("Content-Type", "")
+
+    # A 2xx with HTML means we hit an auth redirect / wrong gateway.
+    if "json" not in content_type.lower():
+        hint = ""
+        if "text/html" in content_type.lower():
+            hint = (
+                "\nHint: HTML response on a JSON endpoint usually means the "
+                "token was not accepted (wrong audience, expired, or the "
+                "instance's AAD guard rejected it). Quick diagnostics:\n"
+                "  curl -sS -D- -H \"Authorization: Bearer $CCP4I2_API_TOKEN\" "
+                f"-H \"Accept: application/json\" \"{url}\" | head -20\n"
+                "  # Decode your token's aud / groups claims:\n"
+                "  python3 -c 'import base64, json, os, sys; "
+                "t=os.environ[\"CCP4I2_API_TOKEN\"].split(\".\"); "
+                "p=t[1]+\"=\"*(-len(t[1])%4); "
+                "print(json.dumps(json.loads(base64.urlsafe_b64decode(p)), indent=2))'"
+            )
+        raise SystemExit(
+            f"GET/PATCH {url} -> HTTP {status}\n"
+            f"Content-Type: {content_type or '(unset)'}\n"
+            f"Body (first 800 chars):\n{body_text[:800]}{hint}"
+        )
+
+    try:
+        return json.loads(body_text)
+    except json.JSONDecodeError as exc:
+        raise SystemExit(
+            f"GET/PATCH {url} -> HTTP {status} returned non-JSON body\n"
+            f"Content-Type: {content_type}\n"
+            f"JSON error: {exc}\n"
+            f"Body (first 800 chars):\n{body_text[:800]}"
+        )
 
 
 def list_all(base_url: str, path: str, token: str) -> list[dict]:
@@ -347,7 +407,7 @@ def candidates_for_target(target_name: str, limit: int) -> list[dict]:
 
 
 def cmd_dump(args, base_url: str, token: str):
-    targets = list_all(base_url, "/api/compounds/targets/", token)
+    targets = list_all(base_url, f"{COMPOUNDS_PROXY_PREFIX}/targets", token)
 
     if not args.include_genned:
         targets = [t for t in targets if not t.get("genes")]
@@ -424,7 +484,7 @@ def cmd_apply(args, base_url: str, token: str):
         try:
             api_patch(
                 base_url,
-                f"/api/compounds/targets/{tid}/",
+                f"{COMPOUNDS_PROXY_PREFIX}/targets/{tid}",
                 token,
                 {"gene_symbols": action},
             )

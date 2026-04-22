@@ -30,7 +30,11 @@ class Caco2PermeabilityParser(NCUBaseParser):
     assay_code = "Caco-2"
     protocol_slug = "ncu-caco2"
     kpi_field = "efflux_ratio"  # Efflux Ratio
-    kpi_unit = None  # Efflux ratio is unitless
+    # Efflux ratio is a ratio (e.g. Papp_B-A / Papp_A-B), genuinely dimensionless.
+    # Use the explicit UNITLESS sentinel rather than None so downstream code
+    # distinguishes "deliberately unit-less" from "unknown unit". See
+    # compounds.assays.kpi_utils and NLP_QUERY_PROPOSAL.md §6.4.
+    kpi_unit = "unitless"
 
     # Permeability classification thresholds (10^-6 cm/s)
     PAPP_HIGH_THRESHOLD = 10.0

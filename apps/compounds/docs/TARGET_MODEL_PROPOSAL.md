@@ -1,6 +1,11 @@
 # Target Model — Gene Symbols, Aliases, and Cross-References
 
-**Status**: Draft for review. Design captured in dialogue during work on the NLP query proposal (§6.1 of `NLP_QUERY_PROPOSAL.md`); implementation not yet started.
+**Status**: **Shipped** (models + migration + HGNC client + `hydrate_genes` + TargetSerializer read/write of genes + local `backfill_target_genes.py` script). Deployed to DDU / Demo / Kawamura as of 2026-04-22. DDU Database is fully backfilled: 32 of 44 targets have gene_symbols linked and HGNC-hydrated; 1 deliberately deferred (GLK — needs glucokinase vs MAP4K3 disambiguation); 11 marked `skip` as non-gene programmes (chemistry-modality tags, libraries, catch-alls, non-human); 2 non-human (DnaA, MPro) ride along with `hydration_status='failed'` as designed.
+
+Demo and Kawamura have the code but haven't been backfilled yet — to be scheduled alongside NLP v1 rollout on those instances.
+
+UI follow-ups (tracked): add `gene_symbols` input to TargetCreateDialog; add Genes section + inline edit to TargetDetailPage.
+
 **Author**: Martin Noble (with Claude)
 **Date**: 2026-04-22
 **Companion to**: `NLP_QUERY_PROPOSAL.md` (primary downstream consumer of this work)
@@ -210,6 +215,20 @@ Existing `Target` rows will have `genes=[]` after the migration. Three options:
 
 No forced migration, no data loss, no user-visible regression.
 
+### 8.1 What actually happened (DDU Database, 2026-04-22)
+
+Neither (a) nor (b) was the path taken — backfill ran via **`scripts/backfill_target_genes.py`**, a local Python CLI that:
+
+- authenticates to the instance's REST API via the same Azure AD bearer token used by `i2remote login`,
+- `GET`s all un-genned targets,
+- produces a YAML "plan file" with HGNC candidate suggestions per target,
+- the operator edits the plan file in a normal editor (or asks an LLM to suggest edits — this is how the DDU plan was filled in),
+- a follow-up `--apply` run `PATCH`es each target with its chosen symbols.
+
+This avoided both the UI banner approach *(b)* and the heuristic auto-match *(c)* while keeping the operator fully in the loop. It's the method of choice for Demo and Kawamura when they're backfilled too.
+
+After `--apply`, the `hydrate_genes` management command runs inside the container to fill in aliases, names, and cross-refs from HGNC for every new `Gene` row. Non-human entries (DnaA, MPro) land with `hydration_status='failed'` and are tidied manually to `status='manual'` with a descriptive name.
+
 ## 9. Variants / mutants — deferred to v1.1
 
 EGFR (L858R, T790M, C797S) is the canonical case. Other examples: KRAS-G12C, BRAF-V600E, IDH1-R132H, each with drug discovery programmes distinct from the wild-type target.
@@ -265,15 +284,18 @@ Same Levenshtein-1-on-≥4-chars rule applies across the combined pool. Ambiguit
 | 7 | Variant/mutant modelling deferred to v1.1; free-text in `Target.name` for now | Avoid premature structure; no data loss when upgraded |
 | 8 | Live HGNC API in v1; local snapshot available as a management command for stricter deployments | Good default + escape hatch; no forced offline mode |
 | 9 | Backfill is opt-in (UI banner), not forced | No data migration required; maintainers fill in as they touch each target |
+| 10 | Backfill mechanism is a **local Python CLI** (`scripts/backfill_target_genes.py`), not a web UI or container-exec plan file | `az containerapp exec` is TTY-only so stdin/stdout round-trips don't work; a dedicated web UI is disproportionate for a one-off. A local script talking to the existing authenticated REST API re-uses auth and keeps the curator workflow in a plain text editor. |
+| 11 | Non-human genes (DnaA, MPro, etc.) ride along with `hydration_status='failed'`; can be tidied manually | Keeps the Gene model species-agnostic without committing to UniProt hydration in v1. Functional impact is none (symbol-based matching still works); cosmetic artefact only. |
 
 ## 12. Open questions
 
-1. **Non-human targets.** If Akane's / another group ever runs compounds against a mouse or zebrafish target, HGNC is the wrong source (MGI / ZFIN respectively). Do we add a `Gene.species` field now, or wait? Lean: add now, default "human"; cheap.
+1. ~~**Non-human targets.**~~ **Partially resolved (decision 11):** rides along with `hydration_status='failed'`; no `Gene.species` field in v1. Revisit if/when a mouse or zebrafish programme starts.
 2. **Gene isoforms.** AR has clinically important splice variants (AR-V7). Does an isoform-selective compound programme get its own target, or does isoform metadata attach to the Target? Probably isoform-as-variant (v1.1 work); flagging.
 3. **Relationship to `Target.parent`.** If we add variant structure later, does `parent` become reserved for variant-of relationships, or does it continue to hold arbitrary hierarchies (project > sub-project > …)? Worth a one-time audit of current parent usage before making assumptions.
 4. **Who curates `Gene.hydration_status = 'manual'`?** If an annotator overrides HGNC, should there be a UI audit trail? Probably yes, using the existing `modified_by` pattern — but explicit.
 5. **Rehydration cadence.** 90 days is a guess. HGNC symbols do change (ABCA12 was once ICR2A, etc.) but slowly. Is there a user-visible consequence to a stale alias? If not, longer cadence is fine.
-6. **Collision handling.** Two Target rows legitimately link to the same Gene (e.g. EGFR-WT programme and EGFR-T790M programme). NLP matching for "EGFR" would then return both, triggering the clarification picker. Expected, probably fine — flagging so it doesn't surprise.
+6. **Collision handling.** Two Target rows legitimately link to the same Gene (e.g. EGFR-WT programme and EGFR-T790M programme). NLP matching for "EGFR" would then return both, triggering the clarification picker. Expected, probably fine — flagging so it doesn't surprise. (2026-04-22: mEGFR and OtherEGFR both carry EGFR — this will trip the picker for "EGFR" queries.)
+7. **GLK.** Left unresolved in the DDU backfill (glucokinase `GCK` vs germinal-centre kinase-like `MAP4K3`). Needs a call before the target is queryable by gene alias rather than programme name.
 
 ## 13. Rollout / migration
 

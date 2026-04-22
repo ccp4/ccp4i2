@@ -99,21 +99,27 @@ The LLM produces this via Azure OpenAI **structured output / JSON schema mode** 
 
 The same resolution rule is applied independently to `registration_target_as_typed` and `assay_target_as_typed`.
 
-- **Data source**: `Target` model in `apps/compounds/registry/models.py`, plus `Gene` metadata when present (see `TARGET_MODEL_PROPOSAL.md`).
-- **Matching pool** (when the Target model proposal has landed):
+- **Data source**: `Target` model in `apps/compounds/registry/models.py`, plus `Gene` metadata (see `TARGET_MODEL_PROPOSAL.md` — shipped).
+- **Matching pool**:
   ```
   normalize(Target.name)
     ∪ {normalize(g.symbol) for g in Target.genes.all()}
     ∪ {normalize(a)         for g in Target.genes.all() for a in g.aliases}
     ∪ {normalize(g.name)    for g in Target.genes.all()}
   ```
-  For Targets that haven't yet had gene symbols annotated, the pool degrades gracefully to `{normalize(Target.name)}` only — NLP matching still works, just with fewer hits.
+  Targets with no gene symbols annotated (legacy rows, non-gene modality tags, genuinely ambiguous programmes left un-genned during backfill) fall back to `{normalize(Target.name)}` only — still matches on the programme name verbatim.
 - **Match rule**: normalize both sides (lowercase, strip non-alphanumerics, collapse whitespace) and compare against the pool. On miss, allow Levenshtein distance 1 **only if the normalized query is ≥4 characters** (prevents "AR" matching "AKT"/"AXL"/"ABL"/…).
 - **Where**: deterministic, backend-side. The LLM does not see the target list; it emits the string as typed.
 - **Ambiguity**: if >1 target matches, return `clarify` with the candidate names. When both target fields are populated and both are ambiguous, clarify one at a time (avoids a combinatorial UI).
 - **Miss**: return a structured error with the top 5 nearest matches as suggestions.
 
-**Dependency**: richer matching depends on `TARGET_MODEL_PROPOSAL.md` having landed, but the NLP feature can ship in a degraded form (name-only matching) before that — they are decoupled in rollout order.
+**Implications of hydrated aliases (post-ship affordances):**
+
+- User can type any of a target's gene symbols, its aliases, its prev-symbols, or its canonical HGNC name and hit the same target. *"SKP2"*, *"CKS1B"*, and *"Skp2-Cks1"* all resolve to the Skp2-Cks1 PPI programme.
+- Pan-family queries ("*Aurora kinase*", "*cyclin D*") resolve naturally via the multi-gene Target.genes links (Myc-Aur carries AURKA/AURKB; CDK4 carries CCND1/CCND2/CCND3).
+- **Ambiguity is expected to rise** — typing "MYC" now hits both Myc-Aur and Myc RNA. That's the clarification picker's happy path (§9, sequential); no new code needed. Worth calling out in eval so we don't treat it as a regression.
+
+**No longer a dependency, now a prerequisite that has landed.** The rollout order in §16 reflects this.
 
 ### 6.2 Protocol
 
@@ -131,12 +137,25 @@ The same resolution rule is applied independently to `registration_target_as_typ
 
 ### 6.4 Units
 
-**The canonical source is `AnalysisResult.results['kpi_unit']`** — a convention already established in the codebase. The field holds the unit string for whatever `results[KPI]` is, normalized to the form understood by `apps/compounds/assays/kpi_utils.py` (`nM`, `uM`, `mM`, `pM`, `M`, `min`, `s`, `h`, `%`, `uL/min/mg`, `mL/min/kg`, `1e-6 cm/s`, `cm/s`).
+**The canonical source is `AnalysisResult.results['kpi_unit']`** — a convention already established in the codebase. The field holds the unit string for whatever `results[KPI]` is, normalized to the form understood by `apps/compounds/assays/kpi_utils.py`:
+
+- **Concentrations**: `nM`, `uM`, `mM`, `pM`, `M`
+- **Time**: `min`, `s`, `h`
+- **Fraction**: `%`
+- **Clearance / permeability**: `uL/min/mg`, `mL/min/kg`, `1e-6 cm/s`, `cm/s`
+- **`unitless`** — the explicit "no unit applies" sentinel for dimensionless KPIs (efflux ratio, Hill coefficient, Fsp3, fold-shifts, any ratio or fraction). *Distinct from unknown/missing.*
+
+Three states matter when reading a row's `kpi_unit`:
+
+| State | `results['kpi_unit']` | Behaviour under a threshold query |
+|---|---|---|
+| Known real unit | `"nM"`, `"uM"`, `"%"`, etc. | Compare directly (unit-match) or convert (unit-compatible). Include in results. |
+| Deliberately unit-less | `"unitless"` (or, for backward compat, `None`) | Compare directly *only if the query supplied no unit*. Query with a real unit → mismatch → row excluded with "unit-type mismatch" footer note. |
+| Unknown / missing | Absent key, empty string | Exclude from threshold comparisons with a footer count (*"N rows excluded: no unit recorded"*). Strictly better than silently comparing numbers of unknown scale. |
 
 - **Data source**: `results['kpi_unit']`. Read directly at query time.
-- **Where it comes from**: populated at import time by the fitting/import pipeline; legacy rows can be backfilled with the existing `populate_kpi_units` management command, which walks `DataSeries.dilution_series.unit` → `Protocol.preferred_dilutions.unit` → parsing the KPI field-name suffix (e.g. *"IC50 (nM)"*) in that priority order.
+- **Where it comes from**: populated at import time by the fitting/import pipeline; legacy rows can be backfilled with the existing `populate_kpi_units` management command, which walks `DataSeries.dilution_series.unit` → `Protocol.preferred_dilutions.unit` → parsing the KPI field-name suffix (e.g. *"IC50 (nM)"*) in that priority order. Unit-less KPIs (Caco-2 efflux ratio etc.) are set explicitly by their importers to `"unitless"`; they never need backfill guessing.
 - **Conversion**: per-row — read each row's `kpi_unit`, convert the threshold into that unit once per distinct unit found in the result set, apply the comparison. Use `kpi_utils.normalize_unit()` for canonicalisation.
-- **Edge case**: rows where `results['kpi_unit']` is missing or empty are excluded from threshold comparisons with a footer count (*"N rows excluded: no unit recorded"*). This is strictly better than silently comparing numbers of unknown scale.
 - **Log-scale metrics (pIC50, etc.)**: handled at metric level, not unit level — if the metric is a `p*` value, the query uses the inverse relation (`pIC50 > 5` ≡ `IC50 < 10 µM`) with the conversion applied in code, not the LLM. The log flag is derivable from the metric name prefix.
 - **LLM behaviour unchanged**: LLM still emits `{"value": N, "unit": "..."}` verbatim as the user typed; all unit normalisation and per-row conversion happens server-side.
 
@@ -354,6 +373,8 @@ Requires adding `azure-identity` to `requirements.txt` (alongside the already-pl
 | 21 | v1 uses sequential clarification pickers when both target fields are ambiguous; combined-picker option is v1.1 polish | Sequential is simpler and avoids combinatorial UI; the edge case is rare enough that v1 user data will tell us whether a combined picker is worth building. |
 | 22 | v1 scope **drops** the `Protocol.import_type='raw_data'` restriction. Any AnalysisResult with numeric `results[KPI]`, `status='valid'`, and valid `results['kpi_unit']` is queryable. Rows failing the `kpi_unit` check are reported as excluded in a footer count. | Audit (see §17) shows raw_data is 100% addressable after `populate_kpi_units`, ToV is 75.5% addressable; excluding ToV entirely would throw away 10,060 genuinely-queryable rows to hide 3,262 "missing unit" ones. Footer is honest and informative. |
 | 23 | Import workflows for ToV and Pharmaron ADME will be tightened so new imports cannot create rows with missing `kpi_unit` | Prevents new stuck rows; complements the one-time `populate_kpi_units` run by making the import path correct-by-construction going forward. MS-Intact is skipped because its import does not produce a KPI. |
+| 24 | Resolver uses the Gene-hydrated matching pool from day one (symbol + aliases + prev_symbols + HGNC name, per-target). Name-only is the fallback for rows without genes. | `TARGET_MODEL_PROPOSAL.md` has shipped: Gene model, Target.genes M2M, HGNC hydration, TargetSerializer read/write of genes, and a backfill script. The DDU instance's targets are hydrated. NLP v1 uses this matching surface from first deploy rather than waiting for a v1.1. |
+| 25 | `kpi_unit` is tri-state: known real unit, `"unitless"` sentinel, or unknown (absent/empty). Threshold comparison treats each state differently: known → direct/convert; unitless → only matches unit-less queries; unknown → excluded with footer count. | Caco-2 efflux ratio, Hill coefficient, Fsp3 and other dimensionless KPIs are legitimate query targets. Conflating them with "import was sloppy" (the earlier decision) would silently drop all Caco-2 rows. The explicit sentinel distinguishes the two. |
 
 ## 14. Open questions
 
@@ -379,10 +400,15 @@ Requires adding `azure-identity` to `requirements.txt` (alongside the already-pl
 
 ## 16. Migration / rollout
 
-- Ship behind a feature flag / env var (`COMPOUNDS_NLP_ENABLED`) so it can be enabled per-instance independently of the code deploy.
+**Step 0 (already done):** the Target-model dependency and hydration pipeline are shipped. `Gene` model + `Target.genes` M2M + `hydrate_genes` command + serializer read/write of genes + `backfill_target_genes.py` are deployed to all three instances. DDU Database is fully backfilled (32 of 44 targets linked to gene_symbols; 1 deferred (GLK — needs disambiguation); 11 marked `skip` as non-gene programmes). Demo and Kawamura have the code but haven't yet been backfilled.
+
+**Remaining NLP-v1 rollout:**
+
+- Ship NLP v1 behind a feature flag / env var (`COMPOUNDS_NLP_ENABLED`) so it can be enabled per-instance independently of the code deploy.
 - Demo instance first, with eval golden set passing.
 - Kawamura instance second, with instance-specific targets/protocols exercised in the golden set.
-- No database migration needed for v1 (purely additive, read-only).
+- No database migration needed for NLP v1 (purely additive, read-only).
+- Before turning it on for Demo/Kawamura: run `backfill_target_genes.py --dump` on those instances and curate the plans, so the matching pool is as rich there as on DDU.
 
 ## 17. Appendix: audit evidence for Q9 decision
 

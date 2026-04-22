@@ -16,6 +16,8 @@ import {
   Alert,
   IconButton,
   CircularProgress,
+  Autocomplete,
+  Chip,
 } from '@mui/material';
 import { Close, Science, Add } from '@mui/icons-material';
 import { useCompoundsApi, apiPost } from '@/lib/compounds/api';
@@ -39,6 +41,7 @@ export function TargetCreateDialog({
   // Form state
   const [name, setName] = useState('');
   const [parentId, setParentId] = useState<string | null>(null);
+  const [geneSymbols, setGeneSymbols] = useState<string[]>([]);
 
   // Fetch existing targets for parent selection
   const { data: targets, isLoading: targetsLoading } = api.get<Target[]>('targets/');
@@ -48,6 +51,7 @@ export function TargetCreateDialog({
     if (open) {
       setName('');
       setParentId(null);
+      setGeneSymbols([]);
       setError(null);
     }
   }, [open]);
@@ -62,10 +66,26 @@ export function TargetCreateDialog({
     setError(null);
 
     try {
-      const newTarget = await apiPost<Target>('targets/', {
+      const payload: {
+        name: string;
+        parent: string | null;
+        gene_symbols?: string[];
+      } = {
         name: name.trim(),
         parent: parentId || null,
-      });
+      };
+
+      // Only include gene_symbols if the user typed at least one. Omitting
+      // leaves the Target without linked Genes (still valid — annotator
+      // may not know the mapping yet; the local backfill script covers that).
+      const cleaned = geneSymbols
+        .map((s) => s.trim().toUpperCase())
+        .filter((s) => s.length > 0);
+      if (cleaned.length > 0) {
+        payload.gene_symbols = cleaned;
+      }
+
+      const newTarget = await apiPost<Target>('targets/', payload);
 
       onCreated(newTarget);
       onClose();
@@ -128,6 +148,56 @@ export function TargetCreateDialog({
               )}
             </Select>
           </FormControl>
+
+          {/* Gene symbols — free-form, chip-style. Each symbol creates or */}
+          {/* links to a Gene row (HGNC-hydrated asynchronously). Unknown */}
+          {/* symbols are accepted (useful for non-human targets / pre-HGNC */}
+          {/* programmes); the hydrate_genes command later fills in aliases. */}
+          <Autocomplete
+            multiple
+            freeSolo
+            size="small"
+            options={[]}
+            value={geneSymbols}
+            onChange={(_event, newValue) => {
+              // newValue is a mix of strings (new entries) and whatever the
+              // dropdown provides (none here). Normalise: split on commas too,
+              // so a paste of "EGFR, ERBB2, MET" becomes three chips.
+              const expanded: string[] = [];
+              for (const item of newValue) {
+                if (typeof item !== 'string') continue;
+                for (const piece of item.split(/[\s,]+/)) {
+                  const trimmed = piece.trim().toUpperCase();
+                  if (trimmed && !expanded.includes(trimmed)) {
+                    expanded.push(trimmed);
+                  }
+                }
+              }
+              setGeneSymbols(expanded);
+            }}
+            renderTags={(value, getTagProps) =>
+              value.map((option, index) => {
+                const tagProps = getTagProps({ index });
+                return (
+                  <Chip
+                    variant="outlined"
+                    label={option}
+                    size="small"
+                    {...tagProps}
+                    key={option}
+                  />
+                );
+              })
+            }
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label="Gene Symbols (optional)"
+                placeholder="e.g. EGFR, ERBB2 — press Enter or comma after each"
+                helperText="HGNC-approved symbols. Case is normalised to uppercase. Aliases and names are filled in automatically after creation."
+              />
+            )}
+          />
         </Box>
       </DialogContent>
 

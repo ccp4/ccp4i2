@@ -32,6 +32,7 @@ import { ProjectCard } from '@/components/compounds/ProjectCard';
 import { AddAssayMenu } from '@/components/compounds/AddAssayMenu';
 import { AggregationTable } from '@/components/compounds/AggregationTable';
 import { AuthenticatedImage } from '@/components/compounds/AuthenticatedImage';
+import { TargetGenesSection } from '@/components/compounds/TargetGenesSection';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { routes } from '@/lib/compounds/routes';
@@ -308,6 +309,19 @@ export default function TargetDashboardPage({ params }: PageProps) {
             </Tooltip>
           </Box>
         </Box>
+
+        {/* Genes section — linked Gene rows with HGNC metadata; inline edit */}
+        {/* for Contributors+. Updates dashboard cache so carousels etc. see */}
+        {/* the new target state without a full re-fetch. */}
+        {target && (
+          <TargetGenesSection
+            target={target}
+            canEdit={canContribute}
+            onUpdated={(updated) =>
+              mutateDashboard({ ...target, ...updated } as TargetDashboard, false)
+            }
+          />
+        )}
       </Paper>
 
       {/* Recent Compounds Carousel */}

@@ -65,6 +65,7 @@ const VALID_UNITS = new Set([
   '%',                          // Percentage
   'uL/min/mg', 'mL/min/kg',     // Rate units
   '1e-6 cm/s', 'cm/s',          // Permeability
+  'unitless',                   // Explicit dimensionless sentinel (ratios, fractions, Hill coeffs, etc.)
 ]);
 
 // Common invalid patterns with suggestions
@@ -571,7 +572,11 @@ function ImportTableOfValuesContent() {
                       </MenuItem>
                       {Array.from(VALID_UNITS).map((u) => (
                         <MenuItem key={u} value={u}>
-                          {u}
+                          {u === 'unitless' ? (
+                            <em>unitless (ratio / fraction / Hill coefficient)</em>
+                          ) : (
+                            u
+                          )}
                         </MenuItem>
                       ))}
                     </Select>
