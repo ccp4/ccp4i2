@@ -13,6 +13,7 @@ from rest_framework import serializers
 from compounds.validators import validate_qc_file
 from .models import (
     Supplier, Target, Compound, Batch, BatchQCFile, CompoundTemplate,
+    Gene,
     MolecularProperties, MolecularPropertyThreshold,
     LabNotebookEntry, CompoundDocument
 )
@@ -237,6 +238,24 @@ class SavedAggregationViewSerializer(serializers.Serializer):
     )
 
 
+class GeneSerializer(serializers.ModelSerializer):
+    """Read-mostly serializer for Gene. Creation happens implicitly via
+    Target write — see TargetSerializer.gene_symbols."""
+
+    class Meta:
+        model = Gene
+        fields = [
+            'id', 'symbol', 'hgnc_id', 'name',
+            'aliases', 'uniprot_ids', 'ensembl_gene_id',
+            'hydration_status', 'hydrated_at', 'hydration_source',
+        ]
+        read_only_fields = [
+            'id', 'hgnc_id', 'name', 'aliases', 'uniprot_ids',
+            'ensembl_gene_id', 'hydration_status', 'hydrated_at',
+            'hydration_source',
+        ]
+
+
 class TargetSerializer(serializers.ModelSerializer):
     parent_name = serializers.CharField(source='parent.name', read_only=True)
     compound_count = serializers.IntegerField(source='compounds.count', read_only=True)
@@ -248,10 +267,29 @@ class TargetSerializer(serializers.ModelSerializer):
     created_by_email = serializers.CharField(source='created_by.email', read_only=True)
     modified_by_email = serializers.CharField(source='modified_by.email', read_only=True)
 
+    # Genes: nested read, list-of-symbols write. On write, symbols that don't
+    # yet have a Gene row are created with hydration_status='pending' so the
+    # hydrate_genes management command picks them up on its next run.
+    genes = GeneSerializer(many=True, read_only=True)
+    gene_symbols = serializers.ListField(
+        child=serializers.CharField(max_length=32, allow_blank=True),
+        write_only=True,
+        required=False,
+        help_text=(
+            "List of HGNC-approved gene symbols (e.g. ['EGFR', 'SKP2']). "
+            "Unknown symbols create new Gene rows with hydration_status='pending'; "
+            "the hydrate_genes command fills in aliases/cross-refs. "
+            "Blank/whitespace entries are silently dropped. "
+            "Omitting the field leaves the Target's genes unchanged; "
+            "passing [] clears them."
+        ),
+    )
+
     class Meta:
         model = Target
         fields = [
             'id', 'name', 'parent', 'parent_name',
+            'genes', 'gene_symbols',
             'created_by', 'created_by_email',
             'modified_by', 'modified_by_email',
             'created_at', 'modified_at',
@@ -276,6 +314,38 @@ class TargetSerializer(serializers.ModelSerializer):
         """Check if any assays were created in the last 7 days."""
         cutoff = timezone.now() - timedelta(days=7)
         return obj.assays.filter(created_at__gte=cutoff).exists()
+
+    # --- write hooks --------------------------------------------------- #
+
+    def create(self, validated_data):
+        gene_symbols = validated_data.pop('gene_symbols', None)
+        target = super().create(validated_data)
+        if gene_symbols is not None:
+            self._apply_gene_symbols(target, gene_symbols)
+        return target
+
+    def update(self, instance, validated_data):
+        gene_symbols = validated_data.pop('gene_symbols', None)
+        target = super().update(instance, validated_data)
+        if gene_symbols is not None:
+            self._apply_gene_symbols(target, gene_symbols)
+        return target
+
+    @staticmethod
+    def _apply_gene_symbols(target, symbols):
+        """Resolve symbols to Gene instances (creating pending rows as needed)
+        and replace target.genes with the resulting set."""
+        resolved = []
+        for raw in symbols:
+            if not raw or not raw.strip():
+                continue
+            normalized = raw.strip().upper()
+            gene, _created = Gene.objects.get_or_create(
+                symbol=normalized,
+                defaults={'hydration_status': 'pending'},
+            )
+            resolved.append(gene)
+        target.genes.set(resolved)
 
 
 class TargetDetailSerializer(TargetSerializer):

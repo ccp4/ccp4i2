@@ -187,6 +187,94 @@ def _target_image_path(instance, filename):
     return f'compounds/registry/targets/{instance.id}_{filename}'
 
 
+class Gene(models.Model):
+    """
+    HGNC-hydrated metadata for a single gene.
+
+    Canonical by symbol. HGNC is the source of truth for human gene
+    nomenclature; this table caches it so downstream matching (e.g. NLP
+    query target resolution) does not depend on runtime external calls.
+
+    See apps/compounds/docs/TARGET_MODEL_PROPOSAL.md for the rationale.
+    """
+
+    HYDRATION_STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('ok', 'OK'),
+        ('partial', 'Partial'),
+        ('failed', 'Failed'),
+        ('manual', 'Manual override'),
+    ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    symbol = models.CharField(
+        max_length=32,
+        unique=True,
+        help_text="HGNC-approved gene symbol, e.g. 'EGFR', 'SKP2'."
+    )
+    hgnc_id = models.CharField(
+        max_length=32,
+        blank=True,
+        db_index=True,
+        help_text="HGNC stable ID, e.g. 'HGNC:3236'."
+    )
+    name = models.CharField(
+        max_length=255,
+        blank=True,
+        help_text="Full gene name from HGNC, e.g. 'epidermal growth factor receptor'."
+    )
+    aliases = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="Union of HGNC alias_symbol and prev_symbol lists."
+    )
+    uniprot_ids = models.JSONField(
+        default=list,
+        blank=True,
+        help_text="UniProt accession(s); typically one primary + isoforms."
+    )
+    ensembl_gene_id = models.CharField(
+        max_length=32,
+        blank=True,
+        db_index=True,
+        help_text="Ensembl gene ID, e.g. 'ENSG00000146648'."
+    )
+
+    hydration_status = models.CharField(
+        max_length=16,
+        choices=HYDRATION_STATUS_CHOICES,
+        default='pending',
+        help_text="State of HGNC hydration for this gene."
+    )
+    hydrated_at = models.DateTimeField(
+        null=True,
+        blank=True,
+        help_text="Last successful hydration timestamp."
+    )
+    hydration_source = models.CharField(
+        max_length=32,
+        blank=True,
+        help_text="'hgnc-api', 'hgnc-snapshot', 'manual', etc."
+    )
+
+    created_at = models.DateTimeField(auto_now_add=True)
+    modified_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['symbol']
+        verbose_name = 'Gene'
+        verbose_name_plural = 'Genes'
+
+    def __str__(self):
+        return self.symbol
+
+    def save(self, *args, **kwargs):
+        # Normalise symbol to uppercase — HGNC convention.
+        if self.symbol:
+            self.symbol = self.symbol.strip().upper()
+        super().save(*args, **kwargs)
+
+
 class Target(models.Model):
     """
     Drug discovery target or campaign.
@@ -201,6 +289,13 @@ class Target(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    genes = models.ManyToManyField(
+        Gene,
+        related_name='targets',
+        blank=True,
+        help_text="Biological gene(s) underlying this target. "
+                  "Multi-gene for PPI / complex / pathway targets."
+    )
     parent = models.ForeignKey(
         'self',
         on_delete=models.SET_NULL,
