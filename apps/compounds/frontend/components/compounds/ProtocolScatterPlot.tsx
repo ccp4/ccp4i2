@@ -46,7 +46,12 @@ import {
 } from 'chart.js';
 import { Scatter } from 'react-chartjs-2';
 import { useRouter } from 'next/navigation';
-import { CompactRow, ProtocolInfo } from '@/types/compounds/aggregation';
+import { ListSubheader } from '@mui/material';
+import {
+  CompactRow,
+  ProtocolInfo,
+  MolecularPropertyName,
+} from '@/types/compounds/aggregation';
 
 // Register Chart.js components
 ChartJS.register(
@@ -120,15 +125,52 @@ function calculateRegression(
 interface ProtocolScatterPlotProps {
   /** Compact aggregation data rows */
   data: CompactRow[];
-  /** Available protocols with geomean values */
+  /** Available protocols with geomean values (empty if geomean not requested) */
   protocols: ProtocolInfo[];
+  /** Molecular properties present in the data (from meta.include_properties) */
+  includedProperties?: MolecularPropertyName[];
 }
 
+type AxisKind = 'protocol' | 'property';
+
 interface AxisConfig {
-  protocolId: string | null;
+  kind: AxisKind;
+  /** Protocol UUID when kind='protocol', MolecularPropertyName when kind='property' */
+  key: string | null;
   scale: 'linear' | 'logarithmic';
   min: string;
   max: string;
+}
+
+/** Display labels for molecular properties (matches PredicateBuilder) */
+const PROPERTY_LABELS: Record<MolecularPropertyName, { label: string; description: string }> = {
+  molecular_weight: { label: 'MW', description: 'Molecular Weight' },
+  heavy_atom_count: { label: 'HA', description: 'Heavy Atom Count' },
+  hbd: { label: 'HBD', description: 'Hydrogen Bond Donors' },
+  hba: { label: 'HBA', description: 'Hydrogen Bond Acceptors' },
+  clogp: { label: 'cLogP', description: 'Calculated LogP' },
+  tpsa: { label: 'TPSA', description: 'Topological Polar Surface Area' },
+  rotatable_bonds: { label: 'RotB', description: 'Rotatable Bonds' },
+  fraction_sp3: { label: 'Fsp3', description: 'Fraction sp3 Carbons' },
+};
+
+/** Encode an axis selection as a single string for the Select value */
+function encodeAxisValue(kind: AxisKind, key: string): string {
+  return `${kind}:${key}`;
+}
+
+function decodeAxisValue(value: string): { kind: AxisKind; key: string } | null {
+  const idx = value.indexOf(':');
+  if (idx < 0) return null;
+  const kind = value.slice(0, idx) as AxisKind;
+  const key = value.slice(idx + 1);
+  if (kind !== 'protocol' && kind !== 'property') return null;
+  return { kind, key };
+}
+
+/** Sensible default scale for a given axis kind */
+function defaultScale(kind: AxisKind): 'linear' | 'logarithmic' {
+  return kind === 'protocol' ? 'logarithmic' : 'linear';
 }
 
 /**
@@ -136,20 +178,47 @@ interface AxisConfig {
  * Each point represents a compound, with coordinates being the geomean values
  * for the selected X and Y protocols.
  */
-export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProps) {
+export function ProtocolScatterPlot({
+  data,
+  protocols,
+  includedProperties = [],
+}: ProtocolScatterPlotProps) {
   const router = useRouter();
   const chartRef = useRef<ChartJS<'scatter'>>(null);
 
+  // Build the ordered list of axis candidates: protocols first, then properties.
+  const axisOptions = useMemo(() => {
+    const options: Array<{ kind: AxisKind; key: string; label: string; description?: string }> = [];
+    for (const p of protocols) {
+      options.push({ kind: 'protocol', key: p.id, label: p.name });
+    }
+    for (const propName of includedProperties) {
+      const meta = PROPERTY_LABELS[propName];
+      options.push({
+        kind: 'property',
+        key: propName,
+        label: meta?.label ?? propName,
+        description: meta?.description,
+      });
+    }
+    return options;
+  }, [protocols, includedProperties]);
+
   const [open, setOpen] = useState(false);
+  // Pick the first two available axis candidates as defaults
+  const defaultX = axisOptions[0];
+  const defaultY = axisOptions[1] ?? axisOptions[0];
   const [xAxis, setXAxis] = useState<AxisConfig>({
-    protocolId: protocols.length > 0 ? protocols[0].id : null,
-    scale: 'logarithmic',
+    kind: defaultX?.kind ?? 'protocol',
+    key: defaultX?.key ?? null,
+    scale: defaultScale(defaultX?.kind ?? 'protocol'),
     min: '',
     max: '',
   });
   const [yAxis, setYAxis] = useState<AxisConfig>({
-    protocolId: protocols.length > 1 ? protocols[1].id : null,
-    scale: 'logarithmic',
+    kind: defaultY?.kind ?? 'protocol',
+    key: defaultY?.key ?? null,
+    scale: defaultScale(defaultY?.kind ?? 'protocol'),
     min: '',
     max: '',
   });
@@ -202,31 +271,75 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
 
   useEffect(() => {
     setHoveredPoint(null);
-  }, [xAxis.protocolId, yAxis.protocolId]);
+  }, [xAxis.key, yAxis.key]);
 
-  // Update axis selections when protocols change
+  // Seed axis selections once options become available (e.g. after data loads)
   useEffect(() => {
-    if (protocols.length > 0 && !xAxis.protocolId) {
-      setXAxis((prev) => ({ ...prev, protocolId: protocols[0].id }));
+    if (axisOptions.length === 0) return;
+    if (!xAxis.key) {
+      const seed = axisOptions[0];
+      setXAxis((prev) => ({
+        ...prev,
+        kind: seed.kind,
+        key: seed.key,
+        scale: defaultScale(seed.kind),
+      }));
     }
-    if (protocols.length > 1 && !yAxis.protocolId) {
-      setYAxis((prev) => ({ ...prev, protocolId: protocols[1].id }));
+    if (!yAxis.key) {
+      const seed = axisOptions[1] ?? axisOptions[0];
+      setYAxis((prev) => ({
+        ...prev,
+        kind: seed.kind,
+        key: seed.key,
+        scale: defaultScale(seed.kind),
+      }));
     }
-  }, [protocols, xAxis.protocolId, yAxis.protocolId]);
+  }, [axisOptions, xAxis.key, yAxis.key]);
 
-  // Get protocol names for labels
-  const xProtocolName = useMemo(
-    () => protocols.find((p) => p.id === xAxis.protocolId)?.name || 'Select Protocol',
-    [protocols, xAxis.protocolId]
+  // Axis display names (protocol name or property label)
+  const xAxisLabel = useMemo(() => {
+    const opt = axisOptions.find((o) => o.kind === xAxis.kind && o.key === xAxis.key);
+    return opt?.label || 'Select axis';
+  }, [axisOptions, xAxis.kind, xAxis.key]);
+  const yAxisLabel = useMemo(() => {
+    const opt = axisOptions.find((o) => o.kind === yAxis.kind && o.key === yAxis.key);
+    return opt?.label || 'Select axis';
+  }, [axisOptions, yAxis.kind, yAxis.key]);
+
+  const handleAxisChange = useCallback(
+    (setter: React.Dispatch<React.SetStateAction<AxisConfig>>, encoded: string) => {
+      const decoded = decodeAxisValue(encoded);
+      if (!decoded) return;
+      setter((prev) => ({
+        ...prev,
+        kind: decoded.kind,
+        key: decoded.key,
+        // When the axis kind changes, reset to the sensible default scale
+        // for that kind (log for protocols, linear for properties).
+        scale: prev.kind === decoded.kind ? prev.scale : defaultScale(decoded.kind),
+        // Also clear any manual min/max since they will be on a different scale
+        min: prev.kind === decoded.kind ? prev.min : '',
+        max: prev.kind === decoded.kind ? prev.max : '',
+      }));
+    },
+    []
   );
-  const yProtocolName = useMemo(
-    () => protocols.find((p) => p.id === yAxis.protocolId)?.name || 'Select Protocol',
-    [protocols, yAxis.protocolId]
-  );
+
+  /** Extract the numeric value for a row on a given axis, or null if missing. */
+  const getAxisValue = useCallback((row: CompactRow, axis: AxisConfig): number | null => {
+    if (!axis.key) return null;
+    if (axis.kind === 'protocol') {
+      const v = row.protocols[axis.key]?.geomean;
+      return v ?? null;
+    }
+    // property
+    const v = row.properties?.[axis.key as MolecularPropertyName];
+    return v ?? null;
+  }, []);
 
   // Build scatter plot data
   const chartData: ChartData<'scatter'> = useMemo(() => {
-    if (!xAxis.protocolId || !yAxis.protocolId) {
+    if (!xAxis.key || !yAxis.key) {
       return { datasets: [] };
     }
 
@@ -239,21 +352,27 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
       target_name?: string;
     }> = [];
 
-    for (const row of data) {
-      const xValue = row.protocols[xAxis.protocolId]?.geomean;
-      const yValue = row.protocols[yAxis.protocolId]?.geomean;
+    // Log scales require strictly positive values; linear axes accept any finite number
+    const xRequiresPositive = xAxis.scale === 'logarithmic';
+    const yRequiresPositive = yAxis.scale === 'logarithmic';
 
-      // Only include points that have both values
-      if (xValue != null && yValue != null && xValue > 0 && yValue > 0) {
-        points.push({
-          x: xValue,
-          y: yValue,
-          compound_id: row.compound_id,
-          formatted_id: row.formatted_id,
-          smiles: row.smiles ?? undefined,
-          target_name: row.target_name ?? undefined,
-        });
-      }
+    for (const row of data) {
+      const xValue = getAxisValue(row, xAxis);
+      const yValue = getAxisValue(row, yAxis);
+
+      if (xValue == null || yValue == null) continue;
+      if (!isFinite(xValue) || !isFinite(yValue)) continue;
+      if (xRequiresPositive && xValue <= 0) continue;
+      if (yRequiresPositive && yValue <= 0) continue;
+
+      points.push({
+        x: xValue,
+        y: yValue,
+        compound_id: row.compound_id,
+        formatted_id: row.formatted_id,
+        smiles: row.smiles ?? undefined,
+        target_name: row.target_name ?? undefined,
+      });
     }
 
     return {
@@ -272,7 +391,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
       // Store raw points for regression calculation
       _rawPoints: points,
     };
-  }, [data, xAxis.protocolId, yAxis.protocolId]);
+  }, [data, xAxis, yAxis, getAxisValue]);
 
   // Calculate regression based on current scale settings
   const regression = useMemo(() => {
@@ -448,7 +567,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
           type: xAxis.scale,
           title: {
             display: true,
-            text: xProtocolName,
+            text: xAxisLabel,
             font: { weight: 'bold' },
           },
           min: xAxis.min ? parseFloat(xAxis.min) : axisBounds.xMin,
@@ -466,7 +585,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
           type: yAxis.scale,
           title: {
             display: true,
-            text: yProtocolName,
+            text: yAxisLabel,
             font: { weight: 'bold' },
           },
           min: yAxis.min ? parseFloat(yAxis.min) : axisBounds.yMin,
@@ -494,7 +613,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
         }
       },
     }),
-    [xAxis, yAxis, xProtocolName, yProtocolName, axisBounds, finalChartData, router, setHoveredPoint]
+    [xAxis, yAxis, xAxisLabel, yAxisLabel, axisBounds, finalChartData, router, setHoveredPoint]
   );
 
   // Reset axis ranges to auto
@@ -506,8 +625,8 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
   // Count points that will be shown
   const pointCount = chartData.datasets[0]?.data?.length || 0;
 
-  // Only show if we have at least 2 protocols with geomean data
-  if (protocols.length < 2) {
+  // Only show if we have at least 2 axis candidates to plot against each other
+  if (axisOptions.length < 2) {
     return null;
   }
 
@@ -519,7 +638,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
         onClick={() => setOpen(true)}
         sx={{ mb: 2 }}
       >
-        Compare Protocols
+        Scatter Plot
         {pointCount > 0 && (
           <Chip
             label={`${pointCount} compounds`}
@@ -540,7 +659,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
         <DialogTitle sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
             <BubbleChart color="primary" />
-            <Typography variant="h6">Protocol Comparison Plot</Typography>
+            <Typography variant="h6">Scatter Plot</Typography>
           </Box>
           <IconButton onClick={() => setOpen(false)} size="small">
             <Close />
@@ -556,20 +675,36 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
                 X-Axis
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-                <FormControl size="small" sx={{ minWidth: 150 }}>
-                  <InputLabel>Protocol</InputLabel>
+                <FormControl size="small" sx={{ minWidth: 180 }}>
+                  <InputLabel>Axis</InputLabel>
                   <Select
-                    value={xAxis.protocolId || ''}
-                    label="Protocol"
-                    onChange={(e) =>
-                      setXAxis((prev) => ({ ...prev, protocolId: e.target.value }))
-                    }
+                    value={xAxis.key ? encodeAxisValue(xAxis.kind, xAxis.key) : ''}
+                    label="Axis"
+                    onChange={(e) => handleAxisChange(setXAxis, e.target.value as string)}
                   >
+                    {protocols.length > 0 && (
+                      <ListSubheader>Protocols</ListSubheader>
+                    )}
                     {protocols.map((p) => (
-                      <MenuItem key={p.id} value={p.id}>
+                      <MenuItem key={`protocol:${p.id}`} value={encodeAxisValue('protocol', p.id)}>
                         {p.name}
                       </MenuItem>
                     ))}
+                    {includedProperties.length > 0 && (
+                      <ListSubheader>Molecular Properties</ListSubheader>
+                    )}
+                    {includedProperties.map((propName) => {
+                      const meta = PROPERTY_LABELS[propName];
+                      return (
+                        <MenuItem
+                          key={`property:${propName}`}
+                          value={encodeAxisValue('property', propName)}
+                        >
+                          {meta?.label ?? propName}
+                          {meta?.description ? ` — ${meta.description}` : ''}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
                 <ToggleButtonGroup
@@ -616,20 +751,36 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
                 Y-Axis
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, alignItems: 'flex-start' }}>
-                <FormControl size="small" sx={{ minWidth: 150 }}>
-                  <InputLabel>Protocol</InputLabel>
+                <FormControl size="small" sx={{ minWidth: 180 }}>
+                  <InputLabel>Axis</InputLabel>
                   <Select
-                    value={yAxis.protocolId || ''}
-                    label="Protocol"
-                    onChange={(e) =>
-                      setYAxis((prev) => ({ ...prev, protocolId: e.target.value }))
-                    }
+                    value={yAxis.key ? encodeAxisValue(yAxis.kind, yAxis.key) : ''}
+                    label="Axis"
+                    onChange={(e) => handleAxisChange(setYAxis, e.target.value as string)}
                   >
+                    {protocols.length > 0 && (
+                      <ListSubheader>Protocols</ListSubheader>
+                    )}
                     {protocols.map((p) => (
-                      <MenuItem key={p.id} value={p.id}>
+                      <MenuItem key={`protocol:${p.id}`} value={encodeAxisValue('protocol', p.id)}>
                         {p.name}
                       </MenuItem>
                     ))}
+                    {includedProperties.length > 0 && (
+                      <ListSubheader>Molecular Properties</ListSubheader>
+                    )}
+                    {includedProperties.map((propName) => {
+                      const meta = PROPERTY_LABELS[propName];
+                      return (
+                        <MenuItem
+                          key={`property:${propName}`}
+                          value={encodeAxisValue('property', propName)}
+                        >
+                          {meta?.label ?? propName}
+                          {meta?.description ? ` — ${meta.description}` : ''}
+                        </MenuItem>
+                      );
+                    })}
                   </Select>
                 </FormControl>
                 <ToggleButtonGroup
@@ -747,7 +898,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
 
           {/* Chart */}
           <Box sx={{ flex: 1, minHeight: 0 }}>
-            {xAxis.protocolId && yAxis.protocolId ? (
+            {xAxis.key && yAxis.key ? (
               pointCount > 0 ? (
                 <Box sx={{ height: '100%' }}>
                   <Scatter ref={chartRef} data={finalChartData} options={chartOptions} />
@@ -764,7 +915,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
                   }}
                 >
                   <Typography color="text.secondary">
-                    No compounds have geomean values for both selected protocols
+                    No compounds have values for both selected axes
                   </Typography>
                 </Box>
               )
@@ -780,7 +931,7 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
                 }}
               >
                 <Typography color="text.secondary">
-                  Select protocols for both X and Y axes
+                  Select an axis for both X and Y
                 </Typography>
               </Box>
             )}
@@ -897,10 +1048,10 @@ export function ProtocolScatterPlot({ data, protocols }: ProtocolScatterPlotProp
                       <Divider />
                       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}>
                         <Typography variant="body2">
-                          <strong>{xProtocolName}:</strong> {hoveredPoint.x.toFixed(2)}
+                          <strong>{xAxisLabel}:</strong> {hoveredPoint.x.toFixed(2)}
                         </Typography>
                         <Typography variant="body2">
-                          <strong>{yProtocolName}:</strong> {hoveredPoint.y.toFixed(2)}
+                          <strong>{yAxisLabel}:</strong> {hoveredPoint.y.toFixed(2)}
                         </Typography>
                       </Box>
                     </Box>

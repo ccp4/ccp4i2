@@ -466,10 +466,23 @@ function CompactTable({
 
   return (
     <>
-      {/* Protocol comparison scatter plot */}
-      {aggregations.includes('geomean') && protocols.length >= 2 && (
-        <ProtocolScatterPlot data={rows} protocols={protocols} />
-      )}
+      {/* Scatter plot: protocols and/or molecular properties */}
+      {(() => {
+        const hasGeomean = aggregations.includes('geomean');
+        const protocolAxes = hasGeomean ? protocols.length : 0;
+        const propertyAxes = includeProperties.length;
+        const totalAxes = protocolAxes + propertyAxes;
+        // Need at least two axis candidates overall, and at least one protocol
+        // or property available (otherwise there's nothing to plot).
+        if (totalAxes < 2) return null;
+        return (
+          <ProtocolScatterPlot
+            data={rows}
+            protocols={hasGeomean ? protocols : []}
+            includedProperties={includeProperties}
+          />
+        );
+      })()}
 
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
