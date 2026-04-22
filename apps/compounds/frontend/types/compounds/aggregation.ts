@@ -107,6 +107,16 @@ export interface ProtocolInfo {
   name: string;
   /** KPI unit for this protocol (e.g., 'nM', 'uM', 'mM') */
   kpi_unit?: string | null;
+  /**
+   * Absolute threshold for an excellent KPI value (in the KPI's native units).
+   * Direction (lower-better vs higher-better) is implied by ordering against poor_value.
+   * When either threshold is null, the cell renders uncoloured.
+   */
+  target_value?: number | null;
+  /** Absolute threshold for a poor KPI value (in the KPI's native units) */
+  poor_value?: number | null;
+  /** Interpolation scale between target_value and poor_value */
+  threshold_scale?: 'log' | 'linear';
 }
 
 /** Aggregated values for a single protocol */

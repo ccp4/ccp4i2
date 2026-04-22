@@ -58,6 +58,7 @@ import {
   getConcentrationHeaderUnit,
   isConcentrationUnit,
 } from '@/lib/compounds/aggregation-api';
+import { protocolColour } from '@/lib/compounds/protocol-colour';
 
 /**
  * Generate CSV content from medium aggregation data.
@@ -737,6 +738,11 @@ function CompactTable({
                       const testedNoValid = measurementStatus === 'tested-no-valid';
                       const notTested = measurementStatus === 'not-measured';
 
+                      // Threshold-based colour only applies to the geomean KPI column
+                      const cellColour = agg === 'geomean' && hasData
+                        ? protocolColour(protocolData?.geomean, protocol)
+                        : { background: null, t: null };
+
                       return (
                         <TableCell
                           key={`${protocol.id}-${agg}`}
@@ -744,9 +750,12 @@ function CompactTable({
                           onClick={(e) => hasData && handleProtocolCellClick(e, row, protocol)}
                           sx={{
                             cursor: hasData ? 'zoom-in' : 'default',
-                            '&:hover': hasData ? {
-                              bgcolor: 'action.hover',
-                            } : {},
+                            bgcolor: cellColour.background ?? undefined,
+                            '&:hover': hasData
+                              ? cellColour.background
+                                ? { filter: 'brightness(0.95)' }
+                                : { bgcolor: 'action.hover' }
+                              : {},
                           }}
                         >
                           {/* Show "not tested" indicator on first column for not-measured */}
@@ -2194,11 +2203,23 @@ function PivotTable({
                       displayValue = '-';
                     }
 
+                    // Apply threshold-based background colour when geomean is shown
+                    // and the protocol has curated thresholds
+                    const colour = hasGeomean
+                      ? protocolColour(protocolData?.geomean, protocol)
+                      : { background: null, t: null };
+
                     return (
                       <TableCell
                         key={showBatchColumn ? `${row.compound_id}-${row.batch_id}` : row.compound_id}
                         align="center"
-                        sx={{ cursor: 'pointer', '&:hover': { bgcolor: 'action.hover' } }}
+                        sx={{
+                          cursor: 'pointer',
+                          bgcolor: colour.background ?? undefined,
+                          '&:hover': colour.background
+                            ? { filter: 'brightness(0.95)' }
+                            : { bgcolor: 'action.hover' },
+                        }}
                         onClick={(e) => handleProtocolCellClick(e, row, protocol)}
                       >
                         <Typography variant="body2" fontFamily="monospace">
@@ -2645,6 +2666,10 @@ function CardsView({
                   measurementDisplay = '-';
                 }
 
+                const cardColour = hasGeomean
+                  ? protocolColour(protocolData?.geomean, protocol)
+                  : { background: null, t: null };
+
                 return (
                   <Box
                     key={protocol.id}
@@ -2654,7 +2679,10 @@ function CardsView({
                       p: 0.5,
                       mx: -0.5,
                       borderRadius: 0.5,
-                      '&:hover': { bgcolor: 'action.hover' },
+                      bgcolor: cardColour.background ?? undefined,
+                      '&:hover': cardColour.background
+                        ? { filter: 'brightness(0.95)' }
+                        : { bgcolor: 'action.hover' },
                     }}
                     onClick={(e) => handleProtocolClick(e, row, protocol)}
                   >
@@ -2721,6 +2749,71 @@ function ConcentrationDisplaySelector({
         ))}
       </Select>
     </FormControl>
+  );
+}
+
+/**
+ * Inline legend for the protocol-threshold colour scale.
+ *
+ * Renders a compact gradient sample (poor → excellent) when at least one
+ * protocol in the current response has thresholds configured. The component
+ * is self-gating: if no protocol has thresholds, it renders nothing, so
+ * chemists only see the legend once it's actually explaining a colour in
+ * the table.
+ */
+function ThresholdLegend({ protocols }: { protocols: ProtocolInfo[] }) {
+  const configured = protocols.filter(
+    (p) => p.target_value != null && p.poor_value != null,
+  );
+  if (configured.length === 0) return null;
+
+  const gradient = `linear-gradient(to right, ${protocolColour(0, { target_value: 1, poor_value: 0, threshold_scale: 'linear' }).background}, ${protocolColour(0.5, { target_value: 1, poor_value: 0, threshold_scale: 'linear' }).background}, ${protocolColour(1, { target_value: 1, poor_value: 0, threshold_scale: 'linear' }).background})`;
+
+  const tooltipBody = (
+    <Box sx={{ p: 0.5 }}>
+      <Typography variant="caption" sx={{ display: 'block', mb: 0.5 }}>
+        Cells are tinted against each protocol&apos;s curated thresholds.
+      </Typography>
+      <Typography variant="caption" sx={{ display: 'block', color: 'text.secondary' }}>
+        {configured.length} of {protocols.length} protocol{protocols.length !== 1 ? 's' : ''} configured.
+        Uncoloured cells mean the protocol has no thresholds set.
+      </Typography>
+    </Box>
+  );
+
+  return (
+    <Tooltip title={tooltipBody} arrow>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 0.75,
+          px: 1,
+          py: 0.25,
+          border: 1,
+          borderColor: 'divider',
+          borderRadius: 1,
+          bgcolor: 'background.paper',
+        }}
+      >
+        <Typography variant="caption" color="text.secondary">
+          poor
+        </Typography>
+        <Box
+          sx={{
+            width: 80,
+            height: 12,
+            borderRadius: 0.5,
+            background: gradient,
+            border: 1,
+            borderColor: 'divider',
+          }}
+        />
+        <Typography variant="caption" color="text.secondary">
+          excellent
+        </Typography>
+      </Box>
+    </Tooltip>
   );
 }
 
@@ -2847,6 +2940,9 @@ export function AggregationTable({
     <Paper sx={{ width: '100%', overflow: 'clip', ...(fillHeight && { height: '100%', display: 'flex', flexDirection: 'column' }) }}>
       <Box sx={{ p: 2, ...(fillHeight && { flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'clip' }) }}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', mb: 1, flexShrink: 0, gap: 1 }}>
+          {isCompactResponse(data) && (
+            <ThresholdLegend protocols={data.protocols} />
+          )}
           <TextField
             size="small"
             placeholder="Search compounds..."

@@ -353,7 +353,7 @@ def get_protocols_from_predicates(predicates: dict) -> list[dict]:
     """
     protocols = predicates.get('protocols', [])
     if protocols:
-        return list(Protocol.objects.filter(id__in=protocols).values('id', 'name'))
+        return list(Protocol.objects.filter(id__in=protocols).values('id', 'name', 'target_value', 'poor_value', 'threshold_scale'))
     return []
 
 
@@ -528,14 +528,14 @@ def aggregate_compact_from_compounds(
     """
     # Get protocol info
     if protocol_ids:
-        protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name'))
+        protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name', 'target_value', 'poor_value', 'threshold_scale'))
     else:
         # Collect protocols from data series
         protocol_set = set()
         for compound in compound_queryset:
             for ds in getattr(compound, 'filtered_data_series', []):
                 protocol_set.add(ds.assay.protocol_id)
-        protocols = list(Protocol.objects.filter(id__in=protocol_set).values('id', 'name'))
+        protocols = list(Protocol.objects.filter(id__in=protocol_set).values('id', 'name', 'target_value', 'poor_value', 'threshold_scale'))
 
     # Build data structures
     # group_key -> compound info
@@ -620,6 +620,9 @@ def aggregate_compact_from_compounds(
             'id': str(p['id']),
             'name': p['name'],
             'kpi_unit': protocol_units.get(str(p['id'])),
+            'target_value': p.get('target_value'),
+            'poor_value': p.get('poor_value'),
+            'threshold_scale': p.get('threshold_scale'),
         }
         for p in protocols
     ]
@@ -757,13 +760,13 @@ def aggregate_medium_from_compounds(
     """
     # Get protocol info
     if protocol_ids:
-        protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name'))
+        protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name', 'target_value', 'poor_value', 'threshold_scale'))
     else:
         protocol_set = set()
         for compound in compound_queryset:
             for ds in getattr(compound, 'filtered_data_series', []):
                 protocol_set.add(ds.assay.protocol_id)
-        protocols = list(Protocol.objects.filter(id__in=protocol_set).values('id', 'name'))
+        protocols = list(Protocol.objects.filter(id__in=protocol_set).values('id', 'name', 'target_value', 'poor_value', 'threshold_scale'))
 
     protocol_id_set = {str(p['id']) for p in protocols}
     protocol_names = {str(p['id']): p['name'] for p in protocols}
@@ -1172,7 +1175,7 @@ def aggregate_compact(
             group_info[group_key] = info
 
     # Fetch protocol info and include kpi_unit
-    protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name'))
+    protocols = list(Protocol.objects.filter(id__in=protocol_ids).values('id', 'name', 'target_value', 'poor_value', 'threshold_scale'))
     protocol_list = [
         {
             'id': str(p['id']),

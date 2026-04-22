@@ -457,6 +457,12 @@ export interface Protocol {
   plate_layout_name?: string;            // Denormalized name for display
   plate_layout_config?: PlateLayout | null;  // Denormalized config for convenience
   fitting_parameters?: FittingParameters | null;
+  /** Value considered excellent for this protocol's KPI (nullable, unconfigured → no colouring) */
+  target_value?: number | null;
+  /** Value considered poor for this protocol's KPI (nullable, unconfigured → no colouring) */
+  poor_value?: number | null;
+  /** Interpolation scale between target_value and poor_value */
+  threshold_scale?: 'log' | 'linear';
   preferred_dilutions: string | null;
   preferred_dilutions_display?: string;
   created_by: number | null;

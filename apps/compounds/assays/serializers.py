@@ -214,6 +214,7 @@ class ProtocolSerializer(serializers.ModelSerializer):
             'target', 'target_name',
             'plate_layout', 'plate_layout_name', 'plate_layout_config',
             'fitting_parameters',
+            'target_value', 'poor_value', 'threshold_scale',
             'preferred_dilutions', 'preferred_dilutions_display',
             'created_by', 'created_by_email',
             'modified_by', 'modified_by_email',
@@ -226,6 +227,15 @@ class ProtocolSerializer(serializers.ModelSerializer):
     def validate_fitting_parameters(self, value):
         """Convert null to empty dict since DB column doesn't allow NULL."""
         return value if value is not None else {}
+
+    def validate(self, attrs):
+        target = attrs.get('target_value', getattr(self.instance, 'target_value', None))
+        poor = attrs.get('poor_value', getattr(self.instance, 'poor_value', None))
+        if target is not None and poor is not None and target == poor:
+            raise serializers.ValidationError({
+                'poor_value': 'target_value and poor_value must differ — the direction of "better" is implied by their ordering.',
+            })
+        return super().validate(attrs)
 
     def get_preferred_dilutions_display(self, obj):
         """Return string representation of dilution series, or None if not set."""

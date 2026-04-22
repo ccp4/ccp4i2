@@ -379,6 +379,32 @@ class Protocol(models.Model):
         help_text="Default parameters passed to fitting script"
     )
 
+    SCALE_CHOICES = [
+        ('log', 'Logarithmic'),
+        ('linear', 'Linear'),
+    ]
+
+    # Absolute interpretation thresholds for the KPI value.
+    # Direction (lower-better vs higher-better) is implied by ordering:
+    #   target_value < poor_value  -> lower is better (IC50, EC50, clearance)
+    #   target_value > poor_value  -> higher is better (solubility, permeability)
+    target_value = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Value considered excellent for this protocol's KPI (in the KPI's native units)"
+    )
+    poor_value = models.FloatField(
+        null=True,
+        blank=True,
+        help_text="Value considered poor for this protocol's KPI (in the KPI's native units)"
+    )
+    threshold_scale = models.CharField(
+        max_length=10,
+        choices=SCALE_CHOICES,
+        default='log',
+        help_text="Interpolation scale between target_value and poor_value (log for concentrations, linear for percentages)"
+    )
+
     # Default target for assays using this protocol
     target = models.ForeignKey(
         Target,
@@ -415,6 +441,18 @@ class Protocol(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        super().clean()
+        if (
+            self.target_value is not None
+            and self.poor_value is not None
+            and self.target_value == self.poor_value
+        ):
+            from django.core.exceptions import ValidationError
+            raise ValidationError({
+                'poor_value': 'target_value and poor_value must differ — the direction of "better" is implied by their ordering.',
+            })
 
     def get_effective_fitting_method(self):
         """Return the fitting method to use, falling back to legacy analysis_method."""
