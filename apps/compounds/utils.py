@@ -7,10 +7,31 @@ import os
 import re
 from typing import Optional, TYPE_CHECKING
 
+from django.db.models import F, Value
+from django.db.models.functions import Lower, Replace
+
 from compounds.formatting import (
     get_compound_pattern,
     get_malformed_pattern,
 )
+
+
+def _normalize_ref(value: str) -> str:
+    """Strip non-alphanumeric characters and lowercase, for lenient ref matching."""
+    return re.sub(r'[^A-Za-z0-9]', '', value or '').lower()
+
+
+def _supplier_ref_normalized_expr():
+    """DB expression that mirrors `_normalize_ref` on `supplier_ref`."""
+    return Lower(
+        Replace(
+            Replace(
+                Replace(
+                    Replace(F('supplier_ref'), Value('-'), Value('')),
+                    Value(' '), Value('')),
+                Value('_'), Value('')),
+            Value('/'), Value('')),
+    )
 
 if TYPE_CHECKING:
     from compounds.registry.models import Compound
@@ -27,7 +48,7 @@ def resolve_compound(identifier: str) -> Optional['Compound']:
     1. Full NCL format: NCL-00026042, ncl-00026042, NCL-26042
     2. Plain numeric: 26042, 00026042
     3. Partial NCL patterns: NCL26042, ncl26042, NCL 26042
-    4. Supplier reference lookup
+    4. Supplier reference lookup (exact, then dash/space-tolerant)
     5. Barcode format: {initials}-{labbook}-{page}
     6. Alias lookup (case-insensitive)
 
@@ -124,6 +145,24 @@ def resolve_compound(identifier: str) -> Optional['Compound']:
     compound = Compound.objects.filter(supplier_ref__iexact=identifier).first()
     if compound:
         return compound
+
+    # Strategy 4b: Dash/space-tolerant supplier_ref.
+    # Pharmaron-style refs like "PH-NTU-00-00-000-0" are often typed without
+    # dashes or with mixed separators ("PHNTU0000000", "PH NTU 00 00 000 0").
+    # Normalize both sides by stripping non-alphanumeric chars and compare
+    # case-insensitively, on the DB side.
+    normalized = _normalize_ref(identifier)
+    if normalized:
+        compound = (
+            Compound.objects
+            .exclude(supplier_ref__isnull=True)
+            .exclude(supplier_ref='')
+            .annotate(sref_norm=_supplier_ref_normalized_expr())
+            .filter(sref_norm=normalized)
+            .first()
+        )
+        if compound:
+            return compound
 
     # Strategy 5: Barcode format - {supplier_initials}-{labbook}-{page}
     # E.g., "AST-123-45" or "NCL-100-5"
@@ -236,6 +275,25 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
             if c.supplier_ref
         }
 
+        # Batch fetch by dash/space-tolerant normalized supplier_ref
+        normalized_remaining = {
+            _normalize_ref(identifier): identifier
+            for identifier in remaining
+            if _normalize_ref(identifier)
+        }
+        supplier_ref_norm_map = {}
+        if normalized_remaining:
+            supplier_ref_norm_map = {
+                c.sref_norm: c
+                for c in (
+                    Compound.objects
+                    .exclude(supplier_ref__isnull=True)
+                    .exclude(supplier_ref='')
+                    .annotate(sref_norm=_supplier_ref_normalized_expr())
+                    .filter(sref_norm__in=normalized_remaining.keys())
+                )
+            }
+
         # Pre-fetch compounds with aliases for alias matching
         compounds_with_aliases = list(
             Compound.objects.exclude(aliases=[]).exclude(aliases__isnull=True)
@@ -253,6 +311,12 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
             # Try supplier_ref
             if identifier.lower() in supplier_ref_map:
                 results[identifier] = supplier_ref_map[identifier.lower()]
+                continue
+
+            # Try dash/space-tolerant supplier_ref
+            norm = _normalize_ref(identifier)
+            if norm and norm in supplier_ref_norm_map:
+                results[identifier] = supplier_ref_norm_map[norm]
                 continue
 
             # Try barcode
