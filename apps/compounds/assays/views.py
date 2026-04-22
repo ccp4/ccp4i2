@@ -15,7 +15,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from reversion.models import Version
 
-from users.permissions import IsContributorOrReadOnly
+from users.permissions import IsContributorOrReadOnly, IsContributorCreateAdminUpdate
 from .analysis import analyse_assay, analyse_data_series, AVAILABLE_FLAGS, DEFAULT_INVALIDATING_FLAGS
 from .qc import calculate_qc_metrics
 
@@ -387,9 +387,14 @@ class ProtocolViewSet(ReversionMixin, viewsets.ModelViewSet):
 
 
 class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
-    """CRUD operations for Assays."""
+    """CRUD operations for Assays.
+
+    Access model: contributors can create new assays (including via ADME
+    imports); updates and deletes require admin. Read is open to any
+    authenticated user. See users.permissions.IsContributorCreateAdminUpdate.
+    """
     queryset = Assay.objects.select_related('protocol', 'target', 'created_by')
-    permission_classes = [IsContributorOrReadOnly]
+    permission_classes = [IsContributorCreateAdminUpdate]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     filterset_fields = ['protocol', 'target']
     ordering_fields = ['created_at']
@@ -899,6 +904,9 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
         comments = get_field('comments', '')
         target_id = get_field('target')  # Optional target UUID
         kpi_unit_override = get_field('kpi_unit')  # Optional unit override
+        force = get_field('force', False)
+        if isinstance(force, str):
+            force = force.lower() in ('true', '1', 'yes')
 
         if not parser_slug:
             return Response({
@@ -929,6 +937,24 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                 'comments': f'Auto-created for {parser.vendor} {parser.assay_type} imports',
             }
         )
+
+        # Idempotency: skip if an Assay for this (protocol, filename) already exists.
+        # Pharmaron filenames encode vendor+assay+date, so filename is effectively
+        # a natural key; re-running the same folder is a safe no-op.
+        if uploaded_file and not force:
+            existing = Assay.objects.filter(
+                protocol=protocol,
+                data_file__endswith=f"/{uploaded_file.name}",
+            ).first()
+            if existing:
+                return Response({
+                    'status': 'already_imported',
+                    'assay_id': str(existing.id),
+                    'filename': uploaded_file.name,
+                    'message': (f"An Assay for protocol '{protocol.name}' with file "
+                                f"'{uploaded_file.name}' already exists. Pass force=true "
+                                f"to re-import."),
+                })
 
         # Resolve target: use provided target_id, or fall back to protocol's default target
         from compounds.registry.models import Target
@@ -1066,12 +1092,15 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
 
 
 class DataSeriesViewSet(ReversionMixin, viewsets.ModelViewSet):
-    """CRUD operations for Data Series."""
+    """CRUD operations for Data Series.
+
+    Access model mirrors AssayViewSet: contributors create, admins edit/delete.
+    """
     queryset = DataSeries.objects.select_related(
         'assay', 'assay__protocol', 'assay__protocol__preferred_dilutions',
         'compound', 'analysis', 'dilution_series'
     )
-    permission_classes = [IsContributorOrReadOnly]
+    permission_classes = [IsContributorCreateAdminUpdate]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['assay', 'compound']
     search_fields = ['compound_name']

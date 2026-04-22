@@ -2184,6 +2184,236 @@ def cmd_campaigns(args):
 # Main
 # ─────────────────────────────────────────────────────────────────────────────
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Compounds app — separate API proxy at /api/proxy/compounds/
+# ─────────────────────────────────────────────────────────────────────────────
+
+
+def get_compounds_base_url() -> str:
+    """Derive the compounds proxy base URL from the ccp4i2 api_url.
+
+    Same host, `/ccp4i2` replaced with `/compounds`. Override via the
+    `compounds_api_url` config key if the convention ever diverges.
+    """
+    override = CONFIG.get("compounds_api_url")
+    if override:
+        return override.rstrip("/")
+    api_url = CONFIG.get("api_url")
+    if not api_url:
+        print("Error: API URL not configured. Run `i2remote config set api_url ...`",
+              file=sys.stderr)
+        sys.exit(1)
+    base = api_url.rstrip("/")
+    if base.endswith("/ccp4i2"):
+        return base[: -len("/ccp4i2")] + "/compounds"
+    # Not a recognised shape — caller must have set compounds_api_url explicitly.
+    print("Error: could not derive compounds URL from api_url. "
+          "Set `compounds_api_url` in config.", file=sys.stderr)
+    sys.exit(1)
+
+
+def compounds_get(path: str, params: dict = None) -> Any:
+    """GET a compounds endpoint with bearer auth. Returns parsed JSON."""
+    import requests as _req
+    url = get_compounds_base_url() + (path if path.startswith("/") else "/" + path)
+    headers = {"Accept": "application/json"}
+    token = CONFIG.get("api_token")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    r = _req.get(url, params=params or {}, headers=headers,
+                 timeout=CONFIG.get("timeout", 30),
+                 verify=CONFIG.get("verify_ssl", True))
+    if not r.ok:
+        raise APIError(_friendly_http_error(path, r), r.status_code)
+    return r.json() if r.content else None
+
+
+def compounds_post_multipart(path: str, files: dict, data: dict = None) -> Any:
+    """POST multipart/form-data to a compounds endpoint. Returns parsed JSON."""
+    import requests as _req
+    url = get_compounds_base_url() + (path if path.startswith("/") else "/" + path)
+    headers = {"Accept": "application/json"}
+    token = CONFIG.get("api_token")
+    if token:
+        headers["Authorization"] = f"Bearer {token}"
+    r = _req.post(url, files=files, data=data or {}, headers=headers,
+                  timeout=CONFIG.get("timeout", 120),
+                  verify=CONFIG.get("verify_ssl", True))
+    if not r.ok:
+        raise APIError(_friendly_http_error(path, r), r.status_code)
+    return r.json() if r.content else None
+
+
+def _friendly_http_error(path: str, response) -> str:
+    """Turn a failed HTTP response into a useful CLI message.
+
+    Specifically reshapes 401 (auth) and 403 (operating level) so the common
+    cases don't surface as raw JSON blobs.
+    """
+    code = response.status_code
+    try:
+        body = response.json()
+        detail = body.get("detail") or body.get("error") or body
+    except (ValueError, AttributeError):
+        detail = response.text[:400]
+
+    if code == 401:
+        return (f"POST {path} -> 401 Unauthorized. "
+                f"Run `i2remote login` to refresh your token. Detail: {detail}")
+    if code == 403:
+        hint = ""
+        text = str(detail).lower()
+        if "contributor" in text or "admin mode" in text or "operating level" in text:
+            hint = (" Your account may be operating at a level below what this "
+                    "action needs — switch to Contributor or Admin mode in the "
+                    "web UI (top-right menu) and retry.")
+        return f"POST {path} -> 403 Forbidden. {detail}{hint}"
+    return f"POST {path} -> {code}: {detail}"
+
+
+def resolve_target(identifier: str) -> dict:
+    """Resolve a target by UUID or case-insensitive name. Returns the target dict."""
+    # Try as UUID first
+    try:
+        t = compounds_get(f"/targets/{identifier}/")
+        if isinstance(t, dict) and t.get("id"):
+            return t
+    except APIError:
+        pass
+    # Fall back to name search across the list endpoint.
+    try:
+        results = compounds_get("/targets/", {"search": identifier})
+    except APIError:
+        results = compounds_get("/targets/")
+    items = results.get("results", results) if isinstance(results, dict) else results
+    if not isinstance(items, list):
+        raise APIError(f"Unexpected targets response shape: {type(items).__name__}")
+    needle = identifier.lower()
+    for t in items:
+        if isinstance(t, dict) and str(t.get("name", "")).lower() == needle:
+            return t
+    raise APIError(f"Target not found: {identifier}")
+
+
+def adme_preview_file(path: Path) -> dict:
+    """Call parse_adme_preview for a single file. Returns the server response."""
+    with open(path, "rb") as fh:
+        files = {"file": (path.name, fh,
+                          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")}
+        return compounds_post_multipart("/assays/parse_adme_preview/", files=files)
+
+
+def adme_import_file(path: Path, preview: dict, target_id: str = None,
+                     skip_unmatched: bool = False, force: bool = False,
+                     comments: str = "") -> dict:
+    """Call import_adme with the parsed results + the original file."""
+    with open(path, "rb") as fh:
+        files = {"file": (path.name, fh,
+                          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")}
+        data = {
+            "filename": path.name,
+            "parser_slug": preview["parser"]["protocol_slug"],
+            "results": json.dumps(preview["results"]),
+            "skip_unmatched": "true" if skip_unmatched else "false",
+            "comments": comments,
+        }
+        if target_id:
+            data["target"] = target_id
+        if force:
+            data["force"] = "true"
+        return compounds_post_multipart("/assays/import_adme/", files=files, data=data)
+
+
+def _print_preview_line(name: str, preview: dict) -> None:
+    p = preview.get("parser", {})
+    s = preview.get("summary", {})
+    print(f"  {name:<55} {p.get('protocol_slug','?'):<12} "
+          f"rows={s.get('total',0):>3} matched={s.get('matched',0):>3} "
+          f"unmatched={s.get('unmatched',0):>3} ctrl={s.get('controls',0):>3}")
+
+
+def cmd_adme(args):
+    """Dispatch adme subcommands: upload / upload-batch."""
+    action = args.action
+    if action not in ("upload", "upload-batch"):
+        print("adme: use `upload <file>` or `upload-batch <dir-or-glob>`", file=sys.stderr)
+        sys.exit(2)
+
+    # Gather file list
+    if action == "upload":
+        paths = [Path(args.path).expanduser()]
+    else:
+        raw = Path(args.path).expanduser()
+        if raw.is_dir():
+            paths = sorted(raw.glob("*.xlsx"))
+        else:
+            # treat as glob relative to cwd
+            import glob as _glob
+            paths = sorted(Path(p) for p in _glob.glob(str(raw)))
+    paths = [p for p in paths if p.exists() and p.suffix.lower() == ".xlsx"]
+    if not paths:
+        print("No .xlsx files to process.", file=sys.stderr)
+        sys.exit(1)
+
+    target_id = None
+    if args.target:
+        t = resolve_target(args.target)
+        target_id = str(t["id"])
+        print(f"Target: {t.get('name','?')} ({target_id})")
+
+    print(f"\n{'file':<55} {'parser':<12} {'counts':<30}")
+    print("-" * 100)
+
+    outcomes = []
+    for path in paths:
+        try:
+            preview = adme_preview_file(path)
+        except APIError as e:
+            outcomes.append((path.name, "preview-failed", str(e)))
+            print(f"  {path.name:<55} PREVIEW-FAILED: {e}")
+            if not args.continue_on_error:
+                sys.exit(1)
+            continue
+
+        _print_preview_line(path.name, preview)
+
+        if args.dry_run:
+            outcomes.append((path.name, "dry-run", f"rows={preview.get('summary',{}).get('total',0)}"))
+            continue
+
+        try:
+            result = adme_import_file(
+                path, preview,
+                target_id=target_id,
+                skip_unmatched=args.skip_unmatched,
+                force=args.force,
+            )
+        except APIError as e:
+            outcomes.append((path.name, "import-failed", str(e)))
+            print(f"      IMPORT-FAILED: {e}")
+            if not args.continue_on_error:
+                sys.exit(1)
+            continue
+
+        status = result.get("status", "?")
+        if status == "already_imported":
+            outcomes.append((path.name, "skipped", f"assay={result.get('assay_id')}"))
+            print(f"      SKIPPED: already imported as assay {result.get('assay_id')}")
+        else:
+            created = result.get("created", 0)
+            outcomes.append((path.name, "imported", f"created={created}"))
+            print(f"      OK: {created} series created")
+
+    # Summary table
+    print("\n" + "=" * 100)
+    print(f"Processed {len(outcomes)} file(s):")
+    by_status = {}
+    for _, status, _ in outcomes:
+        by_status[status] = by_status.get(status, 0) + 1
+    for s, n in sorted(by_status.items()):
+        print(f"  {s}: {n}")
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Remote CLI for CCP4i2",
@@ -2319,6 +2549,23 @@ def main():
     )
     upload_force_complete_parser.add_argument("upload_id", help="Upload UUID to force complete")
 
+    # ADME (compounds app) — upload / upload-batch
+    adme_parser = subparsers.add_parser(
+        "adme", help="ADME assay operations (compounds app)"
+    )
+    adme_parser.add_argument("action", choices=["upload", "upload-batch"],
+                             help="upload a single file or a folder/glob of files")
+    adme_parser.add_argument("path", help="Path to .xlsx file, folder, or glob")
+    adme_parser.add_argument("--target", help="Target UUID or name (e.g. mEGFR)")
+    adme_parser.add_argument("--skip-unmatched", action="store_true",
+                             help="Skip compounds that don't match the registry")
+    adme_parser.add_argument("--dry-run", action="store_true",
+                             help="Preview only (calls parse_adme_preview; no import)")
+    adme_parser.add_argument("--force", action="store_true",
+                             help="Re-import even if the filename was imported previously")
+    adme_parser.add_argument("--continue-on-error", action="store_true",
+                             help="In upload-batch, keep going after a file fails")
+
     args = parser.parse_args()
 
     if not args.command:
@@ -2360,6 +2607,8 @@ def main():
             cmd_upload_reset(args)
         elif args.command == "upload-force-complete":
             cmd_upload_force_complete(args)
+        elif args.command == "adme":
+            cmd_adme(args)
         else:
             print(f"Unknown command: {args.command}", file=sys.stderr)
             sys.exit(1)
