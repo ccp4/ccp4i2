@@ -248,15 +248,18 @@ class GSHStabilityParser(NCUBaseParser):
         t12_gsh = result_data.get('t1_2_min')
         t12_no_gsh = result_data.get('t1_2_min_no_gsh')
 
-        if t12_gsh is not None and t12_no_gsh is not None:
-            # If t1/2 with GSH is less than half of t1/2 without GSH
+        # Special values (e.g. '>60', '∞') can reach here as strings —
+        # only run numeric thresholds when both sides are actually numeric.
+        gsh_numeric = isinstance(t12_gsh, (int, float))
+        no_gsh_numeric = isinstance(t12_no_gsh, (int, float))
+
+        if gsh_numeric and no_gsh_numeric:
             if t12_no_gsh > 0 and t12_gsh < t12_no_gsh * 0.5:
                 result_data['gsh_reactive'] = True
             else:
                 result_data['gsh_reactive'] = False
-        elif t12_gsh is not None and t12_no_gsh is None:
-            # If we only have +GSH data and t1/2 is short, likely reactive
-            result_data['gsh_reactive'] = t12_gsh < 30  # Threshold
+        elif gsh_numeric and t12_no_gsh is None:
+            result_data['gsh_reactive'] = t12_gsh < 30
         else:
             result_data['gsh_reactive'] = None
 
@@ -265,7 +268,7 @@ class GSHStabilityParser(NCUBaseParser):
         flags = result_data.get('flags', [])
 
         t12 = result_data.get('t1_2_min')
-        if t12 is not None:
+        if isinstance(t12, (int, float)):
             if t12 < 10:
                 flags.append('unstable')
             elif t12 > 120:

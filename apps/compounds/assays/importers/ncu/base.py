@@ -27,12 +27,14 @@ class NCUBaseParser(ADMEParser):
 
     vendor = "NCU"
 
-    # NCU file naming pattern: ADME-NCU-{AssayType}-{YYYYMMDD}.xlsx
+    # Pharmaron file naming pattern: ADME-{NCU|NEU}-{AssayType}-{YYYYMMDD}.xlsx
+    # "NCU" and "NEU" are both Pharmaron customer codes for Newcastle
+    # University — the prefix has drifted over time, so accept either.
     # Trailing suffix is tolerated so macOS-style duplicate names like
     # "ADME-NCU-Caco-2 Permeability-20231219 (1).xlsx" or " copy.xlsx"
     # still match. Greedy `.+` in the assay-type group backtracks so the
     # last 8-digit run before the extension is the date.
-    FILE_PATTERN = r'^ADME-NCU-(.+)-(\d{8}).*\.xlsx$'
+    FILE_PATTERN = r'^ADME-N[CE]U-(.+)-(\d{8}).*\.xlsx$'
 
     # Special values that need conversion
     SPECIAL_VALUES = {
