@@ -19,6 +19,7 @@ import {
   TableRow,
   Chip,
   FormControl,
+  FormHelperText,
   InputLabel,
   Select,
   MenuItem,
@@ -331,13 +332,19 @@ function ImportTableOfValuesContent() {
     }
   };
 
-  // Check if we can import
+  // Check if we can import. The unit must be either (a) an explicit override
+  // picked by the user, or (b) inferable from the KPI column name. If neither,
+  // the import is blocked — silently shipping a row with no kpi_unit is what
+  // produced the residual stuck ToV rows in the existing data (see NLP audit
+  // evidence in NLP_QUERY_PROPOSAL.md §17).
+  const effectiveUnit = kpiUnitOverride || kpiValidation.inferredUnit;
   const canImport =
     spreadsheetData &&
     selectedProtocol &&
     compoundColumn &&
     kpiValidation.valid &&
     unitValidation.valid &&
+    effectiveUnit &&
     !isImporting;
 
   return (
@@ -537,25 +544,49 @@ function ImportTableOfValuesContent() {
               )}
 
               {/* KPI Unit (only shown when KPI is valid) */}
-              {kpiValidation.valid && (
-                <TextField
-                  fullWidth
-                  label="KPI Unit"
-                  value={kpiUnitOverride}
-                  onChange={(e) => setKpiUnitOverride(e.target.value)}
-                  size="small"
-                  placeholder={kpiValidation.inferredUnit || 'No unit detected'}
-                  error={!unitValidation.valid}
-                  helperText={
-                    !unitValidation.valid
-                      ? unitValidation.error
-                      : kpiValidation.inferredUnit
-                        ? `Detected: ${kpiValidation.inferredUnit} (leave blank to use)`
-                        : 'Enter unit if applicable (e.g., nM, uM, %)'
-                  }
-                  margin="normal"
-                />
-              )}
+              {/* When the KPI column name carries a unit suffix (e.g. "IC50 (uM)") we can */}
+              {/* pre-fill; otherwise the user must pick one before the import is allowed. */}
+              {/* This prevents the class of ToV rows that end up with no kpi_unit and */}
+              {/* cannot later be recovered. See NLP_QUERY_PROPOSAL.md §17. */}
+              {kpiValidation.valid && (() => {
+                const unitRequired = !kpiValidation.inferredUnit;
+                const unitMissing = unitRequired && !kpiUnitOverride;
+                const labelBase = 'KPI Unit';
+                const label = unitRequired ? `${labelBase} *` : labelBase;
+                return (
+                  <FormControl fullWidth margin="normal" error={unitMissing} required={unitRequired}>
+                    <InputLabel>{label}</InputLabel>
+                    <Select
+                      value={kpiUnitOverride}
+                      label={label}
+                      onChange={(e) => setKpiUnitOverride(e.target.value)}
+                      displayEmpty
+                    >
+                      <MenuItem value="">
+                        {kpiValidation.inferredUnit ? (
+                          <em>Use detected: {kpiValidation.inferredUnit}</em>
+                        ) : (
+                          <em>— select a unit —</em>
+                        )}
+                      </MenuItem>
+                      {Array.from(VALID_UNITS).map((u) => (
+                        <MenuItem key={u} value={u}>
+                          {u}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                    <FormHelperText>
+                      {unitMissing
+                        ? `No unit detected in KPI column "${kpiValidation.kpiValue}". Select one before importing.`
+                        : kpiValidation.inferredUnit && !kpiUnitOverride
+                          ? `Auto-detected from column name: ${kpiValidation.inferredUnit}. Select a different value to override.`
+                          : kpiUnitOverride
+                            ? `Overriding with: ${kpiUnitOverride}`
+                            : 'Select a unit.'}
+                    </FormHelperText>
+                  </FormControl>
+                );
+              })()}
 
               {/* Image column */}
               <FormControl fullWidth margin="normal">

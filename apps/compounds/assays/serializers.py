@@ -639,19 +639,34 @@ class TableOfValuesImportSerializer(serializers.Serializer):
                     f"KPI value '{kpi_value}' is not a column name in the data"
                 )
 
-        # If no explicit unit override, check if the KPI column name has a parseable unit
-        # and validate it. Also warn if no unit is detectable.
+        # Unit disambiguation: the caller must supply a `kpi_unit` override OR the
+        # KPI column name must contain a parseable unit suffix. If neither is true,
+        # reject the import — silently storing a row with no `kpi_unit` is what
+        # produced the 3,262 un-recoverable rows in the existing ToV data (see
+        # NLP_QUERY_PROPOSAL.md §17). Require the caller to disambiguate.
         kpi_unit = attrs.get('kpi_unit')
         if not kpi_unit and kpi_values:
             kpi_value = next(iter(kpi_values))
-            from compounds.assays.kpi_utils import parse_unit_from_field_name, validate_unit
+            from compounds.assays.kpi_utils import (
+                parse_unit_from_field_name,
+                validate_unit,
+                VALID_UNITS,
+            )
             inferred_unit = parse_unit_from_field_name(kpi_value)
             if inferred_unit:
-                # Validate the inferred unit
                 is_valid, normalized, error_msg = validate_unit(inferred_unit)
                 if not is_valid:
                     raise serializers.ValidationError(
                         f"Invalid unit in KPI column name: {error_msg}"
                     )
+            else:
+                raise serializers.ValidationError({
+                    'kpi_unit': (
+                        f"No unit could be inferred from KPI column name "
+                        f"{kpi_value!r} and no kpi_unit override was supplied. "
+                        f"Please provide kpi_unit. Valid units: "
+                        f"{', '.join(sorted(VALID_UNITS))}."
+                    )
+                })
 
         return attrs

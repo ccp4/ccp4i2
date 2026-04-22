@@ -166,12 +166,56 @@ class ADMEParser(ABC):
     fixed KPI determined by the assay type.
     """
 
+    kpi_unit: Optional[str] = ""
+    """
+    Unit for `kpi_field` values. One of the strings in
+    `compounds.assays.kpi_utils.VALID_UNITS`, or explicitly `None` for
+    genuinely unit-less KPIs (e.g., Caco-2 efflux ratio).
+
+    Subclasses MUST set this (see `__init_subclass__` guard below).
+    Empty string is not allowed; use `None` to mean "no unit applies".
+    """
+
     # Known control compounds to skip
     CONTROL_COMPOUNDS = {
         'verapamil', 'metoprolol', 'digoxin', 'propantheline',
         'afatinib', 'warfarin', 'testosterone', 'midazolam',
         'propranolol', 'atenolol', 'caffeine', 'lucifer yellow',
     }
+
+    def __init_subclass__(cls, **kwargs):
+        """
+        Guard: every concrete ADMEParser with a non-empty `kpi_field` must
+        explicitly set `kpi_unit` to either a value in VALID_UNITS or `None`
+        (for unit-less KPIs). This prevents a silent class of stuck rows
+        where ADME imports land in the DB without a `kpi_unit` — the exact
+        failure mode the Table-of-Values import had before tightening.
+
+        See NLP_QUERY_PROPOSAL.md §17 and §13 decision 23.
+        """
+        super().__init_subclass__(**kwargs)
+
+        # Skip abstract intermediate classes that haven't declared a kpi_field.
+        if not cls.kpi_field:
+            return
+
+        # Lazy import to avoid a circular-import hazard during app load.
+        from compounds.assays.kpi_utils import VALID_UNITS
+
+        # kpi_unit defaulted to empty string means the subclass didn't set it.
+        # Accept None (unit-less) or any string in VALID_UNITS.
+        if cls.kpi_unit is None:
+            return
+        if isinstance(cls.kpi_unit, str) and cls.kpi_unit in VALID_UNITS:
+            return
+
+        raise TypeError(
+            f"ADMEParser subclass {cls.__module__}.{cls.__name__} defines "
+            f"kpi_field={cls.kpi_field!r} but kpi_unit={cls.kpi_unit!r} is "
+            f"not in VALID_UNITS and is not None. Set kpi_unit explicitly: "
+            f"pick one of {sorted(VALID_UNITS)}, or set kpi_unit=None "
+            f"for a genuinely unit-less KPI."
+        )
 
     @abstractmethod
     def detect(self, filepath: Path) -> bool:
