@@ -960,15 +960,23 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
                                 f"to re-import."),
                 })
 
-        # Resolve target: use provided target_id, or fall back to protocol's default target
+        # Resolve target: use provided target_id, or infer from matched compounds,
+        # or fall back to protocol's default target.
         from compounds.registry.models import Target
+        from compounds.assays.target_inference import infer_target_from_compound_ids
         target = None
         if target_id:
             try:
                 target = Target.objects.get(id=target_id)
             except Target.DoesNotExist:
                 logger.warning(f"Target {target_id} not found, ignoring")
-        elif protocol.target:
+        if target is None:
+            target = infer_target_from_compound_ids(
+                item.get('compound_db_id')
+                for item in results_data
+                if not item.get('is_control')
+            )
+        if target is None and protocol.target:
             target = protocol.target
 
         created_series = []

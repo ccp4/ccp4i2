@@ -318,11 +318,17 @@ class Command(BaseCommand):
         # Get or create protocol
         protocol = self._get_or_create_protocol(parser)
 
-        # Create Assay for this import
-        # Use protocol's default target if available
+        # Resolve target: infer from matched compounds, or fall back to protocol's default.
+        from compounds.assays.target_inference import infer_target_from_compound_ids
+        target = infer_target_from_compound_ids(
+            compound.id for _, compound in results_to_import if compound is not None
+        )
+        if target is None:
+            target = protocol.target
+
         assay = Assay.objects.create(
             protocol=protocol,
-            target=protocol.target,
+            target=target,
             comments=f"Imported from {filepath.name}",
         )
         self.log(f"Created assay: {assay.id}")
