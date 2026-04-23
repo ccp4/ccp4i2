@@ -75,6 +75,15 @@ param compoundIdStart int = 1
 @description('Per-instance browser tab title shown by the web frontend (e.g. "Kawamura CCP4i2"). Empty falls back to "CCP4i2".')
 param instanceTitle string = ''
 
+@description('Azure OpenAI custom-subdomain endpoint (e.g. https://ddu-openai.openai.azure.com/). Leave empty to disable — the NLP query endpoint returns 404 when COMPOUNDS_NLP_ENABLED is off, so this only needs populating once the feature is being turned on.')
+param azureOpenAiEndpoint string = ''
+
+@description('Azure OpenAI model deployment name (see NLP_QUERY_PROPOSAL.md §11). Defaults to gpt-4o.')
+param azureOpenAiModel string = 'gpt-4o'
+
+@description('Feature flag for the NLP query endpoint on the server Container App. "true" to enable; anything else disables (endpoint returns 404).')
+param compoundsNlpEnabled string = ''
+
 // - PostgreSQL is accessed via private endpoint (no public access)
 // - Key Vault is accessed via private endpoint (no public access)
 // - Storage Account is accessed via private endpoint (no public access)
@@ -365,6 +374,22 @@ resource serverApp 'Microsoft.App/containerApps@2023-05-01' = {
             {
               name: 'COMPOUND_ID_START'
               value: string(compoundIdStart)
+            }
+            // NLP query backend (apps/compounds/nlp/) — see NLP_QUERY_PROPOSAL.md §§8, 11, 16.2.
+            // Auth is via the container apps managed identity (AZURE_CLIENT_ID above is the
+            // factory's DefaultAzureCredential hint); the endpoint host must be the custom-
+            // subdomain form for managed-identity auth to work.
+            {
+              name: 'AZURE_OPENAI_ENDPOINT'
+              value: azureOpenAiEndpoint
+            }
+            {
+              name: 'AZURE_OPENAI_MODEL'
+              value: azureOpenAiModel
+            }
+            {
+              name: 'COMPOUNDS_NLP_ENABLED'
+              value: compoundsNlpEnabled
             }
           ]
           volumeMounts: concat(ccp4VolumeMount, [

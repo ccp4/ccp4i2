@@ -241,6 +241,9 @@ az deployment group create \
                skipCcp4Storage=$SKIP_CCP4_STORAGE \
                customDomain="${CUSTOM_DOMAIN:-}" \
                instanceTitle="${INSTANCE_TITLE:-}" \
+               azureOpenAiEndpoint="${AZURE_OPENAI_ENDPOINT:-}" \
+               azureOpenAiModel="${AZURE_OPENAI_MODEL:-gpt-4o}" \
+               compoundsNlpEnabled="${COMPOUNDS_NLP_ENABLED:-}" \
   --name $APP_DEPLOYMENT_NAME \
   --mode Incremental
 

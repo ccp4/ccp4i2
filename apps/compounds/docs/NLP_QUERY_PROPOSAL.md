@@ -408,20 +408,36 @@ The Target-model dependency and hydration pipeline are shipped. `Gene` model + `
 
 Before turning NLP on for Demo/Kawamura: run `backfill_target_genes.py --dump` on those instances and curate the plans, so the matching pool is as rich there as on DDU.
 
-### 16.2 Azure infrastructure prerequisites for the LLM path (ops/DevOps work, not code)
+### 16.2 Azure infrastructure prerequisites for the LLM path
 
-The LLM-calling slice ships in code with slice 5 and gets wired into an endpoint in slice 6, but neither slice can actually reach Azure OpenAI until these four prerequisites land. They're parallel to code work and are ideally in place by the time slice 7 (frontend) tries to hit the endpoint from a browser against a deployed instance.
+Survey of the live resource group (2026-04-23) showed the infra was further along than the original draft of this section assumed:
 
-| # | Prerequisite | Owner | Notes |
+- A shared Azure OpenAI resource `ddu-openai` already exists in `ccp4i2-bicep-rg-uksouth` — provisioned for the aacr-abstracts container app (which authenticates via API key against the regional endpoint).
+- A `gpt-4o` model deployment (GlobalStandard, capacity 10, version 2024-11-20) is already live on that resource.
+- The resource does **not** have `customSubDomainName` set, which is a hard prerequisite for managed-identity auth (MI token validation uses `https://<name>.openai.azure.com/`, not the regional endpoint).
+
+So the §16.2 work reduced to three concrete code/ops changes and a small one-time `az cli` step:
+
+| # | Task | Status | Notes |
 |---|---|---|---|
-| 1 | **Azure OpenAI resource** in `ccp4i2-bicep-rg-uksouth` (UK South) | Martin / IT | One shared resource across demo/kawamura/DDU is the simpler default; per-instance separation available if rate-limit isolation or audit separation is wanted later (§11). |
-| 2 | **Model deployment** on that resource — a deployment named whatever will be put in `AZURE_OPENAI_MODEL` (default `gpt-4o` per decision 16) | Martin / IT | Distinct from the resource itself — Azure OpenAI separates "resource" and "model deployment". The deployment name, not the model name, is what the SDK sends. |
-| 3 | **Role assignment in Bicep** — `Cognitive Services OpenAI User` (GUID `5e0bd9bd-7b93-4f28-af87-19fc36ad61bd`) on the OpenAI resource, scoped to the existing `containerAppsIdentity` | Code change in `Docker/azure-uksouth/infrastructure/` Bicep (same module that today grants Storage/Queue/KeyVault roles to that identity) | Without it, `parse_prompt` fails at token acquisition with 403 the first time it's called. One-line addition to the existing role-assignment list — cheap, but **must precede the first deploy that exposes the endpoint**. |
-| 4 | **Container App env vars** per instance — `AZURE_OPENAI_ENDPOINT` (required), `AZURE_OPENAI_MODEL` (optional, defaults to `gpt-4o`), `AZURE_OPENAI_API_VERSION` (optional, defaults to `2024-10-21`) | Martin | Set via `deploy-applications.sh` per-env file, same pattern as existing Azure env vars. If all three instances share one OpenAI resource, the endpoint is the same across `.env.demo`/`.env.kawamura`/`.env.ddudatabase`; instance-specific separation if later wanted. |
+| 1 | Set `customSubDomainName = "ddu-openai"` on the shared OpenAI resource | Script shipped: `Docker/azure-uksouth/scripts/configure-openai-for-nlp.sh` | Idempotent az-cli one-shot. One-way Azure change (cannot be removed) but additive — aacr-abstracts' existing regional endpoint + API key keep working. |
+| 2 | Role assignment `Cognitive Services OpenAI User` (GUID `5e0bd9bd-7b93-4f28-af87-19fc36ad61bd`) on the OpenAI resource, scoped to `containerAppsIdentity` | Script applies it; also mirrored into `infrastructure/infrastructure.bicep` so a fresh full deploy picks it up without running the script | Same GUID, same identity — matches the Storage/KeyVault pattern in the same Bicep module. |
+| 3 | Server Container App env vars: `AZURE_OPENAI_ENDPOINT`, `AZURE_OPENAI_MODEL` (default `gpt-4o`), `COMPOUNDS_NLP_ENABLED` (default off) | `applications.bicep` params + env block + `deploy-applications.sh` wiring; documented in `.env.deployment.template` | Per-instance values live in `.env.deployment` / `.env.demo` / `.env.kawamura`. Endpoint string is `https://ddu-openai.openai.azure.com/` once step 1 has run. |
 
-**Additional runtime dependency** — `openai>=1.50,<2.0` added to `Docker/server/Dockerfile` during slice 5. Picked up on the next server image build and push. No manual install step needed on Container Apps — the image bundles it.
+**Runtime dependency** — `openai>=1.50,<2.0` was added to `Docker/server/Dockerfile` during slice 5. Picked up on the next server image build and push; nothing to install on the Container App itself.
 
-**Sequencing.** Prereqs 1–3 can all land together as a single infra PR that provisions the resource + model deployment via Bicep and adds the role assignment. Prereq 4 lands in the `.env.*` files alongside the first deploy that turns the feature on. None of this is blocking for slices 6 (view) or 8 (eval) — the view can ship behind the `COMPOUNDS_NLP_ENABLED` flag (see §16.3) off-by-default, and eval runs locally against a dev endpoint or mocks. It only gates actually **using** the feature in a deployed instance.
+**Enablement sequence** (per instance):
+
+1. (Once, shared across instances) — run `Docker/azure-uksouth/scripts/configure-openai-for-nlp.sh`. Idempotent; safe to re-run. Prints the managed-identity endpoint URL to copy into env files.
+2. In the instance's `.env.*` file, set:
+   - `AZURE_OPENAI_ENDPOINT=https://ddu-openai.openai.azure.com/`
+   - `COMPOUNDS_NLP_ENABLED=true`
+3. Rebuild + push server image if slice 5 hasn't shipped to prod yet (so `openai` is in the container).
+4. Redeploy: `./scripts/deploy-applications.sh [--env .env.<instance>]`.
+
+**Non-blocking for earlier slices.** None of this gates slices 6 (view) or 8 (eval). Slice 6 ships behind the flag off-by-default; eval runs locally against mocks. §16.2 only gates actually *using* the feature in a deployed instance.
+
+**Coexistence with aacr-abstracts.** aacr-abstracts authenticates to the same `ddu-openai` resource via API key against the regional endpoint. Setting `customSubDomainName` is additive — the regional endpoint continues to resolve, and `disableLocalAuth` is deliberately left unset, so API-key auth keeps working. The two apps share the resource's token-per-minute quota; if they ever contend, the `§11` "per-instance separation" escape hatch is straightforward (deploy a second OpenAI resource; change one env var).
 
 ### 16.3 App rollout
 

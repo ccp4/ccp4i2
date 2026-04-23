@@ -717,6 +717,34 @@ resource keyVaultSecretsUserRole 'Microsoft.Authorization/roleAssignments@2022-0
   }
 }
 
+// -----------------------------------------------------------------------
+// Azure OpenAI resource for the NLP-query backend (apps/compounds/nlp/).
+// The resource already exists and is shared with the aacr-abstracts app
+// (which uses API-key auth). ccp4i2 authenticates via managed identity —
+// which requires a custom subdomain and the "Cognitive Services OpenAI
+// User" role assignment below. See NLP_QUERY_PROPOSAL.md §16.2.
+//
+// Set `openAiResourceName = ''` to skip wiring (e.g. deploys that won't
+// use the NLP feature).
+// -----------------------------------------------------------------------
+@description('Name of the existing Azure OpenAI account to grant the managed identity access to. Empty string skips the role assignment (for instances that will not use the NLP query feature).')
+param openAiResourceName string = 'ddu-openai'
+
+resource openAiAccount 'Microsoft.CognitiveServices/accounts@2024-10-01' existing = if (!empty(openAiResourceName)) {
+  name: openAiResourceName
+}
+
+// Cognitive Services OpenAI User - token-based data-plane access.
+resource openAiUserRole 'Microsoft.Authorization/roleAssignments@2022-04-01' = if (!empty(openAiResourceName)) {
+  name: guid(resourceGroup().id, openAiResourceName, containerAppsIdentity.id, '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
+  scope: openAiAccount
+  properties: {
+    roleDefinitionId: subscriptionResourceId('Microsoft.Authorization/roleDefinitions', '5e0bd9bd-7b93-4f28-af87-19fc36ad61bd')
+    principalId: containerAppsIdentity.properties.principalId
+    principalType: 'ServicePrincipal'
+  }
+}
+
 // Storage for Container Apps Environment - CCP4 software - OPTIONAL when CCP4 is baked into container image
 resource containerAppsCcp4Storage 'Microsoft.App/managedEnvironments/storages@2023-05-01' = if (!skipCcp4Storage) {
   name: 'ccp4-software'
@@ -794,3 +822,8 @@ output containerAppsIdentityPrincipalId string = containerAppsIdentity.propertie
 output containerAppsIdentityClientId string = containerAppsIdentity.properties.clientId
 output serviceBusNamespaceName string = serviceBusNamespace.name
 output serviceBusQueueName string = serviceBusQueue.name
+// Managed-identity endpoint for the NLP query backend. Empty if openAiResourceName was '',
+// or if the resource's customSubDomainName has not been set (run scripts/configure-openai-for-nlp.sh).
+// The `?.` safe-dereference covers the conditional-resource case — if openAiAccount is skipped,
+// this evaluates to '' without tripping the Bicep null-check analyser.
+output openAiEndpoint string = empty(openAiAccount.?properties.?customSubDomainName ?? '') ? '' : 'https://${openAiAccount!.properties.customSubDomainName}.openai.azure.com/'
