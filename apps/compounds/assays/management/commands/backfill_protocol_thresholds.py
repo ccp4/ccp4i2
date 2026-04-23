@@ -60,11 +60,39 @@ class Classification:
 # Each pattern is compiled case-insensitive; use \b for word boundaries
 # where a keyword could appear as a substring of a larger word.
 ADME_RULES: list[tuple[re.Pattern[str], Classification | None]] = [
-    # Physicochemical properties that don't fit a two-anchor potency model.
-    # Explicit skip (None) so these don't fall through to a later rule.
-    # logD/logP: band-around-midpoint (~2-3). pKa: pH units, different axis entirely.
+    # ========================================================================
+    # Explicit skips (no sensible two-anchor default) — matched first so they
+    # take precedence over the classification rules below.
+    # ========================================================================
+
+    # Physicochemical — wrong axis (pH) or band-around-midpoint shape.
     (re.compile(r'log\s*[dp](?![a-z])', re.IGNORECASE), None),
     (re.compile(r'pk[ab](?![a-z])', re.IGNORECASE), None),
+
+    # In-vivo PK parameters: units vary wildly (mL/min/kg, L/kg, h, %),
+    # cannot default safely. Matches on "in vivo", bioavailability,
+    # half-life, AUC, Vd, "Clearance", or the unit strings mL/min/L/kg.
+    (
+        re.compile(
+            r'\bin\s*vivo\b'
+            r'|bioavail'
+            r'|half[\s_-]?life'
+            r'|(?<![a-z])auc(?![a-z])'
+            r'|(?<![a-z])vd(?![a-z])'
+            r'|clearance'
+            r'|(?<![a-z])m[lL]\s*min'
+            r'|\bl\s*kg\b',
+            re.IGNORECASE,
+        ),
+        None,
+    ),
+
+    # Intact MS — KPI conventions not standardised across protocols; skip.
+    (re.compile(r'(?<![a-z])intact(?![a-z])', re.IGNORECASE), None),
+
+    # ========================================================================
+    # Classification rules.
+    # ========================================================================
 
     (
         re.compile(r'solubility|aq[_\s]*sol(?![a-z])|(?<![a-z])pbs(?![a-z])|(?<![a-z])sol(?![a-z])', re.IGNORECASE),
@@ -82,8 +110,10 @@ ADME_RULES: list[tuple[re.Pattern[str], Classification | None]] = [
         re.compile(r'permeab|caco|mdck|papp', re.IGNORECASE),
         Classification(10, 1, 'log', 'ADME: permeability (higher-better)'),
     ),
+    # Plasma protein binding: accept underscore or whitespace between
+    # "plasma" and "protein" so Pharmaron's `plasma_protein_binding` matches.
     (
-        re.compile(r'(?<![a-z])ppb(?![a-z])|plasma\s+protein|%\s*free', re.IGNORECASE),
+        re.compile(r'(?<![a-z])ppb(?![a-z])|plasma[_\s]+protein|%\s*free', re.IGNORECASE),
         Classification(20, 1, 'log', 'ADME: plasma protein binding (% free)'),
     ),
     # Matrix stability: GSH, plasma, blood, serum — all % compound remaining
@@ -101,7 +131,9 @@ ADME_RULES: list[tuple[re.Pattern[str], Classification | None]] = [
 
 # Binding-assay name override — treat SPR/Kd/Ki/ITC as plate-based potency
 # even when the data was imported as table_of_values.
-BINDING_NAME = re.compile(r'\b(spr|k[di]|itc)\b', re.IGNORECASE)
+# Uses negative lookaround (rather than \b) so `ITCinput` and similar
+# non-word-boundary forms are still recognised.
+BINDING_NAME = re.compile(r'(?<![a-z])(?:spr|k[di]|itc)(?![a-z])', re.IGNORECASE)
 
 PLATE_POTENCY = Classification(10, 10_000, 'log', 'Plate-based potency')
 CELLULAR = Classification(500, 30_000, 'log', 'Cellular (table_of_values)')
@@ -125,6 +157,10 @@ def classify(protocol: Protocol) -> Classification | None:
     if protocol.import_type == 'pharmaron_adme':
         return None
 
+    # Intact MS — KPI conventions not standardised; leave unscored.
+    if protocol.import_type == 'ms_intact':
+        return None
+
     # SPR/Kd/Ki/ITC override: potency despite table_of_values import
     if BINDING_NAME.search(name):
         return Classification(
@@ -134,7 +170,7 @@ def classify(protocol: Protocol) -> Classification | None:
             'Binding assay (SPR/Kd/Ki/ITC) — potency defaults',
         )
 
-    if protocol.import_type in ('raw_data', 'ms_intact'):
+    if protocol.import_type == 'raw_data':
         return PLATE_POTENCY
 
     if protocol.import_type == 'table_of_values':
