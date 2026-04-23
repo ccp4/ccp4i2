@@ -19,6 +19,7 @@ import {
   Divider,
   ListItemIcon,
   ListItemText,
+  Typography,
 } from '@mui/material';
 import { Close, Description, Add, GridOn } from '@mui/icons-material';
 import { useSWRConfig } from 'swr';
@@ -60,6 +61,11 @@ export function ProtocolCreateDialog({
   const [preferredDilutionsId, setPreferredDilutionsId] = useState<string | null>(null);
   const [plateLayoutId, setPlateLayoutId] = useState<string | null>(null);
   const [comments, setComments] = useState('');
+  // Interpretation thresholds — recommended but not required at creation.
+  // Direction is implied by ordering (target < poor → lower-better).
+  const [targetValueStr, setTargetValueStr] = useState('');
+  const [poorValueStr, setPoorValueStr] = useState('');
+  const [thresholdScale, setThresholdScale] = useState<'log' | 'linear'>('log');
 
   // Fetch available dilution series
   const { data: dilutionSeries, isLoading: dilutionsLoading } = api.get<DilutionSeries[]>(
@@ -90,6 +96,9 @@ export function ProtocolCreateDialog({
       setPreferredDilutionsId(null);
       setPlateLayoutId(null);
       setComments('');
+      setTargetValueStr('');
+      setPoorValueStr('');
+      setThresholdScale('log');
       setError(null);
     }
   }, [open]);
@@ -97,6 +106,20 @@ export function ProtocolCreateDialog({
   const handleSave = async () => {
     if (!name.trim()) {
       setError('Protocol name is required');
+      return;
+    }
+
+    // Parse thresholds (empty → null)
+    const parseThreshold = (s: string): number | null => {
+      if (s.trim() === '') return null;
+      const n = Number(s);
+      return Number.isFinite(n) ? n : null;
+    };
+    const targetValue = parseThreshold(targetValueStr);
+    const poorValue = parseThreshold(poorValueStr);
+
+    if (targetValue !== null && poorValue !== null && targetValue === poorValue) {
+      setError('Excellent and poor values must differ — the direction of "better" is implied by their ordering.');
       return;
     }
 
@@ -116,6 +139,9 @@ export function ProtocolCreateDialog({
         plate_layout: plateLayoutId || null,
         fitting_parameters: hasFittingConstraints ? fittingParams : null,
         comments: comments.trim() || null,
+        target_value: targetValue,
+        poor_value: poorValue,
+        threshold_scale: thresholdScale,
       });
 
       onCreated(newProtocol);
@@ -267,6 +293,54 @@ export function ProtocolCreateDialog({
               </MenuItem>
             </Select>
           </FormControl>
+
+          <Divider />
+
+          {/* Interpretation Thresholds — recommended but not required */}
+          <Box>
+            <Typography variant="subtitle2" color="text.secondary" gutterBottom>
+              Value Interpretation (recommended)
+            </Typography>
+            <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1.5 }}>
+              Absolute thresholds for colour-coding KPI values in aggregation views.
+              Direction of &quot;better&quot; is implied by ordering: set excellent &lt; poor
+              for potency-style metrics (IC50, EC50), or excellent &gt; poor for
+              capacity-style metrics (solubility, permeability).
+              Leave blank if you&apos;ll decide later — the protocol will render
+              uncoloured in aggregation views until set.
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 1.5 }}>
+              <TextField
+                label="Excellent value"
+                value={targetValueStr}
+                onChange={(e) => setTargetValueStr(e.target.value)}
+                type="number"
+                size="small"
+                fullWidth
+                inputProps={{ step: 'any' }}
+              />
+              <TextField
+                label="Poor value"
+                value={poorValueStr}
+                onChange={(e) => setPoorValueStr(e.target.value)}
+                type="number"
+                size="small"
+                fullWidth
+                inputProps={{ step: 'any' }}
+              />
+              <FormControl size="small" sx={{ minWidth: 110 }}>
+                <InputLabel>Scale</InputLabel>
+                <Select
+                  value={thresholdScale}
+                  onChange={(e) => setThresholdScale(e.target.value as 'log' | 'linear')}
+                  label="Scale"
+                >
+                  <MenuItem value="log">Log</MenuItem>
+                  <MenuItem value="linear">Linear</MenuItem>
+                </Select>
+              </FormControl>
+            </Box>
+          </Box>
 
           <TextField
             label="Comments"

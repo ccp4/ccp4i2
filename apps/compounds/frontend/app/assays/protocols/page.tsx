@@ -41,17 +41,35 @@ export default function ProtocolsPage() {
       label: 'Protocol Name',
       sortable: true,
       searchable: true,
-      render: (value, row) => (
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <Description fontSize="small" color="primary" />
-          <Typography fontWeight={500}>{value}</Typography>
-          {row.has_recent_assays && (
-            <Tooltip title="New assays in the last 7 days">
-              <FiberNew fontSize="small" color="secondary" />
-            </Tooltip>
-          )}
-        </Box>
-      ),
+      render: (value, row) => {
+        const thresholdsMissing = row.target_value == null || row.poor_value == null;
+        return (
+          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+            <Description fontSize="small" color="primary" />
+            <Typography fontWeight={500}>{value}</Typography>
+            {row.has_recent_assays && (
+              <Tooltip title="New assays in the last 7 days">
+                <FiberNew fontSize="small" color="secondary" />
+              </Tooltip>
+            )}
+            {thresholdsMissing && (
+              <Tooltip title="No interpretation thresholds set — this protocol renders uncoloured in aggregation views. Open the protocol to set excellent/poor values.">
+                <Chip
+                  label="no thresholds"
+                  size="small"
+                  variant="outlined"
+                  sx={{
+                    height: 20,
+                    fontSize: '0.7rem',
+                    color: 'text.secondary',
+                    borderColor: 'divider',
+                  }}
+                />
+              </Tooltip>
+            )}
+          </Box>
+        );
+      },
     },
     {
       key: 'import_type',
