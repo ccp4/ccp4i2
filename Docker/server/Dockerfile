@@ -94,7 +94,8 @@ RUN pip install --no-cache-dir --target=/usr/src/app/azure_packages \
     "azure-monitor-opentelemetry>=1.8" \
     "PyJWT[crypto]>=2.10" \
     "certifi>=2024.0.0" \
-    "Pillow>=10.0.0"
+    "Pillow>=10.0.0" \
+    "openai>=1.50,<2.0"
 
 # Install from pyproject.toml if additional deps needed
 RUN pip install --no-cache-dir -e . 2>/dev/null || true

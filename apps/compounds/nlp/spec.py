@@ -253,3 +253,29 @@ ExecutionResult = Union[
     ProtocolMiss,
     SpecError,
 ]
+
+
+# ---------------------------------------------------------------------------
+# LLM prompt-parse result (§8 — the LLM emits either a QuerySpec or this)
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class NotAQuery:
+    """LLM-emitted signal that the user's prompt isn't a tabular query."""
+
+    reason: str
+
+
+@dataclass
+class ParseError:
+    """LLM output failed downstream validation (malformed JSON, schema violation,
+    both branches empty, …). Distinct from NotAQuery — this is *our* fault, not
+    the user's. Slice 6 view will map to a 502-ish response; the caller is
+    expected to retry or report rather than show a user-friendly message."""
+
+    message: str
+    raw: Optional[str] = None
+
+
+PromptParseResult = Union[QuerySpec, NotAQuery, ParseError]

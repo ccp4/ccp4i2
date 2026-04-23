@@ -1,8 +1,8 @@
 # Natural-Language Query Proposal (Compounds App)
 
-**Status**: In implementation. Backend slices 1–4 shipped (target resolution, protocol resolution + two-target orchestrator, row-level evaluator with unit tri-state, end-to-end executor with phys-chem column expansion + scope-sentence generation). LLM wiring (§8, §11) and UI (§10) remain. **See §18 for slice-by-slice progress and the pick-up notes for the next slice** — that section is the canonical resumption anchor if this work is being resumed in a fresh conversation.
+**Status**: In implementation. Backend slices 1–5 shipped (target resolution, protocol resolution + two-target orchestrator, row-level evaluator with unit tri-state, end-to-end executor with phys-chem column expansion + scope-sentence generation, Azure OpenAI client + parse_prompt with structured-output extraction). DRF view (§7 view, §9), UI (§10), and evaluation harness (§12) remain. **See §18 for slice-by-slice progress and the pick-up notes for the next slice** — that section is the canonical resumption anchor if this work is being resumed in a fresh conversation.
 **Author**: Martin Noble (with Claude)
-**Date**: 2026-04-22 (drafted); §§18–19 added 2026-04-23; §18 slice-4 update 2026-04-23
+**Date**: 2026-04-22 (drafted); §§18–19 added 2026-04-23; §18 slices 4–5 updates 2026-04-23
 **LLM provider**: Azure OpenAI (not Claude API) — same Azure UK South tenant as the rest of the deployment; keeps data in-region and on existing billing.
 
 ## 1. Motivation
@@ -474,7 +474,7 @@ Work is delivered as narrow vertical slices that build the backend first and def
 | 2 | Protocol resolution + two-target orchestrator | Shipped | §6.2, §6.5, Q21 |
 | 3 | Row-level evaluator (metric + unit tri-state) | Shipped | §6.3, §6.4, Q25 |
 | 4 | Executor (`executor.py`): ORM query + payload + footer counts + scope sentence | Shipped | §7, §6.6, §10 |
-| 5 | Azure OpenAI client + prompt + structured-output extraction | Pending | §8, §11.1 |
+| 5 | Azure OpenAI client + prompt + structured-output extraction | Shipped | §8, §11.1 |
 | 6 | DRF view with clarify loop | Pending | §7 (view), §9 |
 | 7 | Frontend command-bar (landing + per-project) | Pending | §10 |
 | 8 | Evaluation harness + golden set | Pending | §12 |
@@ -529,6 +529,21 @@ All code lives under `apps/compounds/nlp/`. Tests live under `apps/compounds/nlp
 - Scope sentence generation for §10 echo-back is per-`scope_kind` via f-strings in `_scope_sentence`; threshold clause (`, with IC50 < 10.0 nM`) or metric clause (`, IC50 values`) appended at the end.
 - Tests: `apps/compounds/nlp/tests/test_executor.py` (19 tests). Covers: spec validation (missing metric / protocol_hint → `SpecError`); pass-through of `ScopeError` / `TargetMiss` / `TargetClarify` / `ProtocolMiss` / `ProtocolClarify`; happy-path row emission with phys-chem values and unit conversion; footer + silent-filtered bucket counts; column expansion (default / lipinski / explicit / explicit-with-unknowns); scope sentence across all four `scope_kind`s.
 
+**Slice 5 — LLM parse** (165 tests cumulative)
+
+- New `apps/compounds/nlp/azure_client.py`:
+  - `get_azure_openai_client()` factory implementing §11.1 exactly — `DefaultAzureCredential` → managed identity in prod, `az login` locally. Reads `AZURE_OPENAI_API_KEY` first as the documented dev-only fallback.
+  - Deferred imports: `openai` and `azure.identity` are imported *inside* the factory, not at module top. Keeps test runs free of the SDK requirement (tests mock the factory), and means the rest of `compounds.nlp` is safe to import in environments where `openai` isn't pip-installed yet.
+  - `get_model_name()` reads `AZURE_OPENAI_MODEL`, defaulting to `"gpt-4o"` per decision 16.
+- New `apps/compounds/nlp/llm.py`:
+  - `SYSTEM_PROMPT` — the static system prompt. Encodes the load-bearing rules (verbatim strings, no IDs/values fabricated, single-target vs cross-project convention, `not_a_query` emission, filler-noun discipline from §19.6). Static so prompt caching works.
+  - `PROMPT_SCHEMA` — the JSON Schema given to Azure OpenAI in strict-mode structured-output. Every property is nullable and listed in `required` (strict-mode requirement). `threshold` is a nested object schema with `op/value/unit`.
+  - `parse_prompt(prompt: str) -> PromptParseResult` — calls the SDK with `response_format={"type": "json_schema", …, "strict": True}` and `temperature=0`; parses the JSON into a `QuerySpec` or `NotAQuery`. Handles malformed JSON, non-object JSON, and empty content as `ParseError`.
+  - `_to_parse_result(data: dict)` — pure translator, exported for direct testing without any mocking.
+- `spec.py` additions: `NotAQuery(reason)`, `ParseError(message, raw)`, and the `PromptParseResult = Union[QuerySpec, NotAQuery, ParseError]` union. `NotAQuery` is user-facing (the LLM's decision); `ParseError` is infrastructure-facing (our glue code failed).
+- Tests: `apps/compounds/nlp/tests/test_llm.py` (17 tests). Pure translator branches (single-target/threshold, assay-only, cross-project, unitless threshold, not-a-query, malformed-threshold, columns_explicit preservation) plus `parse_prompt` paths with a mocked `AzureOpenAI` client (happy path asserting full SDK call shape, not_a_query, malformed-JSON, non-object-JSON, empty-content, empty-prompt short-circuit), plus schema-drift guards (every property is in `required`; threshold subschema locks `additionalProperties=False`) and a prompt content spot-check.
+- Requirements: `openai>=1.50,<2.0` added to `Docker/server/Dockerfile` and documented in `server/requirements-azure.txt`. `azure-identity` was already pinned for the rest of the Azure stack.
+
 ### 18.3 Decisions made during implementation (additions to §13)
 
 These are lived-in details that aren't in §1–17. They don't contradict §13 — they extend it.
@@ -553,6 +568,12 @@ These are lived-in details that aren't in §1–17. They don't contradict §13 �
 | 4 | `columns_explicit` silently drops unknown field names; fully-unknown → phys-chem default | Prompt → spec → executor is one-way; hard errors on mid-pipeline column names would produce brittle UX. Unknown names usually mean the LLM invented something; phys-chem fallback keeps the query productive. Spec-level validation (missing `metric`, missing `protocol_hint`) *is* a hard `SpecError` because those are load-bearing. |
 | 4 | `SpecError` is a distinct response type from `ScopeError` | `ScopeError` is specific to the "neither target field set" violation of §6.5. `SpecError(field, message)` is a generic executor-level validation error. Keeping them separate makes the view's error-to-HTTP mapping (slice 6) cleaner. |
 | 4 | Scope-sentence rendering uses literal f-strings per `scope_kind`, not a template library | Four scope kinds × two threshold states = 8 variants, all short. A template engine would add indirection without saving code. `, with {metric} {op} {value} {unit}` or `, {metric} values` appended at the end. |
+| 5 | `NotAQuery` (user-facing) and `ParseError` (infra-facing) are separate response types | `NotAQuery` is a considered decision by the LLM ("this isn't a table") and should surface to the user with the reason + example prompts per decision 20. `ParseError` is *our* glue code failing (bad JSON, empty content, wrong shape). Slice 6 view will map them to different HTTP statuses (200-with-explanation vs 502/500). |
+| 5 | `openai` / `azure.identity` imports are deferred to inside `get_azure_openai_client()` | Lets `compounds.nlp.llm` and tests import without requiring the SDK installed locally. Tests mock the factory, so even CI with no `openai` on the interpreter path passes cleanly. Production Dockerfile pulls the SDK in. |
+| 5 | Strict-mode JSON schema with every property in `required` and nullable union types (`["string", "null"]`) | Azure OpenAI strict-mode structured output requires `additionalProperties=false` and `required` listing every property. Optional fields are expressed as `["T", "null"]` rather than `required` omission. A `test_schema_declares_every_spec_field_as_required` guard catches drift if fields are added without updating `required`. |
+| 5 | `not_a_query` is a boolean discriminator on the flat schema, not an `anyOf` union | Keeps the schema strict-mode-compliant and the JSON parse straightforward — a single object with optional fields, `not_a_query=true` selecting the NotAQuery branch. `anyOf` works in structured output but adds complexity the v1 shape doesn't need. Revisit if the schema grows a second-level branch. |
+| 5 | Empty/whitespace prompt short-circuits to `ParseError` before calling the SDK | Cheap guard against accidental empty-input burning LLM budget. Tests verify the factory isn't called. |
+| 5 | `_to_parse_result` is exported as a public-for-testing helper | Lets tests exhaustively cover the translator without repeatedly mocking the HTTP path. Ten of the seventeen tests hit the translator directly. |
 
 ### 18.4 Running the tests
 
@@ -564,24 +585,17 @@ PYTHONPATH="$PWD:$PWD/../apps" DJANGO_SETTINGS_MODULE=compounds.settings \
   ccp4-python -m pytest ../apps/compounds/nlp/tests/ -v
 ```
 
-Expected: 148 passing as of slice 4 (2026-04-23). Evaluator tests (slice 3) do not touch the DB; resolver / orchestrator / protocol / executor tests use `@pytest.mark.django_db` via the `db` fixture argument. Fixtures are defined inline in each test module (no JSON fixture files, no separate conftest).
+Expected: 165 passing as of slice 5 (2026-04-23). Evaluator (slice 3) and LLM (slice 5) tests do not touch the DB — LLM tests mock the Azure OpenAI factory so they also don't require `openai` to be installed locally. Resolver / orchestrator / protocol / executor tests use `@pytest.mark.django_db` via the `db` fixture argument. Fixtures are defined inline in each test module (no JSON fixture files, no separate conftest).
 
 ### 18.5 Pending slices — pick-up notes
 
-**Slice 5: Azure OpenAI client + prompt** — the next slice.
+**Slice 6: DRF view + clarify loop** — the next slice.
 
-- Start from §11.1 exactly — the `get_azure_openai_client()` factory with managed identity + the `AZURE_OPENAI_API_KEY` dev-only fallback.
-- Add `azure-identity` and `openai` to `requirements.txt`.
-- Build structured-output call that returns a validated `QuerySpec`. JSON schema is derived from the `@dataclass` fields (either generate at import time or hand-write a schema dict; §7 allows either).
-- No catalogs in the prompt (decision 2).
-- System prompt must be static for cache-friendliness (~1k tokens).
-
-**Slice 6: DRF view + clarify loop.**
-
-- `POST /api/compounds/nlp/query/` — body `{prompt}` for fresh queries, `{spec, clarifications}` for continuations.
-- Returns `TablePayload | ClarifyResponse | ErrorResponse`.
-- Per-project-page target context (decision 18) is a backend post-hoc fill on null target fields; the request needs to carry the originating URL route.
-- Hook in the §11 per-user 500-calls-per-day runaway cap.
+- `POST /api/compounds/nlp/query/` — body `{prompt}` for fresh queries, `{spec, clarifications}` for continuations. Continuations must NOT re-call the LLM (see decision 5) — they resume from a prior partial_spec + the UI's chosen clarification value (e.g. a pinned target_id or protocol_id).
+- Response union: `TablePayload` (200) | clarify payload derived from `TargetClarify` / `ProtocolClarify` (200 + status discriminator) | error payload derived from `TargetMiss` / `ProtocolMiss` / `ScopeError` / `SpecError` / `NotAQuery` / `ParseError`. `NotAQuery` shows the LLM's reason + example prompts (decision 20). `ParseError` is a 502-ish "LLM output couldn't be parsed — retry?".
+- Per-project-page target context (decision 18) is a backend post-hoc fill on null target fields; the request needs to carry the originating URL route or an explicit `project_id` / `project_target` hint.
+- Hook in the §11 per-user 500-calls-per-day runaway cap. Counter should be per-user, reset at UTC midnight, and fail closed with a friendly 429.
+- **Infra prerequisite** (flag before deploying): the Bicep `applications.bicep` module needs a new role assignment of "Cognitive Services OpenAI User" (GUID `5e0bd9bd-7b93-4f28-af87-19fc36ad61bd`) on the target Azure OpenAI resource, scoped to the existing `containerAppsIdentity`. Without it, `parse_prompt` will fail at token-acquisition in prod.
 
 **Slice 7: Frontend command-bar.**
 
@@ -706,7 +720,7 @@ This applies generally: **the LLM must not synthesise filter fields from words t
 
 Two directions have the clearest leverage-to-effort ratio and are worth naming as top candidates for the post-v1 slice queue:
 
-- **Missing-data queries** (*"ARd compounds with no HTRF measurement yet"*). Highest-value single feature — chemistry decision-making is forward-looking, the current UI is poor at it, and the backend change is small (an inversion of the scope filter). No LLM changes required — it's a new `QuerySpec` predicate.
+- **Compound-rooted queries** — unifying *"ARd compounds with no HTRF measurement yet"* (missing-data), *"compounds registered in 2025"* (registration date range), and *"compounds registered by Alice"* (provenance). Highest-value single direction — chemistry decision-making is forward-looking, these phrasings are the first thing a user tries on the command bar, and they all share one architectural shift: root the executor's queryset at `Compound` rather than `AnalysisResult`, and relax the v1 hard requirement for `metric` + `protocol_hint`. Concretely this is (a) new `QuerySpec` fields (`registration_date_range`, `registered_by_as_typed`, `missing_measurement_for_protocol_hint`), (b) a compound-only execute path that applies those predicates, and (c) a handful of new system-prompt examples. No new resolver — target resolution is already optional-per-field. Ship the date-range + missing-measurement cases together because they share the same backend lift. **Flag for when this lands**: today's executor returns `SpecError` when `metric`/`protocol_hint` are null — the relaxation must be gated on "at least one compound-level predicate is present" to keep the "empty spec" failure mode. Without that guard the command bar silently dumps the full Compound table.
 - **Explain-this-query.** One-click reveal of the resolved `QuerySpec`, scope sentence, generated SQL, and footer reasons. Every chemist who uses an LLM over their data asks *"what did it actually do?"* Shipping transparency alongside the feature (not as a retrofit) is the single highest trust-multiplier. The scope-sentence generation in slice 4 already does 80% of this; exposing it is mostly a UI lift.
 
 Two near-tied thirds, each with a different dependency profile — sequence based on which dependency is cheaper:

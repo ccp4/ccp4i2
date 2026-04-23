@@ -6,6 +6,9 @@ azure-monitor-opentelemetry==1.8.1
 azure-storage-blob==12.26.0
 django-storages[azure]==1.14.4
 
+# Azure OpenAI (NLP query subsystem, apps/compounds/nlp/)
+openai>=1.50,<2.0
+
 # Azure AD authentication
 PyJWT[crypto]==2.10.1
 certifi>=2024.0.0
