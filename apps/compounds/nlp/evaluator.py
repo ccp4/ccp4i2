@@ -13,7 +13,8 @@ each row to classify it into matched / filtered / excluded buckets.
 from __future__ import annotations
 
 import math
-from typing import Dict, Optional, Tuple
+import operator
+from typing import Callable, Dict, Optional, Tuple
 
 from compounds.assays.kpi_utils import UNITLESS, VALID_UNITS, is_unitless, normalize_unit
 
@@ -35,7 +36,7 @@ from .spec import (
 
 
 # Row unit-classification sentinels (distinct from the stored kpi_unit values).
-ROW_UNIT_UNITLESS = "unitless"
+ROW_UNIT_UNITLESS = UNITLESS  # share the sentinel value with kpi_utils so the two can't drift
 ROW_UNIT_UNKNOWN = "unknown"
 
 # Query unit classifications.
@@ -118,20 +119,22 @@ def classify_query_unit(unit) -> str:
     return QUERY_UNIT_UNKNOWN
 
 
+_COMPARISONS: Dict[str, Callable[[float, float], bool]] = {
+    "<": operator.lt,
+    "<=": operator.le,
+    ">": operator.gt,
+    ">=": operator.ge,
+    "=": operator.eq,
+    "==": operator.eq,
+    "!=": operator.ne,
+}
+
+
 def _compare(value: float, op: str, threshold: float) -> bool:
-    if op == "<":
-        return value < threshold
-    if op == "<=":
-        return value <= threshold
-    if op == ">":
-        return value > threshold
-    if op == ">=":
-        return value >= threshold
-    if op == "=" or op == "==":
-        return value == threshold
-    if op == "!=":
-        return value != threshold
-    raise ValueError(f"Unsupported comparison operator: {op!r}")
+    try:
+        return _COMPARISONS[op](value, threshold)
+    except KeyError:
+        raise ValueError(f"Unsupported comparison operator: {op!r}")
 
 
 def _is_numeric(value) -> bool:
@@ -166,8 +169,10 @@ def evaluate_row(row, metric: str, threshold: Optional[Threshold]) -> RowOutcome
 
     # No threshold → the caller just wants to know the row matches the metric.
     if threshold is None:
-        row_unit_for_payload = None if row_unit_class == ROW_UNIT_UNITLESS else (
-            None if row_unit_class == ROW_UNIT_UNKNOWN else row_unit_class
+        row_unit_for_payload = (
+            row_unit_class
+            if row_unit_class not in (ROW_UNIT_UNITLESS, ROW_UNIT_UNKNOWN)
+            else None
         )
         return RowMatched(
             value=value,

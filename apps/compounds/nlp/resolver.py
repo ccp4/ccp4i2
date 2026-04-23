@@ -28,6 +28,7 @@ Pure Python. No LLM. No network. Unit-testable with pytest-django fixtures.
 from __future__ import annotations
 
 import re
+from dataclasses import replace
 from difflib import SequenceMatcher
 from typing import Dict, Iterable, List, Optional, Tuple
 
@@ -35,6 +36,7 @@ from django.db.models import Count, Max, QuerySet
 
 from compounds.assays.models import Assay, DataSeries, Protocol
 from compounds.registry.models import Gene, Target
+from compounds.utils import normalize_ref as normalize
 
 from .spec import (
     FIELD_ASSAY_TARGET,
@@ -61,20 +63,8 @@ from .spec import (
 )
 
 
-_NON_ALNUM = re.compile(r"[^a-z0-9]")
-
 _FUZZY_MIN_QUERY_LEN = 4
 _MISS_SUGGESTION_COUNT = 5
-
-
-def normalize(s: str) -> str:
-    """Lowercase and strip every non-alphanumeric character.
-
-    Exported for reuse by the future protocol tokenizer (§6.2).
-    """
-    if not s:
-        return ""
-    return _NON_ALNUM.sub("", s.lower())
 
 
 def _edit_distance_le_1(a: str, b: str) -> bool:
@@ -224,23 +214,15 @@ def resolve_targets(spec: QuerySpec) -> TargetsResolution:
     reg: Optional[Target] = None
     if reg_typed:
         r = resolve_target(reg_typed)
-        if isinstance(r, TargetClarify):
-            r.field = FIELD_REGISTRATION_TARGET
-            return r
-        if isinstance(r, TargetMiss):
-            r.field = FIELD_REGISTRATION_TARGET
-            return r
+        if isinstance(r, (TargetClarify, TargetMiss)):
+            return replace(r, field=FIELD_REGISTRATION_TARGET)
         reg = r.target
 
     assay: Optional[Target] = None
     if assay_typed:
         r = resolve_target(assay_typed)
-        if isinstance(r, TargetClarify):
-            r.field = FIELD_ASSAY_TARGET
-            return r
-        if isinstance(r, TargetMiss):
-            r.field = FIELD_ASSAY_TARGET
-            return r
+        if isinstance(r, (TargetClarify, TargetMiss)):
+            return replace(r, field=FIELD_ASSAY_TARGET)
         assay = r.target
 
     return ResolvedTargets(

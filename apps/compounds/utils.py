@@ -16,13 +16,13 @@ from compounds.formatting import (
 )
 
 
-def _normalize_ref(value: str) -> str:
+def normalize_ref(value: str) -> str:
     """Strip non-alphanumeric characters and lowercase, for lenient ref matching."""
     return re.sub(r'[^A-Za-z0-9]', '', value or '').lower()
 
 
 def _supplier_ref_normalized_expr():
-    """DB expression that mirrors `_normalize_ref` on `supplier_ref`."""
+    """DB expression that mirrors `normalize_ref` on `supplier_ref`."""
     return Lower(
         Replace(
             Replace(
@@ -151,7 +151,7 @@ def resolve_compound(identifier: str) -> Optional['Compound']:
     # dashes or with mixed separators ("PHNTU0000000", "PH NTU 00 00 000 0").
     # Normalize both sides by stripping non-alphanumeric chars and compare
     # case-insensitively, on the DB side.
-    normalized = _normalize_ref(identifier)
+    normalized = normalize_ref(identifier)
     if normalized:
         compound = (
             Compound.objects
@@ -277,9 +277,9 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
 
         # Batch fetch by dash/space-tolerant normalized supplier_ref
         normalized_remaining = {
-            _normalize_ref(identifier): identifier
+            normalize_ref(identifier): identifier
             for identifier in remaining
-            if _normalize_ref(identifier)
+            if normalize_ref(identifier)
         }
         supplier_ref_norm_map = {}
         if normalized_remaining:
@@ -314,7 +314,7 @@ def resolve_compound_batch(identifiers: list[str]) -> dict[str, Optional['Compou
                 continue
 
             # Try dash/space-tolerant supplier_ref
-            norm = _normalize_ref(identifier)
+            norm = normalize_ref(identifier)
             if norm and norm in supplier_ref_norm_map:
                 results[identifier] = supplier_ref_norm_map[norm]
                 continue
