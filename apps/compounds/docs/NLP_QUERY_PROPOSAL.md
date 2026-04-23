@@ -1,8 +1,8 @@
 # Natural-Language Query Proposal (Compounds App)
 
-**Status**: Draft for review. Design captured from dialogue; implementation not yet started.
+**Status**: In implementation. Backend slices 1–3 shipped (target resolution, protocol resolution + two-target orchestrator, row-level evaluator with unit tri-state). Executor (§7), LLM wiring (§8, §11), and UI (§10) remain. **See §18 for slice-by-slice progress and the pick-up notes for the next slice** — that section is the canonical resumption anchor if this work is being resumed in a fresh conversation.
 **Author**: Martin Noble (with Claude)
-**Date**: 2026-04-22
+**Date**: 2026-04-22 (drafted); §§18–19 added 2026-04-23
 **LLM provider**: Azure OpenAI (not Claude API) — same Azure UK South tenant as the rest of the deployment; keeps data in-region and on existing billing.
 
 ## 1. Motivation
@@ -390,6 +390,8 @@ Requires adding `azure-identity` to `requirements.txt` (alongside the already-pl
 
 ## 15. Future work (out of v1)
 
+The bullets below are the short list of v1 carve-outs. **See §19 for a longer-form treatment of v2+ directions** — including chemistry-aware substructure queries and the architectural framing that unifies them.
+
 - ~~Extend scope beyond `raw_data`~~ — potentially already in v1 scope pending Q9 lock (see §14).
 - Add `readout_technology` enum to `Protocol`; backfill; replace token-match with attribute filter.
 - Cross-assay aggregations: *"best IC50 across any HTRF protocol for each ARd compound"*.
@@ -457,3 +459,260 @@ The lesson: the import-time parser catches unit suffixes when they exist; the 3,
 - v1 scope drops the `Protocol.import_type='raw_data'` restriction: raw_data is fully solved, ToV is 75.5%-solvable with the remaining 25% honestly surfaced as excluded-count in the footer.
 - The alternative (`raw_data`-only) would throw away 10,060 genuinely queryable ToV rows to avoid showing 3,262 exclusions. Not a trade that pays off.
 - The import-workflow tightening (§13 decision 23) prevents new stuck rows; `populate_kpi_units` handles what's recoverable in existing data; curator intervention is the only path for the residual 3,262 stuck ToV rows, and it's optional (they'll simply be footer-counted).
+
+## 18. Implementation progress
+
+This section tracks what has been built, what remains, and the decisions made *during* implementation that are not captured in §1–17. **If you are picking up this work in a new conversation, read §1–17 for the design, then read this section for state-of-play.** The memory file `reference_nlp_query_proposals.md` points here; treat this as the canonical progress index, not conversation memory.
+
+### 18.1 Slice plan
+
+Work is delivered as narrow vertical slices that build the backend first and defer the LLM to last. This keeps the resolver + executor fully unit-testable against deterministic fixtures before any Azure OpenAI call enters the picture — the principle of §3.
+
+| Slice | Scope | Status | Proposal refs |
+|---|---|---|---|
+| 1 | Target field resolution | Shipped | §5 (spec), §6.1, decision 24 |
+| 2 | Protocol resolution + two-target orchestrator | Shipped | §6.2, §6.5, Q21 |
+| 3 | Row-level evaluator (metric + unit tri-state) | Shipped | §6.3, §6.4, Q25 |
+| 4 | Executor (`executor.py`): ORM query + payload + footer counts | Pending | §7, §9 |
+| 5 | Azure OpenAI client + prompt + structured-output extraction | Pending | §8, §11.1 |
+| 6 | DRF view with clarify loop | Pending | §7 (view), §9 |
+| 7 | Frontend command-bar (landing + per-project) | Pending | §10 |
+| 8 | Evaluation harness + golden set | Pending | §12 |
+
+Rollout dependencies: §16 prerequisites (Gene model + DDU hydration) are done. Demo + Kawamura backfill happens after the executor lands but before the feature flag is turned on for those instances.
+
+### 18.2 Landed slices — public API surface
+
+All code lives under `apps/compounds/nlp/`. Tests live under `apps/compounds/nlp/tests/`. Test counts are cumulative.
+
+**Slice 1 — Target resolution** (28 tests)
+
+- Modules: `apps/compounds/nlp/spec.py`, `apps/compounds/nlp/resolver.py`
+- Public functions:
+  - `normalize(s) -> str` — lowercase + remove all non-alphanumerics
+  - `resolve_target(as_typed) -> TargetResolution`
+- Return type is a discriminated union:
+  - `ResolvedTarget(target, matched_via, query)` — `target` is the ORM instance; `matched_via` ∈ {`name`, `gene_symbol`, `gene_alias`, `gene_name`} plus `*_fuzzy` suffixes for Levenshtein-1 hits
+  - `TargetClarify(query, candidates: list[TargetCandidate], field)` — more than one target matched
+  - `TargetMiss(query, suggestions: list[TargetCandidate], field)` — no match; top-5 `difflib.SequenceMatcher`-ranked
+- `TargetCandidate(id, name, gene_symbols)` — thin JSON-serialisable view used for clarify/miss payloads
+- Tests: `apps/compounds/nlp/tests/test_resolver_target.py`. Fixture mirrors DDU shape (single-gene target, PPI with two genes, shared-gene MYC ambiguity across two targets, name-only legacy target).
+
+**Slice 2 — Protocol resolution + two-target orchestrator** (59 tests cumulative)
+
+- Additions to `spec.py`: `ResolvedTargets`, `ScopeError`, `ProtocolCandidate`, `ResolvedProtocol`, `ProtocolClarify`, `ProtocolMiss`; string constants `SCOPE_BOTH_SAME / SCOPE_REG_ONLY / SCOPE_ASSAY_ONLY / SCOPE_CROSS` and `FIELD_REGISTRATION_TARGET / FIELD_ASSAY_TARGET / FIELD_PROTOCOL_HINT`.
+- Public functions (in `resolver.py`):
+  - `resolve_targets(spec) -> ResolvedTargets | TargetClarify | TargetMiss | ScopeError` — §6.5 scope derivation; Q21 sequential clarify (registration field first, then assay); returns `ScopeError` when both fields empty.
+  - `tokenize(s) -> set[str]` — lowercase + split on runs of non-alphanumerics.
+  - `resolve_protocol(hint, resolved_targets) -> ProtocolResolution` — scope-filtered pool via `Assay.target` + `DataSeries.compound.target`; set-containment token match; Clarify ranks by (fewer extra tokens, then recency of last run); Miss ranks by token overlap, top 5.
+- Tests: `apps/compounds/nlp/tests/test_resolver_orchestrator.py`, `apps/compounds/nlp/tests/test_resolver_protocol.py`. Protocol fixture includes an explicit cross-project selectivity case (an AR compound tested against AKT) to exercise the reg=X/assay=Y scope combination.
+
+**Slice 3 — Row evaluator** (129 tests cumulative)
+
+- Additions to `spec.py`: `RowMatched / RowFiltered / RowExcluded / RowOutcome` union. Reason constants are split into two groups:
+  - `FILTER_*` — silent, not footer-noted: `invalid_status`, `kpi_mismatch`, `value_not_numeric`, `threshold_not_met`
+  - `EXCLUDE_*` — footer-noted per §6.4: `unit_unknown`, `unit_type_mismatch`, `unit_incompatible`, `query_missing_unit`
+- New module: `apps/compounds/nlp/evaluator.py`
+- Public functions:
+  - `convert(value, from_unit, to_unit) -> Optional[float]` — within-family conversion using a `_UNIT_FAMILIES` factor table (concentration, time, percent, permeability, two separate clearance families). Cross-family returns `None`.
+  - `classify_row_unit(kpi_unit) -> str` — Q25 tri-state: a real-unit string, `ROW_UNIT_UNITLESS`, or `ROW_UNIT_UNKNOWN`. Delegates to `compounds.assays.kpi_utils.is_unitless / normalize_unit / VALID_UNITS`.
+  - `classify_query_unit(unit) -> str` — a real-unit string, `QUERY_UNIT_NONE`, or `QUERY_UNIT_UNKNOWN`. A query-typed `"unitless"` is treated as `QUERY_UNIT_NONE` — users don't type "unitless" in natural language.
+  - `evaluate_row(row, metric, threshold) -> RowOutcome` — duck-typed over anything with `.status` + `.results` (tests use `SimpleNamespace` stand-ins; no DB needed).
+- Tests: `apps/compounds/nlp/tests/test_evaluator.py` — exhaustive matrix across row-unit class × query-unit class × threshold op, plus conversion correctness.
+
+### 18.3 Decisions made during implementation (additions to §13)
+
+These are lived-in details that aren't in §1–17. They don't contradict §13 — they extend it.
+
+| Slice | Decision | Rationale |
+|---|---|---|
+| 1 | `normalize(s)` **removes** non-alphanumerics entirely (does not replace with whitespace) | Makes "Skp2-Cks1", "skp2 cks1", and "skp2cks1" all collapse to the same string. "AR degraders" matches "ardegraders" and "ar_degraders". Verified against §6.1's implied behaviour via tests. |
+| 1 | `ResolvedTarget.target` holds the Django model instance directly; `TargetClarify / TargetMiss` candidates use the thin `TargetCandidate` | The downstream executor (slice 4) needs the ORM instance; outbound JSON payloads need the trimmed view. No reason to pick one over both. |
+| 1 | Target matching pool is built per call (no cache/inverted index) | DDU has ~44 targets; a full iteration is trivial. Promote to a cached index only if scale demands. |
+| 2 | `scope_kind` is a string constant rather than an `Enum` | Cleaner JSON serialisation; matches §6.5 naming conventions. Same applies to `matched_via`, filter/exclude reasons, field-name tags. |
+| 2 | The orchestrator tags `TargetClarify.field / TargetMiss.field` by assigning the attribute after the dataclass is constructed | Simpler than carrying a wrapper type through the call chain. `field` defaults to `""` and is always set before the result leaves the orchestrator. |
+| 2 | `tokenize` uses **set** semantics (duplicate tokens in a protocol name are collapsed) | Matches §6.2's "all query tokens appear in the protocol name" literally. Repeated tokens carry no weight. |
+| 2 | Scope join for registration-target filter is `data_series__compound__target` | An assay with no data_series is not considered "run on any compound" and is correctly filtered out. Cross-project selectivity (AR compound tested against AKT) is expressible as `reg=AR, assay=AKT`. |
+| 3 | New exclusion reason `EXCLUDE_QUERY_MISSING_UNIT` for the case "query has no unit but row has a real unit" | §6.4's table did not cover this cell explicitly. Footer-excluding keeps the feature working in heterogeneous scopes (some rows unitless, some real-unit); the UI can aggregate the count and surface "your threshold needs a unit". A query-level hard reject is also defensible — flagged here so slice 6 (view) can revisit if eval feedback warrants. |
+| 3 | An **absent** `kpi_unit` key resolves to `ROW_UNIT_UNITLESS` (because `is_unitless(None) == True` per `kpi_utils`), **not** `ROW_UNIT_UNKNOWN` | Inherited from the backward-compat rule baked into `compounds.assays.kpi_utils.is_unitless`. Consequence: a row with no `kpi_unit` key under a real-unit threshold query → `EXCLUDE_UNIT_TYPE_MISMATCH`, not `EXCLUDE_UNIT_UNKNOWN`. Subtle but consistent with how legacy importers wrote ratio KPIs. An **empty** `kpi_unit` string (`""`) does resolve to `ROW_UNIT_UNKNOWN` — that is what §6.4's "missing" column means. |
+| 3 | `evaluate_row` is duck-typed over anything with `.status` + `.results` | Lets evaluator tests use `SimpleNamespace` stand-ins; no DB required, suite runs in ~2s. The real executor will hand `AnalysisResult` instances in at call time. |
+| 3 | Two clearance families (`uL/min/mg` microsomal, `mL/min/kg` hepatic) stand alone — they are not interconvertible | Different denominators (mg microsomal protein vs kg body weight) aren't scalar-related; silent conversion would mask a category error. Same-unit comparison only. |
+| 3 | Log-scale (`pIC50` ↔ `IC50`) rewriting is deferred | §6.4 mentions it but doesn't mandate v1 support. A row with `KPI='pIC50'` matches a `pIC50` query directly. Revisit as a dedicated slice if eval shows users interchangeably write both forms. |
+
+### 18.4 Running the tests
+
+From `server/`, with CCP4 sourced:
+
+```bash
+source ../../ccp4-20251105/bin/ccp4.setup-sh
+PYTHONPATH="$PWD:$PWD/../apps" DJANGO_SETTINGS_MODULE=compounds.settings \
+  ccp4-python -m pytest ../apps/compounds/nlp/tests/ -v
+```
+
+Expected: 129 passing as of slice 3 (2026-04-23). Evaluator tests (slice 3) do not touch the DB; resolver / orchestrator / protocol tests use `@pytest.mark.django_db` via the `db` fixture argument. Fixtures are defined inline in each test module (no JSON fixture files, no separate conftest).
+
+### 18.5 Pending slices — pick-up notes
+
+**Slice 4: Executor** — the next slice.
+
+- Create `apps/compounds/nlp/executor.py`.
+- Public function: `execute(spec: QuerySpec) -> ExecutionResult`. Composes `resolve_targets` → `resolve_protocol` → scoped `AnalysisResult` walk via `evaluate_row`, and aggregates footer counts per exclusion reason.
+- Returns either a `TablePayload` (row/column data + footer counts + scope sentence) or passes the upstream `TargetClarify / TargetMiss / ScopeError / ProtocolClarify / ProtocolMiss` back unchanged.
+- Phys-chem column expansion (§6.6) happens here: `columns="phys_chem"` → all 8 `MolecularProperties` fields; `columns="lipinski"` → `{molecular_weight, hbd, hba, clogp}`; `columns_explicit` overrides.
+- Scope-description sentence generation (for the §10 echo-back) belongs here — derived from `ResolvedTargets` + `ResolvedProtocol` + `Threshold`.
+- Still no LLM involvement. The function takes a `QuerySpec` and runs; slice 5 will provide the `QuerySpec` from an LLM call.
+
+**Slice 5: Azure OpenAI client + prompt.**
+
+- Start from §11.1 exactly — the `get_azure_openai_client()` factory with managed identity + the `AZURE_OPENAI_API_KEY` dev-only fallback.
+- Add `azure-identity` and `openai` to `requirements.txt`.
+- Build structured-output call that returns a validated `QuerySpec`. JSON schema is derived from the `@dataclass` fields (either generate at import time or hand-write a schema dict; §7 allows either).
+- No catalogs in the prompt (decision 2).
+- System prompt must be static for cache-friendliness (~1k tokens).
+
+**Slice 6: DRF view + clarify loop.**
+
+- `POST /api/compounds/nlp/query/` — body `{prompt}` for fresh queries, `{spec, clarifications}` for continuations.
+- Returns `TablePayload | ClarifyResponse | ErrorResponse`.
+- Per-project-page target context (decision 18) is a backend post-hoc fill on null target fields; the request needs to carry the originating URL route.
+- Hook in the §11 per-user 500-calls-per-day runaway cap.
+
+**Slice 7: Frontend command-bar.**
+
+- Two surfaces (compounds-app landing page and per-project page) per decision 14.
+- Inline chip picker for clarify, not a modal.
+- Response rendered through the existing aggregation-table component.
+
+**Slice 8: Evaluation.**
+
+- Golden set: `apps/compounds/assays/tests/nlp/*.yaml` with (prompt, expected_spec) pairs and (prompt, expected_clarify_shape) pairs for ambiguous cases.
+- Success bar per §12: ≥90% exact spec match at T=0; 100% of ambiguous prompts produce a clarify rather than a guessed spec.
+
+### 18.6 Deliberately out of scope mid-build
+
+These are tracked in §15 as future work but worth calling out so they're not accidentally pulled into slices 4–7:
+
+- Log-scale metric rewriting — deferred pending eval signal.
+- Multi-table prompts (decision 19 defers to v2).
+- Conversational memory across turns.
+- Cross-assay aggregations (best-IC50-across-protocols).
+- Write-capable commands (decision 11 locks "never" for v1).
+
+## 19. Direction sketches for v2+
+
+Forward-looking thinking about where this interface could go after v1 ships. §15 is the terse list of v1 carve-outs; this section captures the **architectural consequences** of various v2 directions — which ones fit the v1 shape and which need a distinct layer. Not a commitment to build; a map of where the shape could grow. Preserved here so the thinking survives any session boundary.
+
+### 19.1 What the v1 architecture buys us
+
+The v1 shape — LLM-as-parser → deterministic resolver → ORM — is a **tabular-query door**. It generalises cleanly to anything expressible as "structured query against a known schema with human-friendly input." It does **not** generalise to generative analysis (SAR summaries, novel hypothesis generation, cross-row narrative) without adding a separate layer with different data-visibility rules for the LLM. Keeping those two directions distinct is the load-bearing discipline — conflating them is how interfaces like this turn into poorly-specified chat-over-chemistry.
+
+### 19.2 Direction buckets
+
+| Bucket | What it is | Example prompts |
+|---|---|---|
+| Deeper query shapes | Same architecture, richer spec — new `QuerySpec` fields, same resolver/executor pattern | *"ARd compounds with no HTRF measurement yet"*; *"compounds where ARd IC50 is 10× better than AKT IC50"*; *"IC50 and MW and CLint for ARd compounds"*; *"compounds registered in the last 6 months"* |
+| Adjacent capabilities | Same rails, different operations | Explain-this-query (show resolved `QuerySpec` + scope sentence + generated SQL + footer reasons); saved-query library; notification triggers; project-status dashboards |
+| Cross-app bridges | CCP4i2-unique — the compounds app lives next to crystallography and constructs | *"Structures I've solved for AR degrader complexes"* (Compounds ↔ Projects ↔ Moorhen); *"Constructs that produce the protein my AR degraders were tested against"*; *"Stock of my top-10 hit list"* (once `INVENTORY_PROPOSAL.md` ships) |
+| Chemistry-aware queries | Substructure filter as a per-row predicate — covered in §19.3–19.4 | *"HTRF values of ARd compounds containing pyrimidine"*; *"compounds structurally similar to NCL-00026042 with IC50 < 10 nM"* |
+| Chart-type extensions | Same resolver/executor, richer output formats (`scatter` / `histogram` / …) + multi-axis + highlight rules — wires into the existing aggregation-page scatter component. Covered in §19.5. | *"Plot cell-free HTRF against CDK4 nanobret data for compounds in the CDK4 project, highlighting pyrimidine-containing compounds in green"* |
+| Generative analysis | Separate architecture; LLM sees data here, unlike v1 — not a v2 of this proposal | *"Summarise what's driving IC50 in the pyrimidine series"*; *"one-page triage report of top 20 ARd hits and their ADME liabilities"* |
+| Interaction modes | Different surface, same backend | Voice input for bench-side use; NLP bar embedded in a lab notebook entry; weekly email digest from a saved query |
+| Write operations | Locked out by decision 11 for v1 — listed here so the shape is acknowledged but the lock-out is not forgotten | *"Send my top-10 ARd compounds to the Pharmaron ADME queue"*; *"tag all IC50 < 10 nM compounds as hit series 3"* |
+
+### 19.3 Chemistry-aware queries (v2's most natural first extension)
+
+The most naturally-phrased chemistry query class — *"HTRF values of ARd compounds containing pyrimidine"* — fits the v1 architecture with **no change to the LLM's role**. The LLM still just emits a name (*"pyrimidine"*); the backend owns the authoritative chemistry catalog.
+
+Implementation shape:
+
+- **New resolver.** `resolve_scaffold(hint) -> ScaffoldResolution` follows the `Resolved / Clarify / Miss` triad established in §18.2. Matches against a curated `Scaffold` table (`name`, `aliases`, `smarts`, optional `svg`), edited by a curator the same way `Gene` rows are edited today. Clarify when a fragment name is ambiguous (*"pyrimidine"* vs *"pyrimidinone"* vs *"fused-pyrimidine core"*); miss with visual suggestions.
+- **New executor predicate.** Substructure match is a per-row predicate in the same bucket as unit-threshold. `FILTER_SUBSTRUCTURE_ABSENT` slots next to `FILTER_THRESHOLD_NOT_MET`; `EXCLUDE_STRUCTURE_UNPARSEABLE` handles SMILES parse failures at the row level.
+- **New `QuerySpec` field.** `scaffold_hint: Optional[str]` — the user's typed fragment name, verbatim.
+- **No SMARTS in the prompt, ever.** The LLM never sees SMARTS and never emits SMARTS. Same discipline as "no catalogs in the prompt" for targets/protocols (§8, decision 2). This eliminates the class of failures where the LLM hallucinates structurally-plausible-but-wrong SMARTS.
+
+**Scale path.** Naive per-row `rdkit.Chem.Mol.HasSubstructMatch` is fine at DDU-scale (low thousands of compounds) and should be the first slice. RDKit pattern fingerprints in a sidecar table add a screening layer for larger libraries (SSS via FP bit-subset match before exact substructure). The Postgres RDKit cartridge is the proper endgame for very large libraries but needs a prod/SQLite-tests split story. **Build naive first; add FP screening only when a real library hits the wall** — premature FP infrastructure is the canonical trap in this direction.
+
+**Boundary with generative SAR prose.** *"Compounds containing pyrimidine with IC50 < 10 nM"* is tabular — fits this bucket. *"What's driving IC50 in the pyrimidine series?"* is generative SAR — belongs in bucket 5 (generative analysis) with a different LLM data-visibility model. Keeping the two in separate proposals matters.
+
+### 19.4 Chemistry queries collapse into another resolver
+
+A useful framing: **chemistry-aware queries are structurally another resolver**, not a new subsystem. The substructure resolver carries the same `Resolved / Clarify / Miss` triad, the same field-tagging for the orchestrator, the same LLM-emits-name-backend-owns-catalog discipline. What differs is the matching engine (RDKit `HasSubstructMatch` instead of string normalization or token-set containment) and the candidate payload shape (SVG drawing + SMARTS in place of gene symbols or `n_runs`). The executor doesn't grow new surface; it just handles one more optional `QuerySpec` field.
+
+**The family this seeds.** Compound-by-ID resolver (*"compound NCL-00026042"*); similarity resolver (*"structurally similar to X"* — Tanimoto k-NN with a tuneable threshold); scaffold-by-project resolver (project-local series curated as `Scaffold` rows linked to a `Target`). All cast into the same mould.
+
+**When to abstract.** Four-plus concrete resolvers following the same shape would justify lifting a generic `Resolution[T, C]` protocol. We're at three today (target / protocol / — and arguably metric + unit as a row-level predicate which doesn't quite fit the same triad). Substructure makes the fourth true-triad resolver; if compound-by-ID or similarity also land, the pressure to abstract becomes clear. Default position: **wait for the push, don't pre-empt the abstraction.** The cost of premature generality here is mostly design-lock-in around candidate payload shapes that are genuinely different per resolver, for the benefit of saving a few lines of type declarations.
+
+### 19.5 NLP-driven chart generation (scatter + narrative selections)
+
+The aggregation page already ships a scatter-plot component. A natural v2 extension is to let the NLP interface drive it — same query door, different output format — so prompts like *"Plot cell-free HTRF against CDK4 nanobret data for all compounds in the CDK4 project, highlighting pyrimidine-containing compounds in green"* render directly into that existing component. Visual reasoning over multi-assay data is how chemists actually triage, and the leverage-to-effort ratio here is high because **the viz surface already exists** — this direction is mostly backend payload shaping plus a thin palette layer, not a new frontend build.
+
+The discipline to preserve: the LLM parses intent into a **structured `ChartSpec`**, the backend resolves and runs the query, the frontend renders using the typed component. **The LLM never generates plotting code** — no matplotlib snippets, no Vega-Lite JSON, no D3 code. That is the line between an audit-friendly, reproducible feature and a magical-but-silently-wrong one. Chart-code generation by LLM is where comparable systems fall over; keeping it out is a load-bearing rule.
+
+**What's reused.** Per-axis resolution uses `resolve_targets` and `resolve_protocol` as-is — each axis is an independent (protocol, metric) pair filtered through the same scope. The substructure resolver from §19.3 provides the *"pyrimidine-containing"* predicate for highlights. Scope filtering is shared across axes (one registration target, one assay target, one pair of filters applied to the scoped queryset). The executor walks the scope once and emits one data-point per compound carrying both axis values.
+
+**What's genuinely new.**
+
+- **Output format field.** `output: "table" | "scatter" | ...` on `QuerySpec`. LLM infers from verbs — *"plot"* / *"chart"* / *"compare"* → scatter; *"tabulate"* / *"list"* / *"show"* → table; *"distribution of"* → histogram. A small, bounded vocabulary; each format has its own axis-cardinality rules (scatter = 2, histogram = 1, heatmap = 2 + categorical, …).
+- **Multi-axis support.** `axes: list[Axis]`, each `Axis = (protocol_hint, metric?)`. Metric can be null — the backend infers the dominant KPI from the protocol's valid AnalysisResults if there is exactly one, otherwise clarifies. This **also quietly improves the table-output path**: *"cell-free HTRF data for ARd compounds"* no longer forces the user to name the KPI.
+- **Highlight rules.** `highlights: list[HighlightRule]`, each a `(predicate, style)` pair. The **predicate reuses existing filter machinery** — substructure, metric threshold, compound-list, scope difference. Nothing new on the resolver side; a highlight predicate has the same shape as a scope predicate, applied at the point-labelling stage rather than the inclusion stage. The **style is a curated vocabulary** — ~8 named colours mapped to colorblind-friendly hex, a few marker shapes. Not arbitrary CSS. Palette resolver follows the §19.4 pattern: LLM emits a name, backend maps to a palette entry, clarifies when ambiguous (*"red"* vs *"red outline"* vs *"red-filled circle"*), misses with suggestions.
+
+**Composability.** Because highlights are `(predicate, style)` pairs, they compose naturally. *"Pyrimidines in green and compounds above 10 µM IC50 in red outlines"* is two rules. First-match-wins in emitted order, so the user's phrasing controls priority. Compound-list highlights (*"highlight NCL-00026042 in red"*) unlock personalised markup once a compound-by-ID resolver lands — another instance of the §19.4 family.
+
+**QuerySpec extension sketch.**
+
+```python
+@dataclass
+class Axis:
+    protocol_hint: str
+    metric: Optional[str] = None  # None → infer from protocol's dominant KPI
+
+@dataclass
+class HighlightRule:
+    style: str                                 # "green" / "red-circles" / etc. — resolved via palette catalog
+    # Reuses existing filter machinery — exactly one of the following is set:
+    scaffold_hint: Optional[str] = None
+    threshold: Optional[Threshold] = None
+    compound_ids: Optional[List[str]] = None
+
+@dataclass
+class QuerySpec:
+    # ... existing fields unchanged ...
+    output: str = "table"                      # "table" | "scatter" | "histogram" | ...
+    axes: Optional[List[Axis]] = None          # required when output != "table"
+    highlights: List[HighlightRule] = field(default_factory=list)
+```
+
+**Boundary — what this is not.** The LLM does not generate plotting code, does not choose visual encodings freely, does not invent palette entries. The backend does not compute summary statistics beyond what a scatter plot naturally reveals. Prompts that drift into *"...and tell me what the structure-activity trend is"* cross into generative SAR territory (§19.2 bucket 5) — different architecture, separate proposal, different data-visibility model for the LLM. The scatter-plot door is strictly tabular-query-plus-rendering.
+
+**Integration cost.** Likely small. The existing aggregation-page scatter already accepts a structured payload; wiring the NLP executor to emit that payload is additive. The palette catalog + style resolver is a new thin module. The multi-axis + highlight fields on `QuerySpec` are purely additive — no changes to v1 fields, no changes to the v1 executor-for-tables path. The v1 invariants (resolver pattern, LLM-as-parser, no fabrication) hold unchanged.
+
+### 19.6 Filler nouns and prompt-engineering discipline
+
+Chemistry prompts liberally use conversational nouns — *"hits"*, *"compounds"*, *"molecules"*, *"ligands"*, *"series"*, *"analogues"* — that **carry no structural meaning and should be stripped by the LLM parser without generating spurious filter fields**. *"ARd hits containing pyrimidine"* and *"ARd compounds containing pyrimidine"* must resolve to the same `QuerySpec`.
+
+The discipline: the system prompt teaches the LLM with examples that these words are filler in the absence of explicit cutoff language. A prompt that **does** name a cutoff (*"hits defined as IC50 < 10 nM"*, *"the top-10% series"*) carries structure and should parse accordingly. The LLM is not asked to infer a hit-cutoff from the word *"hits"* alone — doing so would invent filter criteria the user did not specify.
+
+An earlier draft of §19.3 mistakenly conflated *"hits"* with per-protocol `Protocol.target_value` cutoffs. That would be a schema-level inference from conversational filler — wrong, and it would produce result sets the user didn't ask for. The `target_value`/`poor_value` fields are legitimate once the user explicitly invokes them (e.g. *"compounds passing the protocol's own hit cutoff"*), but not implicitly from filler-noun phrasing.
+
+This applies generally: **the LLM must not synthesise filter fields from words that only exist to make the sentence flow**. Good v1 discipline even without v2 extensions; worth baking into the system prompt's few-shot examples when slice 5 lands.
+
+### 19.7 First picks after v1
+
+Two directions have the clearest leverage-to-effort ratio and are worth naming as top candidates for the post-v1 slice queue:
+
+- **Missing-data queries** (*"ARd compounds with no HTRF measurement yet"*). Highest-value single feature — chemistry decision-making is forward-looking, the current UI is poor at it, and the backend change is small (an inversion of the scope filter). No LLM changes required — it's a new `QuerySpec` predicate.
+- **Explain-this-query.** One-click reveal of the resolved `QuerySpec`, scope sentence, generated SQL, and footer reasons. Every chemist who uses an LLM over their data asks *"what did it actually do?"* Shipping transparency alongside the feature (not as a retrofit) is the single highest trust-multiplier. The scope-sentence generation in slice 4 already does 80% of this; exposing it is mostly a UI lift.
+
+Two near-tied thirds, each with a different dependency profile — sequence based on which dependency is cheaper:
+
+- **NLP-driven scatter** (§19.5). Gated on the existing aggregation-page scatter component being easy to drive from a structured payload. If that integration is cheap (likely), this may well be the single most compelling demo — multi-axis data visualisation with narrative highlights — and is probably the cheapest high-impact win.
+- **Chemistry-aware substructure** (§19.3). Gated on curator time to seed the initial `Scaffold` catalog. The curator workflow is a real cost but one-time; once seeded, every chemistry-aware prompt benefits.
+
+### 19.8 Deliberate non-goals for v2
+
+To protect against scope creep in the v1 → v2 transition:
+
+- **Generative SAR narrative** needs a separate proposal — different data-visibility model for the LLM, different prompt architecture, different evaluation harness. Do not graft it onto this one.
+- **Chart code generation by the LLM** (§19.5 boundary) — the LLM emits a `ChartSpec`, never plotting code. This is an architectural non-negotiable for the scatter extension.
+- **Write-capable commands** remain locked out by decision 11 until a trust/audit model is specified in its own proposal.
+- **Cross-session conversational memory** is a distinct problem from extending the `QuerySpec` schema and should not be conflated with "more query shapes". Revisit when v1 usage data justifies a chat-style surface.
