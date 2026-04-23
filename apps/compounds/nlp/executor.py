@@ -134,14 +134,14 @@ def execute(spec: QuerySpec) -> ExecutionResult:
     clarify/miss/error response to surface back to the user."""
     if not spec.metric:
         return SpecError(field="metric", message="metric is required")
-    if not spec.protocol_hint:
+    if not spec.protocol_hint and not spec.protocol_id:
         return SpecError(field="protocol_hint", message="protocol_hint is required")
 
     rt = resolve_targets(spec)
     if not isinstance(rt, ResolvedTargets):
         return rt
 
-    rp = resolve_protocol(spec.protocol_hint, rt)
+    rp = resolve_protocol(spec.protocol_hint or "", rt, pinned_id=spec.protocol_id)
     if not isinstance(rp, ResolvedProtocol):
         return rp
 

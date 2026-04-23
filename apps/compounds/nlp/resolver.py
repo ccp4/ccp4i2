@@ -127,8 +127,18 @@ def _iter_target_pools() -> List[Tuple[Target, List[Gene], Dict[str, str]]]:
     return out
 
 
-def resolve_target(as_typed: str) -> TargetResolution:
-    """Resolve a user-typed target string against the Gene-hydrated pool."""
+def resolve_target(as_typed: str, pinned_id: Optional[str] = None) -> TargetResolution:
+    """Resolve a user-typed target string against the Gene-hydrated pool.
+
+    If ``pinned_id`` is supplied (clarify continuation), look up the Target
+    directly and skip fuzzy matching — the user has already disambiguated.
+    """
+    if pinned_id:
+        target = Target.objects.filter(pk=pinned_id).first()
+        if target is None:
+            return TargetMiss(query=as_typed or "", suggestions=[])
+        return ResolvedTarget(target=target, matched_via="pinned_id", query=as_typed or "")
+
     norm_query = normalize(as_typed or "")
     if not norm_query:
         return TargetMiss(query=as_typed or "", suggestions=[])
@@ -205,22 +215,25 @@ def resolve_targets(spec: QuerySpec) -> TargetsResolution:
     reg_typed = (spec.registration_target_as_typed or "").strip()
     assay_typed = (spec.assay_target_as_typed or "").strip()
 
-    if not reg_typed and not assay_typed:
+    if (
+        not reg_typed and not assay_typed
+        and not spec.registration_target_id and not spec.assay_target_id
+    ):
         return ScopeError(
             message="At least one of registration_target_as_typed or "
             "assay_target_as_typed must be set."
         )
 
     reg: Optional[Target] = None
-    if reg_typed:
-        r = resolve_target(reg_typed)
+    if reg_typed or spec.registration_target_id:
+        r = resolve_target(reg_typed, pinned_id=spec.registration_target_id)
         if isinstance(r, (TargetClarify, TargetMiss)):
             return replace(r, field=FIELD_REGISTRATION_TARGET)
         reg = r.target
 
     assay: Optional[Target] = None
-    if assay_typed:
-        r = resolve_target(assay_typed)
+    if assay_typed or spec.assay_target_id:
+        r = resolve_target(assay_typed, pinned_id=spec.assay_target_id)
         if isinstance(r, (TargetClarify, TargetMiss)):
             return replace(r, field=FIELD_ASSAY_TARGET)
         assay = r.target
@@ -283,8 +296,26 @@ def _protocol_candidate(protocol: Protocol, scoped_assays: QuerySet) -> Protocol
     )
 
 
-def resolve_protocol(hint: str, resolved_targets: ResolvedTargets) -> ProtocolResolution:
-    """Resolve a protocol hint against the scope-filtered protocol pool."""
+def resolve_protocol(
+    hint: str,
+    resolved_targets: ResolvedTargets,
+    pinned_id: Optional[str] = None,
+) -> ProtocolResolution:
+    """Resolve a protocol hint against the scope-filtered protocol pool.
+
+    If ``pinned_id`` is supplied (clarify continuation), look up the Protocol
+    directly — we still verify it falls within the resolved scope so a stale
+    UUID from a different target's clarify response can't slip through.
+    """
+    if pinned_id:
+        scoped_assays = _scope_assays(resolved_targets)
+        if not scoped_assays.filter(protocol_id=pinned_id).exists():
+            return ProtocolMiss(query=hint or "", suggestions=[])
+        protocol = Protocol.objects.filter(pk=pinned_id).first()
+        if protocol is None:
+            return ProtocolMiss(query=hint or "", suggestions=[])
+        return ResolvedProtocol(protocol=protocol, query=hint or "")
+
     query_tokens = tokenize(hint or "")
     if not query_tokens:
         return ProtocolMiss(query=hint or "", suggestions=[])

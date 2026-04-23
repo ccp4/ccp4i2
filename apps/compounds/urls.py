@@ -36,6 +36,8 @@ from compounds.registry.views import (
     LabNotebookEntryViewSet,
     CompoundDocumentViewSet,
 )
+from compounds.nlp.view import nlp_query
+
 from compounds.assays.views import (
     FittingMethodViewSet,
     DilutionSeriesViewSet,
@@ -129,6 +131,10 @@ urlpatterns = [
 
     # Validation flags metadata for protocol configuration UI
     path('validation-flags/', available_validation_flags, name='validation-flags'),
+
+    # NLP query endpoint (gated by COMPOUNDS_NLP_ENABLED env var — see
+    # apps/compounds/docs/NLP_QUERY_PROPOSAL.md §16.3).
+    path('nlp/query/', nlp_query, name='nlp-query'),
 
     # Router-based endpoints
     path('', include(router.urls)),

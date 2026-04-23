@@ -47,6 +47,13 @@ class QuerySpec:
     threshold: Optional[Threshold] = None
     columns: Optional[str] = None
     columns_explicit: Optional[List[str]] = None
+    # Pinnings populated by the view on clarify continuation (§9). The LLM
+    # never emits these — the UI picker returns them, and the view injects
+    # them into the spec before calling execute() so the resolver short-
+    # circuits to a direct ID lookup instead of rerunning fuzzy match.
+    registration_target_id: Optional[str] = None
+    assay_target_id: Optional[str] = None
+    protocol_id: Optional[str] = None
 
 
 # ---------------------------------------------------------------------------
