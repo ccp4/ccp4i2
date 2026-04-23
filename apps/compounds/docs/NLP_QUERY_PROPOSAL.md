@@ -402,15 +402,33 @@ The bullets below are the short list of v1 carve-outs. **See §19 for a longer-f
 
 ## 16. Migration / rollout
 
-**Step 0 (already done):** the Target-model dependency and hydration pipeline are shipped. `Gene` model + `Target.genes` M2M + `hydrate_genes` command + serializer read/write of genes + `backfill_target_genes.py` are deployed to all three instances. DDU Database is fully backfilled (32 of 44 targets linked to gene_symbols; 1 deferred (GLK — needs disambiguation); 11 marked `skip` as non-gene programmes). Demo and Kawamura have the code but haven't yet been backfilled.
+### 16.1 Step 0 — Target hydration prerequisite (done on DDU, pending on Demo/Kawamura)
 
-**Remaining NLP-v1 rollout:**
+The Target-model dependency and hydration pipeline are shipped. `Gene` model + `Target.genes` M2M + `hydrate_genes` command + serializer read/write of genes + `backfill_target_genes.py` are deployed to all three instances. DDU Database is fully backfilled (32 of 44 targets linked to gene_symbols; 1 deferred (GLK — needs disambiguation); 11 marked `skip` as non-gene programmes). Demo and Kawamura have the code but haven't yet been backfilled.
+
+Before turning NLP on for Demo/Kawamura: run `backfill_target_genes.py --dump` on those instances and curate the plans, so the matching pool is as rich there as on DDU.
+
+### 16.2 Azure infrastructure prerequisites for the LLM path (ops/DevOps work, not code)
+
+The LLM-calling slice ships in code with slice 5 and gets wired into an endpoint in slice 6, but neither slice can actually reach Azure OpenAI until these four prerequisites land. They're parallel to code work and are ideally in place by the time slice 7 (frontend) tries to hit the endpoint from a browser against a deployed instance.
+
+| # | Prerequisite | Owner | Notes |
+|---|---|---|---|
+| 1 | **Azure OpenAI resource** in `ccp4i2-bicep-rg-uksouth` (UK South) | Martin / IT | One shared resource across demo/kawamura/DDU is the simpler default; per-instance separation available if rate-limit isolation or audit separation is wanted later (§11). |
+| 2 | **Model deployment** on that resource — a deployment named whatever will be put in `AZURE_OPENAI_MODEL` (default `gpt-4o` per decision 16) | Martin / IT | Distinct from the resource itself — Azure OpenAI separates "resource" and "model deployment". The deployment name, not the model name, is what the SDK sends. |
+| 3 | **Role assignment in Bicep** — `Cognitive Services OpenAI User` (GUID `5e0bd9bd-7b93-4f28-af87-19fc36ad61bd`) on the OpenAI resource, scoped to the existing `containerAppsIdentity` | Code change in `Docker/azure-uksouth/infrastructure/` Bicep (same module that today grants Storage/Queue/KeyVault roles to that identity) | Without it, `parse_prompt` fails at token acquisition with 403 the first time it's called. One-line addition to the existing role-assignment list — cheap, but **must precede the first deploy that exposes the endpoint**. |
+| 4 | **Container App env vars** per instance — `AZURE_OPENAI_ENDPOINT` (required), `AZURE_OPENAI_MODEL` (optional, defaults to `gpt-4o`), `AZURE_OPENAI_API_VERSION` (optional, defaults to `2024-10-21`) | Martin | Set via `deploy-applications.sh` per-env file, same pattern as existing Azure env vars. If all three instances share one OpenAI resource, the endpoint is the same across `.env.demo`/`.env.kawamura`/`.env.ddudatabase`; instance-specific separation if later wanted. |
+
+**Additional runtime dependency** — `openai>=1.50,<2.0` added to `Docker/server/Dockerfile` during slice 5. Picked up on the next server image build and push. No manual install step needed on Container Apps — the image bundles it.
+
+**Sequencing.** Prereqs 1–3 can all land together as a single infra PR that provisions the resource + model deployment via Bicep and adds the role assignment. Prereq 4 lands in the `.env.*` files alongside the first deploy that turns the feature on. None of this is blocking for slices 6 (view) or 8 (eval) — the view can ship behind the `COMPOUNDS_NLP_ENABLED` flag (see §16.3) off-by-default, and eval runs locally against a dev endpoint or mocks. It only gates actually **using** the feature in a deployed instance.
+
+### 16.3 App rollout
 
 - Ship NLP v1 behind a feature flag / env var (`COMPOUNDS_NLP_ENABLED`) so it can be enabled per-instance independently of the code deploy.
 - Demo instance first, with eval golden set passing.
 - Kawamura instance second, with instance-specific targets/protocols exercised in the golden set.
 - No database migration needed for NLP v1 (purely additive, read-only).
-- Before turning it on for Demo/Kawamura: run `backfill_target_genes.py --dump` on those instances and curate the plans, so the matching pool is as rich there as on DDU.
 
 ## 17. Appendix: audit evidence for Q9 decision
 
@@ -595,7 +613,7 @@ Expected: 165 passing as of slice 5 (2026-04-23). Evaluator (slice 3) and LLM (s
 - Response union: `TablePayload` (200) | clarify payload derived from `TargetClarify` / `ProtocolClarify` (200 + status discriminator) | error payload derived from `TargetMiss` / `ProtocolMiss` / `ScopeError` / `SpecError` / `NotAQuery` / `ParseError`. `NotAQuery` shows the LLM's reason + example prompts (decision 20). `ParseError` is a 502-ish "LLM output couldn't be parsed — retry?".
 - Per-project-page target context (decision 18) is a backend post-hoc fill on null target fields; the request needs to carry the originating URL route or an explicit `project_id` / `project_target` hint.
 - Hook in the §11 per-user 500-calls-per-day runaway cap. Counter should be per-user, reset at UTC midnight, and fail closed with a friendly 429.
-- **Infra prerequisite** (flag before deploying): the Bicep `applications.bicep` module needs a new role assignment of "Cognitive Services OpenAI User" (GUID `5e0bd9bd-7b93-4f28-af87-19fc36ad61bd`) on the target Azure OpenAI resource, scoped to the existing `containerAppsIdentity`. Without it, `parse_prompt` will fail at token-acquisition in prod.
+- **Infra prerequisites before a deployed instance can call the endpoint**: see §16.2 (Azure OpenAI resource + model deployment + Bicep role assignment + per-instance env vars). Slice 6 can ship *in code* without these — the feature flag stays off on instances until all four are in place.
 
 **Slice 7: Frontend command-bar.**
 
