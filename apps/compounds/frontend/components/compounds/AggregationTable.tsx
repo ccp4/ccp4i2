@@ -134,6 +134,16 @@ export function AggregationTable({
     }
   };
 
+  // NB: this callback MUST stay above the early-return guards below. Declaring
+  // it after them makes the component's hook count vary with `loading`/`data`
+  // state (React error #310 — "Rendered more hooks than during the previous
+  // render") and white-screens every table view.
+  const handleEditProtocol = useCallback(
+    (protocol: ProtocolInfo) => setEditingProtocol(protocol),
+    [],
+  );
+  const onEditProtocol = canContribute ? handleEditProtocol : undefined;
+
   if (loading) {
     return (
       <Paper sx={{ p: 3, ...(fillHeight && { height: '100%' }) }}>
@@ -164,12 +174,6 @@ export function AggregationTable({
       </Paper>
     );
   }
-
-  const handleEditProtocol = useCallback(
-    (protocol: ProtocolInfo) => setEditingProtocol(protocol),
-    [],
-  );
-  const onEditProtocol = canContribute ? handleEditProtocol : undefined;
 
   // Determine which table to render based on response type and outputFormat
   const renderTable = () => {
