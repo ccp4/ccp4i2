@@ -116,8 +116,15 @@ def _spec_from_dict(data: Any) -> QuerySpec:
 # ---------------------------------------------------------------------------
 
 
-def _serialize(result: Any) -> Tuple[dict, int]:
-    """Map an execution / parse result to (response_body, http_status)."""
+def _serialize(result: Any, spec: Optional[QuerySpec] = None) -> Tuple[dict, int]:
+    """Map an execution / parse result to (response_body, http_status).
+
+    ``spec`` is the QuerySpec that produced the result (either parsed from a
+    prompt or supplied directly by the client on continuation). It's echoed
+    back as ``partial_spec`` on clarify responses (§9) so the client can
+    re-POST with a pinning ID without re-calling the LLM (§18.3 slice-6
+    decision).
+    """
     if isinstance(result, TablePayload):
         body = {"status": "table", **dataclasses.asdict(result)}
         return body, http_status.HTTP_200_OK
@@ -126,6 +133,8 @@ def _serialize(result: Any) -> Tuple[dict, int]:
         # `field` is on the dataclass already — orchestrator sets it for
         # TargetClarify, ProtocolClarify has FIELD_PROTOCOL_HINT by default.
         body = {"status": "clarify", **dataclasses.asdict(result)}
+        if spec is not None:
+            body["partial_spec"] = dataclasses.asdict(spec)
         return body, http_status.HTTP_200_OK
 
     if isinstance(result, (TargetMiss, ProtocolMiss)):
@@ -207,6 +216,7 @@ def nlp_query(request: Request) -> Response:
             status=http_status.HTTP_400_BAD_REQUEST,
         )
 
+    spec_for_echo: Optional[QuerySpec] = None
     if prompt is not None:
         if not isinstance(prompt, str):
             return Response(
@@ -216,19 +226,20 @@ def nlp_query(request: Request) -> Response:
             )
         parse_result = parse_prompt(prompt)
         if isinstance(parse_result, QuerySpec):
+            spec_for_echo = parse_result
             result: Any = execute(parse_result)
         else:
             result = parse_result  # NotAQuery or ParseError
     elif spec_dict is not None:
         try:
-            spec = _spec_from_dict(spec_dict)
+            spec_for_echo = _spec_from_dict(spec_dict)
         except ValueError as e:
             return Response(
                 {"status": "error", "kind": "bad_request",
                  "message": f"Invalid spec: {e}"},
                 status=http_status.HTTP_400_BAD_REQUEST,
             )
-        result = execute(spec)
+        result = execute(spec_for_echo)
     else:
         return Response(
             {"status": "error", "kind": "bad_request",
@@ -236,5 +247,5 @@ def nlp_query(request: Request) -> Response:
             status=http_status.HTTP_400_BAD_REQUEST,
         )
 
-    body_out, status_code = _serialize(result)
+    body_out, status_code = _serialize(result, spec=spec_for_echo)
     return Response(body_out, status=status_code)

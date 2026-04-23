@@ -256,6 +256,59 @@ def test_target_clarify_returns_clarify_body(client, feature_on, clear_cache, db
     assert resp.data["field"] == "registration_target_as_typed"
     candidate_names = {c["name"] for c in resp.data["candidates"]}
     assert candidate_names == {"Myc-Aur", "Myc regulation"}
+    # partial_spec lets the client re-POST with a pinned ID without re-calling
+    # the LLM (§18.3 slice-6 decision — decision 5 forbids LLM on continuation).
+    assert "partial_spec" in resp.data
+    assert resp.data["partial_spec"]["registration_target_as_typed"] == "MYC"
+    assert resp.data["partial_spec"]["protocol_hint"] == "HTRF"
+    assert resp.data["partial_spec"]["metric"] == "IC50"
+
+
+def test_clarify_response_round_trips_into_continuation(client, feature_on, clear_cache, db):
+    """Pick a chip → build a pinned spec from partial_spec → re-POST → execute."""
+    from compounds.registry.models import Gene
+    gene = Gene.objects.create(symbol="MYC")
+    t1 = Target.objects.create(name="Myc-Aur")
+    t2 = Target.objects.create(name="Myc regulation")
+    t1.genes.add(gene)
+    t2.genes.add(gene)
+    # Wire t1 up with a compound + protocol + measurement so the continuation
+    # actually resolves to a table.
+    compound = Compound.objects.create(target=t1, smiles="CCO")
+    MolecularProperties.objects.filter(compound=compound).update(
+        molecular_weight=400.0, clogp=3.0, hbd=1, hba=3,
+        heavy_atom_count=28, tpsa=60.0, rotatable_bonds=5, fraction_sp3=0.3,
+    )
+    protocol = Protocol.objects.create(name="MYC HTRF")
+    assay = Assay.objects.create(protocol=protocol, target=t1)
+    ar = AnalysisResult.objects.create(
+        status="valid", results={"KPI": "IC50", "IC50": 5.0, "kpi_unit": "nM"},
+    )
+    DataSeries.objects.create(
+        assay=assay, compound=compound, row=0, start_column=0, end_column=10,
+        analysis=ar,
+    )
+
+    # First round: LLM-driven, returns Clarify.
+    parsed = QuerySpec(
+        registration_target_as_typed="MYC",
+        assay_target_as_typed="MYC",
+        protocol_hint="HTRF",
+        metric="IC50",
+    )
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp1 = client.post(URL, {"prompt": "MYC compounds"}, format="json")
+    assert resp1.data["status"] == "clarify"
+
+    # Second round: client pins t1 and re-POSTs — must skip the LLM.
+    partial = dict(resp1.data["partial_spec"])
+    partial["registration_target_id"] = str(t1.id)
+    partial["assay_target_id"] = str(t1.id)
+    with patch("compounds.nlp.view.parse_prompt") as mock_parse:
+        resp2 = client.post(URL, {"spec": partial}, format="json")
+    mock_parse.assert_not_called()
+    assert resp2.data["status"] == "table"
+    assert len(resp2.data["rows"]) == 1
 
 
 def test_target_miss_returns_miss_body(client, feature_on, clear_cache, world):

@@ -1,7 +1,7 @@
 'use client';
 
 import { Container, Typography, Box, Stack, Paper, Collapse } from '@mui/material';
-import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings, GridView, Visibility } from '@mui/icons-material';
+import { Science, Biotech, TableChart, Search, AccountTree, AdminPanelSettings, GridView, Visibility, QuestionAnswer } from '@mui/icons-material';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, useEffect, useRef, Suspense } from 'react';
@@ -327,6 +327,30 @@ export default function AppSelectorPage() {
             <Typography variant="h5">Data Aggregation</Typography>
             <Typography color="text.secondary">
               Query and aggregate KPI values across compounds and protocols
+            </Typography>
+          </Box>
+        </Paper>
+
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/nlp"
+        >
+          <QuestionAnswer sx={{ fontSize: 56, color: 'primary.main' }} />
+          <Box>
+            <Typography variant="h5">Ask (Natural-Language Query)</Typography>
+            <Typography color="text.secondary">
+              Type a question like &ldquo;HTRF IC50 values for CDK4 compounds&rdquo; and get a table
             </Typography>
           </Box>
         </Paper>

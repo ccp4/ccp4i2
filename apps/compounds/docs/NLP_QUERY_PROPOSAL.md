@@ -1,8 +1,8 @@
 # Natural-Language Query Proposal (Compounds App)
 
-**Status**: In implementation. Backend slices 1–6 and 8 shipped (target resolution, protocol resolution + two-target orchestrator, row-level evaluator with unit tri-state, end-to-end executor, Azure OpenAI client + parse_prompt, DRF view with clarify continuation + feature flag + daily-call cap, and now the golden-set evaluation harness). UI (§10, slice 7) remains. §16.2 Azure infra prerequisites are applied to the live resource (2026-04-23). **See §18 for slice-by-slice progress and the pick-up notes for the next slice** — that section is the canonical resumption anchor if this work is being resumed in a fresh conversation.
+**Status**: v1 backend + UI complete. All eight slices shipped; feature live on DDU (2026-04-23) and validated end-to-end via Flow-B smoke (token → Next.js proxy → Django server → managed-identity → Azure OpenAI → executor → JSON). Frontend at `/nlp`. **See §18 for slice-by-slice progress** — remaining work is rollout + eval, captured in §16 and §19.
 **Author**: Martin Noble (with Claude)
-**Date**: 2026-04-22 (drafted); §§18–19 added 2026-04-23; §18 slices 4–6, 8 updates 2026-04-23
+**Date**: 2026-04-22 (drafted); §§18–19 added 2026-04-23; §18 slices 4–8 updates 2026-04-23
 **LLM provider**: Azure OpenAI (not Claude API) — same Azure UK South tenant as the rest of the deployment; keeps data in-region and on existing billing.
 
 ## 1. Motivation
@@ -510,7 +510,7 @@ Work is delivered as narrow vertical slices that build the backend first and def
 | 4 | Executor (`executor.py`): ORM query + payload + footer counts + scope sentence | Shipped | §7, §6.6, §10 |
 | 5 | Azure OpenAI client + prompt + structured-output extraction | Shipped | §8, §11.1 |
 | 6 | DRF view with clarify loop | Shipped | §7 (view), §9, §16.3 feature flag |
-| 7 | Frontend command-bar (landing + per-project) | Pending | §10 |
+| 7 | Frontend command-bar (landing page for v1; per-project deferred) | Shipped | §10 |
 | 8 | Evaluation harness + golden set | Shipped | §12 |
 
 Rollout dependencies: §16 prerequisites (Gene model + DDU hydration) are done. Demo + Kawamura backfill happens after the executor lands but before the feature flag is turned on for those instances.
@@ -623,6 +623,21 @@ Requires `openai` installed in the ccp4-python env (`ccp4-python -m pip install 
 
 **Also in this slice** — Dockerfile fix: `apps/compounds/nlp` is now in the `COPY` list for the server image (`Docker/server/Dockerfile`), so the NLP backend actually ships in production. Missed in slices 5/6 because local tests passed off the source tree; caught now before the first deployed enablement.
 
+**Slice 7 — Frontend command-bar** (194 tests cumulative; one continuation-round-trip view test added for the slice-6 `partial_spec` retrofit)
+
+- New page at `apps/compounds/frontend/app/nlp/page.tsx` — `/nlp` route. Discoverable via an "Ask (Natural-Language Query)" tile on both landing pages (`app/page.tsx` standalone + `app/app-selector/page.tsx` Docker overlay). Per-project placement deferred until per-project compounds pages exist — §18.3 slice-6 decision.
+- New `apps/compounds/frontend/lib/compounds/nlp-api.ts` — TypeScript types mirroring `apps/compounds/nlp/spec.py` (QuerySpec, Threshold, TargetCandidate, ProtocolCandidate, TableRow, the NLPResponse discriminated union) + a thin `postNlpQuery` fetcher that wraps `authFetch` but (unlike the existing compounds `apiPost`) returns the JSON body on *any* HTTP status. Necessary because 4xx/5xx carry structured data the UI wants to render — 404 for disabled, 400 for spec/scope error, 429 for rate limit, 502 for parse error. Throws only on network / non-JSON failures. A convenience `applyClarifyPick(partial_spec, field, pickedId)` helper pins the chosen id on the correct `*_target_id` / `protocol_id` field for the continuation re-POST.
+- New component `apps/compounds/frontend/components/compounds/nlp/NLPPanel.tsx` — owns the React state (prompt, response, loading, error). Multi-line `TextField` with Enter-to-submit (Shift+Enter for newline), prominent "Ask" button with spinner. Below the input: four example-prompt `Button`s that one-click into the bar and submit — the command-bar equivalent of the "not_a_query" examples panel (§19.6). Hidden once a response is present.
+- New component `apps/compounds/frontend/components/compounds/nlp/NLPResults.tsx` — switches on `response.status`:
+  - `table` → scope sentence + `MUI Table` (sticky header) with compound-id (linked to the registry compound page), value+unit, and one column per phys-chem field from `property_columns` using `PROPERTY_LABELS` from the aggregation-table shared module (keeps label convention consistent across the app). Footer `Paper` with `Chip`s per `footer_excluded` reason using human-readable labels (`unit_unknown` → *"no unit recorded"*, etc.).
+  - `clarify` → non-customized MUI `Chip`s (per user decision), one per candidate, each showing `name` + gene symbols (targets) or `n_runs / n_compounds / last_run` (protocols). Click → `onClarifyPick(partial_spec, field, id)` from the panel, which re-POSTs with the pinning.
+  - `miss` → `Alert severity="info"` with suggestion `Chip`s.
+  - `not_a_query` → `Alert` with the LLM's reason + a static "what this bar can do" hint.
+  - `error` → `Alert severity="warning"` for `kind="disabled"`, `severity="error"` otherwise, with the `kind` and optional `field` shown as sub-text for diagnostics.
+- `lib/compounds/routes.ts` gains `routes.nlp.home()` returning `/nlp`.
+
+**Slice-6 fix retrofit (bundled in slice 7):** `_serialize` now includes `partial_spec` on `clarify` responses — the QuerySpec that produced them, echoed back so continuations skip the LLM (decision 5). The slice-6 original missed this; it surfaced now because the frontend needs it to build a pinned continuation from a picker choice. New view test `test_clarify_response_round_trips_into_continuation` exercises the full pick → pin → continuation path and asserts the LLM was not re-called.
+
 ### 18.3 Decisions made during implementation (additions to §13)
 
 These are lived-in details that aren't in §1–17. They don't contradict §13 — they extend it.
@@ -665,6 +680,12 @@ These are lived-in details that aren't in §1–17. They don't contradict §13 �
 | 8 | Online eval is skipped by default, gated on `RUN_NLP_ONLINE_EVAL=true` | Every unskipped test in this repo is free to run. Online eval burns real LLM calls and cannot run in default CI. Default-off + explicit opt-in makes the behaviour legible. |
 | 8 | Bar thresholds (≥90% spec, 100% not_a_query, 0 parse errors) are assertions, not warnings | Bar misses should fail loudly — the eval is the regression harness for future LLM / prompt changes. Soft warnings would let drift accumulate. |
 | 8 | Diff rendering on mismatch is per-field `"; "`-joined rather than a generic dict diff | Every failure mode points at a specific field (e.g. `threshold.unit: expected 'uM', got 'µM'`) — far more actionable than "expected {…} got {…}" when debugging prompt-engineering regressions. |
+| 7 | NLP-specific fetcher (`postNlpQuery`) returns the body on any HTTP status | The existing `apiPost` throws on non-2xx, which is right for CRUD endpoints but wrong here — 404 (feature-off), 400 (scope/spec error), 429 (cap), 502 (parse error) all carry structured `NLPResponse` bodies the UI wants to render. Cheaper to write a ~20-line wrapper than to add error-body propagation to the shared helper. |
+| 7 | Discriminated union rendered via `switch (response.status)` in `NLPResults.tsx`, not via per-status sub-routes or context providers | Five branches, no shared state across them, each tested in isolation by shape. A state machine or reducer would be over-engineering for v1. The branches can be extracted into separate files later if any one of them grows. |
+| 7 | Frontend reuses the aggregation module's `PROPERTY_LABELS` for column headers | Keeps "MW", "cLogP", "TPSA" etc. consistent across the aggregation table and the NLP table without a second source of truth. When the aggregation refactor added new properties, NLP picks them up automatically. |
+| 7 | Example-prompt buttons below the command bar double as the example-set for the `not_a_query` branch | Decision 20 mandates showing example prompts when the LLM rejects a request. Serving the same examples as discoverability affordance on an empty page (and rejection recovery on a misfire) means the user learns one set and sees it in both contexts. |
+| 7 | Per-project placement deferred until per-project pages exist | Matches the §18.3 slice-6 decision on backend target-context fill — building the UI half of a feature whose counterpart does nothing yet would rot. Reopens when per-project compounds pages land. |
+| 7 | `partial_spec` on clarify responses was a slice-6 hole caught during slice-7 wiring; fixed alongside slice 7 with a continuation-round-trip view test | The slice-6 continuation story assumed the client somehow had the partial_spec to round-trip — but the clarify response didn't include it. Fixing it in a slice-6 maintenance pass bundled with slice 7 kept the fix reviewable alongside its first real caller (the `ClarifyView` chip `onClick`). |
 
 ### 18.4 Running the tests
 
@@ -678,15 +699,15 @@ PYTHONPATH="$PWD:$PWD/../apps" DJANGO_SETTINGS_MODULE=compounds.settings \
 
 Expected: 193 passing + 2 skipped as of slice 8 (2026-04-23). The 2 skipped are the online eval tests in `test_golden.py` — they run only when `RUN_NLP_ONLINE_EVAL=true` and `AZURE_OPENAI_ENDPOINT` is set, because they burn real LLM calls. Offline tests (evaluator, LLM, golden-set validation/round-trip) do not touch the DB. LLM tests mock the Azure OpenAI factory so they don't require `openai` to be installed locally. Resolver / orchestrator / protocol / executor / view tests use `@pytest.mark.django_db` via the `db` fixture argument. View tests use DRF's `APIClient.force_authenticate` and patch `compounds.nlp.view.parse_prompt` to mock the LLM without touching `openai`. Fixtures are defined inline in each test module (no JSON fixture files, no separate conftest).
 
-### 18.5 Pending slices — pick-up notes
+### 18.5 Pending work (post-v1)
 
-**Slice 7: Frontend command-bar** — the only remaining slice.
+All eight slices are shipped. Remaining non-code work to close out the v1 rollout:
 
-- Two surfaces per decision 14: compounds-app landing page and per-project page. Per-project adds the decision-18 target-context fill signal to the request — this is also the slice where the backend's fill-on-null logic lands (§18.3 slice-6 decision: deferred until there's a real caller).
-- Inline chip picker for clarify, not a modal. On pick, re-POST with `{spec: <partial_spec>}` plus the chosen `registration_target_id` / `assay_target_id` / `protocol_id` populated on the spec — no prompt, no LLM call.
-- Response rendered through the existing aggregation-table component for `status: "table"`; chip picker for `status: "clarify"`; informational panels for `miss` / `not_a_query` / `error`. Response shape is a single flat object discriminated by `status` — frontend should `switch (resp.status)`.
-- Response status handling: 200 covers table/clarify/miss/not_a_query; 400 is user-correctable (scope/spec/bad_request); 429 is the daily cap; 502 is LLM-glue failure (suggest "retry?"); 404 means the feature flag is off on this instance.
-- **Infra prerequisites before a deployed instance can actually use this**: see §16.2 (Azure OpenAI resource + model deployment + Bicep role assignment + per-instance env vars). Slice 7 can ship *in code* without these — the feature flag stays off on instances until all four are in place.
+- **§16.1 target-gene backfill on Demo and Kawamura** — before the feature is turned on for those instances, run `backfill_target_genes.py --dump` per instance and curate the plans. DDU is already fully backfilled.
+- **Online-eval run against the live DDU endpoint** — `RUN_NLP_ONLINE_EVAL=true` with the golden set at `apps/compounds/nlp/tests/golden/prompts.yaml`. First run will surface which prompt families the live gpt-4o deployment handles cleanly vs. needs prompt-engineering tuning.
+- **Per-instance enablement** — each instance flips to the feature by setting `AZURE_OPENAI_ENDPOINT=https://ddu-openai.openai.azure.com/` + `COMPOUNDS_NLP_ENABLED=true` in its `.env.*` file and redeploying server. Already done for DDU (2026-04-23).
+
+Post-v1 feature directions live in §19 (chemistry-aware queries, scatter, compound-rooted queries, missing-data, explain-this-query). §19.7 names the top picks.
 
 **Slice 7: Frontend command-bar.**
 
