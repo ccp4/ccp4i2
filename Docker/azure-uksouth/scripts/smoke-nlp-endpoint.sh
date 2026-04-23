@@ -95,7 +95,10 @@ else
     COMPOUNDS_BASE="$API_URL"
 fi
 
-ENDPOINT="${COMPOUNDS_BASE}/nlp/query/"
+# The Next.js proxy appends the trailing slash when forwarding to Django, so
+# clients MUST post without one (otherwise Next.js 308-redirects — see
+# i2remote.py:470 for the same convention).
+ENDPOINT="${COMPOUNDS_BASE}/nlp/query"
 
 # -- POST --------------------------------------------------------------------
 echo -e "${GREEN}→ POST${NC} $ENDPOINT"
