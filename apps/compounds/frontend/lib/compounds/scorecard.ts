@@ -45,43 +45,68 @@ function evaluateAxis(axis: ScorecardAxis, compound: CompactRow): AxisEvaluation
 }
 
 function computeAxisValue(axis: ScorecardAxis, compound: CompactRow): number | null {
-  switch (axis.kind) {
-    case 'protocol':
-      return compound.protocols[(axis as ScorecardProtocolAxis).protocol_id]?.geomean ?? null;
+  // Every branch is defensive against saved configs that predate the current
+  // validator, and against geomeans that arrive as strings from Django decimal
+  // fields. Any unexpected shape collapses to null rather than throwing.
+  const protocols = compound.protocols ?? {};
 
-    case 'ratio': {
-      const { numerator_id, denominator_id } = axis as ScorecardRatioAxis;
-      const num = compound.protocols[numerator_id]?.geomean;
-      const den = compound.protocols[denominator_id]?.geomean;
-      if (num == null || den == null || den === 0) return null;
-      return num / den;
-    }
+  try {
+    switch (axis.kind) {
+      case 'protocol':
+        return asFiniteNumber(
+          protocols[(axis as ScorecardProtocolAxis).protocol_id]?.geomean,
+        );
 
-    case 'worst_of': {
-      const { protocol_ids } = axis as ScorecardWorstOfAxis;
-      const values: number[] = [];
-      for (const id of protocol_ids) {
-        const g = compound.protocols[id]?.geomean;
-        if (g != null && Number.isFinite(g)) values.push(g);
+      case 'ratio': {
+        const { numerator_id, denominator_id } = axis as ScorecardRatioAxis;
+        const num = asFiniteNumber(protocols[numerator_id]?.geomean);
+        const den = asFiniteNumber(protocols[denominator_id]?.geomean);
+        if (num == null || den == null || den === 0) return null;
+        return num / den;
       }
-      if (values.length === 0) return null;
-      // Direction from thresholds: target < poor → lower-better, worst = max.
-      const { target_value: target, poor_value: poor } = axis;
-      if (target == null || poor == null) return null;
-      return target < poor ? Math.max(...values) : Math.min(...values);
-    }
 
-    case 'lipinski': {
-      const props = compound.properties;
-      if (!props) return null;
-      let pass = 0;
-      if (props.molecular_weight != null && props.molecular_weight <= 500) pass++;
-      if (props.clogp != null && props.clogp <= 5) pass++;
-      if (props.hbd != null && props.hbd <= 5) pass++;
-      if (props.hba != null && props.hba <= 10) pass++;
-      return pass;
+      case 'worst_of': {
+        const { protocol_ids } = axis as ScorecardWorstOfAxis;
+        if (!Array.isArray(protocol_ids) || protocol_ids.length === 0) return null;
+        const values: number[] = [];
+        for (const id of protocol_ids) {
+          const g = asFiniteNumber(protocols[id]?.geomean);
+          if (g != null) values.push(g);
+        }
+        if (values.length === 0) return null;
+        const { target_value: target, poor_value: poor } = axis;
+        if (target == null || poor == null) return null;
+        return target < poor ? Math.max(...values) : Math.min(...values);
+      }
+
+      case 'lipinski': {
+        const props = compound.properties;
+        if (!props) return null;
+        let pass = 0;
+        const mw = asFiniteNumber(props.molecular_weight);
+        const clogp = asFiniteNumber(props.clogp);
+        const hbd = asFiniteNumber(props.hbd);
+        const hba = asFiniteNumber(props.hba);
+        if (mw != null && mw <= 500) pass++;
+        if (clogp != null && clogp <= 5) pass++;
+        if (hbd != null && hbd <= 5) pass++;
+        if (hba != null && hba <= 10) pass++;
+        return pass;
+      }
     }
+  } catch {
+    // Unexpected config shape — fail soft so one bad axis doesn't crash the
+    // whole card grid.
+    return null;
   }
+}
+
+/** Coerce number-ish inputs (Decimal strings, null, undefined, NaN) to a
+ *  finite number or null. */
+function asFiniteNumber(v: unknown): number | null {
+  if (v == null) return null;
+  const n = typeof v === 'number' ? v : Number(v);
+  return Number.isFinite(n) ? n : null;
 }
 
 /**
