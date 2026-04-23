@@ -22,6 +22,7 @@ import {
   Delete,
   ViewList,
   Settings,
+  Radar,
 } from '@mui/icons-material';
 import Link from 'next/link';
 import { PageHeader } from '@/components/compounds/PageHeader';
@@ -293,6 +294,14 @@ export default function TargetDashboardPage({ params }: PageProps) {
               startIcon={<TableChart />}
             >
               View Assay Data
+            </Button>
+            <Button
+              component={Link}
+              href={routes.registry.targetScorecard(id)}
+              variant="outlined"
+              startIcon={<Radar />}
+            >
+              Scorecard
             </Button>
             <Tooltip title={canContribute ? '' : 'Requires Contributor or Admin operating level'} arrow>
               <span>

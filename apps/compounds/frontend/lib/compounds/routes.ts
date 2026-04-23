@@ -71,6 +71,9 @@ export const routes = {
     /** Target compounds list page */
     targetCompounds: (id: string | number) => route(`/registry/targets/${id}/compounds`),
 
+    /** Target scorecard (spider-plot) editor */
+    targetScorecard: (id: string | number) => route(`/registry/targets/${id}/scorecard`),
+
     /** All compounds list with optional target filter */
     compounds: (params?: { target?: string }) =>
       routeWithQuery('/registry/compounds', params),
@@ -166,6 +169,12 @@ export const routes = {
 
     /** Protein detail page */
     protein: (id: string | number) => route(`/constructs/proteins/${id}`),
+  },
+
+  /** Natural-language query (compounds-app-wide command bar) */
+  nlp: {
+    /** NLP query landing page */
+    home: () => route('/nlp'),
   },
 
   /** Admin routes (requires admin operating level) */

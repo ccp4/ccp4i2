@@ -298,8 +298,27 @@ class TargetSerializer(serializers.ModelSerializer):
             'latest_activity',
             'image',
             'saved_aggregation_view',
+            'scorecard_config',
         ]
         read_only_fields = ['created_at', 'modified_at']
+
+    def validate_scorecard_config(self, value):
+        """Mirror the model-level structural validator at the API boundary
+        so form submissions get field-level errors before hitting clean()."""
+        if value is None:
+            return value
+        from .models import _validate_scorecard_config
+        from django.core.exceptions import ValidationError as DjangoValidationError
+        try:
+            _validate_scorecard_config(value)
+        except DjangoValidationError as e:
+            # Django's ValidationError wraps into {'scorecard_config': [msg, ...]};
+            # lift the message to DRF's expected shape.
+            message = e.message_dict.get('scorecard_config', e.messages)
+            if isinstance(message, list):
+                message = message[0]
+            raise serializers.ValidationError(message)
+        return value
 
     def get_assay_count(self, obj):
         """Count assays for this target."""

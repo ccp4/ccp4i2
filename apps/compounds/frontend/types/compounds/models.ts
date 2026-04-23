@@ -113,7 +113,68 @@ export interface Target {
   latest_activity?: string | null;
   image?: string | null;
   saved_aggregation_view?: SavedAggregationView | null;
+  scorecard_config?: ScorecardConfig | null;
 }
+
+/**
+ * Scorecard (spider-plot) configuration, attached to a Target.
+ * Each axis turns a compound's measurements into a single score,
+ * normalised against the axis's target/poor anchors.
+ */
+export interface ScorecardConfig {
+  axes: ScorecardAxis[];
+}
+
+export type ScorecardAxis =
+  | ScorecardProtocolAxis
+  | ScorecardRatioAxis
+  | ScorecardWorstOfAxis
+  | ScorecardLipinskiAxis;
+
+interface ScorecardAxisBase {
+  label: string;
+  /** Value considered excellent (in the axis's native units) */
+  target_value?: number | null;
+  /** Value considered poor */
+  poor_value?: number | null;
+  threshold_scale?: 'log' | 'linear';
+}
+
+/** Axis value = a single protocol's geomean. */
+export interface ScorecardProtocolAxis extends ScorecardAxisBase {
+  kind: 'protocol';
+  protocol_id: string;
+}
+
+/**
+ * Axis value = numerator_protocol.geomean / denominator_protocol.geomean.
+ * Use for selectivity ratios (e.g. WT / mutant).
+ */
+export interface ScorecardRatioAxis extends ScorecardAxisBase {
+  kind: 'ratio';
+  numerator_id: string;
+  denominator_id: string;
+}
+
+/**
+ * Axis value = worst (max for lower-better, min for higher-better) across
+ * several protocols. Use for "passes on all mutant variants".
+ */
+export interface ScorecardWorstOfAxis extends ScorecardAxisBase {
+  kind: 'worst_of';
+  protocol_ids: string[];
+}
+
+/**
+ * Axis value = count (0-4) of Lipinski rule-of-5 criteria passed
+ * (MW ≤ 500, cLogP ≤ 5, HBD ≤ 5, HBA ≤ 10). target_value defaults to 4,
+ * poor_value to 1; threshold_scale defaults to 'linear'.
+ */
+export interface ScorecardLipinskiAxis extends ScorecardAxisBase {
+  kind: 'lipinski';
+}
+
+export type ScorecardAxisKind = ScorecardAxis['kind'];
 
 /**
  * Dashboard types for target landing page.

@@ -322,6 +322,19 @@ class Target(models.Model):
                   "concentration_display?: 'natural'|'nM'|'uM'|'mM'|'pConc', "
                   "include_properties?: string[]}"
     )
+    scorecard_config = models.JSONField(
+        blank=True,
+        null=True,
+        help_text="Per-target scorecard definition for spider / radar visualisation. "
+                  "Schema: {axes: ScorecardAxis[]} where each axis is "
+                  "{label: string, kind: 'protocol'|'ratio'|'worst_of'|'lipinski', "
+                  "target_value?: number, poor_value?: number, "
+                  "threshold_scale?: 'log'|'linear', "
+                  "protocol_id?: uuid (kind='protocol'), "
+                  "numerator_id?: uuid, denominator_id?: uuid (kind='ratio'), "
+                  "protocol_ids?: uuid[] (kind='worst_of')}. "
+                  "kind='lipinski' takes no extra fields; score is 0-4."
+    )
 
     # Audit
     created_by = models.ForeignKey(
@@ -348,6 +361,67 @@ class Target(models.Model):
 
     def __str__(self):
         return self.name
+
+    def clean(self):
+        super().clean()
+        if self.scorecard_config is not None:
+            _validate_scorecard_config(self.scorecard_config)
+
+
+_VALID_AXIS_KINDS = {'protocol', 'ratio', 'worst_of', 'lipinski'}
+_VALID_THRESHOLD_SCALES = {'log', 'linear'}
+
+
+def _validate_scorecard_config(config):
+    """Structural validator for Target.scorecard_config.
+
+    Checks only the shape — doesn't verify protocol IDs exist or that
+    ratio-axis kpi_units match. Semantic validation can live in the
+    serializer or be deferred to client-side once the editor is in place.
+    """
+    from django.core.exceptions import ValidationError
+
+    if not isinstance(config, dict):
+        raise ValidationError({'scorecard_config': 'Must be an object.'})
+    axes = config.get('axes')
+    if axes is None:
+        return  # Empty config is fine
+    if not isinstance(axes, list):
+        raise ValidationError({'scorecard_config': '"axes" must be a list.'})
+
+    for i, axis in enumerate(axes):
+        prefix = f'axes[{i}]'
+        if not isinstance(axis, dict):
+            raise ValidationError({'scorecard_config': f'{prefix}: must be an object.'})
+        kind = axis.get('kind')
+        if kind not in _VALID_AXIS_KINDS:
+            raise ValidationError({'scorecard_config': f'{prefix}.kind: must be one of {sorted(_VALID_AXIS_KINDS)}.'})
+        if not isinstance(axis.get('label'), str) or not axis['label'].strip():
+            raise ValidationError({'scorecard_config': f'{prefix}.label: required non-empty string.'})
+
+        if kind == 'protocol':
+            if not axis.get('protocol_id'):
+                raise ValidationError({'scorecard_config': f'{prefix}.protocol_id: required.'})
+        elif kind == 'ratio':
+            if not axis.get('numerator_id') or not axis.get('denominator_id'):
+                raise ValidationError({'scorecard_config': f'{prefix}: ratio requires numerator_id and denominator_id.'})
+            if axis['numerator_id'] == axis['denominator_id']:
+                raise ValidationError({'scorecard_config': f'{prefix}: numerator and denominator must differ.'})
+        elif kind == 'worst_of':
+            ids = axis.get('protocol_ids')
+            if not isinstance(ids, list) or len(ids) < 1:
+                raise ValidationError({'scorecard_config': f'{prefix}: worst_of requires non-empty protocol_ids list.'})
+        # kind == 'lipinski' has no kind-specific fields.
+
+        # Threshold anchors are optional, but if both set they must differ
+        # and the scale, if present, must be one of the allowed values.
+        target_value = axis.get('target_value')
+        poor_value = axis.get('poor_value')
+        if target_value is not None and poor_value is not None and target_value == poor_value:
+            raise ValidationError({'scorecard_config': f'{prefix}: target_value and poor_value must differ.'})
+        scale = axis.get('threshold_scale')
+        if scale is not None and scale not in _VALID_THRESHOLD_SCALES:
+            raise ValidationError({'scorecard_config': f'{prefix}.threshold_scale: must be "log" or "linear".'})
 
 
 def _next_reg_number():
