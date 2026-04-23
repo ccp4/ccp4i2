@@ -17,6 +17,7 @@ import {
   MolecularPropertyName,
 } from '@/types/compounds/aggregation';
 import { fetchAggregation, saveAggregationView } from '@/lib/compounds/aggregation-api';
+import { scorecardDataNeeds } from '@/lib/compounds/scorecard';
 import { useAuth } from '@/lib/compounds/auth-context';
 import { useCompoundsApi } from '@/lib/compounds/api';
 import type { Target as TargetRecord } from '@/types/compounds/models';
@@ -263,13 +264,31 @@ function AggregationPageContent() {
     try {
       // Map pivot and cards to compact for the API - they use the same data structure
       const apiOutputFormat = (outputFormat === 'pivot' || outputFormat === 'cards') ? 'compact' : outputFormat;
+
+      // If a scorecard is in play for a single target, auto-augment the
+      // request with the protocols and molecular properties the scorecard
+      // axes need. This avoids the "my Lipinski axis is empty because I
+      // didn't tick Include Properties" footgun.
+      const scorecardNeeds = scorecardDataNeeds(singleTargetScorecard);
+      const effectivePredicates: Predicates = scorecardNeeds.protocolIds.length > 0
+        ? {
+            ...predicates,
+            protocols: Array.from(
+              new Set([...(predicates.protocols ?? []), ...scorecardNeeds.protocolIds]),
+            ),
+          }
+        : predicates;
+      const effectiveProperties = Array.from(
+        new Set([...includeProperties, ...scorecardNeeds.properties]),
+      ) as MolecularPropertyName[];
+
       const result = await fetchAggregation({
-        predicates,
+        predicates: effectivePredicates,
         output_format: apiOutputFormat,
         aggregations,
         group_by_batch: groupByBatch,
         include_tested_no_data: includeTestedNoData,
-        include_properties: includeProperties.length > 0 ? includeProperties : undefined,
+        include_properties: effectiveProperties.length > 0 ? effectiveProperties : undefined,
         include_identifiers: includeIdentifiers,
       });
 
@@ -289,7 +308,7 @@ function AggregationPageContent() {
         setLoading(false);
       }
     }
-  }, [currentState, updateUrlState]);
+  }, [currentState, updateUrlState, singleTargetScorecard]);
 
   // Build summary description from current state
   const getSummaryDescription = () => {

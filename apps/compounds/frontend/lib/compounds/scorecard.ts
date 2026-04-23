@@ -9,7 +9,10 @@
  * of "better" naturally through the arithmetic.
  */
 
-import type { CompactRow } from '@/types/compounds/aggregation';
+import type {
+  CompactRow,
+  MolecularPropertyName,
+} from '@/types/compounds/aggregation';
 import type {
   ScorecardAxis,
   ScorecardConfig,
@@ -79,6 +82,55 @@ function computeAxisValue(axis: ScorecardAxis, compound: CompactRow): number | n
       return pass;
     }
   }
+}
+
+/**
+ * Aggregation-request inputs a scorecard depends on. The aggregation page
+ * merges these with the user's explicit selections so chemists don't have
+ * to manually tick boxes for each protocol referenced by the scorecard.
+ */
+export interface ScorecardDataNeeds {
+  protocolIds: string[];
+  properties: MolecularPropertyName[];
+}
+
+const LIPINSKI_PROPERTIES: MolecularPropertyName[] = [
+  'molecular_weight',
+  'clogp',
+  'hbd',
+  'hba',
+];
+
+export function scorecardDataNeeds(
+  config: ScorecardConfig | null | undefined,
+): ScorecardDataNeeds {
+  const protocolIds = new Set<string>();
+  let needsLipinski = false;
+
+  for (const axis of config?.axes ?? []) {
+    switch (axis.kind) {
+      case 'protocol':
+        if (axis.protocol_id) protocolIds.add(axis.protocol_id);
+        break;
+      case 'ratio':
+        if (axis.numerator_id) protocolIds.add(axis.numerator_id);
+        if (axis.denominator_id) protocolIds.add(axis.denominator_id);
+        break;
+      case 'worst_of':
+        for (const id of axis.protocol_ids ?? []) {
+          if (id) protocolIds.add(id);
+        }
+        break;
+      case 'lipinski':
+        needsLipinski = true;
+        break;
+    }
+  }
+
+  return {
+    protocolIds: Array.from(protocolIds),
+    properties: needsLipinski ? LIPINSKI_PROPERTIES : [],
+  };
 }
 
 function normaliseAxis(axis: ScorecardAxis, value: number): number | null {

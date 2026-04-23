@@ -44,12 +44,19 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
       datasets: [
         {
           label: compound.formatted_id,
-          data: evals.map(({ t }) => t),
+          // Coerce missing axes to 0 rather than null — Chart.js 4 radar
+          // can fail to construct the polygon path when any datapoint is
+          // null, which manifests as a white-screen client error. The
+          // visual cost: a missing measurement reads as a pinched-to-centre
+          // (i.e. poor) axis. Tooltip still says "no data" for clarity.
+          data: evals.map(({ t }) => t ?? 0),
           backgroundColor: 'rgba(25, 118, 210, 0.25)',
           borderColor: 'rgba(25, 118, 210, 1)',
           borderWidth: 1.5,
           pointRadius: size === 'small' ? 2 : 3,
-          pointBackgroundColor: 'rgba(25, 118, 210, 1)',
+          pointBackgroundColor: evals.map(({ t }) =>
+            t == null ? 'rgba(160, 160, 160, 0.8)' : 'rgba(25, 118, 210, 1)',
+          ),
           pointBorderColor: '#fff',
           pointBorderWidth: 1,
         },
