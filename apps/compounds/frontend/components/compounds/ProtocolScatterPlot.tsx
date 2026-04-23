@@ -1,6 +1,14 @@
 'use client';
 
-import { useState, useMemo, useRef, useEffect, useCallback } from 'react';
+import {
+  useState,
+  useMemo,
+  useRef,
+  useEffect,
+  useCallback,
+  forwardRef,
+  useImperativeHandle,
+} from 'react';
 import {
   Box,
   Button,
@@ -173,16 +181,28 @@ function defaultScale(kind: AxisKind): 'linear' | 'logarithmic' {
   return kind === 'protocol' ? 'logarithmic' : 'linear';
 }
 
+export interface ProtocolScatterPlotHandle {
+  /**
+   * Open the scatter dialog with a specific protocol forced on the X axis.
+   * Y axis is preserved if it's already a different protocol; otherwise the
+   * first protocol that differs from `protocolId` is chosen.
+   */
+  openForProtocol(protocolId: string): void;
+}
+
 /**
  * Scatter plot component for comparing geomean values between two protocols.
  * Each point represents a compound, with coordinates being the geomean values
  * for the selected X and Y protocols.
  */
-export function ProtocolScatterPlot({
+export const ProtocolScatterPlot = forwardRef<
+  ProtocolScatterPlotHandle,
+  ProtocolScatterPlotProps
+>(function ProtocolScatterPlot({
   data,
   protocols,
   includedProperties = [],
-}: ProtocolScatterPlotProps) {
+}, ref) {
   const router = useRouter();
   const chartRef = useRef<ChartJS<'scatter'>>(null);
 
@@ -295,6 +315,39 @@ export function ProtocolScatterPlot({
       }));
     }
   }, [axisOptions, xAxis.key, yAxis.key]);
+
+  // Imperative entry point: lets callers (e.g. a plot icon on a protocol
+  // header) open the dialog with a forced X axis. Y is preserved when it's
+  // already a different protocol; otherwise we pick the first protocol that
+  // differs from the forced X so the plot is immediately informative.
+  useImperativeHandle(
+    ref,
+    () => ({
+      openForProtocol(protocolId: string) {
+        setXAxis((prev) => ({
+          ...prev,
+          kind: 'protocol',
+          key: protocolId,
+          scale: 'logarithmic',
+        }));
+        setYAxis((prev) => {
+          const yIsOtherProtocol =
+            prev.kind === 'protocol' && prev.key && prev.key !== protocolId;
+          if (yIsOtherProtocol) return prev;
+          const altProtocol = protocols.find((p) => p.id !== protocolId);
+          if (!altProtocol) return prev;
+          return {
+            ...prev,
+            kind: 'protocol',
+            key: altProtocol.id,
+            scale: 'logarithmic',
+          };
+        });
+        setOpen(true);
+      },
+    }),
+    [protocols],
+  );
 
   // Axis display names (protocol name or property label)
   const xAxisLabel = useMemo(() => {
@@ -484,7 +537,70 @@ export function ProtocolScatterPlot({
     return linePoints;
   }, [showRegression, regression, xAxis, yAxis, axisBounds]);
 
-  // Final chart data including regression line
+  // Isoselectivity reference diagonals.
+  //
+  // When both axes are protocols on a log scale, a scatter of compound
+  // potencies against two assays is a classic selectivity plot. Parallel
+  // diagonals at y = m*x for m in {0.01, 0.1, 1, 10, 100} make the
+  // "how selective is this compound?" question readable at a glance:
+  // the y=x diagonal = non-selective; points 10x above = 10-fold preference
+  // for the Y assay; points 10x below = 10-fold preference for the X assay.
+  //
+  // Not drawn when either axis is linear or a molecular property — the
+  // concept doesn't apply in those cases.
+  const isoselectivityDatasets = useMemo(() => {
+    const bothLog = xAxis.scale === 'logarithmic' && yAxis.scale === 'logarithmic';
+    const bothProtocol = xAxis.kind === 'protocol' && yAxis.kind === 'protocol';
+    if (!bothLog || !bothProtocol) return [];
+
+    const xMin = xAxis.min ? parseFloat(xAxis.min) : axisBounds.xMin;
+    const xMax = xAxis.max ? parseFloat(xAxis.max) : axisBounds.xMax;
+    if (!isFinite(xMin) || !isFinite(xMax) || xMin <= 0 || xMax <= 0) return [];
+
+    // Multipliers chosen to cover common pharma selectivity windows
+    // (±10x = "meaningful", ±100x = "clean"). Solid line at y=x; dashed at ±.
+    const rules: Array<{ m: number; label: string; solid: boolean }> = [
+      { m: 100, label: '100× y > x', solid: false },
+      { m: 10, label: '10× y > x', solid: false },
+      { m: 1, label: 'y = x (non-selective)', solid: true },
+      { m: 0.1, label: '10× x > y', solid: false },
+      { m: 0.01, label: '100× x > y', solid: false },
+    ];
+
+    // Two-point lines are enough in log-log space (straight), but pick
+    // the min/max of both axes so the line is trimmed to the plotted area.
+    const yMin = yAxis.min ? parseFloat(yAxis.min) : axisBounds.yMin;
+    const yMax = yAxis.max ? parseFloat(yAxis.max) : axisBounds.yMax;
+
+    return rules
+      .map(({ m, label, solid }) => {
+        // The visible segment is the x-range intersected with the y-range/m.
+        const xStart = Math.max(xMin, yMin / m);
+        const xEnd = Math.min(xMax, yMax / m);
+        if (!(xStart > 0 && xEnd > xStart)) return null;
+        return {
+          label: `iso:${label}`,
+          data: [
+            { x: xStart, y: m * xStart },
+            { x: xEnd, y: m * xEnd },
+          ],
+          backgroundColor: 'transparent',
+          borderColor: solid
+            ? 'rgba(120, 120, 120, 0.55)'
+            : 'rgba(120, 120, 120, 0.3)',
+          borderWidth: solid ? 1.25 : 1,
+          borderDash: solid ? [] : [4, 4],
+          pointRadius: 0,
+          pointHoverRadius: 0,
+          showLine: true,
+          tension: 0,
+          order: 2, // Behind regression (order: 1) and behind points (default 0)
+        } as any;
+      })
+      .filter(Boolean);
+  }, [xAxis, yAxis, axisBounds]);
+
+  // Final chart data including regression line and isoselectivity diagonals
   const finalChartData: ChartData<'scatter'> = useMemo(() => {
     const datasets = [...chartData.datasets];
 
@@ -503,8 +619,12 @@ export function ProtocolScatterPlot({
       } as any);
     }
 
+    for (const ds of isoselectivityDatasets) {
+      if (ds) datasets.push(ds);
+    }
+
     return { datasets };
-  }, [chartData, showRegression, regressionLineData]);
+  }, [chartData, showRegression, regressionLineData, isoselectivityDatasets]);
 
   // Chart options
   const chartOptions: ChartOptions<'scatter'> = useMemo(
@@ -527,8 +647,9 @@ export function ProtocolScatterPlot({
             }
 
             const dataPoint = tooltip.dataPoints[0];
-            // Skip regression line points
-            if (dataPoint.dataset.label === 'Regression Line') {
+            // Skip regression and isoselectivity reference lines
+            const dsLabel = dataPoint.dataset.label;
+            if (dsLabel === 'Regression Line' || dsLabel?.startsWith('iso:')) {
               setHoveredPoint(null);
               return;
             }
@@ -1064,4 +1185,4 @@ export function ProtocolScatterPlot({
       </Dialog>
     </>
   );
-}
+});

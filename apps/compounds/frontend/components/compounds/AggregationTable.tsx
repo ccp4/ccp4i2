@@ -25,7 +25,7 @@ import {
   InputAdornment,
 } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Download, ZoomIn, ContentCopy, Check, Search, Clear, EditOutlined } from '@mui/icons-material';
+import { Download, ZoomIn, ContentCopy, Check, Search, Clear, EditOutlined, BubbleChart } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/navigation';
 import {
@@ -48,7 +48,10 @@ import {
 } from '@/types/compounds/aggregation';
 import { MoleculeChip, CompoundNameChip } from './MoleculeView';
 import { DataSeriesDetailModal } from './DataSeriesDetailModal';
-import { ProtocolScatterPlot } from './ProtocolScatterPlot';
+import {
+  ProtocolScatterPlot,
+  type ProtocolScatterPlotHandle,
+} from './ProtocolScatterPlot';
 import {
   formatKpiUnit,
   generateCompactCsv,
@@ -289,6 +292,7 @@ function CompactTable({
   searchTerm = '',
   fillHeight = false,
   onEditProtocol,
+  onScatterProtocol,
 }: {
   data: AggregationResponse & { protocols: ProtocolInfo[] };
   aggregations: AggregationType[];
@@ -296,6 +300,7 @@ function CompactTable({
   searchTerm?: string;
   fillHeight?: boolean;
   onEditProtocol?: (protocol: ProtocolInfo) => void;
+  onScatterProtocol?: (protocol: ProtocolInfo) => void;
 }) {
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
@@ -473,24 +478,6 @@ function CompactTable({
 
   return (
     <>
-      {/* Scatter plot: protocols and/or molecular properties */}
-      {(() => {
-        const hasGeomean = aggregations.includes('geomean');
-        const protocolAxes = hasGeomean ? protocols.length : 0;
-        const propertyAxes = includeProperties.length;
-        const totalAxes = protocolAxes + propertyAxes;
-        // Need at least two axis candidates overall, and at least one protocol
-        // or property available (otherwise there's nothing to plot).
-        if (totalAxes < 2) return null;
-        return (
-          <ProtocolScatterPlot
-            data={rows}
-            protocols={hasGeomean ? protocols : []}
-            includedProperties={includeProperties}
-          />
-        );
-      })()}
-
       <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <Typography variant="body2" color="text.secondary">
@@ -661,6 +648,20 @@ function CompactTable({
                                 sx={{ ml: 0.25, p: 0.25, opacity: 0.5, '&:hover': { opacity: 1 } }}
                               >
                                 <EditOutlined fontSize="inherit" />
+                              </IconButton>
+                            </Tooltip>
+                          )}
+                          {onScatterProtocol && isFirstAggForProtocol && (
+                            <Tooltip title="Scatter this protocol vs another" arrow>
+                              <IconButton
+                                size="small"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onScatterProtocol(protocol);
+                                }}
+                                sx={{ p: 0.25, opacity: 0.5, '&:hover': { opacity: 1 } }}
+                              >
+                                <BubbleChart fontSize="inherit" />
                               </IconButton>
                             </Tooltip>
                           )}
@@ -1757,11 +1758,13 @@ function PivotTable({
   aggregations,
   concentrationDisplay = 'natural',
   onEditProtocol,
+  onScatterProtocol,
 }: {
   data: CompactAggregationResponse;
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
   onEditProtocol?: (protocol: ProtocolInfo) => void;
+  onScatterProtocol?: (protocol: ProtocolInfo) => void;
 }) {
   const router = useRouter();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -2198,6 +2201,20 @@ function PivotTable({
                         </IconButton>
                       </Tooltip>
                     )}
+                    {onScatterProtocol && (
+                      <Tooltip title="Scatter this protocol vs another" arrow>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onScatterProtocol(protocol);
+                          }}
+                          sx={{ opacity: 0.5, '&:hover': { opacity: 1 } }}
+                        >
+                          <BubbleChart fontSize="inherit" />
+                        </IconButton>
+                      </Tooltip>
+                    )}
                   </TableCell>
                   {sortedRows.map((row) => {
                     const protocolData = row.protocols[protocol.id];
@@ -2313,11 +2330,13 @@ function CardsView({
   aggregations,
   concentrationDisplay = 'natural',
   onEditProtocol,
+  onScatterProtocol,
 }: {
   data: CompactAggregationResponse;
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
   onEditProtocol?: (protocol: ProtocolInfo) => void;
+  onScatterProtocol?: (protocol: ProtocolInfo) => void;
 }) {
   const router = useRouter();
 
@@ -2757,6 +2776,20 @@ function CardsView({
                           </IconButton>
                         </Tooltip>
                       )}
+                      {onScatterProtocol && (
+                        <Tooltip title="Scatter this protocol vs another" arrow>
+                          <IconButton
+                            size="small"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onScatterProtocol(protocol);
+                            }}
+                            sx={{ p: 0.25, opacity: 0.5, '&:hover': { opacity: 1 } }}
+                          >
+                            <BubbleChart fontSize="inherit" />
+                          </IconButton>
+                        </Tooltip>
+                      )}
                     </Box>
                     <Typography
                       variant="body2"
@@ -2924,6 +2957,12 @@ export function AggregationTable({
     [],
   );
 
+  // Ref to the scatter plot so sub-views can trigger a pre-filled open.
+  const scatterRef = useRef<ProtocolScatterPlotHandle>(null);
+  const handleScatterProtocol = useCallback((protocol: ProtocolInfo) => {
+    scatterRef.current?.openForProtocol(protocol.id);
+  }, []);
+
   // Merge overrides into data.protocols when rendering compact-style responses.
   // Non-compact responses (MediumRow/LongRow) don't carry protocols[] so pass data through.
   const effectiveData = useMemo(() => {
@@ -2998,6 +3037,7 @@ export function AggregationTable({
           aggregations={aggregations}
           concentrationDisplay={displayMode}
           onEditProtocol={onEditProtocol}
+          onScatterProtocol={handleScatterProtocol}
         />
       );
     }
@@ -3008,6 +3048,7 @@ export function AggregationTable({
           aggregations={aggregations}
           concentrationDisplay={displayMode}
           onEditProtocol={onEditProtocol}
+          onScatterProtocol={handleScatterProtocol}
         />
       );
     }
@@ -3021,6 +3062,7 @@ export function AggregationTable({
           searchTerm={searchTerm}
           fillHeight={fillHeight}
           onEditProtocol={onEditProtocol}
+          onScatterProtocol={handleScatterProtocol}
         />
       );
     } else if (isMediumResponse(data)) {
@@ -3084,6 +3126,25 @@ export function AggregationTable({
           {renderTable()}
         </Box>
       </Box>
+
+      {/* Scatter plot is mounted at the top level so it's reachable from
+          Pivot, Cards, and Compact views via the scatterRef imperative
+          handle. Rendered for compact-style responses that have at least
+          two axis candidates (protocols with geomean or molecular properties). */}
+      {effectiveData && isCompactResponse(effectiveData) && (() => {
+        const hasGeomean = aggregations.includes('geomean');
+        const protocolAxes = hasGeomean ? effectiveData.protocols.length : 0;
+        const propertyAxes = effectiveData.meta.include_properties?.length || 0;
+        if (protocolAxes + propertyAxes < 2) return null;
+        return (
+          <ProtocolScatterPlot
+            ref={scatterRef}
+            data={effectiveData.data as CompactRow[]}
+            protocols={hasGeomean ? effectiveData.protocols : []}
+            includedProperties={effectiveData.meta.include_properties || []}
+          />
+        );
+      })()}
 
       {/* Threshold quick-edit dialog — opened from per-protocol pencil icons. */}
       <ProtocolThresholdQuickEdit
