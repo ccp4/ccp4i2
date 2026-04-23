@@ -67,19 +67,32 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
 
   const options: ChartOptions<'radar'> = useMemo(() => {
     const isSmall = size === 'small';
+    // Small spiders live in a card next to the structure, so labels have to
+    // be compact. Truncate to ~10 chars so typical labels like
+    // "TM potency" or "Lipinski" fit without wrapping, but longer ones like
+    // "BAF3 mutant selectivity" still show enough to disambiguate.
+    const truncate = (label: string, max: number) =>
+      label.length > max ? label.slice(0, max - 1) + '…' : label;
     return {
       responsive: true,
       maintainAspectRatio: true,
       // Don't bridge across nulls — missing data stays as a visible gap.
       spanGaps: false,
+      // Extra space around the chart so pointLabels don't clip at the edges
+      // of the container (especially for the small size).
+      layout: { padding: isSmall ? 4 : 8 },
       scales: {
         r: {
           min: 0,
           max: 1,
           ticks: { display: false, stepSize: 0.25 },
           pointLabels: {
-            display: !isSmall,
-            font: { size: 11 },
+            display: true,
+            font: { size: isSmall ? 9 : 11 },
+            color: 'rgba(0, 0, 0, 0.75)',
+            padding: isSmall ? 4 : 8,
+            callback: (value: string) =>
+              truncate(String(value), isSmall ? 12 : 32),
           },
           grid: { circular: true },
           angleLines: { color: 'rgba(0, 0, 0, 0.1)' },
@@ -88,7 +101,10 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          enabled: !isSmall,
+          // Enabled for both sizes now — with labels showing, a hover
+          // tooltip is still useful for reading the raw value / tier and
+          // for the full (untruncated) axis label.
+          enabled: true,
           callbacks: {
             title: (items: TooltipItem<'radar'>[]) => {
               const i = items[0]?.dataIndex;
@@ -109,7 +125,9 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
     };
   }, [evals, size]);
 
-  const dimension = size === 'small' ? 140 : 360;
+  // Bump the small size to accommodate axis labels around the perimeter
+  // without squashing the plot area.
+  const dimension = size === 'small' ? 180 : 360;
 
   if (!config?.axes?.length) {
     if (size === 'small') return null;
