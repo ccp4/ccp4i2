@@ -1,8 +1,26 @@
 # Natural-Language Query Proposal (Compounds App)
 
-**Status**: v1 backend + UI complete. All eight slices shipped; feature live on DDU (2026-04-23) and validated end-to-end via Flow-B smoke (token → Next.js proxy → Django server → managed-identity → Azure OpenAI → executor → JSON). Frontend at `/nlp`. **See §18 for slice-by-slice progress** — remaining work is rollout + eval, captured in §16 and §19.
+**Status**: v2 **pivoted** 2026-04-23 — the NLP endpoint now produces a *compound selection* and redirects to `/assays/aggregate` rather than rendering its own table. Pivot driven by first-day user feedback: the aggregation page is the richer display surface, and the cross-protocol selectivity failure mode (mEGFR WT/TM) collapsed for free when filters became a list. See §18.2 slice-9 for the pivot diff.
 **Author**: Martin Noble (with Claude)
-**Date**: 2026-04-22 (drafted); §§18–19 added 2026-04-23; §18 slices 4–8 updates 2026-04-23
+**Date**: 2026-04-22 (drafted); §§18–19 added 2026-04-23; §18 slices 4–8 updates 2026-04-23; §18 slice-9 pivot 2026-04-23
+
+## 0. Pivot note (2026-04-23)
+
+After v1 shipped, direct user feedback on DDU surfaced that:
+
+1. Chemists immediately try **cross-protocol selectivity** queries (filter by WT IC50, view TM IC50). The v1 single-`protocol_hint`/single-`metric` `QuerySpec` couldn't express this — the LLM collapsed both halves, producing indistinguishable results for semantically different queries.
+2. The aggregation page already owns the *visual* display — project cards with spider plots auto-rendered from configured data relationships, plus compact / medium / long / pivot formats, plus phys-chem column toggles. The NLP-rendered table (v1) duplicated a thin slice of that machinery.
+
+v2 pivots the subsystem to produce a **compound selection**, not a table:
+
+- `QuerySpec` (single protocol + metric + threshold + columns) → `CompoundSelector` (target + list of AND'd `MeasurementFilter`s).
+- Executor output is a list of compound IDs plus the target/protocol names used in the filter, not a row/column payload.
+- View returns a `redirect_url` pointing at `/assays/aggregate?targets=…&compound=…&protocols=…&format=cards`. The user lands on project cards with the filtered compound set.
+- Cross-protocol selectivity falls out from the list-of-filters shape: *"mEGFR compounds with WT IC50 < 10 uM AND TM IC50 > 1 uM"* → two filters intersected, correct compound subset, protocols pre-populated in the aggregation page's URL.
+
+Sections §5 (schema), §7 (executor), §10 (UI) describe the *v1* shape. Read them in context of the pivot: the structural intent (LLM-as-parser, deterministic backend, clarify-as-UI, filler-noun discipline, managed-identity auth) is unchanged; the schema and output shape are the specific things that changed. §18.2 slice-9 documents the concrete diff; §18.3 slice-9 the decisions made during the pivot.
+
+§15's "cross-assay aggregations" item is now **shipped** — it was the headline of the pivot. §19.7 updated accordingly.
 **LLM provider**: Azure OpenAI (not Claude API) — same Azure UK South tenant as the rest of the deployment; keeps data in-region and on existing billing.
 
 ## 1. Motivation
@@ -512,6 +530,7 @@ Work is delivered as narrow vertical slices that build the backend first and def
 | 6 | DRF view with clarify loop | Shipped | §7 (view), §9, §16.3 feature flag |
 | 7 | Frontend command-bar (landing page for v1; per-project deferred) | Shipped | §10 |
 | 8 | Evaluation harness + golden set | Shipped | §12 |
+| 9 | **Pivot** — QuerySpec → CompoundSelector; output → redirect to `/assays/aggregate` | Shipped | §0 pivot note, §19.7 update |
 
 Rollout dependencies: §16 prerequisites (Gene model + DDU hydration) are done. Demo + Kawamura backfill happens after the executor lands but before the feature flag is turned on for those instances.
 
@@ -623,6 +642,30 @@ Requires `openai` installed in the ccp4-python env (`ccp4-python -m pip install 
 
 **Also in this slice** — Dockerfile fix: `apps/compounds/nlp` is now in the `COPY` list for the server image (`Docker/server/Dockerfile`), so the NLP backend actually ships in production. Missed in slices 5/6 because local tests passed off the source tree; caught now before the first deployed enablement.
 
+**Slice 9 — Pivot to CompoundSelector + redirect to aggregation page** (192 tests cumulative; net -2 from shape changes, +selectivity cases)
+
+The headline change: QuerySpec (single protocol/metric/threshold) → CompoundSelector (target + list of AND'd MeasurementFilters). The executor no longer produces a TablePayload; it produces a CompoundSelection (list of compound IDs) which the view turns into a redirect URL for `/assays/aggregate`.
+
+- `spec.py` rewrite:
+  - **Removed**: `QuerySpec`, `Threshold` kept, `TableRow`, `TablePayload`, `COL_PRESET_PHYS_CHEM`, `COL_PRESET_LIPINSKI`, `PHYS_CHEM_COLUMNS`, `LIPINSKI_COLUMNS`.
+  - **Added**: `MeasurementFilter` (protocol_hint / metric / threshold / protocol_id), `CompoundSelector` (registration/assay target fields + filters list + pinning ids), `CompoundSelection` (compound_formatted_ids / target_names / protocol_names / n_matched / scope_sentence).
+  - `PromptParseResult = Union[CompoundSelector, NotAQuery, ParseError]` (was QuerySpec).
+  - `ExecutionResult` swaps TablePayload for CompoundSelection.
+  - `ProtocolClarify` / `ProtocolMiss` gain a `filter_index` field so the UI knows which filter to pin on a protocol-level disambiguation.
+- `resolver.py`: unchanged target-resolution logic. `resolve_targets` takes a `CompoundSelector`. `resolve_protocol` gains `filter_index` to tag Clarify/Miss results.
+- `executor.py`: rewritten as a compound-intersector. For each filter, computes the set of compound IDs whose AnalysisResult rows pass (valid + metric match + threshold — evaluator logic unchanged). Intersects across filters. No filters = all compounds in scope. Hydrates compound IDs into formatted identifiers (`NCL-00031070` etc.) ordered by `reg_number` for stable URLs.
+- `view.py`: response body carries `redirect_url` constructed from the selection. URL uses the `/assays/aggregate` contract (`targets=`, `compound=`, `protocols=`, `format=cards` default). `partial_selector` on clarify responses.
+- `llm.py`: new system prompt emphasising *"describe WHICH compounds, not WHAT columns"*; new schema with `measurement_filters` as a list of `{protocol_hint, metric, threshold}` objects. Strict-mode schema guards updated.
+- Golden set rewritten: 35 entries including new cross-protocol-selectivity cases (mEGFR WT/TM, CDK4/6), concordance (HTRF + AlphaLISA on same metric), no-threshold filter forms, display-preference-ignoring entries ("phys chem for X", "show me spider plots of Y" — LLM must parse the selection part and ignore the display hint).
+- Frontend:
+  - `nlp-api.ts` types mirror the new spec exactly. `postNlpQuery` unchanged. `applyClarifyPick` gains `filterIndex` for per-filter protocol pinning.
+  - `NLPResults.tsx`: `TableView` replaced by `SelectionView` — shows `scope_sentence`, a large `Found N matching compounds` headline, a preview of the first 5 compound IDs (+ overflow count), and a primary `View as cards →` button that navigates to `redirect_url` via `window.location.assign`. Click-to-confirm UX per user decision (cards rendered server-side, not NLP page).
+  - `NLPPanel.tsx`: unchanged orchestration, but the `handleClarifyPick` now threads `filterIndex` through from protocol-clarify responses.
+
+- Tests: `test_executor.py` reworked with a `selectivity_world` fixture that demonstrates the intersection semantics (c1 passes both filters, c2 fails TM, c3 fails WT → correct single-compound selection). `test_view.py` asserts redirect-URL shape + protocol-names list + partial_selector round-trip. `test_llm.py` hits the new schema + new `_to_parse_result` selector branches. `test_golden.py` rewritten for the selector YAML shape.
+
+Suite: 192 NLP tests passing (was 194 pre-pivot — the net delta reflects adjusted test structure, not capability loss). Frontend TypeScript compiles cleanly.
+
 **Slice 7 — Frontend command-bar** (194 tests cumulative; one continuation-round-trip view test added for the slice-6 `partial_spec` retrofit)
 
 - New page at `apps/compounds/frontend/app/nlp/page.tsx` — `/nlp` route. Discoverable via an "Ask (Natural-Language Query)" tile on both landing pages (`app/page.tsx` standalone + `app/app-selector/page.tsx` Docker overlay). Per-project placement deferred until per-project compounds pages exist — §18.3 slice-6 decision.
@@ -686,6 +729,14 @@ These are lived-in details that aren't in §1–17. They don't contradict §13 �
 | 7 | Example-prompt buttons below the command bar double as the example-set for the `not_a_query` branch | Decision 20 mandates showing example prompts when the LLM rejects a request. Serving the same examples as discoverability affordance on an empty page (and rejection recovery on a misfire) means the user learns one set and sees it in both contexts. |
 | 7 | Per-project placement deferred until per-project pages exist | Matches the §18.3 slice-6 decision on backend target-context fill — building the UI half of a feature whose counterpart does nothing yet would rot. Reopens when per-project compounds pages land. |
 | 7 | `partial_spec` on clarify responses was a slice-6 hole caught during slice-7 wiring; fixed alongside slice 7 with a continuation-round-trip view test | The slice-6 continuation story assumed the client somehow had the partial_spec to round-trip — but the clarify response didn't include it. Fixing it in a slice-6 maintenance pass bundled with slice 7 kept the fix reviewable alongside its first real caller (the `ClarifyView` chip `onClick`). |
+| 9 | **Pivot shape**: NLP produces a compound selection, aggregation page produces the display | The aggregation page already has a rich URL contract (`targets` / `compound` / `protocols` / `format` / `aggregations` / …) and an automatic project-card / spider-plot mode. Duplicating any of that on the NLP side was an architectural mistake from v1 — it inevitably lagged behind what the chemist could already do via clicks. Pivot makes NLP do one job well (compound selection) and hand off to the specialist for display. |
+| 9 | `measurement_filters` is a list with AND semantics, not a single top-level protocol/metric/threshold | Cross-protocol selectivity is not a fringe case — it's how kinase programmes, degrader selectivity, counter-screens are all phrased. A list of filters intersected makes the headline v2 capability fall out of the shape; cross-protocol is no longer a "feature to add" but a trivially-expressible query. |
+| 9 | Default redirect `format=cards` (not `compact`) | `format=cards` renders project cards with auto-populated spider plots — the visual-triage view chemists actually use for "find the right compounds". A column-table default would have undersold the capability. The aggregation page's own format-switcher is one click away if the user wants otherwise. |
+| 9 | Executor emits `protocol_names` from the filters (not from the output intent) | Pre-pivot, `protocol_hint` was both filter AND output. Post-pivot, only filters carry protocols; the output-axis concept goes away. `protocol_names` passed in the URL pre-populates the aggregation page's protocol-column picker so the user can see filtered-vs-other columns side by side after landing. |
+| 9 | Click-to-confirm redirect (not auto-redirect) | User's call on the pivot's final UX. Auto-redirect when the LLM is confident, click when the user should verify. At v2, the LLM's confidence is unproven against real chemist prompts; click gives the user a chance to see "Found 0" or "Found 843" and decide before navigating. Can flip to auto for small-N results once eval data suggests it's safe. |
+| 9 | `filter_index` tagged on `ProtocolClarify` / `ProtocolMiss` (not on the selector itself) | A clarify for filter #2 shouldn't look like a clarify for filter #0. The backend tags the filter index; the frontend (`applyClarifyPick(filterIndex)`) knows which `measurement_filters[i]` to pin `protocol_id` on. Avoids the alternative of requiring the client to scan filters for a matching hint. |
+| 9 | Filter without a threshold means "has any valid measurement" (not "all compounds are eligible") | Chemists genuinely want *"compounds tested in HTRF"* — compound must have at least one valid HTRF row. A filter with null threshold naturally expresses this. The alternative (treat null-threshold filter as no-op) would silently drop filters from the intersection. |
+| 9 | Window.location.assign for the redirect, not Next.js's router.push | The redirect target is on the same origin but a completely different page (aggregation, not nlp). A full navigation is cleaner than a client-side route change that'd re-mount layouts differently. Also side-steps any SSR/caching weirdness on the aggregation side. |
 
 ### 18.4 Running the tests
 
@@ -828,13 +879,16 @@ An earlier draft of §19.3 mistakenly conflated *"hits"* with per-protocol `Prot
 
 This applies generally: **the LLM must not synthesise filter fields from words that only exist to make the sentence flow**. Good v1 discipline even without v2 extensions; worth baking into the system prompt's few-shot examples when slice 5 lands.
 
-### 19.7 First picks after v1
+### 19.7 First picks after v2 pivot
 
-Three directions have the clearest leverage-to-effort ratio and are worth naming as top candidates for the post-v1 slice queue:
+**Cross-protocol selectivity is now SHIPPED** in slice 9 — it's a natural consequence of the measurement_filters list shape. Two remaining top-priority post-pivot directions:
 
-- **Cross-protocol selectivity** — *"mEGFR TR-FRET TM IC50 for mEGFR compounds with mEGFR TR-FRET WT IC50 < 10 uM"*. **Confirmed empirically as the first thing chemists try.** Filter by one protocol's metric, output another's. The v1 single-`protocol_hint` schema forces the LLM to collapse both halves into one protocol, silently losing the WT-vs-TM distinction — two semantically different queries produce indistinguishable results. Architectural shape is already sketched in §19.5: an `axes: list[Axis]` field where each `Axis = (protocol_hint, metric?)`, one axis carrying the threshold (filter), another emitted as output column. This also delivers the "cell-free HTRF data for ARd compounds" payoff of not forcing the user to name the KPI on the output axis (backend infers when the protocol has one dominant KPI). **Highest-impact single extension** — kinase programmes, PROTAC degrader selectivity, counter-screens all land in one slice. Gates on nothing except the schema design; resolver and executor extend naturally.
-- **Compound-rooted queries** — unifying *"ARd compounds with no HTRF measurement yet"* (missing-data), *"compounds registered in 2025"* (registration date range), and *"compounds registered by Alice"* (provenance). Chemistry decision-making is forward-looking, these phrasings are the next thing a user tries on the command bar, and they all share one architectural shift: root the executor's queryset at `Compound` rather than `AnalysisResult`, and relax the v1 hard requirement for `metric` + `protocol_hint`. Concretely this is (a) new `QuerySpec` fields (`registration_date_range`, `registered_by_as_typed`, `missing_measurement_for_protocol_hint`), (b) a compound-only execute path that applies those predicates, and (c) a handful of new system-prompt examples. No new resolver — target resolution is already optional-per-field. Ship the date-range + missing-measurement cases together because they share the same backend lift. **Flag for when this lands**: today's executor returns `SpecError` when `metric`/`protocol_hint` are null — the relaxation must be gated on "at least one compound-level predicate is present" to keep the "empty spec" failure mode. Without that guard the command bar silently dumps the full Compound table.
-- **Explain-this-query.** One-click reveal of the resolved `QuerySpec`, scope sentence, generated SQL, and footer reasons. Every chemist who uses an LLM over their data asks *"what did it actually do?"* Shipping transparency alongside the feature (not as a retrofit) is the single highest trust-multiplier. The scope-sentence generation in slice 4 already does 80% of this; exposing it is mostly a UI lift. **Especially valuable alongside cross-protocol selectivity**, since a chemist hitting the v1 collapse-bug above had no way to see *which* protocol the LLM picked — explain-this-query surfaces that directly.
+- **Compound-rooted queries** — unifying *"ARd compounds with no HTRF measurement yet"* (missing-data), *"compounds registered in 2025"* (registration date range), and *"compounds registered by Alice"* (provenance). Chemistry decision-making is forward-looking; these phrasings are the next most-asked category after selectivity. Architectural shift: additional fields on `CompoundSelector` (`registration_date_range`, `registered_by_as_typed`, and an anti-filter `missing_measurement_for` that inverts the intersection). The executor extension is small because the scope-and-intersect pattern from slice 9 handles most of it; the new fields just add more predicates to the base compound queryset. Missing-measurement needs an anti-join (compound has **no** AnalysisResult satisfying the filter) but that's a one-liner in Django ORM.
+- **Explain-this-query.** One-click reveal of the resolved `CompoundSelector`, scope sentence, and the redirect URL itself. Every chemist who uses an LLM over their data asks *"what did it actually do?"* The v2 pivot already does 80% of this — the redirect URL IS the explanation (bookmarkable, editable, shareable). Exposing the resolved selector + scope sentence alongside the click-to-redirect button is mostly a UI lift. Surfaces the LLM's interpretation before the user commits to navigating.
+
+Post-pivot, two directions that WERE on the list naturally fold into either the shipped selector (selectivity) or are queued as field-additions (compound-rooted). The one remaining forward-looking bucket that does NOT fold in:
+
+- **Chemistry-aware substructure** (§19.3) — *"mEGFR compounds containing pyrimidine with HTRF IC50 < 10 uM"*. Adds a `scaffold_hint` (or equivalent) field to `MeasurementFilter` or `CompoundSelector`, plus a new curator-maintained `Scaffold` catalog. Same architecture: LLM emits a name, backend owns the SMARTS catalog. Resolver triad still applies. Gated on curator time to seed the initial catalog. First chemistry-aware prompt family to land.
 
 Two near-tied thirds, each with a different dependency profile — sequence based on which dependency is cheaper:
 

@@ -14,17 +14,17 @@ import {
 import { Send } from '@mui/icons-material';
 import {
   applyClarifyPick,
+  CompoundSelector,
   NLPResponse,
   postNlpQuery,
-  QuerySpec,
 } from '@/lib/compounds/nlp-api';
 import { NLPResults } from './NLPResults';
 
 const EXAMPLE_PROMPTS = [
-  'Show all HTRF IC50 values for CDK4 compounds',
-  'Phys chem for ARd compounds with HTRF IC50 < 10 uM',
-  'Myc-Aur compounds with IC50 below 500 nM',
-  'HTRF IC50 for MYC compounds',
+  'Show all CDK4 compounds',
+  'CDK4 compounds with HTRF IC50 < 100 nM',
+  'mEGFR compounds with mEGFR TR-FRET WT IC50 < 10 uM but TM IC50 > 1 uM',
+  'MYC compounds tested in AlphaLISA',
 ];
 
 export function NLPPanel() {
@@ -48,15 +48,23 @@ export function NLPPanel() {
     }
   }, []);
 
-  const handleSubmit = useCallback(() => submitPrompt(prompt), [prompt, submitPrompt]);
+  const handleSubmit = useCallback(
+    () => submitPrompt(prompt),
+    [prompt, submitPrompt],
+  );
 
   const handleClarifyPick = useCallback(
-    async (partialSpec: QuerySpec, field: string, pickedId: string) => {
-      const pinned = applyClarifyPick(partialSpec, field, pickedId);
+    async (
+      partial: CompoundSelector,
+      field: string,
+      pickedId: string,
+      filterIndex?: number,
+    ) => {
+      const pinned = applyClarifyPick(partial, field, pickedId, filterIndex);
       setLoading(true);
       setError(null);
       try {
-        const result = await postNlpQuery({ spec: pinned });
+        const result = await postNlpQuery({ selector: pinned });
         setResponse(result);
       } catch (e) {
         setError(e instanceof Error ? e.message : String(e));
@@ -68,10 +76,13 @@ export function NLPPanel() {
     [],
   );
 
-  const handleExampleClick = useCallback((text: string) => {
-    setPrompt(text);
-    submitPrompt(text);
-  }, [submitPrompt]);
+  const handleExampleClick = useCallback(
+    (text: string) => {
+      setPrompt(text);
+      submitPrompt(text);
+    },
+    [submitPrompt],
+  );
 
   return (
     <Stack spacing={3}>
@@ -82,7 +93,7 @@ export function NLPPanel() {
             multiline
             minRows={1}
             maxRows={3}
-            placeholder="Ask a question (e.g. 'phys chem for CDK4 compounds with HTRF IC50 < 100 nM')"
+            placeholder="Describe the compounds you want (e.g. 'CDK4 compounds with HTRF IC50 < 100 nM')"
             value={prompt}
             onChange={(e) => setPrompt(e.target.value)}
             onKeyDown={(e) => {

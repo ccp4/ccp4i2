@@ -3,52 +3,36 @@
 import {
   Alert,
   Box,
+  Button,
   Chip,
-  Link as MuiLink,
   Paper,
   Stack,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow as MuiTableRow,
-  Tooltip,
   Typography,
 } from '@mui/material';
-import Link from 'next/link';
-import { routes } from '@/lib/compounds/routes';
-import { PROPERTY_LABELS } from '@/components/compounds/aggregation/shared';
+import { ArrowForward } from '@mui/icons-material';
 import {
+  CompoundSelector,
   NLPResponse,
   ProtocolCandidate,
-  QuerySpec,
-  TableRow as NLPTableRow,
   TargetCandidate,
 } from '@/lib/compounds/nlp-api';
 
-// Human-readable label for each FILTER_*/EXCLUDE_* reason — matches the
-// constants in apps/compounds/nlp/spec.py.
-const EXCLUDE_REASON_LABELS: Record<string, string> = {
-  unit_unknown: 'no unit recorded',
-  unit_type_mismatch: 'unit-type mismatch',
-  unit_incompatible: 'incompatible unit family',
-  query_missing_unit: 'threshold needs a unit',
-};
+const PREVIEW_COMPOUNDS = 5;
 
 interface Props {
   response: NLPResponse;
   onClarifyPick: (
-    partialSpec: QuerySpec,
+    partial: CompoundSelector,
     field: string,
     pickedId: string,
+    filterIndex?: number,
   ) => void;
 }
 
 export function NLPResults({ response, onClarifyPick }: Props) {
   switch (response.status) {
-    case 'table':
-      return <TableView response={response} />;
+    case 'selection':
+      return <SelectionView response={response} />;
     case 'clarify':
       return <ClarifyView response={response} onPick={onClarifyPick} />;
     case 'miss':
@@ -61,119 +45,73 @@ export function NLPResults({ response, onClarifyPick }: Props) {
 }
 
 // ---------------------------------------------------------------------------
-// Table — the happy path
+// Selection — the happy path. Shows count + preview + "View as cards →" button
+// that redirects to /assays/aggregate.
 // ---------------------------------------------------------------------------
 
-function TableView({
+function SelectionView({
   response,
 }: {
-  response: Extract<NLPResponse, { status: 'table' }>;
+  response: Extract<NLPResponse, { status: 'selection' }>;
 }) {
-  const { rows, property_columns, footer_excluded, scope_sentence } = response;
+  const { n_matched, compound_formatted_ids, scope_sentence, redirect_url } = response;
+  const preview = compound_formatted_ids.slice(0, PREVIEW_COMPOUNDS);
+  const overflow = Math.max(0, compound_formatted_ids.length - PREVIEW_COMPOUNDS);
 
-  const formatValue = (v: number, unit: string | null) => {
-    if (!Number.isFinite(v)) return '–';
-    const abs = Math.abs(v);
-    const formatted =
-      abs >= 100 ? v.toFixed(1) : abs >= 1 ? v.toFixed(2) : v.toPrecision(3);
-    return unit ? `${formatted} ${unit}` : formatted;
-  };
-
-  const formatProperty = (v: number | null | undefined) => {
-    if (v === null || v === undefined || !Number.isFinite(v)) return '–';
-    return Math.abs(v) >= 100 ? v.toFixed(0) : v.toFixed(2);
+  const handleClick = () => {
+    // Use window.location so the redirect respects any NEXT_PUBLIC_ROUTE_PREFIX.
+    // next/router would re-render the current nested Layout; for a full
+    // navigation to the aggregation page a plain location.assign is cleanest.
+    window.location.assign(redirect_url);
   };
 
   return (
-    <Stack spacing={2}>
-      <Typography variant="body2" color="text.secondary">
-        {scope_sentence} — {rows.length} {rows.length === 1 ? 'row' : 'rows'}
+    <Paper elevation={1} sx={{ p: 3 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        {scope_sentence}
       </Typography>
 
-      <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
-        <Table stickyHeader size="small">
-          <TableHead>
-            <MuiTableRow>
-              <TableCell sx={{ fontWeight: 600 }}>Compound</TableCell>
-              <TableCell sx={{ fontWeight: 600 }}>Value</TableCell>
-              {property_columns.map((prop) => (
-                <TableCell
-                  key={prop}
-                  align="right"
-                  sx={{ fontWeight: 600 }}
-                >
-                  <Tooltip title={prop}>
-                    <span>{PROPERTY_LABELS[prop as keyof typeof PROPERTY_LABELS] ?? prop}</span>
-                  </Tooltip>
-                </TableCell>
-              ))}
-            </MuiTableRow>
-          </TableHead>
-          <TableBody>
-            {rows.length === 0 ? (
-              <MuiTableRow>
-                <TableCell colSpan={2 + property_columns.length} align="center">
-                  <Typography variant="body2" color="text.secondary" sx={{ py: 3 }}>
-                    No rows matched.
-                  </Typography>
-                </TableCell>
-              </MuiTableRow>
-            ) : (
-              rows.map((row) => <NLPRowRender key={row.compound_id + ':' + row.value} row={row} formatValue={formatValue} formatProperty={formatProperty} propertyColumns={property_columns} />)
-            )}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        {n_matched === 0 ? (
+          'No matching compounds found'
+        ) : (
+          <>
+            Found <strong>{n_matched.toLocaleString()}</strong>{' '}
+            matching {n_matched === 1 ? 'compound' : 'compounds'}
+          </>
+        )}
+      </Typography>
 
-      {Object.keys(footer_excluded).length > 0 && (
-        <Paper variant="outlined" sx={{ p: 2 }}>
-          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 1 }}>
-            Excluded rows (not shown in the table above):
+      {preview.length > 0 && (
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="caption" color="text.secondary" sx={{ display: 'block', mb: 0.5 }}>
+            First {preview.length}:
           </Typography>
-          <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 0.5 }}>
-            {Object.entries(footer_excluded).map(([reason, count]) => (
-              <Chip
-                key={reason}
-                size="small"
-                label={`${count} × ${EXCLUDE_REASON_LABELS[reason] ?? reason}`}
-              />
-            ))}
-          </Stack>
-        </Paper>
+          <Typography variant="body2" sx={{ fontFamily: 'monospace' }}>
+            {preview.join(', ')}
+            {overflow > 0 && (
+              <span style={{ color: 'rgba(0,0,0,0.6)' }}>
+                {', and '}
+                {overflow.toLocaleString()} more
+              </span>
+            )}
+          </Typography>
+        </Box>
       )}
-    </Stack>
-  );
-}
 
-function NLPRowRender({
-  row,
-  formatValue,
-  formatProperty,
-  propertyColumns,
-}: {
-  row: NLPTableRow;
-  formatValue: (v: number, unit: string | null) => string;
-  formatProperty: (v: number | null | undefined) => string;
-  propertyColumns: string[];
-}) {
-  return (
-    <MuiTableRow hover>
-      <TableCell>
-        <MuiLink
-          component={Link}
-          href={routes.registry.compound(row.compound_id)}
-          underline="hover"
-        >
-          {row.formatted_id}
-        </MuiLink>
-      </TableCell>
-      <TableCell>{formatValue(row.value, row.value_unit)}</TableCell>
-      {propertyColumns.map((prop) => (
-        <TableCell key={prop} align="right">
-          {formatProperty(row.properties[prop])}
-        </TableCell>
-      ))}
-    </MuiTableRow>
+      {n_matched > 0 && (
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button
+            variant="contained"
+            size="large"
+            endIcon={<ArrowForward />}
+            onClick={handleClick}
+          >
+            View as cards
+          </Button>
+        </Box>
+      )}
+    </Paper>
   );
 }
 
@@ -186,9 +124,14 @@ function ClarifyView({
   onPick,
 }: {
   response: Extract<NLPResponse, { status: 'clarify' }>;
-  onPick: (partialSpec: QuerySpec, field: string, pickedId: string) => void;
+  onPick: (
+    partial: CompoundSelector,
+    field: string,
+    pickedId: string,
+    filterIndex?: number,
+  ) => void;
 }) {
-  const { field, query, candidates, partial_spec } = response;
+  const { field, query, candidates, partial_selector, filter_index } = response;
   const isProtocol = field === 'protocol_hint';
   const heading = isProtocol
     ? `Which ${query !== '' ? `"${query}" ` : ''}protocol did you mean?`
@@ -204,7 +147,9 @@ function ClarifyView({
           <Chip
             key={candidate.id}
             label={<CandidateLabel candidate={candidate} isProtocol={isProtocol} />}
-            onClick={() => onPick(partial_spec, field, candidate.id)}
+            onClick={() =>
+              onPick(partial_selector, field, candidate.id, filter_index)
+            }
             clickable
             sx={{ height: 'auto', '& .MuiChip-label': { display: 'block', py: 1, px: 1.5 } }}
           />
@@ -295,10 +240,10 @@ function NotAQueryView({
         {response.reason}
       </Typography>
       <Typography variant="caption" color="text.secondary">
-        The NLP query bar returns tables of compounds and assay results. It
-        doesn&apos;t generate narratives, register compounds, or answer
-        meta-questions. Try rephrasing as a tabular query, for example:
-        &ldquo;Show HTRF IC50 values for CDK4 compounds&rdquo;.
+        The command bar selects compounds and sends you to the aggregation
+        page to view them. It doesn&apos;t generate narratives, register
+        compounds, or answer meta-questions. Try phrasing as a selection —
+        for example, <em>&ldquo;CDK4 compounds with HTRF IC50 &lt; 100 nM&rdquo;</em>.
       </Typography>
     </Alert>
   );

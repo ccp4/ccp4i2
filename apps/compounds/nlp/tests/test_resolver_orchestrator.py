@@ -16,7 +16,7 @@ from compounds.nlp.spec import (
     SCOPE_BOTH_SAME,
     SCOPE_CROSS,
     SCOPE_REG_ONLY,
-    QuerySpec,
+    CompoundSelector,
     ResolvedTargets,
     ScopeError,
     TargetClarify,
@@ -56,7 +56,7 @@ def two_target_world(db):
 
 
 def test_both_same_when_fields_equal(two_target_world):
-    spec = QuerySpec(
+    spec = CompoundSelector(
         registration_target_as_typed="AR degraders",
         assay_target_as_typed="AR degraders",
     )
@@ -68,7 +68,7 @@ def test_both_same_when_fields_equal(two_target_world):
 
 
 def test_reg_only_when_assay_empty(two_target_world):
-    spec = QuerySpec(registration_target_as_typed="EGFR")
+    spec = CompoundSelector(registration_target_as_typed="EGFR")
     out = resolve_targets(spec)
     assert isinstance(out, ResolvedTargets)
     assert out.registration.pk == two_target_world["egfr"].pk
@@ -77,7 +77,7 @@ def test_reg_only_when_assay_empty(two_target_world):
 
 
 def test_assay_only_when_reg_empty(two_target_world):
-    spec = QuerySpec(assay_target_as_typed="AKT1")
+    spec = CompoundSelector(assay_target_as_typed="AKT1")
     out = resolve_targets(spec)
     assert isinstance(out, ResolvedTargets)
     assert out.registration is None
@@ -86,7 +86,7 @@ def test_assay_only_when_reg_empty(two_target_world):
 
 
 def test_cross_when_fields_differ(two_target_world):
-    spec = QuerySpec(
+    spec = CompoundSelector(
         registration_target_as_typed="EGFR",
         assay_target_as_typed="AKT1",
     )
@@ -98,13 +98,13 @@ def test_cross_when_fields_differ(two_target_world):
 
 
 def test_both_fields_empty_is_error(two_target_world):
-    spec = QuerySpec()
+    spec = CompoundSelector()
     out = resolve_targets(spec)
     assert isinstance(out, ScopeError)
 
 
 def test_both_fields_whitespace_is_error(two_target_world):
-    spec = QuerySpec(
+    spec = CompoundSelector(
         registration_target_as_typed="   ",
         assay_target_as_typed="",
     )
@@ -121,7 +121,7 @@ def test_registration_ambiguity_short_circuits_before_assay(two_target_world):
     # MYC resolves to two targets (Myc-Aur and Myc RNA). If reg is
     # ambiguous, we return a TargetClarify tagged with the registration
     # field and stop — we don't even try to resolve assay yet.
-    spec = QuerySpec(
+    spec = CompoundSelector(
         registration_target_as_typed="MYC",
         assay_target_as_typed="also_ambiguous_or_whatever",  # never reached
     )
@@ -132,7 +132,7 @@ def test_registration_ambiguity_short_circuits_before_assay(two_target_world):
 
 
 def test_assay_ambiguity_surfaces_only_when_reg_is_clean(two_target_world):
-    spec = QuerySpec(
+    spec = CompoundSelector(
         registration_target_as_typed="EGFR",
         assay_target_as_typed="MYC",
     )
@@ -143,7 +143,7 @@ def test_assay_ambiguity_surfaces_only_when_reg_is_clean(two_target_world):
 
 
 def test_registration_miss_short_circuits_before_assay(two_target_world):
-    spec = QuerySpec(
+    spec = CompoundSelector(
         registration_target_as_typed="nonsense_target_name",
         assay_target_as_typed="EGFR",  # would resolve fine, but never tried
     )
@@ -153,7 +153,7 @@ def test_registration_miss_short_circuits_before_assay(two_target_world):
 
 
 def test_assay_miss_surfaces_only_when_reg_is_clean(two_target_world):
-    spec = QuerySpec(
+    spec = CompoundSelector(
         registration_target_as_typed="EGFR",
         assay_target_as_typed="nonsense_target_name",
     )
@@ -168,7 +168,7 @@ def test_assay_miss_surfaces_only_when_reg_is_clean(two_target_world):
 
 
 def test_clarify_field_tag_survives_resolution_path(two_target_world):
-    spec = QuerySpec(assay_target_as_typed="MYC")
+    spec = CompoundSelector(assay_target_as_typed="MYC")
     out = resolve_targets(spec)
     assert isinstance(out, TargetClarify)
     assert out.field == FIELD_ASSAY_TARGET

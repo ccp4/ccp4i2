@@ -20,7 +20,7 @@ from compounds.nlp.spec import (
     FIELD_PROTOCOL_HINT,
     ProtocolClarify,
     ProtocolMiss,
-    QuerySpec,
+    CompoundSelector,
     ResolvedProtocol,
     ResolvedTargets,
 )
@@ -282,13 +282,12 @@ def test_clarify_ordering_fewer_extra_tokens_first(ar_activity):
 
 
 def test_resolve_targets_then_resolve_protocol_roundtrip(ar_activity):
-    spec = QuerySpec(
+    selector = CompoundSelector(
         registration_target_as_typed="AR degraders",
         assay_target_as_typed="AR degraders",
-        protocol_hint="AR binding HTRF",
     )
-    rt = resolve_targets(spec)
+    rt = resolve_targets(selector)
     assert isinstance(rt, ResolvedTargets)
-    out = resolve_protocol(spec.protocol_hint, rt)
+    out = resolve_protocol("AR binding HTRF", rt)
     assert isinstance(out, ResolvedProtocol)
     assert out.protocol.pk == ar_activity["p_binding"].pk

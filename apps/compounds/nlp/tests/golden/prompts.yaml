@@ -1,208 +1,234 @@
-# NLP query golden set (slice 8, §12 eval bar)
+# NLP CompoundSelector golden set (§12 eval bar, pivoted 2026-04-23)
 #
 # Each entry has:
-#   name    — short snake_case identifier (stable over time; log line for diffing)
-#   prompt  — the English input a chemist might type into the command bar
-#   expected — the QuerySpec the LLM must emit (or a {type: not_a_query} marker)
-#
-# The LLM must emit strings **verbatim as the user typed them** — no
-# canonicalisation, no guessed IDs, no translation of case/aliases (§8, decision
-# 2). So an entry's expected_spec.*_as_typed fields are strings from the prompt,
-# not the database's canonical names.
+#   name     — short snake_case identifier (stable; used as log-line prefix)
+#   prompt   — the English input a chemist might type into the command bar
+#   expected — the CompoundSelector the LLM must emit (or a {type: not_a_query}
+#              marker). Field names match apps/compounds/nlp/spec.py.
 #
 # Types:
-#   spec                  — LLM should emit a QuerySpec with the given fields
-#   spec_with_ambiguity   — same, but the user's typed string is known to map to
-#                           multiple targets/protocols in a gene-hydrated instance;
-#                           the resolver will produce a Clarify downstream. Tests
-#                           the LLM's discipline of NOT trying to disambiguate.
-#   not_a_query           — LLM should emit {"not_a_query": true, "reason": "..."}
+#   selector              — LLM emits a CompoundSelector with these fields
+#   selector_with_clarify — same, but the user's typed string is known to
+#                           map to multiple targets / protocols in a hydrated
+#                           instance; the resolver produces a Clarify. Tests
+#                           that the LLM does NOT try to disambiguate.
+#   not_a_query           — LLM must emit {"not_a_query": true, "reason": "..."}
+#
+# The LLM must emit strings verbatim as the user typed them (§8). So an
+# entry's expected_selector.*_as_typed / protocol_hint / metric fields are
+# strings FROM THE PROMPT, not the database's canonical names.
 #
 # Success bars (§12):
-#   - ≥90% exact match on type: spec / spec_with_ambiguity at temperature 0
-#   - 100% of type: not_a_query entries correctly identified (no false positives
-#     that silently parse as specs)
+#   - ≥90% exact match on type: selector / selector_with_clarify at T=0
+#   - 100% of type: not_a_query correctly identified (no false positives)
 
 # =============================================================================
-# Single-target prompts with threshold
+# Single-target, single-filter with threshold
 # =============================================================================
 
-- name: phys_chem_ard_htrf_ic50_uM
-  prompt: "phys chem for ARd compounds with HTRF IC50 < 10 uM"
+- name: ard_htrf_ic50_uM
+  prompt: "ARd compounds with HTRF IC50 < 10 uM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 10, unit: uM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 10, unit: uM}
 
-- name: tabulate_ard_htrf_ic50_nM
-  prompt: "Tabulate IC50 values in HTRF for ARd compounds under 100 nM"
-  expected:
-    type: spec
-    registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 100, unit: nM}
-    columns: phys_chem
-
-- name: ard_htrf_ic50_le_threshold
+- name: ard_htrf_ic50_nM_le
   prompt: "Show ARd compounds with HTRF IC50 ≤ 50 nM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<=", value: 50, unit: nM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<=", value: 50, unit: nM}
 
-- name: ard_binding_above_threshold
-  prompt: "ARd compounds with AR binding HTRF IC50 greater than 1 uM"
+- name: brd4_alphalisa_ec50
+  prompt: "BRD4 compounds with AlphaLISA EC50 below 500 nM"
   expected:
-    type: spec
-    registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: AR binding HTRF
-    metric: IC50
-    threshold: {op: ">", value: 1, unit: uM}
-    columns: phys_chem
-
-- name: bromodomain_ec50
-  prompt: "Bromodomain EC50 values in AlphaLISA below 500 nM for BRD4 compounds"
-  expected:
-    type: spec
+    type: selector
     registration_target_as_typed: BRD4
-    assay_target_as_typed: BRD4
-    protocol_hint: AlphaLISA
-    metric: EC50
-    threshold: {op: "<", value: 500, unit: nM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: AlphaLISA
+        metric: EC50
+        threshold: {op: "<", value: 500, unit: nM}
 
-- name: akt_kd_spr
+- name: akt_spr_kd
   prompt: "AKT compounds with Kd in SPR less than 10 nM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: AKT
-    assay_target_as_typed: AKT
-    protocol_hint: SPR
-    metric: Kd
-    threshold: {op: "<", value: 10, unit: nM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: SPR
+        metric: Kd
+        threshold: {op: "<", value: 10, unit: nM}
 
-- name: cdk4_ki_trfret_pM
+- name: cdk4_trfret_ki_pM
   prompt: "CDK4 inhibitors with Ki in TR-FRET under 500 pM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: CDK4
-    assay_target_as_typed: CDK4
-    protocol_hint: TR-FRET
-    metric: Ki
-    threshold: {op: "<", value: 500, unit: pM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: TR-FRET
+        metric: Ki
+        threshold: {op: "<", value: 500, unit: pM}
 
-# =============================================================================
-# Single-target, no threshold (just tabulate)
-# =============================================================================
-
-- name: all_ard_htrf_ic50_values
-  prompt: "Show all HTRF IC50 values for ARd compounds"
+- name: above_threshold
+  prompt: "ARd compounds with AR binding HTRF IC50 greater than 1 uM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: null
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: AR binding HTRF
+        metric: IC50
+        threshold: {op: ">", value: 1, unit: uM}
 
-- name: ard_htrf_no_threshold
-  prompt: "Tabulate phys chem and HTRF IC50 for ARd compounds"
+# =============================================================================
+# Cross-protocol selectivity (the MAIN new capability of the pivot)
+# =============================================================================
+
+- name: megfr_wt_tm_selectivity
+  prompt: "mEGFR compounds with mEGFR TR-FRET WT IC50 < 10 uM but TM IC50 > 1 uM"
   expected:
-    type: spec
+    type: selector
+    note: "Cross-protocol selectivity — the core new case. WT and TM become two filters ANDed."
+    registration_target_as_typed: mEGFR
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: mEGFR TR-FRET WT
+        metric: IC50
+        threshold: {op: "<", value: 10, unit: uM}
+      - protocol_hint: TM
+        metric: IC50
+        threshold: {op: ">", value: 1, unit: uM}
+
+- name: cdk4_selectivity_over_cdk6
+  prompt: "CDK4 compounds with CDK4 IC50 under 100 nM and CDK6 IC50 over 1 uM"
+  expected:
+    type: selector
+    note: "CDK4/6 selectivity window — standard medicinal-chem query."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: CDK4
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+      - protocol_hint: CDK6
+        metric: IC50
+        threshold: {op: ">", value: 1, unit: uM}
+
+- name: htrf_alphalisa_concordance
+  prompt: "ARd compounds with HTRF IC50 < 100 nM and AlphaLISA IC50 < 100 nM"
+  expected:
+    type: selector
+    note: "Concordance across two orthogonal readouts — both filters on IC50 metric."
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: null
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+      - protocol_hint: AlphaLISA
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
 
-- name: myc_aur_alphalisa_all
-  prompt: "Myc-Aur compounds and their AlphaLISA IC50"
+# =============================================================================
+# No filters — just select all compounds in a programme
+# =============================================================================
+
+- name: all_ard_compounds
+  prompt: "Show me all ARd compounds"
   expected:
-    type: spec
-    registration_target_as_typed: Myc-Aur
-    assay_target_as_typed: Myc-Aur
-    protocol_hint: AlphaLISA
-    metric: IC50
-    threshold: null
-    columns: phys_chem
+    type: selector
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    measurement_filters: []
+
+- name: all_compounds_in_target
+  prompt: "CDK4 compounds"
+  expected:
+    type: selector
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    measurement_filters: []
 
 # =============================================================================
-# Cross-project prompts (registration ≠ assay target)
+# Filter with no threshold — "tested in X" / "with ANY measurement"
 # =============================================================================
 
-- name: ard_compounds_tested_against_akt
+- name: tested_in_protocol
+  prompt: "ARd compounds tested in HTRF"
+  expected:
+    type: selector
+    note: "Filter with protocol but no threshold — compound needs any valid HTRF measurement."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: null
+        threshold: null
+
+- name: with_any_ic50
+  prompt: "CDK4 compounds with any measured IC50"
+  expected:
+    type: selector
+    note: "Filter with metric but no protocol and no threshold — any protocol is fine."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: null
+        metric: IC50
+        threshold: null
+
+# =============================================================================
+# Cross-project (registration ≠ assay target)
+# =============================================================================
+
+- name: ard_tested_against_akt
   prompt: "ARd compounds tested against AKT with EC50 below 1 uM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
     assay_target_as_typed: AKT
-    protocol_hint: null
-    metric: EC50
-    threshold: {op: "<", value: 1, unit: uM}
-    columns: phys_chem
+    measurement_filters:
+      - protocol_hint: null
+        metric: EC50
+        threshold: {op: "<", value: 1, unit: uM}
 
-- name: cdk4_selectivity_in_cdk6
-  prompt: "my CDK4 compounds' CDK6 HTRF IC50 values"
+- name: cdk4_against_cdk6
+  prompt: "my CDK4 compounds' CDK6 HTRF IC50 values below 100 nM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: CDK4
     assay_target_as_typed: CDK6
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: null
-    columns: phys_chem
-
-- name: ard_selectivity_cross_akt
-  prompt: "Show my ARd compounds' AKT IC50 in HTRF below 10 uM"
-  expected:
-    type: spec
-    registration_target_as_typed: ARd
-    assay_target_as_typed: AKT
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 10, unit: uM}
-    columns: phys_chem
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
 
 # =============================================================================
 # Assay-only (registration target unspecified)
 # =============================================================================
 
-- name: compounds_tested_against_ard
+- name: anything_tested_against
   prompt: "Compounds tested against ARd with HTRF IC50 below 1 uM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: null
     assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 1, unit: uM}
-    columns: phys_chem
-
-- name: anything_tested_against_akt
-  prompt: "Anything with AKT HTRF EC50 under 100 nM"
-  expected:
-    type: spec
-    registration_target_as_typed: null
-    assay_target_as_typed: AKT
-    protocol_hint: HTRF
-    metric: EC50
-    threshold: {op: "<", value: 100, unit: nM}
-    columns: phys_chem
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 1, unit: uM}
 
 # =============================================================================
 # Unusual units / metric types
@@ -211,46 +237,46 @@
 - name: percent_inhibition
   prompt: "ARd compounds with % inhibition in HTRF above 80"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: "% inhibition"
-    threshold: {op: ">", value: 80, unit: "%"}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: "% inhibition"
+        threshold: {op: ">", value: 80, unit: "%"}
 
 - name: caco2_efflux_ratio_unitless
   prompt: "Caco-2 compounds with efflux ratio above 2 in Caco-2 permeability"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: Caco-2
-    assay_target_as_typed: Caco-2
-    protocol_hint: Caco-2 permeability
-    metric: efflux_ratio
-    threshold: {op: ">", value: 2, unit: null}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: Caco-2 permeability
+        metric: efflux_ratio
+        threshold: {op: ">", value: 2, unit: null}
 
 - name: clearance_microsomal
   prompt: "ARd compounds with CLint under 50 uL/min/mg in human microsomes"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: human microsomes
-    metric: CLint
-    threshold: {op: "<", value: 50, unit: uL/min/mg}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: human microsomes
+        metric: CLint
+        threshold: {op: "<", value: 50, unit: uL/min/mg}
 
 - name: pic50_log_scale
   prompt: "ARd compounds with HTRF pIC50 above 7"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: pIC50
-    threshold: {op: ">", value: 7, unit: null}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: pIC50
+        threshold: {op: ">", value: 7, unit: null}
 
 # =============================================================================
 # Different comparison operators
@@ -259,150 +285,149 @@
 - name: exact_equality
   prompt: "ARd compounds where HTRF IC50 equals 50 nM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "=", value: 50, unit: nM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "=", value: 50, unit: nM}
 
-- name: greater_than_or_equal
+- name: at_least
   prompt: "ARd compounds with HTRF IC50 at least 1 uM"
   expected:
-    type: spec
+    type: selector
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: ">=", value: 1, unit: uM}
-    columns: phys_chem
-
-# =============================================================================
-# Column preset variations
-# =============================================================================
-
-- name: lipinski_only
-  prompt: "Lipinski properties for ARd compounds with HTRF IC50 below 10 nM"
-  expected:
-    type: spec
-    registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 10, unit: nM}
-    columns: lipinski
-
-- name: explicit_columns_mw_clogp
-  prompt: "Molecular weight and cLogP for ARd compounds with HTRF IC50 below 100 nM"
-  expected:
-    type: spec
-    registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 100, unit: nM}
-    columns: null
-    columns_explicit: [molecular_weight, clogp]
-
-- name: explicit_columns_tpsa_fsp3
-  prompt: "TPSA and Fsp3 for ARd compounds with HTRF IC50 below 1 uM"
-  expected:
-    type: spec
-    registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 1, unit: uM}
-    columns: null
-    columns_explicit: [tpsa, fraction_sp3]
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: ">=", value: 1, unit: uM}
 
 # =============================================================================
 # Filler-noun discipline (§19.6)
-# These prompts use conversational filler ("hits", "series", "analogues") that
-# must NOT synthesise a threshold unless the user names a specific cutoff.
+# These prompts use conversational filler ("hits", "series", "analogues")
+# that must NOT synthesise a threshold unless the user names a specific cutoff.
 # =============================================================================
 
 - name: hits_is_filler
-  prompt: "HTRF IC50 values for my ARd hits"
+  prompt: "my ARd hits tested in HTRF"
   expected:
-    type: spec
-    note: "'hits' carries no structural meaning without an explicit cutoff; threshold must stay null."
+    type: selector
+    note: "'hits' without an explicit cutoff is filler — just a filter on protocol, no threshold."
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: null
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: null
+        threshold: null
 
 - name: series_is_filler
-  prompt: "Show HTRF IC50 in the ARd series"
+  prompt: "the ARd series with HTRF IC50 below 100 nM"
   expected:
-    type: spec
-    note: "'series' is filler; no threshold should be invented."
+    type: selector
+    note: "'series' is filler; threshold came from explicit '100 nM', not the word 'series'."
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: null
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
 
 - name: analogues_is_filler
-  prompt: "HTRF EC50 for BRD4 analogues"
+  prompt: "BRD4 analogues with HTRF EC50 values"
   expected:
-    type: spec
-    note: "'analogues' is filler."
+    type: selector
+    note: "'analogues' is filler; no threshold invented."
     registration_target_as_typed: BRD4
-    assay_target_as_typed: BRD4
-    protocol_hint: HTRF
-    metric: EC50
-    threshold: null
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: EC50
+        threshold: null
 
 - name: hits_with_explicit_cutoff
-  prompt: "ARd hits defined as HTRF IC50 below 10 nM, with phys chem"
+  prompt: "ARd hits defined as HTRF IC50 below 10 nM"
   expected:
-    type: spec
-    note: "When the user defines 'hits' with an explicit cutoff, the threshold IS the cutoff."
+    type: selector
+    note: "Here 'hits' IS defined by a cutoff — threshold tracks the explicit definition."
     registration_target_as_typed: ARd
-    assay_target_as_typed: ARd
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 10, unit: nM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 10, unit: nM}
 
 # =============================================================================
-# Ambiguous target (user types a gene symbol shared across multiple targets)
-# The LLM must emit the string verbatim — the resolver produces Clarify
-# downstream. Tests that the LLM does NOT try to pick.
+# Ambiguous target — LLM emits verbatim; resolver produces Clarify downstream
 # =============================================================================
 
 - name: myc_ambiguous
-  prompt: "HTRF IC50 values for MYC compounds"
+  prompt: "MYC compounds with HTRF IC50 below 500 nM"
   expected:
-    type: spec_with_ambiguity
-    note: "'MYC' hits multiple targets via the shared gene; resolver clarifies downstream. LLM must NOT pick."
+    type: selector_with_clarify
+    note: "'MYC' maps to multiple targets via shared gene symbol — clarified downstream."
     registration_target_as_typed: MYC
-    assay_target_as_typed: MYC
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: null
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 500, unit: nM}
 
 - name: aurora_pan_family
   prompt: "Aurora kinase compounds with HTRF IC50 below 100 nM"
   expected:
-    type: spec_with_ambiguity
+    type: selector_with_clarify
     note: "Pan-family query — may resolve via gene aliases to multiple Aurora programmes."
     registration_target_as_typed: Aurora kinase
-    assay_target_as_typed: Aurora kinase
-    protocol_hint: HTRF
-    metric: IC50
-    threshold: {op: "<", value: 100, unit: nM}
-    columns: phys_chem
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
 
 # =============================================================================
-# not_a_query — the LLM must reject these as non-tabular requests
+# Display-preference-ignoring — the LLM must NOT emit column/format info
+# =============================================================================
+
+- name: phys_chem_preference_ignored
+  prompt: "phys chem for ARd compounds with HTRF IC50 < 10 uM"
+  expected:
+    type: selector
+    note: "'phys chem' is a display preference (aggregation page handles it); the LLM must not encode it in the selector."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 10, unit: uM}
+
+- name: tabulate_preference_ignored
+  prompt: "Tabulate IC50 values in HTRF for ARd compounds under 100 nM"
+  expected:
+    type: selector
+    note: "'Tabulate IC50 values' is a display preference — the filter is just IC50 < 100 nM in HTRF."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+
+- name: show_spider_plots_ignored
+  prompt: "Show me the spider plots for CDK4 compounds with Ki below 1 nM"
+  expected:
+    type: selector
+    note: "'Show me the spider plots' is a display preference — ignore; emit the selection."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: null
+        metric: Ki
+        threshold: {op: "<", value: 1, unit: nM}
+
+# =============================================================================
+# not_a_query — the LLM must reject these as non-selection requests
 # =============================================================================
 
 - name: summarise_sar

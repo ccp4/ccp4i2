@@ -1,26 +1,26 @@
-"""Deterministic target/protocol resolution for the NLP query subsystem.
+"""Deterministic target + protocol resolution for the compound-selector path.
 
 Implements §6.1 (target), §6.2 (protocol), and §6.5 (two-target scope
 derivation) of NLP_QUERY_PROPOSAL.md.
 
+**Pivoted 2026-04-23** from QuerySpec (single protocol) to CompoundSelector
+(list of MeasurementFilters, each with its own protocol_hint). The target
+resolver is unchanged; the protocol resolver gains a `filter_index`
+parameter so clarify/miss responses can tell the UI which filter to pin.
+
 Target (§6.1):
 - Matching pool per Target: normalize(name) ∪ {normalize(g.symbol)} ∪
   {normalize(alias)} ∪ {normalize(g.name)} for each linked Gene.
-- Exact-match pass; on miss, allow Levenshtein distance 1 **only if the
-  normalized query is ≥4 characters**.
+- Exact pass, then distance-1 fuzzy (query length ≥ 4 only).
 - Name-only fallback for targets without Gene links.
-- Multiple hits → TargetClarify; no hits → TargetMiss with top-5 suggestions.
 
 Protocol (§6.2):
-- Scope = protocols that have been run on compounds registered to the
-  resolved registration target (and/or against the resolved assay target).
-- Tokenize name + query (lowercase, strip punctuation); require all query
-  tokens to appear in the protocol name. Rank ties by fewer extra tokens
-  then recency of last run. Ambiguity is the common case.
-
-Scope (§6.5):
-- Derive `scope_kind` from which target fields are populated.
-- Q21: sequential clarification — reg first, then assay.
+- Scope: protocols run on compounds registered to the resolved registration
+  target and/or against the resolved assay target.
+- Token match: all query tokens must appear in the protocol name (set
+  containment). Ranked by (fewer extras, then recency of last run).
+- Pinning: when `pinned_id` is set, skip fuzzy match and look up directly;
+  still scope-validate so a stale UUID from another target can't slip in.
 
 Pure Python. No LLM. No network. Unit-testable with pytest-django fixtures.
 """
@@ -46,11 +46,11 @@ from .spec import (
     SCOPE_BOTH_SAME,
     SCOPE_CROSS,
     SCOPE_REG_ONLY,
+    CompoundSelector,
     ProtocolCandidate,
     ProtocolClarify,
     ProtocolMiss,
     ProtocolResolution,
-    QuerySpec,
     ResolvedProtocol,
     ResolvedTarget,
     ResolvedTargets,
@@ -205,19 +205,16 @@ def _derive_scope_kind(reg: Optional[Target], assay: Optional[Target]) -> str:
     return SCOPE_ASSAY_ONLY
 
 
-def resolve_targets(spec: QuerySpec) -> TargetsResolution:
-    """Resolve both target fields, with sequential clarification per Q21.
-
-    Returns the first unresolved field's clarify/miss if any, otherwise a
-    fully-populated ResolvedTargets with a derived scope_kind. Returns
-    ScopeError if neither target field is set (§6.5 last row).
-    """
-    reg_typed = (spec.registration_target_as_typed or "").strip()
-    assay_typed = (spec.assay_target_as_typed or "").strip()
+def resolve_targets(selector: CompoundSelector) -> TargetsResolution:
+    """Resolve both target fields on the selector, with sequential clarify
+    per Q21. Returns the first unresolved field's clarify/miss if any,
+    otherwise a ResolvedTargets with a derived scope_kind."""
+    reg_typed = (selector.registration_target_as_typed or "").strip()
+    assay_typed = (selector.assay_target_as_typed or "").strip()
 
     if (
         not reg_typed and not assay_typed
-        and not spec.registration_target_id and not spec.assay_target_id
+        and not selector.registration_target_id and not selector.assay_target_id
     ):
         return ScopeError(
             message="At least one of registration_target_as_typed or "
@@ -225,15 +222,15 @@ def resolve_targets(spec: QuerySpec) -> TargetsResolution:
         )
 
     reg: Optional[Target] = None
-    if reg_typed or spec.registration_target_id:
-        r = resolve_target(reg_typed, pinned_id=spec.registration_target_id)
+    if reg_typed or selector.registration_target_id:
+        r = resolve_target(reg_typed, pinned_id=selector.registration_target_id)
         if isinstance(r, (TargetClarify, TargetMiss)):
             return replace(r, field=FIELD_REGISTRATION_TARGET)
         reg = r.target
 
     assay: Optional[Target] = None
-    if assay_typed or spec.assay_target_id:
-        r = resolve_target(assay_typed, pinned_id=spec.assay_target_id)
+    if assay_typed or selector.assay_target_id:
+        r = resolve_target(assay_typed, pinned_id=selector.assay_target_id)
         if isinstance(r, (TargetClarify, TargetMiss)):
             return replace(r, field=FIELD_ASSAY_TARGET)
         assay = r.target
@@ -300,32 +297,46 @@ def resolve_protocol(
     hint: str,
     resolved_targets: ResolvedTargets,
     pinned_id: Optional[str] = None,
+    filter_index: int = 0,
 ) -> ProtocolResolution:
     """Resolve a protocol hint against the scope-filtered protocol pool.
 
-    If ``pinned_id`` is supplied (clarify continuation), look up the Protocol
-    directly — we still verify it falls within the resolved scope so a stale
-    UUID from a different target's clarify response can't slip through.
+    ``filter_index`` is tagged onto any Clarify/Miss result so the UI
+    knows *which* measurement_filter in the selector triggered the picker.
+
+    ``pinned_id`` short-circuits to a direct lookup (clarify continuation);
+    still scope-validates.
     """
     if pinned_id:
         scoped_assays = _scope_assays(resolved_targets)
         if not scoped_assays.filter(protocol_id=pinned_id).exists():
-            return ProtocolMiss(query=hint or "", suggestions=[])
+            return ProtocolMiss(
+                query=hint or "", suggestions=[], filter_index=filter_index,
+            )
         protocol = Protocol.objects.filter(pk=pinned_id).first()
         if protocol is None:
-            return ProtocolMiss(query=hint or "", suggestions=[])
+            return ProtocolMiss(
+                query=hint or "", suggestions=[], filter_index=filter_index,
+            )
         return ResolvedProtocol(protocol=protocol, query=hint or "")
 
     query_tokens = tokenize(hint or "")
     if not query_tokens:
-        return ProtocolMiss(query=hint or "", suggestions=[])
+        # Empty hint is OK at the selector level (filter doesn't scope to a
+        # protocol — "compounds with ANY valid IC50 measurement"). But for a
+        # direct resolve_protocol call with an empty hint, treat as miss.
+        return ProtocolMiss(
+            query=hint or "", suggestions=[], filter_index=filter_index,
+        )
 
     scoped_assays = _scope_assays(resolved_targets)
     protocol_ids = list(
         scoped_assays.values_list("protocol_id", flat=True).distinct()
     )
     if not protocol_ids:
-        return ProtocolMiss(query=hint, suggestions=[])
+        return ProtocolMiss(
+            query=hint, suggestions=[], filter_index=filter_index,
+        )
 
     protocols = list(Protocol.objects.filter(id__in=protocol_ids))
 
@@ -355,6 +366,7 @@ def resolve_protocol(
         return ProtocolClarify(
             query=hint,
             candidates=[c for _, c in candidates_with_extra],
+            filter_index=filter_index,
         )
 
     # Miss — rank in-scope protocols by token overlap, take top 5.
@@ -368,4 +380,6 @@ def resolve_protocol(
         _protocol_candidate(p, scoped_assays)
         for _, p in scored[:_MISS_SUGGESTION_COUNT]
     ]
-    return ProtocolMiss(query=hint, suggestions=suggestions)
+    return ProtocolMiss(
+        query=hint, suggestions=suggestions, filter_index=filter_index,
+    )

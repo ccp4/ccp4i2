@@ -1,15 +1,18 @@
 /**
- * Client-side types + fetcher for the NLP query endpoint.
+ * Client-side types + fetcher for the NLP compound-selector endpoint.
  *
- * Mirrors the dataclasses in apps/compounds/nlp/spec.py. Updates must be
- * paired — if the backend adds a response field, this type gets it too.
+ * **Pivoted 2026-04-23**: the endpoint now returns a *compound selection*
+ * with a pre-built redirect URL to `/assays/aggregate`. The client
+ * navigates the user there on confirmation. No table renderer here.
  *
- * Unlike the other compounds endpoints, the NLP endpoint returns
- * meaningful structured bodies on 4xx/5xx (e.g. 404 for feature-disabled,
- * 400 for spec errors, 502 for LLM parse failures). The fetcher here
- * returns the JSON body regardless of status so the UI can render the
- * discriminated union naturally. Use `errorOnTransport` for genuine
- * network/JSON failures only.
+ * Mirrors the dataclasses in apps/compounds/nlp/spec.py — updates must
+ * be paired on both sides.
+ *
+ * Unlike standard compounds endpoints, the NLP endpoint returns
+ * meaningful structured bodies on 4xx/5xx (404 disabled, 400 scope/spec
+ * error, 429 cap, 502 parse error). The fetcher here returns the JSON
+ * body regardless of HTTP status so the UI can render the discriminated
+ * union naturally. Throws only on network / JSON-parse failures.
  */
 import { authFetch } from './api';
 
@@ -23,17 +26,19 @@ export interface Threshold {
   unit: string | null;
 }
 
-export interface QuerySpec {
-  registration_target_as_typed: string | null;
-  assay_target_as_typed: string | null;
+export interface MeasurementFilter {
   protocol_hint: string | null;
   metric: string | null;
   threshold: Threshold | null;
-  columns: string | null;
-  columns_explicit: string[] | null;
-  registration_target_id: string | null;
-  assay_target_id: string | null;
-  protocol_id: string | null;
+  protocol_id?: string | null;  // set by view on continuation
+}
+
+export interface CompoundSelector {
+  registration_target_as_typed: string | null;
+  assay_target_as_typed: string | null;
+  measurement_filters: MeasurementFilter[];
+  registration_target_id?: string | null;
+  assay_target_id?: string | null;
 }
 
 export interface TargetCandidate {
@@ -50,23 +55,14 @@ export interface ProtocolCandidate {
   n_compounds: number;
 }
 
-export interface TableRow {
-  compound_id: string;
-  formatted_id: string;
-  smiles: string | null;
-  value: number;
-  value_unit: string | null;
-  value_in_query_unit: number;
-  properties: Record<string, number | null>;
-}
-
 export type NLPResponse =
   | {
-      status: 'table';
-      rows: TableRow[];
-      property_columns: string[];
-      footer_excluded: Record<string, number>;
-      filtered_silent: Record<string, number>;
+      status: 'selection';
+      redirect_url: string;
+      compound_formatted_ids: string[];
+      target_names: string[];
+      protocol_names: string[];
+      n_matched: number;
       scope_sentence: string;
     }
   | {
@@ -74,22 +70,22 @@ export type NLPResponse =
       field: string;
       query: string;
       candidates: TargetCandidate[] | ProtocolCandidate[];
-      partial_spec: QuerySpec;
+      filter_index?: number;           // present for protocol clarify
+      partial_selector: CompoundSelector;
     }
   | {
       status: 'miss';
       field: string;
       query: string;
       suggestions: TargetCandidate[] | ProtocolCandidate[];
+      filter_index?: number;
     }
   | { status: 'not_a_query'; reason: string }
   | { status: 'error'; kind: string; field?: string; message: string };
 
 
 // ---------------------------------------------------------------------------
-// Field constants — mirror the FIELD_* in spec.py. Kept so the UI can tell
-// which picker to show (registration target vs assay target vs protocol)
-// without string-matching on raw values.
+// Field constants — mirror spec.py FIELD_* values
 // ---------------------------------------------------------------------------
 
 export const FIELD_REGISTRATION_TARGET = 'registration_target_as_typed';
@@ -98,20 +94,16 @@ export const FIELD_PROTOCOL_HINT = 'protocol_hint';
 
 
 // ---------------------------------------------------------------------------
-// Fetcher — tolerates 4xx/5xx and returns the body.
+// Fetcher — tolerates 4xx/5xx and returns the body
 // ---------------------------------------------------------------------------
 
 /**
- * POST /api/proxy/compounds/nlp/query. Returns the parsed JSON body on
- * any HTTP status (including 404, 400, 429, 502) so the caller can
- * render the discriminated union. Throws only on network / parse failures.
- *
- * Note on URL shape: the Next.js proxy appends `/` when forwarding to
- * Django. Clients MUST NOT include a trailing slash here (see
- * Docker/cli/i2remote.py:470 for the established convention).
+ * POST /api/proxy/compounds/nlp/query (no trailing slash — Next.js proxy
+ * appends when forwarding to Django; see i2remote.py:470 for the same
+ * convention).
  */
 export async function postNlpQuery(
-  body: { prompt: string } | { spec: QuerySpec },
+  body: { prompt: string } | { selector: CompoundSelector },
 ): Promise<NLPResponse> {
   const res = await authFetch('/api/proxy/compounds/nlp/query', {
     method: 'POST',
@@ -125,33 +117,45 @@ export async function postNlpQuery(
       `NLP endpoint returned non-JSON response (HTTP ${res.status})`,
     );
   }
-  // We trust the backend to produce a conforming shape — the discriminator
-  // parsing happens at the rendering layer.
   return parsed as NLPResponse;
 }
 
 
 // ---------------------------------------------------------------------------
-// Convenience helpers
+// Clarify continuation — apply a picker choice to the partial selector
 // ---------------------------------------------------------------------------
 
 /**
- * Apply a clarify picker choice — set the pinning ID on the partial_spec
- * for the field the server is asking about, clear any competing pinning
- * (so "re-pick a different target" works).
+ * Pin the user's clarify-picker choice on the appropriate place in the
+ * selector and return the next selector to POST as a continuation.
+ *
+ * - Target clarify: set registration_target_id or assay_target_id on the
+ *   selector (depending on `field`).
+ * - Protocol clarify: set protocol_id on the specific measurement_filter
+ *   identified by `filterIndex`.
  */
 export function applyClarifyPick(
-  partial_spec: QuerySpec,
+  partial: CompoundSelector,
   field: string,
   pickedId: string,
-): QuerySpec {
-  const next = { ...partial_spec };
+  filterIndex?: number,
+): CompoundSelector {
+  const next: CompoundSelector = {
+    ...partial,
+    measurement_filters: partial.measurement_filters.map((f) => ({ ...f })),
+  };
   if (field === FIELD_REGISTRATION_TARGET) {
     next.registration_target_id = pickedId;
   } else if (field === FIELD_ASSAY_TARGET) {
     next.assay_target_id = pickedId;
   } else if (field === FIELD_PROTOCOL_HINT) {
-    next.protocol_id = pickedId;
+    const idx = filterIndex ?? 0;
+    if (idx >= 0 && idx < next.measurement_filters.length) {
+      next.measurement_filters[idx] = {
+        ...next.measurement_filters[idx],
+        protocol_id: pickedId,
+      };
+    }
   }
   return next;
 }

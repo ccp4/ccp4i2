@@ -1,9 +1,20 @@
-"""QuerySpec and resolver result dataclasses.
+"""CompoundSelector + resolver + executor result types.
 
-The shape mirrors §5 of NLP_QUERY_PROPOSAL.md. Slices 1–2 populate the
-target fields and protocol hint; the rest are typed here so callers can
-start building specs by hand and so future slices add behaviour without
-reshaping the schema.
+**Pivot (2026-04-23)**: this subsystem now produces a *compound selection*
+rather than a rendered table. The LLM describes *which compounds* to view;
+the executor intersects filter sets to produce a list of compound IDs; the
+view returns a redirect URL to the existing `/assays/aggregate` page where
+the user picks their display format (cards, compact, pivot, …). The
+aggregation page already owns everything the previous `TablePayload` tried
+to reproduce (phys-chem columns, unit display, geomean aggregations,
+spider plots via project cards).
+
+See NLP_QUERY_PROPOSAL.md §5–§7 for the data model and §10 for the UI.
+
+Shape mirrors to:
+- Backend: `apps/compounds/nlp/spec.py`     (this file)
+- Frontend: `apps/compounds/frontend/lib/compounds/nlp-api.ts`
+Keep the two in sync.
 """
 
 from __future__ import annotations
@@ -16,48 +27,94 @@ from compounds.assays.models import Protocol
 from compounds.registry.models import Target
 
 
-# Scope-kind string constants (derived from which target fields are populated;
-# see §6.5). Strings keep serialisation trivial — no enum-in-json dance.
+# ---------------------------------------------------------------------------
+# String constants — scope_kind, field-name tags, matched_via labels.
+# Plain strings keep JSON round-trip trivial and avoid enum-in-dict dance.
+# ---------------------------------------------------------------------------
+
 SCOPE_BOTH_SAME = "both_same"
 SCOPE_REG_ONLY = "reg_only"
 SCOPE_ASSAY_ONLY = "assay_only"
 SCOPE_CROSS = "cross"
 
-
-# Field-name constants — used by the orchestrator to tag a Clarify/Miss so
-# the UI knows which picker to show (see §9 `field` key in the JSON).
 FIELD_REGISTRATION_TARGET = "registration_target_as_typed"
 FIELD_ASSAY_TARGET = "assay_target_as_typed"
 FIELD_PROTOCOL_HINT = "protocol_hint"
 
+# Filter / exclusion reasons from the row evaluator. Preserved from the pre-
+# pivot shape because the evaluator still classifies rows during selection;
+# only FILTER_* and EXCLUDE_* counts are no longer surfaced to the client
+# (the selection payload just carries the surviving compound IDs).
+FILTER_INVALID_STATUS = "invalid_status"
+FILTER_KPI_MISMATCH = "kpi_mismatch"
+FILTER_VALUE_NOT_NUMERIC = "value_not_numeric"
+FILTER_THRESHOLD_NOT_MET = "threshold_not_met"
 
-@dataclass
-class Threshold:
-    op: str
-    value: float
-    unit: Optional[str] = None
-
-
-@dataclass
-class QuerySpec:
-    registration_target_as_typed: Optional[str] = None
-    assay_target_as_typed: Optional[str] = None
-    protocol_hint: Optional[str] = None
-    metric: Optional[str] = None
-    threshold: Optional[Threshold] = None
-    columns: Optional[str] = None
-    columns_explicit: Optional[List[str]] = None
-    # Pinnings populated by the view on clarify continuation (§9). The LLM
-    # never emits these — the UI picker returns them, and the view injects
-    # them into the spec before calling execute() so the resolver short-
-    # circuits to a direct ID lookup instead of rerunning fuzzy match.
-    registration_target_id: Optional[str] = None
-    assay_target_id: Optional[str] = None
-    protocol_id: Optional[str] = None
+EXCLUDE_UNIT_UNKNOWN = "unit_unknown"
+EXCLUDE_UNIT_TYPE_MISMATCH = "unit_type_mismatch"
+EXCLUDE_UNIT_INCOMPATIBLE = "unit_incompatible"
+EXCLUDE_QUERY_MISSING_UNIT = "query_missing_unit"
 
 
 # ---------------------------------------------------------------------------
-# Target-field resolution (single field)
+# Input — Threshold + MeasurementFilter + CompoundSelector
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class Threshold:
+    op: str                          # one of <, <=, >, >=, =, ==, !=
+    value: float
+    unit: Optional[str] = None       # None → unitless / inherit row unit
+
+
+@dataclass
+class MeasurementFilter:
+    """A single condition compounds must satisfy to be included in the
+    selection. Multiple filters on a `CompoundSelector` are ANDed — the
+    resulting compound set is the intersection of compounds passing each.
+
+    Null-field semantics:
+    - `protocol_hint = None` → filter doesn't scope to a specific protocol
+      (any protocol under the selector's target scope is eligible).
+    - `metric = None` → filter doesn't scope to a specific metric (any
+      numeric KPI counts).
+    - `threshold = None` → filter requires only that *some* valid
+      measurement exists matching the protocol/metric constraints; any
+      numeric value passes. Useful for "compounds tested in X" prompts.
+    """
+
+    protocol_hint: Optional[str] = None
+    metric: Optional[str] = None
+    threshold: Optional[Threshold] = None
+    # Pinned protocol id on clarify continuation — LLM never emits this.
+    protocol_id: Optional[str] = None
+
+
+@dataclass
+class CompoundSelector:
+    """Root of the v2 spec — describes *which compounds* to surface.
+
+    Target fields follow the same §6.5 semantics as the pre-pivot spec:
+    - both populated: registered to X AND tested against Y (default X==Y)
+    - only registration: all compounds in that programme, whatever their assays
+    - only assay: any compound with measurements against that target
+
+    Pinning fields are populated by the view on clarify continuation (§9);
+    the LLM never emits them.
+    """
+
+    registration_target_as_typed: Optional[str] = None
+    assay_target_as_typed: Optional[str] = None
+    measurement_filters: List[MeasurementFilter] = field(default_factory=list)
+
+    # Pinnings from clarify continuation — the view injects these, LLM doesn't.
+    registration_target_id: Optional[str] = None
+    assay_target_id: Optional[str] = None
+
+
+# ---------------------------------------------------------------------------
+# Target resolution (single field)
 # ---------------------------------------------------------------------------
 
 
@@ -81,7 +138,7 @@ class ResolvedTarget:
 class TargetClarify:
     query: str
     candidates: List[TargetCandidate]
-    field: str = ""  # set by the orchestrator to FIELD_REGISTRATION_TARGET / FIELD_ASSAY_TARGET
+    field: str = ""  # FIELD_REGISTRATION_TARGET / FIELD_ASSAY_TARGET — orchestrator sets
 
 
 @dataclass
@@ -95,7 +152,7 @@ TargetResolution = Union[ResolvedTarget, TargetClarify, TargetMiss]
 
 
 # ---------------------------------------------------------------------------
-# Two-target orchestrator results (§6.5 scope derivation + Q21 sequential)
+# Two-target orchestrator results
 # ---------------------------------------------------------------------------
 
 
@@ -108,7 +165,8 @@ class ResolvedTargets:
 
 @dataclass
 class ScopeError:
-    """At-least-one-target rule violated (§6.5 last row)."""
+    """At-least-one-target rule violated — selector had no target and no
+    registration_* / assay_* pinning id."""
 
     message: str
 
@@ -117,7 +175,7 @@ TargetsResolution = Union[ResolvedTargets, TargetClarify, TargetMiss, ScopeError
 
 
 # ---------------------------------------------------------------------------
-# Protocol resolution (§6.2)
+# Protocol resolution (per MeasurementFilter)
 # ---------------------------------------------------------------------------
 
 
@@ -142,6 +200,10 @@ class ResolvedProtocol:
 class ProtocolClarify:
     query: str
     candidates: List[ProtocolCandidate]
+    # The index of the MeasurementFilter this clarify applies to, so the
+    # UI knows which filter to pin. The overall request-body field path is
+    # `measurement_filters[<filter_index>].protocol_id`.
+    filter_index: int = 0
     field: str = FIELD_PROTOCOL_HINT
 
 
@@ -149,6 +211,7 @@ class ProtocolClarify:
 class ProtocolMiss:
     query: str
     suggestions: List[ProtocolCandidate]
+    filter_index: int = 0
     field: str = FIELD_PROTOCOL_HINT
 
 
@@ -156,32 +219,16 @@ ProtocolResolution = Union[ResolvedProtocol, ProtocolClarify, ProtocolMiss]
 
 
 # ---------------------------------------------------------------------------
-# Row-level evaluation (§6.3 metric, §6.4 units tri-state)
+# Row-level evaluation (metric + unit tri-state). Evaluator module consumes
+# these — public because tests over the evaluator also do.
 # ---------------------------------------------------------------------------
-
-# Filter reasons — a row didn't match the filter for expected reasons (the
-# fit targeted a different KPI, the status isn't valid, or the value simply
-# doesn't satisfy the threshold). These are *silent* — not footer-noted.
-FILTER_INVALID_STATUS = "invalid_status"
-FILTER_KPI_MISMATCH = "kpi_mismatch"
-FILTER_VALUE_NOT_NUMERIC = "value_not_numeric"
-FILTER_THRESHOLD_NOT_MET = "threshold_not_met"
-
-# Exclusion reasons — a row couldn't be evaluated due to data-quality
-# issues. These are the footer-count categories surfaced in §6.4.
-EXCLUDE_UNIT_UNKNOWN = "unit_unknown"              # row's kpi_unit absent / empty / unrecognised
-EXCLUDE_UNIT_TYPE_MISMATCH = "unit_type_mismatch"  # row unitless vs query has real unit, or vice versa
-EXCLUDE_UNIT_INCOMPATIBLE = "unit_incompatible"    # different unit family (e.g. nM vs min)
-EXCLUDE_QUERY_MISSING_UNIT = "query_missing_unit"  # query has no unit but row's unit is real
 
 
 @dataclass
 class RowMatched:
-    """Row passes the filter. Values expressed in both row-native and query-native units."""
-
     value: float
-    row_unit: Optional[str]          # normalized; None if row is genuinely unitless
-    value_in_query_unit: float       # == value when no unit conversion happened
+    row_unit: Optional[str]
+    value_in_query_unit: float
 
 
 @dataclass
@@ -198,61 +245,35 @@ RowOutcome = Union[RowMatched, RowFiltered, RowExcluded]
 
 
 # ---------------------------------------------------------------------------
-# Executor payload (§7 execution, §6.6 columns, §10 echo-back)
+# Executor output — CompoundSelection
 # ---------------------------------------------------------------------------
 
-# Column-preset tokens the LLM may emit for QuerySpec.columns (§6.6).
-COL_PRESET_PHYS_CHEM = "phys_chem"
-COL_PRESET_LIPINSKI = "lipinski"
-
-# Canonical ordered field sets on MolecularProperties. Order is the render
-# order in the payload; the frontend is free to override.
-PHYS_CHEM_COLUMNS: tuple = (
-    "molecular_weight",
-    "heavy_atom_count",
-    "hbd",
-    "hba",
-    "clogp",
-    "tpsa",
-    "rotatable_bonds",
-    "fraction_sp3",
-)
-LIPINSKI_COLUMNS: tuple = ("molecular_weight", "hbd", "hba", "clogp")
-
 
 @dataclass
-class TableRow:
-    """One matched measurement. Per-measurement, not per-compound — the
-    frontend may aggregate (geomean etc.) if desired."""
+class CompoundSelection:
+    """Result of intersecting all MeasurementFilters against the target-
+    scoped compound set. View layer converts this into a redirect URL to
+    `/assays/aggregate`."""
 
-    compound_id: str                               # UUID string
-    formatted_id: str                              # e.g. "NCL-00026042"
-    smiles: Optional[str]
-    value: float                                   # KPI value in the row's own unit
-    value_unit: Optional[str]                      # None if the row is genuinely unitless
-    value_in_query_unit: float                     # threshold-comparable — == value when no conversion happened
-    properties: dict                               # {phys_chem_key: float | None}
-
-
-@dataclass
-class TablePayload:
-    rows: List[TableRow]
-    property_columns: List[str]                    # ordered phys-chem keys shown on each row
-    footer_excluded: dict                          # {EXCLUDE_* reason: count} — surfaced in UI footer (§6.4)
-    filtered_silent: dict                          # {FILTER_* reason: count} — debug/telemetry, not UI-surfaced
-    scope_sentence: str                            # human echo-back (§10)
+    compound_formatted_ids: List[str]       # ordered by reg_number for stable URLs
+    target_names: List[str]                  # what goes into `targets=` (usually 1)
+    protocol_names: List[str]                # what goes into `protocols=` (0+ — only filter-used protocols)
+    n_matched: int                           # == len(compound_formatted_ids)
+    scope_sentence: str                      # human echo-back
 
 
 @dataclass
 class SpecError:
-    """Executor-level spec validation failure (missing metric, unknown column, …)."""
+    """Executor-level spec-validation failure (e.g. filter with threshold
+    but no metric). Distinct from ScopeError which is specifically about
+    the at-least-one-target §6.5 rule."""
 
     field: str
     message: str
 
 
 ExecutionResult = Union[
-    TablePayload,
+    CompoundSelection,
     TargetClarify,
     TargetMiss,
     ScopeError,
@@ -263,26 +284,25 @@ ExecutionResult = Union[
 
 
 # ---------------------------------------------------------------------------
-# LLM prompt-parse result (§8 — the LLM emits either a QuerySpec or this)
+# LLM prompt-parse result
 # ---------------------------------------------------------------------------
 
 
 @dataclass
 class NotAQuery:
-    """LLM-emitted signal that the user's prompt isn't a tabular query."""
+    """LLM-emitted signal that the user's prompt isn't a compound selection."""
 
     reason: str
 
 
 @dataclass
 class ParseError:
-    """LLM output failed downstream validation (malformed JSON, schema violation,
-    both branches empty, …). Distinct from NotAQuery — this is *our* fault, not
-    the user's. Slice 6 view will map to a 502-ish response; the caller is
-    expected to retry or report rather than show a user-friendly message."""
+    """LLM output failed downstream validation (malformed JSON, schema
+    violation, etc.). Distinct from NotAQuery — this is our glue-code
+    failure, not the user's."""
 
     message: str
     raw: Optional[str] = None
 
 
-PromptParseResult = Union[QuerySpec, NotAQuery, ParseError]
+PromptParseResult = Union[CompoundSelector, NotAQuery, ParseError]
