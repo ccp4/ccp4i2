@@ -25,7 +25,7 @@ import {
   InputAdornment,
 } from '@mui/material';
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { Download, ZoomIn, ContentCopy, Check, Search, Clear } from '@mui/icons-material';
+import { Download, ZoomIn, ContentCopy, Check, Search, Clear, EditOutlined } from '@mui/icons-material';
 import html2canvas from 'html2canvas';
 import { useRouter } from 'next/navigation';
 import {
@@ -59,6 +59,11 @@ import {
   isConcentrationUnit,
 } from '@/lib/compounds/aggregation-api';
 import { protocolColour } from '@/lib/compounds/protocol-colour';
+import {
+  ProtocolThresholdQuickEdit,
+  type ProtocolThresholdUpdate,
+} from './ProtocolThresholdQuickEdit';
+import { useAuth } from '@/lib/compounds/auth-context';
 
 /**
  * Generate CSV content from medium aggregation data.
@@ -283,12 +288,14 @@ function CompactTable({
   concentrationDisplay = 'natural',
   searchTerm = '',
   fillHeight = false,
+  onEditProtocol,
 }: {
   data: AggregationResponse & { protocols: ProtocolInfo[] };
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
   searchTerm?: string;
   fillHeight?: boolean;
+  onEditProtocol?: (protocol: ProtocolInfo) => void;
 }) {
   const router = useRouter();
   const parentRef = useRef<HTMLDivElement>(null);
@@ -615,9 +622,10 @@ function CompactTable({
                 </TableCell>
               ))}
               {protocols.map((protocol) => (
-                aggregations.map((agg) => {
+                aggregations.map((agg, aggIdx) => {
                   const sortKey: CompactSortKey = `protocol_${protocol.id}_${agg}`;
                   const isSortable = agg !== 'list'; // List columns aren't sortable
+                  const isFirstAggForProtocol = aggIdx === 0;
                   return (
                     <TableCell
                       key={`${protocol.id}-${agg}`}
@@ -641,6 +649,20 @@ function CompactTable({
                             protocol.name.length > 15
                               ? `${protocol.name.slice(0, 15)}...`
                               : protocol.name
+                          )}
+                          {onEditProtocol && isFirstAggForProtocol && (
+                            <Tooltip title="Edit thresholds for this protocol" arrow>
+                              <IconButton
+                                size="small"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onEditProtocol(protocol);
+                                }}
+                                sx={{ ml: 0.25, p: 0.25, opacity: 0.5, '&:hover': { opacity: 1 } }}
+                              >
+                                <EditOutlined fontSize="inherit" />
+                              </IconButton>
+                            </Tooltip>
                           )}
                           <br />
                           <Typography variant="caption" color="text.secondary">
@@ -1734,10 +1756,12 @@ function PivotTable({
   data,
   aggregations,
   concentrationDisplay = 'natural',
+  onEditProtocol,
 }: {
   data: CompactAggregationResponse;
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
+  onEditProtocol?: (protocol: ProtocolInfo) => void;
 }) {
   const router = useRouter();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -2160,6 +2184,20 @@ function PivotTable({
                         ({getConcentrationHeaderUnit(protocol.kpi_unit, concentrationDisplay)})
                       </Typography>
                     )}
+                    {onEditProtocol && (
+                      <Tooltip title="Edit thresholds for this protocol" arrow>
+                        <IconButton
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onEditProtocol(protocol);
+                          }}
+                          sx={{ ml: 0.5, opacity: 0.5, '&:hover': { opacity: 1 } }}
+                        >
+                          <EditOutlined fontSize="inherit" />
+                        </IconButton>
+                      </Tooltip>
+                    )}
                   </TableCell>
                   {sortedRows.map((row) => {
                     const protocolData = row.protocols[protocol.id];
@@ -2274,10 +2312,12 @@ function CardsView({
   data,
   aggregations,
   concentrationDisplay = 'natural',
+  onEditProtocol,
 }: {
   data: CompactAggregationResponse;
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
+  onEditProtocol?: (protocol: ProtocolInfo) => void;
 }) {
   const router = useRouter();
 
@@ -2699,9 +2739,25 @@ function CardsView({
                     }}
                     onClick={(e) => handleProtocolClick(e, row, protocol)}
                   >
-                    <Typography variant="body2" fontWeight={500}>
-                      {protocol.name}
-                    </Typography>
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.25 }}>
+                      <Typography variant="body2" fontWeight={500}>
+                        {protocol.name}
+                      </Typography>
+                      {onEditProtocol && (
+                        <Tooltip title="Edit thresholds for this protocol" arrow>
+                          <IconButton
+                            size="small"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              onEditProtocol(protocol);
+                            }}
+                            sx={{ p: 0.25, opacity: 0.5, '&:hover': { opacity: 1 } }}
+                          >
+                            <EditOutlined fontSize="inherit" />
+                          </IconButton>
+                        </Tooltip>
+                      )}
+                    </Box>
                     <Typography
                       variant="body2"
                       fontFamily="monospace"
@@ -2851,6 +2907,36 @@ export function AggregationTable({
     setSearchTerm('');
   }, [data]);
 
+  // Threshold quick-edit state. `overrides` merges into data.protocols
+  // so colours update live after save without needing a fresh query.
+  // Cleared when data changes (next fetch reflects server state).
+  const { canContribute } = useAuth();
+  const [overrides, setOverrides] = useState<Record<string, ProtocolThresholdUpdate>>({});
+  const [editingProtocol, setEditingProtocol] = useState<ProtocolInfo | null>(null);
+  useEffect(() => {
+    setOverrides({});
+  }, [data]);
+
+  const handleProtocolSaved = useCallback(
+    (id: string, update: ProtocolThresholdUpdate) => {
+      setOverrides((prev) => ({ ...prev, [id]: update }));
+    },
+    [],
+  );
+
+  // Merge overrides into data.protocols when rendering compact-style responses.
+  // Non-compact responses (MediumRow/LongRow) don't carry protocols[] so pass data through.
+  const effectiveData = useMemo(() => {
+    if (!data || !isCompactResponse(data)) return data;
+    if (Object.keys(overrides).length === 0) return data;
+    return {
+      ...data,
+      protocols: data.protocols.map((p) =>
+        overrides[p.id] ? { ...p, ...overrides[p.id] } : p,
+      ),
+    };
+  }, [data, overrides]);
+
   // Use internal state if no external control is provided
   const [internalDisplay, setInternalDisplay] = useState<ConcentrationDisplayMode>(concentrationDisplay);
 
@@ -2895,36 +2981,46 @@ export function AggregationTable({
     );
   }
 
+  const onEditProtocol = canContribute
+    ? (protocol: ProtocolInfo) => setEditingProtocol(protocol)
+    : undefined;
+
   // Determine which table to render based on response type and outputFormat
   const renderTable = () => {
+    // Narrow effectiveData for the type-checker — the outer function has
+    // already early-returned when data is null, so this can't actually fire.
+    if (!effectiveData) return null;
     // For pivot and cards formats, we need compact response data
-    if (outputFormat === 'pivot' && isCompactResponse(data)) {
+    if (outputFormat === 'pivot' && isCompactResponse(effectiveData)) {
       return (
         <PivotTable
-          data={data}
+          data={effectiveData}
           aggregations={aggregations}
           concentrationDisplay={displayMode}
+          onEditProtocol={onEditProtocol}
         />
       );
     }
-    if (outputFormat === 'cards' && isCompactResponse(data)) {
+    if (outputFormat === 'cards' && isCompactResponse(effectiveData)) {
       return (
         <CardsView
-          data={data}
+          data={effectiveData}
           aggregations={aggregations}
           concentrationDisplay={displayMode}
+          onEditProtocol={onEditProtocol}
         />
       );
     }
     // Default: auto-detect from response type
-    if (isCompactResponse(data)) {
+    if (isCompactResponse(effectiveData)) {
       return (
         <CompactTable
-          data={data}
+          data={effectiveData}
           aggregations={aggregations}
           concentrationDisplay={displayMode}
           searchTerm={searchTerm}
           fillHeight={fillHeight}
+          onEditProtocol={onEditProtocol}
         />
       );
     } else if (isMediumResponse(data)) {
@@ -2953,8 +3049,8 @@ export function AggregationTable({
     <Paper sx={{ width: '100%', overflow: 'clip', ...(fillHeight && { height: '100%', display: 'flex', flexDirection: 'column' }) }}>
       <Box sx={{ p: 2, ...(fillHeight && { flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, overflow: 'clip' }) }}>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', mb: 1, flexShrink: 0, gap: 1 }}>
-          {isCompactResponse(data) && (
-            <ThresholdLegend protocols={data.protocols} />
+          {effectiveData && isCompactResponse(effectiveData) && (
+            <ThresholdLegend protocols={effectiveData.protocols} />
           )}
           <TextField
             size="small"
@@ -2988,6 +3084,14 @@ export function AggregationTable({
           {renderTable()}
         </Box>
       </Box>
+
+      {/* Threshold quick-edit dialog — opened from per-protocol pencil icons. */}
+      <ProtocolThresholdQuickEdit
+        open={editingProtocol !== null}
+        protocol={editingProtocol}
+        onClose={() => setEditingProtocol(null)}
+        onSaved={handleProtocolSaved}
+      />
     </Paper>
   );
 }
