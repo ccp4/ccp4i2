@@ -188,3 +188,68 @@ class RowExcluded:
 
 
 RowOutcome = Union[RowMatched, RowFiltered, RowExcluded]
+
+
+# ---------------------------------------------------------------------------
+# Executor payload (§7 execution, §6.6 columns, §10 echo-back)
+# ---------------------------------------------------------------------------
+
+# Column-preset tokens the LLM may emit for QuerySpec.columns (§6.6).
+COL_PRESET_PHYS_CHEM = "phys_chem"
+COL_PRESET_LIPINSKI = "lipinski"
+
+# Canonical ordered field sets on MolecularProperties. Order is the render
+# order in the payload; the frontend is free to override.
+PHYS_CHEM_COLUMNS: tuple = (
+    "molecular_weight",
+    "heavy_atom_count",
+    "hbd",
+    "hba",
+    "clogp",
+    "tpsa",
+    "rotatable_bonds",
+    "fraction_sp3",
+)
+LIPINSKI_COLUMNS: tuple = ("molecular_weight", "hbd", "hba", "clogp")
+
+
+@dataclass
+class TableRow:
+    """One matched measurement. Per-measurement, not per-compound — the
+    frontend may aggregate (geomean etc.) if desired."""
+
+    compound_id: str                               # UUID string
+    formatted_id: str                              # e.g. "NCL-00026042"
+    smiles: Optional[str]
+    value: float                                   # KPI value in the row's own unit
+    value_unit: Optional[str]                      # None if the row is genuinely unitless
+    value_in_query_unit: float                     # threshold-comparable — == value when no conversion happened
+    properties: dict                               # {phys_chem_key: float | None}
+
+
+@dataclass
+class TablePayload:
+    rows: List[TableRow]
+    property_columns: List[str]                    # ordered phys-chem keys shown on each row
+    footer_excluded: dict                          # {EXCLUDE_* reason: count} — surfaced in UI footer (§6.4)
+    filtered_silent: dict                          # {FILTER_* reason: count} — debug/telemetry, not UI-surfaced
+    scope_sentence: str                            # human echo-back (§10)
+
+
+@dataclass
+class SpecError:
+    """Executor-level spec validation failure (missing metric, unknown column, …)."""
+
+    field: str
+    message: str
+
+
+ExecutionResult = Union[
+    TablePayload,
+    TargetClarify,
+    TargetMiss,
+    ScopeError,
+    ProtocolClarify,
+    ProtocolMiss,
+    SpecError,
+]
