@@ -30,6 +30,7 @@ import {
   type ProtocolThresholdUpdate,
 } from './ProtocolThresholdQuickEdit';
 import { useAuth } from '@/lib/compounds/auth-context';
+import type { ScorecardConfig } from '@/types/compounds/models';
 import {
   ConcentrationDisplaySelector,
   ThresholdLegend,
@@ -55,6 +56,9 @@ interface AggregationTableProps {
   concentrationDisplay?: ConcentrationDisplayMode;
   /** Callback when concentration display mode changes */
   onConcentrationDisplayChange?: (mode: ConcentrationDisplayMode) => void;
+  /** Target scorecard config, used by Cards view to render a per-compound spider.
+   *  Passed down from pages that filter by a single target (so the config is unambiguous). */
+  scorecardConfig?: ScorecardConfig | null;
   /** If true, table fills available parent height instead of using fixed maxHeight */
   fillHeight?: boolean;
 }
@@ -70,6 +74,7 @@ export function AggregationTable({
   outputFormat,
   concentrationDisplay = 'natural',
   onConcentrationDisplayChange,
+  scorecardConfig,
   fillHeight = false,
 }: AggregationTableProps) {
   // Search state for filtering compounds in the table
@@ -191,6 +196,7 @@ export function AggregationTable({
           concentrationDisplay={displayMode}
           onEditProtocol={onEditProtocol}
           onScatterProtocol={handleScatterProtocol}
+          scorecardConfig={scorecardConfig}
         />
       );
     }

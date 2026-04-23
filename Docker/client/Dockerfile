@@ -81,6 +81,7 @@ COPY apps/compounds/frontend/lib/compounds/plateSeriesRanges.ts ./renderer/lib/c
 COPY apps/compounds/frontend/lib/compounds/useAdaptiveTableHeight.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/useScrollDirection.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/protocol-colour.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/scorecard.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/nlp-api.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 

@@ -29,7 +29,9 @@ import {
 } from '@/types/compounds/aggregation';
 import { MoleculeChip, CompoundNameChip } from '../MoleculeView';
 import { DataSeriesDetailModal } from '../DataSeriesDetailModal';
+import { CompoundSpider } from '../CompoundSpider';
 import { protocolColour } from '@/lib/compounds/protocol-colour';
+import type { ScorecardConfig } from '@/types/compounds/models';
 import {
   Order,
   PROPERTY_LABELS,
@@ -57,12 +59,14 @@ export function CardsView({
   concentrationDisplay = 'natural',
   onEditProtocol,
   onScatterProtocol,
+  scorecardConfig,
 }: {
   data: CompactAggregationResponse;
   aggregations: AggregationType[];
   concentrationDisplay: ConcentrationDisplayMode;
   onEditProtocol?: (protocol: ProtocolInfo) => void;
   onScatterProtocol?: (protocol: ProtocolInfo) => void;
+  scorecardConfig?: ScorecardConfig | null;
 }) {
   const router = useRouter();
 
@@ -308,8 +312,8 @@ export function CardsView({
                 {isCopied ? <Check fontSize="small" color="success" /> : <ContentCopy fontSize="small" />}
               </IconButton>
             </Tooltip>
-            {/* Header: Structure + Compound ID */}
-            <Box sx={{ display: 'flex', gap: 2, mb: 1.5 }}>
+            {/* Header: Structure + Compound ID (+ optional per-compound spider) */}
+            <Box sx={{ display: 'flex', gap: 2, mb: 1.5, alignItems: 'flex-start' }}>
               {row.smiles ? (
                 <MoleculeChip smiles={row.smiles} size={180} />
               ) : (
@@ -343,6 +347,11 @@ export function CardsView({
                   </Typography>
                 )}
               </Box>
+              {scorecardConfig && scorecardConfig.axes && scorecardConfig.axes.length > 0 && (
+                <Box sx={{ flexShrink: 0 }}>
+                  <CompoundSpider config={scorecardConfig} compound={row} size="small" />
+                </Box>
+              )}
             </Box>
 
             {/* Identifiers (barcode / supplier ref / aliases) */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { use, useCallback, useEffect, useState } from 'react';
+import { use, useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   Alert,
@@ -16,13 +16,16 @@ import {
 } from '@mui/material';
 import { ArrowBack, Save } from '@mui/icons-material';
 import { useCompoundsApi } from '@/lib/compounds/api';
+import { useAggregation } from '@/lib/compounds/aggregation-api';
 import { routes } from '@/lib/compounds/routes';
 import { ScorecardEditor } from '@/components/compounds/ScorecardEditor';
+import { CompoundSpider } from '@/components/compounds/CompoundSpider';
 import type {
   Protocol,
   ScorecardConfig,
   Target,
 } from '@/types/compounds/models';
+import type { CompactAggregationResponse } from '@/types/compounds/aggregation';
 
 interface PageProps {
   params: Promise<{ id: string }>;
@@ -37,6 +40,20 @@ export default function TargetScorecardPage({ params }: PageProps) {
     api.get<Target>(`targets/${id}/`);
   const { data: protocols, isLoading: protocolsLoading } =
     api.get<Protocol[]>('protocols/');
+
+  // Sample data for the live-preview spider — a single-target aggregation
+  // with all molecular properties (so Lipinski axes evaluate) and geomean
+  // values (so protocol/ratio/worst_of axes evaluate).
+  const { data: sampleData } = useAggregation({
+    predicates: { targets: [id] },
+    output_format: 'compact',
+    aggregations: ['geomean', 'count'],
+    include_properties: ['molecular_weight', 'clogp', 'hbd', 'hba'],
+  });
+  const sampleCompound = useMemo(() => {
+    const compact = sampleData as CompactAggregationResponse | undefined;
+    return compact?.data?.[0] ?? null;
+  }, [sampleData]);
 
   const [draft, setDraft] = useState<ScorecardConfig>({ axes: [] });
   const [saving, setSaving] = useState(false);
@@ -134,15 +151,40 @@ export default function TargetScorecardPage({ params }: PageProps) {
       ) : !target ? (
         <Alert severity="error">Target not found.</Alert>
       ) : (
-        <Paper sx={{ p: 3 }}>
-          <ScorecardEditor
-            value={draft}
-            protocols={protocols ?? []}
-            onChange={handleDraftChange}
-            error={saveError}
-            disabled={saving}
-          />
-        </Paper>
+        <Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start', flexWrap: 'wrap' }}>
+          <Paper sx={{ p: 3, flex: 1, minWidth: 360 }}>
+            <ScorecardEditor
+              value={draft}
+              protocols={protocols ?? []}
+              onChange={handleDraftChange}
+              error={saveError}
+              disabled={saving}
+            />
+          </Paper>
+
+          <Paper sx={{ p: 3, minWidth: 400, position: 'sticky', top: 16 }}>
+            <Typography variant="subtitle1" fontWeight={600} gutterBottom>
+              Live preview
+            </Typography>
+            {sampleCompound ? (
+              <>
+                <Typography
+                  variant="caption"
+                  color="text.secondary"
+                  sx={{ display: 'block', mb: 1 }}
+                >
+                  Sample compound: <strong>{sampleCompound.formatted_id}</strong>
+                </Typography>
+                <CompoundSpider config={draft} compound={sampleCompound} size="large" />
+              </>
+            ) : (
+              <Typography variant="caption" color="text.secondary">
+                No compound data available for this target yet — the preview
+                will appear here once the target has at least one assay.
+              </Typography>
+            )}
+          </Paper>
+        </Box>
       )}
     </Container>
   );

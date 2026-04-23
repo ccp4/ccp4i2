@@ -18,6 +18,8 @@ import {
 } from '@/types/compounds/aggregation';
 import { fetchAggregation, saveAggregationView } from '@/lib/compounds/aggregation-api';
 import { useAuth } from '@/lib/compounds/auth-context';
+import { useCompoundsApi } from '@/lib/compounds/api';
+import type { Target as TargetRecord } from '@/types/compounds/models';
 
 export default function AggregationPage() {
   return (
@@ -32,6 +34,7 @@ function AggregationPageContent() {
   const router = useRouter();
   const pathname = usePathname();
   const { canAdminister } = useAuth();
+  const api = useCompoundsApi();
 
   // Read initial values from URL params for deep linking
   // Support both single 'compound' param and multiple 'compounds' params
@@ -87,6 +90,15 @@ function AggregationPageContent() {
   const [currentIncludeProperties, setCurrentIncludeProperties] = useState<MolecularPropertyName[]>(initialIncludeProperties || []);
   const [currentIncludeIdentifiers, setCurrentIncludeIdentifiers] = useState<boolean>(initialIncludeIdentifiers);
   const [currentState, setCurrentState] = useState<PredicateBuilderState | null>(null);
+
+  // When exactly one target is selected, fetch its full record so we can pass
+  // its scorecard_config down to the Cards view for per-card spider rendering.
+  const singleTargetId =
+    currentState?.targets.length === 1 ? currentState.targets[0].id : null;
+  const { data: singleTargetRecord } = api.get<TargetRecord>(
+    singleTargetId ? `targets/${singleTargetId}/` : null,
+  );
+  const singleTargetScorecard = singleTargetRecord?.scorecard_config ?? null;
   const [concentrationDisplay, setConcentrationDisplay] = useState<ConcentrationDisplayMode>(initialConcentrationDisplay || 'natural');
   const [snackbarOpen, setSnackbarOpen] = useState(false);
   const [snackbarMessage, setSnackbarMessage] = useState('');
@@ -382,6 +394,7 @@ function AggregationPageContent() {
           outputFormat={currentOutputFormat}
           concentrationDisplay={concentrationDisplay}
           onConcentrationDisplayChange={setConcentrationDisplay}
+          scorecardConfig={singleTargetScorecard}
           fillHeight
         />
       </DetailPageLayout>
