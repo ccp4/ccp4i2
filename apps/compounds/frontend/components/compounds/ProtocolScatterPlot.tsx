@@ -181,6 +181,55 @@ function defaultScale(kind: AxisKind): 'linear' | 'logarithmic' {
   return kind === 'protocol' ? 'logarithmic' : 'linear';
 }
 
+/**
+ * Snap an axis extremum to a "nice" number that renders cleanly on tick labels.
+ *
+ * Log scale: snap to the nearest 1, 2, or 5 × 10ⁿ boundary that widens the axis
+ * (floor below for min, ceil above for max), giving 1 / 2 / 5 / 10 / 20 / 50 etc.
+ *
+ * Linear scale: snap to one significant figure at the range's natural step size,
+ * giving 10 / 20 / 50 / 100 rather than 8.734 or 468.57.
+ *
+ * `otherExtreme` is the opposite extreme of the same data series, used only to
+ * pick a sensible step size when the value itself is zero or the range is zero.
+ */
+function niceBound(
+  value: number,
+  direction: 'down' | 'up',
+  scale: 'linear' | 'logarithmic',
+  otherExtreme: number,
+): number {
+  if (!isFinite(value)) return direction === 'down' ? 0 : 1;
+
+  if (scale === 'logarithmic') {
+    if (value <= 0) return direction === 'down' ? 0.001 : 1000;
+    const exp = Math.floor(Math.log10(value));
+    const mantissa = value / Math.pow(10, exp);
+    const stops = [1, 2, 5, 10];
+    if (direction === 'down') {
+      // Largest nice ≤ mantissa
+      let best = 1;
+      for (const m of stops) if (m <= mantissa) best = m;
+      return best === 10 ? Math.pow(10, exp + 1) : best * Math.pow(10, exp);
+    } else {
+      // Smallest nice ≥ mantissa
+      for (const m of stops) if (m >= mantissa) return m * Math.pow(10, exp);
+      return 10 * Math.pow(10, exp);
+    }
+  }
+
+  // Linear: round to 1 sig fig at the natural step of the range.
+  const range = Math.max(Math.abs(value - otherExtreme), Math.abs(value));
+  if (range === 0) {
+    return direction === 'down' ? value - 1 : value + 1;
+  }
+  const stepExp = Math.floor(Math.log10(range)) - 1;
+  const step = Math.pow(10, stepExp);
+  return direction === 'down'
+    ? Math.floor(value / step) * step
+    : Math.ceil(value / step) * step;
+}
+
 export interface ProtocolScatterPlotHandle {
   /**
    * Open the scatter dialog with a specific protocol forced on the X axis.
@@ -457,7 +506,8 @@ export const ProtocolScatterPlot = forwardRef<
     );
   }, [chartData, xAxis.scale, yAxis.scale]);
 
-  // Calculate axis bounds
+  // Calculate axis bounds, snapped to "nice" numbers so the axis-extreme
+  // labels read as 1/2/5/10/20/50/100 rather than 7.9432... or 468.572...
   const axisBounds = useMemo(() => {
     const points = chartData.datasets[0]?.data as Array<{ x: number; y: number }> || [];
     if (points.length === 0) {
@@ -467,20 +517,16 @@ export const ProtocolScatterPlot = forwardRef<
     const xValues = points.map((p) => p.x);
     const yValues = points.map((p) => p.y);
 
-    const xMin = Math.min(...xValues);
-    const xMax = Math.max(...xValues);
-    const yMin = Math.min(...yValues);
-    const yMax = Math.max(...yValues);
-
-    // Add padding (10% on each side for log scale)
-    const xPadding = xAxis.scale === 'logarithmic' ? Math.pow(10, 0.1) : (xMax - xMin) * 0.1;
-    const yPadding = yAxis.scale === 'logarithmic' ? Math.pow(10, 0.1) : (yMax - yMin) * 0.1;
+    const xMinRaw = Math.min(...xValues);
+    const xMaxRaw = Math.max(...xValues);
+    const yMinRaw = Math.min(...yValues);
+    const yMaxRaw = Math.max(...yValues);
 
     return {
-      xMin: xAxis.scale === 'logarithmic' ? xMin / xPadding : xMin - xPadding,
-      xMax: xAxis.scale === 'logarithmic' ? xMax * xPadding : xMax + xPadding,
-      yMin: yAxis.scale === 'logarithmic' ? yMin / yPadding : yMin - yPadding,
-      yMax: yAxis.scale === 'logarithmic' ? yMax * yPadding : yMax + yPadding,
+      xMin: niceBound(xMinRaw, 'down', xAxis.scale, xMaxRaw),
+      xMax: niceBound(xMaxRaw, 'up', xAxis.scale, xMinRaw),
+      yMin: niceBound(yMinRaw, 'down', yAxis.scale, yMaxRaw),
+      yMax: niceBound(yMaxRaw, 'up', yAxis.scale, yMinRaw),
     };
   }, [chartData, xAxis.scale, yAxis.scale]);
 
