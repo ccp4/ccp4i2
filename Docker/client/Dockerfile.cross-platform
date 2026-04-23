@@ -81,6 +81,7 @@ COPY client/assets/svgicons/ ./renderer/public/svgicons/
 COPY apps/compounds/frontend/app/registry/ ./renderer/app/registry/
 COPY apps/compounds/frontend/app/assays/ ./renderer/app/assays/
 COPY apps/compounds/frontend/app/constructs/ ./renderer/app/constructs/
+COPY apps/compounds/frontend/app/nlp/ ./renderer/app/nlp/
 COPY apps/compounds/frontend/app/api/proxy/compounds/ ./renderer/app/api/proxy/compounds/
 
 # Copy app selector as the root page (replaces the redirect-only page)
@@ -104,6 +105,7 @@ COPY apps/compounds/frontend/lib/compounds/plate-extraction.ts ./renderer/lib/co
 COPY apps/compounds/frontend/lib/compounds/plateSeriesRanges.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/useAdaptiveTableHeight.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/protocol-colour.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/nlp-api.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 
 # Note: RDKit comes from @rdkit/rdkit npm package, JSME from client/assets/
