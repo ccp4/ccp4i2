@@ -83,6 +83,7 @@ COPY apps/compounds/frontend/lib/compounds/useScrollDirection.ts ./renderer/lib/
 COPY apps/compounds/frontend/lib/compounds/protocol-colour.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/scorecard.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/lib/compounds/nlp-api.ts ./renderer/lib/compounds/
+COPY apps/compounds/frontend/lib/compounds/nlp-beta.ts ./renderer/lib/compounds/
 COPY apps/compounds/frontend/types/compounds/ ./renderer/types/compounds/
 
 # Note: RDKit comes from @rdkit/rdkit npm package, JSME from client/assets/
