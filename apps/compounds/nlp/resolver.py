@@ -32,7 +32,8 @@ from dataclasses import replace
 from difflib import SequenceMatcher
 from typing import Dict, Iterable, List, Optional, Tuple
 
-from django.db.models import Count, Max, QuerySet
+from django.contrib.auth import get_user_model
+from django.db.models import Count, Max, Q, QuerySet
 
 from compounds.assays.models import Assay, DataSeries, Protocol
 from compounds.registry.models import Gene, Target
@@ -40,7 +41,9 @@ from compounds.utils import normalize_ref as normalize
 
 from .spec import (
     FIELD_ASSAY_TARGET,
+    FIELD_ASSAYED_BY,
     FIELD_PROTOCOL_HINT,
+    FIELD_REGISTERED_BY,
     FIELD_REGISTRATION_TARGET,
     SCOPE_ASSAY_ONLY,
     SCOPE_BOTH_SAME,
@@ -54,13 +57,20 @@ from .spec import (
     ResolvedProtocol,
     ResolvedTarget,
     ResolvedTargets,
+    ResolvedUser,
     ScopeError,
     TargetCandidate,
     TargetClarify,
     TargetMiss,
     TargetResolution,
     TargetsResolution,
+    UserCandidate,
+    UserClarify,
+    UserMiss,
+    UserResolution,
 )
+
+User = get_user_model()
 
 
 _FUZZY_MIN_QUERY_LEN = 4
@@ -415,3 +425,175 @@ def resolve_protocol(
         suggestions=[_protocol_candidate(p, scoped_assays) for p in suggestions],
         filter_index=filter_index,
     )
+
+
+# ---------------------------------------------------------------------------
+# User resolution (compound registrant / assay creator)
+# ---------------------------------------------------------------------------
+
+
+def _user_display(user) -> str:
+    """Best human-readable rendering for a User — first_name+last_name,
+    falling through to display_name / email / username. Keeps picker
+    chips meaningful even when accounts are sparsely populated."""
+    first = (user.first_name or "").strip()
+    last = (user.last_name or "").strip()
+    if first and last:
+        return f"{first} {last}"
+    if first:
+        return first
+    if last:
+        return last
+    profile = getattr(user, "profile", None)
+    display_name = getattr(profile, "display_name", None) if profile else None
+    if display_name:
+        return display_name
+    return user.email or user.username
+
+
+def _user_candidate(user, *, n_compounds: int = 0, n_assays: int = 0) -> UserCandidate:
+    return UserCandidate(
+        id=str(user.pk),
+        display=_user_display(user),
+        email=user.email or None,
+        n_compounds=n_compounds,
+        n_assays=n_assays,
+    )
+
+
+def _user_pool(user) -> set:
+    """Normalised strings a user's name/email/username should match."""
+    pool: set = set()
+    for field in ("first_name", "last_name", "username", "email"):
+        value = getattr(user, field, None) or ""
+        norm = normalize(value)
+        if norm:
+            pool.add(norm)
+    # Full name "First Last" normalises to "firstlast" — users often type
+    # names in this combined form.
+    first = (user.first_name or "").strip()
+    last = (user.last_name or "").strip()
+    if first and last:
+        combined = normalize(f"{first} {last}")
+        if combined:
+            pool.add(combined)
+    # Email local-part too: "alice.jones@ncl.ac.uk" → also match "alice.jones"
+    email = (user.email or "").strip()
+    if "@" in email:
+        local = email.split("@", 1)[0]
+        norm = normalize(local)
+        if norm:
+            pool.add(norm)
+    # UserProfile.display_name if present.
+    profile = getattr(user, "profile", None)
+    display_name = getattr(profile, "display_name", None) if profile else None
+    if display_name:
+        norm = normalize(display_name)
+        if norm:
+            pool.add(norm)
+    pool.discard("")
+    return pool
+
+
+def resolve_user(
+    as_typed: str,
+    scope_queryset: QuerySet,
+    *,
+    field: str,
+    filter_index: int = 0,
+    pinned_id: Optional[str] = None,
+) -> UserResolution:
+    """Resolve a user name/email/username against a pre-filtered User
+    queryset (typically users who have registered any compound, or users
+    who have created any assay).
+
+    ``field`` and ``filter_index`` are tagged onto Clarify/Miss results
+    so the UI knows which place on the selector to pin.
+    """
+    if pinned_id:
+        user = scope_queryset.filter(pk=pinned_id).first()
+        if user is None:
+            return UserMiss(
+                query=as_typed or "", suggestions=[],
+                field=field, filter_index=filter_index,
+            )
+        return ResolvedUser(user=user, matched_via="pinned_id", query=as_typed or "")
+
+    norm_query = normalize(as_typed or "")
+    if not norm_query:
+        return UserMiss(
+            query=as_typed or "", suggestions=[],
+            field=field, filter_index=filter_index,
+        )
+
+    users = list(
+        scope_queryset.select_related("profile")
+        .annotate(
+            _n_compounds=Count("registered_compounds", distinct=True),
+            _n_assays=Count("created_assays", distinct=True),
+        )
+    )
+
+    exact = []
+    partial = []  # substring of normalised query in any pool entry
+    for user in users:
+        pool = _user_pool(user)
+        if norm_query in pool:
+            exact.append(user)
+            continue
+        # Partial: user's query is contained in some pool entry (e.g. "alice"
+        # in "alicejones"). Cheap and catches common prefix typing.
+        if any(norm_query in entry for entry in pool):
+            partial.append(user)
+
+    def _to_candidate(user) -> UserCandidate:
+        return _user_candidate(
+            user,
+            n_compounds=getattr(user, "_n_compounds", 0) or 0,
+            n_assays=getattr(user, "_n_assays", 0) or 0,
+        )
+
+    if len(exact) == 1 and not partial:
+        return ResolvedUser(user=exact[0], matched_via="exact", query=as_typed)
+    if exact or partial:
+        # Exact matches first; within each tier, more-prolific users first
+        # (likely the intended "Alice" is the one with many compounds/assays).
+        def _rank(user):
+            if field == FIELD_ASSAYED_BY:
+                return -(getattr(user, "_n_assays", 0) or 0)
+            return -(getattr(user, "_n_compounds", 0) or 0)
+
+        exact.sort(key=_rank)
+        partial.sort(key=_rank)
+        tiered = exact + partial
+        tiered = tiered[: _CLARIFY_MAX_CANDIDATES]
+        return UserClarify(
+            query=as_typed,
+            candidates=[_to_candidate(u) for u in tiered],
+            field=field,
+            filter_index=filter_index,
+        )
+
+    # Miss — surface the top few most-prolific users in scope as a hint.
+    users.sort(
+        key=lambda u: (
+            -(getattr(u, "_n_assays" if field == FIELD_ASSAYED_BY else "_n_compounds", 0) or 0)
+        )
+    )
+    suggestions = [_to_candidate(u) for u in users[:_MISS_SUGGESTION_COUNT]]
+    return UserMiss(
+        query=as_typed, suggestions=suggestions,
+        field=field, filter_index=filter_index,
+    )
+
+
+def compound_registrars_qs() -> QuerySet:
+    """All users who have registered at least one compound — the eligible
+    pool for `registered_by` resolution."""
+    return User.objects.filter(registered_compounds__isnull=False).distinct()
+
+
+def assay_creators_qs() -> QuerySet:
+    """All users who have created at least one assay — the eligible pool
+    for per-filter `assayed_by` resolution."""
+    return User.objects.filter(created_assays__isnull=False).distinct()

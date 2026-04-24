@@ -40,7 +40,9 @@ export interface MeasurementFilter {
   metric: string | null;
   threshold: Threshold | null;
   assay_date_range?: DateRange | null;
+  assayed_by_as_typed?: string | null;
   protocol_id?: string | null;  // set by view on continuation
+  assayed_by_id?: string | null;
 }
 
 export interface CompoundSelector {
@@ -48,8 +50,10 @@ export interface CompoundSelector {
   assay_target_as_typed: string | null;
   measurement_filters: MeasurementFilter[];
   registered_date_range?: DateRange | null;
+  registered_by_as_typed?: string | null;
   registration_target_id?: string | null;
   assay_target_id?: string | null;
+  registered_by_id?: string | null;
 }
 
 export interface TargetCandidate {
@@ -66,6 +70,14 @@ export interface ProtocolCandidate {
   n_compounds: number;
 }
 
+export interface UserCandidate {
+  id: string;
+  display: string;
+  email: string | null;
+  n_compounds: number;
+  n_assays: number;
+}
+
 export type NLPResponse =
   | {
       status: 'selection';
@@ -80,15 +92,15 @@ export type NLPResponse =
       status: 'clarify';
       field: string;
       query: string;
-      candidates: TargetCandidate[] | ProtocolCandidate[];
-      filter_index?: number;           // present for protocol clarify
+      candidates: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[];
+      filter_index?: number;           // present for protocol / assayed-by clarify
       partial_selector: CompoundSelector;
     }
   | {
       status: 'miss';
       field: string;
       query: string;
-      suggestions: TargetCandidate[] | ProtocolCandidate[];
+      suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[];
       filter_index?: number;
     }
   | { status: 'not_a_query'; reason: string }
@@ -102,6 +114,8 @@ export type NLPResponse =
 export const FIELD_REGISTRATION_TARGET = 'registration_target_as_typed';
 export const FIELD_ASSAY_TARGET = 'assay_target_as_typed';
 export const FIELD_PROTOCOL_HINT = 'protocol_hint';
+export const FIELD_REGISTERED_BY = 'registered_by_as_typed';
+export const FIELD_ASSAYED_BY = 'assayed_by_as_typed';
 
 
 // ---------------------------------------------------------------------------
@@ -160,7 +174,7 @@ export async function postNlpQuery(
 export function applyClarifyPick(
   partial: CompoundSelector | undefined,
   field: string,
-  candidate: { id: string; name: string },
+  candidate: { id: string; name?: string | null; display?: string | null },
   filterIndex?: number,
 ): CompoundSelector {
   if (!partial || !Array.isArray(partial.measurement_filters)) {
@@ -174,19 +188,34 @@ export function applyClarifyPick(
     ...partial,
     measurement_filters: partial.measurement_filters.map((f) => ({ ...f })),
   };
+  // Targets and protocols carry `name`; users carry `display`. Accept
+  // either so the same helper serves all field kinds.
+  const canonical = candidate.name ?? candidate.display ?? null;
   if (field === FIELD_REGISTRATION_TARGET) {
     next.registration_target_id = candidate.id;
-    next.registration_target_as_typed = candidate.name;
+    if (canonical) next.registration_target_as_typed = canonical;
   } else if (field === FIELD_ASSAY_TARGET) {
     next.assay_target_id = candidate.id;
-    next.assay_target_as_typed = candidate.name;
+    if (canonical) next.assay_target_as_typed = canonical;
+  } else if (field === FIELD_REGISTERED_BY) {
+    next.registered_by_id = candidate.id;
+    if (canonical) next.registered_by_as_typed = canonical;
   } else if (field === FIELD_PROTOCOL_HINT) {
     const idx = filterIndex ?? 0;
     if (idx >= 0 && idx < next.measurement_filters.length) {
       next.measurement_filters[idx] = {
         ...next.measurement_filters[idx],
         protocol_id: candidate.id,
-        protocol_hint: candidate.name,
+        ...(canonical ? { protocol_hint: canonical } : {}),
+      };
+    }
+  } else if (field === FIELD_ASSAYED_BY) {
+    const idx = filterIndex ?? 0;
+    if (idx >= 0 && idx < next.measurement_filters.length) {
+      next.measurement_filters[idx] = {
+        ...next.measurement_filters[idx],
+        assayed_by_id: candidate.id,
+        ...(canonical ? { assayed_by_as_typed: canonical } : {}),
       };
     }
   }

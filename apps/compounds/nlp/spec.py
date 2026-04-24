@@ -40,6 +40,8 @@ SCOPE_CROSS = "cross"
 FIELD_REGISTRATION_TARGET = "registration_target_as_typed"
 FIELD_ASSAY_TARGET = "assay_target_as_typed"
 FIELD_PROTOCOL_HINT = "protocol_hint"
+FIELD_REGISTERED_BY = "registered_by_as_typed"
+FIELD_ASSAYED_BY = "assayed_by_as_typed"
 
 # Filter / exclusion reasons from the row evaluator. Preserved from the pre-
 # pivot shape because the evaluator still classifies rows during selection;
@@ -109,8 +111,12 @@ class MeasurementFilter:
     # to those whose measurements under this filter's protocol fall in
     # the window — "HTRF IC50 < 100 nM measured in Q1 2026".
     assay_date_range: Optional[DateRange] = None
-    # Pinned protocol id on clarify continuation — LLM never emits this.
+    # Name of the person who ran the assay — filters on Assay.created_by.
+    # Resolved via the user resolver; clarifies when ambiguous.
+    assayed_by_as_typed: Optional[str] = None
+    # Pinned IDs on clarify continuation — LLM never emits these.
     protocol_id: Optional[str] = None
+    assayed_by_id: Optional[str] = None
 
 
 @dataclass
@@ -132,10 +138,14 @@ class CompoundSelector:
     # Date range on Compound.registered_at — filters the base compound
     # scope BEFORE any measurement filters intersect.
     registered_date_range: Optional[DateRange] = None
+    # Name of the person who registered/made/synthesised the compound —
+    # filters on Compound.registered_by. Resolved via the user resolver.
+    registered_by_as_typed: Optional[str] = None
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None
     assay_target_id: Optional[str] = None
+    registered_by_id: Optional[str] = None
 
 
 # ---------------------------------------------------------------------------
@@ -244,6 +254,56 @@ ProtocolResolution = Union[ResolvedProtocol, ProtocolClarify, ProtocolMiss]
 
 
 # ---------------------------------------------------------------------------
+# User resolution (compound registrant / assay creator)
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class UserCandidate:
+    """Thin JSON-serialisable view of a User for clarify / miss payloads.
+
+    ``display`` is the best human-readable rendering we can offer in a
+    chip — falls through first_name+last_name → display_name → email →
+    username. ``email`` is always shown as the secondary disambiguator
+    in the picker since names collide (Alice J, Alice J).
+    """
+
+    id: str
+    display: str
+    email: Optional[str] = None
+    n_compounds: int = 0          # how many compounds this user registered (hint for registered-by picker)
+    n_assays: int = 0             # how many assays this user created (hint for assayed-by picker)
+
+
+@dataclass
+class ResolvedUser:
+    # Type-any because importing django.contrib.auth.User here would
+    # pull Django models into this spec module — keep it agnostic.
+    user: object
+    matched_via: str
+    query: str
+
+
+@dataclass
+class UserClarify:
+    query: str
+    candidates: List[UserCandidate]
+    field: str = ""                # FIELD_REGISTERED_BY / FIELD_ASSAYED_BY — set by caller
+    filter_index: int = 0          # only meaningful for FIELD_ASSAYED_BY
+
+
+@dataclass
+class UserMiss:
+    query: str
+    suggestions: List[UserCandidate]
+    field: str = ""
+    filter_index: int = 0
+
+
+UserResolution = Union[ResolvedUser, UserClarify, UserMiss]
+
+
+# ---------------------------------------------------------------------------
 # Row-level evaluation (metric + unit tri-state). Evaluator module consumes
 # these — public because tests over the evaluator also do.
 # ---------------------------------------------------------------------------
@@ -304,6 +364,8 @@ ExecutionResult = Union[
     ScopeError,
     ProtocolClarify,
     ProtocolMiss,
+    UserClarify,
+    UserMiss,
     SpecError,
 ]
 

@@ -19,6 +19,7 @@ import {
   postNlpQuery,
   ProtocolCandidate,
   TargetCandidate,
+  UserCandidate,
 } from '@/lib/compounds/nlp-api';
 import { NLPResults } from './NLPResults';
 
@@ -59,7 +60,7 @@ export function NLPPanel() {
     async (
       partial: CompoundSelector,
       field: string,
-      candidate: TargetCandidate | ProtocolCandidate,
+      candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
       filterIndex?: number,
     ) => {
       const pinned = applyClarifyPick(partial, field, candidate, filterIndex);

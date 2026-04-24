@@ -23,7 +23,9 @@
  */
 
 const NLP_BETA_EMAILS = new Set<string>([
+  'martin.noble@newcastle.ac.uk',
   'martin.noble@ncl.ac.uk',
+  'nmemn@newcastle.ac.uk',
 ]);
 
 export function isNlpBetaUser(email: string | null | undefined): boolean {

@@ -11,13 +11,16 @@ from __future__ import annotations
 import pytest
 
 from datetime import datetime, timezone
+from django.contrib.auth import get_user_model
 from compounds.assays.models import AnalysisResult, Assay, DataSeries, Protocol
 from compounds.nlp.executor import execute
 from compounds.nlp.spec import (
     CompoundSelector,
     CompoundSelection,
     DateRange,
+    FIELD_ASSAYED_BY,
     FIELD_PROTOCOL_HINT,
+    FIELD_REGISTERED_BY,
     FIELD_REGISTRATION_TARGET,
     MeasurementFilter,
     ProtocolClarify,
@@ -27,8 +30,12 @@ from compounds.nlp.spec import (
     TargetClarify,
     TargetMiss,
     Threshold,
+    UserClarify,
+    UserMiss,
 )
 from compounds.registry.models import Compound, Gene, Target
+
+User = get_user_model()
 
 
 # ---------------------------------------------------------------------------
@@ -513,3 +520,183 @@ def test_scope_sentence_includes_date_phrases(dated_world):
     assert isinstance(res, CompoundSelection)
     assert "registered between 2025-01-01 and 2026-01-01" in res.scope_sentence
     assert "measured between 2026-01-01 and 2026-04-01" in res.scope_sentence
+
+
+# ---------------------------------------------------------------------------
+# User filters — registered_by on CompoundSelector, assayed_by on
+# MeasurementFilter
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def user_world(db):
+    """Two chemists (Alice, Bob) each registering and assaying compounds.
+    Enables us to exercise both filters and their clarify paths."""
+    alice = User.objects.create_user(
+        username="alice.jones", email="alice.jones@ncl.ac.uk",
+        first_name="Alice", last_name="Jones",
+    )
+    bob = User.objects.create_user(
+        username="bob.smith", email="bob.smith@ncl.ac.uk",
+        first_name="Bob", last_name="Smith",
+    )
+    # Second "Alice" — different last name. Clarify trigger for "Alice".
+    alice2 = User.objects.create_user(
+        username="alice.brown", email="alice.brown@ncl.ac.uk",
+        first_name="Alice", last_name="Brown",
+    )
+
+    t = Target.objects.create(name="CDK4")
+    c_alice = Compound.objects.create(target=t, smiles="CCO", registered_by=alice)
+    c_bob = Compound.objects.create(target=t, smiles="CCN", registered_by=bob)
+    c_alice2 = Compound.objects.create(target=t, smiles="CCC", registered_by=alice2)
+
+    protocol = Protocol.objects.create(name="CDK4 HTRF")
+    assay_by_alice = Assay.objects.create(protocol=protocol, target=t, created_by=alice)
+    assay_by_bob = Assay.objects.create(protocol=protocol, target=t, created_by=bob)
+    # alice2 also runs one assay — needed so "Alice" on the assayed_by
+    # path is ambiguous across the assay_creators_qs scope.
+    assay_by_alice2 = Assay.objects.create(protocol=protocol, target=t, created_by=alice2)
+    # Alice's compound measured by Bob (cross-hatched to test we don't
+    # conflate registrant with assayer).
+    _mk_result(assay_by_bob, c_alice,
+               status="valid", results={"KPI": "IC50", "IC50": 5.0, "kpi_unit": "nM"})
+    # Bob's compound measured by Alice.
+    _mk_result(assay_by_alice, c_bob,
+               status="valid", results={"KPI": "IC50", "IC50": 10.0, "kpi_unit": "nM"})
+    # alice2's compound measured by herself.
+    _mk_result(assay_by_alice2, c_alice2,
+               status="valid", results={"KPI": "IC50", "IC50": 15.0, "kpi_unit": "nM"})
+
+    return {
+        "alice": alice, "bob": bob, "alice2": alice2,
+        "c_alice": c_alice, "c_bob": c_bob, "c_alice2": c_alice2,
+        "protocol": protocol,
+    }
+
+
+def test_registered_by_unique_full_name_resolves(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="Alice Jones",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [user_world["c_alice"].formatted_id]
+
+
+def test_registered_by_unique_username_resolves(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="bob.smith",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [user_world["c_bob"].formatted_id]
+
+
+def test_registered_by_unique_email_resolves(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="bob.smith@ncl.ac.uk",
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [user_world["c_bob"].formatted_id]
+
+
+def test_registered_by_ambiguous_first_name_clarifies(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="Alice",
+    ))
+    assert isinstance(res, UserClarify)
+    assert res.field == FIELD_REGISTERED_BY
+    displays = {c.display for c in res.candidates}
+    assert displays == {"Alice Jones", "Alice Brown"}
+
+
+def test_registered_by_miss_surfaces_suggestions(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="Zachary",
+    ))
+    assert isinstance(res, UserMiss)
+    assert res.field == FIELD_REGISTERED_BY
+    assert len(res.suggestions) > 0
+
+
+def test_registered_by_pinned_id_bypasses_resolver(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="Alice",
+        registered_by_id=str(user_world["alice"].pk),
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [user_world["c_alice"].formatted_id]
+
+
+def test_assayed_by_filters_per_measurement(user_world):
+    """c_alice was measured BY Bob; filtering assayed_by=Alice Jones
+    should select only compounds Alice herself assayed."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                assayed_by_as_typed="Alice Jones",
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    # Alice measured only c_bob — so c_bob survives.
+    assert res.compound_formatted_ids == [user_world["c_bob"].formatted_id]
+
+
+def test_assayed_by_ambiguous_clarifies_with_filter_index(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                assayed_by_as_typed="Alice",
+            ),
+        ],
+    ))
+    assert isinstance(res, UserClarify)
+    assert res.field == FIELD_ASSAYED_BY
+    assert res.filter_index == 0
+
+
+def test_registered_and_assayed_by_combined(user_world):
+    """Registered by Alice Jones AND assayed by Bob Smith → only
+    c_alice (registered by Alice, measured by Bob)."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="Alice Jones",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                assayed_by_as_typed="Bob Smith",
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [user_world["c_alice"].formatted_id]
+
+
+def test_scope_sentence_includes_user_phrases(user_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        registered_by_as_typed="Alice Jones",
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF",
+                metric="IC50",
+                assayed_by_as_typed="Bob Smith",
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "registered by Alice Jones" in res.scope_sentence
+    assert "assayed by Bob Smith" in res.scope_sentence

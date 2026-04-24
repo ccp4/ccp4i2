@@ -288,7 +288,8 @@ def test_measurement_filters_items_strictly_shaped():
     item = filters["items"]
     assert item["additionalProperties"] is False
     assert set(item["required"]) == {
-        "protocol_hint", "metric", "threshold", "assay_date_range",
+        "protocol_hint", "metric", "threshold",
+        "assay_date_range", "assayed_by_as_typed",
     }
 
 

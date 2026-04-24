@@ -532,6 +532,7 @@ Work is delivered as narrow vertical slices that build the backend first and def
 | 8 | Evaluation harness + golden set | Shipped | §12 |
 | 9 | **Pivot** — QuerySpec → CompoundSelector; output → redirect to `/assays/aggregate` | Shipped | §0 pivot note, §19.7 update |
 | 10 | Date filters — `registered_date_range` + per-filter `assay_date_range` | Shipped | §7, §19.7 item 1 partial |
+| 11 | User filters — `registered_by_as_typed` + per-filter `assayed_by_as_typed` with User resolver + clarify | Shipped | §6 (user resolution), §19.7 item 1 closing |
 
 Rollout dependencies: §16 prerequisites (Gene model + DDU hydration) are done. Demo + Kawamura backfill happens after the executor lands but before the feature flag is turned on for those instances.
 
@@ -884,7 +885,7 @@ This applies generally: **the LLM must not synthesise filter fields from words t
 
 **Cross-protocol selectivity is now SHIPPED** in slice 9 — it's a natural consequence of the measurement_filters list shape. Two remaining top-priority post-pivot directions:
 
-- **Compound-rooted queries** — **date range filters shipped in slice 10.** `registered_date_range` on the selector + `assay_date_range` per filter, half-open `{after, before}` ISO ranges. LLM resolves relative phrasings ("last 30 days", "in Q1 2026") against a `[Today: YYYY-MM-DD]` line prepended to the user message so the system prompt stays cache-friendly. Scope sentence renders the date clauses. Remaining compound-rooted work: `registered_by_as_typed` + per-filter `assayed_by_as_typed` (next slice — needs a User resolver with clarify for multi-match names), and `missing_measurement_for` (anti-join, one-liner in Django ORM once the shape is settled).
+- **Compound-rooted queries** — **date range filters shipped in slice 10, user filters shipped in slice 11.** Selector gains `registered_date_range` + `registered_by_as_typed`; each measurement filter gains `assay_date_range` + `assayed_by_as_typed`. User resolver has its own clarify/miss triad (ambiguous "Alice" surfaces a chip picker with display name + email + compound/assay counts; pool scoped to users who actually have provenance data). LLM resolves relative dates via `[Today: YYYY-MM-DD]` on the user message. Remaining compound-rooted work: `missing_measurement_for` (anti-join — compound has NO matching row — one-liner in Django ORM, shape TBD).
 - **Explain-this-query.** One-click reveal of the resolved `CompoundSelector`, scope sentence, and the redirect URL itself. Every chemist who uses an LLM over their data asks *"what did it actually do?"* The v2 pivot already does 80% of this — the redirect URL IS the explanation (bookmarkable, editable, shareable). Exposing the resolved selector + scope sentence alongside the click-to-redirect button is mostly a UI lift. Surfaces the LLM's interpretation before the user commits to navigating.
 
 Post-pivot, two directions that WERE on the list naturally fold into either the shipped selector (selectivity) or are queued as field-additions (compound-rooted). The one remaining forward-looking bucket that does NOT fold in:

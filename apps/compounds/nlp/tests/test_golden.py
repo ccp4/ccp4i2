@@ -85,6 +85,7 @@ def _expected_to_llm_output(expected: dict) -> dict:
         "registration_target_as_typed": None,
         "assay_target_as_typed": None,
         "registered_date_range": None,
+        "registered_by_as_typed": None,
         "measurement_filters": [],
     }
     if t == "not_a_query":
@@ -98,6 +99,8 @@ def _expected_to_llm_output(expected: dict) -> dict:
         base["assay_target_as_typed"] = expected["assay_target_as_typed"]
     if "registered_date_range" in expected:
         base["registered_date_range"] = _date_range_payload(expected["registered_date_range"])
+    if "registered_by_as_typed" in expected:
+        base["registered_by_as_typed"] = expected["registered_by_as_typed"]
 
     raw_filters = expected.get("measurement_filters") or []
     filters: List[dict] = []
@@ -113,6 +116,7 @@ def _expected_to_llm_output(expected: dict) -> dict:
             "metric": flt.get("metric"),
             "threshold": threshold_out,
             "assay_date_range": _date_range_payload(flt.get("assay_date_range")),
+            "assayed_by_as_typed": flt.get("assayed_by_as_typed"),
         })
     base["measurement_filters"] = filters
     return base
@@ -152,7 +156,7 @@ def _filter_diff(
     idx: int,
 ) -> List[str]:
     diffs: List[str] = []
-    for field in ("protocol_hint", "metric"):
+    for field in ("protocol_hint", "metric", "assayed_by_as_typed"):
         a = getattr(actual, field)
         e = expected.get(field)
         if a != e:
@@ -178,7 +182,11 @@ def _filter_diff(
 
 def _selector_diff(actual: CompoundSelector, expected: dict) -> Optional[str]:
     diffs: List[str] = []
-    for field in ("registration_target_as_typed", "assay_target_as_typed"):
+    for field in (
+        "registration_target_as_typed",
+        "assay_target_as_typed",
+        "registered_by_as_typed",
+    ):
         a = getattr(actual, field)
         e = expected.get(field)
         if a != e:

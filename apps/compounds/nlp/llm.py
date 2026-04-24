@@ -76,6 +76,17 @@ Rules:
   - assay_date_range null → no date constraint on the assay
 - threshold is {op, value, unit}. op is one of <, <=, >, >=, =, !=.
   Echo the unit verbatim as typed ("uM" not "µM").
+- People: `registered_by_as_typed` (on the selector) filters on WHO
+  registered / made / synthesised the compound. `assayed_by_as_typed`
+  (per filter) filters on WHO ran the assay — use for phrasings like
+  "tested by", "assayed by", "run by". Emit the name/username/email
+  VERBATIM as the user typed it; the backend resolves. Examples:
+    "compounds registered by Alice"            → registered_by: "Alice"
+    "compounds made by Alice Jones"            → registered_by: "Alice Jones"
+    "IC50 in HTRF tested by alice.jones"       → filter.assayed_by: "alice.jones"
+    "assays run by alice.jones@ncl.ac.uk"      → filter.assayed_by: "alice.jones@ncl.ac.uk"
+  If the user names themselves via "I", "me", "my" without naming a
+  person, leave the field null — the backend cannot resolve first-person.
 - Dates: both `registered_date_range` (on the selector) and
   `assay_date_range` (on each filter) are {after, before} half-open
   ISO-date ranges — `after` is the inclusive lower bound, `before`
@@ -135,6 +146,7 @@ PROMPT_SCHEMA: dict = {
         "registration_target_as_typed": {"type": ["string", "null"]},
         "assay_target_as_typed": {"type": ["string", "null"]},
         "registered_date_range": _DATE_RANGE_SUBSCHEMA,
+        "registered_by_as_typed": {"type": ["string", "null"]},
         "measurement_filters": {
             "type": "array",
             "items": {
@@ -154,8 +166,12 @@ PROMPT_SCHEMA: dict = {
                         "required": ["op", "value", "unit"],
                     },
                     "assay_date_range": _DATE_RANGE_SUBSCHEMA,
+                    "assayed_by_as_typed": {"type": ["string", "null"]},
                 },
-                "required": ["protocol_hint", "metric", "threshold", "assay_date_range"],
+                "required": [
+                    "protocol_hint", "metric", "threshold",
+                    "assay_date_range", "assayed_by_as_typed",
+                ],
             },
         },
     },
@@ -165,6 +181,7 @@ PROMPT_SCHEMA: dict = {
         "registration_target_as_typed",
         "assay_target_as_typed",
         "registered_date_range",
+        "registered_by_as_typed",
         "measurement_filters",
     ],
 }
@@ -210,6 +227,7 @@ def _filter_from_dict(data: Any) -> MeasurementFilter:
         metric=data.get("metric"),
         threshold=threshold,
         assay_date_range=_date_range_from_dict(data.get("assay_date_range")),
+        assayed_by_as_typed=data.get("assayed_by_as_typed"),
     )
 
 
@@ -239,6 +257,7 @@ def _to_parse_result(data: dict) -> PromptParseResult:
         registration_target_as_typed=data.get("registration_target_as_typed"),
         assay_target_as_typed=data.get("assay_target_as_typed"),
         registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
+        registered_by_as_typed=data.get("registered_by_as_typed"),
         measurement_filters=filters,
     )
 

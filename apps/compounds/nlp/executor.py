@@ -31,8 +31,16 @@ from compounds.assays.models import AnalysisResult
 from compounds.registry.models import Compound, Target
 
 from .evaluator import evaluate_row
-from .resolver import resolve_protocol, resolve_targets
+from .resolver import (
+    assay_creators_qs,
+    compound_registrars_qs,
+    resolve_protocol,
+    resolve_targets,
+    resolve_user,
+)
 from .spec import (
+    FIELD_ASSAYED_BY,
+    FIELD_REGISTERED_BY,
     SCOPE_ASSAY_ONLY,
     SCOPE_BOTH_SAME,
     SCOPE_CROSS,
@@ -46,6 +54,7 @@ from .spec import (
     ProtocolMiss,
     ResolvedProtocol,
     ResolvedTargets,
+    ResolvedUser,
     RowMatched,
     ScopeError,
     SpecError,
@@ -72,29 +81,60 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
     if not isinstance(rt, ResolvedTargets):
         return rt
 
-    # Resolve each filter's protocol hint (if any) in order. First
-    # ambiguity short-circuits — the UI clarifies one filter at a time.
+    # Selector-level user resolution (registered-by). Sequential clarify —
+    # any unresolved user short-circuits the whole selector.
+    resolved_registered_by = None
+    if selector.registered_by_as_typed or selector.registered_by_id:
+        ru = resolve_user(
+            selector.registered_by_as_typed or "",
+            compound_registrars_qs(),
+            field=FIELD_REGISTERED_BY,
+            pinned_id=selector.registered_by_id,
+        )
+        if not isinstance(ru, ResolvedUser):
+            return ru
+        resolved_registered_by = ru
+
+    # Resolve each filter's protocol hint + assayed-by user (if any) in
+    # order. First ambiguity short-circuits — the UI clarifies one
+    # filter at a time.
     resolved_protocols: List[Optional[ResolvedProtocol]] = []
+    resolved_assayed_bys: List[Optional[ResolvedUser]] = []
     for idx, flt in enumerate(selector.measurement_filters):
         if flt.protocol_hint is None and flt.protocol_id is None:
-            # No protocol constraint — filter matches any protocol in scope.
             resolved_protocols.append(None)
-            continue
-        rp = resolve_protocol(
-            flt.protocol_hint or "", rt,
-            pinned_id=flt.protocol_id,
-            filter_index=idx,
-        )
-        if not isinstance(rp, ResolvedProtocol):
-            return rp  # ProtocolClarify / ProtocolMiss already tagged with filter_index
-        resolved_protocols.append(rp)
+        else:
+            rp = resolve_protocol(
+                flt.protocol_hint or "", rt,
+                pinned_id=flt.protocol_id,
+                filter_index=idx,
+            )
+            if not isinstance(rp, ResolvedProtocol):
+                return rp
+            resolved_protocols.append(rp)
+
+        if flt.assayed_by_as_typed or flt.assayed_by_id:
+            ru = resolve_user(
+                flt.assayed_by_as_typed or "",
+                assay_creators_qs(),
+                field=FIELD_ASSAYED_BY,
+                filter_index=idx,
+                pinned_id=flt.assayed_by_id,
+            )
+            if not isinstance(ru, ResolvedUser):
+                return ru
+            resolved_assayed_bys.append(ru)
+        else:
+            resolved_assayed_bys.append(None)
 
     # Apply each filter and intersect the surviving compound sets.
-    base_compound_ids = _base_scope_compound_ids(rt, selector)
+    base_compound_ids = _base_scope_compound_ids(rt, selector, resolved_registered_by)
     surviving: Optional[Set[str]] = None
 
-    for flt, rp in zip(selector.measurement_filters, resolved_protocols):
-        matching = _filter_matching_compounds(rt, rp, flt)
+    for flt, rp, ru in zip(
+        selector.measurement_filters, resolved_protocols, resolved_assayed_bys,
+    ):
+        matching = _filter_matching_compounds(rt, rp, flt, ru)
         surviving = matching if surviving is None else surviving & matching
 
     if surviving is None:
@@ -121,7 +161,11 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
         target_names=target_names,
         protocol_names=protocol_names,
         n_matched=len(formatted_ids),
-        scope_sentence=_scope_sentence(rt, selector, resolved_protocols),
+        scope_sentence=_scope_sentence(
+            rt, selector, resolved_protocols,
+            resolved_registered_by=resolved_registered_by,
+            resolved_assayed_bys=resolved_assayed_bys,
+        ),
     )
 
 
@@ -143,16 +187,19 @@ def _apply_date_range(qs, field: str, dr: Optional[DateRange]):
     return qs
 
 
-def _base_scope_compound_ids(rt: ResolvedTargets, selector: CompoundSelector) -> Set[str]:
-    """Compound IDs that pass the target scope + registered-date filter.
+def _base_scope_compound_ids(
+    rt: ResolvedTargets,
+    selector: CompoundSelector,
+    resolved_registered_by: Optional[ResolvedUser],
+) -> Set[str]:
+    """Compound IDs that pass the target scope + registered-date filter
+    + registered-by filter.
 
     Each scope_kind maps to a different base query:
     - SCOPE_REG_ONLY / SCOPE_BOTH_SAME / SCOPE_CROSS: compounds registered
       to the registration target.
     - SCOPE_ASSAY_ONLY: compounds that have at least one DataSeries under
       an Assay with the given target.
-
-    ``registered_date_range`` (if set) filters on Compound.registered_at.
     """
     if rt.registration is not None:
         qs = Compound.objects.filter(target=rt.registration)
@@ -168,6 +215,9 @@ def _base_scope_compound_ids(rt: ResolvedTargets, selector: CompoundSelector) ->
 
     qs = _apply_date_range(qs, "registered_at", selector.registered_date_range)
 
+    if resolved_registered_by is not None:
+        qs = qs.filter(registered_by=resolved_registered_by.user)
+
     return set(qs.values_list("pk", flat=True))
 
 
@@ -175,6 +225,7 @@ def _filter_matching_compounds(
     rt: ResolvedTargets,
     rp: Optional[ResolvedProtocol],
     flt: MeasurementFilter,
+    ru: Optional[ResolvedUser],
 ) -> Set[str]:
     """Compound IDs whose AnalysisResult rows satisfy this filter.
 
@@ -182,12 +233,16 @@ def _filter_matching_compounds(
     The row itself is per-measurement; a compound is in the set if *any*
     of its rows pass (compound-level OR within a filter).
 
-    ``assay_date_range`` (if set) filters rows by Assay.created_at.
+    Optional per-filter constraints:
+    - ``assay_date_range`` — filters rows by Assay.created_at.
+    - ``ru`` — resolved assayed-by user; filters on Assay.created_by.
     """
     qs = _scoped_analysis_results(rt)
     if rp is not None:
         qs = qs.filter(data_series__assay__protocol=rp.protocol)
     qs = _apply_date_range(qs, "data_series__assay__created_at", flt.assay_date_range)
+    if ru is not None:
+        qs = qs.filter(data_series__assay__created_by=ru.user)
 
     matching: Set[str] = set()
     for ar in qs.iterator():
@@ -246,9 +301,12 @@ def _scope_sentence(
     rt: ResolvedTargets,
     selector: CompoundSelector,
     resolved_protocols: List[Optional[ResolvedProtocol]],
+    *,
+    resolved_registered_by: Optional[ResolvedUser] = None,
+    resolved_assayed_bys: Optional[List[Optional[ResolvedUser]]] = None,
 ) -> str:
-    """Human echo-back (§10). Three clauses: the target scope, an optional
-    registered-date phrase, and the AND-joined filter list (if any)."""
+    """Human echo-back (§10). Target scope, optional registered-date and
+    registered-by phrases, and the AND-joined filter list (if any)."""
     reg = rt.registration.name if rt.registration is not None else ""
     assay = rt.assay.name if rt.assay is not None else ""
     if rt.scope_kind == SCOPE_BOTH_SAME:
@@ -262,13 +320,24 @@ def _scope_sentence(
     else:
         base = "Showing compounds"
 
+    parens: List[str] = []
     reg_date_phrase = _date_range_phrase(selector.registered_date_range, "registered")
     if reg_date_phrase:
-        base += f" ({reg_date_phrase})"
+        parens.append(reg_date_phrase)
+    if resolved_registered_by is not None:
+        from .resolver import _user_display  # avoid circular at module load
+        parens.append(f"registered by {_user_display(resolved_registered_by.user)}")
+    if parens:
+        base += " (" + ", ".join(parens) + ")"
+
+    if resolved_assayed_bys is None:
+        resolved_assayed_bys = [None] * len(selector.measurement_filters)
 
     filter_clauses: List[str] = []
-    for flt, rp in zip(selector.measurement_filters, resolved_protocols):
-        clause = _filter_clause(flt, rp)
+    for flt, rp, ru in zip(
+        selector.measurement_filters, resolved_protocols, resolved_assayed_bys,
+    ):
+        clause = _filter_clause(flt, rp, ru)
         if clause:
             filter_clauses.append(clause)
     if filter_clauses:
@@ -279,6 +348,7 @@ def _scope_sentence(
 def _filter_clause(
     flt: MeasurementFilter,
     rp: Optional[ResolvedProtocol],
+    ru: Optional[ResolvedUser] = None,
 ) -> str:
     """Render one MeasurementFilter as human prose for the scope sentence."""
     protocol_name = rp.protocol.name if rp is not None else None
@@ -294,6 +364,9 @@ def _filter_clause(
     date_phrase = _date_range_phrase(flt.assay_date_range, "measured")
     if date_phrase:
         parts.append(date_phrase)
+    if ru is not None:
+        from .resolver import _user_display
+        parts.append(f"assayed by {_user_display(ru.user)}")
     return " ".join(parts)
 
 

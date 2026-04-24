@@ -57,6 +57,8 @@ from .spec import (
     TargetClarify,
     TargetMiss,
     Threshold,
+    UserClarify,
+    UserMiss,
 )
 
 logger = logging.getLogger(__name__)
@@ -134,7 +136,9 @@ def _filter_from_dict(data: Any) -> MeasurementFilter:
         metric=data.get("metric"),
         threshold=_threshold_from_dict(data.get("threshold")),
         assay_date_range=_date_range_from_dict(data.get("assay_date_range")),
+        assayed_by_as_typed=data.get("assayed_by_as_typed"),
         protocol_id=data.get("protocol_id"),
+        assayed_by_id=data.get("assayed_by_id"),
     )
 
 
@@ -149,8 +153,10 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         assay_target_as_typed=data.get("assay_target_as_typed"),
         measurement_filters=[_filter_from_dict(f) for f in raw_filters],
         registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
+        registered_by_as_typed=data.get("registered_by_as_typed"),
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
+        registered_by_id=data.get("registered_by_id"),
     )
 
 
@@ -205,13 +211,13 @@ def _serialize(
         }
         return body, http_status.HTTP_200_OK
 
-    if isinstance(result, (TargetClarify, ProtocolClarify)):
+    if isinstance(result, (TargetClarify, ProtocolClarify, UserClarify)):
         body = {"status": "clarify", **dataclasses.asdict(result)}
         if selector is not None:
             body["partial_selector"] = dataclasses.asdict(selector)
         return body, http_status.HTTP_200_OK
 
-    if isinstance(result, (TargetMiss, ProtocolMiss)):
+    if isinstance(result, (TargetMiss, ProtocolMiss, UserMiss)):
         body = {"status": "miss", **dataclasses.asdict(result)}
         return body, http_status.HTTP_200_OK
 

@@ -12,10 +12,22 @@ import {
 import { ArrowForward } from '@mui/icons-material';
 import {
   CompoundSelector,
+  FIELD_ASSAYED_BY,
+  FIELD_PROTOCOL_HINT,
+  FIELD_REGISTERED_BY,
   NLPResponse,
   ProtocolCandidate,
   TargetCandidate,
+  UserCandidate,
 } from '@/lib/compounds/nlp-api';
+
+type CandidateKind = 'target' | 'protocol' | 'user';
+
+function kindForField(field: string): CandidateKind {
+  if (field === FIELD_PROTOCOL_HINT) return 'protocol';
+  if (field === FIELD_REGISTERED_BY || field === FIELD_ASSAYED_BY) return 'user';
+  return 'target';
+}
 
 const PREVIEW_COMPOUNDS = 5;
 
@@ -24,7 +36,7 @@ interface Props {
   onClarifyPick: (
     partial: CompoundSelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
     filterIndex?: number,
   ) => void;
 }
@@ -127,15 +139,18 @@ function ClarifyView({
   onPick: (
     partial: CompoundSelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
     filterIndex?: number,
   ) => void;
 }) {
   const { field, query, candidates, partial_selector, filter_index } = response;
-  const isProtocol = field === 'protocol_hint';
-  const heading = isProtocol
-    ? `Which ${query !== '' ? `"${query}" ` : ''}protocol did you mean?`
-    : `Which target did you mean by "${query}"?`;
+  const kind = kindForField(field);
+  const heading =
+    kind === 'protocol'
+      ? `Which ${query !== '' ? `"${query}" ` : ''}protocol did you mean?`
+      : kind === 'user'
+        ? `Which person did you mean by "${query}"?`
+        : `Which target did you mean by "${query}"?`;
 
   // If the server didn't include partial_selector (e.g. a pre-pivot server
   // still emitting the old partial_spec shape), picking a chip would crash
@@ -159,7 +174,7 @@ function ClarifyView({
         {candidates.map((candidate) => (
           <Chip
             key={candidate.id}
-            label={<CandidateLabel candidate={candidate} isProtocol={isProtocol} />}
+            label={<CandidateLabel candidate={candidate} kind={kind} />}
             onClick={
               partialSelectorMissing
                 ? undefined
@@ -177,12 +192,12 @@ function ClarifyView({
 
 function CandidateLabel({
   candidate,
-  isProtocol,
+  kind,
 }: {
-  candidate: TargetCandidate | ProtocolCandidate;
-  isProtocol: boolean;
+  candidate: TargetCandidate | ProtocolCandidate | UserCandidate;
+  kind: CandidateKind;
 }) {
-  if (isProtocol) {
+  if (kind === 'protocol') {
     const p = candidate as ProtocolCandidate;
     const lastRun = p.last_run ? new Date(p.last_run).toLocaleDateString() : 'never';
     return (
@@ -190,6 +205,22 @@ function CandidateLabel({
         <Typography variant="body2" sx={{ fontWeight: 500 }}>{p.name}</Typography>
         <Typography variant="caption" color="text.secondary">
           {p.n_runs} runs · {p.n_compounds} compounds · last run {lastRun}
+        </Typography>
+      </Box>
+    );
+  }
+  if (kind === 'user') {
+    const u = candidate as UserCandidate;
+    const counts: string[] = [];
+    if (u.n_compounds > 0) counts.push(`${u.n_compounds} compounds`);
+    if (u.n_assays > 0) counts.push(`${u.n_assays} assays`);
+    return (
+      <Box>
+        <Typography variant="body2" sx={{ fontWeight: 500 }}>{u.display}</Typography>
+        <Typography variant="caption" color="text.secondary">
+          {u.email ?? ''}
+          {u.email && counts.length ? ' · ' : ''}
+          {counts.join(' · ')}
         </Typography>
       </Box>
     );
@@ -217,23 +248,25 @@ function MissView({
   response: Extract<NLPResponse, { status: 'miss' }>;
 }) {
   const { query, suggestions, field } = response;
-  const isProtocol = field === 'protocol_hint';
-  const kind = isProtocol ? 'protocol' : 'target';
+  const kind = kindForField(field);
+  const label = kind === 'protocol' ? 'protocol' : kind === 'user' ? 'person' : 'target';
+
+  const chipLabel = (s: TargetCandidate | ProtocolCandidate | UserCandidate): string => {
+    if (kind === 'protocol') return (s as ProtocolCandidate).name;
+    if (kind === 'user') return (s as UserCandidate).display;
+    return (s as TargetCandidate).name;
+  };
 
   return (
     <Alert severity="info" sx={{ alignItems: 'flex-start' }}>
       <Typography variant="body2" sx={{ mb: 1 }}>
-        No {kind} matched <strong>&ldquo;{query}&rdquo;</strong>.
+        No {label} matched <strong>&ldquo;{query}&rdquo;</strong>.
         {suggestions.length > 0 ? ' Did you mean:' : ''}
       </Typography>
       {suggestions.length > 0 && (
         <Stack direction="row" spacing={1} sx={{ flexWrap: 'wrap', gap: 0.5, mt: 0.5 }}>
           {suggestions.map((s) => (
-            <Chip
-              key={s.id}
-              size="small"
-              label={isProtocol ? (s as ProtocolCandidate).name : (s as TargetCandidate).name}
-            />
+            <Chip key={s.id} size="small" label={chipLabel(s)} />
           ))}
         </Stack>
       )}
