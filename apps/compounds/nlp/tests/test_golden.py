@@ -35,6 +35,7 @@ import yaml
 
 from compounds.nlp.llm import _to_parse_result
 from compounds.nlp.spec import (
+    AssaySelector,
     CompoundSelector,
     DateRange,
     MeasurementFilter,
@@ -46,7 +47,9 @@ from compounds.nlp.spec import (
 
 GOLDEN_PATH = Path(__file__).parent / "golden" / "prompts.yaml"
 
-VALID_ENTRY_TYPES = {"selector", "selector_with_clarify", "not_a_query"}
+VALID_ENTRY_TYPES = {
+    "selector", "selector_with_clarify", "assay_selector", "not_a_query",
+}
 VALID_THRESHOLD_OPS = {"<", "<=", ">", ">=", "=", "==", "!="}
 
 RUN_ONLINE = os.environ.get("RUN_NLP_ONLINE_EVAL", "").lower() in ("true", "1", "yes")
@@ -87,10 +90,21 @@ def _expected_to_llm_output(expected: dict) -> dict:
         "registered_date_range": None,
         "registered_by_as_typed": None,
         "measurement_filters": [],
+        "assay_selector": None,
     }
     if t == "not_a_query":
         base["not_a_query"] = True
         base["reason"] = expected.get("reason") or "Not a compound-selection query."
+        return base
+
+    if t == "assay_selector":
+        raw = expected.get("assay_selector") or {}
+        base["assay_selector"] = {
+            "target_as_typed": raw.get("target_as_typed"),
+            "protocol_hint": raw.get("protocol_hint"),
+            "date_range": _date_range_payload(raw.get("date_range")),
+            "created_by_as_typed": raw.get("created_by_as_typed"),
+        }
         return base
 
     if "registration_target_as_typed" in expected:
@@ -294,6 +308,37 @@ def test_every_selector_entry_round_trips_via_to_parse_result():
         )
         diff = _selector_diff(result, entry["expected"])
         assert diff is None, f"entry {entry['name']!r}: round-trip diff: {diff}"
+
+
+def test_every_assay_selector_entry_round_trips():
+    """Assay-selection entries must parse back to an AssaySelector (not
+    a CompoundSelector) via the `assay_selector != null` dispatch."""
+    for entry in GOLDEN:
+        if entry["expected"].get("type") != "assay_selector":
+            continue
+        llm_output = _expected_to_llm_output(entry["expected"])
+        result = _to_parse_result(llm_output)
+        assert isinstance(result, AssaySelector), (
+            f"entry {entry['name']!r}: produced {type(result).__name__}, not AssaySelector"
+        )
+        expected_as = entry["expected"].get("assay_selector") or {}
+        for field in ("target_as_typed", "protocol_hint", "created_by_as_typed"):
+            assert getattr(result, field) == expected_as.get(field), (
+                f"entry {entry['name']!r}: {field} diff "
+                f"— expected {expected_as.get(field)!r}, got {getattr(result, field)!r}"
+            )
+        expected_date = expected_as.get("date_range")
+        actual_date = result.date_range
+        if expected_date is None:
+            assert actual_date is None, f"entry {entry['name']!r}: date_range should be null"
+        else:
+            assert actual_date is not None, f"entry {entry['name']!r}: date_range missing"
+            assert actual_date.after == expected_date.get("after"), (
+                f"entry {entry['name']!r}: date_range.after diff"
+            )
+            assert actual_date.before == expected_date.get("before"), (
+                f"entry {entry['name']!r}: date_range.before diff"
+            )
 
 
 def test_every_not_a_query_entry_round_trips():

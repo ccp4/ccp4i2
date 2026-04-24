@@ -28,6 +28,7 @@ from typing import Any, List, Optional
 
 from .azure_client import get_azure_openai_client, get_model_name
 from .spec import (
+    AssaySelector,
     CompoundSelector,
     DateRange,
     MeasurementFilter,
@@ -112,9 +113,23 @@ Rules:
   phys-chem properties, or display formats — ignore those preferences.
   Those live on the aggregation page the user lands on; your job ends
   at the compound selection.
-- If the request is not a compound-selection query (summarise the SAR,
-  register this compound, delete something, ask a meta-question), emit
-  {"not_a_query": true, "reason": "<short explanation>"}.
+- The two query families: by default the user is asking about
+  COMPOUNDS ("mEGFR compounds with HTRF IC50 < 10 uM") — populate the
+  top-level compound-selector fields and leave `assay_selector` null.
+  If the user is instead asking about a list of ASSAY EXPERIMENTS
+  ("CDK4 assays carried out last week", "HTRF assays conducted by
+  Alice", "assays against BRD4 in Q1 2026") — populate the nested
+  `assay_selector` object and leave ALL the top-level compound-selector
+  fields null (registration_target_as_typed, assay_target_as_typed,
+  registered_date_range, registered_by_as_typed, measurement_filters=[]).
+  The grammatical subject of the prompt is the tell: "compounds" →
+  compound selector; "assays" / "experiments" / "runs" → assay selector.
+- Inside `assay_selector`, the fields mirror the compound filters but
+  single-valued (one target, one protocol, one creator, one date
+  range). "tested/conducted/carried out by X" → created_by_as_typed.
+- If the request is not any kind of selection query (summarise the
+  SAR, register this compound, delete something, ask a meta-question),
+  emit {"not_a_query": true, "reason": "<short explanation>"}.
 
 Never emit compound IDs, numeric result values, counts, or catalog
 entries. Only the selector shape.
@@ -134,6 +149,19 @@ _DATE_RANGE_SUBSCHEMA: dict = {
         "before": {"type": ["string", "null"]},
     },
     "required": ["after", "before"],
+}
+
+
+_ASSAY_SELECTOR_SUBSCHEMA: dict = {
+    "type": ["object", "null"],
+    "additionalProperties": False,
+    "properties": {
+        "target_as_typed": {"type": ["string", "null"]},
+        "protocol_hint": {"type": ["string", "null"]},
+        "date_range": _DATE_RANGE_SUBSCHEMA,
+        "created_by_as_typed": {"type": ["string", "null"]},
+    },
+    "required": ["target_as_typed", "protocol_hint", "date_range", "created_by_as_typed"],
 }
 
 
@@ -174,6 +202,10 @@ PROMPT_SCHEMA: dict = {
                 ],
             },
         },
+        # Populated INSTEAD OF the top-level compound-selector fields
+        # when the user is asking for a list of assays rather than
+        # compounds. The LLM leaves whichever isn't applicable null.
+        "assay_selector": _ASSAY_SELECTOR_SUBSCHEMA,
     },
     "required": [
         "not_a_query",
@@ -183,6 +215,7 @@ PROMPT_SCHEMA: dict = {
         "registered_date_range",
         "registered_by_as_typed",
         "measurement_filters",
+        "assay_selector",
     ],
 }
 
@@ -231,12 +264,37 @@ def _filter_from_dict(data: Any) -> MeasurementFilter:
     )
 
 
+def _assay_selector_from_dict(data: Any) -> AssaySelector:
+    if not isinstance(data, dict):
+        raise ValueError(f"assay_selector not a dict: {data!r}")
+    return AssaySelector(
+        target_as_typed=data.get("target_as_typed"),
+        protocol_hint=data.get("protocol_hint"),
+        date_range=_date_range_from_dict(data.get("date_range")),
+        created_by_as_typed=data.get("created_by_as_typed"),
+    )
+
+
 def _to_parse_result(data: dict) -> PromptParseResult:
-    """Map a validated LLM JSON object to a CompoundSelector / NotAQuery /
-    ParseError."""
+    """Map a validated LLM JSON object to a CompoundSelector /
+    AssaySelector / NotAQuery / ParseError.
+
+    Dispatch rule: if ``assay_selector`` is a non-null object, treat
+    the query as an assay-selection query and build an AssaySelector.
+    Otherwise build a CompoundSelector from the top-level fields."""
     if data.get("not_a_query"):
         reason = data.get("reason") or "Not a compound-selection query."
         return NotAQuery(reason=reason)
+
+    assay_selector_raw = data.get("assay_selector")
+    if assay_selector_raw is not None:
+        try:
+            return _assay_selector_from_dict(assay_selector_raw)
+        except ValueError as e:
+            return ParseError(
+                message=f"Malformed assay_selector: {e}",
+                raw=json.dumps(assay_selector_raw),
+            )
 
     raw_filters = data.get("measurement_filters") or []
     if not isinstance(raw_filters, list):

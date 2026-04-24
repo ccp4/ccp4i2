@@ -35,16 +35,20 @@ from .resolver import (
     assay_creators_qs,
     compound_registrars_qs,
     resolve_protocol,
+    resolve_target,
     resolve_targets,
     resolve_user,
 )
 from .spec import (
+    FIELD_ASSAY_TARGET,
     FIELD_ASSAYED_BY,
     FIELD_REGISTERED_BY,
     SCOPE_ASSAY_ONLY,
     SCOPE_BOTH_SAME,
     SCOPE_CROSS,
     SCOPE_REG_ONLY,
+    AssaySelection,
+    AssaySelector,
     CompoundSelection,
     CompoundSelector,
     DateRange,
@@ -53,6 +57,7 @@ from .spec import (
     ProtocolClarify,
     ProtocolMiss,
     ResolvedProtocol,
+    ResolvedTarget,
     ResolvedTargets,
     ResolvedUser,
     RowMatched,
@@ -62,6 +67,8 @@ from .spec import (
     TargetMiss,
     Threshold,
 )
+
+from compounds.assays.models import Assay
 
 
 def execute(selector: CompoundSelector) -> ExecutionResult:
@@ -367,6 +374,125 @@ def _filter_clause(
     if ru is not None:
         from .resolver import _user_display
         parts.append(f"assayed by {_user_display(ru.user)}")
+    return " ".join(parts)
+
+
+# ---------------------------------------------------------------------------
+# Assay-selection path — introduced in the §19.7 "assay list" follow-up.
+# Parallel to the compound-selection path above but simpler: a single
+# queryset against Assay, filtered by target / protocol / created_by /
+# date, returning Assay IDs for the /assays?ids=... redirect.
+# ---------------------------------------------------------------------------
+
+
+def execute_assay_query(selector: AssaySelector) -> ExecutionResult:
+    """Run an AssaySelector and return an AssaySelection, or a
+    clarify/miss/error to surface back to the user.
+
+    Unlike the compound path, an AssaySelector has no list of filters
+    and no multi-predicate intersection — it's a straight queryset
+    against Assay with optional target/protocol/creator/date
+    predicates. The result is a flat list of assay IDs for the
+    aggregation-page's sibling, `/assays?ids=...`.
+    """
+    # Target resolution. The assay query has a single target field
+    # (not the two-target dance of CompoundSelector).
+    resolved_target: Optional[ResolvedTarget] = None
+    if selector.target_as_typed or selector.target_id:
+        rt_single = resolve_target(
+            selector.target_as_typed or "",
+            pinned_id=selector.target_id,
+        )
+        if isinstance(rt_single, TargetClarify):
+            # Tag the field so the UI routes the picker correctly.
+            from dataclasses import replace
+            return replace(rt_single, field=FIELD_ASSAY_TARGET)
+        if isinstance(rt_single, TargetMiss):
+            from dataclasses import replace
+            return replace(rt_single, field=FIELD_ASSAY_TARGET)
+        resolved_target = rt_single
+
+    # Protocol resolution — scope-bound to the resolved target (if any).
+    # Reuse resolve_protocol with a ResolvedTargets shaped as assay-only
+    # so _scope_assays narrows protocols to ones that have actually been
+    # run against this target.
+    resolved_protocol: Optional[ResolvedProtocol] = None
+    if selector.protocol_hint or selector.protocol_id:
+        rt_proxy = ResolvedTargets(
+            registration=None,
+            assay=resolved_target.target if resolved_target is not None else None,
+            scope_kind=SCOPE_ASSAY_ONLY if resolved_target is not None else SCOPE_REG_ONLY,
+        )
+        rp = resolve_protocol(
+            selector.protocol_hint or "",
+            rt_proxy,
+            pinned_id=selector.protocol_id,
+        )
+        if not isinstance(rp, ResolvedProtocol):
+            return rp
+        resolved_protocol = rp
+
+    # User resolution — scope-bound to users who have actually created
+    # any assay (not the whole Django auth table).
+    resolved_creator: Optional[ResolvedUser] = None
+    if selector.created_by_as_typed or selector.created_by_id:
+        ru = resolve_user(
+            selector.created_by_as_typed or "",
+            assay_creators_qs(),
+            field=FIELD_ASSAYED_BY,
+            pinned_id=selector.created_by_id,
+        )
+        if not isinstance(ru, ResolvedUser):
+            return ru
+        resolved_creator = ru
+
+    # Build the assay queryset.
+    qs = Assay.objects.all()
+    if resolved_target is not None:
+        qs = qs.filter(target=resolved_target.target)
+    if resolved_protocol is not None:
+        qs = qs.filter(protocol=resolved_protocol.protocol)
+    if resolved_creator is not None:
+        qs = qs.filter(created_by=resolved_creator.user)
+    qs = _apply_date_range(qs, "created_at", selector.date_range)
+
+    assay_ids = [
+        str(pk) for pk in qs.order_by("-created_at").values_list("pk", flat=True)
+    ]
+
+    target_names = [resolved_target.target.name] if resolved_target is not None else []
+    protocol_names = (
+        [resolved_protocol.protocol.name] if resolved_protocol is not None else []
+    )
+
+    return AssaySelection(
+        assay_ids=assay_ids,
+        n_matched=len(assay_ids),
+        target_names=target_names,
+        protocol_names=protocol_names,
+        scope_sentence=_assay_scope_sentence(
+            selector, resolved_target, resolved_protocol, resolved_creator,
+        ),
+    )
+
+
+def _assay_scope_sentence(
+    selector: AssaySelector,
+    target: Optional[ResolvedTarget],
+    protocol: Optional[ResolvedProtocol],
+    creator: Optional[ResolvedUser],
+) -> str:
+    parts: List[str] = ["Showing assays"]
+    if protocol is not None:
+        parts.append(f"using {protocol.protocol.name}")
+    if target is not None:
+        parts.append(f"against {target.target.name}")
+    date_phrase = _date_range_phrase(selector.date_range, "carried out")
+    if date_phrase:
+        parts.append(date_phrase)
+    if creator is not None:
+        from .resolver import _user_display
+        parts.append(f"conducted by {_user_display(creator.user)}")
     return " ".join(parts)
 
 

@@ -11,6 +11,7 @@ import {
 } from '@mui/material';
 import { ArrowForward } from '@mui/icons-material';
 import {
+  AssaySelector,
   CompoundSelector,
   FIELD_ASSAYED_BY,
   FIELD_PROTOCOL_HINT,
@@ -34,7 +35,7 @@ const PREVIEW_COMPOUNDS = 5;
 interface Props {
   response: NLPResponse;
   onClarifyPick: (
-    partial: CompoundSelector,
+    partial: CompoundSelector | AssaySelector,
     field: string,
     candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
     filterIndex?: number,
@@ -45,6 +46,8 @@ export function NLPResults({ response, onClarifyPick }: Props) {
   switch (response.status) {
     case 'selection':
       return <SelectionView response={response} />;
+    case 'assay_selection':
+      return <AssaySelectionView response={response} />;
     case 'clarify':
       return <ClarifyView response={response} onPick={onClarifyPick} />;
     case 'miss':
@@ -120,6 +123,67 @@ function SelectionView({
             onClick={handleClick}
           >
             View as cards
+          </Button>
+        </Box>
+      )}
+    </Paper>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Assay selection — like SelectionView but redirects to the /assays list
+// rather than /assays/aggregate.
+// ---------------------------------------------------------------------------
+
+function AssaySelectionView({
+  response,
+}: {
+  response: Extract<NLPResponse, { status: 'assay_selection' }>;
+}) {
+  const { n_matched, assay_ids, scope_sentence, redirect_url } = response;
+  const previewCount = Math.min(PREVIEW_COMPOUNDS, assay_ids.length);
+  const overflow = Math.max(0, assay_ids.length - previewCount);
+
+  const handleClick = () => {
+    window.location.assign(redirect_url);
+  };
+
+  return (
+    <Paper elevation={1} sx={{ p: 3 }}>
+      <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+        {scope_sentence}
+      </Typography>
+
+      <Typography variant="h4" sx={{ mb: 2 }}>
+        {n_matched === 0 ? (
+          'No matching assays found'
+        ) : (
+          <>
+            Found <strong>{n_matched.toLocaleString()}</strong>{' '}
+            matching {n_matched === 1 ? 'assay' : 'assays'}
+          </>
+        )}
+      </Typography>
+
+      {n_matched > 0 && (
+        <Box sx={{ mb: 3 }}>
+          <Typography variant="caption" color="text.secondary">
+            {overflow > 0
+              ? `(${n_matched.toLocaleString()} total — view the list for all of them)`
+              : `(${n_matched.toLocaleString()} ${n_matched === 1 ? 'assay' : 'assays'})`}
+          </Typography>
+        </Box>
+      )}
+
+      {n_matched > 0 && (
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Button
+            variant="contained"
+            size="large"
+            endIcon={<ArrowForward />}
+            onClick={handleClick}
+          >
+            View assay list
           </Button>
         </Box>
       )}

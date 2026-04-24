@@ -400,6 +400,23 @@ class AssayViewSet(ReversionMixin, viewsets.ModelViewSet):
     ordering_fields = ['created_at']
     ordering = ['-created_at']
 
+    def get_queryset(self):
+        """Extend the default queryset with a comma-separated `ids`
+        filter so the NLP compound-app can redirect to
+        `/assays?ids=<uuid,uuid,...>` after an assay-selection query.
+
+        Kept as a raw query-string handler rather than a filterset
+        field so the URL shape stays human-readable (`?ids=A,B,C`
+        not `?id__in=A&id__in=B&id__in=C`) and matches the aggregation
+        page's `compound=<csv>` convention.
+        """
+        qs = super().get_queryset()
+        ids_param = self.request.query_params.get('ids')
+        if ids_param:
+            ids = [i.strip() for i in ids_param.split(',') if i.strip()]
+            qs = qs.filter(id__in=ids)
+        return qs
+
     def perform_destroy(self, instance):
         """Delete assay and clean up associated analysis results."""
         # Delete analysis results first (they're not CASCADE from DataSeries)

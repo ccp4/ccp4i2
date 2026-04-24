@@ -56,6 +56,22 @@ export interface CompoundSelector {
   registered_by_id?: string | null;
 }
 
+/**
+ * Assay-selection query (sibling of CompoundSelector). The LLM emits
+ * exactly one of {CompoundSelector, AssaySelector}; the view dispatches
+ * to the right executor based on type.
+ */
+export interface AssaySelector {
+  target_as_typed: string | null;
+  protocol_hint?: string | null;
+  date_range?: DateRange | null;
+  created_by_as_typed?: string | null;
+  // Pinnings from clarify continuation
+  target_id?: string | null;
+  protocol_id?: string | null;
+  created_by_id?: string | null;
+}
+
 export interface TargetCandidate {
   id: string;
   name: string;
@@ -83,6 +99,15 @@ export type NLPResponse =
       status: 'selection';
       redirect_url: string;
       compound_formatted_ids: string[];
+      target_names: string[];
+      protocol_names: string[];
+      n_matched: number;
+      scope_sentence: string;
+    }
+  | {
+      status: 'assay_selection';
+      redirect_url: string;
+      assay_ids: string[];
       target_names: string[];
       protocol_names: string[];
       n_matched: number;
@@ -128,7 +153,7 @@ export const FIELD_ASSAYED_BY = 'assayed_by_as_typed';
  * convention).
  */
 export async function postNlpQuery(
-  body: { prompt: string } | { selector: CompoundSelector },
+  body: { prompt: string } | { selector: CompoundSelector | AssaySelector },
 ): Promise<NLPResponse> {
   const res = await authFetch('/api/proxy/compounds/nlp/query', {
     method: 'POST',
@@ -171,26 +196,55 @@ export async function postNlpQuery(
  * Surface the mismatch loudly so it's diagnosable rather than a deep
  * React crash.
  */
+function isAssaySelector(
+  s: CompoundSelector | AssaySelector,
+): s is AssaySelector {
+  // Compound selectors always carry a (possibly empty) measurement_filters
+  // array; assay selectors don't. One-field discriminator.
+  return !Array.isArray((s as CompoundSelector).measurement_filters);
+}
+
 export function applyClarifyPick(
-  partial: CompoundSelector | undefined,
+  partial: CompoundSelector | AssaySelector | undefined,
   field: string,
   candidate: { id: string; name?: string | null; display?: string | null },
   filterIndex?: number,
-): CompoundSelector {
-  if (!partial || !Array.isArray(partial.measurement_filters)) {
+): CompoundSelector | AssaySelector {
+  if (
+    !partial ||
+    (!Array.isArray((partial as CompoundSelector).measurement_filters) &&
+      !('target_as_typed' in partial))
+  ) {
     throw new Error(
-      "Clarify response is missing partial_selector (or its measurement_filters) — " +
-      "this usually means the server is running a pre-pivot build. Redeploy the " +
-      "server image and retry.",
+      "Clarify response is missing partial_selector shape — this usually " +
+      "means the server is running a build older than the assay-selector " +
+      "pivot. Redeploy the server image and retry.",
     );
   }
+
+  // Targets/protocols carry `name`; users carry `display`. Accept either.
+  const canonical = candidate.name ?? candidate.display ?? null;
+
+  if (isAssaySelector(partial)) {
+    const next: AssaySelector = { ...partial };
+    if (field === FIELD_ASSAY_TARGET) {
+      next.target_id = candidate.id;
+      if (canonical) next.target_as_typed = canonical;
+    } else if (field === FIELD_PROTOCOL_HINT) {
+      next.protocol_id = candidate.id;
+      if (canonical) next.protocol_hint = canonical;
+    } else if (field === FIELD_ASSAYED_BY) {
+      next.created_by_id = candidate.id;
+      if (canonical) next.created_by_as_typed = canonical;
+    }
+    return next;
+  }
+
+  // Compound-selector path.
   const next: CompoundSelector = {
     ...partial,
     measurement_filters: partial.measurement_filters.map((f) => ({ ...f })),
   };
-  // Targets and protocols carry `name`; users carry `display`. Accept
-  // either so the same helper serves all field kinds.
-  const canonical = candidate.name ?? candidate.display ?? null;
   if (field === FIELD_REGISTRATION_TARGET) {
     next.registration_target_id = candidate.id;
     if (canonical) next.registration_target_as_typed = canonical;

@@ -14,6 +14,7 @@ import {
 import { Send } from '@mui/icons-material';
 import {
   applyClarifyPick,
+  AssaySelector,
   CompoundSelector,
   NLPResponse,
   postNlpQuery,
@@ -58,7 +59,7 @@ export function NLPPanel() {
 
   const handleClarifyPick = useCallback(
     async (
-      partial: CompoundSelector,
+      partial: CompoundSelector | AssaySelector,
       field: string,
       candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
       filterIndex?: number,

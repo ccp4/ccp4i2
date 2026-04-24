@@ -685,6 +685,79 @@ def test_registered_and_assayed_by_combined(user_world):
     assert res.compound_formatted_ids == [user_world["c_alice"].formatted_id]
 
 
+# ---------------------------------------------------------------------------
+# Assay-selection path (slice 12)
+# ---------------------------------------------------------------------------
+
+
+def test_assay_query_target_and_date_filters(dated_world):
+    from compounds.nlp.executor import execute_assay_query
+    from compounds.nlp.spec import AssaySelector, AssaySelection
+
+    res = execute_assay_query(AssaySelector(
+        target_as_typed="CDK4",
+        date_range=DateRange(after="2026-01-01", before="2026-04-01"),
+    ))
+    assert isinstance(res, AssaySelection)
+    # dated_world fixture has assay_q1 (Feb) and assay_q2 (May). Only q1
+    # falls in the Q1 2026 window.
+    assert res.n_matched == 1
+    assert res.assay_ids == [str(dated_world["assay_q1"].pk)]
+    assert res.target_names == ["CDK4"]
+    assert "carried out between 2026-01-01 and 2026-04-01" in res.scope_sentence
+
+
+def test_assay_query_by_creator(user_world):
+    from compounds.nlp.executor import execute_assay_query
+    from compounds.nlp.spec import AssaySelector, AssaySelection
+
+    res = execute_assay_query(AssaySelector(
+        target_as_typed="CDK4",
+        created_by_as_typed="Alice Jones",
+    ))
+    assert isinstance(res, AssaySelection)
+    # Only one assay created by Alice Jones in user_world.
+    assert res.n_matched == 1
+    assert "conducted by Alice Jones" in res.scope_sentence
+
+
+def test_assay_query_nickname_prefix_matches(user_world):
+    """'Jess' prefix of 'Jessica' — existing partial-tier resolution
+    should handle it. Here the fixture has Alice/Bob so we test with 'Al'
+    (prefix of Alice) to exercise the prefix-match path against an
+    ambiguous-first-name clarify."""
+    from compounds.nlp.executor import execute_assay_query
+    from compounds.nlp.spec import AssaySelector
+
+    res = execute_assay_query(AssaySelector(
+        target_as_typed="CDK4",
+        created_by_as_typed="Al",
+    ))
+    # 'Al' matches Alice Jones (partial tier) AND Alice Brown (same).
+    # Both are in assay_creators_qs since both created assays in
+    # user_world. So: UserClarify.
+    assert isinstance(res, UserClarify)
+    displays = {c.display for c in res.candidates}
+    assert "Alice Jones" in displays
+
+
+def test_assay_query_target_clarify_passthrough(db):
+    """Ambiguous target on an assay query surfaces via TargetClarify,
+    tagged with FIELD_ASSAY_TARGET so the UI knows which field to pin."""
+    from compounds.nlp.executor import execute_assay_query
+    from compounds.nlp.spec import AssaySelector
+
+    gene = Gene.objects.create(symbol="MYC")
+    t1 = Target.objects.create(name="Myc-Aur")
+    t2 = Target.objects.create(name="Myc regulation")
+    t1.genes.add(gene)
+    t2.genes.add(gene)
+
+    res = execute_assay_query(AssaySelector(target_as_typed="MYC"))
+    assert isinstance(res, TargetClarify)
+    assert res.field == "assay_target_as_typed"
+
+
 def test_scope_sentence_includes_user_phrases(user_world):
     res = execute(CompoundSelector(
         registration_target_as_typed="CDK4",

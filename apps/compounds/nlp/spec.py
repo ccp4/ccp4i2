@@ -120,6 +120,27 @@ class MeasurementFilter:
 
 
 @dataclass
+class AssaySelector:
+    """Root of the assay-selection query family — "CDK4 assays carried
+    out last week", "Assays conducted by Alice against ARd", etc.
+
+    Distinct from CompoundSelector because the output is a list of
+    **Assay** records (per §19.7 follow-up), not compounds. The LLM
+    emits either an AssaySelector OR a CompoundSelector, not both.
+    """
+
+    target_as_typed: Optional[str] = None
+    protocol_hint: Optional[str] = None
+    date_range: Optional[DateRange] = None      # Assay.created_at
+    created_by_as_typed: Optional[str] = None   # "conducted by", "run by", "assayed by"
+
+    # Pinnings from clarify continuation — the view injects these.
+    target_id: Optional[str] = None
+    protocol_id: Optional[str] = None
+    created_by_id: Optional[str] = None
+
+
+@dataclass
 class CompoundSelector:
     """Root of the v2 spec — describes *which compounds* to surface.
 
@@ -348,6 +369,18 @@ class CompoundSelection:
 
 
 @dataclass
+class AssaySelection:
+    """Result of filtering Assays by target/protocol/date/creator. View
+    layer converts this into a redirect URL to `/assays?ids=...`."""
+
+    assay_ids: List[str]                     # Assay UUIDs (for the /assays?ids= URL)
+    n_matched: int
+    target_names: List[str]                  # for scope sentence (usually 1)
+    protocol_names: List[str]                # for scope sentence (0 or 1)
+    scope_sentence: str
+
+
+@dataclass
 class SpecError:
     """Executor-level spec-validation failure (e.g. filter with threshold
     but no metric). Distinct from ScopeError which is specifically about
@@ -359,6 +392,7 @@ class SpecError:
 
 ExecutionResult = Union[
     CompoundSelection,
+    AssaySelection,
     TargetClarify,
     TargetMiss,
     ScopeError,
@@ -392,4 +426,4 @@ class ParseError:
     raw: Optional[str] = None
 
 
-PromptParseResult = Union[CompoundSelector, NotAQuery, ParseError]
+PromptParseResult = Union[CompoundSelector, AssaySelector, NotAQuery, ParseError]

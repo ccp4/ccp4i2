@@ -563,6 +563,86 @@
     measurement_filters: []
 
 # =============================================================================
+# Assay-selection queries (slice 12) — these populate the `assay_selector`
+# nested object INSTEAD OF the top-level compound-selector fields. The
+# LLM must recognise "assays / experiments / runs" as the grammatical
+# subject and switch to the assay shape.
+# =============================================================================
+
+- name: assays_against_target
+  prompt: "CDK4 assays"
+  expected:
+    type: assay_selector
+    assay_selector:
+      target_as_typed: CDK4
+      protocol_hint: null
+      date_range: null
+      created_by_as_typed: null
+
+- name: assays_by_date
+  prompt: "CDK4 assays carried out in March 2026"
+  expected:
+    type: assay_selector
+    assay_selector:
+      target_as_typed: CDK4
+      protocol_hint: null
+      date_range: {after: "2026-03-01", before: "2026-04-01"}
+      created_by_as_typed: null
+
+- name: assays_by_protocol
+  prompt: "ARd HTRF assays"
+  expected:
+    type: assay_selector
+    assay_selector:
+      target_as_typed: ARd
+      protocol_hint: HTRF
+      date_range: null
+      created_by_as_typed: null
+
+- name: assays_by_creator
+  prompt: "CDK4 assays conducted by Alice"
+  expected:
+    type: assay_selector
+    assay_selector:
+      target_as_typed: CDK4
+      protocol_hint: null
+      date_range: null
+      created_by_as_typed: Alice
+
+- name: assays_by_creator_shortname
+  prompt: "CDK4 assays run by Jess"
+  expected:
+    type: assay_selector
+    note: "Nickname 'Jess' emitted verbatim — resolver's prefix partial-match handles the lookup."
+    assay_selector:
+      target_as_typed: CDK4
+      protocol_hint: null
+      date_range: null
+      created_by_as_typed: Jess
+
+- name: assays_combined
+  prompt: "BRD4 HTRF assays conducted by Alice last quarter"
+  expected:
+    type: assay_selector
+    note: "'last quarter' relative to [Today: 2026-04-24] = Q1 2026."
+    assay_selector:
+      target_as_typed: BRD4
+      protocol_hint: HTRF
+      date_range: {after: "2026-01-01", before: "2026-04-01"}
+      created_by_as_typed: Alice
+
+- name: experiments_synonym
+  prompt: "CDK4 experiments in AlphaLISA"
+  expected:
+    type: assay_selector
+    note: "'experiments' is a synonym for 'assays' — same family."
+    assay_selector:
+      target_as_typed: CDK4
+      protocol_hint: AlphaLISA
+      date_range: null
+      created_by_as_typed: null
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 

@@ -1,6 +1,6 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Container, Typography, Box, Chip, Button, Tooltip } from '@mui/material';
 import { Assessment, Science, Description, Upload, Functions, TableChart, Biotech, FiberNew } from '@mui/icons-material';
@@ -54,7 +54,15 @@ function getDisplayFilename(
 export default function AssaysPage() {
   const router = useRouter();
   const api = useCompoundsApi();
-  const { data: assays, isLoading } = api.get<Assay[]>('assays/');
+  // `?ids=<csv>` narrows the list to the NLP compound-app's AssaySelector
+  // output (slice 12). Without it, the default behaviour is unchanged:
+  // fetch all assays and paginate client-side.
+  const searchParams = useSearchParams();
+  const idsParam = searchParams?.get('ids') ?? '';
+  const endpoint = idsParam
+    ? `assays/?ids=${encodeURIComponent(idsParam)}`
+    : 'assays/';
+  const { data: assays, isLoading } = api.get<Assay[]>(endpoint);
 
   // Helper to check if assay is new (created in last 7 days)
   const isRecentAssay = (createdAt: string | undefined) => {

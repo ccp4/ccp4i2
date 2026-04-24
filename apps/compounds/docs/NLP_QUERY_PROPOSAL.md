@@ -533,6 +533,7 @@ Work is delivered as narrow vertical slices that build the backend first and def
 | 9 | **Pivot** — QuerySpec → CompoundSelector; output → redirect to `/assays/aggregate` | Shipped | §0 pivot note, §19.7 update |
 | 10 | Date filters — `registered_date_range` + per-filter `assay_date_range` | Shipped | §7, §19.7 item 1 partial |
 | 11 | User filters — `registered_by_as_typed` + per-filter `assayed_by_as_typed` with User resolver + clarify | Shipped | §6 (user resolution), §19.7 item 1 closing |
+| 12 | **Assay-selection queries** — second query family (AssaySelector) alongside CompoundSelector; LLM dispatches via `assay_selector` nested object; lands on `/assays?ids=…` | Shipped | §5 schema, §7 dual-executor, §19.7 update |
 
 Rollout dependencies: §16 prerequisites (Gene model + DDU hydration) are done. Demo + Kawamura backfill happens after the executor lands but before the feature flag is turned on for those instances.
 

@@ -41,9 +41,11 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 
-from .executor import execute
+from .executor import execute, execute_assay_query
 from .llm import parse_prompt
 from .spec import (
+    AssaySelection,
+    AssaySelector,
     CompoundSelection,
     CompoundSelector,
     DateRange,
@@ -74,6 +76,9 @@ _CAP_TTL_SECONDS = 26 * 60 * 60
 # chemist workflow is "find compounds → view spider-plot cards".
 REDIRECT_BASE_PATH = "/assays/aggregate"
 REDIRECT_DEFAULT_FORMAT = "cards"
+
+# Assay-selection landing page (sibling of the aggregation page).
+ASSAYS_REDIRECT_BASE_PATH = "/assays"
 
 
 # ---------------------------------------------------------------------------
@@ -165,6 +170,47 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
 # ---------------------------------------------------------------------------
 
 
+def _build_assay_redirect_url(selection: AssaySelection) -> str:
+    """Construct the /assays?ids=... URL from an AssaySelection. Comma-
+    separated UUID list is the minimum the /assays page needs to render
+    exactly the filtered set."""
+    if not selection.assay_ids:
+        # No matches — send the user to the plain /assays listing rather
+        # than /assays?ids=<empty> (which would show nothing).
+        return ASSAYS_REDIRECT_BASE_PATH
+    return (
+        f"{ASSAYS_REDIRECT_BASE_PATH}?ids="
+        + quote(",".join(selection.assay_ids), safe=",")
+    )
+
+
+def _selector_for_echo_from_dict(data: dict):
+    """Client continuation body carries a selector; pick which type based
+    on whether it's shaped like an AssaySelector or CompoundSelector."""
+    if not isinstance(data, dict):
+        raise ValueError("selector must be an object")
+    # Heuristic: an assay-shaped selector has `target_as_typed` (single
+    # field) rather than the two-target CompoundSelector fields. Use
+    # the presence of `measurement_filters` as the compound-shape tell.
+    if "measurement_filters" in data:
+        return _selector_from_dict(data)
+    return _assay_selector_from_dict(data)
+
+
+def _assay_selector_from_dict(data: Any) -> AssaySelector:
+    if not isinstance(data, dict):
+        raise ValueError("selector must be an object")
+    return AssaySelector(
+        target_as_typed=data.get("target_as_typed"),
+        protocol_hint=data.get("protocol_hint"),
+        date_range=_date_range_from_dict(data.get("date_range")),
+        created_by_as_typed=data.get("created_by_as_typed"),
+        target_id=data.get("target_id"),
+        protocol_id=data.get("protocol_id"),
+        created_by_id=data.get("created_by_id"),
+    )
+
+
 def _build_redirect_url(selection: CompoundSelection) -> str:
     """Construct the /assays/aggregate URL from a selection.
 
@@ -195,18 +241,27 @@ def _build_redirect_url(selection: CompoundSelection) -> str:
 
 def _serialize(
     result: Any,
-    selector: Optional[CompoundSelector] = None,
+    selector: Optional[Any] = None,
 ) -> Tuple[dict, int]:
     """Map an execution / parse result to (response_body, http_status).
 
-    ``selector`` is the CompoundSelector that produced this result — echoed
-    back as ``partial_selector`` on clarify responses so the client can
-    re-POST with a pinning ID without re-calling the LLM (§9, decision 5).
+    ``selector`` is the CompoundSelector OR AssaySelector that produced
+    this result — echoed back as ``partial_selector`` on clarify responses
+    so the client can re-POST with a pinning ID without re-calling the
+    LLM (§9, decision 5).
     """
     if isinstance(result, CompoundSelection):
         body = {
             "status": "selection",
             "redirect_url": _build_redirect_url(result),
+            **dataclasses.asdict(result),
+        }
+        return body, http_status.HTTP_200_OK
+
+    if isinstance(result, AssaySelection):
+        body = {
+            "status": "assay_selection",
+            "redirect_url": _build_assay_redirect_url(result),
             **dataclasses.asdict(result),
         }
         return body, http_status.HTTP_200_OK
@@ -296,7 +351,7 @@ def nlp_query(request: Request) -> Response:
             status=http_status.HTTP_400_BAD_REQUEST,
         )
 
-    selector_for_echo: Optional[CompoundSelector] = None
+    selector_for_echo: Optional[Any] = None
     if prompt is not None:
         if not isinstance(prompt, str):
             return Response(
@@ -308,18 +363,24 @@ def nlp_query(request: Request) -> Response:
         if isinstance(parse_result, CompoundSelector):
             selector_for_echo = parse_result
             result: Any = execute(parse_result)
+        elif isinstance(parse_result, AssaySelector):
+            selector_for_echo = parse_result
+            result = execute_assay_query(parse_result)
         else:
             result = parse_result  # NotAQuery or ParseError
     elif selector_dict is not None:
         try:
-            selector_for_echo = _selector_from_dict(selector_dict)
+            selector_for_echo = _selector_for_echo_from_dict(selector_dict)
         except ValueError as e:
             return Response(
                 {"status": "error", "kind": "bad_request",
                  "message": f"Invalid selector: {e}"},
                 status=http_status.HTTP_400_BAD_REQUEST,
             )
-        result = execute(selector_for_echo)
+        if isinstance(selector_for_echo, AssaySelector):
+            result = execute_assay_query(selector_for_echo)
+        else:
+            result = execute(selector_for_echo)
     else:
         return Response(
             {"status": "error", "kind": "bad_request",

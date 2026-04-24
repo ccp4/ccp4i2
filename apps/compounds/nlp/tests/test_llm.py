@@ -44,6 +44,7 @@ def _empty_payload() -> dict:
         "registration_target_as_typed": None,
         "assay_target_as_typed": None,
         "measurement_filters": [],
+        "assay_selector": None,
     }
 
 
@@ -280,6 +281,45 @@ def test_parse_prompt_empty_input_returns_parse_error():
 
 def test_schema_declares_every_top_level_property_as_required():
     assert set(PROMPT_SCHEMA["required"]) == set(PROMPT_SCHEMA["properties"].keys())
+
+
+def test_assay_selector_subschema_strictly_shaped():
+    assay = PROMPT_SCHEMA["properties"]["assay_selector"]
+    # Nullable object — LLM populates when the user asks about assays,
+    # leaves null otherwise.
+    assert assay["type"] == ["object", "null"]
+    assert assay["additionalProperties"] is False
+    assert set(assay["required"]) == {
+        "target_as_typed", "protocol_hint", "date_range", "created_by_as_typed",
+    }
+
+
+def test_assay_selector_dispatch():
+    """When assay_selector is populated, _to_parse_result returns an
+    AssaySelector (not a CompoundSelector)."""
+    from compounds.nlp.spec import AssaySelector
+    payload = _empty_payload()
+    payload["assay_selector"] = {
+        "target_as_typed": "CDK4",
+        "protocol_hint": None,
+        "date_range": {"after": "2026-04-17", "before": "2026-04-24"},
+        "created_by_as_typed": None,
+    }
+    result = _to_parse_result(payload)
+    assert isinstance(result, AssaySelector)
+    assert result.target_as_typed == "CDK4"
+    assert result.date_range is not None
+    assert result.date_range.after == "2026-04-17"
+
+
+def test_compound_selector_still_dispatches_when_assay_selector_null():
+    """A top-level compound-selector prompt must still produce a
+    CompoundSelector even now that assay_selector is a sibling field."""
+    payload = _empty_payload()
+    payload["registration_target_as_typed"] = "CDK4"
+    result = _to_parse_result(payload)
+    assert isinstance(result, CompoundSelector)
+    assert result.registration_target_as_typed == "CDK4"
 
 
 def test_measurement_filters_items_strictly_shaped():
