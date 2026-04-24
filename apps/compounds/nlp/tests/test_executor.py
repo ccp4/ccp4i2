@@ -22,9 +22,12 @@ from compounds.nlp.spec import (
     FIELD_PROTOCOL_HINT,
     FIELD_REGISTERED_BY,
     FIELD_REGISTRATION_TARGET,
+    FIELD_SCAFFOLD_HINT,
     MeasurementFilter,
     ProtocolClarify,
     ProtocolMiss,
+    ScaffoldClarify,
+    ScaffoldMiss,
     ScopeError,
     SpecError,
     TargetClarify,
@@ -773,3 +776,160 @@ def test_scope_sentence_includes_user_phrases(user_world):
     assert isinstance(res, CompoundSelection)
     assert "registered by Alice Jones" in res.scope_sentence
     assert "assayed by Bob Smith" in res.scope_sentence
+
+
+# ---------------------------------------------------------------------------
+# Scaffold / substructure filters (slice 13)
+# ---------------------------------------------------------------------------
+
+
+@pytest.fixture
+def scaffold_world(db):
+    """Compounds spanning a pyridine, a pyrimidine, an amide, and a plain
+    aliphatic. Backend-side RDKit HasSubstructMatch is the authority so we
+    use real (aromatic) SMILES and rely on the catalog SMARTS.
+    """
+    t = Target.objects.create(name="CDK4")
+    c_pyridine = Compound.objects.create(target=t, smiles="c1ccncc1")     # pyridine
+    c_pyrimidine = Compound.objects.create(target=t, smiles="c1cncnc1")   # pyrimidine
+    c_amide = Compound.objects.create(target=t, smiles="CC(=O)N")         # acetamide
+    c_plain = Compound.objects.create(target=t, smiles="CCO")             # ethanol
+
+    return {
+        "t": t,
+        "c_pyridine": c_pyridine,
+        "c_pyrimidine": c_pyrimidine,
+        "c_amide": c_amide,
+        "c_plain": c_plain,
+    }
+
+
+def test_scaffold_hint_filters_by_substructure(scaffold_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["pyridine"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [
+        scaffold_world["c_pyridine"].formatted_id,
+    ]
+
+
+def test_scaffold_hint_unresolved_clarifies(scaffold_world):
+    # "amid" hits both amide and sulfonamide → clarify.
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["amid"],
+    ))
+    assert isinstance(res, ScaffoldClarify)
+    assert res.scaffold_index == 0
+    assert res.field == FIELD_SCAFFOLD_HINT
+    names = {c.name for c in res.candidates}
+    assert "amide" in names and "sulfonamide" in names
+
+
+def test_scaffold_hint_miss_surfaces_suggestions(scaffold_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["zzzznothing"],
+    ))
+    assert isinstance(res, ScaffoldMiss)
+    assert res.field == FIELD_SCAFFOLD_HINT
+    assert len(res.suggestions) > 0
+
+
+def test_scaffold_hint_pinned_id_bypasses_resolver(scaffold_world):
+    # Ambiguous hint "amid", but pinned to "amide" — resolves directly.
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["amid"],
+        scaffold_ids=["amide"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [
+        scaffold_world["c_amide"].formatted_id,
+    ]
+
+
+def test_multiple_scaffolds_and_intersect(scaffold_world):
+    """Require BOTH pyridine AND amide — none of the fixture compounds
+    contain both, so the selection is empty. Exercises the AND semantics."""
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["pyridine", "amide"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.n_matched == 0
+
+
+def test_scope_sentence_includes_scaffold_phrase(scaffold_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["pyridine"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "containing pyridine" in res.scope_sentence
+
+
+def test_scope_sentence_multiple_scaffolds_joined_with_and(scaffold_world):
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["pyridine", "amide"],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert "containing pyridine AND amide" in res.scope_sentence
+
+
+def test_scaffold_filter_combines_with_measurement_filter(db):
+    """Scaffold narrowing composes with measurement filters — compounds
+    must contain the substructure AND pass the measurement threshold."""
+    t = Target.objects.create(name="CDK4")
+    c_pyr = Compound.objects.create(target=t, smiles="c1ccncc1")
+    c_plain = Compound.objects.create(target=t, smiles="CCO")
+    p = Protocol.objects.create(name="CDK4 HTRF")
+    a = Assay.objects.create(protocol=p, target=t)
+    _mk_result(a, c_pyr, status="valid",
+               results={"KPI": "IC50", "IC50": 5.0, "kpi_unit": "nM"}, row=0)
+    _mk_result(a, c_plain, status="valid",
+               results={"KPI": "IC50", "IC50": 5.0, "kpi_unit": "nM"}, row=1)
+
+    res = execute(CompoundSelector(
+        registration_target_as_typed="CDK4",
+        scaffold_hints=["pyridine"],
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF", metric="IC50",
+                threshold=Threshold(op="<", value=100.0, unit="nM"),
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    # Both pass the threshold, only c_pyr contains pyridine.
+    assert res.compound_formatted_ids == [c_pyr.formatted_id]
+
+
+def test_assay_query_with_scaffold(db):
+    """Assay selector with a scaffold hint narrows to assays whose compounds
+    contain the substructure."""
+    from compounds.nlp.executor import execute_assay_query
+    from compounds.nlp.spec import AssaySelector, AssaySelection
+
+    t = Target.objects.create(name="CDK4")
+    c_pyr = Compound.objects.create(target=t, smiles="c1ccncc1")
+    c_plain = Compound.objects.create(target=t, smiles="CCO")
+    p = Protocol.objects.create(name="CDK4 HTRF")
+    a_pyr = Assay.objects.create(protocol=p, target=t)
+    a_plain = Assay.objects.create(protocol=p, target=t)
+    DataSeries.objects.create(assay=a_pyr, compound=c_pyr,
+                              row=0, start_column=0, end_column=10)
+    DataSeries.objects.create(assay=a_plain, compound=c_plain,
+                              row=0, start_column=0, end_column=10)
+
+    res = execute_assay_query(AssaySelector(
+        target_as_typed="CDK4",
+        scaffold_hints=["pyridine"],
+    ))
+    assert isinstance(res, AssaySelection)
+    # Only a_pyr ran on a pyridine-containing compound.
+    assert res.assay_ids == [str(a_pyr.pk)]
+    assert "compounds containing pyridine" in res.scope_sentence

@@ -35,6 +35,7 @@ from .resolver import (
     assay_creators_qs,
     compound_registrars_qs,
     resolve_protocol,
+    resolve_scaffold,
     resolve_target,
     resolve_targets,
     resolve_user,
@@ -57,6 +58,7 @@ from .spec import (
     ProtocolClarify,
     ProtocolMiss,
     ResolvedProtocol,
+    ResolvedScaffold,
     ResolvedTarget,
     ResolvedTargets,
     ResolvedUser,
@@ -136,6 +138,33 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
 
     # Apply each filter and intersect the surviving compound sets.
     base_compound_ids = _base_scope_compound_ids(rt, selector, resolved_registered_by)
+
+    # Scaffold filter — if any scaffold_hints are named, resolve each in
+    # order and RDKit-match against the base compound scope. All
+    # scaffolds ANDed. First unresolved scaffold short-circuits the
+    # whole selector.
+    resolved_scaffolds: List[ResolvedScaffold] = []
+    hints = list(selector.scaffold_hints or [])
+    pinned = list(selector.scaffold_ids or [])
+    # Align pinned list to hint positions — pad with empty strings.
+    while len(pinned) < len(hints):
+        pinned.append("")
+    for idx, hint in enumerate(hints):
+        rs = resolve_scaffold(
+            hint, scaffold_index=idx,
+            pinned_id=pinned[idx] if pinned[idx] else None,
+        )
+        if not isinstance(rs, ResolvedScaffold):
+            return rs
+        resolved_scaffolds.append(rs)
+    # Apply scaffold narrowing BEFORE measurement filters — compound-
+    # level predicate, cheap to intersect first.
+    if resolved_scaffolds:
+        for rs in resolved_scaffolds:
+            base_compound_ids = (
+                base_compound_ids & _match_compounds_by_scaffold(base_compound_ids, rs)
+            )
+
     surviving: Optional[Set[str]] = None
 
     for flt, rp, ru in zip(
@@ -172,6 +201,7 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
             rt, selector, resolved_protocols,
             resolved_registered_by=resolved_registered_by,
             resolved_assayed_bys=resolved_assayed_bys,
+            resolved_scaffolds=resolved_scaffolds,
         ),
     )
 
@@ -179,6 +209,38 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
 # ---------------------------------------------------------------------------
 # Scope construction
 # ---------------------------------------------------------------------------
+
+
+def _match_compounds_by_scaffold(
+    compound_ids: Set[str],
+    resolved_scaffold: ResolvedScaffold,
+) -> Set[str]:
+    """Return the subset of ``compound_ids`` whose SMILES contains the
+    scaffold's SMARTS substructure (RDKit ``HasSubstructMatch``).
+
+    Imported lazily so the substructures module and this function only
+    pull in RDKit when a prompt actually names a scaffold — the rest of
+    the executor stays RDKit-free.
+    """
+    from rdkit import Chem
+    scaffold = resolved_scaffold.scaffold
+    patt = Chem.MolFromSmarts(scaffold.smarts)
+    if patt is None:
+        # Malformed SMARTS in the catalog — should be caught at commit-
+        # time, but safe-fail here by excluding everything.
+        return set()
+    matching: Set[str] = set()
+    rows = (
+        Compound.objects
+        .filter(pk__in=compound_ids)
+        .exclude(smiles__isnull=True).exclude(smiles="")
+        .values_list("pk", "smiles")
+    )
+    for pk, smiles in rows:
+        mol = Chem.MolFromSmiles(smiles)
+        if mol and mol.HasSubstructMatch(patt):
+            matching.add(pk)
+    return matching
 
 
 def _apply_date_range(qs, field: str, dr: Optional[DateRange]):
@@ -311,9 +373,11 @@ def _scope_sentence(
     *,
     resolved_registered_by: Optional[ResolvedUser] = None,
     resolved_assayed_bys: Optional[List[Optional[ResolvedUser]]] = None,
+    resolved_scaffolds: Optional[List[ResolvedScaffold]] = None,
 ) -> str:
     """Human echo-back (§10). Target scope, optional registered-date and
-    registered-by phrases, and the AND-joined filter list (if any)."""
+    registered-by phrases, scaffold narrowing, and the AND-joined filter
+    list (if any)."""
     reg = rt.registration.name if rt.registration is not None else ""
     assay = rt.assay.name if rt.assay is not None else ""
     if rt.scope_kind == SCOPE_BOTH_SAME:
@@ -336,6 +400,13 @@ def _scope_sentence(
         parens.append(f"registered by {_user_display(resolved_registered_by.user)}")
     if parens:
         base += " (" + ", ".join(parens) + ")"
+
+    if resolved_scaffolds:
+        names = [rs.scaffold.name for rs in resolved_scaffolds]
+        if len(names) == 1:
+            base += f" containing {names[0]}"
+        else:
+            base += " containing " + " AND ".join(names)
 
     if resolved_assayed_bys is None:
         resolved_assayed_bys = [None] * len(selector.measurement_filters)
@@ -446,6 +517,24 @@ def execute_assay_query(selector: AssaySelector) -> ExecutionResult:
             return ru
         resolved_creator = ru
 
+    # Scaffold filter — resolve each hint in order, RDKit-match each
+    # against the set of compounds that have been assayed in this scope,
+    # then narrow the assay queryset to assays whose DataSeries hit a
+    # matching compound.
+    resolved_scaffolds: List[ResolvedScaffold] = []
+    hints = list(selector.scaffold_hints or [])
+    pinned = list(selector.scaffold_ids or [])
+    while len(pinned) < len(hints):
+        pinned.append("")
+    for idx, hint in enumerate(hints):
+        rs = resolve_scaffold(
+            hint, scaffold_index=idx,
+            pinned_id=pinned[idx] if pinned[idx] else None,
+        )
+        if not isinstance(rs, ResolvedScaffold):
+            return rs
+        resolved_scaffolds.append(rs)
+
     # Build the assay queryset.
     qs = Assay.objects.all()
     if resolved_target is not None:
@@ -455,6 +544,20 @@ def execute_assay_query(selector: AssaySelector) -> ExecutionResult:
     if resolved_creator is not None:
         qs = qs.filter(created_by=resolved_creator.user)
     qs = _apply_date_range(qs, "created_at", selector.date_range)
+
+    if resolved_scaffolds:
+        # Compounds in scope of the current assay queryset.
+        candidate_compound_ids = set(
+            Compound.objects
+            .filter(assay_results__assay__in=qs)
+            .values_list("pk", flat=True)
+            .distinct()
+        )
+        for rs in resolved_scaffolds:
+            candidate_compound_ids = (
+                candidate_compound_ids & _match_compounds_by_scaffold(candidate_compound_ids, rs)
+            )
+        qs = qs.filter(data_series__compound__in=candidate_compound_ids).distinct()
 
     assay_ids = [
         str(pk) for pk in qs.order_by("-created_at").values_list("pk", flat=True)
@@ -472,6 +575,7 @@ def execute_assay_query(selector: AssaySelector) -> ExecutionResult:
         protocol_names=protocol_names,
         scope_sentence=_assay_scope_sentence(
             selector, resolved_target, resolved_protocol, resolved_creator,
+            resolved_scaffolds=resolved_scaffolds,
         ),
     )
 
@@ -481,12 +585,17 @@ def _assay_scope_sentence(
     target: Optional[ResolvedTarget],
     protocol: Optional[ResolvedProtocol],
     creator: Optional[ResolvedUser],
+    *,
+    resolved_scaffolds: Optional[List[ResolvedScaffold]] = None,
 ) -> str:
     parts: List[str] = ["Showing assays"]
     if protocol is not None:
         parts.append(f"using {protocol.protocol.name}")
     if target is not None:
         parts.append(f"against {target.target.name}")
+    if resolved_scaffolds:
+        names = [rs.scaffold.name for rs in resolved_scaffolds]
+        parts.append("on compounds containing " + " AND ".join(names))
     date_phrase = _date_range_phrase(selector.date_range, "carried out")
     if date_phrase:
         parts.append(date_phrase)

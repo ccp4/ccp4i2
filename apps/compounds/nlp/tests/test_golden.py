@@ -89,6 +89,7 @@ def _expected_to_llm_output(expected: dict) -> dict:
         "assay_target_as_typed": None,
         "registered_date_range": None,
         "registered_by_as_typed": None,
+        "scaffold_hints": [],
         "measurement_filters": [],
         "assay_selector": None,
     }
@@ -104,6 +105,7 @@ def _expected_to_llm_output(expected: dict) -> dict:
             "protocol_hint": raw.get("protocol_hint"),
             "date_range": _date_range_payload(raw.get("date_range")),
             "created_by_as_typed": raw.get("created_by_as_typed"),
+            "scaffold_hints": list(raw.get("scaffold_hints") or []),
         }
         return base
 
@@ -115,6 +117,8 @@ def _expected_to_llm_output(expected: dict) -> dict:
         base["registered_date_range"] = _date_range_payload(expected["registered_date_range"])
     if "registered_by_as_typed" in expected:
         base["registered_by_as_typed"] = expected["registered_by_as_typed"]
+    if "scaffold_hints" in expected:
+        base["scaffold_hints"] = list(expected["scaffold_hints"])
 
     raw_filters = expected.get("measurement_filters") or []
     filters: List[dict] = []
@@ -211,6 +215,13 @@ def _selector_diff(actual: CompoundSelector, expected: dict) -> Optional[str]:
         expected.get("registered_date_range"),
         "registered_date_range",
     ))
+
+    expected_scaffolds = list(expected.get("scaffold_hints") or [])
+    actual_scaffolds = list(actual.scaffold_hints or [])
+    if expected_scaffolds != actual_scaffolds:
+        diffs.append(
+            f"scaffold_hints: expected {expected_scaffolds!r}, got {actual_scaffolds!r}"
+        )
 
     expected_filters = expected.get("measurement_filters") or []
     if len(actual.measurement_filters) != len(expected_filters):
@@ -339,6 +350,12 @@ def test_every_assay_selector_entry_round_trips():
             assert actual_date.before == expected_date.get("before"), (
                 f"entry {entry['name']!r}: date_range.before diff"
             )
+        expected_scaffolds = list(expected_as.get("scaffold_hints") or [])
+        actual_scaffolds = list(result.scaffold_hints or [])
+        assert expected_scaffolds == actual_scaffolds, (
+            f"entry {entry['name']!r}: scaffold_hints diff "
+            f"— expected {expected_scaffolds!r}, got {actual_scaffolds!r}"
+        )
 
 
 def test_every_not_a_query_entry_round_trips():

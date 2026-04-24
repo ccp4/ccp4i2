@@ -291,6 +291,7 @@ def test_assay_selector_subschema_strictly_shaped():
     assert assay["additionalProperties"] is False
     assert set(assay["required"]) == {
         "target_as_typed", "protocol_hint", "date_range", "created_by_as_typed",
+        "scaffold_hints",
     }
 
 

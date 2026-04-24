@@ -54,6 +54,8 @@ from .spec import (
     ParseError,
     ProtocolClarify,
     ProtocolMiss,
+    ScaffoldClarify,
+    ScaffoldMiss,
     ScopeError,
     SpecError,
     TargetClarify,
@@ -159,9 +161,11 @@ def _selector_from_dict(data: Any) -> CompoundSelector:
         measurement_filters=[_filter_from_dict(f) for f in raw_filters],
         registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
         registered_by_as_typed=data.get("registered_by_as_typed"),
+        scaffold_hints=list(data.get("scaffold_hints") or []),
         registration_target_id=data.get("registration_target_id"),
         assay_target_id=data.get("assay_target_id"),
         registered_by_id=data.get("registered_by_id"),
+        scaffold_ids=list(data.get("scaffold_ids") or []),
     )
 
 
@@ -205,9 +209,11 @@ def _assay_selector_from_dict(data: Any) -> AssaySelector:
         protocol_hint=data.get("protocol_hint"),
         date_range=_date_range_from_dict(data.get("date_range")),
         created_by_as_typed=data.get("created_by_as_typed"),
+        scaffold_hints=list(data.get("scaffold_hints") or []),
         target_id=data.get("target_id"),
         protocol_id=data.get("protocol_id"),
         created_by_id=data.get("created_by_id"),
+        scaffold_ids=list(data.get("scaffold_ids") or []),
     )
 
 
@@ -266,13 +272,13 @@ def _serialize(
         }
         return body, http_status.HTTP_200_OK
 
-    if isinstance(result, (TargetClarify, ProtocolClarify, UserClarify)):
+    if isinstance(result, (TargetClarify, ProtocolClarify, UserClarify, ScaffoldClarify)):
         body = {"status": "clarify", **dataclasses.asdict(result)}
         if selector is not None:
             body["partial_selector"] = dataclasses.asdict(selector)
         return body, http_status.HTTP_200_OK
 
-    if isinstance(result, (TargetMiss, ProtocolMiss, UserMiss)):
+    if isinstance(result, (TargetMiss, ProtocolMiss, UserMiss, ScaffoldMiss)):
         body = {"status": "miss", **dataclasses.asdict(result)}
         return body, http_status.HTTP_200_OK
 

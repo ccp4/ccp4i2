@@ -45,6 +45,7 @@ from .spec import (
     FIELD_PROTOCOL_HINT,
     FIELD_REGISTERED_BY,
     FIELD_REGISTRATION_TARGET,
+    FIELD_SCAFFOLD_HINT,
     SCOPE_ASSAY_ONLY,
     SCOPE_BOTH_SAME,
     SCOPE_CROSS,
@@ -68,6 +69,18 @@ from .spec import (
     UserClarify,
     UserMiss,
     UserResolution,
+    ScaffoldCandidate,
+    ScaffoldClarify,
+    ScaffoldMiss,
+    ScaffoldResolution,
+    ResolvedScaffold,
+)
+from .substructures import (
+    SCAFFOLDS,
+    Scaffold,
+    lookup_scaffold_by_id,
+    lookup_scaffold_by_typed,
+    lookup_scaffolds_by_substring,
 )
 
 User = get_user_model()
@@ -584,6 +597,88 @@ def resolve_user(
     return UserMiss(
         query=as_typed, suggestions=suggestions,
         field=field, filter_index=filter_index,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Scaffold / substructure resolution (slice 13)
+# ---------------------------------------------------------------------------
+
+
+def _scaffold_candidate(scaffold: Scaffold) -> ScaffoldCandidate:
+    return ScaffoldCandidate(
+        id=scaffold.name,
+        name=scaffold.name,
+        aliases=list(scaffold.aliases),
+        smarts=scaffold.smarts,
+    )
+
+
+def resolve_scaffold(
+    as_typed: str,
+    *,
+    scaffold_index: int = 0,
+    pinned_id: Optional[str] = None,
+) -> ScaffoldResolution:
+    """Resolve a typed substructure / scaffold / functional-group name
+    against the curated catalog. Three-tier match:
+
+    1. Exact normalised match against name or alias → Resolved.
+    2. Substring match on normalised pool entries → Clarify (multiple)
+       or Resolved (single) — catches "pyrimidi" → "pyrimidine" and
+       also surfaces the "pyrimidine vs pyrimidinone" ambiguity when
+       the user types a substring that hits both.
+    3. Miss with the closest matches by SequenceMatcher ratio — better
+       than a blank dead end.
+    """
+    if pinned_id:
+        scaffold = lookup_scaffold_by_id(pinned_id)
+        if scaffold is None:
+            return ScaffoldMiss(
+                query=as_typed or "", suggestions=[],
+                scaffold_index=scaffold_index, field=FIELD_SCAFFOLD_HINT,
+            )
+        return ResolvedScaffold(scaffold=scaffold, matched_via="pinned_id", query=as_typed or "")
+
+    norm_query = normalize(as_typed or "")
+    if not norm_query:
+        return ScaffoldMiss(
+            query=as_typed or "", suggestions=[],
+            scaffold_index=scaffold_index, field=FIELD_SCAFFOLD_HINT,
+        )
+
+    # Tier 1: exact normalised match.
+    exact = lookup_scaffold_by_typed(as_typed)
+    if exact is not None:
+        scaffold, matched_via = exact
+        return ResolvedScaffold(scaffold=scaffold, matched_via=matched_via, query=as_typed)
+
+    # Tier 2: substring on normalised pool entries.
+    substring_hits = list(lookup_scaffolds_by_substring(as_typed))
+    if len(substring_hits) == 1:
+        scaffold, matched_via = substring_hits[0]
+        return ResolvedScaffold(scaffold=scaffold, matched_via=matched_via, query=as_typed)
+    if len(substring_hits) > 1:
+        return ScaffoldClarify(
+            query=as_typed,
+            candidates=[_scaffold_candidate(s) for s, _ in substring_hits],
+            scaffold_index=scaffold_index,
+            field=FIELD_SCAFFOLD_HINT,
+        )
+
+    # Miss — rank whole catalog by SequenceMatcher ratio.
+    scored: List[Tuple[float, Scaffold]] = []
+    for s in SCAFFOLDS:
+        # Use the best ratio across name + aliases.
+        best = SequenceMatcher(None, norm_query, normalize(s.name)).ratio()
+        for alias in s.aliases:
+            best = max(best, SequenceMatcher(None, norm_query, normalize(alias)).ratio())
+        scored.append((best, s))
+    scored.sort(key=lambda row: row[0], reverse=True)
+    suggestions = [_scaffold_candidate(s) for _, s in scored[:_MISS_SUGGESTION_COUNT]]
+    return ScaffoldMiss(
+        query=as_typed, suggestions=suggestions,
+        scaffold_index=scaffold_index, field=FIELD_SCAFFOLD_HINT,
     )
 
 

@@ -42,6 +42,7 @@ FIELD_ASSAY_TARGET = "assay_target_as_typed"
 FIELD_PROTOCOL_HINT = "protocol_hint"
 FIELD_REGISTERED_BY = "registered_by_as_typed"
 FIELD_ASSAYED_BY = "assayed_by_as_typed"
+FIELD_SCAFFOLD_HINT = "scaffold_hint"
 
 # Filter / exclusion reasons from the row evaluator. Preserved from the pre-
 # pivot shape because the evaluator still classifies rows during selection;
@@ -133,11 +134,17 @@ class AssaySelector:
     protocol_hint: Optional[str] = None
     date_range: Optional[DateRange] = None      # Assay.created_at
     created_by_as_typed: Optional[str] = None   # "conducted by", "run by", "assayed by"
+    # Scaffold filter — "HTRF assays on pyrimidines": narrow the output
+    # to assays that ran on compounds containing ALL named scaffolds.
+    # Entries are names typed by the user; resolved via the curated
+    # substructures catalog and applied with RDKit HasSubstructMatch.
+    scaffold_hints: List[str] = field(default_factory=list)
 
     # Pinnings from clarify continuation — the view injects these.
     target_id: Optional[str] = None
     protocol_id: Optional[str] = None
     created_by_id: Optional[str] = None
+    scaffold_ids: List[str] = field(default_factory=list)    # pinned canonical names
 
 
 @dataclass
@@ -162,11 +169,16 @@ class CompoundSelector:
     # Name of the person who registered/made/synthesised the compound —
     # filters on Compound.registered_by. Resolved via the user resolver.
     registered_by_as_typed: Optional[str] = None
+    # Substructure / scaffold filter — "ARd compounds containing pyrimidine".
+    # Multiple hints are ANDed (each must match). Resolved via the curated
+    # substructures catalog + RDKit HasSubstructMatch at query time.
+    scaffold_hints: List[str] = field(default_factory=list)
 
     # Pinnings from clarify continuation — the view injects these, LLM doesn't.
     registration_target_id: Optional[str] = None
     assay_target_id: Optional[str] = None
     registered_by_id: Optional[str] = None
+    scaffold_ids: List[str] = field(default_factory=list)    # pinned canonical names
 
 
 # ---------------------------------------------------------------------------
@@ -325,6 +337,52 @@ UserResolution = Union[ResolvedUser, UserClarify, UserMiss]
 
 
 # ---------------------------------------------------------------------------
+# Scaffold / substructure resolution (slice 13)
+# ---------------------------------------------------------------------------
+
+
+@dataclass
+class ScaffoldCandidate:
+    """Thin view of a scaffold catalog entry for clarify / miss payloads.
+    The ``id`` is the canonical name — stable across the catalog and
+    directly usable by RDKit-match-side lookups."""
+
+    id: str                # == canonical name
+    name: str              # canonical (same as id; separate field for
+                           # consistency with the other candidate types)
+    aliases: List[str] = field(default_factory=list)
+    smarts: str = ""       # exposed so a future SVG preview can render
+
+
+@dataclass
+class ResolvedScaffold:
+    # Type-any to keep spec.py free of the substructures module import
+    # cycle (spec is the common dependency).
+    scaffold: object
+    matched_via: str
+    query: str
+
+
+@dataclass
+class ScaffoldClarify:
+    query: str
+    candidates: List[ScaffoldCandidate]
+    scaffold_index: int = 0        # which entry of scaffold_hints this clarifies
+    field: str = ""                # FIELD_SCAFFOLD_HINT
+
+
+@dataclass
+class ScaffoldMiss:
+    query: str
+    suggestions: List[ScaffoldCandidate]
+    scaffold_index: int = 0
+    field: str = ""
+
+
+ScaffoldResolution = Union[ResolvedScaffold, ScaffoldClarify, ScaffoldMiss]
+
+
+# ---------------------------------------------------------------------------
 # Row-level evaluation (metric + unit tri-state). Evaluator module consumes
 # these — public because tests over the evaluator also do.
 # ---------------------------------------------------------------------------
@@ -400,6 +458,8 @@ ExecutionResult = Union[
     ProtocolMiss,
     UserClarify,
     UserMiss,
+    ScaffoldClarify,
+    ScaffoldMiss,
     SpecError,
 ]
 

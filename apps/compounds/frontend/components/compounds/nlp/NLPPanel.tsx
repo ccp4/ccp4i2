@@ -19,6 +19,7 @@ import {
   NLPResponse,
   postNlpQuery,
   ProtocolCandidate,
+  ScaffoldCandidate,
   TargetCandidate,
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
@@ -61,10 +62,11 @@ export function NLPPanel() {
     async (
       partial: CompoundSelector | AssaySelector,
       field: string,
-      candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
+      candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
       filterIndex?: number,
+      scaffoldIndex?: number,
     ) => {
-      const pinned = applyClarifyPick(partial, field, candidate, filterIndex);
+      const pinned = applyClarifyPick(partial, field, candidate, filterIndex, scaffoldIndex);
       setLoading(true);
       setError(null);
       try {

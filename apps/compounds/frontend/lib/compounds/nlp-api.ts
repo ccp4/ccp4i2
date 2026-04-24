@@ -51,9 +51,11 @@ export interface CompoundSelector {
   measurement_filters: MeasurementFilter[];
   registered_date_range?: DateRange | null;
   registered_by_as_typed?: string | null;
+  scaffold_hints?: string[];
   registration_target_id?: string | null;
   assay_target_id?: string | null;
   registered_by_id?: string | null;
+  scaffold_ids?: string[];
 }
 
 /**
@@ -66,10 +68,12 @@ export interface AssaySelector {
   protocol_hint?: string | null;
   date_range?: DateRange | null;
   created_by_as_typed?: string | null;
+  scaffold_hints?: string[];
   // Pinnings from clarify continuation
   target_id?: string | null;
   protocol_id?: string | null;
   created_by_id?: string | null;
+  scaffold_ids?: string[];
 }
 
 export interface TargetCandidate {
@@ -92,6 +96,13 @@ export interface UserCandidate {
   email: string | null;
   n_compounds: number;
   n_assays: number;
+}
+
+export interface ScaffoldCandidate {
+  id: string;        // canonical name — also used as the pinning ID
+  name: string;
+  aliases: string[];
+  smarts: string;
 }
 
 export type NLPResponse =
@@ -117,16 +128,18 @@ export type NLPResponse =
       status: 'clarify';
       field: string;
       query: string;
-      candidates: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[];
+      candidates: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[];
       filter_index?: number;           // present for protocol / assayed-by clarify
+      scaffold_index?: number;         // present for scaffold clarify
       partial_selector: CompoundSelector;
     }
   | {
       status: 'miss';
       field: string;
       query: string;
-      suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[];
+      suggestions: TargetCandidate[] | ProtocolCandidate[] | UserCandidate[] | ScaffoldCandidate[];
       filter_index?: number;
+      scaffold_index?: number;
     }
   | { status: 'not_a_query'; reason: string }
   | { status: 'error'; kind: string; field?: string; message: string };
@@ -141,6 +154,7 @@ export const FIELD_ASSAY_TARGET = 'assay_target_as_typed';
 export const FIELD_PROTOCOL_HINT = 'protocol_hint';
 export const FIELD_REGISTERED_BY = 'registered_by_as_typed';
 export const FIELD_ASSAYED_BY = 'assayed_by_as_typed';
+export const FIELD_SCAFFOLD_HINT = 'scaffold_hint';
 
 
 // ---------------------------------------------------------------------------
@@ -204,11 +218,29 @@ function isAssaySelector(
   return !Array.isArray((s as CompoundSelector).measurement_filters);
 }
 
+function applyScaffoldPin(
+  hints: string[] | undefined,
+  ids: string[] | undefined,
+  index: number,
+  canonical: string,
+): { hints: string[]; ids: string[] } {
+  // Scaffold_hints / _ids are parallel arrays indexed together; pad to
+  // length, write into [index], keep the rest as-is.
+  const nextHints = [...(hints ?? [])];
+  const nextIds = [...(ids ?? [])];
+  while (nextHints.length <= index) nextHints.push('');
+  while (nextIds.length <= index) nextIds.push('');
+  nextHints[index] = canonical;
+  nextIds[index] = canonical;   // pinning id for scaffolds is the canonical name
+  return { hints: nextHints, ids: nextIds };
+}
+
 export function applyClarifyPick(
   partial: CompoundSelector | AssaySelector | undefined,
   field: string,
   candidate: { id: string; name?: string | null; display?: string | null },
   filterIndex?: number,
+  scaffoldIndex?: number,
 ): CompoundSelector | AssaySelector {
   if (
     !partial ||
@@ -222,8 +254,9 @@ export function applyClarifyPick(
     );
   }
 
-  // Targets/protocols carry `name`; users carry `display`. Accept either.
-  const canonical = candidate.name ?? candidate.display ?? null;
+  // Targets/protocols carry `name`; users carry `display`; scaffolds carry
+  // `name` and id == canonical name. `candidate.id` is the pinning value.
+  const canonical = candidate.name ?? candidate.display ?? candidate.id;
 
   if (isAssaySelector(partial)) {
     const next: AssaySelector = { ...partial };
@@ -236,6 +269,12 @@ export function applyClarifyPick(
     } else if (field === FIELD_ASSAYED_BY) {
       next.created_by_id = candidate.id;
       if (canonical) next.created_by_as_typed = canonical;
+    } else if (field === FIELD_SCAFFOLD_HINT) {
+      const { hints, ids } = applyScaffoldPin(
+        next.scaffold_hints, next.scaffold_ids, scaffoldIndex ?? 0, canonical,
+      );
+      next.scaffold_hints = hints;
+      next.scaffold_ids = ids;
     }
     return next;
   }
@@ -272,6 +311,12 @@ export function applyClarifyPick(
         ...(canonical ? { assayed_by_as_typed: canonical } : {}),
       };
     }
+  } else if (field === FIELD_SCAFFOLD_HINT) {
+    const { hints, ids } = applyScaffoldPin(
+      next.scaffold_hints, next.scaffold_ids, scaffoldIndex ?? 0, canonical,
+    );
+    next.scaffold_hints = hints;
+    next.scaffold_ids = ids;
   }
   return next;
 }

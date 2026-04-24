@@ -16,17 +16,20 @@ import {
   FIELD_ASSAYED_BY,
   FIELD_PROTOCOL_HINT,
   FIELD_REGISTERED_BY,
+  FIELD_SCAFFOLD_HINT,
   NLPResponse,
   ProtocolCandidate,
+  ScaffoldCandidate,
   TargetCandidate,
   UserCandidate,
 } from '@/lib/compounds/nlp-api';
 
-type CandidateKind = 'target' | 'protocol' | 'user';
+type CandidateKind = 'target' | 'protocol' | 'user' | 'scaffold';
 
 function kindForField(field: string): CandidateKind {
   if (field === FIELD_PROTOCOL_HINT) return 'protocol';
   if (field === FIELD_REGISTERED_BY || field === FIELD_ASSAYED_BY) return 'user';
+  if (field === FIELD_SCAFFOLD_HINT) return 'scaffold';
   return 'target';
 }
 
@@ -37,8 +40,9 @@ interface Props {
   onClarifyPick: (
     partial: CompoundSelector | AssaySelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
     filterIndex?: number,
+    scaffoldIndex?: number,
   ) => void;
 }
 
@@ -201,26 +205,33 @@ function ClarifyView({
 }: {
   response: Extract<NLPResponse, { status: 'clarify' }>;
   onPick: (
-    partial: CompoundSelector,
+    partial: CompoundSelector | AssaySelector,
     field: string,
-    candidate: TargetCandidate | ProtocolCandidate | UserCandidate,
+    candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
     filterIndex?: number,
+    scaffoldIndex?: number,
   ) => void;
 }) {
-  const { field, query, candidates, partial_selector, filter_index } = response;
+  const { field, query, candidates, partial_selector, filter_index, scaffold_index } = response;
   const kind = kindForField(field);
   const heading =
     kind === 'protocol'
       ? `Which ${query !== '' ? `"${query}" ` : ''}protocol did you mean?`
       : kind === 'user'
         ? `Which person did you mean by "${query}"?`
-        : `Which target did you mean by "${query}"?`;
+        : kind === 'scaffold'
+          ? `Which substructure did you mean by "${query}"?`
+          : `Which target did you mean by "${query}"?`;
 
   // If the server didn't include partial_selector (e.g. a pre-pivot server
   // still emitting the old partial_spec shape), picking a chip would crash
   // on `.measurement_filters`. Surface the mismatch legibly instead.
+  // AssaySelector is valid too — it lacks measurement_filters but carries
+  // target_as_typed, so accept either discriminator.
   const partialSelectorMissing =
-    !partial_selector || !Array.isArray(partial_selector.measurement_filters);
+    !partial_selector ||
+    (!Array.isArray((partial_selector as CompoundSelector).measurement_filters) &&
+      !('target_as_typed' in partial_selector));
 
   return (
     <Paper elevation={1} sx={{ p: 3 }}>
@@ -242,7 +253,10 @@ function ClarifyView({
             onClick={
               partialSelectorMissing
                 ? undefined
-                : () => onPick(partial_selector, field, candidate, filter_index)
+                : () => onPick(
+                    partial_selector, field, candidate,
+                    filter_index, scaffold_index,
+                  )
             }
             clickable={!partialSelectorMissing}
             disabled={partialSelectorMissing}
@@ -258,7 +272,7 @@ function CandidateLabel({
   candidate,
   kind,
 }: {
-  candidate: TargetCandidate | ProtocolCandidate | UserCandidate;
+  candidate: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate;
   kind: CandidateKind;
 }) {
   if (kind === 'protocol') {
@@ -289,6 +303,17 @@ function CandidateLabel({
       </Box>
     );
   }
+  if (kind === 'scaffold') {
+    const s = candidate as ScaffoldCandidate;
+    return (
+      <Box>
+        <Typography variant="body2" sx={{ fontWeight: 500 }}>{s.name}</Typography>
+        <Typography variant="caption" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
+          {s.smarts}
+        </Typography>
+      </Box>
+    );
+  }
   const t = candidate as TargetCandidate;
   return (
     <Box>
@@ -313,11 +338,18 @@ function MissView({
 }) {
   const { query, suggestions, field } = response;
   const kind = kindForField(field);
-  const label = kind === 'protocol' ? 'protocol' : kind === 'user' ? 'person' : 'target';
+  const label =
+    kind === 'protocol' ? 'protocol' :
+    kind === 'user' ? 'person' :
+    kind === 'scaffold' ? 'substructure' :
+    'target';
 
-  const chipLabel = (s: TargetCandidate | ProtocolCandidate | UserCandidate): string => {
+  const chipLabel = (
+    s: TargetCandidate | ProtocolCandidate | UserCandidate | ScaffoldCandidate,
+  ): string => {
     if (kind === 'protocol') return (s as ProtocolCandidate).name;
     if (kind === 'user') return (s as UserCandidate).display;
+    if (kind === 'scaffold') return (s as ScaffoldCandidate).name;
     return (s as TargetCandidate).name;
   };
 

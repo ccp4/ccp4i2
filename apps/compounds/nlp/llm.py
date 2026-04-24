@@ -37,6 +37,7 @@ from .spec import (
     PromptParseResult,
     Threshold,
 )
+from .substructures import all_scaffold_names
 
 
 SYSTEM_PROMPT = """\
@@ -77,6 +78,18 @@ Rules:
   - assay_date_range null → no date constraint on the assay
 - threshold is {op, value, unit}. op is one of <, <=, >, >=, =, !=.
   Echo the unit verbatim as typed ("uM" not "µM").
+- Substructures / scaffolds / functional groups: when the user names
+  a chemical substructure — "compounds containing pyrimidine", "with a
+  piperidine and a sulfonamide", "tetrazole-containing ARd compounds"
+  — emit the names in `scaffold_hints` (a list of strings, ANDed).
+  Emit the name the user typed, verbatim (singular or plural as
+  they wrote it); the backend resolves the name against its curated
+  SMARTS catalog. You MUST NOT emit SMARTS yourself, guess a ring
+  structure, or synthesise a substructure when the user didn't name
+  one. If the user names multiple substructures ("a pyrimidine and
+  a piperidine"), each goes in `scaffold_hints` as its own entry.
+  The same applies inside `assay_selector` — "HTRF assays on
+  pyrimidines" sets `assay_selector.scaffold_hints = ["pyrimidines"]`.
 - People: `registered_by_as_typed` (on the selector) filters on WHO
   registered / made / synthesised the compound. `assayed_by_as_typed`
   (per filter) filters on WHO ran the assay — use for phrasings like
@@ -152,6 +165,12 @@ _DATE_RANGE_SUBSCHEMA: dict = {
 }
 
 
+_SCAFFOLD_HINTS_SUBSCHEMA: dict = {
+    "type": "array",
+    "items": {"type": "string"},
+}
+
+
 _ASSAY_SELECTOR_SUBSCHEMA: dict = {
     "type": ["object", "null"],
     "additionalProperties": False,
@@ -160,8 +179,12 @@ _ASSAY_SELECTOR_SUBSCHEMA: dict = {
         "protocol_hint": {"type": ["string", "null"]},
         "date_range": _DATE_RANGE_SUBSCHEMA,
         "created_by_as_typed": {"type": ["string", "null"]},
+        "scaffold_hints": _SCAFFOLD_HINTS_SUBSCHEMA,
     },
-    "required": ["target_as_typed", "protocol_hint", "date_range", "created_by_as_typed"],
+    "required": [
+        "target_as_typed", "protocol_hint", "date_range",
+        "created_by_as_typed", "scaffold_hints",
+    ],
 }
 
 
@@ -175,6 +198,7 @@ PROMPT_SCHEMA: dict = {
         "assay_target_as_typed": {"type": ["string", "null"]},
         "registered_date_range": _DATE_RANGE_SUBSCHEMA,
         "registered_by_as_typed": {"type": ["string", "null"]},
+        "scaffold_hints": _SCAFFOLD_HINTS_SUBSCHEMA,
         "measurement_filters": {
             "type": "array",
             "items": {
@@ -214,6 +238,7 @@ PROMPT_SCHEMA: dict = {
         "assay_target_as_typed",
         "registered_date_range",
         "registered_by_as_typed",
+        "scaffold_hints",
         "measurement_filters",
         "assay_selector",
     ],
@@ -272,6 +297,7 @@ def _assay_selector_from_dict(data: Any) -> AssaySelector:
         protocol_hint=data.get("protocol_hint"),
         date_range=_date_range_from_dict(data.get("date_range")),
         created_by_as_typed=data.get("created_by_as_typed"),
+        scaffold_hints=list(data.get("scaffold_hints") or []),
     )
 
 
@@ -316,6 +342,7 @@ def _to_parse_result(data: dict) -> PromptParseResult:
         assay_target_as_typed=data.get("assay_target_as_typed"),
         registered_date_range=_date_range_from_dict(data.get("registered_date_range")),
         registered_by_as_typed=data.get("registered_by_as_typed"),
+        scaffold_hints=list(data.get("scaffold_hints") or []),
         measurement_filters=filters,
     )
 

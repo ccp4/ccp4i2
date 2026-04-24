@@ -643,6 +643,76 @@
       created_by_as_typed: null
 
 # =============================================================================
+# Substructure / scaffold / functional-group filters (slice 13)
+# The LLM emits the user-typed name verbatim into `scaffold_hints`; the
+# backend resolves against the curated SMARTS catalog and RDKit-matches.
+# The LLM MUST NOT emit SMARTS.
+# =============================================================================
+
+- name: scaffold_pyrimidine
+  prompt: "ARd compounds containing pyrimidine"
+  expected:
+    type: selector
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    scaffold_hints: [pyrimidine]
+    measurement_filters: []
+
+- name: scaffold_plural_verbatim
+  prompt: "CDK4 pyrimidines"
+  expected:
+    type: selector
+    note: "'pyrimidines' emitted verbatim — resolver's plural alias handles it."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    scaffold_hints: [pyrimidines]
+    measurement_filters: []
+
+- name: scaffold_with_threshold
+  prompt: "ARd pyridines with HTRF IC50 < 100 nM"
+  expected:
+    type: selector
+    note: "Substructure filter composes with a measurement filter — ANDed."
+    registration_target_as_typed: ARd
+    assay_target_as_typed: null
+    scaffold_hints: [pyridines]
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 100, unit: nM}
+
+- name: scaffold_two_substructures_and
+  prompt: "CDK4 compounds containing both a piperidine and an amide"
+  expected:
+    type: selector
+    note: "Multiple scaffolds ANDed — each is its own entry in scaffold_hints."
+    registration_target_as_typed: CDK4
+    assay_target_as_typed: null
+    scaffold_hints: [piperidine, amide]
+    measurement_filters: []
+
+- name: scaffold_functional_group
+  prompt: "BRD4 compounds with a trifluoromethyl"
+  expected:
+    type: selector
+    registration_target_as_typed: BRD4
+    assay_target_as_typed: null
+    scaffold_hints: [trifluoromethyl]
+    measurement_filters: []
+
+- name: scaffold_on_assay_query
+  prompt: "CDK4 HTRF assays on pyrimidines"
+  expected:
+    type: assay_selector
+    note: "Scaffold narrowing on the assay-selection family too."
+    assay_selector:
+      target_as_typed: CDK4
+      protocol_hint: HTRF
+      date_range: null
+      created_by_as_typed: null
+      scaffold_hints: [pyrimidines]
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 
