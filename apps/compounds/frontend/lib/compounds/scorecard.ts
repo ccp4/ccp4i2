@@ -109,6 +109,110 @@ function asFiniteNumber(v: unknown): number | null {
   return Number.isFinite(n) ? n : null;
 }
 
+// ---------------------------------------------------------------------------
+// Sector helpers — used by the spider, bullets, and editor to give axes a
+// consistent visual grouping by drug-discovery theme (potency / pk / etc.).
+// ---------------------------------------------------------------------------
+
+/**
+ * Hand-picked categorical palette tuned for colour-blindness (Okabe-Ito).
+ * Sectors are assigned colours deterministically by name, so the same
+ * sector reads the same colour across every spider, every card, and every
+ * bullets banner — chemists learn the mapping once.
+ */
+const SECTOR_PALETTE: ReadonlyArray<string> = [
+  '#0072B2', // blue
+  '#D55E00', // vermillion
+  '#009E73', // green
+  '#CC79A7', // pink
+  '#F0E442', // yellow
+  '#56B4E9', // sky blue
+  '#E69F00', // orange
+];
+
+const NEUTRAL_SECTOR_COLOUR = '#9e9e9e';
+
+/** Common sector names suggested by the editor's autocomplete. Free-string
+ *  field, so projects can invent their own — these are just hints. */
+export const CANONICAL_SECTORS: ReadonlyArray<string> = [
+  'potency',
+  'selectivity',
+  'cellular',
+  'pk',
+  'phys-props',
+  'safety',
+];
+
+function normaliseSector(sector: string | null | undefined): string | null {
+  if (sector == null) return null;
+  const trimmed = sector.trim().toLowerCase();
+  return trimmed === '' ? null : trimmed;
+}
+
+/**
+ * Deterministic colour assignment for a sector name. Runs the normalised
+ * name through a simple hash and indexes into the palette, so two configs
+ * that use the same sector name get the same colour without coordination.
+ */
+export function sectorColour(sector: string | null | undefined): string {
+  const name = normaliseSector(sector);
+  if (!name) return NEUTRAL_SECTOR_COLOUR;
+  let h = 0;
+  for (let i = 0; i < name.length; i++) {
+    h = (h * 31 + name.charCodeAt(i)) >>> 0;
+  }
+  return SECTOR_PALETTE[h % SECTOR_PALETTE.length];
+}
+
+/**
+ * Return the axes ordered so that axes sharing a sector are adjacent.
+ * Within a sector, axes keep their relative order from the source array.
+ * Axes with no sector go to the end as an "(unsectored)" trailing group.
+ *
+ * Returned indices preserve a back-reference to the original positions so
+ * that callers can map evaluations / values without re-keying.
+ */
+export interface SectorGroup<T> {
+  sector: string | null;
+  /** Pairs of [original index, item] in the source array. */
+  items: Array<{ index: number; item: T }>;
+}
+
+export function groupAxesBySector<T extends { sector?: string | null }>(
+  axes: ReadonlyArray<T>,
+): SectorGroup<T>[] {
+  const order: string[] = [];
+  const buckets = new Map<string, Array<{ index: number; item: T }>>();
+  const NONE = '__none__';
+
+  axes.forEach((item, index) => {
+    const key = normaliseSector(item.sector) ?? NONE;
+    if (!buckets.has(key)) {
+      buckets.set(key, []);
+      order.push(key);
+    }
+    buckets.get(key)!.push({ index, item });
+  });
+
+  // Stable sort: encountered-order, with the unsectored bucket pushed last.
+  const sectoredKeys = order.filter((k) => k !== NONE);
+  const tail = order.includes(NONE) ? [NONE] : [];
+  return [...sectoredKeys, ...tail].map((key) => ({
+    sector: key === NONE ? null : key,
+    items: buckets.get(key)!,
+  }));
+}
+
+/**
+ * Flatten the sector groups back into a single array in display order
+ * (sectors grouped, axes within sectors keeping source order).
+ */
+export function sortAxesBySector<T extends { sector?: string | null }>(
+  axes: ReadonlyArray<T>,
+): Array<{ index: number; item: T }> {
+  return groupAxesBySector(axes).flatMap((g) => g.items);
+}
+
 /**
  * Aggregation-request inputs a scorecard depends on. The aggregation page
  * merges these with the user's explicit selections so chemists don't have

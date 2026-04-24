@@ -138,6 +138,14 @@ interface ScorecardAxisBase {
   /** Value considered poor */
   poor_value?: number | null;
   threshold_scale?: 'log' | 'linear';
+  /**
+   * Optional sector tag for visual grouping. Free string so projects can
+   * invent their own categories; commonly: potency / selectivity / cellular
+   * / pk / phys-props / safety. Axes sharing a sector get adjacent
+   * positions on the spider and a coloured wedge behind them; in the
+   * bullets view they form a labelled column group.
+   */
+  sector?: string | null;
 }
 
 /** Axis value = a single protocol's geomean. */

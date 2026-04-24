@@ -30,6 +30,7 @@ import type {
   ScorecardRatioAxis,
   ScorecardWorstOfAxis,
 } from '@/types/compounds/models';
+import { CANONICAL_SECTORS, sectorColour } from '@/lib/compounds/scorecard';
 
 // ---------------------------------------------------------------------------
 // Public API
@@ -48,6 +49,19 @@ interface Props {
  *  fields, plus an optional raw-JSON escape hatch for expert edits. */
 export function ScorecardEditor({ value, protocols, onChange, error, disabled }: Props) {
   const axes = value?.axes ?? [];
+
+  // Sectors used elsewhere in this scorecard, merged with the canonical
+  // suggestions. Powers the autocomplete on each axis card so chemists
+  // see "potency" the second time they type "p".
+  const sectorSuggestions = useMemo(() => {
+    const used = new Set<string>();
+    for (const a of axes) {
+      const s = a.sector?.trim().toLowerCase();
+      if (s) used.add(s);
+    }
+    for (const c of CANONICAL_SECTORS) used.add(c);
+    return Array.from(used).sort();
+  }, [axes]);
   const [mode, setMode] = useState<'form' | 'json'>('form');
   const [jsonDraft, setJsonDraft] = useState<string>(() =>
     JSON.stringify(value ?? { axes: [] }, null, 2),
@@ -135,6 +149,7 @@ export function ScorecardEditor({ value, protocols, onChange, error, disabled }:
                 key={i}
                 axis={axis}
                 protocols={protocols}
+                sectorSuggestions={sectorSuggestions}
                 onChange={(patch) => updateAxis(i, patch)}
                 onRemove={() => removeAxis(i)}
                 disabled={disabled}
@@ -195,30 +210,46 @@ const KIND_HELP: Record<ScorecardAxisKind, string> = {
 function AxisCard({
   axis,
   protocols,
+  sectorSuggestions,
   onChange,
   onRemove,
   disabled,
 }: {
   axis: ScorecardAxis;
   protocols: Protocol[];
+  sectorSuggestions: string[];
   onChange: (patch: Partial<ScorecardAxis>) => void;
   onRemove: () => void;
   disabled?: boolean;
 }) {
   const handleKindChange = (kind: ScorecardAxisKind) => {
-    // Kind switch resets kind-specific fields but keeps label + thresholds.
+    // Kind switch resets kind-specific fields but keeps label, thresholds + sector.
     onChange(
       emptyAxis(kind, {
         label: axis.label,
         target_value: axis.target_value,
         poor_value: axis.poor_value,
         threshold_scale: axis.threshold_scale,
+        sector: axis.sector,
       }),
     );
   };
 
+  const sectorTint = axis.sector ? sectorColour(axis.sector) : null;
+
   return (
-    <Paper variant="outlined" sx={{ p: 2, display: 'flex', flexDirection: 'column', gap: 1.5 }}>
+    <Paper
+      variant="outlined"
+      sx={{
+        p: 2,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 1.5,
+        // Sector colour spilled in as a 4px left border so the user sees
+        // grouping on the editor list at a glance.
+        borderLeft: sectorTint ? `4px solid ${sectorTint}` : undefined,
+      }}
+    >
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
         <Typography variant="subtitle1" fontWeight={600} sx={{ flex: 1 }}>
           {axis.label || <em style={{ color: '#999' }}>(unnamed axis)</em>}
@@ -254,6 +285,27 @@ function AxisCard({
           onChange={(e) => onChange({ label: e.target.value })}
           sx={{ flex: 1, minWidth: 220 }}
           disabled={disabled}
+        />
+        <Autocomplete
+          freeSolo
+          size="small"
+          options={sectorSuggestions}
+          value={axis.sector ?? ''}
+          inputValue={axis.sector ?? ''}
+          onInputChange={(_, value) => {
+            const trimmed = value.trim().toLowerCase();
+            onChange({ sector: trimmed === '' ? null : trimmed });
+          }}
+          disabled={disabled}
+          sx={{ minWidth: 180 }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              label="Sector"
+              placeholder="potency / pk / …"
+              helperText="Groups axes visually"
+            />
+          )}
         />
       </Box>
 
@@ -474,6 +526,7 @@ function emptyAxis(
     target_value?: number | null;
     poor_value?: number | null;
     threshold_scale?: 'log' | 'linear';
+    sector?: string | null;
   },
 ): ScorecardAxis {
   const shared = {
@@ -481,6 +534,7 @@ function emptyAxis(
     target_value: base?.target_value ?? null,
     poor_value: base?.poor_value ?? null,
     threshold_scale: base?.threshold_scale,
+    sector: base?.sector ?? null,
   };
   switch (kind) {
     case 'protocol':

@@ -8,7 +8,12 @@ import type {
   CompactRow,
 } from '@/types/compounds/aggregation';
 import type { ScorecardConfig } from '@/types/compounds/models';
-import { evaluateScorecard, type AxisEvaluation } from '@/lib/compounds/scorecard';
+import {
+  evaluateScorecard,
+  groupAxesBySector,
+  sectorColour,
+  type AxisEvaluation,
+} from '@/lib/compounds/scorecard';
 import { MoleculeChip } from '../MoleculeView';
 import { routes } from '@/lib/compounds/routes';
 
@@ -49,7 +54,12 @@ export function BulletsView({ data, scorecardConfig, fillHeight, searchTerm = ''
     );
   }
 
-  const axes = scorecardConfig.axes;
+  // Reorder axes so same-sector axes are adjacent, and capture the original
+  // index so we can map evaluations back to their original axis position.
+  const sectorGroups = groupAxesBySector(scorecardConfig.axes);
+  const orderedEntries = sectorGroups.flatMap((g) => g.items);
+  const axes = orderedEntries.map((entry) => entry.item);
+  const orderedIndices = orderedEntries.map((entry) => entry.index);
 
   return (
     <Paper
@@ -68,7 +78,41 @@ export function BulletsView({ data, scorecardConfig, fillHeight, searchTerm = ''
           alignItems: 'center',
         }}
       >
-        {/* Header row */}
+        {/* Sector banner row — one tinted band per sector spanning its
+            grouped axis columns. Hidden if no axis has a sector. */}
+        {sectorGroups.some((g) => g.sector !== null) && (
+          <>
+            <Box />
+            <Box />
+            {sectorGroups.map((group, gi) => (
+              <Box
+                key={`sector-${gi}`}
+                sx={{
+                  gridColumn: `span ${group.items.length}`,
+                  bgcolor: group.sector ? sectorColour(group.sector) : 'transparent',
+                  color: group.sector ? '#fff' : 'text.secondary',
+                  textAlign: 'center',
+                  fontSize: '0.7rem',
+                  fontWeight: 700,
+                  letterSpacing: '0.06em',
+                  textTransform: 'uppercase',
+                  py: 0.4,
+                  borderRadius: 0.5,
+                  // Faint tint on the unsectored band so it reads as a band too.
+                  border: group.sector ? 'none' : '1px dashed',
+                  borderColor: 'divider',
+                  whiteSpace: 'nowrap',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                }}
+              >
+                {group.sector ?? '—'}
+              </Box>
+            ))}
+          </>
+        )}
+
+        {/* Axis-label header row */}
         <Box />
         <Box />
         {axes.map((axis, i) => (
@@ -132,8 +176,8 @@ export function BulletsView({ data, scorecardConfig, fillHeight, searchTerm = ''
               >
                 {row.formatted_id}
               </Typography>
-              {evals.map((ev, i) => (
-                <BulletCell key={i} evaluation={ev} />
+              {orderedIndices.map((origIdx, i) => (
+                <BulletCell key={i} evaluation={evals[origIdx]} />
               ))}
             </Fragment>
           );

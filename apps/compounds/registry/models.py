@@ -423,6 +423,16 @@ def _validate_scorecard_config(config):
         if scale is not None and scale not in _VALID_THRESHOLD_SCALES:
             raise ValidationError({'scorecard_config': f'{prefix}.threshold_scale: must be "log" or "linear".'})
 
+        # Optional sector tag for visual grouping. Free string; we cap the
+        # length and reject obvious junk but don't enforce a vocabulary so
+        # projects can invent their own categories.
+        sector = axis.get('sector')
+        if sector is not None:
+            if not isinstance(sector, str):
+                raise ValidationError({'scorecard_config': f'{prefix}.sector: must be a string.'})
+            if len(sector) > 64:
+                raise ValidationError({'scorecard_config': f'{prefix}.sector: must be ≤ 64 characters.'})
+
 
 def _next_reg_number():
     """Generate next compound registration number.
