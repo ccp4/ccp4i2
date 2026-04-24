@@ -43,9 +43,7 @@ ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, ChartTool
 interface WedgeSpec {
   startAngle: number;
   endAngle: number;
-  midAngle: number;
   colour: string;
-  label: string | null;
 }
 
 const sectorWedgePlugin: Plugin<'radar'> = {
@@ -67,8 +65,8 @@ const sectorWedgePlugin: Plugin<'radar'> = {
     for (const wedge of opts.wedges) {
       const grad = ctx.createRadialGradient(cx, cy, outer * 0.15, cx, cy, outer);
       grad.addColorStop(0, hexToRgba(wedge.colour, 0));
-      grad.addColorStop(0.85, hexToRgba(wedge.colour, 0.18));
-      grad.addColorStop(1, hexToRgba(wedge.colour, 0.28));
+      grad.addColorStop(0.85, hexToRgba(wedge.colour, 0.22));
+      grad.addColorStop(1, hexToRgba(wedge.colour, 0.35));
       ctx.save();
       ctx.beginPath();
       ctx.moveTo(cx, cy);
@@ -78,34 +76,6 @@ const sectorWedgePlugin: Plugin<'radar'> = {
       ctx.fill();
       ctx.restore();
     }
-  },
-  afterDraw(chart: Chart<'radar'>) {
-    const opts = (chart.options.plugins as Record<string, unknown> | undefined)
-      ?.sectorWedges as { wedges?: WedgeSpec[]; showLabels?: boolean } | undefined;
-    if (!opts?.wedges?.length || !opts.showLabels) return;
-    const r = chart.scales.r as unknown as {
-      xCenter: number;
-      yCenter: number;
-      drawingArea: number;
-    };
-    const { ctx } = chart;
-    const cx = r.xCenter;
-    const cy = r.yCenter;
-    // Place labels just outside the per-axis label ring so they don't
-    // overlap. Empirical: 1.18× the drawing radius works at the large size.
-    const labelRadius = r.drawingArea * 1.18;
-    ctx.save();
-    ctx.font = '700 10px system-ui, sans-serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    for (const wedge of opts.wedges) {
-      if (!wedge.label) continue;
-      const x = cx + labelRadius * Math.cos(wedge.midAngle);
-      const y = cy + labelRadius * Math.sin(wedge.midAngle);
-      ctx.fillStyle = wedge.colour;
-      ctx.fillText(wedge.label.toUpperCase(), x, y);
-    }
-    ctx.restore();
   },
 };
 
@@ -143,18 +113,11 @@ function buildWedges(
     }
   }
 
-  return groups.map((g) => {
-    const startAngle = boundary(g.first - 1);
-    const endAngle = boundary(g.last);
-    const midAngle = (startAngle + endAngle) / 2;
-    return {
-      startAngle,
-      endAngle,
-      midAngle,
-      colour: g.sector ? sectorColour(g.sector) : '#bdbdbd',
-      label: g.sector,
-    };
-  });
+  return groups.map((g) => ({
+    startAngle: boundary(g.first - 1),
+    endAngle: boundary(g.last),
+    colour: g.sector ? sectorColour(g.sector) : '#bdbdbd',
+  }));
 }
 
 interface Props {
@@ -224,9 +187,9 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
       maintainAspectRatio: true,
       // Don't bridge across nulls — missing data stays as a visible gap.
       spanGaps: false,
-      // Extra space around the chart so pointLabels (and the outer sector
-      // labels at the large size) don't clip at the edges of the container.
-      layout: { padding: isSmall ? 4 : 28 },
+      // Extra space around the chart so pointLabels don't clip at the
+      // edges of the container (especially for the small size).
+      layout: { padding: isSmall ? 4 : 8 },
       scales: {
         r: {
           min: 0,
@@ -268,12 +231,9 @@ export function CompoundSpider({ config, compound, size = 'small' }: Props) {
           },
         },
         // Sector wedges read by our custom plugin (registered above).
-        // showLabels only on the large spider — small cards have no room
-        // for sector labels around the rim.
-        sectorWedges: {
-          wedges,
-          showLabels: !isSmall,
-        },
+        // Labels were dropped — wedge colour alone communicates grouping
+        // and avoids overlap with per-axis labels at the rim.
+        sectorWedges: { wedges },
       } as ChartOptions<'radar'>['plugins'],
     };
   }, [evals, size, wedges]);

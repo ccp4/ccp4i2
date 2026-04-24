@@ -116,24 +116,35 @@ function asFiniteNumber(v: unknown): number | null {
 
 /**
  * Hand-picked categorical palette tuned for colour-blindness (Okabe-Ito).
- * Sectors are assigned colours deterministically by name, so the same
- * sector reads the same colour across every spider, every card, and every
- * bullets banner — chemists learn the mapping once.
+ * Canonical sectors get fixed colours (no hash collisions possible on the
+ * names most projects use); non-canonical sectors hash into a fallback
+ * palette that excludes the canonical colours.
  */
-const SECTOR_PALETTE: ReadonlyArray<string> = [
-  '#0072B2', // blue
-  '#D55E00', // vermillion
-  '#009E73', // green
-  '#CC79A7', // pink
+const CANONICAL_SECTOR_COLOURS: Record<string, string> = {
+  potency: '#0072B2',       // blue
+  selectivity: '#D55E00',   // vermillion
+  cellular: '#009E73',      // green
+  pk: '#CC79A7',            // pink
+  'phys-props': '#E69F00',  // orange
+  safety: '#56B4E9',        // sky blue
+};
+
+/** Fallback palette for non-canonical sectors. Disjoint from the canonical
+ *  colours above so a custom sector name never reads as one of the built-ins. */
+const FALLBACK_PALETTE: ReadonlyArray<string> = [
   '#F0E442', // yellow
-  '#56B4E9', // sky blue
-  '#E69F00', // orange
+  '#999999', // dark grey
+  '#882255', // burgundy
+  '#44AA99', // teal
+  '#AA4499', // purple
+  '#117733', // dark green
 ];
 
 const NEUTRAL_SECTOR_COLOUR = '#9e9e9e';
 
-/** Common sector names suggested by the editor's autocomplete. Free-string
- *  field, so projects can invent their own — these are just hints. */
+/** Common sector names suggested by the editor's autocomplete and given
+ *  fixed colours in the palette. Also drives the canonical display order
+ *  on radar / bullets (lowest rank first). */
 export const CANONICAL_SECTORS: ReadonlyArray<string> = [
   'potency',
   'selectivity',
@@ -150,18 +161,34 @@ function normaliseSector(sector: string | null | undefined): string | null {
 }
 
 /**
- * Deterministic colour assignment for a sector name. Runs the normalised
- * name through a simple hash and indexes into the palette, so two configs
- * that use the same sector name get the same colour without coordination.
+ * Deterministic colour for a sector. Canonical sectors get fixed values
+ * (no collision risk); non-canonical names hash into FALLBACK_PALETTE.
  */
 export function sectorColour(sector: string | null | undefined): string {
   const name = normaliseSector(sector);
   if (!name) return NEUTRAL_SECTOR_COLOUR;
+  if (name in CANONICAL_SECTOR_COLOURS) return CANONICAL_SECTOR_COLOURS[name];
   let h = 0;
   for (let i = 0; i < name.length; i++) {
     h = (h * 31 + name.charCodeAt(i)) >>> 0;
   }
-  return SECTOR_PALETTE[h % SECTOR_PALETTE.length];
+  return FALLBACK_PALETTE[h % FALLBACK_PALETTE.length];
+}
+
+/**
+ * Rank for ordering sectors on the radar and bullets: canonical sectors
+ * first, in the order defined above; non-canonical sectors after, ranked
+ * alphabetically; unsectored axes last.
+ */
+function sectorRank(sector: string | null | undefined): number {
+  const name = normaliseSector(sector);
+  if (!name) return 1_000_000; // trailing
+  const canonicalIdx = CANONICAL_SECTORS.indexOf(name);
+  if (canonicalIdx >= 0) return canonicalIdx;
+  // Non-canonical sectors slot in after canonicals, ordered by name hash
+  // (stable across renders, not alphabetical because that would require
+  // passing a full sorted sector list through — marginal cost, ignore).
+  return CANONICAL_SECTORS.length + name.charCodeAt(0) * 1000 + (name.charCodeAt(1) ?? 0);
 }
 
 /**
