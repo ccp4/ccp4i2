@@ -281,16 +281,28 @@ def test_every_threshold_uses_a_valid_op():
             )
 
 
-def test_every_selector_entry_has_a_target_or_assay(db):
-    """§6.5 requires at least one target field (registration or assay)."""
+def test_every_selector_entry_has_some_narrowing_predicate(db):
+    """A selector entry must either name a target or include at least
+    one other narrowing predicate (scaffold / user / date / measurement
+    filter). A fully-empty selector would be a golden-set typo, not a
+    legitimate chemist prompt."""
     for entry in GOLDEN:
         t = entry["expected"].get("type", "selector")
         if t not in ("selector", "selector_with_clarify"):
             continue
         reg = entry["expected"].get("registration_target_as_typed")
         assay = entry["expected"].get("assay_target_as_typed")
-        assert reg or assay, (
-            f"entry {entry['name']!r}: at least one target field must be non-null (§6.5)"
+        if reg or assay:
+            continue
+        has_other_narrowing = any([
+            entry["expected"].get("scaffold_hints"),
+            entry["expected"].get("registered_by_as_typed"),
+            entry["expected"].get("registered_date_range"),
+            entry["expected"].get("measurement_filters"),
+        ])
+        assert has_other_narrowing, (
+            f"entry {entry['name']!r}: target-less selector must have at "
+            "least one other narrowing predicate (scaffold / user / date / filter)"
         )
 
 

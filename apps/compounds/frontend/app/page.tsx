@@ -1,10 +1,8 @@
 'use client';
 
-import { Container, Typography, Box, Stack, Paper } from '@mui/material';
-import { Science, Biotech, TableChart, Search, AccountTree, QuestionAnswer } from '@mui/icons-material';
+import { Container, Typography, Box, Stack, Paper, Tooltip } from '@mui/material';
+import { Science, Biotech, TableChart, Search, AccountTree, QuestionAnswer, DoNotDisturb } from '@mui/icons-material';
 import Link from 'next/link';
-import { useAuth } from '@/lib/compounds/auth-context';
-import { isNlpBetaUser } from '@/lib/compounds/nlp-beta';
 
 /**
  * Root page for the compounds frontend.
@@ -13,8 +11,6 @@ import { isNlpBetaUser } from '@/lib/compounds/nlp-beta';
  * In Docker deployment, this file is replaced by app-selector/page.tsx.
  */
 export default function HomePage() {
-  const { user } = useAuth();
-  const showNlp = isNlpBetaUser(user?.email);
   return (
     <Container maxWidth="md" sx={{ py: 6 }}>
       <Box sx={{ textAlign: 'center', mb: 5 }}>
@@ -123,31 +119,45 @@ export default function HomePage() {
           </Box>
         </Paper>
 
-        {showNlp && (
-          <Paper
-            elevation={2}
-            sx={{
-              p: 3,
-              display: 'flex',
-              alignItems: 'center',
-              gap: 3,
-              cursor: 'pointer',
-              textDecoration: 'none',
-              color: 'inherit',
-              '&:hover': { bgcolor: 'action.hover' },
-            }}
-            component={Link}
-            href="/nlp"
+        <Paper
+          elevation={2}
+          sx={{
+            p: 3,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 3,
+            cursor: 'pointer',
+            textDecoration: 'none',
+            color: 'inherit',
+            position: 'relative',
+            '&:hover': { bgcolor: 'action.hover' },
+          }}
+          component={Link}
+          href="/nlp"
+        >
+          <QuestionAnswer sx={{ fontSize: 56, color: 'primary.main' }} />
+          <Box>
+            <Typography variant="h5">Ask (Natural-Language Query)</Typography>
+            <Typography color="text.secondary">
+              Describe the compounds you want and land on the aggregation page
+            </Typography>
+          </Box>
+          <Tooltip
+            title="Beta feature — may misinterpret prompts or return unexpected selections. Check the scope sentence before following the redirect."
+            arrow
           >
-            <QuestionAnswer sx={{ fontSize: 56, color: 'primary.main' }} />
-            <Box>
-              <Typography variant="h5">Ask (Natural-Language Query)</Typography>
-              <Typography color="text.secondary">
-                Describe the compounds you want and land on the aggregation page
-              </Typography>
-            </Box>
-          </Paper>
-        )}
+            <DoNotDisturb
+              sx={{
+                position: 'absolute',
+                top: 8,
+                right: 8,
+                fontSize: 40,
+                color: 'error.main',
+                opacity: 0.6,
+              }}
+            />
+          </Tooltip>
+        </Paper>
 
         <Paper
           elevation={2}

@@ -713,6 +713,55 @@
       scaffold_hints: [pyrimidines]
 
 # =============================================================================
+# Target-less queries — the user names no project / target, only other
+# predicates (scaffold / user / date / filter). Runs across the whole
+# registry; the LLM must leave both target fields null rather than
+# invent one.
+# =============================================================================
+
+- name: unscoped_all_pyrimidines
+  prompt: "Show me all pyrimidines"
+  expected:
+    type: selector
+    note: "No target — scaffold predicate carries the whole selection."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    scaffold_hints: [pyrimidines]
+    measurement_filters: []
+
+- name: unscoped_by_registrant
+  prompt: "All compounds registered by Suzannah"
+  expected:
+    type: selector
+    note: "Cross-project 'my compounds' query — useful for HR / productivity questions."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    registered_by_as_typed: Suzannah
+    measurement_filters: []
+
+- name: unscoped_by_registrant_and_year
+  prompt: "Compounds registered by Alice in 2025"
+  expected:
+    type: selector
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    registered_by_as_typed: Alice
+    registered_date_range: {after: "2025-01-01", before: "2026-01-01"}
+    measurement_filters: []
+
+- name: unscoped_by_threshold
+  prompt: "Compounds with HTRF IC50 below 10 nM"
+  expected:
+    type: selector
+    note: "Cross-programme potency query — runs across every HTRF measurement."
+    registration_target_as_typed: null
+    assay_target_as_typed: null
+    measurement_filters:
+      - protocol_hint: HTRF
+        metric: IC50
+        threshold: {op: "<", value: 10, unit: nM}
+
+# =============================================================================
 # Display-preference-ignoring — the LLM must NOT emit column/format info
 # =============================================================================
 

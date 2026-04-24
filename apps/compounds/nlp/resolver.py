@@ -50,6 +50,7 @@ from .spec import (
     SCOPE_BOTH_SAME,
     SCOPE_CROSS,
     SCOPE_REG_ONLY,
+    SCOPE_UNSCOPED,
     CompoundSelector,
     ProtocolCandidate,
     ProtocolClarify,
@@ -229,24 +230,23 @@ def _derive_scope_kind(reg: Optional[Target], assay: Optional[Target]) -> str:
         return SCOPE_BOTH_SAME if reg.pk == assay.pk else SCOPE_CROSS
     if reg is not None:
         return SCOPE_REG_ONLY
-    return SCOPE_ASSAY_ONLY
+    if assay is not None:
+        return SCOPE_ASSAY_ONLY
+    return SCOPE_UNSCOPED
 
 
 def resolve_targets(selector: CompoundSelector) -> TargetsResolution:
     """Resolve both target fields on the selector, with sequential clarify
     per Q21. Returns the first unresolved field's clarify/miss if any,
-    otherwise a ResolvedTargets with a derived scope_kind."""
+    otherwise a ResolvedTargets with a derived scope_kind.
+
+    Either-empty is permitted — the selector is simply unscoped w.r.t.
+    target and relies on its other predicates (scaffold / user / date /
+    measurement filter) to narrow. The executor enforces that at least
+    one narrowing predicate exists when the scope is unscoped.
+    """
     reg_typed = (selector.registration_target_as_typed or "").strip()
     assay_typed = (selector.assay_target_as_typed or "").strip()
-
-    if (
-        not reg_typed and not assay_typed
-        and not selector.registration_target_id and not selector.assay_target_id
-    ):
-        return ScopeError(
-            message="At least one of registration_target_as_typed or "
-            "assay_target_as_typed must be set."
-        )
 
     reg: Optional[Target] = None
     if reg_typed or selector.registration_target_id:

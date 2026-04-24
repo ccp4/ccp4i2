@@ -65,6 +65,12 @@ Rules:
   null — unless the user distinguishes WHERE compounds are tested from
   WHO designed them (e.g. "ARd compounds tested against KRAS" sets
   registration to "ARd" and assay to "KRAS").
+- If the user names NO target at all ("all pyrimidines", "compounds
+  registered by Alice in 2025", "compounds with HTRF IC50 < 10 nM")
+  then leave both target fields null. The backend runs the selection
+  across the whole registry, narrowed only by the other predicates
+  you emit. Do NOT invent a target to satisfy a schema nicety; null is
+  the correct answer here.
 - measurement_filters is a list. Multiple filters are ANDed — the
   compound must satisfy ALL of them. This is how cross-protocol
   selectivity is expressed:

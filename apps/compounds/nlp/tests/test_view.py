@@ -316,12 +316,30 @@ def test_target_miss_returns_200_with_miss(client, feature_on, clear_cache, worl
     assert resp.data["status"] == "miss"
 
 
-def test_scope_error_returns_400(client, feature_on, clear_cache, db):
-    parsed = CompoundSelector()  # no targets at all
+def test_fully_empty_selector_returns_400_scope_error(client, feature_on, clear_cache, db):
+    """A selector with literally no narrowing predicate still errors,
+    with a user-friendly "narrow by something" message."""
+    parsed = CompoundSelector()
     with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
         resp = client.post(URL, {"prompt": "whatever"}, format="json")
     assert resp.status_code == 400
     assert resp.data["kind"] == "scope"
+    assert "narrow" in resp.data["message"].lower()
+
+
+def test_target_less_selector_with_filter_runs(client, feature_on, clear_cache, world):
+    """A target-less selector with a measurement filter runs unscoped —
+    the ScopeError only fires for truly-empty selectors."""
+    parsed = CompoundSelector(measurement_filters=[
+        MeasurementFilter(
+            protocol_hint="HTRF", metric="IC50",
+            threshold=Threshold(op="<", value=10.0, unit="nM"),
+        ),
+    ])
+    with patch("compounds.nlp.view.parse_prompt", return_value=parsed):
+        resp = client.post(URL, {"prompt": "anything with HTRF IC50 < 10 nM"}, format="json")
+    assert resp.status_code == 200
+    assert resp.data["status"] == "selection"
 
 
 def test_not_a_query_returns_200(client, feature_on, clear_cache, db):

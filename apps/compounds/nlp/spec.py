@@ -36,6 +36,14 @@ SCOPE_BOTH_SAME = "both_same"
 SCOPE_REG_ONLY = "reg_only"
 SCOPE_ASSAY_ONLY = "assay_only"
 SCOPE_CROSS = "cross"
+# Neither target field is set — the selector is narrowed only by its
+# other predicates (scaffold, registered_by, registered_date_range,
+# measurement filters). Runs across the whole registry. Prompts like
+# *"all pyrimidines"*, *"compounds registered by Suzannah"*, or *"anything
+# with HTRF IC50 < 10 nM"* land here. The executor still requires at
+# least one non-target predicate so we don't silently dump the whole
+# compound list for a fully-empty selector.
+SCOPE_UNSCOPED = "unscoped"
 
 FIELD_REGISTRATION_TARGET = "registration_target_as_typed"
 FIELD_ASSAY_TARGET = "assay_target_as_typed"

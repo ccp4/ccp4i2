@@ -73,6 +73,25 @@ from .spec import (
 from compounds.assays.models import Assay
 
 
+def _selector_has_no_narrowing_predicate(selector: CompoundSelector) -> bool:
+    """True iff the selector names no target, no scaffold, no user, no
+    date range, and no measurement filter — i.e. would trivially select
+    every compound in the registry."""
+    if selector.registration_target_as_typed or selector.registration_target_id:
+        return False
+    if selector.assay_target_as_typed or selector.assay_target_id:
+        return False
+    if selector.scaffold_hints or selector.scaffold_ids:
+        return False
+    if selector.registered_by_as_typed or selector.registered_by_id:
+        return False
+    if selector.registered_date_range is not None:
+        return False
+    if selector.measurement_filters:
+        return False
+    return True
+
+
 def execute(selector: CompoundSelector) -> ExecutionResult:
     """Run a fully-formed CompoundSelector and return a CompoundSelection
     or a clarify/miss/error response to surface back to the user."""
@@ -85,6 +104,23 @@ def execute(selector: CompoundSelector) -> ExecutionResult:
                 field=f"measurement_filters[{idx}].metric",
                 message="A threshold requires a metric to compare against.",
             )
+
+    # A fully-empty selector would hand back every compound in the
+    # registry with no narrowing — almost certainly not what the user
+    # asked for. Guard with a friendly error that actually tells them
+    # what they need to add. A target-less selector is fine AS LONG AS
+    # some other predicate narrows (scaffold / user / date / filter).
+    if _selector_has_no_narrowing_predicate(selector):
+        return ScopeError(
+            message=(
+                "Your query doesn't name anything to narrow by — no target "
+                "(like CDK4 / ARd / mEGFR), no substructure, no person, no "
+                "date, and no measurement threshold. Try adding at least "
+                "one. Examples: \"CDK4 compounds with HTRF IC50 < 100 nM\", "
+                "\"compounds registered by Suzannah\", "
+                "\"all pyrimidines\", or \"compounds with HTRF IC50 < 10 nM\"."
+            )
+        )
 
     rt = resolve_targets(selector)
     if not isinstance(rt, ResolvedTargets):
@@ -272,9 +308,13 @@ def _base_scope_compound_ids(
     """
     if rt.registration is not None:
         qs = Compound.objects.filter(target=rt.registration)
-    else:
+    elif rt.assay is not None:
         # assay-only scope
         qs = Compound.objects.filter(assay_results__assay__target=rt.assay).distinct()
+    else:
+        # Unscoped — no target named. Start from every compound; other
+        # predicates (scaffold, user, date, measurement filters) narrow.
+        qs = Compound.objects.all()
 
     if rt.scope_kind == SCOPE_CROSS and rt.assay is not None:
         # Registration target filter above; also require the compound to

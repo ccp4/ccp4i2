@@ -117,9 +117,37 @@ def selectivity_world(db):
 # ---------------------------------------------------------------------------
 
 
-def test_missing_target_returns_scope_error(db):
+def test_fully_empty_selector_returns_scope_error(db):
+    """A selector with no target AND no other narrowing predicate would
+    trivially list every compound — guard with a helpful ScopeError."""
     res = execute(CompoundSelector())
     assert isinstance(res, ScopeError)
+    assert "narrow by" in res.message.lower() or "narrow" in res.message.lower()
+
+
+def test_target_less_selector_with_scaffold_runs(db):
+    t = Target.objects.create(name="AR degraders")
+    c_pyr = Compound.objects.create(target=t, smiles="c1ccncc1")
+    Compound.objects.create(target=t, smiles="CCO")
+    res = execute(CompoundSelector(scaffold_hints=["pyridine"]))
+    assert isinstance(res, CompoundSelection)
+    assert res.compound_formatted_ids == [c_pyr.formatted_id]
+    assert res.target_names == []
+
+
+def test_target_less_selector_with_filter_runs(ar_world):
+    """Cross-target HTRF IC50 threshold with no project restriction —
+    all AR compounds under 100 nM survive."""
+    res = execute(CompoundSelector(
+        measurement_filters=[
+            MeasurementFilter(
+                protocol_hint="HTRF", metric="IC50",
+                threshold=Threshold(op="<", value=100.0, unit="nM"),
+            ),
+        ],
+    ))
+    assert isinstance(res, CompoundSelection)
+    assert res.n_matched == 2  # c1 (5 nM) and c3 (50 nM)
 
 
 def test_threshold_without_metric_returns_spec_error(db):

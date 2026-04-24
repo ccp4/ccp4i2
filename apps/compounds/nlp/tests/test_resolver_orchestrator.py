@@ -97,19 +97,26 @@ def test_cross_when_fields_differ(two_target_world):
     assert out.scope_kind == SCOPE_CROSS
 
 
-def test_both_fields_empty_is_error(two_target_world):
-    spec = CompoundSelector()
-    out = resolve_targets(spec)
-    assert isinstance(out, ScopeError)
+def test_both_fields_empty_is_unscoped(two_target_world):
+    """Target-less selectors now resolve to SCOPE_UNSCOPED (rather than
+    ScopeError) — the executor decides whether the remaining predicates
+    narrow enough to be worth running."""
+    from compounds.nlp.spec import ResolvedTargets, SCOPE_UNSCOPED
+    out = resolve_targets(CompoundSelector())
+    assert isinstance(out, ResolvedTargets)
+    assert out.registration is None
+    assert out.assay is None
+    assert out.scope_kind == SCOPE_UNSCOPED
 
 
-def test_both_fields_whitespace_is_error(two_target_world):
-    spec = CompoundSelector(
+def test_both_fields_whitespace_is_unscoped(two_target_world):
+    from compounds.nlp.spec import ResolvedTargets, SCOPE_UNSCOPED
+    out = resolve_targets(CompoundSelector(
         registration_target_as_typed="   ",
         assay_target_as_typed="",
-    )
-    out = resolve_targets(spec)
-    assert isinstance(out, ScopeError)
+    ))
+    assert isinstance(out, ResolvedTargets)
+    assert out.scope_kind == SCOPE_UNSCOPED
 
 
 # ---------------------------------------------------------------------------
