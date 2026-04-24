@@ -40,6 +40,7 @@ import { MediumTable } from './aggregation/MediumTable';
 import { LongTable } from './aggregation/LongTable';
 import { PivotTable } from './aggregation/PivotTable';
 import { CardsView } from './aggregation/CardsView';
+import { BulletsView } from './aggregation/BulletsView';
 
 // Module-level empty array for stable identity when the scatter has no
 // protocol axes to offer. Allocating `[]` inline on each render defeats
@@ -201,6 +202,16 @@ export function AggregationTable({
           onEditProtocol={onEditProtocol}
           onScatterProtocol={handleScatterProtocol}
           scorecardConfig={scorecardConfig}
+        />
+      );
+    }
+    if (outputFormat === 'bullets' && isCompactResponse(effectiveData)) {
+      return (
+        <BulletsView
+          data={effectiveData}
+          scorecardConfig={scorecardConfig}
+          searchTerm={searchTerm}
+          fillHeight={fillHeight}
         />
       );
     }

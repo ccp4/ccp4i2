@@ -47,7 +47,7 @@ function AggregationPageContent() {
   const initialProtocolNames = searchParams?.get('protocols')?.split(',').map((s) => s.trim()).filter(Boolean) || undefined;
   // Support output format via 'format' param
   const formatParam = searchParams?.get('format');
-  const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long' || formatParam === 'pivot' || formatParam === 'cards') ? formatParam : undefined;
+  const initialOutputFormat = (formatParam === 'compact' || formatParam === 'medium' || formatParam === 'long' || formatParam === 'pivot' || formatParam === 'cards' || formatParam === 'bullets') ? formatParam : undefined;
   // Support aggregations via comma-separated 'aggregations' param
   const aggregationsParam = searchParams?.get('aggregations');
   const validAggregations = ['geomean', 'count', 'stdev', 'list'] as const;
@@ -262,8 +262,8 @@ function AggregationPageContent() {
     }
 
     try {
-      // Map pivot and cards to compact for the API - they use the same data structure
-      const apiOutputFormat = (outputFormat === 'pivot' || outputFormat === 'cards') ? 'compact' : outputFormat;
+      // Map pivot/cards/bullets to compact for the API - they use the same data structure
+      const apiOutputFormat = (outputFormat === 'pivot' || outputFormat === 'cards' || outputFormat === 'bullets') ? 'compact' : outputFormat;
 
       // If a scorecard is in play for a single target, auto-augment the
       // request with the protocols and molecular properties the scorecard

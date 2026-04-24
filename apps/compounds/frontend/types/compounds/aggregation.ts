@@ -60,7 +60,7 @@ export interface MolecularPropertyMeta {
 export type ConcentrationDisplayMode = 'natural' | 'nM' | 'uM' | 'mM' | 'pConc';
 
 /** Output format options */
-export type OutputFormat = 'compact' | 'medium' | 'long' | 'pivot' | 'cards';
+export type OutputFormat = 'compact' | 'medium' | 'long' | 'pivot' | 'cards' | 'bullets';
 
 /** Filter predicates for querying data series */
 export interface Predicates {

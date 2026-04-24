@@ -85,6 +85,16 @@ export function CardsView({
   const [orderBy, setOrderBy] = useState<CardsSortKey>('compound');
   const [order, setOrder] = useState<Order>('asc');
 
+  // Card body content selector — chemists may want spider-only for SAR
+  // glance, protocols-only for raw numbers, or both. Defaults to whichever
+  // makes sense given whether a scorecard is configured. State is local
+  // (not URL-encoded) to keep the share-link URL simple.
+  type CardContent = 'protocols' | 'spider' | 'both';
+  const hasScorecard = Boolean(scorecardConfig?.axes?.length);
+  const [cardContent, setCardContent] = useState<CardContent>(
+    hasScorecard ? 'both' : 'protocols',
+  );
+
   // Copy to clipboard state
   const [copiedCardId, setCopiedCardId] = useState<string | null>(null);
   const cardRefs = useRef<Map<string, HTMLDivElement>>(new Map());
@@ -226,8 +236,27 @@ export function CardsView({
             />
           </Tooltip>
         </Box>
-        {/* Sort controls */}
+        {/* Sort controls + content selector */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          {hasScorecard && (
+            <>
+              <Typography variant="body2" color="text.secondary">
+                Show:
+              </Typography>
+              <FormControl size="small" sx={{ minWidth: 110 }}>
+                <Select
+                  value={cardContent}
+                  onChange={(e) => setCardContent(e.target.value as CardContent)}
+                  size="small"
+                  sx={{ fontSize: '0.875rem' }}
+                >
+                  <MenuItem value="both">Both</MenuItem>
+                  <MenuItem value="spider">Spider only</MenuItem>
+                  <MenuItem value="protocols">Protocols only</MenuItem>
+                </Select>
+              </FormControl>
+            </>
+          )}
           <Typography variant="body2" color="text.secondary">
             Sort by:
           </Typography>
@@ -347,7 +376,7 @@ export function CardsView({
                   </Typography>
                 )}
               </Box>
-              {scorecardConfig && scorecardConfig.axes && scorecardConfig.axes.length > 0 && (
+              {hasScorecard && cardContent !== 'protocols' && (
                 <Box sx={{ flexShrink: 0 }}>
                   <CompoundSpider config={scorecardConfig} compound={row} size="small" />
                 </Box>
@@ -404,7 +433,8 @@ export function CardsView({
               </Box>
             )}
 
-            {/* Protocols */}
+            {/* Protocols — hidden when the user picked spider-only */}
+            {cardContent !== 'spider' && (
             <Box sx={{ flex: 1, pt: 1, borderTop: 1, borderColor: 'divider' }}>
               {protocols.map((protocol) => {
                 const protocolData = row.protocols[protocol.id];
@@ -541,6 +571,7 @@ export function CardsView({
                 );
               })}
             </Box>
+            )}
           </Paper>
         );
         })}
