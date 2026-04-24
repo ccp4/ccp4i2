@@ -65,6 +65,10 @@ from .spec import (
 
 _FUZZY_MIN_QUERY_LEN = 4
 _MISS_SUGGESTION_COUNT = 5
+# Cap on how many chips we put in a Clarify picker — the UI wraps chips so
+# long lists work, but beyond ~10 the picker becomes a scrolling exercise
+# rather than a decision aid.
+_CLARIFY_MAX_CANDIDATES = 10
 
 
 def _edit_distance_le_1(a: str, b: str) -> bool:
@@ -340,46 +344,74 @@ def resolve_protocol(
 
     protocols = list(Protocol.objects.filter(id__in=protocol_ids))
 
-    # Pass 1: protocols whose tokens ⊇ query tokens.
-    matches: List[Tuple[Protocol, int]] = []
+    # Per-protocol last_run for recency ranking — one query for the whole
+    # scope rather than one per candidate.
+    recency: Dict = {
+        row["protocol_id"]: row["last_run"]
+        for row in scoped_assays
+        .values("protocol_id")
+        .annotate(last_run=Max("created_at"))
+    }
+
+    def _recency_ts(p: Protocol) -> float:
+        dt = recency.get(p.id)
+        return dt.timestamp() if dt else 0.0
+
+    norm_query = normalize(hint or "")
+
+    # Bucket every in-scope protocol by match tier. A protocol lands in the
+    # strongest tier it qualifies for:
+    #   strict     — protocol tokens ⊇ query tokens (original §6.2 rule)
+    #   substring  — normalised query is a substring of the normalised name
+    #   overlap    — at least one shared token (weak but still relevant)
+    # Anything else misses entirely.
+    strict: List[Tuple[Protocol, int]] = []        # (p, extra_token_count)
+    substring: List[Protocol] = []
+    overlap: List[Tuple[Protocol, int]] = []       # (p, overlap_size)
     for p in protocols:
         p_tokens = tokenize(p.name)
         if query_tokens.issubset(p_tokens):
-            extra = len(p_tokens - query_tokens)
-            matches.append((p, extra))
+            strict.append((p, len(p_tokens - query_tokens)))
+            continue
+        p_norm = normalize(p.name)
+        if norm_query and norm_query in p_norm:
+            substring.append(p)
+            continue
+        shared = query_tokens & p_tokens
+        if shared:
+            overlap.append((p, len(shared)))
 
-    if len(matches) == 1:
-        return ResolvedProtocol(protocol=matches[0][0], query=hint)
+    # Single strict hit resolves without clarification (preserve §6.2 rule).
+    if len(strict) == 1:
+        return ResolvedProtocol(protocol=strict[0][0], query=hint)
 
-    if len(matches) > 1:
-        # Rank by (fewer extra tokens, then recency of last run desc).
-        candidates_with_extra = [
-            (extra, _protocol_candidate(p, scoped_assays))
-            for p, extra in matches
-        ]
-        candidates_with_extra.sort(
-            key=lambda row: (
-                row[0],
-                -(row[1].last_run.timestamp() if row[1].last_run else 0),
-            )
-        )
+    # Build the tiered clarify candidate list. Ordering: strict (ranked by
+    # fewer extras then recency), then substring (recency), then overlap
+    # (more shared tokens then recency). Cap at 10 so the picker stays
+    # legible for very broad queries.
+    tiered: List[Protocol] = []
+    strict.sort(key=lambda row: (row[1], -_recency_ts(row[0])))
+    tiered.extend(p for p, _ in strict)
+    tiered.extend(sorted(substring, key=lambda p: -_recency_ts(p)))
+    overlap.sort(key=lambda row: (-row[1], -_recency_ts(row[0])))
+    tiered.extend(p for p, _ in overlap)
+    tiered = tiered[: _CLARIFY_MAX_CANDIDATES]
+
+    if tiered:
         return ProtocolClarify(
             query=hint,
-            candidates=[c for _, c in candidates_with_extra],
+            candidates=[_protocol_candidate(p, scoped_assays) for p in tiered],
             filter_index=filter_index,
         )
 
-    # Miss — rank in-scope protocols by token overlap, take top 5.
-    scored: List[Tuple[int, Protocol]] = []
-    for p in protocols:
-        overlap = len(query_tokens & tokenize(p.name))
-        if overlap > 0:
-            scored.append((overlap, p))
-    scored.sort(key=lambda row: row[0], reverse=True)
-    suggestions = [
-        _protocol_candidate(p, scoped_assays)
-        for _, p in scored[:_MISS_SUGGESTION_COUNT]
+    # Truly nothing matched in any tier. Miss, but surface the most-recently-
+    # used protocols in scope as suggestions — better than a dead end, and
+    # lets the user eyeball what's actually available for the target.
+    suggestions = sorted(protocols, key=lambda p: -_recency_ts(p))[
+        : _MISS_SUGGESTION_COUNT
     ]
     return ProtocolMiss(
-        query=hint, suggestions=suggestions, filter_index=filter_index,
+        query=hint,
+        suggestions=[_protocol_candidate(p, scoped_assays) for p in suggestions],
+        filter_index=filter_index,
     )

@@ -173,21 +173,36 @@ def test_empty_hint_is_miss(ar_activity):
 
 def test_no_matching_protocol_returns_suggestions_by_overlap(ar_activity):
     # "binding elisa" — 1 token ("binding") overlaps with AR binding HTRF.
+    # Post-tiered-resolver: a partial-token-overlap match lands in tier 3
+    # and produces a Clarify (not a Miss) so the user can pick directly.
     out = resolve_protocol("binding elisa", _rt_both(ar_activity["ar"]))
-    assert isinstance(out, ProtocolMiss)
-    assert 1 <= len(out.suggestions) <= 5
-    # Best suggestion should be the one with most overlapping tokens.
-    assert out.suggestions[0].name == "AR binding HTRF"
+    assert isinstance(out, ProtocolClarify)
+    assert 1 <= len(out.candidates) <= 10
+    assert out.candidates[0].name == "AR binding HTRF"
 
 
-def test_completely_unknown_query_returns_empty_suggestions(ar_activity):
-    # No tokens overlap with any in-scope protocol name.
+def test_completely_unknown_query_falls_back_to_recent_scope_protocols(ar_activity):
+    # No tokens overlap with any in-scope protocol name. Still, the user
+    # typed something that gestured at CDK4 scope, so surface the
+    # most-recent scope protocols as suggestions — a dead-end Miss with
+    # zero suggestions is less useful than "here's what's actually
+    # available in this project, did you mean one of these?"
     out = resolve_protocol(
         "obscureXYZ nonsenseQRS",
         _rt_both(ar_activity["ar"]),
     )
     assert isinstance(out, ProtocolMiss)
-    assert out.suggestions == []
+    assert len(out.suggestions) > 0
+    # All suggestions should belong to the AR scope.
+    expected_names = {
+        ar_activity["p_binding"].name,
+        ar_activity["p_degradation"].name,
+        ar_activity["p_counter"].name,
+        ar_activity["p_v7"].name,
+        ar_activity["p_selectivity"].name,
+    }
+    for suggestion in out.suggestions:
+        assert suggestion.name in expected_names
 
 
 # ---------------------------------------------------------------------------
@@ -263,17 +278,53 @@ def test_empty_scope_returns_miss(ar_activity):
 # ---------------------------------------------------------------------------
 
 
-def test_clarify_ordering_fewer_extra_tokens_first(ar_activity):
-    # Query "AR HTRF" matches all three AR ... HTRF protocols equally well
-    # on required tokens (each has both ar and htrf). Extras differ:
-    #   AR binding HTRF       -> 1 extra (binding)
-    #   AR degradation HTRF   -> 1 extra (degradation)
-    #   AR counter-screen HTRF -> 2 extras (counter, screen)
-    # So counter-screen must rank last.
+def test_substring_match_triggers_clarify_not_miss(db):
+    """Protocol names that contain the query as a substring (not as a
+    standalone token) should surface as Clarify candidates, not be lost
+    to the Miss path. This covers the 2026-04-24 user report: typing
+    "HTRF" against a catalog where HTRF appears fused into compound
+    words used to produce a flat Miss."""
+    cdk4 = Target.objects.create(name="CDK4")
+    compound = Compound.objects.create(target=cdk4, smiles="CCO")
+    # Two CDK4 protocols whose names contain "HTRF" as a substring but NOT
+    # as a standalone token — they'd fail the strict tokens-subset match.
+    p1 = Protocol.objects.create(name="CDK4-HTRF cellular rebind")
+    p2 = Protocol.objects.create(name="CDK4-HTRF biochemical")
+    for p in (p1, p2):
+        a = Assay.objects.create(protocol=p, target=cdk4)
+        _mk_ds(a, compound)
+
+    rt = ResolvedTargets(registration=cdk4, assay=cdk4, scope_kind="both_same")
+    out = resolve_protocol("HTRF", rt)
+    # With strict-tokens-only matching this would have been a Miss. With
+    # the three-tier resolver, the substring tier surfaces both protocols.
+    assert isinstance(out, ProtocolClarify)
+    names = {c.name for c in out.candidates}
+    assert names == {"CDK4-HTRF cellular rebind", "CDK4-HTRF biochemical"}
+
+
+def test_clarify_ordering_strict_tier_before_weaker_tiers(ar_activity):
+    # Query "AR HTRF" — three strict matches (all contain both tokens) plus
+    # AR-V7 TR-FRET which shares {ar} only (tier-3 overlap). Order:
+    #   Tier 1 (strict): AR binding HTRF (1 extra), AR degradation HTRF (1),
+    #                    AR counter-screen HTRF (2 — ranks last within tier).
+    #   Tier 3 (overlap): AR-V7 IC50 TR-FRET — appears AFTER all strict.
     out = resolve_protocol("AR HTRF", _rt_both(ar_activity["ar"]))
     assert isinstance(out, ProtocolClarify)
-    assert len(out.candidates) == 3
-    assert out.candidates[-1].name == "AR counter-screen HTRF"
+    names = [c.name for c in out.candidates]
+    # The three strict-tier matches come first, in extras-then-recency order.
+    strict_slice = names[:3]
+    assert set(strict_slice) >= {
+        "AR binding HTRF",
+        "AR degradation HTRF",
+        "AR counter-screen HTRF",
+    }
+    # Counter-screen has 2 extras so ranks last within the strict tier.
+    assert strict_slice[-1] == "AR counter-screen HTRF"
+    # AR-V7 IC50 TR-FRET has only partial overlap — tier 3, so must land
+    # after all strict matches.
+    if "AR-V7 IC50 TR-FRET" in names:
+        assert names.index("AR-V7 IC50 TR-FRET") > names.index("AR counter-screen HTRF")
 
 
 # ---------------------------------------------------------------------------
