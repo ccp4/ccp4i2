@@ -137,20 +137,36 @@ function ClarifyView({
     ? `Which ${query !== '' ? `"${query}" ` : ''}protocol did you mean?`
     : `Which target did you mean by "${query}"?`;
 
+  // If the server didn't include partial_selector (e.g. a pre-pivot server
+  // still emitting the old partial_spec shape), picking a chip would crash
+  // on `.measurement_filters`. Surface the mismatch legibly instead.
+  const partialSelectorMissing =
+    !partial_selector || !Array.isArray(partial_selector.measurement_filters);
+
   return (
     <Paper elevation={1} sx={{ p: 3 }}>
       <Typography variant="h6" sx={{ mb: 2 }}>
         {heading}
       </Typography>
+      {partialSelectorMissing && (
+        <Alert severity="warning" sx={{ mb: 2 }}>
+          The server returned a clarify response without the selector context
+          needed to continue. This usually means the server is running a
+          pre-pivot build. Redeploy the server image and retry the prompt.
+        </Alert>
+      )}
       <Stack direction="row" spacing={1.5} sx={{ flexWrap: 'wrap', gap: 1.5 }}>
         {candidates.map((candidate) => (
           <Chip
             key={candidate.id}
             label={<CandidateLabel candidate={candidate} isProtocol={isProtocol} />}
-            onClick={() =>
-              onPick(partial_selector, field, candidate.id, filter_index)
+            onClick={
+              partialSelectorMissing
+                ? undefined
+                : () => onPick(partial_selector, field, candidate.id, filter_index)
             }
-            clickable
+            clickable={!partialSelectorMissing}
+            disabled={partialSelectorMissing}
             sx={{ height: 'auto', '& .MuiChip-label': { display: 'block', py: 1, px: 1.5 } }}
           />
         ))}

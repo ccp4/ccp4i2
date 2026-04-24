@@ -133,13 +133,27 @@ export async function postNlpQuery(
  *   selector (depending on `field`).
  * - Protocol clarify: set protocol_id on the specific measurement_filter
  *   identified by `filterIndex`.
+ *
+ * Raises an error (rather than silently crashing) if `partial` is missing
+ * or lacks `measurement_filters`. That indicates a client/server version
+ * mismatch — the v1 server emitted `partial_spec` (no measurement_filters);
+ * the v2 client expects `partial_selector` (with measurement_filters).
+ * Surface the mismatch loudly so it's diagnosable rather than a deep
+ * React crash.
  */
 export function applyClarifyPick(
-  partial: CompoundSelector,
+  partial: CompoundSelector | undefined,
   field: string,
   pickedId: string,
   filterIndex?: number,
 ): CompoundSelector {
+  if (!partial || !Array.isArray(partial.measurement_filters)) {
+    throw new Error(
+      "Clarify response is missing partial_selector (or its measurement_filters) — " +
+      "this usually means the server is running a pre-pivot build. Redeploy the " +
+      "server image and retry.",
+    );
+  }
   const next: CompoundSelector = {
     ...partial,
     measurement_filters: partial.measurement_filters.map((f) => ({ ...f })),
